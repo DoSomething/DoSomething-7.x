@@ -1212,6 +1212,9 @@ fieldset .form-item {
   color: black;
   font-size: 14px;
 }
+#furtographer-address .form-item {
+  width: 140px;
+}
 
 .form-item-email {
   margin-left: 85px;
