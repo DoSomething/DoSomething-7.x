@@ -161,3 +161,15 @@ div.horizontal-tabs {
 
 .pane-petition-reasons h2 {
   margin-top: 0.25em; }
+
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all { background: #fff; }
+
+.invite-by-email-link {
+  background: #e35a68;
+  padding: 8px 10px;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 3px #808080;
+}

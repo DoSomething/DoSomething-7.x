@@ -5,6 +5,8 @@ function clean_email($email) {
   return $email;
 }
 
+$node = json_decode(base64_decode(($_GET['nid'])));
+
 if ($_POST['do'] == 'blah') {
   require_once '/var/www/html/google-api-php-client/src/apiClient.php';
   require_once '/var/www/html/google-api-php-client/src/contrib/apiPlusService.php';
@@ -188,7 +190,7 @@ if ($_POST['do'] == 'email') {
 <a href="#" onclick="return auth('gmail')" id="gmail">Find contacts on GMail</a>
 <a href="#" onclick="return auth('yahoo')" id="yahoo">Find contacts on Yahoo!</a>
 </div>
-<p>I prefer to <a href="mailto:?subject=Hi%20There&amp;body=Sign this petition!">send my own email</a>.</p>
+<p>I prefer to <a href="mailto:?subject=<?php echo ($node->title) . ' - Sign the petition!'; ?>&amp;body=<?php echo "Please join my campaign:\r\n\r\n" . $node->link; ?>">send my own email</a>.</p>
 <form action="" method="post">
 <input type="hidden" name="do" value="email" />
 <textarea name="emails" id="email_list" style=" width: 500px; height: 200px"></textarea>

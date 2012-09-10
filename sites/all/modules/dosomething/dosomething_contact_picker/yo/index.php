@@ -90,6 +90,7 @@ class yahooauth {
 $(document).ready(function() {
 	var r = $('#response').html();
         $('#response', window.opener.document).show().html(r);
+        window.opener.prepare_clicks();
         window.close();
     });
 </script>
