@@ -119,14 +119,27 @@ div[role="main"]
 #find-a-shelter
   background: rgba($white, 0.75) url(../images/find-a-shelter.png) no-repeat
   background-position: 50% 80px
-
+#find-a-shelter
+  .ie8 &
+    background: #c4e2ea url(../images/find-a-shelter.png) no-repeat
+    background-position: 50% 80px
+    +opacity(1.0)
 #get-the-guide
   background: rgba($white, 0.75) url(../images/get-the-guide.png) no-repeat
   background-position: 50% 85px
-
+#get-the-guide
+  .ie8 &
+    background: #c4e2ea url(../images/get-the-guide.png) no-repeat
+    background-position: 50% 80px
+    +opacity(1.0)
 #submit-your-shelter-pic
   background: rgba($white, 0.75) url(../images/submit-your-shelter.png) no-repeat
   background-position: 50% 74px
+#submit-your-shelter-pic
+  .ie8 &
+    background: #c4e2ea url(../images/submit-your-shelter.png) no-repeat
+    background-position: 50% 74px
+    +opacity(1.0)
 
 .picsforpets-menu
   @extend %league-gothic
@@ -510,3 +523,28 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"]
 
 .item-list .pager li
   padding: 0
+
+.page-pics-for-pets-lets-get-started  
+  .panel-1col
+    .ie8 &
+      height: 300px
+  .panel-panel
+    .ie8 &
+      position: absolute
+      width: 800px
+      height: 500px
+      margin-left: 60px
+      padding-left: 0px
+      margin-top: 80px
+  .panel-pane
+    .ie8 &
+      margin: 0px 10px 0px 5px
+      padding-left: 0px
+      padding-right: 0px
+  
+.page-pics-for-pets-shelter-search
+  .ie8 &
+    #edit-help-wrapper
+      margin-top: 90px
+      
+

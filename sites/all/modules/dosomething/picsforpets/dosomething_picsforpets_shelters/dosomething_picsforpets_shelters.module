@@ -54,7 +54,10 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
     '#suffix' => '<div class="not-partnered-shelter">' . t('These are not DoSomething.org Partnered Shelters') . '</div></div>',
   );
 
-  $form['help'] = array(
+  $form['help-wrapper'] = array(
+    '#type' => 'container',
+  );
+  $form['help-wrapper']['help'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'class' => array(
