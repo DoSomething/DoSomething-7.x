@@ -65,7 +65,7 @@ class yahooauth {
         $contacts = json_decode($contacts[2])->contacts;
         $count = $contacts->total;
 	    $res .= '<input type="checkbox" id="check-all" /> Check all';
-        $res = '<ul id="blah">';
+        $res .= '<ul id="blah">';
         $list = array();
         foreach ($contacts->contact AS $key => $person) {
             $name = $this->find_name($person->fields);
