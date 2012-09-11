@@ -1,17 +1,24 @@
 name = Geofield
 description = Stores geographic and location data (points, lines, and polygons).
 core = 7.x
-dependencies[] = libraries
+dependencies[] = geophp
+package = Fields
 files[] = geofield.module
 files[] = geofield.install
+files[] = geofield.elements.inc
 files[] = geofield.widgets.inc
 files[] = geofield.formatters.inc
+files[] = geofield.openlayers.inc
 files[] = geofield.feeds.inc
-files[] = geofield.test
+files[] = tests/geofield.test
+files[] = views/geofield.views.inc
+files[] = views/handlers/geofield_handler_sort.inc
+files[] = views/handlers/geofield_handler_field.inc
+files[] = views/handlers/geofield_handler_filter.inc
 
-; Information added by drupal.org packaging script on 2012-02-05
-version = "7.x-1.0-rc1"
+; Information added by drupal.org packaging script on 2012-08-27
+version = "7.x-2.x-dev"
 core = "7.x"
 project = "geofield"
-datestamp = "1328414750"
+datestamp = "1346070281"
 

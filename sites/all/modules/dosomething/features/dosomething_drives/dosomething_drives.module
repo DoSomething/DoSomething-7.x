@@ -4,6 +4,8 @@
  * Code for the dosomething_drives feature.
  */
 
+define('DS_DRIVE_GOAL_FIELD', 'drive_goal');
+
 include_once 'dosomething_drives.features.inc';
 
 /**
@@ -15,3 +17,143 @@ function dosomething_drives_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+function dosomething_drives_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') !== 0 || empty($form_state['webform_entity']) || $form_state['webform_entity']['bundle'] != 'drive_form') {
+    return;
+  }
+
+  if (isset($_GET['gid']) && is_numeric($_GET['gid'])) {
+    $gid = $_GET['gid'];
+    $entity_form = &$form['submitted'];
+    $node = $form['#node'];
+
+    $entity_form['group_audience']['#access'] = FALSE;
+    $entity_form['group_audience'][LANGUAGE_NONE][0]['gid']['#default_value'] = $gid;
+
+    $reference = og_load_entity_from_group($gid);
+    if ($cid = dosomething_drives_get_drive_cid(node_load($reference->nid))) {
+      $entity_form['field_'.DS_DRIVE_GOAL_FIELD][LANGUAGE_NONE][0]['value']['#default_value'] = $reference->data[$cid]['value'][0];
+    }
+    $entity_form['field_team_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $reference->field_team_name[LANGUAGE_NONE][0]['value'];
+  }
+  $form['#submit'][] = 'dosomething_drives_drive_submit';
+}
+
+function dosomething_drives_drive_submit(&$form, &$form_state) {
+  $submitted = $form_state['webform_entity']['submission']->submitted;
+  $gid = $submitted['group_audience'][LANGUAGE_NONE][0]['gid'];
+  $goal = $submitted['field_'.DS_DRIVE_GOAL_FIELD][LANGUAGE_NONE][0]['value'];
+  $team_name = $submitted['field_team_name'][LANGUAGE_NONE][0]['value'];
+
+  $reference = og_load_entity_from_group($gid);
+  $reference_node = node_load($reference->nid);
+
+  $save = false;
+  
+  if ($cid = dosomething_drives_get_drive_cid($reference_node)) {
+  $webform_field = &$reference->data[$cid]['value'][0];
+    if ($webform_field != $goal) {
+      $webform_field = $goal;
+      $save = TRUE;
+    }
+  }
+
+  $old_name = &$reference->field_team_name[LANGUAGE_NONE][0]['value'];
+  if ($old_name != $team_name) {
+    $old_name = $team_name;
+    $save = TRUE;
+  }
+
+  if ($save) {
+    entity_save('webform_submission_entity', $reference);
+  }
+}
+
+function dosomething_drives_get_drive_cid($node) {
+  static $cid;
+
+  if (!isset($cid)) {
+    $cid = false;
+    foreach ($node->webform['components'] as $component) {
+      if ($component['form_key'] == DS_DRIVE_GOAL_FIELD) {
+        $cid = $component['cid'];
+      }
+    }
+  }
+
+  return $cid;
+}
+
+function dosomething_drives_module_implements_alter(&$implementations, $hook) {
+  // We can only disable our elements if we come after webform_entity, make sure we do.
+  if ($hook == 'form_alter' && isset($implementations['dosomething_drives'])) {
+    $group = $implementations['dosomething_drives'];
+    unset($implementations['dosomething_drives']);
+    $implementations['dosomething_drives'] = $group;
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_drives_menu() {
+  $items = array();
+
+  $items['drive/join/%'] = array(
+    'page callback' => 'dosomething_drives_join',
+    'page arguments' => array(2),
+    'access callback' => 'user_is_logged_in',
+  );
+
+  return $items;
+}
+
+function dosomething_drives_join($gid) {
+  global $user;
+  // submit the sign up form
+  $group = og_load($gid);
+  $submission = reset(entity_load('webform_submission_entity', array($group->etid)));
+  $nid = $submission->nid;
+
+  $profile = profile2_load_by_user($user, 'main');
+  if ($profile) {
+    $mobile = field_get_items('profile2', $profile, 'field_user_mobile');
+    $mobile = $mobile[0]['value'];
+    $submission = (object) array(
+      'sid' => NULL,
+      'nid' => $nid,
+      'uid' => $user->uid,
+      'submitted' => REQUEST_TIME,
+      'remote_addr' => ip_address(),
+      'is_draft' => 0,
+      'data' => array(
+      ),
+      'bundle' => 'campaign_sign_up',
+      'field_webform_email' => array(
+        LANGUAGE_NONE => array(
+          array('email' => $user->mail),
+        ),
+      ),
+      'field_webform_mobile' => array(
+        LANGUAGE_NONE => array(
+          array('value' => $mobile),
+        ),
+      ),
+    );
+    entity_save('webform_submission_entity', $submission);
+  }
+  teams_join_by_url($gid, teams_get_group_hash($gid));
+}
+
+function dosomething_drives_get_drive_nid($campaign_group) {
+  $gid = $campaign_group->gid;
+  // entity field query where we filter by group_group field
+  $q = new EntityFieldQuery();
+  $result = $q
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'drive_form')
+    ->fieldCondition('group_audience', 'gid', $gid)
+    ->execute();
+  $result = reset($result);
+  return reset($result)->nid;
+}
