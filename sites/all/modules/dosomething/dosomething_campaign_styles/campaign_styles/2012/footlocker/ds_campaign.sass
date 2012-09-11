@@ -56,7 +56,7 @@ $bgGray: #C8C8C8
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
-p
+p, li
   font-size: 14px
 
 a
@@ -701,11 +701,11 @@ hr.gray
   border-left: 1px solid lightgray 
 
 // APPLICATION
-#node-724592
+#node-724592, #node-724596, #node-724597
   form
     border: none !important
     +noBoxShadow
-  .field-name-group-audience    
+  .field-name-group-audience, .field-name-field-recommendation-form    
     display: none
   .formhead
     text-transform: uppercase
@@ -738,7 +738,7 @@ hr.gray
       input.form-submit
         font-size: 24px
       #edit-previous, #edit-next  
-        width: 70px
+        width: 7 0px
   h2.other
     font-size: 28px
     margin-top: 28px
@@ -761,3 +761,30 @@ hr.gray
       clear: both
     p
       text-align: right  
+
+// REQUEST PAGE
+  #webform-component-recommendation-1, #edit-submitted-field-application, #edit-submitted-field-webform-name, #webform-component-relationship-to-you, #edit-submitted-field-webform-email, #webform-component-phone-number
+    margin-left: 200px
+    input
+      width: 300px
+#node-724597, #node-724596
+  #edit-actions
+    position: relative
+    text-align: center !important
+    margin: -34px
+
+// STATUS PAGE     
+.page-node-724721
+  h3
+    text-transform: uppercase
+    font-size: 24px
+    color: $baseColor
+    margin-bottom: 20px
+    a
+      text-transform: lowercase
+      text-decoration: underline
+      color: $baseColor
+  //#recommendation-status-724594, recommendation-status-724595
+    //margin-bottom: 20px
+    //h4
+      //font-size: 24px   
