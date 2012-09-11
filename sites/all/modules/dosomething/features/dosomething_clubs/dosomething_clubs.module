@@ -496,9 +496,9 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
         $form['field_club_zip'][LANGUAGE_NONE][0]['value']['#default_value'] = $address['postal_code'];
       }
     }
-
-    $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
   }
+
+  $form['#submit'][] = 'dosomething_clubs_mailchimp';
 
   $form['#attached']['js'] = array(
     array(
@@ -568,6 +568,16 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
       // newer data.
       $form['#submit'][] = 'dosomething_clubs_form_submit';
     }
+  }
+}
+
+function dosomething_clubs_mailchimp(&$form, &$form_state) {
+  $vals = $form_state['values'];
+  $mid = $vals['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
+  $email = $vals['field_email'][LANGUAGE_NONE][0]['value'];
+
+  if (!empty($mid)) {
+     dosomething_general_mailchimp_subscribe($email, $mid);
   }
 }
 

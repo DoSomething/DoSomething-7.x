@@ -56,6 +56,9 @@ $bgGray: #C8C8C8
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
+p
+  font-size: 14px
+
 a
   color: $baseColor
   &:hover
@@ -227,6 +230,7 @@ div[role="main"]
     padding-bottom: 0
     p
       margin-bottom: 0
+      font-size: 24px
 
 .pane-node-field-campain-date
   .field-item
@@ -461,8 +465,8 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
   width: 750px
   #edit-actions, #edit-actions--2
     position: absolute
-    right: 82px
-    bottom: 22px
+    right: 52px
+    top: 40px
   .form-wrapper
     margin-bottom: 8px !important
   .pane-content
@@ -529,8 +533,8 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
     padding-bottom: 0 !important    
   #edit-submit
     position: absolute
-    bottom: 56px
-    right: -10px
+    bottom: 18px
+    right: -45px
     color: white
     background: #DF3049
     font-size: 18px
@@ -630,3 +634,130 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
 
 .ui-icon.ui-icon-closethick
   text-indent: -9999px
+
+// APPLY NOW BUTTON
+.apply-headline
+  //h2.pane-title
+    //width: 750px
+    //position: relative
+  h2.apply-button
+    position: absolute
+    top: 18px
+    right: 115px
+    font-size: 36px
+    padding: 20px 20px 32px
+    -webkit-border-radius: 22px
+    -moz-border-radius: 22px
+    border-radius: 22px
+    a
+      color: black
+      text-shadow: 1px 1px 3px white
+      &:hover
+        text-decoration: none
+        color: #1b1b1b
+        text-shadow: -1px -1px 3px white 
+
+// ABOUT PAGE
+hr.gray
+  border-top: 1px solid lightgray 
+  border-bottom: none
+  clear: both       
+
+.redhead-box
+  text-align: center
+  margin-top: 20px
+.redhead
+  background: $baseColor
+  display: inline-block
+  text-align: center
+  text-transform: uppercase
+  color: white
+  margin: -7px auto 15px auto
+  clear: both
+  padding: 12px
+  font-size: 28px  
+
+.judging-box, .application-box, .questions-box
+  float: left
+  width: 250px
+  padding: 20px
+  text-align: center
+  h3
+    font-size: 30px
+    text-transform: uppercase
+    margin-bottom: 15px  
+.judging-box
+  position: relative
+  img
+    position: absolute
+    top: 20px
+    left: 50%
+    margin-left: -64px
+  p
+    margin-top: 168px
+.application-box
+  width: 248px
+  border-right: 1px solid lightgray
+  border-left: 1px solid lightgray 
+
+// APPLICATION
+#node-724592
+  form
+    border: none !important
+    +noBoxShadow
+  .field-name-group-audience    
+    display: none
+  .formhead
+    text-transform: uppercase
+    font-size: 28px
+  label
+    font-size: 14px
+    margin-top: 10px
+  .form-wrapper
+    margin-bottom: 0 !important
+  #webform-component-one-of-the-following
+    margin-top: 10px
+    p
+      margin: 0
+  #webform-component-cumulative-sat-score, #webform-component-cumulative-act-score, #webform-component-pre-sat-score, #webform-component-plan-score
+    margin-left: 20px
+    label
+      width: 150px
+      float: left
+      clear: both
+      margin-top: 7px
+    input  
+      margin-bottom: 10px
+      width: 100px
+  .webform-client-form
+    #edit-actions
+      //position: static
+      bottom: 120px
+      left: 0px
+      right: auto
+      input.form-submit
+        font-size: 24px
+      #edit-previous, #edit-next  
+        width: 70px
+  h2.other
+    font-size: 28px
+    margin-top: 28px
+    text-transform: uppercase    
+  h3
+    color: $baseColor
+    span
+      color: gray
+  textarea
+    margin: 10px 0 20px 0
+  label[for=edit-submitted-contact-me], label[for=edit-submitted-legal-stuff], label[for=edit-submitted-confirm-true], label[for=edit-submitted-permission]
+    display: none
+  .fl-form-footer
+    float: left
+    width: 100%
+    margin: 40px 0 0 0
+    img
+      float: right
+    hr
+      clear: both
+    p
+      text-align: right  
