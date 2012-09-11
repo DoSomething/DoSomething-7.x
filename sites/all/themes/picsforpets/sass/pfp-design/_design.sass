@@ -208,6 +208,9 @@ a.footer-furtography
   font-family: $font-sans
   text-align: center
 
+div.error, table tr.error
+  display: none
+
 #shelter-results
   .shelter-results-option-list
     +border-radius(12px)
@@ -215,10 +218,11 @@ a.footer-furtography
     background: $white
     color: $black
     padding: 24px
-    margin-bottom: 24px
+    margin-bottom: 12px
     width: 100%
     // position: absolute
-    overflow: visible
+    overflow: scroll
+    max-height: 230px
     input
       +float-left
       width: auto
@@ -259,9 +263,11 @@ a.footer-furtography
     // margin: auto !important
     float: none
     width: 110px
-    position: relative
-    bottom: -65px
+    position: absolute
+    bottom: 40px
+    left: 220px
     padding: 4px 12px
+
 
 #popup-cancel-button,
 #edit-select-shelter
@@ -287,6 +293,7 @@ a.footer-furtography
   border-bottom: 12px solid
   border-top: 12px solid
   border-color: rgba($black, 0.1)
+  min-height: 500px
   +border-radius(0)
   .ie8 &
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf000000, endColorstr=#bf000000)

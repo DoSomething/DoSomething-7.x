@@ -1834,6 +1834,10 @@ a.footer-furtography {
   text-align: center;
 }
 
+div.error, table tr.error {
+  display: none;
+}
+
 #shelter-results .shelter-results-option-list {
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
@@ -1845,9 +1849,10 @@ a.footer-furtography {
   background: white;
   color: black;
   padding: 24px;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   width: 100%;
-  overflow: visible;
+  overflow: scroll;
+  max-height: 230px;
 }
 #shelter-results .shelter-results-option-list input {
   display: inline;
@@ -1896,8 +1901,9 @@ a.footer-furtography {
 #shelter-results #edit-view-more-button {
   float: none;
   width: 110px;
-  position: relative;
-  bottom: -65px;
+  position: absolute;
+  bottom: 40px;
+  left: 220px;
   padding: 4px 12px;
 }
 
@@ -1919,6 +1925,7 @@ a.footer-furtography {
   border-bottom: 12px solid;
   border-top: 12px solid;
   border-color: rgba(0, 0, 0, 0.1);
+  min-height: 500px;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
