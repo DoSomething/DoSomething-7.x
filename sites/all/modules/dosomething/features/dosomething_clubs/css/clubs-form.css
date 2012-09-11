@@ -99,3 +99,4 @@ div.form-item-field-club-blurb-und-0-value label {
 ul.tabs.primary li:nth-child(3) a { display: none; }
 .delta-order { display: none; }
 thead tr th:last-of-type { display: none; }
+#edit-field-mailchimp-group-id { display: none; }

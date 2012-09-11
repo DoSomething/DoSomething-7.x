@@ -13,10 +13,44 @@ function teams_form_alter(&$form, &$form_state, $form_id) {
   $entity_form = &$form['submitted'];
   $node = $form['#node'];
 
+  // we only want to add the submit and validate functions if teams is turned on
   if (isset($node->field_teams_enable) && $node->field_teams_enable[LANGUAGE_NONE][0]['value']) {
-    $form['#validate'][] = 'teams_form_validate';
-    $form['#submit'][] = 'teams_form_submit';
+    // make sure we didn't delete a field
+    if (isset($node->field_signup_magic_fields)) {
+      $values = array();
+      foreach ($node->field_signup_magic_fields[LANGUAGE_NONE] as $field) {
+        $values[] = $field['value'];
+      }
+      $wanted = array('field_team_name', 'field_leader_info');
+
+      // we only want to add submit and validate functions if the relevant fields are turned on
+      if (count(array_intersect($values, $wanted)) == count($wanted)) {
+        $form['#validate'][] = 'teams_form_validate';
+        $form['#submit'][] = 'teams_form_submit';
+      }
+      else if (in_array('field_team_name', $values)) {
+        $form['#validate'][] = 'teams_form_validate_group_only';
+        $form['#submit'][] = 'teams_form_submit_group_only';
+      }
+    }
   }
+}
+
+function teams_form_validate_group_only(&$form, &$form_state) {
+  if (isset($form['#submission']->submitted)) {
+    $sub = $form['#submission']->submitted;
+    $team_name = $sub['field_team_name'][LANGUAGE_NONE][0]['value'];
+    if (empty($team_name)) {
+      form_set_error('field_team_name', t('You must enter a team name.'));
+    }
+    else {
+      $form_state['values']['submitted']['group_group'][LANGUAGE_NONE][0]['value'] = 1;
+    }
+  }
+}
+
+function teams_form_submit_group_only(&$form, &$form_state) {
+  $sid = $form_state['values']['details']['sid'];
 }
 
 function teams_form_validate(&$form, &$form_state) {

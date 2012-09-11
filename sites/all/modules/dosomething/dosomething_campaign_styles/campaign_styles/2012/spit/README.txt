@@ -48,9 +48,9 @@
   relevant partials rather than breaking it off and re-writing those styles.
   Still undecided. If you have any opinion either way, e-mail me.
 
-// COMPILING THE PARTIALS
+// SASS PARTIALS
   1. cd into the base campaign directory
-  2. run sw
+  2. run swnew
 
   ds_campaign.sass contains all the partial imports. In this file you will
   notice that a good number of partials are nested under "#cmp". This
@@ -58,13 +58,5 @@
   there aren't any conflicts with the sitewide CSS by adding "#cmp" before
   every style declaration. It is messy but the best we have right now.
 
-// EASTER EGG
-  Still there? While entirely surprising here is a little treat for sticking
-  it out.
-
-  $('#cmp').load('sites/all/modules/dosomething/dosomething_campaign_styles/campaign_sty
-  les/2012/spit/code.html');
-
-  Create a file called "code.html" and put the above line in your .js file while developing. It will laod the HTML file, empty div#cmp and inject the loaded HTML. Do not use this on production! Locally, it should save you some click+load time in Panelizer.
-
-Maxwell
+// HTML PARTIALS
+  Everything lives in ../html and is added through Panelizer.
