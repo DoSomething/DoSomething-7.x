@@ -54,7 +54,7 @@ $key = json_encode(array(
       $res .= '
       <li>
         <input type="checkbox" class="email-checkbox" name="emails" value="' . $email . '" id="' . clean_email($email) . '" />
-        <label for="' . clean_email($email) . '"><strong>' . $email . '</strong></label>
+        <strong>' . $email . '</strong>
         <span>' . $titles["$key"] . '</span>
       </li>';
     }
@@ -147,7 +147,7 @@ if ($_POST['do'] == 'email') {
 <input type="hidden" name="do" value="email" />
 <textarea name="emails" id="email_list" style=" width: 500px; height: 200px"></textarea>
 <textarea name="real_emails" id="re"></textarea>
-<div id="choices">You may choose <span id="choices-left">5</span> more peeps.</div>
+<!--<div id="choices">You may choose <span id="choices-left">5</span> more peeps.</div>-->
 <div id="response"></div>
 
 <p><input type="submit" onclick="return test()" value="Send emails" /></p>

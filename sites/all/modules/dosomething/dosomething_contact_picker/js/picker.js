@@ -39,32 +39,29 @@ function prepare_clicks() {
   });
 
   $('ul#blah li:not(.clicked)').addClass('clicked').click(function() {
-  var choices = parseInt($('#choices-left').text());
+  //var choices = parseInt($('#choices-left').text());
     var e = $(this).find('strong').html();
     if ($('#email_list').html().indexOf(e) == -1) {
-  if (choices <= 0) {
-    alert("You can't choose any more emails.  Uncheck some to add more.");
-    return false;
-  }
+  //if (choices <= 0) {
+//    alert("You can't choose any more emails.  Uncheck some to add more.");
+    //return false;
+  //}
       $('#email_list').append(e + ', ');
       $(this).find('input').attr('checked', 'checked');
-      $('#choices-left').text(choices - 1);
+      //$('#choices-left').text(choices - 1);
     }
     else {
       var t = $('#email_list').html();
       t = t.replace(e + ', ', '');
       $('#email_list').html(t);
       $(this).find('input').attr('checked', false);
-      $('#choices-left').text(choices + 1);
+      //$('#choices-left').text(choices + 1);
     }
   });
 }
 
 
-  function test() {
-    var v = ($('#email_list').val());
-    $('#re').val(v);
-  }
-
-$(document).ready(function() {
-});
+function test() {
+  var v = ($('#email_list').val());
+  $('#re').val(v);
+}

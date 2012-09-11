@@ -74,7 +74,7 @@ class yahooauth {
 			      $res .= '
 			      <li>
 			        <input type="checkbox" class="email-checkbox" name="emails" value="' . $data->value . '" id="' . $this->clean_email($data->value) . '" />
-			        <label for="' . $this->clean_email($data->value) . '"><strong>' . $data->value . '</strong></label>
+			        <strong>' . $data->value . '</strong>
 			        <span>' . $name . '</span>
 			      </li>';
                     $list["$name"] = $data->value;     
