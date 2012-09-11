@@ -302,7 +302,8 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
  * Form that pops up after you have shared 3 pets.
  */
 function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
- $form['#attributes'] = array(
+  $terms_and_conditions = l(t('terms and conditions'), 'http://www.dosomething.org/about/terms-of-service', array('attributes' => array('target'=>'_blank')));
+  $form['#attributes'] = array(
     'title' => t('Thanks for sharing!'),
   );
   $form['instructions'] = array(
@@ -326,6 +327,10 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
   $form['lower']['submit'] = array(
     '#type' => 'submit',
     '#value' => 'Submit',
+  );
+  $form['#attached']['js'][] = array(
+    'type' => 'file',
+    'data' => drupal_get_path('theme', 'picsforpets') . '/js/libs/jquery-html5-placeholder-shim/jquery.html5-placeholder-shim.js',
   );
 
   return $form;
