@@ -118,7 +118,7 @@ function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0) {
     if ($form['#node']->type == 'fb_app_data_gathering_form') {
       $form['#attached']['js'][] = drupal_get_path('module', 'dosomething_fb_apps') . '/js/webform_submit.js';
-      drupal_add_js(drupal_get_path('module', 'dosomething_fb_apps') . '/js/picsforpets-animal-type-other.js');
+      $form['#attached']['js'][] = drupal_get_path('module', 'dosomething_fb_apps') . '/js/picsforpets-animal-type-other.js';
       $form['back'] = array(
         '#markup' => l('Back', 'fb/pics-for-pets/action-guide', array('attributes' => array('class' => array('button back')))),
       );
