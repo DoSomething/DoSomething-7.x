@@ -6,7 +6,6 @@ jQuery(document).ready(function() {
         FB.Canvas.scrollTo(0,0);
         // Stop running this code.
         window.clearInterval(id);
-        goneToTop = true;
       }
     },
     5
