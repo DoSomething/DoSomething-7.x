@@ -109,6 +109,13 @@ Drupal.behaviors.picsforpetsShelterPopup = {
       dismiss();
     }
 
+    var cancelButton = '<input id="popup-cancel-button" type="submit" value="Cancel" style="display: inline;" />';
+    $context.find('#edit-select-shelter').once('edit-select-shelter').before(cancelButton);
+    $context.find('#popup-cancel-button').click(function() {
+      dismiss();
+      return false;
+    });
+
     $context.find('.shelter-locator-popup').once('shelter-locater-popup').click(function (e) {
         // Initially we should hide the results box.
         $results = $searchForm.find('#edit-results');
@@ -119,7 +126,7 @@ Drupal.behaviors.picsforpetsShelterPopup = {
         var $docHeight = $(document).height();
         var $modalWidth = 555;
         var $xPos = parseInt(($width - $modalWidth) / 2);
-        var $topPos = 280;
+        var $topPos = 180;
         var $modalHeight = 500;
         $searchForm
           .addClass('ui-dialog-content')

@@ -77,6 +77,8 @@ body {
   -webkit-box-shadow: none !important;
   -o-box-shadow: none !important;
   box-shadow: none !important; }
+#cmp .pane-title {
+  display: none; }
 
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
@@ -183,25 +185,25 @@ body {
   #cmp .mcommons-col input, #cmp .mcommons-col label {
     float: left;
     margin: 0 0 5% 0; }
-#cmp .s0 {
+#cmp .header {
   background: url("assets/brad.jpg");
   background-position: 29% -120%; }
-  #cmp .s0 h1, #cmp .s0 h2 {
+  #cmp .header h1, #cmp .header h2 {
     text-align: left;
     color: #ffcb15; }
-  #cmp .s0 span {
+  #cmp .header span {
     text-align: center;
     background: #7f3f80;
     background: rgba(127, 63, 128, 0.6); }
-  #cmp .s0 .webform {
-    margin: 20% 0 0 -2%;
+  #cmp .header .webform {
+    margin: 0 0 0 -2%;
     background: black;
     background: rgba(0, 0, 0, 0.3);
     width: 105%; }
 #cmp .pane-campaign-sign-up {
   clear: both;
   width: 100%;
-  margin: 37% 0 0 0; }
+  margin: 18% 0 0 0; }
   #cmp .pane-campaign-sign-up h1 {
     font-family: din-web;
     font-size: 23px;
@@ -222,7 +224,7 @@ body {
     font-size: 10px; }
 #cmp .webform-client-form {
   box-shadow: none; }
-#cmp .s1 img {
+#cmp .action img {
   display: block;
   margin: 5% auto;
   width: 65%; }

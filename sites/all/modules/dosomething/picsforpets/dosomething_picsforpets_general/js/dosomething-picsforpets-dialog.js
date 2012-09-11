@@ -9,6 +9,7 @@ Drupal.behaviors.dosomethingPicsforpetsDialog = {
         resizable: false,
         draggable: false,
         modal: true,
+        top: 180,
         width: 600,
         // Autofocus confuses placeholder text.
         open: function(event, ui) {

@@ -96,3 +96,73 @@ function dosomething_picsforpets_services_views_access($op = 'view', $args = arr
   }
   return FALSE;
 }
+
+/**
+ * Implements hook_webform_resource_alter().
+ */
+function dosomething_picsforpets_services_services_resources_alter(&$resources) {
+  // We need webofrm services to work with webofrm entity, so we use out
+  // own callback in order to handle the $form_state structure.
+  $resources['webform_submission']['create']['callback'] = '_dosomething_picsforpets_services_submission_resource_create';
+}
+
+/**
+ * Creates a new webform submission based on submitted values.
+ *
+ * Note that this function uses drupal_form_submit() to create new submissions,
+ * which may require very specific formatting. The full implications of this
+ * are beyond the scope of this comment block. The Googles are your friend.
+ *
+ * @param $data
+ *   Array with required properties:
+ *   'nid' - webform node id.
+ *   'submission' - nested array of webform values.
+ *   'is_draft' - optional Boolean indicating if the submission is complete,
+ *     defaults to TRUE.
+ *
+ * @return
+ *   An associative array contained the new submission id.
+ *
+ * @see drupal_form_submit()
+ */
+function _dosomething_picsforpets_services_submission_resource_create($data) {
+  // Creation has a little different flow. Services forces us to POST create
+  // requests to the resource's root and package up the node id with the rest
+  // of the submission information.
+
+  // Adds backwards compatability with regression fixed in #1083242
+  $submission = _services_arg_value($data, 'webform_submission');
+  // Move the node id out out of the array.
+  $nid = $submission['nid'];
+  unset($submission['nid']);
+  $node = node_load($nid);
+  $default_op = empty($node->webform['submit_text']) ? t('Submit') : t($node->webform['submit_text']);
+
+  // For overidden op's on individual webforms
+  $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
+  if (isset($form['actions']['submit']['#value'])) {
+    $default_op = $form['actions']['submit']['#value'];
+  }
+
+  // Load the required includes for drupal_execute
+  module_load_include('module', 'webform');
+
+  // Prepare form state
+  $form_state = array();
+  // Webform entity fields need to be outside of the 'submitted' array.
+  $form_state['values'] = $submission;
+  $form_state['values']['submitted'] = $submission;
+  $form_state['values']['op'] = variable_get('services_webform_submit_button_resource_create', $default_op);
+  unset($form_state['values']['webform_submission']);
+
+  // Submit form programmatically
+  drupal_form_submit('webform_client_form_' . $node->nid, $form_state, $node, array());
+
+  if ($errors = form_get_errors()) {
+    return services_error(implode(" ", $errors), 406, array('form_errors' => $errors));
+  }
+  // Fetch $sid out of $form_state
+  $sid = $form_state['values']['details']['sid'];
+  return array('nid' => $nid, 'sid' => $sid);
+}
+

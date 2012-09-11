@@ -155,9 +155,12 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   $form['ready'] = array(
     '#markup' => '<div class="sign-up-text">Sign up and we\'ll give you all the tools to submit a picture to the gallery.</div>',
   );
+  $form['asterik'] = array(
+    '#markup' => '<div class="form-asterik">*</div>',
+  );
   $form['email'] = array(
     '#type' => 'textfield',
-    '#required' => TRUE,
+    '#required' => TRUE, 
     '#attributes' => array('placeholder' => t('Email:')),
     '#maxlength' => 255,
   );
@@ -399,22 +402,42 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
 }
 
 /**
- * Implements hook_custom_theme().
+ * Implements hook_init().
  */
-function dosomething_picsforpets_general_custom_theme() {
+function dosomething_picsforpets_general_init() {
+  // Just bail out quickly if we're not on a pics for pets page.
+  if (dosomething_picsforpets_general_is_picsforpets_page()) {
+    drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/autoscroll.js');
+  }
+}
+
+/**
+ * Perform a global check to see whether we're within the  picsforpets app.
+ */
+function dosomething_picsforpets_general_is_picsforpets_page() {
   // Use the picsforpets theme when on the fb/pics-for-pets paths and entities of the site.
   if (strpos(drupal_get_path_alias(request_uri()), '/fb/pics-for-pets') === 0) {
-    return 'picsforpets';
+    return TRUE;
   }
   if ($submission = menu_get_object('webform_entity_pages_submission')) {
     if ($submission->nid == PICSFORPETS_PET_SUBMISSION_NID) {
-      return 'picsforpets';
+      return TRUE;
     }
   }
   if ($node = menu_get_object()) {
     if ($node->nid == PICSFORPETS_PET_SUBMISSION_NID) {
-      return 'picsforpets';
+      return TRUE;
     }
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_custom_theme().
+ */
+function dosomething_picsforpets_general_custom_theme() {
+  if (dosomething_picsforpets_general_is_picsforpets_page()) {
+    return 'picsforpets';
   }
 }
 

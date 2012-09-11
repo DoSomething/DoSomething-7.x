@@ -189,6 +189,8 @@ fieldset
     label
       color: $black
       font-size: 14px
+  .form-item
+    width: 140px
 
 .form-item-email
   margin-left: 85px
@@ -246,3 +248,10 @@ form
     .form-item
       position: relative
       top: 0
+
+// Remove hover state from jquery ui
+.ui-dialog .ui-dialog-titlebar-close
+  padding: 0
+
+a.ui-dialog-titlebar-close.ui-corner-all.ui-state-hover
+  background-color: transparent !important
