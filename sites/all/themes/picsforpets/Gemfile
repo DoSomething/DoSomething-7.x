@@ -1,5 +1,6 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem 'compass'
+gem 'compass', '0.13.alpha.0'
 gem 'survivalkit', '1.0.beta.8'
+gem 'color-schemer', '0.1.3'
