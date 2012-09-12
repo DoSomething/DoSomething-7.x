@@ -19,7 +19,6 @@ class yahooauth {
 	private $real_oauth_guid = '';
 
 	public function __construct() {
-		echo "!"; exit;
 		if (!$_GET['oauth_token']) {
 			$this->authenticate();
 		}
@@ -65,7 +64,6 @@ class yahooauth {
         $contacts = $this->get_contacts($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
         $contacts = json_decode($contacts[2])->contacts;
         $count = $contacts->total;
-        echo "!"; exit;
 	    $res = '<a href="#" id="check-all">Check all / None</a>';
         $res .= '<ul id="blah">';
         $list = array();
