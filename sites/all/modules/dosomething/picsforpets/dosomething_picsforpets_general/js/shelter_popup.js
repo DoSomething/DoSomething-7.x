@@ -135,7 +135,7 @@ Drupal.behaviors.picsforpetsShelterPopup = {
           .css('width', 'auto')
           .css('min-height', '114px')
           .css('height', 'auto')
-          .wrap('<div class="ui-dialog ui-widget ui-widget-content ui-corner-all " style="display: block; z-index: 1002; position: fixed; overflow: scroll; outline: 0px none; max-height: ' + $modalHeight + 'px; width: ' + $modalWidth + 'px; top: ' + $topPos + 'px; left: ' + $xPos + 'px;" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form">')
+          .wrap('<div class="ui-dialog ui-widget ui-widget-content ui-corner-all " style="display: block; z-index: 1002; position: fixed; overflow: hidden; outline: 0px none; max-height: ' + $modalHeight + 'px; width: ' + $modalWidth + 'px; top: ' + $topPos + 'px; left: ' + $xPos + 'px;" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form">')
           .before('<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-dialog-title-dosomething-picsforpets-shelters-options-form" class="ui-dialog-title">' + Drupal.t('Find Your Shelter') +  '</span><a class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a>');
         $('.ui-dialog')
           .after('<div class="ui-widget-overlay" style="width: ' + $width + 'px; height: ' +  $docHeight + 'px; z-index: 1001;">');
