@@ -664,7 +664,8 @@ hr.gray {
   #node-724592 .webform-client-form #edit-actions input.form-submit, #node-724596 .webform-client-form #edit-actions input.form-submit, #node-724597 .webform-client-form #edit-actions input.form-submit {
     font-size: 24px; }
   #node-724592 .webform-client-form #edit-actions #edit-previous, #node-724592 .webform-client-form #edit-actions #edit-next, #node-724596 .webform-client-form #edit-actions #edit-previous, #node-724596 .webform-client-form #edit-actions #edit-next, #node-724597 .webform-client-form #edit-actions #edit-previous, #node-724597 .webform-client-form #edit-actions #edit-next {
-    width: 7 0px; }
+    width: inherit !important;
+    padding: 0 10px; }
 #node-724592 h2.other, #node-724596 h2.other, #node-724597 h2.other {
   font-size: 28px;
   margin-top: 28px;
@@ -689,33 +690,33 @@ hr.gray {
   .fl-form-footer p {
     text-align: right; }
 
-#node-724597 #edit-actions, #node-724596 #edit-actions {
+#node-724597 #edit-actions, #node-724596 #edit-actions, #node-724594 #edit-actions, #node-724595 #edit-actions {
   position: relative;
   text-align: center !important;
   margin: -34px; }
-#node-724597 #webform-component-recommendation-1, #node-724597 #edit-submitted-field-application, #node-724597 #edit-submitted-field-webform-name, #node-724597 #webform-component-relationship-to-you, #node-724597 #edit-submitted-field-webform-email, #node-724597 #webform-component-phone-number, #node-724596 #webform-component-recommendation-1, #node-724596 #edit-submitted-field-application, #node-724596 #edit-submitted-field-webform-name, #node-724596 #webform-component-relationship-to-you, #node-724596 #edit-submitted-field-webform-email, #node-724596 #webform-component-phone-number {
+#node-724597 #webform-component-recommendation-1, #node-724597 #edit-submitted-field-application, #node-724597 #edit-submitted-field-webform-name, #node-724597 #webform-component-relationship-to-you, #node-724597 #edit-submitted-field-webform-email, #node-724597 #webform-component-phone-number, #node-724596 #webform-component-recommendation-1, #node-724596 #edit-submitted-field-application, #node-724596 #edit-submitted-field-webform-name, #node-724596 #webform-component-relationship-to-you, #node-724596 #edit-submitted-field-webform-email, #node-724596 #webform-component-phone-number, #node-724594 #webform-component-recommendation-1, #node-724594 #edit-submitted-field-application, #node-724594 #edit-submitted-field-webform-name, #node-724594 #webform-component-relationship-to-you, #node-724594 #edit-submitted-field-webform-email, #node-724594 #webform-component-phone-number, #node-724595 #webform-component-recommendation-1, #node-724595 #edit-submitted-field-application, #node-724595 #edit-submitted-field-webform-name, #node-724595 #webform-component-relationship-to-you, #node-724595 #edit-submitted-field-webform-email, #node-724595 #webform-component-phone-number {
   margin-left: 200px; }
-  #node-724597 #webform-component-recommendation-1 input, #node-724597 #edit-submitted-field-application input, #node-724597 #edit-submitted-field-webform-name input, #node-724597 #webform-component-relationship-to-you input, #node-724597 #edit-submitted-field-webform-email input, #node-724597 #webform-component-phone-number input, #node-724596 #webform-component-recommendation-1 input, #node-724596 #edit-submitted-field-application input, #node-724596 #edit-submitted-field-webform-name input, #node-724596 #webform-component-relationship-to-you input, #node-724596 #edit-submitted-field-webform-email input, #node-724596 #webform-component-phone-number input {
+  #node-724597 #webform-component-recommendation-1 input, #node-724597 #edit-submitted-field-application input, #node-724597 #edit-submitted-field-webform-name input, #node-724597 #webform-component-relationship-to-you input, #node-724597 #edit-submitted-field-webform-email input, #node-724597 #webform-component-phone-number input, #node-724596 #webform-component-recommendation-1 input, #node-724596 #edit-submitted-field-application input, #node-724596 #edit-submitted-field-webform-name input, #node-724596 #webform-component-relationship-to-you input, #node-724596 #edit-submitted-field-webform-email input, #node-724596 #webform-component-phone-number input, #node-724594 #webform-component-recommendation-1 input, #node-724594 #edit-submitted-field-application input, #node-724594 #edit-submitted-field-webform-name input, #node-724594 #webform-component-relationship-to-you input, #node-724594 #edit-submitted-field-webform-email input, #node-724594 #webform-component-phone-number input, #node-724595 #webform-component-recommendation-1 input, #node-724595 #edit-submitted-field-application input, #node-724595 #edit-submitted-field-webform-name input, #node-724595 #webform-component-relationship-to-you input, #node-724595 #edit-submitted-field-webform-email input, #node-724595 #webform-component-phone-number input {
     width: 300px; }
 
-.page-node-724721 h3, .page-node-724721 h4 {
+.page-node-724721 .pane-content h3, .page-node-724721 .pane-content h4 {
   text-transform: uppercase;
   font-size: 24px;
   color: #e31837;
   line-height: 1em; }
-  .page-node-724721 h3 a, .page-node-724721 h4 a {
+  .page-node-724721 .pane-content h3 a, .page-node-724721 .pane-content h4 a {
     text-transform: lowercase;
     text-decoration: underline;
     color: #e31837;
     font-size: 20px; }
-.page-node-724721 h3, .page-node-724721 .send-request {
+.page-node-724721 .pane-content h3, .page-node-724721 .pane-content .send-request {
   margin-bottom: 15px;
   color: black; }
-  .page-node-724721 h3 span, .page-node-724721 .send-request span {
+  .page-node-724721 .pane-content h3 span, .page-node-724721 .pane-content .send-request span {
     color: #e31837; }
-.page-node-724721 h4 {
+.page-node-724721 .pane-content h4 {
   color: #e31837; }
-.page-node-724721 li {
+.page-node-724721 .pane-content li {
   font-size: 14px; }
 .page-node-724721 .status-incomplete, .page-node-724721 .status-complete, .page-node-724721 .status-empty {
   padding: 5px 0 0 34px;
@@ -731,6 +732,9 @@ hr.gray {
   .page-node-724721 .send-request a {
     color: #e31837;
     text-decoration: underline; }
+  .page-node-724721 .send-request a.go-button {
+    color: white;
+    text-decoration: none; }
 .page-node-724721 .go-button {
   position: static;
   color: white;
@@ -742,3 +746,17 @@ hr.gray {
 
 .fl-bottom-pane {
   padding-bottom: 0 !important; }
+
+#block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5 {
+  display: none; }
+
+.page-node-724722 .pane-content h2 {
+  text-transform: uppercase; }
+.page-node-724722 .pane-content li {
+  font-size: 14px; }
+.page-node-724722 .pane-content ul {
+  margin: 20px 0; }
+
+img.center {
+  margin: 0 auto;
+  display: block; }
