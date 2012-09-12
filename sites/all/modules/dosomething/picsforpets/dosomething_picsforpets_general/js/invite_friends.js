@@ -67,7 +67,7 @@ Drupal.behaviors.galleryShareButton = {
               );
             }
             else if (userShares == 5) {
-              $('<div></div>')
+              $('<div class="invite-dialog"></div>')
                 .load('/fb/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function () {
                   $('.ui-dialog form').click(function() {
                     var obj = {
@@ -78,7 +78,9 @@ Drupal.behaviors.galleryShareButton = {
                       access_token: settings.picsforpetsFBAuth.access_token,
                       show_error: true
                     };
-                    FB.ui(obj);
+                    FB.ui(obj, function(response) {
+                      $('div.invite-dialog').dialog('close');
+                    });
                   });
                 })
                 .dialog({
