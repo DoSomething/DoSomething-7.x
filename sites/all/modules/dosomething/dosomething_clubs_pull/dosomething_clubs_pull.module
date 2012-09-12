@@ -49,15 +49,27 @@ class clubs_export {
       $nopage = false;
     }
 
-    $start = (!$nopage ? ($page * (CLUB_PULL_LIMIT)) : 0);
+    if (!intval($_GET['limit'])) {
+      $limit = CLUB_PULL_LIMIT;
+    }
+    else {
+      $limit = intval($_GET['limit']);
+    }
+
+    $start = (!$nopage ? ($page * ($limit)) : 0);
     if (!$nopage) { $page++; }
 
-    $d = self::the_query($start, CLUB_PULL_LIMIT);
+    $d = self::the_query($start, $limit);
     $count = self::get_counts();
 
     $p = floor(($start / $count) * 100);
     if ($p > 100) {
       $p = 100;
+    }
+
+
+    if ($_GET['debug']) {
+      exit;
     }
 
     $hash = self::get_hash();
@@ -107,7 +119,7 @@ class clubs_export {
     drupal_add_js('setTimeout(function() { window.location.href = "' . $redirect . '"; }, 2000);', 'inline');
 
     $download_link = t('Your export is complete! If your download does not begun automatically, !click!', array(
-      '!click' => l(t('Click here'), 'admin/clubs-pull/export/file'))
+      '!click' => l(t('Click here'), 'admin/clubs-pull/export/file/' . $data))
     );
 
     $output = '<p>' . $download_link . '</p>';
