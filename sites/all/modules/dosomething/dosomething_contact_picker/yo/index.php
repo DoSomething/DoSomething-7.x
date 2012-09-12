@@ -19,6 +19,7 @@ class yahooauth {
 	private $real_oauth_guid = '';
 
 	public function __construct() {
+		echo "!"; exit;
 		if (!$_GET['oauth_token']) {
 			$this->authenticate();
 		}
