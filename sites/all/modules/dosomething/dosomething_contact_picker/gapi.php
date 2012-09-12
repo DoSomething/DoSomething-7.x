@@ -76,6 +76,7 @@ if ($_POST['do'] == 'email') {
   Calvin and the DoSomething.org Team"; 
   foreach (explode(',', $_POST['real_emails']) AS $email) {
     if (trim($email)) {
+
       mail(trim($email), $node->me . " has just sent you a message", $text, 'From: DoSomething.org <cstowell@dosomething.org>');
     }
   }
@@ -143,7 +144,7 @@ if ($_POST['do'] == 'email') {
 <a href="#" onclick="return auth('yahoo')" id="yahoo">Find contacts on Yahoo!</a>
 </div>
 <p>I prefer to <a href="mailto:?subject=<?php echo ($node->title) . ' - Sign the petition!'; ?>&amp;body=<?php echo "Please join my campaign:\r\n\r\n" . $node->link; ?>">send my own email</a>.</p>
-<form action="" method="post">
+<form action="/invite-by-email-scraper/<?php echo $node->id; ?>" method="post">
 <input type="hidden" name="do" value="email" />
 <textarea name="emails" id="email_list" style=" width: 500px; height: 200px"></textarea>
 <textarea name="real_emails" id="re"></textarea>

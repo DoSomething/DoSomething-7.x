@@ -1,0 +1,67 @@
+<?php
+
+function dosomething_contact_picker_menu() {
+  $items['invite-by-email-scraper/%'] = array(
+    'page callback' => 'dosomething_contact_scraper_invite',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+function dosomething_contact_scraper_invite($nid) {
+	if ($_POST['do'] == 'email') {
+		$node = node_load($nid);
+	  	global $user;
+	  	$p = profile2_load_by_user($user, 'main');
+	  	if (isset($p->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+	  		$me = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+	  	}
+	  	else {
+	  		$me = $user->name;
+	  	}
+
+	  	$node->link = url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE));
+
+		$text = "
+  Hey,
+
+  " . $me . " has invited you to sign the petition, \"" . $node->title . "\".  You can make a difference if you click on this link and sign it, too.
+
+  " . $node->link . "
+
+  Thanks!
+  Calvin and the DoSomething.org Team";
+
+	  foreach (explode(',', $_POST['real_emails']) AS $email) {
+	    if (trim($email)) {
+    	  dosomething_petitions_store_email($node->nid, $user->uid, $email);
+	      mail(trim($email), $me . " has just sent you a message", $text, 'From: DoSomething.org <cstowell@dosomething.org>');
+	    }
+	  }
+
+	  $a = user_load($node->uid);
+	  $p = profile2_load_by_user($a, 'main');
+	  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+	  if (!trim($author)) {
+	    $author = $a->name;
+	  }
+	  if ($user->mail) {
+	  	global $language;
+		  $params = array(
+		  	'name' => $me,
+		  	'petition' => $node->title,
+		  	'author' => $author
+		  );
+
+		  drupal_mail('dosomething_petitions', 'thanks_for_inviting', $user->mail, $language, $params);
+	  }
+
+	  drupal_set_message(t('Thanks, we have emailed them.'));
+	  // To do: ADD EMAILS TO INVITED LIST
+	  // - If they sign later, the original signer gets an email
+	  drupal_goto($_SERVER['HTTP_REFERER']);
+	}
+}
