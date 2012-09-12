@@ -3013,14 +3013,11 @@ select#edit-sort-by {
   width: 60px;
 }
 .gallery-thumbnail-text .gallery-share-count {
-  position: relative;
-  z-index: 750;
   background-color: white;
   padding: 7px 4px 4px 4px;
   color: #a6a8ab;
   display: block;
   margin-top: 12px;
-  display: inline;
   float: left;
   height: 21px;
   min-width: 42px;
