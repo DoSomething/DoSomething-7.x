@@ -120,7 +120,7 @@ body {
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
   text-align: center;
   color: black; }
-#cmp h1, #cmp h3, #cmp p.divider {
+#cmp h1, #cmp h3, #cmp .divider {
   text-transform: uppercase; }
 #cmp h1 {
   font-size: 2.5em;
@@ -143,7 +143,7 @@ body {
   font-size: 1em;
   font-weight: 500;
   line-height: 17px; }
-#cmp p.divider {
+#cmp .divider {
   color: white; }
 #cmp .legal {
   font-size: 0.625em;
@@ -226,8 +226,7 @@ body {
   box-shadow: none; }
 #cmp .action img {
   display: block;
-  margin: 5% auto;
-  width: 65%; }
+  margin: 5% auto; }
 #cmp .mcommons-webform input.field {
   width: 85%;
   height: 23px;
