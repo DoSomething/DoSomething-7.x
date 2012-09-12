@@ -46,7 +46,7 @@ if ($_POST['do'] == 'blah') {
     $titles = array_slice($titles[1], 1);
     reset($titles);
 
-    $res .= '<a href="#" id="check-all">Check all / None</a>';
+    $res .= '<a href="#" id="check-all">Check all</a> / <a href="#" id="check-none">None</a>';
     $res .= '<ul id="blah">';
     foreach ($emails[1] AS $key => $email) {
       $res .= '

@@ -30,36 +30,51 @@ function prepare_clicks() {
   $('#response').slideDown();
   $('#check-all').click(function() {
     $('input.email-checkbox').each(function() {
-      if ($(this).attr('checked') == true || $(this).attr('checked') == 'checked') {
-        $(this).attr('checked', false);
-      }
-      else {
-        $(this).attr('checked', 'checked');
-      }
+      $(this).attr('checked', 'checked');
+      add_email($(this).parent().find('strong').html());
     });
+
     return false;
   });
 
+  $('#check-none').click(function() {
+    $('input.email-checkbox').each(function() {
+      $(this).attr('checked', false);
+      remove_email($(this).parent().find('strong').html());
+    });
+
+    return false;
+  });
+
+  // Starting off with every checkbox checked: They need to be in the box
+  $('input.email-checkbox').each(function() {
+    var e = $(this).parent().find('strong').html();
+    add_email(e);
+  });
+
   $('ul#blah li:not(.clicked)').addClass('clicked').click(function() {
-  //var choices = parseInt($('#choices-left').text());
     var e = $(this).find('strong').html();
     if ($('#email_list').html().indexOf(e) == -1) {
-  //if (choices <= 0) {
-//    alert("You can't choose any more emails.  Uncheck some to add more.");
-    //return false;
-  //}
-      $('#email_list').append(e + ', ');
+      add_email(e);
       $(this).find('input').attr('checked', 'checked');
-      //$('#choices-left').text(choices - 1);
     }
     else {
-      var t = $('#email_list').html();
-      t = t.replace(e + ', ', '');
-      $('#email_list').html(t);
+      remove_email(e);
       $(this).find('input').attr('checked', false);
-      //$('#choices-left').text(choices + 1);
     }
   });
+}
+
+function add_email(email) {
+  if ($('#email_list').html().indexOf(email) == -1) {
+    $('#email_list').append(email + ', ');
+  }
+}
+
+function remove_email(email) {
+    var t = $('#email_list').html();
+    t = t.replace(email + ', ', '');
+    $('#email_list').html(t);
 }
 
 
