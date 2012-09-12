@@ -442,7 +442,7 @@ $query = "SELECT
   `sc`.state AS `school_state`,
   IF (`noassoc`.`field_no_school_associate_value`, 1, 0) AS `not_associated`,
   `blurb`.`field_club_blurb_value` AS `blurb`,
-  IF (`old_goodies`.`field_club_mailings_value` = 'mailings', 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`
+  IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`
 FROM 
 `node` node
 LEFT JOIN `users` users_node ON node.uid = users_node.uid
@@ -478,7 +478,7 @@ ORDER BY node_title ASC
 
   $q = db_query($query);
 
-clubs_export::log('Query', $query);
+#clubs_export::log('Query', $query);
 
   if ($return_query) {
     return $q;
