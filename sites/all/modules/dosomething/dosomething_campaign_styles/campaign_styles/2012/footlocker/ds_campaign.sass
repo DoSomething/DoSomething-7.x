@@ -56,7 +56,7 @@ $bgGray: #C8C8C8
 ///////// general definitions ///////////
 ////////////////////////////////////////
 
-p, li
+p
   font-size: 14px
 
 a
@@ -751,40 +751,71 @@ hr.gray
     margin: 10px 0 20px 0
   label[for=edit-submitted-contact-me], label[for=edit-submitted-legal-stuff], label[for=edit-submitted-confirm-true], label[for=edit-submitted-permission]
     display: none
-  .fl-form-footer
-    float: left
-    width: 100%
-    margin: 40px 0 0 0
-    img
-      float: right
-    hr
-      clear: both
-    p
-      text-align: right  
+.fl-form-footer
+  float: left
+  width: 100%
+  margin: 40px 0 0 0
+  img
+    float: right
+  hr
+    clear: both
+  p
+    text-align: right  
 
 // REQUEST PAGE
-  #webform-component-recommendation-1, #edit-submitted-field-application, #edit-submitted-field-webform-name, #webform-component-relationship-to-you, #edit-submitted-field-webform-email, #webform-component-phone-number
-    margin-left: 200px
-    input
-      width: 300px
 #node-724597, #node-724596
   #edit-actions
     position: relative
     text-align: center !important
     margin: -34px
+  #webform-component-recommendation-1, #edit-submitted-field-application, #edit-submitted-field-webform-name, #webform-component-relationship-to-you, #edit-submitted-field-webform-email, #webform-component-phone-number
+    margin-left: 200px
+    input
+      width: 300px  
 
 // STATUS PAGE     
 .page-node-724721
-  h3
+  h3, h4
     text-transform: uppercase
     font-size: 24px
     color: $baseColor
-    margin-bottom: 20px
+    line-height: 1em
     a
       text-transform: lowercase
       text-decoration: underline
       color: $baseColor
-  //#recommendation-status-724594, recommendation-status-724595
-    //margin-bottom: 20px
-    //h4
-      //font-size: 24px   
+      font-size: 20px
+  h3, .send-request  
+    margin-bottom: 15px
+    color: black
+    span
+      color: $baseColor
+  h4
+    color: $baseColor    
+  li
+    font-size: 14px  
+  .status-incomplete, .status-complete, .status-empty
+    padding: 5px 0 0 34px
+    margin-bottom: 25px  
+  .status-incomplete
+    background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-red.png') no-repeat left center
+  .status-complete
+    background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-green.png') no-repeat left center
+  .status-empty  
+    background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png') no-repeat left center
+  .send-request
+    font-size: 16px
+    a
+      color: $baseColor
+      text-decoration: underline  
+  .go-button
+    position: static
+    color: white
+    border-radius: 0
+    padding-top: 4px !important
+    font-weight: normal
+    margin-left: 24px
+    background: $baseColor    
+      
+.fl-bottom-pane
+  padding-bottom: 0 !important        
