@@ -1,0 +1,25 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+<style type="text/css">
+<!--
+body { 
+font-family: 'Trebuchet MS';
+margin: 10px;
+}
+-->
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#club_name').keypress(function(e) {
+			var v = $('#club_name').val();
+			var c = String.fromCharCode(e.keyCode);
+			$('#club-name-live').find('span').text(v + c);
+		});
+	});
+</script>
+<body>
+<input type="text" id="club_name" name="club_name" /> DoSomething.org Club
+<div id="club-name-live">Your club name will be "<span>(Write Something)</span> DoSomething.org Club"</div>
+</body>
+</html>
