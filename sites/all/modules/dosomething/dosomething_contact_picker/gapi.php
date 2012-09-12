@@ -48,7 +48,7 @@ $key = json_encode(array(
     $titles = array_slice($titles[1], 1);
     reset($titles);
 
-    $res .= '<input type="checkbox" id="check-all" /> <label for="check-all">Check all</label>';
+    $res .= '<a href="#" id="check-all">Check all / None</a>';
     $res .= '<ul id="blah">';
     foreach ($emails[1] AS $key => $email) {
       $res .= '
