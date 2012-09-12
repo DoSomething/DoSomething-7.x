@@ -738,7 +738,8 @@ hr.gray
       input.form-submit
         font-size: 24px
       #edit-previous, #edit-next  
-        width: 7 0px
+        width: inherit !important
+        padding: 0 10px
   h2.other
     font-size: 28px
     margin-top: 28px
@@ -763,7 +764,7 @@ hr.gray
     text-align: right  
 
 // REQUEST PAGE
-#node-724597, #node-724596
+#node-724597, #node-724596, #node-724594, #node-724595
   #edit-actions
     position: relative
     text-align: center !important
@@ -775,25 +776,26 @@ hr.gray
 
 // STATUS PAGE     
 .page-node-724721
-  h3, h4
-    text-transform: uppercase
-    font-size: 24px
-    color: $baseColor
-    line-height: 1em
-    a
-      text-transform: lowercase
-      text-decoration: underline
+  .pane-content
+    h3, h4
+      text-transform: uppercase
+      font-size: 24px
       color: $baseColor
-      font-size: 20px
-  h3, .send-request  
-    margin-bottom: 15px
-    color: black
-    span
-      color: $baseColor
-  h4
-    color: $baseColor    
-  li
-    font-size: 14px  
+      line-height: 1em
+      a
+        text-transform: lowercase
+        text-decoration: underline
+        color: $baseColor
+        font-size: 20px
+    h3, .send-request  
+      margin-bottom: 15px
+      color: black
+      span
+        color: $baseColor
+    h4
+      color: $baseColor    
+    li
+      font-size: 14px  
   .status-incomplete, .status-complete, .status-empty
     padding: 5px 0 0 34px
     margin-bottom: 25px  
@@ -807,7 +809,10 @@ hr.gray
     font-size: 16px
     a
       color: $baseColor
-      text-decoration: underline  
+      text-decoration: underline 
+    a.go-button
+      color: white
+      text-decoration: none   
   .go-button
     position: static
     color: white
@@ -818,4 +823,22 @@ hr.gray
     background: $baseColor    
       
 .fl-bottom-pane
-  padding-bottom: 0 !important        
+  padding-bottom: 0 !important
+
+// Hide DS Sidebar
+#block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
+  display: none  
+
+// APPLY PAGE
+.page-node-724722
+  .pane-content
+    h2
+      text-transform: uppercase
+    li
+      font-size: 14px
+    ul
+      margin: 20px 0     
+
+img.center
+  margin: 0 auto
+  display: block
