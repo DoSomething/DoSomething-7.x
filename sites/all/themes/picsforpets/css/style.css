@@ -2062,7 +2062,7 @@ a.footer-furtography {
 }
 
 #picsforpets-share {
-  width: 260px;
+  width: 265px;
 }
 #picsforpets-share h1, #picsforpets-share .fb-share-me {
   border-bottom: 1px solid black;
@@ -2209,7 +2209,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   width: 800px;
   height: 500px;
   margin-left: 60px;
-  padding-left: 0px;
+  padding-left: 0p;
   margin-top: 80px;
 }
 .ie8 .page-fb-pics-for-pets-lets-get-started .panel-pane {
@@ -2946,13 +2946,6 @@ select#edit-sort-by {
   padding: 0 8px 0 24px;
   background: white url(../images/small-up-arrow.png) no-repeat;
   background-position: 8px 4px;
-}
-.pager .pager-current {
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  overflow: hidden;
-  height: 1px;
 }
 
 .gallery-thumbnail-text {
