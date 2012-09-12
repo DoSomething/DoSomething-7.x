@@ -10,6 +10,32 @@ define('PETITIONS_NUM_EMAILS', 2);
 define('PETITIONS_INFUSIONSOFT', 1648);
 define('PETITIONS_MCOMMONS', 117371);
 
+/*class DosomethingPetitionsMailSystem implements MailSystemInterface {
+  public function format(array $message) {
+    $message['body'] = implode("\n\n", $message['body']);
+    return $message;
+  }
+  public function mail(array $message) {
+    $mimeheaders = array();
+    foreach ($message['headers'] as $name => $value) {
+      $mimeheaders[] = $name . ': ' . mime_header_encode($value);
+    }
+    $line_endings = variable_get('mail_line_endings', MAIL_LINE_ENDINGS);
+    return mail(
+      $message['to'],
+      mime_header_encode($message['subject']),
+      // Note: e-mail uses CRLF for line-endings. PHP's API requires LF
+      // on Unix and CRLF on Windows. Drupal automatically guesses the
+      // line-ending format appropriate for your system. If you need to
+      // override this, adjust $conf['mail_line_endings'] in settings.php.
+      preg_replace('@\r?\n@', $line_endings, $message['body']),
+      // For headers, PHP's API suggests that we use CRLF normally,
+      // but some MTAs incorrectly replace LF with CRLF. See #234403.
+      join("\n", $mimeheaders)
+    );
+  }
+}*/
+
 /**
  * Implements hook_form_alter().
  */
@@ -369,6 +395,7 @@ function dosomething_petitions_mail($key, &$message, $params) {
       $message['subject'] = t('!name sent you a message', array('!name' => $params['author']));
       $message['body'][] = theme('ds_petitions_thanks_for_signing', $params);
       $message['headers']['From'] = $params['author'] . ' <petitions-no-reply@dosomething.org>';
+      #$message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
       break;
     case 'petitions_goal_reached':
       $message['subject'] = t('!name has sent you a message - We made it!', array('!name' => $params['author']));
