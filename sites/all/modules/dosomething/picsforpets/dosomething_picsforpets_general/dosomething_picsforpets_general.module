@@ -664,6 +664,8 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
     unset($form_state['values']['submitted']['field_fb_app_shelter_reference']);
     unset($form_state['webform_entity']['submission']->submitted['field_fb_app_shelter_reference']);
     unset($form_state['webform_entity']['submission']->field_fb_app_shelter_reference);
+    // Clean the zipcode prior to entering the data
+    dosomething_picsforpets_shelters_clean_zip($form_state['webform_entity']['submission']->field_fb_app_zip[LANGUAGE_NONE][0]['value']);
   }
   else {
     // Throw away the address fields.
