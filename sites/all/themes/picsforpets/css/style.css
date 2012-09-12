@@ -2201,10 +2201,10 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding: 0;
 }
 
-.ie8 .page-pics-for-pets-lets-get-started .panel-1col {
+.ie8 .page-fb-pics-for-pets-lets-get-started .panel-1col {
   height: 300px;
 }
-.ie8 .page-pics-for-pets-lets-get-started .panel-panel {
+.ie8 .page-fb-pics-for-pets-lets-get-started .panel-panel {
   position: absolute;
   width: 800px;
   height: 500px;
@@ -2212,13 +2212,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   padding-left: 0px;
   margin-top: 80px;
 }
-.ie8 .page-pics-for-pets-lets-get-started .panel-pane {
+.ie8 .page-fb-pics-for-pets-lets-get-started .panel-pane {
   margin: 0px 10px 0px 5px;
   padding-left: 0px;
   padding-right: 0px;
 }
 
-.ie8 .page-pics-for-pets-shelter-search #edit-help-wrapper {
+.ie8 .page-fb-pics-for-pets-shelter-search #edit-help-wrapper {
   margin-top: 90px;
 }
 
@@ -3028,6 +3028,9 @@ select#edit-sort-by {
   line-height: 0.75;
   background: url(../images/share-background.png) no-repeat;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.ie8 .gallery-thumbnail-text .gallery-share-count {
+  min-width: 36px;
 }
 
 .no-results {
