@@ -407,7 +407,10 @@ function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, 
   if (!is_numeric($number)) {
     $number = 10;
   }
-  // First get the lat and long from the zipcode variable.
+  // First get the lat and long from the zipcode variable. We'll clean up the
+  // zipcode first. Sometimes people enter Canadian zipcodes with a space or a
+  // dash.
+  dosomething_picsforpets_shelters_clean_zip($zip);
   $result = db_query_range('SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip', 0, 1, array(':zip' => $zip))->fetchAssoc();
   if (!$result) {
     // We got a bad zipcode that couldn't be looked up so just give back an
@@ -429,4 +432,34 @@ function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, 
   // the entity id.
   $nids = $result->fetchCol(0);
   return $nids;
+}
+
+function dosomething_picsforpets_shelters_clean_zip(&$zip) {
+  $zip =strtoupper($zip);
+  $zip = preg_replace("/[^A-Z0-9]/", "", $zip);
+  // For canadian testing.
+  $allowed_first_letters = array(
+    'A',
+    'B',
+    'C',
+    'E',
+    'G',
+    'H',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'P',
+    'R',
+    'S',
+    'T',
+    'V',
+    'X',
+    'Y',
+  );
+  if (in_array($zip[0], $allowed_first_letters)) {
+    $zip = substr($zip, 0, 3) . ' ' . substr($zip, 3);
+  }
+  return $zip;
 }
