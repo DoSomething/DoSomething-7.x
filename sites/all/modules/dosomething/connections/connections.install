@@ -1,0 +1,57 @@
+<?php
+
+function connections_schema() {
+  $schema = array();
+
+  $schema['connections'] = array(
+    'description' => 'Stores Connections between tags and content elements',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'the cid of the connection.',
+        'type' => 'serial',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'title' => array(
+        'description' => 'The title of the connection',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'link' => array(
+        'description' => 'The desired link',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'date_start' => array(
+        'description' => 'Starting date',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true
+      ),
+      'date_end' => array(
+        'description' => 'Ending date',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true
+      ),
+      'image' => array(
+        'description' => 'The final image',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+    ),
+    'primary keys' => array('cid'),
+    'indexes' => array(
+       'cid' => array('cid')
+    ),
+  );
+
+  return $schema;
+}
+
+function connections_uninstall() {
+  db_drop_table('connections');
+}
