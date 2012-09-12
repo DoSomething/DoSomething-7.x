@@ -28,14 +28,16 @@ function auth(t) {
 
 function prepare_clicks() {
   $('#response').slideDown();
-  $('input#check-all').click(function() {
-    var status = $(this).attr('checked');
-    if (status == 'checked') {
-      $('input.email-checkbox').attr('checked', 'checked');
-    }
-    else {
-      $('input.email-checkbox').attr('checked', false);
-    }
+  $('#check-all').click(function() {
+    $('input.email-checkbox').each(function() {
+      if ($(this).attr('checked') == true || $(this).attr('checked') == 'checked') {
+        $(this).attr('checked', false);
+      }
+      else {
+        $(this).attr('checked', 'checked');
+      }
+    });
+    return false;
   });
 
   $('ul#blah li:not(.clicked)').addClass('clicked').click(function() {
