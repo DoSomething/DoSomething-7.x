@@ -1,0 +1,122 @@
+<?php
+
+/**
+  * Implements hook_form_alter()
+  */
+function dosomething_bootcamp_form_alter(&$form, &$form_state, $form_id) {
+	if ($form_id == 'webform_client_form_719655') {
+	  $form['#submit'][] = 'bootcamp_photo_resizer';
+	}
+	else if ($form_id == 'webform_client_form_719589') {
+	  $form['#submit'][] = 'bootcamp_submit_email';
+	  $form['#validate'][] = 'bootcamp_validate';
+
+	  global $user;
+	  $form['submitted']['full_name']['#value'] = $user->name;
+	  $form['submitted']['email_address']['#value'] = $user->mail;
+	  $form['submitted']['phone_number']['#value'] = $user->phone;
+	}
+}
+
+/**
+  * Validates the Boot Camp form.
+  */
+function bootcamp_validate(&$form, &$form_state) {
+	
+}
+
+/**
+  * Resizes an image on bio-submission load.
+  */
+function bootcamp_photo_resizer(&$form, &$form_state) {
+	$values = $form_state['values']['submitted_tree'];
+	if (isset($values['upload_your_headshot']) && !empty($values['upload_your_headshot'])) {
+	  $width = 100;
+	  $height = 100;
+
+	  $image = $values['upload_your_headshot'];
+	  $img = file_load($image);
+	  $resized = image_load($img->uri);
+	  image_resize($resized, $width, $height);
+	  image_save($resized);
+	}
+}
+
+/**
+  * Sends an email to the person who signed up,
+  * as well as anybody else they reference.
+  */
+function bootcamp_submit_email(&$form, &$form_state) {
+	global $language;
+	$values = $form_state['values']['submitted_tree'];
+
+  $params = array(
+    'name' => $values['full_name'],
+    'date' => $values['which_boot_camp_are_you_going_to']
+  );
+
+  drupal_mail('dosomething_bootcamp', 'speed_catchers_welcome', $values['email_address'], $language, $params);
+
+  if (!empty($values['guest_1__full_name']) && !empty($values['guest_1__email'])) {
+  	$guest1 = array(
+  	  'signer' => $values['full_name'],
+  	  'name' => $values['guest_1__full_name'],
+  	  'date' => $values['which_boot_camp_are_you_going_to']
+  	);
+
+    drupal_mail('dosomething_bootcamp', 'speed_catchers_referral', $values['guest_1__email'], $language, $guest1);
+  }
+
+  if (!empty($values['guest_2__full_name']) && !empty($values['guest_2__email'])) {
+  	$guest2 = array(
+  	  'signer' => $values['full_name'],
+  	  'name' => $values['guest_2__full_name'],
+  	  'date' => $values['which_boot_camp_are_you_going_to']
+  	);
+
+    drupal_mail('dosomething_bootcamp', 'speed_catchers_referral', $values['guest_2__email'], $language, $guest2);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_bootcamp_theme() {
+  return array(
+    'dosomething_bootcamp_welcome_speed_catchers_email' => array(
+      'variables' => array(
+        'name' => NULL,
+        'date' => NULL,
+      ),
+      'template' => 'dosomething-bootcamp-welcome-speed-catchers-email',
+    ),
+    'dosomething_bootcamp_referral_speed_catchers_email' => array(
+      'variables' => array(
+      	'signer' => NULL,
+        'name' => NULL,
+        'date' => NULL,
+      ),
+      'template' => 'dosomething-bootcamp-referral-speed-catchers-email',
+    ),
+  );
+}
+
+/**
+  * Implements hook_mail()
+  */
+function dosomething_bootcamp_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'speed_catchers_welcome':
+      $message['subject'] = t('Thanks for signing up for Boot Camp Speed Catchers.');
+      $message['body'][] = theme('dosomething_bootcamp_welcome_speed_catchers_email', $params);
+      $message['headers']['From'] = $params['name'] . ' <clubs@dosomething.org>';
+      break;
+    case 'speed_catchers_referral':
+      $message['subject'] = t("You've been signed up for Speed Catchers with !name", array('!name' => $params['name']));
+      $message['body'][] = theme('dosomething_bootcamp_referral_speed_catchers_email', $params);
+      $message['headers']['From'] = $params['full_name'] . ' <clubs@dosomething.org>';
+      break;
+  }
+}
+
+?>

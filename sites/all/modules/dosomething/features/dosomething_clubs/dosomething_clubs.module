@@ -496,6 +496,8 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
         $form['field_club_zip'][LANGUAGE_NONE][0]['value']['#default_value'] = $address['postal_code'];
       }
     }
+
+    $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
   }
 
   $form['#submit'][] = 'dosomething_clubs_mailchimp';
