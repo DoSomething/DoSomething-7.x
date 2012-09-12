@@ -3,12 +3,12 @@
 define('CLUB_PULL_LIMIT', 500);
 
 function dosomething_clubs_pull_menu() {
-  $items['admin/clubs-pull'] = array(
-    'title' => t('Pull Club Data'),
-    'page callback' => 'dosomething_clubs_pull_data',
+	$items['admin/clubs-pull'] = array(
+		'title' => t('Pull Club Data'),
+		'page callback' => 'dosomething_clubs_pull_data',
     'access arguments' => array('administer group'),
     'type' => MENU_CALLBACK
-  );
+	);
 
   $items['admin/clubs-pull/export'] = array(
     'title' => t('Exporting clubs data...'),
@@ -32,7 +32,7 @@ function dosomething_clubs_pull_menu() {
     'type' => MENU_CALLBACK
   );
 
-  return $items;
+	return $items;
 }
 
 class clubs_export {
@@ -277,7 +277,7 @@ class clubs_export {
       `sc`.state AS `school_state`,
       IF (`noassoc`.`field_no_school_associate_value`, 1, 0) AS `not_associated`,
       `blurb`.`field_club_blurb_value` AS `blurb`,
-      IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`
+      IF (`old_goodies`.`field_club_mailings_value` = 'mailings', 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`
     FROM 
     `node` node
     LEFT JOIN `users` users_node ON node.uid = users_node.uid
@@ -312,12 +312,10 @@ class clubs_export {
     " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
-
       if ($return_query) {
         return $q;
       }
       else {
-
         foreach ($q->fetchAll() AS $key => $r) {
           $s = (array) $r;
 
@@ -478,7 +476,7 @@ ORDER BY node_title ASC
 
   $q = db_query($query);
 
-#clubs_export::log('Query', $query);
+clubs_export::log('Query', $query);
 
   if ($return_query) {
     return $q;
@@ -677,8 +675,9 @@ $num = $count->rowCount();
   $offset = $num_per_page * $page;
 
   $pages = array();
-  $results = dosomething_clubs_pull_mega_query($offset, $num_per_page, TRUE);
-  while ($result = $results->fetchAssoc()) {
+  $results = clubs_export::the_query($offset, $num_per_page);
+  foreach ($results['results'] AS $key => $stuff) {
+      $result = (array) $stuff;
     $pages['rows'][] = array(
       'data' => array(
         'club id' =>                  array('data' => $result['nid']),
