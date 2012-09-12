@@ -132,12 +132,12 @@ function dosomething_petitions_goal_email($goal, $nid) {
     // Email everyone about goal reached
   }
   else {
-    $milestones = array(10000, 25000, 50000, 100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000);
+    $milestones = array(25000);
 
     foreach ($milestones AS $stone) {
       if ($count > $stone) continue;
       else {
-        if ($count == $stone) {
+        if ($count == $stone && $stone < $goal) {
           dosomething_petitions_send_goal_email('petitions_milestone_reached', $nid, $goal);
           // Mail everyone that we reached milestone
         }
@@ -215,13 +215,17 @@ function dosomething_petitions_opt_in($form, $form_state) {
       $author = $a->name;
     }
 
+    /** Scrapped 9/12/12
+      * This email would be duplicated if they invited their friends.
+      * So this email just won't happen.
+      * ---
     $params = array(
       'name' => $name,
       'petition' => $node->title,
       'petition_link' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
       'author' => $author
     );
-    drupal_mail('dosomething_petitions', 'thanks_for_signing', $val, $language, $params);
+    drupal_mail('dosomething_petitions', 'thanks_for_signing', $val, $language, $params);*/
     dosomething_general_infusionsoft_subscribe($val, PETITIONS_INFUSIONSOFT);
   }
   else if (dosomething_general_valid_cell($val)) {

@@ -22,12 +22,6 @@ if ($_POST['do'] == 'blah') {
   $client->setClientId('1000659299351.apps.googleusercontent.com');
   $client->setClientSecret('sp-8HDxoUCFZH1bH9XOUuglO');
   $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php');
-  #$client->setDevelopreKey
-
-  #$client->setAccessToken(json_encode($_POST['key']));
-
-  #$req = new apiHttpRequest('http://www.google.com/m8/feeds/contacts/default/ful');
-  #$val = $client->getIo()->authenticatedRequest($req);
 
 $k = $_POST['key'];
 $key = json_encode(array(
