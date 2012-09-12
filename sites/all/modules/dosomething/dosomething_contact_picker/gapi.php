@@ -23,13 +23,13 @@ if ($_POST['do'] == 'blah') {
   $client->setClientSecret('sp-8HDxoUCFZH1bH9XOUuglO');
   $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php');
 
-$k = $_POST['key'];
-$key = json_encode(array(
-  'access_token' => $k['access_token'],
-  'token_type' => $k['token_type'],
-  'expires_in' => $k['expires_in'],
-  'created' => time()
-));
+  $k = $_POST['key'];
+  $key = json_encode(array(
+    'access_token' => $k['access_token'],
+    'token_type' => $k['token_type'],
+    'expires_in' => $k['expires_in'],
+    'created' => time()
+  ));
   $client->setAccessToken($key);
 
   if ($client->getAccessToken()) {
@@ -61,23 +61,6 @@ $key = json_encode(array(
     echo $res;
   }
   exit;
-}
-if ($_POST['do'] == 'email') {
-  $text = "
-  Hey,
-
-  " . $node->me . " has invited you to sign the petition, \"" . $node->title . "\".  You can make a difference if you click on this link and sign it, too.
-
-  " . $node->link . "
-
-  Thanks!
-  Calvin and the DoSomething.org Team"; 
-  foreach (explode(',', $_POST['real_emails']) AS $email) {
-    if (trim($email)) {
-
-      mail(trim($email), $node->me . " has just sent you a message", $text, 'From: DoSomething.org <cstowell@dosomething.org>');
-    }
-  }
 }
 
 ?>

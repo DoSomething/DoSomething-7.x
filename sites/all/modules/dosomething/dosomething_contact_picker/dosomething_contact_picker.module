@@ -13,34 +13,17 @@ function dosomething_contact_picker_menu() {
 
 function dosomething_contact_scraper_invite($nid) {
 	if ($_POST['do'] == 'email') {
-		$node = node_load($nid);
-	  	global $user;
-	  	$p = profile2_load_by_user($user, 'main');
-	  	if (isset($p->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
-	  		$me = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
-	  	}
-	  	else {
-	  		$me = $user->name;
-	  	}
+	  $node = node_load($nid);
+  	  global $user;
+  	  $p = profile2_load_by_user($user, 'main');
+  	  if (isset($p->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+  		$me = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  	  }
+  	  else {
+  		$me = $user->name;
+  	  }
 
-	  	$node->link = url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE));
-
-		$text = "
-  Hey,
-
-  " . $me . " has invited you to sign the petition, \"" . $node->title . "\".  You can make a difference if you click on this link and sign it, too.
-
-  " . $node->link . "
-
-  Thanks!
-  Calvin and the DoSomething.org Team";
-
-	  foreach (explode(',', $_POST['real_emails']) AS $email) {
-	    if (trim($email)) {
-    	  dosomething_petitions_store_email($node->nid, $user->uid, $email);
-	      mail(trim($email), $me . " has just sent you a message", $text, 'From: DoSomething.org <cstowell@dosomething.org>');
-	    }
-	  }
+  	  $node->link = url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE));
 
 	  $a = user_load($node->uid);
 	  $p = profile2_load_by_user($a, 'main');
@@ -48,6 +31,22 @@ function dosomething_contact_scraper_invite($nid) {
 	  if (!trim($author)) {
 	    $author = $a->name;
 	  }
+
+	  global $language;
+	  $params = array(
+	    'title' => $node->title,
+	    'signatures' => number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']),
+	    'url' => $node->link,
+	    'first_name' => $author,
+	  );
+
+	  foreach (explode(',', $_POST['real_emails']) AS $email) {
+	    if (valid_email_address(trim($email))) {
+	      drupal_mail('dosomething_petitions', 'petition_invite', trim($email), $language, $params);
+	      dosomething_petitions_store_email($node->nid, $user->uid, $email);
+	    }
+	  }
+
 	  if ($user->mail) {
 	  	global $language;
 		  $params = array(
