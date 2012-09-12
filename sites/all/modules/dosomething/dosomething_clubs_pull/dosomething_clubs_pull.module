@@ -40,6 +40,7 @@ class clubs_export {
   public static $inited = false;
 
   public static function export() {
+    $page = $limit = 0;
     $page = intval($_GET['page']);
     if (!$page) {
       $page = 1;
@@ -59,17 +60,16 @@ class clubs_export {
     $start = (!$nopage ? ($page * ($limit)) : 0);
     if (!$nopage) { $page++; }
 
+    if ($_GET['debug']) {
+      exit;
+    }
+
     $d = self::the_query($start, $limit);
     $count = self::get_counts();
 
     $p = floor(($start / $count) * 100);
     if ($p > 100) {
       $p = 100;
-    }
-
-
-    if ($_GET['debug']) {
-      exit;
     }
 
     $hash = self::get_hash();
@@ -269,9 +269,9 @@ class clubs_export {
       IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(`camp2`.`field_campaign_list_nid`), GROUP_CONCAT(`camp1`.`field_camp_value`)) AS `camps`,
       GROUP_CONCAT(`ogu`.`mail`) AS `member_emails`,
       GROUP_CONCAT(`ogu`.`uid`) AS `member_uids`,
-      (SELECT COUNT(*) FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`))) AS `pcount`,
-      (SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `lastcreated`,
-      (SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` IN (" . $cs . ") AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `last_joined_campaign`,
+      #(SELECT COUNT(*) FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`))) AS `pcount`,
+      #(SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `lastcreated`,
+      #(SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` IN () AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `last_joined_campaign`,
       `sc`.name AS `school_name`,
       `sc`.type AS `school_type`,
       `sc`.state AS `school_state`,
@@ -317,9 +317,28 @@ class clubs_export {
         return $q;
       }
       else {
+
+        foreach ($q->fetchAll() AS $key => $r) {
+          $s = (array) $r;
+
+          /** Yes, I know you're not supposed to do this...
+            *  but it saves so much query time from above it's crazy
+            */ 
+          $s['member_uids'] = ($s['member_uids'] ? $s['member_uids'] : 0);
+          $m = db_query("
+            SELECT
+            (SELECT COUNT(*) FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (" . $s['member_uids'] . ")) AS `pcount`,
+            (SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (" . $s['member_uids'] . ") ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `lastcreated`,
+            (SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` IN (" . $cs . ") AND `uid` IN (" . $s['member_uids'] . ") ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `last_joined_campaign`
+          ")->fetchAssoc();
+
+          $s = array_merge($s, $m);
+          $results[] = (object)$s;
+        }
+
         return array(
           'count' => $q->rowCount(),
-          'results' => $q->fetchAll()
+          'results' => (object)$results
         );
       }
     }
