@@ -8,8 +8,12 @@ function clean_email($email) {
 $node = json_decode(base64_decode(($_GET['nid'])));
 
 if ($_POST['do'] == 'blah') {
-  require_once '/var/www/html/google-api-php-client/src/apiClient.php';
-  require_once '/var/www/html/google-api-php-client/src/contrib/apiPlusService.php';
+  $add = '';
+  if (strpos($_SERVER['HTTP_HOST'], 'qa') !== FALSE) {
+    $add = 'qa2/';
+  }
+  require_once '/var/www/html/' . $add . 'google-api-php-client/src/apiClient.php';
+  require_once '/var/www/html/' . $add . 'google-api-php-client/src/contrib/apiPlusService.php';
 
   $client = new apiClient();
   $client->setApplicationName('Google Contacts Test');
@@ -17,7 +21,7 @@ if ($_POST['do'] == 'blah') {
 
   $client->setClientId('1000659299351.apps.googleusercontent.com');
   $client->setClientSecret('sp-8HDxoUCFZH1bH9XOUuglO');
-  $client->setRedirectUri('http://localhost:8080/gapi.php');
+  $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php');
   #$client->setDevelopreKey
 
   #$client->setAccessToken(json_encode($_POST['key']));
