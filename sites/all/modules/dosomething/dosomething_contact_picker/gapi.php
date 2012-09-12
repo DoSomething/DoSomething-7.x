@@ -48,12 +48,12 @@ $key = json_encode(array(
     $titles = array_slice($titles[1], 1);
     reset($titles);
 
-    $res .= '<input type="checkbox" id="check-all" /> Check all';
+    $res .= '<input type="checkbox" id="check-all" /> <label for="check-all">Check all</label>';
     $res .= '<ul id="blah">';
     foreach ($emails[1] AS $key => $email) {
       $res .= '
       <li>
-        <input type="checkbox" class="email-checkbox" name="emails" value="' . $email . '" id="' . clean_email($email) . '" />
+        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $email . '" id="' . clean_email($email) . '" />
         <strong>' . $email . '</strong>
         <span>' . $titles["$key"] . '</span>
       </li>';

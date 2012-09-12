@@ -64,7 +64,7 @@ class yahooauth {
         $contacts = $this->get_contacts($this->consumer_key, $this->consumer_secret, $this->real_oauth_guid, $this->real_oauth_token, $this->real_oauth_secret, false, true);
         $contacts = json_decode($contacts[2])->contacts;
         $count = $contacts->total;
-	    $res .= '<input type="checkbox" id="check-all" /> Check all';
+	    $res .= '<input type="checkbox" id="check-all" /> <label for="check-all">Check all</label>';
         $res .= '<ul id="blah">';
         $list = array();
         foreach ($contacts->contact AS $key => $person) {
@@ -73,7 +73,7 @@ class yahooauth {
                 if ($data->type == 'email') {
 			      $res .= '
 			      <li>
-			        <input type="checkbox" class="email-checkbox" name="emails" value="' . $data->value . '" id="' . $this->clean_email($data->value) . '" />
+			        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $data->value . '" id="' . $this->clean_email($data->value) . '" />
 			        <strong>' . $data->value . '</strong>
 			        <span>' . $name . '</span>
 			      </li>';
