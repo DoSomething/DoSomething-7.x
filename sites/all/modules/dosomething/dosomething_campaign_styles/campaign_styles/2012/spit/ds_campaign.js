@@ -1,3 +1,13 @@
+//
+//    Chris,
+//    
+//    Advert thy eyes.
+//    
+//    Sincerely,
+//    Maxwell
+//
+//
+
 (function ($) {
   Drupal.behaviors.campaignName = {
     attach: function (context, settings) {
@@ -12,6 +22,16 @@
   if(maxwell == "can have his cake and eat it too"){
     $('#cmp #edit-actions').removeAttr('id');
   };
+
+  // hacktastic form rebuilding
+  var emailInput = $('#edit-submitted-field-webform-email');
+  var cellInput = $('#edit-submitted-field-webform-mobile');
+  var emailWrapper = $('#submitted-field-webform-email-add-more-wrapper div.form-item');
+  var cellWrapper = $('#submitted-field-webform-mobile-add-more-wrapper div.form-item');
+
+  $(cellInput).before(emailInput);
+  $(emailWrapper).not('.ds-processed').addClass('.ds-processed').prepend('<label>email:</label>');
+  $(cellWrapper).not('.ds-processed').addClass('.ds-processed').prepend('<label>cell:</label>');
 
   // on lines 9-10 terrible things happen
   $('#campaign-opt-in br').remove();

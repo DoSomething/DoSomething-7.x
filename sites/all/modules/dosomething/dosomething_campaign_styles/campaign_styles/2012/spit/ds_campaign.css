@@ -221,19 +221,33 @@ body {
     font-size: 23px;
     text-align: center;
     color: white; }
+  #cmp .pane-campaign-sign-up label {
+    text-align: left; }
   #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
-    width: 35%;
-    float: left;
-    margin: 0 2.5%; }
+    width: 35%; }
   #cmp .pane-campaign-sign-up #edit-submit {
     float: right;
     position: static;
-    margin: 0 2% 0 0;
+    margin: 2% 2% 0 0;
     padding: 1px 0.7em; }
+#cmp #submitted-field-webform-mobile-add-more-wrapper, #cmp #submitted-field-webform-email-add-more-wrapper {
+  width: 35%;
+  float: left; }
+#cmp .pane-campaign-sign-up label, #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
+  width: 75%;
+  float: left;
+  clear: left; }
+#cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
+  margin: 0.5em 0 0 0; }
+#cmp .pane-campaign-sign-up label {
+  color: white;
+  font-size: 1.7em;
+  font-family: din-web;
+  text-transform: uppercase; }
 #cmp #campaign-opt-in {
   clear: both;
   text-align: left;
-  padding: 0 2.5%; }
+  padding: 0.3em 0 0 0 !important; }
   #cmp #campaign-opt-in span {
     font-size: 10px;
     background: transparent;
