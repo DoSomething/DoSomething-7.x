@@ -61,18 +61,21 @@ Drupal.behaviors.dsPfpShare = {
                 });
             }
             else if (userShares == 5) {
-              $('<div></div>')
-                .load('/fb/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function() {
+              $inviteDialog = $('<div class="invite-modal"></div>');
+              $inviteDialog.load('/fb/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function() {
                   $('#picsforpets-invite-friends').click(function() {
-                    var obj = {
+                    // We don't actually care what they click after they get
+                    // into the invite friends FB dialog. So if they click the
+                    // button we'll close the dialog no matter what.
+                    $inviteDialog.dialog('close');
+                    FB.ui({
                       method: 'apprequests',
                       display: 'iframe',
                       title: 'The DoSomething.org Pics for Pets Project',
                       message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
                       access_token: settings.picsforpetsFBAuth.access_token,
                       show_error: true
-                    };
-                    FB.ui(obj);
+                    });
                   });
                 })
                 .dialog({
@@ -82,7 +85,8 @@ Drupal.behaviors.dsPfpShare = {
                   modal: true,
                   top: 180,
                   width: 550
-                });
+                }
+              );
             }
           });
         }
