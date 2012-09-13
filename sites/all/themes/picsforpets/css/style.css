@@ -2209,7 +2209,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   width: 800px;
   height: 500px;
   margin-left: 60px;
-  padding-left: 0p;
+  padding-left: 0px;
   margin-top: 80px;
 }
 .ie8 .page-fb-pics-for-pets-lets-get-started .panel-pane {
@@ -2220,6 +2220,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 
 .ie8 .page-fb-pics-for-pets-shelter-search #edit-help-wrapper {
   margin-top: 90px;
+}
+
+div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"] .ui-icon.ui-icon-closethick {
+  top: -1px;
+  right: 10px;
 }
 
 #picsforpets-invite-friends {
@@ -2946,6 +2951,13 @@ select#edit-sort-by {
   padding: 0 8px 0 24px;
   background: white url(../images/small-up-arrow.png) no-repeat;
   background-position: 8px 4px;
+}
+.pager .pager-current {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
 }
 
 .gallery-thumbnail-text {

@@ -2,13 +2,14 @@
 
 // jQuery plugin to prevent double submission of forms
 $.fn.preventDoubleSubmission = function() {
-  $(this).bind('submit',function(e){
+  $(this).bind('click',function(e){
     var $form = $(this);
 
     if ($form.data('submitted') === true) {
       // Previously submitted - don't submit again
       e.preventDefault();
-    } else {
+    }
+    else {
       // Mark it so that the next submit can be ignored
       $form.data('submitted', true);
     }
@@ -23,7 +24,10 @@ $.fn.preventDoubleSubmission = function() {
  */
 Drupal.behaviors.picsforpetsFormSubmit = {
   attach: function (context) {
-    $(".node-fb-app-data-gathering-form form.webform-client-form #edit-submit").preventDoubleSubmission();
+    $(context)
+      .find(".node-fb-app-data-gathering-form form.webform-client-form #edit-submit")
+      .once('dsPfpFormSubmit')
+      .preventDoubleSubmission();
   }
 };
 
