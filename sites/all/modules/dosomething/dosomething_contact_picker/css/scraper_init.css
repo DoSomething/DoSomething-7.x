@@ -1,4 +1,6 @@
-.ui-dialog.ui-widget.ui-widget-content.ui-corner-all { background: #fff; }
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all { 
+  background: #fff url(/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif) 50% 50% no-repeat;
+}
 
 .invite-by-email-link {
   background: #e35a68;
@@ -15,3 +17,4 @@
   top: -18px;
   right: 6px;
 }
+

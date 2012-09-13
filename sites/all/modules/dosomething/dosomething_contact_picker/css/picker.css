@@ -6,25 +6,6 @@ li input { float: left; }
 li strong { float: left; }
 li span { float: right; }
 
-a#gmail {
-  background: url(/sites/all/modules/dosomething/dosomething_contact_picker/images/gmail.png) top left no-repeat;
-  text-decoration: none;
-  display: inline-block;
-  height: 35px;
-  padding-left: 55px;
-  width: 90px;
-}
-
-a#yahoo {
-  background: url(/sites/all/modules/dosomething/dosomething_contact_picker/images/yahoo.jpg) top left no-repeat;
-  text-decoration: none;
-  display: inline-block;
-  height: 35px;
-  padding-left: 55px;
-  width: 90px;
-  margin-left: 50px;
-}
-
 div#choices { clear: both; }
 h1, p { text-align: center;}
 h1 { margin: 0px;}

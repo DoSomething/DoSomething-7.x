@@ -92,7 +92,7 @@ $(document).ready(function() {
 	var r = $('#response').html();
         $('#response', window.opener.document).show().html(r);
         window.opener.prepare_clicks();
-        $('#check-area, #send-emails', window.opener.document).fadeIn('fast');
+        $('#check-area, #send-emails', window.opener.document).show();
         window.close();
     });
 </script>
