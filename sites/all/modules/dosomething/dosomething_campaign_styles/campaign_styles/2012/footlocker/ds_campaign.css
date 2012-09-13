@@ -627,63 +627,136 @@ hr.gray {
   border-right: 1px solid lightgray;
   border-left: 1px solid lightgray; }
 
-#node-724592 form {
+#node-724592 form, #node-724596 form, #node-724597 form {
   border: none !important;
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -o-box-shadow: none !important;
   box-shadow: none !important; }
-#node-724592 .field-name-group-audience {
+#node-724592 .field-name-group-audience, #node-724592 .field-name-field-recommendation-form, #node-724596 .field-name-group-audience, #node-724596 .field-name-field-recommendation-form, #node-724597 .field-name-group-audience, #node-724597 .field-name-field-recommendation-form {
   display: none; }
-#node-724592 .formhead {
+#node-724592 .formhead, #node-724596 .formhead, #node-724597 .formhead {
   text-transform: uppercase;
   font-size: 28px; }
-#node-724592 label {
+#node-724592 label, #node-724596 label, #node-724597 label {
   font-size: 14px;
   margin-top: 10px; }
-#node-724592 .form-wrapper {
+#node-724592 .form-wrapper, #node-724596 .form-wrapper, #node-724597 .form-wrapper {
   margin-bottom: 0 !important; }
-#node-724592 #webform-component-one-of-the-following {
+#node-724592 #webform-component-one-of-the-following, #node-724596 #webform-component-one-of-the-following, #node-724597 #webform-component-one-of-the-following {
   margin-top: 10px; }
-  #node-724592 #webform-component-one-of-the-following p {
+  #node-724592 #webform-component-one-of-the-following p, #node-724596 #webform-component-one-of-the-following p, #node-724597 #webform-component-one-of-the-following p {
     margin: 0; }
-#node-724592 #webform-component-cumulative-sat-score, #node-724592 #webform-component-cumulative-act-score, #node-724592 #webform-component-pre-sat-score, #node-724592 #webform-component-plan-score {
+#node-724592 #webform-component-cumulative-sat-score, #node-724592 #webform-component-cumulative-act-score, #node-724592 #webform-component-pre-sat-score, #node-724592 #webform-component-plan-score, #node-724596 #webform-component-cumulative-sat-score, #node-724596 #webform-component-cumulative-act-score, #node-724596 #webform-component-pre-sat-score, #node-724596 #webform-component-plan-score, #node-724597 #webform-component-cumulative-sat-score, #node-724597 #webform-component-cumulative-act-score, #node-724597 #webform-component-pre-sat-score, #node-724597 #webform-component-plan-score {
   margin-left: 20px; }
-  #node-724592 #webform-component-cumulative-sat-score label, #node-724592 #webform-component-cumulative-act-score label, #node-724592 #webform-component-pre-sat-score label, #node-724592 #webform-component-plan-score label {
+  #node-724592 #webform-component-cumulative-sat-score label, #node-724592 #webform-component-cumulative-act-score label, #node-724592 #webform-component-pre-sat-score label, #node-724592 #webform-component-plan-score label, #node-724596 #webform-component-cumulative-sat-score label, #node-724596 #webform-component-cumulative-act-score label, #node-724596 #webform-component-pre-sat-score label, #node-724596 #webform-component-plan-score label, #node-724597 #webform-component-cumulative-sat-score label, #node-724597 #webform-component-cumulative-act-score label, #node-724597 #webform-component-pre-sat-score label, #node-724597 #webform-component-plan-score label {
     width: 150px;
     float: left;
     clear: both;
     margin-top: 7px; }
-  #node-724592 #webform-component-cumulative-sat-score input, #node-724592 #webform-component-cumulative-act-score input, #node-724592 #webform-component-pre-sat-score input, #node-724592 #webform-component-plan-score input {
+  #node-724592 #webform-component-cumulative-sat-score input, #node-724592 #webform-component-cumulative-act-score input, #node-724592 #webform-component-pre-sat-score input, #node-724592 #webform-component-plan-score input, #node-724596 #webform-component-cumulative-sat-score input, #node-724596 #webform-component-cumulative-act-score input, #node-724596 #webform-component-pre-sat-score input, #node-724596 #webform-component-plan-score input, #node-724597 #webform-component-cumulative-sat-score input, #node-724597 #webform-component-cumulative-act-score input, #node-724597 #webform-component-pre-sat-score input, #node-724597 #webform-component-plan-score input {
     margin-bottom: 10px;
     width: 100px; }
-#node-724592 .webform-client-form #edit-actions {
+#node-724592 .webform-client-form #edit-actions, #node-724596 .webform-client-form #edit-actions, #node-724597 .webform-client-form #edit-actions {
   bottom: 120px;
   left: 0px;
   right: auto; }
-  #node-724592 .webform-client-form #edit-actions input.form-submit {
+  #node-724592 .webform-client-form #edit-actions input.form-submit, #node-724596 .webform-client-form #edit-actions input.form-submit, #node-724597 .webform-client-form #edit-actions input.form-submit {
     font-size: 24px; }
-  #node-724592 .webform-client-form #edit-actions #edit-previous, #node-724592 .webform-client-form #edit-actions #edit-next {
-    width: 70px; }
-#node-724592 h2.other {
+  #node-724592 .webform-client-form #edit-actions #edit-previous, #node-724592 .webform-client-form #edit-actions #edit-next, #node-724596 .webform-client-form #edit-actions #edit-previous, #node-724596 .webform-client-form #edit-actions #edit-next, #node-724597 .webform-client-form #edit-actions #edit-previous, #node-724597 .webform-client-form #edit-actions #edit-next {
+    width: inherit !important;
+    padding: 0 10px; }
+#node-724592 h2.other, #node-724596 h2.other, #node-724597 h2.other {
   font-size: 28px;
   margin-top: 28px;
   text-transform: uppercase; }
-#node-724592 h3 {
+#node-724592 h3, #node-724596 h3, #node-724597 h3 {
   color: #e31837; }
-  #node-724592 h3 span {
+  #node-724592 h3 span, #node-724596 h3 span, #node-724597 h3 span {
     color: gray; }
-#node-724592 textarea {
+#node-724592 textarea, #node-724596 textarea, #node-724597 textarea {
   margin: 10px 0 20px 0; }
-#node-724592 label[for=edit-submitted-contact-me], #node-724592 label[for=edit-submitted-legal-stuff], #node-724592 label[for=edit-submitted-confirm-true], #node-724592 label[for=edit-submitted-permission] {
+#node-724592 label[for=edit-submitted-contact-me], #node-724592 label[for=edit-submitted-legal-stuff], #node-724592 label[for=edit-submitted-confirm-true], #node-724592 label[for=edit-submitted-permission], #node-724596 label[for=edit-submitted-contact-me], #node-724596 label[for=edit-submitted-legal-stuff], #node-724596 label[for=edit-submitted-confirm-true], #node-724596 label[for=edit-submitted-permission], #node-724597 label[for=edit-submitted-contact-me], #node-724597 label[for=edit-submitted-legal-stuff], #node-724597 label[for=edit-submitted-confirm-true], #node-724597 label[for=edit-submitted-permission] {
   display: none; }
-#node-724592 .fl-form-footer {
+
+.fl-form-footer {
   float: left;
   width: 100%;
   margin: 40px 0 0 0; }
-  #node-724592 .fl-form-footer img {
+  .fl-form-footer img {
     float: right; }
-  #node-724592 .fl-form-footer hr {
+  .fl-form-footer hr {
     clear: both; }
-  #node-724592 .fl-form-footer p {
+  .fl-form-footer p {
     text-align: right; }
+
+#node-724597 #edit-actions, #node-724596 #edit-actions, #node-724594 #edit-actions, #node-724595 #edit-actions {
+  position: relative;
+  text-align: center !important;
+  margin: -34px; }
+#node-724597 #webform-component-recommendation-1, #node-724597 #edit-submitted-field-application, #node-724597 #edit-submitted-field-webform-name, #node-724597 #webform-component-relationship-to-you, #node-724597 #edit-submitted-field-webform-email, #node-724597 #webform-component-phone-number, #node-724596 #webform-component-recommendation-1, #node-724596 #edit-submitted-field-application, #node-724596 #edit-submitted-field-webform-name, #node-724596 #webform-component-relationship-to-you, #node-724596 #edit-submitted-field-webform-email, #node-724596 #webform-component-phone-number, #node-724594 #webform-component-recommendation-1, #node-724594 #edit-submitted-field-application, #node-724594 #edit-submitted-field-webform-name, #node-724594 #webform-component-relationship-to-you, #node-724594 #edit-submitted-field-webform-email, #node-724594 #webform-component-phone-number, #node-724595 #webform-component-recommendation-1, #node-724595 #edit-submitted-field-application, #node-724595 #edit-submitted-field-webform-name, #node-724595 #webform-component-relationship-to-you, #node-724595 #edit-submitted-field-webform-email, #node-724595 #webform-component-phone-number {
+  margin-left: 200px; }
+  #node-724597 #webform-component-recommendation-1 input, #node-724597 #edit-submitted-field-application input, #node-724597 #edit-submitted-field-webform-name input, #node-724597 #webform-component-relationship-to-you input, #node-724597 #edit-submitted-field-webform-email input, #node-724597 #webform-component-phone-number input, #node-724596 #webform-component-recommendation-1 input, #node-724596 #edit-submitted-field-application input, #node-724596 #edit-submitted-field-webform-name input, #node-724596 #webform-component-relationship-to-you input, #node-724596 #edit-submitted-field-webform-email input, #node-724596 #webform-component-phone-number input, #node-724594 #webform-component-recommendation-1 input, #node-724594 #edit-submitted-field-application input, #node-724594 #edit-submitted-field-webform-name input, #node-724594 #webform-component-relationship-to-you input, #node-724594 #edit-submitted-field-webform-email input, #node-724594 #webform-component-phone-number input, #node-724595 #webform-component-recommendation-1 input, #node-724595 #edit-submitted-field-application input, #node-724595 #edit-submitted-field-webform-name input, #node-724595 #webform-component-relationship-to-you input, #node-724595 #edit-submitted-field-webform-email input, #node-724595 #webform-component-phone-number input {
+    width: 300px; }
+
+.page-node-724721 .pane-content h3, .page-node-724721 .pane-content h4 {
+  text-transform: uppercase;
+  font-size: 24px;
+  color: #e31837;
+  line-height: 1em; }
+  .page-node-724721 .pane-content h3 a, .page-node-724721 .pane-content h4 a {
+    text-transform: lowercase;
+    text-decoration: underline;
+    color: #e31837;
+    font-size: 20px; }
+.page-node-724721 .pane-content h3, .page-node-724721 .pane-content .send-request {
+  margin-bottom: 15px;
+  color: black; }
+  .page-node-724721 .pane-content h3 span, .page-node-724721 .pane-content .send-request span {
+    color: #e31837; }
+.page-node-724721 .pane-content h4 {
+  color: #e31837; }
+.page-node-724721 .pane-content li {
+  font-size: 14px; }
+.page-node-724721 .status-incomplete, .page-node-724721 .status-complete, .page-node-724721 .status-empty {
+  padding: 5px 0 0 34px;
+  margin-bottom: 25px; }
+.page-node-724721 .status-incomplete {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-red.png") no-repeat left center; }
+.page-node-724721 .status-complete {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-green.png") no-repeat left center; }
+.page-node-724721 .status-empty {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png") no-repeat left center; }
+.page-node-724721 .send-request {
+  font-size: 16px; }
+  .page-node-724721 .send-request a {
+    color: #e31837;
+    text-decoration: underline; }
+  .page-node-724721 .send-request a.go-button {
+    color: white;
+    text-decoration: none; }
+.page-node-724721 .go-button {
+  position: static;
+  color: white;
+  border-radius: 0;
+  padding-top: 4px !important;
+  font-weight: normal;
+  margin-left: 24px;
+  background: #e31837; }
+
+.fl-bottom-pane {
+  padding-bottom: 0 !important; }
+
+#block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5 {
+  display: none; }
+
+.page-node-724722 .pane-content h2 {
+  text-transform: uppercase; }
+.page-node-724722 .pane-content li {
+  font-size: 14px; }
+.page-node-724722 .pane-content ul {
+  margin: 20px 0; }
+
+img.center {
+  margin: 0 auto;
+  display: block; }

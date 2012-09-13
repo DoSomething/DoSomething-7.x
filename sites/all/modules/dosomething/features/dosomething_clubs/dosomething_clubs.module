@@ -442,6 +442,17 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
   global $user;
   $profile = profile2_load_by_user($user, 'main');
 
+  $form['another'] = array(
+    '#markup' => '<p id="dosomething-club-tag">DoSomething.org Club</p>',
+    '#weight' => 4
+  );
+  $form['test'] = array(
+    '#markup' => '<p id="club-name-live">The club name will be "<span>(Write something)</span> DoSomething.org Club"</p>',
+    '#weight' => 4
+  );
+
+  $form['field_noschool_club_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('Group Name');
+
   if (!user_is_logged_in()) {
     if ($_SESSION['shortform_email']) {
       $form['field_email'][LANGUAGE_NONE][0]['value']['#default_value'] = $_SESSION['shortform_email'];
@@ -496,6 +507,8 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
         $form['field_club_zip'][LANGUAGE_NONE][0]['value']['#default_value'] = $address['postal_code'];
       }
     }
+
+    $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
   }
 
   $form['#submit'][] = 'dosomething_clubs_mailchimp';

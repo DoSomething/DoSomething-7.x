@@ -26,14 +26,27 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
 
   foreach ($subs as $sub) {
     // set up some stuff for easy access later. It's MVC in one foreach look!
-    $complete_link = l('Complete it now', 'node/'.$sub->nid);
+    $status = $class = '';
+    if ($sub->is_draft) {
+      $complete_link = l('Complete it now', 'node/'.$sub->nid);
+      $status = "Draft ($complete_link)";
+      $class = 'status-incomplete';
+    }
+    else {
+      $status = 'Complete';
+      $class = 'status-complete';
+    }
 
     // APPLICATION STATUS
     $content = array();
     $content['status'] = array(
-      '#markup' => 'Application status: ' . (($sub->is_draft) ? "Draft ($complete_link)" : 'Submitted'),
-      '#prefix' => '<h3>',
-      '#suffix' => '</h3>',
+      '#type' => 'container',
+      '#attributes' => array('class' => array($class)),
+      'text' => array(
+        '#markup' => '<span>Application status: </span>' . $status,
+        '#prefix' => '<h3>',
+        '#suffix' => '</h3>',
+      ),
     );
 
     $content['recommendation_status'] = array(
@@ -51,7 +64,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
       $content['recommendation_status'][$rec_form->nid] = array(
         '#type' => 'container',
         '#attributes' => array(
-          'class' => 'recommendation-status',
+          'class' => array('recommendation-status'),
           'id' => 'recommendation-status-'.$rec_form->nid,
         ),
       );
@@ -72,9 +85,19 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
       $req_subs = dosomething_scholarship_rec_scholarship_status_load('submission', 'field_application', $params);
 
       if ($req_subs === FALSE) {
+        $url = 'node/'.$req_form->nid;
+        $opts = array('query' => array('sid' => $sub->sid));
         $content['recommendation_status'][$rec_form->nid]['send_request'] = array(
-          '#markup' => l('Submit a recommendation request', 'node/'.$req_form->nid, array('query' => array('sid' => $sub->sid))),
+          '#type' => 'container',
+          '#attributes' => array('class' => array('send-request')),
+          'text' => array(
+            '#markup' => 'Incomplete | ' . l('Complete it now', $url, $opts),
+          ),
+          'button' => array(
+            '#markup' => l('Submit Recommendation Request', $url, $opts+array('attributes' => array('class' => array('go-button')))),
+          ),
         );
+        $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-empty';
       }
       else {
         // get submissions for each request submission
@@ -97,13 +120,15 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
 
           if ($rec_subs === FALSE) {
             $content['recommendation_status'][$rec_form->nid][$req_sub->sid]['request_pending'] = array(
-              '#markup' => 'Request pending. ' . l('Resend email', "email-rec-request/{$req_sub->sid}"),
+              '#markup' => 'Request pending | ' . l('Resend email', "email-rec-request/{$req_sub->sid}"),
             );
+            $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-incomplete';
           }
           else {
             $content['recommendation_status'][$rec_form->nid][$req_sub->sid]['rec_received'] = array(
               '#markup' => 'Recommendation received.',
             );
+            $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-complete';
           }
         }
       }

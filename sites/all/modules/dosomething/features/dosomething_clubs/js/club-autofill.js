@@ -26,12 +26,16 @@
           $('#edit-field-school-reference-und-0-target-id-name').val('');
           $('#edit-field-school-reference-und-0-target-id').hide();
           $('#edit-field-noschool-club-name').show();
+          $('#club-name-live').show();
+          $('#dosomething-club-tag').show();
         }
 
         $('#edit-field-no-school-associate-und').click(function() {
           $('input#edit-field-school-reference-und-0-target-id-name').val('');
           $('#edit-field-school-reference-und-0-target-id').toggle();
           $('.field-name-field-noschool-club-name').toggle();
+          $('#club-name-live').toggle();
+          $('#dosomething-club-tag').toggle();
         });
 
       $('.form-item-field-campaign-list-und').find('label').each(function() {
@@ -42,6 +46,18 @@
           $(this).css('color', '#808080');
         }
       });
+
+          $('#edit-field-noschool-club-name-und-0-value').data('val',  $('#edit-field-noschool-club-name-und-0-value').val() ); // save value
+          $('#edit-field-noschool-club-name-und-0-value').change(function() { // works when input will be blured and the value was changed
+              // console.log('input value changed');
+              $('#club-name-live').find('span').text($(this).val());
+          });
+          $('#edit-field-noschool-club-name-und-0-value').keyup(function() { // works immediately when user press button inside of the input
+              if( $('#edit-field-noschool-club-name-und-0-value').val() != $('#edit-field-noschool-club-name-und-0-value').data('val') ){ // check if value changed
+                  $('#edit-field-noschool-club-name-und-0-value').data('val',  $('#edit-field-noschool-club-name-und-0-value').val() ); // save new value
+                  $(this).change(); // simulate "change" event
+              }
+          });
 
       // COPPA Parent's birthday for club member signup
       if ($('.form-item-parent-email').length > 0) {
