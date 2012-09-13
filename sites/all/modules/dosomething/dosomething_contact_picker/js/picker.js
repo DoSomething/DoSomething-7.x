@@ -1,34 +1,7 @@
 var authed = false;
-function auth(t) {
-  if (t == 'gmail') {
-    var config = {
-      'client_id': '1000659299351.apps.googleusercontent.com',
-      'scope': 'https://www.google.com/m8/feeds'
-    };
-    $('#loading').show().html('<p style="text-align: center"><img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="" /> Loading.  Please wait...</p>');
-    gapi.auth.authorize(config, function() {
-      var t = gapi.auth.getToken();
-      console.log('Login complete');
-      console.log(t);
-      token = t.access_token;
-      
-      $.post('/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php', { 'do': 'blah', 'key': t }, function(response) {
-        $('#response').slideDown().html(response);
-        $('#check-area, #send-emails').fadeIn('fast');
-        $('#loading').fadeOut('fast');
-        prepare_clicks();
-      });
-    });
-  }
-  else if (t == 'yahoo') {
-    window.open('/sites/all/modules/dosomething/dosomething_contact_picker/yo/index.php', 'yahoo', 'width=500,height=350,scrollbars=no,resizeable=no,location=no,status=no,titlebar=no,toolbar=no');
-  }
 
-  return false;
-}
-
-function service(s) {
-  eval(s).auth();
+function service(s, path) {
+  eval(s).auth(path);
 }
 
 function prepare_clicks() {

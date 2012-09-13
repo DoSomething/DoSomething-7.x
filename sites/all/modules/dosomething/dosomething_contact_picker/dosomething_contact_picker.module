@@ -28,7 +28,7 @@ function dosomething_contact_picker_menu() {
 class contact_scraper {
 	public static function add_scraper_button(&$form, $weight = 0) {
 	  $form['invite_by_email'] = array(
-	    '#markup' => l(t('Invite by Email'), '/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php', array(
+	    '#markup' => l(t('Invite by Email'), drupal_get_path('module', 'dosomething_contact_picker') . '/gapi.php', array(
 	      'attributes' => array(
 	        'class' => array('invite-by-email-link'),
 	        'onclick' => 'return invite_find_emails()'
@@ -59,16 +59,17 @@ class contact_scraper {
 	}
 
 	public static function get_services(&$form) {
-		$services = shell_exec("grep -r 'name\:' " . drupal_get_path('module', 'dosomething_contact_picker') . "/services/*");
+		$path = drupal_get_path('module', 'dosomething_contact_picker');
+		$services = shell_exec("grep -r 'name\:' " . $path . "/services/*");
 		preg_match_all('#([^/]+\.js)\:\s+name\:\s*(\'|\")(.*)\\2#i', $services, $matches);
 
 		$r = $s = '';
 		foreach ($matches[3] AS $key => $service) {
 			$s = str_replace('.js', '', $matches[1][$key]);
-			$scripts .= '<script type="text/javascript" src="/' . drupal_get_path('module', 'dosomething_contact_picker') . '/services/' . $s . '/' . $matches[1][$key] . '"></script>';
+			$scripts .= '<script type="text/javascript" src="/' . $path . '/services/' . $s . '/' . $matches[1][$key] . '"></script>';
 
 			$r .= '<div class="service">';
-			$r .= '<a href="#" onclick="return service(\'' . $s . '\')"><img class="service-image" src="/' . drupal_get_path('module', 'dosomething_contact_picker') . '/services/' . $s . '/' . $s . '.png' . '" alt="" />';
+			$r .= '<a href="#" onclick="return service(\'' . $s . '\', \'' . $path . '\')"><img class="service-image" src="/' . drupal_get_path('module', 'dosomething_contact_picker') . '/services/' . $s . '/' . $s . '.png' . '" alt="" />';
 			$r .= t('Find contacts on !service', array('!service' => $service));
 			$r .= '</a>';
 			$r .= '</div>';
