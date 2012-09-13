@@ -1,5 +1,5 @@
 var google = {
-  name: 'Google',
+  name: 'Gmail',
   config: {
     'client_id': '1000659299351.apps.googleusercontent.com',
     'scope': 'https://www.google.com/m8/feeds'

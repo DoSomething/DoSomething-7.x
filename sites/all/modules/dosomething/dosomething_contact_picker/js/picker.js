@@ -2,6 +2,7 @@ var authed = false;
 
 function service(s, path) {
   eval(s).auth(path);
+  $('#connect-message').text('Invite friends to sign this petition');
 }
 
 function prepare_clicks() {
@@ -63,12 +64,9 @@ function submit_emails() {
   return true;
 }
 
-$(document).ready(function() {
-  $('#close-scraper').click(function() {
-    window.parent.close_scraper();
-  });
-  $('#scraper-loading', window.parent.document).hide();
-})
+$(function() {
+  window.parent.hide_scraper_loader();
+});
 
 function scraper_email(subject, body) {
   mail = "mailto:?subject=" + escape(subject)

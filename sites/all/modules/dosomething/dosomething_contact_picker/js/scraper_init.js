@@ -8,7 +8,7 @@
       delete Drupal.behaviors.dosomethingPetitions;
       
       var popup = $('<div></div>').attr('id', 'contacts-scraper-dialog');
-      popup.append($('<div id="scraper-loading" style="position: absolute; z-index: 0; margin-left: 50%; margin-top: 40%;"><img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="" /></div>'));
+      popup.append($('<div id="loading-scraper" class="remove-that-loader" style="position: absolute; z-index: 0; margin-left: 50%; margin-top: 40%;"><img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="" /></div>'));
       popup.append($('<iframe></iframe>').attr('id', 'email-scraper').css('width', '500px').css('height', '600px').css('border', '0px').css('background', '#fff').attr('src', '/contacts-scraper/' + petition));
       // popup!
       popup.dialog({
@@ -62,8 +62,10 @@ function base64_decode (data) {
     return dec;
 }
 
-function invite_find_emails() {
-  var code = jQuery('#invite_data').val();
+function invite_find_emails(code) {
+  if (!code) {
+    var code = jQuery('#invite_data').val();
+  }
   jQuery.fn.dsPetitionsInviteEmails(code);
   return false;
 }
@@ -74,4 +76,9 @@ function launch_fb_share() {
 
 function close_scraper() {
   jQuery('#contacts-scraper-dialog').dialog('close');
+}
+
+function hide_scraper_loader() {
+  jQuery('#loading-scraper').hide();
+  jQuery('.remove-that-loader').hide();
 }

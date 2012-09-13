@@ -4,9 +4,13 @@ Thanks for signing the petition, "<?php echo $petition; ?>."
 
 Winning this campaign is now up to you.
 
-Now that you’ve invited friends to sign, we're building momentum. Let’s keep that energy up.
+Now that you’ve invited friends to sign, we're building momentum.
 
-Share with your friends. They'll share with their friends, who will...well, you get the idea. From your signature will come dozens, maybe even hundreds.
+Help us cross the finish line by sharing with more friends. They'll share with their friends, who will...well, you get the idea. From your signature will come dozens, maybe even hundreds.
+
+Invite more of your friends with email:
+<?php echo $petition_link; ?>
+
 
 Thanks for taking action,
 

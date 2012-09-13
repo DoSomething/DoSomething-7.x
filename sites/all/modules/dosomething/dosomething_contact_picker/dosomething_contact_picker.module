@@ -26,13 +26,14 @@ function dosomething_contact_picker_menu() {
 }
 
 class contact_scraper {
-	public static function add_scraper_button(&$form, $weight = 0) {
+	public static function add_scraper_button(&$form, $weight = 0, $attributes = array()) {
+	  $node = menu_get_object();
 	  $form['invite_by_email'] = array(
-	    '#markup' => l(t('Invite by Email'), drupal_get_path('module', 'dosomething_contact_picker') . '/gapi.php', array(
+	    '#markup' => l(t('Get email contacts'), drupal_get_path('module', 'dosomething_contact_picker') . '/gapi.php', array(
 	      'attributes' => array(
 	        'class' => array('invite-by-email-link'),
-	        'onclick' => 'return invite_find_emails()'
-	      ),
+	        'onclick' => 'return invite_find_emails(' . $node->nid . ')'
+	      ) + $attributes,
 	    )),
 	    '#prefix' => '<p id="invite-by-email">',
 	    '#suffix' => '</p>',
@@ -53,7 +54,8 @@ class contact_scraper {
 	      'options' => array(
 	        'group' => CSS_LIBRARY,
 	        'preprocess' => FALSE,
-	        'every_page' => TRUE
+	        'every_page' => TRUE,
+	        'weight' => 1000
 	      )
 	  );
 	}
@@ -70,7 +72,7 @@ class contact_scraper {
 
 			$r .= '<div class="service">';
 			$r .= '<a href="#" onclick="return service(\'' . $s . '\', \'' . $path . '\')"><img class="service-image" src="/' . drupal_get_path('module', 'dosomething_contact_picker') . '/services/' . $s . '/' . $s . '.png' . '" alt="" />';
-			$r .= t('Find contacts on !service', array('!service' => $service));
+			$r .= t('Get !service contacts', array('!service' => $service));
 			$r .= '</a>';
 			$r .= '</div>';
 		}
@@ -123,7 +125,7 @@ function dosomething_contact_scraper_land($nid, $done = FALSE) {
 	  	$e = $email["{$node->type}"]['client_email'];
 		$e['body'] = str_replace(array("\n", '"'), array('\r\n', '\"'), $e['body']);
 
-	  	$params['client_email'] = t('I prefer to !send', array('!send' => '<a href="#" onclick=\'return scraper_email("' . $e['title'] . '", "' . $e['body'] . '")\'>' . t('send my own email') . '</a>.'));
+	  	$params['client_email'] = t('I prefer to !send', array('!send' => '<a href="#" onclick=\'return scraper_email("' . $e['title'] . '", "' . $e['body'] . '")\'>' . t('use my own email client') . '</a>.'));
 	  }
 
 	  echo theme('contact_scraper_landing', $params);

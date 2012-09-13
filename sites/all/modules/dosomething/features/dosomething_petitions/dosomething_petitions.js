@@ -1,6 +1,9 @@
 (function ($) {
   Drupal.behaviors.dosomethingPetitions = {
     attach: function (context, settings) {
+      if (window.location.hash && window.location.hash == '#contacts') {
+        $('.invite-by-email-link').click();
+      }
       // check if the browser supports placeholder elements
       var placeholder = (function () {
         var i = document.createElement('input');

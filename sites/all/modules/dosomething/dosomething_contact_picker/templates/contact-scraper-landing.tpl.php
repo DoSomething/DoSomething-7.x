@@ -9,8 +9,8 @@
     <?php echo $s['scripts']; ?>
   </head>
   <body>
-    <h1>Find Contacts through Email</h1>
-    <p>Click on the Gmail or Yahoo! logo below, log in, and we'll find your contacts for you.  Make sure you have your popup blocker disabled for DoSomething.org!</p>
+    <h1 id="connect-message">Connect your email address book to email your contacts.</h1>
+    <p>Having trouble? Try disabling your pop-up blocker for DoSomething.org.</p>
 <div id="socials">
 <?php echo $s['services']; ?>
 </div>
@@ -24,7 +24,7 @@
 <p id="loading"></p>
 <div id="response"></div>
 
-<p><input type="submit" onclick="return submit_emails()" value="Send emails" id="send-emails" /></p>
+<p><input type="submit" onclick="return submit_emails()" value="Invite" id="send-emails" /></p>
 </form>
   </body>
 </html>
