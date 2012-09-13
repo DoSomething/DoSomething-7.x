@@ -57,6 +57,28 @@ class contact_scraper {
 	      )
 	  );
 	}
+
+	public static function get_services(&$form) {
+		$services = shell_exec("grep -r 'name\:' " . drupal_get_path('module', 'dosomething_contact_picker') . "/services/*");
+		preg_match_all('#([^/]+\.js)\:\s+name\:\s*(\'|\")(.*)\\2#i', $services, $matches);
+
+		$r = $s = '';
+		foreach ($matches[3] AS $key => $service) {
+			$s = str_replace('.js', '', $matches[1][$key]);
+			$scripts .= '<script type="text/javascript" src="/' . drupal_get_path('module', 'dosomething_contact_picker') . '/services/' . $s . '/' . $matches[1][$key] . '"></script>';
+
+			$r .= '<div class="service">';
+			$r .= '<a href="#" onclick="return service(\'' . $s . '\')"><img class="service-image" src="/' . drupal_get_path('module', 'dosomething_contact_picker') . '/services/' . $s . '/' . $s . '.png' . '" alt="" />';
+			$r .= t('Find contacts on !service', array('!service' => $service));
+			$r .= '</a>';
+			$r .= '</div>';
+		}
+
+		return array(
+			'scripts' => $scripts,
+			'services' => $r
+		);
+	}
 }
 
 function dosomething_contact_picker_theme($existing, $type, $theme, $path) {

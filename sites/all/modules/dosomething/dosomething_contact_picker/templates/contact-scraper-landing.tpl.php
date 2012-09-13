@@ -1,3 +1,4 @@
+<?php $s = contact_scraper::get_services(); ?>
 <!doctype html>
 <html>
   <head>
@@ -5,16 +6,16 @@
     <script src="https://apis.google.com/js/client.js"></script>
     <script src="/<?php echo drupal_get_path('module', 'dosomething_contact_picker'); ?>/js/picker.js"></script>
     <link rel="stylesheet" type="text/css" href="/<?php echo drupal_get_path('module', 'dosomething_contact_picker'); ?>/css/picker.css" />
+    <?php echo $s['scripts']; ?>
   </head>
   <body>
     <h1>Find Contacts through Email</h1>
     <p>Click on the Gmail or Yahoo! logo below, log in, and we'll find your contacts for you.  Make sure you have your popup blocker disabled for DoSomething.org!</p>
 <div id="socials">
-<a href="#" onclick="return auth('gmail')" id="gmail">Find contacts on GMail</a>
-<a href="#" onclick="return auth('yahoo')" id="yahoo">Find contacts on Yahoo!</a>
+<?php echo $s['services']; ?>
 </div>
 
-<p><?php echo $client_email; ?></p>
+<p id="client-email-link"><?php echo $client_email; ?></p>
 <form action="/invite-by-email-scraper/<?php echo $nid; ?>" method="post">
 <input type="hidden" name="do" value="email" />
 <textarea name="emails" id="email_list" style=" width: 500px; height: 200px"></textarea>

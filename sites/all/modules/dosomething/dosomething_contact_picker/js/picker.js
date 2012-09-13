@@ -27,6 +27,10 @@ function auth(t) {
   return false;
 }
 
+function service(s) {
+  eval(s).auth();
+}
+
 function prepare_clicks() {
   $('#response').slideDown();
   $('#check-all').click(function() {

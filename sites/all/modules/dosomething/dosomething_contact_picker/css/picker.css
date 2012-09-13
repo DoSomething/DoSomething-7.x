@@ -53,3 +53,22 @@ textarea { display: none; }
 
 #check-area, #send-emails { display: none; }
 #loading { display: none; }
+
+div.service {
+  width: 135px;
+  background: #fff;
+}
+
+div.service a { text-decoration: none; }
+div.service a img {
+  float: left;
+  margin-right: 5px;
+}
+
+p#client-email-link {
+  clear: both;
+  position: relative;
+  top: 15px;
+}
+
+div.service { float: left; margin: 5px;}
