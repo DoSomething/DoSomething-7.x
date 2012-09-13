@@ -5,7 +5,7 @@ function auth(t) {
       'client_id': '1000659299351.apps.googleusercontent.com',
       'scope': 'https://www.google.com/m8/feeds'
     };
-    $('#response').show().html('<p style="text-align: center"><img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="" /> Loading.  Please wait...</p>');
+    $('#loading').show().html('<p style="text-align: center"><img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="" /> Loading.  Please wait...</p>');
     gapi.auth.authorize(config, function() {
       var t = gapi.auth.getToken();
       console.log('Login complete');
@@ -13,7 +13,9 @@ function auth(t) {
       token = t.access_token;
       
       $.post('/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php', { 'do': 'blah', 'key': t }, function(response) {
-        $('#response').html(response);
+        $('#response').slideDown().html(response);
+        $('#check-area, #send-emails').fadeIn('fast');
+        $('#loading').fadeOut('fast');
         prepare_clicks();
       });
     });
@@ -95,5 +97,6 @@ function scraper_email(subject, body) {
   mail += '&body=' + escape(body);
 
   window.location.href = mail;
+  return false;
 }
 

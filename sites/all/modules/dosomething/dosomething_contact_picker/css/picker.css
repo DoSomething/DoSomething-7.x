@@ -35,9 +35,9 @@ div#socials {
 
 div#response {
   height: 355px;
-  overflow: hidden;
   overflow: auto;
   display: none;
+  margin-top: 5px;
 }
 
 textarea { display: none; }
@@ -50,3 +50,6 @@ textarea { display: none; }
   display: block;
   height: 32px;
   width: 185px; }
+
+#check-area, #send-emails { display: none; }
+#loading { display: none; }

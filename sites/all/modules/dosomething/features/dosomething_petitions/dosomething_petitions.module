@@ -292,16 +292,7 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
   $form = array();
   $node = node_load($nid);
 
-  $form['invite_by_email'] = array(
-    '#markup' => l('Invite by Email', '/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php', array(
-      'attributes' => array(
-        'class' => array('invite-by-email-link'),
-        'onclick' => 'return invite_find_emails()'
-      ),
-    )),
-    '#prefix' => '<p id="invite-by-email">',
-    '#suffix' => '</p>'
-  );
+  contact_scraper::add_scraper_button($form);
 
   global $user;
   $profile = profile2_load_by_user($user, 'main');
@@ -528,4 +519,63 @@ function dosomething_petitions_name($nid) {
     'last' => $last_name,
     'full' => $full_name,
   );
+}
+
+function dosomething_petitions_contact_scraper_emails() {
+  $emails = array();
+  $node = node_load(intval(basename(request_uri())));
+
+  $a = user_load($node->uid);
+  $p = profile2_load_by_user($a, 'main');
+  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  if (!trim($author)) {
+    $author = $a->name;
+  }
+
+  $node->link = url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE));
+  $node->goal = number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']);
+
+  // Petitions "client email" link information
+  $e = theme('ds_petitions_invite', array(
+    'title' => $node->title,
+    'nid' => $node->nid,
+    'signatures' => $node->goal,
+    'url' => $node->link,
+    'first_name' => $author
+  ));
+  $emails['petition']['client_email']['title'] = $node->title . t('- Sign the petition!');
+  $emails['petition']['client_email']['body'] = $e;
+
+
+  // Petitions "You've been invited" email
+  $emails['petition']['invited']['group'] = 'dosomething_petitions';
+  $emails['petition']['invited']['email'] = 'petition_invite';
+  $emails['petition']['invited']['params'] = array(
+      'title' => $node->title,
+      'signatures' => $node->goal,
+      'url' => $node->link,
+      'first_name' => $author,
+    );
+  $emails['petition']['invited']['store_function'] = 'dosomething_petitions_store_email';
+
+
+  global $user;
+  $p = profile2_load_by_user($user, 'main');
+  if (isset($p->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+    $me = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    $me = $user->name;
+  }
+
+  // Petitions "Thanks for inviting friends" email
+  $emails['petition']['inviter']['group'] = 'dosomething_petitions';
+  $emails['petition']['inviter']['email'] = 'thanks_for_inviting';
+  $emails['petition']['inviter']['params'] = array(
+    'name' => $me,
+    'petition' => $node->title,
+    'author' => $author
+  );
+
+  return $emails;
 }

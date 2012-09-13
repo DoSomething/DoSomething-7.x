@@ -25,6 +25,40 @@ function dosomething_contact_picker_menu() {
   return $items;
 }
 
+class contact_scraper {
+	public static function add_scraper_button(&$form, $weight = 0) {
+	  $form['invite_by_email'] = array(
+	    '#markup' => l(t('Invite by Email'), '/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php', array(
+	      'attributes' => array(
+	        'class' => array('invite-by-email-link'),
+	        'onclick' => 'return invite_find_emails()'
+	      ),
+	    )),
+	    '#prefix' => '<p id="invite-by-email">',
+	    '#suffix' => '</p>',
+	    '#weight' => $weight
+	  );
+
+	  $form['#attached']['js'][] = array(
+	      'data' => drupal_get_path('module', 'dosomething_contact_picker') . '/js/scraper_init.js',
+	      'options' => array(
+	        'group' => JS_LIBRARY,
+	        'preprocess' => FALSE,
+	        'every_page' => TRUE
+	      )
+	  );
+
+	  $form['#attached']['css'][] = array(
+	      'data' => drupal_get_path('module', 'dosomething_contact_picker') . '/css/scraper_init.css',
+	      'options' => array(
+	        'group' => CSS_LIBRARY,
+	        'preprocess' => FALSE,
+	        'every_page' => TRUE
+	      )
+	  );
+	}
+}
+
 function dosomething_contact_picker_theme($existing, $type, $theme, $path) {
   return array(
     'contact_scraper_landing' => array(
@@ -53,29 +87,23 @@ function dosomething_contact_scraper_land($nid, $done = FALSE) {
 		exit;
 	}
 
+	$email = module_invoke_all('contact_scraper_emails');
 	$node = node_load($nid);
+
 	if (!$done && intval($nid)) {
-	  $a = user_load($node->uid);
-	  $p = profile2_load_by_user($a, 'main');
-	  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
-	  if (!trim($author)) {
-	    $author = $a->name;
+	  $params = array(
+		'title' => $node->title,
+		'nid' => $node->nid,
+	  );
+
+	  if (isset($email["{$node->type}"]['client_email'])) {
+	  	$e = $email["{$node->type}"]['client_email'];
+		$e['body'] = str_replace(array("\n", '"'), array('\r\n', '\"'), $e['body']);
+
+	  	$params['client_email'] = t('I prefer to !send', array('!send' => '<a href="#" onclick=\'return scraper_email("' . $e['title'] . '", "' . $e['body'] . '")\'>' . t('send my own email') . '</a>.'));
 	  }
 
-	  $e = theme('ds_petitions_invite', array(
-		'title' => $node->title,
-		'nid' => $node->nid,
-	    'signatures' => number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']),
-	    'url' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
-	    'first_name' => $author
-	  ));
-	  $e = str_replace(array("\n", '"'), array('\r\n', '\"'), $e);
-
-	  echo theme('contact_scraper_landing', array(
-		'title' => $node->title,
-		'nid' => $node->nid,
-	    'email_text' => $e
-	  ));
+	  echo theme('contact_scraper_landing', $params);
 	}
 	else if ($done) {
 	  echo theme('contact_scraper_done', array(
@@ -87,53 +115,31 @@ function dosomething_contact_scraper_land($nid, $done = FALSE) {
 }
 
 function dosomething_contact_scraper_invite($nid) {
-	if ($_POST['do'] == 'email') {
-	  $node = node_load($nid);
-  	  global $user;
-  	  $p = profile2_load_by_user($user, 'main');
-  	  if (isset($p->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
-  		$me = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
-  	  }
-  	  else {
-  		$me = $user->name;
-  	  }
+  if ($_POST['do'] == 'email') {
+	global $user, $language;
+	$node = node_load($nid);
 
-  	  $node->link = url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE));
-
-	  $a = user_load($node->uid);
-	  $p = profile2_load_by_user($a, 'main');
-	  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
-	  if (!trim($author)) {
-	    $author = $a->name;
-	  }
-
-	  global $language;
-	  $params = array(
-	    'title' => $node->title,
-	    'signatures' => number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']),
-	    'url' => $node->link,
-	    'first_name' => $author,
-	  );
+	$emails = module_invoke_all('contact_scraper_emails');
+	if (isset($emails["{$node->type}"]['invited'])) {
+	  $e = $emails["{$node->type}"]['invited'];
 
 	  foreach (explode(',', $_POST['real_emails']) AS $email) {
-	    if (valid_email_address(trim($email))) {
-	      drupal_mail('dosomething_petitions', 'petition_invite', trim($email), $language, $params);
-	      dosomething_petitions_store_email($node->nid, $user->uid, $email);
-	    }
+		if (valid_email_address(trim($email))) {
+		  drupal_mail($e['group'], $e['email'], trim($email), $language, ($e['params'] ? $e['params'] : array()));
+
+		  // If a "store" function is set, store this node ID, user ID and email in the database.
+		  if (isset($e['store_function'])) {
+		    $e['store_function']($node->nid, $user->uid, $email);
+		  }
+		}
 	  }
-
-	  if ($user->mail) {
-	  	global $language;
-		  $params = array(
-		  	'name' => $me,
-		  	'petition' => $node->title,
-		  	'author' => $author
-		  );
-
-		  drupal_mail('dosomething_petitions', 'thanks_for_inviting', $user->mail, $language, $params);
-	  }
-
-	  drupal_set_message(t('Thanks, we have emailed them.'));
-	  drupal_goto('contacts-scraper/' . $node->nid . '/done');
 	}
+
+	if ($user->mail && isset($emails["{$node->type}"]['inviter'])) {
+	  $i = $emails["{$node->type}"]['inviter'];
+	  drupal_mail($i['group'], $i['email'], $user->mail, $language, ($i['params'] ? $i['params'] : array()));
+	}
+
+	drupal_goto('contacts-scraper/' . $node->nid . '/done');
+  }
 }
