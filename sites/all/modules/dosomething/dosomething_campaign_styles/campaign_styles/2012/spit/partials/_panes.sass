@@ -7,6 +7,7 @@
 .header
   background: url("assets/brad.jpg")
   background-position: 29% -120%
+  padding: 0
   h1, h2
     text-align: left
     color: $spitYellow
@@ -14,16 +15,19 @@
     text-align: center
     background: $spitPurple
     background: $spitTrans
-  .webform
-    margin: 0 0 0 -2%
-    background: #000
-    background: rgba(0, 0, 0, 0.3)
-    width: 105%
+  .tagline
+    padding: 2%
+
+.webform
+  margin: 10% 0 0 0
+  background: #000
+  background: rgba(0, 0, 0, 0.3)
+  width: 100%
 
 .pane-campaign-sign-up
   clear: both
   width: 100%
-  margin: 18% 0 0 0
+  padding: 3% 0 1% 0
   h1
     font-family: din-web
     font-size: 23px
@@ -33,16 +37,22 @@
     width: 35% 
     float: left
     margin: 0 2.5%
-  #edit-actions
+  #edit-submit
     float: right
     position: static
     margin: 0 2% 0 0
-    height: 32px
+    padding: 1px 0.7em
 
 #campaign-opt-in
   clear: both
+  text-align: left
+  padding: 0 2.5%
   span
     font-size: 10px
+    background: transparent
+    color: #fff
+  strong
+    font-weight: 600
 
 .webform-client-form
   box-shadow: none
@@ -60,42 +70,107 @@
 //	.search			- search -
 //			//
 
-.mcommons-webform
-  input.field
-    width: 85%
-    height: 23px
-    margin-bottom: 6px
-  label
-    font-weight: 600
-
-.mcommons-webform-column
-  float: left
-  width: 40%
-  margin-left: 9%
-
 .go-button
   position: static
-  float: right
-  padding: 1.5% 5% 1% 5%
-  margin: 0 14% 0 0
 
-form.webform-client-form
-  border: none
-  box-shadow: none
-  padding: 15px 15px 0 15px
-  margin-bottom: -15px
-
-.form-wrapper
-  margin-bottom: 5px
-
-.ds-panel
-  .pane-content
-    padding-bottom: 0
-    
-.hidden
-  display: none
+//form.webform-client-form
+//  border: none
+//  box-shadow: none
+//  padding: 15px 15px 0 15px
+//  margin-bottom: -15px
 
 //			//
-//	.content		- footer (sponsor section) -
+//	.content        - infographic -
 //			//
 
+//			//
+//	.scholarship		- mobile commons webform -
+//			//
+
+.scholarship
+  overflow: visible 
+  h1
+    color: $spitYellow
+  p
+    color: #fff
+  label, input[type="text"]
+    height: 25px
+    padding: 0.5em 0
+    margin: 0.8% 0
+    width: 50%
+    text-align: left
+  label
+    float: left
+    clear: left
+    color: #fff
+  input[type="text"], input[type="submit"]
+    float: right
+    clear: right
+  .go-button
+    margin: 4% 0 1% 0
+    padding: 0.1em 0.7em
+  #campaign-opt-in
+    color: darken($spitPurple, 15)
+    text-align: left
+
+.refer5
+  background: $spitPurple
+  width: 110%
+  margin: 0 0 0 -5%
+  padding: 3%
+  &:before, &:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-width: 11px
+  &:before
+    border-color: transparent darken($spitPurple, 20) darken($spitPurple, 20) transparent 
+    left: -22px
+    top: 43px
+  &:after
+    border-color: transparent transparent darken($spitPurple, 20) darken($spitPurple, 20)
+    right: -22px
+    top: 43px
+
+//			//
+//  .social     - share 3 stats -
+//			//
+
+//			//
+//  .impact     - gallery -
+//			//
+
+.impact
+  .go-button
+    margin: 2% 0 1% 0
+//			//
+//	.faq
+//			//
+
+.faq // drop downs
+  h4, li, p
+    text-align: left
+    padding: 0 0 0 1.5em
+  li, p
+    display: none
+  h4
+    color: $spitPurple
+    cursor: pointer
+    background: url("assets/faq2.png")
+    background-repeat: no-repeat
+
+.faq // button
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 0.7em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  .go-button
+    margin: 0 0 1% 0
+
+.activeFAQ
+  background-position-y: -27px

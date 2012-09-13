@@ -26,6 +26,8 @@ class dosomething_fb_apps_handler_closest_to_me_sort extends views_handler_sort 
     $lon = -75.16;
     // Fetch the user's lat and lon and override the default.
     if ($fb_zip) {
+      // Clean the zipcode
+      dosomething_picsforpets_shelters_clean_zip($fb_zip);
       $latlon = db_query_range('SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip', 0, 1, array(':zip' => $fb_zip))->fetchAssoc();
       if ($latlon) {
         $lat = $latlon['latitude'];

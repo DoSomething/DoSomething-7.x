@@ -54,7 +54,10 @@ function dosomething_picsforpets_shelters_lookup_form($form, &$form_state, $zip 
     '#suffix' => '<div class="not-partnered-shelter">' . t('These are not DoSomething.org Partnered Shelters') . '</div></div>',
   );
 
-  $form['help'] = array(
+  $form['help-wrapper'] = array(
+    '#type' => 'container',
+  );
+  $form['help-wrapper']['help'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'class' => array(
@@ -404,7 +407,10 @@ function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, 
   if (!is_numeric($number)) {
     $number = 10;
   }
-  // First get the lat and long from the zipcode variable.
+  // First get the lat and long from the zipcode variable. We'll clean up the
+  // zipcode first. Sometimes people enter Canadian zipcodes with a space or a
+  // dash.
+  dosomething_picsforpets_shelters_clean_zip($zip);
   $result = db_query_range('SELECT latitude, longitude FROM {zipcodes} WHERE zip = :zip', 0, 1, array(':zip' => $zip))->fetchAssoc();
   if (!$result) {
     // We got a bad zipcode that couldn't be looked up so just give back an
@@ -426,4 +432,19 @@ function dosomething_picsforpets_shelters_get_shelters_by_zip($zip, $start = 0, 
   // the entity id.
   $nids = $result->fetchCol(0);
   return $nids;
+}
+
+/**
+ * Takes a zip code, passed by reference and cleans it of non alphanumeric
+ * characters and ensures any letters in the string are uppercase.
+ *
+ * @parap $zip
+ *   The zip code to clean, passed by reference.
+ * @return
+ *   A cleaned zipcode.
+ */
+function dosomething_picsforpets_shelters_clean_zip(&$zip) {
+  $zip =strtoupper($zip);
+  $zip = preg_replace("/[^A-Z0-9]/", "", $zip);
+  return $zip;
 }

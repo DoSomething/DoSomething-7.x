@@ -619,11 +619,8 @@ function dosomething_picsforpets_general_validate_pet_shelter($form, &$form_stat
   $address_fields = domething_picsforpets_general_address_fields();
   // We need to have all the address field data set.
   foreach ($address_fields as $field => $name) {
-    if (empty($form_state['values']['submitted'][$field][LANGUAGE_NONE][0]['value'])) {
-      // TODO: Error element is incorrect. It may need LANGUAGE_NONE][0][value,
-      // but that wasn't working.
-      $error_element = implode('][', $form['submitted'][$field]['#parents']);
-      form_set_error($error_element, t('%name is a required field', array('%name' => $name)));
+    if (empty($form_state['values'][$field][LANGUAGE_NONE][0]['value'])) {
+      form_set_error($field, t('%name is a required field', array('%name' => $name)));
     }
   }
 }
@@ -667,6 +664,8 @@ function dosomething_picsforpets_general_submit_pet_shelter($form, &$form_state)
     unset($form_state['values']['submitted']['field_fb_app_shelter_reference']);
     unset($form_state['webform_entity']['submission']->submitted['field_fb_app_shelter_reference']);
     unset($form_state['webform_entity']['submission']->field_fb_app_shelter_reference);
+    // Clean the zipcode prior to entering the data
+    dosomething_picsforpets_shelters_clean_zip($form_state['webform_entity']['submission']->field_fb_app_zip[LANGUAGE_NONE][0]['value']);
   }
   else {
     // Throw away the address fields.
