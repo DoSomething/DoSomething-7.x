@@ -84,10 +84,7 @@ div[role="main"]
   +block
   @include box-shadow(black 0 0 30px -10px)
   margin-top: 20px
-  padding-top: 10px
-
-input
-  border: 1px solid #f1f1f1 !important  
+  padding-top: 10px 
 
 .three-boxes
   background: $bgGray !important
@@ -704,10 +701,12 @@ hr.gray
   border-left: 1px solid lightgray 
 
 // APPLICATION
-#node-724592, #node-724596, #node-724597
+#node-724592, #node-724596, #node-724597, #node-724764, #node-724859
   form
     border: none !important
     +noBoxShadow
+    input
+      border: 1px solid #f1f1f1 !important 
   .field-name-group-audience, .field-name-field-recommendation-form    
     display: none
   .formhead
@@ -775,7 +774,8 @@ hr.gray
   #webform-component-recommendation-1, #webform-component-recommendation-2, #edit-submitted-field-application, #edit-submitted-field-webform-name, #webform-component-relationship-to-you, #edit-submitted-field-webform-email, #webform-component-phone-number
     margin-left: 200px
     input
-      width: 300px  
+      width: 300px
+      border: 1px solid #f1f1f1 !important   
 
 // STATUS PAGE     
 .page-node-724721
