@@ -2222,6 +2222,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
   margin-top: 90px;
 }
 
+div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"] .ui-icon.ui-icon-closethick {
+  top: -1px;
+  right: 10px;
+}
+
 #picsforpets-invite-friends {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
