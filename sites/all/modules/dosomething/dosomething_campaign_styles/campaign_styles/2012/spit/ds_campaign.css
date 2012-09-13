@@ -1,7 +1,8 @@
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
-  background: transparent; }
+  background: transparent;
+  width: 800px; }
 #main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper {
   display: none; }
 #main-wrapper ul.primary {
@@ -118,7 +119,6 @@ body {
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
   font-weight: 600;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
-  text-align: center;
   color: black; }
 #cmp h1, #cmp h3, #cmp .divider {
   text-transform: uppercase; }
@@ -143,6 +143,8 @@ body {
   font-size: 1em;
   font-weight: 500;
   line-height: 17px; }
+#cmp input[type="submit"] {
+  font-size: 2em; }
 #cmp .divider {
   color: white; }
 #cmp .legal {
@@ -153,7 +155,8 @@ body {
   overflow: auto;
   background: white;
   margin: 0 auto;
-  padding: 2% 2% 0 2%; }
+  padding: 2% 2% 0 2%;
+  text-align: center; }
 #cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
   float: left;
   padding: 0 1.5%; }
@@ -253,3 +256,59 @@ body {
   padding-bottom: 0; }
 #cmp .hidden {
   display: none; }
+#cmp .scholarship {
+  overflow: visible; }
+  #cmp .scholarship label, #cmp .scholarship input[type="text"] {
+    height: 25px;
+    padding: 0.5em 0;
+    margin: 0.8% 0;
+    width: 50%;
+    text-align: left; }
+  #cmp .scholarship label {
+    float: left;
+    clear: left;
+    color: white; }
+  #cmp .scholarship input[type="text"], #cmp .scholarship input[type="submit"] {
+    float: right;
+    clear: right; }
+  #cmp .scholarship input[type="submit"] {
+    background: #ffcb15;
+    margin: 0;
+    padding: 0 0.7em;
+    font-size: 2em;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px; }
+    #cmp .scholarship input[type="submit"]:hover {
+      color: #464341; }
+#cmp .refer5 {
+  background: #7f3f80;
+  width: 110%;
+  margin: 0 0 0 -5%; }
+  #cmp .refer5:before, #cmp .refer5:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 11px; }
+  #cmp .refer5:before {
+    border-color: transparent #3b1d3c #3b1d3c transparent;
+    left: -22px;
+    top: 43px; }
+  #cmp .refer5:after {
+    border-color: transparent transparent #3b1d3c #3b1d3c;
+    right: -22px;
+    top: 43px; }
+#cmp .faq h4, #cmp .faq li, #cmp .faq p {
+  text-align: left;
+  padding: 0 0 0 1.5em; }
+#cmp .faq li, #cmp .faq p {
+  display: none; }
+#cmp .faq h4 {
+  color: #7f3f80;
+  cursor: pointer;
+  background: url("assets/faq2.png");
+  background-repeat: no-repeat; }
+#cmp .activeFAQ {
+  background-position-y: -27px; }

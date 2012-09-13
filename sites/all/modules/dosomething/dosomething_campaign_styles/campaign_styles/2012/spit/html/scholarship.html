@@ -4,10 +4,27 @@
     <div class="col50">
       <p>Send 5 friends Give a Spit stats to be entered to win a</p>
       <h1 class="condensed">$2,000 scholarship</h1>
-      <img src="http://files.dosomething.org/files/campaigns/spit/scholarship1.gif"/>
-    </div>
+      <img src="http://files.dosomething.org/files/campaigns/spit/scholarship1.png"/>
+    </div> <!-- .col50 -->
     <div class="col50">
-      <h1 class="mango">[ MOBILE COMMONS WEBFORM ]</h1>
-    </div>
-  </div>
+    <form action="http://dosomething.mcommons.com/profiles/join" method="POST">
+      <input type="hidden" name="redirect_to" value="http://www.dosomething.org/spit" />
+        <label>Your First Name:</label>
+          <input type="text" name="person[first_name]" class="field space-after" />
+        <label>Your Cell Number:</label>
+          <input type="text" name="person[phone]" class="field space-after" />
+        <label>Friends' Cell Numbers:</label>
+        <input type="text" class="field left" name="friends[]"/>
+        <input type="text" class="field left" name="friends[]"/>
+        <input type="text" class="field left" name="friends[]"/>
+        <input type="text" class="field left" name="friends[]"/>
+        <input type="text" class="field left" name="friends[]"/>
+        <input type="hidden" name="friends_opt_in_path" value="mango" />
+        <input type="hidden" name="opt_in_path" value="mango">
+        <input type="submit" class="go-button" value="Submit" />
+        <div id="campaign-opt-in"><span class="ctia_top">Sign up to receive weekly updates. No spam, we promise.</span><br><span class="ctia_bottom">Msg &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</span></div>
+    </form> 
+    </div> <!-- .col50 -->
+  <div class="clearfix"></div>
+  </div> <!-- .refer5 -->
 </div> <!-- .section .scholarship --> 

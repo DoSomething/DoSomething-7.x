@@ -96,6 +96,82 @@ form.webform-client-form
   display: none
 
 //			//
-//	.content		- footer (sponsor section) -
+//	.content        - infographic -
 //			//
 
+//			//
+//	.scholarship		- mobile commons webform -
+//			//
+
+.scholarship
+  overflow: visible 
+  label, input[type="text"]
+    height: 25px
+    padding: 0.5em 0
+    margin: 0.8% 0
+    width: 50%
+    text-align: left
+  label
+    float: left
+    clear: left
+    color: #fff
+  input[type="text"], input[type="submit"]
+    float: right
+    clear: right
+  input[type="submit"]
+    background: $spitYellow
+    margin: 0
+    padding: 0 0.7em
+    font-size: 2em
+    +border-radius(4px)
+    &:hover
+      color: lighten($offBlack, 15)
+
+.refer5
+  background: $spitPurple
+  width: 110%
+  margin: 0 0 0 -5%
+  &:before, &:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-width: 11px
+  &:before
+    border-color: transparent darken($spitPurple, 20) darken($spitPurple, 20) transparent 
+    left: -22px
+    top: 43px
+  &:after
+    border-color: transparent transparent darken($spitPurple, 20) darken($spitPurple, 20)
+    right: -22px
+    top: 43px
+  
+//			//
+//	
+//			//
+
+//			//
+//
+//			//
+
+//			//
+//
+//			//
+
+//			//
+//	.faq
+//			//
+
+.faq
+  h4, li, p
+    text-align: left
+    padding: 0 0 0 1.5em
+  li, p
+    display: none
+  h4
+    color: $spitPurple
+    cursor: pointer
+    background: url("assets/faq2.png")
+    background-repeat: no-repeat
+
+.activeFAQ
+  background-position-y: -27px
