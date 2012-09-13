@@ -1046,6 +1046,7 @@ Please try a new combo.
   $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
   $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   $handler->display->display_options['sorts']['submitted']['expose']['label'] = 'Newest';
   $handler->display->display_options['sorts']['submitted']['granularity'] = 'minute';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
