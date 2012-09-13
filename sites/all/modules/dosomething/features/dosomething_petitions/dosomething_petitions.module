@@ -317,7 +317,7 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
     '#attributes' => array(
       'id' => 'invite_data'
     ),
-    '#default_value' => base64_encode(json_encode($h))
+    '#default_value' => $node->nid
   );
 
   for ($i = 0; $i < PETITIONS_NUM_EMAILS; $i++) {

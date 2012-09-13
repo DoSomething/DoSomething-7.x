@@ -8,7 +8,82 @@ function dosomething_contact_picker_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['contacts-scraper/%'] = array(
+    'page callback' => 'dosomething_contact_scraper_land',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['contacts-scraper/%/done'] = array(
+    'page callback' => 'dosomething_contact_scraper_land',
+    'page arguments' => array(1, TRUE),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
+}
+
+function dosomething_contact_picker_theme($existing, $type, $theme, $path) {
+  return array(
+    'contact_scraper_landing' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'title' => NULL,
+        'nid' => NULL,
+        'email_text' => NULL
+      ),
+      'template' => 'contact-scraper-landing',
+    ),
+    'contact_scraper_done' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'title' => NULL,
+        'nid' => NULL
+      ),
+      'template' => 'contact-scraper-done',
+    )
+   );
+ }
+
+
+function dosomething_contact_scraper_land($nid, $done = FALSE) {
+	if (empty($nid) || !intval($nid)) {
+		exit;
+	}
+
+	$node = node_load($nid);
+	if (!$done && intval($nid)) {
+	  $a = user_load($node->uid);
+	  $p = profile2_load_by_user($a, 'main');
+	  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+	  if (!trim($author)) {
+	    $author = $a->name;
+	  }
+
+	  $e = theme('ds_petitions_invite', array(
+		'title' => $node->title,
+		'nid' => $node->nid,
+	    'signatures' => number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']),
+	    'url' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
+	    'first_name' => $author
+	  ));
+	  $e = str_replace(array("\n", '"'), array('\r\n', '\"'), $e);
+
+	  echo theme('contact_scraper_landing', array(
+		'title' => $node->title,
+		'nid' => $node->nid,
+	    'email_text' => $e
+	  ));
+	}
+	else if ($done) {
+	  echo theme('contact_scraper_done', array(
+		'title' => $node->title,
+		'nid' => $node->nid
+	  ));
+	}
+	exit;
 }
 
 function dosomething_contact_scraper_invite($nid) {
@@ -59,8 +134,6 @@ function dosomething_contact_scraper_invite($nid) {
 	  }
 
 	  drupal_set_message(t('Thanks, we have emailed them.'));
-	  // To do: ADD EMAILS TO INVITED LIST
-	  // - If they sign later, the original signer gets an email
-	  drupal_goto($_SERVER['HTTP_REFERER']);
+	  drupal_goto('contacts-scraper/' . $node->nid . '/done');
 	}
 }

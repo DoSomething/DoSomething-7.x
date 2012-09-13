@@ -12,9 +12,8 @@ function auth(t) {
       console.log(t);
       token = t.access_token;
       
-      $.post('gapi.php', { 'do': 'blah', 'key': t }, function(response) {
+      $.post('/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php', { 'do': 'blah', 'key': t }, function(response) {
         $('#response').html(response);
-
         prepare_clicks();
       });
     });
@@ -78,7 +77,23 @@ function remove_email(email) {
 }
 
 
-function test() {
+function submit_emails() {
   var v = ($('#email_list').val());
   $('#re').val(v);
+
+  return true;
 }
+
+$(document).ready(function() {
+  $('#close-scraper').click(function() {
+    window.parent.close_scraper();
+  });
+})
+
+function scraper_email(subject, body) {
+  mail = "mailto:?subject=" + escape(subject)
+  mail += '&body=' + escape(body);
+
+  window.location.href = mail;
+}
+

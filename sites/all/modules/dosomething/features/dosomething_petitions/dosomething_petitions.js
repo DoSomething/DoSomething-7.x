@@ -131,8 +131,8 @@
       delete Drupal.behaviors.dosomethingLoginLogin;
       delete Drupal.behaviors.dosomethingPetitions;
       
-      var popup = $('<div></div>');
-      popup.append($('<iframe></iframe>').attr('id', 'email-scraper').css('width', '500px').css('height', '600px').css('border', '0px').css('background', '#fff').attr('src', '/sites/all/modules/dosomething/dosomething_contact_picker/gapi.php?nid=' + petition));
+      var popup = $('<div></div>').attr('id', 'contacts-scraper-dialog');
+      popup.append($('<iframe></iframe>').attr('id', 'email-scraper').css('width', '500px').css('height', '600px').css('border', '0px').css('background', '#fff').attr('src', '/contacts-scraper/' + petition));
       // popup!
       popup.dialog({
         resizable: false,
@@ -189,4 +189,12 @@ function invite_find_emails() {
   var code = jQuery('#invite_data').val();
   jQuery.fn.dsPetitionsInviteEmails(code);
   return false;
+}
+
+function launch_fb_share() {
+  jQuery('#petition-fb').click();
+}
+
+function close_scraper() {
+  jQuery('#contacts-scraper-dialog').dialog('close');
 }

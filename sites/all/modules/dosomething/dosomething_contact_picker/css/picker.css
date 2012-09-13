@@ -1,0 +1,52 @@
+body { font-family: "Trebuchet MS"; font-size: 10pt; }
+ul { list-style-type: none; margin: 0px; padding: 0px; }
+li { clear: both; border-bottom: 1px solid #000000; padding: 10px; height: 20px;}
+li:hover { background: #EBEBEB; cursor: pointer; }
+li input { float: left; }
+li strong { float: left; }
+li span { float: right; }
+
+a#gmail {
+  background: url(/sites/all/modules/dosomething/dosomething_contact_picker/images/gmail.png) top left no-repeat;
+  text-decoration: none;
+  display: inline-block;
+  height: 35px;
+  padding-left: 55px;
+  width: 90px;
+}
+
+a#yahoo {
+  background: url(/sites/all/modules/dosomething/dosomething_contact_picker/images/yahoo.jpg) top left no-repeat;
+  text-decoration: none;
+  display: inline-block;
+  height: 35px;
+  padding-left: 55px;
+  width: 90px;
+  margin-left: 50px;
+}
+
+div#choices { clear: both; }
+h1, p { text-align: center;}
+h1 { margin: 0px;}
+div#socials { 
+  width: 345px;
+  margin: 0px auto;
+}
+
+div#response {
+  height: 355px;
+  overflow: hidden;
+  overflow: auto;
+  display: none;
+}
+
+textarea { display: none; }
+
+#petition-fb {
+  color: transparent;
+  background: url("/sites/all/modules/dosomething/features/dosomething_petitions/fb_share.png") center center;
+  margin: 0 auto 2em;
+  text-indent: -9999px;
+  display: block;
+  height: 32px;
+  width: 185px; }
