@@ -843,7 +843,7 @@ function dosomething_clubs_title(&$node, $form = array()) {
     $real_name = ($form ? $form['values']['field_noschool_club_name'][LANGUAGE_NONE][0]['value'] : $node->field_noschool_club_name[LANGUAGE_NONE][0]['value']);
 
     if ($noassoc && trim($real_name) !== '') {
-      $node->title = $real_name;
+      $node->title = $real_name . ' DoSomething.org ' . t('Club');
     }
     else {
       $school_id = $node->field_school_reference[LANGUAGE_NONE][0]['target_id'];

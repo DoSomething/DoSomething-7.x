@@ -105,6 +105,13 @@ function dosomething_services_services_resources() {
               'source' => array('data' => 'access_token'),
               'optional' => FALSE,
             ),
+            array(
+              'name' => 'group_name',
+              'type' => 'string',
+              'description' => t('Mailchimp group name to add user into'),
+              'source' => array('data' => 'group_name'),
+              'optional' => TRUE,
+            ),
           ),
           'access callback' => 'services_access_menu',
           'file' => array('type' => 'module', 'module' => 'dosomething_services', 'name' => 'dosomething_services'),
@@ -184,7 +191,7 @@ function dosomething_services_services_resources_alter(&$resources, $endpoint) {
  *  - drupal_set_message calls removed
  *  - Always logging the user in after fboauth_create_user()
  */
-function _dosomething_services_facebook_login($access_token) {
+function _dosomething_services_facebook_login($access_token, $group_name) {
   global $user;
   $user_return = NULL;
 
@@ -242,6 +249,11 @@ function _dosomething_services_facebook_login($access_token) {
 
   // Return user object and session id and name if successful
   if ($user_return && $user_return->uid) {
+    // Subscribe this user to mailchimp group
+    if (isset($group_name)) {
+      _dosomething_services_mailchimp_subscribe($group_name, $fbuser->email);
+    }
+
     user_login_finalize();
 
     $return = new stdClass();
@@ -260,6 +272,45 @@ function _dosomething_services_facebook_login($access_token) {
     $error_obj->user_uid = $user_return->uid;
 
     return $error_obj;
+  }
+}
+
+/**
+ * Given the group name and email address, will subscribe that email address to a
+ * Interest Group on Mailchimp
+ */
+function _dosomething_services_mailchimp_subscribe($group_name, $email) {
+  $mcapi = mailchimp_get_api_object();
+  // Hardcoding the id to Do Something Members list
+  $listid = 'f2fab1dfd4';
+
+  // Get grouping list and ids from cache or rebuild it if not found
+  $cid = "dosomething_general_mailchimp_group_mapping_$listid";
+  $cache = cache_get($cid);
+  if (!empty($cache->data)) {
+    $groupingIdByGroupName = $cache->data;
+  }
+  else {
+    $groupingIdByGroupName = array();
+    $groupings = $mcapi->listInterestGroupings($listid);
+    foreach ($groupings as $grouping) {
+      foreach ($grouping['groups'] as $group) {
+        $groupingIdByGroupName[$group['name']] = $grouping['id'];
+
+      }
+    }
+    cache_set($cid, $groupingIdByGroupName);
+  }
+
+  // If we can find a valid group name, then subscribe the email address to the list
+  if (isset($groupingIdByGroupName[$group_name])) {
+    $mergeVars = array(
+      'GROUPINGS' => array(
+        array('id' => $groupingIdByGroupName[$group_name], 'groups' => $group_name)
+      )
+    );
+    
+    $mcResult = $mcapi->listSubscribe($listid, $email, $mergeVars, 'html', FALSE, TRUE, FALSE);
   }
 }
 
