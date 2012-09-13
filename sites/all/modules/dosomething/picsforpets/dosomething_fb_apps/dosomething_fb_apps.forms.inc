@@ -71,7 +71,10 @@ function dosomething_fb_apps_enter_zip_form($form, &$form_state) {
 }
 
 function dosomething_fb_apps_enter_zip_form_validate($form, &$form_state) {
-  $found_zip = db_query('SELECT zip FROM {zipcodes} WHERE zip = :zip', array(':zip' => $form_state['values']['zip']))->fetchField();
+  $zip = $form_state['values']['zip'];
+  // Clean the data
+  dosomething_picsforpets_shelters_clean_zip($zip);
+  $found_zip = db_query('SELECT zip FROM {zipcodes} WHERE zip = :zip', array(':zip' => $zip))->fetchField();
   if (!$found_zip) {
     form_set_error('zip', 'The zip code you entered does not appear to be valid or is not one we know about.');
   }
@@ -81,6 +84,8 @@ function dosomething_fb_apps_enter_zip_form_submit($form, &$form_state) {
   global $user;
   $fbid = fboauth_fbid_load($user->uid);
   $zip = $form_state['values']['zip'];
+  // Clean the data
+  dosomething_picsforpets_shelters_clean_zip($zip);
   $record = array(
     'fbid' => $fbid,
     'zip' => $zip,

@@ -1,7 +1,8 @@
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
-  background: transparent; }
+  background: transparent;
+  width: 800px; }
 #main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper {
   display: none; }
 #main-wrapper ul.primary {
@@ -9,6 +10,9 @@
   margin: 0;
   padding: 15px 0 0 8px;
   height: 37px; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0; }
 
 body {
   background: #d69a92;
@@ -118,7 +122,6 @@ body {
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
   font-weight: 600;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
-  text-align: center;
   color: black; }
 #cmp h1, #cmp h3, #cmp .divider {
   text-transform: uppercase; }
@@ -143,6 +146,8 @@ body {
   font-size: 1em;
   font-weight: 500;
   line-height: 17px; }
+#cmp input[type="submit"] {
+  font-size: 2em; }
 #cmp .divider {
   color: white; }
 #cmp .legal {
@@ -153,7 +158,8 @@ body {
   overflow: auto;
   background: white;
   margin: 0 auto;
-  padding: 2% 2% 0 2%; }
+  padding: 2% 2% 0 2%;
+  text-align: center; }
 #cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
   float: left;
   padding: 0 1.5%; }
@@ -173,21 +179,25 @@ body {
     background: black;
     padding: 0.5em 0.8em;
     position: relative; }
-#cmp .mcommons-col {
-  width: 45%;
-  margin: 0 0 0 5%;
-  float: left; }
-  #cmp .mcommons-col input[type="text"] {
-    width: 100%;
-    height: 20px;
-    border-radius: 3px;
-    border: none; }
-  #cmp .mcommons-col input, #cmp .mcommons-col label {
-    float: left;
-    margin: 0 0 5% 0; }
+#cmp .go-button, #cmp #edit-submit {
+  font-family: din-web;
+  background: #ffcb15;
+  margin: 4% 0 1%;
+  padding: 0.4em 0.7em;
+  font-size: 2em;
+  height: 1.4em;
+  display: inline-block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+  #cmp .go-button:hover, #cmp #edit-submit:hover {
+    color: #562b57; }
 #cmp .header {
   background: url("assets/brad.jpg");
-  background-position: 29% -120%; }
+  background-position: 29% -120%;
+  padding: 0; }
   #cmp .header h1, #cmp .header h2 {
     text-align: left;
     color: #ffcb15; }
@@ -195,15 +205,17 @@ body {
     text-align: center;
     background: #7f3f80;
     background: rgba(127, 63, 128, 0.6); }
-  #cmp .header .webform {
-    margin: 0 0 0 -2%;
-    background: black;
-    background: rgba(0, 0, 0, 0.3);
-    width: 105%; }
+  #cmp .header .tagline {
+    padding: 2%; }
+#cmp .webform {
+  margin: 10% 0 0 0;
+  background: black;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%; }
 #cmp .pane-campaign-sign-up {
   clear: both;
   width: 100%;
-  margin: 18% 0 0 0; }
+  padding: 3% 0 1% 0; }
   #cmp .pane-campaign-sign-up h1 {
     font-family: din-web;
     font-size: 23px;
@@ -213,43 +225,93 @@ body {
     width: 35%;
     float: left;
     margin: 0 2.5%; }
-  #cmp .pane-campaign-sign-up #edit-actions {
+  #cmp .pane-campaign-sign-up #edit-submit {
     float: right;
     position: static;
     margin: 0 2% 0 0;
-    height: 32px; }
+    padding: 1px 0.7em; }
 #cmp #campaign-opt-in {
-  clear: both; }
+  clear: both;
+  text-align: left;
+  padding: 0 2.5%; }
   #cmp #campaign-opt-in span {
-    font-size: 10px; }
+    font-size: 10px;
+    background: transparent;
+    color: white; }
+  #cmp #campaign-opt-in strong {
+    font-weight: 600; }
 #cmp .webform-client-form {
   box-shadow: none; }
 #cmp .action img {
   display: block;
   margin: 5% auto; }
-#cmp .mcommons-webform input.field {
-  width: 85%;
-  height: 23px;
-  margin-bottom: 6px; }
-#cmp .mcommons-webform label {
-  font-weight: 600; }
-#cmp .mcommons-webform-column {
-  float: left;
-  width: 40%;
-  margin-left: 9%; }
 #cmp .go-button {
-  position: static;
-  float: right;
-  padding: 1.5% 5% 1% 5%;
-  margin: 0 14% 0 0; }
-#cmp form.webform-client-form {
-  border: none;
-  box-shadow: none;
-  padding: 15px 15px 0 15px;
-  margin-bottom: -15px; }
-#cmp .form-wrapper {
-  margin-bottom: 5px; }
-#cmp .ds-panel .pane-content {
-  padding-bottom: 0; }
-#cmp .hidden {
+  position: static; }
+#cmp .scholarship {
+  overflow: visible; }
+  #cmp .scholarship h1 {
+    color: #ffcb15; }
+  #cmp .scholarship p {
+    color: white; }
+  #cmp .scholarship label, #cmp .scholarship input[type="text"] {
+    height: 25px;
+    padding: 0.5em 0;
+    margin: 0.8% 0;
+    width: 50%;
+    text-align: left; }
+  #cmp .scholarship label {
+    float: left;
+    clear: left;
+    color: white; }
+  #cmp .scholarship input[type="text"], #cmp .scholarship input[type="submit"] {
+    float: right;
+    clear: right; }
+  #cmp .scholarship .go-button {
+    margin: 4% 0 1% 0;
+    padding: 0.1em 0.7em; }
+  #cmp .scholarship #campaign-opt-in {
+    color: #4c264d;
+    text-align: left; }
+#cmp .refer5 {
+  background: #7f3f80;
+  width: 110%;
+  margin: 0 0 0 -5%;
+  padding: 3%; }
+  #cmp .refer5:before, #cmp .refer5:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 11px; }
+  #cmp .refer5:before {
+    border-color: transparent #3b1d3c #3b1d3c transparent;
+    left: -22px;
+    top: 43px; }
+  #cmp .refer5:after {
+    border-color: transparent transparent #3b1d3c #3b1d3c;
+    right: -22px;
+    top: 43px; }
+#cmp .impact .go-button {
+  margin: 2% 0 1% 0; }
+#cmp .faq h4, #cmp .faq li, #cmp .faq p {
+  text-align: left;
+  padding: 0 0 0 1.5em; }
+#cmp .faq li, #cmp .faq p {
   display: none; }
+#cmp .faq h4 {
+  color: #7f3f80;
+  cursor: pointer;
+  background: url("assets/faq2.png");
+  background-repeat: no-repeat; }
+#cmp .faq h1 {
+  font-size: 2em;
+  font-family: din-web;
+  text-transform: uppercase;
+  background: url("assets/faq3.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0.7em;
+  padding: 0 0 1em 0;
+  margin: 0 0 -1em 0; }
+#cmp .faq .go-button {
+  margin: 0 0 1% 0; }
+#cmp .activeFAQ {
+  background-position-y: -27px; }

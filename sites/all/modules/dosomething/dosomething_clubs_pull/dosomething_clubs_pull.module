@@ -3,12 +3,12 @@
 define('CLUB_PULL_LIMIT', 500);
 
 function dosomething_clubs_pull_menu() {
-  $items['admin/clubs-pull'] = array(
-    'title' => t('Pull Club Data'),
-    'page callback' => 'dosomething_clubs_pull_data',
+	$items['admin/clubs-pull'] = array(
+		'title' => t('Pull Club Data'),
+		'page callback' => 'dosomething_clubs_pull_data',
     'access arguments' => array('administer group'),
     'type' => MENU_CALLBACK
-  );
+	);
 
   $items['admin/clubs-pull/export'] = array(
     'title' => t('Exporting clubs data...'),
@@ -32,7 +32,7 @@ function dosomething_clubs_pull_menu() {
     'type' => MENU_CALLBACK
   );
 
-  return $items;
+	return $items;
 }
 
 class clubs_export {
@@ -312,12 +312,10 @@ class clubs_export {
     " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
-
       if ($return_query) {
         return $q;
       }
       else {
-
         foreach ($q->fetchAll() AS $key => $r) {
           $s = (array) $r;
 
@@ -478,7 +476,7 @@ ORDER BY node_title ASC
 
   $q = db_query($query);
 
-#clubs_export::log('Query', $query);
+clubs_export::log('Query', $query);
 
   if ($return_query) {
     return $q;
@@ -677,8 +675,9 @@ $num = $count->rowCount();
   $offset = $num_per_page * $page;
 
   $pages = array();
-  $results = dosomething_clubs_pull_mega_query($offset, $num_per_page, TRUE);
-  while ($result = $results->fetchAssoc()) {
+  $results = clubs_export::the_query($offset, $num_per_page);
+  foreach ($results['results'] AS $key => $stuff) {
+      $result = (array) $stuff;
     $pages['rows'][] = array(
       'data' => array(
         'club id' =>                  array('data' => $result['nid']),

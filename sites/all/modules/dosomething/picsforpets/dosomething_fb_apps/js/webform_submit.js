@@ -23,7 +23,7 @@ $.fn.preventDoubleSubmission = function() {
  */
 Drupal.behaviors.picsforpetsFormSubmit = {
   attach: function (context) {
-    $(".node-fb-app-data-gathering-form form.webform-client-form").preventDoubleSubmission();
+    $(".node-fb-app-data-gathering-form form.webform-client-form #edit-submit").preventDoubleSubmission();
   }
 };
 

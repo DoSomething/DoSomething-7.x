@@ -100,3 +100,16 @@ ul.tabs.primary li:nth-child(3) a { display: none; }
 .delta-order { display: none; }
 thead tr th:last-of-type { display: none; }
 #edit-field-mailchimp-group-id { display: none; }
+p#club-name-live {
+	position: relative;
+	top: -10px;
+}
+
+#edit-field-noschool-club-name-und-0-value { width: 150px; }
+#dosomething-club-tag {
+	float: right;
+	margin-top: -90px;
+	margin-right: 440px;
+	display: none;
+}
+#club-name-live { display: none; }

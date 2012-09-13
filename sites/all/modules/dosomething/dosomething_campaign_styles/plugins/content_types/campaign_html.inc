@@ -6,7 +6,7 @@
  */
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Static campaign HTML'),
+  'title' => t('Static Campaign HTML'),
   'description' => t('Drops in static HTML pulled directly off the filesystem from within dosomething_campaign_styles.'),
   'category' => t('DoSomething Campaign'),
 );
