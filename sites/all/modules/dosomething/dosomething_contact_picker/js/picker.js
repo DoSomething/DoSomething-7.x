@@ -67,6 +67,7 @@ $(document).ready(function() {
   $('#close-scraper').click(function() {
     window.parent.close_scraper();
   });
+  $('#scraper-loading', window.parent.document).hide();
 })
 
 function scraper_email(subject, body) {

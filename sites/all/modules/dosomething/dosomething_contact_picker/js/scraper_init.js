@@ -8,6 +8,7 @@
       delete Drupal.behaviors.dosomethingPetitions;
       
       var popup = $('<div></div>').attr('id', 'contacts-scraper-dialog');
+      popup.append($('<div id="scraper-loading" style="position: absolute; z-index: 0; margin-left: 50%; margin-top: 40%;"><img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="" /></div>'));
       popup.append($('<iframe></iframe>').attr('id', 'email-scraper').css('width', '500px').css('height', '600px').css('border', '0px').css('background', '#fff').attr('src', '/contacts-scraper/' + petition));
       // popup!
       popup.dialog({

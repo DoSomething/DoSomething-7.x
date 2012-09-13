@@ -14,7 +14,6 @@
 <div id="socials">
 <?php echo $s['services']; ?>
 </div>
-
 <p id="client-email-link"><?php echo $client_email; ?></p>
 <form action="/invite-by-email-scraper/<?php echo $nid; ?>" method="post">
 <input type="hidden" name="do" value="email" />
