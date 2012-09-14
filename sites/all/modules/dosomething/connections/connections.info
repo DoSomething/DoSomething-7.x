@@ -1,4 +1,0 @@
-name = "Connections"
-description = "Connect content items with tags!"
-core = 7.x
-package = "DoSomething"
