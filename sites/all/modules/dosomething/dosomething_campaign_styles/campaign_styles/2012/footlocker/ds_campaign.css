@@ -5,6 +5,8 @@ a {
   color: #e31837; }
   a:hover {
     color: black; }
+  a:visited {
+    color: #e31837; }
 
 h1.title {
   display: none; }
@@ -25,6 +27,10 @@ body {
   background-image: url("http://files.dosomething.org/files/campaigns/footlocker/fl-bg.jpg");
   background-repeat: no-repeat;
   background-position: center top; }
+
+img.center {
+  margin: 0 auto;
+  display: block; }
 
 div[role="main"] {
   background: white;
@@ -471,14 +477,16 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
 #footlocker-nominate .pane-content {
   padding-bottom: 0 !important; }
 #footlocker-nominate #edit-submit {
-  position: absolute;
-  bottom: 18px;
-  right: -45px;
   color: white;
-  background: #df3049;
+  background: #e31837;
   font-size: 18px;
   font-weight: normal;
-  letter-spacing: 2px; }
+  letter-spacing: 2px;
+  padding: 2px 6px 2px 8px; }
+#footlocker-nominate #edit-actions {
+  position: absolute;
+  right: -20px;
+  bottom: -20px; }
 #footlocker-nominate .webform-component {
   width: 220px; }
   #footlocker-nominate .webform-component input:focus {
@@ -602,11 +610,17 @@ hr.gray {
   padding: 12px;
   font-size: 28px; }
 
+.page-node-719430 .phases h2 {
+  text-transform: uppercase; }
+.page-node-719430 .phases li {
+  font-size: 14px; }
+
 .judging-box, .application-box, .questions-box {
   float: left;
   width: 250px;
   padding: 20px;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 30px; }
   .judging-box h3, .application-box h3, .questions-box h3 {
     font-size: 30px;
     text-transform: uppercase;
@@ -626,6 +640,32 @@ hr.gray {
   width: 248px;
   border-right: 1px solid lightgray;
   border-left: 1px solid lightgray; }
+
+.date-box {
+  float: left;
+  width: 172px;
+  border: 1px solid #d1d1d1;
+  margin: 15px 20px 40px 0px;
+  height: 125px;
+  -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.25);
+  box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.5); }
+  .date-box h2 {
+    text-transform: uppercase;
+    text-align: center;
+    background: #e31837;
+    color: white;
+    font-size: 30px;
+    padding: 12px 0 6px 0; }
+  .date-box p {
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 10px;
+    line-height: 1.2em; }
+
+.last-date-box {
+  margin-right: 0px; }
 
 #node-724592 form, #node-724596 form, #node-724597 form, #node-724764 form, #node-724859 form, #node-724594 form, #node-724595 form {
   border: none !important;
@@ -750,7 +790,8 @@ hr.gray {
   background: #e31837; }
 
 .fl-bottom-pane {
-  padding-bottom: 0 !important; }
+  padding-bottom: 0 !important;
+  margin-bottom: -24px 0px; }
   .fl-bottom-pane .pane-content {
     padding-bottom: 0 !important; }
 
@@ -781,6 +822,22 @@ hr.gray {
 .page-node-724722 .pane-content ul {
   margin: 20px 0; }
 
-img.center {
-  margin: 0 auto;
-  display: block; }
+.judges img {
+  margin: 0px 32px; }
+
+.faq {
+  margin-bottom: 5px; }
+  .faq h4 {
+    color: #e31837;
+    background-image: url("http://files.dosomething.org/files/campaigns/vote/vote-red-arrow.png");
+    background-repeat: no-repeat;
+    background-position-y: 6px;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1.2em;
+    margin-top: 10px; }
+  .faq h4, .faq p {
+    padding-left: 15px; }
+  .faq .activeFAQ {
+    background-image: url("http://files.dosomething.org/files/campaigns/vote/vote-downarrow.png");
+    color: black; }

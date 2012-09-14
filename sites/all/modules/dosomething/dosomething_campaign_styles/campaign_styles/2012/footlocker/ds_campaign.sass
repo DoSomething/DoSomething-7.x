@@ -63,6 +63,8 @@ a
   color: $baseColor
   &:hover
     color: $secondaryLink
+  &:visited
+    color: $baseColor  
 
 h1.title
   display: none
@@ -79,6 +81,10 @@ body
   background-image: $imageBackground
   background-repeat: no-repeat
   background-position: center top
+
+img.center
+  margin: 0 auto
+  display: block  
 
 div[role="main"]
   +block
@@ -532,14 +538,16 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
   .pane-content
     padding-bottom: 0 !important    
   #edit-submit
-    position: absolute
-    bottom: 18px
-    right: -45px
     color: white
-    background: #DF3049
+    background: $baseColor
     font-size: 18px
     font-weight: normal
     letter-spacing: 2px
+    padding: 2px 6px 2px 8px
+  #edit-actions
+    position: absolute
+    right: -20px
+    bottom: -20px  
   .webform-component  
     width: 220px
     input
@@ -662,7 +670,6 @@ hr.gray
   border-top: 1px solid lightgray 
   border-bottom: none
   clear: both       
-
 .redhead-box
   text-align: center
   margin-top: 20px
@@ -676,12 +683,19 @@ hr.gray
   clear: both
   padding: 12px
   font-size: 28px  
-ff
+
+.page-node-719430
+  .phases
+    h2
+      text-transform: uppercase
+    li
+      font-size: 14px  
 .judging-box, .application-box, .questions-box
   float: left
   width: 250px
   padding: 20px
   text-align: center
+  margin-bottom: 30px
   h3
     font-size: 30px
     text-transform: uppercase
@@ -700,7 +714,33 @@ ff
   border-right: 1px solid lightgray
   border-left: 1px solid lightgray 
 
-// APPLICATION
+.date-box
+  float: left
+  width: 172px
+  border: 1px solid #d1d1d1
+  margin: 15px 20px 40px 0px
+  height: 125px
+  -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.25)
+  -moz-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.25)
+  box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.5)
+  h2
+    text-transform: uppercase
+    text-align: center
+    background: $baseColor
+    color: white
+    font-size: 30px
+    padding: 12px 0 6px 0
+  p
+    text-align: center
+    font-size: 16px
+    text-transform: uppercase
+    padding: 10px
+    line-height: 1.2em
+.last-date-box
+  margin-right: 0px
+
+
+// APPLICATION + RECOMMEND FORMS
 #node-724592, #node-724596, #node-724597, #node-724764, #node-724859, #node-724594, #node-724595
   form
     border: none !important
@@ -829,6 +869,7 @@ ff
       
 .fl-bottom-pane
   padding-bottom: 0 !important
+  margin-bottom: -24px0px
   .pane-content
     padding-bottom: 0 !important
 
@@ -850,8 +891,6 @@ ff
       color: #1b1b1b
       text-shadow: -1px -1px 3px white 
 
-     
-
 // Hide DS Sidebar
 #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
   display: none  
@@ -866,6 +905,25 @@ ff
     ul
       margin: 20px 0     
 
-img.center
-  margin: 0 auto
-  display: block
+// JUDGES PAGE
+.judges
+  img
+    margin: 0px 32px
+
+// FAQ PAGE
+.faq
+  margin-bottom: 5px
+  h4
+    color: $baseColor
+    background-image: url('http://files.dosomething.org/files/campaigns/vote/vote-red-arrow.png')
+    background-repeat: no-repeat
+    background-position-y: 6px
+    cursor: pointer
+    font-size: 20px
+    line-height: 1.2em
+    margin-top: 10px
+  h4, p
+    padding-left: 15px
+  .activeFAQ
+    background-image: url('http://files.dosomething.org/files/campaigns/vote/vote-downarrow.png')
+    color: black    
