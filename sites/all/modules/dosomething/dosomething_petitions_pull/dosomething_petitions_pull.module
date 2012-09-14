@@ -1,0 +1,57 @@
+<?php
+
+function dosomething_petitions_pull_menu() {
+  if (module_exists('export')) {
+  	$items['admin/petitions-pull'] = array(
+  		'title' => t('Pull Petitions Data'),
+  		'page callback' => "export::init",
+      'page arguments' => array('dosomething_petitions_pull'),
+  	  'access arguments' => array('administer group'),
+  	  'type' => MENU_CALLBACK
+  	);
+
+  	return $items;
+  }
+}
+
+function dosomething_petitions_pull_export_queries() {
+  return array(
+    'filename' => 'petitions_export_' . date('m-d-y', REQUEST_TIME) . '.csv',
+    'count' => "
+      SELECT * FROM `webform_submissions`
+      INNER JOIN `node` ON webform_submissions.nid = node.nid
+      WHERE `node`.`type` = 'petition'
+    ",
+    'run' => array(
+      "SELECT
+        webform_submissions.sid AS sid,
+        node_webform_submissions.title AS `petition_title`,
+        webform_submissions.submitted AS `webform_submitted`,
+        `eoc`.`field_webform_email_or_cell_value` AS `email_or_cell`,
+        `fname`.`field_webform_first_name_value` AS `first_name`,
+        `lname`.`field_webform_last_name_value` AS `last_name`,
+        `posted`.`field_webform_petition_signature_value` AS `include_signature`,
+        `reason`.`field_webform_petition_reason_value` AS `reason_for_signing`
+      FROM 
+      `webform_submissions` webform_submissions
+      INNER JOIN `node` node_webform_submissions ON webform_submissions.nid = node_webform_submissions.nid
+      LEFT JOIN `node` node ON webform_submissions.nid = node.nid
+      LEFT JOIN `field_data_field_webform_email_or_cell` AS `eoc` ON (`eoc`.`entity_id` = `webform_submissions`.`sid`)
+      LEFT JOIN `field_data_field_webform_first_name` AS `fname` ON (`fname`.`entity_id` = `webform_submissions`.`sid`)
+      LEFT JOIN `field_data_field_webform_last_name` AS `lname` ON (`lname`.`entity_id` = `webform_submissions`.`sid`)
+      LEFT JOIN `field_data_field_webform_petition_signature` AS `posted` ON (`posted`.`entity_id` = `webform_submissions`.`sid`)
+      LEFT JOIN `field_data_field_webform_petition_reason` AS `reason` ON (`reason`.`entity_id` = `webform_submissions`.`sid`)
+      WHERE node.type IN ('petition')"
+    ),
+    'fields' => array(
+      'Submission ID',
+      'Petition title',
+      'Submitted Time',
+      'Email or Cell',
+      'First name',
+      'Last name',
+      'Include signature?',
+      'Reason for signing'
+    )
+  );
+}
