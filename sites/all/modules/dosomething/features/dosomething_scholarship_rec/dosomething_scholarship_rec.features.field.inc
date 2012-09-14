@@ -91,7 +91,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   $fields['node-scholarship_application_with_rec-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -383,7 +383,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   $fields['node-scholarship_recommendation-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -675,7 +675,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   $fields['node-scholarship_recommendation_reque-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'group_audience',
@@ -885,6 +885,84 @@ function dosomething_scholarship_rec_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '34',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_school_reference'
+  $fields['webform_submission_entity-scholarship_application_with_rec-field_webform_school_reference'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_webform_school_reference',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'ds_school',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'none',
+            'property' => 'sid',
+            'type' => 'none',
+          ),
+          'target_bundles' => array(),
+        ),
+        'handler_submit' => 'Change handler',
+        'profile2_private' => FALSE,
+        'target_type' => 'ds_school',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'scholarship_application_with_rec',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 2,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_webform_school_reference',
+      'label' => 'School',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'dosomething_school',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => '60',
+        ),
+        'type' => 'dosomething_school_autocomplete',
+        'weight' => '36',
       ),
     ),
   );
@@ -1192,6 +1270,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   t('Recommender\'s Name');
   t('Referenced Application');
   t('Referenced recommendation form');
+  t('School');
 
   return $fields;
 }
