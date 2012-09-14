@@ -36,7 +36,8 @@ textarea { display: none; }
 #loading { display: none; padding-top: 10px; text-align: center; }
 
 div.service {
-  width: 135px;
+  width: 140px;
+  font-weight: bold;
   background: #fff;
 }
 
@@ -79,4 +80,9 @@ background: -ms-linear-gradient(top,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* I
 background: linear-gradient(to bottom,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-8 */
 
+}
+
+#having-trouble { 
+font-size: 9pt;
+font-style: italic;
 }
