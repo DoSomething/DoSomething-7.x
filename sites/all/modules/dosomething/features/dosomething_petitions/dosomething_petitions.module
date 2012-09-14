@@ -310,7 +310,7 @@ function dosomething_petitions_register($form, &$form_state) {
     $commands[] = ajax_command_before('#page-title', $fake_error_template);
   }
   else {
-    $commmands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0], $is_user));
+    $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0], $is_user));
   }
 
   return array(
