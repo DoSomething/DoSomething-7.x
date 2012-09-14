@@ -152,7 +152,6 @@ function dosomething_petitions_send_goal_email($email, $nid, $goal, $count) {
   foreach ($signers AS $e) {
     drupal_mail('dosomething_petitions', $email, $e->mail, $language, $params);
   }
-  exit;
 }
 
 function dosomething_petitions_goal_email($goal, $nid) {
