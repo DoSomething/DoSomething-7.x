@@ -11,6 +11,7 @@ function dosomething_scholarship_rec_scholarship_status_ctools_content_types() {
 
 function dosomething_scholarship_rec_scholarship_status_content_type_render($subtype, $conf, $panel_args, $context) {
   global $user;
+
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   $filter = array('nid' => $conf['app_nid']);
   if (isset($_GET['sid']) && user_access('access all webform results')) {
@@ -22,13 +23,25 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
   $subs = webform_get_submissions($filter);
   $apps = $sids = array_keys($subs);
 
+  $complete_link = l('Complete it now', 'node/'.$conf['app_nid']);
+
   $block = new StdClass();
 
+  if (count($subs) <= 0) {
+    $block->content['status'] = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('status-empty')),
+      'text' => array(
+        '#markup' => '<span>Application status: </span> You haven\'t started yet! ' . $complete_link,
+        '#prefix' => '<h3>',
+        '#suffix' => '</h3>',
+      ),
+    );
+  }
   foreach ($subs as $sub) {
     // set up some stuff for easy access later. It's MVC in one foreach look!
     $status = $class = '';
     if ($sub->is_draft) {
-      $complete_link = l('Complete it now', 'node/'.$sub->nid);
       $status = "Draft ($complete_link)";
       $class = 'status-incomplete';
     }
@@ -37,8 +50,8 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
       $class = 'status-complete';
     }
 
-    // APPLICATION STATUS
     $content = array();
+    // APPLICATION STATUS
     $content['status'] = array(
       '#type' => 'container',
       '#attributes' => array('class' => array($class)),
