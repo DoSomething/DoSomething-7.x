@@ -261,6 +261,18 @@ body {
   margin: -2% 0 2% 0; }
   #cmp .already_submitted .go-button {
     margin: 0 0 1% 0; }
+#cmp .drive {
+  text-align: left; }
+#cmp .drive-inf-header, #cmp .drive-info-info, #cmp .drive-share {
+  float: left;
+  width: 60%; }
+#cmp .drive-info-header {
+  color: #7f3f80;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eeeeee; }
 #cmp .action img {
   display: block;
   margin: 5% auto; }
@@ -340,7 +352,7 @@ body {
 #cmp .faq h4, #cmp .faq li, #cmp .faq p {
   text-align: left;
   padding: 0 0 0 1.5em; }
-#cmp .faq li, #cmp .faq p {
+#cmp .faq ul, #cmp .faq li, #cmp .faq p {
   display: none; }
 #cmp .faq h4 {
   color: #7f3f80;
