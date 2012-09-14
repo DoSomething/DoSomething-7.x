@@ -29,7 +29,7 @@ class contact_scraper {
 	public static function add_scraper_button(&$form, $weight = 0, $attributes = array()) {
 	  $node = menu_get_object();
 	  $form['invite_by_email'] = array(
-	    '#markup' => l(t('Get email contacts'), 'contact-scraper/' . $node->nid, array(
+	    '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
 	      'attributes' => array(
 	        'class' => array('invite-by-email-link'),
 	        'onclick' => 'return invite_find_emails(' . $node->nid . ')'

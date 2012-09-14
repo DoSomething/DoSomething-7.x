@@ -6,7 +6,7 @@
 
 include_once 'dosomething_petitions.features.inc';
 
-define('PETITIONS_NUM_EMAILS', 2);
+define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
 define('PETITIONS_MCOMMONS', 117371);
 
@@ -44,6 +44,15 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
     global $user;
     contact_scraper::add_scraper_button($form, 0, array('style' => 'display: none'));
     if (!user_is_logged_in()) {
+      $form['fav_color'] = array(
+        '#type' => 'textfield',
+        '#title' => t('What is your favorite color?'),
+        '#attributes' => array(
+          'style' => 'display: none'
+        )
+      );
+
+      $form['#validate'][] = 'dosomething_petitions_captcha';
       $form['actions']['submit']['#ajax'] = array(
         'callback' => 'dosomething_petitions_register',
       );
@@ -85,6 +94,13 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
     $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
 
     $form['#submit'][] = 'dosomething_petitions_opt_in';
+  }
+}
+
+function dosomething_petitions_captcha(&$form, &$form_state) {
+  $vals = $form_state['values'];
+  if (isset($vals['fav_color']) && !empty($vals['fav_color'])) {
+    form_set_error('form', t('Sorry, there was an error in completing your form request.'));
   }
 }
 
@@ -279,11 +295,27 @@ function dosomething_petitions_register($form, &$form_state) {
   $is_user = dosomething_general_load_user_by_mail_or_cell($form['#submission']->submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']);
   $is_user = ($is_user !== FALSE);
 
+  $commands = array();
+  $errors = form_get_errors();
+  if ($errors) {
+    $error_list = '';
+    foreach ($errors AS $key => $error) {
+       $error_list .= '<li>' . $error . '</li>';
+    }
+
+    $fake_error_template = '<div class="messages error">
+      <h2 class="element-invisible">Error message</h2>
+      <ul>' . $error_list . '</ul></div>
+    ';
+    $commands[] = ajax_command_before('#page-title', $fake_error_template);
+  }
+  else {
+    $commmands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0], $is_user));
+  }
+
   return array(
     '#type' => 'ajax',
-    '#commands' => array(
-      ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0], $is_user)),
-    ),
+    '#commands' => $commands
   );
 }
 
@@ -331,7 +363,16 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
   $form = array();
   $node = node_load($nid);
 
-  contact_scraper::add_scraper_button($form);
+  contact_scraper::add_scraper_button($form, 2);
+  $form['or'] = array(
+    '#prefix' => '<p style="position: relative; top: -10px">',
+    '#suffix' => '</p>',
+    '#markup' => 'OR',
+    '#attributes' => array(
+      'style' => 'text-align: center; position: relative; top: -10px;'
+    ),
+    '#weight' => 1
+  );
 
   global $user;
   $profile = profile2_load_by_user($user, 'main');
@@ -362,7 +403,7 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
     '#value' => $nid,
     '#default_value' => $nid,
   );
-  $form['submit'] = array(
+  /*$form['submit'] = array(
     '#type' => 'submit',
     '#value' => 'Share This',
     '#attributes' => array(
@@ -370,7 +411,7 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
     ),
   );
 
-  $form['#submit'][] = 'dosomething_petitions_email_form_submit';
+  $form['#submit'][] = 'dosomething_petitions_email_form_submit';*/
 
   return $form;
 }
