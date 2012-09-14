@@ -14,8 +14,8 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
 
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   $filter = array('nid' => $conf['app_nid']);
-  if (isset($_GET['sid']) && user_access('access all webform results')) {
-    $filter['sid'] = $_GET['sid'];
+  if (isset($_GET['app_sid']) && user_access('access all webform results')) {
+    $filter['sid'] = $_GET['app_sid'];
   }
   else {
     $filter['uid'] = $user->uid;
