@@ -109,7 +109,8 @@ function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_s
       'email' => $email,
       'cell' => $mobile,
     );
-    $options = array($form_state['redirect'][0], true, null, $replace);
+    $redirect = (is_array($form_state['redirect'])) ? $form_state['redirect'][0] : $form_state['redirect'];
+    $options = array($redirect, true, null, $replace);
     $actions = array(
       ajax_command_invoke('body', 'dsAjaxPopup', $options),
     );
