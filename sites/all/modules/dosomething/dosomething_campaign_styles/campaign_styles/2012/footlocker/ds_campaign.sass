@@ -676,7 +676,7 @@ hr.gray
   clear: both
   padding: 12px
   font-size: 28px  
-
+ff
 .judging-box, .application-box, .questions-box
   float: left
   width: 250px
@@ -701,7 +701,7 @@ hr.gray
   border-left: 1px solid lightgray 
 
 // APPLICATION
-#node-724592, #node-724596, #node-724597, #node-724764, #node-724859
+#node-724592, #node-724596, #node-724597, #node-724764, #node-724859, #node-724594, #node-724595
   form
     border: none !important
     +noBoxShadow
@@ -767,6 +767,8 @@ hr.gray
 
 // REQUEST PAGE
 #node-724597, #node-724596, #node-724594, #node-724595
+  .description
+    width: 300px
   #edit-actions
     position: relative
     text-align: center !important
@@ -829,6 +831,26 @@ hr.gray
   padding-bottom: 0 !important
   .pane-content
     padding-bottom: 0 !important
+
+// LOGIN
+.login-large
+  margin-top: 10px
+  font-size: 48px
+  line-height: 1em
+  text-transform: uppercase
+  text-align: center
+  span
+    color: $baseColor
+  a.go-button
+    position: static
+    font-size: 24px
+    text-shadow: 1px 1px 3px white
+    &:hover
+      text-decoration: none
+      color: #1b1b1b
+      text-shadow: -1px -1px 3px white 
+
+     
 
 // Hide DS Sidebar
 #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
