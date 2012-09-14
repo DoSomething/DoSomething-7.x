@@ -4,9 +4,9 @@ require 'globals.php';
 require 'oauth_helper.php';
 
 class yahooauth {
-	private $callback = 'http://qa2.dosomething.org/sites/all/modules/dosomething/dosomething_contact_picker/yo';
-	private $consumer_key = 'dj0yJmk9YTJKQ2hkYUtsV01VJmQ9WVdrOVFqZENWWGRzTXpJbWNHbzlOamd3TmpVM09UWXkmcz1jb25zdW1lcnNlY3JldCZ4PWE4';
-	private $consumer_secret = '1cf3ffde057fb113743a1941aa7214f72ec757bd';
+	private $callback = 'http://www.dosomething.org/sites/all/modules/dosomething/dosomething_contact_picker/yo';
+	private $consumer_key = 'dj0yJmk9WFlWdUFPZGoxUm1zJmQ9WVdrOVdqbHdWR3BzTTJVbWNHbzlOekUxTkRrMU1UWXkmcz1jb25zdW1lcnNlY3JldCZ4PTQ2';
+	private $consumer_secret = 'ce75ff10eb700dc4d7a6dbc471f9f8c7502a11a6';
 
 	private $oauth_token = '';
 	private $oauth_secret = '';
