@@ -32,6 +32,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', end
 
 }
 
+.invite-by-email-link:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .ui-dialog-titlebar {
   float: right;
   top: -18px;
