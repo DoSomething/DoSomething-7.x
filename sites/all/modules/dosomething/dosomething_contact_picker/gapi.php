@@ -12,8 +12,8 @@ if ($_POST['do'] == 'blah') {
   if (strpos($_SERVER['HTTP_HOST'], 'qa') !== FALSE) {
     $add = 'qa2/';
   }
-  require_once '/var/www/html/' . $add . '/sites/all/libraries/google-api-php-client/src/apiClient.php';
-  require_once '/var/www/html/' . $add . '/sites/all/libraries/google-api-php-client/src/contrib/apiPlusService.php';
+  require_once '/var/www/html/' . $add . '/google-api-php-client/src/apiClient.php';
+  require_once '/var/www/html/' . $add . '/google-api-php-client/src/contrib/apiPlusService.php';
 
   $client = new apiClient();
   $client->setApplicationName('Google Contacts Test');
