@@ -7,6 +7,21 @@
 include_once 'dosomething_scholarship_rec.features.inc';
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_scholarship_rec_menu() {
+  $items = array();
+  
+  $items['email-rec-request/%'] = array(
+    'page callback' => 'dosomething_scholarship_rec_resend_email',
+    'page arguments' => array(1),
+    'access callback' => 'user_is_logged_in',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_form_alter().
  */
 function dosomething_scholarship_rec_form_alter($form, &$form_state, $form_id) {
@@ -146,4 +161,12 @@ function dosomething_scholarship_rec_email_types() {
 
 function dosomething_scholarship_rec_types() {
   return array('scholarship_application_with_rec', 'scholarship_recommendation', 'scholarship_recommendation_reque');
+}
+
+function dosomething_scholarship_rec_resend_email($sid) {
+  $sub = reset(entity_load('webform_submission_entity', array($sid)));
+  $node = node_load($sub->nid);
+  webform_submission_send_mail($node, $sub);
+  drupal_set_message(t('Recommendation request sent to the recommender.'));
+  drupal_goto();
 }

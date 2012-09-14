@@ -103,13 +103,16 @@ function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_s
     $valid = $mobile;
     $type = 'cell';
   }
+
+  $redirect = $form_state['redirect'][0];
+
   if (!is_null($valid)) {
     $replace = array(
       'name' => $valid,
       'email' => $email,
       'cell' => $mobile,
     );
-    $options = array($form_state['redirect'][0], true, null, $replace);
+    $options = array($redirect, true, null, $replace);
     $actions = array(
       ajax_command_invoke('body', 'dsAjaxPopup', $options),
     );
@@ -120,7 +123,7 @@ function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_s
     );
   }
   else {
-    $options = array($form_state['redirect'][0], false, null, array(
+    $options = array($redirect, false, null, array(
       'email' => $email,
       'cell' => $mobile,
     ));

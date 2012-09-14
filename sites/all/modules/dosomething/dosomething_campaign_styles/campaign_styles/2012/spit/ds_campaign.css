@@ -172,6 +172,7 @@ body {
 #cmp .col60 {
   width: 60%; }
 #cmp .divider {
+  text-align: center;
   border-top: 2px solid #eeeeee;
   margin: 0 0 3% 0;
   padding: 0.8% 0 0 0; }
@@ -256,11 +257,41 @@ body {
     font-weight: 600; }
 #cmp .webform-client-form {
   box-shadow: none; }
+#cmp .already_submitted {
+  margin: -2% 0 2% 0; }
+  #cmp .already_submitted .go-button {
+    margin: 0 0 1% 0; }
 #cmp .action img {
   display: block;
   margin: 5% auto; }
 #cmp .go-button {
   position: static; }
+#cmp .content-leader {
+  text-align: left; }
+  #cmp .content-leader h1 {
+    font-size: 1.5em;
+    margin: 0 0 0 -1em; }
+  #cmp .content-leader ul {
+    padding: 0.5em 1em; }
+  #cmp .content-leader li {
+    list-style: disc; }
+  #cmp .content-leader b {
+    color: #7f3f80;
+    background: #ffcb15;
+    width: 10em;
+    display: block;
+    text-align: center; }
+  #cmp .content-leader strong {
+    color: #7f3f80; }
+#cmp .center_img {
+  margin: 0 auto;
+  width: 80%;
+  display: block; }
+#cmp .print-pdf {
+  position: relative;
+  left: 27%; }
+  #cmp .print-pdf img {
+    width: 37.5%; }
 #cmp .scholarship {
   overflow: visible; }
   #cmp .scholarship h1 {
