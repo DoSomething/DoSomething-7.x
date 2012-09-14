@@ -243,10 +243,10 @@ function dosomething_petitions_opt_in($form, $form_state) {
 
         drupal_mail('dosomething_petitions', 'invite_signed', $ui->mail, $language, $params);
         // Remove invite from user
-        db_delete('dosomething_petitions_invites')
+        /*db_delete('dosomething_petitions_invites')
           ->condition('invite', $val)
           ->condition('nid', $node->nid)
-          ->execute();
+          ->execute();*/
       }
     }
 
