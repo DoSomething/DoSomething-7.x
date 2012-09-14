@@ -1,0 +1,31 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+<style type="text/css">
+<!--
+body { 
+font-family: 'Trebuchet MS';
+margin: 10px;
+}
+-->
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#club_name').data('val',  $('#club_name').val() ); // save value
+	    $('#club_name').change(function() { // works when input will be blured and the value was changed
+	        // console.log('input value changed');
+	        $('#club-name-live').find('span').text($(this).val());
+	    });
+	    $('#club_name').keyup(function() { // works immediately when user press button inside of the input
+	        if( $('#club_name').val() != $('#club_name').data('val') ){ // check if value changed
+	            $('#club_name').data('val',  $('#club_name').val() ); // save new value
+	            $(this).change(); // simulate "change" event
+	        }
+	    });
+	});
+</script>
+<body>
+<input type="text" id="club_name" name="club_name" /> DoSomething.org Club
+<div id="club-name-live">Your club name will be "<span>(Write Something)</span> DoSomething.org Club"</div>
+</body>
+</html>
