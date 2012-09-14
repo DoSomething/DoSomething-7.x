@@ -742,28 +742,6 @@ form.webform-client-form {
   .pane-dosomething-login-register-block h2.pane-title {
     display: block !important; }
 
-#dosomething-login-register-popup-form input:focus {
-  background-color: lightyellow; }
-#dosomething-login-register-popup-form .form-item-last-name, #dosomething-login-register-popup-form .form-item-cell, #dosomething-login-register-popup-form .form-item-pass {
-  width: 100%; }
-#dosomething-login-register-popup-form .ds-registration-form-required {
-  position: static; }
-#dosomething-login-register-popup-form .popup-content {
-  height: 100% !important;
-  padding: 15px 15px 0 15px !important;
-  margin: 0 !important; }
-#dosomething-login-register-popup-form #edit-birthday input {
-  width: 68px; }
-#dosomething-login-register-popup-form #edit-birthday label {
-  width: 220px;
-  padding: 5px 0 0 40px;
-  margin: 8px 0; }
-  #dosomething-login-register-popup-form #edit-birthday label .login-popup-birthday {
-    position: static !important;
-    font-size: 14px !important; }
-#dosomething-login-register-popup-form #edit-birthday .form-item-month, #dosomething-login-register-popup-form #edit-birthday .form-item-day, #dosomething-login-register-popup-form #edit-birthday .form-item-year {
-  margin-top: 8px !important; }
-
 .node-type-campaign-report-back .panel-row-flexible-top {
   width: 550px;
   margin: 0 auto; }
