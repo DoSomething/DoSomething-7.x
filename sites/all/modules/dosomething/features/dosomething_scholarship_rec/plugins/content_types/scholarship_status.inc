@@ -120,7 +120,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
 
           if ($rec_subs === FALSE) {
             $content['recommendation_status'][$rec_form->nid][$req_sub->sid]['request_pending'] = array(
-              '#markup' => 'Request pending | ' . l('Resend email', "email-rec-request/{$req_sub->sid}"),
+              '#markup' => 'Request pending | ' . l('Resend email', "email-rec-request/{$req_sub->sid}", array('query' => array('destination' => current_path()))),
             );
             $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-incomplete';
           }
