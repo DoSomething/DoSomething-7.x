@@ -148,9 +148,9 @@ function dosomething_petitions_send_goal_email($email, $nid, $goal, $count) {
     $params['more_to_goal'] = t('Our goal is to reach !goal signatures.  Help us cross the finish line.', array('!goal' => $params['goal']));
   }
 
+  global $language;
   foreach ($signers AS $e) {
-    #drupal_mail('dosomething_clubs', $email, $e->mail, $language, $params);
-    echo "<p>" . $e->mail . "</p>";
+    drupal_mail('dosomething_clubs', $email, $e->mail, $language, $params);
   }
   exit;
 }
