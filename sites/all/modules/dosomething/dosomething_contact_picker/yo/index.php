@@ -93,6 +93,7 @@ $(document).ready(function() {
         $('#response', window.opener.document).show().html(r);
         window.opener.prepare_clicks();
         $('#check-area, #send-emails', window.opener.document).show();
+        $('#loading', window.opener.document).hide();
         window.close();
     });
 </script>

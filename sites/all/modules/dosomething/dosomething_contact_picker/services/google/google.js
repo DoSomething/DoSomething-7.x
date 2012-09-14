@@ -16,7 +16,6 @@ var google = {
   },
 
   auth: function(path) {
-    $('#loading').show().html('<p style="text-align: center"><img src="/' + path + '/images/loading.gif" alt="" /> Loading.  Please wait...</p>');
     gapi.auth.authorize(this.config, function() {
       var t = gapi.auth.getToken();
       console.log('Login complete');

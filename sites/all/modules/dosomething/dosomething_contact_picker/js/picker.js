@@ -1,6 +1,7 @@
 var authed = false;
 
 function service(s, path) {
+  $('#loading').show().html('<img src="/' + path + '/images/loading.gif" alt="" /> Loading.  Please wait...');
   eval(s).auth(path);
   $('#connect-message').text('Invite friends to sign this petition');
 }

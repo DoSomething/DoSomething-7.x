@@ -33,7 +33,7 @@ textarea { display: none; }
   width: 185px; }
 
 #check-area, #send-emails { display: none; }
-#loading { display: none; }
+#loading { display: none; padding-top: 10px; text-align: center; }
 
 div.service {
   width: 135px;
@@ -66,7 +66,7 @@ div.service { float: left; margin: 5px;}
   font-weight: bold;
   padding: 5px;
   border-radius: 10px;
-  margin-top: -10px;
+  /*margin-top: -10px;*/
 
 background: #a90329; /* Old browsers */
 /* IE9 SVG, needs conditional override of 'filter' to 'none' */
