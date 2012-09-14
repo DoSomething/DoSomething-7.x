@@ -61,6 +61,7 @@ LIMIT 4 OFFSET 0)")->fetchAll();
 	);
 
 	global $user;
+	$i = 0;
 	foreach ($query AS $key => $data) {
 		if (!$data->title) continue;
 		$file = file_load($data->fid);
@@ -78,7 +79,14 @@ LIMIT 4 OFFSET 0)")->fetchAll();
 	  		</div>
 	  			'
 		);
+		$i++;
 	}
+	if (!$i) {
+		$output['join-or-start'] = array(
+			'#markup' => '<p style="text-align: center"><a href="/campaigns">Join a Campaign</a> or <a href="/projects/submit">Start a project</a></p>'
+		);
+	}
+
 	$block->content = $output;
 	return $block;
 }

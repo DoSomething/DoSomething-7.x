@@ -49,9 +49,37 @@ Drupal.behaviors.dsPfpShare = {
             // Display a modal dialog depending on the total number of shares
             // the user has made.
             if (userShares == 3 && !settings.picsforpetsGeneral.furtographer) {
-              $('<div></div>')
-                .load('/fb/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form')
-                .dialog({
+              $loader = $('<div></div>');
+              $loader.load('/fb/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form', function() {
+                if ($('html').hasClass('ie9') || $('html').hasClass('ie8') || $('html').hasClass('ie7') || $('html').hasClass('ie6')) {
+                  $cellval = $loader.find('#edit-cell')
+                  $emailval = $loader.find('#edit-email');
+                  $cellval.val('Cell:');
+                  $emailval.val('Email:');
+                  $cellval.focus(function() {
+                    if ($(this).val() == 'Cell:') {
+                      $(this).val('');
+                    }
+                  });
+                  $emailval.focus(function() {
+                    if ($(this).val() == 'Email:') {
+                      $(this).val('');
+                    }
+                  });
+                  $cellval.blur(function() {
+                    if ($(this).val() == '') {
+                      $(this).val('Cell:');
+                    }
+                  });
+                  $emailval.blur(function() {
+                    if ($(this).val() == '') {
+                      $(this).val('Email:');
+                    }
+                  });
+                }
+              });
+              $loader.find('#edit-cell').val('cell');
+              $loader.dialog({
                   title: Drupal.t('Thanks for sharing!'),
                   resizable: false,
                   draggable: false,

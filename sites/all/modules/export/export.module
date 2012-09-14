@@ -1,0 +1,220 @@
+<?php
+
+function export_menu() {
+  $items['admin/export/%'] = array(
+    'title' => t('Your export is complete!'),
+    'page callback' => "export::finished",
+    'page arguments' => array(2),
+    'access arguments' => array('administer group'),
+    'type' => MENU_CALLBACK
+  );
+
+  $items['admin/export/file/%'] = array(
+    'page callback' => "export::load_file",
+    'page arguments' => array(3),
+    'access arguments' => array('administer group'),
+    'type' => MENU_CALLBACK
+  );
+
+  return $items;
+}
+
+define('DEFAULT_EXPORT_LIMIT', 500);
+class export {
+  private static $file;
+  public static $inited = false;
+
+  private static $count_query;
+  private static $run_queries;
+  private static $filename;
+
+  private static $limit;
+  private static $fields = array();
+
+  public static function init($package, $limit = DEFAULT_EXPORT_LIMIT) {
+    if ($package) {
+      $queries = module_invoke($package, 'export_queries');
+      self::$limit = $limit;
+      self::$fields = $queries['fields'];
+      self::$filename = $queries['filename'];
+
+      if (!self::get_queries()) {
+        self::set_queries($queries);
+      }
+      return self::run();
+    }
+  }
+
+  public static function get_queries() {
+    $i = 0;
+    if ($_SESSION['count']) {
+      self::$count_query = $_SESSION['count'];
+      $i++;
+    }
+    if ($_SESSION['run']) {
+      self::$run_queries = $_SESSION['run'];
+      $i++;
+    }
+
+    if ($i == 2) {
+      return true;
+    }
+    else { return false; }
+  }
+
+  public static function set_queries($queries = array()) {
+    if ($queries['count']) {
+      self::$count_query = (!empty($queries) ? $queries['count'] : $_SESSION['count']);
+    }
+    if ($queries['run']) {
+      self::$run_queries = (!empty($queries) ? $queries['run'][0] : $_SESSION['run']);
+    }
+  }
+
+  public static function run() {
+    $page = $limit = 0;
+    $page = intval($_GET['page']);
+    if (!$page) {
+      $page = 1;
+      $nopage = true;
+    }
+    else  {
+      $nopage = false;
+    }
+
+    if (!intval($_GET['limit'])) {
+      $limit = self::$limit;
+    }
+    else {
+      $limit = intval($_GET['limit']);
+    }
+
+    $start = (!$nopage ? ($page * ($limit)) : 0);
+    if (!$nopage) { $page++; }
+
+
+    $d = self::the_query($start, $limit);
+    $count = self::get_counts();
+
+    $p = floor(($start / $count) * 100);
+    if ($p > 100) {
+      $p = 100;
+    }
+
+    $hash = self::get_hash();
+    self::write_stuff($hash, $d);
+
+    $content = '<div style="background: #d9d9d9; border: 1px solid #000; display: block; height: 30px; border-radius: 5px; padding: 0px;">
+    <div style="background: #D65E5E; height: 30px; width: ' . $p . '%; color: #fefefe; text-align: right; padding: 5px 5px 0px 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;">' . ($p > 0 ? "{$p}%" : '') . '</div>
+    </div>';
+
+    $content .= '<p><strong>Completed ' . $start . ' of ' . $count . ' (' . $p . '%)</strong></p>';
+
+
+    if ($p < 100) {
+     $addy = $_SERVER['REDIRECT_URL'] . "?page=" . $page . "&hash=" . $hash;
+    }
+    else {
+     $addy = '/admin/export/' . $hash;
+    }
+
+    $content .= "<script> window.location.href = '" . $addy . "' </script>";
+
+    return $content;
+  }
+
+  public static function load_file($data) {
+    $info = unserialize(base64_decode($data));
+    if (strpos($info['file_path'], file_directory_temp()) === FALSE) {
+      return 'Access denied!';
+    }
+
+    drupal_add_http_header('Content-Type', 'text/csv; utf-8');
+    drupal_add_http_header('Content-Disposition', 'attachment; filename=' . $info['filename'], TRUE);
+
+    drupal_add_http_header('Cache-Control', 'max-age=300; must-revalidate');
+
+    readfile($info['file_path']);
+    exit;
+  }
+
+  public static function finished($data) {
+    $info = unserialize(base64_decode($data));
+    if (empty($info['file_path']) || empty($info['filename'])) {
+      return t("Sorry, your file couldn't be created (file information not passed).");
+    }
+
+    $redirect = base_path() . 'admin/export/file/' . $data;
+    drupal_add_js('setTimeout(function() { window.location.href = "' . $redirect . '"; }, 2000);', 'inline');
+
+    $download_link = t('Your export is complete! If your download does not begun automatically, !click!', array(
+      '!click' => l(t('Click here'), 'admin/clubs-pull/export/file/' . $data))
+    );
+
+    $output = '<p>' . $download_link . '</p>';
+    return $output;
+  }
+
+  public static function write_stuff($hash, &$data) {
+    $info = unserialize(base64_decode($hash));
+    $handle = fopen($info['file_path'], 'a');
+    foreach ($data['results'] AS $key => $stuff) {
+      $stuff = (array) $stuff;
+      fputcsv($handle, $stuff);
+    }
+
+    fclose($handle);
+  }
+
+  public static function get_hash() {
+    if (!$_GET['hash']) {
+      $filename = self::$filename;
+      $h = array(
+        'filename' => $filename,
+        'file_path' => file_directory_temp() . '/' . $filename
+      );
+
+      $field_labels = self::$fields;
+
+      $handle = fopen($h['file_path'], 'w');
+      fputcsv($handle, $field_labels);
+      fclose($handle);
+
+      $hash = base64_encode(serialize($h));
+    }
+    else {
+      $hash = $_GET['hash'];
+    }
+
+    return $hash;
+  }
+
+  public static function log($title, $message) {
+    mail('mchittenden@dosomething.org', $title, $message);
+  }
+
+  public static function get_counts() {
+    static $context;
+    $counts = db_query(
+      self::$count_query
+    );
+
+    $count = $counts->rowCount();
+    return $count;
+  }
+
+  public static function the_query($limit = 0, $offset = 0, $return_query = FALSE) {
+    $query = self::$run_queries . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
+
+    $q = db_query($query);
+      if ($return_query) {
+        return $q;
+      }
+      else {
+        return array(
+          'count' => $q->rowCount(),
+          'results' => $q->fetchAll()
+        );
+      }
+    }
+}
