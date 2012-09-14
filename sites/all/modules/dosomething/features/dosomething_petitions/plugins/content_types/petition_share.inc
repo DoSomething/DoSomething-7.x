@@ -13,6 +13,12 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
   $node = menu_get_object();
 
   $content = array();
+  $content['getmore'] = array(
+    '#markup' => t('Get more signatures on this petition:'),
+    '#prefix' => '<p>',
+    '#suffix' => '</p>'
+  );
+
   $content['fb'] = array(
     '#markup' => l('Share on Facebook', '', array(
       'attributes' => array(
