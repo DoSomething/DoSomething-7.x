@@ -33,20 +33,37 @@
     font-size: 23px
     text-align: center
     color: #fff
+  label
+    text-align: left
   input[type="text"], input[type="tel"]
     width: 35% 
-    float: left
-    margin: 0 2.5%
   #edit-submit
     float: right
     position: static
-    margin: 0 2% 0 0
+    margin: 2% 2% 0 0
     padding: 1px 0.7em
+
+#submitted-field-webform-mobile-add-more-wrapper, #submitted-field-webform-email-add-more-wrapper
+  width: 35%
+  float: left
+
+.pane-campaign-sign-up
+  label, input[type="text"], input[type="tel"]
+    width: 75%
+    float: left
+    clear: left
+  input[type="text"], input[type="tel"]
+    margin: 0.5em 0 0 0
+  label
+    color: #fff
+    font-size: 1.7em
+    font-family: din-web
+    text-transform: uppercase
 
 #campaign-opt-in
   clear: both
   text-align: left
-  padding: 0 2.5%
+  padding: 0.3em 0 0 0 !important
   span
     font-size: 10px
     background: transparent
@@ -56,6 +73,11 @@
 
 .webform-client-form
   box-shadow: none
+
+.already_submitted
+  margin: -2% 0 2% 0
+  .go-button
+    margin: 0 0 1% 0
 
 //			//
 //	.action			- "here's what you do" -
@@ -80,11 +102,40 @@
 //  margin-bottom: -15px
 
 //			//
-//	.content        - infographic -
+//	.content-leader
 //			//
 
+.content-leader
+  text-align: left
+  h1
+    font-size: 1.5em
+    margin: 0 0 0 -1em
+  ul
+    padding: 0.5em 1em
+  li
+    list-style: disc
+  b
+    color: $spitPurple
+    background: $spitYellow
+    width: 10em
+    display: block
+    text-align: center
+  strong
+    color: $spitPurple
+
+.center_img
+  margin: 0 auto
+  width: 80%
+  display: block
+
+.print-pdf
+  position: relative
+  left: 27%
+  img
+    width: 37.5%
+
 //			//
-//	.scholarship		- mobile commons webform -
+//	.content-infographic
 //			//
 
 .scholarship

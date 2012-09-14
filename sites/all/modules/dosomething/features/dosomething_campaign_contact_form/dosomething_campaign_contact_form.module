@@ -22,9 +22,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'campaign_contact_form') {
     global $user;
 
-    drupal_add_library('system', 'drupal.ajax');
-    drupal_add_library('system', 'jquery.form');
-    ctools_add_js('ajax-responder');
+    drupal_add_library('dosomething_login', 'ds.ajax.popup');
 
     // Get a shortcut to our part of the form.
     $entity_form = &$form['submitted'];
@@ -75,7 +73,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     else {
       $node = $form['#node'];
 
-      if (!isset($node->field_login_check) || $node->field_login_check[LANGUAGE_NONE][0]['value'] == 0) {
+      if (!isset($node->field_login_check) || $node->field_login_check[LANGUAGE_NONE][0]['value'] == 0 || true) {
         $form['actions']['submit']['#ajax'] = array(
           'callback' => 'dosomething_campaign_contact_form_login_form_popup_form',
         );
@@ -85,8 +83,6 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
 }
 
 function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_state) {
-  ctools_include('ajax');
-
   $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
   $mobile = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
 
@@ -98,37 +94,27 @@ function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_s
       ),
     );
   }
+  $valid = NULL;
   if (!empty($email) && dosomething_login_find_user_by_email($email)) {
     $valid = $email;
+    $type = 'email';
   }
   else if (!empty($mobile) && dosomething_general_find_user_by_cell($mobile)) {
     $valid = $mobile;
+    $type = 'cell';
   }
-  if (isset($valid)) {
-    $new_form = drupal_get_form('user_login');
-    $new_form['name']['#value'] = $valid;
-    $redirect = drupal_encode_path($form_state['redirect'][0]);
-    $new_form['#action'] = "/user/login?destination=$redirect";
-    $return = <<<EOM
-  <div id="password-prompt">
-  <h1>Hey! It looks like you already have an account.</h1>
-EOM;
-    $return.= $name;
-    $return.= drupal_render($new_form).'</div>';
-    $return.= print_r($form_state['redirect'], true);
 
-    // There's no elegant way to do this that I could see, because the parameter array
-    // gets converted to a string, and passed as a string instead of a JS object to
-    // a function call. I could write my own JS to handle this, but that's no fun :)
-    //
-    // This may hic-cup on older browsers.
+  $redirect = $form_state['redirect'][0];
+
+  if (!is_null($valid)) {
+    $replace = array(
+      'name' => $valid,
+      'email' => $email,
+      'cell' => $mobile,
+    );
+    $options = array($redirect, true, null, $replace);
     $actions = array(
-      ajax_command_append('body', $return),
-      ajax_command_invoke('#password-prompt', 'dialog'),
-      ajax_command_invoke('#password-prompt', 'dialog', array('close')),
-      ajax_command_invoke('#password-prompt', 'dialog', array('option', 'modal', true)),
-      ajax_command_invoke('#password-prompt', 'dialog', array('option', 'resizable', false)),
-      ajax_command_invoke('#password-prompt', 'dialog', array('open')),
+      ajax_command_invoke('body', 'dsAjaxPopup', $options),
     );
 
     return array(
@@ -137,12 +123,16 @@ EOM;
     );
   }
   else {
-    $options = $form_state['redirect'][1];
-    $options['absolute'] = true;
-    $url = url($form_state['redirect'][0], $options);
+    $options = array($redirect, false, null, array(
+      'email' => $email,
+      'cell' => $mobile,
+    ));
+    $actions = array(
+      ajax_command_invoke('body', 'dsAjaxPopup', $options),
+    );
     return array(
       '#type' => 'ajax',
-      '#commands' => array(ctools_ajax_command_redirect($url)),
+      '#commands' => $actions,
     );
   }
 }

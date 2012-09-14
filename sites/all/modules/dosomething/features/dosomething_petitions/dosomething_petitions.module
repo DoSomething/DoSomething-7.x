@@ -6,9 +6,35 @@
 
 include_once 'dosomething_petitions.features.inc';
 
-define('PETITIONS_NUM_EMAILS', 5);
+define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
 define('PETITIONS_MCOMMONS', 117371);
+
+/*class DosomethingPetitionsMailSystem implements MailSystemInterface {
+  public function format(array $message) {
+    $message['body'] = implode("\n\n", $message['body']);
+    return $message;
+  }
+  public function mail(array $message) {
+    $mimeheaders = array();
+    foreach ($message['headers'] as $name => $value) {
+      $mimeheaders[] = $name . ': ' . mime_header_encode($value);
+    }
+    $line_endings = variable_get('mail_line_endings', MAIL_LINE_ENDINGS);
+    return mail(
+      $message['to'],
+      mime_header_encode($message['subject']),
+      // Note: e-mail uses CRLF for line-endings. PHP's API requires LF
+      // on Unix and CRLF on Windows. Drupal automatically guesses the
+      // line-ending format appropriate for your system. If you need to
+      // override this, adjust $conf['mail_line_endings'] in settings.php.
+      preg_replace('@\r?\n@', $line_endings, $message['body']),
+      // For headers, PHP's API suggests that we use CRLF normally,
+      // but some MTAs incorrectly replace LF with CRLF. See #234403.
+      join("\n", $mimeheaders)
+    );
+  }
+}*/
 
 /**
  * Implements hook_form_alter().
@@ -16,7 +42,17 @@ define('PETITIONS_MCOMMONS', 117371);
 function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'petition') {
     global $user;
+    contact_scraper::add_scraper_button($form, 0, array('style' => 'display: none'));
     if (!user_is_logged_in()) {
+      $form['fav_color'] = array(
+        '#type' => 'textfield',
+        '#title' => t('What is your favorite color?'),
+        '#attributes' => array(
+          'style' => 'display: none'
+        )
+      );
+
+      $form['#validate'][] = 'dosomething_petitions_captcha';
       $form['actions']['submit']['#ajax'] = array(
         'callback' => 'dosomething_petitions_register',
       );
@@ -61,6 +97,88 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+function dosomething_petitions_captcha(&$form, &$form_state) {
+  $vals = $form_state['values'];
+  if (isset($vals['fav_color']) && !empty($vals['fav_color'])) {
+    form_set_error('form', t('Sorry, there was an error in completing your form request.'));
+  }
+}
+
+function dosomething_petitions_send_goal_email($email, $nid, $goal, $count) {
+  $signers = db_query("
+  SELECT DISTINCT u.mail
+  FROM webform_submissions
+    LEFT JOIN `users` u ON (`u`.`uid` = `webform_submissions`.`uid`)
+  WHERE `webform_submissions`.`uid` <> 0
+    AND `webform_submissions`.`nid` = " . $nid . "
+  ")->fetchAll();
+
+  $node = node_load($nid);
+  $a = user_load($node->uid);
+  $p = profile2_load_by_user($a, 'main');
+  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  if (!trim($author)) {
+    $author = $a->name;
+  }
+
+  $sims = db_select('node', 'n')
+    ->fields('n', array('nid', 'title'))
+    ->condition('type', 'petition')
+    ->condition('status', 0, '!=')
+    ->condition('nid', $node->nid, '!=')
+    ->orderBy('RAND()')
+    ->execute()
+    ->fetchAll();
+
+  foreach ($sims AS $key => $pet) {
+    $similars .= $pet->title . ': ' . url(drupal_lookup_path('alias', 'node/' . $pet->nid), array('absolute' => TRUE)) . "\r\n";
+  }
+
+  $params = array(
+    'name' => '',
+    'petition' => $node->title,
+    'petition_link' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
+    'author' => $author,
+    'goal' => $node->field_petition_goal[LANGUAGE_NONE][0]['value'],
+    'petition_recipient' => $node->field_petition_target[LANGUAGE_NONE][0]['value'],
+    'similar_petitions' => $similars
+  );
+
+  if ($email !== 'petitions_goal_reached') {
+    $params['more_to_goal'] = t('Our goal is to reach !goal signatures.  Help us cross the finish line.', array('!goal' => $params['goal']));
+  }
+
+  global $language;
+  foreach ($signers AS $e) {
+    drupal_mail('dosomething_petitions', $email, $e->mail, $language, $params);
+  }
+}
+
+function dosomething_petitions_goal_email($goal, $nid) {
+  $count = webform_get_submission_count($nid);
+
+  if ($count == $goal) {
+    dosomething_petitions_send_goal_email('petitions_goal_reached', $nid, $goal, $count);
+    // Email everyone about goal reached
+  }
+  else {
+    /* Holding on this for now (9-13-12) until we can get everything sorted out with when and where to do it.
+       
+    $milestones = array(25000);
+
+    foreach ($milestones AS $stone) {
+      if ($count > $stone) continue;
+      else {
+        if ($count == $stone && $stone < $goal) {
+          dosomething_petitions_send_goal_email('petitions_milestone_reached', $nid, $goal);
+          // Mail everyone that we reached milestone
+        }
+        else continue;
+      }
+    }*/
+  }
+}
+
 /**
  * Submission callback for petition webforms
  */
@@ -69,6 +187,99 @@ function dosomething_petitions_opt_in($form, $form_state) {
   $val = $sub['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
 
   if (valid_email_address($val)) {
+    global $language, $user;
+
+    $node = node_load($form_state['values']['details']['nid']);
+
+    // Check database to see if a record exists for this email.
+    // If so, email the original sign-er
+    $invited = db_select('dosomething_petitions_invites', 'i')
+      #->join('users', 'u', 'i.uid = u.uid')
+      ->fields('i')
+      #->fields('u', array('name', 'mail'))
+      ->condition('i.nid', $node->nid, '=')
+      ->condition('i.invite', $val, '=')
+      ->range(0, 1)
+      ->execute()
+      ->fetchAssoc();
+
+    if (!empty($invited)) {
+      if ($invited['uid']) {
+        $ui = user_load($invited['uid']);
+        $up = profile2_load_by_user($ui, 'main');
+        if (isset($up->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+          $name = $up->field_user_first_name[LANGUAGE_NONE][0]['value'];
+        }
+        else {
+          $name = $user->name;
+        }
+
+        if (!$user->uid) {
+          $guest = dosomething_general_load_user_by_mail_or_cell($val);
+          $prof = profile2_load_by_user($guest, 'main');
+          if (isset($prof->field_user_first_name[LANGUAGE_NONE][0]['value']) && isset($prof->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
+            $invitee = $prof->field_user_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $prof->field_user_last_name[LANGUAGE_NONE][0]['value'];
+          }
+          else {
+            $invitee = $guest->name;
+          }
+        }
+        else {
+          $uprof = profile2_load_by_user($user, 'main');
+          if (isset($uprof->field_user_first_name[LANGUAGE_NONE][0]['value']) && isset($uprof->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
+            $invitee = $uprof->field_user_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $uprof->field_user_last_name[LANGUAGE_NONE][0]['value'];
+          }
+          else {
+            $invitee = $user->name;
+          }
+        }
+
+        $params = array(
+          'name' => $name,
+          'invitee' => $invitee,
+          'petition' => $node->title,
+          'petition_link' => url(drupal_lookup_path('alias', 'node/' . $node->nid) . '#contacts', array('absolute' => TRUE))
+        );
+
+        drupal_mail('dosomething_petitions', 'invite_signed', $ui->mail, $language, $params);
+        // Remove invite from user
+        db_delete('dosomething_petitions_invites')
+          ->condition('invite', $val)
+          ->condition('nid', $node->nid)
+          ->execute();
+      }
+    }
+
+    if ($user->uid) {
+      $profile = profile2_load_by_user($user, 'main');
+      $name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+      if (!trim($name)) {
+        $name = $user->name;
+      }
+    }
+    else {
+      $name = t('Guest');
+    }
+
+    dosomething_petitions_goal_email($node->field_petition_goal[LANGUAGE_NONE][0]['value'], $node->nid);
+    $a = user_load($node->uid);
+    $p = profile2_load_by_user($a, 'main');
+    $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+    if (!trim($author)) {
+      $author = $a->name;
+    }
+
+    /** Scrapped 9/12/12
+      * This email would be duplicated if they invited their friends.
+      * So this email just won't happen.
+      * ---
+    $params = array(
+      'name' => $name,
+      'petition' => $node->title,
+      'petition_link' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
+      'author' => $author
+    );
+    drupal_mail('dosomething_petitions', 'thanks_for_signing', $val, $language, $params);*/
     dosomething_general_infusionsoft_subscribe($val, PETITIONS_INFUSIONSOFT);
   }
   else if (dosomething_general_valid_cell($val)) {
@@ -83,11 +294,27 @@ function dosomething_petitions_register($form, &$form_state) {
   $is_user = dosomething_general_load_user_by_mail_or_cell($form['#submission']->submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']);
   $is_user = ($is_user !== FALSE);
 
+  $commands = array();
+  $errors = form_get_errors();
+  if ($errors) {
+    $error_list = '';
+    foreach ($errors AS $key => $error) {
+       $error_list .= '<li>' . $error . '</li>';
+    }
+
+    $fake_error_template = '<div class="messages error">
+      <h2 class="element-invisible">Error message</h2>
+      <ul>' . $error_list . '</ul></div>
+    ';
+    $commands[] = ajax_command_before('#page-title', $fake_error_template);
+  }
+  else {
+    $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0], $is_user));
+  }
+
   return array(
     '#type' => 'ajax',
-    '#commands' => array(
-      ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0], $is_user)),
-    ),
+    '#commands' => $commands
   );
 }
 
@@ -133,6 +360,35 @@ function dosomething_petitions_ctools_plugin_directory($module, $plugin) {
  */
 function dosomething_petitions_email_form($form, &$form_state, $nid) {
   $form = array();
+  $node = node_load($nid);
+
+  contact_scraper::add_scraper_button($form, 2);
+  $form['or'] = array(
+    '#prefix' => '<p style="position: relative; top: -10px">',
+    '#suffix' => '</p>',
+    '#markup' => 'OR',
+    '#attributes' => array(
+      'style' => 'text-align: center; position: relative; top: -10px;'
+    ),
+    '#weight' => 1
+  );
+
+  global $user;
+  $profile = profile2_load_by_user($user, 'main');
+  $h = array(
+    'title' => $node->title,
+    'id' => $node->nid,
+    'link' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
+    'me' => $profile->field_user_first_name[LANGUAGE_NONE][0]['value']
+  );
+
+  $form['invite_data'] = array(
+    '#type' => 'hidden',
+    '#attributes' => array(
+      'id' => 'invite_data'
+    ),
+    '#default_value' => $node->nid
+  );
 
   for ($i = 0; $i < PETITIONS_NUM_EMAILS; $i++) {
     $form['email_'.$i] = array(
@@ -146,7 +402,7 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
     '#value' => $nid,
     '#default_value' => $nid,
   );
-  $form['submit'] = array(
+  /*$form['submit'] = array(
     '#type' => 'submit',
     '#value' => 'Share This',
     '#attributes' => array(
@@ -154,7 +410,7 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
     ),
   );
 
-  $form['#submit'][] = 'dosomething_petitions_email_form_submit';
+  $form['#submit'][] = 'dosomething_petitions_email_form_submit';*/
 
   return $form;
 }
@@ -209,6 +465,32 @@ function dosomething_petitions_mail($key, &$message, $params) {
       $message['headers']['From'] = t('@name <noreply@dosomething.org>', array('@name' => $params['first_name'] . ' ' . $params['last_name']));
       $message['body'][] = theme('ds_petitions_invite', $params);
       break;
+    case 'thanks_for_signing':
+      $message['subject'] = t('!name sent you a message', array('!name' => $params['author']));
+      $message['body'][] = theme('ds_petitions_thanks_for_signing', $params);
+      $message['headers']['From'] = $params['author'] . ' <petitions-no-reply@dosomething.org>';
+      #$message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+      break;
+    case 'petitions_goal_reached':
+      $message['subject'] = t('!name has sent you a message - We made it!', array('!name' => $params['author']));
+      $message['body'][] = theme('petitions_goal_reached', $params);
+      $message['headers']['From'] = $params['author'] . ' <petitions@dosomething.org>';
+      break;
+    case 'petitions_milestone_reached':
+      $message['subject'] = t('!name has sent you a message - Well done', array('!name' => $params['author']));
+      $message['body'][] = theme('ds_petitions_milestone_reached', $params);
+      $message['headers']['From'] = $params['author'] . ' <petitions@dosomething.org>';
+      break;
+    case 'thanks_for_inviting':
+      $message['subject'] = t('!author has sent you a message', array('!author' => $params['author']));
+      $message['body'][] = theme('petitions_thanks_for_inviting', $params);
+      $message['headers']['From'] = $params['author'] . ' <petition@dosomething.org>';
+      break;
+    case 'invite_signed':
+      $message['subject'] = t('You got !invitee to sign', array('!invitee' => $params['invitee']));
+      $message['body'][] = theme('petitions_invitee_signed', $params);
+      $message['headers']['From']  = 'DoSomething.org <help@dosomething.org>';
+      break;
   }
 }
 
@@ -221,6 +503,61 @@ function dosomething_petitions_theme($existing, $type, $theme, $path) {
       'path' => $path . '/templates',
       'variables' => array(),
       'template' => 'ds-petitions-invite',
+    ),
+    'ds_petitions_thanks_for_signing' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'name' => NULL,
+        'petition' => NULL,
+        'petition_link' => NULL,
+        'author' => NULL,
+        'goal' => NULL,
+        'more_to_goal' => NULL
+      ),
+      'template' => 'ds-petitions-thanks-for-signing',
+    ),
+    'petitions_goal_reached' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'name' => NULL,
+        'petition' => NULL,
+        'petition_link' => NULL,
+        'author' => NULL,
+        'petition_recipient' => NULL,
+        'goal' => NULL,
+        'similar_petitions' => NULL
+      ),
+      'template' => 'ds-petitions-goal-reached',
+    ),
+    'petitions_milestone_reached' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'name' => NULL,
+        'petition' => NULL,
+        'petition_link' => NULL,
+        'author' => NULL
+      ),
+      'template' => 'ds-petitions-milestone-reached',
+    ),
+    'petitions_thanks_for_inviting' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'name' => NULL,
+        'petition' => NULL,
+        'author' => NULL,
+        'petition_link' => NULL
+      ),
+      'template' => 'ds-petitions-thanks-for-inviting',
+    ),
+    'petitions_invitee_signed' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'name' => NULL,
+        'petition' => NULL,
+        'invitee' => NULL,
+        'petition_link' => TRUE
+      ),
+      'template' => 'ds-petitions-invitee-signed',
     ),
   );
 }
@@ -264,4 +601,64 @@ function dosomething_petitions_name($nid) {
     'last' => $last_name,
     'full' => $full_name,
   );
+}
+
+function dosomething_petitions_contact_scraper_emails() {
+  $emails = array();
+  $node = node_load(intval(basename(request_uri())));
+
+  $a = user_load($node->uid);
+  $p = profile2_load_by_user($a, 'main');
+  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  if (!trim($author)) {
+    $author = $a->name;
+  }
+
+  $node->link = url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE));
+  $node->goal = number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']);
+
+  // Petitions "client email" link information
+  $e = theme('ds_petitions_invite', array(
+    'title' => $node->title,
+    'nid' => $node->nid,
+    'signatures' => $node->goal,
+    'url' => $node->link,
+    'first_name' => $author
+  ));
+  $emails['petition']['client_email']['title'] = $node->title . t('- Sign the petition!');
+  $emails['petition']['client_email']['body'] = $e;
+
+
+  // Petitions "You've been invited" email
+  $emails['petition']['invited']['group'] = 'dosomething_petitions';
+  $emails['petition']['invited']['email'] = 'petition_invite';
+  $emails['petition']['invited']['params'] = array(
+      'title' => $node->title,
+      'signatures' => $node->goal,
+      'url' => $node->link,
+      'first_name' => $author,
+    );
+  $emails['petition']['invited']['store_function'] = 'dosomething_petitions_store_email';
+
+
+  global $user;
+  $p = profile2_load_by_user($user, 'main');
+  if (isset($p->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+    $me = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    $me = $user->name;
+  }
+
+  // Petitions "Thanks for inviting friends" email
+  $emails['petition']['inviter']['group'] = 'dosomething_petitions';
+  $emails['petition']['inviter']['email'] = 'thanks_for_inviting';
+  $emails['petition']['inviter']['params'] = array(
+    'name' => $me,
+    'petition' => $node->title,
+    'author' => $author,
+    'petition_link' => $node->link . '#contacts'
+  );
+
+  return $emails;
 }

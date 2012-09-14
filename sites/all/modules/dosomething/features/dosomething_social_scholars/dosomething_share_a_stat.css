@@ -97,3 +97,12 @@ input#edit-submit.go-button.form-submit {
 .or-image {
 	margin-top: 10px;
 }
+
+div.dosomething-social-leading-images { text-align: center; }
+div.dosomething-social-leading-images img {
+	margin: 15px;
+}
+
+.or-line {
+	margin: 10px 0px 15px;
+}

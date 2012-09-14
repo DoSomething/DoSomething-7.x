@@ -84,6 +84,17 @@ function dosomething_login_library() {
       array('system', 'jquery'),
     ),
   );
+  $libraries['ds.ajax.popup'] = array(
+    'title' => 'DoSomething Ajax Popup',
+    'js' => array(
+      drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-ajax-popups.js' => array(),
+    ),
+    'dependencies' => array(
+      array('system', 'jquery'),
+      array('system', 'drupal.ajax'),
+      array('system', 'jquery.form'),
+    ),
+  );
   return $libraries;
 }
 

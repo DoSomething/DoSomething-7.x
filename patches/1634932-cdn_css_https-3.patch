@@ -1,0 +1,60 @@
+ cdn.basic.css.inc |   15 ++++++++-------
+ cdn.module        |    8 ++++++++
+ 2 files changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/cdn.basic.css.inc b/cdn.basic.css.inc
+index 1d2f22a..ee6273e 100644
+--- a/cdn.basic.css.inc
++++ b/cdn.basic.css.inc
+@@ -61,11 +61,10 @@ function _cdn_aggregate_css(&$css_groups) {
+  */
+ function _cdn_build_css_cache($css, $suffix = '') {
+   // Create different CSS aggregation maps for HTTP and HTTPS.
+-  $css_cache_var = 'drupal_css_cache_files';
+   $https_mapping = variable_get(CDN_BASIC_MAPPING_HTTPS_VARIABLE, '');
+-  if (!empty($https_mapping) && cdn_serve_from_https()) {
+-    $css_cache_var .= '_https';
+-  }
++  $css_cache_var = (!empty($https_mapping) && cdn_serve_from_https())
++    ? 'cdn_css_cache_files_https'
++    : 'cdn_css_cache_files_http';
+ 
+   $data = '';
+   $uri = '';
+@@ -100,12 +99,14 @@ function _cdn_build_css_cache($css, $suffix = '') {
+ 
+     // Prefix filename to prevent blocking by firewalls which reject files
+     // starting with "ad*".
+-    $filename = 'cdn_css_' . drupal_hash_base64($data) . $suffix . '.css';
++    $filename = 'css_' . drupal_hash_base64($data) . $suffix . '.css';
+     // Create the css/ within the files folder.
+-    $csspath = 'public://css';
++    $csspath = ($css_cache_var == 'cdn_css_cache_files_https')
++      ? 'public://cdn/css/https'
++      : 'public://cdn/css/http';
+     $uri = $csspath . '/' . $filename;
+     // Create the CSS file.
+-    file_prepare_directory($csspath, FILE_CREATE_DIRECTORY);
++    file_prepare_directory($csspath, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
+     if (!file_exists($uri) && !file_unmanaged_save_data($data, $uri, FILE_EXISTS_REPLACE)) {
+       return FALSE;
+     }
+diff --git a/cdn.module b/cdn.module
+index 52a1aa5..3ae14f1 100644
+--- a/cdn.module
++++ b/cdn.module
+@@ -514,6 +514,14 @@ function cdn_exit($destination = NULL) {
+ function cdn_flush_caches() {
+   // Force refresh of the blacklist.
+   cdn_get_blacklist(TRUE);
++
++  // Clear aggregated CSS files for pages served via HTTP.
++  variable_del('drupal_css_cache_files_http');
++  file_scan_directory('public://cdn/css/http', '/.*/', array('callback' => 'drupal_delete_file_if_stale'));
++
++  // Clear aggregated CSS files for pages served via HTTPS.
++  variable_del('drupal_css_cache_files_https');
++  file_scan_directory('public://cdn/css/https', '/.*/', array('callback' => 'drupal_delete_file_if_stale'));
+ }
+ 
+ /**
