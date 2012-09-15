@@ -54,6 +54,13 @@ function dosomething_scholarship_rec_webform_submission_presave($node, &$submiss
         $app = reset(entity_load('webform_submission_entity', array($rec_form)));
         $submission->data[$comp['cid']]['value'][0] = $app->field_webform_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $app->field_webform_last_name[LANGUAGE_NONE][0]['value'];;
       }
+      else if ($comp['form_key'] == 'applicant_email') {
+        $req_form = $_GET['sid'];
+        $req = reset(entity_load('webform_submission_entity', array($req_form)));
+        $app = reset(entity_load('webform_submission_entity', array($req->field_application[LANGUAGE_NONE][0]['target_id'])));
+        $account = user_load($app->uid);
+        $submission->data[$comp['cid']]['value'][0] = $account->mail;
+      }
     }
   }
 }

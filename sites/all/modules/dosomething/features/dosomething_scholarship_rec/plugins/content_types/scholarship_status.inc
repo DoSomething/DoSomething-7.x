@@ -83,7 +83,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
       );
 
       $content['recommendation_status'][$rec_form->nid]['title'] = array(
-        '#markup' => $rec_form->title,
+        '#markup' => "<span>{$rec_form->title}: </span>",
         '#prefix' => '<h4>',
         '#suffix' => '</h4>',
       );
@@ -111,6 +111,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
           ),
         );
         $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-empty';
+        $content['recommendation_status'][$rec_form->nid]['title']['#markup'] .= 'Blank';
       }
       else {
         // get submissions for each request submission
@@ -136,12 +137,14 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
               '#markup' => 'Request pending | ' . l('Resend email', "email-rec-request/{$req_sub->sid}", array('query' => array('destination' => current_path()))),
             );
             $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-incomplete';
+            $content['recommendation_status'][$rec_form->nid]['title']['#markup'] .= 'Sent';
           }
           else {
             $content['recommendation_status'][$rec_form->nid][$req_sub->sid]['rec_received'] = array(
               '#markup' => 'Recommendation received.',
             );
             $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-complete';
+            $content['recommendation_status'][$rec_form->nid]['title']['#markup'] .= 'Received';
           }
         }
       }
