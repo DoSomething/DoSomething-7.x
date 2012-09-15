@@ -157,7 +157,6 @@ function geofield_update_7201(&$sandbox) {
       $table_name = _field_sql_storage_tablename($field);
       $revision_table_name = _field_sql_storage_revision_tablename($field);
 
-      /*
       db_add_field($table_name, $field_name . '_geom', array(
         'type' => 'blob',
         'size' => 'big',
@@ -169,7 +168,6 @@ function geofield_update_7201(&$sandbox) {
         'size' => 'big',
         'not null' => FALSE,
       ));
-       */
 
       // Primary field table
       $table_count = db_query('SELECT COUNT(*) FROM {' . $table_name . '};')->fetchField();
