@@ -133,9 +133,12 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
           $rec_subs = dosomething_scholarship_rec_scholarship_status_load('submission', 'field_rec_request', $params);
 
           if ($rec_subs === FALSE) {
+            $params = array('query' => array('destination' => current_path(), 'sid' => $req_sub->sid));
             $content['recommendation_status'][$rec_form->nid][$req_sub->sid]['request_pending'] = array(
-              '#markup' => 'Request pending | ' . l('Resend email', "email-rec-request/{$req_sub->sid}", array('query' => array('destination' => current_path()))),
+              '#markup' => 'Request pending | ' . l('Resend email', "email-rec-request/{$req_sub->sid}", $params),
             );
+            $content['recommendation_status'][$rec_form->nid][$req_sub->sid]['request_pending']['#markup'] .= ' | ' .
+              l('Edit your recommendation request', "node/{$req_sub->nid}/submission/{$req_sub->sid}/edit", $params);
             $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-incomplete';
             $content['recommendation_status'][$rec_form->nid]['title']['#markup'] .= 'Sent';
           }
