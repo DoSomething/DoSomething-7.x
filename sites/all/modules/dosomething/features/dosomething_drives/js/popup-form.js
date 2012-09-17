@@ -11,6 +11,7 @@
           resizable: false,
           draggable: false,
           modal: true,
+          dialogClass: "invite_friends",
           width: 550,
         });
         return false;
