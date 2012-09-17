@@ -279,9 +279,6 @@ class clubs_export {
       IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(`camp2`.`field_campaign_list_nid`), GROUP_CONCAT(`camp1`.`field_camp_value`)) AS `camps`,
       GROUP_CONCAT(DISTINCT `ogu`.`mail`) AS `member_emails`,
       GROUP_CONCAT(DISTINCT `ogu`.`uid`) AS `member_uids`,
-      #(SELECT COUNT(*) FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`))) AS `pcount`,
-      #(SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `lastcreated`,
-      #(SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` IN () AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `last_joined_campaign`,
       `sc`.name AS `school_name`,
       `sc`.type AS `school_type`,
       `sc`.state AS `school_state`,
@@ -318,7 +315,7 @@ class clubs_export {
     LEFT JOIN `ds_school` AS `sc` ON (`sc`.`sid` = `school`.`field_school_reference_target_id`)
     WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
     GROUP BY nid, node_title ASC
-    ORDER BY `node`.`created` DESC
+    ORDER BY `node`.`created` ASC
     " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
