@@ -38,11 +38,18 @@ function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
       $form['tac'] = $tac;
     }
 
+    if (!isset($form_state['referenced'])) {
+      $u['scholarship_reference']['#webform_component']['value'] = $node->title . ' (' . $node->nid . ')';
+      $u['scholarship_reference']['#default_value'] = $node->title . ' (' . $node->nid . ')';
+      $form_state['referenced'] = TRUE;
+    }
+
     $form['#validate'][] = 'dosomething_mobile_referrals_validate';
     if ($node->type == 'social_scholarship') {
       if (!isset($form_state['nid'])) {
         $form_state['nid'] = $n->nid;
       }
+
       $form['#submit'][] = 'redirect_to_shary_stats';
     }
     else {
