@@ -102,14 +102,13 @@ class export {
     }
 
     $hash = self::get_hash();
-    self::write_stuff($hash, $d);
+    if (self::write_stuff($hash, $d)) {
+      $content = '<div style="background: #d9d9d9; border: 1px solid #000; display: block; height: 30px; border-radius: 5px; padding: 0px;">
+      <div style="background: #D65E5E; height: 30px; width: ' . $p . '%; color: #fefefe; text-align: right; padding: 5px 5px 0px 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;">' . ($p > 0 ? "{$p}%" : '') . '</div>
+      </div>';
 
-    $content = '<div style="background: #d9d9d9; border: 1px solid #000; display: block; height: 30px; border-radius: 5px; padding: 0px;">
-    <div style="background: #D65E5E; height: 30px; width: ' . $p . '%; color: #fefefe; text-align: right; padding: 5px 5px 0px 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;">' . ($p > 0 ? "{$p}%" : '') . '</div>
-    </div>';
-
-    $content .= '<p><strong>Completed ' . $start . ' of ' . $count . ' (' . $p . '%)</strong></p>';
-
+      $content .= '<p><strong>Completed ' . $start . ' of ' . $count . ' (' . $p . '%)</strong></p>';
+    }
 
     if ($p < 100) {
      $addy = $_SERVER['REDIRECT_URL'] . "?page=" . $page . "&hash=" . $hash;
@@ -156,14 +155,23 @@ class export {
   }
 
   public static function write_stuff($hash, &$data) {
+    $c = count($data['results']);
     $info = unserialize(base64_decode($hash));
     $handle = fopen($info['file_path'], 'a');
+    $i = 0;
     foreach ($data['results'] AS $key => $stuff) {
       $stuff = (array) $stuff;
       fputcsv($handle, $stuff);
+      $i++;
     }
 
-    fclose($handle);
+    if ($i == $c) {
+      fclose($handle);
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   public static function get_hash() {
