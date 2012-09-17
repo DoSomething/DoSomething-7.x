@@ -134,10 +134,11 @@ class clubs_export {
     $i = 0;
     $info = unserialize(base64_decode($hash));
     $handle = fopen($info['file_path'], 'a');
+    $c = array();
     foreach ($data['results'] AS $key => $stuff) {
       $stuff = (array) $stuff;
 
-      $c = array(
+      $c[] = array(
         'club id' =>          $stuff['nid'],
         'club name' =>        $stuff['node_title'],
         'not associated with a school' => $stuff['not_associated'],
@@ -169,8 +170,10 @@ class clubs_export {
         'Recent Project' =>   date('Y/m/d', $stuff['lastcreated']),
         'Last joined campaign time' => date('Y/m/d', $stuff['last_joined_campaign'])
       );
+    }
 
-      if (fputcsv($handle, $c)) {
+    foreach ($c AS $key => $data) {
+      if (fputcsv($handle, $data)) {
         $i++;
       }
     }
@@ -574,7 +577,7 @@ function dosomething_clubs_pull_batch_process(&$context) {
         'club name' =>        $stuff['node_title'],
         'not associated with a school' => $stuff['not_associated'],
         'blurb' =>            $stuff['blurb'],
-        'date created' =>     format_date($stuff['created']),
+        'date created' =>     date('Y/m/d', $stuff['created']),
         'user id' =>          $stuff['creator_id'],
         'created by' =>       $stuff['creator'],
         'Owner email' =>      $stuff['creator_email'],
@@ -598,8 +601,8 @@ function dosomething_clubs_pull_batch_process(&$context) {
         'Member Emails' =>    str_replace(',', ', ', $stuff['member_emails']),
         'Member UIDs' =>      str_replace(',', ', ', $stuff['member_uids']),
         '# of Projects' =>    $stuff['pcount'],
-        'Recent Project' =>   format_date($stuff['lastcreated']),
-        'Last joined campaign time' => format_date($stuff['last_joined_campaign'])
+        'Recent Project' =>   date('Y/m/d', $stuff['lastcreated']),
+        'Last joined campaign time' => date('Y/m/d', $stuff['last_joined_campaign'])
       );
 
       unset($context['sandbox']['clubs']["$i"]);

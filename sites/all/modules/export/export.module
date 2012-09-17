@@ -259,6 +259,7 @@ class export {
       $handle = fopen($info['file_path'], 'a');
     }
     $i = 0;
+    $e = array();
     foreach ($data['results'] AS $key => $stuff) {
       if (empty($hash) && !isset($handle) && !strpos(self::$path, $stuff->id)) {
         // The hash is empty so it's likely that we're doing a multi-part export
@@ -267,7 +268,11 @@ class export {
         $handle = fopen(self::$path, 'a');
       }
       $stuff = (array) $stuff;
-      if (fputcsv($handle, $stuff)) {
+      $e[] = $stuff;
+    }
+
+    foreach ($e AS $key => $data) {
+      if (fputcsv($handle, $data)) {
         $i++;
       }
     }
