@@ -137,6 +137,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
             $content['recommendation_status'][$rec_form->nid][$req_sub->sid]['request_pending'] = array(
               '#markup' => 'Request pending | ' . l('Resend email', "email-rec-request/{$req_sub->sid}", $params),
             );
+            $params['query']['sid'] = $sub->sid;
             $content['recommendation_status'][$rec_form->nid][$req_sub->sid]['request_pending']['#markup'] .= ' | ' .
               l('Edit your recommendation request', "node/{$req_sub->nid}/submission/{$req_sub->sid}/edit", $params);
             $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-incomplete';
