@@ -13,6 +13,7 @@ function dosomething_mobile_referrals_implements_alter(&$implementations, $hook)
 
 function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
   if (isset($form_state['build_info']['args'][0]->title) && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form') {
+    $n = menu_get_object();
     drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referrals') . '/css/mobile_referrals.css', array(
         'group' => CSS_THEME,
         'weight' => 10
@@ -38,8 +39,22 @@ function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
     }
 
     $form['#validate'][] = 'dosomething_mobile_referrals_validate';
-    $form['#submit'][] = 'dosomething_mobile_referrals_submit';
+    if ($node->type == 'social_scholarship') {
+      if (!isset($form_state['nid'])) {
+        $form_state['nid'] = $n->nid;
+      }
+      $form['#submit'][] = 'redirect_to_shary_stats';
+    }
+    else {
+      $form['#submit'][] = 'dosomething_mobile_referrals_submit';
+    }
   }
+}
+
+function redirect_to_shary_stats($form, &$form_state) {
+  $nid = $form_state['nid'];
+  $form_state['redirect'] = 'share-these-images/' . $nid;
+  $_GET['redirect'] = 'share-these-images/' . $nid;
 }
 
 function dosomething_mobile_referrals_ajax($form, &$form_state) {
