@@ -6,6 +6,14 @@ function clean_email($email) {
 }
 
 $node = json_decode(base64_decode(($_GET['nid']))); 
+function associate_emails($emails, $names) {
+  foreach ($emails AS $key => $email) {
+    $list["$email"] = $names["$key"];
+  }
+
+  ksort($list);
+  return $list;
+}
 
 if ($_POST['do'] == 'blah') {
   $add = '';
@@ -49,14 +57,16 @@ if ($_POST['do'] == 'blah') {
     $titles = array_slice($titles[1], 1);
     reset($titles);
 
+    $list = associate_emails($emails[1], $titles);
+
     #$res .= '<a href="#" id="check-all">Check all</a> / <a href="#" id="check-none">None</a>';
     $res .= '<ul id="blah">';
-    foreach ($emails[1] AS $key => $email) {
+    foreach ($list AS $email => $name) {
       $res .= '
       <li>
         <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $email . '" id="' . clean_email($email) . '" />
         <strong>' . $email . '</strong>
-        <span>' . $titles["$key"] . '</span>
+        <span>' . $name . '</span>
       </li>';
     }
     $res .= '</ul>';

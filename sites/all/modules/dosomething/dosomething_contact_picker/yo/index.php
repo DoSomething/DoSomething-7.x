@@ -3,6 +3,15 @@
 require 'globals.php';
 require 'oauth_helper.php';
 
+function associate_emails($emails, $names) {
+  foreach ($emails AS $key => $email) {
+    $list["$email"] = $names["$key"];
+  }
+
+  ksort($list);
+  return $list;
+}
+
 class yahooauth {
 	private $callback = 'http://www.dosomething.org/sites/all/modules/dosomething/dosomething_contact_picker/yo';
 	private $consumer_key = 'dj0yJmk9WFlWdUFPZGoxUm1zJmQ9WVdrOVdqbHdWR3BzTTJVbWNHbzlOekUxTkRrMU1UWXkmcz1jb25zdW1lcnNlY3JldCZ4PTQ2';
@@ -72,17 +81,22 @@ class yahooauth {
 	            $name = $this->find_name($person->fields);
 	            foreach ($person->fields AS $key => $data) {
 	                if ($data->type == 'email') {
-				      $res .= '
-				      <li>
-				        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $data->value . '" id="' . $this->clean_email($data->value) . '" />
-				        <strong>' . $data->value . '</strong>
-				        <span>' . $name . '</span>
-				      </li>';
-	                    $list["$name"] = $data->value;     
+	                	$list["{$data->value}"] = $name;
 	                }
 	            }
 	        }
 	    }
+
+	    ksort($list);
+	    foreach ($list AS $email => $name) {
+	      $res .= '
+	      <li>
+	        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $email . '" id="' . $this->clean_email($email) . '" />
+	        <strong>' . $email . '</strong>
+	        <span>' . $name . '</span>
+	      </li>';
+	    }
+
         $res .= '</ul>';
 
         echo '<html>';
