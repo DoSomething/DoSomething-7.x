@@ -74,3 +74,52 @@ body
     +noShadow
   .pane-title
     display: none
+
+// jQuery UI styling for "add to drive" popup
+
+.invite_friends
+  background: #fff
+  padding: 0.5% 2% 2% 2%
+  h2
+    padding: 0 0 0.8em 0
+    text-align: center
+    font-weight: 600
+    font-size: 2em
+  h3
+    font-family: din-web
+    font-size: 3em
+    text-transform: uppercase
+    color: #bbb
+    margin: 50% 0 0 0
+  .invite-module-facebook, .invite-module-or, .invite-module-email
+    width: 43%
+    float: left
+  .invite-module-facebook, .invite-module-or, .invite-module-email
+    p
+      font-size: 0.8em
+  .invite-module-or
+    width: 14%
+  .ui-dialog-titlebar
+    margin: 0 0 0 -5.5%
+  .facebook-action-connect
+    display: block
+    margin: 8% auto 0
+    width: 40%
+  #edit-submit
+    font-family: din-web
+    background: $spitYellow
+    margin: 0 0 0 5%
+    font-size: 1.5em
+    height: 1.4em
+    display: inline-block
+    +noBorder
+    +border-radius(5px)
+    &:hover
+      background: darken($spitYellow, 5)
+
+#edit-friend
+  background: #ddd
+  width: 11em
+  color: #444
+  +border-radius(4px)
+

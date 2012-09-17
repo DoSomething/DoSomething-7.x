@@ -84,6 +84,59 @@ body {
 #cmp .pane-title {
   display: none; }
 
+.invite_friends {
+  background: white;
+  padding: 0.5% 2% 2% 2%; }
+  .invite_friends h2 {
+    padding: 0 0 0.8em 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2em; }
+  .invite_friends h3 {
+    font-family: din-web;
+    font-size: 3em;
+    text-transform: uppercase;
+    color: #bbbbbb;
+    margin: 50% 0 0 0; }
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-or, .invite_friends .invite-module-email {
+    width: 43%;
+    float: left; }
+  .invite_friends .invite-module-facebook p, .invite_friends .invite-module-or p, .invite_friends .invite-module-email p {
+    font-size: 0.8em; }
+  .invite_friends .invite-module-or {
+    width: 14%; }
+  .invite_friends .ui-dialog-titlebar {
+    margin: 0 0 0 -5.5%; }
+  .invite_friends .facebook-action-connect {
+    display: block;
+    margin: 8% auto 0;
+    width: 40%; }
+  .invite_friends #edit-submit {
+    font-family: din-web;
+    background: #ffcb15;
+    margin: 0 0 0 5%;
+    font-size: 1.5em;
+    height: 1.4em;
+    display: inline-block;
+    border: none !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+    .invite_friends #edit-submit:hover {
+      background: #fbc300; }
+
+#edit-friend {
+  background: #dddddd;
+  width: 11em;
+  color: #444444;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
 #cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
@@ -268,9 +321,9 @@ body {
   margin: -2% 0 2% 0; }
   #cmp .already_submitted .go-button {
     margin: 0 0 1% 0; }
-#cmp .drive {
+#cmp #drive {
   text-align: left; }
-#cmp .drive-inf-header, #cmp .drive-info-info, #cmp .drive-share {
+#cmp .drive-info-header, #cmp .drive-info-info, #cmp .drive-share {
   float: left;
   width: 60%; }
 #cmp .drive-info-header {
@@ -359,8 +412,6 @@ body {
 #cmp #faq h4, #cmp #faq li, #cmp #faq p {
   text-align: left;
   padding: 0 0 0 1.5em; }
-#cmp #faq ul, #cmp #faq li, #cmp #faq p {
-  display: none; }
 #cmp #faq h4 {
   color: #7f3f80;
   cursor: pointer;
