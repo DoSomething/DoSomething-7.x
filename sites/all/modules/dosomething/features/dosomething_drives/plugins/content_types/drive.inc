@@ -213,6 +213,8 @@ function dosomething_drives_drive_title($drive, $leader) {
     'div' => array(
       //'#markup' => "$leader's Drive",
       '#markup' => $title,
+      '#prefix' => '<h2>',
+      '#suffix' => '</h2>',
     ),
   );
 }
