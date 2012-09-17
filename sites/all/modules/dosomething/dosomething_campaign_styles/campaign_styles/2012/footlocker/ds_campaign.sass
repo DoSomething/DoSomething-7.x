@@ -747,7 +747,7 @@ hr.gray
     +noBoxShadow
     input
       border: 1px solid #f1f1f1 !important 
-  .field-name-group-audience, .field-name-field-recommendation-form, .field-name-field-application-form  
+  .field-name-group-audience, .field-name-field-recommendation-form, .field-name-field-application-form, .field-type-node-reference  
     display: none
   .formhead
     text-transform: uppercase
@@ -837,10 +837,13 @@ hr.gray
       color: black
       span
         color: $baseColor
+    .send-request
+      margin-top: 6px
     h4
       color: $baseColor    
     li
-      font-size: 14px  
+      font-size: 14px 
+
   .status-incomplete, .status-complete, .status-empty
     padding: 5px 0 0 34px
     margin-bottom: 25px  
@@ -852,7 +855,6 @@ hr.gray
     background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png') no-repeat left center
   .send-request
     font-size: 16px
-    margin-top: 6px
     a
       color: $baseColor
       text-decoration: underline 
@@ -867,8 +869,8 @@ hr.gray
     font-weight: normal
     margin-left: 24px
     background: $baseColor    
-  .indent 
-    margin-left: 15px
+  .the-indent
+    margin-left: 15px 
 
 .fl-bottom-pane
   padding-bottom: 0 !important
