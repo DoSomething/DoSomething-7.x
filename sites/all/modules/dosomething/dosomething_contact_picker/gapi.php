@@ -33,8 +33,11 @@ if ($_POST['do'] == 'blah') {
   $client->setAccessToken($key);
 
   if ($client->getAccessToken()) {
-    $req = new apiHttpRequest('https://www.google.com/m8/feeds/contacts/default/full');
-    $val = $client->getIo()->authenticatedRequest($req);
+    $req = new apiHttpRequest('https://www.google.com/m8/feeds/contacts/default/full?max-results=1000');
+    if (!$val = $client->getIo()->authenticatedRequest($req)) {
+      echo "Please refresh the page and log back in to Google.";
+      exit;
+    }
 
     $response = ($val->getResponseBody());
 
@@ -42,7 +45,7 @@ if ($_POST['do'] == 'blah') {
     preg_match_all('#type\=\'text\'\>([^(<]*)\<\/title\>#i', $response, $titles);
     // Emails
     preg_match_all('#address\=\'([^>\']+)\'#i', $response, $emails);
-    // Unset and reset don't play nicely, so let's just chop the first item.
+    // Unset and reset don't play nicely, so let's just slice the first item.
     $titles = array_slice($titles[1], 1);
     reset($titles);
 

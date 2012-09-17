@@ -67,20 +67,22 @@ class yahooauth {
 	    #$res .= '<a href="#" id="check-all">Check all</a> / <a href="#" id="check-none">None</a>';
         $res .= '<ul id="blah">';
         $list = array();
-        foreach ($contacts->contact AS $key => $person) {
-            $name = $this->find_name($person->fields);
-            foreach ($person->fields AS $key => $data) {
-                if ($data->type == 'email') {
-			      $res .= '
-			      <li>
-			        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $data->value . '" id="' . $this->clean_email($data->value) . '" />
-			        <strong>' . $data->value . '</strong>
-			        <span>' . $name . '</span>
-			      </li>';
-                    $list["$name"] = $data->value;     
-                }
-            }
-        }
+        if (isset($contacts->contact) && !empty($contacts->contact)) {
+	        foreach ($contacts->contact AS $key => $person) {
+	            $name = $this->find_name($person->fields);
+	            foreach ($person->fields AS $key => $data) {
+	                if ($data->type == 'email') {
+				      $res .= '
+				      <li>
+				        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $data->value . '" id="' . $this->clean_email($data->value) . '" />
+				        <strong>' . $data->value . '</strong>
+				        <span>' . $name . '</span>
+				      </li>';
+	                    $list["$name"] = $data->value;     
+	                }
+	            }
+	        }
+	    }
         $res .= '</ul>';
 
         echo '<html>';
