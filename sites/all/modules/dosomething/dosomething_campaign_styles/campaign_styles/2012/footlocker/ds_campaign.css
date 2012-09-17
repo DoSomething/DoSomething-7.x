@@ -773,7 +773,8 @@ hr.gray {
 .page-node-724721 .status-empty {
   background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png") no-repeat left center; }
 .page-node-724721 .send-request {
-  font-size: 16px; }
+  font-size: 16px;
+  margin-top: 6px; }
   .page-node-724721 .send-request a {
     color: #e31837;
     text-decoration: underline; }
@@ -788,6 +789,8 @@ hr.gray {
   font-weight: normal;
   margin-left: 24px;
   background: #e31837; }
+.page-node-724721 .indent {
+  margin-left: 15px; }
 
 .fl-bottom-pane {
   padding-bottom: 0 !important;
