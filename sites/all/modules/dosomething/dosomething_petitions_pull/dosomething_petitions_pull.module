@@ -28,7 +28,7 @@ function dosomething_petitions_pull_export_queries() {
         webform_submissions.sid AS sid,
         `node`.`nid` AS `id`,
         node.title AS `petition_title`,
-        node.submitted AS `webform_submitted`,
+        webform_submissions.submitted AS `webform_submitted`,
         `eoc`.`field_webform_email_or_cell_value` AS `email_or_cell`,
         `fname`.`field_webform_first_name_value` AS `first_name`,
         `lname`.`field_webform_last_name_value` AS `last_name`,
