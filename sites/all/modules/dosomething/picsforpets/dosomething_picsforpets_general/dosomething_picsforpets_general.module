@@ -12,6 +12,10 @@ define('PICSFORPETS_PET_SUBMISSION_NID', variable_get('picsforpets_animal_form_i
 define('PICSFORPETS_CAMPAIGN_SIGNUP_NID', variable_get('picsforpets_campaign_signup_id', 15));
 // The mailchimp list ID for Dosomething Membership mailchimp list.
 define('DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST', 2);
+// The Mobile Commons Opt-In path for furtographers
+define('DOSOMETHING_MC_FURTOGRAPHER', 125281);
+// The Mobile Commons Opt-In path for sharing
+define('DOSOMETHING_MC_PFP_SHARE', 124011);
 
 /**
  * Implements hook_menu().
@@ -171,7 +175,7 @@ function dosomething_picsforpets_general_furtographer_form($form, &$form_state) 
   );
   $form['kit'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Send me an action kit with sweet guides and supplies!'),
+    '#title' => t('Send me an action kit with sweet photo guides and worksheets to help me with my shelter visit!'),
   );
   $form['address'] = array(
     '#prefix' => '<div id="furtographer-address">',
@@ -288,6 +292,9 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
     mailchimp_subscribe_user($list, $email, $params, FALSE);
   }
 
+  // opt in to mobile commons
+  dosomething_general_mobile_commons_subscribe($cell, DOSOMETHING_MC_FURTOGRAPHER);
+
   // Give user role of furtographer
   global $user;
   if ($user->uid) {
@@ -307,7 +314,7 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
     'title' => t('Thanks for sharing!'),
   );
   $form['instructions'] = array(
-    '#markup' => '<div class="sign-up-text">Enter your info and we\'ll send you updates on animals in the gallery</div>',
+    '#markup' => '<div class="sign-up-text">Enter your info and we\'ll send you updates when an animal gets adopted</div>',
   );
   $form['email'] = array(
     '#type' => 'textfield',
@@ -404,6 +411,8 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
     );
     mailchimp_subscribe_user($list, $email, $params, FALSE);
   }
+
+  dosomething_general_mobile_commons_subscribe($cell, DOSOMETHING_MC_PFP_SHARE);
 }
 
 /**

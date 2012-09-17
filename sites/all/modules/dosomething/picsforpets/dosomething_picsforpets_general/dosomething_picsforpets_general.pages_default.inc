@@ -346,7 +346,7 @@ shelter pet pic</div></a>',
       'admin_title' => '',
       'title' => '<h1>For the Fur-tographers</h1>',
       'body' => '<div class="scholarship"><h2>$10,000 Scholarship</h2>
-<div class="submission">For one awesome submission to the gallery</div></div>',
+<div class="submission">$10,000 will be awarded to one awesome photographer that takes and submits a picture to the gallery.<br>Get all the tools you need to submit your own picture by visiting <a href="/fb/pics-for-pets/lets-get-started">Be a Fur-Tographer</a>.</div></div>',
       'format' => '3',
       'substitute' => TRUE,
     );

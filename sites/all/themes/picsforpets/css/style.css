@@ -1662,13 +1662,11 @@ ul.inline, ul.inline li {
   text-align: center;
   text-transform: uppercase;
   height: 200px;
-  width: 200px;
+  width: 212px;
   margin: 18px;
   display: inline;
   float: left;
-  margin-top: 100px;
   font-size: 22px;
-  padding: 0 12px 0 12px;
   border: 1px solid #c9cbcd;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -1679,7 +1677,19 @@ ul.inline, ul.inline li {
 .ie8 .white-block {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bfffffff, endColorstr=#bfffffff);
 }
+.white-block .pane-content {
+  height: 100%;
+}
 .white-block p {
+  height: 100%;
+  margin: 0;
+}
+.white-block a {
+  display: block;
+  height: 100%;
+  padding: 1em 12px 0 12px;
+}
+.white-block a div {
   border-bottom: 1px solid black;
   height: 50px;
 }
@@ -2358,7 +2368,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-fo
   content: url('../images/star.png');
   display: inline;
   float: left;
-  height: 30px;
+  height: 100px;
   padding-right: 6px;
 }
 
