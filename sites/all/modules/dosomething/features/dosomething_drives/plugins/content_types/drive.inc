@@ -318,6 +318,8 @@ function dosomething_drives_drive_invite_module($gid) {
     '#attributes' => array('class' => array('invite-module-or')),
     'content' => array(
       '#markup' => 'or',
+      '#prefix' => '<h3>',
+      '#suffix' => '</h3>',
     ),
   );
 
@@ -328,6 +330,8 @@ function dosomething_drives_drive_invite_module($gid) {
 
   $return['email']['description'] = array(
     '#markup' => 'Enter your friend\'s email and hit Invite!',
+    '#prefix' => '<p>',
+    '#suffix' => '</p>',
   );
   $return['email']['form'] = drupal_get_form('teams_add_member_form', $gid);
 
