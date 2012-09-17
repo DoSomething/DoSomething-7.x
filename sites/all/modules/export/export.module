@@ -19,30 +19,109 @@ function export_menu() {
   return $items;
 }
 
+function not_empty($data) {
+  if (!empty($data)) {
+    return $data;
+  }
+  else {
+    return false;
+  }
+}
+
+function export_narrow($form, &$form_state) {
+  $vals = array_filter(array_values($form_state['values']['options']), 'not_empty');
+  export::narrow_init($vals);
+}
+
 define('DEFAULT_EXPORT_LIMIT', 500);
 class export {
   private static $file;
   public static $inited = false;
 
+  private static $package;
+
   private static $count_query;
   private static $run_queries;
   private static $filename;
 
+  private static $narrow;
+
   private static $limit;
   private static $fields = array();
 
-  public static function init($package, $limit = DEFAULT_EXPORT_LIMIT) {
+  private static $part;
+
+  public static $breakdown = '';
+  private static $path;
+
+  public static function narrow_init(array $breakdown) {
+    self::init(self::$package, self::$limit, $breakdown);
+  }
+
+  public static function init($package, $limit = DEFAULT_EXPORT_LIMIT, $breakdown = '') {
     if ($package) {
       $queries = module_invoke($package, 'export_queries');
       self::$limit = $limit;
       self::$fields = $queries['fields'];
       self::$filename = $queries['filename'];
+      self::$package = $package;
+
+      if (!$_SESSION['started']) {
+        unset($_SESSION['breakdown']);
+      }
+
+      $breakdown = ($_SESSION['breakdown'] ? $_SESSION['breakdown'] : $breakdown);
+      self::$breakdown = $breakdown;
+      $_SESSION['breakdown'] = $breakdown;
 
       if (!self::get_queries()) {
         self::set_queries($queries);
       }
-      return self::run();
+
+      if ($queries['parts'] && !$breakdown) {
+        self::$narrow = $queries['parts'];
+        return self::narrow();
+      }
+
+      return self::run($breakdown);
     }
+  }
+
+  public static function narrow_form() {
+    $form['start'] = array(
+      '#markup' => 'Please select which elements you would like to export:',
+      '#prefix' => '<p>',
+      '#suffix' => '</p>'
+    );
+
+    $options = db_query(self::$narrow)->fetchAllKeyed();
+
+    $form['options'] = array(
+      '#type' => 'checkboxes',
+      '#options' => $options,
+      '#attributes' => array(
+        'checked' => 'checked'
+      )
+    );
+
+    $form['begin'] = array(
+      '#type' => 'submit',
+      '#value' => t('Start export'),
+      '#attributes' => array(
+        'class' => array('go-button')
+      ),
+      '#prefix' => '<p>',
+      '#suffix' => '</p>'
+    );
+
+    $form['#submit'][] = 'export_narrow';
+    return $form;
+  }
+
+  public static function narrow() {
+    // Clean the directory of previously created petitions exports...
+    shell_exec('rm -rf ' . file_directory_temp() . '/petitions_*');
+    return drupal_render(drupal_get_form('export::narrow_form'));
   }
 
   public static function get_queries() {
@@ -71,7 +150,7 @@ class export {
     }
   }
 
-  public static function run() {
+  public static function run($breakdown = '') {
     $page = $limit = 0;
     $page = intval($_GET['page']);
     if (!$page) {
@@ -92,7 +171,7 @@ class export {
     $start = (!$nopage ? ($page * ($limit)) : 0);
     if (!$nopage) { $page++; }
 
-
+    $_SESSION['started'] = true;
     $d = self::the_query($start, $limit);
     $count = self::get_counts();
 
@@ -101,7 +180,11 @@ class export {
       $p = 100;
     }
 
-    $hash = self::get_hash();
+    $hash = '';
+    if (empty($breakdown)) {
+      // If we're not doing this export in parts, continue the normal way.
+      $hash = self::get_hash();
+    }
     if (self::write_stuff($hash, $d)) {
       $content = '<div style="background: #d9d9d9; border: 1px solid #000; display: block; height: 30px; border-radius: 5px; padding: 0px;">
       <div style="background: #D65E5E; height: 30px; width: ' . $p . '%; color: #fefefe; text-align: right; padding: 5px 5px 0px 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;">' . ($p > 0 ? "{$p}%" : '') . '</div>
@@ -114,6 +197,14 @@ class export {
      $addy = $_SERVER['REDIRECT_URL'] . "?page=" . $page . "&hash=" . $hash;
     }
     else {
+      if (self::$breakdown) {
+        $filepath = file_directory_temp() . '/' . self::$filename;
+        $hash = base64_encode(serialize(array(
+          'filename' => basename($filepath),
+          'file_path' => $filepath,
+          'part' => TRUE
+        )));
+      }
      $addy = '/admin/export/' . $hash;
     }
 
@@ -129,19 +220,26 @@ class export {
     }
 
     drupal_add_http_header('Content-Type', 'text/csv; utf-8');
-    drupal_add_http_header('Content-Disposition', 'attachment; filename=' . $info['filename'], TRUE);
+    drupal_add_http_header('Content-Disposition', 'attachment; filename=' . $info['filename'] . ($info['part'] ? '.zip' : ''), TRUE);
 
     drupal_add_http_header('Cache-Control', 'max-age=300; must-revalidate');
 
-    readfile($info['file_path']);
+    readfile($info['file_path'] . ($info['part'] ? '.zip' : ''));
     exit;
   }
 
   public static function finished($data) {
-    $info = unserialize(base64_decode($data));
-    if (empty($info['file_path']) || empty($info['filename'])) {
-      return t("Sorry, your file couldn't be created (file information not passed).");
-    }
+      $info = unserialize(base64_decode($data));
+      if (empty($info['file_path']) || empty($info['filename'])) {
+        return t("Sorry, your file couldn't be created (file information not passed).");
+      }
+
+      unset($_SESSION['started']);
+
+      if (isset($info['part'])) {
+        $filepath = file_directory_temp() . '/' . $info['filename'];
+        shell_exec('zip -j ' . $filepath . ' ' . $filepath . '*');
+      }
 
     $redirect = base_path() . 'admin/export/file/' . $data;
     drupal_add_js('setTimeout(function() { window.location.href = "' . $redirect . '"; }, 2000);', 'inline');
@@ -156,13 +254,22 @@ class export {
 
   public static function write_stuff($hash, &$data) {
     $c = count($data['results']);
-    $info = unserialize(base64_decode($hash));
-    $handle = fopen($info['file_path'], 'a');
+    if (!empty($hash)) {
+      $info = unserialize(base64_decode($hash));
+      $handle = fopen($info['file_path'], 'a');
+    }
     $i = 0;
     foreach ($data['results'] AS $key => $stuff) {
+      if (empty($hash) && !isset($handle) && !strpos(self::$path, $stuff->id)) {
+        // The hash is empty so it's likely that we're doing a multi-part export
+        // Load / create the correct file and continue!
+        self::$path = file_directory_temp() . '/' . self::$filename . '-' . $stuff->id . '.csv';
+        $handle = fopen(self::$path, 'a');
+      }
       $stuff = (array) $stuff;
-      fputcsv($handle, $stuff);
-      $i++;
+      if (fputcsv($handle, $stuff)) {
+        $i++;
+      }
     }
 
     if ($i == $c) {
@@ -179,7 +286,7 @@ class export {
       $filename = self::$filename;
       $h = array(
         'filename' => $filename,
-        'file_path' => file_directory_temp() . '/' . $filename
+        'file_path' => file_directory_temp() . '/' . $filename . '.csv'
       );
 
       $field_labels = self::$fields;
@@ -204,7 +311,7 @@ class export {
   public static function get_counts() {
     static $context;
     $counts = db_query(
-      self::$count_query
+      self::$count_query . (self::$breakdown ? ' AND `node`.`nid` IN (' . implode(',', self::$breakdown) . ')' : '')
     );
 
     $count = $counts->rowCount();
@@ -212,7 +319,7 @@ class export {
   }
 
   public static function the_query($limit = 0, $offset = 0, $return_query = FALSE) {
-    $query = self::$run_queries . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
+    $query = self::$run_queries . (self::$breakdown ? ' AND `node_webform_submissions`.`nid` IN (' . implode(',', self::$breakdown) . ')' : '') . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
       if ($return_query) {
