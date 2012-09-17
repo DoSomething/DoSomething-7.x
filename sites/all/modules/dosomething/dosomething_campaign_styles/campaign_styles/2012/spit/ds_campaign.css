@@ -148,6 +148,13 @@ body {
   line-height: 17px; }
 #cmp input[type="submit"] {
   font-size: 2em; }
+#cmp a {
+  color: #ffcb15; }
+  #cmp a:hover {
+    color: #c89b00; }
+#cmp a.mango {
+  background: rgba(127, 63, 128, 0.6);
+  color: white; }
 #cmp .divider {
   color: white; }
 #cmp .legal {
@@ -195,20 +202,20 @@ body {
   border-radius: 5px; }
   #cmp .go-button:hover, #cmp #edit-submit:hover {
     color: #562b57; }
-#cmp .header {
+#cmp #header {
   background: url("assets/brad.jpg");
   background-position: 29% -120%;
   padding: 0; }
-  #cmp .header h1, #cmp .header h2 {
+  #cmp #header h1, #cmp #header h2 {
     text-align: left;
     color: #ffcb15; }
-  #cmp .header span {
+  #cmp #header span {
     text-align: center;
     background: #7f3f80;
     background: rgba(127, 63, 128, 0.6); }
-  #cmp .header .tagline {
+  #cmp #header .tagline {
     padding: 2%; }
-#cmp .webform {
+#cmp #webform {
   margin: 10% 0 0 0;
   background: black;
   background: rgba(0, 0, 0, 0.3);
@@ -273,27 +280,27 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   border-bottom: 1px solid #eeeeee; }
-#cmp .action img {
+#cmp #action img {
   display: block;
   margin: 5% auto; }
 #cmp .go-button {
   position: static; }
-#cmp .content-leader {
+#cmp #content-leader {
   text-align: left; }
-  #cmp .content-leader h1 {
+  #cmp #content-leader h1 {
     font-size: 1.5em;
     margin: 0 0 0 -1em; }
-  #cmp .content-leader ul {
+  #cmp #content-leader ul {
     padding: 0.5em 1em; }
-  #cmp .content-leader li {
+  #cmp #content-leader li {
     list-style: disc; }
-  #cmp .content-leader b {
+  #cmp #content-leader b {
     color: #7f3f80;
     background: #ffcb15;
     width: 10em;
     display: block;
     text-align: center; }
-  #cmp .content-leader strong {
+  #cmp #content-leader strong {
     color: #7f3f80; }
 #cmp .center_img {
   margin: 0 auto;
@@ -304,29 +311,29 @@ body {
   left: 27%; }
   #cmp .print-pdf img {
     width: 37.5%; }
-#cmp .scholarship {
+#cmp #scholarship {
   overflow: visible; }
-  #cmp .scholarship h1 {
+  #cmp #scholarship h1 {
     color: #ffcb15; }
-  #cmp .scholarship p {
+  #cmp #scholarship p {
     color: white; }
-  #cmp .scholarship label, #cmp .scholarship input[type="text"] {
+  #cmp #scholarship label, #cmp #scholarship input[type="text"] {
     height: 25px;
     padding: 0.5em 0;
     margin: 0.8% 0;
     width: 50%;
     text-align: left; }
-  #cmp .scholarship label {
+  #cmp #scholarship label {
     float: left;
     clear: left;
     color: white; }
-  #cmp .scholarship input[type="text"], #cmp .scholarship input[type="submit"] {
+  #cmp #scholarship input[type="text"], #cmp #scholarship input[type="submit"] {
     float: right;
     clear: right; }
-  #cmp .scholarship .go-button {
+  #cmp #scholarship .go-button {
     margin: 4% 0 1% 0;
     padding: 0.1em 0.7em; }
-  #cmp .scholarship #campaign-opt-in {
+  #cmp #scholarship #campaign-opt-in {
     color: #4c264d;
     text-align: left; }
 #cmp .refer5 {
@@ -347,19 +354,19 @@ body {
     border-color: transparent transparent #3b1d3c #3b1d3c;
     right: -22px;
     top: 43px; }
-#cmp .impact .go-button {
+#cmp #impact .go-button {
   margin: 2% 0 1% 0; }
-#cmp .faq h4, #cmp .faq li, #cmp .faq p {
+#cmp #faq h4, #cmp #faq li, #cmp #faq p {
   text-align: left;
   padding: 0 0 0 1.5em; }
-#cmp .faq ul, #cmp .faq li, #cmp .faq p {
+#cmp #faq ul, #cmp #faq li, #cmp #faq p {
   display: none; }
-#cmp .faq h4 {
+#cmp #faq h4 {
   color: #7f3f80;
   cursor: pointer;
   background: url("assets/faq2.png");
   background-repeat: no-repeat; }
-#cmp .faq h1 {
+#cmp #faq h1 {
   font-size: 2em;
   font-family: din-web;
   text-transform: uppercase;
@@ -368,7 +375,7 @@ body {
   background-position: 50% 0.7em;
   padding: 0 0 1em 0;
   margin: 0 0 -1em 0; }
-#cmp .faq .go-button {
+#cmp #faq .go-button {
   margin: 0 0 1% 0; }
 #cmp .activeFAQ {
   background-position-y: -27px; }

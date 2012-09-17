@@ -13,7 +13,7 @@
     attach: function (context, settings) {
 
   var contactForm = $('.pane-campaign-sign-up');
-  $('.webform').append(contactForm);
+  $('#webform').append(contactForm);
 
   // drupal, eat your heart out
 
@@ -61,6 +61,14 @@
 //      });
 //    }); 
 //  });
+
+  var headerLinks = $('#action, #content-infographic, #content-leader, #faq, #header, #impact, #scholarship, #search, #webform');
+
+  $(headerLinks).click(function (event) {
+    $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
+    return false;
+  });
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
