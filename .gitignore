@@ -14,4 +14,4 @@ tag
 sites/all/modules/livereload/
 
 # Ignore sass-cache
-*/.sass-cache
+.sass-cache
