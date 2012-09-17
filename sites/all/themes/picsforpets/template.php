@@ -9,6 +9,7 @@ function picsforpets_preprocess_page(&$variables) {
 
   // On the landing page, don't add the footer menu.
   if (arg(0) == 'fb' && arg(1) == 'pics-for-pets' && !arg(2)) {
+    drupal_add_js(drupal_get_path('theme', 'picsforpets') . '/js/wholePageClick.js');
     return;
   }
   else {
@@ -53,6 +54,9 @@ function picsforpets_preprocess_page(&$variables) {
           ),
         ),
       );
+    }
+    if (arg(0) == 'fb' && arg(1) == 'pics-for-pets' && arg(2) == 'questions') {
+      drupal_add_js(drupal_get_path('theme', 'picsforpets') . '/js/CollapseOverride.js', array('group' => JS_THEME));
     }
   }
 }

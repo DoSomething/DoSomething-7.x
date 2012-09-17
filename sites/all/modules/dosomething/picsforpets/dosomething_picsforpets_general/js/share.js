@@ -26,7 +26,7 @@ Drupal.behaviors.dsPfpShare = {
       name: 'DoSomething.org\'s Pics For Pets',
       link: shareUrl,
       picture: pictureUrl,
-      caption: petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
+      caption: petName + " I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
       description: "Do Something about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"
     };
 

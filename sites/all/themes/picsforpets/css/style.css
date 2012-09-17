@@ -1553,17 +1553,15 @@ ul.inline, ul.inline li {
   min-height: 800px;
   margin: auto;
   padding-bottom: 20px;
-}
-
-body {
   background: #d6eef3 url(../images/bg.png) no-repeat;
   background-position: center;
 }
 
-.pics-for-pets-home #page {
+.pics-for-pets-home div[role="main"] {
   background: url(../images/pitbull-bg.png) no-repeat;
   background-position: 0 -350px;
-  padding-bottom: 12px;
+  margin-top: -180px;
+  padding-top: 180px;
 }
 
 #logo {

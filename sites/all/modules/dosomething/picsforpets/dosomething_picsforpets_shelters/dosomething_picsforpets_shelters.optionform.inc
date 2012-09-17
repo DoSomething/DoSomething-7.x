@@ -174,7 +174,6 @@ function dosomething_picsforpets_shelters_select_shelter_validate($form, &$form_
     'city' => t('City'),
     'state' => t('State'),
     'shelter_zip' => t('Zip'),
-    'hours' => t('Hours'),
   );
   $errors = FALSE;
   foreach ($address_elements as $field => $title) {

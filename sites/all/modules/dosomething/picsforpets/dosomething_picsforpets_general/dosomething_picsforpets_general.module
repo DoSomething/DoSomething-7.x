@@ -524,7 +524,6 @@ function dosomething_picsforpets_general_form_alter(&$form, &$form_state, $form_
     array('city'),
     array('state'),
     array('shelter_zip'),
-    array('hours'),
   );
   $form['shelter-popup']['results']['view_more_button']['#limit_validation_errors'] = array();
   // END supression of validation errors.

@@ -404,7 +404,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
       'title' => 'Fur-tographer Materials',
       'body' => 'Everything you need to bring with you to the shelter
 
-<a href="/sites/default/files/Pics_For_Pets_Action_Kit.zip" class="button download">Download</a>',
+<a href="http://files.dosomething.org/files/Pics_For_Pets_Action_Kit.pdf" class="button download" target="_blank">Download</a>',
       'format' => '1',
       'substitute' => TRUE,
     );
@@ -431,7 +431,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Video',
       'title' => '',
-      'body' => '<iframe width="300" height="225" src="http://www.youtube.com/embed/QZR_6K03gWk" frameborder="0" allowfullscreen></iframe>',
+      'body' => '<iframe width="300" height="225" src="http://www.youtube.com/embed/N7PijXEAzOg" frameborder="0" allowfullscreen></iframe>',
       'format' => '3',
       'substitute' => TRUE,
     );
