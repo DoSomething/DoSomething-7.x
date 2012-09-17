@@ -601,9 +601,10 @@ function dosomething_roles_get_action_update_count($uid, $timestamp, $draft = FA
   $node_types = dosomething_roles_get_action_update_types();
   try {
     $query = db_select('webform_submissions', 'w');
+    $query->addExpression('COUNT(*)');
     $query->innerJoin('node', 'n', 'w.nid = n.nid');
     $query->leftJoin('field_data_field_project_type', 'pt', 'w.sid = pt.entity_id');
-    $query->fields('w', array('sid'))
+    $query
       ->condition('w.uid', $uid, '=')
       ->condition('n.type', $node_types, 'IN')
       ->condition('w.is_draft', (int) $draft)
@@ -612,7 +613,7 @@ function dosomething_roles_get_action_update_count($uid, $timestamp, $draft = FA
       // We can directly place in the values with the where.
       ->where('pt.field_project_type_value IS NULL OR pt.field_project_type_value != 2')
       ->where("pt.entity_type IS NULL OR pt.entity_type = 'webform_submission_entity'");
-    return $query->execute()->rowCount();
+    return $query->execute()->fetchField();
   }
   catch (Exception $e) {
     return NULL;
