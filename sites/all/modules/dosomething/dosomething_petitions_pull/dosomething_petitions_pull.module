@@ -42,10 +42,14 @@ function dosomething_petitions_pull_export_queries() {
       LEFT JOIN `field_data_field_webform_last_name` AS `lname` ON (`lname`.`entity_id` = `webform_submissions`.`sid`)
       LEFT JOIN `field_data_field_webform_petition_signature` AS `posted` ON (`posted`.`entity_id` = `webform_submissions`.`sid`)
       LEFT JOIN `field_data_field_webform_petition_reason` AS `reason` ON (`reason`.`entity_id` = `webform_submissions`.`sid`)
-      WHERE `node`.type IN ('petition')"
+      WHERE `node`.type IN ('petition')
+      %exportwhere
+      ORDER BY `submitted` ASC
+      "
     ),
     'fields' => array(
       'Submission ID',
+      'Petition ID',
       'Petition title',
       'Submitted Time',
       'Email or Cell',

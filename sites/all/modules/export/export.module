@@ -219,7 +219,7 @@ class export {
       return 'Access denied!';
     }
 
-    drupal_add_http_header('Content-Type', 'text/csv; utf-8');
+    drupal_add_http_header('Content-Type', ($info['part'] ? 'application/octet-stream', 'text/csv; utf-8'));
     drupal_add_http_header('Content-Disposition', 'attachment; filename=' . $info['filename'] . ($info['part'] ? '.zip' : ''), TRUE);
 
     drupal_add_http_header('Cache-Control', 'max-age=300; must-revalidate');
@@ -319,7 +319,15 @@ class export {
   }
 
   public static function the_query($limit = 0, $offset = 0, $return_query = FALSE) {
-    $query = self::$run_queries . (self::$breakdown ? ' AND `node`.`nid` IN (' . implode(',', self::$breakdown) . ')' : '') . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
+    $query = self::$run_queries;
+    if (self::$breakdown) {
+      $query = str_replace('%exportwhere', ' AND `node`.`nid` IN (' . implode(',', self::$breakdown) . ')', $query);
+    }
+    else {
+      $query = str_replace('%exportwhere', '', $query);
+    }
+
+    $query .= (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
       if ($return_query) {
