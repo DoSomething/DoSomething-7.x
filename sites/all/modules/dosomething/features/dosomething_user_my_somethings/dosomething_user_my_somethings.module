@@ -189,15 +189,13 @@ function dosomething_user_my_somethings_make_links($config, $uid, $era) {
     $c = $config[$type];
     $items[$type] = array('data' => $c['title'], 'children' => array());
     foreach ($somethings as $s) {
-      if (is_object($s) && isset($s->{$c['title_field']})) {
-        $title = filter_xss($s->{$c['title_field']});
-        $replacements = array();
-        foreach ($c['link_id_fields'] as $field) {
-          $replacements['%' . $field] = $s->$field;
-        }
-        $link = strtr($c['link_path'], $replacements);
-        $items[$type]['children'][] = l($title, $link);
+      $title = filter_xss($s->{$c['title_field']});
+      $replacements = array();
+      foreach ($c['link_id_fields'] as $field) {
+        $replacements['%' . $field] = $s->$field;
       }
+      $link = strtr($c['link_path'], $replacements);
+      $items[$type]['children'][] = l($title, $link);
     }
   }
 
@@ -229,14 +227,12 @@ function dosomething_user_my_somethings_my_current_somethings() {
       'link_path' => 'node/%report_back_entity_id',
       'link_id_fields' => array('report_back_entity_id'),
     ),
-  );
-  $somethings_info += array(
     'club' => array(
       'title' => t('Clubs'),
       'title_field' => 'title',
       'link_path' => 'node/%nid',
       'link_id_fields' => array('nid'),
-    )
+    ),
   );
   $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'current');
 
@@ -292,12 +288,6 @@ function dosomething_user_my_somethings_my_past_somethings() {
       'link_path' => 'node/%campaign_entity_id',
       'link_id_fields' => array('campaign_entity_id'),
     ),
-    /*'club' => array(
-      'title' => t('Clubs'),
-      'title_field' => 'title',
-      'link_path' => 'node/%nid',
-      'link_id_fields' => array('nid'),
-    )*/
   );
   $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'past');
 
@@ -483,7 +473,6 @@ function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
 
   if ($era == 'past') {
     $somethings['campaign_report_back'] = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
-    #$somethings['club'] = dosomething_user_my_somethings_get_user_group_memberships($uid, 'club');
   }
   else if ($era == 'current') {
     $somethings['campaign_report_back'] = dosomething_user_my_somethings_campaign_report_backs_needed($uid);
