@@ -142,7 +142,7 @@ class clubs_export {
         'club name' =>        $stuff['node_title'],
         'not associated with a school' => $stuff['not_associated'],
         'blurb' =>            $stuff['blurb'],
-        'date created' =>     format_date($stuff['created']),
+        'date created' =>     date('Y/m/d', $stuff['created']),
         'user id' =>          $stuff['creator_id'],
         'created by' =>       $stuff['creator'],
         'Owner email' =>      $stuff['creator_email'],
@@ -166,8 +166,8 @@ class clubs_export {
         'Member Emails' =>    str_replace(',', ', ', $stuff['member_emails']),
         'Member UIDs' =>      str_replace(',', ', ', $stuff['member_uids']),
         '# of Projects' =>    $stuff['pcount'],
-        'Recent Project' =>   format_date($stuff['lastcreated']),
-        'Last joined campaign time' => format_date($stuff['last_joined_campaign'])
+        'Recent Project' =>   date('Y/m/d', $stuff['lastcreated']),
+        'Last joined campaign time' => date('Y/m/d', $stuff['last_joined_campaign'])
       );
 
       if (fputcsv($handle, $c)) {
@@ -318,7 +318,7 @@ class clubs_export {
     LEFT JOIN `ds_school` AS `sc` ON (`sc`.`sid` = `school`.`field_school_reference_target_id`)
     WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
     GROUP BY nid, node_title ASC
-    ORDER BY node_title ASC
+    ORDER BY `node`.`created` DESC
     " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
