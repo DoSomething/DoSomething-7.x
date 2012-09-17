@@ -21,12 +21,12 @@ function picsforpets_preprocess_page(&$variables) {
     $links[] = array(
       'title' => 'Prizes',
       'href' => 'fb/pics-for-pets/prizes-and-scholarships',
-      'attributes' => array('class' => array('footer-prizes')),
+      'attributes' => array('class' => array('footer-furtography', 'footer-prizes')),
     );
     $links[] = array(
       'title' => 'Be a Fur-tographer',
       'href' => 'fb/pics-for-pets/lets-get-started',
-      'attributes' => array('class' => array('footer-furtography', 'pics-for-pets-modal')),
+      'attributes' => array('class' => array('pics-for-pets-modal')),
     );
     $links[] = array(
       'title' => 'Questions',

@@ -144,7 +144,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Sorry about that! Email animals@dosomething.org with any additional questions and Greg or April will get back to you as soon as possible.'),
+    '#children' => t('Sorry about that! Email !email with any additional questions and Greg or April will get back to you as soon as possible.', array('!email' => l('picsforpets@dosomething.org', 'mailto:picsforpets@dosomething.org'))),
   );
   return $page;
 }
