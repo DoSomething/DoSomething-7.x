@@ -431,7 +431,7 @@ function dosomething_fb_apps_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Video',
       'title' => '',
-      'body' => '<iframe width="300" height="225" src="http://www.youtube.com/embed/N7PijXEAzOg" frameborder="0" allowfullscreen></iframe>',
+      'body' => '<iframe width="300" height="225" src="http://www.youtube.com/embed/yb5XalDWKPw" frameborder="0" allowfullscreen></iframe>',
       'format' => '3',
       'substitute' => TRUE,
     );

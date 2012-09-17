@@ -72,7 +72,7 @@ function dosomething_picsforpets_general_default_page_manager_pages() {
       'title' => '',
       'body' => '<a href="/fb/pics-for-pets/shelter-search"><div>Find a shelter<br />
 near you</div></a>',
-      'format' => '1',
+      'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -99,7 +99,7 @@ near you</div></a>',
       'admin_title' => '',
       'title' => '',
       'body' => '<a href="/fb/pics-for-pets/action-guide"><div>Get the guide</div></a>',
-      'format' => '1',
+      'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -127,7 +127,7 @@ near you</div></a>',
       'title' => '',
       'body' => '<a href="/fb/pics-for-pets/submit-pet-picture"><div>Submit your<br />
 shelter pet pic</div></a>',
-      'format' => '1',
+      'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -345,7 +345,7 @@ shelter pet pic</div></a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '<h1>For the Fur-tographers</h1>',
-      'body' => '<div class="scholarship"><h2>$10,000 Scholarship</h2>
+      'body' => '<div class="scholarship"><h2><a href="/fb/pics-for-pets/lets-get-started">$10,000 Scholarship</a></h2>
 <div class="submission">$10,000 will be awarded to one awesome photographer that takes and submits a picture to the gallery.<br>Get all the tools you need to submit your own picture by visiting <a href="/fb/pics-for-pets/lets-get-started">Be a Fur-Tographer</a>.</div></div>',
       'format' => '3',
       'substitute' => TRUE,
