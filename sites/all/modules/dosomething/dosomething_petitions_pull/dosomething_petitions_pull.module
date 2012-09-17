@@ -26,9 +26,9 @@ function dosomething_petitions_pull_export_queries() {
     'run' => array(
       "SELECT
         webform_submissions.sid AS sid,
-        `node_webform_submissions`.`nid` AS `id`,
-        node_webform_submissions.title AS `petition_title`,
-        webform_submissions.submitted AS `webform_submitted`,
+        `node`.`nid` AS `id`,
+        node.title AS `petition_title`,
+        node.submitted AS `webform_submitted`,
         `eoc`.`field_webform_email_or_cell_value` AS `email_or_cell`,
         `fname`.`field_webform_first_name_value` AS `first_name`,
         `lname`.`field_webform_last_name_value` AS `last_name`,
@@ -36,13 +36,13 @@ function dosomething_petitions_pull_export_queries() {
         `reason`.`field_webform_petition_reason_value` AS `reason_for_signing`
       FROM 
       `webform_submissions` webform_submissions
-      INNER JOIN `node` node_webform_submissions ON webform_submissions.nid = node_webform_submissions.nid
+      INNER JOIN `node` node ON webform_submissions.nid = node.nid
       LEFT JOIN `field_data_field_webform_email_or_cell` AS `eoc` ON (`eoc`.`entity_id` = `webform_submissions`.`sid`)
       LEFT JOIN `field_data_field_webform_first_name` AS `fname` ON (`fname`.`entity_id` = `webform_submissions`.`sid`)
       LEFT JOIN `field_data_field_webform_last_name` AS `lname` ON (`lname`.`entity_id` = `webform_submissions`.`sid`)
       LEFT JOIN `field_data_field_webform_petition_signature` AS `posted` ON (`posted`.`entity_id` = `webform_submissions`.`sid`)
       LEFT JOIN `field_data_field_webform_petition_reason` AS `reason` ON (`reason`.`entity_id` = `webform_submissions`.`sid`)
-      WHERE `node_webform_submissions`.type IN ('petition')"
+      WHERE `node`.type IN ('petition')"
     ),
     'fields' => array(
       'Submission ID',

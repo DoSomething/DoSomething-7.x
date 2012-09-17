@@ -73,23 +73,26 @@ class clubs_export {
     }
 
     $hash = self::get_hash();
-    self::write_stuff($hash, $d);
+    if (self::write_stuff($hash, $d)) {
+      $content = '<div style="background: #d9d9d9; border: 1px solid #000; display: block; height: 30px; border-radius: 5px; padding: 0px;">
+      <div style="background: #D65E5E; height: 30px; width: ' . $p . '%; color: #fefefe; text-align: right; padding: 5px 5px 0px 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;">' . ($p > 0 ? "{$p}%" : '') . '</div>
+      </div>';
 
-    $content = '<div style="background: #d9d9d9; border: 1px solid #000; display: block; height: 30px; border-radius: 5px; padding: 0px;">
-    <div style="background: #D65E5E; height: 30px; width: ' . $p . '%; color: #fefefe; text-align: right; padding: 5px 5px 0px 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;">' . ($p > 0 ? "{$p}%" : '') . '</div>
-    </div>';
-
-    $content .= '<p><strong>Completed ' . $start . ' of ' . $count . ' clubs (' . $p . '%)</strong></p>';
+      $content .= '<p><strong>Completed ' . $start . ' of ' . $count . ' clubs (' . $p . '%)</strong></p>';
 
 
-    if ($p < 100) {
-     $addy = $_SERVER['REDIRECT_URL'] . "?page=" . $page . "&hash=" . $hash;
+      if ($p < 100) {
+       $addy = $_SERVER['REDIRECT_URL'] . "?page=" . $page . "&hash=" . $hash;
+      }
+      else {
+       $addy = '/admin/clubs-pull/export/finished/' . $hash;
+      }
+
+      $content .= "<script> window.location.href = '" . $addy . "' </script>";
     }
     else {
-     $addy = '/admin/clubs-pull/export/finished/' . $hash;
+      $content .= '<p>There was an error.</p>';
     }
-
-    $content .= "<script> window.location.href = '" . $addy . "' </script>";
 
     return $content;
   }
@@ -127,6 +130,8 @@ class clubs_export {
   }
 
   public static function write_stuff($hash, &$data) {
+    $count = count((array)$data['results']);
+    $i = 0;
     $info = unserialize(base64_decode($hash));
     $handle = fopen($info['file_path'], 'a');
     foreach ($data['results'] AS $key => $stuff) {
@@ -165,10 +170,15 @@ class clubs_export {
         'Last joined campaign time' => format_date($stuff['last_joined_campaign'])
       );
 
-      fputcsv($handle, $c);
+      if (fputcsv($handle, $c)) {
+        $i++;
+      }
     }
 
-    fclose($handle);
+    if ($i == $count) {
+      fclose($handle);
+      return true;
+    }
   }
 
   public static function get_hash() {
@@ -267,8 +277,8 @@ class clubs_export {
       `zip`.`field_club_zip_value` AS `zip`,
       COUNT(DISTINCT og_membership_og.etid) AS `member_count`,
       IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(`camp2`.`field_campaign_list_nid`), GROUP_CONCAT(`camp1`.`field_camp_value`)) AS `camps`,
-      GROUP_CONCAT(`ogu`.`mail`) AS `member_emails`,
-      GROUP_CONCAT(`ogu`.`uid`) AS `member_uids`,
+      GROUP_CONCAT(DISTINCT `ogu`.`mail`) AS `member_emails`,
+      GROUP_CONCAT(DISTINCT `ogu`.`uid`) AS `member_uids`,
       #(SELECT COUNT(*) FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`))) AS `pcount`,
       #(SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `lastcreated`,
       #(SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` IN () AND `uid` IN (GROUP_CONCAT(`ogu`.`uid`)) ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `last_joined_campaign`,
