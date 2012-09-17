@@ -29,6 +29,9 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'home', 'href' => 'footlocker'),
-    array('title' => 'Last Year\'s Winners', 'href' => 'footlocker', 'fragment' => 'fl-winners'),
+    array('title' => 'about', 'href' => 'footlocker/about'),
+    array('title' => 'apply', 'href' => 'footlocker/apply'),
+    array('title' => 'previous winners', 'href' => 'footlocker/previous-winners'),
+    array('title' => 'faq', 'href' => 'footlocker/faq'),
   ),
 );
