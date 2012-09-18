@@ -2,9 +2,9 @@
   // do stuff
   Drupal.behaviors.driveModulePopup = {
     attach: function (context, settings) {
-      $module = $('.invite-module');
+      $module = $('.invite-module').not('.popup-processed').addClass('popup-processed');
       $module.hide();
-      $trigger = $('.trigger-invite-popup');
+      $trigger = $('.trigger-invite-popup').not('.popup-processed').addClass('popup-processed');
 
       $trigger.click(function () {
         $module.dialog({
