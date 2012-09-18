@@ -4617,11 +4617,6 @@ h2.block-title, h2.pane-title {
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ui-dialog .ui-dialog-titlebar {
   padding: 0;
 }
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ui-icon.ui-icon-closethick,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ui-icon.ui-icon-closethick {
-  top: -22px;
-  right: -502px;
-}
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="text"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] input[type="textarea"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="text"],
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] input[type="textarea"] {
