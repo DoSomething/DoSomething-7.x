@@ -266,7 +266,7 @@ function dosomething_petitions_opt_in($form, $form_state) {
  */
 function dosomething_petitions_register($form, &$form_state) {
   $is_user = dosomething_general_load_user_by_mail_or_cell($form['#submission']->submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']);
-echo '<pre>', print_r($sub), '</pre>'; exit;
+
   $is_user = ($is_user !== FALSE);
 
   $commands = array();
