@@ -29,12 +29,20 @@ function dosomething_webform_node_load($nodes, $types) {
 function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
   $node_types = array('grant_application', 'scholarship_application');
   if (strpos($form_id, 'webform_client_form_') === 0) {
+
+    // Add the form submit handler for mailchimp IFF we're on a submission form
+    // for a webform node from the 'Webform' bundle.
+    if (isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] === 'webform') {
+      $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
+    }
+
     if (in_array($form['#node']->type, $node_types)) {
       if (isset($form['actions']['draft'])) {
         $form['actions']['draft']['#validate'][] = 'dosomething_webform_webform_submission_draft_validate';
       }
       $form['#validate'][] = 'dosomething_webform_webform_validate';
     }
+
     // Alter the button values for all webforms.
     if (isset($form['actions']['previous'])) {
       $form['actions']['previous']['#value'] = t('Back');
