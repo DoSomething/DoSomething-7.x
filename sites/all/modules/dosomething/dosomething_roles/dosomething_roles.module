@@ -68,7 +68,7 @@ function dosomething_roles_demote_expired_users() {
     foreach ($results['profile2'] as $profile_data) {
       $profile = profile2_load($profile_data->pid);
       $account = user_load($profile->uid);
-      $anniversary = dosomething_roles_get_anniversary($account->uid);
+      $anniversary = dosomething_roles_get_anniversary($account);
       if (!dosomething_roles_user_is_staff_member($account) && !dosomething_roles_user_is_too_old($account)) {
         if ($account->uid > $last_uid || $last_checked_timestamp < $anniversary) {
           // Find what a user's role will be after updating.
@@ -127,7 +127,7 @@ function dosomething_roles_send_demotion_notifications($month) {
     foreach ($results['profile2'] as $profile_data) {
       $profile = profile2_load($profile_data->pid);
       $account = user_load($profile->uid);
-      $anniversary = dosomething_roles_get_anniversary($account->uid);
+      $anniversary = dosomething_roles_get_anniversary($account);
 
       // Don't send the email to the same person twice.
       if (($account->uid <= $current_uid) && ($anniversary == $last_checked_timestamp)) {
@@ -316,8 +316,8 @@ function dosomething_roles_update_role($uid) {
   $rids = array_flip(array_intersect($roles, $role_hierarchy));
   $current_role_name = dosomething_roles_get_current_role($account->uid);
 
-  $new_role_name = dosomething_roles_get_member_role($uid);
-  $anniversary = dosomething_roles_get_anniversary($uid);
+  $new_role_name = dosomething_roles_get_member_role($account->uid);
+  $anniversary = dosomething_roles_get_anniversary($account);
   $new_role_weight = array_search($new_role_name, $role_hierarchy);
   $current_role_weight = array_search($current_role_name, $role_hierarchy);
   $new_anniversary = strtotime('+1 year');
@@ -653,13 +653,12 @@ function dosomething_roles_user_submitted_grant($uid, $timestamp) {
  *
  * When a user increases their role, they get it for one year.
  *
- * @param $uid
- *   User id.
+ * @param $account
+ *   User account object.
  * @return
  *   UNIX timestamp of their anniversary or the current time if none was found.
  */
-function dosomething_roles_get_anniversary($uid) {
-  $account = user_load($uid);
+function dosomething_roles_get_anniversary($account) {
   $profile = profile2_load_by_user($account, 'main');
   if (is_object($profile)) {
     $date = field_get_items('profile2', $profile, 'field_user_anniversary');
