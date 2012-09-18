@@ -28,11 +28,10 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'here\' what you do', 'href' => 'giveaspit', 'fragment' => 'do'),
-    array('title' => 'search for a drive', 'href' => 'giveaspit', 'fragment' => 'drive'),
-    array('title' => '$5,000 scholarship', 'href' => 'giveaspit', 'fragment' => 'scholarship'),
-    array('title' => 'tell us about it', 'href' => 'giveaspit', 'fragment' => 'tell-us'),
-
-    array('title' => 'questions?', 'href' => 'giveaspit', 'fragment' => 'faq'),
+    array('title' => 'here\' what you do', 'href' => 'spit12', 'fragment' => 'action'),
+    array('title' => 'search for a drive', 'href' => 'spit12', 'fragment' => 'search'),
+    array('title' => '$5,000 scholarship', 'href' => 'spit12', 'fragment' => 'scholarship'),
+    array('title' => 'tell us about it', 'href' => 'spit12/report-back'),
+    array('title' => 'questions?', 'href' => 'spit12', 'fragment' => 'faq'),
   ),
 );

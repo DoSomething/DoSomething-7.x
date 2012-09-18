@@ -157,6 +157,33 @@ body {
       text-decoration: none;
       background: #ffcb15; }
 
+.mangoDialog-ui {
+  background: #222222;
+  margin: 0;
+  padding: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  .mangoDialog-ui h1 {
+    text-align: center;
+    padding: 1em 0 0.5em 0;
+    color: #ffcb15; }
+  .mangoDialog-ui img {
+    width: 80%;
+    margin: 0 auto;
+    padding: 5%;
+    display: block;
+    background: white;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px; }
+  .mangoDialog-ui .ui-icon.ui-icon-closethick {
+    margin: 2px -5px !important; }
+
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
 #cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
@@ -268,6 +295,7 @@ body {
   font-size: 2em;
   height: 1.4em;
   display: inline-block;
+  color: #1e1d1c;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -376,7 +404,8 @@ body {
     background: #ffcb15;
     width: 10em;
     display: block;
-    text-align: center; }
+    text-align: center;
+    padding: 0.2em 0 0 0; }
   #cmp #content-leader strong {
     color: #7f3f80; }
 #cmp .center_img {
@@ -426,11 +455,11 @@ body {
   #cmp .refer5:before {
     border-color: transparent #3b1d3c #3b1d3c transparent;
     left: -22px;
-    top: 43px; }
+    top: 44px; }
   #cmp .refer5:after {
     border-color: transparent transparent #3b1d3c #3b1d3c;
     right: -22px;
-    top: 43px; }
+    top: 44px; }
 #cmp #impact .go-button {
   margin: 2% 0 1% 0; }
 #cmp #faq h4, #cmp #faq li, #cmp #faq p {
