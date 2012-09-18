@@ -23,6 +23,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $content = array();
   $content['header'] = array(
     '#type' => 'container',
+    '#prefix' => '<div class="drive-info-wrapper">',
     '#attributes' => array(
       'class' => array('drive-info-header'),
     ),
@@ -79,16 +80,22 @@ function dosomething_drives_drive_info($drive, $drive_nid, $gid, $is_admin) {
 
 function dosomething_drives_drive_get_info($drive, $is_admin) {
   $print = array('name_line', 'thoroughfare', 'premise', 'locality', 'administrative_area');
-  $where = $drive->field_drive_location[LANGUAGE_NONE][0];
+  $real = array('Location', 'Address', 'Address 2', 'City', 'State');
+  $wherea = $drive->field_drive_location[LANGUAGE_NONE][0];
   $where_out = array();
-  foreach ($print as $field) {
-    if (!empty($where[$field])) {
-      $where_out[] = $where[$field];
+  foreach ($print as $key => $field) {
+    if (!empty($wherea[$field])) {
+      $where_out["{$real[$key]}"] = $wherea[$field];
     }
   }
-  $where = implode(', ', $where_out);
 
-  $when = $drive->field_drive_date[LANGUAGE_NONE][0]['value'];
+  $where = '';
+  foreach ($where_out AS $label => $info) {
+    $where .= '<div><span>' . $label . '</span>: ' . $info . '</div>';
+  }
+
+  $when = strtotime($drive->field_drive_date[LANGUAGE_NONE][0]['value']);
+  $when = date('m/d/Y g:iA', $when);
   $gid = $drive->group_audience[LANGUAGE_NONE][0]['gid'];
   // TODO: do stuff with $when to make it pretty
 
@@ -101,24 +108,25 @@ function dosomething_drives_drive_get_info($drive, $is_admin) {
       '#attributes' => array(
         'class' => array('drive-info-info-details'),
       ),
-      'when' => array(
-        '#type' => 'container',
-        '#attributes' => array(
-          'class' => array('drive-info-when'),
-        ),
-        'div' => array(
-          '#markup' => "When: $when",
-        ),
-      ),
       'where' => array(
         '#type' => 'container',
         '#attributes' => array(
           'class' => array('drive-info-where'),
         ),
         'div' => array(
-          '#markup' => "Where: $where",
+          '#markup' => "$where",
         ),
       ),
+     'when' => array(
+     '#type' => 'container',
+     '#attributes' => array(
+        'class' => array('drive-info-when'),
+       ),
+     'div' => array(
+         '#markup' => "<span>When</span>: $when",
+       ),
+   ),
+
     ),
   );
   if ($is_admin) {
@@ -132,6 +140,7 @@ function dosomething_drives_drive_get_info($drive, $is_admin) {
 function dosomething_drives_drive_share() {
   return array(
     '#type' => 'container',
+    '#suffix' => '</div> <!-- .drive-info-wrapper -->',
     '#attributes' => array(
       'class' => array('drive-share'),
     ),
@@ -199,7 +208,7 @@ function dosomething_drives_drive_countdown($drive) {
       '#type' => 'container',
       '#attributes' => array('class' => array('drive-info-countdown')),
       'div' => array(
-        '#markup' => "Countdown: $countdown",
+        '#markup' => "<h2>Countdown:</h2> <span>$countdown</span>",
       ),
     );
   }
@@ -226,7 +235,7 @@ function dosomething_drives_drive_description($drive) {
     '#type' => 'container',
     '#attributes' => array('class' => array('drive-info-description')),
     'div' => array(
-      '#markup' => "Goal: $goal",
+      '#markup' => "<h2>Goal:</h2> <span>$goal</span>",
     ),
   );
 }
@@ -246,7 +255,7 @@ function dosomething_drives_drive_action_link($gid, $leader, $campaign) {
       'fragment' => ' ',
       'external' => TRUE,
       'attributes' => array(
-        'class' => array('trigger-invite-popup'),
+        'class' => array('go-button trigger-invite-popup'),
       ),
     );
     $return['test'] = array(
