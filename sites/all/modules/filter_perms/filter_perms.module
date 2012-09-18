@@ -3,14 +3,17 @@
  * Implements hook_form_FORM_ID_alter().
  */
 function filter_perms_form_system_modules_alter(&$form, &$form_state, $form_id) {
-  // Replace anchors in links with url paramaters so server side processing can happen.
-  foreach ($form['modules'] as $group_key => $module_group) {
-    if (is_array($module_group)) {
-      $modules = element_children($module_group);
-      foreach ($modules as $key => $module) {
-        if(!empty($form['modules'][$group_key][$module]['links']['permissions']['#options']['fragment'])) {
-          $form['modules'][$group_key][$module]['links']['permissions']['#href'] .= '/'. $form['modules'][$group_key][$module]['links']['permissions']['#options']['fragment'];
-          unset($form['modules'][$group_key][$module]['links']['permissions']['#options']['fragment']);
+  // Confirmation page for enabling dependencies will also fire this hook.
+  if (isset($form['modules'])) {
+    // Replace anchors in links with url paramaters so server side processing can happen.
+    foreach ($form['modules'] as $group_key => $module_group) {
+      if (is_array($module_group)) {
+        $modules = element_children($module_group);
+        foreach ($modules as $key => $module) {
+          if(!empty($form['modules'][$group_key][$module]['links']['permissions']['#options']['fragment'])) {
+            $form['modules'][$group_key][$module]['links']['permissions']['#href'] .= '/'. $form['modules'][$group_key][$module]['links']['permissions']['#options']['fragment'];
+            unset($form['modules'][$group_key][$module]['links']['permissions']['#options']['fragment']);
+          }
         }
       }
     }
@@ -123,12 +126,9 @@ function filter_perms_menu_alter(&$callbacks) {
  * Page callback which appends a filter form to the standard user_admin_permissions form.
  */
 function filter_perms_admin_perm() {
-  /*
-   * Not recommended to drupal_render as opposed to returning the form array,
-   * but I was unsure how else to return 2 forms here.
-   */
-  $output = drupal_render(drupal_get_form('filter_perms_admin_perm_filter'));
-  $output .= drupal_render(drupal_get_form('user_admin_permissions'));
+  $output = array();
+  $output['filter_perms_admin_perm_filter'] = drupal_get_form('filter_perms_admin_perm_filter');
+  $output['user_admin_permissions'] = drupal_get_form('user_admin_permissions');
   return $output;
 }
 
