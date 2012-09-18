@@ -1,6 +1,7 @@
 <?php
 
 define('CLUB_PULL_LIMIT', 500);
+define('DEBUG', 1);
 
 function dosomething_clubs_pull_menu() {
 	$items['admin/clubs-pull'] = array(
@@ -166,7 +167,7 @@ class clubs_export {
     $handle = fopen($info['file_path'], 'a');
     $test = fopen(file_directory_temp() . '/clubs-test.txt', 'a+');
 
-    $c = array();
+    $c = ($_SESSION['pdata'] ? $_SESSION['pdata'] : array());
     foreach ($data['results'] AS $key => $stuff) {
       $stuff = (array) $stuff;
 
@@ -206,6 +207,10 @@ class clubs_export {
       $i++;
     }
 
+    $_SESSION['pdata'] = $c;
+    if (DEBUG) {
+      echo '<pre>', print_r($_SESSION), '</pre>';
+    }
     $ex = array_to_csv($c, FALSE);
     if (!empty($ex)) {
       file_put_contents(file_directory_temp() . '/clubs-test.txt', $ex, FILE_APPEND | LOCK_EX);
