@@ -35,6 +35,36 @@ function dosomething_clubs_pull_menu() {
 	return $items;
 }
 
+function array_to_csv($array, $header_row = true, $col_sep = ",", $row_sep = "\n", $qut = '"')
+{
+  if (!is_array($array)) { return false; }
+  
+  //Header row.
+  if ($header_row)
+  {
+    foreach ($array[0] as $key => $val)
+    {
+      //Escaping quotes.
+      $key = str_replace($qut, "$qut$qut", $key);
+      $output .= "$col_sep$qut$key$qut";
+    }
+    $output = substr($output, 1)."\n";
+  }
+  //Data rows.
+  foreach ($array as $key => $val)
+  {
+    $tmp = '';
+    foreach ($val AS $cell_key => $cell_val) {
+      $cell_val = str_replace($qut, "$qut$qut", $cell_val);
+      $tmp .= "$col_sep$qut$cell_val$qut";
+    }
+
+    $output .= substr($tmp, 1) . $row_sep;
+  }
+  
+  return $output;
+}
+
 class clubs_export {
   private static $file;
   public static $inited = false;
@@ -134,6 +164,8 @@ class clubs_export {
     $i = 0;
     $info = unserialize(base64_decode($hash));
     $handle = fopen($info['file_path'], 'a');
+    $test = fopen(file_directory_temp() . '/clubs-test.txt', 'a+');
+
     $c = array();
     foreach ($data['results'] AS $key => $stuff) {
       $stuff = (array) $stuff;
@@ -170,16 +202,20 @@ class clubs_export {
         'Recent Project' =>   date('Y/m/d', $stuff['lastcreated']),
         'Last joined campaign time' => date('Y/m/d', $stuff['last_joined_campaign'])
       );
+
+      $i++;
     }
 
-    foreach ($c AS $key => $data) {
-      if (fputcsv($handle, $data)) {
-        $i++;
+    $ex = array_to_csv($c, FALSE);
+    if (!empty($ex)) {
+      fwrite($test, $ex);
+      if (fwrite($handle, $ex) && $i == $count) {
+        fclose($handle);
+        fclose($test);
+        return true;
       }
     }
-
-    if ($i == $count) {
-      fclose($handle);
+    else {
       return true;
     }
   }

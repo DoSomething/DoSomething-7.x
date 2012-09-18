@@ -245,7 +245,7 @@ class export {
     drupal_add_js('setTimeout(function() { window.location.href = "' . $redirect . '"; }, 2000);', 'inline');
 
     $download_link = t('Your export is complete! If your download does not begun automatically, !click!', array(
-      '!click' => l(t('Click here'), 'admin/clubs-pull/export/file/' . $data))
+      '!click' => l(t('Click here'), 'admin/export/file/' . $data))
     );
 
     $output = '<p>' . $download_link . '</p>';
@@ -265,20 +265,21 @@ class export {
         // The hash is empty so it's likely that we're doing a multi-part export
         // Load / create the correct file and continue!
         self::$path = file_directory_temp() . '/' . self::$filename . '-' . $stuff->id . '.csv';
-        $handle = fopen(self::$path, 'a');
       }
       $stuff = (array) $stuff;
-      $e[] = $stuff;
+      $e[self::$path][] = $stuff;
+      $i++;
     }
 
-    foreach ($e AS $key => $data) {
-      if (fputcsv($handle, $data)) {
-        $i++;
+    foreach ($e AS $path => $data) {
+      $ex = array_to_csv($data, FALSE);
+      $handle = fopen($path, 'a');
+      if (fwrite($handle, $ex) && ($i == $c)) {
+        fclose($handle);
       }
     }
 
     if ($i == $c) {
-      fclose($handle);
       return true;
     }
     else {
