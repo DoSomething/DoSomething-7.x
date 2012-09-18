@@ -208,19 +208,23 @@ function dosomething_user_my_somethings_make_links($config, $uid, $era) {
 function dosomething_user_my_somethings_my_current_somethings() {
   global $user;
 
+  $defaults = array(
+    'title_field' => 'title',
+    'link_path' => 'node/%nid/submission/%sid/edit',
+    'link_id_fields' => array('nid', 'sid'),
+  );
+
   $somethings_info = array(
     'grant_application' => array(
       'title' => t('Grant Applications'),
-      'title_field' => 'title',
-      'link_path' => 'node/%nid/submission/%sid/edit',
-      'link_id_fields' => array('nid', 'sid'),
-    ),
+    ) + $defaults,
+    'scholarship_application_with_rec' => array(
+      'title' => t('Scholarship Applications'),
+    ) + $defaults,
     'project_report' => array(
       'title' => t('Project Reports'),
       'title_field' => 'field_project_title_value',
-      'link_path' => 'node/%nid/submission/%sid/edit',
-      'link_id_fields' => array('nid', 'sid'),
-    ),
+    ) + $defaults,
     'campaign_report_back' => array(
       'title' => t('Campaigns'),
       'title_field' => 'campaign_title',
@@ -269,13 +273,19 @@ function dosomething_user_my_somethings_my_current_somethings() {
 function dosomething_user_my_somethings_my_past_somethings() {
   global $user;
 
+  $defaults = array(
+    'title_field' => 'title',
+    'link_path' => 'webform-submission/%sid',
+    'link_id_fields' => array('sid'),
+  );
+
   $somethings_info = array(
     'grant_application' => array(
       'title' => t('Grant Applications'),
-      'title_field' => 'title',
-      'link_path' => 'webform-submission/%sid',
-      'link_id_fields' => array('sid'),
-    ),
+    ) + $defaults,
+    'scholarship_application_with_rec' => array(
+      'title' => t('Scholarship Applications'),
+    ) + $defaults,
     'project_report' => array(
       'title' => t('Project Reports'),
       'title_field' => 'field_project_title_value',
@@ -288,11 +298,22 @@ function dosomething_user_my_somethings_my_past_somethings() {
       'link_path' => 'node/%campaign_entity_id',
       'link_id_fields' => array('campaign_entity_id'),
     ),
+    // Hard coding some of this to pics for pets until we know what the other
+    // stuff will look like.
+    'fb_app_data_gathering_form' => array(
+      'title' => t('On Facebook'),
+      'link_path' => 'picsforpets',
+    ) + $defaults,
   );
   $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'past');
 
+  // More pics for pets hard coding. Just show it once.
+  if (isset($items['fb_app_data_gathering_form']['children'][1])) {
+    $items['fb_app_data_gathering_form']['children'] = array($items['fb_app_data_gathering_form']['children'][0]);
+  }
+
   if (empty($items)) {
-    $items[] = t('You have not done anything. Complete a campaign report back, or finish a grant application or project!');
+    $items[] = t('Come on Do Something! Complete a campaign report back, or finish a grant application or project!');
   }
 
   return array(
@@ -431,47 +452,47 @@ function dosomething_user_my_somethings_get_my_somethings_cached($uid, $era) {
 function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
   $somethings = array();
 
-  $somethings_info = array(
-    'grant_application' => array(
-      'title_field' => NULL,
-      'draft' => $era == 'current',
-      'statuses' => NULL,
-    ),
-    'project_report' => array(
-      'title_field' => 'field_project_title',
-      'draft' => FALSE,
-      'statuses' => ($era == 'current') ? array('ongoing project', 'project idea') : array('completed project'),
-    ),
-  );
-  foreach ($somethings_info as $type => $info) {
-    $query = db_select('webform_submissions', 'ws');
-    $query->innerJoin('node', 'n', 'ws.nid = n.nid');
-    $query->fields('ws', array('sid', 'submitted', 'uid'));
-    $query->fields('n', array('nid', 'type', 'title'));
-    if (!empty($info['title_field'])) {
-      $query->innerJoin('field_data_' . $info['title_field'], 't', 'ws.sid = t.entity_id');
-      $query->fields('t', array($info['title_field'] . '_value'));
-      $query->condition('t.entity_type', 'webform_submission_entity');
-    }
-    if (is_array($info['statuses'])) {
-      // Limit it to valid status values and lookup their ids.
-      $available_statuses = array(
-        2 => 'project idea',
-        3 => 'ongoing project',
-        4 => 'completed project',
-      );
-      $statuses = array_keys(array_intersect($available_statuses, $info['statuses']));
-      $query->innerJoin('field_data_field_project_type', 'pt', 'ws.sid = pt.entity_id');
-      $query->condition('pt.entity_type', 'webform_submission_entity');
-      $query->condition('pt.field_project_type_value', $statuses, 'IN');
-    }
-    $query->condition('n.type', $type);
-    $query->condition('ws.uid', $uid);
-    $query->condition('ws.is_draft', (int) $info['draft']);
-    $somethings[$type] = $query->execute()->fetchAllAssoc('sid');
-  }
+  // Setup a basic query for looking up webform submissions.
+  $base_query = db_select('webform_submissions', 'ws');
+  $base_query->innerJoin('node', 'n', 'ws.nid = n.nid');
+  $base_query->fields('ws', array('sid', 'submitted', 'uid', 'is_draft'));
+  $base_query->fields('n', array('nid', 'type', 'title'));
+  $base_query->condition('ws.uid', $uid);
+
+  // Grant applications
+  $query = clone $base_query;
+  $query->condition('n.type', 'grant_application');
+  $query->condition('ws.is_draft', $era == 'current');
+  $somethings['grant_application'] = $query->execute()->fetchAllAssoc('sid');
+
+  // Project reports
+  $query = clone $base_query;
+  $query->condition('n.type', 'project_report');
+  $query->condition('ws.is_draft', FALSE);
+  $query->innerJoin('field_data_field_project_title', 't', 'ws.sid = t.entity_id');
+  $query->condition('t.entity_type', 'webform_submission_entity');
+  $query->fields('t', array('field_project_title_value'));
+  $query->innerJoin('field_data_field_project_type', 'pt', 'ws.sid = pt.entity_id');
+  $query->condition('pt.entity_type', 'webform_submission_entity');
+  // current is 'project idea' and 'ongoing project', past is 'completed project'
+  $statuses = ($era == 'current') ? array(2, 3) : array(4);
+  $query->condition('pt.field_project_type_value', $statuses, 'IN');
+  $somethings['project_report'] = $query->execute()->fetchAllAssoc('sid');
+
+  // Scholarship applications
+  $query = clone $base_query;
+  $query->condition('n.type', 'scholarship_application_with_rec');
+  $query->condition('ws.is_draft', $era == 'current');
+  $somethings['scholarship_application_with_rec'] = $query->execute()->fetchAllAssoc('sid');
 
   if ($era == 'past') {
+    // Facebook app submissions.
+    $query = clone $base_query;
+    $query->condition('n.type', 'fb_app_data_gathering_form');
+    $query->condition('ws.is_draft', FALSE);
+    $somethings['fb_app_data_gathering_form'] = $query->execute()->fetchAllAssoc('sid');
+
+    // Campaign report backs.
     $somethings['campaign_report_back'] = dosomething_user_my_somethings_campaign_report_backs_complete($uid);
   }
   else if ($era == 'current') {
@@ -616,6 +637,19 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
 }
 
 /**
+ * Given an array of objects extract a property from each and return in an array.
+ */
+function _dosomething_user_my_somethings_extract($array, $property) {
+  $ret = array();
+  foreach ($array as $item) {
+    if (isset($item->$property)) {
+      $ret[] = $item->$property;
+    }
+  }
+  return $ret;
+}
+
+/**
  * Fetch the longer version of their somethings.
  *
  * These include images and are designed to be used on the user's profile page.
@@ -661,75 +695,120 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
         break;
 
       case 'grant_application':
+        $ids = _dosomething_user_my_somethings_extract($data, 'sid');
+        $submissions = entity_load('webform_submission_entity', $ids);
         foreach ($data as $entity) {
-          // Load the full submission entity.
-          $grant_app = entity_load_single('webform_submission_entity', $entity->sid);
+          if (isset($submissions[$entity->sid])) {
+            $grant_app = $submissions[$entity->sid];
 
-          // If they reference a project and we can load it, use its image.
-          $project_ref = field_get_items('webform_submission_entity', $grant_app, 'field_webform_project_submission');
-          if (isset($project_ref[0]['target_id']) && $project = entity_load_single('webform_submission_entity', $project_ref[0]['target_id'])) {
-            $image = field_get_items('webform_submission_entity', $project, 'field_picture');
+            // If they reference a project and we can load it, use its image.
+            $project_ref = field_get_items('webform_submission_entity', $grant_app, 'field_webform_project_submission');
+            if (isset($project_ref[0]['target_id']) && $project = entity_load_single('webform_submission_entity', $project_ref[0]['target_id'])) {
+              $image = field_get_items('webform_submission_entity', $project, 'field_picture');
+            }
+
+            // Check if they can edit the submission.
+            $node = node_load($grant_app->nid);
+            $edit_access = webform_submission_access($node, $grant_app, 'edit', $account);
+
+            $something = array(
+              'type' => $type,
+              'title' => $entity->title,
+              'image' => isset($image[0]['uri']) ? $image[0] : NULL,
+              'uri' => entity_uri('webform_submission_entity', $grant_app),
+            );
+            if ($edit_access && $era == 'current') {
+              $something['uri']['path'] = "node/{$grant_app->nid}/submission/{$grant_app->sid}/edit";
+            }
+            $results[] = (object) $something;
           }
-
-          // Check if they can edit the submission.
-          $node = node_load($grant_app->nid);
-          $edit_access = webform_submission_access($node, $grant_app, 'edit', $account);
-
-          $something = array(
-            'type' => $type,
-            'title' => $entity->title,
-            'image' => isset($image[0]['uri']) ? $image[0] : NULL,
-            'uri' => entity_uri('webform_submission_entity', $grant_app),
-          );
-          if ($edit_access && $era == 'current') {
-            $something['uri']['path'] = "node/{$grant_app->nid}/submission/{$grant_app->sid}/edit";
-          }
-          $results[] = (object) $something;
         }
         break;
 
       case 'club':
-        foreach ($data AS $entity) {
-          $node = node_load($entity->nid);
-          if (isset($node->field_club_picture[LANGUAGE_NONE][0]['uri'])) {
-            $image = $node->field_club_picture[LANGUAGE_NONE][0]['uri'];
-          }
-          else {
-            $image = 'sites/all/modules/dosomething/features/dosomething_clubs/club-nopic-01.png';
-          }
-          $something = array(
-            'type' => $type,
-            'title' => $entity->title,
-            'image' => array(
-              'uri' => $image
-            ),
-            'uri' => array(
-              'path' => 'node/' . $entity->nid,
-              'options' => array()
-            )
-          );
+        $ids = _dosomething_user_my_somethings_extract($data, 'nid');
+        $nodes = entity_load('node', $ids);
+        foreach ($data as $entity) {
+          if (isset($nodes[$entity->nid])) {
+            $node = $nodes[$entity->nid];
+            if (isset($node->field_club_picture[LANGUAGE_NONE][0]['uri'])) {
+              $image = $node->field_club_picture[LANGUAGE_NONE][0]['uri'];
+            }
+            else {
+              $image = 'sites/all/modules/dosomething/features/dosomething_clubs/club-nopic-01.png';
+            }
+            $something = array(
+              'type' => $type,
+              'title' => $entity->title,
+              'image' => array('uri' => $image),
+              'uri' => array(
+                'path' => 'node/' . $entity->nid,
+                'options' => array()
+              )
+            );
 
-          $results[] = (object) $something;
+            $results[] = (object) $something;
+          }
         }
         break;
 
       case 'project_report':
+        $ids = _dosomething_user_my_somethings_extract($data, 'sid');
+        $submissions = entity_load('webform_submission_entity', $ids);
         foreach ($data as $entity) {
-          // Load the full submission entity.
-          $submission = entity_load_single('webform_submission_entity', $entity->sid);
-          $image = field_get_items('webform_submission_entity', $submission, 'field_picture');
-          // Technically this value was already load in the bare $entity we
-          // started with but when we reloaded it we lost it.
-          $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
+          if (isset($submissions[$entity->sid])) {
+            $submission = $submissions[$entity->sid];
+            $image = field_get_items('webform_submission_entity', $submission, 'field_picture');
+            // Technically this value was already load in the bare $entity we
+            // started with but when we reloaded it we lost it.
+            $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
 
+            $something = array(
+              'type' => $type,
+              'title' => isset($title[0]['value']) ? $title[0]['value'] : t('New Project'),
+              'image' => isset($image[0]['uri']) ? $image[0] : NULL,
+              'uri' => entity_uri('webform_submission_entity', $submission),
+              'check_path' => TRUE,
+            );
+            $results[] = (object) $something;
+          }
+        }
+        break;
+
+      case 'fb_app_data_gathering_form':
+        // NOTE: Hard coding some pics for pets stuff in here. Generalize when
+        // we know what the general case is.
+
+        // Pics for pets only wants one link...
+        $entity = reset($data);
+        if (!empty($entity->sid)) {
           $something = array(
             'type' => $type,
-            'title' => isset($title[0]['value']) ? $title[0]['value'] : t('New Project'),
-            'image' => isset($image[0]['uri']) ? $image[0] : NULL,
-            'uri' => entity_uri('webform_submission_entity', $submission),
-            'check_path' => TRUE,
+            'title' => t('Pic for Pets'),
+            'image' => array('uri' => 'public://campaigns/logos/logo.png'),
+            'uri' => array('path' => 'picsforpets', 'options' => array()),
+            'check_path' => FALSE,
           );
           $results[] = (object) $something;
+        }
+        break;
+
+      default:
+        // Little helper to kick *something* for webforms.
+        $ids = _dosomething_user_my_somethings_extract($data, 'sid');
+        $submissions = entity_load('webform_submission_entity', $ids);
+        foreach ($data as $entity) {
+          if (isset($submissions[$entity->sid])) {
+            $submission = $submissions[$entity->sid];
+            $something = array(
+              'type' => $type,
+              'title' => $entity->title,
+#              'image' => isset($image[0]['uri']) ? $image[0] : NULL,
+              'uri' => entity_uri('webform_submission_entity', $submission),
+              'check_path' => TRUE,
+            );
+            $results[] = (object) $something;
+          }
         }
         break;
     }
