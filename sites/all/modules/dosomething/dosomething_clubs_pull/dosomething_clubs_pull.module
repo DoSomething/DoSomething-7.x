@@ -207,7 +207,7 @@ class clubs_export {
 
     $ex = array_to_csv($c, FALSE);
     if (!empty($ex)) {
-      if (file_put_contents($info['file_path'], $ex, FILE_APPEND | LOCK_EX) && $i == $count) {
+      if (fwrite($handle, $ex) && $i == $count) {
         return true;
       }
     }

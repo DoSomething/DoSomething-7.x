@@ -10,7 +10,7 @@
   </head>
   <body>
     <h1 id="connect-message">Connect your email address book to email your contacts.</h1>
-    <p id="having-trouble">Having trouble? Try disabling your pop-up blocker for DoSomething.org.</p>
+    <p id="having-trouble">If you don't see a pop-up after clicking "Get Contacts," select "Always show pop-ups from DoSomethign.org."  Click the "Share with email" and "get contacts" btutons again.  Now you'll be able to log into your email client.  (We never store your password.)</p>
 <div id="socials">
 <?php echo $s['services']; ?>
 </div>
