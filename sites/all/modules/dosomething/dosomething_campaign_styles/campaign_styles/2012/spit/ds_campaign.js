@@ -55,10 +55,20 @@
     }
   });
 
-  var headerLinks = $('#action, #content-infographic, #content-leader, #faq, #header, #impact, #scholarship, #search, #webform');
+  // jQuery scrolling effect
+  var contentAnchors = 'a.jump_scroll';
+  var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
+  var allAnchors = navAnchors + ', ' + contentAnchors;
+  
+  $(allAnchors).click(function(event){
+    $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+    return false;
+  });
 
-  $(headerLinks).click(function (event) {
-    $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
+  // sad puppy
+  $('#mangoDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
+  $('a.mango').click(function(){
+    $('#mangoDialog').dialog('open');
     return false;
   });
 
