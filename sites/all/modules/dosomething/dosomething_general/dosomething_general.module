@@ -106,6 +106,23 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
     drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-row-weights.js');
   }
+  if ($form_id == 'webform_client_form_721642' && request_uri() == '/help-ticket') {
+    $form['fav_color'] = array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'style' => 'display: none',
+        'placeholder' => t('What is your favorite color?')
+      )
+    );
+
+    $form['#validate'][] = 'help_form_captcha';
+  }
+}
+
+function help_form_captcha($form, &$form_state) {
+  if (isset($form_state['values']['fav_color']) && !empty($form_state['values']['fav_color'])) {
+    form_set_error('form', t('Sorry, there was an error with your submission.'));
+  }
 }
 
 /**
