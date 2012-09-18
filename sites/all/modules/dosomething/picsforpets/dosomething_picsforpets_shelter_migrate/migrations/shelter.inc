@@ -26,7 +26,8 @@ class PFPShelterMigration extends Migration {
 
     // Add simple field mappings.
     $this->addFieldMapping('title', 'shelter_name');
-    $this->addFieldMapping('field_pfp_hours', 'hours3');
+    $this->addFieldMapping('field_pfp_hours', 'hours');
+    $this->addFieldMapping('field_pfp_hours_extra', 'hours2');
     $this->addFieldMapping('field_pfp_contact_email_address', 'email');
   }
 
@@ -50,7 +51,7 @@ class PFPShelterMigration extends Migration {
         }
       }
     }
-    $row->hours3 = !empty($row->hours2) ? $row->hours . "\n\n" . $row->hours2 : $row->hours;
+    //$row->hours3 = !empty($row->hours2) ? $row->hours . "\n\n" . $row->hours2 : $row->hours;
   }
 
   public function prepare($node, stdClass $row) {
