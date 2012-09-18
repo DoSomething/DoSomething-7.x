@@ -92,6 +92,24 @@ function date_interval_formatter_settings_form($field, $instance, $view_mode, $f
     '#default_value' => $settings['interval'],
     '#weight' => 0,
   );
+  // Uses the same options used by Views format_interval.
+  $options = array(
+    'raw time ago' => t('Time ago'),
+    'time ago' => t('Time ago (with "ago" appended)'),
+    'raw time hence' => t('Time hence'),
+    'time hence' => t('Time hence (with "hence" appended)'),
+    'raw time span' => t('Time span (future dates have "-" prepended)'),
+    'inverse time span' => t('Time span (past dates have "-" prepended)'),
+    'time span' => t('Time span (with "ago/hence" appended)'),
+  );
+  $form['interval_display'] = array(
+    '#title' => t('Display'),
+    '#description' => t("How to display the time ago or time hence for this field."),
+    '#type' => 'select',
+    '#options' => $options,
+    '#default_value' => $settings['interval_display'],
+    '#weight' => 0,
+  );
   return $form;
 }
 
@@ -104,6 +122,7 @@ function date_default_formatter_settings_summary($field, $instance, $view_mode) 
   $formatter = $display['type'];
   $format_types = date_format_type_options();
   $summary = array();
+  $format = FALSE;
   switch ($formatter) {
     case 'date_plain':
       $format = t('Plain');
@@ -112,9 +131,16 @@ function date_default_formatter_settings_summary($field, $instance, $view_mode) 
       $format = t('Interval');
       break;
     default:
-      $format = $format_types[$settings['format_type']];
+      if (!empty($format_types[$settings['format_type']])) {
+        $format = $format_types[$settings['format_type']];
+      }
   }
-  $summary[] = t('Display dates using the @format format', array('@format' => $format));
+  if ($format) {
+    $summary[] = t('Display dates using the @format format', array('@format' => $format));
+  }
+  else {
+    $summary[] = t('Display dates using the default format because the specified format (@format) is not defined', array('@format' => $settings['format_type']));
+  }
 
   if (array_key_exists('fromto', $settings) && $field['settings']['todate']) {
     $options = array(
