@@ -109,6 +109,9 @@ class clubs_export {
       <div style="background: #D65E5E; height: 30px; width: ' . $p . '%; color: #fefefe; text-align: right; padding: 5px 5px 0px 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;">' . ($p > 0 ? "{$p}%" : '') . '</div>
       </div>';
 
+      if ($start > $count) {
+        $start = $count;
+      }
       $content .= '<p><strong>Completed ' . $start . ' of ' . $count . ' clubs (' . $p . '%)</strong></p>';
 
 
@@ -186,9 +189,10 @@ class clubs_export {
         'Owner City' =>       $stuff['owner_city'],
         'Owner State' =>      $stuff['owner_state'],
         'Owner Zip' =>        $stuff['owner_zip'],
-        'City' =>             $stuff['city'],
-        'State' =>            $stuff['state'],
-        'Zip' =>              $stuff['zip'],
+        'Club Street' =>      $stuff['street'],
+        'Club City' =>             $stuff['city'],
+        'Club State' =>            $stuff['state'],
+        'Club Zip' =>              $stuff['zip'],
         'Working On' =>       str_replace(',', ', ', $stuff['camps']),
         'Send Goodies' =>     $stuff['send_goodies'],
         'School Name' =>      $stuff['school_name'],
@@ -241,9 +245,10 @@ class clubs_export {
         t('Owner City'),
         t('Owner State'),
         t('Owner Zip'),
-        t('City'),
-        t('State'),
-        t('Zip'),
+        t('Club Street'),
+        t('Club City'),
+        t('Club State'),
+        t('Club Zip'),
         t('My Club is Going to Work On'),
         t('Send Goodies'),
         t('School Name'),
@@ -307,6 +312,7 @@ class clubs_export {
       `address`.`field_user_address_locality` AS `owner_city`,
       `address`.`field_user_address_administrative_area` AS `owner_state`,
       `address`.`field_user_address_postal_code` AS `owner_zip`,
+      `street`.`field_club_address_value` AS `street`,
       `city`.`field_club_city_value` AS `city`,
       `state`.`field_club_state_value` AS `state`,
       `zip`.`field_club_zip_value` AS `zip`,
@@ -331,6 +337,7 @@ class clubs_export {
     LEFT JOIN `field_data_field_user_birthday` AS `birthday` ON (`birthday`.`entity_id` = `profile_users`.`pid`)
     LEFT JOIN `field_data_field_user_mobile` AS `mobile` ON (`mobile`.`entity_id` = `profile_users`.`pid`)
     LEFT JOIN `field_data_field_user_address` AS `address` ON (`address`.`entity_id` = `profile_users`.`pid`)
+    LEFT JOIN `field_data_field_club_address` AS `street` ON (`street`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_club_city` AS `city` ON (`city`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_club_state` AS `state` ON (`state`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_club_zip` AS `zip` ON (`zip`.`entity_id` = `node`.`nid`)
@@ -467,6 +474,7 @@ $query = "SELECT
   `address`.`field_user_address_locality` AS `owner_city`,
   `address`.`field_user_address_administrative_area` AS `owner_state`,
   `address`.`field_user_address_postal_code` AS `owner_zip`,
+  `street`.`field_club_address_value` AS `street`,
   `city`.`field_club_city_value` AS `city`,
   `state`.`field_club_state_value` AS `state`,
   `zip`.`field_club_zip_value` AS `zip`,
@@ -494,6 +502,7 @@ LEFT JOIN `field_data_field_user_last_name` AS `lastname` ON (`lastname`.`entity
 LEFT JOIN `field_data_field_user_birthday` AS `birthday` ON (`birthday`.`entity_id` = `profile_users`.`pid`)
 LEFT JOIN `field_data_field_user_mobile` AS `mobile` ON (`mobile`.`entity_id` = `profile_users`.`pid`)
 LEFT JOIN `field_data_field_user_address` AS `address` ON (`address`.`entity_id` = `profile_users`.`pid`)
+LEFT JOIN `field_data_field_club_address` AS `street` ON (`street`.`entity_id` = `node`.`nid`)
 LEFT JOIN `field_data_field_club_city` AS `city` ON (`city`.`entity_id` = `node`.`nid`)
 LEFT JOIN `field_data_field_club_state` AS `state` ON (`state`.`entity_id` = `node`.`nid`)
 LEFT JOIN `field_data_field_club_zip` AS `zip` ON (`zip`.`entity_id` = `node`.`nid`)
@@ -557,9 +566,10 @@ function dosomething_clubs_pull_batch_process(&$context) {
       t('Owner City'),
       t('Owner State'),
       t('Owner Zip'),
-      t('City'),
-      t('State'),
-      t('Zip'),
+      t('Club Street'),
+      t('Club City'),
+      t('Club State'),
+      t('Club Zip'),
       t('My Club is Going to Work On'),
       t('Send Goodies'),
       t('School Name'),
@@ -621,9 +631,10 @@ function dosomething_clubs_pull_batch_process(&$context) {
         'Owner City' =>       $stuff['owner_city'],
         'Owner State' =>      $stuff['owner_state'],
         'Owner Zip' =>        $stuff['owner_zip'],
-        'City' =>             $stuff['city'],
-        'State' =>            $stuff['state'],
-        'Zip' =>              $stuff['zip'],
+        'Club Street' =>      $stuff['street'],
+        'Club City' =>             $stuff['city'],
+        'Club State' =>            $stuff['state'],
+        'Club Zip' =>              $stuff['zip'],
         'Working On' =>       str_replace(',', ', ', $stuff['camps']),
         'Send Goodies' =>     $stuff['send_goodies'],
         'School Name' =>      $stuff['school_name'],
@@ -692,9 +703,10 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Owner City'), 'class' => array('page-manager-page-path')),
     array('data' => t('Owner State'), 'class' => array('page-manager-page-path')),
     array('data' => t('Owner Zip'), 'class' => array('page-manager-page-path')),
-    array('data' => t('City'), 'class' => array('page-manager-page-path')),
-    array('data' => t('State'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Zip'), 'class' => array('page-manager-page-storage')),
+    array('data' => t('Club Street'), 'class' => array('clubs-pull-club-street')),
+    array('data' => t('Club City'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Club State'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Club Zip'), 'class' => array('page-manager-page-storage')),
     array('data' => t('My Club is Going to Work On'), 'class' => array('page-manager-page-path')),
     array('data' => t('Send Goodies'), 'class' => array('clubs-pull-send-goodies')),
     array('data' => t('School Name'), 'class' => array('page-manager-page-path')),
@@ -738,9 +750,10 @@ $num = $count->rowCount();
         'Owner City' =>               array('data' => $result['owner_city']),
         'Owner State' =>              array('data' => $result['owner_state']),
         'Owner Zip' =>                array('data' => $result['owner_zip']),
-        'City' =>                     array('data' => $result['city']),
-        'State' =>                    array('data' => $result['state']),
-        'Zip' =>                        array('data' => $result['zip']),
+        'Club Street' =>              array('data' => $result['street']),
+        'Club City' =>                     array('data' => $result['city']),
+        'Club State' =>                    array('data' => $result['state']),
+        'Club Zip' =>                        array('data' => $result['zip']),
         'My Club is Going to Work On' => array('data' => str_replace(',', ', ', $result['camps'])),
         'Send Goodies' =>             array('data' => $result['send_goodies']),
         'School Name' =>                 array('data' => $result['school_name']),

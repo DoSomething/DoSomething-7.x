@@ -190,6 +190,9 @@ class export {
       <div style="background: #D65E5E; height: 30px; width: ' . $p . '%; color: #fefefe; text-align: right; padding: 5px 5px 0px 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;">' . ($p > 0 ? "{$p}%" : '') . '</div>
       </div>';
 
+      if ($start > $count) {
+        $start = $count;
+      }
       $content .= '<p><strong>Completed ' . $start . ' of ' . $count . ' (' . $p . '%)</strong></p>';
     }
 
