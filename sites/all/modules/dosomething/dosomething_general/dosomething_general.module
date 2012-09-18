@@ -48,6 +48,16 @@ function dosomething_general_menu() {
 }
 
 /**
+ * Implements hook_cron().
+ */
+function dosomething_general_cron() {
+  // Make sure cron is considered a background task by New Relic.
+  if (function_exists('newrelic_background_job')) {
+    newrelic_background_job(TRUE);
+  }
+}
+
+/**
  * Menu callback to associate a webform submission to a newly created or logged in user
  */
 function dosomething_general_webform_associate($nid, $sid) {
