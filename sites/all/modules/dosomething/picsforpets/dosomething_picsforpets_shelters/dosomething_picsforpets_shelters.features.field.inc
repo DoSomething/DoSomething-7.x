@@ -339,6 +339,77 @@ function dosomething_picsforpets_shelters_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-shelter-field_pfp_hours_extra'
+  $fields['node-shelter-field_pfp_hours_extra'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_pfp_hours_extra',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'shelter',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 15,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_pfp_hours_extra',
+      'label' => 'Hours Extra',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'node-shelter-field_pfp_partner_shelter'
   $fields['node-shelter-field_pfp_partner_shelter'] = array(
     'field_config' => array(
@@ -556,6 +627,7 @@ function dosomething_picsforpets_shelters_field_default_fields() {
   t('DoSomething.org Partnered Shelter');
   t('Geo Data');
   t('Hours');
+  t('Hours Extra');
   t('Phone Number');
   t('Shelter Website');
 
