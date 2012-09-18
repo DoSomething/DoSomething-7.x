@@ -16,12 +16,15 @@
   $('#webform').append(contactForm);
 
   // drupal, eat your heart out
-
   var maxwell = "can have his cake and eat it too"
 
   if(maxwell == "can have his cake and eat it too"){
     $('#cmp #edit-actions').removeAttr('id');
   };
+
+  // has logo, will inject
+  var logo = 'http://files.dosomething.org/files/campaigns/spit/logo.png';
+  $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<img src="' + logo + '"/>');
 
   // hacktastic form rebuilding
   var emailInput = $('#edit-submitted-field-webform-email');
@@ -37,7 +40,7 @@
   $('#campaign-opt-in br').remove();
   $('.ctia_top').append('&nbsp;');
 
-  // Pop, bang, lovely.
+  // pop, bang, lovely
   $('#faq h4').next('div').css('display','none');
   $('#faq h4.activeFAQ').next('div').css('display','block');
   $('#faq h4').click(function(){

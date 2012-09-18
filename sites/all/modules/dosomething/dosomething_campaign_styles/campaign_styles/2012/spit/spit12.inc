@@ -30,7 +30,7 @@ $plugin = array(
   'menu' => array(
     array('title' => 'here\' what you do', 'href' => 'giveaspit', 'fragment' => 'do'),
     array('title' => 'search for a drive', 'href' => 'giveaspit', 'fragment' => 'drive'),
-    array('title' => 'win a $5,000 scholarship', 'href' => 'giveaspit', 'fragment' => 'scholarship'),
+    array('title' => '$5,000 scholarship', 'href' => 'giveaspit', 'fragment' => 'scholarship'),
     array('title' => 'tell us about it', 'href' => 'giveaspit', 'fragment' => 'tell-us'),
 
     array('title' => 'questions?', 'href' => 'giveaspit', 'fragment' => 'faq'),

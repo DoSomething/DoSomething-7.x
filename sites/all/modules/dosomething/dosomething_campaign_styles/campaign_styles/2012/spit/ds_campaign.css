@@ -137,6 +137,26 @@ body {
   -o-border-radius: 4px;
   border-radius: 4px; }
 
+#block-dosomething-campaign-styles-campaign-nav {
+  background: white;
+  padding: 1.5em 1.5em 1.5em 0; }
+  #block-dosomething-campaign-styles-campaign-nav ul {
+    margin: 0;
+    padding: 0; }
+  #block-dosomething-campaign-styles-campaign-nav li {
+    margin: 0;
+    padding: 2% 0; }
+  #block-dosomething-campaign-styles-campaign-nav a {
+    font-family: din-web-reg;
+    font-weight: 600;
+    font-size: 1.2em;
+    padding: 0.2em 1em 0 1.5em;
+    text-transform: uppercase;
+    color: purple; }
+    #block-dosomething-campaign-styles-campaign-nav a:hover {
+      text-decoration: none;
+      background: #ffcb15; }
+
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
 #cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
@@ -326,13 +346,17 @@ body {
 #cmp .drive-info-header, #cmp .drive-info-info, #cmp .drive-share {
   float: left;
   width: 60%; }
+#cmp .drive-participants {
+  float: right;
+  width: 35%; }
 #cmp .drive-info-header {
-  color: #7f3f80;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
   font-size: 2em;
   font-weight: 600;
-  text-transform: uppercase;
-  border-bottom: 1px solid #eeeeee; }
+  text-transform: uppercase; }
+  #cmp .drive-info-header h2 {
+    color: #7f3f80;
+    border-bottom: 1px solid #eeeeee; }
 #cmp #action img {
   display: block;
   margin: 5% auto; }
