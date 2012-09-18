@@ -208,10 +208,8 @@ class clubs_export {
 
     $ex = array_to_csv($c, FALSE);
     if (!empty($ex)) {
-      fwrite($test, $ex);
-      if (fwrite($handle, $ex) && $i == $count) {
-        fclose($handle);
-        fclose($test);
+      file_put_contents(file_directory_temp() . '/clubs-test.txt', $ex, FILE_APPEND | LOCK_EX);
+      if (file_put_contents($info['file_path'], $ex, FILE_APPEND | LOCK_EX)) && $i == $count) {
         return true;
       }
     }
