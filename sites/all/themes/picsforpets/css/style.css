@@ -2407,7 +2407,7 @@ div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-fo
 .page-fb-pics-for-pets-questions div[role="main"] fieldset.collapsed {
   height: auto;
 }
-.page-fb-pics-for-pets-questions div[role="main"] fieldset a {
+.page-fb-pics-for-pets-questions div[role="main"] fieldset .fieldset-legend a {
   color: black;
   font-family: "DINOT", sans-serif;
   font-size: 18px;

@@ -59,6 +59,28 @@ function dosomething_picsforpets_general_menu() {
  * Making a collapsible faq for the fb/pics-for-pets/questions page.
  */
 function dosomething_picsforpets_general_questions() {
+  $urls = array(
+    'furtographer' => 'fb/pics-for-pets/lets-get-started',
+    'shelter_locate' => 'fb/pics-for-pets/shelter-search',
+    'action_guide' => 'fb/pics-for-pets/action-guide',
+    'submit_pic' => 'fb/pics-for-pets/submit-pet-picture',
+  );
+  $question2_params = array(
+    '!link1' => l('"be a fur-tographer"', $urls['furtographer']),
+    '!link2' => l('participating local shelter', $urls['shelter_locate']),
+    '!link3' => l('download the guide', $urls['action_guide']),
+    '!link4' => l('watch the video of photography tips', $urls['action_guide']),
+    '!link5' => l('upload the pic', $urls['submit_pic']),
+  );
+  $question3_params = array(
+    '!link1' => l('shelter locator', $urls['shelter_locate']),
+  );
+  $question4_params = $question3_params;
+  $question7_params = array(
+    '!link1' => l('"be a furtographer" section of the app', $urls['furtographer']),
+    '!link2' => l('"get the guide."', $urls['action_guide']),
+  );
+
   $page = array();
   $page['#attached'] = array(
     'js' => array(
@@ -80,7 +102,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Click on “be a fur-tographer” in the Pics for Pets app, then locate your participating local shelter.  Before visiting your shelter, make sure to download the guide and watch the video of photography tips to help you along your way.  After you have taken an expert photo of an animal (or animals) at the shelter, upload the pic in the “be a fur-tographer” section and share it with your friends by clicking the “share” button.'),
+    '#children' => t('Click on !link1 in the Pics for Pets app, then locate your !link2.  Before visiting your shelter, make sure to !link3 and !link4 to help you along your way.  After you have taken an expert photo of an animal (or animals) at the shelter, !link5 in the “be a fur-tographer” section and share it with your friends by clicking the “share” button.', $question2_params),
   );
   $page['question3'] = array(
     '#theme' => 'fieldset',
@@ -88,7 +110,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Click on the shelter locator button in the “be a fur-tographer” section of the Pics for Pets app.  Once there, enter in your zip code to find the shelter nearest you.'),
+    '#children' => t('Click on the !link1 button in the “be a fur-tographer” section of the Pics for Pets app.  Once there, enter in your zip code to find the shelter nearest you.', $question3_params),
   );
   $page['question4'] = array(
     '#theme' => 'fieldset',
@@ -96,7 +118,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('If you would like to visit a shelter we are not partnered with, click on the button in the lower righthand corner of the shelter locator section of the app.  Please note:  These shelters are not DoSomething.org partners, so you’ll want to reach out to them ahead of time to make sure you can come in and visit.  Make sure to tell them that you won’t need to handle any animals.'),
+    '#children' => t('If you would like to visit a shelter we are not partnered with, click on the button in the lower righthand corner of the !link1 section of the app.  Please note:  These shelters are not DoSomething.org partners, so you’ll want to reach out to them ahead of time to make sure you can come in and visit.  Make sure to tell them that you won’t need to handle any animals.', $question4_params),
   );
   $page['question5'] = array(
     '#theme' => 'fieldset',
@@ -120,7 +142,7 @@ function dosomething_picsforpets_general_questions() {
     '#attributes' => array(
       'class' => array('collapsible', 'collapsed'),
     ),
-    '#children' => t('Visit the “be a furtographer” section of the app and click on “get the guide.”  You’ll be able to download a great guide to help you take expert photos, as well as a video with tips on how to take the best photos.'),
+    '#children' => t('Visit the !link1 and click on !link2  You’ll be able to download a great guide to help you take expert photos, as well as a video with tips on how to take the best photos.', $question7_params),
   );
   $page['question8'] = array(
     '#theme' => 'fieldset',
