@@ -59,7 +59,6 @@ function dosomething_roles_cron() {
  * Update roles for users whose anniversaries have passed.
  */
 function dosomething_roles_demote_expired_users() {
-  global $language;
   $last_checked_timestamp = variable_get('dosomething_roles_member_demotion_last_timestamp', 0);
   $last_uid = variable_get('dosomething_roles_member_demotion_last_uid', 0);
   // Let dosomething_roles_get_users_by_anniversary() decide how many we do at a time.
@@ -83,7 +82,7 @@ function dosomething_roles_demote_expired_users() {
               'current_role' => $current_role_name,
               'user' => $account,
             );
-            drupal_mail('dosomething_roles', 'dosomething-roles-demotion', $account->mail, $language, $params);
+            drupal_mail('dosomething_roles', 'dosomething-roles-demotion', $account->mail, user_preferred_language($account), $params);
           }
         }
       }
@@ -104,7 +103,6 @@ function dosomething_roles_demote_expired_users() {
  *  (int) number of months away.
  */
 function dosomething_roles_send_demotion_notifications($month) {
-  global $language;
   $current_timestamp = strtotime("+$month month", REQUEST_TIME);
   $current_month = date('n', $current_timestamp);
   $current_year = date('Y', $current_timestamp);
@@ -148,7 +146,7 @@ function dosomething_roles_send_demotion_notifications($month) {
             'new_role' => $new_role_name,
             'current_role' => $current_role_name,
           );
-          drupal_mail('dosomething_roles', 'dosomething-roles-impending-demotion', $account->mail, $language, $params);
+          drupal_mail('dosomething_roles', 'dosomething-roles-impending-demotion', $account->mail, user_preferred_language($account), $params);
         }
       }
       // Mark this user as done by setting the last uid and last anniversary checked.
@@ -290,7 +288,6 @@ function dosomething_roles_form_user_admin_settings_alter(&$form, &$form_state) 
  * Update a user's membership role.
  */
 function dosomething_roles_update_role($uid) {
-  global $language;
   if (!$uid || $uid == 1) {
     return;
   }
@@ -344,7 +341,7 @@ function dosomething_roles_update_role($uid) {
     //  prevent an infinite loop.
     $new_rid = $rids[$new_role_name];
     $params = array('user' => $account);
-    drupal_mail('dosomething_roles', 'dosomething-roles-alumni-email', $account->mail, $language, $params);
+    drupal_mail('dosomething_roles', 'dosomething-roles-alumni-email', $account->mail, user_preferred_language($account), $params);
   }
 
   if (isset($new_rid)) {
