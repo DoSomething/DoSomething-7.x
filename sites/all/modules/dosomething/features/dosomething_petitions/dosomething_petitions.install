@@ -39,3 +39,15 @@ function dosomething_petitions_schema() {
 function dosomething_petitions_update_7100() {
   drupal_install_schema('dosomething_petitions');
 }
+
+/**
+ * Add Timestamp field.
+ */
+function dosomething_petitions_update_7101() {
+  db_add_field('dosomething_petitions_invites', 'timestamp', array(
+    'description' => 'The time that a person was invited.',
+    'type' => int,
+    'unsigned' => TRUE,
+    'not null' => TRUE
+  ));
+}
