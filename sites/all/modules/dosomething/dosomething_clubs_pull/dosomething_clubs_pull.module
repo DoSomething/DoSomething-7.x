@@ -1,6 +1,7 @@
 <?php
 
 define('CLUB_PULL_LIMIT', 500);
+define('DEBUG', 1);
 
 function dosomething_clubs_pull_menu() {
 	$items['admin/clubs-pull'] = array(
@@ -129,7 +130,7 @@ class clubs_export {
 
   public static function load_file($data) {
     $info = unserialize(base64_decode($data));
-    if (strpos($info['file_path'], file_directory_temp()) === FALSE) {
+    if (strpos($info['file_path'], 'private') === FALSE) {
       return 'Access denied!';
     }
 
@@ -164,9 +165,7 @@ class clubs_export {
     $i = 0;
     $info = unserialize(base64_decode($hash));
     $handle = fopen($info['file_path'], 'a');
-    $test = fopen(file_directory_temp() . '/clubs-test.txt', 'a+');
 
-    $c = array();
     foreach ($data['results'] AS $key => $stuff) {
       $stuff = (array) $stuff;
 
@@ -208,7 +207,6 @@ class clubs_export {
 
     $ex = array_to_csv($c, FALSE);
     if (!empty($ex)) {
-      file_put_contents(file_directory_temp() . '/clubs-test.txt', $ex, FILE_APPEND | LOCK_EX);
       if (file_put_contents($info['file_path'], $ex, FILE_APPEND | LOCK_EX) && $i == $count) {
         return true;
       }
@@ -223,7 +221,7 @@ class clubs_export {
       $filename = 'clubs_export_' . date('m-d-y', REQUEST_TIME) . '.csv';
       $h = array(
         'filename' => $filename,
-        'file_path' => file_directory_temp() . '/' . $filename
+        'file_path' => drupal_realpath('private://') . '/' . $filename
       );
 
       $field_labels = array(

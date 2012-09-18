@@ -120,7 +120,7 @@ class export {
 
   public static function narrow() {
     // Clean the directory of previously created petitions exports...
-    shell_exec('rm -rf ' . file_directory_temp() . '/petitions_*');
+    shell_exec('rm -rf ' . drupal_realpath('private://') . '/petitions_*');
     return drupal_render(drupal_get_form('export::narrow_form'));
   }
 
@@ -198,7 +198,7 @@ class export {
     }
     else {
       if (self::$breakdown) {
-        $filepath = file_directory_temp() . '/' . self::$filename;
+        $filepath = drupal_realpath('private://') . '/' . self::$filename;
         $hash = base64_encode(serialize(array(
           'filename' => basename($filepath),
           'file_path' => $filepath,
@@ -215,7 +215,7 @@ class export {
 
   public static function load_file($data) {
     $info = unserialize(base64_decode($data));
-    if (strpos($info['file_path'], file_directory_temp()) === FALSE) {
+    if (strpos($info['file_path'], 'private') === FALSE) {
       return 'Access denied!';
     }
 
@@ -237,7 +237,7 @@ class export {
       unset($_SESSION['started']);
 
       if (isset($info['part'])) {
-        $filepath = file_directory_temp() . '/' . $info['filename'];
+        $filepath = drupal_realpath('private://') . '/' . $info['filename'];
         shell_exec('zip -j ' . $filepath . ' ' . $filepath . '*');
       }
 
@@ -264,7 +264,7 @@ class export {
       if (empty($hash) && !isset($handle) && !strpos(self::$path, $stuff->id)) {
         // The hash is empty so it's likely that we're doing a multi-part export
         // Load / create the correct file and continue!
-        self::$path = file_directory_temp() . '/' . self::$filename . '-' . $stuff->id . '.csv';
+        self::$path = drupal_realpath('private://') . '/' . self::$filename . '-' . $stuff->id . '.csv';
       }
       $stuff = (array) $stuff;
       $e[self::$path][] = $stuff;
@@ -292,7 +292,7 @@ class export {
       $filename = self::$filename;
       $h = array(
         'filename' => $filename,
-        'file_path' => file_directory_temp() . '/' . $filename . '.csv'
+        'file_path' => drupal_realpath('private://') . '/' . $filename . '.csv'
       );
 
       $field_labels = self::$fields;
