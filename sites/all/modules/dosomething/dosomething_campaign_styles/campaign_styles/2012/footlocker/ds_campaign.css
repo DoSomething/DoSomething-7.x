@@ -846,7 +846,7 @@ hr.gray {
     background-image: url("http://files.dosomething.org/files/campaigns/vote/vote-downarrow.png");
     color: black; }
 
-p.fl-confirm {
+.fl-confirm {
   width: 500px;
   margin: 0 auto;
   line-height: 1.3em;
