@@ -1,0 +1,880 @@
+// Bully Text
+
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors - define any campaign specific colors here
+$baseColor: #FFD400
+$secondaryLink: black
+$paneBG: #fff
+$paneTitleBG: red
+ 
+// borders (all lines - i.e. around social / quick info)
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+$boldWeight: 600
+
+// sets the background for the entire page
+$imageBackground: url('assets/bully_text_bg.jpg')
+$bgFallback: #000000
+
+// sets the background for the page nav and main section
+@mixin block
+  // make sure you specify the RBG fallback if you have a RGBA set!
+  background: rgb(255,255,255)
+  background: rgba(255,255,255,.8)
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@mixin setBorderBox
+  -moz-box-sizing: border-box
+  -ms-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+@font-face 
+  font-family: 'Novecentowide-Bold-webfont'
+  src: url('assets/Novecentowide-Bold-webfont.eot')
+  src: url('assets/Novecentowide-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('assets/Novecentowide-Bold-webfont.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+
+.main-inner 
+  padding-top: 0px
+  width: 750px
+  a
+    color: black
+    text-decoration: underline
+    font-weight: bold
+    &:hover
+      color: $secondaryLink
+  b
+    font-weight: $boldWeight
+
+h1.title
+  display: none
+
+h2.pane-title
+  background: $paneTitleBG
+
+img
+  +noShadow
+  +noBorder
+  
+ul
+  margin: 0
+
+.clear
+  clear: both
+
+body
+  background-color: $bgFallback
+  background-image: $imageBackground
+  background-repeat: no-repeat
+  background-position: center top
+
+div[role="main"]
+  +block
+  //@include box-shadow(black 0 0 30px -10px)
+  margin-top: 0px !important
+  padding-top: 0px
+  padding-bottom: 0px  
+  background: none
+
+.three-boxes
+  width: 32% !important
+  float: left !important
+  margin-right: 2% !important
+  &:last-child
+    margin-right: 0 !important
+  .pane-content
+    +setBorderBox
+
+// IE8 does not support :last-child
+.three-boxes-last-child
+  margin-right: 0 !important
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+  
+// General pane definitions
+.panel-row-flexible, .panel-row-actions
+  margin: 0px
+  .panel-pane
+    margin-bottom: 0px
+    +block
+    +noBorder
+    .pane-title
+      background: $paneTitleBG
+    .pane-content
+      background: $paneBG
+      line-height: 1em !important     
+
+.ds-panel .pane-content
+  padding-bottom: 0px
+
+#breadcrumb
+  display: none
+
+// reset quick info color
+.panel-row-ad-quick-info
+  h2.pane-title
+    color: $baseColor !important
+
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: transparent
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background-image: none
+    text-align: right
+    li
+      line-height: 1.2em
+    a
+      display: inline-block
+      width: 100%
+      padding: 10px 19px 10px 0
+      font-size: 21px
+      font-weight: 600
+      text-transform: uppercase
+      color: $secondaryLink
+      font-family: "din-web-reg"
+      line-height: 1em
+      &:hover, .active
+        color: $baseColor
+        text-decoration: none
+
+// campaign logo
+.pane-node-field-campaign-logo .pane-content
+  padding-bottom: 0
+.field-name-field-campaign-logo img
+  width: 480px
+  height: 230px
+  margin-top: 0px !important
+
+// mini info
+// brief campaign description at the top right
+.panel-top-right-mini-info
+  font-family: $accent
+  font-size: 21px
+  line-height: 1.4em
+  .field-name-field-campain-date
+    color: $baseColor
+    padding: 0
+    font-weight: 600
+  .field-name-field-campaign-teaser p
+    margin-bottom: 15px
+  .pane-content  
+    padding-bottom: 0
+
+// campaign social buttons, top right
+.pane-campaign-social
+  .pane-content
+    .fb-facepile
+      margin-bottom: 5px
+      &:before
+        +insetBorder
+    // positioning line between social width and campaign teaser
+    .socialWrapper
+      margin: 0 0 8px 18px
+      &:before
+        +insetBorder
+        content: ""
+        display: block
+        left: -18px
+        margin-bottom: 8px
+        position: relative
+        width: 247px
+
+// short form
+.panel-row-actions
+  background: $paneBG
+  margin: 0 0 15px 0
+  width: 750px
+  +noBorder
+  .form-wrapper
+    margin-bottom: 5px !important
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+  .panel-row-actions-sign-up
+    form 
+      padding-bottom: 0
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-title
+        color: white
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noShadow
+        +noBorder
+      .field-name-field-webform-email
+        font-size: 14px
+        width: 280px
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      .field-name-field-webform-mobile  
+        font-size: 14px
+        width: 240px
+        margin-bottom: 0.5em
+        input
+          width: 75%
+          margin-top: 5px
+
+.webform-client-form
+  #edit-actions,
+  #edit-actions--2
+    position: absolute
+    right: 80px
+    top: 48px
+
+#campaign-opt-in
+  font-size: 11px
+  margin-left: 15px
+  padding: 15px 0 12px 0
+  a
+    font-weight: bold
+    display: block
+    height: 20px
+    width: 20px
+    position: absolute
+    bottom: 13px
+    left: 324px
+    color: $baseColor
+    &:hover
+      color: $secondaryLink
+      text-decoration: none
+
+// counter
+.pane-campaign-counter
+  .pane-content
+    padding: 20px 25px
+    .campaign-counter-labels
+      text-transform: uppercase
+      font-size: 25px
+      font-family: din-web,"Trebuchet MS",sans-serif 
+      font-weight: 500
+      line-height: 25px
+      float: left
+    .digits, .campaign-counter-label-bottom, .campaign-counter-label-top
+      margin-bottom: 8px
+
+// Quick Info
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: $secondaryLink
+    line-height: 1em
+    font-weight: 500
+  .pane-content
+    margin-top: 1em
+    padding: 0
+    h3
+      color: $baseColor
+      font-size: 24px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: .8em
+    p
+      margin: 0 0 0.8em 0
+    &:before
+      margin-bottom: 20px
+      
+// PSA
+.panel-row-ad-psa
+  margin-top: 35px
+
+// sponsor logos
+.panel-row-logos
+  margin-top: 2em
+  .pane-title
+    color: $baseColor
+    background: none
+    margin: 0
+    padding: 0
+  .pane-content
+    background: none
+    padding: 0
+
+// FAQ
+.faq-section
+  +noBorder
+  .pane-content
+    ul
+      margin: 0px 10px
+      padding: 1.5em
+    li
+      h3
+        font-size: 1.6em
+        text-transform: none
+      p 
+        margin-top: 0
+
+// Blog
+.node-campaign-blog-post
+  padding: 15px !important
+  .field-name-field-picture
+    img
+      margin: 0 20px 20px 0
+      float: left
+  .field-name-field-blog-video
+    clear: both
+    position: relative
+    bottom: -25px
+    right: -125px
+    margin: 35px 0
+    iframe
+      margin: 0 auto
+      display: block
+
+.field-type-text-with-summary
+  img
+    padding: 10px
+    margin: 20px auto
+    display: block
+    border: 1px solid #000!important
+
+.pane-campaign-blog-panel-pane-1
+  background: transparent !important
+  +noBorder
+  .pane-content
+    padding: 15px
+  a
+    color: $baseColor
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
+  .views-field-title
+    a
+      text-decoration: none
+      &:hover
+        color: $secondaryLink
+  .more-link
+    text-transform: uppercase
+
+.pane-campaign-blog-panel-pane-2
+  +noBorder
+  width: 100%
+  .pane-content
+    padding: 10px 0 0 0
+  .view-campaign-blog
+    .views-row
+      padding: 5px 15px 15px
+        margin: 1em 0 1em 0
+      &:first-child
+        &:before
+          +noBorder
+          margin: 0
+    .views-row-even
+      background-color: $paneBG
+      
+// set the resgister for Do Something block on sign up to be taller
+#dosomething-login-register-popup-form .popup-content
+  //height: 165px !important
+
+// hide school data on the long form
+#edit-submitted-field-webform-school-reference,
+#submitted-field-webform-school-zip-add-more-wrapper
+  display: none
+
+// Sign Up Form
+.node-type-campaign-sign-up
+  #webform-component-first-name, #webform-component-last-name, #webform-component-address-1, #webform-component-address-2, #webform-component-city, #webform-component-state, #webform-component-zip-code, #webform-component-who-with, .form-item-submitted-field-webform-email-und-0-email, .form-item-submitted-field-webform-mobile-und-0-value, .form-item-first-name, .form-item-last-name, .form-item-email, .form-item-cell, .form-item-pass
+    clear: both
+    margin: 0 auto !important  
+    float: left !important
+    label
+      width: 220px
+      padding: 5px 0 0 40px
+    label, input
+      float: left
+      margin: 8px 0
+      font-size: 14px
+    input
+      width: 225px !important
+      &:focus
+        background-color: lightyellow   
+
+  //label[for="edit-last-name"], label[for="edit-first-name"], label[for="edit-cell-or-email"]
+    //display: block !important
+
+  .webform-component-markup
+    float: left
+    clear: both
+    width: 100%          
+    
+  #webform-component-who-with
+    label
+      width: 100%
+      padding-left: 0
+    textarea
+      border: none
+      -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      outline: none
+      padding-left: 5px
+      &:focus
+        background-color: lightyellow
+    .grippie
+      margin-bottom: 10px
+
+  .panel-row-flexible-top
+    width: 550px
+    margin: 0 auto
+    h2.pane-title
+      display: none  
+
+  #webform-component-instructions
+    margin: 0 0 -10px 0 !important
+  form.webform-client-form
+    #edit-actions--2, #edit-actions
+      text-align: center
+      margin: 10px
+      clear: both
+
+.center
+  text-align: center
+
+.pane-dosomething-login-register-block
+  h2.pane-title
+    display: block !important
+  margin-bottom: 0 !important     
+
+#dosomething-login-register-popup-form 
+  input
+    &:focus
+      background-color: lightyellow  
+  .form-item-last-name, .form-item-cell, .form-item-pass
+    width: 100%
+  .ds-registration-form-required
+    position: static
+  .popup-content
+    height: 100% !important
+    padding: 15px 15px 0 15px !important
+    margin: 0 !important    
+  #edit-birthday
+    input
+      width: 68px
+    label  
+      .login-popup-birthday
+        position: static !important
+        font-size: 14px !important  
+      width: 220px
+      padding: 5px 0 0 40px
+      margin: 8px 0
+    .form-item-month, .form-item-day, .form-item-year
+      margin-top: 8px !important     
+
+// Report Back Form  
+.node-type-campaign-report-back   
+  .panel-row-flexible-top
+    width: 550px
+    margin: 0 auto  
+    label
+      margin-top: 1em
+    fieldset 
+      legend
+        padding: 20px 0 0 0 !important 
+    #edit-actions--2, #edit-actions
+      text-align: center
+      margin: 10px
+      clear: both 
+
+// HIDE DS SIDEBAR     
+#block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
+  display: none
+
+// SUBHEADERS
+hr.gray
+  border-top: 1px solid lightgray 
+  border-bottom: none
+  clear: both
+  margin: 0px       
+.grayhead-box
+  text-align: center
+  margin-top: 0px
+.grayhead
+  background: #241F20
+  display: inline-block
+  text-align: center
+  text-transform: uppercase
+  color: white
+  margin: -1px auto 15px auto
+  clear: both
+  padding: 15px 20px 10px
+  font-size: 21px 
+  font-family: $accent
+  width: 250px 
+
+// HEADER 
+#bullytext-header
+  img
+    margin: 0px !important
+
+// BULLYTEXT BUTTONS
+.bullytext-btn
+  font-family: $accent
+  background: $baseColor
+  font-size: 22px
+  text-transform: uppercase
+  padding: 4px 8px 0px
+  font-weight: bold
+  -webkit-border-radius: 6px
+  -moz-border-radius: 6px
+  border-radius: 6px
+  box-shadow: 0px 0px 8px 2px #999
+  text-decoration: none !important
+  color: #222 !important
+  position: relative
+  z-index: 100
+  &:hover
+    color: #000 !important          
+
+// REFER A FRIEND
+#bullytext-game
+  .pane-content
+    position: relative
+    margin-left: -20px
+    width: 790px
+    background: black !important
+    color: white
+    padding: 20px
+    .left-fade
+      position: absolute
+      left: 0px
+      top: -20px
+      border: 10px solid
+      border-color: transparent #222 #222 transparent
+    .right-fade
+      position: absolute
+      right: 0px
+      top: -20px
+      border: 10px solid
+      border-color: transparent transparent #222 #222 
+    h2
+      font-family: 'Novecentowide-Bold-webfont'
+      border-bottom: 2px solid gray
+      text-transform: uppercase
+      font-size: 28px
+      text-align: center
+      line-height: 1.4em
+      margin-bottom: 15px
+      color: $baseColor
+    p
+      text-align: center
+      span
+        text-transform: uppercase
+        font-size: 26px
+        color: $baseColor
+        line-height: 1.4em
+    input
+      display: block
+      width: 220px
+      padding: 6px
+      margin-bottom: 6px
+    input::-webkit-input-placeholder
+      color: #222    
+    .scholarship-signup
+      float: left
+      width: 60%
+      p
+        width: 300px
+        line-height: 1.4em
+      input
+        margin-left: 40px
+      .refer-arrow-top
+        position: absolute
+        top: 75px
+        left: 290px
+      .refer-arrow-bottom
+        position: absolute
+        top: 240px
+        left: 290px  
+    .friends-signup
+      float: left
+      width: 40%
+      p
+        font-size: 11px
+        float: left
+        width: 110px
+        text-align: left
+        line-height: 1.2em
+      input[type=submit]
+        float: left
+        width: 110px
+        color: #222
+        background: $baseColor
+        +noBorder
+        -webkit-border-radius: 4px
+        -moz-border-radius: 4px
+        border-radius: 4px
+        text-transform: uppercase
+        font-weight: bold
+        font-size: 18px
+        &:hover
+          color: black
+
+// LEARN ISSUE
+img.shadow
+  margin: 0 !important         
+.bully-box, .bully-box-plus
+  float: left
+  padding: 20px
+  text-align: center
+  line-height: 1.4em
+  img
+    margin: 0 auto
+    display: block
+  h3
+    font-size: 24px
+.bully-box
+  width: 250px
+.bully-box-plus
+  float: left
+  width: 248px
+  border-left: 1px solid lightgray
+  border-right: 1px solid lightgray
+  padding-bottom: 0px
+  margin-bottom: 40px
+
+// EXAMPLE
+#bullytext-example
+  position: relative
+  img
+    position: absolute
+    bottom: 40px
+    right: 40px
+.texts
+  width: 260px
+  margin: 0 auto
+  padding: 10px 0 40px 0
+  text-transform: uppercase
+  h3, p
+    margin: 0 auto 15px auto 
+    line-height: 1.2em  
+  h3
+    border-bottom: 2px solid lightgray
+  h3.user
+    width: 50%
+    margin-left: 50%
+    margin-bottom: 5px
+  p 
+    font-family: 'Novecentowide-Bold-webfont'
+    font-size: 16px
+    &.gold
+      color: $baseColor
+      width: 45%
+      margin-left: 55%
+.see-more
+  position: relative
+  float: right
+  display: inline-block
+  margin: 0 40px 70px 0 
+  img
+    position: absolute
+    left: -39px !important
+    top: -57px !important
+    z-index: 1    
+
+// STATS
+#bullytext-stats
+  p
+    text-align: center
+  img
+    &.sharewith
+      margin: 0 0 0 370px
+      padding: 5px 0 40px 0
+      display: block  
+.stats
+  float: left
+  width: 250px
+  img
+    margin: 0px auto
+    display: block
+  ul
+    margin: 0
+    padding: 0
+    list-style-type: none
+    text-align: center
+  li
+    display: inline-block  
+    img
+      margin: 0 !important
+
+// SCHOLARSHIP
+#bullytext-scholarship
+  .pane-content
+    background: #fff url('assets/bullytext-yellowlockers.jpg') no-repeat top center
+    padding-bottom: 20px
+.scholar-box
+  background: white
+  width: 430px
+  margin: 0px 160px 40px
+  padding: 20px 10px 5px
+  -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .4)
+  box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .4)
+  text-align: center
+  h2
+    line-height: 1.1em
+    font-size: 36px
+    text-transform: uppercase
+    margin-bottom: 5px
+  p
+    line-height: 1.4em  
+    span
+      font-style: italic
+    &.send
+      margin: 20px 0
+
+// LEARN ABOUT BULLYING
+ol
+  li
+    margin: 0 40px 15px
+    line-height: 1.4em
+#bullytext-learn
+  h2
+    background: $baseColor
+    display: inline-block
+    padding: 8px 10px 2px
+    text-transform: uppercase
+    font-size: 24px
+    margin-bottom: 10px
+    font-family: $accent
+h3.action-btn
+  padding: 20px 0 70px
+  text-align: center
+  a
+    background: $baseColor
+    text-decoration: none
+    padding: 5px 20px 0px
+    -webkit-border-radius: 6px
+    -moz-border-radius: 6px
+    border-radius: 6px
+    box-shadow: 0px 0px 8px 2px #999
+    letter-spacing: 1px
+    font-family: $accent
+    font-size: 32px
+    font-weight: normal
+    color: #222
+    span
+      text-transform: uppercase
+      letter-spacing: 0px
+      font-weight: bold
+      font-size: 24px
+
+// STAND UP
+.square
+  float: left
+  width: 325px
+  text-align: center
+  padding: 20px 50px
+  height: 300px
+  img
+    margin: 0 auto
+    display: block
+  h3
+    font-size: 20px
+    text-transform: uppercase  
+  p
+    line-height: 1.4em  
+.sq-one
+  border-right: 1px solid lightgray
+  border-bottom: 1px solid lightgray    
+.sq-two
+  border-bottom: 1px solid lightgray
+.sq-three
+  border-right: 1px solid lightgray 
+.sq-one, .sq-three
+  margin-left: 50px
+  padding-left: 0
+.sq-two, .sq-four
+  margin-right: 50px
+  padding-right: 0
+.sq-three, .sq-four
+  margin-bottom: 40px
+
+// QUESTIONS
+#stand-up-box
+  text-align: center
+  padding: 40px
+.stand-up-btn
+  font-family: $accent
+  position: relative
+  text-align: center
+  text-transform: uppercase
+  display: inline-block
+  p
+    margin-bottom: 20px
+    font-size: 18px
+  .stand-arrow-left, .stand-arrow-right
+    position: absolute
+    bottom: -10px
+  .stand-arrow-left  
+    left: -70px
+  .stand-arrow-right
+    right: -70px 
+#bullytext-questions
+  .faq
+    margin: 20px 20px 0
+    h4
+      font-family: $accent
+      background-image: url('assets/blackarrow-right.png')
+      background-repeat: no-repeat
+      background-position-y: 6px
+      cursor: pointer
+      font-size: 20px
+      margin-top: 10px
+    h4, p
+      padding-left: 15px
+      line-height: 1.4em
+    .activeFAQ
+      background-image: url('assets/blackarrow-down.png')
+      color: black
+

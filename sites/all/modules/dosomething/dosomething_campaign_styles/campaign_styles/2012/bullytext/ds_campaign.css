@@ -1,0 +1,790 @@
+@font-face {
+  font-family: "Novecentowide-Bold-webfont";
+  src: url("assets/Novecentowide-Bold-webfont.eot");
+  src: url("assets/Novecentowide-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("assets/Novecentowide-Bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.main-inner {
+  padding-top: 0px;
+  width: 750px; }
+  .main-inner a {
+    color: black;
+    text-decoration: underline;
+    font-weight: bold; }
+    .main-inner a:hover {
+      color: black; }
+  .main-inner b {
+    font-weight: 600; }
+
+h1.title {
+  display: none; }
+
+h2.pane-title {
+  background: red; }
+
+img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important; }
+
+ul {
+  margin: 0; }
+
+.clear {
+  clear: both; }
+
+body {
+  background-color: black;
+  background-image: url("assets/bully_text_bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center top; }
+
+div[role="main"] {
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  margin-top: 0px !important;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: none; }
+
+.three-boxes {
+  width: 32% !important;
+  float: left !important;
+  margin-right: 2% !important; }
+  .three-boxes:last-child {
+    margin-right: 0 !important; }
+  .three-boxes .pane-content {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+
+.three-boxes-last-child {
+  margin-right: 0 !important; }
+
+.line-top:before {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+.line-bottom:after {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+
+.panel-row-flexible, .panel-row-actions {
+  margin: 0px; }
+  .panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
+    margin-bottom: 0px;
+    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    border: none !important; }
+    .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
+      background: red; }
+    .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
+      background: white;
+      line-height: 1em !important; }
+
+.ds-panel .pane-content {
+  padding-bottom: 0px; }
+
+#breadcrumb {
+  display: none; }
+
+.panel-row-ad-quick-info h2.pane-title {
+  color: #ffd400 !important; }
+
+#block-dosomething-campaign-styles-campaign-nav {
+  background: transparent;
+  margin-right: -5px;
+  padding: 0;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  #block-dosomething-campaign-styles-campaign-nav ul.menu {
+    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    background-image: none;
+    text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu li {
+      line-height: 1.2em; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu a {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 19px 10px 0;
+      font-size: 21px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: black;
+      font-family: "din-web-reg";
+      line-height: 1em; }
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+        color: #ffd400;
+        text-decoration: none; }
+
+.pane-node-field-campaign-logo .pane-content {
+  padding-bottom: 0; }
+
+.field-name-field-campaign-logo img {
+  width: 480px;
+  height: 230px;
+  margin-top: 0px !important; }
+
+.panel-top-right-mini-info {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 21px;
+  line-height: 1.4em; }
+  .panel-top-right-mini-info .field-name-field-campain-date {
+    color: #ffd400;
+    padding: 0;
+    font-weight: 600; }
+  .panel-top-right-mini-info .field-name-field-campaign-teaser p {
+    margin-bottom: 15px; }
+  .panel-top-right-mini-info .pane-content {
+    padding-bottom: 0; }
+
+.pane-campaign-social .pane-content .fb-facepile {
+  margin-bottom: 5px; }
+  .pane-campaign-social .pane-content .fb-facepile:before {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+.pane-campaign-social .pane-content .socialWrapper {
+  margin: 0 0 8px 18px; }
+  .pane-campaign-social .pane-content .socialWrapper:before {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    content: "";
+    display: block;
+    left: -18px;
+    margin-bottom: 8px;
+    position: relative;
+    width: 247px; }
+
+.panel-row-actions {
+  background: white;
+  margin: 0 0 15px 0;
+  width: 750px;
+  border: none !important; }
+  .panel-row-actions .form-wrapper {
+    margin-bottom: 5px !important; }
+  .panel-row-actions .pane-title {
+    background: #ffd400; }
+  .panel-row-actions .pane-content {
+    padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up form {
+    padding-bottom: 0; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
+      color: white; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content {
+    padding: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
+      -moz-box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      -o-box-shadow: none !important;
+      box-shadow: none !important;
+      border: none !important; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
+      font-size: 14px;
+      width: 280px;
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
+        width: 100%; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
+      font-size: 14px;
+      width: 240px;
+      margin-bottom: 0.5em; }
+      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
+        width: 75%;
+        margin-top: 5px; }
+
+.webform-client-form #edit-actions,
+.webform-client-form #edit-actions--2 {
+  position: absolute;
+  right: 80px;
+  top: 48px; }
+
+#campaign-opt-in {
+  font-size: 11px;
+  margin-left: 15px;
+  padding: 15px 0 12px 0; }
+  #campaign-opt-in a {
+    font-weight: bold;
+    display: block;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 13px;
+    left: 324px;
+    color: #ffd400; }
+    #campaign-opt-in a:hover {
+      color: black;
+      text-decoration: none; }
+
+.pane-campaign-counter .pane-content {
+  padding: 20px 25px; }
+  .pane-campaign-counter .pane-content .campaign-counter-labels {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-weight: 500;
+    line-height: 25px;
+    float: left; }
+  .pane-campaign-counter .pane-content .digits, .pane-campaign-counter .pane-content .campaign-counter-label-bottom, .pane-campaign-counter .pane-content .campaign-counter-label-top {
+    margin-bottom: 8px; }
+
+.panel-row-ad-quick-info .pane-title {
+  font-size: 35px;
+  padding: 0;
+  background: transparent;
+  text-transform: uppercase;
+  color: black;
+  line-height: 1em;
+  font-weight: 500; }
+.panel-row-ad-quick-info .pane-content {
+  margin-top: 1em;
+  padding: 0; }
+  .panel-row-ad-quick-info .pane-content h3 {
+    color: #ffd400;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 0.8em; }
+  .panel-row-ad-quick-info .pane-content p {
+    margin: 0 0 0.8em 0; }
+  .panel-row-ad-quick-info .pane-content:before {
+    margin-bottom: 20px; }
+
+.panel-row-ad-psa {
+  margin-top: 35px; }
+
+.panel-row-logos {
+  margin-top: 2em; }
+  .panel-row-logos .pane-title {
+    color: #ffd400;
+    background: none;
+    margin: 0;
+    padding: 0; }
+  .panel-row-logos .pane-content {
+    background: none;
+    padding: 0; }
+
+.faq-section {
+  border: none !important; }
+  .faq-section .pane-content ul {
+    margin: 0px 10px;
+    padding: 1.5em; }
+  .faq-section .pane-content li h3 {
+    font-size: 1.6em;
+    text-transform: none; }
+  .faq-section .pane-content li p {
+    margin-top: 0; }
+
+.node-campaign-blog-post {
+  padding: 15px !important; }
+  .node-campaign-blog-post .field-name-field-picture img {
+    margin: 0 20px 20px 0;
+    float: left; }
+  .node-campaign-blog-post .field-name-field-blog-video {
+    clear: both;
+    position: relative;
+    bottom: -25px;
+    right: -125px;
+    margin: 35px 0; }
+    .node-campaign-blog-post .field-name-field-blog-video iframe {
+      margin: 0 auto;
+      display: block; }
+
+.field-type-text-with-summary img {
+  padding: 10px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid black !important; }
+
+.pane-campaign-blog-panel-pane-1 {
+  background: transparent !important;
+  border: none !important; }
+  .pane-campaign-blog-panel-pane-1 .pane-content {
+    padding: 15px; }
+  .pane-campaign-blog-panel-pane-1 a {
+    color: #ffd400;
+    text-decoration: underline; }
+    .pane-campaign-blog-panel-pane-1 a:hover {
+      color: black; }
+  .pane-campaign-blog-panel-pane-1 .views-field-title a {
+    text-decoration: none; }
+    .pane-campaign-blog-panel-pane-1 .views-field-title a:hover {
+      color: black; }
+  .pane-campaign-blog-panel-pane-1 .more-link {
+    text-transform: uppercase; }
+
+.pane-campaign-blog-panel-pane-2 {
+  border: none !important;
+  width: 100%; }
+  .pane-campaign-blog-panel-pane-2 .pane-content {
+    padding: 10px 0 0 0; }
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row {
+    padding: 5px 15px 15px;
+      padding-margin: 1em 0 1em 0; }
+    .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:first-child:before {
+      border: none !important;
+      margin: 0; }
+  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
+    background-color: white; }
+
+#edit-submitted-field-webform-school-reference,
+#submitted-field-webform-school-zip-add-more-wrapper {
+  display: none; }
+
+.node-type-campaign-sign-up #webform-component-first-name, .node-type-campaign-sign-up #webform-component-last-name, .node-type-campaign-sign-up #webform-component-address-1, .node-type-campaign-sign-up #webform-component-address-2, .node-type-campaign-sign-up #webform-component-city, .node-type-campaign-sign-up #webform-component-state, .node-type-campaign-sign-up #webform-component-zip-code, .node-type-campaign-sign-up #webform-component-who-with, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value, .node-type-campaign-sign-up .form-item-first-name, .node-type-campaign-sign-up .form-item-last-name, .node-type-campaign-sign-up .form-item-email, .node-type-campaign-sign-up .form-item-cell, .node-type-campaign-sign-up .form-item-pass {
+  clear: both;
+  margin: 0 auto !important;
+  float: left !important; }
+  .node-type-campaign-sign-up #webform-component-first-name label, .node-type-campaign-sign-up #webform-component-last-name label, .node-type-campaign-sign-up #webform-component-address-1 label, .node-type-campaign-sign-up #webform-component-address-2 label, .node-type-campaign-sign-up #webform-component-city label, .node-type-campaign-sign-up #webform-component-state label, .node-type-campaign-sign-up #webform-component-zip-code label, .node-type-campaign-sign-up #webform-component-who-with label, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email label, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value label, .node-type-campaign-sign-up .form-item-first-name label, .node-type-campaign-sign-up .form-item-last-name label, .node-type-campaign-sign-up .form-item-email label, .node-type-campaign-sign-up .form-item-cell label, .node-type-campaign-sign-up .form-item-pass label {
+    width: 220px;
+    padding: 5px 0 0 40px; }
+  .node-type-campaign-sign-up #webform-component-first-name label, .node-type-campaign-sign-up #webform-component-first-name input, .node-type-campaign-sign-up #webform-component-last-name label, .node-type-campaign-sign-up #webform-component-last-name input, .node-type-campaign-sign-up #webform-component-address-1 label, .node-type-campaign-sign-up #webform-component-address-1 input, .node-type-campaign-sign-up #webform-component-address-2 label, .node-type-campaign-sign-up #webform-component-address-2 input, .node-type-campaign-sign-up #webform-component-city label, .node-type-campaign-sign-up #webform-component-city input, .node-type-campaign-sign-up #webform-component-state label, .node-type-campaign-sign-up #webform-component-state input, .node-type-campaign-sign-up #webform-component-zip-code label, .node-type-campaign-sign-up #webform-component-zip-code input, .node-type-campaign-sign-up #webform-component-who-with label, .node-type-campaign-sign-up #webform-component-who-with input, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email label, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value label, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input, .node-type-campaign-sign-up .form-item-first-name label, .node-type-campaign-sign-up .form-item-first-name input, .node-type-campaign-sign-up .form-item-last-name label, .node-type-campaign-sign-up .form-item-last-name input, .node-type-campaign-sign-up .form-item-email label, .node-type-campaign-sign-up .form-item-email input, .node-type-campaign-sign-up .form-item-cell label, .node-type-campaign-sign-up .form-item-cell input, .node-type-campaign-sign-up .form-item-pass label, .node-type-campaign-sign-up .form-item-pass input {
+    float: left;
+    margin: 8px 0;
+    font-size: 14px; }
+  .node-type-campaign-sign-up #webform-component-first-name input, .node-type-campaign-sign-up #webform-component-last-name input, .node-type-campaign-sign-up #webform-component-address-1 input, .node-type-campaign-sign-up #webform-component-address-2 input, .node-type-campaign-sign-up #webform-component-city input, .node-type-campaign-sign-up #webform-component-state input, .node-type-campaign-sign-up #webform-component-zip-code input, .node-type-campaign-sign-up #webform-component-who-with input, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input, .node-type-campaign-sign-up .form-item-first-name input, .node-type-campaign-sign-up .form-item-last-name input, .node-type-campaign-sign-up .form-item-email input, .node-type-campaign-sign-up .form-item-cell input, .node-type-campaign-sign-up .form-item-pass input {
+    width: 225px !important; }
+    .node-type-campaign-sign-up #webform-component-first-name input:focus, .node-type-campaign-sign-up #webform-component-last-name input:focus, .node-type-campaign-sign-up #webform-component-address-1 input:focus, .node-type-campaign-sign-up #webform-component-address-2 input:focus, .node-type-campaign-sign-up #webform-component-city input:focus, .node-type-campaign-sign-up #webform-component-state input:focus, .node-type-campaign-sign-up #webform-component-zip-code input:focus, .node-type-campaign-sign-up #webform-component-who-with input:focus, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input:focus, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input:focus, .node-type-campaign-sign-up .form-item-first-name input:focus, .node-type-campaign-sign-up .form-item-last-name input:focus, .node-type-campaign-sign-up .form-item-email input:focus, .node-type-campaign-sign-up .form-item-cell input:focus, .node-type-campaign-sign-up .form-item-pass input:focus {
+      background-color: lightyellow; }
+.node-type-campaign-sign-up .webform-component-markup {
+  float: left;
+  clear: both;
+  width: 100%; }
+.node-type-campaign-sign-up #webform-component-who-with label {
+  width: 100%;
+  padding-left: 0; }
+.node-type-campaign-sign-up #webform-component-who-with textarea {
+  border: none;
+  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  outline: none;
+  padding-left: 5px; }
+  .node-type-campaign-sign-up #webform-component-who-with textarea:focus {
+    background-color: lightyellow; }
+.node-type-campaign-sign-up #webform-component-who-with .grippie {
+  margin-bottom: 10px; }
+.node-type-campaign-sign-up .panel-row-flexible-top {
+  width: 550px;
+  margin: 0 auto; }
+  .node-type-campaign-sign-up .panel-row-flexible-top h2.pane-title {
+    display: none; }
+.node-type-campaign-sign-up #webform-component-instructions {
+  margin: 0 0 -10px 0 !important; }
+.node-type-campaign-sign-up form.webform-client-form #edit-actions--2, .node-type-campaign-sign-up form.webform-client-form #edit-actions {
+  text-align: center;
+  margin: 10px;
+  clear: both; }
+
+.center {
+  text-align: center; }
+
+.pane-dosomething-login-register-block {
+  margin-bottom: 0 !important; }
+  .pane-dosomething-login-register-block h2.pane-title {
+    display: block !important; }
+
+#dosomething-login-register-popup-form input:focus {
+  background-color: lightyellow; }
+#dosomething-login-register-popup-form .form-item-last-name, #dosomething-login-register-popup-form .form-item-cell, #dosomething-login-register-popup-form .form-item-pass {
+  width: 100%; }
+#dosomething-login-register-popup-form .ds-registration-form-required {
+  position: static; }
+#dosomething-login-register-popup-form .popup-content {
+  height: 100% !important;
+  padding: 15px 15px 0 15px !important;
+  margin: 0 !important; }
+#dosomething-login-register-popup-form #edit-birthday input {
+  width: 68px; }
+#dosomething-login-register-popup-form #edit-birthday label {
+  width: 220px;
+  padding: 5px 0 0 40px;
+  margin: 8px 0; }
+  #dosomething-login-register-popup-form #edit-birthday label .login-popup-birthday {
+    position: static !important;
+    font-size: 14px !important; }
+#dosomething-login-register-popup-form #edit-birthday .form-item-month, #dosomething-login-register-popup-form #edit-birthday .form-item-day, #dosomething-login-register-popup-form #edit-birthday .form-item-year {
+  margin-top: 8px !important; }
+
+.node-type-campaign-report-back .panel-row-flexible-top {
+  width: 550px;
+  margin: 0 auto; }
+  .node-type-campaign-report-back .panel-row-flexible-top label {
+    margin-top: 1em; }
+  .node-type-campaign-report-back .panel-row-flexible-top fieldset legend {
+    padding: 20px 0 0 0 !important; }
+  .node-type-campaign-report-back .panel-row-flexible-top #edit-actions--2, .node-type-campaign-report-back .panel-row-flexible-top #edit-actions {
+    text-align: center;
+    margin: 10px;
+    clear: both; }
+
+#block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5 {
+  display: none; }
+
+hr.gray {
+  border-top: 1px solid lightgray;
+  border-bottom: none;
+  clear: both;
+  margin: 0px; }
+
+.grayhead-box {
+  text-align: center;
+  margin-top: 0px; }
+
+.grayhead {
+  background: #241f20;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  margin: -1px auto 15px auto;
+  clear: both;
+  padding: 15px 20px 10px;
+  font-size: 21px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  width: 250px; }
+
+#bullytext-header img {
+  margin: 0px !important; }
+
+.bullytext-btn {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  background: #ffd400;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding: 4px 8px 0px;
+  font-weight: bold;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px 2px #999999;
+  text-decoration: none !important;
+  color: #222222 !important;
+  position: relative;
+  z-index: 100; }
+  .bullytext-btn:hover {
+    color: black !important; }
+
+#bullytext-game .pane-content {
+  position: relative;
+  margin-left: -20px;
+  width: 790px;
+  background: black !important;
+  color: white;
+  padding: 20px; }
+  #bullytext-game .pane-content .left-fade {
+    position: absolute;
+    left: 0px;
+    top: -20px;
+    border: 10px solid;
+    border-color: transparent #222222 #222222 transparent; }
+  #bullytext-game .pane-content .right-fade {
+    position: absolute;
+    right: 0px;
+    top: -20px;
+    border: 10px solid;
+    border-color: transparent transparent #222222 #222222; }
+  #bullytext-game .pane-content h2 {
+    font-family: "Novecentowide-Bold-webfont";
+    border-bottom: 2px solid gray;
+    text-transform: uppercase;
+    font-size: 28px;
+    text-align: center;
+    line-height: 1.4em;
+    margin-bottom: 15px;
+    color: #ffd400; }
+  #bullytext-game .pane-content p {
+    text-align: center; }
+    #bullytext-game .pane-content p span {
+      text-transform: uppercase;
+      font-size: 26px;
+      color: #ffd400;
+      line-height: 1.4em; }
+  #bullytext-game .pane-content input {
+    display: block;
+    width: 220px;
+    padding: 6px;
+    margin-bottom: 6px; }
+  #bullytext-game .pane-content input::-webkit-input-placeholder {
+    color: #222222; }
+  #bullytext-game .pane-content .scholarship-signup {
+    float: left;
+    width: 60%; }
+    #bullytext-game .pane-content .scholarship-signup p {
+      width: 300px;
+      line-height: 1.4em; }
+    #bullytext-game .pane-content .scholarship-signup input {
+      margin-left: 40px; }
+    #bullytext-game .pane-content .scholarship-signup .refer-arrow-top {
+      position: absolute;
+      top: 75px;
+      left: 290px; }
+    #bullytext-game .pane-content .scholarship-signup .refer-arrow-bottom {
+      position: absolute;
+      top: 240px;
+      left: 290px; }
+  #bullytext-game .pane-content .friends-signup {
+    float: left;
+    width: 40%; }
+    #bullytext-game .pane-content .friends-signup p {
+      font-size: 11px;
+      float: left;
+      width: 110px;
+      text-align: left;
+      line-height: 1.2em; }
+    #bullytext-game .pane-content .friends-signup input[type=submit] {
+      float: left;
+      width: 110px;
+      color: #222222;
+      background: #ffd400;
+      border: none !important;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 18px; }
+      #bullytext-game .pane-content .friends-signup input[type=submit]:hover {
+        color: black; }
+
+img.shadow {
+  margin: 0 !important; }
+
+.bully-box, .bully-box-plus {
+  float: left;
+  padding: 20px;
+  text-align: center;
+  line-height: 1.4em; }
+  .bully-box img, .bully-box-plus img {
+    margin: 0 auto;
+    display: block; }
+  .bully-box h3, .bully-box-plus h3 {
+    font-size: 24px; }
+
+.bully-box {
+  width: 250px; }
+
+.bully-box-plus {
+  float: left;
+  width: 248px;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  padding-bottom: 0px;
+  margin-bottom: 40px; }
+
+#bullytext-example {
+  position: relative; }
+  #bullytext-example img {
+    position: absolute;
+    bottom: 40px;
+    right: 40px; }
+
+.texts {
+  width: 260px;
+  margin: 0 auto;
+  padding: 10px 0 40px 0;
+  text-transform: uppercase; }
+  .texts h3, .texts p {
+    margin: 0 auto 15px auto;
+    line-height: 1.2em; }
+  .texts h3 {
+    border-bottom: 2px solid lightgray; }
+  .texts h3.user {
+    width: 50%;
+    margin-left: 50%;
+    margin-bottom: 5px; }
+  .texts p {
+    font-family: "Novecentowide-Bold-webfont";
+    font-size: 16px; }
+    .texts p.gold {
+      color: #ffd400;
+      width: 45%;
+      margin-left: 55%; }
+
+.see-more {
+  position: relative;
+  float: right;
+  display: inline-block;
+  margin: 0 40px 70px 0; }
+  .see-more img {
+    position: absolute;
+    left: -39px !important;
+    top: -57px !important;
+    z-index: 1; }
+
+#bullytext-stats p {
+  text-align: center; }
+#bullytext-stats img.sharewith {
+  margin: 0 0 0 370px;
+  padding: 5px 0 40px 0;
+  display: block; }
+
+.stats {
+  float: left;
+  width: 250px; }
+  .stats img {
+    margin: 0px auto;
+    display: block; }
+  .stats ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center; }
+  .stats li {
+    display: inline-block; }
+    .stats li img {
+      margin: 0 !important; }
+
+#bullytext-scholarship .pane-content {
+  background: white url("assets/bullytext-yellowlockers.jpg") no-repeat top center;
+  padding-bottom: 20px; }
+
+.scholar-box {
+  background: white;
+  width: 430px;
+  margin: 0px 160px 40px;
+  padding: 20px 10px 5px;
+  -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.4);
+  text-align: center; }
+  .scholar-box h2 {
+    line-height: 1.1em;
+    font-size: 36px;
+    text-transform: uppercase;
+    margin-bottom: 5px; }
+  .scholar-box p {
+    line-height: 1.4em; }
+    .scholar-box p span {
+      font-style: italic; }
+    .scholar-box p.send {
+      margin: 20px 0; }
+
+ol li {
+  margin: 0 40px 15px;
+  line-height: 1.4em; }
+
+#bullytext-learn h2 {
+  background: #ffd400;
+  display: inline-block;
+  padding: 8px 10px 2px;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+
+h3.action-btn {
+  padding: 20px 0 70px;
+  text-align: center; }
+  h3.action-btn a {
+    background: #ffd400;
+    text-decoration: none;
+    padding: 5px 20px 0px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 8px 2px #999999;
+    letter-spacing: 1px;
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-size: 32px;
+    font-weight: normal;
+    color: #222222; }
+    h3.action-btn a span {
+      text-transform: uppercase;
+      letter-spacing: 0px;
+      font-weight: bold;
+      font-size: 24px; }
+
+.square {
+  float: left;
+  width: 325px;
+  text-align: center;
+  padding: 20px 50px;
+  height: 300px; }
+  .square img {
+    margin: 0 auto;
+    display: block; }
+  .square h3 {
+    font-size: 20px;
+    text-transform: uppercase; }
+  .square p {
+    line-height: 1.4em; }
+
+.sq-one {
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray; }
+
+.sq-two {
+  border-bottom: 1px solid lightgray; }
+
+.sq-three {
+  border-right: 1px solid lightgray; }
+
+.sq-one, .sq-three {
+  margin-left: 50px;
+  padding-left: 0; }
+
+.sq-two, .sq-four {
+  margin-right: 50px;
+  padding-right: 0; }
+
+.sq-three, .sq-four {
+  margin-bottom: 40px; }
+
+#stand-up-box {
+  text-align: center;
+  padding: 40px; }
+
+.stand-up-btn {
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  display: inline-block; }
+  .stand-up-btn p {
+    margin-bottom: 20px;
+    font-size: 18px; }
+  .stand-up-btn .stand-arrow-left, .stand-up-btn .stand-arrow-right {
+    position: absolute;
+    bottom: -10px; }
+  .stand-up-btn .stand-arrow-left {
+    left: -70px; }
+  .stand-up-btn .stand-arrow-right {
+    right: -70px; }
+
+#bullytext-questions .faq {
+  margin: 20px 20px 0; }
+  #bullytext-questions .faq h4 {
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    background-image: url("assets/blackarrow-right.png");
+    background-repeat: no-repeat;
+    background-position-y: 6px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10px; }
+  #bullytext-questions .faq h4, #bullytext-questions .faq p {
+    padding-left: 15px;
+    line-height: 1.4em; }
+  #bullytext-questions .faq .activeFAQ {
+    background-image: url("assets/blackarrow-down.png");
+    color: black; }
