@@ -27,11 +27,17 @@ Drupal.behaviors.dosomethingFBApps = {
         // Stash the selcted animal filter for later use.
         settings.dosomethingFBApps.fbAnimalSelected = $('select[name=field_fb_app_animal_type_value]').val();
         var dialog = $form.dialog({
+          position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
           resizable: false,
           draggable: false,
           modal: true,
           top: 180,
-          width: 550
+          width: 550,
+          open: function(event, ui) {
+            if (typeof FB != 'undefined') { 
+              FB.Canvas.scrollTo(0,0);
+            }
+          }
         });
       }
     });

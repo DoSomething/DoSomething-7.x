@@ -10,9 +10,13 @@ Drupal.behaviors.dosomethingPicsforpetsDialog = {
         draggable: false,
         modal: true,
         top: 180,
+        position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
         width: 600,
         // Autofocus confuses placeholder text.
         open: function(event, ui) {
+          if (typeof FB != 'undefined') { 
+            FB.Canvas.scrollTo(0,0);
+          }
           $("input").blur();
         }
       });

@@ -98,7 +98,13 @@ Drupal.behaviors.dsPfpShare = {
                   draggable: false,
                   modal: true,
                   top: 180,
-                  width: 550
+                  width: 550,
+                  position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+                  open: function(event, ui) {
+                    if (typeof FB != 'undefined') { 
+                      FB.Canvas.scrollTo(0,0);
+                    }
+                  }
                 });
             }
             else if (userShares == 5) {
@@ -125,7 +131,13 @@ Drupal.behaviors.dsPfpShare = {
                   draggable: false,
                   modal: true,
                   top: 180,
-                  width: 550
+                  width: 550,
+                  position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+                  open: function(event, ui) {
+                    if (typeof FB != 'undefined') { 
+                      FB.Canvas.scrollTo(0,0);
+                    }
+                  }
                 }
               );
             }
