@@ -89,6 +89,15 @@ function fbappsAnimalsButton(direction) {
   var offset3 = 3 * modifier;
   var images = Drupal.settings.fbappsAnimals.images;
   var index = Drupal.settings.fbappsAnimals.index;
+
+  // Change the URL so they'll come back to this page if they refresh or whatever
+  // Also makes social graph possible.
+  // This doesn't work for IE.
+  var msie = /*@cc_on!@*/0;
+  if (!msie) {
+    var h = new Object();
+    history.pushState(h, '', '/fb/pics-for-pets/submit-pet-picture/submission/' + images[index].sid);
+  }
   $('#slideshow-center')
     .empty()
     .load('/webform-submission/' + images[index].sid + ' #slideshow-center', function () {
