@@ -65,10 +65,29 @@
     return false;
   });
 
+  // remove #edit-submit from drive page buttons
+  $('#drive input#edit-submit').val('remove').removeAttr('id').addClass('remove_participant');
+
+  // nav highlighting 
+  var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
+  var firstNav = plainNav + '.first';
+
+  $(firstNav).addClass('highlight');
+  $(plainNav + ' a').click(function(){
+    $(this).parent().addClass('highlight').siblings().removeClass('highlight');
+  });
+
   // sad puppy
   $('#mangoDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
   $('a.mango').click(function(){
     $('#mangoDialog').dialog('open');
+    return false;
+  });
+
+  // sad Chris
+  $('#chrisDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
+  $('a.mangoChris').click(function(){
+    $('#chrisDialog').dialog('open');
     return false;
   });
 
