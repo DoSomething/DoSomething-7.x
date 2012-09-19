@@ -91,7 +91,7 @@ function dosomething_drives_drive_get_info($drive, $is_admin) {
 
   $where = '';
   foreach ($where_out AS $label => $info) {
-    $where .= '<div><span>' . $label . '</span>: ' . $info . '</div>';
+    $where .= '<div>' . $label . ': <span>' . $info . '</span></div>';
   }
 
   $when = strtotime($drive->field_drive_date[LANGUAGE_NONE][0]['value']);
@@ -123,7 +123,7 @@ function dosomething_drives_drive_get_info($drive, $is_admin) {
         'class' => array('drive-info-when'),
        ),
      'div' => array(
-         '#markup' => "<span>When</span>: $when",
+         '#markup' => "When: <span>$when</span>",
        ),
    ),
 
@@ -145,7 +145,7 @@ function dosomething_drives_drive_share() {
       'class' => array('drive-share'),
     ),
     'div' => array(
-      '#markup' => 'Share my drive and stuff',
+      '#markup' => '<a href="#" class="mangoChris">Share my drive</a>',
     ),
   );
 }
