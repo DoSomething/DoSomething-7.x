@@ -83,41 +83,61 @@
 //  #drive
 //      //
 
-#drive
+#drive /* wraps the entire panel pane */
   text-align: left
 
-.drive-info-header, .drive-info-info, .drive-share
+.drive-info-wrapper /* wraps left column features */
   float: left
   width: 60%
 
-.drive-participants
+.drive-participants /* list of drive members */
   float: right
   width: 35%
+  margin: 6% 0 0 0
 
-.drive-info-header
+.drive-info-title h2 /* drive title */
+  color: $spitPurple
+  margin: 0 0 0.5em 0
   font-family: $din
   font-size: 2em
   font-weight: 600
   text-transform: uppercase
-  h2
-    color: $spitPurple
-    border-bottom: 1px solid #eee
+  border-bottom: 1px solid #ccc
 
-//.drive-info-title
-//
-//.drive-info-description
-//
-//.drive-info-info
-//
-//.drive-share
-//
-//.drive-participants
-//
-//.list-item
-//
-//.drive-action-link
-//
-//.drive-action-link-text
+.drive-info-info a /* edit drive link */
+  color: $spitPurple
+  background-image: url("assets/drive1.png")
+  background-position: 0% 50%
+  background-repeat: no-repeat
+  background-size: 20px
+  padding: 1em 1.8em 0
+  display: block
+
+.drive-info-where, .drive-info-when /* address and date styling */
+  width: 45%
+  font-weight: uppercase
+  font-weight: 600
+  span
+    font-weight: 500
+    text-transform: none
+    color: #777
+
+.drive-info-description, .drive-info-countdown /* goal and countdown */
+  display: none
+
+input.remove_participant /* remove button styling */
+  border: none
+  font-size: 0.5em
+  font-size: 1.5em
+  font-family: din-web
+  background: $spitPurple
+  width: 3em
+  color: #fff
+  letter-spacing: 1px
+  padding: 0
+  +border-radius(5px)
+  &:hover
+    background: darken($spitPurple, 7)
 
 //			//
 //	#action			- "here's what you do" -

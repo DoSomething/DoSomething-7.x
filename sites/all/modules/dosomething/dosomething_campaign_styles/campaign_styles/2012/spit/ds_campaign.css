@@ -157,6 +157,9 @@ body {
       text-decoration: none;
       background: #ffcb15; }
 
+#block-dosomething-campaign-styles-campaign-nav .highlight a {
+  background: #ffcb15; }
+
 .mangoDialog-ui {
   background: #222222;
   margin: 0;
@@ -371,20 +374,56 @@ body {
     margin: 0 0 1% 0; }
 #cmp #drive {
   text-align: left; }
-#cmp .drive-info-header, #cmp .drive-info-info, #cmp .drive-share {
+#cmp .drive-info-wrapper {
   float: left;
   width: 60%; }
 #cmp .drive-participants {
   float: right;
-  width: 35%; }
-#cmp .drive-info-header {
+  width: 35%;
+  margin: 6% 0 0 0; }
+#cmp .drive-info-title h2 {
+  color: #7f3f80;
+  margin: 0 0 0.5em 0;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
   font-size: 2em;
   font-weight: 600;
-  text-transform: uppercase; }
-  #cmp .drive-info-header h2 {
-    color: #7f3f80;
-    border-bottom: 1px solid #eeeeee; }
+  text-transform: uppercase;
+  border-bottom: 1px solid #cccccc; }
+#cmp .drive-info-info a {
+  color: #7f3f80;
+  background-image: url("assets/drive1.png");
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding: 1em 1.8em 0;
+  display: block; }
+#cmp .drive-info-where, #cmp .drive-info-when {
+  width: 45%;
+  font-weight: uppercase;
+  font-weight: 600; }
+  #cmp .drive-info-where span, #cmp .drive-info-when span {
+    font-weight: 500;
+    text-transform: none;
+    color: #777777; }
+#cmp .drive-info-description, #cmp .drive-info-countdown {
+  display: none; }
+#cmp input.remove_participant {
+  border: none;
+  font-size: 0.5em;
+  font-size: 1.5em;
+  font-family: din-web;
+  background: #7f3f80;
+  width: 3em;
+  color: white;
+  letter-spacing: 1px;
+  padding: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+  #cmp input.remove_participant:hover {
+    background: #673368; }
 #cmp #action img {
   display: block;
   margin: 5% auto; }
