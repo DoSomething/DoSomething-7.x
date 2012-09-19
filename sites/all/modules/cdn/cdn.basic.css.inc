@@ -61,10 +61,11 @@ function _cdn_aggregate_css(&$css_groups) {
  */
 function _cdn_build_css_cache($css, $suffix = '') {
   // Create different CSS aggregation maps for HTTP and HTTPS.
+  $css_cache_var = 'drupal_css_cache_files';
   $https_mapping = variable_get(CDN_BASIC_MAPPING_HTTPS_VARIABLE, '');
-  $css_cache_var = (!empty($https_mapping) && cdn_serve_from_https())
-    ? 'cdn_css_cache_files_https'
-    : 'cdn_css_cache_files_http';
+  if (!empty($https_mapping) && cdn_serve_from_https()) {
+    $css_cache_var .= '_https';
+  }
 
   $data = '';
   $uri = '';
@@ -99,14 +100,12 @@ function _cdn_build_css_cache($css, $suffix = '') {
 
     // Prefix filename to prevent blocking by firewalls which reject files
     // starting with "ad*".
-    $filename = 'css_' . drupal_hash_base64($data) . $suffix . '.css';
+    $filename = 'cdn_css_' . drupal_hash_base64($data) . $suffix . '.css';
     // Create the css/ within the files folder.
-    $csspath = ($css_cache_var == 'cdn_css_cache_files_https')
-      ? 'public://cdn/css/https'
-      : 'public://cdn/css/http';
+    $csspath = 'public://css';
     $uri = $csspath . '/' . $filename;
     // Create the CSS file.
-    file_prepare_directory($csspath, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
+    file_prepare_directory($csspath, FILE_CREATE_DIRECTORY);
     if (!file_exists($uri) && !file_unmanaged_save_data($data, $uri, FILE_EXISTS_REPLACE)) {
       return FALSE;
     }
