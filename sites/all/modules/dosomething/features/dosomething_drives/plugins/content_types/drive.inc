@@ -193,7 +193,10 @@ function dosomething_drives_drive_create_participant_list($gid, $members, $admin
     if ($admin && $user->uid != $member->uid) {
       $name['form'] = drupal_render(drupal_get_form('teams_remove_member_form', $gid, $member->uid));
     }
-    $return[] = implode(' ', $name);
+    $return[] = array(
+      'data' => implode(' ', $name),
+      'id' => 'team-member-' . $member->uid,
+    );
   }
   return $return;
 }
