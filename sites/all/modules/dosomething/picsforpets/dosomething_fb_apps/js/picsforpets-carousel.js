@@ -103,6 +103,7 @@ function fbappsAnimalsButton(direction) {
     .load('/webform-submission/' + images[index].sid + ' #slideshow-center', function () {
       fbappsAnimalsLoadFacebook();
       fbappsAnimalsPlaceImages();
+      fbappsUpdateMetaTags($(this).html());
     });
 
   // The user may click next again, so ensure there are more images ready to go.
@@ -130,6 +131,26 @@ function fbappsAnimalsButton(direction) {
       fbappsAnimalsReindex(index + offset4, direction);
     }
   }
+}
+
+function fbappsUpdateMetaTags(e) {
+  var pictureUrl = $('.field-name-field-fb-app-image img', e).attr('src');
+  var petName = $('.hi-pet-name p', e).text().replace('Hi. I\'m', '');
+  petName = petName.substr(0, petName.length - 1);
+  var threeWords = '';
+  w = 0;
+  jQuery.each($('.field-name-field-fb-app-three-words .field-items').children(), function() {
+    w++;
+    if (w == 3) {
+      threeWords += 'and ';
+    }
+
+    threeWords += $(this).text() + ', ';
+  });
+
+  l = threeWords.lastIndexOf(',');
+  threeWords = threeWords.substr(0, l);
+  Drupal.behaviors.dsPfpShare.update_attrs(pictureUrl, petName, threeWords);
 }
 
 function fbappsAnimalsNext() {

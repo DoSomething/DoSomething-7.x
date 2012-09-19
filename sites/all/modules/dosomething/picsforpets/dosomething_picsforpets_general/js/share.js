@@ -1,6 +1,10 @@
 (function($) {
 
 Drupal.behaviors.dsPfpShare = {
+  adjectives: $('meta[property=cpj]').attr('content'),
+  pname: $('meta[property=cpn]').attr('content'),
+  pimg: $('.field-name-field-fb-app-image img').attr('src'),
+
   attach: function (context, settings) {
 
     // Retrieve the id of this webform submission.
@@ -31,7 +35,21 @@ Drupal.behaviors.dsPfpShare = {
     };
 
     $('#picsforpets-share').click(function () {
-      FB.ui(share, function(response) {
+//      var pname = Drupal.behaviors.dsPfpShare.pname;
+//      var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
+//      var pimg = Drupal.behaviors.dsPfpShare.pimg;
+
+//      FB.api(
+//        '/me/dosomethingapp:share',
+//        'post',
+//        {
+//            pet_who_needs_a_home: document.location.href,
+//            message: 'Do Something about homeless animals, share photos of shelter pets and hel them find homes.  The more shares a pet gets the better chance it\'ll be adopted.  Their shelter will also be rewarded for every share!',
+//            pet_name: pname,
+//            pet_adjectives: adjectives,
+//            image: pimg
+//        },
+    FB.ui(share, function(response) {
         // If the share was unsuccessful or the user clicked cancel, response
         // will be undefined. Otherwise it will be an object that contains the
         // post_id of the share.
@@ -145,6 +163,12 @@ Drupal.behaviors.dsPfpShare = {
         }
       });
     });
+  },
+
+  update_attrs: function(image, name, adjectives) {
+    this.pname = name;
+    this.pimg = image;
+    this.adjectives = adjectives;
   }
 };
 
