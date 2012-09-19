@@ -2,7 +2,7 @@
   Drupal.behaviors.mobileAppDownload = {
     attach: function (context) {
       var is_iOS = false;
-      var iDevice = ['iPad', 'iPhone', 'iPod'];
+      var iDevice = ['iPhone', 'iPod'];
       var isAndroid = false;
 
       // Check if iOS device from navigator.platform
@@ -25,16 +25,15 @@
         var storeLocation;
         if (is_iOS) {
           confirmString = 'Download the Pics for Pets mobile app in the App Store!';
-          storeLocation = 'http://itunes.apple.com/app/facebook/id284882215';
+          storeLocation = 'http://itunes.apple.com/us/app/pics-for-pets/id552978993?ls=1&mt=8';
         }
         else if (isAndroid) {
           confirmString = 'Download the Pics for Pets mobile app in the Google Play Store!';
-          storeLocation = 'https://play.google.com/store/apps/details?id=org.dosomething.android';
+          storeLocation = 'https://play.google.com/store/apps/details?id=org.dosomething.picsforpets';
         }
 
-        var mobileDetectPrompt = confirm(confirmString);
-        if (mobileDetectPrompt == true) {
-          window.location = storeLocation;
+        if (confirm(confirmString)) {
+          window.location.href = storeLocation;
         }
       }
     }
