@@ -203,7 +203,7 @@ function dosomething_picsforpets_shelters_lookup_options_form_submit($form, &$fo
   $zip = $form_state['values']['zip'];
   // We retreive an extra result and then throw it away so that we know if we
   // should show the 'view more' button.
-  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 11);
+  $shelter_nids = dosomething_picsforpets_shelters_get_shelters_by_zip($zip, 0, 2);
   // Show the more button?
   $form_state['view_more'] = dosomething_picsforpets_shelters_more_shelters($shelter_nids);
   $options = dosomething_picsforpets_shelters_formatted_results($shelter_nids, 'options');
