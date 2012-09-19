@@ -131,7 +131,7 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
   }
   $form['select-shelter'] = array(
     '#type' => 'submit',
-    '#value' => t('Select'),
+    '#value' => t('Submit'),
     '#weight' => 5,
     '#ajax' => array(
       'callback' => 'dosomething_picsforpets_shelters_lookup_form_options_submit_ajax',

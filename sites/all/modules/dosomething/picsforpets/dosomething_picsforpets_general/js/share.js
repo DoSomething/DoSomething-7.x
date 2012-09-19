@@ -46,6 +46,19 @@ Drupal.behaviors.dsPfpShare = {
             var count = $('.picsforpets-share-count').text();
             count++;
             $('.picsforpets-share-count').text(count);
+            var titles = {
+              200  : '200 shares gets me a toy!',
+              500  : '500 shares gets me food!',
+              1000 : '1000 Shares gets me a bed!'
+            };
+  
+            for (i in titles) {
+              if (count < i) {
+                $('#picsforpets-share').find('h1').html(titles[i]);
+                break;
+              }
+            }
+
             // Display a modal dialog depending on the total number of shares
             // the user has made.
             if (userShares == 3 && !settings.picsforpetsGeneral.furtographer) {
