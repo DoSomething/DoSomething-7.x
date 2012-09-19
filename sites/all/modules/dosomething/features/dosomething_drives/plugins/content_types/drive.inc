@@ -41,6 +41,10 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $content['content']['drive_share'] = dosomething_drives_drive_share();
   $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin);
 
+  $content['#attached']['js'] = array(
+    drupal_get_path('module', 'teams') . '/teams.js' => array(),
+  );
+
   $block = new StdClass();
   $block->content = $content;
   return $block;
@@ -300,7 +304,7 @@ function dosomething_drives_drive_invite_module($gid) {
   $return['header'] = array(
     '#markup' => 'Which of your friends would want to join your drive?',
     '#prefix' => '<h2>',
-    '#suffix' => '</h2>',
+    '#suffix' => '</h2><div id="teams-notification-area"></div>',
   );
 
   $return['facebook'] = array(

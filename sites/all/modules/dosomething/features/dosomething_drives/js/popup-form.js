@@ -13,6 +13,10 @@
           modal: true,
           dialogClass: "invite_friends",
           width: 550,
+          close: function () {
+            $('body').hide();
+            window.location.reload()
+          }
         });
         return false;
       });
