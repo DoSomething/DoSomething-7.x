@@ -3,10 +3,20 @@
   Drupal.behaviors.driveModulePopup = {
     attach: function (context, settings) {
       $module = $('.invite-module');
-      $module.not('.popup-processed').addClass('popup-processed').hide();
+      if (window.location.hash != '#invite-popup') {
+        $module.not('.popup-processed').addClass('popup-processed').hide();
+      }
+      else {
+        triggerPopup();
+      }
       $trigger = $('.trigger-invite-popup').not('.popup-processed').addClass('popup-processed');
 
       $trigger.click(function () {
+        triggerPopup();
+        return false;
+      });
+
+      function triggerPopup() {
         $module.dialog({
           resizable: false,
           draggable: false,
@@ -15,11 +25,10 @@
           width: 550,
           close: function () {
             $('body').hide();
-            window.location.reload()
+            window.location.href = window.location.origin + window.location.pathname;
           }
         });
-        return false;
-      });
+      }
     }
   };
 }(jQuery));
