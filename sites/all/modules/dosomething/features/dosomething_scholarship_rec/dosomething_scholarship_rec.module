@@ -70,17 +70,6 @@ function dosomething_scholarship_rec_webform_submission_presave($node, &$submiss
 }
 
 /**
- * Implements hook_webform_submission_insert().
- */
-function dosomething_scholarship_rec_webform_submission_insert($node, $submission) {
-  if ($node->type == 'scholarship_application_with_rec') {
-    if (empty($submission->details['sid']) && $submission->is_draft) {
-      webform_submission_send_mail($node, $submission);
-    }
-  }
-}
-
-/**
  * Implements hook_field_attach_form().
  */
 function dosomething_scholarship_rec_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
