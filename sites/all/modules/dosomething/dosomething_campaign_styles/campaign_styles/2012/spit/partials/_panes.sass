@@ -88,12 +88,14 @@
 
 .drive-info-wrapper /* wraps left column features */
   float: left
-  width: 60%
+  width: 55%
 
 .drive-participants /* list of drive members */
   float: right
-  width: 35%
+  width: 40%
   margin: 6% 0 0 0
+  padding: 0 0 0 5%
+  border-left: 1px solid $spitGrey
 
 .drive-info-title h2 /* drive title */
   color: $spitPurple
@@ -125,19 +127,24 @@
 .drive-info-description, .drive-info-countdown /* goal and countdown */
   display: none
 
-input.remove_participant /* remove button styling */
+input.remove_participant /* "remove participants" button */
   border: none
-  font-size: 0.5em
-  font-size: 1.5em
-  font-family: din-web
+  font-size: 16px
+  font-family: din-web-reg
+  width: 18px
+  height: 18px
+  line-height: 16px
   background: $spitPurple
-  width: 3em
   color: #fff
   letter-spacing: 1px
+  margin: -18px 0 0 0
   padding: 0
-  +border-radius(5px)
+  +border-radius(15px)
   &:hover
     background: darken($spitPurple, 7)
+
+.drive-action-link /* "invite more friendss" button */
+  text-align: center
 
 //			//
 //	#action			- "here's what you do" -
@@ -227,18 +234,14 @@ input.remove_participant /* remove button styling */
 
 .refer5
   background: $spitPurple
-  width: 110%
-  margin: 0 0 0 -5%
+  width: 109.1%
+  margin: 0 0 0 -4.1%
   padding: 3%
-  &:before, &:after
+  &:after
     content: ""
     position: absolute
     border-style: solid
     border-width: 11px
-  &:before
-    border-color: transparent darken($spitPurple, 20) darken($spitPurple, 20) transparent 
-    left: -22px
-    top: 44px
   &:after
     border-color: transparent transparent darken($spitPurple, 20) darken($spitPurple, 20)
     right: -22px
@@ -269,8 +272,6 @@ input.remove_participant /* remove button styling */
     cursor: pointer
     background: url("assets/faq2.png")
     background-repeat: no-repeat
-
-#faq
   h1
     font-size: 2em
     font-family: din-web
@@ -282,6 +283,5 @@ input.remove_participant /* remove button styling */
     margin: 0 0 -1em 0
   .go-button
     margin: 0 0 1% 0
-
-.activeFAQ
-  background-position-y: -27px
+  h4.activeFAQ
+    background-position-y: -27px

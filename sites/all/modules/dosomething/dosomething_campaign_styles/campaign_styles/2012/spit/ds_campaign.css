@@ -3,7 +3,7 @@
   margin: 0 !important;
   background: transparent;
   width: 800px; }
-#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper {
+#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper, #main-wrapper #block-block-5 {
   display: none; }
 #main-wrapper ul.primary {
   border-bottom: none;
@@ -139,7 +139,10 @@ body {
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
-  padding: 1.5em 1.5em 1.5em 0; }
+  padding: 1.5em 2em 1.5em 0;
+  width: 205px;
+  -webkit-transition: background 5s ease-in;
+  transition: background 5s ease-in; }
   #block-dosomething-campaign-styles-campaign-nav ul {
     margin: 0;
     padding: 0; }
@@ -154,8 +157,7 @@ body {
     text-transform: uppercase;
     color: purple; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
-      text-decoration: none;
-      background: #ffcb15; }
+      text-decoration: none; }
 
 #block-dosomething-campaign-styles-campaign-nav .highlight a {
   background: #ffcb15; }
@@ -163,12 +165,12 @@ body {
 .mangoDialog-ui {
   background: #222222;
   margin: 0;
-  padding: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px; }
+  padding: 2% 1% 0 1%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
   .mangoDialog-ui h1 {
     text-align: center;
     padding: 1em 0 0.5em 0;
@@ -179,13 +181,13 @@ body {
     padding: 5%;
     display: block;
     background: white;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px; }
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
   .mangoDialog-ui .ui-icon.ui-icon-closethick {
-    margin: 2px -5px !important; }
+    margin: -20px -13px !important; }
 
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
@@ -253,8 +255,6 @@ body {
   font-size: 2em; }
 #cmp a {
   color: #ffcb15; }
-  #cmp a:hover {
-    color: #c89b00; }
 #cmp a.mango {
   background: rgba(127, 63, 128, 0.6);
   color: white; }
@@ -376,11 +376,13 @@ body {
   text-align: left; }
 #cmp .drive-info-wrapper {
   float: left;
-  width: 60%; }
+  width: 55%; }
 #cmp .drive-participants {
   float: right;
-  width: 35%;
-  margin: 6% 0 0 0; }
+  width: 40%;
+  margin: 6% 0 0 0;
+  padding: 0 0 0 5%;
+  border-left: 1px solid #d2d2d3; }
 #cmp .drive-info-title h2 {
   color: #7f3f80;
   margin: 0 0 0.5em 0;
@@ -409,21 +411,25 @@ body {
   display: none; }
 #cmp input.remove_participant {
   border: none;
-  font-size: 0.5em;
-  font-size: 1.5em;
-  font-family: din-web;
+  font-size: 16px;
+  font-family: din-web-reg;
+  width: 18px;
+  height: 18px;
+  line-height: 16px;
   background: #7f3f80;
-  width: 3em;
   color: white;
   letter-spacing: 1px;
+  margin: -18px 0 0 0;
   padding: 0;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px; }
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px; }
   #cmp input.remove_participant:hover {
     background: #673368; }
+#cmp .drive-action-link {
+  text-align: center; }
 #cmp #action img {
   display: block;
   margin: 5% auto; }
@@ -483,18 +489,14 @@ body {
     text-align: left; }
 #cmp .refer5 {
   background: #7f3f80;
-  width: 110%;
-  margin: 0 0 0 -5%;
+  width: 109.1%;
+  margin: 0 0 0 -4.1%;
   padding: 3%; }
-  #cmp .refer5:before, #cmp .refer5:after {
+  #cmp .refer5:after {
     content: "";
     position: absolute;
     border-style: solid;
     border-width: 11px; }
-  #cmp .refer5:before {
-    border-color: transparent #3b1d3c #3b1d3c transparent;
-    left: -22px;
-    top: 44px; }
   #cmp .refer5:after {
     border-color: transparent transparent #3b1d3c #3b1d3c;
     right: -22px;
@@ -520,5 +522,5 @@ body {
   margin: 0 0 -1em 0; }
 #cmp #faq .go-button {
   margin: 0 0 1% 0; }
-#cmp .activeFAQ {
+#cmp #faq h4.activeFAQ {
   background-position-y: -27px; }

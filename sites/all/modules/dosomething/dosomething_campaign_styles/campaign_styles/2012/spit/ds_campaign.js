@@ -66,15 +66,19 @@
   });
 
   // remove #edit-submit from drive page buttons
-  $('#drive input#edit-submit').val('remove').removeAttr('id').addClass('remove_participant');
+  $('#drive .drive-participants-list .form-submit').val('x').removeAttr('id').addClass('remove_participant');
 
   // nav highlighting 
   var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
-  var firstNav = plainNav + '.first';
+  var firstNav = plainNav + ' a' + '.first';
 
-  $(firstNav).addClass('highlight');
+//  $(firstNav).addClass('highlight');
+//  $(plainNav + ' a').click(function(){
+//    $(this).parent().addClass('highlight').siblings().removeClass('highlight');
+//  });
+  $(firstNav).css('background','#FFCB15');
   $(plainNav + ' a').click(function(){
-    $(this).parent().addClass('highlight').siblings().removeClass('highlight');
+      $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
   });
 
   // sad puppy
@@ -89,6 +93,32 @@
   $('a.mangoChris').click(function(){
     $('#chrisDialog').dialog('open');
     return false;
+  });
+
+  // scroll function
+  var $window = $(window);
+  var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
+  var scrollLimitTop = 500;
+  var scrollLimitBot = $(document).height() - $('#block-menu-menu-footer').height() - $nav.height() + 50;
+
+  $window.scroll(function () {
+    var st = $window.scrollTop();
+    if (st > scrollLimitTop && st < scrollLimitBot) {
+      $nav
+        .css('position','fixed')
+        .css('top','0px')
+        .css('margin','15px 0 0 0')
+        .css('padding','1.5em 2em 1.5em 0')
+        .css('z-index','3')
+    }
+    else if (st >= scrollLimitTop) {
+      $nav
+        .css('position', 'static')
+    }
+    else {
+      $nav
+        .css('position', 'static')
+    }
   });
 
     } // end attach: function
