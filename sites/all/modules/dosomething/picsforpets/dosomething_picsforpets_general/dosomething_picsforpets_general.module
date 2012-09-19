@@ -59,12 +59,12 @@ function dosomething_picsforpets_general_menu() {
  * Making a collapsible faq for the fb/pics-for-pets/questions page.
  */
 function dosomething_picsforpets_general_questions() {
-  $urls = array(
-    'furtographer' => 'fb/pics-for-pets/lets-get-started',
-    'shelter_locate' => 'fb/pics-for-pets/shelter-search',
-    'action_guide' => 'fb/pics-for-pets/action-guide',
-    'submit_pic' => 'fb/pics-for-pets/submit-pet-picture',
-  );
+  $urls = array();
+  $urls['furtographer']   = 'fb/pics-for-pets/lets-get-started';
+  $urls['shelter_locate'] = $urls['furtographer'];
+  $urls['action_guide']   = $urls['furtographer'];
+  $urls['submit_pic']     = $urls['furtographer'];
+
   $question2_params = array(
     '!link1' => l('"be a fur-tographer"', $urls['furtographer']),
     '!link2' => l('participating local shelter', $urls['shelter_locate']),
