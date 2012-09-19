@@ -24,11 +24,11 @@
         var confirmString;
         var storeLocation;
         if (is_iOS) {
-          confirmString = 'Download the Pics for Pets mobile app in the App Store!';
+          confirmString = 'Download the Pics for Pets mobile app in the App Store to check out shelter animals in your community!';
           storeLocation = 'http://itunes.apple.com/us/app/pics-for-pets/id552978993?ls=1&mt=8';
         }
         else if (isAndroid) {
-          confirmString = 'Download the Pics for Pets mobile app in the Google Play Store!';
+          confirmString = 'Download the Pics for Pets mobile app in the Google Play Store to check out shelter animals in your community!';
           storeLocation = 'https://play.google.com/store/apps/details?id=org.dosomething.picsforpets';
         }
 
