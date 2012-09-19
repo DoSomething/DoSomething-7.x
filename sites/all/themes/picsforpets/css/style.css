@@ -2919,12 +2919,20 @@ select#edit-sort-by {
   list-style-type: none;
   margin-left: 0;
 }
+#picsforpets-gallery-navigation li.last {
+  margin-top: -30px;
+}
+
 #picsforpets-gallery-navigation a {
   background-image: none;
   padding: 4px 4px 4px 8px;
 }
 #picsforpets-gallery-navigation li.active {
   display: none;
+}
+
+#views-exposed-form-pics-for-pets-gallery-panel-pane-1 div.views-exposed-widgets {
+ margin-top: -30px;
 }
 
 .pager {
