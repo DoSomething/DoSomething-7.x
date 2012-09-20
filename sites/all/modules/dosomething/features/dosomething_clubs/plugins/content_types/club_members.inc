@@ -120,7 +120,15 @@ function dosomething_clubs_club_members_content_type_render($subtype, $conf, $pa
         $links[] = dosomething_clubs_role_link($gid, $membership->etid);
       }
       if (($og_admin || $is_admin || user_access('administer group', $user)) && $owner <> $membership->etid) {
-        $links[] = l(t('Make Club Leader'), 'club_admin/change-owner/nojs/' . $gid . '/' . $membership->etid, array('attributes' => array('class' => array('member-change-owner'))));
+        $addclass = '';
+        if ($owner == $user->uid) {
+          $addclass = ' to-user-from-admin';
+        }
+        else {
+          $addclass = ' to-user';
+        }
+
+        $links[] = l(t('Make Club Leader'), 'club_admin/change-owner/nojs/' . $gid . '/' . $membership->etid, array('attributes' => array('class' => array('member-change-owner' . $addclass))));
       }
       
       $row['data'][] = array(

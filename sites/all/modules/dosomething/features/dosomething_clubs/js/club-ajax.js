@@ -12,7 +12,15 @@
         }
         memberclick = true;
 
-        if (confirm('Are you SURE you want to change the leader of this club? You will no longer be the leader, but you will retain administrator rights.')) {
+        var disclaimer = '';
+        if ($(this).hasClass('to-user-from-admin')) {
+          disclaimer = 'You will no longer be the leader, but you will retain administrator rights.';
+        }
+        else if ($(this).hasClass('to-user')) {
+          disclaimer = 'The previous leader will still retain administration rights.'
+        }
+
+        if (confirm('Are you SURE you want to change the leader of this club? ' + disclaimer)) {
           var h = $(this).parent().find('.member-change-owner').attr('href');
           var components = h.split('/');
           var nid = components[4];
