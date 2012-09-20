@@ -104,6 +104,9 @@
   float: left
   width: 40%
   margin-left: 9%
+  input[type="text"]
+    background: #eee
+    margin: 2% 0 4% 0
 
 .go-button
   position: static
@@ -210,3 +213,38 @@ form.webform-client-form
   li
     list-style: disc
     margin-left: 15px
+
+// post launch header flip!
+
+#appHook, #appIcons
+  h1
+    color: #fff
+  img
+    +noBorder
+    +noShadow
+
+#appHook, #appIcons
+  text-align: center
+  margin: 38% 0 0 0
+  padding: 3%
+  a
+    display: block
+    margin: 3% 0 0 0
+    &:hover
+      text-decoration: none
+  span
+    font-family: din-web
+    background: #FFCB15
+    padding: 0.2em 0.4em 0
+    font-size: 2em
+    height: 1.4em
+    color: #1E1D1C
+    text-transform: uppercase
+    +border-radius(5px)
+
+#appIcons
+  display: none
+  a
+    margin: 0
+    width: 33%
+    float: left

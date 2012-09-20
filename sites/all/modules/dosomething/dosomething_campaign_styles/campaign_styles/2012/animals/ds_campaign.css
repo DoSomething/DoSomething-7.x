@@ -74,7 +74,7 @@ body {
     header[role="banner"] {
       width: 100%; } }
 
-.region-sidebar-first {
+.pane-title {
   display: none; }
 
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
@@ -253,6 +253,9 @@ body {
   float: left;
   width: 40%;
   margin-left: 9%; }
+  #cmp .mcommons-webform-column input[type="text"] {
+    background: #eeeeee;
+    margin: 2% 0 4% 0; }
 #cmp .go-button {
   position: static;
   float: right;
@@ -348,6 +351,42 @@ body {
 #cmp .feature_highlights li, #cmp .requirements li {
   list-style: disc;
   margin-left: 15px; }
+#cmp #appHook h1, #cmp #appIcons h1 {
+  color: white; }
+#cmp #appHook img, #cmp #appIcons img {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+#cmp #appHook, #cmp #appIcons {
+  text-align: center;
+  margin: 38% 0 0 0;
+  padding: 3%; }
+  #cmp #appHook a, #cmp #appIcons a {
+    display: block;
+    margin: 3% 0 0 0; }
+    #cmp #appHook a:hover, #cmp #appIcons a:hover {
+      text-decoration: none; }
+  #cmp #appHook span, #cmp #appIcons span {
+    font-family: din-web;
+    background: #ffcb15;
+    padding: 0.2em 0.4em 0;
+    font-size: 2em;
+    height: 1.4em;
+    color: #1e1d1c;
+    text-transform: uppercase;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+#cmp #appIcons {
+  display: none; }
+  #cmp #appIcons a {
+    margin: 0;
+    width: 33%;
+    float: left; }
 @media only screen and (max-width: 775px) {
   #cmp .section {
     width: 100%;
@@ -373,7 +412,12 @@ body {
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     border-radius: 8px;
-    margin: 0; } }
+    margin: 0; }
+  #cmp #appIcons .desktopIcon {
+    display: none; }
+  #cmp #appIcons a.androidIcon, #cmp #appIcons a.iOSIcon {
+    width: 50%;
+    float: left; } }
 @media only screen and (max-width: 450px) {
   #cmp .section {
     margin: 5% auto; }
