@@ -159,14 +159,21 @@ input.remove_participant /* "remove participants" button */
 //	.search			- search -
 //			//
 
-.go-button
-  position: static
+#search
+  .pane-drive-search-panel-pane-1
+    background: #fff
+    .views-table
+      width: 800px
+    tr
+      border-bottom: 1px solid $spitGrey !important
+    td
+      padding: 0 10px 10px !important
+    .views-field-field-taem-name a
+      font-size: 14px
+      text-tranform: uppercase
 
-//form.webform-client-form
-//  border: none
-//  box-shadow: none
-//  padding: 15px 15px 0 15px
-//  margin-bottom: -15px
+.go-button /* why is this here? */
+  position: static
 
 //			//
 //	#content-leader

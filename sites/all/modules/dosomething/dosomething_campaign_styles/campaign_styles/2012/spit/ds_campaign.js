@@ -60,6 +60,7 @@
   var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
   var allAnchors = navAnchors + ', ' + contentAnchors;
   
+  console.log(contentAnchors + navAnchors);
   $(allAnchors).click(function(event){
     $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
     return false;
@@ -72,10 +73,6 @@
   var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
   var firstNav = plainNav + ' a' + '.first';
 
-//  $(firstNav).addClass('highlight');
-//  $(plainNav + ' a').click(function(){
-//    $(this).parent().addClass('highlight').siblings().removeClass('highlight');
-//  });
   $(firstNav).css('background','#FFCB15');
   $(plainNav + ' a').click(function(){
       $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
