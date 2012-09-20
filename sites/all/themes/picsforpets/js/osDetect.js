@@ -29,7 +29,7 @@
         }
         else if (isAndroid) {
           confirmString = 'Download the Pics for Pets mobile app in the Google Play Store to check out shelter animals in your community!';
-          storeLocation = 'https://play.google.com/store/apps/details?id=org.dosomething.picsforpets';
+          storeLocation = 'https://play.google.com/store/apps/details?id=com.dosomething.picsforpets';
         }
 
         if (confirm(confirmString)) {
