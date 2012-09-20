@@ -433,6 +433,41 @@ body {
 #cmp #action img {
   display: block;
   margin: 5% auto; }
+#cmp .pane-drive-search-panel-pane-1 {
+  background: white; }
+  #cmp .pane-drive-search-panel-pane-1 form {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px 0; }
+  #cmp .pane-drive-search-panel-pane-1 .views-table {
+    width: 800px; }
+  #cmp .pane-drive-search-panel-pane-1 tr {
+    border-bottom: 1px solid #d2d2d3 !important; }
+  #cmp .pane-drive-search-panel-pane-1 td {
+    padding: 0 10px 10px !important; }
+  #cmp .pane-drive-search-panel-pane-1 .views-field-field-taem-name a {
+    font-size: 14px;
+    text-tranform: uppercase; }
+  #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search {
+    font-family: din-web;
+    background: #ffcb15;
+    padding: 6px 11px 2px;
+    line-height: 1em;
+    font-size: 21px;
+    border: none !important;
+    color: #1e1d1c;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+    #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search:hover {
+      color: #562b57; }
+  #cmp .pane-drive-search-panel-pane-1 input, #cmp .pane-drive-search-panel-pane-1 a.selectBox-dropdown, #cmp .pane-drive-search-panel-pane-1 span.geofield-proximity-origin-from {
+    margin-right: 10px; }
+  #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-distance {
+    width: 50px;
+    margin-right: 10px; }
 #cmp .go-button {
   position: static; }
 #cmp #content-leader {

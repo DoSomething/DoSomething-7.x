@@ -155,22 +155,41 @@ input.remove_participant /* "remove participants" button */
     display: block
     margin: 5% auto
 
-//			//
-//	.search			- search -
-//			//
-
-#search
-  .pane-drive-search-panel-pane-1
-    background: #fff
-    .views-table
-      width: 800px
-    tr
-      border-bottom: 1px solid $spitGrey !important
-    td
-      padding: 0 10px 10px !important
-    .views-field-field-taem-name a
-      font-size: 14px
-      text-tranform: uppercase
+//      //
+//  .search     - search -
+//      //
+.pane-drive-search-panel-pane-1
+  background: #fff
+  form
+    width: 500px
+    margin: 0 auto 
+    padding: 20px 0
+  .views-table
+    width: 800px
+  tr
+    border-bottom: 1px solid $spitGrey !important
+  td
+    padding: 0 10px 10px !important
+  .views-field-field-taem-name a
+    font-size: 14px
+    text-tranform: uppercase
+  #edit-submit-drive-search
+    font-family: din-web
+    background: $spitYellow
+    padding: 6px 11px 2px
+    line-height: 1em
+    font-size: 21px
+    +noBorder
+    color: $offBlack
+    +border-radius(5px)
+    &:hover
+      color: darken($spitPurple, 12)
+  input, a.selectBox-dropdown, span.geofield-proximity-origin-from
+    margin-right: 10px    
+  #edit-field-geofield-distance-distance
+    width: 50px
+    margin-right: 10px 
+    
 
 .go-button /* why is this here? */
   position: static
