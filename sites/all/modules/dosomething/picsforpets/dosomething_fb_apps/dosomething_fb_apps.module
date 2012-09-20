@@ -163,13 +163,13 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
       $image = array(
         '#tag' => 'meta',
         '#attributes' => array(
-          'property' => 'og:url', 
-          'content' => 'http://' . $_SERVER['HTTP_HOST'] . '/files/styles/carousel_center/public/fb_campaign/' . $context['args'][0]->field_fb_app_image[LANGUAGE_NONE][0]['filename']
+          'property' => 'og:image', 
+          'content' => 'http://files.dosomething.org/files/styles/carousel_center/public/fb_campaign/' . $context['args'][0]->field_fb_app_image[LANGUAGE_NONE][0]['filename']
         ),
         '#weight' => -99998
       );
 
-      drupal_add_html_head($image, 'picsforpets_social_graph_url');
+      drupal_add_html_head($image, 'picsforpets_social_graph_image');
 
       $image = array(
         '#tag' => 'meta',
