@@ -53,10 +53,7 @@ body.admin-menu {
   margin: 0;
   padding: 0;
   z-index: 999;
-<<<<<<< HEAD
   font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
-=======
->>>>>>> parent of d6d943c... Arial Font to Admin Menu for readablity
 }
 #admin-menu .dropdown {
   position: static;
