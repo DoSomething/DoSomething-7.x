@@ -108,6 +108,7 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
           'property' => 'og:type',
           'content' => 'dosomethingapp:pet_who_needs_a_home',
         ),
+        '#weight' => -99999
       );
       drupal_add_html_head($element, 'picsforpets_social_graph_type');
     break;
@@ -154,7 +155,9 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
         '#attributes' => array(
           'property' => 'og:title', 
           'content' => t("Hi, I'm !petname.  I'm !adjectives.", array('!petname' => $petname, '!adjectives' => $adjectives)),
-      ));
+        ),
+        '#weight' => -99999
+      );
 
       drupal_add_html_head($element2, 'picsforpets_social_graph_title');
 
@@ -251,73 +254,4 @@ function dosomething_fb_apps_form_alter(&$form, &$form_state, $form_id) {
 }
 
 function dosomething_fb_apps_censor_stuff($vals) {
-  $words = array('anus', 'arse ', 'arsehole', 'ass ', 'ass-hat ', 'ass-jabber', 'ass-pirate ', 'assbag', 'assbandit ', 'assbanger', 'assbite ', 'assclown ', 'asscock ', 'asscracker', 'asses', 'assface', 'assfuck', 'assfucker', 'assgoblin', 'asshat ', 'asshead', 'asshole', 'asshopper', 'assjacker', 'asslick ', 'asslicker', 'assmonkey', 'assmunch', 'assmuncher ', 'asspirate ', 'assshit ', 'assshole ', 'asssucker', 'asswad', 'asswipe ', 'axwound ', 'bastard ', 'beaner ', 'bitch ', 'bitchass ', 'bitches ', 'bitchtits ', 'bitchy ', 'blow job ', 'blowjob ', 'bollocks ', 'bollox ', 'boner', 'brotherfucker', 'bullshit', 'bumblefuck ', 'butt plug ', 'butt-pirate ', 'buttfucka ', 'buttfucker', 'camel toe ', 'carpetmuncher ', 'chesticle ', 'chinc', 'chink ', 'choad ', 'chode ', 'clit ', 'clitface ', 'clitfuck ', 'clusterfuck ', 'cock ', 'cockass ', 'cockbite ', 'cockburger ', 'cockface ', 'cockfucker ', 'cockhead ', 'cockjockey', 'cockknoker ', 'cockmaster ', 'cockmongler ', 'cockmongruel ', 'cockmonkey ', 'cockmuncher ', 'cocknose ', 'cocknugget ', 'cockshit', 'cocksmith ', 'cocksmoke ', 'cocksmoker ', 'cocksniffer', 'cocksucker ', 'cockwaffle ', 'coochie ', 'coochy ', 'coon ', 'cooter ', 'cum', 'cumbubble ', 'cumdumpster', 'cumguzzler', 'cumjockey', 'cumslut ', 'cumtart ', 'cunnie ', 'cunnilingus', 'cunt ', 'cuntass ', 'cuntface', 'cunthole ', 'cuntlicker', 'cuntrag', 'cuntslut ', 'dago', 'damn', 'deggo', 'dick', 'dick-sneeze', 'dickbag', 'dickbeaters', 'dickface', 'dickfuck', 'dickfucker', 'dickhead', 'dickhole', 'dickjuice', 'dickmilk', 'dickmonger', 'dicks', 'dickslap', 'dicksucker', 'dicksucking', 'dicktickler', 'dickwad', 'dickweasel', 'dickweed', 'dickwod', 'dike', 'dildo', 'dipshit', 'doochbag', 'dookie', 'douche', 'douche-fag', 'douchebag', 'douchewaffle', 'dumass', 'dumb ass', 'dumbass', 'dumbfuck', 'dumbshit', 'dumshit', 'dyke', 'fag', 'fagbag', 'fagfucker', 'faggit', 'faggot', 'faggotcock', 'fagtard', 'fatass', 'fellatio', 'feltch', 'flamer', 'fuck', 'fuckass', 'fuckbag', 'fuckboy', 'fuckbrain', 'fuckbutt', 'fuckbutter', 'fucked', 'fucker', 'fuckersucker', 'fuckface', 'fuckhead', 'fuckhole', 'fuckin', 'fucking', 'fucknut', 'fucknutt', 'fuckoff', 'fucks', 'fuckstick', 'fucktard', 'fucktart', 'fuckup', 'fuckwad', 'fuckwit', 'fuckwitt', 'fudgepacker', 'gay', 'gayass', 'gaybob', 'gaydo', 'gayfuck', 'gayfuckist', 'gaylord', 'gaytard', 'gaywad', 'goddamn', 'goddamnit', 'gooch', 'gook', 'gringo', 'guido', 'handjob', 'hard on', 'heeb', 'hell', 'ho', 'hoe', 'homo', 'homodumbshit', 'honkey', 'humping', 'jackass', 'jagoff', 'jap', 'jerk off', 'jerkass', 'jigaboo', 'jizz', 'jungle bunny', 'junglebunny', 'kike', 'kooch', 'kootch', 'kraut', 'kunt', 'kyke', 'lameass', 'lardass', 'lesbian', 'lesbo', 'lezzie', 'mcfagget', 'mick', 'minge', 'mothafucka', 'mothafuckin', 'motherfucker', 'motherfucking', 'muff', 'muffdiver', 'munging', 'negro', 'nigaboo', 'nigga', 'nigger', 'niggers', 'niglet', 'nut sack', 'nutsack', 'paki', 'panooch', 'pecker', 'peckerhead', 'penis', 'penisbanger', 'penisfucker', 'penispuffer', 'piss', 'pissed', 'pissed off', 'pissflaps', 'polesmoker', 'pollock', 'poon', 'poonani', 'poonany', 'poontang', 'porch monkey', 'porchmonkey', 'prick', 'punanny', 'punta', 'pussies', 'pussy', 'pussylicking', 'puto', 'queef', 'queer', 'queerbait', 'queerhole', 'renob', 'rimjob', 'ruski', 'sand nigger', 'sandnigger', 'schlong', 'scrote', 'shit', 'shitass', 'shitbag', 'shitbagger', 'shitbrains', 'shitbreath', 'shitcanned', 'shitcunt', 'shitdick', 'shitface', 'shitfaced', 'shithead', 'shithole', 'shithouse', 'shitspitter', 'shitstain', 'shitter', 'shittiest', 'shitting', 'shitty', 'shiz', 'shiznit', 'skank', 'skeet', 'skullfuck', 'slut', 'slutbag', 'smeg', 'snatch', 'spic', 'spick', 'splooge', 'spook', 'suckass', 'tard', 'testicle', 'thundercunt', 'tit', 'titfuck', 'tits', 'tittyfuck', 'twat', 'twatlips', 'twats', 'twatwaffle', 'unclefucker', 'vajj', 'vag', 'vagina', 'vajayjay', 'vjayjay', 'wank', 'wankjob', 'wetback', 'whore', 'whorebag', 'whoreface', 'wop');
-
-  foreach ($vals['field_fb_app_three_words'][LANGUAGE_NONE] AS $key => $info) {
-    if (isset($info['value']) && !empty($info['value'])) {
-      $cleaned_word = strtolower(preg_replace('#[^A-Za-z]#i', '', $info['value']));
-      if (strpos($info['value'], ' ') !== false) {
-        form_set_error('results', t('Sorry, you may use only one word per input box.'));
-      }
-      if (in_array($cleaned_word, $words)) {
-        form_set_error('results', t('Sorry, you may not use curse words to describe your pet.'));
-      }
-    }
-  }
-}
-
-/**
- * Our form_alter implementaion needs to run after webform_entity's.
- */
-function dosomething_fb_apps_module_implements_alter(&$implementations, $hook) {
-  if ($hook == 'form_alter') {
-    $group = $implementations['dosomething_fb_apps'];
-    unset($implementations['dosomething_fb_apps']);
-    $implementations['dosomething_fb_apps'] = $group;
-  }
-}
-
-
-/**
- * Implements hook_proprocess_views_view().
- *
- * Add our custom JS to the view zip code search.
- */
-function dosomething_fb_apps_preprocess_views_view(&$variables) {
-  // Quit early if not on the pics_for_pets_gallery view.
-  if ($variables['name'] != 'pics_for_pets_gallery') {
-    return;
-  }
-  // If there aren't any results, show the view's empty text.
-  if (empty($variables['rows'])) {
-    $variables['rows'] = $variables['empty'];
-  }
-  global $user;
-  $view = $variables['view'];
-  $form_state = array();
-  form_load_include($form_state, 'inc', 'dosomething_fb_apps', 'dosomething_fb_apps.forms');
-  $form = drupal_get_form('dosomething_fb_apps_enter_zip_form');
-  $form['container']['animal_type']['#value'] = $view->exposed_raw_input['field_fb_app_animal_type_value'];
-
-  // Attach js setting to pop up the modal window.
-  drupal_add_js(
-    array(
-      'dosomethingFBApps' => array(
-        'fbZip' =>  !empty($user->fb_zip),
-        'fbClickMe' => $form['#reset_sort'],
-        'fbAnimalSelected' => $form['#animal_type'],
-      )
-    ), 'setting');
-  $rendered_form = drupal_render($form);
-
-  // We need to reset rows to an array so that it rerenders with our attached
-  // javascript.
-  $variables['rows'] = array(
-    '#markup' => $variables['rows'] . $rendered_form,
-    '#attached' => array(
-      'js' => array(
-        drupal_get_path('module', 'dosomething_fb_apps') . '/js/shelter_sort.js',
-      ),
-    ),
-  );
-}
+  $words = array('anus', 'arse ', 'arsehole', 'ass ', 'ass-hat ', 'ass-jabber', 'ass-pirate ', 'assbag', 'assbandit ', 'assbanger', 'assbite ', 'assclown ', 'asscock ', 'asscracker', 'asses', 'assface', 'assfuck', 'assfucker', 'assgoblin', 'asshat ', 'asshead', 'asshole', 'asshopper', 'assjacker', 'asslick ', 'asslicker', 'assmonkey', 'assmunch', 'assmuncher ', 'asspirate ', 'assshit ', 'assshole ', 'asssucker', 'asswad', 'asswipe ', 'axwound ', 'bastard ', 'beaner ', 'bitch ', 'bitchass ', 'bitches ', 'bitchtits ', 'bitchy ', 'blow job ', 'blowjob ', 'bollocks ', 'bollox ', 'boner', 'brotherfucker', 'bullshit', 'bumblefuck ', 'butt plug ', 'butt-pirate ', 'buttfucka ', 'buttfucker', 'camel toe ', 'carpetmuncher ', 'chesticle ', 'chinc', 'chink ', 'choad ', 'chode ', 'clit ', 'clitface ', 'clitfuck ', 'clusterfuck ', 'cock ', 'cockass ', 'cockbite ', 'cockburger ', 'cockface ', 'cockfucker ', 'cockhead ', 'cockjockey', 'cockknoker ', 'cockmaster ', 'cockmongler ', 'cockmongruel ', 'cockmonkey ', 'cockmuncher ', 'cocknose ', 'cocknugget ', 'cockshit', 'cocksmith ', 'cocksmoke ', 'cocksmoker ', 'cocksniffer', 'cocksucker ', 'cockwaffle ', 'coochie ', 'coochy ', 'coon ', 'cooter ', 'cum', 'cumbubble ', 'cumdumpster', 'cumguzzler', 'cumjockey', 'cumslut ', 'cumtart ', 'cunnie ', 'cunnilingus', 'cunt ', 'cuntass ', 'cuntface', 'cunthole ', 'cuntlicker', 'cuntrag', 'cuntslut ', 'dago', 'damn', 'deggo', 'dick', 'dick-sneeze',
