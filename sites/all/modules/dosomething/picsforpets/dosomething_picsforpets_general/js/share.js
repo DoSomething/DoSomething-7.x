@@ -1,3 +1,5 @@
+(function($) {
+
 Drupal.behaviors.dsPfpShare = {
   adjectives: $('meta[property=cpj]').attr('content'),
   pname: $('meta[property=cpn]').attr('content'),
