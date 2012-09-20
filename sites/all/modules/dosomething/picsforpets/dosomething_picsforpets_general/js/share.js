@@ -1,5 +1,3 @@
-(function($) {
-
 Drupal.behaviors.dsPfpShare = {
   adjectives: $('meta[property=cpj]').attr('content'),
   pname: $('meta[property=cpn]').attr('content'),
@@ -35,21 +33,20 @@ Drupal.behaviors.dsPfpShare = {
     };
 
     $('#picsforpets-share').click(function () {
-    //  var pname = Drupal.behaviors.dsPfpShare.pname;
-    //  var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
-    //  var pimg = Drupal.behaviors.dsPfpShare.pimg;
+      var pname = Drupal.behaviors.dsPfpShare.pname;
+      var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
+      var pimg = Drupal.behaviors.dsPfpShare.pimg;
 
-    //  FB.api(
-    //    '/me/dosomethingapp:share',
-    //    'post',
-    //    {
-    //        pet_who_needs_a_home: document.location.href,
-    //        message: 'Do Something about homeless animals, share photos of shelter pets and hel them find homes.  The more shares a pet gets the better chance it\'ll be adopted.  Their shelter will also be rewarded for every share!',
-    //        pet_name: pname,
-    //        pet_adjectives: adjectives,
-    //        image: pimg
-    //    },
-    FB.ui(share,
+      FB.api(
+        '/me/dosomethingapp:share',
+        'post',
+        {
+            pet_who_needs_a_home: document.location.href,
+            pet_name: pname,
+            pet_adjectives: adjectives,
+            image: pimg
+        },
+    //FB.ui(share,
       function(response) {
         // If the share was unsuccessful or the user clicked cancel, response
         // will be undefined. Otherwise it will be an object that contains the

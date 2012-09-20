@@ -101,6 +101,16 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
   $name = isset($context['subtask']['name']) ? $context['subtask']['name'] : $context['handler']->name;
 
   switch ($name) {
+    case 'pfp_gallery':
+      $element = array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'property' => 'og:type',
+          'content' => 'dosomethingapp:pet_who_needs_a_home',
+        ),
+      );
+      drupal_add_html_head($element, 'picsforpets_social_graph_type');
+    break;
     case 'webform_submission_view_pet_profile':
       drupal_add_js(drupal_get_path('module', 'dosomething_fb_apps') . '/js/picsforpets-carousel.js');
       drupal_add_js(array('fbappsAnimals' => array('sid' => $context['args'][0]->sid)), 'setting');

@@ -13,13 +13,18 @@ Drupal.behaviors.inviteFriendsModal = {
         show_error: true
       };
       FB.ui(obj);
-    });
-  }
-};
-
+    });   
+  }       
+};        
+          
 Drupal.behaviors.galleryShareButton = {
   attach: function (context, settings) {
     $('.gallery-share-button').click(function () {
+      if ($(this).hasClass('shared')) return;
+      else {
+        $(this).addClass('shared');
+      }     
+            
       var sid = parseInt($(this).parent().attr('id'));
       var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/' + settings.picsforpetsFBAuth.fbFormAlias + '/submission/' + sid;
       var threeWords = [];
@@ -32,15 +37,24 @@ Drupal.behaviors.galleryShareButton = {
         link: shareUrl,
         picture: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
         caption: settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
-        description: "Do Something about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"
-      };
-      FB.ui(share, function(response) {
+        description: "Do Something about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"   
+      };          
+    FB.api(         
+        '/me/dosomethingapp:share',
+        'post',     
+        {         
+            pet_who_needs_a_home: shareUrl,
+            image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+        },  
+    //FB.ui(share,  
+      function(response) {
         // If the share was unsuccessful or the user clicked cancel, response
         // will be undefined. Otherwise it will be an object that contains the
         // post_id of the share.
         if ((typeof response !== 'undefined') && (response !== null)) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
+          $('div#' + sid + ' span.gallery-share-button').text('Shared!');
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
