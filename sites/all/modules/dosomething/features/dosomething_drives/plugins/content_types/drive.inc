@@ -186,10 +186,7 @@ function dosomething_drives_drive_create_participant_list($gid, $members, $admin
   $return = array();
   foreach ($members as $member) {
     $name = array();
-    $name['name'] = dosomething_general_get_full_name($member->uid);
-    if ($name['name'] == ' ') {
-      $name['name'] = $member->name;
-    }
+    $name['name'] = teams_full_name($member->uid);
     if ($admin && $user->uid != $member->uid) {
       $name['form'] = drupal_render(drupal_get_form('teams_remove_member_form', $gid, $member->uid));
     }
@@ -301,6 +298,7 @@ function dosomething_drives_drive_invite_module($gid) {
   global $user;
   $fb_connected = fboauth_fbid_load($user->uid);
 
+  drupal_add_js(array('campaignPath' => arg(1)), 'setting');
   drupal_add_js(drupal_get_path('module', 'dosomething_drives') . '/js/popup-form.js');
 
   $return = array();
@@ -357,8 +355,7 @@ function dosomething_drives_drive_invite_module($gid) {
 }
 
 function dosomething_drives_drive_get_name($submission) {
-  //$name = reset(explode(' ', dosomething_general_get_full_name($submission->uid)));
-  $name = dosomething_general_get_full_name($submission->uid);
+  $name = teams_full_name($submission->uid);
   return $name;
 }
 

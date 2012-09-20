@@ -501,18 +501,26 @@ function teams_get_nid_from_path($url) {
 function teams_mail($key, &$message, $params) {
   switch ($key) {
     case 'invite':
-      $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
+      $params['full_name'] = teams_full_name($params['account']->uid);
       $message['subject'] = t('@name has invited you to join their DoSomething team', array('@name' => $params['full_name']));
       $message['body'][] = drupal_html_to_text(theme('teams_invite', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'added':
-      $params['full_name'] = dosomething_login_get_user_full_name($params['account']);
+      $params['full_name'] = teams_full_name($params['account']->uid);
       $message['subject'] = t('@name has added you to their DoSomething team', array('@name' => $params['full_name']));
       $message['body'][] = drupal_html_to_text(theme('teams_added', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
   }
+}
+
+function teams_full_name($uid) {
+  $name = dosomething_general_get_full_name($uid);
+  if ($name == ' ') {
+    $name = user_load($uid)->name;
+  }
+  return $name;
 }
 
 /**
