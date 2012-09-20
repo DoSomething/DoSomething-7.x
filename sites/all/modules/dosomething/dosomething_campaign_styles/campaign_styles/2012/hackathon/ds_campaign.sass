@@ -1,0 +1,512 @@
+// CAMPAIGN NAME HERE PLZ!
+
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors - define any campaign specific colors here
+$baseColor: blue
+$secondaryLink: black
+$paneBG: #eee
+$paneTitleBG: red
+ 
+// borders (all lines - i.e. around social / quick info)
+$borderTop: 1px solid rgba(0,0,0,.5)
+$borderBot: 1px solid rgba(255,255,255,.5)
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+$boldWeight: 600
+
+// sets the background for the entire page
+$imageBackground: url('assets/bg.jpg')
+$bgFallback: #1F4BA7
+
+// sets the background for the page nav and main section
+@mixin block
+  // make sure you specify the RBG fallback if you have a RGBA set!
+  background: rgb(255,255,255)
+  background: rgba(255,255,255,.8)
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@mixin setBorderBox
+  -moz-box-sizing: border-box
+  -ms-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+.main-inner 
+  padding-top: 10px
+  width: 750px
+  a
+    color: $baseColor
+    &:hover
+      color: $secondaryLink
+  b
+    font-weight: $boldWeight
+
+h1.title
+  display: none
+
+h2.pane-title
+  background: $paneTitleBG
+
+img
+  +noShadow
+  +noBorder
+  
+ul
+  margin: 0
+
+body
+  background-color: $bgFallback
+  background-image: $imageBackground
+  background-repeat: repeat-y
+  background-position: center top
+
+div[role="main"]
+  +block
+  @include box-shadow(black 0 0 30px -10px)
+  margin-top: 8px
+  padding-top: 10px  
+
+.three-boxes
+  width: 32% !important
+  float: left !important
+  margin-right: 2% !important
+  &:last-child
+    margin-right: 0 !important
+  .pane-content
+    +setBorderBox
+
+// IE8 does not support :last-child
+.three-boxes-last-child
+  margin-right: 0 !important
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+  
+// General pane definitions
+.panel-row-flexible, .panel-row-actions
+  margin: 0px
+  .panel-pane
+    margin-bottom: 15px
+    +block
+    .pane-title
+      background: $paneTitleBG
+    .pane-content
+      background: $paneBG
+
+.ds-panel .pane-content
+  padding-bottom: 0px
+
+#breadcrumb
+  display: none
+
+// reset quick info color
+.panel-row-ad-quick-info
+  h2.pane-title
+    color: $baseColor !important
+
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: transparent
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background-image: none
+    text-align: right
+    li
+      line-height: 1.2em
+    a
+      display: inline-block
+      width: 100%
+      padding: 10px 19px 10px 0
+      font-size: 21px
+      font-weight: 600
+      text-transform: uppercase
+      color: $secondaryLink
+      font-family: "din-web-reg"
+      &:hover, .active
+        color: $baseColor
+        text-decoration: none
+
+// campaign logo
+.pane-node-field-campaign-logo .pane-content
+  padding-bottom: 0
+.field-name-field-campaign-logo img
+  width: 480px
+  height: 230px
+  margin-top: 0px !important
+
+// mini info
+// brief campaign description at the top right
+.panel-top-right-mini-info
+  font-family: $accent
+  font-size: 21px
+  line-height: 1.4em
+  .field-name-field-campain-date
+    color: $baseColor
+    padding: 0
+    font-weight: 600
+  .field-name-field-campaign-teaser p
+    margin-bottom: 15px
+  .pane-content  
+    padding-bottom: 0
+
+// campaign social buttons, top right
+.pane-campaign-social
+  .pane-content
+    .fb-facepile
+      margin-bottom: 5px
+      &:before
+        +insetBorder
+    // positioning line between social width and campaign teaser
+    .socialWrapper
+      margin: 0 0 8px 18px
+      &:before
+        +insetBorder
+        content: ""
+        display: block
+        left: -18px
+        margin-bottom: 8px
+        position: relative
+        width: 247px
+
+// short form
+.panel-row-actions
+  background: $paneBG
+  margin: 0 0 15px 0
+  width: 750px
+  +noBorder
+  .form-wrapper
+    margin-bottom: 5px !important
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+  .panel-row-actions-sign-up
+    form 
+      padding-bottom: 0
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-title
+        color: white
+    .pane-content
+      padding: 0
+      .webform-client-form
+        +noShadow
+        +noBorder
+      .field-name-field-webform-email
+        font-size: 14px
+        width: 280px
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      .field-name-field-webform-mobile  
+        font-size: 14px
+        width: 240px
+        margin-bottom: 0.5em
+        input
+          width: 75%
+          margin-top: 5px
+
+.webform-client-form
+  #edit-actions,
+  #edit-actions--2
+    position: absolute
+    right: 80px
+    top: 48px
+
+#campaign-opt-in
+  font-size: 11px
+  margin-left: 15px
+  padding: 15px 0 12px 0
+  a
+    font-weight: bold
+    display: block
+    height: 20px
+    width: 20px
+    position: absolute
+    bottom: 13px
+    left: 324px
+    color: $baseColor
+    &:hover
+      color: $secondaryLink
+      text-decoration: none
+
+// counter
+.pane-campaign-counter
+  .pane-content
+    padding: 20px 25px
+    .campaign-counter-labels
+      text-transform: uppercase
+      font-size: 25px
+      font-family: din-web,"Trebuchet MS",sans-serif 
+      font-weight: 500
+      line-height: 25px
+      float: left
+    .digits, .campaign-counter-label-bottom, .campaign-counter-label-top
+      margin-bottom: 8px
+
+// Quick Info
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: $secondaryLink
+    line-height: 1em
+    font-weight: 500
+  .pane-content
+    margin-top: 1em
+    padding: 0
+    h3
+      color: $baseColor
+      font-size: 24px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: .8em
+    p
+      margin: 0 0 0.8em 0
+    &:before
+      margin-bottom: 20px
+      
+// PSA
+.panel-row-ad-psa
+  margin-top: 35px
+
+// sponsor logos
+.panel-row-logos
+  margin-top: 2em
+  .pane-title
+    color: $baseColor
+    background: none
+    margin: 0
+    padding: 0
+  .pane-content
+    background: none
+    padding: 0
+
+// FAQ
+.faq-section
+  +noBorder
+  .pane-content
+    ul
+      margin: 0px 10px
+      padding: 1.5em
+    li
+      h3
+        font-size: 1.6em
+        text-transform: none
+      p 
+        margin-top: 0
+
+// Blog
+.node-campaign-blog-post
+  padding: 15px !important
+  .field-name-field-picture
+    img
+      margin: 0 20px 20px 0
+      float: left
+  .field-name-field-blog-video
+    clear: both
+    position: relative
+    bottom: -25px
+    right: -125px
+    margin: 35px 0
+    iframe
+      margin: 0 auto
+      display: block
+
+.field-type-text-with-summary
+  img
+    padding: 10px
+    margin: 20px auto
+    display: block
+    border: 1px solid #000!important
+
+.pane-campaign-blog-panel-pane-1
+  background: transparent !important
+  +noBorder
+  .pane-content
+    padding: 15px
+  a
+    color: $baseColor
+    text-decoration: underline
+    &:hover
+      color: $secondaryLink
+  .views-field-title
+    a
+      text-decoration: none
+      &:hover
+        color: $secondaryLink
+  .more-link
+    text-transform: uppercase
+
+.pane-campaign-blog-panel-pane-2
+  +noBorder
+  width: 100%
+  .pane-content
+    padding: 10px 0 0 0
+  .view-campaign-blog
+    .views-row
+      padding: 5px 15px 15px
+        margin: 1em 0 1em 0
+      &:first-child
+        &:before
+          +noBorder
+          margin: 0
+    .views-row-even
+      background-color: $paneBG
+      
+// set the resgister for Do Something block on sign up to be taller
+#dosomething-login-register-popup-form .popup-content
+  //height: 165px !important
+
+// hide school data on the long form
+#edit-submitted-field-webform-school-reference,
+#submitted-field-webform-school-zip-add-more-wrapper
+  display: none
+
+// Sign Up Form
+.node-type-campaign-sign-up
+  #webform-component-first-name, #webform-component-last-name, #webform-component-address-1, #webform-component-address-2, #webform-component-city, #webform-component-state, #webform-component-zip-code, #webform-component-who-with, .form-item-submitted-field-webform-email-und-0-email, .form-item-submitted-field-webform-mobile-und-0-value, .form-item-first-name, .form-item-last-name, .form-item-email, .form-item-cell, .form-item-pass
+    clear: both
+    margin: 0 auto !important  
+    float: left !important
+    label
+      width: 220px
+      padding: 5px 0 0 40px
+    label, input
+      float: left
+      margin: 8px 0
+      font-size: 14px
+    input
+      width: 225px !important
+      &:focus
+        background-color: lightyellow   
+
+  //label[for="edit-last-name"], label[for="edit-first-name"], label[for="edit-cell-or-email"]
+    //display: block !important
+
+  .webform-component-markup
+    float: left
+    clear: both
+    width: 100%          
+    
+  #webform-component-who-with
+    label
+      width: 100%
+      padding-left: 0
+    textarea
+      border: none
+      -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset
+      outline: none
+      padding-left: 5px
+      &:focus
+        background-color: lightyellow
+    .grippie
+      margin-bottom: 10px
+
+  .panel-row-flexible-top
+    width: 550px
+    margin: 0 auto
+    h2.pane-title
+      display: none  
+
+  #webform-component-instructions
+    margin: 0 0 -10px 0 !important
+  form.webform-client-form
+    #edit-actions--2, #edit-actions
+      text-align: center
+      margin: 10px
+      clear: both
+
+.center
+  text-align: center
+
+.pane-dosomething-login-register-block
+  h2.pane-title
+    display: block !important
+  margin-bottom: 0 !important     
+
+#dosomething-login-register-popup-form 
+  input
+    &:focus
+      background-color: lightyellow  
+  .form-item-last-name, .form-item-cell, .form-item-pass
+    width: 100%
+  .ds-registration-form-required
+    position: static
+  .popup-content
+    height: 100% !important
+    padding: 15px 15px 0 15px !important
+    margin: 0 !important    
+  #edit-birthday
+    input
+      width: 68px
+    label  
+      .login-popup-birthday
+        position: static !important
+        font-size: 14px !important  
+      width: 220px
+      padding: 5px 0 0 40px
+      margin: 8px 0
+    .form-item-month, .form-item-day, .form-item-year
+      margin-top: 8px !important     
+
+// Report Back Form  
+.node-type-campaign-report-back   
+  .panel-row-flexible-top
+    width: 550px
+    margin: 0 auto  
+    label
+      margin-top: 1em
+    fieldset 
+      legend
+        padding: 20px 0 0 0 !important 
+    #edit-actions--2, #edit-actions
+      text-align: center
+      margin: 10px
+      clear: both          
