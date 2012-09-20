@@ -187,7 +187,7 @@ function dosomething_drives_drive_create_participant_list($gid, $members, $admin
   foreach ($members as $member) {
     $name = array();
     $name['name'] = dosomething_general_get_full_name($member->uid);
-    if ($name == ' ') {
+    if ($name['name'] == ' ') {
       $name['name'] = $member->name;
     }
     if ($admin && $user->uid != $member->uid) {
