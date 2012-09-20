@@ -161,10 +161,6 @@ function dosomething_picsforpets_shelters_select_shelter_validate($form, &$form_
   // Send a message if they try to click the select button with no option
   // selected.
 
-  // Validation is super weird and this seems to be the only function running on the entire form.
-  // So...validate some more.
-
-  dosomething_fb_apps_censor_stuff($form_state['values']);
   if (empty($form_state['values']['results'])) {
     form_set_error('results', t('You must select a shelter or add your own.'));
   }
