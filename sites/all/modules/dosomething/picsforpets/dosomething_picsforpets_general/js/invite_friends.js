@@ -40,7 +40,24 @@ Drupal.behaviors.galleryShareButton = {
         picture: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
         caption: settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
         description: "Do Something about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"   
-      };          
+      };
+
+  FB.api('/me/permissions', function (response) {
+            var perms = response.data[0];
+
+            if (perms.publish_stream) {                
+               // User has permission
+            } else {                
+              FB.ui({
+              method: 'permissions.request',
+              perms: 'publish_actions',
+              display: 'popup'
+              },function(response) {
+                // Just making sure that they have this permission.
+              });
+            }                                            
+    } );
+
     FB.api(         
         '/me/dosomethingapp:share',
         'post',     
