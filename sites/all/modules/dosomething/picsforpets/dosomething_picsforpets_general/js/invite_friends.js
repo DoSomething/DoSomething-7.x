@@ -23,7 +23,9 @@ Drupal.behaviors.galleryShareButton = {
       if ($(this).hasClass('shared')) return;
       else {
         $(this).addClass('shared');
-      }     
+      }
+
+      $('div#' + sid + ' span.gallery-share-button').text('Shared!');
             
       var sid = parseInt($(this).parent().attr('id'));
       var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/' + settings.picsforpetsFBAuth.fbFormAlias + '/submission/' + sid;
@@ -54,7 +56,6 @@ Drupal.behaviors.galleryShareButton = {
         if ((typeof response !== 'undefined') && (response !== null)) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
-          $('div#' + sid + ' span.gallery-share-button').text('Shared!');
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.

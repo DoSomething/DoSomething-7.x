@@ -40,6 +40,8 @@ Drupal.behaviors.dsPfpShare = {
         $(this).addClass('shared');
       }
 
+      $('.fb-share-me').text('Shared!');
+
       var pname = Drupal.behaviors.dsPfpShare.pname;
       var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
       var pimg = Drupal.behaviors.dsPfpShare.pimg;
@@ -69,7 +71,6 @@ Drupal.behaviors.dsPfpShare = {
             var count = $('.picsforpets-share-count').text();
             count++;
             $('.picsforpets-share-count').text(count);
-            $('.fb-share-me').text('Shared!');
             var titles = {
               200  : '200 shares gets me a toy!',
               500  : '500 shares gets me food!',
