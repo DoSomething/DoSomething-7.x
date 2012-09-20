@@ -57,6 +57,7 @@ Drupal.behaviors.dsPfpShare = {
         },
     //FB.ui(share,
       function(response) {
+        console.log(response);
         // If the share was unsuccessful or the user clicked cancel, response
         // will be undefined. Otherwise it will be an object that contains the
         // post_id of the share.
