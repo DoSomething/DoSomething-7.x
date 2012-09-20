@@ -336,7 +336,7 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
     'title' => t('Thanks for sharing!'),
   );
   $form['instructions'] = array(
-    '#markup' => '<div class="sign-up-text">Enter your info and we\'ll send you updates when an animal gets adopted</div>',
+    '#markup' => '<div class="sign-up-text">Want to keep track of all the animals you share? Enter your info and we\'ll send you updates when an animal gets adopted.</div>',
   );
   $form['email'] = array(
     '#type' => 'textfield',
