@@ -53,7 +53,7 @@ body.admin-menu {
   margin: 0;
   padding: 0;
   z-index: 999;
-  font-family: arial;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 }
 #admin-menu .dropdown {
   position: static;
