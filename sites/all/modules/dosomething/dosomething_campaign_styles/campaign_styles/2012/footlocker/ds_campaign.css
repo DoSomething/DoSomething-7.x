@@ -747,7 +747,7 @@ hr.gray {
 .page-node-724721 .pane-content h3, .page-node-724721 .pane-content h4 {
   text-transform: uppercase;
   font-size: 24px;
-  color: #e31837;
+  color: black;
   line-height: 1em; }
   .page-node-724721 .pane-content h3 a, .page-node-724721 .pane-content h4 a {
     text-transform: lowercase;
@@ -759,6 +759,8 @@ hr.gray {
   color: black; }
   .page-node-724721 .pane-content h3 span, .page-node-724721 .pane-content .send-request span {
     color: #e31837; }
+.page-node-724721 .pane-content h4 span {
+  color: #e31837; }
 .page-node-724721 .pane-content .send-request {
   margin-top: 6px; }
 .page-node-724721 .pane-content h4 {
@@ -855,3 +857,6 @@ hr.gray {
 .ui-icon.ui-icon-closethick {
   top: -15px;
   left: -100px; }
+
+#edit-submitted-field-webform-school-reference-und-0-target-id legend {
+  padding: 20px 0 0 !important; }
