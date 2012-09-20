@@ -73,7 +73,7 @@ function dosomething_social_scholars_new_image_display_content_type_render($subt
 
   if ($node->title) {
     $content['title'] = array(
-      '#markup' => '<h1 class="title" id="page-title">' . $node->title . '</h1>'
+      '#markup' => '<h1 class="title" id="page-title">' . $node->title . '</h1><p>Share the images below by clicking on an image and sharing on facebook!</p>'
     );
   }
 
