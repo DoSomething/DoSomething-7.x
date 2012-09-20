@@ -9,8 +9,8 @@
     <?php echo $s['scripts']; ?>
   </head>
   <body>
-    <h1 id="connect-message">Connect your email address book to email your contacts.</h1>
-    <p id="having-trouble">If you don't see a pop-up after clicking "Get Contacts," select "Always show pop-ups from DoSomethign.org."  Click the "Share with email" and "get contacts" btutons again.  Now you'll be able to log into your email client.  (We never store your password.)</p>
+    <h1 id="connect-message">Connect your email address book to email your contacts:</h1>
+    <p id="having-trouble"><em>If you don't see a pop-up after clicking a link below, click the link again.  (Still not working? Try allowing pop-ups.)</em></p>
 <div id="socials">
 <?php echo $s['services']; ?>
 </div>
