@@ -160,6 +160,28 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
 
       drupal_add_html_head($element2, 'picsforpets_social_graph_title');
 
+      $image = array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'property' => 'og:url', 
+          'content' => 'http://' . $_SERVER['HTTP_HOST'] . str_replace(DRUPAL_ROOT, '', drupal_realpath($context['args'][0]->field_fb_app_image[LANGUAGE_NONE][0]['uri']))
+        ),
+        '#weight' => -99998
+      );
+
+      drupal_add_html_head($image, 'picsforpets_social_graph_url');
+
+      $image = array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'property' => 'og:description', 
+          'content' => t("Do Something about homeless animals, share photos of shelter pets and help them find homes.")
+        ),
+        '#weight' => -99997
+      );
+
+      drupal_add_html_head($image, 'picsforpets_social_graph_desc');
+
      $j = array(
         '#tag' => 'meta',
         '#attributes' => array(
