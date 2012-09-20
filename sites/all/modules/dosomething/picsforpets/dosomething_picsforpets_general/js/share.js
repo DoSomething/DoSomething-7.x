@@ -45,7 +45,12 @@ Drupal.behaviors.dsPfpShare = {
       var pname = Drupal.behaviors.dsPfpShare.pname;
       var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
       var pimg = Drupal.behaviors.dsPfpShare.pimg;
+FB.api('/me/permissions', function (response) {
+            var perms = response.data[0];
 
+            if (perms.publish_stream) {                
+               // User has permission
+            } else {                
 FB.ui({
 method: 'permissions.request',
 perms: 'publish_actions',
@@ -53,6 +58,8 @@ display: 'popup'
 },function(response) {
   // Just making sure that they have this permission.
 });
+            }                                            
+    } );
 
       FB.api(
         '/me/dosomethingapp:share',
