@@ -24,7 +24,7 @@
 
   // has logo, will inject
   var logo = 'http://files.dosomething.org/files/campaigns/spit/logo.png';
-  $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<img src="' + logo + '"/>');
+  $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit12"><img src="' + logo + '"/></a>');
 
   // hacktastic form rebuilding
   var emailInput = $('#edit-submitted-field-webform-email');
@@ -55,14 +55,24 @@
     }
   });
 
-  // jQuery scrolling effect
+  // jQuery scrolling effect with focus!
   var contentAnchors = 'a.jump_scroll';
   var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
   var allAnchors = navAnchors + ', ' + contentAnchors;
   
-  console.log(contentAnchors + navAnchors);
   $(allAnchors).click(function(event){
     $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+    var webformFocus = '#webform input#edit-submitted-field-webform-email-und-0-email, #webform input#edit-submitted-field-webform-mobile-und-0-value';
+    if($('a').attr('href','/spit12#webform')){
+      console.log('merde!');
+      $(webformFocus).focus().addClass('focusOutline');
+      $(webformFocus).focus(function(){
+        $(this).addClass('focusOutline');
+      });
+      $(webformFocus).blur(function() {
+        $(this).removeClass('focusOutline');
+      });
+    }
     return false;
   });
 

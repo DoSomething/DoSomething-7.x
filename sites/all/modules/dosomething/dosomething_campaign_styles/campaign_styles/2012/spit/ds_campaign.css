@@ -254,7 +254,7 @@ body {
 #cmp input[type="submit"] {
   font-size: 2em; }
 #cmp a {
-  color: #ffcb15; }
+  color: #7f3f80; }
 #cmp a.mango {
   background: rgba(127, 63, 128, 0.6);
   color: white; }
@@ -324,6 +324,8 @@ body {
   background: black;
   background: rgba(0, 0, 0, 0.3);
   width: 100%; }
+#cmp .focusOutline {
+  box-shadow: 0px 0px 15px 4px #cbbeff; }
 #cmp .pane-campaign-sign-up {
   clear: both;
   width: 100%;
