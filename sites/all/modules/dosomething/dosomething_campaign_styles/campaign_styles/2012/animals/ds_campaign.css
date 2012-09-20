@@ -74,6 +74,9 @@ body {
     header[role="banner"] {
       width: 100%; } }
 
+.region-sidebar-first {
+  display: none; }
+
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
 #cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
@@ -281,6 +284,70 @@ body {
     color: #8d8f92; }
   #cmp .partners img {
     margin: 2%; }
+#cmp #mobile_site {
+  background: white;
+  padding: 25px;
+  width: 800px; }
+  #cmp #mobile_site .false_sidebar {
+    position: absolute;
+    left: -225px;
+    top: 85px; }
+  #cmp #mobile_site .col_one {
+    margin-left: 8px;
+    margin-right: 33px; }
+  #cmp #mobile_site h1, #cmp #mobile_site h2 {
+    color: #e52127; }
+  #cmp #mobile_site p {
+    margin: 0 15px 15px 15px; }
+  #cmp #mobile_site img {
+    border: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+#cmp .mobile_screenshots img {
+  width: 350px;
+  background: #222222;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding: 25px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px; }
+#cmp .mobile_screenshots li {
+  list-style: none;
+  text-align: center;
+  text-transform: uppercase;
+  float: left; }
+#cmp .store_links {
+  margin-left: -25px; }
+  #cmp .store_links li {
+    float: left;
+    margin-left: 100px;
+    width: 250px; }
+#cmp .features_video {
+  width: 680px;
+  height: 410px;
+  border: 25px solid #222222;
+  margin: 15px auto 25px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px; }
+#cmp .feature_highlights {
+  width: 70%; }
+#cmp .requirements {
+  width: 50%;
+  float: left;
+  margin-top: 25px; }
+  #cmp .requirements ul {
+    margin-top: 25px; }
+#cmp .feature_highlights li, #cmp .requirements li {
+  list-style: disc;
+  margin-left: 15px; }
 @media only screen and (max-width: 775px) {
   #cmp .section {
     width: 100%;

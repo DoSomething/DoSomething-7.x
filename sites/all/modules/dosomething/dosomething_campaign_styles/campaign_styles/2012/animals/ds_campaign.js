@@ -8,7 +8,9 @@
   // on lines 9-10 terrible things happen
   $('#campaign-opt-in br').remove();
   $('.ctia_top').append('&nbsp;');
-	      
+	
+  $
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
