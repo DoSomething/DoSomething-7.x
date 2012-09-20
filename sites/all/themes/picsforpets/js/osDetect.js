@@ -33,7 +33,7 @@
         }
 
         if (confirm(confirmString)) {
-          window.location.href = storeLocation;
+          window.top.location.href = storeLocation;
         }
       }
     }
