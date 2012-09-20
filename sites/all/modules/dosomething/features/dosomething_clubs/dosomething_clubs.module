@@ -888,12 +888,19 @@ function dosomething_clubs_invite_form($form, &$form_state, $gid) {
     ),
   );
 
+  $form['invite-sent'] = array(
+    '#markup' => '',
+    '#prefix' => '<div id="invite-sent">',
+    '#suffix' => '</div>'
+  );
+
   //$form['#submit'][] = 'dosomething_clubs_invite_form_submit';
 
   return $form;
 }
 
 function dosomething_clubs_invite_form_ajax($form, &$form_state) {
+  static $invited;
   $gid = $form_state['values']['gid'];
   $invite = $form_state['values']['invite'];
   $nid = $form_state['nid'];
@@ -907,11 +914,12 @@ function dosomething_clubs_invite_form_ajax($form, &$form_state) {
     dosomething_clubs_invite_message($invite, $gid);
   }
 
+  $invited++;
   return array(
     '#type' => 'ajax',
     '#commands' => array(
       ajax_command_invoke('#dosomething-clubs-invite-form input[name="invite"]', 'val', array('')),
-      ajax_command_append('#dosomething-clubs-invite-form', 'Invitation sent!')
+      ajax_command_replace('#invite-sent', '<div id="invite-sent">Invitation sent!</div>') // Replace invitation sent so it only appears once.
     ),
   );
 }

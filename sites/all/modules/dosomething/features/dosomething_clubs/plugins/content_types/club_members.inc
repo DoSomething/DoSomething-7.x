@@ -121,9 +121,12 @@ function dosomething_clubs_club_members_content_type_render($subtype, $conf, $pa
       }
       if (($og_admin || $is_admin || user_access('administer group', $user)) && $owner <> $membership->etid) {
         $addclass = '';
+        // Add a class to define how a person is changing the administrator:
+        // Are they the owner, changing it from themselves to someone else?
         if ($owner == $user->uid) {
           $addclass = ' to-user-from-admin';
         }
+        // Are they an admin, changing the owner?
         else {
           $addclass = ' to-user';
         }
