@@ -35,6 +35,11 @@ Drupal.behaviors.dsPfpShare = {
     };
 
     $('#picsforpets-share').click(function () {
+      if ($(this).hasClass('shared')) return;
+      else {
+        $(this).addClass('shared');
+      }
+
       var pname = Drupal.behaviors.dsPfpShare.pname;
       var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
       var pimg = Drupal.behaviors.dsPfpShare.pimg;
