@@ -53,6 +53,7 @@ body.admin-menu {
   margin: 0;
   padding: 0;
   z-index: 999;
+  font-family: arial;
 }
 #admin-menu .dropdown {
   position: static;
@@ -184,28 +185,4 @@ body.admin-menu {
   width: 90%; /* IE */
 }
 
-/* #210615: Mozilla on Mac fix */
-html.js fieldset.collapsible div.fieldset-wrapper {
-  overflow: visible;
-}
-
-/* Hide the menu on print output. */
-@media print {
-  #admin-menu {
-    display: none !important;
-  }
-  body.admin-menu {
-    margin-top: 0 !important;
-  }
-}
-
-/**
- * Tweaks permissions, if enabled.
- */
-tr.admin-menu-tweak-permissions-processed {
-  cursor: pointer;
-  cursor: hand;
-}
-tr.admin-menu-tweak-permissions-processed td.module {
-  border-top: 0;
-}
+/* #210615: Mozilla on Mac
