@@ -15,6 +15,14 @@
     return false;
   });
 
+  var local = "localhost:8080";
+  var prod = "www.dosomething.org";
+  var url = prod;
+
+  if(document.URL == "http://" + url + "/picsforpets/mobile"){
+    $('.region-sidebar-first').hide();
+  }
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
