@@ -65,6 +65,7 @@ Drupal.behaviors.dsPfpShare = {
             var count = $('.picsforpets-share-count').text();
             count++;
             $('.picsforpets-share-count').text(count);
+            $('.fb-share-me').text('Shared!');
             var titles = {
               200  : '200 shares gets me a toy!',
               500  : '500 shares gets me food!',
