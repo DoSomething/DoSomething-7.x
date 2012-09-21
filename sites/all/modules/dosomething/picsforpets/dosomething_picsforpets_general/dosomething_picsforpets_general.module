@@ -52,8 +52,23 @@ function dosomething_picsforpets_general_menu() {
     'access callback' => TRUE,
     'page callback' => 'dosomething_picsforpets_general_questions',
   );
+  $items['fb/pics-for-pets/carousel'] = array(
+    'page callback' => 'dosomething_picsforpets_general_find_carousel_position',
+    'access callback' => TRUE
+  );
   return $items;
 }
+
+function dosomething_picsforpets_general_find_carousel_position() {
+  $webform_id = variable_get('picsforpets_animal_form_id', NULL);
+  $sid = db_query_range("SELECT sid FROM {webform_submissions} w LEFT JOIN {field_data_eq_webform_submission_entity} eq ON w.sid=eq.eq_webform_submission_entity_target_id AND eq.entity_id=(SELECT queue_id FROM {entityqueue} WHERE name='pics_for_pets_curated') WHERE w.bundle = :bundle AND w.nid = :nid ORDER BY eq.eq_webform_submission_entity_target_id DESC, RAND()", 0, 1,
+    array(':bundle' => 'fb_app_data_gathering_form', ':nid' => $webform_id))->fetchField();
+
+  // Build the markup for the link.
+  $path = drupal_get_path_alias('node/' . $webform_id);
+  drupal_goto($path . '/submission/' . $sid);
+}
+
 
 /**
  * Making a collapsible faq for the fb/pics-for-pets/questions page.

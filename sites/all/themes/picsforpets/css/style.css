@@ -2920,7 +2920,7 @@ select#edit-sort-by {
   list-style-type: none;
   margin-left: 0;
 }
-#picsforpets-gallery-navigation li.last {
+#picsforpets-gallery-navigation li.last, #picsforpets-gallery-navigation li.first {
   margin-top: -30px;
 }
 
@@ -3445,5 +3445,4 @@ header aside {
   background-color: gray;
 }
 .styletile-1 .colors ul li.color-6:after {
-  content: "gray";
-}
+  
