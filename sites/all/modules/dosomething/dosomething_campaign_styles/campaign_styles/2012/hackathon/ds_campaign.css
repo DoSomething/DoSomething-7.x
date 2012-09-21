@@ -8,6 +8,9 @@
   .main-inner b {
     font-weight: 600; }
 
+p {
+  font-size: 14px; }
+
 h1.title {
   display: none; }
 
@@ -26,18 +29,18 @@ ul {
 
 body {
   background-color: #1f4ba7;
-  background-image: url("assets/bg.jpg");
-  background-repeat: repeat-y;
-  background-position: center top; }
+  background-image: url("assets/logo-bg.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 405px;
+  background-color: white; }
 
 div[role="main"] {
   background: white;
   background: rgba(255, 255, 255, 0.8);
-  -webkit-box-shadow: black 0 0 30px -10px;
-  -moz-box-shadow: black 0 0 30px -10px;
-  box-shadow: black 0 0 30px -10px;
   margin-top: 8px;
-  padding-top: 10px; }
+  padding-top: 10px;
+  background: none; }
 
 .three-boxes {
   width: 32% !important;
@@ -75,11 +78,11 @@ div[role="main"] {
   .panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
     margin-bottom: 15px;
     background: white;
-    background: rgba(255, 255, 255, 0.8); }
+    background: rgba(255, 255, 255, 0.8);
+    border: none !important;
+    background: none; }
     .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
       background: red; }
-    .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
-      background: #eeeeee; }
 
 .ds-panel .pane-content {
   padding-bottom: 0px; }
@@ -200,6 +203,12 @@ div[role="main"] {
         width: 75%;
         margin-top: 5px; }
 
+.webform-client-form #edit-actions,
+.webform-client-form #edit-actions--2 {
+  position: absolute;
+  right: 80px;
+  top: 48px; }
+
 #campaign-opt-in {
   font-size: 11px;
   margin-left: 15px;
@@ -294,8 +303,7 @@ div[role="main"] {
 .field-type-text-with-summary img {
   padding: 10px;
   margin: 20px auto;
-  display: block;
-  border: 1px solid black !important; }
+  display: block; }
 
 .pane-campaign-blog-panel-pane-1 {
   background: transparent !important;
@@ -418,3 +426,112 @@ div[role="main"] {
     text-align: center;
     margin: 10px;
     clear: both; }
+
+#block-dosomething-campaign-styles-campaign-nav, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5 {
+  display: none; }
+
+hr.gray {
+  border-top: 1px solid lightgray;
+  border-bottom: none;
+  clear: both;
+  margin: 0px; }
+
+.flaghead-box {
+  text-align: center;
+  margin-top: 0px; }
+
+.flaghead {
+  background: #ff9700;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  margin: -1px auto 20px auto;
+  clear: both;
+  padding: 15px 20px 10px;
+  font-size: 21px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  width: 250px; }
+
+a.wannago-btn {
+  background-image: linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
+  background-image: -o-linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
+  background-image: -moz-linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
+  background-image: -webkit-linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
+  background-image: -ms-linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.32, #00b9ec), color-stop(0.53, #00ccf5), color-stop(0.83, #a2e0fb));
+  display: inline-block;
+  padding: 15px 20px 7px;
+  color: white !important;
+  text-transform: uppercase;
+  font-size: 32px;
+  font-family: din-web;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  margin: 10px auto 30px;
+  line-height: 1em; }
+  a.wannago-btn:hover {
+    text-decoration: none;
+    color: #e1e1e1 !important; }
+
+.bottom-btn {
+  margin-top: 20px !important; }
+
+#header-hackathon {
+  text-align: center; }
+  #header-hackathon img {
+    margin: 30px auto 20px;
+    display: block; }
+
+.box-thirds {
+  float: left;
+  padding: 20px;
+  text-align: center;
+  line-height: 1.4em;
+  width: 250px;
+  margin-bottom: 20px; }
+  .box-thirds img {
+    margin: 0 auto;
+    display: block; }
+  .box-thirds h3 {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-weight: normal; }
+
+.half-box {
+  float: left;
+  width: 50%; }
+  .half-box p {
+    text-align: justify;
+    margin: 20px 0 50px; }
+  .half-box img {
+    margin-top: 60px !important; }
+
+#beer-goggles {
+  background: white url("assets/lager.jpg") no-repeat top center;
+  min-height: 227px;
+  margin-bottom: 40px; }
+
+.beer {
+  position: relative; }
+  .beer p {
+    background: #111111;
+    zoom: 1;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 750px; }
+
+p.plain {
+  width: 620px;
+  margin: 30px auto 60px; }
+
+img.plain {
+  padding: 0px !important;
+  margin-bottom: 30px !important; }

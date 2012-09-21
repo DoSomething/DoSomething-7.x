@@ -24,7 +24,7 @@ $body: "Trebuchet MS",sans-serif
 $boldWeight: 600
 
 // sets the background for the entire page
-$imageBackground: url('assets/bg.jpg')
+$imageBackground: url('assets/logo-bg.png')
 $bgFallback: #1F4BA7
 
 // sets the background for the page nav and main section
@@ -71,6 +71,9 @@ $bgFallback: #1F4BA7
   b
     font-weight: $boldWeight
 
+p
+  font-size: 14px
+
 h1.title
   display: none
 
@@ -87,14 +90,17 @@ ul
 body
   background-color: $bgFallback
   background-image: $imageBackground
-  background-repeat: repeat-y
+  background-repeat: no-repeat
   background-position: center top
+  background-size: 100% 405px
+  background-color: #ffffff
 
 div[role="main"]
   +block
-  @include box-shadow(black 0 0 30px -10px)
+  //@include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
-  padding-top: 10px  
+  padding-top: 10px
+  background: none  
 
 .three-boxes
   width: 32% !important
@@ -122,10 +128,12 @@ div[role="main"]
   .panel-pane
     margin-bottom: 15px
     +block
+    +noBorder
+    background: none
     .pane-title
       background: $paneTitleBG
     .pane-content
-      background: $paneBG
+      //background: $paneBG
 
 .ds-panel .pane-content
   padding-bottom: 0px
@@ -362,7 +370,7 @@ div[role="main"]
     padding: 10px
     margin: 20px auto
     display: block
-    border: 1px solid #000!important
+    //border: 1px solid #000!important
 
 .pane-campaign-blog-panel-pane-1
   background: transparent !important
@@ -509,4 +517,116 @@ div[role="main"]
     #edit-actions--2, #edit-actions
       text-align: center
       margin: 10px
-      clear: both          
+      clear: both
+
+// REMOVE MENUS
+#block-dosomething-campaign-styles-campaign-nav, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
+  display: none
+
+// FLAG HEADS
+hr.gray
+  border-top: 1px solid lightgray 
+  border-bottom: none
+  clear: both
+  margin: 0px       
+.flaghead-box
+  text-align: center
+  margin-top: 0px
+.flaghead
+  background: #FF9700
+  display: inline-block
+  text-align: center
+  text-transform: uppercase
+  color: white
+  margin: -1px auto 20px auto
+  clear: both
+  padding: 15px 20px 10px
+  font-size: 21px 
+  font-family: $accent
+  width: 250px 
+
+// MAIN BUTTON
+a.wannago-btn
+  background-image: linear-gradient(bottom, rgb(0,185,236) 32%, rgb(0,204,245) 53%, rgb(162,224,251) 83%)
+  background-image: -o-linear-gradient(bottom, rgb(0,185,236) 32%, rgb(0,204,245) 53%, rgb(162,224,251) 83%)
+  background-image: -moz-linear-gradient(bottom, rgb(0,185,236) 32%, rgb(0,204,245) 53%, rgb(162,224,251) 83%)
+  background-image: -webkit-linear-gradient(bottom, rgb(0,185,236) 32%, rgb(0,204,245) 53%, rgb(162,224,251) 83%)
+  background-image: -ms-linear-gradient(bottom, rgb(0,185,236) 32%, rgb(0,204,245) 53%, rgb(162,224,251) 83%)
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.32, rgb(0,185,236)), color-stop(0.53, rgb(0,204,245)), color-stop(0.83, rgb(162,224,251)))
+  display: inline-block
+  padding: 15px 20px 7px
+  color: white !important
+  text-transform: uppercase
+  font-size: 32px
+  font-family: din-web
+  letter-spacing: 1px
+  border-radius: 8px
+  margin: 10px auto 30px
+  line-height: 1em
+  &:hover
+    text-decoration: none
+    color: #e1e1e1 !important
+.bottom-btn
+  margin-top: 20px !important    
+
+//HEADER
+#header-hackathon
+  text-align: center
+  img
+    margin: 30px auto 20px
+    display: block
+
+// THIRDS BOXS
+.box-thirds
+  float: left
+  padding: 20px
+  text-align: center
+  line-height: 1.4em
+  width: 250px
+  margin-bottom: 20px
+  img
+    margin: 0 auto
+    display: block
+  h3
+    font-size: 24px
+    text-transform: uppercase
+    font-family: $accent
+    font-weight: normal
+
+// HALF BOXS
+.half-box
+  float: left
+  width: 50%
+  p
+    text-align: justify
+    margin: 20px 0 50px
+  img
+    margin-top: 60px !important
+
+// BEER
+#beer-goggles
+  background: #fff url('assets/lager.jpg') no-repeat top center
+  min-height: 227px
+  margin-bottom: 40px
+.beer
+  position: relative
+  p
+    background: #111
+    zoom: 1
+    filter: alpha(opacity=75)
+    opacity: 0.75
+    padding: 10px
+    color: white
+    text-align: center
+    position: absolute
+    top: 40px
+    left: 0
+    width: 750px
+
+// OTHER
+p.plain
+  width: 620px
+  margin: 30px auto 60px
+img.plain
+  padding: 0px !important
+  margin-bottom: 30px !important
