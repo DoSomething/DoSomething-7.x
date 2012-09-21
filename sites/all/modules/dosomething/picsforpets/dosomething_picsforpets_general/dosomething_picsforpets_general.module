@@ -580,7 +580,7 @@ function dosomething_picsforpets_general_censor(&$form, &$form_state) {
     if (isset($info['value']) && !empty($info['value'])) {
       $cleaned_word = strtolower(preg_replace('#[^A-Za-z]#i', '', $info['value']));
       if (strpos($info['value'], ' ') !== false) {
-        form_set_error('field_fb_app_three_words][und][' . $key, t('Sorry, you may use only one word per input box.'));
+        form_set_error('field_fb_app_three_words][und][' . $key, t('Sorry, you may use only one word per box to describe your pet.'));
       }
       if (in_array($cleaned_word, $words)) {
         form_set_error('field_fb_app_three_words][und][' . $key, t('Sorry, you may not use curse words to describe your pet.'));
