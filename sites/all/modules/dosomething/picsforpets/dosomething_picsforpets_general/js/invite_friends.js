@@ -45,7 +45,7 @@ Drupal.behaviors.galleryShareButton = {
   FB.api('/me/permissions', function (response) {
             var perms = response.data[0];
 
-            if (perms.publish_stream) {                
+            if (perms.publish_actions) {                
                // User has permission
             } else {                
               FB.ui({
