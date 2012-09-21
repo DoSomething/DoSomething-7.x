@@ -16,7 +16,7 @@
         return false;
       });
 
-      Drupal.friendFinder($('.invite-module-facebook'), 'publish_stream', function (friends) {
+      Drupal.friendFinder($('.fb-friend-finder-init'), 'publish_stream', function (friends) {
         var fbObj = {
           message: 'This is the message.',
           name: 'This is the name.',

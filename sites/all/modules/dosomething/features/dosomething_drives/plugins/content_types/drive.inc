@@ -316,7 +316,11 @@ function dosomething_drives_drive_invite_module($gid) {
   if ($fb_connected) {
     drupal_add_library('dosomething_general', 'fb-friend-finder');
     $return['facebook']['button'] = array(
-      '#markup' => 'invite button',
+      '#type' => 'button',
+      '#value' => 'Invite Facebook friends',
+      '#attributes' => array(
+        'class' => array('fb-friend-finder-init', 'go-button'),
+      ),
     );
   }
   else {
