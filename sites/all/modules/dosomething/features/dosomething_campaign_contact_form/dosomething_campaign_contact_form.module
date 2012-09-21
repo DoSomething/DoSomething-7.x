@@ -76,6 +76,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
       if (!isset($node->field_login_check) || $node->field_login_check[LANGUAGE_NONE][0]['value'] == 0 || true) {
         $form['actions']['submit']['#ajax'] = array(
           'callback' => 'dosomething_campaign_contact_form_login_form_popup_form',
+          'event' => 'click',
         );
       }
     }
