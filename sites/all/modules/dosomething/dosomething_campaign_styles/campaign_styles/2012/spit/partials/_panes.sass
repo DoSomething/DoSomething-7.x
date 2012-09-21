@@ -176,13 +176,14 @@ input.remove_participant /* "remove participants" button */
   #edit-submit-drive-search
     font-family: din-web
     background: $spitYellow
-    padding: 6px 11px 2px
+    padding: 5px 11px 2px
     line-height: 1em
     font-size: 21px
     +noBorder
     color: $offBlack
     +border-radius(5px)
     height: 27px
+    margin-top: 0px
     &:hover
       color: darken($spitPurple, 12)
   input, a.selectBox-dropdown, span.geofield-proximity-origin-from
@@ -194,11 +195,18 @@ input.remove_participant /* "remove participants" button */
     height: 27px
   #edit-field-geofield-distance-origin
     width: 100px
-    margin-top: 2px
+    margin-top: 1px
     height: 27px
   .selectBox-label
     height: 27px
     padding: 5px !important
+    margin-top: 1px
+  thead
+    tr
+      display: none
+  tbody
+    tr
+      background: #F9F9F9      
     
 
 .go-button /* why is this here? */
