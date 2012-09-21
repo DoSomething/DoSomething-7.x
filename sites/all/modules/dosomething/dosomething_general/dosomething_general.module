@@ -47,6 +47,28 @@ function dosomething_general_menu() {
   return $items;
 }
 
+/*
+ * Implements hook_library().
+ */
+function dosomething_general_library() {
+  $libraries = array();
+  // make sure the library exists
+  if ($path = libraries_get_path('fb-friend-selector')) {
+    // add it if it does
+    $libraries['fb-friend-finder'] = array(
+      'title' => 'Facebook Friend Finder',
+      'js' => array(
+        drupal_get_path('module', 'dosomething_general') . '/js/fb-friend-finder.js' => array(),
+        $path . '/tdfriendselector.js' => array(),
+      ),
+      'css' => array(
+        $path . '/tdfriendselector.css' => array(),
+      ),
+    );
+  }
+  return $libraries;
+}
+
 /**
  * Implements hook_cron().
  */
