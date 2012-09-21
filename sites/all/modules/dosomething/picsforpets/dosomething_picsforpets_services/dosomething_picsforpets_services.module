@@ -82,7 +82,32 @@ function dosomething_picsforpets_services_services_resources() {
         ),
       ),
     ),
+    'sharing' => array(
+      'create' => array(
+        'help' => 'Submits a share to the database.',
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'dosomething_picsforpets_services',
+          'name' => 'dosomething_picsforpets_services.share',
+        ),
+        'callback' => 'dosomething_picsforpets_services_submit_share',
+        'access callback' => 'sharing_access',
+        'args' => array(
+          'info' => array(
+            'name' => 'pet_id',
+            'type' => 'int',
+            'description' => 'The ID of the pet to share.',
+            'source' => 'data',
+            'optional' => FALSE,
+          ),
+        ),
+      ),
+    )
   );
+}
+
+function sharing_access() {
+  return TRUE;
 }
 
 /**

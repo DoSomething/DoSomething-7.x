@@ -10,7 +10,7 @@
 function dosomething_picsforpets_services_default_services_endpoint() {
   $export = array();
 
-  $endpoint = new stdClass();
+ $endpoint = new stdClass();
   $endpoint->disabled = FALSE; /* Edit this to true to make a default endpoint disabled initially */
   $endpoint->api_version = 3;
   $endpoint->name = 'mobile_app';
@@ -19,11 +19,37 @@ function dosomething_picsforpets_services_default_services_endpoint() {
   $endpoint->authentication = array(
     'services' => 'services',
   );
-  $endpoint->server_settings = array();
+  $endpoint->server_settings = array(
+    'rest_server' => array(
+      'formatters' => array(
+        'bencode' => TRUE,
+        'json' => TRUE,
+        'php' => TRUE,
+        'rss' => TRUE,
+        'xml' => TRUE,
+        'yaml' => TRUE,
+        'jsonp' => FALSE,
+      ),
+      'parsers' => array(
+        'application/json' => TRUE,
+        'application/vnd.php.serialized' => TRUE,
+        'application/x-www-form-urlencoded' => TRUE,
+        'application/x-yaml' => TRUE,
+        'multipart/form-data' => TRUE,
+      ),
+    ),
+  );
   $endpoint->resources = array(
     'dosomething_views' => array(
       'operations' => array(
         'retrieve' => array(
+          'enabled' => 1,
+        ),
+      ),
+    ),
+    'sharing' => array(
+      'operations' => array(
+        'create' => array(
           'enabled' => 1,
         ),
       ),
