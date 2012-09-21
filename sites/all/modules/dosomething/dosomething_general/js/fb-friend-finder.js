@@ -39,12 +39,14 @@
     }
 
     function attachClick(attach, callback) {
-      TDFriendSelector.init();
+      TDFriendSelector.init({
+        speed : 0
+      });
       var friendSelector = TDFriendSelector.newInstance({
         callbackSubmit : callback,
         maxSelection   : 5,
         friendsPerPage : 7,
-        autoDeselection: true
+        autoDeselection: true,
       });
 
       attach.click(function (e) {
