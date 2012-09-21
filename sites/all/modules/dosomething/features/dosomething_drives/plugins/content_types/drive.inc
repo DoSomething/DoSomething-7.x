@@ -20,6 +20,8 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $drive_nid = dosomething_drives_get_drive_nid($campaign_group);
   $is_admin = og_user_access($group->gid, 'administer group') || user_access('administer group');
 
+  drupal_add_js(array('dosomething_drives' => array('gid' => $group->gid)), 'setting');
+
   $content = array();
   $content['header'] = array(
     '#type' => 'container',
@@ -324,13 +326,18 @@ function dosomething_drives_drive_invite_module($gid) {
     );
   }
   else {
+    $fb_link = fboauth_action_link_properties('connect', current_path());
+    $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
+
     $return['facebook']['description'] = array(
       '#markup' => 'Connect with Facebook to easily invite your Facebook friends!',
       '#prefix' => '<p>',
       '#suffix' => '</p>',
     );
     $return['facebook']['button'] = array(
-      '#markup' => fboauth_action_display('connect'),
+      '#type' => 'container',
+      '#attributes' => array('class' => array('connect-thru-facebook')),
+      '#children' => l('Connect thru Facebook', $fb_url),
     );
   }
 
