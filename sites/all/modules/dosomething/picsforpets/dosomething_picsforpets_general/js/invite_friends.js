@@ -25,7 +25,7 @@ Drupal.behaviors.galleryShareButton = {
         $(this).addClass('shared');
       }
 
-      $('div#' + sid + ' span.gallery-share-button').text('Shared!');
+      $(this).text('Shared!');
             
       var sid = parseInt($(this).parent().attr('id'));
       var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/' + settings.picsforpetsFBAuth.fbFormAlias + '/submission/' + sid;
