@@ -16,6 +16,27 @@
         return false;
       });
 
+      Drupal.friendFinder($('.invite-module-facebook'), 'publish_stream', function (friends) {
+        var fbObj = {
+          message: 'This is the message.',
+          name: 'This is the name.',
+          caption: 'This is the caption.',
+          picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
+          description: 'This is the description',
+          link: window.location.href
+        };
+        for (var i in friends) {
+          FB.api('/'+friends[i]+'/feed', 'post', fbObj, function(response) {
+            console.log(response)
+          });
+        }
+      });
+
+      $('.invite-module-facebook').click(function () {
+        $module.dialog('option', 'close', function () { return; });
+        $module.dialog('close');
+      });
+
       function triggerPopup() {
         $module.dialog({
           resizable: false,
