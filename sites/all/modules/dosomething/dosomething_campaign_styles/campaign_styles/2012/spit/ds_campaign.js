@@ -13,7 +13,7 @@
     attach: function (context, settings) {
 
   var contactForm = $('.pane-campaign-sign-up');
-  $('#webform').append(contactForm);
+  $('#contact-form').append(contactForm);
 
   // drupal, eat your heart out
   var maxwell = "can have his cake and eat it too"
@@ -60,19 +60,23 @@
   var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
   var allAnchors = navAnchors + ', ' + contentAnchors;
   
+  // input highlighting
+  var webformEmail = '#contact-form input[type="text"]';
+  var webformCell = '#contact-form input[type="tel"]';
+  var webformBoth = webformEmail + ', ' + webformCell;
+
   $(allAnchors).click(function(event){
     $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-    var webformFocus = '#webform input#edit-submitted-field-webform-email-und-0-email, #webform input#edit-submitted-field-webform-mobile-und-0-value';
-    if($('a').attr('href','/spit12#webform')){
-      console.log('merde!');
-      $(webformFocus).focus().addClass('focusOutline');
-      $(webformFocus).focus(function(){
-        $(this).addClass('focusOutline');
-      });
-      $(webformFocus).blur(function() {
-        $(this).removeClass('focusOutline');
-      });
+
+    if($('a').attr('href','/spit12#header')){
+      $(webformEmail).focus().addClass('focusOutline');
     }
+    $(webformBoth).focus(function(){
+      $(this).addClass('focusOutline');
+    });
+    $(webformBoth).blur(function() {
+      $(this).removeClass('focusOutline');
+    });
     return false;
   });
 
