@@ -92,6 +92,13 @@ Drupal.behaviors.picsforpetsShelterPopup = {
       }
     }
 
+    // Equivalent of enter-to-submit for shelter popup
+    $('#edit-zip').keyup(function(e) {
+      if (e.keyCode == 13) {
+        $('div.zip-search-container #edit-search').click();
+      }
+    });
+
     //special one off for the state select box.
     if ($('#edit-field-fb-app-state-und').val() != '_none') {
       hideElements = false;

@@ -61,6 +61,8 @@ function dosomething_picsforpets_shelters_options_form($form, &$form_state) {
     '#ajax' => array(
       'callback' => 'dosomething_picsforpets_shelters_lookup_form_options_submit_ajax',
       'wrapper' => 'shelter-results',
+      'event' => 'click',
+      'method' => 'html'
     ),
     '#submit' => array('dosomething_picsforpets_shelters_lookup_options_form_submit'),
     '#validate' => array('dosomething_picsforpets_shelters_lookup_options_form_validate'),
