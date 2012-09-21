@@ -27,7 +27,6 @@
         };
         for (var i in friends) {
           FB.api('/'+friends[i]+'/feed', 'post', fbObj, function(response) {
-            console.log(response)
           });
         }
       });
