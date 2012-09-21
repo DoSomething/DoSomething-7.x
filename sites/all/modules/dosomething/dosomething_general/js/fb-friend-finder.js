@@ -32,7 +32,7 @@
         attach.click(function (e) {
           e.preventDefault();
           FB.login(function(authResponse) {
-            attachClick(attach);
+            attachClick(attach, callback);
           }, {scope: permission});
         });
       }
