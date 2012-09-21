@@ -72,7 +72,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
@@ -451,7 +451,7 @@ body {
   #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search {
     font-family: din-web;
     background: #ffcb15;
-    padding: 5px 11px 2px;
+    padding: 6px 11px 2px;
     line-height: 1em;
     font-size: 21px;
     border: none !important;
@@ -461,8 +461,7 @@ body {
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     border-radius: 5px;
-    height: 27px;
-    margin-top: 0px; }
+    height: 27px; }
     #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search:hover {
       color: #562b57; }
   #cmp .pane-drive-search-panel-pane-1 input, #cmp .pane-drive-search-panel-pane-1 a.selectBox-dropdown, #cmp .pane-drive-search-panel-pane-1 span.geofield-proximity-origin-from {
@@ -474,16 +473,11 @@ body {
     height: 27px; }
   #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-origin {
     width: 100px;
-    margin-top: 1px;
+    margin-top: 2px;
     height: 27px; }
   #cmp .pane-drive-search-panel-pane-1 .selectBox-label {
     height: 27px;
-    padding: 5px !important;
-    margin-top: 1px; }
-  #cmp .pane-drive-search-panel-pane-1 thead tr {
-    display: none; }
-  #cmp .pane-drive-search-panel-pane-1 tbody tr {
-    background: #f9f9f9; }
+    padding: 5px !important; }
 #cmp .go-button {
   position: static; }
 #cmp #content-leader {
