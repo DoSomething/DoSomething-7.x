@@ -9,7 +9,7 @@
 
     <header role="banner" class="clearfix">
 
-      <div id="ds-logo">Do Something</div>
+      <a href="/fb/pics-for-pets/gallery" id="ds-logo">Do Something</a>
 
       <?php if ($logo): ?>
         <a href="/fb/pics-for-pets/gallery" title="Gallery" rel="home" id="logo">
