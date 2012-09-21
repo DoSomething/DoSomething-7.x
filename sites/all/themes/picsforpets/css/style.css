@@ -3445,4 +3445,5 @@ header aside {
   background-color: gray;
 }
 .styletile-1 .colors ul li.color-6:after {
-  
+  content: "gray";
+}
