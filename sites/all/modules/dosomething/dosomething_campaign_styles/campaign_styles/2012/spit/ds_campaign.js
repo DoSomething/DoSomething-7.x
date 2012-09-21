@@ -11,6 +11,31 @@
 (function ($) {
   Drupal.behaviors.campaignName = {
     attach: function (context, settings) {
+      if (window.location.pathname.substr(0, 5) == '/team') {
+        $signIn = $('#dosomething-login-login-popup-form');
+        $signUp = $('#dosomething-login-register-popup-form');
+        
+        // if a popup has been triggered, set its destination
+        if ($signIn.is(':visible') || $signUp.is(':visible')) {
+          var actionLink = $('.drive-action-link a').attr('href');
+          if (actionLink.charAt(0) == '/') actionLink = actionLink.substr(1);
+          $signIn.attr('action', destinationReplace($signIn.attr('action'), actionLink));
+          $signUp.attr('action', destinationReplace($signUp.attr('action'), actionLink));
+        }
+      }
+
+      function destinationReplace(url, destination) {
+        url = url.split('?');
+        query = url[1].split('&');
+        for (var i in query) {
+          var splitter = query[i].split('=');
+          if (splitter[0] == 'destination') {
+            splitter[1] = destination;
+            query[i] = splitter.join('=');
+          }
+        }
+        return url[0] + '?' + query;
+      }
 
   var contactForm = $('.pane-campaign-sign-up');
   $('#contact-form').append(contactForm);
@@ -115,12 +140,13 @@
   $window.scroll(function () {
     var st = $window.scrollTop();
     if (st > scrollLimitTop && st < scrollLimitBot) {
-      $nav
-        .css('position','fixed')
-        .css('top','0px')
-        .css('margin','15px 0 0 0')
-        .css('padding','1.5em 2em 1.5em 0')
-        .css('z-index','3')
+      $nav.css({
+        'position' : 'fixed',
+        'top'      : '0px',
+        'margin'   : '15px 0 0 0',
+        'padding'  : '1.5em 2em 1.5em 0',
+        'z-index'  : '3'
+      });
     }
     else if (st >= scrollLimitTop) {
       $nav
