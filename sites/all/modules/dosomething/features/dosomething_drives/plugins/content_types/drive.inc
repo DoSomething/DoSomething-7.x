@@ -149,7 +149,7 @@ function dosomething_drives_drive_share() {
       'class' => array('drive-share'),
     ),
     'div' => array(
-      '#markup' => '<a href="#" class="mangoChris">Share my drive</a>',
+      '#markup' => '<a href="#" class="fb-share-drive">Share on Facebook</a><a href="#" class="tw-share-drive">Share on Twitter</a>',
     ),
   );
 }
