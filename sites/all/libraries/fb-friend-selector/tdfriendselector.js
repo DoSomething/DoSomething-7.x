@@ -168,7 +168,7 @@ var TDFriendSelector = (function(module, $) {
 				$selectedCountMax.html(instanceSettings.maxSelection);
 				updateFriendsContainer(1);
 				updatePaginationButtons(1);
-				$container.fadeIn(500);
+				$container.fadeIn(settings.speed);
 				if (typeof callback === 'function') {
 					callback();
 				}
@@ -177,7 +177,7 @@ var TDFriendSelector = (function(module, $) {
 
 		hideFriendSelector = function() {
 			unbindEvents();
-			$container.fadeOut(500);
+			$container.fadeOut(settings.speed);
 		};
 
 		getselectedFriendIds = function() {
