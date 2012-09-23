@@ -72,7 +72,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
@@ -585,6 +585,12 @@ body {
 #cmp #webform-component-copy, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
   width: 25%;
   float: left; }
+#cmp #sign-up .form-wrapper {
+  float: none; }
+#cmp #sign-up label {
+  cursor: default; }
+#cmp #sign-up input {
+  margin-bottom: 10px; }
 #cmp #report-back {
   border: none;
   width: 70%; }
