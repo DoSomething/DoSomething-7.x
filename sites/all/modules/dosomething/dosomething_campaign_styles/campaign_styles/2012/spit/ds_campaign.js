@@ -27,6 +27,19 @@
         return url[0] + '?' + query;
       }
 
+      $('.tw-share-drive').attr('data-text', 'Twitter language needs to be done!');
+      $('.fb-share-drive').click(function (e) {
+        e.preventDefault();
+        var fbObj = {
+          method: 'feed',
+          link: window.location.href,
+          picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
+          name: 'Name text here!',
+          description: 'Description text here!'
+        };
+        FB.ui(fbObj);
+      });
+
       // Sorry, this indentation was driving me nuts.
       var contactForm = $('.pane-campaign-sign-up');
       $('#contact-form').append(contactForm);
