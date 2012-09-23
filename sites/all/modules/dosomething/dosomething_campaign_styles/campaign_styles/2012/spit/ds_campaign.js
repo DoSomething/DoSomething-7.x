@@ -39,7 +39,7 @@
         var fbObj = {
           method: 'feed',
           link: window.location.href,
-          picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
+          picture: '//files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
           name: 'Name text here!',
           description: 'Description text here!'
         };
@@ -57,7 +57,7 @@
       };
 
       // has logo, will inject
-      var logo = 'http://files.dosomething.org/files/campaigns/spit/logo.png';
+      var logo = '//files.dosomething.org/files/campaigns/spit/logo.png';
       $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit12"><img src="' + logo + '"/></a>');
 
       // hacktastic form rebuilding
