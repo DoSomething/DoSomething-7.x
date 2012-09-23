@@ -5,6 +5,16 @@
         'replaceText'      : null,
         'afterReplaceText' : null,
       }, options);
+      if (Drupal.settings.login) {
+        if (Drupal.settings.login.replaceText) {
+          settings.replaceText = Drupal.settings.login.replaceText;
+        }
+        if (Drupal.settings.login.afterReplaceText) {
+          settings.afterReplaceText = Drupal.settings.login.afterReplaceText;
+        }
+      }
+      console.log(settings);
+
       // Whelp, these were breaking things, so let's just destroy them.
       // This is probably terrible.
       delete Drupal.behaviors.dosomethingLoginRegister;
@@ -21,7 +31,7 @@
       }
 
       // change the text of the popup
-      if (settings.afterReplaceText) {
+      if (settings.replaceText) {
         popupForm.find('#edit-title-text label')
           .text(settings.replaceText);
       }
