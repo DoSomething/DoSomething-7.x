@@ -32,6 +32,7 @@
         return url[0] + '?' + query;
       }
 
+<<<<<<< HEAD
       $('.tw-share-drive').attr('data-text', 'Twitter language needs to be done!');
       $('.fb-share-drive').click(function (e) {
         e.preventDefault();
@@ -46,8 +47,7 @@
       });
 
       // Sorry, this indentation was driving me nuts.
-      var contactForm = $('.pane-campaign-sign-up');
-      $('#contact-form').append(contactForm);
+      // swoop!
 
       // drupal, eat your heart out
       var maxwell = "can have his cake and eat it too"

@@ -368,12 +368,14 @@ body {
   letter-spacing: 1px;
   margin: -18px 0 0 0;
   padding: 0;
+  float: right;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
   border-radius: 15px; }
   #cmp input.remove_participant:hover {
+    color: white;
     background: #673368; }
 #cmp .drive-action-link {
   text-align: center; }
@@ -577,7 +579,7 @@ body {
 #cmp .webform-client-form {
   box-shadow: none; }
 #cmp .already_submitted {
-  margin: -2% 0 2% 0; }
+  margin: 0 0 2% 0; }
   #cmp .already_submitted .go-button {
     margin: 0 0 1% 0; }
 #cmp #webform-component-copy, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
