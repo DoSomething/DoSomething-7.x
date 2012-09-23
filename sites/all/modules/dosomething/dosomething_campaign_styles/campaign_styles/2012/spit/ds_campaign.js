@@ -1,6 +1,11 @@
 (function ($) {
   Drupal.behaviors.campaignName = {
     attach: function (context, settings) {
+      Drupal.settings.login = {
+        replaceText      : 'Nanu nanu',
+        afterReplaceText : 'Wacka wacka',
+      };
+
       if (window.location.pathname.substr(0, 5) == '/team') {
         $signIn = $('#dosomething-login-login-popup-form');
         $signUp = $('#dosomething-login-register-popup-form');
