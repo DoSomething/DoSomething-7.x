@@ -54,7 +54,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width">
   <title><?php print $head_title; ?></title>
-  <link rel="stylesheet" href="//c308566.r66.cf1.rackcdn.com/din.css" media="all">
+  <?php if (isset($_SERVER['https']) && $_SERVER['https'] == 'on') : ?>
+    <link rel="stylesheet" href="https://c308566.ssl.cf1.rackcdn.com/din.css" media="all" />
+  <?php else : ?>
+    <link rel="stylesheet" href="http://c308566.r66.cf1.rackcdn.com/din.css" media="all" />
+  <?php endif; ?>
   <?php print $styles; ?>
   <?php print $scripts; ?>
   <?php print $selectivizr; ?>
