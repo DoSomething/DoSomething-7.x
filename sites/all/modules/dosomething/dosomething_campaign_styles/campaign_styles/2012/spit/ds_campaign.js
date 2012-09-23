@@ -32,7 +32,6 @@
         return url[0] + '?' + query;
       }
 
-<<<<<<< HEAD
       $('.tw-share-drive').attr('data-text', 'Twitter language needs to be done!');
       $('.fb-share-drive').click(function (e) {
         e.preventDefault();
@@ -139,6 +138,10 @@
         $('#chrisDialog').dialog('open');
         return false;
       });
+      
+      // Hol' a medz in da paddie, man
+      var contactForm = $('.pane-campaign-sign-up');
+      $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
 
       // scroll function
       var $window = $(window);
