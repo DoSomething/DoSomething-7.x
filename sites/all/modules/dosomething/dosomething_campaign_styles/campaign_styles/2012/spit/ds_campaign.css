@@ -527,6 +527,8 @@ body {
   margin: 0 0 1% 0; }
 #cmp #faq h4.activeFAQ {
   background-position-y: -27px; }
+#cmp label {
+  cursor: default; }
 #cmp #contact-form {
   margin: 10% 0 0 0;
   background: black;
@@ -594,21 +596,28 @@ body {
   float: left; }
 #cmp #sign-up .form-wrapper {
   float: none; }
-#cmp #sign-up label {
-  cursor: default; }
 #cmp #sign-up input {
   margin-bottom: 10px; }
 #cmp #report-back {
   border: none;
-  width: 70%; }
+  width: 70%;
+  padding: 1% 2%;
+  background: white; }
   #cmp #report-back .pane-title,
   #cmp #report-back .fb-social-comments-plugin {
     display: none; }
   #cmp #report-back form {
     border: none; }
+    #cmp #report-back form input {
+      border: solid 1px #999999;
+      font-size: 14px; }
+    #cmp #report-back form textarea {
+      font-size: 14px; }
+    #cmp #report-back form label {
+      font-size: 1.4em; }
     #cmp #report-back form #edit-submitted-how-many-people-participated-in-this-drive,
     #cmp #report-back form #edit-submitted-how-many-potential-donors-were-registered {
-      width: 50px; }
+      width: 60px; }
     #cmp #report-back form .form-item {
       margin-top: 10px; }
     #cmp #report-back form .fb-social-comments-plugin {
@@ -625,7 +634,7 @@ body {
   font-family: din-web;
   background: #ffcb15;
   margin: 4% 0 1%;
-  padding: 0.4em 0.7em;
+  padding: 0 0.7em;
   font-size: 2em;
   height: 1.4em;
   display: inline-block;

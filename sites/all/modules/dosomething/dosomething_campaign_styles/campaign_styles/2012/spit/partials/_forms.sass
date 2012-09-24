@@ -1,3 +1,6 @@
+label
+  cursor: default
+
 //      //
 //  #contact-form
 //      //
@@ -89,8 +92,6 @@
 #sign-up
   .form-wrapper
     float: none
-  label
-    cursor: default
   input
     margin-bottom: 10px
 
@@ -102,14 +103,23 @@
 #report-back
   border: none
   width: 70%
+  padding: 1% 2%
+  background: white
   .pane-title,
   .fb-social-comments-plugin
     display: none
   form
     border: none
+    input
+      border: solid 1px #999
+      font-size: 14px
+    textarea
+      font-size: 14px
+    label
+      font-size: 1.4em
     #edit-submitted-how-many-people-participated-in-this-drive,
     #edit-submitted-how-many-potential-donors-were-registered
-      width: 50px
+      width: 60px
     .form-item
       margin-top: 10px
     .fb-social-comments-plugin
@@ -127,7 +137,7 @@
   font-family: din-web
   background: $spitYellow
   margin: 4% 0 1%
-  padding: 0.4em 0.7em
+  padding: 0 0.7em
   font-size: 2em
   height: 1.4em
   display: inline-block
