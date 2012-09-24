@@ -10,7 +10,7 @@
 function dosomething_picsforpets_services_default_services_endpoint() {
   $export = array();
 
- $endpoint = new stdClass();
+  $endpoint = new stdClass();
   $endpoint->disabled = FALSE; /* Edit this to true to make a default endpoint disabled initially */
   $endpoint->api_version = 3;
   $endpoint->name = 'mobile_app';
@@ -50,6 +50,13 @@ function dosomething_picsforpets_services_default_services_endpoint() {
     'sharing' => array(
       'operations' => array(
         'create' => array(
+          'enabled' => 1,
+        ),
+      ),
+    ),
+    'my-animals' => array(
+      'operations' => array(
+        'retrieve' => array(
           'enabled' => 1,
         ),
       ),

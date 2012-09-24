@@ -153,7 +153,7 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
         '#tag' => 'meta',
         '#attributes' => array(
           'property' => 'og:title', 
-          'content' => t("Hi, I'm !petname.  I'm !adjectives.", array('!petname' => $petname, '!adjectives' => $adjectives)),
+          'content' => t("Hi, I'm !petname.  I'm !adjectives and I need a home.", array('!petname' => $petname, '!adjectives' => $adjectives)),
         ),
         '#weight' => -99999
       );
