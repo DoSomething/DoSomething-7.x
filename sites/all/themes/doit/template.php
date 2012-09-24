@@ -37,12 +37,6 @@ function doit_preprocess_page(&$variables) {
   // Add optimizely's JS.
   drupal_add_js('//cdn.optimizely.com/js/5742079.js', 'external');
 
-  // Add Formalize to even out most form elements
-  drupal_add_js($theme_path . '/js/formalize/jquery.formalize.min.js');
-  // replace select boxes to allow custom theming
-  drupal_add_js($theme_path . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
-  drupal_add_js($theme_path . '/js/doit-select.js', array('scope' => 'footer'));
-
   // Add Social Tracking for Google Analytics
   drupal_add_js($theme_path . '/js/ga_social_tracking.js', array(
     'every_page' => TRUE,
