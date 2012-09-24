@@ -91,10 +91,40 @@ input.remove_participant /* "remove participants" button */
 //	#action			- "here's what you do" -
 //			//
 
-#action
+#action.action-anonymous, #action.action-participant
   img
     display: block
     margin: 5% auto
+
+#action.action-leader
+  text-align: left
+  h1
+    font-size: 1.5em
+    margin: 0 0 0 -1em
+  ul
+    padding: 0.5em 1em
+  li
+    list-style: disc
+  b
+    color: $spitPurple
+    background: $spitYellow
+    width: 10em
+    display: block
+    text-align: center
+    padding: 0.2em 0 0 0
+  strong
+    color: $spitPurple
+
+.center_img
+  margin: 0 auto
+  width: 80%
+  display: block
+
+.print-pdf
+  position: relative
+  left: 37%
+  img
+    width: 26%
 
 //      //
 //  .search     - search -
@@ -148,44 +178,9 @@ input.remove_participant /* "remove participants" button */
   tbody
     tr
       background: #F9F9F9      
-    
 
 .go-button /* why is this here? */
   position: static
-
-//			//
-//	#content-leader
-//			//
-
-#content-leader
-  text-align: left
-  h1
-    font-size: 1.5em
-    margin: 0 0 0 -1em
-  ul
-    padding: 0.5em 1em
-  li
-    list-style: disc
-  b
-    color: $spitPurple
-    background: $spitYellow
-    width: 10em
-    display: block
-    text-align: center
-    padding: 0.2em 0 0 0
-  strong
-    color: $spitPurple
-
-.center_img
-  margin: 0 auto
-  width: 80%
-  display: block
-
-.print-pdf
-  position: relative
-  left: 27%
-  img
-    width: 37.5%
 
 //			//
 //	#content-infographic
@@ -216,6 +211,9 @@ input.remove_participant /* "remove participants" button */
   #campaign-opt-in
     color: darken($spitPurple, 15)
     text-align: left
+    a
+      color: $spitYellow
+      font-weight: 500
 
 .refer5
   background: $spitPurple

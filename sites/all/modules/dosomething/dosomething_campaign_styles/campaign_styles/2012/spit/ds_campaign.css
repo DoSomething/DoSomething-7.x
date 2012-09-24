@@ -72,7 +72,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
@@ -379,9 +379,36 @@ body {
     background: #673368; }
 #cmp .drive-action-link {
   text-align: center; }
-#cmp #action img {
+#cmp #action.action-anonymous img, #cmp #action.action-participant img {
   display: block;
   margin: 5% auto; }
+#cmp #action.action-leader {
+  text-align: left; }
+  #cmp #action.action-leader h1 {
+    font-size: 1.5em;
+    margin: 0 0 0 -1em; }
+  #cmp #action.action-leader ul {
+    padding: 0.5em 1em; }
+  #cmp #action.action-leader li {
+    list-style: disc; }
+  #cmp #action.action-leader b {
+    color: #7f3f80;
+    background: #ffcb15;
+    width: 10em;
+    display: block;
+    text-align: center;
+    padding: 0.2em 0 0 0; }
+  #cmp #action.action-leader strong {
+    color: #7f3f80; }
+#cmp .center_img {
+  margin: 0 auto;
+  width: 80%;
+  display: block; }
+#cmp .print-pdf {
+  position: relative;
+  left: 37%; }
+  #cmp .print-pdf img {
+    width: 26%; }
 #cmp .pane-drive-search-panel-pane-1 {
   background: white; }
   #cmp .pane-drive-search-panel-pane-1 form {
@@ -435,33 +462,6 @@ body {
     background: #f9f9f9; }
 #cmp .go-button {
   position: static; }
-#cmp #content-leader {
-  text-align: left; }
-  #cmp #content-leader h1 {
-    font-size: 1.5em;
-    margin: 0 0 0 -1em; }
-  #cmp #content-leader ul {
-    padding: 0.5em 1em; }
-  #cmp #content-leader li {
-    list-style: disc; }
-  #cmp #content-leader b {
-    color: #7f3f80;
-    background: #ffcb15;
-    width: 10em;
-    display: block;
-    text-align: center;
-    padding: 0.2em 0 0 0; }
-  #cmp #content-leader strong {
-    color: #7f3f80; }
-#cmp .center_img {
-  margin: 0 auto;
-  width: 80%;
-  display: block; }
-#cmp .print-pdf {
-  position: relative;
-  left: 27%; }
-  #cmp .print-pdf img {
-    width: 37.5%; }
 #cmp #scholarship {
   overflow: visible; }
   #cmp #scholarship h1 {
@@ -487,6 +487,9 @@ body {
   #cmp #scholarship #campaign-opt-in {
     color: #4c264d;
     text-align: left; }
+    #cmp #scholarship #campaign-opt-in a {
+      color: #ffcb15;
+      font-weight: 500; }
 #cmp .refer5 {
   background: #7f3f80;
   width: 109.1%;
