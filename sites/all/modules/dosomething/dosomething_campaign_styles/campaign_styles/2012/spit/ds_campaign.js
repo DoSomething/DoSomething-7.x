@@ -101,7 +101,7 @@
       $(allAnchors).click(function(event){
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
 
-        if($('a').attr('href','/spit12#header')){
+        if($(this).attr('href') == '/spit12#header'){
           $(webformEmail).focus().addClass('focusOutline');
         }
         $(webformBoth).focus(function(){
