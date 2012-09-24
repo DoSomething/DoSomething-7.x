@@ -28,7 +28,6 @@ function dosomething_social_scholars_new_image_display_content_type_render($subt
   $width = '225px';
 
   $node = array_shift($context)->data;
-  #echo '<pre>', print_r($node), '</pre>';
   $fblang = array();
   if (!empty($node->field_facebook_share_language[LANGUAGE_NONE])) {
     foreach ($node->field_facebook_share_language[LANGUAGE_NONE] AS $key => $data) {
@@ -56,6 +55,7 @@ function dosomething_social_scholars_new_image_display_content_type_render($subt
     }
   }
 
+  $petition = '';
   if (isset($node->field_petition_image[LANGUAGE_NONE][0]['uri'])) {
     $petition = theme('image_formatter', array(
         'item' => array('uri' => $node->field_petition_image[LANGUAGE_NONE][0]['uri']),
@@ -68,6 +68,12 @@ function dosomething_social_scholars_new_image_display_content_type_render($subt
     if (isset($node->field_petition_link[LANGUAGE_NONE][0]['value'])) {
       $petition = l($petition, $node->field_petition_link[LANGUAGE_NONE][0]['value'], array('html' => TRUE, 'absolute' => TRUE));
     }
+  }
+
+  if ($node->title) {
+    $content['title'] = array(
+      '#markup' => '<h1 class="title" id="page-title">' . $node->title . '</h1><p>Share the images below by clicking on an image and sharing on facebook!</p>'
+    );
   }
 
   $content['send_friends_these_stats'] = array(
@@ -83,13 +89,18 @@ function dosomething_social_scholars_new_image_display_content_type_render($subt
     'shares' => array(
       '#markup' => $shares
      ),
-    'or' => array(
-      '#markup' => '<img src="/' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/or.png" class="or-line" />'
-    ),
-    'mills' => array(
-      '#markup' => $petition
-  )
   );
+
+  if (!empty($petition)) {
+    $content['send_friends_these_stats'] += array(
+      'or' => array(
+        '#markup' => '<img src="/' . drupal_get_path('module', 'dosomething_social_scholars') . '/images/or.png" class="or-line" />'
+      ),
+      'mills' => array(
+        '#markup' => $petition
+      )
+    );
+  }
 
   $block->content = $content;
   return $block;
