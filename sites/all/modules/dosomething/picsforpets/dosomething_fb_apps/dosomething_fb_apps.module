@@ -21,6 +21,10 @@ function dosomething_fb_apps_form_views_exposed_form_alter(&$form, &$form_state)
   }
 }
 
+function picsforpets_html_head_alter(&$head) {
+  unset($head['opengraph_meta_og:image'], $head['opengraph_meta_og:title'], $head['opengraph_meta_og:description'], $head['opengraph_meta_og:image']);
+}
+
 /**
  * Implements hook_preprocess_HOOK() for theme_views_mini_pager().
  */
