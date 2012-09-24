@@ -1055,6 +1055,10 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
   margin-bottom: 24px;
 }
 
+.page-taxonomy-term .field-name-field-picture {
+  background: none !important;
+}
+
 .node-type-action-guide .field-name-field-picture,
 .node-blog .field-name-field-picture {
   background: url('images/rounded-bottom-shadow.png') no-repeat bottom;
@@ -4981,6 +4985,10 @@ div[aria-labelledby="ui-dialog-title-lets-talk-dialog"] .ui-icon.ui-icon-closeth
 
 comments.fb_iframe_widget {
   display: block;
+}
+
+.fb_iframe_widget iframe {
+  max-width: none !important;
 }
 
 .twtr-widget .twtr-doc {
