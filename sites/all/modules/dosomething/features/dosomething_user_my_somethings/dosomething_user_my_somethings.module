@@ -644,12 +644,25 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
 
 /**
  * Given an array of objects extract a property from each and return in an array.
+ *
+ * @param $array
+ *   Array of objects.
+ * @param $properties
+ *   Array of property names to gather.
+ *
+ * @return
+ *   Array keyed by property names, with values extracted.
  */
-function _dosomething_user_my_somethings_extract($array, $property) {
+function _dosomething_user_my_somethings_extract($array, $properties) {
   $ret = array();
+  foreach ($properties as $name) {
+    $ret[$name] = array();
+  }
+
   foreach ($array as $item) {
-    if (isset($item->$property)) {
-      $ret[] = $item->$property;
+    foreach ($properties as $name)
+    if (isset($item->$name)) {
+      $ret[$name][] = $item->$name;
     }
   }
   return $ret;
@@ -672,16 +685,18 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
   // gives project reports, grant apps, and campaign report backs.
   $somethings = dosomething_user_my_somethings_get_my_somethings_cached($uid, $era);
 
-  foreach ($somethings as $type => $data) {
+  foreach (array_filter($somethings) as $type => $data) {
     switch ($type) {
       case 'campaign_report_back':
+        $ids = _dosomething_user_my_somethings_extract($data, array('campaign_entity_id'));
+        $nodes = entity_load('node', $ids['campaign_entity_id']);
         foreach ($data as $entity) {
           if (empty($entity->campaign_entity_id)) {
             continue;
           }
 
           // Use the campaign's logo if present or fallback to the main image.
-          $campaign = node_load($entity->campaign_entity_id);
+          $campaign = $nodes[$entity->campaign_entity_id];
           $image = field_get_items('node', $campaign, 'field_campain_logo_thumbnail');
           if (empty($image[0]['uri'])) {
             $image = field_get_items('node', $campaign, 'field_campaign_main_image');
@@ -701,8 +716,9 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
         break;
 
       case 'grant_application':
-        $ids = _dosomething_user_my_somethings_extract($data, 'sid');
-        $submissions = entity_load('webform_submission_entity', $ids);
+        $ids = _dosomething_user_my_somethings_extract($data, array('sid', 'nid'));
+        $submissions = entity_load('webform_submission_entity', $ids['sid']);
+        $nodes = entity_load('node', $ids['nid']);
         foreach ($data as $entity) {
           if (isset($submissions[$entity->sid])) {
             $grant_app = $submissions[$entity->sid];
@@ -714,7 +730,7 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
             }
 
             // Check if they can edit the submission.
-            $node = node_load($grant_app->nid);
+            $node = $nodes[$grant_app->nid];
             $edit_access = webform_submission_access($node, $grant_app, 'edit', $account);
 
             $something = array(
@@ -732,8 +748,8 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
         break;
 
       case 'club':
-        $ids = _dosomething_user_my_somethings_extract($data, 'nid');
-        $nodes = entity_load('node', $ids);
+        $ids = _dosomething_user_my_somethings_extract($data, array('nid'));
+        $nodes = entity_load('node', $ids['nid']);
         foreach ($data as $entity) {
           if (isset($nodes[$entity->nid])) {
             $node = $nodes[$entity->nid];
@@ -759,8 +775,8 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
         break;
 
       case 'project_report':
-        $ids = _dosomething_user_my_somethings_extract($data, 'sid');
-        $submissions = entity_load('webform_submission_entity', $ids);
+        $ids = _dosomething_user_my_somethings_extract($data, array('sid'));
+        $submissions = entity_load('webform_submission_entity', $ids['sid']);
         foreach ($data as $entity) {
           if (isset($submissions[$entity->sid])) {
             $submission = $submissions[$entity->sid];
@@ -800,10 +816,9 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
         break;
 
       case 'scholarship_application_with_rec':
-        $sids = _dosomething_user_my_somethings_extract($data, 'sid');
-        $submissions = entity_load('webform_submission_entity', $sids);
-        $nids = _dosomething_user_my_somethings_extract($data, 'campaign_nid');
-        $campaigns = entity_load('node', $nids);
+        $ids = _dosomething_user_my_somethings_extract($data, array('sid', 'campaign_nid'));
+        $submissions = entity_load('webform_submission_entity', $ids['sid']);
+        $nodes = entity_load('node', $ids['campaign_nid']);
         foreach ($data as $entity) {
           if (isset($submissions[$entity->sid])) {
             $submission = $submissions[$entity->sid];
@@ -833,10 +848,9 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
         }
         break;
 
-      default:
-        // Little helper to kick *something* for webforms.
-        $ids = _dosomething_user_my_somethings_extract($data, 'sid');
-        $submissions = entity_load('webform_submission_entity', $ids);
+      default: // Kick *something* for webforms.
+        $ids = _dosomething_user_my_somethings_extract($data, array('sid'));
+        $submissions = entity_load('webform_submission_entity', $ids['sid']);
         foreach ($data as $entity) {
           if (isset($submissions[$entity->sid])) {
             $submission = $submissions[$entity->sid];
