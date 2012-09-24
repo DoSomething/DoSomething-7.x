@@ -183,3 +183,52 @@ function dosomething_drives_is_drive($gid) {
   }
   return true;
 }
+
+/**
+ * This is for Be the Match functionality ONLY.
+ */
+function dosomething_drives_form_webform_client_form_724779_alter(&$form, &$form_state, $form_id) {
+  $form['#submit'][] = 'dosomething_drives_match_email';
+}
+
+function dosomething_drives_match_email($form, &$form_state) {
+  if (!isset($form_state['values']['submitted_tree']['give_a_spit_action_kit'])) return;
+
+  if ($form_state['values']['submitted_tree']['give_a_spit_action_kit'][0] == 'yes') {
+    $vals['email'] = $form_state['values']['submitted_tree']['field_webform_email'][LANGUAGE_NONE][0]['email'];
+    $vals['mobile'] = $form_state['values']['submitted_tree']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+    $address_fields = array('address_1', 'address_2', 'city', 'state');
+    foreach ($address_fields as $field) {
+      $vals[$field] = $form_state['values']['submitted_tree'][$field];
+    }
+    $email = 'recruitment@nmdp.org';
+    drupal_mail('dosomething_drives', 'be_the_match', $email, $language, $vals);
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function dosomething_drives_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'be_the_match':
+      $message['subject'] = t('Give a Spit Signup from @email', array('@email' => $params['email']));
+      $message['body'][] = drupal_html_to_text(theme('dosomething_drives_match', $params));
+      $message['headers']['From'] = $params['email'] . ' <noreply@dosomething.org>';
+      $message['headers']['Reply-To'] = $params['email'];
+      break;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_drives_theme($existing, $type, $theme, $path) {
+  return array(
+    'dosomething_drives_match' => array(
+      'path' => $path,
+      'variables' => array(),
+      'template' => 'be-the-match',
+    ),  
+  );
+}
