@@ -43,9 +43,26 @@ function doit_preprocess_page(&$variables) {
   drupal_add_js($theme_path . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array('scope' => 'footer'));
   drupal_add_js($theme_path . '/js/doit-select.js', array('scope' => 'footer'));
 
- // Add Social Tracking for Google Analytics 
-  drupal_add_js($theme_path . '/js/ga_social_tracking.js');
+  // Add Social Tracking for Google Analytics
+  drupal_add_js($theme_path . '/js/ga_social_tracking.js', array(
+    'every_page' => TRUE,
+  ));
 
+  // Add Formalize to even out most form elements
+  drupal_add_js($theme_path . '/js/formalize/jquery.formalize.min.js', array(
+    'scope' => 'footer',
+    'every_page' => TRUE
+  ));
+
+  // replace select boxes to allow custom theming
+  drupal_add_js($theme_path . '/js/jQuery-SelectBox/jquery.selectBox.min.js', array(
+    'scope' => 'footer',
+    'every_page' => TRUE,
+  ));
+  drupal_add_js($theme_path . '/js/doit-select.js', array(
+    'scope' => 'footer',
+    'every_page' => TRUE,
+  ));
 
   // Add lets_talk_dialogue.js to 'Talk to Us' footer menu item.
   if (isset($variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']) && arg(0) !== 'admin') {
@@ -53,11 +70,22 @@ function doit_preprocess_page(&$variables) {
     $variables['page']['footer']['menu_menu-footer']['90436']['#below']['93450']['#attributes']['class'][] = 'talk-to-us';
     drupal_add_js(drupal_get_path('module', 'dosomething_blocks') .'/js/lets_talk_dialog.js', 'file');
   }
+
   // Add lettering.js for vital stat counter.
-  drupal_add_js($theme_path . '/js/jquery.lettering-0.6.min.js');
-  drupal_add_js($theme_path . '/js/doit-lettering.js');
+  drupal_add_js($theme_path . '/js/jquery.lettering-0.6.min.js', array(
+    'scope' => 'footer',
+    'every_page' => TRUE,
+  ));
+  drupal_add_js($theme_path . '/js/doit-lettering.js', array(
+    'scope' => 'footer',
+    'every_page' => TRUE,
+  ));
+
   // Add search facets js
-  drupal_add_js($theme_path . '/js/show-search-facets.js');
+  drupal_add_js($theme_path . '/js/show-search-facets.js', array(
+    'scope' => 'footer',
+    'every_page' => TRUE,
+  ));
 }
 
 // /**
