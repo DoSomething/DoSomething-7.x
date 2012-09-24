@@ -11,7 +11,7 @@
 	
   $('#appHook a').click(function(){
     $('#appHook').fadeOut(1000);
-    setTimeout("jQuery('#appIcons').show()", 900);
+    setTimeout("jQuery('#appIcons').show()", 1000);
     return false;
   });
 
@@ -19,7 +19,7 @@
   var prod = "www.dosomething.org";
   var url = prod;
 
-  if(document.URL == "http://" + url + "/picsforpets/mobile"){
+  if(document.URL == "http://" + url + "/picsforpets/mobile" || document.URL == "https://" + url + "/picsforpets/mobile"){
     $('.region-sidebar-first').hide();
   }
 
