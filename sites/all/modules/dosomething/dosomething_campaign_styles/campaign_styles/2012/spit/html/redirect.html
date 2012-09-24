@@ -1,11 +1,7 @@
 <script type="text/javascript" charset="utf-8">
 
-  local = "localhost:8080";
-  prod = "www.dosomething.org";
-  url = prod;
-
-  if(document.URL == "//" + url + "/spit12"){
-    document.location = "//" + url + "/my-team/spit12";
+  if(document.location.pathname == "/spit12" && document.location.hash == "") {
+    document.location.href = "/my-team/spit12";
   }
 
 </script>
