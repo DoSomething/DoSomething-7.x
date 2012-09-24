@@ -37,9 +37,37 @@ function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
       $form['tac'] = $tac;
     }
 
+    if (!isset($form_state['referenced'])) {
+      $u['scholarship_reference']['#webform_component']['value'] = $node->title . ' (' . $node->nid . ')';
+      $u['scholarship_reference']['#default_value'] = $node->title . ' (' . $node->nid . ')';
+      $form_state['referenced'] = TRUE;
+    }
+
     $form['#validate'][] = 'dosomething_mobile_referrals_validate';
-    $form['#submit'][] = 'dosomething_mobile_referrals_submit';
+    if ($node->type == 'social_scholarship') {
+      if (!isset($form_state['nid'])) {
+        $form_state['nid'] = $node->nid;
+      }
+
+      if (isset($node->field_official_rules_document[LANGUAGE_NONE][0]['filename']) && !empty($node->field_official_rules_document[LANGUAGE_NONE][0]['filename'])) {
+        $form['submitted']['referall_your_info']['terms_and_conditions']['#markup'] = str_replace('these official rules', l(t('these official rules'), 'files/social_scholarships/official_rules/' . $node->field_official_rules_document[LANGUAGE_NONE][0]['filename'], array(
+        'attributes' => array('target' => '_blank'))), $form['submitted']['referall_your_info']['terms_and_conditions']['#markup']);
+      }
+
+      $form_state['goto'] = 'share-these-images/' . $node->nid;
+
+      $form['#submit'][] = 'redirect_to_shary_stats';
+    }
+    else {
+      $form['#submit'][] = 'dosomething_mobile_referrals_submit';
+    }
   }
+}
+
+function redirect_to_shary_stats($form, &$form_state) {
+  $nid = $form_state['nid'];
+  $form_state['redirect'] = 'share-these-images/' . $nid;
+  $_GET['redirect'] = 'share-these-images/' . $nid;
 }
 
 function dosomething_mobile_referrals_ajax($form, &$form_state) {
@@ -110,9 +138,9 @@ function dosomething_mobile_referrals_submit($form, &$form_state) {
   dosomething_general_mobile_commons_subscribe($you['referral_phone_number'], MCOMMONS_ALPHAS_CAMPAIGN);
 
   foreach ($them AS $key => $number) {
-  	if (dosomething_general_valid_cell($number)) {
-  	  dosomething_general_mobile_commons_subscribe($number, MCOMMONS_BETAS_CAMPAIGN);
-  	}
+    if (dosomething_general_valid_cell($number)) {
+      dosomething_general_mobile_commons_subscribe($number, MCOMMONS_BETAS_CAMPAIGN);
+    }
   }
 
   // Strip any leading slashes...
