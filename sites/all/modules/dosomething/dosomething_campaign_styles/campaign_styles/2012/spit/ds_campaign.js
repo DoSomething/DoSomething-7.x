@@ -67,6 +67,11 @@
       $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-email-label'));
       $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-cell-label'));
 
+      // removes search from nav on drive page
+      if(document.location.pathname.slice(1,5) == "team") {
+        $('li.campaign_nav_2').hide();
+      }
+
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
       $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
