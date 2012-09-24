@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * implements hook_schema().
+ */
+function dosomething_general_schema() {
+  $schema = array();
+
+  $schema['dosomething_unsubscribed'] = array(
+    'description' => 'Stores emails that have been unsubscribed from DS emails.',
+    'fields' => array(
+      'email' => array(
+      	'description' => 'The email that unsubscribed.',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true
+      ),
+      'timestamp' => array(
+      	'description' => 'The date and time that this email was unsubscribed.',
+      	'type' => 'int',
+      	'length' => 10,
+      	'not null' => true
+      )
+    ),
+    'indexes' => array(
+      'email' => array('email')
+    )
+  );
+
+  return $schema;
+}
+
+/**
+ * Install unsubscribed schema
+ */
+function dosomething_general_update_7100() {
+  drupal_install_schema('dosomething_general');
+}
