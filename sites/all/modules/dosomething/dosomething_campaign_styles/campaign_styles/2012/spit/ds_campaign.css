@@ -18,6 +18,12 @@ body {
   background: #d69a92;
   background: url(assets/bg.jpg); }
 
+.page-team #contact-form #webform-component-start-header {
+  display: none; }
+
+.page-node-724776 #contact-form #webform-component-join-header {
+  display: none; }
+
 @media only screen and (max-width: 1075px) {
   .region-sidebar-first {
     display: none; }
@@ -72,7 +78,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
@@ -540,10 +546,6 @@ body {
     font-weight: 500;
     text-align: left;
     padding: 0.2em 0 0 0; }
-#cmp .page-team #contact-form #webform-component-start-header {
-  display: none; }
-#cmp .page-node-724776 #contact-form #webform-component-join-header {
-  display: none; }
 #cmp .focusOutline {
   box-shadow: 0px 0px 15px 4px #cbbeff; }
 #cmp .pane-campaign-sign-up {
@@ -591,7 +593,7 @@ body {
   margin: 0 0 2% 0; }
   #cmp .already_submitted .go-button {
     margin: 0 0 1% 0; }
-#cmp #webform-component-copy, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
+#cmp #webform-component-join-header, #cmp #webform-component-start-header, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
   width: 25%;
   float: left; }
 #cmp #sign-up .form-wrapper {
@@ -608,10 +610,7 @@ body {
     display: none; }
   #cmp #report-back form {
     border: none; }
-    #cmp #report-back form input {
-      border: solid 1px #999999;
-      font-size: 14px; }
-    #cmp #report-back form textarea {
+    #cmp #report-back form input.form-text, #cmp #report-back form textarea {
       font-size: 14px; }
     #cmp #report-back form label {
       font-size: 1.4em; }
@@ -634,7 +633,7 @@ body {
   font-family: din-web;
   background: #ffcb15;
   margin: 4% 0 1%;
-  padding: 0 0.7em;
+  padding: 0.4em 0.7em;
   font-size: 2em;
   height: 1.4em;
   display: inline-block;
