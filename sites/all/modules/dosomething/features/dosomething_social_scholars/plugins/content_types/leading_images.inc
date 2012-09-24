@@ -22,7 +22,7 @@ function dosomething_social_scholars_shared_images_content_type_render($subtype,
       $images .= l(theme('image_formatter', array(
         'item' => array('uri' => 'public://' . $image['filename']),
         'image_style' => 'social_scholarship_stat_image_190x190'
-      )), 'files/' . $image['filename'], array('html' => TRUE));
+      )), 'files/' . $image['filename'], array('html' => TRUE, 'attributes' => array('target' => '_blank')));
     }
   }
 

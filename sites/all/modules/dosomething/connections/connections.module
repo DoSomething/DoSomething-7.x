@@ -1,0 +1,211 @@
+<?php
+
+function connections_menu() {
+	$items['admin/structure/connections'] = array(
+		'title' => t("Connections!"),
+		'access callback' => TRUE
+	);
+
+	$items['admin/structure/connections/add'] = array(
+		'title' => t('Add New Connection'),
+		'page callback' => 'connections_add_page',
+		'access arguments' => array('administer site configuration')
+	);
+
+	$items['admin/structure/connections/manage'] = array(
+		'title' => t('Manage Connections'),
+		'page callback' => 'connections_list_page',
+		'access arguments' => array('administer site configuration')
+	);
+
+	$items['admin/structure/connections/manage/edit/%'] = array(
+		'title' => t('Add / Edit Connections'),
+		'page callback' => 'connections_edit_page',
+		'page arguments' => array(5),
+		'access arguments' => array('administer site configuration')
+	);
+
+	return $items;
+}
+
+function connections_form($form, &$form_state, $result, $cid) {
+	$form['cid'] = array(
+		'#type' => 'hidden',
+		'#value' => $cid
+	);
+	$form['title'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Title!'),
+		'#value' => ($result['title'] ? $result['title'] : '')
+	);
+	$form['link'] = array(
+		'#type' => 'textfield',
+		'#title' => t('URL Address!'),
+		'#default_value' => ($result['link'] ? $result['link'] : '')
+	);
+	$form['file'] = array(
+		'#type' => 'file',
+		'#title' => t('Image') . ($result['image'] ? ' (' . l('View Current Image', 'files/blah/' . $result['image']) . ')' : ''),
+	);
+
+	if (!isset($result['date_start'])) $result['date_start'] = time();
+	$form['date_start'] = array(
+		'#type' => 'date_select',
+		'#title' => t('Start Date'),
+		'#default_value' => date('Y-m-d H:i:s', $result['date_start'])
+	);
+
+	if (!isset($result['date_end'])) $result['date_end'] = time();
+	$form['date_end'] = array(
+		'#type' => 'date_select',
+		'#title' => t('End Date'),
+		'#default_value' => date('Y-m-d H:i', $result['date_end'])
+	);
+
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit It!'),
+	);
+
+	return $form;
+}
+
+function connections_update_connect($cid, $fields) {
+	if (isset($fields['date_start']) && is_array($fields['date_start'])) {
+		$ds = $fields['date_start'];
+		$fields['date_start'] = mktime($ds['hour'], $ds['minute'], 0, $ds['month'], $ds['day'], $ds['year']);
+	}
+
+	if (isset($fields['date_end']) && is_array($fields['date_end'])) {
+		$de = $fields['date_end'];
+		$fields['date_end'] = mktime($de['hour'], $de['minute'], 0, $de['month'], $de['day'], $de['year']);
+	}
+
+	db_update('connections')
+	  ->fields($fields)
+	  ->condition('cid', $cid)
+	  ->execute();
+}
+
+function connections_add_connect($fields) {
+	if (isset($fields['date_start']) && is_array($fields['date_start'])) {
+		$ds = $fields['date_start'];
+		$fields['date_start'] = mktime($ds['hour'], $ds['minute'], 0, $ds['month'], $ds['day'], $ds['year']);
+	}
+
+	if (isset($fields['date_end']) && is_array($fields['date_end'])) {
+		$de = $fields['date_end'];
+		$fields['date_end'] = mktime($de['hour'], $de['minute'], 0, $de['month'], $de['day'], $de['year']);
+	}
+
+	db_insert('connections')
+	  ->fields($fields)
+	  ->execute();
+}
+
+function connections_form_submit($form, &$form_state) {
+	$fields = array(
+		'title' => $form_state['input']['title'],
+		'link' => $form_state['input']['link'],
+		'date_start' => $form_state['input']['date_start'],
+		'date_end' => $form_state['input']['date_end']
+	);
+
+	if (!empty($_FILES) && ($_FILES['files']['name']['file'] !== '')) {
+		$filename = $_FILES['files']['name']['file'];
+		$temp = $_FILES['files']['tmp_name']['file'];
+
+		$f = drupal_move_uploaded_file($temp, "public://blah/$filename");
+		if (!$f) { die(':('); }
+		else {
+			$fields['image'] = $filename;
+		}
+	}
+
+	if ($form_state['input']['cid']) {
+	   connections_update_connect($form_state['input']['cid'], $fields);
+	   $message = $fields['title'] . ' has been updated';
+	}
+	else {
+	   connections_add_connect($fields);
+	   $message = $fields['title'] . ' has been added';
+	}
+
+	drupal_set_message($message);
+	$form_state['redirect'] = '/admin/structure/connections/list';
+}
+
+function connections_edit_page($pageid) {
+	$result = db_query("SELECT * FROM connections WHERE `cid` = " . intval($pageid))->fetchAssoc();
+
+	$content = '<h2>Edit a Connection</h2>';
+	$content .= '<p>Change anything in the form below and click "submit"...and you\'ll be good!</p>';
+	$f = drupal_get_form('connections_form', $result, $pageid);
+	$content .= drupal_render($f);
+
+	return $content;
+}
+
+function connections_add_page($pageid) {
+	$content = '<h2>' . t('Add a Connection') . '</h2>';
+	$content .= '<div>' . t('Please fill out the form, below and press "Submit it!", below.  The system will take care of placing it on the site.') . '</div>';
+	$f = drupal_get_form('connections_form', $result, $pageid);
+	$content .= drupal_render($f);
+
+	return $content;
+}
+
+function connections_list_page() {
+  $header = array(
+    array('data' => t('ID'), 'class' => array('page-manager-page-title')),
+    array('data' => t('Title'), 'class' => array('page-manager-page-title')),
+    array('data' => t('URL Address'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Start'), 'class' => array('page-manager-page-path')),
+    array('data' => t('End'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Operations'), 'class' => array('page-manager-page-storage')),
+  );
+
+  $pages = array();
+  $results = db_query("SELECT * FROM connections ORDER BY `cid` DESC");
+  while ($result = $results->fetchAssoc()) {
+  $operations = array();
+  $operations[] = array(
+    'title' => t('Edit'),
+    'href' => 'admin/structure/connections/manage/edit/' . $result['cid'],
+  );
+  $operations[] = array(
+    'title' => t('Delete'),
+    'href' => 'admin/structure/connections/delete/' . $result['cid'],
+  );
+
+  	$pages['rows']["{$result['title']}"] = array(
+  		'data' => array(
+  			'id' => array(
+  				'data' => $result['cid']
+  			),
+  			'title' => array(
+  				'data' => l($result['title'], 'admin/structure/connections/manage/edit/' . $result['cid']),
+  			),
+  			'address' => array(
+  				'data' => l($result['link'], $result['link'], array('attributes' => array('target' => '_blank')))
+  			),
+  			'start' => array(
+  				'data' => date('F j, Y g:iA', $result['date_start'])
+  			),
+  			'end' => array(
+  				'data' => date('F j, Y g:iA', $result['date_end'])
+  			),
+  			'operations' => array(
+  				'data' => theme('links__ctools_dropbutton', array('links' => $operations, 'attributes' => array('class' => array('links', 'inline'))))
+  			)
+  		),
+  		'class' => '',
+  		'title' => ''
+  	);
+  }
+
+  $content .= l('+ Add New Connection', 'admin/structure/connections/add');
+  $content .= theme('table', array('header' => $header, 'rows' => $pages['rows'], 'attributes' => array('id' => 'page-manager-list-pages')));
+
+  return $content;
+ }
