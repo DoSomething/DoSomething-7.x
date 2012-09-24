@@ -285,7 +285,10 @@ function dosomething_user_my_somethings_my_past_somethings() {
     ) + $defaults,
     'scholarship_application_with_rec' => array(
       'title' => t('Scholarship Applications'),
-    ) + $defaults,
+      'title_field' => 'title',
+      'link_path' => 'node/%campaign_nid',
+      'link_id_fields' => array('campaign_nid'),
+    ),
     'project_report' => array(
       'title' => t('Project Reports'),
       'title_field' => 'field_project_title_value',
@@ -481,6 +484,9 @@ function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
 
   // Scholarship applications
   $query = clone $base_query;
+  $query->innerJoin('og_membership', 'om', "om.etid = n.nid AND om.entity_type = 'node'");
+  $query->innerJoin('og', 'og', 'og.gid = om.gid');
+  $query->addField('og', 'etid', 'campaign_nid');
   $query->condition('n.type', 'scholarship_application_with_rec');
   $query->condition('ws.is_draft', $era == 'current');
   $somethings['scholarship_application_with_rec'] = $query->execute()->fetchAllAssoc('sid');
@@ -790,6 +796,40 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
             'check_path' => FALSE,
           );
           $results[] = (object) $something;
+        }
+        break;
+
+      case 'scholarship_application_with_rec':
+        $sids = _dosomething_user_my_somethings_extract($data, 'sid');
+        $submissions = entity_load('webform_submission_entity', $sids);
+        $nids = _dosomething_user_my_somethings_extract($data, 'campaign_nid');
+        $campaigns = entity_load('node', $nids);
+        foreach ($data as $entity) {
+          if (isset($submissions[$entity->sid])) {
+            $submission = $submissions[$entity->sid];
+            $campaign = $nodes[$entity->campaign_nid];
+
+            // Use the campaign's logo if present or fallback to the main image.
+            $image = field_get_items('node', $campaign, 'field_campain_logo_thumbnail');
+            if (empty($image[0]['uri'])) {
+              $image = field_get_items('node', $campaign, 'field_campaign_main_image');
+            }
+
+            $something = array(
+              'type' => 'scholarship_application',
+              'title' => $campaign->title,
+              'image' => isset($image[0]['uri']) ? $image[0] : NULL,
+            );
+            if ($era == 'past') {
+              $something['uri'] = entity_uri('node', $campaign);
+            }
+            else {
+              $something['check_path'] = TRUE;
+              $something['uri'] = entity_uri('webform_submission_entity', $submission);
+            }
+
+            $results[] = (object) $something;
+          }
         }
         break;
 
