@@ -187,10 +187,10 @@ display: 'popup'
       });
     });
 
-    var ref = document.referrer;
-    if (ref.indexOf('submit-pet-picture') !== -1) {
-      $('#picsforpets-share').click();
-    }
+    //var ref = document.referrer;
+    //if (ref.indexOf('submit-pet-picture') !== -1) {
+//      $('#picsforpets-share').click();
+    //}
   },
 
   update_attrs: function(image, name, adjectives) {
