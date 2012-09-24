@@ -716,9 +716,8 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
         break;
 
       case 'grant_application':
-        $ids = _dosomething_user_my_somethings_extract($data, array('sid', 'nid'));
+        $ids = _dosomething_user_my_somethings_extract($data, array('sid'));
         $submissions = entity_load('webform_submission_entity', $ids['sid']);
-        $nodes = entity_load('node', $ids['nid']);
         foreach ($data as $entity) {
           if (isset($submissions[$entity->sid])) {
             $grant_app = $submissions[$entity->sid];
@@ -729,19 +728,14 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
               $image = field_get_items('webform_submission_entity', $project, 'field_picture');
             }
 
-            // Check if they can edit the submission.
-            $node = $nodes[$grant_app->nid];
-            $edit_access = webform_submission_access($node, $grant_app, 'edit', $account);
-
             $something = array(
               'type' => $type,
               'title' => $entity->title,
               'image' => isset($image[0]['uri']) ? $image[0] : NULL,
               'uri' => entity_uri('webform_submission_entity', $grant_app),
+              'check_path' => TRUE,
             );
-            if ($edit_access && $era == 'current') {
-              $something['uri']['path'] = "node/{$grant_app->nid}/submission/{$grant_app->sid}/edit";
-            }
+
             $results[] = (object) $something;
           }
         }
@@ -834,11 +828,9 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
               'type' => 'scholarship_application',
               'title' => $campaign->title,
               'image' => isset($image[0]['uri']) ? $image[0] : NULL,
+              'uri' => entity_uri('node', $campaign),
             );
-            if ($era == 'past') {
-              $something['uri'] = entity_uri('node', $campaign);
-            }
-            else {
+            if ($era == 'present') {
               $something['check_path'] = TRUE;
               $something['uri'] = entity_uri('webform_submission_entity', $submission);
             }
