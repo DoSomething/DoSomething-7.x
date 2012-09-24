@@ -594,7 +594,8 @@ body {
 #cmp #report-back {
   border: none;
   width: 70%; }
-  #cmp #report-back .pane-title {
+  #cmp #report-back .pane-title,
+  #cmp #report-back .fb-social-comments-plugin {
     display: none; }
   #cmp #report-back form {
     border: none; }
