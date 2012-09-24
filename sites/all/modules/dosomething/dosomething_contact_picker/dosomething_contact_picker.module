@@ -126,6 +126,8 @@ class contact_scraper {
 
 		  foreach (explode(',', $_POST['real_emails']) AS $email) {
 			if (valid_email_address(trim($email))) {
+
+			  $e['params']['email'] = $email;
 			  drupal_mail($e['group'], $e['email'], trim($email), $language, ($e['params'] ? $e['params'] : array()));
 
 			  // If a "store" function is set, store this node ID, user ID and email in the database.

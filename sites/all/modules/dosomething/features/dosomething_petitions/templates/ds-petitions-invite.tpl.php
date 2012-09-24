@@ -7,3 +7,6 @@ Our goal is to reach <?php echo $signatures; ?> signatures - to get there, we ne
 
 Thanks!
 <?php echo $first_name; ?>
+
+--------
+To stop receiving these emails, click here: http://www.dosomething.org/unsubscribe-email/<?php echo $email; ?>

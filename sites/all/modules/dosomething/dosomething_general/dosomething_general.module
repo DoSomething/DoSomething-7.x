@@ -6,6 +6,35 @@
  */
 
 /**
+ *  Implements hook_module_implements_alter().
+ */
+function dosomething_general_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'mail_alter' && isset($implementations['dosomething_general'])) {
+    $group = $implementations['dosomething_general'];
+    unset($implementations['dosomething_general']);
+    $implementations['dosomething_general'] = $group;
+  }
+}
+
+/**
+ *  Implements hook_mail_alter().
+ */
+function dosomething_general_mail_alter(&$message) {
+  if ($message['key'] == 'petition_invite') {
+    $nosend = db_select('dosomething_unsubscribed', 'u')
+    ->fields('u')
+    ->condition('email', $message['to'], '=')
+    ->execute();
+
+    if ($nosend->rowCount()) {
+      // If they've unsubscribed from our emails, don't email them!
+      $message['send'] = FALSE;
+    }
+  }
+}
+
+
+/**
  * Implements hook_views_pre_view().
  */
 function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
@@ -22,6 +51,8 @@ function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
     drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/homepage-photo-slider.js');
   }
 }
+
+
 
 /**
  * Implements hook_theme().
@@ -44,7 +75,25 @@ function dosomething_general_menu() {
     'access callback' => 'user_is_logged_in',
   );
 
+  $items['unsubscribe-email/%'] = array(
+    'page callback' => 'dosomething_general_unsubscribe_email',
+    'page arguments' => array(1),
+    'access callback' => TRUE
+  );
+
   return $items;
+}
+
+function dosomething_general_unsubscribe_email($email) {
+  $unsub = new stdClass;
+  $unsub->email = $email;
+  $unsub->timestamp = REQUEST_TIME;
+
+  drupal_write_record('dosomething_unsubscribed', $unsub);
+
+  $t = '<h1>' . t("Thanks, you won't receive emails from us anymore.") . '</h1>';
+  $t .= '<p>' . t('Thank you for your interest in DoSomething.org.  You will no longer receive emails from us.') . '</p>';
+  return $t;
 }
 
 /*
