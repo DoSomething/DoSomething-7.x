@@ -214,7 +214,7 @@ function dosomething_drives_mail($key, &$message, $params) {
     case 'be_the_match':
       $message['subject'] = t('Give a Spit Signup from @email', array('@email' => $params['email']));
       $message['body'][] = drupal_html_to_text(theme('dosomething_drives_match', $params));
-      $message['headers']['From'] = $params['email'] . ' <noreply@dosomething.org>';
+      $message['headers']['From'] = $params['email'] . '<' . $params['email'] . '>';
       $message['headers']['Reply-To'] = $params['email'];
       break;
   }
