@@ -12,7 +12,8 @@ function dosomething_mobile_referrals_implements_alter(&$implementations, $hook)
 }
 
 function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
-  if (isset($form_state['build_info']['args'][0]->title) && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form') {
+  $node = menu_get_object();
+  if (isset($form_state['build_info']['args'][0]->title) && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form' && $node->nid) {
     drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referrals') . '/css/mobile_referrals.css', array(
         'group' => CSS_THEME,
         'weight' => 10
@@ -30,7 +31,6 @@ function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
       );
     }
 
-    $node = menu_get_object();
     if ($node->type == 'tips_and_tools') {
       $tac = ($u['referall_your_info']['terms_and_conditions']);
       unset($u['referall_your_info']['terms_and_conditions']);
@@ -49,18 +49,26 @@ function dosomething_mobile_referrals_form_alter(&$form, &$form_state) {
         $form_state['nid'] = $node->nid;
       }
 
+
+      if (!isset($form_state['alphas'])) {
+        if (isset($node->field_alphas_campaign[LANGUAGE_NONE][0]['value']) && !empty($node->field_alphas_campaign[LANGUAGE_NONE][0]['value'])) {
+          $form_state['alphas'] = $node->field_alphas_campaign[LANGUAGE_NONE][0]['value'];
+        }
+      }
+      if (!isset($form_state['betas'])) {
+        if (isset($node->field_betas_campaign[LANGUAGE_NONE][0]['value']) && !empty($node->field_betas_campaign[LANGUAGE_NONE][0]['value'])) {
+          $form_state['betas'] = $node->field_betas_campaign[LANGUAGE_NONE][0]['value'];
+        }
+      }
+
       if (isset($node->field_official_rules_document[LANGUAGE_NONE][0]['filename']) && !empty($node->field_official_rules_document[LANGUAGE_NONE][0]['filename'])) {
         $form['submitted']['referall_your_info']['terms_and_conditions']['#markup'] = str_replace('these official rules', l(t('these official rules'), 'files/social_scholarships/official_rules/' . $node->field_official_rules_document[LANGUAGE_NONE][0]['filename'], array(
         'attributes' => array('target' => '_blank'))), $form['submitted']['referall_your_info']['terms_and_conditions']['#markup']);
       }
 
       $form_state['goto'] = 'share-these-images/' . $node->nid;
-
-      $form['#submit'][] = 'redirect_to_shary_stats';
     }
-    else {
-      $form['#submit'][] = 'dosomething_mobile_referrals_submit';
-    }
+    $form['#submit'][] = 'dosomething_mobile_referrals_submit';
   }
 }
 
@@ -135,17 +143,31 @@ function dosomething_mobile_referrals_submit($form, &$form_state) {
     }
   }
 
-  dosomething_general_mobile_commons_subscribe($you['referral_phone_number'], MCOMMONS_ALPHAS_CAMPAIGN);
+  $alphas_campaign = MCOMMONS_ALPHAS_CAMPAIGN;
+  if ($form_state['alphas']) {
+    $alphas_campaign = $form_state['alphas'];
+  }
+
+  $betas_campaign = MCOMMONS_BETAS_CAMPAIGN;
+  if ($form_state['betas']) {
+    $betas_campaign = $form_state['betas'];
+  }
+
+  dosomething_general_mobile_commons_subscribe($you['referral_phone_number'], $alphas_campaign);
 
   foreach ($them AS $key => $number) {
     if (dosomething_general_valid_cell($number)) {
-      dosomething_general_mobile_commons_subscribe($number, MCOMMONS_BETAS_CAMPAIGN);
+      dosomething_general_mobile_commons_subscribe($number, $betas_campaign);
     }
   }
 
   // Strip any leading slashes...
-  $goto = substr($form_state['goto'], 1);
+  $goto = $form_state['goto'];
+  if ($goto{0} == '/') {
+    $goto = substr($form_state['goto'], 1);
+  }
 
   $form_state['redirect'] = $goto;
-  drupal_set_message("Thanks for submitting.  Have a nice day!");
+  $_GET['redirect'] = $goto;
+  #drupal_set_message("Thanks for submitting.  Have a nice day!");
 }
