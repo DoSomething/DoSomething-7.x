@@ -89,3 +89,21 @@
 
 #panelizer-edit-content-form .panel-popups {
   display: block; }
+
+.page-node-335926 .panel-row-flexible .panel-pane {
+  border: none !important; }
+.page-node-335926 form.webform-client-form {
+  padding: 0px !important; }
+.page-node-335926 .webform-client-form {
+  box-shadow: none;
+  webkit-box-shadow: none;
+  moz-box-shadow: none;
+  border: none;
+  width: 600px;
+  margin: 0 auto; }
+.page-node-335926 .webform-client-form label {
+  margin-top: 14px; }
+.page-node-335926 #edit-actions {
+  position: static !important;
+  text-align: left !important;
+  margin-top: 14px; }
