@@ -45,8 +45,8 @@
         FB.ui(fbObj);
       });
 
-      // Sorry, this indentation was driving me nuts.
-      // swoop!
+      // edit drive info location change
+      // $('#webform-client-form-724772 .form-item-submitted-field-drive-location-und-0-name-line label').empty().text('Name of Location');
 
       // drupal, eat your heart out
       var maxwell = "can have his cake and eat it too"
@@ -60,18 +60,20 @@
       $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit12"><img src="' + logo + '"/></a>');
 
       // hacktastic form rebuilding
-      var emailInput = $('#edit-submitted-field-webform-email');
-      var cellInput = $('#edit-submitted-field-webform-mobile');
-      var emailWrapper = $('#contact-form #submitted-field-webform-email-add-more-wrapper div.form-item');
-      var cellWrapper = $('#contact-form #submitted-field-webform-mobile-add-more-wrapper div.form-item');
+      var $emailInput = $('#edit-submitted-field-webform-email');
+      var $cellInput = $('#edit-submitted-field-webform-mobile');
 
-      $(cellInput).before(emailInput);
-      $(emailWrapper).not('.ds-processed').addClass('.ds-processed').prepend('<label>email:</label>');
-      $(cellWrapper).not('.ds-processed').addClass('.ds-processed').prepend('<label>cell:</label>');
+      $cellInput.before($emailInput); // re-arranges input field order
+      $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-email-label'));
+      $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-cell-label'));
+
+      // Hol' a medz in da paddie, man
+      var contactForm = $('.pane-campaign-sign-up');
+      $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
 
       // on lines 9-10 terrible things happen
       $('#campaign-opt-in br').remove();
-      $('.ctia_top').append('&nbsp;');
+      $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
 
       // pop, bang, lovely
       $('#faq h4').next('div').css('display','none');
@@ -139,10 +141,6 @@
         return false;
       });
       
-      // Hol' a medz in da paddie, man
-      var contactForm = $('.pane-campaign-sign-up');
-      $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
-
       // scroll function
       var $window = $(window);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
