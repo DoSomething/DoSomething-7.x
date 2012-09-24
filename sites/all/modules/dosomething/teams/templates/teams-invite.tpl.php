@@ -1,7 +1,7 @@
 <?php
 
 ?>
-You've been invited to join <?php echo $full_name; ?>'s DoSomething.org team for <?php echo $campaign_name; ?>. To join the team, head on over to
+You've been invited to join <?php echo $full_name; ?>'s DoSomething.org <?php echo $type; ?> for <?php echo $campaign_name; ?>. To join the <?php echo $type; ?>, head on over to
 
 <?php echo $link; ?>
 

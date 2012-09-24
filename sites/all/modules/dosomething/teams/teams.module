@@ -360,7 +360,9 @@ function teams_add_member($friend, $gid) {
           'absolute' => true,
         )),
         'campaign_name' => $campaign->title,
+        'type' => 'team',
       );
+      drupal_alter('teams_added_email', $params, $gid);
       drupal_mail('teams', 'added', $friend, $language, $params);
     }
     else {
@@ -384,7 +386,9 @@ function teams_add_member($friend, $gid) {
           'absolute' => true,
         )),
         'campaign_name' => $campaign->title,
+        'type' => 'team',
       );
+      drupal_alter('teams_invite_email', $params, $gid);
       drupal_mail('teams', 'invite', $friend, $language, $params);
     }
     else {
@@ -502,13 +506,13 @@ function teams_mail($key, &$message, $params) {
   switch ($key) {
     case 'invite':
       $params['full_name'] = teams_full_name($params['account']->uid);
-      $message['subject'] = t('@name has invited you to join their DoSomething team', array('@name' => $params['full_name']));
+      $message['subject'] = t('@name has invited you to join their DoSomething @type', array('@name' => $params['full_name'], '@type' => $params['type']));
       $message['body'][] = drupal_html_to_text(theme('teams_invite', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'added':
       $params['full_name'] = teams_full_name($params['account']->uid);
-      $message['subject'] = t('@name has added you to their DoSomething team', array('@name' => $params['full_name']));
+      $message['subject'] = t('@name has added you to their DoSomething @type', array('@name' => $params['full_name'], '@type' => $params['type']));
       $message['body'][] = drupal_html_to_text(theme('teams_added', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
