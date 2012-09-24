@@ -13,3 +13,4 @@ $conf = array(
 
 
 $conf['ds_migrate_url'] = 'http://10.179.111.41/migrate';
+$conf['search_cron_limit'] = 50;
