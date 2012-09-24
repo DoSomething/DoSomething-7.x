@@ -62,8 +62,8 @@
       // hacktastic form rebuilding
       var emailInput = $('#edit-submitted-field-webform-email');
       var cellInput = $('#edit-submitted-field-webform-mobile');
-      var emailWrapper = $('#submitted-field-webform-email-add-more-wrapper div.form-item');
-      var cellWrapper = $('#submitted-field-webform-mobile-add-more-wrapper div.form-item');
+      var emailWrapper = $('#contact-form #submitted-field-webform-email-add-more-wrapper div.form-item');
+      var cellWrapper = $('#contact-form #submitted-field-webform-mobile-add-more-wrapper div.form-item');
 
       $(cellInput).before(emailInput);
       $(emailWrapper).not('.ds-processed').addClass('.ds-processed').prepend('<label>email:</label>');
