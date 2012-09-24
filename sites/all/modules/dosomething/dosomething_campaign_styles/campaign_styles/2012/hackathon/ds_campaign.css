@@ -449,8 +449,9 @@ hr.gray {
   margin: -1px auto 20px auto;
   clear: both;
   padding: 15px 20px 10px;
-  font-size: 21px;
-  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-size: 16px;
+  font-family: din-web-reg, din-web, "Trebuchet MS", sans-serif;
+  font-weight: 500;
   width: 250px; }
 
 a.wannago-btn {
@@ -461,12 +462,12 @@ a.wannago-btn {
   background-image: -ms-linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.32, #00b9ec), color-stop(0.53, #00ccf5), color-stop(0.83, #a2e0fb));
   display: inline-block;
-  padding: 15px 20px 7px;
+  padding: 16px 20px 8px;
   color: white !important;
   text-transform: uppercase;
   font-size: 32px;
-  font-family: din-web;
-  letter-spacing: 1px;
+  font-family: din-web-reg;
+  font-weight: 500;
   border-radius: 8px;
   margin: 10px auto 30px;
   line-height: 1em; }
@@ -494,10 +495,10 @@ a.wannago-btn {
     margin: 0 auto;
     display: block; }
   .box-thirds h3 {
-    font-size: 24px;
+    font-size: 18px;
     text-transform: uppercase;
-    font-family: din-web, "Trebuchet MS", sans-serif;
-    font-weight: normal; }
+    font-family: din-web-reg, din-web, "Trebuchet MS", sans-serif;
+    font-weight: 500; }
 
 .half-box {
   float: left;
@@ -535,3 +536,8 @@ p.plain {
 img.plain {
   padding: 0px !important;
   margin-bottom: 30px !important; }
+
+ul.come {
+  margin: 10px auto 40px;
+  width: 500px;
+  font-size: 14px; }
