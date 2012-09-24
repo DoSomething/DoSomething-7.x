@@ -383,8 +383,12 @@ body {
   #cmp input.remove_participant:hover {
     color: white;
     background: #673368; }
+#cmp .drive-participants-list li {
+  padding: 0.2em 0; }
 #cmp .drive-action-link {
   text-align: center; }
+#cmp .drive-share {
+  display: none; }
 #cmp #action.action-anonymous img, #cmp #action.action-participant img {
   display: block;
   margin: 5% auto; }
