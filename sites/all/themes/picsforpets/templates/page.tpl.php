@@ -3,17 +3,26 @@
  * @file
  * Default theme implementation to display a single Drupal page.
  */
+
+if (in_array(request_uri(), array('/fb/pics-for-pets', '/fb/pics-for-pets/'))) {
+  drupal_goto('fb/pics-for-pets/gallery');
+}
+
 ?>
 
   <div id="page">
 
     <header role="banner" class="clearfix">
 
-      <a id="ds-logo" href="/fb/pics-for-pets/gallery">Do Something</a>
+      <a id="ds-logo" href="/fb/pics-for-pets/gallery"<?php if (request_uri() == '/fb/pics-for-pets/gallery') { ?> class="gallery" <?php } ?>>Do Something</a>
 
       <?php if ($logo): ?>
         <a href="/fb/pics-for-pets/gallery" title="Gallery" rel="home" id="logo">
+          <?php if (request_uri() == '/fb/pics-for-pets/gallery') { ?>
+          <img src="/sites/all/themes/picsforpets/images/p4p.png" alt="<?php print t('Home'); ?>" />
+          <?php } else { ?>
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+          <?php } ?>
         </a>
       <?php endif; ?>
 

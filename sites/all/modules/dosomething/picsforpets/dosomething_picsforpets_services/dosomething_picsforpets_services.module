@@ -102,6 +102,27 @@ function dosomething_picsforpets_services_services_resources() {
           ),
         ),
       ),
+    ),
+    'my-animals' => array(
+      'retrieve' => array(
+        'help' => 'Retrieve My Animals based off of facebook user id.',
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'dosomething_picsforpets_services',
+          'name' => 'dosomething_picsforpets_services.myanimals',
+        ),
+        'callback' => 'dosomething_picsforpets_services_get_my_animals',
+        'access callback' => 'sharing_access',
+        'args' => array(
+          'info' => array(
+            'name' => 'fb_id',
+            'type' => 'int',
+            'description' => 'The ID of the facebook user.',
+            'source' => array('param' => 'fb_id'),
+            'optional' => FALSE,
+          ),
+        ),
+      ),
     )
   );
 }

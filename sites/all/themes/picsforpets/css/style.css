@@ -1657,6 +1657,11 @@ ul.inline, ul.inline li {
   margin: 12px;
 }
 
+#ds-logo.gallery {
+  background: url('../images/dsorg.png') no-repeat;
+  margin-left: 10px;
+}
+
 .white-block {
   background: rgba(255, 255, 255, 0.75);
   text-align: center;
@@ -2096,6 +2101,8 @@ a.footer-furtography {
   margin-bottom: 0;
   margin-top: -8px;
   margin-left: 46px;
+  color: transparent;
+  background: url(/sites/all/themes/picsforpets/images/shareme.png);
 }
 #picsforpets-share .picsforpets-share-count {
   background-color: white;
@@ -2921,7 +2928,7 @@ select#edit-sort-by {
   margin-left: 0;
 }
 #picsforpets-gallery-navigation li.last, #picsforpets-gallery-navigation li.first {
-  margin-top: -30px;
+  margin-top: 16px;
 }
 
 #picsforpets-gallery-navigation a {
@@ -3023,6 +3030,10 @@ select#edit-sort-by {
   padding: 5px 4px 4px 4px;
   text-transform: uppercase;
   width: 60px;
+  background: #CA1C24;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CA1C24', endColorstr='#9C1E2D');
+  background: -webkit-gradient(linear, left top, left bottom, from(#CA1C24), to(#9C1E2D));
+  background: -moz-linear-gradient(top,  #CA1C24,  #9C1E2D);
 }
 .gallery-thumbnail-text .gallery-share-count {
   background: url(../images/share-background.png) no-repeat;
@@ -3446,4 +3457,11 @@ header aside {
 }
 .styletile-1 .colors ul li.color-6:after {
   content: "gray";
+}
+
+h1.sharethese {
+  text-align: center;
+  margin-left: 120px;
+  font-size: 26pt;
+  margin-top: 6px;
 }

@@ -102,7 +102,7 @@ display: 'popup'
 
             // Display a modal dialog depending on the total number of shares
             // the user has made.
-            if (userShares == 3 && !settings.picsforpetsGeneral.furtographer) {
+            if (userShares == 1 && !settings.picsforpetsGeneral.furtographer) {
               $loader = $('<div></div>');
               $loader.load('/fb/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form', function() {
                 if ($('html').hasClass('ie9') || $('html').hasClass('ie8') || $('html').hasClass('ie7') || $('html').hasClass('ie6')) {
@@ -148,7 +148,7 @@ display: 'popup'
                   }
                 });
             }
-            else if (userShares == 5) {
+            else if (userShares == 3) {
               $inviteDialog = $('<div class="invite-modal"></div>');
               $inviteDialog.load('/fb/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function() {
                   $('#picsforpets-invite-friends').click(function() {
@@ -167,7 +167,7 @@ display: 'popup'
                   });
                 })
                 .dialog({
-                  title: Drupal.t('Hey, you\'ve shared 5 animals!'),
+                  title: Drupal.t('Hey, you\'ve shared 3 animals!'),
                   resizable: false,
                   draggable: false,
                   modal: true,
