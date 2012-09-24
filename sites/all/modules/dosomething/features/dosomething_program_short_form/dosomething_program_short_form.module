@@ -26,5 +26,10 @@ function dosomething_program_short_form_form_alter(&$form, &$form_state, $form_i
   }
 }
 
-
-
+function dosomething_program_short_form_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter' && isset($implementations['dosomething_program_short_form'])) {
+    $group = $implementations['dosomething_program_short_form'];
+    unset($implementations['dosomething_program_short_form']);
+    $implementations['dosomething_program_short_form'] = $group;
+  }
+}
