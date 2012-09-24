@@ -1,4 +1,4 @@
-name = "Connections"
-description = "Connect content items with tags!"
+name = "Facebook Connections"
+description = "Create Facebook actions"
 core = 7.x
 package = "DoSomething"

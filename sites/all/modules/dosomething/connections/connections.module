@@ -2,18 +2,18 @@
 
 function connections_menu() {
 	$items['admin/structure/connections'] = array(
-		'title' => t("Connections!"),
+		'title' => t("Facebook Connections"),
 		'access callback' => TRUE
 	);
 
 	$items['admin/structure/connections/add'] = array(
-		'title' => t('Add New Connection'),
+		'title' => t('Add New Facebook Connection'),
 		'page callback' => 'connections_add_page',
 		'access arguments' => array('administer site configuration')
 	);
 
 	$items['admin/structure/connections/manage'] = array(
-		'title' => t('Manage Connections'),
+		'title' => t('Manage Facebook Connections'),
 		'page callback' => 'connections_list_page',
 		'access arguments' => array('administer site configuration')
 	);
@@ -29,42 +29,83 @@ function connections_menu() {
 }
 
 function connections_form($form, &$form_state, $result, $cid) {
-	$form['cid'] = array(
-		'#type' => 'hidden',
-		'#value' => $cid
-	);
-	$form['title'] = array(
-		'#type' => 'textfield',
-		'#title' => t('Title!'),
-		'#value' => ($result['title'] ? $result['title'] : '')
-	);
-	$form['link'] = array(
-		'#type' => 'textfield',
-		'#title' => t('URL Address!'),
-		'#default_value' => ($result['link'] ? $result['link'] : '')
-	);
-	$form['file'] = array(
-		'#type' => 'file',
-		'#title' => t('Image') . ($result['image'] ? ' (' . l('View Current Image', 'files/blah/' . $result['image']) . ')' : ''),
+	$form['webforms'] = array(
+	  '#type' => 'fieldset',
+	  '#collapsible' => TRUE,
+	  '#collapsed' => TRUE,
+	  '#title' => t('Choose a specific webform'),
+	  '#description' => t('You may choose one or more specific webforms on the site.  Check the boxes for whatever webforms you would like.')
 	);
 
-	if (!isset($result['date_start'])) $result['date_start'] = time();
-	$form['date_start'] = array(
-		'#type' => 'date_select',
-		'#title' => t('Start Date'),
-		'#default_value' => date('Y-m-d H:i:s', $result['date_start'])
+	$webforms = db_select('node', 'n')
+		->fields('n', array('nid', 'title', 'type'))
+		->condition('type', 'webform')
+		->execute()
+		->fetchAll();
+
+	foreach ($webforms AS $key => $webform) {
+		if ($webform->type == 'webform') {
+			$webformsl[$webform->nid] = $webform->title;
+		}
+		else {
+			$nodel[$webform->nid] = $webform->title;
+		}
+	}
+
+	$form['webforms']['options'] = array(
+	  '#type' => 'checkboxes',
+	  '#options' => $webformsl
 	);
 
-	if (!isset($result['date_end'])) $result['date_end'] = time();
-	$form['date_end'] = array(
-		'#type' => 'date_select',
-		'#title' => t('End Date'),
-		'#default_value' => date('Y-m-d H:i', $result['date_end'])
+	$webform_types = db_select('webform_entity_submission_type', 'wst');
+	$webform_types->join('node', 'n', 'n.type = wst.type');
+	$webform_types->groupBy('wst.id');
+	$webform_types->fields('wst', array('id'))
+		->fields('n', array('title'))
+		->condition('wst.type', NULL, 'IS NOT');
+	$types = $webform_types
+		->execute()
+		->fetchAllKeyed();
+
+	$form['webform_types'] = array(
+	  '#type' => 'fieldset',
+	  '#collapsible' => TRUE,
+	  '#collapsed' => TRUE,
+	  '#title' => t('Choose a specific webform type'),
+	  '#description' => t('You may choose a specific <em>type</em> of webform.  This Facebook Connection will apply to every webform under this category.')
 	);
 
-	$form['submit'] = array(
-		'#type' => 'submit',
-		'#value' => t('Submit It!'),
+	$form['webform_types']['options'] = array(
+	  '#type' => 'checkboxes',
+	  '#options' => $types
+	);
+
+	$content_types = node_type_get_names();
+
+	$form['content_types'] = array(
+	  '#type' => 'fieldset',
+	  '#collapsible' => TRUE,
+	  '#collapsed' => TRUE,
+	  '#title' => t('Choose a specific content type'),
+	  '#description' => t('You may choose a specific Content Type.  This Facebook Connection will apply to every node under this content type.')
+	);
+
+	$form['content_types']['options'] = array(
+	  '#type' => 'checkboxes',
+	  '#options' => $content_types
+	);
+
+	$form['Nodes'] = array(
+	  '#type' => 'fieldset',
+	  '#collapsible' => TRUE,
+	  '#collapsed' => TRUE,
+	  '#title' => t('Choose a specific node'),
+	  '#description' => t('You may choose a specific Node.  This Facebook Connection will apply to the selected nodes.')
+	);
+
+	$form['content_types']['options'] = array(
+	  '#type' => 'checkboxes',
+	  '#options' => $nodel
 	);
 
 	return $form;
@@ -147,8 +188,8 @@ function connections_edit_page($pageid) {
 }
 
 function connections_add_page($pageid) {
-	$content = '<h2>' . t('Add a Connection') . '</h2>';
-	$content .= '<div>' . t('Please fill out the form, below and press "Submit it!", below.  The system will take care of placing it on the site.') . '</div>';
+	$content = '<h2>' . t('Add Facebook Connection') . '</h2>';
+	$content .= '<div>' . t('To start, please select a specific webform, webform type, node type, or raw path for this connection to take place.') . '</div>';
 	$f = drupal_get_form('connections_form', $result, $pageid);
 	$content .= drupal_render($f);
 
