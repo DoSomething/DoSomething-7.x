@@ -9,7 +9,7 @@
         return false;
       });  
 
-      //GAME LINKS SLOW SCROLL
+      //JUMP LINKS SLOW SCROLL
    		$('.jump').click(function (event) {
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
         return false;
@@ -29,6 +29,33 @@
 		    $(this).siblings().next('p').slideUp(); 
 		  }
 		});
+
+      // MENU SCROLL
+      var $window = $(window);
+      var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
+      var scrollLimitTop = 175;
+      var scrollLimitBot = $(document).height() - $('#block-menu-menu-footer').height() - $nav.height() + 50;
+
+      $window.scroll(function () {
+        var st = $window.scrollTop();
+        if (st > scrollLimitTop && st < scrollLimitBot) {
+          $nav.css({
+            'position' : 'fixed',
+            'top'      : '0px',
+            'margin'   : '15px 0 0 0',
+            'padding'  : '0 0 0 0',
+            'z-index'  : '3'
+          });
+        }
+        else if (st >= scrollLimitTop) {
+          $nav
+            .css('position', 'static')
+        }
+        else {
+          $nav
+            .css('position', 'static')
+        }
+      });
 
     }
   };

@@ -109,6 +109,7 @@ div[role="main"] {
   padding: 0;
   font-family: din-web, "Trebuchet MS", sans-serif; }
   #block-dosomething-campaign-styles-campaign-nav ul.menu {
+    width: 233px;
     background: white;
     background: rgba(255, 255, 255, 0.8);
     background-image: none;
