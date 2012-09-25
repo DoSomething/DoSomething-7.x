@@ -3466,4 +3466,5 @@ h1.sharethese {
   margin-left: 120px;
   font-size: 26pt;
   margin-top: 6px;
+  white-space: nowrap;
 }
