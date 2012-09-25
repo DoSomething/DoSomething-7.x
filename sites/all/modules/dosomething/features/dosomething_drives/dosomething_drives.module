@@ -14,7 +14,7 @@ include_once 'dosomething_drives.features.inc';
 function dosomething_drives_init() {
   $node = menu_get_object();
   if (isset($node->nid) && $node->type == 'campaign') {
-    if (isset($node->field_team_redirect) && $node->field_team_redirect[LANGUAGE_NONE][0]['value'] == 1) {
+    if (isset($node->field_team_redirect) && $node->field_team_redirect[LANGUAGE_NONE][0]['value'] == 1 && !arg(2)) {
       if (!isset($_GET['skip_redirect']) && user_is_logged_in()) {
         $path = drupal_lookup_path('alias', 'node/'.$node->nid);
         $team = teams_get_my_teams_for_url($path);
