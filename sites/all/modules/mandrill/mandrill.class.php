@@ -396,14 +396,7 @@ class Mandrill {
         set_magic_quotes_runtime($magic_quotes);
       }
 
-      if (strnatcmp(phpversion(), '5.3') >= 0) {
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $mime_type = finfo_file($finfo, $path);
-      }
-      else {
-        $mime_type = mime_content_type($path);
-      }
-
+      $mime_type = file_get_mimetype($path);
       if (!Mandrill::isValidContentType($mime_type)) {
         throw new Exception($mime_type . ' is not a valid content type (it should be ' . implode('*,', self::getValidContentTypes()) . ').');
       }
@@ -423,6 +416,7 @@ class Mandrill {
    * Helper to determine attachment is valid.
    *
    * @static
+   *
    * @param $ct
    *
    * @return bool
@@ -441,6 +435,7 @@ class Mandrill {
 
   /**
    * Return an array of valid content types.
+   *
    * @static
    *
    * @return array
