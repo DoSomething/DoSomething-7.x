@@ -78,7 +78,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
@@ -336,6 +336,9 @@ body {
   margin: 6% 0 0 0;
   padding: 0 0 0 5%;
   border-left: 1px solid #d2d2d3; }
+  #cmp .drive-participants ul {
+    max-height: 160px;
+    overflow: scroll; }
 #cmp .drive-info-title h2 {
   color: #7f3f80;
   margin: 0 0 0.5em 0;
