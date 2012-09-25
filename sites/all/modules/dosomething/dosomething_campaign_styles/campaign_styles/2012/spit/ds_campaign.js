@@ -57,7 +57,7 @@
 
       // has logo, will inject
       var logo = '//files.dosomething.org/files/campaigns/spit/logo.png';
-      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit12"><img src="' + logo + '"/></a>');
+      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit"><img src="' + logo + '"/></a>');
 
       // hacktastic form rebuilding
       var $emailInput = $('#edit-submitted-field-webform-email');
@@ -108,7 +108,7 @@
       $(allAnchors).click(function(event){
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
 
-        if($(this).attr('href') == '/spit12#header'){
+        if($(this).attr('href') == '/spit#header'){
           $(webformEmail).focus().addClass('focusOutline');
         }
         $(webformBoth).focus(function(){

@@ -32,7 +32,7 @@ $plugin = array(
     array('title' => 'learn the issue', 'href' => '', 'fragment' => 'content-infographic'),
     array('title' => 'search for a drive', 'href' => '', 'fragment' => 'search'),
     array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
-    array('title' => 'tell us about it', 'href' => 'spit12/report-back'),
+    array('title' => 'tell us about it', 'href' => 'spit/report-back'),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
 );
