@@ -39,7 +39,7 @@ Drupal.behaviors.dsPfpShare = {
             if (response.authResponse) {
               Drupal.behaviors.dsPfpShare.submit_share(sid);
             }
-          });
+          }, { scope: 'publish_actions' });
         }
         else if (response.status == 'not_authorized') {
           FB.api('/me/permissions', function (response) {

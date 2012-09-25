@@ -44,9 +44,7 @@ Drupal.behaviors.galleryShareButton = {
       else {
         $(this).addClass('shared');
       }
-
-      $(this).text('Shared!');
-            
+     
       var sid = parseInt($(this).parent().attr('id'));
       var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/' + settings.picsforpetsFBAuth.fbFormAlias + '/submission/' + sid;
       var threeWords = [];
@@ -56,14 +54,15 @@ Drupal.behaviors.galleryShareButton = {
 
       Drupal.behaviors.galleryShareButton.share_url = shareUrl;
 
+      var item = this;
       FB.getLoginStatus(function(response) {
         if (response.status == 'unknown') {
           // Not logged in.
           FB.login(function(response) {
             if (response.authResponse) {
-              Drupal.behaviors.galleryShareButton.submit_share(sid);
+              Drupal.behaviors.galleryShareButton.submit_share(sid, item, settings);
             }
-          });
+          }, { scope: 'publish_actions' });
         }
         else if (response.status == 'not_authorized') {
           FB.api('/me/permissions', function (response) {
@@ -80,13 +79,14 @@ Drupal.behaviors.galleryShareButton = {
           });
         }
         else {
-          Drupal.behaviors.galleryShareButton.submit_share(sid);
+          Drupal.behaviors.galleryShareButton.submit_share(sid, item, settings);
         }
       });
     });
   },
 
-  submit_share: function(sid) {
+  submit_share: function(sid, elm, settings) {
+    $(elm).text('Shared!');
     FB.api(
         '/me/dosomethingapp:share',
         'post',     
@@ -164,8 +164,8 @@ Drupal.behaviors.galleryShareButton = {
             }
           });
         }
-      });
-    });
+      }
+    );
   }
 };
 
