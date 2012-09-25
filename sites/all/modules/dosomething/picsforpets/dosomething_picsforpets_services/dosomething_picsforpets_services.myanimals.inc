@@ -3,39 +3,35 @@
 /**
   * Service to post a share to the database.
   */
-function dosomething_picsforpets_services_get_my_animals($info) {
-  $fb_id = $info['uid'];
-
+function dosomething_picsforpets_services_get_my_animals($uid, $fbid) {
   $results = db_query("
     SELECT
-    DISTINCT webform_submissions.sid AS sid,
-    node.created AS node_created,
-    theimg.uri AS file_managed_field_data_field_fb_app_image_uri,
-    `anim_name`.`field_fb_app_animal_name_value` AS `animal_name`,
-    `anim_age`.`field_fb_app_age_value` AS `animal_age`,
-    `anim_type`.`field_fb_app_animal_type_value` AS `animal_type`,
-    `anim_other`.`field_fb_app_other_value` AS `animal_other`,
-    GROUP_CONCAT(`anim_three_words`.`field_fb_app_three_words_value`) AS `animal_three_words`,
-    CONCAT(`anim_address`.`field_pfp_address_locality`, ',', `anim_address`.`field_pfp_address_administrative_area`) AS `animal_address`,
-    `anim_shelter`.`field_fb_app_shelter_name_value` AS `animal_shelter`,
-    DATE_FORMAT((DATE_ADD('19700101', INTERVAL webform_submissions.submitted SECOND) + INTERVAL -14400 SECOND), '%Y%m%d%H%i') AS webform_submissions_submitted_minute,
-    `share_count`.`field_fb_app_share_count_value` AS `share_count`
-  FROM `webform_submissions` webform_submissions
-  LEFT JOIN `field_data_field_fb_app_share_count` AS `share_count` ON (`share_count`.`entity_id` = `webform_submissions`.`sid`)
-  LEFT JOIN `field_data_field_fb_app_animal_name` AS `anim_name` ON (`anim_name`.`entity_id` = `webform_submissions`.`sid`)
-  LEFT JOIN `field_data_field_fb_app_animal_type` AS `anim_type` ON (`anim_type`.`entity_id` = `webform_submissions`.`sid`)
-  LEFT JOIN `field_data_field_fb_app_age` AS `anim_age` ON (`anim_age`.`entity_id` = `webform_submissions`.`sid`)
-  LEFT JOIN `field_data_field_fb_app_other` AS `anim_other` ON (`anim_other`.`entity_id` = `webform_submissions`.`sid`)
-  LEFT JOIN `field_data_field_fb_app_three_words` AS `anim_three_words` ON (`anim_three_words`.`entity_id` = `webform_submissions`.`sid`)
-  LEFT JOIN field_data_field_pfp_address AS `anim_address` ON (`anim_address`.`entity_id` = `webform_submissions`.`sid`)
-  LEFT JOIN field_data_field_fb_app_shelter_name AS `anim_shelter` ON (`anim_shelter`.`entity_id` = `webform_submissions`.`sid`)
-  LEFT JOIN `field_data_field_fb_app_image` `anim_img` ON webform_submissions.sid = `anim_img`.entity_id AND (`anim_img`.entity_type = 'webform_submission_entity' AND `anim_img`.deleted = '0')
-  LEFT JOIN `file_managed` `theimg` ON `anim_img`.field_fb_app_image_fid = `theimg`.fid
-  LEFT JOIN `node` node ON webform_submissions.nid = node.nid
-  LEFT JOIN `field_data_field_fb_app_published` `anim_published` ON webform_submissions.sid = `anim_published`.entity_id AND (`anim_published`.entity_type = 'webform_submission_entity' AND `anim_published`.deleted = '0')
-  LEFT JOIN `fb_user_shares` fb_user_shares ON webform_submissions.sid = fb_user_shares.entity_id
-  WHERE (( (webform_submissions.uid = '" . $fb_id . "') )AND(( (node.type IN  ('fb_app_data_gathering_form')) AND (`anim_published`.field_fb_app_published_value IN  ('1')) )))
-  ORDER BY webform_submissions_submitted_minute ASC
+  DISTINCT webform_submissions.sid AS sid,
+  node_field_data_field_fb_app_shelter_reference.nid AS `shelter_nid`,
+  webform_submissions.submitted AS `submitted`,
+  `thefile`.`filename` AS `pet_image`,
+  `pet_name`.`field_fb_app_animal_name_value` AS `pet_name`,
+  CONCAT(`pet_address`.`field_pfp_address_locality`, ', ', `pet_address`.`field_pfp_address_administrative_area`) AS `pet_address`,
+  `share_count`.`field_fb_app_share_count_value` AS `share_count`,
+  GROUP_CONCAT(DISTINCT `three_words`.`field_fb_app_three_words_value`) AS `three_words`
+FROM 
+`webform_submissions` webform_submissions
+
+LEFT JOIN `field_data_field_fb_app_shelter_reference` field_data_field_fb_app_shelter_reference ON webform_submissions.sid = field_data_field_fb_app_shelter_reference.entity_id AND (field_data_field_fb_app_shelter_reference.entity_type = 'webform_submission_entity' AND field_data_field_fb_app_shelter_reference.deleted = '0')
+LEFT JOIN `node` node_field_data_field_fb_app_shelter_reference ON field_data_field_fb_app_shelter_reference.field_fb_app_shelter_reference_target_id = node_field_data_field_fb_app_shelter_reference.nid
+LEFT JOIN `field_data_field_fb_app_image` AS `pet_image` ON (`pet_image`.`entity_id` = `webform_submissions`.`sid`)
+LEFT JOIN `field_data_field_fb_app_animal_name` AS `pet_name` ON (`pet_name`.`entity_id` = `webform_submissions`.`sid`)
+LEFT JOIN `field_data_field_pfp_address` AS `pet_address` ON (`pet_address`.`entity_id` = node_field_data_field_fb_app_shelter_reference.nid)
+LEFT JOIN `field_data_field_fb_app_share_count` AS `share_count` ON (`share_count`.`entity_id` = `webform_submissions`.`sid`)
+LEFT JOIN `field_data_field_fb_app_three_words` AS `three_words` ON (`three_words`.`entity_id` = `webform_submissions`.`sid`)
+LEFT JOIN `file_managed` AS `thefile` ON (`thefile`.`fid` = `pet_image`.`field_fb_app_image_fid`)
+LEFT JOIN `node` node ON webform_submissions.nid = node.nid
+LEFT JOIN `field_data_field_fb_app_published` field_data_field_fb_app_published ON webform_submissions.sid = field_data_field_fb_app_published.entity_id AND (field_data_field_fb_app_published.entity_type = 'webform_submission_entity' AND field_data_field_fb_app_published.deleted = '0')
+LEFT JOIN `fb_user_shares` fb_user_shares ON webform_submissions.sid = fb_user_shares.entity_id
+WHERE (( (node.type IN  ('fb_app_data_gathering_form')) AND (field_data_field_fb_app_published.field_fb_app_published_value IN  ('1')) )AND(( (fb_user_shares.fb_user_id = '" . $fbid . "') )OR( (webform_submissions.uid = '" . $uid . "') )))
+GROUP BY webform_submissions.sid DESC
+ORDER BY share_count DESC
+LIMIT 18 OFFSET 0
   ")->fetchAll();
 
   $count = count($results);

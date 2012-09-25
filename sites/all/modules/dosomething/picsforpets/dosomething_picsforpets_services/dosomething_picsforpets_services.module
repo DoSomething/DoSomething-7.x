@@ -115,11 +115,18 @@ function dosomething_picsforpets_services_services_resources() {
         'callback' => 'dosomething_picsforpets_services_get_my_animals',
         'access callback' => 'sharing_access',
         'args' => array(
-          'info' => array(
+          'uid' => array(
             'name' => 'uid',
             'type' => 'int',
             'description' => 'A Drupal user ID to gather submitted-pets from.',
             'source' => array('param' => 'uid'),
+            'optional' => FALSE,
+          ),
+          'fbid' => array(
+            'name' => 'fbid',
+            'type' => 'int',
+            'description' => 'The Facebook user ID for that same user.',
+            'source' => array('param' => 'fbid'),
             'optional' => FALSE,
           ),
         ),
@@ -138,7 +145,7 @@ function sharing_access() {
 function dosomething_picsforpets_services_views_access($op = 'view', $args = array()) {
   // We are only allowing this view.  We couldn't use the Services view because
   // it sends raw data that doesn't really mean anything to the app.
-  if ($args['view_name'] == 'pics_for_pets_gallery' && in_array($args['display_id'], array('service', 'service_shared_pets', 'most_shared'))) {
+  if ($args['view_name'] == 'pics_for_pets_gallery' && in_array($args['display_id'], array('service', 'service_shared_pets', 'most_shared', 'my_animals'))) {
     return services_views_access($op, $args);
   }
   return FALSE;
