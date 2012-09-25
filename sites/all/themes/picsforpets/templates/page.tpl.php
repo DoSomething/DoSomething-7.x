@@ -4,10 +4,6 @@
  * Default theme implementation to display a single Drupal page.
  */
 
-if (in_array(request_uri(), array('/fb/pics-for-pets', '/fb/pics-for-pets/'))) {
-  drupal_add_js("window.location.href = '/fb/pics-for-pets/gallery';", 'inline');
-}
-
 ?>
 
   <div id="page">
