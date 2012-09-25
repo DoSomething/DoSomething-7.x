@@ -10,7 +10,6 @@ Drupal.behaviors.inviteFriendsModal = {
         title: "DoSomething.org's Pics for Pets",
         message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
         access_token: settings.picsforpetsFBAuth.access_token,
-        //show_error: true
       };
       FB.getLoginStatus(function(response) {
         if (response.status == 'unknown') {
@@ -18,8 +17,6 @@ Drupal.behaviors.inviteFriendsModal = {
           FB.login(function(response) {
             if (response.authResponse) {
               obj.access_token = response.authResponse.accessToken
-              //console.log(response);
-
               FB.ui(obj);
             }
           }, { scope: 'publish_actions' });
