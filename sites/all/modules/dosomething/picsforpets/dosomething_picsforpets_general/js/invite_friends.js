@@ -11,7 +11,7 @@ Drupal.behaviors.inviteFriendsModal = {
             if (response.authResponse) {
               FB.ui(obj);
             }
-          });
+          }, { scope: 'publish_actions' });
         }
         else if (response.status == 'not_authorized') {
           FB.api('/me/permissions', function (response) {
