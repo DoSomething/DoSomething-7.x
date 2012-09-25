@@ -548,9 +548,9 @@ hr.gray
   color: white
   margin: -1px auto 15px auto
   clear: both
-  padding: 15px 20px 10px
-  font-size: 21px 
-  font-family: $accent
+  padding: 14px 20px 12px
+  font-size: 14px 
+  font-family: din-web-reg, $accent
   width: 250px 
 
 // HEADER 
@@ -609,11 +609,11 @@ hr.gray
       color: $baseColor
     p
       text-align: center
-      span
-        text-transform: uppercase
-        font-size: 26px
-        color: $baseColor
-        line-height: 1.4em
+      //span
+        //text-transform: uppercase
+        //font-size: 26px
+        //color: $baseColor
+        //line-height: 1.4em
     input
       display: block
       width: 220px
@@ -627,6 +627,16 @@ hr.gray
       p
         width: 300px
         line-height: 1.4em
+        &.scholar-text
+          font-family: din-web
+          font-weight: 600
+          text-transform: uppercase
+          font-size: 32px
+          color: $baseColor
+          line-height: 1.4em
+          letter-spacing: 1px
+          margin-bottom: 10px
+          margin-top: -5px
       input
         margin-left: 40px
       .refer-arrow-top
@@ -673,7 +683,8 @@ img.shadow
     margin: 0 auto
     display: block
   h3
-    font-size: 24px
+    font-family: din-web-reg
+    font-size: 18px
 .bully-box
   width: 250px
 .bully-box-plus
@@ -701,6 +712,8 @@ img.shadow
     line-height: 1.2em  
   h3
     border-bottom: 2px solid lightgray
+    font-family: din-web-reg
+    font-size: 14px
   h3.user
     width: 50%
     margin-left: 50%
@@ -766,6 +779,9 @@ img.shadow
     font-size: 36px
     text-transform: uppercase
     margin-bottom: 5px
+    font-family: $accent
+    font-weight: 600
+    letter-spacing: 1px
   p
     line-height: 1.4em  
     span
@@ -784,9 +800,9 @@ ol
     display: inline-block
     padding: 8px 10px 2px
     text-transform: uppercase
-    font-size: 24px
+    font-size: 18px
     margin-bottom: 10px
-    font-family: $accent
+    font-family: din-web-reg, $accent
 h3.action-btn
   padding: 20px 0 70px
   text-align: center
@@ -817,11 +833,14 @@ h3.action-btn
   padding: 20px 50px
   height: 300px
   img
-    margin: 0 auto
+    margin: 0 auto 12px auto !important
     display: block
   h3
     font-size: 20px
-    text-transform: uppercase  
+    text-transform: uppercase
+    font-family: din-web-reg
+    line-height: 1.2em
+    height: 50px  
   p
     line-height: 1.4em  
 .sq-one
@@ -830,7 +849,11 @@ h3.action-btn
 .sq-two
   border-bottom: 1px solid lightgray
 .sq-three
-  border-right: 1px solid lightgray 
+  border-right: 1px solid lightgray
+.sq-four
+  img
+    margin-top: -10px !important
+    margin-bottom: 22px !important   
 .sq-one, .sq-three
   margin-left: 50px
   padding-left: 0
@@ -853,6 +876,7 @@ h3.action-btn
   p
     margin-bottom: 20px
     font-size: 18px
+    font-weight: 600
   .stand-arrow-left, .stand-arrow-right
     position: absolute
     bottom: -10px

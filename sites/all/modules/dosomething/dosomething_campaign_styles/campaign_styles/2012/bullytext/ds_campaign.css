@@ -460,9 +460,9 @@ hr.gray {
   color: white;
   margin: -1px auto 15px auto;
   clear: both;
-  padding: 15px 20px 10px;
-  font-size: 21px;
-  font-family: din-web, "Trebuchet MS", sans-serif;
+  padding: 14px 20px 12px;
+  font-size: 14px;
+  font-family: din-web-reg, din-web, "Trebuchet MS", sans-serif;
   width: 250px; }
 
 #bullytext-header img {
@@ -516,11 +516,6 @@ hr.gray {
     color: #ffd400; }
   #bullytext-game .pane-content p {
     text-align: center; }
-    #bullytext-game .pane-content p span {
-      text-transform: uppercase;
-      font-size: 26px;
-      color: #ffd400;
-      line-height: 1.4em; }
   #bullytext-game .pane-content input {
     display: block;
     width: 220px;
@@ -534,6 +529,16 @@ hr.gray {
     #bullytext-game .pane-content .scholarship-signup p {
       width: 300px;
       line-height: 1.4em; }
+      #bullytext-game .pane-content .scholarship-signup p.scholar-text {
+        font-family: din-web;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 32px;
+        color: #ffd400;
+        line-height: 1.4em;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        margin-top: -5px; }
     #bullytext-game .pane-content .scholarship-signup input {
       margin-left: 40px; }
     #bullytext-game .pane-content .scholarship-signup .refer-arrow-top {
@@ -580,7 +585,8 @@ img.shadow {
     margin: 0 auto;
     display: block; }
   .bully-box h3, .bully-box-plus h3 {
-    font-size: 24px; }
+    font-family: din-web-reg;
+    font-size: 18px; }
 
 .bully-box {
   width: 250px; }
@@ -609,7 +615,9 @@ img.shadow {
     margin: 0 auto 15px auto;
     line-height: 1.2em; }
   .texts h3 {
-    border-bottom: 2px solid lightgray; }
+    border-bottom: 2px solid lightgray;
+    font-family: din-web-reg;
+    font-size: 14px; }
   .texts h3.user {
     width: 50%;
     margin-left: 50%;
@@ -672,7 +680,10 @@ img.shadow {
     line-height: 1.1em;
     font-size: 36px;
     text-transform: uppercase;
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px; }
   .scholar-box p {
     line-height: 1.4em; }
     .scholar-box p span {
@@ -689,9 +700,9 @@ ol li {
   display: inline-block;
   padding: 8px 10px 2px;
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 18px;
   margin-bottom: 10px;
-  font-family: din-web, "Trebuchet MS", sans-serif; }
+  font-family: din-web-reg, din-web, "Trebuchet MS", sans-serif; }
 
 h3.action-btn {
   padding: 20px 0 70px;
@@ -722,11 +733,14 @@ h3.action-btn {
   padding: 20px 50px;
   height: 300px; }
   .square img {
-    margin: 0 auto;
+    margin: 0 auto 12px auto !important;
     display: block; }
   .square h3 {
     font-size: 20px;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    font-family: din-web-reg;
+    line-height: 1.2em;
+    height: 50px; }
   .square p {
     line-height: 1.4em; }
 
@@ -739,6 +753,10 @@ h3.action-btn {
 
 .sq-three {
   border-right: 1px solid lightgray; }
+
+.sq-four img {
+  margin-top: -10px !important;
+  margin-bottom: 22px !important; }
 
 .sq-one, .sq-three {
   margin-left: 50px;
@@ -763,7 +781,8 @@ h3.action-btn {
   display: inline-block; }
   .stand-up-btn p {
     margin-bottom: 20px;
-    font-size: 18px; }
+    font-size: 18px;
+    font-weight: 600; }
   .stand-up-btn .stand-arrow-left, .stand-up-btn .stand-arrow-right {
     position: absolute;
     bottom: -10px; }

@@ -10,7 +10,7 @@
       });  
 
       //GAME LINKS SLOW SCROLL
-   		$('.game').click(function (event) {
+   		$('.jump').click(function (event) {
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
         return false;
       });  
