@@ -46,13 +46,14 @@ Drupal.behaviors.dsPfpShare = {
       var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
       var pimg = Drupal.behaviors.dsPfpShare.pimg;
 
+      alert("1");
       FB.getLoginStatus(function(response) {
         if (response.status == 'unknown') {
           // Not connected.
           FB.login(function(response)) {
-            if (response.authResponse) {
+            //if (response.authResponse) {
               Drupal.behaviors.dsPfpShare.submit_share(response);
-            }
+            //}
           }
         }
         else if (response.status == 'not_authorized') {
