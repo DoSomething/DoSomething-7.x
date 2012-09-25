@@ -583,8 +583,13 @@ function dosomething_picsforpets_general_form_alter(&$form, &$form_state, $form_
   $form['#after_build'][] = 'dosomething_picsforpets_general_hide_pet_shelter';
   $form['#validate'][] = 'dosomething_picsforpets_general_censor';
 
+  $form['#submit'][] = 'dosomething_picsforpets_general_store_my_pet';
   // Add back the values after a form validation. They were getting dropped.
   // TODO
+}
+
+function dosomething_picsforpets_general_store_my_pet($form, &$form_state) {
+  $_SESSION['just_submitted_pet'] = true;
 }
 
 function dosomething_picsforpets_general_censor(&$form, &$form_state) {

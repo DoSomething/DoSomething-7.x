@@ -119,6 +119,11 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
       drupal_add_js(drupal_get_path('module', 'dosomething_fb_apps') . '/js/picsforpets-carousel.js');
       drupal_add_js(array('fbappsAnimals' => array('sid' => $context['args'][0]->sid)), 'setting');
 
+      if ($_SESSION['just_submitted_pet']) {
+        drupal_add_js('jQuery(document).ready(function() { jQuery("#picsforpets-share").click(); });', 'inline');
+        $_SESSION['just_submitted_pet'] = FALSE;
+      }
+
       drupal_add_js(drupal_get_path('module', 'dosomething_petitions') . '/dosomething_petitions.js');
       $element = array(
         '#tag' => 'meta',
