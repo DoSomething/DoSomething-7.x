@@ -808,3 +808,15 @@ h3.action-btn {
   #bullytext-questions .faq .activeFAQ {
     background-image: url("assets/blackarrow-down.png");
     color: black; }
+
+.page-node-725172 h2, .page-node-725172 p {
+  text-align: center; }
+.page-node-725172 h2 {
+  font-size: 36px;
+  line-height: 1.1em;
+  padding: 20px 20px 10px;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  font-weight: 600; }
+.page-node-725172 p {
+  font-size: 18px;
+  padding: 10px 20px 40px; }
