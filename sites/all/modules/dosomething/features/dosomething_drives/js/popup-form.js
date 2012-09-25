@@ -18,11 +18,10 @@
 
       Drupal.friendFinder($('.fb-friend-finder-init'), 'publish_stream', function (friends) {
         var fbObj = {
-          message: 'This is the message.',
-          name: 'This is the name.',
-          caption: 'This is the caption.',
+          message: 'Please join my cheek swap drive and help me save a life.',
+          name: 'Saving a life is as easy as giving your spit.',
           picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
-          description: 'This is the description',
+          description: 'Join your friend\'s cheek swab drive to help save the 10,000 blood cancer patients looking for a life saving donation. You can either sign up to donate, or spread the word about your friend\'s awesome drive.',
           link: window.location.href
         };
         for (var i in friends) {
