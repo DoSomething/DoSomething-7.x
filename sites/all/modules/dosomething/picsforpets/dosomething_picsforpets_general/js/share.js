@@ -45,10 +45,25 @@ Drupal.behaviors.dsPfpShare = {
       var pname = Drupal.behaviors.dsPfpShare.pname;
       var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
       var pimg = Drupal.behaviors.dsPfpShare.pimg;
-      FB.getLoginStatus(function(response) {
-        alert(response);
-      });
 
+      FB.getLoginStatus(function(response) {
+        alert(response.status);
+      });
+FB.api('/me/permissions', function (response) {
+            var perms = response.data[0];
+
+            if (perms.publish_actions) {                
+               // User has permission
+            } else {                
+FB.ui({
+method: 'permissions.request',
+perms: 'publish_actions',
+display: 'popup'
+},function(response) {
+  // Just making sure that they have this permission.
+});
+            }                                            
+    } );
 
       FB.api(
         '/me/dosomethingapp:share',
@@ -122,4 +137,71 @@ Drupal.behaviors.dsPfpShare = {
                 }
               });
               $loader.find('#edit-cell').val('cell');
-              $loader.dial
+              $loader.dialog({
+                  title: Drupal.t('Thanks for sharing!'),
+                  resizable: false,
+                  draggable: false,
+                  modal: true,
+                  top: 180,
+                  width: 550,
+                  position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+                  open: function(event, ui) {
+                    if (typeof FB != 'undefined') { 
+                      FB.Canvas.scrollTo(0,0);
+                    }
+                  }
+                });
+            }
+            else if (userShares == 3) {
+              $inviteDialog = $('<div class="invite-modal"></div>');
+              $inviteDialog.load('/fb/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function() {
+                  $('#picsforpets-invite-friends').click(function() {
+                    // We don't actually care what they click after they get
+                    // into the invite friends FB dialog. So if they click the
+                    // button we'll close the dialog no matter what.
+                    $inviteDialog.dialog('close');
+                    FB.ui({
+                      method: 'apprequests',
+                      display: 'iframe',
+                      title: "DoSomething.org's Pics for Pets",
+                      message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
+                      access_token: settings.picsforpetsFBAuth.access_token,
+                      show_error: true
+                    });
+                  });
+                })
+                .dialog({
+                  title: Drupal.t('Hey, you\'ve shared 3 animals!'),
+                  resizable: false,
+                  draggable: false,
+                  modal: true,
+                  top: 180,
+                  width: 550,
+                  position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+                  open: function(event, ui) {
+                    if (typeof FB != 'undefined') { 
+                      FB.Canvas.scrollTo(0,0);
+                    }
+                  }
+                }
+              );
+            }
+          });
+        }
+      });
+    });
+
+    //var ref = document.referrer;
+    //if (ref.indexOf('submit-pet-picture') !== -1) {
+//      $('#picsforpets-share').click();
+    //}
+  },
+
+  update_attrs: function(image, name, adjectives) {
+    this.pname = name;
+    this.pimg = image;
+    this.adjectives = adjectives;
+  }
+};
+
+}(jQuery));
