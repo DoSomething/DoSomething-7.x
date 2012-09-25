@@ -21,6 +21,14 @@ body
   background: $bgFallback
   background: url(assets/bg.jpg)
 
+// Hide either the Join or Start header depending on which page we're on
+.page-team #contact-form 
+  #webform-component-start-header
+    display: none  
+.page-node-724776 #contact-form 
+  #webform-component-join-header
+    display: none  
+
 @media only screen and (max-width: 1075px)
   .region-sidebar-first
     display: none

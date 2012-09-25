@@ -9,6 +9,24 @@ define('DS_DRIVE_GOAL_FIELD', 'drive_goal');
 include_once 'dosomething_drives.features.inc';
 
 /**
+ * Implements hook_init().
+ */
+function dosomething_drives_init() {
+  $node = menu_get_object();
+  if (isset($node->nid) && $node->type == 'campaign') {
+    if (isset($node->field_team_redirect) && $node->field_team_redirect[LANGUAGE_NONE][0]['value'] == 1) {
+      if (!isset($_GET['skip_redirect']) && user_is_logged_in()) {
+        $path = drupal_lookup_path('alias', 'node/'.$node->nid);
+        $team = teams_get_my_teams_for_url($path);
+        if (!empty($team)) {
+          drupal_goto('team/'.$path.'/'.array_shift($team));
+        }
+      }
+    }
+  }
+}
+
+/**
 * Implementation of hook_ctools_plugin_directory().
 */
 function dosomething_drives_ctools_plugin_directory($module, $plugin) {
