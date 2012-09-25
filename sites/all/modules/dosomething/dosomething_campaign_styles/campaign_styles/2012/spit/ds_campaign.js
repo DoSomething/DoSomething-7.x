@@ -32,15 +32,15 @@
         return url[0] + '?' + query;
       }
 
-      $('.tw-share-drive').attr('data-text', 'Twitter language needs to be done!');
+      $('.tw-share-drive').attr('data-text', '#GiveASpit about cancer. Get your cheek swabbed and you could save a life, it\'s that simple: http://dosomething.org/spit');
       $('.fb-share-drive').click(function (e) {
         e.preventDefault();
         var fbObj = {
           method: 'feed',
           link: window.location.href,
           picture: '//files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
-          name: 'Name text here!',
-          description: 'Description text here!'
+          name: 'Give A Spit',
+          description: 'It\'s time to Give A Spit about cancer. Click here to get your cheek swabbed, you could end up saving a life.'
         };
         FB.ui(fbObj);
       });
