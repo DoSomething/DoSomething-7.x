@@ -1,5 +1,7 @@
 <?php
 
+// TODO: This is GHASTLY. I hate myself. This whole thing needs to be re-written non-stupid
+
 function dosomething_campaign_counter_campaign_counter_ctools_content_types() {
   return array(
     'single' => TRUE,
