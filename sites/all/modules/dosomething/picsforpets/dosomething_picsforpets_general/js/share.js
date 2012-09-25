@@ -25,14 +25,6 @@ Drupal.behaviors.dsPfpShare = {
 
     // Use the 'feed' method because it allows us to post metadata.
     var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/submit-pet-picture/submission/' + sid;
-    var share = {
-      method: 'feed',
-      name: 'DoSomething.org\'s Pics For Pets',
-      link: shareUrl,
-      picture: pictureUrl,
-      caption: petName + " I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
-      description: "Do Something about homeless animals, share photos of shelter pets and help them find homes. The more shares a pet gets the better chance it'll be adopted, their shelter will also be rewarded for every share!"
-    };
 
     $('#picsforpets-share').click(function () {
       if ($(this).hasClass('shared')) return;
@@ -40,164 +32,163 @@ Drupal.behaviors.dsPfpShare = {
         $(this).addClass('shared');
       }
 
-      $('.fb-share-me').text('Shared!');
-
-      var pname = Drupal.behaviors.dsPfpShare.pname;
-      var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
-      var pimg = Drupal.behaviors.dsPfpShare.pimg;
-
-      alert("1");
       FB.getLoginStatus(function(response) {
         if (response.status == 'unknown') {
-          // Not connected.
-          FB.login(function(response)) {
-            //if (response.authResponse) {
-              Drupal.behaviors.dsPfpShare.submit_share(response);
-            //}
-          }
+          // Not logged in.
+          FB.login(function(response) {
+            if (response.authResponse) {
+              Drupal.behaviors.dsPfpShare.submit_share(sid);
+            }
+          });
         }
         else if (response.status == 'not_authorized') {
           FB.api('/me/permissions', function (response) {
-          var perms = response.data[0];
-          if (perms.publish_actions) {                
-             // User has permission
-          } else {                
-          FB.ui({
-          method: 'permissions.request',
-          perms: 'publish_actions',
-          display: 'popup'
-          },function(response) {
-            // Just making sure that they have this permission.
+            var perms = response.data[0];
+            if (!perms.publish_actions) {
+              FB.ui({
+              method: 'permissions.request',
+              perms: 'publish_actions',
+              display: 'popup'
+              }, function(response) {
+                // Just making sure that they have this permission.
+              });
+            }
           });
         }
-        else if (response.status == 'connected') {
-          FB.api(
-            '/me/dosomethingapp:share',
-            'post',
-            {
-                pet_who_needs_a_home: document.location.href,
-                pet_name: pname,
-                pet_adjectives: adjectives,
-                image: pimg
-            },
-            function(response) {
-              Drupal.behaviors.dsPfpShare.submit_share(response);
-            });
-          });
+        else {
+          Drupal.behaviors.dsPfpShare.submit_share(sid);
         }
       });
+    });
   },
 
-  submit_share: function(response) {
-if ((typeof response !== 'undefined') && (response !== null) && !response.error) {
-      // Use FB's JS SDK to retrieve and store the user's facebook id.
-      var fbuid = FB.getUserID();
-      // Make POST request to this URL to update the share count on the
-      // webform submission, passing in the webform submission id and the
-      // user's facebook id as URL arguments.
-      $.post('/fb/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
-        // Increment the displayed share count.
-        var count = $('.picsforpets-share-count').text();
-        count++;
-        $('.picsforpets-share-count').text(count);
-        var titles = {
-          200  : '200 shares gets me a toy!',
-          500  : '500 shares gets me food!',
-          1000 : '1000 Shares gets me a bed!'
-        };
+  submit_share: function(sid) {
+    $('.fb-share-me').text('Shared!');
 
-        for (i in titles) {
-          if (count < i) {
-            $('#picsforpets-share').find('h1').html(titles[i]);
-            break;
-          }
-        }
+    var pname = Drupal.behaviors.dsPfpShare.pname;
+    var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
+    var pimg = Drupal.behaviors.dsPfpShare.pimg;
 
-        // Display a modal dialog depending on the total number of shares
-        // the user has made.
-        if (userShares == 1 && !settings.picsforpetsGeneral.furtographer) {
-          $loader = $('<div></div>');
-          $loader.load('/fb/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form', function() {
-            if ($('html').hasClass('ie9') || $('html').hasClass('ie8') || $('html').hasClass('ie7') || $('html').hasClass('ie6')) {
-              $cellval = $loader.find('#edit-cell')
-              $emailval = $loader.find('#edit-email');
-              $cellval.val('Cell:');
-              $emailval.val('Email:');
-              $cellval.focus(function() {
-                if ($(this).val() == 'Cell:') {
-                  $(this).val('');
+    FB.api(
+      '/me/dosomethingapp:share',
+      'post',
+      {
+          pet_who_needs_a_home: document.location.href,
+          pet_name: pname,
+          pet_adjectives: adjectives,
+          image: pimg
+      },
+      function(response) {
+        if ((typeof response !== 'undefined') && (response !== null) && !response.error) {
+          // Use FB's JS SDK to retrieve and store the user's facebook id.
+          var fbuid = FB.getUserID();
+          // Make POST request to this URL to update the share count on the
+          // webform submission, passing in the webform submission id and the
+          // user's facebook id as URL arguments.
+          $.post('/fb/pics-for-pets/share/js/' + sid + '/' + fbuid, function (userShares) {
+            // Increment the displayed share count.
+            var count = $('.picsforpets-share-count').text();
+            count++;
+            $('.picsforpets-share-count').text(count);
+            var titles = {
+              200  : '200 shares gets me a toy!',
+              500  : '500 shares gets me food!',
+              1000 : '1000 Shares gets me a bed!'
+            };
+
+            for (i in titles) {
+              if (count < i) {
+                $('#picsforpets-share').find('h1').html(titles[i]);
+                break;
+              }
+            }
+
+            // Display a modal dialog depending on the total number of shares
+            // the user has made.
+            if (userShares == 1 && !settings.picsforpetsGeneral.furtographer) {
+              $loader = $('<div></div>');
+              $loader.load('/fb/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form', function() {
+                if ($('html').hasClass('ie9') || $('html').hasClass('ie8') || $('html').hasClass('ie7') || $('html').hasClass('ie6')) {
+                  $cellval = $loader.find('#edit-cell')
+                  $emailval = $loader.find('#edit-email');
+                  $cellval.val('Cell:');
+                  $emailval.val('Email:');
+                  $cellval.focus(function() {
+                    if ($(this).val() == 'Cell:') {
+                      $(this).val('');
+                    }
+                  });
+                  $emailval.focus(function() {
+                    if ($(this).val() == 'Email:') {
+                      $(this).val('');
+                    }
+                  });
+                  $cellval.blur(function() {
+                    if ($(this).val() == '') {
+                      $(this).val('Cell:');
+                    }
+                  });
+                  $emailval.blur(function() {
+                    if ($(this).val() == '') {
+                      $(this).val('Email:');
+                    }
+                  });
                 }
               });
-              $emailval.focus(function() {
-                if ($(this).val() == 'Email:') {
-                  $(this).val('');
+              $loader.find('#edit-cell').val('cell');
+              $loader.dialog({
+                  title: Drupal.t('Thanks for sharing!'),
+                  resizable: false,
+                  draggable: false,
+                  modal: true,
+                  top: 180,
+                  width: 550,
+                  position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+                  open: function(event, ui) {
+                    if (typeof FB != 'undefined') { 
+                      FB.Canvas.scrollTo(0,0);
+                    }
+                  }
+                });
+            }
+            else if (userShares == 3) {
+              $inviteDialog = $('<div class="invite-modal"></div>');
+              $inviteDialog.load('/fb/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function() {
+                  $('#picsforpets-invite-friends').click(function() {
+                    // We don't actually care what they click after they get
+                    // into the invite friends FB dialog. So if they click the
+                    // button we'll close the dialog no matter what.
+                    $inviteDialog.dialog('close');
+                    FB.ui({
+                      method: 'apprequests',
+                      display: 'iframe',
+                      title: "DoSomething.org's Pics for Pets",
+                      message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
+                      access_token: settings.picsforpetsFBAuth.access_token,
+                      show_error: true
+                    });
+                  });
+                })
+                .dialog({
+                  title: Drupal.t('Hey, you\'ve shared 3 animals!'),
+                  resizable: false,
+                  draggable: false,
+                  modal: true,
+                  top: 180,
+                  width: 550,
+                  position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+                  open: function(event, ui) {
+                    if (typeof FB != 'undefined') { 
+                      FB.Canvas.scrollTo(0,0);
+                    }
+                  }
                 }
-              });
-              $cellval.blur(function() {
-                if ($(this).val() == '') {
-                  $(this).val('Cell:');
-                }
-              });
-              $emailval.blur(function() {
-                if ($(this).val() == '') {
-                  $(this).val('Email:');
-                }
-              });
+              );
             }
           });
-          $loader.find('#edit-cell').val('cell');
-          $loader.dialog({
-              title: Drupal.t('Thanks for sharing!'),
-              resizable: false,
-              draggable: false,
-              modal: true,
-              top: 180,
-              width: 550,
-              position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
-              open: function(event, ui) {
-                if (typeof FB != 'undefined') { 
-                  FB.Canvas.scrollTo(0,0);
-                }
-              }
-            });
         }
-        else if (userShares == 3) {
-          $inviteDialog = $('<div class="invite-modal"></div>');
-          $inviteDialog.load('/fb/pics-for-pets/ajax/invite-friends #dosomething-picsforpets-invite-form', function() {
-              $('#picsforpets-invite-friends').click(function() {
-                // We don't actually care what they click after they get
-                // into the invite friends FB dialog. So if they click the
-                // button we'll close the dialog no matter what.
-                $inviteDialog.dialog('close');
-                FB.ui({
-                  method: 'apprequests',
-                  display: 'iframe',
-                  title: "DoSomething.org's Pics for Pets",
-                  message: 'You’ve been invited to help find shelter animals a new home with Pics for Pets. The more shares, the more food and toy donations the animals can get for their shelters. Help animals find a home!',
-                  access_token: settings.picsforpetsFBAuth.access_token,
-                  show_error: true
-                });
-              });
-            })
-            .dialog({
-              title: Drupal.t('Hey, you\'ve shared 3 animals!'),
-              resizable: false,
-              draggable: false,
-              modal: true,
-              top: 180,
-              width: 550,
-              position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
-              open: function(event, ui) {
-                if (typeof FB != 'undefined') { 
-                  FB.Canvas.scrollTo(0,0);
-                }
-              }
-            }
-          );
-        }
-      });
-    }
-  }
+    });
+  },
 
   update_attrs: function(image, name, adjectives) {
     this.pname = name;
