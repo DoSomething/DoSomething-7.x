@@ -5,7 +5,7 @@
  */
 
 if (in_array(request_uri(), array('/fb/pics-for-pets', '/fb/pics-for-pets/'))) {
-  drupal_goto('fb/pics-for-pets/gallery');
+  drupal_add_js("window.location.href = '/fb/pics-for-pets/gallery';", 'inline');
 }
 
 ?>
