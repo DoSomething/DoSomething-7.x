@@ -80,7 +80,7 @@ function user_taxonomy_tag($account, $tags) {
   }
 
   // remove taxonomy
-  if (isset($tags['remove']) {
+  if (isset($tags['remove'])) {
     foreach ($tags['remove'] as $remove) {
       $tid = taxonomy_get_term_by_name($remove, 'user_tags');
       $tid = array_shift($tid)->tid;
