@@ -1902,7 +1902,7 @@ function dosomething_login_user_taxonomy_login($account) {
   return $return;
 }
 
-function user_taxonomy_user_taxonomy_insert($account) {
+function dosomething_login_user_taxonomy_insert($account) {
   if ($account->fboauth) {
     return 'fb_created_account';
   }
