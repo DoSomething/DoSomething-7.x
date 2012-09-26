@@ -62,7 +62,7 @@ function user_taxonomy_tag($account, $tags) {
 
   // make a pretty array of term=>delta so we can easily unset stuff later
   $tids = array();
-  if (!is_null($fields)) {
+  if (is_array($fields)) {
     foreach ($fields as $delta => $field) {
       $tids[$field['tid']] = $delta;
     }
