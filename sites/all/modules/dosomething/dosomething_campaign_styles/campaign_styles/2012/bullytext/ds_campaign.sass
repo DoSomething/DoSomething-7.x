@@ -586,7 +586,7 @@ hr.gray
     width: 790px
     background: black !important
     color: white
-    padding: 20px
+    padding: 20px 0
     .left-fade
       position: absolute
       left: 0px
@@ -606,7 +606,7 @@ hr.gray
       font-size: 28px
       text-align: center
       line-height: 1.4em
-      margin-bottom: 15px
+      margin: 0 20px 15px
       color: $baseColor
     p
       text-align: center
@@ -624,7 +624,8 @@ hr.gray
       color: #222    
     .scholarship-signup
       float: left
-      width: 60%
+      width: 57%
+      margin-left: 3%
       p
         width: 300px
         line-height: 1.4em
@@ -650,7 +651,8 @@ hr.gray
         left: 290px  
     .friends-signup
       float: left
-      width: 40%
+      width: 37%
+      margin-right: 3%
       p
         font-size: 11px
         float: left
@@ -674,10 +676,12 @@ hr.gray
 
 // LEARN ISSUE
 img.shadow
-  margin: 0 !important         
-.bully-box, .bully-box-plus
+  margin: 0 !important
+
+.bully-box
   float: left
-  padding: 20px
+  width: 250px
+  margin: 20px 0
   text-align: center
   line-height: 1.4em
   img
@@ -686,14 +690,12 @@ img.shadow
   h3
     font-family: din-web-reg
     font-size: 18px
-.bully-box
-  width: 250px
-.bully-box-plus
-  float: left
-  width: 248px
+.bully-inner
+  padding: 20px    
+.bully-inner-plus
+  padding: 20px 20px 0
   border-left: 1px solid lightgray
   border-right: 1px solid lightgray
-  padding-bottom: 0px
   margin-bottom: 40px
 
 // EXAMPLE
@@ -745,7 +747,8 @@ img.shadow
     &.sharewith
       margin: 0 0 0 370px
       padding: 5px 0 40px 0
-      display: block  
+      display: block
+      clear: both  
 .stats
   float: left
   width: 250px
@@ -827,12 +830,12 @@ h3.action-btn
       font-size: 24px
 
 // STAND UP
+#square-wrap
+  margin: 0 50px
 .square
   float: left
   width: 325px
   text-align: center
-  padding: 20px 50px
-  height: 300px
   img
     margin: 0 auto 12px auto !important
     display: block
@@ -843,7 +846,11 @@ h3.action-btn
     line-height: 1.2em
     height: 50px  
   p
-    line-height: 1.4em  
+    line-height: 1.4em
+.sq-one, .sq-two, .sq-three, .sq-four
+  height: 300px
+  padding-top: 20px
+  padding-bottom: 20px
 .sq-one
   border-right: 1px solid lightgray
   border-bottom: 1px solid lightgray    
@@ -856,11 +863,11 @@ h3.action-btn
     margin-top: -10px !important
     margin-bottom: 22px !important   
 .sq-one, .sq-three
-  margin-left: 50px
   padding-left: 0
+  padding-right: 50px
 .sq-two, .sq-four
-  margin-right: 50px
   padding-right: 0
+  padding-left: 50px
 .sq-three, .sq-four
   margin-bottom: 40px
 

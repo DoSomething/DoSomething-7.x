@@ -493,7 +493,7 @@ hr.gray {
   width: 790px;
   background: black !important;
   color: white;
-  padding: 20px; }
+  padding: 20px 0; }
   #bullytext-game .pane-content .left-fade {
     position: absolute;
     left: 0px;
@@ -513,7 +513,7 @@ hr.gray {
     font-size: 28px;
     text-align: center;
     line-height: 1.4em;
-    margin-bottom: 15px;
+    margin: 0 20px 15px;
     color: #ffd400; }
   #bullytext-game .pane-content p {
     text-align: center; }
@@ -526,7 +526,8 @@ hr.gray {
     color: #222222; }
   #bullytext-game .pane-content .scholarship-signup {
     float: left;
-    width: 60%; }
+    width: 57%;
+    margin-left: 3%; }
     #bullytext-game .pane-content .scholarship-signup p {
       width: 300px;
       line-height: 1.4em; }
@@ -552,7 +553,8 @@ hr.gray {
       left: 290px; }
   #bullytext-game .pane-content .friends-signup {
     float: left;
-    width: 40%; }
+    width: 37%;
+    margin-right: 3%; }
     #bullytext-game .pane-content .friends-signup p {
       font-size: 11px;
       float: left;
@@ -577,27 +579,26 @@ hr.gray {
 img.shadow {
   margin: 0 !important; }
 
-.bully-box, .bully-box-plus {
+.bully-box {
   float: left;
-  padding: 20px;
+  width: 250px;
+  margin: 20px 0;
   text-align: center;
   line-height: 1.4em; }
-  .bully-box img, .bully-box-plus img {
+  .bully-box img {
     margin: 0 auto;
     display: block; }
-  .bully-box h3, .bully-box-plus h3 {
+  .bully-box h3 {
     font-family: din-web-reg;
     font-size: 18px; }
 
-.bully-box {
-  width: 250px; }
+.bully-inner {
+  padding: 20px; }
 
-.bully-box-plus {
-  float: left;
-  width: 248px;
+.bully-inner-plus {
+  padding: 20px 20px 0;
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
-  padding-bottom: 0px;
   margin-bottom: 40px; }
 
 #bullytext-example {
@@ -647,7 +648,8 @@ img.shadow {
 #bullytext-stats img.sharewith {
   margin: 0 0 0 370px;
   padding: 5px 0 40px 0;
-  display: block; }
+  display: block;
+  clear: both; }
 
 .stats {
   float: left;
@@ -727,12 +729,13 @@ h3.action-btn {
       font-weight: bold;
       font-size: 24px; }
 
+#square-wrap {
+  margin: 0 50px; }
+
 .square {
   float: left;
   width: 325px;
-  text-align: center;
-  padding: 20px 50px;
-  height: 300px; }
+  text-align: center; }
   .square img {
     margin: 0 auto 12px auto !important;
     display: block; }
@@ -744,6 +747,11 @@ h3.action-btn {
     height: 50px; }
   .square p {
     line-height: 1.4em; }
+
+.sq-one, .sq-two, .sq-three, .sq-four {
+  height: 300px;
+  padding-top: 20px;
+  padding-bottom: 20px; }
 
 .sq-one {
   border-right: 1px solid lightgray;
@@ -760,12 +768,12 @@ h3.action-btn {
   margin-bottom: 22px !important; }
 
 .sq-one, .sq-three {
-  margin-left: 50px;
-  padding-left: 0; }
+  padding-left: 0;
+  padding-right: 50px; }
 
 .sq-two, .sq-four {
-  margin-right: 50px;
-  padding-right: 0; }
+  padding-right: 0;
+  padding-left: 50px; }
 
 .sq-three, .sq-four {
   margin-bottom: 40px; }
