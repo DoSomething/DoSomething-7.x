@@ -589,7 +589,9 @@ function dosomething_picsforpets_general_form_alter(&$form, &$form_state, $form_
 }
 
 function dosomething_picsforpets_general_store_my_pet($form, &$form_state) {
-  $_SESSION['just_submitted_pet'] = true;
+  if (isset($_SESSION)) {
+    $_SESSION['just_submitted_pet'] = true;
+  }
 }
 
 function dosomething_picsforpets_general_censor(&$form, &$form_state) {
