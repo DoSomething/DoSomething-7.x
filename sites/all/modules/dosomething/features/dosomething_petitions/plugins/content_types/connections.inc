@@ -29,9 +29,26 @@ function array_vals_multi($array = array(), &$vals = array())
 
 function dosomething_connections_content_type_render($subtype, $conf, $panel_args, $context) {
 
-	$issues = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE]);
-  $charities = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_11[LANGUAGE_NONE]);
-  $celebs = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_6[LANGUAGE_NONE]);
+  if (isset($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE])) {
+  	$issues = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE]);
+  }
+  else {
+    $issues = array();
+  }
+
+  if (isset($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_11[LANGUAGE_NONE])) {
+    $charities = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_11[LANGUAGE_NONE]);
+  }
+  else {
+    $charities = array();
+  }
+
+  if (isset($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_6[LANGUAGE_NONE])) {
+    $celebs = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_6[LANGUAGE_NONE]);
+  }
+  else {
+    $celebs = array();
+  }
 
   if (empty($issues)) { $tags = 0; }
   else { $tags = implode(',', $issues); }
