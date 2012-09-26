@@ -75,19 +75,26 @@ function dosomething_general_menu() {
     'access callback' => 'user_is_logged_in',
   );
 
-  $items['unsubscribe-email/%'] = array(
+  $items['unsubscribe-email/%/%'] = array(
     'page callback' => 'dosomething_general_unsubscribe_email',
-    'page arguments' => array(1),
+    'page arguments' => array(1, 2),
     'access callback' => TRUE
   );
 
   return $items;
 }
 
-function dosomething_general_unsubscribe_email($email) {
+function dosomething_general_unsubscribe_email($email, $hash) {
+  $real_hash = md5($email . md5('ds.org'));
+  if ($hash !== $real_hash) {
+    drupal_goto('');
+  }
+
   $unsub = new stdClass;
   $unsub->email = $email;
   $unsub->timestamp = REQUEST_TIME;
+#  $unsub->type = 'petition';
+#  $unsub->hash = $hash;
 
   drupal_write_record('dosomething_unsubscribed', $unsub);
 
@@ -324,7 +331,7 @@ function dosomething_general_infusionsoft_subscribe($emails, $action_id) {
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
  * configured opt-in path.
  */
-function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path) {
+function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $args = array()) {
   $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
 
   // Send the post data.
@@ -336,6 +343,12 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path) {
     'method' => 'POST',
     'data' => "person[phone]=$mobile&opt_in_path[]=$opt_in_path",
   );
+
+  if (!empty($args)) {
+    foreach ($args AS $key => $val) {
+      $options['data'] .= "&$key=" . urlencode($val);
+    }
+  }
 
   drupal_http_request($api_opt_in_path_url, $options);
 }
