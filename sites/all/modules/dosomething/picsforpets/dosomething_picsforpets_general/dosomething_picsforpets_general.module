@@ -387,7 +387,7 @@ function dosomething_picsforpets_invite_form($form, &$form_state) {
   $form['heading'] = array(
    '#prefix' => '<div class="sign-up-text">',
    '#suffix' =>  '</div>',
-   '#markup' => t("You've helped 5 animals!"),
+   '#markup' => t("You've helped 3 animals!"),
   );
   $form['text'] = array(
     '#prefix' => '<div class="sign-up-text">',
@@ -605,6 +605,10 @@ function dosomething_picsforpets_general_censor(&$form, &$form_state) {
       if (in_array($cleaned_word, $words)) {
         form_set_error('field_fb_app_three_words][und][' . $key, t('Sorry, you may not use curse words to describe your pet.'));
       }
+    }
+    else {
+      // Confirming they give us three words...so the share doesn't look stupid.
+      form_set_error('form', t('Please give us three (3) words to describe your furry friend.'));
     }
   }
 }

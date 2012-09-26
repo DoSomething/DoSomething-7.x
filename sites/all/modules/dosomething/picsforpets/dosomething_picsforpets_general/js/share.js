@@ -18,10 +18,6 @@ Drupal.behaviors.dsPfpShare = {
     // Grab some metadata.
     var pictureUrl = $('.field-name-field-fb-app-image img').attr('src');
     var petName = $('.hi-pet-name p').text();
-    var threeWords = [];
-    jQuery.each($('.field-name-field-fb-app-three-words .field-items').children(), function() {
-      threeWords.push($(this).text());
-    });
 
     // Use the 'feed' method because it allows us to post metadata.
     var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/submit-pet-picture/submission/' + sid;
@@ -37,51 +33,68 @@ Drupal.behaviors.dsPfpShare = {
           // Not logged in.
           FB.login(function(response) {
             if (response.authResponse) {
-              Drupal.behaviors.dsPfpShare.submit_share(sid);
-            }
-          }, { scope: 'publish_actions' });
-        }
-        else if (response.status == 'not_authorized') {
-          FB.api('/me/permissions', function (response) {
-            var perms = response.data[0];
-            if (!perms.publish_actions) {
-              FB.ui({
-              method: 'permissions.request',
-              perms: 'publish_actions',
-              display: 'popup'
-              }, function(response) {
-                // Just making sure that they have this permission.
-              });
+              Drupal.behaviors.dsPfpShare.submit_share(sid, settings);
             }
           });
         }
+        else if (response.status == 'not_authorized') {
+          //FB.api('/me/permissions', function (response) {
+          //  var perms = response.data[0];
+          //  if (!perms.publish_actions) {
+          //    FB.ui({
+         //    method: 'permissions.request',
+         //     perms: 'publish_actions',
+         //     display: 'popup'
+         //     }, function(response) {
+         //       // Just making sure that they have this permission.
+         //     });
+         //   }
+         // });
+        }
         else {
-          Drupal.behaviors.dsPfpShare.submit_share(sid);
+          Drupal.behaviors.dsPfpShare.submit_share(sid, settings);
         }
       });
     });
   },
 
-  submit_share: function(sid) {
-    $('.fb-share-me').text('Shared!');
-
+  submit_share: function(sid, settings) {
     var pname = Drupal.behaviors.dsPfpShare.pname;
     var adjectives = Drupal.behaviors.dsPfpShare.adjectives;
     var pimg = Drupal.behaviors.dsPfpShare.pimg;
+    var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/submit-pet-picture/submission/' + sid;
 
-    FB.api(
-      '/me/dosomethingapp:share',
-      'post',
-      {
-          pet_who_needs_a_home: document.location.href,
-          pet_name: pname,
-          pet_adjectives: adjectives,
-          image: pimg
-      },
+    var threeWords = [];
+    jQuery.each($('.field-name-field-fb-app-three-words .field-items').children(), function() {
+      threeWords.push($(this).text());
+    });
+
+    // Old share
+    var share = {
+      method: 'feed',
+      name: 'I need a home.  Click here to share me and help me find one.',
+      link: shareUrl,
+      picture: pimg,
+      caption: "Hi, I'm " + pname + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
+      description: "Help me find this shelter animal a home. Click here to share this animal."
+    };
+
+    //FB.api(
+    // '/me/dosomethingapp:share',
+    //  'post',
+    //  {
+    //      pet_who_needs_a_home: document.location.href,
+    //      pet_name: pname,
+    //      pet_adjectives: adjectives,
+    //      image: pimg
+    //  },
+    FB.ui(share,
       function(response) {
         if ((typeof response !== 'undefined') && (response !== null) && !response.error) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
+
+          $('.fb-share-me').text('Shared!');
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.

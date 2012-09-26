@@ -19,21 +19,21 @@ Drupal.behaviors.inviteFriendsModal = {
               obj.access_token = response.authResponse.accessToken
               FB.ui(obj);
             }
-          }, { scope: 'publish_actions' });
+          });
         }
         else if (response.status == 'not_authorized') {
-          FB.api('/me/permissions', function (response) {
-            var perms = response.data[0];
-            if (!perms.publish_actions) {
-              FB.ui({
-              method: 'permissions.request',
-              perms: 'publish_actions',
-              display: 'popup'
-              }, function(response) {
-                // Just making sure that they have this permission.
-              });
-            }
-          });
+          //FB.api('/me/permissions', function (response) {
+          //  var perms = response.data[0];
+          //  if (!perms.publish_actions) {
+          //    FB.ui({
+          //    method: 'permissions.request',
+          //    perms: 'publish_actions',
+          //    display: 'popup'
+          //    }, function(response) {
+          //      // Just making sure that they have this permission.
+          //    });
+          //  }
+          //});
         }
         else {
           FB.ui(obj);
@@ -45,6 +45,7 @@ Drupal.behaviors.inviteFriendsModal = {
           
 Drupal.behaviors.galleryShareButton = {
   share_url: '',
+  pet_name: '',
 
   attach: function (context, settings) {
     $('.gallery-share-button').click(function () {
@@ -54,13 +55,8 @@ Drupal.behaviors.galleryShareButton = {
       }
      
       var sid = parseInt($(this).parent().attr('id'));
-      var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/' + settings.picsforpetsFBAuth.fbFormAlias + '/submission/' + sid;
-      var threeWords = [];
-      threeWords[0] = 0 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[0].raw.safe_value : "Fun";
-      threeWords[1] = 1 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[1].raw.safe_value : "Cute";
-      threeWords[2] = 2 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[2].raw.safe_value : "Friendly";
 
-      Drupal.behaviors.galleryShareButton.share_url = shareUrl;
+      Drupal.behaviors.galleryShareButton.pet_name = $(this).text();
 
       var item = this;
       FB.getLoginStatus(function(response) {
@@ -70,21 +66,21 @@ Drupal.behaviors.galleryShareButton = {
             if (response.authResponse) {
               Drupal.behaviors.galleryShareButton.submit_share(sid, item, settings);
             }
-          }, { scope: 'publish_actions' });
+          });
         }
         else if (response.status == 'not_authorized') {
-          FB.api('/me/permissions', function (response) {
-            var perms = response.data[0];
-            if (!perms.publish_actions) {
-              FB.ui({
-              method: 'permissions.request',
-              perms: 'publish_actions',
-              display: 'popup'
-              }, function(response) {
-                // Just making sure that they have this permission.
-              });
-            }
-          });
+        //  FB.api('/me/permissions', function (response) {
+        //    var perms = response.data[0];
+        //    if (!perms.publish_actions) {
+        //      FB.ui({
+        //      method: 'permissions.request',
+        //      perms: 'publish_actions',
+        //      display: 'popup'
+        //      }, function(response) {
+        //        // Just making sure that they have this permission.
+        //      });
+        //    }
+        //  });
         }
         else {
           Drupal.behaviors.galleryShareButton.submit_share(sid, item, settings);
@@ -94,19 +90,37 @@ Drupal.behaviors.galleryShareButton = {
   },
 
   submit_share: function(sid, elm, settings) {
-    $(elm).text('Shared!');
-    FB.api(
-        '/me/dosomethingapp:share',
-        'post',     
-        {         
-            pet_who_needs_a_home: Drupal.behaviors.galleryShareButton.share_url,
-            image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
-        },  
-    //FB.ui(share,  
+    //FB.api(
+        //'/me/dosomethingapp:share',
+        //'post',     
+        //{         
+        //    pet_who_needs_a_home: Drupal.behaviors.galleryShareButton.share_url,
+        //    image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+        //},  
+       var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/' + settings.picsforpetsFBAuth.fbFormAlias + '/submission/' + sid;
+      var threeWords = [];
+      threeWords[0] = 0 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[0].raw.safe_value : "Fun";
+      threeWords[1] = 1 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[1].raw.safe_value : "Cute";
+      threeWords[2] = 2 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[2].raw.safe_value : "Friendly";
+
+
+      // Old share
+    var share = {
+        method: 'feed',
+        name: 'I need a home.  Click here to share me and help me find one.',
+        link: shareUrl,
+        picture: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+        caption: "Hi.  I'm " + settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
+        description: "Help me find this shelter animal a home.  Click here to share this animal."
+      };
+
+    FB.ui(share,  
       function(response) {
         if ((typeof response !== 'undefined') && (response !== null)) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
+
+          $(elm).text('Shared!');
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
           // user's facebook id as URL arguments.
