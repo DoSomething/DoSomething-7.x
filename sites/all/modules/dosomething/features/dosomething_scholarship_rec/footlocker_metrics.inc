@@ -17,8 +17,8 @@ function dosomething_scholarship_rec_footlocker_metrics() {
     array('Unique nominators', dosomething_scholarship_rec_fl_unique_nominators($nomination)),
     array('Started applications', dosomething_scholarship_rec_fl_started_apps($application)),
     array('Submitted applications', dosomething_scholarship_rec_fl_complete_apps($application)),
-    array('Submitted applications with reqeusted recommendations', dosomething_scholarship_rec_fl_rec_requested($application, $required)),
-    array('Submitted applications with completed required recommendations', dosomething_scholarship_rec_fl_rec_completed($application, $required)),
+    array('Submitted applications that have requested a required recommendation', dosomething_scholarship_rec_fl_rec_requested($application, $required)),
+    array('Submitted applications that have completed required recommendations', dosomething_scholarship_rec_fl_rec_completed($application, $required)),
     array('Submitted applications that have requested an optional recommendation', dosomething_scholarship_rec_fl_rec_requested($application, $optional)),
     array('Submitted applications that have completed optional recommendations', dosomething_scholarship_rec_fl_rec_completed($application, $optional)),
   );
