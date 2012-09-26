@@ -38,7 +38,7 @@
         var fbObj = {
           method: 'feed',
           link: window.location.href,
-          picture: '//files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
+          picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
           name: 'Give A Spit',
           description: 'It\'s time to Give A Spit about cancer. Click here to get your cheek swabbed, you could end up saving a life.'
         };
