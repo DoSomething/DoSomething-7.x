@@ -62,25 +62,31 @@ function user_taxonomy_tag($account, $tags) {
 
   // make a pretty array of term=>delta so we can easily unset stuff later
   $tids = array();
-  foreach ($fields as $delta => $field) {
-    $tids[$field['tid']] = $delta;
+  if (!is_null($fields)) {
+    foreach ($fields as $delta => $field) {
+      $tids[$field['tid']] = $delta;
+    }
   }
 
   // add taxonomy
-  foreach ($tags['add'] as $add) {
-    $tid = taxonomy_get_term_by_name($add, 'user_tags');
-    $tid = array_shift($tid)->tid;
-    if (!isset($tids[$tid])) {
-      $account->field_user_tags[LANGUAGE_NONE][] = array('tid' => $tid);
+  if (isset($tags['add'])) {
+    foreach ($tags['add'] as $add) {
+      $tid = taxonomy_get_term_by_name($add, 'user_tags');
+      $tid = array_shift($tid)->tid;
+      if (!isset($tids[$tid])) {
+        $account->field_user_tags[LANGUAGE_NONE][] = array('tid' => $tid);
+      }
     }
   }
 
   // remove taxonomy
-  foreach ($tags['remove'] as $remove) {
-    $tid = taxonomy_get_term_by_name($remove, 'user_tags');
-    $tid = array_shift($tid)->tid;
-    if (isset($tids[$tid])) {
-      unset($account->field_user_tags[LANGUAGE_NONE][$tids[$tid]]);
+  if (isset($tags['remove']) {
+    foreach ($tags['remove'] as $remove) {
+      $tid = taxonomy_get_term_by_name($remove, 'user_tags');
+      $tid = array_shift($tid)->tid;
+      if (isset($tids[$tid])) {
+        unset($account->field_user_tags[LANGUAGE_NONE][$tids[$tid]]);
+      }
     }
   }
   // re-index the array
