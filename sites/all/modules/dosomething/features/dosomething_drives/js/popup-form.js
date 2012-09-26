@@ -24,6 +24,10 @@
           description: 'Join your friend\'s cheek swab drive to help save the 10,000 blood cancer patients looking for a life saving donation. You can either sign up to donate, or spread the word about your friend\'s awesome drive.',
           link: window.location.href
         };
+
+        $('#teams-notification-area').html('Shared with your Facebook friends! Invite more friends below.');
+        triggerPopup();
+
         for (var i in friends) {
           FB.api('/'+friends[i]+'/feed', 'post', fbObj, function(response) {
           });
