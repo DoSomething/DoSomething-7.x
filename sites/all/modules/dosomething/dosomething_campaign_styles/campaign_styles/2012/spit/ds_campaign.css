@@ -329,7 +329,7 @@ body {
   text-align: left; }
 #cmp .drive-info-wrapper {
   float: left;
-  width: 55%; }
+  width: 56%; }
 #cmp .drive-participants {
   float: right;
   width: 40%;
@@ -347,14 +347,17 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   border-bottom: 1px solid #cccccc; }
-#cmp .drive-info-info a {
-  color: #7f3f80;
-  background-image: url("assets/drive1.png");
-  background-position: 0% 50%;
-  background-repeat: no-repeat;
-  background-size: 20px;
-  padding: 1em 1.8em 0;
-  display: block; }
+#cmp .drive-info-info {
+  width: 70%;
+  float: left; }
+  #cmp .drive-info-info a {
+    color: #7f3f80;
+    background-image: url("assets/drive1.png");
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding: 1em 1.8em 0;
+    display: block; }
 #cmp .drive-info-where, #cmp .drive-info-when {
   width: 45%;
   font-weight: uppercase;
@@ -363,6 +366,25 @@ body {
     font-weight: 500;
     text-transform: none;
     color: #777777; }
+#cmp .drive-share {
+  width: 30%;
+  float: right; }
+  #cmp .drive-share h3 {
+    text-align: right; }
+#cmp .drive-facebook, #cmp .drive-twitter {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  text-indent: -9999em;
+  margin: 0 0 0 5%;
+  float: right; }
+  #cmp .drive-facebook:hover, #cmp .drive-twitter:hover {
+    background-position-y: -30px; }
+#cmp .drive-twitter {
+  background-image: url(assets/drive-twitter.png); }
+#cmp .drive-facebook {
+  background-image: url(assets/drive-facebook.png); }
 #cmp .drive-info-description, #cmp .drive-info-countdown {
   display: none; }
 #cmp input.remove_participant {
@@ -390,8 +412,6 @@ body {
   padding: 0.2em 0; }
 #cmp .drive-action-link {
   text-align: center; }
-#cmp .drive-share {
-  display: none; }
 #cmp #action.action-anonymous img, #cmp #action.action-participant img {
   display: block;
   margin: 5% auto; }

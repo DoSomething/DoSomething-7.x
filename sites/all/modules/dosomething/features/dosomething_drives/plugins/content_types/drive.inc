@@ -145,6 +145,7 @@ function dosomething_drives_drive_get_info($drive, $is_admin) {
 
 function dosomething_drives_drive_share() {
   drupal_add_js(drupal_get_path('module', 'dosomething_drives') . '/js/twitter.js');
+  $url = url(request_path(), array('absolute' => TRUE));
   return array(
     '#type' => 'container',
     '#suffix' => '</div> <!-- .drive-info-wrapper -->',
@@ -152,7 +153,8 @@ function dosomething_drives_drive_share() {
       'class' => array('drive-share'),
     ),
     'div' => array(
-      '#markup' => '<a href="#" class="fb-share-drive">Share on Facebook</a><a href="https://www.twitter.com/share" class="tw-share-drive twitter-share-button">Share on Twitter</a>',
+      '#markup' => '<h3>Share this drive</h3><a href="#" class="drive-facebook fb-share-drive">Share on Facebook</a>
+      <a href="https://twitter.com/share?url=' . $url . '&hashtags=GiveASpit&text=Give a spit about cancer! Get your cheek swabbed and you could save a life; it\'s that simple." class="drive-twitter" target="_blank">Share on Twitter</a>',
     ),
   );
 }

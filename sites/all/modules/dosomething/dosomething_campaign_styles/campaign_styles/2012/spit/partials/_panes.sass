@@ -27,7 +27,7 @@
 
 .drive-info-wrapper /* wraps left column features */
   float: left
-  width: 55%
+  width: 56%
 
 .drive-participants /* list of drive members */
   float: right
@@ -48,14 +48,17 @@
   text-transform: uppercase
   border-bottom: 1px solid #ccc
 
-.drive-info-info a /* edit drive link */
-  color: $spitPurple
-  background-image: url("assets/drive1.png")
-  background-position: 0% 50%
-  background-repeat: no-repeat
-  background-size: 20px
-  padding: 1em 1.8em 0
-  display: block
+.drive-info-info /* drive logistics */
+  width: 70%
+  float: left
+  a /* edit drive link */
+    color: $spitPurple
+    background-image: url("assets/drive1.png")
+    background-position: 0% 50%
+    background-repeat: no-repeat
+    background-size: 20px
+    padding: 1em 1.8em 0
+    display: block
 
 .drive-info-where, .drive-info-when /* address and date styling */
   width: 45%
@@ -66,7 +69,30 @@
     text-transform: none
     color: #777
 
-.drive-info-description, .drive-info-countdown /* goal and countdown */
+.drive-share 
+  width: 30%
+  float: right
+  h3
+    text-align: right
+
+.drive-facebook, .drive-twitter /* twitter and facebook sprites for drive sharing */
+  width: 30px
+  height: 30px
+  display: inline-block
+  background-repeat: no-repeat
+  text-indent: -9999em
+  margin: 0 0 0 5%
+  float: right
+  &:hover
+    background-position-y: -30px
+
+.drive-twitter
+  background-image: url(assets/drive-twitter.png)
+
+.drive-facebook
+  background-image: url(assets/drive-facebook.png)
+
+.drive-info-description, .drive-info-countdown /* hides unused goal and countdown elements */
   display: none
 
 input.remove_participant /* "remove participants" button */
@@ -92,9 +118,6 @@ input.remove_participant /* "remove participants" button */
 
 .drive-action-link /* "invite more friendss" button */
   text-align: center
-
-.drive-share /* hides twitter and facebook share links until they are functional */
-  display: none
 
 //			//
 //	#action			- "here's what you do" -
