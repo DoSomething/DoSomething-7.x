@@ -70,7 +70,7 @@ class dosomething_fb_apps_handler_closest_to_me_sort extends views_handler_sort 
 
     // Order by the distance.
 
-    $this->query->add_orderby(NULL, "(((ACOS(SIN(($lat * PI()/180)) * SIN(($lat_field * PI()/180)) + COS(($lat * PI()/180)) * COS(($lat_field * PI()/180)) * COS((($lon - $lon_field) * PI()/180)))) * 180/PI()) * 60 * 1.1515)", 'ASC', 'distance');
+    $this->query->add_orderby(NULL, "coalesce((((ACOS(SIN(($lat * PI()/180)) * SIN(($lat_field * PI()/180)) + COS(($lat * PI()/180)) * COS(($lat_field * PI()/180)) * COS((($lon - $lon_field) * PI()/180)))) * 180/PI()) * 60 * 1.1515), 100000000000)", 'ASC', 'distance');
   }
 
 
