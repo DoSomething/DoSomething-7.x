@@ -51,12 +51,6 @@ class contact_scraper {
 
 	  $form['#attached']['css'][] = array(
 	      'data' => drupal_get_path('module', 'dosomething_contact_picker') . '/css/scraper_init.css',
-	      'options' => array(
-	        'group' => CSS_LIBRARY,
-	        'preprocess' => FALSE,
-	        'every_page' => TRUE,
-	        'weight' => 1000
-	      )
 	  );
 	}
 
@@ -128,6 +122,8 @@ class contact_scraper {
 			if (valid_email_address(trim($email))) {
 
 			  $e['params']['email'] = $email;
+			  $e['params']['email'] .= '/' . md5($email . md5('ds.org'));
+
 			  drupal_mail($e['group'], $e['email'], trim($email), $language, ($e['params'] ? $e['params'] : array()));
 
 			  // If a "store" function is set, store this node ID, user ID and email in the database.
@@ -138,6 +134,7 @@ class contact_scraper {
 		  }
 		}
 
+		// Email the inviter
 		if ($user->mail && isset($emails["{$node->type}"]['inviter'])) {
 		  $i = $emails["{$node->type}"]['inviter'];
 		  drupal_mail($i['group'], $i['email'], $user->mail, $language, ($i['params'] ? $i['params'] : array()));

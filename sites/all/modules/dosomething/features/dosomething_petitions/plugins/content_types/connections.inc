@@ -10,7 +10,7 @@ $plugin = array(
   'render callback' => 'dosomething_connections_content_type_render'
 );
 
-function array_vals_multi($array,&$vals)
+function array_vals_multi($array = array(), &$vals = array())
 {
     foreach ($array as $key => $value) {
 
