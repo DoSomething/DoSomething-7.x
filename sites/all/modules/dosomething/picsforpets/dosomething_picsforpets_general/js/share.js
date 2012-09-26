@@ -93,8 +93,8 @@ Drupal.behaviors.dsPfpShare = {
         if ((typeof response !== 'undefined') && (response !== null) && !response.error) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
+          console.log(response);
 
-          $('.slideshow-next').click();
           $('.fb-share-me').text('Shared!');
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
@@ -200,6 +200,8 @@ Drupal.behaviors.dsPfpShare = {
               );
             }
           });
+
+          $('.slideshow-next').click();
         }
     });
   },
