@@ -253,7 +253,7 @@ class OpenGraphMeta {
 
       // already written this meta tag to output?
       if (array_key_exists($field, $this->tags_already_output)) {
-        $this->warn(t("Already output og:%s",array('%s' => $field)));
+        //$this->warn(t("Already output og:%s",array('%s' => $field)));
         continue;
       }
 
