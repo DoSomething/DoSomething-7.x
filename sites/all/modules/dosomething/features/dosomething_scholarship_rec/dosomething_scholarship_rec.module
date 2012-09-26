@@ -17,6 +17,11 @@ function dosomething_scholarship_rec_menu() {
     'page arguments' => array(1),
     'access callback' => 'user_is_logged_in',
   );
+  $items['footlocker-metrics'] = array(
+    'page callback' => 'dosomething_scholarship_rec_footlocker_metrics',
+    'file' => 'footlocker_metrics.inc',
+    'access callback' => TRUE,
+  );
 
   return $items;
 }
