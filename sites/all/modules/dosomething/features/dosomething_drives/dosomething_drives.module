@@ -216,6 +216,9 @@ function dosomething_drives_match_email($form, &$form_state) {
     $vals['email'] = $form_state['values']['submitted_tree']['field_webform_email'][LANGUAGE_NONE][0]['email'];
     $vals['mobile'] = $form_state['values']['submitted_tree']['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
     $address_fields = array('address_1', 'address_2', 'city', 'state');
+    $school = reset(entity_load('ds_school', array($form_state['values']['submitted_tree']['field_webform_school_reference'][LANGUAGE_NONE][0]['target_id'])));
+    $school_type = ($school->type == 1) ? 'High School' : 'College';
+    $vals['school'] = $school_type . ': ' . $school->name;
     foreach ($address_fields as $field) {
       $vals[$field] = $form_state['values']['submitted_tree'][$field];
     }

@@ -1,5 +1,6 @@
 <p>Email: <?php echo $email; ?></p>
 <p>Cell:  <?php echo $mobile; ?></p>
+<p>School name: <?php echo $school; ?></p>
 <p>
 Address:<br>
 <?php echo $address_1; ?><br>
