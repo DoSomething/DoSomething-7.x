@@ -113,6 +113,7 @@ function dosomething_general_library() {
     // add it if it does
     $libraries['fb-friend-finder'] = array(
       'title' => 'Facebook Friend Finder',
+      'version' => '1.0',
       'js' => array(
         drupal_get_path('module', 'dosomething_general') . '/js/fb-friend-finder.js' => array(),
         $path . '/tdfriendselector.js' => array(),
