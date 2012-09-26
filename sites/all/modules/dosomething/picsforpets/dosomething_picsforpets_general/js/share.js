@@ -94,6 +94,7 @@ Drupal.behaviors.dsPfpShare = {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
 
+          $('.slideshow-next').click();
           $('.fb-share-me').text('Shared!');
           // Make POST request to this URL to update the share count on the
           // webform submission, passing in the webform submission id and the
