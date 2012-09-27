@@ -1224,7 +1224,7 @@ function dosomething_clubs_invite_form($form, &$form_state, $gid) {
     '#type' => 'textfield',
     '#size' => 30,
     '#attributes' => array(
-      'placeholder' => 'Friend\'s email or cell',
+      'placeholder' => 'Friend\'s email', // or cell
       'style' => 'float: left; margin-right: 10px;'
     ),
   );
@@ -1480,7 +1480,7 @@ function dosomething_clubs_invite_message($contact, $gid, $is_reminder = FALSE, 
     }
   }
   else if (dosomething_general_valid_cell($contact)) {
-    dosomething_general_mobile_commons_subscribe($contact, 126531, array('club_name' => t('Blah')));
+    #dosomething_general_mobile_commons_subscribe($contact, 126531, array('club_name' => t('Blah')));
   }
 }
 
