@@ -28,11 +28,53 @@ function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
   $message = $context['message'];
 
   $storage = conductor_get_storage_handler(variable_get('conductor_default_storage_handler', 'database'));
-  $workflow = FALSE;
-  // See if we're already having a conversation with this number.
+  
+  $startNewWorkflow = FALSE;
+
+  // Allow modules to specify sms keyword / workflow matches by implementing
+  // hook_conductor_sms_keywords().
+  $map = module_invoke_all('conductor_sms_keywords');
+  foreach ($map as $key => $val) {
+    // If message is a keyword, find its corresponding workflow
+    if (strpos(strtolower($message), strtolower($key)) !== FALSE) {
+      // If keyword found, always start a new workflow
+      $keyword = $key;
+      $startNewWorkflow = TRUE;
+    }
+  }
+
+  // Check if there's a workflow currently in progress with this number
+  $workflowInProgress = FALSE;
   $pointer = $storage->loadPointer('sms_prompt:' . $number);
   if ($pointer && isset($pointer['workflowName'])) {
-    $workflow = conductor_get_workflow($pointer['workflowName']);
+    $workflowInProgress = conductor_get_workflow($pointer['workflowName']);
+  }
+
+  // And if there is a workflow in progress and we need to start a new one,
+  // stop the current one in progress.
+  if ($workflowInProgress && $startNewWorkflow) {
+    // Deactivate current activity
+    $currentActivity = $workflowInProgress->getActivity($pointer['activityName']);
+    $workflowInProgress->getState()->deactivateActivity($currentActivity);
+
+    // Remove pointer and mark workflow as complete to remove from storage
+    $storage->deletePointer('sms_prompt:' . $number);
+    $workflowInProgress->getState()->workflowComplete();
+  }
+
+  $workflow = FALSE;
+  if ($startNewWorkflow) {
+    // If the keyword is set, load the corresponding workflow
+    if (isset($map[$keyword])) {
+      $workflow = conductor_get_workflow($map[$keyword]);
+    }
+
+    $workflow->getActivity('start')->getState()->setContext('sms_number', $number);
+    $workflow->run();
+  }
+  else {
+    $workflow = $workflowInProgress;
+
     // Resume context resumes wtih the pointer and a context array to hand into
     // that activity upon resume.
     $resume_context = array(
@@ -43,26 +85,7 @@ function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
     );
     $workflow->getState()->resume($resume_context);
   }
-  else {
-    // Allow modules to specify sms keyword / workflow matches by implementing
-    // hook_conductor_sms_keywords().
-    $map = module_invoke_all('conductor_sms_keywords');
-    if (!empty($keyword)) {
-      $keyword = strtolower($keyword);
-    }
-    else {
-      foreach ($map as $key => $workflow) {
-        if (strpos(strtolower($message), strtolower($key)) !== FALSE) {
-          $keyword = $key;
-        }
-      }
-    }
-    // If it the keyword is set load and run the corresponding workflow.
-    if (isset($map[$keyword]) && $workflow = conductor_get_workflow($map[$keyword])) {
-      $workflow->getActivity('start')->getState()->setContext('sms_number', $number);
-      $workflow->run();
-    }
-  }
+
   if ($workflow) {
     if ($workflow->getState()->getContext('sms_response')) {
       $output = $workflow->getState()->getContext('sms_response');
