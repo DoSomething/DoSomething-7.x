@@ -78,7 +78,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
@@ -540,6 +540,40 @@ body {
     border-color: transparent transparent #562b57 #562b57;
     right: -22px;
     top: 44px; }
+#cmp #impact .go-button {
+  margin: 2% 0 1% 0; }
+#cmp #faq h4, #cmp #faq li, #cmp #faq p {
+  text-align: left;
+  padding: 0 0 0 1.5em; }
+#cmp #faq h4 {
+  color: #7f3f80;
+  cursor: pointer;
+  background: url("assets/faq2.png");
+  background-repeat: no-repeat; }
+#cmp #faq h1 {
+  font-size: 2em;
+  font-family: din-web;
+  text-transform: uppercase;
+  background: url("assets/faq3.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0.7em;
+  padding: 0 0 1em 0;
+  margin: 0 0 -1em 0; }
+#cmp #faq .go-button {
+  margin: 0 0 1% 0; }
+#cmp #faq h4.activeFAQ {
+  background-position-y: -27px; }
+#cmp #footer h1 {
+  font-size: 2em;
+  font-family: din-web;
+  text-transform: uppercase;
+  background: url("assets/faq3.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0.7em;
+  padding: 0 0 1em 0;
+  margin: 0 0 -1em 0; }
+#cmp #footer .go-button {
+  margin: 0 0 1% 0; }
 #cmp label {
   cursor: default; }
 #cmp #contact-form {
@@ -694,13 +728,13 @@ body {
 @media only screen and (max-width: 775px) {
   #cmp .section {
     width: 100%;
-    margin: 2% auto; } }
-#cmp .refer5 {
-  width: 106%;
-  margin: 0 0 0 -3%;
-  padding: 3%; }
-  #cmp .refer5:before, #cmp .refer5:after {
-    display: none; }
+    margin: 2% auto; }
+  #cmp .refer5 {
+    width: 106%;
+    margin: 0 0 0 -3%;
+    padding: 3%; }
+    #cmp .refer5:before, #cmp .refer5:after {
+      display: none; } }
 @media only screen and (max-width: 450px) {
   #cmp .section {
     margin: 5% auto; } }
