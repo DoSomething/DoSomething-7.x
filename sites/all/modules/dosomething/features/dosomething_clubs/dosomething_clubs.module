@@ -1556,7 +1556,7 @@ function dosomething_clubs_join_page($gid, $verify = FALSE, $hash = NULL) {
         $inviter = user_load($invitee[0]->inviter);
         $p = profile2_load_by_user($inviter, 'main');
         $starter = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
-        if (!trim($author)) {
+        if (!trim($starter)) {
           $starter = $inviter->name;
         }
         $params['name'] = $starter;
