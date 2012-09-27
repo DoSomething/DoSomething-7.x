@@ -788,7 +788,7 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
   );
   $form['test'] = array(
     '#markup' => '<p id="club-name-live">The club name will be "<span>(Write something)</span> DoSomething.org Club"</p>',
-    '#weight' => 4
+    '#weight' => 4.5
   );
 
   $form['field_noschool_club_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('Group Name');
