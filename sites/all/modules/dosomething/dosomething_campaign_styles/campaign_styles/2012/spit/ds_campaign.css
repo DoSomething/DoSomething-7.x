@@ -348,7 +348,7 @@ body {
   text-transform: uppercase;
   border-bottom: 1px solid #cccccc; }
 #cmp .drive-info-info {
-  width: 70%;
+  width: 65%;
   float: left; }
   #cmp .drive-info-info a {
     color: #7f3f80;
@@ -359,7 +359,6 @@ body {
     padding: 1em 1.8em 0;
     display: block; }
 #cmp .drive-info-where, #cmp .drive-info-when {
-  width: 45%;
   font-weight: uppercase;
   font-weight: 600; }
   #cmp .drive-info-where span, #cmp .drive-info-when span {
@@ -367,7 +366,7 @@ body {
     text-transform: none;
     color: #777777; }
 #cmp .drive-share {
-  width: 30%;
+  width: 35%;
   float: right; }
   #cmp .drive-share h3 {
     text-align: right; }
@@ -525,16 +524,20 @@ body {
       font-weight: 500; }
 #cmp .refer5 {
   background: #7f3f80;
-  width: 109.1%;
-  margin: 0 0 0 -4.1%;
+  width: 110%;
+  margin: 0 0 0 -4.95%;
   padding: 3%; }
-  #cmp .refer5:after {
+  #cmp .refer5:before, #cmp .refer5:after {
     content: "";
     position: absolute;
     border-style: solid;
     border-width: 11px; }
+  #cmp .refer5:before {
+    border-color: transparent #562b57 #562b57 transparent;
+    left: -23px;
+    top: 44px; }
   #cmp .refer5:after {
-    border-color: transparent transparent #3b1d3c #3b1d3c;
+    border-color: transparent transparent #562b57 #562b57;
     right: -22px;
     top: 44px; }
 #cmp #impact .go-button {
@@ -560,6 +563,17 @@ body {
   margin: 0 0 1% 0; }
 #cmp #faq h4.activeFAQ {
   background-position-y: -27px; }
+#cmp #footer h1 {
+  font-size: 2em;
+  font-family: din-web;
+  text-transform: uppercase;
+  background: url("assets/faq3.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0.7em;
+  padding: 0 0 1em 0;
+  margin: 0 0 -1em 0; }
+#cmp #footer .go-button {
+  margin: 0 0 1% 0; }
 #cmp label {
   cursor: default; }
 #cmp #contact-form {

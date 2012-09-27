@@ -49,7 +49,7 @@
   border-bottom: 1px solid #ccc
 
 .drive-info-info /* drive logistics */
-  width: 70%
+  width: 65%
   float: left
   a /* edit drive link */
     color: $spitPurple
@@ -61,7 +61,6 @@
     display: block
 
 .drive-info-where, .drive-info-when /* address and date styling */
-  width: 45%
   font-weight: uppercase
   font-weight: 600
   span
@@ -70,7 +69,7 @@
     color: #777
 
 .drive-share 
-  width: 30%
+  width: 35%
   float: right
   h3
     text-align: right
@@ -250,16 +249,20 @@ input.remove_participant /* "remove participants" button */
 
 .refer5
   background: $spitPurple
-  width: 109.1%
-  margin: 0 0 0 -4.1%
+  width: 110%
+  margin: 0 0 0 -4.95%
   padding: 3%
-  &:after
+  &:before, &:after
     content: ""
     position: absolute
     border-style: solid
     border-width: 11px
+  &:before
+    border-color: transparent darken($spitPurple, 12) darken($spitPurple, 12) transparent
+    left: -23px
+    top: 44px
   &:after
-    border-color: transparent transparent darken($spitPurple, 20) darken($spitPurple, 20)
+    border-color: transparent transparent darken($spitPurple, 12) darken($spitPurple, 12)
     right: -22px
     top: 44px
 
@@ -302,4 +305,19 @@ input.remove_participant /* "remove participants" button */
   h4.activeFAQ
     background-position-y: -27px
 
-// maybe not
+//			//
+//	#footer     - sign up button; conditionally displayed -
+//			//
+
+#footer
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 0.7em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  .go-button
+    margin: 0 0 1% 0
