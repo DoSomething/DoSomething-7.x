@@ -18,7 +18,7 @@ class dosomething_fb_apps_handler_closest_to_me_sort extends views_handler_sort 
     $fbid = fboauth_fbid_load($user->uid);
     $fb_zip = db_query('SELECT zip FROM {ds_fb_user_zips} WHERE fbid = :fbid', array('fbid' => $fbid))->fetchField();
     $user->fb_zip = $fb_zip;
-    if (!$fb_zip && isset($_GET['zip'])) {
+    if (isset($_GET['zip'])) {
       $fb_zip = $_GET['zip'];
     }
 
