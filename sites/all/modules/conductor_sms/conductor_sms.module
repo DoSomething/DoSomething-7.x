@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function conductor_sms_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'conductor') {
+    return "plugins/$plugin_type";
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function conductor_sms_ctools_plugin_api($owner, $api) {
+  if ($owner == 'conductor' && ($api == 'plugins' || $api == 'workflow')) {
+    return array('version' => 1.0);
+  }
+}
+
+/**
+ * Implements hook_sms_mobile_commons_response_alter().
+ */
+function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
+
+  $keyword = $context['keyword'];
+  $number = $context['sender'];
+  $message = $context['message'];
+
+  $storage = conductor_get_storage_handler(variable_get('conductor_default_storage_handler', 'database'));
+  $workflow = FALSE;
+  // See if we're already having a conversation with this number.
+  $pointer = $storage->loadPointer('sms_prompt:' . $number);
+  if ($pointer && isset($pointer['workflowName'])) {
+    $workflow = conductor_get_workflow($pointer['workflowName']);
+    // Resume context resumes wtih the pointer and a context array to hand into
+    // that activity upon resume.
+    $resume_context = array(
+      'sms_prompt:' . $number => array(
+        $pointer['activityName'] . ':message' => $message,
+        'sms_response' => FALSE
+      ),
+    );
+    $workflow->getState()->resume($resume_context);
+  }
+  else {
+    // Allow modules to specify sms keyword / workflow matches by implementing
+    // hook_conductor_sms_keywords().
+    $map = module_invoke_all('conductor_sms_keywords');
+    if (!empty($keyword)) {
+      $keyword = strtolower($keyword);
+    }
+    else {
+      foreach ($map as $key => $workflow) {
+        if (strpos(strtolower($message), strtolower($key)) !== FALSE) {
+          $keyword = $key;
+        }
+      }
+    }
+    // If it the keyword is set load and run the corresponding workflow.
+    if (isset($map[$keyword]) && $workflow = conductor_get_workflow($map[$keyword])) {
+      $workflow->getActivity('start')->getState()->setContext('sms_number', $number);
+      $workflow->run();
+    }
+  }
+  if ($workflow) {
+    if ($workflow->getState()->getContext('sms_response')) {
+      $output = $workflow->getState()->getContext('sms_response');
+    }
+    else {
+      $exceptions = '';
+      $states = $workflow->getState()->getFailedActivities();
+      foreach ($states as $state) {
+        if ($state->getContext('failException')) {
+          $e = $state->getContext('failException');
+          $exceptions .= '<pre>';
+          $exceptions .= $e->getMessage() . ': ' . $e->getTraceAsString();
+          $exceptions .= '</pre>';
+        }
+      }
+      watchdog('conductor_sms', 'An sms failed to generate a response for user with mobile number @number. !exceptions', array('@number' => $number, '!exceptions' => $exceptions), WATCHDOG_ERROR);
+      $output = t('Aw snap! Something went wrong! We\'ll get right on it!');
+    }
+  }
+  else {
+    watchdog('conductor_sms', 'Text recieved without registered keyword with keyword "@keyword" and message "@message" from "@number"', array('@keyword' => $keyword, '@message' => $message, '@number' => $number));
+  }
+}
+
