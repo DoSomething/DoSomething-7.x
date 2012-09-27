@@ -59,6 +59,9 @@
       var logo = '//files.dosomething.org/files/campaigns/spit/logo.png';
       $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit"><img src="' + logo + '"/></a>');
 
+      // inject sponsor logo and text below the nav      
+      //$('.region-sidebar-first .content').append('<img src="//files.dosomething.org/files/campaigns/spit/btm-logo.png"/>');
+
       // hacktastic form rebuilding
       var $emailInput = $('#edit-submitted-field-webform-email');
       var $cellInput = $('#edit-submitted-field-webform-mobile');

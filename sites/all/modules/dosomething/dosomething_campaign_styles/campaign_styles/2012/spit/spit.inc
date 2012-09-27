@@ -35,4 +35,7 @@ $plugin = array(
     array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
+  'menu_suffix' => array(
+    '#markup' => '<img src="//files.dosomething.org/files/campaigns/spit/btm-logo.png"/><p>Got questions? Email us at <a href="mailto:giveaspit@dosomething.org">giveaspit@dosomething.org</a>!</p>'
+  ),
 );

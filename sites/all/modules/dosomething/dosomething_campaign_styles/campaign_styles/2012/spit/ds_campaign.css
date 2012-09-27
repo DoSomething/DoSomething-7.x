@@ -78,7 +78,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
@@ -145,13 +145,16 @@ body {
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
-  padding: 1.5em 2em 1.5em 0;
+  padding: 1.5em 0;
   width: 205px;
   -webkit-transition: background 5s ease-in;
   transition: background 5s ease-in; }
+  #block-dosomething-campaign-styles-campaign-nav .content {
+    width: 100%; }
   #block-dosomething-campaign-styles-campaign-nav ul {
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    border-bottom: solid 2px #eeeeee; }
   #block-dosomething-campaign-styles-campaign-nav li {
     margin: 0;
     padding: 2% 0; }
@@ -164,6 +167,16 @@ body {
     color: purple; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none; }
+  #block-dosomething-campaign-styles-campaign-nav img {
+    margin: 0 auto;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+  #block-dosomething-campaign-styles-campaign-nav p {
+    color: #dddddd;
+    text-align: center;
+    width: 80%; }
 
 #block-dosomething-campaign-styles-campaign-nav .highlight a {
   background: #ffcb15; }
