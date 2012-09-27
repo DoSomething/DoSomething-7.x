@@ -32,7 +32,7 @@
         return url[0] + '?' + query;
       }
 
-      $('.tw-share-drive').attr('data-text', '#GiveASpit about cancer. Get your cheek swabbed and you could save a life, it\'s that simple: http://dosomething.org/spit');
+      $('.tw-share-drive').attr('data-text', 'It\'s time to #GiveASpit about cancer. A simple cheek swab is all it takes to save a life. Seriously. http://dosomething.org/spit');
       $('.fb-share-drive').click(function (e) {
         e.preventDefault();
         var fbObj = {
@@ -40,7 +40,7 @@
           link: window.location.href,
           picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
           name: 'Give A Spit',
-          description: 'It\'s time to Give A Spit about cancer. Click here to get your cheek swabbed, you could end up saving a life.'
+          description: 'Are you ready to save a life? It\'s easier than you think. Click here to get your cheek swabbed and you could end up saving a life.'
         };
         FB.ui(fbObj);
       });

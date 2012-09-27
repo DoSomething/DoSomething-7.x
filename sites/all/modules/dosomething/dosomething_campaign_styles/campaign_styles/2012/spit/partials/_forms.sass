@@ -37,7 +37,7 @@ label
     float: right
     position: static
     margin: 9% 2% 0 0
-    padding: 1px 0.7em
+    padding: 0.3em 0.7em
 
 .pane-campaign-sign-up
   label, input[type="text"], input[type="tel"]
@@ -119,17 +119,23 @@ label
     #edit-submitted-field-webform-school,
     #edit-submitted-field-webform-school-zip
       display: none
+    #edit-submitted-field-webform-pictures-und-0-upload-button
+      display: block !important
+      margin: 10px !important
+  
   
 .go-button, #edit-submit, .form-submit
   font-family: din-web
   background: $spitYellow
   margin: 4% 0 1%
-  padding: 0.4em 0.7em
+  padding: 0.3em 0.7em
   font-size: 2em
   height: 1.4em
   display: inline-block
   color: $offBlack
   +border-radius(5px)
+  border: none
+  line-height: 1em
   &:hover
     color: darken($spitPurple, 12)
 
