@@ -444,7 +444,7 @@ body {
 #cmp .pane-drive-search-panel-pane-1 {
   background: white; }
   #cmp .pane-drive-search-panel-pane-1 form {
-    width: 62.5%;
+    width: 500px;
     margin: 0 auto;
     padding: 20px 0; }
   #cmp .pane-drive-search-panel-pane-1 .views-table {
@@ -660,8 +660,6 @@ body {
 #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
 #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
-<<<<<<< Updated upstream
-=======
 #cmp .page-node-724779 h1 {
   text-align: center; }
 #cmp #webform-client-form-724779 {
@@ -696,7 +694,6 @@ body {
     text-align: center; }
 <<<<<<< Updated upstream
 =======
->>>>>>> Stashed changes
 @media only screen and (max-width: 775px) {
   #cmp .section {
     width: 100%;
@@ -710,7 +707,4 @@ body {
 @media only screen and (max-width: 450px) {
   #cmp .section {
     margin: 5% auto; } }
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 >>>>>>> Stashed changes
