@@ -562,6 +562,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#attributes' => array(
       'placeholder' => t('Email'),
     ),
+    '#value' => (valid_email_address($_GET['email']) ? htmlspecialchars($_GET['email']) : ''),
     '#size' => 20,
     '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );

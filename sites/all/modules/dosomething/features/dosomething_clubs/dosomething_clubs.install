@@ -22,8 +22,87 @@ function dosomething_clubs_schema() {
         'length' => 255,
         'not null' => true,
       ),
+      'inviter' => array(
+        'description' => 'The person who invited.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+      ),
     ),
   );
 
+  $schema['dosomething_clubs_nag'] = array(
+    'description' => 'Stores nagging requests, so people don\'t flood the club leader',
+    'fields' => array(
+      'uid' => array(
+        'description' => 'The User ID of the nagger',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'clubid' => array(
+        'description' => 'The club ID in question',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'timestamp' => array(
+        'description' => 'The time stamp of the nagging request',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      )
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'clubid' => array('clubid'),
+      'timestamp' => array('timestamp')
+    )
+  );
+
   return $schema;
+}
+
+/**
+ *  Creates Invitations table
+ */
+function dosomething_clubs_update_7100() {
+  drupal_install_schema('dosomething_clubs');
+}
+
+/**
+ *  Creates nagging requests table
+ */
+function dosomething_clubs_update_7101() {
+  $schema = array();
+  $schema['dosomething_clubs_nag'] = array(
+    'description' => 'Stores nagging requests, so people don\'t flood the club leader',
+    'fields' => array(
+      'uid' => array(
+        'description' => 'The User ID of the nagger',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'clubid' => array(
+        'description' => 'The club ID in question',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'timestamp' => array(
+        'description' => 'The time stamp of the nagging request',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      )
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'clubid' => array('clubid'),
+      'timestamp' => array('timestamp')
+    )
+  );
+
+  db_create_table('dosomething_clubs_nag', $schema['dosomething_clubs_nag']);
 }

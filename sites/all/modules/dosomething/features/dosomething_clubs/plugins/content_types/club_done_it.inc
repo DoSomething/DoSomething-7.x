@@ -1,16 +1,16 @@
 <?php
 
-function dosomething_clubs_club_doing_it_ctools_content_types() {
+function dosomething_clubs_club_done_it_ctools_content_types() {
   return array(
     'single' => TRUE,
-    'title' => t('Dosomething Club Doing It Block'),
-    'description' => t('List of "Doing It" stuff.'),
+    'title' => t('Dosomething Club Done It Block'),
+    'description' => t('List of "Done it" stuff.'),
     'category' => t('DoSomething'),
     'required context' => new ctools_context_required(t('Node'), 'node'),
   );
 }
 
-function dosomething_clubs_club_doing_it_content_type_render($subtype, $conf, $panel_args, $context) {
+function dosomething_clubs_club_done_it_content_type_render($subtype, $conf, $panel_args, $context) {
 	$gid = og_get_group('node', $context->data->nid)->gid;
 
 	$query = db_query("(
@@ -46,7 +46,7 @@ WHERE (
 		)
 	)
 	AND (
-		`camp_date`.`field_campain_date_value2` > CURDATE()
+		`camp_date`.`field_campain_date_value2` < CURDATE()
 	)
 )
 ORDER BY `submitted` DESC
@@ -64,19 +64,20 @@ SELECT
 FROM 
 `webform_submissions` webform_submissions
 LEFT JOIN `users` users_webform_submissions ON webform_submissions.uid = users_webform_submissions.uid
+LEFT JOIN `field_data_field_project_type` AS `project_status` ON (`project_status`.`entity_id` = `webform_submissions`.`sid`)
 LEFT JOIN `og_membership` og_membership_users ON users_webform_submissions.uid = og_membership_users.etid AND og_membership_users.entity_type = 'user'
 LEFT JOIN `og` og_og_membership ON og_membership_users.gid = og_og_membership.gid
 LEFT JOIN `node` node ON webform_submissions.nid = node.nid
 LEFT JOIN `field_data_field_project_type` field_data_field_project_type ON webform_submissions.sid = field_data_field_project_type.entity_id AND (field_data_field_project_type.entity_type = 'webform_submission_entity' AND field_data_field_project_type.deleted = '0')
 LEFT JOIN `field_data_field_project_title` AS `pt` ON (`pt`.`entity_id` = `webform_submissions`.`sid`)
 LEFT JOIN `field_data_field_picture` AS `img` ON (`img`.`entity_id` = `webform_submissions`.`nid`)
-WHERE (( (og_membership_users.gid = '" . $gid . "' ) )AND(( (node.type IN  ('project_report')) AND (field_data_field_project_type.field_project_type_value IN  ('2', '3')) )))
+WHERE (( (og_membership_users.gid = '" . $gid . "' ) )AND(( (node.type IN  ('project_report')) AND (field_data_field_project_type.field_project_type_value IN  ('4')) )))
 ORDER BY `submitted` DESC
 LIMIT 4 OFFSET 0)")->fetchAll();
 
 	$block = new stdClass();
 	$output['title'] = array(
-		'#markup' => '<h2 class="pane-title" style="margin-bottom: 15px;">Doing It</h2>'
+		'#markup' => '<h2 class="pane-title" style="margin-bottom: 15px;">' . t('Done it') . '</h2>'
 	);
 
 	global $user;
@@ -98,30 +99,30 @@ LIMIT 4 OFFSET 0)")->fetchAll();
 	  		</div>
 	  			'
 		);*/
-		$output['member_links'][] = array(
-	        '#type' => 'container',
-	        '#attributes' => array(
-	          'class' => array('views-row'),
-	        ),
-	        'image' => array(
-	          '#theme' => 'image_formatter',
-	          '#item' => array($file->uri),
-	          '#image_style' => 'project_related_thumb',
-	        ),
-	        'description' => array(
-	          '#type' => 'container',
-	          '#attributes' => array(
-	            'class' => array('something-description'),
-	          ),
-	          'title' => array(
-	            '#type' => 'link',
-	            '#title' => t($data->title),
-	            '#href' => $link,
-	            '#prefix' => '<div class="views-field-title">',
-	            '#suffix' => '</div>',
-	          ),
-	        ),
-	      );
+	$output['member_links'][] = array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('views-row'),
+        ),
+        'image' => array(
+          '#theme' => 'image_formatter',
+          '#item' => array($file->uri),
+          '#image_style' => 'project_related_thumb',
+        ),
+        'description' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('something-description'),
+          ),
+          'title' => array(
+            '#type' => 'link',
+            '#title' => t($data->title),
+            '#href' => $link,
+            '#prefix' => '<div class="views-field-title">',
+            '#suffix' => '</div>',
+          ),
+        ),
+      );
 		$i++;
 	}
 	if (!$i) {

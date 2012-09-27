@@ -55,6 +55,30 @@
 
       $('.jcarousel-container a').attr('target', '_blank');
 
+      $('.club-image, #club-edit-logo').click(function() {
+        if (!$('.club-image').hasClass('admin-manage')) {
+          return false;
+        }
+
+        var id = $('#club-edit-logo').attr('class');
+
+        $logo = $('<div></div>').attr('id', 'edit-logo-modal');
+        $logo.load('/clubs/edit-logo/' + id, function() {
+          $logo.dialog({
+            resizable: false,
+            draggable: false,
+            modal: true,
+            width: 550,
+            dialogClass: 'club-edit-logo'
+          });
+
+          $('#edit-upload-button').click(function() {
+            $('.loading').show();
+          });
+        });
+        return false;
+      });
+
       $('#clubs-share-on-facebook').click(function() {
         window.open($(this).attr('href'), 'FBShare', 'width=500,height=300,toolbar=no,scrollbars=no,status=no,resizeable=no,menubar=no,location=no');
         return false;

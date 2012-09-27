@@ -54,6 +54,17 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   }
   else if (isset($membership->state) && $membership->state == OG_STATE_PENDING) {
     $member_link = 'Your membership is pending.';
+
+    $nag = db_select('dosomething_clubs_nag', 'n')
+      ->fields('n', array('uid'))
+      ->condition('timestamp', array(strtotime('24 hours ago'), REQUEST_TIME), 'BETWEEN')
+      ->condition('clubid', $node->nid, '=')
+      ->condition('uid', $user->uid)
+      ->range(0, 1)
+      ->execute();
+    if (!$nag->rowCount()) {
+      $member_link .= '<div>' . l(t('Remind the club leader'), 'clubs/remind-approve/' . $user->uid . '/' . $node->nid) . '</div>';
+    }
   }
   else {
     if (user_is_logged_in()) {
@@ -108,6 +119,22 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   . 'link=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];*/
   $link = 'http://www.facebook.com/sharer/sharer.php?u=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
+  $edit_photo_perm = '';
+  if ($user->uid == $node->uid || user_access('administer group', $user) || in_array(DSCLUBS_ADMIN_ROLE, og_get_user_roles($group->gid, $user->uid))) {
+    $edit_photo_perm = ' admin-manage';
+
+    $edit_link = array(
+      '#markup' => l(t('Edit'), 'node/add/club', array(
+        'attributes' => array(
+          'id' => 'club-edit-logo',
+          'class' => $node->nid
+        )
+      )),
+      '#prefix' => '<div class="edit-logo">',
+      '#suffix' => '</div>'
+    );
+  }
+
   $output = array(
     'container' => array(
       '#type' => 'container',
@@ -118,11 +145,16 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
       ),
       'left' => array(
         'image' => array(
-          '#theme' => 'image_formatter',
-          '#item' => $image,
-          '#image_style' => $image_style,
-          '#prefix' => '<div class="club-image">',
-          '#suffix' => '</div>',
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('club-image' . $edit_photo_perm)
+          ),
+          'edit' => $edit_link,
+          'logo' => array(
+            '#theme' => 'image_formatter',
+            '#item' => $image,
+            '#image_style' => $image_style,
+          ),
         ),
         'container' => array(
           '#type' => 'container',
@@ -131,35 +163,35 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
               'dosomething-club-facts'
             ),
           ),
-        'school_name' => array(
-          '#markup' => $school_name,
-          '#prefix' => '<div class="school-name">',
-          '#suffix' => '</div>',
-        ),
-        'location' => array(
-          '#markup' => $location,
-          '#prefix' => '<div class="school-location">',
-          '#suffix' => '</div>',
-        ),
-        'blurb' => array(
-          '#markup' => $node->field_club_blurb[LANGUAGE_NONE][0]['value'],
-          '#prefix' => '<p class="club-blurb">',
-          '#suffix' => '</p>'
-        ),
-        'member_link' => array(
-          '#markup' => $member_link,
-          '#prefix' => '<div class="invite-link">',
-          '#suffix' => '</div>',
-        ),
-        'share_on_facebook' => array(
-          '#markup' => t('Share on Facebook'),
-          '#prefix' => '<a href="' . $link . '" id="clubs-share-on-facebook">',
-          '#suffix' => '</a>',
-        ),
-        'see_all' => array(
-          '#markup' => $see_all,
-          '#prefix' => '<div class="see-all-members">',
-          '#suffix' => '</div>',
+          'school_name' => array(
+            '#markup' => $school_name,
+            '#prefix' => '<div class="school-name">',
+            '#suffix' => '</div>',
+          ),
+          'location' => array(
+            '#markup' => $location,
+            '#prefix' => '<div class="school-location">',
+            '#suffix' => '</div>',
+          ),
+          'blurb' => array(
+            '#markup' => $node->field_club_blurb[LANGUAGE_NONE][0]['value'],
+            '#prefix' => '<p class="club-blurb">',
+            '#suffix' => '</p>'
+          ),
+          'member_link' => array(
+            '#markup' => $member_link,
+            '#prefix' => '<div class="invite-link">',
+            '#suffix' => '</div>',
+          ),
+          'share_on_facebook' => array(
+            '#markup' => t('Share on Facebook'),
+            '#prefix' => '<a href="' . $link . '" id="clubs-share-on-facebook">',
+            '#suffix' => '</a>',
+          ),
+          'see_all' => array(
+            '#markup' => $see_all,
+            '#prefix' => '<div class="see-all-members">',
+            '#suffix' => '</div>',
           ),
         ),
       ),
@@ -182,15 +214,22 @@ function dosomething_clubs_club_counter_right() {
 
   // Get all users for the group.
   $query = db_select('og_membership', 'om');
-  $query->addField('om', 'etid');
+  $query->fields('om', array('etid', 'state'));
   $query->condition('om.entity_type', 'user', '=');
   $query->condition('om.gid', $group->gid, '=');
-  $query->condition('om.state', OG_STATE_ACTIVE, '=');
+  #$query->condition('om.state', OG_STATE_ACTIVE, '=');
   $results = $query->execute();
   $members = array();
+  $pending = 0;
   while ($result = $results->fetchObject()) {
-    $members[] = $result->etid;
+    if ($result->state == 1) {
+      $members[] = $result->etid;
+    }
+    else {
+      $pending++;
+    }
   }
+
   $member_count = count($members);
 
   $items['total_members'] = array(
@@ -235,8 +274,25 @@ function dosomething_clubs_club_counter_right() {
     '#items' => $items,
   );
 
+  $mnt = new EntityFieldQuery();
+  $memberships_no_titles = $mnt
+    ->entityCondition('entity_type', 'og_membership')
+    ->propertyCondition('gid', $gid)
+    ->propertyCondition('entity_type', 'user')
+    ->execute();
+
+  $w = $s = '';
+  if ($pending) {
+    $w = ' style="width: 110px; float: left;"';
+    $s = '<span style="float: right; background: #E01B6A; color: white; padding: 3px; position: relative; top: -5px; border-radius: 5px;" title="' . t('You have ' . $pending . ' member(s) pending approval.') . '">' . $pending . '</span>';
+  }
+
   $output[] = array(
-    '#markup' => l(t('View Members'), 'club/'.$group->gid.'/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')))),
+    '#markup' => l('<div' . $w . '>' . t('View Members') . '</div>' . $s, 'club/'.$group->gid.'/members', array('attributes' => array(
+        'class' => array('go-button', 'member-popup-trigger')
+      ),
+    'html' => TRUE
+    )),
   );
 
   return drupal_render($output);

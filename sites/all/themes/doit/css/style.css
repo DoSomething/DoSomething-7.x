@@ -519,7 +519,9 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 #og-ui-confirm-subscribe #edit-actions #edit-submit--2, .go-button-logo, .apps-grid .apps-box .apps-link a, .dropdown, .dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
+.logged-in #block-dosomething-login-become-member .done-it li,
+.logged-in #block-dosomething-login-become-member .my-clubs ul,
+.logged-in #block-dosomething-login-become-member .my-clubs li, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar-headlines a, .right-sidebar .headlines a, .pane-narrow-block .views-field-title a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-project-title a,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, ol li:before, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
@@ -645,7 +647,8 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-field-field-project-title h2,
 .page-node-done-it .pane-club-projects-panel-pane-4 .something-description h2,
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title h2, .main-nav, .main-nav-dropdown, .module-titles, .headlines a, .right-sidebar .sidebar-title, .counter-labels, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, .popup-title, #lets-talk-dialog h2, .pane-news-stuff .pane-content h3, .selectBox-options, ol li:before, dfn, .already-member, .see-whats-new, .separator, fieldset legend, label, ul.pager li.pager-current, #utility-bar, #breadcrumb b, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .dosomething-member-facts h2, .vital-stats .title,
+.logged-in #block-dosomething-login-become-member .done-it,
+.logged-in #block-dosomething-login-become-member .my-clubs, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .dosomething-member-facts h2, .vital-stats .title,
 .vital-stats .name, #mini-panel-home_page .pane-share-of-day, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .already-member, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .see-whats-new,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .already-member,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .see-whats-new, .social-activity-content #twtr-widget-1 .twtr-tweet a, .apps-grid .apps-box .apps-title, .ribbon-front a,
@@ -730,7 +733,9 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .page-node-done-it .pane-club-projects-panel-pane-4 .views-field-field-project-title a, .dosomething-stats .dosomething-club-facts .invite-link, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error,
+.logged-in #block-dosomething-login-become-member .done-it li,
+.logged-in #block-dosomething-login-become-member .my-clubs ul,
+.logged-in #block-dosomething-login-become-member .my-clubs li, .teaser-date, .app-footer, .footer-links, body.front .selectBox-options li, .selectBox-options li, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li, thead tr th, #dosomething-login-register-popup-form .error,
 #dosomething-login-register-facebook .error, nav[role=navigation], #block-menu-menu-footer .content ul.menu li span, .apps-grid .apps-box .apps-footer {
   font-weight: bold;
   font-weight: 500;
@@ -765,7 +770,9 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .gold, .dothis-button-large, .highlight-on-dark, .not-logged-in #dosomething-login-register-block .why, .not-logged-in #dosomething-login-register-block .or-sign-in, .logged-in #block-dosomething-login-become-member .dosomething-login-percentage .ratio .label, .dropdown-choices:hover, .sidebar-dropdown-choices:hover, .member-expanded:hover, .logged-in #block-dosomething-login-become-member .doing-it ul:hover,
 .logged-in #block-dosomething-login-become-member .doing-it li:hover,
 .logged-in #block-dosomething-login-become-member .done-it ul:hover,
-.logged-in #block-dosomething-login-become-member .done-it li:hover, body.front .selectBox-options li.selectBox-hover a, .selectBox-options li.selectBox-hover a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
+.logged-in #block-dosomething-login-become-member .done-it li:hover,
+.logged-in #block-dosomething-login-become-member .my-clubs ul:hover,
+.logged-in #block-dosomething-login-become-member .my-clubs li:hover, body.front .selectBox-options li.selectBox-hover a, .selectBox-options li.selectBox-hover a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li.selectBox-hover a, .region-sidebar-first .block-menu-block .content li:hover a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li:hover a, #lets-talk-dialog .title a,
 #lets-talk-dialog .detail a, .ribbon-front {
   color: #fed100;
 }
@@ -777,7 +784,8 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .white, .purple-ribbon, .text-on-dark, .dark-background, .region-sidebar-first .block, .dropdown, .dropdown-categories, body.front #dosomething-blocks-make-an-impact-form-front .selectBox-dropdown, body.front .selectBox-dropdown, #block-dosomething-blocks-dosomething-make-impact .selectBox-dropdown, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-dropdown, .views-exposed-widget .selectBox-dropdown, .ctools-jump-menu-select .selectBox-label, .dropdown-choices, .sidebar-dropdown-categories, .sidebar-dropdown-choices, .sponsors-who-rock, .app-purple-ribbon, .accordian, .accordian-selected-category, .main-nav.hover, .main-nav-dropdown, .main-footer-nav, .filter-dropdowns, .footer-links, .module-titles, .block-header, h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name, .right-sidebar .sidebar-title, .popup-title, #lets-talk-dialog h2, body.front .selectBox-options li a, .selectBox-options li a, body.not-front .pane-dosomething-blocks-dosomething-make-impact-front .selectBox-options li a, thead tr th,
 thead tr th a, thead tr th:hover,
 thead tr th a:hover, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search #edit-keys-1, .region-sidebar-first .content h2, #block-menu-menu-footer .content ul.menu li span, #block-menu-menu-footer .content ul.menu ul li a, .logged-in #block-dosomething-login-become-member .dosomething-login-user-name h2, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .logged-in #block-dosomething-login-become-member .doing-it,
-.logged-in #block-dosomething-login-become-member .done-it, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
+.logged-in #block-dosomething-login-become-member .done-it,
+.logged-in #block-dosomething-login-become-member .my-clubs, #block-dosomething-blocks-dosomething-social-skyscraper .content h3, .region-sidebar-first .block-menu-block .content li.active a, .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active-trail a,
 .region-sidebar-first .block-menu-block .content ul.menu li.expanded ul.menu li.active a, .ui-dialog, .region-sidebar-first input[type="text"], .region-sidebar-first input[type="textarea"], .ui-dialog input[type="text"], .ui-dialog input[type="textarea"], #lets-talk-dialog .title,
 #lets-talk-dialog .detail, .apps-grid .apps-box .apps-banner, .ribbon-front a,
 .ribbon-front a:hover,
@@ -854,7 +862,9 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .gray5, .field-text, .sidebar-dropdown-choices, .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login a,
+.logged-in #block-dosomething-login-become-member .done-it li,
+.logged-in #block-dosomething-login-become-member .my-clubs ul,
+.logged-in #block-dosomething-login-become-member .my-clubs li, #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login a,
 #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center a {
   color: #d4d2d1;
 }
@@ -1289,7 +1299,9 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .member-expanded, .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li {
+.logged-in #block-dosomething-login-become-member .done-it li,
+.logged-in #block-dosomething-login-become-member .my-clubs ul,
+.logged-in #block-dosomething-login-become-member .my-clubs li {
   font-size: 12px;
   line-height: 21px;
 }
@@ -3984,22 +3996,27 @@ h2.block-title, h2.pane-title {
   margin-bottom: 10px;
 }
 .logged-in #block-dosomething-login-become-member .doing-it .inner,
-.logged-in #block-dosomething-login-become-member .done-it .inner {
+.logged-in #block-dosomething-login-become-member .done-it .inner,
+.logged-in #block-dosomething-login-become-member .my-clubs .inner {
   padding: 2px 5px;
   background: url('images/btn-leftsidebar-feeds-plus.png') no-repeat 168px center;
 }
 .logged-in #block-dosomething-login-become-member .doing-it.active .inner,
-.logged-in #block-dosomething-login-become-member .done-it.active .inner {
+.logged-in #block-dosomething-login-become-member .done-it.active .inner,
+.logged-in #block-dosomething-login-become-member .my-clubs.active .inner {
   background: url('images/btn-leftsidebar-feeds-minus.png') no-repeat 168px center;
 }
 .logged-in #block-dosomething-login-become-member .doing-it ul,
 .logged-in #block-dosomething-login-become-member .doing-it li,
 .logged-in #block-dosomething-login-become-member .done-it ul,
-.logged-in #block-dosomething-login-become-member .done-it li {
+.logged-in #block-dosomething-login-become-member .done-it li,
+.logged-in #block-dosomething-login-become-member .my-clubs ul,
+.logged-in #block-dosomething-login-become-member .my-clubs li {
   list-style: none;
 }
 .logged-in #block-dosomething-login-become-member .doing-it li,
-.logged-in #block-dosomething-login-become-member .done-it li {
+.logged-in #block-dosomething-login-become-member .done-it li,
+.logged-in #block-dosomething-login-become-member .my-clubs li {
   margin-left: 5px;
 }
 

@@ -96,6 +96,7 @@ function dosomething_user_my_somethings_member_block() {
       ),
       'somethings' => dosomething_user_my_somethings_my_current_somethings(),
       'past_somethings' => dosomething_user_my_somethings_my_past_somethings(),
+      'clubs' => dosomething_user_my_somethings_my_clubs()
     ),
   );
 }
@@ -188,14 +189,17 @@ function dosomething_user_my_somethings_make_links($config, $uid, $era) {
   foreach (array_filter($data) as $type => $somethings) {
     $c = $config[$type];
     $items[$type] = array('data' => $c['title'], 'children' => array());
+
     foreach ($somethings as $s) {
-      $title = filter_xss($s->{$c['title_field']});
-      $replacements = array();
-      foreach ($c['link_id_fields'] as $field) {
-        $replacements['%' . $field] = $s->$field;
+      if ($c['title_field']) {
+        $title = filter_xss($s->{$c['title_field']});
+        $replacements = array();
+        foreach ($c['link_id_fields'] as $field) {
+          $replacements['%' . $field] = $s->$field;
+        }
+        $link = strtr($c['link_path'], $replacements);
+        $items[$type]['children'][] = l($title, $link);
       }
-      $link = strtr($c['link_path'], $replacements);
-      $items[$type]['children'][] = l($title, $link);
     }
   }
 
@@ -231,12 +235,12 @@ function dosomething_user_my_somethings_my_current_somethings() {
       'link_path' => 'node/%report_back_entity_id',
       'link_id_fields' => array('report_back_entity_id'),
     ),
-    'club' => array(
+    /*'club' => array(
       'title' => t('Clubs'),
       'title_field' => 'title',
       'link_path' => 'node/%nid',
       'link_id_fields' => array('nid'),
-    ),
+    ),*/
   );
   $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'current');
 
@@ -261,6 +265,47 @@ function dosomething_user_my_somethings_my_current_somethings() {
       '#items' => $items,
       '#attributes' => array(
         'class' => array('doing-it'),
+      ),
+    ),
+  );
+}
+
+function dosomething_user_my_somethings_my_clubs() {
+  global $user;
+
+  $somethings_info = array(
+    'club' => array(
+      //'title' => t('Clubs'),
+      'title_field' => 'title',
+      'link_path' => 'node/%nid',
+      'link_id_fields' => array('nid'),
+    ),
+  );
+  $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'current');
+
+  if (empty($items)) {
+    $items[] = t('You have not started a club yet.  !start!', array(
+      '!start' => l(t('Start one'), 'node/add/club')
+    ));
+  }
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h3 class="my-clubs">',
+      '#suffix' => '</h3>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('inner'),
+        ),
+        '#children' => t('Clubs'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array('my-clubs'),
       ),
     ),
   );
@@ -371,7 +416,7 @@ function dosomething_user_my_somethings_clubs($account = NULL) {
         '#attributes' => array(
           'class' => array('inner'),
         ),
-        '#children' => t('Done It'),
+        '#children' => t('Done It!'),
       ),
     ),
     'list' => array(

@@ -1,0 +1,17 @@
+.views-field-title {
+  width: 80%; }
+
+#edit-submit-clubs {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.form-item-field-club-zip-value {
+  margin-right: 10px;
+  width: 85px; }
+
+.views-exposed-widget .selectBox-dropdown {
+  width: 75px !important;
+  display: inline-block; }
+  .views-exposed-widget .selectBox-dropdown .selectBox-label {
+    min-width: 70px;
+    width: 70px; }

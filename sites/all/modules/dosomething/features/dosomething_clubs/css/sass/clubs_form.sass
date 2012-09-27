@@ -1,0 +1,72 @@
+@import compass
+
+div#not-logged-in-notice
+	float: right
+	position: absolute
+	top: 50px
+	right: 10px
+	width: 350px
+	padding: 10px
+
+@mixin ob-ba($right, $width, $color)
+	content: ""
+	position: absolute
+	border-style: solid
+	display: block
+	width: 0
+	bottom: -30px
+	right: $right
+	border-width: 0 0 30px $width
+	border-color: transparent $color
+
+.example-obtuse
+	position: relative
+	padding: 15px 30px
+	margin: 0
+	color: #000
+	@include background(linear-gradient(#f9d835, #f3961c))
+	@include border-radius(25px, 50px)
+
+	font-family: din-web
+	font-size: 13pt
+
+	& + p
+		margin: 10px 150px 2em 0
+		text-align: right
+		font-style: italic
+
+	&:before
+		@include ob-ba(180px, 50px, #f3961c)
+
+	&:after
+		@include ob-ba(210px, 20px, #efefef)
+
+div#block-system-main
+	position: relative
+
+div.form-item-parent-email, td.field-multiple-drag, .tabledrag-toggle-weight, div.form-item-field-club-picture-und-0 label, input#edit-preview, input#edit-preview-changes, ul.tabs.primary li:nth-child(3) a, .delta-order, thead tr th:last-of-type, #edit-field-mailchimp-group-id, #club-name-live, .field-name-field-noschool-club-name
+	display: none
+
+div#edit-field-club-video-und-0-title
+	label
+		font-size: 21px
+		font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif
+
+div.form-item-field-club-blurb-und-0-value
+	label
+		font-family: din-web
+		font-size: 16pt
+		margin-bottom: 5px
+
+p#club-name-live
+	position: relative
+	top: -10px
+
+#edit-field-noschool-club-name-und-0-value
+	width: 150px
+
+#dosomething-club-tag
+	float: right
+	margin-top: -90px
+	margin-right: 440px
+	display: none

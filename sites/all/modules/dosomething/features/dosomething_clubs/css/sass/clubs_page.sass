@@ -1,0 +1,221 @@
+@import compass
+
+div[aria-labelledby="ui-dialog-title-1"]
+	background: white
+	padding: 23px 0
+
+	.ui-icon.ui-icon-closethick
+		top: -22px
+		right: -640px
+
+#member-list-current, #member-list-pending
+	width: 100%
+
+.member-name, .member-manage-links
+	width: 25%
+
+.club-image
+	position: relative
+
+	&.admin-manage
+		cursor: pointer
+
+	.edit-logo
+		position: absolute
+		z-index: 3
+		color: #000
+		right: 0px
+		padding: 2px 15px 2px 2px
+		@include opacity(.75)
+		@include background(#fff image-url('/sites/all/modules/dosomething/features/dosomething_clubs/images/club-edit-photo.png') 90% 50% no-repeat)
+
+ul.tabs.primary
+	margin-top: -30px
+	border: 0px
+
+	li:nth-child(1) a, li:nth-child(3) a
+		display: none
+
+	li:nth-child(2) a
+		float: right
+		margin-top: -110px
+		margin-right: -11px
+		border: 0px
+		background: transparent
+
+div.dosomething-stats
+	position: relative
+
+.go-button.member-popup-trigger.club-processed
+	position: absolute
+	bottom: 10px
+	right: 10px
+	padding-top: 8px
+
+.invite-link
+	width: 300px
+	font-size: 13px
+	position: absolute
+	bottom: 10px
+
+#clubs-share-on-facebook
+	background: #3B5998 url(/sites/all/modules/dosomething/features/robocalls/images/icon_facebook.png) 0px 0px no-repeat
+	border: 1px solid #000000
+	box-shadow: 0px 0px 3px #808080
+	padding: 5px
+	padding-left: 25px
+	font-family: Verdana
+	font-weight: bold
+	color: #ffffff
+	margin-bottom: 10px
+	margin-left: 15px
+	font-size: 11px
+	position: absolute
+	right: 10px
+	bottom: 40px
+
+.views-field-field-picture
+	width: 65px
+	float: left
+
+input#edit-invite.highlight-invite
+	border: 2px solid #1BE087
+
+div.view-club-members
+	div.views-field-picture
+		width: 70px
+		float: left
+
+.view-clubs-to-do-list
+	padding: 0px 10px
+	img
+		float: left
+		margin-right: 10px
+
+.views-field-nothing
+	span.field-content
+		img
+			margin-right: 5px
+
+.node-page .content img, .page-node .content img, .page-why-become-a-member .content img
+	margin: 0px
+
+div.counter
+	ul
+		li:nth-child(2)
+			height: 85px
+
+.panes-3
+	.panel-panel
+		.pane-content
+			padding: 0px
+
+	p
+		margin-top: 10px
+		text-align: center
+
+div.school-name
+	width: 500px
+	margin-top: -15px
+
+p.club-blurb
+	font-family: "Trebuchet MS"
+	width: 375px
+	color: gray
+	font-size: 10pt
+
+label[for="edit-submitted-field-webform-email-und-0-value"]
+	.form-required
+		position: relative
+		top: 0px
+		left: 0px
+		display: inline
+		float: none
+
+.panel-row-actions-sign-up
+	position: relative
+	#edit-submit
+		position: absolute
+		top: 105px
+		right: 35px
+
+.jcarousel-container
+	.jcarousel-item
+		img
+			width: auto
+			height: auto
+
+td.member-manage-links
+	font-family: "Trebuchet MS"
+	font-size: 10pt
+	color: #808080
+
+	a
+		color: #808080
+
+td.member-name
+	@extend td.member-manage-links
+
+
+div.pane-clubs-progress
+	margin-bottom: 15px
+
+div#progress-bar-wrapper
+	background: #efefef
+	border: 1px solid #D6D6D6
+	border-right: 0px
+	height: 20px
+	width: 60%
+	float: left
+	background: #fff
+	box-shadow: 3px 3px 3px #808080
+	box-sizing: border-box
+	margin-right: 10px
+
+div#progress-bar
+	background: #502862
+	height: 19px
+
+div#signatures-label 
+	font-weight: 600
+	font-size: 19px
+	padding-top: 5px
+	font-family: din-web
+
+	a
+		text-decoration: underline
+
+div.do-it-pane
+	div.views-row
+		margin: 10px
+		margin-bottom: 15px
+		padding-top: 0px
+
+		img
+			float: left
+			margin-right: 10px
+
+		a
+			font-weight: normal
+			font-family: "Trebuchet MS", sans-serif
+			font-size: 12px
+
+.club-edit-logo
+	background: #fff
+	position: relative
+
+	.ui-dialog-titlebar
+		float: right
+		margin-right: 10px
+		margin-top: -10px
+
+	#edit-file
+		float: left
+
+	.loading
+		position: absolute
+		bottom: 0px
+		right: 0px
+		@include background(image-url('/sites/all/modules/dosomething/features/dosomething_clubs/images/ajax-loader.gif') 100% 50% no-repeat)
+		padding-right: 25px
+		display: none

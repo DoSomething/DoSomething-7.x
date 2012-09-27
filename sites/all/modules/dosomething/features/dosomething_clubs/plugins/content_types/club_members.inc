@@ -22,7 +22,7 @@ function dosomething_clubs_club_members_content_type_render($subtype, $conf, $pa
 
   drupal_add_library('system', 'drupal.ajax');
   drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/club-ajax.js');
-  drupal_add_css(drupal_get_path('module', 'dosomething_clubs') . '/css/clubs-addons.css', array(
+  drupal_add_css(drupal_get_path('module', 'dosomething_clubs') . '/css/clubs_page.css', array(
          'group' => CSS_THEME,
          'weight' => 100
        ));

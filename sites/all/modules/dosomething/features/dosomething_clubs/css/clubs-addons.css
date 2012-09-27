@@ -20,11 +20,16 @@ div[aria-labelledby="ui-dialog-title-1"] .ui-icon.ui-icon-closethick {
   width: 25%;
 }
 
+ul.tabs.primary {
+	margin-top: -30px;
+	border: 0px;
+}
 
 ul.tabs.primary li:nth-child(1) a, ul.tabs.primary li:nth-child(3) a { display: none; }
 ul.tabs.primary li:nth-child(2) a {
 	float: right;
-	margin-top: -22px;
+	margin-top: -110px;
+	margin-right: -11px;
 	border: 0px;
 	background: transparent;
 }
@@ -114,3 +119,46 @@ td.member-manage-links, td.member-name {
 }
 
 td.member-manage-links a { color: #808080; }
+
+div.pane-clubs-progress {
+	margin-bottom: 15px;
+}
+
+div#progress-bar-wrapper {
+	background: #efefef;
+	border: 1px solid #D6D6D6;
+	border-right: 0px;
+	height: 20px;
+	width: 60%;
+	float: left;
+	background: #fff;
+	box-shadow: 3px 3px 3px #808080;
+	box-sizing: border-box;
+	margin-right: 10px;
+}
+
+div#progress-bar { background: #502862; height: 19px;}
+div#signatures-label { 
+	font-weight: 800;
+	font-size: 13px;
+	padding-top: 3px;
+}
+
+div#signatures-label a { text-decoration: underline; }
+
+div.do-it-pane div.views-row {
+	margin: 10px;
+	margin-bottom: 15px;
+	padding-top: 0px;
+}
+
+div.do-it-pane div.views-row img {
+	float: left;
+	margin-right: 10px;
+}
+
+div.do-it-pane div.views-row a {
+	font-weight: normal;
+	font-family: "Trebuchet MS", sans-serif;
+	font-size: 12px;
+}

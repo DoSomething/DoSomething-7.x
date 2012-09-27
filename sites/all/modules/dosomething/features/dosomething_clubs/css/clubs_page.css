@@ -1,0 +1,280 @@
+/* line 3, sass/clubs_page.sass */
+div[aria-labelledby="ui-dialog-title-1"] {
+  background: white;
+  padding: 23px 0;
+}
+/* line 7, sass/clubs_page.sass */
+div[aria-labelledby="ui-dialog-title-1"] .ui-icon.ui-icon-closethick {
+  top: -22px;
+  right: -640px;
+}
+
+/* line 11, sass/clubs_page.sass */
+#member-list-current, #member-list-pending {
+  width: 100%;
+}
+
+/* line 14, sass/clubs_page.sass */
+.member-name, .member-manage-links {
+  width: 25%;
+}
+
+/* line 17, sass/clubs_page.sass */
+.club-image {
+  position: relative;
+}
+/* line 20, sass/clubs_page.sass */
+.club-image.admin-manage {
+  cursor: pointer;
+}
+/* line 23, sass/clubs_page.sass */
+.club-image .edit-logo {
+  position: absolute;
+  z-index: 3;
+  color: black;
+  right: 0px;
+  padding: 2px 15px 2px 2px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+  background: white url(/sites/all/modules/dosomething/features/dosomething_clubs/images/club-edit-photo.png) 90% 50% no-repeat;
+}
+
+/* line 32, sass/clubs_page.sass */
+ul.tabs.primary {
+  margin-top: -30px;
+  border: 0px;
+}
+/* line 36, sass/clubs_page.sass */
+ul.tabs.primary li:nth-child(1) a, ul.tabs.primary li:nth-child(3) a {
+  display: none;
+}
+/* line 39, sass/clubs_page.sass */
+ul.tabs.primary li:nth-child(2) a {
+  float: right;
+  margin-top: -110px;
+  margin-right: -11px;
+  border: 0px;
+  background: transparent;
+}
+
+/* line 46, sass/clubs_page.sass */
+div.dosomething-stats {
+  position: relative;
+}
+
+/* line 49, sass/clubs_page.sass */
+.go-button.member-popup-trigger.club-processed {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding-top: 8px;
+}
+
+/* line 55, sass/clubs_page.sass */
+.invite-link {
+  width: 300px;
+  font-size: 13px;
+  position: absolute;
+  bottom: 10px;
+}
+
+/* line 61, sass/clubs_page.sass */
+#clubs-share-on-facebook {
+  background: #3b5998 url(/sites/all/modules/dosomething/features/robocalls/images/icon_facebook.png) 0px 0px no-repeat;
+  border: 1px solid black;
+  box-shadow: 0px 0px 3px gray;
+  padding: 5px;
+  padding-left: 25px;
+  font-family: Verdana;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+  margin-left: 15px;
+  font-size: 11px;
+  position: absolute;
+  right: 10px;
+  bottom: 40px;
+}
+
+/* line 77, sass/clubs_page.sass */
+.views-field-field-picture {
+  width: 65px;
+  float: left;
+}
+
+/* line 81, sass/clubs_page.sass */
+input#edit-invite.highlight-invite {
+  border: 2px solid #1be087;
+}
+
+/* line 85, sass/clubs_page.sass */
+div.view-club-members div.views-field-picture {
+  width: 70px;
+  float: left;
+}
+
+/* line 89, sass/clubs_page.sass */
+.view-clubs-to-do-list {
+  padding: 0px 10px;
+}
+/* line 91, sass/clubs_page.sass */
+.view-clubs-to-do-list img {
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 97, sass/clubs_page.sass */
+.views-field-nothing span.field-content img {
+  margin-right: 5px;
+}
+
+/* line 100, sass/clubs_page.sass */
+.node-page .content img, .page-node .content img, .page-why-become-a-member .content img {
+  margin: 0px;
+}
+
+/* line 105, sass/clubs_page.sass */
+div.counter ul li:nth-child(2) {
+  height: 85px;
+}
+
+/* line 110, sass/clubs_page.sass */
+.panes-3 .panel-panel .pane-content {
+  padding: 0px;
+}
+/* line 113, sass/clubs_page.sass */
+.panes-3 p {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* line 117, sass/clubs_page.sass */
+div.school-name {
+  width: 500px;
+  margin-top: -15px;
+}
+
+/* line 121, sass/clubs_page.sass */
+p.club-blurb {
+  font-family: "Trebuchet MS";
+  width: 375px;
+  color: gray;
+  font-size: 10pt;
+}
+
+/* line 128, sass/clubs_page.sass */
+label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  display: inline;
+  float: none;
+}
+
+/* line 135, sass/clubs_page.sass */
+.panel-row-actions-sign-up {
+  position: relative;
+}
+/* line 137, sass/clubs_page.sass */
+.panel-row-actions-sign-up #edit-submit {
+  position: absolute;
+  top: 105px;
+  right: 35px;
+}
+
+/* line 144, sass/clubs_page.sass */
+.jcarousel-container .jcarousel-item img {
+  width: auto;
+  height: auto;
+}
+
+/* line 148, sass/clubs_page.sass */
+td.member-manage-links, td.member-name {
+  font-family: "Trebuchet MS";
+  font-size: 10pt;
+  color: gray;
+}
+/* line 153, sass/clubs_page.sass */
+td.member-manage-links a, td.member-name a {
+  color: gray;
+}
+
+/* line 160, sass/clubs_page.sass */
+div.pane-clubs-progress {
+  margin-bottom: 15px;
+}
+
+/* line 163, sass/clubs_page.sass */
+div#progress-bar-wrapper {
+  background: #efefef;
+  border: 1px solid #d6d6d6;
+  border-right: 0px;
+  height: 20px;
+  width: 60%;
+  float: left;
+  background: white;
+  box-shadow: 3px 3px 3px gray;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+/* line 175, sass/clubs_page.sass */
+div#progress-bar {
+  background: #502862;
+  height: 19px;
+}
+
+/* line 179, sass/clubs_page.sass */
+div#signatures-label {
+  font-weight: 600;
+  font-size: 19px;
+  padding-top: 5px;
+  font-family: din-web;
+}
+/* line 185, sass/clubs_page.sass */
+div#signatures-label a {
+  text-decoration: underline;
+}
+
+/* line 189, sass/clubs_page.sass */
+div.do-it-pane div.views-row {
+  margin: 10px;
+  margin-bottom: 15px;
+  padding-top: 0px;
+}
+/* line 194, sass/clubs_page.sass */
+div.do-it-pane div.views-row img {
+  float: left;
+  margin-right: 10px;
+}
+/* line 198, sass/clubs_page.sass */
+div.do-it-pane div.views-row a {
+  font-weight: normal;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 12px;
+}
+
+/* line 203, sass/clubs_page.sass */
+.club-edit-logo {
+  background: white;
+  position: relative;
+}
+/* line 207, sass/clubs_page.sass */
+.club-edit-logo .ui-dialog-titlebar {
+  float: right;
+  margin-right: 10px;
+  margin-top: -10px;
+}
+/* line 212, sass/clubs_page.sass */
+.club-edit-logo #edit-file {
+  float: left;
+}
+/* line 215, sass/clubs_page.sass */
+.club-edit-logo .loading {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background: url(/sites/all/modules/dosomething/features/dosomething_clubs/images/ajax-loader.gif) 100% 50% no-repeat;
+  padding-right: 25px;
+  display: none;
+}
