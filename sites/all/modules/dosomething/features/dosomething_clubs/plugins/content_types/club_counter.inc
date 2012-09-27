@@ -282,9 +282,10 @@ function dosomething_clubs_club_counter_right() {
     ->execute();
 
   $w = $s = '';
-  if ($pending) {
+  global $user;
+  if ($pending && (og_is_member() || user_access('administer group', $user) || in_array(DSCLUBS_ADMIN_ROLE, og_get_user_roles($group->gid, $user->uid)))) {
     $w = ' style="width: 110px; float: left;"';
-    $s = '<span style="float: right; background: #E01B6A; color: white; padding: 3px; position: relative; top: -5px; border-radius: 5px;" title="' . t('You have ' . $pending . ' member(s) pending approval.') . '">' . $pending . '</span>';
+    $s = '<span style="float: right; background: #E01B6A; color: white; padding: 3px; position: relative; top: -5px; border-radius: 5px;" title="' . t('This club has ' . $pending . ' member(s) pending approval.') . '">' . $pending . '</span>';
   }
 
   $output[] = array(

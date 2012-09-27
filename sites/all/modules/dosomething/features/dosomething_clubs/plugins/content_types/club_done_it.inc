@@ -106,7 +106,7 @@ LIMIT 4 OFFSET 0)")->fetchAll();
         ),
         'image' => array(
           '#theme' => 'image_formatter',
-          '#item' => array($file->uri),
+          '#item' => array('uri' => $file->uri),
           '#image_style' => 'project_related_thumb',
         ),
         'description' => array(
