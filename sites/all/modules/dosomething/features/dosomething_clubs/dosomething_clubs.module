@@ -1554,7 +1554,12 @@ function dosomething_clubs_join_page($gid, $verify = FALSE, $hash = NULL) {
 
       if (!empty($invitee[0]->inviter)) {
         $inviter = user_load($invitee[0]->inviter);
-        $params['name'] = $user->name;
+        $p = profile2_load_by_user($inviter, 'main');
+        $starter = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+        if (!trim($author)) {
+          $starter = $inviter->name;
+        }
+        $params['name'] = $starter;
 
         drupal_mail('dosomething_clubs', 'tell_inviter_invitee_joined', $inviter->mail, $language, $params);
       }
