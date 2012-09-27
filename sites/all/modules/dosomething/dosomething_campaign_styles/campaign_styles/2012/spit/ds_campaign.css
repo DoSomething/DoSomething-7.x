@@ -444,7 +444,7 @@ body {
 #cmp .pane-drive-search-panel-pane-1 {
   background: white; }
   #cmp .pane-drive-search-panel-pane-1 form {
-    width: 500px;
+    width: 62.5%;
     margin: 0 auto;
     padding: 20px 0; }
   #cmp .pane-drive-search-panel-pane-1 .views-table {
@@ -660,3 +660,16 @@ body {
 #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
 #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
+@media only screen and (max-width: 775px) {
+  #cmp .section {
+    width: 100%;
+    margin: 2% auto; } }
+#cmp .refer5 {
+  width: 106%;
+  margin: 0 0 0 -3%;
+  padding: 3%; }
+  #cmp .refer5:before, #cmp .refer5:after {
+    display: none; }
+@media only screen and (max-width: 450px) {
+  #cmp .section {
+    margin: 5% auto; } }
