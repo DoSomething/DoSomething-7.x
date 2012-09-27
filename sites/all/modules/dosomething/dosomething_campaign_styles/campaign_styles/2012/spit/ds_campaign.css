@@ -660,6 +660,43 @@ body {
 #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
 #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
+<<<<<<< Updated upstream
+=======
+#cmp .page-node-724779 h1 {
+  text-align: center; }
+#cmp #webform-client-form-724779 {
+  width: 500px;
+  background: white;
+  padding: 20px 100px; }
+  #cmp #webform-client-form-724779 label {
+    width: 300px; }
+  #cmp #webform-client-form-724779 input {
+    width: 300px;
+    max-width: none;
+    border: 1px solid #f9f9f9; }
+  #cmp #webform-client-form-724779 input[type="submit"] {
+    width: 100px;
+    margin-left: 100px; }
+  #cmp #webform-client-form-724779 #edit-submitted-give-a-spit-action-kit-1 {
+    width: 15px !important; }
+  #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference {
+    background: #f9f9f9;
+    border: 1px solid #e9e9e9 !important;
+    width: 300px;
+    padding: 10px 15px !important;
+    margin-bottom: 10px !important; }
+    #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference label {
+      padding-top: 10px; }
+    #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference .fieldset-legend {
+      font-weight: bold !important;
+      font-size: 16px !important; }
+    #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference input {
+      width: 270px !important; }
+  #cmp #webform-client-form-724779 #webform-component-link-to-search-drives p {
+    text-align: center; }
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 @media only screen and (max-width: 775px) {
   #cmp .section {
     width: 100%;
@@ -673,3 +710,7 @@ body {
 @media only screen and (max-width: 450px) {
   #cmp .section {
     margin: 5% auto; } }
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
