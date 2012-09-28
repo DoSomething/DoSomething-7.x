@@ -191,6 +191,20 @@
         }
       });
 
+      // hide/show fieldset on drive form for checkbox
+      jQuery("#webform-component-check-show-hide").css('display','none');
+
+      jQuery("#edit-submitted-give-a-spit-action-kit-1").click(function() {
+        if(jQuery("#edit-submitted-give-a-spit-action-kit-1").is(":checked")) {
+          jQuery("#webform-component-check-show-hide").show("fast");
+        }
+        else {
+          jQuery("#webform-component-check-show-hide").hide("fast");
+        }
+      });
+
+
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
