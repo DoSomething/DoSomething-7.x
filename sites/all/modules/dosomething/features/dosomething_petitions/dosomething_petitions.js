@@ -96,11 +96,6 @@
       popupForm.find('.already-member .sign-in-popup').attr('href', '/user?destination='+url);
       loginForm.attr('action', '/user?destination='+url);
 
-      // Firefox fix
-      $('.ui-icon-closethick').click(function() {
-        window.location.reload();
-      });
-
       popupForm.bind('dialogbeforeclose', function (event, ui) {
         if ($(event.srcElement).hasClass('ui-icon-closethick')) {
           window.location.reload();
@@ -113,15 +108,34 @@
       });
 
       var form = popupForm;
+      var other = loginForm;
       if (is_user) {
         form = loginForm;
+        other = popupForm;
       }
+
+      // Firefox doesn't grab the proper event.srcElement above...
+      // ...so we have to fake it.
+      other.bind('dialogopen', function(event, ui) {
+        $(this).parent().find('a.ui-dialog-titlebar-close').click(function() {
+          form.dialog('close');
+          window.location.reload();
+        });
+      });
+
       // popup!
       form.dialog({
         resizable: false,
         draggable: false,
         modal: true,
-        width: 550
+        width: 550,
+        dialogClass: 'petition-pop-up',
+        open: function(event, ui) {
+          $('.petition-pop-up a.ui-dialog-titlebar-close').click(function() {
+            form.dialog('close');
+            window.location.reload();
+          });
+        },
       });
     }
   });
