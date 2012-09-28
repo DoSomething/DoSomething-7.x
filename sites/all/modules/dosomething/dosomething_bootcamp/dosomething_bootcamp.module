@@ -8,13 +8,13 @@ function dosomething_bootcamp_form_alter(&$form, &$form_state, $form_id) {
 	  $form['#submit'][] = 'bootcamp_photo_resizer';
 	}
 	else if ($form_id == 'webform_client_form_719589') {
-	  $form['#submit'][] = 'bootcamp_submit_email';
-	  $form['#validate'][] = 'bootcamp_validate';
+	  //$form['#submit'][] = 'bootcamp_submit_email';
+	  //$form['#validate'][] = 'bootcamp_validate';
 
 	  global $user;
-	  $form['submitted']['full_name']['#value'] = $user->name;
-	  $form['submitted']['email_address']['#value'] = $user->mail;
-	  $form['submitted']['phone_number']['#value'] = $user->phone;
+	  //$form['submitted']['full_name']['#value'] = $user->name;
+	  //$form['submitted']['email_address']['#value'] = $user->mail;
+	  //$form['submitted']['phone_number']['#value'] = $user->phone;
 	}
 }
 
@@ -31,8 +31,8 @@ function bootcamp_validate(&$form, &$form_state) {
 function bootcamp_photo_resizer(&$form, &$form_state) {
 	$values = $form_state['values']['submitted_tree'];
 	if (isset($values['upload_your_headshot']) && !empty($values['upload_your_headshot'])) {
-	  $width = 100;
-	  $height = 100;
+	  $width = 147;
+	  $height = 147;
 
 	  $image = $values['upload_your_headshot'];
 	  $img = file_load($image);
