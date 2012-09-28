@@ -90,13 +90,6 @@ Drupal.behaviors.galleryShareButton = {
   },
 
   submit_share: function(sid, elm, settings) {
-    //FB.api(
-        //'/me/dosomethingapp:share',
-        //'post',     
-        //{         
-        //    pet_who_needs_a_home: Drupal.behaviors.galleryShareButton.share_url,
-        //    image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
-        //},  
        var shareUrl = settings.picsforpetsFBAuth.app_secure_url + '/' + settings.picsforpetsFBAuth.fbFormAlias + '/submission/' + sid;
       var threeWords = [];
       threeWords[0] = 0 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[0].raw.safe_value : "Fun";
@@ -107,13 +100,21 @@ Drupal.behaviors.galleryShareButton = {
       // Old share
     var share = {
         method: 'feed',
-        name: 'I need a home.  Click here to share me and help me find one.',
+        name: settings.dosomething_picsforpets_general.gallery[sid].petName + ' is homeless and needs a bed.',//'I need a home.  Click here to share me and help me find one.',
         link: shareUrl,
         picture: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
-        caption: "Hi.  I'm " + settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
-        description: "Help me find this shelter animal a home.  Click here to share this animal."
+        caption: 'With 1,000 shares Do Something will send one to ' + settings.dosomething_picsforpets_general.gallery[sid].petName + "'s shelter.",//"Hi.  I'm " + settings.dosomething_picsforpets_general.gallery[sid].petName + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
+        description: "Click the pic to share"//"Help me find this shelter animal a home.  Click here to share this animal."
       };
 
+
+    //FB.api(
+        //'/me/dosomethingapp:share',
+        //'post',     
+        //{         
+        //    pet_who_needs_a_home: Drupal.behaviors.galleryShareButton.share_url,
+        //    image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+        //},  
     FB.ui(share,  
       function(response) {
         if ((typeof response !== 'undefined') && (response !== null)) {

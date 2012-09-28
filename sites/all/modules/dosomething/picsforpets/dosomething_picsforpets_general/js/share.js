@@ -72,11 +72,11 @@ Drupal.behaviors.dsPfpShare = {
     // Old share
     var share = {
       method: 'feed',
-      name: 'I need a home.  Click here to share me and help me find one.',
+      name: pname + ' is homeless and needs a bed.',//'I need a home.  Click here to share me and help me find one.',
       link: shareUrl,
       picture: pimg,
-      caption: "Hi, I'm " + pname + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
-      description: "Help me find this shelter animal a home. Click here to share this animal."
+      caption: 'With 1,000 shares Do Something will send one to ' + pname + "'s shelter.",//"Hi, I'm " + pname + ". I'm " + threeWords[0] + ", " + threeWords[1] + ", and " + threeWords[2],
+      description: "Click the pic to share!"
     };
 
     //FB.api(
