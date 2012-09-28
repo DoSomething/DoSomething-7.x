@@ -1,17 +1,28 @@
 // PANES 
 
 //			//
-//	#header			- header (sign up) -
+//	#header			- sign up -
 //			//
 
 #header
   background: url("assets/brad.jpg")
   background-position: 29% -120%
+  margin: 0
   padding: 0
   h1, h2
     text-align: left
     color: $spitYellow
+    margin: 0 0 0 -0.7em
+  h1
+    margin: 0 0 0.5em -0.5em
+    font-weight: 600
+    font-size: 2em
+  h2
+    font-size: 1.3em
+    line-height: 1.6em
+    font-weight: 600
   span
+    padding: 0 0.5em
     text-align: center
     background: $spitPurple
     background: $spitTrans
@@ -119,21 +130,25 @@ input.remove_participant /* "remove participants" button */
   text-align: center
 
 //			//
-//	#action			- "here's what you do" -
+//	#action
 //			//
 
 #action.action-anonymous, #action.action-participant
+  h3
+    line-height: 2em
+  p
+    text-align: left
   img
     display: block
-    margin: 5% auto
+    margin: 0 auto
 
 #action.action-leader
   text-align: left
   h1
-    font-size: 1.5em
+    font-size: 1.2em
     margin: 0 0 0 -1em
   ul
-    padding: 0.5em 1em
+    padding: 1em 1.5em
   li
     list-style: disc
   b
@@ -146,16 +161,21 @@ input.remove_participant /* "remove participants" button */
   strong
     color: $spitPurple
 
-.center_img
+.email-spit
   margin: 0 auto
-  width: 80%
+  width: 90%
   display: block
-
-.print-pdf
-  position: relative
-  left: 37%
   img
-    width: 26%
+    width: 50%
+
+a.print-pdf, a.print-pdf img
+  display: block
+  margin: 0 auto
+
+a.print-pdf
+  width: 30%
+  img
+    width: 100%
 
 //      //
 //  .search     - search -
@@ -215,7 +235,11 @@ input.remove_participant /* "remove participants" button */
   position: static
 
 //			//
-//	#content-infographic
+//	#content
+//			//
+
+//			//
+//	#scholarship
 //			//
 
 #scholarship
@@ -225,8 +249,8 @@ input.remove_participant /* "remove participants" button */
   p
     color: #fff
   label, input[type="text"]
+    font-weight: 500
     height: 25px
-    padding: 0.5em 0
     margin: 0.8% 0
     width: 50%
     text-align: left
@@ -234,6 +258,10 @@ input.remove_participant /* "remove participants" button */
     float: left
     clear: left
     color: #fff
+    padding: 0.5em 0
+  input[type="text"]
+    padding: 0.5em
+    +border-radius(5px)
   input[type="text"], input[type="submit"]
     float: right
     clear: right
@@ -241,8 +269,7 @@ input.remove_participant /* "remove participants" button */
     margin: 4% 0 1% 0
     padding: 0.3em 0.7em
   #campaign-opt-in
-    color: darken($spitPurple, 15)
-    text-align: left
+    text-align: center
     a
       color: $spitYellow
       font-weight: 500
@@ -260,11 +287,11 @@ input.remove_participant /* "remove participants" button */
   &:before
     border-color: transparent darken($spitPurple, 12) darken($spitPurple, 12) transparent
     left: -23px
-    top: 44px
+    top: 49px
   &:after
     border-color: transparent transparent darken($spitPurple, 12) darken($spitPurple, 12)
     right: -22px
-    top: 44px
+    top: 49px
 
 //			//
 //  #social     - share 3 stats -
@@ -283,8 +310,11 @@ input.remove_participant /* "remove participants" button */
 //      //
 
 #faq 
+  div
+    padding: 0.5em 1.6em 1em
   h4, li, p
     text-align: left
+  h4, li
     padding: 0 0 0 1.5em
   h4
     color: $spitPurple

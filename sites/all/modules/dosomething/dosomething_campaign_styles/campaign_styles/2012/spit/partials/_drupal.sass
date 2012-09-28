@@ -1,5 +1,8 @@
 // HEREIN LIES A POEM TITLED 'DIE DRUPAL DIE'
 
+html
+  font-size: 16px
+
 #main-wrapper
   div[role="main"]
     padding: 0!important
@@ -45,7 +48,8 @@ body
     .search, #help-center
       display: none
     .login
-      padding: 1em 2em 0 0
+      padding: 0.5em 1em 0 0
+      font-size: 1.5em
   #page
     width: 100%
   #main-wrapper div[role="main"]
@@ -57,9 +61,6 @@ body
     margin: 0 auto
     width: 100%
   header[role="banner"]
-    position: relative
-    width: 797px
-    margin: 0 auto
     @media only screen and (max-width: 775px)
       width: 100%
   #block-menu-menu-footer .content
@@ -78,6 +79,7 @@ body
       text-align: center
 
 #cmp 
+  background: #fff
   img
     +noShadow
   .pane-title
@@ -149,7 +151,7 @@ body
   a
     font-family: din-web-reg
     font-weight: 600
-    font-size: 1.2em
+    font-size: 0.8em
     padding: 0.2em 1em 0 1.5em
     text-transform: uppercase
     color: purple

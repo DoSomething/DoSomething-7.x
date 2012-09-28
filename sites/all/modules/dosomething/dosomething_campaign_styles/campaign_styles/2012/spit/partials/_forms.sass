@@ -12,52 +12,39 @@ label
   width: 100%
   h3
     color: $spitYellow
-    font-size: 2em
-    font-weight: 500
+    font-size: 1.3em
+    font-weight: 600
     text-align: left
     padding: 0.2em 0 0 0
 
-.focusOutline
+.focusOutline /* defines input highlighting */
   box-shadow: 0px 0px 15px 4px #CBBEFF
 
-.pane-campaign-sign-up
-  clear: both
-  width: 100%
-  padding: 1% 0 1% 0
-  h1
-    font-family: din-web
-    font-size: 23px
-    text-align: center
-    color: #fff
-  label
-    text-align: left
+.pane-campaign-sign-up /* drupal name; contact-form wrapper */
   input[type="text"], input[type="tel"]
-    width: 35% 
-  #edit-submit
-    float: right
-    position: static
-    margin: 9% 2% 0 0
-    padding: 0.3em 0.7em
-
-.pane-campaign-sign-up
-  label, input[type="text"], input[type="tel"]
-    width: 85%
-    float: left
-    clear: left
-  input[type="text"], input[type="tel"]
-    margin: 0.5em 0 0 0
+    height: 2em
+    +border-radius(5px)
   label
     color: #fff
-    font-size: 1.7em
-    font-family: din-web
+    width: 100%
+    font-size: 1.1em
+    font-weight: 500
+    font-family: din-web-reg
+    line-height: 1.5em
     text-transform: uppercase
+    text-align: left
+  #edit-submit
+    position: static
+    margin: 1em auto 0
+    padding: 0.3em 0.7em
 
 #campaign-opt-in
   clear: both
   text-align: left
   padding: 0.3em 0 0 0 !important
   span
-    font-size: 10px
+    font-size: 0.7em
+    line-height: 0.7em
     background: transparent
     color: #fff
   strong
@@ -71,14 +58,20 @@ label
   .go-button
     margin: 0 0 1% 0
 
-// element floats
+/* element floats */
 #webform-component-join-header, #webform-component-start-header, #edit-submitted-field-webform-email, #edit-submitted-field-webform-mobile, .form-actions.form-wrapper
   width: 25%
   float: left
 
+/* centers wrappers contained within floated segments */
+#submitted-field-webform-email-add-more-wrapper, #submitted-field-webform-mobile-add-more-wrapper, #contact-form h3
+  margin: 0 auto 
+  width: 80%   
+
 //      //
 //  #sign-up
 //      //
+
 #sign-up
   .form-wrapper
     float: none
@@ -129,7 +122,7 @@ label
   background: $spitYellow
   margin: 4% 0 1%
   padding: 0.3em 0.7em
-  font-size: 2em
+  font-size: 1.5em
   height: 1.4em
   display: inline-block
   color: $offBlack

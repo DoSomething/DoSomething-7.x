@@ -1,338 +1,132 @@
-  // RESPONSIVE STYLES
+// RESPONSIVE STYLES
 
 @media only screen and (max-width: 775px)
+
   .section
     width: 100%
     margin: 2% auto
   
-  .refer5
-    width: 106%
-    margin: 0 0 0 -3%
-    padding: 3%
-    &:before, &:after
-      display: none 
-
   //			//
   //	#header
   //			//
 
   #header
-    background: url("assets/brad.jpg")
-    background-position: 29% -120%
-    padding: 0
-    h1, h2
-      text-align: left
-      color: $spitYellow
-    span
-      text-align: center
-      background: $spitPurple
-      background: $spitTrans
-    .tagline
-      padding: 2%
+    background-image-size: 125%
+    h1
+      margin: 0 0 0.5 -0.6em
+    h2
+      margin: 0 0 0 -0.9em
+
+  #contact-form
+    margin: 2% 0 0 0
+    h3
+      margin: 0
+
+  #webform-component-start-header
+    width: 100%
+    float: none
+
+  #submitted-field-webform-email-add-more-wrapper, #submitted-field-webform-mobile-add-more-wrapper
+    margin: 0
+
+  #edit-submitted-field-webform-email, #edit-submitted-field-webform-mobile
+    width: 37%
+    margin: 1% 0
+
+  .form-actions.form-wrapper /* "sign-up" wrapper */
+    width: 20%
+
+  .pane-campaign-sign-up #edit-submit /* "sign-up" button */
+    margin: 1.3em auto 0
 
   //      //
   //  #drive
   //      //
 
-  #drive /* wraps the entire panel pane */
-    text-align: left
+  .drive-info-wrapper, .drive-participants
+    overflow: auto
+    float: none
+    width: 100%
 
-  .drive-info-wrapper /* wraps left column features */
-    float: left
-    width: 56%
+  .drive-participants
+    border-left: none
+    border-top: 1px solid $spitGrey
+    margin: 2% 0
+    padding: 2% 0 0 0
 
-  .drive-participants /* list of drive members */
-    float: right
-    width: 40%
-    margin: 6% 0 0 0
-    padding: 0 0 0 5%
-    border-left: 1px solid $spitGrey
-    ul
-      max-height: 160px
-      overflow: scroll
-
-  .drive-info-title h2 /* drive title */
-    color: $spitPurple
-    margin: 0 0 0.5em 0
-    font-family: $din
-    font-size: 2em
-    font-weight: 600
-    text-transform: uppercase
-    border-bottom: 1px solid #ccc
-
-  .drive-info-info /* drive logistics */
-    width: 65%
-    float: left
-    a /* edit drive link */
-      color: $spitPurple
-      background-image: url("assets/drive1.png")
-      background-position: 0% 50%
-      background-repeat: no-repeat
-      background-size: 20px
-      padding: 1em 1.8em 0
-      display: block
-
-  .drive-info-where, .drive-info-when /* address and date styling */
-    font-weight: uppercase
-    font-weight: 600
-    span
-      font-weight: 500
-      text-transform: none
-      color: #777
-
-  .drive-share 
-    width: 35%
-    float: right
-    h3
-      text-align: right
-
-  .drive-facebook, .drive-twitter /* twitter and facebook sprites for drive sharing */
-    width: 30px
-    height: 30px
-    display: inline-block
-    background-repeat: no-repeat
-    text-indent: -9999em
-    margin: 0 0 0 5%
-    float: right
-    &:hover
-      background-position-y: -30px
-
-  .drive-twitter
-    background-image: url(assets/drive-twitter.png)
-
-  .drive-facebook
-    background-image: url(assets/drive-facebook.png)
-
-  .drive-info-description, .drive-info-countdown /* hides unused goal and countdown elements */
-    display: none
-
-  input.remove_participant /* "remove participants" button */
-    border: none
-    font-size: 16px
-    font-family: din-web-reg
-    width: 18px
-    height: 18px
-    line-height: 16px
-    background: $spitPurple
-    color: #fff
-    letter-spacing: 1px
-    margin: -18px 0 0 0
-    padding: 0
-    float: right
-    +border-radius(15px)
-    &:hover
-      color: #fff
-      background: darken($spitPurple, 7)
-
-  .drive-participants-list li
-    padding: 0.2em 0
-
-  .drive-action-link /* "invite more friendss" button */
-    text-align: center
 
   //			//
   //	#action
   //			//
 
   #action.action-anonymous, #action.action-participant
+    .col33
+      width: 95%
+      margin: 3% 0
+    h3
+      text-align: left
     img
-      display: block
+      display: none 
+
+  a.print-pdf
+    width: 37%
+    img
       margin: 5% auto
-
-  #action.action-leader
-    text-align: left
-    h1
-      font-size: 1.5em
-      margin: 0 0 0 -1em
-    ul
-      padding: 0.5em 1em
-    li
-      list-style: disc
-    b
-      color: $spitPurple
-      background: $spitYellow
-      width: 10em
-      display: block
-      text-align: center
-      padding: 0.2em 0 0 0
-    strong
-      color: $spitPurple
-
-  .center_img
-    margin: 0 auto
-    width: 80%
-    display: block
-
-  .print-pdf
-    position: relative
-    left: 37%
-    img
-      width: 26%
 
   //      //
   //  .search
   //      //
 
-  .pane-drive-search-panel-pane-1
-    background: #fff
-    form
-      width: 62.5%
-      margin: 0 auto 
-      padding: 20px 0
-    .views-table
-      width: 800px
-    tr
-      border-bottom: 1px solid $spitGrey !important
-    td
-      padding: 0 10px 10px !important
-    .views-field-field-taem-name a
-      font-size: 14px
-      text-tranform: uppercase
-    #edit-submit-drive-search
-      font-family: din-web
-      background: $spitYellow
-      padding: 5px 11px 2px
-      line-height: 1em
-      font-size: 21px
-      +noBorder
-      color: $offBlack
-      +border-radius(5px)
-      height: 27px
-      margin-top: 0px
-      &:hover
-        color: darken($spitPurple, 12)
-    input, a.selectBox-dropdown, span.geofield-proximity-origin-from
-      margin-right: 10px
-    #edit-field-geofield-distance-distance
-      width: 50px
-      margin-right: 10px
-      margin-top: 2px
-      height: 27px
-    #edit-field-geofield-distance-origin
-      width: 100px
-      margin-top: 1px
-      height: 27px
-    .selectBox-label
-      height: 27px
-      padding: 5px !important
-      margin-top: 1px
-    thead
-      tr
-        display: none
-    tbody
-      tr
-        background: #F9F9F9      
 
-  .go-button /* why is this here? */
-    position: static
 
   //			//
-  //	#content-infographic
+  //	#scholarship
   //			//
-
+  
   #scholarship
-    overflow: visible 
-    h1
-      color: $spitYellow
-    p
-      color: #fff
-    label, input[type="text"]
-      height: 25px
-      padding: 0.5em 0
-      margin: 0.8% 0
-      width: 50%
-      text-align: left
-    label
-      float: left
-      clear: left
-      color: #fff
-    input[type="text"], input[type="submit"]
-      float: right
-      clear: right
-    .go-button
-      margin: 4% 0 1% 0
-      padding: 0.3em 0.7em
-    #campaign-opt-in
-      color: darken($spitPurple, 15)
-      text-align: left
-      a
-        color: $spitYellow
-        font-weight: 500
+    padding: 0
 
   .refer5
-    background: $spitPurple
-    width: 110%
-    margin: 0 0 0 -4.95%
-    padding: 3%
+    width: 100%
+    margin: 0
     &:before, &:after
-      content: ""
-      position: absolute
-      border-style: solid
-      border-width: 11px
-    &:before
-      border-color: transparent darken($spitPurple, 12) darken($spitPurple, 12) transparent
-      left: -23px
-      top: 44px
-    &:after
-      border-color: transparent transparent darken($spitPurple, 12) darken($spitPurple, 12)
-      right: -22px
-      top: 44px
+      display: none 
+
 
   //			//
   //  #social
   //      //
 
+  #social
+    .col33
+      width: 90%
+      margin: 5%
+    img
+      float: left
+      width: 40%
+
   //      //
   //  #impact
   //      //
 
-  #impact
-    .go-button
-      margin: 2% 0 1% 0
+
 
   //      //
   //  #faq
   //      //
 
-  #faq 
-    h4, li, p
-      text-align: left
-      padding: 0 0 0 1.5em
-    h4
-      color: $spitPurple
-      cursor: pointer
-      background: url("assets/faq2.png")
-      background-repeat: no-repeat
-    h1
-      font-size: 2em
-      font-family: din-web
-      text-transform: uppercase
-      background: url("assets/faq3.png")
-      background-repeat: no-repeat
-      background-position: 50% 0.7em
-      padding: 0 0 1em 0
-      margin: 0 0 -1em 0
-    .go-button
-      margin: 0 0 1% 0
-    h4.activeFAQ
-      background-position-y: -27px
+
 
   //      //
   //  #footer     - sign up button; conditionally displayed -
   //      //
 
-  #footer
-    h1
-      font-size: 2em
-      font-family: din-web
-      text-transform: uppercase
-      background: url("assets/faq3.png")
-      background-repeat: no-repeat
-      background-position: 50% 0.7em
-      padding: 0 0 1em 0
-      margin: 0 0 -1em 0
-    .go-button
-      margin: 0 0 1% 0
+
+@media only screen and (max-width: 550px)
+  .email-spit
+    width: 100%
+    img
+      width: 50%
 
 @media only screen and (max-width: 450px)
   .section
@@ -343,319 +137,78 @@
   //			//
 
   #header
-    background: url("assets/brad.jpg")
-    background-position: 29% -120%
-    padding: 0
-    h1, h2
-      text-align: left
-      color: $spitYellow
-    span
-      text-align: center
-      background: $spitPurple
-      background: $spitTrans
-    .tagline
-      padding: 2%
+    background-image-size: 175% 
+
 
   //      //
   //  #drive
   //      //
 
-  #drive /* wraps the entire panel pane */
-    text-align: left
 
-  .drive-info-wrapper /* wraps left column features */
-    float: left
-    width: 56%
-
-  .drive-participants /* list of drive members */
-    float: right
-    width: 40%
-    margin: 6% 0 0 0
-    padding: 0 0 0 5%
-    border-left: 1px solid $spitGrey
-    ul
-      max-height: 160px
-      overflow: scroll
-
-  .drive-info-title h2 /* drive title */
-    color: $spitPurple
-    margin: 0 0 0.5em 0
-    font-family: $din
-    font-size: 2em
-    font-weight: 600
-    text-transform: uppercase
-    border-bottom: 1px solid #ccc
-
-  .drive-info-info /* drive logistics */
-    width: 65%
-    float: left
-    a /* edit drive link */
-      color: $spitPurple
-      background-image: url("assets/drive1.png")
-      background-position: 0% 50%
-      background-repeat: no-repeat
-      background-size: 20px
-      padding: 1em 1.8em 0
-      display: block
-
-  .drive-info-where, .drive-info-when /* address and date styling */
-    font-weight: uppercase
-    font-weight: 600
-    span
-      font-weight: 500
-      text-transform: none
-      color: #777
-
-  .drive-share 
-    width: 35%
-    float: right
-    h3
-      text-align: right
-
-  .drive-facebook, .drive-twitter /* twitter and facebook sprites for drive sharing */
-    width: 30px
-    height: 30px
-    display: inline-block
-    background-repeat: no-repeat
-    text-indent: -9999em
-    margin: 0 0 0 5%
-    float: right
-    &:hover
-      background-position-y: -30px
-
-  .drive-twitter
-    background-image: url(assets/drive-twitter.png)
-
-  .drive-facebook
-    background-image: url(assets/drive-facebook.png)
-
-  .drive-info-description, .drive-info-countdown /* hides unused goal and countdown elements */
-    display: none
-
-  input.remove_participant /* "remove participants" button */
-    border: none
-    font-size: 16px
-    font-family: din-web-reg
-    width: 18px
-    height: 18px
-    line-height: 16px
-    background: $spitPurple
-    color: #fff
-    letter-spacing: 1px
-    margin: -18px 0 0 0
-    padding: 0
-    float: right
-    +border-radius(15px)
-    &:hover
-      color: #fff
-      background: darken($spitPurple, 7)
-
-  .drive-participants-list li
-    padding: 0.2em 0
-
-  .drive-action-link /* "invite more friendss" button */
-    text-align: center
 
   //			//
   //	#action
   //			//
 
-  #action.action-anonymous, #action.action-participant
-    img
-      display: block
-      margin: 5% auto
+  a.print-pdf
+    width: 55%
 
-  #action.action-leader
-    text-align: left
-    h1
-      font-size: 1.5em
-      margin: 0 0 0 -1em
-    ul
-      padding: 0.5em 1em
-    li
-      list-style: disc
-    b
-      color: $spitPurple
-      background: $spitYellow
-      width: 10em
-      display: block
-      text-align: center
-      padding: 0.2em 0 0 0
-    strong
-      color: $spitPurple
-
-  .center_img
-    margin: 0 auto
-    width: 80%
+  .email-spit, .email-spit img
+    width: 85%
     display: block
+    margin: 0 auto
 
-  .print-pdf
-    position: relative
-    left: 37%
-    img
-      width: 26%
+  .email-spit img
+    width: 100%
 
   //      //
   //  .search
   //      //
 
-  .pane-drive-search-panel-pane-1
-    background: #fff
-    form
-      width: 62.5%
-      margin: 0 auto 
-      padding: 20px 0
-    .views-table
-      width: 800px
-    tr
-      border-bottom: 1px solid $spitGrey !important
-    td
-      padding: 0 10px 10px !important
-    .views-field-field-taem-name a
-      font-size: 14px
-      text-tranform: uppercase
-    #edit-submit-drive-search
-      font-family: din-web
-      background: $spitYellow
-      padding: 5px 11px 2px
-      line-height: 1em
-      font-size: 21px
-      +noBorder
-      color: $offBlack
-      +border-radius(5px)
-      height: 27px
-      margin-top: 0px
-      &:hover
-        color: darken($spitPurple, 12)
-    input, a.selectBox-dropdown, span.geofield-proximity-origin-from
-      margin-right: 10px
-    #edit-field-geofield-distance-distance
-      width: 50px
-      margin-right: 10px
-      margin-top: 2px
-      height: 27px
-    #edit-field-geofield-distance-origin
-      width: 100px
-      margin-top: 1px
-      height: 27px
-    .selectBox-label
-      height: 27px
-      padding: 5px !important
-      margin-top: 1px
-    thead
-      tr
-        display: none
-    tbody
-      tr
-        background: #F9F9F9      
 
-  .go-button /* why is this here? */
-    position: static
 
   //			//
-  //	#content-infographic
+  //	#content
   //			//
 
+
+  //			//
+  //  #scholarship
+  //      //
+  
   #scholarship
-    overflow: visible 
-    h1
-      color: $spitYellow
-    p
-      color: #fff
-    label, input[type="text"]
-      height: 25px
-      padding: 0.5em 0
-      margin: 0.8% 0
-      width: 50%
-      text-align: left
-    label
-      float: left
-      clear: left
-      color: #fff
-    input[type="text"], input[type="submit"]
-      float: right
-      clear: right
-    .go-button
-      margin: 4% 0 1% 0
-      padding: 0.3em 0.7em
-    #campaign-opt-in
-      color: darken($spitPurple, 15)
-      text-align: left
-      a
-        color: $spitYellow
-        font-weight: 500
-
-  .refer5
-    background: $spitPurple
-    width: 110%
-    margin: 0 0 0 -4.95%
-    padding: 3%
-    &:before, &:after
-      content: ""
-      position: absolute
-      border-style: solid
-      border-width: 11px
-    &:before
-      border-color: transparent darken($spitPurple, 12) darken($spitPurple, 12) transparent
-      left: -23px
-      top: 44px
-    &:after
-      border-color: transparent transparent darken($spitPurple, 12) darken($spitPurple, 12)
-      right: -22px
-      top: 44px
+    h1.condensed
+      font-size: 2.75em
+    .col50
+      width: 100%
 
   //			//
   //  #social
   //      //
 
+  #social
+    .col33
+      width: 90%
+      margin: 2% 5%
+    img
+      float: left
+      width: 50%
+
   //      //
   //  #impact
   //      //
 
-  #impact
-    .go-button
-      margin: 2% 0 1% 0
+
 
   //      //
   //  #faq
   //      //
 
-  #faq 
-    h4, li, p
-      text-align: left
-      padding: 0 0 0 1.5em
-    h4
-      color: $spitPurple
-      cursor: pointer
-      background: url("assets/faq2.png")
-      background-repeat: no-repeat
-    h1
-      font-size: 2em
-      font-family: din-web
-      text-transform: uppercase
-      background: url("assets/faq3.png")
-      background-repeat: no-repeat
-      background-position: 50% 0.7em
-      padding: 0 0 1em 0
-      margin: 0 0 -1em 0
-    .go-button
-      margin: 0 0 1% 0
-    h4.activeFAQ
-      background-position-y: -27px
+
 
   //      //
   //  #footer     - sign up button; conditionally displayed -
   //      //
 
-  #footer
-    h1
-      font-size: 2em
-      font-family: din-web
-      text-transform: uppercase
-      background: url("assets/faq3.png")
-      background-repeat: no-repeat
-      background-position: 50% 0.7em
-      padding: 0 0 1em 0
-      margin: 0 0 -1em 0
-    .go-button
-      margin: 0 0 1% 0
+
+

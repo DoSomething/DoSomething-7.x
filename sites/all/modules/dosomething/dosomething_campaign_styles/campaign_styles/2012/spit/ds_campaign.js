@@ -180,7 +180,6 @@
             'position' : 'fixed',
             'top'      : '0px',
             'margin'   : '15px 0 0 0',
-            'padding'  : '1.5em 2em 1.5em 0',
             'z-index'  : '3'
           });
         }
