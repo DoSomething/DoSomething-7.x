@@ -410,7 +410,7 @@ function dosomething_clubs_remind_approve($uid, $nid) {
     $nag->timestamp = REQUEST_TIME;
 
     drupal_write_record('dosomething_clubs_nag', $nag);
-    drupal_mail('dosomething_clubs', 'nag_leader', 'mchittenden@dosomething.org', $language, $params);
+    drupal_mail('dosomething_clubs', 'nag_leader', $l->mail, $language, $params);
     drupal_set_message(t("Thanks, we've reminded the club leader about your approval request."));
     drupal_goto($_SERVER['HTTP_REFERER']);
   }
