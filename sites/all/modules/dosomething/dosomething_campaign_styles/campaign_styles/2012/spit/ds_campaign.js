@@ -192,6 +192,11 @@
             .css('position', 'static')
         }
       });
+    
+    // search pane tweak
+    $('.form-item-field-geofield-distance-unit').hide();
+    $('.geofield-proximity-origin-from').text('miles from');
+   
 
       // hide/show fieldset on drive form for checkbox
       $("#webform-component-check-show-hide").css('display','none');

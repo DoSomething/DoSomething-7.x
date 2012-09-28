@@ -181,7 +181,7 @@ a.print-pdf
 //  .search     - search -
 //      //
 
-.pane-drive-search-panel-pane-1
+.pane-drive-search-panel-pane-1 /* table-based form styling -- OLD */
   background: #fff
   form
     width: 62.5%
@@ -231,8 +231,37 @@ a.print-pdf
     tr
       background: #F9F9F9      
 
-.go-button /* why is this here? */
-  position: static
+//.go-button /* why is this here? */
+//  position: static
+//  width: 30%
+
+/* new table-less drive styles */
+
+.drive-search-wrapper ul /* clear floats */
+  overflow: auto
+  margin: 0 auto
+  width: 95%
+
+.views-label-field-team-name /* hides labels above search results */,
+.views-label-field-drive-location
+  display: none
+
+.views-field-field-team-name /* drive name */,
+.views-field-field-drive-location /* drive logistics */,
+.views-field-nothing /* "join this drive" button  */
+  width: 30%
+  float: left
+
+.views-field-field-drive-location /* font styling drupal output */
+  font-size: 0.8em
+  font-weight: 400
+  font-family: din-web-reg
+  line-height: 1.4em
+
+.views-field-nothing .go-button /* "join this drive" */
+  margin: 15% auto 0
+  display: block
+  width: 6.7em
 
 //			//
 //	#content

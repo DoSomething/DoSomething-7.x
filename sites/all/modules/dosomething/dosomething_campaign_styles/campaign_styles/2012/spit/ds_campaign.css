@@ -196,6 +196,7 @@ body {
     margin: -20px -13px !important; }
 
 #cmp {
+  /* new table-less drive styles */
   /* element floats */
   /* centers wrappers contained within floated segments */ }
   #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
@@ -516,8 +517,27 @@ body {
       display: none; }
     #cmp .pane-drive-search-panel-pane-1 tbody tr {
       background: #f9f9f9; }
-  #cmp .go-button {
-    position: static; }
+  #cmp .drive-search-wrapper ul {
+    overflow: auto;
+    margin: 0 auto;
+    width: 95%; }
+  #cmp .views-label-field-team-name,
+  #cmp .views-label-field-drive-location {
+    display: none; }
+  #cmp .views-field-field-team-name,
+  #cmp .views-field-field-drive-location,
+  #cmp .views-field-nothing {
+    width: 30%;
+    float: left; }
+  #cmp .views-field-field-drive-location {
+    font-size: 0.8em;
+    font-weight: 400;
+    font-family: din-web-reg;
+    line-height: 1.4em; }
+  #cmp .views-field-nothing .go-button {
+    margin: 15% auto 0;
+    display: block;
+    width: 6.7em; }
   #cmp #scholarship {
     overflow: visible; }
     #cmp #scholarship h1 {
@@ -800,6 +820,10 @@ body {
       width: 37%; }
       #cmp a.print-pdf img {
         margin: 5% auto; }
+    #cmp .views-field-nothing {
+      width: 100%; }
+      #cmp .views-field-nothing .go-button {
+        margin: 3% auto 2%; }
     #cmp #scholarship {
       padding: 0; }
     #cmp .refer5 {
