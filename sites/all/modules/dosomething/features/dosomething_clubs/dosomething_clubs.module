@@ -1793,7 +1793,3 @@ function dosomething_clubs_page_alter(&$page) {
     drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/clubs_directory.js');
   }
 }
-
-notify::add_events('club', array(
-  'invite' => t("You've been invited!")
-));
