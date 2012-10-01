@@ -15,7 +15,7 @@
       <?php if ($logo): ?>
         <a href="/fb/pics-for-pets/gallery" title="Gallery" rel="home" id="logo">
           <?php if (request_uri() == '/fb/pics-for-pets/gallery') { ?>
-          <img src="/sites/all/themes/picsforpets/images/p4p.png" alt="<?php print t('Home'); ?>" />
+          <img src="/sites/all/themes/picsforpets/images/new_logo.png" alt="<?php print t('Home'); ?>" />
           <?php } else { ?>
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
           <?php } ?>
