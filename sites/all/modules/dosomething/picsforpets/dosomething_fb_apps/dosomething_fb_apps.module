@@ -156,13 +156,18 @@ function dosomething_fb_apps_ctools_render_alter(&$info, &$page, &$context) {
       }
 
       $adjectives = substr($adjectives, 0, -2);
-
       $petname = $context['args'][0]->field_fb_app_animal_name[LANGUAGE_NONE][0]['value'];
+
+      $ogtitle = variable_get('dosomething_picsforpets_open_graph_title', "Hi, I'm !pet.  I'm !adjectives and I need a home.");
+      $ogtitle = t($ogtitle, array(
+        '!name' => $petname,
+        '!adjectives' => $adjectives
+      ));
       $element2 = array(
         '#tag' => 'meta',
         '#attributes' => array(
           'property' => 'og:title', 
-          'content' => t("Hi, I'm !petname.  I'm !adjectives and I need a home.", array('!petname' => $petname, '!adjectives' => $adjectives)),
+          'content' => $ogtitle,
         ),
         '#weight' => -99999
       );

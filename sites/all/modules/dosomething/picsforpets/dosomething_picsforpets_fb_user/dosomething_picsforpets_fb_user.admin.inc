@@ -47,5 +47,14 @@ function dosomething_picsforpets_fb_user_settings_form() {
     '#default_value' => variable_get('dosomething_picsforpets_fb_user_app_secure_url', ''),
   );
 
+  $form['dosomething_picsforpets_open_graph_title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Open Graph Post Title'),
+    '#size' => 60,
+    '#maxlength' => 50,
+    '#description' => t('You may define the title of the post that appears on people\'s walls through Open Graph.  Use <b>!name</b> for the pet\'s name and <b>!adjectives</b> for the pet\'s adjectives and they\'ll be replaced on the page.'),
+    '#default_value' => variable_get('dosomething_picsforpets_open_graph_title', "Hi, I'm !pet.  I'm !adjectives and I need a home."),
+  );
+
   return system_settings_form($form);
 }
