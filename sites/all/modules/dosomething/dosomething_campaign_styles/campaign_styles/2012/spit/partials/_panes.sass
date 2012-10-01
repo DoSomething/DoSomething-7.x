@@ -212,10 +212,10 @@ a.print-pdf
   input, a.selectBox-dropdown, span.geofield-proximity-origin-from
     margin-right: 10px
   #edit-field-geofield-distance-distance
-    width: 50px
-    margin-right: 10px
-    margin-top: 2px
-    height: 27px
+    width: 3em
+    height: 2em
+    margin: 0 auto
+    display: block
   #edit-field-geofield-distance-origin
     width: 100px
     margin-top: 1px
@@ -235,8 +235,30 @@ a.print-pdf
 //  position: static
 //  width: 30%
 
-/* new table-less drive styles */
+/* search block */
+.form-item-field-geofield-distance-distance /* distance wrapper */,
+.form-item-field-geofield-distance-origin /* zip code wrapper */
+  input
+    display: block
+    margin: 0 auto
+    padding: 0
+    text-align: center
+    +border-radius(3px)
+  
+.form-item-field-geofield-distance-distance /* distance wrapper */
+  width: 10%
 
+.geofield-proximity-origin-from /* help text "miles from" */
+  text-align: center
+  width: 20%
+
+.form-item-field-geofield-distance-origin /* zip code wrapper */
+  width: 40%
+
+.views-submit-button /* search button */
+  width: 30%
+
+/* results block */ 
 .drive-search-wrapper ul /* clear floats */
   overflow: auto
   margin: 0 auto

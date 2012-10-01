@@ -196,7 +196,8 @@ body {
     margin: -20px -13px !important; }
 
 #cmp {
-  /* new table-less drive styles */
+  /* search block */
+  /* results block */
   /* element floats */
   /* centers wrappers contained within floated segments */ }
   #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
@@ -501,10 +502,10 @@ body {
     #cmp .pane-drive-search-panel-pane-1 input, #cmp .pane-drive-search-panel-pane-1 a.selectBox-dropdown, #cmp .pane-drive-search-panel-pane-1 span.geofield-proximity-origin-from {
       margin-right: 10px; }
     #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-distance {
-      width: 50px;
-      margin-right: 10px;
-      margin-top: 2px;
-      height: 27px; }
+      width: 3em;
+      height: 2em;
+      margin: 0 auto;
+      display: block; }
     #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-origin {
       width: 100px;
       margin-top: 1px;
@@ -517,6 +518,21 @@ body {
       display: none; }
     #cmp .pane-drive-search-panel-pane-1 tbody tr {
       background: #f9f9f9; }
+  #cmp .form-item-field-geofield-distance-distance input,
+  #cmp .form-item-field-geofield-distance-origin input {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center; }
+  #cmp .form-item-field-geofield-distance-distance {
+    width: 10%; }
+  #cmp .geofield-proximity-origin-from {
+    text-align: center;
+    width: 20%; }
+  #cmp .form-item-field-geofield-distance-origin {
+    width: 40%; }
+  #cmp .views-submit-button {
+    width: 30%; }
   #cmp .drive-search-wrapper ul {
     overflow: auto;
     margin: 0 auto;

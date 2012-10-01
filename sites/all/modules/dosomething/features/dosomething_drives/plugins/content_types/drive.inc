@@ -145,7 +145,7 @@ function dosomething_drives_drive_get_info($drive, $is_admin) {
 
 function dosomething_drives_drive_share() {
   drupal_add_js(drupal_get_path('module', 'dosomething_drives') . '/js/twitter.js');
-  $url = url(request_path(), array('absolute' => TRUE));
+#  $url = url(request_path(), array('absolute' => TRUE));
   return array(
     '#type' => 'container',
     '#suffix' => '</div> <!-- .drive-info-wrapper -->',
