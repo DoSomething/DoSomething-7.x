@@ -112,7 +112,7 @@ Drupal.behaviors.galleryShareButton = {
         '/me/dosomethingapp:share',
         'post',     
         {         
-            pet_who_needs_a_home: Drupal.behaviors.galleryShareButton.share_url,
+            pet_who_needs_a_home: shareUrl,
             image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
         },  
     //FB.ui(share,  
