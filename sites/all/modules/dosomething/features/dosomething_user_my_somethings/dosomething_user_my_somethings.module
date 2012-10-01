@@ -187,18 +187,20 @@ function dosomething_user_my_somethings_make_links($config, $uid, $era) {
 
   $data = dosomething_user_my_somethings_get_my_somethings_cached($uid, $era);
   foreach (array_filter($data) as $type => $somethings) {
-    $c = $config[$type];
-    $items[$type] = array('data' => $c['title'], 'children' => array());
+    if (isset($config[$type])) {
+      $c = $config[$type];
+      $items[$type] = array('data' => isset($c['title']) ? $c['title'] : '', 'children' => array());
 
-    foreach ($somethings as $s) {
-      if ($c['title_field']) {
-        $title = filter_xss($s->{$c['title_field']});
-        $replacements = array();
-        foreach ($c['link_id_fields'] as $field) {
-          $replacements['%' . $field] = $s->$field;
+      foreach ($somethings as $s) {
+        if ($c['title_field']) {
+          $title = filter_xss($s->{$c['title_field']});
+          $replacements = array();
+          foreach ($c['link_id_fields'] as $field) {
+            $replacements['%' . $field] = $s->$field;
+          }
+          $link = strtr($c['link_path'], $replacements);
+          $items[$type]['children'][] = l($title, $link);
         }
-        $link = strtr($c['link_path'], $replacements);
-        $items[$type]['children'][] = l($title, $link);
       }
     }
   }

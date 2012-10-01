@@ -48,8 +48,10 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   // Anonymous user.
   $membership = og_get_group_membership($group->gid, 'user', $user->uid);
 
-  if (isset($membership->state) && $membership->state == OG_STATE_ACTIVE) {
-    $form = drupal_render(drupal_get_form('dosomething_clubs_invite_form', $group->gid));
+  if (isset($membership->state) && $membership->state == OG_STATE_ACTIVE && isset($group->gid)) {
+    $gid = $group->gid;
+    $f = drupal_get_form('dosomething_clubs_invite_form', $gid);
+    $form = drupal_render($f);
     $member_link = $form;
   }
   else if (isset($membership->state) && $membership->state == OG_STATE_PENDING) {
@@ -277,13 +279,13 @@ function dosomething_clubs_club_counter_right() {
   $mnt = new EntityFieldQuery();
   $memberships_no_titles = $mnt
     ->entityCondition('entity_type', 'og_membership')
-    ->propertyCondition('gid', $gid)
+    ->propertyCondition('gid', $group->gid)
     ->propertyCondition('entity_type', 'user')
     ->execute();
 
   $w = $s = '';
   global $user;
-  if ($pending && (og_is_member() || user_access('administer group', $user) || in_array(DSCLUBS_ADMIN_ROLE, og_get_user_roles($group->gid, $user->uid)))) {
+  if ($pending && (og_is_member($group->gid) || user_access('administer group', $user) || in_array(DSCLUBS_ADMIN_ROLE, og_get_user_roles($group->gid, $user->uid)))) {
     $w = ' style="width: 110px; float: left;"';
     $s = '<span style="float: right; background: #E01B6A; color: white; padding: 3px; position: relative; top: -5px; border-radius: 5px;" title="' . t('This club has ' . $pending . ' member(s) pending approval.') . '">' . $pending . '</span>';
   }

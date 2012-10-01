@@ -84,9 +84,13 @@ LIMIT 4 OFFSET 0)")->fetchAll();
 	foreach ($query AS $key => $data) {
 		if (!$data->title) continue;
 		$file = file_load($data->fid);
-		if (!$file->uri) {
-		  $file->uri = 'default-profile-picture.jpg';
+		if (!is_object($file)) {
+			$file = new stdClass();
 		}
+		if (!isset($file->uri)) {
+		  $file->uri = 'default-profile-picture.jpg';
+	    }
+
 		$image = theme('image_style', array('path' => $file->uri, 'style_name' => 'project_related_thumb'));
 		$link = ($data->is_node ? drupal_lookup_path('alias', 'node/' . $data->nid) : drupal_lookup_path('alias', 'webform-submission/' . $data->sid));
 

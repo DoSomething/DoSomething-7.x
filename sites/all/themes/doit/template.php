@@ -462,8 +462,8 @@ function doit_image_formatter($variables) {
   // dsm($variables);
   $item = $variables['item'];
   $image = array(
-    'path' => $item['uri'],
-    'alt' => $item['alt'],
+    'path' => (isset($item['uri']) ? $item['uri'] : ''),
+    'alt' => (isset($item['alt']) ? $item['alt'] : ''),
   );
 
   if (isset($item['attributes'])) {
@@ -476,8 +476,10 @@ function doit_image_formatter($variables) {
   }
 
   // Do not output an empty 'title' attribute.
-  if (drupal_strlen($item['title']) > 0) {
-    $image['title'] = $item['title'];
+  if (isset($image['title'])) {
+    if (drupal_strlen($item['title']) > 0) {
+      $image['title'] = $item['title'];
+    }
   }
 
   if ($variables['image_style']) {

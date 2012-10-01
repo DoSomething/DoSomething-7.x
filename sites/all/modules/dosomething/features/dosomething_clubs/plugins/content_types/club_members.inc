@@ -97,7 +97,7 @@ function dosomething_clubs_club_members_content_type_render($subtype, $conf, $pa
               '#suffix' => '</h2>',
             ),
             'title' => array(
-              '#markup' => $membership->field_membership_description[LANGUAGE_NONE][0]['value'],
+              '#markup' => isset($membership->field_membership_description[LANGUAGE_NONE][0]['value']) ? isset($membership->field_membership_description[LANGUAGE_NONE][0]['value']) : '',
               '#prefix' => '<div class="member-title" id="member-title-'.$membership->etid.'">',
               '#suffix' => '</div>',
             ),
