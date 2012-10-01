@@ -511,6 +511,7 @@ function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
 
   // Grant applications
   $query = clone $base_query;
+  $query->condition('n.status', 1);
   $query->condition('n.type', 'grant_application');
   $query->condition('ws.is_draft', $era == 'current');
   $somethings['grant_application'] = $query->execute()->fetchAllAssoc('sid');
