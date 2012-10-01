@@ -32,8 +32,9 @@ function dosomething_webform_form_alter(&$form, &$form_state, $form_id) {
 
     // Add the form submit handler for mailchimp IFF we're on a submission form
     // for a webform node from the 'Webform' bundle.
-    if (isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] === 'webform') {
-      $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
+    $webform_bundles = array('webform');
+    if (isset($form_state['webform_entity']) && in_array($form_state['webform_entity']['bundle'], $webform_bundles)) {
+      $form['#submit'][] = 'dosomething_general_webform_mailchimp_find_and_send';
     }
 
     if (in_array($form['#node']->type, $node_types)) {

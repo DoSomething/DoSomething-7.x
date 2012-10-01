@@ -294,6 +294,58 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
 }
 
 /**
+ * Multi-function form submit handler that aggressively looks for emails and
+ * other data in form submissions, then sends them to mailchimp.
+ *
+ * @param $form
+ * @param $form_state
+ */
+function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_state) {
+  $node = $form['#node'];
+  $submitted = $form_state['webform_entity']['submission']->submitted;
+
+  $email = '';
+  if (!empty($submitted['email'])) {
+    $email = $submitted['email'];
+  }
+  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  }
+  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+  }
+
+  // An email and a mailchimp group id are the base requirements. Without them,
+  // bail out.
+  if (empty($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) || empty($email)) {
+    return;
+  }
+
+  // Now, find extra fields.
+  $merge_vars = array();
+
+  if (!empty($submitted['birthday'])
+      && !empty($submitted['birthday']['month'])
+      && !empty($submitted['birthday']['day'])) {
+    $month = str_pad($submitted['birthday']['month'], 2, '0', STR_PAD_LEFT);
+    $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
+    if (!empty($submitted['birthday']['year'])) {
+      $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
+    }
+  }
+
+  if (!empty($submitted['first_name'])) {
+    $merge_vars['FNAME'] = $submitted['first_name'];
+  }
+
+  if (!empty($submitted['last_name'])) {
+    $merge_vars['LNAME'] = $submitted['last_name'];
+  }
+
+  dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
+}
+
+/**
  * Subscribe an email address to InfusionSoft using an action.
  * Note: tags are assigned in InfusionSoft via the action, not in Drupal.
  */
@@ -370,7 +422,7 @@ function dosomething_general_user_presave(&$edit, $account, $category) {
  * @return
  *   Boolean indicating success.
  */
-function dosomething_general_mailchimp_subscribe($email, $groupName) {
+function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
   /* Our function */
   $mcapi = mailchimp_get_api_object();
   // Catching function
@@ -398,12 +450,12 @@ function dosomething_general_mailchimp_subscribe($email, $groupName) {
   }
 
   // TODO: Error Handling for groupname, still add the user if error occurs.
-  $mergeVars = array(
+  $merge_vars += array(
     'GROUPINGS' => array(
       array('id' => $groupingIdByGroupName[$groupName], 'groups' => $groupName),
     )
   );
-  return $mcapi->listSubscribe($listid, $email, $mergeVars, 'html', FALSE, TRUE,FALSE);
+  return $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE,FALSE);
 }
 
 /**
@@ -616,7 +668,7 @@ function dosomething_general_ctools_render_alter($info, $page, $context) {
       if (in_array('node', (array) $ctxt->type) && is_object($ctxt->data)) {
         $node = $ctxt->data;
         if ($panels_pane) {
-          $node->opengraph_meta['url'] = url(current_path(), array('absolute' => true));
+          $node->opengraph_meta['url'] = url(current_path(), array('absolute' => TRUE));
         }
 
         if (isset($node->opengraph_meta)) {
