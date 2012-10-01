@@ -38,9 +38,10 @@ ul {
 
 body {
   background-color: black;
-  background-image: url("assets/bully_text_bg.jpg");
+  background-image: url("assets/bully_text_bg_100k.jpg");
   background-repeat: no-repeat;
-  background-position: center top; }
+  background-position: center top;
+  background-size: 100%; }
 
 div[role="main"] {
   background: white;
