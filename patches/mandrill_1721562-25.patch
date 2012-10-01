@@ -1,0 +1,188 @@
+From 3328ad1cbb6eedfa5456e1989d2361944b9de77f Mon Sep 17 00:00:00 2001
+From: andrew morton <drewish@katherinehouse.com>
+Date: Mon, 1 Oct 2012 12:48:49 -0400
+Subject: [PATCH] Issue #1721562 by basvredeling, persand, jtbayly and
+ drewish: Add support for Mandrill templates and replacement
+ vars.
+
+---
+ mandrill.admin.inc |   36 +++++++++++++++++++++++++
+ mandrill.mail.inc  |   76 +++++++++++++++++++++++++++++++++++++++++++++-------
+ 2 files changed, 102 insertions(+), 10 deletions(-)
+
+diff --git a/mandrill.admin.inc b/mandrill.admin.inc
+index 771b3d2..d026c56 100644
+--- a/mandrill.admin.inc
++++ b/mandrill.admin.inc
+@@ -68,6 +68,42 @@ function mandrill_admin_settings($form, &$form_state) {
+       '#default_value' => array(variable_get('mandrill_filter_format', 'full_html')),
+     );
+ 
++    // They've provided an API key but we don't want to blow up the form if
++    // it's invalid, so we only show the template configuration if we can
++    // successfully fetch the list.
++    try {
++      if ($mailer = mandrill_get_api_object()) {
++        $options = array('' => t('-- No template --'));
++        foreach ($mailer->templates_list() as $template) {
++          $options[$template['name']] = $template['name'];
++        }
++
++        // Check if the currently configured template still exists.
++        $current_template = variable_get('mandrill_template', '');
++        if ($current_template && !isset($options[$current_template])) {
++          form_set_error('mandrill_template', t('The configured Mandrill template is no longer available, please select a valid one.'));
++        }
++
++        $form['email_options']['mandrill_template'] = array(
++          '#type' => 'select',
++          '#title' => t('Template'),
++          '#description' => t('Select a Mandrill template.'),
++          '#options' => $options,
++          '#default_value' => $current_template,
++        );
++      }
++    }
++    catch (Mandrill_Exception $e) {
++      $form['email_options']['mandrill_template'] = array(
++        '#type' => 'item',
++        '#title' => t('Template'),
++        '#value' => '<em>' . t('The Mandrill API is either incorrectly configured or unreachable so the template selection is disabled.') . '</em>',
++      );
++      drupal_set_message('Mandrill: ' . $e->getMessage(), 'error');
++      watchdog('mandrill', $e->getMessage(), array(), WATCHDOG_ERROR);
++      watchdog_exception('mandrill', $e);
++    }
++
+     $form['send_options'] = array(
+       '#title' => t('Send options'),
+       '#type' => 'fieldset',
+diff --git a/mandrill.mail.inc b/mandrill.mail.inc
+index 00c72fb..99f9fc9 100644
+--- a/mandrill.mail.inc
++++ b/mandrill.mail.inc
+@@ -34,7 +34,20 @@ class MandrillMailSystem implements MailSystemInterface {
+    * @see drupal_mail()
+    *
+    * @param $message
+-   *   A message array, as described in hook_mail_alter().
++   *   A message array, as described in hook_mail_alter(). There are several
++   *   optional values that can be passed in to change the way Mandrill handles
++   *   the email:
++   *   * 'attachments' - Array of file names to include in the message as
++   *     attachments.
++   *   * 'mandrill_global_merge_vars' - An array of global merge vars keyed by
++   *     variable name.
++   *   * 'mandrill_merge_vars' - Array of merge vars keyed by recipient's email
++   *     address with a sub array keyed by variable name.
++   *   * 'mandrill_template' - The name of an HTML template to use to send the
++   *     message. If this is not provided the site default will be used.
++   *   * 'mandrill_template_content' - Array of content keyed by the name of
++   *     the mc:edit region. The message's HTML body will be put into the 'main'
++   *     region by default.
+    *
+    * @return
+    *   TRUE if the mail was successfully accepted, otherwise FALSE.
+@@ -51,24 +64,51 @@ class MandrillMailSystem implements MailSystemInterface {
+       return FALSE;
+     }
+ 
+-    // send the email passing the message id as the tag for use in reporting
+     $mailer = mandrill_get_api_object();
+ 
+-    // apply input format to body
++    // Apply input format to body.
+     $html = $message['body'];
+     $format = variable_get('mandrill_filter_format', '');
+     if (!empty($format)) {
+       $html = check_markup($message['body'], $format);
+     }
+ 
+-    $to = mandrill_get_to($message['to']);
++    // Plug some default values into the message so we can avoid a bunch of
++    // isset()'s later.
++    $message += array(
++      'attachments' => array(),
++      'mandrill_global_merge_vars' => array(),
++      'mandrill_merge_vars' => array(),
++      'mandrill_template' => variable_get('mandrill_template', ''),
++      'mandrill_template_content' => array(),
++    );
++    $message['mandrill_merge_vars'] += array(
++      'subject' => $message['subject'],
++    );
++    $message['mandrill_template_content'] += array(
++      'main' => $html,
++    );
+ 
+     $attachments = array();
+-    if (isset($message['attachments']) && !empty($message['attachments'])) {
+-      foreach ($message['attachments'] as $attachment) {
+-        if (is_file($attachment)) {
+-          $attachments[] = $mailer->getAttachmentStruct($attachment);
++    foreach ($message['attachments'] as $attachment) {
++      if (is_file($attachment)) {
++        $attachments[] = $mailer->getAttachmentStruct($attachment);
++      }
++    }
++
++    // Flip the merge values into the appropriate format.
++    $global_merge_vars = array();
++    foreach ($message['mandrill_global_merge_vars'] as $name => $content) {
++      $global_merge_vars[] = array('name' => $name, 'content' => $content);
++    }
++    $merge_vars = array();
++    if (!empty($message['mandrill_merge_vars'])) {
++      foreach ($message['mandrill_merge_vars'] as $rcpt => $v) {
++        $vars = array();
++        foreach ($v as $name => $content) {
++          $vars[] = array('name' => $name, 'content' => $content);
+         }
++        $merge_vars[] = array('rcpt' => $rcpt, 'vars' => $vars);
+       }
+     }
+ 
+@@ -78,7 +118,9 @@ class MandrillMailSystem implements MailSystemInterface {
+       'subject' => $message['subject'],
+       'from_name' => variable_get('mandrill_from_name', ''),
+       'from_email' => $from,
+-      'to' => $to,
++      'to' => mandrill_get_to($message['to']),
++      'global_merge_vars' => $global_merge_vars,
++      'merge_vars' => $merge_vars,
+       // optional extra headers to add to the message (currently only Reply-To and X-* headers are allowed)
+       'headers' => $message['headers'],
+       'track_opens' => variable_get('mandrill_track_opens', TRUE),
+@@ -87,6 +129,7 @@ class MandrillMailSystem implements MailSystemInterface {
+       'auto_text' => FALSE,
+       'url_strip_qs' => variable_get('mandrill_url_strip_qs', FALSE),
+       'bcc_address' => isset($message['bcc_email']) ? $message['bcc_email'] : NULL,
++      // send the email passing the message id as the tag for use in reporting.
+       'tags' => array($message['id']),
+       'google_analytics_domains' => (variable_get('mandrill_analytics_domains', NULL)) ? explode(',', variable_get('mandrill_analytics_domains')) : array(),
+       'google_analytics_campaign' => variable_get('mandrill_analytics_campaign', ''),
+@@ -96,7 +139,20 @@ class MandrillMailSystem implements MailSystemInterface {
+     drupal_alter('mandrill_mail', $mandrill_message, $message);
+ 
+     try {
+-      $result = $mailer->messages_send($mandrill_message);
++      // Allow the message override the default template and content.
++      $template_name = $message['mandrill_template'];
++      $template_content = array();
++      foreach ($message['mandrill_template_content'] as $name => $content) {
++        $template_content[] = array('name' => $name, 'content' => $content);
++      }
++
++      // If we've got a template and content use it.
++      if ($template_name && $template_content) {
++        $result = $mailer->messages_send_template($template_name, $template_content, $mandrill_message);
++      }
++      else {
++        $result = $mailer->messages_send($mandrill_message);
++      }
+       // @todo: look for rejected messages and log
+       return TRUE;
+     }
+-- 
+1.7.9.6 (Apple Git-31.1)
+

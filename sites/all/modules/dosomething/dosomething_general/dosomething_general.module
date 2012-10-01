@@ -20,6 +20,24 @@ function dosomething_general_module_implements_alter(&$implementations, $hook) {
  *  Implements hook_mail_alter().
  */
 function dosomething_general_mail_alter(&$message) {
+  // For known user module emails put a bit of text explaining the reason for
+  // the message into the "std_preheader_content" region.
+  if ($message['module'] == 'user') {
+    $reasons = array(
+      'register_no_approval_required' => t("We want to welcome you to DoSomething.org."),
+      'password_reset' => t("You submitted a password recovery request."),
+      'status_activated' => t("Your DoSomething.org account has been activated."),
+      'status_blocked' => t("Your DoSomething.org account has been blocked."),
+      'cancel_confirm' => t("Confirm the cancelation of your DoSomething.org account."),
+      'status_canceled' => t("Your DoSomething.org account has been canceled."),
+    );
+    if (isset($reasons[$message['key']])) {
+      $message['mandrill_template_content']['std_preheader_content'] = $reasons[$message['key']];
+    }
+  }
+  // Build a per recipient unsubscribe link.
+  $message['mandrill_merge_vars'][$message['to']]['unsub'] = url('unsubscribe-email/' . $message['to'], array('alias' => TRUE, 'absolute' => TRUE));
+
   if ($message['key'] == 'petition_invite') {
     $nosend = db_select('dosomething_unsubscribed', 'u')
     ->fields('u')
