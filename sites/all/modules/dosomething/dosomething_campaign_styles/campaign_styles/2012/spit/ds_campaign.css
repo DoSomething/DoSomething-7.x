@@ -146,7 +146,7 @@ body {
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
   padding: 1.5em 0;
-  width: 205px;
+  width: 215px;
   -webkit-transition: background 5s ease-in;
   transition: background 5s ease-in; }
   #block-dosomething-campaign-styles-campaign-nav .content {
@@ -167,16 +167,28 @@ body {
     color: purple; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none; }
-  #block-dosomething-campaign-styles-campaign-nav img {
-    margin: 0 auto;
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    -o-box-shadow: none !important;
-    box-shadow: none !important; }
-  #block-dosomething-campaign-styles-campaign-nav p {
-    color: #dddddd;
-    text-align: center;
-    width: 80%; }
+  #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix {
+    padding: 5%; }
+    #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix img {
+      margin: 0 auto;
+      width: 100%;
+      -moz-box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      -o-box-shadow: none !important;
+      box-shadow: none !important; }
+    #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix p {
+      font-family: din-web-reg;
+      color: #cccccc;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 0; }
+    #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a {
+      font-weight: normal;
+      font-size: 1.1em;
+      padding: 0;
+      text-transform: none;
+      color: #cccccc;
+      text-decoration: underline; }
 
 #block-dosomething-campaign-styles-campaign-nav .highlight a {
   background: #ffcb15; }
