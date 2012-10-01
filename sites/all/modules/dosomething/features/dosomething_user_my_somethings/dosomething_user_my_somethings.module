@@ -351,7 +351,7 @@ function dosomething_user_my_somethings_my_past_somethings() {
     // Hard coding some of this to pics for pets until we know what the other
     // stuff will look like.
     'fb_app_data_gathering_form' => array(
-      'title' => t('On Facebook'),
+      'title' => t('Facebook Campaigns'),
       'link_path' => 'picsforpets',
     ) + $defaults,
   );
@@ -847,7 +847,7 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
         if (!empty($entity->sid)) {
           $something = array(
             'type' => $type,
-            'title' => t('Pic for Pets'),
+            'title' => t('Pics for Pets'),
             'image' => array('uri' => 'public://campaigns/logos/logo.png'),
             'uri' => array('path' => 'picsforpets', 'options' => array()),
             'check_path' => FALSE,
