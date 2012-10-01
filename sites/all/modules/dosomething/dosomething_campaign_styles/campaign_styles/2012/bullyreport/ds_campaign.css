@@ -1,420 +1,740 @@
-.main-inner {
-  padding-top: 10px;
-  width: 750px; }
-  .main-inner a {
-    color: blue; }
-    .main-inner a:hover {
-      color: black; }
-  .main-inner b {
-    font-weight: 600; }
+#main-wrapper div[role="main"] {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent;
+  width: 800px; }
+#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper, #main-wrapper #block-block-5 {
+  display: none; }
+#main-wrapper ul.primary {
+  border-bottom: none;
+  margin: 0;
+  padding: 15px 0 0 8px;
+  height: 37px; }
 
-h1.title {
+.ds-panel .pane-content {
+  padding-bottom: 0; }
+
+body {
+  background: #d69a92;
+  background: url(assets/bg.jpg); }
+
+.page-team #contact-form #webform-component-start-header {
   display: none; }
 
-h2.pane-title {
-  background: red; }
+.page-node-724776 #contact-form #webform-component-join-header {
+  display: none; }
 
-img {
+@media only screen and (max-width: 1075px) {
+  .region-sidebar-first {
+    display: none; }
+
+  #site-name {
+    top: -53px;
+    left: 23px; }
+    #site-name a {
+      height: 50px;
+      width: 60px;
+      background-size: 60px; }
+
+  #utility-bar {
+    height: 55px; }
+
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
+    display: none; }
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
+    padding: 1em 2em 0 0; }
+
+  #page {
+    width: 100%; }
+
+  #main-wrapper div[role="main"] {
+    float: none;
+    width: 100%; }
+
+  nav[role="navigation"] {
+    display: none; }
+
+  .container {
+    margin: 0 auto;
+    width: 100%; }
+
+  header[role="banner"] {
+    position: relative;
+    width: 797px;
+    margin: 0 auto; }
+  #block-menu-menu-footer .content {
+    width: 80%;
+    margin: 0 auto; }
+
+  #block-menu-menu-footer .content ul.menu li span {
+    font-size: 16px;
+    line-height: 1em; }
+
+  #block-menu-menu-footer .content ul.menu ul li a {
+    font-size: 14px;
+    line-height: 1em; }
+
+  #cmp .pane-content .s0 {
+    margin-top: 0; }
+  #cmp #campaign-opt-in {
+    text-align: center; } }
+  @media only screen and (max-width: 1075px) and (max-width: 775px) {
+    header[role="banner"] {
+      width: 100%; } }
+
+#cmp img {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -o-box-shadow: none !important;
-  box-shadow: none !important;
-  border: none !important; }
-
-ul {
-  margin: 0; }
-
-body {
-  background-color: #1f4ba7;
-  background-image: url("assets/bg.jpg");
-  background-repeat: repeat-y;
-  background-position: center top; }
-
-div[role="main"] {
-  background: white;
-  background: rgba(255, 255, 255, 0.8);
-  -webkit-box-shadow: black 0 0 30px -10px;
-  -moz-box-shadow: black 0 0 30px -10px;
-  box-shadow: black 0 0 30px -10px;
-  margin-top: 8px;
-  padding-top: 10px; }
-
-.three-boxes {
-  width: 32% !important;
-  float: left !important;
-  margin-right: 2% !important; }
-  .three-boxes:last-child {
-    margin-right: 0 !important; }
-  .three-boxes .pane-content {
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box; }
-
-.three-boxes-last-child {
-  margin-right: 0 !important; }
-
-.line-top:before {
-  overflow: hidden;
-  *zoom: 1;
-  display: block;
-  content: "";
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
-
-.line-bottom:after {
-  overflow: hidden;
-  *zoom: 1;
-  display: block;
-  content: "";
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
-
-.panel-row-flexible, .panel-row-actions {
-  margin: 0px; }
-  .panel-row-flexible .panel-pane, .panel-row-actions .panel-pane {
-    margin-bottom: 15px;
-    background: white;
-    background: rgba(255, 255, 255, 0.8); }
-    .panel-row-flexible .panel-pane .pane-title, .panel-row-actions .panel-pane .pane-title {
-      background: red; }
-    .panel-row-flexible .panel-pane .pane-content, .panel-row-actions .panel-pane .pane-content {
-      background: #eeeeee; }
-
-.ds-panel .pane-content {
-  padding-bottom: 0px; }
-
-#breadcrumb {
+  box-shadow: none !important; }
+#cmp .pane-title {
   display: none; }
 
-.panel-row-ad-quick-info h2.pane-title {
-  color: blue !important; }
+.invite_friends {
+  background: white;
+  padding: 0.5% 2% 2% 2%; }
+  .invite_friends h2 {
+    padding: 0 0 0.8em 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2em; }
+  .invite_friends h3 {
+    font-family: din-web;
+    font-size: 3em;
+    text-transform: uppercase;
+    color: #bbbbbb;
+    margin: 50% 0 0 0; }
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-or, .invite_friends .invite-module-email {
+    width: 43%;
+    float: left; }
+  .invite_friends .invite-module-facebook p, .invite_friends .invite-module-or p, .invite_friends .invite-module-email p {
+    font-size: 0.8em; }
+  .invite_friends .invite-module-or {
+    width: 14%; }
+  .invite_friends .ui-dialog-titlebar {
+    margin: 0 0 0 -5.5%; }
+  .invite_friends .facebook-action-connect {
+    display: block;
+    margin: 8% auto 0;
+    width: 40%; }
+  .invite_friends #edit-submit {
+    font-family: din-web;
+    background: #ffcb15;
+    margin: 0 0 0 5%;
+    font-size: 1.5em;
+    height: 1.4em;
+    display: inline-block;
+    border: none !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+    .invite_friends #edit-submit:hover {
+      background: #fbc300; }
+
+#edit-friend {
+  background: #dddddd;
+  width: 11em;
+  color: #444444;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
 
 #block-dosomething-campaign-styles-campaign-nav {
-  background: transparent;
-  margin-right: -5px;
-  padding: 0;
-  font-family: din-web, "Trebuchet MS", sans-serif; }
-  #block-dosomething-campaign-styles-campaign-nav ul.menu {
-    background: white;
-    background: rgba(255, 255, 255, 0.8);
-    background-image: none;
-    text-align: right; }
-    #block-dosomething-campaign-styles-campaign-nav ul.menu li {
-      line-height: 1.2em; }
-    #block-dosomething-campaign-styles-campaign-nav ul.menu a {
-      display: inline-block;
-      width: 100%;
-      padding: 10px 19px 10px 0;
-      font-size: 21px;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: black;
-      font-family: "din-web-reg"; }
-      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
-        color: blue;
-        text-decoration: none; }
-
-.pane-node-field-campaign-logo .pane-content {
-  padding-bottom: 0; }
-
-.field-name-field-campaign-logo img {
-  width: 480px;
-  height: 230px;
-  margin-top: 0px !important; }
-
-.panel-top-right-mini-info {
-  font-family: din-web, "Trebuchet MS", sans-serif;
-  font-size: 21px;
-  line-height: 1.4em; }
-  .panel-top-right-mini-info .field-name-field-campain-date {
-    color: blue;
-    padding: 0;
-    font-weight: 600; }
-  .panel-top-right-mini-info .field-name-field-campaign-teaser p {
-    margin-bottom: 15px; }
-  .panel-top-right-mini-info .pane-content {
-    padding-bottom: 0; }
-
-.pane-campaign-social .pane-content .fb-facepile {
-  margin-bottom: 5px; }
-  .pane-campaign-social .pane-content .fb-facepile:before {
-    overflow: hidden;
-    *zoom: 1;
-    display: block;
-    content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
-.pane-campaign-social .pane-content .socialWrapper {
-  margin: 0 0 8px 18px; }
-  .pane-campaign-social .pane-content .socialWrapper:before {
-    overflow: hidden;
-    *zoom: 1;
-    display: block;
-    content: "";
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    content: "";
-    display: block;
-    left: -18px;
-    margin-bottom: 8px;
-    position: relative;
-    width: 247px; }
-
-.panel-row-actions {
-  background: #eeeeee;
-  margin: 0 0 15px 0;
-  width: 750px;
-  border: none !important; }
-  .panel-row-actions .form-wrapper {
-    margin-bottom: 5px !important; }
-  .panel-row-actions .pane-title {
-    background: blue; }
-  .panel-row-actions .pane-content {
-    padding: 18px; }
-  .panel-row-actions .panel-row-actions-sign-up form {
-    padding-bottom: 0; }
-  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
-    margin: 0; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
-      color: white; }
-  .panel-row-actions .panel-row-actions-sign-up .pane-content {
-    padding: 0; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content .webform-client-form {
-      -moz-box-shadow: none !important;
-      -webkit-box-shadow: none !important;
-      -o-box-shadow: none !important;
-      box-shadow: none !important;
-      border: none !important; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
-      font-size: 14px;
-      width: 280px;
-      margin-bottom: 0.5em; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
-        width: 100%; }
-    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
-      font-size: 14px;
-      width: 240px;
-      margin-bottom: 0.5em; }
-      .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
-        width: 75%;
-        margin-top: 5px; }
-
-#campaign-opt-in {
-  font-size: 11px;
-  margin-left: 15px;
-  padding: 15px 0 12px 0; }
-  #campaign-opt-in a {
-    font-weight: bold;
-    display: block;
-    height: 20px;
-    width: 20px;
-    position: absolute;
-    bottom: 13px;
-    left: 324px;
-    color: blue; }
-    #campaign-opt-in a:hover {
-      color: black;
-      text-decoration: none; }
-
-.pane-campaign-counter .pane-content {
-  padding: 20px 25px; }
-  .pane-campaign-counter .pane-content .campaign-counter-labels {
-    text-transform: uppercase;
-    font-size: 25px;
-    font-family: din-web, "Trebuchet MS", sans-serif;
-    font-weight: 500;
-    line-height: 25px;
-    float: left; }
-  .pane-campaign-counter .pane-content .digits, .pane-campaign-counter .pane-content .campaign-counter-label-bottom, .pane-campaign-counter .pane-content .campaign-counter-label-top {
-    margin-bottom: 8px; }
-
-.panel-row-ad-quick-info .pane-title {
-  font-size: 35px;
-  padding: 0;
-  background: transparent;
-  text-transform: uppercase;
-  color: black;
-  line-height: 1em;
-  font-weight: 500; }
-.panel-row-ad-quick-info .pane-content {
-  margin-top: 1em;
-  padding: 0; }
-  .panel-row-ad-quick-info .pane-content h3 {
-    color: blue;
-    font-size: 24px;
-    text-transform: uppercase;
-    font-weight: 600;
-    line-height: 0.8em; }
-  .panel-row-ad-quick-info .pane-content p {
-    margin: 0 0 0.8em 0; }
-  .panel-row-ad-quick-info .pane-content:before {
-    margin-bottom: 20px; }
-
-.panel-row-ad-psa {
-  margin-top: 35px; }
-
-.panel-row-logos {
-  margin-top: 2em; }
-  .panel-row-logos .pane-title {
-    color: blue;
-    background: none;
+  background: white;
+  padding: 1.5em 2em 1.5em 0;
+  width: 205px;
+  -webkit-transition: background 5s ease-in;
+  transition: background 5s ease-in; }
+  #block-dosomething-campaign-styles-campaign-nav ul {
     margin: 0;
     padding: 0; }
-  .panel-row-logos .pane-content {
-    background: none;
-    padding: 0; }
+  #block-dosomething-campaign-styles-campaign-nav li {
+    margin: 0;
+    padding: 2% 0; }
+  #block-dosomething-campaign-styles-campaign-nav a {
+    font-family: din-web-reg;
+    font-weight: 600;
+    font-size: 1.2em;
+    padding: 0.2em 1em 0 1.5em;
+    text-transform: uppercase;
+    color: purple; }
+    #block-dosomething-campaign-styles-campaign-nav a:hover {
+      text-decoration: none; }
 
-.faq-section {
-  border: none !important; }
-  .faq-section .pane-content ul {
-    margin: 0px 10px;
-    padding: 1.5em; }
-  .faq-section .pane-content li h3 {
-    font-size: 1.6em;
-    text-transform: none; }
-  .faq-section .pane-content li p {
-    margin-top: 0; }
+#block-dosomething-campaign-styles-campaign-nav .highlight a {
+  background: #ffcb15; }
 
-.node-campaign-blog-post {
-  padding: 15px !important; }
-  .node-campaign-blog-post .field-name-field-picture img {
-    margin: 0 20px 20px 0;
-    float: left; }
-  .node-campaign-blog-post .field-name-field-blog-video {
-    clear: both;
-    position: relative;
-    bottom: -25px;
-    right: -125px;
-    margin: 35px 0; }
-    .node-campaign-blog-post .field-name-field-blog-video iframe {
-      margin: 0 auto;
-      display: block; }
-
-.field-type-text-with-summary img {
-  padding: 10px;
-  margin: 20px auto;
-  display: block;
-  border: 1px solid black !important; }
-
-.pane-campaign-blog-panel-pane-1 {
-  background: transparent !important;
-  border: none !important; }
-  .pane-campaign-blog-panel-pane-1 .pane-content {
-    padding: 15px; }
-  .pane-campaign-blog-panel-pane-1 a {
-    color: blue;
-    text-decoration: underline; }
-    .pane-campaign-blog-panel-pane-1 a:hover {
-      color: black; }
-  .pane-campaign-blog-panel-pane-1 .views-field-title a {
-    text-decoration: none; }
-    .pane-campaign-blog-panel-pane-1 .views-field-title a:hover {
-      color: black; }
-  .pane-campaign-blog-panel-pane-1 .more-link {
-    text-transform: uppercase; }
-
-.pane-campaign-blog-panel-pane-2 {
-  border: none !important;
-  width: 100%; }
-  .pane-campaign-blog-panel-pane-2 .pane-content {
-    padding: 10px 0 0 0; }
-  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row {
-    padding: 5px 15px 15px;
-      padding-margin: 1em 0 1em 0; }
-    .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row:first-child:before {
-      border: none !important;
-      margin: 0; }
-  .pane-campaign-blog-panel-pane-2 .view-campaign-blog .views-row-even {
-    background-color: #eeeeee; }
-
-#edit-submitted-field-webform-school-reference,
-#submitted-field-webform-school-zip-add-more-wrapper {
-  display: none; }
-
-.node-type-campaign-sign-up #webform-component-first-name, .node-type-campaign-sign-up #webform-component-last-name, .node-type-campaign-sign-up #webform-component-address-1, .node-type-campaign-sign-up #webform-component-address-2, .node-type-campaign-sign-up #webform-component-city, .node-type-campaign-sign-up #webform-component-state, .node-type-campaign-sign-up #webform-component-zip-code, .node-type-campaign-sign-up #webform-component-who-with, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value, .node-type-campaign-sign-up .form-item-first-name, .node-type-campaign-sign-up .form-item-last-name, .node-type-campaign-sign-up .form-item-email, .node-type-campaign-sign-up .form-item-cell, .node-type-campaign-sign-up .form-item-pass {
-  clear: both;
-  margin: 0 auto !important;
-  float: left !important; }
-  .node-type-campaign-sign-up #webform-component-first-name label, .node-type-campaign-sign-up #webform-component-last-name label, .node-type-campaign-sign-up #webform-component-address-1 label, .node-type-campaign-sign-up #webform-component-address-2 label, .node-type-campaign-sign-up #webform-component-city label, .node-type-campaign-sign-up #webform-component-state label, .node-type-campaign-sign-up #webform-component-zip-code label, .node-type-campaign-sign-up #webform-component-who-with label, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email label, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value label, .node-type-campaign-sign-up .form-item-first-name label, .node-type-campaign-sign-up .form-item-last-name label, .node-type-campaign-sign-up .form-item-email label, .node-type-campaign-sign-up .form-item-cell label, .node-type-campaign-sign-up .form-item-pass label {
-    width: 220px;
-    padding: 5px 0 0 40px; }
-  .node-type-campaign-sign-up #webform-component-first-name label, .node-type-campaign-sign-up #webform-component-first-name input, .node-type-campaign-sign-up #webform-component-last-name label, .node-type-campaign-sign-up #webform-component-last-name input, .node-type-campaign-sign-up #webform-component-address-1 label, .node-type-campaign-sign-up #webform-component-address-1 input, .node-type-campaign-sign-up #webform-component-address-2 label, .node-type-campaign-sign-up #webform-component-address-2 input, .node-type-campaign-sign-up #webform-component-city label, .node-type-campaign-sign-up #webform-component-city input, .node-type-campaign-sign-up #webform-component-state label, .node-type-campaign-sign-up #webform-component-state input, .node-type-campaign-sign-up #webform-component-zip-code label, .node-type-campaign-sign-up #webform-component-zip-code input, .node-type-campaign-sign-up #webform-component-who-with label, .node-type-campaign-sign-up #webform-component-who-with input, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email label, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value label, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input, .node-type-campaign-sign-up .form-item-first-name label, .node-type-campaign-sign-up .form-item-first-name input, .node-type-campaign-sign-up .form-item-last-name label, .node-type-campaign-sign-up .form-item-last-name input, .node-type-campaign-sign-up .form-item-email label, .node-type-campaign-sign-up .form-item-email input, .node-type-campaign-sign-up .form-item-cell label, .node-type-campaign-sign-up .form-item-cell input, .node-type-campaign-sign-up .form-item-pass label, .node-type-campaign-sign-up .form-item-pass input {
-    float: left;
-    margin: 8px 0;
-    font-size: 14px; }
-  .node-type-campaign-sign-up #webform-component-first-name input, .node-type-campaign-sign-up #webform-component-last-name input, .node-type-campaign-sign-up #webform-component-address-1 input, .node-type-campaign-sign-up #webform-component-address-2 input, .node-type-campaign-sign-up #webform-component-city input, .node-type-campaign-sign-up #webform-component-state input, .node-type-campaign-sign-up #webform-component-zip-code input, .node-type-campaign-sign-up #webform-component-who-with input, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input, .node-type-campaign-sign-up .form-item-first-name input, .node-type-campaign-sign-up .form-item-last-name input, .node-type-campaign-sign-up .form-item-email input, .node-type-campaign-sign-up .form-item-cell input, .node-type-campaign-sign-up .form-item-pass input {
-    width: 225px !important; }
-    .node-type-campaign-sign-up #webform-component-first-name input:focus, .node-type-campaign-sign-up #webform-component-last-name input:focus, .node-type-campaign-sign-up #webform-component-address-1 input:focus, .node-type-campaign-sign-up #webform-component-address-2 input:focus, .node-type-campaign-sign-up #webform-component-city input:focus, .node-type-campaign-sign-up #webform-component-state input:focus, .node-type-campaign-sign-up #webform-component-zip-code input:focus, .node-type-campaign-sign-up #webform-component-who-with input:focus, .node-type-campaign-sign-up .form-item-submitted-field-webform-email-und-0-email input:focus, .node-type-campaign-sign-up .form-item-submitted-field-webform-mobile-und-0-value input:focus, .node-type-campaign-sign-up .form-item-first-name input:focus, .node-type-campaign-sign-up .form-item-last-name input:focus, .node-type-campaign-sign-up .form-item-email input:focus, .node-type-campaign-sign-up .form-item-cell input:focus, .node-type-campaign-sign-up .form-item-pass input:focus {
-      background-color: lightyellow; }
-.node-type-campaign-sign-up .webform-component-markup {
-  float: left;
-  clear: both;
-  width: 100%; }
-.node-type-campaign-sign-up #webform-component-who-with label {
-  width: 100%;
-  padding-left: 0; }
-.node-type-campaign-sign-up #webform-component-who-with textarea {
-  border: none;
-  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  outline: none;
-  padding-left: 5px; }
-  .node-type-campaign-sign-up #webform-component-who-with textarea:focus {
-    background-color: lightyellow; }
-.node-type-campaign-sign-up #webform-component-who-with .grippie {
-  margin-bottom: 10px; }
-.node-type-campaign-sign-up .panel-row-flexible-top {
-  width: 550px;
-  margin: 0 auto; }
-  .node-type-campaign-sign-up .panel-row-flexible-top h2.pane-title {
-    display: none; }
-.node-type-campaign-sign-up #webform-component-instructions {
-  margin: 0 0 -10px 0 !important; }
-.node-type-campaign-sign-up form.webform-client-form #edit-actions--2, .node-type-campaign-sign-up form.webform-client-form #edit-actions {
-  text-align: center;
-  margin: 10px;
-  clear: both; }
-
-.center {
-  text-align: center; }
-
-.pane-dosomething-login-register-block {
-  margin-bottom: 0 !important; }
-  .pane-dosomething-login-register-block h2.pane-title {
-    display: block !important; }
-
-#dosomething-login-register-popup-form input:focus {
-  background-color: lightyellow; }
-#dosomething-login-register-popup-form .form-item-last-name, #dosomething-login-register-popup-form .form-item-cell, #dosomething-login-register-popup-form .form-item-pass {
-  width: 100%; }
-#dosomething-login-register-popup-form .ds-registration-form-required {
-  position: static; }
-#dosomething-login-register-popup-form .popup-content {
-  height: 100% !important;
-  padding: 15px 15px 0 15px !important;
-  margin: 0 !important; }
-#dosomething-login-register-popup-form #edit-birthday input {
-  width: 68px; }
-#dosomething-login-register-popup-form #edit-birthday label {
-  width: 220px;
-  padding: 5px 0 0 40px;
-  margin: 8px 0; }
-  #dosomething-login-register-popup-form #edit-birthday label .login-popup-birthday {
-    position: static !important;
-    font-size: 14px !important; }
-#dosomething-login-register-popup-form #edit-birthday .form-item-month, #dosomething-login-register-popup-form #edit-birthday .form-item-day, #dosomething-login-register-popup-form #edit-birthday .form-item-year {
-  margin-top: 8px !important; }
-
-.node-type-campaign-report-back .panel-row-flexible-top {
-  width: 550px;
-  margin: 0 auto; }
-  .node-type-campaign-report-back .panel-row-flexible-top label {
-    margin-top: 1em; }
-  .node-type-campaign-report-back .panel-row-flexible-top fieldset legend {
-    padding: 20px 0 0 0 !important; }
-  .node-type-campaign-report-back .panel-row-flexible-top #edit-actions--2, .node-type-campaign-report-back .panel-row-flexible-top #edit-actions {
+.mangoDialog-ui {
+  background: #222222;
+  margin: 0;
+  padding: 2% 1% 0 1%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+  .mangoDialog-ui h1 {
     text-align: center;
-    margin: 10px;
-    clear: both; }
+    padding: 1em 0 0.5em 0;
+    color: #ffcb15; }
+  .mangoDialog-ui img {
+    width: 80%;
+    margin: 0 auto;
+    padding: 5%;
+    display: block;
+    background: white;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+  .mangoDialog-ui .ui-icon.ui-icon-closethick {
+    margin: -20px -13px !important; }
+
+#cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
+#cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
+#cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
+#cmp del, #cmp dfn, #cmp em, #cmp img, #cmp ins, #cmp kbd, #cmp q, #cmp s, #cmp samp,
+#cmp small, #cmp strike, #cmp strong, #cmp sub, #cmp sup, #cmp tt, #cmp var,
+#cmp b, #cmp u, #cmp i, #cmp center,
+#cmp dl, #cmp dt, #cmp dd, #cmp ol, #cmp ul, #cmp li,
+#cmp fieldset, #cmp form, #cmp label, #cmp legend,
+#cmp table, #cmp caption, #cmp tbody, #cmp tfoot, #cmp thead, #cmp tr, #cmp th, #cmp td,
+#cmp article, #cmp aside, #cmp canvas, #cmp details, #cmp embed,
+#cmp figure, #cmp figcaption, #cmp footer, #cmp header, #cmp hgroup,
+#cmp menu, #cmp nav, #cmp output, #cmp ruby, #cmp section, #cmp summary,
+#cmp time, #cmp mark, #cmp audio, #cmp video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 16px;
+  font: inherit;
+  vertical-align: baseline; }
+#cmp article, #cmp aside, #cmp details, #cmp figcaption, #cmp figure,
+#cmp footer, #cmp header, #cmp hgroup, #cmp menu, #cmp nav, #cmp section {
+  display: block; }
+#cmp body {
+  line-height: 1; }
+#cmp ol, #cmp ul {
+  list-style: none; }
+#cmp blockquote, #cmp q {
+  quotes: none; }
+#cmp blockquote:before, #cmp blockquote:after,
+#cmp q:before, #cmp q:after {
+  content: "";
+  content: none; }
+#cmp table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+#cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
+  font-weight: 600;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  color: black; }
+#cmp h1, #cmp h3, #cmp .divider {
+  text-transform: uppercase; }
+#cmp h1 {
+  font-size: 2.5em;
+  line-height: 1.54em; }
+#cmp h1.condensed {
+  font-size: 3.75em;
+  font-weight: 600;
+  font-family: "din-web"; }
+#cmp h2 {
+  font-size: 1.5em;
+  line-height: 1.55em; }
+#cmp h3 {
+  font-size: 1.25em;
+  line-height: 22px; }
+#cmp h4 {
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 17px; }
+#cmp p, #cmp label {
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 17px; }
+#cmp input[type="submit"] {
+  font-size: 2em; }
+#cmp a {
+  color: #7f3f80; }
+#cmp a.mango {
+  background: rgba(127, 63, 128, 0.6);
+  color: white; }
+#cmp .divider {
+  color: white; }
+#cmp .legal {
+  font-size: 0.625em;
+  font-weight: 500;
+  line-height: 1em; }
+#cmp .section {
+  overflow: auto;
+  background: white;
+  margin: 0 auto;
+  padding: 2% 2% 0 2%;
+  text-align: center; }
+#cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
+  float: left;
+  padding: 0 1.5%; }
+#cmp .col33 {
+  width: 33%; }
+#cmp .col40 {
+  width: 40%; }
+#cmp .col50 {
+  width: 50%; }
+#cmp .col60 {
+  width: 60%; }
+#cmp .divider {
+  text-align: center;
+  border-top: 2px solid #eeeeee;
+  margin: 0 0 3% 0;
+  padding: 0.8% 0 0 0; }
+  #cmp .divider span {
+    background: black;
+    padding: 0.5em 0.8em;
+    position: relative; }
+#cmp .go-button, #cmp #edit-submit {
+  font-family: din-web;
+  background: #ffcb15;
+  margin: 4% 0 1%;
+  padding: 0.4em 0.7em;
+  font-size: 2em;
+  height: 1.4em;
+  display: inline-block;
+  color: #1e1d1c;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+  #cmp .go-button:hover, #cmp #edit-submit:hover {
+    color: #562b57; }
+#cmp #header {
+  background: url("assets/brad.jpg");
+  background-position: 29% -120%;
+  padding: 0; }
+  #cmp #header h1, #cmp #header h2 {
+    text-align: left;
+    color: #ffcb15; }
+  #cmp #header span {
+    text-align: center;
+    background: #7f3f80;
+    background: rgba(127, 63, 128, 0.6); }
+  #cmp #header .tagline {
+    padding: 2%; }
+#cmp #drive {
+  text-align: left; }
+#cmp .drive-info-wrapper {
+  float: left;
+  width: 56%; }
+#cmp .drive-participants {
+  float: right;
+  width: 40%;
+  margin: 6% 0 0 0;
+  padding: 0 0 0 5%;
+  border-left: 1px solid #d2d2d3; }
+  #cmp .drive-participants ul {
+    max-height: 160px;
+    overflow: scroll; }
+#cmp .drive-info-title h2 {
+  color: #7f3f80;
+  margin: 0 0 0.5em 0;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 1px solid #cccccc; }
+#cmp .drive-info-info {
+  width: 65%;
+  float: left; }
+  #cmp .drive-info-info a {
+    color: #7f3f80;
+    background-image: url("assets/drive1.png");
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding: 1em 1.8em 0;
+    display: block; }
+#cmp .drive-info-where, #cmp .drive-info-when {
+  font-weight: uppercase;
+  font-weight: 600; }
+  #cmp .drive-info-where span, #cmp .drive-info-when span {
+    font-weight: 500;
+    text-transform: none;
+    color: #777777; }
+#cmp .drive-share {
+  width: 35%;
+  float: right; }
+  #cmp .drive-share h3 {
+    text-align: right; }
+#cmp .drive-facebook, #cmp .drive-twitter {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  text-indent: -9999em;
+  margin: 0 0 0 5%;
+  float: right; }
+  #cmp .drive-facebook:hover, #cmp .drive-twitter:hover {
+    background-position-y: -30px; }
+#cmp .drive-twitter {
+  background-image: url(assets/drive-twitter.png); }
+#cmp .drive-facebook {
+  background-image: url(assets/drive-facebook.png); }
+#cmp .drive-info-description, #cmp .drive-info-countdown {
+  display: none; }
+#cmp input.remove_participant {
+  border: none;
+  font-size: 16px;
+  font-family: din-web-reg;
+  width: 18px;
+  height: 18px;
+  line-height: 16px;
+  background: #7f3f80;
+  color: white;
+  letter-spacing: 1px;
+  margin: -18px 0 0 0;
+  padding: 0;
+  float: right;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px; }
+  #cmp input.remove_participant:hover {
+    color: white;
+    background: #673368; }
+#cmp .drive-participants-list li {
+  padding: 0.2em 0; }
+#cmp .drive-action-link {
+  text-align: center; }
+#cmp #action.action-anonymous img, #cmp #action.action-participant img {
+  display: block;
+  margin: 5% auto; }
+#cmp #action.action-leader {
+  text-align: left; }
+  #cmp #action.action-leader h1 {
+    font-size: 1.5em;
+    margin: 0 0 0 -1em; }
+  #cmp #action.action-leader ul {
+    padding: 0.5em 1em; }
+  #cmp #action.action-leader li {
+    list-style: disc; }
+  #cmp #action.action-leader b {
+    color: #7f3f80;
+    background: #ffcb15;
+    width: 10em;
+    display: block;
+    text-align: center;
+    padding: 0.2em 0 0 0; }
+  #cmp #action.action-leader strong {
+    color: #7f3f80; }
+#cmp .center_img {
+  margin: 0 auto;
+  width: 80%;
+  display: block; }
+#cmp .print-pdf {
+  position: relative;
+  left: 37%; }
+  #cmp .print-pdf img {
+    width: 26%; }
+#cmp .pane-drive-search-panel-pane-1 {
+  background: white; }
+  #cmp .pane-drive-search-panel-pane-1 form {
+    width: 62.5%;
+    margin: 0 auto;
+    padding: 20px 0; }
+  #cmp .pane-drive-search-panel-pane-1 .views-table {
+    width: 800px; }
+  #cmp .pane-drive-search-panel-pane-1 tr {
+    border-bottom: 1px solid #d2d2d3 !important; }
+  #cmp .pane-drive-search-panel-pane-1 td {
+    padding: 0 10px 10px !important; }
+  #cmp .pane-drive-search-panel-pane-1 .views-field-field-taem-name a {
+    font-size: 14px;
+    text-tranform: uppercase; }
+  #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search {
+    font-family: din-web;
+    background: #ffcb15;
+    padding: 5px 11px 2px;
+    line-height: 1em;
+    font-size: 21px;
+    border: none !important;
+    color: #1e1d1c;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    height: 27px;
+    margin-top: 0px; }
+    #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search:hover {
+      color: #562b57; }
+  #cmp .pane-drive-search-panel-pane-1 input, #cmp .pane-drive-search-panel-pane-1 a.selectBox-dropdown, #cmp .pane-drive-search-panel-pane-1 span.geofield-proximity-origin-from {
+    margin-right: 10px; }
+  #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-distance {
+    width: 50px;
+    margin-right: 10px;
+    margin-top: 2px;
+    height: 27px; }
+  #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-origin {
+    width: 100px;
+    margin-top: 1px;
+    height: 27px; }
+  #cmp .pane-drive-search-panel-pane-1 .selectBox-label {
+    height: 27px;
+    padding: 5px !important;
+    margin-top: 1px; }
+  #cmp .pane-drive-search-panel-pane-1 thead tr {
+    display: none; }
+  #cmp .pane-drive-search-panel-pane-1 tbody tr {
+    background: #f9f9f9; }
+#cmp .go-button {
+  position: static; }
+#cmp #scholarship {
+  overflow: visible; }
+  #cmp #scholarship h1 {
+    color: #ffcb15; }
+  #cmp #scholarship p {
+    color: white; }
+  #cmp #scholarship label, #cmp #scholarship input[type="text"] {
+    height: 25px;
+    padding: 0.5em 0;
+    margin: 0.8% 0;
+    width: 50%;
+    text-align: left; }
+  #cmp #scholarship label {
+    float: left;
+    clear: left;
+    color: white; }
+  #cmp #scholarship input[type="text"], #cmp #scholarship input[type="submit"] {
+    float: right;
+    clear: right; }
+  #cmp #scholarship .go-button {
+    margin: 4% 0 1% 0;
+    padding: 0.3em 0.7em; }
+  #cmp #scholarship #campaign-opt-in {
+    color: #4c264d;
+    text-align: left; }
+    #cmp #scholarship #campaign-opt-in a {
+      color: #ffcb15;
+      font-weight: 500; }
+#cmp .refer5 {
+  background: #7f3f80;
+  width: 110%;
+  margin: 0 0 0 -4.95%;
+  padding: 3%; }
+  #cmp .refer5:before, #cmp .refer5:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 11px; }
+  #cmp .refer5:before {
+    border-color: transparent #562b57 #562b57 transparent;
+    left: -23px;
+    top: 44px; }
+  #cmp .refer5:after {
+    border-color: transparent transparent #562b57 #562b57;
+    right: -22px;
+    top: 44px; }
+#cmp #impact .go-button {
+  margin: 2% 0 1% 0; }
+#cmp #faq h4, #cmp #faq li, #cmp #faq p {
+  text-align: left;
+  padding: 0 0 0 1.5em; }
+#cmp #faq h4 {
+  color: #7f3f80;
+  cursor: pointer;
+  background: url("assets/faq2.png");
+  background-repeat: no-repeat; }
+#cmp #faq h1 {
+  font-size: 2em;
+  font-family: din-web;
+  text-transform: uppercase;
+  background: url("assets/faq3.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0.7em;
+  padding: 0 0 1em 0;
+  margin: 0 0 -1em 0; }
+#cmp #faq .go-button {
+  margin: 0 0 1% 0; }
+#cmp #faq h4.activeFAQ {
+  background-position-y: -27px; }
+#cmp #footer h1 {
+  font-size: 2em;
+  font-family: din-web;
+  text-transform: uppercase;
+  background: url("assets/faq3.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0.7em;
+  padding: 0 0 1em 0;
+  margin: 0 0 -1em 0; }
+#cmp #footer .go-button {
+  margin: 0 0 1% 0; }
+#cmp label {
+  cursor: default; }
+#cmp #contact-form {
+  margin: 10% 0 0 0;
+  background: black;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%; }
+  #cmp #contact-form h3 {
+    color: #ffcb15;
+    font-size: 2em;
+    font-weight: 500;
+    text-align: left;
+    padding: 0.2em 0 0 0; }
+#cmp .focusOutline {
+  box-shadow: 0px 0px 15px 4px #cbbeff; }
+#cmp .pane-campaign-sign-up {
+  clear: both;
+  width: 100%;
+  padding: 1% 0 1% 0; }
+  #cmp .pane-campaign-sign-up h1 {
+    font-family: din-web;
+    font-size: 23px;
+    text-align: center;
+    color: white; }
+  #cmp .pane-campaign-sign-up label {
+    text-align: left; }
+  #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
+    width: 35%; }
+  #cmp .pane-campaign-sign-up #edit-submit {
+    float: right;
+    position: static;
+    margin: 9% 2% 0 0;
+    padding: 0.3em 0.7em; }
+#cmp .pane-campaign-sign-up label, #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
+  width: 85%;
+  float: left;
+  clear: left; }
+#cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
+  margin: 0.5em 0 0 0; }
+#cmp .pane-campaign-sign-up label {
+  color: white;
+  font-size: 1.7em;
+  font-family: din-web;
+  text-transform: uppercase; }
+#cmp #campaign-opt-in {
+  clear: both;
+  text-align: left;
+  padding: 0.3em 0 0 0 !important; }
+  #cmp #campaign-opt-in span {
+    font-size: 10px;
+    background: transparent;
+    color: white; }
+  #cmp #campaign-opt-in strong {
+    font-weight: 600; }
+#cmp .webform-client-form {
+  box-shadow: none; }
+#cmp .already_submitted {
+  margin: 0 0 2% 0; }
+  #cmp .already_submitted .go-button {
+    margin: 0 0 1% 0; }
+#cmp #webform-component-join-header, #cmp #webform-component-start-header, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
+  width: 25%;
+  float: left; }
+#cmp #sign-up .form-wrapper {
+  float: none; }
+#cmp #sign-up input {
+  margin-bottom: 10px; }
+#cmp #report-back {
+  border: none;
+  width: 70%;
+  padding: 1% 2%;
+  background: white; }
+  #cmp #report-back .pane-title,
+  #cmp #report-back .fb-social-comments-plugin {
+    display: none; }
+  #cmp #report-back form {
+    border: none; }
+    #cmp #report-back form input.form-text, #cmp #report-back form textarea {
+      font-size: 14px; }
+    #cmp #report-back form label {
+      font-size: 1.4em; }
+    #cmp #report-back form #edit-submitted-how-many-people-participated-in-this-drive,
+    #cmp #report-back form #edit-submitted-how-many-potential-donors-were-registered {
+      width: 60px; }
+    #cmp #report-back form .form-item {
+      margin-top: 10px; }
+    #cmp #report-back form .fb-social-comments-plugin {
+      display: none; }
+    #cmp #report-back form #edit-submitted-taxonomy-vocabulary-5,
+    #cmp #report-back form #edit-submitted-field-webform-email,
+    #cmp #report-back form #edit-submitted-field-webform-mobile,
+    #cmp #report-back form #edit-submitted-field-webform-videos,
+    #cmp #report-back form #edit-submitted-field-webform-school-reference,
+    #cmp #report-back form #edit-submitted-field-webform-school,
+    #cmp #report-back form #edit-submitted-field-webform-school-zip {
+      display: none; }
+    #cmp #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
+      display: block !important;
+      margin: 10px !important; }
+#cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
+  font-family: din-web;
+  background: #ffcb15;
+  margin: 4% 0 1%;
+  padding: 0.3em 0.7em;
+  font-size: 2em;
+  height: 1.4em;
+  display: inline-block;
+  color: #1e1d1c;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  border: none;
+  line-height: 1em; }
+  #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
+    color: #562b57; }
+#cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
+#cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
+  display: none; }
+#cmp #webform-client-form-724779 {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: 2% 10% !important; }
+  #cmp #webform-client-form-724779 h1, #cmp #webform-client-form-724779 p {
+    text-align: center; }
+  #cmp #webform-client-form-724779 p {
+    margin-bottom: 10px; }
+  #cmp #webform-client-form-724779 input {
+    width: 100%;
+    border: 1px solid #f9f9f9; }
+  #cmp #webform-client-form-724779 .form-actions.form-wrapper {
+    width: 50% !important;
+    margin: 0 auto !important; }
+    #cmp #webform-client-form-724779 .form-actions.form-wrapper #edit-submit {
+      width: 100% !important; }
+  #cmp #webform-client-form-724779 #edit-submitted-field-webform-email, #cmp #webform-client-form-724779 #edit-submitted-field-webform-mobile {
+    width: 100% !important; }
+  #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference {
+    background: #f9f9f9;
+    border: 1px solid #e9e9e9 !important;
+    padding: 2% 4% !important;
+    margin-bottom: 10px !important; }
+    #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference label {
+      padding-top: 10px; }
+    #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference .fieldset-legend {
+      font-weight: bold !important;
+      font-size: 1.6em !important; }
+  #cmp #webform-client-form-724779 #edit-submitted-give-a-spit-action-kit-1 {
+    width: 1.5em !important; }
+@media only screen and (max-width: 775px) {
+  #cmp .section {
+    width: 100%;
+    margin: 2% auto; }
+  #cmp .refer5 {
+    width: 106%;
+    margin: 0 0 0 -3%;
+    padding: 3%; }
+    #cmp .refer5:before, #cmp .refer5:after {
+      display: none; } }
+@media only screen and (max-width: 450px) {
+  #cmp .section {
+    margin: 5% auto; } }
