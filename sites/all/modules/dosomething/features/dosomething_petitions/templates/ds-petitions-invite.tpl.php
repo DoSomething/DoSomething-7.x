@@ -9,4 +9,4 @@ Thanks!
 <?php echo $first_name; ?>
 
 --------
-To stop receiving these emails, click here: http://www.dosomething.org/unsubscribe-email/<?php echo $email; ?>
+To stop receiving emails from your friends about DoSomething.org petitions, click here: http://www.dosomething.org/unsubscribe-email/<?php echo $email; ?>
