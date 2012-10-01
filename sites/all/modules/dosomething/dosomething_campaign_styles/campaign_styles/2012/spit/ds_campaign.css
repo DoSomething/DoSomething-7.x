@@ -467,72 +467,44 @@ body {
     width: 30%; }
     #cmp a.print-pdf img {
       width: 100%; }
-  #cmp .pane-drive-search-panel-pane-1 {
-    background: white; }
-    #cmp .pane-drive-search-panel-pane-1 form {
-      width: 62.5%;
-      margin: 0 auto;
-      padding: 20px 0; }
-    #cmp .pane-drive-search-panel-pane-1 .views-table {
-      width: 800px; }
-    #cmp .pane-drive-search-panel-pane-1 tr {
-      border-bottom: 1px solid #d2d2d3 !important; }
-    #cmp .pane-drive-search-panel-pane-1 td {
-      padding: 0 10px 10px !important; }
-    #cmp .pane-drive-search-panel-pane-1 .views-field-field-taem-name a {
-      font-size: 14px;
-      text-tranform: uppercase; }
-    #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search {
-      font-family: din-web;
-      background: #ffcb15;
-      padding: 5px 11px 2px;
-      line-height: 1em;
-      font-size: 21px;
-      border: none !important;
-      color: #1e1d1c;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      border-radius: 5px;
-      height: 27px;
-      margin-top: 0px; }
-      #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search:hover {
-        color: #562b57; }
-    #cmp .pane-drive-search-panel-pane-1 input, #cmp .pane-drive-search-panel-pane-1 a.selectBox-dropdown, #cmp .pane-drive-search-panel-pane-1 span.geofield-proximity-origin-from {
-      margin-right: 10px; }
-    #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-distance {
-      width: 3em;
-      height: 2em;
-      margin: 0 auto;
-      display: block; }
-    #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-origin {
-      width: 100px;
-      margin-top: 1px;
-      height: 27px; }
-    #cmp .pane-drive-search-panel-pane-1 .selectBox-label {
-      height: 27px;
-      padding: 5px !important;
-      margin-top: 1px; }
-    #cmp .pane-drive-search-panel-pane-1 thead tr {
-      display: none; }
-    #cmp .pane-drive-search-panel-pane-1 tbody tr {
-      background: #f9f9f9; }
+  #cmp .pane-drive-search-panel-pane-1 form {
+    width: 50%;
+    margin: 1em auto;
+    padding: 1em;
+    border-top: 2px solid #d2d2d3;
+    border-bottom: 2px solid #d2d2d3; }
+  #cmp #edit-field-geofield-distance-wrapper {
+    width: 67%;
+    margin: 0.4em 0 0 0; }
+  #cmp .form-type-geofield-proximity {
+    width: 100%; }
   #cmp .form-item-field-geofield-distance-distance input,
   #cmp .form-item-field-geofield-distance-origin input {
     display: block;
     margin: 0 auto;
     padding: 0;
-    text-align: center; }
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
   #cmp .form-item-field-geofield-distance-distance {
-    width: 10%; }
+    display: none; }
   #cmp .geofield-proximity-origin-from {
     text-align: center;
-    width: 20%; }
+    padding: 0.2em 0 0 0;
+    width: 50%; }
   #cmp .form-item-field-geofield-distance-origin {
-    width: 40%; }
-  #cmp .views-submit-button {
-    width: 30%; }
+    width: 33%; }
+    #cmp .form-item-field-geofield-distance-origin input {
+      background-color: #eeeeee; }
+  #cmp .views-submit-button input {
+    text-transform: uppercase;
+    font-weight: 500; }
+  #cmp .view-id-drive_search .view-content {
+    background-color: #eeeeee;
+    padding: 1em; }
   #cmp .drive-search-wrapper ul {
     overflow: auto;
     margin: 0 auto;
@@ -550,10 +522,12 @@ body {
     font-weight: 400;
     font-family: din-web-reg;
     line-height: 1.4em; }
-  #cmp .views-field-nothing .go-button {
-    margin: 15% auto 0;
+  #cmp .views-field-nothing span {
+    width: 10em;
     display: block;
-    width: 6.7em; }
+    margin: 1em auto; }
+  #cmp .views-field-nothing a.go-button {
+    position: static; }
   #cmp #scholarship {
     overflow: visible; }
     #cmp #scholarship h1 {
@@ -840,6 +814,8 @@ body {
       width: 100%; }
       #cmp .views-field-nothing .go-button {
         margin: 3% auto 2%; }
+    #cmp .pane-drive-search-panel-pane-1 form {
+      width: 65%; }
     #cmp #scholarship {
       padding: 0; }
     #cmp .refer5 {
@@ -871,13 +847,24 @@ body {
       margin: 0 auto; }
     #cmp .email-spit img {
       width: 100%; }
-    #cmp #scholarship h1.condensed {
+    #cmp .pane-drive-search-panel-pane-1 form {
+      width: 85%; }
+    #cmp .views-field-nothing {
+      margin: 0; } }
+  #cmp .views-field-field-team-name,
+  #cmp .views-field-field-drive-location {
+    width: 50%; }
+    #cmp .views-field-field-team-name #scholarship h1.condensed,
+    #cmp .views-field-field-drive-location #scholarship h1.condensed {
       font-size: 2.75em; }
-    #cmp #scholarship .col50 {
+    #cmp .views-field-field-team-name #scholarship .col50,
+    #cmp .views-field-field-drive-location #scholarship .col50 {
       width: 100%; }
-    #cmp #social .col33 {
+    #cmp .views-field-field-team-name #social .col33,
+    #cmp .views-field-field-drive-location #social .col33 {
       width: 90%;
       margin: 2% 5%; }
-    #cmp #social img {
+    #cmp .views-field-field-team-name #social img,
+    #cmp .views-field-field-drive-location #social img {
       float: left;
-      width: 50%; } }
+      width: 50%; }

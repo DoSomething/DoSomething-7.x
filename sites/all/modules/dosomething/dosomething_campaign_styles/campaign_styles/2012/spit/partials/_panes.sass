@@ -181,61 +181,21 @@ a.print-pdf
 //  .search     - search -
 //      //
 
-.pane-drive-search-panel-pane-1 /* table-based form styling -- OLD */
-  background: #fff
-  form
-    width: 62.5%
-    margin: 0 auto 
-    padding: 20px 0
-  .views-table
-    width: 800px
-  tr
-    border-bottom: 1px solid $spitGrey !important
-  td
-    padding: 0 10px 10px !important
-  .views-field-field-taem-name a
-    font-size: 14px
-    text-tranform: uppercase
-  #edit-submit-drive-search
-    font-family: din-web
-    background: $spitYellow
-    padding: 5px 11px 2px
-    line-height: 1em
-    font-size: 21px
-    +noBorder
-    color: $offBlack
-    +border-radius(5px)
-    height: 27px
-    margin-top: 0px
-    &:hover
-      color: darken($spitPurple, 12)
-  input, a.selectBox-dropdown, span.geofield-proximity-origin-from
-    margin-right: 10px
-  #edit-field-geofield-distance-distance
-    width: 3em
-    height: 2em
-    margin: 0 auto
-    display: block
-  #edit-field-geofield-distance-origin
-    width: 100px
-    margin-top: 1px
-    height: 27px
-  .selectBox-label
-    height: 27px
-    padding: 5px !important
-    margin-top: 1px
-  thead
-    tr
-      display: none
-  tbody
-    tr
-      background: #F9F9F9      
-
-//.go-button /* why is this here? */
-//  position: static
-//  width: 30%
-
 /* search block */
+.pane-drive-search-panel-pane-1 form
+  width: 50%
+  margin: 1em auto 
+  padding: 1em
+  border-top: 2px solid $spitGrey
+  border-bottom: 2px solid $spitGrey
+
+#edit-field-geofield-distance-wrapper /* wraps everything but "search" */
+  width: 67%
+  margin: 0.4em 0 0 0
+
+.form-type-geofield-proximity /* drupal code, so clean! (another wrapper) */
+  width: 100%
+
 .form-item-field-geofield-distance-distance /* distance wrapper */,
 .form-item-field-geofield-distance-origin /* zip code wrapper */
   input
@@ -246,19 +206,27 @@ a.print-pdf
     +border-radius(3px)
   
 .form-item-field-geofield-distance-distance /* distance wrapper */
-  width: 10%
+  display: none
 
-.geofield-proximity-origin-from /* help text "miles from" */
+.geofield-proximity-origin-from /* faux label "Zip code:" */
   text-align: center
-  width: 20%
+  padding: 0.2em 0 0 0
+  width: 50%
 
 .form-item-field-geofield-distance-origin /* zip code wrapper */
-  width: 40%
+  width: 33%
+  input
+    background-color: #eee
 
-.views-submit-button /* search button */
-  width: 30%
+.views-submit-button input /* search button */
+  text-transform: uppercase
+  font-weight: 500
 
 /* results block */ 
+.view-id-drive_search .view-content /* outermost wrapper */
+  background-color: #eee
+  padding: 1em
+
 .drive-search-wrapper ul /* clear floats */
   overflow: auto
   margin: 0 auto
@@ -280,10 +248,13 @@ a.print-pdf
   font-family: din-web-reg
   line-height: 1.4em
 
-.views-field-nothing .go-button /* "join this drive" */
-  margin: 15% auto 0
-  display: block
-  width: 6.7em
+.views-field-nothing
+  span
+    width: 10em
+    display: block
+    margin: 1em auto
+  a.go-button
+    position: static
 
 //			//
 //	#content
