@@ -23,7 +23,7 @@ Drupal.behaviors.dosomethingFBApps = {
     // Only make the pop occur if we are on the 'closest to me setting' and we
     // don't have a zip.
     $context.find('#views-exposed-form-pics-for-pets-gallery-panel-pane-1 select[name=sort_by]').change(function() {
-      if ($(this).val() == 'closest_to_me' && !settings.dosomethingFBApps.fbZip) {
+      if ($(this).val() == 'closest_to_me') { //  && !settings.dosomethingFBApps.fbZip
         // Stash the selcted animal filter for later use.
         settings.dosomethingFBApps.fbAnimalSelected = $('select[name=field_fb_app_animal_type_value]').val();
         var dialog = $form.dialog({
