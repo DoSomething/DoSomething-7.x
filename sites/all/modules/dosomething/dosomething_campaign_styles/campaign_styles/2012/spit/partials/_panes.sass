@@ -239,7 +239,7 @@ a.print-pdf
 .views-field-field-team-name /* drive name */,
 .views-field-field-drive-location /* drive logistics */,
 .views-field-nothing /* "join this drive" button  */
-  width: 30%
+  width: 33%
   float: left
 
 .views-field-field-drive-location /* font styling drupal output */
@@ -327,22 +327,20 @@ a.print-pdf
   .go-button
     margin: 2% 0 1% 0
 
+.view-campaign-gallery #slideshow
+  margin: 0 auto
+
 //      //
 //  #faq
 //      //
 
 #faq 
   div
-    padding: 0.5em 1.6em 1em
+    padding: 0 1.2em 1.2em 1.2em
   h4, li, p
     text-align: left
-  h4, li
+  li
     padding: 0 0 0 1.5em
-  h4
-    color: $spitPurple
-    cursor: pointer
-    background: url("assets/faq2.png")
-    background-repeat: no-repeat
   h1
     font-size: 2em
     font-family: din-web
@@ -352,10 +350,17 @@ a.print-pdf
     background-position: 50% 0.7em
     padding: 0 0 1em 0
     margin: 0 0 -1em 0
+  h4
+    color: $spitPurple
+    cursor: pointer
+    background: url("assets/faq2.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position-y: -3.9em
   .go-button
     margin: 0 0 1% 0
-  h4.activeFAQ
-    background-position-y: -27px
 
 //      //
 //  #footer     - sign up button; conditionally displayed -

@@ -308,6 +308,7 @@ body {
     background: #ffcb15;
     margin: 4% 0 1%;
     padding: 0.4em 0.7em;
+    position: static;
     font-size: 2em;
     height: 1.4em;
     display: inline-block;
@@ -515,7 +516,7 @@ body {
   #cmp .views-field-field-team-name,
   #cmp .views-field-field-drive-location,
   #cmp .views-field-nothing {
-    width: 30%;
+    width: 33%;
     float: left; }
   #cmp .views-field-field-drive-location {
     font-size: 0.8em;
@@ -583,17 +584,14 @@ body {
       top: 49px; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
+  #cmp .view-campaign-gallery #slideshow {
+    margin: 0 auto; }
   #cmp #faq div {
-    padding: 0.5em 1.6em 1em; }
+    padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq h4, #cmp #faq li, #cmp #faq p {
     text-align: left; }
-  #cmp #faq h4, #cmp #faq li {
+  #cmp #faq li {
     padding: 0 0 0 1.5em; }
-  #cmp #faq h4 {
-    color: #7f3f80;
-    cursor: pointer;
-    background: url("assets/faq2.png");
-    background-repeat: no-repeat; }
   #cmp #faq h1 {
     font-size: 2em;
     font-family: din-web;
@@ -603,10 +601,17 @@ body {
     background-position: 50% 0.7em;
     padding: 0 0 1em 0;
     margin: 0 0 -1em 0; }
+  #cmp #faq h4 {
+    color: #7f3f80;
+    cursor: pointer;
+    background: url("assets/faq2.png");
+    background-repeat: no-repeat;
+    background-position-y: 0.4em;
+    padding: 0.3em 1.2em; }
+  #cmp #faq h4.activeFAQ {
+    background-position-y: -3.9em; }
   #cmp #faq .go-button {
     margin: 0 0 1% 0; }
-  #cmp #faq h4.activeFAQ {
-    background-position-y: -27px; }
   #cmp #footer h1 {
     font-size: 2em;
     font-family: din-web;
@@ -769,9 +774,9 @@ body {
       width: 100%;
       margin: 2% auto; }
     #cmp #header {
-      background-image-size: 125%; }
+      background-position: 29% 60%; }
       #cmp #header h1 {
-        margin: 0 0 0.5 -0.6em; }
+        margin: 0 0 0.5em -0.6em; }
       #cmp #header h2 {
         margin: 0 0 0 -0.9em; }
     #cmp #contact-form {
@@ -816,6 +821,9 @@ body {
         margin: 3% auto 2%; }
     #cmp .pane-drive-search-panel-pane-1 form {
       width: 65%; }
+    #cmp .views-field-field-team-name,
+    #cmp .views-field-field-drive-location {
+      width: 50%; }
     #cmp #scholarship {
       padding: 0; }
     #cmp .refer5 {
@@ -838,7 +846,15 @@ body {
     #cmp .section {
       margin: 5% auto; }
     #cmp #header {
-      background-image-size: 175%; }
+      background-position: 66% 77%; }
+      #cmp #header #edit-submit {
+        margin: 0.5em 0 0 0;
+        float: left; }
+    #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile {
+      width: 50%;
+      margin: 1% 0; }
+    #cmp .form-actions.form-wrapper {
+      width: 100%; }
     #cmp a.print-pdf {
       width: 55%; }
     #cmp .email-spit, #cmp .email-spit img {
@@ -850,21 +866,18 @@ body {
     #cmp .pane-drive-search-panel-pane-1 form {
       width: 85%; }
     #cmp .views-field-nothing {
-      margin: 0; } }
-  #cmp .views-field-field-team-name,
-  #cmp .views-field-field-drive-location {
-    width: 50%; }
-    #cmp .views-field-field-team-name #scholarship h1.condensed,
-    #cmp .views-field-field-drive-location #scholarship h1.condensed {
+      margin: 0; }
+    #cmp #scholarship h1.condensed {
       font-size: 2.75em; }
-    #cmp .views-field-field-team-name #scholarship .col50,
-    #cmp .views-field-field-drive-location #scholarship .col50 {
+    #cmp #scholarship .col50 {
       width: 100%; }
-    #cmp .views-field-field-team-name #social .col33,
-    #cmp .views-field-field-drive-location #social .col33 {
+    #cmp #social .col33 {
       width: 90%;
       margin: 2% 5%; }
-    #cmp .views-field-field-team-name #social img,
-    #cmp .views-field-field-drive-location #social img {
+    #cmp #social img {
       float: left;
       width: 50%; }
+    #cmp #social h3 {
+      font-size: 1em;
+      text-align: left;
+      padding: 0.5em; } }
