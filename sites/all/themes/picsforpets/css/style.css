@@ -1658,7 +1658,7 @@ ul.inline, ul.inline li {
 }
 
 #ds-logo.gallery {
-  background: url('../images/dsorg.png') no-repeat;
+  background: url("../images/dsorg.png") no-repeat;
   margin-left: 10px;
 }
 
@@ -2101,10 +2101,10 @@ a.footer-furtography {
   margin-bottom: 0;
   margin-top: -8px;
   margin-left: 46px;
-  background: #CA1C24;
+  background: #ca1c24;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CA1C24', endColorstr='#9C1E2D');
-  background: -webkit-gradient(linear, left top, left bottom, from(#CA1C24), to(#9C1E2D));
-  background: -moz-linear-gradient(top,  #CA1C24,  #9C1E2D);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ca1c24), to(#9c1e2d));
+  background: -moz-linear-gradient(top, #ca1c24, #9c1e2d);
 }
 #picsforpets-share .picsforpets-share-count {
   background-color: white;
@@ -2531,6 +2531,13 @@ div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-fo
   border-top: 12px solid #d6eef3;
 }
 
+.adopted-indicator {
+  height: 79px;
+  margin-bottom: -79px;
+  float: right;
+  margin-right: 3px;
+}
+
 .pane-shelter-per-pet-panel-pane-1 {
   border-left: 1px solid black;
   padding-left: 12px;
@@ -2929,10 +2936,6 @@ select#edit-sort-by {
   list-style-type: none;
   margin-left: 0;
 }
-#picsforpets-gallery-navigation li.last, #picsforpets-gallery-navigation li.first {
-  margin-top: 16px;
-}
-
 #picsforpets-gallery-navigation a {
   background-image: none;
   padding: 4px 4px 4px 8px;
@@ -2940,9 +2943,13 @@ select#edit-sort-by {
 #picsforpets-gallery-navigation li.active {
   display: none;
 }
+#picsforpets-gallery-navigation li.last,
+#picsforpets-gallery-navigation li.first {
+  margin-top: 16px;
+}
 
 #views-exposed-form-pics-for-pets-gallery-panel-pane-1 div.views-exposed-widgets {
- margin-top: -30px;
+  margin-top: -30px;
 }
 
 .pager {
@@ -3032,10 +3039,9 @@ select#edit-sort-by {
   padding: 5px 4px 4px 4px;
   text-transform: uppercase;
   width: 60px;
-  background: #CA1C24;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CA1C24', endColorstr='#9C1E2D');
-  background: -webkit-gradient(linear, left top, left bottom, from(#CA1C24), to(#9C1E2D));
-  background: -moz-linear-gradient(top,  #CA1C24,  #9C1E2D);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ca1c24), to(#9c1e2d));
+  background: -moz-linear-gradient(top, #ca1c24, #9c1e2d);
 }
 .gallery-thumbnail-text .gallery-share-count {
   background: url(../images/share-background.png) no-repeat;
@@ -3461,7 +3467,7 @@ header aside {
   content: "gray";
 }
 
-h1.sharethese {
+h1 .sharethese, #picsforpets-share .fb-share-me .sharethese {
   text-align: center;
   margin-left: 120px;
   font-size: 26pt;
