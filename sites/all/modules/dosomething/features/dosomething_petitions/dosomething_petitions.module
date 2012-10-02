@@ -471,6 +471,22 @@ function dosomething_petitions_mail($key, &$message, $params) {
 }
 
 /**
+ *  Implements hook_mandrill_mail_alter()
+ *  Tells Mandrill to maintain the "From" name and email, instead of changing them before mailing.
+ */
+function dosomething_petitions_mandrill_mail_alter(&$mandrill_message, &$message) {
+  if ($message['module'] == 'dosomething_petitions') {
+    if (isset($message['headers']['From']) && !empty($message['headers']['From']) && $mandrill_message['from_name'] !== $message['headers']['From']) {
+      $mandrill_message['from_name'] = $message['headers']['From'];
+    }
+
+    if (isset($message['headers']['Sender']) && !empty($message['headers']['Sender']) && $mandrill_message['from_email'] !== $message['headers']['Sender']) {
+      $mandrill_message['from_email'] = $message['headers']['Sender'];
+    }
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function dosomething_petitions_theme($existing, $type, $theme, $path) {
@@ -597,6 +613,7 @@ function dosomething_petitions_contact_scraper_emails() {
   $p = profile2_load_by_user($user, 'main');
   if (isset($p->field_user_first_name[LANGUAGE_NONE][0]['value']) && !empty($p->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
     $me = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+    $last = $p->field_user_last_name[LANGUAGE_NONE][0]['value'];
   }
   else {
     $me = $user->name;
@@ -622,6 +639,7 @@ function dosomething_petitions_contact_scraper_emails() {
       'signatures' => $node->goal,
       'url' => $node->link,
       'first_name' => $me,
+      'last_name' => $last
     );
   $emails['petition']['invited']['store_function'] = 'dosomething_petitions_store_email';
 
