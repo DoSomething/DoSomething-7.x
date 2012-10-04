@@ -398,6 +398,10 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
 function _dosomething_school_autocomplete_validate($element, &$form_state, $form) {
   $value = '';
 
+  if (strstr($element['name']['#value'], 'Start typing') || (empty($element['name']['#value']) && empty($form_state['values']['field_noschool_club_name'][LANGUAGE_NONE][0]['value']))) {
+    form_error($element['name'], t('"!name" is not a valid school name.', array('!name' => $element['name']['#value'])));
+  }
+
   // Make sure we've got both a state and a school name.
   if (!empty($element['state']['#value']) && !empty($element['name']['#value'])) {
     // Take "label (entity id)"'", match the id from parenthesis.

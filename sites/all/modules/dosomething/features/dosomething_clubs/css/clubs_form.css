@@ -1,4 +1,3 @@
-/* line 3, sass/clubs_form.sass */
 div#not-logged-in-notice {
   float: right;
   position: absolute;
@@ -8,7 +7,6 @@ div#not-logged-in-notice {
   padding: 10px;
 }
 
-/* line 22, sass/clubs_form.sass */
 .example-obtuse {
   position: relative;
   padding: 15px 30px;
@@ -25,13 +23,11 @@ div#not-logged-in-notice {
   font-family: din-web;
   font-size: 13pt;
 }
-/* line 33, sass/clubs_form.sass */
 .example-obtuse + p {
   margin: 10px 150px 2em 0;
   text-align: right;
   font-style: italic;
 }
-/* line 38, sass/clubs_form.sass */
 .example-obtuse:before {
   content: "";
   position: absolute;
@@ -43,7 +39,6 @@ div#not-logged-in-notice {
   border-width: 0 0 30px 50px;
   border-color: transparent #f3961c;
 }
-/* line 41, sass/clubs_form.sass */
 .example-obtuse:after {
   content: "";
   position: absolute;
@@ -56,44 +51,38 @@ div#not-logged-in-notice {
   border-color: transparent #efefef;
 }
 
-/* line 44, sass/clubs_form.sass */
 div#block-system-main {
   position: relative;
 }
 
-/* line 47, sass/clubs_form.sass */
 div.form-item-parent-email, td.field-multiple-drag, .tabledrag-toggle-weight, div.form-item-field-club-picture-und-0 label, input#edit-preview, input#edit-preview-changes, ul.tabs.primary li:nth-child(3) a, .delta-order, thead tr th:last-of-type, #edit-field-mailchimp-group-id, #club-name-live, .field-name-field-noschool-club-name {
   display: none;
 }
 
-/* line 51, sass/clubs_form.sass */
 div#edit-field-club-video-und-0-title label {
   font-size: 21px;
   font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif;
 }
 
-/* line 56, sass/clubs_form.sass */
 div.form-item-field-club-blurb-und-0-value label {
   font-family: din-web;
   font-size: 16pt;
   margin-bottom: 5px;
 }
 
-/* line 61, sass/clubs_form.sass */
 p#club-name-live {
   position: relative;
   top: -10px;
 }
 
-/* line 65, sass/clubs_form.sass */
 #edit-field-noschool-club-name-und-0-value {
   width: 150px;
 }
 
-/* line 68, sass/clubs_form.sass */
 #dosomething-club-tag {
   float: right;
-  margin-top: -90px;
-  margin-right: 440px;
+  position: relative;
+  top: 23px;
+  right: 440px;
   display: none;
 }
