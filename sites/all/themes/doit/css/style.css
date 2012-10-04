@@ -3535,6 +3535,29 @@ div[role=main] {
   margin-top: 4px;
 }
 
+#search-404-page {
+  text-align: center;
+}
+#search-404-page h3 {
+  font-family: din-web;
+  text-transform: uppercase;
+  color: #333333;
+}
+#search-404-page input {
+  margin: 4px;
+}
+#search-404-page input[type="submit"] {
+  color: black;
+  background: #ffda3f;
+  border: none;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  font-weight: 600;
+}
+
 .page-node-721535 h1.title {
   display: none;
 }
