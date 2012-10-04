@@ -3467,7 +3467,7 @@ header aside {
   content: "gray";
 }
 
-h1 .sharethese, #picsforpets-share .fb-share-me .sharethese {
+h1.sharethese, #picsforpets-share .fb-share-me .sharethese {
   text-align: center;
   margin-left: 120px;
   font-size: 26pt;
