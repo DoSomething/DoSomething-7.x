@@ -2522,8 +2522,8 @@ function drupal_deliver_html_page($page_callback_result) {
         drupal_fast_404();
 
         // Keep old path for reference, and to allow forms to redirect to it.
-        if (!isset($_REQUEST['destination'])) {
-          $_REQUEST['destination'] = $_GET['q'];
+        if (!isset($_GET['destination'])) {
+          $_GET['destination'] = $_GET['q'];
         }
 
         $path = drupal_get_normal_path(variable_get('site_404', ''));
