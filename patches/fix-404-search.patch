@@ -1,0 +1,30 @@
+diff --git a/includes/common.inc b/includes/common.inc
+index f80496b..a2d3135 100644
+--- a/includes/common.inc
++++ b/includes/common.inc
+@@ -2551,8 +2551,8 @@ function drupal_deliver_html_page($page_callback_result) {
+         watchdog('access denied', check_plain($_GET['q']), NULL, WATCHDOG_WARNING);
+
+         // Keep old path for reference, and to allow forms to redirect to it.
+-        if (!isset($_GET['destination'])) {
+-          $_GET['destination'] = $_GET['q'];
++        if (!isset($_REQUEST['destination'])) {
++          $_REQUEST['destination'] = $_GET['q'];
+         }
+
+         $path = drupal_get_normal_path(variable_get('site_403', ''));
+diff --git a/modules/search/search.module b/modules/search/search.module
+index 910cb65..d2cf076 100644
+--- a/modules/search/search.module
++++ b/modules/search/search.module
+@@ -1030,8 +1030,8 @@ function search_box_form_submit($form, &$form_state) {
+   // functionality, so we override any static destination set in the request,
+   // for example by drupal_access_denied() or drupal_not_found()
+   // (see http://drupal.org/node/292565).
+-  if (isset($_GET['destination'])) {
+-    unset($_GET['destination']);
++  if (isset($_REQUEST['destination'])) {
++    unset($_REQUEST['destination']);
+   }
+
+   // Check to see if the form was submitted empty.
