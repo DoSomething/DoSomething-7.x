@@ -33,6 +33,14 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
   	dosomething_general_mobile_commons_subscribe($alpha_number, (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign), $variables);
   }
 
+  $nid = 0;
+  if (!empty($form_values['details']['nid'])) {
+	$nid = $form_values['details']['nid'];
+  }
+
+  $n = node_load($nid);
+  $type = $n->type;
+
   foreach ($beta_numbers AS $key => $field) {
   	$p = '';
 
@@ -55,10 +63,17 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
   	if (dosomething_general_valid_cell($p)) {
   		dosomething_general_mobile_commons_subscribe($beta_optin, $p, $variables);
   	}
-  }
 
-  // To do:
-  // Add alpha #, beta #, node ID to database.
+    $record = array(
+  	  'alpha' => $alpha_number,
+  	  'beta' => $p,
+  	  'timestamp' => REQUEST_TIME,
+  	  'type' => $type,
+  	  'nid' => $nid
+    );
+
+    drupal_write_record('sms_flow_records', $record);
+  }
 }
 
 /**
