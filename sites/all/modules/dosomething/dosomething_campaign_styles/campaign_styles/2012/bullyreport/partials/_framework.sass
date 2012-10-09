@@ -1,11 +1,12 @@
 // FRAMEWORK 
 
 .section
-  overflow: auto
-  background: #fff
+  //overflow: auto
+  background: $panelBG
   margin: 0 auto
-  padding: 2% 2% 0 2%
+  padding: 0
   text-align: center
+  padding: 2%
 
 .col33, .col40, .col50, .col60
   float: left
@@ -25,17 +26,22 @@
 
 .divider
   text-align: center
-  border-top: 2px solid #eee
-  margin: 0 0 3% 0
-  padding: 0.8% 0 0 0
-  span
-    background: #000
+  border-top: 1px solid #9BC1D5
+  margin: 0 -2% 3%
+  padding: 0
+  h3
+    color: #fff
+    background: $dividerBG
     padding: 0.5em 0.8em
-    position: relative
+    margin: -1px 0 0
+    width: 35%
+    display: inline-block
+    font-weight: 400
+
 
 .go-button, #edit-submit
   font-family: din-web
-  background: $spitYellow
+  background: $linkBG
   margin: 4% 0 1%
   padding: 0.4em 0.7em
   font-size: 2em
@@ -44,4 +50,4 @@
   color: $offBlack
   +border-radius(5px)
   &:hover
-    color: darken($spitPurple, 12)
+    color: darken($mainLink, 12)

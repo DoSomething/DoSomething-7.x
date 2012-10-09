@@ -18,8 +18,10 @@
   padding-bottom: 0
     
 body
-  background: $bgFallback
-  background: url(assets/bg.jpg)
+  background: $fallbackBG url(assets/bg.jpg) no-repeat top center
+  background-size: 100%
+  //line-height: 1em
+
 
 // Hide either the Join or Start header depending on which page we're on
 .page-team #contact-form 
@@ -115,7 +117,7 @@ body
     width: 40%
   #edit-submit
     font-family: din-web
-    background: $spitYellow
+    background: $linkBG
     margin: 0 0 0 5%
     font-size: 1.5em
     height: 1.4em
@@ -123,7 +125,7 @@ body
     +noBorder
     +border-radius(5px)
     &:hover
-      background: darken($spitYellow, 5)
+      background: darken($linkBG, 5)
 
 #edit-friend
   background: #ddd
@@ -133,7 +135,7 @@ body
 
 #block-dosomething-campaign-styles-campaign-nav
   background: #fff
-  padding: 1.5em 2em 1.5em 0
+  padding: 1.5em 0 0
   width: 205px
   -webkit-transition: background 5s ease-in
   transition: background 5s ease-in
@@ -149,13 +151,42 @@ body
     font-size: 1.2em
     padding: 0.2em 1em 0 1.5em
     text-transform: uppercase
-    color: purple
+    color: $navLink
     &:hover
       text-decoration: none
+  .campaign-menu-prefix
+    p
+      color: #ccc
+      padding: 0 1.5em
+      margin: 0 0 0.2em
+      text-transform: uppercase
+      font-family: $din
+      font-weight: 600
+      font-size: 1.2em
+  .campaign-menu-suffix
+    hr
+      border: none
+      border-top: 1px solid #ccc 
+    img
+      display: block
+      margin: 8px auto
+      +noBorder
+      +noShadow
+    a
+      text-transform: lowercase
+      font-size: 1em
+      padding: 0
+      font-weight: 500
+    p
+      color: $navLink 
+      text-align: center
+      font-family: $din
+      font-weight: 500
+      font-size: 1em 
 
 #block-dosomething-campaign-styles-campaign-nav
   .highlight a
-    background: $spitYellow
+    background: $linkBG
 
 .mangoDialog-ui
   background: #222
@@ -165,7 +196,7 @@ body
   h1
     text-align: center
     padding: 1em 0 0.5em 0
-    color: $spitYellow
+    color: $linkBG
   img
     width: 80%
     margin: 0 auto

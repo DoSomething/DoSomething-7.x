@@ -15,8 +15,8 @@
   padding-bottom: 0; }
 
 body {
-  background: #d69a92;
-  background: url(assets/bg.jpg); }
+  background: #241f20 url(assets/bg.jpg) no-repeat top center;
+  background-size: 100%; }
 
 .page-team #contact-form #webform-component-start-header {
   display: none; }
@@ -78,7 +78,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
@@ -119,7 +119,7 @@ body {
     width: 40%; }
   .invite_friends #edit-submit {
     font-family: din-web;
-    background: #ffcb15;
+    background: yellow;
     margin: 0 0 0 5%;
     font-size: 1.5em;
     height: 1.4em;
@@ -131,7 +131,7 @@ body {
     -o-border-radius: 5px;
     border-radius: 5px; }
     .invite_friends #edit-submit:hover {
-      background: #fbc300; }
+      background: #e5e600; }
 
 #edit-friend {
   background: #dddddd;
@@ -145,7 +145,7 @@ body {
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
-  padding: 1.5em 2em 1.5em 0;
+  padding: 1.5em 0 0;
   width: 205px;
   -webkit-transition: background 5s ease-in;
   transition: background 5s ease-in; }
@@ -161,12 +161,42 @@ body {
     font-size: 1.2em;
     padding: 0.2em 1em 0 1.5em;
     text-transform: uppercase;
-    color: purple; }
+    color: #999999; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none; }
+  #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix p {
+    color: #cccccc;
+    padding: 0 1.5em;
+    margin: 0 0 0.2em;
+    text-transform: uppercase;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    font-weight: 600;
+    font-size: 1.2em; }
+  #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix hr {
+    border: none;
+    border-top: 1px solid #cccccc; }
+  #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix img {
+    display: block;
+    margin: 8px auto;
+    border: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+  #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a {
+    text-transform: lowercase;
+    font-size: 1em;
+    padding: 0;
+    font-weight: 500; }
+  #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix p {
+    color: #999999;
+    text-align: center;
+    font-family: din-web-reg, "Trebuchet MS", sans-serif;
+    font-weight: 500;
+    font-size: 1em; }
 
 #block-dosomething-campaign-styles-campaign-nav .highlight a {
-  background: #ffcb15; }
+  background: yellow; }
 
 .mangoDialog-ui {
   background: #222222;
@@ -180,7 +210,7 @@ body {
   .mangoDialog-ui h1 {
     text-align: center;
     padding: 1em 0 0.5em 0;
-    color: #ffcb15; }
+    color: yellow; }
   .mangoDialog-ui img {
     width: 80%;
     margin: 0 auto;
@@ -233,7 +263,7 @@ body {
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
   font-weight: 600;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
-  color: black; }
+  color: white; }
 #cmp h1, #cmp h3, #cmp .divider {
   text-transform: uppercase; }
 #cmp h1 {
@@ -260,7 +290,7 @@ body {
 #cmp input[type="submit"] {
   font-size: 2em; }
 #cmp a {
-  color: #7f3f80; }
+  color: white; }
 #cmp a.mango {
   background: rgba(127, 63, 128, 0.6);
   color: white; }
@@ -271,11 +301,11 @@ body {
   font-weight: 500;
   line-height: 1em; }
 #cmp .section {
-  overflow: auto;
-  background: white;
+  background: #008bd9;
   margin: 0 auto;
-  padding: 2% 2% 0 2%;
-  text-align: center; }
+  padding: 0;
+  text-align: center;
+  padding: 2%; }
 #cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
   float: left;
   padding: 0 1.5%; }
@@ -289,16 +319,20 @@ body {
   width: 60%; }
 #cmp .divider {
   text-align: center;
-  border-top: 2px solid #eeeeee;
-  margin: 0 0 3% 0;
-  padding: 0.8% 0 0 0; }
-  #cmp .divider span {
-    background: black;
+  border-top: 1px solid #9bc1d5;
+  margin: 0 -2% 3%;
+  padding: 0; }
+  #cmp .divider h3 {
+    color: white;
+    background: #241f20;
     padding: 0.5em 0.8em;
-    position: relative; }
+    margin: -1px 0 0;
+    width: 35%;
+    display: inline-block;
+    font-weight: 400; }
 #cmp .go-button, #cmp #edit-submit {
   font-family: din-web;
-  background: #ffcb15;
+  background: yellow;
   margin: 4% 0 1%;
   padding: 0.4em 0.7em;
   font-size: 2em;
@@ -311,269 +345,199 @@ body {
   -o-border-radius: 5px;
   border-radius: 5px; }
   #cmp .go-button:hover, #cmp #edit-submit:hover {
-    color: #562b57; }
+    color: #e0e0e0; }
 #cmp #header {
-  background: url("assets/brad.jpg");
-  background-position: 29% -120%;
+  line-height: 0;
+  background: none;
   padding: 0; }
   #cmp #header h1, #cmp #header h2 {
     text-align: left;
-    color: #ffcb15; }
+    color: white; }
   #cmp #header span {
-    text-align: center;
-    background: #7f3f80;
-    background: rgba(127, 63, 128, 0.6); }
+    text-align: center; }
+  #cmp #header img {
+    border: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important;
+    margin: 0 !important; }
   #cmp #header .tagline {
     padding: 2%; }
-#cmp #drive {
-  text-align: left; }
-#cmp .drive-info-wrapper {
-  float: left;
-  width: 56%; }
-#cmp .drive-participants {
-  float: right;
-  width: 40%;
-  margin: 6% 0 0 0;
-  padding: 0 0 0 5%;
-  border-left: 1px solid #d2d2d3; }
-  #cmp .drive-participants ul {
-    max-height: 160px;
-    overflow: scroll; }
-#cmp .drive-info-title h2 {
-  color: #7f3f80;
-  margin: 0 0 0.5em 0;
+#cmp .pane-campaign-html #header img {
+  margin: 0 !important; }
+#cmp #action p {
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
-  font-size: 2em;
-  font-weight: 600;
+  text-align: center;
+  font-size: 1.3em;
+  line-height: 1.8em;
+  font-weight: 300;
+  width: 60%;
+  margin: 0 auto 1em; }
+#cmp #action p.headcopy {
   text-transform: uppercase;
-  border-bottom: 1px solid #cccccc; }
-#cmp .drive-info-info {
-  width: 65%;
-  float: left; }
-  #cmp .drive-info-info a {
-    color: #7f3f80;
-    background-image: url("assets/drive1.png");
-    background-position: 0% 50%;
-    background-repeat: no-repeat;
-    background-size: 20px;
-    padding: 1em 1.8em 0;
-    display: block; }
-#cmp .drive-info-where, #cmp .drive-info-when {
-  font-weight: uppercase;
-  font-weight: 600; }
-  #cmp .drive-info-where span, #cmp .drive-info-when span {
+  width: 100%; }
+  #cmp #action p.headcopy span {
+    font-size: 3.4em;
     font-weight: 500;
-    text-transform: none;
-    color: #777777; }
-#cmp .drive-share {
-  width: 35%;
-  float: right; }
-  #cmp .drive-share h3 {
-    text-align: right; }
-#cmp .drive-facebook, #cmp .drive-twitter {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  background-repeat: no-repeat;
-  text-indent: -9999em;
-  margin: 0 0 0 5%;
-  float: right; }
-  #cmp .drive-facebook:hover, #cmp .drive-twitter:hover {
-    background-position-y: -30px; }
-#cmp .drive-twitter {
-  background-image: url(assets/drive-twitter.png); }
-#cmp .drive-facebook {
-  background-image: url(assets/drive-facebook.png); }
-#cmp .drive-info-description, #cmp .drive-info-countdown {
-  display: none; }
-#cmp input.remove_participant {
-  border: none;
-  font-size: 16px;
-  font-family: din-web-reg;
-  width: 18px;
-  height: 18px;
-  line-height: 16px;
-  background: #7f3f80;
-  color: white;
-  letter-spacing: 1px;
-  margin: -18px 0 0 0;
-  padding: 0;
-  float: right;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-  border-radius: 15px; }
-  #cmp input.remove_participant:hover {
-    color: white;
-    background: #673368; }
-#cmp .drive-participants-list li {
-  padding: 0.2em 0; }
-#cmp .drive-action-link {
-  text-align: center; }
-#cmp #action.action-anonymous img, #cmp #action.action-participant img {
-  display: block;
-  margin: 5% auto; }
-#cmp #action.action-leader {
-  text-align: left; }
-  #cmp #action.action-leader h1 {
-    font-size: 1.5em;
-    margin: 0 0 0 -1em; }
-  #cmp #action.action-leader ul {
-    padding: 0.5em 1em; }
-  #cmp #action.action-leader li {
-    list-style: disc; }
-  #cmp #action.action-leader b {
-    color: #7f3f80;
-    background: #ffcb15;
-    width: 10em;
-    display: block;
-    text-align: center;
-    padding: 0.2em 0 0 0; }
-  #cmp #action.action-leader strong {
-    color: #7f3f80; }
-#cmp .center_img {
-  margin: 0 auto;
-  width: 80%;
-  display: block; }
-#cmp .print-pdf {
-  position: relative;
-  left: 37%; }
-  #cmp .print-pdf img {
-    width: 26%; }
-#cmp .pane-drive-search-panel-pane-1 {
-  background: white; }
-  #cmp .pane-drive-search-panel-pane-1 form {
-    width: 62.5%;
-    margin: 0 auto;
-    padding: 20px 0; }
-  #cmp .pane-drive-search-panel-pane-1 .views-table {
-    width: 800px; }
-  #cmp .pane-drive-search-panel-pane-1 tr {
-    border-bottom: 1px solid #d2d2d3 !important; }
-  #cmp .pane-drive-search-panel-pane-1 td {
-    padding: 0 10px 10px !important; }
-  #cmp .pane-drive-search-panel-pane-1 .views-field-field-taem-name a {
-    font-size: 14px;
-    text-tranform: uppercase; }
-  #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search {
-    font-family: din-web;
-    background: #ffcb15;
-    padding: 5px 11px 2px;
     line-height: 1em;
-    font-size: 21px;
-    border: none !important;
-    color: #1e1d1c;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    height: 27px;
-    margin-top: 0px; }
-    #cmp .pane-drive-search-panel-pane-1 #edit-submit-drive-search:hover {
-      color: #562b57; }
-  #cmp .pane-drive-search-panel-pane-1 input, #cmp .pane-drive-search-panel-pane-1 a.selectBox-dropdown, #cmp .pane-drive-search-panel-pane-1 span.geofield-proximity-origin-from {
-    margin-right: 10px; }
-  #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-distance {
-    width: 50px;
-    margin-right: 10px;
-    margin-top: 2px;
-    height: 27px; }
-  #cmp .pane-drive-search-panel-pane-1 #edit-field-geofield-distance-origin {
-    width: 100px;
-    margin-top: 1px;
-    height: 27px; }
-  #cmp .pane-drive-search-panel-pane-1 .selectBox-label {
-    height: 27px;
-    padding: 5px !important;
-    margin-top: 1px; }
-  #cmp .pane-drive-search-panel-pane-1 thead tr {
-    display: none; }
-  #cmp .pane-drive-search-panel-pane-1 tbody tr {
-    background: #f9f9f9; }
-#cmp .go-button {
-  position: static; }
-#cmp #scholarship {
-  overflow: visible; }
-  #cmp #scholarship h1 {
-    color: #ffcb15; }
-  #cmp #scholarship p {
-    color: white; }
-  #cmp #scholarship label, #cmp #scholarship input[type="text"] {
-    height: 25px;
-    padding: 0.5em 0;
-    margin: 0.8% 0;
-    width: 50%;
-    text-align: left; }
-  #cmp #scholarship label {
-    float: left;
-    clear: left;
-    color: white; }
-  #cmp #scholarship input[type="text"], #cmp #scholarship input[type="submit"] {
-    float: right;
-    clear: right; }
-  #cmp #scholarship .go-button {
-    margin: 4% 0 1% 0;
-    padding: 0.3em 0.7em; }
-  #cmp #scholarship #campaign-opt-in {
-    color: #4c264d;
-    text-align: left; }
-    #cmp #scholarship #campaign-opt-in a {
-      color: #ffcb15;
-      font-weight: 500; }
-#cmp .refer5 {
-  background: #7f3f80;
-  width: 110%;
-  margin: 0 0 0 -4.95%;
-  padding: 3%; }
-  #cmp .refer5:before, #cmp .refer5:after {
-    content: "";
+    vertical-align: middle; }
+  #cmp #action p.headcopy span.secondary {
+    font-size: 2.8em;
+    line-height: 1.2em; }
+  #cmp #action p.headcopy span.underline {
+    font-size: 1em;
+    border-bottom: 1px solid white;
+    font-weight: 300; }
+#cmp #action .with-button {
+  position: relative;
+  display: inline-block;
+  min-width: 254px;
+  margin: 5em auto 1.5em; }
+  #cmp #action .with-button img {
     position: absolute;
-    border-style: solid;
-    border-width: 11px; }
-  #cmp .refer5:before {
-    border-color: transparent #562b57 #562b57 transparent;
-    left: -23px;
-    top: 44px; }
-  #cmp .refer5:after {
-    border-color: transparent transparent #562b57 #562b57;
-    right: -22px;
-    top: 44px; }
-#cmp #impact .go-button {
-  margin: 2% 0 1% 0; }
+    right: -20px;
+    top: -50px;
+    z-index: 1; }
+#cmp #action .report-button {
+  position: relative;
+  z-index: 10;
+  font-size: 1.3em;
+  margin: 0 auto 1em;
+  padding: 0.8em 1em 0.5em;
+  background: #00c0de;
+  color: white;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  box-shadow: 0 0 1em -0.1em #333333;
+  text-decoration: none;
+  text-transform: uppercase; }
+  #cmp #action .report-button:hover {
+    color: #e1e1e1; }
+#cmp #action .petition-button {
+  width: 70%;
+  margin: 3em auto 1em;
+  padding: 1em 1em 0.6em;
+  background: #ffda3f;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-weight: 300;
+  border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  box-shadow: 0 0 1em -0.1em #333333;
+  text-decoration: none; }
+  #cmp #action .petition-button a {
+    color: #222222; }
+    #cmp #action .petition-button a:hover {
+      color: black; }
+  #cmp #action .petition-button .petition-left, #cmp #action .petition-button .petition-right {
+    float: left; }
+  #cmp #action .petition-button .petition-left {
+    padding-right: 1%;
+    font-family: din-web;
+    width: 45%;
+    line-height: 1em;
+    font-size: 1.8em;
+    padding-top: 0.3em;
+    border-right: 1px solid #999999;
+    text-transform: uppercase;
+    margin-right: 3%; }
+  #cmp #action .petition-button .petition-right {
+    width: 52%;
+    font-size: 1.3em;
+    line-height: 1.2em;
+    font-weight: 400;
+    text-align: left; }
+#cmp #map .linethrough {
+  position: relative;
+  border-top: 1px solid #241f20;
+  margin: 3em auto 1em;
+  max-width: 600px; }
+#cmp #map h2 {
+  position: relative;
+  top: -8px;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: -1em auto 0;
+  max-width: 400px;
+  background: #008bd9;
+  display: inline-block;
+  padding: 0.25em 1em 0; }
+#cmp #map iframe {
+  border: 3px solid #05719e; }
 #cmp #faq h4, #cmp #faq li, #cmp #faq p {
   text-align: left;
-  padding: 0 0 0 1.5em; }
+  padding: 0 15px 0;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  line-height: 1.4em; }
+#cmp #faq p {
+  padding-bottom: 1.5%;
+  font-size: 1.3em;
+  font-weight: 300; }
 #cmp #faq h4 {
-  color: #7f3f80;
+  color: white;
   cursor: pointer;
   background: url("assets/faq2.png");
-  background-repeat: no-repeat; }
-#cmp #faq h1 {
-  font-size: 2em;
+  background-repeat: no-repeat;
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-top: 0.2em;
+  background-image: url("assets/arrow-right.png");
+  background-repeat: no-repeat;
+  background-position-y: 6px; }
+  #cmp #faq h4.activeFAQ {
+    background-image: url("assets/arrow-down.png"); }
+#cmp #faq .action-copy, #cmp #faq .action-box {
+  text-align: center; }
+#cmp #faq .action-copy {
+  font-family: din-web;
+  color: black;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.6em;
+  line-height: 1.2em;
+  margin: 2em 0 0.5em; }
+#cmp #faq .action-box {
+  position: relative;
+  display: inline-block; }
+#cmp #faq .action-arrow-left, #cmp #faq .action-arrow-right {
+  position: absolute;
+  bottom: 0.5em; }
+#cmp #faq .action-arrow-left {
+  left: -70px; }
+#cmp #faq .action-arrow-right {
+  right: -70px; }
+#cmp #faq .action-btn {
   font-family: din-web;
   text-transform: uppercase;
-  background: url("assets/faq3.png");
-  background-repeat: no-repeat;
-  background-position: 50% 0.7em;
-  padding: 0 0 1em 0;
-  margin: 0 0 -1em 0; }
-#cmp #faq .go-button {
-  margin: 0 0 1% 0; }
-#cmp #faq h4.activeFAQ {
-  background-position-y: -27px; }
-#cmp #footer h1 {
-  font-size: 2em;
-  font-family: din-web;
-  text-transform: uppercase;
-  background: url("assets/faq3.png");
-  background-repeat: no-repeat;
-  background-position: 50% 0.7em;
-  padding: 0 0 1em 0;
-  margin: 0 0 -1em 0; }
-#cmp #footer .go-button {
-  margin: 0 0 1% 0; }
+  font-size: 1.3em;
+  font-weight: 600;
+  background: #ffcf00;
+  color: #1e1d1c;
+  margin: 0 auto 1em;
+  padding: 0.2em 1em 0;
+  text-decoration: none;
+  border-radius: 0.3em;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  box-shadow: 0 0 1em -0.1em #333333; }
+  #cmp #faq .action-btn:hover {
+    color: black; }
+#cmp #faq .back-to-top {
+  text-align: right;
+  padding: 1em 0 0 0; }
+  #cmp #faq .back-to-top .top-btn {
+    font-weight: 400;
+    color: #c6c7c8;
+    padding: 0 0 0 15px;
+    text-decoration: none;
+    background-image: url("assets/arrow-up.png");
+    background-repeat: no-repeat;
+    background-position-y: 0.5em; }
 #cmp label {
   cursor: default; }
 #cmp #contact-form {
@@ -582,7 +546,7 @@ body {
   background: rgba(0, 0, 0, 0.3);
   width: 100%; }
   #cmp #contact-form h3 {
-    color: #ffcb15;
+    color: white;
     font-size: 2em;
     font-weight: 500;
     text-align: left;
@@ -675,7 +639,7 @@ body {
       margin: 10px !important; }
 #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
   font-family: din-web;
-  background: #ffcb15;
+  background: yellow;
   margin: 4% 0 1%;
   padding: 0.3em 0.7em;
   font-size: 2em;
@@ -690,7 +654,7 @@ body {
   border: none;
   line-height: 1em; }
   #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
-    color: #562b57; }
+    color: #c2c200; }
 #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
 #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
@@ -727,8 +691,7 @@ body {
     width: 1.5em !important; }
 @media only screen and (max-width: 775px) {
   #cmp .section {
-    width: 100%;
-    margin: 2% auto; }
+    width: 100%; }
   #cmp .refer5 {
     width: 106%;
     margin: 0 0 0 -3%;
@@ -737,4 +700,4 @@ body {
       display: none; } }
 @media only screen and (max-width: 450px) {
   #cmp .section {
-    margin: 5% auto; } }
+    margin: 0; } }

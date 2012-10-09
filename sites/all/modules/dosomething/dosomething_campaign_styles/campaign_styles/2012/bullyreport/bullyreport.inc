@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'CAMPAIGN TITLE',
+  'title' => 'The Bully Report',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -28,11 +28,14 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'home', 'href' => 'teensforjeans-new'),
-    array('title' => 'take action', 'href' => 'teensforjeans-new/take-action'),
-    array('title' => 'store locator', 'href' => '#'),
-    array('title' => 'contests', 'href' => '#'),
-    array('title' => 'report back', 'href' => 'teensforjeans-new/report-back'),
-    array('title' => 'photo gallery', 'href' => '#'),
+    array('title' => 'the report', 'href' => 'bullyreport', 'fragment' => 'action'),
+    array('title' => 'what teens said', 'href' => 'bullyreport', 'fragment' => 'map'),
+    array('title' => 'faq', 'href' => 'bullyreport', 'fragment' => 'faq'),
+  ),
+  'menu_suffix' => array(
+    '#markup' => '<hr><img src="//files.dosomething.org/files/campaigns/bullyreport/bully_sb.png"/><p>Got questions? Email Dave at <a href="mailto:bullyreport@dosomething.org">bullyreport@dosomething.org</a>!</p>'
+  ),
+    'menu_prefix' => array(
+    '#markup' => '<p>Go To:</p>'
   ),
 );
