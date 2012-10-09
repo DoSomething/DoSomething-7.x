@@ -21,9 +21,9 @@ function dosomething_login_menu() {
   $items['user/registration'] = array(
     'title' => 'Registration',
     'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('dosomething_login_register_popup_form'),
-    'access callback' => 'user_register_access',
+    'page callback' => 'dosomething_login_user_register',
+    //'page arguments' => array('dosomething_login_register_popup_form'),
+    'access callback' => 'dosomething_login_user_register_access',
     'type' => MENU_CALLBACK,
   );
   $items['user/registration/ajax'] = array(
@@ -58,6 +58,26 @@ function dosomething_login_menu() {
     'type' => MENU_CALLBACK,
   );
   return $items;
+}
+
+function dosomething_login_user_register_access() {
+  return (
+    user_is_anonymous() &&
+    variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL) ||
+    (
+      !empty($_GET['destination']) &&
+      drupal_valid_path($_GET['destination']) &&
+      user_is_logged_in()
+    )
+  );
+}
+
+function dosomething_login_user_register() {
+  if (!empty($_GET['destination']) && drupal_valid_path($_GET['destination']) && user_is_logged_in()) {
+    drupal_goto($_GET['destination']);
+  }
+
+  return drupal_get_form('dosomething_login_register_popup_form');
 }
 
 /**
