@@ -1,5 +1,7 @@
 <?php
 
+define('PICS_MAILCHIMP_GROUP', 'PicsforPetsSharers2012');
+
 /**
  * @file
  * API functions and hook implementations for PicsForPets Facebook Users module.
@@ -118,6 +120,15 @@ function dosomething_picsforpets_fb_user_init() {
       $account = user_load($account->uid);
       // Then log them in.
       fboauth_login_user($account);
+
+      if (!empty($account->mail)) {
+          $mid = PICS_MAILCHIMP_GROUP;
+          $email = $account->mail;
+
+          if (!empty($mid)) {
+             dosomething_general_mailchimp_subscribe($email, $mid);
+          }
+      }
     }
     // Condition 2.
     elseif (!$user->uid && !$uid && !empty($found_user)) {
