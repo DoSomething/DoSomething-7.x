@@ -554,7 +554,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['name'] = array(
     'first_name' => array(
       '#type' => 'textfield',
-      '#title' => t('First Name') . theme('dosomething_login_form_required_marker', array()),
+      '#title' => t('First Name')/* . theme('dosomething_login_form_required_marker', array())*/,
       '#hidden_title' => t('First Name'),
       '#prefix' => '<div class="popup-content">',
       '#attributes' => array(
@@ -567,7 +567,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     ),
     'last_name' => array(
       '#type' => 'textfield',
-      '#title' => t('Last Name') . theme('dosomething_login_form_required_marker', array()),
+      '#title' => t('Last Name')/* . theme('dosomething_login_form_required_marker', array())*/,
       '#hidden_title' => t('Last Name'),
       '#attributes' => array(
         'placeholder' => t('Last Name'),
