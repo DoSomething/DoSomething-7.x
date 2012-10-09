@@ -554,6 +554,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['name'] = array(
     'first_name' => array(
       '#type' => 'textfield',
+      '#title' => t('First Name') . theme('dosomething_login_form_required_marker', array()),
       '#hidden_title' => t('First Name'),
       '#prefix' => '<div class="popup-content">',
       '#attributes' => array(
@@ -562,10 +563,11 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       ),
       '#size' => 9,
       '#required' => TRUE,
-      '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
+      //'#field_suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
     'last_name' => array(
       '#type' => 'textfield',
+      '#title' => t('Last Name') . theme('dosomething_login_form_required_marker', array()),
       '#hidden_title' => t('Last Name'),
       '#attributes' => array(
         'placeholder' => t('Last Name'),
@@ -573,20 +575,22 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       ),
       '#size' => 9,
       '#required' => TRUE,
-      '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
+      //'#field_suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
   );
   $form['email'] = array(
     '#type' => 'textfield',
+    '#title' => t('Email') . theme('dosomething_login_form_required_marker', array()),
     '#attributes' => array(
       'placeholder' => t('Email'),
     ),
     '#default_value' => (valid_email_address($_GET['email']) ? htmlspecialchars($_GET['email']) : ''),
     '#size' => 20,
-    '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
+    //'#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );
   $form['cell'] = array(
     '#type' => 'textfield',
+    '#title' => t('Cell'),
     '#attributes' => array(
       'placeholder' => t('Cell'),
     ),
@@ -595,13 +599,14 @@ function dosomething_login_register_popup_form($form, &$form_state) {
 
   $form['pass'] = array(
     '#type' => 'password',
+    '#title' => t('Password'),
     '#hidden_title' => t('Password'),
     '#required' => TRUE,
     '#attributes' => array(
       'placeholder' => t('Password'),
     ),
     '#size' => 20,
-    '#field_suffix' => theme('dosomething_login_form_required_marker', array()),
+    //'#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );
   $form['birthday'] = array(
     '#type' => 'item',
