@@ -171,15 +171,16 @@
       var $window = $(window);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
       var scrollLimitTop = 500;
-      var scrollLimitBot = $(document).height() - $('#block-menu-menu-footer').outerHeight() - $nav.outerHeight();
+      var scrollLimitBot = 5757;
+
       $window.scroll(function () {
         var st = $window.scrollTop();
         if (st > scrollLimitTop && st < scrollLimitBot) {
           $nav.css({
-            'position' : 'fixed',
-            'top'      : '0px',
-            'margin'   : '15px 0 0 0',
-            'z-index'  : '3'
+            'position'    : 'fixed',
+            'top'         : '0px',
+            'margin'      : '15px 0 0 -20px',
+            'z-index'     : '3'
           });
         }
         else if (st >= scrollLimitTop) {

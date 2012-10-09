@@ -236,21 +236,31 @@ a.print-pdf
 .views-label-field-drive-location
   display: none
 
+li.views-row /* clear floats on <li> wrapping the following fields: */
+  width: 100%
+  overflow: hidden
+  margin-bottom: 2em
+
 .views-field-field-team-name /* drive name */,
 .views-field-field-drive-location /* drive logistics */,
+.views-field-field-geofield-distance /* drive distance */,
 .views-field-nothing /* "join this drive" button  */
-  width: 33%
+  width: 25%
   float: left
 
-.views-field-field-drive-location /* font styling drupal output */
+.views-field-field-drive-location,
+.views-field-field-geofield-distance
   font-size: 0.8em
   font-weight: 400
   font-family: din-web-reg
   line-height: 1.4em
 
+.views-field-field-geofield-distance
+  text-align: center
+
 .views-field-nothing
   span
-    width: 10em
+    width: 5em
     display: block
     margin: 1em auto
   a.go-button
@@ -306,14 +316,13 @@ a.print-pdf
     position: absolute
     border-style: solid
     border-width: 11px
+    top: 51px
   &:before
     border-color: transparent darken($spitPurple, 12) darken($spitPurple, 12) transparent
     left: -23px
-    top: 49px
   &:after
     border-color: transparent transparent darken($spitPurple, 12) darken($spitPurple, 12)
     right: -22px
-    top: 49px
 
 //			//
 //  #social     - share 3 stats -
@@ -347,7 +356,7 @@ a.print-pdf
     text-transform: uppercase
     background: url("assets/faq3.png")
     background-repeat: no-repeat
-    background-position: 50% 0.7em
+    background-position: 50% 1.2em
     padding: 0 0 1em 0
     margin: 0 0 -1em 0
   h4

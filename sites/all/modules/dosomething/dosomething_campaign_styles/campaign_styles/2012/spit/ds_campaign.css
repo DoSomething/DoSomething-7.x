@@ -541,18 +541,26 @@ body {
   #cmp .views-label-field-team-name,
   #cmp .views-label-field-drive-location {
     display: none; }
+  #cmp li.views-row {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 2em; }
   #cmp .views-field-field-team-name,
   #cmp .views-field-field-drive-location,
+  #cmp .views-field-field-geofield-distance,
   #cmp .views-field-nothing {
-    width: 33%;
+    width: 25%;
     float: left; }
-  #cmp .views-field-field-drive-location {
+  #cmp .views-field-field-drive-location,
+  #cmp .views-field-field-geofield-distance {
     font-size: 0.8em;
     font-weight: 400;
     font-family: din-web-reg;
     line-height: 1.4em; }
+  #cmp .views-field-field-geofield-distance {
+    text-align: center; }
   #cmp .views-field-nothing span {
-    width: 10em;
+    width: 5em;
     display: block;
     margin: 1em auto; }
   #cmp .views-field-nothing a.go-button {
@@ -601,15 +609,14 @@ body {
       content: "";
       position: absolute;
       border-style: solid;
-      border-width: 11px; }
+      border-width: 11px;
+      top: 51px; }
     #cmp .refer5:before {
       border-color: transparent #562b57 #562b57 transparent;
-      left: -23px;
-      top: 49px; }
+      left: -23px; }
     #cmp .refer5:after {
       border-color: transparent transparent #562b57 #562b57;
-      right: -22px;
-      top: 49px; }
+      right: -22px; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {
@@ -626,7 +633,7 @@ body {
     text-transform: uppercase;
     background: url("assets/faq3.png");
     background-repeat: no-repeat;
-    background-position: 50% 0.7em;
+    background-position: 50% 1.2em;
     padding: 0 0 1em 0;
     margin: 0 0 -1em 0; }
   #cmp #faq h4 {
@@ -706,9 +713,13 @@ body {
   #cmp #webform-component-join-header, #cmp #webform-component-start-header, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
     width: 25%;
     float: left; }
+  #cmp #edit-submitted-field-webform-email {
+    width: 35%; }
+  #cmp .form-actions.form-wrapper {
+    width: 15%; }
   #cmp #submitted-field-webform-email-add-more-wrapper, #cmp #submitted-field-webform-mobile-add-more-wrapper, #cmp #contact-form h3 {
-    margin: 0 auto;
-    width: 80%; }
+    width: 90%;
+    margin: 0 auto; }
   #cmp #sign-up .form-wrapper {
     float: none; }
   #cmp #sign-up input {
