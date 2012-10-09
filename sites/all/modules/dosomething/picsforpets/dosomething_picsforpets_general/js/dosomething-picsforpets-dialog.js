@@ -69,6 +69,7 @@ Drupal.behaviors.dosomethingPicsforpetsDialog = {
       top: 180,
       position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
       width: 600,
+      dialogClass: 'furtographer-pop',
       // Autofocus confuses placeholder text.
       open: function(event, ui) {
         if (typeof FB != 'undefined') { 

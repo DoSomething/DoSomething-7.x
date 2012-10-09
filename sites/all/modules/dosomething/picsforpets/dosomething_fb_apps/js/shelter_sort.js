@@ -33,6 +33,7 @@ Drupal.behaviors.dosomethingFBApps = {
           modal: true,
           top: 180,
           width: 550,
+          dialogClass: 'pics-where-you-at-pop',
           open: function(event, ui) {
             if (typeof FB != 'undefined') { 
               FB.Canvas.scrollTo(0,0);

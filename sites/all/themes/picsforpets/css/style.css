@@ -1178,6 +1178,30 @@ a.next {
   margin-top: 150px;
 }
 
+.ui-dialog.pics-thx-for-sharing {
+  min-height: auto;
+}
+.ui-dialog.pics-thx-for-sharing div.dialog-lower {
+  margin-top: 115px;
+}
+.ui-dialog.pics-thx-for-sharing div.by-signing-up {
+  padding-left: 85px;
+}
+
+.ui-dialog.pics-where-you-at-pop {
+  min-height: auto;
+}
+.ui-dialog.pics-where-you-at-pop div.ui-widget-header {
+  padding-bottom: 0px;
+  height: 0px;
+}
+.ui-dialog.pics-where-you-at-pop div.container-title {
+  margin-top: -3px;
+}
+.ui-dialog.pics-where-you-at-pop h1, .ui-dialog.pics-where-you-at-pop #picsforpets-share .fb-share-me, #picsforpets-share .ui-dialog.pics-where-you-at-pop .fb-share-me {
+  border-bottom: 1px solid white;
+}
+
 .sign-up-text {
   text-align: center;
   margin-top: 12px;
@@ -2243,6 +2267,22 @@ div[aria-labelledby="ui-dialog-title-dosomething-fb-apps-enter-zip-form"] .ui-di
 div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-form"] .ui-icon.ui-icon-closethick {
   top: -1px;
   right: 10px;
+}
+
+.ui-dialog.furtographer-pop {
+  min-height: auto;
+}
+.ui-dialog.furtographer-pop div.by-signing-up {
+  margin-left: 50px;
+}
+.ui-dialog.furtographer-pop div.form-asterik {
+  margin-left: 122px;
+}
+.ui-dialog.furtographer-pop div.form-item-email {
+  margin-left: 130px;
+}
+.ui-dialog.furtographer-pop div.form-item-kit {
+  margin-left: 60px;
 }
 
 #picsforpets-invite-friends {
@@ -3468,7 +3508,7 @@ header aside {
   content: "gray";
 }
 
-h1.sharethese, #picsforpets-share .fb-share-me .sharethese {
+h1.sharethese, #picsforpets-share .sharethese.fb-share-me, #picsforpets-share .fb-share-me .sharethese {
   text-align: center;
   margin-left: 120px;
   font-size: 26pt;
