@@ -673,6 +673,8 @@ body {
       padding: 0.2em 0 0 0; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 15px 4px #cbbeff; }
+  #cmp #edit-submitted-field-webform-mobile-und-0-value {
+    float: left; }
   #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
     height: 2em;
     -webkit-border-radius: 5px;
@@ -887,8 +889,11 @@ body {
       #cmp #header #edit-submit {
         margin: 0.5em 0 0 0;
         float: left; }
-    #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile {
-      width: 50%;
+    #cmp #edit-submitted-field-webform-email {
+      width: 68%;
+      margin: 1% 0; }
+    #cmp #edit-submitted-field-webform-mobile {
+      width: 32%;
       margin: 1% 0; }
     #cmp .form-actions.form-wrapper {
       width: 100%; }
