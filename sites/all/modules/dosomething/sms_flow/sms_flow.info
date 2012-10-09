@@ -1,0 +1,4 @@
+name = 'DoSomething.org SMS Flow'
+description = 'Awesome DS.org SMS flow to do everything.  Ever.'
+core = 7.x
+package = 'SMS Flow'

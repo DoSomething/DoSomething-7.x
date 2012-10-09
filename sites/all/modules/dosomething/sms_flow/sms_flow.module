@@ -1,0 +1,87 @@
+<?php
+
+/**
+ *	Begins the most epic SMS flow ever.  But seriously, opts an Alpha into a Mobile Commons campaign.  Then opts in Betas into another Mobile Commons
+ *	campaign.  Sends $variables (an array of custom variables, surprisingly) along with those opt-ins.  Apply this function in a form submit function.
+ *	
+ *	@param $alpha_number
+ *		The phone number of the alpha who invited the betas.
+ *	@param $alpha_optin
+ *		A campaign number on mobile commons that the ALPHA will be opted in to.
+ *	@param $beta_optin
+ *		A campaign on mobile commons that the BETA will be opted into.
+ *	@param $beta_numbers
+ *		An array of the field keys that represent the phone numbers that the alpha invited through the form.
+ *		ALTERNATELY: An array of valid phone numbers to opt in through the opt-in path.
+ *	@param $form_values
+ *		An array of form values from the submitted webform.
+ *	@param $variables
+ *		An array of custom variables to send with the opt-in.  These translate to {{variables}} on Mobile Commons.
+ *	@param $beta_to_alpha_campaign
+ *		A campaign that the beta (then Gamma, then whatever is after Gamma) should be opted into when they invite their friends.  Optional.
+ *
+ *	Example (found in dosomething_clubs_preserve_shortform_email() in dosomething_clubs.module):
+ * 		sms_flow_start('610-368-3195', 128441, 128441, array('field_webform_mobile'), $form_state['values'], array(
+ *	 		'first_name' => 'Mike',
+ *			'club_name' => "Mike's cool DoSomething.org Club."
+ *		));
+ *
+ */
+
+function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_numbers, $form_values, Array $variables, $beta_to_alpha_campaign = FALSE) {
+  if (dosomething_general_valid_cell($alpha_number)) {
+  	dosomething_general_mobile_commons_subscribe($alpha_number, (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign), $variables);
+  }
+
+  foreach ($beta_numbers AS $key => $field) {
+  	$p = '';
+
+  	// Generic $form_state['values']['submitted_tree']
+  	if (isset($form_values['submitted_tree']) && isset($form_values['submitted_tree'][$field][LANGUAGE_NONE][0])) {
+  		$p = current($form_values['submitted_tree'][$field][LANGUAGE_NONE][0]);
+  	}
+
+  	// Security for the multiple form_state['values'] that we have migrating around the site.
+  	else if (isset($form_values[$field][LANGUAGE_NONE][0])) {
+  		$p = current($form_values[$field][LANGUAGE_NONE][0]);
+  	}
+
+  	// Array of phone numbers passed to function
+  	if (dosomething_general_valid_cell($field)) {
+  		$p = $field;
+  	}
+
+  	// Check if valid cell and opt in to Mobile Commons.
+  	if (dosomething_general_valid_cell($p)) {
+  		dosomething_general_mobile_commons_subscribe($beta_optin, $p, $variables);
+  	}
+  }
+
+  // To do:
+  // Add alpha #, beta #, node ID to database.
+}
+
+/**
+ * Merely for reference.  Not used because dosomething_general_mobile_commons_subscribe offers the same functionality.
+ */
+function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array()) {
+  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
+
+  // Send the post data.
+  $options = array(
+    'headers' => array(
+      'Content-type' => 'application/x-www-form-urlencoded',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    ),
+    'method' => 'POST',
+    'data' => "person[phone]=$mobile&opt_in_path[]=$opt_in_path",
+  );
+
+  if (!empty($args)) {
+    foreach ($args AS $key => $val) {
+      $options['data'] .= "&person[$key]=" . urlencode($val);
+    }
+  }
+
+  drupal_http_request($api_opt_in_path_url, $options);
+}
