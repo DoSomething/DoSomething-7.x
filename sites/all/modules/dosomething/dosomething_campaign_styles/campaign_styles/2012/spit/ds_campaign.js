@@ -193,29 +193,25 @@
       });
 
       // jQuery UI pop-up rebuilding
-      var asterisk = '<span class="ds-registration-form-required">*</span>';
+//      var asterisk = '<span class="ds-registration-form-required">*</span>';
+//
+//      var input_labels = {
+//        '-item-first-name' : 'First Name' + asterisk,
+//        '-item-last-name' : 'Last Name' + asterisk,
+//        '-item-email' : 'Email' + asterisk,
+//        '-item-cell' : 'Cell',
+//        '-item-pass' : 'Password' + asterisk,
+//      }
+//
+//      for(var key in input_labels) {
+//        if(input_labels.hasOwnProperty(key)) {
+//          $('.form' + key)
+//            .not('.fancy')
+//            .addClass('fancy')
+//            .prepend('<label>' + input_labels[key] + '</label>');
+//        }
+//      }
 
-      var input_labels = {
-        '-item-first-name' : 'First Name' + asterisk,
-        '-item-last-name' : 'Last Name' + asterisk,
-        '-item-email' : 'Email' + asterisk,
-        '-item-cell' : 'Cell',
-        '-item-pass' : 'Password' + asterisk,
-      }
-
-      for(var key in input_labels) {
-        if(input_labels.hasOwnProperty(key)) {
-          $('.form' + key)
-            .not('.fancy')
-            .addClass('fancy')
-            .prepend('<label>' + input_labels[key] + '</label>');
-        }
-      }
-      
-//      // kick CTIA text to bottom of form
-//      $('#dosomething-login-register-popup-form .ds-login-popup-footer').not('.hobnob').addClass('hobnob').append($('#dosomething-login-register-popup-form .description'));
-//      $('#dosomething-login-register-popup-form .ds-login-popup-footer').css('height','100%');
-//      
       // kill old asterisks from required fields
       $('#dosomething-login-register-popup-form .popup-content .field-suffix').remove();
 
@@ -254,6 +250,7 @@
           });
         });
       }
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
