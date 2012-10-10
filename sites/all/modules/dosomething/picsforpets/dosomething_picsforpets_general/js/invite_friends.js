@@ -108,13 +108,20 @@ Drupal.behaviors.galleryShareButton = {
       };
 
 
+   // FB.api(
+       // '/me/dosomethingapp:share',
+        //'post',     
+        //{         
+          //  pet_who_needs_a_home: shareUrl,
+          //  image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+        //},  
     FB.api(
-        '/me/dosomethingapp:share',
-        'post',     
-        {         
-            pet_who_needs_a_home: shareUrl,
-            image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
-        },  
+     '/me/dosomethingapp:share',
+      'post',
+      {
+          pet_who_needs_a_home: shareUrl,
+          image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl
+      },
     //FB.ui(share,  
       function(response) {
         if (typeof console !== 'undefined') {
