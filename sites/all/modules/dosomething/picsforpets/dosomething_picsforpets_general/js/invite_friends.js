@@ -189,4 +189,15 @@ Drupal.behaviors.galleryShareButton = {
                   }
                 });
             }
+    });
     
+    }
+  
+     }
+     
+    );
+     
+  }
+     
+};     
+-})(jQuery);
