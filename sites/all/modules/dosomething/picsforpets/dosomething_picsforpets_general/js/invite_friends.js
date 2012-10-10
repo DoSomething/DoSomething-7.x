@@ -117,6 +117,9 @@ Drupal.behaviors.galleryShareButton = {
         },  
     //FB.ui(share,  
       function(response) {
+        if (typeof console !== 'undefined') {
+          console.log(response);
+        }
         if ((typeof response !== 'undefined') && (response !== null)) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
@@ -186,11 +189,4 @@ Drupal.behaviors.galleryShareButton = {
                   }
                 });
             }
-          });
-        }
-      }
-    );
-  }
-};
-
-})(jQuery);
+    
