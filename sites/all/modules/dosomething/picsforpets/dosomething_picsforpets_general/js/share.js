@@ -201,7 +201,7 @@ Drupal.behaviors.dsPfpShare = {
             }
           });
 
-          $('.slideshow-next').click();
+          setTimeout('jQuery(".slideshow-next").click();', 1000);
         }
     });
   },
