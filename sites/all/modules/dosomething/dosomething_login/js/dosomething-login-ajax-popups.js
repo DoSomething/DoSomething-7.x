@@ -56,7 +56,8 @@
         resizable: false,
         draggable: false,
         modal: true,
-        width: 550
+        width: 'auto',
+        height: 'auto'
       });
     }
   });

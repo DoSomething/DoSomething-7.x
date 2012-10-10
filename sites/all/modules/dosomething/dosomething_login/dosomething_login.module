@@ -556,7 +556,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       '#type' => 'textfield',
       '#title' => t('First Name')/* . theme('dosomething_login_form_required_marker', array())*/,
       '#hidden_title' => t('First Name'),
-      '#prefix' => '<div class="popup-content">',
+      '#prefix' => '<div class="popup-content"><label>HUH? First Name<span class="ds-registration-form-required">*</span></label>',
       '#attributes' => array(
         'placeholder' => t('First Name'),
         'class' => array('dosomething-original-value'),
@@ -568,6 +568,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     'last_name' => array(
       '#type' => 'textfield',
       '#title' => t('Last Name')/* . theme('dosomething_login_form_required_marker', array())*/,
+      '#prefix' => '<label>HUH? Last Name<span class="ds-registration-form-required">*</span></label>',
       '#hidden_title' => t('Last Name'),
       '#attributes' => array(
         'placeholder' => t('Last Name'),
@@ -581,6 +582,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['email'] = array(
     '#type' => 'textfield',
     '#title' => t('Email') . theme('dosomething_login_form_required_marker', array()),
+    '#prefix' => '<label>Email<span class="ds-registration-form-required">*</span></label>',
     '#attributes' => array(
       'placeholder' => t('Email'),
     ),
@@ -591,6 +593,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['cell'] = array(
     '#type' => 'textfield',
     '#title' => t('Cell'),
+    '#prefix' => '<label>Cell</label>',
     '#attributes' => array(
       'placeholder' => t('Cell'),
     ),
@@ -600,6 +603,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['pass'] = array(
     '#type' => 'password',
     '#title' => t('Password'),
+    '#prefix' => '<label>Password<span class="ds-registration-form-required">*</span></label>',
     '#hidden_title' => t('Password'),
     '#required' => TRUE,
     '#attributes' => array(
@@ -611,6 +615,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   $form['birthday'] = array(
     '#type' => 'item',
     '#title' => t('<span class="login-popup-birthday">Birthday</span>') . theme('dosomething_login_form_required_marker', array()),
+    '#prefix' => '<label>Birthday<span class="ds-registration-form-required">*</span></label>',
     'month' => array(
       '#type' => 'textfield',
       '#attributes' => array(
