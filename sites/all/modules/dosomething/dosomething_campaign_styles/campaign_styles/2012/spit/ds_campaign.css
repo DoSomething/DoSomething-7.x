@@ -372,6 +372,26 @@ body {
       background: rgba(83, 10, 94, 0.7); }
     #cmp #header .tagline {
       padding: 2%; }
+  #cmp #next-steps {
+    padding: 5%; }
+    #cmp #next-steps h3, #cmp #next-steps p {
+      text-align: left; }
+    #cmp #next-steps h1 {
+      font-size: 4em;
+      font-weight: 600; }
+    #cmp #next-steps h4 {
+      text-transform: uppercase;
+      font-weight: 500; }
+    #cmp #next-steps p {
+      padding: 0 1.5em 1em;
+      color: #444444; }
+    #cmp #next-steps .next-steps-help {
+      font-size: 0.9em;
+      text-align: center;
+      color: #bbbbbb;
+      padding: 2em 0 0 0; }
+    #cmp #next-steps .go-button {
+      margin-top: 0.5em; }
   #cmp #drive {
     text-align: left; }
   #cmp .drive-info-wrapper {
