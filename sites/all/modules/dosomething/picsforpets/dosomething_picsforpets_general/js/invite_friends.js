@@ -200,4 +200,4 @@ Drupal.behaviors.galleryShareButton = {
   }
      
 };     
--})(jQuery);
+})(jQuery);
