@@ -210,6 +210,10 @@
         }
       });
 
+    // hackity hack, don't look back
+    if (window.location.pathname.substring(6, 10) == 'next') {
+      $('#block-dosomething-campaign-styles-campaign-nav').hide();
+    }
 
     } // end attach: function
   }; // end Drupal.behaviors
