@@ -67,8 +67,8 @@
       var $cellInput = $('#edit-submitted-field-webform-mobile');
 
       $cellInput.before($emailInput); // re-arranges input field order
-      $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-email-label'));
-      $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-cell-label'));
+      $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('ds-processed').prepend($('#contact-form-email-label'));
+      $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('ds-processed').prepend($('#contact-form-cell-label'));
 
       // removes search from nav on drive page
       if(document.location.pathname.slice(1,5) == "team") {
@@ -172,7 +172,6 @@
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
       var scrollLimitTop = 500;
       var scrollLimitBot = 5757;
-
       $window.scroll(function () {
         var st = $window.scrollTop();
         if (st > scrollLimitTop && st < scrollLimitBot) {
@@ -192,11 +191,40 @@
             .css('position', 'static')
         }
       });
-    
-    // search pane tweak
-    $('.form-item-field-geofield-distance-unit').hide();
-    $('.geofield-proximity-origin-from').text('Zip code:');
+
+      // jQuery UI pop-up rebuilding
+      var asterisk = '<span class="ds-registration-form-required">*</span>';
+
+      var input_labels = {
+        '-item-first-name' : 'First Name' + asterisk,
+        '-item-last-name' : 'Last Name' + asterisk,
+        '-item-email' : 'Email' + asterisk,
+        '-item-cell' : 'Cell',
+        '-item-pass' : 'Password' + asterisk,
+      }
+
+      for(var key in input_labels) {
+        if(input_labels.hasOwnProperty(key)) {
+          $('.form' + key)
+            .not('.fancy')
+            .addClass('fancy')
+            .prepend('<label>' + input_labels[key] + '</label>');
+        }
+      }
+      
+//      // kick CTIA text to bottom of form
+//      $('#dosomething-login-register-popup-form .ds-login-popup-footer').not('.hobnob').addClass('hobnob').append($('#dosomething-login-register-popup-form .description'));
+//      $('#dosomething-login-register-popup-form .ds-login-popup-footer').css('height','100%');
+//      
+      // kill old asterisks from required fields
+      $('#dosomething-login-register-popup-form .popup-content .field-suffix').remove();
+
+      // search pane tweak
+      $('.form-item-field-geofield-distance-unit').hide();
+      $('.geofield-proximity-origin-from').text('Zip code:');
    
+      // sigh..
+      $('#dosomething-login-register-popup-form .description br').replaceWith('&nbsp;');
 
       // hide/show fieldset on drive form for checkbox
       $("#webform-component-check-show-hide").css('display','none');

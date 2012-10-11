@@ -52,7 +52,7 @@
   <?php print $head; ?>
  
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php print $head_title; ?></title>
   <?php if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') : ?>
     <link rel="stylesheet" href="https://c308566.ssl.cf1.rackcdn.com/din.css" media="all" />
