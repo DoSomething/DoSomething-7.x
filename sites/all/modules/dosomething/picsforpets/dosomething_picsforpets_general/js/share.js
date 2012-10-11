@@ -79,6 +79,19 @@ Drupal.behaviors.dsPfpShare = {
       description: "Click the pic to share!"
     };
 
+    FB.api('/me/permissions', function (response) {
+      var perms = response.data[0];
+      if (!perms.publish_actions) {
+        FB.ui({
+        method: 'permissions.request',
+        perms: 'publish_actions',
+        display: 'popup'
+        }, function(response) {
+          // Just making sure that they have this permission.
+        });
+      }
+    });
+
     FB.api(
      '/me/dosomethingapp:share',
       'post',
@@ -156,7 +169,6 @@ Drupal.behaviors.dsPfpShare = {
                   modal: true,
                   top: 180,
                   width: 550,
-                  dialogClass: 'pics-thx-for-sharing',
                   position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
                   open: function(event, ui) {
                     if (typeof FB != 'undefined') { 
@@ -201,7 +213,7 @@ Drupal.behaviors.dsPfpShare = {
             }
           });
 
-          setTimeout('jQuery(".slideshow-next").click();', 1000);
+          $('.slideshow-next').click();
         }
     });
   },

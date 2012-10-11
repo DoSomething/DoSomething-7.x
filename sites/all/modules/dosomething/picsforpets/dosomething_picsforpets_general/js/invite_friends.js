@@ -107,26 +107,32 @@ Drupal.behaviors.galleryShareButton = {
         description: "Click the pic to share"//"Help me find this shelter animal a home.  Click here to share this animal."
       };
 
+    // Possible fix for lack-of-permission problem.
+    FB.api('/me/permissions', function (response) {
+      var perms = response.data[0];
+      if (!perms.publish_actions) {
+        FB.ui({
+        method: 'permissions.request',
+        perms: 'publish_actions',
+        display: 'popup'
+        }, function(response) {
+          // Just making sure that they have this permission.
+        });
+      }
+    });
 
-   // FB.api(
-       // '/me/dosomethingapp:share',
-        //'post',     
-        //{         
-          //  pet_who_needs_a_home: shareUrl,
-          //  image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
-        //},  
     FB.api(
-     '/me/dosomethingapp:share',
-      'post',
-      {
-          pet_who_needs_a_home: shareUrl,
-          image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl
-      },
+        '/me/dosomethingapp:share',
+        'post',     
+        {         
+            pet_who_needs_a_home: shareUrl,
+            image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+        },  
     //FB.ui(share,  
       function(response) {
-	if (typeof console !== 'undefined' && window.console) {
-		console.log(response);
-	}
+        if (typeof console !== 'undefined' && window.console) {
+          console.log(response);
+        }
         if ((typeof response !== 'undefined') && (response !== null)) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
@@ -154,7 +160,6 @@ Drupal.behaviors.galleryShareButton = {
                   modal: true,
                   top: 180,
                   width: 550,
-                  dialogClass: 'pics-thx-for-sharing',
                   position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
                   open: function(event, ui) {
                     if (typeof FB != 'undefined') { 
@@ -196,15 +201,11 @@ Drupal.behaviors.galleryShareButton = {
                   }
                 });
             }
-    });
-    
-    }
-  
-     }
-     
+          });
+        }
+      }
     );
-     
   }
-     
-};     
+};
+
 })(jQuery);
