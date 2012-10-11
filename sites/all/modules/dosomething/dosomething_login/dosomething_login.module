@@ -21,9 +21,9 @@ function dosomething_login_menu() {
   $items['user/registration'] = array(
     'title' => 'Registration',
     'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('dosomething_login_register_popup_form'),
-    'access callback' => TRUE,
+    'page callback' => 'dosomething_login_user_register',
+    //'page arguments' => array('dosomething_login_register_popup_form'),
+    'access callback' => 'dosomething_login_user_register_access',
     'type' => MENU_CALLBACK,
   );
   $items['user/registration/ajax'] = array(
@@ -60,6 +60,26 @@ function dosomething_login_menu() {
   return $items;
 }
 
+function dosomething_login_user_register_access() {
+  return (
+    user_is_anonymous() &&
+    variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL) ||
+    (
+      !empty($_GET['destination']) &&
+      drupal_valid_path($_GET['destination']) &&
+      user_is_logged_in()
+    )
+  );
+}
+
+function dosomething_login_user_register() {
+  if (!empty($_GET['destination']) && drupal_valid_path($_GET['destination']) && user_is_logged_in()) {
+    drupal_goto($_GET['destination']);
+  }
+
+  return drupal_get_form('dosomething_login_register_popup_form');
+}
+
 /**
  * Implements hook_menu_alter().
  */
@@ -90,32 +110,6 @@ function dosomething_login_library() {
       drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-ajax-popups.js' => array(),
     ),
     'dependencies' => array(
-      array('system', 'jquery'),
-      array('system', 'drupal.ajax'),
-      array('system', 'jquery.form'),
-    ),
-  );
-  return $libraries;
-}
-
-/**
- * Implements hook_block_info().
- */
-function dosomething_login_block_info() {
-  $blocks['become_member'] = array(
-    'info' => t('Become a Member'),
-    'cache' => DRUPAL_NO_CACHE,
-  );
-  $blocks['register_block'] = array(
-    'info' => t('User registration block'),
-    'cache' => DRUPAL_NO_CACHE,
-  );
-  return $blocks;
-}
-
-/**
- * Implements hook_block_view().
- */
       array('system', 'jquery'),
       array('system', 'drupal.ajax'),
       array('system', 'jquery.form'),
@@ -801,7 +795,221 @@ function dosomething_login_register_block($form, &$form_state) {
     'js' => array(
       drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-popup-lightbox.js',
     ),
-???MANY LINES MISSING
+    'library' => array(array('system', 'ui.dialog')),
+  );
+
+  $query = drupal_get_destination();
+  $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
+  $form['why'] = array(
+    '#theme' => 'link',
+    '#path' => 'why-become-a-member',
+    '#text' => t("Why become a member?"),
+    '#options' => array(
+      'attributes' => array('class' => array('why')),
+      'html' => FALSE,
+    ),
+  );
+  $form['#action'] = url('user/registration', array('query' => $query));
+  $fb_link = fboauth_action_link_properties('connect', current_path());
+  $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
+  $form['connect'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'connect-thru-facebook',
+      ),
+    ),
+    '#children' => l('Connect thru Facebook', $fb_url),
+  );
+  $form['or'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'separator',
+        'split',
+      ),
+    ),
+    '#children' => t('or'),
+  );
+  $form['ie_signup '] = array(
+    '#theme' => 'link',
+    '#path' => 'user/registration',
+    '#text' => t("Sign Up"),
+    '#options' => array(
+      'attributes' => array('class' => array('ie-signup-button')),
+      'html' => FALSE,
+    ),
+  );
+  $form['ds-register-wrapper'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'clearfix',
+        'ds-register-wrapper',
+      ),
+    ),
+  );
+  $form['ds-register-wrapper']['name'] = array(
+    'first_name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('First Name'),
+      ),
+      '#size' => 9,
+    ),
+    'last_name' => array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+        'placeholder' => t('Last Name'),
+      ),
+      '#size' => 9,
+    ),
+  );
+  $form['ds-register-wrapper']['cell_or_email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Cell or email'),
+    ),
+    '#size' => 20,
+  );
+  $form['ds-register-wrapper']['first_submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#attributes' => array('class' => array('submit')),
+  );
+  $form['ds-register-wrapper']['user'] = array(
+    '#theme' => 'link',
+    '#path' => 'user',
+    '#text' => t("or sign in"),
+    '#options' => array(
+      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
+      'html' => FALSE,
+    ),
+  );
+  return $form;
+}
+
+/**
+ * Validate the user registration form.
+ */
+function dosomething_login_register_block_validate($form, &$form_state) {
+  $values = $form_state['values'];
+
+  // So, the form system throws an error on required fields when they're empty,
+  // but if there's no title on the field then there's no error message displayed
+  // and the fields are never highlighted in red.  Plus if you add another error
+  // on one of these required fields then nothing happens because there is already
+  // an error registered on that field.  FAPI does not allow you in any way to clear
+  // an error on a single field.  So, we clear all of the errors and add them back
+  // again while adding meaningful messages for the titleless required fields.
+  // Since we're adding the same messages, we don't have to worry about the set
+  // drupal message that are created.
+  $empty_required_fields = array('first_name', 'last_name', 'pass');
+  $errors = form_get_errors();
+  form_clear_error();
+  if (count($errors)) {
+    foreach ($errors as $field => $message) {
+      if (in_array($field, $empty_required_fields) && !$message) {
+        $element = isset($form['name'][$field]) ? $form['name'][$field] : $form[$field];
+        // Make sure to add the #hidden_title key to the fields.
+        form_set_error($field, t('!name field is required.', array('!name' => $element['#hidden_title'])));
+      }
+      else {
+        form_set_error($field, $message);
+      }
+    }
+  }
+
+  if (strlen($form_state['values']['pass']) < 6) {
+    form_set_error('pass', t('Your password must be at least 6 characters long.'));
+  }
+  $form_state['values']['birthdate'] = mktime(0, 0, 0, $values['month'], $values['day'], $values['year']);
+  if (!is_numeric($values['month']) || $values['month'] > 12) {
+    form_set_error('month', t('Please provide a valid numeric month for your birthday.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!is_numeric($values['day']) || $values['month'] > 31) {
+    form_set_error('day', t('Please provide a valid day for your birthday.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!is_numeric($values['year']) || strlen($values['year']) != 4) {
+    form_set_error('year', t('Please provide the 4-digit year you were born.'));
+    $invalid_birthday = TRUE;
+  }
+  if (!isset($invalid_birthday)) {
+    if (!dosomething_login_person_is_over_age($form_state['values']['birthdate'], 13)) {
+      if (!isset($form_state['values']['parent_email']) || !valid_email_address($form_state['values']['parent_email'])) {
+        form_set_error('parent_email', t('Please provide a valid parental email address.'));
+      }
+      else if ($values['parent_email'] == $values['email']) {
+       form_set_error('parent_email', t("Your parent/guardian email cannot be the same as your own email.  If you do not have your own email address but use your parent's email address instead, please email help@dosomething.org and we'll get it sorted out."));
+      }
+    }
+  }
+
+  if (!$values['first_name']) {
+    form_set_error('first_name', t('Please provide your first name.'));
+  }
+  if (!$values['last_name']) {
+    form_set_error('last_name', t('Please provide your last name.'));
+  }
+  // Validate cell number or e-mail address
+  if (valid_email_address($values['email'])) {
+    if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($values['email']), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+      form_set_error('email', t('The e-mail address %email is already registered. <a href="@password">Have you forgotten your password?</a>', array('%email' => $values['email'], '@password' => url('user/password'))));
+    }
+    $form_state['values']['mail'] = $values['email'];
+  }
+  if ($values['cell']) {
+    if ($number = dosomething_general_valid_cell($values['cell'])) {
+      if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+        form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
+      }
+      else if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+        form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
+      }
+      $form_state['values']['phone'] = $number;
+      if (!valid_email_address($form_state['values']['mail'])) {
+        $form_state['values']['mail'] = $number . '@mobile';
+      }
+    }
+    else {
+        form_set_error('cell', t('The phone number %phone is invalid.', array('%phone' => $values['cell'])));
+    }
+  }
+  if (!$values['email'] && !$values['cell']) {
+    form_set_error('email', t('Please provide a valid email address'));
+    form_set_error('cell', t('or provide a valid cell phone number.'));
+  }
+}
+
+/**
+ * Submit the user registration form.
+ */
+function dosomething_login_register_block_submit($form, &$form_state) {
+  $values = $form_state['input'];
+  $birthdate = $form_state['values']['birthdate'];
+  $name = preg_replace('/[^A-Za-z.]+/', '', $values['first_name']) . ' ' . preg_replace('/[^A-Za-z.]+/', '', $values['last_name']);
+  $form_state['values']['name'] = dosomething_login_unique_name($name);
+  $form_state['values']['init'] = $name;
+  if (empty($form_state['values']['pass'])) {
+    $form_state['values']['pass'] = user_password();
+  }
+  // Remove unneeded values.
+  form_state_values_clean($form_state);
+
+  $account = drupal_anonymous_user();
+  $edit = array_intersect_key((array) $account, $form_state['values']);
+  $edit['pass'] = $form_state['values']['pass'];
+  entity_form_submit_build_entity('user', $account, $form, $form_state);
+
+  // Determine the user's role by their age.
+  if (dosomething_login_person_is_over_age($birthdate, 26)) {
+    $role_name = 'old person';
+  }
+  else if (!dosomething_login_person_is_over_age($birthdate, 13)) {
+    $role_name = 'pending member';
+  }
   else {
     $role_name = 'member';
   }
@@ -1630,6 +1838,32 @@ function theme_dosomething_login_fboauth_user_form_connect($variables) {
       $output = t('Your account is connected with Facebook. (<a href="!url">More info</a>)', array('!url' => url('user/' . $uid . '/fboauth')));
     }
     else {
+      $output = fboauth_action_display('ds_connect');
+      $output .= '<div class="description">' . t('Connect with Facebook to login with your Facebook account instead of a password.') . '</div>';
+    }
+  }
+  else {
+    $output .= '<div class="description">' . t('Admins cannot de-authorize Facebook users.') . '</div>';
+  }
+  return $output;
+}
+
+/**
+ * Provided themed information about the user's current Facebook connection.
+ */
+function theme_dosomething_login_facebook_user_info($variables) {
+  $account = $variables['account'];
+
+  $output = '';
+  $output .= '<p>' . t('Your account is current connected with Facebook. Currently this site has access to the following information from Facebook.') . '</p>';
+  $list = array('items' => array('basic' => 'Your basic information (Name, Gender, Picture, etc.)') + fboauth_user_connect_permissions() + array('birthday' => t('Your birthday')));
+  $output .= theme('item_list', $list);
+  $output .= '<p>' . t('You may disconnect your account from Facebook at any time by using the Deauthorize option below. If deauthorized, you will no longer be able to use Facebook to log into this account and must use a normal password. <strong>If you have not yet set a password, you will not be able to log onto this site</strong>.') . '</p>';
+  $output .= fboauth_action_display('ds_deauth');
+  return $output;
+}
+
+/**
  * Page callback for access denied menu callback.
  */
 function dosomething_login_access_denied_page() {
@@ -1698,3 +1932,4 @@ function dosomething_login_user_taxonomy_user_taxonomy_insert($account) {
     return 'fb_created_account';
   }
 }
+
