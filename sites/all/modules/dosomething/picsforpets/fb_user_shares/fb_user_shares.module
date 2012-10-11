@@ -13,3 +13,10 @@ function fb_user_shares_views_api() {
     'version' => 3,
   );
 }
+
+/**
+ *	Implements hook_cron()
+ */
+function fb_user_shares_cron() {
+	module_load_include('inc', 'fb_user_shares');
+}
