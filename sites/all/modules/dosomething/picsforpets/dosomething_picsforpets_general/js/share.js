@@ -79,6 +79,7 @@ Drupal.behaviors.dsPfpShare = {
       description: "Click the pic to share!"
     };
 
+    // Possible fix for lack-of-permission problem
     FB.api('/me/permissions', function (response) {
       var perms = response.data[0];
       if (!perms.publish_actions) {
@@ -169,6 +170,7 @@ Drupal.behaviors.dsPfpShare = {
                   modal: true,
                   top: 180,
                   width: 550,
+                  dialogClass: 'pics-thx-for-sharing',
                   position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
                   open: function(event, ui) {
                     if (typeof FB != 'undefined') { 
@@ -213,7 +215,7 @@ Drupal.behaviors.dsPfpShare = {
             }
           });
 
-          $('.slideshow-next').click();
+          setTimeout('jQuery(".slideshow-next").click();', 1000);
         }
     });
   },
