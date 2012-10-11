@@ -215,6 +215,17 @@
       $('#block-dosomething-campaign-styles-campaign-nav').hide();
     }
 
+      if ($('body').hasClass('not-logged-in')) {
+        $('#super-secret-bindable-id').click(function (e) {
+          e.preventDefault();
+          $('#dosomething-login-register-popup-form').dialog({
+            resizable: false,
+            draggable: false,
+            modal: true,
+            width: 550
+          });
+        });
+      }
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
