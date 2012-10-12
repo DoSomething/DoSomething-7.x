@@ -202,6 +202,7 @@ function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array(
 function sms_flow_conductor_sms_keywords() {
   return array(
     'drives-invite' => 'sms_flow_drives_invite',
+    'ftaf' => 'sms_flow_ftaf',
   );
 }
 
@@ -226,6 +227,9 @@ function sms_flow_ctools_plugin_directory($owner, $plugin_type) {
 function sms_flow_default_conductor_workflows() {
   $workflows = array();
 
+  //
+  // sms_flow_drives_invite workflow
+  //
   $workflow = new ConductorWorkflow;
   $workflow->wid = 'new';
   $workflow->name = 'sms_flow_drives_invite';
@@ -233,34 +237,58 @@ function sms_flow_default_conductor_workflows() {
   $workflow->description = 'Workflow for invitees of a drive invite';
   $workflow->api_version = '1.0';
 
-  $activity = $workflow->newActivity('start');
-  $activity->name = 'start';
-  $activity->title = 'Start';
+  $activity = _sms_flow_create_activity($workflow, 'start', 'start', 'Start');
   $activity->inputs = array();
-  //$activity->outputs = array('process_beta');
   $activity->outputs = array('hello_there');
 
-  $activity = $workflow->newActivity('sms_prompt');
-  $activity->name = 'hello_there';
-  $activity->title = 'Hello There';
+  $activity = _sms_flow_create_activity($workflow, 'sms_prompt', 'hello_there', 'Hello There');
   $activity->question = 'HELLO THERE';
   $activity->inputs = array('start');
   $activity->outputs = array('process_beta');
 
-  $activity = $workflow->newActivity('sms_flow_drives_invited_beta');
-  $activity->name = 'process_beta';
-  $activity->title = 'Process Drive Betas';
-  //$activity->inputs = array('start');
+  $activity = _sms_flow_create_activity($workflow, 'sms_flow_drives_invited_beta', 'process_beta', 'Process Drive Betas');
+  $activity->alpha_campaign_id = 28024;
   $activity->inputs = array('hello_there');
   $activity->outputs = array('end');
 
-  $activity = $workflow->newActivity('end');
-  $activity->name = 'end';
-  $activity->title = 'End';
+  $activity = _sms_flow_create_activity($workflow, 'sms_flow_end_and_start_new', 'end', 'End And Start New Activity');
+  $activity->next_workflow_name = 'sms_flow_ftaf';
   $activity->inputs = array('process_beta');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
 
+  //
+  // sms_flow_ftaf workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_ftaf';
+  $workflow->title = 'Forward to a Friend';
+  $workflow->description = 'Custom forward to a friend workflow';
+  $workflow->api_version = '1.0';
+
+  $activity = _sms_flow_create_activity($workflow, 'start', 'start', 'Start');
+  $activity->inputs = array();
+  $activity->outputs = array('ftaf');
+
+  $activity = _sms_flow_create_activity($workflow, 'sms_flow_ftaf', 'ftaf', 'Forward to a Friend');
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = _sms_flow_create_activity($workflow, 'end', 'end', 'End');
+  $activity->inputs = array('ftaf');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
   return $workflows;
+}
+
+function _sms_flow_create_activity($workflow, $activityId, $name, $title) {
+  $activity = $workflow->newActivity($activityId);
+  $activity->name = $name;
+  $activity->title = $title;
+
+  return $activity;
 }

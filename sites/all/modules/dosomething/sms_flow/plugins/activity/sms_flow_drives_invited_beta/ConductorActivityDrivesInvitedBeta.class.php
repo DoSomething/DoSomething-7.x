@@ -6,6 +6,14 @@
  */
 class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
+	public $alpha_campaign_id = 0;
+
+	public function option_definition() {
+		$options = parent::option_definition();
+		$options['alpha_campaign_id'] = array('default' => '');
+		return $options;
+	}
+
   public function run($workflow) {
   	$state = $this->getState();
   	$mobile = $state->getContext('sms_number');
@@ -63,11 +71,9 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
     // Send feedback message to Alpha
     $alphaMobile = sms_flow_find_alpha($mobile);
     $alphaMsg = "Good news! You invited $mobile and he/she joined your drive.";
-    $alphaOptions = array('campaign_id' => 28024);
+    $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
   	$return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
 
-    // TODO: create an FTAF Conductor flow that this person then gets placed into
-    $state->setContext('sms_response', t("TODO: reconstruct FTAF functionality"));
     $state->markCompeted();
   }
 
