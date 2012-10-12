@@ -198,9 +198,6 @@
       // search pane tweak
       $('.form-item-field-geofield-distance-unit').hide();
       $('.geofield-proximity-origin-from').text('Zip code:');
-   
-      // sigh..
-      $('#dosomething-login-register-popup-form .description br').replaceWith('&nbsp;');
 
       // hide/show fieldset on drive form for checkbox
       $("#webform-component-check-show-hide").css('display','none');
