@@ -1547,8 +1547,6 @@ function dosomething_clubs_join_page($gid, $verify = FALSE, $hash = NULL) {
         'email' => $u->mail
       );
 
-      drupal_mail('dosomething_clubs', 'tell_leader_someone_invited_email', $u->mail, $language, $params);
-
       $invitee = db_select('dosomething_clubs_invites', 'i')
         ->fields('i', array('inviter'))
         ->condition('invite', $user->mail)
@@ -1564,6 +1562,10 @@ function dosomething_clubs_join_page($gid, $verify = FALSE, $hash = NULL) {
           $starter = $inviter->name;
         }
         $params['name'] = $starter;
+
+        if ($inviter->uid != $u->uid) {
+          drupal_mail('dosomething_clubs', 'tell_leader_someone_invited_email', $u->mail, $language, $params);
+        }
 
         drupal_mail('dosomething_clubs', 'tell_inviter_invitee_joined', $inviter->mail, $language, $params);
       }
