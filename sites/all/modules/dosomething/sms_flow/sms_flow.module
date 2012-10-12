@@ -80,10 +80,15 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
  *  Accepts a phone number and returns the alpha who invited that phone number, if applicable.
  *
  *  @param $beta
- *	The beta's phone number
+ *	The beta's phone number.  Accepts with punctuation (e.g. xxx-xxx-xxxx) or without.
  *  @param $nid (optional...for now.)
  *	The node id that is being referenced.  This will ensure that we pull the correct alpha, when we
  *	have multiple flow types running at the same time.
+ *
+ *  @return the alpha's phone number, if applicable, or false.
+ *
+ *  Example:
+ *  sms_flow_find_alpha('610-368-3195');
  */
 function sms_flow_find_alpha($beta, $nid = false) {
   $beta_parsed = preg_replace('#[^0-9]#i', '', $beta);
