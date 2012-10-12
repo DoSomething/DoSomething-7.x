@@ -61,7 +61,7 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
 
   	// Check if valid cell and opt in to Mobile Commons.
   	if (dosomething_general_valid_cell($p)) {
-  		dosomething_general_mobile_commons_subscribe($beta_optin, $p, $variables);
+  		dosomething_general_mobile_commons_subscribe($p, $beta_optin, $variables);
   	}
 
     $record = array(
@@ -74,6 +74,69 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
 
     drupal_write_record('sms_flow_records', $record);
   }
+}
+
+/**
+ * Implements hook_menu()
+ */
+function sms_flow_menu() {
+  $items = array();
+
+  $items['sms/sms_flow/%'] = array(
+    'title' => 'Mobile Commons SMS Receiver for Invite Flow',
+    'page callback' => 'sms_flow_incoming_callback',
+    'access callback' => 'sms_mobile_commons_incoming_check',
+    'page arguments' => array(2),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Mimics functionality found in sms_mobile_commons_incoming_callback(). Allows for
+ * for different endpoints to trigger different keyword paths
+ */
+function sms_flow_incoming_callback($path) {
+  if ($path == 'drives-invite') {
+    $keyword = 'drives-invite';
+  }
+  else {
+    watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
+    return NULL;
+  }
+
+  // Using same code from sms_mobile_commons_incoming_callback(). Only difference
+  // is $keyword gets set depending on the path found above.
+  $message = isset($_REQUEST['args']) ? $_REQUEST['args'] : FALSE;
+  $carrier = isset($_REQUEST['carrier']) ? $_REQUEST['carrier'] : FALSE;
+  $sender = isset($_REQUEST['phone']) ? $_REQUEST['phone'] : FALSE;
+  $gateway = sms_gateways('gateway', 'sms_mobile_commons');
+  $config = $gateway['configuration'];
+  $output = $config['sms_mobile_commons_response'];
+  $context = array(
+    'message' => $message,
+    'keyword' => $keyword,
+    'carrier' => $carrier,
+    'sender' => $sender,
+    'gateway' => $gateway,
+  );
+  drupal_alter('sms_mobile_commons_response', $output, $context);
+  sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword, 'response' => $output));
+  $args = array('%sender' => $sender, '%message' => $message, '%response' => $output, '%keyword' => $keyword);
+  watchdog('sms_flow', 'Received message from %sender: %message with keyword %keyword and responded with %response', $args);
+  $output =
+  '<?xml version="1.0" encoding="UTF-8"?>
+  <response>
+   <reply>
+    <text>
+     <![CDATA[' . $output . ']]>
+    </text>
+   </reply>
+  </response>';
+  print $output;
+
+  return NULL;
 }
 
 /**
@@ -99,4 +162,74 @@ function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array(
   }
 
   drupal_http_request($api_opt_in_path_url, $options);
+}
+
+/**
+ * Specifies conductor workflows that should trigger for a given endpoint
+ *   [endpoint] => [conductor workflow]
+ */
+function sms_flow_conductor_sms_keywords() {
+  return array(
+    'drives-invite' => 'sms_flow_drives_invite',
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function sms_flow_ctools_plugin_api($owner, $api) {
+  if ($owner == 'conductor') {
+    return array('version' => 1.0);
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory
+ */
+function sms_flow_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'conductor') {
+    return "plugins/$plugin_type";
+  }
+}
+
+function sms_flow_default_conductor_workflows() {
+  $workflows = array();
+
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_drives_invite';
+  $workflow->title = 'SMS Flow Drives Invite';
+  $workflow->description = 'Workflow for invitees of a drive invite';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  //$activity->outputs = array('process_beta');
+  $activity->outputs = array('hello_there');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'hello_there';
+  $activity->title = 'Hello There';
+  $activity->question = 'HELLO THERE';
+  $activity->inputs = array('start');
+  $activity->outputs = array('process_beta');
+
+  $activity = $workflow->newActivity('sms_flow_drives_invited_beta');
+  $activity->name = 'process_beta';
+  $activity->title = 'Process Drive Betas';
+  //$activity->inputs = array('start');
+  $activity->inputs = array('hello_there');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('process_beta');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  return $workflows;
 }

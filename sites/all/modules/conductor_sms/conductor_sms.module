@@ -50,6 +50,11 @@ function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
     $workflowInProgress = conductor_get_workflow($pointer['workflowName']);
   }
 
+  // Verify workflow in progress matches the keyword
+  if ($workflowInProgress && $workflowInProgress->name != $map[$keyword]) {
+    $startNewWorkflow = TRUE;
+  }
+
   // And if there is a workflow in progress and we need to start a new one,
   // stop the current one in progress.
   if ($workflowInProgress && $startNewWorkflow) {
@@ -60,6 +65,9 @@ function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
     // Remove pointer and mark workflow as complete to remove from storage
     $storage->deletePointer('sms_prompt:' . $number);
     $workflowInProgress->getState()->workflowComplete();
+  }
+  elseif ($workflowInProgress == FALSE) {
+    $startNewWorkflow = TRUE;
   }
 
   $workflow = FALSE;
