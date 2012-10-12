@@ -439,14 +439,14 @@ function dosomething_clubs_member_has_a_club() {
   }
   else {
     // If a user doesn't have a club, but is a member of a club
-    $club = db_select('node', 'n')
-    ->fields('n', array('nid'))
-    ->condition('type', 'club', '=')
-    ->condition('uid', $user->uid, '!=')
-    ->orderBy('nid', 'desc')
-    ->range(0, 1)
-    ->execute()
-    ->fetchAll();
+    $club = db_select('og_membership', 'o')
+      ->fields('o', array('gid'))
+      ->condition('entity_type', 'user')
+      ->condition('etid', $user->uid)
+      ->orderBy('gid', 'DESC')
+      ->range(0, 1)
+      ->execute()
+      ->fetchAll();
 
     if ($club[0]) {
       return TRUE;
