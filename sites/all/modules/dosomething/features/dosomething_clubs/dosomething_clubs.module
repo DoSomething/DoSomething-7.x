@@ -797,6 +797,9 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
 
   $form['field_noschool_club_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('Group Name');
 
+  $form['actions']['submit']['#attributes']['class'] = array('go-button');
+  $form['actions']['submit']['#value'] = t('Create Club');
+
   if (!user_is_logged_in()) {
     if ($_SESSION['shortform_email']) {
       $form['field_email'][LANGUAGE_NONE][0]['value']['#default_value'] = $_SESSION['shortform_email'];
@@ -1504,6 +1507,7 @@ function dosomething_clubs_entity_update($entity, $type) {
     }
 
     $email = $person->mail;
+    $my_name = '';
     $my_name = dosomething_general_get_full_name($user, 'private');
 
     $node = og_load_entity_from_group($entity->original->gid);

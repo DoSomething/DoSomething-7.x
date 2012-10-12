@@ -47,10 +47,20 @@ div#block-system-main
 div.form-item-parent-email, td.field-multiple-drag, .tabledrag-toggle-weight, div.form-item-field-club-picture-und-0 label, input#edit-preview, input#edit-preview-changes, ul.tabs.primary li:nth-child(3) a, .delta-order, thead tr th:last-of-type, #edit-field-mailchimp-group-id, #club-name-live, .field-name-field-noschool-club-name
 	display: none
 
+@mixin club-form-label
+	font-size: 21px
+	font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif
+
 div#edit-field-club-video-und-0-title
 	label
-		font-size: 21px
-		font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif
+		@include club-form-label
+
+#field-participants-values
+	border: 0px
+	th, tr, td
+		border: 0px
+	label
+		@include club-form-label
 
 div.form-item-field-club-blurb-und-0-value
 	label
