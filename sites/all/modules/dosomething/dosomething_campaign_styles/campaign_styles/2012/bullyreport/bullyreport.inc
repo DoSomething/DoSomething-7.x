@@ -33,7 +33,7 @@ $plugin = array(
     array('title' => 'faq', 'href' => 'bullyreport', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
-    '#markup' => '<hr><img src="//files.dosomething.org/files/campaigns/bullyreport/bully_sb.png"/><p>Got questions? Email Dave at <a href="mailto:bullyreport@dosomething.org">bullyreport@dosomething.org</a>!</p>'
+    '#markup' => '<hr><a href="//thebullyproject.com/indexflash.html" target="_blank"><img src="//files.dosomething.org/files/campaigns/bullyreport/bully_sb.png"/></a><p>Got questions? Email Dave at <a href="mailto:bullyreport@dosomething.org">bullyreport@dosomething.org</a>!</p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'
