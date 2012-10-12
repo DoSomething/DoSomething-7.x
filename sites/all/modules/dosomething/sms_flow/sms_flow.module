@@ -77,6 +77,32 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
 }
 
 /**
+ *  Accepts a phone number and returns the alpha who invited that phone number, if applicable.
+ *
+ *  @param $beta
+ *	The beta's phone number
+ *  @param $nid (optional...for now.)
+ *	The node id that is being referenced.  This will ensure that we pull the correct alpha, when we
+ *	have multiple flow types running at the same time.
+ */
+function sms_flow_find_alpha($beta, $nid = false) {
+  $beta_parsed = preg_replace('#[^0-9]#i', '', $beta);
+  $select = db_query("
+	SELECT alpha
+	FROM sms_flow_records
+	WHERE
+	   (beta = '" . $beta . "'
+	   OR beta = '" . $beta_parsed . "')
+	   #AND `nid` = " . intval($nid) . "
+	ORDER BY sid DESC
+	LIMIT 1
+  ");
+
+  $r = current($select->fetchAll());
+  return ($r->alpha ? $r->alpha : false);
+}
+
+/**
  * Implements hook_menu()
  */
 function sms_flow_menu() {
