@@ -204,7 +204,7 @@ Drupal.behaviors.galleryShareButton = {
             }
           });
         }
-      }
+      }, true
     );
   }
 };
