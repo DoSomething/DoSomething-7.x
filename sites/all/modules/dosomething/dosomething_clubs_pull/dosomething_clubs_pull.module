@@ -178,6 +178,7 @@ class clubs_export {
         'not associated with a school' => $stuff['not_associated'],
         'blurb' =>            $stuff['blurb'],
         'date created' =>     date('Y/m/d', $stuff['created']),
+        'last updated date' => date('Y/m/d', $stuff['last_updated']),
         'user id' =>          $stuff['creator_id'],
         'created by' =>       $stuff['creator'],
         'Owner email' =>      $stuff['creator_email'],
@@ -189,6 +190,7 @@ class clubs_export {
         'Owner City' =>       $stuff['owner_city'],
         'Owner State' =>      $stuff['owner_state'],
         'Owner Zip' =>        $stuff['owner_zip'],
+        'Owner Last Login' => date('Y/m/d', $stuff['last_leader_login']),
         'Club Street' =>      $stuff['street'],
         'Club City' =>             $stuff['city'],
         'Club State' =>            $stuff['state'],
@@ -234,6 +236,7 @@ class clubs_export {
         t('Not associated with a school'),
         t('Blurb'),
         t('Date Created'),
+        t('Last Updated Date'),
         t('User ID'),
         t('Created By'),
         t('Owner Email'),
@@ -245,6 +248,7 @@ class clubs_export {
         t('Owner City'),
         t('Owner State'),
         t('Owner Zip'),
+        t('Owner Last Login'),
         t('Club Street'),
         t('Club City'),
         t('Club State'),
@@ -301,6 +305,7 @@ class clubs_export {
       node.nid AS nid,
       node.title AS node_title,
       `node`.`created` AS `created`,
+      `node`.`changed` AS `last_updated`,
       `users_node`.name AS `creator`,
       `users_node`.`uid` AS `creator_id`,
       `users_node`.`mail` AS `creator_email`,
@@ -317,7 +322,7 @@ class clubs_export {
       `state`.`field_club_state_value` AS `state`,
       `zip`.`field_club_zip_value` AS `zip`,
       COUNT(DISTINCT og_membership_og.etid) AS `member_count`,
-      IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(`camp2`.`field_campaign_list_nid`), GROUP_CONCAT(`camp1`.`field_camp_value`)) AS `camps`,
+      IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(DISTINCT `camp2`.`field_campaign_list_nid`), GROUP_CONCAT(DISTINCT `camp1`.`field_camp_value`)) AS `camps`,
       GROUP_CONCAT(DISTINCT `ogu`.`mail`) AS `member_emails`,
       GROUP_CONCAT(DISTINCT `ogu`.`uid`) AS `member_uids`,
       `sc`.name AS `school_name`,
@@ -325,7 +330,8 @@ class clubs_export {
       `sc`.state AS `school_state`,
       IF (`noassoc`.`field_no_school_associate_value`, 1, 0) AS `not_associated`,
       `blurb`.`field_club_blurb_value` AS `blurb`,
-      IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`
+      IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`,
+      `lu`.`login` AS `last_leader_login`
     FROM 
     `node` node
     LEFT JOIN `users` users_node ON node.uid = users_node.uid
@@ -343,6 +349,7 @@ class clubs_export {
     LEFT JOIN `field_data_field_club_zip` AS `zip` ON (`zip`.`entity_id` = `node`.`nid`)
     LEFT JOIN `og_membership` AS `ogm` ON (`ogm`.`gid` = `og_node`.`gid` AND `ogm`.`entity_type` = 'user')
     LEFT JOIN `users` AS `ogu` ON (`ogu`.`uid` = `ogm`.`etid`)
+    LEFT JOIN `users` AS `lu` ON (`lu`.`uid` = `node`.`uid`)
     LEFT JOIN `field_data_field_no_school_associate` AS `noassoc` ON (`noassoc`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_club_blurb` AS `blurb` ON (`blurb`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_camp` AS `camp1` ON (`camp1`.`entity_id` = `node`.`nid`)
@@ -490,7 +497,8 @@ $query = "SELECT
   `sc`.state AS `school_state`,
   IF (`noassoc`.`field_no_school_associate_value`, 1, 0) AS `not_associated`,
   `blurb`.`field_club_blurb_value` AS `blurb`,
-  IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`
+  IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`,
+  `lu`.`login` AS `last_leader_login`
 FROM 
 `node` node
 LEFT JOIN `users` users_node ON node.uid = users_node.uid
@@ -508,6 +516,7 @@ LEFT JOIN `field_data_field_club_state` AS `state` ON (`state`.`entity_id` = `no
 LEFT JOIN `field_data_field_club_zip` AS `zip` ON (`zip`.`entity_id` = `node`.`nid`)
 LEFT JOIN `og_membership` AS `ogm` ON (`ogm`.`gid` = `og_node`.`gid` AND `ogm`.`entity_type` = 'user')
 LEFT JOIN `users` AS `ogu` ON (`ogu`.`uid` = `ogm`.`etid`)
+LEFT JOIN `users` AS `lu` ON (`lu`.`uid` = `node`.`uid`)
 LEFT JOIN `field_data_field_no_school_associate` AS `noassoc` ON (`noassoc`.`entity_id` = `node`.`nid`)
 LEFT JOIN `field_data_field_club_blurb` AS `blurb` ON (`blurb`.`entity_id` = `node`.`nid`)
 LEFT JOIN `field_data_field_camp` AS `camp1` ON (`camp1`.`entity_id` = `node`.`nid`)
@@ -555,6 +564,7 @@ function dosomething_clubs_pull_batch_process(&$context) {
       t('Not associated with a school'),
       t('Blurb'),
       t('Date Created'),
+      t('Last Updated Date'),
       t('User ID'),
       t('Created By'),
       t('Owner Email'),
@@ -566,6 +576,7 @@ function dosomething_clubs_pull_batch_process(&$context) {
       t('Owner City'),
       t('Owner State'),
       t('Owner Zip'),
+      t('Owner Last Login'),
       t('Club Street'),
       t('Club City'),
       t('Club State'),
@@ -620,6 +631,7 @@ function dosomething_clubs_pull_batch_process(&$context) {
         'not associated with a school' => $stuff['not_associated'],
         'blurb' =>            $stuff['blurb'],
         'date created' =>     date('Y/m/d', $stuff['created']),
+        'last updated date' => date('Y/m/d', $stuff['last_updated']),
         'user id' =>          $stuff['creator_id'],
         'created by' =>       $stuff['creator'],
         'Owner email' =>      $stuff['creator_email'],
@@ -631,6 +643,7 @@ function dosomething_clubs_pull_batch_process(&$context) {
         'Owner City' =>       $stuff['owner_city'],
         'Owner State' =>      $stuff['owner_state'],
         'Owner Zip' =>        $stuff['owner_zip'],
+        'Owner Last Login' => date('Y/m/d', $stuff['last_leader_login']),
         'Club Street' =>      $stuff['street'],
         'Club City' =>             $stuff['city'],
         'Club State' =>            $stuff['state'],
@@ -692,6 +705,7 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Not associated with a school'), 'class' => array('clubs-pull-not-associated')),
     array('data' => t('Blurb'), 'class' => array('clubs-pull-blurb')),
     array('data' => t('Date Created'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Last Updated Date'), 'class' => array('page-manager-page-path')),
     array('data' => t('User ID'), 'class' => array('page-manager-page-path')),
     array('data' => t('Created By'), 'class' => array('page-manager-page-path')),
     array('data' => t('Owner Email'), 'class' => array('page-manager-page-path')),
@@ -703,6 +717,7 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Owner City'), 'class' => array('page-manager-page-path')),
     array('data' => t('Owner State'), 'class' => array('page-manager-page-path')),
     array('data' => t('Owner Zip'), 'class' => array('page-manager-page-path')),
+    array('data' => t('Owner Last Login'), 'class' => array('page-manager-page-path')),
     array('data' => t('Club Street'), 'class' => array('clubs-pull-club-street')),
     array('data' => t('Club City'), 'class' => array('page-manager-page-path')),
     array('data' => t('Club State'), 'class' => array('page-manager-page-path')),
@@ -738,7 +753,8 @@ $num = $count->rowCount();
         'club name' =>                array('data' => $result['node_title']),
         'Not associated with a school' => array('data' => $result['not_associated']),
         'blurb' =>                    array('data' => $result['blurb']),
-        'date created' =>             array('data' => format_date($result['created'])),
+        'date created' =>             array('data' => date('Y/m/d', $result['created'])),
+        'last updated date' =>        array('data' => date('Y/m/d', $result['last_updated'])),
         'user id' =>                  array('data' => $result['creator_id']),
         'created by' =>               array('data' => $result['creator']),
         'Owner email' =>              array('data' => $result['creator_email']),
@@ -750,6 +766,7 @@ $num = $count->rowCount();
         'Owner City' =>               array('data' => $result['owner_city']),
         'Owner State' =>              array('data' => $result['owner_state']),
         'Owner Zip' =>                array('data' => $result['owner_zip']),
+        'Owner Last Login' =>         array('data' => date('Y/m/d', $result['last_leader_login'])),
         'Club Street' =>              array('data' => $result['street']),
         'Club City' =>                     array('data' => $result['city']),
         'Club State' =>                    array('data' => $result['state']),
@@ -763,8 +780,8 @@ $num = $count->rowCount();
         'Member Emails' =>               array('data' => str_replace(',', ', ', $result['member_emails'])),
         'Member UIDs' =>                   array('data' => str_replace(',', ', ', $result['member_uids'])),
         'Number of Projects' =>            array('data' => $result['pcount']),
-        'Most Recently Created Project' => array('data' => format_date($result['lastcreated'])),
-        'Last joined campaign time' =>      array('data' => format_date($result['last_joined_campaign']))
+        'Most Recently Created Project' => array('data' => date('Y/m/d', $result['lastcreated'])),
+        'Last joined campaign time' =>      array('data' => date('Y/m/d', $result['last_joined_campaign']))
       )
     );
   }
