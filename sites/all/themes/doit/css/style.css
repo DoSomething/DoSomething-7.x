@@ -3859,6 +3859,107 @@ h2.block-title, h2.pane-title {
   border-bottom: 1px solid #d4d2d1;
 }
 
+#block-block-9 hr {
+  border-right: none;
+  border-left: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid #333333;
+  margin-bottom: 14px;
+}
+#block-block-9 .about-ds-sb {
+  padding-top: 10px;
+}
+#block-block-9 .about-ds-sb img {
+  float: left;
+  padding: 0 10px 2px 0;
+  margin: 0;
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  border-top-left-radius: 5px;
+}
+#block-block-9 .about-ds-sb h2 {
+  font-size: 2em;
+  font-family: din-web;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+#block-block-9 .about-ds-sb h2 a {
+  color: #fed100;
+}
+#block-block-9 .about-ds-sb h2 a:hover {
+  text-decoration: none;
+  color: white;
+}
+#block-block-9 .about-ds-sb p {
+  font-family: din-web-reg, "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+  line-height: 1.4em;
+  font-size: 1em;
+}
+#block-block-9 .about-ds-sb p a {
+  color: #fed100;
+}
+#block-block-9 .about-ds-sb p.intro-ds, #block-block-9 .about-ds-sb p.cta {
+  font-size: 1.1em;
+}
+#block-block-9 .about-ds-sb a.go-go-inspector-gadget {
+  float: right;
+  background: #fed100;
+  padding: 3px 4px;
+  margin: 4px 0 6px 4px;
+  border-radius: 5px;
+  color: #333333;
+  font-weight: 600;
+}
+#block-block-9 .about-ds-sb a.go-go-inspector-gadget:hover {
+  text-decoration: none;
+  color: #111111;
+}
+
+#block-block-10 .ds-sb-saying {
+  padding-top: 10px;
+}
+#block-block-10 .ds-sb-saying img {
+  float: left;
+  padding: 0 10px 2px 0;
+  margin: 0;
+}
+#block-block-10 .ds-sb-saying p {
+  font-family: din-web-reg, "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+  line-height: 1.4em;
+  font-size: 1em;
+  text-align: left;
+}
+#block-block-10 .ds-sb-saying p span {
+  font-weight: 500;
+  float: left;
+}
+#block-block-10 .ds-sb-saying a {
+  clear: both;
+  text-decoration: none;
+  color: #333333;
+  padding: 6px 10px 4px;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  border: none;
+  background-color: #fed100;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, white), color-stop(100%, #fed100));
+  background-image: -webkit-linear-gradient(top, white, #fed100);
+  background-image: -moz-linear-gradient(top, white, #fed100);
+  background-image: -o-linear-gradient(top, white, #fed100);
+  background-image: linear-gradient(top, #ffffff, #fed100);
+}
+#block-block-10 .ds-sb-saying a:hover {
+  color: black;
+}
+
 #block-menu-menu-footer {
   background-color: #333131;
   padding-top: 12px;
