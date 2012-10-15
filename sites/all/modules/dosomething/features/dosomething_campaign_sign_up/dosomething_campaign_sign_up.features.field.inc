@@ -10,7 +10,7 @@
 function dosomething_campaign_sign_up_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-campaign_sign_up-field_body_anonymous'
+  // Exported field: 'node-campaign_sign_up-field_body_anonymous'.
   $fields['node-campaign_sign_up-field_body_anonymous'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_campaign_sign_up_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -45,8 +46,9 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'bundle' => 'campaign_sign_up',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
-The content from this field will only be shown to anonymous users.',
+      'description' => 'Create a new form or questionnaire accessible to users. Submission 
+results and statistics are recorded and accessible to privileged users.<br /> The content from 
+this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -84,7 +86,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-campaign_sign_up-field_body_logged_in'
+  // Exported field: 'node-campaign_sign_up-field_body_logged_in'.
   $fields['node-campaign_sign_up-field_body_logged_in'] = array(
     'field_config' => array(
       'active' => '1',
@@ -108,6 +110,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -157,7 +160,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-campaign_sign_up-field_signup_magic_fields'
+  // Exported field: 'node-campaign_sign_up-field_signup_magic_fields'.
   $fields['node-campaign_sign_up-field_signup_magic_fields'] = array(
     'field_config' => array(
       'active' => '1',
@@ -174,12 +177,14 @@ The content from this field will only be shown to anonymous users.',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
           'field_webform_email' => 'Email',
           'field_webform_mobile' => 'Mobile Phone Number',
           'field_webform_school' => 'School',
+          'field_webform_school_reference' => 'School (Test)',
           'field_webform_school_zip' => 'School Zip Code',
           'field_team_name' => 'Team Name',
           'field_leader_info' => 'Team Leader Info',
@@ -240,7 +245,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-campaign_sign_up-field_teams_enable'
+  // Exported field: 'node-campaign_sign_up-field_teams_enable'.
   $fields['node-campaign_sign_up-field_teams_enable'] = array(
     'field_config' => array(
       'active' => '1',
@@ -257,6 +262,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -312,7 +318,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-campaign_sign_up-group_audience'
+  // Exported field: 'node-campaign_sign_up-group_audience'.
   $fields['node-campaign_sign_up-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -336,6 +342,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -399,7 +406,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_geocode_data'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_geocode_data'.
   $fields['webform_submission_entity-campaign_sign_up-field_geocode_data'] = array(
     'field_config' => array(
       'active' => '1',
@@ -412,6 +419,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'geofield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -459,7 +467,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_leader_info'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_leader_info'.
   $fields['webform_submission_entity-campaign_sign_up-field_leader_info'] = array(
     'field_config' => array(
       'active' => '1',
@@ -483,6 +491,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -525,7 +534,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_team_invite'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_team_invite'.
   $fields['webform_submission_entity-campaign_sign_up-field_team_invite'] = array(
     'field_config' => array(
       'active' => '1',
@@ -549,6 +558,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -591,7 +601,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_team_name'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_team_name'.
   $fields['webform_submission_entity-campaign_sign_up-field_team_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -615,6 +625,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '25',
@@ -657,7 +668,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_email'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_email'.
   $fields['webform_submission_entity-campaign_sign_up-field_webform_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -670,6 +681,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -709,7 +721,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_mobile'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_mobile'.
   $fields['webform_submission_entity-campaign_sign_up-field_webform_mobile'] = array(
     'field_config' => array(
       'active' => '1',
@@ -733,6 +745,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '100',
@@ -774,7 +787,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_school_reference'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_school_reference'.
   $fields['webform_submission_entity-campaign_sign_up-field_webform_school_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -791,10 +804,22 @@ The content from this field will only be shown to anonymous users.',
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'ds_school',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'none',
+            'property' => 'sid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(),
         ),
         'handler_submit' => 'Change handler',
@@ -841,7 +866,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_school_zip'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-field_webform_school_zip'.
   $fields['webform_submission_entity-campaign_sign_up-field_webform_school_zip'] = array(
     'field_config' => array(
       'active' => '1',
@@ -862,6 +887,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -903,7 +929,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-group_audience'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-group_audience'.
   $fields['webform_submission_entity-campaign_sign_up-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -927,6 +953,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -983,7 +1010,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_sign_up-group_group'
+  // Exported field: 'webform_submission_entity-campaign_sign_up-group_group'.
   $fields['webform_submission_entity-campaign_sign_up-group_group'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1000,6 +1027,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'no_ui' => TRUE,
       'settings' => array(
@@ -1066,8 +1094,9 @@ The content from this field will only be shown to anonymous users.',
   t('Body (anonymous user)');
   t('Body (logged in user)');
   t('Campaign');
-  t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
-The content from this field will only be shown to anonymous users.');
+  t('Create a new form or questionnaire accessible to users. Submission 
+results and statistics are recorded and accessible to privileged users.<br /> The content from 
+this field will only be shown to anonymous users.');
   t('Determine if this is an OG group.');
   t('Email');
   t('Enable Team Functionality');
