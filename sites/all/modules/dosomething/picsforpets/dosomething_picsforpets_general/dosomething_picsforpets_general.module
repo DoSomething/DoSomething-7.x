@@ -353,6 +353,9 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
   $form['instructions'] = array(
     '#markup' => '<div class="sign-up-text">Want to keep track of all the animals you share? Enter your info and we\'ll send you updates when an animal gets adopted.</div>',
   );
+  $form['asterik'] = array(
+    '#markup' => '<div class="form-asterik">*</div>',
+  );
   $form['email'] = array(
     '#type' => 'textfield',
     '#required' => TRUE,
@@ -375,6 +378,11 @@ function dosomething_picsforpets_general_thanks_form($form, &$form_state) {
   $form['#attached']['js'][] = array(
     'type' => 'file',
     'data' => drupal_get_path('theme', 'picsforpets') . '/js/libs/jquery-html5-placeholder-shim/jquery.html5-placeholder-shim.js',
+  );
+
+  $form['#attached']['js'][] = array(
+    'type' => 'file',
+    'data' => drupal_get_path('module', 'dosomething_login') . '/js/jquery-validation-1.9.0/jquery.validate.min.js'
   );
 
   return $form;
@@ -459,6 +467,7 @@ function dosomething_picsforpets_general_init() {
   // Just bail out quickly if we're not on a pics for pets page.
   if (dosomething_picsforpets_general_is_picsforpets_page()) {
     drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/autoscroll.js');
+    drupal_add_library('dosomething_login', 'jquery.validate');
   }
 }
 

@@ -96,7 +96,6 @@ Drupal.behaviors.galleryShareButton = {
       threeWords[1] = 1 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[1].raw.safe_value : "Cute";
       threeWords[2] = 2 in settings.dosomething_picsforpets_general.gallery[sid].threeWords ? settings.dosomething_picsforpets_general.gallery[sid].threeWords[2].raw.safe_value : "Friendly";
 
-
       // Old share
     var share = {
         method: 'feed',
@@ -151,24 +150,33 @@ Drupal.behaviors.galleryShareButton = {
             // Display a modal dialog depending on the total number of shares
             // the user has made.
             if (userShares == 1  && !settings.picsforpetsGeneral.furtographer) {
-              $('<div></div>')
-                .load('/fb/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form')
-                .dialog({
-                  title: Drupal.t('Thanks for sharing!'),
-                  resizable: false,
-                  draggable: false,
-                  modal: true,
-                  top: 180,
-                  width: 550,
-                  dialogClass: 'pics-thx-for-sharing',
-                  position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
-                  open: function(event, ui) {
-                    if (typeof FB != 'undefined') { 
-                      FB.Canvas.scrollTo(0,0);
+              var elm = $('<div></div>').attr('id', 'thanks-dialog').load('/fb/pics-for-pets/ajax/thanks-for-sharing?sid=' + sid + ' #dosomething-picsforpets-general-thanks-form', function() {
+                var d = elm.dialog({
+                    title: Drupal.t('Thanks for sharing!'),
+                    resizable: false,
+                    draggable: false,
+                    modal: true,
+                    top: 180,
+                    width: 550,
+                    dialogClass: 'pics-thx-for-sharing',
+                    position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+                    open: function(event, ui) {
+                      if (typeof FB != 'undefined') { 
+                        FB.Canvas.scrollTo(0,0);
+                      }
+
+                      $('#thanks-dialog form').validate({
+                        rules: {
+                          email: {
+                            required: true,
+                            email: true
+                          }
+                        }
+                      });
                     }
                   }
-                }
-              );
+                );
+              });
             }
             else if (userShares == 3) {
               $('<div class="invite-dialog"></div>')
