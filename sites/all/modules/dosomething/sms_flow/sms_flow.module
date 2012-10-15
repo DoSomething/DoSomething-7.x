@@ -129,12 +129,16 @@ function sms_flow_menu() {
  * for different endpoints to trigger different keyword paths
  */
 function sms_flow_incoming_callback($path) {
-  if ($path == 'drives-invite') {
-    $keyword = 'drives-invite';
-  }
-  else {
-    watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
-    return NULL;
+  switch ($path) {
+    case 'drives-invite':
+      $keyword = 'drives-invite';
+      break;
+    case 'ftaf':
+      $keyword = 'ftaf';
+      break;
+    default:
+      watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
+      return NULL;
   }
 
   // Using same code from sms_mobile_commons_incoming_callback(). Only difference
@@ -270,10 +274,23 @@ function sms_flow_default_conductor_workflows() {
 
   $activity = _sms_flow_create_activity($workflow, 'start', 'start', 'Start');
   $activity->inputs = array();
-  $activity->outputs = array('ftaf');
+  $activity->outputs = array('ftaf_prompt');
 
-  $activity = _sms_flow_create_activity($workflow, 'sms_flow_ftaf', 'ftaf', 'Forward to a Friend');
+  $activity = _sms_flow_create_activity($workflow, 'sms_prompt', 'ftaf_prompt', 'Start prompt for FTAF');
+  $activity->question = t('Thanks for joining your club. Want to invite more friends? Reply back with their cell numbers separated by commas and we\'ll send them an invite for you!');
   $activity->inputs = array('start');
+  $activity->outputs = array('strip_signature');
+
+  $activity = _sms_flow_create_activity($workflow, 'sms_strip_signature', 'strip_signature', 'Remove signature from sms contenxt');
+  $activity->inputs = array('ftaf_prompt');
+  $activity->outputs = array('ftaf_process');
+
+  $activity = _sms_flow_create_activity($workflow, 'sms_flow_ftaf', 'ftaf_process', 'Forward to a Friend');
+  $activity->alpha_optin = 129071;
+  $activity->beta_optin = 128441;
+  $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with FTAF if you want to invite more.');
+  $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with FTAF.');
+  $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');
 
   $activity = _sms_flow_create_activity($workflow, 'end', 'end', 'End');
