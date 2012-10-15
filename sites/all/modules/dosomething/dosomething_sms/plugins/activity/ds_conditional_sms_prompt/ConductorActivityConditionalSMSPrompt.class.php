@@ -56,7 +56,7 @@ class ConductorActivityConditionalSMSPrompt extends ConductorActivitySMSPrompt {
     }
     // Otherwise, end this activity and continue
     else {
-      $state->markCompeted();
+      $state->markCompleted();
     }
   }
 }

@@ -18,7 +18,7 @@ class ConductorActivityEndAndStartNew extends ConductorActivityEnd {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
-    $state->markCompeted();
+    $state->markCompleted();
 
     $state->setContext('start_new_workflow', $this->next_workflow_name);
   }

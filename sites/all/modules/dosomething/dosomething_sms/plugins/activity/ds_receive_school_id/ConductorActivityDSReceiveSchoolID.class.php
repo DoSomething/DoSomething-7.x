@@ -11,7 +11,7 @@ class ConductorActivityDSReceiveSchoolID extends ConductorActivitySMSPrompt {
     // If we already have the school id, just skip this step
     $school_id = $state->getContext('school_id');
     if (!empty($school_id) ) {
-      $state->markCompeted();
+      $state->markCompleted();
       return;
     }
 
@@ -40,7 +40,7 @@ class ConductorActivityDSReceiveSchoolID extends ConductorActivitySMSPrompt {
             // School is valid, no need to respond. Just continue to the next step.
             $state->setContext('school_id', $school_state . $school_id);
             $state->setContext('ds_receive_school_id_status', 'OK');
-            $state->markCompeted();
+            $state->markCompleted();
           }
           else {
             // Unknown response

@@ -13,7 +13,7 @@ class ConductorActivityDSAskSchoolName extends ConductorActivitySMSPrompt {
     // If we already have the school id, just skip this step
     $school_id = $state->getContext('school_id');
     if (!empty($school_id)) {
-      $state->markCompeted();
+      $state->markCompleted();
       return;
     }
 

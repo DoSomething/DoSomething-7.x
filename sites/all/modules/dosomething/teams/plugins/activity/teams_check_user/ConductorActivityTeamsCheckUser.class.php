@@ -60,6 +60,6 @@ class ConductorActivityTeamsCheckUser extends ConductorActivitySMSPrompt {
       $state->setContext($this->name . ':has_name', 'true');
     }
 
-    $state->markCompeted();
+    $state->markCompleted();
   }
 }

@@ -100,7 +100,7 @@ class ConductorActivity extends ConductorObject {
    */
   public function run() {
     if ($this->process()) {
-      $this->activityState->markCompeted();
+      $this->activityState->markCompleted();
     }
     else {
       $this->activityState->markFailed();

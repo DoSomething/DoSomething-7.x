@@ -26,7 +26,7 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
     $userAccountFound = FALSE;
 
     // If we have a user with this mobile, lets update their info.
-    $state->markCompeted();
+    $state->markCompleted();
     $account = dosomething_general_find_user_by_cell($mobile);
 
     // If we haven't found an account, let's create one.
@@ -89,7 +89,7 @@ class ConductorActivityDSCreateReportBack extends ConductorActivity {
 
     $wrapper->save();
 
-    $state->markCompeted();
+    $state->markCompleted();
   }
 
 }

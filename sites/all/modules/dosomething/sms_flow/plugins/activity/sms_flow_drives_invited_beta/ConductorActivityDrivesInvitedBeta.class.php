@@ -74,7 +74,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
     $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
   	$return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
 
-    $state->markCompeted();
+    $state->markCompleted();
   }
 
 }

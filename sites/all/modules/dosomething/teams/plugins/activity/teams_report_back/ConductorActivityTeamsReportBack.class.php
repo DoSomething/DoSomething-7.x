@@ -59,6 +59,6 @@ class ConductorActivityTeamsReportBack extends ConductorActivitySMSPrompt {
     $user = $original_user;
     drupal_save_session($old_state);
 
-    $state->markCompeted();
+    $state->markCompleted();
   }
 }

@@ -11,7 +11,7 @@ class ConductorActivityDSReceiveSchoolName extends ConductorActivitySMSPrompt {
     // If we already have the school id, just skip this step
     $school_id = $activity_state->getContext('school_id');
     if (!empty($school_id)) {
-      $activity_state->markCompeted();
+      $activity_state->markCompleted();
       return;
     }
 
@@ -74,7 +74,7 @@ class ConductorActivityDSReceiveSchoolName extends ConductorActivitySMSPrompt {
         // Set context to indicate no schools were found. Error message will be
         // provided in the next activity ConductorActivityDSReceiveSchoolID
         $activity_state->setContext('schools_search_result', 'FAILED');
-        $activity_state->markCompeted();
+        $activity_state->markCompleted();
       }
     }
 

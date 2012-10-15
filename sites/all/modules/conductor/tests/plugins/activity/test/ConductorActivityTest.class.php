@@ -13,7 +13,7 @@ class ConductorActivityTest extends ConductorActivity {
       $this->activityState->markSuspended();
     }
     else {
-      $this->activityState->markCompeted();
+      $this->activityState->markCompleted();
     }
   }
 
