@@ -455,6 +455,7 @@ hr.gray {
   width: 250px; }
 
 a.wannago-btn {
+  background: #00ccf5;
   background-image: linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
   background-image: -o-linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
   background-image: -moz-linear-gradient(bottom, #00b9ec 32%, #00ccf5 53%, #a2e0fb 83%);
