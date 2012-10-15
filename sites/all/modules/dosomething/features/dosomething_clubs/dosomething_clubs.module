@@ -798,7 +798,8 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
   $form['field_noschool_club_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('Group Name');
 
   $form['actions']['submit']['#attributes']['class'] = array('go-button');
-  $form['actions']['submit']['#value'] = t('Create Club');
+  $create = isset($form_state['build_info']['args'][0]->nid);
+  $form['actions']['submit']['#value'] = ($create ? t('Save Changes') : t('Create Club'));
 
   if (!user_is_logged_in()) {
     if ($_SESSION['shortform_email']) {
