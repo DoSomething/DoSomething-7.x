@@ -10,7 +10,7 @@
 function dosomething_campaign_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-campaign-body'
+  // Exported field: 'node-campaign-body'.
   $fields['node-campaign-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -87,7 +88,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_background_color'
+  // Exported field: 'node-campaign-field_campaign_background_color'.
   $fields['node-campaign-field_campaign_background_color'] = array(
     'field_config' => array(
       'active' => '1',
@@ -108,6 +109,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '6',
@@ -156,7 +158,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_call_to_action'
+  // Exported field: 'node-campaign-field_campaign_call_to_action'.
   $fields['node-campaign-field_campaign_call_to_action'] = array(
     'field_config' => array(
       'active' => '1',
@@ -180,6 +182,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -228,7 +231,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_causes_issues'
+  // Exported field: 'node-campaign-field_campaign_causes_issues'.
   $fields['node-campaign-field_campaign_causes_issues'] = array(
     'field_config' => array(
       'active' => '1',
@@ -249,6 +252,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -299,7 +303,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_doing_padding'
+  // Exported field: 'node-campaign-field_campaign_doing_padding'.
   $fields['node-campaign-field_campaign_doing_padding'] = array(
     'field_config' => array(
       'active' => '1',
@@ -312,6 +316,7 @@ function dosomething_campaign_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -365,7 +370,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_done_padding'
+  // Exported field: 'node-campaign-field_campaign_done_padding'.
   $fields['node-campaign-field_campaign_done_padding'] = array(
     'field_config' => array(
       'active' => '1',
@@ -375,6 +380,7 @@ function dosomething_campaign_field_default_fields() {
       'field_name' => 'field_campaign_done_padding',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '0',
@@ -425,7 +431,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_facebook_language'
+  // Exported field: 'node-campaign-field_campaign_facebook_language'.
   $fields['node-campaign-field_campaign_facebook_language'] = array(
     'field_config' => array(
       'active' => '1',
@@ -449,6 +455,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -496,7 +503,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_foreground_color'
+  // Exported field: 'node-campaign-field_campaign_foreground_color'.
   $fields['node-campaign-field_campaign_foreground_color'] = array(
     'field_config' => array(
       'active' => '1',
@@ -517,6 +524,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '6',
@@ -565,7 +573,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_headline'
+  // Exported field: 'node-campaign-field_campaign_headline'.
   $fields['node-campaign-field_campaign_headline'] = array(
     'field_config' => array(
       'active' => '1',
@@ -589,6 +597,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -638,7 +647,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_link'
+  // Exported field: 'node-campaign-field_campaign_link'.
   $fields['node-campaign-field_campaign_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -651,6 +660,7 @@ function dosomething_campaign_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -719,7 +729,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_logo'
+  // Exported field: 'node-campaign-field_campaign_logo'.
   $fields['node-campaign-field_campaign_logo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -740,6 +750,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -777,6 +788,7 @@ function dosomething_campaign_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'campaigns/logos',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -807,7 +819,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_main_image'
+  // Exported field: 'node-campaign-field_campaign_main_image'.
   $fields['node-campaign-field_campaign_main_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -831,6 +843,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -868,6 +881,7 @@ function dosomething_campaign_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -898,7 +912,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_promo_image'
+  // Exported field: 'node-campaign-field_campaign_promo_image'.
   $fields['node-campaign-field_campaign_promo_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -922,6 +936,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -959,6 +974,7 @@ function dosomething_campaign_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -989,7 +1005,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_psa_image'
+  // Exported field: 'node-campaign-field_campaign_psa_image'.
   $fields['node-campaign-field_campaign_psa_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1013,6 +1029,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -1050,6 +1067,7 @@ function dosomething_campaign_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -1080,7 +1098,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_teaser'
+  // Exported field: 'node-campaign-field_campaign_teaser'.
   $fields['node-campaign-field_campaign_teaser'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1104,6 +1122,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1151,7 +1170,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_twitter_language'
+  // Exported field: 'node-campaign-field_campaign_twitter_language'.
   $fields['node-campaign-field_campaign_twitter_language'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1175,6 +1194,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1222,7 +1242,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campaign_video'
+  // Exported field: 'node-campaign-field_campaign_video'.
   $fields['node-campaign-field_campaign_video'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1236,6 +1256,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1296,7 +1317,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campain_date'
+  // Exported field: 'node-campaign-field_campain_date'.
   $fields['node-campaign-field_campain_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1306,6 +1327,7 @@ function dosomething_campaign_field_default_fields() {
       'field_name' => 'field_campain_date',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'granularity' => array(
@@ -1381,7 +1403,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_campain_logo_thumbnail'
+  // Exported field: 'node-campaign-field_campain_logo_thumbnail'.
   $fields['node-campaign-field_campain_logo_thumbnail'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1405,6 +1427,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -1442,6 +1465,7 @@ function dosomething_campaign_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -1507,7 +1531,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_counter_aggregation'
+  // Exported field: 'node-campaign-field_counter_aggregation'.
   $fields['node-campaign-field_counter_aggregation'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1531,6 +1555,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1579,7 +1604,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_counter_text'
+  // Exported field: 'node-campaign-field_counter_text'.
   $fields['node-campaign-field_counter_text'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1603,6 +1628,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1651,7 +1677,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_label_post_sign'
+  // Exported field: 'node-campaign-field_label_post_sign'.
   $fields['node-campaign-field_label_post_sign'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1675,6 +1701,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1727,7 +1754,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_label_pre_sign'
+  // Exported field: 'node-campaign-field_label_pre_sign'.
   $fields['node-campaign-field_label_pre_sign'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1751,6 +1778,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1803,7 +1831,79 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_report_back_html'
+  // Exported field: 'node-campaign-field_mailchimp_group_id'.
+  $fields['node-campaign-field_mailchimp_group_id'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mailchimp_group_id',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 25,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mailchimp_group_id',
+      'label' => 'Mailchimp Interest Group',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '18',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-field_report_back_html'.
   $fields['node-campaign-field_report_back_html'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1827,6 +1927,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1874,7 +1975,80 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-group_group'
+  // Exported field: 'node-campaign-field_team_redirect'.
+  $fields['node-campaign-field_team_redirect'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_team_redirect',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 24,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_team_redirect',
+      'label' => 'Team Redirect',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '17',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-group_group'.
   $fields['node-campaign-group_group'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1891,6 +2065,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'no_ui' => TRUE,
       'settings' => array(
@@ -1957,7 +2132,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign_content_page-body'
+  // Exported field: 'node-campaign_content_page-body'.
   $fields['node-campaign_content_page-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1983,6 +2158,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -2034,7 +2210,7 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign_content_page-group_audience'
+  // Exported field: 'node-campaign_content_page-group_audience'.
   $fields['node-campaign_content_page-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2058,6 +2234,7 @@ function dosomething_campaign_field_default_fields() {
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -2141,6 +2318,7 @@ function dosomething_campaign_field_default_fields() {
   t('Headline');
   t('Link');
   t('Logo');
+  t('Mailchimp Interest Group');
   t('Main Image');
   t('PSA image');
   t('Please enter the 6 digit hex value without the #.');
@@ -2150,6 +2328,7 @@ function dosomething_campaign_field_default_fields() {
   t('Promo image');
   t('Relate this Campaign to a Cause or Issue.');
   t('Report Back HTML');
+  t('Team Redirect');
   t('Teaser');
   t('Text to appear in Current Campaigns list');
   t('This is the HTML copy that will be displayed after the user has signed up in the sign-up block. Make sure to check your input type.');

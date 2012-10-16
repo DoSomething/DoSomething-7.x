@@ -34,6 +34,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'views_galleriffic';
   $handler->display->display_options['style_options']['css'] = '';
+  $handler->display->display_options['style_options']['preload'] = '1';
   $handler->display->display_options['style_options']['transition'] = '500';
   $handler->display->display_options['style_options']['renderss'] = '';
   $handler->display->display_options['style_options']['history'] = 'true';
@@ -153,8 +154,9 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['submitted']['table'] = 'webform_submissions';
   $handler->display->display_options['filters']['submitted']['field'] = 'submitted';
   $handler->display->display_options['filters']['submitted']['operator'] = '<=';
-  $handler->display->display_options['filters']['submitted']['value']['value'] = '-2 days';
   $handler->display->display_options['filters']['submitted']['value']['type'] = 'offset';
+  $handler->display->display_options['filters']['submitted']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['submitted']['default_date'] = '-2 days';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
@@ -359,6 +361,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['arguments']['sid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['sid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['sid']['not'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
@@ -423,6 +426,25 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Group membership: Node group membership */
+  $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['og_membership_rel']['label'] = 'campagn group';
+  $handler->display->display_options['relationships']['og_membership_rel']['required'] = 1;
+  /* Relationship: OG membership: Group gid */
+  $handler->display->display_options['relationships']['group']['id'] = 'group';
+  $handler->display->display_options['relationships']['group']['table'] = 'og_membership';
+  $handler->display->display_options['relationships']['group']['field'] = 'group';
+  $handler->display->display_options['relationships']['group']['relationship'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['group']['label'] = 'campaign group';
+  $handler->display->display_options['relationships']['group']['required'] = 1;
+  /* Relationship: Webform submissions: User */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['required'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
@@ -490,6 +512,33 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_webform_pictures_1']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures_1']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_webform_pictures_1']['field_api_classes'] = 0;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'author';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['name']['link_to_user'] = 0;
+  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
+  $handler->display->display_options['fields']['name']['format_username'] = 1;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Webform submissions: Submitted */
   $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
@@ -605,6 +654,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['nid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['nid']['not'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -727,6 +777,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['arguments']['etid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['etid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['etid']['not'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
@@ -769,6 +820,138 @@ function dosomething_campaign_views_default_views() {
     ),
   );
   $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Multiple Webform Gallery */
+  $handler = $view->new_display('panel_pane', 'Multiple Webform Gallery', 'panel_pane_5');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Webform Submission: Pictures */
+  $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
+  $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
+  $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_webform_pictures']['settings'] = array(
+    'image_style' => 'large',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_webform_pictures']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures']['field_api_classes'] = 0;
+  /* Field: Webform Submission: Pictures */
+  $handler->display->display_options['fields']['field_webform_pictures_1']['id'] = 'field_webform_pictures_1';
+  $handler->display->display_options['fields']['field_webform_pictures_1']['table'] = 'field_data_field_webform_pictures';
+  $handler->display->display_options['fields']['field_webform_pictures_1']['field'] = 'field_webform_pictures';
+  $handler->display->display_options['fields']['field_webform_pictures_1']['label'] = '';
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_webform_pictures_1']['settings'] = array(
+    'image_style' => 'thumbnail',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_webform_pictures_1']['group_rows'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_webform_pictures_1']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_webform_pictures_1']['field_api_classes'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['break_phrase'] = 1;
+  $handler->display->display_options['arguments']['nid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'team_challenge' => 'team_challenge',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_webform_pictures_fid']['group'] = 1;
+  $handler->display->display_options['argument_input'] = array(
+    'nid' => array(
+      'type' => 'user',
+      'context' => 'entity:entityqueue.eq_og_membership',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Webform Nid',
+    ),
+  );
+  $handler->display->display_options['inherit_panels_path'] = '1';
   $export['campaign_gallery'] = $view;
 
   $view = new view;
@@ -783,6 +966,7 @@ function dosomething_campaign_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = TRUE;
   $handler->display->display_options['use_more_text'] = 'More >>';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -1135,6 +1319,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
     2 => 'OR',
+    3 => 'OR',
   );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1176,7 +1361,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['content'] = '<p>DoSomething.org spearheads national campaigns that have real impact. Choose among the following calls to action.</p>
-<h2>Current Campaigns</h2>';
+<h2>New Campaigns</h2>';
   $handler->display->display_options['header']['area']['format'] = '3';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['footer'] = FALSE;
@@ -1282,7 +1467,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_call_to_action']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_call_to_action']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_campaign_call_to_action']['field_api_classes'] = 0;
-  /* Field: Content: Webform submission count */
+  /* Field: Webform: Webform submission count */
   $handler->display->display_options['fields']['webform_submission_count_node']['id'] = 'webform_submission_count_node';
   $handler->display->display_options['fields']['webform_submission_count_node']['table'] = 'node';
   $handler->display->display_options['fields']['webform_submission_count_node']['field'] = 'webform_submission_count_node';
@@ -1639,6 +1824,23 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['field_campaign_logo_fid']['field'] = 'field_campaign_logo_fid';
   $handler->display->display_options['filters']['field_campaign_logo_fid']['operator'] = 'not empty';
   $handler->display->display_options['filters']['field_campaign_logo_fid']['group'] = 2;
+  /* Filter criterion: Date: Date (node) */
+  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['table'] = 'node';
+  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['operator'] = '>=';
+  $handler->display->display_options['filters']['date_filter']['group'] = 3;
+  $handler->display->display_options['filters']['date_filter']['default_date'] = 'now';
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+    'field_data_field_campain_date.field_campain_date_value2' => 'field_data_field_campain_date.field_campain_date_value2',
+  );
+  $handler->display->display_options['filters']['date_filter']['date_method'] = 'AND';
+  /* Filter criterion: Content: Campaign Date - end date (field_campain_date:value2) */
+  $handler->display->display_options['filters']['field_campain_date_value2']['id'] = 'field_campain_date_value2';
+  $handler->display->display_options['filters']['field_campain_date_value2']['table'] = 'field_data_field_campain_date';
+  $handler->display->display_options['filters']['field_campain_date_value2']['field'] = 'field_campain_date_value2';
+  $handler->display->display_options['filters']['field_campain_date_value2']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_campain_date_value2']['group'] = 3;
 
   /* Display: Related Campaigns Content All pane */
   $handler = $view->new_display('panel_pane', 'Related Campaigns Content All pane', 'panel_pane_2');
@@ -1674,6 +1876,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_logo']['table'] = 'field_data_field_campaign_logo';
   $handler->display->display_options['fields']['field_campaign_logo']['field'] = 'field_campaign_logo';
   $handler->display->display_options['fields']['field_campaign_logo']['label'] = '';
+  $handler->display->display_options['fields']['field_campaign_logo']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['absolute'] = 0;
@@ -1683,6 +1886,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_campaign_logo']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_campaign_logo']['alter']['html'] = 0;
@@ -1712,12 +1916,14 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_picture']['element_class'] = 'project-related-thumb';
   $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_picture']['empty'] = '[field_campaign_logo]';
   $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 1;
@@ -1757,12 +1963,37 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Short Description */
+  $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
+  $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
+  $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
+  $handler->display->display_options['fields']['field_description']['label'] = '';
+  $handler->display->display_options['fields']['field_description']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_description']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_description']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_description']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_description']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_description']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_description']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_description']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_description']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_description']['field_api_classes'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="unimage-wrapper"><h2>[title]</h2></div>';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="unimage-wrapper"><h2>[title]</h2>[field_description]</div>';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
@@ -1996,7 +2227,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_call_to_action']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_call_to_action']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_campaign_call_to_action']['field_api_classes'] = 0;
-  /* Field: Content: Webform submission count */
+  /* Field: Webform: Webform submission count */
   $handler->display->display_options['fields']['webform_submission_count_node']['id'] = 'webform_submission_count_node';
   $handler->display->display_options['fields']['webform_submission_count_node']['table'] = 'node';
   $handler->display->display_options['fields']['webform_submission_count_node']['field'] = 'webform_submission_count_node';
@@ -2235,7 +2466,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_call_to_action']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_campaign_call_to_action']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_campaign_call_to_action']['field_api_classes'] = 0;
-  /* Field: Content: Webform submission count */
+  /* Field: Webform: Webform submission count */
   $handler->display->display_options['fields']['webform_submission_count_node']['id'] = 'webform_submission_count_node';
   $handler->display->display_options['fields']['webform_submission_count_node']['table'] = 'node';
   $handler->display->display_options['fields']['webform_submission_count_node']['field'] = 'webform_submission_count_node';
