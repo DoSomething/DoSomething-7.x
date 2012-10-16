@@ -29,7 +29,6 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
   
   public function run($workflow) {
     $state = $this->getState();
-    print_r($state->getContext());
     $mobile = $state->getContext('sms_number');
     $message = $state->getContext('process_beta:message');
 
