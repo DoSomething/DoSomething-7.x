@@ -2562,6 +2562,9 @@ div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-fo
   text-transform: uppercase;
   margin: 0;
 }
+#slideshow-center div.panel-col-top {
+  position: relative;
+}
 
 .fb-comments-block {
   background: white;
@@ -2572,11 +2575,8 @@ div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-fo
 }
 
 .adopted-indicator {
-  height: 79px;
-  margin-bottom: -79px;
-  float: right;
-  margin-right: 3px;
-  position: relative;
+  position: absolute;
+  right: 3px;
 }
 
 .pane-shelter-per-pet-panel-pane-1 {
