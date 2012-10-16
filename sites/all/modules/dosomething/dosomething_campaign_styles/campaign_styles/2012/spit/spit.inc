@@ -35,6 +35,6 @@ $plugin = array(
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
-    '#markup' => '<img src="//files.dosomething.org/files/campaigns/spit/btm-logo.png"/><p>Got questions? Email us at <a href="mailto:spit@dosomething.org">spit@dosomething.org</a>!</p>'
+    '#markup' => '<img src="//files.dosomething.org/files/campaigns/spit/btm-logo.jpg"/><p>Got questions? Email us at <a href="mailto:spit@dosomething.org">spit@dosomething.org</a>!</p>'
   ),
 );
