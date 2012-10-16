@@ -200,7 +200,7 @@
       $('.geofield-proximity-origin-from').text('Zip code:');
 
       // hide/show fieldset on drive form for checkbox
-      $("#webform-component-check-show-hide").css('display','none');
+      /*$("#webform-component-check-show-hide").css('display','none');
 
       $("#edit-submitted-give-a-spit-action-kit-1").click(function() {
         if($("#edit-submitted-give-a-spit-action-kit-1").is(":checked")) {
@@ -209,7 +209,7 @@
         else {
           $("#webform-component-check-show-hide").hide("fast");
         }
-      });
+      });*/
 
     // hackity hack, don't look back
     if (window.location.pathname.substring(6, 10) == 'next') {
