@@ -1,0 +1,193 @@
+// HEREIN LIES A POEM TITLED 'DIE DRUPAL DIE'
+
+html
+  font-size: 16px
+
+#main-wrapper
+  div[role="main"]
+    padding: 0!important
+    margin: 0!important
+    background: transparent
+    width: 800px
+  #breadcrumb, #page-title, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
+    display: none
+  ul.primary
+    border-bottom: none
+    margin: 0
+    padding: 15px 0 0 8px
+    height: 37px
+
+.ds-panel .pane-content
+  padding-bottom: 0
+    
+body
+  background: $fallbackBG
+
+// Hide either the Join or Start header depending on which page we're on
+.page-team #contact-form 
+  #webform-component-start-header
+    display: none  
+.page-node-724776 #contact-form 
+  #webform-component-join-header
+    display: none  
+
+@media only screen and (max-width: 1075px)
+  .region-sidebar-first
+    display: none
+  #site-name
+    top: -53px
+    left: 23px
+    a
+      height: 50px
+      width: 60px
+      background-size: 60px 
+  #utility-bar
+    height: 55px
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar
+    .search, #help-center
+      display: none
+    .login
+      padding: 0.5em 1em 0 0
+      font-size: 1.5em
+  #page
+    width: 100%
+  #main-wrapper div[role="main"]
+    float: none
+    width: 100%
+  nav[role="navigation"]
+    display: none
+  .container
+    margin: 0 auto
+    width: 100%
+  header[role="banner"]
+    @media only screen and (max-width: 775px)
+      width: 100%
+  #block-menu-menu-footer .content
+    width: 80%
+    margin: 0 auto
+  #block-menu-menu-footer .content ul.menu li span
+    font-size: 16px
+    line-height: 1em
+  #block-menu-menu-footer .content ul.menu ul li a
+    font-size: 14px
+    line-height: 1em
+  #cmp
+    .pane-content .s0
+      margin-top: 0
+    #campaign-opt-in
+      text-align: center
+
+#cmp 
+  background: #fff
+  img
+    +noShadow
+  .pane-title
+    display: none
+
+// jQuery UI styling for "add to drive" popup
+
+.invite_friends
+  background: #fff
+  padding: 0.5% 2% 2% 2%
+  h2
+    padding: 0 0 0.8em 0
+    text-align: center
+    font-weight: 600
+    font-size: 2em
+  h3
+    font-family: din-web
+    font-size: 3em
+    text-transform: uppercase
+    color: #bbb
+    margin: 50% 0 0 0
+  .invite-module-facebook, .invite-module-or, .invite-module-email
+    width: 43%
+    float: left
+  .invite-module-facebook, .invite-module-or, .invite-module-email
+    p
+      font-size: 0.8em
+  .invite-module-or
+    width: 14%
+  .ui-dialog-titlebar
+    margin: 0 0 0 -5.5%
+  .facebook-action-connect
+    display: block
+    margin: 8% auto 0
+    width: 40%
+  #edit-submit
+    font-family: din-web
+    background: $buttonBG
+    margin: 0 0 0 5%
+    font-size: 1.5em
+    height: 1.4em
+    display: inline-block
+    +noBorder
+    +border-radius(5px)
+    &:hover
+      background: darken($buttonBG, 5)
+
+#edit-friend
+  background: #ddd
+  width: 11em
+  color: #444
+  +border-radius(4px)
+
+#block-dosomething-campaign-styles-campaign-nav
+  background: #fff
+  padding: 1.5em 0 0 0
+  width: 215px
+  -webkit-transition: background 5s ease-in
+  transition: background 5s ease-in
+  line-height: 1.2em
+  .content
+    width: 100%
+  ul
+    margin: 0
+    padding: 0
+    border-bottom: solid 2px #EEE
+  li
+    margin: 0
+    padding: 2% 0
+  a
+    font-family: din-web-reg
+    font-weight: 600
+    font-size: 1em
+    padding: 0.2em 1em 0 1.5em
+    text-transform: uppercase
+    color: $navLink
+    &:hover
+      text-decoration: none
+  .campaign-menu-prefix
+    color: #ccc
+    text-transform: uppercase
+    margin: 0 12% 4%
+    p
+      margin: 0
+  .campaign-menu-suffix
+    padding: 1em 1em 0 1em
+    img
+      margin: 0 auto 10px
+      //width: 100%
+      display: block
+      +noShadow
+    p
+      font-family: din-web-reg
+      color: #888
+      text-align: center
+      width: 100%
+      margin-bottom: 1em
+      font-size: 0.9em
+    a
+      font-weight: normal
+      font-size: 1em
+      padding: 0
+      text-transform: none
+      color: #888
+      text-decoration: underline  
+
+#block-dosomething-campaign-styles-campaign-nav
+  .highlight a
+    background: $linkBG
+
+  .ui-icon.ui-icon-closethick
+    margin: -20px -13px!important

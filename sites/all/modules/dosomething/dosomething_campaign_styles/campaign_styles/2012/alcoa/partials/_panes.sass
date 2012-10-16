@@ -1,0 +1,494 @@
+// PANES 
+
+//			//
+//	#header			- sign up -
+//			//
+
+#header
+  background: url("//files.dosomething.org/files/campaigns/alcoa/alcoa-header3.jpg") no-repeat
+  //background-position: 29% -120%
+  margin: 0
+  padding: 0
+  h1, h2
+    text-align: left
+    color: $mainCopy
+    margin: 0
+    span
+      padding: 0 2%
+  h1
+    margin: 0 0 0.5em 0
+    font-weight: 500
+    font-size: 2.4em
+  h2
+    font-size: 1.3em
+    line-height: 1.6em
+    font-weight: 500
+  span
+    padding: 0
+    text-align: center
+    background: $linkBG
+    //background: $transBG
+  .tagline
+    padding: 8% 0 0 0
+
+//      //
+//  #drive
+//      //
+
+#drive /* wraps the entire panel pane */
+  text-align: left
+
+.drive-info-wrapper /* wraps left column features */
+  float: left
+  width: 56%
+
+.drive-participants /* list of drive members */
+  float: right
+  width: 40%
+  margin: 6% 0 0 0
+  padding: 0 0 0 5%
+  border-left: 1px solid $borderColor
+  ul
+    max-height: 160px
+    overflow: scroll
+
+.drive-info-title h2 /* drive title */
+  color: $mainCopy
+  margin: 0 0 0.5em 0
+  font-family: $din
+  font-size: 2em
+  font-weight: 600
+  text-transform: uppercase
+  border-bottom: 1px solid #ccc
+
+.drive-info-info /* drive logistics */
+  width: 65%
+  float: left
+  a /* edit drive link */
+    color: $mainCopy
+    background-image: url("assets/drive1.png")
+    background-position: 0% 50%
+    background-repeat: no-repeat
+    background-size: 20px
+    padding: 1em 1.8em 0
+    display: block
+
+.drive-info-where, .drive-info-when /* address and date styling */
+  font-weight: uppercase
+  font-weight: 600
+  span
+    font-weight: 500
+    text-transform: none
+    color: #777
+
+.drive-share 
+  width: 35%
+  float: right
+  h3
+    text-align: right
+
+.drive-facebook, .drive-twitter /* twitter and facebook sprites for drive sharing */
+  width: 30px
+  height: 30px
+  display: inline-block
+  background-repeat: no-repeat
+  text-indent: -9999em
+  margin: 0 0 0 5%
+  float: right
+  &:hover
+    background-position-y: -30px
+
+.drive-twitter
+  background-image: url(assets/drive-twitter.png)
+
+.drive-facebook
+  background-image: url(assets/drive-facebook.png)
+
+.drive-info-description, .drive-info-countdown /* hides unused goal and countdown elements */
+  display: none
+
+input.remove_participant /* "remove participants" button */
+  border: none
+  font-size: 16px
+  font-family: din-web-reg
+  width: 18px
+  height: 18px
+  line-height: 16px
+  background: $mainCopy
+  color: #fff
+  letter-spacing: 1px
+  margin: -18px 0 0 0
+  padding: 0
+  float: right
+  +border-radius(15px)
+  &:hover
+    color: #fff
+    background: darken($mainCopy, 7)
+
+.drive-participants-list li
+  padding: 0.2em 0
+
+.drive-action-link /* "invite more friendss" button */
+  text-align: center
+
+//			//
+//	#action
+//			//
+#action.action-anonymous
+  margin-top: 4%
+#action.action-anonymous, #action.action-participant
+  h3
+    line-height: 2em
+  p
+    text-align: left
+  img
+    display: block
+    margin: 0 auto
+
+#action.action-participant
+  text-align: left
+  padding: 2% 0
+  h2
+    background: $mainColor
+    display: inline-block
+    padding: 0 4%
+    text-transform: uppercase
+    color: white
+    margin: 2% 0 1%
+    min-width: 250px
+  p
+    margin: 0 3% 2% 6%
+  img.action-print
+    float: right
+    margin: -1% 4% -2% 0
+  img.email-help
+    margin: 4% auto 1%  
+
+
+#action.action-leader
+  text-align: left
+  h1
+    font-size: 1.2em
+    margin: 0 0 0 -1em
+  ul
+    padding: 1em 1.5em
+  li
+    list-style: disc
+  b
+    color: $mainCopy
+    background: $buttonBG
+    width: 10em
+    display: block
+    text-align: center
+    padding: 0.2em 0 0 0
+  strong
+    color: $mainCopy
+
+.email-spit
+  margin: 0 auto
+  width: 90%
+  display: block
+  img
+    width: 50%
+
+a.print-pdf, a.print-pdf img
+  display: block
+  margin: 0 auto
+
+a.print-pdf
+  width: 30%
+  img
+    width: 100%
+
+//      //
+//  .search     - search -
+//      //
+
+/* search block */
+#search
+  iframe
+    border-radius: 10px
+    -moz-border-radius: 10px
+    -o-border-radius: 10px
+    -webkit-border-radius: 10px
+    margin: 1em 0 0.25em
+
+.pane-drive-search-panel-pane-1 form
+  width: 50%
+  margin: 1em auto 
+  padding: 1em
+  border-top: 2px solid $borderColor
+  border-bottom: 2px solid $borderColor
+
+#edit-field-geofield-distance-wrapper /* wraps everything but "search" */
+  width: 67%
+  margin: 0.4em 0 0 0
+
+.form-type-geofield-proximity /* drupal code, so clean! (another wrapper) */
+  width: 100%
+
+.form-item-field-geofield-distance-distance /* distance wrapper */,
+.form-item-field-geofield-distance-origin /* zip code wrapper */
+  input
+    display: block
+    margin: 0 auto
+    padding: 0
+    text-align: center
+    +border-radius(3px)
+  
+.form-item-field-geofield-distance-distance /* distance wrapper */
+  display: none
+
+.geofield-proximity-origin-from /* faux label "Zip code:" */
+  text-align: center
+  padding: 0.2em 0 0 0
+  width: 50%
+
+.form-item-field-geofield-distance-origin /* zip code wrapper */
+  width: 33%
+  input
+    background-color: #ebebeb
+
+.views-submit-button input /* search button */
+  text-transform: uppercase
+  font-weight: 500
+
+/* results block */ 
+.view-id-drive_search .view-content /* outermost wrapper */
+  background-color: #ebebeb
+  padding: 1em
+
+.drive-search-wrapper ul /* clear floats */
+  overflow: auto
+  margin: 0 auto
+  width: 95%
+
+.views-label-field-team-name /* hides labels above search results */,
+.views-label-field-drive-location
+  display: none
+
+li.views-row /* clear floats on <li> wrapping the following fields: */
+  width: 100%
+  overflow: hidden
+  margin-bottom: 2em
+
+.views-field-field-team-name /* drive name */,
+.views-field-field-drive-location /* drive logistics */,
+.views-field-field-geofield-distance /* drive distance */,
+.views-field-nothing /* "join this drive" button  */
+  width: 25%
+  float: left
+
+.views-field-field-drive-location,
+.views-field-field-geofield-distance
+  font-size: 0.8em
+  font-weight: 400
+  font-family: din-web-reg
+  line-height: 1.4em
+
+.views-field-field-geofield-distance
+  text-align: center
+
+.views-field-nothing
+  span
+    width: 5em
+    display: block
+    margin: 1em auto
+  a.go-button
+    position: static
+
+//			//
+//	#content
+//			//
+
+//			//
+//	#scholarship
+//			//
+
+#scholarship
+  img.scholar-copy
+    padding: 0
+  img
+    clear: both
+    display: block
+    margin: 0 auto
+    padding: 2% 0
+  overflow: visible 
+  h1
+    color: $mainCopy
+  p
+    color: #fff
+  form
+    margin: 0 auto
+    max-width: 600px
+  label
+    font-weight: 600  
+  input[type="text"]
+    padding: 0.8em 0.5em
+    float: left
+    width: 48%
+    margin: 1%
+  .go-button
+    margin: 4% 0 1% 0
+    padding: 0.3em 0.7em
+  #campaign-opt-in
+    text-align: center
+    a
+      color: $mainCopy
+      font-weight: 500
+  .quote-highlight p
+    background: #333
+    max-width: 525px
+    margin: 0 auto 0.8em
+    padding: 3%
+    font-family: din-web-reg
+    font-weight: 600
+    font-size: 1.7em
+    -moz-border-radius: 12px
+    -webkit-border-radius: 12px
+    -o-border-radius: 12px
+    border-radius: 12px
+  .scholar-input
+    float: left
+    width: 48%
+    margin: 1%
+    label
+      text-align: left
+    input
+      width: 100%
+      margin: 1% 0  
+.refer5
+  background: $scholarshipBG
+  width: 110%
+  margin: 0 0 0 -4.95%
+  padding: 3%
+  &:before, &:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-width: 11px
+    top: 51px
+  &:before
+    border-color: transparent darken($scholarshipBG, 12) darken($scholarshipBG, 12) transparent
+    left: -22px
+  &:after
+    border-color: transparent transparent darken($scholarshipBG, 12) darken($scholarshipBG, 12)
+    right: -22px
+
+//			//
+//  #social     - share 3 stats -
+//      //
+
+#social
+  h3
+    text-transform: none
+    font-size: 1em
+    margin-bottom: 2%
+  img.sharewith
+    margin: 0 auto
+    padding: 0.25% 0 2.5% 15%
+    display: block
+    clear: both
+
+  li
+    display: inline-block
+
+
+//      //
+//  #impact     - gallery -
+//      //
+
+#impact
+  .go-button
+    margin: 2% 0 1% 0
+
+.view-campaign-gallery #slideshow
+  margin: 0 auto
+
+//      //
+//  #faq
+//      //
+
+#faq 
+  div
+    padding: 0 1.2em 1.2em 1.2em
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  li
+    padding: 0 0 0 1.5em
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 1.2em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("assets/faq2.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position-y: -3.9em
+  .go-button
+    margin: 0 0 1% 0
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase  
+  .action-box
+    position: relative
+    display: inline-block
+  .action-arrow-left, .action-arrow-right
+    position: absolute
+    bottom: 0.5em
+  .action-arrow-right
+    right: -70px
+  .action-arrow-left
+    left: -70px  
+
+// #content-level-up
+#content-level-up
+  h2
+    text-transform: uppercase
+    font-size: 2.4em
+    font-weight: 600
+    line-height: 1em
+  .arrow-box
+    position: relative
+  .arrow-img
+    position: absolute
+    top: 44%
+    right: -30%    
+
+//      //
+//  #footer     - sign up button; conditionally displayed -
+//      //
+
+#footer
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 0.7em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  .go-button
+    margin: 0 0 1% 0
