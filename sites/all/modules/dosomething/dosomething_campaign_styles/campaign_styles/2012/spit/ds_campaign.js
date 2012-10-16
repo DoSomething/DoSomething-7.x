@@ -2,8 +2,8 @@
   Drupal.behaviors.campaignName = {
     attach: function (context, settings) {
       Drupal.settings.login = {
-        replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join Give A Spit!',
+        replaceText      : 'Step 2 of 3',
+        afterReplaceText : 'Register with us to join Give a Spit and get all the help you need for your drive. ',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
