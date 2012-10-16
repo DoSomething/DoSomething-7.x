@@ -3045,6 +3045,7 @@ select#edit-sort-by {
   display: block;
   margin-bottom: -30px;
   padding: 0;
+  font-size: 15px;
 }
 .gallery-thumbnail-text .click-to-learn {
   font-size: 18px;
