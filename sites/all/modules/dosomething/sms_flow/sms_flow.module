@@ -268,17 +268,29 @@ function sms_flow_default_conductor_workflows() {
   $activity->alpha_campaign_id = 99961;
   $activity->success_message = t('Great! You\'ve successfully joined the drive. ');
   $activity->inputs = array('drive_invite_response', 'ask_name');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('process_beta');
+  $activity->outputs = array('ftaf_process');
+
+  $activity = $workflow->newActivity('sms_flow_ftaf');
+  $activity->name = 'ftaf_process';
+  $activity->title = 'Forward to a Friend';
+  $activity->alpha_optin = 129071;
+  $activity->beta_optin = 129751;
+  $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with FTAF if you want to invite more.');
+  $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with FTAF.');
+  $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');
 
-$activity = $workflow->newActivity('end');
-$activity->name = 'end';
-$activity->title = 'End';
-$activity->inputs = array('process_beta', 'drive_invite_response');
-
-  // $activity = _sms_flow_create_activity($workflow, 'sms_flow_end_and_start_new', 'end', 'End And Start New Activity');
-  // $activity->next_workflow_name = 'sms_flow_ftaf';
-  // $activity->inputs = array('process_beta');
-  // $activity->outputs = array();
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('drive_invite_response', 'ftaf_process');
+  $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
 
@@ -301,7 +313,7 @@ $activity->inputs = array('process_beta', 'drive_invite_response');
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ftaf_prompt';
   $activity->title = 'Start prompt for FTAF';
-  $activity->question = t('Thanks for joining your club. Want to invite more friends? Reply back with their cell numbers separated by commas and we\'ll send them an invite for you!');
+  $activity->question = t('Want to invite more friends? Reply back with their cell numbers separated by commas and we\'ll send them an invite for you!');
   $activity->inputs = array('start');
   $activity->outputs = array('strip_signature');
 
@@ -315,7 +327,7 @@ $activity->inputs = array('process_beta', 'drive_invite_response');
   $activity->name = 'ftaf_process';
   $activity->title = 'Forward to a Friend';
   $activity->alpha_optin = 129071;
-  $activity->beta_optin = 128441;
+  $activity->beta_optin = 129751;
   $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with FTAF if you want to invite more.');
   $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with FTAF.');
   $activity->inputs = array('strip_signature');

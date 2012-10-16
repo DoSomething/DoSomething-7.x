@@ -95,16 +95,18 @@ function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
   }
 
   if ($workflow) {
-    if ($workflow->getState()->getContext('sms_response')) {
-      $output = $workflow->getState()->getContext('sms_response');
-    }
-    else if ($new_workflow_name = $workflow->getState()->getContext('start_new_workflow')) {
+    if ($new_workflow_name = $workflow->getState()->getContext('start_new_workflow')) {
       $newWorkflow = conductor_get_workflow($new_workflow_name);
       $newWorkflow->getActivity('start')->getState()->setContext('sms_number', $number);
       $newWorkflow->run();
 
-      $output = $newWorkflow->getState()->getContext('sms_response');
+      // Prepend new workflow response with previous workflow response, if any
+      $output = $workflow->getState()->getContext('sms_response') . ' ';
+      $output .= $newWorkflow->getState()->getContext('sms_response');
     }
+    elseif ($workflow->getState()->getContext('sms_response')) {
+      $output = $workflow->getState()->getContext('sms_response');
+    } 
 
     if (empty($output)) {
       $exceptions = '';
