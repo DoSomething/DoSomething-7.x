@@ -27,6 +27,7 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
       'fragment' => ' ',
       'external' => TRUE,
     )),
+    '#weight' => 10
   );
 
   $content['form'] = drupal_get_form('dosomething_petitions_email_form', $node->nid);
