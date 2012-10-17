@@ -126,21 +126,29 @@ function dosomething_drives_menu() {
   return $items;
 }
 
-function dosomething_drives_join($gid) {
-  global $user;
+function dosomething_drives_join($gid, $uid = FALSE) {
+  $account = NULL;
+  if (!$uid) {
+    global $user;
+    $account = clone $user;
+  }
+  else {
+    $account = user_load($uid);
+  }
+
   // submit the sign up form
   $group = og_load($gid);
   $submission = reset(entity_load('webform_submission_entity', array($group->etid)));
   $nid = $submission->nid;
 
-  $profile = profile2_load_by_user($user, 'main');
+  $profile = profile2_load_by_user($account, 'main');
   if ($profile) {
     $mobile = field_get_items('profile2', $profile, 'field_user_mobile');
     $mobile = $mobile[0]['value'];
     $submission = (object) array(
       'sid' => NULL,
       'nid' => $nid,
-      'uid' => $user->uid,
+      'uid' => $account->uid,
       'submitted' => REQUEST_TIME,
       'remote_addr' => ip_address(),
       'is_draft' => 0,
@@ -149,7 +157,7 @@ function dosomething_drives_join($gid) {
       'bundle' => 'campaign_sign_up',
       'field_webform_email' => array(
         LANGUAGE_NONE => array(
-          array('email' => $user->mail),
+          array('email' => $account->mail),
         ),
       ),
       'field_webform_mobile' => array(
@@ -160,7 +168,7 @@ function dosomething_drives_join($gid) {
     );
     entity_save('webform_submission_entity', $submission);
   }
-  teams_join_by_url($gid, teams_get_group_hash($gid));
+  teams_join_by_url($gid, teams_get_group_hash($gid), $uid);
 }
 
 function dosomething_drives_get_drive_nid($campaign_group) {

@@ -17,3 +17,67 @@ function dosomething_entityqueue_entityqueue_types() {
   // drush php-eval "include_once('sites/all/modules/entityqueue/entityqueue.install'); entityqueue_install();"
   return $types;
 }
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_entityqueue_menu() {
+  $items = array();
+
+  $base = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => 'user_access',
+    'access arguments' => 'administer all queues',
+  );
+
+  $items['entityqueue/add/%/%'] = array(
+    'page callback' => 'dosomething_entityqueue_add',
+    'page arguments' => array(2,3),
+  ) + $base;
+
+  $items['entityqueue/swap/%/%/%'] = array(
+    'page callback' => 'dosomething_entityqueue_swap',
+    'page arguments' => array(2,3,4),
+  ) + $base;
+
+  $items['entityqueue/remove/%/%'] = array(
+    'page callback' => 'dosomething_entityqueue_remove',
+    'page arguments' => array(2,3),
+  ) + $base;
+
+  return $items;
+}
+
+function dosomething_entityqueue_add($entityqueue, $etid) {
+  $entityqueue_entity = reset(entity_load('entityqueue', array($entityqueue)));
+  $entity_ids = &$entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE];
+
+  $add = TRUE;
+  foreach ($entity_ids as $key => $etid_wrapper) {
+    if ($etid_wrapper['target_id'] == $etid) {
+      $add = FALSE;
+    }
+  }
+  if ($add) $entity_ids[] = array('target_id' => $etid);
+
+  $entityqueue_entity->save();
+}
+
+function dosomething_entityqueue_swap($entityqueue_from, $entityqueue_to, $etid) {
+  dosomething_entityqueue_remove($entityqueue_from, $etid);
+  dosomething_entityqueue_add($entityqueue_to, $etid);
+}
+
+function dosomething_entityqueue_remove($entityqueue, $remove_etid) {
+  $entityqueue_entity = reset(entity_load('entityqueue', array($entityqueue)));
+  $entity_ids = &$entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE];
+
+  foreach ($entityqueue_entity as $key => $etid_wrapper) {
+    if ($etid_wrapper['target_id'] == $etid) {
+      unset($entity_ids[$key]);
+    }
+  }
+  $entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE] = array_values($entity_ids);
+
+  $entityqueue_entity->save();
+}
