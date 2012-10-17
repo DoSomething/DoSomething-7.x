@@ -60,7 +60,12 @@ function connections_on_page($connection_page_path) {
   else {
     if (strpos($connection_page_path, '*') !== FALSE) {
       $wanna = str_replace('*', '', $connection_page_path);
-      return (boolean) strstr($path, $wanna);
+      if (strstr($path, $wanna)) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
     else {
       return (boolean) ($path == $connection_page_path);

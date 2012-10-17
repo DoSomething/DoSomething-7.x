@@ -1,12 +1,30 @@
+/**
+ *  Drupal.behaviors.fb -> Site-wide Facebook integration.
+ *  Mainly used through the user interface, but can be extended through custom code as well.
+ *  Usage:
+ *    Initialize a javascript options object (with curly braces - { }) with the following format:
+ *
+ *    {
+ *       function: {
+ *         // parameters
+ *       }
+ *    }
+ *
+ *  "function" should be a method referenced below.  This structure also allows for multiple actions.
+ *  If several functions are passed in the options object, they will all be initialized, though not necessarily
+ *  run automatically (this is dependent on the options that are passed to each function).
+ *
+ *  See function documentation for paremeters.
+ */
+
 (function($) {
   Drupal.behaviors.fb = {
     token: '',
     my_pic: '',
 
-  	attach: function(context, settings) {
-  	},
-
-    // Initializes facebook and begins running tasks.
+    /**
+     *  Initializes the Facebook object and runs all appropriate functions.
+     */
     init: function(options) {
       for (i in options) {
         Drupal.behaviors.fb.run(i, options[i]);
@@ -17,7 +35,7 @@
   	run: function(fun) {
   		var a = Array.prototype.slice.call(arguments);
   		var f = $('<div></div>').attr('class', 'fb-runner-' + fun).css('display', 'none').click(function() {
-  			eval('Drupal.behaviors.fb.' + fun + '(a)');
+  			eval('Drupal.behaviors.fb.' + fun + '(a[1])');
   		});
   		f.appendTo($('body'));
 
@@ -26,12 +44,19 @@
   		setTimeout('jQuery(".fb-runner-' + fun + '").click();', 1000);
   	},
 
+    /**
+     *  Multi-browser safe console.log
+     */
     log: function(message) {
       if (typeof console !== 'undefined') {
         console.log(message);
       }
     },
 
+    /**
+     *  Creates the mock Facebook dialog that allows us to extend Facebook functionality.
+     *  this should not be called outside of the Facebook object.
+     */
     fb_dialog: function(page, things, callback) {
       var img, title, desc, caption;
       if (things.picture && things.picture != "''") {
@@ -106,6 +131,21 @@
         });
     },
 
+    /**
+     *  Authenticates a user based off of the criteria set in the things object.
+     *  If we require users to log in and they are not logged in, they are prompted to do so.
+     *  Also confirms the correct permissions (particularly publish_actions) before posting.
+     *
+     *  @param things
+     *    A javascript object of important configuration variables.  The only variable used in this
+     *    function is things.require_login.
+     *       require_login
+     *
+     *  @param callback
+     *    A callback function to run after a user is logged in and authenticated.  This function
+     *    is run automatically if we don't require logging in.
+     *
+     */
     real_auth: function(things, callback) {
       if (things.require_login) {
         FB.getLoginStatus(function(response) {
@@ -143,18 +183,47 @@
       }
     },
 
+    /**
+     *  FB.getLoginStatus doesn't always work for authentication -- Another alternative
+     *  is to call FB.login.  Facebook will throw a notice that a user is already
+     *  logged in if that is so...but that doesn't stop things from happening.
+     *
+     *  @param callback
+     *     A callback function that is run when a user is confirmed logged in.
+     *
+     */
     auth: function(callback) {
       FB.login(function(response) {
-        Drupal.behaviors.fb.token = response.authResponse.accessToken;
+        if (response.authResponse.accessToken) {
+          Drupal.behaviors.fb.token = response.authResponse.accessToken;
 
-        if (typeof callback !== 'undefined') {
-          callback();
+          if (typeof callback !== 'undefined') {
+            callback();
+          }
         }
       });
     },
 
-  	feed: function(args) {
-      var config = args[1];
+    /**
+     *  Feed function -- builds the standard facebook feed dialog.
+     *  
+     *
+     *  @param config
+     *    A javascript object of configuration opens.  Available options:
+     *       feed_document         (An absolute url of the page to share)
+     *       feed_title            (The title of the share)
+     *       feed_picture          (The picture that is displayed on the share)
+     *       feed_caption          (The caption that appears under the share title)
+     *       feed_description      (The description that appears under the caption)
+     *       feed_selector         (A selector on the page to call the event on)
+     *       feed_allow_multiple   (Uses the TD Friend Selector to allow multiple friends to be posted-to)
+     *       feed_require_login    (Initializes the login procedure if a user is not logged in.)
+     *
+     *  @param callback
+     *    A callback function which triggers when a post was succesfully made.
+     *    
+     */
+  	feed: function(config, callback) {
       var things = {
       	link: config.feed_document,
         title: config.feed_title,
@@ -199,22 +268,25 @@
 
       if (things.selector) {
       	jQuery('body ' + things.selector).click(function() {
-        	Drupal.behaviors.fb.feed_runner(things, share, function() {
-            // Done callback
-          });
+        	Drupal.behaviors.fb.feed_runner(things, share, callback);
         });
       }
       else {
-        Drupal.behaviors.fb.feed_runner(things, share, function() {
-          // Done callback
-        });
+        Drupal.behaviors.fb.feed_runner(things, share, callback);
       }
 
       return false;
   	},
 
+    /**
+     *  Processing function for the feed dialog.  Checks if a user can select multiple
+     *  friends at once, and if so uses the TD Friend Selector to let them do that.
+     *  Otherwise, calls the FB.ui() function.
+     */
     feed_runner: function(things, share, callback) {
+      // If we are allowing people to post to multiple walls...
       if (things.allow_multiple > 0) {
+        // Create a mock button on the site to simulate a click-through on the friendSelector
         var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
         fbm.appendTo('body').queue(function() {
           Drupal.friendFinder.t = things;
@@ -250,16 +322,36 @@
         });
       }
       else {
-        FB.ui(share);
-        if (typeof callback == 'function') {
-          callback();
-        }
+        FB.ui(share, function() {
+          if (typeof callback == 'function') {
+            callback();
+          }
+        });
       }
     },
 
-  	ograph: function(args) {
+    /**
+     *  Performs Open Graph actions, specifically posting to a user's wall.
+     *
+     *  @param config
+     *    A javascript object of configuration opens.  Available options:
+     *       og_namespace         (The namespace of the app to use.)
+     *       og_type              (The open graph object to use.)
+     *       og_action            (The open graph action to use.)
+     *       og_post_image        (An (optional) image to be sent with the Open Graph call.)
+     *       og_post_description  (The description that appears under the caption)
+     *       og_selector          (A selector on the page to call the event on)
+     *       og_allow_multiple    (Uses the TD Friend Selector to allow multiple friends to be posted-to)
+     *       og_require_login     (Initializes the login procedure if a user is not logged in.)
+     *       og_fake_dialog       (Whether or not to use the "Fake" dialog that lets users post message with the share)
+     *       og_post_custom       (Custom variables as set on the user interface.)
+     *
+     *  @param callback
+     *    A callback function which triggers when a post was succesfully made.
+     *    
+     */
+  	ograph: function(config) {
   		// OG Type, action, document, selector, require login, fake dialog
-      var config = args[1];
   		var things = {
         namespace: config.og_namespace,
   			type: config.og_type,
@@ -275,7 +367,7 @@
 
   		var fbpost = {};
       // fbpost.TYPE = ACTION
-  		eval('fbpost.' + args[2] + ' = "' + args[4] + '";');
+  		eval('fbpost.' + things.type + ' = "' + things.action + '";');
 
       if (things.custom_vars) {
         for (i in things.custom_vars) {
@@ -312,6 +404,10 @@
   		return false;
   	},
 
+    /**
+     *  Pops up a fake "Facebook" dialog box which lets users share
+     *  a message with their open graph post.
+     */
     ograph_message: function(things, fbpost) {
       Drupal.behaviors.fb.real_auth(things, function() {
         Drupal.behaviors.fb.fb_dialog('og-post', things, function(response) {
@@ -323,6 +419,9 @@
       });
     },
 
+    /**
+     *  Performs the actual Open Graph call, using variables defined in the ograph function.
+     */
     run_ograph: function(things, fbpost) {
       Drupal.behaviors.fb.log(fbpost);
       Drupal.behaviors.fb.real_auth(things, function() {
@@ -339,34 +438,62 @@
       });
     },
 
-    request: function(args) {
+    /**
+     *  Creates an App Request dialog.
+     *
+     *  @param config
+     *    A javascript object of configuration options.  Available options:
+     *       app_request_title             (An (optional) title for the app request dialog)
+     *       app_request_message           (An (optional) message to send to the user who is receiving the request.)
+     *       app_request_selector          (A selector on the page to call the event on)
+     *       app_request_require_login     (An (optional) image to be sent with the Open Graph call.)
+     *
+     *  @param callback
+     *    A callback function which triggers when an app request was sent to Facebook.
+     *    
+     */
+    request: function(config, callback) {
       var things = {
-        title: args[1],
-        message: args[2],
-        selector: args[3],
-        require_login: args[4]
+        title: config.app_request_title,
+        message: config.app_request_message,
+        selector: config.app_request_selector,
+        require_login: config.app_request_require_login
       };
 
       var req = {
         method: 'apprequests',
         display: 'iframe',
-        title: things.title,
-        message: things.message,
       };
+
+      if (things.title) {
+        req.title = things.title;
+      }
+
+      if (things.message) {
+        req.message = things.message;
+      }
 
       if (things.require_login) {
         if (things.selector) {
           $('body ' + things.selector).click(function() {
             Drupal.behaviors.fb.auth(function() {
               req.access_token = Drupal.behaviors.fb.token;
-              FB.ui(req);
+              FB.ui(req, function() {
+                if (typeof callback == 'function') {
+                  callback();
+                }
+              });
             });
           });
         }
         else {
           Drupal.behaviors.fb.auth(function() {
             req.access_token = Drupal.behaviors.fb.token;
-            FB.ui(req);
+            FB.ui(req, function() {
+              if (typeof callback == 'function') {
+                callback();
+              }
+            });
           });
         }
       }
@@ -375,13 +502,27 @@
       }
     },
 
-    message: function(args) {
+    /**
+     *  Initializes the Facebook message service.
+     *
+     *  @param config
+     *    A javascript object of configuration options.  Available options:
+     *       msg_document          (An (optional) absolute URL to share through the message.)
+     *       msg_picture           (An (optional) picture to send with the message.)
+     *       msg_selector          (A selector on the page to call the event on)
+     *       msg_require_login     (Prompts a user to log into Facebook if they aren't already.)
+     *
+     *  @param callback
+     *    A callback function which triggers when a post was succesfully made.
+     *    
+     */
+    message: function(config) {
       var things = {
-        link: args[1],
-        image: args[2],
-        selector: args[3],
-        require_login: args[4],
-        allow_multiple: args[5]
+        link: config.msg_document,
+        image: config.msg_picture,
+        selector: config.msg_selector,
+        require_login: config.msg_require_login,
+        allow_multiple: 0 // Not possible :(
       };
 
       Drupal.behaviors.fb.real_auth(things, function() {
@@ -389,6 +530,9 @@
       });
     },
 
+    /**
+     *  Builds the Facebook message dialog.
+     */
     message_dialog: function(things) {
       var m = {
         method: 'send', 

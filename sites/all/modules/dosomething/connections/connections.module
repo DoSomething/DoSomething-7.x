@@ -115,58 +115,61 @@ function connections_theme($existing, $type, $theme, $path) {
  *	Implements hook_page_alter()
  */
 function connections_page_alter(&$page) {
-	drupal_add_library('dosomething_general', 'fb-friend-finder');
-
 	$fb_actions = array(
 		'fb_connect' => 'feed',
 		'og_connect' => 'ograph',
 		'fb_app_request' => 'request',
 		'fb_message' => 'message'
 	);
-	$faces = array();
-	foreach ($_SESSION AS $action => $fb_info) {
-		if (in_array($action, array_keys($fb_actions))) {
-		   $stuff = (current(array_filter($fb_info, 'connections_session_filter_array')));
-		   connections_clean_variables($stuff);
 
-		   if (!isset($stuff['og_document']) && isset($stuff['og_namespace'])) {
-		   		$stuff['og_document'] = url(request_uri(), array('absolute' => TRUE));
-		   }
-		   if (!isset($stuff['feed_document']) && !isset($stuff['og_namespace'])) {
-		   		$stuff['feed_document'] = url(request_uri(), array('absolute' => TRUE));
-		   }
-		   $faces[$fb_actions[$action]] = $stuff;
+	if (array_intersect(array_keys($fb_actions), array_keys($_SESSION))) {
+		drupal_add_library('dosomething_general', 'fb-friend-finder');
 
-		   if ($stuff['og_post_description'] || $stuff['feed_description']) {
-		   	  global $fb_og_desc;
-		   	  $fb_og_desc = ($stuff['og_post_description'] ? $stuff['og_post_description'] : $stuf['feed_description']);
-		   }
+		$faces = array();
+		foreach ($_SESSION AS $action => $fb_info) {
+			if (in_array($action, array_keys($fb_actions))) {
+			   $stuff = (current(array_filter($fb_info, 'connections_session_filter_array')));
+			   connections_clean_variables($stuff);
+
+			   if (!isset($stuff['og_document']) && isset($stuff['og_namespace'])) {
+			   		$stuff['og_document'] = url(request_uri(), array('absolute' => TRUE));
+			   }
+			   if (!isset($stuff['feed_document']) && !isset($stuff['og_namespace'])) {
+			   		$stuff['feed_document'] = url(request_uri(), array('absolute' => TRUE));
+			   }
+			   $faces[$fb_actions[$action]] = $stuff;
+
+			   if ($stuff['og_post_description'] || $stuff['feed_description']) {
+			   	  global $fb_og_desc;
+			   	  $fb_og_desc = ($stuff['og_post_description'] ? $stuff['og_post_description'] : $stuf['feed_description']);
+			   }
+			}
 		}
-	}
 
-	if (!empty($faces)) {
-		$options = json_encode($faces);
-	    drupal_add_js(drupal_get_path('module', 'connections') . '/js/connections.js', array(
-	    	'scope' => 'footer',
-	    	'weight' => 1001
-	    ));
+		if (!empty($faces)) {
+			$options = json_encode($faces);
+		    drupal_add_js(drupal_get_path('module', 'connections') . '/js/connections.js', array(
+		    	'scope' => 'footer',
+		    	'weight' => 1001
+		    ));
 
-	    drupal_add_css(drupal_get_path('module', 'connections') . '/css/connections-og-post.css', array(
-	    	'scope' => 'footer',
-	    	'weight' => 1002
-	    ));
+		    drupal_add_css(drupal_get_path('module', 'connections') . '/css/connections-og-post.css', array(
+		    	'scope' => 'footer',
+		    	'weight' => 1002
+		    ));
 
-		drupal_add_js('var options = ' . $options . ';', array(
-			'scope' => 'footer',
-			'type' => 'inline',
-			'weight' => 1003
-		));
+			drupal_add_js('var options = ' . $options . ';', array(
+				'scope' => 'footer',
+				'type' => 'inline',
+				'weight' => 1003
+			));
 
-		drupal_add_js('Drupal.behaviors.fb.init(options);', array(
-			'scope' => 'footer',
-			'type' => 'inline',
-			'weight' => 1004
-		));
+			drupal_add_js('Drupal.behaviors.fb.init(options);', array(
+				'scope' => 'footer',
+				'type' => 'inline',
+				'weight' => 1004
+			));
+		}
 	}
 }
 
