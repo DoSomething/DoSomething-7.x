@@ -34,8 +34,8 @@
       var $window = $(window);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
       var scrollLimitTop = 180;
-      var scrollLimitBot = $(document).height() - $('#block-menu-menu-footer').outerHeight() - $nav.outerHeight();
-      console.log(scrollLimitBot);
+      var scrollLimitBot = 5757;
+
       $window.scroll(function () {
         var st = $window.scrollTop();
         if (st > scrollLimitTop && st < scrollLimitBot) {

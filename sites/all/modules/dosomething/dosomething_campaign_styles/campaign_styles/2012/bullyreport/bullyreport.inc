@@ -28,8 +28,9 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'the report', 'href' => 'bullyreport', 'fragment' => 'action'),
+    array('title' => 'the report', 'href' => 'bullyreport', 'fragment' => 'report'),
     array('title' => 'what teens said', 'href' => 'bullyreport', 'fragment' => 'map'),
+    array('title' => 'take action', 'href' => 'bullyreport', 'fragment' => 'action'),
     array('title' => 'faq', 'href' => 'bullyreport', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(

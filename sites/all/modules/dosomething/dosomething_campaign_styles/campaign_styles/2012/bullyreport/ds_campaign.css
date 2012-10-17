@@ -366,7 +366,7 @@ body {
     padding: 2%; }
 #cmp .pane-campaign-html #header img {
   margin: 0 !important; }
-#cmp #action p {
+#cmp #report p {
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
   text-align: center;
   font-size: 1.3em;
@@ -374,32 +374,32 @@ body {
   font-weight: 300;
   width: 60%;
   margin: 0 auto 1em; }
-#cmp #action p.headcopy {
+#cmp #report p.headcopy {
   text-transform: uppercase;
   width: 100%; }
-  #cmp #action p.headcopy span {
+  #cmp #report p.headcopy span {
     font-size: 3.4em;
     font-weight: 500;
     line-height: 1em;
     vertical-align: middle; }
-  #cmp #action p.headcopy span.secondary {
+  #cmp #report p.headcopy span.secondary {
     font-size: 2.8em;
     line-height: 1.2em; }
-  #cmp #action p.headcopy span.underline {
+  #cmp #report p.headcopy span.underline {
     font-size: 1em;
     border-bottom: 1px solid white;
     font-weight: 300; }
-#cmp #action .with-button {
+#cmp #report .with-button {
   position: relative;
   display: inline-block;
   min-width: 254px;
   margin: 5em auto 1.5em; }
-  #cmp #action .with-button img {
+  #cmp #report .with-button img {
     position: absolute;
     right: -20px;
     top: -50px;
     z-index: 1; }
-#cmp #action .report-button {
+#cmp #report .report-button {
   position: relative;
   z-index: 10;
   font-size: 1.3em;
@@ -415,11 +415,47 @@ body {
   box-shadow: 0 0 1em -0.1em #333333;
   text-decoration: none;
   text-transform: uppercase; }
-  #cmp #action .report-button:hover {
+  #cmp #report .report-button:hover {
     color: #e1e1e1; }
+#cmp #report .share {
+  margin: 2em auto 0.5em;
+  text-transform: uppercase;
+  color: #ffcf00;
+  font-weight: 500;
+  font-size: 1.8em; }
+#cmp #report li {
+  display: inline-block; }
+#cmp #report iframe {
+  width: 60px !important; }
+#cmp #map .linethrough {
+  position: relative;
+  border-top: 1px solid #241f20;
+  margin: 3em auto 1em;
+  max-width: 600px; }
+#cmp #map h2 {
+  position: relative;
+  top: -8px;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: -1em auto 0;
+  max-width: 400px;
+  background: #008bd9;
+  display: inline-block;
+  padding: 0.25em 1em 0; }
+#cmp #map iframe {
+  border: 3px solid #05719e; }
+#cmp #map img.infographic {
+  margin-top: 40px; }
+#cmp #action p {
+  max-width: 500px;
+  font-weight: normal;
+  font-size: 1.3em;
+  line-height: 1.4em;
+  margin: 0 auto; }
 #cmp #action .petition-button {
   width: 70%;
-  margin: 3em auto 1em;
+  margin: 2em auto 1em;
   padding: 1em 1em 0.6em;
   background: #ffda3f;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
@@ -451,24 +487,13 @@ body {
     line-height: 1.2em;
     font-weight: 400;
     text-align: left; }
-#cmp #map .linethrough {
-  position: relative;
-  border-top: 1px solid #241f20;
-  margin: 3em auto 1em;
-  max-width: 600px; }
-#cmp #map h2 {
-  position: relative;
-  top: -8px;
-  font-family: din-web-reg, "Trebuchet MS", sans-serif;
-  font-weight: 400;
-  letter-spacing: 1px;
-  margin: -1em auto 0;
-  max-width: 400px;
-  background: #008bd9;
-  display: inline-block;
-  padding: 0.25em 1em 0; }
-#cmp #map iframe {
-  border: 3px solid #05719e; }
+#cmp #action .bullytext-game {
+  border-radius: 9px;
+  -moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -o-border-radius: 9px;
+  box-shadow: 0px 0px 1em -0.1em #333333 !important;
+  margin-top: 10px; }
 #cmp #faq h4, #cmp #faq li, #cmp #faq p {
   text-align: left;
   padding: 0 15px 0;
