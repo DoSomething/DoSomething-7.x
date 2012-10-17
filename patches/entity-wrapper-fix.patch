@@ -1,0 +1,34 @@
+diff --git a/sites/all/modules/entity/includes/entity.wrapper.inc b/sites/all/modules/entity/includes/entity.wrapper.inc
+index 26ece30..4022751 100644
+--- a/sites/all/modules/entity/includes/entity.wrapper.inc
++++ b/sites/all/modules/entity/includes/entity.wrapper.inc
+@@ -593,13 +593,15 @@ class EntityDrupalWrapper extends EntityStructureWrapper {
+   }
+ 
+   protected function setUp() {
+-    $this->propertyInfo = entity_get_property_info($this->type) + array('properties' => array());
+-    $info = $this->info + array('property info' => array(), 'bundle' => NULL);
+-    $this->propertyInfo['properties'] += $info['property info'];
+-    $this->bundle = $info['bundle'];
+-    $this->entityInfo = entity_get_info($this->type);
+-    if (isset($this->bundle)) {
+-      $this->spotBundleInfo(FALSE);
++    if (function_exists('entity_get_property_info')) {
++      $this->propertyInfo = entity_get_property_info($this->type) + array('properties' => array());
++      $info = $this->info + array('property info' => array(), 'bundle' => NULL);
++      $this->propertyInfo['properties'] += $info['property info'];
++      $this->bundle = $info['bundle'];
++      $this->entityInfo = entity_get_info($this->type);
++      if (isset($this->bundle)) {
++        $this->spotBundleInfo(FALSE);
++      }
+     }
+   }
+ 
+@@ -1182,4 +1184,4 @@ class EntityMetadataArrayObject implements ArrayAccess, Countable, IteratorAggre
+   public function getIterator() {
+     return new ArrayIterator($this->data);
+   }
+-}
++}
+\ No newline at end of file

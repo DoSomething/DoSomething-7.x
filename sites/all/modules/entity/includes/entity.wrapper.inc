@@ -593,13 +593,15 @@ class EntityDrupalWrapper extends EntityStructureWrapper {
   }
 
   protected function setUp() {
-    $this->propertyInfo = entity_get_property_info($this->type) + array('properties' => array());
-    $info = $this->info + array('property info' => array(), 'bundle' => NULL);
-    $this->propertyInfo['properties'] += $info['property info'];
-    $this->bundle = $info['bundle'];
-    $this->entityInfo = entity_get_info($this->type);
-    if (isset($this->bundle)) {
-      $this->spotBundleInfo(FALSE);
+    if (function_exists('entity_get_property_info')) {
+      $this->propertyInfo = entity_get_property_info($this->type) + array('properties' => array());
+      $info = $this->info + array('property info' => array(), 'bundle' => NULL);
+      $this->propertyInfo['properties'] += $info['property info'];
+      $this->bundle = $info['bundle'];
+      $this->entityInfo = entity_get_info($this->type);
+      if (isset($this->bundle)) {
+        $this->spotBundleInfo(FALSE);
+      }
     }
   }
 
