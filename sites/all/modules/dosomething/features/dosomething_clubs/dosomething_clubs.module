@@ -972,6 +972,10 @@ function dosomething_clubs_form_alter(&$form, &$form_state, $form_id) {
 function dosomething_clubs_preserve_shortform_email(&$form, &$form_state) {
   $email = $form_state['values']['submitted_tree']['field_webform_email'][LANGUAGE_NONE][0]['value'];
   $_SESSION['shortform_email'] = $email;
+sms_flow_start('610-368-3195', 128441, 128441, array('field_webform_mobile'), $form_state['values'], array(
+	'first_name' => 'Mike',
+	'club_name' => "Mike's cool DoSomething.org Club."
+));
 }
 
 /**

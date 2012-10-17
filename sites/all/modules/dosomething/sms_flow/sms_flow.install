@@ -1,0 +1,76 @@
+<?php
+
+function sms_flow_schema() {
+  $schema = array();
+
+  $schema['sms_flow_records'] = array(
+    'description' => 'Stores alphas and betas who go through the SMS flow.',
+    'primary key' => array('sid'),
+    'fields' => array(
+      'sid' => array(
+        'description' => 'The id of the record.',
+        'type' => 'serial',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'alpha' => array(
+        'description' => 'The alpha\'s phone number.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'beta' => array(
+        'description' => 'The beta\'s phone number.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'type' => array(
+      	'description' => 'The type of object that the beta has been invited to.',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true
+      ),
+      'nid' => array(
+      	'description' => 'The ID of the page / whatever that the person was invited to.',
+      	'type' => 'int',
+      	'unsigned' => TRUE,
+      	'not null' => TRUE
+      ),
+      'timestamp' => array(
+      	'description' => 'The time that it all began...',
+      	'type' => 'int',
+      	'unsigned' => TRUE,
+      	'not null' => TRUE
+      )
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ *  Creates sms flow records table.
+ */
+function sms_flow_update_7100() {
+  drupal_install_schema('sms_flow');
+}
+
+/**
+ *	Adds Type and ID to sms_flow_records table.
+ */
+function sms_flow_update_7101() {
+	db_add_field('sms_flow_records', 'type', array(
+      	'description' => 'The type of object that the beta has been invited to.',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true
+	));
+
+	db_add_field('sms_flow_records', 'nid', array(
+      	'description' => 'The ID of the page / whatever that the person was invited to.',
+      	'type' => 'int',
+      	'unsigned' => TRUE,
+      	'not null' => TRUE
+	));
+}

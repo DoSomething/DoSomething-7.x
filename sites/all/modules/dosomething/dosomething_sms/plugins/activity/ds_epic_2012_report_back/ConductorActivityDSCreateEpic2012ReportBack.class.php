@@ -105,7 +105,7 @@ class ConductorActivityDSCreateEpic2012ReportBack extends ConductorActivity {
 
     $wrapper->save();
 
-    $state->markCompeted();
+    $state->markCompleted();
   }
 
   /**

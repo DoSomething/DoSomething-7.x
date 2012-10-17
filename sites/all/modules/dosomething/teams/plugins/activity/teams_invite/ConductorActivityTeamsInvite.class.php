@@ -34,6 +34,6 @@ class ConductorActivityTeamsInvite extends ConductorActivitySMSPrompt {
       $state->setContext('sms_response', t('Cool! We invited them to your group.'));
     }
 
-    $state->markCompeted();
+    $state->markCompleted();
   }
 }

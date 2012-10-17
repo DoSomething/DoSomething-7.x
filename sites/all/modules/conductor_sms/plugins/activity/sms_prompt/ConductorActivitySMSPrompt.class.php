@@ -27,7 +27,7 @@ class ConductorActivitySMSPrompt extends ConductorActivity {
       $state->markSuspended();
     }
     else {
-      $state->markCompeted();
+      $state->markCompleted();
     }
   }
 

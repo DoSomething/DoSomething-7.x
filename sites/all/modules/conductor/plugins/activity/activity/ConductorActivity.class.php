@@ -47,6 +47,14 @@ class ConductorActivity extends ConductorObject {
   public function addOutput($activity) {
   }
 
+  public function removeOutput($activityName) {
+    foreach ($this->outputs as $key => $val) {
+      if ($val == $activityName) {
+        unset($this->outputs[$key]);
+      }
+    }
+  }
+
   /**
    * Set the activity state on this activity.
    *
@@ -100,7 +108,7 @@ class ConductorActivity extends ConductorObject {
    */
   public function run() {
     if ($this->process()) {
-      $this->activityState->markCompeted();
+      $this->activityState->markCompleted();
     }
     else {
       $this->activityState->markFailed();

@@ -38,7 +38,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
     $birthday = strtotime($birthDate);
     if ($birthday !== FALSE && !dosomething_login_person_is_over_age($birthday, 13)) {
       $state->setContext('sms_response', t('Sorry if you\'re under 13 you must register through DoSomething.org.'));
-      $state->markCompeted();
+      $state->markCompleted();
       return;
     }
 
@@ -99,7 +99,7 @@ class ConductorActivityDSCreateUser extends ConductorActivity {
     $reset_link = user_pass_reset_url($account);
     $message = t('You\'re registered! Your password for DoSomething.org is @pass or click: !link', array('!link' => $reset_link, '@pass' => $pass));
     $state->setContext('sms_response', $message);
-    $state->markCompeted();
+    $state->markCompleted();
   }
 
 }

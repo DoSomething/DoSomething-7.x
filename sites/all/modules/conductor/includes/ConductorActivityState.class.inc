@@ -75,7 +75,7 @@ class ConductorActivityState {
   }
 
   // TODO: Do I really want a ton of different methods just to manipulate a single attribute?
-  public function markCompeted() {
+  public function markCompleted() {
     $this->status = self::COMPLETED;
   }
 

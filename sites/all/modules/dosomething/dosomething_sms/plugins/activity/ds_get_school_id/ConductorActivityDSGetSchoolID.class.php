@@ -45,7 +45,7 @@ class ConductorActivityDSGetSchoolID extends ConductorActivity {
       }
     }
 
-    $state->markCompeted();
+    $state->markCompleted();
   }
 
   /**

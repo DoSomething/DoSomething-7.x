@@ -56,6 +56,6 @@ class ConductorActivityTeamsJoinTeam extends ConductorActivitySMSPrompt {
       drupal_save_session($old_state);
     }
 
-    $state->markCompeted();
+    $state->markCompleted();
   }
 }

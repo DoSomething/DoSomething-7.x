@@ -1,0 +1,345 @@
+<?php
+
+/**
+ *	Begins the most epic SMS flow ever.  But seriously, opts an Alpha into a Mobile Commons campaign.  Then opts in Betas into another Mobile Commons
+ *	campaign.  Sends $variables (an array of custom variables, surprisingly) along with those opt-ins.  Apply this function in a form submit function.
+ *	
+ *	@param $alpha_number
+ *		The phone number of the alpha who invited the betas.
+ *	@param $alpha_optin
+ *		A campaign number on mobile commons that the ALPHA will be opted in to.
+ *	@param $beta_optin
+ *		A campaign on mobile commons that the BETA will be opted into.
+ *	@param $beta_numbers
+ *		An array of the field keys that represent the phone numbers that the alpha invited through the form.
+ *		ALTERNATELY: An array of valid phone numbers to opt in through the opt-in path.
+ *	@param $form_values
+ *		An array of form values from the submitted webform.
+ *	@param $variables
+ *		An array of custom variables to send with the opt-in.  These translate to {{variables}} on Mobile Commons.
+ *	@param $beta_to_alpha_campaign
+ *		A campaign that the beta (then Gamma, then whatever is after Gamma) should be opted into when they invite their friends.  Optional.
+ *
+ *	Example (found in dosomething_clubs_preserve_shortform_email() in dosomething_clubs.module):
+ * 		sms_flow_start('610-368-3195', 128441, 128441, array('field_webform_mobile'), $form_state['values'], array(
+ *	 		'first_name' => 'Mike',
+ *			'club_name' => "Mike's cool DoSomething.org Club."
+ *		));
+ *
+ */
+
+function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_numbers, $form_values, Array $variables, $beta_to_alpha_campaign = FALSE) {
+  if (dosomething_general_valid_cell($alpha_number)) {
+  	dosomething_general_mobile_commons_subscribe($alpha_number, (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign), $variables);
+  }
+
+  $nid = 0;
+  if (!empty($form_values['details']['nid'])) {
+	$nid = $form_values['details']['nid'];
+  }
+
+  $n = node_load($nid);
+  $type = $n->type;
+
+  foreach ($beta_numbers AS $key => $field) {
+  	$p = '';
+
+  	// Generic $form_state['values']['submitted_tree']
+  	if (isset($form_values['submitted_tree']) && isset($form_values['submitted_tree'][$field][LANGUAGE_NONE][0])) {
+  		$p = current($form_values['submitted_tree'][$field][LANGUAGE_NONE][0]);
+  	}
+
+  	// Security for the multiple form_state['values'] that we have migrating around the site.
+  	else if (isset($form_values[$field][LANGUAGE_NONE][0])) {
+  		$p = current($form_values[$field][LANGUAGE_NONE][0]);
+  	}
+
+  	// Array of phone numbers passed to function
+  	if (dosomething_general_valid_cell($field)) {
+  		$p = $field;
+  	}
+
+  	// Check if valid cell and opt in to Mobile Commons.
+  	if (dosomething_general_valid_cell($p)) {
+  		dosomething_general_mobile_commons_subscribe($p, $beta_optin, $variables);
+  	}
+
+    $record = array(
+  	  'alpha' => $alpha_number,
+  	  'beta' => $p,
+  	  'timestamp' => REQUEST_TIME,
+  	  'type' => $type,
+  	  'nid' => $nid
+    );
+
+    drupal_write_record('sms_flow_records', $record);
+  }
+}
+
+/**
+ *  Accepts a phone number and returns the alpha who invited that phone number, if applicable.
+ *
+ *  @param $beta
+ *	The beta's phone number.  Accepts with punctuation (e.g. xxx-xxx-xxxx) or without.
+ *  @param $nid (optional...for now.)
+ *	The node id that is being referenced.  This will ensure that we pull the correct alpha, when we
+ *	have multiple flow types running at the same time.
+ *
+ *  @return the alpha's phone number, if applicable, or false.
+ *
+ *  Example:
+ *  sms_flow_find_alpha('610-368-3195');
+ */
+function sms_flow_find_alpha($beta, $nid = false) {
+  $beta_parsed = preg_replace('#[^0-9]#i', '', $beta);
+  $select = db_query("
+	SELECT alpha
+	FROM sms_flow_records
+	WHERE
+	   (beta = '" . $beta . "'
+	   OR beta = '" . $beta_parsed . "')
+	   #AND `nid` = " . intval($nid) . "
+	ORDER BY sid DESC
+	LIMIT 1
+  ");
+
+  $r = current($select->fetchAll());
+  return ($r->alpha ? $r->alpha : false);
+}
+
+/**
+ * Implements hook_menu()
+ */
+function sms_flow_menu() {
+  $items = array();
+
+  $items['sms/sms_flow/%'] = array(
+    'title' => 'Mobile Commons SMS Receiver for Invite Flow',
+    'page callback' => 'sms_flow_incoming_callback',
+    'access callback' => 'sms_mobile_commons_incoming_check',
+    'page arguments' => array(2),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Mimics functionality found in sms_mobile_commons_incoming_callback(). Allows for
+ * for different endpoints to trigger different keyword paths
+ */
+function sms_flow_incoming_callback($path) {
+  switch ($path) {
+    case 'drives-invite':
+      $keyword = 'drives-invite';
+      break;
+    case 'ftaf':
+      $keyword = 'ftaf';
+      break;
+    default:
+      watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
+      return NULL;
+  }
+
+  // Using same code from sms_mobile_commons_incoming_callback(). Only difference
+  // is $keyword gets set depending on the path found above.
+  $message = isset($_REQUEST['args']) ? $_REQUEST['args'] : FALSE;
+  $carrier = isset($_REQUEST['carrier']) ? $_REQUEST['carrier'] : FALSE;
+  $sender = isset($_REQUEST['phone']) ? $_REQUEST['phone'] : FALSE;
+  $gateway = sms_gateways('gateway', 'sms_mobile_commons');
+  $config = $gateway['configuration'];
+  $output = $config['sms_mobile_commons_response'];
+  $context = array(
+    'message' => $message,
+    'keyword' => $keyword,
+    'carrier' => $carrier,
+    'sender' => $sender,
+    'gateway' => $gateway,
+  );
+  drupal_alter('sms_mobile_commons_response', $output, $context);
+  sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword, 'response' => $output));
+  $args = array('%sender' => $sender, '%message' => $message, '%response' => $output, '%keyword' => $keyword);
+  watchdog('sms_flow', 'Received message from %sender: %message with keyword %keyword and responded with %response', $args);
+  $output =
+  '<?xml version="1.0" encoding="UTF-8"?>
+  <response>
+   <reply>
+    <text>
+     <![CDATA[' . $output . ']]>
+    </text>
+   </reply>
+  </response>';
+  print $output;
+
+  return NULL;
+}
+
+/**
+ * Merely for reference.  Not used because dosomething_general_mobile_commons_subscribe offers the same functionality.
+ */
+function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array()) {
+  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
+
+  // Send the post data.
+  $options = array(
+    'headers' => array(
+      'Content-type' => 'application/x-www-form-urlencoded',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    ),
+    'method' => 'POST',
+    'data' => "person[phone]=$mobile&opt_in_path[]=$opt_in_path",
+  );
+
+  if (!empty($args)) {
+    foreach ($args AS $key => $val) {
+      $options['data'] .= "&person[$key]=" . urlencode($val);
+    }
+  }
+
+  drupal_http_request($api_opt_in_path_url, $options);
+}
+
+/**
+ * Specifies conductor workflows that should trigger for a given endpoint
+ *   [endpoint] => [conductor workflow]
+ */
+function sms_flow_conductor_sms_keywords() {
+  return array(
+    'drives-invite' => 'sms_flow_drives_invite',
+    'ftaf' => 'sms_flow_ftaf',
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function sms_flow_ctools_plugin_api($owner, $api) {
+  if ($owner == 'conductor') {
+    return array('version' => 1.0);
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory
+ */
+function sms_flow_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'conductor') {
+    return "plugins/$plugin_type";
+  }
+}
+
+function sms_flow_default_conductor_workflows() {
+  $workflows = array();
+
+  //
+  // sms_flow_drives_invite workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_drives_invite';
+  $workflow->title = 'SMS Flow Drives Invite';
+  $workflow->description = 'Workflow for invitees of a drive invite';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('drive_invite_response');
+
+  $activity = $workflow->newActivity('sms_flow_drive_invite_response');
+  $activity->name = 'drive_invite_response';
+  $activity->title = 'Process user rejection or acceptance of the invite';
+  $activity->accept_responses = array('y','yes','yea','ya');
+  $activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive.');
+  $activity->inputs = array('start');
+  $activity->outputs = array('ask_name', 'process_beta', 'end');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_name';
+  $activity->title = 'Ask Name';
+  $activity->question = t('Thanks for joining the drive! We just need one bit of information before completing your registration. What\'s your first name?');
+  $activity->inputs = array('drive_invite_response');
+  $activity->outputs = array('process_beta');
+
+  $activity = $workflow->newActivity('sms_flow_drives_invited_beta');
+  $activity->name = 'process_beta';
+  $activity->title = 'Process Drive Betas';
+  $activity->alpha_campaign_id = 99961;
+  $activity->success_message = t('Great! You\'ve successfully joined the drive. ');
+  $activity->inputs = array('drive_invite_response', 'ask_name');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('process_beta');
+  $activity->outputs = array('ftaf_process');
+
+  $activity = $workflow->newActivity('sms_flow_ftaf');
+  $activity->name = 'ftaf_process';
+  $activity->title = 'Forward to a Friend';
+  $activity->alpha_optin = 129071;
+  $activity->beta_optin = 129751;
+  $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with FTAF if you want to invite more.');
+  $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with FTAF.');
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('drive_invite_response', 'ftaf_process');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_ftaf workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_ftaf';
+  $workflow->title = 'Forward to a Friend';
+  $workflow->description = 'Custom forward to a friend workflow';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('ftaf_prompt');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ftaf_prompt';
+  $activity->title = 'Start prompt for FTAF';
+  $activity->question = t('Want to invite more friends? Reply back with their cell numbers separated by commas and we\'ll send them an invite for you!');
+  $activity->inputs = array('start');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('ftaf_prompt');
+  $activity->outputs = array('ftaf_process');
+
+  $activity = $workflow->newActivity('sms_flow_ftaf');
+  $activity->name = 'ftaf_process';
+  $activity->title = 'Forward to a Friend';
+  $activity->alpha_optin = 129071;
+  $activity->beta_optin = 129751;
+  $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with FTAF if you want to invite more.');
+  $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with FTAF.');
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('ftaf');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  return $workflows;
+}

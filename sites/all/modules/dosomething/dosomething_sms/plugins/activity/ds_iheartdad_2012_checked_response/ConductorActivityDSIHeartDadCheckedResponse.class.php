@@ -136,6 +136,6 @@ class ConductorActivityDSIHeartDadCheckedResponse extends ConductorActivity {
     $state->setContext('sms_response', $msg_response);
 
     // End activity
-    $state->markCompeted();
+    $state->markCompleted();
   }
 }

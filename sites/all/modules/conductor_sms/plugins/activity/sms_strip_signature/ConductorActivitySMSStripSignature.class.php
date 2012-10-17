@@ -21,7 +21,7 @@ class ConductorActivitySMSStripSignature extends ConductorActivity {
     foreach ($smsMessages as $key => $value) {
       $state->setContext($key, $value);
     }
-    $state->markCompeted();
+    $state->markCompleted();
   }
 
   /**
