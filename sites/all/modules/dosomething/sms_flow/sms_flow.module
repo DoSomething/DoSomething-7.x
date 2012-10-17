@@ -258,7 +258,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_name';
   $activity->title = 'Ask Name';
-  $activity->question = t('Name? Now.');
+  $activity->question = t('Thanks for joining the drive! We just need one bit of information before completing your registration. What\'s your first name?');
   $activity->inputs = array('drive_invite_response');
   $activity->outputs = array('process_beta');
 

@@ -63,8 +63,9 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
         $args = array(
           'tfj2013_inviter' => $inviter_name,
         );
-        // TODO: are there other form values and args that need to be passed in?
-        sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, FALSE, $args, FALSE);
+        // TODO: get nid from a value passed through Mobile Commons or track from database?
+        $f['details']['nid'] = 0;
+        sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
       }
       
       $response = $this->response_success;

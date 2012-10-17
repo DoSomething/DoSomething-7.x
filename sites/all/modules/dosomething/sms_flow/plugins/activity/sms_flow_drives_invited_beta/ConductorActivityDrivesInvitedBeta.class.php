@@ -65,7 +65,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         catch( Exception $e ) {
         }
 
-        $this->success_message .= t('Ur password to login and view your drive at DoSomething.org/mytfjdrive is @pass', array('@pass' => $pass));
+        $this->success_message .= t('Ur password to login and view your drive at DoSomething.org/mytfjdrive is @pass. ', array('@pass' => $pass));
       }
 
       // TODO: join beta into corresponding drive. Is it just a straight up webform submit?
