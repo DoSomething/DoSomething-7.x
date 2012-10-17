@@ -1,0 +1,27 @@
+diff --git a/modules/field/field.module b/modules/field/field.module
+index 6fc97a2..e62923c 100644
+--- a/modules/field/field.module
++++ b/modules/field/field.module
+@@ -503,14 +503,16 @@ function field_get_default_value($entity_type, $entity, $field, $instance, $lang
+  *   the array keys to ensure sequential deltas.
+  */
+ function _field_filter_items($field, $items) {
+-  $function = $field['module'] . '_field_is_empty';
+-  foreach ((array) $items as $delta => $item) {
+-    // Explicitly break if the function is undefined.
+-    if ($function($item, $field)) {
+-      unset($items[$delta]);
++  if (!empty($field['module'])) {
++    $function = $field['module'] . '_field_is_empty';
++    foreach ((array) $items as $delta => $item) {
++      // Explicitly break if the function is undefined.
++      if ($function($item, $field)) {
++        unset($items[$delta]);
++      }
+     }
++    return array_values($items);
+   }
+-  return array_values($items);
+ }
+ 
+ /**
