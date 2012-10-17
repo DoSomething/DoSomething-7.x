@@ -1,0 +1,6 @@
+name = "Facebook Connections"
+description = "Create Facebook actions"
+core = 7.x
+package = "DoSomething"
+files[] = connections.module
+files[] = connections.rules.inc

@@ -1,0 +1,9 @@
+/* line 1, ../sass/connections-og-post.sass */
+.og-post-dialog {
+  background: transparent;
+}
+
+/* line 4, ../sass/connections-og-post.sass */
+.og-post-dialog .ui-dialog-titlebar {
+  display: none;
+}

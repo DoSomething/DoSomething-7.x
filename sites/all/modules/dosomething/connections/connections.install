@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * implements hook_schema().
+ */
+function connections_schema() {
+  $schema = array();
+
+  $schema['fb_connections'] = array(
+    'description' => 'Stores Facebook Open Graph connections',
+    'primary key' => array('cid'),
+    'fields' => array(
+      'cid' => array(
+        'description' => 'The connection ID.',
+        'type' => 'serial',
+        'unsigned' => true,
+        'not null' => true
+      ),
+      'webforms' => array(
+        'description' => 'Comma-separated list of webforms.',
+        'type' => 'text',
+        'not null' => true,
+      ),
+      'webform_types' => array(
+        'description' => 'Comma-separated list of TYPES of webforms (encompasses all webforms under them).',
+        'type' => 'text',
+        'not null' => true,
+      ),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ *  Creates Invitations table
+ */
+function connections_update_7100() {
+  drupal_install_schema('connections');
+}

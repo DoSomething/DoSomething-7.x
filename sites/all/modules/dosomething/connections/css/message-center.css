@@ -1,0 +1,7 @@
+ul.message-list {
+  border: 1px solid black;
+  list-style-type: none;
+}
+ul.message-list li {
+  list-style-type: none;
+}

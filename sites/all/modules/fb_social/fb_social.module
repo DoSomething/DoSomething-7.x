@@ -581,6 +581,8 @@ function fb_social_page_alter(&$page){
   $appid = variable_get('fb_social_appid', '');
   $channel_url = $base_url . "/fb_social/channel";
 
+  drupal_alter('fb_social_app_id', $appid);
+
   $output = '<div id="fb-root"></div>';
   $output .= "<script type=\"text/javascript\">
      window.fbAsyncInit = function() {

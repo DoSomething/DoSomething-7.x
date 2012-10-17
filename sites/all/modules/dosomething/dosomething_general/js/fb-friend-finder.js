@@ -7,7 +7,7 @@
       $('body').append($(raw));
     }
   };
-  Drupal.friendFinder = function (attach, permission, callback) {
+  Drupal.friendFinder = function (attach, permission, callback, auto_click) {
     var to = window.setInterval(function () {
       if (typeof FB != 'undefined') {
         window.clearInterval(to);
@@ -16,7 +16,7 @@
     }, 5);
 
     function ffInit() {
-      FB.Event.subscribe('auth.statusChange', function(response) {
+      FB.getLoginStatus(function(response) {
         if(response.status == 'connected') {
           FB.api('/me/permissions', parsePermissions);
         }
@@ -35,6 +35,10 @@
             attachClick(attach, callback);
           }, {scope: permission});
         });
+
+      	if (auto_click) {
+      	  attach.click();
+      	}
       }
     }
 
@@ -49,10 +53,23 @@
         autoDeselection: true,
       });
 
+      Drupal.friendFinder.instance = friendSelector;
+
       attach.click(function (e) {
         e.preventDefault();
         friendSelector.showFriendSelector();
       });
+
+      if (auto_click) {
+      	attach.click();
+      }
     }
-  }
+  };
+
+  Drupal.friendFinder.clear_friends = function() {
+    if (typeof Drupal.friendFinder.instance !== 'undefined') {
+      Drupal.friendFinder.instance.reset();
+      Drupal.behaviors.fb.receivers = {};
+    }
+  };
 }(jQuery));

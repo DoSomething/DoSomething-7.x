@@ -1,0 +1,245 @@
+<?php
+
+function pr($stuff) {
+	echo '<pre>', print_r($stuff), '</pre>';
+}
+
+/**
+ *	Implements hook_fb_social_app_id_alter()
+ *  Changes the app ID if $_SESSION['fb_app_id'] is set.
+ */
+function connections_fb_social_app_id_alter(&$app_id) {
+	if (!empty($_SESSION['fb_app_id']) && !isset($_SESSION['form']['op'])) {
+		$app_id = intval($_SESSION['fb_app_id']);
+		unset($_SESSION['fb_app_id']);
+	}
+}
+
+/**
+ *	Implements hook_menu()
+ */
+function connections_menu() {
+  // Pseudo-handler page for fake Facebook dialog boxes.
+  $items['fb-connections/%'] = array(
+    'page callback' => 'connections_handle_fb_dialog',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  // Message center home.
+  $items['admin/message-center'] = array(
+  	'title' => t('Facebook Notification Center'),
+  	'page callback' => 'connections_message_center',
+  	'access callback' => TRUE,
+  	'type' => MENU_CALLBACK
+  );
+
+  return $items;
+}
+
+/**
+ *	Passes variables from $_GET to the theme template for specific Facebook dialog boxes.
+ *  Also sanitizes input.
+ *
+ *	@param $t
+ * 		A template ID associated with the $options array.
+ *		$options will send it to the right home.
+ */
+function connections_handle_fb_dialog($t) {
+	$options = array(
+		'og-post' => 'connections_og_post',
+		'fb-message' => 'connections_message',
+		'multi-feed' => 'connections_multi_feed'
+	);
+
+	if (!isset($options[$t])) {
+		return;
+	}
+
+	$params = array();
+	$params = array(
+		'image' => $_GET['img'],
+		'title' => $_GET['title'],
+		'caption' => $_GET['caption'],
+		'description' => $_GET['desc'],
+		'to' => $_GET['to'],
+		'photo' => $_GET['mypic']
+	);
+
+	echo theme($options[$t], $params);
+	return null;
+}
+
+/**
+ *	Implements hook_theme()
+ */
+function connections_theme($existing, $type, $theme, $path) {
+  return array(
+    'connections_og_post' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'title' => NULL,
+        'description' => NULL,
+        'image' => NULL,
+        'to' => NULL
+      ),
+      'template' => 'fb-connections-og-post',
+    ),
+    'connections_message' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'title' => NULL,
+        'caption' => NULL,
+        'description' => NULL,
+        'image' => NULL,
+        'to' => NULL
+      ),
+      'template' => 'fb-connections-message',
+    ),
+    'connections_multi_feed' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'title' => NULL,
+        'caption' => NULL,
+        'description' => NULL,
+        'image' => NULL,
+        'to' => NULL
+      ),
+      'template' => 'fb-connections-multi-post',
+    ),
+  );
+}
+
+/**
+ *	Implements hook_page_alter()
+ */
+function connections_page_alter(&$page) {
+	drupal_add_library('dosomething_general', 'fb-friend-finder');
+
+	$fb_actions = array(
+		'fb_connect' => 'feed',
+		'og_connect' => 'ograph',
+		'fb_app_request' => 'request',
+		'fb_message' => 'message'
+	);
+	$faces = array();
+	foreach ($_SESSION AS $action => $fb_info) {
+		if (in_array($action, array_keys($fb_actions))) {
+		   $stuff = (current(array_filter($fb_info, 'connections_session_filter_array')));
+		   connections_clean_variables($stuff);
+
+		   if (!isset($stuff['og_document']) && isset($stuff['og_namespace'])) {
+		   		$stuff['og_document'] = url(request_uri(), array('absolute' => TRUE));
+		   }
+		   if (!isset($stuff['feed_document']) && !isset($stuff['og_namespace'])) {
+		   		$stuff['feed_document'] = url(request_uri(), array('absolute' => TRUE));
+		   }
+		   $faces[$fb_actions[$action]] = $stuff;
+
+		   if ($stuff['og_post_description'] || $stuff['feed_description']) {
+		   	  global $fb_og_desc;
+		   	  $fb_og_desc = ($stuff['og_post_description'] ? $stuff['og_post_description'] : $stuf['feed_description']);
+		   }
+		}
+	}
+
+	if (!empty($faces)) {
+		$options = json_encode($faces);
+	    drupal_add_js(drupal_get_path('module', 'connections') . '/js/connections.js', array(
+	    	'scope' => 'footer',
+	    	'weight' => 1001
+	    ));
+
+	    drupal_add_css(drupal_get_path('module', 'connections') . '/css/connections-og-post.css', array(
+	    	'scope' => 'footer',
+	    	'weight' => 1002
+	    ));
+
+		drupal_add_js('var options = ' . $options . ';', array(
+			'scope' => 'footer',
+			'type' => 'inline',
+			'weight' => 1003
+		));
+
+		drupal_add_js('Drupal.behaviors.fb.init(options);', array(
+			'scope' => 'footer',
+			'type' => 'inline',
+			'weight' => 1004
+		));
+	}
+}
+
+/**
+ *	Implements hook_html_head_alter()
+ *	Changes the meta description, if set.
+ */
+function connections_html_head_alter(&$head) {
+	global $fb_og_desc;
+	$fb_og_desc = trim($fb_og_desc);
+	if (!empty($fb_og_desc) && $fb_og_desc !== "''") {
+		// Trim 
+		$head['opengraph_meta_og:description']['#attributes']['content'] = substr(substr($fb_og_desc, 1), 0, -1);
+	}
+}
+
+/**
+ *	Cleans javascript variables for everything ever.
+ *
+ *	@param $variables
+ *		An associative array of values that will be passed into the connections class.
+ */
+function connections_clean_variables(&$variables) {
+	foreach ($variables AS $key => $val) {
+		// Assuming the value is not "document.location.href" and it's not the custom variables array...
+		if ($val !== 'document.location.href' && $key !== 'og_post_custom') {
+			// Wrap the variable in single quotes, and escape single quotes inside of it.
+			#$variables["$key"] = "'" . str_replace("'", "\'", $val) . "'";
+		}
+
+		// Parse javascript variables (wrapped in curly braces - {} - on the admin side.) 
+		#$variables["$key"] = preg_replace('#\{(.*?)\}#i', '" + \\1 + "', $variables["$key"]);
+	}
+}
+
+/** 
+ *  Filters for SESSION variables to find the first array.
+ *  The first array contains the information we need.
+ */
+function connections_session_filter_array($var) {
+	return is_array($var);	
+}
+
+function connections_notifications_form($form, &$form_state) {
+  $form['#attached']['css'][] = array(
+      'data' => drupal_get_path('module', 'connections') . '/css/message-center.css',
+      'weight' => 1000
+  );
+	$form['disclaimer'] = array(
+		'#markup' => 'Thanks for your interest in messaging the fine people on the Facebook.  Fill out a message below and hit the submit button somewhere down there.',
+		'#prefix' => '<p>',
+		'#suffix' => '</p>'
+	);
+
+	$list = array(
+		'<span class="counter-labels">Label</span><span class="digits">Digit</span>',
+		'Two (2)',
+		'Three (3)'
+	);
+
+	$form['more'] = array(
+		'#theme' => 'item_list',
+		'#items' => $list,
+		'#attributes' => array(
+			'class' => array('message-list')
+		)
+	);
+
+	return $form;
+}
+
+function connections_message_center() {
+	$form = drupal_get_form('connections_notifications_form');
+
+	return $form;
+}
