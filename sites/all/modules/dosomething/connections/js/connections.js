@@ -365,7 +365,9 @@
         custom_vars: config.og_post_custom
   		};
 
-  		var fbpost = {};
+  		var fbpost = {
+        'fb:explicitly_shared': true
+      };
       // fbpost.TYPE = LINK
   		eval('fbpost.' + things.type + ' = "' + things.link + '";');
 
