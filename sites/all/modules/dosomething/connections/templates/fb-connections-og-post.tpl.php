@@ -102,7 +102,7 @@
  		-webkit-border-radius: 0px;
  		-ms-border-radius: 0px;
  		-o-border-radius: 0px;
- 		text-shadow: 0px;
+ 		text-shadow: none;
  	}
 
  	input[type="submit"] {
