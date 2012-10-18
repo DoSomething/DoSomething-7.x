@@ -517,6 +517,20 @@ body {
       background: #0054aa; }
     #cmp #header .tagline {
       padding: 8% 0 0 0; }
+    #cmp #header .pane-campaign-signed h2 {
+      text-align: center;
+      text-transform: uppercase; }
+    #cmp #header .pane-campaign-signed .action-now {
+      margin: 0 auto;
+      display: inline-block;
+      text-align: center; }
+      #cmp #header .pane-campaign-signed .action-now img {
+        margin: 0em 0.8em 0 0;
+        float: left; }
+      #cmp #header .pane-campaign-signed .action-now .go-button {
+        margin-top: 0.1em;
+        float: left;
+        font-size: 1.8em; }
   #cmp #drive {
     text-align: left; }
   #cmp .drive-info-wrapper {
@@ -616,7 +630,7 @@ body {
     text-align: left;
     padding: 2% 0; }
     #cmp #action.action-participant h2 {
-      background: #0052a8;
+      background: #ff4800;
       display: inline-block;
       padding: 0 4%;
       text-transform: uppercase;
@@ -630,6 +644,18 @@ body {
       margin: -1% 4% -2% 0; }
     #cmp #action.action-participant img.email-help {
       margin: 4% auto 1%; }
+    #cmp #action.action-participant .divider {
+      margin-left: 2%;
+      margin-right: 2%; }
+    #cmp #action.action-participant ul {
+      margin: 0.7em 5% 0 7%;
+      list-style: disc; }
+    #cmp #action.action-participant li {
+      margin: 0 0 0.7em;
+      line-height: 1.4em;
+      color: #0052a8; }
+      #cmp #action.action-participant li span {
+        color: black; }
   #cmp #action.action-leader {
     text-align: left; }
     #cmp #action.action-leader h1 {
@@ -789,7 +815,7 @@ body {
         width: 100%;
         margin: 1% 0; }
   #cmp .refer5 {
-    background: #ff4600;
+    background: #ff4800;
     width: 110%;
     margin: 0 0 0 -4.95%;
     padding: 3%; }
@@ -800,10 +826,10 @@ body {
       border-width: 11px;
       top: 51px; }
     #cmp .refer5:before {
-      border-color: transparent #c23500 #c23500 transparent;
+      border-color: transparent #c23700 #c23700 transparent;
       left: -22px; }
     #cmp .refer5:after {
-      border-color: transparent transparent #c23500 #c23500;
+      border-color: transparent transparent #c23700 #c23700;
       right: -22px; }
   #cmp #social h3 {
     text-transform: none;
@@ -898,7 +924,7 @@ body {
   #cmp #contact-form {
     margin: 10% 0 0 0;
     background: black;
-    background: #ff4600;
+    background: #ff4800;
     width: 100%; }
     #cmp #contact-form h3 {
       color: white;

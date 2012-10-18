@@ -218,25 +218,12 @@
         }
       });*/
 
-    // hackity hack, don't look back
-    if (window.location.pathname.substring(6, 10) == 'next') {
-      $('#block-dosomething-campaign-styles-campaign-nav').hide();
-    }
 
-      if ($('body').hasClass('not-logged-in')) {
-        $('#super-secret-bindable-id').click(function (e) {
-          e.preventDefault();
-          $('#dosomething-login-register-popup-form').attr('action', '/user/registration?destination=spit/sign-up');
-          $('#dosomething-login-login-popup-form').attr('action', '/user?destination=spit/sign-up');
-          $('#dosomething-login-register-popup-form').dialog({
-            resizable: false,
-            draggable: false,
-            modal: true,
-            width: 550
-          });
-        });
-      }
-
+    // Reload page on click 
+      $('.ui-icon-closethick').click(function() {
+        location.reload();
+      });
+         
 
     } // end attach: function
   }; // end Drupal.behaviors
