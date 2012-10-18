@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join Give A Spit!',
+        afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
@@ -78,6 +78,11 @@
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
       $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
+
+      // change over contact form
+      var changeForm = $('.pane-campaign-signed');
+      $('#header #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
+      
 
       // on lines 9-10 terrible things happen
       $('#campaign-opt-in br').remove();
@@ -170,7 +175,7 @@
       // scroll function
       var $window = $(window);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-      var scrollLimitTop = 500;
+      var scrollLimitTop = 340;
       var scrollLimitBot = 5757;
 
       $window.scroll(function () {
@@ -192,14 +197,17 @@
             .css('position', 'static')
         }
       });
-    
-    // search pane tweak
-    $('.form-item-field-geofield-distance-unit').hide();
-    $('.geofield-proximity-origin-from').text('Zip code:');
-   
+
+
+      // kill old asterisks from required fields
+      $('#dosomething-login-register-popup-form .popup-content .field-suffix').remove();
+
+      // search pane tweak
+      $('.form-item-field-geofield-distance-unit').hide();
+      $('.geofield-proximity-origin-from').text('Zip code:');
 
       // hide/show fieldset on drive form for checkbox
-      $("#webform-component-check-show-hide").css('display','none');
+      /*$("#webform-component-check-show-hide").css('display','none');
 
       $("#edit-submitted-give-a-spit-action-kit-1").click(function() {
         if($("#edit-submitted-give-a-spit-action-kit-1").is(":checked")) {
@@ -208,37 +216,25 @@
         else {
           $("#webform-component-check-show-hide").hide("fast");
         }
-      });
-      
+      });*/
 
-      // AUTOCLEAR INPUT PLACEHOLDERS
-      function init(){
-        var inp = document.getElementsByTagName('input');
-        for(var i = 0; i < inp.length; i++) {
-          if(inp[i].type == 'text') {
-            inp[i].setAttribute('rel',inp[i].defaultValue)
-            inp[i].onfocus = function() {
-              if(this.value == this.getAttribute('rel')) {
-                this.value = '';
-              } else {
-                return false;
-              }
-            }
-            inp[i].onblur = function() {
-              if(this.value == '') {
-                this.value = this.getAttribute('rel');
-              } else {
-                return false;
-              }
-            }
-            inp[i].ondblclick = function() {
-              this.value = this.getAttribute('rel')
-            }
-          }
-        }
-      }
-      if(document.childNodes) {
-        window.onload = init
+    // hackity hack, don't look back
+    if (window.location.pathname.substring(6, 10) == 'next') {
+      $('#block-dosomething-campaign-styles-campaign-nav').hide();
+    }
+
+      if ($('body').hasClass('not-logged-in')) {
+        $('#super-secret-bindable-id').click(function (e) {
+          e.preventDefault();
+          $('#dosomething-login-register-popup-form').attr('action', '/user/registration?destination=spit/sign-up');
+          $('#dosomething-login-login-popup-form').attr('action', '/user?destination=spit/sign-up');
+          $('#dosomething-login-register-popup-form').dialog({
+            resizable: false,
+            draggable: false,
+            modal: true,
+            width: 550
+          });
+        });
       }
 
 
