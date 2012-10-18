@@ -2285,6 +2285,11 @@ div[aria-labelledby="ui-dialog-title-dosomething-picsforpets-shelters-options-fo
   margin-left: 60px;
 }
 
+.ui-dialog.og-post-dialog {
+  border-color: transparent;
+  margin-top: -330px;
+}
+
 #picsforpets-invite-friends {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
