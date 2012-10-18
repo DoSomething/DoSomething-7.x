@@ -114,14 +114,7 @@ Drupal.behaviors.dsPfpShare = {
      *       og_require_login     (Initializes the login procedure if a user is not logged in.)
      *       og_fake_dialog       (Whether or not to use the "Fake" dialog that lets users post message with the share)
      *       og_post_custom       (Custom variables as set on the user interface.)*/
-      var conf = {
-        og_namespace: 'dosomethingapp',
-        og_type: 'pet_who_needs_a_home',
-        og_action: 'share',
-        og_post_description: '4 million animals are killed each year because can\'t find a home.  Click SHARE NOW to share this animal.',
-        og_fake_dialog: 0,
-        og_require_login: 1
-      };
+      var conf = Drupal.behaviors.dsPfpShare.create_ograph_config();
       Drupal.behaviors.fb.ograph(conf, function(response) {
         if ((typeof response !== 'undefined') && (response !== null) && !response.error) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
@@ -237,6 +230,23 @@ Drupal.behaviors.dsPfpShare = {
           setTimeout('jQuery(".slideshow-next").click();', 1000);
         }
     });
+  },
+
+  create_ograph_config: function() {
+    var c = {
+        og_namespace: 'dosomethingapp',
+        og_type: 'pet_who_needs_a_home',
+        og_action: 'share',
+        og_post_description: '4 million animals are killed each year because can\'t find a home.  Click SHARE NOW to share this animal.',
+        og_post_image: $('meta[property="og:image"]').attr('content'),
+        og_title: $('meta[property="og:title"]').attr('content'),
+        og_fake_dialog: 1,
+        og_require_login: 1
+      };
+
+      Drupal.behaviors.fb.log(c);
+
+    return c;
   },
 
   update_attrs: function(image, name, adjectives) {

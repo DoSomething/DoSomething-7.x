@@ -134,7 +134,7 @@ Drupal.behaviors.galleryShareButton = {
         og_type: 'pet_who_needs_a_home',
         og_action: 'share',
         og_post_description: '4 million animals are killed each year because can\'t find a home.  Click SHARE NOW to share this animal.',
-        og_fake_dialog: 1,
+        og_fake_dialog: 0,
         og_require_login: 1,
         og_title: settings.dosomething_picsforpets_general.gallery[sid].petName + ' needs a home, and supplies for their shelter',
         og_post_image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl
