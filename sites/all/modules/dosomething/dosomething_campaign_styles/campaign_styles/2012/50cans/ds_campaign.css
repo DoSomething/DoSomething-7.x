@@ -634,7 +634,7 @@ body {
     text-align: left;
     padding: 2% 0; }
     #cmp #action.action-participant h2 {
-      background: #ff4800;
+      background: #ff4600;
       display: inline-block;
       padding: 0 4%;
       text-transform: uppercase;
@@ -818,8 +818,10 @@ body {
       #cmp #scholarship .scholar-input input {
         width: 100%;
         margin: 1% 0; }
+    #cmp #scholarship .rules {
+      font-size: 1em; }
   #cmp .refer5 {
-    background: #ff4800;
+    background: #ff4600;
     width: 110%;
     margin: 0 0 0 -4.95%;
     padding: 3%; }
@@ -830,11 +832,24 @@ body {
       border-width: 11px;
       top: 51px; }
     #cmp .refer5:before {
-      border-color: transparent #c23700 #c23700 transparent;
+      border-color: transparent #c23500 #c23500 transparent;
       left: -22px; }
     #cmp .refer5:after {
-      border-color: transparent transparent #c23700 #c23700;
+      border-color: transparent transparent #c23500 #c23500;
       right: -22px; }
+  #cmp #content-infographic .mobile {
+    display: none;
+    text-align: left; }
+    #cmp #content-infographic .mobile h2 {
+      font-size: 1.3em;
+      line-height: 1.2em;
+      color: #0052a8;
+      margin: 0.5em; }
+    #cmp #content-infographic .mobile span {
+      color: #ff4600;
+      font-weight: 600; }
+    #cmp #content-infographic .mobile p {
+      margin: 0 0.5em 0.7em; }
   #cmp #social h3 {
     text-transform: none;
     font-size: 1em;
@@ -928,7 +943,7 @@ body {
   #cmp #contact-form {
     margin: 10% 0 0 0;
     background: black;
-    background: #ff4800;
+    background: #ff4600;
     width: 100%; }
     #cmp #contact-form h3 {
       color: white;
@@ -1141,7 +1156,11 @@ body {
         width: 50%; }
     #cmp #search iframe {
       width: 75%;
-      border: 3px solid #cccccc; } }
+      border: 3px solid #cccccc; }
+    #cmp #content-infographic .mobile {
+      display: block; }
+    #cmp #content-infographic img {
+      display: none; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 5% auto; }
