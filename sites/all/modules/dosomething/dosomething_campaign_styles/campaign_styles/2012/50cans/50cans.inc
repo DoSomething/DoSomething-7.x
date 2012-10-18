@@ -31,7 +31,7 @@ $plugin = array(
     array('title' => 'the rundown', 'href' => '', 'fragment' => 'action'),
     array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
     array('title' => 'bring them here', 'href' => '', 'fragment' => 'search'),
-    array('title' => 'life of a can', 'href' => '', 'fragment' => 'content-infographic'),
+    array('title' => 'what\'s the impact', 'href' => '', 'fragment' => 'content-infographic'),
     array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
