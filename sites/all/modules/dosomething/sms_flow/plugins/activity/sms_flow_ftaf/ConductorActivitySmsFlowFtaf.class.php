@@ -65,18 +65,20 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
         $profile = profile2_load_by_user($account);
         if (isset($profile['main'])) {
           $inviter_name = $profile['main']->field_user_first_name[LANGUAGE_NONE][0]['value'];
+
+          if (empty($inviter_name)) {
+            $inviter_name = $mobile;
+          }
         }
       }
 
-      if (!empty($inviter_name)) {
-        $args = array(
-          'tfj2013_inviter' => $inviter_name,
-          'drives_invite_nid' => $drives_invite_nid,
-        );
-        // TODO: get nid from a value passed through Mobile Commons or track from database?
-        $f['details']['nid'] = $drives_invite_nid;
-        sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
-      }
+      $args = array(
+        'tfj2013_inviter' => $inviter_name,
+        'drives_invite_nid' => $drives_invite_nid,
+      );
+
+      $f['details']['nid'] = $drives_invite_nid;
+      sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
       
       $response = $this->response_success;
     }
