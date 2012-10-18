@@ -350,13 +350,13 @@
      *    A callback function which triggers when a post was succesfully made.
      *    
      */
-  	ograph: function(config) {
+  	ograph: function(config, callback) {
   		// OG Type, action, document, selector, require login, fake dialog
   		var things = {
         namespace: config.og_namespace,
   			type: config.og_type,
   			action: config.og_action,
-  			link: config.og_document,
+  			link: config.og_document || document.location.href,
         picture: config.og_post_image,
         description: config.og_post_description,
   			selector: config.og_selector,
@@ -366,8 +366,8 @@
   		};
 
   		var fbpost = {};
-      // fbpost.TYPE = ACTION
-  		eval('fbpost.' + things.type + ' = "' + things.action + '";');
+      // fbpost.TYPE = LINK
+  		eval('fbpost.' + things.type + ' = "' + things.link + '";');
 
       if (things.custom_vars) {
         for (i in things.custom_vars) {
@@ -383,21 +383,21 @@
       if (things.dialog == 1) {
         if (things.selector) {
           $('body ' + things.selector).click(function() {
-            Drupal.behaviors.fb.ograph_message(things, fbpost);
+            Drupal.behaviors.fb.ograph_message(things, fbpost, callback);
           });
         }
         else {
-          Drupal.behaviors.fb.ograph_message(things, fbpost);
+          Drupal.behaviors.fb.ograph_message(things, fbpost, callback);
         }
       }
       else {
         if (things.selector) {
           $('body ' + things.selector).click(function() {
-            Drupal.behaviors.fb.run_ograph(things, fbpost);
+            Drupal.behaviors.fb.run_ograph(things, fbpost, callback);
           });
         }
         else {
-          Drupal.behaviors.fb.run_ograph(things, fbpost);
+          Drupal.behaviors.fb.run_ograph(things, fbpost, callback);
         }
       }
 
@@ -408,13 +408,13 @@
      *  Pops up a fake "Facebook" dialog box which lets users share
      *  a message with their open graph post.
      */
-    ograph_message: function(things, fbpost) {
+    ograph_message: function(things, fbpost, callback) {
       Drupal.behaviors.fb.real_auth(things, function() {
         Drupal.behaviors.fb.fb_dialog('og-post', things, function(response) {
           if (response.comments) {
             fbpost.message = response.comments;
           }
-          Drupal.behaviors.fb.run_ograph(things, fbpost);
+          Drupal.behaviors.fb.run_ograph(things, fbpost, callback);
         });
       });
     },
@@ -422,7 +422,7 @@
     /**
      *  Performs the actual Open Graph call, using variables defined in the ograph function.
      */
-    run_ograph: function(things, fbpost) {
+    run_ograph: function(things, fbpost, callback) {
       Drupal.behaviors.fb.log(fbpost);
       Drupal.behaviors.fb.real_auth(things, function() {
         FB.api(
@@ -430,8 +430,8 @@
           'post',
           fbpost,
           function (response) {
-            if (typeof console !== 'undefined') {
-              Drupal.behaviors.fb.log(response);
+            if (typeof callback == 'function') {
+              callback(response);
             }
           }
         );

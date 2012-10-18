@@ -1,5 +1,6 @@
-/* line 1, ../sass/connections.sass */
 .form-item-fb-object, .form-item-fb-document {
   width: 50%;
-  float: left;
-}
+  float: left; }
+
+.og-post-dialog {
+  text-align: left; }

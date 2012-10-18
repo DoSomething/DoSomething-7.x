@@ -38,6 +38,24 @@ function connections_menu() {
   return $items;
 }
 
+/*
+ * Implements hook_library().
+ */
+function connections_library() {
+  $libraries = array();
+  $libraries['fb-connections'] = array(
+    'title' => 'Facebook Connections',
+    'version' => '1.0',
+    'js' => array(
+      drupal_get_path('module', 'connections') . '/js/connections.js' => array(),
+    ),
+    'css' => array(
+      drupal_get_path('module', 'connections') . '/css/connections.css' => array(),
+    ),
+  );
+  return $libraries;
+}
+
 /**
  *	Passes variables from $_GET to the theme template for specific Facebook dialog boxes.
  *  Also sanitizes input.
@@ -143,6 +161,8 @@ function connections_page_alter(&$page) {
 			   	  global $fb_og_desc;
 			   	  $fb_og_desc = ($stuff['og_post_description'] ? $stuff['og_post_description'] : $stuf['feed_description']);
 			   }
+
+			   unset($_SESSION[$action]);
 			}
 		}
 
