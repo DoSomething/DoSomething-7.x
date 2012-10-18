@@ -240,7 +240,7 @@ Drupal.behaviors.dsPfpShare = {
         og_post_description: '4 million animals are killed each year because can\'t find a home.  Click SHARE NOW to share this animal.',
         og_post_image: $('meta[property="og:image"]').attr('content'),
         og_title: $('meta[property="og:title"]').attr('content'),
-        og_fake_dialog: 1,
+        og_fake_dialog: 0,
         og_require_login: 1
       };
 
