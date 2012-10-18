@@ -78,21 +78,26 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
 
-      $ch = curlinit();
-      curl_setopt($ch, CULROPT_USERPWD, 'developers@dosomething.org:80276608');
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+      curl_setopt($ch, CURLOPT_USERPWD, "developers@dosomething.org:80276608");
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
       curl_setopt($ch, CURLOPT_URL, $profileUrl);
       $xml = curl_exec($ch);
       curl_close();
 
-      $xml = new SimpleXMLElement($xml);
       $drives_invite_nid = 0;
-      if ($xml && $xml->profile) {
-        $drives_invite_nid = $xml->profile->drives_invite_nid;
+      $pattern = '#\<custom_column name\="drives_invite_nid"\>(.*?)\<\/custom_column\>#is';
+      preg_match($pattern, $xml, $patternMatches);
+      if (count($patternMatches) >= 2) {
+        $drives_invite_nid = trim($patternMatches[1]);
 
         // Get group id based on the nid and join user into that drive
-        $gid = og_get_group('node', $invite_nid)->gid;
-        dosomething_drives_join($gid, $profile->uid);
+        $gid = og_get_group('node', $drives_invite_nid)->gid;
+        if ($gid > 0) {
+          dosomething_drives_join($gid, $profile->uid);
+        }
       }
 
       // Send feedback message to Alpha
