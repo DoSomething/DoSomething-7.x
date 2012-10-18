@@ -26,11 +26,19 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
     if ($state->getContext($this->name . ':message') === FALSE) {
 
-      $mobile = $state->getContext('sms_number');
       $name = $state->getContext('ask_name:message');
 
+      // Only search based on final 10 numbers in mobile #. Ignores international code added by Mobile Commons.
+      $mobile = $state->getContext('sms_number');
+
       // If we have a user with this mobile, update their info.
+      // NOTE: find_user_by_cell() doesn't handle international codes when searching by profile's
+      // field_user_mobile value. Only handles international code with an @mobile email address
       $account = dosomething_general_find_user_by_cell($mobile);
+      if (!$account && count($mobile) > 10) {
+        $mobile = substr($mobile, -10);
+        $account = dosomething_general_find_user_by_cell($mobile);
+      }
 
       // Create account for this user if none is found
       if (!$account) {
@@ -69,23 +77,12 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       }
 
       // TODO: join beta into corresponding drive. Is it just a straight up webform submit?
-      // $submission = new stdClass;
-      // $submission->bundle = 'campaign_report_back';
-      // $submission->nid = self::REPORT_BACK_NID;
-      // $submission->data = array();
-      // $submission->uid = $account->uid;
-      // $submission->submitted = REQUEST_TIME;
-      // $submission->remote_addr = ip_address();
-      // $submission->is_draft = FALSE;
-      // $submission->sid = NULL;
+      // $gid = og_get_group('node', $nid)->gid;
+      // dosomething_drives_join($gid, $uid);
 
-      // $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
-      // $wrapper->value()->data[1]['value'][0] = $first_name;
-
-      // $wrapper->save();
-      
       // Send feedback message to Alpha
-      $alphaMobile = sms_flow_find_alpha($mobile);
+      // TODO: safe to assume number put into sms_flow_records database doesn't have the international code?
+      $alphaMobile = sms_flow_find_alpha(substr($mobile, -10));
       if ($alphaMobile) {
         $alphaMsg = "Good news! You invited $mobile and he/she joined your drive.";
         $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);

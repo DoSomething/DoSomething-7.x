@@ -30,7 +30,14 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
 
     // Invite accepted
     if (self::hasAcceptResponse($first_response)) {
+      // find_user_by_cell() doesn't handle international codes when searching by profile's
+      // field_user_mobile value. Only handles international code with an @mobile email address
       $account = dosomething_general_find_user_by_cell($mobile);
+      if (!$account && count($mobile) > 10) {
+        $mobile = substr($mobile, -10);
+        $account = dosomething_general_find_user_by_cell($mobile);
+      }
+      
       // No account found. Output should be 'ask_name'
       if (!$account) {
         $this->removeOutput('process_beta');
