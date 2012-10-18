@@ -35,7 +35,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       // NOTE: find_user_by_cell() doesn't handle international codes when searching by profile's
       // field_user_mobile value. Only handles international code with an @mobile email address
       $account = dosomething_general_find_user_by_cell($mobile);
-      if (!$account && count($mobile) > 10) {
+      if (!$account && strlen($mobile) > 10) {
         $mobile = substr($mobile, -10);
         $account = dosomething_general_find_user_by_cell($mobile);
       }
