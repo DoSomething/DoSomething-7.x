@@ -338,6 +338,7 @@
      *       og_namespace         (The namespace of the app to use.)
      *       og_type              (The open graph object to use.)
      *       og_action            (The open graph action to use.)
+     *       og_post_title        (The title that will appear in the share dialog.  Ignored in the actual post.)
      *       og_post_image        (An (optional) image to be sent with the Open Graph call.)
      *       og_post_description  (The description that appears under the caption)
      *       og_selector          (A selector on the page to call the event on)
@@ -356,6 +357,7 @@
         namespace: config.og_namespace,
   			type: config.og_type,
   			action: config.og_action,
+        title: config.og_title || null,
   			link: config.og_document || document.location.href,
         picture: config.og_post_image,
         description: config.og_post_description,

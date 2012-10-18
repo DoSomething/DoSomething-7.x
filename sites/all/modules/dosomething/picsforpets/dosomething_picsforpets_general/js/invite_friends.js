@@ -107,28 +107,39 @@ Drupal.behaviors.galleryShareButton = {
       };
 
     // Possible fix for lack-of-permission problem.
-    FB.api('/me/permissions', function (response) {
-      var perms = response.data[0];
-      if (!perms.publish_actions) {
-        FB.ui({
-        method: 'permissions.request',
-        perms: 'publish_actions',
-        display: 'popup'
-        }, function(response) {
-          // Just making sure that they have this permission.
-        });
-      }
-    });
+    //FB.api('/me/permissions', function (response) {
+    //  var perms = response.data[0];
+    //  if (!perms.publish_actions) {
+    //    FB.ui({
+    //    method: 'permissions.request',
+    //    perms: 'publish_actions',
+    //    display: 'popup'
+    //    }, function(response) {
+    //      // Just making sure that they have this permission.
+    //    });
+    //  }
+    //});
 
-    FB.api(
-        '/me/dosomethingapp:share',
-        'post',     
-        {         
-            pet_who_needs_a_home: shareUrl,
-            image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
-        },  
+//    FB.api(
+//        '/me/dosomethingapp:share',
+//        'post',     
+//        {         
+//            pet_who_needs_a_home: shareUrl,
+//            image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
+//        },  
     //FB.ui(share,  
-      function(response) {
+      var conf = {
+        og_document: shareUrl,
+        og_namespace: 'dosomethingapp',
+        og_type: 'pet_who_needs_a_home',
+        og_action: 'share',
+        og_post_description: '4 million animals are killed each year because can\'t find a home.  Click SHARE NOW to share this animal.',
+        og_fake_dialog: 1,
+        og_require_login: 1,
+        og_title: settings.dosomething_picsforpets_general.gallery[sid].petName + ' needs a home, and supplies for their shelter',
+        og_post_image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl
+      };
+      Drupal.behaviors.fb.ograph(conf, function(response) {
         if (typeof console !== 'undefined' && window.console) {
           console.log(response);
         }

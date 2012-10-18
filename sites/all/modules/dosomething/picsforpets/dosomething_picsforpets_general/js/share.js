@@ -79,31 +79,50 @@ Drupal.behaviors.dsPfpShare = {
       description: "Click the pic to share!"
     };
 
+    // Fixed 10/18 by using Facebook Connections (see below)
     // Possible fix for lack-of-permission problem
-    FB.api('/me/permissions', function (response) {
-      var perms = response.data[0];
-      if (!perms.publish_actions) {
-        FB.ui({
-        method: 'permissions.request',
-        perms: 'publish_actions',
-        display: 'popup'
-        }, function(response) {
-          // Just making sure that they have this permission.
-        });
-      }
-    });
+    //FB.api('/me/permissions', function (response) {
+    //  var perms = response.data[0];
+    //  if (!perms.publish_actions) {
+    //    FB.ui({
+    //    method: 'permissions.request',
+    //    perms: 'publish_actions',
+    //    display: 'popup'
+    //    }, function(response) {
+    //      // Just making sure that they have this permission.
+    //    });
+    //  }
+    //});
 
-    FB.api(
-     '/me/dosomethingapp:share',
-      'post',
-      {
-          pet_who_needs_a_home: document.location.href,
-          pet_name: pname,
-          pet_adjectives: adjectives,
-          image: pimg
-      },
+    //FB.api(
+    // '/me/dosomethingapp:share',
+    //  'post',
+    //  {
+    //      pet_who_needs_a_home: document.location.href,
+    //      pet_name: pname,
+    //      pet_adjectives: adjectives,
+    //      image: pimg
+    //  },
     //FB.ui(share,
-      function(response) {
+     /*       og_namespace         (The namespace of the app to use.)
+     *       og_type              (The open graph object to use.)
+     *       og_action            (The open graph action to use.)
+     *       og_post_image        (An (optional) image to be sent with the Open Graph call.)
+     *       og_post_description  (The description that appears under the caption)
+     *       og_selector          (A selector on the page to call the event on)
+     *       og_allow_multiple    (Uses the TD Friend Selector to allow multiple friends to be posted-to)
+     *       og_require_login     (Initializes the login procedure if a user is not logged in.)
+     *       og_fake_dialog       (Whether or not to use the "Fake" dialog that lets users post message with the share)
+     *       og_post_custom       (Custom variables as set on the user interface.)*/
+      var conf = {
+        og_namespace: 'dosomethingapp',
+        og_type: 'pet_who_needs_a_home',
+        og_action: 'share',
+        og_post_description: '4 million animals are killed each year because can\'t find a home.  Click SHARE NOW to share this animal.',
+        og_fake_dialog: 1,
+        og_require_login: 1
+      };
+      Drupal.behaviors.fb.ograph(conf, function(response) {
         if ((typeof response !== 'undefined') && (response !== null) && !response.error) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
