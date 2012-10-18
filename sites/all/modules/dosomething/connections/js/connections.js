@@ -117,6 +117,7 @@
         og.dialog({
           dialogClass: 'og-post-dialog',
           width: 650,
+          position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
           resizable: false,
           open: function() {
             if ($('#cancel-og-post').length) {
