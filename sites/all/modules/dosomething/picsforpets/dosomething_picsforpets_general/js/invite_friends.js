@@ -127,17 +127,18 @@ Drupal.behaviors.galleryShareButton = {
 //            pet_who_needs_a_home: shareUrl,
 //            image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl,
 //        },  
-    //FB.ui(share,  
+    //FB.ui(share,
+      var pet_image = $(elm).parent().parent().parent().parent().parent().find('img').attr('src');
       var conf = {
         og_document: shareUrl,
         og_namespace: 'dosomethingapp',
         og_type: 'pet_who_needs_a_home',
         og_action: 'share',
         og_post_description: '4 million animals are killed each year because can\'t find a home.  Click SHARE NOW to share this animal.',
-        og_fake_dialog: 0,
+        og_fake_dialog: 1,
         og_require_login: 1,
         og_title: settings.dosomething_picsforpets_general.gallery[sid].petName + ' needs a home, and supplies for their shelter',
-        og_post_image: settings.picsforpetsFBAuth.appBaseURL + '/' + settings.dosomething_picsforpets_general.gallery[sid].pictureUrl
+        og_post_image: pet_image
       };
       Drupal.behaviors.fb.ograph(conf, function(response) {
         if (typeof console !== 'undefined' && window.console) {
