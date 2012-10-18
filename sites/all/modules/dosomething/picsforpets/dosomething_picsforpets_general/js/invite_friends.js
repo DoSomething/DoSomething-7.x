@@ -1,3 +1,7 @@
+function basename(path) {
+    return path.replace(/\\/g,'/').replace( /.*\//, '');
+}
+
 (function ($) {
 
 Drupal.behaviors.inviteFriendsModal = {
@@ -49,6 +53,8 @@ Drupal.behaviors.galleryShareButton = {
 
   attach: function (context, settings) {
     $('.gallery-share-button').click(function () {
+      var pet_image = $(this).parent().parent().parent().parent().parent().find('img').attr('src');
+      console.log('//files.dosomething.org/files/styles/p4p_fake_button/public/fb_campaign/' + basename(pet_image));
       if ($(this).hasClass('shared')) return;
       else {
         $(this).addClass('shared');
@@ -138,7 +144,7 @@ Drupal.behaviors.galleryShareButton = {
         og_fake_dialog: 1,
         og_require_login: 1,
         og_title: settings.dosomething_picsforpets_general.gallery[sid].petName + ' needs a home, and supplies for their shelter',
-        og_post_image: pet_image
+        og_post_image: 'http://files.dosomething.org/files/styles/p4p_fake_button/public/fb_campaign/' + basename(pet_image)
       };
       Drupal.behaviors.fb.ograph(conf, function(response) {
         if (typeof console !== 'undefined' && window.console) {
