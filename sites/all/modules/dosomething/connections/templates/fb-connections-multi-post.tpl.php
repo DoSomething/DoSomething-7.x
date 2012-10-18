@@ -90,6 +90,7 @@
  		line-height: 1.28;
  		font-weight: bold;
  		color: #808080;
+ 		text-align: left;
  	}
 
  	div#submit-buttons {
@@ -101,6 +102,15 @@
  		height: 40px;
  		text-align: right;
  		padding: 10px;
+ 	}
+
+ 	div#submit-buttons input {
+ 		border-radius: 0px;
+ 		-moz-border-radius: 0px;
+ 		-webkit-border-radius: 0px;
+ 		-ms-border-radius: 0px;
+ 		-o-border-radius: 0px;
+ 		text-shadow: 0px;
  	}
 
  	input[type="submit"] {

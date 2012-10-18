@@ -82,9 +82,8 @@
  		background: rgba(82, 82, 82, .7);
  		border-radius: 10px;
  		padding: 10px;
+ 		text-align: left;
  	}
-
- 	div#fb div#wrapper { ; }
 
  	div#submit-buttons {
  		background: #f2f2f2;
@@ -95,6 +94,15 @@
  		height: 40px;
  		text-align: right;
  		padding: 10px;
+ 	}
+
+ 	div#submit-buttons input {
+ 		border-radius: 0px;
+ 		-moz-border-radius: 0px;
+ 		-webkit-border-radius: 0px;
+ 		-ms-border-radius: 0px;
+ 		-o-border-radius: 0px;
+ 		text-shadow: 0px;
  	}
 
  	input[type="submit"] {
