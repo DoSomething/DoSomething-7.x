@@ -76,13 +76,28 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         $this->success_message .= t('Ur password to login and view your drive at DoSomething.org/mytfjdrive is @pass. ', array('@pass' => $pass));
       }
 
-      // TODO: join beta into corresponding drive. Is it just a straight up webform submit?
-      // $gid = og_get_group('node', $nid)->gid;
-      // dosomething_drives_join($gid, $uid);
+      $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
+
+      $ch = curlinit();
+      curl_setopt($ch, CULROPT_USERPWD, 'developers@dosomething.org:80276608');
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_URL, $profileUrl);
+      $xml = curl_exec($ch);
+      curl_close();
+
+      $xml = new SimpleXMLElement($xml);
+      $drives_invite_nid = 0;
+      if ($xml && $xml->profile) {
+        $drives_invite_nid = $xml->profile->drives_invite_nid;
+
+        // Get group id based on the nid and join user into that drive
+        $gid = og_get_group('node', $invite_nid)->gid;
+        dosomething_drives_join($gid, $profile->uid);
+      }
 
       // Send feedback message to Alpha
       // TODO: safe to assume number put into sms_flow_records database doesn't have the international code?
-      $alphaMobile = sms_flow_find_alpha(substr($mobile, -10));
+      $alphaMobile = sms_flow_find_alpha(substr($mobile, -10), $drives_invite_nid);
       if ($alphaMobile) {
         $alphaMsg = "Good news! You invited $mobile and he/she joined your drive.";
         $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
@@ -91,6 +106,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
       $this->success_message .= t('Want to invite more friends? Reply back w/ their cell #s separated by commas and we\'ll send them an invite for u!');
       $state->setContext('sms_response', $this->success_message);
+      $state->setContext('drives_invite_nid', $drives_invite_nid);
 
       $state->markSuspended();
     }

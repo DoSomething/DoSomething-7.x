@@ -31,6 +31,7 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
     $message = $state->getContext('process_beta:message');
+    $invite_nid = $state->getContext('drives_invite_nid');
 
     $numbers = explode(',', $message);
 
@@ -70,9 +71,10 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
       if (!empty($inviter_name)) {
         $args = array(
           'tfj2013_inviter' => $inviter_name,
+          'drives_invite_nid' => $drives_invite_nid,
         );
         // TODO: get nid from a value passed through Mobile Commons or track from database?
-        $f['details']['nid'] = 0;
+        $f['details']['nid'] = $drives_invite_nid;
         sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
       }
       
