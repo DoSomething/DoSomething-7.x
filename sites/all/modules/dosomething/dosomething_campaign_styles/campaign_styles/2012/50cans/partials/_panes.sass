@@ -396,7 +396,7 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     position: absolute
     border-style: solid
     border-width: 11px
-    top: 51px
+    top: -6px
   &:before
     border-color: transparent darken($scholarshipBG, 12) darken($scholarshipBG, 12) transparent
     left: -22px
@@ -467,8 +467,15 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     padding: 0.5em 0 0  
   h4, li, p
     text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
   li
-    padding: 0 0 0 1.5em
+    margin: 0
+    color: $mainColor
+    span
+      color: black 
   h1
     font-size: 2em
     font-family: din-web

@@ -12,38 +12,38 @@
         
         // if a popup has been triggered, set its destination
         if ($signIn.is(':visible') || $signUp.is(':visible')) {
-          var actionLink = $('.drive-action-link a').attr('href');
-          if (actionLink.charAt(0) == '/') actionLink = actionLink.substr(1);
+          //var actionLink = $('.drive-action-link a').attr('href');
+          //if (actionLink.charAt(0) == '/') actionLink = actionLink.substr(1);
           $signIn.attr('action', destinationReplace($signIn.attr('action'), actionLink));
           $signUp.attr('action', destinationReplace($signUp.attr('action'), actionLink));
         }
       }
 
-      function destinationReplace(url, destination) {
-        url = url.split('?');
-        query = url[1].split('&');
-        for (var i in query) {
-          var splitter = query[i].split('=');
-          if (splitter[0] == 'destination') {
-            splitter[1] = destination;
-            query[i] = splitter.join('=');
-          }
-        }
-        return url[0] + '?' + query;
-      }
+     // function destinationReplace(url, destination) {
+       // url = url.split('?');
+        //query = url[1].split('&');
+        //for (var i in query) {
+          //var splitter = query[i].split('=');
+          //if (splitter[0] == 'destination') {
+            //splitter[1] = destination;
+            //query[i] = splitter.join('=');
+          //}
+        //}
+        //return url[0] + '?' + query;
+      //}
 
-      $('.tw-share-drive').attr('data-text', 'It\'s time to #GiveASpit about cancer. A simple cheek swab is all it takes to save a life. Seriously. http://dosomething.org/spit');
-      $('.fb-share-drive').click(function (e) {
-        e.preventDefault();
-        var fbObj = {
-          method: 'feed',
-          link: window.location.href,
-          picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
-          name: 'Give A Spit',
-          description: 'Are you ready to save a life? It\'s easier than you think. Click here to get your cheek swabbed and you could end up saving a life.'
-        };
-        FB.ui(fbObj);
-      });
+      //$('.tw-share-drive').attr('data-text', 'It\'s time to #GiveASpit about cancer. A simple cheek swab is all it takes to save a life. Seriously. http://dosomething.org/spit');
+      //$('.fb-share-drive').click(function (e) {
+        //e.preventDefault();
+        //var fbObj = {
+          //method: 'feed',
+          //link: window.location.href,
+          //picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
+          //name: 'Give A Spit',
+          //description: 'Are you ready to save a life? It\'s easier than you think. Click here to get your cheek swabbed and you could end up saving a life.'
+        //};
+        //FB.ui(fbObj);
+      //});
 
       // edit drive info location change
       // $('#webform-client-form-724772 .form-item-submitted-field-drive-location-und-0-name-line label').empty().text('Name of Location');
@@ -129,25 +129,25 @@
       });
 
       // twitter popup button on drive pages
-      $('a.drive-twitter').click(function(event) {
-        var width  = 650,
-        height = 450,
-        left   = ($(window).width()  - width)  / 2,
-        top    = ($(window).height() - height) / 2,
-        url    = this.href,
-        opts   = 'status=1' +
-        ',width='  + width  +
-        ',height=' + height +
-        ',top='    + top    +
-        ',left='   + left;
+      //$('a.drive-twitter').click(function(event) {
+        //var width  = 650,
+        //height = 450,
+        //left   = ($(window).width()  - width)  / 2,
+        //top    = ($(window).height() - height) / 2,
+        //url    = this.href,
+        //opts   = 'status=1' +
+        //',width='  + width  +
+        //',height=' + height +
+        //',top='    + top    +
+        //',left='   + left;
 
-        window.open(url, 'twitter', opts);
+        //window.open(url, 'twitter', opts);
 
-        return false;
-      });
+        //return false;
+      //});
 
       // remove #edit-submit from drive page buttons
-      $('#drive .drive-participants-list .form-submit').val('x').removeAttr('id').addClass('remove_participant');
+      //$('#drive .drive-participants-list .form-submit').val('x').removeAttr('id').addClass('remove_participant');
 
       // nav highlighting 
       var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
@@ -159,18 +159,18 @@
       });
 
       // sad puppy
-      $('#mangoDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
-      $('a.mango').click(function(){
-        $('#mangoDialog').dialog('open');
-        return false;
-      });
+      //$('#mangoDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
+      //$('a.mango').click(function(){
+        //$('#mangoDialog').dialog('open');
+        //return false;
+      //});
 
       // sad Chris
-      $('#chrisDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
-      $('a.mangoChris').click(function(){
-        $('#chrisDialog').dialog('open');
-        return false;
-      });
+      //$('#chrisDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
+      //$('a.mangoChris').click(function(){
+        //$('#chrisDialog').dialog('open');
+        //return false;
+      //});
       
       // scroll function
       var $window = $(window);
@@ -223,8 +223,8 @@
       $('.ui-icon-closethick').click(function() {
         location.reload();
       });
-         
 
+         
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)

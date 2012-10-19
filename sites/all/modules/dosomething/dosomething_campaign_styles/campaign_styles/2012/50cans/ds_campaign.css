@@ -830,7 +830,7 @@ body {
       position: absolute;
       border-style: solid;
       border-width: 11px;
-      top: 51px; }
+      top: -6px; }
     #cmp .refer5:before {
       border-color: transparent #c23500 #c23500 transparent;
       left: -22px; }
@@ -871,8 +871,15 @@ body {
     padding: 0.5em 0 0; }
   #cmp #faq h4, #cmp #faq li, #cmp #faq p {
     text-align: left; }
+  #cmp #faq ul {
+    list-style: disc;
+    margin: 0 0 0 2em;
+    line-height: 1.4em; }
   #cmp #faq li {
-    padding: 0 0 0 1.5em; }
+    margin: 0;
+    color: #0052a8; }
+    #cmp #faq li span {
+      color: black; }
   #cmp #faq h1 {
     font-size: 2em;
     font-family: din-web;
