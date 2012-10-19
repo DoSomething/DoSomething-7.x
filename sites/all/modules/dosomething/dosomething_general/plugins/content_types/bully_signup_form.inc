@@ -29,12 +29,16 @@ function dosomething_bully_game_form($subtype, $conf, $panel_args, $context) {
   if ($_POST['do'] == 'submit-bully') {
     parse_str(urldecode($_POST['stuff']), $stuff);
 
-    dosomething_general_mobile_commons_subscribe($stuff['person']['phone'], $stuff['opt_in_path'], array(
-      'first_name' => $stuff['person']['first_name']
-    ));
+    if (dosomething_general_valid_cell($stuff['person']['phone'])) {
+      dosomething_general_mobile_commons_subscribe($stuff['person']['phone'], $stuff['opt_in_path'], array(
+        'first_name' => $stuff['person']['first_name']
+      ));
+    }
 
     foreach ($stuff['friends'] AS $key => $friend) {
-      dosomething_general_mobile_commons_subscribe($friend, $stuff['friends_opt_in_path']);
+      if (dosomething_general_valid_cell($friend)) {
+        dosomething_general_mobile_commons_subscribe($friend, $stuff['friends_opt_in_path']);
+      }
     }
 
     echo 'Ok';

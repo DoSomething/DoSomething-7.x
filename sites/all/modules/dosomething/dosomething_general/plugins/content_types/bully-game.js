@@ -45,7 +45,6 @@
         document.location.href,
         { 'do': 'submit-bully', 'stuff': $('#bullytext-game form').serialize() },
         function(response) {
-          console.log(response);
         }
       );
     },
