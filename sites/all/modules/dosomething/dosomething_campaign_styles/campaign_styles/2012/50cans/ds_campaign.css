@@ -460,8 +460,7 @@ body {
     padding: 2% 2% 0 2%;
     text-align: center; }
   #cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
-    float: left;
-    padding: 0 1.5%; }
+    float: left; }
   #cmp .col33 {
     width: 33%; }
   #cmp .col40 {
@@ -470,6 +469,8 @@ body {
     width: 50%; }
   #cmp .col60 {
     width: 60%; }
+  #cmp .col33-inner {
+    padding: 0 1.5%; }
   #cmp .divider {
     text-align: center;
     border-top: 2px solid #cccccc;
@@ -823,8 +824,7 @@ body {
   #cmp .refer5 {
     background: #ff4600;
     width: 110%;
-    margin: 0 0 0 -4.95%;
-    padding: 3%; }
+    margin: 0 0 0 -4.95%; }
     #cmp .refer5:before, #cmp .refer5:after {
       content: "";
       position: absolute;
@@ -837,6 +837,8 @@ body {
     #cmp .refer5:after {
       border-color: transparent transparent #c23500 #c23500;
       right: -22px; }
+  #cmp .refer5-inner {
+    padding: 3%; }
   #cmp #content-infographic .mobile {
     display: none;
     text-align: left; }
@@ -1092,8 +1094,6 @@ body {
     #cmp .section {
       width: 100%;
       margin: 2% auto; }
-    #cmp #header {
-      background-position: 29% 60%; }
     #cmp #contact-form {
       margin: 2% 0 0 0; }
       #cmp #contact-form h3 {
@@ -1171,11 +1171,6 @@ body {
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 5% auto; }
-    #cmp #header {
-      background-position: 66% 77%; }
-      #cmp #header #edit-submit {
-        margin: 0.5em 0 0 0;
-        float: left; }
     #cmp #edit-submitted-field-webform-email {
       width: 68%;
       margin: 1% 0; }
