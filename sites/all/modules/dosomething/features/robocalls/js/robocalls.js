@@ -1,3 +1,12 @@
+(function ($) {
+  Drupal.behaviors.robocalls = {
+    attach: function(context, settings) {
+      Drupal.behaviors.fb._feed_callback = function() {
+        $('.robocalls-fb-find-friends-birthdays').html('Message(s) sent!');
+      }
+    }
+  };
+})(jQuery);
 var button;
 var userInfo;
 var changestate = false;

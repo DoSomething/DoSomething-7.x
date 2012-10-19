@@ -22,6 +22,10 @@
     token: '',
     my_pic: '',
     fb_init: false,
+    _feed_callback: null,
+    _ograph_callback: null,
+    _message_callback: null,
+    _request_callback: null,
 
     /**
      *  Initializes the Facebook object and runs all appropriate functions.
@@ -243,6 +247,10 @@
         allow_multiple: config.feed_allow_multiple,
       	require_login: config.feed_require_login,
       };
+
+      if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._feed_callback == 'function') {
+        callback = Drupal.behaviors.fb._feed_callback;
+      }
 
       var share = {
         method: 'feed',

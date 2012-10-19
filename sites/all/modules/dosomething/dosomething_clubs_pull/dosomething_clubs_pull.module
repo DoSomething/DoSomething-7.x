@@ -172,6 +172,15 @@ class clubs_export {
     foreach ($data['results'] AS $key => $stuff) {
       $stuff = (array) $stuff;
 
+      $done = array();
+      foreach (explode(',', $stuff['camps']) AS $c) {
+        if (in_array($c, $done)) {
+          continue;
+        }
+
+        $done[] = $c;
+      }
+
       $c[] = array(
         'club id' =>          $stuff['nid'],
         'club name' =>        $stuff['node_title'],
@@ -195,7 +204,7 @@ class clubs_export {
         'Club City' =>             $stuff['city'],
         'Club State' =>            $stuff['state'],
         'Club Zip' =>              $stuff['zip'],
-        'Working On' =>       str_replace(',', ', ', $stuff['camps']),
+        'Working On' =>       implode(', ', $done),
         'Send Goodies' =>     $stuff['send_goodies'],
         'School Name' =>      $stuff['school_name'],
         'School Type' =>      $stuff['school_type'],
@@ -322,7 +331,7 @@ class clubs_export {
       `state`.`field_club_state_value` AS `state`,
       `zip`.`field_club_zip_value` AS `zip`,
       COUNT(DISTINCT og_membership_og.etid) AS `member_count`,
-      IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(DISTINCT `camp2`.`field_campaign_list_nid`), GROUP_CONCAT(DISTINCT `camp1`.`field_camp_value`)) AS `camps`,
+      IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(`camp2`.`field_campaign_list_nid`), GROUP_CONCAT(`camp1`.`field_camp_value`)) AS `camps`,
       GROUP_CONCAT(DISTINCT `ogu`.`mail`) AS `member_emails`,
       GROUP_CONCAT(DISTINCT `ogu`.`uid`) AS `member_uids`,
       `sc`.name AS `school_name`,
@@ -364,7 +373,7 @@ class clubs_export {
     LEFT JOIN `ds_school` AS `sc` ON (`sc`.`sid` = `school`.`field_school_reference_target_id`)
     WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
     GROUP BY nid, node_title ASC
-    ORDER BY `node`.`created` ASC
+    ORDER BY `node`.`created` DESC
     " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
@@ -747,6 +756,15 @@ $num = $count->rowCount();
   $results = clubs_export::the_query($offset, $num_per_page);
   foreach ($results['results'] AS $key => $stuff) {
       $result = (array) $stuff;
+      $done = array();
+      foreach (explode(',', $result['camps']) AS $c) {
+        if (in_array($c, $done)) {
+          continue;
+        }
+
+        $done[] = $c;
+      }
+
     $pages['rows'][] = array(
       'data' => array(
         'club id' =>                  array('data' => $result['nid']),
@@ -771,7 +789,7 @@ $num = $count->rowCount();
         'Club City' =>                     array('data' => $result['city']),
         'Club State' =>                    array('data' => $result['state']),
         'Club Zip' =>                        array('data' => $result['zip']),
-        'My Club is Going to Work On' => array('data' => str_replace(',', ', ', $result['camps'])),
+        'My Club is Going to Work On' => array('data' => implode(', ', $done)),
         'Send Goodies' =>             array('data' => $result['send_goodies']),
         'School Name' =>                 array('data' => $result['school_name']),
         'School Type' =>                 array('data' => $result['school_type']),
