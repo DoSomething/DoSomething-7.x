@@ -55,7 +55,7 @@ function robocalls_fb_social_event_subscribe() {
   return $f;
 }
 
-function robocalls_form_alter(&$form, &$form_state, $form_id) {
+function robocalls_form_alter(&$form, $form_state, $form_id) {
   global $term_info, $flags;
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
     $termid = arg(2);
@@ -71,9 +71,12 @@ function robocalls_form_alter(&$form, &$form_state, $form_id) {
         '#type' => 'hidden',
         '#value' => $term->field_call_limit[LANGUAGE_NONE][0]['value']
       );
-	}
 
-drupal_add_js('http://connect.facebook.net/en_US/all.js');
+      $form['mobile_commons_id'] = array(
+        '#type' => 'hidden', 
+        '#value' => $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value']
+      );
+	}
 
     $form['extras'] = array(
        '#type' => 'container',
@@ -140,8 +143,6 @@ drupal_add_js('http://connect.facebook.net/en_US/all.js');
            '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', 'files/causecalls/' . $term->field_celeb_call[LANGUAGE_NONE][0]['filename'], array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link')))
         );
     }
-
-    drupal_add_css(drupal_get_path('module', 'robocalls') . '/js/facebook/tdfriendselector.css');
 
 /*
     $form['ah'] = array(
@@ -328,7 +329,7 @@ function robocalls_call_post_associate($data) {
   $info = json_decode($code);
 
   if (!$info->passed_limit && ($info->sn == 1) && dosomething_general_valid_cell($info->phone)) {
-     robocalls_mcommons_call($info->phone, $info->myname, MCOMMONS_ROBOCALL_CAMPAIGN);
+     robocalls_mcommons_call($info->phone, $info->myname, $info->mconnect_id);
   }
 
   $goto = $info->redirect;
@@ -425,8 +426,10 @@ function robocalls_call_submit(&$form, &$form_state) {
 
    $send_now =  $sub['field_celeb_send_now'][LANGUAGE_NONE][0]['value'];
 
+   $mconnect_id = $form['submitted']['webform_entity_form']['#entity']->input['mobile_commons_id'];
+
    if ($send_now && !$form_state['already_called'] && user_is_logged_in()) {
-     robocalls_mcommons_call($friend_phone, $user_name, MCOMMONS_ROBOCALL_CAMPAIGN);
+     robocalls_mcommons_call($friend_phone, $user_name, $mconnect_id);
    }
 
    if ($form_state['already_called'])
@@ -473,7 +476,8 @@ function robocalls_call_submit(&$form, &$form_state) {
          'sn' => $send_now,
          'phone' => $friend_phone,
          'myname' => $user_name,
-         'redirect' => $_SERVER['HTTP_REFERER']
+         'redirect' => $_SERVER['HTTP_REFERER'],
+         'mconnect_id' => $mconnect_id
       )));
     }
     else {

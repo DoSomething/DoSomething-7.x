@@ -34,6 +34,7 @@ features[features_api][] = api:1
 features[field][] = node-robo_calls-body
 features[field][] = taxonomy_term-vocabulary_99-field_birthday_call
 features[field][] = taxonomy_term-vocabulary_99-field_call_limit
+features[field][] = taxonomy_term-vocabulary_99-field_call_mobile_commons_id
 features[field][] = taxonomy_term-vocabulary_99-field_celeb_call
 features[field][] = taxonomy_term-vocabulary_99-field_celeb_photo
 features[field][] = taxonomy_term-vocabulary_99-field_short_name
