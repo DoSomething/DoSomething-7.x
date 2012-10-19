@@ -35,7 +35,7 @@ function robocalls_views_api() {
 function robocalls_image_default_styles() {
   $styles = array();
 
-  // Exported image style: robocall_celeb_photo
+  // Exported image style: robocall_celeb_photo.
   $styles['robocall_celeb_photo'] = array(
     'name' => 'robocall_celeb_photo',
     'effects' => array(
@@ -57,7 +57,7 @@ function robocalls_image_default_styles() {
     ),
   );
 
-  // Exported image style: robocall_celeb_thumbnail_205x115
+  // Exported image style: robocall_celeb_thumbnail_205x115.
   $styles['robocall_celeb_thumbnail_205x115'] = array(
     'name' => 'robocall_celeb_thumbnail_205x115',
     'effects' => array(
@@ -96,14 +96,5 @@ function robocalls_node_info() {
       'help' => '',
     ),
   );
-  return $items;
-}
-
-/**
- * Implements hook_default_webform_submission_entity_type().
- */
-function robocalls_default_webform_submission_entity_type() {
-  $items = array();
-  $items['robo_calls'] = entity_import('webform_submission_entity_type', '{ "type" : "robo_calls", "data" : null, "rdf_mapping" : [] }');
   return $items;
 }

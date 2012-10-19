@@ -13,20 +13,6 @@ function robocalls_default_fe_block_settings() {
   // doit
   $theme = array();
 
-  $theme['menu_block-5'] = array(
-    'module' => 'menu_block',
-    'delta' => '5',
-    'theme' => 'doit',
-    'status' => 0,
-    'weight' => '-72',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '1',
-    'pages' => 'causecall*',
-    'title' => 'Robo Calls',
-    'cache' => -1,
-  );
-
   $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
     'module' => 'views',
     'delta' => '43e5f8c3da7cdbaf9be68f0db57cc6a0',
@@ -44,20 +30,6 @@ function robocalls_default_fe_block_settings() {
   $theme['views-c6ff9c796a4b9eeb0843eebedec7be2a'] = array(
     'module' => 'views',
     'delta' => 'c6ff9c796a4b9eeb0843eebedec7be2a',
-    'theme' => 'doit',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => -1,
-  );
-
-  $theme['webform-client-block-723985'] = array(
-    'module' => 'webform',
-    'delta' => 'client-block-723985',
     'theme' => 'doit',
     'status' => 0,
     'weight' => '0',
@@ -74,20 +46,6 @@ function robocalls_default_fe_block_settings() {
   // ds
   $theme = array();
 
-  $theme['menu_block-5'] = array(
-    'module' => 'menu_block',
-    'delta' => '5',
-    'theme' => 'ds',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '1',
-    'pages' => 'causecall*',
-    'title' => 'Robo Calls',
-    'cache' => -1,
-  );
-
   $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
     'module' => 'views',
     'delta' => '43e5f8c3da7cdbaf9be68f0db57cc6a0',
@@ -116,10 +74,15 @@ function robocalls_default_fe_block_settings() {
     'cache' => -1,
   );
 
-  $theme['webform-client-block-723985'] = array(
-    'module' => 'webform',
-    'delta' => 'client-block-723985',
-    'theme' => 'ds',
+  $export['ds'] = $theme;
+
+  // picsforpets
+  $theme = array();
+
+  $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
+    'module' => 'views',
+    'delta' => '43e5f8c3da7cdbaf9be68f0db57cc6a0',
+    'theme' => 'picsforpets',
     'status' => 0,
     'weight' => '0',
     'region' => '',
@@ -130,7 +93,21 @@ function robocalls_default_fe_block_settings() {
     'cache' => -1,
   );
 
-  $export['ds'] = $theme;
+  $theme['views-c6ff9c796a4b9eeb0843eebedec7be2a'] = array(
+    'module' => 'views',
+    'delta' => 'c6ff9c796a4b9eeb0843eebedec7be2a',
+    'theme' => 'picsforpets',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $export['picsforpets'] = $theme;
 
   $theme_default = variable_get('theme_default', 'garland');
   $themes = list_themes();

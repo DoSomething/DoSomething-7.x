@@ -226,13 +226,6 @@ function robocalls_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['grouping'] = array(
-    0 => array(
-      'field' => 'name_1',
-      'rendered' => 1,
-      'rendered_strip' => 0,
-    ),
-  );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -356,11 +349,11 @@ function robocalls_views_default_views() {
     'file_view_mode' => 'media_link',
   );
   $handler->display->display_options['fields']['field_celeb_call']['field_api_classes'] = 0;
-  /* Field: Send a Call Link */
+  /* Field: Send a Call Button */
   $handler->display->display_options['fields']['name_2']['id'] = 'name_2';
   $handler->display->display_options['fields']['name_2']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name_2']['field'] = 'name';
-  $handler->display->display_options['fields']['name_2']['ui_name'] = 'Send a Call Link';
+  $handler->display->display_options['fields']['name_2']['ui_name'] = 'Send a Call Button';
   $handler->display->display_options['fields']['name_2']['label'] = '';
   $handler->display->display_options['fields']['name_2']['exclude'] = TRUE;
   $handler->display->display_options['fields']['name_2']['alter']['alter_text'] = 1;
@@ -386,6 +379,52 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['name_2']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['name_2']['link_to_taxonomy'] = 1;
   $handler->display->display_options['fields']['name_2']['convert_spaces'] = 0;
+  /* Field: Tell Us About It button */
+  $handler->display->display_options['fields']['name_3']['id'] = 'name_3';
+  $handler->display->display_options['fields']['name_3']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name_3']['field'] = 'name';
+  $handler->display->display_options['fields']['name_3']['ui_name'] = 'Tell Us About It button';
+  $handler->display->display_options['fields']['name_3']['label'] = '';
+  $handler->display->display_options['fields']['name_3']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name_3']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['name_3']['alter']['text'] = 'Tell Us';
+  $handler->display->display_options['fields']['name_3']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['name_3']['alter']['path'] = '/calloffame/new-celeb';
+  $handler->display->display_options['fields']['name_3']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['name_3']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['name_3']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['name_3']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['name_3']['alter']['link_class'] = 'go-button';
+  $handler->display->display_options['fields']['name_3']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['name_3']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['name_3']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name_3']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['name_3']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name_3']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['name_3']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name_3']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_3']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['name_3']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['name_3']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['name_3']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['name_3']['link_to_taxonomy'] = 1;
+  $handler->display->display_options['fields']['name_3']['convert_spaces'] = 0;
+  /* Field: Views: Views Conditional */
+  $handler->display->display_options['fields']['views_conditional']['id'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional']['table'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional']['field'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional']['label'] = '';
+  $handler->display->display_options['fields']['views_conditional']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['views_conditional']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['views_conditional']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['views_conditional']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['views_conditional']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['views_conditional']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['views_conditional']['if'] = 'name';
+  $handler->display->display_options['fields']['views_conditional']['condition'] = '1';
+  $handler->display->display_options['fields']['views_conditional']['equalto'] = '???';
+  $handler->display->display_options['fields']['views_conditional']['then'] = '[name_3]';
+  $handler->display->display_options['fields']['views_conditional']['or'] = '[name_2]';
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -395,7 +434,7 @@ function robocalls_views_default_views() {
 <h4>[name]</h4>
 [description]
 [field_celeb_call]
-[name_2]';
+[views_conditional]';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;

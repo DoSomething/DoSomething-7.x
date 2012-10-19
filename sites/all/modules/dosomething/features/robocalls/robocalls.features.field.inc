@@ -10,7 +10,7 @@
 function robocalls_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-robo_calls-body'
+  // Exported field: 'node-robo_calls-body'.
   $fields['node-robo_calls-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function robocalls_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -87,7 +88,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_99-field_birthday_call'
+  // Exported field: 'taxonomy_term-vocabulary_99-field_birthday_call'.
   $fields['taxonomy_term-vocabulary_99-field_birthday_call'] = array(
     'field_config' => array(
       'active' => '1',
@@ -104,6 +105,7 @@ function robocalls_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -153,7 +155,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_99-field_call_limit'
+  // Exported field: 'taxonomy_term-vocabulary_99-field_call_limit'.
   $fields['taxonomy_term-vocabulary_99-field_call_limit'] = array(
     'field_config' => array(
       'active' => '1',
@@ -166,6 +168,7 @@ function robocalls_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -217,7 +220,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_call'
+  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_call'.
   $fields['taxonomy_term-vocabulary_99-field_celeb_call'] = array(
     'field_config' => array(
       'active' => '1',
@@ -241,6 +244,7 @@ function robocalls_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'display_default' => 0,
@@ -334,7 +338,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_photo'
+  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_photo'.
   $fields['taxonomy_term-vocabulary_99-field_celeb_photo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -358,6 +362,7 @@ function robocalls_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -395,6 +400,7 @@ function robocalls_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -463,7 +469,74 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_99-field_timed_call'
+  // Exported field: 'taxonomy_term-vocabulary_99-field_short_name'.
+  $fields['taxonomy_term-vocabulary_99-field_short_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_short_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vocabulary_99',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'A short description of this category.  \'Awesome, I just had SO-AND-SO call my friends to say "Do Something about _____"\'.  Fill in the blank.  Required.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 7,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_short_name',
+      'label' => 'Short Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-vocabulary_99-field_timed_call'.
   $fields['taxonomy_term-vocabulary_99-field_timed_call'] = array(
     'field_config' => array(
       'active' => '1',
@@ -476,6 +549,7 @@ function robocalls_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -545,7 +619,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_99-field_timed_call_label'
+  // Exported field: 'taxonomy_term-vocabulary_99-field_timed_call_label'.
   $fields['taxonomy_term-vocabulary_99-field_timed_call_label'] = array(
     'field_config' => array(
       'active' => '1',
@@ -569,6 +643,7 @@ function robocalls_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -611,7 +686,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_date'
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_date'.
   $fields['webform_submission_entity-robo_calls-field_celeb_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -624,6 +699,7 @@ function robocalls_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -691,7 +767,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_friend_phone'
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_friend_phone'.
   $fields['webform_submission_entity-robo_calls-field_celeb_friend_phone'] = array(
     'field_config' => array(
       'active' => '1',
@@ -715,6 +791,7 @@ function robocalls_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => 255,
@@ -762,7 +839,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_send_now'
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_send_now'.
   $fields['webform_submission_entity-robo_calls-field_celeb_send_now'] = array(
     'field_config' => array(
       'active' => '1',
@@ -779,6 +856,7 @@ function robocalls_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -828,7 +906,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_your_name'
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_your_name'.
   $fields['webform_submission_entity-robo_calls-field_celeb_your_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -852,6 +930,7 @@ function robocalls_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -900,7 +979,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_your_phone'
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_your_phone'.
   $fields['webform_submission_entity-robo_calls-field_celeb_your_phone'] = array(
     'field_config' => array(
       'active' => '1',
@@ -924,6 +1003,7 @@ function robocalls_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => 255,
@@ -971,7 +1051,7 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celebrity_chooser'
+  // Exported field: 'webform_submission_entity-robo_calls-field_celebrity_chooser'.
   $fields['webform_submission_entity-robo_calls-field_celebrity_chooser'] = array(
     'field_config' => array(
       'active' => '1',
@@ -995,6 +1075,7 @@ function robocalls_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -1048,6 +1129,7 @@ function robocalls_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('A label to denote the timed call.  For example -- "Election Day" is November 4th.');
+  t('A short description of this category.  \'Awesome, I just had SO-AND-SO call my friends to say "Do Something about _____"\'.  Fill in the blank.  Required.');
   t('Birthday Call?');
   t('Body');
   t('Call limit number');
@@ -1058,6 +1140,7 @@ function robocalls_field_default_fields() {
 ');
   t('Or Send NOW!');
   t('Photo');
+  t('Short Name');
   t('Sound File');
   t('Step 1: Choose Who is Calling');
   t('Timed Call Label');
