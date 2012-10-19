@@ -10,19 +10,17 @@ $plugin = array(
   'render callback' => 'dosomething_bully_game_form'
 );
 
-if (!function_exists('array_vals_multi')) {
-  function array_vals_multi($array = array(), &$vals = array()) {
-    foreach ($array as $key => $value) {
-      if (is_array($value)) {
-        array_vals_multi($value,$vals);
-      }
-      else{
-        $vals[] = $value; 
-      }
+function bully_array_vals_multi($array = array(), &$vals = array()) {
+  foreach ($array as $key => $value) {
+    if (is_array($value)) {
+      bully_array_vals_multi($value,$vals);
     }
-
-    return $vals;
+    else{
+      $vals[] = $value; 
+    }
   }
+
+  return $vals;
 }
 
 function dosomething_bully_game_form($subtype, $conf, $panel_args, $context) {
@@ -61,7 +59,7 @@ function dosomething_bully_game_form($subtype, $conf, $panel_args, $context) {
 
   // Issues tags
   if (isset($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE])) {
-    $issues = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE]);
+    $issues = (array) bully_array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE]);
   }
   else {
     $issues = array();
@@ -106,8 +104,8 @@ function dosomething_bully_game_form($subtype, $conf, $panel_args, $context) {
           <input type="text" class="field left" name="friends[]" placeholder="Friend\'s cell #:"/>
           <input type="text" class="field left last" name="friends[]" placeholder="Friend\'s cell #:"/>
           <input type="submit" class="go-button" value="Submit"  style="float: left" />
-          <input type="hidden" name="friends_opt_in_path" value="130471" />
-          <input type="hidden" name="opt_in_path" value="130451" />
+          <input type="hidden" name="friends_opt_in_path" value="126621" />
+          <input type="hidden" name="opt_in_path" value="126611" />
     </form> 
 
   <div class="clearfix"></div>
