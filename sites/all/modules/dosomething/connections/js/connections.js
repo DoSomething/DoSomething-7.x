@@ -21,27 +21,35 @@
   Drupal.behaviors.fb = {
     token: '',
     my_pic: '',
+    fb_init: false,
 
     /**
      *  Initializes the Facebook object and runs all appropriate functions.
      */
     init: function(options) {
-      for (i in options) {
-        Drupal.behaviors.fb.run(i, options[i]);
-      }
+      var fb_init = window.setInterval(function () {
+        if (typeof FB !== 'undefined') {
+          window.clearInterval(fb_init);
+          for (i in options) {
+            Drupal.behaviors.fb.run(i, options[i]);
+          }
+        }
+      }, .1);
     },
 
     // Runs Facebook tasks.
   	run: function(fun) {
   		var a = Array.prototype.slice.call(arguments);
-  		var f = $('<div></div>').attr('class', 'fb-runner-' + fun).css('display', 'none').click(function() {
+      eval('Drupal.behaviors.fb.' + fun + '(a[1])');
+
+  		/*var f = $('<div></div>').attr('class', 'fb-runner-' + fun).css('display', 'none').click(function() {
   			eval('Drupal.behaviors.fb.' + fun + '(a[1])');
   		});
   		f.appendTo($('body'));
 
   		// We need a slight timeout to make the pop-up actually work.  Facebook literally waits 'til
   		// the last second to initialize the FB object.  A .5 second delay is enough(!)
-  		setTimeout('jQuery(".fb-runner-' + fun + '").click();', 1000);
+  		setTimeout('jQuery(".fb-runner-' + fun + '").click();', 1000);*/
   	},
 
     /**
