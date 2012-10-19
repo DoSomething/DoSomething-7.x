@@ -10,22 +10,19 @@ $plugin = array(
   'render callback' => 'dosomething_bully_game_form'
 );
 
-
-function array_vals_multi($array = array(), &$vals = array())
-{
+if (!function_exists('array_vals_multi')) {
+  function array_vals_multi($array = array(), &$vals = array()) {
     foreach ($array as $key => $value) {
-
-        if (is_array($value)) {
-                
-            array_vals_multi($value,$vals);
-        
-        }else{
-            
-            $vals[] = $value; 
-        }
+      if (is_array($value)) {
+        array_vals_multi($value,$vals);
+      }
+      else{
+        $vals[] = $value; 
+      }
     }
- 
+
     return $vals;
+  }
 }
 
 function dosomething_bully_game_form($subtype, $conf, $panel_args, $context) {
