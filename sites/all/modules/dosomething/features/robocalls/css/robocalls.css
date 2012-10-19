@@ -1,0 +1,51 @@
+div.view-id-cause_its_your_birthday div.views-row {
+  float: left; }
+  div.view-id-cause_its_your_birthday div.views-row img {
+    height: 115px;
+    width: 205px;
+    -webkit-box-shadow: 0px 0px 3px gray;
+    -moz-box-shadow: 0px 0px 3px gray;
+    box-shadow: 0px 0px 3px gray; }
+  div.view-id-cause_its_your_birthday div.views-row div.views-field-field-celeb-photo {
+    float: left; }
+
+div.pane-taxonomy-term-field-celeb-photo {
+  border: 1px solid white;
+  height: 316px;
+  -webkit-box-shadow: 0px 0px 5px gray;
+  -moz-box-shadow: 0px 0px 5px gray;
+  box-shadow: 0px 0px 5px gray; }
+
+div.views-field-nothing, div.views-field-description {
+  clear: left;
+  width: 205px;
+  height: 215px;
+  margin-left: 0px;
+  margin-bottom: 8px;
+  text-align: center;
+  background: white;
+  -webkit-box-shadow: 0px 0px 15px gray;
+  -moz-box-shadow: 0px 0px 15px gray;
+  box-shadow: 0px 0px 15px gray;
+  box-sizing: border-box;
+  margin: 10px 10px 15px 10px;
+  position: relative; }
+  div.views-field-nothing h3, div.views-field-description h3 {
+    margin: 10px 0px 5px; }
+
+#robocalls-choose-another-celebrity h2.pane-title {
+  margin-left: -10px;
+  margin-top: -130px; }
+
+div.robocalls-call-information input[type="text"], div.robocalls-call-information .form-item input.form-tel {
+  width: 170px; }
+div.robocalls-call-information .webform-component, div.robocalls-call-information .form-item {
+  clear: both;
+  margin-bottom: 10px; }
+div.robocalls-call-information .form-item label:first-child, div.robocalls-call-information .webform-component label:first-child {
+  float: left;
+  width: 105px;
+  margin-right: 10px;
+  margin-top: 5px;
+  clear: left;
+  text-align: right; }

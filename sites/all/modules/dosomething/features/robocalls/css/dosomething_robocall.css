@@ -8,15 +8,15 @@ div.view-id-cause_its_your_birthday div.views-row img {
 	box-shadow: 0px 0px 3px #808080;
 }
 
+div.view-id-cause_its_your_birthday div.views-row div.views-field-field-celeb-photo {
+	float: left;
+}
+
+
 div.pane-taxonomy-term-field-celeb-photo {
 	border: 1px solid #ffffff;
 	height: 316px;
 	box-shadow: 0px 0px 5px #808080;
-}
-
-div.view-id-cause_its_your_birthday div.views-row div.views-field-field-celeb-photo
-{
-	float: left;
 }
 
 div.views-field-nothing, div.views-field-description {
@@ -227,11 +227,6 @@ div.panels-flexible-region-313-celeb_information-inside
 	padding: 0px;
 }
 
-div.pane-cause-its-your-birthday div.views-row-first
-{
-	margin-left: 30px;
-}
-
 span.file { float: left; }
 .file-icon { display: none; }
 div.file-audio a {
@@ -373,10 +368,6 @@ nav#breadcrumb {
 	display: none;
 }
 
-div#robocalls-who-should-celeb-call h2 {
-	margin: 50px 0px 10px 0px;
-}
-
 div#robocalls-here-how-it-works {
 	margin: 20px 0px;
 }
@@ -446,7 +437,7 @@ div#edit-submitted-field-celeb-date .form-item.form-type-select {
 
 div#edit-submitted-field-celeb-date select#edit-submitted-field-celeb-date-und-0-value-year { width: 58px; }
 
-div.view-id-cause_its_your_birthday h3 {
+#robocalls-landing-celebs h2, #robocalls-who-should-celeb-call {
 background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) repeat-x, #D81F2A;
 height: 39px;
 background-size: 100% 10px, 100% 35px;

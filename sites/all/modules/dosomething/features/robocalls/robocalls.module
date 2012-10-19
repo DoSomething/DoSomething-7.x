@@ -48,6 +48,13 @@ function robocalls_module_implements_alter(&$implementations, $hook) {
   }
 }
 
+function robocalls_fb_social_event_subscribe() {
+  $f = 'if (typeof Drupal.behaviors.fb !== "undefined") {
+    Drupal.behaviors.fb.fb_init = true;
+  }';
+  return $f;
+}
+
 function robocalls_form_alter(&$form, &$form_state, $form_id) {
   global $term_info, $flags;
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
@@ -91,13 +98,8 @@ drupal_add_js('http://connect.facebook.net/en_US/all.js');
     );
 
     $form['extras']['fb_container']['fb_button']['connect_with_facebook'] = array(
-       '#type' => 'button',
-       '#value' => t("Share on Facebook"),
-       '#weight' => 2,
-       '#attributes' => array(
-          'class' => array('robocalls-fb-find-friends-birthdays'),
-          #'onclick' => "return dostuff()"
-       )
+      '#markup' => '<p class="robocalls-fb-find-friends-birthdays">Share on Facebook</a>',
+      '#weight' => 2
     );
 
     $form['actions']['submit']['#attributes']['class'] = array('go-button robocalls-submit');
@@ -141,7 +143,7 @@ drupal_add_js('http://connect.facebook.net/en_US/all.js');
 
     drupal_add_css(drupal_get_path('module', 'robocalls') . '/js/facebook/tdfriendselector.css');
 
-
+/*
     $form['ah'] = array(
       '#markup' => '    <div id="TDFriendSelector">
       <div class="TDFriendSelector_dialog">
@@ -168,7 +170,7 @@ drupal_add_js('http://connect.facebook.net/en_US/all.js');
           </div>
         </div>
       </div>
-    </div>');
+    </div>');*/
 
 #    $form['actions']['submit']['#value'] = 'SEND IT!';
  #   $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
@@ -224,14 +226,14 @@ drupal_add_js('http://connect.facebook.net/en_US/all.js');
        'cache' => FALSE
     ));
 
-    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/facebook/tdfriendselector.js', array(
+    /*drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/facebook/tdfriendselector.js', array(
       'weight' => -102,
       'cache' => FALSE
     ));
     drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/facebook/example.js', array(
       'weight' => -101,
       'cache' => FALSE
-    ));
+    ));*/
 
     if (isset($_GET['done'])) {
        // Pop up the "Done!" pop up
@@ -499,6 +501,55 @@ function robocalls_call_submit(&$form, &$form_state) {
 
 function robocalls_page_alter(&$page) {
    global $term_info, $flags;
+
+  $url = array(
+   '#tag' => 'meta',
+   '#attributes' => array(
+      'property' => 'og:url', 
+      'content' => url(substr(request_uri(), 1), array('absolute' => true)),
+    ),
+  );
+  $title = array(
+   '#tag' => 'meta',
+   '#attributes' => array(
+      'property' => 'og:title', 
+      'content' => 'Something about Robocalls'
+    ),
+  );
+  $desc = array(
+   '#tag' => 'meta',
+   '#attributes' => array(
+      'property' => 'og:description', 
+      'content' => 'A description of Robocalls.  It is pretty cool.'
+    ),
+  );
+  $image = array(
+   '#tag' => 'meta',
+   '#attributes' => array(
+      'property' => 'og:image', 
+      'content' => 'http://files.dosomething.org/files/pictures/blog/BullyBanner-02.png'
+    ),
+  );
+  drupal_add_html_head($url);
+  drupal_add_html_head($title);
+  drupal_add_html_head($desc);
+  drupal_add_html_head($image);
+
+  $e = array(
+    '#type' => 'markup',
+    '#markup' => '<meta property="og:url" content="http://localhost:8080/blog/how-would-you-react-if-stranger-did" />
+      <meta property="og:site_name" content="Do Something" />
+      <meta property="fb:app_id" content="140309336115918" />
+      <link rel="shortcut icon" href="http://localhost:8080/files/favicon_0.ico" />
+      <meta property="og:type" content="blog" />
+      <meta property="og:description" content="Watch the reaction when this guy holds random people&#039;s hands." />
+      <meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+      <link rel="canonical" href="/blog/how-would-you-react-if-stranger-did" />
+      <link rel="shortlink" href="/node/722588" />
+      <meta property="og:title" content="How Would You React If a Stranger Did This?" />
+      <meta property="og:image" content="http://files.dosomething.org/files/pictures/blog/BullyBanner-02.png" />'
+  );
+  drupal_add_html_head($e, 'robocalls-stuff');
    if (isset($term_info)) {
       $flag = '';
       if (in_array($term_info['tid'], $flags['bdays'])) {
@@ -512,7 +563,7 @@ function robocalls_page_alter(&$page) {
       }
 
       $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup'] = str_replace('Image flag!', ($flag ? '<div class="main-robocall-flag">' . $flag . '</div>' : ''), $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup']);
-      unset($page['page_bottom']['fb_social']);
+      #unset($page['page_bottom']['fb_social']);
 
    }
 }
@@ -536,53 +587,22 @@ function robocalls_views_pre_render(&$view) {
       foreach ($view->result AS $key => $info) {
          $no = 0;
          $parent = key(taxonomy_get_parents($info->tid));
-         if ($term_info['tid'] == $info->tid) {
-            $no = 1;
+
+         $p = taxonomy_term_load($parent);
+         if (!empty($p->name)) {
+            if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag">' . $p->name . '</div>';
          }
-
-         // Birthday call flag -- set when a celeb has the "Birthday Call" checkbox checked.
-         if (isset($info->_field_data['tid']['entity']->field_birthday_call[LANGUAGE_NONE][0]['value']) && $info->_field_data['tid']['entity']->field_birthday_call[LANGUAGE_NONE][0]['value'] == 1) {
-            if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag">Birthday Call</div>';
-            $bdays[] = $info->tid;
-		 }
-
-         // Most Popular flag -- set for the celeb with the most submissions.
-         if ($info->tid == $popular) {
-            if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag">Most Popular</div>';
-         }
-
-         // New Celeb flag -- set for the most-recently-added celeb
-         $stamp = $info->_field_data['tid']['entity']->field_celeb_call[LANGUAGE_NONE][0]['timestamp'];
-         if ($stamp > $latest['stamp']) {
-            $latest = array(
-              'stamp' => $stamp,
-              'key' => $key,
-              'tid' => $info->tid,
-              'no' => $no
-            );
-		 }
-
-         // If we're on a cause call celebrity page, remove the celebrity you're seeing
-         // from the "Choose another celebrity" scroll.
-         if ($view->current_display == 'block_robocalls_choose_another_celeb') {
-            global $term_info;
-            $parent = key(taxonomy_get_parents($info->tid));
-            if ($term_info['tid'] == $info->tid) {
-               unset($view->result["$key"]);
-               continue;
-            }
-		}
-	  }
+      }
 
       $flags = array();
-      $flags['latest'] = $latest;
+/*      $flags['latest'] = $latest;
       $flags['popular'] = $popular;
-      $flags['bdays'] = $bdays;
+      $flags['bdays'] = $bdays;*/
 
       // New Celeb Flag -- Set from information above
       #if (!$latest['no']) $view->result["{$latest['key']}"]->taxonomy_term_data_description .= '<div class="robocall-flag">New Celeb</div>';
 
       #$days_before_new_celeb_flag_expires = 1;
       #if ((time() - $latest['stamp']) < ($days_before_new_celeb_flag_expires*60*60*24))
-   }
+    }
 }
