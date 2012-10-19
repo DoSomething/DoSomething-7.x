@@ -588,9 +588,11 @@ function robocalls_views_pre_render(&$view) {
          $no = 0;
          $parent = key(taxonomy_get_parents($info->tid));
 
+         $bday = (isset($info->_field_data['tid']['entity']->field_birthday_call[LANGUAGE_NONE][0]['value']) && $info->_field_data['tid']['entity']->field_birthday_call[LANGUAGE_NONE][0]['value'] == 1);
+
          $p = taxonomy_term_load($parent);
          if (!empty($p->name)) {
-            if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag">' . $p->name . '</div>';
+            if (!$no) $view->result["$key"]->taxonomy_term_data_description .= '<div class="robocall-flag ' . strtolower($p->name) . '">' . $p->name . '</div>';
          }
       }
 

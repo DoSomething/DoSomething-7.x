@@ -248,7 +248,7 @@ div.file-audio {
 }
 
 div.robocall-flag {
-	background: #d81f2a;
+	background: #18408B;
 	padding: 3px 17px;
 	height: 24px;
 	position: absolute;
@@ -260,6 +260,10 @@ div.robocall-flag {
 	font-size: 17pt;
 	line-height: 1;
 	font-family: din-web;
+}
+
+div.robocall-flag.birthday {
+	background: #d81f2a;
 }
 
 .main-robocall-flag {
