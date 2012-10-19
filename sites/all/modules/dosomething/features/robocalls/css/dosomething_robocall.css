@@ -441,7 +441,7 @@ div#edit-submitted-field-celeb-date .form-item.form-type-select {
 
 div#edit-submitted-field-celeb-date select#edit-submitted-field-celeb-date-und-0-value-year { width: 58px; }
 
-#robocalls-landing-celebs h2, #robocalls-who-should-celeb-call {
+#robocalls-landing-celebs h2, #robocalls-who-should-celeb-call h2 {
 background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) repeat-x, #D81F2A;
 height: 39px;
 background-size: 100% 10px, 100% 35px;
@@ -452,6 +452,10 @@ padding-left: 15px;
 color: #F6EED2;
 font-size: 19pt;
  }
+
+#robocalls-who-should-celeb-call {
+	margin-top: 100px;
+}
 
 div#submitted-field-celeb-date-add-more-wrapper { margin-top: -10px; }
 

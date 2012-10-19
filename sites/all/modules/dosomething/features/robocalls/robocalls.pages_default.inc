@@ -323,6 +323,28 @@ function robocalls_default_page_manager_handlers() {
     $pane->locks = array();
     $display->content['new-10'] = $pane;
     $display->panels['who_should_____call_'][2] = 'new-10';
+    $pane = new stdClass();
+    $pane->pid = 'new-11';
+    $pane->panel = 'who_should_____call_';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Clear fix',
+      'title' => '',
+      'body' => '<div class="clearfix"></div>',
+      'format' => '3',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $display->content['new-11'] = $pane;
+    $display->panels['who_should_____call_'][3] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -505,7 +527,7 @@ function robocalls_default_page_manager_pages() {
     $pane->cache = array();
     $pane->style = array();
     $pane->css = array(
-      'css_id' => '',
+      'css_id' => 'robocalls-landing-celebs',
       'css_class' => '',
     );
     $pane->extras = array();
