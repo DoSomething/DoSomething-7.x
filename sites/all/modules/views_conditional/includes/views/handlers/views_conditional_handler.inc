@@ -27,6 +27,7 @@ class views_conditional_handler extends views_handler_field {
     $options['condition'] = array('default' => '');
     $options['equalto'] = array('default' => '');
     $options['then'] = array('default' => '');
+    $options['or'] = array('default' => '');
 
     return $options;
   }
@@ -73,6 +74,13 @@ class views_conditional_handler extends views_handler_field {
       '#title' => t('Then output this...'),
       '#description' => t('Input what should be output.  Replacement variables may be used.'),
       '#default_value' => $this->options['then'],
+    );
+
+    $form['or'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Otherwise, output this...'),
+      '#description' => t('Input what should be output if the above conditions do NOT evaluate to true.'),
+      '#default_value' => $this->options['or']
     );
 
     $form['replacements'] = array(
@@ -124,11 +132,12 @@ class views_conditional_handler extends views_handler_field {
    */
   function admin_summary() {
     if (!empty($this->options['if']) && !empty($this->options['condition']) && (!empty($this->options['equalto']) || in_array($this->options['condition'], array(5, 6))) && !empty($this->options['then'])) {
-      return t('If !if is !condition !equalto, output !then', array(
+      return t('If !if is !condition !equalto, output !then, else output !or', array(
         '!if' => $this->options['if'],
         '!condition' => $this->conditions[$this->options['condition']],
         '!equalto' => $this->options['equalto'],
-        '!then' => $this->options['then']
+        '!then' => $this->options['then'],
+        '!or' => $this->options['or']
       ));
     }
     else {
@@ -150,6 +159,30 @@ class views_conditional_handler extends views_handler_field {
     $this->field_alias = 'views_conditional_' . $this->position;
   }
 
+  function clean_var($var, $key) {
+    $f = $var->view->query->pager->display->handler->options['fields'][$key];
+
+    $unparsed = trim($var->last_render);
+    $parse = true;
+    if (!empty($f['element_type'])) {
+      $parse = false;
+    }
+
+    if ($f['alter']['make_link'] == 1) {
+      $parse = false;
+    }
+
+    if ($f['alter']['prefix'] || $f['alter']['suffix']) {
+      $parse = false;
+    }
+
+    if ($parse) {
+      $unparsed = strip_tags($unparsed);
+    }
+
+    return trim($unparsed);
+  }
+
   /**
    * Renders the final output based on conditional input.
    */
@@ -158,6 +191,7 @@ class views_conditional_handler extends views_handler_field {
     $condition = $this->options['condition'];
     $equalto = $this->options['equalto'];
     $then = $this->options['then'];
+    $or = ($this->options['or'] ? $this->options['or'] : '');
 
     // Gather field information.
     $fields = $this->view->display_handler->get_handlers('field');
@@ -166,7 +200,12 @@ class views_conditional_handler extends views_handler_field {
     foreach ($this->view->display_handler->get_field_labels() AS $key => $var) {
       // If we find a replacement variable, replace it.
       if (strpos($then, "[$key]") !== false) {
-        $then = str_replace("[$key]", trim(strip_tags($fields["$key"]->last_render)), $then);
+        $field = $this->clean_var($fields[$key], $key);
+        $then = str_replace("[$key]", $field, $then);
+      }
+      else if (strpos($or, "[$key]") !== false) {
+        $field = $this->clean_var($fields[$key], $key);
+        $or = str_replace("[$key]", $field, $or);
       }
     }
 
@@ -174,10 +213,16 @@ class views_conditional_handler extends views_handler_field {
     if (strpos($then, 'DATE_STAMP') !== false) {
       $then = str_replace('DATE_STAMP', format_date(REQUEST_TIME), $then);
     }
+    else if (strpos($then, 'DATE_STAMP') !== false) {
+      $or = str_replace('DATE_STAMP', format_date(REQUEST_TIME), $or);
+    }
 
     // If we find a unix date stamp replacement, replace that.
     if (strpos($then, 'DATE_UNIX') !== false) {
       $then = str_replace('DATE_UNIX', REQUEST_TIME, $then);
+    }
+    else if (strpos($or, 'DATE_UNIX') !== false) {
+      $or = str_replace('DATE_UNIX', REQUEST_TIME, $or);
     }
 
     // Strip tags on the "if" field.  Otherwise it appears to output as <div class="xxx">Field data</div>...
@@ -191,11 +236,17 @@ class views_conditional_handler extends views_handler_field {
         if ($r == $equalto) {
           return $then;
         }
+        else {
+          return $or;
+        }
       break;
       // Not equal to
       case 2:
         if ($r !== $equalto) {
           return $then;
+        }
+        else {
+          return $or;
         }
       break;
       // Greater than
@@ -203,21 +254,33 @@ class views_conditional_handler extends views_handler_field {
         if ($r > $equalto) {
           return $then;
         }
+        else {
+          return $or;
+        }
       break;
       // Less than
       case 4:
         if ($r < $equalto) {
           return $then;
         }
+        else {
+          return $or;
+        }
       break;
       case 5:
         if (empty($r)) {
           return $then;
         }
+        else {
+          return $or;
+        }
       break;
       case 6:
         if (!empty($r)) {
           return $then;
+        }
+        else {
+          return $or;
         }
       break;
     }
