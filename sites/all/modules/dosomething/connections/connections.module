@@ -140,6 +140,11 @@ function connections_page_alter(&$page) {
 		'fb_message' => 'message'
 	);
 
+	$n = menu_get_object();
+	if (empty($n)) {
+		rules_invoke_event('viewing_non_node');
+	}
+
 	if (array_intersect(array_keys($fb_actions), array_keys($_SESSION))) {
 		drupal_add_library('dosomething_general', 'fb-friend-finder');
 

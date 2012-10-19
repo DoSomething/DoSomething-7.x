@@ -28,6 +28,17 @@ function connections_fb_message() {
   unset($_SESSION['form']['op']);
 }
 
+function connections_rules_event_info() {
+  $items = array(
+    'viewing_non_node' => array(
+      'label' => t('Viewing a non-node page.'),
+      'group' => t('General')
+    )
+  );
+
+  return $items;
+}
+
 /**
  *  Implements hook_rules_condition_info()
  */
