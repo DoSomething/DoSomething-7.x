@@ -56,8 +56,8 @@
       };
 
       // has logo, will inject
-      var logo = '//files.dosomething.org/files/campaigns/alcoa/logo.png';
-      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/50cans"><img width="215" src="' + logo + '"/></a>');
+      var logo = '//files.dosomething.org/files/campaigns/alcoa/logo50cans.png';
+      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/50cans"><img width="215" class="logo" src="' + logo + '"/></a>');
 
       // inject sponsor logo and text below the nav      
       //$('.region-sidebar-first .content').append('<img src="//files.dosomething.org/files/campaigns/spit/btm-logo.png"/>');
@@ -116,7 +116,7 @@
       $(allAnchors).click(function(event){
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
 
-        if($(this).attr('href') == '/spit#header'){
+        if($(this).attr('href') == '#header'){
           $(webformEmail).focus().addClass('focusOutline');
         }
         $(webformBoth).focus(function(){
@@ -175,7 +175,7 @@
       // scroll function
       var $window = $(window);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-      var scrollLimitTop = 340;
+      var scrollLimitTop = 400;
       var scrollLimitBot = 5757;
 
       $window.scroll(function () {

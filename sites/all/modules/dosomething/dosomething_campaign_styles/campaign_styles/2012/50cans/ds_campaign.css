@@ -1,6 +1,9 @@
 html {
   font-size: 16px; }
 
+img.logo {
+  margin-bottom: 15px; }
+
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
@@ -936,6 +939,8 @@ body {
     position: absolute;
     top: 44%;
     right: -30%; }
+  #cmp #content-level-up .pad-top {
+    margin-top: 1em; }
   #cmp #footer h1 {
     font-size: 2em;
     font-family: din-web;
