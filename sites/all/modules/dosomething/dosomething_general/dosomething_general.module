@@ -17,6 +17,22 @@ function dosomething_general_module_implements_alter(&$implementations, $hook) {
 }
 
 /**
+ *  Returns array values for a multi-dimensional array.
+ */
+function dosomething_general_array_vals_multi($array = array(), &$vals = array()) {
+  foreach ($array as $key => $value) {
+    if (is_array($value)) {
+      dosomething_general_array_vals_multi($value,$vals);
+    }
+    else{
+      $vals[] = $value; 
+    }
+  }
+
+  return $vals;
+}
+
+/**
  *  Implements hook_mail_alter().
  */
 function dosomething_general_mail_alter(&$message) {

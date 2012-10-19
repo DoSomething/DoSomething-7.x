@@ -10,41 +10,24 @@ $plugin = array(
   'render callback' => 'dosomething_connections_content_type_render'
 );
 
-function array_vals_multi($array = array(), &$vals = array())
-{
-    foreach ($array as $key => $value) {
-
-        if (is_array($value)) {
-                
-            array_vals_multi($value,$vals);
-        
-        }else{
-            
-            $vals[] = $value; 
-        }
-    }
- 
-    return $vals;
-}
-
 function dosomething_connections_content_type_render($subtype, $conf, $panel_args, $context) {
 
   if (isset($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE])) {
-  	$issues = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE]);
+  	$issues = (array) dosomething_general_array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE]);
   }
   else {
     $issues = array();
   }
 
   if (isset($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_11[LANGUAGE_NONE])) {
-    $charities = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_11[LANGUAGE_NONE]);
+    $charities = (array) dosomething_general_array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_11[LANGUAGE_NONE]);
   }
   else {
     $charities = array();
   }
 
   if (isset($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_6[LANGUAGE_NONE])) {
-    $celebs = (array) array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_6[LANGUAGE_NONE]);
+    $celebs = (array) dosomething_general_array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_6[LANGUAGE_NONE]);
   }
   else {
     $celebs = array();

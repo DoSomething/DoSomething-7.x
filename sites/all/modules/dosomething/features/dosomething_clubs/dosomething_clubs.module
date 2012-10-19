@@ -1064,17 +1064,6 @@ function dosomething_clubs_form_validate(&$form, &$form_state) {
   }
 }
 
-function dosomething_general_array_vals_multi($array,&$vals) {
-  foreach ($array as $key => $value) {
-      if (is_array($value)) {
-          array_vals_multi($value,$vals);
-      }else{
-          $vals[] = $value; 
-      }
-  }
-  return $vals;
-}
-
 /**
  * Scholarship Application form submission callback.
  */

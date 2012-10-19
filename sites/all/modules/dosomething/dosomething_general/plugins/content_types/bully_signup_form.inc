@@ -10,19 +10,6 @@ $plugin = array(
   'render callback' => 'dosomething_bully_game_form'
 );
 
-function bully_array_vals_multi($array = array(), &$vals = array()) {
-  foreach ($array as $key => $value) {
-    if (is_array($value)) {
-      bully_array_vals_multi($value,$vals);
-    }
-    else{
-      $vals[] = $value; 
-    }
-  }
-
-  return $vals;
-}
-
 function dosomething_bully_game_form($subtype, $conf, $panel_args, $context) {
   if ($_POST['do'] == 'submit-bully') {
     parse_str(urldecode($_POST['stuff']), $stuff);
@@ -59,7 +46,7 @@ function dosomething_bully_game_form($subtype, $conf, $panel_args, $context) {
 
   // Issues tags
   if (isset($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE])) {
-    $issues = (array) bully_array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE]);
+    $issues = (array) dosomething_general_array_vals_multi($context['argument_entity_id:node_1']->data->taxonomy_vocabulary_5[LANGUAGE_NONE]);
   }
   else {
     $issues = array();
