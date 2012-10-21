@@ -48,7 +48,7 @@ function dosomething_entityqueue_menu() {
   return $items;
 }
 
-function dosomething_entityqueue_add($entityqueue, $etid) {
+function dosomething_entityqueue_add($entityqueue, $etid, $skip_goto = FALSE) {
   $entityqueue_entity = reset(entity_load('entityqueue', array($entityqueue)));
   $entity_ids = &$entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE];
 
@@ -61,18 +61,20 @@ function dosomething_entityqueue_add($entityqueue, $etid) {
   if ($add) $entity_ids[] = array('target_id' => $etid);
 
   $entityqueue_entity->save();
+  if (!$skip_goto) drupal_goto();
 }
 
 function dosomething_entityqueue_swap($entityqueue_from, $entityqueue_to, $etid) {
-  dosomething_entityqueue_remove($entityqueue_from, $etid);
-  dosomething_entityqueue_add($entityqueue_to, $etid);
+  dosomething_entityqueue_remove($entityqueue_from, $etid, TRUE);
+  dosomething_entityqueue_add($entityqueue_to, $etid, TRUE);
+  drupal_goto();
 }
 
-function dosomething_entityqueue_remove($entityqueue, $remove_etid) {
+function dosomething_entityqueue_remove($entityqueue, $etid, $skip_goto = FALSE) {
   $entityqueue_entity = reset(entity_load('entityqueue', array($entityqueue)));
   $entity_ids = &$entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE];
 
-  foreach ($entityqueue_entity as $key => $etid_wrapper) {
+  foreach ($entity_ids as $key => $etid_wrapper) {
     if ($etid_wrapper['target_id'] == $etid) {
       unset($entity_ids[$key]);
     }
@@ -80,4 +82,5 @@ function dosomething_entityqueue_remove($entityqueue, $remove_etid) {
   $entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE] = array_values($entity_ids);
 
   $entityqueue_entity->save();
+  if (!$skip_goto) drupal_goto();
 }
