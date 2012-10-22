@@ -48,6 +48,13 @@ function dosomething_user_my_somethings_og_membership_insert($membership) {
 }
 
 /**
+ * Implements hook_user_update().
+ */
+function dosomething_user_my_somethings_user_update(&$edit, $account, $category) {
+  cache_clear_all("dosomething_user_my_somethings:$account->uid:percent", 'cache', FALSE);
+}
+
+/**
  * Member dashboard block for logged in users.
  */
 function dosomething_user_my_somethings_member_block() {
@@ -109,9 +116,21 @@ function dosomething_user_my_somethings_profile_completion($account = FALSE, $si
     global $user;
     $account = clone $user;
   }
+
   $ratio = 0;
   if (module_exists('dosomething_roles')) {
-    $ratio = dosomething_roles_get_user_percentage($account->uid);
+    // The get user percentage function is kind of expensive, we could cache it
+    // in that module but it'd need to re-implement all the cache clear hooks
+    // that are already implemented here. So, let's just cache the copy here
+    // where we know it'll get invalidated correctly.
+    $cid = "dosomething_user_my_somethings:$uid:percent";
+    $cache = cache_get($cid);
+    if (!$cache || empty($cache->data)) {
+      $cache = new stdClass();
+      $cache->data = dosomething_roles_get_user_percentage($account->uid);
+      cache_set($cid, $cache->data);
+    }
+    $ratio = $cache->data;
   }
 
   $complete_text = !empty($sidebar) ? 'Profile %percent complete' : '%percent complete';
