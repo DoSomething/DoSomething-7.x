@@ -169,6 +169,7 @@ class clubs_export {
     $info = unserialize(base64_decode($hash));
     $handle = fopen($info['file_path'], 'a');
 
+    $writes = array();
     foreach ($data['results'] AS $key => $stuff) {
       $stuff = (array) $stuff;
 
@@ -181,7 +182,7 @@ class clubs_export {
         $done[] = $c;
       }
 
-      $c[] = array(
+      $writes[] = array(
         'club id' =>          $stuff['nid'],
         'club name' =>        $stuff['node_title'],
         'not associated with a school' => $stuff['not_associated'],
@@ -220,7 +221,7 @@ class clubs_export {
       $i++;
     }
 
-    $ex = array_to_csv($c, FALSE);
+    $ex = array_to_csv($writes, FALSE);
     if (!empty($ex)) {
       if (fwrite($handle, $ex) && $i == $count) {
         return true;
@@ -373,7 +374,7 @@ class clubs_export {
     LEFT JOIN `ds_school` AS `sc` ON (`sc`.`sid` = `school`.`field_school_reference_target_id`)
     WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
     GROUP BY nid, node_title ASC
-    ORDER BY `node`.`created` DESC
+    ORDER BY `node`.`created` ASC
     " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
