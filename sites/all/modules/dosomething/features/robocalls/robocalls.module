@@ -104,7 +104,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     );
 
     $form['extras']['fb_container']['fb_button']['connect_with_facebook'] = array(
-      '#markup' => '<p class="robocalls-fb-find-friends-birthdays">Share on Facebook</a>',
+      '#markup' => '<p class="robocalls-fb-find-friends-birthdays"><img src="/' . drupal_get_path('module', 'robocalls') . '/images/facebook-share-button.gif" alt="Share on Facebook" /></p>',
       '#weight' => 2
     );
 

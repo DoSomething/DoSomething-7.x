@@ -41,6 +41,7 @@ jQuery(function() {
 	var code = (window.location.search.substring(1));
 	var person = '';
 	var cause = '';
+    var limit = 0;
 
 	if (code.indexOf('done=') !== -1 && code !== 'done=true')
 	{
