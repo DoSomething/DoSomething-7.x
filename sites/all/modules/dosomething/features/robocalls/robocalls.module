@@ -66,6 +66,9 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
        $term_info = array();
        $term_info['parent'] = key(taxonomy_get_parents($term->tid));
        $term_info['tid'] = $term->tid;
+       $term_info['name'] = $term->name;
+       $term_info['desc'] = $term->description;
+       $term_info['image'] = $term->field_celeb_photo[LANGUAGE_NONE][0]['uri'];
 
       $form['call_limit'] = array(
         '#type' => 'hidden',
@@ -506,55 +509,40 @@ function robocalls_call_submit(&$form, &$form_state) {
 function robocalls_page_alter(&$page) {
    global $term_info, $flags;
 
-  $url = array(
-   '#tag' => 'meta',
-   '#attributes' => array(
-      'property' => 'og:url', 
-      'content' => url(substr(request_uri(), 1), array('absolute' => true)),
-    ),
-  );
-  $title = array(
-   '#tag' => 'meta',
-   '#attributes' => array(
-      'property' => 'og:title', 
-      'content' => 'Something about Robocalls'
-    ),
-  );
-  $desc = array(
-   '#tag' => 'meta',
-   '#attributes' => array(
-      'property' => 'og:description', 
-      'content' => 'A description of Robocalls.  It is pretty cool.'
-    ),
-  );
-  $image = array(
-   '#tag' => 'meta',
-   '#attributes' => array(
-      'property' => 'og:image', 
-      'content' => 'http://files.dosomething.org/files/pictures/blog/BullyBanner-02.png'
-    ),
-  );
-  drupal_add_html_head($url);
-  drupal_add_html_head($title);
-  drupal_add_html_head($desc);
-  drupal_add_html_head($image);
-
-  $e = array(
-    '#type' => 'markup',
-    '#markup' => '<meta property="og:url" content="http://localhost:8080/blog/how-would-you-react-if-stranger-did" />
-      <meta property="og:site_name" content="Do Something" />
-      <meta property="fb:app_id" content="140309336115918" />
-      <link rel="shortcut icon" href="http://localhost:8080/files/favicon_0.ico" />
-      <meta property="og:type" content="blog" />
-      <meta property="og:description" content="Watch the reaction when this guy holds random people&#039;s hands." />
-      <meta name="Generator" content="Drupal 7 (http://drupal.org)" />
-      <link rel="canonical" href="/blog/how-would-you-react-if-stranger-did" />
-      <link rel="shortlink" href="/node/722588" />
-      <meta property="og:title" content="How Would You React If a Stranger Did This?" />
-      <meta property="og:image" content="http://files.dosomething.org/files/pictures/blog/BullyBanner-02.png" />'
-  );
-  drupal_add_html_head($e, 'robocalls-stuff');
    if (isset($term_info)) {
+      $url = array(
+       '#tag' => 'meta',
+       '#attributes' => array(
+          'property' => 'og:url', 
+          'content' => url(substr(request_uri(), 1), array('absolute' => true)),
+        ),
+      );
+      $title = array(
+       '#tag' => 'meta',
+       '#attributes' => array(
+          'property' => 'og:title', 
+          'content' => 'I just sent you a call from ' . $term_info['name'] . '!'
+        ),
+      );
+      $desc = array(
+       '#tag' => 'meta',
+       '#attributes' => array(
+          'property' => 'og:description', 
+          'content' => $term_info['desc']
+        ),
+      );
+      $image = array(
+       '#tag' => 'meta',
+       '#attributes' => array(
+          'property' => 'og:image', 
+          'content' => 'http://files.dosomething.org/files/' . str_replace(drupal_realpath('public://'), '', drupal_realpath($term_info['image']))
+        ),
+      );
+      drupal_add_html_head($url, 'robocalls_url');
+      drupal_add_html_head($title, 'robocalls_title');
+      drupal_add_html_head($desc, 'robocalls_desc');
+      drupal_add_html_head($image, 'robocalls_img');
+
       $flag = '';
       if (in_array($term_info['tid'], $flags['bdays'])) {
          $flag = 'Birthday Call';
