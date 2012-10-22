@@ -21,7 +21,7 @@ function dosomething_general_module_implements_alter(&$implementations, $hook) {
  */
 function dosomething_general_array_vals_multi($array = array(), &$vals = array()) {
   foreach ($array as $key => $value) {
-    if (is_array($value)) {
+    if (is_array($value) || is_object($value)) {
       dosomething_general_array_vals_multi($value,$vals);
     }
     else{
