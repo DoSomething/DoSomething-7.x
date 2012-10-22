@@ -86,7 +86,35 @@ function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
   }
 }
 
+/**
+ * Implements hook_page_alter().
+ *
+ * We want to provide more detail to New Relic on the transaction and late in
+ * the page build seemed like the simplest place.
+ */
+function dosomething_general_page_alter(&$page) {
+  if (!function_exists('newrelic_name_transaction')) {
+    return;
+  }
 
+  $panel_page = page_manager_get_current_page();
+  if (isset($panel_page['name'])) {
+    if ($panel_page['name'] == 'node_view') {
+      if (isset($panel_page['contexts']['argument_entity_id:node_1']->data)) {
+        $node = $panel_page['contexts']['argument_entity_id:node_1']->data;
+        newrelic_name_transaction("page_manager_node_view_page/$node->type");
+        newrelic_add_custom_parameter('nid', $node->nid);
+      }
+    }
+    else if ($panel_page['name'] == 'webform_submission_view') {
+      if (isset($panel_page['contexts']['argument_entity_id:webform_submission_entity_1']->data)) {
+        $submission = $panel_page['contexts']['argument_entity_id:webform_submission_entity_1']->data;
+        newrelic_name_transaction("webform_entity_pages_webform_submission_view_page/$submission->bundle");
+        newrelic_add_custom_parameter('nid', $submission->nid);
+      }
+    }
+  }
+}
 
 /**
  * Implements hook_theme().
