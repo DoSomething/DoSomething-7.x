@@ -10,7 +10,7 @@
 function dosomething_clubs_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-club-field_camp'
+  // Exported field: 'node-club-field_camp'.
   $fields['node-club-field_camp'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_clubs_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -57,7 +58,7 @@ function dosomething_clubs_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '5',
+          'weight' => '3',
         ),
         'full' => array(
           'label' => 'above',
@@ -140,7 +141,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_campaign_list'
+  // Exported field: 'node-club-field_campaign_list'.
   $fields['node-club-field_campaign_list'] = array(
     'field_config' => array(
       'active' => '1',
@@ -164,6 +165,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -203,6 +205,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'grant_judge' => 0,
           'help_ticket' => 0,
           'member_opportunity' => 0,
+          'mobile_referral_form' => 0,
           'page' => 0,
           'petition' => 0,
           'poll' => 0,
@@ -213,6 +216,9 @@ sports|Sports Equipment - our fall sports equipment drive',
           'robo_calls' => 0,
           'scholarship' => 0,
           'scholarship_application' => 0,
+          'scholarship_application_with_rec' => 0,
+          'scholarship_recommendation' => 0,
+          'scholarship_recommendation_reque' => 0,
           'school' => 0,
           'scroller' => 0,
           'share_of_day' => 0,
@@ -242,7 +248,19 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'node_reference',
           'settings' => array(),
           'type' => 'node_reference_default',
-          'weight' => '3',
+          'weight' => '15',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -254,7 +272,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_type' => 'node',
       'field_name' => 'field_campaign_list',
       'label' => 'My Do Something Club is going to work on',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -268,7 +286,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_club_address'
+  // Exported field: 'node-club-field_club_address'.
   $fields['node-club-field_club_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -289,6 +307,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -325,23 +344,20 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '20',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '20',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '20',
         ),
       ),
@@ -369,7 +385,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_club_blurb'
+  // Exported field: 'node-club-field_club_blurb'.
   $fields['node-club-field_club_blurb'] = array(
     'field_config' => array(
       'active' => '1',
@@ -393,6 +409,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '140',
@@ -412,7 +429,19 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 30,
+          'weight' => '13',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -423,7 +452,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_club_blurb',
-      'label' => 'Insert a blurb of text about your club',
+      'label' => 'Insert a blurb of text about your club.',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -441,7 +470,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_club_city'
+  // Exported field: 'node-club-field_club_city'.
   $fields['node-club-field_club_city'] = array(
     'field_config' => array(
       'active' => '1',
@@ -462,6 +491,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -513,9 +543,8 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '21',
         ),
       ),
@@ -543,7 +572,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_club_leader_birthdate'
+  // Exported field: 'node-club-field_club_leader_birthdate'.
   $fields['node-club-field_club_leader_birthdate'] = array(
     'field_config' => array(
       'active' => '1',
@@ -556,6 +585,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -605,16 +635,8 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'field_club_leader_birthdate_default',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-            'show_repeat_rule' => 'show',
-          ),
-          'type' => 'date_default',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '-3',
         ),
         'search_result' => array(
@@ -626,24 +648,15 @@ sports|Sports Equipment - our fall sports equipment drive',
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
           'weight' => '-3',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'field_club_leader_birthdate_default',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-            'show_repeat_rule' => 'show',
-          ),
-          'type' => 'date_default',
-          'weight' => '-3',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'node',
@@ -677,7 +690,85 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_club_picture'
+  // Exported field: 'node-club-field_club_mailings'.
+  $fields['node-club-field_club_mailings'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_club_mailings',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'welcome' => 'Yes, I’d like to receive a DoSomething.org Clubs Welcome Packet via snail mail with banners, stickers, and other Do Something SWAG',
+          'mailings' => 'Yes, I’d like to receive additional DoSomething.org Clubs Official Mailings via snail mail twice a year with materials to help my club be successful',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '17',
+        ),
+        'search_index' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '11',
+        ),
+        'search_result' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '11',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_club_mailings',
+      'label' => 'Mailings',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-club-field_club_picture'.
   $fields['node-club-field_club_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -701,6 +792,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '98738',
@@ -742,16 +834,20 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'file_rendered',
           'weight' => '-6',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'file_rendered',
           'weight' => '-6',
         ),
         'teaser' => array(
@@ -767,10 +863,11 @@ sports|Sports Equipment - our fall sports equipment drive',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_club_picture',
-      'label' => 'Official Club photo',
+      'label' => 'Official club photo',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'club',
         'file_extensions' => 'jpg jpeg png gif',
         'max_filesize' => '',
@@ -797,6 +894,7 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_blog_large_thumbnail' => 0,
             'image_blog_portrait' => 0,
             'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
             'image_campaign_blog_thumbnail' => 0,
             'image_campaign_microsite_logo' => 0,
             'image_campaign_report_back_style' => 0,
@@ -843,7 +941,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_club_state'
+  // Exported field: 'node-club-field_club_state'.
   $fields['node-club-field_club_state'] = array(
     'field_config' => array(
       'active' => '1',
@@ -860,6 +958,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -968,23 +1067,22 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '22',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '22',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '22',
         ),
       ),
@@ -1008,7 +1106,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_club_verified'
+  // Exported field: 'node-club-field_club_verified'.
   $fields['node-club-field_club_verified'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1025,6 +1123,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1052,13 +1151,27 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 25,
+          'weight' => '8',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '25',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '25',
         ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '19',
         ),
       ),
       'entity_type' => 'node',
@@ -1073,12 +1186,12 @@ sports|Sports Equipment - our fall sports equipment drive',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '14',
+        'weight' => '16',
       ),
     ),
   );
 
-  // Exported field: 'node-club-field_club_video'
+  // Exported field: 'node-club-field_club_video'.
   $fields['node-club-field_club_video'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1087,7 +1200,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_types' => array(),
       'field_name' => 'field_club_video',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -1095,6 +1208,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1117,11 +1231,29 @@ sports|Sports Equipment - our fall sports equipment drive',
           'type' => 'media',
           'weight' => '18',
         ),
+        'search_index' => array(
+          'label' => 'above',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'media',
+          'weight' => '18',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'module' => 'mediafield',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'media',
+          'weight' => '18',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'node',
@@ -1150,7 +1282,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'browser_plugins' => array(
             'library' => 0,
             'media_default--media_browser_1' => 0,
-            'media_internet' => 'media_internet',
+            'media_internet' => 0,
             'upload' => 0,
           ),
           'progress_indicator' => 'throbber',
@@ -1161,7 +1293,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_club_zip'
+  // Exported field: 'node-club-field_club_zip'.
   $fields['node-club-field_club_zip'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1182,6 +1314,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1233,9 +1366,8 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '23',
         ),
       ),
@@ -1263,7 +1395,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_email'
+  // Exported field: 'node-club-field_email'.
   $fields['node-club-field_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1287,6 +1419,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1307,10 +1440,9 @@ sports|Sports Equipment - our fall sports equipment drive',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '3',
+          'type' => 'hidden',
+          'weight' => '19',
         ),
         'full' => array(
           'label' => 'above',
@@ -1321,24 +1453,21 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '-4',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '-4',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '-4',
+          'type' => 'hidden',
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'node',
@@ -1363,14 +1492,17 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_name'
-  $fields['node-club-field_name'] = array(
+  // Exported field: 'node-club-field_mailchimp_group_id'.
+  $fields['node-club-field_mailchimp_group_id'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_name',
+      'field_name' => 'field_mailchimp_group_id',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1384,6 +1516,96 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => array(
+        0 => array(
+          'value' => 'Clubs2012',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '16',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mailchimp_group_id',
+      'label' => 'Mailchimp Interest Group',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '29',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-club-field_name'.
+  $fields['node-club-field_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1466,7 +1688,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_name_last'
+  // Exported field: 'node-club-field_name_last'.
   $fields['node-club-field_name_last'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1487,6 +1709,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1524,23 +1747,20 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '-6',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '-6',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '-6',
         ),
       ),
@@ -1568,7 +1788,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_no_school_associate'
+  // Exported field: 'node-club-field_no_school_associate'.
   $fields['node-club-field_no_school_associate'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1585,6 +1805,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1605,13 +1826,26 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
       ),
       'deleted' => '0',
-      'description' => 'Check this box if this club is not associated with a school.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '11',
+        ),
+        'search_index' => array(
+          'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => 0,
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1622,7 +1856,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_no_school_associate',
-      'label' => 'My Club is not associated with a school',
+      'label' => 'OR My Club is not associated with a school (this will delete your school selection)',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -1639,7 +1873,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_noschool_club_name'
+  // Exported field: 'node-club-field_noschool_club_name'.
   $fields['node-club-field_noschool_club_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1663,6 +1897,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1673,20 +1908,29 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '[Group Name] DoSomething.org Club',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Keep our Clubs Directory listing clean by capitalizing the first letters in your club name and using our standard formatting like its pre-filled above.',
+      'description' => 'Insert your group, community, or church name here.
+<p>Check out the name of your club below.</p>',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '11',
+          'weight' => '12',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1715,7 +1959,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_participants'
+  // Exported field: 'node-club-field_participants'.
   $fields['node-club-field_participants'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1739,6 +1983,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1758,18 +2003,30 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 28,
+          'weight' => '10',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '28',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '28',
         ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '15',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_participants',
-      'label' => 'Invite a Friend',
+      'label' => 'Invite Friends',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1782,12 +2039,12 @@ sports|Sports Equipment - our fall sports equipment drive',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
 
-  // Exported field: 'node-club-field_phone_required'
+  // Exported field: 'node-club-field_phone_required'.
   $fields['node-club-field_phone_required'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1811,6 +2068,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1832,10 +2090,9 @@ sports|Sports Equipment - our fall sports equipment drive',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '2',
+          'type' => 'hidden',
+          'weight' => '18',
         ),
         'full' => array(
           'label' => 'above',
@@ -1846,24 +2103,21 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '-5',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '-5',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '-5',
+          'type' => 'hidden',
+          'weight' => '11',
         ),
       ),
       'entity_type' => 'node',
@@ -1888,7 +2142,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_project_photo'
+  // Exported field: 'node-club-field_project_photo'.
   $fields['node-club-field_project_photo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1912,6 +2166,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -1953,16 +2208,20 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'file_rendered',
           'weight' => '-4',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'file_rendered',
           'weight' => '-4',
         ),
         'teaser' => array(
@@ -1982,6 +2241,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'project_photos',
         'file_extensions' => 'jpg jpeg png gif',
         'max_filesize' => '',
@@ -2008,6 +2268,7 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_blog_large_thumbnail' => 0,
             'image_blog_portrait' => 0,
             'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
             'image_campaign_blog_thumbnail' => 0,
             'image_campaign_microsite_logo' => 0,
             'image_campaign_report_back_style' => 0,
@@ -2015,7 +2276,6 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_campaigns_logo' => 0,
             'image_cause_main' => 0,
             'image_cause_vertical' => 0,
-            'image_club_gallery_photos_120x120' => 0,
             'image_club_profile' => 0,
             'image_content_main' => 0,
             'image_explore_action_guides' => 0,
@@ -2055,7 +2315,92 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_school_reference'
+  // Exported field: 'node-club-field_responded_to_texts'.
+  $fields['node-club-field_responded_to_texts'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_responded_to_texts',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The last date (by timestamp) that the club leader responded to a text.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 21,
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_responded_to_texts',
+      'label' => 'Responded to Texts',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '30',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-club-field_school_reference'.
   $fields['node-club-field_school_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2075,6 +2420,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'ds_school',
@@ -2112,13 +2458,31 @@ sports|Sports Equipment - our fall sports equipment drive',
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 27,
+          'weight' => '9',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '27',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '27',
         ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '16',
         ),
       ),
       'entity_type' => 'node',
@@ -2142,7 +2506,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'node-club-field_send_goodies'
+  // Exported field: 'node-club-field_send_goodies'.
   $fields['node-club-field_send_goodies'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2159,6 +2523,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -2179,14 +2544,26 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
       ),
       'deleted' => '0',
-      'description' => 'Keep an eye on your email next semester, you may need to take additional steps to confirm future packages.',
+      'description' => 'Keep an eye on your email next semester, you may need to take additional steps to confirm future packages.  Available to US residents only.',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 29,
+          'weight' => '14',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2209,12 +2586,12 @@ sports|Sports Equipment - our fall sports equipment drive',
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '7',
+        'weight' => '27',
       ),
     ),
   );
 
-  // Exported field: 'node-club-group_group'
+  // Exported field: 'node-club-group_group'.
   $fields['node-club-group_group'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2231,6 +2608,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'no_ui' => TRUE,
       'settings' => array(
@@ -2259,13 +2637,27 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'og_ui',
           'settings' => array(),
           'type' => 'og_group_subscribe',
+          'weight' => '6',
+        ),
+        'search_index' => array(
+          'label' => 'hidden',
+          'module' => 'og_ui',
+          'settings' => array(),
+          'type' => 'og_group_subscribe',
+          'weight' => '9',
+        ),
+        'search_result' => array(
+          'label' => 'hidden',
+          'module' => 'og_ui',
+          'settings' => array(),
+          'type' => 'og_group_subscribe',
           'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '18',
         ),
       ),
       'entity_type' => 'node',
@@ -2292,13 +2684,13 @@ sports|Sports Equipment - our fall sports equipment drive',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '9',
+        'weight' => '10',
       ),
       'widget_type' => 'options_select',
     ),
   );
 
-  // Exported field: 'node-club-og_node_link'
+  // Exported field: 'node-club-og_node_link'.
   $fields['node-club-og_node_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2315,6 +2707,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'no_ui' => TRUE,
       'settings' => array(
@@ -2340,13 +2733,27 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'og_node_link',
           'settings' => array(),
           'type' => 'og_node_link_default',
+          'weight' => '7',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'module' => 'og_node_link',
+          'settings' => array(),
+          'type' => 'og_node_link_default',
+          'weight' => '13',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'module' => 'og_node_link',
+          'settings' => array(),
+          'type' => 'og_node_link_default',
           'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '17',
         ),
       ),
       'entity_type' => 'node',
@@ -2377,7 +2784,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
   );
 
-  // Exported field: 'taxonomy_term-clubs_todo_list-field_todo_image'
+  // Exported field: 'taxonomy_term-clubs_todo_list-field_todo_image'.
   $fields['taxonomy_term-clubs_todo_list-field_todo_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2401,6 +2808,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'display_default' => 0,
@@ -2430,8 +2838,8 @@ sports|Sports Equipment - our fall sports equipment drive',
       'required' => 0,
       'settings' => array(
         'description_field' => 0,
-        'file_directory' => '',
-        'file_extensions' => 'jpg jpeg gif png',
+        'file_directory' => 'clubs_todo_images',
+        'file_extensions' => 'jpg jpeg png gif',
         'max_filesize' => '',
         'user_register_form' => FALSE,
       ),
@@ -2452,6 +2860,7 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_blog_large_thumbnail' => 0,
             'image_blog_portrait' => 0,
             'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
             'image_campaign_blog_thumbnail' => 0,
             'image_campaign_microsite_logo' => 0,
             'image_campaign_report_back_style' => 0,
@@ -2459,6 +2868,7 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_campaigns_logo' => 0,
             'image_cause_main' => 0,
             'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
             'image_club_profile' => 0,
             'image_content_main' => 0,
             'image_explore_action_guides' => 0,
@@ -2470,6 +2880,8 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_member_photo_gallery' => 0,
             'image_my_somethings' => 0,
             'image_nav_page_bottom' => 0,
+            'image_petdetail_regular' => 0,
+            'image_petdetail_retina' => 0,
             'image_project_gallery_thumb' => 0,
             'image_project_related_thumb' => 0,
             'image_related-posts' => 0,
@@ -2482,6 +2894,8 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_sponsor_logo' => 0,
             'image_square_thumbnail' => 0,
             'image_thumbnail' => 0,
+            'image_thumbnail_regular' => 0,
+            'image_thumbnail_retina' => 0,
             'image_tips_tools_node' => 0,
             'image_upcoming_somethings_thumb' => 0,
             'image_whats_happening_now_thumbnail' => 0,
@@ -2491,12 +2905,12 @@ sports|Sports Equipment - our fall sports equipment drive',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '1',
+        'weight' => '31',
       ),
     ),
   );
 
-  // Exported field: 'taxonomy_term-clubs_todo_list-field_todo_link'
+  // Exported field: 'taxonomy_term-clubs_todo_list-field_todo_link'.
   $fields['taxonomy_term-clubs_todo_list-field_todo_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2520,6 +2934,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -2557,7 +2972,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '32',
       ),
     ),
   );
@@ -2568,7 +2983,6 @@ sports|Sports Equipment - our fall sports equipment drive',
   t('Add group content');
   t('Address');
   t('As the club leader we may need to send you important notifications regarding your eligibility for grants, prizes, and other sweet opportunities.  So please provide an email address you actually check.');
-  t('Check this box if this club is not associated with a school.');
   t('City');
   t('Club Photo Gallery');
   t('Date of birth');
@@ -2576,19 +2990,24 @@ sports|Sports Equipment - our fall sports equipment drive',
   t('Group type');
   t('Image');
   t('In 140 characters or less, post your club\'s goals, next meeting date, or upcoming volunteer opportunities.');
-  t('Insert a blurb of text about your club');
-  t('Invite a Friend');
-  t('Keep an eye on your email next semester, you may need to take additional steps to confirm future packages.');
-  t('Keep our Clubs Directory listing clean by capitalizing the first letters in your club name and using our standard formatting like its pre-filled above.');
+  t('Insert a blurb of text about your club.');
+  t('Insert your group, community, or church name here.
+<p>Check out the name of your club below.</p>');
+  t('Invite Friends');
+  t('Keep an eye on your email next semester, you may need to take additional steps to confirm future packages.  Available to US residents only.');
   t('Last Name');
   t('Link to');
   t('List the email addresses of people you\'d like to invite to your club.');
-  t('My Club is not associated with a school');
+  t('Mailchimp Interest Group');
+  t('Mailings');
   t('My Do Something Club is going to work on');
-  t('Official Club photo');
+  t('OR My Club is not associated with a school (this will delete your school selection)');
+  t('Official club photo');
+  t('Responded to Texts');
   t('School');
   t('Send me a package full of goodies every Fall and Spring!');
   t('State');
+  t('The last date (by timestamp) that the club leader responded to a text.');
   t('This is how we can call you with sweet opportunities or text you weekly updates on everything DoSomething.org including scholarships, volunteer opportunities, and even inspiring quotes!
 <br />Msg & data rates may apply.  Text STOP to opt-out, HELP for help.');
   t('Verified');

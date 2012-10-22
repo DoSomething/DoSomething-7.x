@@ -151,6 +151,12 @@ function dosomething_clubs_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['clubs/responded'] = array(
+    'page callback' => 'dosomething_clubs_responded_to_txt',
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE
+  );
+
   $items['clubs/edit-logo/%'] = array(
     'page callback' => 'dosomething_clubs_edit_logo',
     'page arguments' => array(2),
@@ -225,6 +231,43 @@ function dosomething_clubs_menu() {
   );
 
   return $items;
+}
+
+/**
+ *  Responds to a text message being answered through Clubs.
+ */
+function dosomething_clubs_responded_to_txt() {
+  $num = $_REQUEST['phone_number_without_country_code'];
+  if (dosomething_general_valid_cell($num)) {
+    $account = dosomething_load_user_by_profile_cell($num);
+    if (!empty($account->uid)) {
+      $q = db_select('node', 'n')
+        ->fields('n', array('nid'))
+        ->condition('uid', $account->uid)
+        ->condition('type', 'club')
+        ->orderBy('created', 'DESC')
+        ->range(0, 1)
+        ->execute();
+
+      $nodes = array();
+      $r = $q->fetchAll();
+      foreach ($r AS $key => $n) {
+        $node = node_load($n->nid);
+        $node->field_responded_to_texts[LANGUAGE_NONE][0]['value'] = REQUEST_TIME;
+        node_save($node);
+      }
+    }
+
+    echo '<?xml version="1.0" encoding="UTF-8"?>
+    <response>
+     <reply>
+      <text>
+       <![CDATA[We are glad to know you are an active club.  Did you konw we are giving away free pizza parties to clubs with 10+ members? Txt PIZZA for more.]]>
+      </text>
+     </reply>
+    </response>';
+    exit;
+  }
 }
 
 function dosomething_clubs_edit_logo_form($form, $form_state, $nid) {

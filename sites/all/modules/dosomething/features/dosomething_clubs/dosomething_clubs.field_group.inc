@@ -21,7 +21,7 @@ function dosomething_clubs_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Club Leader',
-    'weight' => '16',
+    'weight' => '20',
     'children' => array(
       0 => 'field_club_leader_birthdate',
     ),
@@ -126,7 +126,7 @@ function dosomething_clubs_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Club Members',
-    'weight' => '22',
+    'weight' => '26',
     'children' => array(),
     'format_type' => 'hidden',
     'format_settings' => array(
@@ -192,8 +192,8 @@ function dosomething_clubs_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Club Profile Photo',
-    'weight' => '11',
+    'label' => 'Club Media',
+    'weight' => '12',
     'children' => array(
       0 => 'field_club_picture',
       1 => 'field_club_video',
@@ -201,7 +201,7 @@ function dosomething_clubs_field_group_info() {
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'label' => 'Club Profile Photo',
+      'label' => 'Club Media',
       'instance_settings' => array(
         'required_fields' => 1,
         'classes' => '',

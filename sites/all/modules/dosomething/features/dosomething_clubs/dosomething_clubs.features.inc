@@ -35,7 +35,7 @@ function dosomething_clubs_views_api() {
 function dosomething_clubs_image_default_styles() {
   $styles = array();
 
-  // Exported image style: club_gallery_photos_120x120
+  // Exported image style: club_gallery_photos_120x120.
   $styles['club_gallery_photos_120x120'] = array(
     'name' => 'club_gallery_photos_120x120',
     'effects' => array(

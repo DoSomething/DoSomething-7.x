@@ -17,7 +17,7 @@ function dosomething_clubs_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -24;
+  $handler->weight = -23;
   $handler->conf = array(
     'title' => 'Club',
     'no_blocks' => FALSE,
@@ -130,92 +130,6 @@ function dosomething_clubs_default_page_manager_handlers() {
     $pane->pid = 'new-2';
     $pane->panel = 'mid-center';
     $pane->type = 'views_panes';
-    $pane->subtype = 'club_projects-panel_pane_1';
-    $pane->shown = FALSE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '0',
-            'paths' => 'node/*/done-it/*
-node/*/doing-it/*
-node/*/picks
-node/*/picks/*',
-          ),
-          'context' => 'empty',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'context' => array(
-        0 => 'argument_entity_id:node_1',
-      ),
-      'more_link' => 1,
-      'path' => 'node/%node:nid/doing-it',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-2'] = $pane;
-    $display->panels['mid-center'][0] = 'new-2';
-    $pane = new stdClass();
-    $pane->pid = 'new-3';
-    $pane->panel = 'mid-center';
-    $pane->type = 'club_doing_it';
-    $pane->subtype = 'club_doing_it';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['mid-center'][1] = 'new-3';
-    $pane = new stdClass();
-    $pane->pid = 'new-4';
-    $pane->panel = 'mid-left';
-    $pane->type = 'views';
-    $pane->subtype = 'clubs_to_do_list';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '5',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'default',
-      'override_title' => 1,
-      'override_title_text' => 'To Do List',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['mid-left'][0] = 'new-4';
-    $pane = new stdClass();
-    $pane->pid = 'new-5';
-    $pane->panel = 'mid-right';
-    $pane->type = 'views_panes';
     $pane->subtype = 'club_projects-panel_pane_2';
     $pane->shown = FALSE;
     $pane->access = array(
@@ -232,6 +146,19 @@ node/*/picks/*',
           'context' => 'empty',
           'not' => FALSE,
         ),
+        1 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => TRUE,
+        ),
       ),
     );
     $pane->configuration = array(
@@ -244,14 +171,237 @@ node/*/picks/*',
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'do-it-pane',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
+    $display->content['new-2'] = $pane;
+    $display->panels['mid-center'][0] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'mid-center';
+    $pane->type = 'club_doing_it';
+    $pane->subtype = 'club_doing_it';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'do-it-pane',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-3'] = $pane;
+    $display->panels['mid-center'][1] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'mid-center';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'club_projects-panel_pane_1';
+    $pane->shown = FALSE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'path' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-4'] = $pane;
+    $display->panels['mid-center'][2] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
+    $pane->panel = 'mid-center';
+    $pane->type = 'club_done_it';
+    $pane->subtype = 'club_done_it';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'do-it-pane',
+    );
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
     $display->content['new-5'] = $pane;
-    $display->panels['mid-right'][0] = 'new-5';
+    $display->panels['mid-center'][3] = 'new-5';
     $pane = new stdClass();
     $pane->pid = 'new-6';
+    $pane->panel = 'mid-left';
+    $pane->type = 'views';
+    $pane->subtype = 'clubs_to_do_list';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '5',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'default',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-6'] = $pane;
+    $display->panels['mid-left'][0] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
+    $pane->panel = 'mid-left';
+    $pane->type = 'club_doing_it';
+    $pane->subtype = 'club_doing_it';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'do-it-pane',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-7'] = $pane;
+    $display->panels['mid-left'][1] = 'new-7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8';
+    $pane->panel = 'mid-left';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'club_projects-panel_pane_1';
+    $pane->shown = FALSE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'path' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-8'] = $pane;
+    $display->panels['mid-left'][2] = 'new-8';
+    $pane = new stdClass();
+    $pane->pid = 'new-9';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'club_members-panel_pane_1';
@@ -270,6 +420,19 @@ node/*/picks/*',
           'context' => 'empty',
           'not' => FALSE,
         ),
+        2 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => TRUE,
+        ),
       ),
     );
     $pane->configuration = array(
@@ -282,12 +445,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-6'] = $pane;
-    $display->panels['mid-right'][1] = 'new-6';
+    $display->content['new-9'] = $pane;
+    $display->panels['mid-right'][0] = 'new-9';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-10';
     $pane->panel = 'mid-right';
     $pane->type = 'views_panes';
     $pane->subtype = 'profile-panel_pane_1';
@@ -337,28 +500,129 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-7'] = $pane;
-    $display->panels['mid-right'][2] = 'new-7';
+    $display->content['new-10'] = $pane;
+    $display->panels['mid-right'][1] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-11';
     $pane->panel = 'mid-right';
     $pane->type = 'club_member_list';
     $pane->subtype = 'club_member_list';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
     $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-11'] = $pane;
+    $display->panels['mid-right'][2] = 'new-11';
+    $pane = new stdClass();
+    $pane->pid = 'new-12';
+    $pane->panel = 'mid-right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'club_projects-panel_pane_2';
+    $pane->shown = FALSE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'path' => '',
+    );
     $pane->cache = array();
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['mid-right'][3] = 'new-8';
+    $display->content['new-12'] = $pane;
+    $display->panels['mid-right'][3] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-13';
+    $pane->panel = 'mid-right';
+    $pane->type = 'club_done_it';
+    $pane->subtype = 'club_done_it';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'relationship_og_group_from_node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'do-it-pane',
+    );
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $display->content['new-13'] = $pane;
+    $display->panels['mid-right'][4] = 'new-13';
+    $pane = new stdClass();
+    $pane->pid = 'new-14';
+    $pane->panel = 'top';
+    $pane->type = 'clubs_progress';
+    $pane->subtype = 'clubs_progress';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-14'] = $pane;
+    $display->panels['top'][0] = 'new-14';
+    $pane = new stdClass();
+    $pane->pid = 'new-15';
     $pane->panel = 'top';
     $pane->type = 'club_counter';
     $pane->subtype = 'club_counter';
@@ -371,12 +635,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-9'] = $pane;
-    $display->panels['top'][0] = 'new-9';
+    $display->content['new-15'] = $pane;
+    $display->panels['top'][1] = 'new-15';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-16';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'club_projects-panel_pane_3';
@@ -406,12 +670,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-10'] = $pane;
-    $display->panels['top'][1] = 'new-10';
+    $display->content['new-16'] = $pane;
+    $display->panels['top'][2] = 'new-16';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-17';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'club_projects-panel_pane_4';
@@ -440,12 +704,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = '';
-    $display->content['new-11'] = $pane;
-    $display->panels['top'][2] = 'new-11';
+    $display->content['new-17'] = $pane;
+    $display->panels['top'][3] = 'new-17';
     $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-18';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'profile-panel_pane_3';
@@ -475,12 +739,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = '';
-    $display->content['new-12'] = $pane;
-    $display->panels['top'][3] = 'new-12';
+    $display->content['new-18'] = $pane;
+    $display->panels['top'][4] = 'new-18';
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-19';
     $pane->panel = 'top';
     $pane->type = 'club_members';
     $pane->subtype = 'club_members';
@@ -491,10 +755,10 @@ node/*/picks/*',
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 5;
     $pane->locks = array();
-    $display->content['new-13'] = $pane;
-    $display->panels['top'][4] = 'new-13';
+    $display->content['new-19'] = $pane;
+    $display->panels['top'][5] = 'new-19';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -564,7 +828,7 @@ function dosomething_clubs_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-14';
+    $pane->pid = 'new-1';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -599,10 +863,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-14'] = $pane;
-    $display->panels['bottom'][0] = 'new-14';
+    $display->content['new-1'] = $pane;
+    $display->panels['bottom'][0] = 'new-1';
     $pane = new stdClass();
-    $pane->pid = 'new-15';
+    $pane->pid = 'new-2';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -637,10 +901,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-15'] = $pane;
-    $display->panels['bottom'][1] = 'new-15';
+    $display->content['new-2'] = $pane;
+    $display->panels['bottom'][1] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-16';
+    $pane->pid = 'new-3';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -662,10 +926,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-16'] = $pane;
-    $display->panels['bottom'][2] = 'new-16';
+    $display->content['new-3'] = $pane;
+    $display->panels['bottom'][2] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-17';
+    $pane->pid = 'new-4';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -687,10 +951,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = '';
-    $display->content['new-17'] = $pane;
-    $display->panels['bottom'][3] = 'new-17';
+    $display->content['new-4'] = $pane;
+    $display->panels['bottom'][3] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-18';
+    $pane->pid = 'new-5';
     $pane->panel = 'bottom';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -712,10 +976,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 4;
     $pane->locks = '';
-    $display->content['new-18'] = $pane;
-    $display->panels['bottom'][4] = 'new-18';
+    $display->content['new-5'] = $pane;
+    $display->panels['bottom'][4] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-19';
+    $pane->pid = 'new-6';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -736,10 +1000,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-19'] = $pane;
-    $display->panels['mid-left'][0] = 'new-19';
+    $display->content['new-6'] = $pane;
+    $display->panels['mid-left'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-20';
+    $pane->pid = 'new-7';
     $pane->panel = 'mid-right';
     $pane->type = 'ds_editorial_content';
     $pane->subtype = 'ds_editorial_content';
@@ -762,10 +1026,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-20'] = $pane;
-    $display->panels['mid-right'][0] = 'new-20';
+    $display->content['new-7'] = $pane;
+    $display->panels['mid-right'][0] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-21';
+    $pane->pid = 'new-8';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -783,10 +1047,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-21'] = $pane;
-    $display->panels['top'][0] = 'new-21';
+    $display->content['new-8'] = $pane;
+    $display->panels['top'][0] = 'new-8';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-19';
+  $display->title_pane = 'new-6';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['club_hub'] = $page;
@@ -842,6 +1106,18 @@ function dosomething_clubs_default_page_manager_pages() {
     ),
     'access' => array(
       'logic' => 'and',
+      'plugins' => array(
+        0 => array(
+          'name' => 'role',
+          'settings' => array(
+            'rids' => array(
+              0 => 1,
+            ),
+          ),
+          'context' => 'logged-in-user',
+          'not' => TRUE,
+        ),
+      ),
     ),
   );
   $display = new panels_display();
@@ -862,7 +1138,7 @@ function dosomething_clubs_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-22';
+    $pane->pid = 'new-9';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'club_members-panel_pane_2';
@@ -877,8 +1153,8 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-22'] = $pane;
-    $display->panels['top'][0] = 'new-22';
+    $display->content['new-9'] = $pane;
+    $display->panels['top'][0] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -917,7 +1193,15 @@ function dosomething_clubs_default_page_manager_pages() {
     'pipeline' => 'standard',
     'css_id' => 'ds-wide-thin',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Meta tag',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '721733',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
   );
   $display = new panels_display();
@@ -948,31 +1232,7 @@ function dosomething_clubs_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-23';
-    $pane->panel = 'flexible-top';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'Photo Gallery',
-      'body' => 'COMING SOON!',
-      'format' => '1',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-23'] = $pane;
-    $display->panels['flexible-top'][0] = 'new-23';
-    $pane = new stdClass();
-    $pane->pid = 'new-24';
+    $pane->pid = 'new-10';
     $pane->panel = 'logo';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -993,10 +1253,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-24'] = $pane;
-    $display->panels['logo'][0] = 'new-24';
+    $display->content['new-10'] = $pane;
+    $display->panels['logo'][0] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-25';
+    $pane->pid = 'new-11';
     $pane->panel = 'mid-center';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -1018,10 +1278,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-25'] = $pane;
-    $display->panels['mid-center'][0] = 'new-25';
+    $display->content['new-11'] = $pane;
+    $display->panels['mid-center'][0] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-26';
+    $pane->pid = 'new-12';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -1043,10 +1303,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-26'] = $pane;
-    $display->panels['mid-left'][0] = 'new-26';
+    $display->content['new-12'] = $pane;
+    $display->panels['mid-left'][0] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-27';
+    $pane->pid = 'new-13';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -1068,10 +1328,10 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-27'] = $pane;
-    $display->panels['mid-right'][0] = 'new-27';
+    $display->content['new-13'] = $pane;
+    $display->panels['mid-right'][0] = 'new-13';
     $pane = new stdClass();
-    $pane->pid = 'new-28';
+    $pane->pid = 'new-14';
     $pane->panel = 'mini-info';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -1094,10 +1354,10 @@ about issues you care about.',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-28'] = $pane;
-    $display->panels['mini-info'][0] = 'new-28';
+    $display->content['new-14'] = $pane;
+    $display->panels['mini-info'][0] = 'new-14';
     $pane = new stdClass();
-    $pane->pid = 'new-29';
+    $pane->pid = 'new-15';
     $pane->panel = 'psa';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -1122,10 +1382,10 @@ about issues you care about.',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-29'] = $pane;
-    $display->panels['psa'][0] = 'new-29';
+    $display->content['new-15'] = $pane;
+    $display->panels['psa'][0] = 'new-15';
     $pane = new stdClass();
-    $pane->pid = 'new-30';
+    $pane->pid = 'new-16';
     $pane->panel = 'quick-info';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -1157,10 +1417,10 @@ could win scholarships and sweeet prizes',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-30'] = $pane;
-    $display->panels['quick-info'][0] = 'new-30';
+    $display->content['new-16'] = $pane;
+    $display->panels['quick-info'][0] = 'new-16';
     $pane = new stdClass();
-    $pane->pid = 'new-31';
+    $pane->pid = 'new-17';
     $pane->panel = 'sign-up';
     $pane->type = 'block';
     $pane->subtype = 'webform-client-block-719550';
@@ -1178,10 +1438,29 @@ could win scholarships and sweeet prizes',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-31'] = $pane;
-    $display->panels['sign-up'][0] = 'new-31';
+    $display->content['new-17'] = $pane;
+    $display->panels['sign-up'][0] = 'new-17';
     $pane = new stdClass();
-    $pane->pid = 'new-32';
+    $pane->pid = 'new-18';
+    $pane->panel = 'social';
+    $pane->type = 'block';
+    $pane->subtype = 'service_links-service_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-18'] = $pane;
+    $display->panels['social'][0] = 'new-18';
+    $pane = new stdClass();
+    $pane->pid = 'new-19';
     $pane->panel = 'social';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -1192,17 +1471,15 @@ could win scholarships and sweeet prizes',
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
+    $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-32'] = $pane;
-    $display->panels['social'][0] = 'new-32';
+    $display->content['new-19'] = $pane;
+    $display->panels['social'][1] = 'new-19';
     $pane = new stdClass();
-    $pane->pid = 'new-33';
+    $pane->pid = 'new-20';
     $pane->panel = 'social';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_facepile_general';
@@ -1218,12 +1495,12 @@ could win scholarships and sweeet prizes',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-33'] = $pane;
-    $display->panels['social'][1] = 'new-33';
+    $display->content['new-20'] = $pane;
+    $display->panels['social'][2] = 'new-20';
     $pane = new stdClass();
-    $pane->pid = 'new-34';
+    $pane->pid = 'new-21';
     $pane->panel = 'stats';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -1233,9 +1510,10 @@ could win scholarships and sweeet prizes',
       'admin_title' => '',
       'title' => '&nbsp;',
       'body' => '<div class="counter"><ul>
-<li class="first"><span class="counter-labels">ACTIVE CLUBS</span><span class="digits">3987</span></li>
-<li class="first"><span class="counter-labels">PEOPLE INVOLVED</span><span class="digits">95688</span></li>
-</ul>',
+<li class="first"><span class="counter-labels">ACTIVE CLUBS</span><span class="digits">003987</span></li>
+<li class="first"><span class="counter-labels">PEOPLE INVOLVED</span><span class="digits">095688</span></li>
+</ul>
+</div>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -1250,8 +1528,8 @@ could win scholarships and sweeet prizes',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-34'] = $pane;
-    $display->panels['stats'][0] = 'new-34';
+    $display->content['new-21'] = $pane;
+    $display->panels['stats'][0] = 'new-21';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

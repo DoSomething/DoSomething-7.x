@@ -5,9 +5,12 @@
   margin-left: 10px;
   margin-right: 10px; }
 
-.form-item-field-club-zip-value {
+#edit-distance-postal-code {
   margin-right: 10px;
   width: 85px; }
+
+.form-item-distance-search-distance, .form-item-distance-search-units {
+  display: none; }
 
 .views-exposed-widget .selectBox-dropdown {
   width: 75px !important;

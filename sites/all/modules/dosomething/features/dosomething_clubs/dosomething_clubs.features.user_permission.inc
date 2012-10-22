@@ -10,7 +10,7 @@
 function dosomething_clubs_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: create club content
+  // Exported permission: create club content.
   $permissions['create club content'] = array(
     'name' => 'create club content',
     'roles' => array(
