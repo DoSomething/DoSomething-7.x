@@ -17,7 +17,7 @@ function dosomething_projects_general_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -27;
+  $handler->weight = -26;
   $handler->conf = array(
     'title' => 'Tips and Tools',
     'no_blocks' => 0,
@@ -112,12 +112,54 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'right';
+    $pane->type = 'block';
+    $pane->subtype = 'webform-client-block-723646';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'tipsandtools/11-facts-about-animal-cruelty',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Share These Stats',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => 'ds-campaign-submit-form',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-3'] = $pane;
+    $display->panels['right'][0] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'project_related_displays-panel_pane_2';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(),
+    );
     $pane->configuration = array();
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'simple',
+      'settings' => array(
+        'lifetime' => '300',
+        'granularity' => 'args',
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -126,15 +168,15 @@ function dosomething_projects_general_default_page_manager_handlers() {
       'css_class' => 'ds-pane-no-radius ds-pane-news ds-internal-sidebar-flush-right',
     );
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-3'] = $pane;
-    $display->panels['right'][0] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['right'][1] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'top';
     $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
+    $pane->subtype = 'service_links-service_links';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -142,22 +184,29 @@ function dosomething_projects_general_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
+    $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-4'] = $pane;
-    $display->panels['top'][0] = 'new-4';
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['top'][0] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_facepile_general';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_status',
+          'settings' => NULL,
+          'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => '',
@@ -170,8 +219,8 @@ function dosomething_projects_general_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][1] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][1] = 'new-6';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;
@@ -240,7 +289,7 @@ function dosomething_projects_general_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-1';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -258,10 +307,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-6'] = $pane;
-    $display->panels['top'][0] = 'new-6';
+    $display->content['new-1'] = $pane;
+    $display->panels['top'][0] = 'new-1';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-2';
     $pane->panel = 'top';
     $pane->type = 'dosomething_project_switcher';
     $pane->subtype = 'dosomething_project_switcher';
@@ -276,10 +325,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][1] = 'new-7';
+    $display->content['new-2'] = $pane;
+    $display->panels['top'][1] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-3';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'featured_projects-panel_pane_1';
@@ -309,10 +358,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-8'] = $pane;
-    $display->panels['top'][2] = 'new-8';
+    $display->content['new-3'] = $pane;
+    $display->panels['top'][2] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'featured_projects-panel_pane_3';
@@ -339,10 +388,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = '';
-    $display->content['new-9'] = $pane;
-    $display->panels['top'][3] = 'new-9';
+    $display->content['new-4'] = $pane;
+    $display->panels['top'][3] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-5';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'featured_projects-panel_pane_2';
@@ -369,10 +418,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 4;
     $pane->locks = '';
-    $display->content['new-10'] = $pane;
-    $display->panels['top'][4] = 'new-10';
+    $display->content['new-5'] = $pane;
+    $display->panels['top'][4] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'featured_projects-panel_pane_4';
@@ -399,10 +448,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 5;
     $pane->locks = '';
-    $display->content['new-11'] = $pane;
-    $display->panels['top'][5] = 'new-11';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][5] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-7';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'featured_projects-panel_pane_5';
@@ -429,10 +478,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 6;
     $pane->locks = '';
-    $display->content['new-12'] = $pane;
-    $display->panels['top'][6] = 'new-12';
+    $display->content['new-7'] = $pane;
+    $display->panels['top'][6] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-8';
+  $display->title_pane = 'new-3';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['featured_projects'] = $page;
@@ -503,7 +552,7 @@ function dosomething_projects_general_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-8';
     $pane->panel = 'top';
     $pane->type = 'dosomething_start_button';
     $pane->subtype = 'dosomething_start_button';
@@ -524,10 +573,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-13'] = $pane;
-    $display->panels['top'][0] = 'new-13';
+    $display->content['new-8'] = $pane;
+    $display->panels['top'][0] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-14';
+    $pane->pid = 'new-9';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'related_projects-panel_pane_2';
@@ -545,8 +594,8 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-14'] = $pane;
-    $display->panels['top'][1] = 'new-14';
+    $display->content['new-9'] = $pane;
+    $display->panels['top'][1] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -602,7 +651,26 @@ function dosomething_projects_general_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-15';
+    $pane->pid = 'new-10';
+    $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'service_links-service_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-10'] = $pane;
+    $display->panels['top'][0] = 'new-10';
+    $pane = new stdClass();
+    $pane->pid = 'new-11';
     $pane->panel = 'top';
     $pane->type = 'dosomething_start_button';
     $pane->subtype = 'dosomething_start_button';
@@ -621,12 +689,12 @@ function dosomething_projects_general_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-15'] = $pane;
-    $display->panels['top'][0] = 'new-15';
+    $display->content['new-11'] = $pane;
+    $display->panels['top'][1] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-16';
+    $pane->pid = 'new-12';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'related_projects-panel_pane_1';
@@ -642,12 +710,12 @@ function dosomething_projects_general_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-16'] = $pane;
-    $display->panels['top'][1] = 'new-16';
+    $display->content['new-12'] = $pane;
+    $display->panels['top'][2] = 'new-12';
   $display->hide_title = PANELS_TITLE_PANE;
-  $display->title_pane = 'new-16';
+  $display->title_pane = 'new-12';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['projects'] = $page;
@@ -721,7 +789,7 @@ function dosomething_projects_general_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-17';
+    $pane->pid = 'new-13';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -739,10 +807,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-17'] = $pane;
-    $display->panels['top'][0] = 'new-17';
+    $display->content['new-13'] = $pane;
+    $display->panels['top'][0] = 'new-13';
     $pane = new stdClass();
-    $pane->pid = 'new-18';
+    $pane->pid = 'new-14';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'projects_by_state-panel_pane_1';
@@ -763,10 +831,10 @@ function dosomething_projects_general_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-18'] = $pane;
-    $display->panels['top'][1] = 'new-18';
+    $display->content['new-14'] = $pane;
+    $display->panels['top'][1] = 'new-14';
   $display->hide_title = PANELS_TITLE_PANE;
-  $display->title_pane = 'new-18';
+  $display->title_pane = 'new-14';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['projects_search_by_state'] = $page;
