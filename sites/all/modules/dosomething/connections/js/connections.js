@@ -384,6 +384,10 @@
         custom_vars: config.og_post_custom
   		};
 
+      if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._ograph_callback == 'function') {
+        callback = Drupal.behaviors.fb._ograph_callback;
+      }
+
   		var fbpost = {
         'fb:explicitly_shared': true
       };
@@ -481,6 +485,10 @@
         require_login: config.app_request_require_login
       };
 
+      if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._request_callback == 'function') {
+        callback = Drupal.behaviors.fb._request_callback;
+      }
+
       var req = {
         method: 'apprequests',
         display: 'iframe',
@@ -537,7 +545,7 @@
      *    A callback function which triggers when a post was succesfully made.
      *    
      */
-    message: function(config) {
+    message: function(config, callback) {
       var things = {
         link: config.msg_document,
         image: config.msg_picture,
@@ -545,6 +553,10 @@
         require_login: config.msg_require_login,
         allow_multiple: 0 // Not possible :(
       };
+
+      if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._message_callback == 'function') {
+        callback = Drupal.behaviors.fb._message_callback;
+      }
 
       Drupal.behaviors.fb.real_auth(things, function() {
         Drupal.behaviors.fb.message_dialog(things);
