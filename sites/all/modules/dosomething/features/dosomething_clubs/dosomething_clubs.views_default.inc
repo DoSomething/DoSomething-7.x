@@ -1168,6 +1168,11 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['header']['area']['content'] = '<p>Browse these clubs to find one near you. If there are none nearby, <a href="http://www.dosomething.org/node/add/club" target="_blank">start your own</a>.</p>';
   $handler->display->display_options['header']['area']['format'] = '1';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_school_reference_target_id']['id'] = 'field_school_reference_target_id';
+  $handler->display->display_options['relationships']['field_school_reference_target_id']['table'] = 'field_data_field_school_reference';
+  $handler->display->display_options['relationships']['field_school_reference_target_id']['field'] = 'field_school_reference_target_id';
+  $handler->display->display_options['relationships']['field_school_reference_target_id']['required'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1235,6 +1240,11 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: School: Name */
+  $handler->display->display_options['sorts']['name']['id'] = 'name';
+  $handler->display->display_options['sorts']['name']['table'] = 'ds_school';
+  $handler->display->display_options['sorts']['name']['field'] = 'name';
+  $handler->display->display_options['sorts']['name']['relationship'] = 'field_school_reference_target_id';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1250,20 +1260,6 @@ function dosomething_clubs_views_default_views() {
     'club' => 'club',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: State (field_club_state) */
-  $handler->display->display_options['filters']['field_club_state_value']['id'] = 'field_club_state_value';
-  $handler->display->display_options['filters']['field_club_state_value']['table'] = 'field_data_field_club_state';
-  $handler->display->display_options['filters']['field_club_state_value']['field'] = 'field_club_state_value';
-  $handler->display->display_options['filters']['field_club_state_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_club_state_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_club_state_value']['expose']['operator_id'] = 'field_club_state_value_op';
-  $handler->display->display_options['filters']['field_club_state_value']['expose']['label'] = 'State/Province (field_club_state)';
-  $handler->display->display_options['filters']['field_club_state_value']['expose']['use_operator'] = FALSE;
-  $handler->display->display_options['filters']['field_club_state_value']['expose']['operator'] = 'field_club_state_value_op';
-  $handler->display->display_options['filters']['field_club_state_value']['expose']['identifier'] = 'field_club_state_value';
-  $handler->display->display_options['filters']['field_club_state_value']['expose']['required'] = FALSE;
-  $handler->display->display_options['filters']['field_club_state_value']['expose']['remember'] = FALSE;
-  $handler->display->display_options['filters']['field_club_state_value']['expose']['multiple'] = FALSE;
   /* Filter criterion: Location: Distance / Proximity */
   $handler->display->display_options['filters']['distance']['id'] = 'distance';
   $handler->display->display_options['filters']['distance']['table'] = 'location';
@@ -1309,6 +1305,28 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['required'] = 0;
   $handler->display->display_options['filters']['title']['expose']['remember'] = 1;
   $handler->display->display_options['filters']['title']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Content: State (field_club_state) */
+  $handler->display->display_options['filters']['field_club_state_value']['id'] = 'field_club_state_value';
+  $handler->display->display_options['filters']['field_club_state_value']['table'] = 'field_data_field_club_state';
+  $handler->display->display_options['filters']['field_club_state_value']['field'] = 'field_club_state_value';
+  $handler->display->display_options['filters']['field_club_state_value']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_club_state_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_club_state_value']['expose']['operator_id'] = 'field_club_state_value_op';
+  $handler->display->display_options['filters']['field_club_state_value']['expose']['label'] = 'State (field_club_state)';
+  $handler->display->display_options['filters']['field_club_state_value']['expose']['operator'] = 'field_club_state_value_op';
+  $handler->display->display_options['filters']['field_club_state_value']['expose']['identifier'] = 'field_club_state_value';
+  $handler->display->display_options['filters']['field_club_state_value']['expose']['reduce'] = 0;
+  /* Filter criterion: School: State */
+  $handler->display->display_options['filters']['state']['id'] = 'state';
+  $handler->display->display_options['filters']['state']['table'] = 'ds_school';
+  $handler->display->display_options['filters']['state']['field'] = 'state';
+  $handler->display->display_options['filters']['state']['relationship'] = 'field_school_reference_target_id';
+  $handler->display->display_options['filters']['state']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['state']['expose']['operator_id'] = 'state_op';
+  $handler->display->display_options['filters']['state']['expose']['label'] = 'State';
+  $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
+  $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
+  $handler->display->display_options['filters']['state']['expose']['reduce'] = 0;
 
   /* Display: Club Results Content Pane */
   $handler = $view->new_display('panel_pane', 'Club Results Content Pane', 'panel_pane_1');
@@ -1476,10 +1494,9 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['filters']['field_club_zip_value']['expose']['multiple'] = FALSE;
 
   /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler = $view->new_display('page', 'Page', 'clubs_directory');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
-  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(

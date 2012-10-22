@@ -19,6 +19,22 @@ function dosomething_clubs_og_ui_get_group_admin_alter(&$data, $gid) {
 }
 
 /**
+ *  Implements hook_views_query_alter()
+ */
+function dosomething_clubs_views_query_alter(&$view, &$query) {
+  if ($view->name == 'clubs' && $view->current_display == 'clubs_directory') {
+    if (!empty($query->where[1]['conditions'][3]['value'])) {
+      // Searches by school state reference, THEN includes the field club state
+      $query->where[1]['conditions'][2] = array(
+          'field' => 'field_data_field_club_state.field_club_state_value',
+          'value' => $query->where[1]['conditions'][3]['value'],
+          'operator' => 'in'
+      );
+    }
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function dosomething_clubs_theme() {
@@ -239,7 +255,7 @@ function dosomething_clubs_menu() {
 function dosomething_clubs_responded_to_txt() {
   $num = $_REQUEST['phone_number_without_country_code'];
   if (dosomething_general_valid_cell($num)) {
-    $account = dosomething_load_user_by_profile_cell($num);
+    $account = dosomething_general_find_user_by_cell($num);
     if (!empty($account->uid)) {
       $q = db_select('node', 'n')
         ->fields('n', array('nid'))
