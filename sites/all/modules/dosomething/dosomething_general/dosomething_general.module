@@ -113,6 +113,9 @@ function dosomething_general_page_alter(&$page) {
         newrelic_add_custom_parameter('nid', $submission->nid);
       }
     }
+    else if ($panel_page['task']['task type'] == 'page') {
+      newrelic_name_transaction('page_manager_page_execute/' . $panel_page['name']);
+    }
   }
 }
 
