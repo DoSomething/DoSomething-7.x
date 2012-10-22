@@ -25,7 +25,7 @@ function dosomething_blocks_block_info() {
   );
   $blocks['dosomething_make_impact'] = array(
     'info' => t('DoSomething Make an Impact'),
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['dosomething_make_impact_front'] = array(
     'info' => t('DoSomething Make an Impact -- Front Page'),
@@ -37,6 +37,7 @@ function dosomething_blocks_block_info() {
    );
   $blocks['dosomething_social_node_buttons'] = array(
     'info' => t('DoSomething Social Node Buttons'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['dosomething_facepile_general'] = array(
     'info' => t('DoSomething Facepile General'),
@@ -212,19 +213,21 @@ function dosomething_blocks_make_an_impact_form($form, &$form_state) {
     }
   }
 
-  $form['what_cause'] = array(
+  $form['issues'] = array(
     '#type' => 'select',
     '#title' => t('What Cause'),
     '#options' => $cause_options,
     '#empty_option' => t('What Cause?'),
+    '#empty_value' => 'All',
     '#required' => FALSE,
     '#default_value' => $defaults['issues'],
   );
-  $form['who_with'] = array(
+  $form['who'] = array(
     '#type' => 'select',
     '#title' => t('Who With'),
     '#options' => $who_options,
     '#empty_option' => t('Who With?'),
+    '#empty_value' => 'All',
     '#required' => FALSE,
     '#default_value' => $defaults['who'],
   );
@@ -233,27 +236,37 @@ function dosomething_blocks_make_an_impact_form($form, &$form_state) {
     '#title' => t('Where'),
     '#options' => $where_options,
     '#empty_option' => t('Where?'),
+    '#empty_value' => 'All',
     '#required' => FALSE,
     '#default_value' => $defaults['where'],
   );
-  $form['how_long'] = array(
+  $form['time'] = array(
     '#type' => 'select',
     '#title' => t('How Long'),
     '#options' => $time_options,
     '#empty_option' => t('How Long?'),
+    '#empty_value' => 'All',
     '#required' => FALSE,
     '#default_value' => $defaults['time'],
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Go'),
-    '#submit' => array('dosomething_blocks_impact_form_submit'),
     '#prefix' => '<div class="submit-wrapper dude">',
     '#suffix' => '</div>',
   );
 
-  $form_state['#cache'] = FALSE;
+  $form['#action'] = '/action-finder';
+  $form['#method'] = 'GET';
+  $form['#after_build'][] = 'dosomething_blocks_clear_hidden_form_values';
 
+  return $form;
+}
+
+function dosomething_blocks_clear_hidden_form_values($form) {
+  unset($form['form_token']);
+  unset($form['form_build_id']);
+  unset($form['form_id']);
   return $form;
 }
 
