@@ -10,7 +10,7 @@
 function dosomething_scholarship_rec_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-scholarship_application_with_rec-body'
+  // Exported field: 'node-scholarship_application_with_rec-body'.
   $fields['node-scholarship_application_with_rec-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -87,7 +88,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_application_with_rec-group_audience'
+  // Exported field: 'node-scholarship_application_with_rec-group_audience'.
   $fields['node-scholarship_application_with_rec-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -111,6 +112,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -173,7 +175,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_recommendation-body'
+  // Exported field: 'node-scholarship_recommendation-body'.
   $fields['node-scholarship_recommendation-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -199,6 +201,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -250,7 +253,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_recommendation-field_application_form'
+  // Exported field: 'node-scholarship_recommendation-field_application_form'.
   $fields['node-scholarship_recommendation-field_application_form'] = array(
     'field_config' => array(
       'active' => '1',
@@ -274,6 +277,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -379,7 +383,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_recommendation-group_audience'
+  // Exported field: 'node-scholarship_recommendation-group_audience'.
   $fields['node-scholarship_recommendation-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -403,6 +407,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -465,7 +470,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_recommendation_reque-body'
+  // Exported field: 'node-scholarship_recommendation_reque-body'.
   $fields['node-scholarship_recommendation_reque-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -491,6 +496,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -542,7 +548,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_recommendation_reque-field_recommendation_form'
+  // Exported field: 'node-scholarship_recommendation_reque-field_recommendation_form'.
   $fields['node-scholarship_recommendation_reque-field_recommendation_form'] = array(
     'field_config' => array(
       'active' => '1',
@@ -566,6 +572,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -671,7 +678,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_recommendation_reque-group_audience'
+  // Exported field: 'node-scholarship_recommendation_reque-group_audience'.
   $fields['node-scholarship_recommendation_reque-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -695,6 +702,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -757,7 +765,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_first_name'
+  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_first_name'.
   $fields['webform_submission_entity-scholarship_application_with_rec-field_webform_first_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -781,6 +789,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -823,7 +832,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_last_name'
+  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_last_name'.
   $fields['webform_submission_entity-scholarship_application_with_rec-field_webform_last_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -847,6 +856,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -889,7 +899,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_school_reference'
+  // Exported field: 'webform_submission_entity-scholarship_application_with_rec-field_webform_school_reference'.
   $fields['webform_submission_entity-scholarship_application_with_rec-field_webform_school_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -906,6 +916,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'ds_school',
@@ -917,7 +928,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           ),
           'sort' => array(
             'direction' => 'ASC',
-            'field' => 'none',
+            'field' => '',
             'property' => 'sid',
             'type' => 'none',
           ),
@@ -967,7 +978,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_recommendation-field_rec_request'
+  // Exported field: 'webform_submission_entity-scholarship_recommendation-field_rec_request'.
   $fields['webform_submission_entity-scholarship_recommendation-field_rec_request'] = array(
     'field_config' => array(
       'active' => '1',
@@ -979,11 +990,11 @@ function dosomething_scholarship_rec_field_default_fields() {
         'type' => '0',
       ),
       'foreign keys' => array(
-        'node' => array(
+        'webform_submissions' => array(
           'columns' => array(
-            'target_id' => 'nid',
+            'target_id' => 'sid',
           ),
-          'table' => 'node',
+          'table' => 'webform_submissions',
         ),
       ),
       'indexes' => array(
@@ -991,6 +1002,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -1054,7 +1066,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_recommendation_reque-field_application'
+  // Exported field: 'webform_submission_entity-scholarship_recommendation_reque-field_application'.
   $fields['webform_submission_entity-scholarship_recommendation_reque-field_application'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1078,6 +1090,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -1141,7 +1154,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_recommendation_reque-field_webform_email'
+  // Exported field: 'webform_submission_entity-scholarship_recommendation_reque-field_webform_email'.
   $fields['webform_submission_entity-scholarship_recommendation_reque-field_webform_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1154,6 +1167,7 @@ function dosomething_scholarship_rec_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1165,7 +1179,7 @@ function dosomething_scholarship_rec_field_default_fields() {
       'bundle' => 'scholarship_recommendation_reque',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Please stay away from school email addresses and emails that end with @sbcglobal.net or @att.net. Our system doesn\'t work with them. We suggest asking your recommender for an alternate email if that\'s the one you have.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1183,10 +1197,10 @@ function dosomething_scholarship_rec_field_default_fields() {
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
+        'active' => 0,
         'module' => 'email',
         'settings' => array(
-          'size' => '60',
+          'size' => 60,
         ),
         'type' => 'email_textfield',
         'weight' => '34',
@@ -1194,7 +1208,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_recommendation_reque-field_webform_name'
+  // Exported field: 'webform_submission_entity-scholarship_recommendation_reque-field_webform_name'.
   $fields['webform_submission_entity-scholarship_recommendation_reque-field_webform_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1218,6 +1232,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1250,9 +1265,11 @@ function dosomething_scholarship_rec_field_default_fields() {
       ),
       'widget' => array(
         'active' => 0,
-        'module' => 'html5_tools',
-        'settings' => array(),
-        'type' => 'telwidget',
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
         'weight' => '36',
       ),
     ),
@@ -1266,6 +1283,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   t('Email address');
   t('First Name');
   t('Last Name');
+  t('Please stay away from school email addresses and emails that end with @sbcglobal.net or @att.net. Our system doesn\'t work with them. We suggest asking your recommender for an alternate email if that\'s the one you have.');
   t('Recommendation Request');
   t('Recommender\'s Name');
   t('Referenced Application');
