@@ -10,7 +10,7 @@
 function dosomething_scholarship_application_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-scholarship-body'
+  // Exported field: 'node-scholarship-body'.
   $fields['node-scholarship-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -88,7 +89,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship-field_closing_date'
+  // Exported field: 'node-scholarship-field_closing_date'.
   $fields['node-scholarship-field_closing_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -101,6 +102,7 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'granularity' => array(
@@ -176,7 +178,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship-field_open_date'
+  // Exported field: 'node-scholarship-field_open_date'.
   $fields['node-scholarship-field_open_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -189,6 +191,7 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'granularity' => array(
@@ -264,7 +267,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship-field_picture'
+  // Exported field: 'node-scholarship-field_picture'.
   $fields['node-scholarship-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -288,6 +291,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -329,6 +333,7 @@ function dosomething_scholarship_application_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'pictures/scholarships',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -359,7 +364,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_application-body'
+  // Exported field: 'node-scholarship_application-body'.
   $fields['node-scholarship_application-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -385,6 +390,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -436,7 +442,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scholarship_application-field_scholarship_application'
+  // Exported field: 'node-scholarship_application-field_scholarship_application'.
   $fields['node-scholarship_application-field_scholarship_application'] = array(
     'field_config' => array(
       'active' => '1',
@@ -460,6 +466,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -598,7 +605,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_geocode_data'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_geocode_data'.
   $fields['webform_submission_entity-scholarship_application-field_geocode_data'] = array(
     'field_config' => array(
       'active' => '1',
@@ -611,6 +618,7 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'geofield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -628,7 +636,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '15',
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -658,7 +666,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_project_title_reference'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_project_title_reference'.
   $fields['webform_submission_entity-scholarship_application-field_project_title_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -675,11 +683,23 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
           'author_only' => 1,
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'field_essay_build_it:value',
+            'property' => 'sid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(
             'project_report' => 'project_report',
           ),
@@ -705,7 +725,7 @@ function dosomething_scholarship_application_field_default_fields() {
             'link' => 1,
           ),
           'type' => 'entityreference_label',
-          'weight' => '8',
+          'weight' => '5',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -725,7 +745,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_school_reference'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_school_reference'.
   $fields['webform_submission_entity-scholarship_application-field_school_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -745,6 +765,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'ds_school',
@@ -782,7 +803,7 @@ function dosomething_scholarship_application_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => '13',
+          'weight' => '9',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -806,7 +827,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_address'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_address'.
   $fields['webform_submission_entity-scholarship_application-field_webform_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -819,6 +840,7 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'addressfield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -844,15 +866,9 @@ function dosomething_scholarship_application_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'addressfield',
-          'settings' => array(
-            'format_handlers' => array(
-              0 => 'address',
-            ),
-            'use_widget_handlers' => 1,
-          ),
-          'type' => 'addressfield_default',
-          'weight' => '10',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '12',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -884,7 +900,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_birthdate'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_birthdate'.
   $fields['webform_submission_entity-scholarship_application-field_webform_birthdate'] = array(
     'field_config' => array(
       'active' => '1',
@@ -897,6 +913,7 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'granularity' => array(
@@ -923,16 +940,9 @@ function dosomething_scholarship_application_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'long',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '1',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -965,7 +975,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_email'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_email'.
   $fields['webform_submission_entity-scholarship_application-field_webform_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -978,6 +988,7 @@ function dosomething_scholarship_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -993,10 +1004,9 @@ function dosomething_scholarship_application_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'email',
           'settings' => array(),
-          'type' => 'email_default',
-          'weight' => '4',
+          'type' => 'hidden',
+          'weight' => '10',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1018,7 +1028,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_mobile'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_mobile'.
   $fields['webform_submission_entity-scholarship_application-field_webform_mobile'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1042,6 +1052,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '100',
@@ -1058,10 +1069,9 @@ function dosomething_scholarship_application_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '3',
+          'type' => 'hidden',
+          'weight' => '11',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1084,7 +1094,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_name'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_name'.
   $fields['webform_submission_entity-scholarship_application-field_webform_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1108,6 +1118,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1150,7 +1161,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_photo_url'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_photo_url'.
   $fields['webform_submission_entity-scholarship_application-field_webform_photo_url'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1160,6 +1171,7 @@ function dosomething_scholarship_application_field_default_fields() {
       'field_name' => 'field_webform_photo_url',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -1189,7 +1201,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'default',
-          'weight' => '6',
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1221,7 +1233,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_project'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_project'.
   $fields['webform_submission_entity-scholarship_application-field_webform_project'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1242,6 +1254,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'referenceable_types' => array(
@@ -1273,7 +1286,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'node_reference',
           'settings' => array(),
           'type' => 'node_reference_default',
-          'weight' => '9',
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1297,7 +1310,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_project_summary'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_project_summary'.
   $fields['webform_submission_entity-scholarship_application-field_webform_project_summary'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1321,6 +1334,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1339,7 +1353,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1362,7 +1376,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_project_website'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_project_website'.
   $fields['webform_submission_entity-scholarship_application-field_webform_project_website'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1372,6 +1386,7 @@ function dosomething_scholarship_application_field_default_fields() {
       'field_name' => 'field_webform_project_website',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -1401,7 +1416,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'default',
-          'weight' => '7',
+          'weight' => '4',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1433,7 +1448,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_school'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_school'.
   $fields['webform_submission_entity-scholarship_application-field_webform_school'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1457,6 +1472,7 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1476,7 +1492,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '11',
+          'weight' => '7',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1499,7 +1515,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_school_reference'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_school_reference'.
   $fields['webform_submission_entity-scholarship_application-field_webform_school_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1516,10 +1532,22 @@ function dosomething_scholarship_application_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'ds_school',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => '',
+            'property' => 'sid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(),
         ),
         'handler_submit' => 'Change handler',
@@ -1542,7 +1570,7 @@ function dosomething_scholarship_application_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => '12',
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -1566,7 +1594,7 @@ function dosomething_scholarship_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_video_url'
+  // Exported field: 'webform_submission_entity-scholarship_application-field_webform_video_url'.
   $fields['webform_submission_entity-scholarship_application-field_webform_video_url'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1576,6 +1604,7 @@ function dosomething_scholarship_application_field_default_fields() {
       'field_name' => 'field_webform_video_url',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -1605,7 +1634,7 @@ function dosomething_scholarship_application_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'default',
-          'weight' => '5',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'webform_submission_entity',

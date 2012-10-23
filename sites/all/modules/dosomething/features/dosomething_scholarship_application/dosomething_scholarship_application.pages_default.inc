@@ -17,7 +17,7 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -96;
+  $handler->weight = -24;
   $handler->conf = array(
     'title' => 'Scholarship',
     'no_blocks' => 0,
@@ -64,6 +64,25 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
     $pane->pid = 'new-1';
     $pane->panel = 'left';
     $pane->type = 'block';
+    $pane->subtype = 'service_links-service_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-1'] = $pane;
+    $display->panels['left'][0] = 'new-1';
+    $pane = new stdClass();
+    $pane->pid = 'new-2';
+    $pane->panel = 'left';
+    $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
     $pane->shown = TRUE;
     $pane->access = array();
@@ -77,12 +96,12 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-1'] = $pane;
-    $display->panels['left'][0] = 'new-1';
+    $display->content['new-2'] = $pane;
+    $display->panels['left'][1] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-3';
     $pane->panel = 'left';
     $pane->type = 'node_body';
     $pane->subtype = 'node_body';
@@ -99,12 +118,12 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-2'] = $pane;
-    $display->panels['left'][1] = 'new-2';
+    $display->content['new-3'] = $pane;
+    $display->panels['left'][2] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-4';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_picture';
@@ -129,10 +148,10 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-3'] = $pane;
-    $display->panels['right'][0] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['right'][0] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'scholarships-panel_pane_2';
@@ -151,8 +170,8 @@ function dosomething_scholarship_application_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-4'] = $pane;
-    $display->panels['top'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['top'][0] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -197,7 +216,15 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     'pipeline' => 'ipe',
     'css_id' => 'scholarships-landing',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Meta Tag',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '721737',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
   );
   $display = new panels_display();
@@ -210,6 +237,17 @@ function dosomething_scholarship_application_default_page_manager_pages() {
       'mid-left' => NULL,
       'mid-right' => NULL,
       'bottom' => NULL,
+      'logo' => NULL,
+      'mini-info' => NULL,
+      'social' => NULL,
+      'sign-up' => NULL,
+      'stats' => NULL,
+      'quick-info' => NULL,
+      'psa' => NULL,
+      'flexible-top' => NULL,
+      'mid-center' => NULL,
+      'flexible-bot' => NULL,
+      'logos' => NULL,
     ),
   );
   $display->cache = array();
@@ -217,29 +255,7 @@ function dosomething_scholarship_application_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-5';
-    $pane->panel = 'flexible-top';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'Photo Gallery',
-      'body' => '[gallery]',
-      'format' => '1',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-5'] = $pane;
-    $display->panels['flexible-top'][0] = 'new-5';
-    $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-1';
     $pane->panel = 'logo';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -250,18 +266,20 @@ function dosomething_scholarship_application_default_page_manager_pages() {
       'title' => '',
       'body' => '<img src="/files/final-scholarships.png">',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-6'] = $pane;
-    $display->panels['logo'][0] = 'new-6';
+    $display->content['new-1'] = $pane;
+    $display->panels['logo'][0] = 'new-1';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-2';
     $pane->panel = 'logos';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -272,20 +290,22 @@ function dosomething_scholarship_application_default_page_manager_pages() {
       'title' => '',
       'body' => '<br>
 <br>
-<img src="/files/new_fastweb_logo_2010.jpg" align="right">',
+<a href="http://www.fastweb.com" target="_blank"><img src="http://files.dosomething.org/files/campaigns/scholarships/fastweb-logo.png" style="float:right;"></a>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['logos'][0] = 'new-7';
+    $display->content['new-2'] = $pane;
+    $display->panels['logos'][0] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-3';
     $pane->panel = 'mid-center';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -293,14 +313,16 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'Battle for the Bands',
-      'body' => '<p>Submit a video on the importance of music education for a chance at a $1,000 individual scholarship or a $10,000 group scholarship.</p>
-<a href="/battle/scholarships" class="go-button">GO</a>',
+      'title' => 'Animal Welfare Scholarship',
+      'body' => '<p>We love animals. Help get them adopted. Take a picture of a shelter animal and you could win a $10,000 scholarship.</p>
+<a href="https://apps.facebook.com/dosomethingapp/" class="go-button">GO</a>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'three-boxes',
@@ -308,10 +330,10 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-8'] = $pane;
-    $display->panels['mid-center'][0] = 'new-8';
+    $display->content['new-3'] = $pane;
+    $display->panels['mid-center'][0] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-4';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -319,14 +341,16 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'Epic Book Drive',
-      'body' => '<p>Collect books for under-served communities for a chance at $10,000 for your group.</p>
-<a href="/epic/prizes" class="go-button">GO</a>',
+      'title' => 'Scholar Athletes',
+      'body' => '<p>We\'re giving out 20 $20,000 scholarships to student athletes and leaders. Don\'t miss this opportunity!</p>
+<a href="/footlocker" class="go-button">GO</a>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'three-boxes',
@@ -334,10 +358,10 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-9'] = $pane;
-    $display->panels['mid-left'][0] = 'new-9';
+    $display->content['new-4'] = $pane;
+    $display->panels['mid-left'][0] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-5';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -345,14 +369,16 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'Other Scholarships',
-      'body' => '<p>Look through more scholarships that we\'re offering!</p>
-<a href="/scholarships/other-scholarships" class="go-button">GO</a>',
+      'title' => 'All Scholarships',
+      'body' => '<p>Looking for more scholarships? We\'re giving out over $650,000 in scholarships in 2012. Check out the entire list of open opportunities.</p>
+<a href="/scholarships/opportunities" class="go-button">GO</a>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'three-boxes',
@@ -360,10 +386,10 @@ function dosomething_scholarship_application_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-10'] = $pane;
-    $display->panels['mid-right'][0] = 'new-10';
+    $display->content['new-5'] = $pane;
+    $display->panels['mid-right'][0] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-6';
     $pane->panel = 'mini-info';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -379,15 +405,17 @@ their community. <i>Cha-Ching!</i>',
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-11'] = $pane;
-    $display->panels['mini-info'][0] = 'new-11';
+    $display->content['new-6'] = $pane;
+    $display->panels['mini-info'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-7';
     $pane->panel = 'psa';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -396,20 +424,26 @@ their community. <i>Cha-Ching!</i>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<iframe width="560" height="315" src="http://www.youtube.com/embed/As3iIdIU-ZA" frameborder="0" allowfullscreen></iframe>',
+      'body' => '<object style="height: 320px; width: 480px">
+<param name="movie" value="http://www.youtube.com/v/As3iIdIU-ZA?version=3&feature=player_embedded">
+<param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always">
+<param name="wmode" value="opaque"/>
+<embed wmode="transparent" src="http://www.youtube.com/v/As3iIdIU-ZA?version=3&feature=player_embedded" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="480" height="320"></object>',
       'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-12'] = $pane;
-    $display->panels['psa'][0] = 'new-12';
+    $display->content['new-7'] = $pane;
+    $display->panels['psa'][0] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-8';
     $pane->panel = 'quick-info';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -418,30 +452,29 @@ their community. <i>Cha-Ching!</i>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => 'Quick Info:',
-      'body' => '<h3>STEP 1</h3>
-Choose a scholarship that best fits how
-you make a difference.
+      'body' => '<h3>SIGN UP</h3>
+Sign up above and we\'ll send you updates on our newest opportunities for free!
 
-<h3>STEP 2</h3>
-Participate in a campaign.
+<h3>BROWSE SCHOLARSHIPS</h3>
+<a href="scholarships/opportunities" target="_more">Take a look</a> at what\'s currently available
 
-<h3>STEP 3</h3>
-Apply! Each of our scholarships have
-different deadlines, so make sure to
-read the instructions.',
+<h3>APPLY</h3>
+Each one of our scholarships have different criteria and deadlines. Check out our <a href="scholarships/opportunities" target="_more">opportunities</a> to find out how easy it is too apply.',
       'format' => '1',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-13'] = $pane;
-    $display->panels['quick-info'][0] = 'new-13';
+    $display->content['new-8'] = $pane;
+    $display->panels['quick-info'][0] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-14';
+    $pane->pid = 'new-9';
     $pane->panel = 'sign-up';
     $pane->type = 'block';
     $pane->subtype = 'webform-client-block-719546';
@@ -452,15 +485,36 @@ read the instructions.',
       'override_title_text' => 'Sign Up for Updates',
     );
     $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-9'] = $pane;
+    $display->panels['sign-up'][0] = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'social';
+    $pane->type = 'block';
+    $pane->subtype = 'service_links-service_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-14'] = $pane;
-    $display->panels['sign-up'][0] = 'new-14';
+    $display->content['new-10'] = $pane;
+    $display->panels['social'][0] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-15';
+    $pane->pid = 'new-11';
     $pane->panel = 'social';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -471,15 +525,17 @@ read the instructions.',
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-15'] = $pane;
-    $display->panels['social'][0] = 'new-15';
+    $display->content['new-11'] = $pane;
+    $display->panels['social'][1] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-16';
+    $pane->pid = 'new-12';
     $pane->panel = 'social';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_facepile_general';
@@ -490,15 +546,17 @@ read the instructions.',
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-16'] = $pane;
-    $display->panels['social'][1] = 'new-16';
+    $display->content['new-12'] = $pane;
+    $display->panels['social'][2] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-17';
+    $pane->pid = 'new-13';
     $pane->panel = 'stats';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -509,13 +567,15 @@ read the instructions.',
       'title' => '&nbsp;',
       'body' => '<div class="counter"><ul>
 <li class="first"><span class="counter-labels">MONEY AWARDED</span><span class="digits">607400</span></li>
-<li class="first"><span class="counter-labels">SCHOLARSHIP WINNERS</span><span class="digits">177</span></li>
+<li class="first"><span class="counter-labels">NUMBER OF WINNERS</span><span class="digits">000177</span></li>
 </ul>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'vital-stats',
@@ -523,8 +583,8 @@ read the instructions.',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-17'] = $pane;
-    $display->panels['stats'][0] = 'new-17';
+    $display->content['new-13'] = $pane;
+    $display->panels['stats'][0] = 'new-13';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
