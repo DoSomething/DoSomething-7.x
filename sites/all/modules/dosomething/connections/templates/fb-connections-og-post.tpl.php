@@ -46,6 +46,8 @@
 
  	div#shared img {
  		float: left;
+ 		width: 90px;
+ 		height: 90px;
  	}
 
  	div#shared div {

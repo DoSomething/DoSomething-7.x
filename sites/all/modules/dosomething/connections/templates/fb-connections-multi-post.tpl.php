@@ -50,7 +50,11 @@
  		border: 1px dashed #ccc;
  	}
 
- 	div#shared img { margin-right: 10px; }
+ 	div#shared img {
+ 		margin-right: 10px;
+ 		width: 90px;
+ 		height: 90px;
+ 	}
 
  	div#shared div {
  		/*float: left;*/
