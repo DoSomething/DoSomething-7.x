@@ -18,7 +18,7 @@ function dosomething_sponsors_default_fe_block_settings() {
     'delta' => 'sponsors_who_rock-block_1',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-41',
+    'weight' => '-60',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '1',
@@ -47,6 +47,25 @@ function dosomething_sponsors_default_fe_block_settings() {
   );
 
   $export['ds'] = $theme;
+
+  // picsforpets
+  $theme = array();
+
+  $theme['views-sponsors_who_rock-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'sponsors_who_rock-block_1',
+    'theme' => 'picsforpets',
+    'status' => 0,
+    'weight' => '-60',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $export['picsforpets'] = $theme;
 
   $theme_default = variable_get('theme_default', 'garland');
   $themes = list_themes();

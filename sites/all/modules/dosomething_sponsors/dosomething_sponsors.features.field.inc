@@ -10,7 +10,7 @@
 function dosomething_sponsors_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-sponsor-field_sponsor_logo'
+  // Exported field: 'node-sponsor-field_sponsor_logo'.
   $fields['node-sponsor-field_sponsor_logo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_sponsors_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -76,6 +77,7 @@ function dosomething_sponsors_field_default_fields() {
       'required' => 1,
       'settings' => array(
         'alt_field' => 1,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
