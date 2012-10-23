@@ -10,7 +10,7 @@
 function dosomething_campaign_contact_form_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-campaign_contact_form-body'
+  // Exported field: 'node-campaign_contact_form-body'.
   $fields['node-campaign_contact_form-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -53,7 +54,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -83,7 +84,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign_contact_form-field_campaign'
+  // Exported field: 'node-campaign_contact_form-field_campaign'.
   $fields['node-campaign_contact_form-field_campaign'] = array(
     'field_config' => array(
       'active' => '1',
@@ -107,6 +108,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -193,7 +195,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -223,7 +225,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign_contact_form-field_infusion_action'
+  // Exported field: 'node-campaign_contact_form-field_infusion_action'.
   $fields['node-campaign_contact_form-field_infusion_action'] = array(
     'field_config' => array(
       'active' => '1',
@@ -236,6 +238,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -253,7 +256,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -283,7 +286,79 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign_contact_form-field_mailchimp_group_id'
+  // Exported field: 'node-campaign_contact_form-field_login_check'.
+  $fields['node-campaign_contact_form-field_login_check'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_login_check',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_contact_form',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_login_check',
+      'label' => 'Disable login popup?',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '31',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_contact_form-field_mailchimp_group_id'.
   $fields['node-campaign_contact_form-field_mailchimp_group_id'] = array(
     'field_config' => array(
       'active' => '1',
@@ -307,6 +382,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -325,7 +401,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -354,7 +430,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign_contact_form-field_mc_campaign'
+  // Exported field: 'node-campaign_contact_form-field_mc_campaign'.
   $fields['node-campaign_contact_form-field_mc_campaign'] = array(
     'field_config' => array(
       'active' => '1',
@@ -367,6 +443,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -384,7 +461,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '1',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -414,7 +491,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign_contact_form-field_mc_optin'
+  // Exported field: 'node-campaign_contact_form-field_mc_optin'.
   $fields['node-campaign_contact_form-field_mc_optin'] = array(
     'field_config' => array(
       'active' => '1',
@@ -427,6 +504,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -444,7 +522,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -474,7 +552,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign_contact_form-group_audience'
+  // Exported field: 'node-campaign_contact_form-group_audience'.
   $fields['node-campaign_contact_form-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -498,6 +576,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -516,7 +595,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -559,7 +638,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_contact_form-field_webform_email'
+  // Exported field: 'webform_submission_entity-campaign_contact_form-field_webform_email'.
   $fields['webform_submission_entity-campaign_contact_form-field_webform_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -572,6 +651,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -611,7 +691,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_contact_form-field_webform_mobile'
+  // Exported field: 'webform_submission_entity-campaign_contact_form-field_webform_mobile'.
   $fields['webform_submission_entity-campaign_contact_form-field_webform_mobile'] = array(
     'field_config' => array(
       'active' => '1',
@@ -635,6 +715,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '100',
@@ -679,6 +760,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
   t('Body');
   t('Campaign Sign Up');
   t('Cell');
+  t('Disable login popup?');
   t('Email');
   t('Groups audience');
   t('InfusionSoft Action ID');
