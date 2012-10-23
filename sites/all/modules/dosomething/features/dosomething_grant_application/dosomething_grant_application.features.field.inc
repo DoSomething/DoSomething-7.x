@@ -10,7 +10,7 @@
 function dosomething_grant_application_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-grant_application-body'
+  // Exported field: 'node-grant_application-body'.
   $fields['node-grant_application-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_grant_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -87,7 +88,7 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_geocode_data'
+  // Exported field: 'webform_submission_entity-grant_application-field_geocode_data'.
   $fields['webform_submission_entity-grant_application-field_geocode_data'] = array(
     'field_config' => array(
       'active' => '1',
@@ -100,6 +101,7 @@ function dosomething_grant_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'geofield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -146,12 +148,12 @@ function dosomething_grant_application_field_default_fields() {
           'geocoder_handler' => 'google',
         ),
         'type' => 'geocoder',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_address'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_address'.
   $fields['webform_submission_entity-grant_application-field_webform_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -164,6 +166,7 @@ function dosomething_grant_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'addressfield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -190,15 +193,9 @@ function dosomething_grant_application_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'addressfield',
-          'settings' => array(
-            'format_handlers' => array(
-              0 => 'address',
-            ),
-            'use_widget_handlers' => 1,
-          ),
-          'type' => 'addressfield_default',
-          'weight' => '10',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -234,7 +231,7 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_birthdate'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_birthdate'.
   $fields['webform_submission_entity-grant_application-field_webform_birthdate'] = array(
     'field_config' => array(
       'active' => '1',
@@ -247,6 +244,7 @@ function dosomething_grant_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'granularity' => array(
@@ -273,16 +271,9 @@ function dosomething_grant_application_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'long',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '1',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '12',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -319,7 +310,7 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_email'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_email'.
   $fields['webform_submission_entity-grant_application-field_webform_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -332,6 +323,7 @@ function dosomething_grant_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -347,10 +339,9 @@ function dosomething_grant_application_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'email',
           'settings' => array(),
-          'type' => 'email_default',
-          'weight' => '3',
+          'type' => 'hidden',
+          'weight' => '10',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -371,12 +362,12 @@ function dosomething_grant_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'email_textfield',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_mobile'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_mobile'.
   $fields['webform_submission_entity-grant_application-field_webform_mobile'] = array(
     'field_config' => array(
       'active' => '1',
@@ -400,6 +391,7 @@ function dosomething_grant_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '100',
@@ -416,10 +408,9 @@ function dosomething_grant_application_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '2',
+          'type' => 'hidden',
+          'weight' => '11',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -441,12 +432,12 @@ function dosomething_grant_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_name'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_name'.
   $fields['webform_submission_entity-grant_application-field_webform_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -470,6 +461,7 @@ function dosomething_grant_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -516,7 +508,7 @@ function dosomething_grant_application_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_dates'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_dates'.
   $fields['webform_submission_entity-grant_application-field_webform_project_dates'] = array(
     'field_config' => array(
       'active' => '1',
@@ -529,6 +521,7 @@ function dosomething_grant_application_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -559,13 +552,13 @@ function dosomething_grant_application_field_default_fields() {
           'module' => 'date',
           'settings' => array(
             'format_type' => 'long',
-            'fromto' => 'both',
+            'fromto' => 'value',
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => 15,
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -592,12 +585,12 @@ function dosomething_grant_application_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_popup',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_submission'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_submission'.
   $fields['webform_submission_entity-grant_application-field_webform_project_submission'] = array(
     'field_config' => array(
       'active' => '1',
@@ -614,6 +607,7 @@ function dosomething_grant_application_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'entityreference_entity_field',
@@ -646,7 +640,7 @@ function dosomething_grant_application_field_default_fields() {
       'bundle' => 'grant_application',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Please enter the submission id of your project.',
+      'description' => 'Start typing the Title of your DoSomething.org Project Posting',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -655,7 +649,7 @@ function dosomething_grant_application_field_default_fields() {
             'link' => 1,
           ),
           'type' => 'entityreference_label',
-          'weight' => '4',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -678,12 +672,12 @@ function dosomething_grant_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_summary'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_summary'.
   $fields['webform_submission_entity-grant_application-field_webform_project_summary'] = array(
     'field_config' => array(
       'active' => '1',
@@ -707,6 +701,7 @@ function dosomething_grant_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -725,7 +720,7 @@ function dosomething_grant_application_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '5',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -743,12 +738,12 @@ function dosomething_grant_application_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_website'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_project_website'.
   $fields['webform_submission_entity-grant_application-field_webform_project_website'] = array(
     'field_config' => array(
       'active' => '1',
@@ -758,6 +753,7 @@ function dosomething_grant_application_field_default_fields() {
       'field_name' => 'field_webform_project_website',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -787,7 +783,7 @@ function dosomething_grant_application_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'default',
-          'weight' => '7',
+          'weight' => '4',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -818,12 +814,12 @@ function dosomething_grant_application_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_school'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_school'.
   $fields['webform_submission_entity-grant_application-field_webform_school'] = array(
     'field_config' => array(
       'active' => '1',
@@ -847,6 +843,7 @@ function dosomething_grant_application_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -866,7 +863,7 @@ function dosomething_grant_application_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '12',
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -888,12 +885,12 @@ function dosomething_grant_application_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-grant_application-field_webform_school_reference'
+  // Exported field: 'webform_submission_entity-grant_application-field_webform_school_reference'.
   $fields['webform_submission_entity-grant_application-field_webform_school_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -910,10 +907,22 @@ function dosomething_grant_application_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'ds_school',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => '',
+            'property' => 'sid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(),
         ),
         'handler_submit' => 'Change handler',
@@ -936,7 +945,7 @@ function dosomething_grant_application_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => '13',
+          'weight' => '9',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -959,7 +968,7 @@ function dosomething_grant_application_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'dosomething_school_autocomplete',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
