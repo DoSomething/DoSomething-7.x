@@ -10,7 +10,7 @@
 function dosomething_grant_alumni_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-grant_alumni-body'
+  // Exported field: 'node-grant_alumni-body'.
   $fields['node-grant_alumni-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -54,7 +55,28 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '4',
+          'weight' => '7',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '7',
+        ),
+        'search_index' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '7',
+        ),
+        'search_result' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -62,7 +84,6 @@ function dosomething_grant_alumni_field_default_fields() {
           'settings' => array(
             'trim_length' => 600,
           ),
-          'trim_length' => 600,
           'type' => 'text_summary_or_trimmed',
           'weight' => '4',
         ),
@@ -88,7 +109,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_alumni_project'
+  // Exported field: 'node-grant_alumni-field_alumni_project'.
   $fields['node-grant_alumni-field_alumni_project'] = array(
     'field_config' => array(
       'active' => '1',
@@ -109,6 +130,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'referenceable_types' => array(
@@ -170,7 +192,7 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'node_reference',
           'settings' => array(),
           'type' => 'node_reference_default',
-          'weight' => '7',
+          'weight' => '9',
         ),
         'full' => array(
           'label' => 'above',
@@ -224,7 +246,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_city_2'
+  // Exported field: 'node-grant_alumni-field_city_2'.
   $fields['node-grant_alumni-field_city_2'] = array(
     'field_config' => array(
       'active' => '1',
@@ -245,6 +267,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -271,7 +294,7 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '6',
+          'weight' => '8',
         ),
         'full' => array(
           'label' => 'above',
@@ -281,10 +304,9 @@ function dosomething_grant_alumni_field_default_fields() {
           'weight' => '6',
         ),
         'search_index' => array(
-          'label' => 'above',
-          'module' => 'text',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '6',
         ),
         'search_result' => array(
@@ -325,7 +347,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_contact_information'
+  // Exported field: 'node-grant_alumni-field_contact_information'.
   $fields['node-grant_alumni-field_contact_information'] = array(
     'field_config' => array(
       'active' => '1',
@@ -333,6 +355,9 @@ function dosomething_grant_alumni_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_contact_information',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -346,11 +371,13 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => 255,
+        'profile2_private' => FALSE,
         'text_processing' => '0',
       ),
       'translatable' => '0',
@@ -359,20 +386,15 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'grant_alumni',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '5',
+          'type' => 'hidden',
+          'weight' => '15',
         ),
         'full' => array(
           'label' => 'above',
@@ -382,42 +404,38 @@ function dosomething_grant_alumni_field_default_fields() {
           'weight' => '5',
         ),
         'search_index' => array(
-          'label' => 'above',
-          'module' => 'text',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '5',
         ),
         'search_result' => array(
-          'label' => 'above',
-          'module' => 'text',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '5',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_contact_information',
       'label' => 'Contact Information',
-      'required' => '0',
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '5',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '1',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '10',
@@ -426,7 +444,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_description'
+  // Exported field: 'node-grant_alumni-field_description'.
   $fields['node-grant_alumni-field_description'] = array(
     'field_config' => array(
       'active' => '1',
@@ -434,6 +452,9 @@ function dosomething_grant_alumni_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_description',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -447,11 +468,13 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => '255',
+        'profile2_private' => FALSE,
         'text_processing' => '1',
       ),
       'translatable' => '0',
@@ -473,7 +496,7 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '-4',
+          'weight' => '0',
         ),
         'full' => array(
           'label' => 'above',
@@ -527,7 +550,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_grant_type'
+  // Exported field: 'node-grant_alumni-field_grant_type'.
   $fields['node-grant_alumni-field_grant_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -544,6 +567,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -597,7 +621,7 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '0',
+          'weight' => '4',
         ),
         'full' => array(
           'label' => 'above',
@@ -608,23 +632,23 @@ function dosomething_grant_alumni_field_default_fields() {
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '0',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '0',
         ),
       ),
@@ -648,7 +672,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_money_for'
+  // Exported field: 'node-grant_alumni-field_money_for'.
   $fields['node-grant_alumni-field_money_for'] = array(
     'field_config' => array(
       'active' => '1',
@@ -662,6 +686,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -691,7 +716,7 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '-1',
+          'weight' => '2',
         ),
         'full' => array(
           'label' => 'above',
@@ -716,23 +741,23 @@ function dosomething_grant_alumni_field_default_fields() {
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '-1',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '-1',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '-1',
         ),
         'token' => array(
@@ -765,7 +790,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_picture'
+  // Exported field: 'node-grant_alumni-field_picture'.
   $fields['node-grant_alumni-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -789,6 +814,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -816,7 +842,7 @@ function dosomething_grant_alumni_field_default_fields() {
             'image_style' => 'square_thumbnail',
           ),
           'type' => 'image',
-          'weight' => '-3',
+          'weight' => '1',
         ),
         'full' => array(
           'label' => 'above',
@@ -830,16 +856,20 @@ function dosomething_grant_alumni_field_default_fields() {
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'file_rendered',
           'weight' => '-3',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'default',
+          ),
+          'type' => 'file_rendered',
           'weight' => '-3',
         ),
         'teaser' => array(
@@ -859,6 +889,7 @@ function dosomething_grant_alumni_field_default_fields() {
       'required' => '0',
       'settings' => array(
         'alt_field' => 1,
+        'default_image' => 0,
         'file_directory' => 'pictures/actionguide',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -895,7 +926,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_recipient_age'
+  // Exported field: 'node-grant_alumni-field_recipient_age'.
   $fields['node-grant_alumni-field_recipient_age'] = array(
     'field_config' => array(
       'active' => '1',
@@ -905,6 +936,7 @@ function dosomething_grant_alumni_field_default_fields() {
       'field_name' => 'field_recipient_age',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'allowed_values' => array(),
@@ -938,7 +970,7 @@ function dosomething_grant_alumni_field_default_fields() {
             'thousand_separator' => '',
           ),
           'type' => 'number_integer',
-          'weight' => '9',
+          'weight' => '11',
         ),
         'full' => array(
           'label' => 'above',
@@ -1012,7 +1044,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_recipient_birthdate'
+  // Exported field: 'node-grant_alumni-field_recipient_birthdate'.
   $fields['node-grant_alumni-field_recipient_birthdate'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1022,6 +1054,7 @@ function dosomething_grant_alumni_field_default_fields() {
       'field_name' => 'field_recipient_birthdate',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'granularity' => array(
@@ -1045,16 +1078,9 @@ function dosomething_grant_alumni_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'field_recipient_birthdate_short',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '10',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '14',
         ),
         'full' => array(
           'label' => 'above',
@@ -1079,23 +1105,14 @@ function dosomething_grant_alumni_field_default_fields() {
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
           'weight' => '10',
         ),
         'search_result' => array(
-          'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'field_recipient_birthdate_short',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-            'show_repeat_rule' => 'show',
-          ),
-          'type' => 'date_default',
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '10',
         ),
         'teaser' => array(
@@ -1107,7 +1124,6 @@ function dosomething_grant_alumni_field_default_fields() {
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
           'weight' => '10',
@@ -1147,7 +1163,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_scholarship_type'
+  // Exported field: 'node-grant_alumni-field_scholarship_type'.
   $fields['node-grant_alumni-field_scholarship_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1164,6 +1180,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1202,7 +1219,7 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '1',
+          'weight' => '5',
         ),
         'full' => array(
           'label' => 'above',
@@ -1227,23 +1244,23 @@ function dosomething_grant_alumni_field_default_fields() {
         ),
         'search_index' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '1',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '1',
         ),
         'token' => array(
@@ -1274,7 +1291,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_state_plain'
+  // Exported field: 'node-grant_alumni-field_state_plain'.
   $fields['node-grant_alumni-field_state_plain'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1291,6 +1308,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1380,7 +1398,7 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '3',
+          'weight' => '6',
         ),
         'full' => array(
           'label' => 'above',
@@ -1390,24 +1408,23 @@ function dosomething_grant_alumni_field_default_fields() {
           'weight' => '3',
         ),
         'search_index' => array(
-          'label' => 'above',
-          'module' => 'text',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '3',
         ),
         'search_result' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'list_default',
           'weight' => '3',
         ),
       ),
@@ -1433,7 +1450,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_webform_project_submission'
+  // Exported field: 'node-grant_alumni-field_webform_project_submission'.
   $fields['node-grant_alumni-field_webform_project_submission'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1450,6 +1467,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'entityreference_entity_field',
@@ -1491,13 +1509,40 @@ function dosomething_grant_alumni_field_default_fields() {
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => '11',
+          'weight' => '13',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '13',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '13',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'node',
@@ -1517,7 +1562,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-field_year_awarded'
+  // Exported field: 'node-grant_alumni-field_year_awarded'.
   $fields['node-grant_alumni-field_year_awarded'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1527,6 +1572,7 @@ function dosomething_grant_alumni_field_default_fields() {
       'field_name' => 'field_year_awarded',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'allowed_values' => array(),
@@ -1560,7 +1606,7 @@ function dosomething_grant_alumni_field_default_fields() {
             'thousand_separator' => '',
           ),
           'type' => 'number_integer',
-          'weight' => '8',
+          'weight' => '10',
         ),
         'full' => array(
           'label' => 'above',
@@ -1634,7 +1680,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-taxonomy_vocabulary_5'
+  // Exported field: 'node-grant_alumni-taxonomy_vocabulary_5'.
   $fields['node-grant_alumni-taxonomy_vocabulary_5'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1658,6 +1704,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -1683,14 +1730,35 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '10',
+          'weight' => '12',
+        ),
+        'full' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '12',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '12',
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '10',
         ),
       ),
       'entity_type' => 'node',
@@ -1709,7 +1777,7 @@ function dosomething_grant_alumni_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-grant_alumni-upload'
+  // Exported field: 'node-grant_alumni-upload'.
   $fields['node-grant_alumni-upload'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1725,6 +1793,7 @@ function dosomething_grant_alumni_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'default_file' => 0,
@@ -1746,7 +1815,7 @@ function dosomething_grant_alumni_field_default_fields() {
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_table',
-          'weight' => '0',
+          'weight' => '3',
         ),
         'full' => array(
           'label' => 'hidden',
@@ -1762,12 +1831,25 @@ function dosomething_grant_alumni_field_default_fields() {
           'type' => 'file_table',
           'weight' => 0,
         ),
+        'search_index' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => '3',
+        ),
+        'search_result' => array(
+          'label' => 'hidden',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_table',
+          'weight' => '3',
+        ),
         'teaser' => array(
           'label' => 'hidden',
-          'module' => NULL,
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'node',
