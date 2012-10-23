@@ -18,7 +18,7 @@ function dosomething_layout_default_fe_block_settings() {
     'delta' => 'dosomething_make_impact',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-43',
+    'weight' => '-62',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
@@ -34,7 +34,7 @@ action-finder',
     'delta' => 'dosomething_utility_bar',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-22',
+    'weight' => '-68',
     'region' => 'utility',
     'custom' => '0',
     'visibility' => '0',
@@ -48,11 +48,11 @@ action-finder',
     'delta' => 'become_member',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-44',
+    'weight' => '-63',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => '',
+    'pages' => 'judge-register',
     'title' => '',
     'cache' => -1,
   );
@@ -62,7 +62,7 @@ action-finder',
     'delta' => 'menu-footer',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-49',
+    'weight' => '-61',
     'region' => 'footer',
     'custom' => '0',
     'visibility' => '0',
@@ -115,7 +115,7 @@ action-finder',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => '',
+    'pages' => 'judge-register',
     'title' => '',
     'cache' => -1,
   );
@@ -135,6 +135,69 @@ action-finder',
   );
 
   $export['ds'] = $theme;
+
+  // picsforpets
+  $theme = array();
+
+  $theme['dosomething_blocks-dosomething_make_impact'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_make_impact',
+    'theme' => 'picsforpets',
+    'status' => 0,
+    'weight' => '-62',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '<front>
+start-something
+action-finder',
+    'title' => '',
+    'cache' => 8,
+  );
+
+  $theme['dosomething_blocks-dosomething_utility_bar'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_utility_bar',
+    'theme' => 'picsforpets',
+    'status' => 0,
+    'weight' => '-68',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['dosomething_login-become_member'] = array(
+    'module' => 'dosomething_login',
+    'delta' => 'become_member',
+    'theme' => 'picsforpets',
+    'status' => 0,
+    'weight' => '-63',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => 'judge-register',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['menu-menu-footer'] = array(
+    'module' => 'menu',
+    'delta' => 'menu-footer',
+    'theme' => 'picsforpets',
+    'status' => 0,
+    'weight' => '-61',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '<none>',
+    'cache' => -1,
+  );
+
+  $export['picsforpets'] = $theme;
 
   $theme_default = variable_get('theme_default', 'garland');
   $themes = list_themes();

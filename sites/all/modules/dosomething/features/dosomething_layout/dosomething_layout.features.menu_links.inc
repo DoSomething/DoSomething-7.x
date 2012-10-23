@@ -27,7 +27,7 @@ function dosomething_layout_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '-50',
-    'parent_path' => '<front>',
+    'parent_path' => '<nolink>',
   );
   // Exported menu link: menu-footer:taxonomy/term/27
   $menu_links['menu-footer:taxonomy/term/27'] = array(
@@ -45,8 +45,8 @@ function dosomething_layout_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-46',
-    'parent_path' => '<front>',
+    'weight' => '-45',
+    'parent_path' => '<nolink>',
   );
   // Translatables
   // Included for use with string extractors like potx.

@@ -10,7 +10,7 @@
 function dosomething_layout_menu_default_menu_custom() {
   $menus = array();
 
-  // Exported menu: menu-footer
+  // Exported menu: menu-footer.
   $menus['menu-footer'] = array(
     'menu_name' => 'menu-footer',
     'title' => 'Footer',
