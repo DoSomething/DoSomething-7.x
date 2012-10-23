@@ -17,7 +17,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -97;
+  $handler->weight = -25;
   $handler->conf = array(
     'title' => 'Grant',
     'no_blocks' => 0,
@@ -331,7 +331,7 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
     $pane->pid = 'new-10';
     $pane->panel = 'top';
     $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
+    $pane->subtype = 'service_links-service_links';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -339,13 +339,11 @@ function dosomething_member_opportunity_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
+    $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $pane->locks = '';
+    $pane->locks = array();
     $display->content['new-10'] = $pane;
     $display->panels['top'][0] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
@@ -392,7 +390,15 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     'pipeline' => 'ipe',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Meta Tag',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '721740',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
   );
   $display = new panels_display();
@@ -412,6 +418,17 @@ function dosomething_member_opportunity_default_page_manager_pages() {
       'row3' => NULL,
       'bottom-left' => NULL,
       'bottom-right' => NULL,
+      'logo' => NULL,
+      'mini-info' => NULL,
+      'social' => NULL,
+      'sign-up' => NULL,
+      'stats' => NULL,
+      'quick-info' => NULL,
+      'psa' => NULL,
+      'flexible-top' => NULL,
+      'mid-center' => NULL,
+      'flexible-bot' => NULL,
+      'logos' => NULL,
     ),
     'bottom' => array(
       'style' => 'list',
@@ -422,29 +439,7 @@ function dosomething_member_opportunity_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-11';
-    $pane->panel = 'flexible-top';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => 'Photo Gallery',
-      'body' => '[gallery]',
-      'format' => '1',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-11'] = $pane;
-    $display->panels['flexible-top'][0] = 'new-11';
-    $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-1';
     $pane->panel = 'logo';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -458,15 +453,17 @@ function dosomething_member_opportunity_default_page_manager_pages() {
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-12'] = $pane;
-    $display->panels['logo'][0] = 'new-12';
+    $display->content['new-1'] = $pane;
+    $display->panels['logo'][0] = 'new-1';
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-2';
     $pane->panel = 'mid-center';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -481,7 +478,9 @@ function dosomething_member_opportunity_default_page_manager_pages() {
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'three-boxes',
@@ -489,10 +488,10 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-13'] = $pane;
-    $display->panels['mid-center'][0] = 'new-13';
+    $display->content['new-2'] = $pane;
+    $display->panels['mid-center'][0] = 'new-2';
     $pane = new stdClass();
-    $pane->pid = 'new-14';
+    $pane->pid = 'new-3';
     $pane->panel = 'mid-left';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -507,7 +506,9 @@ function dosomething_member_opportunity_default_page_manager_pages() {
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'three-boxes',
@@ -515,14 +516,14 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-14'] = $pane;
-    $display->panels['mid-left'][0] = 'new-14';
+    $display->content['new-3'] = $pane;
+    $display->panels['mid-left'][0] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-15';
+    $pane->pid = 'new-4';
     $pane->panel = 'mid-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
@@ -533,7 +534,9 @@ function dosomething_member_opportunity_default_page_manager_pages() {
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'three-boxes',
@@ -541,10 +544,33 @@ function dosomething_member_opportunity_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-15'] = $pane;
-    $display->panels['mid-right'][0] = 'new-15';
+    $display->content['new-4'] = $pane;
+    $display->panels['mid-right'][0] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-16';
+    $pane->pid = 'new-5';
+    $pane->panel = 'mid-right';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => 'Campaign Grants',
+      'body' => '<p>Want to run one of our campaign and make it amazing? We want to give you $500.</p>
+<a href="/grants/campaign-grants" class="go-button">GO</a>',
+      'format' => '3',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['mid-right'][1] = 'new-5';
+    $pane = new stdClass();
+    $pane->pid = 'new-6';
     $pane->panel = 'mini-info';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -561,15 +587,17 @@ projects and organizations.',
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-16'] = $pane;
-    $display->panels['mini-info'][0] = 'new-16';
+    $display->content['new-6'] = $pane;
+    $display->panels['mini-info'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-17';
+    $pane->pid = 'new-7';
     $pane->panel = 'psa';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -578,20 +606,26 @@ projects and organizations.',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<iframe width="560" height="315" src="http://www.youtube.com/embed/N1ra37tjMIs" frameborder="0" allowfullscreen></iframe>',
+      'body' => '<object style="height: 320px; width: 480px">
+<param name="movie" value="http://www.youtube.com/v/N1ra37tjMIs?version=3&feature=player_embedded">
+<param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always">
+<param name="wmode" value="opaque"/>
+<embed wmode="transparent" src="http://www.youtube.com/v/N1ra37tjMIs?version=3&feature=player_embedded" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="480" height="320"></object>',
       'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-17'] = $pane;
-    $display->panels['psa'][0] = 'new-17';
+    $display->content['new-7'] = $pane;
+    $display->panels['psa'][0] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-18';
+    $pane->pid = 'new-8';
     $pane->panel = 'quick-info';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -614,15 +648,17 @@ on a rolling basis.',
       'substitute' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-18'] = $pane;
-    $display->panels['quick-info'][0] = 'new-18';
+    $display->content['new-8'] = $pane;
+    $display->panels['quick-info'][0] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-19';
+    $pane->pid = 'new-9';
     $pane->panel = 'sign-up';
     $pane->type = 'block';
     $pane->subtype = 'webform-client-block-719551';
@@ -633,15 +669,36 @@ on a rolling basis.',
       'override_title_text' => 'Sign Up for Updates',
     );
     $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-9'] = $pane;
+    $display->panels['sign-up'][0] = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'social';
+    $pane->type = 'block';
+    $pane->subtype = 'service_links-service_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-19'] = $pane;
-    $display->panels['sign-up'][0] = 'new-19';
+    $display->content['new-10'] = $pane;
+    $display->panels['social'][0] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-20';
+    $pane->pid = 'new-11';
     $pane->panel = 'social';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -652,15 +709,17 @@ on a rolling basis.',
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-20'] = $pane;
-    $display->panels['social'][0] = 'new-20';
+    $display->content['new-11'] = $pane;
+    $display->panels['social'][1] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-21';
+    $pane->pid = 'new-12';
     $pane->panel = 'social';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_facepile_general';
@@ -671,15 +730,17 @@ on a rolling basis.',
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-21'] = $pane;
-    $display->panels['social'][1] = 'new-21';
+    $display->content['new-12'] = $pane;
+    $display->panels['social'][2] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-22';
+    $pane->pid = 'new-13';
     $pane->panel = 'stats';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -689,14 +750,17 @@ on a rolling basis.',
       'admin_title' => '',
       'title' => '&nbsp;',
       'body' => '<div class="counter"><ul>
-<li class="first"><span class="counter-labels">PEOPLE INVOLVED</span><span class="digits">820000</span></li>
-<li class="first"><span class="counter-labels">PEOPLE IMPACTED</span><span class="digits">192300</span></li>
-</ul>',
+<li class="first"><span class="counter-labels">MONEY AWARDED</span><span class="digits">606250</span></li>
+<li class="first"><span class="counter-labels">NUMBER OF WINNERS</span><span class="digits">000781</span>
+</li>
+</ul></div>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'vital-stats',
@@ -704,8 +768,8 @@ on a rolling basis.',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-22'] = $pane;
-    $display->panels['stats'][0] = 'new-22';
+    $display->content['new-13'] = $pane;
+    $display->panels['stats'][0] = 'new-13';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -772,11 +836,11 @@ on a rolling basis.',
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-23';
+    $pane->pid = 'new-14';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
@@ -790,10 +854,10 @@ on a rolling basis.',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-23'] = $pane;
-    $display->panels['middle'][0] = 'new-23';
+    $display->content['new-14'] = $pane;
+    $display->panels['middle'][0] = 'new-14';
     $pane = new stdClass();
-    $pane->pid = 'new-24';
+    $pane->pid = 'new-15';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'member_opportunity-panel_pane_1';
@@ -808,10 +872,10 @@ on a rolling basis.',
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-24'] = $pane;
-    $display->panels['middle'][1] = 'new-24';
+    $display->content['new-15'] = $pane;
+    $display->panels['middle'][1] = 'new-15';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-23';
+  $display->title_pane = 'new-14';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $handler = new stdClass();
@@ -845,11 +909,30 @@ on a rolling basis.',
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-25';
+    $pane->pid = 'new-16';
+    $pane->panel = 'middle';
+    $pane->type = 'block';
+    $pane->subtype = 'service_links-service_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-16'] = $pane;
+    $display->panels['middle'][0] = 'new-16';
+    $pane = new stdClass();
+    $pane->pid = 'new-17';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
@@ -861,12 +944,12 @@ on a rolling basis.',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-25'] = $pane;
-    $display->panels['middle'][0] = 'new-25';
+    $display->content['new-17'] = $pane;
+    $display->panels['middle'][1] = 'new-17';
     $pane = new stdClass();
-    $pane->pid = 'new-26';
+    $pane->pid = 'new-18';
     $pane->panel = 'middle';
     $pane->type = 'views';
     $pane->subtype = 'member_opportunity';
@@ -894,12 +977,12 @@ on a rolling basis.',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-26'] = $pane;
-    $display->panels['middle'][1] = 'new-26';
+    $display->content['new-18'] = $pane;
+    $display->panels['middle'][2] = 'new-18';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-25';
+  $display->title_pane = 'new-17';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['grants_db'] = $page;
@@ -964,7 +1047,7 @@ on a rolling basis.',
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-27';
+    $pane->pid = 'new-19';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -982,10 +1065,10 @@ on a rolling basis.',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-27'] = $pane;
-    $display->panels['middle'][0] = 'new-27';
+    $display->content['new-19'] = $pane;
+    $display->panels['middle'][0] = 'new-19';
     $pane = new stdClass();
-    $pane->pid = 'new-28';
+    $pane->pid = 'new-20';
     $pane->panel = 'middle';
     $pane->type = 'views_panes';
     $pane->subtype = 'member_opportunity-panel_pane_2';
@@ -1000,10 +1083,10 @@ on a rolling basis.',
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-28'] = $pane;
-    $display->panels['middle'][1] = 'new-28';
+    $display->content['new-20'] = $pane;
+    $display->panels['middle'][1] = 'new-20';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-27';
+  $display->title_pane = 'new-19';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $handler = new stdClass();
@@ -1037,7 +1120,7 @@ on a rolling basis.',
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-29';
+    $pane->pid = 'new-21';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
@@ -1055,10 +1138,10 @@ on a rolling basis.',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-29'] = $pane;
-    $display->panels['middle'][0] = 'new-29';
+    $display->content['new-21'] = $pane;
+    $display->panels['middle'][0] = 'new-21';
     $pane = new stdClass();
-    $pane->pid = 'new-30';
+    $pane->pid = 'new-22';
     $pane->panel = 'middle';
     $pane->type = 'views';
     $pane->subtype = 'member_opportunity';
@@ -1088,10 +1171,10 @@ on a rolling basis.',
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = '';
-    $display->content['new-30'] = $pane;
-    $display->panels['middle'][1] = 'new-30';
+    $display->content['new-22'] = $pane;
+    $display->panels['middle'][1] = 'new-22';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-29';
+  $display->title_pane = 'new-21';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['scholarships_db'] = $page;

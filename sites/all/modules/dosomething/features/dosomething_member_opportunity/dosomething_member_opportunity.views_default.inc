@@ -37,13 +37,12 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['relationships']['field_editorial_reference_target_id']['table'] = 'field_data_field_editorial_reference';
   $handler->display->display_options['relationships']['field_editorial_reference_target_id']['field'] = 'field_editorial_reference_target_id';
   $handler->display->display_options['relationships']['field_editorial_reference_target_id']['required'] = 1;
-  /* Relationship: Webform Submission: Grant (field_webform_grant_ref) */
+  /* Relationship: Broken/missing handler */
   $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['id'] = 'field_webform_grant_ref_nid';
   $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['table'] = 'field_data_field_webform_grant_ref';
   $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['field'] = 'field_webform_grant_ref_nid';
   $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['relationship'] = 'field_editorial_reference_target_id';
   $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['required'] = 0;
-  $handler->display->display_options['relationships']['field_webform_grant_ref_nid']['delta'] = '-1';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -540,6 +539,7 @@ function dosomething_member_opportunity_views_default_views() {
   $handler->display->display_options['sorts']['field_application_deadline_2_value']['id'] = 'field_application_deadline_2_value';
   $handler->display->display_options['sorts']['field_application_deadline_2_value']['table'] = 'field_data_field_application_deadline_2';
   $handler->display->display_options['sorts']['field_application_deadline_2_value']['field'] = 'field_application_deadline_2_value';
+  $handler->display->display_options['sorts']['field_application_deadline_2_value']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -611,7 +611,6 @@ function dosomething_member_opportunity_views_default_views() {
   $handler = $view->new_display('page', 'Scholarships Database Page', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Scholarships Database';
-  $handler->display->display_options['enabled'] = FALSE;
   $handler->display->display_options['defaults']['header'] = FALSE;
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';

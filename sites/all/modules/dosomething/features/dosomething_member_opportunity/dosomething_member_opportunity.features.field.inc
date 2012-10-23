@@ -10,14 +10,19 @@
 function dosomething_member_opportunity_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-grant_judge-field_comments_or_suggestions_f'
-  $fields['node-grant_judge-field_comments_or_suggestions_f'] = array(
+  // Exported field: 'node-grant_judge-body'.
+  $fields['node-grant_judge-body'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_comments_or_suggestions_f',
+      'entity_types' => array(
+        0 => 'node',
+      ),
+      'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -31,119 +36,26 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
-        'allowed_values' => '',
-        'allowed_values_php' => '',
-        'max_length' => '',
-        'text_processing' => '0',
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'Comments will be sent to the grant applicant to help them improve their projects and grant writing skills.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '9',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '9',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '9',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_comments_or_suggestions_f',
-      'label' => 'Comments or Suggestions for Grant Applicant',
-      'required' => '0',
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '9',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '10',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '4',
-      ),
-      'widget_type' => 'text_textarea',
-    ),
-  );
-
-  // Exported field: 'node-grant_judge-field_grant_judge_application'
-  $fields['node-grant_judge-field_grant_judge_application'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_application',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'target_id' => array(
-          0 => 'target_id',
-        ),
-      ),
-      'module' => 'entityreference',
-      'settings' => array(
-        'handler' => 'entityreference_entity_field',
-        'handler_settings' => array(
-          'author_only' => 0,
-          'target_bundles' => array(
-            'grant_application' => 'grant_application',
-          ),
-          'title_field' => 'field_webform_name',
-        ),
-        'handler_submit' => 'Change handler',
         'profile2_private' => FALSE,
-        'target_type' => 'webform_submission_entity',
       ),
       'translatable' => '0',
-      'type' => 'entityreference',
+      'type' => 'text_with_summary',
     ),
     'field_instance' => array(
       'bundle' => 'grant_judge',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Choose a grant application by searching for the name of the submitter.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'entityreference',
-          'settings' => array(
-            'link' => FALSE,
-          ),
-          'type' => 'entityreference_label',
-          'weight' => 10,
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -153,884 +65,27 @@ function dosomething_member_opportunity_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_application',
-      'label' => 'Grant Application',
-      'required' => 0,
+      'field_name' => 'body',
+      'label' => 'Description',
+      'required' => FALSE,
       'settings' => array(
+        'display_summary' => 0,
+        'text_processing' => 1,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'entityreference',
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'path' => '',
-          'size' => '60',
-        ),
-        'type' => 'entityreference_autocomplete',
-        'weight' => '3',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-grant_judge-field_grant_judge_community'
-  $fields['node-grant_judge-field_grant_judge_community'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_community',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          1 => '1',
-          2 => '2',
-          3 => '3',
-          4 => '4',
-          5 => '5',
-          6 => '6',
-          7 => '7',
-          8 => '8',
-          9 => '9',
-          10 => '10',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'append_position' => NULL,
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_integer',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'The grant applicant’s project focuses on improving community problems and engaging and involving the community in their project. ',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '3',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '3',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '3',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_community',
-      'label' => 'Community focus',
-      'required' => '1',
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '3',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '3',
-      ),
-      'widget_type' => 'optionwidgets_select',
-    ),
-  );
-
-  // Exported field: 'node-grant_judge-field_grant_judge_creativity'
-  $fields['node-grant_judge-field_grant_judge_creativity'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_creativity',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          1 => '1',
-          2 => '2',
-          3 => '3',
-          4 => '4',
-          5 => '5',
-          6 => '6',
-          7 => '7',
-          8 => '8',
-          9 => '9',
-          10 => '10',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'append_position' => NULL,
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_integer',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'The grant applicant’s project is creative and demonstrates an original idea for solving problems and creating change in their local communities.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '5',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '5',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '5',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_creativity',
-      'label' => 'Creativity',
-      'required' => '1',
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '5',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '5',
-      ),
-      'widget_type' => 'optionwidgets_select',
-    ),
-  );
-
-  // Exported field: 'node-grant_judge-field_grant_judge_diversity'
-  $fields['node-grant_judge-field_grant_judge_diversity'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_diversity',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          1 => '1',
-          2 => '2',
-          3 => '3',
-          4 => '4',
-          5 => '5',
-          6 => '6',
-          7 => '7',
-          8 => '8',
-          9 => '9',
-          10 => '10',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'append_position' => NULL,
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_integer',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'The grant applicant\'s project promotes diversity and brings different kinds of people together.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '6',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '6',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '6',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_diversity',
-      'label' => 'Diversity',
-      'required' => '1',
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '6',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '6',
-      ),
-      'widget_type' => 'optionwidgets_select',
-    ),
-  );
-
-  // Exported field: 'node-grant_judge-field_grant_judge_focus'
-  $fields['node-grant_judge-field_grant_judge_focus'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_focus',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          1 => '1',
-          2 => '2',
-          3 => '3',
-          4 => '4',
-          5 => '5',
-          6 => '6',
-          7 => '7',
-          8 => '8',
-          9 => '9',
-          10 => '10',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'append_position' => NULL,
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_integer',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'The grant applicant’s project strives toward tangible results and measurable impact.  The applicant has clear goals and a focused plan of action for reaching them.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '2',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '2',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '2',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_focus',
-      'label' => 'Measurable change',
-      'required' => '1',
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '2',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '2',
-      ),
-      'widget_type' => 'optionwidgets_select',
-    ),
-  );
-
-  // Exported field: 'node-grant_judge-field_grant_judge_nid'
-  $fields['node-grant_judge-field_grant_judge_nid'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_nid',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'allowed_values' => '',
-        'allowed_values_php' => '',
-        'max_length' => 255,
-        'text_processing' => '0',
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_nid',
-      'label' => 'Application Node ID',
-      'required' => '1',
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '0',
-      'widget' => array(
-        'active' => '1',
         'module' => 'text',
         'settings' => array(
-          'rows' => '1',
-          'size' => 60,
+          'rows' => 20,
+          'summary_rows' => 5,
         ),
-        'type' => 'text_textfield',
-        'weight' => '2',
+        'type' => 'text_textarea_with_summary',
+        'weight' => '32',
       ),
-      'widget_type' => 'text_textfield',
     ),
   );
 
-  // Exported field: 'node-grant_judge-field_grant_judge_problem'
-  $fields['node-grant_judge-field_grant_judge_problem'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_problem',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          1 => '1',
-          2 => '2',
-          3 => '3',
-          4 => '4',
-          5 => '5',
-          6 => '6',
-          7 => '7',
-          8 => '8',
-          9 => '9',
-          10 => '10',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'append_position' => NULL,
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_integer',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'The grant applicant’s project can be a one-time event or an ongoing program; either way, it should strive to make lasting change in his or her community.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '4',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '4',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '4',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_problem',
-      'label' => 'Long-term problem solving action',
-      'required' => '1',
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '4',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '4',
-      ),
-      'widget_type' => 'optionwidgets_select',
-    ),
-  );
-
-  // Exported field: 'node-grant_judge-field_grant_judge_winner'
-  $fields['node-grant_judge-field_grant_judge_winner'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_winner',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          1 => '1',
-          2 => '2',
-          3 => '3',
-          4 => '4',
-          5 => '5',
-          6 => '6',
-          7 => '7',
-          8 => '8',
-          9 => '9',
-          10 => '10',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'append_position' => NULL,
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_integer',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'The grant applicant has met the criteria above and and provides a unique and detailed project plan and will measure impact effectively.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '7',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '7',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '7',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_winner',
-      'label' => 'Grant winner material?',
-      'required' => '1',
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '7',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '7',
-      ),
-      'widget_type' => 'optionwidgets_select',
-    ),
-  );
-
-  // Exported field: 'node-grant_judge-field_grant_judge_youth'
-  $fields['node-grant_judge-field_grant_judge_youth'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_grant_judge_youth',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          1 => '1',
-          2 => '2',
-          3 => '3',
-          4 => '4',
-          5 => '5',
-          6 => '6',
-          7 => '7',
-          8 => '8',
-          9 => '9',
-          10 => '10',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'append_position' => NULL,
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_integer',
-      'type_name' => 'grant_judge',
-    ),
-    'field_instance' => array(
-      'bundle' => 'grant_judge',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'The grant applicant is in charge of or plays a very active role in designing, leading and implementing the proposed project.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '1',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '1',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => '',
-          ),
-          'type' => 'number_integer',
-          'weight' => '1',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_grant_judge_youth',
-      'label' => 'Youth led and driven',
-      'required' => '1',
-      'settings' => array(
-        'max' => '',
-        'min' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '1',
-      'widget' => array(
-        'active' => '1',
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '1',
-      ),
-      'widget_type' => 'optionwidgets_select',
-    ),
-  );
-
-  // Exported field: 'node-member_opportunity-field_application_deadline'
+  // Exported field: 'node-member_opportunity-field_application_deadline'.
   $fields['node-member_opportunity-field_application_deadline'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1051,6 +106,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1117,7 +173,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_application_deadline_2'
+  // Exported field: 'node-member_opportunity-field_application_deadline_2'.
   $fields['node-member_opportunity-field_application_deadline_2'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1127,6 +183,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'field_name' => 'field_application_deadline_2',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'field_timezone' => 'America/New_York',
@@ -1228,7 +285,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_award_focus'
+  // Exported field: 'node-member_opportunity-field_award_focus'.
   $fields['node-member_opportunity-field_award_focus'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1245,6 +302,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1319,7 +377,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_email_0'
+  // Exported field: 'node-member_opportunity-field_email_0'.
   $fields['node-member_opportunity-field_email_0'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1340,6 +398,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1406,7 +465,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grants_details'
+  // Exported field: 'node-member_opportunity-field_grants_details'.
   $fields['node-member_opportunity-field_grants_details'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1430,6 +489,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1484,7 +544,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grants_faq'
+  // Exported field: 'node-member_opportunity-field_grants_faq'.
   $fields['node-member_opportunity-field_grants_faq'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1508,6 +568,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1562,7 +623,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grants_how_many'
+  // Exported field: 'node-member_opportunity-field_grants_how_many'.
   $fields['node-member_opportunity-field_grants_how_many'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1586,6 +647,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1641,7 +703,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grants_how_much'
+  // Exported field: 'node-member_opportunity-field_grants_how_much'.
   $fields['node-member_opportunity-field_grants_how_much'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1665,6 +727,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1720,7 +783,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grants_step_apply'
+  // Exported field: 'node-member_opportunity-field_grants_step_apply'.
   $fields['node-member_opportunity-field_grants_step_apply'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1744,6 +807,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1798,7 +862,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grantsdb_award_name'
+  // Exported field: 'node-member_opportunity-field_grantsdb_award_name'.
   $fields['node-member_opportunity-field_grantsdb_award_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1819,6 +883,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1885,7 +950,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grantsdb_contact_name'
+  // Exported field: 'node-member_opportunity-field_grantsdb_contact_name'.
   $fields['node-member_opportunity-field_grantsdb_contact_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1906,6 +971,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1972,7 +1038,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grantsdb_eligible'
+  // Exported field: 'node-member_opportunity-field_grantsdb_eligible'.
   $fields['node-member_opportunity-field_grantsdb_eligible'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1996,6 +1062,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -2058,7 +1125,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_grantsdb_link'
+  // Exported field: 'node-member_opportunity-field_grantsdb_link'.
   $fields['node-member_opportunity-field_grantsdb_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2068,6 +1135,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'field_name' => 'field_grantsdb_link',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -2151,7 +1219,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_organization_website'
+  // Exported field: 'node-member_opportunity-field_organization_website'.
   $fields['node-member_opportunity-field_organization_website'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2164,6 +1232,7 @@ function dosomething_member_opportunity_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -2243,7 +1312,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_phone_number_1'
+  // Exported field: 'node-member_opportunity-field_phone_number_1'.
   $fields['node-member_opportunity-field_phone_number_1'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2264,6 +1333,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -2330,7 +1400,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_picture'
+  // Exported field: 'node-member_opportunity-field_picture'.
   $fields['node-member_opportunity-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2354,6 +1424,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -2426,6 +1497,7 @@ function dosomething_member_opportunity_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 1,
+        'default_image' => 0,
         'file_directory' => 'pictures/grantlisting',
         'file_extensions' => 'jpg jpeg png gif',
         'max_filesize' => '0',
@@ -2458,7 +1530,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_posters_email'
+  // Exported field: 'node-member_opportunity-field_posters_email'.
   $fields['node-member_opportunity-field_posters_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2479,6 +1551,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -2545,7 +1618,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_rolling'
+  // Exported field: 'node-member_opportunity-field_rolling'.
   $fields['node-member_opportunity-field_rolling'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2562,6 +1635,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -2626,7 +1700,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_type_of_award'
+  // Exported field: 'node-member_opportunity-field_type_of_award'.
   $fields['node-member_opportunity-field_type_of_award'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2643,6 +1717,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -2712,7 +1787,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_what_you_win'
+  // Exported field: 'node-member_opportunity-field_what_you_win'.
   $fields['node-member_opportunity-field_what_you_win'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2736,6 +1811,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -2798,7 +1874,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-field_winners_announced'
+  // Exported field: 'node-member_opportunity-field_winners_announced'.
   $fields['node-member_opportunity-field_winners_announced'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2819,6 +1895,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -2885,7 +1962,7 @@ function dosomething_member_opportunity_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-member_opportunity-upload'
+  // Exported field: 'node-member_opportunity-upload'.
   $fields['node-member_opportunity-upload'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2901,6 +1978,7 @@ function dosomething_member_opportunity_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'default_file' => 0,
@@ -2982,29 +2060,19 @@ function dosomething_member_opportunity_field_default_fields() {
   t('Amount of grant');
   t('An email that applicants can use if they have questions about the application process. ');
   t('Application Deadline');
-  t('Application Node ID');
   t('Award Focus');
-  t('Choose a grant application by searching for the name of the submitter.');
-  t('Comments or Suggestions for Grant Applicant');
-  t('Comments will be sent to the grant applicant to help them improve their projects and grant writing skills.');
-  t('Community focus');
   t('Contact Name');
-  t('Creativity');
-  t('Diversity');
+  t('Description');
   t('Email');
   t('FAQ');
   t('File attachments');
-  t('Grant Application');
   t('Grant Description');
   t('Grant Details');
   t('Grant requirements');
   t('Grant status');
-  t('Grant winner material?');
   t('How Many?');
   t('How Much?');
   t('How many grants or how often. Ex. <i>One a week</i>');
-  t('Long-term problem solving action');
-  t('Measurable change');
   t('Name of Award');
   t('Organization Website');
   t('Phone Number');
@@ -3013,17 +2081,9 @@ function dosomething_member_opportunity_field_default_fields() {
   t('Poster\'s Email');
   t('Required');
   t('Steps to Apply');
-  t('The grant applicant has met the criteria above and and provides a unique and detailed project plan and will measure impact effectively.');
-  t('The grant applicant is in charge of or plays a very active role in designing, leading and implementing the proposed project.');
-  t('The grant applicant\'s project promotes diversity and brings different kinds of people together.');
-  t('The grant applicant’s project can be a one-time event or an ongoing program; either way, it should strive to make lasting change in his or her community.');
-  t('The grant applicant’s project focuses on improving community problems and engaging and involving the community in their project. ');
-  t('The grant applicant’s project is creative and demonstrates an original idea for solving problems and creating change in their local communities.');
-  t('The grant applicant’s project strives toward tangible results and measurable impact.  The applicant has clear goals and a focused plan of action for reaching them.');
   t('Type of Award');
   t('Website/link for the application');
   t('Winners announced');
-  t('Youth led and driven');
   t('hold down ctrl button to select more than one');
 
   return $fields;
