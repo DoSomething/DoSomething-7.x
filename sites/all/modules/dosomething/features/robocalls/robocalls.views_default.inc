@@ -123,6 +123,26 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['name_2']['id'] = 'name_2';
   $handler->display->display_options['fields']['name_2']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name_2']['field'] = 'name';
+  /* Field: Taxonomy term: Photo thumbnail */
+  $handler->display->display_options['fields']['field_photo_thumbnail']['id'] = 'field_photo_thumbnail';
+  $handler->display->display_options['fields']['field_photo_thumbnail']['table'] = 'field_data_field_photo_thumbnail';
+  $handler->display->display_options['fields']['field_photo_thumbnail']['field'] = 'field_photo_thumbnail';
+  /* Field: Taxonomy term: Photo thumbnail */
+  $handler->display->display_options['fields']['field_photo_thumbnail_1']['id'] = 'field_photo_thumbnail_1';
+  $handler->display->display_options['fields']['field_photo_thumbnail_1']['table'] = 'field_data_field_photo_thumbnail';
+  $handler->display->display_options['fields']['field_photo_thumbnail_1']['field'] = 'field_photo_thumbnail';
+  /* Field: Taxonomy term: Photo thumbnail */
+  $handler->display->display_options['fields']['field_photo_thumbnail_2']['id'] = 'field_photo_thumbnail_2';
+  $handler->display->display_options['fields']['field_photo_thumbnail_2']['table'] = 'field_data_field_photo_thumbnail';
+  $handler->display->display_options['fields']['field_photo_thumbnail_2']['field'] = 'field_photo_thumbnail';
+  $handler->display->display_options['fields']['field_photo_thumbnail_2']['label'] = '';
+  $handler->display->display_options['fields']['field_photo_thumbnail_2']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_photo_thumbnail_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_photo_thumbnail_2']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_photo_thumbnail_2']['settings'] = array(
+    'image_style' => 'robocall_celeb_thumbnail_205x115',
+    'image_link' => 'content',
+  );
   /* Sort criterion: Taxonomy term: Weight */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
@@ -172,6 +192,18 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_celeb_photo']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_celeb_photo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_celeb_photo']['settings'] = array(
+    'image_style' => 'robocall_celeb_thumbnail_205x115',
+    'image_link' => 'content',
+  );
+  /* Field: Taxonomy term: Photo thumbnail */
+  $handler->display->display_options['fields']['field_photo_thumbnail']['id'] = 'field_photo_thumbnail';
+  $handler->display->display_options['fields']['field_photo_thumbnail']['table'] = 'field_data_field_photo_thumbnail';
+  $handler->display->display_options['fields']['field_photo_thumbnail']['field'] = 'field_photo_thumbnail';
+  $handler->display->display_options['fields']['field_photo_thumbnail']['label'] = '';
+  $handler->display->display_options['fields']['field_photo_thumbnail']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_photo_thumbnail']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_photo_thumbnail']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_photo_thumbnail']['settings'] = array(
     'image_style' => 'robocall_celeb_thumbnail_205x115',
     'image_link' => 'content',
   );
@@ -252,7 +284,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_celeb_photo]
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_photo_thumbnail]
 <h4>[name]</h4>
 [description]
 [field_celeb_call]
