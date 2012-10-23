@@ -10,7 +10,7 @@
 function dosomething_action_guide_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-action_guide-body'
+  // Exported field: 'node-action_guide-body'.
   $fields['node-action_guide-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -83,12 +84,85 @@ function dosomething_action_guide_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => 0,
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'node-action_guide-field_description'
+  // Exported field: 'node-action_guide-field_add_to_ds_blog'.
+  $fields['node-action_guide-field_add_to_ds_blog'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_add_to_ds_blog',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'action_guide',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 12,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_add_to_ds_blog',
+      'label' => 'Add to DS blog?',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-action_guide-field_description'.
   $fields['node-action_guide-field_description'] = array(
     'field_config' => array(
       'active' => '1',
@@ -96,6 +170,9 @@ function dosomething_action_guide_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_description',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -109,11 +186,13 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => '255',
+        'profile2_private' => FALSE,
         'text_processing' => '1',
       ),
       'translatable' => '0',
@@ -169,13 +248,13 @@ function dosomething_action_guide_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'text_textfield',
-        'weight' => '-4',
+        'weight' => '1',
       ),
       'widget_type' => 'text_textfield',
     ),
   );
 
-  // Exported field: 'node-action_guide-field_is_content_general'
+  // Exported field: 'node-action_guide-field_is_content_general'.
   $fields['node-action_guide-field_is_content_general'] = array(
     'field_config' => array(
       'active' => '1',
@@ -184,7 +263,7 @@ function dosomething_action_guide_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_is_content_general',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '1',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -192,6 +271,7 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -199,40 +279,33 @@ function dosomething_action_guide_field_default_fields() {
           'yes' => 'yes',
         ),
         'allowed_values_function' => '',
-        'allowed_values_php' => '',
         'profile2_private' => FALSE,
-        'text_processing' => '0',
       ),
       'translatable' => '0',
       'type' => 'list_text',
-      'type_name' => 'action_guide',
     ),
     'field_instance' => array(
       'bundle' => 'action_guide',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 'no',
+        ),
+      ),
       'deleted' => '0',
-      'description' => 'Select \'yes\' if the content is general and not specific to any particular cause or issue',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '0',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
+          'weight' => 11,
         ),
         'teaser' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
       'entity_type' => 'node',
@@ -240,22 +313,19 @@ function dosomething_action_guide_field_default_fields() {
       'label' => 'Is content general?',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
-      'weight' => '0',
       'widget' => array(
         'active' => 1,
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '4',
       ),
-      'widget_type' => 'optionwidgets_select',
     ),
   );
 
-  // Exported field: 'node-action_guide-field_picture'
+  // Exported field: 'node-action_guide-field_picture'.
   $fields['node-action_guide-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -279,6 +349,7 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -355,6 +426,7 @@ function dosomething_action_guide_field_default_fields() {
       'required' => FALSE,
       'settings' => array(
         'alt_field' => 1,
+        'default_image' => 0,
         'file_directory' => 'pictures/actionguide',
         'file_extensions' => '',
         'max_filesize' => 0,
@@ -385,13 +457,13 @@ function dosomething_action_guide_field_default_fields() {
           'use_default_image' => 0,
         ),
         'type' => 'image_image',
-        'weight' => '-4',
+        'weight' => '3',
       ),
       'widget_type' => 'imagefield_widget',
     ),
   );
 
-  // Exported field: 'node-action_guide-taxonomy_vocabulary_2'
+  // Exported field: 'node-action_guide-taxonomy_vocabulary_2'.
   $fields['node-action_guide-taxonomy_vocabulary_2'] = array(
     'field_config' => array(
       'active' => '1',
@@ -404,6 +476,7 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -449,12 +522,12 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '8',
       ),
     ),
   );
 
-  // Exported field: 'node-action_guide-taxonomy_vocabulary_3'
+  // Exported field: 'node-action_guide-taxonomy_vocabulary_3'.
   $fields['node-action_guide-taxonomy_vocabulary_3'] = array(
     'field_config' => array(
       'active' => '1',
@@ -467,6 +540,7 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -512,12 +586,12 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '6',
       ),
     ),
   );
 
-  // Exported field: 'node-action_guide-taxonomy_vocabulary_4'
+  // Exported field: 'node-action_guide-taxonomy_vocabulary_4'.
   $fields['node-action_guide-taxonomy_vocabulary_4'] = array(
     'field_config' => array(
       'active' => '1',
@@ -530,6 +604,7 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -575,12 +650,12 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '7',
       ),
     ),
   );
 
-  // Exported field: 'node-action_guide-taxonomy_vocabulary_5'
+  // Exported field: 'node-action_guide-taxonomy_vocabulary_5'.
   $fields['node-action_guide-taxonomy_vocabulary_5'] = array(
     'field_config' => array(
       'active' => '1',
@@ -604,6 +679,7 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -650,12 +726,12 @@ function dosomething_action_guide_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => 0,
+        'weight' => '5',
       ),
     ),
   );
 
-  // Exported field: 'node-action_guide-upload'
+  // Exported field: 'node-action_guide-upload'.
   $fields['node-action_guide-upload'] = array(
     'field_config' => array(
       'active' => '1',
@@ -671,6 +747,7 @@ function dosomething_action_guide_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'default_file' => 0,
@@ -742,7 +819,7 @@ function dosomething_action_guide_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '1',
+        'weight' => '10',
       ),
     ),
   );
@@ -750,13 +827,13 @@ function dosomething_action_guide_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('580px by 580px max');
+  t('Add to DS blog?');
   t('An action guide.');
   t('Body');
   t('File attachments');
   t('Is content general?');
   t('Issues');
   t('Picture');
-  t('Select \'yes\' if the content is general and not specific to any particular cause or issue');
   t('Short Description');
   t('Suggested maximum length 150 characters.');
   t('Time');
