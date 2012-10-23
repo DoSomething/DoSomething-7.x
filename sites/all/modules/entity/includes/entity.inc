@@ -38,7 +38,7 @@ class Entity {
    */
   public function __construct(array $values = array(), $entityType = NULL) {
     if (empty($entityType)) {
-      throw new Exception('Cannot created an instance of Entity without a specified entity type.');
+      throw new Exception('Cannot create an instance of Entity without a specified entity type.');
     }
     $this->entityType = $entityType;
     $this->setUp();
@@ -126,12 +126,15 @@ class Entity {
   }
 
   /**
-   * Override this in order to implement a custom default label and specify
-   * 'entity_class_label' as 'label callback' hook_entity_info(). As an
-   * alternative to that the label key may be provided in hook_entity_info().
+   * Defines the entity label if the 'entity_class_label' callback is used.
+   *
+   * Specify 'entity_class_label' as 'label callback' in hook_entity_info() to
+   * let the entity label point to this method. Override this in order to
+   * implement a custom default label.
    */
   protected function defaultLabel() {
-    return 'unlabelled';
+    // Add in the translated specified label property.
+    return $this->getTranslation($this->entityInfo['entity keys']['label']);
   }
 
   /**

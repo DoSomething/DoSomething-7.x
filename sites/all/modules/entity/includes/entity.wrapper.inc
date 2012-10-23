@@ -593,15 +593,13 @@ class EntityDrupalWrapper extends EntityStructureWrapper {
   }
 
   protected function setUp() {
-    if (function_exists('entity_get_property_info')) {
-      $this->propertyInfo = entity_get_property_info($this->type) + array('properties' => array());
-      $info = $this->info + array('property info' => array(), 'bundle' => NULL);
-      $this->propertyInfo['properties'] += $info['property info'];
-      $this->bundle = $info['bundle'];
-      $this->entityInfo = entity_get_info($this->type);
-      if (isset($this->bundle)) {
-        $this->spotBundleInfo(FALSE);
-      }
+    $this->propertyInfo = entity_get_property_info($this->type) + array('properties' => array());
+    $info = $this->info + array('property info' => array(), 'bundle' => NULL);
+    $this->propertyInfo['properties'] += $info['property info'];
+    $this->bundle = $info['bundle'];
+    $this->entityInfo = entity_get_info($this->type);
+    if (isset($this->bundle)) {
+      $this->spotBundleInfo(FALSE);
     }
   }
 
@@ -790,7 +788,7 @@ class EntityDrupalWrapper extends EntityStructureWrapper {
       try {
         $this->value(array('identifier' => TRUE));
       }
-      catch (EntityMetadataWrapper $e) {
+      catch (EntityMetadataWrapperException $e) {
         // If loading data fails, we cannot determine the concrete entity type.
       }
     }
@@ -1041,7 +1039,7 @@ class EntityListWrapper extends EntityMetadataWrapper implements IteratorAggrega
   }
 
   public function offsetExists($delta) {
-    return $this->dataAvailable() && ($data = $this->value()) && isset($data[$delta]);
+    return $this->dataAvailable() && ($data = $this->value()) && array_key_exists($delta, $data);
   }
 
   public function offsetSet($delta, $value) {
@@ -1133,11 +1131,11 @@ class EntityMetadataWrapperIterator implements RecursiveIterator {
     return isset($this->keys[$this->position]);
   }
 
-  public function hasChildren () {
+  public function hasChildren() {
     return $this->current() instanceof IteratorAggregate;
   }
 
-  public function getChildren () {
+  public function getChildren() {
     return $this->current()->getIterator();
   }
 }
@@ -1166,7 +1164,7 @@ class EntityMetadataArrayObject implements ArrayAccess, Countable, IteratorAggre
   }
 
   public function offsetExists($delta) {
-    return isset($this->data[$delta]);
+    return array_key_exists($delta, $this->data);
   }
 
   public function offsetSet($delta, $value) {
