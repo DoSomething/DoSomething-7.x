@@ -1,4 +1,4 @@
-name = Pics For Pets Shelter Migration
+name = DoSomething - Pics For Pets Shelter Migration
 description = imports the list of pics for pets shelters
 core = 7.x
 package = "Pics For Pets"

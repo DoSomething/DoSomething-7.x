@@ -1,4 +1,4 @@
-name = "Dosomething - User My Somethings"
+name = Dosomething - User My Somethings
 description = "User My Something panel and related content"
 core = "7.x"
 package = "DoSomething"

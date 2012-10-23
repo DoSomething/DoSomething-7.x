@@ -1,5 +1,5 @@
-name = "DoSomething Services"
-description = "Services for DoSomething"
+name = DoSomething - Services
+description = Services for DoSomething
 core = "7.x"
 package = "DoSomething"
 php = "5.2.4"

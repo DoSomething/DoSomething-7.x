@@ -1,4 +1,4 @@
-name = "Dosomething Campaign Styles"
+name = DoSomething - Campaign Styles
 description = "This module provides a ctools plugin system for modifying campaigns by adding CSS and JS."
 core = "7.x"
 package = "Dosomething"

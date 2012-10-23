@@ -1,4 +1,4 @@
-name = Dosomething Start Something
+name = DoSomething - Start Something
 description = Start Something panel page and views.
 core = 7.x
 package = DoSomething

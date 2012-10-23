@@ -1,4 +1,4 @@
-name = DoSomething Scholarships with Recommendations
+name = DoSomething - Scholarships with Recommendations
 core = 7.x
 package = DoSomething
 php = 5.2.4

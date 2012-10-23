@@ -1,4 +1,4 @@
-name = Dosomething About
+name = DoSomething - About
 description = Creates the main About Us page.
 core = 7.x
 package = DoSomething

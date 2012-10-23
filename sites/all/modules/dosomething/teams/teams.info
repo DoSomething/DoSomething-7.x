@@ -1,4 +1,4 @@
-name = Teams
+name = DoSomething - Teams
 description = DoSomething Team implementation, including menu items for working with group members.
 core = 7.x
 package = DoSomething

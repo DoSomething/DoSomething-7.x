@@ -1,4 +1,4 @@
-name = DoSomething Custom Blocks
+name = DoSomething - Custom Blocks
 description = Creates custom blocks for DoSomething.
 package = DoSomething
 core = 7.x

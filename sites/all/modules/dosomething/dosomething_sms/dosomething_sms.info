@@ -1,4 +1,4 @@
-name = Dosomething SMS
+name = DoSomething - SMS
 description = Provides SMS integration for DoSomething.org
 core = 7.x
 dependencies[] = conductor_sms

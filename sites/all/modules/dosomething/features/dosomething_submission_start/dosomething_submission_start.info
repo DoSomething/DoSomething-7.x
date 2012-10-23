@@ -1,4 +1,4 @@
-name = "Webform Submission Start Time"
+name = DoSomething - Webform Submission Start Time
 description = "Records the time that a submission was first started, and if / when it was drafted."
 core = 7.x
 package = DoSomething

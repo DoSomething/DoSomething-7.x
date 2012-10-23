@@ -1,4 +1,4 @@
-name = Social Stats
+name = DoSomething - Social Stats
 core = 7.x
 package = DoSomething
 php = 5.2.4

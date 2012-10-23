@@ -1,4 +1,4 @@
-name = Dosomething - Causes
+name = DoSomething - Causes
 description = Creates the Cause taxonomy term page.
 core = 7.x
 package = DoSomething

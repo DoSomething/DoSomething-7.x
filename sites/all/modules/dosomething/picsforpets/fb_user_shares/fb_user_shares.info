@@ -1,5 +1,5 @@
 core = 7.x
-name = Facebook user shares
+name = DoSomething - Facebook user shares
 description = Stores and makes accessible metadata about Facebook user shares.
 package = Drupal for Facebook
 

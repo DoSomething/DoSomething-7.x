@@ -1,4 +1,4 @@
-name = Petitions
+name = DoSomething - Petitions
 core = 7.x
 package = DoSomething
 php = 5.2.4

@@ -1,4 +1,4 @@
-name = DoSomething Robocalls
+name = DoSomething - Robocalls
 description = "RoboCalls - Get a "call" from a celebrity!"
 core = 7.x
 package = DoSomething

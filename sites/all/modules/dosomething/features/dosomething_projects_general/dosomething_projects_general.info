@@ -1,4 +1,4 @@
-name = DoSomething Projects General
+name = DoSomething - Projects General
 description = Creates general views displays relating to Projects.
 core = 7.x
 package = DoSomething

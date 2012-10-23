@@ -1,4 +1,4 @@
-name = DoSomething Projects
+name = DoSomething - Projects
 description = Dosomething API for searching projects
 core = 7.x
 package = DoSomething

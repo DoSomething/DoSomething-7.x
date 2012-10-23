@@ -1,4 +1,4 @@
-name = Dosomething Pics for Pets General
+name = DoSomething - Pics for Pets General
 description = Provides basic setup and integration of the pics for pets app.
 core = 7.x
 package = Pics For Pets

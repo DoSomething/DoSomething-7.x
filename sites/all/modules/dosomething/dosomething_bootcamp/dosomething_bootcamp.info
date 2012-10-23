@@ -1,4 +1,4 @@
-name = "DoSomething Boot Camp Module"
+name = DoSomething - Boot Camp Module
 description = "Actions for the DoSomething Boot Camp"
 core = 7.x
 package = DoSomething

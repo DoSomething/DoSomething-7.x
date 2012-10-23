@@ -1,4 +1,4 @@
-name = "User Taxonomy API"
+name = DoSomething - User Taxonomy API
 description = "Add taxonomy to user accounts."
 core = "7.x"
 package = "DoSomething"

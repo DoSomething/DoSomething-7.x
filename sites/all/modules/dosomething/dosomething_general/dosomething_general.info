@@ -1,4 +1,4 @@
-name = DoSomething General
+name = DoSomething - General
 description = Adds general custom tweaks to the DoSomething site.
 package = DoSomething
 core = 7.x

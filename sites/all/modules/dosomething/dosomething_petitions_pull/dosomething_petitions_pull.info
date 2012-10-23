@@ -1,4 +1,4 @@
-name = 'DoSomething Petitions Export'
-description = 'Export of all of the petitions data.'
+name = DoSomething - Petitions Export
+description = Export of all of the petitions data.
 core = 7.x
 package = DoSomething
