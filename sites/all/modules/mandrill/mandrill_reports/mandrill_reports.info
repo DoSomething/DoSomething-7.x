@@ -5,9 +5,9 @@ package = MailChimp
 
 dependencies[] = mandrill
 
-; Information added by drupal.org packaging script on 2012-09-07
-version = "7.x-1.1"
+; Information added by drupal.org packaging script on 2012-10-09
+version = "7.x-1.2"
 core = "7.x"
 project = "mandrill"
-datestamp = "1347059321"
+datestamp = "1349810817"
 

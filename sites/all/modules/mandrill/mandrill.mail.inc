@@ -112,6 +112,16 @@ class MandrillMailSystem implements MailSystemInterface {
       }
     }
 
+    // determine if content should be available for this message
+    $blacklisted_keys = explode(',', mandrill_mail_key_blacklist());
+    $view_content = TRUE;
+    foreach ($blacklisted_keys as $key) {
+      if  ($message['id'] == drupal_strtolower(trim($key))) {
+        $view_content = FALSE;
+        break;
+      }
+    }
+
     $mandrill_message = array(
       'html' => $html,
       'text' => drupal_html_to_text($message['body']),
@@ -133,7 +143,8 @@ class MandrillMailSystem implements MailSystemInterface {
       'tags' => array($message['id']),
       'google_analytics_domains' => (variable_get('mandrill_analytics_domains', NULL)) ? explode(',', variable_get('mandrill_analytics_domains')) : array(),
       'google_analytics_campaign' => variable_get('mandrill_analytics_campaign', ''),
-      'attachments' => $attachments
+      'attachments' => $attachments,
+      'view_content_link' => $view_content
     );
 
     drupal_alter('mandrill_mail', $mandrill_message, $message);
@@ -153,7 +164,6 @@ class MandrillMailSystem implements MailSystemInterface {
       else {
         $result = $mailer->messages_send($mandrill_message);
       }
-
       // @todo: look for rejected messages and log
       return TRUE;
     }
