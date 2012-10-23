@@ -345,8 +345,8 @@ shelter pet pic</div></a>',
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '<h1>For the Fur-tographers</h1>',
-      'body' => '<div class="scholarship"><h2><a href="/fb/pics-for-pets/lets-get-started">$10,000 Scholarship</a></h2>
-<div class="submission">$10,000 will be awarded to one awesome photographer that takes and submits a picture to the gallery.<br>Get all the tools you need to submit your own picture by visiting <a href="/fb/pics-for-pets/lets-get-started">Be a Fur-Tographer</a>.<br><a href="http://files.dosomething.org/files/PicsforPetsContestRules.pdf" target="_blank">Contest Rules</a</div></div>',
+      'body' => '<div class="scholarship"><h2><a href="/fb/pics-for-pets/lets-get-started" class="pop-link">$10,000 Scholarship</a></h2>
+<div class="submission">$10,000 will be awarded to one awesome photographer that takes and submits a picture to the gallery.<br>Get all the tools you need to submit your own picture by visiting <a href="/fb/pics-for-pets/lets-get-started" class="pop-link">Be a Fur-Tographer</a>.<br><a href="http://files.dosomething.org/files/PicsforPetsContestRules.pdf" target="_blank">Contest Rules</a</div></div>',
       'format' => '3',
       'substitute' => TRUE,
     );

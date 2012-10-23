@@ -10,7 +10,7 @@
 function dosomething_picsforpets_general_user_default_roles() {
   $roles = array();
 
-  // Exported role: furtographer
+  // Exported role: furtographer.
   $roles['furtographer'] = array(
     'name' => 'furtographer',
     'weight' => '3',
