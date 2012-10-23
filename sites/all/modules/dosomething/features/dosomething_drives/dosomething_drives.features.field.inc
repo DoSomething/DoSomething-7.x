@@ -10,7 +10,7 @@
 function dosomething_drives_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-drive_form-group_audience'
+  // Exported field: 'node-drive_form-group_audience'.
   $fields['node-drive_form-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_drives_field_default_fields() {
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -97,7 +98,7 @@ function dosomething_drives_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-drive_form-field_drive_date'
+  // Exported field: 'webform_submission_entity-drive_form-field_drive_date'.
   $fields['webform_submission_entity-drive_form-field_drive_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -110,6 +111,7 @@ function dosomething_drives_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -178,7 +180,7 @@ function dosomething_drives_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-drive_form-field_drive_goal'
+  // Exported field: 'webform_submission_entity-drive_form-field_drive_goal'.
   $fields['webform_submission_entity-drive_form-field_drive_goal'] = array(
     'field_config' => array(
       'active' => '1',
@@ -191,6 +193,7 @@ function dosomething_drives_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -238,7 +241,7 @@ function dosomething_drives_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-drive_form-field_drive_location'
+  // Exported field: 'webform_submission_entity-drive_form-field_drive_location'.
   $fields['webform_submission_entity-drive_form-field_drive_location'] = array(
     'field_config' => array(
       'active' => '1',
@@ -251,6 +254,7 @@ function dosomething_drives_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'addressfield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -316,7 +320,7 @@ function dosomething_drives_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-drive_form-field_geocode_data'
+  // Exported field: 'webform_submission_entity-drive_form-field_geocode_data'.
   $fields['webform_submission_entity-drive_form-field_geocode_data'] = array(
     'field_config' => array(
       'active' => '1',
@@ -329,6 +333,7 @@ function dosomething_drives_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'geofield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -368,7 +373,7 @@ function dosomething_drives_field_default_fields() {
         'module' => 'geocoder',
         'settings' => array(
           'delta_handling' => 'default',
-          'geocoder_field' => 'field_webform_zip',
+          'geocoder_field' => 'field_drive_location',
           'geocoder_handler' => 'google',
           'handler_settings' => array(
             'google' => array(
@@ -384,12 +389,12 @@ function dosomething_drives_field_default_fields() {
           ),
         ),
         'type' => 'geocoder',
-        'weight' => '38',
+        'weight' => '45',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-drive_form-field_team_name'
+  // Exported field: 'webform_submission_entity-drive_form-field_team_name'.
   $fields['webform_submission_entity-drive_form-field_team_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -413,6 +418,7 @@ function dosomething_drives_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '25',
@@ -454,73 +460,7 @@ function dosomething_drives_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-drive_form-field_webform_zip'
-  $fields['webform_submission_entity-drive_form-field_webform_zip'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_zip',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'drive_form',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 2,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_zip',
-      'label' => 'Zip Code',
-      'required' => 1,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '34',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-drive_form-group_audience'
+  // Exported field: 'webform_submission_entity-drive_form-group_audience'.
   $fields['webform_submission_entity-drive_form-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -544,6 +484,7 @@ function dosomething_drives_field_default_fields() {
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -609,7 +550,6 @@ function dosomething_drives_field_default_fields() {
   t('Geocode Data');
   t('Groups audience');
   t('Team Name');
-  t('Zip Code');
 
   return $fields;
 }
