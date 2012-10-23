@@ -10,7 +10,7 @@
 function dosomething_petitions_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-petition-field_petition_about'
+  // Exported field: 'node-petition-field_petition_about'.
   $fields['node-petition-field_petition_about'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -83,7 +84,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-petition-field_petition_contact_email'
+  // Exported field: 'node-petition-field_petition_contact_email'.
   $fields['node-petition-field_petition_contact_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -107,6 +108,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -152,7 +154,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-petition-field_petition_contact_name'
+  // Exported field: 'node-petition-field_petition_contact_name'.
   $fields['node-petition-field_petition_contact_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -176,6 +178,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '50',
@@ -223,7 +226,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-petition-field_petition_goal'
+  // Exported field: 'node-petition-field_petition_goal'.
   $fields['node-petition-field_petition_goal'] = array(
     'field_config' => array(
       'active' => '1',
@@ -236,6 +239,7 @@ function dosomething_petitions_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -283,7 +287,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-petition-field_petition_letter'
+  // Exported field: 'node-petition-field_petition_letter'.
   $fields['node-petition-field_petition_letter'] = array(
     'field_config' => array(
       'active' => '1',
@@ -307,6 +311,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -354,7 +359,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-petition-field_petition_picture'
+  // Exported field: 'node-petition-field_petition_picture'.
   $fields['node-petition-field_petition_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -362,6 +367,9 @@ function dosomething_petitions_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_petition_picture',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -375,9 +383,11 @@ function dosomething_petitions_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -407,6 +417,7 @@ function dosomething_petitions_field_default_fields() {
       'required' => FALSE,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -436,7 +447,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-petition-field_petition_target'
+  // Exported field: 'node-petition-field_petition_target'.
   $fields['node-petition-field_petition_target'] = array(
     'field_config' => array(
       'active' => '1',
@@ -460,6 +471,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '50',
@@ -507,7 +519,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-petition-field_petition_updates'
+  // Exported field: 'node-petition-field_petition_updates'.
   $fields['node-petition-field_petition_updates'] = array(
     'field_config' => array(
       'active' => '1',
@@ -531,6 +543,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -578,7 +591,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-petition-field_webform_email_or_cell'
+  // Exported field: 'webform_submission_entity-petition-field_webform_email_or_cell'.
   $fields['webform_submission_entity-petition-field_webform_email_or_cell'] = array(
     'field_config' => array(
       'active' => '1',
@@ -599,6 +612,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => 255,
@@ -639,7 +653,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-petition-field_webform_first_name'
+  // Exported field: 'webform_submission_entity-petition-field_webform_first_name'.
   $fields['webform_submission_entity-petition-field_webform_first_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -647,6 +661,9 @@ function dosomething_petitions_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_first_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -660,9 +677,11 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
-        'max_length' => 255,
+        'max_length' => '255',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -700,7 +719,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-petition-field_webform_last_name'
+  // Exported field: 'webform_submission_entity-petition-field_webform_last_name'.
   $fields['webform_submission_entity-petition-field_webform_last_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -708,6 +727,9 @@ function dosomething_petitions_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_last_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -721,9 +743,11 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
-        'max_length' => 255,
+        'max_length' => '255',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -761,7 +785,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-petition-field_webform_petition_reason'
+  // Exported field: 'webform_submission_entity-petition-field_webform_petition_reason'.
   $fields['webform_submission_entity-petition-field_webform_petition_reason'] = array(
     'field_config' => array(
       'active' => '1',
@@ -782,6 +806,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -820,7 +845,7 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-petition-field_webform_petition_signature'
+  // Exported field: 'webform_submission_entity-petition-field_webform_petition_signature'.
   $fields['webform_submission_entity-petition-field_webform_petition_signature'] = array(
     'field_config' => array(
       'active' => '1',
@@ -837,6 +862,7 @@ function dosomething_petitions_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
