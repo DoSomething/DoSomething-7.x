@@ -12,6 +12,7 @@ function dosomething_rules_default_rules_configuration() {
   $items['rules_club_og_member_approved'] = entity_import('rules_config', '{ "rules_club_og_member_approved" : {
       "LABEL" : "Club - OG member approved",
       "PLUGIN" : "reaction rule",
+      "ACTIVE" : false,
       "REQUIRES" : [ "rules", "og" ],
       "ON" : [ "og_user_approved" ],
       "IF" : [
@@ -37,6 +38,7 @@ function dosomething_rules_default_rules_configuration() {
   $items['rules_club_og_member_denied'] = entity_import('rules_config', '{ "rules_club_og_member_denied" : {
       "LABEL" : "Club - OG member denied",
       "PLUGIN" : "reaction rule",
+      "ACTIVE" : false,
       "REQUIRES" : [ "rules", "og" ],
       "ON" : [ "og_user_delete" ],
       "DO" : [
@@ -54,6 +56,7 @@ function dosomething_rules_default_rules_configuration() {
   $items['rules_club_og_member_subscribe_pending'] = entity_import('rules_config', '{ "rules_club_og_member_subscribe_pending" : {
       "LABEL" : "Club - OG member subscribe (Pending)",
       "PLUGIN" : "reaction rule",
+      "ACTIVE" : false,
       "REQUIRES" : [ "rules", "og" ],
       "ON" : [ "og_user_insert" ],
       "IF" : [
