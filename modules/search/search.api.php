@@ -198,7 +198,7 @@ function hook_search_execute($keys = NULL, $conditions = NULL) {
   $query = db_select('search_index', 'i', array('target' => 'slave'))->extend('SearchQuery')->extend('PagerDefault');
   $query->join('node', 'n', 'n.nid = i.sid');
   $query
-    ->condition('n.status', 1, '=')
+    ->condition('n.status', 1)
     ->addTag('node_access')
     ->searchExpression($keys, 'node');
 

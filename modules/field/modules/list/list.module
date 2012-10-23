@@ -434,7 +434,7 @@ function list_field_widget_info_alter(&$info) {
 /**
  * Implements hook_options_list().
  */
-function list_options_list($field, $instance = NULL, $entity_type = NULL, $entity = NULL) {
+function list_options_list($field, $instance, $entity_type, $entity) {
   return list_allowed_values($field, $instance, $entity_type, $entity);
 }
 
