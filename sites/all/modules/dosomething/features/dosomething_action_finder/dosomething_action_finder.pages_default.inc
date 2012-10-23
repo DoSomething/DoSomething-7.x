@@ -53,6 +53,12 @@ function dosomething_action_finder_default_page_manager_pages() {
         'name' => 'view:action_finder-ctools_context_1',
         'id' => 2,
       ),
+      2 => array(
+        'identifier' => 'Action Finder Campaigns',
+        'keyword' => 'view_2',
+        'name' => 'view:action_finder-ctools_context_2',
+        'id' => 1,
+      ),
     ),
     'relationships' => array(),
   );
@@ -105,6 +111,35 @@ function dosomething_action_finder_default_page_manager_pages() {
       'rows' => array(
         1 => '1',
         2 => '2',
+      ),
+      'use_fields' => 0,
+      'fields' => array(),
+      'context' => 'context_view:action_finder-ctools_context_2_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'action-finder-list',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-2'] = $pane;
+    $display->panels['top'][1] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'top';
+    $pane->type = 'views_row';
+    $pane->subtype = 'views_row';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'rows' => array(
+        1 => '1',
+        2 => '2',
         3 => '3',
         4 => '4',
         5 => '5',
@@ -129,12 +164,12 @@ function dosomething_action_finder_default_page_manager_pages() {
       'css_class' => 'action-finder-list',
     );
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-2'] = $pane;
-    $display->panels['top'][1] = 'new-2';
+    $display->content['new-3'] = $pane;
+    $display->panels['top'][2] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'views_pager';
     $pane->subtype = 'views_pager';
@@ -151,10 +186,10 @@ function dosomething_action_finder_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['top'][2] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['top'][3] = 'new-4';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
