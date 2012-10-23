@@ -71,7 +71,8 @@ function dosomething_bully_game_form($subtype, $conf, $panel_args, $context) {
       $content[] = array(
         '#markup' => '<div id="bullytext-game">
   <div class="refer5">
-    <img class="scholar-copy" src="/sites/all/modules/dosomething/dosomething_general/plugins/content_types/bullytext-copy.png" alt="share this fact">
+    <h2>Send the bully texting game to your friends</h2>
+    <p>Sign up and challenge 5 friends to understand their role in bullying. You’ll have the chance to win a</p>
     <h1 class="condensed">$2,000 SCHOLARSHIP</h1>
 
     <form action="//dosomething.mcommons.com/profiles/join" method="POST">
