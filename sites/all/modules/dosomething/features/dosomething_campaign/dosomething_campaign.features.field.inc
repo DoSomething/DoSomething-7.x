@@ -83,7 +83,7 @@ function dosomething_campaign_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -153,7 +153,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '8',
         ),
         'type' => 'text_textfield',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -298,7 +298,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
@@ -568,7 +568,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '8',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -642,7 +642,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -1000,7 +1000,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
@@ -1093,7 +1093,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -1312,7 +1312,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -1677,160 +1677,6 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_label_post_sign'.
-  $fields['node-campaign-field_label_post_sign'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_label_post_sign',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign',
-      'default_value' => array(
-        0 => array(
-          'value' => 'Report back for this campaign!',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 24,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_label_post_sign',
-      'label' => 'Post-Sign Title',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '40',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-campaign-field_label_pre_sign'.
-  $fields['node-campaign-field_label_pre_sign'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_label_pre_sign',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign',
-      'default_value' => array(
-        0 => array(
-          'value' => 'Sign up for this campaign!',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 25,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_label_pre_sign',
-      'label' => 'Pre-Sign Title',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '39',
-      ),
-    ),
-  );
-
   // Exported field: 'node-campaign-field_mailchimp_group_id'.
   $fields['node-campaign-field_mailchimp_group_id'] = array(
     'field_config' => array(
@@ -2126,7 +1972,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '9',
+        'weight' => '10',
       ),
       'widget_type' => 'options_select',
     ),
@@ -2323,8 +2169,6 @@ function dosomething_campaign_field_default_fields() {
   t('PSA image');
   t('Please enter the 6 digit hex value without the #.');
   t('Please select a start and end date for the campaign.');
-  t('Post-Sign Title');
-  t('Pre-Sign Title');
   t('Promo image');
   t('Relate this Campaign to a Cause or Issue.');
   t('Report Back HTML');
