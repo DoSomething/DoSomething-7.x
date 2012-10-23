@@ -1,0 +1,113 @@
+diff --git a/modules/user/user.module b/modules/user/user.module
+index 47ac642..7c31c6e 100644
+--- a/modules/user/user.module
++++ b/modules/user/user.module
+@@ -2390,6 +2390,14 @@ function user_cancel($edit, $uid, $method) {
+       array('_user_cancel', array($edit, $account, $method)),
+     ),
+   );
++
++  // After cancelling account, ensure that user is logged out.
++  if ($account->uid == $user->uid) {
++    // Batch API stores data in the session, so use the finished operation to
++    // manipulate the current user's session id.
++    $batch['finished'] = '_user_cancel_session_regenerate';
++  }
++
+   batch_set($batch);
+ 
+   // Batch processing is either handled via Form API or has to be invoked
+@@ -2432,10 +2440,12 @@ function _user_cancel($edit, $account, $method) {
+       break;
+   }
+ 
+-  // After cancelling account, ensure that user is logged out.
++  // After cancelling account, ensure that user is logged out. We can't destroy
++  // their session though, as we might have information in it, and we can't
++  // regenerate it because batch API uses the session ID, we will regenerate it
++  // in _user_cancel_session_regenerate().
+   if ($account->uid == $user->uid) {
+-    // Destroy the current session, and reset $user to the anonymous user.
+-    session_destroy();
++    $user = drupal_anonymous_user();
+   }
+ 
+   // Clear the cache for anonymous users.
+@@ -2443,6 +2453,17 @@ function _user_cancel($edit, $account, $method) {
+ }
+ 
+ /**
++ * Finished batch processing callback for cancelling a user account.
++ *
++ * @see user_cancel()
++ */
++function _user_cancel_session_regenerate() {
++  // Regenerate the users session instead of calling session_destroy() as we
++  // want to preserve any messages that might have been set.
++  drupal_session_regenerate();
++}
++
++/**
+  * Delete a user.
+  *
+  * @param $uid
+diff --git a/modules/user/user.test b/modules/user/user.test
+index b53db07..e7de3aa 100644
+--- a/modules/user/user.test
++++ b/modules/user/user.test
+@@ -661,8 +661,11 @@ class UserCancelTestCase extends DrupalWebTestCase {
+     $account = user_load($account->uid, TRUE);
+     $this->assertTrue($account->status == 0, t('User has been blocked.'));
+ 
+-    // Confirm user is logged out.
+-    $this->assertNoText($account->name, t('Logged out.'));
++    // Confirm that we didn't break Batch API by destroying the session.
++    $this->assertNoText(t('No active batch.'), "Batch API wasn't interrupted by the account cancellation.");
++
++    // Confirm that the confirmation message made it through to the end user.
++    $this->assertRaw(t('%name has been disabled.', array('%name' => $account->name)), "Confirmation message displayed to user.");
+   }
+ 
+   /**
+@@ -705,8 +708,11 @@ class UserCancelTestCase extends DrupalWebTestCase {
+     $test_node = node_load($node->nid, $node->vid, TRUE);
+     $this->assertTrue($test_node->status == 0, t('Node revision of the user has been unpublished.'));
+ 
+-    // Confirm user is logged out.
+-    $this->assertNoText($account->name, t('Logged out.'));
++    // Confirm that we didn't break Batch API by destroying the session.
++    $this->assertNoText(t('No active batch.'), "Batch API wasn't interrupted by the account cancellation.");
++
++    // Confirm that the confirmation message made it through to the end user.
++    $this->assertRaw(t('%name has been disabled.', array('%name' => $account->name)), "Confirmation message displayed to user.");
+   }
+ 
+   /**
+@@ -756,8 +762,11 @@ class UserCancelTestCase extends DrupalWebTestCase {
+     $test_node = node_load($revision_node->nid, NULL, TRUE);
+     $this->assertTrue(($test_node->uid != 0 && $test_node->status == 1), t("Current revision of the user's node was not attributed to anonymous user."));
+ 
+-    // Confirm that user is logged out.
+-    $this->assertNoText($account->name, t('Logged out.'));
++    // Confirm that we didn't break Batch API by destroying the session.
++    $this->assertNoText(t('No active batch.'), "Batch API wasn't interrupted by the account cancellation.");
++
++    // Confirm that the confirmation message made it through to the end user.
++    $this->assertRaw(t('%name has been deleted.', array('%name' => $account->name)), "Confirmation message displayed to user.");
+   }
+ 
+   /**
+@@ -818,8 +827,11 @@ class UserCancelTestCase extends DrupalWebTestCase {
+     $this->assertTrue(node_load($revision_node->nid, NULL, TRUE), t("Current revision of the user's node was not deleted."));
+     $this->assertFalse(comment_load($comment->cid), t('Comment of the user has been deleted.'));
+ 
+-    // Confirm that user is logged out.
+-    $this->assertNoText($account->name, t('Logged out.'));
++    // Confirm that we didn't break Batch API by destroying the session.
++    $this->assertNoText(t('No active batch.'), "Batch API wasn't interrupted by the account cancellation.");
++
++    // Confirm that the confirmation message made it through to the end user.
++    $this->assertRaw(t('%name has been deleted.', array('%name' => $account->name)), "Confirmation message displayed to user.");
+   }
+ 
+   /**
