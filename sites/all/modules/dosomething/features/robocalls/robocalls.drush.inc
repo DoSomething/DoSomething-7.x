@@ -40,7 +40,7 @@ function drush_robocalls_robocall($fnid) {
         $thetime = array_sum(array(strtotime($s->field_celeb_date[LANGUAGE_NONE][0]['value']), $offset));
 
         $cell = $s->field_celeb_friend_phone[LANGUAGE_NONE][0]['value'];
-  	    if ($now == $thetime || 1)
+  	    if ($now == $thetime)
   	    {
           $mid = $s->field_mobile_commons_id[LANGUAGE_NONE][0]['value'];
           robocalls_mcommons_call($cell, '', $mid);
