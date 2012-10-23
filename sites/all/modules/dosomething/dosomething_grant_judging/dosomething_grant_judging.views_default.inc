@@ -31,6 +31,7 @@ function dosomething_grant_judging_views_default_views() {
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
@@ -41,12 +42,14 @@ function dosomething_grant_judging_views_default_views() {
   $handler->display->display_options['relationships']['reverse_field_grant_judge_application_webform_submission_entity']['id'] = 'reverse_field_grant_judge_application_webform_submission_entity';
   $handler->display->display_options['relationships']['reverse_field_grant_judge_application_webform_submission_entity']['table'] = 'webform_submissions';
   $handler->display->display_options['relationships']['reverse_field_grant_judge_application_webform_submission_entity']['field'] = 'reverse_field_grant_judge_application_webform_submission_entity';
-  $handler->display->display_options['relationships']['reverse_field_grant_judge_application_webform_submission_entity']['required'] = 1;
+  $handler->display->display_options['relationships']['reverse_field_grant_judge_application_webform_submission_entity']['label'] = 'Grant Judgment';
+  $handler->display->display_options['relationships']['reverse_field_grant_judge_application_webform_submission_entity']['required'] = 0;
   /* Relationship: Webform submissions: User */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
   $handler->display->display_options['relationships']['uid']['relationship'] = 'reverse_field_grant_judge_application_webform_submission_entity';
+  $handler->display->display_options['relationships']['uid']['label'] = 'Grant Judgment User';
   $handler->display->display_options['relationships']['uid']['required'] = 0;
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_webform_project_submission_target_id']['id'] = 'field_webform_project_submission_target_id';
@@ -57,7 +60,7 @@ function dosomething_grant_judging_views_default_views() {
   $handler->display->display_options['relationships']['dosomething_grant_application']['id'] = 'dosomething_grant_application';
   $handler->display->display_options['relationships']['dosomething_grant_application']['table'] = 'webform_submissions';
   $handler->display->display_options['relationships']['dosomething_grant_application']['field'] = 'dosomething_grant_application';
-  $handler->display->display_options['relationships']['dosomething_grant_application']['required'] = 0;
+  $handler->display->display_options['relationships']['dosomething_grant_application']['required'] = 1;
   $handler->display->display_options['relationships']['dosomething_grant_application']['limit'] = 1;
   $handler->display->display_options['relationships']['dosomething_grant_application']['queues'] = array(
     'grants_judging' => 'grants_judging',
@@ -125,7 +128,7 @@ function dosomething_grant_judging_views_default_views() {
   $handler->display->display_options['fields']['field_webform_name']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['field_webform_name']['alter']['text'] = '[field_webform_name-value] ([field_project_title])';
   $handler->display->display_options['fields']['field_webform_name']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['field_webform_name']['alter']['path'] = 'grants/judge/[sid]';
+  $handler->display->display_options['fields']['field_webform_name']['alter']['path'] = 'grants/judge/[sid]?destination=grants/judge';
   $handler->display->display_options['fields']['field_webform_name']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_webform_name']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_webform_name']['alter']['replace_spaces'] = 0;
@@ -143,16 +146,12 @@ function dosomething_grant_judging_views_default_views() {
   $handler->display->display_options['fields']['field_webform_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_webform_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_webform_name']['field_api_classes'] = 0;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'OR',
-  );
-  /* Filter criterion: User: Current */
-  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
-  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['relationship'] = 'uid';
-  $handler->display->display_options['filters']['uid_current']['value'] = '0';
-  $handler->display->display_options['filters']['uid_current']['group'] = 1;
+  /* Filter criterion: Global: View */
+  $handler->display->display_options['filters']['view']['id'] = 'view';
+  $handler->display->display_options['filters']['view']['table'] = 'views';
+  $handler->display->display_options['filters']['view']['field'] = 'view';
+  $handler->display->display_options['filters']['view']['operator'] = 'NOT IN';
+  $handler->display->display_options['filters']['view']['view'] = 'grant_judging:attachment_1';
 
   /* Display: Grant Judging Landing Unjudged */
   $handler = $view->new_display('page', 'Grant Judging Landing Unjudged', 'page_1');
@@ -163,6 +162,8 @@ function dosomething_grant_judging_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['content'] = 'Welcome to Seed Grant Judging! Do Something.org Seed Grants powered by American Express aim to support young social entrepreneurs in community projects with lasting impact. Please review the judging criteria below before beginning.
+
+<strong>NOVEMBER JUDGING IS OPEN NOW THROUGH OCTOBER 23RD </strong>
 
 <h2>Judging Criteria</h2>
 Each application will be judged on a a scale of 1-10 (1 = absolutely do not agree, 5 = neutral, 10 = totally agree) for the following criteria:
@@ -179,6 +180,15 @@ Each application will be judged on a a scale of 1-10 (1 = absolutely do not agre
 <h2>To be judged:</h2>';
   $handler->display->display_options['header']['area']['format'] = '1';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
+  $handler->display->display_options['defaults']['footer'] = FALSE;
+  /* Footer: Global: Text area */
+  $handler->display->display_options['footer']['area']['id'] = 'area';
+  $handler->display->display_options['footer']['area']['table'] = 'views';
+  $handler->display->display_options['footer']['area']['field'] = 'area';
+  $handler->display->display_options['footer']['area']['empty'] = TRUE;
+  $handler->display->display_options['footer']['area']['content'] = '<a href="/grants/judge-confirm" class="go-button">Submit all</a>';
+  $handler->display->display_options['footer']['area']['format'] = '3';
+  $handler->display->display_options['footer']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -188,25 +198,7 @@ Each application will be judged on a a scale of 1-10 (1 = absolutely do not agre
   $handler->display->display_options['empty']['area']['content'] = 'Looks like you\'ve already started judging all of the available applications. See below if you haven\'t finished.';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
-  $handler->display->display_options['filter_groups']['operator'] = 'OR';
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'OR',
-  );
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: User: Current */
-  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
-  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['relationship'] = 'uid';
-  $handler->display->display_options['filters']['uid_current']['value'] = '0';
-  $handler->display->display_options['filters']['uid_current']['group'] = 1;
-  /* Filter criterion: Webform submissions: Sid */
-  $handler->display->display_options['filters']['sid']['id'] = 'sid';
-  $handler->display->display_options['filters']['sid']['table'] = 'webform_submissions';
-  $handler->display->display_options['filters']['sid']['field'] = 'sid';
-  $handler->display->display_options['filters']['sid']['relationship'] = 'reverse_field_grant_judge_application_webform_submission_entity';
-  $handler->display->display_options['filters']['sid']['operator'] = 'empty';
-  $handler->display->display_options['filters']['sid']['group'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['path'] = 'grants/judge';
 
   /* Display: Draft Judgments */
@@ -239,8 +231,8 @@ Each application will be judged on a a scale of 1-10 (1 = absolutely do not agre
   );
   $handler->display->display_options['filters']['is_draft']['group'] = 1;
   $handler->display->display_options['displays'] = array(
-    'page_1' => 'page_1',
     'default' => 0,
+    'page_1' => 0,
   );
   $handler->display->display_options['attachment_position'] = 'after';
 
@@ -248,7 +240,8 @@ Each application will be judged on a a scale of 1-10 (1 = absolutely do not agre
   $handler = $view->new_display('attachment', 'Judged Apps', 'attachment_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'What you\'ve judged so far';
-  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['header'] = FALSE;
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
@@ -266,15 +259,6 @@ Each application will be judged on a a scale of 1-10 (1 = absolutely do not agre
   $handler->display->display_options['filters']['uid_current']['relationship'] = 'uid';
   $handler->display->display_options['filters']['uid_current']['value'] = '1';
   $handler->display->display_options['filters']['uid_current']['group'] = 1;
-  /* Filter criterion: Webform submissions: Draft */
-  $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
-  $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
-  $handler->display->display_options['filters']['is_draft']['field'] = 'is_draft';
-  $handler->display->display_options['filters']['is_draft']['relationship'] = 'reverse_field_grant_judge_application_webform_submission_entity';
-  $handler->display->display_options['filters']['is_draft']['value'] = array(
-    0 => '0',
-  );
-  $handler->display->display_options['filters']['is_draft']['group'] = 1;
   $handler->display->display_options['displays'] = array(
     'page_1' => 'page_1',
     'default' => 0,
