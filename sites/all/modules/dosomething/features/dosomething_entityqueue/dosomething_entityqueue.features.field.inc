@@ -10,7 +10,7 @@
 function dosomething_entityqueue_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'entityqueue-dosomething_grant_application-eq_dosomething_grant_application'
+  // Exported field: 'entityqueue-dosomething_grant_application-eq_dosomething_grant_application'.
   $fields['entityqueue-dosomething_grant_application-eq_dosomething_grant_application'] = array(
     'field_config' => array(
       'active' => '1',
@@ -26,6 +26,7 @@ function dosomething_entityqueue_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '1',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'entityreference_entity_field',
@@ -89,7 +90,7 @@ function dosomething_entityqueue_field_default_fields() {
     ),
   );
 
-  // Exported field: 'entityqueue-dosomething_project-eq_dosomething_project'
+  // Exported field: 'entityqueue-dosomething_project-eq_dosomething_project'.
   $fields['entityqueue-dosomething_project-eq_dosomething_project'] = array(
     'field_config' => array(
       'active' => '1',
@@ -105,6 +106,7 @@ function dosomething_entityqueue_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '1',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'entityreference_entity_field',
