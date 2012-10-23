@@ -39,7 +39,7 @@ function dosomething_blog_views_api() {
 function dosomething_blog_image_default_styles() {
   $styles = array();
 
-  // Exported image style: blog_landscape
+  // Exported image style: blog_landscape.
   $styles['blog_landscape'] = array(
     'name' => 'blog_landscape',
     'effects' => array(
@@ -62,7 +62,7 @@ function dosomething_blog_image_default_styles() {
     ),
   );
 
-  // Exported image style: blog_large_thumbnail
+  // Exported image style: blog_large_thumbnail.
   $styles['blog_large_thumbnail'] = array(
     'name' => 'blog_large_thumbnail',
     'effects' => array(
@@ -84,7 +84,7 @@ function dosomething_blog_image_default_styles() {
     ),
   );
 
-  // Exported image style: blog_portrait
+  // Exported image style: blog_portrait.
   $styles['blog_portrait'] = array(
     'name' => 'blog_portrait',
     'effects' => array(
@@ -107,7 +107,7 @@ function dosomething_blog_image_default_styles() {
     ),
   );
 
-  // Exported image style: blog_square
+  // Exported image style: blog_square.
   $styles['blog_square'] = array(
     'name' => 'blog_square',
     'effects' => array(
