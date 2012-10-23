@@ -294,7 +294,7 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['footer']['area']['content'] = '<p class="more-link">
 	<span style="font-size:12px !important;"><a href="/blog">more &raquo;</a></span></p>
 ';
-  $handler->display->display_options['footer']['area']['format'] = '3';
+  $handler->display->display_options['footer']['area']['format'] = '1';
   $handler->display->display_options['footer']['area']['tokenize'] = 0;
   /* Field: Field: Picture */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
@@ -363,6 +363,7 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['field_subtitle']['table'] = 'field_data_field_subtitle';
   $handler->display->display_options['fields']['field_subtitle']['field'] = 'field_subtitle';
   $handler->display->display_options['fields']['field_subtitle']['label'] = '';
+  $handler->display->display_options['fields']['field_subtitle']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_subtitle']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['alter']['absolute'] = 0;
@@ -372,6 +373,7 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['field_subtitle']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_subtitle']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_subtitle']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['alter']['html'] = 0;
@@ -383,17 +385,68 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['fields']['field_subtitle']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_subtitle']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_subtitle']['field_api_classes'] = 0;
+  /* Field: Content: Short Description */
+  $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
+  $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
+  $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
+  $handler->display->display_options['fields']['field_description']['label'] = '';
+  $handler->display->display_options['fields']['field_description']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_description']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_description']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_description']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_description']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_description']['element_type'] = 'p';
+  $handler->display->display_options['fields']['field_description']['element_label_type'] = '0';
+  $handler->display->display_options['fields']['field_description']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_description']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_description']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_description']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_description']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_description']['field_api_classes'] = 0;
+  /* Field: Views If Empty: Views If Empty */
+  $handler->display->display_options['fields']['views_ifempty']['id'] = 'views_ifempty';
+  $handler->display->display_options['fields']['views_ifempty']['table'] = 'views_ifempty';
+  $handler->display->display_options['fields']['views_ifempty']['field'] = 'views_ifempty';
+  $handler->display->display_options['fields']['views_ifempty']['label'] = '';
+  $handler->display->display_options['fields']['views_ifempty']['element_type'] = 'p';
+  $handler->display->display_options['fields']['views_ifempty']['element_label_type'] = '0';
+  $handler->display->display_options['fields']['views_ifempty']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['views_ifempty']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['views_ifempty']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['views_ifempty']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['views_ifempty']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['views_ifempty']['emptyfield'] = 'field_subtitle';
+  $handler->display->display_options['fields']['views_ifempty']['outputfield'] = 'field_description';
+  /* Sort criterion: Content: Updated date */
+  $handler->display->display_options['sorts']['changed']['id'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['table'] = 'node';
+  $handler->display->display_options['sorts']['changed']['field'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -402,6 +455,15 @@ function dosomething_home_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'blog' => 'blog',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Add to DS blog? (field_add_to_ds_blog) */
+  $handler->display->display_options['filters']['field_add_to_ds_blog_value']['id'] = 'field_add_to_ds_blog_value';
+  $handler->display->display_options['filters']['field_add_to_ds_blog_value']['table'] = 'field_data_field_add_to_ds_blog';
+  $handler->display->display_options['filters']['field_add_to_ds_blog_value']['field'] = 'field_add_to_ds_blog_value';
+  $handler->display->display_options['filters']['field_add_to_ds_blog_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_add_to_ds_blog_value']['group'] = 2;
   $export['news_stuff'] = $view;
 
   return $export;

@@ -35,7 +35,7 @@ function dosomething_home_views_api() {
 function dosomething_home_image_default_styles() {
   $styles = array();
 
-  // Exported image style: rotoslider_homepage_main
+  // Exported image style: rotoslider_homepage_main.
   $styles['rotoslider_homepage_main'] = array(
     'name' => 'rotoslider_homepage_main',
     'effects' => array(
@@ -57,7 +57,7 @@ function dosomething_home_image_default_styles() {
     ),
   );
 
-  // Exported image style: rotoslider_nav
+  // Exported image style: rotoslider_nav.
   $styles['rotoslider_nav'] = array(
     'name' => 'rotoslider_nav',
     'effects' => array(
@@ -79,7 +79,7 @@ function dosomething_home_image_default_styles() {
     ),
   );
 
-  // Exported image style: rotoslider_start_something_main
+  // Exported image style: rotoslider_start_something_main.
   $styles['rotoslider_start_something_main'] = array(
     'name' => 'rotoslider_start_something_main',
     'effects' => array(

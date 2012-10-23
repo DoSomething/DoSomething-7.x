@@ -146,7 +146,6 @@ function dosomething_home_default_panels_mini() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $mini->display = $display;
-
   $export['home_page'] = $mini;
 
   return $export;

@@ -10,7 +10,7 @@
 function dosomething_home_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-scroller-field_description'
+  // Exported field: 'node-scroller-field_description'.
   $fields['node-scroller-field_description'] = array(
     'field_config' => array(
       'active' => '1',
@@ -18,6 +18,9 @@ function dosomething_home_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_description',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -31,11 +34,13 @@ function dosomething_home_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => '255',
+        'profile2_private' => FALSE,
         'text_processing' => '1',
       ),
       'translatable' => '0',
@@ -97,7 +102,7 @@ function dosomething_home_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scroller-field_link'
+  // Exported field: 'node-scroller-field_link'.
   $fields['node-scroller-field_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -107,6 +112,7 @@ function dosomething_home_field_default_fields() {
       'field_name' => 'field_link',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -190,7 +196,7 @@ function dosomething_home_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-scroller-field_picture'
+  // Exported field: 'node-scroller-field_picture'.
   $fields['node-scroller-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -214,6 +220,7 @@ function dosomething_home_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -270,6 +277,7 @@ function dosomething_home_field_default_fields() {
       'required' => '0',
       'settings' => array(
         'alt_field' => 1,
+        'default_image' => 0,
         'file_directory' => 'pictures/actionguide',
         'file_extensions' => 'jpg jpeg png gif',
         'max_filesize' => '',
