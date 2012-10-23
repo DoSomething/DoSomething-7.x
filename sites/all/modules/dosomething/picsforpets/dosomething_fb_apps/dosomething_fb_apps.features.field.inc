@@ -10,7 +10,7 @@
 function dosomething_fb_apps_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-fb_app_data_gathering_form-body'
+  // Exported field: 'node-fb_app_data_gathering_form-body'.
   $fields['node-fb_app_data_gathering_form-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -20,6 +20,9 @@ function dosomething_fb_apps_field_default_fields() {
         0 => 'node',
       ),
       'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -33,8 +36,11 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
       'translatable' => '0',
       'type' => 'text_with_summary',
     ),
@@ -82,7 +88,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_address'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_address'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -103,6 +109,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -145,7 +152,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_adopted'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_adopted'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_adopted'] = array(
     'field_config' => array(
       'active' => '1',
@@ -159,6 +166,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -208,7 +216,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_age'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_age'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_age'] = array(
     'field_config' => array(
       'active' => '1',
@@ -229,6 +237,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '60',
@@ -270,7 +279,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_animal_name'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_animal_name'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_animal_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -291,6 +300,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '60',
@@ -332,7 +342,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_animal_type'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_animal_type'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_animal_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -346,6 +356,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -396,7 +407,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_city'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_city'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_city'] = array(
     'field_config' => array(
       'active' => '1',
@@ -417,6 +428,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -459,7 +471,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_image'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_image'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -467,6 +479,9 @@ function dosomething_fb_apps_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_fb_app_image',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -480,9 +495,11 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -510,10 +527,11 @@ function dosomething_fb_apps_field_default_fields() {
       'required' => 1,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'fb_campaign',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
-        'max_resolution' => '',
+        'max_resolution' => '1024x768',
         'min_resolution' => '',
         'title_field' => 0,
         'user_register_form' => FALSE,
@@ -522,6 +540,67 @@ function dosomething_fb_apps_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => 'auto',
+          'insert_styles' => array(
+            'auto' => 'auto',
+            'image' => 0,
+            'image_490x200' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
+            'image_campaign_blog_thumbnail' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_carousel_center' => 0,
+            'image_carousel_inner' => 0,
+            'image_carousel_outer' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_front_slider' => 0,
+            'image_gallery_thumbnail' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_petdetail_regular' => 0,
+            'image_petdetail_retina' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_search_results_thumbnail' => 0,
+            'image_social_scholarship_images_petition_735x150' => 0,
+            'image_social_scholarship_stat_image_190x190' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_thumbnail_regular' => 0,
+            'image_thumbnail_retina' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
+          ),
+          'insert_width' => '',
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
@@ -531,7 +610,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_other'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_other'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_other'] = array(
     'field_config' => array(
       'active' => '1',
@@ -552,6 +631,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '60',
@@ -593,7 +673,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_published'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_published'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_published'] = array(
     'field_config' => array(
       'active' => '1',
@@ -607,6 +687,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -656,7 +737,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_share_count'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_share_count'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_share_count'] = array(
     'field_config' => array(
       'active' => '1',
@@ -666,6 +747,7 @@ function dosomething_fb_apps_field_default_fields() {
       'field_name' => 'field_fb_app_share_count',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '0',
@@ -711,7 +793,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_name'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_name'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -732,6 +814,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -774,7 +857,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_reference'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_reference'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_shelter_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -795,6 +878,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -857,7 +941,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_state'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_state'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_state'] = array(
     'field_config' => array(
       'active' => '1',
@@ -871,6 +955,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -986,7 +1071,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_three_words'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_three_words'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_three_words'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1007,6 +1092,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '60',
@@ -1031,7 +1117,7 @@ function dosomething_fb_apps_field_default_fields() {
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_fb_app_three_words',
       'label' => 'What are three words to best describe your furry friend?',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -1048,7 +1134,7 @@ function dosomething_fb_apps_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_zip'
+  // Exported field: 'webform_submission_entity-fb_app_data_gathering_form-field_fb_app_zip'.
   $fields['webform_submission_entity-fb_app_data_gathering_form-field_fb_app_zip'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1069,6 +1155,7 @@ function dosomething_fb_apps_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',

@@ -35,7 +35,7 @@ function dosomething_fb_apps_views_api() {
 function dosomething_fb_apps_image_default_styles() {
   $styles = array();
 
-  // Exported image style: carousel_center
+  // Exported image style: carousel_center.
   $styles['carousel_center'] = array(
     'name' => 'carousel_center',
     'effects' => array(
@@ -57,7 +57,7 @@ function dosomething_fb_apps_image_default_styles() {
     ),
   );
 
-  // Exported image style: carousel_inner
+  // Exported image style: carousel_inner.
   $styles['carousel_inner'] = array(
     'name' => 'carousel_inner',
     'effects' => array(
@@ -79,7 +79,7 @@ function dosomething_fb_apps_image_default_styles() {
     ),
   );
 
-  // Exported image style: carousel_outer
+  // Exported image style: carousel_outer.
   $styles['carousel_outer'] = array(
     'name' => 'carousel_outer',
     'effects' => array(
@@ -101,7 +101,7 @@ function dosomething_fb_apps_image_default_styles() {
     ),
   );
 
-  // Exported image style: gallery_thumbnail
+  // Exported image style: gallery_thumbnail.
   $styles['gallery_thumbnail'] = array(
     'name' => 'gallery_thumbnail',
     'effects' => array(
