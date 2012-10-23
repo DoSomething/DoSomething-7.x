@@ -46,9 +46,8 @@ function dosomething_campaign_sign_up_field_default_fields() {
       'bundle' => 'campaign_sign_up',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Create a new form or questionnaire accessible to users. Submission 
-results and statistics are recorded and accessible to privileged users.<br /> The content from 
-this field will only be shown to anonymous users.',
+      'description' => 'Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
+The content from this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -219,7 +218,7 @@ this field will only be shown to anonymous users.',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -287,10 +286,9 @@ this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 3,
+          'type' => 'hidden',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -359,10 +357,9 @@ this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'og',
           'settings' => array(),
-          'type' => 'og_list_default',
-          'weight' => 2,
+          'type' => 'hidden',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -816,7 +813,7 @@ this field will only be shown to anonymous users.',
           ),
           'sort' => array(
             'direction' => 'ASC',
-            'field' => 'none',
+            'field' => '',
             'property' => 'sid',
             'type' => 'none',
           ),
@@ -1045,7 +1042,7 @@ this field will only be shown to anonymous users.',
       'bundle' => 'campaign_sign_up',
       'default_value' => array(
         0 => array(
-          'value' => 1,
+          'value' => 0,
         ),
       ),
       'deleted' => '0',
@@ -1062,7 +1059,7 @@ this field will only be shown to anonymous users.',
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'group_group',
       'label' => 'Group',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -1079,6 +1076,7 @@ this field will only be shown to anonymous users.',
         ),
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'options',
         'settings' => array(
           'display_label' => 0,
@@ -1094,9 +1092,8 @@ this field will only be shown to anonymous users.',
   t('Body (anonymous user)');
   t('Body (logged in user)');
   t('Campaign');
-  t('Create a new form or questionnaire accessible to users. Submission 
-results and statistics are recorded and accessible to privileged users.<br /> The content from 
-this field will only be shown to anonymous users.');
+  t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
+The content from this field will only be shown to anonymous users.');
   t('Determine if this is an OG group.');
   t('Email');
   t('Enable Team Functionality');
