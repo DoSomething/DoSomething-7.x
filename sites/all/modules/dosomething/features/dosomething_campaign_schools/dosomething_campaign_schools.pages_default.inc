@@ -16,10 +16,7 @@ function dosomething_campaign_schools_default_page_manager_pages() {
   $page->admin_title = 'Campaign School Browser pages';
   $page->admin_description = '';
   $page->path = 'school/%school/%campaign';
-  $page->access = array(
-    'type' => 'none',
-    'settings' => NULL,
-  );
+  $page->access = array();
   $page->menu = array();
   $page->arguments = array(
     'school' => array(
@@ -312,7 +309,7 @@ function dosomething_campaign_schools_default_page_manager_pages() {
     $pane->configuration = array(
       'report_back_html' => 'Yay. You\'ve signed up. Now it\'s time to report back!',
       'override_title' => 1,
-      'override_title_text' => 'Do some fun stuff for Epic Book Drive!',
+      'override_title_text' => 'Sign Up Now to Start a Book Drive and Be Eligible for a Scholarship',
     );
     $pane->cache = array();
     $pane->style = array();
@@ -573,6 +570,32 @@ function dosomething_campaign_schools_default_page_manager_pages() {
     $display->panels['flexible-top'][3] = 'new-17';
     $pane = new stdClass();
     $pane->pid = 'new-18';
+    $pane->panel = 'flexible-top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'green_your_school_submission_list-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:ds_school_1',
+        1 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Stuff this school has done',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => 'school-report-backs',
+      'css_class' => 'bg-green',
+    );
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $display->content['new-18'] = $pane;
+    $display->panels['flexible-top'][4] = 'new-18';
+    $pane = new stdClass();
+    $pane->pid = 'new-19';
     $pane->panel = 'logo';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_campaign_logo';
@@ -598,10 +621,10 @@ function dosomething_campaign_schools_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-18'] = $pane;
-    $display->panels['logo'][0] = 'new-18';
+    $display->content['new-19'] = $pane;
+    $display->panels['logo'][0] = 'new-19';
     $pane = new stdClass();
-    $pane->pid = 'new-19';
+    $pane->pid = 'new-20';
     $pane->panel = 'mini-info';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_campain_date';
@@ -630,10 +653,10 @@ function dosomething_campaign_schools_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-19'] = $pane;
-    $display->panels['mini-info'][0] = 'new-19';
+    $display->content['new-20'] = $pane;
+    $display->panels['mini-info'][0] = 'new-20';
     $pane = new stdClass();
-    $pane->pid = 'new-20';
+    $pane->pid = 'new-21';
     $pane->panel = 'mini-info';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_campaign_teaser';
@@ -656,10 +679,10 @@ function dosomething_campaign_schools_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-20'] = $pane;
-    $display->panels['mini-info'][1] = 'new-20';
+    $display->content['new-21'] = $pane;
+    $display->panels['mini-info'][1] = 'new-21';
     $pane = new stdClass();
-    $pane->pid = 'new-21';
+    $pane->pid = 'new-22';
     $pane->panel = 'sign-up';
     $pane->type = 'campaign_sign_up';
     $pane->subtype = 'campaign_sign_up';
@@ -676,10 +699,10 @@ function dosomething_campaign_schools_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-21'] = $pane;
-    $display->panels['sign-up'][0] = 'new-21';
+    $display->content['new-22'] = $pane;
+    $display->panels['sign-up'][0] = 'new-22';
     $pane = new stdClass();
-    $pane->pid = 'new-22';
+    $pane->pid = 'new-23';
     $pane->panel = 'social';
     $pane->type = 'campaign_social';
     $pane->subtype = 'campaign_social';
@@ -695,10 +718,10 @@ function dosomething_campaign_schools_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-22'] = $pane;
-    $display->panels['social'][0] = 'new-22';
+    $display->content['new-23'] = $pane;
+    $display->panels['social'][0] = 'new-23';
     $pane = new stdClass();
-    $pane->pid = 'new-23';
+    $pane->pid = 'new-24';
     $pane->panel = 'stats';
     $pane->type = 'campaign_counter';
     $pane->subtype = 'campaign_counter';
@@ -718,10 +741,10 @@ function dosomething_campaign_schools_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-23'] = $pane;
-    $display->panels['stats'][0] = 'new-23';
+    $display->content['new-24'] = $pane;
+    $display->panels['stats'][0] = 'new-24';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-18';
+  $display->title_pane = 'new-19';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['campaign_school_browser_pages'] = $page;
