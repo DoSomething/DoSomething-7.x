@@ -27,7 +27,7 @@ function dosomething_campaign_blog_views_api() {
 function dosomething_campaign_blog_image_default_styles() {
   $styles = array();
 
-  // Exported image style: campaign_blog_thumbnail
+  // Exported image style: campaign_blog_thumbnail.
   $styles['campaign_blog_thumbnail'] = array(
     'name' => 'campaign_blog_thumbnail',
     'effects' => array(

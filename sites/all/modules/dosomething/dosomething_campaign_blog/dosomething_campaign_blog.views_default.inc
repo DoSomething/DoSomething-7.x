@@ -230,6 +230,8 @@ function dosomething_campaign_blog_views_default_views() {
 
   /* Display: Single Post */
   $handler = $view->new_display('panel_pane', 'Single Post', 'panel_pane_1');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'blog-single-post';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['link_url'] = '!2';
@@ -268,6 +270,17 @@ function dosomething_campaign_blog_views_default_views() {
 
   /* Display: Recent Posts */
   $handler = $view->new_display('panel_pane', 'Recent Posts', 'panel_pane_2');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'blog-recent-post';
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
     'etid' => array(
       'type' => 'context',
