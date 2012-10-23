@@ -94,7 +94,7 @@ function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
  */
 function dosomething_general_page_alter(&$page) {
   if (!extension_loaded('newrelic')) {
-    newrelic_get_browser_timing_header()
+    return;
   }
 
   $panel_page = page_manager_get_current_page();

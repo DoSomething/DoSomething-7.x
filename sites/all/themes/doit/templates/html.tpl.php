@@ -60,7 +60,7 @@
     <link rel="stylesheet" href="http://c308566.r66.cf1.rackcdn.com/din.css" media="all" />
   <?php endif; ?>
   <?php print $styles; ?>
-  <?php if (!extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
+  <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
   <?php print $scripts; ?>
   <?php print $selectivizr; ?>
   <?php print $shiv; ?>
@@ -74,6 +74,6 @@
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
-  <?php if (!extension_loaded('newrelic')) print newrelic_get_browser_timing_footer(); ?>
+  <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_footer(); ?>
 </body>
 </html>
