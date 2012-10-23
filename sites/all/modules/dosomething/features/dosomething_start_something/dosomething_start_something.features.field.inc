@@ -10,7 +10,7 @@
 function dosomething_start_something_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-dsu_guides-body'
+  // Exported field: 'node-dsu_guides-body'.
   $fields['node-dsu_guides-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_start_something_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -89,7 +90,7 @@ function dosomething_start_something_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-dsu_guides-field_dsu_guide_type'
+  // Exported field: 'node-dsu_guides-field_dsu_guide_type'.
   $fields['node-dsu_guides-field_dsu_guide_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -106,6 +107,7 @@ function dosomething_start_something_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -171,7 +173,7 @@ function dosomething_start_something_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-dsu_guides-field_dsu_guideteaser'
+  // Exported field: 'node-dsu_guides-field_dsu_guideteaser'.
   $fields['node-dsu_guides-field_dsu_guideteaser'] = array(
     'field_config' => array(
       'active' => '1',
@@ -192,6 +194,7 @@ function dosomething_start_something_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -256,7 +259,7 @@ function dosomething_start_something_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-dsu_guides-field_dsu_picture'
+  // Exported field: 'node-dsu_guides-field_dsu_picture'.
   $fields['node-dsu_guides-field_dsu_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -277,6 +280,7 @@ function dosomething_start_something_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => NULL,
@@ -349,6 +353,7 @@ function dosomething_start_something_field_default_fields() {
       'required' => '0',
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'jpg jpeg png gif',
         'max_filesize' => 0,
@@ -385,7 +390,7 @@ function dosomething_start_something_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-dsu_guides-field_dsu_video'
+  // Exported field: 'node-dsu_guides-field_dsu_video'.
   $fields['node-dsu_guides-field_dsu_video'] = array(
     'field_config' => array(
       'active' => '1',
@@ -402,6 +407,7 @@ function dosomething_start_something_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -488,7 +494,7 @@ function dosomething_start_something_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-dsu_guides-taxonomy_vocabulary_18'
+  // Exported field: 'node-dsu_guides-taxonomy_vocabulary_18'.
   $fields['node-dsu_guides-taxonomy_vocabulary_18'] = array(
     'field_config' => array(
       'active' => '1',
@@ -501,6 +507,7 @@ function dosomething_start_something_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -551,7 +558,7 @@ function dosomething_start_something_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-dsu_guides-upload'
+  // Exported field: 'node-dsu_guides-upload'.
   $fields['node-dsu_guides-upload'] = array(
     'field_config' => array(
       'active' => '1',
@@ -567,6 +574,7 @@ function dosomething_start_something_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'default_file' => 0,

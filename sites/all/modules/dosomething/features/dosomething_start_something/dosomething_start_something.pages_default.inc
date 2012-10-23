@@ -80,7 +80,7 @@ function dosomething_start_something_default_page_manager_pages() {
     $pane->pid = 'new-1';
     $pane->panel = 'top';
     $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
+    $pane->subtype = 'service_links-service_links_not_node';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -88,13 +88,11 @@ function dosomething_start_something_default_page_manager_pages() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
+    $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $pane->locks = '';
+    $pane->locks = array();
     $display->content['new-1'] = $pane;
     $display->panels['top'][0] = 'new-1';
     $pane = new stdClass();

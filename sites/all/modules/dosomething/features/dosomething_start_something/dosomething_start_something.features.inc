@@ -31,7 +31,7 @@ function dosomething_start_something_views_api() {
 function dosomething_start_something_image_default_styles() {
   $styles = array();
 
-  // Exported image style: explore_action_guides
+  // Exported image style: explore_action_guides.
   $styles['explore_action_guides'] = array(
     'name' => 'explore_action_guides',
     'effects' => array(
@@ -53,7 +53,7 @@ function dosomething_start_something_image_default_styles() {
     ),
   );
 
-  // Exported image style: upcoming_somethings_thumb
+  // Exported image style: upcoming_somethings_thumb.
   $styles['upcoming_somethings_thumb'] = array(
     'name' => 'upcoming_somethings_thumb',
     'effects' => array(
