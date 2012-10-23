@@ -23,7 +23,7 @@ function dosomething_clubs_og_ui_get_group_admin_alter(&$data, $gid) {
  */
 function dosomething_clubs_views_query_alter(&$view, &$query) {
   if ($view->name == 'clubs' && $view->current_display == 'clubs_directory') {
-    if (!empty($query->where[1]['conditions'][3]['value'])) {
+    if (!empty($query->where[1]['conditions'][3]['value']) && !isset($query->where[1]['conditions'][2]['value'][':minlat'])) {
       // Searches by school state reference, THEN includes the field club state
       $query->where[1]['conditions'][2] = array(
           'field' => 'field_data_field_club_state.field_club_state_value',

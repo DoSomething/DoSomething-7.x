@@ -12,6 +12,26 @@
 .form-item-distance-search-distance, .form-item-distance-search-units {
   display: none; }
 
+#edit-submit-clubs, #edit-reset {
+  font-family: din-web;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  border: none;
+  height: 30px;
+  padding: 1px 13px 0;
+  background-color: #fed100;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, white), color-stop(100%, #fed100));
+  background-image: -webkit-linear-gradient(top, white, #fed100);
+  background-image: -moz-linear-gradient(top, white, #fed100);
+  background-image: -o-linear-gradient(top, white, #fed100);
+  background-image: linear-gradient(top, #ffffff, #fed100);
+  font-size: 18px;
+  text-transform: uppercase; }
+
 .views-exposed-widget .selectBox-dropdown {
   width: 75px !important;
   display: inline-block; }
