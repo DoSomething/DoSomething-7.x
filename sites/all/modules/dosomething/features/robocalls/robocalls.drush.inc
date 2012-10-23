@@ -23,6 +23,7 @@ function drush_robocalls_robocall($fnid) {
     ->propertyOrderBy('submitted', 'DESC')
     ->fieldCondition('field_celeb_date', 'value', date('Y-m-d H:i:00', $time), '=')
     ->fieldCondition('field_celeb_send_now', 'value', 0, '=')
+    ->fieldCondition('field_mobile_commons_id', 'value', 0, '!=')
     ->execute();
   if (!empty($result))
   {
@@ -39,9 +40,10 @@ function drush_robocalls_robocall($fnid) {
         $thetime = array_sum(array(strtotime($s->field_celeb_date[LANGUAGE_NONE][0]['value']), $offset));
 
         $cell = $s->field_celeb_friend_phone[LANGUAGE_NONE][0]['value'];
-  	    if ($now == $thetime)
+  	    if ($now == $thetime || 1)
   	    {
-          robocalls_mcommons_call($cell, '', 18301);
+          $mid = $s->field_mobile_commons_id[LANGUAGE_NONE][0]['value'];
+          robocalls_mcommons_call($cell, '', $mid);
   	    }
 
        echo (date('Y-m-d H:i:00', $now)) . ' ' . date('Y-m-d H:i:00', $thetime) . " (@" . $cell . ' ... ' . $s->field_celeb_date[LANGUAGE_NONE][0]['value'] . " | " . $t->getOffset() . ")\r\n";

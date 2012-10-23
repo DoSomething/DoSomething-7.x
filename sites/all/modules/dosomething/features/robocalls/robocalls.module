@@ -209,6 +209,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       $form['extras']['fb_container']['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
     }
     $u['field_celeb_send_now']['#access'] = FALSE;
+    #echo '<pre>', print_r($u), '</pre>'; exit;
 
     if (user_is_logged_in()) {
        global $user;
@@ -351,6 +352,14 @@ function robocalls_call_validate(&$form, &$form_state) {
   $form['#submission']->submitted['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
   $form['#submission']->field_celeb_send_now[LANGUAGE_NONE][0]['value'] = $sn;
   $form_state['values']['submitted']['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
+
+  #echo $form->submitted['webform_entity_form']['#entity']['input']['mobile_commons_id'];
+  $mconnect = $form['submitted']['webform_entity_form']['#entity']->input['mobile_commons_id'];
+  //$u['field_mobile_commons_id'][LANGUAGE_NONE][0]['value']['#value'] = $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value'];
+
+  $form['#submission']->field_mobile_commons_id[LANGUAGE_NONE][0]['value'] = $mconnect;
+  $form['#submission']->submitted['field_mobile_commons_id'][LANGUAGE_NONE][0]['value'] = $mconnect;
+  $form_state['values']['submitted']['field_mobile_commons_id'][LANGUAGE_NONE][0]['value'] = $mconnect;
 
   // Turn it into 24 hours for mktime...
   if ($stime['ampm'] == 'pm' && $stime['hour'] <> 12) {

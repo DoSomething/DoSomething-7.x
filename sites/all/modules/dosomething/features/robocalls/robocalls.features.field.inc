@@ -1193,6 +1193,73 @@ function robocalls_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-robo_calls-field_mobile_commons_id'.
+  $fields['webform_submission_entity-robo_calls-field_mobile_commons_id'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mobile_commons_id',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'robo_calls',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 7,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_mobile_commons_id',
+      'label' => 'Mobile Commons ID',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '32',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('A label to denote the timed call.  For example -- "Election Day" is November 4th.');
