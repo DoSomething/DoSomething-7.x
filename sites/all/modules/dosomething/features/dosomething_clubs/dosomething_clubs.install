@@ -104,5 +104,7 @@ function dosomething_clubs_update_7101() {
     )
   );
 
-  db_create_table('dosomething_clubs_nag', $schema['dosomething_clubs_nag']);
+  if (!db_table_exists('dosomething_clubs_nag')) {
+    db_create_table('dosomething_clubs_nag', $schema['dosomething_clubs_nag']);
+  }
 }
