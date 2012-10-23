@@ -10,6 +10,20 @@
 function robocalls_default_fe_block_settings() {
   $export = array();
 
+  $export['version'] = '1.0';
+
+  // Theme independent visibility settings.
+  $export['visibility'] = array(
+    'views-43e5f8c3da7cdbaf9be68f0db57cc6a0' => array(
+      'delta' => '43e5f8c3da7cdbaf9be68f0db57cc6a0',
+      'module' => 'views',
+    ),
+    'views-c6ff9c796a4b9eeb0843eebedec7be2a' => array(
+      'delta' => 'c6ff9c796a4b9eeb0843eebedec7be2a',
+      'module' => 'views',
+    ),
+  );
+
   // doit
   $theme = array();
 
@@ -41,7 +55,7 @@ function robocalls_default_fe_block_settings() {
     'cache' => -1,
   );
 
-  $export['doit'] = $theme;
+  $export['theme']['doit'] = $theme;
 
   // ds
   $theme = array();
@@ -74,7 +88,7 @@ function robocalls_default_fe_block_settings() {
     'cache' => -1,
   );
 
-  $export['ds'] = $theme;
+  $export['theme']['ds'] = $theme;
 
   // picsforpets
   $theme = array();
@@ -107,13 +121,13 @@ function robocalls_default_fe_block_settings() {
     'cache' => -1,
   );
 
-  $export['picsforpets'] = $theme;
+  $export['theme']['picsforpets'] = $theme;
 
   $theme_default = variable_get('theme_default', 'garland');
   $themes = list_themes();
   foreach ($export as $theme_key => $settings) {
     if ($theme_key != $theme_default && empty($themes[$theme_key]->status)) {
-      unset($export[$theme_key]);
+      unset($export['theme'][$theme_key]);
     }
   }
   return $export;

@@ -470,3 +470,7 @@ h4 { font-size: 13pt; }
 #edit-submitted-field-mobile-commons-id {
 	display: none;
 }
+
+div.send-another-robocall {
+	text-align: center;
+}

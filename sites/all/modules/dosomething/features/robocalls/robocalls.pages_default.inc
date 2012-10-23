@@ -123,7 +123,7 @@ function robocalls_default_page_manager_handlers() {
 			<div class="share-images"><a href="http://www.facebook.com/sharer/sharer.php?u=http://www.dosomething.org/causecall" id="robocalls-fb-share-link" target="_blank"><img src="http://brandthunder.com/wp/wp-content/uploads/2012/07/Facebook-skins-post.png" width="42" height="42" alt="" /></a> <a id="robocalls-twitter-button" href=\'http://twitter.com/intent/tweet?text=\'><img src="http://www.simplyzesty.com/wp-content/uploads/2011/08/Twitter-Logo-300x293.jpg" width="42" height="42" alt="" /></a></div>
 		</div>
 		<div class="send-another-robocall">
-			<a href="/calloffame" class="go-button">Send another Birthday Call</a>
+			<a href="/calloffame" class="go-button">Send Another Call</a>
 		</div>
 	</div>
 </div>',
