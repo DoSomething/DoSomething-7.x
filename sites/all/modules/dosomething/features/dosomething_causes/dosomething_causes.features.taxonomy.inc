@@ -78,29 +78,6 @@ function dosomething_causes_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'vocabulary_17' => array(
-      'name' => 'How did you hear about Do Something Clubs?',
-      'machine_name' => 'vocabulary_17',
-      'description' => '',
-      'hierarchy' => '0',
-      'module' => 'taxonomy',
-      'weight' => '0',
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
     'vocabulary_18' => array(
       'name' => 'DoSomethingU Majors',
       'machine_name' => 'vocabulary_18',

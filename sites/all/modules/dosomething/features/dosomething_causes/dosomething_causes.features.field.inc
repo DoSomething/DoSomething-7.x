@@ -10,7 +10,7 @@
 function dosomething_causes_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-poll-field_description'
+  // Exported field: 'node-poll-field_description'.
   $fields['node-poll-field_description'] = array(
     'field_config' => array(
       'active' => '1',
@@ -18,6 +18,9 @@ function dosomething_causes_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_description',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -31,11 +34,13 @@ function dosomething_causes_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
         'allowed_values_php' => '',
         'max_length' => '255',
+        'profile2_private' => FALSE,
         'text_processing' => '1',
       ),
       'translatable' => '0',
@@ -97,7 +102,7 @@ function dosomething_causes_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-poll-field_picture'
+  // Exported field: 'node-poll-field_picture'.
   $fields['node-poll-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -121,6 +126,7 @@ function dosomething_causes_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -177,6 +183,7 @@ function dosomething_causes_field_default_fields() {
       'required' => '0',
       'settings' => array(
         'alt_field' => 1,
+        'default_image' => 0,
         'file_directory' => 'pictures/actionguide',
         'file_extensions' => '',
         'max_filesize' => 0,
@@ -213,7 +220,7 @@ function dosomething_causes_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-poll-taxonomy_vocabulary_5'
+  // Exported field: 'node-poll-taxonomy_vocabulary_5'.
   $fields['node-poll-taxonomy_vocabulary_5'] = array(
     'field_config' => array(
       'active' => '1',
@@ -237,6 +244,7 @@ function dosomething_causes_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -290,7 +298,7 @@ function dosomething_causes_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_5-field_cause_master_parent'
+  // Exported field: 'taxonomy_term-vocabulary_5-field_cause_master_parent'.
   $fields['taxonomy_term-vocabulary_5-field_cause_master_parent'] = array(
     'field_config' => array(
       'active' => '1',
@@ -314,6 +322,7 @@ function dosomething_causes_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
