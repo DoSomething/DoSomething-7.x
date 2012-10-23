@@ -24,13 +24,15 @@ function dosomething_projects_default_search_api_index() {
     "item_type" : "webform_submission_entity",
     "options" : {
       "index_directly" : 1,
-      "cron_limit" : "50",
+      "cron_limit" : "1000",
       "fields" : {
         "taxonomy_vocabulary_5" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_essay_build_it" : { "type" : "text" },
         "field_essay_see_it" : { "type" : "text" },
         "field_update_people_involved" : { "type" : "integer" },
         "field_project_title" : { "type" : "text" },
+        "field_project_goal" : { "type" : "text" },
+        "field_others_involved" : { "type" : "text" },
         "field_webform_project_summary" : { "type" : "text" },
         "search_api_language" : { "type" : "string" },
         "search_api_viewed" : { "type" : "text" },
