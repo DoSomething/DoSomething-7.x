@@ -108,7 +108,7 @@
  		padding: 10px;
  	}
 
- 	div#submit-buttons input {
+ 	div#submit-buttons #submit-og-post, div#submit-buttons #cancel-og-post {
  		border-radius: 0px;
  		-moz-border-radius: 0px;
  		-webkit-border-radius: 0px;
@@ -117,7 +117,7 @@
  		text-shadow: none;
  	}
 
- 	input[type="submit"] {
+ 	div#submit-buttons #submit-og-post {
  		background: #5B74A8;
  		color: #fff;
  		border-width: 1px;
@@ -128,7 +128,7 @@
  		cursor: pointer;
  	}
 
- 	input[type="reset"] {
+ 	div#submit-buttons #cancel-og-post {
  		background: #eee;
  		color: #000;
  		border: 1px solid #999;

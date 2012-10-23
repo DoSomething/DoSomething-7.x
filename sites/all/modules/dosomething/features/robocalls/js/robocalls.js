@@ -116,6 +116,7 @@ jQuery(document).ready(function() {
       jQuery(this).parent().append(na);
 
       jQuery(this).click(function() {
+        jQuery('audio').trigger('pause');
         jQuery(this).parent().find('audio').trigger('play');
         return false;
       });
