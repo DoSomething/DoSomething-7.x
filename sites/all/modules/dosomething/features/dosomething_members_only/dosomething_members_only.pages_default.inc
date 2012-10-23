@@ -226,38 +226,40 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Static Page Content',
       'title' => '',
-      'body' => '<h2>DoSomething.org is a member-based organization for young people 25 years old and under.</h2>
+      'body' => '<img src="http://files.dosomething.org/files/pictures/blog/Mountain%20View%20High%20School.JPG"/> 
 
-<p>By being a member of DoSomething.org:</p>
+<h2>DoSomething.org is a member org for people 25 years and under.</h2>
+
+<p>By being a member of DoSomething.org, you get stuff you love...</p>
 
 <ol>
-<li>You make a real impact on causes you care about.
+<li>We\'ll help you make a real impact on causes you care about..
 
 <ul>
-<li>We help you be part a social movement with others like you.</li>
+<li>Be part of a social change movement with others like you.</li>
 
-<li>We give you ideas because it can be hard to think of something specific to actually do.</li>
+<li>Ideas. Yeah, we know it can be hard to think of something specific to actually do.</li>
 
-<li>We send you stuff like posters, stickers, banners, etc.</li>
+<li>Stuff like posters, stickers, banners, etc.</li>
 
-<li>We recognize you for the good stuff you do (so that you can put it on your college app, impress a girl, or give it to your mom to hang on the fridge).</li>
+<li>Recognition for the good stuff you do (so that you can put it on your college app, impress a girl, or give it to your mom to hang on the fridge).</li>
 </ul></li>
-<li>You get <i>cash</i>. That\'s right. We\'re talking $$.
+<li>Cash money. That\'s right. We\'ll give you $$.
 <ul>
-<li>We give <a href="/grants">money for social change projects</a>.</li>
-<li>We award <a href="/scholarships">money for school</a>.</li></ul></li>
-<li>You get SWAG you can actually use.
+<li><a href="/grants">Money for social change projects</a>.</li>
+<li><a href="/scholarships">Money for school</a>.</li></ul></li>
+<li>SWAG you can actually use.
 
 <ul>
-<li>Movie tickets, food, etc. (Send us your wish list!)</li>
-<li>Celeb-signed goodies</li></ul>
+<li>Stuff you love...like movie tickets, food, etc. (Send us your wish list!)</li>
+<li>Celeb-signed goodies.</li></ul>
 </li>
 </ul>
 
-<li>You have access to invite-only things.
+<li>Access to invite-only things.
 <ul>
-<li>We invite you to exclusive events (like the <a href="/awards">Do Something Awards</a>, movie premieres, etc).</li>
-<li>We give you the chance to meet a celebrity.</li></ul></li>
+<li>Exclusive events (like the <a href="/awards">Do Something Awards</a>, movie premieres, etc).</li>
+<li>Maybe even the chance to meet a celebrity.</li></ul></li>
 </ol>
 
 <p>Go ahead and click on that box on the left to get started. We know you want to. ;)</p>',
@@ -334,21 +336,19 @@ function dosomething_members_only_default_page_manager_pages() {
     $pane->pid = 'new-7';
     $pane->panel = 'top';
     $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
+    $pane->subtype = 'service_links-service_links_not_node';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => '<none>',
+      'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
+    $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $pane->locks = '';
+    $pane->locks = array();
     $display->content['new-7'] = $pane;
     $display->panels['top'][0] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
