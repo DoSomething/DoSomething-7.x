@@ -97,25 +97,37 @@ function dosomething_general_page_alter(&$page) {
     return;
   }
 
+  $name = NULL;
+
   $panel_page = page_manager_get_current_page();
   if (isset($panel_page['name'])) {
     if ($panel_page['name'] == 'node_view') {
       if (isset($panel_page['contexts']['argument_entity_id:node_1']->data)) {
         $node = $panel_page['contexts']['argument_entity_id:node_1']->data;
-        newrelic_name_transaction("page_manager_node_view_page/$node->type");
-        newrelic_add_custom_parameter('nid', $node->nid);
+        $name = 'page_manager_node_view_page/' . $node->type;
       }
     }
     else if ($panel_page['name'] == 'webform_submission_view') {
       if (isset($panel_page['contexts']['argument_entity_id:webform_submission_entity_1']->data)) {
         $submission = $panel_page['contexts']['argument_entity_id:webform_submission_entity_1']->data;
-        newrelic_name_transaction("webform_entity_pages_webform_submission_view_page/$submission->bundle");
-        newrelic_add_custom_parameter('nid', $submission->nid);
+        $name = 'webform_entity_pages_webform_submission_view_page/' . $submission->bundle;
       }
     }
     else if ($panel_page['task']['task type'] == 'page') {
-      newrelic_name_transaction('page_manager_page_execute/' . $panel_page['name']);
+      $name = 'page_manager_page_execute/' . $panel_page['name'];
     }
+  }
+  else {
+    $menu_item = menu_get_item();
+    if ($menu_item['path'] == 'node/%') {
+      // Looks like panels didn't have a variant and it's falling back to
+      // node_page_view.
+      $name = 'node_page_view/' . $menu_item['page_arguments'][0]->type;
+    }
+  }
+
+  if ($name) {
+    newrelic_name_transaction($name);
   }
 }
 
