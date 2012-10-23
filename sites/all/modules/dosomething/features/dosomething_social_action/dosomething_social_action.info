@@ -1,8 +1,9 @@
-name = "dosomething_social_action"
-core = "7.x"
-package = "Features"
-php = "5.2.4"
-dependencies[] = "ctools"
-dependencies[] = "page_manager"
-features[ctools][] = "page_manager:pages_default:1"
-features[page_manager_handlers][] = "node_view_social_action_howto"
+name = dosomething_social_action
+core = 7.x
+package = Features
+php = 5.2.4
+dependencies[] = ctools
+dependencies[] = page_manager
+features[ctools][] = page_manager:pages_default:1
+features[features_api][] = api:1
+features[page_manager_handlers][] = node_view_social_action_howto

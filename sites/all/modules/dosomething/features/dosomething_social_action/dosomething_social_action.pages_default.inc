@@ -17,7 +17,7 @@ function dosomething_social_action_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -92;
+  $handler->weight = -20;
   $handler->conf = array(
     'title' => 'Social Action How-To',
     'no_blocks' => 0,
@@ -61,7 +61,16 @@ function dosomething_social_action_default_page_manager_handlers() {
     $pane->type = 'block';
     $pane->subtype = 'fb_social-FB Facepile General';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_status',
+          'settings' => NULL,
+          'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
