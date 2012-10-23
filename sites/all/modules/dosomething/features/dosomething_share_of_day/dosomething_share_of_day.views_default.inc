@@ -49,6 +49,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_link']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_link']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_share_of_day_link']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_share_of_day_link']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_link']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_link']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_link']['alter']['html'] = 0;
@@ -58,6 +59,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_link']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_link']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_share_of_day_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_share_of_day_link']['type'] = 'plain';
   $handler->display->display_options['fields']['field_share_of_day_link']['field_api_classes'] = 0;
   /* Field: Content: Picture */
   $handler->display->display_options['fields']['field_share_of_day_pic']['id'] = 'field_share_of_day_pic';
@@ -215,6 +217,42 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_attr_fact']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_attr_fact']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_share_of_day_attr_fact']['field_api_classes'] = 0;
+  /* Field: Global: DoSomething Social Plugins */
+  $handler->display->display_options['fields']['ds_social_plugins']['id'] = 'ds_social_plugins';
+  $handler->display->display_options['fields']['ds_social_plugins']['table'] = 'views';
+  $handler->display->display_options['fields']['ds_social_plugins']['field'] = 'ds_social_plugins';
+  $handler->display->display_options['fields']['ds_social_plugins']['label'] = '';
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['ds_social_plugins']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['ds_social_plugins']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['ds_social_plugins']['module_options'] = array(
+    'fb_social' => 'fb_social',
+    'tweetbutton' => 'tweetbutton',
+    'google_plusone' => 0,
+    'print' => 0,
+    'print_mail' => 0,
+    'sharethis' => 0,
+  );
+  $handler->display->display_options['fields']['ds_social_plugins']['options'] = array(
+    'fb_social_preset' => 'FB Like Box',
+    'url_field' => '[field_share_of_day_link]',
+    'tweet_text' => '[body][field_share_of_day_fact]',
+  );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

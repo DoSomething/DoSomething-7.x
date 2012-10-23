@@ -10,7 +10,7 @@
 function dosomething_share_of_day_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-share_of_day-body'
+  // Exported field: 'node-share_of_day-body'.
   $fields['node-share_of_day-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +36,7 @@ function dosomething_share_of_day_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -87,7 +88,7 @@ function dosomething_share_of_day_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-share_of_day-field_share_of_day_attr_fact'
+  // Exported field: 'node-share_of_day-field_share_of_day_attr_fact'.
   $fields['node-share_of_day-field_share_of_day_attr_fact'] = array(
     'field_config' => array(
       'active' => '1',
@@ -111,6 +112,7 @@ function dosomething_share_of_day_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -159,7 +161,7 @@ function dosomething_share_of_day_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-share_of_day-field_share_of_day_attr_pic'
+  // Exported field: 'node-share_of_day-field_share_of_day_attr_pic'.
   $fields['node-share_of_day-field_share_of_day_attr_pic'] = array(
     'field_config' => array(
       'active' => '1',
@@ -172,6 +174,7 @@ function dosomething_share_of_day_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -240,7 +243,7 @@ function dosomething_share_of_day_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-share_of_day-field_share_of_day_attr_quote'
+  // Exported field: 'node-share_of_day-field_share_of_day_attr_quote'.
   $fields['node-share_of_day-field_share_of_day_attr_quote'] = array(
     'field_config' => array(
       'active' => '1',
@@ -264,6 +267,7 @@ function dosomething_share_of_day_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -312,7 +316,7 @@ function dosomething_share_of_day_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-share_of_day-field_share_of_day_fact'
+  // Exported field: 'node-share_of_day-field_share_of_day_fact'.
   $fields['node-share_of_day-field_share_of_day_fact'] = array(
     'field_config' => array(
       'active' => '1',
@@ -336,6 +340,7 @@ function dosomething_share_of_day_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -383,7 +388,7 @@ function dosomething_share_of_day_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-share_of_day-field_share_of_day_link'
+  // Exported field: 'node-share_of_day-field_share_of_day_link'.
   $fields['node-share_of_day-field_share_of_day_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -396,6 +401,7 @@ function dosomething_share_of_day_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -468,7 +474,7 @@ function dosomething_share_of_day_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-share_of_day-field_share_of_day_pic'
+  // Exported field: 'node-share_of_day-field_share_of_day_pic'.
   $fields['node-share_of_day-field_share_of_day_pic'] = array(
     'field_config' => array(
       'active' => '1',
@@ -492,6 +498,7 @@ function dosomething_share_of_day_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'display_default' => 0,
