@@ -10,7 +10,7 @@
 function dosomething_campaign_report_back_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-campaign_report_back-field_body_anonymous'
+  // Exported field: 'node-campaign_report_back-field_body_anonymous'.
   $fields['node-campaign_report_back-field_body_anonymous'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_campaign_report_back_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -84,7 +85,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-campaign_report_back-field_body_logged_in'
+  // Exported field: 'node-campaign_report_back-field_body_logged_in'.
   $fields['node-campaign_report_back-field_body_logged_in'] = array(
     'field_config' => array(
       'active' => '1',
@@ -108,6 +109,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -157,7 +159,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-campaign_report_back-field_report_back_magic_fields'
+  // Exported field: 'node-campaign_report_back-field_report_back_magic_fields'.
   $fields['node-campaign_report_back-field_report_back_magic_fields'] = array(
     'field_config' => array(
       'active' => '1',
@@ -174,6 +176,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -249,7 +252,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-campaign_report_back-group_audience'
+  // Exported field: 'node-campaign_report_back-group_audience'.
   $fields['node-campaign_report_back-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -273,6 +276,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -334,7 +338,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_geocode_data'
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_geocode_data'.
   $fields['webform_submission_entity-campaign_report_back-field_geocode_data'] = array(
     'field_config' => array(
       'active' => '1',
@@ -347,6 +351,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'geofield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -394,7 +399,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_email'
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_email'.
   $fields['webform_submission_entity-campaign_report_back-field_webform_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -407,6 +412,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -422,10 +428,9 @@ The content from this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'email',
           'settings' => array(),
-          'type' => 'email_default',
-          'weight' => '0',
+          'type' => 'hidden',
+          'weight' => '7',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -447,7 +452,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_mobile'
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_mobile'.
   $fields['webform_submission_entity-campaign_report_back-field_webform_mobile'] = array(
     'field_config' => array(
       'active' => '1',
@@ -471,6 +476,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '100',
@@ -487,10 +493,9 @@ The content from this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '1',
+          'type' => 'hidden',
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -513,7 +518,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_pictures'
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_pictures'.
   $fields['webform_submission_entity-campaign_report_back-field_webform_pictures'] = array(
     'field_config' => array(
       'active' => '1',
@@ -537,6 +542,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -559,7 +565,7 @@ The content from this field will only be shown to anonymous users.',
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '6',
+          'weight' => '4',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -568,6 +574,7 @@ The content from this field will only be shown to anonymous users.',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -598,7 +605,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_school'
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_school'.
   $fields['webform_submission_entity-campaign_report_back-field_webform_school'] = array(
     'field_config' => array(
       'active' => '1',
@@ -622,6 +629,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -638,10 +646,9 @@ The content from this field will only be shown to anonymous users.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '7',
+          'type' => 'hidden',
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -662,7 +669,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_school_reference'
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_school_reference'.
   $fields['webform_submission_entity-campaign_report_back-field_webform_school_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -679,10 +686,22 @@ The content from this field will only be shown to anonymous users.',
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'ds_school',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => '',
+            'property' => 'sid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(),
         ),
         'handler_submit' => 'Change handler',
@@ -705,7 +724,7 @@ The content from this field will only be shown to anonymous users.',
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => '8',
+          'weight' => '5',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -729,7 +748,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_school_zip'
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_school_zip'.
   $fields['webform_submission_entity-campaign_report_back-field_webform_school_zip'] = array(
     'field_config' => array(
       'active' => '1',
@@ -750,6 +769,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -768,7 +788,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -791,7 +811,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_videos'
+  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_videos'.
   $fields['webform_submission_entity-campaign_report_back-field_webform_videos'] = array(
     'field_config' => array(
       'active' => '1',
@@ -808,6 +828,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -827,7 +848,7 @@ The content from this field will only be shown to anonymous users.',
             'file_view_mode' => 'default',
           ),
           'type' => 'media',
-          'weight' => '3',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -868,7 +889,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-group_audience'
+  // Exported field: 'webform_submission_entity-campaign_report_back-group_audience'.
   $fields['webform_submission_entity-campaign_report_back-group_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -892,6 +913,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'gid',
         ),
       ),
+      'locked' => '0',
       'module' => 'og',
       'no_ui' => TRUE,
       'settings' => array(
@@ -911,7 +933,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'og',
           'settings' => array(),
           'type' => 'og_list_default',
-          'weight' => '5',
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
@@ -949,7 +971,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-taxonomy_vocabulary_5'
+  // Exported field: 'webform_submission_entity-campaign_report_back-taxonomy_vocabulary_5'.
   $fields['webform_submission_entity-campaign_report_back-taxonomy_vocabulary_5'] = array(
     'field_config' => array(
       'active' => '1',
@@ -973,6 +995,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -998,7 +1021,7 @@ The content from this field will only be shown to anonymous users.',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '4',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'webform_submission_entity',
