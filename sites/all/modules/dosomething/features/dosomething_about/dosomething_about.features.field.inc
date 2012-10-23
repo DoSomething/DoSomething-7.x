@@ -10,7 +10,7 @@
 function dosomething_about_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'taxonomy_term-about_us-field_about_image'
+  // Exported field: 'taxonomy_term-about_us-field_about_image'.
   $fields['taxonomy_term-about_us-field_about_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_about_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -65,6 +66,7 @@ function dosomething_about_field_default_fields() {
       'required' => 1,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -95,7 +97,7 @@ function dosomething_about_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-about_us-field_about_link'
+  // Exported field: 'taxonomy_term-about_us-field_about_link'.
   $fields['taxonomy_term-about_us-field_about_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -119,6 +121,7 @@ function dosomething_about_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '150',
@@ -138,7 +141,7 @@ function dosomething_about_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 1,
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'taxonomy_term',

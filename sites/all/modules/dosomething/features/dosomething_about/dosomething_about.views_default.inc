@@ -23,6 +23,7 @@ function dosomething_about_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'About Us';
+  $handler->display->display_options['css_class'] = 'about-us-page';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -33,7 +34,7 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'dosomething_apps_grid';
   $handler->display->display_options['style_options']['fields']['image'] = 'field_about_image';
   $handler->display->display_options['style_options']['fields']['title'] = 'name';
-  $handler->display->display_options['style_options']['fields']['text'] = 'nothing';
+  $handler->display->display_options['style_options']['fields']['text'] = 'description';
   $handler->display->display_options['style_options']['fields']['link'] = 'field_about_link';
   $handler->display->display_options['style_options']['settings']['last_adjust'] = TRUE;
   $handler->display->display_options['style_options']['settings']['last_every_nth'] = '3';
@@ -217,6 +218,29 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['fields']['name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['name']['link_to_taxonomy'] = 0;
+  /* Field: Taxonomy term: Term description */
+  $handler->display->display_options['fields']['description']['id'] = 'description';
+  $handler->display->display_options['fields']['description']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['description']['field'] = 'description';
+  $handler->display->display_options['fields']['description']['label'] = '';
+  $handler->display->display_options['fields']['description']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['description']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['description']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['description']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['description']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['description']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['description']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['description']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['description']['hide_alter_empty'] = 1;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
