@@ -94,25 +94,8 @@ function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
  */
 function dosomething_general_page_alter(&$page) {
   if (!extension_loaded('newrelic')) {
-    return;
+    newrelic_get_browser_timing_header()
   }
-
-  // Tweak all the settings so this floats as far up as possible...
-  drupal_add_js(newrelic_get_browser_timing_header(), array(
-    'type' => 'inline',
-    'scope' => 'header',
-    'group' => JS_LIBRARY,
-    'every_page' => TRUE,
-    'weight' => -100,
-  ));
-  // ...and this so it ends up as far down as possible.
-  drupal_add_js(newrelic_get_browser_timing_footer(), array(
-    'type' => 'inline',
-    'scope' => 'footer',
-    'group' => JS_THEME,
-    'every_page' => TRUE,
-    'weight' => 100,
-  ));
 
   $panel_page = page_manager_get_current_page();
   if (isset($panel_page['name'])) {
