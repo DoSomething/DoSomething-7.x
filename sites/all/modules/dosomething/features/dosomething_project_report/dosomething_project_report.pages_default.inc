@@ -17,7 +17,7 @@ function dosomething_project_report_default_page_manager_handlers() {
   $handler->task = 'webform_submission_view';
   $handler->subtask = '';
   $handler->handler = 'http_response';
-  $handler->weight = 1;
+  $handler->weight = -27;
   $handler->conf = array(
     'title' => 'HTTP response code',
     'contexts' => array(),
@@ -47,7 +47,7 @@ function dosomething_project_report_default_page_manager_handlers() {
   $handler->task = 'webform_submission_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = -30;
   $handler->conf = array(
     'title' => 'Project Reports',
     'no_blocks' => 0,
@@ -189,7 +189,51 @@ function dosomething_project_report_default_page_manager_handlers() {
     $display->content['new-4'] = $pane;
     $display->panels['left'][3] = 'new-4';
     $pane = new stdClass();
+    $pane->pid = 'new-5';
+    $pane->panel = 'left';
+    $pane->type = 'ds_website_link';
+    $pane->subtype = 'ds_website_link';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['left'][4] = 'new-5';
+    $pane = new stdClass();
     $pane->pid = 'new-6';
+    $pane->panel = 'left';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'webform_submission_entity:field_others_involved';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:webform_submission_entity_1',
+      'override_title' => 1,
+      'override_title_text' => 'How You Can Get Involved',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = '';
+    $display->content['new-6'] = $pane;
+    $display->panels['left'][5] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
     $pane->subtype = 'project_updates-panel_pane_1';
@@ -216,12 +260,12 @@ function dosomething_project_report_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 6;
     $pane->locks = '';
-    $display->content['new-6'] = $pane;
-    $display->panels['left'][5] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['left'][6] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
     $pane->subtype = 'webform_submission_entity:field_webform_videos';
@@ -238,34 +282,6 @@ function dosomething_project_report_default_page_manager_handlers() {
       ),
       'context' => 'argument_entity_id:webform_submission_entity_1',
       'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 6;
-    $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['left'][6] = 'new-7';
-    $pane = new stdClass();
-    $pane->pid = 'new-8';
-    $pane->panel = 'left';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'webform_submission_entity:field_link';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'title',
-      'formatter' => 'default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'argument_entity_id:webform_submission_entity_1',
-      'override_title' => 0,
       'override_title_text' => '',
     );
     $pane->cache = array();
@@ -387,6 +403,25 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-13';
     $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'service_links-service_links_not_node';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-13'] = $pane;
+    $display->panels['top'][1] = 'new-13';
+    $pane = new stdClass();
+    $pane->pid = 'new-14';
+    $pane->panel = 'top';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
@@ -395,7 +430,7 @@ function dosomething_project_report_default_page_manager_handlers() {
         0 => array(
           'name' => 'perm',
           'settings' => array(
-            'perm' => 'edit all webform submissions',
+            'perm' => 'edit own webform submissions',
           ),
           'context' => 'logged-in-user',
           'not' => FALSE,
@@ -415,29 +450,8 @@ function dosomething_project_report_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $display->content['new-13'] = $pane;
-    $display->panels['top'][1] = 'new-13';
-    $pane = new stdClass();
-    $pane->pid = 'new-14';
-    $pane->panel = 'top';
-    $pane->type = 'block';
-    $pane->subtype = 'dosomething_blocks-dosomething_social_node_buttons';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
     $pane->position = 2;
-    $pane->locks = '';
+    $pane->locks = array();
     $display->content['new-14'] = $pane;
     $display->panels['top'][2] = 'new-14';
   $display->hide_title = PANELS_TITLE_NONE;

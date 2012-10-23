@@ -10,7 +10,7 @@
 function dosomething_project_report_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-project_report-field_body_anonymous'
+  // Exported field: 'node-project_report-field_body_anonymous'.
   $fields['node-project_report-field_body_anonymous'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_project_report_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -84,7 +85,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_report-field_body_logged_in'
+  // Exported field: 'node-project_report-field_body_logged_in'.
   $fields['node-project_report-field_body_logged_in'] = array(
     'field_config' => array(
       'active' => '1',
@@ -108,6 +109,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -157,7 +159,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_update-body'
+  // Exported field: 'node-project_update-body'.
   $fields['node-project_update-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -183,6 +185,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -236,7 +239,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_update-field_embedded_video'
+  // Exported field: 'node-project_update-field_embedded_video'.
   $fields['node-project_update-field_embedded_video'] = array(
     'field_config' => array(
       'active' => '1',
@@ -253,6 +256,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -332,7 +336,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_update-field_project'
+  // Exported field: 'node-project_update-field_project'.
   $fields['node-project_update-field_project'] = array(
     'field_config' => array(
       'active' => '1',
@@ -341,7 +345,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_types' => array(),
       'field_name' => 'field_project',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(
         'nid' => array(
@@ -356,11 +360,11 @@ The content from this field will only be shown to anonymous users.',
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'profile2_private' => FALSE,
         'referenceable_types' => array(
-          '301_redirects' => 0,
           'action_guide' => 0,
           'api_key' => 0,
           'awards_archive' => 0,
@@ -368,59 +372,53 @@ The content from this field will only be shown to anonymous users.',
           'blog' => 0,
           'campaign' => 0,
           'campaign_art_2011' => 0,
+          'campaign_blog_post' => 0,
           'campaign_bully_2011' => 0,
           'campaign_cancer_2011' => 0,
           'campaign_contact_form' => 0,
+          'campaign_content_page' => 0,
           'campaign_ew_2011' => 0,
           'campaign_macys_2011' => 0,
           'campaign_report_back' => 0,
           'campaign_sign_up' => 0,
           'campaign_sports_2011' => 0,
           'cancer_2011_signup' => 0,
-          'cause' => 0,
           'cause_video' => 0,
           'club' => 0,
           'club_event' => 0,
-          'club_first_meeting_cash' => 0,
           'decade_2011_signup' => 0,
           'ds_award_judging' => 0,
-          'dsaward_app' => 0,
           'dsaward_rec' => 0,
           'dsu_askprof' => 0,
           'dsu_guides' => 0,
           'easy_idea' => 0,
           'editorial_content_' => 0,
-          'editorial_project' => 0,
           'ewaste_signup_2011' => 0,
           'final_grant_update' => 0,
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
-          'grants_database' => 0,
           'help_ticket' => 0,
-          'huffpo' => 0,
-          'ididthis' => 0,
-          'issue' => 0,
+          'member_opportunity' => 0,
           'page' => 0,
           'poll' => 0,
           'press' => 0,
+          'program_short_form' => 0,
           'project_report' => 0,
           'project_update' => 0,
           'scholarship' => 0,
           'scholarship_application' => 0,
-          'scholarship_update' => 0,
           'school' => 0,
           'scroller' => 0,
-          'staples_members' => 0,
+          'share_of_day' => 0,
+          'sponsor' => 0,
           'tips_and_tools' => 0,
           'webform' => 0,
         ),
         'view' => array(
-          'args' => array(
-            0 => '',
-          ),
-          'display_name' => 'default',
-          'view_name' => '--',
+          'args' => array(),
+          'display_name' => '',
+          'view_name' => '',
         ),
       ),
       'translatable' => '0',
@@ -474,7 +472,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_update-field_project_photo'
+  // Exported field: 'node-project_update-field_project_photo'.
   $fields['node-project_update-field_project_photo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -498,6 +496,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -574,6 +573,7 @@ The content from this field will only be shown to anonymous users.',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'project_photos',
         'file_extensions' => 'jpg jpeg png gif',
         'max_filesize' => '0',
@@ -642,7 +642,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_update-field_update_people_impacted'
+  // Exported field: 'node-project_update-field_update_people_impacted'.
   $fields['node-project_update-field_update_people_impacted'] = array(
     'field_config' => array(
       'active' => '1',
@@ -652,6 +652,7 @@ The content from this field will only be shown to anonymous users.',
       'field_name' => 'field_update_people_impacted',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'allowed_values' => array(),
@@ -736,7 +737,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_update-field_update_people_involved'
+  // Exported field: 'node-project_update-field_update_people_involved'.
   $fields['node-project_update-field_update_people_involved'] = array(
     'field_config' => array(
       'active' => '1',
@@ -749,6 +750,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'allowed_values' => array(),
@@ -830,7 +832,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_update-field_webform_project_submission'
+  // Exported field: 'node-project_update-field_webform_project_submission'.
   $fields['node-project_update-field_webform_project_submission'] = array(
     'field_config' => array(
       'active' => '1',
@@ -847,6 +849,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'entityreference_entity_field',
@@ -918,7 +921,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'node-project_update-upload'
+  // Exported field: 'node-project_update-upload'.
   $fields['node-project_update-upload'] = array(
     'field_config' => array(
       'active' => '1',
@@ -934,6 +937,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'default_file' => 0,
@@ -1010,7 +1014,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'taxonomy_term-grants_scholarships-field_grant_scholarship'
+  // Exported field: 'taxonomy_term-grants_scholarships-field_grant_scholarship'.
   $fields['taxonomy_term-grants_scholarships-field_grant_scholarship'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1027,6 +1031,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1070,7 +1075,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_5-field_causes_image'
+  // Exported field: 'taxonomy_term-vocabulary_5-field_causes_image'.
   $fields['taxonomy_term-vocabulary_5-field_causes_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1091,6 +1096,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -1121,6 +1127,7 @@ The content from this field will only be shown to anonymous users.',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -1151,7 +1158,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_action_guide_reference'
+  // Exported field: 'webform_submission_entity-project_report-field_action_guide_reference'.
   $fields['webform_submission_entity-project_report-field_action_guide_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1175,6 +1182,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -1233,7 +1241,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_essay_build_it'
+  // Exported field: 'webform_submission_entity-project_report-field_essay_build_it'.
   $fields['webform_submission_entity-project_report-field_essay_build_it'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1257,6 +1265,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1303,7 +1312,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_essay_see_it'
+  // Exported field: 'webform_submission_entity-project_report-field_essay_see_it'.
   $fields['webform_submission_entity-project_report-field_essay_see_it'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1327,6 +1336,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'allowed_values' => '',
@@ -1373,7 +1383,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_geocode_data'
+  // Exported field: 'webform_submission_entity-project_report-field_geocode_data'.
   $fields['webform_submission_entity-project_report-field_geocode_data'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1386,6 +1396,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'geofield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1433,7 +1444,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_grant_winner'
+  // Exported field: 'webform_submission_entity-project_report-field_grant_winner'.
   $fields['webform_submission_entity-project_report-field_grant_winner'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1457,6 +1468,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -1501,7 +1513,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_impact_amount'
+  // Exported field: 'webform_submission_entity-project_report-field_impact_amount'.
   $fields['webform_submission_entity-project_report-field_impact_amount'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1514,6 +1526,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1565,7 +1578,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_impact_type'
+  // Exported field: 'webform_submission_entity-project_report-field_impact_type'.
   $fields['webform_submission_entity-project_report-field_impact_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1582,6 +1595,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1627,7 +1641,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_link'
+  // Exported field: 'webform_submission_entity-project_report-field_link'.
   $fields['webform_submission_entity-project_report-field_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1637,6 +1651,7 @@ The content from this field will only be shown to anonymous users.',
       'field_name' => 'field_link',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -1700,7 +1715,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_participants'
+  // Exported field: 'webform_submission_entity-project_report-field_participants'.
   $fields['webform_submission_entity-project_report-field_participants'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1724,6 +1739,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1766,7 +1782,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_picture'
+  // Exported field: 'webform_submission_entity-project_report-field_picture'.
   $fields['webform_submission_entity-project_report-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1790,6 +1806,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -1825,6 +1842,7 @@ The content from this field will only be shown to anonymous users.',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -1855,7 +1873,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_project_start_date'
+  // Exported field: 'webform_submission_entity-project_report-field_project_start_date'.
   $fields['webform_submission_entity-project_report-field_project_start_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1868,6 +1886,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -1937,7 +1956,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_project_title'
+  // Exported field: 'webform_submission_entity-project_report-field_project_title'.
   $fields['webform_submission_entity-project_report-field_project_title'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1961,6 +1980,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -2003,7 +2023,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_project_type'
+  // Exported field: 'webform_submission_entity-project_report-field_project_type'.
   $fields['webform_submission_entity-project_report-field_project_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2020,6 +2040,7 @@ The content from this field will only be shown to anonymous users.',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -2068,7 +2089,7 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_update_people_involved'
+  // Exported field: 'webform_submission_entity-project_report-field_update_people_involved'.
   $fields['webform_submission_entity-project_report-field_update_people_involved'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2081,6 +2102,7 @@ The content from this field will only be shown to anonymous users.',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'allowed_values' => array(),
@@ -2137,7 +2159,7 @@ Use numbers only (no text).',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_webform_address'
+  // Exported field: 'webform_submission_entity-project_report-field_webform_address'.
   $fields['webform_submission_entity-project_report-field_webform_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2150,6 +2172,7 @@ Use numbers only (no text).',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'addressfield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -2211,7 +2234,7 @@ Use numbers only (no text).',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-field_webform_videos'
+  // Exported field: 'webform_submission_entity-project_report-field_webform_videos'.
   $fields['webform_submission_entity-project_report-field_webform_videos'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2228,6 +2251,7 @@ Use numbers only (no text).',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'mediafield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -2288,7 +2312,7 @@ Use numbers only (no text).',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-group_group'
+  // Exported field: 'webform_submission_entity-project_report-group_group'.
   $fields['webform_submission_entity-project_report-group_group'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2305,6 +2329,7 @@ Use numbers only (no text).',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'no_ui' => TRUE,
       'settings' => array(
@@ -2368,7 +2393,7 @@ Use numbers only (no text).',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-project_report-taxonomy_vocabulary_5'
+  // Exported field: 'webform_submission_entity-project_report-taxonomy_vocabulary_5'.
   $fields['webform_submission_entity-project_report-taxonomy_vocabulary_5'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2392,6 +2417,7 @@ Use numbers only (no text).',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
