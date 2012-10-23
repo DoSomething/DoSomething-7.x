@@ -150,7 +150,7 @@ function robocalls_field_default_fields() {
           'display_label' => 0,
         ),
         'type' => 'options_onoff',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
@@ -215,7 +215,7 @@ function robocalls_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -400,7 +400,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );
@@ -531,7 +531,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
@@ -681,7 +681,7 @@ function robocalls_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_select',
-        'weight' => '5',
+        'weight' => '4',
       ),
     ),
   );
@@ -748,7 +748,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '5',
       ),
     ),
   );
