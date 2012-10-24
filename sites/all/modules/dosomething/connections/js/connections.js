@@ -173,16 +173,21 @@
           else if (response.status == 'not_authorized') {
             // Unauthorized
             if (things.require_login == 1) {
-              FB.api('/me/permissions', function (response) {
-                var perms = response.data[0];
-                if (!perms.publish_actions) {
-                  FB.ui({
-                    method: 'permissions.request',
-                    perms: 'publish_actions',
-                    display: 'popup'
-                  });
-                }
-              });
+              if (Drupal.behaviors.fb.asked_permission == false) {
+                Drupal.behaviors.fb.asked_permission = true;
+                FB.api('/me/permissions', function (response) {
+                  var perms = response.data[0];
+                  var asked = false;
+                  if (!perms.publish_actions && !asked) {
+                    FB.ui({
+                      method: 'permissions.request',
+                      perms: 'publish_actions',
+                      display: 'popoup'
+                    });
+                    asked = true;
+                  }
+                });
+              }
             }
           }
           else {

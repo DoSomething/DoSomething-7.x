@@ -8,6 +8,8 @@
     }
   };
   Drupal.friendFinder = function (attach, permission, callback, auto_click) {
+    asked_permission = false;
+
     var to = window.setInterval(function () {
       if (typeof FB != 'undefined') {
         window.clearInterval(to);
@@ -31,9 +33,12 @@
       else {
         attach.click(function (e) {
           e.preventDefault();
-          FB.login(function(authResponse) {
-            attachClick(attach, callback);
-          }, {scope: permission});
+          if (typeof Drupal.friendFinder.asked_permission == 'undefined' || Drupal.friendFinder.asked_permission == false) {
+            Drupal.friendFinder.asked_permission = true;
+            FB.login(function(authResponse) {
+              attachClick(attach, callback);
+            }, {scope: permission});
+          }
         });
 
       	if (auto_click) {
