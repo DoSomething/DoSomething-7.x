@@ -129,12 +129,16 @@ function sms_flow_menu() {
  * for different endpoints to trigger different keyword paths
  */
 function sms_flow_incoming_callback($path) {
+  // TODO: $keyword = path?
   switch ($path) {
     case 'drives-invite':
       $keyword = 'drives-invite';
       break;
     case 'ftaf':
       $keyword = 'ftaf';
+      break;
+    case 'alcoa-report-back':
+      $keyword = 'alcoa-report-back';
       break;
     default:
       watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
@@ -205,6 +209,7 @@ function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array(
  */
 function sms_flow_conductor_sms_keywords() {
   return array(
+    'alcoa-report-back' => 'sms_flow_alcoa_report_back',
     'drives-invite' => 'sms_flow_drives_invite',
     'ftaf' => 'sms_flow_ftaf',
   );
@@ -341,5 +346,50 @@ function sms_flow_default_conductor_workflows() {
 
   $workflows[$workflow->name] = $workflow;
 
+  //
+  // sms_flow_alcoa_report_back workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_alcoa_report_back';
+  $workflow->title = '50 Cans Report Back';
+  $workflow->description = 'Submits the 50 Cans report back';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('50cans_report_back');
+
+  $activity = $workflow->newActivity('50cans_report_back');
+  $activity->name = '50cans_report_back';
+  $activity->title = '50 Cans Report Back';
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('50cans_report_back');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
   return $workflows;
+}
+
+/**
+ * Get user account from cell number.
+ * find_user_by_cell() doesn't handle international code when searching by profile's
+ * field_user_mobile value. Only handles international code with an @mobile email address
+ */
+function _sms_flow_find_user_by_cell($mobile) {
+  $account = dosomething_general_find_user_by_cell($mobile);
+  if (!$account && strlen($mobile) > 10) {
+    $mobile = substr($mobile, -10);
+    $account = dosomething_general_find_user_by_cell($mobile);
+  }
+
+  return $account;
 }
