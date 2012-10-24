@@ -26,10 +26,12 @@
             if (typeof playing[a] == 'undefined' || !playing[a]) {
               playing[a] = true;
               $(this).parent().find('audio').trigger('play');
+              $(this).addClass('paused');
             }
             else {
               playing[a] = false;
               $(this).parent().find('audio').trigger('pause');
+              $(this).removeClass('paused');
             }
             return false;
           });
@@ -48,10 +50,12 @@
           if (!previewing) {
             previewing = true;
             $('#robocalls-preview-audio').trigger('play');
+            $(this).find('img').attr('src', '/sites/all/modules/dosomething/features/robocalls/images/pause-preview.png');
           }
           else {
             previewing = false;
             $('#robocalls-preview-audio').trigger('pause');
+            $(this).find('img').attr('src', '/sites/all/modules/dosomething/features/robocalls/images/robocall-preview.png');
           }
           return false;
         });

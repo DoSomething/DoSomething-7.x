@@ -233,6 +233,9 @@ div.file-audio a {
 	color: transparent;
 	display: block;
 }
+div.file-audio a.paused {
+	background: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png) top left no-repeat;
+}
 div.file-audio {
 	position: absolute;
 	z-index: 0;
