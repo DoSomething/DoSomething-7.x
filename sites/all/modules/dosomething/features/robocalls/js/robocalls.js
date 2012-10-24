@@ -62,9 +62,46 @@
           });
         }
 
+        var twitter_desc = '';
+        switch (name) {
+          case 'Justin Long':
+            twitter_desc = 'Help your friends find their V-Spot this November 6th with a phone call from @dosomething and @JustinLong: http://dsorg.us/RdnfDl';
+          break;
+          case 'Tyler Oakley':
+            if (cause == 'Voting') {
+              twitter_desc = 'Help your friends find their V-Spot this November 6th with a phone call from @dosomething and @TylerOakley: http://dsorg.us/Rp5TRM';
+            }
+            else {
+              twitter_desc = 'Wish your friend a happy birthday with a phone call from @dosomething and @tyleroakley: http://dsorg.us/QNoi9j';
+            }
+          break;
+          case 'Randall (Honey Badger)':
+            if (cause == 'Animals') {
+              twitter_desc = 'Let your friends know about shelter animals in need with a phone call from @dosomething and @Randallsanimals: http://dsorg.us/TCsr0G';
+            }
+            else {
+              twitter_desc = 'Wish your friend a happy birthday with a phone call from @dosomething and @randallsanimals: http://dsorg.us/T72khv';
+            }
+          break;
+          case 'Hayden Panettiere':
+            twitter_desc = 'Wish your friend a happy birthday with a phone call from @dosomething and @haydenpanettier: http://dsorg.us/O15SAU';
+          break;
+          case 'Bella Thorne':
+            twitter_desc = 'Wish your friend a happy birthday with a phone call from @dosomething and @bellathorne: http://dsorg.us/Se77Bl';
+          break;
+          case 'Harry Shum Jr':
+            twitter_desc = 'Wish your friend a happy birthday with a phone call from @dosomething and @iharryshum: http://dsorg.us/T6Qt2S';
+          break;
+          case 'Shenae Grimes':
+            twitter_desc = 'Wish your friend a happy birthday with a phone call from @dosomething and @shenaegrimes: http://dsorg.us/RXkqH3';
+          break;
+        }
+        
+        twitter_desc = encodeURIComponent(twitter_desc);
+
         $('#robocalls-twitter-button')
           .attr('href',
-              $('#robocalls-twitter-button').attr('href') + encodeURIComponent('Awesome.  I just had ' + name + ' call my friend to say "Do Something about ' + cause + '."'));
+              $('#robocalls-twitter-button').attr('href') + twitter_desc);
       }
 
       popupForm.dialog({

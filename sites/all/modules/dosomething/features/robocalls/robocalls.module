@@ -69,6 +69,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
        $term_info['name'] = $term->name;
        $term_info['desc'] = $term->description;
        $term_info['image'] = $term->field_celeb_photo[LANGUAGE_NONE][0]['uri'];
+       $term_info['flag'] = $term->field_short_name[LANGUAGE_NONE][0]['value'];
 
       $form['call_limit'] = array(
         '#type' => 'hidden',
@@ -470,7 +471,7 @@ function robocalls_call_submit(&$form, &$form_state) {
      * the pop-up form with the correct information.
      */
    $parent_name = $term_name = '';
-   if ($form_state['side_bar']) {
+   #if ($form_state['side_bar']) {
       $pi = $sub['field_celebrity_chooser'][LANGUAGE_NONE][0]['tid'];
       $p = taxonomy_get_parents($pi);
       $p = current($p);
@@ -478,9 +479,9 @@ function robocalls_call_submit(&$form, &$form_state) {
 
       $t = taxonomy_term_load($pi);
       $term_name = $t->name;
-   }
+   #}
 
-   if (!user_is_logged_in() || $form_state['side_bar']) {
+   #if (!user_is_logged_in() || $form_state['side_bar']) {
       $code = base64_encode(json_encode(array(
          'name' => $term_name,
          'cause' => $parent_name,
@@ -491,10 +492,10 @@ function robocalls_call_submit(&$form, &$form_state) {
          'redirect' => $_SERVER['HTTP_REFERER'],
          'mconnect_id' => $mconnect_id
       )));
-    }
-    else {
-      $code = 'true';
-    }
+   # }
+   # else {
+   #   $code = 'true';
+   # }
    /*else {
       // Otherwise, we'll have all the information we need because we're on the same page.
       $code = 'true';
@@ -526,18 +527,36 @@ function robocalls_page_alter(&$page) {
           'content' => url(substr(request_uri(), 1), array('absolute' => true)),
         ),
       );
+
+      $tdesc = $ttitle = '';
+      switch ($term_info['flag']) {
+        case 'Animals':
+          $tdesc = t('4 million shelter animals were euthanized last year because they couldn\'t find homes, find out how to do something about it here.');
+          $ttitle = t('Let your friends know about animals in need with a phone call from !name', array('!name' => $term_info['name']));
+        break;
+        case 'Birthday':
+          $tdesc = t('Is your friend a huge fan of !name? Well, you\'re in luck, click here to have them call your friend and wish them a Happy Birthday now!', array('!name' => $term_info['name']));
+          $ttitle = t('Wish your firends a happy birthday with a phone call from !name', array('!name' => $term_info['name']));
+        break;
+        case 'Voting':
+          $tdesc = t('1.9 million people couldn\'t find their voting location during the last Presidential election, make sure your friends know where theirs is this November 6th.');
+          $ttitle = t('Help your friends find their V-Spot with a phone call from !name', array('!name' => $term_info['name']));
+        break;
+      }
+
       $title = array(
        '#tag' => 'meta',
        '#attributes' => array(
           'property' => 'og:title', 
-          'content' => 'I just sent you a call from ' . $term_info['name'] . '!'
+          'content' => $ttitle
         ),
       );
+
       $desc = array(
        '#tag' => 'meta',
        '#attributes' => array(
           'property' => 'og:description', 
-          'content' => $term_info['desc']
+          'content' => $tdesc
         ),
       );
       $image = array(

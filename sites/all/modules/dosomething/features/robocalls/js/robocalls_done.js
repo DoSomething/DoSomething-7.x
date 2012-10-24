@@ -48,6 +48,7 @@ jQuery(function() {
 		var thecode = (decodeURIComponent(code.replace('done=', '')));
 		var c = (base64_decode(thecode));
 		var res = jQuery.parseJSON(c);
+        console.log(res);
 		person = res['name'];
 		cause = res['cause'];
         limit = res['passed_limit'];
