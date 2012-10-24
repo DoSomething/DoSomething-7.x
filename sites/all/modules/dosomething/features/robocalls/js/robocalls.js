@@ -7,14 +7,30 @@
 
       var auds = $('span.file').find('a');
       if (auds.length > 1) {
+        var paused = [];
+        var playing = [];
+        var a = 0;
+
         auds.each(function(e) {
+          a++;
           var na = $('<audio></audio>');
+          $(this).addClass('preview-' + a);
           na.attr('src', $(this).attr('href'));
           $(this).parent().append(na);
 
           $(this).click(function() {
+            // Stop any other previews.
             $('audio').trigger('pause');
-            $(this).parent().find('audio').trigger('play');
+
+            var a = $(this).attr('class').replace('preview-', '');
+            if (typeof playing[a] == 'undefined' || !playing[a]) {
+              playing[a] = true;
+              $(this).parent().find('audio').trigger('play');
+            }
+            else {
+              playing[a] = false;
+              $(this).parent().find('audio').trigger('pause');
+            }
             return false;
           });
         });
@@ -27,8 +43,16 @@
       }
 
       if ($('#robocalls_preview_link').length > 0) {
+        var previewing = false;
         $('#robocalls_preview_link').click(function() {
-          $('#robocalls-preview-audio').trigger('play');
+          if (!previewing) {
+            previewing = true;
+            $('#robocalls-preview-audio').trigger('play');
+          }
+          else {
+            previewing = false;
+            $('#robocalls-preview-audio').trigger('pause');
+          }
           return false;
         });
       }
