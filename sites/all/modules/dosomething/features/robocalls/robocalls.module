@@ -140,7 +140,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         );
 
         $form['preview']['audio'] = array(
-           '#markup' => '<audio id="robocalls-preview-audio" src="/files' . str_replace(array(DRUPAL_ROOT . '/files', '/var/www/nfs'), '', drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) . '"></audio>'
+           '#markup' => '<audio id="robocalls-preview-audio" src="/files' . str_replace(array(DRUPAL_ROOT . '/files', 'var/www/nfs'), '', drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) . '"></audio>'
         );
 
         $form['preview']['button'] = array(
