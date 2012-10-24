@@ -286,7 +286,7 @@
 		<div id="post-title">Post to Friends' Walls</div>
 	</div>
 	<div id="zone">
-		<div id="img"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/372351_53000982_276042559_q.jpg" alt="" /></div>
+		<div id="img"><img src="<?php echo $photo; ?>" alt="" /></div>
 		<div id="text">
 			<strong>To:</strong>
 			<div id="receivers-list">

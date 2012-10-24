@@ -303,39 +303,41 @@
     feed_runner: function(things, share, callback) {
       // If we are allowing people to post to multiple walls...
       if (things.allow_multiple > 0) {
-        // Create a mock button on the site to simulate a click-through on the friendSelector
-        var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
-        fbm.appendTo('body').queue(function() {
-          Drupal.friendFinder.t = things;
-          Drupal.friendFinder($('.fb-feed-friend-finder'), 'publish_stream', function (friends) {
-            var things = {};
-            if (Drupal.friendFinder.t) {
-              things = Drupal.friendFinder.t;
-            }
-
-            things.friends = friends;
-            Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
-              var fbObj = {
-                message: response.comments,
-                name: response.title,
-                picture: response.picture,
-                description: response.description,
-                caption: response.caption,
-                link: response.link
-              };
-
-              for (var i in things.friends) {
-                FB.api('/' + things.friends[i] + '/feed', 'post', fbObj, function(response) {
-                  Drupal.behaviors.fb.log(response);
-                });
+        Drupal.behaviors.fb.real_auth(things, function() {
+          // Create a mock button on the site to simulate a click-through on the friendSelector
+          var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
+          fbm.appendTo('body').queue(function() {
+            Drupal.friendFinder.t = things;
+            Drupal.friendFinder($('.fb-feed-friend-finder'), 'publish_stream', function (friends) {
+              var things = {};
+              if (Drupal.friendFinder.t) {
+                things = Drupal.friendFinder.t;
               }
 
-              // Callback for when all posting has completed.
-              if (typeof callback == 'function') {
-                callback();
-              }
-            });
-          }, true);
+              things.friends = friends;
+              Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
+                var fbObj = {
+                  message: response.comments,
+                  name: response.title,
+                  picture: response.picture,
+                  description: response.description,
+                  caption: response.caption,
+                  link: response.link
+                };
+
+                for (var i in things.friends) {
+                  FB.api('/' + things.friends[i] + '/feed', 'post', fbObj, function(response) {
+                    Drupal.behaviors.fb.log(response);
+                  });
+                }
+
+                // Callback for when all posting has completed.
+                if (typeof callback == 'function') {
+                  callback();
+                }
+              });
+            }, true);
+          });
         });
       }
       else {
