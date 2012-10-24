@@ -48,7 +48,6 @@ jQuery(function() {
 		var thecode = (decodeURIComponent(code.replace('done=', '')));
 		var c = (base64_decode(thecode));
 		var res = jQuery.parseJSON(c);
-        console.log(res);
 		person = res['name'];
 		cause = res['cause'];
         limit = res['passed_limit'];
@@ -56,11 +55,27 @@ jQuery(function() {
 
 	jQuery.fn.dsRobocallsDone(person, cause, limit);
 
+    var ftitle, fdesc;
+      switch (cause) {
+        case 'Animals':
+          ftitle = 'Let your friends know about animals in need with a phone call from ' + person;
+          fdesc = '4 million shelter animals were euthanized last year because they couldn\'t find homes, find out how to do something about it here.';
+        break;
+        case 'Birthday':
+          ftitle = 'Wish your firends a happy birthday with a phone call from ' + person;
+          fdesc = 'Is your friend a huge fan of ' + person + '? Well, you\'re in luck, click here to have them call your friend and wish them a Happy Birthday now!';
+        break;
+        case 'Voting':
+          ftitle = 'Help your friends find their V-Spot with a phone call from ' + person;
+          fdesc = '1.9 million people couldn\'t find their voting location during the last Presidential election, make sure your friends know where theirs is this November 6th.';
+        break;
+      }
+
     var obj = {
         method: 'feed',
-        link: 'http://www.dosomething.org/causecall',
-        name: 'DoSomething Cause Calls',
-        description: 'Awesome.  I just had ' + person + 'call my friend to say "Do Something about ' + cause + '"'
+        link: document.location.href,
+        name: ftitle,
+        description: fdesc
       };
 
       jQuery('#robocalls-fb-share-link').click(function () {
