@@ -8,6 +8,10 @@ function picsforpets_preprocess_page(&$variables) {
   $variables['front_page'] = url() . 'fb/pics-for-pets/gallery';
   drupal_add_js(drupal_get_path('theme', 'picsforpets') . '/js/osDetect.js');
 
+  if (empty($_SERVER['HTTPS'])) {
+    header('location: https://' . $_SERVER['HTTP_HOST'] . request_uri());
+  }
+
   // On the landing page, don't add the footer menu.
   if (arg(0) == 'fb' && arg(1) == 'pics-for-pets' && !arg(2)) {
     // screw the landing page!
