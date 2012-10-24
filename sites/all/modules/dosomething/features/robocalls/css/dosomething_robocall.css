@@ -162,7 +162,7 @@ div.robocalls-submitted-message-dialog #edit-title-text p {
 	padding: 0px;
 }
 div#edit-or--2 {
-	border-top: 1px solid #DBD9D8;
+	/*border-top: 1px solid #DBD9D8;*/
 	padding-top: 10px;
 	margin: 10px 0px;
 
@@ -174,10 +174,6 @@ div.robocalls-submitted-message-dialog a.ui-dialog-titlebar-close { float: right
 div.robocalls-awesome-and-sharing {
 	text-align: center;
 	font-size: 11px;
-}
-
-div.send-another-robocall {
-	text-align: right;
 }
 
 div.share-images {
@@ -477,4 +473,10 @@ h4 { font-size: 13pt; }
 
 div.send-another-robocall {
 	text-align: center;
+	margin: 40px 0px;
+}
+
+div.send-another-robocall a.go-button {
+	font-size: 19px;
+	padding: 17px 70px;
 }

@@ -116,14 +116,12 @@ function robocalls_default_page_manager_handlers() {
 			<h2>Thanks for Sending a Celebrity Cause Call.</h2> 
 		   </label>
 		</div>
-		<div class="separator form-wrapper" id="edit-or--2">Share The Celebrity Cause Call With Friends:</div>
-		<div class="robocalls-awesome-and-sharing with-links">
-			Awesome.  I just had %term:name call my friend to say "Do Something about %term:parent."
-			<div><a href="http://www.dosomething.org/causecall">http://www.dosomething.org/causecall</a></div>
-			<div class="share-images"><a href="http://www.facebook.com/sharer/sharer.php?u=http://www.dosomething.org/causecall" id="robocalls-fb-share-link" target="_blank"><img src="http://brandthunder.com/wp/wp-content/uploads/2012/07/Facebook-skins-post.png" width="42" height="42" alt="" /></a> <a id="robocalls-twitter-button" href=\'http://twitter.com/intent/tweet?text=\'><img src="http://www.simplyzesty.com/wp-content/uploads/2011/08/Twitter-Logo-300x293.jpg" width="42" height="42" alt="" /></a></div>
-		</div>
 		<div class="send-another-robocall">
 			<a href="/calloffame" class="go-button">Send Another Call</a>
+		</div>
+		<div class="separator form-wrapper" id="edit-or--2">Share The Celebrity Cause Call With Friends:</div>
+		<div class="robocalls-awesome-and-sharing with-links">
+			<div class="share-images"><a href="http://www.facebook.com/sharer/sharer.php?u=http://www.dosomething.org/causecall" id="robocalls-fb-share-link" target="_blank"><img src="http://brandthunder.com/wp/wp-content/uploads/2012/07/Facebook-skins-post.png" width="42" height="42" alt="" /></a> <a id="robocalls-twitter-button" href=\'http://twitter.com/intent/tweet?text=\'><img src="http://www.simplyzesty.com/wp-content/uploads/2011/08/Twitter-Logo-300x293.jpg" width="42" height="42" alt="" /></a></div>
 		</div>
 	</div>
 </div>',
@@ -306,6 +304,28 @@ function robocalls_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => 'Blah blah something about blah blah',
+      'format' => '1',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-10'] = $pane;
+    $display->panels['who_should_____call_'][2] = 'new-10';
+    $pane = new stdClass();
+    $pane->pid = 'new-11';
+    $pane->panel = 'who_should_____call_';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
       'admin_title' => 'Who should blah blah call?',
       'title' => '',
       'body' => '<h2>Step 2: Who should %term:name call?</h2>',
@@ -319,12 +339,12 @@ function robocalls_default_page_manager_handlers() {
       'css_class' => '',
     );
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['who_should_____call_'][2] = 'new-10';
+    $display->content['new-11'] = $pane;
+    $display->panels['who_should_____call_'][3] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-12';
     $pane->panel = 'who_should_____call_';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -341,10 +361,10 @@ function robocalls_default_page_manager_handlers() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = array();
-    $display->content['new-11'] = $pane;
-    $display->panels['who_should_____call_'][3] = 'new-11';
+    $display->content['new-12'] = $pane;
+    $display->panels['who_should_____call_'][4] = 'new-12';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
