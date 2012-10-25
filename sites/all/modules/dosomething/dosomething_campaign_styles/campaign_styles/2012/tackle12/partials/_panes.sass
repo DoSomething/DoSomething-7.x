@@ -1,0 +1,509 @@
+content-infographic"content-infographic"// PANES 
+
+//			//
+//	#header			- sign up -
+//			//
+#header
+  background: transparent url("//files.dosomething.org/files/campaigns/tackle12/tackle-logo.png") no-repeat center top
+  margin: 20px 0 0
+  padding: 0
+  h1, h2
+    text-align: left
+    color: black
+    margin: 0
+  h1
+    margin: 0 0 0.5em 0
+    font-weight: 500
+    font-size: 2.4em
+  h2
+    text-align: center
+    text-transform: uppercase
+    font-size: 1.8em
+    font-family: $din
+    font-weight: 600
+    width: 80%
+    margin: 0 auto
+    line-height: 1.2em
+    span
+      color: $secondaryColor
+      font-weight: 700
+      padding: 0
+  span
+    padding: 0
+    text-align: center
+  .tagline
+    padding: 184px 0 0 0
+  .pane-campaign-signed
+    h2
+      text-align: center
+      text-transform: uppercase
+    .action-now
+      margin: 0 auto
+      display: inline-block
+      text-align: center         
+      img
+        margin: 0em 0.8em 0 0
+        float: left
+      .go-button
+        margin-top: 0.1em 
+        float: left
+        font-size: 1.8em    
+
+
+//			//
+//	#action
+//			//
+
+#action.action-anonymous, #action.action-participant
+  margin-top: 10px
+  h3
+    line-height: 2em
+  p
+    text-align: left
+  img
+    display: block
+    margin: 0 auto
+
+#action.action-participant
+  text-align: left
+  padding: 2% 0
+  h2
+    background: $panelBG
+    display: inline-block
+    padding: 0 4%
+    text-transform: uppercase
+    color: white
+    margin: 2% 0 1%
+    min-width: 250px
+  p
+    margin: 0 3% 2% 6%
+  img.action-print
+    float: right
+    margin: -1% 4% -2% 0
+  img.email-help
+    margin: 4% auto 1% 
+  .divider
+    margin-left: 2%
+    margin-right: 2%
+  ul
+    margin: 0.7em 5% 0 7%
+    list-style: disc
+  li
+    margin: 0 0 0.7em
+    line-height: 1.4em
+    color: $mainColor
+    span
+      color: black       
+
+#action.action-leader
+  text-align: left
+  h1
+    font-size: 1.2em
+    margin: 0 0 0 -1em
+  ul
+    padding: 1em 1.5em
+  li
+    list-style: disc
+  b
+    color: $mainCopy
+    background: $buttonBG
+    width: 10em
+    display: block
+    text-align: center
+    padding: 0.2em 0 0 0
+  strong
+    color: $mainCopy
+
+.email-spit
+  margin: 0 auto
+  width: 90%
+  display: block
+  img
+    width: 50%
+
+a.print-pdf, a.print-pdf img
+  display: block
+  margin: 0 auto
+
+a.print-pdf
+  width: 30%
+  img
+    width: 100%
+
+//      //
+//  .search     - search -
+//      //
+
+/* search block */
+#search
+  hr
+    width: 60%
+    border: 1px solid #ccc
+  .top-hr
+    margin: 3em auto 1em
+  .bottom-hr
+    margin: 1em auto 3em
+  .search-zip
+    display: inline-block
+    margin: 0 auto  
+  label, input
+    float: left
+  label
+    font-weight: 500
+    font-size: 1.2em
+    margin: 0.35em 0 0
+    color: #222
+  input[type=text]
+    margin: 0.2em 1em
+    border: 1px solid #ccc
+    border-radius: 4px  
+  input[type=submit]
+    font-weight: 500
+    margin: 0  
+
+.pane-drive-search-panel-pane-1 form
+  width: 50%
+  margin: 1em auto 
+  padding: 1em
+  border-top: 2px solid $borderColor
+  border-bottom: 2px solid $borderColor
+
+#edit-field-geofield-distance-wrapper /* wraps everything but "search" */
+  width: 67%
+  margin: 0.4em 0 0 0
+
+.form-type-geofield-proximity /* drupal code, so clean! (another wrapper) */
+  width: 100%
+
+.form-item-field-geofield-distance-distance /* distance wrapper */,
+.form-item-field-geofield-distance-origin /* zip code wrapper */
+  input
+    display: block
+    margin: 0 auto
+    padding: 0
+    text-align: center
+    +border-radius(3px)
+  
+.form-item-field-geofield-distance-distance /* distance wrapper */
+  display: none
+
+.geofield-proximity-origin-from /* faux label "Zip code:" */
+  text-align: center
+  padding: 0.2em 0 0 0
+  width: 50%
+
+.form-item-field-geofield-distance-origin /* zip code wrapper */
+  width: 33%
+  input
+    background-color: #ebebeb
+
+.views-submit-button input /* search button */
+  text-transform: uppercase
+  font-weight: 500
+
+/* results block */ 
+.view-id-drive_search .view-content /* outermost wrapper */
+  background-color: #ebebeb
+  padding: 1em
+
+.drive-search-wrapper ul /* clear floats */
+  overflow: auto
+  margin: 0 auto
+  width: 95%
+
+.views-label-field-team-name /* hides labels above search results */,
+.views-label-field-drive-location
+  display: none
+
+li.views-row /* clear floats on <li> wrapping the following fields: */
+  width: 100%
+  overflow: hidden
+  margin-bottom: 2em
+
+.views-field-field-team-name /* drive name */,
+.views-field-field-drive-location /* drive logistics */,
+.views-field-field-geofield-distance /* drive distance */,
+.views-field-nothing /* "join this drive" button  */
+  width: 25%
+  float: left
+
+.views-field-field-drive-location,
+.views-field-field-geofield-distance
+  font-size: 0.8em
+  font-weight: 400
+  font-family: din-web-reg
+  line-height: 1.4em
+
+.views-field-field-geofield-distance
+  text-align: center
+
+.views-field-nothing
+  span
+    width: 5em
+    display: block
+    margin: 1em auto
+  a.go-button
+    position: static
+
+//			//
+//	#infographic
+//			//
+
+#infographic
+  padding: 0
+
+//      //
+//  #infographic
+//      //
+#content
+  text-align: left
+  h2
+    background: $mainColor
+    color: white
+    display: inline-block
+    padding: 0.3em 0.5em 0.1em
+    margin: 0.5em 0 1em -2%
+    text-transform: uppercase
+    font-family: $din
+    font-weight: 300
+    font-size: 1.4em
+    -webkit-border-top-right-radius: 6px
+    -webkit-border-bottom-right-radius: 6px
+    -moz-border-top-right-radius: 6px
+    -moz-border-bottom-right-radius: 6px
+    -o-border-top-right-radius: 6px
+    -o-border-bottom-right-radius: 6px
+    border-top-right-radius: 6px
+    border-bottom-right-radius: 6px
+  li
+    margin: 0 auto 1em
+    width: 90%  
+
+//			//
+//	#scholarship
+//			//
+
+#scholarship
+  img.scholar-copy
+    padding: 0
+  img
+    clear: both
+    display: block
+    margin: 0 auto
+    padding: 2% 0
+  overflow: visible 
+  h1
+    color: $yellow
+  p
+    color: #fff
+  form
+    margin: 0 auto
+    max-width: 600px
+  label
+    font-weight: 600  
+  input[type="text"]
+    padding: 0.8em 0.5em
+    float: left
+    width: 48%
+    margin: 1%
+  .go-button
+    margin: 4% 0 1% 0
+    padding: 0.3em 0.7em
+  #campaign-opt-in
+    text-align: center
+    a
+      color: $mainCopy
+      font-weight: 500
+  .quote-highlight p
+    background: white
+    max-width: 525px
+    margin: 0 auto 0.8em
+    padding: 3%
+    font-family: din-web-reg
+    font-weight: 600
+    font-size: 1.7em
+    -moz-border-radius: 12px
+    -webkit-border-radius: 12px
+    -o-border-radius: 12px
+    border-radius: 12px
+    color: $mainColor
+  .scholar-input
+    float: left
+    width: 48%
+    margin: 1%
+    label
+      text-align: left
+    input
+      width: 100%
+      margin: 1% 0
+  .rules
+    font-size: 1em  
+.refer5
+  background: $mainColor
+  width: 110%
+  margin: 0 0 0 -4.95%
+  &:before, &:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-width: 11px
+    top: -6px
+  &:before
+    border-color: transparent darken($mainColor, 12) darken($mainColor, 12) transparent
+    left: -22px
+  &:after
+    border-color: transparent transparent darken($mainColor, 12) darken($mainColor, 12)
+    right: -22px
+.refer5-inner
+  padding: 3%  
+
+
+//      //
+//  #content-infographic
+//      //
+#content-infographic
+  .mobile
+    display: none
+    text-align: left
+    h2
+      font-size: 1.3em
+      line-height: 1.2em
+      color: $mainColor
+      margin: 0.5em
+
+    span
+      color: $secondaryColor
+      font-weight: 600
+    p
+      margin: 0 0.5em 0.7em    
+
+
+
+//			//
+//  #social     - share 3 stats -
+//      //
+
+#social
+  h3
+    text-transform: none
+    font-size: 1em
+    margin-bottom: 2%
+  img.sharewith
+    margin: 0 auto
+    padding: 0.25% 0 2.5% 15%
+    display: block
+    clear: both
+
+  li
+    display: inline-block
+
+
+//      //
+//  #impact     - gallery -
+//      //
+
+#impact
+  p
+    width: 40%
+    margin: 0 auto
+  .go-button
+    margin: 2% 0 1% 0
+
+.view-campaign-gallery #slideshow
+  margin: 0 auto
+
+//      //
+//  #faq
+//      //
+
+#faq 
+  div
+    padding: 0 1.2em 1.2em 1.2em
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
+  li
+    margin: 0
+    color: $mainColor
+    span
+      color: black 
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 1.2em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("assets/faq2.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position-y: -3.9em
+  .go-button
+    margin: 0 0 1% 0
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase  
+  .action-box
+    position: relative
+    display: inline-block
+  .action-arrow-left, .action-arrow-right
+    position: absolute
+    bottom: 0.5em
+  .action-arrow-right
+    right: -70px
+  .action-arrow-left
+    left: -70px  
+
+// #content-level-up
+#content-level-up
+  h2
+    text-transform: uppercase
+    font-size: 2.4em
+    font-weight: 600
+    line-height: 1em
+  .arrow-box
+    position: relative
+  .arrow-img
+    position: absolute
+    top: 44%
+    right: -30%    
+  .pad-top
+    margin-top: 1em
+//      //
+//  #footer     - sign up button; conditionally displayed -
+//      //
+
+#footer
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 0.7em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  .go-button
+    margin: 0 0 1% 0
