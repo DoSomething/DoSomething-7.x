@@ -7,8 +7,6 @@
 
       var auds = $('span.file').find('a');
       if (auds.length > 1) {
-        var paused = [];
-        var playing = [];
         var a = 0;
 
         auds.each(function(e) {
@@ -20,16 +18,13 @@
 
           $(this).click(function() {
             // Stop any other previews.
-            $('audio').trigger('pause');
-
             var a = $(this).attr('class').replace('preview-', '');
-            if (typeof playing[a] == 'undefined' || !playing[a]) {
-              playing[a] = true;
+            $('audio').trigger('pause');
+            if (!$(this).hasClass('paused')) {
               $(this).parent().find('audio').trigger('play');
               $(this).addClass('paused');
             }
             else {
-              playing[a] = false;
               $(this).parent().find('audio').trigger('pause');
               $(this).removeClass('paused');
             }
