@@ -65,7 +65,7 @@
       });
       var friendSelector = TDFriendSelector.newInstance({
         callbackSubmit : callback,
-        maxSelection   : options.max_friends || 10,
+        maxSelection   : (typeof options !== 'undefined' ? options.max_friends : 10),
         friendsPerPage : 7,
         autoDeselection: true,
       });
