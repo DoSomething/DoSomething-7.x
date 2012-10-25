@@ -99,49 +99,49 @@
         caption = "";
       }
 
-        var pic = '';
-        var og = $('<div></div>').attr('class', 'og_dialog');
+      var pic = '';
+      var og = $('<div></div>').attr('class', 'og_dialog');
 
-        var to = '';
-        if (things.friends) {
-          to = '&to=' + things.friends.join(',');
-        }
+      var to = '';
+      if (things.friends) {
+        to = '&to=' + things.friends.join(',');
+      }
 
-        FB.api('/me/picture', function(response) {
-          pic = response.data.url;
-          og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to, function() {
-            $('.close-fb-dialog').click(function() {
-              // Fake cancel button to remove "fake" feed
-              $('.og_dialog').dialog('close');
-              Drupal.friendFinder.clear_friends();
-              return false;
-            });
+      FB.api('/me/picture', function(response) {
+        pic = response.data.url;
+        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to, function() {
+          $('.close-fb-dialog').click(function() {
+            // Fake cancel button to remove "fake" feed
+            $('.og_dialog').dialog('close');
+            Drupal.friendFinder.clear_friends();
+            return false;
+          });
 
-            $('#submit-og-post').click(function() {
-              things.comments = $('#fb_og_comments').val();
+          $('#submit-og-post').click(function() {
+            things.comments = $('#fb_og_comments').val();
 
-              callback(things);
-              $('.og_dialog').dialog('close');
-              og.html('&nbsp;');
-            });
+            callback(things);
+            $('.og_dialog').dialog('close');
+            og.html('&nbsp;');
           });
         });
-        og.dialog({
-          dialogClass: 'og-post-dialog',
-          width: 650,
-          position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
-          resizable: false,
-          open: function() {
-            if ($('#cancel-og-post').length) {
-              // This somehow fixes an error where it wouldn't close after the first close
-              // Don't ask me why.
-              $('.og_dialog').html('&nbsp;');
-            }
+      });
+      og.dialog({
+        dialogClass: 'og-post-dialog',
+        width: 650,
+        position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+        resizable: false,
+        open: function() {
+          if ($('#cancel-og-post').length) {
+            // This somehow fixes an error where it wouldn't close after the first close
+            // Don't ask me why.
+            $('.og_dialog').html('&nbsp;');
           }
-        }).queue(function() {
-          // Pretend like it's a Facebook dialog feed
-          $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
-        });
+        }
+      }).queue(function() {
+        // Pretend like it's a Facebook dialog feed
+        $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
+      });
     },
 
     /**
@@ -350,28 +350,30 @@
                 things = Drupal.friendFinder.t;
               }
 
-              things.friends = friends;
-              Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
-                var fbObj = {
-                  message: response.comments,
-                  name: response.title,
-                  picture: response.picture,
-                  description: response.description,
-                  caption: response.caption,
-                  link: response.link
-                };
+              if (friends.length > 0) {
+                things.friends = friends;
+                Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
+                  var fbObj = {
+                    message: response.comments,
+                    name: response.title,
+                    picture: response.picture,
+                    description: response.description,
+                    caption: response.caption,
+                    link: response.link
+                  };
 
-                for (var i in things.friends) {
-                  FB.api('/' + things.friends[i] + '/feed', 'post', fbObj, function(response) {
-                    Drupal.behaviors.fb.log(response);
-                  });
-                }
+                  for (var i in things.friends) {
+                    FB.api('/' + things.friends[i] + '/feed', 'post', fbObj, function(response) {
+                      Drupal.behaviors.fb.log(response);
+                    });
+                  }
 
-                // Callback for when all posting has completed.
-                if (typeof callback == 'function') {
-                  callback();
-                }
-              });
+                  // Callback for when all posting has completed.
+                  if (typeof callback == 'function') {
+                    callback();
+                  }
+                });
+              }
             }, c, true);
           });
         });
