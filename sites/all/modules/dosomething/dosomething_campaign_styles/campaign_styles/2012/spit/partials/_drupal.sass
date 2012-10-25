@@ -206,6 +206,29 @@ body
 .ui-widget-overlay
   opacity: 0.9
 
+// already a member popup
+#dosomething-login-login-popup-form #edit-title-text--2
+  label
+    border: none
+    text-align: center
+    color: #fff
+
+#dosomething-login-login-popup-form .form-item label
+  color: #fff
+  .form-submit
+    position: static
+    width: 55%
+    margin: 0 auto
+    display: block
+    font-size: 1.7em
+    color: #222
+    background: $spitYellow
+    max-width: 15em
+    height: 1.5em
+    padding: 0.05em 0.5em 0.5em
+    +border-radius(5px)
+
+
 #dosomething-login-register-popup-form .disclaimer .description,
 #dosomething-login-register-facebook .disclaimer .description
   color: #fff
@@ -281,6 +304,12 @@ body
     +border-radius(5px)
 
 #dosomething-login-register-popup-form
+  .already-member
+    color: #fff
+    text-transform: uppercase
+    font-size: 1.2em
+    a
+      color: $spitYellow
   .form-type-textfield,
   .form-type-password
     float: left

@@ -59,9 +59,6 @@
       var logo = '//files.dosomething.org/files/campaigns/spit/logo.png';
       $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit"><img src="' + logo + '"/></a>');
 
-      // inject sponsor logo and text below the nav      
-      //$('.region-sidebar-first .content').append('<img src="//files.dosomething.org/files/campaigns/spit/btm-logo.png"/>');
-
       // hacktastic form rebuilding
       var $emailInput = $('#edit-submitted-field-webform-email');
       var $cellInput = $('#edit-submitted-field-webform-mobile');
@@ -171,7 +168,7 @@
       var $window = $(window);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
       var scrollLimitTop = 500;
-      var scrollLimitBot = 5757;
+      var scrollLimitBot = 6200;
       $window.scroll(function () {
         var st = $window.scrollTop();
         if (st > scrollLimitTop && st < scrollLimitBot) {
@@ -228,7 +225,10 @@
             width: 550
           });
         });
-      }
+      });
+    
+      // le sigh
+      $('#dosomething-login-register-popup-form').prepend($('#dosomething-login-register-popup-form .already-member'));
 
     } // end attach: function
   }; // end Drupal.behaviors

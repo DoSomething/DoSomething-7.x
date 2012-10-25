@@ -226,6 +226,30 @@ body {
 .ui-widget-overlay {
   opacity: 0.9; }
 
+#dosomething-login-login-popup-form #edit-title-text--2 label {
+  border: none;
+  text-align: center;
+  color: white; }
+
+#dosomething-login-login-popup-form .form-item label {
+  color: white; }
+  #dosomething-login-login-popup-form .form-item label .form-submit {
+    position: static;
+    width: 55%;
+    margin: 0 auto;
+    display: block;
+    font-size: 1.7em;
+    color: #222222;
+    background: #ffcb15;
+    max-width: 15em;
+    height: 1.5em;
+    padding: 0.05em 0.5em 0.5em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+
 #dosomething-login-register-popup-form .disclaimer .description,
 #dosomething-login-register-facebook .disclaimer .description {
   color: white; }
@@ -316,6 +340,12 @@ body {
   -o-border-radius: 5px;
   border-radius: 5px; }
 
+#dosomething-login-register-popup-form .already-member {
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.2em; }
+  #dosomething-login-register-popup-form .already-member a {
+    color: #ffcb15; }
 #dosomething-login-register-popup-form .form-type-textfield,
 #dosomething-login-register-popup-form .form-type-password {
   float: left;
