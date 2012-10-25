@@ -1,0 +1,41 @@
+diff --git a/sites/all/modules/entityqueue/entityqueue.module b/sites/all/modules/entityqueue/entityqueue.module
+index 3103994..472b887 100644
+--- a/sites/all/modules/entityqueue/entityqueue.module
++++ b/sites/all/modules/entityqueue/entityqueue.module
+@@ -184,12 +184,36 @@ function entityqueue_entity_property_info() {
+       'required' => TRUE,
+       'schema field' => 'type',
+     ),
++    'entityqueue_name' => array(
++      'label' => t('queue machine name'),
++      'type' => 'token',
++      'options list' => 'entityqueue_get_names',
++      'description' => t('The unique name of the entityqueue.'),
++      'schema field' => 'name',
++    ),
+   );
+ 
+   return $info;
+ }
+ 
+ /**
++ * Options list callback for entityqueue names options list.
++ */
++function entityqueue_get_names() {
++  $queues = &drupal_static(__FUNCTION__);
++  if (!isset($queues)) {
++    $query = db_select('entityqueue', 'eq')
++      ->fields('eq', array('name', 'label'))
++      ->orderBy('label', 'ASC');
++    foreach ($query->execute() as $row) {
++      $queues[$row->name] = $row->label;
++    }
++  }
++
++  return $queues;
++}
++
++/**
+  * Access callback for the entity API.
+  */
+ function entityqueue_access($op, $entity = NULL, $account = NULL, $entity_type = NULL) {
