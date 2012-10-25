@@ -263,7 +263,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_name';
   $activity->title = 'Ask Name';
-  $activity->question = t('Thanks for joining the drive! We just need one bit of information before completing your registration. What\'s your first name?');
+  $activity->question = t('Awesome! Reply with ur first name and we\'ll set u up with a login for our website where you can learn more about the drive details and about DoSomething.org');
   $activity->inputs = array('drive_invite_response');
   $activity->outputs = array('process_beta');
 
@@ -271,7 +271,6 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'process_beta';
   $activity->title = 'Process Drive Betas';
   $activity->alpha_campaign_id = 99961;
-  $activity->success_message = t('Great! You\'ve successfully joined the drive. ');
   $activity->inputs = array('drive_invite_response', 'ask_name');
   $activity->outputs = array('strip_signature');
 
@@ -286,8 +285,8 @@ function sms_flow_default_conductor_workflows() {
   $activity->title = 'Forward to a Friend';
   $activity->alpha_optin = 129071;
   $activity->beta_optin = 129751;
-  $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with FTAF if you want to invite more.');
-  $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with FTAF.');
+  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with FTAF if you want to invite more.');
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with FTAF.');
   $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');
 
@@ -360,12 +359,18 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'start';
   $activity->title = 'Start';
   $activity->inputs = array();
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('start');
   $activity->outputs = array('50cans_report_back');
 
   $activity = $workflow->newActivity('50cans_report_back');
   $activity->name = '50cans_report_back';
   $activity->title = '50 Cans Report Back';
-  $activity->inputs = array('start');
+  $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');
 
   $activity = $workflow->newActivity('end');
