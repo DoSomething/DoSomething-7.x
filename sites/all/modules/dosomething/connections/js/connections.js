@@ -162,7 +162,6 @@
     real_auth: function(things, callback) {
       if (things.require_login) {
         FB.getLoginStatus(function(response) {
-          console.log(response);
           if (response.status == 'unknown') {
             // Not logged in.
             if (things.require_login == 1) {
@@ -174,25 +173,25 @@
           else if (response.status == 'not_authorized') {
             // Unauthorized
             if (things.require_login == 1) {
-                FB.api('/me/permissions', function (response) {
-                  if (response.error) {
-                    FB.login(function(response) {
+              FB.api('/me/permissions', function (response) {
+                if (response.error) {
+                  FB.login(function(response) {
+                    callback();
+                  }, { scope: 'publish_actions' })
+                }
+                else {
+                  var perms = response.data[0];
+                  if (!perms.publish_actions && !asked) {
+                    FB.ui({
+                      method: 'permissions.request',
+                      perms: 'publish_actions',
+                      display: 'popoup'
+                    }, function(response) {
                       callback();
-                    }, { scope: 'publish_actions' })
+                    });
                   }
-                  else {
-                    var perms = response.data[0];
-                    if (!perms.publish_actions && !asked) {
-                      FB.ui({
-                        method: 'permissions.request',
-                        perms: 'publish_actions',
-                        display: 'popoup'
-                      }, function(response) {
-                        callback();
-                      });
-                    }
-                  }
-                });
+                }
+              });
             }
           }
           else {
