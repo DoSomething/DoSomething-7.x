@@ -162,10 +162,10 @@
       }
 
       popupForm.find('#edit-title-text label')
-        .text("Call Me, Maybe?")
+        .text("Almost there!")
       var hash2 = ($('#register-benefits').length);
       if (!hash2) {
-        popupForm.find('#edit-title-text label').after('<h2 id="register-benefits">Just Sign Up to Make the Call Definitely Happen.</h2>');
+        popupForm.find('#edit-title-text label').after('<h2 id="register-benefits">Just sign up or sign in to send the call.</h2>');
       }
 
       popupForm.attr('action', '/user/registration?destination=' + url);
