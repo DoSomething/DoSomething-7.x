@@ -45,4 +45,5 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
 }
 
 function dosomething_petitions_petition_share_content_type_admin_title($subtype, $conf, $context) {
-  return t('S
+  return t('Share petition');
+}
