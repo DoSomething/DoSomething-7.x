@@ -7,7 +7,7 @@ class ConductorActivity50CansReportBack extends ConductorActivity {
 
   const REPORT_BACK_NID = 725607;
 
-  private $responseSuccess = '4/4 That\'s all we\'ve got! Thanks for participating and congrats again on all of your amazing work.';
+  private $responseSuccess = 'That\'s all we\'ve got! Thanks for participating and congrats again on all of your amazing work.';
 
   public function run($workflow) {
     $state = $this->getState();
