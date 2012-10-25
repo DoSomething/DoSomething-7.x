@@ -9,9 +9,76 @@
  */
 function dosomething_scholarship_rec_ctools_plugin_api() {
   list($module, $api) = func_get_args();
+  if ($module == "page_manager" && $api == "pages_default") {
+    return array("version" => "1");
+  }
+  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function dosomething_scholarship_rec_views_api() {
+  return array("version" => "3.0");
+}
+
+/**
+ * Implements hook_entityqueue_default_queues().
+ */
+function dosomething_scholarship_rec_entityqueue_default_queues() {
+  $items = array();
+  $items['foot_locker_maybe'] = entity_import('entityqueue', '{
+    "name" : "foot_locker_maybe",
+    "parent_name" : null,
+    "type" : "webform_submission_entity",
+    "subqueue" : "1",
+    "label" : "Foot Locker Maybe",
+    "subqueue_label" : "",
+    "uid" : "1",
+    "data" : {
+      "target_bundles" : { "scholarship_application_with_rec" : "scholarship_application_with_rec" },
+      "min_size" : "0",
+      "max_size" : "0"
+    },
+    "eq_webform_submission_entity" : { "und" : [ { "target_id" : "1395639" } ] },
+    "rdf_mapping" : []
+  }');
+  $items['foot_locker_no'] = entity_import('entityqueue', '{
+    "name" : "foot_locker_no",
+    "parent_name" : null,
+    "type" : "webform_submission_entity",
+    "subqueue" : "1",
+    "label" : "Foot Locker No",
+    "subqueue_label" : "",
+    "uid" : "1",
+    "data" : {
+      "target_bundles" : { "scholarship_application_with_rec" : "scholarship_application_with_rec" },
+      "min_size" : "0",
+      "max_size" : "0"
+    },
+    "eq_webform_submission_entity" : [],
+    "rdf_mapping" : []
+  }');
+  $items['foot_locker_yes'] = entity_import('entityqueue', '{
+    "name" : "foot_locker_yes",
+    "parent_name" : null,
+    "type" : "webform_submission_entity",
+    "subqueue" : "1",
+    "label" : "Foot Locker Yes",
+    "subqueue_label" : "",
+    "uid" : "1",
+    "data" : {
+      "target_bundles" : { "scholarship_application_with_rec" : "scholarship_application_with_rec" },
+      "min_size" : "0",
+      "max_size" : "0"
+    },
+    "eq_webform_submission_entity" : [],
+    "rdf_mapping" : []
+  }');
+  return $items;
 }
 
 /**
