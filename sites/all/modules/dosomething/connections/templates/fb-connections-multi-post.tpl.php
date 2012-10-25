@@ -263,6 +263,10 @@
 							   if (jQuery('li.user-' + response.id).length == 0) {
 								   e.appendTo(jQuery('#receivers-list ul'));
 								   e.find('a').click(function() {
+								   	 var flist = parseInt(jQuery('#receivers-list ul').find('a').length);
+								   	 if (--flist == 0) {
+								   	 	jQuery('.og_dialog').dialog('close');
+								   	 }
 					 				 var fbid = jQuery(this).parent().attr('fb:id');
 					 				 jQuery(this).parent().remove();
 					 				 c(fbid);

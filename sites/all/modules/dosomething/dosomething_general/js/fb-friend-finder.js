@@ -3,19 +3,27 @@
     attach: function (context, settings) {
       // is this shitty? yup
       // does it work?   yup
-      var raw="<div id=\"TDFriendSelector\"><div class=\"TDFriendSelector_dialog\"><a href=\"#\" id=\"TDFriendSelector_buttonClose\">x<\/a><div class=\"TDFriendSelector_form\"><div class=\"TDFriendSelector_header\"><p>Share with your friends<\/p><\/div><div class=\"TDFriendSelector_content\"><div class=\"TDFriendSelector_searchContainer TDFriendSelector_clearfix\"><div class=\"TDFriendSelector_selectedCountContainer\"><span class=\"TDFriendSelector_selectedCount\">0<\/span> \/ <span class=\"TDFriendSelector_selectedCountMax\">0<\/span> friends selected<\/div><input type=\"text\" placeholder=\"Search friends\" id=\"TDFriendSelector_searchField\" \/><\/div><div class=\"TDFriendSelector_friendsContainer\"><\/div><\/div><div class=\"TDFriendSelector_footer TDFriendSelector_clearfix\"><a href=\"#\" id=\"TDFriendSelector_pagePrev\" class=\"TDFriendSelector_disabled\">Previous<\/a><a href=\"#\" id=\"TDFriendSelector_pageNext\">Next<\/a><div class=\"TDFriendSelector_pageNumberContainer\">Page <span id=\"TDFriendSelector_pageNumber\">1<\/span> \/ <span id=\"TDFriendSelector_pageNumberTotal\">1<\/span><\/div><a href=\"#\" id=\"TDFriendSelector_buttonOK\">OK<\/a><\/div><\/div><\/div><\/div>";
-      $('body').append($(raw));
+      //var raw="<div id=\"TDFriendSelector\"><div class=\"TDFriendSelector_dialog\"><a href=\"#\" id=\"TDFriendSelector_buttonClose\">x<\/a><div class=\"TDFriendSelector_form\"><div class=\"TDFriendSelector_header\"><p>Share with your friends<\/p><\/div><div class=\"TDFriendSelector_content\"><div class=\"TDFriendSelector_searchContainer TDFriendSelector_clearfix\"><div class=\"TDFriendSelector_selectedCountContainer\"><span class=\"TDFriendSelector_selectedCount\">0<\/span> \/ <span class=\"TDFriendSelector_selectedCountMax\">0<\/span> friends selected<\/div><input type=\"text\" placeholder=\"Search friends\" id=\"TDFriendSelector_searchField\" \/><\/div><div class=\"TDFriendSelector_friendsContainer\"><\/div><\/div><div class=\"TDFriendSelector_footer TDFriendSelector_clearfix\"><a href=\"#\" id=\"TDFriendSelector_pagePrev\" class=\"TDFriendSelector_disabled\">Previous<\/a><a href=\"#\" id=\"TDFriendSelector_pageNext\">Next<\/a><div class=\"TDFriendSelector_pageNumberContainer\">Page <span id=\"TDFriendSelector_pageNumber\">1<\/span> \/ <span id=\"TDFriendSelector_pageNumberTotal\">1<\/span><\/div><a href=\"#\" id=\"TDFriendSelector_buttonOK\">OK<\/a><\/div><\/div><\/div><\/div>";
+      //$('body').append($(raw));
     }
   };
-  Drupal.friendFinder = function (attach, permission, callback, auto_click) {
+  Drupal.friendFinder = function (attach, permission, callback, options, auto_click) {
     asked_permission = false;
 
     var to = window.setInterval(function () {
       if (typeof FB != 'undefined') {
         window.clearInterval(to);
+        build_selector();
         ffInit();
       }
     }, 5);
+
+    function build_selector() {
+      var selector_title = options.selector_title || Drupal.t('Share with your friends');
+
+      var raw = "<div id=\"TDFriendSelector\"><div class=\"TDFriendSelector_dialog\"><a href=\"#\" id=\"TDFriendSelector_buttonClose\">x<\/a><div class=\"TDFriendSelector_form\"><div class=\"TDFriendSelector_header\"><p>" + selector_title + "<\/p><\/div><div class=\"TDFriendSelector_content\"><div class=\"TDFriendSelector_searchContainer TDFriendSelector_clearfix\"><div class=\"TDFriendSelector_selectedCountContainer\"><span class=\"TDFriendSelector_selectedCount\">0<\/span> \/ <span class=\"TDFriendSelector_selectedCountMax\">0<\/span> friends selected<\/div><input type=\"text\" placeholder=\"Search friends\" id=\"TDFriendSelector_searchField\" \/><\/div><div class=\"TDFriendSelector_friendsContainer\"><\/div><\/div><div class=\"TDFriendSelector_footer TDFriendSelector_clearfix\"><a href=\"#\" id=\"TDFriendSelector_pagePrev\" class=\"TDFriendSelector_disabled\">Previous<\/a><a href=\"#\" id=\"TDFriendSelector_pageNext\">Next<\/a><div class=\"TDFriendSelector_pageNumberContainer\">Page <span id=\"TDFriendSelector_pageNumber\">1<\/span> \/ <span id=\"TDFriendSelector_pageNumberTotal\">1<\/span><\/div><a href=\"#\" id=\"TDFriendSelector_buttonOK\">OK<\/a><\/div><\/div><\/div><\/div>";
+      $('body').append($(raw));
+    }
 
     function ffInit() {
       FB.getLoginStatus(function(response) {
@@ -31,19 +39,25 @@
         attachClick(attach, callback);
       }
       else {
-        attach.click(function (e) {
-          e.preventDefault();
-          if (typeof Drupal.friendFinder.asked_permission == 'undefined' || Drupal.friendFinder.asked_permission == false) {
-            Drupal.friendFinder.asked_permission = true;
-            FB.login(function(authResponse) {
-              attachClick(attach, callback);
-            }, {scope: permission});
-          }
-        });
+        if (typeof Drupal.behaviors.fb == 'undefined') {
+          attach.click(function (e) {
+            e.preventDefault();
+              FB.ui({
+                method: 'permissions.request',
+                perms: permission,
+                display: 'dialog'
+              }, function() {
+                attachClick(attach, callback);
+              });
+          });
 
-      	if (auto_click) {
-      	  attach.click();
-      	}
+        	if (auto_click) {
+        	  attach.click();
+        	}
+        }
+        else {
+          attachClick(attach, callback);
+        }
       }
     }
 
@@ -53,7 +67,7 @@
       });
       var friendSelector = TDFriendSelector.newInstance({
         callbackSubmit : callback,
-        maxSelection   : 10,
+        maxSelection   : options.max_friends || 10,
         friendsPerPage : 7,
         autoDeselection: true,
       });

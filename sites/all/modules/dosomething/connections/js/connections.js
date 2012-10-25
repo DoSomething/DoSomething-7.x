@@ -162,6 +162,7 @@
     real_auth: function(things, callback) {
       if (things.require_login) {
         FB.getLoginStatus(function(response) {
+          console.log(response);
           if (response.status == 'unknown') {
             // Not logged in.
             if (things.require_login == 1) {
@@ -173,26 +174,44 @@
           else if (response.status == 'not_authorized') {
             // Unauthorized
             if (things.require_login == 1) {
-              if (Drupal.behaviors.fb.asked_permission == false) {
-                Drupal.behaviors.fb.asked_permission = true;
                 FB.api('/me/permissions', function (response) {
-                  var perms = response.data[0];
-                  var asked = false;
-                  if (!perms.publish_actions && !asked) {
-                    FB.ui({
-                      method: 'permissions.request',
-                      perms: 'publish_actions',
-                      display: 'popoup'
-                    });
-                    asked = true;
+                  if (response.error) {
+                    FB.login(function(response) {
+                      callback();
+                    }, { scope: 'publish_actions' })
+                  }
+                  else {
+                    var perms = response.data[0];
+                    if (!perms.publish_actions && !asked) {
+                      FB.ui({
+                        method: 'permissions.request',
+                        perms: 'publish_actions',
+                        display: 'popoup'
+                      }, function(response) {
+                        callback();
+                      });
+                    }
                   }
                 });
-              }
             }
           }
           else {
             // Logged in and authorized.
-            callback();
+            FB.api('/me/permissions', function (response) {
+              var perms = response.data[0];
+              if (!perms.publish_actions) {
+                FB.ui({
+                  method: 'permissions.request',
+                  perms: 'publish_actions',
+                  display: 'popup'
+                }, function(response) {
+                  callback();
+                });
+              }
+              else {
+                callback();
+              }
+            });
           }
         });
       }
@@ -250,6 +269,8 @@
         description: config.feed_description,
       	selector: config.feed_selector,
         allow_multiple: config.feed_allow_multiple,
+        max_friends: config.feed_max_friends || 5,
+        selector_title: config.feed_selector_title || Drupal.t('Share with your friends'),
       	require_login: config.feed_require_login,
       };
 
@@ -309,6 +330,17 @@
       // If we are allowing people to post to multiple walls...
       if (things.allow_multiple > 0) {
         Drupal.behaviors.fb.real_auth(things, function() {
+          var c;
+          if (!things) {
+            c = {};
+          }
+          else {
+            c = {
+              max_friends: things.max_friends,
+              selector_title: things.selector_title
+            };
+          }
+
           // Create a mock button on the site to simulate a click-through on the friendSelector
           var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
           fbm.appendTo('body').queue(function() {
@@ -341,7 +373,7 @@
                   callback();
                 }
               });
-            }, true);
+            }, c, true);
           });
         });
       }

@@ -88,6 +88,7 @@ function connections_on_page($connection_page_path) {
  * Implements hook_rules_action_info().
  */
 function connections_rules_action_info() {
+  drupal_add_css(drupal_get_path('module', 'connections') . '/css/connections-rules.css');
 
   // Open Graph post
   $items['connections_og_fb_post'] = array(
@@ -218,6 +219,22 @@ function connections_rules_action_info() {
         'label' => t('Allow users to post to multiple friends\' walls?'),
         'description' => t('If selected, users will be able to select several of their friends to message, all at once.  Requires log-in before users can select their friends.  If this is not selected, shares will post to the user\'s wall.'),
         'default value' => 1,
+        'optional' => TRUE
+      ),
+      'feed_max_friends' => array(
+        'type' => 'integer',
+        'label' => t('Max selectable friends'),
+        'description' => t('The maximum number of friends that can be selected through the Friend Selector.'),
+        'default mode' => 'input',
+        'default value' => 5,
+        'optional' => TRUE
+      ),
+      'feed_selector_title' => array(
+        'type' => 'text',
+        'label' => t('Friend Selector title'),
+        'description' => t('An (optional) title for the Friend Selector.'),
+        'default mode' => 'input',
+        'default value' => t('Share with your friends'),
         'optional' => TRUE
       ),
       'feed_require_login' => array(
