@@ -225,7 +225,7 @@
             width: 550
           });
         });
-      });
+      }
     
       // le sigh
       $('#dosomething-login-register-popup-form').prepend($('#dosomething-login-register-popup-form .already-member'));
