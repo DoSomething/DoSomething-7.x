@@ -7,11 +7,12 @@ sites/*/private
 files
 tag
 
-# Ifnore hidden  files
+# Ignore hidden files
 ._*
 
-#Ignore livereload
+#Ignore modules & libraries
 sites/all/modules/livereload/
+sites/all/libraries/FirePHPCore/
 
 # Ignore sass-cache
 .sass-cache
