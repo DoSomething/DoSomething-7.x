@@ -198,10 +198,14 @@ div.robocalls-extras-container {
 	height: 0px;
 }
 
+div#edit-submitted-field-celeb-your-name {
+	margin-top: 5px;
+}
+
 div.robocalls-preview-button-container {
 	float: right;
 	position: relative;
-	top: -150px;
+	top: -190px;
 	left: -50px;
 	text-align: center;
 	height: 280px;/*280px*/
@@ -415,7 +419,11 @@ bottom: 10px;
 	margin-top: -10px;
 }
 
-#or-send-now-button { margin-bottom: 0px; }
+#or-send-now-button { margin-bottom: 0px; width: 285px;
+padding-left: 115px;
+padding-bottom: 5px;
+margin-top: -7px;
+padding-bottom: 8px;}
 
 .robocalls-submit { margin-left: 100px; }
 

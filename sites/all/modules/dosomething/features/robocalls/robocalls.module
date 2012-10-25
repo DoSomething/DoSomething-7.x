@@ -10,7 +10,7 @@ define('ROBOCALLS_WEBFORM_NID', 723327);
 define('MAX_CALLS_PER_DAY', 1);
 
 function robocalls_panels_pre_render($display) {
-  if ($display->layout == 'flexible:cause_calls' || $display->layout == 'flexible:cause_calls_landing') {
+  if ($display->layout == 'flexible:cause_calls' || $display->layout == 'flexible:cause_calls_landing' || request_uri() == '/calloffame/about') {
     drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/dosomething_robocall.css', array(
         'group' => CSS_THEME,
         'weight' => 10
@@ -20,6 +20,15 @@ function robocalls_panels_pre_render($display) {
         'weight' => -100,
         'cache' => FALSE
     ));
+  }
+}
+
+/**
+* Implementation of hook_ctools_plugin_directory().
+*/
+function robocalls_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
   }
 }
 
@@ -62,6 +71,8 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     $term = taxonomy_term_load($termid);
     $u = &$form['submitted']/*['celeb_call_information']*/;
 
+#    echo '<pre>', print_r($form), '</pre>'; exit;
+
     if (!empty($term)) {
        $term_info = array();
        $term_info['parent'] = key(taxonomy_get_parents($term->tid));
@@ -101,7 +112,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       '#attributes' => array(
         'class' => array('robocalls-fb-button-container')
       ),
-      '#weight' => 2,
+      '#weight' => 1,
     );
 
     $form['extras']['fb_container']['fb_button']['connect_with_facebook'] = array(
@@ -148,35 +159,6 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         );
     }
 
-/*
-    $form['ah'] = array(
-      '#markup' => '    <div id="TDFriendSelector">
-      <div class="TDFriendSelector_dialog">
-        <a href="#" id="TDFriendSelector_buttonClose">x</a>
-        <div class="TDFriendSelector_form">
-          <div class="TDFriendSelector_header">
-            <p>Select a Friend to Post on their Wall</p>
-          </div>
-          <div class="TDFriendSelector_content">
-            <p>Click "OK" when you\'ve chosen someone.  We\'ll pop up a message box for them.</p>
-            <div class="TDFriendSelector_searchContainer TDFriendSelector_clearfix">
-              <div class="TDFriendSelector_selectedCountContainer"><span class="TDFriendSelector_selectedCount">0</span> / <span class="TDFriendSelector_selectedCountMax">0</span> friends selected</div>
-              <input type="text" placeholder="Search friends" id="TDFriendSelector_searchField" />
-            </div>
-            <div class="TDFriendSelector_friendsContainer"></div>
-          </div>
-          <div class="TDFriendSelector_footer TDFriendSelector_clearfix">
-            <a href="#" id="TDFriendSelector_pagePrev" class="TDFriendSelector_disabled">Previous</a>
-            <a href="#" id="TDFriendSelector_pageNext">Next</a>
-            <div class="TDFriendSelector_pageNumberContainer">
-              Page <span id="TDFriendSelector_pageNumber">1</span> / <span id="TDFriendSelector_pageNumberTotal">1</span>
-            </div>
-            <a href="#" id="TDFriendSelector_buttonOK">OK</a>
-          </div>
-        </div>
-      </div>
-    </div>');*/
-
 #    $form['actions']['submit']['#value'] = 'SEND IT!';
  #   $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
     if (!user_is_logged_in()) {
@@ -205,12 +187,14 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     }
     else
     {
-      $form['extras']['fb_container']['field_celeb_send_now'] = $u['field_celeb_send_now'];
-      $form['extras']['fb_container']['field_celeb_send_now']['#weight'] = 1;
-      $form['extras']['fb_container']['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
+      #$form['extras']['fb_container']['field_celeb_send_now'] = $u['field_celeb_send_now'];
+      #$form['extras']['fb_container']['field_celeb_send_now']['#weight'] = -992;
+      #$form['extras']['fb_container']['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
+      $u['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
+      #echo '<pre>', print_r($u), '</pre>'; exit;
     }
-    $u['field_celeb_send_now']['#access'] = FALSE;
-    #echo '<pre>', print_r($u), '</pre>'; exit;
+    #$u['field_celeb_send_now']['#access'] = FALSE;
+    #echo '<pre>', print_r($form), '</pre>'; exit;
 
     if (user_is_logged_in()) {
        global $user;
@@ -349,7 +333,7 @@ function robocalls_call_validate(&$form, &$form_state) {
   $stime = $s['field_celeb_date'][LANGUAGE_NONE][0]['value'];
  
   $sn = 0;
-  $sn = intval($form_state['input']['field_celeb_send_now'][LANGUAGE_NONE]);
+  $sn = intval($form_state['input']['submitted']['field_celeb_send_now'][LANGUAGE_NONE]);
   $form['#submission']->submitted['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
   $form['#submission']->field_celeb_send_now[LANGUAGE_NONE][0]['value'] = $sn;
   $form_state['values']['submitted']['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
@@ -408,7 +392,6 @@ function robocalls_call_validate(&$form, &$form_state) {
 
   $limit = $form_state['input']['call_limit'];
 
-
   $form_state['already_called'] = 0;
   $q = new EntityFieldQuery;
   $result = $q
@@ -448,7 +431,7 @@ function robocalls_call_submit(&$form, &$form_state) {
    if ($form_state['already_called'])
    {
     $sid = $form_state['values']['details']['sid'];
-    entity_delete('webform_submission_entity', $sid);
+    #entity_delete('webform_submission_entity', $sid);
    }
 
    /**
@@ -519,6 +502,13 @@ function robocalls_call_submit(&$form, &$form_state) {
 function robocalls_page_alter(&$page) {
    global $term_info, $flags;
 
+  if (request_uri() == '/calloffame/about') {
+    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/dosomething_robocall.css', array(
+        'group' => CSS_THEME,
+        'weight' => 10
+    ));
+  }
+
    if (isset($term_info)) {
       $url = array(
        '#tag' => 'meta',
@@ -582,7 +572,7 @@ function robocalls_page_alter(&$page) {
          $flag = 'Most Popular';
       }*/
 
-      $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup'] = str_replace('Image flag!', ($flag ? '<div class="main-robocall-flag' . ($flag == 'Birthday' ? ' birthday' : '') . '">' . $flag . '</div>' : ''), $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup']);
+      //$page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup'] = str_replace('Image flag!', ($flag ? '<div class="main-robocall-flag' . ($flag == 'Birthday' ? ' birthday' : '') . '">' . $flag . '</div>' : ''), $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup']);
       #unset($page['page_bottom']['fb_social']);
 
    }
