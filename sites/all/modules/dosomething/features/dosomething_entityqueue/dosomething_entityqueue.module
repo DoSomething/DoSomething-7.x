@@ -61,6 +61,9 @@ function dosomething_entityqueue_add($entityqueue, $etid, $skip_goto = FALSE) {
   if ($add) $entity_ids[] = array('target_id' => $etid);
 
   $entityqueue_entity->save();
+
+  drupal_set_message(t('Submission !sid has been added to !entityqueue.', array('!sid' => $etid, '!entityqueue' => $entityqueue_entity->label)));
+
   if (!$skip_goto) drupal_goto();
 }
 
@@ -82,5 +85,7 @@ function dosomething_entityqueue_remove($entityqueue, $etid, $skip_goto = FALSE)
   $entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE] = array_values($entity_ids);
 
   $entityqueue_entity->save();
+
+  drupal_set_message(t('Submission !sid has been removed from !entityqueue.', array('!sid' => $etid, '!entityqueue' => $entityqueue_entity->label)));
   if (!$skip_goto) drupal_goto();
 }
