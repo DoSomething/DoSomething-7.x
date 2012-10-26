@@ -1,0 +1,42 @@
+<?php
+
+define('PROJECT_NID', 718313);
+
+/**
+ *	Implements hook_services_ctools_plugin_api()
+ *  Sets up services for the DoSomething API
+ */
+function dosomething_api_ctools_plugin_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "services" && $api == "services") {
+    return array("version" => "3");
+  }
+}
+
+function dosomething_api_menu() {
+  $items['api/%'] = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+    'page callback' => 'dosomething_api_run',
+    'page arguments' => array(1)
+  );
+
+  return $items;
+}
+
+function dosomething_api_run($action) {
+  $action = str_replace('.json', '', $action);
+  if (file_exists(drupal_get_path('module', 'dosomething_api') . '/apis/' . $action . '.inc')) { 
+    module_load_include('inc', 'dosomething_api', 'apis/' . $action);
+    $function = 'dosomething_api_' . $action . '_api';
+    if (function_exists($function)) {
+      $function();
+    }
+  }
+}
+
+function dosomething_api_clean_zip(&$zip) {
+  $zip = strtoupper($zip);
+  $zip = preg_replace('/[^A-Z0-9]/', '', $zip);
+  return $zip;
+}
