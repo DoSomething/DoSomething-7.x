@@ -154,6 +154,10 @@ div#dosomething-robocalls-submitted-message {
 div.robocalls-submitted-message-dialog {
 	background: #fefefe;
 }
+div.robocalls-submitted-message-dialog h2 {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #DBD9D8;
+}
 div.robocalls-submitted-message-dialog #edit-title-text p {
 	font-weight: 600;
 	font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif;
