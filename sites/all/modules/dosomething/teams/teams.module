@@ -264,6 +264,9 @@ function teams_add_member_form($form, &$form_state, $gid) {
     '#type' => 'textfield',
     '#title' => 'Friend\'s email',
     '#size' => 16,
+    '#attributes' => array(
+      'placeholder' => 'your friend\'s email',
+    ),
   );
 
   $form['gid'] = array(

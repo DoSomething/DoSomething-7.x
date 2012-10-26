@@ -92,59 +92,6 @@ body {
   #cmp .pane-title {
     display: none; }
 
-.invite_friends {
-  background: white;
-  padding: 0.5% 2% 2% 2%; }
-  .invite_friends h2 {
-    padding: 0 0 0.8em 0;
-    text-align: center;
-    font-weight: 600;
-    font-size: 2em; }
-  .invite_friends h3 {
-    font-family: din-web;
-    font-size: 3em;
-    text-transform: uppercase;
-    color: #bbbbbb;
-    margin: 50% 0 0 0; }
-  .invite_friends .invite-module-facebook, .invite_friends .invite-module-or, .invite_friends .invite-module-email {
-    width: 43%;
-    float: left; }
-  .invite_friends .invite-module-facebook p, .invite_friends .invite-module-or p, .invite_friends .invite-module-email p {
-    font-size: 0.8em; }
-  .invite_friends .invite-module-or {
-    width: 14%; }
-  .invite_friends .ui-dialog-titlebar {
-    margin: 0 0 0 -5.5%; }
-  .invite_friends .facebook-action-connect {
-    display: block;
-    margin: 8% auto 0;
-    width: 40%; }
-  .invite_friends #edit-submit {
-    font-family: din-web;
-    background: #ffcb15;
-    margin: 0 0 0 5%;
-    font-size: 1.5em;
-    height: 1.4em;
-    display: inline-block;
-    border: none !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px; }
-    .invite_friends #edit-submit:hover {
-      background: #fbc300; }
-
-#edit-friend {
-  background: #dddddd;
-  width: 11em;
-  color: #444444;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px; }
-
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
   padding: 1.5em 0 0 0;
@@ -223,211 +170,6 @@ body {
   .mangoDialog-ui .ui-icon.ui-icon-closethick {
     margin: -20px -13px !important; }
 
-.ui-widget-overlay {
-  opacity: 0.9; }
-
-#dosomething-login-login-popup-form #edit-title-text--2 label {
-  border: none;
-  text-align: center;
-  color: white; }
-
-#dosomething-login-login-popup-form .form-item label {
-  color: white; }
-
-#dosomething-login-login-popup-form .ds-login-popup-footer {
-  margin: 0 auto; }
-#dosomething-login-login-popup-form input {
-  height: 2.5em;
-  margin: 0.2em 0 0 0;
-  padding: 0 0.6em;
-  width: 100%;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px; }
-#dosomething-login-login-popup-form input[type=submit]#edit-final-submit--2 {
-  position: static;
-  width: 55%;
-  margin: 0 auto;
-  display: block;
-  font-size: 1.7em;
-  color: #222222;
-  background: #ffcb15;
-  max-width: 15em;
-  height: 1.5em;
-  padding: 0.05em 0.5em 0.5em;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px; }
-
-#dosomething-login-register-popup-form .disclaimer .description,
-#dosomething-login-register-facebook .disclaimer .description {
-  color: white; }
-
-#edit-title-text div {
-  display: block;
-  max-width: 24em;
-  margin: 0 auto; }
-
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] {
-  background: none !important;
-  width: 100% !important;
-  height: 1000px !important;
-  min-height: 1000px !important;
-  top: 0 !important;
-  left: 0 !important; }
-
-.ui-dialog .ui-dialog-content {
-  height: 1000px !important;
-  min-height: 1000px !important; }
-
-#dosomething-login-register-popup-form #edit-title-text,
-#dosomething-login-register-popup-form #edit-title-text--2,
-#dosomething-login-register-facebook #edit-title-text,
-#dosomething-login-register-facebook #edit-title-text--2 {
-  margin: 2em 0; }
-  #dosomething-login-register-popup-form #edit-title-text label, #dosomething-login-register-popup-form #edit-title-text div,
-  #dosomething-login-register-popup-form #edit-title-text--2 label,
-  #dosomething-login-register-popup-form #edit-title-text--2 div,
-  #dosomething-login-register-facebook #edit-title-text label,
-  #dosomething-login-register-facebook #edit-title-text div,
-  #dosomething-login-register-facebook #edit-title-text--2 label,
-  #dosomething-login-register-facebook #edit-title-text--2 div {
-    border-bottom: none;
-    text-align: center;
-    color: white; }
-  #dosomething-login-register-popup-form #edit-title-text label,
-  #dosomething-login-register-popup-form #edit-title-text--2 label,
-  #dosomething-login-register-facebook #edit-title-text label,
-  #dosomething-login-register-facebook #edit-title-text--2 label {
-    text-transform: uppercase; }
-
-#dosomething-login-register-popup-form label {
-  color: white; }
-  #dosomething-login-register-popup-form label span {
-    color: #ec0000;
-    position: static !important;
-    padding-left: 0.2em; }
-#dosomething-login-register-popup-form #edit-birthday {
-  float: left;
-  width: 250px;
-  margin: 0; }
-  #dosomething-login-register-popup-form #edit-birthday label {
-    width: 100% !important;
-    margin: 0; }
-  #dosomething-login-register-popup-form #edit-birthday span.login-popup-birthday {
-    font-size: 18px;
-    font-weight: 500;
-    font-family: Verdana, Arial, sans-serif;
-    line-height: 24px;
-    color: white; }
-  #dosomething-login-register-popup-form #edit-birthday input {
-    height: 2.5em;
-    margin: 0.2em 0 0 0;
-    padding: 0 0.6em;
-    width: 100%;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px; }
-  #dosomething-login-register-popup-form #edit-birthday .form-item {
-    margin-top: 0; }
-#dosomething-login-register-popup-form #edit-final-submit {
-  position: static;
-  width: 55%;
-  margin: 0 auto;
-  display: block;
-  font-size: 1.7em;
-  color: #222222;
-  background: #ffcb15;
-  max-width: 15em;
-  height: 1.5em;
-  padding: 0.05em 0.5em 0.5em;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px; }
-
-#dosomething-login-register-popup-form .already-member {
-  color: white;
-  text-transform: uppercase;
-  font-size: 1.2em; }
-  #dosomething-login-register-popup-form .already-member a {
-    color: #ffcb15; }
-#dosomething-login-register-popup-form .form-type-textfield,
-#dosomething-login-register-popup-form .form-type-password {
-  float: left;
-  margin: 0;
-  width: 100%;
-  margin: 0.5em 0; }
-  #dosomething-login-register-popup-form .form-type-textfield input,
-  #dosomething-login-register-popup-form .form-type-password input {
-    height: 2.5em;
-    padding: 0 0.6em;
-    font-size: 0.9em;
-    width: 100%;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px; }
-#dosomething-login-register-popup-form .form-item-day, #dosomething-login-register-popup-form .form-item-month, #dosomething-login-register-popup-form .form-item-year {
-  width: 3em;
-  margin: 0.5em;
-  margin-left: 0; }
-  #dosomething-login-register-popup-form .form-item-day input, #dosomething-login-register-popup-form .form-item-month input, #dosomething-login-register-popup-form .form-item-year input {
-    width: 3em; }
-#dosomething-login-register-popup-form .form-item-year {
-  width: 5em !important; }
-  #dosomething-login-register-popup-form .form-item-year input {
-    width: 5em; }
-#dosomething-login-register-popup-form .ds-login-popup-footer {
-  width: 80%;
-  height: 100%;
-  margin: 0 auto; }
-  #dosomething-login-register-popup-form .ds-login-popup-footer .description {
-    color: white !important;
-    font-size: 0.7em; }
-    #dosomething-login-register-popup-form .ds-login-popup-footer .description a {
-      color: #ffcb15 !important; }
-
-.popup-content,
-.ds-login-popup-footer {
-  width: 66%;
-  padding: 0 1em;
-  background: none;
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -o-box-shadow: none !important;
-  box-shadow: none !important; }
-
-.form-wrapper {
-  margin: 0; }
-
-.separator {
-  font-family: din-web;
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 40px;
-  text-transform: uppercase;
-  padding: 0.5em 0 0 0;
-  color: white; }
-
-@media only screen and (max-width: 450px) {
-  .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] {
-    background: none !important; }
-
-  #dosomething-login-register-popup-form .popup-content,
-  #dosomething-login-register-facebook .popup-content {
-    width: 100%; }
-
-  #dosomething-login-register-popup-form #edit-submit {
-    width: 85%; } }
 .ui-widget-overlay {
   opacity: 0.9; }
 
@@ -638,7 +380,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   margin: 0 auto; }
 
 .invite-module {
-  width: 50% !important;
+  width: 60% !important;
   margin: 0 auto; }
 
 .invite_friends {
@@ -648,20 +390,33 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite_friends h2 {
     text-align: center;
     font-weight: 600;
-    font-size: 2em;
-    line-height: 2em; }
+    font-size: 3em;
+    line-height: 3em;
+    text-transform: uppercase; }
   .invite_friends h3 {
     font-family: din-web;
-    font-size: 3em;
+    font-size: 2.5em;
+    line-height: 2.5em;
     text-transform: uppercase;
-    margin: 50% 0 0 0; }
-  .invite_friends .invite-module-facebook, .invite_friends .invite-module-or, .invite_friends .invite-module-email {
+    text-align: center;
+    color: white; }
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     width: 43%;
-    float: left; }
+    float: left;
+    border: 2px dashed #cccccc;
+    height: 12em;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px; }
   .invite_friends .invite-module-facebook p, .invite_friends .invite-module-or p, .invite_friends .invite-module-email p {
     font-size: 0.8em; }
   .invite_friends .invite-module-or {
-    width: 14%; }
+    width: 14%;
+    float: left; }
+    .invite_friends .invite-module-or h3 {
+      color: white; }
   .invite_friends .ui-dialog-titlebar {
     margin: 0 0 0 -5.5%; }
   .invite_friends .facebook-action-connect {
@@ -684,10 +439,39 @@ div[aria-labelledby="ui-dialog-title-1"] {
     .invite_friends #edit-submit:hover {
       background: #fbc300; }
 
+#teams-add-member-form {
+  width: 85%;
+  margin: 0 auto; }
+  #teams-add-member-form label {
+    display: none; }
+  #teams-add-member-form .form-submit {
+    position: static;
+    margin: 0 auto;
+    display: block;
+    font-size: 2em;
+    color: #222222;
+    background: #ffcb15;
+    max-width: 15em;
+    height: 1.5em;
+    padding: 0.05em 0.5em 0.5em;
+    text-transform: uppercase;
+    font-weight: 600;
+    float: right;
+    font-family: din-web;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+
 #edit-friend {
-  background: #dddddd;
-  width: 11em;
+  background: white;
   color: #444444;
+  width: 15em;
+  height: 3em;
+  font-size: 1em;
+  padding: 0 0 0 0.5em;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;

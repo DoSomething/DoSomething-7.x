@@ -308,7 +308,7 @@ function dosomething_drives_drive_invite_module($gid) {
 
   $return = array();
   $return['header'] = array(
-    '#markup' => 'Which of your friends would want to join your drive?',
+    '#markup' => 'Invite friends through:',
     '#prefix' => '<h2>',
     '#suffix' => '</h2><div id="teams-notification-area"></div>',
   );
@@ -333,13 +333,13 @@ function dosomething_drives_drive_invite_module($gid) {
     $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
 
     $return['facebook']['description'] = array(
-      '#markup' => 'Connect with Facebook to easily invite your Facebook friends!',
-      '#prefix' => '<p>',
-      '#suffix' => '</p>',
+      '#markup' => 'Facebook',
+      '#prefix' => '<h3>',
+      '#suffix' => '</h3>',
     );
     $return['facebook']['button'] = array(
       '#type' => 'container',
-      '#attributes' => array('class' => array('connect-thru-facebook')),
+      '#attributes' => array('class' => array('connect-with-facebook')),
       '#children' => l('Connect thru Facebook', $fb_url),
     );
   }
@@ -360,9 +360,9 @@ function dosomething_drives_drive_invite_module($gid) {
   );
 
   $return['email']['description'] = array(
-    '#markup' => 'Enter your friend\'s email and hit Invite!',
-    '#prefix' => '<p>',
-    '#suffix' => '</p>',
+    '#markup' => 'email',
+    '#prefix' => '<h3>',
+    '#suffix' => '</h3>',
   );
   $return['email']['form'] = drupal_get_form('teams_add_member_form', $gid);
 
