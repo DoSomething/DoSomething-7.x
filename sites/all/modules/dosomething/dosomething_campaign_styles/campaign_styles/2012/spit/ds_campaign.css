@@ -380,7 +380,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   margin: 0 auto; }
 
 .invite-module {
-  width: 60% !important;
+  width: 850px !important;
   margin: 0 auto; }
 
 .invite_friends {
@@ -403,7 +403,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     width: 43%;
     float: left;
-    border: 2px dashed #cccccc;
+    border: 2px solid #cccccc;
     height: 12em;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -417,8 +417,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
     float: left; }
     .invite_friends .invite-module-or h3 {
       color: white; }
-  .invite_friends .ui-dialog-titlebar {
-    margin: 0 0 0 -5.5%; }
   .invite_friends .facebook-action-connect {
     display: block;
     margin: 8% auto 0;
@@ -478,6 +476,32 @@ div[aria-labelledby="ui-dialog-title-1"] {
   -o-border-radius: 4px;
   border-radius: 4px; }
 
+@media only screen and (max-width: 900px) {
+  .invite-module {
+    width: 100% !important; }
+
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
+    margin: 0 15%;
+    width: 70%;
+    height: 15em; }
+
+  .invite_friends .invite-module-or {
+    width: 100%; }
+
+  #edit-friend {
+    width: 66%; } }
+@media only screen and (max-width: 550px) {
+  #teams-add-member-form .form-submit {
+    float: left; }
+
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
+    margin: 0 2%;
+    width: 95%;
+    height: 15em; }
+
+  #edit-friend {
+    width: 100%;
+    margin-bottom: 1em; } }
 #cmp {
   /* search block */
   /* results block */

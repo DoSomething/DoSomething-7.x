@@ -198,7 +198,7 @@ div[aria-labelledby="ui-dialog-title-1"]
 //      //
 
 .invite-module /* wraps .invite_friends */
-  width: 60% !important
+  width: 850px !important
   margin: 0 auto
 
 .invite_friends
@@ -221,7 +221,7 @@ div[aria-labelledby="ui-dialog-title-1"]
   .invite-module-facebook, .invite-module-email
     width: 43%
     float: left
-    border: 2px dashed #ccc
+    border: 2px solid #ccc
     height: 12em
     +border-radius(10px)
   .invite-module-facebook, .invite-module-or, .invite-module-email
@@ -232,8 +232,6 @@ div[aria-labelledby="ui-dialog-title-1"]
     float: left
     h3
       color: #fff
-  .ui-dialog-titlebar
-    margin: 0 0 0 -5.5%
   .facebook-action-connect
     display: block
     margin: 8% auto 0
@@ -280,3 +278,27 @@ div[aria-labelledby="ui-dialog-title-1"]
   font-size: 1em
   padding: 0 0 0 0.5em
   +border-radius(4px)
+
+
+@media only screen and (max-width: 900px)
+  .invite-module /* wraps .invite_friends */
+    width: 100% !important
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
+    margin: 0 15%
+    width: 70%
+    height: 15em
+  .invite_friends .invite-module-or
+    width: 100%
+  #edit-friend
+    width: 66%
+
+@media only screen and (max-width: 550px)
+  #teams-add-member-form .form-submit
+    float: left
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
+    margin: 0 2%
+    width: 95%
+    height: 15em
+  #edit-friend
+    width: 100%
+    margin-bottom: 1em
