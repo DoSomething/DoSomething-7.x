@@ -83,21 +83,20 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       $xml = curl_exec($ch);
       curl_close();
 
-      $drives_invite_nid = 0;
-      $pattern = '#\<custom_column name\="drives_invite_nid"\>(.*?)\<\/custom_column\>#is';
+      $drives_invite_gid = 0;
+      $pattern = '#\<custom_column name\="drives_invite_gid"\>(.*?)\<\/custom_column\>#is';
       preg_match($pattern, $xml, $patternMatches);
       if (count($patternMatches) >= 2) {
-        $drives_invite_nid = trim($patternMatches[1]);
+        $drives_invite_gid = trim($patternMatches[1]);
 
-        // Get group id based on the nid and join user into that drive
-        $gid = og_get_group('node', $drives_invite_nid)->gid;
-        if ($gid > 0) {
-          dosomething_drives_join($gid, $profile->uid);
+        // Join user into the drive
+        if ($drives_invite_gid > 0) {
+          dosomething_drives_join($drives_invite_gid, $profile->uid);
         }
       }
 
       // Send feedback message to Alpha
-      $alphaMobile = sms_flow_find_alpha(substr($mobile, -10), $drives_invite_nid);
+      $alphaMobile = sms_flow_find_alpha(substr($mobile, -10), $drives_invite_gid);
       if ($alphaMobile) {
         if (empty($first_name)) {
           $profile = profile2_load_by_user($account, 'main');
@@ -111,7 +110,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
       $success_message .= t('Want to invite more friends? Reply back w/ their cell #s separated by commas and we\'ll send them an invite for u!');
       $state->setContext('sms_response', $success_message);
-      $state->setContext('drives_invite_nid', $drives_invite_nid);
+      $state->setContext('drives_invite_gid', $drives_invite_gid);
 
       $state->markSuspended();
     }
