@@ -74,7 +74,7 @@
         // If we reach the limited number of calls, change the message.
         $('#dosomething-robocalls-submitted-message').html(replaced);
         if (limit > 0) {
-         $('#dosomething-robocalls-submitted-message label p').html("Wait!");
+         $('#dosomething-robocalls-submitted-message label p').html("Womp womp...");
          $('#dosomething-robocalls-submitted-message label h2').html('This phone number has already received this call today.  Try sending them a call from another celeb.');
          //$('#dosomething-robocalls-submitted-message div.separator').prepend('<div class="robocalls-awesome-and-sharing" style="font-size: 13pt; font-weight: normal; margin-bottom: 15px;">This number has already been called for this date.  Connect with them on Facebook?</div>');
          /*var fbb = $('.robocalls-fb-button-container').html();
