@@ -120,6 +120,7 @@ Drupal.behaviors.dsPfpShare = {
      *       og_post_custom       (Custom variables as set on the user interface.)*/
       var conf = Drupal.behaviors.dsPfpShare.create_ograph_config();
       Drupal.behaviors.fb.ograph(conf, function(response) {
+        Drupal.behaviors.fb.log(response);
         if ((typeof response !== 'undefined') && (response !== null) && !response.error) {
           // Use FB's JS SDK to retrieve and store the user's facebook id.
           var fbuid = FB.getUserID();
