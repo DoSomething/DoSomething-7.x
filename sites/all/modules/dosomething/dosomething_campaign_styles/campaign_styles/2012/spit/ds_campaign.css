@@ -437,6 +437,14 @@ div[aria-labelledby="ui-dialog-title-1"] {
     .invite_friends #edit-submit:hover {
       background: #fbc300; }
 
+#teams-notification-area {
+  float: left;
+  margin: 3em 0;
+  text-align: center;
+  width: 100%; }
+  #teams-notification-area div {
+    color: #aaaaaa; }
+
 #teams-add-member-form {
   width: 85%;
   margin: 0 auto; }
@@ -489,19 +497,16 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 100%; }
 
   #edit-friend {
-    width: 66%; } }
-@media only screen and (max-width: 550px) {
-  #teams-add-member-form .form-submit {
-    float: left; }
+    width: 66%; }
 
+  #teams-notification-area div {
+    width: 80%;
+    margin: 0 auto; } }
+@media only screen and (max-width: 550px) {
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     margin: 0 2%;
     width: 95%;
-    height: 15em; }
-
-  #edit-friend {
-    width: 100%;
-    margin-bottom: 1em; } }
+    height: 15em; } }
 #cmp {
   /* search block */
   /* results block */

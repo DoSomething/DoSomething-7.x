@@ -227,6 +227,9 @@
         });
       }
     
+      // invite module re-ordering
+      $('.invite-module-email').after($('#teams-notification-area'));
+
       // le sigh
       $('#dosomething-login-register-popup-form').prepend($('#dosomething-login-register-popup-form .already-member'));
 

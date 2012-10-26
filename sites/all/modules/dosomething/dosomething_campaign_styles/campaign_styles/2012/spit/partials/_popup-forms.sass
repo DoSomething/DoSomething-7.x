@@ -248,6 +248,14 @@ div[aria-labelledby="ui-dialog-title-1"]
     &:hover
       background: darken($spitYellow, 5)
 
+#teams-notification-area
+  float: left
+  margin: 3em 0
+  text-align: center
+  width: 100%
+  div
+    color: #aaa
+
 #teams-add-member-form /* form element for "invite friend" */
   width: 85%
   margin: 0 auto
@@ -291,14 +299,12 @@ div[aria-labelledby="ui-dialog-title-1"]
     width: 100%
   #edit-friend
     width: 66%
+  #teams-notification-area div
+    width: 80%
+    margin: 0 auto
 
 @media only screen and (max-width: 550px)
-  #teams-add-member-form .form-submit
-    float: left
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
     margin: 0 2%
     width: 95%
     height: 15em
-  #edit-friend
-    width: 100%
-    margin-bottom: 1em
