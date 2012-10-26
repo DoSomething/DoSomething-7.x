@@ -245,7 +245,7 @@ Drupal.behaviors.dsPfpShare = {
         og_post_description: '4 million animals are killed each year because can\'t find a home.  Click SHARE NOW to share this animal.',
         og_post_image: 'http://files.dosomething.org/files/styles/p4p_fake_button/public/fb_campaign/' + basename(Drupal.behaviors.dsPfpShare.pimg || $('.field-name-field-fb-app-image img').attr('src')),
         og_title: Drupal.behaviors.dsPfpShare.pname + ' needs a home, and supplies for their shelter',
-        og_fake_dialog: 1,
+        og_fake_dialog: 0,
         og_require_login: 1
       };
 

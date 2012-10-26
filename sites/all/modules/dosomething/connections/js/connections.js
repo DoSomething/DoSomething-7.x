@@ -429,7 +429,7 @@
       }
 
   		var fbpost = {
-        'fb:explicitly_shared': true
+        //'fb:explicitly_shared': true
       };
       // fbpost.TYPE = LINK
   		eval('fbpost.' + things.type + ' = "' + things.link + '";');
