@@ -23,7 +23,7 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
       ->condition('nid', $form_state['build_info']['args'][0]->nid)
       ->execute()
       ->fetchAll();
-    if (count($s) > 0) {
+    if (count($s) == 0) {
       contact_scraper::add_scraper_button($form, 0, array('style' => 'display: none'));
     }
 
