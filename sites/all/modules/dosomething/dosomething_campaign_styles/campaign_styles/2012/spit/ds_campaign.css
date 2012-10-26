@@ -1,4 +1,4 @@
-html {
+html > body {
   font-size: 16px; }
 
 #main-wrapper div[role="main"] {
