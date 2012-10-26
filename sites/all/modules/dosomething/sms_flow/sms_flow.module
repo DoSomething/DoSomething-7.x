@@ -384,6 +384,92 @@ function sms_flow_default_conductor_workflows() {
   return $workflows;
 }
 
+function sms_flow_team_invite_form($form, &$form_state, $gid) {
+  $form['first-name'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Your first name:',
+    '#size' => 13,
+  );
+  $form['alpha'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Your Cell Number:',
+    '#size' => 14,
+  );
+
+  $form['beta-0'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Beta #0 Cell Number:',
+    '#size' => 16,
+  );
+  $form['beta-1'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Beta #1 Cell Number:',
+    '#size' => 20,
+  );
+  $form['beta-2'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Beta #2 Cell Number:',
+    '#size' => 24,
+  );
+  $form['beta-3'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Beta #3 Cell Number:',
+    '#size' => 28,
+  );
+  $form['beta-4'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Beta #4 Cell Number:',
+    '#size' => 32,
+  );
+
+  $form['invite-gid'] = array(
+    '#type' => 'hidden',
+    '#default_value' => $gid,
+    '#value' => $gid,
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'FEED ME',
+  );
+
+  return $form;
+}
+
+// TODO: Function's a work in progress. Opt in paths are hardcoded for TFJ
+function sms_flow_team_invite_form_submit($form, &$form_state) {
+dsm($form_state['values']);
+$dsmMsg = "FEED ME MOAAR.";
+drupal_set_message($dsmMsg);
+
+  $alphaMobile = $form_state['values']['alpha'];
+  $beta0Mobile = !empty($form_state['values']['beta-0']) ? $form_state['values']['beta-0'] : NULL;
+  $beta1Mobile = !empty($form_state['values']['beta-1']) ? $form_state['values']['beta-1'] : NULL;
+  $beta2Mobile = !empty($form_state['values']['beta-2']) ? $form_state['values']['beta-2'] : NULL;
+  $beta3Mobile = !empty($form_state['values']['beta-3']) ? $form_state['values']['beta-3'] : NULL;
+  $beta4Mobile = !empty($form_state['values']['beta-4']) ? $form_state['values']['beta-4'] : NULL;
+
+  $betaNumbers = array();
+  $betaNumbers[] = $beta0Mobile;
+  $betaNumbers[] = $beta1Mobile;
+  $betaNumbers[] = $beta2Mobile;
+  $betaNumbers[] = $beta3Mobile;
+  $betaNumbers[] = $beta4Mobile;
+
+  $firstName = $form_state['values']['first-name'];
+
+  $inviteGid = $form_state['values']['invite-gid'];
+  // TODO: sms_flow_start expects NID value to be here. Might want to consider modifying that
+  $form_state['values']['details']['nid'] = $inviteGid;
+
+  sms_flow_start($alphaMobile, 131891, 129751, $betaNumbers, NULL, array(
+      'tfj2013_inviter' => $firstName,
+      'drives_invite_gid' => $inviteGid,
+    )
+  );    
+
+}
+
 /**
  * Get user account from cell number.
  * find_user_by_cell() doesn't handle international code when searching by profile's

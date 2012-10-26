@@ -42,6 +42,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $content['content']['drive_info'] = dosomething_drives_drive_info($drive, $drive_nid, $group->gid, $is_admin);
   $content['content']['drive_share'] = dosomething_drives_drive_share();
   $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin);
+  $content['content']['sms_invite'] = dosomething_drives_drive_sms_invite($group->gid);
 
   $content['#attached']['js'] = array(
     drupal_get_path('module', 'teams') . '/teams.js' => array(),
@@ -50,6 +51,25 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $block = new StdClass();
   $block->content = $content;
   return $block;
+}
+
+function dosomething_drives_drive_sms_invite($gid) {
+  $return = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('clearfix'),
+    )
+  );
+
+  $return['test']['description'] = array(
+    '#prefix' => '<div style="clear:both"></div><h2>',
+    '#markup' => 'FEED ME MORE FRIENDS',
+    '#suffix' => '</h2>',
+  );
+
+  $return['test']['form'] = drupal_get_form('sms_flow_team_invite_form', $gid);
+
+  return $return;
 }
 
 function dosomething_drives_drive_content_type_admin_title($subtype, $conf, $context) {
