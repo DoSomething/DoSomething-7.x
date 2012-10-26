@@ -15,8 +15,18 @@ define('PETITIONS_MCOMMONS', 117371);
  */
 function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'petition') {
-    global $user;
-    contact_scraper::add_scraper_button($form, 0, array('style' => 'display: none'));
+    global $user, $submitted_form;
+
+
+    $s = db_select('webform_submissions', 's')
+      ->fields('s', array('uid'))
+      ->condition('nid', $form_state['build_info']['args'][0]->nid)
+      ->execute()
+      ->fetchAll();
+    if (count($s) > 0) {
+      contact_scraper::add_scraper_button($form, 0, array('style' => 'display: none'));
+    }
+
     if (!user_is_logged_in()) {
       $form['fav_color'] = array(
         '#type' => 'textfield',
@@ -181,7 +191,7 @@ function dosomething_petitions_opt_in($form, $form_state) {
       if ($invited['uid']) {
         $ui = user_load($invited['uid']);
         $up = profile2_load_by_user($ui, 'main');
-        if (isset($up->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+        if (!empty($up->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
           $name = $up->field_user_first_name[LANGUAGE_NONE][0]['value'];
         }
         else {
@@ -191,7 +201,7 @@ function dosomething_petitions_opt_in($form, $form_state) {
         if (!$user->uid) {
           $guest = dosomething_general_load_user_by_mail_or_cell($val);
           $prof = profile2_load_by_user($guest, 'main');
-          if (isset($prof->field_user_first_name[LANGUAGE_NONE][0]['value']) && isset($prof->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
+          if (!empty($prof->field_user_first_name[LANGUAGE_NONE][0]['value']) && !empty($prof->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
             $invitee = $prof->field_user_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $prof->field_user_last_name[LANGUAGE_NONE][0]['value'];
           }
           else {
@@ -200,7 +210,7 @@ function dosomething_petitions_opt_in($form, $form_state) {
         }
         else {
           $uprof = profile2_load_by_user($user, 'main');
-          if (isset($uprof->field_user_first_name[LANGUAGE_NONE][0]['value']) && isset($uprof->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
+          if (!empty($uprof->field_user_first_name[LANGUAGE_NONE][0]['value']) && !empty($uprof->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
             $invitee = $uprof->field_user_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $uprof->field_user_last_name[LANGUAGE_NONE][0]['value'];
           }
           else {
@@ -438,7 +448,7 @@ function dosomething_petitions_mail($key, &$message, $params) {
   switch ($key) {
     case 'petition_invite':
       $message['subject'] = t('Petition to @title', array('@title' => $params['title']));
-      $message['headers']['From'] = t('@name <noreply@dosomething.org>', array('@name' => $params['first_name'] . ' ' . $params['last_name']));
+      $message['headers']['From'] = t('@name <@email>', array('@name' => $params['first_name'] . ' ' . $params['last_name'], '@email' => $params['inviter_email']));
       $message['body'][] = theme('ds_petitions_invite', $params);
       break;
     case 'thanks_for_signing':
@@ -639,7 +649,8 @@ function dosomething_petitions_contact_scraper_emails() {
       'signatures' => $node->goal,
       'url' => $node->link,
       'first_name' => $me,
-      'last_name' => $last
+      'last_name' => $last,
+      'inviter_email' => $user->mail
     );
   $emails['petition']['invited']['store_function'] = 'dosomething_petitions_store_email';
 
