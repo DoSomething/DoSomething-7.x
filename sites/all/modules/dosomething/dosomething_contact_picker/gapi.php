@@ -47,9 +47,25 @@ if ($_POST['do'] == 'blah') {
       exit;
     }
 
-    $response = ($val->getResponseBody());
+    $xml = ($val->getResponseBody());
+    $res .= '<ul id="blah">';
+    preg_match_all('#<entry>(.*?)</entry>#si', $xml, $entries);
+    foreach ($entries[1] AS $key => $entry) {
+      preg_match('#\<title type\=("|\'|)text(\\1)\>(.*?)\<\/title\>#i', $entry, $name);
+      preg_match('#<gd\:email([^(<]*)(address\=("|\'|)([^("|\'|)]*))#i', $entry, $email);
 
-    // Names
+      $n = $name[3];
+      $e = $email[4];
+
+      $res .= '
+      <li>
+        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $e . '" id="' . clean_email($e) . '" />
+        <strong>' . $e . '</strong>
+        <span>' . $n . '</span>
+      </li>';
+    }
+
+    /*// Names
     preg_match_all('#type\=\'text\'\>([^(<]*)\<\/title\>#i', $response, $titles);
     // Emails
     preg_match_all('#address\=\'([^>\']+)\'#i', $response, $emails);
@@ -68,7 +84,7 @@ if ($_POST['do'] == 'blah') {
         <strong>' . $email . '</strong>
         <span>' . $name . '</span>
       </li>';
-    }
+    }*/
     $res .= '</ul>';
 
     echo $res;
