@@ -99,6 +99,11 @@
  		padding: 10px;
  	}
 
+ 	div#submit-buttons label {
+ 		float: none;
+ 		color: #000;
+ 	}
+
  	div#submit-buttons #submit-og-post, div#submit-buttons #cancel-og-post {
  		border-radius: 0px;
  		-moz-border-radius: 0px;
