@@ -8,7 +8,7 @@ div.pane-taxonomy-term-field-celeb-photo {
     height: 314px; }
 
 #robocalls-who-should-celeb-call {
-  margin-top: 100px; }
+  margin-top: 25px; }
 
 div#robocalls-celeb-form .field-type-text {
   margin-top: -13px; }
@@ -30,14 +30,16 @@ div#robocalls-celeb-form form.webform-client-form {
     display: none; }
   div#robocalls-celeb-form form.webform-client-form label {
     float: left;
-    width: 120px;
-    padding-top: 10px;
+    width: 139px;
+    padding-top: 8px;
     padding-right: 12px;
-    text-align: right; }
+    text-align: right;
+    font-size: 12pt; }
     div#robocalls-celeb-form form.webform-client-form label[for="edit-submitted-field-celeb-send-now-und"] {
-      float: none; }
+      float: none;
+      font-size: 9.5pt; }
   div#robocalls-celeb-form form.webform-client-form input[type="text"], div#robocalls-celeb-form form.webform-client-form input[type="tel"] {
-    width: 265px;
+    width: 246px;
     height: 30px;
     box-sizing: border-box;
     -webkit-border-radius: 10px;
@@ -46,7 +48,11 @@ div#robocalls-celeb-form form.webform-client-form {
     -o-border-radius: 10px;
     border-radius: 10px;
     font-size: 18px;
-    padding-left: 10px; }
+    padding-left: 10px;
+    -webkit-box-shadow: #f1f1f1 0 0 5px 1px inset;
+    -moz-box-shadow: #f1f1f1 0 0 5px 1px inset;
+    box-shadow: #f1f1f1 0 0 5px 1px inset;
+    border: 1px solid #bfbfbf; }
   div#robocalls-celeb-form form.webform-client-form #or-send-now-button {
     margin-left: 120px;
     margin-top: -5px;
