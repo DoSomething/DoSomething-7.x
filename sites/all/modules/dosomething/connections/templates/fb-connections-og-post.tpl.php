@@ -1,6 +1,6 @@
  <style type="text/css">
  	<!--
- 	body { margin: 0px; padding: 0px; }
+ 	body { margin: 0px; padding: 0px; font-family: 'lucida grande', tahoma, verdana, arial, sans-serif; }
  	div#top-bar {
  		background: #6D84B4;
  		border: #3B5998;
@@ -91,6 +91,7 @@
  		background: #f2f2f2;
  		box-shadow: -2px -2px 1px #808080;
  		clear: both;
+ 		font-size: 10pt;
  		position: relative;
  		/*top: 20px;*/
  		height: 40px;
@@ -171,6 +172,7 @@
 		<div style="clear: both"></div>
 	</div>
 	<div id="submit-buttons">
+		<input type="checkbox" id="explicitly-share" checked="checked" /> <label for="explicitly-share">Post to my wall</label>
 		<input type="submit" value="Share" id="submit-og-post" />
 		<input type="reset" value="Cancel" class="close-fb-dialog" id="cancel-og-post" />
 	</div>

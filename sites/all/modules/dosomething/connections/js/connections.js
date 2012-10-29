@@ -119,6 +119,7 @@
 
           $('#submit-og-post').click(function() {
             things.comments = $('#fb_og_comments').val();
+            things.explicitly_shared = ($('#explicitly-share').attr('checked') == 'checked') || false;
 
             callback(things);
             $('.og_dialog').dialog('close');
@@ -479,6 +480,10 @@
           if (response.comments) {
             fbpost.message = response.comments;
           }
+          if (response.explicitly_shared) {
+            fbpost.explicitly_shared = response.explicitly_shared;
+          }
+
           Drupal.behaviors.fb.run_ograph(things, fbpost, callback);
         });
       });
