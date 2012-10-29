@@ -485,7 +485,7 @@
             fbpost['fb:explicitly_shared'] = response.explicitly_shared;
           }
 
-          Drupal.behaviors.fb.run_ograph(things, fbpost, response.explicitly_shared, callback);
+          Drupal.behaviors.fb.run_ograph(things, fbpost, callback);
         });
       });
     },
