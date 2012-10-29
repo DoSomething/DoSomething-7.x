@@ -562,6 +562,14 @@ function robocalls_page_alter(&$page) {
    }
 }
 
+function robocalls_unset_celeb_from_tid(&$view, $tid) {
+  foreach ($view->result AS $key => $celeb) {
+    if ($celeb->tid == $tid) {
+      unset($view->result["$key"]);
+      break;
+    }
+  }
+}
 
 /**
   * Alters celebrity blocks to include ribbons for:
@@ -575,6 +583,10 @@ function robocalls_views_pre_render(&$view) {
    if ($view->name == 'cause_its_your_birthday') {
       $pop = db_query("SELECT `field_celebrity_chooser_tid` AS `tid`, COUNT(*) AS `c` FROM {field_data_field_celebrity_chooser} GROUP BY `field_celebrity_chooser_tid` ORDER BY `c` DESC LIMIT 1")->fetchAssoc();
       $popular = $pop['tid'];
+
+      if (!empty($view->result[0]->view_name) && $view->result[0]->view_name == 'cause_its_your_birthday:block_robocalls_choose_another_celeb') {
+        robocalls_unset_celeb_from_tid($view, $term_info['tid']);
+      }
 
       $latest = array('stamp' => 0, 'key' => 0);
       $bdays = array();

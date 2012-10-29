@@ -233,7 +233,7 @@ function robocalls_default_page_manager_handlers() {
       'url' => '',
       'display' => 'block_robocalls_choose_another_celeb',
       'override_title' => 1,
-      'override_title_text' => 'Or Choose Another Celebrity',
+      'override_title_text' => 'Or Choose Another Celebrity Call',
     );
     $pane->cache = array();
     $pane->style = array();
