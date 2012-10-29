@@ -1,3 +1,55 @@
+body {
+  background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) top left; }
+  body.one-sidebar.sidebar-first [role="main"] {
+    width: 791px; }
+  body .region-sidebar-first .block-menu-block .content ul.menu {
+    background: #f6eed2;
+    margin-right: -5px; }
+
+div[role="main"] {
+  background: url(/sites/all/modules/dosomething/features/robocalls/images/section_background.png) top left;
+  padding: 30px;
+  margin: 0px;
+  width: 791px;
+  padding-top: 0px; }
+  div[role="main"] nav#breadcrumb {
+    display: none; }
+  div[role="main"] h1#page-title {
+    color: transparent;
+    background: url(/sites/all/modules/dosomething/features/robocalls/images/logo.png) top left no-repeat;
+    height: 200px;
+    width: 793px;
+    margin-left: -31px;
+    border-bottom: none; }
+  div[role="main"] h2.pane-title {
+    background: none;
+    color: black;
+    padding: 0px 0px 10px 0px; }
+  div[role="main"] #robocalls-landing-celebs h2, div[role="main"] #robocalls-who-should-celeb-call h2 {
+    background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) repeat-x, #d81f2a;
+    height: 39px;
+    background-size: 100% 10px, 100% 35px;
+    padding-top: 18px;
+    width: 791px;
+    margin-left: -30px;
+    padding-left: 15px;
+    color: #f6eed2;
+    font-size: 19pt; }
+  div[role="main"] #robocalls-sponsor-zone, div[role="main"] #robocalls-partner-zone {
+    text-align: center; }
+    div[role="main"] #robocalls-sponsor-zone h2, div[role="main"] #robocalls-partner-zone h2 {
+      font-size: 14px; }
+    div[role="main"] #robocalls-sponsor-zone.sponsor-right, div[role="main"] #robocalls-partner-zone.sponsor-right {
+      display: inline;
+      float: right; }
+  div[role="main"] #robocalls-here-how-it-works {
+    margin: 20px 0px; }
+  div[role="main"] #robocalls-about-block {
+    margin-top: 15px; }
+  div[role="main"] .ui-dialog .ui-dialog-titlebar {
+    float: right;
+    margin-right: 10px; }
+
 div.view-id-cause_its_your_birthday div.views-row {
   float: left; }
   div.view-id-cause_its_your_birthday div.views-row img {
@@ -6,17 +58,7 @@ div.view-id-cause_its_your_birthday div.views-row {
     -webkit-box-shadow: 0px 0px 3px gray;
     -moz-box-shadow: 0px 0px 3px gray;
     box-shadow: 0px 0px 3px gray; }
-  div.view-id-cause_its_your_birthday div.views-row div.views-field-field-celeb-photo {
-    float: left; }
-
-div.pane-taxonomy-term-field-celeb-photo {
-  border: 1px solid white;
-  height: 316px;
-  -webkit-box-shadow: 0px 0px 5px gray;
-  -moz-box-shadow: 0px 0px 5px gray;
-  box-shadow: 0px 0px 5px gray; }
-
-div.views-field-nothing, div.views-field-description {
+div.view-id-cause_its_your_birthday div.views-field-nothing {
   clear: left;
   width: 205px;
   height: 215px;
@@ -30,22 +72,57 @@ div.views-field-nothing, div.views-field-description {
   box-sizing: border-box;
   margin: 10px 10px 15px 10px;
   position: relative; }
-  div.views-field-nothing h3, div.views-field-description h3 {
-    margin: 10px 0px 5px; }
-
-#robocalls-choose-another-celebrity h2.pane-title {
-  margin-left: -10px;
-  margin-top: -130px; }
-
-div.robocalls-call-information input[type="text"], div.robocalls-call-information .form-item input.form-tel {
-  width: 170px; }
-div.robocalls-call-information .webform-component, div.robocalls-call-information .form-item {
-  clear: both;
-  margin-bottom: 10px; }
-div.robocalls-call-information .form-item label:first-child, div.robocalls-call-information .webform-component label:first-child {
-  float: left;
-  width: 105px;
-  margin-right: 10px;
-  margin-top: 5px;
-  clear: left;
-  text-align: right; }
+  div.view-id-cause_its_your_birthday div.views-field-nothing h4 {
+    font-size: 13pt; }
+  div.view-id-cause_its_your_birthday div.views-field-nothing a.go-button {
+    position: absolute;
+    z-index: 0;
+    right: 3px;
+    height: 22px;
+    margin-top: 10px;
+    bottom: 3px; }
+  div.view-id-cause_its_your_birthday div.views-field-nothing p {
+    height: 35px; }
+div.view-id-cause_its_your_birthday div.robocall-flag {
+  background: rgba(24, 64, 139, 0.7);
+  padding: 3px 17px;
+  height: 24px;
+  position: absolute;
+  z-index: 0;
+  top: 10px;
+  left: -7px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 17pt;
+  line-height: 1;
+  font-family: din-web; }
+  div.view-id-cause_its_your_birthday div.robocall-flag.birthday {
+    background: rgba(216, 31, 42, 0.7); }
+  div.view-id-cause_its_your_birthday div.robocall-flag:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    bottom: -7px;
+    left: 0px;
+    background: transparent;
+    z-index: -1;
+    border-top: 7px solid black;
+    border-left: 7px solid transparent; }
+div.view-id-cause_its_your_birthday div.file-audio {
+  position: absolute;
+  z-index: 0;
+  bottom: 0; }
+  div.view-id-cause_its_your_birthday div.file-audio span.file {
+    display: inline;
+    float: left; }
+    div.view-id-cause_its_your_birthday div.file-audio span.file img.file-icon {
+      display: none; }
+  div.view-id-cause_its_your_birthday div.file-audio a {
+    background: url(/sites/all/modules/dosomething/features/robocalls/images/play.png) top left no-repeat;
+    width: 26px;
+    height: 26px;
+    font-size: 1px;
+    color: transparent;
+    display: block; }
+  div.view-id-cause_its_your_birthday div.file-audio.paused {
+    background: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png) top left no-repeat; }

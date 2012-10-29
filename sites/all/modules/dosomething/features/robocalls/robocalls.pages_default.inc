@@ -90,7 +90,10 @@ function robocalls_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array();
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'robocalls-celeb-form',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
@@ -113,13 +116,13 @@ function robocalls_default_page_manager_handlers() {
 		<div id="edit-title-text" class="form-item form-type-item">
 		  <label for="edit-title-text">
 			<p>Done.</p>
-			<h2>Thanks for Sending a Celebrity Cause Call.</h2> 
+			<h2>Thanks for Sending a Call of Fame.</h2> 
 		   </label>
 		</div>
 		<div class="send-another-robocall">
 			<a href="/calloffame" class="go-button">Send Another Call</a>
 		</div>
-		<div class="separator form-wrapper" id="edit-or--2">Share The Celebrity Cause Call With Friends:</div>
+		<div class="separator form-wrapper" id="edit-or--2">Share The Call of Fame With Friends:</div>
 		<div class="robocalls-awesome-and-sharing with-links">
 			<div class="share-images"><a href="http://www.facebook.com/sharer/sharer.php?u=http://www.dosomething.org/causecall" id="robocalls-fb-share-link" target="_blank"><img src="http://brandthunder.com/wp/wp-content/uploads/2012/07/Facebook-skins-post.png" width="42" height="42" alt="" /></a> <a id="robocalls-twitter-button" href=\'http://twitter.com/intent/tweet?text=\'><img src="http://www.simplyzesty.com/wp-content/uploads/2011/08/Twitter-Logo-300x293.jpg" width="42" height="42" alt="" /></a></div>
 		</div>
@@ -176,7 +179,7 @@ function robocalls_default_page_manager_handlers() {
     $pane->panel = 'center';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => 'Image flag',
@@ -195,6 +198,22 @@ function robocalls_default_page_manager_handlers() {
     $display->panels['center'][1] = 'new-5';
     $pane = new stdClass();
     $pane->pid = 'new-6';
+    $pane->panel = 'center';
+    $pane->type = 'robocalls_flag';
+    $pane->subtype = 'robocalls_flag';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-6'] = $pane;
+    $display->panels['center'][2] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
     $pane->panel = 'choose_another';
     $pane->type = 'views';
     $pane->subtype = 'cause_its_your_birthday';
@@ -225,14 +244,14 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['choose_another'][0] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['choose_another'][0] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'sponsor_zone';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => 'In Partnership With',
@@ -250,10 +269,10 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['sponsor_zone'][0] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['sponsor_zone'][0] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-9';
     $pane->panel = 'who_should_____call_';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -275,10 +294,10 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['who_should_____call_'][0] = 'new-8';
+    $display->content['new-9'] = $pane;
+    $display->panels['who_should_____call_'][0] = 'new-9';
     $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-10';
     $pane->panel = 'who_should_____call_';
     $pane->type = 'block';
     $pane->subtype = 'service_links-service_links_not_node';
@@ -294,19 +313,19 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-9'] = $pane;
-    $display->panels['who_should_____call_'][1] = 'new-9';
+    $display->content['new-10'] = $pane;
+    $display->panels['who_should_____call_'][1] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-11';
     $pane->panel = 'who_should_____call_';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => '',
+      'admin_title' => 'Scholarship text',
       'title' => '',
-      'body' => 'Blah blah something about blah blah',
+      'body' => 'Scholarship text goes here.',
       'format' => '1',
       'substitute' => 1,
     );
@@ -316,10 +335,10 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['who_should_____call_'][2] = 'new-10';
+    $display->content['new-11'] = $pane;
+    $display->panels['who_should_____call_'][2] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-12';
     $pane->panel = 'who_should_____call_';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -341,10 +360,10 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-11'] = $pane;
-    $display->panels['who_should_____call_'][3] = 'new-11';
+    $display->content['new-12'] = $pane;
+    $display->panels['who_should_____call_'][3] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-13';
     $pane->panel = 'who_should_____call_';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -363,8 +382,8 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 4;
     $pane->locks = array();
-    $display->content['new-12'] = $pane;
-    $display->panels['who_should_____call_'][4] = 'new-12';
+    $display->content['new-13'] = $pane;
+    $display->panels['who_should_____call_'][4] = 'new-13';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -476,7 +495,7 @@ function robocalls_default_page_manager_pages() {
     $pane->panel = 'asdfasdf';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => 'In Partnership With',

@@ -8,12 +8,18 @@ include_once 'robocalls.features.inc';
 define('MCOMMONS_ROBOCALL_CAMPAIGN', 18301);
 define('ROBOCALLS_WEBFORM_NID', 723327);
 define('MAX_CALLS_PER_DAY', 1);
+define('ROUND_TO', 10);
 
 function robocalls_panels_pre_render($display) {
   if ($display->layout == 'flexible:cause_calls' || $display->layout == 'flexible:cause_calls_landing' || request_uri() == '/calloffame/about') {
     drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/dosomething_robocall.css', array(
         'group' => CSS_THEME,
-        'weight' => 10
+        'weight' => 1000
+    ));
+
+    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls.css', array(
+        'group' => CSS_THEME,
+        'weight' => 3000
     ));
 
     drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls.js', array(
@@ -71,7 +77,16 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     $term = taxonomy_term_load($termid);
     $u = &$form['submitted']/*['celeb_call_information']*/;
 
-#    echo '<pre>', print_r($form), '</pre>'; exit;
+    // Get current date value (may be before the time that the page was loaded)
+    $current = strtotime($u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value']);
+    // Get the next 10 for minute
+    $next = ceil(date('i', $current) / ROUND_TO) * ROUND_TO;
+    // Recreate the date with the next 10
+    $real = date('Y-m-d H:' . $next . ':s', $current);
+    // And set the form fields to reflect that.
+    $u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value'] = $real;
+
+    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb.css');
 
     if (!empty($term)) {
        $term_info = array();
@@ -93,21 +108,20 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       );
 	}
 
-    $form['extras'] = array(
-       '#type' => 'container',
-       '#attributes' => array(
-          'class' => array('robocalls-extras-container')
-       ));
+    $form['actions']['submit']['#value'] = t('SEND');
+    $form['actions']['submit']['#attributes']['class'] = array('go-button robocalls-submit');
+    $form['submit_button'] = $form['actions']['submit'];
+    $form['actions']['submit']['#access'] = FALSE;
 
-    $form['extras']['fb_container'] = array(
+    $form['fb_preview'] = array(
        '#type' => 'container',
        '#attributes' => array(
           'class' => array('robocalls-fb-container')
        ),
-       '#weight' => 6,
+       '#weight' => 100,
   	);
 
-    $form['extras']['fb_container']['fb_button'] = array(
+    $form['fb_preview']['fb_button'] = array(
       '#type' => 'container',
       '#attributes' => array(
         'class' => array('robocalls-fb-button-container')
@@ -115,54 +129,33 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       '#weight' => 1,
     );
 
-    $form['extras']['fb_container']['fb_button']['connect_with_facebook'] = array(
+    $form['fb_preview']['fb_button']['connect_with_facebook'] = array(
       '#markup' => '<p class="robocalls-fb-find-friends-birthdays"><img src="/' . drupal_get_path('module', 'robocalls') . '/images/facebook-share-button.gif" alt="Share on Facebook" /></p>',
       '#weight' => 2
     );
 
-    $form['actions']['submit']['#attributes']['class'] = array('go-button robocalls-submit');
-    $form['extras']['fb_container']['submit_button'] = $form['actions']['submit'];
-    $form['actions']['submit']['#access'] = FALSE;
-
-    /*$form['extras']['well_send_to'] = array(
-        '#type' => 'markup',
-        '#markup' => '<div id="well-send-to">We\'ll send a birthday message to:<ul></ul></div>',
-        '#weight' => 6
-	);
-
-    $form['or_send_now'] = array(
-        '#type' => 'checkbox',
-        '#title' => t("Or send NOW!"),
-        '#weight' => 5,
-        '#attributes' => array(
-           'class' => array('robocalls-send-message-now')
-        )
-    );*/
-
     if (isset($term->tid) && !empty($term->tid)) {
-        $form['preview'] = array(
+        $form['fb_preview']['preview'] = array(
            '#type' => 'container',
            '#attributes' => array(
               'class' => array('robocalls-preview-button-container')
-		));
+    		));
 
-        $form['preview']['preview_now'] = array(
-           '#markup' => '<p><h3>Preview Your Call!</h3></p>'
+        $form['fb_preview']['preview']['preview_now'] = array(
+           '#markup' => '<p><h3>Preview</h3></p>'
         );
 
-        $form['preview']['audio'] = array(
+        $form['fb_preview']['preview']['audio'] = array(
            '#markup' => '<audio id="robocalls-preview-audio" src="/files' . str_replace(array(DRUPAL_ROOT . '/files', 'var/www/nfs'), '', drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) . '"></audio>'
         );
 
-        $form['preview']['button'] = array(
+        $form['fb_preview']['preview']['button'] = array(
            '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', str_replace(array(DRUPAL_ROOT . '/', '/var/www/nfs'), array('', 'files'), drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])), array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link')))
         );
     }
 
-#    $form['actions']['submit']['#value'] = 'SEND IT!';
- #   $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
     if (!user_is_logged_in()) {
-       $form['extras']['fb_container']['submit_button']['#ajax'] = array(
+       $form['submit_button']['#ajax'] = array(
          'callback' => 'robocalls_ajax_call',
        );
     }
@@ -215,15 +208,6 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
        'weight' => -100,
        'cache' => FALSE
     ));
-
-    /*drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/facebook/tdfriendselector.js', array(
-      'weight' => -102,
-      'cache' => FALSE
-    ));
-    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/facebook/example.js', array(
-      'weight' => -101,
-      'cache' => FALSE
-    ));*/
 
     if (isset($_GET['done'])) {
        // Pop up the "Done!" pop up
@@ -362,7 +346,7 @@ function robocalls_call_validate(&$form, &$form_state) {
   $error = 0;
 
   // If they're submitting for a date that's already passed, no bananas!
-  if (time() > $nst && !$sn) {
+  if (time() > $nst && $sn) {
     form_set_error('form', "Sorry, we can't send a call from the past.");
     $error++;
   }
@@ -424,7 +408,7 @@ function robocalls_call_submit(&$form, &$form_state) {
 
    $mconnect_id = $form['submitted']['webform_entity_form']['#entity']->input['mobile_commons_id'];
 
-   if ($send_now && !$form_state['already_called'] && user_is_logged_in()) {
+   if (!$send_now && !$form_state['already_called'] && user_is_logged_in()) {
      robocalls_mcommons_call($friend_phone, $user_name, $mconnect_id);
    }
 
@@ -503,7 +487,7 @@ function robocalls_page_alter(&$page) {
    global $term_info, $flags;
 
   if (request_uri() == '/calloffame/about') {
-    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/dosomething_robocall.css', array(
+    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls.css', array(
         'group' => CSS_THEME,
         'weight' => 10
     ));

@@ -201,7 +201,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'taxonomy_term',
       'field_name' => 'field_call_limit',
-      'label' => 'Call limit number',
+      'label' => 'Call Limit Number',
       'required' => 0,
       'settings' => array(
         'max' => '',
@@ -269,7 +269,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'taxonomy_term',
       'field_name' => 'field_call_mobile_commons_id',
-      'label' => 'Mobile Commons ID',
+      'label' => 'Mobile Commons MConnect ID',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -341,8 +341,8 @@ function robocalls_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'description_field' => 0,
-        'file_directory' => '',
-        'file_extensions' => 'mp3',
+        'file_directory' => 'causecalls',
+        'file_extensions' => 'mp3 wav',
         'max_filesize' => '',
         'user_register_form' => FALSE,
       ),
@@ -363,17 +363,23 @@ function robocalls_field_default_fields() {
             'image_blog_large_thumbnail' => 0,
             'image_blog_portrait' => 0,
             'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
             'image_campaign_blog_thumbnail' => 0,
             'image_campaign_microsite_logo' => 0,
             'image_campaign_report_back_style' => 0,
             'image_campaigns_image' => 0,
             'image_campaigns_logo' => 0,
+            'image_carousel_center' => 0,
+            'image_carousel_inner' => 0,
+            'image_carousel_outer' => 0,
             'image_cause_main' => 0,
             'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
             'image_club_profile' => 0,
             'image_content_main' => 0,
             'image_explore_action_guides' => 0,
             'image_front_slider' => 0,
+            'image_gallery_thumbnail' => 0,
             'image_grants_landing' => 0,
             'image_issue_main' => 0,
             'image_large' => 0,
@@ -381,16 +387,24 @@ function robocalls_field_default_fields() {
             'image_member_photo_gallery' => 0,
             'image_my_somethings' => 0,
             'image_nav_page_bottom' => 0,
+            'image_petdetail_regular' => 0,
+            'image_petdetail_retina' => 0,
             'image_project_gallery_thumb' => 0,
             'image_project_related_thumb' => 0,
             'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
             'image_rotoslider_homepage_main' => 0,
             'image_rotoslider_nav' => 0,
             'image_rotoslider_start_something_main' => 0,
             'image_search_results_thumbnail' => 0,
+            'image_social_scholarship_images_petition_735x150' => 0,
+            'image_social_scholarship_stat_image_190x190' => 0,
             'image_sponsor_logo' => 0,
             'image_square_thumbnail' => 0,
             'image_thumbnail' => 0,
+            'image_thumbnail_regular' => 0,
+            'image_thumbnail_retina' => 0,
             'image_tips_tools_node' => 0,
             'image_upcoming_somethings_thumb' => 0,
             'image_whats_happening_now_thumbnail' => 0,
@@ -493,17 +507,23 @@ function robocalls_field_default_fields() {
             'image_blog_large_thumbnail' => 0,
             'image_blog_portrait' => 0,
             'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
             'image_campaign_blog_thumbnail' => 0,
             'image_campaign_microsite_logo' => 0,
             'image_campaign_report_back_style' => 0,
             'image_campaigns_image' => 0,
             'image_campaigns_logo' => 0,
+            'image_carousel_center' => 0,
+            'image_carousel_inner' => 0,
+            'image_carousel_outer' => 0,
             'image_cause_main' => 0,
             'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
             'image_club_profile' => 0,
             'image_content_main' => 0,
             'image_explore_action_guides' => 0,
             'image_front_slider' => 0,
+            'image_gallery_thumbnail' => 0,
             'image_grants_landing' => 0,
             'image_issue_main' => 0,
             'image_large' => 0,
@@ -511,23 +531,31 @@ function robocalls_field_default_fields() {
             'image_member_photo_gallery' => 0,
             'image_my_somethings' => 0,
             'image_nav_page_bottom' => 0,
+            'image_petdetail_regular' => 0,
+            'image_petdetail_retina' => 0,
             'image_project_gallery_thumb' => 0,
             'image_project_related_thumb' => 0,
             'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
             'image_rotoslider_homepage_main' => 0,
             'image_rotoslider_nav' => 0,
             'image_rotoslider_start_something_main' => 0,
             'image_search_results_thumbnail' => 0,
+            'image_social_scholarship_images_petition_735x150' => 0,
+            'image_social_scholarship_stat_image_190x190' => 0,
             'image_sponsor_logo' => 0,
             'image_square_thumbnail' => 0,
             'image_thumbnail' => 0,
+            'image_thumbnail_regular' => 0,
+            'image_thumbnail_retina' => 0,
             'image_tips_tools_node' => 0,
             'image_upcoming_somethings_thumb' => 0,
             'image_whats_happening_now_thumbnail' => 0,
             'link' => 0,
           ),
           'insert_width' => '',
-          'preview_image_style' => 'thumbnail',
+          'preview_image_style' => 'robocall_celeb_photo',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
@@ -666,7 +694,7 @@ function robocalls_field_default_fields() {
             'link' => 0,
           ),
           'insert_width' => '',
-          'preview_image_style' => 'thumbnail',
+          'preview_image_style' => 'robocall_celeb_thumbnail_205x115',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
@@ -817,7 +845,7 @@ function robocalls_field_default_fields() {
           'input_format_custom' => '',
           'label_position' => 'above',
           'text_parts' => array(),
-          'year_range' => '-3:+3',
+          'year_range' => '-0:+3',
         ),
         'type' => 'date_select',
         'weight' => '5',
@@ -946,7 +974,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_date',
-      'label' => 'Date to Send:',
+      'label' => 'or Choose a Date:',
       'required' => 0,
       'settings' => array(
         'default_value' => 'now',
@@ -1029,7 +1057,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_friend_phone',
-      'label' => 'Your Friend\'s Cell:',
+      'label' => 'Your Friend\'s Cell',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1095,7 +1123,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_send_now',
-      'label' => 'Or Send NOW!',
+      'label' => 'Send Later',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -1167,7 +1195,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_your_name',
-      'label' => 'Your First Name:',
+      'label' => 'Your First Name',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1180,7 +1208,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -1241,7 +1269,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_your_phone',
-      'label' => 'Your Cell Number:',
+      'label' => 'Your Cell',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1405,16 +1433,16 @@ function robocalls_field_default_fields() {
   t('A short description of this category.  \'Awesome, I just had SO-AND-SO call my friends to say "Do Something about _____"\'.  Fill in the blank.  Required.');
   t('Birthday Call?');
   t('Body');
-  t('Call limit number');
+  t('Call Limit Number');
   t('Check this box if this particular Robo Call is a birthday call.');
-  t('Date to Send:');
   t('How many calls to any given number per day should be allowed on this celebrity?');
   t('Is this celebrity a timed call (that is -- can it only call on a certain date / certain time?) An example of this: Voting campaign or Holiday calls.  Users will be able to specify what hour and minute they want this call to take place, within the specified day.
 ');
   t('Mobile Commons ID');
-  t('Or Send NOW!');
+  t('Mobile Commons MConnect ID');
   t('Photo');
   t('Photo thumbnail');
+  t('Send Later');
   t('Short Name');
   t('Sound File');
   t('Step 1: Choose Who is Calling');
@@ -1422,9 +1450,10 @@ function robocalls_field_default_fields() {
   t('Thumbnail that will appear for this celebrity on the Call of Fame landing page.');
   t('Timed Call Label');
   t('Timed Call?');
-  t('Your Cell Number:');
-  t('Your First Name:');
-  t('Your Friend\'s Cell:');
+  t('Your Cell');
+  t('Your First Name');
+  t('Your Friend\'s Cell');
+  t('or Choose a Date:');
 
   return $fields;
 }
