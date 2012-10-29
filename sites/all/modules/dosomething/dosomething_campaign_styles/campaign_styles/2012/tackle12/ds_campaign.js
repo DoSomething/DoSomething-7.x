@@ -76,7 +76,9 @@
       }
 
       // contact form login
-      $('.webform-client-form .form-actions').append('<p>Already signed up? <a href="#">log in</a></p>');
+      $('#webform-client-form-724782 .form-actions').append('<p>Already signed up? <a href="/user?destination=node/724781" class="sign-in-popup">log in</a></p>');
+
+
 
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
@@ -226,6 +228,13 @@
       $('.ui-icon-closethick').click(function() {
         location.reload();
       });
+
+    // Report Back Weight
+    var $output = $("#edit-submitted-ew");
+    $("#edit-submitted-number-of-items").keyup(function() {
+      var value = parseFloat($(this).val());
+      $output.val(value*0.85);
+    });  
 
          
     } // end attach: function

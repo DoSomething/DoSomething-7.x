@@ -50,7 +50,8 @@ label
       color: white
       text-transform: uppercase
       &:hover
-        color: $yellow  
+        color: $yellow 
+        text-decoration: underline 
         
 
 
@@ -183,7 +184,15 @@ label
     #edit-submitted-field-webform-pictures-und-0-upload-button
       display: block !important
       margin: 10px !important
-  
+
+  #edit-submitted-ew
+    +noBorder
+    +noShadow
+    color: #999
+    font-size: 1.1em
+  label[for="edit-submitted-ew"]
+    color: #999
+
   
 .go-button, #edit-submit, .form-submit
   font-family: din-web
