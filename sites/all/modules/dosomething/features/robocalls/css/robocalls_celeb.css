@@ -190,6 +190,11 @@ div#robocalls-celeb-form form.webform-client-form {
 
 div.robocalls-submitted-message-dialog {
   background: #fefefe; }
+  div.robocalls-submitted-message-dialog div.ui-dialog-titlebar {
+    position: relative;
+    top: -15px;
+    float: right;
+    right: 5px; }
 
 #dosomething-robocalls-submitted-message {
   background: white;
