@@ -1211,7 +1211,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_types' => array(),
       'field_name' => 'field_club_video',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -1274,6 +1274,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         'module' => 'media',
         'settings' => array(
           'allowed_schemes' => array(
+            'private' => 0,
             'public' => 'public',
             'vimeo' => 0,
             'youtube' => 'youtube',
@@ -1839,7 +1840,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
       ),
       'deleted' => '0',
-      'description' => 'Check this box if this club is not associated with a school.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1868,7 +1869,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_no_school_associate',
-      'label' => 'My Club is not associated with a school',
+      'label' => 'OR My Club is not associated with a school (this will delete your school selection)',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -1926,7 +1927,8 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
       ),
       'deleted' => '0',
-      'description' => 'Keep our Clubs Directory listing clean by capitalizing the first letters in your club name and using our standard formatting like its pre-filled above.',
+      'description' => 'Insert your group, community, or church name here.
+<br />Check out the name of your club below',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -2553,7 +2555,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         ),
       ),
       'deleted' => '0',
-      'description' => 'Keep an eye on your email next semester, you may need to take additional steps to confirm future packages.',
+      'description' => 'Keep an eye on your email next semester, you may need to take additional steps to confirm future packages. Elligible to US residents only.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -2583,7 +2585,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_send_goodies',
-      'label' => 'Send me a package full of goodies every Fall and Spring!',
+      'label' => 'Send me this semester\\\'s DoSomething.org Club Kit',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -2843,7 +2845,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'required' => 0,
       'settings' => array(
         'description_field' => 0,
-        'file_directory' => '',
+        'file_directory' => 'clubs_todo_images',
         'file_extensions' => 'jpg jpeg gif png',
         'max_filesize' => '',
         'user_register_form' => FALSE,
@@ -2865,17 +2867,23 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_blog_large_thumbnail' => 0,
             'image_blog_portrait' => 0,
             'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
             'image_campaign_blog_thumbnail' => 0,
             'image_campaign_microsite_logo' => 0,
             'image_campaign_report_back_style' => 0,
             'image_campaigns_image' => 0,
             'image_campaigns_logo' => 0,
+            'image_carousel_center' => 0,
+            'image_carousel_inner' => 0,
+            'image_carousel_outer' => 0,
             'image_cause_main' => 0,
             'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
             'image_club_profile' => 0,
             'image_content_main' => 0,
             'image_explore_action_guides' => 0,
             'image_front_slider' => 0,
+            'image_gallery_thumbnail' => 0,
             'image_grants_landing' => 0,
             'image_issue_main' => 0,
             'image_large' => 0,
@@ -2883,6 +2891,8 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_member_photo_gallery' => 0,
             'image_my_somethings' => 0,
             'image_nav_page_bottom' => 0,
+            'image_petdetail_regular' => 0,
+            'image_petdetail_retina' => 0,
             'image_project_gallery_thumb' => 0,
             'image_project_related_thumb' => 0,
             'image_related-posts' => 0,
@@ -2892,9 +2902,13 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_rotoslider_nav' => 0,
             'image_rotoslider_start_something_main' => 0,
             'image_search_results_thumbnail' => 0,
+            'image_social_scholarship_images_petition_735x150' => 0,
+            'image_social_scholarship_stat_image_190x190' => 0,
             'image_sponsor_logo' => 0,
             'image_square_thumbnail' => 0,
             'image_thumbnail' => 0,
+            'image_thumbnail_regular' => 0,
+            'image_thumbnail_retina' => 0,
             'image_tips_tools_node' => 0,
             'image_upcoming_somethings_thumb' => 0,
             'image_whats_happening_now_thumbnail' => 0,
@@ -2982,7 +2996,6 @@ sports|Sports Equipment - our fall sports equipment drive',
   t('Add group content');
   t('Address');
   t('As the club leader we may need to send you important notifications regarding your eligibility for grants, prizes, and other sweet opportunities.  So please provide an email address you actually check.');
-  t('Check this box if this club is not associated with a school.');
   t('City');
   t('Club Photo Gallery');
   t('Date of birth');
@@ -2991,20 +3004,21 @@ sports|Sports Equipment - our fall sports equipment drive',
   t('Image');
   t('In 140 characters or less, post your club\'s goals, next meeting date, or upcoming volunteer opportunities.');
   t('Insert a blurb of text about your club');
+  t('Insert your group, community, or church name here.
+<br />Check out the name of your club below');
   t('Invite a Friend');
-  t('Keep an eye on your email next semester, you may need to take additional steps to confirm future packages.');
-  t('Keep our Clubs Directory listing clean by capitalizing the first letters in your club name and using our standard formatting like its pre-filled above.');
+  t('Keep an eye on your email next semester, you may need to take additional steps to confirm future packages. Elligible to US residents only.');
   t('Last Name');
   t('Link to');
   t('List the email addresses of people you\'d like to invite to your club.');
   t('Mailchimp Interest Group');
   t('Mailings');
-  t('My Club is not associated with a school');
   t('My Do Something Club is going to work on');
+  t('OR My Club is not associated with a school (this will delete your school selection)');
   t('Official Club photo');
   t('Responded to Texts');
   t('School');
-  t('Send me a package full of goodies every Fall and Spring!');
+  t('Send me this semester\\\'s DoSomething.org Club Kit');
   t('State');
   t('The last date (by timestamp) that the club leader responded to a text.');
   t('This is how we can call you with sweet opportunities or text you weekly updates on everything DoSomething.org including scholarships, volunteer opportunities, and even inspiring quotes!

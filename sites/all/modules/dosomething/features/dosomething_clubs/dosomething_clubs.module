@@ -847,7 +847,7 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
 
   $form['another'] = array(
     '#markup' => '<p id="dosomething-club-tag">DoSomething.org Club</p>',
-    '#weight' => 4
+    '#weight' => 3.5
   );
   $form['test'] = array(
     '#markup' => '<p id="club-name-live">The club name will be "<span>(Write something)</span> DoSomething.org Club"</p>',
