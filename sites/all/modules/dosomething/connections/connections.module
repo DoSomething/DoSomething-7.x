@@ -136,6 +136,7 @@ function connections_page_alter(&$page) {
 	$fb_actions = array(
 		'fb_connect' => 'feed',
 		'og_connect' => 'ograph',
+		'img_share' => 'image',
 		'fb_app_request' => 'request',
 		'fb_message' => 'message'
 	);
@@ -165,6 +166,26 @@ function connections_page_alter(&$page) {
 			   if ($stuff['og_post_description'] || $stuff['feed_description']) {
 			   	  global $fb_og_desc;
 			   	  $fb_og_desc = ($stuff['og_post_description'] ? $stuff['og_post_description'] : $stuf['feed_description']);
+			   }
+
+			   if ($stuff['img_object'] && $stuff['img_namespace']) {
+				  global $og_stuff;
+				  $og_stuff = array(
+				  	'namespace' => $stuff['img_namespace'],
+				  	'object' => $stuff['img_object']
+				  );
+
+
+				  if (!empty($og_stuff)) {
+			        $element = array(
+			          '#tag' => 'meta',
+			          '#attributes' => array(
+			            'property' => 'og:type',
+			            'content' => $og_stuff['namespace'] . ':' . $og_stuff['object'],
+			          ),
+			        );
+			        drupal_add_html_head($element, 'connections_ograph_type');
+				  }
 			   }
 
 			   unset($_SESSION[$action]);
@@ -203,7 +224,7 @@ function connections_page_alter(&$page) {
  *	Changes the meta description, if set.
  */
 function connections_html_head_alter(&$head) {
-	global $fb_og_desc;
+	global $fb_og_desc, $og_stuff;
 	$fb_og_desc = trim($fb_og_desc);
 	if (!empty($fb_og_desc) && $fb_og_desc !== "''") {
 		// Trim 

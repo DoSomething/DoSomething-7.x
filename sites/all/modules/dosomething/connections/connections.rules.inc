@@ -9,8 +9,13 @@ function connections_og_fb_post() {
 }
 
 function connections_og_feed() {
-    $_SESSION['fb_connect'] = func_get_args();
-    unset($_SESSION['form']['op']);
+  $_SESSION['fb_connect'] = func_get_args();
+  unset($_SESSION['form']['op']);
+}
+
+function connections_img_share() {
+  $_SESSION['img_share'] = func_get_args();
+  unset($_SESSION['form']['op']);
 }
 
 function connects_fb_app_id($app_id) {
@@ -244,6 +249,84 @@ function connections_rules_action_info() {
         'default value' => 1,
         'optional' => TRUE
       ),
+    ),
+    'group' => t('Facebook Connections'),
+  );
+
+
+  // Open Graph post
+  $items['connections_img_share'] = array(
+    'label' => t('Share an image to the user\'s wall.'),
+    'parameter' => array(
+      'img_namespace' => array(
+        'type' => 'text',
+        'label' => t('Open Graph Namespace'),
+        'description' => t('The namespace for the Open Graph app.  This can be found on !devfb.  Default is "dosomethingapp".', array('!devfb' => url('http://developers.facebook.com', array('absolute' => TRUE)))),
+        'default value' => 'dosomethingapp',
+        'default mode' => 'input'
+      ),
+      'img_object' => array(
+        'type' => 'text',
+        'label' => t('Open Graph Object Type'),
+        'description' => t('The Object type (e.g. pet_who_needs_a_home) of the open graph object.  This can be found on http://developers.facebook.com under "Open Graph".'),
+        'default mode' => 'input'
+      ),
+      'img_action' => array(
+        'type' => 'text',
+        'label' => t('Open Graph Action Type.'),
+        'description' => t('The Action Type (e.g. share) for Open Graph.  This can be found on http://developers.facebook.com under "Open Graph"'),
+        'default mode' => 'input',
+      ),
+      'img_document' => array(
+        'type' => 'text',
+        'label' => t('Document (URL) to share'),
+        'description' => t('The document (url) to share, in absolute format (e.g. http://www.google.com including the http:// part).  Leave this blank to default to the page the user is currently on.'),
+        #'default value' => 'document.location.href',
+        'default mode' => 'input',
+        'optional' => TRUE
+      ),
+      'img_message' => array(
+        'type' => 'text',
+        'label' => t('Message to share with the image'),
+        'description' => t('An (optional) message to share with the image.'),
+        'default mode' => 'input',
+        'optional' => TRUE
+      ),
+      'img_picture' => array(
+        'type' => 'text',
+        'label' => t('Picture (image) to share'),
+        'description' => t('The picture that will appear alongside the post, in absolute format (e.g. http://www.google.com including the http:// part).  Leave this blank to use the default page image.'),
+        'default mode' => 'input',
+        'optional' => TRUE
+      ),
+      'img_picture_selector' => array(
+        'type' => 'text',
+        'label' => t('Image selector'),
+        'description' => t('An (optional) selector that denotes an image on the page.  The image source will be retrieved in processing.'),
+        'default mode' => 'input',
+        'optional' => TRUE
+      ),
+      'img_selector' => array(
+        'type' => 'text',
+        'label' => t('Only share if a user clicks on an element with this class / id:'),
+        'description' => t('If you define a class (.class) or ID (#id) here, Open Graph will trigger when that element is clicked.'),
+        'default mode' => 'input',
+        'optional' => TRUE
+      ),
+      'img_require_login' => array(
+        'type' => 'boolean',
+        'label' => t('Require a user to log in to Facebook if they aren\'t already?'),
+        'description' => t('If a user is not logged in to Facebook, provide them with a Facebook Login box.'),
+        'default value' => 1,
+        'optional' => TRUE
+      ),/*
+      'img_fake_dialog' => array(
+        'type' => 'boolean',
+        'label' => t('Pop up a message dialog?'),
+        'description' => t('If this is checked, a message dialog will appear where users can input text about their share.  If this is not checked, no pop-up will appear and Open Graph will immediately post to the user\'s wall without user input.'),
+        'default value' => 1,
+        'optional' => TRUE
+      )*/
     ),
     'group' => t('Facebook Connections'),
   );

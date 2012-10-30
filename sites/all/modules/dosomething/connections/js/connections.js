@@ -433,11 +433,11 @@
         //'fb:explicitly_shared': true
       };
       // fbpost.TYPE = LINK
-  		eval('fbpost.' + things.type + ' = "' + things.link + '";');
+  		fbpost[things.type] = things.link;
 
       if (things.custom_vars) {
         for (i in things.custom_vars) {
-          eval('fbpost.' + i + ' = "' + things.custom_vars[i] + '";');
+          fbpost[i] = things.custom_vars[i];
         }
       }
 
@@ -630,6 +630,84 @@
       else {
         FB.ui(m);
       }
+    },
+
+    /**
+     *  Shares a full-sized image on the user's wall.
+     *
+     *  @param config
+     *    A javascript object of configuration options.  Available options:
+     *       img_namespace           (The Open Graph namespace through which to post the image.)
+     *       img_action              (The Open Graph action through which to post the image.)
+     *       img_document            (The URI to share.  Defaults to document.location.href)
+     *       img_message             (An (optional) message to post with the image.)
+     *       img_picture          *  (The URI to the image that will be shared.)
+     *       img_picture_selector *  (A DOM element t gather the SRC of the image from.)
+     *       img_selector            (An (optional) selector that will trigger the share when clicked.)
+     *       img_require_login       (Prompts a user to log into Facebook if they aren't already.)
+     *
+     *    * No more than one of these may be set, and at least one must always be set.
+     *
+     *  @param callback
+     *    A callback function which triggers when a post was succesfully made.
+     *    
+     */
+    image: function(config, callback) {
+      var things = {
+        namespace: config.img_namespace,
+        object: config.img_object,
+        action: config.img_action,
+        link: config.img_document || document.location.href,
+        message: config.img_message || '',
+        image: config.img_picture, // Needs to be at least 480x480
+        image_selector: config.img_picture_selector, // Needs to be an img element that is at least 480x480
+        selector: config.img_selector, 
+        require_login: config.img_require_login
+      };
+
+      if (things.image) {
+        things.img_url = things.image;
+      }
+      else if (things.image_selector && $('body ' + things.image_selector).length > 0 && $('body ' + things.image_selector).attr('src')) {
+        things.img_url = $('body ' + things.image_selector).attr('src');
+      }
+
+      if (things.require_login) {
+        if (things.selector) {
+          $('body ' + things.selector).click(function() {
+            Drupal.behaviors.fb.auth(function() {
+              Drupal.behaviors.fb.run_image(things, callback);
+            });
+          });
+        }
+        else {
+          Drupal.behaviors.fb.auth(function() {
+            Drupal.behaviors.fb.run_image(things, callback);
+          });
+        }
+      }
+    },
+
+    run_image: function(things, callback) {
+      var fbpost = {
+          message: things.message,
+          'image[0][url]': things.img_url,
+          'image[0][user_generated]': true
+      };
+
+      fbpost[things.object] = things.link;
+
+      FB.api(
+       '/me/' + things.namespace + ':' + things.action,
+        'post',
+        fbpost,
+        function(response) {
+          Drupal.behaviors.fb.log(response);
+          if (typeof callback == 'function') {
+            callback(response);
+          }
+        }
+      );
     }
   };
 })(jQuery);
