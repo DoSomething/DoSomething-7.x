@@ -1,0 +1,24 @@
+// BASE 
+
+// variable definitions
+$spitYellow: #FFCB15
+$spitPurple: #0C3565
+$bgFallback: #B79C86
+$offBlack: #1E1D1C
+$spitGrey: #D2D2D3
+$spitTrans: #0C3565
+
+$din: din-web-reg,"Trebuchet MS",sans-serif
+
+// mixin definitions
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@function em-calc($target)
+  @return ($target/16)*1em

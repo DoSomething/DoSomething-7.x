@@ -1,0 +1,154 @@
+// HEREIN LIES A POEM TITLED 'DIE DRUPAL DIE'
+
+html > body
+  font-size: 16px
+
+#main-wrapper
+  div[role="main"]
+    padding: 0!important
+    margin: 0!important
+    background: transparent
+    width: 800px
+  #breadcrumb, #page-title, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
+    display: none
+  ul.primary
+    border-bottom: none
+    margin: 0
+    padding: 15px 0 0 8px
+    height: 37px
+
+.ds-panel .pane-content
+  padding-bottom: 0
+    
+body
+  background: $bgFallback
+  background: url(assets/bg.jpg)
+
+// Hide either the Join or Start header depending on which page we're on
+.page-team #contact-form 
+  #webform-component-start-header
+    display: none  
+.page-node-724776 #contact-form 
+  #webform-component-join-header
+    display: none  
+
+@media only screen and (max-width: 1075px)
+  .region-sidebar-first
+    display: none
+  #site-name
+    top: -53px
+    left: 23px
+    a
+      height: 50px
+      width: 60px
+      background-size: 60px 
+  #utility-bar
+    height: 55px
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar
+    .search, #help-center
+      display: none
+    .login
+      padding: 0.5em 1em 0 0
+      font-size: 1.5em
+  #page
+    width: 100%
+  #main-wrapper div[role="main"]
+    float: none
+    width: 100%
+  nav[role="navigation"]
+    display: none
+  .container
+    margin: 0 auto
+    width: 100%
+  header[role="banner"]
+    @media only screen and (max-width: 775px)
+      width: 100%
+  #block-menu-menu-footer .content
+    width: 80%
+    margin: 0 auto
+  #block-menu-menu-footer .content ul.menu li span
+    font-size: 16px
+    line-height: 1em
+  #block-menu-menu-footer .content ul.menu ul li a
+    font-size: 14px
+    line-height: 1em
+  #cmp
+    .pane-content .s0
+      margin-top: 0
+    #campaign-opt-in
+      text-align: center
+
+#cmp 
+  background: #fff
+  img
+    +noShadow
+  .pane-title
+    display: none
+
+#block-dosomething-campaign-styles-campaign-nav
+  background: #fff
+  padding: 1.5em 0 0 0
+  width: 215px
+  -webkit-transition: background 5s ease-in
+  transition: background 5s ease-in
+  .content
+    width: 100%
+  ul
+    margin: 0
+    padding: 0
+    border-bottom: solid 2px #EEE
+  li
+    margin: 0
+    padding: 2% 0
+  a
+    font-family: din-web-reg
+    font-weight: 600
+    font-size: 0.8em
+    padding: 0.2em 1em 0 1.5em
+    text-transform: uppercase
+    color: purple
+    &:hover
+      text-decoration: none
+  .campaign-menu-suffix
+    padding: 1em 1em 0 1em
+    img
+      margin: 0 auto
+      width: 100%
+      +noShadow
+    p
+      font-family: din-web-reg
+      color: #888
+      text-align: center
+      width: 100%
+      margin-bottom: 1em
+      font-size: 0.9em
+    a
+      font-weight: normal
+      font-size: 1em
+      padding: 0
+      text-transform: none
+      color: #888
+      text-decoration: underline  
+
+#block-dosomething-campaign-styles-campaign-nav
+  .highlight a
+    background: $spitYellow
+
+.mangoDialog-ui
+  background: #222
+  margin: 0
+  padding: 2% 1% 0 1%
+  +border-radius(5px)
+  h1
+    text-align: center
+    padding: 1em 0 0.5em 0
+    color: $spitYellow
+  img
+    width: 80%
+    margin: 0 auto
+    padding: 5%
+    display: block
+    background: #fff
+    +border-radius(3px)
+  .ui-icon.ui-icon-closethick
+    margin: -20px -13px!important

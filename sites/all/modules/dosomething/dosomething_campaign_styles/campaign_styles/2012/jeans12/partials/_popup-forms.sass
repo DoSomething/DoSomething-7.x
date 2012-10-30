@@ -1,0 +1,310 @@
+//      //
+//  general overlay styling
+//      //
+
+.ui-widget-overlay
+  opacity: 0.9
+
+//      //
+//  registration overlay
+//      //
+
+div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"],
+div[aria-labelledby="ui-dialog-title-1"]
+  background: none !important
+  width: 100% !important
+  height: 1000px !important
+  min-height: 1000px !important
+  top: 0 !important
+  left: 0 !important
+
+.ui-dialog .ui-dialog-content
+  height: 1000px !important
+  min-height: 1000px !important
+
+#dosomething-login-register-popup-form #edit-title-text,
+#dosomething-login-register-popup-form #edit-title-text--2,
+#dosomething-login-register-facebook #edit-title-text,
+#dosomething-login-register-facebook #edit-title-text--2
+  margin: 2em 0
+  label, div
+    border-bottom: none
+    text-align: center
+    color: #fff
+  label
+    text-transform: uppercase
+
+#dosomething-login-register-popup-form
+  label
+    color: #fff
+    span
+      color: #EC0000
+      position: static !important
+      padding-left: 0.2em
+  #edit-birthday
+    float: left
+    width: 250px
+    margin: 0
+    label
+      width: 100% !important
+      margin: 0
+    span.login-popup-birthday
+      font-size: 18px 
+      font-weight: 500 
+      font-family: Verdana, Arial, sans-serif
+      line-height: 24px 
+      color: #fff
+    input
+      height: 2.5em
+      margin: 0.2em 0 0 0
+      padding: 0 0.6em
+      width: 100%
+      +border-radius(4px)
+    .form-item
+      margin-top: 0
+  #edit-final-submit
+    position: static
+    width: 55%
+    margin: 0 auto
+    display: block
+    font-size: 1.7em
+    color: #222
+    background: $spitYellow
+    max-width: 15em
+    height: 1.5em
+    padding: 0.05em 0.5em 0.5em
+    +border-radius(5px)
+
+#dosomething-login-register-popup-form
+  .already-member
+    color: #fff
+    text-transform: uppercase
+    font-size: 1.2em
+    a
+      color: $spitYellow
+  .form-type-textfield,
+  .form-type-password
+    float: left
+    margin: 0
+    width: 100%
+    margin: 0.5em 0
+    input
+      height: 2.5em
+      padding: 0 0.6em
+      font-size: 0.9em
+      width: 100%
+      +border-radius(4px)
+  .form-item-day, .form-item-month, .form-item-year
+    width: 3em
+    margin: 0.5em
+    margin-left: 0
+    input
+      width: 3em
+  .form-item-year /* widends year wrapper */
+    width: 5em !important
+    input
+      width: 5em
+  .ds-login-popup-footer
+    width: 80%
+    height: 100%
+    margin: 0 auto
+    .description /* help text */
+      color: #fff !important
+      font-size: 0.7em
+      a
+        color: $spitYellow !important
+
+.popup-content /* wraps user creation form */,
+.ds-login-popup-footer /* wraps "finish" button and legal copy */
+  width: 66%
+  padding: 0 1em
+  background: none
+  +noShadow
+
+.form-wrapper /* wraps "Connect with Facebook" */
+  margin: 0
+
+.separator /* wraps "OR" */
+  font-family: din-web
+  font-weight: 600
+  font-size: 40px
+  line-height: 40px
+  text-transform: uppercase
+  padding: 0.5em 0 0 0
+  color: #fff
+  
+@media only screen and (max-width: 450px)
+  
+  div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"],
+  div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"],
+  div[aria-labelledby="ui-dialog-title-1"]
+    background: none !important
+
+  #dosomething-login-register-popup-form .popup-content,
+  #dosomething-login-register-facebook .popup-content
+    width: 100%
+
+  #dosomething-login-register-popup-form
+    #edit-submit
+      width: 85%
+
+//      //
+//  login overlay
+//      //
+
+#dosomething-login-login-popup-form #edit-title-text--2
+  label
+    border: none
+    text-align: center
+    color: #fff
+
+#dosomething-login-login-popup-form .form-item label
+  color: #fff
+
+#dosomething-login-login-popup-form
+  .ds-login-popup-footer
+    margin: 0 auto
+  input
+    height: 2.5em
+    margin: 0.2em 0 0 0
+    padding: 0 0.6em
+    width: 100%
+    +border-radius(4px)
+  input[type=submit]#edit-final-submit--2
+    position: static
+    width: 55%
+    margin: 0 auto
+    display: block
+    font-size: 1.7em
+    color: #222
+    background: $spitYellow
+    max-width: 15em
+    height: 1.5em
+    padding: 0.05em 0.5em 0.5em
+    +border-radius(5px)
+
+#dosomething-login-register-popup-form .disclaimer .description,
+#dosomething-login-register-facebook .disclaimer .description
+  color: #fff
+
+#edit-title-text div
+  display: block
+  max-width: 24em
+  margin: 0 auto
+
+//      //
+//  .invite_friends overlay
+//      //
+
+.invite-module /* wraps .invite_friends */
+  width: 850px !important
+  margin: 0 auto
+
+.invite_friends
+  padding: 0.5% 2% 2% 2%
+  h2, h3, p, label
+    color: #fff
+  h2
+    text-align: center
+    font-weight: 600
+    font-size: 3em
+    line-height: 3em
+    text-transform: uppercase
+  h3
+    font-family: din-web
+    font-size: 2.5em
+    line-height: 2.5em
+    text-transform: uppercase
+    text-align: center
+    color: #fff
+  .invite-module-facebook, .invite-module-email
+    width: 43%
+    float: left
+    border: 2px solid #ccc
+    height: 12em
+    +border-radius(10px)
+  .invite-module-facebook, .invite-module-or, .invite-module-email
+    p
+      font-size: 0.8em
+  .invite-module-or
+    width: 14%
+    float: left
+    h3
+      color: #fff
+  .facebook-action-connect
+    display: block
+    margin: 8% auto 0
+    width: 40%
+  #edit-submit
+    font-family: din-web
+    background: $spitYellow
+    margin: 0 0 0 5%
+    font-size: 1.5em
+    height: 1.4em
+    display: inline-block
+    +noBorder
+    +border-radius(5px)
+    &:hover
+      background: darken($spitYellow, 5)
+
+#teams-notification-area
+  float: left
+  margin: 3em 0
+  text-align: center
+  width: 100%
+  div
+    color: #aaa
+
+#teams-add-member-form /* form element for "invite friend" */
+  width: 85%
+  margin: 0 auto
+  label
+    display: none
+  .form-submit
+    position: static
+    margin: 0 auto
+    display: block
+    font-size: 2em
+    color: #222
+    background: $spitYellow
+    max-width: 15em
+    height: 1.5em
+    padding: 0.05em 0.5em 0.5em
+    text-transform: uppercase
+    font-weight: 600
+    float: right
+    font-family: din-web
+    border: none
+    +border-radius(5px)
+
+#edit-friend /* input element for "invite friend" */
+  background: #fff
+  color: #444
+  width: 15em
+  height: 3em
+  font-size: 1em
+  padding: 0 0 0 0.5em
+  +border-radius(4px)
+
+
+@media only screen and (max-width: 900px)
+  .invite-module /* wraps .invite_friends */
+    width: 100% !important
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
+    margin: 0 15%
+    width: 70%
+    height: 15em
+  .invite_friends .invite-module-or
+    width: 100%
+  #edit-friend
+    width: 66%
+  #teams-notification-area div
+    width: 80%
+    margin: 0 auto
+
+@media only screen and (max-width: 550px)
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
+    margin: 0 2%
+    width: 95%
+    height: 15em
