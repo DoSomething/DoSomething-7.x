@@ -43,7 +43,7 @@ function dosomething_scholarship_rec_entityqueue_default_queues() {
       "min_size" : "0",
       "max_size" : "0"
     },
-    "eq_webform_submission_entity" : { "und" : [ { "target_id" : "1395639" } ] },
+    "eq_webform_submission_entity" : [],
     "rdf_mapping" : []
   }');
   $items['foot_locker_no'] = entity_import('entityqueue', '{
