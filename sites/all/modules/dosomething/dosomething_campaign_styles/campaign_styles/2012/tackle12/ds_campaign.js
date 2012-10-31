@@ -12,55 +12,10 @@
         
         // if a popup has been triggered, set its destination
         if ($signIn.is(':visible') || $signUp.is(':visible')) {
-          //var actionLink = $('.drive-action-link a').attr('href');
-          //if (actionLink.charAt(0) == '/') actionLink = actionLink.substr(1);
           $signIn.attr('action', destinationReplace($signIn.attr('action'), actionLink));
           $signUp.attr('action', destinationReplace($signUp.attr('action'), actionLink));
         }
       }
-
-     // function destinationReplace(url, destination) {
-       // url = url.split('?');
-        //query = url[1].split('&');
-        //for (var i in query) {
-          //var splitter = query[i].split('=');
-          //if (splitter[0] == 'destination') {
-            //splitter[1] = destination;
-            //query[i] = splitter.join('=');
-          //}
-        //}
-        //return url[0] + '?' + query;
-      //}
-
-      //$('.tw-share-drive').attr('data-text', 'It\'s time to #GiveASpit about cancer. A simple cheek swab is all it takes to save a life. Seriously. http://dosomething.org/spit');
-      //$('.fb-share-drive').click(function (e) {
-        //e.preventDefault();
-        //var fbObj = {
-          //method: 'feed',
-          //link: window.location.href,
-          //picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
-          //name: 'Give A Spit',
-          //description: 'Are you ready to save a life? It\'s easier than you think. Click here to get your cheek swabbed and you could end up saving a life.'
-        //};
-        //FB.ui(fbObj);
-      //});
-
-      // edit drive info location change
-      // $('#webform-client-form-724772 .form-item-submitted-field-drive-location-und-0-name-line label').empty().text('Name of Location');
-
-      // drupal, eat your heart out
-      var maxwell = "can have his cake and eat it too"
-
-      if(maxwell == "can have his cake and eat it too"){
-        $('#cmp #edit-actions').removeAttr('id');
-      };
-
-      // has logo, will inject
-      //var logo = '//files.dosomething.org/files/campaigns/alcoa/logo50cans.png';
-      //$('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/50cans"><img width="215" class="logo" src="' + logo + '"/></a>');
-
-      // inject sponsor logo and text below the nav      
-      //$('.region-sidebar-first .content').append('<img src="//files.dosomething.org/files/campaigns/spit/btm-logo.png"/>');
 
       // hacktastic form rebuilding
       var $emailInput = $('#edit-submitted-field-webform-email');
@@ -70,15 +25,9 @@
       $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-email-label'));
       $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-cell-label'));
 
-      // removes search from nav on drive page
-      if(document.location.pathname.slice(1,5) == "team") {
-        $('li.campaign_nav_2').hide();
-      }
 
       // contact form login
       $('#webform-client-form-724782 .form-actions').append('<p>Already signed up? <a href="/user?destination=node/724781" class="sign-in-popup">log in</a></p>');
-
-
 
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
@@ -88,10 +37,6 @@
       var changeForm = $('.pane-campaign-signed');
       $('#header #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
       
-
-      // on lines 9-10 terrible things happen
-      //$('#campaign-opt-in').remove();
-      //$('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
 
       // pop, bang, lovely
       $('#faq h4').next('div').css('display','none');
@@ -133,27 +78,6 @@
         return false;
       });
 
-      // twitter popup button on drive pages
-      //$('a.drive-twitter').click(function(event) {
-        //var width  = 650,
-        //height = 450,
-        //left   = ($(window).width()  - width)  / 2,
-        //top    = ($(window).height() - height) / 2,
-        //url    = this.href,
-        //opts   = 'status=1' +
-        //',width='  + width  +
-        //',height=' + height +
-        //',top='    + top    +
-        //',left='   + left;
-
-        //window.open(url, 'twitter', opts);
-
-        //return false;
-      //});
-
-      // remove #edit-submit from drive page buttons
-      //$('#drive .drive-participants-list .form-submit').val('x').removeAttr('id').addClass('remove_participant');
-
       // nav highlighting 
       var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
       var firstNav = plainNav + ' a' + '.first';
@@ -162,20 +86,6 @@
       $(plainNav + ' a').click(function(){
           $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
       });
-
-      // sad puppy
-      //$('#mangoDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
-      //$('a.mango').click(function(){
-        //$('#mangoDialog').dialog('open');
-        //return false;
-      //});
-
-      // sad Chris
-      //$('#chrisDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
-      //$('a.mangoChris').click(function(){
-        //$('#chrisDialog').dialog('open');
-        //return false;
-      //});
       
       // scroll function
       var $window = $(window);
@@ -203,33 +113,15 @@
         }
       });
 
-
       // kill old asterisks from required fields
       $('#dosomething-login-register-popup-form .popup-content .field-suffix').remove();
-
-      // search pane tweak
-      $('.form-item-field-geofield-distance-unit').hide();
-      $('.geofield-proximity-origin-from').text('Zip code:');
-
-      // hide/show fieldset on drive form for checkbox
-      /*$("#webform-component-check-show-hide").css('display','none');
-
-      $("#edit-submitted-give-a-spit-action-kit-1").click(function() {
-        if($("#edit-submitted-give-a-spit-action-kit-1").is(":checked")) {
-          $("#webform-component-check-show-hide").show("fast");
-        }
-        else {
-          $("#webform-component-check-show-hide").hide("fast");
-        }
-      });*/
-
 
     // Reload page on click 
       $('.ui-icon-closethick').click(function() {
         location.reload();
       });
 
-    // Report Back Weight
+    // Report Back Weight Fuction
     var $output = $("#edit-submitted-ew");
     $("#edit-submitted-number-of-items").keyup(function() {
       var value = parseFloat($(this).val());

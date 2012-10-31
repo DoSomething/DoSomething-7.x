@@ -555,7 +555,9 @@ body {
       padding: 184px 0 0 0; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      color: white;
+      font-size: 2em; }
     #cmp #header .pane-campaign-signed .action-now {
       margin: 0 auto;
       display: inline-block;
@@ -580,15 +582,26 @@ body {
     text-align: left;
     padding: 2% 0; }
     #cmp #action.action-participant h2 {
-      background: #ff4600;
+      background: #00aae6;
       display: inline-block;
-      padding: 0 4%;
+      padding: 0.2em 4% 0;
       text-transform: uppercase;
       color: white;
       margin: 2% 0 1%;
-      min-width: 250px; }
+      min-width: 250px;
+      -moz-border-top-right-radius: 6px;
+      -moz-border-bottom-right-radius: 6px;
+      -o-border-top-right-radius: 6px;
+      -o-border-bottom-right-radius: 6px;
+      -webkit-border-top-right-radius: 6px;
+      -webkit-border-bottom-right-radius: 6px;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px; }
     #cmp #action.action-participant p {
       margin: 0 3% 2% 6%; }
+      #cmp #action.action-participant p span {
+        font-weight: 600;
+        text-transform: uppercase; }
     #cmp #action.action-participant img.action-print {
       float: right;
       margin: -1% 4% -2% 0; }
@@ -639,9 +652,9 @@ body {
       width: 100%; }
   #cmp #search hr {
     width: 60%;
-    border: 1px solid #cccccc; }
+    border: 1px solid #e1e1e1; }
   #cmp #search .top-hr {
-    margin: 3em auto 1em; }
+    margin: 3em auto 1.5em; }
   #cmp #search .bottom-hr {
     margin: 1em auto 3em; }
   #cmp #search .search-zip {
@@ -656,7 +669,10 @@ body {
     color: #222222; }
   #cmp #search input[type=text] {
     margin: 0.2em 1em;
-    border: 1px solid #cccccc;
+    border: 1px solid #e1e1e1;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
     border-radius: 4px; }
   #cmp #search input[type=submit] {
     font-weight: 500;
@@ -871,7 +887,7 @@ body {
     line-height: 1.4em; }
   #cmp #faq li {
     margin: 0;
-    color: #00aae6; }
+    color: red; }
     #cmp #faq li span {
       color: black; }
   #cmp #faq h1 {
