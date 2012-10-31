@@ -27,6 +27,12 @@ function dosomething_petitions_schema() {
         'length' => 255,
         'not null' => true,
       ),
+      'timestamp' => array(
+        'description' => 'The Time Stamp of the petition invitation',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      )
     ),
   );
 
