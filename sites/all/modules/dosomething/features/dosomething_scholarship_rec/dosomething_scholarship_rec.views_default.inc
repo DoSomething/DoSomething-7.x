@@ -140,6 +140,22 @@ function dosomething_scholarship_rec_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Queue Management', 'panel_pane_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Queue Management';
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = '<h2>Current Queue</h2>
+None
+
+<h2>Manage</h2>
+<a href="/entityqueue/add/!2_yes/!1?destination=application/!1">Yes</a> | 
+<a href="/entityqueue/add/!2_no/!1?destination=application/!1">No</a> |
+<a href="/entityqueue/add/!2_maybe/!1?destination=application/!1">Maybe</a> |
+<a href="/entityqueue/add/!2_too_soon/!1?destination=application/!1">Too Soon</a>';
+  $handler->display->display_options['empty']['area']['format'] = '1';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referencing entity */
   $handler->display->display_options['relationships']['reverse_eq_webform_submission_entity_entityqueue']['id'] = 'reverse_eq_webform_submission_entity_entityqueue';

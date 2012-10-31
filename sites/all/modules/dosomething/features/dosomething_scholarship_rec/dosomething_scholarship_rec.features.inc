@@ -62,12 +62,44 @@ function dosomething_scholarship_rec_entityqueue_default_queues() {
     "eq_webform_submission_entity" : [],
     "rdf_mapping" : []
   }');
+  $items['foot_locker_too_soon'] = entity_import('entityqueue', '{
+    "name" : "foot_locker_too_soon",
+    "parent_name" : null,
+    "type" : "webform_submission_entity",
+    "subqueue" : "1",
+    "label" : "Foot Locker Too Soon",
+    "subqueue_label" : "",
+    "uid" : "1",
+    "data" : {
+      "target_bundles" : { "scholarship_application_with_rec" : "scholarship_application_with_rec" },
+      "min_size" : "0",
+      "max_size" : "0"
+    },
+    "eq_webform_submission_entity" : [],
+    "rdf_mapping" : []
+  }');
   $items['foot_locker_yes'] = entity_import('entityqueue', '{
     "name" : "foot_locker_yes",
     "parent_name" : null,
     "type" : "webform_submission_entity",
     "subqueue" : "1",
     "label" : "Foot Locker Yes",
+    "subqueue_label" : "",
+    "uid" : "1",
+    "data" : {
+      "target_bundles" : { "scholarship_application_with_rec" : "scholarship_application_with_rec" },
+      "min_size" : "0",
+      "max_size" : "0"
+    },
+    "eq_webform_submission_entity" : [],
+    "rdf_mapping" : []
+  }');
+  $items['low_income'] = entity_import('entityqueue', '{
+    "name" : "low_income",
+    "parent_name" : null,
+    "type" : "webform_submission_entity",
+    "subqueue" : "1",
+    "label" : "Low Income",
     "subqueue_label" : "",
     "uid" : "1",
     "data" : {
