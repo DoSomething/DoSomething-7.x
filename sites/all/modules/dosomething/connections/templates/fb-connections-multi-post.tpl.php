@@ -232,6 +232,65 @@
  		color: #fff;
  		background: url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;
  	}
+
+ body {
+    font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+    margin: 0px;
+  }
+    textarea {
+        width: 300px;
+    }
+
+    .ui-autocomplete {
+        width: 467px;
+        padding: 0px;
+        border: 1px solid #000;
+        position: absolute;
+        left: 24px;
+        top: 250px;
+        z-index: 9999;
+    }
+
+    .ui-autocomplete li {
+        min-height: 32px;
+        padding: 2px;
+        list-style-type: none;
+        background: #fff;
+        cursor: pointer;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+    }
+
+    .ui-autocomplete li:hover {
+        background: #6d84b4;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .ui-autocomplete li a {
+        display: block;
+        height: 32px;
+    }
+
+    .ui-autocomplete li img {
+        float: left;
+        margin-right: 5px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .ui-autocomplete li span {
+        margin-top: 6px;
+        font-size: 9pt;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    #hidden_comments {
+    	display: none;
+    }
  	-->
  	</style>
 
@@ -283,6 +342,7 @@
  	-->
  	</script>
 
+
 <div id="fb">
 	<div id="wrapper">
 	<div id="top-bar">
@@ -300,6 +360,7 @@
 
 			<!--<input type="text" name="receivers" id="receivers" value="" />-->
 			<textarea name="comments" id="fb_og_comments" placeholder="Say something about this..."></textarea>
+			<textarea name="hidden_comments" id="hidden_comments"></textarea>
 
 			<div id="shared">
 				<img src="<?php echo $image; ?>" width="90" height="90" alt="" />
@@ -318,3 +379,40 @@
 	</div>
 </div>
 </div>
+
+<?php if ($tagging) { ?>
+<script type="text/javascript">
+(function($) {
+	var p = $('#fb_og_comments').position();
+	var ai = window.setInterval(function () {
+		if ($('.ui-autocomplete').length > 0) {
+		  window.clearInterval(ai);
+
+		  $('.ui-autocomplete').css('left', p.left + 'px').css('top', (p.top + $('#fb_og_comments').height() - 10) + 'px');
+		}
+	}, .1);
+    $('#fb_og_comments').click(function() {
+        FB.getLoginStatus(function(response) {
+            var friends = new Array();
+            FB.api('/me/friends?fields=id,name,picture', function(response) {
+                for (i in response.data) {
+                    var stuff = {
+                        'value': response.data[i].id,
+                        'label': response.data[i].name,
+                        'img': response.data[i].picture.data.url
+                    };
+
+                    friends.push(stuff);
+
+                    $('#fb_og_comments').triggeredAutocomplete({
+                        hidden: '#hidden_comments',
+                        source: friends,
+                        trigger: "@" 
+                    });
+                }
+            });
+        });
+    });
+})(jQuery);
+</script>
+<?php } ?>

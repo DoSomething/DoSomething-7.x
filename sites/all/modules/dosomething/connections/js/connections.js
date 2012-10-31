@@ -118,7 +118,12 @@
           });
 
           $('#submit-og-post').click(function() {
-            things.comments = $('#fb_og_comments').val();
+            if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
+              things.comments = $('#hidden_comments').val();
+            }
+            else {
+              things.comments = $('#fb_og_comments').val();
+            }
             things.explicitly_shared = ($('#explicitly-share').attr('checked') == 'checked') || false;
 
             callback(things);
