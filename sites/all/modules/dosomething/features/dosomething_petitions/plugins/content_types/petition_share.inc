@@ -16,7 +16,19 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
   $content['getmore'] = array(
     '#markup' => t('Get more signatures on this petition:'),
     '#prefix' => '<p>',
-    '#suffix' => '</p>'
+    '#suffix' => '</p>',
+    '#weight' => -1
+  );
+
+  contact_scraper::add_scraper_button($content, 0);
+  $content['or'] = array(
+    '#prefix' => '<p style="position: relative;">',
+    '#suffix' => '</p>',
+    '#markup' => 'OR',
+    '#attributes' => array(
+      'style' => 'text-align: center; position: relative; top: -10px;'
+    ),
+    '#weight' => 1
   );
 
   $content['fb'] = array(
