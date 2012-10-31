@@ -124,5 +124,5 @@ div.view-id-cause_its_your_birthday div.file-audio {
     font-size: 1px;
     color: transparent;
     display: block; }
-  div.view-id-cause_its_your_birthday div.file-audio.paused {
-    background: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png) top left no-repeat; }
+    div.view-id-cause_its_your_birthday div.file-audio a.paused {
+      background: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png) top left no-repeat; }
