@@ -9,6 +9,7 @@ function dosomething_sms_conductor_sms_keywords() {
     'epicsharetest' => 'ds_sms_epic_2012_report_back',
     'register' => 'ds_sms_user_registration',
     'testreport' => 'ds_sms_project_report_back',
+    'gastellus' => 'ds_sms_gas_2012_report_back',
   );
 }
 
@@ -488,6 +489,51 @@ function dosomething_sms_default_conductor_workflows() {
     'end_response',
   );
   $activity->outputs = array();
+  $workflows[$workflow->name] = $workflow;
+
+  /**
+   * Workflow for GAS 2012 report back
+   */
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'ds_sms_gas_2012_report_back';
+  $workflow->title = 'GAS 2012 Report Back';
+  $workflow->description = 'Processes GAS 2012 report backs';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('why_participated');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'why_participated';
+  $activity->question = 'Why did you sign up?';
+  $activity->inputs = array('start');
+  $activity->outputs = array('how_many_helped');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'how_many_helped';
+  $activity->question = 'Awesome! How many people helped you run your drive?';
+  $activity->inputs = array('why_participated');
+  $activity->outputs = array('how_many_swabbed');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'how_many_swabbed';
+  $activity->question = 'Great! And how many people did you swab?';
+  $activity->inputs = array('how_many_helped');
+  $activity->outputs = array('ds_gas_2012_report_back');
+
+  $activity = $workflow->newActivity('ds_gas_2012_report_back');
+  $activity->name = 'ds_gas_2012_report_back';
+  $activity->inputs = array('how_many_swabbed');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('ds_gas_2012_report_back');
+  $activity->outputs = array();
+
   $workflows[$workflow->name] = $workflow;
 
   return $workflows;
