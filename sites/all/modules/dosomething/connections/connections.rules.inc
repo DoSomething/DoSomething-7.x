@@ -104,19 +104,22 @@ function connections_rules_action_info() {
         'label' => t('Open Graph Namespace'),
         'description' => t('The namespace for the Open Graph app.  This can be found on !devfb.  Default is "dosomethingapp".', array('!devfb' => url('http://developers.facebook.com', array('absolute' => TRUE)))),
         'default value' => 'dosomethingapp',
-        'default mode' => 'input'
+        'default mode' => 'input',
+        'restriction' => 'input'
       ),
       'og_type' => array(
         'type' => 'text',
         'label' => t('Open Graph Object Type'),
         'description' => t('The Object type (e.g. pet_who_needs_a_home) of the open graph object.  This can be found on http://developers.facebook.com under "Open Graph".'),
-        'default mode' => 'input'
+        'default mode' => 'input',
+        'restriction' => 'input'
       ),
       'og_action' => array(
         'type' => 'text',
         'label' => t('Open Graph Action Type.'),
         'description' => t('The Action Type (e.g. share) for Open Graph.  This can be found on http://developers.facebook.com under "Open Graph"'),
         'default mode' => 'input',
+        'restriction' => 'input'
       ),
       'og_document' => array(
         'type' => 'text',
@@ -124,50 +127,66 @@ function connections_rules_action_info() {
         'description' => t('The document (url) to share, in absolute format (e.g. http://www.google.com including the http:// part).  Leave this blank to default to the page the user is currently on.'),
         #'default value' => 'document.location.href',
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'og_post_image' => array(
         'type' => 'text',
         'label' => t('Picture (image) to share'),
         'description' => t('The picture that will appear alongside the post, in absolute format (e.g. http://www.google.com including the http:// part).  Leave this blank to use the default page image.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'og_post_description' => array(
         'type' => 'text',
         'label' => t('Post Description'),
         'description' => t('The description (if applicable) for the share.  This is usually set on http://developers.facebook.com, but you can copy + paste here.  This will override all other descriptions.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'og_post_custom' => array(
         'type' => 'text',
         'label' => t('Custom variables (Developers only)'),
         'description' => t('You may define custom variables here.  These will be passed with the share array to FB.api().  One per line.  Format: VARIABLE_NAME: VARIABLE_VALUE.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'og_selector' => array(
         'type' => 'text',
         'label' => t('Only share if a user clicks on an element with this class / id:'),
         'description' => t('If you define a class (.class) or ID (#id) here, Open Graph will trigger when that element is clicked.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'og_require_login' => array(
         'type' => 'boolean',
         'label' => t('Require a user to log in to Facebook if they aren\'t already?'),
         'description' => t('If a user is not logged in to Facebook, provide them with a Facebook Login box.'),
         'default value' => 1,
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'og_fake_dialog' => array(
         'type' => 'boolean',
         'label' => t('Pop up a message dialog?'),
         'description' => t('If this is checked, a message dialog will appear where users can input text about their share.  If this is not checked, no pop-up will appear and Open Graph will immediately post to the user\'s wall without user input.'),
         'default value' => 1,
-        'optional' => TRUE
-      )
+        'optional' => TRUE,
+        'restriction' => 'input'
+      ),
+      'og_tagging' => array(
+        'type' => 'boolean',
+        'label' => t('Allow @mention tagging'),
+        'description' => t('(Optional).  Allows users to @mention their friends in posts.  In progress.'),
+        'default mode' => 'input',
+        'default value' => 0,
+        'optional' => TRUE,
+        'restriction' => 'input',
+      ),
     ),
     'group' => t('Facebook Connections'),
   );
@@ -182,49 +201,56 @@ function connections_rules_action_info() {
         'description' => t('The document (url) to share, in absolute format (e.g. http://www.google.com including the http:// part).  Leave this blank to default to the page the user is currently on.'),
         #'default value' => 'document.location.href',
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_title' => array(
         'type' => 'text',
         'label' => t('Post Title'),
         'description' => t('The (optional) title that will appear on the post.  Leave this blank to default to the page\'s title.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_picture' => array(
         'type' => 'text',
         'label' => t('Post picture'),
         'description' => t('The picture that will appear alongside the post, in absolute format (e.g. http://www.google.com including the http:// part).  Leave this blank to use the default page image.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_caption' => array(
         'type' => 'text',
         'label' => t('Post caption'),
         'description' => t('The (optional) caption that will appear under the title.  If this is left blank, the caption will be the current page\'s URL.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_description' => array(
         'type' => 'text',
         'label' => t('Post description'),
         'description' => t('An (optional) description, that will appear under the caption.  If this is left blank, the description will be the current page\'s description.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_selector' => array(
         'type' => 'text',
         'label' => t('Only share if a user clicks on an element with this class / id:'),
         'description' => t('If you define a class (.class) or ID (#id) here, the feed dialog will trigger when a user clicks on that element.'),
         'default mode' => 'input',
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_allow_multiple' => array(
         'type' => 'boolean',
         'label' => t('Allow users to post to multiple friends\' walls?'),
         'description' => t('If selected, users will be able to select several of their friends to message, all at once.  Requires log-in before users can select their friends.  If this is not selected, shares will post to the user\'s wall.'),
         'default value' => 1,
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_max_friends' => array(
         'type' => 'integer',
@@ -232,7 +258,8 @@ function connections_rules_action_info() {
         'description' => t('The maximum number of friends that can be selected through the Friend Selector.'),
         'default mode' => 'input',
         'default value' => 5,
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_selector_title' => array(
         'type' => 'text',
@@ -240,14 +267,25 @@ function connections_rules_action_info() {
         'description' => t('An (optional) title for the Friend Selector.'),
         'default mode' => 'input',
         'default value' => t('Share with your friends'),
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
+      ),
+      'feed_tagging' => array(
+        'type' => 'boolean',
+        'label' => t('Allow @mention tagging'),
+        'description' => t('(Optional).  Allows users to @mention their friends in posts.  In progress.'),
+        'default mode' => 'input',
+        'default value' => 0,
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
       'feed_require_login' => array(
         'type' => 'boolean',
         'label' => t('Require a user to log in to Facebook if they aren\'t already?'),
         'description' => t('If a user is not logged in to Facebook, provide them with a Facebook Login box.'),
         'default value' => 1,
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input'
       ),
     ),
     'group' => t('Facebook Connections'),

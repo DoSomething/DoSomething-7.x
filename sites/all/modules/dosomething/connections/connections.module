@@ -82,7 +82,8 @@ function connections_handle_fb_dialog($t) {
 		'caption' => $_GET['caption'],
 		'description' => $_GET['desc'],
 		'to' => $_GET['to'],
-		'photo' => $_GET['mypic']
+		'photo' => $_GET['mypic'],
+		'tagging' => intval($_GET['tagging'])
 	);
 
 	echo theme($options[$t], $params);
@@ -165,7 +166,7 @@ function connections_page_alter(&$page) {
 				   		$stuff['feed_document'] = url(request_uri(), array('absolute' => TRUE));
 				   }
 
-				   if (!empty($stuff['og_post_tagging']) || !empty($stuff['feed_tagging'])) {
+				   if (!empty($stuff['og_tagging']) || !empty($stuff['feed_tagging'])) {
 				   	  $tagging = true;
 				   }
 

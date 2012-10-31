@@ -1,2 +1,5 @@
 .rules-switch-button { display: none; }
 .collapsible { display: none; }
+#edit-parameter-feed-tagging, #edit-parameter-og-tagging {
+	color: #808080;
+}

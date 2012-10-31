@@ -107,9 +107,14 @@
         to = '&to=' + things.friends.join(',');
       }
 
+      var tag = '';
+      if (things.tagging == 1) {
+        tag = '&tagging=1';
+      }
+
       FB.api('/me/picture', function(response) {
         pic = response.data.url;
-        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to, function() {
+        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag, function() {
           $('.close-fb-dialog').click(function() {
             // Fake cancel button to remove "fake" feed
             $('.og_dialog').dialog('close');
@@ -276,6 +281,7 @@
         allow_multiple: config.feed_allow_multiple,
         max_friends: config.feed_max_friends || 5,
         selector_title: config.feed_selector_title || Drupal.t('Share with your friends'),
+        tagging: config.feed_tagging,
       	require_login: config.feed_require_login,
       };
 
@@ -427,6 +433,7 @@
   			selector: config.og_selector,
   			require_login: config.og_require_login,
   			dialog: config.og_fake_dialog,
+        tagging: config.og_tagging,
         custom_vars: config.og_post_custom
   		};
 
