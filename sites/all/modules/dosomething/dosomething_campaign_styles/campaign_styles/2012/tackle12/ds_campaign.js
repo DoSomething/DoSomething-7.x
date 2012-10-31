@@ -128,7 +128,11 @@
       $output.val(value*0.85);
     });  
 
-         
+    $.post('/webform-counter-field/725876/3', function (data) {
+      // change the selector as you want. it will input a number.
+      $('.campaign-menu-suffix').html(data);
+    });
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
