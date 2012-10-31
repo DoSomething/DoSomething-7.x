@@ -1,7 +1,5 @@
 <?php
 
-define('PROJECT_NID', 718313);
-
 /**
  *	Implements hook_services_ctools_plugin_api()
  *  Sets up services for the DoSomething API

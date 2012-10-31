@@ -1,11 +1,39 @@
 <?php
 
 function dosomething_api_actnow_api() {
+  /**
+   *  Action Guides.
+   *  Returns:
+   *    - Nid
+   *    - Title
+   *    - User ID of author
+   *    - Created date
+   *    - Last Changed date
+   *    - Body text
+   *    - Short description of the action guide
+   *    - Issues tags
+   *    - Who? tags
+   *    - Time tags
+   *    - Where tags
+   *    - File information (the image on the page)
+   */
+  // Base query
   $acts = db_select('node', 'n')
     ->condition('n.type', 'action_guide')
     ->condition('n.status', 1);
 
+  // Set default selected fields here.
+  $default_fields = array(
+    'nid',
+    'title',
+    'uid',
+    'created',
+    'changed'
+  );
+
+  // Allows to show only certain columns.
   if (!empty($_GET['show'])) {
+    // Allowed values are set in this array.  More can be added by appending to this array.
     $shows = array(
       'all',
       'title',
@@ -14,7 +42,7 @@ function dosomething_api_actnow_api() {
 
     if (in_array($_GET['show'], $shows)) {
       if ($_GET['show'] == 'all') {
-        $acts->fields('n', array('nid', 'title', 'uid', 'created', 'changed'));
+        $acts->fields('n', $default_fields);
       }
       else {
         $show = array();
@@ -34,7 +62,7 @@ function dosomething_api_actnow_api() {
     }
   }
   else {
-    $acts->fields('n', array('nid', 'title', 'uid', 'created', 'changed'));
+    $acts->fields('n', $default_fields);
   }
 
   // Action Guide body text
@@ -109,15 +137,16 @@ function dosomething_api_actnow_api() {
     }
   }
 
-  // Filter by a user ID
+  // Filter by a user ID (author)
   if (intval($_GET['user']) && !empty($_GET['user'])) {
     $acts->condition('uid', intval($_GET['user']));
   }
 
-  //
+  // Sort by: Change this array to allow sorting by different columns.
+  $allowed_sorts = array('created', 'changed', 'title');
+
   $sort = false;
   $sort_by = strval(htmlspecialchars(trim($_GET['sort_by'])));
-  $allowed_sorts = array('created', 'changed', 'title');
   $order = array('', 'ASC');
   if (!empty($sort_by) && in_array($sort_by, $allowed_sorts)) {
     $order[0] = $sort_by;
@@ -128,6 +157,7 @@ function dosomething_api_actnow_api() {
     $acts->orderBy('n.title');
   }
 
+  // Sort order: Must be used in conjunction with Sort By
   $sort_order = strval(htmlspecialchars(trim($_GET['sort_order'])));
   if (!empty($sort_order) && in_array($sort_order, array('ASC', 'DESC')) && !empty($sort_by)) {
     $order[1] = $sort_order;
@@ -135,7 +165,7 @@ function dosomething_api_actnow_api() {
   }
 
   if ($sort) {
-    #$acts->orderBy($order[0], $order[1]);
+    $acts->orderBy($order[0], $order[1]);
   }
 
   // Default range to sort by: 0, 25
@@ -178,6 +208,7 @@ function dosomething_api_actnow_api() {
       )
     );
 
+    // Removes leftover file information.
     unset($a["$key"]->fid, $a["$key"]->filename, $a["$key"]->uri, $a["$key"]->filemime, $a["$key"]->filesize, $a["$key"]->timestamp);
   }
 
