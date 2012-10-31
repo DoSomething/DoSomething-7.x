@@ -19,7 +19,7 @@ html > body {
 
 body {
   background: #b79c86;
-  background: url(assets/bg.jpg); }
+  background: url("http://files.dosomething.org/files/campaigns/jeans12/bg.jpg"); }
 
 .page-team #contact-form #webform-component-start-header {
   display: none; }
@@ -141,7 +141,7 @@ body {
       text-decoration: underline; }
 
 #block-dosomething-campaign-styles-campaign-nav .highlight a {
-  background: #ffcb15; }
+  background: white; }
 
 .mangoDialog-ui {
   background: #222222;
@@ -155,7 +155,7 @@ body {
   .mangoDialog-ui h1 {
     text-align: center;
     padding: 1em 0 0.5em 0;
-    color: #ffcb15; }
+    color: white; }
   .mangoDialog-ui img {
     width: 80%;
     margin: 0 auto;
@@ -246,7 +246,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   display: block;
   font-size: 1.7em;
   color: #222222;
-  background: #ffcb15;
+  background: white;
   max-width: 15em;
   height: 1.5em;
   padding: 0.05em 0.5em 0.5em;
@@ -261,7 +261,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   text-transform: uppercase;
   font-size: 1.2em; }
   #dosomething-login-register-popup-form .already-member a {
-    color: #ffcb15; }
+    color: white; }
 #dosomething-login-register-popup-form .form-type-textfield,
 #dosomething-login-register-popup-form .form-type-password {
   float: left;
@@ -297,7 +297,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     color: white !important;
     font-size: 0.7em; }
     #dosomething-login-register-popup-form .ds-login-popup-footer .description a {
-      color: #ffcb15 !important; }
+      color: white !important; }
 
 .popup-content,
 .ds-login-popup-footer {
@@ -360,7 +360,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   display: block;
   font-size: 1.7em;
   color: #222222;
-  background: #ffcb15;
+  background: white;
   max-width: 15em;
   height: 1.5em;
   padding: 0.05em 0.5em 0.5em;
@@ -423,7 +423,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 40%; }
   .invite_friends #edit-submit {
     font-family: din-web;
-    background: #ffcb15;
+    background: white;
     margin: 0 0 0 5%;
     font-size: 1.5em;
     height: 1.4em;
@@ -435,7 +435,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -o-border-radius: 5px;
     border-radius: 5px; }
     .invite_friends #edit-submit:hover {
-      background: #fbc300; }
+      background: #f2f2f2; }
 
 #teams-notification-area {
   float: left;
@@ -456,7 +456,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     display: block;
     font-size: 2em;
     color: #222222;
-    background: #ffcb15;
+    background: white;
     max-width: 15em;
     height: 1.5em;
     padding: 0.05em 0.5em 0.5em;
@@ -639,7 +639,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     padding: 0; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
-      color: #ffcb15;
+      color: white;
       margin: 0; }
     #cmp #header h1 {
       margin: 0 0 0.5em 0;
@@ -780,7 +780,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       list-style: disc; }
     #cmp #action.action-leader b {
       color: #0c3565;
-      background: #ffcb15;
+      background: white;
       width: 10em;
       display: block;
       text-align: center;
@@ -873,7 +873,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     overflow: visible;
     margin: 20px auto; }
     #cmp #scholarship h1 {
-      color: #ffcb15; }
+      color: white; }
     #cmp #scholarship p {
       color: white; }
     #cmp #scholarship label, #cmp #scholarship input[type="text"] {
@@ -903,7 +903,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #scholarship #campaign-opt-in {
       text-align: center; }
       #cmp #scholarship #campaign-opt-in a {
-        color: #ffcb15;
+        color: white;
         font-weight: 500; }
   #cmp .refer5 {
     background: #0c3565;
@@ -967,11 +967,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     cursor: default; }
   #cmp #contact-form {
     margin: 10% 0 0 0;
-    background: black;
-    background: rgba(0, 0, 0, 0.3);
+    background: #0c3565;
     width: 100%; }
     #cmp #contact-form h3 {
-      color: #ffcb15;
+      color: white;
       font-size: 1.3em;
       font-weight: 600;
       text-align: left;
