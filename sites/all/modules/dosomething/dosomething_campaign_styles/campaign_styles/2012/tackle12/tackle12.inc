@@ -29,14 +29,14 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'take action', 'href' => '', 'fragment' => 'action'),
-    array('title' => 'learn the issue', 'href' => '', 'fragment' => 'content'),
+    array('title' => 'learn the issue', 'href' => '', 'fragment' => 'facts'),
     array('title' => 'find a food bank', 'href' => '', 'fragment' => 'search'),
     array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
     array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
-    '#markup' => '<img src="//files.dosomething.org/files/campaigns/tackle12/nav-logo.png"/><p>Got questions? Email Christina at <a href="mailto:tackle@dosomething.org">tackle@dosomething.org</a>!</p>'
+    '#markup' => '<div class="clearfix"><p id="tackle-pounds"></p><p>Pounds<br>Collected</p></div><p>Got questions? Email Christina at <a href="mailto:tackle@dosomething.org">tackle@dosomething.org</a>!</p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'

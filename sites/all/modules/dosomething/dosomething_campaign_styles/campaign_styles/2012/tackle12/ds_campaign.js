@@ -17,6 +17,14 @@
         }
       }
 
+            // drupal, eat your heart out
+      var maxwell = "can have his cake and eat it too"
+
+      if(maxwell == "can have his cake and eat it too"){
+        $('#cmp #edit-actions').removeAttr('id');
+      };
+
+
       // hacktastic form rebuilding
       var $emailInput = $('#edit-submitted-field-webform-email');
       var $cellInput = $('#edit-submitted-field-webform-mobile');
@@ -79,18 +87,18 @@
       });
 
       // nav highlighting 
-      var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
-      var firstNav = plainNav + ' a' + '.first';
+      //var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
+      //var firstNav = plainNav + ' a' + '.first';
 
-      $(firstNav).css('background','#FFCB15');
-      $(plainNav + ' a').click(function(){
-          $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
-      });
+      //$(firstNav).css('background','#FFCB15');
+      //$(plainNav + ' a').click(function(){
+          //$(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
+     //});
       
       // scroll function
       var $window = $(window);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-      var scrollLimitTop = 355;
+      var scrollLimitTop = 210;
       var scrollLimitBot = 5757;
 
       $window.scroll(function () {
@@ -125,13 +133,20 @@
     var $output = $("#edit-submitted-ew");
     $("#edit-submitted-number-of-items").keyup(function() {
       var value = parseFloat($(this).val());
-      $output.val(value*0.85);
+      if (isNaN(value)) value = 0;
+      $output.val(Math.round(value*0.85));
     });  
+
+    $.post('/webform-counter-field/724783/4', function (data) {
+      // change the selector as you want. it will input a number.
+      $('#tackle-pounds').html(data);
+    });
 
     $.post('/webform-counter-field/725876/3', function (data) {
       // change the selector as you want. it will input a number.
-      $('.campaign-menu-suffix').html(data);
+      $('#tackle-pounds').html(data);
     });
+
 
     } // end attach: function
   }; // end Drupal.behaviors

@@ -30,9 +30,6 @@ body {
 .page-node-724776 #contact-form #webform-component-join-header {
   display: none; }
 
-.region-sidebar-first {
-  margin-top: 276px; }
-
 @media only screen and (max-width: 1075px) {
   .region-sidebar-first {
     display: none; }
@@ -214,6 +211,23 @@ body {
       color: white;
       text-decoration: underline; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
+        color: #f7c000; }
+    #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix div {
+      margin-bottom: 14px; }
+      #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix div p {
+        width: 40%;
+        margin: 0;
+        text-transform: uppercase;
+        float: right;
+        text-align: left;
+        line-height: 1.3em; }
+      #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix div #tackle-pounds {
+        width: 60%;
+        float: left;
+        line-height: 1.1em;
+        padding-right: 10px;
+        font-size: 2em;
+        text-align: right;
         color: #f7c000; }
 
 #block-dosomething-campaign-styles-campaign-nav .highlight a {
@@ -748,9 +762,9 @@ body {
     position: static; }
   #cmp #infographic {
     padding: 0; }
-  #cmp #content {
+  #cmp #facts {
     text-align: left; }
-    #cmp #content h2 {
+    #cmp #facts h2 {
       background: #00aae6;
       color: white;
       display: inline-block;
@@ -768,7 +782,7 @@ body {
       -o-border-bottom-right-radius: 6px;
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px; }
-    #cmp #content li {
+    #cmp #facts li {
       margin: 0 auto 1em;
       width: 90%; }
   #cmp #scholarship {
