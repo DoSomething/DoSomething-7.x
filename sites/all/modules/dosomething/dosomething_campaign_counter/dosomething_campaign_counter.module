@@ -1,6 +1,22 @@
 <?php
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_campaign_counter_menu() {
+  $items = array();
+
+  $items['webform-counter-field/%/%'] = array(
+    'page callback' => 'dosomething_campaign_counter_count_field',
+    'page arguments' => array(1, 2),
+    'access callback' => TRUE,
+    'delivery callback' => 'ajax_deliver',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_ctools_plugin_type().
  */
 function dosomething_campaign_counter_ctools_plugin_type() {
@@ -50,4 +66,16 @@ function dosomething_campaign_counter_theme() {
 
 function dosomething_campaign_counter_preprocess_ds_counter(&$variables) {
   drupal_add_css(drupal_get_path('module', 'dosomething_campaign_counter') . '/css/ds_counter.css');
+}
+
+function dosomething_campaign_counter_count_field($nid, $cid) {
+  $count = db_select('webform_submitted_data', 'd')
+    ->condition('nid', $nid)
+    ->condition('cid', $cid);
+  $count->addExpression('sum(data)');
+  $count = $count->execute()->fetchField();
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $count,
+  );
 }
