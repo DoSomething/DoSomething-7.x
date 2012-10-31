@@ -56,7 +56,7 @@
       };
 
       // has logo, will inject
-      var logo = '//files.dosomething.org/files/campaigns/spit/logo.png';
+      var logo = '#';
       $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit"><img src="' + logo + '"/></a>');
 
       // hacktastic form rebuilding

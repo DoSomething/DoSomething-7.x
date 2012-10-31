@@ -870,33 +870,28 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .views-field-nothing a.go-button {
     position: static; }
   #cmp #scholarship {
-    overflow: visible;
-    margin: 20px auto; }
+    overflow: visible; }
+    #cmp #scholarship img.scholar-copy {
+      padding: 0; }
+    #cmp #scholarship img {
+      clear: both;
+      display: block;
+      margin: 0 auto;
+      padding: 2% 0; }
     #cmp #scholarship h1 {
       color: white; }
     #cmp #scholarship p {
       color: white; }
-    #cmp #scholarship label, #cmp #scholarship input[type="text"] {
-      font-weight: 500;
-      height: 25px;
-      margin: 0.8% 0;
-      width: 50%;
-      text-align: left; }
+    #cmp #scholarship form {
+      margin: 0 auto;
+      max-width: 600px; }
     #cmp #scholarship label {
-      float: left;
-      clear: left;
-      color: white;
-      padding: 0.5em 0; }
+      font-weight: 600; }
     #cmp #scholarship input[type="text"] {
-      padding: 0.5em;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      border-radius: 5px; }
-    #cmp #scholarship input[type="text"], #cmp #scholarship input[type="submit"] {
-      float: right;
-      clear: right; }
+      padding: 0.8em 0.5em;
+      float: left;
+      width: 48%;
+      margin: 1%; }
     #cmp #scholarship .go-button {
       margin: 4% 0 1% 0;
       padding: 0.3em 0.7em; }
@@ -905,11 +900,33 @@ div[aria-labelledby="ui-dialog-title-1"] {
       #cmp #scholarship #campaign-opt-in a {
         color: white;
         font-weight: 500; }
+    #cmp #scholarship .quote-highlight p {
+      background: #a78b79;
+      max-width: 525px;
+      margin: 0 auto 0.8em;
+      padding: 3%;
+      font-family: din-web-reg;
+      font-weight: 600;
+      font-size: 1.7em;
+      -moz-border-radius: 12px;
+      -webkit-border-radius: 12px;
+      -o-border-radius: 12px;
+      border-radius: 12px; }
+    #cmp #scholarship .scholar-input {
+      float: left;
+      width: 48%;
+      margin: 1%; }
+      #cmp #scholarship .scholar-input label {
+        text-align: left; }
+      #cmp #scholarship .scholar-input input {
+        width: 100%;
+        margin: 1% 0; }
+    #cmp #scholarship .rules {
+      font-size: 1em; }
   #cmp .refer5 {
     background: #0c3565;
     width: 110%;
-    margin: 0 0 0 -4.95%;
-    padding: 3%; }
+    margin: 0 0 0 -4.95%; }
     #cmp .refer5:before, #cmp .refer5:after {
       content: "";
       position: absolute;
@@ -918,10 +935,12 @@ div[aria-labelledby="ui-dialog-title-1"] {
       top: -6px; }
     #cmp .refer5:before {
       border-color: transparent #06182e #06182e transparent;
-      left: -23px; }
+      left: -22px; }
     #cmp .refer5:after {
       border-color: transparent transparent #06182e #06182e;
       right: -22px; }
+  #cmp .refer5-inner {
+    padding: 3%; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {

@@ -295,48 +295,64 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
 //	#content
 //			//
 
-//			//
-//	#scholarship
-//			//
-
 #scholarship
+  img.scholar-copy
+    padding: 0
+  img
+    clear: both
+    display: block
+    margin: 0 auto
+    padding: 2% 0
   overflow: visible 
-  margin: 20px auto
   h1
-    color: $spitYellow
+    color: #fff
   p
     color: #fff
-  label, input[type="text"]
-    font-weight: 500
-    height: 25px
-    margin: 0.8% 0
-    width: 50%
-    text-align: left
+  form
+    margin: 0 auto
+    max-width: 600px
   label
-    float: left
-    clear: left
-    color: #fff
-    padding: 0.5em 0
+    font-weight: 600  
   input[type="text"]
-    padding: 0.5em
-    +border-radius(5px)
-  input[type="text"], input[type="submit"]
-    float: right
-    clear: right
+    padding: 0.8em 0.5em
+    float: left
+    width: 48%
+    margin: 1%
   .go-button
     margin: 4% 0 1% 0
     padding: 0.3em 0.7em
   #campaign-opt-in
     text-align: center
     a
-      color: $spitYellow
+      color: #fff
       font-weight: 500
-
+  .quote-highlight p
+    background: #a78b79
+    max-width: 525px
+    margin: 0 auto 0.8em
+    padding: 3%
+    font-family: din-web-reg
+    font-weight: 600
+    font-size: 1.7em
+    -moz-border-radius: 12px
+    -webkit-border-radius: 12px
+    -o-border-radius: 12px
+    border-radius: 12px
+  .scholar-input
+    float: left
+    width: 48%
+    margin: 1%
+    label
+      text-align: left
+    input
+      width: 100%
+      margin: 1% 0
+  .rules
+    font-size: 1em  
 .refer5
   background: $spitPurple
   width: 110%
   margin: 0 0 0 -4.95%
-  padding: 3%
   &:before, &:after
     content: ""
     position: absolute
@@ -345,10 +361,12 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     top: -6px
   &:before
     border-color: transparent darken($spitPurple, 12) darken($spitPurple, 12) transparent
-    left: -23px
+    left: -22px
   &:after
     border-color: transparent transparent darken($spitPurple, 12) darken($spitPurple, 12)
     right: -22px
+.refer5-inner
+  padding: 3%
 
 //			//
 //  #social     - share 3 stats -
