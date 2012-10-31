@@ -177,6 +177,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         '#attributes' => array('id' => array('pointless-hidden-box'))
       );
       $u['field_celeb_date']['#attributes']['class'] = array('robocalls-timed-form-times');
+      $u['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
     }
     else
     {
