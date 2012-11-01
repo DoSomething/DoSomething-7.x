@@ -104,37 +104,13 @@ function dosomething_api_actnow_api() {
   }
 
   // Filtered by creation date.
-  $created = strval(htmlspecialchars(trim($_GET['created'])));
-  if (!empty($created)) {
-    list($start, $end) = explode(',', $created);
-    $btw = array();
-
-    // If we have a start and end date to filter by, show anything between those dates
-    if (strtotime($start) && strtotime($end)) {
-      $btw = array(strtotime($start), strtotime($end));
-      $acts->condition('created', $btw, 'BETWEEN');
-    }
-    // If we only have a start date, show action guides started on that date.
-    else if (strtotime($start)) {
-      $acts->condition('created', strtotime($start), '=');
-    }
+  if (!empty($_GET['created'])) {
+    dosomething_api_date_sort($acts, $_GET['created'], 'condition', 'created');
   }
 
   // Filter by changed date
-  $changed = strval(htmlspecialchars(trim($_GET['changed'])));
-  if (!empty($changed)) {
-    list($start, $end) = explode(',', $changed);
-    $btw = array();
-
-    // If we have a start and end date to filter by, show anything between those dates.
-    if (strtotime($start) && strtotime($end)) {
-      $btw = array(strtotime($start), strtotime($end));
-      $acts->condition('changed', $btw, 'BETWEEN');
-    }
-    // If we only have a start date, show action guides changed on that date.
-    else if (strtotime($start)) {
-      $acts->condition('changed', strtotime($start), '=');
-    }
+  if (!empty($_GET['changed'])) {
+    dosomething_api_date_sort($acts, $_GET['changed'], 'condition', 'changed');
   }
 
   // Filter by a user ID (author)
@@ -168,23 +144,7 @@ function dosomething_api_actnow_api() {
     $acts->orderBy($order[0], $order[1]);
   }
 
-  // Default range to sort by: 0, 25
-  $range = array(0, 25);
-
-  // Offset
-  $offset = intval($_GET['offset']);
-  if (!empty($offset)) {
-    $range[0] = $offset;
-  }
-
-  // Limit
-  $limit = intval($_GET['limit']);
-  if (!empty($limit)) {
-    $range[1] = $limit;
-  }
-
-  // Sets the range based off of default or params
-  $acts->range($range[0], $range[1]);
+  dosomething_api_handle_offset_and_limit($acts);
   $r = $acts->execute();
 
   $no_html_tags = ($_GET['no_html_tags'] == true ? true : false);

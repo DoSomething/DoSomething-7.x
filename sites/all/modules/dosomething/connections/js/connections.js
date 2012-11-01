@@ -26,6 +26,7 @@
     _ograph_callback: null,
     _message_callback: null,
     _request_callback: null,
+    _image_callback: null,
 
     /**
      *  Initializes the Facebook object and runs all appropriate functions.
@@ -669,6 +670,10 @@
         require_login: config.img_require_login
       };
 
+      if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._image_callback == 'function') {
+        callback = Drupal.behaviors.fb._image_callback;
+      }
+
       if (things.image) {
         things.img_url = things.image;
       }
@@ -695,6 +700,7 @@
     /**
      *  Runs the User Generated Image share.
      *  This function should not be called on its own.
+     *  NOTE: We need Facebook permission to make this a public function.
      */
     run_image: function(things, callback) {
       var fbpost = {

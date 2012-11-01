@@ -73,38 +73,11 @@ function dosomething_api_clubs_api() {
   // Filters by creation time, with either one or two (comma-separated) values.
   // If only one value, finds projects that started on that date
   // If two (comma-separated) values, finds projects within the range defined by the comma-separated values (e.g. last month,today)
-  $created = strval(htmlspecialchars(trim($_GET['created'])));
-  if (!empty($created)) {
-    list($start, $end) = explode(',', $created);
-    $btw = array();
-    if (strtotime($start) && strtotime($end)) {
-      $btw = array(strtotime($start), strtotime($end));
-      // Between two values -- finds a range of projects created between two dates.
-      $c->condition('n.created', $btw, 'BETWEEN');
-    }
-    else if (strtotime($start)) {
-      // Only one value -- finds projects created on a particular date.
-      $c->condition('n.created', strtotime($start), '=');
-    }
+  if (!empty($_GET['created'])) {
+    dosomething_api_date_sort($c, $_GET['created'], 'condition', 'n.created');
   }
 
-  // Range: Default range is 0, 25
-  $range = array(0, 25);
-
-  // Offset
-  $offset = intval($_GET['offset']);
-  if (!empty($offset)) {
-    $range[0] = $offset;
-  }
-
-  // Limit
-  $limit = intval($_GET['limit']);
-  if (!empty($limit)) {
-    $range[1] = $limit;
-  }
-
-  // Sets the range
-  $c->range($range[0], $range[1]);
+  dosomething_api_handle_offset_and_limit($c);
 
   // Title searching -- inclusive by default.
   $title = strval(htmlspecialchars(trim($_GET['title'])));

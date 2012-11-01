@@ -1,16 +1,8 @@
 <?php
 
 /**
- *	Implements hook_services_ctools_plugin_api()
- *  Sets up services for the DoSomething API
+ *  Implements hook_menu()
  */
-function dosomething_api_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "services" && $api == "services") {
-    return array("version" => "3");
-  }
-}
-
 function dosomething_api_menu() {
   $items['api/%'] = array(
     'type' => MENU_CALLBACK,
@@ -22,6 +14,10 @@ function dosomething_api_menu() {
   return $items;
 }
 
+/**
+ *  Runs an API.  Takes the action from the URL, confirms its existence,
+ *  and runs the processing function.
+ */
 function dosomething_api_run($action) {
   $action = str_replace('.json', '', $action);
   if (file_exists(drupal_get_path('module', 'dosomething_api') . '/apis/' . $action . '.inc')) { 
@@ -29,6 +25,108 @@ function dosomething_api_run($action) {
     $function = 'dosomething_api_' . $action . '_api';
     if (function_exists($function)) {
       $function();
+    }
+  }
+}
+
+/**
+ *  Handles offset and limit for API's.  Default offset and limit is 0, 25.
+ *  
+ *  @param $api
+ *    The API object, referenced through a db_select or EntityFieldQuery.
+ *
+ *  @param $default_offset
+ *    Default 0.  Set higher to start the result set higher.
+ *
+ *  @param $default_limit
+ *    Default 25.  Set higher to show more results.
+ *
+ *  @return
+ *    Nothing.  This function alters the $api object.
+ */
+function dosomething_api_handle_offset_and_limit(&$api, $default_offset = 0, $default_limit = 25) {
+  $range = array($default_offset, $default_limit);
+
+  if (!empty($_GET['offset'])) {
+    // Offset
+    $offset = intval($_GET['offset']);
+    $range[0] = $offset;
+  }
+
+  if (!empty($_GET['limit'])) {
+    // Limit
+    $limit = intval($_GET['limit']);
+    $range[1] = $limit;
+  }
+
+  $api->range($range[0], $range[1]);
+}
+
+/**
+ *  Filters data by dates.  Offers two options: Single date and comma-separated date.
+ *  A single date will return data that was affected on that particular date
+ *  Two comma-separated dates will return data that was affected in the range between the two dates.
+ *
+ *  @param $api
+ *    An API object, referenced through a db_select or EntityFieldQuery
+ *
+ *  @param $dates
+ *    The date(s) to search by.  The dates will be sent through strtotime(), so they should be in
+ *    English language format (e.g. "today", "yesterday", "October 1, 2012"...)
+ *
+ *  @param $field_type
+ *    The field type through which to search.  Accepts "condition" (for db_select)
+ *    or "propertyCondition" (for EntityFieldQuery).
+ *
+ *  @param $column
+ *    The column to compare the dates against.
+ *
+ *  @param $column_type ("int" or "date")
+ *    "int" does direct timestamp comparisons.  "date" will transfer it into full-date timestamps
+ *    for non-integer fields.    
+ *
+ *  @return
+ *    Nothing.  This function alters the $api object.
+ */
+function dosomething_api_date_sort(&$api, $dates, $field_type, $column, $column_type = 'int') {
+  $created = strval(htmlspecialchars(trim($dates)));
+  if (!empty($created)) {
+    list($start, $end) = explode(',', $created);
+    $btw = array();
+    if ($column_type == 'date') {
+      $s = date('Y-m-d 00:00:00', strtotime($start));
+    }
+    else {
+      $s = strtotime($start);
+    }
+
+    // If we have a start and end date to filter by, show anything between those dates
+    if ($s && strtotime($end)) {
+      if ($column_type == 'int') {
+        $btw = array($s, strtotime($end));
+      }
+      else if ($column_type == 'date') {
+        $e = date('Y-m-d 00:00:00', strtotime($end));
+
+        $btw = array($s, $e);
+      }
+
+      if ($field_type == 'fieldCondition') {
+        $api->{$field_type}($column, 'value', $btw, 'BETWEEN');
+      }
+      else {
+        $api->{$field_type}($column, $btw, 'BETWEEN');
+      }
+    }
+
+    // If we only have a start date, show action guides started on that date.
+    else if ($s) {
+      if ($field_type == 'fieldCondition') {
+        $api->{$field_type}($column, 'value', $s, '=');
+      }
+      else {
+        $api->{$field_type}($column, $s, '=');
+      }
     }
   }
 }
