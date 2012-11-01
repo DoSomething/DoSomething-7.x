@@ -1161,7 +1161,7 @@ body {
   @media only screen and (max-width: 775px) {
     #cmp .section {
       width: 100%;
-      margin: 2% auto; }
+      margin: 0 auto; }
     #cmp #contact-form {
       margin: 2% 0 0 0; }
       #cmp #contact-form h3 {
@@ -1238,7 +1238,7 @@ body {
       display: none; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
-      margin: 5% auto; }
+      margin: 0 auto; }
     #cmp #edit-submitted-field-webform-email {
       width: 68%;
       margin: 1% 0; }

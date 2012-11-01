@@ -35,7 +35,7 @@
 
 
       // contact form login
-      $('#webform-client-form-724782 .form-actions').append('<p>Already signed up? <a href="/user?destination=node/724781" class="sign-in-popup">log in</a></p>');
+      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/725867" class="sign-in-popup">log in</a></p>');
 
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
@@ -85,15 +85,6 @@
         });
         return false;
       });
-
-      // nav highlighting 
-      //var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
-      //var firstNav = plainNav + ' a' + '.first';
-
-      //$(firstNav).css('background','#FFCB15');
-      //$(plainNav + ' a').click(function(){
-          //$(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
-     //});
       
       // scroll function
       var $window = $(window);
@@ -137,13 +128,7 @@
       $output.val(Math.round(value*0.85));
     });  
 
-    $.post('/webform-counter-field/724783/4', function (data) {
-      // change the selector as you want. it will input a number.
-      $('#tackle-pounds').html(data);
-    });
-
     $.post('/webform-counter-field/725876/3', function (data) {
-      // change the selector as you want. it will input a number.
       $('#tackle-pounds').html(data);
     });
 
