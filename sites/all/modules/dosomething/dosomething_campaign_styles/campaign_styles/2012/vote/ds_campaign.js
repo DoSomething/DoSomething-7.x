@@ -2,10 +2,16 @@
   Drupal.behaviors.campaignName = {
     attach: function (context, settings) {
 
+
 // Top Head Graphic   
-  var banner = $('<img />').attr('src', '//files.dosomething.org/files/campaigns/vote/vote-header-2.jpg').addClass('vote-logo').css({'width': '750px', 'max-width': 'none'}).hide();
+  var banner = $('<img />').attr('src', '//files.dosomething.org/files/campaigns/vote/vote-header2.jpg').addClass('vote-logo').css({'width': '750px', 'max-width': 'none'}).hide();
     $('div.panel-campaign:not(.vote-head)').addClass('vote-head').prepend(banner);
   banner.fadeIn();
+
+// ELECTION TOP GRAPHIC
+  var election = $('<img />').attr('src', '//files.dosomething.org/files/campaigns/vote/election.jpg').addClass('vote-election').hide();
+  $('div.panel-campaign:not(.vote-headline)').addClass('vote-headline').prepend(election);
+  election.fadeIn();
 
 //NAV SLOW SCROLL
       $('#block-dosomething-campaign-styles-campaign-nav a').click(function (event) {

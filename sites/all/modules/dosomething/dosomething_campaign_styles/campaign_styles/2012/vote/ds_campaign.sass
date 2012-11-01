@@ -25,7 +25,7 @@ $body: "Trebuchet MS",sans-serif
 $boldWeight: 600
 
 // sets the background for the entire page
-$imageBackground: url('assets/vote-bg.jpg')
+$imageBackground: url('//files.dosomething.org/files/campaigns/vote/bg2.jpg')
 $bgFallback: #272727
 
 // sets the background for the page nav and main section
@@ -120,7 +120,7 @@ body
 
 div[role="main"]
   +block
-  @include box-shadow(black 0 0 30px -10px)
+  //@include box-shadow(black 0 0 30px -10px)
   margin-top: 8px
   padding-top: 10px  
 
@@ -287,13 +287,25 @@ div[role="main"]
         input
           width: 75%
           margin-top: 5px
+#webform-component-birthday
+  background: $baseColor
+  padding: 10px
+  margin: 10px 0px 0px
+  width: 280px
+  border-radius: 6px
+  border: 2px solid #F8EFD7
+  label
+    color: $thirdLink
+    font-size: 1.2em
+    margin: 0 0 4px
+    //font-weight: bold
 
 .webform-client-form
   #edit-actions,
   #edit-actions--2
     position: absolute
     right: 80px
-    top: 48px
+    //top: 48px
 
 #campaign-opt-in
   font-size: 11px
@@ -630,7 +642,7 @@ ul.gallery
 
 .vote-step-one, .vote-step-two
   float: left
-  width: 373px
+  //width: 373px
   p
     font-size: 15px
     line-height: 1.2em
@@ -663,8 +675,8 @@ ul.gallery
   p
     margin: 0 20px 10px 20px 
   input
-    width: 320px
-    margin: 4px 2px
+    width: 48%
+    margin: 4px 1%
     height: 35px
     font-size: 14px
     padding: 0px 10px
@@ -676,10 +688,11 @@ ul.gallery
     border: none
     margin-bottom: 20px
 .contest
-  position: absolute
-  left: 50%
-  margin-left: -60px
-  bottom: 15px
+  padding-left: 4%
+  //position: absolute
+  //left: 50%
+  //margin-left: -60px
+  //bottom: 15px
 
 // Learn Issue Pane
 #vote-learn
@@ -701,7 +714,7 @@ ul.gallery
 
 
 // Questions Pane
-.pane-4
+#vote-questions
   .pane-content
     padding: 10px
     p
@@ -835,7 +848,7 @@ html[xmlns] .clearfix
     width: 600px
 
 //BOX SHADOWS AROUND PANELS AND HEADER IMAGE
-.vote-logo, #vote-take-action, #vote-scholarship, #vote-learn-the-issue, #vote-questions, .panel-row-actions, #meet-candidates, #vote-head-count
+.vote-logo, #vote-take-action, #vote-scholarship, #vote-learn-the-issue, #vote-questions, .panel-row-actions, #meet-candidates, #vote-head-count, .vote-election
   box-shadow: 0px 0px 8px 2px #111 !important
 
 //HEAD COUNT PAGE
@@ -907,6 +920,9 @@ form.webform-client-form
 #node-724570, #node-723007
   background: #E3D6BB url(assets/section_bg.jpg)
 
+// PSA BLOCK
+.pane-psa
+  line-height: 0
 
 // START PAGE
 img.pre-register, img.register
