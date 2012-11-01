@@ -45,15 +45,6 @@
   	run: function(fun) {
   		var a = Array.prototype.slice.call(arguments);
       eval('Drupal.behaviors.fb.' + fun + '(a[1])');
-
-  		/*var f = $('<div></div>').attr('class', 'fb-runner-' + fun).css('display', 'none').click(function() {
-  			eval('Drupal.behaviors.fb.' + fun + '(a[1])');
-  		});
-  		f.appendTo($('body'));
-
-  		// We need a slight timeout to make the pop-up actually work.  Facebook literally waits 'til
-  		// the last second to initialize the FB object.  A .5 second delay is enough(!)
-  		setTimeout('jQuery(".fb-runner-' + fun + '").click();', 1000);*/
   	},
 
     /**
@@ -256,7 +247,7 @@
      *  
      *
      *  @param config
-     *    A javascript object of configuration opens.  Available options:
+     *    A javascript object of configuration options.  Available options:
      *       feed_document         (An absolute url of the page to share)
      *       feed_title            (The title of the share)
      *       feed_picture          (The picture that is displayed on the share)
@@ -659,6 +650,7 @@
      *       img_require_login       (Prompts a user to log into Facebook if they aren't already.)
      *
      *    * No more than one of these may be set, and at least one must always be set.
+     *      In addition, the shared image must be *at least* 480x480px (Facebook's rules, not mine)
      *
      *  @param callback
      *    A callback function which triggers when a post was succesfully made.
@@ -700,6 +692,10 @@
       }
     },
 
+    /**
+     *  Runs the User Generated Image share.
+     *  This function should not be called on its own.
+     */
     run_image: function(things, callback) {
       var fbpost = {
           message: things.message,

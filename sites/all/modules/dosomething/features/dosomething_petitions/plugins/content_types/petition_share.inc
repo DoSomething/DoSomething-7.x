@@ -20,7 +20,7 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
     '#weight' => -1
   );
 
-  contact_scraper::add_scraper_button($content, 0);
+  contact_scraper::add_scraper_button($content, 0, array('style' => 'display: inline-block'));
   $content['or'] = array(
     '#prefix' => '<p style="position: relative;">',
     '#suffix' => '</p>',

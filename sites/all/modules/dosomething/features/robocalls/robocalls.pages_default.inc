@@ -561,7 +561,7 @@ function robocalls_default_page_manager_pages() {
       'url' => '',
       'display' => 'block_robocall_celebs',
       'override_title' => 1,
-      'override_title_text' => 'Step 1: Choose a Celebrity and call category',
+      'override_title_text' => 'Step 1: Choose a Celebrity and Type of Call',
     );
     $pane->cache = array();
     $pane->style = array();
