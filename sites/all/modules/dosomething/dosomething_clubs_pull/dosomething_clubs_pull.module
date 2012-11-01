@@ -182,6 +182,24 @@ class clubs_export {
         $done[] = $c;
       }
 
+      $rtimes = '';
+      if (!empty($stuff['sms_response_times'])) {
+        foreach (explode(',', $stuff['sms_response_times']) AS $time) {
+          $rtimes .= date('Y/m/d', $time) . ', ';
+        }
+        $rtimes = substr($rtimes, 0, -2);
+      }
+
+      $last_created_project = '';
+      if (!empty($stuff['lastcreated'])) {
+        $last_created_project = date('Y/m/d', $stuff['lastcreated']);
+      }
+
+      $last_joined_campaign = '';
+      if (!empty($stuff['last_joined_campaign'])) {
+        $last_joined_campaign = date('Y/m/d', $stuff['last_joined_campaign']);
+      }
+
       $writes[] = array(
         'club id' =>          $stuff['nid'],
         'club name' =>        $stuff['node_title'],
@@ -214,8 +232,9 @@ class clubs_export {
         'Member Emails' =>    str_replace(',', ', ', $stuff['member_emails']),
         'Member UIDs' =>      str_replace(',', ', ', $stuff['member_uids']),
         '# of Projects' =>    $stuff['pcount'],
-        'Recent Project' =>   date('Y/m/d', $stuff['lastcreated']),
-        'Last joined campaign time' => date('Y/m/d', $stuff['last_joined_campaign'])
+        'Recent Project' =>   $last_created_project,
+        'Last joined campaign time' => $last_joined_campaign,
+        'SMS Response Times' => $rtimes
       );
 
       $i++;
@@ -273,7 +292,8 @@ class clubs_export {
         t('Member UIDs'),
         t('Number of Projects'),
         t('Most recently created project'),
-        t('Last joined Campaign time')
+        t('Last joined Campaign time'),
+        t('SMS Response Times')
       );
 
       $handle = fopen($h['file_path'], 'w');
@@ -341,7 +361,8 @@ class clubs_export {
       IF (`noassoc`.`field_no_school_associate_value`, 1, 0) AS `not_associated`,
       `blurb`.`field_club_blurb_value` AS `blurb`,
       IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`,
-      `lu`.`login` AS `last_leader_login`
+      `lu`.`login` AS `last_leader_login`,
+      GROUP_CONCAT(DISTINCT `response`.`timestamp`) AS `sms_response_times`
     FROM 
     `node` node
     LEFT JOIN `users` users_node ON node.uid = users_node.uid
@@ -372,6 +393,7 @@ class clubs_export {
       )
     )
     LEFT JOIN `ds_school` AS `sc` ON (`sc`.`sid` = `school`.`field_school_reference_target_id`)
+    LEFT JOIN `dosomething_clubs_sms_response` AS `response` ON (`response`.`nid` = `node`.`nid`)
     WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
     GROUP BY nid, node_title ASC
     ORDER BY `node`.`created` ASC
@@ -742,7 +764,9 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Member UIDs'), 'class' => array('page-manager-page-path')),
     array('data' => t('Number of Projects'), 'class' => array('page-manager-page-path')),
     array('data' => t('Most recently created project'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Last joined campaign time'), 'class' => array('clubs-pull-last-joined-campaign'))
+    array('data' => t('Last joined campaign time'), 'class' => array('clubs-pull-last-joined-campaign')),
+    array('data' => t('SMS Response Times'), 'class' => array('clubs-pull-sms-response-times'))
+
   );
 
 $count = db_query("SELECT COUNT(*) AS `count` FROM `node` WHERE (( (node.status = '1') AND (node.type IN  ('club')) )) GROUP BY nid, `node`.`title` ORDER BY `node`.`title` ASC");
@@ -764,6 +788,24 @@ $num = $count->rowCount();
         }
 
         $done[] = $c;
+      }
+
+      $rtimes = '';
+      if (!empty($result['sms_response_times'])) {
+        foreach (explode(',', $result['sms_response_times']) AS $time) {
+          $rtimes .= date('Y/m/d', $time) . ', ';
+        }
+        $rtimes = substr($rtimes, 0, -2);
+      }
+
+      $last_created_project = '';
+      if (!empty($result['lastcreated'])) {
+        $last_created_project = date('Y/m/d', $result['lastcreated']);
+      }
+
+      $last_joined_campaign = '';
+      if (!empty($result['last_joined_campaign'])) {
+        $last_joined_campaign = date('Y/m/d', $result['last_joined_campaign']);
       }
 
     $pages['rows'][] = array(
@@ -799,8 +841,9 @@ $num = $count->rowCount();
         'Member Emails' =>               array('data' => str_replace(',', ', ', $result['member_emails'])),
         'Member UIDs' =>                   array('data' => str_replace(',', ', ', $result['member_uids'])),
         'Number of Projects' =>            array('data' => $result['pcount']),
-        'Most Recently Created Project' => array('data' => date('Y/m/d', $result['lastcreated'])),
-        'Last joined campaign time' =>      array('data' => date('Y/m/d', $result['last_joined_campaign']))
+        'Most Recently Created Project' => array('data' => $last_created),
+        'Last joined campaign time' =>      array('data' => $last_joined_campaign),
+        'SMS Response Times' =>             array('data' => $rtimes)
       )
     );
   }
