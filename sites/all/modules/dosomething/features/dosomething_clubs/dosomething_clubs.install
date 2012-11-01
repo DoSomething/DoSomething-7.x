@@ -60,6 +60,35 @@ function dosomething_clubs_schema() {
     )
   );
 
+  $schema['dosomething_clubs_sms_response'] = array(
+    'description' => 'Stores responses to SMS messages.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The club ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'uid' => array(
+        'description' => 'The User ID of the leader',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'timestamp' => array(
+        'description' => 'The time stamp of the nagging request',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      )
+    ),
+    'indexes' => array(
+      'nid' => array('nid'),
+      'uid' => array('uid'),
+      'timestamp' => array('timestamp')
+    )
+  );
+
   return $schema;
 }
 
@@ -106,5 +135,44 @@ function dosomething_clubs_update_7101() {
 
   if (!db_table_exists('dosomething_clubs_nag')) {
     db_create_table('dosomething_clubs_nag', $schema['dosomething_clubs_nag']);
+  }
+}
+
+/**
+ *  Creates Clubs SMS response
+ */
+function dosomething_clubs_update_7102() {
+  $schema = array();
+  $schema['dosomething_clubs_sms_response'] = array(
+    'description' => 'Stores responses to SMS messages.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The club ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'uid' => array(
+        'description' => 'The User ID of the leader',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'timestamp' => array(
+        'description' => 'The time stamp of the nagging request',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      )
+    ),
+    'indexes' => array(
+      'nid' => array('nid'),
+      'uid' => array('uid'),
+      'timestamp' => array('timestamp')
+    )
+  );
+
+  if (!db_table_exists('dosomething_clubs_sms_response')) {
+    db_create_table('dosomething_clubs_sms_response', $schema['dosomething_clubs_sms_response']);
   }
 }

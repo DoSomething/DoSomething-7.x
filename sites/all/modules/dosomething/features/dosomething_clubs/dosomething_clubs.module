@@ -258,7 +258,7 @@ function dosomething_clubs_responded_to_txt() {
     $account = dosomething_general_find_user_by_cell($num);
     if (!empty($account->uid)) {
       $q = db_select('node', 'n')
-        ->fields('n', array('nid'))
+        ->fields('n', array('nid', 'uid'))
         ->condition('uid', $account->uid)
         ->condition('type', 'club')
         ->orderBy('created', 'DESC')
@@ -268,9 +268,12 @@ function dosomething_clubs_responded_to_txt() {
       $nodes = array();
       $r = $q->fetchAll();
       foreach ($r AS $key => $n) {
-        $node = node_load($n->nid);
-        $node->field_responded_to_texts[LANGUAGE_NONE][0]['value'] = REQUEST_TIME;
-        node_save($node);
+        $data = array(
+          'nid' => $n->nid,
+          'uid' => $n->uid,
+          'timestamp' => REQUEST_TIME
+        );
+        drupal_write_record('dosomething_clubs_sms_response', $data);
       }
     }
 
@@ -278,7 +281,7 @@ function dosomething_clubs_responded_to_txt() {
     <response>
      <reply>
       <text>
-       <![CDATA[We are glad to know you are an active club.  Did you konw we are giving away free pizza parties to clubs with 10+ members? Txt PIZZA for more.]]>
+       <![CDATA[We are glad to know you are an active club.  Did you know we are giving away free pizza parties to clubs with 10+ members? Txt PIZZA for more.]]>
       </text>
      </reply>
     </response>';
