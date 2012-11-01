@@ -747,6 +747,132 @@ function dosomething_campaign_schools_default_page_manager_pages() {
   $display->title_pane = 'new-19';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_campaign_school_browser_pages_panel_context_3';
+  $handler->task = 'page';
+  $handler->subtask = 'campaign_school_browser_pages';
+  $handler->handler = 'panel_context';
+  $handler->weight = 2;
+  $handler->conf = array(
+    'title' => 'TFJ 2012',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'logic' => 'and',
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'school/*/725893',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'onecol';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'middle' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-25';
+    $pane->panel = 'middle';
+    $pane->type = 'campaign_sign_up';
+    $pane->subtype = 'campaign_sign_up';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'report_back_html' => 'Yay. You\'ve signed up. Now it\'s time to report back!',
+      'override_title' => 1,
+      'override_title_text' => 'Sign Up Now to Start a Book Drive and Be Eligible for a Scholarship',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-25'] = $pane;
+    $display->panels['middle'][0] = 'new-25';
+    $pane = new stdClass();
+    $pane->pid = 'new-26';
+    $pane->panel = 'middle';
+    $pane->type = 'entity_view';
+    $pane->subtype = 'ds_school';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view_mode' => 'default',
+      'context' => 'argument_entity_id:ds_school_1',
+      'override_title' => 1,
+      'override_title_text' => '%title',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'school-name',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-26'] = $pane;
+    $display->panels['middle'][1] = 'new-26';
+    $pane = new stdClass();
+    $pane->pid = 'new-27';
+    $pane->panel = 'middle';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'campaign_school_pages-member_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:ds_school_1',
+        1 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Who\'s Involved',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'members-list',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-27'] = $pane;
+    $display->panels['middle'][2] = 'new-27';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
   $pages['campaign_school_browser_pages'] = $page;
 
   return $pages;
