@@ -149,7 +149,7 @@
     }
 
     // SET iFrame content or whatever you want to load in later.
-    var iFrameContent = $('<iframe width="800" height="500" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?viz=MAP&amp;q=select+col0+from+1b9REdb7_6_vxOyzNg8ANtPDMrQr_Cn469Qg0tjo&amp;h=false&amp;lat=40.68063802521456&amp;lng=-97.69401799999991&amp;z=4&amp;t=1&amp;l=col0"></iframe>');
+    var iFrameContent = $('<iframe width="800" height="500" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?viz=MAP&q=select+col2+from+13NNXvmfca-saBJRfsTVmMZ7O9UmkfC7YoFCiNCs&h=false&lat=39.50404070558418&lng=-95.80078125&z=4&t=1&l=col2&y=1&tmplt=3"></iframe>');
 
     var windowBottom; // let's not re-initialize a variable every scroll. save some memory & cpu.
 
