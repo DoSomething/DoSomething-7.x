@@ -23,17 +23,17 @@ function dosomething_api_menu() {
 function dosomething_api_run($action) {
   // API key is required
   if (!empty($_GET['key'])) {
-    $key = mysql_real_escape_string(htmlspecialchars($_GET['key']));
+    $api_key = preg_replace('#[^A-Za-z0-9]#i', '', $_GET['key']);
     $query = "
       SELECT sid
       FROM `webform_submissions`
-      WHERE MD5(`sid`) = '" . $key . "'";
+      WHERE MD5(`sid`) = '" . $api_key . "'";
     $key = db_query($query);
     $k = $key->fetchAll();
   }
 
   if ($_GET['debug'] == 1) {
-    echo '<p>' . $_GET['key'] . '</p>';
+    echo '<p>' . $api_key . '</p>';
     echo "<p><pre>" . $query . "</pre></p>";
     echo '<p><pre>', print_r($k), '</pre></p>';
   }
