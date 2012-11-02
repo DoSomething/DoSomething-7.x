@@ -37,7 +37,7 @@ function dosomething_api_run($action) {
     echo "<p><pre>
       SELECT sid
       FROM `webform_submissions`
-      WHERE MD5(`sid`) = '" . $key . "'</pre></p>";
+      WHERE MD5(`sid`) = '" . $_GET['key'] . "'</pre></p>";
     echo '<p><pre>', print_r($k), '</pre></p>';
   }
 
