@@ -32,6 +32,15 @@ function dosomething_api_run($action) {
     $k = $key->fetchAll();
   }
 
+  if ($_GET['debug'] == 1) {
+    echo '<p>' . $_GET['key'] . '</p>';
+    echo "<p><pre>
+      SELECT sid
+      FROM `webform_submissions`
+      WHERE MD5(`sid`) = '" . $key . "'</pre></p>";
+    echo '<p><pre>', print_r($k), '</pre></p>';
+  }
+
   if ((isset($k) && count($k) == 0) || empty($_GET['key'])) {
     echo json_encode(array(
       'error' => t('You must have a valid API key to access this content.  Please go to http://www.dosomething.org/api to request a key.')
