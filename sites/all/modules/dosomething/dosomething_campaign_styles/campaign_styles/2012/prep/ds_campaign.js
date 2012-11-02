@@ -136,9 +136,17 @@
     // set some variables for quick reference so we don't re-parse every scroll
     var $window = $(window);
     var $showElement = $('#sms-map .sms-map-wrapper'); // SET this to whichever div will trigger the load.
-    var showAt = $showElement.offset().top; // store the offset at which we want to scroll in so we don't re-parse it every time
+    var showAt;
 
     var loaded = false; // whether or note we've loaded the content in
+
+    // make sure the selector isn't broken
+    if ($showElement.length > 0) {
+      showAt = $showElement.offset().top; // store the offset at which we want to scroll in so we don't re-parse it every time
+    }
+    else {
+      loaded = true; // there's no point in appending something to nothing, so let's not do anything
+    }
 
     // SET iFrame content or whatever you want to load in later.
     var iFrameContent = $('<iframe width="800" height="500" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?viz=MAP&amp;q=select+col0+from+1b9REdb7_6_vxOyzNg8ANtPDMrQr_Cn469Qg0tjo&amp;h=false&amp;lat=40.68063802521456&amp;lng=-97.69401799999991&amp;z=4&amp;t=1&amp;l=col0"></iframe>');

@@ -35,7 +35,7 @@ $plugin = array(
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
-    '#markup' => '<div class="clearfix"><p id="tackle-pounds"></p><p>Pounds<br>Collected</p></div><p>Got questions? Email Christina at <a href="mailto:tackle@dosomething.org">tackle@dosomething.org</a>!</p>'
+    '#markup' => '<div class="clearfix"><p id="tackle-pounds"></p><p>Pounds<br>Collected</p></div><p>Got questions? Email Christina at <a href="mailto:tackle@dosomething.org">pantryprep@dosomething.org</a>!</p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'
