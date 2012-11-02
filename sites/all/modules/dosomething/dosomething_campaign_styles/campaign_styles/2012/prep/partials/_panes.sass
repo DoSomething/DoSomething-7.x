@@ -4,9 +4,7 @@
 //	#header			- sign up -
 //			//
 #header
-  background: transparent url("//files.dosomething.org/files/campaigns/tackle12/tackle-logo.png") no-repeat center top
-  margin: 20px 0 0
-  padding: 0
+  background: transparent
   h1, h2
     text-align: left
     color: black
@@ -18,10 +16,10 @@
   h2
     text-align: center
     text-transform: uppercase
-    font-size: 1.8em
+    font-size: 1.2em
     font-family: $din
     font-weight: 600
-    width: 80%
+    width: 85%
     margin: 0 auto
     line-height: 1.2em
     span
@@ -31,8 +29,6 @@
   span
     padding: 0
     text-align: center
-  .tagline
-    padding: 184px 0 0 0
   .pane-campaign-signed
     h2
       text-align: center
@@ -308,10 +304,9 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     margin: 0 auto
     padding: 2% 0
   overflow: visible 
-  h1
-    color: $yellow
-  p
+  h1, p
     color: #fff
+    text-transform: none
   form
     margin: 0 auto
     max-width: 600px
@@ -355,7 +350,7 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
   .rules
     font-size: 1em  
 .refer5
-  background: $mainColor
+  background: $scholarshipBG
   width: 110%
   margin: 0 0 0 -4.95%
   &:before, &:after
@@ -365,10 +360,10 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     border-width: 11px
     top: -6px
   &:before
-    border-color: transparent darken($mainColor, 12) darken($mainColor, 12) transparent
+    border-color: transparent darken($scholarshipBG, 12) darken($scholarshipBG, 12) transparent
     left: -22px
   &:after
-    border-color: transparent transparent darken($mainColor, 12) darken($mainColor, 12)
+    border-color: transparent transparent darken($scholarshipBG, 12) darken($scholarshipBG, 12)
     right: -22px
 .refer5-inner
   padding: 3%  
@@ -452,7 +447,7 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     font-size: 2em
     font-family: din-web
     text-transform: uppercase
-    background: url("assets/faq3.png")
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png")
     background-repeat: no-repeat
     background-position: 50% 1.2em
     padding: 0 0 1em 0
@@ -460,12 +455,12 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
   h4
     color: $offBlack
     cursor: pointer
-    background: url("assets/faq2.png")
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png")
     background-repeat: no-repeat
     background-position-y: 0.4em
     padding: 0.3em 1.2em
   h4.activeFAQ
-    background-position-y: -3.9em
+    background-position-y: -1.4em
   .go-button
     margin: 0 0 1% 0
   .back-to-top
@@ -507,6 +502,37 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     right: -30%    
   .pad-top
     margin-top: 1em
+
+//			//
+//	#sms-map
+//			//
+
+#sms-map.section
+  padding: 5% 0
+
+#sms-map
+  h1, h2
+    color: #fff
+  h1
+    margin: 0 auto
+    width: 80%
+    text-transform: none
+    font-size: 2.1em
+    letter-spacing: 0.1em
+    line-height: 1.1em
+  h2
+    font-style: italic
+    margin-bottom: 1em
+  span
+    color: #000
+    text-transform: uppercase
+    font-weight: 600
+  img
+    margin-bottom: 1%
+  .sms-map-wrapper
+    padding: 3%
+    background-color: $mainColor
+
 //      //
 //  #footer     - sign up button; conditionally displayed -
 //      //

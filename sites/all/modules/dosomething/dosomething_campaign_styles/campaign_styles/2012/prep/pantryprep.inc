@@ -29,10 +29,9 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'take action', 'href' => '', 'fragment' => 'action'),
-    array('title' => 'learn the issue', 'href' => '', 'fragment' => 'facts'),
-    array('title' => 'find a food bank', 'href' => '', 'fragment' => 'search'),
-    array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
-    array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
+    array('title' => 'message of support', 'href' => '', 'fragment' => 'sms-map'),
+    array('title' => 'find a pantry', 'href' => '', 'fragment' => 'search'),
+    array('title' => 'spread the word', 'href' => '', 'fragment' => 'scholarship'),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(

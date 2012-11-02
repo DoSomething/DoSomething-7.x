@@ -21,7 +21,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: black url("http://files.dosomething.org/files/campaigns/tackle12/bg.jpg") no-repeat center center fixed;
+  background: black url("http://files.dosomething.org/files/campaigns/prep/bg.jpg") no-repeat center center fixed;
   background-size: cover; }
 
 .page-team #contact-form #webform-component-start-header {
@@ -81,7 +81,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -538,9 +538,7 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp #header {
-    background: transparent url("//files.dosomething.org/files/campaigns/tackle12/tackle-logo.png") no-repeat center top;
-    margin: 20px 0 0;
-    padding: 0; }
+    background: transparent; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
       color: black;
@@ -552,10 +550,10 @@ body {
     #cmp #header h2 {
       text-align: center;
       text-transform: uppercase;
-      font-size: 1.8em;
+      font-size: 1.2em;
       font-family: din-web-reg, "Trebuchet MS", sans-serif;
       font-weight: 600;
-      width: 80%;
+      width: 85%;
       margin: 0 auto;
       line-height: 1.2em; }
       #cmp #header h2 span {
@@ -565,8 +563,6 @@ body {
     #cmp #header span {
       padding: 0;
       text-align: center; }
-    #cmp #header .tagline {
-      padding: 184px 0 0 0; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -794,10 +790,9 @@ body {
       display: block;
       margin: 0 auto;
       padding: 2% 0; }
-    #cmp #scholarship h1 {
-      color: #f7c000; }
-    #cmp #scholarship p {
-      color: white; }
+    #cmp #scholarship h1, #cmp #scholarship p {
+      color: white;
+      text-transform: none; }
     #cmp #scholarship form {
       margin: 0 auto;
       max-width: 600px; }
@@ -841,7 +836,7 @@ body {
     #cmp #scholarship .rules {
       font-size: 1em; }
   #cmp .refer5 {
-    background: #00aae6;
+    background: #f7101b;
     width: 110%;
     margin: 0 0 0 -4.95%; }
     #cmp .refer5:before, #cmp .refer5:after {
@@ -851,10 +846,10 @@ body {
       border-width: 11px;
       top: -6px; }
     #cmp .refer5:before {
-      border-color: transparent #007da9 #007da9 transparent;
+      border-color: transparent #c30710 #c30710 transparent;
       left: -22px; }
     #cmp .refer5:after {
-      border-color: transparent transparent #007da9 #007da9;
+      border-color: transparent transparent #c30710 #c30710;
       right: -22px; }
   #cmp .refer5-inner {
     padding: 3%; }
@@ -908,7 +903,7 @@ body {
     font-size: 2em;
     font-family: din-web;
     text-transform: uppercase;
-    background: url("assets/faq3.png");
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
     background-repeat: no-repeat;
     background-position: 50% 1.2em;
     padding: 0 0 1em 0;
@@ -916,12 +911,12 @@ body {
   #cmp #faq h4 {
     color: #1e1d1c;
     cursor: pointer;
-    background: url("assets/faq2.png");
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
     background-repeat: no-repeat;
     background-position-y: 0.4em;
     padding: 0.3em 1.2em; }
   #cmp #faq h4.activeFAQ {
-    background-position-y: -3.9em; }
+    background-position-y: -1.4em; }
   #cmp #faq .go-button {
     margin: 0 0 1% 0; }
   #cmp #faq .back-to-top {
@@ -960,6 +955,29 @@ body {
     right: -30%; }
   #cmp #content-level-up .pad-top {
     margin-top: 1em; }
+  #cmp #sms-map.section {
+    padding: 5% 0; }
+  #cmp #sms-map h1, #cmp #sms-map h2 {
+    color: white; }
+  #cmp #sms-map h1 {
+    margin: 0 auto;
+    width: 80%;
+    text-transform: none;
+    font-size: 2.1em;
+    letter-spacing: 0.1em;
+    line-height: 1.1em; }
+  #cmp #sms-map h2 {
+    font-style: italic;
+    margin-bottom: 1em; }
+  #cmp #sms-map span {
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600; }
+  #cmp #sms-map img {
+    margin-bottom: 1%; }
+  #cmp #sms-map .sms-map-wrapper {
+    padding: 3%;
+    background-color: #00aae6; }
   #cmp #footer h1 {
     font-size: 2em;
     font-family: din-web;

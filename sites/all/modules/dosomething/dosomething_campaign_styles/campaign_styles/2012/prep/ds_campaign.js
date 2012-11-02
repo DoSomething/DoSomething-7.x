@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
+        afterReplaceText : 'Just register with DoSomething.org to join Pantry Prep',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
@@ -131,7 +131,36 @@
     $.post('/webform-counter-field/725876/3', function (data) {
       $('#tackle-pounds').html(data);
     });
+    
+    // AJAX SMS fun via CJCodes
+    // set some variables for quick reference so we don't re-parse every scroll
+    var $window = $(window);
+    var $showElement = $('#sms-map .sms-map-wrapper'); // SET this to whichever div will trigger the load.
+    var showAt = $showElement.offset().top; // store the offset at which we want to scroll in so we don't re-parse it every time
 
+    var loaded = false; // whether or note we've loaded the content in
+
+    // SET iFrame content or whatever you want to load in later.
+    var iFrameContent = $('<iframe width="800" height="500" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?viz=MAP&amp;q=select+col0+from+1b9REdb7_6_vxOyzNg8ANtPDMrQr_Cn469Qg0tjo&amp;h=false&amp;lat=40.68063802521456&amp;lng=-97.69401799999991&amp;z=4&amp;t=1&amp;l=col0"></iframe>');
+
+    var windowBottom; // let's not re-initialize a variable every scroll. save some memory & cpu.
+
+    $window.scroll(function () {
+      // quick escape if we already loaded it in
+      if (loaded) return;
+
+      // find the current window bottom
+      windowBottom = $window.scrollTop() + $window.height();
+
+      // if we scrolled the bottom of the window past the element's start,
+      // let's make it show up.
+      if (windowBottom >= showAt) {
+        loaded = true; // store this so we don't append an infinite amount of elements
+
+        // SET this to your liking, maybe using insertBefore() or something and a fade?
+        $showElement.append(iFrameContent);
+      }
+    });
 
     } // end attach: function
   }; // end Drupal.behaviors
