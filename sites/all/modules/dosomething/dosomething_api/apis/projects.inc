@@ -42,8 +42,6 @@ function dosomething_api_projects_api() {
     ->propertyOrderBy('submitted', 'DESC');
 
   // Range: Default range is 0, 25
-  $range = array(0, 25);
-
   dosomething_api_handle_offset_and_limit($result);
 
   if (!empty($_GET['uid'])) {

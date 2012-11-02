@@ -32,12 +32,6 @@ function dosomething_api_run($action) {
     $k = $key->fetchAll();
   }
 
-  if ($_GET['debug'] == 1) {
-    echo '<p>' . $api_key . '</p>';
-    echo "<p><pre>" . $query . "</pre></p>";
-    echo '<p><pre>', print_r($k), '</pre></p>';
-  }
-
   if ((isset($k) && count($k) == 0) || empty($_GET['key'])) {
     echo json_encode(array(
       'error' => t('You must have a valid API key to access this content.  Please go to http://www.dosomething.org/api to request a key.')
@@ -174,23 +168,19 @@ function dosomething_api_date_sort(&$api, $dates, $field_type, $column, $column_
   if (!empty($created)) {
     list($start, $end) = explode(',', $created);
     $btw = array();
+    $s = $e = '';
     if ($column_type == 'date') {
       $s = date('Y-m-d 00:00:00', strtotime($start));
+      $e = date('Y-m-d 00:00:00', strtotime($end));
     }
     else {
       $s = strtotime($start);
+      $e = strtotime($end);
     }
 
     // If we have a start and end date to filter by, show anything between those dates
-    if ($s && strtotime($end)) {
-      if ($column_type == 'int') {
-        $btw = array($s, strtotime($end));
-      }
-      else if ($column_type == 'date') {
-        $e = date('Y-m-d 00:00:00', strtotime($end));
-
-        $btw = array($s, $e);
-      }
+    if ($s && $e) {
+      $btw = array($s, $e);
 
       if ($field_type == 'fieldCondition') {
         $api->{$field_type}($column, 'value', $btw, 'BETWEEN');

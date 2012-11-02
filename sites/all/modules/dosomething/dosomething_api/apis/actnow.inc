@@ -144,10 +144,16 @@ function dosomething_api_actnow_api() {
     $acts->orderBy($order[0], $order[1]);
   }
 
+  // Handles offset and limit
   dosomething_api_handle_offset_and_limit($acts);
+
+  // Runs the query
   $r = $acts->execute();
 
-  $no_html_tags = ($_GET['no_html_tags'] == true ? true : false);
+  $no_html_tags = false;
+  if (!empty($_GET['no_html_tags'])) {
+    $no_html_tags = true;
+  }
 
   $a = $r->fetchAll();
   foreach ($a AS $key => $act) {
