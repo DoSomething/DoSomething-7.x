@@ -150,7 +150,7 @@ function robocalls_field_default_fields() {
           'display_label' => 0,
         ),
         'type' => 'options_onoff',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -215,7 +215,7 @@ function robocalls_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -282,7 +282,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
@@ -414,7 +414,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -559,7 +559,73 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '7',
+        'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_scholarship_langauge'.
+  $fields['taxonomy_term-vocabulary_99-field_celeb_scholarship_langauge'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_celeb_scholarship_langauge',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vocabulary_99',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'If this particular celebrity has a scholarship, fill in the scholarship language here and it will appear on the page.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_celeb_scholarship_langauge',
+      'label' => 'Scholarship Langauge',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '3',
       ),
     ),
   );
@@ -698,7 +764,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -848,7 +914,7 @@ function robocalls_field_default_fields() {
           'year_range' => '-0:+3',
         ),
         'type' => 'date_select',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -915,7 +981,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -1436,12 +1502,14 @@ function robocalls_field_default_fields() {
   t('Call Limit Number');
   t('Check this box if this particular Robo Call is a birthday call.');
   t('How many calls to any given number per day should be allowed on this celebrity?');
+  t('If this particular celebrity has a scholarship, fill in the scholarship language here and it will appear on the page.');
   t('Is this celebrity a timed call (that is -- can it only call on a certain date / certain time?) An example of this: Voting campaign or Holiday calls.  Users will be able to specify what hour and minute they want this call to take place, within the specified day.
 ');
   t('Mobile Commons ID');
   t('Mobile Commons MConnect ID');
   t('Photo');
   t('Photo thumbnail');
+  t('Scholarship Langauge');
   t('Send Later');
   t('Short Name');
   t('Sound File');
