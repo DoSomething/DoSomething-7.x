@@ -32,6 +32,42 @@ function teams_form_alter(&$form, &$form_state, $form_id) {
         $form['#validate'][] = 'teams_form_validate_group_only';
         $form['#submit'][] = 'teams_form_submit_group_only';
       }
+      else if (in_array('field_webform_school_reference', $values)) {
+        $form['#validate'][] = 'teams_form_validate_school';
+        $form['#submit'][] = 'teams_form_submit';
+      }
+    }
+  }
+}
+
+function teams_is_school_team($submission) {
+  $node = reset(entity_load('node', array($submission->nid)));
+  if (isset($node->field_signup_magic_fields)) {
+    $values = array();
+    foreach ($node->field_signup_magic_fields[LANGUAGE_NONE] as $field) {
+      $values[] = $field['value'];
+    }
+    if (in_array('field_webform_school_reference', $values) && !in_array('field_team_name', $values)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function teams_form_validate_school(&$form, &$form_state) {
+  // set the team name to the school ID
+  if (isset($form['#submission']->submitted)) {
+    $sub = &$form['#submission']->submitted;
+    $school = reset(entity_load('ds_school', array($sub['field_webform_school_reference'][LANGUAGE_NONE][0]['target_id'])));
+    $team_name = "School {$school->sid}";
+    if (teams_team_exists($team_name, $form['#node']->nid)) {
+      $sid = teams_get_team_sid_from_name($team_name, $form['#node']->nid);
+      $parent_entity = reset(entity_load('webform_submission_entity', array($sid)));
+      $form_state['teams_leader'] = user_load($parent_entity->uid);
+    }
+    else {
+      $form_state['values']['submitted']['field_team_name'][LANGUAGE_NONE][0]['value'] = $team_name;
+      $form_state['values']['submitted']['group_group'][LANGUAGE_NONE][0]['value'] = 1;
     }
   }
 }
@@ -121,6 +157,18 @@ function teams_team_exists($team_name, $webform_nid) {
 
   $result = $query->execute()->rowCount();
   return (bool)$result;
+}
+
+function teams_get_team_sid_from_name($team_name, $webform_nid) {
+  $query = db_select('webform_submissions', 'wf');
+  $query->addJoin('INNER', 'og', 'og', 'etid=sid');
+  $query->addJoin('INNER', 'field_data_field_team_name', 'name', 'name.entity_id=wf.sid');
+  $query->condition('wf.nid', $webform_nid, '=');
+  $query->condition('name.field_team_name_value', $team_name, '=');
+  $query->addField('wf', 'sid');
+
+  $result = $query->execute()->fetchCol();
+  return $result[0];
 }
 
 /**
@@ -364,7 +412,15 @@ function teams_add_member($friend, $gid) {
         )),
         'campaign_name' => $campaign->title,
         'type' => 'team',
+        'full_name' => teams_full_name($user->uid),
       );
+
+      $params['owner'] = $params['full_name'];
+      if (teams_is_school_team($submission)) {
+        $school = reset(entity_load('webform_submission_entity', array($submission->sid)));
+        $params['owner'] = $school->name;
+      }
+
       drupal_alter('teams_added_email', $params, $gid);
       drupal_mail('teams', 'added', $friend, $language, $params);
     }
@@ -390,7 +446,15 @@ function teams_add_member($friend, $gid) {
         )),
         'campaign_name' => $campaign->title,
         'type' => 'team',
+        'full_name' => teams_full_name($user->uid),
       );
+
+      $params['owner'] = $params['full_name'];
+      if (teams_is_school_team($submission)) {
+        $school = reset(entity_load('ds_school', array($submission->field_webform_school_reference[LANGUAGE_NONE][0]['target_id'])));
+        $params['owner'] = $school->name;
+      }
+
       drupal_alter('teams_invite_email', $params, $gid);
       drupal_mail('teams', 'invite', $friend, $language, $params);
     }
@@ -456,6 +520,51 @@ function teams_join_by_url($gid, $hash, $uid = FALSE) {
 
     drupal_goto('my-team/' . $url);
   }
+}
+
+function teams_join_with_webform_submission($gid, $uid = FALSE) {
+  $account = NULL;
+  if (!$uid) {
+    global $user;
+    $account = clone $user;
+  }
+  else {
+    $account = user_load($uid);
+  }
+
+  // submit the sign up form
+  $group = og_load($gid);
+  $submission = reset(entity_load('webform_submission_entity', array($group->etid)));
+  $nid = $submission->nid;
+
+  $profile = profile2_load_by_user($account, 'main');
+  if ($profile) {
+    $mobile = field_get_items('profile2', $profile, 'field_user_mobile');
+    $mobile = $mobile[0]['value'];
+    $submission = (object) array(
+      'sid' => NULL,
+      'nid' => $nid,
+      'uid' => $account->uid,
+      'submitted' => REQUEST_TIME,
+      'remote_addr' => ip_address(),
+      'is_draft' => 0,
+      'data' => array(
+      ),
+      'bundle' => 'campaign_sign_up',
+      'field_webform_email' => array(
+        LANGUAGE_NONE => array(
+          array('email' => $account->mail),
+        ),
+      ),
+      'field_webform_mobile' => array(
+        LANGUAGE_NONE => array(
+          array('value' => $mobile),
+        ),
+      ),
+    );
+    entity_save('webform_submission_entity', $submission);
+  }
+  teams_join_by_url($gid, teams_get_group_hash($gid), $uid);
 }
 
 function teams_get_group_hash($gid) {
@@ -530,19 +639,16 @@ function teams_get_nid_from_path($url) {
 function teams_mail($key, &$message, $params) {
   switch ($key) {
     case 'invite':
-      $params['full_name'] = teams_full_name($params['account']->uid);
       $message['subject'] = t('@name has invited you to join their DoSomething @type', array('@name' => $params['full_name'], '@type' => $params['type']));
       $message['body'][] = drupal_html_to_text(theme('teams_invite', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'added':
-      $params['full_name'] = teams_full_name($params['account']->uid);
       $message['subject'] = t('@name has added you to their DoSomething @type', array('@name' => $params['full_name'], '@type' => $params['type']));
       $message['body'][] = drupal_html_to_text(theme('teams_added', $params));
       $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       break;
     case 'joined':
-      $params['full_name'] = teams_full_name($params['account']->uid);
       $message['subject'] = t('@name has joined your @type for @campaign', array('@name' => $params['full_name'], '@type' => $params['type'], '@campaign' => $params['campaign_name']));
       $message['body'][] = drupal_html_to_text(theme('teams_joined', $params));
       break;

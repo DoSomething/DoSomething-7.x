@@ -18,7 +18,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $leader_name = dosomething_drives_drive_get_name($submission);
   $drive = dosomething_drives_drive_get_drives($group->gid);
   $drive_nid = dosomething_drives_get_drive_nid($campaign_group);
-  $is_admin = og_user_access($group->gid, 'administer group') || user_access('administer group');
+  $is_admin = (og_user_access($group->gid, 'administer group') || user_access('administer group')) && !$conf['disable_admin_functions'];
 
   drupal_add_js(array('dosomething_drives' => array('gid' => $group->gid)), 'setting');
 
@@ -35,7 +35,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
 
   // get the member list (use a function!)
 
-  $content['header']['title'] = dosomething_drives_drive_title($submission, $leader_name);
+  $content['header']['title'] = dosomething_drives_drive_title($submission, $conf['team_name'], $leader_name);
   $content['header']['description'] = dosomething_drives_drive_description($submission);
   $content['header']['countdown'] = dosomething_drives_drive_countdown($drive);
 
@@ -223,8 +223,17 @@ function dosomething_drives_drive_countdown($drive) {
   }
 }
 
-function dosomething_drives_drive_title($drive, $leader) {
-  $title = $drive->field_team_name[LANGUAGE_NONE][0]['value'];
+function dosomething_drives_drive_title($drive, $type, $leader) {
+  switch($type) {
+    case 'field_webform_school_reference':
+      $entity = reset(entity_load('ds_school', array($drive->field_webform_school_reference[LANGUAGE_NONE][0]['target_id'])));
+      $title = $entity->name;
+      break;
+    default:
+      $title = $drive->field_team_name[LANGUAGE_NONE][0]['value'];
+      break;
+  }
+
   return array(
     '#type' => 'container',
     '#attributes' => array('class' => array('drive-info-title')),
@@ -395,4 +404,31 @@ function dosomething_drives_drive_get_drives($gid) {
     }
   }
   return $return;
+}
+
+function dosomething_drives_drive_content_type_edit_form($form, &$form_state) {
+  $conf = $form_state['conf'];
+
+  $form['team_name'] = array(
+    '#type' => 'select',
+    '#title' => 'Field for team name',
+    '#options' => array(
+      'field_team_name' => t('Team name'),
+      'field_webform_school_reference' => t('School name'),
+    ),
+    '#default_value' => $conf['team_name'],
+  );
+
+  $form['disable_admin_functions'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disable team member removal by leader.'),
+    '#default_value' => $conf['disable_admin_functions'],
+  );
+  return $form;
+}
+
+function dosomething_drives_drive_content_type_edit_form_submit(&$form, &$form_state) {
+  foreach (array('disable_admin_functions', 'team_name') as $key) {
+    $form_state['conf'][$key] = $form_state['values'][$key];
+  }
 }
