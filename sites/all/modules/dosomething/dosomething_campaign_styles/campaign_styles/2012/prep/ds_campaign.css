@@ -539,6 +539,22 @@ body {
     text-decoration: none; }
   #cmp #header {
     background: transparent; }
+    #cmp #header #sms-referral {
+      display: none;
+      width: 80%;
+      margin: 0 auto;
+      padding: 1em;
+      background: #00aae6;
+      -webkit-border-radius: 0.5em;
+      -moz-border-radius: 0.5em;
+      -ms-border-radius: 0.5em;
+      -o-border-radius: 0.5em;
+      border-radius: 0.5em; }
+      #cmp #header #sms-referral h3 {
+        color: white;
+        text-align: center; }
+      #cmp #header #sms-referral a {
+        color: black; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
       color: black;
@@ -976,7 +992,7 @@ body {
   #cmp #sms-map img {
     margin-bottom: 1%; }
   #cmp #sms-map .sms-map-wrapper {
-    padding: 3%;
+    padding: 3% 6% 5%;
     background-color: #00aae6; }
   #cmp #footer h1 {
     font-size: 2em;

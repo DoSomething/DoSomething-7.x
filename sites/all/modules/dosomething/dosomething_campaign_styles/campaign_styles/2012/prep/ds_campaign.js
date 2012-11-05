@@ -17,7 +17,11 @@
         }
       }
 
-            // drupal, eat your heart out
+      if(window.location.hash == "#sms-referral"){
+        $('#sms-referral').fadeIn(2000);
+      }
+
+      // drupal, eat your heart out
       var maxwell = "can have his cake and eat it too"
 
       if(maxwell == "can have his cake and eat it too"){
