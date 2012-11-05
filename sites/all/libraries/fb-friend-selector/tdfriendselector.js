@@ -30,7 +30,7 @@ var TDFriendSelector = (function(module, $) {
 		// Default settings
 		settings = {
 			speed                    : 500,
-			debug                    : false,
+			debug                    : true,
 			textSelect               : 'select',
 			disabledClass            : 'TDFriendSelector_disabled',
 			friendSelectedClass      : 'TDFriendSelector_friendSelected',
@@ -169,6 +169,9 @@ var TDFriendSelector = (function(module, $) {
 				updateFriendsContainer(1);
 				updatePaginationButtons(1);
 				$container.fadeIn(settings.speed);
+				// Actually centers it on the center of the page!
+			    $container.css('top', Math.max(0, (($(window).height() - $container.outerHeight()) / 2) + $(window).scrollTop()) + "px");
+			    $container.css('left', Math.max(0, (($(window).width() - $container.outerWidth()) / 2) + $(window).scrollLeft()) + "px");
 				if (typeof callback === 'function') {
 					callback();
 				}

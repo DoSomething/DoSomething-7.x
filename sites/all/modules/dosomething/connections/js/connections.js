@@ -274,6 +274,7 @@
         allow_multiple: config.feed_allow_multiple,
         max_friends: config.feed_max_friends || 5,
         selector_title: config.feed_selector_title || Drupal.t('Share with your friends'),
+        selector_desc: config.feed_selector_desc,
         tagging: config.feed_tagging,
       	require_login: config.feed_require_login,
       };
@@ -341,7 +342,8 @@
           else {
             c = {
               max_friends: things.max_friends,
-              selector_title: things.selector_title
+              selector_title: things.selector_title,
+              selector_desc: things.selector_desc
             };
           }
 
@@ -732,12 +734,9 @@
      *    A javascript object of configuration options.  Available options:
      *       notification_user       (A single FB user ID, OR a comma-separated list of FB user IDs to send the notification to.)
      *       notification_document   (A fully-formed URL to share through the notification.)
-     *       notification_message    (The message to send in the notification.)
+     *       notification_template    (The message to send in the notification.)
      *       notification_selector   (An (optional) selector that will trigger the share when clicked.)
      *       notification_require_login       (Prompts a user to log into Facebook if they aren't already.)
-     *
-     *    * No more than one of these may be set, and at least one must always be set.
-     *      In addition, the shared image must be *at least* 480x480px (Facebook's rules, not mine)
      *
      *  @param callback
      *    A callback function which triggers when a post was succesfully made.

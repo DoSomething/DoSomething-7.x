@@ -270,9 +270,17 @@ function connections_rules_action_info() {
       'feed_selector_title' => array(
         'type' => 'text',
         'label' => t('Friend Selector title'),
-        'description' => t('An (optional) title for the Friend Selector.'),
+        'description' => t('An (optional) title for the Friend Selector.  The default is "Share with your friends".'),
         'default mode' => 'input',
         'default value' => t('Share with your friends'),
+        'optional' => TRUE,
+        'restriction' => 'input'
+      ),
+      'feed_selector_desc' => array(
+        'type' => 'text',
+        'label' => t('Descriptive text for the Friend Selector'),
+        'description' => t('(Optional) text that will appear on the top of the friend selector.  The default is nothing.'),
+        'default mode' => 'input',
         'optional' => TRUE,
         'restriction' => 'input'
       ),
