@@ -131,7 +131,7 @@ body {
       text-align: center;
       width: 100%;
       margin-bottom: 1em;
-      font-size: 0.9em; }
+      font-size: 0.8em; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a {
       font-weight: normal;
       font-size: 1em;
@@ -140,8 +140,10 @@ body {
       color: #888888;
       text-decoration: underline; }
 
-#block-dosomething-campaign-styles-campaign-nav .highlight a {
-  background: white; }
+#block-dosomething-campaign-styles-campaign-nav {
+  margin: 15px 0 0 -20px; }
+  #block-dosomething-campaign-styles-campaign-nav .highlight a {
+    background: white; }
 
 .mangoDialog-ui {
   background: #222222;
@@ -885,13 +887,14 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #scholarship form {
       margin: 0 auto;
       max-width: 600px; }
-    #cmp #scholarship label {
-      font-weight: 600; }
-    #cmp #scholarship input[type="text"] {
-      padding: 0.8em 0.5em;
-      float: left;
-      width: 48%;
-      margin: 1%; }
+      #cmp #scholarship form label {
+        color: white;
+        font-weight: 600; }
+      #cmp #scholarship form input[type="text"] {
+        padding: 0.8em 0.5em;
+        float: left;
+        width: 48%;
+        margin: 1%; }
     #cmp #scholarship .go-button {
       margin: 4% 0 1% 0;
       padding: 0.3em 0.7em; }
@@ -955,20 +958,20 @@ div[aria-labelledby="ui-dialog-title-1"] {
     font-size: 2em;
     font-family: din-web;
     text-transform: uppercase;
-    background: url("assets/faq3.png");
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
     background-repeat: no-repeat;
     background-position: 50% 1.2em;
     padding: 0 0 1em 0;
     margin: 0 0 -1em 0; }
   #cmp #faq h4 {
-    color: #0c3565;
+    color: #1e1d1c;
     cursor: pointer;
-    background: url("assets/faq2.png");
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
     background-repeat: no-repeat;
     background-position-y: 0.4em;
     padding: 0.3em 1.2em; }
   #cmp #faq h4.activeFAQ {
-    background-position-y: -3.9em; }
+    background-position-y: -1.4em; }
   #cmp #faq .go-button {
     margin: 0 0 1% 0; }
   #cmp #footer h1 {

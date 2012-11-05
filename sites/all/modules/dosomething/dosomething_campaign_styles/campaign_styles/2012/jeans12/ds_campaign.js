@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'Step 2 of 3',
-        afterReplaceText : 'Register with us to join Give a Spit and get all the help you need for your drive. ',
+        afterReplaceText : 'Register with us to join Teens for Jeans and get all the help you need for your drive. ',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
@@ -45,15 +45,8 @@
         FB.ui(fbObj);
       });
 
-      // edit drive info location change
-      // $('#webform-client-form-724772 .form-item-submitted-field-drive-location-und-0-name-line label').empty().text('Name of Location');
-
       // drupal, eat your heart out
-      var maxwell = "can have his cake and eat it too"
-
-      if(maxwell == "can have his cake and eat it too"){
-        $('#cmp #edit-actions').removeAttr('id');
-      };
+      $('#cmp #edit-actions').removeAttr('id');
 
       // has logo, will inject
       var logo = '#';
@@ -66,11 +59,6 @@
       $cellInput.before($emailInput); // re-arranges input field order
       $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('ds-processed').prepend($('#contact-form-email-label'));
       $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('ds-processed').prepend($('#contact-form-cell-label'));
-
-      // removes search from nav on drive page
-      if(document.location.pathname.slice(1,5) == "team") {
-        $('li.campaign_nav_2').hide();
-      }
 
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
@@ -150,32 +138,20 @@
           $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
       });
 
-      // sad puppy
-      $('#mangoDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
-      $('a.mango').click(function(){
-        $('#mangoDialog').dialog('open');
-        return false;
-      });
-
-      // sad Chris
-      $('#chrisDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
-      $('a.mangoChris').click(function(){
-        $('#chrisDialog').dialog('open');
-        return false;
-      });
-      
       // scroll function
-      var $window = $(window);
+      var $document = $(document);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-      var scrollLimitTop = 500;
-      var scrollLimitBot = 6200;
-      $window.scroll(function () {
-        var st = $window.scrollTop();
+      var $footer = $('#block-menu-menu-footer');
+      var scrollLimitTop = $nav.offset().top;
+      var scrollLimitBot = 5868 - $footer.outerHeight();
+      console.log(scrollLimitBot);
+      $document.scroll(function () {
+        var st = $document.scrollTop();
         if (st > scrollLimitTop && st < scrollLimitBot) {
           $nav.css({
             'position'    : 'fixed',
             'top'         : '0px',
-            'margin'      : '15px 0 0 -20px',
+//            'margin'      : '15px 0 0 -20px',
             'z-index'     : '3'
           });
         }
@@ -196,22 +172,17 @@
       $('.form-item-field-geofield-distance-unit').hide();
       $('.geofield-proximity-origin-from').text('Zip code:');
 
-      // hide/show fieldset on drive form for checkbox
-      /*$("#webform-component-check-show-hide").css('display','none');
+      // hide nav on all webform pages
+      var teensforjeans = 14;
+      var jeans12 = 8;
+      var urlCount = jeans12;
 
-      $("#edit-submitted-give-a-spit-action-kit-1").click(function() {
-        if($("#edit-submitted-give-a-spit-action-kit-1").is(":checked")) {
-          $("#webform-component-check-show-hide").show("fast");
+      var nakedPages = ['/sign-up', '/report-back', 'next']
+      for (var i=0; i < nakedPages.length; i++){
+        if (window.location.pathname.substring(urlCount,30) == nakedPages[i]){
+          $('div.region-sidebar-first').hide();
         }
-        else {
-          $("#webform-component-check-show-hide").hide("fast");
-        }
-      });*/
-
-    // hackity hack, don't look back
-    if (window.location.pathname.substring(6, 10) == 'next') {
-      $('#block-dosomething-campaign-styles-campaign-nav').hide();
-    }
+      }
 
       if ($('body').hasClass('not-logged-in')) {
         $('#super-secret-bindable-id').click(function (e) {
