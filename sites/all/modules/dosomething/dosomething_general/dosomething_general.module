@@ -158,7 +158,381 @@ function dosomething_general_menu() {
     'access callback' => TRUE
   );
 
+  $items['admin/search-by-email'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('search_by_email_form'),
+    'access arguments' => array('administer users'),
+  );
+
+  $items['admin/search-by-email/results'] = array(
+    'page callback' => 'dosomething_general_search_by_email_results',
+    'access arguments' => array('administer users'),
+  );
+
+  $items['admin/search-by-email/results/export'] = array(
+    'page callback' => 'dosomething_general_pull_user_export',
+    'access arguments' => array('administer users'),
+  );
+
+  $items['admin/search-by-email/results/export/finished'] = array(
+    'page callback' => 'dosomething_general_pull_user_export_finished',
+    'access arguments' => array('administer users'),
+  );
+
+  $items['admin/search-by-email/results/export/file'] = array(
+    'page callback' => 'dosomething_general_pull_user_export_file',
+    'access arguments' => array('administer users'),
+  );
+
   return $items;
+}
+
+function search_by_email_form($form, &$form_state) {
+  $form['description'] = array(
+    '#markup' => 'Paste a comma-separated list of emails here.',
+    '#prefix' => '<p>',
+    '#suffix' => '</p>'
+  );
+
+  $form['emails'] = array(
+    '#type' => 'textarea',
+    '#attributes' => array(
+      'id' => 'emails-list',
+      'placeholder' => t('Paste some emails here.')
+    ),
+    '#required' => true
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#attributes' => array('id' => 'submit-emails', 'class' => array('go-button')),
+    '#value' => 'Search for users'
+  );
+
+  $form['#submit'][] = 'search_by_email_results';
+  return $form;
+}
+
+function dosomething_general_trim_email_addresses(&$email, $key, $prefix) {
+  $email = trim($email);
+}
+
+function search_by_email_results($form, &$form_state) {
+  $emails = $form_state['values']['emails'];
+  if (!empty($emails)) {
+    $emails = explode(',', $emails);
+    array_walk($emails, 'dosomething_general_trim_email_addresses');
+
+    // Basic user information: Uid, name, created, email
+    $u = db_select('users', 'u')
+      ->fields('u', array('uid', 'name', 'created', 'mail'))
+      ->condition('mail', $emails, 'IN');
+
+    // Associated club IDs
+    $u->leftJoin('node', 'n', "n.type = 'club' AND n.uid = u.uid AND n.status = 1");
+    $u->addExpression("GROUP_CONCAT(DISTINCT n.nid)", 'club_ids');
+
+    $u->groupBy('u.uid');
+
+    $r = $u->execute()->fetchAll();
+    foreach ($r AS $key => $user) {
+      $u = user_load($user->uid);
+      $p = profile2_load_by_user($u, 'main');
+
+     // Mailing address
+      $c = db_select('field_data_field_club_address', 'a')
+        ->condition('a.entity_id', explode(',', $user->club_ids), 'IN');
+      $c->addField('a', 'field_club_address_value', 'address');
+
+      $c->leftJoin('field_data_field_club_city', 'city', 'city.entity_id = a.entity_id');
+      $c->addField('city', 'field_club_city_value', 'city');
+
+      $c->leftJoin('field_data_field_club_state', 'state', 'state.entity_id = a.entity_id');
+      $c->addField('state', 'field_club_state_value', 'state');
+
+      $c->leftJoin('field_data_field_club_zip', 'zip', 'zip.entity_id = a.entity_id');
+      $c->addField('zip', 'field_club_zip_value', 'zip');
+
+      $c->leftJoin('field_data_field_school_reference', 'school', "school.bundle = 'club' AND school.entity_id = a.entity_id AND school.deleted = 0");
+      $c->leftJoin('ds_school', 's', 's.sid = school.field_school_reference_target_id');
+      $c->fields('s', array('name', 'level', 'city', 'state', 'zip', 'street'));
+
+      $c->range(0, 1);
+      $mailing = $c->execute()->fetchAll();
+      $club = reset($mailing);
+
+      $extends = array(
+        'first_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
+        'last_name' => $p->field_user_last_name[LANGUAGE_NONE][0]['value'],
+        'cell_number' => $p->field_user_mobile[LANGUAGE_NONE][0]['value'],
+        'birthday' => $p->field_user_birthday[LANGUAGE_NONE][0]['value'],
+        'gender' => $p->fild_user_gender[LANGUAGE_NONE][0]['value'],
+        'mailing_address' => array(
+          'address' => $club->address,
+          'city' => $club->city,
+          'state' => $club->state,
+          'zip' => $club->zip
+        ),
+        'school' => array(
+          'name' => $club->name,
+          'level' => $club->level,
+          'street' => $club->street,
+          'city' => $club->s_city,
+          'state' => $club->s_state,
+          'zip' => $club->s_zip
+        )
+      );
+
+      $r["$key"] = array_merge((array) $r["$key"], $extends);
+    }
+
+    $_SESSION['users'] = $r;
+    drupal_goto('admin/search-by-email/results');
+  }
+  exit;
+}
+
+function dosomething_general_search_by_email_results() {
+  $header = array(
+    array('data' => t('User ID'), 'class' => array('user-lookup-uid')),
+    array('data' => t('User Name'), 'class' => array('user-lookup-name')),
+    array('data' => t('Created'), 'class' => array('user-lookup-created')),
+    array('data' => t('Email'), 'class' => array('user-lookup-mail')),
+    array('data' => t('Club IDs'), 'class' => array('user-lookup-club-ids')),
+    array('data' => t('First Name'), 'class' => array('user-lookup-first-name')),
+    array('data' => t('Last Name'), 'class' => array('user-lookup-last-name')),
+    array('data' => t('Cell Number'), 'class' => array('user-lookup-mobile')),
+    array('data' => t('Birthday'), 'class' => array('user-lookup-birthday')),
+    array('data' => t('Gender'), 'class' => array('user-lookup-gender')),
+    array('data' => t('Mailing Address'), 'class' => array('user-lookup-mailing-address')),
+    array('data' => t('Mailing City'), 'class' => array('user-lookup-mailing-city')),
+    array('data' => t('Mailing State'), 'class' => array('user-lookup-mailing-state')),
+    array('data' => t('Mailing ZIP'), 'class' => array('user-lookup-mailing-zip')),
+    array('data' => t('School Name'), 'class' => array('user-lookup-school-name')),
+    array('data' => t('School Level'), 'class' => array('user-lookup-school-level')),
+    array('data' => t('School Street'), 'class' => array('user-lookup-school-street')),
+    array('data' => t('School City'), 'class' => array('user-lookup-school-city')),
+    array('data' => t('School State'), 'class' => array('user-lookup-school-state')),
+    array('data' => t('School ZIP'), 'class' => array('user-lookup-school-zip'))
+  );
+
+  $num = 2;
+
+  $num_per_page = 100;
+  $page = pager_default_initialize($num, $num_per_page);
+
+  $offset = $num_per_page * $page;
+
+  $pages = array();
+  $results = $_SESSION['users'];
+  foreach ($results AS $key => $user) {
+    $pages['rows'][] = array('data' => array(
+      'uid' => $user['uid'],
+      'name' => $user['name'],
+      'created' => date('m/d/Y', $user['created']),
+      'email' => $user['mail'],
+      'club_ids' => $user['club_ids'],
+      'fname' => $user['first_name'],
+      'lname' => $user['last_name'],
+      'mobile' => $user['cell_number'],
+      'birthday' => date('m/d/Y', strtotime($user['birthday'])),
+      'gender' => $user['gender'],
+      'mailing address' => $user['mailing_address']['address'],
+      'mailing city' => $user['mailing_address']['city'],
+      'mailing state' => $user['mailing_address']['state'],
+      'mailing zip' => $user['mailing_address']['zip'],
+      'school name' => $user['school']['name'],
+      'school level' => $user['school']['level'],
+      'school street' => $user['school']['street'],
+      'school city' => $user['school']['city'],
+      'school state' => $user['school']['state'],
+      'school zip' => $user['school']['zip']
+    ));
+  }
+
+  $content .= l('+ Export User Data', 'admin/search-by-email/results/export');
+  $content .= theme('pager');
+  $content .= '<p />' . theme('table', array('header' => $header, 'rows' => $pages['rows'], 'attributes' => array('id' => 'user-lookup-results')));
+  $content .= theme('pager');
+
+  return $content;
+}
+
+function dosomething_general_pull_user_export_file() {
+  if (strpos($_SESSION['csv_download_file'], drupal_realpath('private://')) === FALSE) {
+    return 'Access denied!';
+  }
+
+  drupal_add_http_header('Content-Type', 'text/csv; utf-8');
+  drupal_add_http_header('Content-Disposition', 'attachment; filename=' . $_SESSION['csv_download_filename'], TRUE);
+
+  drupal_add_http_header('Cache-Control', 'max-age=300; must-revalidate');
+
+  readfile($_SESSION['csv_download_file']);
+  exit;
+}
+
+function dosomething_general_pull_user_export_finished() {
+  global $base_url;
+
+  if (empty($_SESSION['csv_download_filename']) || empty($_SESSION['csv_download_file'])) {
+    return t('Sorry, there was an error in creating your file.');
+  }
+
+  $redirect = base_path() . 'admin/search-by-email/results/export/file';
+  drupal_add_js('setTimeout(function() { window.location.href = "' . $redirect . '"; }, 2000);', 'inline');
+
+  $download_link = t('Your export is complete! If your download does not begun automatically, !click!', array(
+    '!click' => l(t('Click here'), 'admin/search-by-email/results/export/file'))
+  );
+
+  $output = '<p>' . $download_link . '</p>';
+  return $output;
+}
+
+define('USER_PULL_LIMIT', 25);
+
+function dosomething_general_pull_user_export() {
+  $count = count($_SESSION['users']);
+
+  $b = ceil($count / USER_PULL_LIMIT);
+  $operations = array();
+  for ($i = 0; $i < $b; $i++) {
+    $operations[] = array('dosomething_general_pull_user_batch_process', array());
+  }
+
+  $batch = array(
+    'title' => t('Exporting user data (This will take some time...)'),
+    'operations' => $operations,
+    'finished' => 'dosomething_general_pull_user_batch_finished',
+  );
+  batch_set($batch);
+  batch_process('admin/search-by-email/results/export/finished');
+}
+
+function dosomething_general_pull_user_batch_finished($success, $results, $operations) {
+  if ($success) {
+    $message = t('The User Data was successfully exported.  Your file should begin downloading automatically, or !click.', array('!click' => l(t('click here'), 'admin/search-by-email/results/export/file')));
+    $warning = 'status';
+  }
+  else {
+    $mssage = t("Sorry, we couldn't successfully export the user data.  Please try again later.");
+    $warning = 'error';
+  }
+
+  $results = $_SESSION['batch_results'];
+  unset($_SESSION['batch_results']);
+  session_start();
+  $_SESSION['csv_download_file'] = $results['file'];
+  $_SESSION['csv_download_filename'] = $results['filename'];
+  drupal_set_message($message, $warning);
+}
+
+function dosomething_general_pull_user_batch_process(&$context) {
+  static $context;
+
+  $context['finished'] = 0;
+  if (!isset($context['sandbox']['step'])) {
+    $context['sandbox']['step'] = 0;
+  }
+
+  if (!isset($context['sandbox']['file'])) {
+     $field_labels = array(
+      t('User ID'),
+      t('User Name'),
+      t('Created'),
+      t('Email'),
+      t('Club IDs'),
+      t('First Name'),
+      t('Last Name'),
+      t('Cell Number'),
+      t('Birthday'),
+      t('Gender'),
+      t('Mailing Address'),
+      t('Mailing City'),
+      t('Mailing State'),
+      t('Mailing ZIP'),
+      t('School Name'),
+      t('School Level'),
+      t('School Street'),
+      t('School City'),
+      t('School State'),
+      t('School ZIP'),
+    );
+
+    $filename = 'users_export_' . date('m-d-y', REQUEST_TIME) . '.csv';
+    $file_path = drupal_realpath('private://') . '/' . $filename;
+    $handle = fopen($file_path, 'w');
+    fputcsv($handle, $field_labels);
+    fclose($handle);
+
+    $users = $_SESSION['users'];
+    $context['sandbox']['users'] = $users;
+    $context['sandbox']['total_users'] = count($users);
+    $context['sandbox']['users_count'] = count($users);
+
+    $context['sandbox']['file'] = $file_path;
+    $context['sandbox']['fields'] = $field_labels;
+
+    $context['results']['filename'] = $filename;
+    $context['results']['file'] = $file_path;
+    $context['results']['list_id'] = $list_id;
+  }
+
+  if (!isset($context['results']['count'])) {
+    $context['results']['count'] = 0;
+  }
+
+  $handle = fopen($context['sandbox']['file'], 'a');
+  reset($context['sandbox']['users']);
+  for ($i = $context['sandbox']['step']; $i < (USER_PULL_LIMIT * ($context['sandbox']['step'] + 1)); $i++) {
+    $remaining = --$context['sandbox']['users_count'];
+
+    if ($remaining >= 0) {
+      $user = $context['sandbox']['users']["$i"];
+      $u = array(
+        'uid' => $user['uid'],
+        'name' => $user['name'],
+        'created' => date('m/d/Y', $user['created']),
+        'email' => $user['mail'],
+        'club_ids' => $user['club_ids'],
+        'fname' => $user['first_name'],
+        'lname' => $user['last_name'],
+        'mobile' => $user['cell_number'],
+        'birthday' => date('m/d/Y', strtotime($user['birthday'])),
+        'gender' => $user['gender'],
+        'mailing address' => $user['mailing_address']['address'],
+        'mailing city' => $user['mailing_address']['city'],
+        'mailing state' => $user['mailing_address']['state'],
+        'mailing zip' => $user['mailing_address']['zip'],
+        'school name' => $user['school']['name'],
+        'school level' => $user['school']['level'],
+        'school street' => $user['school']['street'],
+        'school city' => $user['school']['city'],
+        'school state' => $user['school']['state'],
+        'school zip' => $user['school']['zip']
+      );
+
+      unset($context['sandbox']['users']["$i"]);
+
+      fputcsv($handle, $u);
+      $context['results']['count']++;
+      $context['finished'] = ($context['results']['count'] / $context['sandbox']['total_users']);
+    }
+    else {
+      $_SESSION['batch_results'] = $context['results'];
+      $context['finished'] = 1;
+      break;
+    }
+  }
+
+  fclose($handle);
+  $context['sandbox']['step']++;
+
+  $context['message'] = t('Exporting User Data: @count of @total.', array(
+    '@count' => $context['results']['count'],
+    '@total' => $context['sandbox']['total_users']
+  ));
 }
 
 function dosomething_general_unsubscribe_email($email, $hash) {
