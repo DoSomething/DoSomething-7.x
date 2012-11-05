@@ -27,6 +27,7 @@
     _message_callback: null,
     _request_callback: null,
     _image_callback: null,
+    _notification_callback: null,
 
     /**
      *  Initializes the Facebook object and runs all appropriate functions.
@@ -717,6 +718,101 @@
         fbpost,
         function(response) {
           Drupal.behaviors.fb.log(response);
+          if (typeof callback == 'function') {
+            callback(response);
+          }
+        }
+      );
+    },
+
+    /**
+     *  Sends a Facebook notification to a user or multiple users.
+     *
+     *  @param config
+     *    A javascript object of configuration options.  Available options:
+     *       notification_user       (A single FB user ID, OR a comma-separated list of FB user IDs to send the notification to.)
+     *       notification_document   (A fully-formed URL to share through the notification.)
+     *       notification_message    (The message to send in the notification.)
+     *       notification_selector   (An (optional) selector that will trigger the share when clicked.)
+     *       notification_require_login       (Prompts a user to log into Facebook if they aren't already.)
+     *
+     *    * No more than one of these may be set, and at least one must always be set.
+     *      In addition, the shared image must be *at least* 480x480px (Facebook's rules, not mine)
+     *
+     *  @param callback
+     *    A callback function which triggers when a post was succesfully made.
+     *    
+     */
+    notification: function(config, callback) {
+      var things = {
+        'app_key': '105775762330|pmFm2r3S-p7merbypvN2EANG4UI', // DoSomething.org's app key -- needs to be a canvas app key.  This will be in the UI at a later point.
+        user: config.notification_user || 0,
+        link: config.notification_document || document.location.href,
+        message: config.notification_template,
+        selector: config.notification_selector, 
+        require_login: config.notification_require_login,
+      };
+
+      if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._notification_callback == 'function') {
+        callback = Drupal.behaviors.fb._notification_callback;
+      }
+
+      if (things.require_login) {
+        if (things.selector) {
+          $('body ' + things.selector).click(function() {
+            Drupal.behaviors.fb.real_auth(things, function() {
+              Drupal.behaviors.fb.run_notification(things, callback);
+            });
+          });
+        }
+        else {
+          Drupal.behaviors.fb.real_auth(things, function() {
+            Drupal.behaviors.fb.run_notification(things, callback);
+          });
+        }
+      }
+    },
+
+    /**
+     *  Handles post processing, including Facebook ID and multiple IDs.
+     *  This function should not be called by itself.
+     */
+    run_notification: function(things, callback) {
+      if (!things.user) {
+        var fbid = FB.getUserID();
+        if (fbid > 0) {
+          things.user = fbid;
+        }
+      }
+
+      // If we can find a comma, it's likely there are several users to send a message to.
+      if (things.user.indexOf(',') !== -1) {
+        var u = things.user.split(',');
+        for (var i in u) {
+          things.user = u[i];
+          Drupal.behaviors.fb.send_notification(things, callback);
+        }
+      }
+      // Otherwise, presumably only one person to send the message to.
+      else {
+        Drupal.behaviors.fb.send_notification(things, callback);
+      }
+    },
+
+    /**
+     *  Actually sends the notification.
+     *  This function should not be called by itself.
+     */
+    send_notification: function(things, callback) {
+      FB.api(
+       '/' + things.user + '/notifications',
+        'post',
+        {
+            'access_token': things.app_key,
+            'href': things.link,
+            'template': things.message
+        },
+        function(response) {
           if (typeof callback == 'function') {
             callback(response);
           }

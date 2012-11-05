@@ -33,6 +33,12 @@ function connections_fb_message() {
   unset($_SESSION['form']['op']);
 }
 
+function connections_notification() {
+  $_SESSION['fb_notification'] = func_get_args();
+  unset($_SESSION['form']['op']);
+}
+
+
 function connections_rules_event_info() {
   $items = array(
     'viewing_non_node' => array(
@@ -301,19 +307,22 @@ function connections_rules_action_info() {
         'label' => t('Open Graph Namespace'),
         'description' => t('The namespace for the Open Graph app.  This can be found on !devfb.  Default is "dosomethingapp".', array('!devfb' => url('http://developers.facebook.com', array('absolute' => TRUE)))),
         'default value' => 'dosomethingapp',
-        'default mode' => 'input'
+        'default mode' => 'input',
+        'restriction' => 'input',
       ),
       'img_object' => array(
         'type' => 'text',
         'label' => t('Open Graph Object Type'),
         'description' => t('The Object type (e.g. pet_who_needs_a_home) of the open graph object.  This can be found on http://developers.facebook.com under "Open Graph".'),
-        'default mode' => 'input'
+        'default mode' => 'input',
+        'restriction' => 'input',
       ),
       'img_action' => array(
         'type' => 'text',
         'label' => t('Open Graph Action Type.'),
         'description' => t('The Action Type (e.g. share) for Open Graph.  This can be found on http://developers.facebook.com under "Open Graph"'),
         'default mode' => 'input',
+        'restriction' => 'input',
       ),
       'img_document' => array(
         'type' => 'text',
@@ -321,6 +330,7 @@ function connections_rules_action_info() {
         'description' => t('The document (url) to share, in absolute format (e.g. http://www.google.com including the http:// part).  Leave this blank to default to the page the user is currently on.'),
         #'default value' => 'document.location.href',
         'default mode' => 'input',
+        'restriction' => 'input',
         'optional' => TRUE
       ),
       'img_message' => array(
@@ -328,6 +338,7 @@ function connections_rules_action_info() {
         'label' => t('Message to share with the image'),
         'description' => t('An (optional) message to share with the image.'),
         'default mode' => 'input',
+        'restriction' => 'input',
         'optional' => TRUE
       ),
       'img_picture' => array(
@@ -335,6 +346,7 @@ function connections_rules_action_info() {
         'label' => t('Picture (image) to share'),
         'description' => t('The picture that will appear alongside the post, in absolute format (e.g. http://www.google.com including the http:// part).  Leave this blank to use the default page image.'),
         'default mode' => 'input',
+        'restriction' => 'input',
         'optional' => TRUE
       ),
       'img_picture_selector' => array(
@@ -342,6 +354,7 @@ function connections_rules_action_info() {
         'label' => t('Image selector'),
         'description' => t('An (optional) selector that denotes an image on the page.  The image source will be retrieved in processing.'),
         'default mode' => 'input',
+        'restriction' => 'input',
         'optional' => TRUE
       ),
       'img_selector' => array(
@@ -349,6 +362,7 @@ function connections_rules_action_info() {
         'label' => t('Only share if a user clicks on an element with this class / id:'),
         'description' => t('If you define a class (.class) or ID (#id) here, Open Graph will trigger when that element is clicked.'),
         'default mode' => 'input',
+        'restriction' => 'input',
         'optional' => TRUE
       ),
       'img_require_login' => array(
@@ -356,6 +370,7 @@ function connections_rules_action_info() {
         'label' => t('Require a user to log in to Facebook if they aren\'t already?'),
         'description' => t('If a user is not logged in to Facebook, provide them with a Facebook Login box.'),
         'default value' => 1,
+        'restriction' => 'input',
         'optional' => TRUE
       ),/*
       'img_fake_dialog' => array(
@@ -399,7 +414,8 @@ function connections_rules_action_info() {
         'label' => t('Require a user to log in to Facebook if they aren\'t already?'),
         'description' => t('If a user is not logged in to Facebook, ask them to log in with a Facebook Login box.'),
         'default value' => 1,
-        'optional' => TRUE
+        'optional' => TRUE,
+        'restriction' => 'input',
       ),
       // Not possible through Facebook :( -- and no, there isn't a FB.API() call for it.
       /*'msg_allow_multiple' => array(
@@ -422,6 +438,7 @@ function connections_rules_action_info() {
         'label' => t('New App ID'),
         'description' => t('The new Facebook App ID to replace on the page.  This can be found on developers.facebook.com'),
         'default mode' => 'input',
+        'restriction' => 'input',
       ),
     ),
     'group' => t('Facebook Connections'),
@@ -436,6 +453,7 @@ function connections_rules_action_info() {
         'label' => t('Dialog box title'),
         'description' => t('The title of the <em>dialog box</em> that pops up.  This bears no correlation to the actual request sent to the user.  Wrap javascript variables in {curly braces}.  Optional.'),
         'default mode' => 'input',
+        'restriction' => 'input',
         'optional' => TRUE
       ),
       'app_request_message' => array(
@@ -443,15 +461,64 @@ function connections_rules_action_info() {
         'label' => t('App Request Message'),
         'description' => t('The message that will appear alongside the app request.  Wrap javascript variables in {curly braces}.'),
         'default mode' => 'input',
+        'restriction' => 'input',
       ),
       'app_request_selector' => array(
         'type' => 'text',
         'label' => t('Only fire if a user clicks on an element with this class / id:'),
         'description' => t('If you define a class (.class) or ID (#id) here, the dialog box will only appear when they click on that element.'),
         'default mode' => 'input',
+        'restriction' => 'input',
         'optional' => TRUE
       ),
       'app_request_require_login' => array(
+        'type' => 'boolean',
+        'label' => t('Require a user to log in to Facebook if they aren\'t already?'),
+        'description' => t('If a user is not logged in to Facebook, ask them to log in.  Otherwise nothing will happen if they are not logged into Facebook.'),
+        'default value' => 1,
+        'restriction' => 'input',
+        'optional' => TRUE
+      ),
+    ),
+    'group' => t('Facebook Connections'),
+  );
+ 
+  // Send a Facebook notification
+  $items['connections_notification'] = array(
+    'label' => t('Send a FB notification'),
+    'parameter' => array(
+      'notification_user' => array(
+        'type' => 'text',
+        'label' => t('User(s) to send the notification to.'),
+        'description' => t('Provide a (comma-separated) list of users to send the notification to.  If left blank, will send to the currently logged in user.'),
+        'default mode' => 'input',
+        'restriction' => 'input',
+        'optional' => TRUE
+      ),
+      'notification_document' => array(
+        'type' => 'text',
+        'label' => t('Document (URL) to link through the notification'),
+        'description' => t('The document that will be linked to through the notification.  If left blank, will default to the page the user happens to be on.'),
+        'default mode' => 'input',
+        'restriction' => 'input',
+        'optional' => TRUE
+      ),
+      'notification_template' => array(
+        'type' => 'text',
+        'label' => t('Notification Text'),
+        'description' => t('The text that will appear in the notification.  You can use @mention tagging here.'),
+        'default mode' => 'input',
+        'restriction' => 'input',
+        'optional' => FALSE
+      ),
+      'notification_selector' => array(
+        'type' => 'text',
+        'label' => t('Only fire if a user clicks on an element with this class / id:'),
+        'description' => t('If you define a class (.class) or ID (#id) here, the notification will only fire when the user clicks on that element.'),
+        'default mode' => 'input',
+        'optional' => TRUE
+      ),
+      'notification_require_login' => array(
         'type' => 'boolean',
         'label' => t('Require a user to log in to Facebook if they aren\'t already?'),
         'description' => t('If a user is not logged in to Facebook, ask them to log in.  Otherwise nothing will happen if they are not logged into Facebook.'),
@@ -461,7 +528,7 @@ function connections_rules_action_info() {
     ),
     'group' => t('Facebook Connections'),
   );
-  
+
   return $items;
 }
 

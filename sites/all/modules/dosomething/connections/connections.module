@@ -139,7 +139,8 @@ function connections_page_alter(&$page) {
 		'og_connect' => 'ograph',
 		'img_share' => 'image',
 		'fb_app_request' => 'request',
-		'fb_message' => 'message'
+		'fb_message' => 'message',
+		'fb_notification' => 'notification'
 	);
 
 	$n = menu_get_object();
