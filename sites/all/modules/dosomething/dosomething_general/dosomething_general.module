@@ -229,6 +229,8 @@ function dosomething_general_trim_email_addresses(&$email, $key, $prefix) {
 
 function search_by_email_results($form, &$form_state) {
   $emails = $form_state['values']['emails'];
+  $emails = explode("\r\n", $emails);
+  $emails = implode(',', $emails);
   if (!empty($emails)) {
     $emails = explode(',', $emails);
     array_walk($emails, 'dosomething_general_trim_email_addresses');
