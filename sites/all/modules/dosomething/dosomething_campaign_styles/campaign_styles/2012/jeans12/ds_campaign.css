@@ -113,7 +113,7 @@ body {
     font-size: 0.8em;
     padding: 0.2em 1em 0 1.5em;
     text-transform: uppercase;
-    color: purple; }
+    color: #0c3565; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix {
@@ -635,7 +635,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .go-button:hover, #cmp #edit-submit:hover {
       color: #06182e; }
   #cmp #header {
-    background: url("assets/brad.jpg");
+    background: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg");
     background-position: 29% -120%;
     margin: 0;
     padding: 0; }
@@ -703,14 +703,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .drive-info-info {
     width: 65%;
     float: left; }
-    #cmp .drive-info-info a {
-      color: #0c3565;
-      background-image: url("assets/drive1.png");
-      background-position: 0% 50%;
-      background-repeat: no-repeat;
-      background-size: 20px;
-      padding: 1em 1.8em 0;
-      display: block; }
   #cmp .drive-info-where, #cmp .drive-info-when {
     font-weight: uppercase;
     font-weight: 600; }
@@ -734,9 +726,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .drive-facebook:hover, #cmp .drive-twitter:hover {
       background-position-y: -30px; }
   #cmp .drive-twitter {
-    background-image: url(assets/drive-twitter.png); }
+    background-image: url(//files.dosomething.org/files/campaigns/jeans12/twitter-small.png); }
   #cmp .drive-facebook {
-    background-image: url(assets/drive-facebook.png); }
+    background-image: url(//files.dosomething.org/files/campaigns/jeans12/facebook-small.png); }
   #cmp .drive-info-description, #cmp .drive-info-countdown {
     display: none; }
   #cmp input.remove_participant {
@@ -958,7 +950,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     font-size: 2em;
     font-family: din-web;
     text-transform: uppercase;
-    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
+    background: url("//files.dosomething.org/files/campaigns/jeans12/faq3.png");
     background-repeat: no-repeat;
     background-position: 50% 1.2em;
     padding: 0 0 1em 0;
@@ -978,7 +970,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     font-size: 2em;
     font-family: din-web;
     text-transform: uppercase;
-    background: url("assets/faq3.png");
+    background: url("//files.dosomething.org/files/campaigns/jeans12/faq3.png");
     background-repeat: no-repeat;
     background-position: 50% 0.7em;
     padding: 0 0 1em 0;

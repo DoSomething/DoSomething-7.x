@@ -1,5 +1,6 @@
 (function ($) {
   Drupal.behaviors.campaignName = {
+    attach: function (context, settings) {
 
     // kill old asterisks from required fields
     $('#dosomething-login-register-popup-form .popup-content .field-suffix').remove();

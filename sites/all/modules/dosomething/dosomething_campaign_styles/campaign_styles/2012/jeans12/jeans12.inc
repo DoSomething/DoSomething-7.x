@@ -13,9 +13,9 @@ $plugin = array(
 
   // Add javascript files in the order you would like to have them included.
   'js' => array(
-    'scritps/drive_pages.js',
-    'scritps/nav_and_anchors.js',
-    'scritps/registration.js'
+    'scripts/drive_pages.js',
+    'scripts/nav_and_anchors.js',
+    'scripts/registration.js'
   ),
 
   // An array of arrays where the first element is the providing module
