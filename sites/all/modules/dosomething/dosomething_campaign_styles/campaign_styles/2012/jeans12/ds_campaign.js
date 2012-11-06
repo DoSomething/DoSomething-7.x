@@ -138,31 +138,35 @@
           $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
       });
 
-      // scroll function
-      var $document = $(document);
-      var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-      var $footer = $('#block-menu-menu-footer');
-      var scrollLimitTop = $nav.offset().top;
-      var scrollLimitBot = 5868 - $footer.outerHeight();
-      console.log(scrollLimitBot);
-      $document.scroll(function () {
-        var st = $document.scrollTop();
-        if (st > scrollLimitTop && st < scrollLimitBot) {
-          $nav.css({
-            'position'    : 'fixed',
-            'top'         : '0px',
-//            'margin'      : '15px 0 0 -20px',
-            'z-index'     : '3'
-          });
-        }
-        else if (st >= scrollLimitTop) {
-          $nav
-            .css('position', 'static')
-        }
-        else {
-          $nav
-            .css('position', 'static')
-        }
+
+      // scrolling navigation block
+      $(window).bind('load', function() {
+        var $document = $(document);
+        var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
+        var $footer = $('#block-menu-menu-footer');
+        var scrollLimitTop = $nav.offset().top;
+        var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
+        $document.scroll(function () {
+          var st = $document.scrollTop();
+          if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
+            $nav.css({
+              'position'    : 'fixed',
+              'top'         : '0px',
+              'bottom'      : 'auto',
+              'z-index'     : '3'
+            });
+          }
+          else if (st >= scrollLimitTop) { // once $nav hits $footer
+            $nav
+              .css('position', 'absolute')
+              .css('top', 'auto')
+              .css('bottom', '25px')
+          }
+          else { // before scrolling engages $nav
+            $nav
+              .css('position', 'static')
+          }
+        });
       });
 
       // kill old asterisks from required fields
