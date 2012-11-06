@@ -83,7 +83,8 @@ function connections_handle_fb_dialog($t) {
 		'description' => $_GET['desc'],
 		'to' => $_GET['to'],
 		'photo' => $_GET['mypic'],
-		'tagging' => intval($_GET['tagging'])
+		'tagging' => intval($_GET['tagging']),
+		'message' => htmlspecialchars($_GET['message'])
 	);
 
 	echo theme($options[$t], $params);
@@ -134,6 +135,7 @@ function connections_theme($existing, $type, $theme, $path) {
  *	Implements hook_page_alter()
  */
 function connections_page_alter(&$page) {
+	#drupal_set_message(t('Blah blah'), 'error');
 	$fb_actions = array(
 		'fb_connect' => 'feed',
 		'og_connect' => 'ograph',

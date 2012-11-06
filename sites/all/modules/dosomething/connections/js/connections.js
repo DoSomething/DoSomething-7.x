@@ -21,6 +21,7 @@
   Drupal.behaviors.fb = {
     token: '',
     my_pic: '',
+    debug: false,
     fb_init: false,
     _feed_callback: null,
     _ograph_callback: null,
@@ -105,9 +106,14 @@
         tag = '&tagging=1';
       }
 
+      var msg = '';
+      if (things.alert_msg) {
+        msg = '&message=' + encodeURIComponent(things.alert_msg);
+      }
+
       FB.api('/me/picture', function(response) {
         pic = response.data.url;
-        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag, function() {
+        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
           $('.close-fb-dialog').click(function() {
             // Fake cancel button to remove "fake" feed
             $('.og_dialog').dialog('close');
@@ -245,6 +251,43 @@
     },
 
     /**
+     *  Handles authentication through targeted click or page-load trigger.
+     *  
+     *  @param func
+     *    The function to run.
+     *
+     *  @param things
+     *    The things object, with configuration information.
+     *
+     *  @param callback
+     *    Optional callback function.
+     */
+    auth_handler: function(func, things, callback) {
+      // You can't call arguments from this function in the function passed below.  We need to add them to the FB scope to pass them.
+      Drupal.behaviors.fb.t = things;
+      Drupal.behaviors.fb.callback = callback;
+
+      var handler = ( new Function('return Drupal.behaviors.fb.' + func + '(Drupal.behaviors.fb.t, Drupal.behaviors.fb.callback)'));
+      if (things.require_login) {
+        if (things.selector) {
+          $('body ' + things.selector).click(function() {
+            Drupal.behaviors.fb.real_auth(things, function() {
+              handler();
+            });
+          });
+        }
+        else {
+          Drupal.behaviors.fb.real_auth(things, function() {
+            handler();
+          });
+        }
+      }
+      else {
+        handler();
+      }
+    },
+
+    /**
      *  Feed function -- builds the standard facebook feed dialog.
      *  
      *
@@ -258,6 +301,7 @@
      *       feed_selector         (A selector on the page to call the event on)
      *       feed_allow_multiple   (Uses the TD Friend Selector to allow multiple friends to be posted-to)
      *       feed_require_login    (Initializes the login procedure if a user is not logged in.)
+     *       feed_dialog_msg       (An optional message that will appear on the top of the share dialog.  Only appears if multi-friend-selecting is enabled.)
      *
      *  @param callback
      *    A callback function which triggers when a post was succesfully made.
@@ -277,6 +321,7 @@
         selector_desc: config.feed_selector_desc,
         tagging: config.feed_tagging,
       	require_login: config.feed_require_login,
+        alert_msg: config.feed_dialog_msg
       };
 
       if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._feed_callback == 'function') {
@@ -376,9 +421,7 @@
                   }
 
                   // Callback for when all posting has completed.
-                  if (typeof callback == 'function') {
-                    callback();
-                  }
+                  Drupal.behaviors.fb.callback_handler(callback, '');
                 });
               }
             }, c, true);
@@ -386,10 +429,8 @@
         });
       }
       else {
-        FB.ui(share, function() {
-          if (typeof callback == 'function') {
-            callback();
-          }
+        FB.ui(share, function(response) {
+          Drupal.behaviors.fb.callback_handler(callback, response);
         });
       }
     },
@@ -409,6 +450,7 @@
      *       og_allow_multiple    (Uses the TD Friend Selector to allow multiple friends to be posted-to)
      *       og_require_login     (Initializes the login procedure if a user is not logged in.)
      *       og_fake_dialog       (Whether or not to use the "Fake" dialog that lets users post message with the share)
+     *       og_dialog_msg        (An optional message that will appear on the top of the share dialog)
      *       og_post_custom       (Custom variables as set on the user interface.)
      *
      *  @param callback
@@ -416,7 +458,6 @@
      *    
      */
   	ograph: function(config, callback) {
-  		// OG Type, action, document, selector, require login, fake dialog
   		var things = {
         namespace: config.og_namespace,
   			type: config.og_type,
@@ -428,6 +469,7 @@
   			selector: config.og_selector,
   			require_login: config.og_require_login,
   			dialog: config.og_fake_dialog,
+        alert_msg: config.og_dialog_msg,
         tagging: config.og_tagging,
         custom_vars: config.og_post_custom
   		};
@@ -508,9 +550,7 @@
           'post',
           fbpost,
           function (response) {
-            if (typeof callback == 'function') {
-              callback(response);
-            }
+            Drupal.behaviors.fb.callback_handler(callback, response);
           }
         );
       });
@@ -560,10 +600,8 @@
           $('body ' + things.selector).click(function() {
             Drupal.behaviors.fb.auth(function() {
               req.access_token = Drupal.behaviors.fb.token;
-              FB.ui(req, function() {
-                if (typeof callback == 'function') {
-                  callback();
-                }
+              FB.ui(req, function(response) {
+                Drupal.behaviors.fb.callback_handler(callback, response);
               });
             });
           });
@@ -571,10 +609,8 @@
         else {
           Drupal.behaviors.fb.auth(function() {
             req.access_token = Drupal.behaviors.fb.token;
-            FB.ui(req, function() {
-              if (typeof callback == 'function') {
-                callback();
-              }
+            FB.ui(req, function(response) {
+              Drupal.behaviors.fb.callback_handler(callback, response);
             });
           });
         }
@@ -612,14 +648,14 @@
       }
 
       Drupal.behaviors.fb.real_auth(things, function() {
-        Drupal.behaviors.fb.message_dialog(things);
+        Drupal.behaviors.fb.message_dialog(things, callback);
       });
     },
 
     /**
      *  Builds the Facebook message dialog.
      */
-    message_dialog: function(things) {
+    message_dialog: function(things, callback) {
       var m = {
         method: 'send', 
         link: things.link,
@@ -631,11 +667,15 @@
 
       if (things.selector) {
         $('body ' + things.selector).click(function() {
-          FB.ui(m);
+          FB.ui(m, function(response) {
+            Drupal.behaviors.fb.callback_handler(callback, response);
+          });
         })
       }
       else {
-        FB.ui(m);
+        FB.ui(m, function(response) {
+          Drupal.behaviors.fb.callback_handler(callback, response);
+        });
       }
     },
 
@@ -684,20 +724,7 @@
         things.img_url = $('body ' + things.image_selector).attr('src');
       }
 
-      if (things.require_login) {
-        if (things.selector) {
-          $('body ' + things.selector).click(function() {
-            Drupal.behaviors.fb.auth(function() {
-              Drupal.behaviors.fb.run_image(things, callback);
-            });
-          });
-        }
-        else {
-          Drupal.behaviors.fb.auth(function() {
-            Drupal.behaviors.fb.run_image(things, callback);
-          });
-        }
-      }
+      Drupal.behaviors.fb.auth_handler('run_image', things, callback);
     },
 
     /**
@@ -719,10 +746,7 @@
         'post',
         fbpost,
         function(response) {
-          Drupal.behaviors.fb.log(response);
-          if (typeof callback == 'function') {
-            callback(response);
-          }
+          Drupal.behaviors.fb.callback_handler(callback, response);
         }
       );
     },
@@ -756,20 +780,7 @@
         callback = Drupal.behaviors.fb._notification_callback;
       }
 
-      if (things.require_login) {
-        if (things.selector) {
-          $('body ' + things.selector).click(function() {
-            Drupal.behaviors.fb.real_auth(things, function() {
-              Drupal.behaviors.fb.run_notification(things, callback);
-            });
-          });
-        }
-        else {
-          Drupal.behaviors.fb.real_auth(things, function() {
-            Drupal.behaviors.fb.run_notification(things, callback);
-          });
-        }
-      }
+      Drupal.behaviors.fb.auth_handler('run_notification', things, callback);
     },
 
     /**
@@ -812,11 +823,19 @@
             'template': things.message
         },
         function(response) {
-          if (typeof callback == 'function') {
-            callback(response);
-          }
+          Drupal.behaviors.fb.callback_handler(callback, response);
         }
       );
+    },
+
+    callback_handler: function(callback, response) {
+      if (typeof callback == 'function') {
+        callback(response);
+      }
+
+      if (Drupal.behaviors.fb.debug == true) {
+        Drupal.behaviors.fb.log(response);
+      }
     }
   };
 })(jQuery);

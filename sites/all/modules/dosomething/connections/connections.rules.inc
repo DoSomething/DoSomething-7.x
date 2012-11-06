@@ -184,6 +184,13 @@ function connections_rules_action_info() {
         'optional' => TRUE,
         'restriction' => 'input'
       ),
+      'og_dialog_msg' => array(
+        'type' => 'text',
+        'label' => t('Dialog alert message'),
+        'description' => t('An optional message that will appear on the top of the share dialog.  This will ONLY appear if teh dialog is set to show.'),
+        'optional' => TRUE,
+        'restriction' => 'input'
+      ),
       'og_tagging' => array(
         'type' => 'boolean',
         'label' => t('Allow @mention tagging'),
@@ -255,6 +262,13 @@ function connections_rules_action_info() {
         'label' => t('Allow users to post to multiple friends\' walls?'),
         'description' => t('If selected, users will be able to select several of their friends to message, all at once.  Requires log-in before users can select their friends.  If this is not selected, shares will post to the user\'s wall.'),
         'default value' => 1,
+        'optional' => TRUE,
+        'restriction' => 'input'
+      ),
+      'feed_dialog_msg' => array(
+        'type' => 'text',
+        'label' => t('Dialog alert message'),
+        'description' => t('An optional message that will appear on the top of the "post to everyone\'s wall" dialog.  This will ONLY appear if users can select more than one friend at a time.'),
         'optional' => TRUE,
         'restriction' => 'input'
       ),

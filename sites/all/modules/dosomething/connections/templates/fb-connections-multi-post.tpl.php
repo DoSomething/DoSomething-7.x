@@ -232,15 +232,7 @@
  		color: #fff;
  		background: url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;
  	}
-
- body {
-    font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
-    margin: 0px;
-  }
-    textarea {
-        width: 300px;
-    }
-
+ 
     .ui-autocomplete {
         width: 467px;
         padding: 0px;
@@ -290,6 +282,13 @@
 
     #hidden_comments {
     	display: none;
+    }
+
+    #alert {
+    	margin: 0px 10px 10px 0px;
+    	background: #FEF5F1;
+    	border: 1px solid #ED541D;
+    	padding: 5px;
     }
  	-->
  	</style>
@@ -350,6 +349,7 @@
 		<div id="post-title">Post to Friends' Walls</div>
 	</div>
 	<div id="zone">
+		<?php if ($message) { ?><div id="alert"><?php echo $message; ?></div><?php } ?>
 		<div id="img"><img src="<?php echo $photo; ?>" alt="" /></div>
 		<div id="text">
 			<strong>To:</strong>
