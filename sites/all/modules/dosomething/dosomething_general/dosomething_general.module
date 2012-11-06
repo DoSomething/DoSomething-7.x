@@ -6,6 +6,16 @@
  */
 
 /**
+ * Implements hook_init().
+ */
+function dosomething_general_init() {
+  drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/iframe-defer.js', array(
+    'scope' => 'footer',
+    'every_page' => TRUE,
+  ));
+}
+
+/**
  *  Implements hook_module_implements_alter().
  */
 function dosomething_general_module_implements_alter(&$implementations, $hook) {
