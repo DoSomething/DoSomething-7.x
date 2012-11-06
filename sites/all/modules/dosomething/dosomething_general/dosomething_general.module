@@ -6,16 +6,6 @@
  */
 
 /**
- * Implements hook_init().
- */
-function dosomething_general_init() {
-  drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/iframe-defer.js', array(
-    'scope' => 'footer',
-    'every_page' => TRUE,
-  ));
-}
-
-/**
  *  Implements hook_module_implements_alter().
  */
 function dosomething_general_module_implements_alter(&$implementations, $hook) {
@@ -645,6 +635,14 @@ function theme_dosomething_general_facebook_friend_pic($var) {
  * Implements hook_form_alter().
  */
 function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
+  // Bug #1866: 404 search doesn't work
+  // Changes form action to /search to get away from 404 page.
+  $status = drupal_get_http_header('status');
+  $forms_to_make_work = array('search_api_page_search_form_demo');
+  if ($status == '404 Not Found' && in_array($form_id, $forms_to_make_work)) {
+    $form['#action'] = url('search');
+  }
+
   // Override password field description on user login form.
   if ($form_id == 'user_login') {
     $form['pass']['#description'] = t('Enter the password that accompanies your email, username, or cell phone number.');
