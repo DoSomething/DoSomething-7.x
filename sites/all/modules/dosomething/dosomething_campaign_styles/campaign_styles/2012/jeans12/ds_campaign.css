@@ -912,7 +912,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       text-transform: uppercase;
       padding-top: 0.3em; }
     #cmp .make-a-difference p {
-      font-size: 0.9em; }
+      font-size: 0.9em;
+      width: 110%; }
     #cmp .make-a-difference img {
       float: left;
       padding-right: 3%; }

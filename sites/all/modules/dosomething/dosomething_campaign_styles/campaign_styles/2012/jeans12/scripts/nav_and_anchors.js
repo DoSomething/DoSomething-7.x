@@ -32,11 +32,11 @@
       var $document = $(document);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
       var $footer = $('#block-menu-menu-footer');
-      var scrolllimittop = $nav.offset().top;
-      var scrolllimitbot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
+      var scrollLimitTop = $nav.offset().top;
+      var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
       $document.scroll(function () {
         var st = $document.scrollTop();
-        if (st > scrolllimittop && st < scrolllimitbot) { // once scrolling engages $nav
+        if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
           $nav.css({
             'position'    : 'fixed',
             'top'         : '0px',
@@ -44,7 +44,7 @@
             'z-index'     : '3'
           });
         }
-        else if (st >= scrolllimittop) { // once $nav hits $footer
+        else if (st >= scrollLimitTop + $nav.outerHeight()) { // once $nav hits $footer
           $nav
             .css('position', 'absolute')
             .css('top', 'auto')
