@@ -1,0 +1,35 @@
+<?php
+
+/**
+ *	Implements hook_install()
+ */
+function dosomething_metatags_schema() {
+  $schema = array();
+           
+  $schema['dosomething_metatags'] = array(
+    'description' => 'Stores DS meta tags',
+    'primary key' => array('tid'),
+    'fields' => array(
+      'tid' => array(
+        'description' => 'The ID of the meta tags information',
+        'type' => 'serial',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'pages' => array(
+        'description' => 'The page(s) that will have the meta information.',
+        'type' => 'text',
+        'length' => 255,
+        'not null' => true,
+      ),
+      'meta_tags' => array(
+        'description' => 'The actual meta tag information.',
+        'type' => 'text',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+    ),
+  );
+
+  return $schema;
+}
