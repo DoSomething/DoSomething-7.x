@@ -31,7 +31,7 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
     $message = $state->getContext('process_beta:message');
-    $invite_nid = $state->getContext('drives_invite_nid');
+    $drives_invite_gid = $state->getContext('drives_invite_gid');
 
     $numbers = explode(',', $message);
 
