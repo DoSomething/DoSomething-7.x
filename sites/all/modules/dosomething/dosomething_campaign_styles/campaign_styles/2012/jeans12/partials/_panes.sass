@@ -5,29 +5,40 @@
 //			//
 
 #header
-  background: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg")
-  background-position: 29% -120%
+  background-image: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg")
+  background-position: 100% 35%
+  background-repeat: no-repeat
+  background-color: #E5E7E9
   margin: 0
   padding: 0
   h1, h2
     text-align: left
-    color: $spitYellow
+    color: $spitPurple
     margin: 0
   h1
-    margin: 0 0 0.5em 0
     font-weight: 600
-    font-size: 2em
+    font-size: 4em
+    font-family: din-web
+    line-height: 1em
   h2
-    font-size: 1.3em
+    font-size: 1.4em
     line-height: 1.6em
-    font-weight: 600
+    font-weight: 400
+    width: 50%
   span
-    padding: 0
-    text-align: center
-    background: $spitPurple
-    background: $spitTrans
-  .tagline
-    padding: 2%
+    color: $bgFallback
+
+.tagline
+  padding: 2%
+
+.pane-campaign-social
+  display: none
+
+.socialWrapper
+  margin: 1em 0 0 0.5em
+  .socialButton
+    &:last-child
+      display: none
 
 //      //
 //  #next-steps
@@ -284,8 +295,31 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     position: static
 
 //			//
-//	#content
+//	#content-module
 //			//
+
+#content-module
+  .jeans-divider
+    margin-bottom: 5%
+
+.free-banner
+  float: right
+  margin-top: -4%
+
+.make-a-difference
+  margin: 0 0 0 12%
+  float: left
+  width: 60%
+  h2, p
+    text-align: left
+  h2
+    text-transform: uppercase
+    padding-top: 0.3em
+  p
+    font-size: 0.9em
+  img
+    float: left
+    padding-right: 3%
 
 #scholarship
   img.scholar-copy
@@ -309,8 +343,10 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     input[type="text"]
       padding: 0.8em 0.5em
       float: left
+      height: 2.5em
       width: 48%
       margin: 1%
+      +border-radius(0.3em)
   .go-button
     margin: 4% 0 1% 0
     padding: 0.3em 0.7em
@@ -337,11 +373,14 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     margin: 1%
     label
       text-align: left
-    input
+    input[type="text"]
       width: 100%
       margin: 1% 0
+  .your-input input[type="text"]
+    width: 100%
   .rules
     font-size: 1em  
+
 .refer5
   background: $spitPurple
   width: 110%
@@ -360,6 +399,28 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     right: -22px
 .refer5-inner
   padding: 3%
+
+//			//
+//	#prizing
+//			//
+
+#prizing
+  h3
+    margin: 1em 0
+  p
+    width: 70%
+    margin: 3em auto
+
+//      //
+//  #psa
+//      //
+
+#psa
+  h2
+    text-transform: uppercase
+    font-size: 1.9em
+    padding: 0 0 0.3em 0
+    color: $bgFallback
 
 //			//
 //  #social     - share 3 stats -
@@ -381,8 +442,6 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
 //      //
 
 #faq 
-  div
-    padding: 0 1.2em 1.2em 1.2em
   h4, li, p
     text-align: left
   li
@@ -412,7 +471,7 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
 //  #footer     - sign up button; conditionally displayed -
 //      //
 
-#footer
+#footer.section
   h1
     font-size: 2em
     font-family: din-web

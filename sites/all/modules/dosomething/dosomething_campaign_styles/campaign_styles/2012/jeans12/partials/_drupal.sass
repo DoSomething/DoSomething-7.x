@@ -20,6 +20,18 @@ html > body
 .ds-panel .pane-content
   padding-bottom: 0
     
+.container
+  width: 1050px
+
+#footer.section
+  background: transparent
+  img
+    width: 50%
+    margin: 3% auto
+    display: block
+    +noBorder
+    +noShadow
+
 body
   background: $bgFallback
   background: url("http://files.dosomething.org/files/campaigns/jeans12/bg.jpg")
@@ -89,6 +101,7 @@ body
   background: #fff
   padding: 1.5em 0 0 0
   width: 215px
+  margin-top: 15px
   -webkit-transition: background 5s ease-in
   transition: background 5s ease-in
   .content
@@ -109,6 +122,7 @@ body
     color: $spitPurple
     &:hover
       text-decoration: none
+      color: $bgFallback
   .campaign-menu-suffix
     padding: 1em 1em 0 1em
     img
@@ -131,7 +145,6 @@ body
       text-decoration: underline  
 
 #block-dosomething-campaign-styles-campaign-nav
-  margin: 15px 0 0 -20px
   .highlight a
     background: $spitYellow
 

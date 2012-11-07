@@ -6,8 +6,15 @@
     $('#cmp #edit-actions').removeAttr('id');
 
     // campaign logo injection
-    var logo = '#';
-    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/spit"><img src="' + logo + '"/></a>');
+    var logo = '//files.dosomething.org/files/campaigns/jeans12/logo.png';
+    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a>');
+    
+    // campaign social media injection
+    $('#header').prepend($('.socialWrapper'));
+
+    // inject sponsor logo below footer
+    cmpFooter = $('#footer');
+    $('#cmp').after(cmpFooter);
 
     // contact form rebuilding
     var $emailInput = $('#edit-submitted-field-webform-email');

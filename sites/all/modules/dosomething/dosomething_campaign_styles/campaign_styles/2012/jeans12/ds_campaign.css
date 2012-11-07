@@ -17,6 +17,21 @@ html > body {
 .ds-panel .pane-content {
   padding-bottom: 0; }
 
+.container {
+  width: 1050px; }
+
+#footer.section {
+  background: transparent; }
+  #footer.section img {
+    width: 50%;
+    margin: 3% auto;
+    display: block;
+    border: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+
 body {
   background: #b79c86;
   background: url("http://files.dosomething.org/files/campaigns/jeans12/bg.jpg"); }
@@ -96,6 +111,7 @@ body {
   background: white;
   padding: 1.5em 0 0 0;
   width: 215px;
+  margin-top: 15px;
   -webkit-transition: background 5s ease-in;
   transition: background 5s ease-in; }
   #block-dosomething-campaign-styles-campaign-nav .content {
@@ -115,7 +131,8 @@ body {
     text-transform: uppercase;
     color: #0c3565; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
-      text-decoration: none; }
+      text-decoration: none;
+      color: #b79c86; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix {
     padding: 1em 1em 0 1em; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix img {
@@ -140,10 +157,8 @@ body {
       color: #888888;
       text-decoration: underline; }
 
-#block-dosomething-campaign-styles-campaign-nav {
-  margin: 15px 0 0 -20px; }
-  #block-dosomething-campaign-styles-campaign-nav .highlight a {
-    background: white; }
+#block-dosomething-campaign-styles-campaign-nav .highlight a {
+  background: white; }
 
 .mangoDialog-ui {
   background: #222222;
@@ -606,6 +621,18 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 50%; }
   #cmp .col60 {
     width: 60%; }
+  #cmp .jeans-divider {
+    background: #0c3565;
+    width: 110%;
+    margin-left: -5%;
+    padding-top: 0.5em; }
+    #cmp .jeans-divider h1, #cmp .jeans-divider h2 {
+      text-transform: uppercase;
+      color: white; }
+    #cmp .jeans-divider h2 {
+      font-weight: 400; }
+    #cmp .jeans-divider span {
+      font-weight: 600; }
   #cmp .divider {
     text-align: center;
     border-top: 2px solid #d2d2d3;
@@ -635,29 +662,36 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .go-button:hover, #cmp #edit-submit:hover {
       color: #06182e; }
   #cmp #header {
-    background: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg");
-    background-position: 29% -120%;
+    background-image: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg");
+    background-position: 100% 35%;
+    background-repeat: no-repeat;
+    background-color: #e5e7e9;
     margin: 0;
     padding: 0; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
-      color: white;
+      color: #0c3565;
       margin: 0; }
     #cmp #header h1 {
-      margin: 0 0 0.5em 0;
       font-weight: 600;
-      font-size: 2em; }
+      font-size: 4em;
+      font-family: din-web;
+      line-height: 1em; }
     #cmp #header h2 {
-      font-size: 1.3em;
+      font-size: 1.4em;
       line-height: 1.6em;
-      font-weight: 600; }
+      font-weight: 400;
+      width: 50%; }
     #cmp #header span {
-      padding: 0;
-      text-align: center;
-      background: #0c3565;
-      background: #0c3565; }
-    #cmp #header .tagline {
-      padding: 2%; }
+      color: #b79c86; }
+  #cmp .tagline {
+    padding: 2%; }
+  #cmp .pane-campaign-social {
+    display: none; }
+  #cmp .socialWrapper {
+    margin: 1em 0 0 0.5em; }
+    #cmp .socialWrapper .socialButton:last-child {
+      display: none; }
   #cmp #next-steps {
     padding: 5%; }
     #cmp #next-steps h3, #cmp #next-steps p {
@@ -863,6 +897,25 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 1em auto; }
   #cmp .views-field-nothing a.go-button {
     position: static; }
+  #cmp #content-module .jeans-divider {
+    margin-bottom: 5%; }
+  #cmp .free-banner {
+    float: right;
+    margin-top: -4%; }
+  #cmp .make-a-difference {
+    margin: 0 0 0 12%;
+    float: left;
+    width: 60%; }
+    #cmp .make-a-difference h2, #cmp .make-a-difference p {
+      text-align: left; }
+    #cmp .make-a-difference h2 {
+      text-transform: uppercase;
+      padding-top: 0.3em; }
+    #cmp .make-a-difference p {
+      font-size: 0.9em; }
+    #cmp .make-a-difference img {
+      float: left;
+      padding-right: 3%; }
   #cmp #scholarship {
     overflow: visible; }
     #cmp #scholarship img.scholar-copy {
@@ -885,8 +938,14 @@ div[aria-labelledby="ui-dialog-title-1"] {
       #cmp #scholarship form input[type="text"] {
         padding: 0.8em 0.5em;
         float: left;
+        height: 2.5em;
         width: 48%;
-        margin: 1%; }
+        margin: 1%;
+        -webkit-border-radius: 0.3em;
+        -moz-border-radius: 0.3em;
+        -ms-border-radius: 0.3em;
+        -o-border-radius: 0.3em;
+        border-radius: 0.3em; }
     #cmp #scholarship .go-button {
       margin: 4% 0 1% 0;
       padding: 0.3em 0.7em; }
@@ -913,9 +972,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
       margin: 1%; }
       #cmp #scholarship .scholar-input label {
         text-align: left; }
-      #cmp #scholarship .scholar-input input {
+      #cmp #scholarship .scholar-input input[type="text"] {
         width: 100%;
         margin: 1% 0; }
+    #cmp #scholarship .your-input input[type="text"] {
+      width: 100%; }
     #cmp #scholarship .rules {
       font-size: 1em; }
   #cmp .refer5 {
@@ -936,12 +997,20 @@ div[aria-labelledby="ui-dialog-title-1"] {
       right: -22px; }
   #cmp .refer5-inner {
     padding: 3%; }
+  #cmp #prizing h3 {
+    margin: 1em 0; }
+  #cmp #prizing p {
+    width: 70%;
+    margin: 3em auto; }
+  #cmp #psa h2 {
+    text-transform: uppercase;
+    font-size: 1.9em;
+    padding: 0 0 0.3em 0;
+    color: #b79c86; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
-  #cmp #faq div {
-    padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq h4, #cmp #faq li, #cmp #faq p {
     text-align: left; }
   #cmp #faq li {
@@ -966,7 +1035,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     background-position-y: -1.4em; }
   #cmp #faq .go-button {
     margin: 0 0 1% 0; }
-  #cmp #footer h1 {
+  #cmp #footer.section h1 {
     font-size: 2em;
     font-family: din-web;
     text-transform: uppercase;
@@ -975,12 +1044,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
     background-position: 50% 0.7em;
     padding: 0 0 1em 0;
     margin: 0 0 -1em 0; }
-  #cmp #footer .go-button {
+  #cmp #footer.section .go-button {
     margin: 0 0 1% 0; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form {
-    margin: 10% 0 0 0;
     background: #0c3565;
     width: 100%; }
     #cmp #contact-form h3 {
@@ -988,13 +1056,18 @@ div[aria-labelledby="ui-dialog-title-1"] {
       font-size: 1.3em;
       font-weight: 600;
       text-align: left;
-      padding: 0.2em 0 0 0; }
+      padding: 0.2em 0 0 0;
+      font-size: 0.9em; }
+  #cmp #header #edit-submit {
+    margin-top: 0.3em;
+    height: 1.8em; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 15px 4px #cbbeff; }
   #cmp #edit-submitted-field-webform-mobile-und-0-value {
     float: left; }
   #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
-    height: 2em;
+    height: 3em;
+    margin-top: 0.5em;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -1016,7 +1089,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #campaign-opt-in {
     clear: both;
     text-align: left;
-    padding: 0.3em 0 0 0 !important; }
+    padding: 0.5em !important; }
     #cmp #campaign-opt-in span {
       font-size: 0.7em;
       line-height: 0.7em;
@@ -1132,8 +1205,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .section {
       width: 100%;
       margin: 2% auto; }
-    #cmp #header {
-      background-position: 29% 60%; }
     #cmp #contact-form {
       margin: 2% 0 0 0; }
       #cmp #contact-form h3 {
@@ -1202,11 +1273,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 5% auto; }
-    #cmp #header {
-      background-position: 66% 77%; }
-      #cmp #header #edit-submit {
-        margin: 0.5em 0 0 0;
-        float: left; }
+    #cmp #header #edit-submit {
+      margin: 0.5em 0 0 0;
+      float: left; }
     #cmp #edit-submitted-field-webform-email {
       width: 68%;
       margin: 1% 0; }
