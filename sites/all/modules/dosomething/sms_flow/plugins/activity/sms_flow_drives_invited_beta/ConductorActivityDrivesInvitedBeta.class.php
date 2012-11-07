@@ -91,7 +91,9 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
         // Join user into the drive
         if ($drives_invite_gid > 0) {
-          dosomething_drives_join($drives_invite_gid, $profile->uid);
+          // TODO: check if this account is already in the drive and give a different response?
+          // Set $redirect param to FALSE so it doesn't try to redirect to a webpage
+          dosomething_drives_join($drives_invite_gid, $account->uid, FALSE);
         }
       }
 

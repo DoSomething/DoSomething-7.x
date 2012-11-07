@@ -485,7 +485,7 @@ function teams_store_number($number, $gid) {
   drupal_write_record('teams_invited', $data);
 }
 
-function teams_join_by_url($gid, $hash, $uid = FALSE) {
+function teams_join_by_url($gid, $hash, $uid = FALSE, $redirect = TRUE) {
   if ($hash === teams_get_group_hash($gid)) {
     $account = NULL;
     if (!$uid) {
@@ -518,7 +518,9 @@ function teams_join_by_url($gid, $hash, $uid = FALSE) {
     drupal_alter('teams_joined_email', $params, $gid);
     drupal_mail('teams', 'joined', $owner->mail, $_GLOBALS['language'], $params);
 
-    drupal_goto('my-team/' . $url);
+    if ($redirect) {
+      drupal_goto('my-team/' . $url);
+    }
   }
 }
 
