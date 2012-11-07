@@ -68,10 +68,10 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
 
       $args = array(
         'tfj2013_inviter' => $inviter_name,
-        'drives_invite_nid' => $drives_invite_nid,
+        'drives_invite_gid' => $drives_invite_gid,
       );
 
-      $f['details']['nid'] = $drives_invite_nid;
+      $f['details']['nid'] = $drives_invite_gid;
       sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
       
       $response = $this->response_success;
