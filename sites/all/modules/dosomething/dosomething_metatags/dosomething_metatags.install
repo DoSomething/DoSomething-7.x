@@ -17,19 +17,24 @@ function dosomething_metatags_schema() {
         'not null' => true,
       ),
       'pages' => array(
-        'description' => 'The page(s) that will have the meta information.',
+        'description' => 'The page(s) that will have the meta information',
         'type' => 'text',
         'length' => 255,
         'not null' => true,
       ),
       'meta_tags' => array(
-        'description' => 'The actual meta tag information.',
+        'description' => 'The actual meta tag information',
         'type' => 'text',
-        'unsigned' => true,
         'not null' => true,
       ),
     ),
   );
 
   return $schema;
+}
+
+function dosomething_metatags_uninstall() {
+  if (db_table_exists('dosomething_metatags')) {
+    db_drop_table('dosomething_metatags');
+  }
 }
