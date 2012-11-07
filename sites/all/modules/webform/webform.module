@@ -102,6 +102,15 @@ function webform_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
+  // Autocomplete used in Views integration.
+  $items['webform/autocomplete'] = array(
+    'title' => 'Webforms',
+    'page callback' => 'webform_views_autocomplete',
+    'access arguments' => 'administer views',
+    'file' => 'views/webform.views.inc',
+    'type' => MENU_CALLBACK,
+  );
+
   // Node page tabs.
   $items['node/%webform_menu/done'] = array(
     'title' => 'Webform confirmation',
@@ -806,6 +815,7 @@ function webform_webform_component_info() {
       'label' => t('Number'),
       'description' => t('A numeric input field (either as textfield or select list).'),
       'features' => array(
+        'views_range' => TRUE,
       ),
       'file' => 'components/number.inc',
     ),
@@ -855,6 +865,7 @@ function webform_webform_component_info() {
       'description' => t('Presents the user with hour and minute fields. Optional am/pm fields.'),
       'features' => array(
         'conditional' => FALSE,
+        'views_range' => TRUE,
       ),
       'file' => 'components/time.inc',
     ),
