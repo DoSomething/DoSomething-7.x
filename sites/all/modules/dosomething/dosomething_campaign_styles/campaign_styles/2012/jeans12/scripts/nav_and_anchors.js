@@ -1,8 +1,17 @@
 (function ($) {
-  Drupal.behaviors.campaignName = {
+  Drupal.behaviors.jeans12_nav = {
     attach: function (context, settings) {
 
     // animation for a.jump_scroll
+    var contentAnchors = 'a.jump_scroll';
+    var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
+    var allAnchors = navAnchors + ', ' + contentAnchors;
+    
+    // input highlighting
+    var webformEmail = '#contact-form input[type="text"]';
+    var webformCell = '#contact-form input[type="tel"]';
+    var webformBoth = webformEmail + ', ' + webformCell;
+
     $(allAnchors).click(function(event){
       $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
 
@@ -24,9 +33,9 @@
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
       var $footer = $('#block-menu-menu-footer');
       var scrolllimittop = $nav.offset().top;
-      var scrolllimitbot = $document.height() - $nav.outerheight() - $footer.outerheight();
+      var scrolllimitbot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
       $document.scroll(function () {
-        var st = $document.scrolltop();
+        var st = $document.scrollTop();
         if (st > scrolllimittop && st < scrolllimitbot) { // once scrolling engages $nav
           $nav.css({
             'position'    : 'fixed',

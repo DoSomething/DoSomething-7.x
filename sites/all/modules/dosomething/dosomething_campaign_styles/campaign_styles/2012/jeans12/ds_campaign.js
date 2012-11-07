@@ -40,16 +40,6 @@
       }
     });
 
-    // jQuery scrolling effect with focus!
-    var contentAnchors = 'a.jump_scroll';
-    var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
-    var allAnchors = navAnchors + ', ' + contentAnchors;
-    
-    // input highlighting
-    var webformEmail = '#contact-form input[type="text"]';
-    var webformCell = '#contact-form input[type="tel"]';
-    var webformBoth = webformEmail + ', ' + webformCell;
-
     // search module hack
     $('.form-item-field-geofield-distance-unit').hide();
     $('.geofield-proximity-origin-from').text('Zip code:');

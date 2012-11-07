@@ -1,5 +1,5 @@
 (function ($) {
-  Drupal.behaviors.campaignName = {
+  Drupal.behaviors.jeans12_registration = {
     attach: function (context, settings) {
 
     // kill old asterisks from required fields

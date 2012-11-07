@@ -1,5 +1,5 @@
 (function ($) {
-  Drupal.behaviors.campaignName = {
+  Drupal.behaviors.jeans12_drive_pages = {
     attach: function (context, settings) {
 
     // remove #edit-submit from drive page buttons
