@@ -32,13 +32,13 @@
 
     // scrolling navigation block
     $(window).bind('load', function() {
-      var $document = $(document);
       var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
       var $footer = $('#block-menu-menu-footer');
+      var $document = $(document);
       var scrollLimitTop = $nav.offset().top;
-      var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
       $document.scroll(function () {
         var st = $document.scrollTop();
+        var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
         if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
           $nav.css({
             'position'    : 'fixed',
@@ -48,25 +48,14 @@
           });
         }
         else if (st >= scrollLimitTop) { // once $nav hits $footer
-
-        // When printed
-        // scrollLimitTop != $nav.offset().top;
-        // however
-        // var scrollLimitTop = $nav.offset().top;
-
-        // Huh?
-
-        console.log('1.');
-        console.log($nav.offset().top);
-        console.log('2.');
-        console.log(scrollLimitTop);
-
+          scrollLimitTop = $nav.offset().top;
           $nav
             .css('position', 'absolute')
             .css('top', 'auto')
             .css('bottom', '25px')
         }
         else { // before scrolling engages $nav
+          scrollLimitTop = $nav.offset().top;
           $nav
             .css('position', 'static')
         }
