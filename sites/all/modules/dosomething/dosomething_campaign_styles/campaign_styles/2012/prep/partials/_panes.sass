@@ -66,8 +66,6 @@
 
 #action.action-anonymous, #action.action-participant
   margin-top: 10px
-  h3
-    line-height: 2em
   p
     text-align: left
   img
@@ -180,7 +178,8 @@ a.print-pdf
     -moz-border-radius: 4px
     -o-border-radius: 4px 
     -webkit-border-radius: 4px 
-    border-radius: 4px   
+    border-radius: 4px
+    width: 44%
   input[type=submit]
     font-weight: 500
     margin: 0  
@@ -416,7 +415,6 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     padding: 0.25% 0 2.5% 15%
     display: block
     clear: both
-
   li
     display: inline-block
 
@@ -544,6 +542,16 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
   .sms-map-wrapper
     padding: 3% 6% 5%
     background-color: $mainColor
+  .skip
+    display: none
+    margin-bottom: 1.5em
+    a
+      color: white
+      background: $secondaryColor
+      text-decoration: none
+      border-radius: 6px
+      padding: 4px 10px
+      font-size: 1.4em  
 
 //      //
 //  #footer     - sign up button; conditionally displayed -
