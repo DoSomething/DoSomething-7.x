@@ -10,18 +10,18 @@ define('ROBOCALLS_WEBFORM_NID', 723327);
 define('MAX_CALLS_PER_DAY', 1);
 define('ROUND_TO', 10);
 
+/**
+ *  Implements hook_panels_pre_render()
+ */
 function robocalls_panels_pre_render($display) {
   if ($display->layout == 'flexible:cause_calls' || $display->layout == 'flexible:cause_calls_landing' || request_uri() == '/calloffame/about') {
-    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/dosomething_robocall.css', array(
-        'group' => CSS_THEME,
-        'weight' => 1000
-    ));
-
+    // Adds Robocalls CSS
     drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls.css', array(
         'group' => CSS_THEME,
         'weight' => 3000
     ));
 
+    // Adds Robocalls JS
     drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls.js', array(
         'weight' => -100,
         'cache' => FALSE
@@ -30,15 +30,29 @@ function robocalls_panels_pre_render($display) {
 }
 
 /**
-* Implementation of hook_ctools_plugin_directory().
-*/
+ *  Implements hook_ctools_plugin_directory().
+ */
 function robocalls_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {
     return 'plugins/' . $plugin;
   }
 }
 
-// To-do: Add to dosomething_sms module mobile_commons_sms (submit it to drupal.org)
+/**
+ *  Sends a phone call request to Mobile Commons.
+ *
+ *  @param $mobile
+ *    The phone number to call.
+ *
+ *  @param $name (optional)
+ *    The name of the person who is calling.
+ *
+ *  @param $opt_in_path
+ *    The numeric Mobile Commons opt in path ID
+ *
+ *  @return
+ *    An object as defined from drupal_http_request()
+ */
 function robocalls_mcommons_call($mobile, $name = '', $opt_in_path) {
   $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
 
@@ -55,6 +69,9 @@ function robocalls_mcommons_call($mobile, $name = '', $opt_in_path) {
   drupal_http_request($api_opt_in_path_url, $options);
 }
 
+/**
+ *  Implements hook_module_implements_alter()
+ */
 function robocalls_module_implements_alter(&$implementations, $hook) {
   if ($hook == 'form_alter' && isset($implementations['robocalls'])) {
     $group = $implementations['robocalls'];
@@ -70,6 +87,9 @@ function robocalls_fb_social_event_subscribe() {
   return $f;
 }
 
+/**
+ *  Implements hook_form_alter()
+ */
 function robocalls_form_alter(&$form, $form_state, $form_id) {
   global $term_info, $flags;
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
@@ -86,7 +106,13 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     // And set the form fields to reflect that.
     $u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value'] = $real;
 
-    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb.css');
+    $scholarship = !empty($term->field_celeb_scholarship_langauge[LANGUAGE_NONE][0]['value']);
+    if ($scholarship) {
+      drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb_scholarship.css');
+    }
+    else {
+      drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb.css');
+    }
 
     if (!empty($term)) {
        $term_info = array();
@@ -181,34 +207,29 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     }
     else
     {
-      #$form['extras']['fb_container']['field_celeb_send_now'] = $u['field_celeb_send_now'];
-      #$form['extras']['fb_container']['field_celeb_send_now']['#weight'] = -992;
-      #$form['extras']['fb_container']['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
       $u['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
-      #echo '<pre>', print_r($u), '</pre>'; exit;
     }
-    #$u['field_celeb_send_now']['#access'] = FALSE;
-    #echo '<pre>', print_r($form), '</pre>'; exit;
 
     if (user_is_logged_in()) {
        global $user;
        $profile = profile2_load_by_user($user, 'main');
 
-       // Cell number
+       // Cell number population
        if (!empty($profile->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
           $u['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile->field_user_mobile[LANGUAGE_NONE][0]['value'];
        }
 
-       // First name
+       // First name population
        if (!empty($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
           $u['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
        }
     }
 
+    /*
     drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls.js', array(
        'weight' => -100,
        'cache' => FALSE
-    ));
+    ));*/
 
     if (isset($_GET['done'])) {
        // Pop up the "Done!" pop up
@@ -219,17 +240,6 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     }
 
     $u['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
-
-    if ($term->field_birthday_call[LANGUAGE_NONE][0]['value'] != 1 && !$predate) {
-      #$u['field_celeb_date']['#attributes']['style'] = 'display: none;';
-    }
-    else {
-      $form['extras']['is_bday_call'] = array(
-         '#type' => 'hidden',
-         '#value' => 1,
-         '#weight' => 6,
-      );
-    }
 
     $form_state['side_bar'] = false;
     if (isset($term->tid) && !empty($term->tid)) {
@@ -254,6 +264,9 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
   }
 }
 
+/**
+ *  Calls errors (if applicable) and commands through AJAX.
+ */
 function robocalls_ajax_call($form, &$form_state) {
   $commands = array();
   $errors = form_get_errors();
@@ -279,6 +292,9 @@ function robocalls_ajax_call($form, &$form_state) {
   );
 }
 
+/**
+ *  Implements hook_menu()
+ */
 function robocalls_menu() {
   $items['call-post-associate/%'] = array(
     'page callback' => 'robocalls_call_post_associate',
@@ -313,19 +329,112 @@ function robocalls_call_post_associate($data) {
   drupal_goto($goto . '?done=' . $newcode);
 }
 
+/**
+ *  Ponders over whether or not phone numbers have already been called today.
+ *  If so, populates the $form_state['already_called'] array with those phone numbers.
+ *
+ *  @param $form
+ *    The $form_state array
+ *
+ *  @param $numbers
+ *    An array of phone numbers
+ *
+ *  @return
+ *    Nothing.  Alters the $form variable with appropriate responses.
+ */
+function robocalls_handle_already_called(&$form, $numbers) {
+  $limit = $form['input']['call_limit'];
+
+  $last_night = strtotime('midnight');
+  $tonight = strtotime('11:59pm');
+
+  $q = new EntityFieldQuery;
+  $result = $q
+  ->entityCondition('entity_type', 'webform_submission_entity')
+  ->propertyCondition('nid', $form['values']['details']['nid'])
+  ->propertyCondition('submitted', array($last_night, $tonight), 'BETWEEN')
+  ->propertyOrderBy('submitted', 'DESC')
+  ->fieldCondition('field_celeb_friend_phone', 'value', array('610-368-3195'), 'IN')
+  ->fieldCondition('field_celebrity_chooser', 'tid', $form['chosen_celeb'], '=')
+  ->execute();
+
+  $calls = entity_load('webform_submission_entity', array_keys($result['webform_submission_entity']));
+  $fields = array(
+    'field_celeb_friend_phone',
+    'field_celeb_friend_phone_2',
+    'field_celeb_friend_phone_3',
+    'field_celeb_friend_phone_4',
+    'field_celeb_friend_phone_5',
+  );
+
+  $called = array();
+  foreach ($calls AS $key => $call) {
+    foreach ($fields AS $cfield) {
+      if (!empty($call->{$cfield}[LANGUAGE_NONE][0]['value']) && in_array($call->{$cfield}[LANGUAGE_NONE][0]['value'], $numbers)) {
+        $called[$call->{$cfield}[LANGUAGE_NONE][0]['value']]++;
+      }
+    }
+  }
+
+  $form['already_called'] = array();
+  foreach ($called AS $number => $times) {
+    if ($times >= $limit) {
+      $form['already_called'][$number] = 1;
+    }
+  }
+}
+
+/**
+ *  Validate call information.
+ */
 function robocalls_call_validate(&$form, &$form_state) {
   $s = $form_state['input']['submitted']/*['celeb_call_information']*/;
   $stime = $s['field_celeb_date'][LANGUAGE_NONE][0]['value'];
  
+  // Gathers taxonomy term information
+  $pi = $s['field_celebrity_chooser'][LANGUAGE_NONE];
+  $p = taxonomy_get_parents($pi);
+  $p = current($p);
+  $parent_name = $p->field_short_name[LANGUAGE_NONE][0]['value'];
+
+  $t = taxonomy_term_load($pi);
+  $term_name = $t->name;
+
+  $error = 0;
+
+  $numbers = array(
+    1 => $s['field_celeb_friend_phone'][LANGUAGE_NONE][0]['value'],
+    2 => $s['field_celeb_friend_phone_2'][LANGUAGE_NONE][0]['value'],
+    3 => $s['field_celeb_friend_phone_3'][LANGUAGE_NONE][0]['value'],
+    4 => $s['field_celeb_friend_phone_4'][LANGUAGE_NONE][0]['value'],
+    5 => $s['field_celeb_friend_phone_5'][LANGUAGE_NONE][0]['value'],
+  );
+
+  $scholarship = !empty($t->field_celeb_scholarship_langauge[LANGUAGE_NONE][0]['value']);
+  if ($scholarship) {
+    $fields = array(
+      1 => 'field_celeb_friend_phone',
+      2 => 'field_celeb_friend_phone_2',
+      3 => 'field_celeb_friend_phone_3',
+      4 => 'field_celeb_friend_phone_4',
+      5 => 'field_celeb_friend_phone_5',
+    );
+
+    foreach ($fields AS $key => $field) {
+      if (empty($numbers[$key]) || !dosomething_general_valid_cell($numbers[$key])) {
+        form_set_error('submitted][' . $field, t('We\'ll need 5 friends\' phone numbers, and they all must be a valid cell phone # (xxx) xxx-xxxx'));
+        $error++;
+      }
+    }
+  }
+
   $sn = 0;
   $sn = intval($form_state['input']['submitted']['field_celeb_send_now'][LANGUAGE_NONE]);
   $form['#submission']->submitted['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
   $form['#submission']->field_celeb_send_now[LANGUAGE_NONE][0]['value'] = $sn;
   $form_state['values']['submitted']['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
 
-  #echo $form->submitted['webform_entity_form']['#entity']['input']['mobile_commons_id'];
   $mconnect = $form['submitted']['webform_entity_form']['#entity']->input['mobile_commons_id'];
-  //$u['field_mobile_commons_id'][LANGUAGE_NONE][0]['value']['#value'] = $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value'];
 
   $form['#submission']->field_mobile_commons_id[LANGUAGE_NONE][0]['value'] = $mconnect;
   $form['#submission']->submitted['field_mobile_commons_id'][LANGUAGE_NONE][0]['value'] = $mconnect;
@@ -344,7 +453,6 @@ function robocalls_call_validate(&$form, &$form_state) {
   $form_state['my_number'] = $s['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
   $form_state['friend_number'] = $s['field_celeb_friend_phone'][LANGUAGE_NONE][0]['value'];
   $form_state['chosen_celeb'] = $s['field_celebrity_chooser'][LANGUAGE_NONE];
-  $error = 0;
 
   // If they're submitting for a date that's already passed, no bananas!
   if (time() > $nst && $sn) {
@@ -372,34 +480,29 @@ function robocalls_call_validate(&$form, &$form_state) {
     * the submission will fail.  This will prevent people from
     * flooding a phone number with too many phone calls in a day.
     */
-  $last_night = strtotime('midnight');
-  $tonight = strtotime('11:59pm');
-
-  $limit = $form_state['input']['call_limit'];
-
-  $form_state['already_called'] = 0;
-  $q = new EntityFieldQuery;
-  $result = $q
-  ->entityCondition('entity_type', 'webform_submission_entity')
-  ->propertyCondition('nid', $form_state['values']['details']['nid'])
-  ->propertyCondition('submitted', array($last_night, $tonight), 'BETWEEN')
-  ->propertyOrderBy('submitted', 'DESC')
-  ->fieldCondition('field_celeb_friend_phone', 'value', $form_state['friend_number'], '=')
-  ->fieldCondition('field_celebrity_chooser', 'tid', $form_state['chosen_celeb'], '=')
-  ->execute();
-  if (count($result['webform_submission_entity']) >= $limit) {
-    #form_set_error('form', "Sorry, this phone number can only be called " . MAX_CALLS_PER_DAY . " times a day.  Wait until tomorrow and try again!");
-    #$error++;
-    $form_state['already_called'] = $limit;
-  }
+  robocalls_handle_already_called($form_state, $numbers);
 
   if ($error && user_is_logged_in()) {
     drupal_goto($_SERVER['HTTP_REFERER']);
   }
 }
 
+/**
+ *  Submission handling for calls.
+ */
 function robocalls_call_submit(&$form, &$form_state) {
    $sub = &$form['#submission']->submitted/*['celeb_call_information']*/;
+
+   $parent_name = $term_name = '';
+
+   // Gathers taxonomy term information
+   $pi = $sub['field_celebrity_chooser'][LANGUAGE_NONE][0]['tid'];
+   $p = taxonomy_get_parents($pi);
+   $p = current($p);
+   $parent_name = $p->field_short_name[LANGUAGE_NONE][0]['value'];
+
+   $t = taxonomy_term_load($pi);
+   $term_name = $t->name;
 
    $friend_phone = $sub['field_celeb_friend_phone'][LANGUAGE_NONE][0]['value'];
    $user_name = $sub['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
@@ -409,14 +512,27 @@ function robocalls_call_submit(&$form, &$form_state) {
 
    $mconnect_id = $form['submitted']['webform_entity_form']['#entity']->input['mobile_commons_id'];
 
-   if (!$send_now && !$form_state['already_called'] && user_is_logged_in()) {
+   if (!$send_now && !$form_state['already_called'][$friend_phone] && user_is_logged_in()) {
      robocalls_mcommons_call($friend_phone, $user_name, $mconnect_id);
    }
 
-   if ($form_state['already_called'])
-   {
-    $sid = $form_state['values']['details']['sid'];
-    entity_delete('webform_submission_entity', $sid);
+   $scholarship = !empty($t->field_celeb_scholarship_langauge[LANGUAGE_NONE][0]['value']);
+   if ($scholarship) {
+    for ($i = 2; $i <= 5; $i++) {
+      $field = 'field_celeb_friend_phone_' . $i;
+      $p = $sub[$field][LANGUAGE_NONE][0]['value'];
+      if (!empty($p) && dosomething_general_valid_cell($p)) {
+        if (!$send_now && !$form_state['already_called'][$p] && user_is_logged_in()) {
+          robocalls_mcommons_call($p, $user_name, $mconnect_id);
+        }
+      }
+    }
+   }
+
+   // If we've already called number(s), delete the submission because it failed.
+   if (!empty($form_state['already_called'])) {
+     $sid = $form_state['values']['details']['sid'];
+     #entity_delete('webform_submission_entity', $sid);
    }
 
    /**
@@ -424,50 +540,24 @@ function robocalls_call_submit(&$form, &$form_state) {
      * account yet, attach it to their account and save.
      */
    if (user_is_logged_in()) {
-    global $user;
-    $profile = profile2_load_by_user($user, 'main');
-    if (!$profile->field_user_mobile[LANGUAGE_NONE][0]['value'] || $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] !== $my_phone) {
-       $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $my_phone;
-       $profile->save();
-    }
+     global $user;
+     $profile = profile2_load_by_user($user, 'main');
+     if (!$profile->field_user_mobile[LANGUAGE_NONE][0]['value'] || $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] !== $my_phone) {
+        $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $my_phone;
+        $profile->save();
+     }
    }
 
-   /**
-     * If this form was submitted from the side bar, we can't gather the correct
-     * term information through Javascript...so generate a JSON code (name & cause) to pass back.
-     * We'll revisit this code in the JavaScript, unencode it, and use it to "fill out"
-     * the pop-up form with the correct information.
-     */
-   $parent_name = $term_name = '';
-   #if ($form_state['side_bar']) {
-      $pi = $sub['field_celebrity_chooser'][LANGUAGE_NONE][0]['tid'];
-      $p = taxonomy_get_parents($pi);
-      $p = current($p);
-      $parent_name = $p->field_short_name[LANGUAGE_NONE][0]['value'];
-
-      $t = taxonomy_term_load($pi);
-      $term_name = $t->name;
-   #}
-
-   #if (!user_is_logged_in() || $form_state['side_bar']) {
-      $code = base64_encode(json_encode(array(
-         'name' => $term_name,
-         'cause' => $parent_name,
-         'passed_limit' => intval($form_state['already_called']),
-         'sn' => $send_now,
-         'phone' => $friend_phone,
-         'myname' => $user_name,
-         'redirect' => $_SERVER['HTTP_REFERER'],
-         'mconnect_id' => $mconnect_id
-      )));
-   # }
-   # else {
-   #   $code = 'true';
-   # }
-   /*else {
-      // Otherwise, we'll have all the information we need because we're on the same page.
-      $code = 'true';
-   }*/
+  $code = base64_encode(json_encode(array(
+     'name' => $term_name,
+     'cause' => $parent_name,
+     'passed_limit' => !empty($form_state['already_called']),
+     'sn' => $send_now,
+     'phone' => $friend_phone,
+     'myname' => $user_name,
+     'redirect' => $_SERVER['HTTP_REFERER'],
+     'mconnect_id' => $mconnect_id
+  )));
 
 	/**
 	  * If a user is NOT logged in (and are in the process of registering / logging in), their
@@ -484,6 +574,9 @@ function robocalls_call_submit(&$form, &$form_state) {
    }
 }
 
+/**
+ *  Implements hook_page_alter()
+ */
 function robocalls_page_alter(&$page) {
    global $term_info, $flags;
 
@@ -547,22 +640,12 @@ function robocalls_page_alter(&$page) {
       drupal_add_html_head($image, 'robocalls_img');
 
       $flag = $term_info['flag'];
-      /*if (in_array($term_info['tid'], $flags['bdays'])) {
-         $flag = 'Birthday Call';
-      }
-      else if ($flags['latest']['tid'] == $term_info['tid']) {
-         $flag = 'New Celeb';
-      }
-      else if ($flags['popular'] == $term_info['tid']) {
-         $flag = 'Most Popular';
-      }*/
-
-      //$page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup'] = str_replace('Image flag!', ($flag ? '<div class="main-robocall-flag' . ($flag == 'Birthday' ? ' birthday' : '') . '">' . $flag . '</div>' : ''), $page['content']['system_main'][(user_is_logged_in() ? 'content' : 'main')]['#markup']);
-      #unset($page['page_bottom']['fb_social']);
-
    }
 }
 
+/**
+ *  Removes the celebrity you're looking at from the swipe-gallery
+ */
 function robocalls_unset_celeb_from_tid(&$view, $tid) {
   foreach ($view->result AS $key => $celeb) {
     if ($celeb->tid == $tid) {
@@ -573,6 +656,8 @@ function robocalls_unset_celeb_from_tid(&$view, $tid) {
 }
 
 /**
+  * Implements hook_views_pre_render()
+  *
   * Alters celebrity blocks to include ribbons for:
   * - Birthday calls (defined by checkbox in celebrity creation.  Arbitrary number of these.)
   * - Most Popular (defined by celebrity with most submissions.  Only one.)
@@ -604,14 +689,5 @@ function robocalls_views_pre_render(&$view) {
       }
 
       $flags = array();
-/*      $flags['latest'] = $latest;
-      $flags['popular'] = $popular;
-      $flags['bdays'] = $bdays;*/
-
-      // New Celeb Flag -- Set from information above
-      #if (!$latest['no']) $view->result["{$latest['key']}"]->taxonomy_term_data_description .= '<div class="robocall-flag">New Celeb</div>';
-
-      #$days_before_new_celeb_flag_expires = 1;
-      #if ((time() - $latest['stamp']) < ($days_before_new_celeb_flag_expires*60*60*24))
     }
 }

@@ -21,25 +21,27 @@ div#robocalls-celeb-form form.webform-client-form {
   height: 317px;
   padding-top: 24px;
   position: relative;
-  width: 420px;
-  margin-left: 45px;
+  width: 486px;
+  border: 0px;
+  margin-left: 20px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
-  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-mobile-commons-id, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-1, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-2, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-3, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-4, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-5 {
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-mobile-commons-id, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser {
     display: none; }
   div#robocalls-celeb-form form.webform-client-form label {
-    float: left;
     width: 139px;
     padding-top: 8px;
     padding-right: 12px;
-    text-align: right;
+    text-align: left;
     font-size: 12pt; }
     div#robocalls-celeb-form form.webform-client-form label[for="edit-submitted-field-celeb-send-now-und"] {
       float: none;
       font-size: 9.5pt; }
+    div#robocalls-celeb-form form.webform-client-form label[for="edit-submitted-field-celeb-friend-phone-und-0-value"], div#robocalls-celeb-form form.webform-client-form label[for="edit-submitted-field-celeb-friend-phone-5-und-0-value"] {
+      padding-bottom: 7px; }
   div#robocalls-celeb-form form.webform-client-form input[type="text"], div#robocalls-celeb-form form.webform-client-form input[type="tel"] {
-    width: 246px;
+    width: 210px;
     height: 30px;
     box-sizing: border-box;
     -webkit-border-radius: 10px;
@@ -52,16 +54,35 @@ div#robocalls-celeb-form form.webform-client-form {
     -webkit-box-shadow: #f1f1f1 0 0 5px 1px inset;
     -moz-box-shadow: #f1f1f1 0 0 5px 1px inset;
     box-shadow: #f1f1f1 0 0 5px 1px inset;
-    border: 1px solid #bfbfbf; }
+    border: 1px solid #bfbfbf;
+    margin-bottom: 2px;
+    color: #565656; }
   div#robocalls-celeb-form form.webform-client-form #or-send-now-button {
-    margin-left: 120px;
-    margin-top: -5px;
-    margin-bottom: 0px; }
-  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone {
-    border-top: 1.5px solid #dbd9d8;
-    padding-top: 11px;
-    width: 385px;
+    float: left;
     margin-top: -8px; }
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-your-name,
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-your-phone,
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-1,
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-2,
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-3,
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-4,
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-5 {
+    width: 210px;
+    float: left;
+    margin-right: 20px; }
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-2 label,
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-3 label,
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-4 label {
+    display: none; }
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-5 label {
+    visibility: hidden; }
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-4 {
+    clear: left; }
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone {
+    width: 210px;
+    float: left;
+    clear: left;
+    margin-right: 20px; }
   div#robocalls-celeb-form form.webform-client-form .form-type-select {
     margin-right: 10px; }
     div#robocalls-celeb-form form.webform-client-form .form-type-select.form-item-submitted-field-celeb-date-und-0-value-year, div#robocalls-celeb-form form.webform-client-form .form-type-select.form-item-submitted-field-celeb-date-und-0-value-ampm {
@@ -69,9 +90,10 @@ div#robocalls-celeb-form form.webform-client-form {
   div#robocalls-celeb-form form.webform-client-form div#edit-submitted-field-celeb-date {
     margin: 0px;
     height: 45px;
-    text-align: right;
-    margin-right: -17px;
-    display: none; }
+    text-align: center;
+    margin-right: 5px;
+    display: none;
+    clear: both; }
     div#robocalls-celeb-form form.webform-client-form div#edit-submitted-field-celeb-date fieldset.date-processed {
       border: none; }
       div#robocalls-celeb-form form.webform-client-form div#edit-submitted-field-celeb-date fieldset.date-processed legend {
@@ -107,15 +129,16 @@ div#robocalls-celeb-form form.webform-client-form {
     line-height: 0;
     padding-top: 7px;
     position: absolute;
-    bottom: 76px;
-    right: 10px; }
+    bottom: 12px;
+    right: 25px;
+    z-index: 1; }
   div#robocalls-celeb-form form.webform-client-form .date-padding {
-    padding: 0px; }
+    padding: 0px;
+    margin-top: -16px; }
   div#robocalls-celeb-form form.webform-client-form .date-spacer {
     display: none; }
   div#robocalls-celeb-form form.webform-client-form #edit-fb-preview {
     clear: both;
-    border-top: 1.5px solid #dbd9d8;
     padding-top: 15px;
     position: absolute;
     bottom: 0px;
@@ -124,13 +147,21 @@ div#robocalls-celeb-form form.webform-client-form {
     margin: 0px;
     margin-bottom: 5px; }
     div#robocalls-celeb-form form.webform-client-form #edit-fb-preview .robocalls-fb-button-container {
-      width: 185px; }
+      width: 149px;
+      border-right: 1px solid #dbd9d8;
+      height: 52px;
+      margin-top: -13px;
+      padding-top: 16px; }
       div#robocalls-celeb-form form.webform-client-form #edit-fb-preview .robocalls-fb-button-container img {
         cursor: pointer; }
     div#robocalls-celeb-form form.webform-client-form #edit-fb-preview .robocalls-preview-button-container {
       float: right;
-      width: 90px;
-      margin-top: -10px; }
+      margin-right: 115px;
+      border-right: 1px solid #dbd9d8;
+      width: 104px;
+      height: 52px;
+      margin-top: -13px;
+      padding-top: 10px; }
       div#robocalls-celeb-form form.webform-client-form #edit-fb-preview .robocalls-preview-button-container p {
         display: none; }
       div#robocalls-celeb-form form.webform-client-form #edit-fb-preview .robocalls-preview-button-container h3 {

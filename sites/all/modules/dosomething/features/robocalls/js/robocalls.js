@@ -33,6 +33,8 @@
         });
       }
 
+      console.log($('.twitter-share-button').attr('src'));
+
       var timed = $('.robocalls-timed-form-times');
       if (timed.length > 0) {
         $('#edit-submitted-field-celeb-date-und-0-value-day, #edit-submitted-field-celeb-date-und-0-value-month, #edit-submitted-field-celeb-date-und-0-value-year').parent().hide();
