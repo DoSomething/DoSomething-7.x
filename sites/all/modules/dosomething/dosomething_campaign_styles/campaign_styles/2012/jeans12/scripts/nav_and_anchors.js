@@ -7,23 +7,26 @@
     var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
     var allAnchors = navAnchors + ', ' + contentAnchors;
     
-    // input highlighting
+    // variables for input highlighting
     var webformEmail = '#contact-form input[type="text"]';
     var webformCell = '#contact-form input[type="tel"]';
     var webformBoth = webformEmail + ', ' + webformCell;
+    
+    $(document).ready(function(){
+      $(webformEmail).focus().addClass('focusOutline');
+    });
+    $(webformBoth).focus(function(){
+      $(this).addClass('focusOutline');
+    });
+    $(webformBoth).blur(function() {
+      $(this).removeClass('focusOutline');
+    });
 
     $(allAnchors).click(function(event){
       $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-
-      if($(this).attr('href') == '/spit#header'){
+      if($(this).attr('href') == '/#header'){
         $(webformEmail).focus().addClass('focusOutline');
       }
-      $(webformBoth).focus(function(){
-        $(this).addClass('focusOutline');
-      });
-      $(webformBoth).blur(function() {
-        $(this).removeClass('focusOutline');
-      });
       return false;
     });
 
