@@ -69,7 +69,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         $success_message .= t('Ur password to login at DoSomething.org/teensforjeans is @pass. ', array('@pass' => $pass));
       }
       else {
-        $success_message .= t('Awesome! You\'ve been added to the drive at dosomething.org/teensforjeans. ');
+        $success_message .= t('Awesome! You\'re added to the drive at ds.org/tfj. ');
       }
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
@@ -105,12 +105,12 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
           $first_name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
         }
 
-        $alphaMsg = "Ur friend $first_name joined ur DoSomething Teens for Jeans team! Who else should be involved? Text back FTAF and we'll invite them too.";
+        $alphaMsg = "Ur friend $first_name joined ur DoSomething Teens for Jeans team! Who else should be involved? Text back TFJINVITE and we'll invite them too.";
         $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
       }
 
-      $success_message .= t('Want to invite more friends? Reply back w/ their cell #s separated by commas and we\'ll send them an invite for u!');
+      $success_message .= t('Want to invite more friends? Reply w/ their cell #s separated by commas and we\'ll send them an invite!');
       $state->setContext('sms_response', $success_message);
       $state->setContext('drives_invite_gid', $drives_invite_gid);
 

@@ -283,10 +283,10 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_ftaf');
   $activity->name = 'ftaf_process';
   $activity->title = 'Forward to a Friend';
-  $activity->alpha_optin = 129071;
+  $activity->alpha_optin = 131891;
   $activity->beta_optin = 129751;
-  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with FTAF if you want to invite more.');
-  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with FTAF.');
+  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with TFJINVITE if you want to invite more.');
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the drive again, text TFJJOIN. To invite ppl to ur drive, text TFJINVITE.');
   $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');
 
@@ -317,7 +317,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ftaf_prompt';
   $activity->title = 'Start prompt for FTAF';
-  $activity->question = t('Want to invite more friends? Reply back with their cell numbers separated by commas and we\'ll send them an invite for you!');
+  $activity->question = t('Let\'s invite more friends to your drive! Reply back with their cell numbers separated by commas. ex: 9185551234, 9185556789');
   $activity->inputs = array('start');
   $activity->outputs = array('strip_signature');
 
@@ -330,10 +330,10 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_ftaf');
   $activity->name = 'ftaf_process';
   $activity->title = 'Forward to a Friend';
-  $activity->alpha_optin = 129071;
+  $activity->alpha_optin = 131891;
   $activity->beta_optin = 129751;
-  $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with FTAF if you want to invite more.');
-  $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with FTAF.');
+  $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with TFJINVITE if you want to invite more.');
+  $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with TFJINVITE.');
   $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');
 
@@ -443,18 +443,23 @@ $dsmMsg = "FEED ME MOAAR.";
 drupal_set_message($dsmMsg);
 
   $alphaMobile = $form_state['values']['alpha'];
-  $beta0Mobile = !empty($form_state['values']['beta-0']) ? $form_state['values']['beta-0'] : NULL;
-  $beta1Mobile = !empty($form_state['values']['beta-1']) ? $form_state['values']['beta-1'] : NULL;
-  $beta2Mobile = !empty($form_state['values']['beta-2']) ? $form_state['values']['beta-2'] : NULL;
-  $beta3Mobile = !empty($form_state['values']['beta-3']) ? $form_state['values']['beta-3'] : NULL;
-  $beta4Mobile = !empty($form_state['values']['beta-4']) ? $form_state['values']['beta-4'] : NULL;
+  $beta0Mobile = $form_state['values']['beta-0'];
+  $beta1Mobile = $form_state['values']['beta-1'];
+  $beta2Mobile = $form_state['values']['beta-2'];
+  $beta3Mobile = $form_state['values']['beta-3'];
+  $beta4Mobile = $form_state['values']['beta-4'];
 
   $betaNumbers = array();
-  $betaNumbers[] = $beta0Mobile;
-  $betaNumbers[] = $beta1Mobile;
-  $betaNumbers[] = $beta2Mobile;
-  $betaNumbers[] = $beta3Mobile;
-  $betaNumbers[] = $beta4Mobile;
+  if (!empty($beta0Mobile))
+    $betaNumbers[] = $beta0Mobile;
+  if (!empty($beta1Mobile))
+    $betaNumbers[] = $beta1Mobile;
+  if (!empty($beta2Mobile))
+    $betaNumbers[] = $beta2Mobile;
+  if (!empty($beta3Mobile))
+    $betaNumbers[] = $beta3Mobile;
+  if (!empty($beta4Mobile))
+    $betaNumbers[] = $beta4Mobile;
 
   $firstName = $form_state['values']['first-name'];
 

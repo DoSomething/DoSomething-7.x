@@ -35,8 +35,8 @@ function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
   // hook_conductor_sms_keywords().
   $map = module_invoke_all('conductor_sms_keywords');
   foreach ($map as $key => $val) {
-    // If message is a keyword, find its corresponding workflow
-    if (strpos(strtolower($message), strtolower($key)) !== FALSE) {
+    // If message starts with a keyword, find its corresponding workflow
+    if (strpos(strtolower($message), strtolower($key)) === 0) {
       // If keyword found, always start a new workflow
       $keyword = $key;
       $startNewWorkflow = TRUE;

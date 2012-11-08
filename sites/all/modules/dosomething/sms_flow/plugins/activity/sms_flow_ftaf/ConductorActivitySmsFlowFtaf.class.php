@@ -30,8 +30,34 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
   public function run($workflow) {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
-    $message = $state->getContext('process_beta:message');
+    
     $drives_invite_gid = $state->getContext('drives_invite_gid');
+    if (empty($drives_invite_gid)) {
+      // If no drives_invite_gid has been set, get the value from Mobile Commons profile
+      $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
+
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+      curl_setopt($ch, CURLOPT_USERPWD, "developers@dosomething.org:80276608");
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($ch, CURLOPT_URL, $profileUrl);
+      $xml = curl_exec($ch);
+      curl_close();
+
+      $pattern = '#\<custom_column name\="drives_invite_gid"\>(.*?)\<\/custom_column\>#is';
+      preg_match($pattern, $xml, $patternMatches);
+      if (count($patternMatches) >= 2) {
+        $drives_invite_gid = trim($patternMatches[1]);
+      }
+    }
+
+    // NOTE: This feels hacky. Depending on what workflow this sms_flow_ftaf
+    // activity is in, we look for the numbers from different activities.
+    $message = $state->getContext('process_beta:message');
+    if (empty($message)) {
+      $message = $state->getContext('ftaf_prompt:message');
+    }
 
     $numbers = explode(',', $message);
 
