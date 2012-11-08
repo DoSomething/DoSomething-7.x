@@ -47,7 +47,20 @@
             'z-index'     : '3'
           });
         }
-        else if (st >= scrollLimitTop + $nav.outerHeight()) { // once $nav hits $footer
+        else if (st >= scrollLimitTop) { // once $nav hits $footer
+
+        // When printed
+        // scrollLimitTop != $nav.offset().top;
+        // however
+        // var scrollLimitTop = $nav.offset().top;
+
+        // Huh?
+
+        console.log('1.');
+        console.log($nav.offset().top);
+        console.log('2.');
+        console.log(scrollLimitTop);
+
           $nav
             .css('position', 'absolute')
             .css('top', 'auto')

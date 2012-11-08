@@ -5,13 +5,25 @@
   .section
     width: 100%
     margin: 2% auto
+    padding: 0 2%
   
   //			//
   //	#header
   //			//
 
+  #header
+    background-size: 30%
+    background-position: 100% 10%
+    h1
+      font-size: 3em
+    h2
+      font-size: 1.2em
+    #edit-submit
+      margin-top: 0.55em
+
   #contact-form
     margin: 2% 0 0 0
+    padding: 2%
     h3
       margin: 0
 
@@ -47,7 +59,6 @@
     margin: 2% 0
     padding: 2% 0 0 0
 
-
   //			//
   //	#action
   //			//
@@ -65,6 +76,37 @@
     width: 37%
     img
       margin: 5% auto
+
+  //			//
+  //	#content-module
+  //			//
+
+  #content-module
+    h1
+      font-size: 1.6em
+    img
+      display: none
+  
+  .make-a-difference
+    width: 85%
+    margin: 1em 1em 1em 0.5em
+
+  //      //
+  //  #psa
+  //      //
+
+  #psa img
+    width: 20%
+    float: left
+    margin-top: 5%
+
+  //      //
+  //  #prizing
+  //      //
+
+  #prizing p
+    width: 90%
+    margin: 1em auto
 
   //      //
   //  #search
@@ -127,10 +169,23 @@
 
 
 @media only screen and (max-width: 550px)
+
   .email-spit
     width: 100%
     img
       width: 50%
+
+  .socialWrapper
+    display: none
+
+  #header
+    background-size: 40%
+    background-position: 95% -60%
+    h1
+      font-size: 2.5em
+      margin-top: 3%
+    h2
+      font-size: 1em
 
 @media only screen and (max-width: 450px)
   .section
@@ -140,9 +195,14 @@
   //	#header
   //			//
 
-  #header #edit-submit
-    margin: 0.5em 0 0 0
-    float: left
+  #header
+    background-position: 95% -10%
+    #edit-submit
+      margin-top: 0.5em
+      float: left
+
+  .tagline
+    padding-left: 4%
 
   #edit-submitted-field-webform-email
     width: 68%
@@ -187,9 +247,11 @@
     margin: 0
 
   //			//
-  //	#content
-  //			//
+  //  #prizing
+  //      //
 
+  #prizing h1
+    font-size: 2em
 
   //			//
   //  #scholarship

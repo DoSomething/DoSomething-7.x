@@ -674,7 +674,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       margin: 0; }
     #cmp #header h1 {
       font-weight: 600;
-      font-size: 4em;
+      font-size: 3.5em;
       font-family: din-web;
       line-height: 1em; }
     #cmp #header h2 {
@@ -1008,6 +1008,17 @@ div[aria-labelledby="ui-dialog-title-1"] {
     font-size: 1.9em;
     padding: 0 0 0.3em 0;
     color: #b79c86; }
+  #cmp #psa_wrapper {
+    position: relative;
+    padding-bottom: 55%;
+    padding-top: 5%;
+    height: 0; }
+    #cmp #psa_wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {
@@ -1026,7 +1037,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     padding: 0 0 1em 0;
     margin: 0 0 -1em 0; }
   #cmp #faq h4 {
-    color: #1e1d1c;
+    color: #0c3565;
     cursor: pointer;
     background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
     background-repeat: no-repeat;
@@ -1206,9 +1217,20 @@ div[aria-labelledby="ui-dialog-title-1"] {
   @media only screen and (max-width: 775px) {
     #cmp .section {
       width: 100%;
-      margin: 2% auto; }
+      margin: 2% auto;
+      padding: 0 2%; }
+    #cmp #header {
+      background-size: 30%;
+      background-position: 100% 10%; }
+      #cmp #header h1 {
+        font-size: 3em; }
+      #cmp #header h2 {
+        font-size: 1.2em; }
+      #cmp #header #edit-submit {
+        margin-top: 0.55em; }
     #cmp #contact-form {
-      margin: 2% 0 0 0; }
+      margin: 2% 0 0 0;
+      padding: 2%; }
       #cmp #contact-form h3 {
         margin: 0; }
     #cmp #webform-component-start-header {
@@ -1243,6 +1265,20 @@ div[aria-labelledby="ui-dialog-title-1"] {
       width: 37%; }
       #cmp a.print-pdf img {
         margin: 5% auto; }
+    #cmp #content-module h1 {
+      font-size: 1.6em; }
+    #cmp #content-module img {
+      display: none; }
+    #cmp .make-a-difference {
+      width: 85%;
+      margin: 1em 1em 1em 0.5em; }
+    #cmp #psa img {
+      width: 20%;
+      float: left;
+      margin-top: 5%; }
+    #cmp #prizing p {
+      width: 90%;
+      margin: 1em auto; }
     #cmp .views-field-nothing {
       width: 100%; }
       #cmp .views-field-nothing .go-button {
@@ -1271,13 +1307,27 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .email-spit {
       width: 100%; }
       #cmp .email-spit img {
-        width: 50%; } }
+        width: 50%; }
+    #cmp .socialWrapper {
+      display: none; }
+    #cmp #header {
+      background-size: 40%;
+      background-position: 95% -60%; }
+      #cmp #header h1 {
+        font-size: 2.5em;
+        margin-top: 3%; }
+      #cmp #header h2 {
+        font-size: 1em; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 5% auto; }
-    #cmp #header #edit-submit {
-      margin: 0.5em 0 0 0;
-      float: left; }
+    #cmp #header {
+      background-position: 95% -10%; }
+      #cmp #header #edit-submit {
+        margin-top: 0.5em;
+        float: left; }
+    #cmp .tagline {
+      padding-left: 4%; }
     #cmp #edit-submitted-field-webform-email {
       width: 68%;
       margin: 1% 0; }
@@ -1298,6 +1348,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       width: 85%; }
     #cmp .views-field-nothing {
       margin: 0; }
+    #cmp #prizing h1 {
+      font-size: 2em; }
     #cmp #scholarship h1.condensed {
       font-size: 2.75em; }
     #cmp #social .col33 {
