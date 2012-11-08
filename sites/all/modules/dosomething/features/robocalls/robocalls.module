@@ -80,13 +80,6 @@ function robocalls_module_implements_alter(&$implementations, $hook) {
   }
 }
 
-function robocalls_fb_social_event_subscribe() {
-  $f = 'if (typeof Drupal.behaviors.fb !== "undefined") {
-    Drupal.behaviors.fb.fb_init = true;
-  }';
-  return $f;
-}
-
 /**
  *  Implements hook_form_alter()
  */
@@ -532,7 +525,7 @@ function robocalls_call_submit(&$form, &$form_state) {
    // If we've already called number(s), delete the submission because it failed.
    if (!empty($form_state['already_called'])) {
      $sid = $form_state['values']['details']['sid'];
-     #entity_delete('webform_submission_entity', $sid);
+     entity_delete('webform_submission_entity', $sid);
    }
 
    /**
