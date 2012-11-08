@@ -28,53 +28,22 @@ function dosomething_api_actnow_api() {
     'title',
     'uid',
     'created',
-    'changed'
+    'changed',
   );
 
-  // Allows to show only certain columns.
-  if (!empty($_GET['show'])) {
-    // Allowed values are set in this array.  More can be added by appending to this array.
-    $shows = array(
-      'all',
-      'title',
-      'body'
-    );
-
-    if (in_array($_GET['show'], $shows)) {
-      if ($_GET['show'] == 'all') {
-        $acts->fields('n', $default_fields);
-      }
-      else {
-        $show = array();
-        foreach (explode(',', $_GET['show']) AS $section) {
-          switch ($section) {
-            case 'title':
-              $show[] = 'title';
-            break;
-            case 'body':
-              $show[] = 'body';
-            break;
-          }
-        }
-
-        $acts->fields('n', $show);
-      }
-    }
-  }
-  else {
-    $acts->fields('n', $default_fields);
-  }
+  $acts->fields('n', $default_fields);
 
   // Action Guide body text
   $acts->join('field_data_body', 'b', 'b.entity_id = n.nid');
-  $acts->fields('b', array('body_value'));
+  $acts->addField('b', 'body_value', 'content');
 
   // Action guide short description
   $acts->join('field_data_field_description', 'd', 'd.entity_id = n.nid');
-  $acts->fields('d', array('field_description_value'));
+  $acts->addField('d', 'field_description_value', 'description');
 
   // Action Guide issues tags
-  $acts->join('field_data_taxonomy_vocabulary_5', 'i5', 'i5.entity_id = n.nid');
+  #$and = ' AND i5.taxonomy_vocabulary_5_tid = 28';
+  $acts->join('field_data_taxonomy_vocabulary_5', 'i5', 'i5.entity_id = n.nid' . $and);
   $acts->addExpression("GROUP_CONCAT(DISTINCT i5.taxonomy_vocabulary_5_tid)", 'issues_tags');
 
   // Action Guide who? tags
@@ -118,6 +87,30 @@ function dosomething_api_actnow_api() {
     $acts->condition('uid', intval($_GET['user']));
   }
 
+  // Searches for issues tags.
+  if (!empty($_GET['issue']) && intval($_GET['issue'])) {
+    $acts->addExpression('IF(FIND_IN_SET(' . intval($_GET['issue']) . ', GROUP_CONCAT(DISTINCT i5.taxonomy_vocabulary_5_tid)), 1, 0)', 'has_issues');
+    $acts->havingCondition('has_issues', 1);
+  }
+
+  // Searches for "Who?" tags
+  if (!empty($_GET['who']) && intval($_GET['who'])) {
+    $acts->addExpression('IF(FIND_IN_SET(' . intval($_GET['who']) . ', GROUP_CONCAT(DISTINCT i3.taxonomy_vocabulary_3_tid)), 1, 0)', 'has_who');
+    $acts->havingCondition('has_who', 1);
+  }
+
+  // Searches for "Time" tags
+  if (!empty($_GET['time']) && intval($_GET['time'])) {
+    $acts->addExpression('IF(FIND_IN_SET(' . intval($_GET['time']) . ', GROUP_CONCAT(DISTINCT i4.taxonomy_vocabulary_4_tid)), 1, 0)', 'has_time');
+    $acts->havingCondition('has_time', 1);
+  }
+
+
+  if (!empty($_GET['where']) && intval($_GET['where'])) {
+    $acts->addExpression('IF(FIND_IN_SET(' . intval($_GET['where']) . ', GROUP_CONCAT(DISTINCT i2.taxonomy_vocabulary_2_tid)), 1, 0)', 'has_where');
+    $acts->havingCondition('has_where', 1);
+  }
+
   // Sort by: Change this array to allow sorting by different columns.
   $allowed_sorts = array('created', 'changed', 'title');
 
@@ -155,29 +148,39 @@ function dosomething_api_actnow_api() {
     $no_html_tags = true;
   }
 
+  // Image field information
+  $image_fields = array(
+    'fid',
+    'filename',
+    'uri',
+    'filemime',
+    'filesize',
+    'timestamp'
+  );
+
   $a = $r->fetchAll();
   foreach ($a AS $key => $act) {
     // Creates a path parameter to show the node alias
-    $a["$key"]->path = drupal_lookup_path('alias', 'node/' . $act->nid);
-    if ($no_html_tags) {
-      $a["$key"]->body_value = strip_tags($a["$key"]->body_value);
-    }
-    // Places the image information in a sub array
-    $a["$key"]->media = array(
-      'image' => array(
-        'fid' => $act->fid,
-        'filename' => $act->filename,
-        'uri' => $act->uri,
-        'filemime' => $act->filemime,
-        'filesize' => $act->filesize,
-        'timestamp' => $act->timestamp,
-      )
-    );
+    $a["$key"]->path = url(drupal_lookup_path('alias', 'node/' . $act->nid), array('absolute' => TRUE));
 
-    // Removes leftover file information.
-    unset($a["$key"]->fid, $a["$key"]->filename, $a["$key"]->uri, $a["$key"]->filemime, $a["$key"]->filesize, $a["$key"]->timestamp);
+    // Explodes tags lists into sub arrays
+    $a["$key"]->issues_tags = explode(',', $a["$key"]->issues_tags);
+    $a["$key"]->who_tags = explode(',', $a["$key"]->who_tags);
+    $a["$key"]->time_tags = explode(',', $a["$key"]->time_tags);
+    $a["$key"]->where_tags = explode(',', $a["$key"]->where_tags);
+
+    if ($no_html_tags) {
+      $a["$key"]->content = strip_tags($a["$key"]->content);
+    }
+
+    // Places the image information in a sub array
+    $a["$key"]->media['image'] = array();
+    foreach ($image_fields AS $field) {
+      $a["$key"]->media['image']["$field"] = $act->{$field};
+      unset($a["$key"]->{$field});
+    }
   }
 
-  echo json_encode($a);
+  drupal_json_output($a);
   drupal_exit();
 }
