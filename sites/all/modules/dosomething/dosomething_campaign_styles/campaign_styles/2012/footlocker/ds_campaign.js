@@ -36,6 +36,14 @@
           }
         });
 
+        // Application Page Status Button
+        if($('#webform-client-form-724592')) {
+        $('#edit-actions').append('<p class="status-btn go-button"><a href="//www.dosomething.org/footlocker/apply/status/">Status Page</a></p>'); }
+
+        // Application Page Draft Message
+        if ($('.status').has("Submission saved")) {
+        $('.status').html('<p>Your application has been saved. To return to your status page and complete your recommendation requests, select "Status Page" at the bottom of the page</p>'); }
+
     }
   };
 })(jQuery);

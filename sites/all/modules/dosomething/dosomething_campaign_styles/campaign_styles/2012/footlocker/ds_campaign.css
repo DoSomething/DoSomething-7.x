@@ -708,6 +708,8 @@ hr.gray {
   #node-724592 .webform-client-form #edit-actions #edit-previous, #node-724592 .webform-client-form #edit-actions #edit-next, #node-724596 .webform-client-form #edit-actions #edit-previous, #node-724596 .webform-client-form #edit-actions #edit-next, #node-724597 .webform-client-form #edit-actions #edit-previous, #node-724597 .webform-client-form #edit-actions #edit-next, #node-724764 .webform-client-form #edit-actions #edit-previous, #node-724764 .webform-client-form #edit-actions #edit-next, #node-724859 .webform-client-form #edit-actions #edit-previous, #node-724859 .webform-client-form #edit-actions #edit-next, #node-724594 .webform-client-form #edit-actions #edit-previous, #node-724594 .webform-client-form #edit-actions #edit-next, #node-724595 .webform-client-form #edit-actions #edit-previous, #node-724595 .webform-client-form #edit-actions #edit-next {
     width: inherit !important;
     padding: 0 10px; }
+  #node-724592 .webform-client-form #edit-actions #edit-previous, #node-724592 .webform-client-form #edit-actions #edit-next, #node-724592 .webform-client-form #edit-actions #edit-draft, #node-724596 .webform-client-form #edit-actions #edit-previous, #node-724596 .webform-client-form #edit-actions #edit-next, #node-724596 .webform-client-form #edit-actions #edit-draft, #node-724597 .webform-client-form #edit-actions #edit-previous, #node-724597 .webform-client-form #edit-actions #edit-next, #node-724597 .webform-client-form #edit-actions #edit-draft, #node-724764 .webform-client-form #edit-actions #edit-previous, #node-724764 .webform-client-form #edit-actions #edit-next, #node-724764 .webform-client-form #edit-actions #edit-draft, #node-724859 .webform-client-form #edit-actions #edit-previous, #node-724859 .webform-client-form #edit-actions #edit-next, #node-724859 .webform-client-form #edit-actions #edit-draft, #node-724594 .webform-client-form #edit-actions #edit-previous, #node-724594 .webform-client-form #edit-actions #edit-next, #node-724594 .webform-client-form #edit-actions #edit-draft, #node-724595 .webform-client-form #edit-actions #edit-previous, #node-724595 .webform-client-form #edit-actions #edit-next, #node-724595 .webform-client-form #edit-actions #edit-draft {
+    margin-bottom: 15px; }
 #node-724592 h2.other, #node-724596 h2.other, #node-724597 h2.other, #node-724764 h2.other, #node-724859 h2.other, #node-724594 h2.other, #node-724595 h2.other {
   font-size: 28px;
   margin-top: 28px;
@@ -731,6 +733,15 @@ hr.gray {
     clear: both; }
   .fl-form-footer p {
     text-align: right; }
+
+.status-btn {
+  display: inline-block;
+  font-size: 24px;
+  padding-top: 13px; }
+  .status-btn a {
+    color: #333131; }
+    .status-btn a:hover {
+      text-decoration: none; }
 
 #node-724597 .description, #node-724596 .description, #node-724594 .description, #node-724595 .description {
   width: 300px; }
