@@ -66,7 +66,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         catch( Exception $e ) {
         }
 
-        $success_message .= t('Ur password to login at DoSomething.org/teensforjeans is @pass. ', array('@pass' => $pass));
+        $success_message .= t('Ur password to login at ds.org/tfj is @pass. ', array('@pass' => $pass));
       }
       else {
         $success_message .= t('Awesome! You\'re added to the drive at ds.org/tfj. ');
