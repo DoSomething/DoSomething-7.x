@@ -44,6 +44,8 @@ function dosomething_petitions_petition_reasons_content_type_render($subtype, $c
     );
   }
 
+  $signatures = array_reverse($signatures);
+
   $content = array();
   foreach ($signatures as $sig) {
     $content[] = array(
