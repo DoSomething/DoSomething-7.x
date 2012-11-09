@@ -39,7 +39,7 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
   }
 
   $n = node_load($nid);
-  $type = $n->type;
+  $type = ($n->type ? $n->type : 'drive');
 
   foreach ($beta_numbers AS $key => $field) {
   	$p = '';
