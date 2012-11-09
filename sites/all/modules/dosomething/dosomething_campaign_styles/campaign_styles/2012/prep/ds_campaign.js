@@ -129,7 +129,7 @@
     $("#edit-submitted-number-of-items").keyup(function() {
       var value = parseFloat($(this).val());
       if (isNaN(value)) value = 0;
-      $output.val(Math.round(value*0.85));
+      $output.val(Math.round(value*1));
     });  
 
     $.post('/webform-counter-field/725876/3', function (data) {
