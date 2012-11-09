@@ -43,7 +43,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
           $account->name = $name . '-' . $suffix;
         }
 
-        $pass = user_password(6);
+        $pass = strtoupper(user_password(6));
         require_once('includes/password.inc');
         $hashed_pass = user_hash_password($pass);
         $account->pass = $hashed_pass;
@@ -66,10 +66,10 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         catch( Exception $e ) {
         }
 
-        $success_message .= t('Ur password to login at ds.org/tfj is @pass. ', array('@pass' => $pass));
+        $success_message .= t('Ur password to login at DS.org/myTFJ is @pass. ', array('@pass' => $pass));
       }
       else {
-        $success_message .= t('Awesome! You\'re added to the drive at ds.org/tfj. ');
+        $success_message .= t('Awesome! You\'ve been added to the drive at DS.org/myTFJ. ');
       }
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
@@ -105,12 +105,12 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
           $first_name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
         }
 
-        $alphaMsg = "Ur friend $first_name joined ur DoSomething Teens for Jeans team! Who else should be involved? Text back TFJINVITE and we'll invite them too.";
+        $alphaMsg = "Ur friend $first_name accepted your invite to join ur DoSomething Teens for Jeans team! Who else should be involved? Text back TFJINVITE and we'll invite them too.";
         $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
       }
 
-      $success_message .= t('Want to invite more friends? Reply w/ their cell #s separated by commas and we\'ll send them an invite!');
+      $success_message .= t('Who else should be involved? Respond with their phone #s and we\'ll invite them to the drive also');
       $state->setContext('sms_response', $success_message);
       $state->setContext('drives_invite_gid', $drives_invite_gid);
 
