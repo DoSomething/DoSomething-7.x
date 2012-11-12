@@ -7,7 +7,10 @@ div[role="main"] {
 #share-page-header {
   text-align: center; }
   #share-page-header h2.but {
-    font-weight: 400; }
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 15px 0px 10px;
+    font-size: 32px; }
 
 #share-buttons {
   width: 405px;

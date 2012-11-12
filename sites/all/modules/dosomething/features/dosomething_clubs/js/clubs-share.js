@@ -21,7 +21,7 @@
 				}
 
 				$('#' + rel + '-share-container').toggle();
-				Drupal.behaviors.clubsShare.switch_image_and_button(rel);
+				//Drupal.behaviors.clubsShare.switch_image_and_button(rel);
 				return false;
 			});
 
