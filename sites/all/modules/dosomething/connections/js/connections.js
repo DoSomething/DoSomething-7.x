@@ -94,6 +94,9 @@
       }
 
       var pic = '';
+      if ($('.og_dialog').length > 0) {
+        $('.og_dialog').remove();
+      }
       var og = $('<div></div>').attr('class', 'og_dialog');
 
       var to = '';
