@@ -15,6 +15,29 @@ function connections_fb_social_app_id_alter(&$app_id) {
 	}
 }
 
+/*
+ * Implements hook_library().
+ */
+function connections_library() {
+  $libraries = array();
+  if ($path = libraries_get_path('fb-friend-selector')) {
+	  $libraries['facebook'] = array(
+	  	'title' => 'Facebook connections',
+	  	'version' => '1.0',
+	  	'js' => array(
+	  		drupal_get_path('module', 'connections') . '/js/connections.js' => array(),
+	        drupal_get_path('module', 'dosomething_general') . '/js/fb-friend-finder.js' => array(),
+	  		$path . '/tdfriendselector.js' => array(),
+	  	),
+	  	'css' => array(
+	  		$path . '/tdfriendselector.css' => array(),
+	  	),
+	  );
+  }
+
+  return $libraries;
+}
+
 /**
  *	Implements hook_menu()
  */
@@ -36,24 +59,6 @@ function connections_menu() {
   );
 
   return $items;
-}
-
-/*
- * Implements hook_library().
- */
-function connections_library() {
-  $libraries = array();
-  $libraries['fb-connections'] = array(
-    'title' => 'Facebook Connections',
-    'version' => '1.0',
-    'js' => array(
-      drupal_get_path('module', 'connections') . '/js/connections.js' => array(),
-    ),
-    'css' => array(
-      drupal_get_path('module', 'connections') . '/css/connections.css' => array(),
-    ),
-  );
-  return $libraries;
 }
 
 /**

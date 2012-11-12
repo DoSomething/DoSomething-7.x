@@ -1,0 +1,175 @@
+@import compass
+
+@mixin input-fields
+	float: left
+	width: 208px
+	height: 30px
+	box-sizing: border-box
+	+border-radius(10px)
+	font-size: 18px
+	padding-left: 10px
+	+box-shadow(#F1F1F1 0 0 5px 1px inset)
+	border: 1px solid #BFBFBF
+	margin: 5px
+
+div[role="main"]
+	position: relative
+
+#share-page-header
+	text-align: center
+
+	h2.but
+		font-weight: 400
+
+#share-buttons
+	width: 405px //650px
+	margin: 0px auto
+
+	div.share-container
+		float: left
+
+		p.button
+			width: 140px
+			margin: 15px auto
+
+			a
+				display: block
+				margin: 0px auto
+				background: #fedd7e
+				+border-radius(6px)
+				+box-shadow(0px 0px 5px #808080)
+				padding: 5px
+				text-align: center
+				font-family: din-web
+				font-size: 17pt
+				font-weight: 500
+				padding-top: 10px
+
+				&.gray
+					background: transparent
+					border: 1px solid #dcdada
+					+box-shadow(none)
+					color: #dcdada
+
+		&#cell-share
+			margin-right: 75px
+			display: none
+
+		&#fb-share
+			margin-right: 75px
+
+		&#email-share
+			// Nothing yet
+
+#email-share-container
+	clear: both
+	display: none
+
+	ul
+		list-style-type: none
+		margin: 0
+		padding: 0
+
+		li
+			border-right: 1px solid #dcdada
+			height: 122px
+			width: 214px
+			float: left
+			text-align: center
+			box-sizing: border-box
+			font-size: 18pt
+			font-family: din-web
+
+			.email-share-type-image
+				height: 48px
+
+				&.gmail, &.my
+					padding-top: 10px
+
+			&:last-child
+				border-right: 0px
+
+	#manual-emails
+		width: 655px
+		margin: 0px auto
+		display: none
+
+		.email-share-email
+			@include input-fields
+
+
+	p#rather
+		text-align: center
+		font-size: 12pt
+
+		a
+			text-decoration: underline
+
+#cell-share-container
+	clear: both
+	display: none
+
+	#manual-cells
+		width: 655px
+		margin: 0px auto
+
+		.cell-share-cell
+			@include input-fields
+
+#fb-share-container
+	clear: both
+	display: none
+
+a.add-more
+	display: block
+	text-align: right
+	clear: both
+
+p#continue-to-club
+	clear: both
+	position: absolute
+	bottom: 5px
+	right: 5px
+
+#check-area
+	display: none
+
+#submit-emails-block
+	display: none
+	margin-top: 10px
+
+#invite-sent 
+	display: inline-block
+	margin-left: 15px
+
+.form-item-emails-list
+	display: none
+
+#response
+	max-height: 350px
+	overflow: auto
+	clear: both
+
+	ul
+		list-style-type: none
+		margin: 0px
+		padding: 0px
+
+		li
+			clear: both
+			border-bottom: 1px solid #000
+			padding: 10px
+			height: 40px
+
+			&:hover
+				background: #ebebeb
+				cursor: pointer
+
+			input, strong
+				float: left
+
+			strong
+				padding-left: 10px
+
+			span
+				float: right

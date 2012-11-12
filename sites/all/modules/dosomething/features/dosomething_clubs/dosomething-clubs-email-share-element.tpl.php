@@ -1,0 +1,2 @@
+<p class="email-share-type-image <?php echo strtolower($class); ?>"><?php echo l('<img src="/' . drupal_get_path('module', 'dosomething_clubs') . '/images/' . $image_uri . '" alt="" />', $uri, array('html' => TRUE)); ?></p>
+<p class="<?php echo strtolower($class); ?>"><?php echo l($type, $uri, array('attributes' => array('class' => strtolower($class)))); ?></p>

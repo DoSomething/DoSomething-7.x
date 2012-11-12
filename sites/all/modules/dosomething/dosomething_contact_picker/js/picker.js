@@ -1,72 +1,94 @@
 var authed = false;
 
 function service(s, path) {
-  $('#loading').show().html('<img src="/' + path + '/images/loading.gif" alt="" /> Loading.  Please wait...');
+  jQuery('#loading').show().html('<img src="/' + path + '/images/loading.gif" alt="" /> Loading.  Please wait...');
   eval(s).auth(path);
-  $('#connect-message').text('Invite friends to sign this petition');
+  //jQuery('#connect-message').text('Invite friends to sign this petition');
 }
 
 function prepare_clicks() {
-  $('#response').slideDown();
-  $('#check-all').click(function() {
-    $('input.email-checkbox').each(function() {
-      $(this).attr('checked', 'checked');
-      add_email($(this).parent().find('strong').html());
+  jQuery('#response').slideDown().css('overflow', 'auto');
+  jQuery('#check-all').click(function() {
+    jQuery('input.email-checkbox').each(function() {
+      jQuery(this).attr('checked', 'checked');
+      add_email(jQuery(this).parent().find('strong').html());
     });
 
     return false;
   });
 
-  $('#check-none').click(function() {
-    $('input.email-checkbox').each(function() {
-      $(this).attr('checked', false);
-      remove_email($(this).parent().find('strong').html());
+  jQuery('#check-none').click(function() {
+    jQuery('input.email-checkbox').each(function() {
+      jQuery(this).attr('checked', false);
+      remove_email(jQuery(this).parent().find('strong').html());
     });
 
     return false;
   });
 
+  //Drupal.ajax['edit-submit-emails'].options.beforeSubmit = function(form_values, element, options) {
+    // Something?
+  //}
+
+  var e;
   // Starting off with every checkbox checked: They need to be in the box
-  $('input.email-checkbox').each(function() {
-    var e = $(this).parent().find('strong').html();
+  jQuery('input.email-checkbox').each(function() {
+    e = jQuery(this).parent().find('strong').html();
     add_email(e);
   });
 
-  $('ul#blah li:not(.clicked)').addClass('clicked').click(function() {
-    var e = $(this).find('strong').html();
-    if ($('#email_list').html().indexOf(e) == -1) {
-      add_email(e);
-      $(this).find('input').attr('checked', 'checked');
+  jQuery('ul#blah li:not(.clicked)').addClass('clicked').click(function() {
+    var e = jQuery(this).find('strong').html();
+
+    var found = false;
+    for (i in emails) {
+      if (emails[i] == e) {
+        found = true;
+        break;
+      }
+    }
+
+    if (found) {
+      remove_email(e);
+      jQuery(this).find('input').attr('checked', false);
     }
     else {
-      remove_email(e);
-      $(this).find('input').attr('checked', false);
+      add_email(e);
+      jQuery(this).find('input').attr('checked', 'checked');
     }
   });
 }
 
+var emails = [];
 function add_email(email) {
-  if ($('#email_list').html().indexOf(email) == -1) {
-    $('#email_list').append(email + ', ');
-  }
+  emails.push(email);
+  //if (jQuery('#email_list').html().indexOf(email) == -1) {
+  //  jQuery('#email_list').append(email + ', ');
+  //}
 }
 
 function remove_email(email) {
-    var t = $('#email_list').html();
-    t = t.replace(email + ', ', '');
-    $('#email_list').html(t);
+  for (var key in emails) {
+    if (emails[key] == email) {
+      emails.splice(key, 1);
+    }
+  }
+
+  //var t = jQuery('#email_list').html();
+  //t = t.replace(email + ', ', '');
+  //jQuery('#email_list').html(t);*/
 }
 
 
 function submit_emails() {
-  var v = ($('#email_list').val());
-  $('#re').val(v);
-
+  jQuery('#re').val(emails.join(','));
   return true;
 }
 
-$(function() {
-  window.parent.hide_scraper_loader();
+jQuery(document).ready(function() {
+  if (typeof window.parent.hide_scraper_loader == 'function') {
+    window.parent.hide_scraper_loader();
+  }
 });
 
 function scraper_email(subject, body) {

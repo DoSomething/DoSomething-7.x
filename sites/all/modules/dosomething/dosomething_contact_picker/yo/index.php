@@ -91,7 +91,7 @@ class yahooauth {
 	    foreach ($list AS $email => $name) {
 	      $res .= '
 	      <li>
-	        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $email . '" id="' . $this->clean_email($email) . '" />
+	        <input type="checkbox" class="email-checkbox" checked="checked" name="emails[]" value="' . $email . '" id="' . $this->clean_email($email) . '" />
 	        <strong>' . $email . '</strong>
 	        <span>' . $name . '</span>
 	      </li>';
@@ -104,13 +104,21 @@ class yahooauth {
         echo <<< html
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
         <script>
-$(document).ready(function() {
-	var r = $('#response').html();
-        $('#response', window.opener.document).show().html(r);
-        window.opener.prepare_clicks();
-        $('#check-area, #send-emails', window.opener.document).show();
-        $('#loading', window.opener.document).hide();
-        window.close();
+	$(document).ready(function() {
+		var r = $('#response').html();
+		if (window.opener !== null) {
+		    $('#response', window.opener.document).show().html(r);
+		    window.opener.prepare_clicks();
+		    $('#check-area, #send-emails, #submit-emails-block', window.opener.document).show();
+		    $('#loading', window.opener.document).hide();
+		    window.close();
+		}
+		else {
+			$('#response').show().html(r);
+			prepare_clicks();
+			$('#check-area, #send-emails, #submit-emails-block').show();
+			$('#loading').hide();
+		}
     });
 </script>
 </head>

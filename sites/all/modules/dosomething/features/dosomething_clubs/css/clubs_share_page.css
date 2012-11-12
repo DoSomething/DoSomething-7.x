@@ -1,0 +1,171 @@
+div[role="main"] {
+  position: relative; }
+
+#share-page-header {
+  text-align: center; }
+  #share-page-header h2.but {
+    font-weight: 400; }
+
+#share-buttons {
+  width: 405px;
+  margin: 0px auto; }
+  #share-buttons div.share-container {
+    float: left; }
+    #share-buttons div.share-container p.button {
+      width: 140px;
+      margin: 15px auto; }
+      #share-buttons div.share-container p.button a {
+        display: block;
+        margin: 0px auto;
+        background: #fedd7e;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        -ms-border-radius: 6px;
+        -o-border-radius: 6px;
+        border-radius: 6px;
+        -webkit-box-shadow: 0px 0px 5px gray;
+        -moz-box-shadow: 0px 0px 5px gray;
+        box-shadow: 0px 0px 5px gray;
+        padding: 5px;
+        text-align: center;
+        font-family: din-web;
+        font-size: 17pt;
+        font-weight: 500;
+        padding-top: 10px; }
+        #share-buttons div.share-container p.button a.gray {
+          background: transparent;
+          border: 1px solid #dcdada;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          color: #dcdada; }
+    #share-buttons div.share-container#cell-share {
+      margin-right: 75px;
+      display: none; }
+    #share-buttons div.share-container#fb-share {
+      margin-right: 75px; }
+
+#email-share-container {
+  clear: both;
+  display: none; }
+  #email-share-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    #email-share-container ul li {
+      border-right: 1px solid #dcdada;
+      height: 122px;
+      width: 214px;
+      float: left;
+      text-align: center;
+      box-sizing: border-box;
+      font-size: 18pt;
+      font-family: din-web; }
+      #email-share-container ul li .email-share-type-image {
+        height: 48px; }
+        #email-share-container ul li .email-share-type-image.gmail, #email-share-container ul li .email-share-type-image.my {
+          padding-top: 10px; }
+      #email-share-container ul li:last-child {
+        border-right: 0px; }
+  #email-share-container #manual-emails {
+    width: 655px;
+    margin: 0px auto;
+    display: none; }
+    #email-share-container #manual-emails .email-share-email {
+      float: left;
+      width: 208px;
+      height: 30px;
+      box-sizing: border-box;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      border-radius: 10px;
+      font-size: 18px;
+      padding-left: 10px;
+      -webkit-box-shadow: #f1f1f1 0 0 5px 1px inset;
+      -moz-box-shadow: #f1f1f1 0 0 5px 1px inset;
+      box-shadow: #f1f1f1 0 0 5px 1px inset;
+      border: 1px solid #bfbfbf;
+      margin: 5px; }
+  #email-share-container p#rather {
+    text-align: center;
+    font-size: 12pt; }
+    #email-share-container p#rather a {
+      text-decoration: underline; }
+
+#cell-share-container {
+  clear: both;
+  display: none; }
+  #cell-share-container #manual-cells {
+    width: 655px;
+    margin: 0px auto; }
+    #cell-share-container #manual-cells .cell-share-cell {
+      float: left;
+      width: 208px;
+      height: 30px;
+      box-sizing: border-box;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      border-radius: 10px;
+      font-size: 18px;
+      padding-left: 10px;
+      -webkit-box-shadow: #f1f1f1 0 0 5px 1px inset;
+      -moz-box-shadow: #f1f1f1 0 0 5px 1px inset;
+      box-shadow: #f1f1f1 0 0 5px 1px inset;
+      border: 1px solid #bfbfbf;
+      margin: 5px; }
+
+#fb-share-container {
+  clear: both;
+  display: none; }
+
+a.add-more {
+  display: block;
+  text-align: right;
+  clear: both; }
+
+p#continue-to-club {
+  clear: both;
+  position: absolute;
+  bottom: 5px;
+  right: 5px; }
+
+#check-area {
+  display: none; }
+
+#submit-emails-block {
+  display: none;
+  margin-top: 10px; }
+
+#invite-sent {
+  display: inline-block;
+  margin-left: 15px; }
+
+.form-item-emails-list {
+  display: none; }
+
+#response {
+  max-height: 350px;
+  overflow: auto;
+  clear: both; }
+  #response ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px; }
+    #response ul li {
+      clear: both;
+      border-bottom: 1px solid black;
+      padding: 10px;
+      height: 40px; }
+      #response ul li:hover {
+        background: #ebebeb;
+        cursor: pointer; }
+      #response ul li input, #response ul li strong {
+        float: left; }
+      #response ul li strong {
+        padding-left: 10px; }
+      #response ul li span {
+        float: right; }

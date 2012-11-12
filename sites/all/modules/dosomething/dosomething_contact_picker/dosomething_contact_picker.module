@@ -205,6 +205,8 @@ function dosomething_contact_scraper_invite($nid) {
 	global $user, $language;
 	$node = node_load($nid);
 
+	echo '<pre>', print_r($_POST), '</pre>'; exit;
+
 	$emails = module_invoke_all('contact_scraper_emails');
 	if (isset($emails["{$node->type}"]['invited'])) {
 	  $e = $emails["{$node->type}"]['invited'];

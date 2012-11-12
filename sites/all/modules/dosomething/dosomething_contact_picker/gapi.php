@@ -57,12 +57,14 @@ if ($_POST['do'] == 'blah') {
       $n = $name[3];
       $e = $email[4];
 
-      $res .= '
-      <li>
-        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $e . '" id="' . clean_email($e) . '" />
-        <strong>' . $e . '</strong>
-        <span>' . $n . '</span>
-      </li>';
+      if (!empty($e)) {
+        $res .= '
+        <li>
+          <input type="checkbox" class="email-checkbox" checked="checked" name="emails[]" value="' . $e . '" id="' . clean_email($e) . '" />
+          <strong>' . $e . '</strong>
+          <span>' . $n . '</span>
+        </li>';
+      }
     }
 
     /*// Names
