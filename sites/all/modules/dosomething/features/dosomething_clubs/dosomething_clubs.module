@@ -878,21 +878,17 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
     $n = db_select('node', 'n')
       ->fields('n', array('nid', 'title'))
       ->condition('uid', $u[1])
-      #->condition('created', $form_state['build_info']['args'][0]->created)
       ->condition('type', 'club')
       ->orderBy('created', 'DESC')
       ->range(0, 1);
 
     $node = $n->execute()->fetchAll();
     $node = reset($node);
-
-    echo '!!!<pre>', print_r($node), '</pre>'; exit;
   }
 
   drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/clubs-share.js');
   drupal_add_css(drupal_get_path('module', 'dosomething_clubs') . '/css/clubs_share_page.css');
 
-  #drupal_add_js('http://code.jquery.com/jquery.js');
   drupal_add_js('https://apis.google.com/js/client.js');
   drupal_add_js(drupal_get_path('module', 'dosomething_contact_picker') . '/js/picker.js');
   drupal_add_js(drupal_get_path('module', 'dosomething_contact_picker') . '/services/google/google.js');

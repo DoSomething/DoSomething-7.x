@@ -58,7 +58,8 @@ div[role="main"] {
     #email-share-container ul li {
       border-right: 1px solid #dcdada;
       height: 122px;
-      width: 214px;
+      width: 250px;
+      margin: 0px;
       float: left;
       text-align: center;
       box-sizing: border-box;
@@ -93,7 +94,8 @@ div[role="main"] {
       margin: 5px; }
   #email-share-container p#rather {
     text-align: center;
-    font-size: 12pt; }
+    font-size: 12pt;
+    clear: both; }
     #email-share-container p#rather a {
       text-decoration: underline; }
 
