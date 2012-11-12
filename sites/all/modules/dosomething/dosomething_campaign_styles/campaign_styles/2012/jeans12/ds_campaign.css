@@ -110,6 +110,9 @@ body {
     box-shadow: none !important; }
   #cmp .pane-title {
     display: none; }
+  #cmp .panels-flexible-region-379-center, #cmp .panels-flexible-region-351-center {
+    width: 100%;
+    float: none; }
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
@@ -648,7 +651,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       position: relative;
       font-weight: 500;
       letter-spacing: 0.1em; }
-  #cmp .go-button, #cmp #edit-submit {
+  #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
     font-family: din-web;
     background: #ffcb15;
     margin: 4% 0 1%;
@@ -663,7 +666,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     border-radius: 5px; }
-    #cmp .go-button:hover, #cmp #edit-submit:hover {
+    #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
       color: #06182e; }
   #cmp #header {
     background-image: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg");
@@ -832,6 +835,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 30%; }
     #cmp a.print-pdf img {
       width: 100%; }
+  #cmp #search p {
+    padding: 0 0 1em 0; }
+  #cmp #search .go-button {
+    margin: 0; }
   #cmp .pane-drive-search-panel-pane-1 form {
     width: 50%;
     margin: 1em auto;
@@ -922,7 +929,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       float: left;
       padding-right: 3%; }
   #cmp #scholarship {
-    overflow: visible; }
+    overflow: visible;
+    position: relative; }
     #cmp #scholarship img.scholar-copy {
       padding: 0; }
     #cmp #scholarship img {
@@ -939,7 +947,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       max-width: 600px; }
       #cmp #scholarship form label {
         color: white;
-        font-weight: 600; }
+        font-weight: 500;
+        text-align: left; }
       #cmp #scholarship form input[type="text"] {
         padding: 0.8em 0.5em;
         float: left;
@@ -953,7 +962,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
         border-radius: 0.3em; }
     #cmp #scholarship .go-button {
       margin: 4% 0 1% 0;
-      padding: 0.3em 0.7em; }
+      padding: 0.6em 0.7em;
+      height: 2em;
+      width: 8em; }
     #cmp #scholarship #campaign-opt-in {
       text-align: center; }
       #cmp #scholarship #campaign-opt-in a {
@@ -975,8 +986,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
       float: left;
       width: 48%;
       margin: 1%; }
-      #cmp #scholarship .scholar-input label {
-        text-align: left; }
       #cmp #scholarship .scholar-input input[type="text"] {
         width: 100%;
         margin: 1% 0; }
@@ -984,6 +993,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       width: 100%; }
     #cmp #scholarship .rules {
       font-size: 1em; }
+  #cmp label.friends {
+    padding-left: 0.3em; }
   #cmp .refer5 {
     background: #0c3565;
     width: 110%;
@@ -1027,30 +1038,32 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
-  #cmp #faq h4, #cmp #faq li, #cmp #faq p {
-    text-align: left; }
-  #cmp #faq li {
-    padding: 0 0 0 1.5em; }
-  #cmp #faq h1 {
-    font-size: 2em;
-    font-family: din-web;
-    text-transform: uppercase;
-    background: url("//files.dosomething.org/files/campaigns/jeans12/faq3.png");
-    background-repeat: no-repeat;
-    background-position: 50% 1.2em;
-    padding: 0 0 1em 0;
-    margin: 0 0 -1em 0; }
-  #cmp #faq h4 {
-    color: #0c3565;
-    cursor: pointer;
-    background: url("//files.dosomething.org/files/campaigns/jeans12/faq_arrows.png");
-    background-repeat: no-repeat;
-    background-position-y: 0.4em;
-    padding: 0.3em 1.2em; }
-  #cmp #faq h4.activeFAQ {
-    background-position-y: -1.4em; }
-  #cmp #faq .go-button {
-    margin: 0 0 1% 0; }
+  #cmp #faq {
+    padding-bottom: 3%; }
+    #cmp #faq h4, #cmp #faq li, #cmp #faq p {
+      text-align: left; }
+    #cmp #faq li, #cmp #faq div {
+      padding: 0 0 0 1.5em; }
+    #cmp #faq h1 {
+      font-size: 2em;
+      font-family: din-web;
+      text-transform: uppercase;
+      background: url("//files.dosomething.org/files/campaigns/jeans12/faq3.png");
+      background-repeat: no-repeat;
+      background-position: 50% 1.2em;
+      padding: 0 0 1em 0;
+      margin: 0 0 -1em 0; }
+    #cmp #faq h4 {
+      color: #0c3565;
+      cursor: pointer;
+      background: url("//files.dosomething.org/files/campaigns/jeans12/faq_arrows.png");
+      background-repeat: no-repeat;
+      background-position-y: 0.4em;
+      padding: 0.3em 1.2em; }
+    #cmp #faq h4.activeFAQ {
+      background-position-y: -3.8em; }
+    #cmp #faq .go-button {
+      margin: 0 0 1% 0; }
   #cmp #footer.section h1 {
     font-size: 2em;
     font-family: din-web;
@@ -1117,9 +1130,16 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .webform-client-form {
     box-shadow: none; }
   #cmp .already_submitted {
-    margin: 0 0 2% 0; }
+    margin: 0 auto;
+    width: 80%; }
+    #cmp .already_submitted img {
+      float: left; }
     #cmp .already_submitted .go-button {
-      margin: 0 0 1% 0; }
+      margin: 3% 0 6% 0;
+      font-size: 2em;
+      display: block;
+      width: 7em;
+      float: right; }
   #cmp #webform-component-join-header, #cmp #webform-component-start-header, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
     width: 25%;
     float: left; }
@@ -1134,6 +1154,36 @@ div[aria-labelledby="ui-dialog-title-1"] {
     float: none; }
   #cmp #sign-up input {
     margin-bottom: 10px; }
+  #cmp #checklist {
+    padding: 2%;
+    width: 100%;
+    overflow: hidden; }
+    #cmp #checklist p {
+      display: inline; }
+    #cmp #checklist a {
+      font-weight: 600; }
+      #cmp #checklist a img {
+        margin: 2% auto 0;
+        display: block;
+        width: 81%; }
+    #cmp #checklist fieldset {
+      display: none; }
+    #cmp #checklist #webform-component-header {
+      margin-bottom: 3%; }
+      #cmp #checklist #webform-component-header h3, #cmp #checklist #webform-component-header p {
+        padding: 0 2%; }
+    #cmp #checklist .divider {
+      margin: 3% 0 6%; }
+    #cmp #checklist .webform-component-checkboxes {
+      padding: 0.3em 0; }
+      #cmp #checklist .webform-component-checkboxes label:first-child {
+        display: none; }
+    #cmp #checklist .form-actions.form-wrapper {
+      float: none; }
+    #cmp #checklist .form-submit {
+      margin: 1em;
+      font-weight: 600;
+      text-transform: uppercase; }
   #cmp #report-back {
     border: none;
     width: 70%;
@@ -1223,6 +1273,13 @@ div[aria-labelledby="ui-dialog-title-1"] {
       width: 100%;
       margin: 2% auto;
       padding: 0 2%; }
+    #cmp .already_submitted {
+      width: 100%; }
+      #cmp .already_submitted img {
+        float: none; }
+      #cmp .already_submitted .go-button {
+        margin: 0 auto;
+        float: none; }
     #cmp #header {
       background-size: 30%;
       background-position: 100% 10%; }

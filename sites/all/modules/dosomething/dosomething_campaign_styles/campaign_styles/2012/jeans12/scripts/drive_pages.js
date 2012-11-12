@@ -8,6 +8,23 @@
     // invite module re-ordering
     $('.invite-module-email').after($('#teams-notification-area'));
 
+    // hack-tastic #checklist build, ahoy!
+    var checklist_labels = {
+      "7": "<a href=\"/my-team/jeans12#invite-popup\">Invite friends</a> to participate in your school's drive",
+      "6": "<a href=\"#social\" class\"jump_scroll\">Share stats</a> with your friends about homelessness on your social networks",
+      "5": "Start to market your drive and make sure people in your school know about it",
+      "4": "Talk to your school administrators and decide on a drop off location for the jeans",
+      "3": "<a href=\"/teensforjeans/report-back\">Tell us about your drive</a> and upload pics of your drive",
+      "2": "Call your <a href=\"#search\" class=\"jump_scroll\">local Aeropostale store</a> and coordinate a drop off time",
+      "1": "Thank everyone for participating in your drive"
+    };
+
+    for (var label in checklist_labels) {
+      if (checklist_labels.hasOwnProperty(label)) { 
+        $('#edit-submitted-check' + label + ' label.option').html('<p>' + checklist_labels[label] + '</p>');
+      }
+    }
+
     // twitter popup button on drive pages
     $('a.drive-twitter').click(function(event) {
       var width  = 650,

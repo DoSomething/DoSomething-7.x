@@ -62,9 +62,16 @@ label
   box-shadow: none
 
 .already_submitted
-  margin: 0 0 2% 0
+  margin: 0 auto
+  width: 80%
+  img
+    float: left
   .go-button
-    margin: 0 0 1% 0
+    margin: 3% 0 6% 0
+    font-size: 2em
+    display: block
+    width: 7em
+    float: right
 
 /* element floats */
 #webform-component-join-header, #webform-component-start-header, #edit-submitted-field-webform-email, #edit-submitted-field-webform-mobile, .form-actions.form-wrapper
@@ -92,6 +99,40 @@ label
   input
     margin-bottom: 10px
 
+//      //
+//  #checklist
+//      //
+
+#checklist
+  padding: 2%
+  width: 100%
+  overflow: hidden
+  p
+    display: inline
+  a
+    font-weight: 600
+    img
+      margin: 2% auto 0
+      display: block
+      width: 81%
+  fieldset
+    display: none
+  #webform-component-header
+    margin-bottom: 3%
+    h3, p
+      padding: 0 2%
+  .divider
+    margin: 3% 0 6%
+  .webform-component-checkboxes
+    padding: 0.3em 0
+    label:first-child
+      display: none
+  .form-actions.form-wrapper
+    float: none
+  .form-submit
+    margin: 1em
+    font-weight: 600
+    text-transform: uppercase
 
 //      //
 //  #report-back

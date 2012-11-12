@@ -209,6 +209,12 @@ a.print-pdf
 //  .search     - search -
 //      //
 
+#search
+  p
+    padding: 0 0 1em 0
+  .go-button
+    margin: 0
+
 /* search block */
 .pane-drive-search-panel-pane-1 form
   width: 50%
@@ -323,6 +329,8 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     padding-right: 3%
 
 #scholarship
+  overflow: visible
+  position: relative
   img.scholar-copy
     padding: 0
   img
@@ -330,7 +338,6 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     display: block
     margin: 0 auto
     padding: 2% 0
-  overflow: visible 
   h1
     color: #fff
   p
@@ -340,7 +347,8 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     max-width: 600px
     label
       color: #fff
-      font-weight: 600  
+      font-weight: 500  
+      text-align: left
     input[type="text"]
       padding: 0.8em 0.5em
       float: left
@@ -350,7 +358,9 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
       +border-radius(0.3em)
   .go-button
     margin: 4% 0 1% 0
-    padding: 0.3em 0.7em
+    padding: 0.6em 0.7em
+    height: 2em
+    width: 8em
   #campaign-opt-in
     text-align: center
     a
@@ -372,8 +382,6 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     float: left
     width: 48%
     margin: 1%
-    label
-      text-align: left
     input[type="text"]
       width: 100%
       margin: 1% 0
@@ -381,6 +389,9 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     width: 100%
   .rules
     font-size: 1em  
+
+label.friends
+  padding-left: 0.3em
 
 .refer5
   background: $spitPurple
@@ -455,9 +466,10 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
 //      //
 
 #faq 
+  padding-bottom: 3%
   h4, li, p
     text-align: left
-  li
+  li, div
     padding: 0 0 0 1.5em
   h1
     font-size: 2em
@@ -476,7 +488,7 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     background-position-y: 0.4em
     padding: 0.3em 1.2em
   h4.activeFAQ
-    background-position-y: -1.4em
+    background-position-y: -3.8em
   .go-button
     margin: 0 0 1% 0
 

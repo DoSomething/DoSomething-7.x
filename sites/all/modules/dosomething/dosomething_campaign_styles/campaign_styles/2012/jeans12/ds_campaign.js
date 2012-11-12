@@ -4,6 +4,13 @@
 
     // removes #edit-actions id (?)
     $('#cmp #edit-actions').removeAttr('id');
+    $('#cmp #edit-submit--2').removeAttr('id');
+
+    // AJAX 'POST' request counter injection
+    
+
+    // #checklist injection of footer
+    $('#webform-component-footer').appendTo('#checklist');
 
     // campaign logo injection
     var logo = '//files.dosomething.org/files/campaigns/jeans12/logo.png';
