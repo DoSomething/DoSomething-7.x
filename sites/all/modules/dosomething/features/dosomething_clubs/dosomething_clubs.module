@@ -923,7 +923,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
       '#suffix' => '</p>',
     ),
     'title' => array(
-      '#prefix' => '<h1 class="title" id="page-title">',
+      '#prefix' => '<h1 class="title">',
       '#markup' => t('Congrats, your club has been created!'),
       '#suffix' => '</h1>',
     ),

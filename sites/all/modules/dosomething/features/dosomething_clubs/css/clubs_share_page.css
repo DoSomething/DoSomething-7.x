@@ -1,6 +1,9 @@
 div[role="main"] {
   position: relative; }
 
+#page-title {
+  display: none; }
+
 #share-page-header {
   text-align: center; }
   #share-page-header h2.but {
