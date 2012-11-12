@@ -332,7 +332,6 @@ function sms_flow_default_conductor_workflows() {
   $activity->title = 'Forward to a Friend';
   $activity->alpha_optin = 131891;
   $activity->beta_optin = 129751;
-  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with TFJINVITE if you want to invite more.');
   $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with TFJINVITE.');
   $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');

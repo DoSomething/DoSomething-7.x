@@ -11,9 +11,6 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
   // Mobile Commons optin path for the invitee to be joined into
   public $beta_optin = 0;
 
-  // Response sent to inviter if process succeeds
-  public $response_success = '';
-
   // Response sent to inviter if process fails
   public $response_fail = '';
 
@@ -109,9 +106,47 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
       );
 
       $f['details']['nid'] = $drives_invite_gid;
+
+      // Remove any numbers that are already part of the drive
+      $teamUIDs = teams_get_member_uids($drives_invite_gid);
+      $numbersAlreadyJoined = array();
+      $count = count($vetted_numbers);
+      for ($i=$count-1; $i >= 0; $i--) {
+        $number = $vetted_numbers[$i];
+
+        // Check if this number is in the team already
+        $friendAccount = _sms_flow_find_user_by_cell($number);
+        if ($friendAccount && $friendAccount->uid) {
+          foreach ($teamUIDs as $uid) {
+            if ($friendAccount->uid == $uid) {
+              $numbersAlreadyJoined[] = $number;
+              unset($vetted_numbers[$i]);
+              break;
+            }
+          }
+        }
+      }
+
+      $response = '';
+      if (count($numbersAlreadyJoined) > 0) {
+        $response = 'These people are already part of the drive:';
+        foreach ($numbersAlreadyJoined as $number) {
+          $response .= ' ' . $number;
+        }
+        $response .= '. ';
+      }
+
+      if (count($vetted_numbers) > 0) {
+        $response .= 'We sent invites to these numbers:';
+        foreach ($vetted_numbers as $number) {
+          $response .= ' ' . $number;
+        }
+        $response .= '. ';
+      }
+
+      $response .= 'Text TFJINVITE if you want to invite more.';
+
       sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
-      
-      $response = $this->response_success;
     }
 
     $state->setContext('sms_response', $response);
