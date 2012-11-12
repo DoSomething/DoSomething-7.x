@@ -271,7 +271,8 @@ function dosomething_clubs_menu() {
   $items['clubs/share/%'] = array(
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_clubs_add_users', 2),
-    'access callback' => 'user_is_logged_in'
+    'access callback' => 'user_is_logged_in',
+    'title' => t('Invite friends to your club'),
   );
 
   return $items;
@@ -917,11 +918,11 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
   $form['header'] = array(
     '#type' => 'container',
     '#attributes' => array('id' => 'share-page-header'),
-    'exclamation' => array(
+    /*'exclamation' => array(
       '#prefix' => '<p>',
       '#markup' => '<img src="/' . drupal_get_path('module', 'dosomething_clubs') . '/images/share-page-header.png" alt="" />',
       '#suffix' => '</p>',
-    ),
+    ),*/
     'title' => array(
       '#prefix' => '<h1 class="title">',
       '#markup' => t('Congrats, your club has been created!'),
