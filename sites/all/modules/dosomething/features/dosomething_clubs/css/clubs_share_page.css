@@ -1,6 +1,9 @@
 div[role="main"] {
   position: relative; }
 
+.region-sidebar-first {
+  display: none; }
+
 #page-title {
   display: none; }
 
