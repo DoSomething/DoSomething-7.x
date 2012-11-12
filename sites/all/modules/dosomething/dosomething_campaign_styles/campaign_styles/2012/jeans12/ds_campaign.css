@@ -120,7 +120,12 @@ body {
   width: 215px;
   margin-top: 15px;
   -webkit-transition: background 5s ease-in;
-  transition: background 5s ease-in; }
+  transition: background 5s ease-in;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
   #block-dosomething-campaign-styles-campaign-nav .content {
     width: 100%; }
   #block-dosomething-campaign-styles-campaign-nav ul {
@@ -644,7 +649,12 @@ div[aria-labelledby="ui-dialog-title-1"] {
     text-align: center;
     border-top: 2px solid #d2d2d3;
     margin: 0 0 3% 0;
-    padding: 0.5em 0 0 0; }
+    padding: 0.5em 0 0 0;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; }
     #cmp .divider span {
       background: black;
       padding: 0.5em 0.8em;
@@ -838,7 +848,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #search p {
     padding: 0 0 1em 0; }
   #cmp #search .go-button {
-    margin: 0; }
+    margin: 2% 0 1% 0; }
   #cmp .pane-drive-search-panel-pane-1 form {
     width: 50%;
     margin: 1em auto;
@@ -998,7 +1008,12 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .refer5 {
     background: #0c3565;
     width: 110%;
-    margin: 0 0 0 -4.95%; }
+    margin: 0 0 0 -4.95%;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; }
     #cmp .refer5:before, #cmp .refer5:after {
       content: "";
       position: absolute;
@@ -1039,7 +1054,12 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
   #cmp #faq {
-    padding-bottom: 3%; }
+    padding-bottom: 3%;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; }
     #cmp #faq h4, #cmp #faq li, #cmp #faq p {
       text-align: left; }
     #cmp #faq li, #cmp #faq div {
@@ -1062,6 +1082,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       padding: 0.3em 1.2em; }
     #cmp #faq h4.activeFAQ {
       background-position-y: -3.8em; }
+    #cmp #faq div.divider {
+      padding: 0.5em 0 0 0; }
     #cmp #faq .go-button {
       margin: 0 0 1% 0; }
   #cmp #footer.section h1 {
