@@ -59,10 +59,20 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
       $message = $state->getContext('ftaf_prompt:message');
     }
 
-    $numbers = explode(',', $message);
+    // Phone numbers delimited by spaces and/or commas
+    $unvetted_numbers = array();
+    $comma_separated_msg = explode(',', $message);
+    foreach ($comma_separated_msg as $msg) {
+      $space_separated_msg = explode(' ', $msg);
+      foreach ($space_separated_msg as $msg2) {
+        if (!empty($msg2)) {
+          $unvetted_numbers[] = $msg2;
+        }
+      }
+    }
 
     $vetted_numbers = array();
-    foreach ($numbers as $number) {
+    foreach ($unvetted_numbers as $number) {
       // TODO: may also want to explode by spaces if people separated numbers by spaces instead of commas
       $number = trim($number);
       $number = preg_replace("/[^0-9]/", "", $number);
