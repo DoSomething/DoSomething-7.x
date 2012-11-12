@@ -255,7 +255,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_drive_invite_response');
   $activity->name = 'drive_invite_response';
   $activity->title = 'Process user rejection or acceptance of the invite';
-  $activity->accept_responses = array('y','yes','yea','ya');
+  $activity->accept_responses = array('y','yes','yea','ya','tfjjoin','tfj join');
   $activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive.');
   $activity->inputs = array('start');
   $activity->outputs = array('ask_name', 'process_beta', 'end');

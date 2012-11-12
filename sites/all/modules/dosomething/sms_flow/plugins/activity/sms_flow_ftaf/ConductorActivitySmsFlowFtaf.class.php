@@ -63,6 +63,7 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
 
     $vetted_numbers = array();
     foreach ($numbers as $number) {
+      // TODO: may also want to explode by spaces if people separated numbers by spaces instead of commas
       $number = trim($number);
       $number = preg_replace("/[^0-9]/", "", $number);
 
