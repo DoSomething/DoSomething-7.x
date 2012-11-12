@@ -35,7 +35,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
 
   // get the member list (use a function!)
 
-  $content['header']['title'] = dosomething_drives_drive_title($submission, $conf['team_name'], $leader_name);
+  $content['header']['title'] = dosomething_drives_drive_title($submission, $conf['team_name'], $leader_name, $campaign->title);
   $content['header']['description'] = dosomething_drives_drive_description($submission);
   $content['header']['countdown'] = dosomething_drives_drive_countdown($drive);
 
@@ -223,27 +223,44 @@ function dosomething_drives_drive_countdown($drive) {
   }
 }
 
-function dosomething_drives_drive_title($drive, $type, $leader) {
+function dosomething_drives_drive_title($drive, $type, $leader, $campaign) {
   switch($type) {
     case 'field_webform_school_reference':
       $entity = reset(entity_load('ds_school', array($drive->field_webform_school_reference[LANGUAGE_NONE][0]['target_id'])));
       $title = $entity->name;
+      $tagline = "{$entity->street}, {$entity->city}, {$entity->state} {$entity->zip}";
       break;
     default:
       $title = $drive->field_team_name[LANGUAGE_NONE][0]['value'];
       break;
   }
 
-  return array(
+  $subtitle = $campaign . ' Drive';
+
+  $return = array(
     '#type' => 'container',
     '#attributes' => array('class' => array('drive-info-title')),
-    'div' => array(
-      //'#markup' => "$leader's Drive",
-      '#markup' => $title,
-      '#prefix' => '<h2>',
-      '#suffix' => '</h2>',
+    'wrapper' => array(
+      'title' => array(
+        '#markup' => $title,
+        '#prefix' => '<h2>',
+        '#suffix' => '</h2>',
+      ),
+      'subtitle' => array(
+        '#markup' => $subtitle,
+        '#prefix' => '<h3>',
+        '#suffix' => '</h3>'
+      ),
     ),
   );
+  if (isset($tagline)) {
+    $return['wrapper']['tagline'] = array(
+      '#markup' => $tagline,
+      '#prefix' => '<p>',
+      '#suffix' => '</p>',
+    );
+  }
+  return $return;
 }
 
 function dosomething_drives_drive_description($drive) {
