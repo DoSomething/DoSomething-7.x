@@ -858,7 +858,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #search p {
     padding: 0 0 1em 0; }
   #cmp #search .go-button {
-    margin: 2% 0 1% 0; }
+    margin: 0 1%; }
   #cmp .pane-drive-search-panel-pane-1 form {
     width: 50%;
     margin: 1em auto;
