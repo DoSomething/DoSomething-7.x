@@ -412,6 +412,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
   width: 850px !important;
   margin: 0 auto; }
 
+.connect-with-facebook a {
+  margin: 0.6em auto; }
+
 .invite_friends {
   padding: 0.5% 2% 2% 2%; }
   .invite_friends h2, .invite_friends h3, .invite_friends p, .invite_friends label {
@@ -420,7 +423,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     text-align: center;
     font-weight: 600;
     font-size: 3em;
-    line-height: 3em;
+    line-height: 2em;
     text-transform: uppercase; }
   .invite_friends h3 {
     font-family: din-web;
@@ -433,7 +436,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 43%;
     float: left;
     border: 2px solid #cccccc;
-    height: 12em;
+    height: 15em;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -445,14 +448,15 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 14%;
     float: left; }
     .invite_friends .invite-module-or h3 {
-      color: white; }
+      color: white;
+      margin-top: 2em; }
   .invite_friends .facebook-action-connect {
     display: block;
     margin: 8% auto 0;
     width: 40%; }
   .invite_friends #edit-submit {
     font-family: din-web;
-    background: white;
+    background: #ffcb15;
     margin: 0 0 0 5%;
     font-size: 1.5em;
     height: 1.4em;
@@ -464,7 +468,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -o-border-radius: 5px;
     border-radius: 5px; }
     .invite_friends #edit-submit:hover {
-      background: #f2f2f2; }
+      background: #fbc300; }
 
 #teams-notification-area {
   float: left;
@@ -503,9 +507,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
 #edit-friend {
   background: white;
   color: #444444;
-  width: 15em;
+  width: 18em;
   height: 3em;
   font-size: 1em;
+  margin: 0 0 1em 0;
   padding: 0 0 0 0.5em;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -520,10 +525,12 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     margin: 0 15%;
     width: 70%;
-    height: 15em; }
+    height: 13em; }
 
   .invite_friends .invite-module-or {
     width: 100%; }
+    .invite_friends .invite-module-or h3 {
+      margin: 0; }
 
   #edit-friend {
     width: 66%; }
@@ -531,11 +538,14 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #teams-notification-area div {
     width: 80%;
     margin: 0 auto; } }
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 575px) {
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     margin: 0 2%;
     width: 95%;
-    height: 15em; } }
+    height: 15em; }
+
+  #edit-friend {
+    width: 100%; } }
 #cmp {
   /* search block */
   /* results block */

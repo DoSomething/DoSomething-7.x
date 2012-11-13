@@ -201,6 +201,9 @@ div[aria-labelledby="ui-dialog-title-1"]
   width: 850px !important
   margin: 0 auto
 
+.connect-with-facebook a
+  margin: 0.6em auto
+
 .invite_friends
   padding: 0.5% 2% 2% 2%
   h2, h3, p, label
@@ -209,7 +212,7 @@ div[aria-labelledby="ui-dialog-title-1"]
     text-align: center
     font-weight: 600
     font-size: 3em
-    line-height: 3em
+    line-height: 2em
     text-transform: uppercase
   h3
     font-family: din-web
@@ -222,7 +225,7 @@ div[aria-labelledby="ui-dialog-title-1"]
     width: 43%
     float: left
     border: 2px solid #ccc
-    height: 12em
+    height: 15em
     +border-radius(10px)
   .invite-module-facebook, .invite-module-or, .invite-module-email
     p
@@ -232,13 +235,14 @@ div[aria-labelledby="ui-dialog-title-1"]
     float: left
     h3
       color: #fff
+      margin-top: 2em
   .facebook-action-connect
     display: block
     margin: 8% auto 0
     width: 40%
   #edit-submit
     font-family: din-web
-    background: $spitYellow
+    background: $button
     margin: 0 0 0 5%
     font-size: 1.5em
     height: 1.4em
@@ -246,7 +250,7 @@ div[aria-labelledby="ui-dialog-title-1"]
     +noBorder
     +border-radius(5px)
     &:hover
-      background: darken($spitYellow, 5)
+      background: darken($button, 5)
 
 #teams-notification-area
   float: left
@@ -281,12 +285,12 @@ div[aria-labelledby="ui-dialog-title-1"]
 #edit-friend /* input element for "invite friend" */
   background: #fff
   color: #444
-  width: 15em
+  width: 18em
   height: 3em
   font-size: 1em
+  margin: 0 0 1em 0
   padding: 0 0 0 0.5em
   +border-radius(4px)
-
 
 @media only screen and (max-width: 900px)
   .invite-module /* wraps .invite_friends */
@@ -294,17 +298,21 @@ div[aria-labelledby="ui-dialog-title-1"]
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
     margin: 0 15%
     width: 70%
-    height: 15em
+    height: 13em
   .invite_friends .invite-module-or
     width: 100%
+    h3
+      margin: 0
   #edit-friend
     width: 66%
   #teams-notification-area div
     width: 80%
     margin: 0 auto
 
-@media only screen and (max-width: 550px)
+@media only screen and (max-width: 575px)
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
     margin: 0 2%
     width: 95%
     height: 15em
+  #edit-friend
+    width: 100%
