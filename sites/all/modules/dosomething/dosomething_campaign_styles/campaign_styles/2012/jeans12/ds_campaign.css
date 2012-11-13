@@ -1186,7 +1186,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 100%;
     overflow: hidden; }
     #cmp #checklist p {
-      display: inline; }
+      display: inline;
+      padding-left: 0.5em; }
     #cmp #checklist a {
       font-weight: 600; }
       #cmp #checklist a img {

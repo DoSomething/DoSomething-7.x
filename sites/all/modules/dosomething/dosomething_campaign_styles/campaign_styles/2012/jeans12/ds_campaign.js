@@ -6,9 +6,6 @@
     $('#cmp #edit-actions').removeAttr('id');
     $('#cmp #edit-submit--2').removeAttr('id');
 
-    // AJAX 'POST' request counter injection
-    
-
     // #checklist injection of footer
     $('#webform-component-footer').appendTo('#checklist');
 
