@@ -36,9 +36,6 @@ body {
   background: #b79c86;
   background: url("http://files.dosomething.org/files/campaigns/jeans12/bg.jpg"); }
 
-.page-team #contact-form #webform-component-start-header {
-  display: none; }
-
 .page-node-724776 #contact-form #webform-component-join-header {
   display: none; }
 
@@ -857,6 +854,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 30%; }
     #cmp a.print-pdf img {
       width: 100%; }
+  #cmp #search img {
+    width: 50%;
+    display: block;
+    margin: 0 auto 2%; }
   #cmp #search p {
     padding: 0 0 1em 0; }
   #cmp #search .go-button {
@@ -1116,13 +1117,17 @@ div[aria-labelledby="ui-dialog-title-1"] {
       text-align: left;
       padding: 0.2em 0 0 0;
       font-size: 0.9em; }
-  #cmp #header #edit-submit {
+  #cmp #header .form-submit {
+    font-weight: 600;
     margin-top: 0.3em;
     height: 2em; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 10px 4px #00adff; }
   #cmp #edit-submitted-field-webform-mobile-und-0-value {
     float: left; }
+  #cmp form.webform-client-form #edit-actions--2 {
+    height: auto;
+    text-align: inherit; }
   #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
     height: 3em;
     margin-top: 0.5em;
@@ -1141,7 +1146,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     line-height: 1.5em;
     text-transform: uppercase;
     text-align: left; }
-  #cmp .pane-campaign-sign-up #edit-submit {
+  #cmp .pane-campaign-sign-up .form-submit {
     position: static;
     margin: 1em auto 0;
     padding: 0.3em 0.7em; }

@@ -16,7 +16,8 @@ label
     padding: 0.2em 0 0 0
     font-size: 0.9em
  
-#header #edit-submit
+#header .form-submit
+  font-weight: 600
   margin-top: 0.3em
   height: 2em
 
@@ -25,6 +26,10 @@ label
 
 #edit-submitted-field-webform-mobile-und-0-value /* float to fix centered input on tablet */
   float: left
+
+form.webform-client-form #edit-actions--2 /* over-rides bad style declarations from site-wide stylesheet */
+  height: auto
+  text-align: inherit
 
 .pane-campaign-sign-up /* drupal name; contact-form wrapper */
   input[type="text"], input[type="tel"]
@@ -41,7 +46,7 @@ label
     line-height: 1.5em
     text-transform: uppercase
     text-align: left
-  #edit-submit
+  .form-submit
     position: static
     margin: 1em auto 0
     padding: 0.3em 0.7em
