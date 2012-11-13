@@ -6,9 +6,9 @@
 function dosomething_campaign_counter_menu() {
   $items = array();
 
-  $items['webform-counter-field/%/%'] = array(
+  $items['webform-counter-field/%'] = array(
     'page callback' => 'dosomething_campaign_counter_count_field',
-    'page arguments' => array(1, 2),
+    'page arguments' => array(1),
     'access callback' => TRUE,
     'delivery callback' => 'ajax_deliver',
   );
@@ -68,12 +68,19 @@ function dosomething_campaign_counter_preprocess_ds_counter(&$variables) {
   drupal_add_css(drupal_get_path('module', 'dosomething_campaign_counter') . '/css/ds_counter.css');
 }
 
-function dosomething_campaign_counter_count_field($nid, $cid) {
-  $count = db_select('webform_submitted_data', 'd')
-    ->condition('nid', $nid)
-    ->condition('cid', $cid);
-  $count->addExpression('sum(data)');
-  $count = $count->execute()->fetchField();
+function dosomething_campaign_counter_count_field($nid, $cid = NULL) {
+  $count = 0;
+  if (!empty($cid)) {
+    $count = db_select('webform_submitted_data', 'd')
+      ->condition('nid', $nid)
+      ->condition('cid', $cid);
+    $count->addExpression('sum(data)');
+    $count = $count->execute()->fetchField();
+  }
+  else {
+    module_load_include('inc', 'webform', 'includes/webform.submissions');
+    $count = webform_get_submission_count($nid);
+  }
   return array(
     '#type' => 'ajax',
     '#commands' => $count,
