@@ -11,6 +11,9 @@ function picsforpets_preprocess_page(&$variables) {
   if (empty($_SERVER['HTTPS'])) {
     header('location: https://' . $_SERVER['HTTP_HOST'] . request_uri());
   }
+  else {
+    $_SERVER['HTTPS'] = 'on';
+  }
 
   // On the landing page, don't add the footer menu.
   if (arg(0) == 'fb' && arg(1) == 'pics-for-pets' && !arg(2)) {
