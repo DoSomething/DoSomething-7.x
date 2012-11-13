@@ -168,30 +168,35 @@ function dosomething_general_menu() {
     'access callback' => TRUE
   );
 
-  $items['admin/search-by-email'] = array(
+  $items['admin/people/search-by-email'] = array(
     'page callback' => 'drupal_get_form',
+    'title' => t('Search by email'),
     'page arguments' => array('search_by_email_form'),
     'access arguments' => array('administer users'),
   );
 
-  $items['admin/search-by-email/results'] = array(
+  $items['admin/people/search-by-email/results'] = array(
     'page callback' => 'dosomething_general_search_by_email_results',
     'access arguments' => array('administer users'),
+    'type' => MENU_CALLBACK,
   );
 
-  $items['admin/search-by-email/results/export'] = array(
+  $items['admin/people/search-by-email/results/export'] = array(
     'page callback' => 'dosomething_general_pull_user_export',
     'access arguments' => array('administer users'),
+    'type' => MENU_CALLBACK,
   );
 
-  $items['admin/search-by-email/results/export/finished'] = array(
+  $items['admin/people/search-by-email/results/export/finished'] = array(
     'page callback' => 'dosomething_general_pull_user_export_finished',
     'access arguments' => array('administer users'),
+    'type' => MENU_CALLBACK,
   );
 
-  $items['admin/search-by-email/results/export/file'] = array(
+  $items['admin/people/search-by-email/results/export/file'] = array(
     'page callback' => 'dosomething_general_pull_user_export_file',
     'access arguments' => array('administer users'),
+    'type' => MENU_CALLBACK,
   );
 
   return $items;
@@ -299,7 +304,7 @@ function search_by_email_results($form, &$form_state) {
     }
 
     $_SESSION['users'] = $r;
-    drupal_goto('admin/search-by-email/results');
+    drupal_goto('admin/people/search-by-email/results');
   }
   exit;
 }
@@ -362,7 +367,7 @@ function dosomething_general_search_by_email_results() {
     ));
   }
 
-  $content .= l('+ Export User Data', 'admin/search-by-email/results/export');
+  $content .= l('+ Export User Data', 'admin/people/search-by-email/results/export');
   $content .= theme('pager');
   $content .= '<p />' . theme('table', array('header' => $header, 'rows' => $pages['rows'], 'attributes' => array('id' => 'user-lookup-results')));
   $content .= theme('pager');
@@ -391,11 +396,11 @@ function dosomething_general_pull_user_export_finished() {
     return t('Sorry, there was an error in creating your file.');
   }
 
-  $redirect = base_path() . 'admin/search-by-email/results/export/file';
+  $redirect = base_path() . 'admin/people/search-by-email/results/export/file';
   drupal_add_js('setTimeout(function() { window.location.href = "' . $redirect . '"; }, 2000);', 'inline');
 
   $download_link = t('Your export is complete! If your download does not begun automatically, !click!', array(
-    '!click' => l(t('Click here'), 'admin/search-by-email/results/export/file'))
+    '!click' => l(t('Click here'), 'admin/people/search-by-email/results/export/file'))
   );
 
   $output = '<p>' . $download_link . '</p>';
@@ -419,12 +424,12 @@ function dosomething_general_pull_user_export() {
     'finished' => 'dosomething_general_pull_user_batch_finished',
   );
   batch_set($batch);
-  batch_process('admin/search-by-email/results/export/finished');
+  batch_process('admin/people/search-by-email/results/export/finished');
 }
 
 function dosomething_general_pull_user_batch_finished($success, $results, $operations) {
   if ($success) {
-    $message = t('The User Data was successfully exported.  Your file should begin downloading automatically, or !click.', array('!click' => l(t('click here'), 'admin/search-by-email/results/export/file')));
+    $message = t('The User Data was successfully exported.  Your file should begin downloading automatically, or !click.', array('!click' => l(t('click here'), 'admin/people/search-by-email/results/export/file')));
     $warning = 'status';
   }
   else {
