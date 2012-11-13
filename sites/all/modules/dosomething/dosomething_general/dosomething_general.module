@@ -199,7 +199,32 @@ function dosomething_general_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['mytfj'] = array(
+    'page callback' => 'dosomething_general_find_tfj_team',
+    'access callback' => 'user_is_logged_in',
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
+}
+
+function dosomething_general_find_tfj_team() {
+  global $user;
+  $t = db_select('webform_submissions', 's')
+    ->fields('s', array('sid'))
+    ->condition('nid', 725896)
+    ->condition('uid', $user->uid)
+    ->condition('bundle', 'campaign_sign_up')
+    ->orderBy('sid', 'DESC')
+    ->range(0, 1);
+  $team = reset($t->execute()->fetchAll());
+
+  if (!empty($team->sid)) {
+    drupal_goto('team/jeans12/' . $team->sid);
+  }
+  else {
+    drupal_goto('teensforjeans');
+  }
 }
 
 function search_by_email_form($form, &$form_state) {

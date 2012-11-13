@@ -56,6 +56,7 @@ function dosomething_metatags_find_tag_by_path($path) {
 				$path = substr($path, 1);
 			}
 
+			$t = array();
 			foreach (explode("\r\n", $tag['pages']) AS $p) {
 				if ($rl == $i) {
 					if (trim(strval($p)) == $path || trim(strval($p)) == $path . '*') {
