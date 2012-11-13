@@ -12,7 +12,7 @@
     var $window = $(window);
     var windowBottom;
 
-    $('iframe').each(function (index, element) {
+    $('iframe').not('.cke_contents iframe').each(function (index, element) {
       var $element = $(element);
       replaceIframe($element);
     });
