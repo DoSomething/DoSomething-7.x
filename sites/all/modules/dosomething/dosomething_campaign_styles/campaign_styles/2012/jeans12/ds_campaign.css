@@ -659,18 +659,18 @@ div[aria-labelledby="ui-dialog-title-1"] {
     text-align: center;
     border-top: 2px solid #d2d2d3;
     margin: 0 0 3% 0;
-    padding: 0.5em 0 0 0;
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;
-    -ms-border-radius: 0 0 4px 4px;
-    -o-border-radius: 0 0 4px 4px;
-    border-radius: 0 0 4px 4px; }
+    padding: 0.5em 0 0 0; }
     #cmp .divider span {
       background: black;
       padding: 0.5em 0.8em;
       position: relative;
       font-weight: 500;
-      letter-spacing: 0.1em; }
+      letter-spacing: 0.1em;
+      -webkit-border-radius: 0 0 4px 4px;
+      -moz-border-radius: 0 0 4px 4px;
+      -ms-border-radius: 0 0 4px 4px;
+      -o-border-radius: 0 0 4px 4px;
+      border-radius: 0 0 4px 4px; }
   #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
     font-family: din-web;
     background: #ffcb15;
@@ -749,21 +749,20 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 40%;
     margin: 6% 0 0 0;
     padding: 0 0 0 5%;
-    border-left: 1px solid #d2d2d3; }
+    border-left: 2px solid #d2d2d3; }
     #cmp .drive-participants ul {
       max-height: 160px;
       overflow: scroll; }
   #cmp .drive-info-title h2 {
     color: #0c3565;
-    margin: 0 0 0.5em 0;
+    margin: 0 0 0.4em 0;
     font-family: din-web-reg, "Trebuchet MS", sans-serif;
     font-size: 2em;
     font-weight: 600;
     text-transform: uppercase;
-    border-bottom: 1px solid #cccccc; }
+    border-bottom: 2px solid #d2d2d3; }
   #cmp .drive-info-info {
-    width: 65%;
-    float: left; }
+    display: none; }
   #cmp .drive-info-where, #cmp .drive-info-when {
     font-weight: uppercase;
     font-weight: 600; }
@@ -772,18 +771,21 @@ div[aria-labelledby="ui-dialog-title-1"] {
       text-transform: none;
       color: #777777; }
   #cmp .drive-share {
-    width: 35%;
-    float: right; }
+    width: 100%;
+    float: left;
+    margin: 3% 0 0 0;
+    padding: 3% 0 0 0;
+    border-top: 2px solid #d2d2d3; }
     #cmp .drive-share h3 {
-      text-align: right; }
+      text-align: left; }
   #cmp .drive-facebook, #cmp .drive-twitter {
     width: 30px;
     height: 30px;
     display: inline-block;
     background-repeat: no-repeat;
     text-indent: -9999em;
-    margin: 0 0 0 5%;
-    float: right; }
+    margin: 0 3% 0 0;
+    float: left; }
     #cmp .drive-facebook:hover, #cmp .drive-twitter:hover {
       background-position-y: -30px; }
   #cmp .drive-twitter {
@@ -1182,7 +1184,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #sign-up input {
     margin-bottom: 10px; }
   #cmp #checklist {
-    padding: 2%;
+    padding: 0 2%;
     width: 100%;
     overflow: hidden; }
     #cmp #checklist p {
@@ -1340,9 +1342,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
       width: 100%; }
     #cmp .drive-participants {
       border-left: none;
-      border-top: 1px solid #d2d2d3;
+      border-top: 2px solid #d2d2d3;
       margin: 2% 0;
-      padding: 2% 0 0 0; }
+      padding: 4% 0 0 0;
+      padding: 4% 0 0 0; }
     #cmp #action.action-anonymous .col33, #cmp #action.action-participant .col33 {
       width: 95%;
       margin: 3% 0; }

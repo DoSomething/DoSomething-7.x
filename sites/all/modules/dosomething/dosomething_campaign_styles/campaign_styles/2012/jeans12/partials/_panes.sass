@@ -81,23 +81,22 @@
   width: 40%
   margin: 6% 0 0 0
   padding: 0 0 0 5%
-  border-left: 1px solid $spitGrey
+  border-left: 2px solid $spitGrey
   ul
     max-height: 160px
     overflow: scroll
 
 .drive-info-title h2 /* drive title */
   color: $spitPurple
-  margin: 0 0 0.5em 0
+  margin: 0 0 0.4em 0
   font-family: $din
   font-size: 2em
   font-weight: 600
   text-transform: uppercase
-  border-bottom: 1px solid #ccc
+  border-bottom: 2px solid $spitGrey
 
-.drive-info-info /* drive logistics */
-  width: 65%
-  float: left
+.drive-info-info /* not filled out on school pages */
+  display: none 
 
 .drive-info-where, .drive-info-when /* address and date styling */
   font-weight: uppercase
@@ -108,10 +107,13 @@
     color: #777
 
 .drive-share 
-  width: 35%
-  float: right
+  width: 100%
+  float: left
+  margin: 3% 0 0 0
+  padding: 3% 0 0 0
+  border-top: 2px solid $spitGrey
   h3
-    text-align: right
+    text-align: left
 
 .drive-facebook, .drive-twitter /* twitter and facebook sprites for drive sharing */
   width: 30px
@@ -119,8 +121,8 @@
   display: inline-block
   background-repeat: no-repeat
   text-indent: -9999em
-  margin: 0 0 0 5%
-  float: right
+  margin: 0 3% 0 0
+  float: left
   &:hover
     background-position-y: -30px
 

@@ -44,15 +44,15 @@
     });
 
     // drive page social media
-    $('.tw-share-drive').attr('data-text', 'It\'s time to #GiveASpit about cancer. A simple cheek swab is all it takes to save a life. Seriously. http://dosomething.org/spit');
+    $('.tw-share-drive').attr('data-text', 'Join a jeans collection drive in your school and get a 25% off coupon for a new pair at Aeropstale.');
     $('.fb-share-drive').click(function (e) {
       e.preventDefault();
       var fbObj = {
         method: 'feed',
         link: window.location.href,
         picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
-        name: 'Give A Spit',
-        description: 'Are you ready to save a life? It\'s easier than you think. Click here to get your cheek swabbed and you could end up saving a life.'
+        name: 'Teens for Jeans',
+        description: 'Join a jeans collection drive in your school and get a 25% off coupon for a new pair at Aeropstale. www.teensforjeans.org/'
       };
       FB.ui(fbObj);
     });

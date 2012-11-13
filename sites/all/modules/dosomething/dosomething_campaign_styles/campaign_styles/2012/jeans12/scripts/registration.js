@@ -8,8 +8,8 @@
     if ($('body').hasClass('not-logged-in')) {
       $('#super-secret-bindable-id').click(function (e) {
         e.preventDefault();
-        $('#dosomething-login-register-popup-form').attr('action', '/user/registration?destination=spit/sign-up');
-        $('#dosomething-login-login-popup-form').attr('action', '/user?destination=spit/sign-up');
+        $('#dosomething-login-register-popup-form').attr('action', '/user/registration?destination=teensforjeans/sign-up');
+        $('#dosomething-login-login-popup-form').attr('action', '/user?destination=teensforjeans/sign-up');
         $('#dosomething-login-register-popup-form').dialog({
           resizable: false,
           draggable: false,
