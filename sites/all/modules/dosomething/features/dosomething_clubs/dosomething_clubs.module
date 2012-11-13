@@ -1284,7 +1284,7 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
   $form['field_school_reference'][LANGUAGE_NONE][0]['target_id']['name']['#title'] = 'School name';
 
   // Finally, send them to the page where they can invite their friends.
-  $form['#submit'][9999] = 'dosomething_clubs_share_page';
+  $form['#submit'][] = 'dosomething_clubs_share_page';
 
   global $user;
   $profile = profile2_load_by_user($user, 'main');
