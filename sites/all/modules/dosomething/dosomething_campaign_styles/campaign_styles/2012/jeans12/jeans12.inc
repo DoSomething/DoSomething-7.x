@@ -32,7 +32,7 @@ $plugin = array(
   'menu' => array(
     array('title' => 'here\'s what you do', 'href' => '', 'fragment' => 'action'),
     array('title' => 'learn the issue', 'href' => '', 'fragment' => 'content-infographic'),
-    array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
+    array('title' => '$2,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
     array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
