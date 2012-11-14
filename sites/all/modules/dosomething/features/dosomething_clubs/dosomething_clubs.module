@@ -1158,12 +1158,6 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
     '#markup' => '</div>',
   );
 
-  $form['next'] = array(
-    '#prefix' => '<p id="continue-to-club">',
-    '#markup' => l(t('Continue to club...'), drupal_lookup_path('alias', 'node/' . $nid)),
-    '#suffix' => '</p>'
-  );
-
   $form['select_boxes'] = array(
     '#type' => 'container',
     '#attributes' => array('id' => 'check-area'),
@@ -1190,6 +1184,12 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
     'invite_sent' => array(
       '#markup' => '<div id="invite-sent"></div>',
     ),
+  );
+
+  $form['next'] = array(
+    '#prefix' => '<p id="continue-to-club">',
+    '#markup' => l(t('Continue to club...'), drupal_lookup_path('alias', 'node/' . $nid)),
+    '#suffix' => '</p>'
   );
 
   return $form;

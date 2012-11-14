@@ -140,9 +140,7 @@ a.add-more {
 
 p#continue-to-club {
   clear: both;
-  position: absolute;
-  bottom: 5px;
-  right: 5px; }
+  text-align: right; }
 
 #check-area {
   display: none; }
