@@ -36,6 +36,9 @@ body {
   background: #b79c86;
   background: url("http://files.dosomething.org/files/campaigns/jeans12/bg.jpg"); }
 
+.page-team #contact-form #webform-component-start-header {
+  display: none; }
+
 .page-node-724776 #contact-form #webform-component-join-header {
   display: none; }
 
@@ -195,6 +198,122 @@ body {
     border-radius: 3px; }
   .mangoDialog-ui .ui-icon.ui-icon-closethick {
     margin: -20px -13px !important; }
+
+#sign-up, #report-back {
+  width: 55%;
+  margin: 10%;
+  padding: 3%;
+  background: white;
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px; }
+  #sign-up .panel-pane, #sign-up form, #report-back .panel-pane, #report-back form {
+    padding: 0;
+    border: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+  #sign-up .pane-title, #sign-up legend, #sign-up #edit-submitted-field-webform-email, #sign-up #edit-submitted-field-webform-mobile, #report-back .pane-title, #report-back legend, #report-back #edit-submitted-field-webform-email, #report-back #edit-submitted-field-webform-mobile {
+    display: none; }
+  #sign-up .form-item, #report-back .form-item {
+    margin: 5% 0 0 0; }
+  #sign-up h2, #report-back h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: din-web-reg;
+    font-size: 1.2em; }
+  #sign-up input[type="text"], #report-back input[type="text"] {
+    width: 100%; }
+  #sign-up img, #report-back img {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+  #sign-up #edit-actions, #report-back #edit-actions {
+    height: auto;
+    text-align: inherit; }
+  #sign-up .go-button, #sign-up #edit-submit, #sign-up .form-submit, #report-back .go-button, #report-back #edit-submit, #report-back .form-submit {
+    font-family: din-web;
+    background: #ffcb15;
+    margin: 4% 0 1%;
+    padding: 0.6em 0.7em;
+    position: static;
+    font-size: 1.5em;
+    height: 2em;
+    display: inline-block;
+    color: #1e1d1c;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+    #sign-up .go-button:hover, #sign-up #edit-submit:hover, #sign-up .form-submit:hover, #report-back .go-button:hover, #report-back #edit-submit:hover, #report-back .form-submit:hover {
+      color: #06182e; }
+
+#sign-up input.form-autocomplete {
+  width: 100%; }
+
+#report-back {
+  border: none;
+  width: 70%;
+  padding: 1% 2%;
+  background: white; }
+  #report-back .pane-title,
+  #report-back .fb-social-comments-plugin {
+    display: none; }
+  #report-back form {
+    border: none; }
+    #report-back form #edit-submitted-how-many-people-participated-in-this-drive,
+    #report-back form #edit-submitted-how-many-potential-donors-were-registered {
+      width: 60px; }
+    #report-back form .form-item {
+      margin-top: 10px; }
+    #report-back form .fb-social-comments-plugin {
+      display: none; }
+    #report-back form #edit-submitted-taxonomy-vocabulary-5,
+    #report-back form #edit-submitted-field-webform-email,
+    #report-back form #edit-submitted-field-webform-mobile,
+    #report-back form #edit-submitted-field-webform-videos,
+    #report-back form #edit-submitted-field-webform-school-reference,
+    #report-back form #edit-submitted-field-webform-school,
+    #report-back form #edit-submitted-field-webform-school-zip {
+      display: none; }
+    #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
+      display: block !important;
+      margin: 10px !important; }
+
+#report-back .image-widget .form-submit {
+  height: 1em;
+  padding: 0.4em 1.3em 1.1em;
+  text-transform: uppercase;
+  font-weight: 600; }
+
+.go-button, #edit-submit, .form-submit {
+  font-family: din-web;
+  background: #ffcb15;
+  margin: 4% 0 1%;
+  padding: 0.3em 0.7em;
+  font-size: 1.5em;
+  height: 1.4em;
+  display: inline-block;
+  color: #1e1d1c;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  border: none;
+  line-height: 1em; }
+  .go-button:hover, #edit-submit:hover, .form-submit:hover {
+    color: #06182e; }
 
 .ui-widget-overlay {
   opacity: 0.9; }
@@ -672,9 +791,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
     font-family: din-web;
     background: #ffcb15;
     margin: 4% 0 1%;
-    padding: 0.4em 0.7em;
+    padding: 0.6em 0.7em;
     position: static;
-    font-size: 2em;
+    font-size: 1.5em;
     height: 1.4em;
     display: inline-block;
     color: #1e1d1c;
@@ -1105,8 +1224,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 0 0 -1em 0; }
   #cmp #footer.section .go-button {
     margin: 0 0 1% 0; }
-  #cmp label {
-    cursor: default; }
   #cmp #contact-form {
     background: #0c3565;
     width: 100%; }
@@ -1184,10 +1301,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #submitted-field-webform-email-add-more-wrapper, #cmp #submitted-field-webform-mobile-add-more-wrapper, #cmp #contact-form h3 {
     width: 90%;
     margin: 0 auto; }
-  #cmp #sign-up .form-wrapper {
-    float: none; }
-  #cmp #sign-up input {
-    margin-bottom: 10px; }
   #cmp #checklist {
     padding: 0 2%;
     width: 100%;
@@ -1219,90 +1332,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       margin: 1em;
       font-weight: 600;
       text-transform: uppercase; }
-  #cmp #report-back {
-    border: none;
-    width: 70%;
-    padding: 1% 2%;
-    background: white; }
-    #cmp #report-back .pane-title,
-    #cmp #report-back .fb-social-comments-plugin {
-      display: none; }
-    #cmp #report-back form {
-      border: none; }
-      #cmp #report-back form input.form-text, #cmp #report-back form textarea {
-        font-size: 14px; }
-      #cmp #report-back form label {
-        font-size: 1.4em; }
-      #cmp #report-back form #edit-submitted-how-many-people-participated-in-this-drive,
-      #cmp #report-back form #edit-submitted-how-many-potential-donors-were-registered {
-        width: 60px; }
-      #cmp #report-back form .form-item {
-        margin-top: 10px; }
-      #cmp #report-back form .fb-social-comments-plugin {
-        display: none; }
-      #cmp #report-back form #edit-submitted-taxonomy-vocabulary-5,
-      #cmp #report-back form #edit-submitted-field-webform-email,
-      #cmp #report-back form #edit-submitted-field-webform-mobile,
-      #cmp #report-back form #edit-submitted-field-webform-videos,
-      #cmp #report-back form #edit-submitted-field-webform-school-reference,
-      #cmp #report-back form #edit-submitted-field-webform-school,
-      #cmp #report-back form #edit-submitted-field-webform-school-zip {
-        display: none; }
-      #cmp #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
-        display: block !important;
-        margin: 10px !important; }
-  #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
-    font-family: din-web;
-    background: #ffcb15;
-    margin: 4% 0 1%;
-    padding: 0.3em 0.7em;
-    font-size: 1.5em;
-    height: 1.4em;
-    display: inline-block;
-    color: #1e1d1c;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    border: none;
-    line-height: 1em; }
-    #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
-      color: #06182e; }
-  #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
-  #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
-    display: none; }
-  #cmp #webform-client-form-724779 {
-    width: 100%;
-    max-width: 500px;
-    background: white;
-    padding: 2% 10% !important; }
-    #cmp #webform-client-form-724779 h1, #cmp #webform-client-form-724779 p {
-      text-align: center; }
-    #cmp #webform-client-form-724779 p {
-      margin-bottom: 10px; }
-    #cmp #webform-client-form-724779 input {
-      width: 100%;
-      border: 1px solid #f9f9f9; }
-    #cmp #webform-client-form-724779 .form-actions.form-wrapper {
-      width: 50% !important;
-      margin: 0 auto !important; }
-      #cmp #webform-client-form-724779 .form-actions.form-wrapper #edit-submit {
-        width: 100% !important; }
-    #cmp #webform-client-form-724779 #edit-submitted-field-webform-email, #cmp #webform-client-form-724779 #edit-submitted-field-webform-mobile {
-      width: 100% !important; }
-    #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference {
-      background: #f9f9f9;
-      border: 1px solid #e9e9e9 !important;
-      padding: 2% 4% !important;
-      margin-bottom: 10px !important; }
-      #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference label {
-        padding-top: 10px; }
-      #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference .fieldset-legend {
-        font-weight: bold !important;
-        font-size: 1.6em !important; }
-    #cmp #webform-client-form-724779 #edit-submitted-give-a-spit-action-kit-1 {
-      width: 1.5em !important; }
+  #cmp label {
+    cursor: default; }
   @media only screen and (max-width: 775px) {
     #cmp .section {
       width: 100%;

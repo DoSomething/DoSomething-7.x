@@ -1,3 +1,109 @@
+// style forms loaded outside #cmp wrapper
+
+//      //
+//  #sign-up & #report-back hacks
+//      //
+
+#sign-up, #report-back
+  width: 55%
+  margin: 10%
+  padding: 3%
+  background: #fff
+  +noBorder
+  +noShadow
+  +border-radius(10px)
+  .panel-pane, form
+    padding: 0
+    +noBorder
+    +noShadow
+  .pane-title, legend, #edit-submitted-field-webform-email, #edit-submitted-field-webform-mobile
+    display: none
+  .form-item
+    margin: 5% 0 0 0
+  h2
+    text-align: center
+    text-transform: uppercase
+    font-family: din-web-reg
+    font-size: 1.2em
+  input[type="text"]
+    width: 100%
+  img
+    +noShadow
+  #edit-actions
+    height: auto
+    text-align: inherit
+  .go-button, #edit-submit, .form-submit
+    font-family: din-web
+    background: $button
+    margin: 4% 0 1%
+    padding: 0.6em 0.7em
+    position: static
+    font-size: 1.5em
+    height: 2em
+    display: inline-block
+    color: $offBlack
+    +border-radius(5px)
+    &:hover
+      color: darken($spitPurple, 12)
+
+#sign-up
+  input.form-autocomplete
+    width: 100%
+
+//      //
+//  #report-back
+//      //
+
+#report-back
+  border: none
+  width: 70%
+  padding: 1% 2%
+  background: white
+  .pane-title,
+  .fb-social-comments-plugin
+    display: none
+  form
+    border: none
+    #edit-submitted-how-many-people-participated-in-this-drive,
+    #edit-submitted-how-many-potential-donors-were-registered
+      width: 60px
+    .form-item
+      margin-top: 10px
+    .fb-social-comments-plugin
+      display: none
+    #edit-submitted-taxonomy-vocabulary-5,
+    #edit-submitted-field-webform-email,
+    #edit-submitted-field-webform-mobile,
+    #edit-submitted-field-webform-videos,
+    #edit-submitted-field-webform-school-reference,
+    #edit-submitted-field-webform-school,
+    #edit-submitted-field-webform-school-zip
+      display: none
+    #edit-submitted-field-webform-pictures-und-0-upload-button
+      display: block !important
+      margin: 10px !important
+
+#report-back .image-widget .form-submit
+  height: 1em
+  padding: 0.4em 1.3em 1.1em
+  text-transform: uppercase
+  font-weight: 600
+  
+.go-button, #edit-submit, .form-submit
+  font-family: din-web
+  background: $button
+  margin: 4% 0 1%
+  padding: 0.3em 0.7em
+  font-size: 1.5em
+  height: 1.4em
+  display: inline-block
+  color: $offBlack
+  +border-radius(5px)
+  border: none
+  line-height: 1em
+  &:hover
+    color: darken($spitPurple, 12)
+
 //      //
 //  general overlay styling
 //      //
