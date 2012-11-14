@@ -150,6 +150,13 @@
             // Don't ask me why.
             $('.og_dialog').html('&nbsp;');
           }
+        },
+        close: function() {
+          if (things.modal) {
+            if (jQuery('#fb-modal').length > 0) {
+              jQuery('#fb-modal').remove();
+            }
+          }
         }
       }).queue(function() {
         // Pretend like it's a Facebook dialog feed
@@ -324,7 +331,8 @@
         selector_desc: config.feed_selector_desc,
         tagging: config.feed_tagging,
       	require_login: config.feed_require_login,
-        alert_msg: config.feed_dialog_msg
+        alert_msg: config.feed_dialog_msg,
+        modal: config.feed_modal || false,
       };
 
       if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._feed_callback == 'function') {
@@ -397,6 +405,21 @@
 
           // Create a mock button on the site to simulate a click-through on the friendSelector
           var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
+          if (things.modal) {
+            jQuery('body').append(jQuery('<div></div>').attr('id', 'fb-modal').css({
+              'position': 'absolute',
+              'z-index': 150,
+              'width': '100%',
+              'height': '100%',
+              'top': '0px',
+              'opacity': '0.5',
+              '-ms-filter': 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)',
+              'filter': 'alpha(opacity=50)',
+              '-moz-opacity': '0.5',
+              '-khtml-opacity': '0.5',
+              'background': '#000'
+            }));
+          }
           fbm.appendTo('body').queue(function() {
             Drupal.friendFinder.t = things;
             Drupal.friendFinder($('.fb-feed-friend-finder'), 'publish_stream', function (friends) {

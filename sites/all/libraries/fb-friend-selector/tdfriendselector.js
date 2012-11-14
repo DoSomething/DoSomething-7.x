@@ -239,6 +239,7 @@ var TDFriendSelector = (function(module, $) {
 			$buttonClose.bind('click', function(e) {
 				e.preventDefault();
 				hideFriendSelector();
+				if (typeof instanceSettings.callbackCancel === 'function') { instanceSettings.callbackCancel(); }
 			});
 
 			$buttonOK.bind('click', function(e) {

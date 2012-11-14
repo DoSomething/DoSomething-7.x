@@ -1000,7 +1000,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
         '#markup' => l('<img src="/' . drupal_get_path('module', 'dosomething_clubs') . '/images/fb-off.png" alt="" />', '#', array('attributes' => array('class' => array('share-button'), 'rel' => 'fb'), 'html' => TRUE)),
       ),
       'cell' => array(
-        '#prefix' => '<p id="fb-button" class="button">',
+        '#prefix' => '<p id="fb-button" class="go-button">',
         '#markup' => l(t('BY FACEBOOK'), '#', array('attributes' => array('class' => array('share-button'), 'rel' => 'fb'))),
         '#suffix' => '</p>',
       ),
@@ -1012,7 +1012,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
         '#markup' => l('<img src="/' . drupal_get_path('module', 'dosomething_clubs') . '/images/email-off.png" alt="" />', '#', array('attributes' => array('class' => array('share-button'), 'rel' => 'email'), 'html' => TRUE)),
       ),
       'cell' => array(
-        '#prefix' => '<p id="email-button" class="button">',
+        '#prefix' => '<p id="email-button" class="go-button">',
         '#markup' => l(t('BY EMAIL'), '#', array('attributes' => array('class' => array('share-button'), 'rel' => 'email'))),
         '#suffix' => '</p>',
       ),
@@ -1028,21 +1028,21 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
   $items = array(
     'gmail' => theme('dosomething_clubs_email_share_element', array(
       'image_uri' => 'gmail-scraper.png',
-      'type' => t('Get !type contacts', array('!type' => 'Gmail')),
+      'type' => t('Get !type Contacts', array('!type' => 'Gmail')),
       'class' => 'gmail',
       'uri' => '#',
       'onclick' => 'google',
     )),
     'yahoo' => theme('dosomething_clubs_email_share_element', array(
       'image_uri' => 'yahoo-scraper.png',
-      'type' => t('Get !type contacts', array('!type' => 'Yahoo')),
+      'type' => t('Get !type Contacts', array('!type' => 'Yahoo')),
       'class' => 'yahoo',
       'uri' => '#',
       'onclick' => 'yahoo',
     )),
     'my' => theme('dosomething_clubs_email_share_element', array(
       'image_uri' => 'email-scraper.png',
-      'type' => t('Use another email'),
+      'type' => t('Use Another Email'),
       'class' => 'my',
       'uri' => 'mailto:?subject=Join my club!&body=' . $e_template,
       'onclick' => ''

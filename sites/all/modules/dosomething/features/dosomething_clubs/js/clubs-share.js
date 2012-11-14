@@ -67,7 +67,8 @@
 		            'feed_description':    Drupal.t('Become a member of our DoSomething.org Club to take action together and make a difference in our community.'),
 		            'feed_selector':       null,
 		            'feed_allow_multiple': true,
-		            'feed_require_login':  true
+		            'feed_require_login':  true,
+		            'feed_modal': 		   true,
 				};
 
 				Drupal.behaviors.fb.feed(c, function(response) {

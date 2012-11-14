@@ -10,38 +10,28 @@ div[role="main"] {
 #share-page-header {
   text-align: center; }
   #share-page-header h2.but {
-    font-weight: 400;
+    font-weight: 500;
+    font-family: din-web;
     text-transform: uppercase;
     padding: 15px 0px 10px;
-    font-size: 32px; }
+    font-size: 28px; }
 
 #share-buttons {
   width: 405px;
   margin: 0px auto; }
   #share-buttons div.share-container {
     float: left; }
-    #share-buttons div.share-container p.button {
-      width: 140px;
-      margin: 15px auto; }
-      #share-buttons div.share-container p.button a {
-        display: block;
-        margin: 0px auto;
-        background: #fedd7e;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
-        border-radius: 6px;
-        -webkit-box-shadow: 0px 0px 5px gray;
-        -moz-box-shadow: 0px 0px 5px gray;
-        box-shadow: 0px 0px 5px gray;
-        padding: 5px;
-        text-align: center;
-        font-family: din-web;
-        font-size: 17pt;
-        font-weight: 500;
-        padding-top: 10px; }
-        #share-buttons div.share-container p.button a.gray {
+    #share-buttons div.share-container p.go-button {
+      margin: 15px auto;
+      text-align: center;
+      font-size: 15pt;
+      line-height: 1.5;
+      font-family: din-web;
+      font-weight: 600; }
+      #share-buttons div.share-container p.go-button a {
+        color: black;
+        text-decoration: none; }
+        #share-buttons div.share-container p.go-button a.gray {
           background: transparent;
           border: 1px solid #dcdada;
           -webkit-box-shadow: none;
@@ -70,7 +60,9 @@ div[role="main"] {
       text-align: center;
       box-sizing: border-box;
       font-size: 18pt;
-      font-family: din-web; }
+      font-family: din-web-reg; }
+      #email-share-container ul li a {
+        font-size: 16pt; }
       #email-share-container ul li .email-share-type-image {
         height: 48px; }
         #email-share-container ul li .email-share-type-image.gmail, #email-share-container ul li .email-share-type-image.my {
@@ -81,6 +73,10 @@ div[role="main"] {
     width: 655px;
     margin: 0px auto;
     display: none; }
+    #email-share-container #manual-emails p {
+      margin-left: 10px;
+      text-align: left;
+      margin-bottom: 0px; }
     #email-share-container #manual-emails .email-share-email {
       float: left;
       width: 208px;
@@ -101,7 +97,8 @@ div[role="main"] {
   #email-share-container p#rather {
     text-align: center;
     font-size: 12pt;
-    clear: both; }
+    clear: both;
+    padding-top: 15px; }
     #email-share-container p#rather a {
       text-decoration: underline; }
 

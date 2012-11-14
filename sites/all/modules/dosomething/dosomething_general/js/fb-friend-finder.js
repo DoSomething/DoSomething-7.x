@@ -70,6 +70,11 @@
         maxSelection   : (typeof options !== 'undefined' ? options.max_friends : 10),
         friendsPerPage : 7,
         autoDeselection: true,
+        callbackCancel: function() {
+          if (jQuery('#fb-modal').length > 0) {
+            jQuery('#fb-modal').remove();
+          }
+        },
       });
 
       Drupal.friendFinder.instance = friendSelector;
