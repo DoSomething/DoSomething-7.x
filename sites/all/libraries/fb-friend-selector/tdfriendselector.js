@@ -288,6 +288,7 @@ var TDFriendSelector = (function(module, $) {
 					e.preventDefault();
 					e.stopPropagation();
 					hideFriendSelector();
+					if (typeof instanceSettings.callbackSubmit === "function") { instanceSettings.callbackCancel(); }
 				}
 			});
 		};
