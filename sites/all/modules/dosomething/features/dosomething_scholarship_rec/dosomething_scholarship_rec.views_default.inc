@@ -1218,5 +1218,216 @@ None
   $handler->display->display_options['tab_options']['weight'] = '0';
   $export['application_queues'] = $view;
 
+  $view = new view;
+  $view->name = 'foot_locker_pulls';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'webform_submissions';
+  $view->human_name = 'Foot Locker Pulls';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'access all webform results';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Rec Request */
+  $handler->display->display_options['relationships']['reverse_field_application_webform_submission_entity']['id'] = 'reverse_field_application_webform_submission_entity';
+  $handler->display->display_options['relationships']['reverse_field_application_webform_submission_entity']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['reverse_field_application_webform_submission_entity']['field'] = 'reverse_field_application_webform_submission_entity';
+  $handler->display->display_options['relationships']['reverse_field_application_webform_submission_entity']['ui_name'] = 'Rec Request';
+  $handler->display->display_options['relationships']['reverse_field_application_webform_submission_entity']['label'] = 'Rec Request';
+  $handler->display->display_options['relationships']['reverse_field_application_webform_submission_entity']['required'] = 1;
+  /* Relationship: Rec */
+  $handler->display->display_options['relationships']['reverse_field_rec_request_webform_submission_entity']['id'] = 'reverse_field_rec_request_webform_submission_entity';
+  $handler->display->display_options['relationships']['reverse_field_rec_request_webform_submission_entity']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['reverse_field_rec_request_webform_submission_entity']['field'] = 'reverse_field_rec_request_webform_submission_entity';
+  $handler->display->display_options['relationships']['reverse_field_rec_request_webform_submission_entity']['relationship'] = 'reverse_field_application_webform_submission_entity';
+  $handler->display->display_options['relationships']['reverse_field_rec_request_webform_submission_entity']['ui_name'] = 'Rec';
+  $handler->display->display_options['relationships']['reverse_field_rec_request_webform_submission_entity']['label'] = 'Rec';
+  $handler->display->display_options['relationships']['reverse_field_rec_request_webform_submission_entity']['required'] = 0;
+  /* Relationship: Webform submissions: User */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['required'] = 1;
+  /* Field: Webform submissions: Sid */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'webform_submissions';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['sid']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['sid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['sid']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['sid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['sid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['sid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['sid']['separator'] = '';
+  $handler->display->display_options['fields']['sid']['format_plural'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'reverse_field_application_webform_submission_entity';
+  $handler->display->display_options['fields']['title']['label'] = 'Type';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 0;
+  /* Field: Webform submissions: Submitted */
+  $handler->display->display_options['fields']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['fields']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['fields']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['fields']['submitted']['relationship'] = 'reverse_field_application_webform_submission_entity';
+  $handler->display->display_options['fields']['submitted']['label'] = 'Rec Submitted';
+  $handler->display->display_options['fields']['submitted']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['submitted']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['submitted']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['submitted']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['submitted']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['submitted']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['submitted']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['submitted']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['submitted']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['submitted']['date_format'] = 'short';
+  /* Field: User: E-mail */
+  $handler->display->display_options['fields']['mail']['id'] = 'mail';
+  $handler->display->display_options['fields']['mail']['table'] = 'users';
+  $handler->display->display_options['fields']['mail']['field'] = 'mail';
+  $handler->display->display_options['fields']['mail']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['mail']['label'] = 'User E-mail';
+  $handler->display->display_options['fields']['mail']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['mail']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['mail']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['mail']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['mail']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['mail']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['mail']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['mail']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['mail']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['mail']['link_to_user'] = '0';
+  /* Field: Webform Submission: Email */
+  $handler->display->display_options['fields']['field_webform_email']['id'] = 'field_webform_email';
+  $handler->display->display_options['fields']['field_webform_email']['table'] = 'field_data_field_webform_email';
+  $handler->display->display_options['fields']['field_webform_email']['field'] = 'field_webform_email';
+  $handler->display->display_options['fields']['field_webform_email']['relationship'] = 'reverse_field_application_webform_submission_entity';
+  $handler->display->display_options['fields']['field_webform_email']['label'] = 'Recommender\'s Email';
+  $handler->display->display_options['fields']['field_webform_email']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_webform_email']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_webform_email']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_webform_email']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_webform_email']['field_api_classes'] = 0;
+  /* Sort criterion: Webform submissions: Sid */
+  $handler->display->display_options['sorts']['sid']['id'] = 'sid';
+  $handler->display->display_options['sorts']['sid']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['sid']['field'] = 'sid';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'OR',
+    2 => 'AND',
+  );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'scholarship_application_with_rec' => 'scholarship_application_with_rec',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 2;
+  /* Filter criterion: Content: Nid */
+  $handler->display->display_options['filters']['nid_1']['id'] = 'nid_1';
+  $handler->display->display_options['filters']['nid_1']['table'] = 'node';
+  $handler->display->display_options['filters']['nid_1']['field'] = 'nid';
+  $handler->display->display_options['filters']['nid_1']['relationship'] = 'reverse_field_application_webform_submission_entity';
+  $handler->display->display_options['filters']['nid_1']['value']['value'] = '724597';
+  $handler->display->display_options['filters']['nid_1']['group'] = 1;
+  /* Filter criterion: Content: Nid */
+  $handler->display->display_options['filters']['nid']['id'] = 'nid';
+  $handler->display->display_options['filters']['nid']['table'] = 'node';
+  $handler->display->display_options['filters']['nid']['field'] = 'nid';
+  $handler->display->display_options['filters']['nid']['relationship'] = 'reverse_field_application_webform_submission_entity';
+  $handler->display->display_options['filters']['nid']['value']['value'] = '724596';
+  $handler->display->display_options['filters']['nid']['group'] = 1;
+  /* Filter criterion: Webform submissions: Sid */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'webform_submissions';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['relationship'] = 'reverse_field_rec_request_webform_submission_entity';
+  $handler->display->display_options['filters']['sid']['operator'] = 'empty';
+  $handler->display->display_options['filters']['sid']['group'] = 2;
+
+  /* Display: Data export */
+  $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+  $handler->display->display_options['path'] = 'admin/footlocker/missing-recommendations';
+  $export['foot_locker_pulls'] = $view;
+
   return $export;
 }
