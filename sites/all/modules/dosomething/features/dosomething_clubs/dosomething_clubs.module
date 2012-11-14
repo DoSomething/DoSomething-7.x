@@ -8,6 +8,8 @@ include_once('dosomething_clubs.features.inc');
 
 define('DSCLUBS_ADMIN_ROLE', 3);
 define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
+#define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', );
+#define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', );
 
 /**
  * Implements hook_og_ui_get_group_admin_alter().
@@ -1207,17 +1209,20 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
  *  @param $gid (optional)
  *    The Group ID of the club.  If blank, the function will figure it out.
  *
+ *  @param $add_now (optional)
+ *    
+ *
  *  @return
  *    Nothing.  This function sends out invitations.
  */
-function dosomething_clubs_add_user_by_email_or_cell($contact, $nid, $gid = 0) {
+function dosomething_clubs_add_user_by_email_or_cell($contact, $nid, $gid = 0, $add_now = false) {
   if (empty($nid)) return;
 
   if ($gid == 0 && !empty($nid)) {
     $gid = og_get_group('node', $nid)->gid;
   }
 
-  if (!valid_email_address($contact)) {
+  if (!valid_email_address($contact) && !dosomething_general_valid_cell($contact)) {
     return;
   }
 
@@ -1981,6 +1986,16 @@ function dosomething_clubs_invite_message($contact, $gid, $is_reminder = FALSE, 
     }
   }
   else if (dosomething_general_valid_cell($contact)) {
+    /*$club = og_load_entity_from_group($gid);
+    $c = array(
+      'nid' => $club->nid,
+      'title' => $club->title,
+    );
+    $form_values['details']['nid'] = $c['title'];
+    sms_flow_start($contact, CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN, CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN, array($contact), $form_values, array(
+      'first_name' => $params['name'],
+      'club_name' => $c['title'],
+    ));*/
     #dosomething_general_mobile_commons_subscribe($contact, 126531, array('club_name' => t('Blah')));
   }
 }
