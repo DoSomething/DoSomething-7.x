@@ -33,8 +33,7 @@ class contact_scraper {
 	      'attributes' => array(
 	        'class' => array('invite-by-email-link'),
 	        'onclick' => 'return invite_find_emails(' . $node->nid . ')',
-	        'style' => 'display: block',
-	      ),
+	      ) + $attributes,
 	    )),
 	    '#prefix' => '<p id="invite-by-email">',
 	    '#suffix' => '</p>',
