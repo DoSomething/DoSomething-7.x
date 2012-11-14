@@ -384,41 +384,21 @@ function sms_flow_default_conductor_workflows() {
 }
 
 function sms_flow_team_invite_form($form, &$form_state, $gid) {
-  $form['first-name'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Your first name:',
-    '#size' => 13,
-  );
+  // alpha: textfield
+  // beta: textfield
+  // submit
+  // first-name: hidden
+  // invite-gid: hidden
   $form['alpha'] = array(
     '#type' => 'textfield',
     '#title' => 'Your Cell Number:',
-    '#size' => 14,
-  );
-
-  $form['beta-0'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Beta #0 Cell Number:',
     '#size' => 16,
   );
-  $form['beta-1'] = array(
+
+  $form['beta'] = array(
     '#type' => 'textfield',
-    '#title' => 'Beta #1 Cell Number:',
-    '#size' => 20,
-  );
-  $form['beta-2'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Beta #2 Cell Number:',
-    '#size' => 24,
-  );
-  $form['beta-3'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Beta #3 Cell Number:',
-    '#size' => 28,
-  );
-  $form['beta-4'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Beta #4 Cell Number:',
-    '#size' => 32,
+    '#title' => 'Friend\'s Cell Number:',
+    '#size' => 16,
   );
 
   $form['invite-gid'] = array(
@@ -435,43 +415,36 @@ function sms_flow_team_invite_form($form, &$form_state, $gid) {
   return $form;
 }
 
-// TODO: Function's a work in progress. Opt in paths are hardcoded for TFJ
 function sms_flow_team_invite_form_submit($form, &$form_state) {
-dsm($form_state['values']);
-$dsmMsg = "FEED ME MOAAR.";
-drupal_set_message($dsmMsg);
+drupal_set_message("FEED ME MOAR");
+
+  global $user;
+  $profile = profile2_load_by_user($user, 'main');
+  if ($profile) {
+    $inviter = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  }
+
+  if (empty($inviter)) {
+    $inviter = $form_state['values']['alpha'];
+  }
 
   $alphaMobile = $form_state['values']['alpha'];
-  $beta0Mobile = $form_state['values']['beta-0'];
-  $beta1Mobile = $form_state['values']['beta-1'];
-  $beta2Mobile = $form_state['values']['beta-2'];
-  $beta3Mobile = $form_state['values']['beta-3'];
-  $beta4Mobile = $form_state['values']['beta-4'];
+  $betaMobile = $form_state['values']['beta'];
 
   $betaNumbers = array();
-  if (!empty($beta0Mobile))
-    $betaNumbers[] = $beta0Mobile;
-  if (!empty($beta1Mobile))
-    $betaNumbers[] = $beta1Mobile;
-  if (!empty($beta2Mobile))
-    $betaNumbers[] = $beta2Mobile;
-  if (!empty($beta3Mobile))
-    $betaNumbers[] = $beta3Mobile;
-  if (!empty($beta4Mobile))
-    $betaNumbers[] = $beta4Mobile;
-
-  $firstName = $form_state['values']['first-name'];
+  if (!empty($betaMobile))
+    $betaNumbers[] = $betaMobile;
 
   $inviteGid = $form_state['values']['invite-gid'];
   // TODO: sms_flow_start expects NID value to be here. Might want to consider modifying that
   $form_state['values']['details']['nid'] = $inviteGid;
 
-  // TODO: $betaNumbers can instead just be an array
+  // TODO: opt in paths are hardcoded for TFJ
   sms_flow_start($alphaMobile, 131891, 129751, $betaNumbers, NULL, array(
       'tfj2013_inviter' => $firstName,
       'drives_invite_gid' => $inviteGid,
     )
-  );    
+  );
 
 }
 
