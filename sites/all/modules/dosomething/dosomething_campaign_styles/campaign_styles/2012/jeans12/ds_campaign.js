@@ -9,6 +9,13 @@
     // #checklist injection of footer
     $('#webform-component-footer').appendTo('#checklist');
 
+    // #sms-referral confirmation message injection
+    var sms_message = '<div id="sms-referral"><h3>Thanks for getting your friends involved!</h3></div>'
+    if(document.location.hash == '#sms-referral'){
+      $('#cmp').before(sms_message);
+      $('#sms-referral h3').delay(1000).fadeIn();
+    }
+
     // campaign logo injection
     var logo = '//files.dosomething.org/files/campaigns/jeans12/logo.png';
     $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a>');

@@ -199,6 +199,14 @@ body {
   .mangoDialog-ui .ui-icon.ui-icon-closethick {
     margin: -20px -13px !important; }
 
+#sms-referral h3 {
+  display: none;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  line-height: 2em;
+  text-transform: uppercase; }
+
 #sign-up, #report-back {
   width: 55%;
   margin: 10%;
