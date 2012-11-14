@@ -2,7 +2,7 @@
   Drupal.behaviors.dosomethingPetitions = {
     attach: function (context, settings) {
       if (window.location.hash && window.location.hash == '#contacts') {
-        $('.invite-by-email-link').click();
+        $('.hidden-email-link').click();
       }
       // check if the browser supports placeholder elements
       var placeholder = (function () {

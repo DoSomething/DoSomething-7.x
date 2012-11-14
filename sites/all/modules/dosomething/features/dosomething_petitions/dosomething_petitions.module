@@ -17,15 +17,16 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'petition') {
     global $user, $submitted_form;
 
-
-    $s = db_select('webform_submissions', 's')
-      ->fields('s', array('uid'))
-      ->condition('nid', $form_state['build_info']['args'][0]->nid)
-      ->execute()
-      ->fetchAll();
-    if (count($s) == 0) {
-      contact_scraper::add_scraper_button($form, 0, array('style' => 'display: none'));
-    }
+    $form['hidden-email-link'] = array(
+      '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
+        'attributes' => array(
+          'class' => array('hidden-email-link'),
+          'onclick' => 'return invite_find_emails(' . $node->nid . ')',
+          'style' => 'display: none',
+        ),
+      )),
+      '#weight' => 0,
+    );
 
     if (!user_is_logged_in()) {
       $form['fav_color'] = array(
