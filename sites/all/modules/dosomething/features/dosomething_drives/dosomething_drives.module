@@ -127,7 +127,7 @@ function dosomething_drives_menu() {
 }
 
 function dosomething_drives_join($gid, $uid = FALSE, $redirect = TRUE) {
-  teams_join_with_webform_submission($gid, $uid);
+  teams_join_with_webform_submission($gid, $uid, $redirect);
 }
 
 function dosomething_drives_get_drive_nid($campaign_group) {
