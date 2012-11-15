@@ -866,6 +866,8 @@ body {
     padding: 0.25% 0 2.5% 15%;
     display: block;
     clear: both; }
+  #cmp #social .fb-share {
+    width: 100%; }
   #cmp #social li {
     display: inline-block; }
   #cmp #impact p {

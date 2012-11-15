@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
+        afterReplaceText : 'Just register with DoSomething.org to join Grandparents Gone Wired!',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
@@ -35,7 +35,7 @@
 
 
       // contact form login
-      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/725867" class="sign-in-popup">log in</a></p>');
+      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/718394" class="sign-in-popup">log in</a></p>');
 
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
