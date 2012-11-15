@@ -101,18 +101,44 @@ body {
 @media only screen and (max-width: 775px) {
   #main-wrapper div[role="main"] {
     width: 100%; } }
-#cmp {
-  background: white; }
-  #cmp img {
+#cmp, #reset_defaults {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+  #cmp img, #reset_defaults img {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     -o-box-shadow: none !important;
     box-shadow: none !important; }
-  #cmp .pane-title {
+  #cmp .pane-title, #reset_defaults .pane-title {
     display: none; }
+  #cmp .panel-pane, #reset_defaults .panel-pane {
+    border: none !important; }
+
+#reset_defaults {
+  width: 100%; }
+
+#cmp {
+  background: white; }
   #cmp .panels-flexible-region-379-center, #cmp .panels-flexible-region-351-center {
     width: 100%;
     float: none; }
+
+#roadmap img {
+  width: 100%;
+  border: 15px solid white;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+#roadmap .go-button {
+  position: static;
+  width: 3.3em;
+  display: block;
+  margin: 1% auto 3%; }
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
@@ -799,7 +825,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     font-family: din-web;
     background: #ffcb15;
     margin: 4% 0 1%;
-    padding: 0.6em 0.7em;
+    padding: 0.4em 0.7em;
     position: static;
     font-size: 1.5em;
     height: 1.4em;
@@ -1295,6 +1321,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       float: left; }
     #cmp .already_submitted .go-button {
       margin: 3% 0 6% 0;
+      padding: 0.4em;
       font-size: 2em;
       display: block;
       width: 7em;

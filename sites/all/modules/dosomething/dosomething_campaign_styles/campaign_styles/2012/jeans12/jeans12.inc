@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'Give a Spit',
+  'title' => 'Teens for Jeans',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -31,7 +31,7 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'here\'s what you do', 'href' => '', 'fragment' => 'action'),
-    array('title' => 'learn the issue', 'href' => '', 'fragment' => 'content-infographic'),
+    array('title' => 'learn the issue', 'href' => '', 'fragment' => 'content-module'),
     array('title' => '$2,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
     array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),

@@ -95,16 +95,39 @@ body
   #main-wrapper div[role="main"]
     width: 100%
 
-#cmp 
-  background: #fff
+#cmp, #reset_defaults
+  +noBorder
+  +noShadow
   img
     +noShadow
   .pane-title
     display: none
+  .panel-pane
+    +noBorder
+
+#reset_defaults
+  width: 100%
+
+#cmp
+  background: #fff
   // honestly, what the hell?
   .panels-flexible-region-379-center, .panels-flexible-region-351-center
     width: 100%
     float: none
+
+//    //
+//  #roadmap
+//    //
+#roadmap
+  img
+    width: 100%
+    border: 15px solid #fff
+    +border-radius(4px)
+  .go-button
+    position: static
+    width: 3.3em
+    display: block
+    margin: 1% auto 3%
 
 #block-dosomething-campaign-styles-campaign-nav
   background: #fff
