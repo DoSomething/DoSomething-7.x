@@ -66,7 +66,7 @@
     var teensforjeans = 14;
     var jeans12 = 8;
     var urlCount = jeans12;
-    var nakedPages = ['/sign-up', '/report-back', 'next']
+    var nakedPages = ['/sign-up', '/report-back', 'next', '/roadmap']
     for (var i=0; i < nakedPages.length; i++){
       if (window.location.pathname.substring(urlCount,30) == nakedPages[i]){
         $('div.region-sidebar-first').hide();
