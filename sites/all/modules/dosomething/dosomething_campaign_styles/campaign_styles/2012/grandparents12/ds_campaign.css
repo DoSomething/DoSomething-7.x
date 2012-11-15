@@ -21,8 +21,12 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: #00a4e0 url("//files.dosomething.org/files/campaigns/grandparents12/header3.jpg") top center no-repeat; }
+  background: #00a4e0 url("//files.dosomething.org/files/campaigns/grandparents12/header3.jpg") no-repeat;
+  background-position: 50% 0%; }
 
+@media only screen and (max-width: 550px) {
+  body {
+    background-position: 49% 0%; } }
 .page-team #contact-form #webform-component-start-header {
   display: none; }
 
@@ -34,6 +38,7 @@ body {
     display: none; }
 
   #site-name {
+    position: relative;
     top: -53px;
     left: 23px; }
     #site-name a {
@@ -702,6 +707,9 @@ body {
       background: #007dc3; }
     #cmp #facts-content .skype101 {
       background: #353535; }
+    #cmp #facts-content .tech101 {
+      background: #f62000;
+      color: white; }
     #cmp #facts-content img.center {
       display: block;
       margin: 0 auto; }
@@ -1155,6 +1163,10 @@ body {
   #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
   #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
     display: none; }
+  @media only screen and (max-width: 1075px) {
+    #cmp #report-back {
+      margin-left: auto;
+      margin-right: auto; } }
   @media only screen and (max-width: 775px) {
     #cmp .section {
       width: 100%;
@@ -1195,13 +1207,32 @@ body {
       margin: 0; }
       #cmp .refer5:before, #cmp .refer5:after {
         display: none; }
+    #cmp #secondary-content .divider {
+      margin-bottom: 6%; }
+    #cmp #secondary-content .prizes-a, #cmp #secondary-content .prizes-b {
+      width: 95%;
+      margin: 3% 0;
+      float: none;
+      text-align: center; }
+      #cmp #secondary-content .prizes-a h2, #cmp #secondary-content .prizes-b h2 {
+        text-align: left;
+        font-size: 1.75em; }
+    #cmp #secondary-content img {
+      display: none; }
+    #cmp #secondary-content p {
+      width: 80%;
+      margin: 0 auto; }
     #cmp #social .col33 {
       width: 90%;
       margin: 5%; }
     #cmp #social img {
       float: left;
-      width: 40%; } }
+      width: 40%; }
+    #cmp #report-back {
+      width: 100%; } }
   @media only screen and (max-width: 550px) {
+    #cmp #header {
+      margin-top: 45%; }
     #cmp .email-spit {
       width: 100%; }
       #cmp .email-spit img {

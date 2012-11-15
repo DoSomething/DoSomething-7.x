@@ -121,7 +121,7 @@
       });
 
     // Report Back Counter Function
-    $.post('/webform-counter-field/724786/2', function (data) {
+    $.post('/webform-counter-field/726366/2', function (data) {
       $('#sb-counter').html(data);
     });
 
