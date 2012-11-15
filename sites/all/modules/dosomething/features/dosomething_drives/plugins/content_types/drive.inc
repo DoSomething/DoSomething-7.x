@@ -41,7 +41,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
 
   $content['content']['drive_info'] = dosomething_drives_drive_info($drive, $drive_nid, $group->gid, $is_admin);
   $content['content']['drive_share'] = dosomething_drives_drive_share();
-  $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin);
+  $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, $conf['team_name']);
 
   $content['#attached']['js'] = array(
     drupal_get_path('module', 'teams') . '/teams.js' => array(),
@@ -159,7 +159,7 @@ function dosomething_drives_drive_share() {
   );
 }
 
-function dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin) {
+function dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, $team_field) {
   global $user;
   $members = teams_get_member_uids($group->gid);
   $members = entity_load('user', $members);
@@ -182,7 +182,7 @@ function dosomething_drives_drive_participants($group, $leader_name, $campaign, 
       '#items' => $members,
       '#attributes' => array('class' => array('drive-participants-list')),
     ),
-    'action_link' => dosomething_drives_drive_action_link($group->gid, $leader_name, $campaign),
+    'action_link' => dosomething_drives_drive_action_link($group->gid, $leader_name, $campaign, $team_field),
   );
 }
 
@@ -275,7 +275,7 @@ function dosomething_drives_drive_description($drive) {
   );
 }
 
-function dosomething_drives_drive_action_link($gid, $leader, $campaign) {
+function dosomething_drives_drive_action_link($gid, $leader, $campaign, $team_field) {
   $join_url = "drive/join/$gid";
 
   $return = array(
@@ -311,16 +311,23 @@ function dosomething_drives_drive_action_link($gid, $leader, $campaign) {
       $add['onclick'] = "jQuery(body).dsAjaxPopup('$join_url', false, null, null); return false;";
     }
 
-    $return['button'] = array(
-      '#markup' => l("Join $leader's Drive", $join_url, array('attributes' => array('class' => array('go-button'))+$add)),
-    );
-    $return['start_drive'] = array(
-      '#type' => 'container',
-      '#attributes' => array('class' => array('drive-action-link-text')),
-      'text' => array(
-        '#markup' => 'or ' . l('Start', 'node/'.$campaign->nid) . ' your own drive',
-      ),
-    );
+    if ($team_field == 'field_webform_school_reference') {
+      $return['button'] = array(
+        '#markup' => l('Join your school', '', array('attributes' => array('class' => array('go-button'))+$add, 'fragment' => ' ', 'external' => TRUE)),
+      );
+    }
+    else {
+      $return['button'] = array(
+        '#markup' => l("Join $leader's Drive", $join_url, array('attributes' => array('class' => array('go-button'))+$add)),
+      );
+      $return['start_drive'] = array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('drive-action-link-text')),
+        'text' => array(
+          '#markup' => 'or ' . l('Start', 'node/'.$campaign->nid) . ' your own drive',
+        ),
+      );
+    }
   }
   return $return;
 }
