@@ -30,11 +30,11 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'here\'s what you do', 'href' => '', 'fragment' => 'action'),
-    array('title' => 'learn the issue', 'href' => '', 'fragment' => 'content-module'),
-    array('title' => '$2,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
-    array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
-    array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
+    array('title' => 'here\'s what you do', 'href' => '', 'fragment' => 'action', 'external' => TRUE),
+    array('title' => 'learn the issue', 'href' => '', 'fragment' => 'content-module', 'external' => TRUE),
+    array('title' => '$2,000 scholarship', 'href' => '', 'fragment' => 'scholarship', 'external' => TRUE),
+    array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact', 'external' => TRUE),
+    array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
     '#markup' => '<img src="http://files.dosomething.org/files/campaigns/jeans12/nav1.png"/><img src="http://files.dosomething.org/files/campaigns/jeans12/nav2.png"/><p>Got     questions? Email Farah at <a href="mailto:teensforjeans@dosomething.org">teensforjeans@dosomething.org</a>!</p>'
