@@ -26,11 +26,15 @@
     }
 
     function ffInit() {
-      FB.getLoginStatus(function(response) {
-        if(response.status == 'connected') {
-          FB.api('/me/permissions', parsePermissions);
-        }
-      });
+      var oldAsync = window.fbAsyncInit;
+      window.fbAsyncInit = function () {
+        oldAsync();
+        FB.getLoginStatus(function(response) {
+          if(response.status == 'connected') {
+            FB.api('/me/permissions', parsePermissions);
+          }
+        });
+      };
     }
 
     function parsePermissions(response) {
