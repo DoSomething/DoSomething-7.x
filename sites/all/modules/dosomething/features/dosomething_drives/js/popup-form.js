@@ -25,6 +25,8 @@
           link: window.location.href
         };
 
+        $.extend(fbObj, Drupal.friendFinder.fbObj);
+
         $('#teams-notification-area').html('Shared with your Facebook friends! Invite more friends below.');
         triggerPopup();
 
