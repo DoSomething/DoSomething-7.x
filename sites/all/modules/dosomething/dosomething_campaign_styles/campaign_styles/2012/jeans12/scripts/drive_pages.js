@@ -2,6 +2,13 @@
   Drupal.behaviors.jeans12_drive_pages = {
     attach: function (context, settings) {
 
+    Drupal.friendFinder.fbObj = {
+      message: 'TFJ Message',
+      name: 'TFJ Name',
+      picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
+      description: 'Description field',
+    }; 
+
     // remove #edit-submit from drive page buttons
     $('#drive .drive-participants-list .form-submit').val('x').removeAttr('id').addClass('remove_participant');
 
