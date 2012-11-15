@@ -1,0 +1,475 @@
+// PANES 
+
+//			//
+//	#header	
+//			//
+.section#header
+  background: transparent
+#header
+  margin-top: 4%
+  padding: 0
+  h1, h2
+    text-align: left
+    color: black
+    margin: 0
+  h1
+    margin: 0 0 0.5em 0
+    font-weight: 500
+    font-size: 2.4em
+  h2
+    text-align: center
+    text-transform: uppercase
+    font-size: 1.8em
+    font-family: $din
+    font-weight: 600
+    width: 80%
+    margin: 0 auto
+    line-height: 1.2em
+    span
+      color: $secondaryColor
+      font-weight: 700
+      padding: 0
+  span
+    padding: 0
+    text-align: center
+
+//			//
+//	#action
+//			//
+
+#action
+  margin-top: 0px
+  border-top-left-radius: 6px
+  border-top-right-radius: 6px
+  padding-bottom: 4%
+  .redflag
+    text-transform: uppercase
+    text-align: center
+    margin: 0 0 1.5% 0
+    padding: 0.5em 0 0 0
+    font-family: $din
+    span
+      color: white
+      background: $secondaryColor
+      padding: 0.5em 0.8em 0.35em
+      position: relative
+      top: -15px
+      font-weight: 400
+      letter-spacing: 0.1em
+      -webkit-border-bottom-left-radius: 6px
+      -webkit-border-bottom-right-radius: 6px
+      -moz-border-bottom-left-radius: 6px
+      -moz-border-bottom-right-radius: 6px
+      -o-border-bottom-left-radius: 6px
+      -o-border-bottom-right-radius: 6px
+      border-bottom-left-radius: 6px
+      border-bottom-right-radius: 6px
+  h3
+    line-height: 2em
+  p
+    text-align: left
+    
+  img
+    display: block
+    margin: 0 auto
+    -o-border-top-left-radius: 6px
+    -o-border-top-right-radius: 6px
+    -moz-border-top-left-radius: 6px
+    -moz-border-top-right-radius: 6px
+    -webkit-border-top-left-radius: 6px
+    -webkit-border-top-right-radius: 6px
+    border-top-left-radius: 6px
+    border-top-right-radius: 6px
+
+//			//
+//	#share
+//			//
+#share
+  text-align: left
+  .share-headline
+    float: left
+    width: 50%
+    margin: 4% 6% 0 4%
+    h1
+      clear: both
+      text-align : right
+      line-height: 1em
+      text-shadow: -1px -1px 1px #555
+      font-size: 5em
+    hr
+      border-top: 1px solid #A7222A
+      border-bottom: 1px solid #EC4852
+      margin-left: 15%
+    p
+      text-align: right
+      margin: 0.7em 0 0
+      font-size: 1.4em
+      font-weight: 300
+      line-height: 1.3em
+      text-shadow: -1px -1px 1px #555
+    img
+      float: right
+      position: relative
+      right: -30px
+      top: 0
+  .share-refer
+    float: right
+    width: 40%  
+  img
+    clear: both
+    display: block
+    margin: 0 auto
+    padding: 2% 0
+  overflow: visible 
+  h1
+    color: white
+  p
+    color: #fff
+  form
+    margin: 0 auto
+    max-width: 600px
+  label
+    font-weight: 300
+    color: white
+  input[type="text"]
+    padding: 1em 0.5em
+    width: 100%
+    border: 1px solid #AC1B24
+    border-radius: 9px
+  input[type="submit"]
+    padding-right: 10%
+    padding-left: 10%
+  .go-button
+    margin: 4% 0 1% 0
+    padding: 0.3em 0.7em
+  #campaign-opt-in
+    text-align: left
+    line-height: 1em
+    font-size: 0.8em
+    a
+      color: $mainCopy
+      font-weight: 500
+  .rules
+    font-size: 1em
+  form
+    padding: 0 0 0 4%
+    hr
+      border-top: 1px solid #A7222A
+      border-bottom: 1px solid #EC4852
+      width: 70%
+      margin: 0.75em auto
+.refer5
+  box-shadow: 0 8px 6px -6px black
+  background: $secondaryColor
+  width: 110%
+  margin: 0 0 0 -4.95%
+  &:before, &:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-width: 11px
+    top: -6px
+  &:before
+    border-color: transparent darken($secondaryColor, 12) darken($secondaryColor, 12) transparent
+    left: -22px
+  &:after
+    border-color: transparent transparent darken($secondaryColor, 12) darken($secondaryColor, 12)
+    right: -22px
+  background-image: linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -o-linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -moz-linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -webkit-linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -ms-linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(141,0,0)), color-stop(0.68, rgb(234,0,0)))
+.refer5-inner
+  padding: 3% 
+
+
+//      //
+//  #refer
+//      //
+#refer
+  position: relative
+  text-align: left
+  background: $secondaryColor
+  #webform-component-right-side
+    float: right
+    width: 38%
+  #webform-component-left-side
+    float: left
+    width: 57%
+    margin-right: 5%  
+  img
+    clear: both
+    display: block
+    margin: 0 auto
+    padding: 2% 0
+  overflow: visible 
+  h1
+    color: white
+  p
+    color: #fff
+  label
+    font-weight: 300
+    color: white
+    line-height: 1.2em
+  input
+    padding: 1em 0.5em
+    border: 1px solid #AC1B24
+    border-radius: 9px
+  input[type="submit"]
+    padding-right: 10%
+    padding-left: 10%
+  .form-required
+    display: none
+  form.webform-client-form
+    #edit-actions--2, .form-actions
+      clear: both
+      width: 38%
+      float: right
+      text-align: left
+    #edit-submit--2, #edit-submit
+      font-family: din-web
+      background: #FFCB15
+      margin: 4% 0 1%
+      padding: 0.3em 1em
+      font-size: 1.5em
+      height: 1.4em
+      display: inline-block
+      color: #1E1D1C
+      -webkit-border-radius: 5px
+      -moz-border-radius: 5px
+      -ms-border-radius: 5px
+      -o-border-radius: 5px
+      border-radius: 5px
+      border: none
+      line-height: 1em
+      &:hover
+        color: black
+  #webform-component-right-side--hr
+    hr
+      border: none
+      border-top: 1px solid #A7222A
+      border-bottom: 1px solid #EC4852
+      width: 70%
+      margin: 0.75em auto      
+  .go-button
+    margin: 4% 0 1% 0
+    padding: 0.3em 0.7em
+  #campaign-opt-in
+    text-align: left
+    line-height: 1em
+    font-size: 0.8em
+  .share-headline
+    margin: 4% 6% 0 4%
+    h1
+      clear: both
+      text-align : right
+      line-height: 1em
+      text-shadow: -1px -1px 1px #555
+      font-size: 5em
+    hr
+      border: none
+      border-top: 1px solid #A7222A
+      border-bottom: 1px solid #EC4852
+    p
+      text-align: right
+      margin: 0.7em 0 0
+      font-size: 1.4em
+      font-weight: 300
+      line-height: 1.3em
+      text-shadow: -1px -1px 1px #555
+    img
+      float: right
+      position: relative
+      right: -30px
+      top: 0  
+.refer6
+  box-shadow: 0 8px 6px -6px black
+  background: $secondaryColor
+  width: 110%
+  margin: 0 0 0 -4.95%
+  padding: 0.25em 0
+  &:before, &:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-width: 11px
+    top: -6px
+  &:before
+    border-color: transparent darken($secondaryColor, 12) darken($secondaryColor, 12) transparent
+    left: -22px
+  &:after
+    border-color: transparent transparent darken($secondaryColor, 12) darken($secondaryColor, 12)
+    right: -22px
+  background-image: linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -o-linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -moz-linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -webkit-linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -ms-linear-gradient(bottom, rgb(141,0,0) 0%, rgb(234,0,0) 68%)
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(141,0,0)), color-stop(0.68, rgb(234,0,0)))
+.refer6-inner
+  padding: 3% 
+
+
+//      //
+//  #quiz
+//      //
+#quiz
+  background: white
+  padding: 2% 4%
+  .form-required
+    display: none
+  p
+    width: 50%
+    margin-bottom: 0.75em  
+  h2
+    font-size: 5em
+    line-height: 1.2em
+    color: $secondaryColor
+    text-transform: uppercase
+    font-family: din-web, $din
+    font-weight: 600
+  h3
+    color: $secondaryColor 
+  .quiz-arrow
+    float: right
+    display: block
+    margin: 8% 25% 0 0
+
+//      //
+//  #quiz-results
+//      //
+#quiz-results
+  &.section
+    padding: 2%
+  h1
+    font-size: 4em
+    font-family: din-web, $din
+    font-weight: 600
+    color: #1E1D1C
+    line-height: 1.1em
+  hr
+    border: none
+    border-top: 1px solid #D8D8D9
+    width: 90%
+  p
+    padding: 2% 4%
+    font-size: 1.65em
+    font-weight: 300
+    line-height: 1.3em
+  .money-btn
+    position: relative
+    display: inline-block
+    margin: 1em 0 2em
+    &:before, &:after
+      content: "" 
+      position: absolute
+      top: 0px
+      height: 46px
+      width: 110px
+    &:before  
+      left: -110px
+      background-image: url('//files.dosomething.org/files/campaigns/tuesday12/money-arrow-left.png')
+    &:after
+      right: -110px
+      background-image: url('//files.dosomething.org/files/campaigns/tuesday12/money-arrow-right.png')
+    a
+      font-family: din-web, $din
+      font-weight: 600
+      font-size: 1.3em
+      background: #FAE600
+      box-shadow: 0px 2px 12px #999
+      text-decoration: none
+      color: $offBlack
+      padding: 0.5em 0.75em 0.25em
+      border-radius: 12px
+      border: 1px solid #FFD050
+      text-shadow: -2px -2px 2px #EDCD00
+      text-transform: uppercase
+      background-image: linear-gradient(top, rgb(254,241,0) 23%, rgb(253,207,0) 62%)
+      background-image: -o-linear-gradient(top, rgb(254,241,0) 23%, rgb(253,207,0) 62%)
+      background-image: -moz-linear-gradient(top, rgb(254,241,0) 23%, rgb(253,207,0) 62%)
+      background-image: -webkit-linear-gradient(top, rgb(254,241,0) 23%, rgb(253,207,0) 62%)
+      background-image: -ms-linear-gradient(top, rgb(254,241,0) 23%, rgb(253,207,0) 62%)
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.23, rgb(254,241,0)), color-stop(0.62, rgb(253,207,0)))
+      &:hover
+        color: black
+
+//      //
+//  #faq
+//      //
+#faq 
+  div
+    padding: 0 1.2em
+  p
+    padding: 0 0 1em  
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
+  li
+    margin: 0
+    color: $secondaryColor
+    span
+      color: black 
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 1.2em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("//files.dosomething.org/files/campaigns/tuesday12/arrows.png")
+    background-repeat: no-repeat
+    background-position-y: 1.2em
+    padding: 1em 1.2em 0
+  h4.activeFAQ
+    background-position-y: -1.2em
+  .go-button
+    margin: 0 0 1% 0
+  .action-copy
+    text-transform: uppercase  
+  .action-box
+    position: relative
+    display: inline-block
+  .action-arrow-left, .action-arrow-right
+    position: absolute
+    bottom: 0.5em
+  .action-arrow-right
+    right: -70px
+  .action-arrow-left
+    left: -70px 
+.back-to-top
+  text-align: right
+  padding: 1em 0 1em
+.top-btn
+  font-weight: 400
+  color: #C6C7C8
+  padding: 0px 0px 0px 15px
+  text-decoration: none
+  background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+  background-repeat: no-repeat
+  background-position-y: 0.5em
+
+//      //
+//  #donate
+//      //
+#donate
+  text-align: left
+  padding: 4% 4% 0
+  h3
+    color: $secondaryColor
+    margin: 1.5em 0 0
+    font-weight: 400
+  p
+    margin: 0 0 1em
