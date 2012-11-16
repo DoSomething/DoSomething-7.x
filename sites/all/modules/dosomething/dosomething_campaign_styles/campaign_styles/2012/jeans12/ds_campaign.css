@@ -435,6 +435,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
   -o-border-radius: 5px;
   border-radius: 5px; }
 
+.invite-module-or h3 {
+  line-height: 2.5em; }
+
 #dosomething-login-register-popup-form .already-member {
   color: white;
   text-transform: uppercase;
@@ -511,7 +514,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 100%; }
 
   #dosomething-login-register-popup-form #edit-submit {
-    width: 85%; } }
+    width: 85%; }
+
+  .connect-with-facebook {
+    margin-top: 8%; } }
 #dosomething-login-login-popup-form #edit-title-text--2 label {
   border: none;
   text-align: center;
@@ -562,8 +568,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
   width: 850px !important;
   margin: 0 auto; }
 
-.connect-with-facebook a {
-  margin: 0.6em auto; }
+.connect-with-facebook {
+  margin-top: 23%; }
+  .connect-with-facebook a {
+    margin: 0.6em auto; }
 
 .invite_friends {
   padding: 0.5% 2% 2% 2%; }
@@ -578,15 +586,31 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite_friends h3 {
     font-family: din-web;
     font-size: 2.5em;
-    line-height: 2.5em;
     text-transform: uppercase;
     text-align: center;
+    margin: 1em 0 0 0.5em 0;
     color: white; }
+  .invite_friends .form-item {
+    float: left;
+    width: 100%;
+    overflow: hidden; }
+    .invite_friends .form-item input[type="text"] {
+      width: 90%;
+      height: 2em;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px; }
+    .invite_friends .form-item input[type="submit"] {
+      float: left;
+      font-weight: 600;
+      text-transform: uppercase; }
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     width: 43%;
     float: left;
     border: 2px solid #cccccc;
-    height: 15em;
+    height: 18em;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -675,12 +699,22 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     margin: 0 15%;
     width: 70%;
-    height: 13em; }
+    height: 12em; }
+
+  .invite_friends .invite-module-email {
+    height: 20em; }
 
   .invite_friends .invite-module-or {
     width: 100%; }
     .invite_friends .invite-module-or h3 {
       margin: 0; }
+
+  .invite_friends h2 {
+    margin: 0.2em;
+    line-height: 1em; }
+
+  .invite-module-or h3 {
+    line-height: 2em; }
 
   #edit-friend {
     width: 66%; }
@@ -692,7 +726,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     margin: 0 2%;
     width: 95%;
-    height: 15em; }
+    height: 10em; }
+
+  .invite_friends .invite-module-email {
+    height: 18em; }
 
   #edit-friend {
     width: 100%; } }
