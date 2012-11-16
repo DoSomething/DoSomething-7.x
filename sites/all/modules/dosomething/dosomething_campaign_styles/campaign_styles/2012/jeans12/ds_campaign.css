@@ -533,7 +533,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #dosomething-login-register-popup-form #edit-submit {
     width: 85%; }
 
-  .connect-with-facebook {
+  .invite_friends .connect-with-facebook {
     margin-top: 8%; } }
 #dosomething-login-login-popup-form #edit-title-text--2 label {
   border: none;
@@ -585,9 +585,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
   width: 850px !important;
   margin: 0 auto; }
 
-.connect-with-facebook {
+.invite_friends .connect-with-facebook {
   margin-top: 23%; }
-  .connect-with-facebook a {
+  .invite_friends .connect-with-facebook a {
     margin: 0.6em auto; }
 
 .invite_friends {
@@ -640,7 +640,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     background: #3b5998;
     color: white;
     margin: 33% 0 0 5%;
-    width: 19.5em; }
+    width: 18.5em;
+    height: 3em; }
   .invite_friends .invite-module-or {
     width: 14%;
     float: left; }
@@ -732,7 +733,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     .invite_friends .invite-module-or h3 {
       margin: 0; }
 
-  .invite-module-facebook input[type="submit"] {
+  .invite_friends .invite-module-facebook input[type="submit"] {
     margin: 4em 0 0 10%;
     width: 80%; }
 
@@ -758,7 +759,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite_friends .invite-module-email {
     height: 18em; }
 
-  .invite-module-facebook {
+  .invite_friends .invite-module-facebook {
     margin: 3.5em 0 0 8%;
     width: 85%; }
 
