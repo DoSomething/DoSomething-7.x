@@ -73,7 +73,8 @@ function connections_handle_fb_dialog($t) {
 	$options = array(
 		'og-post' => 'connections_og_post',
 		'fb-message' => 'connections_message',
-		'multi-feed' => 'connections_multi_feed'
+		'multi-feed' => 'connections_multi_feed',
+		'custom-selector' => 'connections_custom_selector',
 	);
 
 	if (!isset($options[$t])) {
@@ -132,6 +133,17 @@ function connections_theme($existing, $type, $theme, $path) {
         'to' => NULL
       ),
       'template' => 'fb-connections-multi-post',
+    ),
+    'connections_custom_selector' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'title' => NULL,
+        'caption' => NULL,
+        'description' => NULL,
+        'image' => NULL,
+        'to' => NULL
+      ),
+      'template' => 'fb-connections-custom-selector',
     ),
   );
 }

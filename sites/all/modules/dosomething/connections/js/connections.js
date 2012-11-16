@@ -34,14 +34,14 @@
      *  Initializes the Facebook object and runs all appropriate functions.
      */
     init: function(options) {
-      var fb_init = window.setInterval(function () {
-        if (typeof FB !== 'undefined') {
-          window.clearInterval(fb_init);
-          for (i in options) {
-            Drupal.behaviors.fb.run(i, options[i]);
-          }
+      var fb_init = window.fbAsyncInit;
+      window.fbAsyncInit = function() {
+        fb_init();
+
+        for (i in options) {
+          Drupal.behaviors.fb.run(i, options[i]);
         }
-      }, .1);
+      }
     },
 
     // Runs Facebook tasks.
@@ -97,7 +97,8 @@
       if ($('.og_dialog').length > 0) {
         $('.og_dialog').remove();
       }
-      var og = $('<div></div>').attr('class', 'og_dialog');
+      var og;
+      og = $('<div></div>').addClass('og_dialog ' + page);
 
       var to = '';
       if (things.friends) {
@@ -117,50 +118,57 @@
       FB.api('/me/picture', function(response) {
         pic = response.data.url;
         og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
-          $('.close-fb-dialog').click(function() {
-            // Fake cancel button to remove "fake" feed
-            $('.og_dialog').dialog('close');
-            Drupal.friendFinder.clear_friends();
-            return false;
-          });
 
-          $('#submit-og-post').click(function() {
-            if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
-              things.comments = $('#hidden_comments').val();
-            }
-            else {
-              things.comments = $('#fb_og_comments').val();
-            }
-            things.explicitly_shared = ($('#explicitly-share').attr('checked') == 'checked') || false;
+          $(this).dialog({
+            dialogClass: 'og-post-dialog',
+            width: (page == 'custom-selector' ? 800 : 650),
+            position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+            resizable: false,
+            open: function() {
+              if ($('#cancel-og-post').length) {
+                // This somehow fixes an error where it wouldn't close after the first close
+                // Don't ask me why.
+                //$('.og_dialog').html('&nbsp;');
+              }
+            },
+            close: function() {
+              if (things.modal) {
+                if (jQuery('#fb-modal').length > 0) {
+                  jQuery('#fb-modal').remove();
+                }
+              }
 
-            callback(things);
-            $('.og_dialog').dialog('close');
-            og.html('&nbsp;');
-          });
+              og.remove();
+              delete og;
+            }
+          }).queue(function() {
+            // Pretend like it's a Facebook dialog feed
+            $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
+
+            // Cancel
+            $('.close-fb-dialog').click(function() {
+              // Fake cancel button to remove "fake" feed
+              $('.og_dialog').dialog('close').remove();
+              Drupal.friendFinder.clear_friends();
+              return false;
+            });
+
+            // Submit
+            $('#submit-og-post').click(function() {
+              if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
+                things.comments = $('#hidden_comments').val();
+              }
+              else {
+                things.comments = $('#fb_og_comments').val();
+              }
+              things.explicitly_shared = ($('#explicitly-share').attr('checked') == 'checked') || false;
+
+              callback(things);
+              $('.og_dialog').dialog('close');
+              //og.html('&nbsp;');
+            });
+          });;
         });
-      });
-      og.dialog({
-        dialogClass: 'og-post-dialog',
-        width: 650,
-        position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
-        resizable: false,
-        open: function() {
-          if ($('#cancel-og-post').length) {
-            // This somehow fixes an error where it wouldn't close after the first close
-            // Don't ask me why.
-            $('.og_dialog').html('&nbsp;');
-          }
-        },
-        close: function() {
-          if (things.modal) {
-            if (jQuery('#fb-modal').length > 0) {
-              jQuery('#fb-modal').remove();
-            }
-          }
-        }
-      }).queue(function() {
-        // Pretend like it's a Facebook dialog feed
-        $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
       });
     },
 
@@ -333,6 +341,7 @@
       	require_login: config.feed_require_login,
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
+        friend_selector: config.feed_friend_selector || 'td',
       };
 
       if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._feed_callback == 'function') {
@@ -391,6 +400,7 @@
       // If we are allowing people to post to multiple walls...
       if (things.allow_multiple > 0) {
         Drupal.behaviors.fb.real_auth(things, function() {
+          
           var c;
           if (!things) {
             c = {};
@@ -403,8 +413,7 @@
             };
           }
 
-          // Create a mock button on the site to simulate a click-through on the friendSelector
-          var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
+          // Creates an optional modal dialog
           if (things.modal) {
             jQuery('body').append(jQuery('<div></div>').attr('id', 'fb-modal').css({
               'position': 'absolute',
@@ -420,38 +429,98 @@
               'background': '#000'
             }));
           }
-          fbm.appendTo('body').queue(function() {
-            Drupal.friendFinder.t = things;
-            Drupal.friendFinder($('.fb-feed-friend-finder'), 'publish_stream', function (friends) {
-              var things = {};
-              if (Drupal.friendFinder.t) {
-                things = Drupal.friendFinder.t;
+
+          if (things.friend_selector == 'td') {
+            // Create a mock button on the site to simulate a click-through on the friendSelector
+            var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
+            fbm.appendTo('body').queue(function() {
+              Drupal.friendFinder.t = things;
+              Drupal.friendFinder($('.fb-feed-friend-finder'), 'publish_stream', function (friends) {
+                var things = {};
+                if (Drupal.friendFinder.t) {
+                  things = Drupal.friendFinder.t;
+                }
+
+                if (friends.length > 0) {
+                  things.friends = friends;
+                  Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
+                    var fbObj = {
+                      message: response.comments,
+                      name: response.title,
+                      picture: response.picture,
+                      description: response.description,
+                      caption: response.caption,
+                      link: response.link
+                    };
+
+                    for (var i in things.friends) {
+                      Drupal.behaviors.fb.send_feed_post(things.friends[i], fbObj);
+                    }
+
+                    // Callback for when all posting has completed.
+                    Drupal.behaviors.fb.callback_handler(callback, '');
+                  });
+                }
+              }, c, true);
+            });
+          }
+          else if (things.friend_selector == 'custom') {
+            Drupal.behaviors.fb.fb_dialog('custom-selector', things, function(response) {
+              var msgs = [];
+              var left = [];
+
+              $('.friend').each(function() {
+                if ($(this).hasClass('selected')) {
+                  var id = $(this).attr('rel');
+                  msgs[id] = $(this).find('.personal-message').val();
+                }
+              });
+
+              var fbObj = {
+                message: response.comments,
+                name: response.title,
+                picture: response.picture,
+                description: response.description,
+                caption: response.caption,
+                link: response.link
+              };
+
+              for (i in msgs) {
+                if (msgs[i] != '') {
+                  fbObj['message'] = msgs[i];
+
+                  delete msgs[i];
+                  Drupal.behaviors.fb.send_feed_post(i, fbObj);
+                }
+                else {
+                  left.push(i);
+                }
               }
 
-              if (friends.length > 0) {
-                things.friends = friends;
-                Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
-                  var fbObj = {
-                    message: response.comments,
-                    name: response.title,
-                    picture: response.picture,
-                    description: response.description,
-                    caption: response.caption,
-                    link: response.link
-                  };
+              if (left.length > 0) {
+                console.log('Some friends left.  Loading the final share block...');
+                response.friends = left;
+                response['alert_msg'] = Drupal.t("Wait! We found some friends that you haven't shared a message with.  Do you want to share on their walls too?");
+                Drupal.behaviors.fb.fb_dialog('multi-feed', response, function(response) {
+                   var fbObj = {
+                     message: response.comments,
+                     name: response.title,
+                     picture: response.picture,
+                     description: response.description,
+                     caption: response.caption,
+                     link: response.link
+                   };
 
-                  for (var i in things.friends) {
-                    FB.api('/' + things.friends[i] + '/feed', 'post', fbObj, function(response) {
-                      Drupal.behaviors.fb.log(response);
-                    });
-                  }
+                   for (var i in things.friends) {
+                     //Drupal.behaviors.fb.send_feed_post(things.friends[i], fbObj);
+                   }
 
-                  // Callback for when all posting has completed.
-                  Drupal.behaviors.fb.callback_handler(callback, '');
+                   // Callback for when all posting has completed.
+                   Drupal.behaviors.fb.callback_handler(callback, '');
                 });
               }
-            }, c, true);
-          });
+            });
+          }
         });
       }
       else {
@@ -459,6 +528,22 @@
           Drupal.behaviors.fb.callback_handler(callback, response);
         });
       }
+    },
+
+    /**
+     *  Actually sends the Facebook Feed post.
+     *
+     *  @param friendid
+     *    The facebook ID of the person to send the post to.
+     *
+     *  @param post
+     *    An object of Facebook feed parameters.
+     *
+     */
+    send_feed_post: function(friendid, post) {
+      FB.api('/' + friendid + '/feed', 'post', post, function(response) {
+         Drupal.behaviors.fb.log(response);
+      });
     },
 
     /**
