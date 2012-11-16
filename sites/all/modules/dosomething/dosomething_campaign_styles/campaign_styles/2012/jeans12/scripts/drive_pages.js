@@ -5,8 +5,8 @@
     Drupal.friendFinder.fbObj = {
       message: 'TFJ Message',
       name: 'TFJ Name',
-      picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
-      description: 'Description field',
+      picture: '//files.dosomething.org/files/campaigns/jeans12/logo_clean.png',
+      description: 'Join me and DoSomething.org to help fight teen homelessness!',
     }; 
 
     // remove #edit-submit from drive page buttons

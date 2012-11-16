@@ -455,9 +455,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
   -o-border-radius: 5px;
   border-radius: 5px; }
 
-.invite-module-or h3 {
-  line-height: 2.5em; }
-
 #dosomething-login-register-popup-form .already-member {
   color: white;
   text-transform: uppercase;
@@ -608,24 +605,25 @@ div[aria-labelledby="ui-dialog-title-1"] {
     font-size: 2.5em;
     text-transform: uppercase;
     text-align: center;
-    margin: 1em 0 0 0.5em 0;
+    margin: 1em 0 0.5em 0.5em;
     color: white; }
   .invite_friends .form-item {
     float: left;
     width: 100%;
-    overflow: hidden; }
-    .invite_friends .form-item input[type="text"] {
-      width: 90%;
-      height: 2em;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      -ms-border-radius: 4px;
-      -o-border-radius: 4px;
-      border-radius: 4px; }
-    .invite_friends .form-item input[type="submit"] {
-      float: left;
-      font-weight: 600;
-      text-transform: uppercase; }
+    overflow: hidden;
+    margin: 0 0 5% 5%; }
+  .invite_friends input[type="text"] {
+    width: 90%;
+    height: 2em;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px; }
+  .invite_friends input[type="submit"] {
+    float: left;
+    font-weight: 600;
+    text-transform: uppercase; }
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     width: 43%;
     float: left;
@@ -638,12 +636,17 @@ div[aria-labelledby="ui-dialog-title-1"] {
     border-radius: 10px; }
   .invite_friends .invite-module-facebook p, .invite_friends .invite-module-or p, .invite_friends .invite-module-email p {
     font-size: 0.8em; }
+  .invite_friends .invite-module-facebook input[type="submit"] {
+    background: #3b5998;
+    color: white;
+    margin: 33% 0 0 5%;
+    width: 19.5em; }
   .invite_friends .invite-module-or {
     width: 14%;
     float: left; }
     .invite_friends .invite-module-or h3 {
-      color: white;
-      margin-top: 2em; }
+      line-height: 2.5em;
+      color: white; }
   .invite_friends .facebook-action-connect {
     display: block;
     margin: 8% auto 0;
@@ -729,6 +732,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     .invite_friends .invite-module-or h3 {
       margin: 0; }
 
+  .invite-module-facebook input[type="submit"] {
+    margin: 4em 0 0 10%;
+    width: 80%; }
+
   .invite_friends h2 {
     margin: 0.2em;
     line-height: 1em; }
@@ -750,6 +757,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
 
   .invite_friends .invite-module-email {
     height: 18em; }
+
+  .invite-module-facebook {
+    margin: 3.5em 0 0 8%;
+    width: 85%; }
 
   #edit-friend {
     width: 100%; } }

@@ -213,9 +213,6 @@ div[aria-labelledby="ui-dialog-title-1"]
     padding: 0.05em 0.5em 0.5em
     +border-radius(5px)
 
-.invite-module-or h3
-  line-height: 2.5em
-
 #dosomething-login-register-popup-form
   .already-member
     color: #fff
@@ -364,20 +361,21 @@ div[aria-labelledby="ui-dialog-title-1"]
     font-size: 2.5em
     text-transform: uppercase
     text-align: center
-    margin: 1em 0 0 0.5em 0
+    margin: 1em 0 0.5em 0.5em
     color: #fff
   .form-item
     float: left
     width: 100%
     overflow: hidden
-    input[type="text"]
-      width: 90%
-      height: 2em
-      +border-radius(4px)
-    input[type="submit"]
-      float: left
-      font-weight: 600
-      text-transform: uppercase
+    margin: 0 0 5% 5%
+  input[type="text"]
+    width: 90%
+    height: 2em
+    +border-radius(4px)
+  input[type="submit"]
+    float: left
+    font-weight: 600
+    text-transform: uppercase
   .invite-module-facebook, .invite-module-email
     width: 43%
     float: left
@@ -387,12 +385,18 @@ div[aria-labelledby="ui-dialog-title-1"]
   .invite-module-facebook, .invite-module-or, .invite-module-email
     p
       font-size: 0.8em
+  .invite-module-facebook input[type="submit"]
+    background: $facebookBlue
+    color: #fff
+    margin: 33% 0 0 5%
+    width: 19.5em
   .invite-module-or
     width: 14%
     float: left
     h3
+      line-height: 2.5em
       color: #fff
-      margin-top: 2em
+
   .facebook-action-connect
     display: block
     margin: 8% auto 0
@@ -462,6 +466,9 @@ div[aria-labelledby="ui-dialog-title-1"]
     width: 100%
     h3
       margin: 0
+  .invite-module-facebook input[type="submit"]
+    margin: 4em 0 0 10%
+    width: 80%
   .invite_friends h2
     margin: 0.2em
     line-height: 1em
@@ -480,6 +487,9 @@ div[aria-labelledby="ui-dialog-title-1"]
     height: 10em
   .invite_friends .invite-module-email
     height: 18em
+  .invite-module-facebook
+    margin: 3.5em 0 0 8%
+    width: 85%
   #edit-friend
     width: 100%
 
