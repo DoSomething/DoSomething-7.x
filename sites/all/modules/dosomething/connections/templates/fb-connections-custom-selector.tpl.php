@@ -298,7 +298,7 @@ textarea {
     background: #fff;
     margin: 5px;
     padding-bottom: 5px;
-    width: 35%;
+    width: 50%;
 }
 
 #your-friends #your-info {
@@ -358,17 +358,22 @@ textarea {
     padding: 3px;
     display: none;
     float: left;
-    width: 145px;
+    width: 310px;
 }
 
 #friends-info li div input[type="text"] {
-    width: 100%;
+    width: 235px;
+}
+
+#friends-info li div input[type="submit"] {
+    margin-left: 10px;
+    margin-top: 3px;
 }
 
 #choosers {
     max-height: 390px;
     overflow: auto;
-    width: 400px;
+    width: 320px;
     margin: 0px auto;
 }
 
@@ -421,7 +426,7 @@ li#select:hover {
 }
 
 #alert {
-    margin: 0px -7px 10px 255px;
+    margin: 0px -7px 10px 365px;
 
     background: #FEF5F1;
     border: 1px solid #ED541D;
@@ -442,6 +447,10 @@ li#select:hover {
 
 #search a.clear-search:hover {
     background: #f5f5f5;
+}
+
+#close-close-friends {
+    display: none;
 }
 -->
 </style>
@@ -470,11 +479,14 @@ li#select:hover {
             <input id="search-friends" type="text" placeholder="Search your friends..." />
             <a href="#" class="clear-search" title="Clear Your Search">X</a>
         </div>
-        <div id="select"><a href="#" id="select-all">Select All</a> / <a href="#" id="select-none">None</a></div>
+        <div id="select">
+            <a href="#" id="find-close-friends">Find my close friends</a>
+            <a href="#" id="close-close-friends" style="display: none">Show all of my friends again</a>
+            <!--| <a href="#" id="show-selected">Show Selected</a>-->
+            <!--<a href="#" id="select-all">Select All</a> / <a href="#" id="select-none">None</a>-->
+        </div>
 
         <ul id="friends-info">
-            <!--<li id="search"><input id="search-friends" type="text" placeholder="Search your friends..." /></li>
-            <li id="select"><a href="#" id="select-all">Select All</a> / <a href="#" id="select-none">None</a></li>-->
             <li class="loading"><img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="Loading..." /> Loading your friends...</li>
         </ul>
     </div>
@@ -485,7 +497,7 @@ li#select:hover {
         <div style="clear: both"></div>
     </div>
     <div id="submit-buttons">
-        <input type="submit" value="Share" id="submit-og-post" />
+        <input type="submit" value="I'm Finished" id="submit-og-post" />
         <input type="reset" value="Cancel" id="cancel-og-post" class="close-fb-dialog" />
     </div>
 </div>

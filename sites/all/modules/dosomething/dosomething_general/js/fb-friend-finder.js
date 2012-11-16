@@ -28,7 +28,10 @@
     function ffInit() {
       var oldAsync = window.fbAsyncInit;
       window.fbAsyncInit = function () {
-        oldAsync();
+        if (typeof oldAsync === 'function') {
+          oldAsync();
+        }
+
         FB.getLoginStatus(function(response) {
           if(response.status == 'connected') {
             FB.api('/me/permissions', parsePermissions);

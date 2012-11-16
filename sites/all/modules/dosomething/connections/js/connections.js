@@ -342,6 +342,7 @@
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
         friend_selector: config.feed_friend_selector || 'td',
+        check_remainder: false,
       };
 
       if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._feed_callback == 'function') {
@@ -382,6 +383,8 @@
       if (things.selector) {
       	jQuery('body ' + things.selector).click(function() {
         	Drupal.behaviors.fb.feed_runner(things, share, callback);
+
+      return false;
         });
       }
       else {
@@ -400,7 +403,6 @@
       // If we are allowing people to post to multiple walls...
       if (things.allow_multiple > 0) {
         Drupal.behaviors.fb.real_auth(things, function() {
-          
           var c;
           if (!things) {
             c = {};
@@ -477,7 +479,7 @@
               });
 
               var fbObj = {
-                message: response.comments,
+                message: '',
                 name: response.title,
                 picture: response.picture,
                 description: response.description,
@@ -486,7 +488,7 @@
               };
 
               for (i in msgs) {
-                if (msgs[i] != '') {
+                if (msgs[i] != '' || (msgs[i] == '' && response.check_remainder === false)) {
                   fbObj['message'] = msgs[i];
 
                   delete msgs[i];
@@ -497,8 +499,8 @@
                 }
               }
 
-              if (left.length > 0) {
-                console.log('Some friends left.  Loading the final share block...');
+              if (left.length > 0 && response.check_remainder) {
+                Drupal.behaviors.fb.log('Some friends left.  Loading the final share block...');
                 response.friends = left;
                 response['alert_msg'] = Drupal.t("Wait! We found some friends that you haven't shared a message with.  Do you want to share on their walls too?");
                 Drupal.behaviors.fb.fb_dialog('multi-feed', response, function(response) {

@@ -47,7 +47,7 @@
 		 		}, function(response) {
 		 			var elm = '';
 		 			for (i in response) {
-		 				elm += '<li class="friend" rel="' + response[i].uid + '"><a href="http://www.facebook.com/' + response[i].uid + '" class="u-' + response[i].uid + '"><img src="' + response[i].pic_square + '" width="50" height="50" alt="" /><div>' + response[i].name + '</div><div class="comment"><input type="text" name="comment[' + response[i].id + ']" class="personal-message" placeholder="Write something..." /></div></a></li>';
+		 				elm += '<li class="friend" rel="' + response[i].uid + '"><a href="http://www.facebook.com/' + response[i].uid + '" class="u-' + response[i].uid + '"><img src="' + response[i].pic_square + '" width="50" height="50" alt="" /><div>' + response[i].name + '</div><div class="comment"><input type="text" name="comment[' + response[i].uid + ']" class="personal-message" placeholder="Write something..." /> <input type="submit" class="share-button" name="share[' + response[i].uid + ']" value="share" /></div></a></li>';
 		 			}
 
 		 			$('.loading').fadeOut(200);
@@ -55,6 +55,42 @@
 	 				h.handle_clicks();
 		 		});
 		 	});
+		},
+
+		find_close_friends: function() {
+			FB.api({
+				'method': 'fql.query',
+				'query': 'SELECT flid, owner, name FROM friendlist WHERE owner = me()',
+			}, function(lists) {
+				for (i in lists) {
+					if (lists[i].name == 'Close Friends') {
+						FB.api({
+							'method': 'fql.query',
+							'query': 'SELECT uid, flid FROM friendlist_member WHERE flid = ' + lists[i].flid,
+						}, function(members) {
+							var mem = [];
+
+							for (m in members) {
+								mem[members[m].uid] = true;
+							}
+
+							$('.friend').each(function() {
+								if (!mem[$(this).attr('rel')]) {
+									$(this).addClass('hidden');
+								}
+								else {
+									// Emulate a click on your close friends.
+									$(this).click();
+								}
+							});
+
+							$('#clear-search').click();
+							$('#find-close-friends').hide();
+							$('#close-close-friends').show();
+						});
+					}
+				}
+			});
 		},
 
 		handle_clicks: function() {
@@ -66,7 +102,7 @@
 				var target = $(e.target);
 
 				// Ignore a click to the PM box
-				if (target.hasClass('personal-message') || $(this).attr('id') == 'search' || $(this).attr('id') == 'select') return false;
+				if (target.hasClass('personal-message') || $(this).attr('id') == 'search' || $(this).attr('id') == 'select' || target.hasClass('share-button')) return false;
 
 				if (!$(this).hasClass('selected')) {
 
@@ -81,23 +117,63 @@
 					added = false;
 				}
 
-				h.add_image_to_chosen(this, added);
 				return false;
 			});
 
-			// Select all friends
-			$('#select-all').click(function() {
-				$('.friend:not(.selected)').each(function() {
-					$(this).click();
+			$('.share-button').click(function() {
+				h.add_image_to_chosen($(this).parent().parent(), true);
+				$(this).parent().parent().parent().hide();
+				return false;
+			});
+
+			$('#find-close-friends').click(function() {
+				FB.api('/me/permissions', function (response) {
+		            var perms = response.data[0];
+		            if (!perms.read_friendlists) {
+		            	FB.ui({
+							method: 'permissions.request',
+							perms: 'read_friendlists',
+							display: 'iframe',
+						}, h.find_close_friends());
+		            }
+		            else {
+		            	h.find_close_friends();
+		            }
+		        });
+
+				return false;
+			});
+
+			$('#close-close-friends').click(function() {
+				$('.friend').removeClass('hidden');
+				$('#find-close-friends').show();
+				$(this).hide();
+			});
+
+			$('#show-selected').click(function() {
+				$('.friend').each(function() {
+					if (!$(this).hasClass('selected') && !$(this).hasClass('shared')) {
+						$(this).addClass('hidden');
+					}
 				});
 			});
 
+			// Deprecated 11/16/12
+			// We hardly knew ye...
+
+			// Select all friends
+			//$('#select-all').click(function() {
+			//	$('.friend:not(.selected)').each(function() {
+			//		$(this).click();
+			//	});
+			//});
+
 			// De-select all friends
-			$('#select-none').click(function() {
-				$('.friend.selected').each(function() {
-					$(this).click();
-				});
-			})
+			//$('#select-none').click(function() {
+			//	$('.friend.selected').each(function() {
+			//		$(this).click();
+			//	});
+			//})
 
 			// Search functionality for your friends.
 			$('#search-friends').bind('keyup', function(e) {
@@ -115,8 +191,8 @@
 		},
 
 		handle_image_click: function() {
-			var id = $(this).attr('class').replace('u-', '');
-			$('li[rel="' + id + '"]').click();
+			//var id = $(this).attr('class').replace('u-', '');
+			//$('li[rel="' + id + '"]').click();
 		},
 
 		add_image_to_chosen: function(elm, added) {
@@ -130,7 +206,7 @@
 					image = $(elm).find('img').attr('src');
 					var c = ++this.count;
 					img = $('<img />').attr('src', image).addClass('u-' + id).attr('alt', '').attr('rel', c).attr('title', $(elm).find('div:not(.comment)').text());
-					img.click(this.handle_image_click);
+					//img.click(this.handle_image_click);
 					$('#choosers').append(img);
 				}
 			}
