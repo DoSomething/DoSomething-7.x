@@ -34,7 +34,7 @@
             FB.api('/me/permissions', parsePermissions);
           }
         });
-      };
+      }();
     }
 
     function parsePermissions(response) {
