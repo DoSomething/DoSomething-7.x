@@ -363,7 +363,7 @@ function dosomething_drives_drive_invite_module($gid) {
     );
   }
   else {
-    $fb_link = fboauth_action_link_properties('connect', current_path());
+    $fb_link = fboauth_action_link_properties('ds_connect', current_path());
     $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
 
     $return['facebook']['description'] = array(
