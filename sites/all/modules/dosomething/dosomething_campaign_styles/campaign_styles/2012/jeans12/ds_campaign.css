@@ -989,13 +989,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       text-transform: none;
       color: #777777; }
   #cmp .drive-share {
-    width: 100%;
-    float: left;
-    margin: 3% 0 0 0;
-    padding: 3% 0 0 0;
-    border-top: 2px solid #d2d2d3; }
-    #cmp .drive-share h3 {
-      text-align: left; }
+    display: none; }
   #cmp .drive-facebook, #cmp .drive-twitter {
     width: 30px;
     height: 30px;
