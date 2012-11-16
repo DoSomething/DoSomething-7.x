@@ -17,7 +17,7 @@
 
     // hack-tastic #checklist build, ahoy!
     var checklist_labels = {
-      "1": "<a href=\"/my-team/jeans12#invite-popup\">Invite friends</a> to participate in your school's drive",
+      "1": "<a href=\"/my-team/teensforjeans#invite-popup\">Invite friends</a> to participate in your school's drive",
       "2": "<a href=\"#social\" class\"jump_scroll\">Share stats</a> with your friends about homelessness on your social networks",
       "3": "Start to market your drive and make sure people in your school know about it",
       "4": "Talk to your school administrators and decide on a drop off location for the jeans",

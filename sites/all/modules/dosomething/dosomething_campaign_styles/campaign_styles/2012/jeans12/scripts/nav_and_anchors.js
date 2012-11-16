@@ -63,9 +63,7 @@
     });
     
     // remove nav on all webform and instructional pages
-    var teensforjeans = 14;
-    var jeans12 = 8;
-    var urlCount = jeans12;
+    var urlCount = 14;
     var nakedPages = ['/sign-up', '/report-back', 'next', '/roadmap']
     for (var i=0; i < nakedPages.length; i++){
       if (window.location.pathname.substring(urlCount,30) == nakedPages[i]){

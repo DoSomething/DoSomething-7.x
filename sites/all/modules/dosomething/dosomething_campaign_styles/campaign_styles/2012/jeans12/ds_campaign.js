@@ -9,7 +9,7 @@
     // #checklist injection of footer
     $('#webform-component-footer').appendTo('#checklist');
     
-    // AJAJ counter injection with /jeans12/counter webform
+    // AJAJ counter injection with /teensforjeans/counter webform
     $.post('/webform-counter-field/726458/1', function (data) {
       $('#schools_participating').html(data);
     });
