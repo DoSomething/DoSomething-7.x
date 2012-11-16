@@ -33,9 +33,10 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
   	dosomething_general_mobile_commons_subscribe($alpha_number, (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign), $variables);
   }
 
+  // TODO: more error handling
   $nid = 0;
   if (!empty($form_values['details']['nid'])) {
-	$nid = $form_values['details']['nid'];
+    $nid = $form_values['details']['nid'];
   }
 
   $n = node_load($nid);
@@ -434,7 +435,7 @@ function sms_flow_team_invite_form_submit($form, &$form_state) {
 
   // TODO: opt in paths are hardcoded for TFJ
   sms_flow_start($alphaMobile, 131891, 129751, $betaNumbers, NULL, array(
-      'tfj2013_inviter' => $firstName,
+      'tfj2013_inviter' => $inviter,
       'drives_invite_gid' => $inviteGid,
     )
   );
@@ -446,6 +447,8 @@ function sms_flow_team_invite_form_submit($form, &$form_state) {
  * find_user_by_cell() doesn't handle international code when searching by profile's
  * field_user_mobile value. Only handles international code with an @mobile email address
  */
+// TODO: Find a way to fix dosomething_general_find_user_by_cell() instead of needing to use
+// this private function.
 function _sms_flow_find_user_by_cell($mobile) {
   $account = dosomething_general_find_user_by_cell($mobile);
   if (!$account && strlen($mobile) > 10) {
