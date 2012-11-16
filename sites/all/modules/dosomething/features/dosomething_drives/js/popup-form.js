@@ -22,6 +22,7 @@
         feed_picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
         feed_description: Drupal.t('Join your friend\'s cheek swab drive to help save the 10,000 blood cancer patients looking for a life saving donation. You can either sign up to donate, or spread the word about your friend\'s awesome drive.'),
         feed_allow_multiple: true,
+        feed_selector: '.fb-friend-finder-init',
         require_login: true
       }, function(response) {
         $('#teams-notification-area').html('Shared with your Facebook friends! Invite more friends below.');
