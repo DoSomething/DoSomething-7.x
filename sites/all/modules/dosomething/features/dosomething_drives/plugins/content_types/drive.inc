@@ -338,6 +338,7 @@ function dosomething_drives_drive_invite_module($gid) {
 
   drupal_add_js(array('campaignPath' => arg(1)), 'setting');
   drupal_add_js(drupal_get_path('module', 'dosomething_drives') . '/js/popup-form.js');
+  drupal_add_js(drupal_get_path('module', 'connections') . '/js/connections.js');
 
   $return = array();
   $return['header'] = array(

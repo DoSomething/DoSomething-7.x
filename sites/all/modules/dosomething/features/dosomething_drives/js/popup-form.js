@@ -16,25 +16,37 @@
         return false;
       });
 
-      Drupal.friendFinder($('.fb-friend-finder-init'), 'publish_stream', function (friends) {
-        var fbObj = {
-          message: 'Join my cheek swab drive and help me save a cancer patient\'s life.',
-          name: 'Saving a life is as easy as giving your spit.',
-          picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
-          description: 'Join your friend\'s cheek swab drive to help save the 10,000 blood cancer patients looking for a life saving donation. You can either sign up to donate, or spread the word about your friend\'s awesome drive.',
-          link: window.location.href
-        };
-
-        $.extend(fbObj, Drupal.friendFinder.fbObj);
-
+      Drupal.behaviors.fb.feed({
+        feed_document: document.location.href,
+        feed_title: Drupal.t('Saving a life is as easy as giving your spit.'),
+        feed_picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
+        feed_description: Drupal.t('Join your friend\'s cheek swab drive to help save the 10,000 blood cancer patients looking for a life saving donation. You can either sign up to donate, or spread the word about your friend\'s awesome drive.'),
+        feed_allow_multiple: true,
+        require_login: true
+      }, function(response) {
         $('#teams-notification-area').html('Shared with your Facebook friends! Invite more friends below.');
         triggerPopup();
-
-        for (var i in friends) {
-          FB.api('/'+friends[i]+'/feed', 'post', fbObj, function(response) {
-          });
-        }
       });
+
+     // Drupal.friendFinder($('.fb-friend-finder-init'), 'publish_stream', function (friends) {
+     //   var fbObj = {
+     //     message: 'Join my cheek swab drive and help me save a cancer patient\'s life.',
+     //     name: 'Saving a life is as easy as giving your spit.',
+     //     picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
+     //     description: 'Join your friend\'s cheek swab drive to help save the 10,000 blood cancer patients looking for a life saving donation. You can either sign up to donate, or spread the word about your friend\'s awesome drive.',
+     //     link: window.location.href
+     //   };
+
+     //   $.extend(fbObj, Drupal.friendFinder.fbObj);
+
+     //   $('#teams-notification-area').html('Shared with your Facebook friends! Invite more friends below.');
+     //   triggerPopup();
+
+  //      for (var i in friends) {
+  //        FB.api('/'+friends[i]+'/feed', 'post', fbObj, function(response) {
+  //        });
+  //      }
+  //    });
 
       $('.invite-module-facebook').click(function () {
         $module.dialog('option', 'close', function () { return; });
