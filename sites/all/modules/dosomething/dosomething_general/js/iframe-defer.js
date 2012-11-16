@@ -2,7 +2,7 @@
   document.iframes = [];
 
   $(document).bind('DOMNodeInserted', function (event) {
-    if (event.target.tagName == 'IFRAME') {
+    if (event.target.tagName == 'IFRAME' && !$(event.target).parent.hasClass('cke_contents')) {
       var $frame = $(event.target);
       replaceIframe($frame);
     }
