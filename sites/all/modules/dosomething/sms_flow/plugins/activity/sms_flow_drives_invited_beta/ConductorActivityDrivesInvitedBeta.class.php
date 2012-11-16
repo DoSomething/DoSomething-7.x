@@ -66,10 +66,10 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         catch( Exception $e ) {
         }
 
-        $success_message .= t('Ur password to login at DS.org/myTFJ is @pass. ', array('@pass' => $pass));
+        $success_message .= t('Ur password to login at doso.me/2 is @pass. ', array('@pass' => $pass));
       }
       else {
-        $success_message .= t('Awesome! You\'ve been added to the drive at DS.org/myTFJ. ');
+        $success_message .= t('Awesome! You\'ve been added to the drive at doso.me/2. ');
       }
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;

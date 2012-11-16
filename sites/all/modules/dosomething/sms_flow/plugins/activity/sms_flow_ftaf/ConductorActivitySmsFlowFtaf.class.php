@@ -30,6 +30,9 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
     
     $drives_invite_gid = $state->getContext('drives_invite_gid');
     if (empty($drives_invite_gid)) {
+      // TODO: create a generic function to access the profile from the mCommons api. Also
+      // will want to use config variables stored in sms_mobile_commons_email and
+      // sms_mobile_commons_password instead of hardcoding them into our curl calls.
       // If no drives_invite_gid has been set, get the value from Mobile Commons profile
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
 
@@ -51,26 +54,23 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
 
     // NOTE: This feels hacky. Depending on what workflow this sms_flow_ftaf
     // activity is in, we look for the numbers from different activities.
+    // TODO: What we could do instead is set a context variable in a previous activity
+    // that contains the name of the activity to expect the numbers to come from. Then
+    // use that name concatenated with ":message" to get the message.
     $message = $state->getContext('process_beta:message');
     if (empty($message)) {
       $message = $state->getContext('ftaf_prompt:message');
     }
 
-    // Phone numbers delimited by spaces and/or commas
     $unvetted_numbers = array();
-    $comma_separated_msg = explode(',', $message);
-    foreach ($comma_separated_msg as $msg) {
-      $space_separated_msg = explode(' ', $msg);
-      foreach ($space_separated_msg as $msg2) {
-        if (!empty($msg2)) {
-          $unvetted_numbers[] = $msg2;
-        }
-      }
+    // Matches phone numbers regardless of separators and delimiters
+    preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $message), $numbers);
+    if (!empty($numbers['numbers'])) {
+       $unvetted_numbers = $numbers['numbers'];
     }
 
     $vetted_numbers = array();
     foreach ($unvetted_numbers as $number) {
-      // TODO: may also want to explode by spaces if people separated numbers by spaces instead of commas
       $number = trim($number);
       $number = preg_replace("/[^0-9]/", "", $number);
 
