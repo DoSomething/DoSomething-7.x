@@ -220,7 +220,7 @@ function dosomething_general_find_tfj_team() {
   $team = reset($t->execute()->fetchAll());
 
   if (!empty($team->sid)) {
-    drupal_goto('team/jeans12/' . $team->sid);
+    drupal_goto('team/teensforjeans/' . $team->sid);
   }
   else {
     $p = profile2_load_by_user($user, 'main');
@@ -249,7 +249,7 @@ function dosomething_general_find_tfj_team() {
       $result = reset($r->execute()->fetchAll());
       if (!empty($result->sid)) {
         // If the user got invited to a particular team, send them to that team.
-        drupal_goto('team/jeans12/' . $result->sid);
+        drupal_goto('team/teensforjeans/' . $result->sid);
       }
       else {
         // Else, send them to the landing page.
