@@ -8,6 +8,11 @@
 
     // #checklist injection of footer
     $('#webform-component-footer').appendTo('#checklist');
+    
+    // AJAJ counter injection with /jeans12/counter webform
+    $.post('/webform-counter-field/726458/1', function (data) {
+      $('#schools_participating').html(data);
+    });
 
     // #sms-referral confirmation message injection
     var sms_message = '<div id="sms-referral"><h3>Thanks for getting your friends involved!</h3></div>'

@@ -37,6 +37,6 @@ $plugin = array(
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
-    '#markup' => '<img src="http://files.dosomething.org/files/campaigns/jeans12/nav1.png"/><img src="http://files.dosomething.org/files/campaigns/jeans12/nav2.png"/><p>Got     questions? Email Farah at <a href="mailto:teensforjeans@dosomething.org">teensforjeans@dosomething.org</a>!</p>'
+    '#markup' => '<div id="counter_wrapper"><p id="schools_participating"></p><h3>schools<br>signed up</h3></div><img src="http://files.dosomething.org/files/campaigns/jeans12/nav2.png"/><p>Got questions? Email Farah at <a href="mailto:teensforjeans@dosomething.org">teensforjeans@dosomething.org</a>!</p>'
   ),
 );
