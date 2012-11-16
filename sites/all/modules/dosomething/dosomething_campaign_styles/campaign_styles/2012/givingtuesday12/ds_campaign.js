@@ -1,6 +1,22 @@
 (function ($) {
   Drupal.behaviors.campaignName = {
     attach: function (context, settings) {
+      
+      // quiz submission
+      var $quizForm = $('.webform-client-form');
+      if ($quizForm.length > 0 && $quizForm.find('input[type="radio"]').length > 0) {
+        $quizForm.submit(function () {
+          var right = 0;
+          $quizForm.find('input[type="radio"]:checked').each(function () {
+            if ($(this).val() == 'right') {
+              right++;
+            }
+          });
+          $quizForm.attr('action', $quizForm.attr('action')+'?destination=givingtuesday12/results/'+right);
+          return true;
+        });
+      }
+
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
         afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
