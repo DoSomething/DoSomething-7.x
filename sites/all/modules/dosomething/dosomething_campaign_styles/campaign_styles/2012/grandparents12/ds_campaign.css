@@ -21,7 +21,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: #00a4e0 url("//files.dosomething.org/files/campaigns/grandparents12/header3.jpg") no-repeat;
+  background: #00a4e0 url("//files.dosomething.org/files/campaigns/grandparents12/header4.jpg") no-repeat;
   background-position: 50% 0%; }
 
 @media only screen and (max-width: 550px) {
@@ -715,6 +715,9 @@ body {
       margin: 0 auto; }
     #cmp #facts-content img {
       margin: 2% 0; }
+    #cmp #facts-content iframe {
+      margin: 1em auto 0;
+      display: block; }
   #cmp #scholarship {
     overflow: visible; }
     #cmp #scholarship img.scholar-copy {
@@ -858,7 +861,8 @@ body {
         text-transform: uppercase;
         color: #f62000;
         margin-top: 5px;
-        font-weight: 500; }
+        font-weight: 500;
+        font-size: 0.95em; }
     #cmp #secondary-content .contest a {
       clear: both;
       color: #1e1d1c;

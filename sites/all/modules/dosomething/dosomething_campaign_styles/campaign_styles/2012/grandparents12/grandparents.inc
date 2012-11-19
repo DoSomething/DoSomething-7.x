@@ -28,7 +28,7 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'take action', 'href' => '', 'fragment' => 'action'),
+    array('title' => 'take action', 'href' => '', 'fragment' => 'header'),
     array('title' => 'download guide', 'href' => '', 'fragment' => 'action'),
     array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
     array('title' => 'learn the issue', 'href' => '', 'fragment' => 'social'),    
@@ -37,7 +37,7 @@ $plugin = array(
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
-    '#markup' => '<div class="nav-count clearfix"><p id="sb-counter"></p><p>Grandparents<br>Wired</p></div><img src="//files.dosomething.org/files/campaigns/grandparents12/intel.jpg"/><p>Got questions? Email Sydney at <a href="mailto:grandparents@dosomething.org">grandparents@dosomething.org</a>!</p>'
+    '#markup' => '<div class="nav-count clearfix"><p id="sb-counter"></p><p>Grandparents<br>Wired</p></div><a href="//iq.intel.com/story/22223727/grandparents-gone-wired" target="_blank"><img src="//files.dosomething.org/files/campaigns/grandparents12/intel.jpg"/></a><p>Got questions? Email Sydney at <a href="mailto:grandparents@dosomething.org">grandparents@dosomething.org</a>!</p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'
