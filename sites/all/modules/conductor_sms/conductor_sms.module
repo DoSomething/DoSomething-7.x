@@ -40,6 +40,7 @@ function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
       // If keyword found, always start a new workflow
       $keyword = $key;
       $startNewWorkflow = TRUE;
+      break;
     }
   }
 
