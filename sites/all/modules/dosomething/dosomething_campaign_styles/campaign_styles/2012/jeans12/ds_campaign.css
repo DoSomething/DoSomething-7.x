@@ -612,6 +612,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 100%;
     overflow: hidden;
     margin: 0 0 5% 5%; }
+  .invite_friends img.banner {
+    margin: 0 auto 5%;
+    display: block; }
   .invite_friends input[type="text"] {
     width: 90%;
     height: 2em;
