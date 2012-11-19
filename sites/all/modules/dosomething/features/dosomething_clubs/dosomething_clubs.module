@@ -8,6 +8,8 @@ include_once('dosomething_clubs.features.inc');
 
 define('DSCLUBS_ADMIN_ROLE', 3);
 define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
+define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 725009));
+define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 12345));
 #define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', );
 #define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', );
 
@@ -275,6 +277,11 @@ function dosomething_clubs_menu() {
     'page arguments' => array('dosomething_clubs_add_users', 2),
     'access callback' => 'user_is_logged_in',
     'title' => t('Invite friends to your club'),
+  );
+
+  $items['clubs/tshirt/response'] = array(
+    'page callback' => 'dosomething_clubs_tshirt_response',
+    'access callback' => TRUE,
   );
 
   return $items;
@@ -1467,10 +1474,72 @@ function dosomething_clubs_make_owner_admin($nid) {
 }
 
 function dosomething_clubs_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'webform_client_form_' . CLUBS_TSHIRT_FORM) {
+    $form['#submit'][] = 'dosomething_clubs_tshirt';
+  }
   if ($form_id == 'webform_client_form_719550') {
     $form['#submit'][] = 'dosomething_clubs_preserve_shortform_email';
   }
 }
+
+function dosomething_clubs_tshirt($form, &$form_state) {
+  $input = $form_state['input']['submitted'];
+  $email = $input['your_email'];
+  $address = $input['your_address'];
+  $cells = $input['your_friends_phone_numbers'];
+
+  $user = user_load_by_mail($email);
+  $c = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('type', 'club')
+    ->condition('uid', $user->uid)
+    ->condition('status', 1)
+    ->orderBy('nid', 'DESC')
+    ->range(0, 1);
+  $club = reset($c->execute()->fetchAll());
+
+  preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $cells), $numbers);
+  foreach ($numbers['numbers'] AS $number) {
+    if (dosomething_general_valid_cell($number)) {
+      $res = array(
+        'nid' => $club->nid,
+        'cell' => $number,
+        'size' => '',
+      );
+
+      drupal_write_record('dosomething_clubs_tshirt_response', $res);
+      dosomething_general_mobile_commons_subscribe($number, $node->field_campaign_mcommons[LANGUAGE_NONE][0]['value']);
+    }
+  }
+
+  drupal_set_message(t('Thanks for letting us know.  We\'ll send out messages to your friends and get their shirt sizes.  Expect to hear from us soon!'));
+}
+
+function dosomething_clubs_tshirt_response() {
+  $number = preg_replace('#[^0-9]#', '', $_GET['phone_number_without_country_code']);
+  $size = strtolower($_GET['args']);
+  $approved_sizes = array(
+    's', 'sm', 'small',
+    'm', 'med', 'medium',
+    'l', 'large',
+    'xl',
+  );
+
+  if (!in_array($size, $approved_sizes)) {
+    dosomething_general_sms_mdata_response("Sorry, we don't understand '" . htmlspecialchars($size) . "'.  Respond with your t-shirt size (S, M, L, or XL).");
+  }
+  else {
+    db_update('dosomething_clubs_tshirt_response')
+    ->fields(array(
+        'size' => $size,
+      ))
+    ->condition('cell', $number)
+    ->execute();
+
+    dosomething_general_sms_mdata_response('Thanks! Got it.  You should hear from your club leader soon about getting your t-shirt!');
+  }
+}
+
 
 function dosomething_clubs_preserve_shortform_email(&$form, &$form_state) {
   $email = $form_state['values']['submitted_tree']['field_webform_email'][LANGUAGE_NONE][0]['value'];
@@ -2362,3 +2431,192 @@ function dosomething_clubs_page_alter(&$page) {
     drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/clubs_directory.js');
   }
 }
+
+
+# ----------
+# SMS FLOW SHIT
+# ----------
+
+/*
+ * Specifies conductor workflows that should trigger for a given endpoint
+ *   [endpoint] => [conductor workflow]
+ *
+function dosomething_clubs_conductor_sms_keywords() {
+  return array(
+    'alcoa-report-back' => 'sms_flow_alcoa_report_back',
+    'drives-invite' => 'sms_flow_drives_invite',
+    'ftaf' => 'sms_flow_ftaf',
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+/*function dosomething_clubs_ctools_plugin_api($owner, $api) {
+  if ($owner == 'conductor') {
+    return array('version' => 1.0);
+  }
+}*/
+
+/*
+ * Implements hook_ctools_plugin_directory
+ *
+function dosomething_clubs_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'conductor') {
+    return "plugins/$plugin_type";
+  }
+}
+
+/*
+ *  Implements hook_default_conductor_workflows()
+ *
+
+function sms_flow_default_conductor_workflows() {
+  $workflows = array();
+
+  //
+  // sms_flow_drives_invite workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_drives_invite';
+  $workflow->title = 'SMS Flow Drives Invite';
+  $workflow->description = 'Workflow for invitees of a drive invite';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('drive_invite_response');
+
+  $activity = $workflow->newActivity('sms_flow_drive_invite_response');
+  $activity->name = 'drive_invite_response';
+  $activity->title = 'Process user rejection or acceptance of the invite';
+  $activity->accept_responses = array('y','yes','yea','ya','tfjjoin','tfj join');
+  $activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive. If you want to join in the future, text back TFJJOIN.');
+  $activity->inputs = array('start');
+  $activity->outputs = array('ask_name', 'process_beta', 'end');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_name';
+  $activity->title = 'Ask Name';
+  $activity->question = t('Awesome! Reply with ur first name and we\'ll set u up with a login for our website where you can learn more about the drive details and about DoSomething.org');
+  $activity->inputs = array('drive_invite_response');
+  $activity->outputs = array('process_beta');
+
+  $activity = $workflow->newActivity('sms_flow_drives_invited_beta');
+  $activity->name = 'process_beta';
+  $activity->title = 'Process Drive Betas';
+  $activity->alpha_campaign_id = 99961;
+  $activity->inputs = array('drive_invite_response', 'ask_name');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('process_beta');
+  $activity->outputs = array('ftaf_process');
+
+  $activity = $workflow->newActivity('sms_flow_ftaf');
+  $activity->name = 'ftaf_process';
+  $activity->title = 'Forward to a Friend';
+  $activity->alpha_optin = 131891;
+  $activity->beta_optin = 129751;
+  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with TFJINVITE if you want to invite more.');
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the drive again, text TFJJOIN. To invite ppl to ur drive, text TFJINVITE.');
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('drive_invite_response', 'ftaf_process');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_ftaf workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_ftaf';
+  $workflow->title = 'Forward to a Friend';
+  $workflow->description = 'Custom forward to a friend workflow';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('ftaf_prompt');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ftaf_prompt';
+  $activity->title = 'Start prompt for FTAF';
+  $activity->question = t('Awesome! All you need to do is text us your friends cell phone numbers and we\'ll invite then to participate in your Teens for Jeans drive.');
+  $activity->inputs = array('start');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('ftaf_prompt');
+  $activity->outputs = array('ftaf_process');
+
+  $activity = $workflow->newActivity('sms_flow_ftaf');
+  $activity->name = 'ftaf_process';
+  $activity->title = 'Forward to a Friend';
+  $activity->alpha_optin = 131891;
+  $activity->beta_optin = 129751;
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with TFJINVITE.');
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('ftaf');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_alcoa_report_back workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_alcoa_report_back';
+  $workflow->title = '50 Cans Report Back';
+  $workflow->description = 'Submits the 50 Cans report back';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('start');
+  $activity->outputs = array('50cans_report_back');
+
+  $activity = $workflow->newActivity('50cans_report_back');
+  $activity->name = '50cans_report_back';
+  $activity->title = '50 Cans Report Back';
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('50cans_report_back');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  return $workflows;
+}*/
