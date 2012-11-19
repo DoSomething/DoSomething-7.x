@@ -1,0 +1,38 @@
+// BASE 
+
+// backgrounds colors
+$fallbackBG: #00A4E0
+$panelBG: #FF4600
+$scholarshipBG: #FF4600
+$dividerBG: #241F20
+$buttonBG: #ffcb15
+$linkBG: #0054AA
+$transBG: rgba(0, 0, 0, 0.9)
+$borderColor: #ccc
+
+// colors
+$mainColor: #00A4E0
+$secondaryColor: #F62000
+$offBlack: #1E1D1C
+$yellow: #F7C000
+$mainCopy: #fff
+
+// link color
+$mainLink: #00A4E0
+$navLink: #00A4E0
+
+// font-family
+$din: din-web-reg,"Trebuchet MS",sans-serif
+
+// mixin definitions
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@function em-calc($target)
+  @return ($target/16)*1em

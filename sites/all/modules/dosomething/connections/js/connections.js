@@ -21,25 +21,27 @@
   Drupal.behaviors.fb = {
     token: '',
     my_pic: '',
+    debug: false,
     fb_init: false,
     _feed_callback: null,
     _ograph_callback: null,
     _message_callback: null,
     _request_callback: null,
     _image_callback: null,
+    _notification_callback: null,
 
     /**
      *  Initializes the Facebook object and runs all appropriate functions.
      */
     init: function(options) {
-      var fb_init = window.setInterval(function () {
-        if (typeof FB !== 'undefined') {
-          window.clearInterval(fb_init);
-          for (i in options) {
-            Drupal.behaviors.fb.run(i, options[i]);
-          }
+      var fb_init = window.fbAsyncInit;
+      window.fbAsyncInit = function() {
+        fb_init();
+
+        for (i in options) {
+          Drupal.behaviors.fb.run(i, options[i]);
         }
-      }, .1);
+      }
     },
 
     // Runs Facebook tasks.
@@ -92,7 +94,11 @@
       }
 
       var pic = '';
-      var og = $('<div></div>').attr('class', 'og_dialog');
+      if ($('.og_dialog').length > 0) {
+        $('.og_dialog').remove();
+      }
+      var og;
+      og = $('<div></div>').addClass('og_dialog ' + page);
 
       var to = '';
       if (things.friends) {
@@ -104,46 +110,65 @@
         tag = '&tagging=1';
       }
 
+      var msg = '';
+      if (things.alert_msg) {
+        msg = '&message=' + encodeURIComponent(things.alert_msg);
+      }
+
       FB.api('/me/picture', function(response) {
         pic = response.data.url;
-        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag, function() {
-          $('.close-fb-dialog').click(function() {
-            // Fake cancel button to remove "fake" feed
-            $('.og_dialog').dialog('close');
-            Drupal.friendFinder.clear_friends();
-            return false;
-          });
+        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
 
-          $('#submit-og-post').click(function() {
-            if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
-              things.comments = $('#hidden_comments').val();
-            }
-            else {
-              things.comments = $('#fb_og_comments').val();
-            }
-            things.explicitly_shared = ($('#explicitly-share').attr('checked') == 'checked') || false;
+          $(this).dialog({
+            dialogClass: 'og-post-dialog',
+            width: (page == 'custom-selector' ? 800 : 650),
+            position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+            resizable: false,
+            open: function() {
+              if ($('#cancel-og-post').length) {
+                // This somehow fixes an error where it wouldn't close after the first close
+                // Don't ask me why.
+                //$('.og_dialog').html('&nbsp;');
+              }
+            },
+            close: function() {
+              if (things.modal) {
+                if (jQuery('#fb-modal').length > 0) {
+                  jQuery('#fb-modal').remove();
+                }
+              }
 
-            callback(things);
-            $('.og_dialog').dialog('close');
-            og.html('&nbsp;');
-          });
+              og.remove();
+              delete og;
+            }
+          }).queue(function() {
+            // Pretend like it's a Facebook dialog feed
+            $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
+
+            // Cancel
+            $('.close-fb-dialog').click(function() {
+              // Fake cancel button to remove "fake" feed
+              $('.og_dialog').dialog('close').remove();
+              Drupal.friendFinder.clear_friends();
+              return false;
+            });
+
+            // Submit
+            $('#submit-og-post').click(function() {
+              if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
+                things.comments = $('#hidden_comments').val();
+              }
+              else {
+                things.comments = $('#fb_og_comments').val();
+              }
+              things.explicitly_shared = ($('#explicitly-share').attr('checked') == 'checked') || false;
+
+              callback(things);
+              $('.og_dialog').dialog('close');
+              //og.html('&nbsp;');
+            });
+          });;
         });
-      });
-      og.dialog({
-        dialogClass: 'og-post-dialog',
-        width: 650,
-        position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
-        resizable: false,
-        open: function() {
-          if ($('#cancel-og-post').length) {
-            // This somehow fixes an error where it wouldn't close after the first close
-            // Don't ask me why.
-            $('.og_dialog').html('&nbsp;');
-          }
-        }
-      }).queue(function() {
-        // Pretend like it's a Facebook dialog feed
-        $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
       });
     },
 
@@ -244,6 +269,43 @@
     },
 
     /**
+     *  Handles authentication through targeted click or page-load trigger.
+     *  
+     *  @param func
+     *    The function to run.
+     *
+     *  @param things
+     *    The things object, with configuration information.
+     *
+     *  @param callback
+     *    Optional callback function.
+     */
+    auth_handler: function(func, things, callback) {
+      // You can't call arguments from this function in the function passed below.  We need to add them to the FB scope to pass them.
+      Drupal.behaviors.fb.t = things;
+      Drupal.behaviors.fb.callback = callback;
+
+      var handler = ( new Function('return Drupal.behaviors.fb.' + func + '(Drupal.behaviors.fb.t, Drupal.behaviors.fb.callback)'));
+      if (things.require_login) {
+        if (things.selector) {
+          $('body ' + things.selector).click(function() {
+            Drupal.behaviors.fb.real_auth(things, function() {
+              handler();
+            });
+          });
+        }
+        else {
+          Drupal.behaviors.fb.real_auth(things, function() {
+            handler();
+          });
+        }
+      }
+      else {
+        handler();
+      }
+    },
+
+    /**
      *  Feed function -- builds the standard facebook feed dialog.
      *  
      *
@@ -257,6 +319,7 @@
      *       feed_selector         (A selector on the page to call the event on)
      *       feed_allow_multiple   (Uses the TD Friend Selector to allow multiple friends to be posted-to)
      *       feed_require_login    (Initializes the login procedure if a user is not logged in.)
+     *       feed_dialog_msg       (An optional message that will appear on the top of the share dialog.  Only appears if multi-friend-selecting is enabled.)
      *
      *  @param callback
      *    A callback function which triggers when a post was succesfully made.
@@ -273,8 +336,13 @@
         allow_multiple: config.feed_allow_multiple,
         max_friends: config.feed_max_friends || 5,
         selector_title: config.feed_selector_title || Drupal.t('Share with your friends'),
+        selector_desc: config.feed_selector_desc,
         tagging: config.feed_tagging,
       	require_login: config.feed_require_login,
+        alert_msg: config.feed_dialog_msg,
+        modal: config.feed_modal || false,
+        friend_selector: config.feed_friend_selector || 'td',
+        check_remainder: false,
       };
 
       if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._feed_callback == 'function') {
@@ -315,6 +383,8 @@
       if (things.selector) {
       	jQuery('body ' + things.selector).click(function() {
         	Drupal.behaviors.fb.feed_runner(things, share, callback);
+
+      return false;
         });
       }
       else {
@@ -340,55 +410,142 @@
           else {
             c = {
               max_friends: things.max_friends,
-              selector_title: things.selector_title
+              selector_title: things.selector_title,
+              selector_desc: things.selector_desc
             };
           }
 
-          // Create a mock button on the site to simulate a click-through on the friendSelector
-          var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
-          fbm.appendTo('body').queue(function() {
-            Drupal.friendFinder.t = things;
-            Drupal.friendFinder($('.fb-feed-friend-finder'), 'publish_stream', function (friends) {
-              var things = {};
-              if (Drupal.friendFinder.t) {
-                things = Drupal.friendFinder.t;
+          // Creates an optional modal dialog
+          if (things.modal) {
+            jQuery('body').append(jQuery('<div></div>').attr('id', 'fb-modal').css({
+              'position': 'absolute',
+              'z-index': 150,
+              'width': '100%',
+              'height': '100%',
+              'top': '0px',
+              'opacity': '0.5',
+              '-ms-filter': 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)',
+              'filter': 'alpha(opacity=50)',
+              '-moz-opacity': '0.5',
+              '-khtml-opacity': '0.5',
+              'background': '#000'
+            }));
+          }
+
+          if (things.friend_selector == 'td') {
+            // Create a mock button on the site to simulate a click-through on the friendSelector
+            var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
+            fbm.appendTo('body').queue(function() {
+              Drupal.friendFinder.t = things;
+              Drupal.friendFinder($('.fb-feed-friend-finder'), 'publish_stream', function (friends) {
+                var things = {};
+                if (Drupal.friendFinder.t) {
+                  things = Drupal.friendFinder.t;
+                }
+
+                if (friends.length > 0) {
+                  things.friends = friends;
+                  Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
+                    var fbObj = {
+                      message: response.comments,
+                      name: response.title,
+                      picture: response.picture,
+                      description: response.description,
+                      caption: response.caption,
+                      link: response.link
+                    };
+
+                    for (var i in things.friends) {
+                      Drupal.behaviors.fb.send_feed_post(things.friends[i], fbObj);
+                    }
+
+                    // Callback for when all posting has completed.
+                    Drupal.behaviors.fb.callback_handler(callback, '');
+                  });
+                }
+              }, c, true);
+            });
+          }
+          else if (things.friend_selector == 'custom') {
+            Drupal.behaviors.fb.fb_dialog('custom-selector', things, function(response) {
+              var msgs = [];
+              var left = [];
+
+              $('.friend').each(function() {
+                if ($(this).hasClass('selected')) {
+                  var id = $(this).attr('rel');
+                  msgs[id] = $(this).find('.personal-message').val();
+                }
+              });
+
+              var fbObj = {
+                message: '',
+                name: response.title,
+                picture: response.picture,
+                description: response.description,
+                caption: response.caption,
+                link: response.link
+              };
+
+              for (i in msgs) {
+                if (msgs[i] != '' || (msgs[i] == '' && response.check_remainder === false)) {
+                  fbObj['message'] = msgs[i];
+
+                  delete msgs[i];
+                  Drupal.behaviors.fb.send_feed_post(i, fbObj);
+                }
+                else {
+                  left.push(i);
+                }
               }
 
-              if (friends.length > 0) {
-                things.friends = friends;
-                Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
-                  var fbObj = {
-                    message: response.comments,
-                    name: response.title,
-                    picture: response.picture,
-                    description: response.description,
-                    caption: response.caption,
-                    link: response.link
-                  };
+              if (left.length > 0 && response.check_remainder) {
+                Drupal.behaviors.fb.log('Some friends left.  Loading the final share block...');
+                response.friends = left;
+                response['alert_msg'] = Drupal.t("Wait! We found some friends that you haven't shared a message with.  Do you want to share on their walls too?");
+                Drupal.behaviors.fb.fb_dialog('multi-feed', response, function(response) {
+                   var fbObj = {
+                     message: response.comments,
+                     name: response.title,
+                     picture: response.picture,
+                     description: response.description,
+                     caption: response.caption,
+                     link: response.link
+                   };
 
-                  for (var i in things.friends) {
-                    FB.api('/' + things.friends[i] + '/feed', 'post', fbObj, function(response) {
-                      Drupal.behaviors.fb.log(response);
-                    });
-                  }
+                   for (var i in things.friends) {
+                     //Drupal.behaviors.fb.send_feed_post(things.friends[i], fbObj);
+                   }
 
-                  // Callback for when all posting has completed.
-                  if (typeof callback == 'function') {
-                    callback();
-                  }
+                   // Callback for when all posting has completed.
+                   Drupal.behaviors.fb.callback_handler(callback, '');
                 });
               }
-            }, c, true);
-          });
-        });
-      }
-      else {
-        FB.ui(share, function() {
-          if (typeof callback == 'function') {
-            callback();
+            });
           }
         });
       }
+      else {
+        FB.ui(share, function(response) {
+          Drupal.behaviors.fb.callback_handler(callback, response);
+        });
+      }
+    },
+
+    /**
+     *  Actually sends the Facebook Feed post.
+     *
+     *  @param friendid
+     *    The facebook ID of the person to send the post to.
+     *
+     *  @param post
+     *    An object of Facebook feed parameters.
+     *
+     */
+    send_feed_post: function(friendid, post) {
+      FB.api('/' + friendid + '/feed', 'post', post, function(response) {
+         Drupal.behaviors.fb.log(response);
+      });
     },
 
     /**
@@ -406,6 +563,7 @@
      *       og_allow_multiple    (Uses the TD Friend Selector to allow multiple friends to be posted-to)
      *       og_require_login     (Initializes the login procedure if a user is not logged in.)
      *       og_fake_dialog       (Whether or not to use the "Fake" dialog that lets users post message with the share)
+     *       og_dialog_msg        (An optional message that will appear on the top of the share dialog)
      *       og_post_custom       (Custom variables as set on the user interface.)
      *
      *  @param callback
@@ -413,7 +571,6 @@
      *    
      */
   	ograph: function(config, callback) {
-  		// OG Type, action, document, selector, require login, fake dialog
   		var things = {
         namespace: config.og_namespace,
   			type: config.og_type,
@@ -425,6 +582,7 @@
   			selector: config.og_selector,
   			require_login: config.og_require_login,
   			dialog: config.og_fake_dialog,
+        alert_msg: config.og_dialog_msg,
         tagging: config.og_tagging,
         custom_vars: config.og_post_custom
   		};
@@ -505,9 +663,7 @@
           'post',
           fbpost,
           function (response) {
-            if (typeof callback == 'function') {
-              callback(response);
-            }
+            Drupal.behaviors.fb.callback_handler(callback, response);
           }
         );
       });
@@ -557,10 +713,8 @@
           $('body ' + things.selector).click(function() {
             Drupal.behaviors.fb.auth(function() {
               req.access_token = Drupal.behaviors.fb.token;
-              FB.ui(req, function() {
-                if (typeof callback == 'function') {
-                  callback();
-                }
+              FB.ui(req, function(response) {
+                Drupal.behaviors.fb.callback_handler(callback, response);
               });
             });
           });
@@ -568,10 +722,8 @@
         else {
           Drupal.behaviors.fb.auth(function() {
             req.access_token = Drupal.behaviors.fb.token;
-            FB.ui(req, function() {
-              if (typeof callback == 'function') {
-                callback();
-              }
+            FB.ui(req, function(response) {
+              Drupal.behaviors.fb.callback_handler(callback, response);
             });
           });
         }
@@ -609,14 +761,14 @@
       }
 
       Drupal.behaviors.fb.real_auth(things, function() {
-        Drupal.behaviors.fb.message_dialog(things);
+        Drupal.behaviors.fb.message_dialog(things, callback);
       });
     },
 
     /**
      *  Builds the Facebook message dialog.
      */
-    message_dialog: function(things) {
+    message_dialog: function(things, callback) {
       var m = {
         method: 'send', 
         link: things.link,
@@ -628,11 +780,15 @@
 
       if (things.selector) {
         $('body ' + things.selector).click(function() {
-          FB.ui(m);
+          FB.ui(m, function(response) {
+            Drupal.behaviors.fb.callback_handler(callback, response);
+          });
         })
       }
       else {
-        FB.ui(m);
+        FB.ui(m, function(response) {
+          Drupal.behaviors.fb.callback_handler(callback, response);
+        });
       }
     },
 
@@ -681,20 +837,7 @@
         things.img_url = $('body ' + things.image_selector).attr('src');
       }
 
-      if (things.require_login) {
-        if (things.selector) {
-          $('body ' + things.selector).click(function() {
-            Drupal.behaviors.fb.auth(function() {
-              Drupal.behaviors.fb.run_image(things, callback);
-            });
-          });
-        }
-        else {
-          Drupal.behaviors.fb.auth(function() {
-            Drupal.behaviors.fb.run_image(things, callback);
-          });
-        }
-      }
+      Drupal.behaviors.fb.auth_handler('run_image', things, callback);
     },
 
     /**
@@ -716,12 +859,96 @@
         'post',
         fbpost,
         function(response) {
-          Drupal.behaviors.fb.log(response);
-          if (typeof callback == 'function') {
-            callback(response);
-          }
+          Drupal.behaviors.fb.callback_handler(callback, response);
         }
       );
+    },
+
+    /**
+     *  Sends a Facebook notification to a user or multiple users.
+     *
+     *  @param config
+     *    A javascript object of configuration options.  Available options:
+     *       notification_user       (A single FB user ID, OR a comma-separated list of FB user IDs to send the notification to.)
+     *       notification_document   (A fully-formed URL to share through the notification.)
+     *       notification_template    (The message to send in the notification.)
+     *       notification_selector   (An (optional) selector that will trigger the share when clicked.)
+     *       notification_require_login       (Prompts a user to log into Facebook if they aren't already.)
+     *
+     *  @param callback
+     *    A callback function which triggers when a post was succesfully made.
+     *    
+     */
+    notification: function(config, callback) {
+      var things = {
+        'app_key': '105775762330|pmFm2r3S-p7merbypvN2EANG4UI', // DoSomething.org's app key -- needs to be a canvas app key.  This will be in the UI at a later point.
+        user: config.notification_user || 0,
+        link: config.notification_document || document.location.href,
+        message: config.notification_template,
+        selector: config.notification_selector, 
+        require_login: config.notification_require_login,
+      };
+
+      if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._notification_callback == 'function') {
+        callback = Drupal.behaviors.fb._notification_callback;
+      }
+
+      Drupal.behaviors.fb.auth_handler('run_notification', things, callback);
+    },
+
+    /**
+     *  Handles post processing, including Facebook ID and multiple IDs.
+     *  This function should not be called by itself.
+     */
+    run_notification: function(things, callback) {
+      if (!things.user) {
+        var fbid = FB.getUserID();
+        if (fbid > 0) {
+          things.user = fbid;
+        }
+      }
+
+      // If we can find a comma, it's likely there are several users to send a message to.
+      if (things.user.indexOf(',') !== -1) {
+        var u = things.user.split(',');
+        for (var i in u) {
+          things.user = u[i];
+          Drupal.behaviors.fb.send_notification(things, callback);
+        }
+      }
+      // Otherwise, presumably only one person to send the message to.
+      else {
+        Drupal.behaviors.fb.send_notification(things, callback);
+      }
+    },
+
+    /**
+     *  Actually sends the notification.
+     *  This function should not be called by itself.
+     */
+    send_notification: function(things, callback) {
+      FB.api(
+       '/' + things.user + '/notifications',
+        'post',
+        {
+            'access_token': things.app_key,
+            'href': things.link,
+            'template': things.message
+        },
+        function(response) {
+          Drupal.behaviors.fb.callback_handler(callback, response);
+        }
+      );
+    },
+
+    callback_handler: function(callback, response) {
+      if (typeof callback == 'function') {
+        callback(response);
+      }
+
+      if (Drupal.behaviors.fb.debug == true) {
+        Drupal.behaviors.fb.log(response);
+      }
     }
   };
 })(jQuery);

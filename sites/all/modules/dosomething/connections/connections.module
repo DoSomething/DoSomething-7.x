@@ -15,6 +15,29 @@ function connections_fb_social_app_id_alter(&$app_id) {
 	}
 }
 
+/*
+ * Implements hook_library().
+ */
+function connections_library() {
+  $libraries = array();
+  if ($path = libraries_get_path('fb-friend-selector')) {
+	  $libraries['facebook'] = array(
+	  	'title' => 'Facebook connections',
+	  	'version' => '1.0',
+	  	'js' => array(
+	  		drupal_get_path('module', 'connections') . '/js/connections.js' => array(),
+	        drupal_get_path('module', 'dosomething_general') . '/js/fb-friend-finder.js' => array(),
+	  		$path . '/tdfriendselector.js' => array(),
+	  	),
+	  	'css' => array(
+	  		$path . '/tdfriendselector.css' => array(),
+	  	),
+	  );
+  }
+
+  return $libraries;
+}
+
 /**
  *	Implements hook_menu()
  */
@@ -38,24 +61,6 @@ function connections_menu() {
   return $items;
 }
 
-/*
- * Implements hook_library().
- */
-function connections_library() {
-  $libraries = array();
-  $libraries['fb-connections'] = array(
-    'title' => 'Facebook Connections',
-    'version' => '1.0',
-    'js' => array(
-      drupal_get_path('module', 'connections') . '/js/connections.js' => array(),
-    ),
-    'css' => array(
-      drupal_get_path('module', 'connections') . '/css/connections.css' => array(),
-    ),
-  );
-  return $libraries;
-}
-
 /**
  *	Passes variables from $_GET to the theme template for specific Facebook dialog boxes.
  *  Also sanitizes input.
@@ -68,7 +73,8 @@ function connections_handle_fb_dialog($t) {
 	$options = array(
 		'og-post' => 'connections_og_post',
 		'fb-message' => 'connections_message',
-		'multi-feed' => 'connections_multi_feed'
+		'multi-feed' => 'connections_multi_feed',
+		'custom-selector' => 'connections_custom_selector',
 	);
 
 	if (!isset($options[$t])) {
@@ -83,7 +89,8 @@ function connections_handle_fb_dialog($t) {
 		'description' => $_GET['desc'],
 		'to' => $_GET['to'],
 		'photo' => $_GET['mypic'],
-		'tagging' => intval($_GET['tagging'])
+		'tagging' => intval($_GET['tagging']),
+		'message' => htmlspecialchars($_GET['message'])
 	);
 
 	echo theme($options[$t], $params);
@@ -127,6 +134,17 @@ function connections_theme($existing, $type, $theme, $path) {
       ),
       'template' => 'fb-connections-multi-post',
     ),
+    'connections_custom_selector' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'title' => NULL,
+        'caption' => NULL,
+        'description' => NULL,
+        'image' => NULL,
+        'to' => NULL
+      ),
+      'template' => 'fb-connections-custom-selector',
+    ),
   );
 }
 
@@ -134,12 +152,14 @@ function connections_theme($existing, $type, $theme, $path) {
  *	Implements hook_page_alter()
  */
 function connections_page_alter(&$page) {
+	#drupal_set_message(t('Blah blah'), 'error');
 	$fb_actions = array(
 		'fb_connect' => 'feed',
 		'og_connect' => 'ograph',
 		'img_share' => 'image',
 		'fb_app_request' => 'request',
-		'fb_message' => 'message'
+		'fb_message' => 'message',
+		'fb_notification' => 'notification'
 	);
 
 	$n = menu_get_object();

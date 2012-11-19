@@ -1,0 +1,139 @@
+// style forms loaded inside #cmp wrapper
+
+//      //
+//  #contact-form
+//      //
+
+#contact-form
+  background: $spitPurple
+  width: 100%
+  h3
+    color: $spitYellow
+    font-size: 1.3em
+    font-weight: 600
+    text-align: left
+    padding: 0.2em 0 0 0
+    font-size: 0.9em
+ 
+#header .form-submit
+  font-weight: 600
+  margin-top: 0.3em
+  height: 2em
+
+.focusOutline /* defines input highlighting */
+  box-shadow: 0px 0px 10px 4px #00ADFF
+
+#edit-submitted-field-webform-mobile-und-0-value /* float to fix centered input on tablet */
+  float: left
+
+form.webform-client-form #edit-actions--2 /* over-rides bad style declarations from site-wide stylesheet */
+  height: auto
+  text-align: inherit
+
+.pane-campaign-sign-up /* drupal name; contact-form wrapper */
+  input[type="text"], input[type="tel"]
+    height: 3em
+    margin-top: 0.5em
+    padding-left: 0.7em
+    +border-radius(5px)
+  label
+    color: #fff
+    width: 100%
+    font-size: 1.1em
+    font-weight: 500
+    font-family: din-web-reg
+    line-height: 1.5em
+    text-transform: uppercase
+    text-align: left
+  .form-submit
+    position: static
+    margin: 1em auto 0
+    padding: 0.3em 0.7em
+
+#campaign-opt-in
+  clear: both
+  text-align: left
+  padding: 0.5em !important
+  span
+    font-size: 0.7em
+    line-height: 0.7em
+    background: transparent
+    color: #fff
+  strong
+    font-weight: 600
+
+.webform-client-form
+  box-shadow: none
+
+.already_submitted
+  margin: 0 auto
+  width: 85%
+  img
+    margin: 2% 0 0 0
+    float: left
+  .go-button
+    margin: 3% 0 6% 0
+    padding: 0.4em
+    font-size: 2em
+    display: block
+    width: 7em
+    float: right
+
+/* element floats */
+#webform-component-join-header, #webform-component-start-header, #edit-submitted-field-webform-email, #edit-submitted-field-webform-mobile, .form-actions.form-wrapper
+  width: 25%
+  float: left
+
+#edit-submitted-field-webform-email
+  width: 35%
+
+.form-actions.form-wrapper
+  width: 15%
+
+/* centers wrappers contained within floated segments */
+#submitted-field-webform-email-add-more-wrapper, #submitted-field-webform-mobile-add-more-wrapper, #contact-form h3
+  width: 90%   
+  margin: 0 auto 
+
+//      //
+//  #checklist
+//      //
+
+#checklist
+  padding: 0 2%
+  width: 100%
+  overflow: hidden
+  p
+    display: inline
+    padding-left: 0.5em
+  a
+    font-weight: 600
+    img
+      margin: 2% auto 0
+      display: block
+      width: 81%
+  fieldset
+    display: none
+  #webform-component-header
+    margin-bottom: 3%
+    h3, p
+      padding: 0 2%
+  .divider
+    margin: 3% 0 6%
+  .webform-component-checkboxes
+    padding: 0.3em 0
+    label:first-child
+      display: none
+  .form-actions.form-wrapper
+    float: none
+  .form-submit
+    margin: 1em
+    font-weight: 600
+    text-transform: uppercase
+
+//      //
+// misc styles
+//      //
+
+label
+  cursor: default

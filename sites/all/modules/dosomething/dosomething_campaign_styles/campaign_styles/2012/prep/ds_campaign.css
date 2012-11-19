@@ -21,7 +21,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: black url("http://files.dosomething.org/files/campaigns/prep/bg.jpg") no-repeat center center fixed;
+  background: black url("//files.dosomething.org/files/campaigns/prep/bg.jpg") no-repeat top center fixed;
   background-size: cover; }
 
 .page-team #contact-form #webform-component-start-header {
@@ -81,7 +81,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -539,6 +539,22 @@ body {
     text-decoration: none; }
   #cmp #header {
     background: transparent; }
+    #cmp #header #sms-referral {
+      display: none;
+      width: 80%;
+      margin: 0 auto;
+      padding: 1em;
+      background: #00aae6;
+      -webkit-border-radius: 0.5em;
+      -moz-border-radius: 0.5em;
+      -ms-border-radius: 0.5em;
+      -o-border-radius: 0.5em;
+      border-radius: 0.5em; }
+      #cmp #header #sms-referral h3 {
+        color: white;
+        text-align: center; }
+      #cmp #header #sms-referral a {
+        color: black; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
       color: black;
@@ -581,8 +597,6 @@ body {
         font-size: 1.8em; }
   #cmp #action.action-anonymous, #cmp #action.action-participant {
     margin-top: 10px; }
-    #cmp #action.action-anonymous h3, #cmp #action.action-participant h3 {
-      line-height: 2em; }
     #cmp #action.action-anonymous p, #cmp #action.action-participant p {
       text-align: left; }
     #cmp #action.action-anonymous img, #cmp #action.action-participant img {
@@ -683,7 +697,8 @@ body {
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
     -webkit-border-radius: 4px;
-    border-radius: 4px; }
+    border-radius: 4px;
+    width: 44%; }
   #cmp #search input[type=submit] {
     font-weight: 500;
     margin: 0; }
@@ -976,8 +991,18 @@ body {
   #cmp #sms-map img {
     margin-bottom: 1%; }
   #cmp #sms-map .sms-map-wrapper {
-    padding: 3%;
+    padding: 3% 6% 5%;
     background-color: #00aae6; }
+  #cmp #sms-map .skip {
+    display: none;
+    margin-bottom: 1.5em; }
+    #cmp #sms-map .skip a {
+      color: white;
+      background: red;
+      text-decoration: none;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 1.4em; }
   #cmp #footer h1 {
     font-size: 2em;
     font-family: din-web;
@@ -1096,6 +1121,10 @@ body {
     width: 70%;
     padding: 1% 2%;
     background: white; }
+    #cmp #report-back input {
+      border: 1px solid #e1e1e1; }
+    #cmp #report-back textarea {
+      border: 2px solid #e1e1e1; }
     #cmp #report-back h1 {
       font-size: 2em;
       line-height: 1.25em; }
@@ -1210,6 +1239,8 @@ body {
       margin: 3% 0; }
     #cmp #action.action-anonymous h3, #cmp #action.action-participant h3 {
       text-align: left; }
+    #cmp #action.action-anonymous .col33-inner p, #cmp #action.action-participant .col33-inner p {
+      text-align: left !important; }
     #cmp #action.action-anonymous img {
       display: none; }
     #cmp a.print-pdf {
@@ -1241,7 +1272,9 @@ body {
       margin: 5%; }
     #cmp #social img {
       float: left;
-      width: 40%; } }
+      width: 40%; }
+    #cmp #social img.fb-share {
+      width: 100%; } }
   @media only screen and (max-width: 550px) {
     #cmp .email-spit {
       width: 100%; }
@@ -1253,7 +1286,9 @@ body {
     #cmp #content-infographic .mobile {
       display: block; }
     #cmp #content-infographic img {
-      display: none; } }
+      display: none; }
+    #cmp #sms-map .skip {
+      display: block; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 0 auto; }
@@ -1273,10 +1308,15 @@ body {
       margin: 0 auto; }
     #cmp .email-spit img {
       width: 100%; }
+    #cmp #search input[type=text] {
+      width: 30%; }
     #cmp .pane-drive-search-panel-pane-1 form {
       width: 85%; }
     #cmp .views-field-nothing {
       margin: 0; }
+    #cmp #scholarship h1 {
+      font-size: 1.6em;
+      line-height: 1.3em; }
     #cmp #scholarship h1.condensed {
       font-size: 2.75em; }
     #cmp #social .col33 {
@@ -1285,6 +1325,8 @@ body {
     #cmp #social img {
       float: left;
       width: 50%; }
+    #cmp #social img.fb-share {
+      width: 100%; }
     #cmp #social h3 {
       font-size: 1em;
       text-align: left;

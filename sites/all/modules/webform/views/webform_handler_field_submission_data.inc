@@ -12,84 +12,123 @@
  */
 class webform_handler_field_submission_data extends views_handler_field {
 
-  protected $component_instances;
-
-  /**
-   * Field constructor to provide default data.
-   */
-  function construct() {
-    parent::construct();
-    $this->additional_fields['nid'] = 'nid';
-    $this->additional_fields['cid'] = 'cid';
-    $this->additional_fields['no'] = 'no';
-  }
-
-  /**
-   * Definition and defaults for the option form/values.
-   */
   function option_definition() {
     $options = parent::option_definition();
     $options['format'] = array('default' => 'html');
-    $options['display_label'] = array('default' => FALSE);
+    $options['custom_label'] = array('default' => 'default');
+    $options['webform_nid'] = array('default' => NULL);
+    $options['webform_cid'] = array('default' => NULL);
     return $options;
   }
 
-
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
+    form_load_include($form_state, 'inc', 'webform', 'views/webform.views');
+
+    $form['custom_label']['#type'] = 'radios';
+    $form['custom_label']['#options'] = array(
+      'default' => t('Use component label'),
+      'custom' => t('Custom label'),
+      'none' => t('No label'),
+    );
+    $form['custom_label']['#default_value'] = $this->options['custom_label'];
+    $form['label']['#dependency'] = array('radio:options[custom_label]' => array('custom'));
+
+    $nid = (int) $this->options['webform_nid'];
+    $cid = (int) $this->options['webform_cid'];
+
+    // Helper function provides webform_nid and webform_cid options.
+    _webform_views_options_form($form, $form_state, $nid, $cid);
 
     // Provide the selection for the display format.
     $form['format'] = array(
       '#type' => 'select',
       '#title' => t('Display format'),
       '#options' => array(
-        'html' => 'html',
-        'plain' => 'plain',
+        'html' => t('HTML'),
+        'plain' => t('Plain text'),
       ),
-      '#required' => TRUE,
       '#default_value' => $this->options['format'],
     );
+  }
 
-    // Title display settings.
-    $form['display_label'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Display label'),
-      '#default_value' => $this->options['display_label'],
-      '#description' => t('Show the label of the component as it is provied by webform.'),
-    );
+  function options_validate(&$form, &$form_state) {
+    parent::options_validate($form, $form_state);
+    _webform_views_options_validate($form, $form_state);
+  }
+
+  function options_submit(&$form, &$form_state) {
+    parent::options_submit($form, $form_state);
+    _webform_views_options_submit($form, $form_state);
   }
 
   /**
-   * Pre render the query, to get the
+   * Load the node and submissions needed for this components values.
    */
   function pre_render(&$values) {
-    $this->component_instances = webform_component_instances();
-    // @TODO: maybe we add a multi value pre query here?
+    $nid = $this->options['webform_nid'];
+    $this->webform_node = node_load($nid);
+    // Load all the submissions needed for this page. This is stored at the
+    // view level to ensure it's available between fields so we don't load
+    // them twice.
+    if (!isset($this->view->_webform_submissions[$nid])) {
+      module_load_include('inc', 'webform', 'includes/webform.submissions');
+      $this->view->_webform_submissions[$nid] = array();
+      $sids = array();
+      foreach ($values as $value) {
+        $sids[] = $value->{$this->field_alias};
+      }
+      if ($sids) {
+        $this->view->_webform_submissions[$nid] = webform_get_submissions(array('sid' => $sids));
+      }
+    }
   }
 
   /**
-   * Render the field.
-   *
-   * @param $row
-   *   The row retrieved
+   * Get this field's label based on the selected component.
+   */
+  function label() {
+    if ($this->options['custom_label'] === 'default' && isset($this->options['webform_cid'])) {
+      if (isset($this->webform_node)) {
+        $node = $this->webform_node;
+      }
+      else {
+        $node = node_load($this->options['webform_nid']);
+      }
+      if ($node && isset($node->webform['components'][$this->options['webform_cid']])) {
+        $component = $node->webform['components'][$this->options['webform_cid']];
+        return $component['name'];
+      }
+    }
+    elseif (isset($this->options['label'])) {
+      return $this->options['label'];
+    }
+    return '';
+  }
+
+  /**
+   * Render the field using the loaded submissions from pre_render().
    */
   function render($row) {
-    $value = $this->get_value($row);
-    if (isset($value)) {
-      $nid = $this->get_value($row, 'nid');
-      $cid = $this->get_value($row, 'cid');
-      // @TODO: use a delta = 0 on every item?
-      $delta = $this->get_value($row, 'no');
-      $component = $this->component_instances["$nid-$cid"];
+    $sid = $this->get_value($row);
+    if (isset($sid)) {
+      $nid = $this->options['webform_nid'];
+      $cid = $this->options['webform_cid'];
+
+      $component = $this->webform_node->webform['components'][$cid];
+      $submission = $this->view->_webform_submissions[$nid][$sid];
+
+      $render = array();
+      $format = $this->options['format'];
+
+      _webform_client_form_add_component($this->webform_node, $component, NULL, $render, $render, $submission->data, $format);
+      $render = $render[$component['form_key']];
 
       // Remove display label.
       if (empty($this->options['display_label'])) {
-        $component['name'] = '';
+        $render['#theme_wrappers'] = array();
       }
 
-      $format = $this->options['format'];
-      $render = webform_component_invoke($component['type'], 'display', $component, array($delta => $value), $format);
-      // @TODO: add a theme layer?
       return render($render);
     }
   }

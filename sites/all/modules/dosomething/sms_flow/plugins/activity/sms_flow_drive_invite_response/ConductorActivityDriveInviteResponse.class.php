@@ -25,11 +25,8 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
-    $response_words = explode(' ', $_REQUEST['args']);
-    $first_response = array_shift($response_words);
-
     // Invite accepted
-    if (self::hasAcceptResponse($first_response)) {
+    if (self::hasAcceptResponse($_REQUEST['args'])) {
       $account = _sms_flow_find_user_by_cell($mobile);
       
       // No account found. Output should be 'ask_name'
@@ -57,7 +54,7 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
   private function hasAcceptResponse($response) {
     $response = strtolower($response);
     foreach($this->accept_responses as $val) {
-      if ($val == $response) {
+      if (stripos($response, $val) === 0) {
         return TRUE;
       }
     }

@@ -169,6 +169,9 @@ var TDFriendSelector = (function(module, $) {
 				updateFriendsContainer(1);
 				updatePaginationButtons(1);
 				$container.fadeIn(settings.speed);
+				// Actually centers it on the center of the page!
+			    $container.css('top', Math.max(0, (($(window).height() - $container.outerHeight()) / 2) + $(window).scrollTop()) + "px");
+			    $container.css('left', Math.max(0, (($(window).width() - $container.outerWidth()) / 2) + $(window).scrollLeft()) + "px");
 				if (typeof callback === 'function') {
 					callback();
 				}
@@ -236,6 +239,7 @@ var TDFriendSelector = (function(module, $) {
 			$buttonClose.bind('click', function(e) {
 				e.preventDefault();
 				hideFriendSelector();
+				if (typeof instanceSettings.callbackCancel === 'function') { instanceSettings.callbackCancel(); }
 			});
 
 			$buttonOK.bind('click', function(e) {
@@ -284,6 +288,7 @@ var TDFriendSelector = (function(module, $) {
 					e.preventDefault();
 					e.stopPropagation();
 					hideFriendSelector();
+					if (typeof instanceSettings.callbackSubmit === "function") { instanceSettings.callbackCancel(); }
 				}
 			});
 		};

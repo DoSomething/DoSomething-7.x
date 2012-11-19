@@ -51,15 +51,16 @@ function dosomething_api_clubs_api() {
 
   // School entity -- gathers reference school ID
   $c->leftJoin('field_data_field_school_reference', 'school', "school.entity_id = n.nid AND (school.entity_type = 'node' AND school.deleted = '0')");
-  $c->addField('school', 'field_school_reference_target_id', 'school_id');
+  #$c->addField('school', 'field_school_reference_target_id', 'school_id');
 
   // Actual school information.  Should be self explanatory
   $c->leftJoin('ds_school', 's', 's.sid = school.field_school_reference_target_id');
+  $c->addField('s', 'school_id', 'school_id');
   $c->addField('s', 'name', 'school_name');
-  $c->addField('s', 'level', 'school_level');
-  $c->addField('s', 'city', 'school_city');
+  #$c->addField('s', 'level', 'school_level');
+  #$c->addField('s', 'city', 'school_city');
   $c->addField('s', 'state', 'school_state');
-  $c->addField('s', 'zip', 'school_zip');
+  #$c->addField('s', 'zip', 'school_zip');
 
   $c->condition('n.type', 'club');
   $c->groupBy('n.nid ASC');
@@ -155,12 +156,12 @@ function dosomething_api_clubs_api() {
     $club->projects = dosomething_general_array_vals_multi($projects);
 
     // Adds "path" key to final array
-    $club->path = drupal_lookup_path('alias', 'node/' . $club->nid);
+    $club->path = url(drupal_lookup_path('alias', 'node/' . $club->nid), array('absolute' => true));
 
     // Add to larger array that will be encoded later.
     $final[] = $club;
   }
 
-  echo json_encode($final);
+  drupal_json_output($final);
   drupal_exit();
 }

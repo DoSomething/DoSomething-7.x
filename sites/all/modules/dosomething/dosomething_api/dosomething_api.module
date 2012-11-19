@@ -1,6 +1,10 @@
 <?php
 
-define('KEY_FORM_ID', 725930); // 724999 on local
+// API key form ID -- for form_alter later down the page
+define('API_KEY_FORM_ID', variable_get('ds_api_key_form_id', 725930)); // 724999 on local
+
+// Master API key for DS developers -- lets us access any API
+define('MASTER_API_KEY', variable_get('ds_api_master_api_key', '6d0bcf10b343040410d6120ac8bd472c'));
 
 /**
  *  Implements hook_menu()
@@ -10,7 +14,8 @@ function dosomething_api_menu() {
     'type' => MENU_CALLBACK,
     'access callback' => TRUE,
     'page callback' => 'dosomething_api_run',
-    'page arguments' => array(1)
+    'page arguments' => array(1),
+    'delivery callback' => 'ajax_deliver',
   );
 
   return $items;
@@ -22,22 +27,28 @@ function dosomething_api_menu() {
  */
 function dosomething_api_run($action) {
   // API key is required
+  $bypass = false;
   if (!empty($_GET['key'])) {
     $api_key = preg_replace('#[^A-Za-z0-9]#i', '', $_GET['key']);
-    $query = "
-      SELECT sid
-      FROM `webform_submissions`
-      WHERE MD5(`sid`) = '" . $api_key . "'";
-    $key = db_query($query);
-    $k = $key->fetchAll();
+    if ($api_key == MASTER_API_KEY) { 
+      $bypass = true;
+    }
+    else {
+      $query = "
+        SELECT sid
+        FROM `webform_submissions`
+        WHERE MD5(`sid`) = '" . $api_key . "'";
+      $key = db_query($query);
+      $k = $key->fetchAll();
+    }
   }
 
-  if ((isset($k) && count($k) == 0) || empty($_GET['key'])) {
-    echo json_encode(array(
+  if ((!$bypass && (isset($k) && count($k) == 0)) || empty($_GET['key'])) {
+    drupal_json_output(array(
       'error' => t('You must have a valid API key to access this content.  Please go to http://www.dosomething.org/api to request a key.')
     ));
 
-    return null;
+    drupal_exit();
   }
 
   $action = str_replace('.json', '', $action);
@@ -83,7 +94,7 @@ function dosomething_api_mail($key, &$message, $params) {
  *  Implements hook_form_alter()
  */
 function dosomething_api_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'webform_client_form_' . KEY_FORM_ID) {
+  if ($form_id == 'webform_client_form_' . API_KEY_FORM_ID) {
     $form['#submit'][] = 'dosomething_api_submit_email';
   }
 }

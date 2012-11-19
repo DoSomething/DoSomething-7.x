@@ -5,29 +5,40 @@
 //			//
 
 #header
-  background: url("assets/brad.jpg")
-  background-position: 29% -120%
+  background-image: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg")
+  background-position: 100% 35%
+  background-repeat: no-repeat
+  background-color: #E5E7E9
   margin: 0
   padding: 0
   h1, h2
     text-align: left
-    color: $spitYellow
+    color: $spitPurple
     margin: 0
   h1
-    margin: 0 0 0.5em 0
     font-weight: 600
-    font-size: 2em
+    font-size: 3.5em
+    font-family: din-web
+    line-height: 1em
   h2
-    font-size: 1.3em
+    font-size: 1.4em
     line-height: 1.6em
-    font-weight: 600
+    font-weight: 400
+    width: 50%
   span
-    padding: 0
-    text-align: center
-    background: $spitPurple
-    background: $spitTrans
-  .tagline
-    padding: 2%
+    color: $bgFallback
+
+.tagline
+  padding: 2%
+
+.pane-campaign-social
+  display: none
+
+.socialWrapper
+  margin: 1em 0 0 0.5em
+  .socialButton
+    &:last-child
+      display: none
 
 //      //
 //  #next-steps
@@ -70,31 +81,22 @@
   width: 40%
   margin: 6% 0 0 0
   padding: 0 0 0 5%
-  border-left: 1px solid $spitGrey
+  border-left: 2px solid $spitGrey
   ul
     max-height: 160px
     overflow: scroll
 
 .drive-info-title h2 /* drive title */
   color: $spitPurple
-  margin: 0 0 0.5em 0
+  margin: 0 0 0.4em 0
   font-family: $din
   font-size: 2em
   font-weight: 600
   text-transform: uppercase
-  border-bottom: 1px solid #ccc
+  border-bottom: 2px solid $spitGrey
 
-.drive-info-info /* drive logistics */
-  width: 65%
-  float: left
-  a /* edit drive link */
-    color: $spitPurple
-    background-image: url("assets/drive1.png")
-    background-position: 0% 50%
-    background-repeat: no-repeat
-    background-size: 20px
-    padding: 1em 1.8em 0
-    display: block
+.drive-info-info /* not filled out on school pages */
+  display: none 
 
 .drive-info-where, .drive-info-when /* address and date styling */
   font-weight: uppercase
@@ -104,11 +106,17 @@
     text-transform: none
     color: #777
 
-.drive-share 
-  width: 35%
-  float: right
-  h3
-    text-align: right
+.drive-share
+  display: none
+
+//.drive-share 
+//  width: 100%
+//  float: left
+//  margin: 3% 0 0 0
+//  padding: 3% 0 0 0
+//  border-top: 2px solid $spitGrey
+//  h3
+//    text-align: left
 
 .drive-facebook, .drive-twitter /* twitter and facebook sprites for drive sharing */
   width: 30px
@@ -116,16 +124,16 @@
   display: inline-block
   background-repeat: no-repeat
   text-indent: -9999em
-  margin: 0 0 0 5%
-  float: right
+  margin: 0 3% 0 0
+  float: left
   &:hover
     background-position-y: -30px
 
 .drive-twitter
-  background-image: url(assets/drive-twitter.png)
+  background-image: url(//files.dosomething.org/files/campaigns/jeans12/twitter-small.png)
 
 .drive-facebook
-  background-image: url(assets/drive-facebook.png)
+  background-image: url(//files.dosomething.org/files/campaigns/jeans12/facebook-small.png)
 
 .drive-info-description, .drive-info-countdown /* hides unused goal and countdown elements */
   display: none
@@ -205,6 +213,16 @@ a.print-pdf
 //      //
 //  .search     - search -
 //      //
+
+#search
+  img
+    width: 50%
+    display: block
+    margin: 0 auto 2%
+  p
+    padding: 0 0 1em 0
+  .go-button
+    margin: 0 1%
 
 /* search block */
 .pane-drive-search-panel-pane-1 form
@@ -292,10 +310,36 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     position: static
 
 //			//
-//	#content
+//	#content-module
 //			//
 
+#content-module
+  .jeans-divider
+    margin-bottom: 5%
+
+.free-banner
+  float: right
+  margin-top: -4%
+
+.make-a-difference
+  margin: 0 0 0 12%
+  float: left
+  width: 60%
+  h2, p
+    text-align: left
+  h2
+    text-transform: uppercase
+    padding-top: 0.3em
+  p
+    font-size: 0.9em
+    width: 110%
+  img
+    float: left
+    padding-right: 3%
+
 #scholarship
+  overflow: visible
+  position: relative
   img.scholar-copy
     padding: 0
   img
@@ -303,7 +347,6 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     display: block
     margin: 0 auto
     padding: 2% 0
-  overflow: visible 
   h1
     color: #fff
   p
@@ -311,16 +354,22 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
   form
     margin: 0 auto
     max-width: 600px
-  label
-    font-weight: 600  
-  input[type="text"]
-    padding: 0.8em 0.5em
-    float: left
-    width: 48%
-    margin: 1%
+    label
+      color: #fff
+      font-weight: 500  
+      text-align: left
+    input[type="text"]
+      padding: 0.8em 0.5em
+      float: left
+      height: 3em
+      width: 48%
+      margin: 1%
+      +border-radius(0.3em)
   .go-button
     margin: 4% 0 1% 0
-    padding: 0.3em 0.7em
+    padding: 0.6em 0.7em
+    height: 2em
+    width: 8em
   #campaign-opt-in
     text-align: center
     a
@@ -342,17 +391,22 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     float: left
     width: 48%
     margin: 1%
-    label
-      text-align: left
-    input
+    input[type="text"]
       width: 100%
       margin: 1% 0
+  .your-input input[type="text"]
+    width: 100%
   .rules
     font-size: 1em  
+
+label.friends
+  padding-left: 0.3em
+
 .refer5
   background: $spitPurple
   width: 110%
   margin: 0 0 0 -4.95%
+  +border-radius(0 0 4px 4px)
   &:before, &:after
     content: ""
     position: absolute
@@ -367,6 +421,40 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
     right: -22px
 .refer5-inner
   padding: 3%
+
+//			//
+//	#prizing
+//			//
+
+#prizing
+  h3
+    margin: 1em 0
+  p
+    width: 70%
+    margin: 3em auto
+
+//      //
+//  #psa
+//      //
+
+#psa
+  h2
+    text-transform: uppercase
+    font-size: 1.9em
+    padding: 0 0 0.3em 0
+    color: $bgFallback
+
+#psa_wrapper
+  position: relative
+  padding-bottom: 55%
+  padding-top: 5%
+  height: 0
+  iframe
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
 
 //			//
 //  #social     - share 3 stats -
@@ -388,30 +476,27 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
 //      //
 
 #faq 
-  div
-    padding: 0 1.2em 1.2em 1.2em
+  padding-bottom: 3%
+  +border-radius(0 0 4px 4px)
   h4, li, p
     text-align: left
-  li
+  li, div
     padding: 0 0 0 1.5em
   h1
     font-size: 2em
     font-family: din-web
     text-transform: uppercase
-    background: url("assets/faq3.png")
-    background-repeat: no-repeat
-    background-position: 50% 1.2em
-    padding: 0 0 1em 0
-    margin: 0 0 -1em 0
   h4
     color: $spitPurple
     cursor: pointer
-    background: url("assets/faq2.png")
+    background: url("//files.dosomething.org/files/campaigns/jeans12/faq_arrows.png")
     background-repeat: no-repeat
     background-position-y: 0.4em
     padding: 0.3em 1.2em
   h4.activeFAQ
-    background-position-y: -3.9em
+    background-position-y: -3.8em
+  div.divider
+    padding: 0.5em 0 0 0
   .go-button
     margin: 0 0 1% 0
 
@@ -419,15 +504,16 @@ li.views-row /* clear floats on <li> wrapping the following fields: */
 //  #footer     - sign up button; conditionally displayed -
 //      //
 
-#footer
+#footer.section
   h1
     font-size: 2em
     font-family: din-web
     text-transform: uppercase
-    background: url("assets/faq3.png")
+    background: url("//files.dosomething.org/files/campaigns/jeans12/faq3.png")
     background-repeat: no-repeat
     background-position: 50% 0.7em
     padding: 0 0 1em 0
     margin: 0 0 -1em 0
   .go-button
     margin: 0 0 1% 0
+

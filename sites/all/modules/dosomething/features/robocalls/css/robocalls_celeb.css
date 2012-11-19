@@ -26,7 +26,7 @@ div#robocalls-celeb-form form.webform-client-form {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
-  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-mobile-commons-id, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser {
+  div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-mobile-commons-id, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-1, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-2, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-3, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-4, div#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celeb-friend-phone-5 {
     display: none; }
   div#robocalls-celeb-form form.webform-client-form label {
     float: left;

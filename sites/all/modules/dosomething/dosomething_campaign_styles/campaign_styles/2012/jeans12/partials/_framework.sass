@@ -23,6 +23,19 @@
 .col60
   width: 60%
 
+.jeans-divider
+  background: $spitPurple
+  width: 110%
+  margin-left: -5%
+  padding-top: 0.5em
+  h1, h2
+    text-transform: uppercase
+    color: #fff
+  h2
+    font-weight: 400
+  span
+    font-weight: 600
+
 .divider
   text-align: center
   border-top: 2px solid $spitGrey
@@ -34,14 +47,15 @@
     position: relative
     font-weight: 500
     letter-spacing: 0.1em
+    +border-radius(0 0 4px 4px)
 
-.go-button, #edit-submit
+.go-button, #edit-submit, .form-submit
   font-family: din-web
   background: $button
   margin: 4% 0 1%
   padding: 0.4em 0.7em
   position: static
-  font-size: 2em
+  font-size: 1.5em
   height: 1.4em
   display: inline-block
   color: $offBlack

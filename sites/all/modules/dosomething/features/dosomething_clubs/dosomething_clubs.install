@@ -89,6 +89,33 @@ function dosomething_clubs_schema() {
     )
   );
 
+  $schema['dosomething_clubs_tshirt_response'] = array(
+    'description' => 'Stores tshirt sizes and responses..',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The club ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'cell' => array(
+        'description' => 'The phone number',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+      ),
+      'size' => array(
+        'description' => 'The t-shirt size',
+        'type' => 'varchar',
+        'length' => 32,
+      ),
+    ),
+    'indexes' => array(
+      'nid' => array('nid'),
+      'cell' => array('cell'),
+    )
+  );
+
   return $schema;
 }
 
@@ -174,5 +201,42 @@ function dosomething_clubs_update_7102() {
 
   if (!db_table_exists('dosomething_clubs_sms_response')) {
     db_create_table('dosomething_clubs_sms_response', $schema['dosomething_clubs_sms_response']);
+  }
+}
+
+/**
+ *  Creates Clubs tshirt response table
+ */
+function dosomething_clubs_update_7103() {
+  $schema = array();
+  $schema['dosomething_clubs_tshirt_response'] = array(
+    'description' => 'Stores tshirt sizes and responses..',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The club ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'cell' => array(
+        'description' => 'The phone number',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+      ),
+      'size' => array(
+        'description' => 'The t-shirt size',
+        'type' => 'varchar',
+        'length' => 32,
+      ),
+    ),
+    'indexes' => array(
+      'nid' => array('nid'),
+      'cell' => array('cell'),
+    )
+  );
+
+  if (!db_table_exists('dosomething_clubs_tshirt_response')) {
+    db_create_table('dosomething_clubs_tshirt_response', $schema['dosomething_clubs_tshirt_response']);
   }
 }

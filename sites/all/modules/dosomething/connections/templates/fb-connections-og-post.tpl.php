@@ -206,6 +206,13 @@
  	#hidden_comments {
  		display: none;
  	}
+
+    #alert {
+        margin: 0px 10px 10px 0px;
+        background: #FEF5F1;
+        border: 1px solid #ED541D;
+        padding: 5px;
+    }
  	-->
 </style>
 <div id="fb">
@@ -215,6 +222,7 @@
 		<div id="post-title">Post to Your Wall</div>
 	</div>
 	<div id="zone">
+        <?php if ($message) { ?><div id="alert"><?php echo $message; ?></div><?php } ?>
 		<div id="img"><img src="<?php echo $photo; ?>" alt="" /></div>
 		<div id="text">
 				<textarea name="comments" id="fb_og_comments" placeholder="Say something about this..."></textarea>

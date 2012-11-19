@@ -17,6 +17,21 @@ html > body {
 .ds-panel .pane-content {
   padding-bottom: 0; }
 
+.container {
+  width: 1050px; }
+
+#footer.section {
+  background: transparent; }
+  #footer.section img {
+    width: 50%;
+    margin: 3% auto;
+    display: block;
+    border: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+
 body {
   background: #b79c86;
   background: url("http://files.dosomething.org/files/campaigns/jeans12/bg.jpg"); }
@@ -53,7 +68,8 @@ body {
 
   #main-wrapper div[role="main"] {
     float: none;
-    width: 100%; }
+    width: 775px;
+    margin: 0 auto !important; }
 
   nav[role="navigation"] {
     display: none; }
@@ -82,22 +98,60 @@ body {
   header[role="banner"] {
     width: 100%; } }
 
-#cmp {
-  background: white; }
-  #cmp img {
+@media only screen and (max-width: 775px) {
+  #main-wrapper div[role="main"] {
+    width: 100%; } }
+#cmp, #reset_defaults {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+  #cmp img, #reset_defaults img {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     -o-box-shadow: none !important;
     box-shadow: none !important; }
-  #cmp .pane-title {
+  #cmp .pane-title, #reset_defaults .pane-title {
     display: none; }
+  #cmp .panel-pane, #reset_defaults .panel-pane {
+    border: none !important; }
+
+#reset_defaults {
+  width: 100%; }
+
+#cmp {
+  background: white; }
+  #cmp .panels-flexible-region-379-center, #cmp .panels-flexible-region-351-center {
+    width: 100%;
+    float: none; }
+
+#roadmap img {
+  width: 100%;
+  border: 15px solid white;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+#roadmap .go-button {
+  position: static;
+  width: 3.3em;
+  display: block;
+  margin: 1% auto 3%; }
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
   padding: 1.5em 0 0 0;
   width: 215px;
+  margin-top: 15px;
   -webkit-transition: background 5s ease-in;
-  transition: background 5s ease-in; }
+  transition: background 5s ease-in;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
   #block-dosomething-campaign-styles-campaign-nav .content {
     width: 100%; }
   #block-dosomething-campaign-styles-campaign-nav ul {
@@ -113,9 +167,10 @@ body {
     font-size: 0.8em;
     padding: 0.2em 1em 0 1.5em;
     text-transform: uppercase;
-    color: purple; }
+    color: #0c3565; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
-      text-decoration: none; }
+      text-decoration: none;
+      color: #b79c86; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix {
     padding: 1em 1em 0 1em; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix img {
@@ -131,7 +186,7 @@ body {
       text-align: center;
       width: 100%;
       margin-bottom: 1em;
-      font-size: 0.9em; }
+      font-size: 0.8em; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a {
       font-weight: normal;
       font-size: 1em;
@@ -169,6 +224,150 @@ body {
     border-radius: 3px; }
   .mangoDialog-ui .ui-icon.ui-icon-closethick {
     margin: -20px -13px !important; }
+
+#sms-referral h3 {
+  display: none;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  line-height: 2em;
+  text-transform: uppercase; }
+
+#counter_wrapper {
+  background: #0c3565;
+  width: 215px;
+  margin: 0 0 0 -16px;
+  overflow: hidden;
+  height: 50px; }
+  #counter_wrapper h3 {
+    margin: 7px 5px 0 0;
+    float: right;
+    width: 30%;
+    text-transform: uppercase;
+    color: white; }
+  #counter_wrapper p#schools_participating {
+    font-size: 50px;
+    text-align: right;
+    margin: 22px 0 0 0;
+    float: left;
+    width: 60%;
+    color: white; }
+
+#sign-up, #report-back {
+  width: 55%;
+  margin: 10%;
+  padding: 3%;
+  background: white;
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px; }
+  #sign-up .panel-pane, #sign-up form, #report-back .panel-pane, #report-back form {
+    padding: 0;
+    border: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+  #sign-up .pane-title, #sign-up legend, #sign-up #edit-submitted-field-webform-email, #sign-up #edit-submitted-field-webform-mobile, #report-back .pane-title, #report-back legend, #report-back #edit-submitted-field-webform-email, #report-back #edit-submitted-field-webform-mobile {
+    display: none; }
+  #sign-up .form-item, #report-back .form-item {
+    margin: 5% 0 0 0; }
+  #sign-up h2, #report-back h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: din-web-reg;
+    font-size: 1.2em; }
+  #sign-up input[type="text"], #report-back input[type="text"] {
+    width: 100%; }
+  #sign-up img, #report-back img {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+  #sign-up #edit-actions, #report-back #edit-actions {
+    height: auto;
+    text-align: inherit; }
+  #sign-up .go-button, #sign-up #edit-submit, #sign-up .form-submit, #report-back .go-button, #report-back #edit-submit, #report-back .form-submit {
+    font-family: din-web;
+    background: #ffcb15;
+    margin: 4% 0 1%;
+    padding: 0.6em 0.7em;
+    position: static;
+    font-size: 1.5em;
+    height: 2em;
+    display: inline-block;
+    color: #1e1d1c;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+    #sign-up .go-button:hover, #sign-up #edit-submit:hover, #sign-up .form-submit:hover, #report-back .go-button:hover, #report-back #edit-submit:hover, #report-back .form-submit:hover {
+      color: #06182e; }
+
+#sign-up input.form-autocomplete {
+  width: 100%; }
+
+#report-back {
+  border: none;
+  width: 70%;
+  padding: 1% 2%;
+  background: white; }
+  #report-back .pane-title,
+  #report-back .fb-social-comments-plugin {
+    display: none; }
+  #report-back form {
+    border: none; }
+    #report-back form #edit-submitted-how-many-people-participated-in-this-drive,
+    #report-back form #edit-submitted-how-many-potential-donors-were-registered {
+      width: 60px; }
+    #report-back form .form-item {
+      margin-top: 10px; }
+    #report-back form .fb-social-comments-plugin {
+      display: none; }
+    #report-back form #edit-submitted-taxonomy-vocabulary-5,
+    #report-back form #edit-submitted-field-webform-email,
+    #report-back form #edit-submitted-field-webform-mobile,
+    #report-back form #edit-submitted-field-webform-videos,
+    #report-back form #edit-submitted-field-webform-school-reference,
+    #report-back form #edit-submitted-field-webform-school,
+    #report-back form #edit-submitted-field-webform-school-zip {
+      display: none; }
+    #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
+      display: block !important;
+      margin: 10px !important; }
+
+#report-back .image-widget .form-submit {
+  height: 1em;
+  padding: 0.4em 1.3em 1.1em;
+  text-transform: uppercase;
+  font-weight: 600; }
+
+.go-button, #edit-submit, .form-submit {
+  font-family: din-web;
+  background: #ffcb15;
+  margin: 4% 0 1%;
+  padding: 0.3em 0.7em;
+  font-size: 1.5em;
+  height: 1.4em;
+  display: inline-block;
+  color: #1e1d1c;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  border: none;
+  line-height: 1em; }
+  .go-button:hover, #edit-submit:hover, .form-submit:hover {
+    color: #06182e; }
 
 .ui-widget-overlay {
   opacity: 0.9; }
@@ -332,7 +531,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 100%; }
 
   #dosomething-login-register-popup-form #edit-submit {
-    width: 85%; } }
+    width: 85%; }
+
+  .invite_friends .connect-with-facebook {
+    margin-top: 8%; } }
 #dosomething-login-login-popup-form #edit-title-text--2 label {
   border: none;
   text-align: center;
@@ -383,6 +585,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
   width: 850px !important;
   margin: 0 auto; }
 
+.invite_friends .connect-with-facebook {
+  margin-top: 23%; }
+  .invite_friends .connect-with-facebook a {
+    margin: 0.6em auto; }
+
 .invite_friends {
   padding: 0.5% 2% 2% 2%; }
   .invite_friends h2, .invite_friends h3, .invite_friends p, .invite_friends label {
@@ -391,20 +598,40 @@ div[aria-labelledby="ui-dialog-title-1"] {
     text-align: center;
     font-weight: 600;
     font-size: 3em;
-    line-height: 3em;
+    line-height: 2em;
     text-transform: uppercase; }
   .invite_friends h3 {
     font-family: din-web;
     font-size: 2.5em;
-    line-height: 2.5em;
     text-transform: uppercase;
     text-align: center;
+    margin: 1em 0 0.5em 0.5em;
     color: white; }
+  .invite_friends .form-item {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 0 5% 5%; }
+  .invite_friends img.banner {
+    margin: 0 auto 5%;
+    display: block; }
+  .invite_friends input[type="text"] {
+    width: 90%;
+    height: 2em;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px; }
+  .invite_friends input[type="submit"] {
+    float: left;
+    font-weight: 600;
+    text-transform: uppercase; }
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     width: 43%;
     float: left;
     border: 2px solid #cccccc;
-    height: 12em;
+    height: 18em;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -412,10 +639,17 @@ div[aria-labelledby="ui-dialog-title-1"] {
     border-radius: 10px; }
   .invite_friends .invite-module-facebook p, .invite_friends .invite-module-or p, .invite_friends .invite-module-email p {
     font-size: 0.8em; }
+  .invite_friends .invite-module-facebook input[type="submit"] {
+    background: #3b5998;
+    color: white;
+    margin: 33% 0 0 5%;
+    width: 18.5em;
+    height: 3em; }
   .invite_friends .invite-module-or {
     width: 14%;
     float: left; }
     .invite_friends .invite-module-or h3 {
+      line-height: 2.5em;
       color: white; }
   .invite_friends .facebook-action-connect {
     display: block;
@@ -423,7 +657,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 40%; }
   .invite_friends #edit-submit {
     font-family: din-web;
-    background: white;
+    background: #ffcb15;
     margin: 0 0 0 5%;
     font-size: 1.5em;
     height: 1.4em;
@@ -435,7 +669,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -o-border-radius: 5px;
     border-radius: 5px; }
     .invite_friends #edit-submit:hover {
-      background: #f2f2f2; }
+      background: #fbc300; }
 
 #teams-notification-area {
   float: left;
@@ -474,9 +708,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
 #edit-friend {
   background: white;
   color: #444444;
-  width: 15em;
+  width: 18em;
   height: 3em;
   font-size: 1em;
+  margin: 0 0 1em 0;
   padding: 0 0 0 0.5em;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -491,10 +726,26 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     margin: 0 15%;
     width: 70%;
-    height: 15em; }
+    height: 12em; }
+
+  .invite_friends .invite-module-email {
+    height: 20em; }
 
   .invite_friends .invite-module-or {
     width: 100%; }
+    .invite_friends .invite-module-or h3 {
+      margin: 0; }
+
+  .invite_friends .invite-module-facebook input[type="submit"] {
+    margin: 4em 0 0 10%;
+    width: 80%; }
+
+  .invite_friends h2 {
+    margin: 0.2em;
+    line-height: 1em; }
+
+  .invite-module-or h3 {
+    line-height: 2em; }
 
   #edit-friend {
     width: 66%; }
@@ -502,11 +753,21 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #teams-notification-area div {
     width: 80%;
     margin: 0 auto; } }
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 575px) {
   .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
     margin: 0 2%;
     width: 95%;
-    height: 15em; } }
+    height: 10em; }
+
+  .invite_friends .invite-module-email {
+    height: 18em; }
+
+  .invite_friends .invite-module-facebook {
+    margin: 3.5em 0 0 8%;
+    width: 85%; }
+
+  #edit-friend {
+    width: 100%; } }
 #cmp {
   /* search block */
   /* results block */
@@ -604,6 +865,18 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 50%; }
   #cmp .col60 {
     width: 60%; }
+  #cmp .jeans-divider {
+    background: #0c3565;
+    width: 110%;
+    margin-left: -5%;
+    padding-top: 0.5em; }
+    #cmp .jeans-divider h1, #cmp .jeans-divider h2 {
+      text-transform: uppercase;
+      color: white; }
+    #cmp .jeans-divider h2 {
+      font-weight: 400; }
+    #cmp .jeans-divider span {
+      font-weight: 600; }
   #cmp .divider {
     text-align: center;
     border-top: 2px solid #d2d2d3;
@@ -614,14 +887,19 @@ div[aria-labelledby="ui-dialog-title-1"] {
       padding: 0.5em 0.8em;
       position: relative;
       font-weight: 500;
-      letter-spacing: 0.1em; }
-  #cmp .go-button, #cmp #edit-submit {
+      letter-spacing: 0.1em;
+      -webkit-border-radius: 0 0 4px 4px;
+      -moz-border-radius: 0 0 4px 4px;
+      -ms-border-radius: 0 0 4px 4px;
+      -o-border-radius: 0 0 4px 4px;
+      border-radius: 0 0 4px 4px; }
+  #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
     font-family: din-web;
     background: #ffcb15;
     margin: 4% 0 1%;
     padding: 0.4em 0.7em;
     position: static;
-    font-size: 2em;
+    font-size: 1.5em;
     height: 1.4em;
     display: inline-block;
     color: #1e1d1c;
@@ -630,32 +908,39 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     border-radius: 5px; }
-    #cmp .go-button:hover, #cmp #edit-submit:hover {
+    #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
       color: #06182e; }
   #cmp #header {
-    background: url("assets/brad.jpg");
-    background-position: 29% -120%;
+    background-image: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg");
+    background-position: 100% 35%;
+    background-repeat: no-repeat;
+    background-color: #e5e7e9;
     margin: 0;
     padding: 0; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
-      color: white;
+      color: #0c3565;
       margin: 0; }
     #cmp #header h1 {
-      margin: 0 0 0.5em 0;
       font-weight: 600;
-      font-size: 2em; }
+      font-size: 3.5em;
+      font-family: din-web;
+      line-height: 1em; }
     #cmp #header h2 {
-      font-size: 1.3em;
+      font-size: 1.4em;
       line-height: 1.6em;
-      font-weight: 600; }
+      font-weight: 400;
+      width: 50%; }
     #cmp #header span {
-      padding: 0;
-      text-align: center;
-      background: #0c3565;
-      background: #0c3565; }
-    #cmp #header .tagline {
-      padding: 2%; }
+      color: #b79c86; }
+  #cmp .tagline {
+    padding: 2%; }
+  #cmp .pane-campaign-social {
+    display: none; }
+  #cmp .socialWrapper {
+    margin: 1em 0 0 0.5em; }
+    #cmp .socialWrapper .socialButton:last-child {
+      display: none; }
   #cmp #next-steps {
     padding: 5%; }
     #cmp #next-steps h3, #cmp #next-steps p {
@@ -686,29 +971,20 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 40%;
     margin: 6% 0 0 0;
     padding: 0 0 0 5%;
-    border-left: 1px solid #d2d2d3; }
+    border-left: 2px solid #d2d2d3; }
     #cmp .drive-participants ul {
       max-height: 160px;
       overflow: scroll; }
   #cmp .drive-info-title h2 {
     color: #0c3565;
-    margin: 0 0 0.5em 0;
+    margin: 0 0 0.4em 0;
     font-family: din-web-reg, "Trebuchet MS", sans-serif;
     font-size: 2em;
     font-weight: 600;
     text-transform: uppercase;
-    border-bottom: 1px solid #cccccc; }
+    border-bottom: 2px solid #d2d2d3; }
   #cmp .drive-info-info {
-    width: 65%;
-    float: left; }
-    #cmp .drive-info-info a {
-      color: #0c3565;
-      background-image: url("assets/drive1.png");
-      background-position: 0% 50%;
-      background-repeat: no-repeat;
-      background-size: 20px;
-      padding: 1em 1.8em 0;
-      display: block; }
+    display: none; }
   #cmp .drive-info-where, #cmp .drive-info-when {
     font-weight: uppercase;
     font-weight: 600; }
@@ -717,24 +993,21 @@ div[aria-labelledby="ui-dialog-title-1"] {
       text-transform: none;
       color: #777777; }
   #cmp .drive-share {
-    width: 35%;
-    float: right; }
-    #cmp .drive-share h3 {
-      text-align: right; }
+    display: none; }
   #cmp .drive-facebook, #cmp .drive-twitter {
     width: 30px;
     height: 30px;
     display: inline-block;
     background-repeat: no-repeat;
     text-indent: -9999em;
-    margin: 0 0 0 5%;
-    float: right; }
+    margin: 0 3% 0 0;
+    float: left; }
     #cmp .drive-facebook:hover, #cmp .drive-twitter:hover {
       background-position-y: -30px; }
   #cmp .drive-twitter {
-    background-image: url(assets/drive-twitter.png); }
+    background-image: url(//files.dosomething.org/files/campaigns/jeans12/twitter-small.png); }
   #cmp .drive-facebook {
-    background-image: url(assets/drive-facebook.png); }
+    background-image: url(//files.dosomething.org/files/campaigns/jeans12/facebook-small.png); }
   #cmp .drive-info-description, #cmp .drive-info-countdown {
     display: none; }
   #cmp input.remove_participant {
@@ -800,6 +1073,14 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 30%; }
     #cmp a.print-pdf img {
       width: 100%; }
+  #cmp #search img {
+    width: 50%;
+    display: block;
+    margin: 0 auto 2%; }
+  #cmp #search p {
+    padding: 0 0 1em 0; }
+  #cmp #search .go-button {
+    margin: 0 1%; }
   #cmp .pane-drive-search-panel-pane-1 form {
     width: 50%;
     margin: 1em auto;
@@ -869,8 +1150,29 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 1em auto; }
   #cmp .views-field-nothing a.go-button {
     position: static; }
+  #cmp #content-module .jeans-divider {
+    margin-bottom: 5%; }
+  #cmp .free-banner {
+    float: right;
+    margin-top: -4%; }
+  #cmp .make-a-difference {
+    margin: 0 0 0 12%;
+    float: left;
+    width: 60%; }
+    #cmp .make-a-difference h2, #cmp .make-a-difference p {
+      text-align: left; }
+    #cmp .make-a-difference h2 {
+      text-transform: uppercase;
+      padding-top: 0.3em; }
+    #cmp .make-a-difference p {
+      font-size: 0.9em;
+      width: 110%; }
+    #cmp .make-a-difference img {
+      float: left;
+      padding-right: 3%; }
   #cmp #scholarship {
-    overflow: visible; }
+    overflow: visible;
+    position: relative; }
     #cmp #scholarship img.scholar-copy {
       padding: 0; }
     #cmp #scholarship img {
@@ -885,16 +1187,26 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #scholarship form {
       margin: 0 auto;
       max-width: 600px; }
-    #cmp #scholarship label {
-      font-weight: 600; }
-    #cmp #scholarship input[type="text"] {
-      padding: 0.8em 0.5em;
-      float: left;
-      width: 48%;
-      margin: 1%; }
+      #cmp #scholarship form label {
+        color: white;
+        font-weight: 500;
+        text-align: left; }
+      #cmp #scholarship form input[type="text"] {
+        padding: 0.8em 0.5em;
+        float: left;
+        height: 3em;
+        width: 48%;
+        margin: 1%;
+        -webkit-border-radius: 0.3em;
+        -moz-border-radius: 0.3em;
+        -ms-border-radius: 0.3em;
+        -o-border-radius: 0.3em;
+        border-radius: 0.3em; }
     #cmp #scholarship .go-button {
       margin: 4% 0 1% 0;
-      padding: 0.3em 0.7em; }
+      padding: 0.6em 0.7em;
+      height: 2em;
+      width: 8em; }
     #cmp #scholarship #campaign-opt-in {
       text-align: center; }
       #cmp #scholarship #campaign-opt-in a {
@@ -916,17 +1228,24 @@ div[aria-labelledby="ui-dialog-title-1"] {
       float: left;
       width: 48%;
       margin: 1%; }
-      #cmp #scholarship .scholar-input label {
-        text-align: left; }
-      #cmp #scholarship .scholar-input input {
+      #cmp #scholarship .scholar-input input[type="text"] {
         width: 100%;
         margin: 1% 0; }
+    #cmp #scholarship .your-input input[type="text"] {
+      width: 100%; }
     #cmp #scholarship .rules {
       font-size: 1em; }
+  #cmp label.friends {
+    padding-left: 0.3em; }
   #cmp .refer5 {
     background: #0c3565;
     width: 110%;
-    margin: 0 0 0 -4.95%; }
+    margin: 0 0 0 -4.95%;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; }
     #cmp .refer5:before, #cmp .refer5:after {
       content: "";
       position: absolute;
@@ -941,51 +1260,71 @@ div[aria-labelledby="ui-dialog-title-1"] {
       right: -22px; }
   #cmp .refer5-inner {
     padding: 3%; }
+  #cmp #prizing h3 {
+    margin: 1em 0; }
+  #cmp #prizing p {
+    width: 70%;
+    margin: 3em auto; }
+  #cmp #psa h2 {
+    text-transform: uppercase;
+    font-size: 1.9em;
+    padding: 0 0 0.3em 0;
+    color: #b79c86; }
+  #cmp #psa_wrapper {
+    position: relative;
+    padding-bottom: 55%;
+    padding-top: 5%;
+    height: 0; }
+    #cmp #psa_wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
-  #cmp #faq div {
-    padding: 0 1.2em 1.2em 1.2em; }
-  #cmp #faq h4, #cmp #faq li, #cmp #faq p {
-    text-align: left; }
-  #cmp #faq li {
-    padding: 0 0 0 1.5em; }
-  #cmp #faq h1 {
+  #cmp #faq {
+    padding-bottom: 3%;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; }
+    #cmp #faq h4, #cmp #faq li, #cmp #faq p {
+      text-align: left; }
+    #cmp #faq li, #cmp #faq div {
+      padding: 0 0 0 1.5em; }
+    #cmp #faq h1 {
+      font-size: 2em;
+      font-family: din-web;
+      text-transform: uppercase; }
+    #cmp #faq h4 {
+      color: #0c3565;
+      cursor: pointer;
+      background: url("//files.dosomething.org/files/campaigns/jeans12/faq_arrows.png");
+      background-repeat: no-repeat;
+      background-position-y: 0.4em;
+      padding: 0.3em 1.2em; }
+    #cmp #faq h4.activeFAQ {
+      background-position-y: -3.8em; }
+    #cmp #faq div.divider {
+      padding: 0.5em 0 0 0; }
+    #cmp #faq .go-button {
+      margin: 0 0 1% 0; }
+  #cmp #footer.section h1 {
     font-size: 2em;
     font-family: din-web;
     text-transform: uppercase;
-    background: url("assets/faq3.png");
-    background-repeat: no-repeat;
-    background-position: 50% 1.2em;
-    padding: 0 0 1em 0;
-    margin: 0 0 -1em 0; }
-  #cmp #faq h4 {
-    color: #0c3565;
-    cursor: pointer;
-    background: url("assets/faq2.png");
-    background-repeat: no-repeat;
-    background-position-y: 0.4em;
-    padding: 0.3em 1.2em; }
-  #cmp #faq h4.activeFAQ {
-    background-position-y: -3.9em; }
-  #cmp #faq .go-button {
-    margin: 0 0 1% 0; }
-  #cmp #footer h1 {
-    font-size: 2em;
-    font-family: din-web;
-    text-transform: uppercase;
-    background: url("assets/faq3.png");
+    background: url("//files.dosomething.org/files/campaigns/jeans12/faq3.png");
     background-repeat: no-repeat;
     background-position: 50% 0.7em;
     padding: 0 0 1em 0;
     margin: 0 0 -1em 0; }
-  #cmp #footer .go-button {
+  #cmp #footer.section .go-button {
     margin: 0 0 1% 0; }
-  #cmp label {
-    cursor: default; }
   #cmp #contact-form {
-    margin: 10% 0 0 0;
     background: #0c3565;
     width: 100%; }
     #cmp #contact-form h3 {
@@ -993,13 +1332,23 @@ div[aria-labelledby="ui-dialog-title-1"] {
       font-size: 1.3em;
       font-weight: 600;
       text-align: left;
-      padding: 0.2em 0 0 0; }
+      padding: 0.2em 0 0 0;
+      font-size: 0.9em; }
+  #cmp #header .form-submit {
+    font-weight: 600;
+    margin-top: 0.3em;
+    height: 2em; }
   #cmp .focusOutline {
-    box-shadow: 0px 0px 15px 4px #cbbeff; }
+    box-shadow: 0px 0px 10px 4px #00adff; }
   #cmp #edit-submitted-field-webform-mobile-und-0-value {
     float: left; }
+  #cmp form.webform-client-form #edit-actions--2 {
+    height: auto;
+    text-align: inherit; }
   #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
-    height: 2em;
+    height: 3em;
+    margin-top: 0.5em;
+    padding-left: 0.7em;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -1014,14 +1363,14 @@ div[aria-labelledby="ui-dialog-title-1"] {
     line-height: 1.5em;
     text-transform: uppercase;
     text-align: left; }
-  #cmp .pane-campaign-sign-up #edit-submit {
+  #cmp .pane-campaign-sign-up .form-submit {
     position: static;
     margin: 1em auto 0;
     padding: 0.3em 0.7em; }
   #cmp #campaign-opt-in {
     clear: both;
     text-align: left;
-    padding: 0.3em 0 0 0 !important; }
+    padding: 0.5em !important; }
     #cmp #campaign-opt-in span {
       font-size: 0.7em;
       line-height: 0.7em;
@@ -1032,9 +1381,18 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .webform-client-form {
     box-shadow: none; }
   #cmp .already_submitted {
-    margin: 0 0 2% 0; }
+    margin: 0 auto;
+    width: 85%; }
+    #cmp .already_submitted img {
+      margin: 2% 0 0 0;
+      float: left; }
     #cmp .already_submitted .go-button {
-      margin: 0 0 1% 0; }
+      margin: 3% 0 6% 0;
+      padding: 0.4em;
+      font-size: 2em;
+      display: block;
+      width: 7em;
+      float: right; }
   #cmp #webform-component-join-header, #cmp #webform-component-start-header, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
     width: 25%;
     float: left; }
@@ -1045,102 +1403,63 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #submitted-field-webform-email-add-more-wrapper, #cmp #submitted-field-webform-mobile-add-more-wrapper, #cmp #contact-form h3 {
     width: 90%;
     margin: 0 auto; }
-  #cmp #sign-up .form-wrapper {
-    float: none; }
-  #cmp #sign-up input {
-    margin-bottom: 10px; }
-  #cmp #report-back {
-    border: none;
-    width: 70%;
-    padding: 1% 2%;
-    background: white; }
-    #cmp #report-back .pane-title,
-    #cmp #report-back .fb-social-comments-plugin {
-      display: none; }
-    #cmp #report-back form {
-      border: none; }
-      #cmp #report-back form input.form-text, #cmp #report-back form textarea {
-        font-size: 14px; }
-      #cmp #report-back form label {
-        font-size: 1.4em; }
-      #cmp #report-back form #edit-submitted-how-many-people-participated-in-this-drive,
-      #cmp #report-back form #edit-submitted-how-many-potential-donors-were-registered {
-        width: 60px; }
-      #cmp #report-back form .form-item {
-        margin-top: 10px; }
-      #cmp #report-back form .fb-social-comments-plugin {
-        display: none; }
-      #cmp #report-back form #edit-submitted-taxonomy-vocabulary-5,
-      #cmp #report-back form #edit-submitted-field-webform-email,
-      #cmp #report-back form #edit-submitted-field-webform-mobile,
-      #cmp #report-back form #edit-submitted-field-webform-videos,
-      #cmp #report-back form #edit-submitted-field-webform-school-reference,
-      #cmp #report-back form #edit-submitted-field-webform-school,
-      #cmp #report-back form #edit-submitted-field-webform-school-zip {
-        display: none; }
-      #cmp #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
-        display: block !important;
-        margin: 10px !important; }
-  #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
-    font-family: din-web;
-    background: #ffcb15;
-    margin: 4% 0 1%;
-    padding: 0.3em 0.7em;
-    font-size: 1.5em;
-    height: 1.4em;
-    display: inline-block;
-    color: #1e1d1c;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    border: none;
-    line-height: 1em; }
-    #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
-      color: #06182e; }
-  #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
-  #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
-    display: none; }
-  #cmp #webform-client-form-724779 {
+  #cmp #checklist {
+    padding: 0 2%;
     width: 100%;
-    max-width: 500px;
-    background: white;
-    padding: 2% 10% !important; }
-    #cmp #webform-client-form-724779 h1, #cmp #webform-client-form-724779 p {
-      text-align: center; }
-    #cmp #webform-client-form-724779 p {
-      margin-bottom: 10px; }
-    #cmp #webform-client-form-724779 input {
-      width: 100%;
-      border: 1px solid #f9f9f9; }
-    #cmp #webform-client-form-724779 .form-actions.form-wrapper {
-      width: 50% !important;
-      margin: 0 auto !important; }
-      #cmp #webform-client-form-724779 .form-actions.form-wrapper #edit-submit {
-        width: 100% !important; }
-    #cmp #webform-client-form-724779 #edit-submitted-field-webform-email, #cmp #webform-client-form-724779 #edit-submitted-field-webform-mobile {
-      width: 100% !important; }
-    #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference {
-      background: #f9f9f9;
-      border: 1px solid #e9e9e9 !important;
-      padding: 2% 4% !important;
-      margin-bottom: 10px !important; }
-      #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference label {
-        padding-top: 10px; }
-      #cmp #webform-client-form-724779 #edit-submitted-field-webform-school-reference .fieldset-legend {
-        font-weight: bold !important;
-        font-size: 1.6em !important; }
-    #cmp #webform-client-form-724779 #edit-submitted-give-a-spit-action-kit-1 {
-      width: 1.5em !important; }
+    overflow: hidden; }
+    #cmp #checklist p {
+      display: inline;
+      padding-left: 0.5em; }
+    #cmp #checklist a {
+      font-weight: 600; }
+      #cmp #checklist a img {
+        margin: 2% auto 0;
+        display: block;
+        width: 81%; }
+    #cmp #checklist fieldset {
+      display: none; }
+    #cmp #checklist #webform-component-header {
+      margin-bottom: 3%; }
+      #cmp #checklist #webform-component-header h3, #cmp #checklist #webform-component-header p {
+        padding: 0 2%; }
+    #cmp #checklist .divider {
+      margin: 3% 0 6%; }
+    #cmp #checklist .webform-component-checkboxes {
+      padding: 0.3em 0; }
+      #cmp #checklist .webform-component-checkboxes label:first-child {
+        display: none; }
+    #cmp #checklist .form-actions.form-wrapper {
+      float: none; }
+    #cmp #checklist .form-submit {
+      margin: 1em;
+      font-weight: 600;
+      text-transform: uppercase; }
+  #cmp label {
+    cursor: default; }
   @media only screen and (max-width: 775px) {
     #cmp .section {
       width: 100%;
-      margin: 2% auto; }
+      margin: 2% auto;
+      padding: 0 2%; }
+    #cmp .already_submitted {
+      width: 100%; }
+      #cmp .already_submitted img {
+        float: none; }
+      #cmp .already_submitted .go-button {
+        margin: 0 auto;
+        float: none; }
     #cmp #header {
-      background-position: 29% 60%; }
+      background-size: 30%;
+      background-position: 100% 10%; }
+      #cmp #header h1 {
+        font-size: 3em; }
+      #cmp #header h2 {
+        font-size: 1.2em; }
+      #cmp #header #edit-submit {
+        margin-top: 0.55em; }
     #cmp #contact-form {
-      margin: 2% 0 0 0; }
+      margin: 2% 0 0 0;
+      padding: 2%; }
       #cmp #contact-form h3 {
         margin: 0; }
     #cmp #webform-component-start-header {
@@ -1161,9 +1480,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
       width: 100%; }
     #cmp .drive-participants {
       border-left: none;
-      border-top: 1px solid #d2d2d3;
+      border-top: 2px solid #d2d2d3;
       margin: 2% 0;
-      padding: 2% 0 0 0; }
+      padding: 4% 0 0 0;
+      padding: 4% 0 0 0; }
     #cmp #action.action-anonymous .col33, #cmp #action.action-participant .col33 {
       width: 95%;
       margin: 3% 0; }
@@ -1175,6 +1495,20 @@ div[aria-labelledby="ui-dialog-title-1"] {
       width: 37%; }
       #cmp a.print-pdf img {
         margin: 5% auto; }
+    #cmp #content-module h1 {
+      font-size: 1.6em; }
+    #cmp #content-module img {
+      display: none; }
+    #cmp .make-a-difference {
+      width: 85%;
+      margin: 1em 1em 1em 0.5em; }
+    #cmp #psa img {
+      width: 20%;
+      float: left;
+      margin-top: 5%; }
+    #cmp #prizing p {
+      width: 90%;
+      margin: 1em auto; }
     #cmp .views-field-nothing {
       width: 100%; }
       #cmp .views-field-nothing .go-button {
@@ -1203,15 +1537,27 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .email-spit {
       width: 100%; }
       #cmp .email-spit img {
-        width: 50%; } }
+        width: 50%; }
+    #cmp .socialWrapper {
+      display: none; }
+    #cmp #header {
+      background-size: 40%;
+      background-position: 95% -60%; }
+      #cmp #header h1 {
+        font-size: 2.5em;
+        margin-top: 3%; }
+      #cmp #header h2 {
+        font-size: 1em; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 5% auto; }
     #cmp #header {
-      background-position: 66% 77%; }
+      background-position: 95% -10%; }
       #cmp #header #edit-submit {
-        margin: 0.5em 0 0 0;
+        margin-top: 0.5em;
         float: left; }
+    #cmp .tagline {
+      padding-left: 4%; }
     #cmp #edit-submitted-field-webform-email {
       width: 68%;
       margin: 1% 0; }
@@ -1232,6 +1578,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       width: 85%; }
     #cmp .views-field-nothing {
       margin: 0; }
+    #cmp #prizing h1 {
+      font-size: 2em; }
     #cmp #scholarship h1.condensed {
       font-size: 2.75em; }
     #cmp #social .col33 {

@@ -1,0 +1,105 @@
+<?php
+
+require_once 'dosomething_metatags.admin.inc';
+
+/**
+ *	Searches for the meta tags cache, and / or builds it if need be.
+ */
+function dosomething_metatags_fetch_meta_tags($action = 'fetch', $tid = 0) {
+	$meta_tags = cache_get('ds_meta_tags')->data;
+	if (empty($meta_tags) || $action == 'renew') {
+	  $tags = db_select('dosomething_metatags', 'm')
+		->fields('m');
+	  $r = $tags->execute()->fetchAll();
+
+	  $m_cache = array();
+	  foreach ($r AS $key => $tag_info) {
+	  	$m_cache[$tag_info->tid] = (array) $tag_info;
+	  }
+
+	  cache_set('ds_meta_tags', $m_cache);
+	  $meta_tags = $m_cache;
+	}
+
+	if (!empty($tid)) {
+		foreach ($meta_tags AS $key => $tag) {
+			$tag = (array) $tag;
+			if ($tag['tid'] == $tid) {
+				return $tag;
+			}
+		}
+	}
+
+	return $meta_tags;
+}
+
+/**
+ *	Examines meta tag paths and returns appropriate tags where appropriate.
+ */
+function dosomething_metatags_find_tag_by_path($path) {
+	static $i = 0;
+	static $meta_tags = array();
+
+	if ($path == '/*' || $path == '/' || $path == '') {
+		return;
+	}
+
+	if (empty($meta_tags)) {
+		$meta_tags = dosomething_metatags_fetch_meta_tags();
+	}
+
+	$rl = strlen(trim($path)) - 2;
+	$i = strlen(trim($path)) - 2;
+	while ($i > 0) {
+		foreach ($meta_tags AS $key => $tag) {
+			if ($path != '<front>' && $path{0} == '/') {
+				$path = substr($path, 1);
+			}
+
+			$t = array();
+			foreach (explode("\r\n", $tag['pages']) AS $p) {
+				if ($rl == $i) {
+					if (trim(strval($p)) == $path || trim(strval($p)) == $path . '*') {
+						$t = $tag;
+						return $t;
+					}
+				}
+				else {
+					if (trim(strval($p)) == $path . '*') {
+						$t = $tag;
+						return $t;
+					}
+				}
+			}
+		}
+
+		$path = substr($path, 0, -1);
+		$i--;
+	}
+
+	return $t;
+}
+
+/**
+ *	Implements hook_page_alter()
+ */
+function dosomething_metatags_page_alter() {
+	if (drupal_is_front_page()) {
+		$path = '<front>';
+	}
+	else {
+		$path = request_uri();
+	}
+	$meta = dosomething_metatags_find_tag_by_path($path);
+	$tags = unserialize($meta['meta_tags']);
+	if ($tags['description']) {
+	   $element = array(
+	      '#tag' => 'meta',
+	      '#attributes' => array(
+	        'property' => 'description', 
+	        'content' => $tags['description']
+	      ),
+	    );
+	    drupal_add_html_head($element, 'ds_meta_desc');
+	}
+}

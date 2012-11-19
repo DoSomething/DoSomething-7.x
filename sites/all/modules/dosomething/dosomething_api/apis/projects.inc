@@ -1,7 +1,7 @@
 <?php
 
 // Defines the Node ID that all projects fall under.
-define('PROJECT_NID', 718313);
+define('PROJECT_NID', variable_get('ds_api_project_nid', 718313));
 
 function dosomething_api_projects_api() {
   /**
@@ -41,7 +41,12 @@ function dosomething_api_projects_api() {
     ->propertyCondition('bundle', 'project_report')
     ->propertyOrderBy('submitted', 'DESC');
 
-  // Range: Default range is 0, 25
+  // Searches by project ID
+  if (!empty($_GET['pid']) && intval($_GET['pid'])) {
+    $result->propertyCondition('sid', intval($_GET['pid']), '=');
+  }
+
+  // Range: Use default range
   dosomething_api_handle_offset_and_limit($result);
 
   if (!empty($_GET['uid'])) {
@@ -78,8 +83,7 @@ function dosomething_api_projects_api() {
   }
 
   $return = $result->execute();
-  if (!empty($return))
-  {
+  if (!empty($return)) {
     // Human readable impacts
     $impacts = array(
       1 => t('people helped'),
@@ -93,10 +97,15 @@ function dosomething_api_projects_api() {
       3 => t('ongoing project'),
       4 => t('completed project')
     );
+    // Builds basic projects array (contains all project information later)
     $projects = array();
-    foreach ($return['webform_submission_entity'] AS $key => $r)
-    {
-      $s = array_shift(entity_load('webform_submission_entity', array((int) $key)));
+
+    // Gets all project IDs from the EntityFieldQuery
+    $pids = array_keys($return['webform_submission_entity']);
+    // Loads all projects
+    $projects_list = entity_load('webform_submission_entity', $pids);
+    // Parses through all projects.
+    foreach ($projects_list AS $key => $s) {
       if (!empty($s->field_webform_videos[LANGUAGE_NONE][0])) {
         $video = db_select('file_managed', 'f')
           ->fields('f')
@@ -111,7 +120,7 @@ function dosomething_api_projects_api() {
         $time = strtotime($s->field_project_start_date[LANGUAGE_NONE][0]['value']);
       }
       $projects[] = array(
-        'sid' => $s->sid,
+        'pid' => $s->sid,
         'title' => (isset($s->field_project_title) ? $s->field_project_title[LANGUAGE_NONE][0]['value'] : ''),
         'solving' => (isset($s->field_essay_see_it) ? $s->field_essay_see_it[LANGUAGE_NONE][0]['value'] : ''),
         'action' => (isset($s->field_essay_build_it) ? $s->field_essay_build_it[LANGUAGE_NONE][0]['value'] : ''),
@@ -123,27 +132,27 @@ function dosomething_api_projects_api() {
         'involved' => (isset($s->field_update_people_involved) ? $s->field_update_people_involved[LANGUAGE_NONE][0]['value'] : ''),
         'status' => array(
           'unfiltered' => (isset($s->field_project_type) ? $s->field_project_type[LANGUAGE_NONE][0]['value'] : ''),
-          'filtered' => (isset($s->field_project_type) ? $status[$s->field_project_type[LANGUAGE_NONE][0]['value']] : '')
+          'filtered' => (isset($s->field_project_type) ? $status[$s->field_project_type[LANGUAGE_NONE][0]['value']] : ''),
         ),
         'started' => array(
           'day' => date('d', $time),
           'month' => date('m', $time),
           'year' => date('Y', $time),
-          'timestamp' => $time
+          'timestamp' => $time,
         ),
         'issues' => dosomething_general_array_vals_multi($s->taxonomy_vocabulary_5),
         'media' => array(
           'picture' => (isset($s->field_picture[LANGUAGE_NONE]) ? $s->field_picture[LANGUAGE_NONE][0] : ''),
-          'video' => $video
+          'video' => $video,
         ),
         'link' => array(
           'title' => (isset($s->field_link[LANGUAGE_NONE]) ? $s->field_link[LANGUAGE_NONE][0]['title'] : ''),
-          'url' => (isset($s->field_link[LANGUAGE_NONE]) ? $s->field_link[LANGUAGE_NONE][0]['url'] : '')
+          'url' => (isset($s->field_link[LANGUAGE_NONE]) ? $s->field_link[LANGUAGE_NONE][0]['url'] : ''),
         )
       );
     }
 
-    echo json_encode($projects);
+    drupal_json_output($projects);
   }
   drupal_exit();
 }

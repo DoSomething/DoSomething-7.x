@@ -33,9 +33,10 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
   	dosomething_general_mobile_commons_subscribe($alpha_number, (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign), $variables);
   }
 
+  // TODO: more error handling
   $nid = 0;
   if (!empty($form_values['details']['nid'])) {
-	$nid = $form_values['details']['nid'];
+    $nid = $form_values['details']['nid'];
   }
 
   $n = node_load($nid);
@@ -255,8 +256,8 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_drive_invite_response');
   $activity->name = 'drive_invite_response';
   $activity->title = 'Process user rejection or acceptance of the invite';
-  $activity->accept_responses = array('y','yes','yea','ya');
-  $activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive.');
+  $activity->accept_responses = array('y','yes','yea','ya','tfjjoin','tfj join');
+  $activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive. If you want to join in the future, text back TFJJOIN.');
   $activity->inputs = array('start');
   $activity->outputs = array('ask_name', 'process_beta', 'end');
 
@@ -283,10 +284,10 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_ftaf');
   $activity->name = 'ftaf_process';
   $activity->title = 'Forward to a Friend';
-  $activity->alpha_optin = 129071;
+  $activity->alpha_optin = 131891;
   $activity->beta_optin = 129751;
-  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with FTAF if you want to invite more.');
-  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with FTAF.');
+  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with TFJINVITE if you want to invite more.');
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the drive again, text TFJJOIN. To invite ppl to ur drive, text TFJINVITE.');
   $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');
 
@@ -317,7 +318,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ftaf_prompt';
   $activity->title = 'Start prompt for FTAF';
-  $activity->question = t('Want to invite more friends? Reply back with their cell numbers separated by commas and we\'ll send them an invite for you!');
+  $activity->question = t('Awesome! All you need to do is text us your friends cell phone numbers and we\'ll invite then to participate in your Teens for Jeans drive.');
   $activity->inputs = array('start');
   $activity->outputs = array('strip_signature');
 
@@ -330,10 +331,9 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_ftaf');
   $activity->name = 'ftaf_process';
   $activity->title = 'Forward to a Friend';
-  $activity->alpha_optin = 129071;
+  $activity->alpha_optin = 131891;
   $activity->beta_optin = 129751;
-  $activity->response_success = t('[TODO: change this msg]. We\'ve sent along invites to your friends. Reply with FTAF if you want to invite more.');
-  $activity->response_fail = t('[TODO: change this message] Sorry, we didn\'t understand any of the phone numbers you responded back with. To try again, reply back with FTAF.');
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with TFJINVITE.');
   $activity->inputs = array('strip_signature');
   $activity->outputs = array('end');
 
@@ -384,11 +384,71 @@ function sms_flow_default_conductor_workflows() {
   return $workflows;
 }
 
+function sms_flow_team_invite_form($form, &$form_state, $gid) {
+  $form['alpha'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Your Cell Number:',
+    '#size' => 16,
+  );
+
+  $form['beta'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Friend\'s Cell Number:',
+    '#size' => 16,
+  );
+
+  $form['invite-gid'] = array(
+    '#type' => 'hidden',
+    '#default_value' => $gid,
+    '#value' => $gid,
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Invite',
+  );
+
+  return $form;
+}
+
+function sms_flow_team_invite_form_submit($form, &$form_state) {
+  global $user;
+  $profile = profile2_load_by_user($user, 'main');
+  if ($profile) {
+    $inviter = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  }
+
+  if (empty($inviter)) {
+    $inviter = $form_state['values']['alpha'];
+  }
+
+  $alphaMobile = $form_state['values']['alpha'];
+  $betaMobile = $form_state['values']['beta'];
+
+  $betaNumbers = array();
+  if (!empty($betaMobile))
+    $betaNumbers[] = $betaMobile;
+
+  $inviteGid = $form_state['values']['invite-gid'];
+  // TODO: sms_flow_start expects NID value to be here. Might want to consider modifying that
+  $form_state['values']['details']['nid'] = $inviteGid;
+
+  // TODO: opt in paths are hardcoded for TFJ
+  sms_flow_start($alphaMobile, 131891, 129751, $betaNumbers, NULL, array(
+      'tfj2013_inviter' => $inviter,
+      'drives_invite_gid' => $inviteGid,
+    )
+  );
+
+}
+
 /**
  * Get user account from cell number.
  * find_user_by_cell() doesn't handle international code when searching by profile's
  * field_user_mobile value. Only handles international code with an @mobile email address
  */
+// TODO: Find a way to fix dosomething_general_find_user_by_cell() instead of needing to use
+// this private function.
 function _sms_flow_find_user_by_cell($mobile) {
   $account = dosomething_general_find_user_by_cell($mobile);
   if (!$account && strlen($mobile) > 10) {

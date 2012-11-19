@@ -32,12 +32,12 @@ class contact_scraper {
 	    '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
 	      'attributes' => array(
 	        'class' => array('invite-by-email-link'),
-	        'onclick' => 'return invite_find_emails(' . $node->nid . ')'
+	        'onclick' => 'return invite_find_emails(' . $node->nid . ')',
 	      ) + $attributes,
 	    )),
 	    '#prefix' => '<p id="invite-by-email">',
 	    '#suffix' => '</p>',
-	    '#weight' => $weight
+	    '#weight' => $weight,
 	  );
 
 	  $form['#attached']['js'][] = array(

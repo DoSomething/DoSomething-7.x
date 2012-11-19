@@ -20,6 +20,18 @@ html > body
 .ds-panel .pane-content
   padding-bottom: 0
     
+.container
+  width: 1050px
+
+#footer.section
+  background: transparent
+  img
+    width: 50%
+    margin: 3% auto
+    display: block
+    +noBorder
+    +noShadow
+
 body
   background: $bgFallback
   background: url("http://files.dosomething.org/files/campaigns/jeans12/bg.jpg")
@@ -54,7 +66,8 @@ body
     width: 100%
   #main-wrapper div[role="main"]
     float: none
-    width: 100%
+    width: 775px
+    margin: 0 auto !important
   nav[role="navigation"]
     display: none
   .container
@@ -78,19 +91,52 @@ body
     #campaign-opt-in
       text-align: center
 
-#cmp 
-  background: #fff
+@media only screen and (max-width: 775px)
+  #main-wrapper div[role="main"]
+    width: 100%
+
+#cmp, #reset_defaults
+  +noBorder
+  +noShadow
   img
     +noShadow
   .pane-title
     display: none
+  .panel-pane
+    +noBorder
+
+#reset_defaults
+  width: 100%
+
+#cmp
+  background: #fff
+  // honestly, what the hell?
+  .panels-flexible-region-379-center, .panels-flexible-region-351-center
+    width: 100%
+    float: none
+
+//    //
+//  #roadmap
+//    //
+#roadmap
+  img
+    width: 100%
+    border: 15px solid #fff
+    +border-radius(4px)
+  .go-button
+    position: static
+    width: 3.3em
+    display: block
+    margin: 1% auto 3%
 
 #block-dosomething-campaign-styles-campaign-nav
   background: #fff
   padding: 1.5em 0 0 0
   width: 215px
+  margin-top: 15px
   -webkit-transition: background 5s ease-in
   transition: background 5s ease-in
+  +border-radius(4px)
   .content
     width: 100%
   ul
@@ -106,9 +152,10 @@ body
     font-size: 0.8em
     padding: 0.2em 1em 0 1.5em
     text-transform: uppercase
-    color: purple
+    color: $spitPurple
     &:hover
       text-decoration: none
+      color: $bgFallback
   .campaign-menu-suffix
     padding: 1em 1em 0 1em
     img
@@ -121,7 +168,7 @@ body
       text-align: center
       width: 100%
       margin-bottom: 1em
-      font-size: 0.9em
+      font-size: 0.8em
     a
       font-weight: normal
       font-size: 1em

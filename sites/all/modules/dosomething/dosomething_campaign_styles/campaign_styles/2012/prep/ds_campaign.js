@@ -17,7 +17,11 @@
         }
       }
 
-            // drupal, eat your heart out
+      if(window.location.hash == "#sms-referral"){
+        $('#sms-referral').fadeIn(2000);
+      }
+
+      // drupal, eat your heart out
       var maxwell = "can have his cake and eat it too"
 
       if(maxwell == "can have his cake and eat it too"){
@@ -125,7 +129,7 @@
     $("#edit-submitted-number-of-items").keyup(function() {
       var value = parseFloat($(this).val());
       if (isNaN(value)) value = 0;
-      $output.val(Math.round(value*0.85));
+      $output.val(Math.round(value*1));
     });  
 
     $.post('/webform-counter-field/725876/3', function (data) {

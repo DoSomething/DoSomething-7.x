@@ -80,7 +80,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -175,6 +175,7 @@ body {
     text-transform: uppercase;
     color: #999999; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
+      color: #0052a8;
       text-decoration: none; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix {
     color: #cccccc;
@@ -205,6 +206,8 @@ body {
       text-transform: none;
       color: #888888;
       text-decoration: underline; }
+      #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
+        color: #0052a8; }
 
 #block-dosomething-campaign-styles-campaign-nav .highlight a {
   background: #0054aa; }

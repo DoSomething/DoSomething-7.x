@@ -35,13 +35,13 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
 
   // get the member list (use a function!)
 
-  $content['header']['title'] = dosomething_drives_drive_title($submission, $conf['team_name'], $leader_name);
+  $content['header']['title'] = dosomething_drives_drive_title($submission, $conf['team_name'], $leader_name, $campaign->title);
   $content['header']['description'] = dosomething_drives_drive_description($submission);
   $content['header']['countdown'] = dosomething_drives_drive_countdown($drive);
 
   $content['content']['drive_info'] = dosomething_drives_drive_info($drive, $drive_nid, $group->gid, $is_admin);
   $content['content']['drive_share'] = dosomething_drives_drive_share();
-  $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin);
+  $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, $conf['team_name']);
 
   $content['#attached']['js'] = array(
     drupal_get_path('module', 'teams') . '/teams.js' => array(),
@@ -159,7 +159,7 @@ function dosomething_drives_drive_share() {
   );
 }
 
-function dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin) {
+function dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, $team_field) {
   global $user;
   $members = teams_get_member_uids($group->gid);
   $members = entity_load('user', $members);
@@ -182,8 +182,20 @@ function dosomething_drives_drive_participants($group, $leader_name, $campaign, 
       '#items' => $members,
       '#attributes' => array('class' => array('drive-participants-list')),
     ),
-    'action_link' => dosomething_drives_drive_action_link($group->gid, $leader_name, $campaign),
+    'action_link' => dosomething_drives_drive_action_link($group->gid, $leader_name, $campaign, $team_field),
   );
+}
+
+function dosomething_drives_drive_censor_participant_name($name) {
+  $name = implode(' ', $name);
+  $curses = array('anus', 'arse ', 'arsehole', 'ass ', 'ass-hat ', 'ass-jabber', 'ass-pirate ', 'assbag', 'assbandit ', 'assbanger', 'assbite ', 'assclown ', 'asscock ', 'asscracker', 'asses', 'assface', 'assfuck', 'assfucker', 'assgoblin', 'asshat ', 'asshead', 'asshole', 'asshopper', 'assjacker', 'asslick ', 'asslicker', 'assmonkey', 'assmunch', 'assmuncher ', 'asspirate ', 'assshit ', 'assshole ', 'asssucker', 'asswad', 'asswipe ', 'axwound ', 'bastard ', 'beaner ', 'bitch ', 'bitchass ', 'bitches ', 'bitchtits ', 'bitchy ', 'blow job ', 'blowjob ', 'bollocks ', 'bollox ', 'boner', 'brotherfucker', 'bullshit', 'bumblefuck ', 'butt plug ', 'butt-pirate ', 'buttfucka ', 'buttfucker', 'camel toe ', 'carpetmuncher ', 'chesticle ', 'chinc', 'chink ', 'choad ', 'chode ', 'clit ', 'clitface ', 'clitfuck ', 'clusterfuck ', 'cock ', 'cockass ', 'cockbite ', 'cockburger ', 'cockface ', 'cockfucker ', 'cockhead ', 'cockjockey', 'cockknoker ', 'cockmaster ', 'cockmongler ', 'cockmongruel ', 'cockmonkey ', 'cockmuncher ', 'cocknose ', 'cocknugget ', 'cockshit', 'cocksmith ', 'cocksmoke ', 'cocksmoker ', 'cocksniffer', 'cocksucker ', 'cockwaffle ', 'coochie ', 'coochy ', 'coon ', 'cooter ', 'cum', 'cumbubble ', 'cumdumpster', 'cumguzzler', 'cumjockey', 'cumslut ', 'cumtart ', 'cunnie ', 'cunnilingus', 'cunt ', 'cuntass ', 'cuntface', 'cunthole ', 'cuntlicker', 'cuntrag', 'cuntslut ', 'dago', 'damn', 'deggo', 'dick', 'dick-sneeze', 'dickbag', 'dickbeaters', 'dickface', 'dickfuck', 'dickfucker', 'dickhead', 'dickhole', 'dickjuice', 'dickmilk', 'dickmonger', 'dicks', 'dickslap', 'dicksucker', 'dicksucking', 'dicktickler', 'dickwad', 'dickweasel', 'dickweed', 'dickwod', 'dike', 'dildo', 'dipshit', 'doochbag', 'dookie', 'douche', 'douche-fag', 'douchebag', 'douchewaffle', 'dumass', 'dumb ass', 'dumbass', 'dumbfuck', 'dumbshit', 'dumshit', 'dyke', 'fag', 'fagbag', 'fagfucker', 'faggit', 'faggot', 'faggotcock', 'fagtard', 'fatass', 'fellatio', 'feltch', 'flamer', 'fuck', 'fuckass', 'fuckbag', 'fuckboy', 'fuckbrain', 'fuckbutt', 'fuckbutter', 'fucked', 'fucker', 'fuckersucker', 'fuckface', 'fuckhead', 'fuckhole', 'fuckin', 'fucking', 'fucknut', 'fucknutt', 'fuckoff', 'fucks', 'fuckstick', 'fucktard', 'fucktart', 'fuckup', 'fuckwad', 'fuckwit', 'fuckwitt', 'fudgepacker', 'gay', 'gayass', 'gaybob', 'gaydo', 'gayfuck', 'gayfuckist', 'gaylord', 'gaytard', 'gaywad', 'goddamn', 'goddamnit', 'gooch', 'gook', 'gringo', 'guido', 'handjob', 'hard on', 'heeb', 'hell', 'ho', 'hoe', 'homo', 'homodumbshit', 'honkey', 'humping', 'jackass', 'jagoff', 'jap', 'jerk off', 'jerkass', 'jigaboo', 'jizz', 'jungle bunny', 'junglebunny', 'kike', 'kooch', 'kootch', 'kraut', 'kunt', 'kyke', 'lameass', 'lardass', 'lesbian', 'lesbo', 'lezzie', 'mcfagget', 'mick', 'minge', 'mothafucka', 'mothafuckin', 'motherfucker', 'motherfucking', 'muff', 'muffdiver', 'munging', 'negro', 'nigaboo', 'nigga', 'nigger', 'niggers', 'niglet', 'nut sack', 'nutsack', 'paki', 'panooch', 'pecker', 'peckerhead', 'penis', 'penisbanger', 'penisfucker', 'penispuffer', 'piss', 'pissed', 'pissed off', 'pissflaps', 'polesmoker', 'pollock', 'poon', 'poonani', 'poonany', 'poontang', 'porch monkey', 'porchmonkey', 'prick', 'punanny', 'punta', 'pussies', 'pussy', 'pussylicking', 'puto', 'queef', 'queer', 'queerbait', 'queerhole', 'renob', 'rimjob', 'ruski', 'sand nigger', 'sandnigger', 'schlong', 'scrote', 'shit', 'shitass', 'shitbag', 'shitbagger', 'shitbrains', 'shitbreath', 'shitcanned', 'shitcunt', 'shitdick', 'shitface', 'shitfaced', 'shithead', 'shithole', 'shithouse', 'shitspitter', 'shitstain', 'shitter', 'shittiest', 'shitting', 'shitty', 'shiz', 'shiznit', 'skank', 'skeet', 'skullfuck', 'slut', 'slutbag', 'smeg', 'snatch', 'spic', 'spick', 'splooge', 'spook', 'suckass', 'tard', 'testicle', 'thundercunt', 'tit', 'titfuck', 'tits', 'tittyfuck', 'twat', 'twatlips', 'twats', 'twatwaffle', 'unclefucker', 'vajj', 'vag', 'vagina', 'vajayjay', 'vjayjay', 'wank', 'wankjob', 'wetback', 'whore', 'whorebag', 'whoreface', 'wop');
+
+    $cleared = preg_replace('#[^A-Za-z]#', '', $name);
+    if (in_array($name, $curses) || in_array($cleared, $curses)) {
+      $name = t('Anonymous');
+    }
+
+    return $name;
 }
 
 function dosomething_drives_drive_create_participant_list($gid, $members, $admin) {
@@ -196,7 +208,7 @@ function dosomething_drives_drive_create_participant_list($gid, $members, $admin
       $name['form'] = drupal_render(drupal_get_form('teams_remove_member_form', $gid, $member->uid));
     }
     $return[] = array(
-      'data' => implode(' ', $name),
+      'data' => dosomething_drives_drive_censor_participant_name($name),
       'id' => 'team-member-' . $member->uid,
     );
   }
@@ -223,27 +235,44 @@ function dosomething_drives_drive_countdown($drive) {
   }
 }
 
-function dosomething_drives_drive_title($drive, $type, $leader) {
+function dosomething_drives_drive_title($drive, $type, $leader, $campaign) {
   switch($type) {
     case 'field_webform_school_reference':
       $entity = reset(entity_load('ds_school', array($drive->field_webform_school_reference[LANGUAGE_NONE][0]['target_id'])));
       $title = $entity->name;
+      $tagline = "{$entity->street}, {$entity->city}, {$entity->state} {$entity->zip}";
       break;
     default:
       $title = $drive->field_team_name[LANGUAGE_NONE][0]['value'];
       break;
   }
 
-  return array(
+  $subtitle = $campaign . ' Drive';
+
+  $return = array(
     '#type' => 'container',
     '#attributes' => array('class' => array('drive-info-title')),
-    'div' => array(
-      //'#markup' => "$leader's Drive",
-      '#markup' => $title,
-      '#prefix' => '<h2>',
-      '#suffix' => '</h2>',
+    'wrapper' => array(
+      'title' => array(
+        '#markup' => $title,
+        '#prefix' => '<h2>',
+        '#suffix' => '</h2>',
+      ),
+      'subtitle' => array(
+        '#markup' => $subtitle,
+        '#prefix' => '<h3>',
+        '#suffix' => '</h3>'
+      ),
     ),
   );
+  if (isset($tagline)) {
+    $return['wrapper']['tagline'] = array(
+      '#markup' => $tagline,
+      '#prefix' => '<p>',
+      '#suffix' => '</p>',
+    );
+  }
+  return $return;
 }
 
 function dosomething_drives_drive_description($drive) {
@@ -258,7 +287,7 @@ function dosomething_drives_drive_description($drive) {
   );
 }
 
-function dosomething_drives_drive_action_link($gid, $leader, $campaign) {
+function dosomething_drives_drive_action_link($gid, $leader, $campaign, $team_field) {
   $join_url = "drive/join/$gid";
 
   $return = array(
@@ -294,16 +323,23 @@ function dosomething_drives_drive_action_link($gid, $leader, $campaign) {
       $add['onclick'] = "jQuery(body).dsAjaxPopup('$join_url', false, null, null); return false;";
     }
 
-    $return['button'] = array(
-      '#markup' => l("Join $leader's Drive", $join_url, array('attributes' => array('class' => array('go-button'))+$add)),
-    );
-    $return['start_drive'] = array(
-      '#type' => 'container',
-      '#attributes' => array('class' => array('drive-action-link-text')),
-      'text' => array(
-        '#markup' => 'or ' . l('Start', 'node/'.$campaign->nid) . ' your own drive',
-      ),
-    );
+    if ($team_field == 'field_webform_school_reference') {
+      $return['button'] = array(
+        '#markup' => l('Join your school', '', array('attributes' => array('class' => array('go-button'))+$add, 'fragment' => ' ', 'external' => TRUE)),
+      );
+    }
+    else {
+      $return['button'] = array(
+        '#markup' => l("Join $leader's Drive", $join_url, array('attributes' => array('class' => array('go-button'))+$add)),
+      );
+      $return['start_drive'] = array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('drive-action-link-text')),
+        'text' => array(
+          '#markup' => 'or ' . l('Start', 'node/'.$campaign->nid) . ' your own drive',
+        ),
+      );
+    }
   }
   return $return;
 }
@@ -314,11 +350,12 @@ function dosomething_drives_drive_invite_module($gid) {
 
   drupal_add_js(array('campaignPath' => arg(1)), 'setting');
   drupal_add_js(drupal_get_path('module', 'dosomething_drives') . '/js/popup-form.js');
+  drupal_add_js(drupal_get_path('module', 'connections') . '/js/connections.js');
 
   $return = array();
   $return['header'] = array(
     '#markup' => 'Invite friends through:',
-    '#prefix' => '<h2>',
+    '#prefix' => '<h2 id="invite_header">',
     '#suffix' => '</h2><div id="teams-notification-area"></div>',
   );
 
@@ -338,7 +375,7 @@ function dosomething_drives_drive_invite_module($gid) {
     );
   }
   else {
-    $fb_link = fboauth_action_link_properties('connect', current_path());
+    $fb_link = fboauth_action_link_properties('ds_connect', current_path());
     $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
 
     $return['facebook']['description'] = array(
@@ -363,17 +400,34 @@ function dosomething_drives_drive_invite_module($gid) {
     ),
   );
 
-  $return['email'] = array(
-    '#type' => 'container',
-    '#attributes' => array('class' => array('invite-module-email')),
-  );
+  // TODO: this also feels hacky. Different invite form being used if it's for TFJ
+  if (stripos(current_path(), 'jeans') !== FALSE) {
+    $return['phone'] = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('invite-module-email')),
+    );
 
-  $return['email']['description'] = array(
-    '#markup' => 'email',
-    '#prefix' => '<h3>',
-    '#suffix' => '</h3>',
-  );
-  $return['email']['form'] = drupal_get_form('teams_add_member_form', $gid);
+    $return['phone']['description'] = array(
+      '#markup' => 'Cell Phone',
+      '#prefix' => '<h3>',
+      '#suffix' => '</h3>',
+    );
+
+    $return['phone']['form'] = drupal_get_form('sms_flow_team_invite_form', $gid);
+  }
+  else {
+    $return['email'] = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('invite-module-email')),
+    );
+
+    $return['email']['description'] = array(
+      '#markup' => 'email',
+      '#prefix' => '<h3>',
+      '#suffix' => '</h3>',
+    );
+    $return['email']['form'] = drupal_get_form('teams_add_member_form', $gid);
+  }
 
   return $return;
 }

@@ -782,6 +782,8 @@ hr.gray
       #edit-previous, #edit-next  
         width: inherit !important
         padding: 0 10px
+      #edit-previous, #edit-next, #edit-draft
+        margin-bottom: 15px  
   h2.other
     font-size: 28px
     margin-top: 28px
@@ -803,7 +805,16 @@ hr.gray
   hr
     clear: both
   p
-    text-align: right  
+    text-align: right
+
+.status-btn
+  display: inline-block
+  font-size: 24px
+  padding-top: 13px
+  a
+    color: #333131
+    &:hover
+      text-decoration: none
 
 // REQUEST PAGE
 #node-724597, #node-724596, #node-724594, #node-724595
