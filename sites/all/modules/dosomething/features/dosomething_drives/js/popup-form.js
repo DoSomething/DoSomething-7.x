@@ -49,7 +49,7 @@
   //      }
   //    });
 
-      $('.invite-module-facebook').click(function () {
+      $('.fb-friend-finder-init').click(function () {
         $module.dialog('option', 'close', function () { return; });
         $module.dialog('close');
       });
