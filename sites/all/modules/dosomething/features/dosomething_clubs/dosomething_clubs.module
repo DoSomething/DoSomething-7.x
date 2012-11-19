@@ -8,8 +8,8 @@ include_once('dosomething_clubs.features.inc');
 
 define('DSCLUBS_ADMIN_ROLE', 3);
 define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
-define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 725009));
-define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 12345));
+define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 726503));
+define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 135461));
 #define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', );
 #define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', );
 
@@ -1239,7 +1239,7 @@ function dosomething_clubs_add_user_by_email_or_cell($contact, $nid, $gid = 0, $
   }
   else {
     dosomething_clubs_no_account_join($contact);
-    dosomething_clubs_invite_message($contact, $gid);
+    dosomething_clubs_invite_message($contact, $gid, false, false, 0, 'share');
   }
 }
 
@@ -1476,9 +1476,35 @@ function dosomething_clubs_make_owner_admin($nid) {
 function dosomething_clubs_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'webform_client_form_' . CLUBS_TSHIRT_FORM) {
     $form['#submit'][] = 'dosomething_clubs_tshirt';
+    $form['#validate'][] = 'dosomething_clubs_tshirt_validate';
   }
   if ($form_id == 'webform_client_form_719550') {
     $form['#submit'][] = 'dosomething_clubs_preserve_shortform_email';
+  }
+}
+
+function dosomething_clubs_tshirt_validate($form, &$form_state) {
+  $input = $form_state['input']['submitted'];
+  $email = $input['your_email'];
+  $address = $input['your_address'];
+  $cells = $input['your_friends_phone_numbers'];
+
+  $user = user_load_by_mail($email);
+  if (empty($user->uid)) {
+    form_set_error('your_email', t("Sorry, that email doesn't have an account associated with it."));
+  }
+
+  $c = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('type', 'club')
+    ->condition('uid', $user->uid)
+    ->condition('status', 1)
+    ->orderBy('nid', 'DESC')
+    ->range(0, 1);
+  $club = reset($c->execute()->fetchAll());
+
+  if (empty($club->nid)) {
+    form_set_error('form', t("That email doesn't appear to have any clubs associated with it.  Are you sure you're using the right one?"));
   }
 }
 
@@ -1508,7 +1534,7 @@ function dosomething_clubs_tshirt($form, &$form_state) {
       );
 
       drupal_write_record('dosomething_clubs_tshirt_response', $res);
-      dosomething_general_mobile_commons_subscribe($number, $node->field_campaign_mcommons[LANGUAGE_NONE][0]['value']);
+      dosomething_general_mobile_commons_subscribe($number, CLUBS_TSHIRT_BETA_CAMPAIGN);
     }
   }
 
@@ -1841,7 +1867,7 @@ function dosomething_clubs_invite_form_ajax($form, &$form_state) {
   }
   else {
     dosomething_clubs_no_account_join($invite);
-    dosomething_clubs_invite_message($invite, $gid);
+    dosomething_clubs_invite_message($invite, $gid, false, false, 0, 'club');
   }
 
   $invited++;
@@ -2026,7 +2052,7 @@ function dosomething_clubs_account_created($contact) {
 /**
  * Send an email/sms inviting them to a club.
  */
-function dosomething_clubs_invite_message($contact, $gid, $is_reminder = FALSE, $is_member = FALSE, $node_id = 0) {
+function dosomething_clubs_invite_message($contact, $gid, $is_reminder = FALSE, $is_member = FALSE, $node_id = 0, $from_form = '') {
   global $language, $user;
 
   $params = array(
@@ -2045,12 +2071,13 @@ function dosomething_clubs_invite_message($contact, $gid, $is_reminder = FALSE, 
      drupal_mail('dosomething_clubs', 'member_invite_email', $contact, $language, $params);
     }
     else {
-      $invite = array(
+      $i = array(
         'gid' => $gid,
         'invite' => $contact,
-        'inviter' => $user->uid
+        'inviter' => $user->uid,
+        'form' => $from_form,
       );
-      drupal_write_record('dosomething_clubs_invites', $invite);
+      drupal_write_record('dosomething_clubs_invites', $i);
       drupal_mail('dosomething_clubs', 'invite_email', $contact, $language, $params);
     }
   }
