@@ -38,7 +38,6 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['style_options']['transition'] = '500';
   $handler->display->display_options['style_options']['renderss'] = '';
   $handler->display->display_options['style_options']['history'] = 'true';
-  $handler->display->display_options['style_options']['keyboard'] = 'true';
   $handler->display->display_options['row_plugin'] = 'gallerifficfields';
   $handler->display->display_options['row_options']['slide_field'] = 'field_webform_pictures';
   $handler->display->display_options['row_options']['thumbnail_field'] = 'field_webform_pictures_1';
