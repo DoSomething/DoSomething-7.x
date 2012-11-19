@@ -69,7 +69,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         $success_message .= t('Ur password to login at doso.me/2 is @pass. ', array('@pass' => $pass));
       }
       else {
-        $success_message .= t('Awesome! You\'ve been added to the drive at doso.me/2. ');
+        $success_message .= t('Awesome! You\'ve been added to your friend\'s drive at doso.me/2. ');
       }
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
@@ -110,7 +110,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
       }
 
-      $success_message .= t('Who else should be involved? Respond with their phone #s and we\'ll invite them to the drive also');
+      $success_message .= t('Who else should be involved? Respond with their phone #s and we\'ll invite them too');
       $state->setContext('sms_response', $success_message);
       $state->setContext('drives_invite_gid', $drives_invite_gid);
 
