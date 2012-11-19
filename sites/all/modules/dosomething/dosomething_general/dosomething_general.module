@@ -311,8 +311,14 @@ function search_by_email_results($form, &$form_state) {
 
     // Basic user information: Uid, name, created, email
     $u = db_select('users', 'u')
-      ->fields('u', array('uid', 'name', 'created', 'mail'))
-      ->condition('mail', $emails, 'IN');
+      ->fields('u', array('uid', 'name', 'created', 'mail'));
+
+    if (intval($emails[0]) > 0) {
+      $u->condition('u.uid', $emails, 'IN');
+    }
+    else {
+      $u->condition('u.mail', $emails, 'IN');
+    }
 
     // Associated club IDs
     $u->leftJoin('node', 'n', "n.type = 'club' AND n.uid = u.uid AND n.status = 1");
