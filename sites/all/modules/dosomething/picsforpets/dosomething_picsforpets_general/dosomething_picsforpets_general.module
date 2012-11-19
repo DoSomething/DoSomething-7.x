@@ -10,7 +10,7 @@ include_once 'dosomething_picsforpets_general.features.inc';
 define('PICSFORPETS_PET_SUBMISSION_NID', variable_get('picsforpets_animal_form_id', 3));
 // The node id for the campaign signup form.
 define('PICSFORPETS_CAMPAIGN_SIGNUP_NID', variable_get('picsforpets_campaign_signup_id', 15));
-// The mailchimp list ID for Dosomething Membership mailchimp list.
+// The mailchimp list ID for Dosomething Membership mailchimp list. Defined in {mailchimp_lists} table as id = 2
 define('DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST', 2);
 // The Mobile Commons Opt-In path for furtographers
 define('DOSOMETHING_MC_FURTOGRAPHER', 125281);
@@ -316,12 +316,12 @@ function dosomething_picsforpets_general_furtographer_form_submit($form, $form_s
   $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'] = $cell;
   field_attach_update('webform_submission_entity', $submission);
 
-  // Subscribe to mailchimp.
+  // Subscribe to mailchimp. Previous GROUPINGS 'id' => '9573', changed to 71893 for DoSomething Members List
   if (module_exists('mailchimp_lists')) {
     $list = mailchimp_lists_load(DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST);
     $params = array(
       'GROUPINGS' => array(
-        array('id' => '9573', 'groups' => 'PicsforPetsCreators'),
+        array('id' => '71893', 'groups' => 'PicsforPetsCreators2012'),
       ),
       'EMAIL' => $email,
       'UID' => $user->uid,
@@ -444,12 +444,12 @@ function dosomething_picsforpets_general_thanks_form_submit($form, &$form_state)
   $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'] = $cell;
   field_attach_update('webform_submission_entity', $submission);
 
-    // Subscribe to mailchimp.
+    // Subscribe to mailchimp. Previous GROUPINGS 'id' => '9573', changed to 71893 for DoSomething Members List
   if (module_exists('mailchimp_lists') && $email) {
     $list = mailchimp_lists_load(DOSOMETHING_MEMBERSHIP_MAILCHIMP_LIST);
     $params = array(
       'GROUPINGS' => array(
-        array('id' => '9573', 'groups' => 'PicsforPetsSharers2012'),
+        array('id' => '71893', 'groups' => 'PicsforPetsSharers2012'),
       ),
       'EMAIL' => $email,
       'UID' => $user->uid,
