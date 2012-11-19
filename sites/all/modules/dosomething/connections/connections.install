@@ -29,6 +29,59 @@ function connections_schema() {
     ),
   );
 
+  $schema['fb_log'] = array(
+    'description' => 'Stores Facebook Actions and when they happened',
+    'primary key' => array('lid'),
+    'fields' => array(
+      'lid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'path' => array(
+        'description' => 'The absolute URL where the action happened.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'action' => array(
+        'description' => 'The action that was performed.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+      ),
+      'action_key' => array(
+        'description' => 'A numeric key representing the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'The Drupal UID of the user who performed the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'fbid' => array(
+        'description' => 'The Facebook ID of the user who performed the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'timestamp' => array(
+        'description' => 'The time that the action took place.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'path' => array('path'),
+      'action_key' => array('action_key'),
+      'uid' => array('uid'),
+    ),
+  );
+
   return $schema;
 }
 
@@ -37,4 +90,67 @@ function connections_schema() {
  */
 function connections_update_7100() {
   drupal_install_schema('connections');
+}
+
+/**
+ *  Creates Facebook action log table.
+ */
+function connections_update_7101() {
+  $schema = array();
+  $schema['fb_log'] = array(
+    'description' => 'Stores Facebook Actions and when they happened',
+    'primary key' => array('lid'),
+    'fields' => array(
+      'lid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'path' => array(
+        'description' => 'The absolute URL where the action happened.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'action' => array(
+        'description' => 'The action that was performed.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+      ),
+      'action_key' => array(
+        'description' => 'A numeric key representing the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'The Drupal UID of the user who performed the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'fbid' => array(
+        'description' => 'The Facebook ID of the user who performed the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'timestamp' => array(
+        'description' => 'The time that the action took place.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'path' => array('path'),
+      'action_key' => array('action_key'),
+      'uid' => array('uid'),
+    ),
+  );
+
+  if (!db_table_exists('fb_log')) {
+    db_create_table('fb_log', $schema['fb_log']);
+  }
 }

@@ -28,6 +28,12 @@ function dosomething_clubs_schema() {
         'unsigned' => true,
         'not null' => true,
       ),
+      'form' => array(
+        'description' => 'The form that the invite was sent from',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ),
     ),
   );
 
@@ -239,4 +245,15 @@ function dosomething_clubs_update_7103() {
   if (!db_table_exists('dosomething_clubs_tshirt_response')) {
     db_create_table('dosomething_clubs_tshirt_response', $schema['dosomething_clubs_tshirt_response']);
   }
+}
+
+/**
+ *  Adds "form" field to dosomething_clubs_invites table.
+ */
+function dosomething_clubs_update_7104() {
+  // db_add_fields throws an error for varchar(255) fields that are not null.
+  db_query("
+    ALTER TABLE dosomething_clubs_invites
+    ADD `form` varchar(255) not null
+  ");
 }

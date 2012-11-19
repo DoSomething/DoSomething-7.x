@@ -4,6 +4,31 @@ function pr($stuff) {
 	echo '<pre>', print_r($stuff), '</pre>';
 }
 
+function fb_log_action($action, $uid, $fbid) {
+	global $user;
+
+	$l = array(
+	  'path' => $_POST['link'],
+      'action' => $_POST['action'],
+      'action_key' => intval($_POST['key']),
+      'uid' => $user->uid,
+      'fbid' => intval($_POST['fbid']),
+      'timestamp' => REQUEST_TIME,
+	);
+
+	drupal_write_record('fb_log', $l);
+
+	$response = array(
+		'action' => $_POST['action'],
+		'key' => intval($_POST['key']),
+		'time' => date('m/d/Y g:iA'),
+		'success' => TRUE,
+	);
+
+    drupal_json_output($response);
+	drupal_exit();
+}
+
 /**
  *	Implements hook_fb_social_app_id_alter()
  *  Changes the app ID if $_SESSION['fb_app_id'] is set.
@@ -56,6 +81,11 @@ function connections_menu() {
   	'page callback' => 'connections_message_center',
   	'access callback' => TRUE,
   	'type' => MENU_CALLBACK
+  );
+
+  $items['fb/log'] = array(
+  	'page callback' => 'fb_log_action',
+  	'access callback' => TRUE,
   );
 
   return $items;

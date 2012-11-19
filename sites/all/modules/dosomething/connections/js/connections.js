@@ -53,10 +53,19 @@
     /**
      *  Multi-browser safe console.log
      */
-    log: function(message) {
+    clog: function(message) {
       if (typeof console !== 'undefined') {
         console.log(message);
       }
+    },
+
+    /**
+     *  Logs Facebook actions.
+     */
+    log: function(action, key) {
+      $.post('/fb/log', { 'fbid': FB.getUserID(), 'link': document.location.href, 'action': action, 'key': key }, function(response) {
+        console.log(response);
+      });
     },
 
     /**
@@ -341,7 +350,7 @@
       	require_login: config.feed_require_login,
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
-        friend_selector: config.feed_friend_selector || 'td',
+        friend_selector: config.feed_friend_selector || 'custom',
         check_remainder: false,
       };
 
@@ -383,8 +392,7 @@
       if (things.selector) {
       	jQuery('body ' + things.selector).click(function() {
         	Drupal.behaviors.fb.feed_runner(things, share, callback);
-
-      return false;
+          return false;
         });
       }
       else {
@@ -403,6 +411,7 @@
       // If we are allowing people to post to multiple walls...
       if (things.allow_multiple > 0) {
         Drupal.behaviors.fb.real_auth(things, function() {
+          Drupal.behaviors.fb.log('Feed Dialog', 1);
           var c;
           if (!things) {
             c = {};
@@ -500,7 +509,7 @@
               }
 
               if (left.length > 0 && response.check_remainder) {
-                Drupal.behaviors.fb.log('Some friends left.  Loading the final share block...');
+                Drupal.behaviors.fb.clog('Some friends left.  Loading the final share block...');
                 response.friends = left;
                 response['alert_msg'] = Drupal.t("Wait! We found some friends that you haven't shared a message with.  Do you want to share on their walls too?");
                 Drupal.behaviors.fb.fb_dialog('multi-feed', response, function(response) {
@@ -528,6 +537,7 @@
       else {
         FB.ui(share, function(response) {
           Drupal.behaviors.fb.callback_handler(callback, response);
+          Drupal.behaviors.fb.log('Feed Post', 2);
         });
       }
     },
@@ -544,7 +554,8 @@
      */
     send_feed_post: function(friendid, post) {
       FB.api('/' + friendid + '/feed', 'post', post, function(response) {
-         Drupal.behaviors.fb.log(response);
+         Drupal.behaviors.fb.clog(response);
+         Drupal.behaviors.fb.log('Feed Post', 2);
       });
     },
 
@@ -639,6 +650,8 @@
     ograph_message: function(things, fbpost, callback) {
       Drupal.behaviors.fb.real_auth(things, function() {
         Drupal.behaviors.fb.fb_dialog('og-post', things, function(response) {
+          Drupal.behaviors.fb.log('Open Graph Dialog', 1);
+
           if (response.comments) {
             fbpost.message = response.comments;
           }
@@ -656,7 +669,7 @@
      *  Performs the actual Open Graph call, using variables defined in the ograph function.
      */
     run_ograph: function(things, fbpost, callback) {
-      Drupal.behaviors.fb.log(fbpost);
+      Drupal.behaviors.fb.clog(fbpost);
       Drupal.behaviors.fb.real_auth(things, function() {
         FB.api(
           '/me/' + things.namespace + ':' + things.action,
@@ -947,7 +960,7 @@
       }
 
       if (Drupal.behaviors.fb.debug == true) {
-        Drupal.behaviors.fb.log(response);
+        Drupal.behaviors.fb.clog(response);
       }
     }
   };

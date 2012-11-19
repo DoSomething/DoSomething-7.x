@@ -23,9 +23,9 @@
       "1": "<a href=\"/my-team/teensforjeans#invite-popup\">Invite friends</a> to participate in your school's drive",
       "2": "<a href=\"#social\" class\"jump_scroll\">Share stats</a> with your friends about homelessness on your social networks",
       "3": "Start to market your drive and make sure people in your school know about it",
-      "4": "Talk to your school administrators and decide on a drop off location for the jeans",
+      "4": "Talk to your school administrators to set up a collection point in your school for the jeans",
       "5": "<a href=\"/teensforjeans/report-back\">Tell us about your drive</a> and upload pics of your drive",
-      "6": "Call your <a href=\"#search\" class=\"jump_scroll\">local Aeropostale store</a> and coordinate a drop off time",
+      "6": "Drop your collection off at your <a href=\"#search\" class=\"jump_scroll\">local Aeropostale store</a>. If you collect over 500 pairs, call the store to coordinate drop off.",
       "7": "Thank everyone for participating in your drive"
     };
 
