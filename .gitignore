@@ -9,6 +9,7 @@ tag
 
 # Ignore hidden files
 ._*
+.DS_Store
 
 #Ignore modules & libraries
 sites/all/modules/livereload/
