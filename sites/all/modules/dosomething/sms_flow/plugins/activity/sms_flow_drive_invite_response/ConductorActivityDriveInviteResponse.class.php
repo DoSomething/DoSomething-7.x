@@ -52,7 +52,45 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
         $state->setContext('sms_response', $num_detected_msg);
       }
       else {
-        $state->setContext('sms_response', $this->invite_rejected_message);
+        $already_in_drive = FALSE;
+        $account = _sms_flow_find_user_by_cell($mobile);
+        if ($account && $account->uid) {
+          $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
+
+          $ch = curl_init();
+          curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+          curl_setopt($ch, CURLOPT_USERPWD, "developers@dosomething.org:80276608");
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+          curl_setopt($ch, CURLOPT_URL, $profileUrl);
+          $xml = curl_exec($ch);
+          curl_close();
+
+          $pattern = '#\<custom_column name\="drives_invite_gid"\>(.*?)\<\/custom_column\>#is';
+          preg_match($pattern, $xml, $patternMatches);
+
+          $drives_invite_gid = 0;
+          if (count($patternMatches) >= 2) {
+            $drives_invite_gid = trim($patternMatches[1]);
+          }
+
+          if ($drives_invite_gid > 0) {
+            $team_uids = teams_get_member_uids($drives_invite_gid);
+            foreach ($team_uids as $uid) {
+              if ($uid == $account->uid) {
+                $already_in_drive = TRUE;
+                break;
+              }
+            }
+          }
+        }
+
+        if ($already_in_drive) {
+          $state->setContext('sms_response', t('You already previously joined this drive. You can view it online at doso.me/2. Want to invite friends to the drive? Text TFJINVITE.'));
+        }
+        else {
+          $state->setContext('sms_response', $this->invite_rejected_message);
+        }
       }
     }
 
