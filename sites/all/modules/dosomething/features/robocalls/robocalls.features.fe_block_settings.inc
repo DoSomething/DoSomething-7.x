@@ -24,6 +24,39 @@ function robocalls_default_fe_block_settings() {
     ),
   );
 
+  // crazyshit
+  $theme = array();
+
+  $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
+    'module' => 'views',
+    'delta' => '43e5f8c3da7cdbaf9be68f0db57cc6a0',
+    'theme' => 'crazyshit',
+    'status' => 0,
+    'weight' => '12',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['views-c6ff9c796a4b9eeb0843eebedec7be2a'] = array(
+    'module' => 'views',
+    'delta' => 'c6ff9c796a4b9eeb0843eebedec7be2a',
+    'theme' => 'crazyshit',
+    'status' => 0,
+    'weight' => '11',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $export['theme']['crazyshit'] = $theme;
+
   // doit
   $theme = array();
 
