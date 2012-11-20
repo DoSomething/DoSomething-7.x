@@ -63,7 +63,12 @@
      *  Logs Facebook actions.
      */
     log: function(action, key) {
-      $.post('/fb/log', { 'fbid': FB.getUserID(), 'link': document.location.href, 'action': action, 'key': key }, function(response) {
+      var fbid = FB.getUserId();
+      if (!id) {
+        fbid = 0;
+      }
+
+      $.post('/fb/log', { 'fbid': fbid, 'link': document.location.href, 'action': action, 'key': key }, function(response) {
         Drupal.behaviors.fb.clog(response);
       });
     },
