@@ -273,7 +273,7 @@ function sms_flow_default_conductor_workflows() {
   $activity->title = 'Process Drive Betas';
   $activity->alpha_campaign_id = 99961;
   $activity->inputs = array('drive_invite_response', 'ask_name');
-  $activity->outputs = array('sms_flow_ftaf');
+  $activity->outputs = array('ftaf_process');
 
   $activity = $workflow->newActivity('sms_flow_ftaf');
   $activity->name = 'ftaf_process';

@@ -85,7 +85,7 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
     $response = $this->response_fail;
     if (count($vetted_numbers) > 0) {
       
-      $inviter_name = '';
+      $inviter_name = $mobile;
 
       $account = _sms_flow_find_user_by_cell($mobile);
 
@@ -93,10 +93,6 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
         $profile = profile2_load_by_user($account);
         if (isset($profile['main'])) {
           $inviter_name = $profile['main']->field_user_first_name[LANGUAGE_NONE][0]['value'];
-
-          if (empty($inviter_name)) {
-            $inviter_name = $mobile;
-          }
         }
       }
 
