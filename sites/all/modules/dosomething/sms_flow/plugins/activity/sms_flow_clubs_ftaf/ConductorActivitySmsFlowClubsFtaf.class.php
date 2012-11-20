@@ -3,7 +3,7 @@
 /**
  * Process phone numbers and forward invites on to users using sms_flow_start()
  */
-class ConductorActivitySmsFlowFtaf extends ConductorActivity {
+class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
 
   // Mobile Commons optin path for inviter to be joined into
   public $alpha_optin = 0;
@@ -85,7 +85,7 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
     $response = $this->response_fail;
     if (count($vetted_numbers) > 0) {
       
-      $inviter_name = $mobile;
+      $inviter_name = '';
 
       $account = _sms_flow_find_user_by_cell($mobile);
 
@@ -93,6 +93,10 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
         $profile = profile2_load_by_user($account);
         if (isset($profile['main'])) {
           $inviter_name = $profile['main']->field_user_first_name[LANGUAGE_NONE][0]['value'];
+
+          if (empty($inviter_name)) {
+            $inviter_name = $mobile;
+          }
         }
       }
 
@@ -140,7 +144,7 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
         $response .= '. ';
       }
 
-      $response .= 'Text TFJINVITE if you want to invite more!!!!.';
+      $response .= 'Text CINVITE if you want to invite more.';
 
       sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
     }

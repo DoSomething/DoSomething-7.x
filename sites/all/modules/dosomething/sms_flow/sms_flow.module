@@ -33,10 +33,9 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
   	dosomething_general_mobile_commons_subscribe($alpha_number, (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign), $variables);
   }
 
-  // TODO: more error handling
   $nid = 0;
   if (!empty($form_values['details']['nid'])) {
-    $nid = $form_values['details']['nid'];
+	$nid = $form_values['details']['nid'];
   }
 
   $n = node_load($nid);
@@ -144,6 +143,9 @@ function sms_flow_incoming_callback($path) {
     case 'alcoa-report-back':
       $keyword = 'alcoa-report-back';
       break;
+    case 'clubs':
+      $keyword = 'clubs';
+      break;
     default:
       watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
       return NULL;
@@ -217,6 +219,7 @@ function sms_flow_conductor_sms_keywords() {
     'drives-create' => 'sms_flow_drives_create',
     'drives-invite' => 'sms_flow_drives_invite',
     'ftaf' => 'sms_flow_ftaf',
+    'clubs' => 'sms_flow_clubs_invite',
   );
 }
 
@@ -464,6 +467,68 @@ function sms_flow_default_conductor_workflows() {
 
   $workflows[$workflow->name] = $workflow;
 
+  //
+  // sms_flow_clubs_invite workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_clubs_invite';
+  $workflow->title = 'SMS Flow Clubs Invite';
+  $workflow->description = 'Workflow for invitees of a Clubs invite';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('clubs_invite_response');
+
+  $activity = $workflow->newActivity('sms_flow_clubs_invite_response');
+  $activity->name = 'clubs_invite_response';
+  $activity->title = 'Handle beta\'s approval or denial of invitation.';
+  $activity->accept_responses = array('y','yes','yea','ya','yeah','cjoin', 'c join');
+  $activity->invite_rejected_message = t('No prob. You won\'t be added to the club. If you want to join in the future, text back CJOIN.');
+  $activity->inputs = array('start');
+  $activity->outputs = array('ask_name', 'process_beta', 'end');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_name';
+  $activity->title = 'Ask Name';
+  $activity->question = t('Awesome! Reply with ur first name and we\'ll set u up with a login for our website where you can learn more about your club and about DoSomething.org');
+  $activity->inputs = array('clubs_invite_response');
+  $activity->outputs = array('process_beta');
+
+  $activity = $workflow->newActivity('sms_flow_clubs_invited_beta');
+  $activity->name = 'process_beta';
+  $activity->title = 'Process Clubs Betas';
+  $activity->alpha_campaign_id = 99961;
+  $activity->inputs = array('clubs_invite_response', 'ask_name');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('process_beta');
+  $activity->outputs = array('ftaf_clubs_process');
+
+  $activity = $workflow->newActivity('sms_flow_clubs_ftaf');
+  $activity->name = 'ftaf_clubs_process';
+  $activity->title = 'Forward to a Friend';
+  $activity->alpha_optin = 135661;
+  $activity->beta_optin = 135651;
+  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with CINVITE if you want to invite more.');
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the club again, text CJOIN. To invite ppl to ur drive, text CINVITE.');
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('clubs_invite_response', 'ftaf_clubs_process');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
   return $workflows;
 }
 
@@ -550,8 +615,6 @@ function sms_flow_team_invite_form_submit($form, &$form_state) {
  * find_user_by_cell() doesn't handle international code when searching by profile's
  * field_user_mobile value. Only handles international code with an @mobile email address
  */
-// TODO: Find a way to fix dosomething_general_find_user_by_cell() instead of needing to use
-// this private function.
 function _sms_flow_find_user_by_cell($mobile) {
   $account = dosomething_general_find_user_by_cell($mobile);
   if (!$account && strlen($mobile) > 10) {
