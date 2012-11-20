@@ -63,7 +63,7 @@
      *  Logs Facebook actions.
      */
     log: function(action, key) {
-      var fbid = FB.getUserId();
+      var fbid = FB.getUserID();
       if (!fbid) {
         fbid = 0;
       }
@@ -400,7 +400,7 @@
       	require_login: config.feed_require_login,
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
-        friend_selector: config.feed_friend_selector || 'td',
+        friend_selector: config.feed_friend_selector || 'custom',
         check_remainder: false,
       };
 
