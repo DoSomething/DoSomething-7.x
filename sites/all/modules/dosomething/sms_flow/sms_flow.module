@@ -273,13 +273,7 @@ function sms_flow_default_conductor_workflows() {
   $activity->title = 'Process Drive Betas';
   $activity->alpha_campaign_id = 99961;
   $activity->inputs = array('drive_invite_response', 'ask_name');
-  $activity->outputs = array('strip_signature');
-
-  $activity = $workflow->newActivity('sms_strip_signature');
-  $activity->name = 'strip_signature';
-  $activity->title = 'Strip Signature';
-  $activity->inputs = array('process_beta');
-  $activity->outputs = array('ftaf_process');
+  $activity->outputs = array('sms_flow_ftaf');
 
   $activity = $workflow->newActivity('sms_flow_ftaf');
   $activity->name = 'ftaf_process';
@@ -288,7 +282,7 @@ function sms_flow_default_conductor_workflows() {
   $activity->beta_optin = 129751;
   $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with TFJINVITE if you want to invite more.');
   $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the drive again, text TFJJOIN. To invite ppl to ur drive, text TFJINVITE.');
-  $activity->inputs = array('strip_signature');
+  $activity->inputs = array('process_beta');
   $activity->outputs = array('end');
 
   $activity = $workflow->newActivity('end');

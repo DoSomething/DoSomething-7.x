@@ -45,7 +45,15 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
       $this->removeOutput('ask_name');
       $this->removeOutput('process_beta');
 
-      $state->setContext('sms_response', $this->invite_rejected_message);
+      // Defense against cases where people should've gone from process_beta to sms_flow_ftaf, but didn't
+      preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $_REQUEST['args']), $numbers);
+      if (!empty($numbers['numbers'])) {
+        $num_detected_msg = 'Oops. Did you mean to invite someone to your drive? Text TFJINVITE and try to invite again. Trying to join a drive? Text TFJJOIN to try to join again.';
+        $state->setContext('sms_response', $num_detected_msg);
+      }
+      else {
+        $state->setContext('sms_response', $this->invite_rejected_message);
+      }
     }
 
     $state->markCompleted();
