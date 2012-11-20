@@ -64,7 +64,52 @@
      */
     log: function(action, key) {
       $.post('/fb/log', { 'fbid': FB.getUserID(), 'link': document.location.href, 'action': action, 'key': key }, function(response) {
-        console.log(response);
+        Drupal.behaviors.fb.clog(response);
+      });
+    },
+
+    /**
+     *  Checks to see if the logged in Facebook user has a permission.
+     */
+    has_perm: function(permission) {
+      FB.api('/me/permissions', function (response) {
+        if (response.error) {
+          return false;
+        }
+        else {
+          var perms = response.data[0];
+          if (!perms[permission]) {
+            return false;
+          }
+          else {
+            return true;
+          }
+        }
+      });
+    },
+
+    /**
+     *  Asks for a permission.
+     */
+    ask_permission: function(permission, callback) {
+      FB.api('/me/permissions', function (response) {
+        if (response.error) {
+          FB.login(function(response) {
+            callback();
+          }, { scope: permission })
+        }
+        else {
+          var perms = response.data[0];
+          if (!perms[permission]) {
+            FB.ui({
+              method: 'permissions.request',
+              perms: permission,
+              display: 'popoup'
+            }, function(response) {
+              callback();
+            });
+          }
+        }
       });
     },
 
@@ -350,7 +395,7 @@
       	require_login: config.feed_require_login,
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
-        friend_selector: config.feed_friend_selector || 'custom',
+        friend_selector: config.feed_friend_selector || 'td',
         check_remainder: false,
       };
 
