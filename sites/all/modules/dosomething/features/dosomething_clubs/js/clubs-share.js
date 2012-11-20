@@ -20,7 +20,7 @@
 					$('#TDFriendSelector_buttonClose').click();
 				}
 
-				$('#' + rel + '-share-container').toggle();
+				$('#' + rel + '-share-container').show();
 				//Drupal.behaviors.clubsShare.switch_image_and_button(rel);
 				return false;
 			});

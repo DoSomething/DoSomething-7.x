@@ -248,7 +248,7 @@
             // Not logged in.
             if (things.require_login == 1) {
               FB.login(function(response) {
-                callback();
+                callback(response);
               });
             }
           }
@@ -258,7 +258,7 @@
               FB.api('/me/permissions', function (response) {
                 if (response.error) {
                   FB.login(function(response) {
-                    callback();
+                    callback(response);
                   }, { scope: 'publish_actions' })
                 }
                 else {
@@ -269,7 +269,7 @@
                       perms: 'publish_actions',
                       display: 'popoup'
                     }, function(response) {
-                      callback();
+                      callback(response);
                     });
                   }
                 }
@@ -286,18 +286,18 @@
                   perms: 'publish_actions',
                   display: 'popup'
                 }, function(response) {
-                  callback();
+                  callback(response);
                 });
               }
               else {
-                callback();
+                callback({ status: true });
               }
             });
           }
         });
       }
       else {
-        callback();
+        callback({ status: true });
       }
     },
 
@@ -455,7 +455,7 @@
     feed_runner: function(things, share, callback) {
       // If we are allowing people to post to multiple walls...
       if (things.allow_multiple > 0) {
-        Drupal.behaviors.fb.real_auth(things, function() {
+        Drupal.behaviors.fb.real_auth(things, function(response) {
           Drupal.behaviors.fb.log('Feed Dialog', 1);
           var c;
           if (!things) {
@@ -470,7 +470,7 @@
           }
 
           // Creates an optional modal dialog
-          if (things.modal) {
+          if (things.modal && response.status !== 'unknown') {
             jQuery('body').append(jQuery('<div></div>').attr('id', 'fb-modal').css({
               'position': 'absolute',
               'z-index': 150,
