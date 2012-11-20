@@ -76,7 +76,7 @@
     /**
      *  Checks to see if the logged in Facebook user has a permission.
      */
-    has_perm: function(permission) {
+    has_permission: function(permission) {
       FB.api('/me/permissions', function (response) {
         if (response.error) {
           return false;
@@ -400,7 +400,7 @@
       	require_login: config.feed_require_login,
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
-        friend_selector: config.feed_friend_selector || 'custom',
+        friend_selector: config.feed_friend_selector || 'td',
         check_remainder: false,
       };
 
@@ -856,7 +856,8 @@
     },
 
     /**
-     *  Shares a full-sized image on the user's wall.
+     *  Shares a full-sized image on the user's wall.  The image must be at least 480x480px square,
+     *  and be a photo taken by a camera, by a human being.
      *
      *  @param config
      *    A javascript object of configuration options.  Available options:
