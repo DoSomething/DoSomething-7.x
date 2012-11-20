@@ -235,7 +235,11 @@ class clubs_export {
         '# of Projects' =>    $stuff['pcount'],
         'Recent Project' =>   $last_created_project,
         'Last joined campaign time' => $last_joined_campaign,
-        'SMS Response Times' => $rtimes
+        'SMS Response Times' => $rtimes,
+        'SMS Invites' => $stuff['shares']['sms_shares'],
+        'Facebook invites' => $stuff['shares']['fb_shares'],
+        'Email invites' => $stuff['shares']['email_shares'],
+        'Total' => ($stuff['shares']['sms_shares'] + $stuff['shares']['fb_shares'] + $stuff['shares']['email_shares']),
       );
 
       $i++;
@@ -295,7 +299,11 @@ class clubs_export {
         t('Number of Projects'),
         t('Most recently created project'),
         t('Last joined Campaign time'),
-        t('SMS Response Times')
+        t('SMS Response Times'),
+        t('SMS Invites'),
+        t('Facebook invites'),
+        t('Email invites'),
+        t('Total'),
       );
 
       $handle = fopen($h['file_path'], 'w');
@@ -335,6 +343,7 @@ class clubs_export {
 
     $query = "SELECT
       node.nid AS nid,
+      og_node.gid AS `gid`,
       node.title AS node_title,
       `node`.`created` AS `created`,
       `node`.`changed` AS `last_updated`,
@@ -419,6 +428,17 @@ class clubs_export {
             (SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (" . $s['member_uids'] . ") ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `lastcreated`,
             (SELECT `webform_submissions`.`submitted` FROM `webform_submissions` WHERE `nid` IN (" . $cs . ") AND `uid` IN (" . $s['member_uids'] . ") ORDER BY `webform_submissions`.`submitted` DESC LIMIT 1) AS `last_joined_campaign`
           ")->fetchAssoc();
+
+          $s['real_path'] = drupal_lookup_path('alias', 'node/' . $s['nid']);
+
+          $shares = db_query("
+            SELECT
+              (SELECT COUNT(*) FROM `fb_log` f WHERE `path` LIKE '%" . $s['real_path'] . "%') AS `fb_shares`,
+              (SELECT COUNT(*) FROM `sms_flow_records` WHERE `type` = 'club' AND `nid` = " . $s['nid'] . ") AS `sms_shares`,
+              (SELECT COUNT(*) FROM `dosomething_clubs_invites` WHERE `gid` = " . $s['gid'] . ") AS `email_shares`
+          ")->fetchAssoc();
+
+          $s['shares'] = $shares;
 
           $s = array_merge($s, $m);
           $results[] = (object)$s;
@@ -626,7 +646,11 @@ function dosomething_clubs_pull_batch_process(&$context) {
       t('Member UIDs'),
       t('Number of Projects'),
       t('Most recently created project'),
-      t('Last joined Campaign time')
+      t('Last joined Campaign time'),
+      t('SMS Invites'),
+      t('Facebook invites'),
+      t('Email invites'),
+      t('Total'),
     );
 
     $filename = 'clubs_export_' . date('m-d-y', REQUEST_TIME) . '.csv';
@@ -693,7 +717,11 @@ function dosomething_clubs_pull_batch_process(&$context) {
         'Member UIDs' =>      str_replace(',', ', ', $stuff['member_uids']),
         '# of Projects' =>    $stuff['pcount'],
         'Recent Project' =>   date('Y/m/d', $stuff['lastcreated']),
-        'Last joined campaign time' => date('Y/m/d', $stuff['last_joined_campaign'])
+        'Last joined campaign time' => date('Y/m/d', $stuff['last_joined_campaign']),
+        'SMS Invites' => $stuff['shares']['sms_shares'],
+        'Facebook invites' => $stuff['shares']['fb_shares'],
+        'Email invites' => $stuff['shares']['email_shares'],
+        'Total' => ($stuff['shares']['sms_shares'] + $stuff['shares']['fb_shares'] + $stuff['shares']['email_shares']),
       );
 
       unset($context['sandbox']['clubs']["$i"]);
@@ -769,8 +797,11 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Number of Projects'), 'class' => array('page-manager-page-path')),
     array('data' => t('Most recently created project'), 'class' => array('page-manager-page-path')),
     array('data' => t('Last joined campaign time'), 'class' => array('clubs-pull-last-joined-campaign')),
-    array('data' => t('SMS Response Times'), 'class' => array('clubs-pull-sms-response-times'))
-
+    array('data' => t('SMS Response Times'), 'class' => array('clubs-pull-sms-response-times')),
+    array('data' => t('SMS Invites'), 'class' => array('clubs-pull-sms-shares')),
+    array('data' => t('Facebook Invites'), 'class' => array('clubs-pull-fb-shares')),
+    array('data' => t('Email Invites'), 'class' => array('clubs-pull-email-shares')),
+    array('data' => t('Total Invites'), 'class' => array('clubs-pull-total-shares')),
   );
 
 $count = db_query("SELECT COUNT(*) AS `count` FROM `node` WHERE (( (node.status = '1') AND (node.type IN  ('club')) )) GROUP BY nid, `node`.`title` ORDER BY `node`.`title` ASC");
@@ -848,7 +879,11 @@ $num = $count->rowCount();
         'Number of Projects' =>            array('data' => $result['pcount']),
         'Most Recently Created Project' => array('data' => $last_created),
         'Last joined campaign time' =>      array('data' => $last_joined_campaign),
-        'SMS Response Times' =>             array('data' => $rtimes)
+        'SMS Response Times' =>             array('data' => $rtimes),
+        'SMS Invites' => array('data' => $result['shares']['sms_shares']),
+        'Facebook invites' => array('data' => $result['shares']['fb_shares']),
+        'Email invites' => array('data' => $result['shares']['email_shares']),
+        'Total' => array('data' => ($result['shares']['sms_shares'] + $result['shares']['fb_shares'] + $result['shares']['email_shares'])),
       )
     );
   }
