@@ -407,6 +407,19 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #dosomething-login-register-facebook #edit-title-text--2 label {
     text-transform: uppercase; }
 
+#edit-title-text h2, #edit-title-text h3 {
+  color: white;
+  text-transform: uppercase;
+  text-align: center; }
+
+#edit-title-text h2 {
+  font-size: 1.8em;
+  padding: 0.5em 0 0 0; }
+
+#edit-title-text h3 {
+  padding: 1.43em 0 0 0;
+  font-size: 1.3em; }
+
 #dosomething-login-register-popup-form label {
   color: white; }
   #dosomething-login-register-popup-form label span {
@@ -445,10 +458,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
   display: block;
   font-size: 1.7em;
   color: #222222;
-  background: white;
+  background: #ffcb15;
   max-width: 15em;
   height: 1.5em;
-  padding: 0.05em 0.5em 0.5em;
+  padding: 0.35em 0.5em 0.5em;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1332,7 +1345,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       font-size: 1.3em;
       font-weight: 600;
       text-align: left;
-      padding: 0.2em 0 0 0;
+      padding: 0.5em 0 0 0;
       font-size: 0.9em; }
   #cmp #header .form-submit {
     font-weight: 600;

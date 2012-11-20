@@ -33,6 +33,7 @@ $plugin = array(
     array('title' => 'here\'s what you do', 'href' => '', 'fragment' => 'action', 'external' => TRUE),
     array('title' => 'learn the issue', 'href' => '', 'fragment' => 'content-module', 'external' => TRUE),
     array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'scholarship', 'external' => TRUE),
+    array('title' => 'prizing', 'href' => '', 'fragment' => 'prizing', 'external' => TRUE),
     array('title' => 'tell us about it', 'href' => 'teensforjeans/report-back'),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),

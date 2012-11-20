@@ -10,7 +10,7 @@
     }; 
 
     // inject banner copy on invite_friends form
-    $('#invite_header').after('<img class="banner" src="//files.dosomething.org/files/campaigns/jeans12/banner_cta.png"/>');
+    $('#invite_header').after('<img class="banner" src="//files.dosomething.org/files/campaigns/jeans12/invitepopup_cta.png"/>');
 
     // remove #edit-submit from drive page buttons
     $('#drive .drive-participants-list .form-submit').val('x').removeAttr('id').addClass('remove_participant');
