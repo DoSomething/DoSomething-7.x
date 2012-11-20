@@ -202,7 +202,7 @@ body {
       text-align: center;
       width: 100%;
       margin-bottom: 1em;
-      font-size: 0.8em; }
+      font-size: 0.75em; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a {
       font-weight: normal;
       font-size: 1em;
@@ -680,7 +680,7 @@ body {
   #cmp #search .top-hr {
     margin: 3em auto 1.5em; }
   #cmp #search .bottom-hr {
-    margin: 1em auto 3em; }
+    margin: 1em auto 1em; }
   #cmp #search .search-zip {
     display: inline-block;
     margin: 0 auto; }
@@ -833,7 +833,7 @@ body {
       padding: 3%;
       font-family: din-web-reg;
       font-weight: 600;
-      font-size: 1.7em;
+      font-size: 2em;
       -moz-border-radius: 12px;
       -webkit-border-radius: 12px;
       -o-border-radius: 12px;
@@ -895,6 +895,9 @@ body {
   #cmp #impact p {
     width: 40%;
     margin: 0 auto; }
+  #cmp #impact p.collect {
+    width: 60%;
+    margin-top: 1em; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {
