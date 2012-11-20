@@ -64,7 +64,7 @@
      */
     log: function(action, key) {
       var fbid = FB.getUserId();
-      if (!id) {
+      if (!fbid) {
         fbid = 0;
       }
 
