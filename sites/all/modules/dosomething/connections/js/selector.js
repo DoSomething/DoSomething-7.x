@@ -82,8 +82,8 @@
 									$(this).addClass('hidden close-hidden');
 								}
 								else {
-									// Emulate a click on your close friends.
-									$(this).click();
+									//Emulate a click on your close friends.
+									//$(this).click();
 								}
 							});
 
@@ -153,7 +153,9 @@
 							method: 'permissions.request',
 							perms: 'read_friendlists',
 							display: 'iframe',
-						}, h.find_close_friends());
+						}, function(response) {
+							h.find_close_friends();
+						});
 		            }
 		            else {
 		            	h.find_close_friends();
