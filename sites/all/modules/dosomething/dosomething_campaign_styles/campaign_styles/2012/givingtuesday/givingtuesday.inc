@@ -29,7 +29,7 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'what is it?', 'href' => '', 'fragment' => 'action'),
-    array('title' => 'share with old people', 'href' => '', 'fragment' => 'share'),
+    array('title' => 'share with old people', 'href' => '', 'fragment' => 'refer'),
     array('title' => 'take the quiz', 'href' => '', 'fragment' => 'quiz'),    
     array('title' => 'faqs', 'href' => '', 'fragment' => 'faq'),
   ),
