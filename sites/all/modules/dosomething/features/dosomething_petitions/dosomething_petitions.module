@@ -10,6 +10,19 @@ define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
 define('PETITIONS_MCOMMONS', 117371);
 
+function dosomething_petitions_page_alter(&$page) {
+  if (preg_match('#\/petition\/(.*?)#i', request_uri())) {
+    $element = array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'property' => 'og:type',
+        'content' => 'dosomethingapp:petition',
+      ),
+    );
+    drupal_add_html_head($element, 'petitions_og_type');
+  }
+}
+
 /**
  * Implements hook_form_alter().
  */
@@ -38,9 +51,9 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
       );
 
       $form['#validate'][] = 'dosomething_petitions_captcha';
-      $form['actions']['submit']['#ajax'] = array(
+      /*$form['actions']['submit']['#ajax'] = array(
         'callback' => 'dosomething_petitions_register',
-      );
+      );*/
     }
     else {
       $profile = profile2_load_by_user($user, 'main');
@@ -318,12 +331,12 @@ function dosomething_petitions_module_implements_alter(&$implementations, $hook)
 /**
  * Implements hook_node_insert().
  */
-function dosomething_petitions_node_insert($node) {
+/*function dosomething_petitions_node_insert($node) {
   if ($node->type == 'petition') {
     $node->webform['redirect_url'] = 'webform-post-submit-associate/%nid/%sid';
     webform_node_update($node);
   }
-}
+}*/
 
 function dosomething_petitions_panels_pre_render($display) {
   if ($display->layout == 'petitions') {

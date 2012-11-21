@@ -8,6 +8,11 @@
     <link rel="stylesheet" type="text/css" href="/sites/all/modules/dosomething/dosomething_contact_picker/css/picker.css" />
   </head>
   <body>
+    <script type="text/javascript">
+    <!--
+    window.parent.close_scraper_and_load_long_form();
+    -->
+    </script>
     <h1>Done.</h1>
     <p>Thanks for inviting your friends.  Every friend that you invite helps to make a difference in this world.  They'll invite their friends, who will invite their friends...you get the idea.</p>
     <p><b>Now share with your friends on Facebook:</b></p>

@@ -35,6 +35,8 @@ function dosomething_petitions_petition_reasons_content_type_render($subtype, $c
       $name = 'Anonymous';
     }
 
+    $name = dosomething_general_censor_word($name);
+
     $time = format_interval((time() - $submission->submitted), 2) . t(' ago');
     $comment = $submission->field_webform_petition_reason[LANGUAGE_NONE][0]['value'];
     $signatures[] = array(
