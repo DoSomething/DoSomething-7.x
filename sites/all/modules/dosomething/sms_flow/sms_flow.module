@@ -529,6 +529,56 @@ function sms_flow_default_conductor_workflows() {
 
   $workflows[$workflow->name] = $workflow;
 
+<<<<<<< Updated upstream
+=======
+  //
+  // sms_flow_ftaf workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_ftaf';
+  $workflow->title = 'Forward to a Friend Clubs Style';
+  $workflow->description = 'Custom forward to a friend workflow';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('ftaf_prompt');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ftaf_prompt';
+  $activity->title = 'Start prompt for FTAF';
+  $activity->question = t('Awesome! All you need to do is text us your friends cell phone numbers and we\'ll invite then to participate in your Club.');
+  $activity->inputs = array('start');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('ftaf_prompt');
+  $activity->outputs = array('ftaf_process');
+
+  $activity = $workflow->newActivity('sms_flow_clubs_ftaf');
+  $activity->name = 'ftaf_clubs_process';
+  $activity->title = 'Forward to a Friend';
+  $activity->alpha_optin = 135661;
+  $activity->beta_optin = 135651;
+  $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with CINVITE if you want to invite more.');
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the club again, text CJOIN. To invite ppl to ur drive, text CINVITE.');
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('ftaf');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+>>>>>>> Stashed changes
   return $workflows;
 }
 
