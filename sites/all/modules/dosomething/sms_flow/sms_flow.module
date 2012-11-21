@@ -529,8 +529,6 @@ function sms_flow_default_conductor_workflows() {
 
   $workflows[$workflow->name] = $workflow;
 
-<<<<<<< Updated upstream
-=======
   //
   // sms_flow_ftaf workflow
   //
@@ -578,7 +576,6 @@ function sms_flow_default_conductor_workflows() {
 
   $workflows[$workflow->name] = $workflow;
 
->>>>>>> Stashed changes
   return $workflows;
 }
 
