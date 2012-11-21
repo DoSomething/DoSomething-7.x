@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       
       // quiz submission
-      var $quizForm = $('#webform-client-form-724793');
+      var $quizForm = $('#webform-client-form-726580');
       if ($quizForm.length > 0 && $quizForm.find('input[type="radio"]').length > 0) {
         $quizForm.submit(function () {
           var right = 0;
@@ -12,7 +12,7 @@
               right++;
             }
           });
-          $quizForm.attr('action', $quizForm.attr('action')+'?destination=givingtuesday12/results/'+right);
+          $quizForm.attr('action', $quizForm.attr('action')+'?destination=givingtuesday/results/'+right);
           return true;
         });
       }
@@ -141,7 +141,7 @@
       });
 
     // Report Back Counter Function
-    $.post('/webform-counter-field/724793', function (data) {
+    $.post('/webform-counter-field/726580', function (data) {
       $('#sb-counter').html(data);
     });
 
