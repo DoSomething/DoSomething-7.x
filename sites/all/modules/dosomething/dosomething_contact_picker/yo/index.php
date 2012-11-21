@@ -108,6 +108,7 @@ class yahooauth {
 		var r = $('#response').html();
 		if (window.opener !== null) {
 		    $('#response', window.opener.document).show().html(r);
+		    window.opener.stretch_scraper();
 		    window.opener.prepare_clicks();
 		    $('#check-area, #send-emails, #submit-emails-block', window.opener.document).show();
 		    $('#loading', window.opener.document).hide();
@@ -115,6 +116,7 @@ class yahooauth {
 		}
 		else {
 			$('#response').show().html(r);
+			stretch_scraper();
 			prepare_clicks();
 			$('#check-area, #send-emails, #submit-emails-block').show();
 			$('#loading').hide();

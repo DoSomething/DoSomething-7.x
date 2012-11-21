@@ -89,6 +89,8 @@ jQuery(document).ready(function() {
   if (typeof window.parent.hide_scraper_loader == 'function') {
     window.parent.hide_scraper_loader();
   }
+
+  jQuery('#contacts-scraper-dialog', window.parent.document).css('height', 'auto');
 });
 
 function scraper_email(subject, body) {
@@ -99,3 +101,8 @@ function scraper_email(subject, body) {
   return false;
 }
 
+function stretch_scraper() {
+  jQuery('#email-scraper', window.parent.document).css('height', '645px');
+  jQuery('.email-scraper-dialog', window.parent.document).animate({'height': '685px'});
+  return false;
+}

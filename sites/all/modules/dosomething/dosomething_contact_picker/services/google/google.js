@@ -12,6 +12,7 @@ var google = {
        jQuery('#response').html(response).css('overflow', 'auto');
        jQuery('#check-area, #send-emails, #submit-emails-block').fadeIn('fast');
        jQuery('#loading').fadeOut('fast');
+       stretch_scraper();
        prepare_clicks();
     });
   },

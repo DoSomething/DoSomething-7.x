@@ -7,15 +7,25 @@
       delete Drupal.behaviors.dosomethingLoginLogin;
       delete Drupal.behaviors.dosomethingPetitions;
       
-      var popup = $('<div></div>').attr('id', 'contacts-scraper-dialog');
+      var popup = $('<div></div>').attr('id', 'contacts-scraper-dialog').css('height', 'auto');
       popup.append($('<div id="loading-scraper" class="remove-that-loader" style="position: absolute; z-index: 0; margin-left: 50%; margin-top: 40%;"><img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="" /></div>'));
-      popup.append($('<iframe></iframe>').attr('id', 'email-scraper').css('width', '500px').css('height', '600px').css('border', '0px').css('background', '#fff').attr('src', '/contacts-scraper/' + petition));
+      popup.append($('<iframe></iframe>').attr('id', 'email-scraper').css('width', '500px').css('min-height', '250px').css('border', '0px').css('background', '#fff').attr('src', '/contacts-scraper/' + petition));
       // popup!
       popup.dialog({
         resizable: false,
         draggable: false,
         modal: true,
-        width: 550
+        width: 550,
+        minHeight: 250,
+        dialogClass: 'email-scraper-dialog',
+        open: function() {
+          $('#contacts-scraper-dialog').css('height', 'auto');
+        },
+        close: function() {
+          $('.email-scraper-dialog').remove();
+          // ???
+          $('#contacts-scraper-dialog').remove();
+        }
       });
 
       return false;

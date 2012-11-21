@@ -15,7 +15,7 @@ div#socials {
 }
 
 div#response {
-  height: 345px;
+  max-height: 345px;
   overflow: auto;
   display: none;
   margin-top: 5px;

@@ -22,9 +22,10 @@
 <!--<div id="choices">You may choose <span id="choices-left">5</span> more peeps.</div>-->
 <div id="check-area"><a href="#" id="check-all">Check all</a> / <a href="#" id="check-none">None</a></div>
 <p id="loading"></p>
-<div id="response"></div>
+<div id="response" style="min-height: 10px">&nbsp;</div>
+<p style="padding-bottom: 1px"><input type="submit" onclick="return submit_emails()" value="Invite" id="send-emails" /></p>
 
-<p><input type="submit" onclick="return submit_emails()" value="Invite" id="send-emails" /></p>
+<p style="padding-top: 8px; clear: both; border-top: 1px solid #000; margin-top: 15px"><a href="#" onclick="return window.parent.load_fb();">I'd rather share on Facebook</a></p>
 </form>
   </body>
 </html>

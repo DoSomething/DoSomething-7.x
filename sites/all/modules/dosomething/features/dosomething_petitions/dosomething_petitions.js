@@ -150,3 +150,14 @@ function close_scraper_and_load_long_form() {
   jQuery('#contacts-scraper-dialog').dialog('close');
   jQuery.fn.dsPetitionSubmit();
 }
+
+function stretch_scraper() {
+}
+
+function load_fb() {
+  // $.dialog('close') won't work with contacts-scraper-dialog and the animations from above.
+  // Instead we have to completely remove the dialogs.
+  jQuery('#contacts-scraper-dialog').remove();
+  jQuery('.email-scraper-dialog').remove();
+  jQuery('#petition-fb').click();
+}
