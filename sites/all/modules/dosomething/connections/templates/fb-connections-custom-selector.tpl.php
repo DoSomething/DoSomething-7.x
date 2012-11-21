@@ -343,6 +343,10 @@ textarea {
     background: #f1f1f1;
 }
 
+#friends-info li:hover > div.comment {
+    display: inline-block;
+}
+
 #friends-info a img {
     clear: both;
     margin-right: 5px;
@@ -361,13 +365,24 @@ textarea {
     width: 310px;
 }
 
-#friends-info li div input[type="text"] {
+#friends-info li div input[type="text"], .my-post {
     width: 235px;
+    background: #fff;
+    border: 1px solid #808080;
+    color: #000;
 }
 
-#friends-info li div input[type="submit"] {
+#friends-info li div input[type="submit"], .my-submit {
     margin-left: 10px;
     margin-top: 3px;
+    background: #fed22e;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    margin-top: 0px;
+    height: 27px;
+    border: 1px solid #808080;
 }
 
 #choosers {
@@ -474,13 +489,17 @@ li#select:hover {
         <div id="your-info">
             <img src="http://www.loremipsum.net/pixelgif/pics/pixel.gif" width="50" height="50" style="float: left; margin-right: 5px" id="profile-pic" alt="" />
             <div style="display: inline-block" id="profile-name">&nbsp;</div>
+            <div style="margin-top: 8px" id="my-share">
+                <input type="text" name="share-to-me" placeholder="Post on my own wall..." class="my-post" style="background: #fff; border: 1px solid #808080; color: #000" />
+                <input type="submit" value="Share" class="my-submit" />
+            </div>
         </div>
         <div id="search">
-            <input id="search-friends" type="text" placeholder="Search your friends..." />
+            <input id="search-friends" type="text" placeholder="Search for your friends..." />
             <a href="#" class="clear-search" title="Clear Your Search">X</a>
         </div>
         <div id="select">
-            <a href="#" id="find-close-friends">Find my close friends</a>
+            <a href="#" id="find-close-friends">Show my close friends</a>
             <a href="#" id="close-close-friends" style="display: none">Show all of my friends again</a>
             <!--| <a href="#" id="show-selected">Show Selected</a>-->
             <!--<a href="#" id="select-all">Select All</a> / <a href="#" id="select-none">None</a>-->

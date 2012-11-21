@@ -530,13 +530,6 @@
               var msgs = [];
               var left = [];
 
-              $('.friend').each(function() {
-                if ($(this).hasClass('selected')) {
-                  var id = $(this).attr('rel');
-                  msgs[id] = $(this).find('.personal-message').val();
-                }
-              });
-
               var fbObj = {
                 message: '',
                 name: response.title,
@@ -545,6 +538,34 @@
                 caption: response.caption,
                 link: response.link
               };
+
+              var mypost = ($('#your-info').hasClass('submitted'));
+              if (mypost) {
+                var v = $('.my-post').val();
+                if (v !== '') {
+                  Drupal.behaviors.fb.ograph({
+                    og_namespace: 'dosomethingapp',
+                    og_type: 'petition',
+                    og_action: 'sign',
+                    og_title: response.title,
+                    og_document: response.link,
+                    og_post_image: response.picture,
+                    og_post_description: response.description,
+                    message: v,
+                    og_selector: null,
+                    og_require_login: false,
+                  }, function(response) {
+                    console.log(response);
+                  });
+                }
+              }
+
+              $('.friend').each(function() {
+                if ($(this).hasClass('selected')) {
+                  var id = $(this).attr('rel');
+                  msgs[id] = $(this).find('.personal-message').val();
+                }
+              });
 
               for (i in msgs) {
                 if (msgs[i] != '' || (msgs[i] == '' && response.check_remainder === false)) {
@@ -579,6 +600,10 @@
                    // Callback for when all posting has completed.
                    Drupal.behaviors.fb.callback_handler(callback, '');
                 });
+              }
+
+              if (typeof $.fn.dsPetitionSubmit == 'function') {
+                $.fn.dsPetitionSubmit();
               }
             });
           }
@@ -667,6 +692,10 @@
       // Maintain custom image through the open graph call.
       if (things.picture) {
         fbpost.image = things.picture;
+      }
+
+      if (things.message) {
+        fbpost.message = things.message;
       }
 
       if (things.dialog == 1) {

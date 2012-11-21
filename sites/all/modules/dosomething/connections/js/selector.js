@@ -47,7 +47,7 @@
 		 		}, function(response) {
 		 			var elm = '';
 		 			for (i in response) {
-		 				elm += '<li class="friend" rel="' + response[i].uid + '"><a href="http://www.facebook.com/' + response[i].uid + '" class="u-' + response[i].uid + '"><img src="' + response[i].pic_square + '" width="50" height="50" alt="" /><div>' + response[i].name + '</div><div class="comment"><input type="text" name="comment[' + response[i].uid + ']" class="personal-message" placeholder="Write something..." /> <input type="submit" class="share-button" name="share[' + response[i].uid + ']" value="share" /></div></a></li>';
+		 				elm += '<li class="friend" rel="' + response[i].uid + '"><a href="http://www.facebook.com/' + response[i].uid + '" class="u-' + response[i].uid + '"><img src="' + response[i].pic_square + '" width="50" height="50" alt="" /><div>' + response[i].name + '</div><div class="comment"><input type="text" name="comment[' + response[i].uid + ']" class="personal-message" placeholder="Write something..." /> <input type="submit" class="share-button" name="share[' + response[i].uid + ']" value="Share" /></div></a></li>';
 		 			}
 
 		 			$('.loading').fadeOut(200);
@@ -97,12 +97,29 @@
 			var added;
 			var h = this;
 
+			$('.my-submit').click(function() {
+				$(this).parent().parent().addClass('submitted').fadeOut(250);
+				console.log($(this).parent().parent().attr('id'));
+				return false;
+			});
+
+			$('#friends-info li').mouseover(function() {
+				$(this).find('.comment').show();
+			});
+
+			$('#friends-info li').mouseout(function() {
+				if (!$(this).hasClass('selected')) {
+					$(this).find('.comment').hide();
+				}
+			});
+
 			$('#friends-info li').click(function(e) {
 				//var id = $(this).attr('rel');
+				$('#friends-info li').removeClass('selected').find('.comment').hide();
 				var target = $(e.target);
 
 				// Ignore a click to the PM box
-				if (target.hasClass('personal-message') || $(this).attr('id') == 'search' || $(this).attr('id') == 'select' || target.hasClass('share-button')) return false;
+				if ($(this).attr('id') == 'search' || $(this).attr('id') == 'select' || target.hasClass('share-button')) return false;
 
 				if (!$(this).hasClass('selected')) {
 
