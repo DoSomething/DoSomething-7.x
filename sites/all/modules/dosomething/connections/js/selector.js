@@ -4,6 +4,7 @@
 		friends: {},
 		comments: {},
 		count: 0,
+		showing_close: false,
 		settings: {
 			silhouette: 'http://profile.ak.fbcdn.net/static-ak/rsrc.php/v2/yo/r/UlIqmHJn-SK.gif',
 			limit: 10,
@@ -58,6 +59,8 @@
 		},
 
 		find_close_friends: function() {
+			this.showing_close = true;
+
 			FB.api({
 				'method': 'fql.query',
 				'query': 'SELECT flid, owner, name FROM friendlist WHERE owner = me()',
@@ -76,7 +79,7 @@
 
 							$('.friend').each(function() {
 								if (!mem[$(this).attr('rel')]) {
-									$(this).addClass('hidden');
+									$(this).addClass('hidden close-hidden');
 								}
 								else {
 									// Emulate a click on your close friends.
@@ -161,7 +164,8 @@
 			});
 
 			$('#close-close-friends').click(function() {
-				$('.friend').removeClass('hidden');
+				h.showing_close = false;
+				$('.friend').removeClass('hidden').removeClass('close-hidden');
 				$('#find-close-friends').show();
 				$(this).hide();
 			});
@@ -239,12 +243,13 @@
             var name;
 
             numFilteredFriends = 0;
-            $('.friend').removeClass('hidden');
+	        $('.friend').removeClass('hidden');
+
             if (filter.length >= 1) {
                 filter = filter.toUpperCase();
                 $('.friend div:not(.comment)').each(function() {
                 	name = $(this).text();
-                	if (name.toUpperCase().indexOf(filter) === -1) {
+                	if (name.toUpperCase().indexOf(filter) === -1 && !$(this).parent().parent().hasClass('close-hidden')) {
                 		$(this).parent().parent().addClass('hidden');
                 	}
                 });

@@ -436,7 +436,7 @@ li#select:hover {
     color: #000;
 }
 
-.hidden {
+.hidden, .close-hidden {
     display: none;
 }
 
