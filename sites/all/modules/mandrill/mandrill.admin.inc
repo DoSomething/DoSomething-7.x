@@ -68,42 +68,6 @@ function mandrill_admin_settings($form, &$form_state) {
       '#default_value' => array(variable_get('mandrill_filter_format', 'full_html')),
     );
 
-    // They've provided an API key but we don't want to blow up the form if
-    // it's invalid, so we only show the template configuration if we can
-    // successfully fetch the list.
-    try {
-      if ($mailer = mandrill_get_api_object()) {
-        $options = array('' => t('-- No template --'));
-        foreach ($mailer->templates_list() as $template) {
-          $options[$template['name']] = $template['name'];
-        }
-
-        // Check if the currently configured template still exists.
-        $current_template = variable_get('mandrill_template', '');
-        if ($current_template && !isset($options[$current_template])) {
-          form_set_error('mandrill_template', t('The configured Mandrill template is no longer available, please select a valid one.'));
-        }
-
-        $form['email_options']['mandrill_template'] = array(
-          '#type' => 'select',
-          '#title' => t('Template'),
-          '#description' => t('Select a Mandrill template.'),
-          '#options' => $options,
-          '#default_value' => $current_template,
-        );
-      }
-    }
-    catch (Mandrill_Exception $e) {
-      $form['email_options']['mandrill_template'] = array(
-        '#type' => 'item',
-        '#title' => t('Template'),
-        '#value' => '<em>' . t('The Mandrill API is either incorrectly configured or unreachable so the template selection is disabled.') . '</em>',
-      );
-      drupal_set_message('Mandrill: ' . $e->getMessage(), 'error');
-      watchdog('mandrill', $e->getMessage(), array(), WATCHDOG_ERROR);
-      watchdog_exception('mandrill', $e);
-    }
-
     $form['send_options'] = array(
       '#title' => t('Send options'),
       '#type' => 'fieldset',

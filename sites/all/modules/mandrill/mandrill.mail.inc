@@ -34,20 +34,7 @@ class MandrillMailSystem implements MailSystemInterface {
    * @see drupal_mail()
    *
    * @param $message
-   *   A message array, as described in hook_mail_alter(). There are several
-   *   optional values that can be passed in to change the way Mandrill handles
-   *   the email:
-   *   * 'attachments' - Array of file names to include in the message as
-   *     attachments.
-   *   * 'mandrill_global_merge_vars' - An array of global merge vars keyed by
-   *     variable name.
-   *   * 'mandrill_merge_vars' - Array of merge vars keyed by recipient's email
-   *     address with a sub array keyed by variable name.
-   *   * 'mandrill_template' - The name of an HTML template to use to send the
-   *     message. If this is not provided the site default will be used.
-   *   * 'mandrill_template_content' - Array of content keyed by the name of
-   *     the mc:edit region. The message's HTML body will be put into the 'main'
-   *     region by default.
+   *   A message array, as described in hook_mail_alter().
    *
    * @return
    *   TRUE if the mail was successfully accepted, otherwise FALSE.
@@ -64,51 +51,24 @@ class MandrillMailSystem implements MailSystemInterface {
       return FALSE;
     }
 
+    // send the email passing the message id as the tag for use in reporting
     $mailer = mandrill_get_api_object();
 
-    // Apply input format to body.
+    // apply input format to body
     $html = $message['body'];
     $format = variable_get('mandrill_filter_format', '');
     if (!empty($format)) {
       $html = check_markup($message['body'], $format);
     }
 
-    // Plug some default values into the message so we can avoid a bunch of
-    // isset()'s later.
-    $message += array(
-      'attachments' => array(),
-      'mandrill_global_merge_vars' => array(),
-      'mandrill_merge_vars' => array(),
-      'mandrill_template' => variable_get('mandrill_template', ''),
-      'mandrill_template_content' => array(),
-    );
-    $message['mandrill_merge_vars'] += array(
-      'subject' => $message['subject'],
-    );
-    $message['mandrill_template_content'] += array(
-      'main' => $html,
-    );
+    $to = mandrill_get_to($message['to']);
 
     $attachments = array();
-    foreach ($message['attachments'] as $attachment) {
-      if (is_file($attachment)) {
-        $attachments[] = $mailer->getAttachmentStruct($attachment);
-      }
-    }
-
-    // Flip the merge values into the appropriate format.
-    $global_merge_vars = array();
-    foreach ($message['mandrill_global_merge_vars'] as $name => $content) {
-      $global_merge_vars[] = array('name' => $name, 'content' => $content);
-    }
-    $merge_vars = array();
-    if (!empty($message['mandrill_merge_vars'])) {
-      foreach ($message['mandrill_merge_vars'] as $rcpt => $v) {
-        $vars = array();
-        foreach ($v as $name => $content) {
-          $vars[] = array('name' => $name, 'content' => $content);
+    if (isset($message['attachments']) && !empty($message['attachments'])) {
+      foreach ($message['attachments'] as $attachment) {
+        if (is_file($attachment)) {
+          $attachments[] = $mailer->getAttachmentStruct($attachment);
         }
-        $merge_vars[] = array('rcpt' => $rcpt, 'vars' => $vars);
       }
     }
 
@@ -128,9 +88,7 @@ class MandrillMailSystem implements MailSystemInterface {
       'subject' => $message['subject'],
       'from_name' => variable_get('mandrill_from_name', ''),
       'from_email' => $from,
-      'to' => mandrill_get_to($message['to']),
-      'global_merge_vars' => $global_merge_vars,
-      'merge_vars' => $merge_vars,
+      'to' => $to,
       // optional extra headers to add to the message (currently only Reply-To and X-* headers are allowed)
       'headers' => $message['headers'],
       'track_opens' => variable_get('mandrill_track_opens', TRUE),
@@ -139,7 +97,6 @@ class MandrillMailSystem implements MailSystemInterface {
       'auto_text' => FALSE,
       'url_strip_qs' => variable_get('mandrill_url_strip_qs', FALSE),
       'bcc_address' => isset($message['bcc_email']) ? $message['bcc_email'] : NULL,
-      // send the email passing the message id as the tag for use in reporting.
       'tags' => array($message['id']),
       'google_analytics_domains' => (variable_get('mandrill_analytics_domains', NULL)) ? explode(',', variable_get('mandrill_analytics_domains')) : array(),
       'google_analytics_campaign' => variable_get('mandrill_analytics_campaign', ''),
@@ -150,20 +107,7 @@ class MandrillMailSystem implements MailSystemInterface {
     drupal_alter('mandrill_mail', $mandrill_message, $message);
 
     try {
-      // Allow the message override the default template and content.
-      $template_name = $message['mandrill_template'];
-      $template_content = array();
-      foreach ($message['mandrill_template_content'] as $name => $content) {
-        $template_content[] = array('name' => $name, 'content' => $content);
-      }
-
-      // If we've got a template and content use it.
-      if ($template_name && $template_content) {
-        $result = $mailer->messages_send_template($template_name, $template_content, $mandrill_message);
-      }
-      else {
-        $result = $mailer->messages_send($mandrill_message);
-      }
+      $result = $mailer->messages_send($mandrill_message);
       // @todo: look for rejected messages and log
       return TRUE;
     }
