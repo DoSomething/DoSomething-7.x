@@ -99,7 +99,6 @@
 
 			$('.my-submit').click(function() {
 				$(this).parent().parent().addClass('submitted').fadeOut(250);
-				console.log($(this).parent().parent().attr('id'));
 				return false;
 			});
 

@@ -69,7 +69,7 @@
       }
 
       $.post('/fb/log', { 'fbid': fbid, 'link': document.location.href, 'action': action, 'key': key }, function(response) {
-        Drupal.behaviors.fb.clog(response);
+        //Drupal.behaviors.fb.clog(response);
       });
     },
 
@@ -555,7 +555,7 @@
                     og_selector: null,
                     og_require_login: false,
                   }, function(response) {
-                    console.log(response);
+                    Drupal.behaviors.fb.clog(response);
                   });
                 }
               }
