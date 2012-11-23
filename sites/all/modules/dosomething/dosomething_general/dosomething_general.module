@@ -882,6 +882,10 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
     $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
     if (!empty($submitted['birthday']['year'])) {
       $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
+      
+      // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
+      $merge_vars['TURNS18'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 18;
+      $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;      
     }
   }
 
@@ -891,7 +895,7 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
 
   if (!empty($submitted['last_name'])) {
     $merge_vars['LNAME'] = $submitted['last_name'];
-  }
+  }  
 
   dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
 }
