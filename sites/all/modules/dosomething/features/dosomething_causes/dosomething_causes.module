@@ -323,8 +323,13 @@ function dosomething_causes_ctools_plugin_directory($module, $plugin) {
  */
 function dosomething_causes_ajax($tid, $parent = null) {
   
-  // Cache name based on Term ID requested and View $parent
-  $target_cause_cache_id = 'dosomething_causes_ajax_'. $tid .'_'. $parent;
+  // Cache name based on Term ID requested and View $parent  
+  if ($parent != NULL) {
+    $target_cause_cache_id = 'dosomething_causes_ajax_'. $tid .'_'. $parent;
+  }
+  else {
+    $target_cause_cache_id = 'dosomething_causes_ajax_'. $tid;
+  }
   
   // Check for existing cached data
   if ($target_cause_cache = cache_get($target_cause_cache_id)) {
@@ -355,7 +360,7 @@ function dosomething_causes_ajax($tid, $parent = null) {
     $term = taxonomy_term_load($tid);
 
     $commands = array(
-      ajax_command_html('.pane-current-campaigns-panel-pane-1 .pane-content', $views[0]),
+      ajax_command_html('.pane-current-campaigns-panel-pane-1 .BLA .pane-content', $views[0]),
       ajax_command_html('.pane-project-related-displays-panel-pane-3 .pane-content', $views[1]),
       ajax_command_html('.pane-polls-panel-pane-1 .pane-content', $views[2]),
       //ajax_command_html('h1.title', 'Issue: '.$term->name),
