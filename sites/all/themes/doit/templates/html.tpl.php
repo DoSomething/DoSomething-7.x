@@ -60,11 +60,12 @@
     <link rel="stylesheet" href="http://c308566.r66.cf1.rackcdn.com/din.css" media="all" />
   <?php endif; ?>
   <?php print $styles; ?>
-  <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
-  <?php print $scripts; ?>
   <?php print $selectivizr; ?>
   <?php print $shiv; ?>
   <?php print $placeholder_shiv; ?>
+  <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
+  <?php print $scripts; ?>
+
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <div id="skip-link">
