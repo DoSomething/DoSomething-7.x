@@ -1051,7 +1051,9 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $form_state['account'] = $account;
   $form_state['uid'] = $account->uid;
   if (isset($account->mail) && $account->status) {
-    _user_mail_notify('register_no_approval_required', $account);
+    // Removed send message for initial registrations - re instructions from Marah.
+    // Bug #1785 - Fwd: Welcome to DoSomething.org marah poop
+    // _user_mail_notify('register_no_approval_required', $account);
   }
   else {
     // TOOD: verify cell number via SMS.
@@ -1071,6 +1073,11 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     fboauth_save($account->uid, $_SESSION['fbuser']->id);
     unset($_SESSION['fbuser']);
   }
+  
+  // Add new user to MailChimp group "NewMembers2012"
+  dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
+  
+  
   // Log user in.
   if ($account->status) {
     user_login_submit(array(), $form_state);
