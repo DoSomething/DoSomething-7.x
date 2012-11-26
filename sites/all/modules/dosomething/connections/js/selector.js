@@ -48,7 +48,7 @@
 		 		}, function(response) {
 		 			var elm = '';
 		 			for (i in response) {
-		 				elm += '<li class="friend" rel="' + response[i].uid + '"><a href="http://www.facebook.com/' + response[i].uid + '" class="u-' + response[i].uid + '"><img src="' + response[i].pic_square + '" width="50" height="50" alt="" /><div>' + response[i].name + '</div><div class="comment"><input type="text" name="comment[' + response[i].uid + ']" class="personal-message" placeholder="Write something..." /> <input type="submit" class="share-button" name="share[' + response[i].uid + ']" value="Share" /></div></a></li>';
+		 				elm += '<li class="friend" rel="' + response[i].uid + '"><a href="http://www.facebook.com/' + response[i].uid + '" class="u-' + response[i].uid + '"><img src="' + response[i].pic_square + '" width="50" height="50" alt="" /><div>' + response[i].name + '</div><div class="comment"><input type="text" name="comment[' + response[i].uid + ']" class="personal-message" placeholder="Your personal message" /> <input type="submit" class="share-button" name="share[' + response[i].uid + ']" value="SHARE" /></div></a></li>';
 		 			}
 
 		 			$('.loading').fadeOut(200);

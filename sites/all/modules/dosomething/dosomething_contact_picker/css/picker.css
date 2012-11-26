@@ -9,9 +9,11 @@ li span { float: right; }
 div#choices { clear: both; }
 h1, p { text-align: center;}
 h1 { margin: 0px;}
-div#socials { 
-  width: 345px;
+div#socials {
+  min-height: 50px;
+  width: 370px;
   margin: 0px auto;
+  margin-bottom: 10px;
 }
 
 div#response {
@@ -36,15 +38,16 @@ textarea { display: none; }
 #loading { display: none; padding-top: 10px; text-align: center; }
 
 div.service {
-  width: 140px;
+  width: 175px;
   font-weight: bold;
   background: #fff;
 }
 
-div.service a { text-decoration: none; }
+div.service a { text-decoration: none; font-size: 13pt; }
 div.service a img {
   float: left;
   margin-right: 5px;
+  width: 60px;
 }
 
 p#client-email-link {

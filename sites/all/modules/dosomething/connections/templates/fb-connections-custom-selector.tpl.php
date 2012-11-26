@@ -341,10 +341,16 @@ textarea {
 
 #friends-info li:hover {
     background: #f1f1f1;
+    text-decoration: none;
 }
 
 #friends-info li:hover > div.comment {
     display: inline-block;
+}
+
+#friends-info li a, #find-close-friends, #close-close-friends {
+    text-decoration: none;
+    color: #2c4e7c;
 }
 
 #friends-info a img {
@@ -362,11 +368,11 @@ textarea {
     padding: 3px;
     display: none;
     float: left;
-    width: 310px;
+    width: auto;
 }
 
 #friends-info li div input[type="text"], .my-post {
-    width: 235px;
+    width: 230px;
     background: #fff;
     border: 1px solid #808080;
     color: #000;
@@ -483,7 +489,7 @@ li#select:hover {
     <div id="wrapper">
     <div id="top-bar">
         <a href="#" class="close-fb-dialog" id="close-fb-dialog"></a>
-        <div id="post-title">Select friends to share with.</div>
+        <div id="post-title">Share with your friends</div>
     </div>
     <div id="your-friends">
         <div id="your-info">
@@ -491,11 +497,11 @@ li#select:hover {
             <div style="display: inline-block" id="profile-name">&nbsp;</div>
             <div style="margin-top: 8px" id="my-share">
                 <input type="text" name="share-to-me" placeholder="Post on my own wall..." class="my-post" style="background: #fff; border: 1px solid #808080; color: #000" />
-                <input type="submit" value="Share" class="my-submit" />
+                <input type="submit" value="SHARE" class="my-submit" />
             </div>
         </div>
         <div id="search">
-            <input id="search-friends" type="text" placeholder="Search for your friends..." />
+            <input id="search-friends" type="text" placeholder="Search for friends by name..." />
             <a href="#" class="clear-search" title="Clear Your Search">X</a>
         </div>
         <div id="select">
@@ -510,7 +516,7 @@ li#select:hover {
         </ul>
     </div>
     <div id="zone">
-        <p id="alert">Select some of your friends from the list to the left.  We'll post to their walls.</p>
+        <p id="alert">On the left, select friends to share with.</p>
         <div id="choosers">
         </div>
         <div style="clear: both"></div>
