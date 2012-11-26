@@ -983,8 +983,18 @@ function dosomething_login_register_block_validate($form, &$form_state) {
   }
 }
 
-/**
+ /**
  * Submit the user registration form.
+ *
+ * When a user registers for DoSomething.org in general using the user registation
+ * form found as a block for anomious users in place of the user account informaiton
+ * typically found in the left column of most pages.
+ *
+ * @param array $form
+ *   Form array of the submissted values
+ * @param array $form_state
+ *   Array by reference that allows for the dynamic changing of the form values at
+ *   various states of the submission process - validation, submission.
  */
 function dosomething_login_register_block_submit($form, &$form_state) {
   $values = $form_state['input'];
