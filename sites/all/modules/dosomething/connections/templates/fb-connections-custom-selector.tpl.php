@@ -376,6 +376,7 @@ textarea {
     background: #fff;
     border: 1px solid #808080;
     color: #000;
+    padding: 5px;
 }
 
 #friends-info li div input[type="submit"], .my-submit {
