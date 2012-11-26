@@ -845,11 +845,10 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
             // Technically this value was already load in the bare $entity we
             // started with but when we reloaded it we lost it.
             $title = field_get_items('webform_submission_entity', $submission, 'field_project_title');
-
             $something = array(
               'type' => $type,
               'title' => isset($title[0]['value']) ? $title[0]['value'] : t('New Project'),
-              'image' => isset($image[0]['uri']) ? $image[0] : NULL,
+              'image' => isset($image[0]['uri']) ? $image[0] : array('uri' => 'public://u/sitewide/do_something_0.png'),
               'uri' => entity_uri('webform_submission_entity', $submission),
               'check_path' => TRUE,
             );
@@ -976,6 +975,7 @@ function dosomething_user_my_somethings_display($uid, $era = 'current', $all = T
           $edit_access = webform_submission_access($node, $submission, 'edit');
         }
       }
+      
       $element[$delta] = array(
         '#type' => 'container',
         '#attributes' => array(
