@@ -523,7 +523,7 @@ li#select:hover {
     </div>
     <div id="submit-buttons">
         <input type="submit" value="I'm Finished" id="submit-og-post" />
-        <input type="reset" value="Cancel" id="cancel-og-post" class="close-fb-dialog" />
+        <!--<input type="reset" value="Cancel" id="cancel-og-post" class="close-fb-dialog" />-->
     </div>
 </div>
 </div>
