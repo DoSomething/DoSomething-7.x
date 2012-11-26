@@ -102,7 +102,7 @@ function scraper_email(subject, body) {
 }
 
 function stretch_scraper() {
-  jQuery('#email-scraper', window.parent.document).css('height', '675px');
+  jQuery('#email-scraper', window.parent.document).css('height', '675px').css('min-height', '675px');
   jQuery('.email-scraper-dialog', window.parent.document).animate({'height': '700px'});
   return false;
 }

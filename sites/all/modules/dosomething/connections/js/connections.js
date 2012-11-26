@@ -670,7 +670,8 @@
   			dialog: config.og_fake_dialog,
         alert_msg: config.og_dialog_msg,
         tagging: config.og_tagging,
-        custom_vars: config.og_post_custom
+        custom_vars: config.og_post_custom,
+        message: config.message || '',
   		};
 
       if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._ograph_callback == 'function') {
