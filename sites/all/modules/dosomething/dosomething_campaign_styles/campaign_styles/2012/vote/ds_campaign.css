@@ -780,12 +780,8 @@ form.webform-client-form {
 .page-node-724570 #block-system-main .content .pane-title, .page-node-723007 #block-system-main .content .pane-title {
   background: #d72231 url("http://files.dosomething.org/files/campaigns/vote/vote-headline3.jpg") top center no-repeat;
   width: 750px; }
-.page-node-724570 #block-system-main .content form, .page-node-723007 #block-system-main .content form {
-  width: 350px;
-  padding: 0px;
-  margin: 0px 200px; }
-  .page-node-724570 #block-system-main .content form label, .page-node-723007 #block-system-main .content form label {
-    margin-top: 10px; }
+.page-node-724570 #block-system-main .content form label, .page-node-723007 #block-system-main .content form label {
+  margin-top: 10px; }
 .page-node-724570 .webform-client-form #edit-actions, .page-node-724570 .webform-client-form #edit-actions--2, .page-node-723007 .webform-client-form #edit-actions, .page-node-723007 .webform-client-form #edit-actions--2 {
   position: relative;
   left: 220px;
