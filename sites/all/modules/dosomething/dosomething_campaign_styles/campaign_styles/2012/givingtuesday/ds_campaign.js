@@ -39,6 +39,9 @@
       $('.refer6-inner').wrap('<div class="refer6" />');
       $('#refer').css('background', 'white');
 
+      // campaign social media injection
+      $('#header').prepend($('.socialWrapper'));
+
 
       // drupal, eat your heart out
       $('#cmp #edit-actions').removeAttr('id');
