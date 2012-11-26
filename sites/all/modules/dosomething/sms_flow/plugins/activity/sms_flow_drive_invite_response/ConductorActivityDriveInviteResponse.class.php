@@ -86,7 +86,7 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
         }
 
         if ($already_in_drive) {
-          $state->setContext('sms_response', t('You already previously joined this drive. You can view it online at doso.me/2. Want to invite friends to the drive? Text TFJINVITE.'));
+          $state->setContext('sms_response', t('You already previously joined this drive. You can view it online at http://doso.me/2. Want to invite friends to the drive? Text TFJINVITE.'));
         }
         else {
           $state->setContext('sms_response', $this->invite_rejected_message);
