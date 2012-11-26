@@ -543,7 +543,7 @@
               if (mypost) {
                 var v = $('.my-post').val();
                 if (v !== '') {
-                  Drupal.behaviors.fb.ograph({
+                  var o = {
                     og_namespace: 'dosomethingapp',
                     og_type: 'petition',
                     og_action: 'sign',
@@ -554,7 +554,13 @@
                     message: v,
                     og_selector: null,
                     og_require_login: false,
-                  }, function(response) {
+                  };
+
+                  if ($('#explicit-share').is(':checked')) {
+                    o.explicit = true;
+                  }
+
+                  Drupal.behaviors.fb.ograph(o, function(response) {
                     Drupal.behaviors.fb.clog(response);
                   });
                 }
@@ -672,6 +678,7 @@
         tagging: config.og_tagging,
         custom_vars: config.og_post_custom,
         message: config.message || '',
+        explicit: config.explicit || false,
   		};
 
       if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._ograph_callback == 'function') {
