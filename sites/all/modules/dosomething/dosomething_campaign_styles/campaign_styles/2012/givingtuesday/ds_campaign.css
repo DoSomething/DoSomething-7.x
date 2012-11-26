@@ -941,6 +941,16 @@ img.bow {
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.23, #fef100), color-stop(0.62, #fdcf00)); }
       #cmp #quiz-results .money-btn a:hover {
         color: black; }
+  #cmp #quiz-results .answers {
+    text-align: left;
+    margin: 1em; }
+    #cmp #quiz-results .answers h4 {
+      font-size: 0.9em;
+      font-weight: 400; }
+    #cmp #quiz-results .answers p {
+      font-size: 0.9em; }
+      #cmp #quiz-results .answers p span {
+        color: #e10000; }
   #cmp #faq div {
     padding: 0 1.2em; }
   #cmp #faq p {
