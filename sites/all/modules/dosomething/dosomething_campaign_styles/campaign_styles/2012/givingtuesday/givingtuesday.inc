@@ -28,10 +28,10 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'what is it?', 'href' => '', 'fragment' => 'action'),
-    array('title' => 'share with old people', 'href' => '', 'fragment' => 'refer'),
-    array('title' => 'take the quiz', 'href' => '', 'fragment' => 'quiz'),    
-    array('title' => 'faqs', 'href' => '', 'fragment' => 'faq'),
+    array('title' => 'what is it?', 'href' => 'givingtuesday', 'fragment' => 'action'),
+    array('title' => 'share with old people', 'href' => 'givingtuesday', 'fragment' => 'refer'),
+    array('title' => 'take the quiz', 'href' => 'givingtuesday', 'fragment' => 'quiz'),    
+    array('title' => 'faqs', 'href' => 'givingtuesday', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
     '#markup' => '<div class="nav-count clearfix"><p id="sb-counter"></p><p>Quizzes<br>Taken</p></div><p>In Partnership with</p><img src="//files.dosomething.org/files/campaigns/tuesday12/givingtuesdaylogo.png"/><p class="email">Got questions? Email Liz at <a href="mailto:eeddy@dosomething.org">eeddy@dosomething.org</a>!</p>'
