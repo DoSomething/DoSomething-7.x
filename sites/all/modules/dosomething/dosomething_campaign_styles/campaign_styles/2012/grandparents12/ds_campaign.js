@@ -139,5 +139,7 @@
         description: description || null
       },
     );
+
+    return false;
   }
 })(jQuery); // end function ($)
