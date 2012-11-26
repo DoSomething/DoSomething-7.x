@@ -473,6 +473,11 @@ li#select:hover {
 #close-close-friends {
     display: none;
 }
+
+#explicit {
+    text-align: right;
+    margin: 5px 20px;
+}
 -->
 </style>
 <script type="text/javascript" src="/sites/all/modules/dosomething/connections/js/selector.js"></script>
@@ -499,6 +504,7 @@ li#select:hover {
                 <input type="text" name="share-to-me" placeholder="Post on my own wall..." class="my-post" style="background: #fff; border: 1px solid #808080; color: #000" />
                 <input type="submit" value="SHARE" class="my-submit" />
             </div>
+            <div id="explicit"><label for="explicit-share">Share this on my wall <input type="checkbox" id="explicit-share" checked="checked" /></label></div>
         </div>
         <div id="search">
             <input id="search-friends" type="text" placeholder="Search for friends by name..." />
