@@ -404,7 +404,7 @@ function dosomething_drives_drive_invite_module($gid) {
   if (stripos(current_path(), 'jeans') !== FALSE) {
     $return['phone'] = array(
       '#type' => 'container',
-      '#attributes' => array('class' => array('invite-module-email')),
+      '#attributes' => array('class' => array('invite-module-sms')),
     );
 
     $return['phone']['description'] = array(

@@ -94,7 +94,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -377,14 +377,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"],
 div[aria-labelledby="ui-dialog-title-1"] {
   background: none !important;
   width: 100% !important;
-  height: 1000px !important;
-  min-height: 1000px !important;
+  height: 1250px !important;
+  min-height: 1250px !important;
   top: 0 !important;
   left: 0 !important; }
 
 .ui-dialog .ui-dialog-content {
-  height: 1000px !important;
-  min-height: 1000px !important; }
+  height: 1250px !important;
+  min-height: 1250px !important; }
 
 #dosomething-login-register-popup-form #edit-title-text,
 #dosomething-login-register-popup-form #edit-title-text--2,
@@ -640,7 +640,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     float: left;
     font-weight: 600;
     text-transform: uppercase; }
-  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email, .invite_friends .invite-module-sms {
     width: 43%;
     float: left;
     border: 2px solid #cccccc;
@@ -650,7 +650,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     border-radius: 10px; }
-  .invite_friends .invite-module-facebook p, .invite_friends .invite-module-or p, .invite_friends .invite-module-email p {
+  .invite_friends .invite-module-sms {
+    height: 30em; }
+  .invite_friends .invite-module-facebook p, .invite_friends .invite-module-or p, .invite_friends .invite-module-email p, .invite_friends .invite-module-sms p {
     font-size: 0.8em; }
   .invite_friends .invite-module-facebook input[type="submit"] {
     background: #3b5998;
@@ -736,13 +738,16 @@ div[aria-labelledby="ui-dialog-title-1"] {
   .invite-module {
     width: 100% !important; }
 
-  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email, .invite_friends .invite-module-sms {
     margin: 0 15%;
     width: 70%;
     height: 12em; }
 
   .invite_friends .invite-module-email {
     height: 20em; }
+
+  .invite_friends .invite-module-sms {
+    height: 33em; }
 
   .invite_friends .invite-module-or {
     width: 100%; }
@@ -767,13 +772,16 @@ div[aria-labelledby="ui-dialog-title-1"] {
     width: 80%;
     margin: 0 auto; } }
 @media only screen and (max-width: 575px) {
-  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email {
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email, .invite_friends .invite-module-sms {
     margin: 0 2%;
     width: 95%;
     height: 10em; }
 
   .invite_friends .invite-module-email {
     height: 18em; }
+
+  .invite_friends .invite-module-sms {
+    height: 32em; }
 
   .invite_friends .invite-module-facebook {
     margin: 3.5em 0 0 8%;

@@ -385,9 +385,25 @@ function sms_flow_team_invite_form($form, &$form_state, $gid) {
     '#size' => 16,
   );
 
-  $form['beta'] = array(
+  $form['beta0'] = array(
     '#type' => 'textfield',
-    '#title' => 'Friend\'s Cell Number:',
+    '#title' => 'Friends\' Cell Numbers:',
+    '#size' => 16,
+  );
+  $form['beta1'] = array(
+    '#type' => 'textfield',
+    '#size' => 16,
+  );
+  $form['beta2'] = array(
+    '#type' => 'textfield',
+    '#size' => 16,
+  );
+  $form['beta3'] = array(
+    '#type' => 'textfield',
+    '#size' => 16,
+  );
+  $form['beta4'] = array(
+    '#type' => 'textfield',
     '#size' => 16,
   );
 
@@ -416,23 +432,27 @@ function sms_flow_team_invite_form_submit($form, &$form_state) {
     $inviter = $form_state['values']['alpha'];
   }
 
-  $alphaMobile = $form_state['values']['alpha'];
-  $betaMobile = $form_state['values']['beta'];
+  $alpha_mobile = $form_state['values']['alpha'];
+  $beta_numbers = array();
+  for ($i = 0; $i < 5; $i++) {
+    $element_name = 'beta' . $i;
+    if (!empty($form_state['values'][$element_name])) {
+      $beta_numbers[] = $form_state['values'][$element_name];
+    }
+  }
 
-  $betaNumbers = array();
-  if (!empty($betaMobile))
-    $betaNumbers[] = $betaMobile;
-
-  $inviteGid = $form_state['values']['invite-gid'];
+  $invite_gid = $form_state['values']['invite-gid'];
   // TODO: sms_flow_start expects NID value to be here. Might want to consider modifying that
-  $form_state['values']['details']['nid'] = $inviteGid;
+  $form_state['values']['details']['nid'] = $invite_gid;
 
-  // TODO: opt in paths are hardcoded for TFJ
-  sms_flow_start($alphaMobile, 131891, 129751, $betaNumbers, NULL, array(
-      'tfj2013_inviter' => $inviter,
-      'drives_invite_gid' => $inviteGid,
-    )
-  );
+  if (count($beta_numbers) > 0) {
+    // TODO: opt in paths are hardcoded for TFJ
+    sms_flow_start($alpha_mobile, 131891, 129751, $beta_numbers, $form_state['values'], array(
+        'tfj2013_inviter' => $inviter,
+        'drives_invite_gid' => $invite_gid,
+      )
+    );
+  }
 
 }
 

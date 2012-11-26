@@ -151,14 +151,14 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"],
 div[aria-labelledby="ui-dialog-title-1"]
   background: none !important
   width: 100% !important
-  height: 1000px !important
-  min-height: 1000px !important
+  height: 1250px !important
+  min-height: 1250px !important
   top: 0 !important
   left: 0 !important
 
 .ui-dialog .ui-dialog-content
-  height: 1000px !important
-  min-height: 1000px !important
+  height: 1250px !important
+  min-height: 1250px !important
 
 #dosomething-login-register-popup-form #edit-title-text,
 #dosomething-login-register-popup-form #edit-title-text--2,
@@ -392,13 +392,15 @@ div[aria-labelledby="ui-dialog-title-1"]
     float: left
     font-weight: 600
     text-transform: uppercase
-  .invite-module-facebook, .invite-module-email
+  .invite-module-facebook, .invite-module-email, .invite-module-sms
     width: 43%
     float: left
     border: 2px solid #ccc
     height: 18em
     +border-radius(10px)
-  .invite-module-facebook, .invite-module-or, .invite-module-email
+  .invite-module-sms
+    height: 30em
+  .invite-module-facebook, .invite-module-or, .invite-module-email, .invite-module-sms
     p
       font-size: 0.8em
   .invite-module-facebook input[type="submit"]
@@ -473,12 +475,14 @@ div[aria-labelledby="ui-dialog-title-1"]
 @media only screen and (max-width: 900px)
   .invite-module /* wraps .invite_friends */
     width: 100% !important
-  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email , .invite_friends .invite-module-sms
     margin: 0 15%
     width: 70%
     height: 12em
   .invite_friends .invite-module-email
     height: 20em
+  .invite_friends .invite-module-sms
+    height: 33em
   .invite_friends .invite-module-or
     width: 100%
     h3
@@ -498,12 +502,14 @@ div[aria-labelledby="ui-dialog-title-1"]
     margin: 0 auto
 
 @media only screen and (max-width: 575px)
-  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email 
+  .invite_friends .invite-module-facebook, .invite_friends .invite-module-email, .invite_friends .invite-module-sms
     margin: 0 2%
     width: 95%
     height: 10em
   .invite_friends .invite-module-email
     height: 18em
+  .invite_friends .invite-module-sms
+    height: 32em
   .invite_friends .invite-module-facebook
     margin: 3.5em 0 0 8%
     width: 85%
