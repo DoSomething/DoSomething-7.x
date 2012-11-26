@@ -28,7 +28,8 @@ function dosomething_general_drush_command() {
 function drush_dosomething_general_dosomething_export_images() {
   $forms = node_load_multiple(array(), array('type' => 'campaign_report_back'));
   $base_path = 'imgdump-' . time();
-  $tmpdir = file_directory_temp() . DIRECTORY_SEPARATOR . $base_path;
+  // @todo hardcoding to /var/tmp is not great.
+  $tmpdir =  '/var/tmp' . DIRECTORY_SEPARATOR . $base_path;
   drupal_mkdir($tmpdir, NULL, TRUE);
 
   $operations = array();

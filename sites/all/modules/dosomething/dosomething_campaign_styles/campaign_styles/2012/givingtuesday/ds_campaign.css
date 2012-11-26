@@ -558,7 +558,7 @@ img.bow {
   #cmp .section#header {
     background: transparent; }
   #cmp #header {
-    margin-top: 4%;
+    margin-top: 3%;
     padding: 0; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
@@ -584,6 +584,14 @@ img.bow {
     #cmp #header span {
       padding: 0;
       text-align: center; }
+    #cmp #header ul {
+      display: block;
+      text-align: right;
+      margin: 0;
+      padding: 0; }
+    #cmp #header li {
+      display: inline-block;
+      text-align: left; }
   #cmp #action {
     margin-top: 0px;
     border-top-left-radius: 6px;
@@ -941,6 +949,16 @@ img.bow {
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.23, #fef100), color-stop(0.62, #fdcf00)); }
       #cmp #quiz-results .money-btn a:hover {
         color: black; }
+  #cmp #quiz-results .answers {
+    text-align: left;
+    margin: 1em; }
+    #cmp #quiz-results .answers h4 {
+      font-size: 0.9em;
+      font-weight: 400; }
+    #cmp #quiz-results .answers p {
+      font-size: 0.9em; }
+      #cmp #quiz-results .answers p span {
+        color: #e10000; }
   #cmp #faq div {
     padding: 0 1.2em; }
   #cmp #faq p {
