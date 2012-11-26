@@ -895,7 +895,12 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
 
   if (!empty($submitted['last_name'])) {
     $merge_vars['LNAME'] = $submitted['last_name'];
-  }  
+  }
+  
+  // Full name - MMERGE3
+  if ( !empty($submitted['first_name']) || !empty($submitted['last_name']) ) {
+    $merge_vars['MMERGE3'] = $submitted['first_name'] .' '. $submitted['last_name'];
+  }
 
   dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
 }
