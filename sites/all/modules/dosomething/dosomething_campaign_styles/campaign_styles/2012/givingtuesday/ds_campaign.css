@@ -558,7 +558,7 @@ img.bow {
   #cmp .section#header {
     background: transparent; }
   #cmp #header {
-    margin-top: 4%;
+    margin-top: 3%;
     padding: 0; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
@@ -584,6 +584,14 @@ img.bow {
     #cmp #header span {
       padding: 0;
       text-align: center; }
+    #cmp #header ul {
+      display: block;
+      text-align: right;
+      margin: 0;
+      padding: 0; }
+    #cmp #header li {
+      display: inline-block;
+      text-align: left; }
   #cmp #action {
     margin-top: 0px;
     border-top-left-radius: 6px;
