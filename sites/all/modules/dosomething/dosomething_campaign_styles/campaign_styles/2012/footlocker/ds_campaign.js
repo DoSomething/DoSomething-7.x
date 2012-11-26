@@ -35,10 +35,9 @@
             $(this).siblings().next('p').slideUp(); 
           }
         });
-
+        
         // Application Page Status Button
-        if($('#webform-client-form-724592')) {
-        $('#edit-actions').append('<p class="status-btn go-button"><a href="//www.dosomething.org/footlocker/apply/status/">Status Page</a></p>'); }
+        $('#webform-client-form-724592 > div > #edit-actions').append('<p class="status-btn go-button"><a href="//www.dosomething.org/footlocker/apply/status/">Status Page</a></p>');
 
         // Application Page Draft Message
         if ($('.status').has("Submission saved")) {

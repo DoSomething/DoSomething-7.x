@@ -33,6 +33,9 @@ body {
   display: none; }
 
 @media only screen and (max-width: 1075px) {
+  #header img {
+    margin-top: 0; }
+
   .region-sidebar-first {
     display: none; }
 
@@ -592,6 +595,19 @@ img.bow {
     #cmp #header li {
       display: inline-block;
       text-align: left; }
+    #cmp #header img {
+      clear: both;
+      display: block;
+      margin: 0 auto; }
+  #cmp .pane-campaign-social {
+    display: none; }
+  #cmp .socialWrapper {
+    margin: 0 0 -2em;
+    float: right; }
+    #cmp .socialWrapper .socialButton {
+      width: 85px; }
+      #cmp .socialWrapper .socialButton:last-child {
+        display: none; }
   #cmp #action {
     margin-top: 0px;
     border-top-left-radius: 6px;
@@ -1204,6 +1220,8 @@ img.bow {
       width: 100%; }
       #cmp .email-spit img {
         width: 50%; }
+    #cmp .socialWrapper {
+      display: none; }
     #cmp #search iframe {
       width: 75%;
       border: 3px solid #cccccc; }
