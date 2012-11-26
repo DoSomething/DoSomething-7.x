@@ -995,7 +995,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
         '#markup' => l('<img src="/' . drupal_get_path('module', 'dosomething_clubs') . '/images/cell-off.png" alt="" />', '#', array('attributes' => array('class' => array('share-button'), 'rel' => 'cell'), 'html' => TRUE)),
       ),
       'cell' => array(
-        '#prefix' => '<p id="cell-button" class="button">',
+        '#prefix' => '<p id="cell-button" class="go-button">',
         '#markup' => l(t('BY CELL'), '#', array('attributes' => array('class' => array('share-button'), 'rel' => 'cell'))),
         '#suffix' => '</p>',
       ),
@@ -1085,9 +1085,26 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
     '#markup' => '<div id="manual-emails">',
   );
 
+  $email = $user->mail;
+  if (empty($email)) {
+    $form['email_share']['email_box']['your_email'] = array(
+      '#type' => 'container',
+      '#attributes' => array('id' => 'your-email'),
+      'yours' => array(
+        '#markup' => t('Your Email Address:'),
+        '#prefix' => '<label>',
+        '#suffix' => '</label>',
+      ),
+      'your_email' => array(
+        '#type' => 'textfield',
+        '#attributes' => array('class' => array('email-share-email')),
+      ),
+    );
+  }
+
   $form['email_share']['email_box']['abc'] = array(
     '#prefix' => '<p>',
-    '#markup' => t('Your friends\' emails:'),
+    '#markup' => t('Your Friends\' Emails:'),
     '#suffix' => '</p>'
   );
 
@@ -1130,6 +1147,24 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
   $form['cell_share']['cell_box']['pre'] = array(
     '#markup' => '<div id="manual-cells">',
   );
+
+
+  $cell = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
+  if (empty($cell)) {
+    $form['cell_share']['cell_box']['your_cell'] = array(
+      '#type' => 'container',
+      '#attributes' => array('id' => 'your-cell'),
+      'yours' => array(
+        '#markup' => t('Your Cell Number:'),
+        '#prefix' => '<label>',
+        '#suffix' => '</label>',
+      ),
+      'your_cell' => array(
+        '#type' => 'textfield',
+        '#attributes' => array('class' => array('cell-share-cell')),
+      ),
+    );
+  }
 
   $form['cell_share']['cell_box']['abc'] = array(
     '#prefix' => '<p>',
@@ -1254,6 +1289,17 @@ function dosomething_clubs_submit_emails(&$form, &$form_state) {
     $emails = $form_state['input']['emails'];
   }
 
+  // If the "your_email" field is populated, it's because they somehow don't have an email
+  // and we asked for it.  If they gave us theirs, save it to their account.
+  if (!empty($form_state['input']['your_email'])) {
+    global $user;
+    $edit = array(
+      'mail' => $form_state['input']['your_email'],
+    );
+
+    user_save($user, $edit);
+  }
+
   $nid = $form_state['node'];
   $gid = $form_state['group'];
 
@@ -1264,7 +1310,7 @@ function dosomething_clubs_submit_emails(&$form, &$form_state) {
   return array(
     '#type' => 'ajax',
     '#commands' => array(
-      ajax_command_replace('#invite-sent', '<div id="invite-sent">Invitation sent!</div>'),
+      ajax_command_replace('#invite-sent', '<div id="invite-sent">' . t('Invitation sent!') . '</div>'),
     ),
   );
 }
@@ -1279,14 +1325,30 @@ function dosomething_clubs_abc(&$form, &$form_state) {
   //@TODO: This
   $form_values['details']['nid'] = $form_state['club_id'];
 
+  if (!empty($form_state['input']['your_cell'])) {
+    global $user;
+    $profile = profile2_load_by_user($user, 'main');
+    if (empty($profile->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
+      $number = preg_replace('#[^0-9]#', '', $form_state['input']['your_cell']);
+      $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $number;
+      $profile->save();
+    }
+  }
+
   sms_flow_start($p->field_user_mobile[LANGUAGE_NONE][0]['value'], $alpha_optin, $beta_optin, $numbers, $form_values, array(
-   'clubs_inviter_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
-   'clubs_invite_gid' => $form_state['club_id'],
+    'clubs_inviter_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
+    'clubs_invite_gid' => $form_state['club_id'],
   ));
   //foreach ($numbers AS $key => $number) {
     // Something with the phone number
   //}
-  exit;
+
+  return array(
+    '#type' => 'ajax',
+    '#commands' => array(
+      ajax_command_replace('#invite-sent', '<div id="invite-sent">' . t('Invitation sent!') . '</div>'),
+    ),
+  );
 }
 
 /**
@@ -1817,7 +1879,7 @@ function dosomething_clubs_invite_form($form, &$form_state, $gid) {
   $n = menu_get_object();
   $form_state['nid'] = $n->nid;
 
-  $form['invite'] = array(
+  /*$form['invite'] = array(
     '#type' => 'textfield',
     '#size' => 30,
     '#attributes' => array(
@@ -1847,6 +1909,10 @@ function dosomething_clubs_invite_form($form, &$form_state, $gid) {
     '#markup' => '',
     '#prefix' => '<div id="invite-sent">',
     '#suffix' => '</div>'
+  );*/
+
+  $form['link'] = array(
+    '#markup' => l(t('Invite your friends'), 'clubs/share/' . $n->nid, array('attributes' => array('class' => array('go-button')))),
   );
 
   //$form['#submit'][] = 'dosomething_clubs_invite_form_submit';
@@ -2459,4 +2525,25 @@ function dosomething_clubs_page_alter(&$page) {
    ));
     drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/clubs_directory.js');
   }
+}
+
+function dosomething_clubs_get_club_members($nid, $gid = 0) {
+  if ($gid == 0 && !empty($nid)) {
+    $gid = og_get_group('node', $nid)->gid;
+  }
+
+  $mnt = new EntityFieldQuery();
+  $member_list = $mnt
+    ->entityCondition('entity_type', 'og_membership')
+    ->propertyCondition('gid', $gid)
+    ->propertyCondition('entity_type', 'user')
+    ->execute();
+
+  $members = entity_load('og_membership', array_keys(reset($member_list)));
+  $uids = array();
+  foreach ($members AS $key => $stuff) {
+    $uids[] = $stuff->etid;
+  }
+
+  return $uids;
 }

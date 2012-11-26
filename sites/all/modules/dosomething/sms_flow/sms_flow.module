@@ -146,6 +146,9 @@ function sms_flow_incoming_callback($path) {
     case 'clubs':
       $keyword = 'clubs';
       break;
+    case 'clubs-survey':
+      $keyword = 'clubs-survey';
+      break;
     default:
       watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
       return NULL;
@@ -220,6 +223,7 @@ function sms_flow_conductor_sms_keywords() {
     'drives-invite' => 'sms_flow_drives_invite',
     'ftaf' => 'sms_flow_ftaf',
     'clubs' => 'sms_flow_clubs_invite',
+    'clubs-survey' => 'sms_flow_clubs_survey',
   );
 }
 
@@ -496,20 +500,20 @@ function sms_flow_default_conductor_workflows() {
   $activity->title = 'Ask Name';
   $activity->question = t('Awesome! Reply with ur first name and we\'ll set u up with a login for our website where you can learn more about your club and about DoSomething.org');
   $activity->inputs = array('clubs_invite_response');
-  $activity->outputs = array('process_beta');
+  $activity->outputs = array('clubs_process_beta');
 
   $activity = $workflow->newActivity('sms_flow_clubs_invited_beta');
-  $activity->name = 'process_beta';
+  $activity->name = 'clubs_process_beta';
   $activity->title = 'Process Clubs Betas';
   $activity->alpha_campaign_id = 99961;
   $activity->inputs = array('clubs_invite_response', 'ask_name');
-  $activity->outputs = array('strip_signature');
+  $activity->outputs = array('ftaf_clubs_process');
 
-  $activity = $workflow->newActivity('sms_strip_signature');
+  /*$activity = $workflow->newActivity('sms_strip_signature');
   $activity->name = 'strip_signature';
   $activity->title = 'Strip Signature';
   $activity->inputs = array('process_beta');
-  $activity->outputs = array('ftaf_clubs_process');
+  $activity->outputs = array('ftaf_clubs_process');*/
 
   $activity = $workflow->newActivity('sms_flow_clubs_ftaf');
   $activity->name = 'ftaf_clubs_process';
@@ -518,13 +522,13 @@ function sms_flow_default_conductor_workflows() {
   $activity->beta_optin = 135651;
   $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with CINVITE if you want to invite more.');
   $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the club again, text CJOIN. To invite ppl to ur drive, text CINVITE.');
-  $activity->inputs = array('strip_signature');
+  $activity->inputs = array('clubs_process_beta');
   $activity->outputs = array('end');
 
   $activity = $workflow->newActivity('end');
   $activity->name = 'end';
   $activity->title = 'End';
-  $activity->inputs = array('clubs_invite_response', 'ftaf_clubs_process');
+  $activity->inputs = array('clubs_invite_response', 'process_beta');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
@@ -576,6 +580,46 @@ function sms_flow_default_conductor_workflows() {
 
   $workflows[$workflow->name] = $workflow;
 
+ //
+  // sms_flow_clubs_survey workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_clubs_survey';
+  $workflow->title = 'SMS Flow Clubs Survey';
+  $workflow->description = 'Workflow for clubs servey which leads to T-shirt form.';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->title = 'Start';
+  $activity->inputs = array();
+  $activity->outputs = array('clubs_survey_response');
+
+  $activity = $workflow->newActivity('sms_flow_clubs_survey_response');
+  $activity->name = 'clubs_survey_response';
+  $activity->title = 'Handle club leader first response';
+  $activity->accept_responses = array('y','yes','yea','ya','yeah');
+  $activity->deny_responses = array('n', 'no', 'nope', 'nah', 'na');
+  $activity->rejected_message = t('No prob. Thanks for your interest in DoSomething.org.');
+  $activity->inputs = array('start');
+  $activity->outputs = array('process_next_answer', 'end');
+
+  $activity = $workflow->newActivity('sms_flow_clubs_survey_question2');
+  $activity->name = 'process_next_answer';
+  $activity->title = 'Process first question answer.';
+  $activity->answers = array('a', 'b', 'c', 'd');
+  $activity->reject_message = t("Sorry, we couldn't understand that.  Please respond with A, B, C or D.");
+  $activity->inputs = array('clubs_survey_response');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('clubs_survey_response', 'process_question2');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
   return $workflows;
 }
 

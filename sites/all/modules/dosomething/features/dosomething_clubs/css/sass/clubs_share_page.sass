@@ -35,7 +35,7 @@ div.messages.status
 		font-size: 28px
 
 #share-buttons
-	width: 405px //650px
+	width: 642px //650px
 	margin: 0px auto
 
 	div.share-container
@@ -73,7 +73,7 @@ div.messages.status
 
 		&#cell-share
 			margin-right: 75px
-			display: none
+			//display: none
 
 		&#fb-share
 			margin-right: 75px
@@ -84,6 +84,13 @@ div.messages.status
 #email-share-container
 	clear: both
 	display: none
+
+	#your-email
+		label
+			float: left
+			margin-right: 20px
+			margin-left: 10px
+			padding-top: 10px
 
 	ul
 		list-style-type: none
@@ -122,6 +129,7 @@ div.messages.status
 			margin-left: 10px
 			text-align: left
 			margin-bottom: 0px
+			clear: left
 
 		.email-share-email
 			@include input-fields
@@ -140,9 +148,18 @@ div.messages.status
 	clear: both
 	display: none
 
+	#your-cell
+		label
+			float: left
+			margin-right: 20px
+			padding-top: 10px
+
 	#manual-cells
 		width: 655px
 		margin: 0px auto
+
+		p
+			clear: both
 
 		.cell-share-cell
 			@include input-fields

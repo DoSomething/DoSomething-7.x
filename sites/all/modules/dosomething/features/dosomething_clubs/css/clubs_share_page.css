@@ -20,7 +20,7 @@ div.messages.status {
     font-size: 28px; }
 
 #share-buttons {
-  width: 405px;
+  width: 642px;
   margin: 0px auto; }
   #share-buttons div.share-container {
     float: left; }
@@ -42,14 +42,18 @@ div.messages.status {
           box-shadow: none;
           color: #dcdada; }
     #share-buttons div.share-container#cell-share {
-      margin-right: 75px;
-      display: none; }
+      margin-right: 75px; }
     #share-buttons div.share-container#fb-share {
       margin-right: 75px; }
 
 #email-share-container {
   clear: both;
   display: none; }
+  #email-share-container #your-email label {
+    float: left;
+    margin-right: 20px;
+    margin-left: 10px;
+    padding-top: 10px; }
   #email-share-container ul {
     list-style-type: none;
     margin: 0;
@@ -79,7 +83,8 @@ div.messages.status {
     #email-share-container #manual-emails p {
       margin-left: 10px;
       text-align: left;
-      margin-bottom: 0px; }
+      margin-bottom: 0px;
+      clear: left; }
     #email-share-container #manual-emails .email-share-email {
       float: left;
       width: 208px;
@@ -108,9 +113,15 @@ div.messages.status {
 #cell-share-container {
   clear: both;
   display: none; }
+  #cell-share-container #your-cell label {
+    float: left;
+    margin-right: 20px;
+    padding-top: 10px; }
   #cell-share-container #manual-cells {
     width: 655px;
     margin: 0px auto; }
+    #cell-share-container #manual-cells p {
+      clear: both; }
     #cell-share-container #manual-cells .cell-share-cell {
       float: left;
       width: 208px;

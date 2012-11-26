@@ -3,7 +3,7 @@
 /**
  * Process phone numbers and forward invites on to users using sms_flow_start()
  */
-class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
+class ConductorActivitySmsFlowFtaf extends ConductorActivity {
 
   // Mobile Commons optin path for inviter to be joined into
   public $alpha_optin = 0;
@@ -28,12 +28,12 @@ class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
     
-    $clubs_invite_gid = $state->getContext('clubs_invite_gid');
-    if (empty($clubs_invite_gid)) {
+    $drives_invite_gid = $state->getContext('drives_invite_gid');
+    if (empty($drives_invite_gid)) {
       // TODO: create a generic function to access the profile from the mCommons api. Also
       // will want to use config variables stored in sms_mobile_commons_email and
       // sms_mobile_commons_password instead of hardcoding them into our curl calls.
-      // If no clubs_invite_gid has been set, get the value from Mobile Commons profile
+      // If no drives_invite_gid has been set, get the value from Mobile Commons profile
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
 
       $ch = curl_init();
@@ -45,11 +45,10 @@ class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
       $xml = curl_exec($ch);
       curl_close();
 
-      $clubs_invite_gid = 0;
-      $pattern = '#\<custom_column name\="clubs_invite_gid"\>(.*?)\<\/custom_column\>#is';
+      $pattern = '#\<custom_column name\="drives_invite_gid"\>(.*?)\<\/custom_column\>#is';
       preg_match($pattern, $xml, $patternMatches);
       if (count($patternMatches) >= 2) {
-        $clubs_invite_gid = trim($patternMatches[1]);
+        $drives_invite_gid = trim($patternMatches[1]);
       }
     }
 
@@ -58,7 +57,7 @@ class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
     // TODO: What we could do instead is set a context variable in a previous activity
     // that contains the name of the activity to expect the numbers to come from. Then
     // use that name concatenated with ":message" to get the message.
-    $message = $state->getContext('clubs_process_beta:message');
+    $message = $state->getContext('process_beta:message');
     if (empty($message)) {
       $message = $state->getContext('ftaf_prompt:message');
     }
@@ -102,14 +101,14 @@ class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
       }
 
       $args = array(
-        'clubs_inviter_name' => $inviter_name,
-        'clubs_invite_gid' => $clubs_invite_gid,
+        'tfj2013_inviter' => $inviter_name,
+        'drives_invite_gid' => $drives_invite_gid,
       );
 
-      $f['details']['nid'] = $clubs_invite_gid;
+      $f['details']['nid'] = $drives_invite_gid;
 
       // Remove any numbers that are already part of the drive
-      $teamUIDs = dosomething_clubs_get_club_members($clubs_invite_gid);
+      $teamUIDs = teams_get_member_uids($drives_invite_gid);
       $numbersAlreadyJoined = array();
       $count = count($vetted_numbers);
       for ($i=$count-1; $i >= 0; $i--) {
@@ -130,7 +129,7 @@ class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
 
       $response = '';
       if (count($numbersAlreadyJoined) > 0) {
-        $response = 'These people are already members of the club:';
+        $response = 'These people are already part of the drive:';
         foreach ($numbersAlreadyJoined as $number) {
           $response .= ' ' . $number;
         }
@@ -145,7 +144,7 @@ class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
         $response .= '. ';
       }
 
-      $response .= 'Text CINVITE if you want to invite more.';
+      $response .= 'Text TFJINVITE if you want to invite more.';
 
       sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
     }
@@ -154,3 +153,4 @@ class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
     $state->markCompleted();
   }
 }
+

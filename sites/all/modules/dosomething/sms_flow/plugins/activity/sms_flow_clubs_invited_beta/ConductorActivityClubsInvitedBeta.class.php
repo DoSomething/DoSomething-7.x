@@ -64,6 +64,7 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
           profile2_save($profile);
         }
         catch( Exception $e ) {
+          $success_message .= t('Sorry, there was a problem creating your account.  To try again, text CJOIN.');
         }
 
         $success_message .= t('Ur password to login at dosomething.org/myclub is @pass. ', array('@pass' => $pass));
@@ -83,16 +84,14 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
       $xml = curl_exec($ch);
       curl_close();
 
-      $clubs_invite_gid = 0;
-      $pattern = '#\<custom_column name\="clubs_invite_gid"\>(.*?)\<\/custom_column\>#is';
+      $clubs_invite_gid = 725010;
+      /*$pattern = '#\<custom_column name\="clubs_invite_gid"\>(.*?)\<\/custom_column\>#is';
       preg_match($pattern, $xml, $patternMatches);
       if (count($patternMatches) >= 2) {
         $clubs_invite_gid = trim($patternMatches[1]);
 
         // Join user into the drive
         if ($clubs_invite_gid > 0) {
-          // TODO: check if this account is already in the drive and give a different response?
-          // Set $redirect param to FALSE so it doesn't try to redirect to a webpage
           dosomething_clubs_add_user_by_email_or_cell($mobile, $clubs_invite_gid);
         }
       }
@@ -108,15 +107,21 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
         $alphaMsg = "Ur friend $first_name accepted your invite to join ur DoSomething club! Who else should be involved? Text back CINVITE and we'll invite them too.";
         $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
+      }*/
+
+      // Join user into the drive
+      if ($clubs_invite_gid > 0) {
+        dosomething_clubs_add_user_by_email_or_cell($mobile, $clubs_invite_gid);
       }
 
       $success_message .= t('Who else should be involved? Respond with their phone #s and we\'ll invite them too');
       $state->setContext('sms_response', $success_message);
-      $state->setContext('drives_invite_gid', $drives_invite_gid);
+      $state->setContext('clubs_invite_gid', $clubs_invite_gid);
 
       $state->markSuspended();
     }
     else {
+      $state->setContext('sms_response', 'Panic.');
       $state->markCompleted();
     }
   }
