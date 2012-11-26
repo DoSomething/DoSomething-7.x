@@ -1058,6 +1058,8 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   else {
     // TOOD: verify cell number via SMS.
   }
+  
+  // Add user
 
   if (!dosomething_login_person_is_over_age($birthdate, 13)) {
     if (isset($values['parent_email'])) {
@@ -1075,8 +1077,23 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   }
   
   // Add new user to MailChimp group "NewMembers2012"
-  dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
+  $merge_vars = array();
   
+  $merge_vars['FNAME'] = $values['first_name'];
+  $merge_vars['LNAME'] = $values['last_name'];
+  $merge_vars['MMERGE3'] = $name;
+  $merge_vars['UID'] = $account->uid;
+          
+  $merge_vars['BDAY'] = date('m/d', $birthdate);
+  $merge_vars['BDAYFULL'] = date('m/d/Y', $birthdate);
+  $merge_vars['TURNS18'] = date('m/d/Y', strtotime('+18 years', $birthdate));
+  $merge_vars['TURNS26'] = date('m/d/Y', strtotime('+26 years', $birthdate));
+  
+  // Phone
+  $merge_vars['MMERGE7'] = $form_state['values']['phone'];
+
+  // Submit to MailChimp
+  dosomething_general_mailchimp_subscribe($account->mail, 'NewMembers2012', $merge_vars);
   
   // Log user in.
   if ($account->status) {
