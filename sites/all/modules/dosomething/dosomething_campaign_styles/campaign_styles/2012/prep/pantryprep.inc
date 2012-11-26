@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'Tackle Hunger',
+  'title' => 'Pantry Prep',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -28,11 +28,11 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'take action', 'href' => '', 'fragment' => 'action'),
-    array('title' => 'find a pantry', 'href' => '', 'fragment' => 'search'),
-    array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'impact'),
-    array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
-    array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
+    array('title' => 'take action', 'href' => 'pantryprep', 'fragment' => 'action'),
+    array('title' => 'find a pantry', 'href' => 'pantryprep', 'fragment' => 'search'),
+    array('title' => '$5,000 scholarship', 'href' => 'pantryprep', 'fragment' => 'impact'),
+    array('title' => 'tell us about it', 'href' => 'pantryprep', 'fragment' => 'impact'),
+    array('title' => 'questions?', 'href' => 'pantryprep', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
     '#markup' => '<div class="clearfix"><p id="tackle-pounds"></p><p>Pounds<br>Collected</p></div><p>Got questions? Email Christina at <a href="mailto:tackle@dosomething.org">pantryprep@dosomething.org</a>!</p>'

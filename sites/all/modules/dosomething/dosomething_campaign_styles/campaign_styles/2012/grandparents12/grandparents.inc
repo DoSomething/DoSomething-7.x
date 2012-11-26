@@ -28,13 +28,13 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'take action', 'href' => '', 'fragment' => 'header'),
-    array('title' => 'download guide', 'href' => '', 'fragment' => 'action'),
-    array('title' => '$5,000 scholarship', 'href' => '', 'fragment' => 'scholarship'),
-    array('title' => 'learn the issue', 'href' => '', 'fragment' => 'social'),    
-    array('title' => 'prizes', 'href' => '', 'fragment' => 'secondary-content'),
-    array('title' => 'tell us about it', 'href' => '', 'fragment' => 'impact'),
-    array('title' => 'questions?', 'href' => '', 'fragment' => 'faq'),
+    array('title' => 'take action', 'href' => 'grandparents', 'fragment' => 'header'),
+    array('title' => 'download guide', 'href' => 'grandparents', 'fragment' => 'action'),
+    array('title' => '$5,000 scholarship', 'href' => 'grandparents', 'fragment' => 'scholarship'),
+    array('title' => 'learn the issue', 'href' => 'grandparents', 'fragment' => 'social'),    
+    array('title' => 'prizes', 'href' => 'grandparents', 'fragment' => 'secondary-content'),
+    array('title' => 'tell us about it', 'href' => 'grandparents', 'fragment' => 'impact'),
+    array('title' => 'questions?', 'href' => 'grandparents', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
     '#markup' => '<div class="nav-count clearfix"><p id="sb-counter"></p><p>Grandparents<br>Wired</p></div><a href="//iq.intel.com/story/22223727/grandparents-gone-wired" target="_blank"><img src="//files.dosomething.org/files/campaigns/grandparents12/intel.jpg"/></a><p>Got questions? Email Sydney at <a href="mailto:grandparents@dosomething.org">grandparents@dosomething.org</a>!</p>'

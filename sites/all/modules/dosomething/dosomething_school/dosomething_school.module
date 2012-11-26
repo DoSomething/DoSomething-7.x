@@ -15,6 +15,13 @@ function dosomething_school_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['ds_school/sms_search'] = array(
+    'title' => 'DoSomething School Search from SMS',
+    'page callback' => 'dosomething_school_sms_query_callback',
+    'page arguments' => array(2, 3, 4),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -459,7 +466,54 @@ function dosomething_school_make_label($entity) {
   return "$entity->name ($entity->sid)";
 }
 
+/**
+ * School query callback. Formats results in manner expected by school field autocomplete in webforms.
+ */
 function dosomething_school_autocomplete_callback($type, $state, $name) {
+  $result = _dosomething_school_schools_query($type, $state, $name);
+
+  $entity_type = 'ds_school';
+  if (!empty($result[$entity_type])) {
+    foreach (entity_load($entity_type, array_keys($result[$entity_type])) as $info) {
+      $matches[dosomething_school_make_label($info)] = t('@name<br>%street, %city', array('@name' => $info->name, '%street' => $info->street, '%city' => $info->city));
+    }
+  }
+
+  drupal_json_output($matches);
+}
+
+/**
+ * School query callback. Formats results in cleaner json output. Intended for use in SMS workflows.
+ */
+function dosomething_school_sms_query_callback($type, $state, $name) {
+  $result = _dosomething_school_schools_query($type, $state, $name);
+
+  $entity_type = 'ds_school';
+  if (!empty($result[$entity_type])) {
+    $i = 0;
+    foreach (entity_load($entity_type, array_keys($result[$entity_type])) as $info) {
+      $matches[$i] = array();
+      $matches[$i]['label'] = dosomething_school_make_label($info);
+      $matches[$i]['sid'] = $info->sid;
+      $matches[$i]['gsid'] = $info->gsid;
+      $matches[$i]['name'] = $info->name;
+      $matches[$i]['street'] = $info->street;
+      $matches[$i]['city'] = $info->city;
+      $matches[$i]['state'] = $info->state;
+      $i++;
+    }
+  }
+
+  drupal_json_output($matches);
+}
+
+/**
+ * Generic query to the ds_school table to search for schools based on passed in criteria
+ *  @param type - Either high school (1) or college (2)
+ *  @param state - Two letter state abbreviation
+ *  @param name - String query for the school name
+ */
+function _dosomething_school_schools_query($type, $state, $name) {
   global $user;
 
   $entity_type = 'ds_school';
@@ -477,13 +531,8 @@ function dosomething_school_autocomplete_callback($type, $state, $name) {
 
   $matches = array();
   $result = $query->execute();
-  if (!empty($result[$entity_type])) {
-    foreach (entity_load($entity_type, array_keys($result[$entity_type])) as $info) {
-      $matches[dosomething_school_make_label($info)] = t('@name<br>%street, %city', array('@name' => $info->name, '%street' => $info->street, '%city' => $info->city));
-    }
-  }
 
-  drupal_json_output($matches);
+  return $result;
 }
 
 /**
