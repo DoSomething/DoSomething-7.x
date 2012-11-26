@@ -128,4 +128,16 @@
 
     } // end attach: function
   }; // end Drupal.behaviors
+
+  function pop_fb(title, caption, description, link, picture) {
+    FB.ui({
+        method: 'feed',
+        name: title,
+        link: link,
+        picture: picture,
+        caption: caption,
+        description: description || null
+      },
+    );
+  }
 })(jQuery); // end function ($)
