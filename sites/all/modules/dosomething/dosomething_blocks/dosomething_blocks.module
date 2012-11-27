@@ -371,6 +371,8 @@ function dosomething_blocks_utility_bar() {
     ),
   );
 
+  // let's only try to render a search form if the module that generates it is turned on
+  // search_api_page_load and search_api_page_search_form_... both rely on sapi_page module.
   if (module_exists('search_api_page')) {
     $page = search_api_page_load(1);
     $output['search']['search'] = drupal_get_form('search_api_page_search_form_' . $page->machine_name, $page, NULL, TRUE);
