@@ -400,7 +400,7 @@
       	require_login: config.feed_require_login,
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
-        friend_selector: config.feed_friend_selector || 'custom',
+        friend_selector: config.feed_friend_selector || 'td',
         check_remainder: false,
       };
 

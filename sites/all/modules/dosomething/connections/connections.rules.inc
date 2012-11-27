@@ -95,6 +95,15 @@ function connections_on_page($connection_page_path) {
   }
 }
 
+function connections_friend_selector_types() {
+  $perms = array(
+    'td' => t('TD Friend Selector'),
+    'custom' => t('DoSomething Custom Selector'),
+  );
+
+  return $perms;
+}
+
 /**
  * Implements hook_rules_action_info().
  */
@@ -264,6 +273,14 @@ function connections_rules_action_info() {
         'default value' => 1,
         'optional' => TRUE,
         'restriction' => 'input'
+      ),
+      'feed_friend_selector' => array(
+        'type' => 'text',
+        'options list' => 'connections_friend_selector_types',
+        'label' => t('Friend Selector type'),
+        'description' => t('The friend selector to use.'),
+        'default value' => 'td',
+        'optional' => true,
       ),
       'feed_dialog_msg' => array(
         'type' => 'text',
