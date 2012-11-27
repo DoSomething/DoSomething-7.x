@@ -95,99 +95,68 @@
         }
       });
 
-      // jQuery scrolling effect with focus!
+      // animation for a.jump_scroll
       var contentAnchors = 'a.jump_scroll';
       var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
       var allAnchors = navAnchors + ', ' + contentAnchors;
-      
-      // input highlighting
+
+      // variables for input highlighting
       var webformEmail = '#contact-form input[type="text"]';
       var webformCell = '#contact-form input[type="tel"]';
       var webformBoth = webformEmail + ', ' + webformCell;
 
+      $(document).ready(function(){
+        $(webformEmail).focus().addClass('focusOutline');
+      });
+      $(webformBoth).focus(function(){
+        $(this).addClass('focusOutline');
+      });
+      $(webformBoth).blur(function() {
+        $(this).removeClass('focusOutline');
+      });
+
       $(allAnchors).click(function(event){
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-
-        if($(this).attr('href') == '/spit#header'){
+        if($(this).attr('href') == '/#header'){
           $(webformEmail).focus().addClass('focusOutline');
         }
-        $(webformBoth).focus(function(){
-          $(this).addClass('focusOutline');
-        });
-        $(webformBoth).blur(function() {
-          $(this).removeClass('focusOutline');
-        });
         return false;
       });
 
-      // twitter popup button on drive pages
-      $('a.drive-twitter').click(function(event) {
-        var width  = 650,
-        height = 450,
-        left   = ($(window).width()  - width)  / 2,
-        top    = ($(window).height() - height) / 2,
-        url    = this.href,
-        opts   = 'status=1' +
-        ',width='  + width  +
-        ',height=' + height +
-        ',top='    + top    +
-        ',left='   + left;
-
-        window.open(url, 'twitter', opts);
-
-        return false;
+      // scrolling navigation block
+      $(window).bind('load', function() {
+        var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
+        var $footer = $('#block-menu-menu-footer');
+        var $document = $(document);
+        var scrollLimitTop = $nav.offset().top;
+        $document.scroll(function () {
+          var st = $document.scrollTop();
+          var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
+          if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
+            $nav.css({
+              'position'    : 'fixed',
+              'top'         : '0px',
+              'bottom'      : 'auto',
+              'z-index'     : '3'
+            });
+          }
+          else if (st >= scrollLimitTop) { // once $nav hits $footer
+            scrollLimitTop = $nav.offset().top;
+            $nav
+              .css('position', 'absolute')
+              .css('top', 'auto')
+              .css('bottom', '25px')
+          }
+          else { // before scrolling engages $nav
+            scrollLimitTop = $nav.offset().top;
+            $nav
+              .css('position', 'static')
+          }
+        });
       });
 
       // remove #edit-submit from drive page buttons
       $('#drive .drive-participants-list .form-submit').val('x').removeAttr('id').addClass('remove_participant');
-
-      // nav highlighting 
-      var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
-      var firstNav = plainNav + ' a' + '.first';
-
-      $(firstNav).css('background','#FFCB15');
-      $(plainNav + ' a').click(function(){
-          $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
-      });
-
-      // sad puppy
-      $('#mangoDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
-      $('a.mango').click(function(){
-        $('#mangoDialog').dialog('open');
-        return false;
-      });
-
-      // sad Chris
-      $('#chrisDialog').dialog({autoOpen: false, dialogClass: "mangoDialog-ui", width: 500, resizable: false});
-      $('a.mangoChris').click(function(){
-        $('#chrisDialog').dialog('open');
-        return false;
-      });
-      
-      // scroll function
-      var $window = $(window);
-      var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-      var scrollLimitTop = 500;
-      var scrollLimitBot = 6200;
-      $window.scroll(function () {
-        var st = $window.scrollTop();
-        if (st > scrollLimitTop && st < scrollLimitBot) {
-          $nav.css({
-            'position'    : 'fixed',
-            'top'         : '0px',
-            'margin'      : '15px 0 0 -20px',
-            'z-index'     : '3'
-          });
-        }
-        else if (st >= scrollLimitTop) {
-          $nav
-            .css('position', 'static')
-        }
-        else {
-          $nav
-            .css('position', 'static')
-        }
-      });
 
       // kill old asterisks from required fields
       $('#dosomething-login-register-popup-form .popup-content .field-suffix').remove();

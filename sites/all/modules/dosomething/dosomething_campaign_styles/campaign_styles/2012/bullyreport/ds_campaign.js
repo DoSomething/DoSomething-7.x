@@ -17,44 +17,64 @@
         }
       });
 
-      //NAV SLOW SCROLL
-      $('#block-dosomething-campaign-styles-campaign-nav a').click(function (event) {
-        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
+      // animation for a.jump_scroll
+      var contentAnchors = 'a.jump_scroll';
+      var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
+      var allAnchors = navAnchors + ', ' + contentAnchors;
+
+      // variables for input highlighting
+      var webformEmail = '#contact-form input[type="text"]';
+      var webformCell = '#contact-form input[type="tel"]';
+      var webformBoth = webformEmail + ', ' + webformCell;
+
+      $(document).ready(function(){
+        $(webformEmail).focus().addClass('focusOutline');
+      });
+      $(webformBoth).focus(function(){
+        $(this).addClass('focusOutline');
+      });
+      $(webformBoth).blur(function() {
+        $(this).removeClass('focusOutline');
+      });
+
+      $(allAnchors).click(function(event){
+        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+        if($(this).attr('href') == '/#header'){
+          $(webformEmail).focus().addClass('focusOutline');
+        }
         return false;
-      });  
+      });
 
-     //JUMP LINKS SLOW SCROLL
-      $('.jump').click(function (event) {
-        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
-        return false;
-      });  
-
-      
-      // MENU SCROLL
-      var $window = $(window);
-      var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-      var scrollLimitTop = 180;
-      var scrollLimitBot = 5757;
-
-      $window.scroll(function () {
-        var st = $window.scrollTop();
-        if (st > scrollLimitTop && st < scrollLimitBot) {
-          $nav.css({
-            'position' : 'fixed',
-            'top'      : '0px',
-            'margin'   : '15px 0 0 0',
-            'padding'  : '1.5em 2em 1.5em 0',
-            'z-index'  : '3'
-          });
-        }
-        else if (st >= scrollLimitTop) {
-          $nav
-            .css('position', 'static')
-        }
-        else {
-          $nav
-            .css('position', 'static')
-        }
+      // scrolling navigation block
+      $(window).bind('load', function() {
+        var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
+        var $footer = $('#block-menu-menu-footer');
+        var $document = $(document);
+        var scrollLimitTop = $nav.offset().top;
+        $document.scroll(function () {
+          var st = $document.scrollTop();
+          var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
+          if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
+            $nav.css({
+              'position'    : 'fixed',
+              'top'         : '0px',
+              'bottom'      : 'auto',
+              'z-index'     : '3'
+            });
+          }
+          else if (st >= scrollLimitTop) { // once $nav hits $footer
+            scrollLimitTop = $nav.offset().top;
+            $nav
+              .css('position', 'absolute')
+              .css('top', 'auto')
+              .css('bottom', '25px')
+          }
+          else { // before scrolling engages $nav
+            scrollLimitTop = $nav.offset().top;
+            $nav
+              .css('position', 'static')
+          }
+        });
       });
 
 
