@@ -433,7 +433,7 @@ class clubs_export {
 
           $shares = db_query("
             SELECT
-              (SELECT COUNT(*) FROM `fb_log` f WHERE `path` LIKE '%" . $s['real_path'] . "%') AS `fb_shares`,
+              (SELECT COUNT(*) FROM `fb_log` f WHERE `path` LIKE '%" . addslashes($s['real_path']) . "%') AS `fb_shares`,
               (SELECT COUNT(*) FROM `sms_flow_records` WHERE `type` = 'club' AND `nid` = " . $s['nid'] . ") AS `sms_shares`,
               (SELECT COUNT(*) FROM `dosomething_clubs_invites` WHERE `gid` = " . $s['gid'] . ") AS `email_shares`
           ")->fetchAssoc();
