@@ -36,14 +36,22 @@ class ConductorActivityClubsSurveyNextResponse extends ConductorActivity {
         'd' => t("Haha.  I forget things too.  Ur DoSomething.org Club is a great way to get involved in cause campaigns.  Log back onto DoSomething.org/MyClub to check urs out!"),
       );
 
+      db_update('dosomething_clubs_survey')
+        ->fields(array(
+          'survey' => serialize(array(1 => $_REQUEST['args'])),
+          'timestamp' => REQUEST_TIME,
+        ))
+        ->condition('cell', $mobile)
+        ->execute();
+
       $responded = $responses[strtolower($_REQUEST['args'])];
       $state->setContext('sms_response', $responded);
-      $state->markCompleted();
     }
     else {
       $state->setContext('sms_response', $this->reject_message);
-      $state->markCompleted();
     }
+
+    $state->markCompleted();
   }
 
   private function hasAcceptResponse($response) {

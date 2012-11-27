@@ -32,10 +32,26 @@ class ConductorActivityClubsSurveyResponse extends ConductorActivity {
       $this->removeOutput('process_question2');
       $success_message .= t('Thanks! Go to ds.org/T with your address and club members cell numbers, we’ll ask them shirt sizes and ship you the free shirts! While supplies last!!');
       $state->setContext('sms_response', $success_message);
+
+      db_insert('dosomething_clubs_survey')
+        ->fields(array(
+          'cell' => $mobile,
+          'replied_y' => 1,
+          'timestamp' => REQUEST_TIME,
+        ))
+        ->execute();
     }
     // Invite rejected. Output should be 'end'
     else if (self::hasDenyResponse($_REQUEST['args'])) {
       $this->removeOutput('end');
+
+      db_insert('dosomething_clubs_survey')
+        ->fields(array(
+          'cell' => $mobile,
+          'replied_y' => 0,
+          'timestamp' => REQUEST_TIME,
+        ))
+        ->execute();
 
       $deny_message = t('Righto. Why not? A) Ur club is no longer active B) U haven\'t been able to yet, but u want to C) U graduated D) U don\'t remember registering a DoSomething Club');
       $state->setContext('sms_response', $deny_message);

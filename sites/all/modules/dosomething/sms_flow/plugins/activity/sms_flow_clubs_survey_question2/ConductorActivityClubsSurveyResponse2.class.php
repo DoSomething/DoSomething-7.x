@@ -31,10 +31,12 @@ class ConductorActivityClubsSurveyNextResponse extends ConductorActivity {
 
       $responses = array(
         'a' => t("We're sad to hear that.  Is there anything we could have done to support you better?"),
-        'b' => t("We would love to help! Check out our resources for club leaders at dosomething.org/clubresources or txt us back with specific questions."),
+        'b' => t("We would love to help!!! Check out our resources for club leaders at dosomething.org/clubresources or txt us back with specific questions."),
         'c' => t("Congrats on graduating! You can choose an ew club leader for your Club profile page at DoSomething.org/MyClub to pass on the torch."),
         'd' => t("Haha.  I forget things too.  Ur DoSomething.org Club is a great way to get involved in cause campaigns.  Log back onto DoSomething.org/MyClub to check urs out!"),
       );
+
+      echo $state->getContext('replied_y'); exit;
 
       $responded = $responses[strtolower($_REQUEST['args'])];
       $state->setContext('sms_response', $responded);

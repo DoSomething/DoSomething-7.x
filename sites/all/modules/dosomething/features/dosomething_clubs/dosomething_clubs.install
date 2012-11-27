@@ -122,6 +122,41 @@ function dosomething_clubs_schema() {
     )
   );
 
+  $schema['dosomething_clubs_survey'] = array(
+    'description' => 'Clubs survey responses',
+    'fields' => array(
+      'cell' => array(
+        'description' => 'The phone number',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+      ),
+      'replied_y' => array(
+        'description' => 'Whether they initially replied "y" or not.',
+        'type' => 'varchar',
+        'length' => 255,
+      ),
+      'survey' => array(
+        'description' => 'serialized array response',
+        'type' => 'text',
+      ),
+      'followup' => array(
+        'description' => 'follow up survey',
+        'type' => 'text',
+      ),
+      'timestamp' => array(
+        'description' => 'The time that the survey was completed.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'replied_y' => array('replied_y'),
+      'cell' => array('cell'),
+    )
+  );
+
   return $schema;
 }
 
@@ -256,4 +291,49 @@ function dosomething_clubs_update_7104() {
     ALTER TABLE dosomething_clubs_invites
     ADD `form` varchar(255) not null
   ");
+}
+
+/**
+ *  Adds DoSomething Clubs Survey table
+ */
+function dosomething_clubs_update_7106() {
+  $schema = array();
+  $schema['dosomething_clubs_survey'] = array(
+    'description' => 'Clubs survey responses',
+    'fields' => array(
+      'cell' => array(
+        'description' => 'The phone number',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+      ),
+      'replied_y' => array(
+        'description' => 'Whether they initially replied "y" or not.',
+        'type' => 'varchar',
+        'length' => 255,
+      ),
+      'survey' => array(
+        'description' => 'serialized array response',
+        'type' => 'text',
+      ),
+      'followup' => array(
+        'description' => 'follow up survey',
+        'type' => 'text',
+      ),
+      'timestamp' => array(
+        'description' => 'The time that the survey was completed.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'replied_y' => array('replied_y'),
+      'cell' => array('cell'),
+    )
+  );
+
+  if (!db_table_exists('dosomething_clubs_survey')) {
+    db_create_table('dosomething_clubs_survey', $schema['dosomething_clubs_survey']);
+  }
 }
