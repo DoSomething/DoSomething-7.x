@@ -232,6 +232,9 @@
                   });
                 }
               }
+              else {
+                callback(things);
+              }
 
               $('.og_dialog').dialog('close');
             });

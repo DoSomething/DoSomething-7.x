@@ -102,7 +102,6 @@
 
 			$('.my-submit').click(function() {
 				$(this).parent().parent().addClass('submitted').fadeOut(250);
-				console.log($('#your-info').hasClass('submitted'));
 				return false;
 			});
 
