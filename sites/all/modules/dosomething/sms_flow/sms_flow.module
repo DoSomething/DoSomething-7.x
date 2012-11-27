@@ -497,7 +497,7 @@ function sms_flow_default_conductor_workflows() {
   $activity->accept_responses = array('y','yes','yea','ya','yeah','cjoin', 'c join');
   $activity->invite_rejected_message = t('No prob. You won\'t be added to the club. If you want to join in the future, text back CJOIN.');
   $activity->inputs = array('start');
-  $activity->outputs = array('ask_name', 'process_beta', 'end');
+  $activity->outputs = array('clubs_process_beta', 'ask_name', 'end');
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_name';
@@ -511,13 +511,13 @@ function sms_flow_default_conductor_workflows() {
   $activity->title = 'Process Clubs Betas';
   $activity->alpha_campaign_id = 99961;
   $activity->inputs = array('clubs_invite_response', 'ask_name');
-  $activity->outputs = array('ftaf_clubs_process');
+  $activity->outputs = array('strip_signature');
 
-  /*$activity = $workflow->newActivity('sms_strip_signature');
+  $activity = $workflow->newActivity('sms_strip_signature');
   $activity->name = 'strip_signature';
   $activity->title = 'Strip Signature';
-  $activity->inputs = array('process_beta');
-  $activity->outputs = array('ftaf_clubs_process');*/
+  $activity->inputs = array('clubs_process_beta');
+  $activity->outputs = array('ftaf_clubs_process');
 
   $activity = $workflow->newActivity('sms_flow_clubs_ftaf');
   $activity->name = 'ftaf_clubs_process';
@@ -532,7 +532,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('end');
   $activity->name = 'end';
   $activity->title = 'End';
-  $activity->inputs = array('clubs_invite_response', 'process_beta');
+  $activity->inputs = array('clubs_invite_response', 'clubs_process_beta', 'ftaf_clubs_process');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
