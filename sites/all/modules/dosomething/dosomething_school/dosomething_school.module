@@ -483,9 +483,9 @@ function dosomething_school_autocomplete_callback($type, $state, $name) {
 }
 
 /**
- * School query callback. Formats results in cleaner json output. Intended for use in SMS workflows.
+ * Query for schools and return the results. Intended for internal calls in SMS workflows.
  */
-function dosomething_school_sms_query_callback($type, $state, $name) {
+function dosomething_school_sms_query($type, $state, $name) {
   $result = _dosomething_school_schools_query($type, $state, $name);
 
   $entity_type = 'ds_school';
@@ -503,6 +503,15 @@ function dosomething_school_sms_query_callback($type, $state, $name) {
       $i++;
     }
   }
+
+  return $matches;
+}
+
+/**
+ * School query callback. Formats results in cleaner json output. Intended for use by external web services.
+ */
+function dosomething_school_sms_query_callback($type, $state, $name) {
+  $matches = dosomething_school_sms_query($type, $state, $name);
 
   drupal_json_output($matches);
 }
@@ -529,10 +538,38 @@ function _dosomething_school_schools_query($type, $state, $name) {
     ->propertyOrderBy('name')
     ->range(0, 10);
 
-  $matches = array();
   $result = $query->execute();
 
   return $result;
+}
+
+function dosomething_school_find_by_sid($sid) {
+  global $user;
+
+  $entity_type = 'ds_school';
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', $entity_type)
+    ->propertyCondition('sid', $sid)
+    ->propertyCondition('uid', array(1, $user->uid), 'IN')
+    ->range(0, 1);
+
+  $result = $query->execute();
+
+  $match = FALSE;
+  if (!empty($result[$entity_type])) {
+    foreach (entity_load($entity_type, array_keys($result[$entity_type])) as $info) {
+      $match = array();
+      $match['label'] = dosomething_school_make_label($info);
+      $match['sid'] = $info->sid;
+      $match['gsid'] = $info->gsid;
+      $match['name'] = $info->name;
+      $match['street'] = $info->street;
+      $match['city'] = $info->city;
+      $match['state'] = $info->state;
+    }
+  }
+
+  return $match;
 }
 
 /**

@@ -132,6 +132,9 @@ function sms_flow_menu() {
 function sms_flow_incoming_callback($path) {
   // TODO: $keyword = path?
   switch ($path) {
+    case 'drives-create':
+      $keyword = 'drives-create';
+      break;
     case 'drives-invite':
       $keyword = 'drives-invite';
       break;
@@ -211,6 +214,7 @@ function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array(
 function sms_flow_conductor_sms_keywords() {
   return array(
     'alcoa-report-back' => 'sms_flow_alcoa_report_back',
+    'drives-create' => 'sms_flow_drives_create',
     'drives-invite' => 'sms_flow_drives_invite',
     'ftaf' => 'sms_flow_ftaf',
   );
@@ -236,6 +240,62 @@ function sms_flow_ctools_plugin_directory($owner, $plugin_type) {
 
 function sms_flow_default_conductor_workflows() {
   $workflows = array();
+
+  //
+  // sms_flow_drives_create workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_drives_create';
+  $workflow->title = 'SMS Flow Drives Create';
+  $workflow->description = 'Workflow for creating a new drive, or joining an existing one';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('ask_school_level');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_school_level';
+  $activity->question = t('What\'s yo school level? High school or college?');
+  $activity->inputs = array('start');
+  $activity->outputs = array('ask_school_state');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_school_state';
+  $activity->question = t('What state is yo school in?');
+  $activity->inputs = array('ask_school_level');
+  $activity->outputs = array('ask_school_name');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_school_name';
+  $activity->question = t('What\'s the name of yo school?');
+  $activity->inputs = array('ask_school_state');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->inputs = array('ask_school_name');
+  $activity->outputs = array('school_search');
+
+  $activity = $workflow->newActivity('sms_flow_school_search');
+  $activity->name = 'school_search';
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  // TODO: check if account exists for this number
+  // TODO: create account if none exists: first name and email
+  // TODO: check if drive exists
+  //    - if drive exists, join user into drive.
+  //    - if drive does not exist, create drive for the user
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('school_search');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
 
   //
   // sms_flow_drives_invite workflow
