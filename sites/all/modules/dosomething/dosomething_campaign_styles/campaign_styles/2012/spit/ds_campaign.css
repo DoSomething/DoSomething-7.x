@@ -94,8 +94,14 @@ body {
 
 #block-dosomething-campaign-styles-campaign-nav {
   background: white;
+  margin: 15px 0 0 -25px;
   padding: 1.5em 0 0 0;
   width: 215px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
   -webkit-transition: background 5s ease-in;
   transition: background 5s ease-in; }
   #block-dosomething-campaign-styles-campaign-nav .content {
