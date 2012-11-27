@@ -31,7 +31,7 @@ class ConductorActivityClubsInviteResponse extends ConductorActivity {
 
       // No account found. Output should be 'ask_name'
       if (!$account) {
-        $this->removeOutput('process_beta');
+        $this->removeOutput('clubs_process_beta');
         $this->removeOutput('end');
       }
       // Account found. Output should be 'process_beta'
@@ -43,7 +43,7 @@ class ConductorActivityClubsInviteResponse extends ConductorActivity {
     // Invite rejected. Output should be 'end'
     else {
       $this->removeOutput('ask_name');
-      $this->removeOutput('process_beta');
+      $this->removeOutput('clubs_process_beta');
 
       $state->setContext('sms_response', $this->invite_rejected_message);
     }

@@ -19,7 +19,6 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
 
   public function run($workflow) {
     $state = $this->getState();
-
     if ($state->getContext($this->name . ':message') === FALSE) {
       $success_message = '';
       $first_name = '';
@@ -121,7 +120,6 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
       $state->markSuspended();
     }
     else {
-      $state->setContext('sms_response', 'Panic.');
       $state->markCompleted();
     }
   }

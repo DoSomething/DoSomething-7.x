@@ -151,6 +151,15 @@ class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
     }
 
     $state->setContext('sms_response', $response);
-    $state->markCompleted();
+    $state->markSuspended();
+  }
+
+  /**
+   * Implements ConductorActivity::getSuspendPointers().
+   */
+  public function getSuspendPointers() {
+    return array(
+      'sms_prompt:' . $this->getState()->getContext('sms_number')
+    );
   }
 }
