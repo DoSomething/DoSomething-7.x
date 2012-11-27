@@ -56,7 +56,7 @@ class dosomething_school_handler_field_type extends views_handler_field {
   function render($values) {
     $type = $values->{$this->field_alias};
     $types = array(
-      1 => t('High School'),
+      1 => t('Middle/High School'),
       2 => t('College'),
     );
 
@@ -350,7 +350,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#title' => t('Level'),
     '#type' => 'select',
     '#options' => array(
-      1 => t('High School'),
+      1 => t('Middle/High School'),
       2 => t('College'),
     ),
     '#default_value' => $default_type,
