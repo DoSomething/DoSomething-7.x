@@ -757,6 +757,11 @@ img.bow {
     #cmp #refer #webform-component-right-side {
       float: right;
       width: 38%; }
+      #cmp #refer #webform-component-right-side input[type=email], #cmp #refer #webform-component-right-side input[type=text] {
+        width: 100%;
+        padding: 0 0.5em;
+        height: 37px;
+        margin: 0.1em 0 0.25em; }
     #cmp #refer #webform-component-left-side {
       float: left;
       width: 57%;
@@ -792,9 +797,9 @@ img.bow {
       font-family: din-web;
       background: #ffcb15;
       margin: 4% 0 1%;
-      padding: 0.3em 1em;
+      padding: 0.3em 1em 0.1em;
       font-size: 1.5em;
-      height: 1.4em;
+      height: auto;
       display: inline-block;
       color: #1e1d1c;
       -webkit-border-radius: 5px;
@@ -814,7 +819,8 @@ img.bow {
       margin: 0.75em auto; }
     #cmp #refer .go-button {
       margin: 4% 0 1% 0;
-      padding: 0.3em 0.7em; }
+      padding: 0.3em 0.7em 0.1em;
+      height: auto; }
     #cmp #refer #campaign-opt-in {
       text-align: left;
       line-height: 1em;
@@ -894,9 +900,9 @@ img.bow {
       font-family: din-web;
       background: #ffcb15;
       margin: 4% 0 1%;
-      padding: 0.3em 1em;
+      padding: 0.3em 1em 0.1em;
       font-size: 1.5em;
-      height: 1.4em;
+      height: auto;
       display: inline-block;
       color: #1e1d1c;
       -webkit-border-radius: 5px;
