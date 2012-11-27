@@ -80,7 +80,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -699,6 +699,7 @@ body {
     #cmp a.print-pdf img {
       width: 100%; }
   #cmp #search iframe {
+    height: 500px !important;
     border-radius: 10px;
     -moz-border-radius: 10px;
     -o-border-radius: 10px;

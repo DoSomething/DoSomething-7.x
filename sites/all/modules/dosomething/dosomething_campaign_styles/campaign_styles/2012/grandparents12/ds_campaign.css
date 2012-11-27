@@ -85,7 +85,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -716,6 +716,7 @@ body {
     #cmp #facts-content img {
       margin: 2% 0; }
     #cmp #facts-content iframe {
+      height: 450px !important;
       margin: 1em auto 0;
       display: block; }
   #cmp #scholarship {
