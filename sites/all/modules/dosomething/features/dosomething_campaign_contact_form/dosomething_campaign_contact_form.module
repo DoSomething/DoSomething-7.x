@@ -105,7 +105,8 @@ function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_s
     $type = 'cell';
   }
 
-  $redirect = $form_state['redirect'][0];
+  // decode first in case we stored it encoded, then encode it for the popup
+  $redirect = urlencode(urldecode($form_state['redirect'][0]));
 
   if (!is_null($valid)) {
     $replace = array(
