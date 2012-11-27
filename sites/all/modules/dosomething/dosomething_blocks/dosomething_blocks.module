@@ -304,7 +304,6 @@ function dosomething_blocks_utility_bar() {
 
   $path = drupal_get_path('theme', 'ds');
   $image_path = base_path() . $path . '/css/images';
-  $page = search_api_page_load(1);
 
   $output = array(
     '#attached' => array(
@@ -333,7 +332,6 @@ function dosomething_blocks_utility_bar() {
           'search',
         )
       ),
-      'search' => drupal_get_form('search_api_page_search_form_' . $page->machine_name, $page, NULL, TRUE),
     ),
     'login' => array(
       '#type' => 'container',
@@ -372,6 +370,11 @@ function dosomething_blocks_utility_bar() {
       '#theme' => 'dosomething_blocks_lets_talk_dialog',
     ),
   );
+
+  if (module_exists('search_api_page')) {
+    $page = search_api_page_load(1);
+    $output['search']['search'] = drupal_get_form('search_api_page_search_form_' . $page->machine_name, $page, NULL, TRUE);
+  }
   return $output;
 }
 
