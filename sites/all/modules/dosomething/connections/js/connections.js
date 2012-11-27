@@ -186,6 +186,7 @@
             width: (page == 'custom-selector' ? 800 : 650),
             position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
             resizable: false,
+            modal: (things.modal ? true : false),
             open: function() {
               if ($('#cancel-og-post').length) {
                 // This somehow fixes an error where it wouldn't close after the first close
@@ -200,8 +201,8 @@
                 }
               }
 
-              og.remove();
-              delete og;
+              //og.remove();
+              //delete og;
             }
           }).queue(function() {
             // Pretend like it's a Facebook dialog feed
@@ -237,6 +238,8 @@
               }
 
               $('.og_dialog').dialog('close');
+              //og.remove();
+              //delete og;
             });
           });;
         });
@@ -451,6 +454,10 @@
         share.description = things.description;
       }
 
+      if (things.friend_selector && things.friend_selector == 'custom') {
+        things.modal = true;
+      }
+
       if (things.selector) {
       	jQuery('body ' + things.selector).click(function() {
         	Drupal.behaviors.fb.feed_runner(things, share, callback);
@@ -488,19 +495,19 @@
 
           // Creates an optional modal dialog
           if (things.modal && response.status !== 'unknown') {
-            jQuery('body').append(jQuery('<div></div>').attr('id', 'fb-modal').css({
-              'position': 'absolute',
-              'z-index': 150,
-              'width': '100%',
-              'height': '100%',
-              'top': '0px',
-              'opacity': '0.5',
-              '-ms-filter': 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)',
-              'filter': 'alpha(opacity=50)',
-              '-moz-opacity': '0.5',
-              '-khtml-opacity': '0.5',
-              'background': '#000'
-            }));
+            //jQuery('body').append(jQuery('<div></div>').attr('id', 'fb-modal').css({
+            //  'position': 'absolute',
+            //  'z-index': 150,
+            //  'width': '100%',
+            //  'height': '100%',
+            //  'top': '0px',
+            //  'opacity': '0.5',
+            //  '-ms-filter': 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)',
+            //  'filter': 'alpha(opacity=50)',
+            //  '-moz-opacity': '0.5',
+            //  '-khtml-opacity': '0.5',
+            //  'background': '#000'
+            //}));
           }
 
           if (things.friend_selector == 'td') {
@@ -550,7 +557,6 @@
                 caption: response.caption,
                 link: response.link
               };
-
 
               var mypost = ($('#your-info').hasClass('submitted'));
               if (mypost) {
