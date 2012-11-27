@@ -29,7 +29,7 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'take action', 'href' => 'bullytext', 'fragment' => 'bullytext-game'),
-    array('title' => 'scholarship', 'href' => 'bullytext', 'fragment' => 'bullytext-scholarship'),
+    //array('title' => 'scholarship', 'href' => 'bullytext', 'fragment' => 'bullytext-scholarship'),
     array('title' => 'learn the issue', 'href' => 'bullytext', 'fragment' => 'bullytext-issue'),
     array('title' => 'questions?', 'href' => 'bullytext', 'fragment' => 'bullytext-questions'),
   ),
