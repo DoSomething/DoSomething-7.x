@@ -27,23 +27,11 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
 
     // Invite accepted
     if (self::hasAcceptResponse($_REQUEST['args'])) {
-      $account = _sms_flow_find_user_by_cell($mobile);
-      
-      // No account found. Output should be 'ask_name'
-      if (!$account) {
-        $this->removeOutput('process_beta');
-        $this->removeOutput('end');
-      }
-      // Account found. Output should be 'process_beta'
-      else {
-        $this->removeOutput('ask_name');
-        $this->removeOutput('end');
-      }
+      $this->removeOutput('end');
     }
     // Invite rejected. Output should be 'end'
     else {
-      $this->removeOutput('ask_name');
-      $this->removeOutput('process_beta');
+      $this->removeOutput('check_account_exists');
 
       // Defense against cases where people should've gone from process_beta to sms_flow_ftaf, but didn't
       preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $_REQUEST['args']), $numbers);

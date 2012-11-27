@@ -82,9 +82,6 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
       $school_level = strtolower($state->getContext('ask_school_level:message'));
       $school_state = strtolower($state->getContext('ask_school_state:message'));
       $school_name = strtolower($state->getContext('ask_school_name:message'));
-$school_level = '1';
-$school_state = 'MD';
-$school_name = 'Newport';
 
       // Sanitize the input
       $school_level = self::checkSchoolLevel($school_level);

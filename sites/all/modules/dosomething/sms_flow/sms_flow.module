@@ -282,9 +282,23 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_school_search');
   $activity->name = 'school_search';
   $activity->inputs = array('strip_signature');
+  $activity->outputs = array('check_account_exists');
+
+  $activity = $workflow->newActivity('sms_check_account_exists');
+  $activity->name = 'check_account_exists';
+  $activity->inputs = array('school_search');
+  $activity->outputs = array('account_exists', 'no_account_exists');
+
+  $activity = $workflow->newActivity('activity');
+  $activity->name = 'account_exists';
+  $activity->inputs = array('check_account_exists');
   $activity->outputs = array('end');
 
-  // TODO: check if account exists for this number
+  $activity = $workflow->newActivity('activity');
+  $activity->name = 'no_account_exists';
+  $activity->inputs = array('check_account_exists');
+  $activity->outputs = array('end');
+
   // TODO: create account if none exists: first name and email
   // TODO: check if drive exists
   //    - if drive exists, join user into drive.
@@ -319,7 +333,22 @@ function sms_flow_default_conductor_workflows() {
   $activity->accept_responses = array('y','yes','yea','ya','tfjjoin','tfj join');
   $activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive. If you want to join in the future, text back TFJJOIN.');
   $activity->inputs = array('start');
-  $activity->outputs = array('ask_name', 'process_beta', 'end');
+  $activity->outputs = array('check_account_exists', 'end');
+
+  $activity = $workflow->newActivity('sms_check_account_exists');
+  $activity->name = 'check_account_exists';
+  $activity->inputs = array('drive_invite_response');
+  $activity->outputs = array('account_exists', 'no_account_exists');
+
+  $activity = $workflow->newActivity('activity');
+  $activity->name = 'account_exists';
+  $activity->inputs = array('check_account_exists');
+  $activity->outputs = array('process_beta');
+
+  $activity = $workflow->newActivity('activity');
+  $activity->name = 'no_account_exists';
+  $activity->inputs = array('check_account_exists');
+  $activity->outputs = array('ask_name');
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_name';
