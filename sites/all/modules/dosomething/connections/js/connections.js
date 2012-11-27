@@ -109,10 +109,13 @@
             FB.ui({
               method: 'permissions.request',
               perms: permission,
-              display: 'popoup'
+              display: 'popup'
             }, function(response) {
               callback();
             });
+          }
+          else {
+            callback();
           }
         }
       });
@@ -222,9 +225,15 @@
               }
               things.explicitly_shared = ($('#explicitly-share').attr('checked') == 'checked') || false;
 
-              callback(things);
+              if (things.friend_selector == 'custom') {
+                if (!Drupal.behaviors.fb.has_permission('publish_actions')) {
+                  Drupal.behaviors.fb.ask_permission('publish_actions', function() {
+                    callback(things);
+                  });
+                }
+              }
+
               $('.og_dialog').dialog('close');
-              //og.html('&nbsp;');
             });
           });;
         });
@@ -538,6 +547,7 @@
                 caption: response.caption,
                 link: response.link
               };
+
 
               var mypost = ($('#your-info').hasClass('submitted'));
               if (mypost) {
