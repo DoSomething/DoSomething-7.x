@@ -58,17 +58,20 @@ if ($_POST['do'] == 'blah') {
       $n = $name[3];
       $e = $email[4];
 
-      $vals[$e] = $n;
+      $vals[strtolower($e)] = array(
+        'e' => $e,
+        'n' => $n
+      );
     }
 
     ksort($vals);
-    foreach ($vals AS $e => $n) {
-      if (!empty($e)) {
+    foreach ($vals AS $e => $s) {
+      if (!empty($s['e'])) {
         $res .= '
         <li>
-          <input type="checkbox" class="email-checkbox" checked="checked" name="emails[]" value="' . $e . '" id="' . clean_email($e) . '" />
-          <strong>' . $e . '</strong>
-          <span>' . $n . '</span>
+          <input type="checkbox" class="email-checkbox" checked="checked" name="emails[]" value="' . $s['e'] . '" id="' . clean_email($s['e']) . '" />
+          <strong>' . $s['e'] . '</strong>
+          <span>' . $s['n'] . '</span>
         </li>';
       }
     }
