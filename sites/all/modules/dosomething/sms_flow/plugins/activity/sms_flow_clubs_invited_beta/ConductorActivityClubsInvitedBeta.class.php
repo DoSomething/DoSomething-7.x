@@ -83,8 +83,7 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
       $xml = curl_exec($ch);
       curl_close();
 
-      $clubs_invite_gid = 725010;
-      /*$pattern = '#\<custom_column name\="clubs_invite_gid"\>(.*?)\<\/custom_column\>#is';
+      $pattern = '#\<custom_column name\="clubs_invite_gid"\>(.*?)\<\/custom_column\>#is';
       preg_match($pattern, $xml, $patternMatches);
       if (count($patternMatches) >= 2) {
         $clubs_invite_gid = trim($patternMatches[1]);
@@ -106,7 +105,7 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
         $alphaMsg = "Ur friend $first_name accepted your invite to join ur DoSomething club! Who else should be involved? Text back CINVITE and we'll invite them too.";
         $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
-      }*/
+      }
 
       // Join user into the drive
       if ($clubs_invite_gid > 0) {
