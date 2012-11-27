@@ -224,7 +224,8 @@
               else {
                 things.comments = $('#fb_og_comments').val();
               }
-              things.explicitly_shared = ($('#explicitly-share').attr('checked') == 'checked') || false;
+
+              things.explicitly_shared = $('#explicit-share').is(':checked');
 
               if (things.friend_selector == 'custom') {
                 if (!Drupal.behaviors.fb.has_permission('publish_actions')) {
@@ -575,7 +576,7 @@
                     og_require_login: false,
                   };
 
-                  if ($('#explicit-share').is(':checked')) {
+                  if (response.explicitly_shared) {
                     o.explicit = true;
                   }
 
@@ -723,6 +724,10 @@
 
       if (things.message) {
         fbpost.message = things.message;
+      }
+
+      if (things.explicit) {
+        fbpost['fb:explicitly_shared'] = things.explicit;
       }
 
       if (things.dialog == 1) {

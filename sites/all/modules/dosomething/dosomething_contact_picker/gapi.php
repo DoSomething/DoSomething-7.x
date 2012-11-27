@@ -49,6 +49,7 @@ if ($_POST['do'] == 'blah') {
 
     $xml = ($val->getResponseBody());
     $res .= '<ul id="blah">';
+    $vals = array();
     preg_match_all('#<entry>(.*?)</entry>#si', $xml, $entries);
     foreach ($entries[1] AS $key => $entry) {
       preg_match('#\<title type\=("|\'|)text(\\1)\>(.*?)\<\/title\>#i', $entry, $name);
@@ -57,6 +58,11 @@ if ($_POST['do'] == 'blah') {
       $n = $name[3];
       $e = $email[4];
 
+      $vals[$e] = $n;
+    }
+
+    ksort($vals);
+    foreach ($vals AS $e => $n) {
       if (!empty($e)) {
         $res .= '
         <li>
@@ -67,26 +73,6 @@ if ($_POST['do'] == 'blah') {
       }
     }
 
-    /*// Names
-    preg_match_all('#type\=\'text\'\>([^(<]*)\<\/title\>#i', $response, $titles);
-    // Emails
-    preg_match_all('#address\=\'([^>\']+)\'#i', $response, $emails);
-    // Unset and reset don't play nicely, so let's just slice the first item.
-    $titles = array_slice($titles[1], 1);
-    reset($titles);
-
-    $list = associate_emails($emails[1], $titles);
-
-    #$res .= '<a href="#" id="check-all">Check all</a> / <a href="#" id="check-none">None</a>';
-    $res .= '<ul id="blah">';
-    foreach ($list AS $email => $name) {
-      $res .= '
-      <li>
-        <input type="checkbox" class="email-checkbox" checked="checked" name="emails" value="' . $email . '" id="' . clean_email($email) . '" />
-        <strong>' . $email . '</strong>
-        <span>' . $name . '</span>
-      </li>';
-    }*/
     $res .= '</ul>';
 
     echo $res;

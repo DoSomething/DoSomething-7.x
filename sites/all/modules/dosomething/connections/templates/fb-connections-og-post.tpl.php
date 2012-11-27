@@ -239,7 +239,7 @@
 		<div style="clear: both"></div>
 	</div>
 	<div id="submit-buttons">
-		<input type="checkbox" id="explicitly-share" checked="checked" /> <label for="explicitly-share">Post to my wall</label>
+		<input type="checkbox" id="explicit-share" checked="checked" /> <label for="explicit-share">Post to my wall</label>
 		<input type="submit" value="Share" id="submit-og-post" />
 		<input type="reset" value="Cancel" class="close-fb-dialog" id="cancel-og-post" />
 	</div>
