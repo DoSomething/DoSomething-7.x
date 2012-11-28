@@ -120,8 +120,6 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
       $school_sid = self::checkSchoolSID($first_word);
       if ($school_sid) {
         $state->setContext('school_sid', $school_sid);
-$response = "TODO: there will not actually be a response here. saving sid: $school_sid";
-$state->setContext('sms_response', $response);
       }
       else {
         $response = "That's not a valid school ID. Text <TODO: KEYWORD> to search again. Or go to http://www.dosomething.org/teensforjeans for more info.";
