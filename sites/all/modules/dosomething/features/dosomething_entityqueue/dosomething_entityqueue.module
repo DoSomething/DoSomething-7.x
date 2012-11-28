@@ -27,7 +27,7 @@ function dosomething_entityqueue_menu() {
   $base = array(
     'type' => MENU_CALLBACK,
     'access callback' => 'user_access',
-    'access arguments' => 'administer all queues',
+    'access arguments' => array('administer all queues'),
   );
 
   $items['entityqueue/add/%/%'] = array(
