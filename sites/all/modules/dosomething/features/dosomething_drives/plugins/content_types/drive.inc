@@ -354,7 +354,7 @@ function dosomething_drives_drive_invite_module($gid) {
 
   $return = array();
   $return['header'] = array(
-    '#markup' => 'Invite friends through:',
+    '#markup' => 'Invite friends',
     '#prefix' => '<h2 id="invite_header">',
     '#suffix' => '</h2><div id="teams-notification-area"></div>',
   );
