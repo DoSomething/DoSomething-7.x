@@ -12,33 +12,43 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
     $email = $state->getContext('ask_email:message');
     $first_name = $state->getContext('ask_first_name:message');
 
+    // Attempt to find existing account associated with the email
     if (!empty($email)) {
       $account = user_load_by_mail($email);
+    }
 
-      if ($account) {
-        $profile = profile2_load_by_user($account, 'main');
-        $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $first_name;
-        $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
+    // If not found yet, attempt to find existing account with the mobile number
+    if (!$account) {
+      $account = _sms_flow_find_user_by_cell($mobile);
+    }
 
-        try {
-          profile2_save($profile);
-        }
-        catch( Exception $e ) {}
+    // Update info in found account
+    if ($account) {
+      if (!empty($email) && $account->mail != $email) {
+        $account->mail = $email;
+        $account = user_save($account);
       }
+
+      $profile = profile2_load_by_user($account, 'main');
+      $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $first_name;
+      $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
+
+      try {
+        profile2_save($profile);
+      }
+      catch(Exception $e) {}
 
       $message = t('Your account for @mail has been updated with your new info. ', array('@mail' => $email));
     }
-
-    // Already checked for mobile account before, so if there's still no account at
-    // this point, it's safe to assume one doesn't exist and a new one should be created
-    if (!$account) {
+    // No accounts were found. Create a new one.
+    else {
       $account = new stdClass;
 
       $suffix = 0;
       $account->name = $first_name;
       while (user_load_by_name($account->name)) {
         $suffix++;
-        $account->name = $name . '-' . $suffix;
+        $account->name = $first_name . '-' . $suffix;
       }
 
       $pass = strtoupper(user_password(6));
@@ -67,9 +77,12 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
       }
       catch( Exception $e ) {}
 
-      $message = t('Your password to login with your new account at http://www.dosomething.org is @pass. ', array('@pass' => $pass));
+      $message = t('Ur password to login at http://www.dosomething.org is @pass. ', array('@pass' => $pass));
     }
 
+    // No message is sent from this activity. Messages that should be sent as a result of it
+    // though are placed in pending_message. Responsibility is on subsequent activities to 
+    // process and display these messages.
     $state->setContext('pending_message', $message);
     $state->markCompleted();
   }

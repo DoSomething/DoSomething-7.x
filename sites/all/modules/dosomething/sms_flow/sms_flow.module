@@ -385,20 +385,30 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('activity');
   $activity->name = 'no_account_exists';
   $activity->inputs = array('check_account_exists');
-  $activity->outputs = array('ask_name');
+  $activity->outputs = array('ask_first_name');
 
   $activity = $workflow->newActivity('sms_prompt');
-  $activity->name = 'ask_name';
+  $activity->name = 'ask_first_name';
   $activity->title = 'Ask Name';
   $activity->question = t('Awesome! Reply with ur first name and we\'ll set u up with a login for our website where you can learn more about the drive details and about DoSomething.org');
   $activity->inputs = array('drive_invite_response');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->inputs = array('ask_first_name');
+  $activity->outputs = array('create_account');
+
+  $activity = $workflow->newActivity('sms_flow_create_account');
+  $activity->name = 'create_account';
+  $activity->inputs = array('strip_signature');
   $activity->outputs = array('process_beta');
 
   $activity = $workflow->newActivity('sms_flow_drives_invited_beta');
   $activity->name = 'process_beta';
   $activity->title = 'Process Drive Betas';
   $activity->alpha_campaign_id = 99961;
-  $activity->inputs = array('drive_invite_response', 'ask_name');
+  $activity->inputs = array('drive_invite_response', 'create_account');
   $activity->outputs = array('ftaf_process');
 
   $activity = $workflow->newActivity('sms_flow_ftaf');

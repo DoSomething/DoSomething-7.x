@@ -22,54 +22,18 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
     if ($state->getContext($this->name . ':message') === FALSE) {
       $success_message = '';
-      $first_name = '';
 
-      $name = $state->getContext('ask_name:message');
-
-      // Only search based on final 10 numbers in mobile #. Ignores international code added by Mobile Commons.
       $mobile = $state->getContext('sms_number');
+      $pending_message = $state->getContext('pending_message');
 
-      // If we have a user with this mobile, update their info.
-      $account = _sms_flow_find_user_by_cell($mobile);
-
-      // Create account for this user if none is found
-      if (!$account) {
-        $account = new stdClass;
-
-        $suffix = 0;
-        $account->name = $name;
-        while (user_load_by_name($account->name)) {
-          $suffix++;
-          $account->name = $name . '-' . $suffix;
-        }
-
-        $pass = strtoupper(user_password(6));
-        require_once('includes/password.inc');
-        $hashed_pass = user_hash_password($pass);
-        $account->pass = $hashed_pass;
-        $account->mail = $mobile . '@mobile';
-        $account->status = 1;
-
-        $account = user_save($account);
-
-        $profile_values = array('type' => 'main');
-        $profile = profile2_create($profile_values);
-        $profile->uid = $account->uid;
-        
-        $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
-        $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $name;
-        $first_name = $name;
-
-        try {
-          profile2_save($profile);
-        }
-        catch( Exception $e ) {
-        }
-
-        $success_message .= t('Ur password to login at http://doso.me/2 is @pass. ', array('@pass' => $pass));
+      // The pending_message value is set by sms_flow_create_account activity. Changing the link to 
+      // push users to for Teens for Jeans. If no pending_message, safe to assume that no new account
+      // was created and we can use the other success message.
+      if (empty($pending_message)) {
+        $success_message = t('Awesome! You\'ve been added to your friend\'s drive at http://doso.me/2. ');
       }
       else {
-        $success_message .= t('Awesome! You\'ve been added to your friend\'s drive at http://doso.me/2. ');
+        $success_message = str_replace('http://www.dosomething.org', 'http://doso.me/2', $pending_message);
       }
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
@@ -82,6 +46,8 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       curl_setopt($ch, CURLOPT_URL, $profileUrl);
       $xml = curl_exec($ch);
       curl_close();
+
+      $account = _sms_flow_find_user_by_cell($mobile);
 
       $drives_invite_gid = 0;
       $pattern = '#\<custom_column name\="drives_invite_gid"\>(.*?)\<\/custom_column\>#is';
@@ -99,10 +65,8 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       // Send feedback message to Alpha
       $alphaMobile = sms_flow_find_alpha(substr($mobile, -10), $drives_invite_gid);
       if ($alphaMobile) {
-        if (empty($first_name)) {
-          $profile = profile2_load_by_user($account, 'main');
-          $first_name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-        }
+        $profile = profile2_load_by_user($account, 'main');
+        $first_name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
 
         $alphaMsg = "Ur friend $first_name accepted your invite to join ur DoSomething Teens for Jeans team! Who else should be involved? Text back TFJINVITE and we'll invite them too.";
         $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
