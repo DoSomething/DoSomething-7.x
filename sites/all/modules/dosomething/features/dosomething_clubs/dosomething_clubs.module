@@ -9,6 +9,7 @@ include_once('dosomething_clubs.features.inc');
 define('DSCLUBS_ADMIN_ROLE', 3);
 define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
 define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 726503));
+define('CLUBS_TSHIRT_ALPHA_CAMPAIGN', variable_get('tshirt_alpha_campaign', 135461));
 define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 135461));
 #define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', );
 #define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', );
@@ -1578,7 +1579,7 @@ function dosomething_clubs_tshirt($form, &$form_state) {
   $address = $input['your_address'];
   $cells = $input['your_friends_phone_numbers'];
 
-  $user = user_load_by_mail($email);
+  global $user;
   $c = db_select('node', 'n')
     ->fields('n', array('nid'))
     ->condition('type', 'club')
@@ -1587,6 +1588,12 @@ function dosomething_clubs_tshirt($form, &$form_state) {
     ->orderBy('nid', 'DESC')
     ->range(0, 1);
   $club = reset($c->execute()->fetchAll());
+
+  $p = profile2_load_by_user($user, 'main');
+  if (!empty($p->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
+    $my_number = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
+    dosomething_general_mobile_commons_subscribe($my_number, CLUBS_TSHIRT_ALPHA_CAMPAIGN);
+  }
 
   preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $cells), $numbers);
   foreach ($numbers['numbers'] AS $number) {
