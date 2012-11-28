@@ -467,6 +467,7 @@ function dosomething_picsforpets_general_init() {
   // Just bail out quickly if we're not on a pics for pets page.
   if (dosomething_picsforpets_general_is_picsforpets_page()) {
     drupal_add_js(drupal_get_path('module', 'dosomething_picsforpets_general') . '/js/autoscroll.js');
+    drupal_add_js(drupal_get_path('module', 'connections') . '/js/connections.js');
     drupal_add_library('dosomething_login', 'jquery.validate');
     drupal_add_library('dosomething_general', 'fb-friend-finder');
     drupal_add_library('connections', 'fb-connections');
