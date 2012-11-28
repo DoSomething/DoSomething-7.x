@@ -20,7 +20,7 @@ div.messages.status {
     font-size: 28px; }
 
 #share-buttons {
-  width: 642px;
+  width: 405px;
   margin: 0px auto; }
   #share-buttons div.share-container {
     float: left; }
@@ -42,7 +42,8 @@ div.messages.status {
           box-shadow: none;
           color: #dcdada; }
     #share-buttons div.share-container#cell-share {
-      margin-right: 75px; }
+      margin-right: 75px;
+      display: none; }
     #share-buttons div.share-container#fb-share {
       margin-right: 75px; }
 
