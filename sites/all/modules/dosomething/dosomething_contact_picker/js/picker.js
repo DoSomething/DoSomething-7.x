@@ -86,8 +86,8 @@ function submit_emails() {
 }
 
 jQuery(document).ready(function() {
-  if (typeof window.parent.hide_scraper_loader == 'function') {
-    window.parent.hide_scraper_loader();
+  if (typeof hide_scraper_loader == 'function') {
+    hide_scraper_loader();
   }
 
   jQuery('#contacts-scraper-dialog', window.parent.document).css('height', 'auto');
@@ -102,7 +102,7 @@ function scraper_email(subject, body) {
 }
 
 function stretch_scraper() {
-  jQuery('#email-scraper', window.parent.document).css('height', '675px').css('min-height', '675px');
-  jQuery('.email-scraper-dialog', window.parent.document).animate({'height': '700px'});
+  jQuery('#email-scraper', window.parent.document).css('height', '700x').css('min-height', '700px');
+  jQuery('.email-scraper-dialog', window.parent.document).animate({'height': '750px'});
   return false;
 }

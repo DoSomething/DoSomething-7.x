@@ -10,7 +10,7 @@
   </head>
   <body>
     <h1 id="connect-message">Connect your email address book to email your contacts:</h1>
-    <p id="having-trouble"><em>If you don't see a pop-up after clicking a link below, click the link again.  (Still not working? Try allowing pop-ups.)</em></p>
+    <!--<p id="having-trouble"><em>If you don't see a pop-up after clicking a link below, click the link again.  (Still not working? Try allowing pop-ups.)</em></p>-->
 <div id="socials">
 <?php echo $s['services']; ?>
 </div>
