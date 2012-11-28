@@ -146,6 +146,9 @@ function sms_flow_incoming_callback($path) {
     case 'clubs':
       $keyword = 'clubs';
       break;
+    case 'clubs-ftaf':
+      $keyword = 'clubs-ftaf';
+      break;
     case 'clubs-survey':
       $keyword = 'clubs-survey';
       break;
@@ -226,6 +229,7 @@ function sms_flow_conductor_sms_keywords() {
     'drives-invite' => 'sms_flow_drives_invite',
     'ftaf' => 'sms_flow_ftaf',
     'clubs' => 'sms_flow_clubs_invite',
+    'clubs-ftaf' => 'sms_flow_clubs_ftaf',
     'clubs-survey' => 'sms_flow_clubs_survey',
     'clubs-followup' => 'sms_flow_clubs_followup_survey',
   );
@@ -574,11 +578,11 @@ function sms_flow_default_conductor_workflows() {
   $workflows[$workflow->name] = $workflow;
 
   //
-  // sms_flow_ftaf workflow
+  // sms_flow_clubs_ftaf workflow
   //
   $workflow = new ConductorWorkflow;
   $workflow->wid = 'new';
-  $workflow->name = 'sms_flow_ftaf';
+  $workflow->name = 'sms_flow_clubs_ftaf';
   $workflow->title = 'Forward to a Friend Clubs Style';
   $workflow->description = 'Custom forward to a friend workflow';
   $workflow->api_version = '1.0';
@@ -661,7 +665,7 @@ function sms_flow_default_conductor_workflows() {
 
   $workflows[$workflow->name] = $workflow;
 
- //
+  //
   // sms_flow_clubs_survey workflow
   //
   $workflow = new ConductorWorkflow;

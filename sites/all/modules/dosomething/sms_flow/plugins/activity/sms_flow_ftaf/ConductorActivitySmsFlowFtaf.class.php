@@ -140,7 +140,7 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
         $response .= '. ';
       }
 
-      $response .= 'Text TFJINVITE if you want to invite more!!!!.';
+      $response .= 'Text TFJINVITE if you want to invite more!';
 
       sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
     }
