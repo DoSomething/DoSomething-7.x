@@ -372,7 +372,7 @@ textarea {
 }
 
 #friends-info li div input[type="text"], .my-post {
-    width: 225px;
+    width: 220px;
     background: #fff;
     border: 1px solid #808080;
     color: #000;
