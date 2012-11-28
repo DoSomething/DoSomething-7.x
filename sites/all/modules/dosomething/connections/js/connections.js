@@ -228,8 +228,8 @@
               things.explicitly_shared = $('#explicit-share').is(':checked');
 
               if (things.friend_selector == 'custom') {
-                if (!Drupal.behaviors.fb.has_permission('publish_actions')) {
-                  Drupal.behaviors.fb.ask_permission('publish_actions', function() {
+                if (!Drupal.behaviors.fb.has_permission('publish_stream')) {
+                  Drupal.behaviors.fb.ask_permission('publish_stream', function() {
                     callback(things);
                   });
                 }

@@ -9,8 +9,8 @@ include_once('dosomething_clubs.features.inc');
 define('DSCLUBS_ADMIN_ROLE', 3);
 define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
 define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 726503));
-define('CLUBS_TSHIRT_ALPHA_CAMPAIGN', variable_get('tshirt_alpha_campaign', 135461));
-define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 135461));
+define('CLUBS_TSHIRT_ALPHA_CAMPAIGN', variable_get('tshirt_alpha_campaign', 136301));
+define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 136311));
 #define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', );
 #define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', );
 
@@ -926,6 +926,7 @@ function dosomething_clubs_share_page(&$form, &$form_state) {
  */
 function dosomething_clubs_add_users($form, &$form_state, $nid) {
   if (isset($_SESSION['just_created_club'])) {
+    $just_created = true;
     unset($_SESSION['just_created_club']);
   }
 
@@ -976,7 +977,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
     ),*/
     'title' => array(
       '#prefix' => '<h1 class="title">',
-      '#markup' => t('Congrats, your club has been created!'),
+      '#markup' => t(($just_created ? 'Congrats, your club has been created!' : 'Invite your friends to your club.')),
       '#suffix' => '</h1>',
     ),
     'but' => array(
@@ -1592,7 +1593,9 @@ function dosomething_clubs_tshirt($form, &$form_state) {
   $p = profile2_load_by_user($user, 'main');
   if (!empty($p->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
     $my_number = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
-    dosomething_general_mobile_commons_subscribe($my_number, CLUBS_TSHIRT_ALPHA_CAMPAIGN);
+    dosomething_general_mobile_commons_subscribe($my_number, CLUBS_TSHIRT_ALPHA_CAMPAIGN, array(
+      'name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
+    ));
   }
 
   preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $cells), $numbers);
@@ -1605,7 +1608,9 @@ function dosomething_clubs_tshirt($form, &$form_state) {
       );
 
       drupal_write_record('dosomething_clubs_tshirt_response', $res);
-      dosomething_general_mobile_commons_subscribe($number, CLUBS_TSHIRT_BETA_CAMPAIGN);
+      dosomething_general_mobile_commons_subscribe($number, CLUBS_TSHIRT_BETA_CAMPAIGN, array(
+        'club_leader_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
+      ));
     }
   }
 
