@@ -11,8 +11,8 @@ define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
 define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 726503));
 define('CLUBS_TSHIRT_ALPHA_CAMPAIGN', variable_get('tshirt_alpha_campaign', 136301));
 define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 136311));
-#define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', );
-#define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', );
+define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_alpha_campaign', 135911));
+define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_beta_campaign', 135911));
 
 /**
  * Implements hook_og_ui_get_group_admin_alter().
@@ -1191,14 +1191,20 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
   );
 
   $form['cell_share']['cell_box']['submit_cells'] = array(
-    '#type' => 'submit',
-    '#value' => 'Invite these numbers',
-    '#attributes' => array('class' => array('go-button')),
+    '#type' => 'container',
+    '#attributes' => array('id' => 'submit-cells-block'),
+    'submit_emails' => array(
+      '#type' => 'submit',
+      '#value' => t('Invite these numbers'),
+      '#attributes' => array('class' => array('go-button')),
+      '#ajax' => array(
+        'callback' => 'dosomething_clubs_abc',
+      ),
+    ),
+    'invite_sent' => array(
+      '#markup' => '<div id="invite-sent-cells"></div>',
+    ),
   );
-
-   $form['cell_share']['cell_box']['submit_cells']['#ajax'] = array(
-     'callback' => 'dosomething_clubs_abc',
-   );
 
   $form['cell_share']['cell_box']['post'] = array(
     '#markup' => '</div>',
@@ -1337,18 +1343,17 @@ function dosomething_clubs_abc(&$form, &$form_state) {
     }
   }
 
-  $alpha_optin = 135911;
-  $beta_optin = 135911;
-
+  $alpha_optin = CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN;
+  $beta_optin = CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN;
   sms_flow_start($p->field_user_mobile[LANGUAGE_NONE][0]['value'], $alpha_optin, $beta_optin, $numbers, $form_values, array(
     'clubs_inviter_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
-    'clubs_invite_gid' => $form_state['club_id'],
+    'clubs_invite_gid' => $form_state['node'],
   ));
 
   return array(
     '#type' => 'ajax',
     '#commands' => array(
-      ajax_command_replace('#invite-sent', '<div id="invite-sent">' . t('Invitation sent!') . '</div>'),
+      ajax_command_replace('#invite-sent-cells', '<div id="invite-sent-cells">' . t('Invitation sent!') . '</div>'),
     ),
   );
 }
@@ -1468,8 +1473,7 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
       )
     )
   );
-  #drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/club-autofill.js');
-  #drupal_add_css(drupal_get_path('module', 'dosomething_clubs') . '/css/clubs-form.css');
+
   $form['#validate'][] = 'dosomething_clubs_form_validate';
 
   // Take no action if this user is not authenticated.
@@ -1594,7 +1598,7 @@ function dosomething_clubs_tshirt($form, &$form_state) {
   if (!empty($p->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
     $my_number = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
     dosomething_general_mobile_commons_subscribe($my_number, CLUBS_TSHIRT_ALPHA_CAMPAIGN, array(
-      'name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
+      'club_leader_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
     ));
   }
 
