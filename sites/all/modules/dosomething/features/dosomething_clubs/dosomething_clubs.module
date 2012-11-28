@@ -11,7 +11,7 @@ define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
 define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 726503));
 define('CLUBS_TSHIRT_ALPHA_CAMPAIGN', variable_get('tshirt_alpha_campaign', 136301));
 define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 136311));
-define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_alpha_campaign', 135911));
+define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_alpha_campaign', 136361));
 define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_beta_campaign', 135911));
 
 /**
@@ -1669,22 +1669,24 @@ function dosomething_clubs_form_validate(&$form, &$form_state) {
     }
   }
 
-  $r = db_select('node', 'n')
-    ->fields('n', array('nid', 'title'))
-    ->condition('created', array(strtotime('24 hours ago'), REQUEST_TIME), 'BETWEEN')
-    ->condition('type', 'club', '=')
-    ->condition('uid', $user->uid, '=')
-    ->range(0, 1)
-    ->execute()
-    ->fetchAll();
+  if (current($form_state['submit_handlers']) != 'node_form_delete_submit') {
+    $r = db_select('node', 'n')
+      ->fields('n', array('nid', 'title'))
+      ->condition('created', array(strtotime('24 hours ago'), REQUEST_TIME), 'BETWEEN')
+      ->condition('type', 'club', '=')
+      ->condition('uid', $user->uid, '=')
+      ->range(0, 1)
+      ->execute()
+      ->fetchAll();
 
-  if ($r[0]) {
-    form_set_error('form', t("It looks like you've created !another in the last 24 hours.  Please wait a full day before making a new club, or delete your old club and try again.  Received this in error? !email",
-      array(
-        '!email' => l(t('Email clubs@dosomething.org'), 'mailto:clubs@dosomething.org'),
-        '!another' => l(t('another club'), drupal_lookup_path('alias', 'node/' . $r[0]->nid)) 
-      )
-    ));
+    if ($r[0]) {
+      form_set_error('form', t("It looks like you've created !another in the last 24 hours.  Please wait a full day before making a new club, or delete your old club and try again.  Received this in error? !email",
+        array(
+          '!email' => l(t('Email clubs@dosomething.org'), 'mailto:clubs@dosomething.org'),
+          '!another' => l(t('another club'), drupal_lookup_path('alias', 'node/' . $r[0]->nid)) 
+        )
+      ));
+    }
   }
 
   // If the email is set, make sure we can update the user's email address.
