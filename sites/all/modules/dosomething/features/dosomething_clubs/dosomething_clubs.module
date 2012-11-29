@@ -1331,7 +1331,7 @@ function dosomething_clubs_abc(&$form, &$form_state) {
   global $user;
   $p = profile2_load_by_user($user, 'main');
   //@TODO: This
-  $form_values['details']['nid'] = $form_state['club_id'];
+  $form_values['details']['nid'] = $form_state['node'];
 
   if (!empty($form_state['input']['your_cell'])) {
     global $user;
