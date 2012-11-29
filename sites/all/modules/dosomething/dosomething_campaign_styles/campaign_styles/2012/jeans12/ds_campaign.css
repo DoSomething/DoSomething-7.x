@@ -94,7 +94,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -1345,6 +1345,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 0 0 -1em 0; }
   #cmp #footer.section .go-button {
     margin: 0 0 1% 0; }
+  #cmp #iframe_wrapper {
+    height: 404px !important; }
   #cmp #contact-form {
     background: #0c3565;
     width: 100%; }

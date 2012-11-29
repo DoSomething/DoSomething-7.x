@@ -48,7 +48,6 @@
       // change over contact form
       var changeForm = $('.pane-campaign-signed');
       $('#header #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
-      
 
       // pop, bang, lovely
       $('#faq h4').next('div').css('display','none');
@@ -65,59 +64,68 @@
         }
       });
 
-      // jQuery scrolling effect with focus!
+      // animation for a.jump_scroll
       var contentAnchors = 'a.jump_scroll';
       var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
       var allAnchors = navAnchors + ', ' + contentAnchors;
-      
-      // input highlighting
+
+      // variables for input highlighting
       var webformEmail = '#contact-form input[type="text"]';
       var webformCell = '#contact-form input[type="tel"]';
       var webformBoth = webformEmail + ', ' + webformCell;
 
+      // scrolling navigation block
+      $(window).bind('load', function() {
+        var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
+        var $footer = $('#block-menu-menu-footer');
+        var $document = $(document);
+        var scrollLimitTop = $nav.offset().top;
+        $document.scroll(function () {
+          var st = $document.scrollTop();
+          var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
+          if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
+            $nav.css({
+              'position'    : 'fixed',
+              'top'         : '0px',
+              'bottom'      : 'auto',
+              'z-index'     : '3'
+            });
+          }
+          else if (st >= scrollLimitTop) { // once $nav hits $footer
+            scrollLimitTop = $nav.offset().top;
+            $nav
+              .css('position', 'absolute')
+              .css('top', 'auto')
+              .css('bottom', '25px')
+          }
+          else { // before scrolling engages $nav
+            scrollLimitTop = $nav.offset().top;
+            $nav
+              .css('position', 'static')
+          }
+        });
+      }); // end scrolling nav
+
+      $(document).ready(function(){
+        $(webformEmail).focus().addClass('focusOutline');
+      });
+      $(webformBoth).focus(function(){
+        $(this).addClass('focusOutline');
+      });
+      $(webformBoth).blur(function() {
+        $(this).removeClass('focusOutline');
+      });
+
       $(allAnchors).click(function(event){
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-
         if($(this).attr('href') == '#header'){
           $(webformEmail).focus().addClass('focusOutline');
         }
-        $(webformBoth).focus(function(){
-          $(this).addClass('focusOutline');
-        });
-        $(webformBoth).blur(function() {
-          $(this).removeClass('focusOutline');
-        });
         return false;
       });
-      
-      // scroll function
-      var $window = $(window);
-      var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-      var scrollLimitTop = 210;
-      var scrollLimitBot = 5757;
 
-      $window.scroll(function () {
-        var st = $window.scrollTop();
-        if (st > scrollLimitTop && st < scrollLimitBot) {
-          $nav.css({
-            'position'    : 'fixed',
-            'top'         : '15px',
-            'margin'      : '0px 0 0 -20px',
-            'z-index'     : '3'
-          });
-        }
-        else if (st >= scrollLimitTop) {
-          $nav
-            .css('position', 'static')
-        }
-        else {
-          $nav
-            .css('position', 'static')
-        }
-      });
-
-      // kill old asterisks from required fields
-      $('#dosomething-login-register-popup-form .popup-content .field-suffix').remove();
+    // kill old asterisks from required fields
+    $('#dosomething-login-register-popup-form .popup-content .field-suffix').remove();
 
     // Reload page on click 
       $('.ui-icon-closethick').click(function() {

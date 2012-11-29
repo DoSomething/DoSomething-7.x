@@ -564,6 +564,8 @@ body {
     background-image: url("assets/arrow-up.png");
     background-repeat: no-repeat;
     background-position-y: 0.5em; }
+#cmp #iframe_wrapper {
+  height: 500px !important; }
 #cmp label {
   cursor: default; }
 #cmp #contact-form {

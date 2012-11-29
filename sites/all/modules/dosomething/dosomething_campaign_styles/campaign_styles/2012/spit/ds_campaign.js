@@ -117,7 +117,7 @@
 
       $(allAnchors).click(function(event){
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-        if($(this).attr('href') == '/#header'){
+        if($(this).attr('href') == '#header'){
           $(webformEmail).focus().addClass('focusOutline');
         }
         return false;
