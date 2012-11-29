@@ -276,7 +276,7 @@ function dosomething_mobile_referral_form_submit($form, &$form_state) {
     $goto = substr($form_state['goto'], 1);
   }
 
-  drupal_set_message(t("Thanks for sharing stats with your friends.  You've officially entered to win the scholarship.  We'll be announcing the winners on Nov. 9th so hold tight till then and keep your fingers crossed! Got questions? email !e.", array('!e' => l('scholarships@dosomething.org', 'mailto:scholarships@dosomething.org'))));
+  drupal_set_message(t("Thanks for sharing stats with your friends. You've officially entered to win the scholarship. We'll be announcing the winners on Jan. 9th, so hold tight and keep your crossed 'til then! Questions? Email !e.", array('!e' => l('scholarships@dosomething.org', 'mailto:scholarships@dosomething.org'))));
   $form_state['redirect'] = $goto;
   $_GET['redirect'] = $goto;
   #drupal_set_message("Thanks for submitting.  Have a nice day!");
