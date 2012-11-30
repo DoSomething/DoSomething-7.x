@@ -65,4 +65,5 @@ features[variable][] = node_submitted_scholarship_recommendation
 features[variable][] = node_submitted_scholarship_recommendation_reque
 features[views_view][] = application_page_info
 features[views_view][] = application_queues
+features[views_view][] = foot_locker_judging
 features[views_view][] = foot_locker_pulls
