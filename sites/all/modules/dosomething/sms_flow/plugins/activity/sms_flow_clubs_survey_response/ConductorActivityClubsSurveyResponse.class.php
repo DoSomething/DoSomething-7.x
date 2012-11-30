@@ -29,7 +29,7 @@ class ConductorActivityClubsSurveyResponse extends ConductorActivity {
 
     $q = db_select('node', 'n')
       ->fields('n', array('nid', 'uid'))
-      ->condition('uid', 778374)
+      ->condition('uid', $account->uid)
       ->condition('type', 'club')
       ->orderBy('created', 'DESC')
       ->range(0, 1)
