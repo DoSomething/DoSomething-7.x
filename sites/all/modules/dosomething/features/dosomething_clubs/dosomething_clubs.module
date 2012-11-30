@@ -10,7 +10,7 @@ define('DSCLUBS_ADMIN_ROLE', 3);
 define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
 define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 726503));
 define('CLUBS_TSHIRT_ALPHA_CAMPAIGN', variable_get('tshirt_alpha_campaign', 136301));
-define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 136311));
+define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 136791));
 define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_alpha_campaign', 136361));
 define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_beta_campaign', 135911));
 
@@ -1469,9 +1469,11 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
       'options' => array(
         'group' => CSS_LIBRARY,
         'preprocess' => FALSE,
-        'every_page' => TRUE
-      )
-    )
+        'every_page' => TRUE,
+        'weight' => 9999,
+      ),
+      'weight' => 9999,
+    ),
   );
 
   $form['#validate'][] = 'dosomething_clubs_form_validate';
@@ -1642,7 +1644,20 @@ function dosomething_clubs_tshirt_response() {
     ->condition('cell', $number)
     ->execute();
 
-    dosomething_general_sms_mdata_response('Thanks! Got it.  You should hear from your club leader soon about getting your t-shirt!');
+    $n = db_query("SELECT n.uid
+    FROM dosomething_clubs_tshirt_response tr
+      LEFT JOIN node n ON (n.nid = tr.nid)
+    WHERE tr.cell = '" . $number . "'
+    ORDER BY n.nid DESC
+    LIMIT 1");
+
+    $r = reset($n->fetchAll());
+
+    $user = user_load($r->uid);
+    $p = profile2_load_by_user($user, 'main');
+    $club_leader_name = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+
+    dosomething_general_sms_mdata_response('Thanks so much! Your club leader ' . $club_leader_name . ' should receive ur super-rad t-shirt in the next two weeks.  - Crystal, DoSomething.org!');
   }
 }
 

@@ -40,7 +40,7 @@ class ConductorActivityClubsFollowUpSurveyFin extends ConductorActivity {
       ->condition('cell', $mobile)
       ->execute();
 
-    $success_message .= t('Thanks so much for taking our survey, it gives us a much better idea of how our team can support your awesome clubs! -Crystal');
+    $success_message .= t('Thanks so much for taking our survey, it gives us a much better idea of how our team can support your awesome clubs! - Crystal, DoSomething.org');
     $state->setContext('sms_response', $success_message);
     $state->markCompleted();
   }

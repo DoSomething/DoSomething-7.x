@@ -652,7 +652,7 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'process_next_answer';
   $activity->title = 'Process first question answer.';
   $activity->answers = array('a', 'b', 'c', 'd');
-  $activity->reject_message = t("Sorry, we couldn't understand that.  Please respond with A, B, C or D.");
+  $activity->reject_message = t("Sorry, we couldn't understand that.  Please respond with A, B, C or D, or give us some time and we'll get back to you.");
   $activity->inputs = array('clubs_survey_response');
   $activity->outputs = array('end');
 
@@ -683,7 +683,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_clubs_followup_survey_response');
   $activity->name = 'clubs_survey_followup_response';
   $activity->title = 'Handle club leader first response';
-  $activity->accept_responses = array('y','yes','yea','ya','yeah');
+  $activity->accept_responses = array('y','yes','yea','ya','yeah','ok','okay');
   $activity->deny_responses = array('n', 'no', 'nope', 'nah', 'na');
   $activity->rejected_message = t('No prob. Thanks for your interest in DoSomething.org.');
   $activity->inputs = array('start');
@@ -699,7 +699,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'process_club_focus';
   $activity->title = 'Club Focus?';
-  $activity->question = t('3. Does your club focus on A) general community volunteering or B) a specific cause/organization/project?');
+  $activity->question = t('3. Does your club focus on A) general community volunteering or B) a specific cause / organization / project?');
   $activity->inputs = array('process_next_answer');
   $activity->outputs = array('process_club_focus_nest');
 
