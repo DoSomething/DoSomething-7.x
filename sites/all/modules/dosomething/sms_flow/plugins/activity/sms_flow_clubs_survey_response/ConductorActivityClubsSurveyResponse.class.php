@@ -25,9 +25,21 @@ class ConductorActivityClubsSurveyResponse extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
+    $account = _sms_flow_find_user_by_cell($mobile);
+
+    $q = db_select('node', 'n')
+      ->fields('n', array('nid', 'uid'))
+      ->condition('uid', 778374)
+      ->condition('type', 'club')
+      ->orderBy('created', 'DESC')
+      ->range(0, 1)
+      ->execute();
+
+    $nodes = array();
+    $r = reset($q->fetchAll());
+
     // Invite accepted
     if (self::hasAcceptResponse($_REQUEST['args'])) {
-      $account = _sms_flow_find_user_by_cell($mobile);
 
       $this->removeOutput('process_question2');
       $success_message .= t('Thanks! Go to ds.org/T with your address and club members cell numbers, we’ll ask them shirt sizes and ship you the free shirts! While supplies last!!');
@@ -36,6 +48,7 @@ class ConductorActivityClubsSurveyResponse extends ConductorActivity {
       db_insert('dosomething_clubs_survey')
         ->fields(array(
           'cell' => $mobile,
+          'nid' => $r->nid,
           'replied_y' => 1,
           'timestamp' => REQUEST_TIME,
         ))
@@ -48,6 +61,7 @@ class ConductorActivityClubsSurveyResponse extends ConductorActivity {
       db_insert('dosomething_clubs_survey')
         ->fields(array(
           'cell' => $mobile,
+          'nid' => $r->nid,
           'replied_y' => 0,
           'timestamp' => REQUEST_TIME,
         ))
@@ -56,6 +70,13 @@ class ConductorActivityClubsSurveyResponse extends ConductorActivity {
       $deny_message = t('Righto. Why not? A) Ur club is no longer active B) U haven\'t been able to yet, but u want to C) U graduated D) U don\'t remember registering a DoSomething Club');
       $state->setContext('sms_response', $deny_message);
     }
+
+    $data = array(
+      'nid' => $r->nid,
+      'uid' => $r->uid,
+      'timestamp' => REQUEST_TIME
+    );
+    drupal_write_record('dosomething_clubs_sms_response', $data);
 
     $state->markCompleted();
   }

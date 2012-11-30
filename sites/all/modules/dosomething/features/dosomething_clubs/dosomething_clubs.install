@@ -131,6 +131,12 @@ function dosomething_clubs_schema() {
         'length' => 255,
         'not null' => TRUE
       ),
+      'nid' => array(
+        'description' => 'The Club ID of the club owner',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'default' => '0',
+      ),
       'replied_y' => array(
         'description' => 'Whether they initially replied "y" or not.',
         'type' => 'varchar',
@@ -307,6 +313,12 @@ function dosomething_clubs_update_7106() {
         'length' => 255,
         'not null' => TRUE
       ),
+      'nid' => array(
+        'description' => 'The Club ID of the club owner',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'default' => '0',
+      ),
       'replied_y' => array(
         'description' => 'Whether they initially replied "y" or not.',
         'type' => 'varchar',
@@ -336,4 +348,17 @@ function dosomething_clubs_update_7106() {
   if (!db_table_exists('dosomething_clubs_survey')) {
     db_create_table('dosomething_clubs_survey', $schema['dosomething_clubs_survey']);
   }
+}
+
+
+/**
+ *  Adds clubs NID column to survey table.
+ */
+function dosomething_clubs_update_7107() {
+  db_add_field('dosomething_clubs_survey', 'nid', array(
+    'description' => 'The Club ID of the club owner.',
+    'type' => 'int',
+    'unsigned' => TRUE,
+    'default' => '0',
+  ));
 }

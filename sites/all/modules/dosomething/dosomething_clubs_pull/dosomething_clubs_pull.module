@@ -240,6 +240,7 @@ class clubs_export {
         'Facebook invites' => $stuff['shares']['fb_shares'],
         'Email invites' => $stuff['shares']['email_shares'],
         'Total' => ($stuff['shares']['sms_shares'] + $stuff['shares']['fb_shares'] + $stuff['shares']['email_shares']),
+        'Responded to survey' => $stuff['survey'],
       );
 
       $i++;
@@ -304,6 +305,7 @@ class clubs_export {
         t('Facebook invites'),
         t('Email invites'),
         t('Total'),
+        t('Responded to survey'),
       );
 
       $handle = fopen($h['file_path'], 'w');
@@ -373,11 +375,13 @@ class clubs_export {
       `blurb`.`field_club_blurb_value` AS `blurb`,
       IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`,
       `lu`.`login` AS `last_leader_login`,
-      GROUP_CONCAT(DISTINCT `response`.`timestamp`) AS `sms_response_times`
+      GROUP_CONCAT(DISTINCT `response`.`timestamp`) AS `sms_response_times`,
+      IF (`survey`.`nid`, 1, 0) AS `survey`
     FROM 
     `node` node
     LEFT JOIN `users` users_node ON node.uid = users_node.uid
     LEFT JOIN `profile` profile_users ON users_node.uid = profile_users.uid
+    LEFT JOIN `dosomething_clubs_survey` AS `survey` ON (`survey`.`nid` = `node`.`nid`)
     LEFT JOIN `og` og_node ON node.nid = og_node.etid AND og_node.entity_type = 'node'
     LEFT JOIN `og_membership` og_membership_og ON og_node.gid = og_membership_og.gid
     LEFT JOIN `field_data_field_user_first_name` AS `firstname` ON (`firstname`.`entity_id` = `profile_users`.`pid`)
@@ -651,6 +655,7 @@ function dosomething_clubs_pull_batch_process(&$context) {
       t('Facebook invites'),
       t('Email invites'),
       t('Total'),
+      t('Responded to Survey'),
     );
 
     $filename = 'clubs_export_' . date('m-d-y', REQUEST_TIME) . '.csv';
@@ -722,6 +727,7 @@ function dosomething_clubs_pull_batch_process(&$context) {
         'Facebook invites' => $stuff['shares']['fb_shares'],
         'Email invites' => $stuff['shares']['email_shares'],
         'Total' => ($stuff['shares']['sms_shares'] + $stuff['shares']['fb_shares'] + $stuff['shares']['email_shares']),
+        'Responded to Survey' => $stuff['survey'],
       );
 
       unset($context['sandbox']['clubs']["$i"]);
@@ -802,6 +808,7 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Facebook Invites'), 'class' => array('clubs-pull-fb-shares')),
     array('data' => t('Email Invites'), 'class' => array('clubs-pull-email-shares')),
     array('data' => t('Total Invites'), 'class' => array('clubs-pull-total-shares')),
+    array('data' => t('Responded to survey'), 'class' => array('clubs-pull-survey-response')),
   );
 
 $count = db_query("SELECT COUNT(*) AS `count` FROM `node` WHERE (( (node.status = '1') AND (node.type IN  ('club')) )) GROUP BY nid, `node`.`title` ORDER BY `node`.`title` ASC");
@@ -884,6 +891,7 @@ $num = $count->rowCount();
         'Facebook invites' => array('data' => $result['shares']['fb_shares']),
         'Email invites' => array('data' => $result['shares']['email_shares']),
         'Total' => array('data' => ($result['shares']['sms_shares'] + $result['shares']['fb_shares'] + $result['shares']['email_shares'])),
+        'Responded to survey' => array('data' => $result['survey']),
       )
     );
   }
