@@ -132,9 +132,8 @@ input#edit-field-school-reference-und-0-target-id-name:before {
   padding-left: 10px;
   color: white;
   font-size: 16pt;
-  text-transform: uppercase;
   height: 53px;
-  padding: 15px 0px 16.5px 15px;
+  padding: 11px 0px 16.5px 15px;
   padding-left: 15px;
   border: 1px solid #565656;
   width: 346px;
@@ -328,9 +327,8 @@ div.form-item-parent-email {
   padding-left: 10px;
   color: white;
   font-size: 16pt;
-  text-transform: uppercase;
   height: 53px;
-  padding: 15px 0px 16.5px 15px;
+  padding: 11px 0px 16.5px 15px;
   padding-left: 15px;
   border: 1px solid #565656; }
   #node_club_form_group_where_should_we_send_the select option {
