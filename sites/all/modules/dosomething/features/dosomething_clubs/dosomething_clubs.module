@@ -1432,7 +1432,7 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
   $form['actions']['submit']['#value'] = ($create ? t('Save Changes') : t('Create Club'));
 
   $form['dsorg_tag'] = array(
-    '#markup' => t('DOSOMETHING.ORG CLUB'),
+    '#markup' => t('DoSomething.org Club'),
     '#prefix' => '<div id="dstag">',
     '#suffix' => '</div>',
     '#weight' => 1
@@ -1825,7 +1825,6 @@ function dosomething_clubs_handle_new_or_logged_in_user(&$form_state, &$form) {
     else if (!empty($phone)) {
       $account = dosomething_general_find_user_by_cell($form_state['values']['field_phone_required'][LANGUAGE_NONE][0]['value']);
     }
-
     if (!$account->uid) {
       // If the email does not have an account associated with it
       // Create an account for the user.
