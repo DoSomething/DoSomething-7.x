@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* The Coding Designer's Survival Kit
  * A framework for designing websites in the browser.
  *
@@ -5853,12 +5854,11 @@ body.page-node-submission div.tabs ul.tabs li:first-child {
   margin-bottom: 12px;
 }
 
-.pane-ds-current-somethings-all a.back,
-.pane-ds-past-somethings-all a.back,
-.pane-ds-editors-picks-all a.back {
-  position: absolute;
-  top: 283px;
-  right: 0;
+.pane-ds-current-somethings-all .back-link,
+.pane-ds-past-somethings-all .back-link,
+.pane-ds-editors-picks-all .back-link {
+  text-align: right;
+  padding-bottom: 5px;
 }
 .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
 .pane-ds-past-somethings-all .something-description .views-field-title,
