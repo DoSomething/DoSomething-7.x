@@ -1294,6 +1294,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #psa_wrapper {
     position: relative;
     padding-bottom: 55%;
+    margin-bottom: 2%;
     padding-top: 5%;
     height: 0; }
     #cmp #psa_wrapper iframe {
