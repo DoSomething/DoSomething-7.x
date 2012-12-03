@@ -24,39 +24,6 @@ function dosomething_clubs_default_fe_block_settings() {
     ),
   );
 
-  // crazyshit
-  $theme = array();
-
-  $theme['views-campaign_list_for_clubs-block'] = array(
-    'module' => 'views',
-    'delta' => 'campaign_list_for_clubs-block',
-    'theme' => 'crazyshit',
-    'status' => 0,
-    'weight' => '10',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => -1,
-  );
-
-  $theme['views-clubs_to_do_list-block'] = array(
-    'module' => 'views',
-    'delta' => 'clubs_to_do_list-block',
-    'theme' => 'crazyshit',
-    'status' => 0,
-    'weight' => '14',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => -1,
-  );
-
-  $export['theme']['crazyshit'] = $theme;
-
   // doit
   $theme = array();
 
