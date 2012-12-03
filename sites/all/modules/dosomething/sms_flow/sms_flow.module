@@ -722,7 +722,7 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'fin';
   $activity->title = 'Fin.';
   $activity->answers = array('a', 'b', 'c', 'd');
-  $activity->reject_message = t("Sorry, we couldn't understand that.  Please respond with A, B, C or D.");
+  $activity->reject_message = t("Please give us some time and we'll get back to you.  - Crystal, DoSomething.org");
   $activity->inputs = array('process_clubs_last_question');
   $activity->outputs = array('end');
 
