@@ -543,19 +543,19 @@ function sms_flow_default_conductor_workflows() {
   $activity->title = 'Ask Name';
   $activity->question = t('Awesome! Reply with ur first name and we\'ll set u up with a login for our website where you can learn more about your club and about DoSomething.org');
   $activity->inputs = array('clubs_invite_response');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->title = 'Strip Signature';
+  $activity->inputs = array('ask_name');
   $activity->outputs = array('clubs_process_beta');
 
   $activity = $workflow->newActivity('sms_flow_clubs_invited_beta');
   $activity->name = 'clubs_process_beta';
   $activity->title = 'Process Clubs Betas';
   $activity->alpha_campaign_id = 99961;
-  $activity->inputs = array('clubs_invite_response', 'ask_name');
-  $activity->outputs = array('strip_signature');
-
-  $activity = $workflow->newActivity('sms_strip_signature');
-  $activity->name = 'strip_signature';
-  $activity->title = 'Strip Signature';
-  $activity->inputs = array('clubs_process_beta');
+  $activity->inputs = array('clubs_invite_response', 'strip_signature');
   $activity->outputs = array('ftaf_clubs_process');
 
   $activity = $workflow->newActivity('sms_flow_clubs_ftaf');
@@ -652,7 +652,7 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'process_next_answer';
   $activity->title = 'Process first question answer.';
   $activity->answers = array('a', 'b', 'c', 'd');
-  $activity->reject_message = t("Sorry, we couldn't understand that.  Please respond with A, B, C or D, or give us some time and we'll get back to you.");
+  $activity->reject_message = t("Please give us some time and we'll get back to you.  - Crystal, DoSomething.org");
   $activity->inputs = array('clubs_survey_response');
   $activity->outputs = array('end');
 
@@ -706,8 +706,8 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_clubs_followup_survey_fourth');
   $activity->name = 'process_club_focus_nest';
   $activity->title = 'Process second question answer.';
-  $activity->answers = array('a', 'b', 'c', 'd');
-  $activity->reject_message = t("Sorry, we couldn't understand that.  Please respond with A, B, C or D.");
+  $activity->answers = array('a', 'b');
+  $activity->reject_message = t("Sorry, we couldn't understand that.  Please respond with A or B.");
   $activity->inputs = array('process_club_focus');
   $activity->outputs = array('process_clubs_last_question');
 

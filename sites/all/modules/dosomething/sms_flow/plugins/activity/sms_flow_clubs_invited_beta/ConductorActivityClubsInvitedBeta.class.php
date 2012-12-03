@@ -107,11 +107,6 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
       }
 
-      // Join user into the drive
-      if ($clubs_invite_gid > 0) {
-        dosomething_clubs_add_user_by_email_or_cell($mobile, $clubs_invite_gid);
-      }
-
       $success_message .= t('Who else should be involved? Respond with their phone #s and we\'ll invite them too');
       $state->setContext('sms_response', $success_message);
       $state->setContext('clubs_invite_gid', $clubs_invite_gid);

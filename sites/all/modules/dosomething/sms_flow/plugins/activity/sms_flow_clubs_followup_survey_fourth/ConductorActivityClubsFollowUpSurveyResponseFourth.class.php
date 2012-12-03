@@ -36,7 +36,7 @@ class ConductorActivityClubsFollowUpSurveyResponseFourth extends ConductorActivi
       }
     }
     else {
-	$state->markCompleted();
+    	$state->markCompleted();
     }
   }
 
