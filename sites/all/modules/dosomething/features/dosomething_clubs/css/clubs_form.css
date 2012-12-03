@@ -1,3 +1,12 @@
+#edit-field-no-school-associate label,
+#edit-field-campaign-list label,
+#edit-field-send-goodies label,
+.form-item-field-club-state-und label,
+.form-item-field-country-und label {
+  font-size: 16px;
+  font-family: din-web-reg;
+  font-weight: normal; }
+
 #edit-field-email label,
 #edit-field-phone-required label,
 .form-item-password label,
@@ -9,7 +18,10 @@
 #edit-field-club-zip label,
 .form-item-field-school-reference-und-0-target-id-name label,
 #field-noschool-club-name-add-more-wrapper label {
-  margin-left: 5px; }
+  margin-left: 5px;
+  font-size: 16px;
+  font-family: din-web-reg;
+  font-weight: normal; }
 
 .form-item-field-school-reference-und-0-target-id-type label {
   margin-left: 12px; }
@@ -168,6 +180,7 @@ input#edit-field-school-reference-und-0-target-id-name:before {
     border-radius: 10px;
     font-size: 14pt;
     padding-left: 10px;
+    border: 1px solid #d4d2d1;
     width: 60%; }
 
 #edit-field-noschool-club-name-und-0-value {
@@ -180,6 +193,7 @@ input#edit-field-school-reference-und-0-target-id-name:before {
   border-radius: 10px;
   font-size: 14pt;
   padding-left: 10px;
+  border: 1px solid #d4d2d1;
   width: 60%; }
 
 #edit-field-school-reference-und-0-target-id-street,
@@ -218,7 +232,8 @@ input#edit-field-school-reference-und-0-target-id-name:before {
     -o-border-radius: 10px;
     border-radius: 10px;
     font-size: 14pt;
-    padding-left: 10px; }
+    padding-left: 10px;
+    border: 1px solid #d4d2d1; }
 
 #edit-field-club-leader-birthdate {
   margin-bottom: 0px; }
@@ -245,7 +260,8 @@ input#edit-field-school-reference-und-0-target-id-name:before {
     -o-border-radius: 10px;
     border-radius: 10px;
     font-size: 14pt;
-    padding-left: 10px; }
+    padding-left: 10px;
+    border: 1px solid #d4d2d1; }
   #edit-field-name div.description,
   #edit-field-name-last div.description,
   #edit-field-club-leader-birthdate div.description {
@@ -275,7 +291,8 @@ div.form-item-password {
     -o-border-radius: 10px;
     border-radius: 10px;
     font-size: 14pt;
-    padding-left: 10px; }
+    padding-left: 10px;
+    border: 1px solid #d4d2d1; }
 
 div.form-item-parent-email {
   float: left;
@@ -292,6 +309,7 @@ div.form-item-parent-email {
     border-radius: 10px;
     font-size: 14pt;
     padding-left: 10px;
+    border: 1px solid #d4d2d1;
     width: 100%; }
   div.form-item-parent-email div.description {
     width: auto; }
@@ -305,7 +323,8 @@ div.form-item-parent-email {
   -o-border-radius: 10px;
   border-radius: 10px;
   font-size: 14pt;
-  padding-left: 10px; }
+  padding-left: 10px;
+  border: 1px solid #d4d2d1; }
 
 #node_club_form_group_where_should_we_send_the .fieldset-wrapper {
   min-height: 265px; }
@@ -349,7 +368,8 @@ div.form-item-parent-email {
     -o-border-radius: 10px;
     border-radius: 10px;
     font-size: 14pt;
-    padding-left: 10px; }
+    padding-left: 10px;
+    border: 1px solid #d4d2d1; }
 
 #edit-field-club-zip input {
   width: 155px;

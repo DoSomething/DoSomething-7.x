@@ -12,6 +12,7 @@
 	+border-radius(10px)
 	font-size: 14pt
 	padding-left: 10px
+	border: 1px solid #D4D2D1
 
 @mixin select-style
 	background: transparent
@@ -32,6 +33,19 @@
 	option
 		color: #000
 
+@mixin new-label
+	font-size: 16px
+	font-family: din-web-reg
+	font-weight: normal
+
+#edit-field-no-school-associate,
+#edit-field-campaign-list,
+#edit-field-send-goodies,
+.form-item-field-club-state-und,
+.form-item-field-country-und
+	label
+		@include new-label
+
 #edit-field-email,
 #edit-field-phone-required,
 .form-item-password,
@@ -45,6 +59,7 @@
 #field-noschool-club-name-add-more-wrapper
 	label
 		margin-left: 5px
+		@include new-label
 
 .form-item-field-school-reference-und-0-target-id-type
 	label
