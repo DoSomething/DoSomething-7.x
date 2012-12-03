@@ -11,6 +11,8 @@
         $field.css('color', '#CCC').val(initial_value);
       }
 
+      $('#edit-field-club-leader-birthdate-und-0-value-date').attr('placeholder', Drupal.t('MM/DD/YYYY'));
+
       // And monitor it for changes.
       $field
         .focus(function() {
