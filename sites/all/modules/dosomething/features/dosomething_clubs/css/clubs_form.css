@@ -123,7 +123,8 @@ input#edit-field-school-reference-und-0-target-id-name:before {
   top: 112px;
   right: 90px;
   font-size: 16pt;
-  z-index: 1; }
+  z-index: 1;
+  font-family: din-web-reg; }
   #node_club_form_group_clubs_personal_information #dstag.noschool {
     top: 95px; }
 #node_club_form_group_clubs_personal_information select {
