@@ -70,6 +70,13 @@ function dosomething_school_schema() {
         'length' => 2,
         'not null' => TRUE,
       ),
+      'country' => array(
+        'description' => 'Country in which the school is located.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
       'zip' => array(
         'description' => 'Zip code.',
         'type' => 'varchar',
@@ -89,6 +96,14 @@ function dosomething_school_schema() {
         'length' => 255,
         'not null' => TRUE,
         'default' => '',
+      ),
+      'email' => array(
+        'description' => 'Contact email, if any.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'initial' => '',
       ),
       'lat' => array(
         'description' => 'Latitude.',
@@ -209,6 +224,32 @@ function dosomething_school_update_7003() {
   db_add_field('ds_school', 'site',
     array(
       'description' => 'Website for the school, if any.',
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => TRUE,
+      'default' => '',
+      'initial' => '',
+    )
+  );
+}
+
+/**
+ * Add fields for capturing country and a contact email.
+ */
+function dosomething_school_update_7004() {
+  db_add_field('ds_school', 'country',
+    array(
+      'description' => 'Country in which the school is located.',
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => TRUE,
+      'default' => '',
+      'initial' => '',
+    )
+  );
+  db_add_field('ds_school', 'email',
+    array(
+      'description' => 'Contact email, if any.',
       'type' => 'varchar',
       'length' => 255,
       'not null' => TRUE,
