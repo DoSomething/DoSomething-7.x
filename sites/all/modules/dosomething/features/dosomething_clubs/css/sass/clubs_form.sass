@@ -263,28 +263,43 @@ input#edit-field-school-reference-und-0-target-id-name:before
 #edit-field-name-last,
 #edit-field-club-leader-birthdate
 	float: left
-	//width: 30%
+	width: 30%
 	margin-bottom: 0px
 	height: 85px
 
 	input
-		@include new-box(small)
+		@include new-box(full)
 
 	div.description
 		display: none
 
+#edit-field-name-last
+	padding-left: 10px
+
 #edit-field-club-leader-birthdate
+	padding-left: 10px
+	width: 40%
+	//margin-top: 11px
+	height: 70px
+
+	legend
+		//margin-bottom: -7px
+
 	fieldset
 		margin-bottom: 0px
+		padding-right: 0px
 
 	div.fieldset-wrapper
 		margin-top: -6px
+
+	div.container-inline-date
+		width: 100%
 
 	div.form-item-field-club-leader-birthdate-und-0-value
 		margin: 0px
 
 		input
-			width: 257px
+			@include new-box(full)
 			margin: 0px
 
 div.form-item-password
