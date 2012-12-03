@@ -203,11 +203,32 @@ div[role="main"] {
         width: 75%;
         margin-top: 5px; }
 
-.webform-client-form #edit-actions,
-.webform-client-form #edit-actions--2 {
-  position: absolute;
-  right: 80px;
-  top: 48px; }
+#hack-updates {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  width: 450px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  margin: 0 auto; }
+  #hack-updates .pane-title {
+    display: none; }
+  #hack-updates p {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center; }
+  #hack-updates input {
+    margin-bottom: 10px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px; }
+  #hack-updates .webform-client-form #edit-actions {
+    text-align: left; }
 
 #campaign-opt-in {
   font-size: 11px;
@@ -508,7 +529,8 @@ a.wannago-btn {
     text-align: justify;
     margin: 20px 0 50px; }
   .half-box img {
-    margin-top: 60px !important; }
+    margin-top: 60px !important;
+    float: right; }
 
 #beer-goggles {
   background: white url("assets/lager.jpg") no-repeat top center;
