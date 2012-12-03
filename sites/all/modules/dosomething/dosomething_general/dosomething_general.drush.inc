@@ -44,7 +44,7 @@ function drush_dosomething_general_dosomething_export_images() {
 
   $old_cwd = getcwd();
   chdir(file_directory_temp());
-  `zip -r $base_path.zip $base_path`;
+  `tar -cf $base_path.tar $base_path`;
   chdir($old_cwd);
 
   file_unmanaged_delete_recursive($tmpdir);
