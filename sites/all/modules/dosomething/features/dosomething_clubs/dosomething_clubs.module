@@ -1432,7 +1432,7 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
   $form['actions']['submit']['#value'] = ($create ? t('Save Changes') : t('Create Club'));
 
   $form['dsorg_tag'] = array(
-    '#markup' => t('DOSOMETHING.ORG CLUB'),
+    '#markup' => t('DoSomething.org Club'),
     '#prefix' => '<div id="dstag">',
     '#suffix' => '</div>',
     '#weight' => 1
