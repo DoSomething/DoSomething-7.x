@@ -204,17 +204,13 @@ div[role="main"] {
         margin-top: 5px; }
 
 #hack-updates {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -o-box-shadow: none !important;
-  box-shadow: none !important;
   width: 450px;
   background: #f9f9f9;
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   -o-border-radius: 8px;
-  margin: 0 auto; }
+  margin: 0 auto 40px; }
   #hack-updates .pane-title {
     display: none; }
   #hack-updates p {
