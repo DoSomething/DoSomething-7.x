@@ -25,14 +25,16 @@
 	color: #fff
 	font-size: 16pt
 	//text-transform: uppercase
-	height: 53px
+	height: 56px
 	padding: 11px 0px 16.5px 15px
-	padding-left: 15px
 	border: 1px solid #565656
 	font-family: din-web-reg
 
 	option
 		color: #000
+		font-family: din-web-reg
+		position: fixed
+		z-index: 1
 
 @mixin new-label
 	font-size: 16px
@@ -194,7 +196,6 @@ input#edit-field-school-reference-und-0-target-id-name:before
 	select
 		@include select-style()
 		width: 346px
-		height: 53px
 
 		.form-item.form-type-select
 			background: white
