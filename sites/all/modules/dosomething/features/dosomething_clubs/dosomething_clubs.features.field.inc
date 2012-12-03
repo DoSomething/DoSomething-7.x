@@ -2205,7 +2205,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_no_school_associate',
-      'label' => 'OR My Club is not associated with a school (this will delete your school selection)',
+      'label' => 'OR My club is not associated with a school (this will delete your school selection)',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -3354,7 +3354,7 @@ sports|Sports Equipment - our fall sports equipment drive',
   t('Mailchimp Interest Group');
   t('Mailings');
   t('My Do Something Club is going to work on');
-  t('OR My Club is not associated with a school (this will delete your school selection)');
+  t('OR My club is not associated with a school (this will delete your school selection)');
   t('Official Club photo');
   t('Our text messages include scholarship / volunteer opportunities, and special club leader news. Msg & data rates may apply. Text STOP to opt-out, HELP for help.');
   t('Please provide an email address you regularly check to receive notifications regarding your eligibility for grants, prizes, and other sweet opportunities.');

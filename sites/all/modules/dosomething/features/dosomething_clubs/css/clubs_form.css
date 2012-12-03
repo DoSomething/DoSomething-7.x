@@ -78,10 +78,9 @@ div#main-wrapper div[role="main"] {
       div#main-wrapper div[role="main"] div#field-club-leader-birthdate-add-more-wrapper fieldset legend span {
         background: none;
         text-transform: none;
-        font-family: "Trebuchet MS", sans-serif;
-        font-size: 9pt;
-        font-weight: normal;
-        margin: 0px; }
+        font-size: 16px;
+        font-family: din-web-reg;
+        font-weight: normal; }
     div#main-wrapper div[role="main"] div#field-club-leader-birthdate-add-more-wrapper fieldset div#edit-field-club-leader-birthdate-und-0-value {
       padding: 0px; }
 
@@ -121,7 +120,7 @@ input#edit-field-school-reference-und-0-target-id-name:before {
 #node_club_form_group_clubs_personal_information #dstag {
   position: absolute;
   top: 112px;
-  right: 95px;
+  right: 90px;
   font-size: 16pt;
   z-index: 1;
   font-family: din-web-reg; }
