@@ -152,6 +152,9 @@ input#edit-field-school-reference-und-0-target-id-name:before {
 .form-item-field-school-reference-und-0-target-id-type {
   float: left;
   width: 50%; }
+  .form-item-field-school-reference-und-0-target-id-state label,
+  .form-item-field-school-reference-und-0-target-id-type label {
+    display: none; }
 
 .form-item-field-school-reference-und-0-target-id-name {
   padding-top: 10px;
