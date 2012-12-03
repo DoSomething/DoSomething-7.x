@@ -76,6 +76,20 @@ function dosomething_school_schema() {
         'length' => 15,
         'not null' => FALSE,
       ),
+      'phone' => array(
+        'description' => 'Contact phone number.',
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'site' => array(
+        'description' => 'Website for the school, if any.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
       'lat' => array(
         'description' => 'Latitude.',
         'type' => 'float',
@@ -174,6 +188,32 @@ function dosomething_school_update_7002() {
       'description' => 'Any additional, general notes about the record.',
       'type' => 'text',
       'not null' => TRUE,
+    )
+  );
+}
+
+/**
+ * Add fields for capturing a phone contact and a website.
+ */
+function dosomething_school_update_7003() {
+  db_add_field('ds_school', 'phone',
+    array(
+      'description' => 'Contact phone number.',
+      'type' => 'varchar',
+      'length' => 20,
+      'not null' => TRUE,
+      'default' => '',
+      'initial' => '',
+    )
+  );
+  db_add_field('ds_school', 'site',
+    array(
+      'description' => 'Website for the school, if any.',
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => TRUE,
+      'default' => '',
+      'initial' => '',
     )
   );
 }
