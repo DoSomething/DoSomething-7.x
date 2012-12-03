@@ -1286,15 +1286,18 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #prizing p {
     width: 70%;
     margin: 3em auto; }
-  #cmp #psa h2 {
-    text-transform: uppercase;
-    font-size: 1.9em;
-    padding: 0 0 0.3em 0;
-    color: #b79c86; }
+  #cmp #psa.section {
+    padding-bottom: 3%; }
+    #cmp #psa.section h2 {
+      text-transform: uppercase;
+      font-size: 1.9em;
+      line-height: 3em;
+      padding: 0 0 0.3em 0;
+      color: #b79c86; }
   #cmp #psa_wrapper {
     position: relative;
     padding-bottom: 55%;
-    margin-bottom: 2%;
+    margin: 0 3%;
     padding-top: 5%;
     height: 0; }
     #cmp #psa_wrapper iframe {
@@ -1302,7 +1305,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%; }
+      height: 88%; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {
