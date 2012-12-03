@@ -193,7 +193,7 @@ function dosomething_clubs_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Club Media',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_club_picture',
       1 => 'field_club_video',

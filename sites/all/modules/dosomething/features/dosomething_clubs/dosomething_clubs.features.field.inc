@@ -780,7 +780,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
@@ -1209,7 +1209,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -1779,7 +1779,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'bundle' => 'club',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'As the club leader we may need to send you important notifications regarding your eligibility for grants, prizes, and other sweet opportunities.  So please provide an email address you actually check.',
+      'description' => 'Please provide an email address you regularly check to receive notifications regarding your eligibility for grants, prizes, and other sweet opportunities.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1923,7 +1923,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '14',
+        'weight' => '16',
       ),
     ),
   );
@@ -2387,7 +2387,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '9',
       ),
     ),
   );
@@ -2433,8 +2433,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'bundle' => 'club',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'This is how we can call you with sweet opportunities or text you weekly updates on everything DoSomething.org including scholarships, volunteer opportunities, and even inspiring quotes!
-<br />Msg & data rates may apply.  Text STOP to opt-out, HELP for help.',
+      'description' => 'Our text messages include scholarship / volunteer opportunities, and special club leader news. Msg & data rates may apply. Text STOP to opt-out, HELP for help.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -2754,7 +2753,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '15',
+        'weight' => '17',
       ),
     ),
   );
@@ -3035,7 +3034,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '17',
+        'weight' => '8',
       ),
       'widget_type' => 'options_select',
     ),
@@ -3127,7 +3126,7 @@ sports|Sports Equipment - our fall sports equipment drive',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '10',
+        'weight' => '11',
       ),
       'widget_type' => 'options_select',
     ),
@@ -3337,7 +3336,6 @@ sports|Sports Equipment - our fall sports equipment drive',
   t('<p>Upload photos of your club or projects here by choosing a file then hitting "Upload".  Please don\'t use BMP files.  Max photo dimensions are 580x50 pxels.</p>');
   t('Add group content');
   t('Address');
-  t('As the club leader we may need to send you important notifications regarding your eligibility for grants, prizes, and other sweet opportunities.  So please provide an email address you actually check.');
   t('Cell');
   t('City');
   t('Club Photo Gallery');
@@ -3358,12 +3356,12 @@ sports|Sports Equipment - our fall sports equipment drive',
   t('My Do Something Club is going to work on');
   t('OR My Club is not associated with a school (this will delete your school selection)');
   t('Official Club photo');
+  t('Our text messages include scholarship / volunteer opportunities, and special club leader news. Msg & data rates may apply. Text STOP to opt-out, HELP for help.');
+  t('Please provide an email address you regularly check to receive notifications regarding your eligibility for grants, prizes, and other sweet opportunities.');
   t('Responded to Texts');
   t('School');
   t('State');
   t('The last date (by timestamp) that the club leader responded to a text.');
-  t('This is how we can call you with sweet opportunities or text you weekly updates on everything DoSomething.org including scholarships, volunteer opportunities, and even inspiring quotes!
-<br />Msg & data rates may apply.  Text STOP to opt-out, HELP for help.');
   t('Verified');
   t('Video (optional)');
   t('We\'ll resize and crop it down to a square for you.');
