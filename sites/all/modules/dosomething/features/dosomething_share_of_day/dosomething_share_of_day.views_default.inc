@@ -123,7 +123,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['make_link'] = 1;
   $handler->display->display_options['fields']['body']['alter']['path'] = '[field_share_of_day_link]';
   $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['body']['alter']['external'] = 0;
@@ -173,7 +173,7 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_fact']['field'] = 'field_share_of_day_fact';
   $handler->display->display_options['fields']['field_share_of_day_fact']['label'] = '';
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['make_link'] = 1;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['path'] = '[field_share_of_day_link]';
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['external'] = 0;
@@ -186,10 +186,10 @@ function dosomething_share_of_day_views_default_views() {
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_share_of_day_fact']['element_class'] = 'fact';
+  $handler->display->display_options['fields']['field_share_of_day_fact']['element_class'] = 'quote';
   $handler->display->display_options['fields']['field_share_of_day_fact']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_share_of_day_fact']['element_default_classes'] = 0;
-  $handler->display->display_options['fields']['field_share_of_day_fact']['hide_empty'] = 1;
+  $handler->display->display_options['fields']['field_share_of_day_fact']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_share_of_day_fact']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_share_of_day_fact']['field_api_classes'] = 0;
