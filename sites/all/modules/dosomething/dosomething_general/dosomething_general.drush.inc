@@ -27,8 +27,12 @@ function dosomething_general_drush_command() {
 
 function drush_dosomething_general_dosomething_export_images() {
   $forms = node_load_multiple(array(), array('type' => 'campaign_report_back'));
-  $base_path = 'imgdump-' . time();
+  $base_path = 'imgdump';
   $tmpdir = file_directory_temp() . DIRECTORY_SEPARATOR . $base_path;
+  // Ensure we start clean.
+  if (file_exists($tmpdir)) {
+    file_unmanaged_delete_recursive($tmpdir);
+  }
   drupal_mkdir($tmpdir, NULL, TRUE);
 
   $operations = array();
@@ -42,6 +46,9 @@ function drush_dosomething_general_dosomething_export_images() {
   $batch['progressive'] = FALSE;
   drush_backend_batch_process();
 
+  if (file_exists(file_directory_temp() . DIRECTORY_SEPARATOR . "$base_path.tar")) {
+    file_unmanaged_delete(file_directory_temp() . DIRECTORY_SEPARATOR . "$base_path.tar");
+  }
   $old_cwd = getcwd();
   chdir(file_directory_temp());
   `tar -cf $base_path.tar $base_path`;
