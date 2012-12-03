@@ -4,6 +4,8 @@
       var initial_value = 'Start typing...';
       var $field = $('input#edit-field-school-reference-und-0-target-id-name');
 
+      $('#page-title').text('Start a Club');
+
       // If there's no value set a default.
       if ($field.val() === '') {
         $field.css('color', '#CCC').val(initial_value);
@@ -22,12 +24,25 @@
           }
         });
 
+        $('#edit-field-email-und-0-value, #edit-field-phone-required-und-0-value').focusout(function() {
+          $.post('/clubs/check-account-exists', { contact: $(this).val() }, function(response) {
+            if (response.status == 1) {
+              delete response.status;
+              $('.form-item-password label').text('Your Password');
+              for (i in response) {
+                $('body ' + i).val(response[i]);
+              }
+            }
+          });
+        });
+
         if ($('#edit-field-no-school-associate-und').attr('checked') == 'checked' || $('#edit-field-no-school-associate-und').attr('checked') == true) {
           $('#edit-field-school-reference-und-0-target-id-name').val('');
           $('#edit-field-school-reference-und-0-target-id').hide();
           $('#edit-field-noschool-club-name').show();
           $('#club-name-live').show();
           $('#dosomething-club-tag').show();
+          $('#dstag').addClass('noschool');
         }
 
         $('#edit-field-no-school-associate-und').click(function() {
@@ -35,6 +50,12 @@
           $('#edit-field-school-reference-und-0-target-id').toggle();
           $('.field-name-field-noschool-club-name').toggle();
           $('#club-name-live').toggle();
+          if ($('#dstag').hasClass('noschool')) {
+            $('#dstag').removeClass('noschool');
+          }
+          else {
+            $('#dstag').addClass('noschool');
+          }
           $('#dosomething-club-tag').toggle();
         });
 

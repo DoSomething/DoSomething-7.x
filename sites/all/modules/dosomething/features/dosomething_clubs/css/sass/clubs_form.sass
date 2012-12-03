@@ -1,5 +1,335 @@
 @import compass
 
+@mixin new-box($type)
+	@if $type == full
+		width: 100%
+	@else if $type == big
+		width: 100%
+	@else if $type == small
+		width: 206px
+
+	height: 53px
+	+border-radius(10px)
+	font-size: 14pt
+	padding-left: 10px
+
+@mixin select-style
+	background: transparent
+	//background-image: url(/sites/all/modules/dosomething/features/dosomething_clubs/images/select-arrow.png) 100% 50% no-repeat
+	@include background(image-url('/sites/all/modules/dosomething/features/dosomething_clubs/images/select-arrow.png') 95% 50% no-repeat, linear-gradient(#afafaf, #817b76))
+	-webkit-appearance: none
+	border: 1px solid #eaeaea
+	+border-radius(0px)
+	padding-left: 10px
+	color: #fff
+	font-size: 16pt
+	text-transform: uppercase
+	height: 53px
+	padding: 15px 0px 16.5px 15px
+	padding-left: 15px
+	border: 1px solid #565656
+
+	option
+		color: #000
+
+#edit-field-email,
+#edit-field-phone-required,
+.form-item-password,
+#edit-field-name,
+#edit-field-name-last,
+#edit-field-club-leader-birthdate,
+#edit-field-club-address,
+#edit-field-club-city,
+#edit-field-club-zip,
+.form-item-field-school-reference-und-0-target-id-name,
+#field-noschool-club-name-add-more-wrapper
+	label
+		margin-left: 5px
+
+.form-item-field-school-reference-und-0-target-id-type
+	label
+		margin-left: 12px
+
+#field-email-add-more-wrapper
+	div
+		padding-right: 15px
+
+div.description
+	width: 335px
+	padding-left: 7px
+	margin-top: -10px
+
+div#main-wrapper div[role="main"]
+	background-color: #fff
+	padding-right: 14px
+
+	form.node-club-form
+		background: #fff
+		padding: 0px
+		+box-shadow(none)
+
+		fieldset
+			border-top: 1px solid #dedcdb
+
+			legend
+				background: #fff
+				padding-right: 10px
+
+				span
+					background: #ffd638
+					text-transform: uppercase
+					padding: 0px 10px
+					font-family: din-web-reg
+					font-size: 14pt
+
+			div.fieldset-wrapper
+				padding: 20px
+				background: #ededed
+				border: 1px solid #dcdada
+				margin-top: -12px
+
+
+			&#edit-field-school-reference-und-0-target-id,
+				border: 0px
+
+				div.fieldset-wrapper
+					border: 0px
+					padding: 0px
+
+				legend
+					display: none
+
+	div#field-club-leader-birthdate-add-more-wrapper
+		fieldset
+			border: 0px
+
+			div.fieldset-wrapper
+				border: 0px
+				padding: 0px
+
+			legend
+				background: none
+				padding: 0px
+				height: 25px
+
+				span
+					background: none
+					text-transform: none
+					font-family: 'Trebuchet MS', sans-serif
+					font-size: 9pt
+					font-weight: normal
+					margin: 0px
+
+			div#edit-field-club-leader-birthdate-und-0-value
+				padding: 0px
+
+
+#node_club_form_group_club_leader_info,
+#node_club_form_group_what_campaigns,
+#node_club_form_group_where_should_we_send_the
+	margin-top: -25px
+
+html.js input.form-autocomplete
+	background-image: none
+
+input#edit-field-school-reference-und-0-target-id-name:before
+	content: ""  
+	position: absolute  
+	z-index: 9999
+	width: 200%  
+	height: 200%  
+	top: -50%  
+	left: -50%  
+	z-index: -1  
+	background: url(/misc/throbber.gif) 0 0 repeat
+	-webkit-transform: rotate(-30deg)  
+	-moz-transform: rotate(-30deg)  
+	-ms-transform: rotate(-30deg)  
+	-o-transform: rotate(-30deg)  
+	transform: rotate(-30deg)
+
+#edit-field-school-reference
+	margin: 0px
+
+	div#field-school-reference-add-more-wrapper
+		//height: 130px
+
+	fieldset
+		margin: 0px
+
+	div.fieldset-wrapper
+		position: relative
+
+#node_club_form_group_clubs_personal_information
+	div.fieldset-wrapper
+		position: relative
+
+	#dstag
+		position: absolute
+		top: 140px
+		right: 55px
+		font-size: 16pt
+		z-index: 1
+
+		&.noschool
+			top: 95px
+
+	select
+		@include select-style()
+		width: 346px
+		height: 53px
+
+		.form-item.form-type-select
+			background: white
+
+		&#edit-submitted-field-celeb-date-und-0-value-year
+			width: 58px
+
+		&#edit-field-school-reference-und-0-target-id-type
+			margin-left: 12px
+
+.form-item-field-school-reference-und-0-target-id-state,
+.form-item-field-school-reference-und-0-target-id-type
+	float: left
+	width: 50%
+
+.form-item-field-school-reference-und-0-target-id-name
+	padding-top: 10px
+	clear: left
+
+	input#edit-field-school-reference-und-0-target-id-name
+		@include new-box(full)
+		width: 60%
+
+#edit-field-noschool-club-name-und-0-value
+	@include new-box(full)
+	width: 60%
+
+#edit-field-school-reference-und-0-target-id-street,
+#edit-field-school-reference-und-0-target-id-city,
+#edit-field-school-reference-und-0-target-id-zip
+	width: 100%
+	height: 53px
+	+border-radius(10px)
+	font-size: 14pt
+	padding-left: 10px
+
+
+.form-item-field-school-reference-und-0-target-id-city
+	float: left
+	width: 60%
+
+.form-item-field-school-reference-und-0-target-id-zip
+	float: left
+	width: 40%
+	padding-left: 15px
+
+#edit-field-email,
+#edit-field-phone-required
+	float: left
+	width: 50%
+
+	input
+		@include new-box(big)
+
+#edit-field-club-leader-birthdate
+	margin-bottom: 0px
+
+	div.form-wrapper
+		margin-bottom: 0px
+
+#edit-field-name
+	clear: left
+
+#edit-field-name,
+#edit-field-name-last,
+#edit-field-club-leader-birthdate
+	float: left
+	//width: 30%
+	margin-bottom: 0px
+	height: 85px
+
+	input
+		@include new-box(small)
+
+	div.description
+		display: none
+
+#edit-field-club-leader-birthdate
+	fieldset
+		margin-bottom: 0px
+
+	div.fieldset-wrapper
+		margin-top: -6px
+
+	div.form-item-field-club-leader-birthdate-und-0-value
+		margin: 0px
+
+		input
+			width: 257px
+			margin: 0px
+
+div.form-item-password
+	clear: left
+	margin-bottom: 15px
+	width: 30%
+	float: left
+
+	input
+		@include new-box(full)
+
+div.form-item-parent-email
+	float: left
+	width: 70%
+	padding-left: 10px
+	display: none
+
+	input#edit-parent-email
+		@include new-box(full)
+		width: 100%
+
+	div.description
+		width: auto
+
+
+#edit-field-club-address
+	input
+		@include new-box(full)
+
+#node_club_form_group_where_should_we_send_the
+	.fieldset-wrapper
+		min-height: 265px
+
+	select
+		@include select-style()
+
+#edit-field-club-city,
+#edit-field-club-state,
+#edit-field-club-zip
+	//width: 30%
+	float: left
+
+	input
+		@include new-box(small)
+
+#edit-field-club-zip
+	input
+		width: 155px
+		margin: 0px
+
+#edit-field-club-state
+	margin-right: 15px
+
+	select
+		width: 133px
+
+#edit-field-country
+	margin-right: 15px
+	float: left
+
+	select
+		width: 169px
+
 div#not-logged-in-notice
 	float: right
 	position: absolute
@@ -44,7 +374,7 @@ div#not-logged-in-notice
 div#block-system-main
 	position: relative
 
-div.form-item-parent-email, td.field-multiple-drag, .tabledrag-toggle-weight, div.form-item-field-club-picture-und-0 label, input#edit-preview, input#edit-preview-changes, ul.tabs.primary li:nth-child(3) a, .delta-order, thead tr th:last-of-type, #edit-field-mailchimp-group-id, #club-name-live, .field-name-field-noschool-club-name
+td.field-multiple-drag, .tabledrag-toggle-weight, div.form-item-field-club-picture-und-0 label, input#edit-preview, input#edit-preview-changes, ul.tabs.primary li:nth-child(3) a, .delta-order, thead tr th:last-of-type, #edit-field-mailchimp-group-id, #club-name-live, .field-name-field-noschool-club-name
 	display: none
 
 @mixin club-form-label
@@ -71,13 +401,3 @@ div.form-item-field-club-blurb-und-0-value
 p#club-name-live
 	position: relative
 	top: -10px
-
-#edit-field-noschool-club-name-und-0-value
-	width: 150px
-
-#dosomething-club-tag
-	float: right
-	position: relative
-	top: 23px
-	right: 440px
-	display: none

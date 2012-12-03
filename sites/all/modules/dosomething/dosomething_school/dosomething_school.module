@@ -310,7 +310,7 @@ function _dosomething_school_get_states() {
 function dosomething_school_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
   $default_state = '--';
   $default_school = '';
-  $default_type = 1;
+  $default_type = '';
   if (empty($items[0]['target_id'])) {
 	   // TODO: Should this *only* be set in javascript?  I think it's the only DS specific code in here.
     // Try to use the profile's state.
@@ -327,7 +327,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
   }
 
   $states = _dosomething_school_get_states();
-  $states = array('  ' => t('- Select one -')) + $states;
+  $states = array('' => t('SCHOOL STATE')) + $states;
 
   $element['#attached']['js'][] = drupal_get_path('module', 'dosomething_school') . '/dosomething_school.js';
   $element['#element_validate'][] = '_dosomething_school_autocomplete_validate';
@@ -350,6 +350,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#title' => t('Level'),
     '#type' => 'select',
     '#options' => array(
+      '_none' => t('SCHOOL TYPE'),
       1 => t('Middle/High School'),
       2 => t('College'),
     ),
@@ -397,6 +398,9 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#required' => TRUE,
     '#validated' => TRUE,
     '#size' => 6,
+  );
+  $element['clear'] = array(
+    '#markup' => '<div style="clear: both"></div>',
   );
 
   return array('target_id' => $element);

@@ -47,6 +47,7 @@ features[field][] = node-club-field_club_state
 features[field][] = node-club-field_club_verified
 features[field][] = node-club-field_club_video
 features[field][] = node-club-field_club_zip
+features[field][] = node-club-field_country
 features[field][] = node-club-field_email
 features[field][] = node-club-field_mailchimp_group_id
 features[field][] = node-club-field_name

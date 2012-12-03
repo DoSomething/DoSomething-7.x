@@ -21,7 +21,7 @@ function dosomething_clubs_strongarm() {
           'weight' => 0,
         ),
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'revision_information' => array(
           'weight' => '16',
@@ -42,7 +42,7 @@ function dosomething_clubs_strongarm() {
           'weight' => '8',
         ),
         'path' => array(
-          'weight' => '14',
+          'weight' => '13',
         ),
         'locations' => array(
           'weight' => '14',
