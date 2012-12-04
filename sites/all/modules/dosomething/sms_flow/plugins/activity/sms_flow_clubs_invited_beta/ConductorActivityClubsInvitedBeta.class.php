@@ -69,7 +69,7 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
         $success_message .= t('Ur password to login at dosomething.org/myclub is @pass. ', array('@pass' => $pass));
       }
       else {
-        $success_message .= t('Awesome! You\'ve been added to your friend\'s club at dosomething.org/myclub.');
+        $success_message .= t('Awesome! You\'ve been added to your friend\'s club at dosomething.org/myclub. ');
       }
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
