@@ -352,22 +352,22 @@ class clubs_export {
       `users_node`.name AS `creator`,
       `users_node`.`uid` AS `creator_id`,
       `users_node`.`mail` AS `creator_email`,
-      `firstname`.`field_user_first_name_value` AS `first_name`,
-      `lastname`.`field_user_last_name_value` AS `last_name`,
-      `birthday`.`field_user_birthday_value` AS `birth_day`,
-      `mobile`.`field_user_mobile_value` AS `phone`,
-      `address`.`field_user_address_thoroughfare` AS `owner_street`,
-      `address`.`field_user_address_locality` AS `owner_city`,
-      `address`.`field_user_address_administrative_area` AS `owner_state`,
-      `address`.`field_user_address_postal_code` AS `owner_zip`,
+      #`firstname`.`field_user_first_name_value` AS `first_name`,
+      #`lastname`.`field_user_last_name_value` AS `last_name`,
+      #`birthday`.`field_user_birthday_value` AS `birth_day`,
+      #`mobile`.`field_user_mobile_value` AS `phone`,
+      #`address`.`field_user_address_thoroughfare` AS `owner_street`,
+      #`address`.`field_user_address_locality` AS `owner_city`,
+      #`address`.`field_user_address_administrative_area` AS `owner_state`,
+      #`address`.`field_user_address_postal_code` AS `owner_zip`,
       `street`.`field_club_address_value` AS `street`,
       `city`.`field_club_city_value` AS `city`,
       `state`.`field_club_state_value` AS `state`,
       `zip`.`field_club_zip_value` AS `zip`,
-      COUNT(DISTINCT og_membership_og.etid) AS `member_count`,
+      #COUNT(DISTINCT og_membership_og.etid) AS `member_count`,
       IF (`camp2`.`field_campaign_list_nid`, GROUP_CONCAT(`camp2`.`field_campaign_list_nid`), GROUP_CONCAT(`camp1`.`field_camp_value`)) AS `camps`,
-      GROUP_CONCAT(DISTINCT `ogu`.`mail`) AS `member_emails`,
-      GROUP_CONCAT(DISTINCT `ogu`.`uid`) AS `member_uids`,
+      #GROUP_CONCAT(DISTINCT `ogu`.`mail`) AS `member_emails`,
+      #GROUP_CONCAT(DISTINCT `ogu`.`uid`) AS `member_uids`,
       `sc`.name AS `school_name`,
       `sc`.type AS `school_type`,
       `sc`.state AS `school_state`,
@@ -375,26 +375,26 @@ class clubs_export {
       `blurb`.`field_club_blurb_value` AS `blurb`,
       IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`,
       `lu`.`login` AS `last_leader_login`,
-      GROUP_CONCAT(DISTINCT `response`.`timestamp`) AS `sms_response_times`,
+      #GROUP_CONCAT(DISTINCT `response`.`timestamp`) AS `sms_response_times`,
       IF (`survey`.`nid`, 1, 0) AS `survey`
     FROM 
     `node` node
     LEFT JOIN `users` users_node ON node.uid = users_node.uid
-    LEFT JOIN `profile` profile_users ON users_node.uid = profile_users.uid
+    #LEFT JOIN `profile` profile_users ON users_node.uid = profile_users.uid
     LEFT JOIN `dosomething_clubs_survey` AS `survey` ON (`survey`.`nid` = `node`.`nid`)
     LEFT JOIN `og` og_node ON node.nid = og_node.etid AND og_node.entity_type = 'node'
-    LEFT JOIN `og_membership` og_membership_og ON og_node.gid = og_membership_og.gid
-    LEFT JOIN `field_data_field_user_first_name` AS `firstname` ON (`firstname`.`entity_id` = `profile_users`.`pid`)
-    LEFT JOIN `field_data_field_user_last_name` AS `lastname` ON (`lastname`.`entity_id` = `profile_users`.`pid`)
-    LEFT JOIN `field_data_field_user_birthday` AS `birthday` ON (`birthday`.`entity_id` = `profile_users`.`pid`)
-    LEFT JOIN `field_data_field_user_mobile` AS `mobile` ON (`mobile`.`entity_id` = `profile_users`.`pid`)
-    LEFT JOIN `field_data_field_user_address` AS `address` ON (`address`.`entity_id` = `profile_users`.`pid`)
+    #LEFT JOIN `og_membership` og_membership_og ON og_node.gid = og_membership_og.gid
+    #LEFT JOIN `field_data_field_user_first_name` AS `firstname` ON (`firstname`.`entity_id` = `profile_users`.`pid`)
+    #LEFT JOIN `field_data_field_user_last_name` AS `lastname` ON (`lastname`.`entity_id` = `profile_users`.`pid`)
+    #LEFT JOIN `field_data_field_user_birthday` AS `birthday` ON (`birthday`.`entity_id` = `profile_users`.`pid`)
+    #LEFT JOIN `field_data_field_user_mobile` AS `mobile` ON (`mobile`.`entity_id` = `profile_users`.`pid`)
+    #LEFT JOIN `field_data_field_user_address` AS `address` ON (`address`.`entity_id` = `profile_users`.`pid`)
     LEFT JOIN `field_data_field_club_address` AS `street` ON (`street`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_club_city` AS `city` ON (`city`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_club_state` AS `state` ON (`state`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_club_zip` AS `zip` ON (`zip`.`entity_id` = `node`.`nid`)
-    LEFT JOIN `og_membership` AS `ogm` ON (`ogm`.`gid` = `og_node`.`gid` AND `ogm`.`entity_type` = 'user')
-    LEFT JOIN `users` AS `ogu` ON (`ogu`.`uid` = `ogm`.`etid`)
+    #LEFT JOIN `og_membership` AS `ogm` ON (`ogm`.`gid` = `og_node`.`gid` AND `ogm`.`entity_type` = 'user')
+    #LEFT JOIN `users` AS `ogu` ON (`ogu`.`uid` = `ogm`.`etid`)
     LEFT JOIN `users` AS `lu` ON (`lu`.`uid` = `node`.`uid`)
     LEFT JOIN `field_data_field_no_school_associate` AS `noassoc` ON (`noassoc`.`entity_id` = `node`.`nid`)
     LEFT JOIN `field_data_field_club_blurb` AS `blurb` ON (`blurb`.`entity_id` = `node`.`nid`)
@@ -408,7 +408,7 @@ class clubs_export {
       )
     )
     LEFT JOIN `ds_school` AS `sc` ON (`sc`.`sid` = `school`.`field_school_reference_target_id`)
-    LEFT JOIN `dosomething_clubs_sms_response` AS `response` ON (`response`.`nid` = `node`.`nid`)
+    #LEFT JOIN `dosomething_clubs_sms_response` AS `response` ON (`response`.`nid` = `node`.`nid`)
     WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
     GROUP BY nid, node_title ASC
     ORDER BY `node`.`created` ASC
@@ -422,10 +422,40 @@ class clubs_export {
         foreach ($q->fetchAll() AS $key => $r) {
           $s = (array) $r;
 
-          /** Yes, I know you're not supposed to do this...
+          /**  Yes, this is literally the worst thing ever
             *  but it saves so much query time from above it's crazy
             */ 
-          $s['member_uids'] = ($s['member_uids'] ? $s['member_uids'] : 0);
+          $p = profile2_load_by_user((object) array(
+            'uid' => $r->creator_id
+          ), 'main');
+
+          $address = $p->field_user_address[LANGUAGE_NONE][0];
+          $s += array(
+            'first_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
+            'last_name' => $p->field_user_last_name[LANGUAGE_NONE][0]['value'],
+            'birth_day' => $p->field_user_birthday[LANGUAGE_NONE][0]['value'],
+            'phone' => $p->field_user_mobile[LANGUAGE_NONE][0]['value'],
+            'owner_street' => $address['thoroughfare'],
+            'owner_city' => $address['locality'],
+            'owner_state' => $address['administrative_area'],
+            'owner_zip' => $address['postal_code']
+          );
+
+          $contacts = db_query("
+            SELECT uid, mail
+            FROM og_membership ogm
+            LEFT JOIN users u ON (u.uid = ogm.etid)
+            WHERE ogm.gid = " . $r->gid . "
+             AND ogm.entity_type = 'user'
+          ")->fetchAllKeyed();
+
+          $s['member_count'] = count($contacts);
+          $s['member_uids'] = implode(',', array_keys($contacts));
+          $s['member_emails'] = implode(',', $contacts);
+          if (empty($s['member_uids'])) {
+            $s['member_uids'] = 0;
+          }
+
           $m = db_query("
             SELECT
             (SELECT COUNT(*) FROM `webform_submissions` WHERE `nid` = 718313 AND `uid` IN (" . $s['member_uids'] . ")) AS `pcount`,
@@ -444,7 +474,15 @@ class clubs_export {
 
           $s['shares'] = $shares;
 
-          $s = array_merge($s, $m);
+          $sms_responses = db_query("
+            SELECT `response`.`timestamp`
+            FROM `dosomething_clubs_sms_response` AS `response`
+            WHERE (`response`.`nid` = " . $r->nid . ")
+          ")->fetchAssoc();
+
+          $s['sms_responses'] = implode(',', $sms_responses);
+
+          #$s = array_merge($s, $m);
           $results[] = (object)$s;
         }
 
@@ -592,9 +630,10 @@ GROUP BY nid, node_title
 ORDER BY node_title ASC
 " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
-  $q = db_query($query);
+  #$q = db_query($query);
+  
 
-clubs_export::log('Query', $query);
+  clubs_export::log('Query', $query);
 
   if ($return_query) {
     return $q;
