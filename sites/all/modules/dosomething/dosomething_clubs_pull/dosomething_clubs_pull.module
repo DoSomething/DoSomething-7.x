@@ -445,7 +445,7 @@ class clubs_export {
             SELECT uid, mail
             FROM og_membership ogm
             LEFT JOIN users u ON (u.uid = ogm.etid)
-            WHERE ogm.gid = " . $r->gid . "
+            WHERE ogm.gid = " . intval($r->gid) . "
              AND ogm.entity_type = 'user'
           ")->fetchAllKeyed();
 
