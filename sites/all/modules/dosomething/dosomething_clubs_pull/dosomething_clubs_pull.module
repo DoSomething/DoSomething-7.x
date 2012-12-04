@@ -452,7 +452,7 @@ class clubs_export {
           $s['member_count'] = count($contacts);
 
           $mu = array_keys($contacts);
-          $mu = array_filter($contacts, 'dosomething_clubs_pull_not_zero');
+          $mu = array_filter($mu, 'dosomething_clubs_pull_not_zero');
           $s['member_uids'] = implode(',', $mu);
           $s['member_emails'] = implode(',', $contacts);
           if (empty($s['member_uids'])) {
