@@ -58,7 +58,7 @@ function dosomething_general_array_vals_multi($array = array(), &$vals = array()
       dosomething_general_array_vals_multi($value,$vals);
     }
     else{
-      $vals[] = $value; 
+      $vals[] = $value;
     }
   }
 
@@ -161,6 +161,36 @@ function dosomething_general_page_alter(&$page) {
 
   if ($name) {
     newrelic_name_transaction($name);
+  }
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function dosomething_general_js_alter(&$javascript) {
+  // Set all aggregated javascript to the JS_DEFAULT group.
+  // This prevents individual js files per group
+  uasort($javascript, 'drupal_sort_css_js');
+  $i = 0;
+  foreach ($javascript as $name => $script) {
+    $javascript[$name]['weight'] = $i++;
+    $javascript[$name]['group'] = JS_DEFAULT;
+    $javascript[$name]['every_page'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_css_alter().
+ */
+function dosomething_general_css_alter(&$css) {
+  // Set all aggregated css to the CSS_DEFAULT group.
+  // This prevents individual css files per group
+  uasort($css, 'drupal_sort_css_js');
+  $i = 0;
+  foreach ($css as $name => $style) {
+    $css[$name]['weight'] = $i++;
+    $css[$name]['group'] = CSS_DEFAULT;
+    $css[$name]['every_page'] = FALSE;
   }
 }
 
@@ -893,10 +923,10 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
     $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
     if (!empty($submitted['birthday']['year'])) {
       $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
-      
+
       // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
       $merge_vars['TURNS18'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 18;
-      $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;      
+      $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;
     }
   }
 
@@ -907,7 +937,7 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   if (!empty($submitted['last_name'])) {
     $merge_vars['LNAME'] = $submitted['last_name'];
   }
-  
+
   // Full name - MMERGE3
   if ( !empty($submitted['first_name']) || !empty($submitted['last_name']) ) {
     $merge_vars['MMERGE3'] = $submitted['first_name'] .' '. $submitted['last_name'];
