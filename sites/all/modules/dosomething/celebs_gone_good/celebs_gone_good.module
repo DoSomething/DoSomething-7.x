@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Celebs Gone Good feature.
+ */
+
+include_once 'celebs_gone_good.features.inc';

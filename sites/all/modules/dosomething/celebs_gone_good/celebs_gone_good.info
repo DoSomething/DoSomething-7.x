@@ -1,0 +1,11 @@
+name = Celebs Gone Good
+description = Celebs Gone Good campaign 2012
+core = 7.x
+package = Features
+version = 7.x-1.0
+project = celebs_gone_good
+dependencies[] = ctools
+dependencies[] = page_manager
+features[ctools][] = page_manager:pages_default:1
+features[features_api][] = api:1
+features[page_manager_pages][] = celebs_gone_good_voted_page
