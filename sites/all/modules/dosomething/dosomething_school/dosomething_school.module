@@ -96,6 +96,24 @@ function dosomething_school_views_data() {
     ),
   );
 
+  $data['ds_school']['street'] = array(
+    'title' => t('Street Address'),
+    'help' => t('Street address of the school.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => FALSE,
+    ),
+  );
+
+  $data['ds_school']['zip'] = array(
+    'title' => t('School Zip code'),
+    'help' => t('Zip code of the school'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => FALSE,
+    ),
+  );
+
   $data['ds_school']['name'] = array(
     'title' => t('Name'),
     'help' => t('The name of the school.'),
