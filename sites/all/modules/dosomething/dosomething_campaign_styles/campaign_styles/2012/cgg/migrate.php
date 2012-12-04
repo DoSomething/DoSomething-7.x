@@ -209,9 +209,11 @@ try {
 
     echo "Saving node...";
     node_save($node);
-    print_r($node);
+    #print_r($node);
 
-    echo "Saved.  Creating taxonmy...";
+    echo "Saved.  Updating variable...";
+    variable_set('cgg_form_id', $node->nid);
+    echo "Variable set.  Creating taxonmy...";
     $taxonomy = array(
         'name' => 'Celebs Gone Good Celebrities',
         'machine_name' => 'celebs_gone_good_celebrities',
@@ -222,7 +224,10 @@ try {
     );
 
     taxonomy_vocabulary_save((object) $taxonomy);
-    echo "Created taxonomy.  Creating fields for taxonomy...";
+    echo "Created taxonomy.  Updating vocabulary variable...";
+    $v = reset(db_query("SELECT vid FROM taxonomy_vocabulary WHERE machine_name = 'celebs_gone_good_celebrities'")->fetchAll());
+    variable_set('cgg_taxonomy_vocabulary', $v->vid);
+    echo "Updated variable.  Creating fields for taxonomy...";
 
     $field = array(
         'field_name' => 'ccg_celeb_image',
@@ -247,8 +252,12 @@ try {
 
     field_create_instance($instance);
 
-    echo "Done.";
-    drupal_exit();
+    echo "You can visit the webform at /node/" . $node->nid . ".";
+    echo "Enabling CGG module...";
+    module_enable(array('celebs_gone_good'));
+    echo "Done.  Bye!";
+     
+   drupal_exit();
 }
 catch (Exception $e) {
     echo "\r\n";
