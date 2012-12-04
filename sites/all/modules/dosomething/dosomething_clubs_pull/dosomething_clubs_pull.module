@@ -450,7 +450,10 @@ class clubs_export {
           ")->fetchAllKeyed();
 
           $s['member_count'] = count($contacts);
-          $s['member_uids'] = implode(',', array_keys($contacts));
+
+          $mu = array_keys($contacts);
+          $mu = array_filter($contacts, 'dosomething_clubs_pull_not_zero');
+          $s['member_uids'] = implode(',', $mu);
           $s['member_emails'] = implode(',', $contacts);
           if (empty($s['member_uids'])) {
             $s['member_uids'] = 0;
@@ -482,7 +485,6 @@ class clubs_export {
 
           $s['sms_responses'] = implode(',', $sms_responses);
 
-          #$s = array_merge($s, $m);
           $results[] = (object)$s;
         }
 
@@ -494,6 +496,10 @@ class clubs_export {
     }
 }
 
+
+function dosomething_clubs_pull_not_zero($var) {
+  return (intval($var) > 0);
+}
 
 
 function dosomething_clubs_pull_file() {
