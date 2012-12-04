@@ -2392,7 +2392,7 @@ function dosomething_clubs_join_page($gid, $verify = FALSE, $hash = NULL) {
 /**
  * Wrapper for og_group to make sure we start with pending state.
  */
-function dosomething_clubs_join($gid, $args, $immediately_join = false) {
+function dosomething_clubs_join($gid, $args = array(), $immediately_join = false) {
   global $user;
 
   if (!$immediately_join && !isset($args['state'])) {
