@@ -1402,8 +1402,10 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
   $form['field_school_reference'][LANGUAGE_NONE][0]['target_id']['type']['#title'] = 'What kind of school is it?';
   $form['field_school_reference'][LANGUAGE_NONE][0]['target_id']['name']['#title'] = 'School name';
 
-  // Finally, send them to the page where they can invite their friends.
-  $form['#submit'][] = 'dosomething_clubs_share_page';
+  if (!preg_match('#node\/[0-9]+\/edit#i', request_uri())) {
+    // Finally, send them to the page where they can invite their friends.
+    $form['#submit'][] = 'dosomething_clubs_share_page';
+  }
 
   $form['field_club_state'][LANGUAGE_NONE]['#options']['_none'] = t('State');
   $form['field_country'][LANGUAGE_NONE]['#options']['_none'] = t('Country');
@@ -1779,15 +1781,17 @@ function dosomething_clubs_form_validate(&$form, &$form_state) {
           }
         }
         else {
-          form_set_error('field_email', t('That email address already belongs to a DoSomething.org member.  Do you have another account? Try !loggingin or !resetting', array(
-            '!loggingin' => l('logging in', 'user', array(
-              'attributes' => array(
-                'class' => array('sign-in-popup')
-              )
-            )),
-            '!resetting' => l('resetting your password', 'user/password')
-          )));
-          $error++;
+          if ($user->uid !== $account->uid) {
+            form_set_error('field_email', t('That email address already belongs to a DoSomething.org member.  Do you have another account? Try !loggingin or !resetting', array(
+              '!loggingin' => l('logging in', 'user', array(
+                'attributes' => array(
+                  'class' => array('sign-in-popup')
+                )
+              )),
+              '!resetting' => l('resetting your password', 'user/password')
+            )));
+            $error++;
+          }
         }
       }
       if (!valid_email_address($mail)) {
@@ -2394,6 +2398,7 @@ function dosomething_clubs_join_page($gid, $verify = FALSE, $hash = NULL) {
  */
 function dosomething_clubs_join($gid, $args = array(), $immediately_join = false) {
   global $user;
+
 
   if (!$immediately_join && !isset($args['state'])) {
     $args += array(

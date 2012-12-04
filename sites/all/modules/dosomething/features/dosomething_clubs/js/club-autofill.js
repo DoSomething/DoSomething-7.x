@@ -12,6 +12,7 @@
       }
 
       $('#edit-field-club-leader-birthdate-und-0-value-date').attr('placeholder', Drupal.t('MM/DD/YYYY'));
+      $('#field-club-leader-birthdate-add-more-wrapper legend span').html('Date of birth <span class="form-required" title="' + Drupal.t('This field is required') + '." style="padding-left: 0px">*</span>')
 
       // And monitor it for changes.
       $field
