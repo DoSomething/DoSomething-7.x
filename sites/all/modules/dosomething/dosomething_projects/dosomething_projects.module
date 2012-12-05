@@ -338,4 +338,31 @@ function dosomething_projects_form_project_update_node_form_alter(&$form, &$form
   $form['field_update_people_impacted'][LANGUAGE_NONE][0]['value']['#title'] = str_replace('[people helped]', $impact, $form['field_update_people_impacted'][LANGUAGE_NONE][0]['value']['#title']);
 }
 
+/**
+ * Form alter delete webform submission, target Projects submisison to alter where delete and cancel redirections.
+ *
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
 
+ /*
+function dosomething_projects_form_webform_submission_delete_form_alter(&$form, &$form_state, $form_id) {
+  
+  // -> Check that webform is a project
+  // Node ID: 718313: Webform: Submit your Project
+  $target_submission = $form_state['build_info']['args'][1]->sid;
+  if ($project_details = webform_get_submission(718313, $target_submission)) {
+    
+    // Redirect after submission has been deleted
+    $form_state['redirect'] = 'projects';
+    
+    // Redirect "cancel" link
+    // a id="edit-actions-cancel"
+    $form['actions']['cancel']['#href'] = $GLOBALS['base_url'] .'/user/'. $form_state['build_info']['args'][1]->uid;
+    
+  }
+
+  
+}
+*/
