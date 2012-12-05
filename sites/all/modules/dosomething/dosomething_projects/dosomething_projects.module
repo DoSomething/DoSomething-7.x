@@ -346,7 +346,7 @@ function dosomething_projects_form_project_update_node_form_alter(&$form, &$form
  * @param $form_id
  */
 
- /*
+
 function dosomething_projects_form_webform_submission_delete_form_alter(&$form, &$form_state, $form_id) {
   
   // -> Check that webform is a project
@@ -365,4 +365,3 @@ function dosomething_projects_form_webform_submission_delete_form_alter(&$form, 
 
   
 }
-*/
