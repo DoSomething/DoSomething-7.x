@@ -131,7 +131,7 @@ class views_conditional_handler extends views_handler_field {
    * Defines summary text for Fields category in Views.
    */
   function admin_summary() {
-    if (!empty($this->options['if']) && !empty($this->options['condition']) && (!empty($this->options['equalto']) || in_array($this->options['condition'], array(5, 6))) && !empty($this->options['then'])) {
+    if (!empty($this->options['if']) && !empty($this->options['condition']) && (!empty($this->options['equalto']) || in_array($this->options['condition'], array(5, 6))) && trim($this->options['then']) != '') {
       return t('If !if is !condition !equalto, output !then, else output !or', array(
         '!if' => $this->options['if'],
         '!condition' => $this->conditions[$this->options['condition']],
