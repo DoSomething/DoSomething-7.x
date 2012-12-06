@@ -595,7 +595,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ftaf_prompt';
   $activity->title = 'Start prompt for FTAF';
-  $activity->question = t('Awesome! All you need to do is text us your friends cell phone numbers and we\'ll invite then to participate in your Club.');
+  $activity->question = t('Awesome! All you need to do is text us back a bunch of your friends\' cell phone numbers and we\'ll invite then to participate in your Club.');
   $activity->inputs = array('start');
   $activity->outputs = array('strip_signature');
 
