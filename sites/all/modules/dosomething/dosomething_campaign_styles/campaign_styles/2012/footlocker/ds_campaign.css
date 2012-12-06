@@ -865,11 +865,9 @@ p.judge-intro {
     .judges a:hover {
       text-decoration: none; }
 
-.page-node-719431 .ui-dialog {
+.page-node-719431 .ui-dialog, .page-node-724872 .ui-dialog {
   width: 500px !important; }
-  .page-node-719431 .ui-dialog img {
-    float: left; }
-.page-node-719431 .ui-icon-closethick {
+.page-node-719431 .ui-icon-closethick, .page-node-724872 .ui-icon-closethick {
   left: 0 !important; }
 
 .faq {
