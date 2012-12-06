@@ -9,5 +9,6 @@ include_once 'celebs_gone_good.features.inc';
 function celebs_gone_good_page_alter(&$page) {
    if (preg_match('#^\/celebsgonegood.*?#i', request_uri())) {
      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/css/styles.css');
+     drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaigns/2012/cgg/js/cgg.js');
    }
 }
