@@ -508,23 +508,6 @@
             };
           }
 
-          // Creates an optional modal dialog
-          if (things.modal && response.status !== 'unknown') {
-            //jQuery('body').append(jQuery('<div></div>').attr('id', 'fb-modal').css({
-            //  'position': 'absolute',
-            //  'z-index': 150,
-            //  'width': '100%',
-            //  'height': '100%',
-            //  'top': '0px',
-            //  'opacity': '0.5',
-            //  '-ms-filter': 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)',
-            //  'filter': 'alpha(opacity=50)',
-            //  '-moz-opacity': '0.5',
-            //  '-khtml-opacity': '0.5',
-            //  'background': '#000'
-            //}));
-          }
-
           if (things.friend_selector == 'td') {
             // Create a mock button on the site to simulate a click-through on the friendSelector
             var fbm = $('<input />').attr('type', 'button').addClass('fb-feed-friend-finder').css('display', 'none');
@@ -657,7 +640,6 @@
 
         if ($('#fbc-modal').length > 0) {
           var img = window.setInterval(function() {
-            console.log($('.fb_dialog').find('iframe').length);
             if ($('.fb_dialog').find('iframe').length == 0) {
               window.clearInterval(img);
               $('#fbc-modal').remove();
