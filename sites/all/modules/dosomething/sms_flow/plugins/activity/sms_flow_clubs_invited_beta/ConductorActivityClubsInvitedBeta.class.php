@@ -66,7 +66,7 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
           $success_message .= t('Sorry, there was a problem creating your account.  To try again, text CJOIN.');
         }
 
-        $success_message .= t('Ur password to login at dosomething.org/myclub is @pass. ', array('@pass' => $pass));
+        $success_message .= t('Login with this phone # & this password (@pass) at dosomething.org/myclub. ', array('@pass' => $pass));
       }
       else {
         $success_message .= t('Awesome! You\'ve been added to your friend\'s club at dosomething.org/myclub. ');
@@ -107,7 +107,7 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
       }
 
-      $success_message .= t('Who else should be involved? Respond with their phone #s and we\'ll invite them too');
+      $success_message .= t('Who else should be involved? Respond with more phone #s and we\'ll invite them too');
       $state->setContext('sms_response', $success_message);
       $state->setContext('clubs_invite_gid', $clubs_invite_gid);
 
