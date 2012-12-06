@@ -2510,7 +2510,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_types' => array(),
       'field_name' => 'field_project_photo',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'fid' => array(
@@ -2637,6 +2637,7 @@ sports|Sports Equipment - our fall sports equipment drive',
             'image_club_gallery_photos_120x120' => 0,
             'image_club_profile' => 0,
             'image_content_main' => 0,
+            'image_crazy_facebook_picture' => 0,
             'image_explore_action_guides' => 0,
             'image_front_slider' => 0,
             'image_gallery_thumbnail' => 0,
