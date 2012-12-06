@@ -15,8 +15,6 @@ $plugin = array(
 function og_og_migrate_group_membership(&$context) {
   if (empty($context['sandbox'])) {
     $context['sandbox']['progress'] = 0;
-    $context['sandbox']['current_node'] = 0;
-    $context['sandbox']['last_vid'] = 0;
     $context['sandbox']['last'] = 0;
 
     // Add "User request" to the default group membership type.
@@ -46,10 +44,6 @@ function og_og_migrate_group_membership(&$context) {
       field_create_instance($instance);
     }
 
-    // It is probably already added, but make sure there is og-audience field
-    // attached to the user.
-    og_create_field(OG_AUDIENCE_FIELD, 'user', 'user');
-
     // Calculate max items.
     $query = new EntityFieldQuery();
     $context['sandbox']['max'] = $query
@@ -75,7 +69,6 @@ function og_og_migrate_group_membership(&$context) {
   if (!empty($result)) {
     foreach ($result as $entity_type => $values) {
       foreach ($values as $etid => $value) {
-        $context['sandbox']['progress']++;
         $entity = entity_load($entity_type, array($etid));
         $entity = reset($entity);
         foreach ($entity->{OG_AUDIENCE_FIELD}[LANGUAGE_NONE] as $value) {
@@ -89,7 +82,9 @@ function og_og_migrate_group_membership(&$context) {
               '@id' => $etid,
             );
             $context['results'][] = t('Membership of group @label for @type @id', $params);
+
           }
+          $context['sandbox']['progress']++;
         }
       }
     }

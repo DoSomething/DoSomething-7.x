@@ -63,20 +63,20 @@ function og_migrate_og_migrate_upgrade_user(&$context) {
 
     $account = user_load($record->uid);
     // Make sure entity isn't already associated with group.
-    if ($group->gid && $account->uid && !og_is_member($group->gid, 'user', $account)) {
+    if (!og_is_member($group->gid, 'user', $account)) {
       $values = array('entity' => $account, 'state' => $state);
       og_group($group->gid, $values);
-      if ($record->is_admin) {
-        og_role_grant($group->gid, $record->uid, $context['sandbox']['rid']);
-      }
     }
 
+    if ($record->is_admin) {
+      og_role_grant($group->gid, $record->uid, $context['sandbox']['rid']);
+    }
     $context['sandbox']['last'] = $record->upgrade_id;
     $context['sandbox']['progress']++;
+    $context['message'] = t('Processing database rows @start - @end', array('@start' => $record->upgrade_id, '@end' => $record->upgrade_id + $batch_size));
   }
 
-  if ($context['sandbox']['progress'] < $context['sandbox']['max']) {
-    $context['sandbox']['last_progress'] = $context['sandbox']['progress'];
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
   }
 }
