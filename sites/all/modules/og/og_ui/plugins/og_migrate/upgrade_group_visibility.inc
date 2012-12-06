@@ -59,6 +59,7 @@ function og_ui_og_migrate_upgrade_group_visibility(&$context) {
     ->fields('n', array('type', 'created'))
     ->fields('og', array('og_selective', 'upgrade_id'))
     ->condition('nr.vid', $context['sandbox']['last_vid'], '>')
+    ->condition('og.upgrade_id', $context['sandbox']['last'], '>')
     ->orderBy('nr.vid', 'ASC')
     ->range(0, $batch_size);
   $revisions = $query->execute();
@@ -81,6 +82,7 @@ function og_ui_og_migrate_upgrade_group_visibility(&$context) {
     field_attach_update('node', $node);
 
     $context['sandbox']['last_vid'] = $revision->vid;
+    $context['sandbox']['last'] = $revision->upgrade_id;
     // Group content subscribed to group.
     $context['sandbox']['progress']++;
   }
@@ -130,19 +132,16 @@ function og_ui_og_migrate_upgrade_group_visibility(&$context) {
         // Since the node is already a group we have to manually override
         // the roles, as og_group() isn't called.
         $roles = og_roles_override($group->gid);
-        if (count($roles)) {
-          $roles = array_flip($roles);
+        $roles = array_flip($roles);
 
-          // Set the new permissions.
-          og_role_change_permissions($roles[OG_ANONYMOUS_ROLE], $anon_permissions);
-          og_role_change_permissions($roles[OG_AUTHENTICATED_ROLE], $auth_permissions);
-        }
+        // Set the new permissions.
+        og_role_change_permissions($roles[OG_ANONYMOUS_ROLE], $anon_permissions);
+        og_role_change_permissions($roles[OG_AUTHENTICATED_ROLE], $auth_permissions);
       }
     }
   }
 
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
-    $context['sandbox']['last_progress'] = $context['sandbox']['progress'];
     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
   }
 }
