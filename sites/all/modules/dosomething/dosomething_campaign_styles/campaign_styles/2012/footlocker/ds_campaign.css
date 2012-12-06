@@ -837,8 +837,40 @@ hr.gray {
 .page-node-724722 .pane-content ul {
   margin: 20px 0; }
 
-.judges img {
-  margin: 0px 30px; }
+p.judge-intro {
+  font-size: 16px;
+  line-height: 1.4em; }
+
+.judges {
+  margin: 0 40px;
+  padding: 0;
+  list-style-type: none; }
+  .judges img {
+    margin: 0px 50px;
+    box-shadow: 0px 0px 8px #e1e1e1 !important; }
+  .judges li {
+    float: left;
+    list-style: none; }
+  .judges h3 {
+    background-color: #e31837;
+    color: white;
+    margin-bottom: 15px;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 18px;
+    margin: 0px 50px 36px; }
+  .judges a {
+    color: white;
+    text-decoration: none; }
+    .judges a:hover {
+      text-decoration: none; }
+
+.page-node-719431 .ui-dialog {
+  width: 500px !important; }
+  .page-node-719431 .ui-dialog img {
+    float: left; }
+.page-node-719431 .ui-icon-closethick {
+  left: 0 !important; }
 
 .faq {
   margin-bottom: 5px; }
