@@ -561,8 +561,8 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_clubs_ftaf');
   $activity->name = 'ftaf_clubs_process';
   $activity->title = 'Forward to a Friend';
-  $activity->alpha_optin = 136361;
-  $activity->beta_optin = 135911;
+  $activity->alpha_optin = 0;
+  $activity->beta_optin = 126531;
   $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with CINVITE if you want to invite more.');
   $activity->response_fail = t('Sorry, we didn\'t understand that. To join the club again, text CJOIN. To invite ppl to ur club, text CINVITE.');
   $activity->inputs = array('clubs_process_beta');
@@ -608,8 +608,8 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_clubs_ftaf');
   $activity->name = 'ftaf_clubs_process';
   $activity->title = 'Forward to a Friend';
-  $activity->alpha_optin = 136361;
-  $activity->beta_optin = 135911;
+  $activity->alpha_optin = 0;
+  $activity->beta_optin = 126531;
   $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with CINVITE if you want to invite more.');
   $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the club again, text CJOIN. To invite ppl to ur club, text CINVITE.');
   $activity->inputs = array('strip_signature');

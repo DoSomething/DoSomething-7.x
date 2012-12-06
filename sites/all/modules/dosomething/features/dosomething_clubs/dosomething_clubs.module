@@ -11,8 +11,8 @@ define('CLUBS_MCOMMONS_CAMPAIGN', 122361);
 define('CLUBS_TSHIRT_FORM', variable_get('tshirt_form_id', 726503));
 define('CLUBS_TSHIRT_ALPHA_CAMPAIGN', variable_get('tshirt_alpha_campaign', 136881));
 define('CLUBS_TSHIRT_BETA_CAMPAIGN', variable_get('tshirt_beta_campaign', 136871));
-define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_alpha_campaign', 136361));
-define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_beta_campaign', 135911));
+define('CLUBS_MCOMMONS_ALPHAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_alpha_campaign', 0));
+define('CLUBS_MCOMMONS_BETAS_INVITE_CAMPAIGN', variable_get('clubs_invite_flow_beta_campaign', 126531));
 
 /**
  * Implements hook_og_ui_get_group_admin_alter().

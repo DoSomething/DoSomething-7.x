@@ -20,7 +20,7 @@ div.messages.status {
     font-size: 28px; }
 
 #share-buttons {
-  width: 405px;
+  width: 642px;
   margin: 0px auto; }
   #share-buttons div.share-container {
     float: left; }
@@ -42,8 +42,7 @@ div.messages.status {
           box-shadow: none;
           color: #dcdada; }
     #share-buttons div.share-container#cell-share {
-      margin-right: 75px;
-      display: none; }
+      margin-right: 75px; }
     #share-buttons div.share-container#fb-share {
       margin-right: 75px; }
 
@@ -161,7 +160,7 @@ p#continue-to-club {
   display: none;
   margin-top: 10px; }
 
-#invite-sent {
+#invite-sent, #invite-sent-cells {
   display: inline-block;
   margin-left: 15px; }
 
