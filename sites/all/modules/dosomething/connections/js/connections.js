@@ -479,6 +479,20 @@
      */
     feed_runner: function(things, share, callback) {
       // If we are allowing people to post to multiple walls...
+      if (things.modal) {
+        var m = $('<div></div>').css({
+          'width': '100%',
+          'height': jQuery(document).height(),
+          'background': '#000',
+          'opacity': '0.98',
+          'position': 'absolute',
+          'z-index': 25,
+          'top': '0px',
+        }).attr('id', 'fbc-modal');
+
+        m.appendTo(jQuery('body'));
+      }
+
       if (things.allow_multiple > 0) {
         Drupal.behaviors.fb.real_auth(things, function(response) {
           Drupal.behaviors.fb.log('Feed Dialog', 1);
@@ -539,7 +553,7 @@
                     }
 
                     // Callback for when all posting has completed.
-                    Drupal.behaviors.fb.callback_handler(callback, '');
+                    Drupal.behaviors.fb.callback_handler(callback, things);
                   });
                 }
               }, c, true);
@@ -640,6 +654,16 @@
           Drupal.behaviors.fb.callback_handler(callback, response);
           Drupal.behaviors.fb.log('Feed Post', 2);
         });
+
+        if ($('#fbc-modal').length > 0) {
+          var img = window.setInterval(function() {
+            console.log($('.fb_dialog').find('iframe').length);
+            if ($('.fb_dialog').find('iframe').length == 0) {
+              window.clearInterval(img);
+              $('#fbc-modal').remove();
+            }
+          });
+        }
       }
     },
 
