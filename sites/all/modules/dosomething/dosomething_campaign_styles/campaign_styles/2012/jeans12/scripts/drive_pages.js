@@ -3,9 +3,9 @@
     attach: function (context, settings) {
 
     Drupal.friendFinder.fbObj = {
-      message: 'TFJ Message',
-      name: 'TFJ Name',
-      picture: '//files.dosomething.org/files/campaigns/jeans12/logo_clean.png',
+      feed_title: Drupal.t('Join your school\'s Teens for Jeans drive'),
+      feed_description: Drupal.t('Join your school\'s Teens for Jeans drive to help fight teen homelessness. Sign up to spread the word about your school\'s awesome drive.'),
+      feed_picture: '//files.dosomething.org/files/campaigns/jeans12/logo_clean.png',
       description: 'Join me and DoSomething.org to help fight teen homelessness!',
     }; 
 
