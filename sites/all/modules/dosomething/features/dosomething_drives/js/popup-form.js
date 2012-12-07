@@ -16,7 +16,7 @@
         return false;
       });
 
-      Drupal.behaviors.fb.feed({
+      var fbObj = {
         feed_document: document.location.href,
         feed_title: Drupal.t('Saving a life is as easy as giving your spit.'),
         feed_picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
@@ -24,7 +24,11 @@
         feed_allow_multiple: true,
         feed_selector: '.fb-friend-finder-init',
         require_login: true
-      }, function(response) {
+      };
+
+      $.extend(fbObj, Drupal.friendFinder.fbObj);
+
+      Drupal.behaviors.fb.feed(fbObj, function(response) {
         $('#teams-notification-area').html('Shared with your Facebook friends! Invite more friends below.');
         triggerPopup();
       });
