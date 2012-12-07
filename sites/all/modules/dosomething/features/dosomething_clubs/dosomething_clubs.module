@@ -1717,7 +1717,7 @@ function dosomething_clubs_tshirt_response() {
     $p = profile2_load_by_user($user, 'main');
     $club_leader_name = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
 
-    dosomething_general_sms_mdata_response('Thanks so much! Your club leader ' . $club_leader_name . ' should receive ur super-rad t-shirt in the next two weeks.  - Crystal, DoSomething.org!');
+    dosomething_general_sms_mdata_response('Thanks so much! We\'ll be shpiping your club leader a super-rad t-shirt for you in the next 2 weeks or so. - Crystal, DoSomething.org');
   }
 }
 
