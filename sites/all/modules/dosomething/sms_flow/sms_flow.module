@@ -29,7 +29,7 @@
  */
 
 function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_numbers, $form_values, Array $variables, $beta_to_alpha_campaign = FALSE) {
-  if (dosomething_general_valid_cell($alpha_number)) {
+  if (dosomething_general_valid_cell($alpha_number) && !empty($alpha_optin)) {
   	dosomething_general_mobile_commons_subscribe($alpha_number, (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign), $variables);
   }
 
