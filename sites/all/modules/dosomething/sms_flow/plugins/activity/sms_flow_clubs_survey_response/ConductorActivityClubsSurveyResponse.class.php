@@ -42,7 +42,7 @@ class ConductorActivityClubsSurveyResponse extends ConductorActivity {
     if (self::hasAcceptResponse($_REQUEST['args'])) {
 
       $this->removeOutput('process_question2');
-      $success_message .= t('Awesome! To get ur free shirts, head to doso.me/4 & fill out a quick form. Stay tuned tomorrow for a 4 question survey about ur club- Crystal, DoSomething.org');
+      $success_message .= t('Awesome! To get ur free shirts, head to doso.me/4 & fill out a quick form. Stay tuned Monday for a 4 question survey about ur club- Crystal, DoSomething.org');
       $state->setContext('sms_response', $success_message);
 
       db_insert('dosomething_clubs_survey')
