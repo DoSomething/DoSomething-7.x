@@ -512,8 +512,7 @@ function dosomething_projects_general_webform_submission_insert($node, $submissi
     
     $params['url'] = 'http://' . $_SERVER['HTTP_HOST'] . $alias_url;
 
-    // Send welcome email message
-    // TO-DO: replace with Mandrill call
+    // Send welcome email message - sent by Mandrill if module enabled
     drupal_mail('dosomething_projects_general', 'welcome_email', $email[0]['value'], $language, $params);
     
     // Add user to MailChimp group
@@ -527,11 +526,6 @@ function dosomething_projects_general_webform_submission_insert($node, $submissi
     
     $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
     $merge_vars['BDAYFULL'] = date('m/d/Y', $birthday_stamp);
-    
-    $bla = date('Y', $birthday_stamp);
-    $bla2 = intval(date('Y', $birthday_stamp));
-    $bla3 = date('Y', $birthday_stamp) + 18;
-    $bla4 = intval(date('Y', $birthday_stamp)) + 18;
     
     // Need to store date values as var to allow recasting in final string
     $target_date = date('m/d', $birthday_stamp);
