@@ -402,7 +402,7 @@
      */
   	feed: function(config, callback) {
       var things = {
-      	link: config.feed_document,
+      	link: config.feed_document || document.location.href,
         title: config.feed_title,
         picture: config.feed_picture,
         caption: config.feed_caption,
@@ -426,7 +426,8 @@
 
       var share = {
         method: 'feed',
-        //display: 'iframe',
+        display: 'iframe',
+        access_token: FB.getAccessToken(),
         link: things.link,
         name: things.title,
       };
