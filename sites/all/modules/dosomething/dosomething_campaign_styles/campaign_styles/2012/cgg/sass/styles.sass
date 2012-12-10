@@ -1,0 +1,88 @@
+@import 'compass/css3'
+@import 'vote'
+@import 'result'
+
+.breadcrumbs, .region-sidebar-first
+  display: none
+
+[role="main"]
+  width: 100% !important
+  margin: 0 !important
+
+form
+  background: #fff
+  overflow: hidden !important
+  margin: 0 auto !important
+  border: none !important
+  box-shadow: none !important
+  +border-radius(5px !important)
+  label
+    font-size: 2em
+    padding: 1em 0 
+    text-transform: uppercase
+
+form.webform-client-form #edit-actions
+  height: auto !important
+  margin: 0 4em !important
+  text-align: center !important
+  float: left !important
+
+.go-button, #edit-submit, .form-submit
+  font-family: din-web !important
+  background: #FED100 !important
+  margin: 4% 0 1% !important
+  padding: 0.3em 0.7em !important
+  position: static !important
+  font-size: 1.5em !important
+  height: 35px !important
+  display: inline-block !important
+  +border-radius(7px !important)
+
+#page-title
+  text-align: right
+  box-shadow: none!important
+  border: none!important
+
+body, .container, div[role="main"]
+  background: #fff !important
+
+@media only screen and (max-width: 1030px)
+  #page
+    width: 100% !important
+  .region-sidebar-first
+    display: none !important
+  #site-name
+    top: -54px !important
+    left: 5px !important
+    a
+      height: 50px !important
+      width: 60px !important
+      background-size: 60px  !important
+  #utility-bar
+    height: 55px !important
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar
+    .search, #help-center
+      display: none !important
+    .login
+      padding: 0.5em 1em 0 0 !important
+      font-size: 1.5em !important
+  #main-wrapper div[role="main"]
+    float: none !important
+    width: 100% !important
+  nav[role="navigation"]
+    display: none !important
+  .container
+    margin: 0 auto !important
+    width: 100% !important
+  header[role="banner"]
+    @media only screen and (max-width: 775px)
+      width: 100% !important
+  #block-menu-menu-footer .content
+    width: 80% !important
+    margin: 0 auto !important
+  #block-menu-menu-footer .content ul.menu li span
+    font-size: 16px !important
+    line-height: 1em !important
+  #block-menu-menu-footer .content ul.menu ul li a
+    font-size: 14px !important
+    line-height: 1em !important

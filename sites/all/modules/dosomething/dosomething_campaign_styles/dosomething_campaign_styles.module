@@ -1,5 +1,79 @@
 <?php
 
+define('CGG_CHOOSER_FORM', variable_get('cgg_form_id', 725016));
+define('CGG_TAXONOMY_VOCABULARY', variable_get('cgg_taxonomy_vocabulary', 29));
+
+/**
+ *  Implements hook_webform_select_options_info()
+ */
+function dosomething_campaign_styles_webform_select_options_info() {
+  return array(
+    'celebs' => array(
+      'title' => t('Celebs Gone Good Celebrities'),
+      'options callback' => 'dosomething_campaign_styles_ccg_options_list',
+    ),
+  );
+}
+
+function dosomething_campaign_styles_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'webform_client_form_' . CGG_CHOOSER_FORM) {
+    if (!user_is_logged_in()) {
+      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/js/cgg.js');
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'dosomething_campaign_styles_ccg_submit',
+      );
+    }
+    else {
+      $form['#submit'][] = 'dosomething_campaign_styles_ccg_submit';
+    }
+  }
+}
+
+function dosomething_campaign_styles_ccg_submit($form, &$form_state) {
+  $celeb = $form_state['values']['submitted_tree']['cgg_choose_a_celebrity'];
+  $redirect = 'celebsgonegood/voted/' . $celeb;
+
+  if (!user_is_logged_in()) {
+    global $user;
+
+    $commands = array();
+    $errors = form_get_errors();
+    if ($errors) {
+      $error_list = '';
+      foreach ($errors AS $key => $error) {
+         $error_list .= '<li>' . $error . '</li>';
+      }
+
+      $fake_error_template = '<div class="messages error">
+        <h2 class="element-invisible">Error message</h2>
+        <ul>' . $error_list . '</ul></div>
+      ';
+      $commands[] = ajax_command_before('#page-title', $fake_error_template);
+    }
+    else {
+      $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsCGGSubmit', array($redirect, ($user->uid > 0)));
+    }
+
+    return array(
+      '#type' => 'ajax',
+      '#commands' => $commands
+    );
+  }
+  else {
+    drupal_goto($redirect);
+  }
+}
+
+function dosomething_campaign_styles_ccg_options_list() {
+  $celebs = taxonomy_get_tree(CGG_TAXONOMY_VOCABULARY);
+  $array = array();
+  foreach ($celebs AS $key => $celeb) {
+    $array["{$celeb->tid}"] = $celeb->name;
+  }
+  
+  return $array;
+}
+
 /**
  * Implements hook_init().
  */
