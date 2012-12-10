@@ -1033,12 +1033,6 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $ar
   drupal_http_request($api_opt_in_path_url, $options);
 }
 
-function dosomething_general_user_presave(&$edit, $account, $category) {
-  if (isset($edit['pass'])) {
-    drupal_set_message(t('Your password has been updated.'), 'status');
-  }
-}
-
 /**
  * Subscribe the email to the mailchimp DoSomething Members List.
  *
