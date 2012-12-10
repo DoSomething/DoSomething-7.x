@@ -258,3 +258,17 @@ function dosomething_school_update_7004() {
     )
   );
 }
+
+/**
+ * Make the phone field longer to accommodate extensions.
+ */
+function dosomething_school_update_7005() {
+  db_change_field('ds_school', 'phone', 'phone', array(
+    'description' => 'Contact phone number.',
+    'type' => 'varchar',
+    'length' => 30,
+    'not null' => TRUE,
+    'default' => '',
+    'initial' => '',
+  ));
+}
