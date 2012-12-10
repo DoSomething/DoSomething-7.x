@@ -96,6 +96,15 @@ function dosomething_school_views_data() {
     ),
   );
 
+  $data['ds_school']['city'] = array(
+    'title' => t('City'),
+    'help' => t('The city the school is in.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+  );
+
   $data['ds_school']['street'] = array(
     'title' => t('Street Address'),
     'help' => t('Street address of the school.'),
