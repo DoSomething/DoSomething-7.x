@@ -39,8 +39,8 @@ function drush_dosomething_school_postsecondary_load($path) {
   }
 
   $file = new SplFileObject($path);
-  $total = count(file($file)) - 1;
   // first line contains field names
+  $total = count(file($file)) - 1;
   $map = $file->fgetcsv();
 
   $count = 0;
@@ -64,10 +64,12 @@ function drush_dosomething_school_postsecondary_load($path) {
     $record['state'] = $row['Institution_State'];
     $record['zip'] = trim($row['Institution_Zip'], '"');
     $record['level'] = 'Postsecondary';
-    $record['lat'] = $record['lon'] = '';
     $record['notes'] = $row['Program_Name'];
+    $record['country'] = 'USA';
     // Indicate this is a postsecondary school.
     $record['type'] = 2;
+    // Fill in blanks.
+    $record['email'] = $record['site'] = $record['phone'] = $record['lat'] = $record['lon'] = '';
 
     // Check if there's an existing record...
     $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $record['gsid']), TRUE);
@@ -154,7 +156,12 @@ function drush_dosomething_school_load() {
       unset($row['id']);
 
       /// Indicate this is a secondary school.
-      $row['school_type'] = 1;
+      $row['type'] = 1;
+
+      $row['country'] = 'USA';
+
+      // Fill in blanks.
+      $row['notes'] = $row['email'] = $row['site'] = $row['phone'] = '';
 
       // Check if there's an existing record...
       $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $row['gsid']), TRUE);
