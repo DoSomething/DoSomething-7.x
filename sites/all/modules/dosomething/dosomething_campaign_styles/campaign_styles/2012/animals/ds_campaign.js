@@ -22,7 +22,37 @@
   if(document.URL == "http://" + url + "/picsforpets/mobile" || document.URL == "https://" + url + "/picsforpets/mobile"){
     $('.region-sidebar-first').hide();
   }
+  
+  var url = "http://localhost:8080/picsforpets?sid=53905";
+  $(function(){
+    if (location.href==url){
+      $('#overlay-animals').dialog({width: 1050, height: 700, modal: true, resizable: false});
+    }
+  });
+
+  // Overlay Skip Btn
+  $('a#skip').click(function() {
+      $('#overlay-animals').dialog('close')
+  });
+
+    // Overlay to Facebook Btn
+    $('#overlay-share-btn').click(function() {
+    $('#overlay-animals').dialog('close').queue(function() {
+      Drupal.behaviors.fb.feed({
+      feed_document: 'http://www.dosomething.org/picsforpets',
+      feed_title: 'Animal Welfare',
+      feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
+      feed_caption: 'I take action on animal welfare… what do you do?',
+      feed_description: 'Check out the animal cause',
+      feed_modal: true
+    }, function(response) {
+
+    }); 
+      });
+      });
 
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
+
+

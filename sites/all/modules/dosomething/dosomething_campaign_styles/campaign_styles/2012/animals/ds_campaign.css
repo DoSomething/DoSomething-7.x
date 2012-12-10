@@ -12,8 +12,16 @@
   padding: 15px 0 0 8px;
   height: 37px; }
 
-body {
+body.page-node-724411 {
   background: #d1e9ed; }
+  body.page-node-724411 .ui-dialog {
+    background: none !important; }
+    body.page-node-724411 .ui-dialog .ui-dialog-titlebar-close span {
+      display: none; }
+  body.page-node-724411 .ui-icon-closethick {
+    display: none; }
+  body.page-node-724411 .ui-widget-overlay {
+    opacity: 0.98; }
 
 @media only screen and (max-width: 1075px) {
   .region-sidebar-first {
@@ -70,12 +78,74 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-  @media only screen and (max-width: 1075px) and (max-width: 775px) {
+  @media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
     header[role="banner"] {
       width: 100%; } }
 
 .pane-title {
   display: none; }
+
+#overlay-animals {
+  display: none;
+  overflow: hidden; }
+  #overlay-animals h2, #overlay-animals p {
+    color: white;
+    line-height: 1.1em; }
+  #overlay-animals h4, #overlay-animals p {
+    font-family: din-web-reg; }
+  #overlay-animals h2 {
+    font-family: din-web;
+    font-size: 100px;
+    font-weight: 600;
+    border-bottom: 1px solid white;
+    margin-bottom: 20px; }
+  #overlay-animals p {
+    font-size: 21px; }
+  #overlay-animals .official-doer {
+    margin: -30px;
+    float: left; }
+  #overlay-animals h3 {
+    position: relative;
+    top: 112px;
+    left: 60px; }
+    #overlay-animals h3 a {
+      color: #333333;
+      text-shadow: 0 1px 1px white;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px #f3e992;
+      border: 2px solid #f3e992;
+      font-size: 48px;
+      font-weight: 600;
+      padding: 8px 100px 0px;
+      background: #f4ca00;
+      background-image: linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -o-linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -moz-linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -webkit-linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -ms-linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.38, #f4cb00), color-stop(0.69, #f9d852), color-stop(0.85, #f7e544));
+      border-radius: 18px; }
+      #overlay-animals h3 a:hover {
+        text-decoration: none;
+        color: black; }
+    #overlay-animals h3 img {
+      position: relative;
+      bottom: -30px;
+      left: -60px; }
+  #overlay-animals h4 {
+    clear: both; }
+    #overlay-animals h4 a {
+      font-size: 18px;
+      font-weight: 400;
+      float: right;
+      color: #f4ca00;
+      text-decoration: underline; }
+      #overlay-animals h4 a:hover {
+        text-decoration: none; }
+
+#fbc-modal {
+  z-index: 999 !important; }
 
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
