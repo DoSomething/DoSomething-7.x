@@ -67,6 +67,9 @@
     $('.form-item-field-geofield-distance-unit').hide();
     $('.geofield-proximity-origin-from').text('Zip code:');
 
+    // #contact-form submit button value change
+    $('#cmp #header .form-submit').attr('value','start');
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
