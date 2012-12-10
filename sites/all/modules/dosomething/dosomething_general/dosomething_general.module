@@ -893,6 +893,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
  * @param $form_state
  */
 function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_state) {
+  
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
 
@@ -905,6 +906,9 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   }
   elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
     $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+  }
+  elseif (!empty($submitted['your_email'])) {
+    $email = $submitted['your_email'];
   }
 
   // An email and a mailchimp group id are the base requirements. Without them,
@@ -939,11 +943,33 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   }
 
   // Full name - MMERGE3
-  if ( !empty($submitted['first_name']) || !empty($submitted['last_name']) ) {
+  if ( !empty($submitted['first_name']) ||
+       !empty($submitted['last_name']) ||
+       !empty($submitted['your_name']) ) {
+    
     $merge_vars['MMERGE3'] = $submitted['first_name'] .' '. $submitted['last_name'];
+    
+    if (!empty($submitted['your_name'])) {
+      $merge_vars['MMERGE3'] = $submitted['your_name'];
+    }
+    
+  }
+  
+  // Check for secondary name submissions - ie: Footlocker nominee
+  if (!empty($submitted['nominees_name'])) {
+    
+    $nominees_email = $submitted['nominees_email'];
+    $nominees_merge_vars = array();
+    $nominees_merge_vars['MMERGE3'] = $submitted['nominees_name'];
+    
+    // Submit to MailChimp
+    dosomething_general_mailchimp_subscribe($nominees_email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $nominees_merge_vars);
   }
 
+
+  // Submit to MailChimp
   dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
+  
 }
 
 /**
