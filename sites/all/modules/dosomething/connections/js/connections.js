@@ -426,8 +426,7 @@
 
       var share = {
         method: 'feed',
-        display: 'iframe',
-        access_token: FB.getAccessToken(),
+        //display: 'iframe',
         link: things.link,
         name: things.title,
       };
