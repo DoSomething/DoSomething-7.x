@@ -6,10 +6,10 @@
 
 include_once 'robocalls.features.inc';
 define('MCOMMONS_ROBOCALL_CAMPAIGN', 18301);
-define('ROBOCALLS_WEBFORM_NID', 724089);//723327);
+define('ROBOCALLS_WEBFORM_NID', 723327);//724089
 define('MAX_CALLS_PER_DAY', 1);
 define('ROUND_TO', 10);
-define('ROBOCALLS_TAXONOMY_ID', 29);
+define('ROBOCALLS_TAXONOMY_ID', 28);
 
 /**
  *  Implements hook_panels_pre_render()
@@ -246,7 +246,6 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     unset($u['top_disclaimer']);
 
     $u['field_celebrity_chooser'][LANGUAGE_NONE]['#title'] = t('Choose a Celeb');
-    #echo '<pre>', print_R($u['field_celebrity_chooser']), '</pre>';
 
     if (request_uri() == '/calloffame') {
       $u['header'] = array(
