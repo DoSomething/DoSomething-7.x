@@ -568,6 +568,44 @@ function robocalls_default_page_manager_pages() {
     $display->panels['center'][0] = 'new-3';
     $pane = new stdClass();
     $pane->pid = 'new-4';
+    $pane->panel = 'center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '<div id="dosomething-robocalls-submitted-message" accept-charset="UTF-8">
+	<div>
+		<div id="edit-title-text" class="form-item form-type-item">
+		  <label for="edit-title-text">
+			<p>Done.</p>
+			<h2>Thanks for Sending a Call of Fame.</h2> 
+		   </label>
+		</div>
+		<div class="send-another-robocall">
+			<a href="/calloffame" class="go-button">Send Another Call</a>
+		</div>
+		<div class="separator form-wrapper" id="edit-or--2">Share The Call of Fame With Friends:</div>
+		<div class="robocalls-awesome-and-sharing with-links">
+			<div class="share-images"><a href="http://www.facebook.com/sharer/sharer.php?u=http://www.dosomething.org/causecall" id="robocalls-fb-share-link" target="_blank"><img src="http://brandthunder.com/wp/wp-content/uploads/2012/07/Facebook-skins-post.png" width="42" height="42" alt="" /></a> <a id="robocalls-twitter-button" href=\'http://twitter.com/intent/tweet?text=\'><img src="http://www.simplyzesty.com/wp-content/uploads/2011/08/Twitter-Logo-300x293.jpg" width="42" height="42" alt="" /></a></div>
+		</div>
+	</div>
+</div>',
+      'format' => '1',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-4'] = $pane;
+    $display->panels['center'][1] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
     $pane->panel = 'center_';
     $pane->type = 'views';
     $pane->subtype = 'cause_its_your_birthday';
@@ -598,10 +636,10 @@ function robocalls_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['center_'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['center_'][0] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'here_s_how_it_works';
     $pane->type = 'block';
     $pane->subtype = 'service_links-service_links_not_node';
@@ -617,10 +655,10 @@ function robocalls_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['here_s_how_it_works'][0] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['here_s_how_it_works'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'here_s_how_it_works';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -642,10 +680,51 @@ function robocalls_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['here_s_how_it_works'][1] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['here_s_how_it_works'][1] = 'new-7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8';
+    $pane->panel = 'here_s_how_it_works';
+    $pane->type = 'robocalls_featured_image';
+    $pane->subtype = 'robocalls_featured_image';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => 'featured-celeb-image',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-8'] = $pane;
+    $display->panels['here_s_how_it_works'][2] = 'new-8';
+    $pane = new stdClass();
+    $pane->pid = 'new-9';
+    $pane->panel = 'here_s_how_it_works';
+    $pane->type = 'block';
+    $pane->subtype = 'webform-client-block-724089';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => 'robocalls-celeb-form',
+      'css_class' => 'robocalls-away-form',
+    );
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $display->content['new-9'] = $pane;
+    $display->panels['here_s_how_it_works'][3] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-4';
+  $display->title_pane = 'new-5';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $handler = new stdClass();
@@ -698,7 +777,7 @@ function robocalls_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-10';
     $pane->panel = 'center';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -717,10 +796,10 @@ function robocalls_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['center'][0] = 'new-7';
+    $display->content['new-10'] = $pane;
+    $display->panels['center'][0] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-7';
+  $display->title_pane = 'new-10';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['cause_its_your_birthday'] = $page;

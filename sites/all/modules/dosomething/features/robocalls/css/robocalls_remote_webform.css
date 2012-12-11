@@ -1,4 +1,4 @@
- input.robocalls-fb-find-friends-birthdays {
+/* input.robocalls-fb-find-friends-birthdays {
 	background: #3B5998 url(/sites/all/modules/dosomething/features/robocalls/images/icon_facebook.png) 0px 0px no-repeat;
 	border: 1px solid #000000;
 	box-shadow: 0px 0px 3px #808080;
@@ -9,11 +9,57 @@
 	color: #ffffff;
 	margin-bottom: 10px;
 	font-size: 11px;
+}*/
+
+#robocalls-celeb-form h2 { display: none; }
+
+#robocalls-celeb-form.robocalls-away-form h2 { display: block; margin-top: -15px; }
+.robocalls-away-form #webform-component-step-2 {
+	display: none;
+}
+
+.robocalls-away-form #edit-submitted-field-celeb-your-name { clear: both; }
+.robocalls-away-form#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser { display: block; margin-top: 10px;}
+.robocalls-away-form#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser label { margin-top: -7px; }
+
+#webform-component-step-2 h2 {
+	clear: both;
+	height: 45px;
+}
+
+.panels-flexible-region-cause_calls_landing-here_s_how_it_works { width: 100%; }
+#robocalls-celeb-form {
+	float: left;
+	margin-left: 10px;
+}
+
+#featured-celeb-image { float: left; }
+#featured-celeb-image img {
+	height: 317px;
+	width: 210px;
+}
+
+#edit-submitted-field-celeb-date #submitted-field-celeb-date-add-more-wrapper .form-item-submitted-field-celeb-date-und-0-value-day,
+#edit-submitted-field-celeb-date #submitted-field-celeb-date-add-more-wrapper .form-item-submitted-field-celeb-date-und-0-value-year,
+#edit-submitted-field-celeb-date #submitted-field-celeb-date-add-more-wrapper .form-item-submitted-field-celeb-date-und-0-value-month {
+	padding-top: 5px;
+}
+
+#edit-submitted-field-celebrity-chooser {
+	display: inline-block;
+}
+
+div#robocalls-celeb-form form.webform-client-form .go-button {
+	bottom: 15px;
 }
 
 div.robocalls-remote-webform {
 	background: #ffffff;
 	margin-bottom: 10px;
+}
+
+div#edit-submitted-field-celeb-date-und-0-value {
+	width: 100%;
 }
 
 div.robocalls-remote-webform.talk-text div.pane-content p {
@@ -29,7 +75,11 @@ div.robocalls-remote-webform h2.pane-title, .panes-2 .panel-second .pane-title {
 	margin-bottom: 0px;
 } 
 
-div#submitted-field-celeb-tid-add-more-wrapper { display: none; }
+div#submitted-field-celeb-tid-add-more-wrapper,
+#edit-submitted-field-celeb-date,
+#edit-submitted-field-mobile-commons-id,
+#edit-fb-preview
+{ display: none; }
 
 div.robocalls-submitted-message-dialog {
 	background: #fefefe;
@@ -97,14 +147,14 @@ div#edit-submitted-field-celeb-date .form-item.form-type-select {
 
 div#edit-submitted-field-celeb-date select#edit-submitted-field-celeb-date-und-0-value-year { width: 58px; }
 
-div.form-item-submitted-field-celeb-date-und-0-value { border: 0px;
+div.robocalls-remote-webform div.form-item-submitted-field-celeb-date-und-0-value { border: 0px;
 width: 175px;
 padding: 0px;
 margin-left: -5px;
 }
 
 .form-item.date-spacer { display: none; }
-div#edit-submitted-field-celeb-date-und-0-value { padding: 0px; width: 175px; }
+div.robocalls-remote-webform div#edit-submitted-field-celeb-date-und-0-value { padding: 0px; width: 175px; }
 div.form-item.form-type-date-select.form-item-submitted-field-celeb-date-und-0-value {
 	border: 0px;
 	margin-left: -5px;

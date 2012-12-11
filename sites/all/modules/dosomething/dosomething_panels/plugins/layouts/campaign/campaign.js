@@ -28,6 +28,8 @@
           }).dialog('open');
         return false;
       });
+
+      $('.pane-campaign-gallery-panel-pane-1 ul.pager li a').attr('href', $('.pane-campaign-gallery-panel-pane-1 ul.pager li a').attr('href') + '#galleriffic');
     }
   };
 })(jQuery);

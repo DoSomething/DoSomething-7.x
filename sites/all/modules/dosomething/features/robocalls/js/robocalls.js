@@ -1,8 +1,10 @@
 (function ($) {
   Drupal.behaviors.robocalls = {
     attach: function(context, settings) {
-      Drupal.behaviors.fb._feed_callback = function() {
-        $('.robocalls-fb-find-friends-birthdays').html('Message(s) sent!');
+      if (typeof Drupal.behaviors.fb !== 'undefined') {
+        Drupal.behaviors.fb._feed_callback = function() {
+          $('.robocalls-fb-find-friends-birthdays').html('Message(s) sent!');
+        }
       }
 
       var auds = $('span.file').find('a');

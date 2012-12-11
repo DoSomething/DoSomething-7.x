@@ -23,6 +23,7 @@
     $('.region-sidebar-first').hide();
   }
   
+  // Overlay Share Popup
   var url = "http://localhost:8080/picsforpets?sid=53905";
   $(function(){
     if (location.href==url){
@@ -44,15 +45,12 @@
       feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
       feed_caption: 'I take action on animal welfare… what do you do?',
       feed_description: 'Check out the animal cause',
-      feed_modal: true
-    }, function(response) {
-
-    }); 
-      });
-      });
+      feed_modal: true
+       }, function(response) {
+         }); 
+            });
+                });
 
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
-
-

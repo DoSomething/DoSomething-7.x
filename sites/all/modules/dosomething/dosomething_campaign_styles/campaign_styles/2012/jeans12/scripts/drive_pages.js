@@ -5,7 +5,7 @@
     Drupal.friendFinder.fbObj = {
       feed_title: Drupal.t('Join your school\'s Teens for Jeans drive'),
       feed_description: Drupal.t('Join your school\'s Teens for Jeans drive to help fight teen homelessness. Sign up to spread the word about your school\'s awesome drive.'),
-      feed_picture: '//files.dosomething.org/files/campaigns/jeans12/logo_clean.png',
+      feed_picture: 'http://files.dosomething.org/files/campaigns/jeans12/logo_clean.png',
       description: 'Join me and DoSomething.org to help fight teen homelessness!',
     }; 
 
@@ -60,7 +60,7 @@
       var fbObj = {
         method: 'feed',
         link: window.location.href,
-        picture: 'http://files.dosomething.org/files/styles/thumbnail/public/fb_thumbs_0.jpg',
+        picture: 'http://files.dosomething.org/files/styles/thumbnail/public/campaigns/logos/logo_clean.png',
         name: 'Teens for Jeans',
         description: 'Join a jeans collection drive in your school and get a 25% off coupon for a new pair at Aeropstale. www.teensforjeans.org/'
       };

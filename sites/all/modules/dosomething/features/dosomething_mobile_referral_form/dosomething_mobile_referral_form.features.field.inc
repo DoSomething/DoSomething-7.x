@@ -82,7 +82,7 @@ function dosomething_mobile_referral_form_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -154,6 +154,79 @@ function dosomething_mobile_referral_form_field_default_fields() {
         ),
         'type' => 'text_textarea',
         'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-mobile_referral_form-field_ref_use_default_styles'.
+  $fields['node-mobile_referral_form-field_ref_use_default_styles'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_ref_use_default_styles',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'mobile_referral_form',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Use default styles?',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 6,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_ref_use_default_styles',
+      'label' => 'Use default styles',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '5',
       ),
     ),
   );
@@ -886,6 +959,8 @@ function dosomething_mobile_referral_form_field_default_fields() {
   t('Friend #5 Cell');
   t('Friend #6 Cell');
   t('Top of form html');
+  t('Use default styles');
+  t('Use default styles?');
   t('Your Cell Number');
   t('Your Name');
 
