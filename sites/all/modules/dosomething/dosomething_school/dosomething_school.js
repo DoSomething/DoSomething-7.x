@@ -77,11 +77,17 @@
 	$.getJSON(url, function(data) {
           $state.empty();
           $level.empty();
+          $('<option/>').val('').html('School State').appendTo($state);
           if (selected_country != 'US')  
             $zip_wrapper.hide().find('#edit-field-webform-school-zip-und-0-value').val('');
           else
             $zip_wrapper.show();
-	
+          
+          for(var abbrev in data) {
+            if (data.hasOwnProperty(abbrev)) {
+              $('<option/>').val(abbrev).html(data[abbrev]).appendTo($state);
+            }
+          }	
           console.log(data);
         });
 
