@@ -604,8 +604,6 @@ function robocalls_page_alter(&$page) {
     ));
   }
 
-  drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb.css');
-
    if (isset($term_info)) {
       $url = array(
        '#tag' => 'meta',
