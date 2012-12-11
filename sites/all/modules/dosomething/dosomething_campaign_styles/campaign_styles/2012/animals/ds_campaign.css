@@ -141,6 +141,8 @@ body.page-node-724411 {
       float: right;
       color: #f4ca00;
       text-decoration: underline; }
+      #overlay-animals h4 a:hover {
+        text-decoration: none; }
 
 #fbc-modal {
   z-index: 999 !important; }
