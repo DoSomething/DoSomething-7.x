@@ -70,12 +70,19 @@
           , $country = $(this)
           , $state = $wrapper.find('select.ds-school-state')
           , $level = $wrapper.find('select.ds-school-type')
-	
+          , $zip_wrapper = $('.field-name-field-webform-school-zip')
+          , selected_country = $country.val();
+
         url = '/ds_school/region_by_country/' + $country.val();
 	$.getJSON(url, function(data) {
           $state.empty();
-          $level.empty();  
-	console.log(data);
+          $level.empty();
+          if (selected_country != 'US')  
+            $zip_wrapper.hide().find('#edit-field-webform-school-zip-und-0-value').val('');
+          else
+            $zip_wrapper.show();
+	
+          console.log(data);
         });
 
       });
