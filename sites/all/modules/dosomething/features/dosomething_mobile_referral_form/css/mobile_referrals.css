@@ -1,4 +1,4 @@
-#webform-client-form-723988, #webform-client-form-724211 {
+#webform-client-form-723988, #webform-client-form-724211, #referral_form {
 	background: #ffffff;
 }
 
@@ -6,6 +6,7 @@ fieldset#webform-component-referall-your-info {
 	float: left;
 	width: 40%;
 }
+
 div#referral-sidebar fieldset#webform-component-referall-your-info { margin-top: -10px; padding: 0px; float: none; width: auto; }
 div#referral-sidebar fieldset#webform-component-referral-friend-info { margin-top: -10px; padding: 0px; }
 div#referral-sidebar #webform-client-form-723988 { padding: 5px; }
@@ -15,6 +16,21 @@ fieldset#webform-component-referral-friend-info {
 	padding-top: 12px;
 }
 
-#webform-client-form-723988 fieldset input, #webform-client-form-724211 fieldset input { margin: 5px 0px; width: 100%; }
+#webform-client-form-723988 fieldset input, #webform-client-form-724211 fieldset input, #referral_form fieldset input { margin: 5px 0px; width: 100%; }
 
 .webform-client-form #edit-actions { position: relative; bottom: 0px; right: 0px; }
+
+#referral_form #edit-submitted-referall-your-info-field-referral-your-name,
+#referral_form #edit-submitted-referall-your-info-field-referral-your-cell,
+#referral_form #edit-submitted-referral-friend-info-field-cell-friend1,
+#referral_form #edit-submitted-referral-friend-info-field-cell-friend2,
+#referral_form #edit-submitted-referral-friend-info-field-cell-friend3,
+#referral_form #edit-submitted-referral-friend-info-field-cell-friend4,
+#referral_form #edit-submitted-referral-friend-info-field-cell-friend5,
+#referral_form #edit-submitted-referral-friend-info-field-cell-friend6 {
+	margin-top: -15px;
+}
+
+#referral_form #edit-submitted-referral-friend-info-field-cell-friend1 { margin-top: -22px; }
+
+#referral_form #edit-actions { margin-top: -35px; }
