@@ -70,6 +70,36 @@
     // #contact-form submit button value change
     $('#cmp #header .form-submit').attr('value','start');
 
+
+  // Overlay Share Popup
+  var url = "http://localhost:8080/teensforjeans?sid=53905";
+  $(function(){
+    if (location.href==url){
+      $('#overlay-homelessness').dialog({width: 1050, height: 700, modal: true, resizable: false});
+    }
+  });
+
+      // Overlay Skip Btn
+  $('a#skip').click(function() {
+      $('#overlay-homelessness').dialog('close')
+  });
+
+    // Overlay to Facebook Btn
+    $('#overlay-share-btn').click(function() {
+    $('#overlay-homelessness').dialog('close').queue(function() {
+      Drupal.behaviors.fb.feed({
+      feed_document: 'http://www.dosomething.org/teensforjeans',
+      feed_title: 'Homelessness',
+      feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
+      feed_caption: 'I take action on homelessness… what do you do?',
+      feed_description: 'Check out the homelessness cause',
+      feed_modal: true
+       }, function(response) {
+         }); 
+            });
+                });
+
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)

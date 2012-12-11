@@ -94,7 +94,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -224,6 +224,75 @@ body {
     border-radius: 3px; }
   .mangoDialog-ui .ui-icon.ui-icon-closethick {
     margin: -20px -13px !important; }
+
+#overlay-homelessness {
+  display: none;
+  overflow: hidden; }
+  #overlay-homelessness h2, #overlay-homelessness p {
+    color: white;
+    line-height: 1.1em; }
+  #overlay-homelessness h4, #overlay-homelessness p {
+    font-family: din-web-reg; }
+  #overlay-homelessness h2 {
+    font-family: din-web;
+    font-size: 100px;
+    font-weight: 600;
+    border-bottom: 1px solid white;
+    margin-bottom: 20px; }
+  #overlay-homelessness p {
+    font-size: 21px; }
+  #overlay-homelessness .official-doer {
+    margin: -30px;
+    float: left; }
+  #overlay-homelessness h3 {
+    position: relative;
+    top: 112px;
+    left: 60px; }
+    #overlay-homelessness h3 a {
+      color: #333333;
+      text-shadow: 0 1px 1px white;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px #f3e992;
+      border: 2px solid #f3e992;
+      font-size: 48px;
+      font-weight: 600;
+      padding: 8px 100px 0px;
+      background: #f4ca00;
+      background-image: linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -o-linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -moz-linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -webkit-linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -ms-linear-gradient(bottom, #f4cb00 38%, #f9d852 69%, #f7e544 85%);
+      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.38, #f4cb00), color-stop(0.69, #f9d852), color-stop(0.85, #f7e544));
+      border-radius: 18px; }
+      #overlay-homelessness h3 a:hover {
+        text-decoration: none;
+        color: black; }
+    #overlay-homelessness h3 img {
+      position: relative;
+      bottom: -30px;
+      left: -60px; }
+  #overlay-homelessness h4 {
+    clear: both; }
+    #overlay-homelessness h4 a {
+      font-size: 18px;
+      font-weight: 400;
+      float: right;
+      color: #f4ca00;
+      text-decoration: underline; }
+      #overlay-homelessness h4 a:hover {
+        text-decoration: none; }
+
+.page-node-718484 .ui-dialog, .page-node-725893 .ui-dialog {
+  background: none !important; }
+.page-node-718484 .ui-icon-closethick, .page-node-725893 .ui-icon-closethick {
+  display: none !important; }
+.page-node-718484 .ui-widget-overlay, .page-node-725893 .ui-widget-overlay {
+  opacity: 0.98; }
+
+#fbc-modal {
+  z-index: 999 !important; }
 
 #sms-referral h3 {
   display: none;

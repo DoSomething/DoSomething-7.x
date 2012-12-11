@@ -182,6 +182,35 @@
       }
     });
 
+    // Overlay Share Popup
+    var url = "http://localhost:8080/pantryprep?sid=53905";
+    $(function(){
+      if (location.href==url){
+        $('#overlay-disasters').dialog({width: 1050, height: 700, modal: true, resizable: false});
+      }
+    });
+
+    // Overlay Skip Btn
+    $('a#skip').click(function() {
+        $('#overlay-disasters').dialog('close')
+    });
+
+    // Overlay to Facebook Btn
+    $('#overlay-share-btn').click(function() {
+    $('#overlay-disasters').dialog('close').queue(function() {
+      Drupal.behaviors.fb.feed({
+      feed_document: 'http://www.dosomething.org/pantryprep',
+      feed_title: 'Disasters',
+      feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
+      feed_caption: 'I take action on disasters… what do you do?',
+      feed_description: 'Check out the disasters cause',
+      feed_modal: true
+       }, function(response) {
+         }); 
+            });
+                });
+
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
