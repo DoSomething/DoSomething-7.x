@@ -1,4 +1,4 @@
- input.robocalls-fb-find-friends-birthdays {
+/* input.robocalls-fb-find-friends-birthdays {
 	background: #3B5998 url(/sites/all/modules/dosomething/features/robocalls/images/icon_facebook.png) 0px 0px no-repeat;
 	border: 1px solid #000000;
 	box-shadow: 0px 0px 3px #808080;
@@ -9,7 +9,7 @@
 	color: #ffffff;
 	margin-bottom: 10px;
 	font-size: 11px;
-}
+}*/
 
 div.robocalls-remote-webform {
 	background: #ffffff;
@@ -29,7 +29,11 @@ div.robocalls-remote-webform h2.pane-title, .panes-2 .panel-second .pane-title {
 	margin-bottom: 0px;
 } 
 
-div#submitted-field-celeb-tid-add-more-wrapper { display: none; }
+div#submitted-field-celeb-tid-add-more-wrapper,
+#edit-submitted-field-celeb-date,
+#edit-submitted-field-mobile-commons-id,
+#edit-fb-preview
+{ display: none; }
 
 div.robocalls-submitted-message-dialog {
 	background: #fefefe;
