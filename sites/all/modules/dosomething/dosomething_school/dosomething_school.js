@@ -58,4 +58,28 @@
       }).addClass('dsschool-processed');
     }
   };
+
+  /**
+   * Our school name look up widget needs to change its URL when the selects
+   * change.
+   */
+  Drupal.behaviors.dsSchoolCountryChange = {
+    attach: function (context) {
+      $('select.ds-school-country', context).change( function() {
+        var $wrapper = $('#field-webform-school-reference-add-more-wrapper')
+          , $country = $(this)
+          , $state = $wrapper.find('select.ds-school-state')
+          , $level = $wrapper.find('select.ds-school-type')
+	
+        url = '/ds_school/region_by_country/' + $country.val();
+	$.getJSON(url, function(data) {
+          $state.empty();
+          $level.empty();  
+	console.log(data);
+        });
+
+      });
+    }
+  };
 }(jQuery));
+
