@@ -36,6 +36,7 @@ features[field][] = taxonomy_term-vocabulary_99-field_birthday_call
 features[field][] = taxonomy_term-vocabulary_99-field_call_limit
 features[field][] = taxonomy_term-vocabulary_99-field_call_mobile_commons_id
 features[field][] = taxonomy_term-vocabulary_99-field_celeb_call
+features[field][] = taxonomy_term-vocabulary_99-field_celeb_featured_celebrity
 features[field][] = taxonomy_term-vocabulary_99-field_celeb_photo
 features[field][] = taxonomy_term-vocabulary_99-field_celeb_scholarship_langauge
 features[field][] = taxonomy_term-vocabulary_99-field_photo_thumbnail

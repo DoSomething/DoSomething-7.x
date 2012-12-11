@@ -6,9 +6,10 @@
 
 include_once 'robocalls.features.inc';
 define('MCOMMONS_ROBOCALL_CAMPAIGN', 18301);
-define('ROBOCALLS_WEBFORM_NID', 723327);
+define('ROBOCALLS_WEBFORM_NID', 724089);//723327);
 define('MAX_CALLS_PER_DAY', 1);
 define('ROUND_TO', 10);
+define('ROBOCALLS_TAXONOMY_ID', 29);
 
 /**
  *  Implements hook_panels_pre_render()
@@ -87,6 +88,14 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
   global $term_info, $flags;
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
     $termid = arg(2);
+
+    if (!$termid && request_uri() == '/calloffame') {
+      $f = db_query("SELECT entity_id FROM field_data_field_celeb_featured_celebrity WHERE field_celeb_featured_celebrity_value = 1 LIMIT 1");
+      $f = reset($f->fetchAll());
+
+      $termid = $f->entity_id;
+    }
+
     $term = taxonomy_term_load($termid);
     $u = &$form['submitted']/*['celeb_call_information']*/;
 
@@ -236,8 +245,18 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
     unset($u['top_disclaimer']);
 
+    $u['field_celebrity_chooser'][LANGUAGE_NONE]['#title'] = t('Choose a Celeb');
+    #echo '<pre>', print_R($u['field_celebrity_chooser']), '</pre>';
+
+    if (request_uri() == '/calloffame') {
+      $u['header'] = array(
+        '#markup' => '<h2>' . t('Call a Celebrity through Call of Fame') . '</h2>',
+        '#weight' => -1000
+      );
+    }
+
     $form_state['side_bar'] = false;
-    if (isset($term->tid) && !empty($term->tid)) {
+    if (isset($term->tid) && !empty($term->tid) && request_uri() !== '/calloffame') {
        unset($u['top_disclaimer']);
        unset($u['step_2']);
     }
@@ -245,7 +264,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
        $form_state['side_bar'] = true;
        drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_remote_webform.css', array(
          'group' => CSS_THEME,
-         'weight' => 10
+         'weight' => 9999,
        ));
     }
 
@@ -585,6 +604,8 @@ function robocalls_page_alter(&$page) {
         'weight' => 10
     ));
   }
+
+  drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb.css');
 
    if (isset($term_info)) {
       $url = array(
