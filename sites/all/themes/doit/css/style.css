@@ -3611,10 +3611,10 @@ div[role=main] {
   margin-top: -23px;
   margin-bottom: 30px;
 }
-#winning a.cause-btn {
+#winning a.cause-btn, #winning a.cause-btn-center {
   float: left;
   width: 248px;
-  border: 1px solid white !important;
+  border: none !important;
   margin: 0 0 4px;
   color: #333333;
   text-shadow: 0 1px 1px #f5ebd7;
@@ -3624,21 +3624,21 @@ div[role=main] {
   font-family: din-web;
   border-radius: 8px;
 }
-#winning a.cause-btn:hover {
+#winning a.cause-btn:hover, #winning a.cause-btn-center:hover {
   color: black;
   text-decoration: none;
 }
-#winning a.cause-btn img {
+#winning a.cause-btn img, #winning a.cause-btn-center img {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   opacity: 1;
   filter: alpha(opacity=100);
 }
-#winning a.cause-btn img:hover {
+#winning a.cause-btn img:hover, #winning a.cause-btn-center img:hover {
   opacity: 0.85;
   filter: alpha(opacity=85);
 }
-#winning a.cause-btn span {
+#winning a.cause-btn span, #winning a.cause-btn-center span {
   background: #f4ca00;
   display: block;
   padding: 18px 0 14px;
@@ -3651,6 +3651,9 @@ div[role=main] {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   border-top: 1px solid #f4cb00;
+}
+#winning a.cause-btn-center {
+  margin: 0 3px;
 }
 
 #breadcrumb {

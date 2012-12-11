@@ -141,8 +141,6 @@ body.page-node-724411 {
       float: right;
       color: #f4ca00;
       text-decoration: underline; }
-      #overlay-animals h4 a:hover {
-        text-decoration: none; }
 
 #fbc-modal {
   z-index: 999 !important; }
@@ -457,6 +455,8 @@ body.page-node-724411 {
     margin: 0;
     width: 33%;
     float: left; }
+#cmp #fbc-modal {
+  z-index: 999 !important; }
 @media only screen and (max-width: 775px) {
   #cmp .section {
     width: 100%;
