@@ -28,7 +28,14 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'mobile_referral_form') {
 
     $top = $node->field_top_of_form_html[LANGUAGE_NONE][0]['value'];
+    if (empty($top) && !empty($form_state['build_info']['args'][0]->field_top_of_form_html[LANGUAGE_NONE][0]['value'])) {
+      $top = $form_state['build_info']['args'][0]->field_top_of_form_html[LANGUAGE_NONE][0]['value'];
+    }
+
     $bottom = $node->field_bottom_of_form_html[LANGUAGE_NONE][0]['value'];
+    if (empty($bottom) && !empty($form_state['build_info']['args'][0]->field_bottom_of_form_html[LANGUAGE_NONE][0]['value'])) {
+      $bottom = $form_state['build_info']['args'][0]->field_bottom_of_form_html[LANGUAGE_NONE][0]['value'];
+    }
 
     $u = &$form['submitted'];
 
@@ -119,14 +126,6 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
       $u['referall_your_info']['referral_rules']['#markup'] = $text;
     }
 
-    if (!empty($form_state['build_info']['args'][0]->field_top_of_form_html[LANGUAGE_NONE][0]['value'])) {
-      $u['top_text'] = array(
-        '#markup' => $form_state['build_info']['args'][0]->field_top_of_form_html[LANGUAGE_NONE][0]['value'],
-        '#prefix' => '<div style="clear: both">',
-        '#suffix' => '</div>',
-        '#weight' => -100,
-      );
-    }
 
     $form['#validate'][] = 'dosomething_mobile_referral_form_validate';
     if ($node->type == 'social_scholarship') {

@@ -19,5 +19,7 @@ function celebs_gone_good_form_alter(&$form, &$form_alter, $form_id) {
 }
 
 function celebs_gone_good_redirect(&$form, &$form_state) {
-  drupal_goto('celebsgonegood/voted/' . $form_state['values']['submitted_tree']['cgg_choose_a_celebrity']);
+  if (user_is_logged_in()) {
+     drupal_goto('celebsgonegood/voted/' . $form_state['values']['submitted_tree']['cgg_choose_a_celebrity']);
+  }
 }
