@@ -249,7 +249,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
     if (request_uri() == '/calloffame') {
       $u['header'] = array(
-        '#markup' => '<h2>' . t('Call ' . $term->name . ' through Call of Fame') . '</h2>',
+        '#markup' => '<h2>' . t('!name Will Call Your Friends!', array('!name' => $term->name)) . '</h2>',
         '#weight' => -1000
       );
     }
