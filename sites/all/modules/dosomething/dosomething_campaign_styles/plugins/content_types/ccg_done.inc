@@ -14,8 +14,7 @@ function dosomething_cgg_celeb_landing($subtype, $conf, $panel_args, $context) {
 
 	include drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/plugin.inc';
 	$block = new stdClass();
-
-	$fbimg = file_create_url($context['argument_term_1']->data->cgg_celeb_image[LANGUAGE_NONE][0]['uri']);
+	$fbimg = file_create_url($context['argument_term_1']->data->ccg_celeb_image[LANGUAGE_NONE][0]['uri']);
 
 	// "For More Info" section heading
 	$output['facebook'] = array(

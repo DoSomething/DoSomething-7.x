@@ -18,7 +18,7 @@ function dosomething_campaign_styles_webform_select_options_info() {
 function dosomething_campaign_styles_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'webform_client_form_' . CGG_CHOOSER_FORM) {
     if (!user_is_logged_in()) {
-      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/js/cgg.js');
+      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/cgg.js');
       $form['actions']['submit']['#ajax'] = array(
         'callback' => 'dosomething_campaign_styles_ccg_submit',
       );
