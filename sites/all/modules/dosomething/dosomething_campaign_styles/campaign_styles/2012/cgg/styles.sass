@@ -19,7 +19,7 @@
   float: none
   width: 100%
   background: #fff
-  margin: 7% 0
+  margin: 10% 0
   padding: 1% 3% 2%
   +border-radius(5px)
   .pane-title
@@ -61,22 +61,29 @@
 
 .field-name-ccg-celeb-image img
   margin: 3% auto
-  width: 40%
+  width: 400px
   display: block
   +border-radius(4px)
+
+.pane-ccg-done /* social share wrapper */
+  width: 400px
+  margin: 0 auto
+  @media only screen and (max-width: 500px)
+    width: 100%
+
 .cgg_facebook, .cgg_twitter
   display: block
   width: 150px
   height: 50px
   text-indent: -1000px
-  margin: 1% 0 0 0
-  float: left
+  margin: 2% 0 4%
+  float: right
   &:hover
     background-position-y: -50px
 
 .cgg_facebook
   background-image: url("http://files.dosomething.org/files/campaigns/cgg/cgg_facebook.png")
-  margin: 1% 9% 2% 30.1%
+  float: left
 
 .cgg_twitter
   background-image: url("http://files.dosomething.org/files/campaigns/cgg/cgg_twitter.png")

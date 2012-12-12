@@ -20,7 +20,7 @@
   float: none;
   width: 100%;
   background: white;
-  margin: 7% 0;
+  margin: 10% 0;
   padding: 1% 3% 2%;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -92,7 +92,7 @@
 /* line 62, styles.sass */
 .field-name-ccg-celeb-image img {
   margin: 3% auto;
-  width: 40%;
+  width: 400px;
   display: block;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -101,32 +101,44 @@
   border-radius: 4px;
 }
 
-/* line 67, styles.sass */
+/* line 68, styles.sass */
+.pane-ccg-done {
+  width: 400px;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 500px) {
+  /* line 68, styles.sass */
+  .pane-ccg-done {
+    width: 100%;
+  }
+}
+
+/* line 74, styles.sass */
 .cgg_facebook, .cgg_twitter {
   display: block;
   width: 150px;
   height: 50px;
   text-indent: -1000px;
-  margin: 1% 0 0 0;
-  float: left;
+  margin: 2% 0 4%;
+  float: right;
 }
-/* line 74, styles.sass */
+/* line 81, styles.sass */
 .cgg_facebook:hover, .cgg_twitter:hover {
   background-position-y: -50px;
 }
 
-/* line 77, styles.sass */
+/* line 84, styles.sass */
 .cgg_facebook {
   background-image: url("http://files.dosomething.org/files/campaigns/cgg/cgg_facebook.png");
-  margin: 1% 9% 2% 30.1%;
+  float: left;
 }
 
-/* line 81, styles.sass */
+/* line 88, styles.sass */
 .cgg_twitter {
   background-image: url("http://files.dosomething.org/files/campaigns/cgg/cgg_twitter.png");
 }
 
-/* line 84, styles.sass */
+/* line 91, styles.sass */
 .go-button, #edit-submit, .form-submit {
   font-family: din-web !important;
   background: #fed100 !important;
@@ -144,93 +156,93 @@
   border-radius: 7px !important;
 }
 
-/* line 96, styles.sass */
+/* line 103, styles.sass */
 #page-title {
   text-align: right;
   box-shadow: none !important;
   border: none !important;
 }
 
-/* line 101, styles.sass */
+/* line 108, styles.sass */
 body, .container, div[role="main"] {
   background: #222222 !important;
 }
 
 @media only screen and (max-width: 1030px) {
-  /* line 109, styles.sass */
+  /* line 116, styles.sass */
   #page {
     width: 100% !important;
   }
 
-  /* line 111, styles.sass */
+  /* line 118, styles.sass */
   .region-sidebar-first {
     display: none !important;
   }
 
-  /* line 113, styles.sass */
+  /* line 120, styles.sass */
   #site-name {
     top: -54px !important;
     left: 5px !important;
   }
-  /* line 116, styles.sass */
+  /* line 123, styles.sass */
   #site-name a {
     height: 50px !important;
     width: 60px !important;
     background-size: 60px !important;
   }
 
-  /* line 120, styles.sass */
+  /* line 127, styles.sass */
   #utility-bar {
     height: 55px !important;
   }
 
-  /* line 123, styles.sass */
+  /* line 130, styles.sass */
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
     display: none !important;
   }
-  /* line 125, styles.sass */
+  /* line 132, styles.sass */
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
     padding: 0.5em 1em 0 0 !important;
     font-size: 1.5em !important;
   }
 
-  /* line 128, styles.sass */
+  /* line 135, styles.sass */
   #main-wrapper div[role="main"] {
     float: none !important;
     width: 100% !important;
   }
 
-  /* line 131, styles.sass */
+  /* line 138, styles.sass */
   nav[role="navigation"] {
     display: none !important;
   }
 
-  /* line 133, styles.sass */
+  /* line 140, styles.sass */
   .container {
     margin: 0 auto !important;
     width: 100% !important;
   }
 
-  /* line 139, styles.sass */
+  /* line 146, styles.sass */
   #block-menu-menu-footer .content {
     width: 80% !important;
     margin: 0 auto !important;
   }
 
-  /* line 142, styles.sass */
+  /* line 149, styles.sass */
   #block-menu-menu-footer .content ul.menu li span {
     font-size: 16px !important;
     line-height: 1em !important;
   }
 
-  /* line 145, styles.sass */
+  /* line 152, styles.sass */
   #block-menu-menu-footer .content ul.menu ul li a {
     font-size: 14px !important;
     line-height: 1em !important;
   }
 }
 @media only screen and (max-width: 1030px) and (max-width: 775px) {
-  /* line 136, styles.sass */
+  /* line 143, styles.sass */
   header[role="banner"] {
     width: 100% !important;
   }
