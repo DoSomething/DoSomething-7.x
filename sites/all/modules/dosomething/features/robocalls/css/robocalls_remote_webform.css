@@ -22,6 +22,9 @@
 .robocalls-away-form#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser { display: block; margin-top: 10px;}
 .robocalls-away-form#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser label { margin-top: -7px; }
 
+#robocalls-celeb-form.robocalls-away-form.on-cof h2 { margin-top: 0px; }
+.robocalls-away-form.on-cof#robocalls-celeb-form form.webform-client-form #edit-submitted-field-celebrity-chooser { visibility: hidden; margin: 0px; }
+
 #webform-component-step-2 h2 {
 	clear: both;
 	height: 45px;

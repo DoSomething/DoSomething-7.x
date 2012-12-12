@@ -134,7 +134,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         '#type' => 'hidden', 
         '#value' => $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value']
       );
-	}
+	  }
 
     $form['actions']['submit']['#value'] = t('SEND');
     $form['actions']['submit']['#attributes']['class'] = array('go-button robocalls-submit');
@@ -249,7 +249,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
     if (request_uri() == '/calloffame') {
       $u['header'] = array(
-        '#markup' => '<h2>' . t('Call a Celebrity through Call of Fame') . '</h2>',
+        '#markup' => '<h2>' . t('Call ' . $term->name . ' through Call of Fame') . '</h2>',
         '#weight' => -1000
       );
     }
@@ -428,10 +428,10 @@ function robocalls_call_validate(&$form, &$form_state) {
   if ($scholarship) {
     $fields = array(
       1 => 'field_celeb_friend_phone',
-      2 => 'field_celeb_friend_phone_2',
-      3 => 'field_celeb_friend_phone_3',
-      4 => 'field_celeb_friend_phone_4',
-      5 => 'field_celeb_friend_phone_5',
+      #2 => 'field_celeb_friend_phone_2',
+      #3 => 'field_celeb_friend_phone_3',
+      #4 => 'field_celeb_friend_phone_4',
+      #5 => 'field_celeb_friend_phone_5',
     );
 
     foreach ($fields AS $key => $field) {
@@ -449,7 +449,6 @@ function robocalls_call_validate(&$form, &$form_state) {
   $form_state['values']['submitted']['field_celeb_send_now'][LANGUAGE_NONE][0]['value'] = $sn;
 
   $mconnect = $form['submitted']['webform_entity_form']['#entity']->input['mobile_commons_id'];
-
   if (empty($mconnect)) {
     $mconnect = $t->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value'];
   }
@@ -529,6 +528,9 @@ function robocalls_call_submit(&$form, &$form_state) {
    $send_now =  $sub['field_celeb_send_now'][LANGUAGE_NONE][0]['value'];
 
    $mconnect_id = $form['submitted']['webform_entity_form']['#entity']->input['mobile_commons_id'];
+   if (empty($mconnect_id) && !empty($form_state['values']['submitted_tree']['field_mobile_commons_id'][LANGUAGE_NONE][0]['value'])) {
+      $mconnect_id = $form_state['values']['submitted_tree']['field_mobile_commons_id'][LANGUAGE_NONE][0]['value'];
+   }
 
    if (!$send_now && !$form_state['already_called'][$friend_phone] && user_is_logged_in()) {
      robocalls_mcommons_call($friend_phone, $user_name, $mconnect_id);
