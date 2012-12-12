@@ -85,7 +85,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -868,6 +868,8 @@ body {
     #cmp #secondary-content .contest a {
       clear: both;
       color: #1e1d1c; }
+    #cmp #secondary-content .psa {
+      margin-top: 20px; }
   #cmp #social h3 {
     text-transform: none;
     font-size: 1em;
