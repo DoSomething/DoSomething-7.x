@@ -254,8 +254,9 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       );
     }
 
+    $nopages = preg_match('#^\/(calloffame|cause\/animals|issues\/teen-pregnancy)#i', request_uri());
     $form_state['side_bar'] = false;
-    if (isset($term->tid) && !empty($term->tid) && request_uri() !== '/calloffame') {
+    if (isset($term->tid) && !empty($term->tid) && !$nopages) {
        unset($u['top_disclaimer']);
        unset($u['step_2']);
     }

@@ -58,6 +58,12 @@ div.robocalls-remote-webform {
 	margin-bottom: 10px;
 }
 
+div.robocalls-remote-webform form {
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-o-box-shadow: none;
+}
+
 div#edit-submitted-field-celeb-date-und-0-value {
 	width: 100%;
 }

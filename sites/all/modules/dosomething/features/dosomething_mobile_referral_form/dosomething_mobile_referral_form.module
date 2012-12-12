@@ -172,6 +172,11 @@ function dosomething_mobile_referral_form_ajax($form, &$form_state) {
 }
 
 function dosomething_mobile_referral_form_validate($form, &$form_state) {
+  $editing = preg_match('#^\/node\/[0-9]+\/(webform|edit)#i', request_uri());
+  if ($editing) {
+    return;
+  }
+
   $error = 0;
   $s = $form_state['input']['submitted'];
 
@@ -251,6 +256,11 @@ function dosomething_mobile_referral_form_wild_submit($form, &$form_state) {
 }
 
 function dosomething_mobile_referral_form_submit($form, &$form_state) {
+  $editing = preg_match('#^\/node\/[0-9]+\/(webform|edit)#i', request_uri());
+  if ($editing) {
+    return;
+  }
+
   $s = $form_state['input']['submitted'];
   $you = $s['referall_your_info'];
   $them = $s['referral_friend_info'];
