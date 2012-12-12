@@ -34,9 +34,6 @@ function doit_preprocess_page(&$variables) {
   // dsm($variables);
   // dsm($variables['page']);
 
-  // Add optimizely's JS.
-  drupal_add_js('//cdn.optimizely.com/js/5742079.js', 'external');
-
   // Add Social Tracking for Google Analytics
   drupal_add_js($theme_path . '/js/ga_social_tracking.js', array(
     'every_page' => TRUE,
