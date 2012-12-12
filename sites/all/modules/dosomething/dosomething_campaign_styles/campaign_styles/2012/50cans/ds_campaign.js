@@ -232,7 +232,7 @@
       });
 
       // Overlay Share Popup
-      var url = "http://localhost:8080/50cans?sid=53905";
+      var url = "http://www.dosomething.org/50cans?sid=53905";
       $(function(){
         if (location.href==url){
           $('#overlay-environment').dialog({width: 1050, height: 700, modal: true, resizable: false});
@@ -249,10 +249,10 @@
     $('#overlay-environment').dialog('close').queue(function() {
       Drupal.behaviors.fb.feed({
       feed_document: 'http://www.dosomething.org/50cans',
-      feed_title: 'Stand up for the Environment',
+      feed_title: 'Environmental Sustainability',
       feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
-      feed_caption: 'I take action on environment… what do you do?',
-      feed_description: 'Check out the environment cause',
+      feed_caption: 'I’m a mean, green Earth-protecting machine. How about you?',
+      feed_description: 'Recycle aluminum cans. Easy.',
       feed_modal: true
        }, function(response) {
          }); 

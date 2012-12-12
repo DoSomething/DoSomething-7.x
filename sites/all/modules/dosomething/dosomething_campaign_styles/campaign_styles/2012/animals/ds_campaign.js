@@ -24,7 +24,7 @@
   }
   
   // Overlay Share Popup
-  var url = "http://localhost:8080/picsforpets?sid=53905";
+  var url = "http://www.dosomething.org/picsforpets?sid=53905";
   $(function(){
     if (location.href==url){
       $('#overlay-animals').dialog({width: 1050, height: 700, modal: true, resizable: false});
@@ -43,8 +43,8 @@
       feed_document: 'http://www.dosomething.org/picsforpets',
       feed_title: 'Animal Welfare',
       feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
-      feed_caption: 'I take action on animal welfare… what do you do?',
-      feed_description: 'Check out the animal cause',
+      feed_caption: 'I’m a beast at protecting animals. How about you?',
+      feed_description: 'Take a photo to save a shelter animal’s life.',
       feed_modal: true
        }, function(response) {
          }); 

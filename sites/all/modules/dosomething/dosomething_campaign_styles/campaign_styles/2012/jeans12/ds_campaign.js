@@ -72,7 +72,7 @@
 
 
   // Overlay Share Popup
-  var url = "http://localhost:8080/teensforjeans?sid=53905";
+  var url = "http://www.dosomething.org/teensforjeans?sid=53905";
   $(function(){
     if (location.href==url){
       $('#overlay-homelessness').dialog({width: 1050, height: 700, modal: true, resizable: false});
@@ -91,8 +91,8 @@
       feed_document: 'http://www.dosomething.org/teensforjeans',
       feed_title: 'Homelessness',
       feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
-      feed_caption: 'I take action on homelessness… what do you do?',
-      feed_description: 'Check out the homelessness cause',
+      feed_caption: 'I help the homeless because I care. How about you?',
+      feed_description: 'Donate your old or unwanted jeans to a teen in need.',
       feed_modal: true
        }, function(response) {
          }); 

@@ -435,13 +435,13 @@ body {
       #overlay-environment h4 a:hover {
         text-decoration: none; }
 
-.page-node-724777 .ui-dialog {
+.page-node-724777 .ui-dialog, .page-node-725601 .ui-dialog {
   background: none !important; }
-  .page-node-724777 .ui-dialog .ui-dialog-titlebar-close span {
+  .page-node-724777 .ui-dialog .ui-dialog-titlebar-close span, .page-node-725601 .ui-dialog .ui-dialog-titlebar-close span {
     display: none; }
-.page-node-724777 .ui-icon-closethick {
+.page-node-724777 .ui-icon-closethick, .page-node-725601 .ui-icon-closethick {
   display: none !important; }
-.page-node-724777 .ui-widget-overlay {
+.page-node-724777 .ui-widget-overlay, .page-node-725601 .ui-widget-overlay {
   opacity: 0.98; }
 
 #fbc-modal {

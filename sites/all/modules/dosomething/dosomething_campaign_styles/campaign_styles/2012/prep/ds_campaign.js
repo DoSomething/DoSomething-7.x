@@ -183,7 +183,7 @@
     });
 
     // Overlay Share Popup
-    var url = "http://localhost:8080/pantryprep?sid=53905";
+    var url = "http://www.dosomething.org/pantryprep?sid=53905";
     $(function(){
       if (location.href==url){
         $('#overlay-disasters').dialog({width: 1050, height: 700, modal: true, resizable: false});
@@ -200,10 +200,10 @@
     $('#overlay-disasters').dialog('close').queue(function() {
       Drupal.behaviors.fb.feed({
       feed_document: 'http://www.dosomething.org/pantryprep',
-      feed_title: 'Disasters',
+      feed_title: 'Disaster Prevention and Recovery',
       feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
-      feed_caption: 'I take action on disasters… what do you do?',
-      feed_description: 'Check out the disasters cause',
+      feed_caption: 'I help out when the sky is falling. How about you?',
+      feed_description: 'Start by collecting food for Help Hurricane Sandy victims.',
       feed_modal: true
        }, function(response) {
          }); 
