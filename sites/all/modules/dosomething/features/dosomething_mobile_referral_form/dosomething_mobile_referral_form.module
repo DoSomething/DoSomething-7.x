@@ -111,6 +111,23 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
       $form_state['referenced'] = TRUE;
     }
 
+    if (isset($u['referall_your_info']['referral_rules']) && !empty($form_state['build_info']['args'][0]->field_ref_rules_document[LANGUAGE_NONE][0]['uri'])) {
+      $file = file_create_url($form_state['build_info']['args'][0]->field_ref_rules_document[LANGUAGE_NONE][0]['uri']);
+      $text = t('By clicking submit, you are opting into !rules and our weekly updates.', array(
+        '!rules' => l(t('these official rules'), $file, array('attributes' => array('target' => '_blank')))
+      ));
+      $u['referall_your_info']['referral_rules']['#markup'] = $text;
+    }
+
+    if (!empty($form_state['build_info']['args'][0]->field_top_of_form_html[LANGUAGE_NONE][0]['value'])) {
+      $u['top_text'] = array(
+        '#markup' => $form_state['build_info']['args'][0]->field_top_of_form_html[LANGUAGE_NONE][0]['value'],
+        '#prefix' => '<div style="clear: both">',
+        '#suffix' => '</div>',
+        '#weight' => -100,
+      );
+    }
+
     $form['#validate'][] = 'dosomething_mobile_referral_form_validate';
     if ($node->type == 'social_scholarship') {
       if (!isset($form_state['nid'])) {
@@ -162,7 +179,17 @@ function dosomething_mobile_referral_form_ajax($form, &$form_state) {
     $commands[] = ajax_command_before('#page-title', $fake_error_template);
   }
   else {
-    $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsReferSubmit', array($form_state['goto'], $form_state['input']['submitted']['referall_your_info']['referral_first_name'], $form_state['input']['submitted']['referall_your_info']['referral_phone_number']));
+    // Strip any leading slashes...
+    $goto = ($_SESSION['goto'] ? $_SESSION['goto'] : $form_state['goto']);
+    if ($goto{0} == '/') {
+      $goto = substr($goto, 1);
+    }
+
+    if ("/$goto" == request_uri()) {
+      $goto = str_replace($_SERVER['HTTP_ORIGIN'], '', $_SERVER['HTTP_REFERER']);
+    }
+
+    $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsReferSubmit', array($goto, $form_state['input']['submitted']['referall_your_info']['referral_first_name'], $form_state['input']['submitted']['referall_your_info']['referral_phone_number']));
   }
 
   return array(
@@ -182,6 +209,7 @@ function dosomething_mobile_referral_form_validate($form, &$form_state) {
 
   $you = $s['referall_your_info'];
   $them = $s['referral_friend_info'];
+
 
   if (trim($you['referral_first_name']) == '' && trim($you['field_referral_your_name'][LANGUAGE_NONE][0]['value']) == '') {
     form_set_error('submitted[referall_your_info][referral_first_name]', "You must provide a valid name.");
@@ -314,6 +342,9 @@ function dosomething_mobile_referral_form_submit($form, &$form_state) {
   drupal_set_message(t("Thanks for sharing stats with your friends. You've officially entered to win the scholarship. We'll be announcing the winners on Jan. 9th, so hold tight and keep your crossed 'til then! Questions? Email !e.", array('!e' => l('scholarships@dosomething.org', 'mailto:scholarships@dosomething.org'))));
   $form_state['redirect'] = $goto;
   $_GET['redirect'] = $goto;
-  drupal_goto($goto);
+
+  if (user_is_logged_in()) {
+    drupal_goto($goto);
+  }
   #drupal_set_message("Thanks for submitting.  Have a nice day!");
 }
