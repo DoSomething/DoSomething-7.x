@@ -3,6 +3,6 @@
 http_path = "/"
 css_dir = "/"
 sass_dir = "/"
-js_dir = "/"
+javascripts_dir = "/"
 
 preferred_syntax = :sass
