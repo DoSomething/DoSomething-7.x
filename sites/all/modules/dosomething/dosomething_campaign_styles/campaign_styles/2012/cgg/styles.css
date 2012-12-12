@@ -34,8 +34,9 @@
 }
 /* line 27, styles.sass */
 #cgg form {
-  width: 75%;
-  float: right;
+  width: 285px;
+  float: left;
+  margin: 0 0 0 5%;
   padding: 0;
   box-shadow: none !important;
   -webkit-border-radius: 5px !important;
@@ -44,52 +45,109 @@
   -o-border-radius: 5px !important;
   border-radius: 5px !important;
 }
-/* line 33, styles.sass */
+/* line 34, styles.sass */
 #cgg form label {
   font-size: 2em;
   padding: 2.5em 0 1.2em;
   text-transform: uppercase;
 }
-/* line 37, styles.sass */
+@media only screen and (max-width: 850px) {
+  /* line 34, styles.sass */
+  #cgg form label {
+    padding: 0.5em 0 1em;
+  }
+}
+/* line 40, styles.sass */
 #cgg form.webform-client-form #edit-actions {
   height: auto !important;
   margin: 2em 0 0 !important;
   text-align: center !important;
   float: left !important;
 }
-/* line 42, styles.sass */
+/* line 45, styles.sass */
 #cgg h1, #cgg h2 {
   text-align: center;
   text-transform: uppercase;
   padding: 0.4em 0;
 }
-/* line 46, styles.sass */
+/* line 49, styles.sass */
 #cgg h1 {
   padding: 1em 0 0.2em 0;
 }
-/* line 48, styles.sass */
+/* line 51, styles.sass */
 #cgg span {
   color: #1da4e4;
 }
-/* line 50, styles.sass */
+/* line 53, styles.sass */
 #cgg #edit-submitted--2.form-wrapper {
   display: none;
 }
-
-/* line 53, styles.sass */
-.cgg_logo {
+/* line 55, styles.sass */
+#cgg .go-button, #cgg #edit-submit, #cgg .form-submit {
+  font-family: din-web;
+  background: #fed100;
+  margin: 4% 0 1%;
+  padding: 0.3em 0.7em;
+  position: absolute;
+  font-size: 1.5em;
+  height: 35px;
+  display: inline-block;
+  bottom: 23%;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+}
+@media only screen and (max-width: 850px) {
+  /* line 55, styles.sass */
+  #cgg .go-button, #cgg #edit-submit, #cgg .form-submit {
+    bottom: 9%;
+  }
+}
+@media only screen and (max-width: 550px) {
+  /* line 55, styles.sass */
+  #cgg .go-button, #cgg #edit-submit, #cgg .form-submit {
+    position: static !important;
+    margin: 0 0 1em 0;
+  }
+}
+/* line 71, styles.sass */
+#cgg .cgg_logo {
   float: left;
-  width: 21%;
   padding: 0;
 }
-/* line 57, styles.sass */
-.cgg_logo img {
-  margin: 0 !important;
-  padding: 0 !important;
-  box-shadow: none !important;
+/* line 74, styles.sass */
+#cgg .cgg_logo img {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+/* line 78, styles.sass */
+#cgg .cgg_vertical {
+  width: 160px;
+  display: block;
+}
+@media only screen and (max-width: 550px) {
+  /* line 78, styles.sass */
+  #cgg .cgg_vertical {
+    display: none;
+  }
+}
+/* line 83, styles.sass */
+#cgg .cgg_horizontal {
+  display: none;
+}
+@media only screen and (max-width: 550px) {
+  /* line 83, styles.sass */
+  #cgg .cgg_horizontal {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
 }
 
-/* line 62, styles.sass */
+/* line 91, styles.sass */
 .field-name-ccg-celeb-image img {
   margin: 3% auto;
   width: 400px;
@@ -101,19 +159,19 @@
   border-radius: 4px;
 }
 
-/* line 68, styles.sass */
+/* line 97, styles.sass */
 .pane-ccg-done {
   width: 400px;
   margin: 0 auto;
 }
 @media only screen and (max-width: 500px) {
-  /* line 68, styles.sass */
+  /* line 97, styles.sass */
   .pane-ccg-done {
     width: 100%;
   }
 }
 
-/* line 74, styles.sass */
+/* line 103, styles.sass */
 .cgg_facebook, .cgg_twitter {
   display: block;
   width: 150px;
@@ -122,127 +180,109 @@
   margin: 2% 0 4%;
   float: right;
 }
-/* line 81, styles.sass */
+/* line 110, styles.sass */
 .cgg_facebook:hover, .cgg_twitter:hover {
   background-position-y: -50px;
 }
 
-/* line 84, styles.sass */
+/* line 113, styles.sass */
 .cgg_facebook {
   background-image: url("http://files.dosomething.org/files/campaigns/cgg/cgg_facebook.png");
   float: left;
 }
 
-/* line 88, styles.sass */
+/* line 117, styles.sass */
 .cgg_twitter {
   background-image: url("http://files.dosomething.org/files/campaigns/cgg/cgg_twitter.png");
 }
 
-/* line 91, styles.sass */
-.go-button, #edit-submit, .form-submit {
-  font-family: din-web !important;
-  background: #fed100 !important;
-  margin: 4% 0 1% !important;
-  padding: 0.3em 0.7em !important;
-  position: absolute !important;
-  font-size: 1.5em !important;
-  height: 35px !important;
-  display: inline-block !important;
-  bottom: 4em;
-  -webkit-border-radius: 7px !important;
-  -moz-border-radius: 7px !important;
-  -ms-border-radius: 7px !important;
-  -o-border-radius: 7px !important;
-  border-radius: 7px !important;
-}
-
-/* line 103, styles.sass */
+/* line 120, styles.sass */
 #page-title {
   text-align: right;
   box-shadow: none !important;
   border: none !important;
 }
 
-/* line 108, styles.sass */
+/* line 125, styles.sass */
 body, .container, div[role="main"] {
   background: #222222 !important;
 }
 
 @media only screen and (max-width: 1030px) {
-  /* line 116, styles.sass */
+  /* line 133, styles.sass */
   #page {
     width: 100% !important;
   }
 
-  /* line 118, styles.sass */
+  /* line 135, styles.sass */
   .region-sidebar-first {
     display: none !important;
   }
 
-  /* line 120, styles.sass */
+  /* line 137, styles.sass */
   #site-name {
     top: -54px !important;
     left: 5px !important;
   }
-  /* line 123, styles.sass */
+  /* line 140, styles.sass */
   #site-name a {
     height: 50px !important;
     width: 60px !important;
     background-size: 60px !important;
   }
 
-  /* line 127, styles.sass */
+  /* line 144, styles.sass */
   #utility-bar {
     height: 55px !important;
   }
 
-  /* line 130, styles.sass */
+  /* line 147, styles.sass */
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
     display: none !important;
   }
-  /* line 132, styles.sass */
+  /* line 149, styles.sass */
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
     padding: 0.5em 1em 0 0 !important;
     font-size: 1.5em !important;
   }
 
-  /* line 135, styles.sass */
+  /* line 152, styles.sass */
   #main-wrapper div[role="main"] {
     float: none !important;
     width: 100% !important;
   }
 
-  /* line 138, styles.sass */
+  /* line 155, styles.sass */
   nav[role="navigation"] {
     display: none !important;
   }
 
-  /* line 140, styles.sass */
+  /* line 157, styles.sass */
   .container {
     margin: 0 auto !important;
     width: 100% !important;
   }
 
-  /* line 146, styles.sass */
+  /* line 163, styles.sass */
   #block-menu-menu-footer .content {
     width: 80% !important;
     margin: 0 auto !important;
   }
 
-  /* line 149, styles.sass */
+  /* line 166, styles.sass */
   #block-menu-menu-footer .content ul.menu li span {
     font-size: 16px !important;
     line-height: 1em !important;
   }
 
-  /* line 152, styles.sass */
+  /* line 169, styles.sass */
   #block-menu-menu-footer .content ul.menu ul li a {
     font-size: 14px !important;
     line-height: 1em !important;
   }
 }
 @media only screen and (max-width: 1030px) and (max-width: 775px) {
-  /* line 143, styles.sass */
+  /* line 160, styles.sass */
   header[role="banner"] {
     width: 100% !important;
   }
