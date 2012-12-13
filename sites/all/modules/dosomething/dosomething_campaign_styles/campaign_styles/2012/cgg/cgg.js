@@ -41,8 +41,6 @@ Drupal.behaviors.cgg = {
       popupForm.find('.already-member .sign-in-popup').attr('href', '/user?destination='+url);
       loginForm.attr('action', '/user?destination='+url);
 
-      loginForm.find('.connect-with-facebook a').attr('href', loginForm.find('.connect-with-facebook a').attr('href').replace('/redirect_uri=[^&]+/', '/redirect_uri=ahhhhhhh'));
-
       url = document.location.protocol + '//' + document.location.host + '/' + url;
       popupForm.bind('dialogbeforeclose', function (event, ui) {
         if ($(event.srcElement).hasClass('ui-icon-closethick')) {
