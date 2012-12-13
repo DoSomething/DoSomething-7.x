@@ -10,6 +10,7 @@ define('ROBOCALLS_WEBFORM_NID', 723327);//724089
 define('MAX_CALLS_PER_DAY', 1);
 define('ROUND_TO', 10);
 define('ROBOCALLS_TAXONOMY_ID', 28);
+define('ROBOCALLS_FEATURED_CELEB_TAG', 'Says Hayyy to Your Friends');
 
 /**
  *  Implements hook_panels_pre_render()
@@ -249,7 +250,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
     if (request_uri() == '/calloffame') {
       $u['header'] = array(
-        '#markup' => '<h2>' . t('!name Will Call Your Friends!', array('!name' => $term->name)) . '</h2>',
+        '#markup' => '<h2>' . t('!name ' . ROBOCALLS_FEATURED_CELEB_TAG, array('!name' => $term->name)) . '</h2>',
         '#weight' => -1000
       );
     }

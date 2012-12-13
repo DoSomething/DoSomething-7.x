@@ -2,6 +2,10 @@
 	background: #ffffff;
 }
 
+#referral_form #submitted-field-cell-friend1-add-more-wrapper label span {
+	display: none;
+}
+
 fieldset#webform-component-referall-your-info {
 	float: left;
 	width: 40%;
