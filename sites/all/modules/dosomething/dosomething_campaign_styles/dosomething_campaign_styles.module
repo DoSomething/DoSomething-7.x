@@ -17,8 +17,8 @@ function dosomething_campaign_styles_webform_select_options_info() {
 
 function dosomething_campaign_styles_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'webform_client_form_' . CGG_CHOOSER_FORM) {
+    drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/cgg.js');
     if (!user_is_logged_in()) {
-      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/cgg.js');
       $form['actions']['submit']['#ajax'] = array(
         'callback' => 'dosomething_campaign_styles_ccg_submit',
       );
@@ -48,10 +48,11 @@ function dosomething_campaign_styles_ccg_submit($form, &$form_state) {
         <h2 class="element-invisible">Error message</h2>
         <ul>' . $error_list . '</ul></div>
       ';
+
       $commands[] = ajax_command_before('#page-title', $fake_error_template);
     }
     else {
-      $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsCGGSubmit', array($redirect, ($user->uid > 0)));
+      $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsCGGSubmit', array('celebsgonegood/choose?_=', ($user->uid > 0)));
     }
 
     return array(

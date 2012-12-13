@@ -2,6 +2,18 @@
 Drupal.behaviors.cgg = {
 	attach: function(context, settings) {
 	  // Define our own jQuery plugin so we can call it from Drupal's AJAX callback
+    if (window.location.hash) {
+      var error = '<div class="messages error"><ul><h2>' + Drupal.t("Hey! Now that you're logged in make sure you submit your vote again so we can record it!") + '</h2></ul></div>';
+      $(error).insertBefore('.webform-client-form').css({
+        'position': 'relative',
+        'top': '-85px',
+        'margin': '0px 0 -80px',
+        'border-radius': '5px',
+        'padding': '11px',
+        'padding-left': '20px',
+        'height': '55px',
+      });
+    }
 	}	
 };
 
@@ -28,6 +40,8 @@ Drupal.behaviors.cgg = {
       popupForm.attr('action', '/user/registration?destination='+url);
       popupForm.find('.already-member .sign-in-popup').attr('href', '/user?destination='+url);
       loginForm.attr('action', '/user?destination='+url);
+
+      loginForm.find('.connect-with-facebook a').attr('href', loginForm.find('.connect-with-facebook a').attr('href').replace('/redirect_uri=[^&]+/', '/redirect_uri=ahhhhhhh'));
 
       url = document.location.protocol + '//' + document.location.host + '/' + url;
       popupForm.bind('dialogbeforeclose', function (event, ui) {
