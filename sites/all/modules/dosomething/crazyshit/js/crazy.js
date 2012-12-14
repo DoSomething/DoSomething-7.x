@@ -85,8 +85,11 @@
 
 		$('.s-' + elm.attr('rel')).find('.vouch-button a').addClass('clicked');
 	       elm.addClass('clicked');
+
 	       var c = parseInt(elm.parent().find('span').text());
 		   elm.parent().find('span').text(++c);
+
+
 	       $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-bullshit', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
 	      	  if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
@@ -133,9 +136,12 @@
 	      var elm = $(this);
 
 	      elm.addClass('clicked');
+
 		$('.s-' + elm.attr('rel')).find('.bs-button a').addClass('clicked');
 		var c = parseInt(elm.parent().find('span').text());
 		elm.parent().find('span').text(++c);
+
+
 	      $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
 	      	if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
@@ -149,6 +155,7 @@
 
 	      return false;
 	    });
+
 
 	    $('.fb-share a').click(function(e) {
 	    	e.preventDefault();
@@ -241,6 +248,7 @@
 
 function fb_invite_friends_post(sid, reload) {
 	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
+
 
 	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function(res) {
 		if (!(typeof res === 'object' && res.perms == 'publish_stream')) {
