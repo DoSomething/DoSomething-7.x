@@ -424,7 +424,17 @@ function crazyshit_page_alter(&$page) {
 	include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 	drupal_set_title($campaign_title);
 
-	$uri = request_uri();
+    $element = array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'property' => 'og:type',
+        'content' => $facebook_posts['share']['namespace'] . ':' . $facebook_posts['share']['object'],
+      ),
+    );
+    drupal_add_html_head($element, 'picsforpets_social_graph_type');
+
+	// Loads the global javascript file.
+	drupal_add_js(drupal_get_path('module', 'crazyshit') . '/js/crazy.js');
 
 	// Loads CSS files from the $crazy_css array found in plugin.php
 	foreach ($crazy_css AS $path => $css) {
