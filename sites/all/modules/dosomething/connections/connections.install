@@ -68,6 +68,12 @@ function connections_schema() {
         'length' => 255,
         'not null' => TRUE,
       ),
+      'to_fbid' => array(
+        'description' => 'The Facebook ID of the person being invited.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
       'timestamp' => array(
         'description' => 'The time that the action took place.',
         'type' => 'int',
@@ -161,5 +167,14 @@ function connections_update_7101() {
 function connections_update_7104() {
   if (db_table_exists('fb_log')) {
     db_query("ALTER TABLE fb_log CHANGE fbid fbid varchar(255) not null");
+  }
+}
+
+/**
+ *  Adds to_fbid column
+ */
+function connections_update_7105() {
+  if (db_table_exists('fb_log')) {
+    db_query("ALTER TABLE fb_log ADD to_fbid varchar(255) not null after fbid");
   }
 }
