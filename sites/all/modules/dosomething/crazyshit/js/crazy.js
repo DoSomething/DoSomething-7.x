@@ -35,7 +35,7 @@
 	    //$('.crazy-button a.button-submit').click(function() {
 	    //   if ($(this).hasClass('clicked')) return false;
 	    //   var elm = $(this);
-	    //   $.post('/crazy/submit-crazy', { 'rel': $(this).attr('rel') }, function(response) {
+	    //   $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-crazy', { 'rel': $(this).attr('rel') }, function(response) {
 	    //  	 if (response.status == 1) {
 	    //  		settings.crazy.share_count++;
 	    //  		o.tip_shares(settings);
@@ -53,7 +53,7 @@
 	       var na = $(this).hasClass('no-alert');
 
 	       elm.addClass('clicked');
-	       $.post('/crazy/submit-bullshit', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
+	       $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-bullshit', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
 	      	  if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
 	      		settings.crazy.share_count++;
@@ -92,7 +92,7 @@
 	      var elm = $(this);
 
 	      elm.addClass('clicked');
-	      $.post('/crazy/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
+	      $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
 	      	if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
 	      		settings.crazy.share_count++;
@@ -104,6 +104,24 @@
 	      });
 
 	      return false;
+	    });
+
+	    $('.fb-share a').click(function() {
+	    	var img = $(this).parent().parent().find('.simg img').attr('data-original');
+	    	var sid = $(this).attr('rel');
+
+	    	Drupal.behaviors.fb.image({
+	    		'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
+	    		'img_object': Drupal.settings.crazy.facebook.share.object,
+	    		'img_action': Drupal.settings.crazy.facebook.share.action,
+	    		'img_document': document.location.origin + '/' + Drupal.settings.crazy.crazy_root + '/' + sid,
+	    		'img_message': Drupal.settings.crazy.facebook.share.message,
+	    		'img_picture': img,
+	    		'img_require_login': true,
+	    	}, function(response) {
+	    		console.log(response);
+	    	});
+	    	return false;
 	    });
 	 },
 
@@ -129,7 +147,7 @@
 		    			// Nothing.  They're authorized.
 		    		}
 		    		else {
-		    			document.location.href = '/crazy/fb-connect';
+		    			document.location.href = '/' + Drupal.settings.crazy.crazy_root + '/fb-connect';
 		    		}
 		    	});
 		    }
@@ -168,7 +186,7 @@ function fb_invite_friends_post(sid, reload) {
 	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
 
 	Drupal.behaviors.fb.feed({
-		feed_document: 'http://www.dosomething.org/crazy/friends#' + sid,
+		feed_document: 'http://www.dosomething.org/' + Drupal.settings.crazy.crazy_root + '/friends#' + sid,
         feed_title: Drupal.settings.crazy.facebook.posts.title,
         feed_picture: jQuery('.s-' + sid + '-picture img').attr('data-original'),//http://files.dosomething.org/files/styles/p4p_fake_button/public/pictures/actionguide/123905097.jpg',
         feed_caption: Drupal.settings.crazy.facebook.posts.caption,
@@ -178,7 +196,7 @@ function fb_invite_friends_post(sid, reload) {
         feed_modal: false,
         feed_friend_selector: 'td',
 	}, function(response) {
-		jQuery.post('/crazy/submit-vouch-request/' + sid, { 'friends': response.friends, 'origin': Drupal.settings.crazy.origin }, function(v) {
+		jQuery.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch-request/' + sid, { 'friends': response.friends, 'origin': Drupal.settings.crazy.origin }, function(v) {
 			//console.log(v);
 		});
 		//console.log(response);
