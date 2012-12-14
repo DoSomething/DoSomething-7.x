@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the Crazy $#!T Campaign feature.
+ */
+
+include_once 'crazyshit.features.inc';
 
 define('CRAZY_DOMAIN', variable_get('crazy_domain', 'localhost:8080'));
 define('CRAZY_AUTH_PAGES', serialize(explode(',', variable_get('crazy_auth_pages', 'friends,submit'))));
