@@ -28,7 +28,7 @@ $allow_lazy_loading = 0;
 // Campaign title
 $campaign_title = "The Craziest thing I've done to save money";
 
-// Language for the top language links
+// Top menu links.
 $top_links = array(
 	'crazy(/(time-.*?|[0-9]+))?$' => array(
 		'title' => 'Gallery',
@@ -56,7 +56,7 @@ $top_links = array(
 	),
 );
 
-// Language for the sub-menus
+// Sub menus
 $sub_menus = array(
 	// Time based filters sub-menu (landing page)
 	'crazy(/(time-.*?|[0-9]+))?$' => array(
