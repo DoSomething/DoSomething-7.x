@@ -180,21 +180,6 @@ function dosomething_general_js_alter(&$javascript) {
 }
 
 /**
- * Implements hook_css_alter().
- */
-function dosomething_general_css_alter(&$css) {
-  // Set all aggregated css to the CSS_DEFAULT group.
-  // This prevents individual css files per group
-  uasort($css, 'drupal_sort_css_js');
-  $i = 0;
-  foreach ($css as $name => $style) {
-    $css[$name]['weight'] = $i++;
-    $css[$name]['group'] = CSS_DEFAULT;
-    $css[$name]['every_page'] = FALSE;
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function dosomething_general_theme($existing, $type, $theme, $path) {
