@@ -1,0 +1,124 @@
+.region-sidebar-first {
+  display: none; }
+
+#page, body.one-sidebar.sidebar-first [role="main"] {
+  width: 100%;
+  background: white; }
+
+.crazy-submission {
+  background: white;
+  text-align: center;
+  margin: 10px auto;
+  border: 1px solid black;
+  box-shadow: 0px 0px 5px gray; }
+  .crazy-submission .crazy-button, .crazy-submission .bs-button, .crazy-submission .vouch-button {
+    display: inline-block; }
+    .crazy-submission .crazy-button a, .crazy-submission .bs-button a, .crazy-submission .vouch-button a {
+      background: gray;
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid black; }
+      .crazy-submission .crazy-button a.clicked, .crazy-submission .bs-button a.clicked, .crazy-submission .vouch-button a.clicked {
+        background: #f1f1f1;
+        color: #c1c1c1;
+        cursor: default;
+        text-decoration: none; }
+        .crazy-submission .crazy-button a.clicked:hover, .crazy-submission .bs-button a.clicked:hover, .crazy-submission .vouch-button a.clicked:hover {
+          text-decoration: none; }
+    .crazy-submission .crazy-button span, .crazy-submission .bs-button span, .crazy-submission .vouch-button span {
+      position: relative;
+      display: inline-block;
+      border: 1px solid black;
+      padding: 0px 5px;
+      margin-left: 5px; }
+      .crazy-submission .crazy-button span:after, .crazy-submission .crazy-button span:before, .crazy-submission .bs-button span:after, .crazy-submission .bs-button span:before, .crazy-submission .vouch-button span:after, .crazy-submission .vouch-button span:before {
+        right: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none; }
+      .crazy-submission .crazy-button span:after, .crazy-submission .bs-button span:after, .crazy-submission .vouch-button span:after {
+        border-color: rgba(136, 183, 213, 0);
+        border-right-color: white;
+        border-width: 5px;
+        top: 50%;
+        margin-top: -5px; }
+      .crazy-submission .crazy-button span:before, .crazy-submission .bs-button span:before, .crazy-submission .vouch-button span:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-right-color: black;
+        border-width: 6px;
+        top: 50%;
+        margin-top: -6px; }
+
+.fb-invite-friends {
+  display: block;
+  width: 200px;
+  background: yellow;
+  border: 1px solid black;
+  padding: 10px;
+  box-shadow: 0px 0px 6px gray;
+  margin: 0px auto;
+  text-align: center; }
+
+ul.crazyshit-menu {
+  margin: 0px;
+  padding: 0px;
+  border-right: 1px solid black;
+  list-style-type: none;
+  height: 30px; }
+  ul.crazyshit-menu li {
+    width: 25%;
+    float: left;
+    text-align: center;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black; }
+    ul.crazyshit-menu li a {
+      padding: 5px;
+      display: block; }
+      ul.crazyshit-menu li a:hover {
+        background: white;
+        color: black; }
+      ul.crazyshit-menu li a.active {
+        background: #e1e1e1; }
+
+ul.crazyshit-sub-menu {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+  margin-top: 20px;
+  border: 1px solid black;
+  border-right: 0px;
+  height: 30px;
+  width: 425px;
+  margin-left: 10px; }
+  ul.crazyshit-sub-menu li {
+    width: 33.3%;
+    float: left;
+    border-right: 1px solid black;
+    text-align: center; }
+    ul.crazyshit-sub-menu li a {
+      padding: 5px;
+      display: block; }
+      ul.crazyshit-sub-menu li a:hover {
+        background: white;
+        color: black; }
+      ul.crazyshit-sub-menu li a.active {
+        background: #e1e1e1; }
+
+.connect-with-facebook {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url("/sites/all/themes/doit/css/images/btn-facebook-popup-login.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 300px;
+  height: 50px;
+  display: block;
+  margin-bottom: 2px;
+  margin-left: auto;
+  margin-right: auto; }

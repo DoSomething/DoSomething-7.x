@@ -1,0 +1,4 @@
+name = 'DoSomething Crazy Shit Campaign'
+description = 'Crazy Shit campaign layouts, files, information.'
+core = 7.x
+package = DoSomething Campaigns

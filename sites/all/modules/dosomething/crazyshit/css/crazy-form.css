@@ -1,0 +1,101 @@
+nav[role="navigation"] .region-navigation {
+  margin: 0px 0px; }
+
+input#edit-submitted-field-crazy-crazy-picture-und-0-upload-button {
+  display: none; }
+
+input#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
+  position: relative;
+  top: -25px;
+  margin-left: 165px; }
+
+#upload-cover {
+  position: relative;
+  width: 100px;
+  margin: 0px auto;
+  margin-top: -35px;
+  cursor: pointer; }
+
+.form-file.new {
+  position: relative;
+  text-align: right;
+  -moz-opacity: 0;
+  opacity: 0;
+  z-index: 2; }
+
+.fakefile {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background: #c1c1c1;
+  padding: 5px;
+  border: 1px solid black;
+  cursor: pointer; }
+
+footer.author, #edit-submitted-dosomething-webform-numbering {
+  display: none; }
+
+.step-field {
+  margin-bottom: 15px; }
+
+#top_text {
+  position: absolute;
+  width: 400px;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.25);
+  font-family: din-web-reg;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  padding-top: 3px;
+  line-height: 1.2;
+  overflow: hidden;
+  top: 0px; }
+
+#bottom_text {
+  position: absolute;
+  width: 400px;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.25);
+  font-family: din-web-reg;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  padding-top: 3px;
+  line-height: 1.2;
+  overflow: hidden;
+  bottom: 0px; }
+
+div.image-widget-data {
+  clear: both;
+  width: 400px;
+  height: 400px;
+  margin: 0px auto;
+  float: none;
+  border: 1px solid black; }
+
+.description,
+#edit-submitted-field-crazy-vouch-count,
+#edit-submitted-field-crazy-bullshit-count,
+#edit-submitted-field-crazy-count,
+.image-preview,
+.file,
+.file-size,
+.form-item-submitted-field-crazy-crazy-picture-und-0 label {
+  display: none; }
+
+#edit-submitted-sbutton {
+  text-align: center;
+  position: relative; }
+  #edit-submitted-sbutton img {
+    position: static;
+    margin-bottom: -2px;
+    z-index: -1;
+    border: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    margin-top: 0px; }

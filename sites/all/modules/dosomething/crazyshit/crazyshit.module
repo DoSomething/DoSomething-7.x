@@ -1,0 +1,959 @@
+<?php
+
+define('CRAZY_DOMAIN', variable_get('crazy_domain', 'localhost:8080'));
+define('CRAZY_AUTH_PAGES', serialize(explode(',', variable_get('crazy_auth_pages', 'friends,submit'))));
+
+/**
+ *	Implements hook_menu()
+ */
+function crazyshit_menu() {
+	$items = array();
+	/*$items['crazy/submit-crazy'] = array(
+	  'page callback' => 'crazyshit_submit_craziness',
+	  'access callback' => TRUE,
+	  'delivery callback' => 'ajax_deliver',
+	);*/
+
+	$items['crazy/submit-bullshit'] = array(
+	  'page callback' => 'crazyshit_submit_bullshit',
+	  'access callback' => TRUE,
+	  'delivery callback' => 'ajax_deliver',
+	);
+
+	$items['crazy/submit-vouch'] = array(
+	  'page callback' => 'crazyshit_submit_vouch',
+	  'access callback' => TRUE,
+	  'delivery callback' => 'ajax_deliver',
+	);
+
+	$items['crazy/submit-vouch-request/%'] = array(
+	  'page callback' => 'crazyshit_submit_vouch_request',
+	  'access callback' => TRUE,
+	  'page arguments' => array(2),
+	  'delivery callback' => 'ajax_deliver',
+	);
+
+	$items['cstemplate/%/%'] = array(
+	  'page callback' => 'crazyshit_template_render',
+	  'page arguments' => array(1, 2),
+	  'access callback' => TRUE,
+	);
+
+	$items['crazy/fb-connect'] = array(
+	  'page callback' => 'crazyshit_fb_connect',
+	  'access callback' => TRUE
+	);
+
+	$items['fb/pics-for-pets/crazy'] = array(
+	  'page callback' => 'crazyshit_redirect_from_pfp',
+	  'access callback' => TRUE,
+	);
+
+	return $items;
+}
+
+/**
+ *	Checks whether the page url matches the crazy $#!T URI
+ *
+ *	@param $page (optional)
+ *		The URI to the page that should be checked.  If blank,
+ *		assumes you mean request_uri().
+ *
+ *	@return boolean
+ *		Returns true or false, depending on whether or not the
+ *		page is a crazy page.
+ */
+function crazyshit_is_crazy_page($page = '') {
+  if (empty($page)) {
+	$page = request_uri();
+  }
+
+  if (preg_match('#^\/' . CRAZY_ROOT . '#i', $page)) {
+	return true;
+  }
+
+  return false;
+}
+
+/**
+ *	Implements hook_page_templates_alter()
+ *	Adds navigation bar to the top of the page.
+ */
+function crazyshit_page_templates_alter(&$variables) {
+   if (crazyshit_is_crazy_page()) {
+	  $v = &$variables['page']['top_navbar'];
+
+	  $fbed = crazy_check_fb_auth();
+	  include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
+
+	  $ru = request_uri();
+	  foreach ($top_links AS $match => $info) {
+	  	$href = $info['href'];
+	  	$links[$href] = array(
+	  	  'title' => t($info['title']),
+	  	  'href' => $href,
+	  	  'attributes' => ($info['attributes'] ? $info['attributes'] : array()),
+	  	);
+
+	  	if (preg_match('#^\/' . $match . '#i', $ru)) {
+	  	  $links[$href]['attributes'] += array(
+	  		'class' => array('active'),
+	  	  );
+	  	}
+	  }
+
+	  $sub = array();
+	  $u = substr($ru, 1);
+	  foreach ($sub_menus AS $match => $s) {
+	  	if (preg_match('#' . $match . '#i', $u)) {
+	  	  foreach ($sub_menus[$match] AS $key => $type) {
+	  		$sub[] = array(
+	  		   'title' => t($type['title']),
+	  		   'href' => $type['href'],
+	  		);
+	  	  }
+	  	}
+	  }
+
+	  $crazy_menu = array();
+	  $crazy_menu = array(
+	    '#theme' => 'links',
+	    '#links' => $links,
+	    '#attributes' => array('class' => array('crazyshit-menu')),
+	  );
+
+	  $crazy_sub_menu = array();
+	  if (!empty($sub)) {
+	    $crazy_sub_menu = array(
+	      '#theme' => 'links',
+	      '#links' => $sub,
+	      '#attributes' => array('class' => array('crazyshit-sub-menu')),
+	    );
+	  }
+
+	  $v = drupal_render($crazy_menu) . drupal_render($crazy_sub_menu) . $v;
+   }
+}
+
+/**
+ *  Implements hook_ctools_plugin_directory().
+ */
+function crazyshit_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ *	Redirects from PFP Facebook app back to DoSomething.
+ */
+function crazyshit_redirect_from_pfp() {
+   drupal_goto(CRAZY_ROOT);
+}
+
+/**
+ *	Submits a vouch.
+ */
+function crazyshit_submit_vouch() {
+	global $user;
+	if (!$user->uid) {
+	  // If a user isn't logged in, they shouldn't be able to vouch for something.
+	  echo drupal_json_output(array(
+		'status' => 0
+	  ));
+	}
+
+	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
+
+	$value = 0;
+	if (isset($submission->field_crazy_vouch_count[LANGUAGE_NONE])) {
+	   $value = $submission->field_crazy_vouch_count[LANGUAGE_NONE][0]['value'];
+	}
+
+	$value++;
+	$submission->field_crazy_vouch_count[LANGUAGE_NONE][0]['value'] = $value;
+	webform_entity_save_webform_submission($submission);
+
+	$fbid = fboauth_fbid_load($user->uid);
+
+	$notification = array(
+	  'sid' => $submission->sid,
+	  'uid' => $submission->uid,
+	  'fid' => fboauth_fbid_load($submission->uid),
+	  'from_uid' => $user->uid,
+	  'from_fid' => $fbid,
+	  'type' => 11,
+	  'timestamp' => REQUEST_TIME,
+	  'notified' => 1,
+	  'origin' => intval($_POST['origin']),
+	);
+	drupal_write_record('crazy_notifications', $notification);
+
+	echo drupal_json_output(array(
+	  'status' => 1,
+	  'count' => $value,
+	));
+
+	drupal_exit();
+}
+
+/**
+ *	Submits a vouch request.
+ *
+ *	@param $sid
+ *		The submission ID of the post in question.
+ */
+function crazyshit_submit_vouch_request($sid) {
+	$friends = $_POST['friends'];
+	$submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+	global $user;
+
+	$fbid = fboauth_fbid_load($user->uid);
+
+	foreach ($friends AS $key => $friend) {
+	  $notification = array(
+	    'sid' => $submission->sid,
+	    'uid' => fboauth_uid_load($friend),
+	    'fid' => $friend,
+	    'from_uid' => $user->uid,
+	    'from_fid' => $fbid,
+	    'type' => 1,
+	    'timestamp' => REQUEST_TIME,
+	    'notified' => 1,
+	    'origin' => intval($_POST['origin']),
+	  );
+
+	  drupal_write_record('crazy_notifications', $notification);
+	}
+}
+
+
+function crazyshit_submit_craziness() {
+	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
+	if (!$submission) {
+	   watchdog('crazyshit', 'The crazy shit was not crazy.');
+	   return FALSE;
+	}
+
+	$value = 0;
+	if (isset($submission->field_crazy_count[LANGUAGE_NONE])) {
+	   $value = $submission->field_crazy_count[LANGUAGE_NONE][0]['value'];
+	}
+
+	$value++;
+	$submission->field_crazy_count[LANGUAGE_NONE][0]['value'] = $value;
+	webform_entity_save_webform_submission($submission);
+	
+	global $user;
+	$fbid = fboauth_fbid_load($user->uid);
+	$notification = array(
+	  'sid' => $submission->sid,
+	  'uid' => 0,
+	  'fid' => 0,
+	  'from_uid' => $user->uid,
+	  'from_fid' => $fbid,
+	  'type' => 10,
+	  'timestamp' => REQUEST_TIME,
+	  'notified' => 0,
+	);
+
+	drupal_write_record('crazy_notifications', $notification);
+
+	#crazy_update_share_count();
+	echo drupal_json_output(array(
+		'status' => 1,
+		'count' => $value,
+	));
+	exit;
+}
+
+/**
+ *	Submits a B.S. notification.
+ */
+function crazyshit_submit_bullshit() {
+	global $user;
+	if (!$user->uid) {
+	  // If a user isn't logged in, they shouldn't be able to vouch for something.
+	  echo drupal_json_output(array(
+		'status' => 0
+	  ));
+	}
+
+	$n = 0;
+	// If we have disabled notifications, set notified = true
+	// so the user doesn't see the notification when they come back.
+	if ($_POST['alert'] == 'true' || !CRAZY_ALLOW_NOTIFICATIONS) {
+	  $n = 1;
+	}
+
+	// Get the submission, or send an error.
+	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
+	if (!$submission) {
+	  watchdog('crazyshit', 'There was an error with a B.S. share (SID: ' . intval($_POST['rel']) . ')');
+	  return FALSE;
+	}
+
+	// Get the current B.S. count
+	$value = 0;
+	if (isset($submission->field_crazy_bullshit_count[LANGUAGE_NONE])) {
+	   $value = $submission->field_crazy_bullshit_count[LANGUAGE_NONE][0]['value'];
+	}
+
+	// BS++
+	$value++;
+
+	// Update it.
+	$submission->field_crazy_bullshit_count[LANGUAGE_NONE][0]['value'] = $value;
+	webform_entity_save_webform_submission($submission);
+	
+	// Get Drupal and FB user ids
+	$fbid = fboauth_fbid_load($user->uid);
+	$to_fbid = fboauth_fbid_load($submission->uid);
+
+	// Build the notification array.
+	$notification = array(
+	  'sid' => $submission->sid,
+	  'uid' => $submission->uid,
+	  'fid' => $to_fbid,
+	  'from_uid' => $user->uid,
+	  'from_fid' => $fbid,
+	  'type' => 2,
+	  'timestamp' => REQUEST_TIME,
+	  'notified' => $n,
+	  'origin' => intval($_POST['origin']),
+	);
+
+	// Write the notification.
+	drupal_write_record('crazy_notifications', $notification);
+
+	// Return author, status, new count.
+	echo drupal_json_output(array(
+	  'author' => fboauth_fbid_load($submission->uid),
+	  'status' => 1,
+	  'count' => $value,
+	));
+
+	drupal_exit();
+}
+
+
+/**
+ *	Renders a template for the popups.
+ *
+ *	@param $template
+ *		The template that should be rendered.
+ *
+ *	@param $sid
+ *		The submission ID of the post in question.
+ */
+function crazyshit_template_render($template, $sid) {
+  // Start the parameters with just the SID.
+  $params = array(
+	'sid' => $sid,
+  );
+
+  // Add a random tip if it's the tips popup.
+  if ($template == 'tip') {
+	include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
+	$params['tip'] = t($money_saving_tips[array_rand($money_saving_tips)]);
+  }
+
+  if (isset($_POST['goto'])) {
+	$params['goto'] = $_POST['goto'];
+  }
+
+  // Return the template.
+  echo theme($template, $params);
+
+  // Update the notifications table that the user saw it.
+  db_update('crazy_notifications')
+  ->fields(array(
+	'notified' => 1
+  ))
+  ->condition('sid', intval($sid))
+  ->execute();
+
+  // Finished.
+  drupal_exit();
+}
+
+/**
+ *	Implements hook_page_alter()
+ */
+function crazyshit_page_alter(&$page) {
+  if (crazyshit_is_crazy_page()) {
+	include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
+	drupal_set_title($campaign_title);
+
+	// Loads the global javascript file.
+	drupal_add_js(drupal_get_path('module', 'crazyshit') . '/js/crazy.js');
+
+	// Loads the global CSS file.
+	drupal_add_css(drupal_get_path('module', 'crazyshit') . '/css/crazy.css', array(
+	  'group' => CSS_THEME,
+	  'weight' => 10000,
+	));
+
+	// Loads Facebook.
+	drupal_add_library('connections', 'facebook');
+
+	$origin = 0;
+
+	// If on a gallery page, adds an array of submission IDs to Drupal.settings
+	// When the page loads, javascript takes these IDs and disables the buttons.
+	$settings = array();
+	if (preg_match('#^\/' . CRAZY_ROOT . '\/?(friends|time-.*?)?#i', request_uri())) {
+	  if ($allow_lazy_loading) {
+	     drupal_add_js(drupal_get_path('module', 'crazyshit') . '/js/jquery.lazyload.js');
+	  }
+
+	  global $user;
+	  $fbid = fboauth_fbid_load($user->uid);
+
+	  $i = db_or();
+	  $i->condition('from_uid', $user->uid);
+	  $i->condition('from_fid', $fbid);
+
+	  $s = db_select('crazy_notifications', 'n')
+		->fields('n', array('sid', 'type'))
+		->condition($i)
+	    ->condition('type', array(2, 10, 11), 'IN')
+	    ->execute();
+	  $shares = $s->fetchAll();
+
+	  $settings = array(
+	    'share_count' => count($shares),
+	    'shares' => $shares,
+	  );
+
+	  $origin = 1;
+	}
+
+	if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
+		$origin = 2;
+	}
+
+	$settings['facebook'] = $facebook_posts;
+
+	$settings['origin'] = $origin;
+	// Whether or not to allow notifications.
+	$settings['allow_notifications'] = CRAZY_ALLOW_NOTIFICATIONS;
+
+	// Whether lazy loading is allowed.
+	$settings['allow_lazy_loading'] = CRAZY_ALLOW_LAZY_LOADING;
+
+	// Settings.
+	drupal_add_js(array('crazy' => $settings), 'setting');
+  }
+}
+
+/**
+ *	Implements hook_views_pre_render()
+ */
+function crazyshit_views_post_render(&$view, &$output, &$cache) {
+   // Allows for lazy loading of images...
+   $output = preg_replace_callback('#src="([^\"]+)"\s+#i', 'crazyshit_add_lazy_class', $output);
+}
+
+/**
+ *	Adds the "lazy" class to images, to enable lazy loading.
+ */
+function crazyshit_add_lazy_class($matches) {
+  static $i = 1;
+
+  // Lazy load count always needs to be at least 1.
+  $c = (CRAZY_LAZY_LOAD_COUNT < 1) ? 1 : CRAZY_LAZY_LOAD_COUNT;
+
+  // We multiply the lazy load count by 2, because lazy loading includes the facebook pictures.
+  if ($i > ($c * 2) && CRAZY_ALLOW_LAZY_LOADING) {
+	// We're beyond the non-lazy threshold, so lazy-load the image.
+	$r = 'src="/' . drupal_get_path('module', 'crazyshit') .'/images/default-img.jpg" data-original="' . $matches[1] . '" class="lazy" ';
+  }
+  else {
+	// If we're within the threshhold of non-lazy images, don't add the "lazy" class to them.
+	// The lazy class causes issues when you first create a post.  So we can't lazy load it.
+	$r = $matches[0] . ' data-original="' . $matches[1] . '" ';
+  }
+
+  $i++;
+  return $r;
+}
+
+/**
+ *  Implements hook_views_query_alter()
+ */
+function crazyshit_views_query_alter(&$view, &$query) {
+	if ($view->name == 'crazy_shit_landing') {
+		if ($view->current_display == 'block') {
+			if (preg_match('#^\/' . CRAZY_ROOT . '/([0-9]+)$#i', request_uri(), $showid)) {
+				$showid = $showid[1];
+
+				// Try and find the submission with this ID and mark it as relevant
+				$query->fields['ided'] = array(
+				  'field' => 'IF (webform_submissions.sid = ' . $showid . ', 1, 0)',
+				  'table' => '',
+				  'alias' => 'is_the_one',
+				);
+
+				// By default, the view orders by submitted DESC first.  This won't work with this.
+				// So clear out the original order by, and re-order with is_the_one first, then submitted.
+				unset($query->orderby[0]);
+				$query->orderby[] = array(
+				  'field' => 'is_the_one',
+				  'direction' => 'DESC',
+				);
+				$query->orderby[] = array(
+				  'field' => 'webform_submissions.submitted',
+				  'direction' => 'DESC',
+				);
+			}
+
+			if (preg_match('#^\/' . CRAZY_ROOT . '/time-(today|week)$#i', request_uri(), $time)) {
+				$time = $time[1];
+
+				// Gets submissions posted today.
+				if ($time == 'today') {
+				   $query->where[1]['conditions'][] = array(
+					 'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') = :today",
+					 'value' => array(':today' => date('Y-m-d', REQUEST_TIME)),
+				 	 'operator' => 'formula',
+				   );
+				}
+				// Gets submissions posted this week.
+				else if ($time == 'week') {
+				   $query->where[1]['conditions'][] = array(
+					  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
+					  'value' => array(
+							':last_week' => date('Y-m-d', strtotime('7 days ago')),
+							':today' => date('Y-m-d', REQUEST_TIME),
+						),
+					  'operator' => 'formula',
+				   );
+				}
+			}
+		}
+
+		// If we're viewing the friends gallery page, only show submissions by my Facebook friends.
+		if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
+			$facebook = crazy_load_fb();
+			try {
+		 	  $friends = $facebook->api('/me/friends');
+			  global $user;
+
+			  $f = array(
+				0 => fboauth_fbid_load($user->uid),
+			  );
+			  foreach ($friends['data'] AS $key => $friend) {
+				$f[] = $friend['id'];
+			  }
+
+			  $ids = crazy_fb_get_multi_fbids($f);
+			}
+			catch (Exception $e) {}
+
+			if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
+		  	  $query->where[1]['conditions'][] = array(
+		  	  	'field' => 'webform_submissions.uid',
+		  	  	'value' => $ids,
+		  	  	'operator' => 'in',
+		  	  );
+			}
+		}
+	}
+}
+
+/**
+ *	Gets multiple Facebook IDs from an array of Drupal User IDs
+ *
+ *	@param $users
+ *		An array of Drupal user ids.
+ */
+function crazy_fb_get_multi_fbids(Array $users) {
+  $result = db_query("SELECT uid, 1 FROM {fboauth_users} WHERE fbid IN (:fbid)", array(':fbid' => implode(',', $users)));
+  $uids = $result->fetchAllKeyed();
+  
+  return array_keys($uids);
+}
+
+/**
+ *  Implements hook_module_implements_alter()
+ */
+function crazyshit_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter' && isset($implementations['crazyshit'])) {
+    $group = $implementations['crazyshit'];
+    unset($implementations['crazyshit']);
+    $implementations['crazyshit'] = $group;
+  }
+}
+
+/**
+ *	Implements hook_form_alter()
+ */
+function crazyshit_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'crazy_shit') {
+  	 	// Load form Javascript
+		$form['#attached']['js'] = array(
+		  array(
+		    'data' => drupal_get_path('module', 'crazyshit') . '/js/crazy-form.js',
+		    'options' => array(
+		      'group' => JS_LIBRARY,
+		      'preprocess' => FALSE,
+		      'every_page' => TRUE
+		    )
+		  ),
+		);
+
+		// Loads form CSS
+		$form['#attached']['css'] = array(
+		  array(
+		    'data' => drupal_get_path('module', 'crazyshit') . '/css/crazy-form.css',
+		    'options' => array(
+		      'group' => CSS_LIBRARY,
+		      'preprocess' => FALSE,
+		      'every_page' => TRUE,
+		      'weight' => 9999,
+		    ),
+		    'weight' => 9999,
+	      ),
+		);
+
+		$u = &$form['submitted'];
+		$page = $form_state['input']['details']['page_num'];
+
+		include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
+		if ($page == 0 || !isset($form_state['input']['submitted']['field_crazy_crazy_picture'][LANGUAGE_NONE][0]['fid'])) {
+			$u['s'] = array(
+				'#type' => 'container',
+				'step' => array(
+					'#markup' => t($submit_form['steps']['step1']),
+				),
+				'#weight' => -1000,
+				'#attributes' => array(
+					'class' => array('step-field'),
+				),
+			);
+
+			$form['submitted']['webform_entity_form']['#groups']['group_crazy_page1']->children[] = 'sbutton';
+			$form['submitted']['webform_entity_form']['#group_children']['sbutton'] = 'group_crazy_page1';
+		}
+		else {
+			$u['s'] = array(
+				'#type' => 'container',
+				'step' => array(
+					'#markup' => t($submit_form['steps']['step2']),
+				),
+				'#weight' => -1000,
+			);
+
+			$file = file_load($form_state['input']['submitted']['field_crazy_crazy_picture'][LANGUAGE_NONE][0]['fid']);
+			$path = str_replace(drupal_realpath('public://') . '/', '', drupal_realpath($file->uri));
+			$form_state['file_path'] = $path;
+
+			$u['sbutton'] = array(
+				'#type' => 'container',
+				'preview_image' => array(
+					'#markup' => '<img src="/files/styles/crazy_image_dimensions/public/' . $path . '" alt="" />',
+				),
+				'#weight' => 10,
+				'#attributes' => array(
+					'class' => array('image-widget-data')
+				),
+			);
+
+			$form['#submit'][] = 'crazyshit_add_text_to_image';
+			$form['#submit'][] = 'crazyshit_redirect_to_friends';
+		}
+	}
+}
+
+/**
+ *	Adds text to the image.
+ */
+function crazyshit_add_text_to_image($form, &$form_state) {
+	$top = $form_state['input']['submitted']['field_crazy_top_text'][LANGUAGE_NONE][0]['value'];
+	$bottom = $form_state['input']['submitted']['field_crazy_bottom_text'][LANGUAGE_NONE][0]['value'];
+
+	$path = drupal_realpath('public://') . '/styles/crazy_image_dimensions/public/crazyshit/' . basename($form_state['file_path']);
+
+	include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/includes/image.php';
+	write_text_to_image($path, $top, $bottom);
+}
+
+/**
+ *	Redirects to the "me and my friends" tab after creation, and sets $_SESSION['from_creation']
+ */
+function crazyshit_redirect_to_friends($form, &$form_state) {
+  $sid = $form_state['values']['details']['sid'];
+  $_SESSION['from_creation'] = $sid;
+  drupal_goto('crazy/friends');
+}
+
+/**
+ *	Loads the Facebook object and returns it.
+ */
+function crazy_load_fb() {
+  // Some browsers won't let the third party cookies through by default unless
+  // a compact privacy policy is set in the headers.
+  drupal_add_http_header('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
+  $path = libraries_get_path('facebook');
+  if (!empty($path)) {
+	require_once(DRUPAL_ROOT . '/' . $path . '/facebook.php');
+  }
+  else {
+	drupal_set_message('You are missing the Facebook SDK');
+	return;
+  }
+
+  $appid = variable_get('fboauth_id');
+  $secret = variable_get('fboauth_secret');
+
+  $facebook = new Facebook(array(
+	'appId' => $appid,
+	'secret' => $secret,
+  ));
+
+  return $facebook;
+}
+
+/**
+ *	Checks Facebook authentication.
+ *
+ *	@param $facebook
+ *		The Facebook object, if it exists.  This function will
+ *		create the object otherwise.
+ */
+function crazy_check_fb_auth($facebook = '') {
+  if (!is_object($facebook)) {
+    $facebook = crazy_load_fb();
+  }
+
+  $access_token = $facebook->getAccessToken();
+
+  // Try and get the $fbuser object
+  $fbuser = fboauth_graph_query('me', $access_token);
+  if (isset($fbuser->id)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+/**
+ *	Redirects to the Facebook auth page.
+ *  This seems to fix the auth problem.
+ */
+function crazyshit_fb_connect() {
+  $facebook = crazy_load_fb();
+
+  $params = array(
+	'scope' => 'email,user_birthday',
+	'redirect_uri' => $_SERVER['HTTP_REFERER'],
+  );
+
+  $l = $facebook->getLoginUrl($params);
+  header('location: ' . $l);
+}
+
+
+/**
+ * Implements hook_init().
+ */
+function crazyshit_init() {
+  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
+
+  // Return nothing if the page isn't within the crazy $#!T module
+  if (!crazyshit_is_crazy_page()) {
+	return;
+  }
+
+  global $user;
+
+  // Load the Facebook object
+  $facebook = crazy_load_fb();
+
+  // Handles Facebook user system
+  crazyshit_handle_fb_users($facebook);
+
+  $onpage = preg_match('#^/(' . implode('|', $crazy_notification_pages) . ')$#i', request_uri());
+  if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
+	// Set up an or statement for the below query.
+	$c = db_or();
+	$c->condition('uid', intval($user->uid));
+	$c->condition('fid', intval($fbuser->id));
+
+	// Load any notifications the user has.
+	$n = db_select('crazy_notifications', 'n')
+	  ->fields('n', array('type', 'sid'))
+	  // Make sure it's for the currently logged in user.
+	  ->condition($c)
+	  // Make sure they haven't seen it yet.
+	  ->condition('notified', 0)
+	  // Make sure it's a BS notification.
+	  ->condition('type', 2)
+	  // Make sure it comes from the friends page.
+	  ->condition('origin', 2)
+	  // Show only one at a time.
+	  ->range(0, 1)
+	  ->execute();
+	$notifications = reset($n->fetchAll());
+	if (!empty($notifications)) {
+	  drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); });", 'inline');
+	}
+  }
+
+  // If user is not authenticated, show the "connect to submit" popup on the submit button.
+  if (!crazy_check_fb_auth($facebook)) {
+  	drupal_add_js("jQuery(document).ready(function() { jQuery('.vouch-button a, .bs-button a').click(function() { jQuery.fn.dsCrazyPopup('submit', 0, 0, '" . request_uri() . "'); return false; }); });", 'inline');
+  }
+
+  // If a user just created a new post, show the "share this" popup.
+  if (isset($_SESSION['from_creation']) && intval($_SESSION['from_creation']) > 0) {
+  	// The SID is $_SESSION['from_creation']
+  	$sid = intval($_SESSION['from_creation']);
+
+  	// Remove $_SESSION['from_creation']
+  	unset($_SESSION['from_creation']);
+
+  	// Show the popup
+  	drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('share', " . $sid . ", true); });", 'inline');
+  }
+
+  // Ignore the rest of this if we're not looking at a page that requires authentication.
+  $pages = unserialize(CRAZY_AUTH_PAGES);
+  if (!preg_match('#crazy/(' . implode('|', $pages) . ').*?#i', request_uri())) {
+  	return;
+  }
+
+  // Try and get the $fbuser object
+  try {
+	$fbuser = (object) $facebook->api('/me');
+  }
+  catch (Exception $e) {
+	if (request_uri() !== '/' . CRAZY_ROOT . '/friends') {
+		$l = $facebook->getLoginUrl();
+		header('location: ' . $l);
+	}
+	else {
+	  	drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('vouch', 0); });", 'inline');
+	}
+  }
+}
+
+function crazyshit_handle_fb_users($facebook) {
+  global $user;
+
+  try {
+	  // Load the FBOAuth include file so we can use it's functions.
+	  module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
+
+	  // Conditions.
+	  // 1. User already logged into Dosomething but not associed with FB.
+	  //   - Associate user id with fb id if not associated.
+	  // 2. User is not logged in but has a DS uid that is not associated.
+	  //   - No way to detect that unless the email matches - in which case
+	  //     connect them.
+	  // 3. User is not logged in and has an associated fb id
+	  //   - Log them in. Nothing else needed.
+	  // 4. User is not logged in and has no DS uid.
+	  //   - Create a new user and log them in.
+
+	  $access_token = $facebook->getAccessToken();
+
+	  // Try and get the $fbuser object
+  	  $fbuser = fboauth_graph_query('me', $access_token);
+
+	  // In some cases we don't get an id. This will break everything so we wrap
+	  // the whole shebang in an if.
+	  if (isset($fbuser->id)) {
+	    $uid = fboauth_uid_load($fbuser->id);
+	    // Not sure if we should do this or not. Seems smarter than leaving it emtpy
+	    // though.
+	    if (!isset($fbuser->email)) {
+	      $fbuser->email = $fbuser->id . '@facebook.com';
+	    }
+	    $found_users = user_load_multiple(array(), array('mail' => $fbuser->email));
+	    $found_user = array_shift($found_users);
+
+	    // Start our search for the appropriate condition.
+	    // Condition 3.
+	    if (!$user->uid && $uid && ($account = user_load($uid))) {
+	      // The fb uid maps to a user. Unblock the user, then log them in.
+	      user_user_operations_unblock(array($account->uid));
+	      fboauth_login_user($account);
+	    }
+	    // Condition 4.
+	    elseif (!$user->uid && !$uid && empty($found_user)) {
+	      $account = fboauth_create_user($fbuser);
+	      // Unblock the user.
+	      $accounts = array($account->uid);
+	      user_user_operations_unblock($accounts);
+	      $account = user_load($account->uid);
+	      // Then log them in.
+	      fboauth_login_user($account);
+
+	      if (!empty($account->mail)) {
+	          $mid = CRAZY_MAILCHIMP_GROUP;
+	          $email = $account->mail;
+
+	          if (!empty($mid)) {
+	             dosomething_general_mailchimp_subscribe($email, $mid);
+	          }
+	      }
+	    }
+	    // Condition 2.
+	    elseif (!$user->uid && !$uid && !empty($found_user)) {
+	      // We found a matching user. Associate the FB account with them. Then
+	      // log them in.
+	      fboauth_save($found_user->uid, $fbuser->id);
+	      // Unblock the user.
+	      user_user_operations_unblock(array($found_user->uid));
+	      $account = user_load($found_user->uid);
+	      fboauth_login_user($account);
+	    }
+	    // Condition 1.
+	    elseif ($user->uid && !$uid) {
+	      // The user is already logged into Dosomething. Associate
+	      // TODO THIS MIGHT NEED SOME LOVE TO ENSURE WE DON'T MISSASSOCIATE USERS.
+	      fboauth_save($user->uid, $fbuser->id);
+	      // Make sure the user is unblocked.
+	      user_user_operations_unblock(array($account->uid));
+	    }
+	  }
+  }
+  catch (Exception $e) {}
+}
+
+/**
+ *	Implements hook_theme()
+ */
+function crazyshit_theme() {
+  $path = drupal_get_path('module', 'crazyshit');
+
+  return array(
+    'bull' => array(
+      'path' => $path . '/templates',
+      'template' => 'bullshit-alert',
+    ),
+    'vouch' => array(
+      'path' => $path . '/templates',
+      'template' => 'vouch-alert',
+    ),
+    'login' => array(
+      'path' => $path . '/templates',
+      'template' => 'login-alert',
+    ),
+    'submit' => array(
+      'path' => $path . '/templates',
+      'template' => 'submit-alert',
+    ),
+    'tip' => array(
+      'path' => $path . '/templates',
+      'template' => 'tip',
+    ),
+    'share' => array(
+	  'path' => $path . '/templates',
+	  'template' => 'share-alert',
+    ),
+  );
+}

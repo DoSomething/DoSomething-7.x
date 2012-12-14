@@ -1,0 +1,214 @@
+(function($) {
+   Drupal.behaviors.dsCrazyScripts = {
+   	 attach: function(context, settings) { 
+	    var o = this;
+	    if (document.location.hash && parseInt(document.location.hash)) {
+		   var h = document.location.hash.replace('#', '');
+		   $('html, body').animate({ scrollTop: $('.s-' + h).offset().top }, 'slow');
+	    }
+
+	    Drupal.behaviors.dsCrazyScripts.fb_refresh();
+
+	    if (Drupal.settings.crazy.allow_lazy_loading) {
+		    if ($('img.lazy').length > 0) {
+		    	$('img.lazy').lazyload();
+		    }
+		}
+
+	    // Updates share buttons to disable ones you've already clicked.
+	    if (typeof Drupal.settings.crazy.shares === 'object') {
+	    	for (i in Drupal.settings.crazy.shares) {
+	    		// Crazy
+	    		//if (Drupal.settings.crazy.shares[i].type == 10) {
+				//	$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .crazy-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
+				//}
+				// Vouch
+				if (Drupal.settings.crazy.shares[i].type == 11) {
+					$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .vouch-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
+				}
+				// BS
+				else if (Drupal.settings.crazy.shares[i].type == 2) {
+					$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .bs-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
+				}
+	    	}
+	    }
+	    //$('.crazy-button a.button-submit').click(function() {
+	    //   if ($(this).hasClass('clicked')) return false;
+	    //   var elm = $(this);
+	    //   $.post('/crazy/submit-crazy', { 'rel': $(this).attr('rel') }, function(response) {
+	    //  	 if (response.status == 1) {
+	    //  		settings.crazy.share_count++;
+	    //  		o.tip_shares(settings);
+	    //  		elm.text('Crazied').addClass('clicked');
+	    //  		elm.parent().find('span').text(response.count);
+	    //  	 } 
+	    //   });
+	    //   return false;
+	    //});
+
+	    $('.bs-button a.button-submit').click(function() {
+	       if ($(this).hasClass('clicked')) return false;
+
+	       var elm = $(this);
+	       var na = $(this).hasClass('no-alert');
+
+	       elm.addClass('clicked');
+	       $.post('/crazy/submit-bullshit', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
+	      	  if (response.status == 1) {
+	      		elm.parent().find('span').text(response.count);
+	      		settings.crazy.share_count++;
+	      		o.tip_shares(settings);
+
+	      		if (!na && Drupal.settings.crazy.allow_notifications) {
+	      			var name = '';
+	      			if (FB.getUserID()) {
+	      				name = '@[' + FB.getUserID() + ']';
+	      			}
+	      			else {
+	      				name = Drupal.t('Someone');
+	      			}
+
+		      		Drupal.behaviors.fb.notification({
+		      			'notification_document': 'crazy', // leave this like this
+		      			'notification_user': response.author,
+		      			'notification_template': name + " called BS on your story about the craziest thing you did to save money.  Click here to get support!"
+		      		}, function(response) { 
+		      			console.log(response);
+		      		});
+		      	}
+	          }
+	          else {
+	          	elm.removeClass('clicked');
+	          }
+	    	});
+
+	      return false;
+	    });
+
+	    $('.vouch-button a.button-submit').click(function() {
+	      if ($(this).hasClass('clicked')) return false;
+
+	      var na = $(this).hasClass('no-alert');
+	      var elm = $(this);
+
+	      elm.addClass('clicked');
+	      $.post('/crazy/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
+	      	if (response.status == 1) {
+	      		elm.parent().find('span').text(response.count);
+	      		settings.crazy.share_count++;
+	      		o.tip_shares(settings);
+	      	}
+	      	else {
+	      		elm.removeClass('clicked');
+	      	}
+	      });
+
+	      return false;
+	    });
+	 },
+
+	 tip_shares: function(settings) {
+		if (settings.crazy.share_count == 2) {
+			$.fn.dsCrazyPopup('tip', '0');
+		}
+	 },
+
+	 fb_refresh: function() {
+	 	var oa = window.fbAsyncInit;
+	 	window.fbAsyncInit = function() {
+			oa();
+
+		    // If we're on the friends page...
+		    if (Drupal.settings.crazy.origin == 2) {
+
+		    	// Occasionally users can log out of Facebook and still count as "authenticated"
+		    	// That's bad.  So let's make sure they're actually connected.
+		    	// Furthermore, FB.getUserID() doesn't work here.
+		    	FB.getLoginStatus(function(response) {
+		    		if (response.status == 'connected' && response.authResponse.userID) {
+		    			// Nothing.  They're authorized.
+		    		}
+		    		else {
+		    			document.location.href = '/crazy/fb-connect';
+		    		}
+		    	});
+		    }
+		};
+	 },
+   };
+
+  $.fn.extend({
+    dsCrazyPopup: function (name, sid, reload, goto) {
+	  if (reload) {
+	     jQuery('.s-' + sid + '-picture img').attr('src', jQuery('.s-' + sid + '-picture img').attr('src') + '?' + new Date().getTime());
+	  }
+
+      $.post('/cstemplate/' + name + '/' + sid, { 'goto': goto }, function(response) {
+      	  var t = $('<div></div>');
+      	  t.html(response);
+
+	      t.dialog({
+	        resizable: false,
+	        draggable: false,
+	        modal: true,
+	        width: 550,
+	        height: 325,
+	        'dialogClass': name + '-crazy-popup',
+	        open: function() {
+	        	// Sets the minimum height for content in the dialog box
+	        	$('.ui-dialog-content').css('min-height', '325px');
+	        }
+	      });
+	  });
+    }
+  });
+})(jQuery);
+
+function fb_invite_friends_post(sid, reload) {
+	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
+
+	Drupal.behaviors.fb.feed({
+		feed_document: 'http://www.dosomething.org/crazy/friends#' + sid,
+        feed_title: Drupal.settings.crazy.facebook.posts.title,
+        feed_picture: jQuery('.s-' + sid + '-picture img').attr('data-original'),//http://files.dosomething.org/files/styles/p4p_fake_button/public/pictures/actionguide/123905097.jpg',
+        feed_caption: Drupal.settings.crazy.facebook.posts.caption,
+        feed_description: Drupal.settings.crazy.facebook.posts.description,
+        feed_allow_multiple: true,
+        feed_max_friends: 25,
+        feed_modal: false,
+        feed_friend_selector: 'td',
+	}, function(response) {
+		jQuery.post('/crazy/submit-vouch-request/' + sid, { 'friends': response.friends, 'origin': Drupal.settings.crazy.origin }, function(v) {
+			//console.log(v);
+		});
+		//console.log(response);
+	});
+
+	return false;
+}
+
+function fb_invite_friends() {
+	Drupal.behaviors.fb.feed({
+		feed_document: Drupal.settings.crazy.facebook.invite.document,
+		feed_title: Drupal.settings.crazy.facebook.invite.title,
+		feed_picture: Drupal.settings.crazy.facebook.invite.image,
+		feed_caption: Drupal.settings.crazy.facebook.invite.caption,
+		feed_description: Drupal.settings.crazy.facebook.invite.description,
+		feed_allow_multiple: true,
+		feed_max_friends: 25,
+		feed_modal: false,
+		feed_friend_selector: 'td',
+	}, function(response) {
+		//console.log(response);
+	});
+}
+
+function fb_auth(type) {
+	if (type == 'login') {
+		jQuery.fn.dsCrazyPopup('login', 0);
+	}
+	else {
+		jQuery.fn.dsCrazyPopup('submit', 0);
+	}
+	return false;
+}

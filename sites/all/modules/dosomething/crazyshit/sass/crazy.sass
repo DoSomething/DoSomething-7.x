@@ -1,0 +1,144 @@
+@import compass
+
+.region-sidebar-first
+	display: none
+
+#page, body.one-sidebar.sidebar-first [role="main"]
+	width: 100%
+	background: #fff
+
+.crazy-submission
+	background: white
+	text-align: center
+	//width: 30%
+	margin: 10px auto
+	border: 1px solid black
+	box-shadow: 0px 0px 5px gray
+
+	.crazy-button, .bs-button, .vouch-button
+		display: inline-block
+
+		a
+			background: gray
+			color: white
+			padding: 5px
+			border-radius: 5px
+			border: 1px solid black
+
+			&.clicked
+				background: #F1F1F1
+				color: #C1C1C1
+				cursor: default
+				text-decoration: none
+
+				&:hover
+					text-decoration: none
+
+		span
+			position: relative
+			display: inline-block
+			border: 1px solid black
+			padding: 0px 5px
+			margin-left: 5px
+
+			&:after, &:before 
+				right: 100%
+				border: solid transparent
+				content: " "
+				height: 0
+				width: 0
+				position: absolute
+				pointer-events: none
+			
+
+			&:after 
+				border-color: rgba(136, 183, 213, 0)
+				border-right-color: #fff
+				border-width: 5px
+				top: 50%
+				margin-top: -5px
+			
+			&:before 
+				border-color: rgba(194, 225, 245, 0)
+				border-right-color: #000
+				border-width: 6px
+				top: 50%
+				margin-top: -6px
+
+.fb-invite-friends
+	display: block
+	width: 200px
+	background: yellow
+	border: 1px solid black
+	padding: 10px
+	box-shadow: 0px 0px 6px gray
+	margin: 0px auto
+	text-align: center
+
+ul.crazyshit-menu
+	margin: 0px
+	padding: 0px
+	border-right: 1px solid #000
+	list-style-type: none
+	height: 30px
+
+	li
+		width: 25%
+		float: left
+		text-align: center
+		border-bottom: 1px solid black
+		border-top: 1px solid black
+		border-left: 1px solid black
+
+		a
+			padding: 5px
+			display: block
+
+			&:hover
+				background: #fff
+				color: #000
+
+			&.active
+				background: #e1e1e1
+
+ul.crazyshit-sub-menu
+	margin: 0px
+	padding: 0px
+	list-style-type: none
+	margin-top: 20px
+	border: 1px solid black
+	border-right: 0px
+	height: 30px
+	width: 425px
+	margin-left: 10px
+
+	li
+		width: 33.3%
+		float: left
+		border-right: 1px solid #000
+		text-align: center
+
+		a
+			padding: 5px
+			display: block
+
+			&:hover
+				background: #fff
+				color: #000
+
+			&.active
+				background: #e1e1e1
+
+.connect-with-facebook
+	text-indent: -119988px
+	overflow: hidden
+	text-align: left
+	background-image: url('/sites/all/themes/doit/css/images/btn-facebook-popup-login.png')
+	background-repeat: no-repeat
+	background-position: 50% 50%
+	width: 300px
+	height: 50px
+	display: block
+	margin-bottom: 2px
+	margin-left: auto
+	margin-right: auto
