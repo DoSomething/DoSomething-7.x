@@ -39,7 +39,10 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $content['header']['description'] = dosomething_drives_drive_description($submission);
   $content['header']['countdown'] = dosomething_drives_drive_countdown($drive);
 
-  $content['content']['drive_info'] = dosomething_drives_drive_info($drive, $drive_nid, $group->gid, $is_admin);
+  if (!$conf['disable_admin_functions']) {
+    $content['content']['drive_info'] = dosomething_drives_drive_info($drive, $drive_nid, $group->gid, $is_admin);
+  }
+
   $content['content']['drive_share'] = dosomething_drives_drive_share();
   $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, $conf['team_name']);
 
