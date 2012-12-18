@@ -13,6 +13,7 @@ function fb_log_action($action, $uid, $fbid) {
       'action_key' => intval($_POST['key']),
       'uid' => $user->uid,
       'fbid' => intval($_POST['fbid']),
+      'to_fbid' => intval($_POST['to']),
       'timestamp' => REQUEST_TIME,
 	);
 

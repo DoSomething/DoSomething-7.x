@@ -62,13 +62,13 @@
     /**
      *  Logs Facebook actions.
      */
-    log: function(action, key) {
+    log: function(action, key, to) {
       var fbid = FB.getUserID();
       if (!fbid) {
         fbid = 0;
       }
 
-      $.post('/fb/log', { 'fbid': fbid, 'link': document.location.href, 'action': action, 'key': key }, function(response) {
+      $.post('/fb/log', { 'fbid': fbid, 'link': document.location.href, 'action': action, 'key': key, 'to': to }, function(response) {
         //Drupal.behaviors.fb.clog(response);
       });
     },
@@ -662,7 +662,7 @@
     send_feed_post: function(friendid, post) {
       FB.api('/' + friendid + '/feed', 'post', post, function(response) {
          Drupal.behaviors.fb.clog(response);
-         Drupal.behaviors.fb.log('Feed Post', 2);
+         Drupal.behaviors.fb.log('Feed Post', 2, friendid);
       });
     },
 

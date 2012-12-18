@@ -525,6 +525,11 @@ function dosomething_login_register_popup_form($form, &$form_state) {
 
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
+
+  if ($query['destination'] == 'node/' . variable_get('cgg_form_id')) {
+    $query['destination'] .= '?_';
+  }
+
   $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
   $form['#action'] = url('user/registration', array('query' => $query));
 
@@ -717,6 +722,10 @@ function dosomething_login_login_popup_form($form, &$form_state) {
 
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
+
+  if ($query['destination'] == 'node/' . variable_get('cgg_form_id')) {
+    $query['destination'] .= '?_';
+  }
   $form['title_text'] = array(
     '#type' => 'item',
     '#title' => t("We've Missed You."),
@@ -800,6 +809,7 @@ function dosomething_login_register_block($form, &$form_state) {
 
   $query = drupal_get_destination();
   $query['destination'] = $query['destination'] == 'user/registration' ? 'front' : $query['destination'];
+
   $form['why'] = array(
     '#theme' => 'link',
     '#path' => 'why-become-a-member',

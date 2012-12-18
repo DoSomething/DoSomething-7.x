@@ -17,6 +17,9 @@ function robocalls_featured_celeb_image($subtype, $conf, $panel_args, $context) 
    $t = taxonomy_term_load($f->entity_id);
    $output = theme('image', array('path' => $t->field_celeb_photo[LANGUAGE_NONE][0]['uri'], 'height' => '317px', 'width' => '210px'));
 
+   $flag = $t->field_short_name[LANGUAGE_NONE][0]['value'];
+   $output .= '<div class="main-robocall-flag' . ($flag == 'Birthday' ? ' birthday' : '') . '" style="margin-top: -305px">' . $flag . '</div>';
+
    $block = new stdClass();
    $block->content = $output;
    return $block;

@@ -44,10 +44,10 @@ function dosomething_mobile_referral_form_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '9',
         ),
         'redirect' => array(
-          'weight' => '6',
+          'weight' => '8',
         ),
       ),
       'display' => array(

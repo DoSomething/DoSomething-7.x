@@ -1,8 +1,8 @@
 # compass configuration file
 
 http_path = "/"
-css_dir = "css"
-sass_dir = "sass"
-javascripts_dir = "js"
+css_dir = "/"
+sass_dir = "/"
+javascripts_dir = "/"
 
 preferred_syntax = :sass

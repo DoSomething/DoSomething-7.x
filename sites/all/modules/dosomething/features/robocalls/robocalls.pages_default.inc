@@ -716,7 +716,7 @@ function robocalls_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array(
       'css_id' => 'robocalls-celeb-form',
-      'css_class' => 'robocalls-away-form',
+      'css_class' => 'robocalls-away-form on-cof',
     );
     $pane->extras = array();
     $pane->position = 3;

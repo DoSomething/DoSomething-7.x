@@ -231,6 +231,34 @@
         location.reload();
       });
 
+      // Overlay Share Popup
+      var url = "http://www.dosomething.org/50cans?sid=53905";
+      $(function(){
+        if (location.href==url){
+          $('#overlay-environment').dialog({width: 1050, height: 700, modal: true, resizable: false});
+        }
+      });    
+
+      // Overlay Skip Btn
+      $('a#skip').click(function() {
+          $('#overlay-environment').dialog('close')
+      });
+
+    // Overlay to Facebook Btn
+    $('#overlay-share-btn').click(function() {
+    $('#overlay-environment').dialog('close').queue(function() {
+      Drupal.behaviors.fb.feed({
+      feed_document: 'http://www.dosomething.org/50cans',
+      feed_title: 'Environmental Sustainability',
+      feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
+      feed_caption: 'I’m a mean, green Earth-protecting machine. How about you?',
+      feed_description: 'Recycle aluminum cans. Easy.',
+      feed_modal: true
+       }, function(response) {
+         }); 
+            });
+                });
+
          
     } // end attach: function
   }; // end Drupal.behaviors

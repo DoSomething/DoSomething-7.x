@@ -1,0 +1,176 @@
+@import 'compass/css3'
+
+// --------------------------------------------
+//      THIS STYLESHEET IS A MESS
+// --------------------------------------------
+
+.breadcrumb, .breadcrumbs, .region-sidebar-first
+  display: none !important
+
+.messages.error
+  position: relative
+  top: 90px
+  font-size: 13pt
+
+[role="main"]
+  width: 100% !important
+  margin: 0 !important
+
+#page-title
+  display: none
+
+#cgg
+  position: relative
+  float: none
+  width: 100%
+  background: #fff
+  margin: 10% 0
+  padding: 1% 3% 2%
+  +border-radius(5px)
+  .pane-title
+    display: none
+  form
+    width: 285px
+    float: left
+    margin: 0 0 0 5%
+    padding: 0
+    box-shadow: none !important
+    +border-radius(5px !important)
+    label
+      font-size: 2em
+      padding: 2.5em 0 1.2em
+      text-transform: uppercase
+      @media only screen and (max-width: 850px)
+        padding: 0.5em 0 1em
+  form.webform-client-form #edit-actions
+    height: auto !important
+    margin: 2em 0 0 !important
+    text-align: center !important
+    float: left !important
+  h1, h2
+    text-align: center
+    text-transform: uppercase
+    padding: 0.4em 0
+  h1
+    padding: 1em 0 0.2em 0
+  span
+    color: #1DA4E4
+  #edit-submitted--2.form-wrapper
+    display: none
+  .go-button, #edit-submit, .form-submit
+    font-family: din-web
+    background: #FED100
+    margin: 4% 0 1%
+    padding: 0.3em 0.7em
+    position: absolute
+    font-size: 1.5em
+    height: 35px
+    display: inline-block
+    bottom: 23%
+    +border-radius(7px)
+    @media only screen and (max-width: 850px)
+      bottom: 9%
+    @media only screen and (max-width: 550px)
+      position: static !important
+      margin: 0 0 1em 0
+  .cgg_logo
+    float: left
+    padding: 0
+    img
+      margin: 0
+      padding: 0
+      box-shadow: none
+  .cgg_vertical
+    width: 160px
+    display: block
+    @media only screen and (max-width: 550px)
+      display: none
+  .cgg_horizontal
+    display: none
+    @media only screen and (max-width: 550px)
+      width: 100%
+      display: block
+      margin: 0 auto
+    
+
+.field-name-ccg-celeb-image img
+  margin: 3% auto
+  width: 400px
+  display: block
+  +border-radius(4px)
+
+.pane-ccg-done /* social share wrapper */
+  width: 400px
+  margin: 0 auto
+  @media only screen and (max-width: 500px)
+    width: 100%
+
+.cgg_facebook, .cgg_twitter
+  display: block
+  width: 150px
+  height: 50px
+  text-indent: -1000px
+  margin: 2% 0 4%
+  float: right
+  &:hover
+    background-position-y: -50px
+
+.cgg_facebook
+  background-image: url("http://files.dosomething.org/files/campaigns/cgg/cgg_facebook.png")
+  float: left
+
+.cgg_twitter
+  background-image: url("http://files.dosomething.org/files/campaigns/cgg/cgg_twitter.png")
+
+#page-title
+  text-align: right
+  box-shadow: none!important
+  border: none!important
+
+body, .container, div[role="main"]
+  background: #222 !important
+
+// --------------------------------------------
+//      RESPONSIVE STYLES
+// --------------------------------------------
+
+@media only screen and (max-width: 1030px)
+  #page
+    width: 100% !important
+  .region-sidebar-first
+    display: none !important
+  #site-name
+    top: -54px !important
+    left: 5px !important
+    a
+      height: 50px !important
+      width: 60px !important
+      background-size: 60px  !important
+  #utility-bar
+    height: 55px !important
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar
+    .search, #help-center
+      display: none !important
+    .login
+      padding: 0.5em 1em 0 0 !important
+      font-size: 1.5em !important
+  #main-wrapper div[role="main"]
+    float: none !important
+    width: 100% !important
+  nav[role="navigation"]
+    display: none !important
+  .container
+    margin: 0 auto !important
+    width: 100% !important
+  header[role="banner"]
+    @media only screen and (max-width: 775px)
+      width: 100% !important
+  #block-menu-menu-footer .content
+    width: 80% !important
+    margin: 0 auto !important
+  #block-menu-menu-footer .content ul.menu li span
+    font-size: 16px !important
+    line-height: 1em !important
+  #block-menu-menu-footer .content ul.menu ul li a
+    font-size: 14px !important
+    line-height: 1em !important
