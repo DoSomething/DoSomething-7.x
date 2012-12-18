@@ -187,6 +187,9 @@ function dosomething_general_js_alter(&$javascript) {
  * Note condition added to break the grouping into two sets as grouping everything
  * into a single file was result in a file that contained over 
  */
+
+ /* Pulled due to continued IE8 issues
+  * 
 function dosomething_general_css_alter(&$css) {
   // Set all aggregated css to the CSS_DEFAULT group.
   // This prevents individual css files per group
@@ -208,6 +211,8 @@ function dosomething_general_css_alter(&$css) {
     $css[$name]['every_page'] = FALSE;
   }
 }
+
+*/
 
 /**
  * Implements hook_theme().
