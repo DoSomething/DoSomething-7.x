@@ -16,13 +16,18 @@
     color: $accentColor
     font-family: din-web
 
+#contact-form
+  background: none !important 
+  margin: 0 !important
+
 .pane-campaign-sign-up
   clear: both
   width: 100%
-  margin: 37% 0 0 0
+  margin: 10% 0 0 0
   h1
     font-family: din-web
-    font-size: 23px
+    font-size: 28px
+    font-weight: 500
     text-align: center
     color: #fff
   input[type="text"], input[type="tel"]
@@ -37,6 +42,8 @@
 
 #campaign-opt-in
   clear: both
+  color: white
+  text-align: center
   span
     font-size: 10px
 
@@ -248,3 +255,101 @@ form.webform-client-form
     margin: 0
     width: 33%
     float: left
+
+
+//      //
+//  .s4     - flip content -
+//      //
+.s4
+  hr
+    clear: both
+    border: 1px solid #ccc
+  h2, h3
+    color: #E52127
+    text-align: center
+    font-family: din-web
+  h2
+    font-size: 40px
+    margin-top: 10px
+  h3
+    font-size: 30px
+    margin: 26px 0 20px
+.carter
+  float: left
+  margin: 4px 9px 40px
+  border: 3px solid #CCEAEC
+  box-shadow: 0px 6px 18px -8px #444
+  p
+    text-align: center
+    text-transform: uppercase
+    padding: 10px 4px
+    font-size: 24px
+    font-family: din-web
+  img
+    display: block
+    margin: 0 auto
+    width: 215px
+    padding: 4px
+    +noShadow
+
+ul.numbers
+  font-family: din-web
+  li
+    float: left
+    width: 21%
+    margin: 20px 2% 10px
+    padding: 0
+    text-align: center
+    border-right: 2px solid #ccc
+    line-height: 1.1em
+    font-weight: 600
+    text-transform: uppercase
+    font-size: 18px
+    &.last
+      border-right: none
+  span
+    color: #E52127
+    font-size: 38px
+    font-weight: 600
+    line-height: 1.1em
+
+.join-club, .learn-about
+  text-transform: uppercase
+  font-family: din-web
+  font-size: 30px
+  margin: 40px 0
+  text-align: center
+  line-height: 1.1em
+  a
+    background: red
+    padding: 20px 10px 12px
+    width: 400px
+    text-shadow: 0px 1px -1px #9EE4E5
+    display: block
+    color: #222
+    margin: 0 auto
+    box-shadow: 0px 0px 16px #cbcbcb
+    border: 1px solid #7EB1B2
+    border-radius: 16px
+    background: #91e2e4
+    background: -moz-linear-gradient(top,  #91e2e4 0%, #cceaec 30%, #cceaec 55%, #91e2e4 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#91e2e4), color-stop(30%,#cceaec), color-stop(55%,#cceaec), color-stop(100%,#91e2e4))
+    background: -webkit-linear-gradient(top,  #91e2e4 0%,#cceaec 30%,#cceaec 55%,#91e2e4 100%)
+    background: -o-linear-gradient(top,  #91e2e4 0%,#cceaec 30%,#cceaec 55%,#91e2e4 100%)
+    background: -ms-linear-gradient(top,  #91e2e4 0%,#cceaec 30%,#cceaec 55%,#91e2e4 100%)
+    background: linear-gradient(to bottom,  #91e2e4 0%,#cceaec 30%,#cceaec 55%,#91e2e4 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#91e2e4', endColorstr='#91e2e4',GradientType=0 )
+    &:hover
+      color: #000
+      text-decoration: none
+.learn-about a
+  font-size: 22px    
+
+img.thanks, img.bone
+  +noBorder
+  +noShadow
+  margin: 10px auto
+  display: block
+img.bone
+  margin: 0 auto 10px
+

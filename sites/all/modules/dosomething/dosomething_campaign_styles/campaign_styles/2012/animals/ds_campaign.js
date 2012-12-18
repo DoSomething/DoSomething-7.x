@@ -22,6 +22,10 @@
   if(document.URL == "http://" + url + "/picsforpets/mobile" || document.URL == "https://" + url + "/picsforpets/mobile"){
     $('.region-sidebar-first').hide();
   }
+
+  // Contact Form
+       var contactForm = $('.pane-campaign-sign-up');
+      $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
   
   // Overlay Share Popup
   var url = "http://www.dosomething.org/picsforpets?sid=53905";
@@ -50,6 +54,11 @@
          }); 
             });
                 });
+
+    // Animal Stories Popup Close
+      $('.close').click(function() { 
+        $('.animal-stories').dialog('close') 
+      });
 
     } // end attach: function
   }; // end Drupal.behaviors
