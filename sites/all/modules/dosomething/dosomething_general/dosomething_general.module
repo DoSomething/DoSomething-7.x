@@ -253,6 +253,7 @@ function dosomething_general_css_alter(&$css) {
   }
 }
 */
+
 /**
  * Implements hook_theme().
  */
@@ -952,6 +953,15 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
       dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
     }
   }
+  
+  // Will use previous cell value if already set from Petition submission
+  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
+  if (!empty($cell)) {
+    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
+    }
+  }
+  
 }
 
 /**
