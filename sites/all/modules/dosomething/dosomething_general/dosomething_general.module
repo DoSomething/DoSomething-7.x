@@ -169,6 +169,7 @@ function dosomething_general_page_alter(&$page) {
  */
 function dosomething_general_js_alter(&$javascript) {
   // Set all aggregated javascript to the JS_DEFAULT group.
+  // Possible values: JS_LIBRARY, JS_DEFAULT, and JS_THEME
   // This prevents individual js files per group
   uasort($javascript, 'drupal_sort_css_js');
   $i = 0;
@@ -176,6 +177,35 @@ function dosomething_general_js_alter(&$javascript) {
     $javascript[$name]['weight'] = $i++;
     $javascript[$name]['group'] = JS_DEFAULT;
     $javascript[$name]['every_page'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_css_alter().
+ *
+ * Added to control how css files are grouped together when agrigration is enabled
+ * Note condition added to break the grouping into two sets as grouping everything
+ * into a single file was result in a file that contained over 
+ */
+function dosomething_general_css_alter(&$css) {
+  // Set all aggregated css to the CSS_DEFAULT group.
+  // This prevents individual css files per group
+  // Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
+  
+  uasort($css, 'drupal_sort_css_js');
+  $i = 0;
+  foreach ($css as $name => $style) {
+    $css[$name]['weight'] = $i++;
+    
+    // Break grouping into two sets - CSS_SYSTEM, (-100) and the rest
+    if ($style['group'] == -100) {
+      $css[$name]['group'] = CSS_SYSTEM;
+    }
+    else {
+      $css[$name]['group'] = CSS_DEFAULT;
+    }
+    
+    $css[$name]['every_page'] = FALSE;
   }
 }
 
@@ -845,13 +875,6 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
 
-  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
-  if (!empty($cell)) {
-    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
-      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
-    }
-  }
-
   // Different instances of the email field use different widgets so we have to
   // look in two places to find their email address.
   if (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
@@ -860,14 +883,32 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   elseif (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
     $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
   }
+  elseif (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
+    if (strpos($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'], '@') > 0) {
+      $email = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']; 
+    }
+    else {
+      $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
+    }
+  }
+  
   if (!empty($email)) {
     if (!empty($node->field_infusion_action[LANGUAGE_NONE][0]['value'])) {
       dosomething_general_infusionsoft_subscribe($email, $node->field_infusion_action[LANGUAGE_NONE][0]['value']);
     }
-    if (!empty($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
-      dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']);
+    if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mailchimp_subscribe($email, $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']);
     }
   }
+  
+  // Will use previous cell value if already set from Petition submission
+  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
+  if (!empty($cell)) {
+    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
+    }
+  }
+  
 }
 
 /**
