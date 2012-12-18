@@ -255,8 +255,11 @@ function dosomething_general_css_alter(&$css) {
   }
 }
 
+<<<<<<< HEAD
 */
 
+=======
+>>>>>>> Added support for petition sign ups resulting in MailChimp additions AND adjustment to dosomething_general_css_alter to support aggregation of system CSS and everything else - two files as work around to IE 4095 selector limitation.
 /**
  * Implements hook_theme().
  */
@@ -946,6 +949,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
     }
     if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
       dosomething_general_mailchimp_subscribe($email, $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']);
+<<<<<<< HEAD
     }
   }
   
@@ -957,6 +961,19 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
     }
   }
   
+=======
+    }
+  }
+  
+  // Will use previous cell value if already set from Petition submission
+  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
+  if (!empty($cell)) {
+    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
+    }
+  }
+  
+>>>>>>> Added support for petition sign ups resulting in MailChimp additions AND adjustment to dosomething_general_css_alter to support aggregation of system CSS and everything else - two files as work around to IE 4095 selector limitation.
 }
 
 /**
