@@ -10,6 +10,7 @@
           , $selects = $wrapper.find('select')
           , $state = $wrapper.find('select.ds-school-state')
           , $type = $wrapper.find('select.ds-school-type')
+          , $country = $('select.ds-school-country')
           , $schoolName = $wrapper.find('input.form-autocomplete')
 
         // If they enter a new school name we need to have them provide
@@ -23,7 +24,14 @@
             $addressFields.fadeOut();
           }
           else {
-            $addressFields.fadeIn();
+            $addressFields.fadeIn(400, function(){
+              if($country.val() == 'CA') {
+                $('.form-item-submitted-field-webform-school-reference-und-0-target-id-zip').css('visibility', 'hidden');
+              }
+              else {
+                $('.form-item-submitted-field-webform-school-reference-und-0-target-id-zip').css('visibility', 'visible');
+              }
+            });
           }
         };
         $schoolName.blur(schoolHandler);
@@ -31,20 +39,27 @@
         // school. NOTE: if we're using form states this might not be necessary.
         schoolHandler();
 
+        populateSelects($('select.ds-school-country').val());
+
         // When either select changes, we need to update the autocomplete URL.
         $selects.change(function(e) {
-          $schoolName
+
+          // Set the type val equal to "1" if country is Canada
+	        var typeVal = $('select.ds-school-country').val() == 'CA' ? 1 : $type.val();
+
+	        $schoolName
             .unbind() // Unbind the previous autocomplete handlers.
             .val('')  // Empty its value.
             .each(function(i) {
               // Update the URL stored in the hidden input element.
               var $autocomplete = $('#' + this.id + '-autocomplete'),
-                  val = $autocomplete.val();
+              val = $autocomplete.val();
+
               $autocomplete
                 // Mark as not processed.
                 .removeClass('autocomplete-processed')
                 // Update autocomplete URL.
-                .val(val.match('.*autocomplete/') + $type.val() + '/' + $state.val());
+                .val(val.match('.*autocomplete/') + typeVal + '/' + $state.val());
               // Remove the ARIA element.
               $('#' + this.id + '-autocomplete-aria-live').remove();
             })
@@ -63,36 +78,40 @@
    * Our school name look up widget needs to change its URL when the selects
    * change.
    */
+
   Drupal.behaviors.dsSchoolCountryChange = {
     attach: function (context) {
       $('select.ds-school-country', context).change( function() {
-        var $wrapper = $('#field-webform-school-reference-add-more-wrapper')
-          , $country = $(this)
-          , $state = $wrapper.find('select.ds-school-state')
-          , $level = $wrapper.find('select.ds-school-type')
-          , $zip_wrapper = $('.field-name-field-webform-school-zip')
-          , selected_country = $country.val();
-
-        url = '/ds_school/region_by_country/' + $country.val();
-	$.getJSON(url, function(data) {
-          $state.empty();
-          $level.empty();
-          $('<option/>').val('').html('School State').appendTo($state);
-          if (selected_country != 'US')  
-            $zip_wrapper.hide().find('#edit-field-webform-school-zip-und-0-value').val('');
-          else
-            $zip_wrapper.show();
-          
-          for(var abbrev in data) {
-            if (data.hasOwnProperty(abbrev)) {
-              $('<option/>').val(abbrev).html(data[abbrev]).appendTo($state);
-            }
-          }	
-          console.log(data);
-        });
-
+        populateSelects($(this).val());
       });
     }
   };
+
+  function populateSelects(country) {
+    var $wrapper = $('.field-name-field-webform-school-reference')
+      , $state = $wrapper.find('select.ds-school-state')
+      , $type = $wrapper.find('select.ds-school-type')
+      , url = '/ds_school/data_by_country/' + country;
+
+    $.getJSON(url, function(data) {
+      $state.empty();
+      $type.empty();
+      $('<option/>').val('').html('School State').appendTo($state);
+      $('<option/>').val('').html('School Type').appendTo($type);
+
+      for(var abbrev in data.regions) {
+        if (data.regions.hasOwnProperty(abbrev)) {
+          $('<option/>').val(abbrev).html(data.regions[abbrev]).appendTo($state);
+        }
+      }
+      for(var type in data.types) {
+        if (data.types.hasOwnProperty(type)) {
+          $('<option/>').val(type).html(data.types[type]).appendTo($type);
+        }
+      }
+
+    });
+  }
+
 }(jQuery));
 
