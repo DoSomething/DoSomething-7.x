@@ -16,7 +16,7 @@ body.page-node-724411 {
   background: #d1e9ed; }
   body.page-node-724411 .ui-dialog {
     background: none !important;
-    width: 500px !important; }
+    min-width: 550px !important; }
     body.page-node-724411 .ui-dialog .ui-dialog-titlebar-close span {
       display: none; }
   body.page-node-724411 .ui-icon-closethick {
