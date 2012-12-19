@@ -11,6 +11,10 @@ $plugin = array(
 );
 
 function dosomething_cgg_celeb_landing($subtype, $conf, $panel_args, $context) {
+	
+	if ($bla) {
+		$bla = TRUE;
+	}
 
 	include drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/plugin.inc';
 	$block = new stdClass();
@@ -18,9 +22,25 @@ function dosomething_cgg_celeb_landing($subtype, $conf, $panel_args, $context) {
 
 	// "For More Info" section heading
 	$output['facebook'] = array(
-		'#markup' => l(t('Facebook'), 'https://www.facebook.com/dialog/feed?app_id=105775762330&link=' . url(request_uri(), array('absolute' => TRUE)) . '&picture=' . $fbimg . '&name=' . $facebook['title'] . '&caption=' . $facebook['caption'] . '&description=' . $facebook['description'] . '&redirect_uri=' . $facebook['redirect_to'], array('attributes' => array('class' => array('cgg_facebook'))))
+		'#markup' => l(t('Facebook'), 'https://www.facebook.com/dialog/feed?app_id=105775762330&link=' . url(request_uri(), array('absolute' => TRUE)) .
+			       '&picture=' . $fbimg .
+			       '&name=' . $facebook['title'] .
+			       '&caption=' . $facebook['caption'] .
+			       '&description=' . $facebook['description'] .
+			       '&redirect_uri=' . $facebook['redirect_to'], array('attributes' => array('class' => array('cgg_facebook'))))
 	);
-
+	
+	// HACK as it's not clear where the $facebook values should be coming from	
+	$output['facebook'] = array(
+		'#markup' => l(t('Facebook'), 'https://www.facebook.com/dialog/feed?app_id=105775762330&link=' . url(request_uri(), array('absolute' => TRUE)) .
+			       '&picture=' . $fbimg .
+			       '&name=' . urlencode('VOTE NOW: Do Something\'s Celebs Gone Good 2012!') .
+			       '&caption=' . urlencode('I just voted for the celeb I think made the biggest positive impact in 2012. Click here to vote for your choice now.') .
+			       '&description=' . '' .
+			       '&redirect_uri=' . $facebook['redirect_to'], array('attributes' => array('class' => array('cgg_facebook'))))
+	);
+	
+	
   // NOTE ----------------
   // the images are stored using a 'frist_last.jpg' convention at //files.dosomething.org/files/
 
