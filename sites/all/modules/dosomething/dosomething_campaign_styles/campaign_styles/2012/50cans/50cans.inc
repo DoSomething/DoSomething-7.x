@@ -28,12 +28,9 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'the rundown', 'href' => '50cans', 'fragment' => 'action'),
-    array('title' => '$5,000 scholarship', 'href' => '50cans', 'fragment' => 'scholarship'),
-    array('title' => 'bring them here', 'href' => '50cans', 'fragment' => 'search'),
-    array('title' => 'what\'s the impact', 'href' => '50cans', 'fragment' => 'content-infographic'),
-    array('title' => 'tell us about it', 'href' => '50cans', 'fragment' => 'impact'),
-    array('title' => 'questions?', 'href' => '50cans', 'fragment' => 'faq'),
+    array('title' => 'what\'s the impact?', 'href' => '50cans', 'fragment' => 'content-infographic'),
+    array('title' => 'gallery', 'href' => '50cans', 'fragment' => 'impact'),
+    array('title' => 'questions', 'href' => '50cans', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
     '#markup' => '<img src="//files.dosomething.org/files/campaigns/alcoa/alcoa-foundation2.png"/><p>Got questions? Email Alyssa at <a href="mailto:50cans@dosomething.org">50cans@dosomething.org</a>!</p>'
