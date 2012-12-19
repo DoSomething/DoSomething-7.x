@@ -15,6 +15,13 @@ function dosomething_school_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['ds_school/data_by_country'] = array(
+    'title' => 'DoSomething School Info By Country',
+    'page callback' => 'dosomething_school_data_by_country_callback',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   $items['ds_school/sms_search'] = array(
     'title' => 'DoSomething School Search from SMS',
     'page callback' => 'dosomething_school_sms_query_callback',
@@ -265,11 +272,23 @@ function dosomething_school_field_widget_settings_form($field, $instance) {
 }
 
 /**
+ * Reusable helper function to get a list of available countries.
+ */
+function _dosomething_school_get_countries() {
+  $countries = array(
+    'US' => 'United States',
+    'CA' => 'Canada'
+  );
+  return $countries;
+}
+
+/**
  * Reusable helper function to get a list of available states.
  */
-function _dosomething_school_get_states() {
+function _dosomething_school_get_states($country = 'US') {
   // TODO: we might need to expand this out to Canada.
-  return array(
+  $states = array();
+  $states['US'] = array(
     'AL' => t('Alabama'),
     'AK' => t('Alaska'),
     'AS' => t('American Samoa'),
@@ -329,19 +348,63 @@ function _dosomething_school_get_states() {
     'WI' => t('Wisconsin'),
     'WY' => t('Wyoming'),
   );
+
+  $states['CA'] = array(
+    'AB' => t('Alberta'),
+    'BC' => t('British Columbia'),
+    'MB' => t('Manitoba'),
+    'NB' => t('New Brunswisk'),
+    'NL' => t('Newfoundland and Labrador'),
+    'NS' => t('Nova Scotia'),
+    'NT' => t('Northwest Territories'),
+    'NU' => t('Nunavut'),
+    'ON' => t('Ontario'),
+    'PE' => t('Prince Edward Island'),
+    'QC' => t('Quebec'),
+    'SK' => t('Saskatchewan'),
+    'YT' => t('Yukon')
+  );
+
+  return isset($states[$country]) ? $states[$country] : array();
+}
+
+/**
+ * Reusable helper function to get a list of available school types by country.
+ */
+function _dosomething_school_get_types($country = 'US') {
+  $types = array();
+
+  $types['US'] = array(
+    1 => t('Middle/High School'),
+    2 => t('College')
+  );
+
+  $types['CA'] = array(
+    'A' => t('Elementary'),
+    'B' => t('Intermediate'),
+    'C' => t('Secondary'),
+    'D' => t('Special Education')
+  );
+
+  return isset($types[$country]) ? $types[$country] : array();
 }
 
 /**
  * Implements hook_field_widget_form().
  */
 function dosomething_school_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
-  $default_state = '--';
-  $default_school = '';
+
+  $default_country = '';
+  $default_state = '';
   $default_type = '';
+
   if (empty($items[0]['target_id'])) {
-	   // TODO: Should this *only* be set in javascript?  I think it's the only DS specific code in here.
+     // TODO: Should this *only* be set in javascript?  I think it's the only DS specific code in here.
     // Try to use the profile's state.
     $profile = profile2_load_by_user($GLOBALS['user'], 'main');
+    if (!empty($profile->field_user_address['und'][0]['administrative_area'])) {
+      $default_country = $profile->field_user_address['und'][0]['country'];
+    }
     if (!empty($profile->field_user_address['und'][0]['administrative_area'])) {
       $default_state = $profile->field_user_address['und'][0]['administrative_area'];
     }
@@ -353,21 +416,41 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     $default_school = dosomething_school_make_label($entity);
   }
 
-  $states = _dosomething_school_get_states();
-  $states = array('' => t('School State')) + $states;
+  $countries = _dosomething_school_get_countries();
+  $countries = array('' => t('Select Country')) + $countries;
+
+  // Must populate the field with all values or else Drupal will not validated newly
+  // introduced form values
+  $states = _dosomething_school_get_states('US') + _dosomething_school_get_states('CA');;
+  $states = array('' => t('Select State')) + $states;
+
+  $types = _dosomething_school_get_types('US') + _dosomething_school_get_types('CA');
+  $types = array('' => t('Select Type')) + $types;
 
   $element['#attached']['js'][] = drupal_get_path('module', 'dosomething_school') . '/dosomething_school.js';
   $element['#element_validate'][] = '_dosomething_school_autocomplete_validate';
   $element['#type'] = 'fieldset';
   $element['#title'] = $instance['label'];
 
+  $element['country'] = array(
+    '#title' => t('School Country'),
+    '#type' => 'select',
+    '#options' => $countries,
+    // We don't use their required checking because '--' is our empty value, but
+    // this way it gets visibly flagged and our error makes sense.
+    '#required' => TRUE,
+    '#default_value' => $default_country,
+    '#attributes' => array(
+      'class' => array('ds-school-country'),
+    ),
+  );
   $element['state'] = array(
     '#title' => t('School State'),
     '#type' => 'select',
     '#options' => $states,
     // We don't use their required checking because '--' is our empty value, but
     // this way it gets visibly flagged and our error makes sense.
-    '#required' => $instance['required'],
+    '#required' => TRUE,
     '#default_value' => $default_state,
     '#attributes' => array(
       'class' => array('ds-school-state'),
@@ -376,11 +459,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
   $element['type'] = array(
     '#title' => t('Level'),
     '#type' => 'select',
-    '#options' => array(
-      '_none' => t('School Type'),
-      1 => t('Middle/High School'),
-      2 => t('College'),
-    ),
+    '#options' => $types,
     '#default_value' => $default_type,
     '#required' => TRUE,
     '#attributes' => array(
@@ -394,18 +473,9 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#maxlength' => 1024,
     '#default_value' => $default_school,
     '#autocomplete_path' => "ds_school/autocomplete/$default_type/$default_state",
-    '#required' => $instance['required'],
+    '#required' => TRUE,
     '#size' => $instance['widget']['settings']['size'],
   );
-
-//   $form['settings'] = array(
-//   '#type' => 'textfield',
-//   '#states' => array(
-//     'visible' => array(
-//       'input.form-autocomplete' => array('checked' => TRUE),
-//     ),
-//   ),
-// );
 
   $element['street'] = array(
     '#title' => t('Street Address'),
@@ -422,9 +492,11 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
   $element['zip'] = array(
     '#title' => t('Zip Code'),
     '#type' => 'textfield',
-    '#required' => TRUE,
     '#validated' => TRUE,
     '#size' => 6,
+    '#attributes' => array(
+      'class' => array('ds-school-zip'),
+    ),
   );
   $element['clear'] = array(
     '#markup' => '<div style="clear: both"></div>',
@@ -449,7 +521,7 @@ function _dosomething_school_autocomplete_validate($element, &$form_state, $form
     else {
       // Assume their data is valid until we notice otherwise.
       $valid = TRUE;
-      foreach (array('street', 'city', 'zip') as $key) {
+      foreach (array('street', 'city') as $key) {
         if (drupal_strlen(trim($element[$key]['#value'])) == 0) {
           form_error($element[$key], t('!name is required.', array('!name' => $element[$key]['#title'])));
           $valid = FALSE;
@@ -464,15 +536,19 @@ function _dosomething_school_autocomplete_validate($element, &$form_state, $form
       if ($valid) {
         global $user;
 
+	// If CA, the type should get set 1
+	$type = !is_numeric($element['type']['#value']) ? 1 : $element['type']['#value'];
+
         // Create a school.
         $row = (object) array(
           'uid' => $user->uid,
           'name' => $element['name']['#value'],
+          'country' => $element['country']['#value'],
           'street' => $element['street']['#value'],
           'city' => $element['city']['#value'],
           'state' => $element['state']['#value'],
           'zip' => $element['zip']['#value'],
-          'type' => $element['type']['#value'],
+          'type' => $type,
           # TODO I don't think we can or should populate the rest of these:
           // 'gsid' => NULL,
           // 'level' => NULL,
@@ -488,6 +564,7 @@ function _dosomething_school_autocomplete_validate($element, &$form_state, $form
 
   // Update the value of this element so the field can validate the ID.
   form_set_value($element, $value, $form_state);
+
 }
 
 /**
@@ -511,6 +588,15 @@ function dosomething_school_autocomplete_callback($type, $state, $name) {
   }
 
   drupal_json_output($matches);
+}
+
+/**
+ * School query callback. Formats results in cleaner json output. Intended for use by external web services.
+ */
+function dosomething_school_data_by_country_callback($country) {
+  $regions = _dosomething_school_get_states($country);
+  $types = _dosomething_school_get_types($country);
+  drupal_json_output(compact('regions', 'types'));
 }
 
 /**
@@ -650,3 +736,4 @@ function dosomething_school_update_user_profile_school($form, &$form_state) {
   $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'] = $form_state['values']['field_webform_school_reference'][LANGUAGE_NONE][0]['target_id'];
   profile2_save($profile);
 }
+
