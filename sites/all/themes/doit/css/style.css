@@ -2323,7 +2323,7 @@ body {
 .h1, h1, .h2, h2, .h3, h3, .node-grant-alumni .content .field .field-label, .h4, h4, .h5, .h6 {
   text-rendering: optimizeLegibility;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 12px;
 }
 
 .h1, h1 {
