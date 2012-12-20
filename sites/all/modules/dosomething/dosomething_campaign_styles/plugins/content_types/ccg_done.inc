@@ -53,7 +53,7 @@ function dosomething_cgg_celeb_landing($subtype, $conf, $panel_args, $context) {
 $output['twitter_two'] = array(
   '#markup' => /*'
   <a href="javascript:(function(){window.twttr=window.twttr||{};var D=550,A=450,C=screen.height,B=screen.width,H=Math.round((B/2)-(D/2)),G=0,F=document,E;if(C>A){G=Math.round((C/2)-(A/2))}window.twttr.shareWin=window.open(\'http://twitter.com/share\',\'\',\'left=\'+H+\',top=\'+G+\',width=\'+D+\',height=\'+A+\',personalbar=0,toolbar=0,scrollbars=1,resizable=1\');E=F.createElement(\'script\');E.src=\'http://platform.twitter.com/bookmarklets/share.js?v=1\';F.getElementsByTagName(\'head\')[0].appendChild(E)}());" class="cgg_twitter"></a>' */
-  '<a href="https://twitter.com/share?url=&amp;text=Just voted in @DoSomething\'s %23CelebsGoneGood! What celebrity do you think made a big positive impact in 2012? VOTE NOW:" class="cgg_twitter" target=_blank">Share on Twitter</a>'
+  '<a href="https://twitter.com/share?url=&amp;text=Just voted in @DoSomething\'s %23CelebsGoneGood! What celebrity do you think made a big positive impact in 2012? VOTE NOW: http://dsorg.us/SMyl1E" class="cgg_twitter" target=_blank">Share on Twitter</a>'
   );
 
 	/*$output['email'] = array(
