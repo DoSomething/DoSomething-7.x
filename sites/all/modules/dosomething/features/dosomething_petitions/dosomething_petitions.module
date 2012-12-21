@@ -279,6 +279,10 @@ function dosomething_petitions_opt_in($form, $form_state) {
     );
     drupal_mail('dosomething_petitions', 'thanks_for_signing', $val, $language, $params);*/
     dosomething_general_infusionsoft_subscribe($val, PETITIONS_INFUSIONSOFT);
+    
+    // Add signup to MailChimp
+    dosomething_general_webform_email_and_mobile_subscribe($form, $form_state);
+    
   }
   else if (dosomething_general_valid_cell($val)) {
     dosomething_general_mobile_commons_subscribe($val, PETITIONS_MCOMMONS);
@@ -442,6 +446,7 @@ function dosomething_petitions_store_email($nid, $uid, $invite) {
     'timestamp' => REQUEST_TIME
   );
   drupal_write_record('dosomething_petitions_invites', $data);
+  
 }
 
 /**
