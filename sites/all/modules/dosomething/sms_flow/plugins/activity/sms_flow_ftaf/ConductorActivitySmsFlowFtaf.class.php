@@ -52,15 +52,7 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
       }
     }
 
-    // NOTE: This feels hacky. Depending on what workflow this sms_flow_ftaf
-    // activity is in, we look for the numbers from different activities.
-    // TODO: What we could do instead is set a context variable in a previous activity
-    // that contains the name of the activity to expect the numbers to come from. Then
-    // use that name concatenated with ":message" to get the message.
-    $message = $state->getContext('process_beta:message');
-    if (empty($message)) {
-      $message = $state->getContext('ftaf_prompt:message');
-    }
+    $message = $state->getContext('ftaf_prompt:message');
 
     $unvetted_numbers = array();
     // Matches phone numbers regardless of separators and delimiters
