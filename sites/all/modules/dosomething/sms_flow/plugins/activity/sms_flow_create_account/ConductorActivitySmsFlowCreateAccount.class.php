@@ -84,6 +84,7 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
     // though are placed in pending_message. Responsibility is on subsequent activities to 
     // process and display these messages.
     $state->setContext('pending_message', $message);
+    $state->setContext('new_account_password', $pass);
     $state->markCompleted();
   }
 

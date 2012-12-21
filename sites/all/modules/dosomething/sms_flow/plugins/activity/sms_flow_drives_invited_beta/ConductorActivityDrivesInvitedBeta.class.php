@@ -19,22 +19,11 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
   public function run($workflow) {
     $state = $this->getState();
+    $mobile = $state->getContext('sms_number');
 
-    if ($state->getContext($this->name . ':message') === FALSE) {
+    $jeans_goal = $state->getContext($this->name . ':message');
+    if ($jeans_goal === FALSE) {
       $success_message = '';
-
-      $mobile = $state->getContext('sms_number');
-      $pending_message = $state->getContext('pending_message');
-
-      // The pending_message value is set by sms_flow_create_account activity. Changing the link to 
-      // push users to for Teens for Jeans. If no pending_message, safe to assume that no new account
-      // was created and we can use the other success message.
-      if (empty($pending_message)) {
-        $success_message = t('Awesome! You\'ve been added to your friend\'s drive at http://doso.me/2. ');
-      }
-      else {
-        $success_message = str_replace('http://www.dosomething.org', 'http://doso.me/2', $pending_message);
-      }
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
 
@@ -73,13 +62,47 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
       }
 
-      $success_message .= t('Who else should be involved? Respond with their phone #s and we\'ll invite them too');
+      $password = $state->getContext('new_account_password');
+
+      // The new_account_password value is set by sms_flow_create_account activity. If none
+      // found, assume that no new account was created.
+      if (empty($password)) {
+        $link_message = t('View ur drive at http://doso.me/2');
+      }
+      else {
+        $link_message = t('Ur pword to login at http://doso.me/2 is @pass ', array('@pass' => $password));
+      }
+
+      $success_message = "You\'ve joined the largest youth led clothing drive in the US! $link_message- What's ur goal for how many jeans you'll collect?";
+
       $state->setContext('sms_response', $success_message);
       $state->setContext('drives_invite_gid', $drives_invite_gid);
 
       $state->markSuspended();
     }
     else {
+      // Update Mobile Commons profile with TFJ goals
+      $url = "https://secure.mcommons.com/api/profile_update";
+
+      $fields = array(
+        'phone_number' => urlencode($mobile),
+        'TeensforJeans2013_Goals' => urlencode($jeans_goal),
+      );
+
+      $fields_query = http_build_query($fields);
+
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+      curl_setopt($ch, CURLOPT_USERPWD, "developers@dosomething.org:80276608");
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_POST, count($fields));
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_query);
+      $updateResult = curl_exec($ch);
+
+      curl_close($ch);
+
       $state->markCompleted();
     }
   }
