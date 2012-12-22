@@ -30,39 +30,33 @@ function dosomething_campaign_styles_form_alter(&$form, &$form_state, $form_id) 
 }
 
 function dosomething_campaign_styles_ccg_submit($form, &$form_state) {
+  
   $celeb = $form_state['values']['submitted_tree']['cgg_choose_a_celebrity'];
   $redirect = 'celebsgonegood/voted/' . $celeb;
-
-  if (!user_is_logged_in()) {
-    global $user;
-
-    $commands = array();
-    $errors = form_get_errors();
-    if ($errors) {
-      $error_list = '';
-      foreach ($errors AS $key => $error) {
-         $error_list .= '<li>' . $error . '</li>';
-      }
-
-      $fake_error_template = '<div class="messages error">
-        <h2 class="element-invisible">Error message</h2>
-        <ul>' . $error_list . '</ul></div>
-      ';
-
-      $commands[] = ajax_command_before('#page-title', $fake_error_template);
+  
+  // Flag for check of exsisting user account by supplied contact info
+  $userExists = FALSE;
+  
+  // Check to see if user exsists by supplied email or cell
+  if ($mail != '') {
+    if (db_query("SELECT COUNT(*) FROM {users} WHERE mail = :mail", array(':mail' => $name))->fetchField()) {
+      $userExists = TRUE;
     }
-    else {
-      $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsCGGSubmit', array('celebsgonegood/choose?_=', ($user->uid > 0)));
+  }
+  elseif ($cell != '') {
+    if (db_query("SELECT COUNT(*) FROM {users} WHERE mail = :mail", array(':mail' => $name))->fetchField()) {
+      $userExists = TRUE;
     }
+  }
+  
+  // Create new user by supplied email or cell
+  
+  // Add MailChimp entry
+  
+  // Add Mobile Commons entry
 
-    return array(
-      '#type' => 'ajax',
-      '#commands' => $commands
-    );
-  }
-  else {
-    drupal_goto($redirect);
-  }
+  drupal_goto($redirect);
+
 }
 
 function dosomething_campaign_styles_ccg_options_list() {

@@ -8,18 +8,58 @@ include_once 'celebs_gone_good.features.inc';
 
 function celebs_gone_good_page_alter(&$page) {
    if (preg_match('#^\/celebsgonegood#i', request_uri())) {
-   	 if (preg_match('#^\/celebsgonegood\/choose#i', request_uri())) {
-   	 	if (in_array('_', array_keys($_GET))) {
-   	 		drupal_set_message(t("Hey! Now that you're logged in make sure you submit your vote again so we can record it!"), 'error');
-	   	}
-   	 }
-
      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2012/cgg/styles.css');
    }
 }
 
+/**
+ * Implementation of hook_webform_validation_validators().
+ */
+function celebs_gone_good_webform_validation_validators() { 
+  return array(
+    'cgg' => array(
+      'name' => "Celebs Gone Good",
+      'component_types' => array(
+        'all',
+      ),
+      'custom_error'  => "Along with your vote we need your email or cell number.",
+      'description'  => "Validation rule to ensure the along with the users vote an email or cell number is provided to ensure member aquision.",
+    )
+  );
+}
+
+/**
+ * Implementation of hook_webform_validation_validate().
+ */
+function celebs_gone_good_webform_validation_validate($validator_name, $items, $components, $rule) {
+  if ($items) {
+    switch ($validator_name) {
+      case 'cgg':
+        $valid_ids = array(1, 3, 4); 
+        foreach ($items as $key => $val) {
+	 
+         if (($key == 'item_1') && ($items[$key]['value'] == '')) {
+	   $errors[$key] = t('Who are you voting for?');
+	 }
+	    
+	 if ( (($key == 'item_3') || ($key == 'item_4')) ) {
+	    
+	   if ( ($items['item_3']['value'] == '') && ($items['item_4']['value'] == '') )  {
+	     $errors[$key] = t('We need either your email or cell to cast the vote.');
+	   }
+	 }
+
+      }
+      return $errors;
+      break;
+    }
+  }
+}
+
+/*
 function celebs_gone_good_redirect(&$form, &$form_state) {
   if (user_is_logged_in()) {
      drupal_goto('celebsgonegood/voted/' . $form_state['values']['submitted_tree']['cgg_choose_a_celebrity']);
   }
 }
+*/

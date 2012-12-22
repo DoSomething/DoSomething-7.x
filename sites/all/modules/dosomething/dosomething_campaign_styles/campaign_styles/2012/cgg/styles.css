@@ -20,23 +20,25 @@
   background: white;
   margin: 10% 0;
   padding: 1% 3% 2%;
-  -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
+  -webkit-border-radius: 5px;
   -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
   border-radius: 5px; }
   #cgg .pane-title {
     display: none; }
   #cgg form {
-    width: 285px;
+    width: 485px;
     float: left;
     margin: 0 0 0 5%;
     padding: 0;
     box-shadow: none !important;
-    -webkit-border-radius: 5px !important;
     -moz-border-radius: 5px !important;
-    -ms-border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
     -o-border-radius: 5px !important;
+    -ms-border-radius: 5px !important;
+    -khtml-border-radius: 5px !important;
     border-radius: 5px !important; }
     #cgg form label {
       font-size: 2em;
@@ -60,20 +62,25 @@
     color: #1da4e4; }
   #cgg #edit-submitted--2.form-wrapper {
     display: none; }
+  #cgg .webform-component-email, #cgg .webform-component-textfield {
+    float: left;
+    width: 200px; }
+  #cgg #webform-component-cgg-email {
+    margin-left: 50px; }
   #cgg .go-button, #cgg #edit-submit, #cgg .form-submit {
     font-family: din-web;
     background: #fed100;
     margin: 4% 0 1%;
     padding: 0.3em 0.7em;
-    position: absolute;
     font-size: 1.5em;
     height: 35px;
     display: inline-block;
     bottom: 23%;
-    -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
-    -ms-border-radius: 7px;
+    -webkit-border-radius: 7px;
     -o-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -khtml-border-radius: 7px;
     border-radius: 7px; }
     @media only screen and (max-width: 850px) {
       #cgg .go-button, #cgg #edit-submit, #cgg .form-submit {
@@ -107,10 +114,11 @@
   margin: 3% auto;
   width: 400px;
   display: block;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px; }
 
 .pane-ccg-done {
@@ -191,6 +199,6 @@ body, .container, div[role="main"] {
   #block-menu-menu-footer .content ul.menu ul li a {
     font-size: 14px !important;
     line-height: 1em !important; } }
-@media only screen and (max-width: 1030px) and (max-width: 775px) {
+@media only screen and (max-width: 1030px) and only screen and (max-width: 775px) {
   header[role="banner"] {
     width: 100% !important; } }
