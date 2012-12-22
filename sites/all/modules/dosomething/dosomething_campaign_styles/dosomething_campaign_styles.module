@@ -34,26 +34,45 @@ function dosomething_campaign_styles_ccg_submit($form, &$form_state) {
   $celeb = $form_state['values']['submitted_tree']['cgg_choose_a_celebrity'];
   $redirect = 'celebsgonegood/voted/' . $celeb;
   
-  // Flag for check of exsisting user account by supplied contact info
-  $userExists = FALSE;
-  
   // Check to see if user exsists by supplied email or cell
-  if ($mail != '') {
-    if (db_query("SELECT COUNT(*) FROM {users} WHERE mail = :mail", array(':mail' => $name))->fetchField()) {
+  $email = $form['submitted']['cgg_email']['#value'];
+  $cell = $form['submitted']['cgg_cell']['#value'];
+  
+  if ($email != '') {
+    
+    $query = db_select('users', 'u');
+    $query->fields('u', array('mail'));
+    $query->condition('u.mail', $email, '=');
+
+    $num_rows = $query->countQuery()->execute()->fetchField();
+    
+    if ($num_rows > 0) {
       $userExists = TRUE;
+      
+      // Add address to MailChimp
+      
     }
   }
-  elseif ($cell != '') {
-    if (db_query("SELECT COUNT(*) FROM {users} WHERE mail = :mail", array(':mail' => $name))->fetchField()) {
+  
+  if ($cell != '') {
+  
+    
+    $query = db_select('field_data_field_user_mobile', 'c');
+    $query->fields('c', array('field_user_mobile_value'));
+    $query->condition('c.field_user_mobile_value', $cell, '=');
+    
+    $num_rows = $query->countQuery()->execute()->fetchField();
+    
+    if ($num_rows > 0) {
       $userExists = TRUE;
+      
+      // Add number to Mobile COmmons
+      
     }
+    
   }
   
-  // Create new user by supplied email or cell
-  
-  // Add MailChimp entry
-  
-  // Add Mobile Commons entry
+  // Create new user by supplied email or cell - include email and cell values
 
   drupal_goto($redirect);
 
