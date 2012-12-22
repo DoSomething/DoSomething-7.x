@@ -26,7 +26,7 @@ function celebs_gone_good_default_page_manager_pages() {
       'settings' => array(
         'input_form' => 'tid',
         'vids' => array(
-          29 => '29',
+          28 => '28',
           1 => 0,
           9 => 0,
           5 => 0,
@@ -40,7 +40,6 @@ function celebs_gone_good_default_page_manager_pages() {
           26 => 0,
           18 => 0,
           22 => 0,
-          28 => 0,
           15 => 0,
           19 => 0,
           4 => 0,
@@ -72,7 +71,7 @@ function celebs_gone_good_default_page_manager_pages() {
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
-    'css_id' => '',
+    'css_id' => 'cgg',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
@@ -96,10 +95,10 @@ function celebs_gone_good_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Congrats message',
+      'admin_title' => 'confirmation header',
       'title' => '',
-      'body' => 'Congrats! Your vote for %tid:name has been authenticated.',
-      'format' => '1',
+      'body' => '<h1>Congrats!</h1>',
+      'format' => '3',
       'substitute' => 1,
     );
     $pane->cache = array();
@@ -114,7 +113,7 @@ function celebs_gone_good_default_page_manager_pages() {
     $pane->pid = 'new-2';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
-    $pane->subtype = 'taxonomy_term:field_cgg_celeb_image';
+    $pane->subtype = 'taxonomy_term:ccg_celeb_image';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -142,6 +141,29 @@ function celebs_gone_good_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'social section header',
+      'title' => '',
+      'body' => '<h2>Your vote  has been cast<h2>
+<h2>Get the word out to vote <span>%tid:name</span> as Celeb Gone Good of the year!</h2>',
+      'format' => '3',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-3'] = $pane;
+    $display->panels['center'][2] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'center';
     $pane->type = 'ccg_done';
     $pane->subtype = 'ccg_done';
     $pane->shown = TRUE;
@@ -151,10 +173,10 @@ function celebs_gone_good_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['center'][2] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['center'][3] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
