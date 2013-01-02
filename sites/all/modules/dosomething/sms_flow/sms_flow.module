@@ -296,7 +296,7 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_flow_school_search');
   $activity->name = 'school_search';
   $activity->inputs = array('strip_signature');
-  $activity->outputs = array('check_account_exists');
+  $activity->outputs = array('check_account_exists', 'end');
 
   $activity = $workflow->newActivity('sms_check_account_exists');
   $activity->name = 'check_account_exists';
@@ -346,7 +346,7 @@ function sms_flow_default_conductor_workflows() {
 
   $activity = $workflow->newActivity('end');
   $activity->name = 'end';
-  $activity->inputs = array('check_drive_exists');
+  $activity->inputs = array('check_drive_exists', 'school_search');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
