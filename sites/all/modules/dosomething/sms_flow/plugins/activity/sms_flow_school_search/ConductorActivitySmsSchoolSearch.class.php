@@ -86,7 +86,6 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
       // Sanitize the input
       $school_level = self::checkSchoolLevel($school_level);
       $school_state = self::checkSchoolState($school_state);
-      $school_name = urlencode($school_name);
 
       if ($school_level && $school_state && $school_name) {
         $data = dosomething_school_sms_query($school_level, $school_state, $school_name);
@@ -97,7 +96,12 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
         else {
           $num_schools = count($data) > self::MAX_RESULTS ? self::MAX_RESULTS : count($data);
 
-          $response = "We found " . $num_schools . " schools.\n";
+          if ($num_schools > 1) {
+            $response = "We found " . $num_schools . " schools.\n";
+          }
+          else {
+            $response = "We found " . $num_schools . " school.\n";
+          }
 
           for ($i = 0; $i < $num_schools; $i++) {
             $response .= $i+1 . ') ' . $data[$i]['name'] . '. ' . $data[$i]['street'] . ', ' . $data[$i]['city'] . ', ' . $data[$i]['state'] . '. ID#: ' . $data[$i]['sid'] . " \n";
