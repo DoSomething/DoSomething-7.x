@@ -148,7 +148,7 @@ input#edit-field-school-reference-und-0-target-id-name:before {
   padding: 11px 0px 16.5px 15px;
   border: 1px solid #565656;
   font-family: din-web-reg;
-  width: 346px; }
+  width: 100%; }
   #node_club_form_group_clubs_personal_information select option {
     color: black;
     font-family: din-web-reg;
@@ -159,15 +159,24 @@ input#edit-field-school-reference-und-0-target-id-name:before {
   #node_club_form_group_clubs_personal_information select#edit-submitted-field-celeb-date-und-0-value-year {
     width: 58px; }
   #node_club_form_group_clubs_personal_information select#edit-field-school-reference-und-0-target-id-type {
-    margin-left: 12px; }
+    margin-left: 24px; }
+
+.ds-school-state {
+  margin-left: 12px; }
 
 .form-item-field-school-reference-und-0-target-id-state,
-.form-item-field-school-reference-und-0-target-id-type {
+.form-item-field-school-reference-und-0-target-id-type,
+.form-item-field-school-reference-und-0-target-id-country {
   float: left;
-  width: 50%; }
+  width: 33%; }
   .form-item-field-school-reference-und-0-target-id-state label,
-  .form-item-field-school-reference-und-0-target-id-type label {
+  .form-item-field-school-reference-und-0-target-id-type label,
+  .form-item-field-school-reference-und-0-target-id-country label {
     display: none; }
+  .form-item-field-school-reference-und-0-target-id-state select,
+  .form-item-field-school-reference-und-0-target-id-type select,
+  .form-item-field-school-reference-und-0-target-id-country select {
+    margin-right: 12px; }
 
 .form-item-field-school-reference-und-0-target-id-name {
   padding-top: 10px;
