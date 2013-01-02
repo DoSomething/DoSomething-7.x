@@ -8,6 +8,7 @@ function crazyshit_schema() {
 
   $schema['crazy_notifications'] = array(
     'description' => 'Stores notifications for users of Crazy Shit',
+    'primary key' => array('notifid'),
     'fields' => array(
       'sid' => array(
         'description' => 'the group id from og.',
@@ -89,7 +90,6 @@ function crazyshit_schema() {
       'fid' => array('fid'),
       'type' => array('type'),
     ),
-    'primary keys' => array('notifid'),
   );
 
   return $schema;
