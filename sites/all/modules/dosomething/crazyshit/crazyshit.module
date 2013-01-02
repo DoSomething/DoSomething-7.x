@@ -813,7 +813,8 @@ function crazyshit_init() {
 	  // Show only one at a time.
 	  ->range(0, 1)
 	  ->execute();
-	$notifications = reset($n->fetchAll());
+	$ns = $n->fetchAll();
+	$notifications = reset($ns);
 	if (!empty($notifications)) {
 	  drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); });", 'inline');
 	}
