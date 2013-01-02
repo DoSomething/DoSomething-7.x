@@ -1390,6 +1390,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       left: 0;
       width: 100%;
       height: 88%; }
+  #cmp #social img.fb-share {
+    width: auto; }
   #cmp #impact .go-button {
     margin: 2% 0 1% 0; }
   #cmp .view-campaign-gallery #slideshow {
