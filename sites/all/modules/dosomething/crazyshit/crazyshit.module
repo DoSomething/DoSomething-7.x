@@ -750,10 +750,10 @@ function crazy_check_fb_auth($facebook = '') {
   // Try and get the $fbuser object
   $fbuser = fboauth_graph_query('me', $access_token);
   if (isset($fbuser->id)) {
-    return true;
+    return 1;
   }
   else {
-    return false;
+    return 0;
   }
 }
 
