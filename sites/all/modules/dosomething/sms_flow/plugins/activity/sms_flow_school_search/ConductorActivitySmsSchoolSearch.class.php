@@ -109,13 +109,17 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
 
           $response .= "Text back your school ID# to start your drive. Didn't find your school? Text TFJCREATE to try again. Or visit http://www.dosomething.org/teensforjeans for more info.";
         }
+
+        $state->markSuspended();
       }
       else {
         $response = self::ERROR_RESPONSE;
+
+        $this->removeOutput('check_account_exists');
+        $state->markCompleted();
       }
 
       $state->setContext('sms_response', $response);
-      $state->markSuspended();
     }
     // Second time through, user has replied to activity with either school id or something else
     else {
@@ -126,10 +130,14 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
       $school_sid = self::checkSchoolSID($first_word);
       if ($school_sid) {
         $state->setContext('school_sid', $school_sid);
+
+        $this->removeOutput('end');
       }
       else {
         $response = "That's not a valid school ID. Text TFJCREATE to search again. Or go to http://www.dosomething.org/teensforjeans for more info.";
         $state->setContext('sms_response', $response);
+
+        $this->removeOutput('check_account_exists');
       }
 
       $state->markCompleted();
