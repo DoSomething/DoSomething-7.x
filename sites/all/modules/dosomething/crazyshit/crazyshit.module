@@ -844,18 +844,18 @@ function crazyshit_init() {
   }
 
   // Try and get the $fbuser object
-  try {
+  /*try {
 	$fbuser = (object) $facebook->api('/me');
   }
   catch (Exception $e) {
 	if (request_uri() !== '/' . CRAZY_ROOT . '/friends') {
-		$l = $facebook->getLoginUrl();
-		header('location: ' . $l);
+		#$l = $facebook->getLoginUrl();
+		#header('location: ' . $l);
 	}
 	else {
 	  	drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('vouch', 0); });", 'inline');
 	}
-  }
+  }*/
 }
 
 function crazyshit_handle_fb_users($facebook) {
