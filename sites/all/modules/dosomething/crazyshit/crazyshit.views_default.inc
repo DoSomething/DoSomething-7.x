@@ -320,6 +320,9 @@ function crazyshit_views_default_views() {
 <div class="bs-button">
 <a href="#" class="button-submit" rel="[sid]">Call BS</a>
 <span>[views_conditional_2]</span>
+</div>
+<div class="fb-share">
+<a href="#">Share on Facebook</a>
 </div>';
   $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
@@ -660,6 +663,9 @@ function crazyshit_views_default_views() {
 <div class="bs-button">
 <a href="#" class="button-submit no-alert" rel="[sid]">Call BS</a>
 <span>[views_conditional_2]</span>
+</div>
+<div class="fb-share">
+<a href="#" rel="[sid]">Share on Facebook</a>
 </div>';
   $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
@@ -687,7 +693,7 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="crazy-submission s-[sid]">
 <div class="fb-and-pic">
 <div class="fb-picture">[picture]</div>
-<div class="s-[sid]-picture">[field_crazy_crazy_picture]</div>
+<div class="s-[sid]-picture simg">[field_crazy_crazy_picture]</div>
 </div>
 <p class="buttons">
 [nothing_1]
