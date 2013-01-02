@@ -7,7 +7,7 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
 
   const MAX_RESULTS = 3;
 
-  const ERROR_RESPONSE = "Sorry, we couldn't find any matching schools. Text <TODO: KEYWORD> to search again. Or visit http://www.dosomething.org/teensforjeans for more info.";
+  const ERROR_RESPONSE = "Sorry, we couldn't find any matching schools. Text TFJCREATE to search again. Or visit http://www.dosomething.org/teensforjeans for more info.";
 
   private $state_abbr_map = array(
     'alabama' => 'AL',
@@ -95,13 +95,15 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
           $response = self::ERROR_RESPONSE;
         }
         else {
-          $response = "We found " . count($data) . " schools.\n";
+          $num_schools = count($data) > self::MAX_RESULTS ? self::MAX_RESULTS : count($data);
 
-          for ($i = 0; $i < self::MAX_RESULTS && $i < count($data); $i++) {
+          $response = "We found " . $num_schools . " schools.\n";
+
+          for ($i = 0; $i < $num_schools; $i++) {
             $response .= $i+1 . ') ' . $data[$i]['name'] . '. ' . $data[$i]['street'] . ', ' . $data[$i]['city'] . ', ' . $data[$i]['state'] . '. ID#: ' . $data[$i]['sid'] . " \n";
           }
 
-          $response .= "Text back your school ID# to start your drive. Didn't find your school? Text NOID.";
+          $response .= "Text back your school ID# to start your drive. Didn't find your school? Text TFJCREATE to try again. Or visit http://www.dosomething.org/teensforjeans for more info.";
         }
       }
       else {
@@ -122,7 +124,7 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
         $state->setContext('school_sid', $school_sid);
       }
       else {
-        $response = "That's not a valid school ID. Text <TODO: KEYWORD> to search again. Or go to http://www.dosomething.org/teensforjeans for more info.";
+        $response = "That's not a valid school ID. Text TFJCREATE to search again. Or go to http://www.dosomething.org/teensforjeans for more info.";
         $state->setContext('sms_response', $response);
       }
 

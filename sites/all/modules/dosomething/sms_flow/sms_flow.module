@@ -278,7 +278,7 @@ function sms_flow_default_conductor_workflows() {
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_school_state';
-  $activity->question = t('What state is your school in? Reply with the 2 letter abbreviation (ex: MD)');
+  $activity->question = t('What state is your school in? Reply with the 2 letter abbreviation (ex: NY)');
   $activity->inputs = array('ask_school_level');
   $activity->outputs = array('ask_school_name');
 
@@ -315,7 +315,7 @@ function sms_flow_default_conductor_workflows() {
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_email';
-  $activity->question = t('Cool, let\'s get started with adding you to the school\'s drive. What\'s your email address? We\'ll use it to contact you for blah blah');
+  $activity->question = t('Cool, let\'s get started with adding you to the school\'s drive. What\'s your email address? We\'ll need it to contact you with details about your drive.');
   $activity->inputs = array('no_account_exists');
   $activity->outputs = array('ask_first_name');
 
