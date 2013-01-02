@@ -738,7 +738,7 @@ body {
     #cmp #scholarship label {
       font-weight: 600; }
     #cmp #scholarship input[type="text"] {
-      padding: 0.8em 0.5em;
+      padding: 0 0.5em;
       float: left;
       width: 48%;
       margin: 1%; }
