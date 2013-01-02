@@ -142,23 +142,29 @@
 		    	// Occasionally users can log out of Facebook and still count as "authenticated"
 		    	// That's bad.  So let's make sure they're actually connected.
 		    	// Furthermore, FB.getUserID() doesn't work here.
-		    	FB.getLoginStatus(function(response) {
-		    		if (response.status == 'connected' && response.authResponse.userID) {
-		    			// Nothing.  They're authorized.
-		    		}
-		    		else {
-		    			//document.location.href = '/' + Drupal.settings.crazy.crazy_root + '/fb-connect';
-					FB.login(function(response) {
-					   if (response.status == 'connected') {
-					      document.location.href = document.location.href;
-					   }
-					}, { scope: 'email' });
-		    		}
-		    	});
+		    	Drupal.behaviors.dsCrazyScripts.fb_status();
 		    }
 		};
 	 },
-   };
+
+	 fb_status: function() {
+		FB.getLoginStatus(function(response) {
+    	  if (response.status == 'connected' && response.authResponse.userID) {
+    	    // Nothing.  They're authorized.
+    	  }
+    	  else {
+    	    //document.location.href = '/' + Drupal.settings.crazy.crazy_root + '/fb-connect';
+		    FB.login(function(response) {
+		      if (response.status == 'connected') {
+		        document.location.href = document.location.href;
+		      }
+		    }, { scope: 'email' });
+    	  }
+       });
+
+       return false;
+    },
+  };
 
   $.fn.extend({
     dsCrazyPopup: function (name, sid, reload, goto) {
@@ -226,12 +232,24 @@ function fb_invite_friends() {
 	});
 }
 
-function fb_auth(type) {
-	if (type == 'login') {
-		jQuery.fn.dsCrazyPopup('login', 0);
+function fb_auth(type, status) {
+	FB.getLoginStatus(function(response) {
+		if (response.status == 'unknown' || response.status == 'not_authorized') {
+			status = 0;
+		}
+	});
+
+	if (!status) {
+		if (type == 'login') {
+			jQuery.fn.dsCrazyPopup('login', 0);
+		}
+		else {
+			jQuery.fn.dsCrazyPopup('submit', 0);
+		}
+
+		return false;
 	}
 	else {
-		jQuery.fn.dsCrazyPopup('submit', 0);
+		return true;
 	}
-	return false;
 }

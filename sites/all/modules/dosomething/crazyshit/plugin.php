@@ -38,7 +38,7 @@ $top_links = array(
 		'title' => 'Friends',
 		'href' => CRAZY_ROOT . '/friends',
 		'attributes' => array(
-			'onclick' => ((!isset($fbed) || !$fbed) ? "return fb_auth('login')" : ''),
+			'onclick' => "return fb_auth('login', " . $fbed . ")",
 		),
 	),
 	'crazy/about' => array(
@@ -51,7 +51,7 @@ $top_links = array(
 		'href' => CRAZY_ROOT . '/submit/start',
 		'parent' => '/submit',
 		'attributes' => array(
-			'onclick' => ((!isset($fbed) || !$fbed) ? "return fb_auth('submit')" : ''),
+			'onclick' => "return fb_auth('submit', " . $fbed . ")",
 		),
 	),
 );
