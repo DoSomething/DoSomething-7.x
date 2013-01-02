@@ -200,7 +200,7 @@ function crazyshit_submit_vouch() {
 	  'count' => $value,
 	));
 
-	drupal_exit();
+	drupal_exi();
 }
 
 /**
@@ -553,21 +553,22 @@ function crazyshit_views_query_alter(&$view, &$query) {
 		// If we're viewing the friends gallery page, only show submissions by my Facebook friends.
 		if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
 			$facebook = crazy_load_fb();
-			try {
-		 	  $friends = $facebook->api('/me/friends');
+	  		module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
+
+	  		$access_token = $facebook->getAccessToken();
+	  		// Try and get the $fbuser object
+  	  		$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
 			  global $user;
 
 			  $f = array(
 				0 => fboauth_fbid_load($user->uid),
 			  );
-			  foreach ($friends['data'] AS $key => $friend) {
-				$f[] = $friend['id'];
+			  foreach ($friends->data AS $key => $friend) {
+				$f[] = $friend->id;
 			  }
 
 			  $ids = crazy_fb_get_multi_fbids($f);
-			}
-			catch (Exception $e) {}
-
+			
 			if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
 		  	  $query->where[1]['conditions'][] = array(
 		  	  	'field' => 'webform_submissions.uid',

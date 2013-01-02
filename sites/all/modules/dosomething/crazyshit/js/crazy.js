@@ -147,7 +147,12 @@
 		    			// Nothing.  They're authorized.
 		    		}
 		    		else {
-		    			document.location.href = '/' + Drupal.settings.crazy.crazy_root + '/fb-connect';
+		    			//document.location.href = '/' + Drupal.settings.crazy.crazy_root + '/fb-connect';
+					FB.login(function(response) {
+					   if (response.status == 'connected') {
+					      document.location.href = document.location.href;
+					   }
+					}, { scope: 'email' });
 		    		}
 		    	});
 		    }
