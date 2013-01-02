@@ -200,7 +200,7 @@ function crazyshit_submit_vouch() {
 	  'count' => $value,
 	));
 
-	drupal_exi();
+	drupal_exit();
 }
 
 /**
