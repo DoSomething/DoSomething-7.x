@@ -29,7 +29,10 @@
         return false;
       });
 
-      $('.pane-campaign-gallery-panel-pane-1 ul.pager li a').attr('href', $('.pane-campaign-gallery-panel-pane-1 ul.pager li a').attr('href') + '#galleriffic');
+
+      $('.pane-campaign-gallery-panel-pane-1 ul.pager li a').each(function() {
+        $(this).attr('href', $(this).attr('href') + '#galleriffic');
+      });
     }
   };
 })(jQuery);
