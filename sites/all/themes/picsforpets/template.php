@@ -18,12 +18,14 @@ function picsforpets_preprocess_page(&$variables) {
   // On the landing page, don't add the footer menu.
   if (arg(0) == 'fb' && arg(1) == 'pics-for-pets' && !arg(2)) {
     // screw the landing page!
-    drupal_goto('fb/pics-for-pets/gallery');
+    #drupal_goto('fb/pics-for-pets/gallery');
 
     //drupal_add_js(drupal_get_path('theme', 'picsforpets') . '/js/wholePageClick.js');
     //return;
   }
   else {
+    // Todo: When the campaign ends, everything will return to the splash page.
+    //drupal_goto('fb/pics-for-pets');
     $links[] = array(
       'title' => 'Gallery',
       'href' => 'fb/pics-for-pets/gallery',
