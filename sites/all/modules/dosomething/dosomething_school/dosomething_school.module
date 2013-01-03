@@ -393,8 +393,12 @@ function _dosomething_school_get_types($country = 'US') {
  * Implements hook_field_widget_form().
  */
 function dosomething_school_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
-
-  $default_country = '';
+  if (preg_match('#^/node/add/club#i', request_uri())) {
+    $default_country = '';
+  }
+  else {
+    $default_country = 'US';
+  }
   $default_state = '';
   $default_type = '';
 
@@ -432,13 +436,20 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
   $element['#type'] = 'fieldset';
   $element['#title'] = $instance['label'];
 
+  /**
+   *  NOTE: We need to use $instance['required'] to define
+   *  the required attribute for each element.  If we don't,
+   *  it breaks the entire form on clubs and possibly other
+   *  sections of the site.
+   */
+
   $element['country'] = array(
     '#title' => t('School Country'),
     '#type' => 'select',
     '#options' => $countries,
     // We don't use their required checking because '--' is our empty value, but
     // this way it gets visibly flagged and our error makes sense.
-    '#required' => TRUE,
+    '#required' => $instance['required'],
     '#default_value' => $default_country,
     '#attributes' => array(
       'class' => array('ds-school-country'),
@@ -450,7 +461,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#options' => $states,
     // We don't use their required checking because '--' is our empty value, but
     // this way it gets visibly flagged and our error makes sense.
-    '#required' => TRUE,
+    '#required' => $instance['required'],
     '#default_value' => $default_state,
     '#attributes' => array(
       'class' => array('ds-school-state'),
@@ -461,7 +472,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#type' => 'select',
     '#options' => $types,
     '#default_value' => $default_type,
-    '#required' => TRUE,
+    '#required' => $instance['required'],
     '#attributes' => array(
       'class' => array('ds-school-type'),
     ),
@@ -473,7 +484,7 @@ function dosomething_school_field_widget_form(&$form, &$form_state, $field, $ins
     '#maxlength' => 1024,
     '#default_value' => $default_school,
     '#autocomplete_path' => "ds_school/autocomplete/$default_type/$default_state",
-    '#required' => TRUE,
+    '#required' => $instance['required'],
     '#size' => $instance['widget']['settings']['size'],
   );
 
