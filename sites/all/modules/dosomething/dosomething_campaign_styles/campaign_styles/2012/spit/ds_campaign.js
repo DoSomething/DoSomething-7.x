@@ -73,8 +73,8 @@
       }
 
       // Hol' a medz in da paddie, man
-      var contactForm = $('.pane-campaign-sign-up');
-      $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
+      var postFlipCopy = $('.already_submitted');
+      $('#header #contact-form').not('oneLove').addClass('oneLove').append(postFlipCopy);
 
       // on lines 9-10 terrible things happen
       $('#campaign-opt-in br').remove();
