@@ -1023,10 +1023,19 @@ div[aria-labelledby="ui-dialog-title-1"] {
       font-weight: 600; }
   #cmp .webform-client-form {
     box-shadow: none; }
-  #cmp .already_submitted {
+  #cmp #header .already_submitted {
     margin: 0 0 2% 0; }
-    #cmp .already_submitted .go-button {
-      margin: 0 0 1% 0; }
+    #cmp #header .already_submitted h1 {
+      text-align: center;
+      color: white;
+      font-size: 1.7em;
+      margin: 0; }
+    #cmp #header .already_submitted h2 {
+      color: #dddddd; }
+    #cmp #header .already_submitted .go-button {
+      margin: 0;
+      padding: 0.3em;
+      font-size: 1em; }
   #cmp #webform-component-join-header, #cmp #webform-component-start-header, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
     width: 25%;
     float: left; }
