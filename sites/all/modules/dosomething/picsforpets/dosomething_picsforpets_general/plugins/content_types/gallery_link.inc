@@ -20,6 +20,10 @@ function dosomething_picsforpets_general_content_type_gallery_link($subtype = ''
   $output = '<div class="picsforpets-scholarship">' . l('$5k Scholarship', $path . '/submission/' . $sid) . '</div>';
   $output .= '<div class="picsforpets-gallery">' . l('Take me to the paw-trait gallery', $path . '/submission/' . $sid) . '</div>';
 
+  if (file_exists(DRUPAL_ROOT . '/' . drupal_get_path('module', 'dosomething_picsforpets_general') . '/templates/splash.html')) {
+    $output = file_get_contents(DRUPAL_ROOT . '/' . drupal_get_path('module', 'dosomething_picsforpets_general') . '/templates/splash.html');
+  }
+
   $block = new stdClass();
   $block->content = array(
     '#markup' => $output,
