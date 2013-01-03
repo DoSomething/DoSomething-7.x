@@ -267,86 +267,100 @@ function sms_flow_default_conductor_workflows() {
 
   $activity = $workflow->newActivity('start');
   $activity->name = 'start';
+  $workflow->title = 'Start';
+  $workflow->description = 'Workflow for creating a new drive, or joining an existing one';
   $activity->inputs = array();
   $activity->outputs = array('ask_school_level');
+  
+  // START School lookup
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_school_level';
+  $activity->title = 'Ask the user what level of school they\'re in.';
   $activity->question = t('Are you in 1) high school or 2) college? Reply with 1 or 2');
   $activity->inputs = array('start');
   $activity->outputs = array('ask_school_state');
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_school_state';
+  $activity->title = 'Ask the user what state they\'re in.';
   $activity->question = t('What state is your school in? Reply with the 2 letter abbreviation (ex: NY)');
   $activity->inputs = array('ask_school_level');
   $activity->outputs = array('ask_school_name');
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_school_name';
+  $activity->title = 'Ask the user the name of their school.';
   $activity->question = t('Last question before we go looking for your school... what\'s the name of your school?');
   $activity->inputs = array('ask_school_state');
   $activity->outputs = array('strip_signature');
 
   $activity = $workflow->newActivity('sms_strip_signature');
   $activity->name = 'strip_signature';
+  $activity->title = 'Remove the user\'s message signature crap at the end of their reply.';
   $activity->inputs = array('ask_school_name');
   $activity->outputs = array('school_search');
 
   $activity = $workflow->newActivity('sms_flow_school_search');
   $activity->name = 'school_search';
+  $activity->title = 'Lookup the school based on the user supplied info.';
   $activity->inputs = array('strip_signature');
   $activity->outputs = array('check_account_exists', 'end');
 
   $activity = $workflow->newActivity('sms_check_account_exists');
   $activity->name = 'check_account_exists';
+  $activity->title = 'Check that the user exsists.';
   $activity->inputs = array('school_search');
   $activity->outputs = array('account_exists', 'no_account_exists');
 
   $activity = $workflow->newActivity('activity');
   $activity->name = 'account_exists';
+  $activity->title = 'User exsists by cell.';
   $activity->inputs = array('check_account_exists');
-  $activity->outputs = array('check_drive_exists');
+  $activity->outputs = array('create_drive');
 
   $activity = $workflow->newActivity('activity');
   $activity->name = 'no_account_exists';
+  $activity->title = 'No user exsists by supplied cell.';
   $activity->inputs = array('check_account_exists');
   $activity->outputs = array('ask_email');
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_email';
+  $activity->title = 'Ask user for their email address.';
   $activity->question = t('Cool, let\'s get started with adding you to the school\'s drive. What\'s your email address? We\'ll need it to contact you with details about your drive.');
   $activity->inputs = array('no_account_exists');
   $activity->outputs = array('ask_first_name');
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_first_name';
+  $activity->title = 'What is the user\'s first name?.';
   $activity->question = t('One last question - what\'s your first name?');
   $activity->inputs = array('ask_email');
   $activity->outputs = array('strip_signature_2');
 
   $activity = $workflow->newActivity('sms_strip_signature');
   $activity->name = 'strip_signature_2';
+  $activity->title = 'Remove the user\'s message signature crap at the end of their reply.';
   $activity->inputs = array('ask_first_name');
   $activity->outputs = array('create_account');
 
   $activity = $workflow->newActivity('sms_flow_create_account');
   $activity->name = 'create_account';
+  $activity->title = 'Create the new user account.';
   $activity->inputs = array('strip_signature_2');
-  $activity->outputs = array('check_drive_exists');
-
-  $activity = $workflow->newActivity('activity');
-  $activity->name = 'check_drive_exists';
+  $activity->outputs = array('create_drive');
+ 
+  $activity = $workflow->newActivity('sms_create_drive');
+  $activity->name = 'create_drive';
+  $activity->title = 'Create a new drive at the user\'s school.';
   $activity->inputs = array('account_exists', 'create_account');
   $activity->outputs = array('end');
 
-  // TODO: check if drive exists
-  //    - if drive exists, join user into drive.
-  //    - if drive does not exist, create drive for the user
-
   $activity = $workflow->newActivity('end');
   $activity->name = 'end';
-  $activity->inputs = array('check_drive_exists', 'school_search');
+  $activity->title = 'End';
+  $activity->inputs = array('create_drive', 'school_search');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
