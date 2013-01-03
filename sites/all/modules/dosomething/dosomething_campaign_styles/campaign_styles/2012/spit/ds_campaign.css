@@ -1031,7 +1031,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
       font-size: 1.7em;
       margin: 0; }
     #cmp #header .already_submitted h2 {
-      color: #dddddd; }
+      color: #dddddd;
+      text-align: center; }
     #cmp #header .already_submitted .go-button {
       margin: 0;
       padding: 0.3em;
