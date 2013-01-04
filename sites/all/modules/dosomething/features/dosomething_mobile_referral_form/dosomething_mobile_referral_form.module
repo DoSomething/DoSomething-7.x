@@ -17,6 +17,8 @@ function dosomething_mobile_referral_form_module_implements_alter(&$implementati
   }
 }
 
+
+
 function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form_id) {
   $node = menu_get_object();
 
@@ -245,6 +247,7 @@ function dosomething_mobile_referral_form_wild_submit($form, &$form_state) {
     6 => $s['field_cell_friend6'][LANGUAGE_NONE][0]['value'],
   );
 
+
   if (user_is_logged_in()) {
     global $user;
     $profile = profile2_load_by_user($user, 'main');
@@ -264,13 +267,14 @@ function dosomething_mobile_referral_form_wild_submit($form, &$form_state) {
     $betas_campaign = $form_state['betas'];
   }
 
-  dosomething_general_mobile_commons_subscribe($you['cell'], $alphas_campaign);
 
-  foreach ($them AS $key => $number) {
+  dosomething_general_mobile_commons_subscribe_with_friends($you['cell'], $alphas_campaign, $them, $betas_campaign);
+
+  /*foreach ($them AS $key => $number) {
     if (dosomething_general_valid_cell($number)) {
       dosomething_general_mobile_commons_subscribe($number, $betas_campaign);
     }
-  }
+  }*/
 
   // Strip any leading slashes...
   $goto = $form_state['goto'];
@@ -320,13 +324,15 @@ function dosomething_mobile_referral_form_submit($form, &$form_state) {
     $betas_campaign = $form_state['betas'];
   }
 
-  dosomething_general_mobile_commons_subscribe($yn, $alphas_campaign);
 
-  foreach ($them AS $key => $number) {
+  dosomething_general_mobile_commons_subscribe_with_friends($yn, $alphas_campaign, $them, $betas_campaign);
+  #dosomething_general_mobile_commons_subscribe($yn, $alphas_campaign);
+
+  /*foreach ($them AS $key => $number) {
     if (dosomething_general_valid_cell($number)) {
       dosomething_general_mobile_commons_subscribe($number, $betas_campaign);
     }
-  }
+  }*/
 
   // Strip any leading slashes...
   $goto = ($_SESSION['goto'] ? $_SESSION['goto'] : $form_state['goto']);
