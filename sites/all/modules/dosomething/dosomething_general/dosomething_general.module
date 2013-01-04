@@ -1040,6 +1040,40 @@ function dosomething_general_infusionsoft_subscribe($emails, $action_id) {
 
 /**
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
+ * configured opt-in path.  Send messages to friends as well.
+ */
+function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_opt_in_path, $beta_mobiles, $beta_opt_in_path, $args = array()) {
+  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
+
+  $friends = '';
+  foreach ($beta_mobiles AS $key => $mobile) {
+    if (!empty($mobile) && dosomething_general_valid_cell($mobile)) {
+      $friends .= '&friend[]=' . $mobile;
+    }
+  }
+
+  $friends .= '&friends_opt_in_path=' . $beta_opt_in_path;
+  // Send the post data.
+  $options = array(
+    'headers' => array(
+      'Content-type' => 'application/x-www-form-urlencoded',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    ),
+    'method' => 'POST',
+    'data' => "person[phone]=$alpha_mobile&opt_in_path[]=$alpha_opt_in_path" . $friends,
+  );
+
+  if (!empty($args)) {
+    foreach ($args AS $key => $val) {
+      $options['data'] .= "&person[$key]=" . urlencode($val);
+    }
+  }
+
+  drupal_http_request($api_opt_in_path_url, $options);
+}
+
+/**
+ * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
  * configured opt-in path.
  */
 function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $args = array()) {
