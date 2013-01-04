@@ -38,6 +38,10 @@ function connections_notification() {
   unset($_SESSION['form']['op']);
 }
 
+function connections_gate() {
+  $_SESSION['fb_gate'] = func_get_args();
+  unset($_SESSION['form']['op']);
+}
 
 function connections_rules_event_info() {
   $items = array(
@@ -102,6 +106,15 @@ function connections_friend_selector_types() {
   );
 
   return $perms;
+}
+
+function connections_gate_types() {
+  $types = array(
+    1 => t('Load the Facebook login popup'),
+    2 => t('Redirect to Facebook'),
+  );
+
+  return $types;
 }
 
 /**
@@ -562,6 +575,36 @@ function connections_rules_action_info() {
         'label' => t('Require a user to log in to Facebook if they aren\'t already?'),
         'description' => t('If a user is not logged in to Facebook, ask them to log in.  Otherwise nothing will happen if they are not logged into Facebook.'),
         'default value' => 1,
+        'optional' => TRUE
+      ),
+    ),
+    'group' => t('Facebook Connections'),
+  );
+
+  // Sets up a Facebook gate.
+  $items['connections_gate'] = array(
+    'label' => t('Gate the page'),
+    'parameter' => array(
+      'gate_call_fb' => array(
+        'type' => 'text',
+        'label' => t('How should the page be gated?'),
+        'description' => t('You may choose for either the page to redirect to Facebook, or to load the Facebook popup'),
+        'default value' => 1,
+        'options list' => 'connections_gate_types',
+        'optional' => FALSE
+      ),
+      'gate_app_id' => array(
+        'type' => 'text',
+        'label' => t('Facebook App ID:'),
+        'description' => t('The App ID of the Facebook app through which the user will authenticate.'),
+        'default mode' => 'input',
+        'optional' => TRUE
+      ),
+      'gate_selector' => array(
+        'type' => 'text',
+        'label' => t('Only fire if a user clicks on an element with this class / id:'),
+        'description' => t('If you define a class (.class) or ID (#id) here, the notification will only fire when the user clicks on that element.'),
+        'default mode' => 'input',
         'optional' => TRUE
       ),
     ),

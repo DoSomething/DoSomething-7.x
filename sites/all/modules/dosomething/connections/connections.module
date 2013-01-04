@@ -183,14 +183,14 @@ function connections_theme($existing, $type, $theme, $path) {
  *	Implements hook_page_alter()
  */
 function connections_page_alter(&$page) {
-	#drupal_set_message(t('Blah blah'), 'error');
 	$fb_actions = array(
 		'fb_connect' => 'feed',
 		'og_connect' => 'ograph',
 		'img_share' => 'image',
 		'fb_app_request' => 'request',
 		'fb_message' => 'message',
-		'fb_notification' => 'notification'
+		'fb_notification' => 'notification',
+		'fb_gate' => 'gate',
 	);
 
 	$n = menu_get_object();
@@ -362,6 +362,5 @@ function connections_notifications_form($form, &$form_state) {
 
 function connections_message_center() {
 	$form = drupal_get_form('connections_notifications_form');
-
 	return $form;
 }
