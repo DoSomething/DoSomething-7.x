@@ -1259,7 +1259,10 @@ function dosomething_general_form_webform_client_validate($form, &$form_state) {
 
       if ($phone_account = dosomething_general_find_user_by_cell($valid_number)) {
         if ($phone_account->uid != $account->uid) {
-          form_set_error('submitted][field_webform_mobile', t('The provided cell phone number is already in use by another account.'));
+          form_set_error('submitted][field_webform_mobile', t('The provided cell phone number is already in use by another account.  !goback', array(
+            '!goback' => l(t('Go back?'), $_SERVER['HTTP_REFERER'])
+            )
+          ));
         }
       }
     }
