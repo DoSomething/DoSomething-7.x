@@ -25,7 +25,10 @@ function picsforpets_preprocess_page(&$variables) {
   }
   else {
     // Todo: When the campaign ends, everything will return to the splash page.
-    //drupal_goto('fb/pics-for-pets');
+    if (request_uri() !== '/fb/pics-for-pets/crazy') {
+      drupal_goto('fb/pics-for-pets');
+    }
+
     $links[] = array(
       'title' => 'Gallery',
       'href' => 'fb/pics-for-pets/gallery',
