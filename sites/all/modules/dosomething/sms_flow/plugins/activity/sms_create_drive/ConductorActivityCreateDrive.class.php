@@ -16,19 +16,20 @@ class ConductorActivityCreateDrive extends ConductorActivity {
     $school_id = $state->getContext('school_sid');
     $mobile = $state->getContext('sms_number');
 
+    // Temporarily set the global user. Some hook_form_alter implementations work off the assumption
+    // that the user doing the form submitting should be available from the global user
     global $user;
     $original_user = $user;
     $old_state = drupal_save_session(FALSE);
-    $user = dosomething_general_find_user_by_cell($mobile);
 
     // See sms_flow.module - lookup user by mobile number based on Context value
-    $account = _sms_flow_find_user_by_cell($mobile);
+    $user = _sms_flow_find_user_by_cell($mobile);
 
     // Force load webform submission functionality
     module_load_include('inc', 'webform', 'includes/webform.submissions');
     
     // Determine if the user is already signed up
-    $count = webform_get_submission_count(self::JEANS12_CAMPAIGN_SIGN_UP_NID, $account->uid);
+    $count = webform_get_submission_count(self::JEANS12_CAMPAIGN_SIGN_UP_NID, $user->uid);
     
     if ($count == 0) {
       // Build out array for webform submission
@@ -41,7 +42,7 @@ class ConductorActivityCreateDrive extends ConductorActivity {
           'details' => array(
             'nid' => self::JEANS12_CAMPAIGN_SIGN_UP_NID,
             'sid' => NULL,
-            'uid' => $account->uid,
+            'uid' => $user->uid,
           ),
           'op' => t('Submit'),
           'submit' => t('Submit'),
@@ -55,7 +56,6 @@ class ConductorActivityCreateDrive extends ConductorActivity {
       drupal_form_submit('webform_client_form_' . self::JEANS12_CAMPAIGN_SIGN_UP_NID, $form_state, node_load(self::JEANS12_CAMPAIGN_SIGN_UP_NID));
 
       if (form_get_errors()) {
-        print_r(form_get_errors());
         $state->setContext('sms_response', t('SO MUCH PAIN'));
       }
       else {
