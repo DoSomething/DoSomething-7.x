@@ -11,14 +11,15 @@ class ConductorActivityCreateDrive extends ConductorActivity {
 
   public function run($workflow) {
     
-    if ($bla) {
-      $bla = TRUE;
-    }
-    
     // Collect current values based of state location
     $state = $this->getState();
     $school_id = $state->getContext('school_sid');
     $mobile = $state->getContext('sms_number');
+
+    global $user;
+    $original_user = $user;
+    $old_state = drupal_save_session(FALSE);
+    $user = dosomething_general_find_user_by_cell($mobile);
 
     // See sms_flow.module - lookup user by mobile number based on Context value
     $account = _sms_flow_find_user_by_cell($mobile);
@@ -30,7 +31,6 @@ class ConductorActivityCreateDrive extends ConductorActivity {
     $count = webform_get_submission_count(self::JEANS12_CAMPAIGN_SIGN_UP_NID, $account->uid);
     
     if ($count == 0) {
-      
       // Build out array for webform submission
       $form_state = array(
         'submitted' => true,
@@ -49,17 +49,25 @@ class ConductorActivityCreateDrive extends ConductorActivity {
         ),
       );
       $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] = $mobile;
-      $form_state['webform_entity']['submission']->submitted['field_webform_school_reference'][LANGUAGE_NONE][0]['value'] = $school_id;
+      $form_state['webform_entity']['submission']->submitted['field_webform_school_reference'][LANGUAGE_NONE][0]['target_id'] = $school_id;
       $form_state['webform_entity']['submission']->bundle = $form_state['webform_entity']['bundle'] = 'campaign_sign_up';
 
-      drupal_form_submit('webform_client_form_' . self::JEANS12_CAMPAIGN_SIGN_UP_NID, $form_state, node_load(self::JEANS12_CAMPAIGN_SIGN_UP_NID), $submission);
+      drupal_form_submit('webform_client_form_' . self::JEANS12_CAMPAIGN_SIGN_UP_NID, $form_state, node_load(self::JEANS12_CAMPAIGN_SIGN_UP_NID));
 
-//      $state->setContext('sms_response', t('Thanks! You\'re added to the Teans for Jeans team. Text INVITE to invite your friends.'));
-      $state->setContext('sms_response', t('Thanks! You\'re added to the Teans for Jeans team.'));
+      if (form_get_errors()) {
+        print_r(form_get_errors());
+        $state->setContext('sms_response', t('SO MUCH PAIN'));
+      }
+      else {
+        $state->setContext('sms_response', t('Thanks! You\'re added to the Teans for Jeans team.'));
+      }
     }
     else {
       $state->setContext('sms_response', t('Oops, it looks like you\'ve alrady signed up for a team.'));
     } 
+
+    $user = $original_user;
+    drupal_save_session($old_state);
 
     $state->markCompleted();
   }
