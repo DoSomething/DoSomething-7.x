@@ -79,10 +79,6 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
 
       $message = t('Ur password to login at http://www.dosomething.org is @pass. ', array('@pass' => $pass));
     }
-    
-    if ($bla) {
-      $bla = TRUE;
-    }
 
     // No message is sent from this activity. Messages that should be sent as a result of it
     // though are placed in pending_message. Responsibility is on subsequent activities to 

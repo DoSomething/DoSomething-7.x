@@ -7,7 +7,7 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
 
   const MAX_RESULTS = 3;
 
-  const ERROR_RESPONSE = "Sorry, we couldn't find any matching schools. Text TFJCREATE to search again. Or visit http://www.dosomething.org/teensforjeans for more info.";
+  const ERROR_RESPONSE = "Sorry, we couldn't find any matching schools. Text JEANS to search again. Or visit http://doso.me/6 for more info.";
 
   private $state_abbr_map = array(
     'alabama' => 'AL',
@@ -107,7 +107,7 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
             $response .= $i+1 . ') ' . $data[$i]['name'] . '. ' . $data[$i]['street'] . ', ' . $data[$i]['city'] . ', ' . $data[$i]['state'] . '. ID#: ' . $data[$i]['sid'] . " \n";
           }
 
-          $response .= "Text back your school ID# to start your drive. Didn't find your school? Text TFJCREATE to try again. Or visit http://www.dosomething.org/teensforjeans for more info.";
+          $response .= "Text back your school ID# to start your drive. Didn't find your school? Text JEANS to try again. Or visit http://doso.me/6 for more info.";
         }
 
         $state->markSuspended();
@@ -134,7 +134,7 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
         $this->removeOutput('end');
       }
       else {
-        $response = "That's not a valid school ID. Text TFJCREATE to search again. Or go to http://www.dosomething.org/teensforjeans for more info.";
+        $response = "That's not a valid school ID. Text JEANS to search again. Or go to http://doso.me/6 for more info.";
         $state->setContext('sms_response', $response);
 
         $this->removeOutput('check_account_exists');

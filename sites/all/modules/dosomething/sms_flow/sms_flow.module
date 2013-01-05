@@ -277,21 +277,21 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_school_level';
   $activity->title = 'Ask the user what level of school they\'re in.';
-  $activity->question = t('Are you in 1) high school or 2) college? Reply with 1 or 2');
+  $activity->question = t('1/3 Great, let\'s get you started. There will be 3 questions. Are you in 1) middle/high school or 2) college? Reply with 1 or 2.');
   $activity->inputs = array('start');
   $activity->outputs = array('ask_school_state');
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_school_state';
   $activity->title = 'Ask the user what state they\'re in.';
-  $activity->question = t('What state is your school in? Reply with the 2 letter abbreviation (ex: NY)');
+  $activity->question = t('2/3 What state is your school in? Reply with the 2 letter abbreviation (ex: NY)');
   $activity->inputs = array('ask_school_level');
   $activity->outputs = array('ask_school_name');
 
   $activity = $workflow->newActivity('sms_prompt');
   $activity->name = 'ask_school_name';
   $activity->title = 'Ask the user the name of their school.';
-  $activity->question = t('Last question before we go looking for your school... what\'s the name of your school?');
+  $activity->question = t('3/3 Last question before we look up your school. What\'s the name of your school?');
   $activity->inputs = array('ask_school_state');
   $activity->outputs = array('strip_signature');
 
@@ -355,12 +355,25 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'create_drive';
   $activity->title = 'Create a new drive at the user\'s school.';
   $activity->inputs = array('account_exists', 'create_account');
+  $activity->outputs = array('strip_signature_3', 'end');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature_3';
+  $activity->inputs = array('create_drive');
+  $activity->outputs = array('ftaf_process');
+
+  $activity = $workflow->newActivity('sms_flow_ftaf');
+  $activity->name = 'ftaf_process';
+  $activity->alpha_optin = 131891;
+  $activity->beta_optin = 129751;
+  $activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your drive again, text TFJINVITE.');
+  $activity->inputs = array('strip_signature_3');
   $activity->outputs = array('end');
 
   $activity = $workflow->newActivity('end');
   $activity->name = 'end';
   $activity->title = 'End';
-  $activity->inputs = array('create_drive', 'school_search');
+  $activity->inputs = array('create_drive', 'school_search', 'sms_flow_ftaf');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
