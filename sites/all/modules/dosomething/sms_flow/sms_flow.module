@@ -225,6 +225,8 @@ function sms_flow_conductor_sms_keywords() {
   return array(
     'alcoa-report-back' => 'sms_flow_alcoa_report_back',
     'drives-create' => 'sms_flow_drives_create',
+    'tfjcreate' => 'sms_flow_drives_create',
+    'jeans' => 'sms_flow_drives_create',
     'drives-invite' => 'sms_flow_drives_invite',
     'ftaf' => 'sms_flow_ftaf',
     'clubs' => 'sms_flow_clubs_invite',
