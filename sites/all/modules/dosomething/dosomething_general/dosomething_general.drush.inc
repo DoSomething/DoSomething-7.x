@@ -50,6 +50,8 @@ function drush_dosomething_general_dosomething_export_images() {
     file_unmanaged_delete(file_directory_temp() . DIRECTORY_SEPARATOR . "$base_path.tar");
   }
 
+  drush_print("Image dumps complete. Now archiving all images together.");
+
   $descriptor_spec = array(
     1 => array('pipe', 'w'),
     2 => array('pipe', 'w'),
@@ -86,6 +88,7 @@ function _drush_dosomething_general_export_images_batch_callback($nid, $tmpdir) 
   ctools_include('webform.submissions', 'webform');
 
   $webform = node_load($nid);
+  drush_print("Dumping images from {$webform->title}...");
   $tmpdir .= DIRECTORY_SEPARATOR . $nid . '-' . strtr("$webform->title", array(' ' => '.'));
   drupal_mkdir($tmpdir, NULL, TRUE);
 
