@@ -57,12 +57,6 @@ class ConductorActivityCreateDrive extends ConductorActivity {
 
         drupal_form_submit('webform_client_form_' . self::JEANS12_CAMPAIGN_SIGN_UP_NID, $form_state, node_load(self::JEANS12_CAMPAIGN_SIGN_UP_NID));
 
-        // Set the gid invitees can use to join the proper drive
-        $my_teams = teams_get_my_teams_for_url('teensforjeans');
-        $team_sid = $my_teams[0];
-        $gid = og_get_group('webform_submission_entity', $team_sid, true)->gid;
-        $state->setContext('drives_invite_gid', $gid);
-
         if (form_get_errors()) {
           $state->setContext('sms_response', t('Sorry! We ran into a problem creating your drive. Text JEANS to try again or visit http://doso.me/6 to try online.'));
           $this->removeOutput('strip_signature_3');
@@ -74,7 +68,7 @@ class ConductorActivityCreateDrive extends ConductorActivity {
           // If new_account_password is set, indicates a new user was created previously in the flow
           $new_account_password = $state->getContext('new_account_password');
           if ($new_account_password !== FALSE) {
-            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive. Login at http://doso.me/6. Ur password is: @pass. Once 5 people are signed up, you\'ll get a banner. Text us friends\' #s to invite them', array('@pass' => $pass)));
+            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive. Login at http://doso.me/6. Ur password is: @pass. Once 5 people are signed up, you\'ll get a banner. Text us friends\' #s to invite them', array('@pass' => $new_account_password)));
           }
           else {
             $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive. Login at http://doso.me/6. Once 5 people sign up, you\'ll get a banner. Text us your friends\' #s to invite them'));
@@ -85,13 +79,21 @@ class ConductorActivityCreateDrive extends ConductorActivity {
         $state->setContext('sms_response', t('You already signed up for a drive! Login at http://doso.me/6 to visit it. Once 5 people sign up, you\'ll get a T4J banner. Text us ur friends\' #s to invite them'));
       } 
 
+      // Gets the GID of the drive this user is a part of. Then sets that value to
+      // drives_invite_gid to be used in a later activity for doing a FTAF.
+      $my_teams = teams_get_my_teams_for_url('teensforjeans');
+      $team_sid = $my_teams[0];
+      $gid = og_get_group('webform_submission_entity', $team_sid, true)->gid;
+      $state->setContext('drives_invite_gid', $gid);
+
       $state->markSuspended();
 
       $user = $original_user;
       drupal_save_session($old_state);
     }
     else {
-      // We've received a response which should be friends' numbers, continue to next activity
+      // We've received a response which should be friends' numbers, continue to next activity.
+      // ftaf_prompt:message is where ConductorActivitySmsFlowFtaf expects the invitee numbers to be.
       $state->setContext('ftaf_prompt:message', $user_reply);
       $this->removeOutput('end');
       $state->markCompleted();
@@ -106,5 +108,4 @@ class ConductorActivityCreateDrive extends ConductorActivity {
       'sms_prompt:' . $this->getState()->getContext('sms_number')
     );
   }
-
 }
