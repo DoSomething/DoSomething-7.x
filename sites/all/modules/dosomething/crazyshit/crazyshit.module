@@ -545,17 +545,16 @@ function crazyshit_views_query_alter(&$view, &$query) {
 		  'alias' => 'is_the_one',
 		);
 
-		// By default, the view orders by submitted DESC first.  This won't work with this.
-		// So clear out the original order by, and re-order with is_the_one first, then submitted.
-		unset($query->orderby[0]);
-		$query->orderby[] = array(
+		// When we're looking for one specific element, we can show it first in the list
+		// by doing "is_the_one DESC" (see "is_the_one" definition above).  Everything else
+		// will resume as normal below the post.
+		$theone = array(
 		  'field' => 'is_the_one',
 		  'direction' => 'DESC',
 		);
-		$query->orderby[] = array(
-		  'field' => 'webform_submissions.submitted',
-		  'direction' => 'DESC',
-		);
+
+		// Prepend "is_the_one" order to the beginning of the orderby array.
+		array_unshift($query->orderby, $theone);
 	  }
 
       if (preg_match('#^\/' . CRAZY_ROOT . '/time-(today|week)$#i', request_uri(), $time)) {
