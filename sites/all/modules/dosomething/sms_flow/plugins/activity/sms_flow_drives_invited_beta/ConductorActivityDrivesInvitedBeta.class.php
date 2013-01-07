@@ -70,10 +70,10 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         $link_message = t('View ur drive at http://doso.me/2');
       }
       else {
-        $link_message = t('Ur pword to login at http://doso.me/2 is @pass ', array('@pass' => $password));
+        $link_message = t('Ur pword to login at http://doso.me/2 is @pass', array('@pass' => $password));
       }
 
-      $success_message = "You\'ve joined the largest youth led clothing drive in the US! $link_message- What's ur goal for how many jeans you'll collect?";
+      $success_message = "You've joined the largest youth led clothing drive in the US! $link_message - What's ur goal for how many jeans you'll collect?";
 
       $state->setContext('sms_response', $success_message);
       $state->setContext('drives_invite_gid', $drives_invite_gid);
