@@ -40,10 +40,26 @@ function dosomething_clubs_views_query_alter(&$view, &$query) {
 }
 
 function dosomething_clubs_js_alter(&$page) {
-  if (preg_match('#\/clubs\/share\/([0-9]+)#i', request_uri())) {
+  $uri = request_uri();
+  if (preg_match('#\/clubs\/share\/([0-9]+)#i', $uri)) {
     // This breaks google on the share page.
     unset($page['sites/all/modules/dosomething/dosomething_general/js/iframe-defer.js']);
   }
+  // Removes pages from Facebook iframe for P4P
+  else if (preg_match('#^\/(clubs|cause\/animals)$#i', $uri)) {
+    $page[drupal_get_path('module', 'dosomething_clubs') . '/js/remove-iframe.js'] = array(
+      'data' => drupal_get_path('module', 'dosomething_clubs') . '/js/remove-iframe.js',
+      'type' => 'file',
+      'scope' => 'header',
+      'group' => -100,
+      'every_page' => 0,
+      'weight' => 100,
+      'preprocess' => 0,
+      'cache' => 1,
+      'defer' => '',
+    );
+  }
+
 }
 
 /**
