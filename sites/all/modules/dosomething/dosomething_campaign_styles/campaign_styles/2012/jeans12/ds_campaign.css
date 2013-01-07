@@ -61,7 +61,7 @@ body {
     display: none; }
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
     padding: 0.5em 1em 0 0;
-    font-size: 1.5em; }
+    font-size: 24px; }
 
   #page {
     width: 100%; }
@@ -164,7 +164,7 @@ body {
   #block-dosomething-campaign-styles-campaign-nav a {
     font-family: din-web-reg;
     font-weight: 600;
-    font-size: 0.8em;
+    font-size: 12px;
     padding: 0.2em 1em 0 1.5em;
     text-transform: uppercase;
     color: #0c3565; }
@@ -186,10 +186,10 @@ body {
       text-align: center;
       width: 100%;
       margin-bottom: 1em;
-      font-size: 0.8em; }
+      font-size: 12px; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a {
       font-weight: normal;
-      font-size: 1em;
+      font-size: 11px;
       padding: 0;
       text-transform: none;
       color: #888888;
@@ -926,28 +926,28 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp h1, #cmp h3, #cmp .divider {
     text-transform: uppercase; }
   #cmp h1 {
-    font-size: 2.5em;
+    font-size: 40px;
     line-height: 1.54em; }
   #cmp h1.condensed {
-    font-size: 3.75em;
+    font-size: 60px;
     font-weight: 600;
     font-family: "din-web"; }
   #cmp h2 {
-    font-size: 1.5em;
+    font-size: 24px;
     line-height: 1.55em; }
   #cmp h3 {
-    font-size: 1.25em;
+    font-size: 20px;
     line-height: 1.4em; }
   #cmp h4 {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: 600;
     line-height: 1.2em; }
   #cmp p, #cmp label {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.2em; }
   #cmp input[type="submit"] {
-    font-size: 1.5em; }
+    font-size: 24px; }
   #cmp a {
     color: #0c3565; }
   #cmp a.mango {
@@ -956,7 +956,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .divider {
     color: white; }
   #cmp .legal {
-    font-size: 0.625em;
+    font-size: 10px;
     font-weight: 500;
     line-height: 1em; }
   #cmp .section {
@@ -995,6 +995,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 0 0 3% 0;
     padding: 0.5em 0 0 0; }
     #cmp .divider span {
+      font-size: 14px;
       background: black;
       padding: 0.5em 0.8em;
       position: relative;
@@ -1011,8 +1012,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 4% 0 1%;
     padding: 0.4em 0.7em;
     position: static;
-    font-size: 1.5em;
-    height: 1.4em;
+    font-size: 24px;
+    height: 22px;
     display: inline-block;
     color: #1e1d1c;
     -webkit-border-radius: 5px;
@@ -1035,11 +1036,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
       margin: 0; }
     #cmp #header h1 {
       font-weight: 600;
-      font-size: 3.5em;
+      font-size: 54px;
       font-family: din-web;
       line-height: 1em; }
     #cmp #header h2 {
-      font-size: 1.4em;
+      font-size: 22px;
       line-height: 1.6em;
       font-weight: 400;
       width: 50%; }
@@ -1058,7 +1059,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #next-steps h3, #cmp #next-steps p {
       text-align: left; }
     #cmp #next-steps h1 {
-      font-size: 4em;
+      font-size: 64px;
       font-weight: 600; }
     #cmp #next-steps h4 {
       text-transform: uppercase;
@@ -1067,7 +1068,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       padding: 0 1.5em 1em;
       color: #444444; }
     #cmp #next-steps .next-steps-help {
-      font-size: 0.9em;
+      font-size: 14px;
       text-align: center;
       color: #bbbbbb;
       padding: 2em 0 0 0; }
@@ -1091,7 +1092,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     color: #0c3565;
     margin: 0 0 0.4em 0;
     font-family: din-web-reg, "Trebuchet MS", sans-serif;
-    font-size: 2em;
+    font-size: 32px;
     font-weight: 600;
     text-transform: uppercase;
     border-bottom: 2px solid #d2d2d3; }
@@ -1157,7 +1158,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #action.action-leader {
     text-align: left; }
     #cmp #action.action-leader h1 {
-      font-size: 1.2em;
+      font-size: 22px;
       margin: 0 0 0 -1em; }
     #cmp #action.action-leader ul {
       padding: 1em 1.5em; }
@@ -1192,6 +1193,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #search p {
     padding: 0 0 1em 0; }
   #cmp #search .go-button {
+    height: 36px;
     margin: 0 1%; }
   #cmp .pane-drive-search-panel-pane-1 form {
     width: 50%;
@@ -1250,7 +1252,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     float: left; }
   #cmp .views-field-field-drive-location,
   #cmp .views-field-field-geofield-distance {
-    font-size: 0.8em;
+    font-size: 12px;
     font-weight: 400;
     font-family: din-web-reg;
     line-height: 1.4em; }
@@ -1277,7 +1279,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       text-transform: uppercase;
       padding-top: 0.3em; }
     #cmp .make-a-difference p {
-      font-size: 0.9em;
+      font-size: 14px;
       width: 110%; }
     #cmp .make-a-difference img {
       float: left;
@@ -1331,7 +1333,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       padding: 3%;
       font-family: din-web-reg;
       font-weight: 600;
-      font-size: 1.7em;
+      font-size: 27px;
       -moz-border-radius: 12px;
       -webkit-border-radius: 12px;
       -o-border-radius: 12px;
@@ -1346,7 +1348,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #scholarship .your-input input[type="text"] {
       width: 100%; }
     #cmp #scholarship .rules {
-      font-size: 1em; }
+      font-size: 16px; }
   #cmp label.friends {
     padding-left: 0.3em; }
   #cmp .refer5 {
@@ -1381,8 +1383,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     padding-bottom: 3%; }
     #cmp #psa.section h2 {
       text-transform: uppercase;
-      font-size: 1.9em;
-      line-height: 3em;
+      font-size: 30px;
+      line-height: 48px;
       padding: 0 0 0.3em 0;
       color: #b79c86; }
   #cmp #psa_wrapper {
@@ -1415,7 +1417,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #faq li, #cmp #faq div {
       padding: 0 0 0 1.5em; }
     #cmp #faq h1 {
-      font-size: 2em;
+      font-size: 32px;
       font-family: din-web;
       text-transform: uppercase; }
     #cmp #faq h4 {
@@ -1430,9 +1432,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #faq div.divider {
       padding: 0.5em 0 0 0; }
     #cmp #faq .go-button {
+      height: 36px;
       margin: 0 0 1% 0; }
   #cmp #footer.section h1 {
-    font-size: 2em;
+    font-size: 32px;
     font-family: din-web;
     text-transform: uppercase;
     background: url("//files.dosomething.org/files/campaigns/jeans12/faq3.png");
@@ -1458,13 +1461,13 @@ div[aria-labelledby="ui-dialog-title-1"] {
       #cmp #nextaction .bluebox h2 {
         float: left;
         color: white;
-        font-size: 2.2em;
+        font-size: 35px;
         margin: 2% 0 1%; }
       #cmp #nextaction .bluebox h4 a {
         float: right;
         margin: 3.75% 0 1%;
         text-transform: uppercase;
-        font-size: 0.75em;
+        font-size: 12px;
         color: #ffcb15;
         font-family: din-web-reg;
         font-weight: 300; }
