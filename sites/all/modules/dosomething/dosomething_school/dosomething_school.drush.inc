@@ -98,7 +98,7 @@ function drush_dosomething_school_canada_load($path) {
     $calculated_id = $province_map[$province];
 
     if (!is_numeric($src_id[3])) {
-      $calculated_id .= ord($src_id) . substr($src_id, 4);
+      $calculated_id .= ord($src_id[3]) . substr($src_id, 4);
     }
     else {
       $calculated_id .= substr($src_id, 3);
@@ -109,7 +109,6 @@ function drush_dosomething_school_canada_load($path) {
   };
 
   $file = new SplFileObject($path);
-  // $file->setFlags(SplFileObject::DROP_NEW_LINE | SplFileObject::READ_AHEAD | SplFileObject::SKIP_EMPTY);
   $file->setFlags(SplFileObject::DROP_NEW_LINE | SplFileObject::SKIP_EMPTY | SplFileObject::READ_CSV);
   $total = count(file($file)) - 1;
   $map = $file->fgetcsv();
@@ -160,16 +159,16 @@ function drush_dosomething_school_canada_load($path) {
     $record['country'] = 'Canada';
     $record['email'] = $row['EMAIL'];
 
-    if ($record['gsid'][0] !== '8') {
-      print_r($record);
-      throw new Exception('Generated ID does not have a leading 8 as expected: problem on line ' . ($count + 1));
-    }
-
     // @todo might not be quite right to call all these 'secondary' schools? good enough for now, though
     $record['type'] = 1;
 
     // Fill in blanks.
     $record['notes'] = $record['lat'] = $record['lon'] = '';
+
+    if ($record['gsid'][0] !== '8') {
+      print_r($record);
+      throw new Exception('Generated ID does not have a leading 8 as expected: problem on line ' . ($count + 1));
+    }
 
     // Check if there's an existing record...
     $schools = entity_load_multiple_by_name('ds_school', FALSE, array('gsid' => $record['gsid']), TRUE);
