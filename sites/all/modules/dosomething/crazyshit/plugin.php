@@ -99,6 +99,27 @@ $submit_form = array(
 	),
 );
 
+/** 
+  * An array of arrays indicating the page(s) you want CSS to show up on.
+  * The array should be a list of CSS files.
+  *
+  * Sub-sections are counted.  For example: "crazy/about" will match crazy/about/tips
+  * and "crazy" by itself will match everything.
+  *
+  * All CSS will be loaded from /sites/all/modules/dosomething/crazyshit/css in the order
+  * that they are listed below.
+  */
+$crazy_css = array(
+	'crazy' => array(
+		'crazy.css'
+	),
+	'crazy/about' => array(
+		'crazy-about.css',
+	),
+	'crazy/submit' => array(
+		'crazy-form.css',
+	),
+);
 
 // Money saving tips
 $money_saving_tips = array(

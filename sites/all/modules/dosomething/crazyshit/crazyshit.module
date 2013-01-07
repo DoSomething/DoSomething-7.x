@@ -233,7 +233,7 @@ function crazyshit_submit_vouch_request($sid) {
 	}
 }
 
-
+/*
 function crazyshit_submit_craziness() {
 	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
 	if (!$submission) {
@@ -271,7 +271,7 @@ function crazyshit_submit_craziness() {
 		'count' => $value,
 	));
 	exit;
-}
+}*/
 
 /**
  *	Submits a B.S. notification.
@@ -342,7 +342,6 @@ function crazyshit_submit_bullshit() {
 	drupal_exit();
 }
 
-
 /**
  *	Renders a template for the popups.
  *
@@ -391,6 +390,19 @@ function crazyshit_page_alter(&$page) {
 	include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 	drupal_set_title($campaign_title);
 
+	$uri = request_uri();
+
+	foreach ($crazy_css AS $path => $css) {
+		if (preg_match('#^/' . $path . '#i', $uri)) {
+			foreach ($css AS $style) {
+				drupal_add_css(drupal_get_path('module', 'crazyshit') . '/css/' . $style, array(
+				  'group' => CSS_THEME,
+				  'weight' => 1000,
+				));
+			}
+		}
+	}
+
     $element = array(
       '#tag' => 'meta',
       '#attributes' => array(
@@ -404,10 +416,10 @@ function crazyshit_page_alter(&$page) {
 	drupal_add_js(drupal_get_path('module', 'crazyshit') . '/js/crazy.js');
 
 	// Loads the global CSS file.
-	drupal_add_css(drupal_get_path('module', 'crazyshit') . '/css/crazy.css', array(
+	/*drupal_add_css(drupal_get_path('module', 'crazyshit') . '/css/crazy.css', array(
 	  'group' => CSS_THEME,
 	  'weight' => 10000,
-	));
+	));*/
 
 	// Loads Facebook.
 	drupal_add_library('connections', 'facebook');
@@ -417,7 +429,7 @@ function crazyshit_page_alter(&$page) {
 	// If on a gallery page, adds an array of submission IDs to Drupal.settings
 	// When the page loads, javascript takes these IDs and disables the buttons.
 	$settings = array();
-	if (preg_match('#^\/' . CRAZY_ROOT . '\/?(friends|time-.*?)?#i', request_uri())) {
+	if (preg_match('#^\/' . CRAZY_ROOT . '\/?(friends|time-.*?)?#i', $uri)) {
 	  if ($allow_lazy_loading) {
 	     drupal_add_js(drupal_get_path('module', 'crazyshit') . '/js/jquery.lazyload.js');
 	  }
@@ -622,7 +634,7 @@ function crazyshit_form_alter(&$form, &$form_state, $form_id) {
 		);
 
 		// Loads form CSS
-		$form['#attached']['css'] = array(
+		/*$form['#attached']['css'] = array(
 		  array(
 		    'data' => drupal_get_path('module', 'crazyshit') . '/css/crazy-form.css',
 		    'options' => array(
@@ -633,7 +645,7 @@ function crazyshit_form_alter(&$form, &$form_state, $form_id) {
 		    ),
 		    'weight' => 9999,
 	      ),
-		);
+		);*/
 
 		$u = &$form['submitted'];
 		$page = $form_state['input']['details']['page_num'];
