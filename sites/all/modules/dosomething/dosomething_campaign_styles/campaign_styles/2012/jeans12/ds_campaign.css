@@ -294,6 +294,9 @@ body {
 #fbc-modal {
   z-index: 999 !important; }
 
+.page-node-724802 #block-dosomething-campaign-styles-campaign-nav {
+  display: none; }
+
 #rsvp {
   margin: 5% 0;
   padding: 5%;
@@ -1437,6 +1440,48 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 0 0 1% 0; }
   #cmp #iframe_wrapper {
     height: 404px !important; }
+  #cmp #nextaction {
+    padding: 0 0 4%;
+    margin-top: 2%; }
+    #cmp #nextaction .bluebox {
+      padding: 2%;
+      background: #043a61;
+      margin: 0; }
+      #cmp #nextaction .bluebox h2, #cmp #nextaction .bluebox h4 {
+        font-family: din-web-reg;
+        font-weight: 300;
+        line-height: 1.1em; }
+      #cmp #nextaction .bluebox h2 {
+        float: left;
+        color: white;
+        font-size: 2.2em;
+        margin: 2% 0 1%; }
+      #cmp #nextaction .bluebox h4 a {
+        float: right;
+        margin: 3.75% 0 1%;
+        text-transform: uppercase;
+        font-size: 0.75em;
+        color: #ffcb15;
+        font-family: din-web-reg;
+        font-weight: 300; }
+    #cmp #nextaction p {
+      margin-bottom: 4%; }
+    #cmp #nextaction .doit-btn {
+      font-family: din-web-reg;
+      font-weight: 600;
+      background: #ffcb15;
+      padding: 1% 2.5% 0;
+      text-transform: uppercase;
+      border-radius: 6px;
+      color: #333333; }
+      #cmp #nextaction .doit-btn:hover {
+        text-decoration: none;
+        color: black; }
+    #cmp #nextaction .divider {
+      border-top: none;
+      margin: 0 0 4% 0; }
+      #cmp #nextaction .divider span {
+        font-weight: 400; }
   #cmp #contact-form {
     background: #0c3565;
     width: 100%; }
