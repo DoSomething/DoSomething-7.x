@@ -23,7 +23,7 @@ $crazy_notification_pages = array(
 $lazy_load_count = 1;
 
 // Allow lazy loading? 1 = yes, 0 = no
-$allow_lazy_loading = 0;
+$allow_lazy_loading = 1;
 
 // Campaign title
 $campaign_title = "The Craziest thing I've done to save money";
