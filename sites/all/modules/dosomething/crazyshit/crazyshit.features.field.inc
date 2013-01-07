@@ -650,6 +650,67 @@ function crazyshit_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-crazy_shit-field_crazy_total_count'.
+  $fields['webform_submission_entity-crazy_shit-field_crazy_total_count'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_crazy_total_count',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'crazy_shit',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 8,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_crazy_total_count',
+      'label' => 'Total count',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'numberfield',
+        'weight' => '10',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-crazy_shit-field_crazy_vouch_count'.
   $fields['webform_submission_entity-crazy_shit-field_crazy_vouch_count'] = array(
     'field_config' => array(
@@ -730,6 +791,7 @@ function crazyshit_field_default_fields() {
   t('Crazy Count');
   t('Image');
   t('Top Text');
+  t('Total count');
   t('Vouch Count');
 
   return $fields;

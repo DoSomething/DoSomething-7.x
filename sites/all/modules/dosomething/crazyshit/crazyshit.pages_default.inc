@@ -18,8 +18,6 @@ function crazyshit_default_page_manager_pages() {
   $page->path = 'crazy/friends';
   $page->access = array(
     'logic' => 'and',
-    'type' => 'none',
-    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'none',
@@ -148,8 +146,6 @@ function crazyshit_default_page_manager_pages() {
         'not' => FALSE,
       ),
     ),
-    'type' => 'none',
-    'settings' => NULL,
   );
   $page->menu = array();
   $page->arguments = array();
@@ -223,8 +219,6 @@ function crazyshit_default_page_manager_pages() {
   $page->path = 'crazy';
   $page->access = array(
     'logic' => 'and',
-    'type' => 'none',
-    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'none',
@@ -331,8 +325,6 @@ function crazyshit_default_page_manager_pages() {
       ),
     ),
     'logic' => 'and',
-    'type' => 'none',
-    'settings' => NULL,
   );
   $page->menu = array();
   $page->arguments = array();

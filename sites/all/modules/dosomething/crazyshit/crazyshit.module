@@ -178,6 +178,15 @@ function crazyshit_submit_vouch() {
 
 	$value++;
 	$submission->field_crazy_vouch_count[LANGUAGE_NONE][0]['value'] = $value;
+
+	$total = 0;
+	if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
+	   $total = $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
+	}
+
+	$total++;
+	$submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'] = $total;
+
 	webform_entity_save_webform_submission($submission);
 
 	$fbid = fboauth_fbid_load($user->uid);
@@ -310,6 +319,15 @@ function crazyshit_submit_bullshit() {
 
 	// Update it.
 	$submission->field_crazy_bullshit_count[LANGUAGE_NONE][0]['value'] = $value;
+
+	$total = 0;
+	if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
+	   $total = $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
+	}
+
+	$total++;
+	$submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'] = $total;
+
 	webform_entity_save_webform_submission($submission);
 	
 	// Get Drupal and FB user ids
@@ -499,7 +517,7 @@ function crazyshit_add_lazy_class($matches) {
   // We multiply the lazy load count by 2, because lazy loading includes the facebook pictures.
   if ($i > ($c * 2) && CRAZY_ALLOW_LAZY_LOADING) {
 	// We're beyond the non-lazy threshold, so lazy-load the image.
-	$r = 'src="/' . drupal_get_path('module', 'crazyshit') .'/images/default-img.jpg" data-original="' . $matches[1] . '" class="lazy" ';
+	$r = 'src="/' . drupal_get_path('module', 'crazyshit') .'/images/default-img.jpg" data-original="' . $matches[1] . '?1hn2b" class="lazy" ';
   }
   else {
 	// If we're within the threshhold of non-lazy images, don't add the "lazy" class to them.
@@ -515,84 +533,84 @@ function crazyshit_add_lazy_class($matches) {
  *  Implements hook_views_query_alter()
  */
 function crazyshit_views_query_alter(&$view, &$query) {
-	if ($view->name == 'crazy_shit_landing') {
-		if ($view->current_display == 'block') {
-			if (preg_match('#^\/' . CRAZY_ROOT . '/([0-9]+)$#i', request_uri(), $showid)) {
-				$showid = $showid[1];
+  if ($view->name == 'crazy_shit_landing') {
+    if ($view->current_display == 'block') {
+	  if (preg_match('#^\/' . CRAZY_ROOT . '/([0-9]+)$#i', request_uri(), $showid)) {
+	    $showid = $showid[1];
 
-				// Try and find the submission with this ID and mark it as relevant
-				$query->fields['ided'] = array(
-				  'field' => 'IF (webform_submissions.sid = ' . $showid . ', 1, 0)',
-				  'table' => '',
-				  'alias' => 'is_the_one',
-				);
+		// Try and find the submission with this ID and mark it as relevant
+		$query->fields['ided'] = array(
+		  'field' => 'IF (webform_submissions.sid = ' . $showid . ', 1, 0)',
+		  'table' => '',
+		  'alias' => 'is_the_one',
+		);
 
-				// By default, the view orders by submitted DESC first.  This won't work with this.
-				// So clear out the original order by, and re-order with is_the_one first, then submitted.
-				unset($query->orderby[0]);
-				$query->orderby[] = array(
-				  'field' => 'is_the_one',
-				  'direction' => 'DESC',
-				);
-				$query->orderby[] = array(
-				  'field' => 'webform_submissions.submitted',
-				  'direction' => 'DESC',
-				);
-			}
+		// By default, the view orders by submitted DESC first.  This won't work with this.
+		// So clear out the original order by, and re-order with is_the_one first, then submitted.
+		unset($query->orderby[0]);
+		$query->orderby[] = array(
+		  'field' => 'is_the_one',
+		  'direction' => 'DESC',
+		);
+		$query->orderby[] = array(
+		  'field' => 'webform_submissions.submitted',
+		  'direction' => 'DESC',
+		);
+	  }
 
-			if (preg_match('#^\/' . CRAZY_ROOT . '/time-(today|week)$#i', request_uri(), $time)) {
-				$time = $time[1];
+      if (preg_match('#^\/' . CRAZY_ROOT . '/time-(today|week)$#i', request_uri(), $time)) {
+		$time = $time[1];
 
-				// Gets submissions posted today.
-				if ($time == 'today') {
-				   $query->where[1]['conditions'][] = array(
-					 'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') = :today",
-					 'value' => array(':today' => date('Y-m-d', REQUEST_TIME)),
-				 	 'operator' => 'formula',
-				   );
-				}
-				// Gets submissions posted this week.
-				else if ($time == 'week') {
-				   $query->where[1]['conditions'][] = array(
-					  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
-					  'value' => array(
-							':last_week' => date('Y-m-d', strtotime('7 days ago')),
-							':today' => date('Y-m-d', REQUEST_TIME),
-						),
-					  'operator' => 'formula',
-				   );
-				}
-			}
+		// Gets submissions posted today.
+		if ($time == 'today') {
+		   $query->where[1]['conditions'][] = array(
+			 'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') = :today",
+			 'value' => array(':today' => date('Y-m-d', REQUEST_TIME)),
+		 	 'operator' => 'formula',
+		   );
 		}
-
-		// If we're viewing the friends gallery page, only show submissions by my Facebook friends.
-		if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
-			$facebook = crazy_load_fb();
-	  		module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
-
-	  		$access_token = $facebook->getAccessToken();
-	  		// Try and get the $fbuser object
-  	  		$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
-			  global $user;
-
-			  $f = array(
-				0 => fboauth_fbid_load($user->uid),
-			  );
-			  foreach ($friends->data AS $key => $friend) {
-				$f[] = $friend->id;
-			  }
-
-			  $ids = crazy_fb_get_multi_fbids($f);
-			
-			if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
-		  	  $query->where[1]['conditions'][] = array(
-		  	  	'field' => 'webform_submissions.uid',
-		  	  	'value' => $ids,
-		  	  	'operator' => 'in',
-		  	  );
-			}
+		// Gets submissions posted this week.
+		else if ($time == 'week') {
+		   $query->where[1]['conditions'][] = array(
+			  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
+			  'value' => array(
+				  ':last_week' => date('Y-m-d', strtotime('7 days ago')),
+				  ':today' => date('Y-m-d', REQUEST_TIME),
+				),
+		  	  'operator' => 'formula',
+		   );
 		}
 	}
+  }
+
+  // If we're viewing the friends gallery page, only show submissions by my Facebook friends.
+  if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
+	$facebook = crazy_load_fb();
+	module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
+
+	$access_token = $facebook->getAccessToken();
+	// Try and get the $fbuser object
+	$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
+    global $user;
+
+    $f = array(
+	   0 => fboauth_fbid_load($user->uid),
+	);
+	foreach ($friends->data AS $key => $friend) {
+	   $f[] = $friend->id;
+	}
+
+	$ids = crazy_fb_get_multi_fbids($f);
+			
+	if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
+	  $query->where[1]['conditions'][] = array(
+	  	 'field' => 'webform_submissions.uid',
+	   	 'value' => $ids,
+		 'operator' => 'in',
+ 	  );
+	}
+  }
+ }
 }
 
 /**
@@ -677,13 +695,13 @@ function crazyshit_form_alter(&$form, &$form_state, $form_id) {
  *	Adds text to the image.
  */
 function crazyshit_add_text_to_image($form, &$form_state) {
-	$top = $form_state['input']['submitted']['field_crazy_top_text'][LANGUAGE_NONE][0]['value'];
-	$bottom = $form_state['input']['submitted']['field_crazy_bottom_text'][LANGUAGE_NONE][0]['value'];
+  $top = $form_state['input']['submitted']['field_crazy_top_text'][LANGUAGE_NONE][0]['value'];
+  $bottom = $form_state['input']['submitted']['field_crazy_bottom_text'][LANGUAGE_NONE][0]['value'];
 
-	$path = drupal_realpath('public://') . '/styles/crazy_image_dimensions/public/crazyshit/' . basename($form_state['file_path']);
+  $path = drupal_realpath('public://') . '/styles/crazy_image_dimensions/public/crazyshit/' . basename($form_state['file_path']);
 
-	include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/includes/image.php';
-	write_text_to_image($path, $top, $bottom);
+  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/includes/image.php';
+  write_text_to_image($path, $top, $bottom);
 }
 
 /**

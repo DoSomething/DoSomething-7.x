@@ -24,6 +24,39 @@ function crazyshit_default_fe_block_settings() {
     ),
   );
 
+  // crazyshit
+  $theme = array();
+
+  $theme['views-crazy_shit_landing-block'] = array(
+    'module' => 'views',
+    'delta' => 'crazy_shit_landing-block',
+    'theme' => 'crazyshit',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['views-crazy_shit_landing-friends_view'] = array(
+    'module' => 'views',
+    'delta' => 'crazy_shit_landing-friends_view',
+    'theme' => 'crazyshit',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $export['theme']['crazyshit'] = $theme;
+
   // doit
   $theme = array();
 
