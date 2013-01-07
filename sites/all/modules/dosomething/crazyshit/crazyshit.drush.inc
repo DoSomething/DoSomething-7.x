@@ -13,6 +13,7 @@ function crazyshit_drush_command() {
 
 function drush_crazyshit_crazy_migrate() {
   try {
+
     drush_log('Enabling infinite scroll module.', 'notice');
     $modules = array(
       'views_infinite_scroll',
