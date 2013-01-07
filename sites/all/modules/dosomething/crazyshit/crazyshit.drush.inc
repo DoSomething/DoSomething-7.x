@@ -13,6 +13,12 @@ function crazyshit_drush_command() {
 
 function drush_crazyshit_crazy_migrate() {
   try {
+    drush_log('Enabling infinite scroll module.', 'notice');
+    $modules = array(
+      'views_infinite_scroll',
+    );
+    drush_invoke_process('@self', 'en', $modules, array('--yes', '--verbose'));
+
     $file = drupal_get_path('module', 'crazyshit') . '/node/webform.structure.txt';
     drush_log('Creating the webform...', 'notice');
     dosomething_general_save_node_from_file($file, 'crazy/submit', 'crazy_webform_id');
