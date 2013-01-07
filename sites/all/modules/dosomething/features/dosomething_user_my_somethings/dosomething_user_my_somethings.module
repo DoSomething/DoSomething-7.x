@@ -218,6 +218,7 @@ function dosomething_user_my_somethings_make_links($config, $uid, $era) {
             $replacements['%' . $field] = $s->$field;
           }
           $link = strtr($c['link_path'], $replacements);
+
           $items[$type]['children'][] = l($title, $link);
         }
       }
@@ -239,6 +240,12 @@ function dosomething_user_my_somethings_my_current_somethings() {
     'link_id_fields' => array('nid', 'sid'),
   );
 
+  $project_defaults = array(
+    'title_field' => 'title',
+    'link_path' => 'webform-submission/%sid',
+    'link_id_fields' => array('nid', 'sid'),
+  );
+
   $somethings_info = array(
     'grant_application' => array(
       'title' => t('Grant Applications'),
@@ -249,7 +256,7 @@ function dosomething_user_my_somethings_my_current_somethings() {
     'project_report' => array(
       'title' => t('Project Reports'),
       'title_field' => 'field_project_title_value',
-    ) + $defaults,
+    ) + $project_defaults,
     'campaign_report_back' => array(
       'title' => t('Campaigns'),
       'title_field' => 'campaign_title',
