@@ -5,7 +5,26 @@ function crazyshit_drush_command() {
     'crazy-messages' => array(
       'description' => 'Send aggregate notifications from Crazy $#!T',
     ),
+    'crazy-migrate' => array(
+      'description' => 'Migrates Crazy $#!T Module to a new machine.',
+    ),
   );
+}
+
+function drush_crazyshit_crazy_migrate() {
+  try {
+    $file = drupal_get_path('module', 'crazyshit') . '/node/webform.structure.txt';
+    drush_log('Creating the webform...', 'notice');
+    dosomething_general_save_node_from_file($file, 'crazy/submit', 'crazy_webform_id');
+
+    drush_log('Clearing cache...', 'notice');
+    cache_clear_all();
+
+    drush_log('Crazy $#!T Campaign is set up!', 'success');
+  }
+  catch (Exception $e) {
+    drush_log(dt('Sorry, there was an error: @error', array('@error' => $e->getMessage())), 'error');
+  }
 }
 
 function drush_crazyshit_crazy_messages() {

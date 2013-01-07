@@ -15,6 +15,49 @@ function dosomething_general_init() {
   ));
 }
 
+/**
+ *  Loads a .txt file and creates a webform from the serialized
+ *  content within.
+ *
+ *  @param $path
+ *    The relative URI to the file that has the serialized node structure.
+ *
+ *  @param $alias
+ *    The alias for the node in question.
+ *
+ *  @param $variable
+ *    An (optional) variable to populate with the node ID.
+ *
+ *  @return $webform
+ *    Returns the node'd webform structure.
+ */
+function dosomething_general_save_node_from_file($path, $alias, $variable = null) {
+  $webform = unserialize(file_get_contents($path));
+  $webform_data = $webform->webform;
+  unset($webform->webform);
+  node_save($webform);
+  unset ($webform->webform);
+
+  dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
+  $webform->webform = $webform_data;
+  $webform_data['nid'] = $webform->nid;
+  $webform->webform['record_exists'] = TRUE;
+  foreach ($webform->webform['components'] as $key => $component) {
+    $webform->webform['components'][$key]['nid'] = $webform->nid;
+    if (!$webform->webform['components'][$key]['mandatory']) {
+      $webform->webform['components'][$key]['mandatory'] = 0;
+    }
+  }
+  $webform->path = array('alias' => $alias, 'pathauto' => FALSE);
+  node_save($webform);
+
+  if (!empty($variable)) {
+    variable_set($variable, $webform->nid);
+  }
+
+  return $webform;
+}
+
 function dosomething_general_censor_word($word, $backup = 'Anonymous') {
   $curses = array('anus', 'arse ', 'arsehole', 'ass ', 'ass-hat ', 'ass-jabber', 'ass-pirate ', 'assbag', 'assbandit ', 'assbanger', 'assbite ', 'assclown ', 'asscock ', 'asscracker', 'asses', 'assface', 'assfuck', 'assfucker', 'assgoblin', 'asshat ', 'asshead', 'asshole', 'asshopper', 'assjacker', 'asslick ', 'asslicker', 'assmonkey', 'assmunch', 'assmuncher ', 'asspirate ', 'assshit ', 'assshole ', 'asssucker', 'asswad', 'asswipe ', 'axwound ', 'bastard ', 'beaner ', 'bitch ', 'bitchass ', 'bitches ', 'bitchtits ', 'bitchy ', 'blow job ', 'blowjob ', 'bollocks ', 'bollox ', 'boner', 'brotherfucker', 'bullshit', 'bumblefuck ', 'butt plug ', 'butt-pirate ', 'buttfucka ', 'buttfucker', 'camel toe ', 'carpetmuncher ', 'chesticle ', 'chinc', 'chink ', 'choad ', 'chode ', 'clit ', 'clitface ', 'clitfuck ', 'clusterfuck ', 'cock ', 'cockass ', 'cockbite ', 'cockburger ', 'cockface ', 'cockfucker ', 'cockhead ', 'cockjockey', 'cockknoker ', 'cockmaster ', 'cockmongler ', 'cockmongruel ', 'cockmonkey ', 'cockmuncher ', 'cocknose ', 'cocknugget ', 'cockshit', 'cocksmith ', 'cocksmoke ', 'cocksmoker ', 'cocksniffer', 'cocksucker ', 'cockwaffle ', 'coochie ', 'coochy ', 'coon ', 'cooter ', 'cum', 'cumbubble ', 'cumdumpster', 'cumguzzler', 'cumjockey', 'cumslut ', 'cumtart ', 'cunnie ', 'cunnilingus', 'cunt ', 'cuntass ', 'cuntface', 'cunthole ', 'cuntlicker', 'cuntrag', 'cuntslut ', 'dago', 'damn', 'deggo', 'dick', 'dick-sneeze', 'dickbag', 'dickbeaters', 'dickface', 'dickfuck', 'dickfucker', 'dickhead', 'dickhole', 'dickjuice', 'dickmilk', 'dickmonger', 'dicks', 'dickslap', 'dicksucker', 'dicksucking', 'dicktickler', 'dickwad', 'dickweasel', 'dickweed', 'dickwod', 'dike', 'dildo', 'dipshit', 'doochbag', 'dookie', 'douche', 'douche-fag', 'douchebag', 'douchewaffle', 'dumass', 'dumb ass', 'dumbass', 'dumbfuck', 'dumbshit', 'dumshit', 'dyke', 'fag', 'fagbag', 'fagfucker', 'faggit', 'faggot', 'faggotcock', 'fagtard', 'fatass', 'fellatio', 'feltch', 'flamer', 'fuck', 'fuckass', 'fuckbag', 'fuckboy', 'fuckbrain', 'fuckbutt', 'fuckbutter', 'fucked', 'fucker', 'fuckersucker', 'fuckface', 'fuckhead', 'fuckhole', 'fuckin', 'fucking', 'fucknut', 'fucknutt', 'fuckoff', 'fucks', 'fuckstick', 'fucktard', 'fucktart', 'fuckup', 'fuckwad', 'fuckwit', 'fuckwitt', 'fudgepacker', 'gay', 'gayass', 'gaybob', 'gaydo', 'gayfuck', 'gayfuckist', 'gaylord', 'gaytard', 'gaywad', 'goddamn', 'goddamnit', 'gooch', 'gook', 'gringo', 'guido', 'handjob', 'hard on', 'heeb', 'hell', 'ho', 'hoe', 'homo', 'homodumbshit', 'honkey', 'humping', 'jackass', 'jagoff', 'jap', 'jerk off', 'jerkass', 'jigaboo', 'jizz', 'jungle bunny', 'junglebunny', 'kike', 'kooch', 'kootch', 'kraut', 'kunt', 'kyke', 'lameass', 'lardass', 'lesbian', 'lesbo', 'lezzie', 'mcfagget', 'mick', 'minge', 'mothafucka', 'mothafuckin', 'motherfucker', 'motherfucking', 'muff', 'muffdiver', 'munging', 'negro', 'nigaboo', 'nigga', 'nigger', 'niggers', 'niglet', 'nut sack', 'nutsack', 'paki', 'panooch', 'pecker', 'peckerhead', 'penis', 'penisbanger', 'penisfucker', 'penispuffer', 'piss', 'pissed', 'pissed off', 'pissflaps', 'polesmoker', 'pollock', 'poon', 'poonani', 'poonany', 'poontang', 'porch monkey', 'porchmonkey', 'prick', 'punanny', 'punta', 'pussies', 'pussy', 'pussylicking', 'puto', 'queef', 'queer', 'queerbait', 'queerhole', 'renob', 'rimjob', 'ruski', 'sand nigger', 'sandnigger', 'schlong', 'scrote', 'shit', 'shitass', 'shitbag', 'shitbagger', 'shitbrains', 'shitbreath', 'shitcanned', 'shitcunt', 'shitdick', 'shitface', 'shitfaced', 'shithead', 'shithole', 'shithouse', 'shitspitter', 'shitstain', 'shitter', 'shittiest', 'shitting', 'shitty', 'shiz', 'shiznit', 'skank', 'skeet', 'skullfuck', 'slut', 'slutbag', 'smeg', 'snatch', 'spic', 'spick', 'splooge', 'spook', 'suckass', 'tard', 'testicle', 'thundercunt', 'tit', 'titfuck', 'tits', 'tittyfuck', 'twat', 'twatlips', 'twats', 'twatwaffle', 'unclefucker', 'vajj', 'vag', 'vagina', 'vajayjay', 'vjayjay', 'wank', 'wankjob', 'wetback', 'whore', 'whorebag', 'whoreface', 'wop');
 
@@ -169,6 +212,7 @@ function dosomething_general_page_alter(&$page) {
  */
 function dosomething_general_js_alter(&$javascript) {
   // Set all aggregated javascript to the JS_DEFAULT group.
+  // Possible values: JS_LIBRARY, JS_DEFAULT, and JS_THEME
   // This prevents individual js files per group
   uasort($javascript, 'drupal_sort_css_js');
   $i = 0;
@@ -181,18 +225,37 @@ function dosomething_general_js_alter(&$javascript) {
 
 /**
  * Implements hook_css_alter().
+ *
+ * Added to control how css files are grouped together when agrigration is enabled
+ * Note condition added to break the grouping into two sets as grouping everything
+ * into a single file was result in a file that contained over 
  */
+
+ /* Pulled due to continued IE8 issues
+  * 
 function dosomething_general_css_alter(&$css) {
   // Set all aggregated css to the CSS_DEFAULT group.
   // This prevents individual css files per group
+  // Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
+  
   uasort($css, 'drupal_sort_css_js');
   $i = 0;
   foreach ($css as $name => $style) {
     $css[$name]['weight'] = $i++;
-    $css[$name]['group'] = CSS_DEFAULT;
+    
+    // Break grouping into two sets - CSS_SYSTEM, (-100) and the rest
+    if ($style['group'] == -100) {
+      $css[$name]['group'] = CSS_SYSTEM;
+    }
+    else {
+      $css[$name]['group'] = CSS_DEFAULT;
+    }
+    
     $css[$name]['every_page'] = FALSE;
   }
 }
+
+*/
 
 /**
  * Implements hook_theme().
@@ -860,13 +923,6 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
 
-  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
-  if (!empty($cell)) {
-    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
-      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
-    }
-  }
-
   // Different instances of the email field use different widgets so we have to
   // look in two places to find their email address.
   if (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
@@ -875,14 +931,32 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   elseif (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
     $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
   }
+  elseif (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
+    if (strpos($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'], '@') > 0) {
+      $email = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']; 
+    }
+    else {
+      $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
+    }
+  }
+  
   if (!empty($email)) {
     if (!empty($node->field_infusion_action[LANGUAGE_NONE][0]['value'])) {
       dosomething_general_infusionsoft_subscribe($email, $node->field_infusion_action[LANGUAGE_NONE][0]['value']);
     }
-    if (!empty($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
-      dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']);
+    if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mailchimp_subscribe($email, $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']);
     }
   }
+  
+  // Will use previous cell value if already set from Petition submission
+  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
+  if (!empty($cell)) {
+    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
+      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
+    }
+  }
+  
 }
 
 /**
@@ -1005,6 +1079,40 @@ function dosomething_general_infusionsoft_subscribe($emails, $action_id) {
       }
     }
   }
+}
+
+/**
+ * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
+ * configured opt-in path.  Send messages to friends as well.
+ */
+function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_opt_in_path, $beta_mobiles, $beta_opt_in_path, $args = array()) {
+  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
+
+  $friends = '';
+  foreach ($beta_mobiles AS $key => $mobile) {
+    if (!empty($mobile) && dosomething_general_valid_cell($mobile)) {
+      $friends .= '&friend[]=' . $mobile;
+    }
+  }
+
+  $friends .= '&friends_opt_in_path=' . $beta_opt_in_path;
+  // Send the post data.
+  $options = array(
+    'headers' => array(
+      'Content-type' => 'application/x-www-form-urlencoded',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    ),
+    'method' => 'POST',
+    'data' => "person[phone]=$alpha_mobile&opt_in_path[]=$alpha_opt_in_path" . $friends,
+  );
+
+  if (!empty($args)) {
+    foreach ($args AS $key => $val) {
+      $options['data'] .= "&person[$key]=" . urlencode($val);
+    }
+  }
+
+  drupal_http_request($api_opt_in_path_url, $options);
 }
 
 /**
@@ -1233,7 +1341,10 @@ function dosomething_general_form_webform_client_validate($form, &$form_state) {
 
       if ($phone_account = dosomething_general_find_user_by_cell($valid_number)) {
         if ($phone_account->uid != $account->uid) {
-          form_set_error('submitted][field_webform_mobile', t('The provided cell phone number is already in use by another account.'));
+          form_set_error('submitted][field_webform_mobile', t('The provided cell phone number is already in use by another account.  !goback', array(
+            '!goback' => l(t('Go back?'), $_SERVER['HTTP_REFERER'])
+            )
+          ));
         }
       }
     }
