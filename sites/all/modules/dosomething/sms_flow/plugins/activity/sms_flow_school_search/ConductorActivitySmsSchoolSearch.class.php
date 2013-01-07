@@ -92,6 +92,9 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
 
         if (count($data) == 0) {
           $response = self::ERROR_RESPONSE;
+
+          $this->removeOutput('check_account_exists');
+          $state->markCompleted();
         }
         else {
           $num_schools = count($data) > self::MAX_RESULTS ? self::MAX_RESULTS : count($data);
@@ -108,9 +111,8 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
           }
 
           $response .= "Text back your school ID# to start your drive. Didn't find your school? Text JEANS to try again. Or visit http://doso.me/6 for more info.";
+          $state->markSuspended();
         }
-
-        $state->markSuspended();
       }
       else {
         $response = self::ERROR_RESPONSE;
@@ -123,7 +125,6 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
     }
     // Second time through, user has replied to activity with either school id or something else
     else {
-      $response = 'user reply: '.$user_reply;
       $words = explode(' ', $user_reply);
       $first_word = $words[0];
 
