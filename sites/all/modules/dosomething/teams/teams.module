@@ -508,7 +508,7 @@ function teams_join_by_url($gid, $hash, $uid = FALSE, $redirect = TRUE) {
     $url = drupal_lookup_path('alias', 'node/' . $campaign->nid);
 
     $params = array(
-      'account' => $user,
+      'account' => $account->name,
       'link' => url("my-team/$url", array(
         'absolute' => true,
       )),
