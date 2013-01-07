@@ -11,11 +11,16 @@ A few things to note
 
 The campaign sits within the "doit" theme, but has several default stylesheets of its own:
 
-crazy.css (crazy.sass) is called on all "crazy" pages.
+crazy.css (crazy.sass) is called on all "crazy/*" pages.
 crazy-form.css (crazy-form.sass) handles the submission flow: /crazy/submit, etc.
 crazy-about.css (crazy-about.sass) handles all "about" pages.
 
-More stylesheets may be added by editing the $crazy_css array in plugin.php.  See the documentation for that for more information
+Javascript is similar:
+
+crazy.js is called on all "crazy/*" pages
+crazy-form.js is called on all submission flow pages (/crazy/submit/*)
+
+More stylesheets and javascripts may be added by editing the $crazy_css and $crazy_js arrays, respectively, in plugin.php.  See the documentation for the arrays for more information.
 
 The plugin file found at [/sites/all/modules/dosomething/crazyshit/plugin.php] contains a number of options and settings for the campaign.  It is documented but if you have any questions, feel free to ask.
 

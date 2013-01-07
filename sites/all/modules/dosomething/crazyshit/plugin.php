@@ -101,7 +101,7 @@ $submit_form = array(
 
 /** 
   * An array of arrays indicating the page(s) you want CSS to show up on.
-  * The array should be a list of CSS files.
+  * The sub-array should be a list of CSS files.
   *
   * Sub-sections are counted.  For example: "crazy/about" will match crazy/about/tips
   * and "crazy" by itself will match everything.
@@ -118,6 +118,25 @@ $crazy_css = array(
 	),
 	'crazy/submit' => array(
 		'crazy-form.css',
+	),
+);
+
+/** 
+  * An array of arrays indicating the page(s) you want JS to show up on.
+  * The sub-array should be a list of JS files.
+  *
+  * Sub-sections are counted.  For example: "crazy/about" will match crazy/about/tips
+  * and "crazy" by itself will match everything.
+  *
+  * All javascript will be loaded from /sites/all/modules/dosomething/crazyshit/js in the order
+  * that they are listed below.
+  */
+$crazy_js = array(
+	'crazy' => array(
+		'crazy.js',
+	),
+	'crazy/submit' => array(
+		'crazy-form.js',
 	),
 );
 
