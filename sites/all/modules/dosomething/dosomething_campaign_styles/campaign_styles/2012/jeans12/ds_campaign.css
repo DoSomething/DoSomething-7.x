@@ -321,6 +321,9 @@ body {
   text-transform: uppercase; }
 
 #counter_wrapper {
+  display: none; }
+
+#counter_wrapper {
   background: #0c3565;
   width: 215px;
   margin: 0 0 0 -16px;
@@ -963,10 +966,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
     padding: 2% 2% 0 2%;
     text-align: center; }
   #cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
-    float: left;
-    padding: 0 1.5%; }
+    float: left; }
   #cmp .col33 {
     width: 33%; }
+  #cmp .col33-inner {
+    padding: 0 1.5%; }
   #cmp .col40 {
     width: 40%; }
   #cmp .col50 {
