@@ -68,10 +68,10 @@ class ConductorActivityCreateDrive extends ConductorActivity {
           // If new_account_password is set, indicates a new user was created previously in the flow
           $new_account_password = $state->getContext('new_account_password');
           if ($new_account_password !== FALSE) {
-            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive and to receive a T4J banner! Login at http://doso.me/6. Ur password is: @pass. Text us friends\' #s to invite them to the drive', array('@pass' => $new_account_password)));
+            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive and to receive a T4J banner! Login at http://doso.me/6. Ur password is: @pass. Text us your friends\' #s to invite them too', array('@pass' => $new_account_password)));
           }
           else {
-            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive and to receive a T4J banner! Login at http://doso.me/6. Text us your friends\' #s to invite them to the drives_invite_gid'));
+            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive, and signed up to receive a T4J banner! Login at http://doso.me/6. Text us your friends\' #s to invite them too'));
           }
         }
       }
