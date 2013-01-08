@@ -1264,8 +1264,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 1em auto; }
   #cmp .views-field-nothing a.go-button {
     position: static; }
-  #cmp #content-module .jeans-divider {
-    margin-bottom: 5%; }
+  #cmp .jeans-divider {
+    margin-bottom: 4%; }
   #cmp .free-banner {
     float: right;
     margin-top: -4%; }
@@ -1374,11 +1374,15 @@ div[aria-labelledby="ui-dialog-title-1"] {
       right: -22px; }
   #cmp .refer5-inner {
     padding: 3%; }
+  #cmp #prizing h2 {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 20px; }
   #cmp #prizing h3 {
     margin: 1em 0; }
   #cmp #prizing p {
     width: 70%;
-    margin: 3em auto; }
+    margin: 4% auto; }
   #cmp #psa.section {
     padding-bottom: 3%; }
     #cmp #psa.section h2 {
