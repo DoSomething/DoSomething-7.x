@@ -1,5 +1,47 @@
 <?php
 
+/**
+ * @file
+ * Implements teaming functionality for campaigns.
+ *
+ * We create teams based on campaign sign ups. There are a few categorizations
+ * of teams:
+ *
+ * 1. A team with a team leader, where group members join the team by knowing
+ *    the team leader's email or cell number.
+ * 2. A team with a name where team members join by clicking "join" on the team
+ *    page.
+ * 3. A team created strictly based on school name that can be joined by
+ *    clicking "join" on a team page.
+ *
+ * The different types of teams get their functionality based on which fields
+ * are turned on on the campaign_sign_up node edit page. See teams_form_alter
+ * below for the three cases. Given the types of teams above, the three field
+ * combinations below will yield the type above:
+ *
+ * 1. field_team_name, field_leader_info
+ * 2. field_team_name (without field_leader_info)
+ * 3. field_webform_school_reference (without field_team_name)
+ *
+ *
+ * GENERAL ARCHITECTURE
+ *
+ * Teams are organic groups. This is SEPARATE from the campaign organic group.
+ * In other words, in the og table in the database, the entity_type will be
+ * webform_submission_entity. Note that it is important to make sure that ALL
+ * submissions are recorded for reporting purposes, so we manipulate the
+ * group_group field a lot to determine whether or not a submission will become
+ * an organic group (these are still all campaign sign ups). An example case is
+ * school-based teams. We still want all sign-ups to happen, but we only need
+ * one group per school, so we set group_group to 0 if there is already a group
+ * created for that school, submit the form anyway, and join the user to the
+ * first school submission.
+ *
+ * Team pages are created as panel pages based on the campaign slug and the GID
+ * of the organic group.
+ *
+ */
+
 include_once('teams.features.inc');
 
 /**
@@ -10,6 +52,7 @@ function teams_form_alter(&$form, &$form_state, $form_id) {
     return;
   }
 
+  // some shortcut references
   $entity_form = &$form['submitted'];
   $node = $form['#node'];
 
@@ -28,25 +71,38 @@ function teams_form_alter(&$form, &$form_state, $form_id) {
         $form['#validate'][] = 'teams_form_validate';
         $form['#submit'][] = 'teams_form_submit';
       }
+      // users will be joining teams by clicking a join button on the team page rather than
+      // by entering the leader's info
       else if (in_array('field_team_name', $values)) {
         $form['#validate'][] = 'teams_form_validate_group_only';
         $form['#submit'][] = 'teams_form_submit_group_only';
       }
+      // teams will be created for schools
       else if (in_array('field_webform_school_reference', $values)) {
         $form['#validate'][] = 'teams_form_validate_school';
+        // we use the normal teams_form_submit by setting the field_leader_info
+        // and field_team_name in the validate function, because the logic is
+        // the same. See: teams_form_validate_school
         $form['#submit'][] = 'teams_form_submit';
       }
     }
   }
 }
 
+/**
+ * Check if a team is a school-based team.
+ */
 function teams_is_school_team($submission) {
+  // grab the parent node
   $node = reset(entity_load('node', array($submission->nid)));
+
+  // make sure no one deleted the field
   if (isset($node->field_signup_magic_fields)) {
     $values = array();
     foreach ($node->field_signup_magic_fields[LANGUAGE_NONE] as $field) {
       $values[] = $field['value'];
     }
+    // it's a school team if we don't ask users for a team name but we do ask for their school
     if (in_array('field_webform_school_reference', $values) && !in_array('field_team_name', $values)) {
       return true;
     }
@@ -54,17 +110,27 @@ function teams_is_school_team($submission) {
   return false;
 }
 
+/**
+ * Validate the form if it's a school-based team
+ */
 function teams_form_validate_school(&$form, &$form_state) {
   // set the team name to the school ID
   if (isset($form['#submission']->submitted)) {
+    // shortcut variables
     $sub = &$form['#submission']->submitted;
     $school = reset(entity_load('ds_school', array($sub['field_webform_school_reference'][LANGUAGE_NONE][0]['target_id'])));
+
     $team_name = "School {$school->sid}";
+    // if there's already a team based on this school, we're going to pretend
+    // that the user entered leader_info so they get joined to the team when
+    // teams_form_submit gets called.
     if (teams_team_exists($team_name, $form['#node']->nid)) {
       $sid = teams_get_team_sid_from_name($team_name, $form['#node']->nid);
       $parent_entity = reset(entity_load('webform_submission_entity', array($sid)));
       $form_state['teams_leader'] = user_load($parent_entity->uid);
     }
+    // otherwise, we're going to create a team, so we need to make sure it has
+    // a team name
     else {
       $form_state['values']['submitted']['field_team_name'][LANGUAGE_NONE][0]['value'] = $team_name;
       $form_state['values']['submitted']['group_group'][LANGUAGE_NONE][0]['value'] = 1;
@@ -72,6 +138,10 @@ function teams_form_validate_school(&$form, &$form_state) {
   }
 }
 
+/**
+ * Validate the team if we're just creating a group (not allowing for people to
+ * join based on the creator's contact info).
+ */
 function teams_form_validate_group_only(&$form, &$form_state) {
   if (isset($form['#submission']->submitted)) {
     $sub = $form['#submission']->submitted;
@@ -85,10 +155,17 @@ function teams_form_validate_group_only(&$form, &$form_state) {
   }
 }
 
+/**
+ * Unused, but placeholder for submit function for teams that only allow joining
+ * by clicking "join" on the team page.
+ */
 function teams_form_submit_group_only(&$form, &$form_state) {
   $sid = $form_state['values']['details']['sid'];
 }
 
+/**
+ * Validate teams of type 1.
+ */
 function teams_form_validate(&$form, &$form_state) {
   if (isset($form['#submission']->submitted)) {
     $sub = $form['#submission']->submitted;
@@ -115,13 +192,18 @@ function teams_form_validate(&$form, &$form_state) {
   }
 }
 
+/**
+ * Create a team!
+ */
 function teams_form_submit(&$form, &$form_state) {
+  // some shortcut variables
   $sub = $form_state['webform_entity']['submission']->submitted;
   $sid = $form_state['values']['details']['sid'];
   $nid = $form_state['values']['details']['nid'];
   $team_name = $sub['field_team_name'][LANGUAGE_NONE][0]['value'];
   $friends = $sub['field_team_invite'][LANGUAGE_NONE];
 
+  // if team name is not empty, then we're creating a new team
   if (!empty($team_name)) {
     $gid = og_get_group('webform_submission_entity', $sid, true)->gid;
     // invite friends
@@ -131,11 +213,19 @@ function teams_form_submit(&$form, &$form_state) {
       }
     }
   }
+  // otherwise, we're joining a team so we don't need to create a group
   else {
     $groups = og_get_entity_groups('user', $form_state['teams_leader']);
     $groups = og_load_multiple($groups);
+    // grab all groups that field_team_leader is joined to and iterate through them
     foreach ($groups as $group) {
       $entity = $group->getEntity();
+      // if the group is a campaign sign up and it's of the NID that we're submitting,
+      // then this is the group we want to join.
+      //
+      // NOTE: This means that if one user somehow created multiple teams for one
+      // campaign, then anyone joining by field_team_leader will be joined to
+      // all of that user's teams
       if (isset($entity->bundle) && $entity->bundle == 'campaign_sign_up') {
         if ($entity->nid == $nid) {
           og_group($group->gid, array(
@@ -147,6 +237,9 @@ function teams_form_submit(&$form, &$form_state) {
   }
 }
 
+/**
+ * Check if a team exists given a team name and an NID.
+ */
 function teams_team_exists($team_name, $webform_nid) {
   $query = db_select('webform_submissions', 'wf');
   $query->addJoin('INNER', 'og', 'og', 'etid=sid');
@@ -159,6 +252,10 @@ function teams_team_exists($team_name, $webform_nid) {
   return (bool)$result;
 }
 
+/**
+ * Since team names have to be unique, we can translate a team name + NID to a
+ * sid.
+ */
 function teams_get_team_sid_from_name($team_name, $webform_nid) {
   $query = db_select('webform_submissions', 'wf');
   $query->addJoin('INNER', 'og', 'og', 'etid=sid');
@@ -196,6 +293,8 @@ function teams_menu() {
     'access callback' => true,
   );
 
+  // Join a team based on gid and a group hash to protect against
+  // being able to join any random team.
   $items['teams/join/%/%'] = array(
     'page callback' => 'teams_join_by_url',
     'page arguments' => array(2,3),
@@ -295,6 +394,9 @@ function teams_block_view($delta = '') {
   return $block;
 }
 
+/**
+ * Get the UIDs of members of a team based on the og gid.
+ */
 function teams_get_member_uids($gid) {
   $query = db_select('og_membership', 'ogm');
   $query->addJoin('inner', 'users', 'u', 'etid=uid');
@@ -307,6 +409,9 @@ function teams_get_member_uids($gid) {
   return $uids;
 }
 
+/**
+ * Return the add member form.
+ */
 function teams_add_member_form($form, &$form_state, $gid) {
   $form['friend'] = array(
     '#type' => 'textfield',
@@ -341,6 +446,9 @@ function teams_add_member_form($form, &$form_state, $gid) {
   return $form;
 }
 
+/**
+ * Return the remove member form.
+ */
 function teams_remove_member_form($form, &$form_state, $gid, $uid) {
   $form['uid'] = array(
     '#type' => 'hidden',
@@ -371,6 +479,9 @@ function teams_remove_member_form($form, &$form_state, $gid, $uid) {
   return $form;
 }
 
+/**
+ * Add a member to a team via AJAX.
+ */
 function teams_ajax_add_member($form, $form_state) {
   if (isset($form_state['values']['friend'])) {
     $friend = $form_state['values']['friend'];
@@ -380,6 +491,9 @@ function teams_ajax_add_member($form, $form_state) {
   return 'Please include your friend\'s cell or email.';
 }
 
+/**
+ * Add a member to a team.
+ */
 function teams_add_member($friend, $gid) {
   global $user, $language;
   $type = 'email';
@@ -393,11 +507,14 @@ function teams_add_member($friend, $gid) {
     }
   }
 
+  // some shortcut variables
   $submission = og_load_entity_from_group($gid);
   $submission_form = node_load($submission->nid);
   $campaign = og_load_entity_from_group($submission_form->group_audience[LANGUAGE_NONE][0]['gid']);
   $campaign_url = drupal_lookup_path('alias', 'node/' . $campaign->nid);
 
+  // if we have a user account for this email/cell, let's just join them to
+  // the team and let them know they've been added.
   if ($account = dosomething_general_load_user_by_mail_or_cell($friend)) {
     og_group($gid, array(
       'entity' => $account,
@@ -428,9 +545,10 @@ function teams_add_member($friend, $gid) {
       sms_send($friend, $message);
     }
 
-    // TODO: add the username to the team list. via an ajax command
     return $friend . ' has been added to your team. Feel free to add more!';
   }
+  // if the email/cell doesn't have an associated user account, then we need
+  // to send them a custom URL to join the team.
   else {
     $profile = profile2_load_by_user($user, 'main');
     $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
@@ -467,6 +585,9 @@ function teams_add_member($friend, $gid) {
   }
 }
 
+/**
+ * Remove a member from a team via AJAX.
+ */
 function teams_ajax_remove_member($form, $form_state) {
   $uid = $form_state['values']['uid'];
   $gid = $form_state['values']['gid'];
@@ -477,6 +598,14 @@ function teams_ajax_remove_member($form, $form_state) {
   }
 }
 
+/**
+ * Store the fact that a mobile number has been invited to a team. Currently,
+ * this isn't used, but down the road we could use this table to automatically
+ * join people to a team if they choose to "join a team" via mobile.
+ *
+ * Something like: "We see that Joe invited you to his team. Do you want to join
+ * that team or join another team? TAKEINVITE or JOINNEW."
+ */
 function teams_store_number($number, $gid) {
   $data = array(
     'gid' => $gid,
@@ -485,6 +614,9 @@ function teams_store_number($number, $gid) {
   drupal_write_record('teams_invited', $data);
 }
 
+/**
+ * Join a team by URL.
+ */
 function teams_join_by_url($gid, $hash, $uid = FALSE, $redirect = TRUE) {
   if ($hash === teams_get_group_hash($gid)) {
     $account = NULL;
@@ -496,11 +628,13 @@ function teams_join_by_url($gid, $hash, $uid = FALSE, $redirect = TRUE) {
       $account = user_load($uid);
     }
 
+    // Join the group
     og_group($gid, array(
       'state' => OG_STATE_ACTIVE,
       'entity' => $account,
     ));
 
+    // Send an email.
     $sub = og_load_entity_from_group($gid);
     $owner = user_load($sub->uid);
     $form = node_load($sub->nid);
@@ -524,6 +658,12 @@ function teams_join_by_url($gid, $hash, $uid = FALSE, $redirect = TRUE) {
   }
 }
 
+/**
+ * Join a team by submitting the webform. This is used so that we can track all
+ * campaign signups. In other words, if I go to a team page and click "join",
+ * we want to make sure that that click gets logged as a campaign_sign_up submission
+ * so we get accurate reporting.
+ */
 function teams_join_with_webform_submission($gid, $uid = FALSE, $redirect = TRUE) {
   $account = NULL;
   if (!$uid) {
@@ -569,6 +709,9 @@ function teams_join_with_webform_submission($gid, $uid = FALSE, $redirect = TRUE
   teams_join_by_url($gid, teams_get_group_hash($gid), $uid, $redirect);
 }
 
+/**
+ * Return the group's hash for URLs.
+ */
 function teams_get_group_hash($gid) {
   $sub = og_load_entity_from_group($gid);
   return substr(md5($sub->sid . $sub->nid . 'bananas!'), 0, 8);
@@ -602,6 +745,9 @@ function teams_in_group($url_base) {
   return teams_get_my_teams_for_url($url_base) != array();
 }
 
+/**
+ * Get my teams for a campaign slug
+ */
 function teams_get_my_teams_for_url($url) {
   static $sid;
   global $user;
@@ -626,6 +772,9 @@ function teams_get_my_teams_for_url($url) {
   return $sid;
 }
 
+/**
+ * Figure out the NID of a campaign from the slug.
+ */
 function teams_get_nid_from_path($url) {
   $campaign_path = drupal_lookup_path('source', $url);
   if (strpos($campaign_path, 'node') === 0) {
@@ -657,6 +806,9 @@ function teams_mail($key, &$message, $params) {
   }
 }
 
+/**
+ * Get the full name of a user based on their UID, accounting for empty names.
+ */
 function teams_full_name($uid) {
   $name = dosomething_general_get_full_name($uid);
   if ($name == ' ') {
@@ -688,6 +840,10 @@ function teams_theme($existing, $type, $theme, $path) {
   );
 }
 
+/**
+ * ALL CODE BELOW IS DEPRECATED BUT STANDS AS AN INITIAL MODEL FOR CREATING
+ * AND JOINING TEAM-LEADER BASED CAMPAIGNS.
+ */
 function teams_conductor_sms_keywords() {
   $keywords = array(
     'jointeam' => 'teams_sms_join',
