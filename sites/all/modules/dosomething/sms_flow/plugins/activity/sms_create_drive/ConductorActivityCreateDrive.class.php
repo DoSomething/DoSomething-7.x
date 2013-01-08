@@ -68,15 +68,15 @@ class ConductorActivityCreateDrive extends ConductorActivity {
           // If new_account_password is set, indicates a new user was created previously in the flow
           $new_account_password = $state->getContext('new_account_password');
           if ($new_account_password !== FALSE) {
-            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive. Login at http://doso.me/6. Ur password is: @pass. Once 5 people are signed up, you\'ll get a banner. Text us friends\' #s to invite them', array('@pass' => $new_account_password)));
+            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive and to receive a T4J banner! Login at http://doso.me/6. Ur password is: @pass. Text us friends\' #s to invite them to the drive', array('@pass' => $new_account_password)));
           }
           else {
-            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive. Login at http://doso.me/6. Once 5 people sign up, you\'ll get a banner. Text us your friends\' #s to invite them'));
+            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive and to receive a T4J banner! Login at http://doso.me/6. Text us your friends\' #s to invite them to the drives_invite_gid'));
           }
         }
       }
       else {
-        $state->setContext('sms_response', t('You already signed up for a drive! Login at http://doso.me/6 to visit it. Once 5 people sign up, you\'ll get a T4J banner. Text us ur friends\' #s to invite them'));
+        $state->setContext('sms_response', t('You already signed up for a drive! Login at http://doso.me/6 to visit it. Have friends you want to invite? Reply with their #\'s and we\'ll invite them!'));
       } 
 
       // Gets the GID of the drive this user is a part of. Then sets that value to
