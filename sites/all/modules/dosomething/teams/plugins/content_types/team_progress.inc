@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * @file
+ * Create a progress bar for a team based on how many challenges to date they've
+ * completed. This is only really useful for The Hunt campaign.
+ *
+ * To use this content type, we assume one webform will be filled out by users
+ * per day, so we set a start date and then type in, one per line, the NIDs
+ * of the webform in order of their relevance. In other words, the first NID
+ * entered will be counted towards the total on start_date, the first and second
+ * will be counted on start_date+1.
+ */
+
 function teams_team_progress_ctools_content_types() {
   return array(
     'single' => TRUE,
