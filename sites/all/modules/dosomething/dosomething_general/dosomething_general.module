@@ -1048,7 +1048,7 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
   $friends = '';
   foreach ($beta_mobiles AS $key => $mobile) {
     if (!empty($mobile) && dosomething_general_valid_cell($mobile)) {
-      $friends .= '&friend[]=' . $mobile;
+      $friends .= '&friends[]=' . $mobile;
     }
   }
 
@@ -1069,7 +1069,8 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
     }
   }
 
-  drupal_http_request($api_opt_in_path_url, $options);
+  $result = drupal_http_request($api_opt_in_path_url, $options);
+  return $result;
 }
 
 /**
