@@ -152,7 +152,13 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
         'attributes' => array('target' => '_blank'))), $form['submitted']['referall_your_info']['terms_and_conditions']['#markup']);
       }
 
-      $form_state['goto'] = 'share-these-images/' . $node->nid;
+      $goto = 'share-these-images/' . $node->nid;
+      if (!empty($node->field_redirect_to_path[LANGUAGE_NONE][0]['value'])) {
+        $goto = $node->field_redirect_to_path[LANGUAGE_NONE][0]['value'];
+      }
+
+      $_SESSION['goto'] = $goto;
+      $form_state['goto'] = $goto;
     }
     $form['#submit'][] = 'dosomething_mobile_referral_form_submit';
   }
@@ -342,6 +348,10 @@ function dosomething_mobile_referral_form_submit($form, &$form_state) {
 
   if ("/$goto" == request_uri()) {
     $goto = str_replace($_SERVER['HTTP_ORIGIN'], '', $_SERVER['HTTP_REFERER']);
+  }
+
+  if (isset($_SESSION['goto'])) {
+    unset($_SESSION['goto']);
   }
 
   drupal_set_message(t("Thanks for sharing stats with your friends. You've officially entered to win the scholarship. We'll be announcing the winners on Jan. 9th, so hold tight and keep your crossed 'til then! Questions? Email !e.", array('!e' => l('scholarships@dosomething.org', 'mailto:scholarships@dosomething.org'))));
