@@ -654,11 +654,14 @@ function dosomething_school_sms_query_callback($type, $state, $name) {
 function _dosomething_school_schools_query($type, $state, $name) {
   global $user;
 
+  $name_query = str_replace(array('%20',' ','+'), '%', $name);
+  $name_query = '%' . $name_query . '%';
+
   $entity_type = 'ds_school';
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', $entity_type)
     ->propertyCondition('state', drupal_strtoupper($state))
-    ->propertyCondition('name', $name, 'CONTAINS')
+    ->propertyCondition('name', $name_query, 'LIKE')
     // Only let them see schools owned by themselves or admin.
     ->propertyCondition('uid', array(1, $user->uid), 'IN')
     ->propertyCondition('type', $type)
