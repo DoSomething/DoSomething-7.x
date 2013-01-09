@@ -1,5 +1,7 @@
 <?php
 
+require_once 'dosomething_social_scholars.features.inc';
+
 define('SHARE_A_STAT_NUM_CELLS', 5);
 define('SHARE_A_STAT_USER_TXT', 117381);
 define('SHARE_A_STAT_FRIEND_TXT', 117391);
