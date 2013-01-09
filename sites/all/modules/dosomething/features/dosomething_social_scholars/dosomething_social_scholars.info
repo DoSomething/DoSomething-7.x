@@ -30,6 +30,7 @@ features[field][] = node-social_scholarship-field_fb_language
 features[field][] = node-social_scholarship-field_official_rules_document
 features[field][] = node-social_scholarship-field_petition_image
 features[field][] = node-social_scholarship-field_petition_link
+features[field][] = node-social_scholarship-field_redirect_message
 features[field][] = node-social_scholarship-field_redirect_to_path
 features[field][] = node-social_scholarship-field_social_scholars_images
 features[field][] = webform_submission_entity-social_scholarship-field_social_scholars_cell

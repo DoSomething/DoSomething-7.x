@@ -22,10 +22,10 @@ function dosomething_social_scholars_strongarm() {
           'weight' => '0',
         ),
         'redirect' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'path' => array(
-          'weight' => '12',
+          'weight' => '13',
         ),
       ),
       'display' => array(),
