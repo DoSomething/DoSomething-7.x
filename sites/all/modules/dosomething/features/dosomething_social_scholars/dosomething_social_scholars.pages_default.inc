@@ -102,41 +102,6 @@ function dosomething_social_scholars_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'form';
-    $pane->type = 'node_body';
-    $pane->subtype = 'node_body';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'current_webform_submitted',
-          'settings' => NULL,
-          'context' => array(
-            0 => 'logged-in-user',
-            1 => 'argument_entity_id:node_1',
-          ),
-          'not' => TRUE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 1,
-      'override_title_text' => 'Quick Stats',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array(
-      'css_id' => 'quick-stats-area',
-      'css_class' => '',
-    );
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['form'][0] = 'new-3';
-    $pane = new stdClass();
-    $pane->pid = 'new-4';
-    $pane->panel = 'form';
     $pane->type = 'leading_images';
     $pane->subtype = 'leading_images';
     $pane->shown = TRUE;
@@ -146,20 +111,20 @@ function dosomething_social_scholars_default_page_manager_handlers() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['form'][1] = 'new-4';
+    $display->content['new-3'] = $pane;
+    $display->panels['form'][0] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-4';
     $pane->panel = 'statistics';
     $pane->type = 'block';
-    $pane->subtype = 'webform-client-block-723988';
+    $pane->subtype = 'webform-client-block-724211';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'Send this stat to 5 friends to kick ass',
+      'override_title_text' => 'Share 5 stats to win MILLIONS!',
     );
     $pane->cache = array();
     $pane->style = array();
@@ -167,10 +132,10 @@ function dosomething_social_scholars_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['statistics'][0] = 'new-5';
+    $display->content['new-4'] = $pane;
+    $display->panels['statistics'][0] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-5';
     $pane->panel = 'statistics';
     $pane->type = 'entity_field_extra';
     $pane->subtype = 'node:webform';
@@ -203,8 +168,43 @@ function dosomething_social_scholars_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['statistics'][1] = 'new-5';
+    $pane = new stdClass();
+    $pane->pid = 'new-6';
+    $pane->panel = 'statistics';
+    $pane->type = 'node_body';
+    $pane->subtype = 'node_body';
+    $pane->shown = FALSE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'current_webform_submitted',
+          'settings' => NULL,
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'argument_entity_id:node_1',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 1,
+      'override_title_text' => 'Quick Stats',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => 'quick-stats-area',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
     $display->content['new-6'] = $pane;
-    $display->panels['statistics'][1] = 'new-6';
+    $display->panels['statistics'][2] = 'new-6';
     $pane = new stdClass();
     $pane->pid = 'new-7';
     $pane->panel = 'statistics';
@@ -235,12 +235,12 @@ function dosomething_social_scholars_default_page_manager_handlers() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
     $display->content['new-7'] = $pane;
-    $display->panels['statistics'][2] = 'new-7';
+    $display->panels['statistics'][3] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3';
+  $display->title_pane = 'new-6';
   $handler->conf['display'] = $display;
   $export['node_view_panel_context_4'] = $handler;
 
@@ -294,7 +294,7 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-1';
     $pane->panel = 'center';
     $pane->type = 'shary_images';
     $pane->subtype = 'shary_images';
@@ -307,10 +307,10 @@ function dosomething_social_scholars_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['center'][0] = 'new-8';
+    $display->content['new-1'] = $pane;
+    $display->panels['center'][0] = 'new-1';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-8';
+  $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['animal_cruelty_stats_images'] = $page;
@@ -321,10 +321,23 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $page->name = 'social_scholarship_image_page';
   $page->task = 'page';
   $page->admin_title = 'Social Scholarship Image Page';
-  $page->admin_description = 'Images that appear when you submit the form.';
+  $page->admin_description = '';
   $page->path = 'share-these-images/%node';
-  $page->access = array();
-  $page->menu = array();
+  $page->access = array(
+    'logic' => 'and',
+  );
+  $page->menu = array(
+    'type' => 'none',
+    'title' => '',
+    'name' => 'navigation',
+    'weight' => '0',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'node' => array(
       'id' => 1,
@@ -368,23 +381,7 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-9';
-    $pane->panel = 'center';
-    $pane->type = 'shary_images';
-    $pane->subtype = 'shary_images';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-9'] = $pane;
-    $display->panels['center'][0] = 'new-9';
-    $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-2';
     $pane->panel = 'center';
     $pane->type = 'new_shary_images';
     $pane->subtype = 'new_shary_images';
@@ -395,12 +392,12 @@ function dosomething_social_scholars_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['center'][1] = 'new-10';
+    $display->content['new-2'] = $pane;
+    $display->panels['center'][0] = 'new-2';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-9';
+  $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['social_scholarship_image_page'] = $page;
