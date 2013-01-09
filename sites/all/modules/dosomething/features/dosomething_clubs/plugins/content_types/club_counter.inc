@@ -185,11 +185,11 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
             '#prefix' => '<div class="invite-link">',
             '#suffix' => '</div>',
           ),
-          'share_on_facebook' => array(
+          /*'share_on_facebook' => array(
             '#markup' => t('Share on Facebook'),
             '#prefix' => '<a href="' . $link . '" id="clubs-share-on-facebook">',
             '#suffix' => '</a>',
-          ),
+          ),*/
           'see_all' => array(
             '#markup' => $see_all,
             '#prefix' => '<div class="see-all-members">',
