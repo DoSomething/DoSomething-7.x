@@ -152,8 +152,14 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
         $form['submitted']['referall_your_info']['terms_and_conditions']['#markup'] = str_replace('these official rules', l(t('these official rules'), 'files/social_scholarships/official_rules/' . $node->field_official_rules_document[LANGUAGE_NONE][0]['filename'], array(
         'attributes' => array('target' => '_blank'))), $form['submitted']['referall_your_info']['terms_and_conditions']['#markup']);
       }
+  
+      $goto = 'share-these-images/' . $node->nid;
+      if (!empty($node->field_redirect_to_path[LANGUAGE_NONE][0]['value'])) {
+        $goto = $node->field_redirect_to_path[LANGUAGE_NONE][0]['value'];
+      }
 
-      $form_state['goto'] = 'share-these-images/' . $node->nid;
+      $_SESSION['goto'] = $goto;
+      $form_state['goto'] = $goto;
     }
     $form['#submit'][] = 'dosomething_mobile_referral_form_submit';
   }
@@ -343,6 +349,10 @@ function dosomething_mobile_referral_form_submit($form, &$form_state) {
 
   if ("/$goto" == request_uri()) {
     $goto = str_replace($_SERVER['HTTP_ORIGIN'], '', $_SERVER['HTTP_REFERER']);
+  }
+
+  if (isset($_SESSION['goto'])) {
+    unset($_SESSION['goto']);
   }
 
   $ssmsg = '';
