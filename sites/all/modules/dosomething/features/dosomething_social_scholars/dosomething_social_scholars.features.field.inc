@@ -711,6 +711,78 @@ function dosomething_social_scholars_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-social_scholarship-field_redirect_message'.
+  $fields['node-social_scholarship-field_redirect_message'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_redirect_message',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'social_scholarship',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The message that appears after a use is redirected to the "redirect to" URL.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 10,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_redirect_message',
+      'label' => 'Redirect message',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '11',
+      ),
+    ),
+  );
+
   // Exported field: 'node-social_scholarship-field_redirect_to_path'.
   $fields['node-social_scholarship-field_redirect_to_path'] = array(
     'field_config' => array(
@@ -1410,10 +1482,12 @@ function dosomething_social_scholars_field_default_fields() {
   t('Optional.  A mobile commons ID for betas.');
   t('Petition Image');
   t('Petition Link');
+  t('Redirect message');
   t('Redirect to path');
   t('Text to accompany the Facebook share links.  These will correspond, in order, with the order of the images that were uploaded above (e.g. the first description will accompany the first image, the second with the second image, etc...)');
   t('The Language for the Facebook "Recommend" button');
   t('The link to the petition (or other) that will be below the --- OR --- line on the images page.');
+  t('The message that appears after a use is redirected to the "redirect to" URL.');
   t('Your cell number:');
   t('Your first name:');
   t('Your friend\'s cell numbers:');
