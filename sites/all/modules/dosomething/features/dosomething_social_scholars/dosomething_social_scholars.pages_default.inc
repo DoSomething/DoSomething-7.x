@@ -124,7 +124,7 @@ function dosomething_social_scholars_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'Share 5 stats to win MILLIONS!',
+      'override_title_text' => 'Enter your info and friends\' #s. You could win $2000!',
     );
     $pane->cache = array();
     $pane->style = array();
