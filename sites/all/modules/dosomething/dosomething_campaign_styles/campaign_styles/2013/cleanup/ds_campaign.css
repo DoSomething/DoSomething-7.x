@@ -176,16 +176,24 @@ html body.admin-menu {
   margin: 0 0 0.7em 0; }
 #cmp .fb-social-comments-plugin {
   display: none; }
+#cmp .messages.status {
+  display: none; }
+#cmp .error {
+  background: none; }
 #cmp #header {
   background-image: url(//files.dosomething.org/files/campaigns/beta/panorama.jpg); }
   #cmp #header a {
     color: #1e1d1c; }
-  #cmp #header a.log_out {
+  #cmp #header .log_out {
     float: right; }
   #cmp #header .ds_logo {
-    float: left;
-    width: 73px;
-    height: 65px; }
+    display: none; }
+    @media only screen and (max-width: 1075px) {
+      #cmp #header .ds_logo {
+        display: block;
+        float: left;
+        width: 73px;
+        height: 65px; } }
   #cmp #header .beta_logo {
     margin: 5% auto;
     display: block;
