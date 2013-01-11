@@ -64,6 +64,31 @@ header[role="banner"] {
 html body.admin-menu {
   margin-top: 0 !important; }
 
+#page .status {
+  position: absolute;
+  z-index: 201;
+  top: 3%;
+  left: 15%;
+  width: 70%;
+  background: #ff885e;
+  border: 7px solid #ee7c53;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  color: white;
+  font-size: 25px;
+  line-height: 35px; }
+  #page .status .go-button {
+    background: #f8e616;
+    font-size: 23px;
+    margin: 1% auto;
+    padding: 5px 10px;
+    height: 35px;
+    width: 70px;
+    /* style go-button here */ }
+
 #block-menu-menu-footer,
 #skip-link,
 #admin-menu,
@@ -175,8 +200,6 @@ html body.admin-menu {
   float: left;
   margin: 0 0 0.7em 0; }
 #cmp .fb-social-comments-plugin {
-  display: none; }
-#cmp .messages.status {
   display: none; }
 #cmp .error {
   background: none; }
