@@ -480,23 +480,7 @@ input[type=color], select.form-select, iframe {
   font-family: Georgia, serif;
 }
 
-.sans, #edit-field-picture-und-table thead tr th, .text-full,
-.textinput,
-input[type=text],
-input[type=password],
-input[type=email],
-input[type=url],
-input[type=tel],
-input[type=date],
-input[type=datetime],
-input[type=datetime-local],
-input[type=month],
-input[type=week],
-input[type=time],
-input[type=number],
-input[type=range],
-input[type=search],
-input[type=color], .description {
+.sans, #edit-field-picture-und-table thead tr th, .description {
   font-family: "Trebuchet MS", sans-serif;
 }
 
@@ -2333,7 +2317,7 @@ html > body {
 }
 
 body {
-  font-family: "Trebuchet MS", sans-serif;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
   color: #1e1d1c;
   background: #18408b;
   line-height: 1.5em;
@@ -2383,7 +2367,6 @@ body {
 
 p {
   margin-top: 0;
-  font-family: din-web-reg;
 }
 
 pre {
@@ -2402,7 +2385,6 @@ blockquote {
 /* Lists -------------------------------------------------------------- */
 ol, ul {
   padding-left: 2em;
-  font-family: din-web-reg;
 }
 
 dl {
@@ -2603,7 +2585,7 @@ th.field-label {
   background-color: transparent;
   border-bottom: 1px #d4d2d1 solid;
   color: #1e1d1c;
-  font-family: "Trebuchet MS", sans-serif;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
   font-size: 14px;
 }
 th.field-label label {
@@ -2757,8 +2739,12 @@ fieldset legend {
   padding: 20px 0;
 }
 
-label, input[type=button], input[type=submit], button {
+input[type=button], input[type=submit], button {
   cursor: pointer;
+}
+
+label {
+  font-size: 16px;
 }
 
 .form-item .description {
@@ -2787,17 +2773,24 @@ input[type=number],
 input[type=range],
 input[type=search],
 input[type=color] {
-  border: none;
-  -moz-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -webkit-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  -o-box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
-  box-shadow: rgba(151, 151, 151, 0.5) 0 0 4px 1px inset;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  font-size: 16px;
+  border: 1px solid #cccccc;
   outline: none;
   padding-left: 5px;
 }
 
 .textinput, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
-  height: 27px;
+  height: 2.2em;
+  line-height: 2.2em;
+}
+
+.page-node-edit .textinput, .page-node-edit input[type=text], .page-node-edit input[type=password], .page-node-edit input[type=email], .page-node-edit input[type=url], .page-node-edit input[type=tel], .page-node-edit input[type=date], .page-node-edit input[type=datetime], .page-node-edit input[type=datetime-local], .page-node-edit input[type=month], .page-node-edit input[type=week], .page-node-edit input[type=time], .page-node-edit input[type=number], .page-node-edit input[type=range], .page-node-edit input[type=search], .page-node-edit input[type=color] {
+  line-height: normal;
+  font-size: 12px;
+}
+.page-node-edit button, .page-node-edit input, .page-node-edit select, .page-node-edit textarea {
+  font-size: 0.9em;
 }
 
 html.js input.form-autocomplete {
@@ -2810,6 +2803,19 @@ html.js input.throbbing {
 
 html.js fieldset.collapsed {
   height: 3em;
+}
+
+input {
+  border: 1px solid #cccccc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+input:focus {
+  border: 2px solid #aaaaaa;
 }
 
 input::-webkit-input-placeholder {
@@ -3718,6 +3724,11 @@ div[role=main] {
   margin: 0 3px;
 }
 
+.three-boxes p {
+  font-size: 0.9em;
+  line-height: 1.4em;
+}
+
 #breadcrumb {
   font-size: 0.714em;
   line-height: 2.4em;
@@ -4100,6 +4111,7 @@ h2.block-title, h2.pane-title {
   font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif;
 }
 #block-menu-menu-footer .content ul.menu {
+  font-family: din-web, "HelveticaNeue-CondensedBold", "Arial Narrow", Arial, "Trebuchet MS", sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -4173,11 +4185,20 @@ h2.block-title, h2.pane-title {
 .not-logged-in #dosomething-login-register-block #edit-first-name,
 .not-logged-in #dosomething-login-register-block #edit-last-name {
   margin-bottom: 5px;
-  width: 96px;
+  width: 100%;
+  border: 1px solid #444444;
+}
+.not-logged-in #dosomething-login-register-block #edit-first-name:focus,
+.not-logged-in #dosomething-login-register-block #edit-last-name:focus {
+  border: 1px solid #666666;
 }
 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
   margin-bottom: 5px;
-  width: 197px;
+  width: 100%;
+  border: 1px solid #444444;
+}
+.not-logged-in #dosomething-login-register-block #edit-cell-or-email:focus {
+  border: 1px solid #666666;
 }
 .not-logged-in #dosomething-login-register-block #edit-first-submit {
   display: inline;
@@ -4280,10 +4301,10 @@ h2.block-title, h2.pane-title {
 .ie8 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie7 .not-logged-in #dosomething-login-register-block #edit-first-name, .ie8
 .not-logged-in #dosomething-login-register-block #edit-last-name, .ie7
 .not-logged-in #dosomething-login-register-block #edit-last-name {
-  width: 90px;
+  width: 100%;
 }
 .ie8 .not-logged-in #dosomething-login-register-block #edit-cell-or-email, .ie7 .not-logged-in #dosomething-login-register-block #edit-cell-or-email {
-  width: 191px;
+  width: 100%;
 }
 
 #block-dosomething-blocks-dosomething-social-skyscraper .content {
@@ -4726,7 +4747,7 @@ h2.block-title, h2.pane-title {
   margin-left: 25px;
 }
 .member-profile .update-profile {
-  font-family: "Trebuchet MS", sans-serif;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
   font-size: 10px;
 }
 .member-profile .vital-stats {
@@ -5556,8 +5577,11 @@ comments.fb_iframe_widget {
   padding-right: 10px;
 }
 
+.about-us-page .apps-grid .apps-text {
+  padding: 0 10px;
+}
 .about-us-page .apps-grid .apps-box {
-  height: 226px !important;
+  height: 230px !important;
 }
 
 .pane-project-photo-slider-panel-pane-1 {
@@ -5910,6 +5934,7 @@ body.page-node-submission div.tabs ul.tabs li:first-child {
 .blog-post-date {
   font-size: 14px;
   color: #807a75;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
 }
 
 .page-taxonomy-term .field-name-field-picture img {
@@ -6184,7 +6209,7 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
   padding-top: 18px;
 }
 .dosomething-stats .dosomething-club-facts .see-all-members {
-  font-family: "Trebuchet MS", sans-serif;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
   font-size: 10px;
   padding-top: 4px;
   text-align: right;

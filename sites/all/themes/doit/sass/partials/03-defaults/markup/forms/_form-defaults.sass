@@ -67,11 +67,12 @@ fieldset
     @extend .bold
     padding: $s4a 0
 
-label, input[type=button], input[type=submit], button
+input[type=button], input[type=submit], button
   cursor: pointer
 
 label
   @extend .bold
+  font-size: 16px
 
 .form-item .description
   color: $gray
@@ -84,16 +85,26 @@ form.webform-client-form
 // General field styles
 .text-full,
 .textinput
-  @extend .sans
+  //@extend .sans
+  font-family: $font-din-reg
+  font-size: 16px
   @extend .constrain-to-parent
-  border: none
-  +box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
+  border: 1px solid #ccc
+  //+box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
   outline: none
   padding-left: 5px
 
 // Single field height
 .textinput
-  height: 27px
+  height: 2.2em
+  line-height: 2.2em
+
+.page-node-edit
+  .textinput
+    line-height: normal
+    font-size: 12px
+  button, input, select, textarea
+    font-size: 0.9em
 
 // Throbber position for single field height
 html.js input.form-autocomplete
@@ -107,6 +118,10 @@ html.js fieldset.collapsed
   height: 3em
 
 input
+  border: 1px solid #ccc
+  +border-radius(5px)
+  &:focus
+    border: 2px solid #aaa
   &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
   &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
   &[type=number], &[type=range], &[type=search], &[type=color]
