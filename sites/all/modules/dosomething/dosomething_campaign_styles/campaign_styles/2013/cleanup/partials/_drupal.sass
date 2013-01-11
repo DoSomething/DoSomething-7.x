@@ -1,0 +1,76 @@
+// reset styles within campaign wrapper
+#cmp
+  +noBorder
+  +noShadow
+  img
+    +noShadow
+  .pane-title
+    display: none
+  .panel-pane
+    +noBorder
+  .panels-flexible-region-379-center, .panels-flexible-region-351-center
+    width: 100%
+    float: none
+
+.webform-client-form
+  +noBorder
+  +noShadow
+
+// page background color
+body
+  background: #fff
+
+// set inner container width, remove floats and center
+#main-wrapper div[role="main"]
+  padding: 0 !important
+  margin: 0 auto !important
+  background: #fff
+  width: 100%
+  float: none
+  ul.primary
+    border-bottom: none
+    margin: 0
+    padding: 15px 0 0 8px
+    height: 37px
+
+// set page container to full width
+.container
+  width: 100%
+  
+// adjust nav to accommodate hidden #utility-bar
+nav[role="navigation"]
+  height: 45px
+  padding: 3px 0 0 0
+  @media only screen and (max-width: 1075px)
+    display: none
+
+// set width of ds.org logo container
+header[role="banner"]
+  width: 800px
+  margin: 0 auto
+  position: relative
+
+// re-position ds.org logo
+#site-name
+  top: -38px
+  left: -94px
+  @media only screen and (max-width: 1075px)
+    display: none
+
+// remove gap left by #admin-menu
+html body.admin-menu
+  margin-top:  0 !important
+
+// hide elements inherited from global site
+#block-menu-menu-footer,
+#skip-link,
+#admin-menu,
+#breadcrumb,
+#page-title,
+#utility-bar,
+#block-dosomething-login-become-member,
+#block-dosomething-blocks-dosomething-make-impact,
+#block-dosomething-blocks-dosomething-social-skyscraper,
+#block-block-5,
+.region-sidebar-first,
+  display: none  
