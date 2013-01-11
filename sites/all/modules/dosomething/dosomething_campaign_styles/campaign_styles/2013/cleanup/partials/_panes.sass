@@ -10,18 +10,27 @@
 .fb-social-comments-plugin
   display: none
 
+.messages.status
+  display: none
+
+.error
+  background: none
+
 // HEADER
 // ------
 #header
   background-image: url(//files.dosomething.org/files/campaigns/beta/panorama.jpg)
   a
     color: $off_black
-  a.log_out
+  .log_out
     float: right
   .ds_logo
-    float: left
-    width: 73px
-    height: 65px
+    display: none
+    @media only screen and (max-width: 1075px)
+      display: block
+      float: left
+      width: 73px
+      height: 65px
   .beta_logo
     margin: 5% auto
     display: block
