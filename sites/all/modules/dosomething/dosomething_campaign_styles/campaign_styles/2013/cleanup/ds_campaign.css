@@ -198,6 +198,8 @@ html body.admin-menu {
   display: block;
   width: 8em;
   font-size: 2.5em; }
+#cmp #cause i {
+  font-style: italic; }
 #cmp .cause-facts {
   display: none;
   padding: 2% 0;
