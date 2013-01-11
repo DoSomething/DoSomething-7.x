@@ -539,7 +539,11 @@ function _dosomething_school_autocomplete_validate($element, &$form_state, $form
           $valid = FALSE;
         }
       }
-      if ($element['zip']['#value'] && preg_match("@\d{5}@", $element['zip']['#value']) != 1) {
+
+      // UPDATE 1/11/13: Canadian ZIP codes are not the same as American zip codes
+      // American ZIP codes are 5-digit purely numeric codes
+      // Canadian ZIP codes are 6-digit codes that have letters AND numbers
+      if ($element['zip']['#value'] && preg_match('#(\d{5}|[A-Z0-9]{6})#', $element['zip']['#value']) != 1) {
         form_error($element[$key], t('Invalid !name', array('!name' => $element[$key]['#title'])));
         $valid = FALSE;
       }
@@ -548,8 +552,8 @@ function _dosomething_school_autocomplete_validate($element, &$form_state, $form
       if ($valid) {
         global $user;
 
-	// If CA, the type should get set 1
-	$type = !is_numeric($element['type']['#value']) ? 1 : $element['type']['#value'];
+      	// If CA, the type should get set 1
+      	$type = !is_numeric($element['type']['#value']) ? 1 : $element['type']['#value'];
 
         // Create a school.
         $row = (object) array(
