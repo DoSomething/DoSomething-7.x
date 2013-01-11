@@ -82,6 +82,11 @@ function doit_preprocess_page(&$variables) {
   if ($variables['page']['content']['system_main']['#theme'] == 'webform_submission_page') {
     drupal_set_title($variables['page']['content']['system_main']['#submission']->field_project_title['und'][0]['value']);
   }
+
+  // gate beta campaign page
+  if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == '724796'))) {
+    drupal_goto('user/registration?destination=node/724796');
+  }
   
 }
 
