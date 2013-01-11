@@ -337,9 +337,9 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
  * Implements hook_form_FORM_ID_alter()
  */
 function dosomething_login_form_dosomething_login_register_popup_form_alter(&$form, &$form_state, $form_id) {
-  // Used to add css to project:trash holiday campaign
+  // Used to add css to beta campaign "project clean up"
   // No user state check is occurring as this form is only being called for anonymous users
-  if (request_path() == 'user/registration?destination=node/724796') {
+  if (request_path() == '/user/registration?destination=node/' . variable_get('beta_campaign_nid', 724796)) {
     // add custom JS and CSS files to this instance of the login/reg form only
     drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
     drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
