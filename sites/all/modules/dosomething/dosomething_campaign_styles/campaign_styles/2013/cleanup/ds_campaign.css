@@ -255,6 +255,8 @@ html body.admin-menu {
   width: 50px;
   margin: 0 auto;
   display: block; }
+#cmp #contact-form {
+  display: none; }
 #cmp td {
   display: block; }
 #cmp #report-back {
@@ -282,21 +284,23 @@ html body.admin-menu {
     color: #cccccc; }
 #cmp input[type="file"] {
   border: none; }
-#cmp #webform-component-wrapper-photo {
+#cmp #webform-photo-wrapper {
   float: left;
   width: 40%;
   margin: 0 0 5% 0; }
   @media only screen and (max-width: 550px) {
-    #cmp #webform-component-wrapper-photo {
+    #cmp #webform-photo-wrapper {
       margin: 5% 0; } }
 #cmp #webform-component-wrapper-text {
   float: left;
   width: 60%; }
 @media only screen and (max-width: 550px) {
-  #cmp #webform-component-wrapper-photo,
+  #cmp #webform-photo-wrapper,
   #cmp #webform-component-wrapper-text {
     float: none;
     width: 100%; } }
+#cmp #webform-component-wrapper-photo {
+  display: none; }
 #cmp .webform-client-form #edit-actions {
   height: auto;
   margin: auto;

@@ -1,3 +1,8 @@
+// CONTACT FORM
+// ------------
+#contact-form
+  display: none
+
 // REPORT BACK FORM
 // ----------------
 td
@@ -25,7 +30,7 @@ td
 input[type="file"]
   border: none
 
-#webform-component-wrapper-photo
+#webform-photo-wrapper
   float: left
   width: 40%
   margin: 0 0 5% 0
@@ -36,11 +41,14 @@ input[type="file"]
   float: left
   width: 60%
 
-#webform-component-wrapper-photo,
+#webform-photo-wrapper,
 #webform-component-wrapper-text
   @media only screen and (max-width: 550px)
     float: none
     width: 100%
+
+#webform-component-wrapper-photo
+  display: none
 
 // reset bizarre styles wrapping submit button
 .webform-client-form #edit-actions

@@ -25,9 +25,11 @@
     $('#webform-component-step-two, #webform-component-header-one, #edit-submitted-field-webform-pictures')
       .not('.a')
       .addClass('a')
-      .wrapAll('<div id="webform-component-wrapper-photo">');
+      .wrapAll('<div id="webform-photo-wrapper">');
 
-    
+    // AJAX form submission here
+    $('#contact-form .webform-client-form').submit();
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
