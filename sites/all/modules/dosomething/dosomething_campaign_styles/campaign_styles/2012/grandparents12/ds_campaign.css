@@ -85,7 +85,7 @@ body {
     margin-top: 0; }
   #cmp #campaign-opt-in {
     text-align: center; } }
-@media only screen and (max-width: 1075px) and only screen and (max-width: 775px) {
+@media only screen and (max-width: 1075px) and (max-width: 775px) {
   header[role="banner"] {
     width: 100%; } }
 
@@ -593,15 +593,13 @@ body {
         margin-top: 0.1em;
         float: left;
         font-size: 1.8em; }
-  #cmp #action.action-anonymous, #cmp #action.action-participant {
-    margin-top: 10px; }
-    #cmp #action.action-anonymous h3, #cmp #action.action-participant h3 {
-      line-height: 2em; }
-    #cmp #action.action-anonymous p, #cmp #action.action-participant p {
-      text-align: left; }
-    #cmp #action.action-anonymous img, #cmp #action.action-participant img {
-      display: block;
-      margin: 0 auto; }
+  #cmp #action.action-anonymous h3, #cmp #action.action-participant h3 {
+    line-height: 2em; }
+  #cmp #action.action-anonymous p, #cmp #action.action-participant p {
+    text-align: left; }
+  #cmp #action.action-anonymous img, #cmp #action.action-participant img {
+    display: block;
+    margin: 0 auto; }
   #cmp #action.action-participant {
     text-align: left;
     padding: 2% 0; }
@@ -982,6 +980,16 @@ body {
     margin: 0 0 1% 0; }
   #cmp #iframe_wrapper {
     height: 450px !important; }
+  #cmp .section#flip {
+    padding: 0;
+    width: 110.475%;
+    margin: 0 0 0 -5.55%; }
+    #cmp .section#flip img.flip-big {
+      width: 100%;
+      vertical-align: top; }
+  #cmp .section#flip-head {
+    padding: 2% 0 1%;
+    margin-top: 10px; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
