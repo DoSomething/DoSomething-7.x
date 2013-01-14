@@ -13,7 +13,6 @@
           settings.afterReplaceText = Drupal.settings.login.afterReplaceText;
         }
       }
-      console.log(settings);
 
       // Whelp, these were breaking things, so let's just destroy them.
       // This is probably terrible.
