@@ -30,10 +30,10 @@ $plugin = array(
   'menu' => array(
     array('title' => 'take action', 'href' => 'grandparents', 'fragment' => 'header'),
     array('title' => 'download guide', 'href' => 'grandparents', 'fragment' => 'action'),
-    array('title' => '$5,000 scholarship', 'href' => 'grandparents', 'fragment' => 'scholarship'),
-    array('title' => 'learn the issue', 'href' => 'grandparents', 'fragment' => 'social'),    
-    array('title' => 'prizes', 'href' => 'grandparents', 'fragment' => 'secondary-content'),
-    array('title' => 'tell us about it', 'href' => 'grandparents', 'fragment' => 'impact'),
+    //array('title' => '$5,000 scholarship', 'href' => 'grandparents', 'fragment' => 'scholarship'),
+    //array('title' => 'learn the issue', 'href' => 'grandparents', 'fragment' => 'social'),    
+    //array('title' => 'prizes', 'href' => 'grandparents', 'fragment' => 'secondary-content'),
+    //array('title' => 'tell us about it', 'href' => 'grandparents', 'fragment' => 'impact'),
     array('title' => 'questions?', 'href' => 'grandparents', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
