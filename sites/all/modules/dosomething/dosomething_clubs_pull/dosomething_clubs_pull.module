@@ -228,7 +228,11 @@ class clubs_export {
         'Send Goodies' =>     $stuff['send_goodies'],
         'School Name' =>      $stuff['school_name'],
         'School Type' =>      $stuff['school_type'],
+        'School Street' =>    $stuff['school_street'],
+        'School City' =>      $stuff['school_city'],
         'School State' =>     $stuff['school_state'],
+        'School Country' =>   ($stuff['school_country'] ? $stuff['school_country'] : ($stuff['school_type'] ? 'US' : '')),
+        'School ZIP' =>       $stuff['school_zip'],
         'Member Count' =>     $stuff['member_count'],
         'Member Emails' =>    str_replace(',', ', ', $stuff['member_emails']),
         'Member UIDs' =>      str_replace(',', ', ', $stuff['member_uids']),
@@ -293,7 +297,11 @@ class clubs_export {
         t('Send Goodies'),
         t('School Name'),
         t('School Type'),
+        t('School Street'),
+        t('School City'),
         t('School State'),
+        t('School Country'),
+        t('School ZIP'),
         t('Member Count'),
         t('Member Emails'),
         t('Member UIDs'),
@@ -370,7 +378,11 @@ class clubs_export {
       #GROUP_CONCAT(DISTINCT `ogu`.`uid`) AS `member_uids`,
       `sc`.name AS `school_name`,
       `sc`.type AS `school_type`,
-      `sc`.state AS `school_state`,
+      `sc`.`street` AS `school_street`,
+      `sc`.`city` AS `school_city`,
+      `sc`.`state` AS `school_state`,
+      `sc`.`country` AS `school_country`,
+      `sc`.`zip` AS `school_zip`,
       IF (`noassoc`.`field_no_school_associate_value`, 1, 0) AS `not_associated`,
       `blurb`.`field_club_blurb_value` AS `blurb`,
       IF (`old_goodies`.`field_club_mailings_value`, 1, IF(`goodies`.`field_send_goodies_value`, 1, 0)) AS `send_goodies`,
@@ -411,7 +423,7 @@ class clubs_export {
     #LEFT JOIN `dosomething_clubs_sms_response` AS `response` ON (`response`.`nid` = `node`.`nid`)
     WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
     GROUP BY nid, node_title ASC
-    ORDER BY `node`.`created` ASC
+    ORDER BY `node`.`created` DESC
     " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
 
     $q = db_query($query);
@@ -841,7 +853,11 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Send Goodies'), 'class' => array('clubs-pull-send-goodies')),
     array('data' => t('School Name'), 'class' => array('page-manager-page-path')),
     array('data' => t('School Type'), 'class' => array('page-manager-page-path')),
-    array('data' => t('School State'), 'class' => array('page-manager-page-path')),
+    array('data' => t('School Street'), 'class' => array('clubs-pull-school-street')),
+    array('data' => t('School City'), 'class' => array('clubs-pull-school-city')),
+    array('data' => t('School State'), 'class' => array('clubs-pull-school-state')),
+    array('data' => t('School Country'), 'class' => array('clubs-pull-school-country')),
+    array('data' => t('School ZIP'), 'class' => array('clubs-pull-school-zip')),
     array('data' => t('Member Count'), 'class' => array('page-manager-page-path')),
     array('data' => t('Member Emails'), 'class' => array('page-manager-page-path')),
     array('data' => t('Member UIDs'), 'class' => array('page-manager-page-path')),
@@ -924,7 +940,11 @@ $num = $count->rowCount();
         'Send Goodies' =>             array('data' => $result['send_goodies']),
         'School Name' =>                 array('data' => $result['school_name']),
         'School Type' =>                 array('data' => $result['school_type']),
+        'School Street' =>               array('data' => $result['school_street']),
+        'School City' =>               array('data' => $result['school_city']),
         'School State' =>                array('data' => $result['school_state']),
+        'School Country' =>               array('data' => ($result['school_country'] ? $result['school_country'] : ($result['school_type'] ? 'US' : ''))),
+        'School ZIP' =>               array('data' => $result['school_zip']),
         'Member Count' =>                array('data' => $result['member_count']),
         'Member Emails' =>               array('data' => str_replace(',', ', ', $result['member_emails'])),
         'Member UIDs' =>                   array('data' => str_replace(',', ', ', $result['member_uids'])),
