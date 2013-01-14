@@ -280,6 +280,8 @@ html body.admin-menu {
   #cmp #report-back .description {
     font-size: 10px;
     color: #cccccc; }
+#cmp input[type="file"] {
+  border: none; }
 #cmp #webform-component-wrapper-photo {
   float: left;
   width: 40%;
@@ -313,18 +315,18 @@ html body.admin-menu {
   margin-top: 5px; }
 #cmp tr {
   background-color: white; }
-#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-0-upload-button,
-#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-1-upload-button {
+#cmp #edit-submitted-field-webform-pictures-und-0-upload-button,
+#cmp #edit-submitted-field-webform-pictures-und-1-upload-button {
   margin: 7px 0;
   padding: 0;
   width: 70px;
   font-size: 22px; }
 #cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-2-upload-button {
   display: none; }
-#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-0-remove-button,
-#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-1-remove-button,
-#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-2-remove-button,
-#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-3-remove-button {
+#cmp #edit-submitted-field-webform-pictures-und-0-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-1-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-2-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-3-remove-button {
   margin: 5px 0;
   padding: 0 8px;
   background: #dddddd;
