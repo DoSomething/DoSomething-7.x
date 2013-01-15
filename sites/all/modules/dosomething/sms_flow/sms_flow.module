@@ -35,11 +35,13 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
 
   $nid = 0;
   if (!empty($form_values['details']['nid'])) {
-	$nid = $form_values['details']['nid'];
+	 $nid = $form_values['details']['nid'];
   }
 
   $n = node_load($nid);
   $type = $n->type;
+
+  $alpha_number = preg_replace('#[^0-9]#', '', $alpha_number);
 
   foreach ($beta_numbers AS $key => $field) {
   	$p = '';
@@ -89,7 +91,7 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
  *  Example:
  *  sms_flow_find_alpha('610-368-3195');
  */
-function sms_flow_find_alpha($beta, $nid = false) {
+function sms_flow_find_alpha($beta, $nid = 0) {
   $beta_parsed = preg_replace('#[^0-9]#i', '', $beta);
   $select = db_query("
 	SELECT alpha
@@ -104,6 +106,74 @@ function sms_flow_find_alpha($beta, $nid = false) {
 
   $r = current($select->fetchAll());
   return ($r->alpha ? $r->alpha : false);
+}
+
+/**
+ *  Checks whether an alpha in the sms_flow_records table has received a message from
+ *  an invited beta before, given a particular type and node ID.
+ *
+ *  @param int $alpha
+ *    The phone number without ANY punctuation of the alpha.
+ *
+ *  @param string $type
+ *    The "type" of invitation, as seen in the sms_flow_records table.
+ *
+ *  @param int $nid
+ *    The nid of the invitation, as found in the sms_flow_records table.
+ *
+ *  @return boolean
+ *    true if there is at least one message from beta -> alpha sent
+ *    false if there have not been any messages sent from beta -> alpha
+ */
+function sms_flow_alpha_received_message(int $alpha, string $type, int $nid) {
+  // Query the sms_flow_records table.
+  $select = db_query("
+    SELECT
+      COUNT(*) AS sent
+    FROM sms_flow_records
+    WHERE `accepted_invite` = 1
+      AND REPLACE(
+        REPLACE(
+          REPLACE(
+            REPLACE(
+              `alpha`, ')', ''
+            ),
+          '(', ''),
+        ' ', ''),
+      '-', '') = '" . $alpha . "'
+      AND `type` = :type
+      AND `nid` = :nid
+  ", array(':type' => $type, ':nid' => $nid));
+
+  // Get just what we need...
+  $r = reset($select->fetchAll());
+
+  // Return true if there's at least one response sent.
+  return ($r->sent > 0);
+}
+
+/**
+ *  Updates the "accepted invite" status for a particular beta number in the sms_flow_records table.
+ *
+ *  @param $beta_number
+ *    The beta number to look up.
+ *
+ *  @param $nid
+ *    The nid that the user is being invited to, as seen in the sms_flow_records table.
+ *
+ *  @return
+ *    Returns true.
+ */
+function sms_flow_update_accepted_status($beta_number, $nid) {
+  db_update('sms_flow_records')
+    ->fields(array(
+      'accepted_invite' => 1
+    ))
+    ->condition('beta', $beta_number)
+    ->condition('nid', $nid)
+    ->execute();
+
+    return true;
 }
 
 /**

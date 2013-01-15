@@ -74,3 +74,16 @@ function sms_flow_update_7101() {
       	'not null' => TRUE
 	));
 }
+
+/**
+ *  Adds "accepted_invite" column to sms_flow_records table.
+ */
+function sms_flow_update_7102() {
+  db_add_field('sms_flow_records', 'accepted_invite', array(
+    'description' => 'Whether or not the user accepted the invitation.',
+    'type' => 'int',
+    'unsigned' => TRUE,
+    'default' => 0,
+    'not null' => TRUE,
+  ));
+}
