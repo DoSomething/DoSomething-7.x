@@ -101,7 +101,7 @@ function dosomething_general_array_vals_multi($array = array(), &$vals = array()
       dosomething_general_array_vals_multi($value, $vals);
     }
     else{
-      $vals[] = $value;
+      $vals[$key] = $value;
     }
   }
 
