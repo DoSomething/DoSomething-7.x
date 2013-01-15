@@ -7,8 +7,9 @@
  */
 class ConductorActivityMLKProcessBeta extends ConductorActivity {
 
+  public $alpha_campaign_id = 107981;
   public $game_id = 1;
-  public $invite_type = 'sms_game';
+  public $type_override = 'sms_game';
 
   public function option_definition() {
     $options = parent::option_definition();
@@ -31,12 +32,24 @@ class ConductorActivityMLKProcessBeta extends ConductorActivity {
     }
 
     if ($invite_accepted) {
-      // TODO
-      // Find alpha who sent invite to this user
-      // if (alpha found) {
-      //   if (alpha's already received a confirmation message from somebody == false)
-      //     Send alpha new message
-      // }  
+      $beta = substr($mobile, -10);
+
+      // TODO: what to do about users who are invited by more than one person
+      // Find the Alpha who invited this user
+      $alpha = sms_flow_find_alpha($beta, $this->game_id, $this->type_override);
+      if ($alpha) {
+        // Mark this user as having accepted the invite from the found alpha
+        sms_flow_update_accepted_status($alpha, $beta, $this->game_id, $this->type_override);
+
+        // Determine if Alpha already received a message from a Beta joining
+        $alpha_received_msg = sms_flow_alpha_received_message($alpha, $this->game_id, $this->type_override);
+        if (!$alpha_received_msg) {
+          $alpha_msg = 'This is the message returned to the alpha. [TODO: get final message for this]';
+          $alpha_options = array('campaign_id' => $this->alpha_campaign_id);
+          $return = sms_mobile_commons_send($alpha, $alpha_msg, $alpha_options);
+        }
+      }
+
       $beta_response = 'You\'ve joined your friend! Text KEYWORD to do thing. [TODO: get final message for this].';
     }
     else {
