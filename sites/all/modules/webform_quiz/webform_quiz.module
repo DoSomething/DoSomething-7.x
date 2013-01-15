@@ -29,18 +29,21 @@ function webform_quiz_form_webform_configure_form_alter(&$form, &$form_state, $f
   $field_limit = 8;
   $filler = range(0, $field_limit);
   unset($filler[0]);
+  $is_not_quiz = $node->type != 'quiz';
 
   $form['role_control']['#weight'] = -2;
 
   $form['quiz_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable quiz feature'),
-    '#default_value' => isset($node->webform['quiz_redirects']),
+    '#default_value' => isset($node->webform['quiz_redirects']) && $is_not_quiz,
+    '#access' => $is_not_quiz,
     '#weight' => -3,
   );
 
   $form['quiz'] = array(
     '#type' => 'fieldset',
+    '#access' => $is_not_quiz,
     '#title' => t('Quiz Options'),
     '#description' => t('Enter the URL, internal or external, to redirect to when a given numbered response is chosen most frequently. In other words, if response 1 is chosen the most number of times, we will redirect them to the URL below for response 1. Additional fields will show up, up to 8, after entering a value.'),
     '#collapsible' => TRUE,
@@ -104,8 +107,23 @@ function webform_quiz_node_load($nodes, $types) {
       ->execute()
       ->fetchAllAssoc('rid', PDO::FETCH_ASSOC);
 
-    foreach ($result as $rid => $webform_quiz) {
-      $nodes[$nid]->webform['quiz_redirects'][$rid] = $webform_quiz['redirect_url'];
+    if (empty($result) && $node->type == 'quiz') {
+      $etids = array();
+      foreach ($node->field_quiz_result_pages[LANGUAGE_NONE] as $result_page) {
+        $etids[] = $result_page['value'];
+      }
+      $redirects = entity_load('field_collection_item', $etids);
+      foreach ($redirects as $key => $redirect) {
+        $add['title'] = $redirect->field_title[LANGUAGE_NONE][0]['value'];
+        $add['url'] = "quiz-result/$nid/$key";
+        $nodes[$nid]->webform['quiz_redirects'][] = $add;
+      }
+    }
+    else {
+      foreach ($result as $rid => $webform_quiz) {
+        $add['title'] = $add['url'] = $webform_quiz['redirect_url'];
+        $nodes[$nid]->webform['quiz_redirects'][$rid] = $add;
+      }
     }
   }
 }
@@ -116,7 +134,7 @@ function webform_quiz_webform_submission_presave($node, $submission) {
   foreach ($node->webform['components'] as $cid => $component) {
     if ($component['type'] == 'quiz_question') {
       foreach ($submission->data[$cid]['value'] as $value) {
-        if ($value) {
+        if ($value !== FALSE) {
           $inc = $component['extra']['quiz_multiplier'];
           $aggregator[$value] = (isset($aggregator[$value])) ? $aggregator[$value] + $inc : $inc;
         }
@@ -129,7 +147,7 @@ function webform_quiz_webform_submission_presave($node, $submission) {
     end($aggregator);
     $winner = key($aggregator);
 
-    $node->webform['redirect_url'] = $node->webform['quiz_redirects'][$winner];
+    $node->webform['redirect_url'] = $node->webform['quiz_redirects'][$winner]['url'];
   }
 }
 
@@ -138,3 +156,4 @@ function webform_quiz_clear($nid) {
     ->condition('nid', $nid)
     ->execute();
 }
+

@@ -1,0 +1,50 @@
+.node-type-quiz, .page-quiz-result
+  .tabs
+    height: 0
+    position: relative
+    z-index: 10
+    text-align: right
+
+  &.page-node .content img
+    border: none
+    margin: 0
+
+  h1.title, #breadcrumb
+    display: none
+
+  .pane-node-field-quiz-header
+    height: 250px
+    margin: -23px -23px -250px
+
+  .panel-top
+    margin: -23px -23px 25px
+    padding: 23px
+    height: 250px
+    overflow: hidden
+    border-bottom: 1px solid white
+
+    h2, h3
+      color: white
+    h2
+      margin-top: 50px
+      margin-bottom: .2em
+      font-family: din-web-reg
+      text-transform: uppercase
+      font-weight: normal
+      font-size: 1.7em
+    h3
+      font-size: 3em
+      line-height: 1em
+
+  form.webform-client-form
+    border: none
+    +box-shadow(none)
+    label
+      font-size: 20px
+    .webform-component-quiz-question
+      border-bottom: 1px solid black
+      padding-bottom: 15px
+      margin-bottom: 20px
+    
+.node-type-quiz .panel-top
+  margin-top: -28px
