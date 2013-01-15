@@ -43,6 +43,12 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
   // We need the $user object to get your user information.
   global $user;
 
+  // For debug purposes.
+  define('SHOW_HIDDEN_SURVEY_ANSWERS', false);
+
+  // Adds survey response page CSS.
+  drupal_add_css(drupal_get_path('module', 'dosomething_general') . '/css/survey-responses.css');
+
   // Load $node with the node ID found in the URL.
   $node = reset($panel_args);
 
@@ -50,7 +56,7 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
   $layout = '';
 
   // Get all of the form components (questions) for the survey.
-  $components = db_query("SELECT cid, form_key, name, extra from webform_component where nid = {$node}")->fetchAll();
+  $components = db_query("SELECT cid, form_key, name, extra from webform_component where nid = {$node} ORDER BY weight ASC")->fetchAll();
 
   /**
    * Get all of your answers from the survey.  We can't limit this to any particular number
@@ -132,10 +138,17 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
     $totals[$r->cid][$r->no][$r->data] = round(($r->fcount / $count) * 100);
   }
 
+  // Sets up language for your responses vs. worldwide responses
+  $stat = array(
+    'yours' => 'You said: <span class="you">!answer</span>',
+    'theirs' => '!percent% said: <span class="them">!answer</span>',
+  );
+  $answers = array();
+
   // Loops through components and builds visual structure.
   foreach ($components AS $key => $component) {
     // Builds the "question" div
-    $layout .= '<div class="question">';
+    $layout .= '<div class="component">';
     // $component->name is the original (top level) question.
     $layout .= '<h2>' . $component->name . '</h2>';
 
@@ -144,31 +157,66 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
 
     // If component extra has "items" array, we're in just a question-and-answer model.
     if (!empty($cs['items'])) {
-      $layout .= '<ul>';
+      $layout .= '<div class="results">';
+
+      $top = dosomething_general_array_vals_multi($totals[$component->cid]);
+      $thetop = array_search(max($top), $top);
 
       // Get human readable names for fields.
       preg_match_all('#([a-zA-Z0-9\_\-]+)\|(.*)#i', $cs['items'], $options);
       // Loop through questions and print them out.
       foreach ($options[2] AS $key => $title) {
-        $layout .= '<li>';
-        $layout .= '<div class="question-answer" style="display: inline-block">' . $title . '</div>';
+        $yours = $ya[$component->cid][$options[1]["$key"]];
+        $t = ($options[1]["$key"] == $thetop);
 
-        // If this answer happens to be the one you chose, make a label saying so.
-        if ($ya[$component->cid][$options[1]["$key"]]) {
-          $layout .= ' <div style="color: green; display: inline-block">' . t('Your answer!') . '</div>';
+        if ($yours || $t) {
+          #$start = '<li class="' . ($yours ? 'yours' : 'top') . '">';
+          #$question = '<div class="question-answer" style="display: inline-block">' . $title . '</div>';
+
+          // Get the percentage of people who chose this answer.
+          $percentage = $totals[$component->cid][$options[1]["$key"]][$options[1]["$key"]];
+
+          if ($t) {
+            $answers['theirs'] = t($stat['theirs'], array('!percent' => $percentage, '!answer' => strtoupper($title)));
+          }
+          if ($yours) {
+            $answers['yours'] = t($stat['yours'], array('!answer' => strtoupper($title)));
+          }
+
+          // If the percentage is greater than 0% (because it looks ridiculous otherwise), show...
+          /*if (!empty($percentage)) {
+            $percent = '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => $percentage)) . '</div>';
+          }*/
+
+          #$end = '</li>';
+
+          #$layout .= $start . $question . $yours . $percent . $end;
+          // If your answer also happens to be the top answer, show the top answer as a separate item.
+          #if ($yours && $t) {
+          #  $layout .= $start . $question . $percent . $end;
+          #}
         }
+        else if (defined('SHOW_HIDDEN_SURVEY_ANSWERS') && SHOW_HIDDEN_SURVEY_ANSWERS === true) {
+          $layout .= '<li style="color: red">';
+          $layout .= '<div class="question-answer" style="display: inline-block">' . $title . '</div>';
 
-        // Get the percentage of people who chose this answer.
-        $percentage = $totals[$component->cid][$options[1]["$key"]][$options[1]["$key"]];
+          // Get the percentage of people who chose this answer.
+          $percentage = $totals[$component->cid][$options[1]["$key"]][$options[1]["$key"]];
 
-        // If the percentage is greater than 0% (because it looks ridiculous otherwise), show...
-        if (!empty($percentage)) {
-          $layout .= '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => $percentage)) . '</div>';
+          // If the percentage is greater than 0% (because it looks ridiculous otherwise), show...
+          $layout .= '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => intval($percentage))) . '</div>';
+
+          $layout .= '</li>';
         }
-
-        $layout .= '</li>';
       }
-      $layout .= '</ul>';
+
+      $lr = '';
+      foreach ($answers AS $type => $val) {
+        $lr .= '<div class="' . $type . ' result">' . $val . '</div>';
+      }
+      $layout .= $lr;
+
+      $layout .= '</div>';
     }
     /**
      * Otherwise, it's likely we're within a grid-style component.  This has two
@@ -189,29 +237,71 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
         $layout .= '<li>';
         $layout .= '<div class="question sub">' . $question . '</div>';
 
-        $layout .= '<ul class="grid-options">';
+        $top = dosomething_general_array_vals_multi($totals[$component->cid][$questions[1][$qkey]]);
+        $thetop = array_search(max($top), $top);
+
+        $layout .= '<div class="results">';
+        #$layout .= '<ul class="grid-options">';
         // Show the grid options
         foreach ($options[2] AS $okey => $option) {
-          $layout .= '<li>';
-          $layout .= '<div class="question-answer sub-answer" style="display: inline-block">' . $option . '</div>';
+          $yours = $ya[$component->cid][$questions[1][$qkey]] == $options[1][$okey];
+          $t = ($options[1]["$okey"] == $thetop);
 
-          // If this answer happens to be the one you chose, make a label saying so.
-          if ($ya[$component->cid][$questions[1][$qkey]] == $options[1][$okey]) {
-            $layout .= ' <div style="color: green; display: inline-block">Your answer!</div>';
+          if ($t) {
+            $answers['theirs'] = t($stat['theirs'], array('!percent' => $percentage, '!answer' => strtoupper($option)));
+          }
+          if ($yours) {
+            $answers['yours'] = t($stat['yours'], array('!answer' => strtoupper($option)));
           }
 
-          // Get the percentage of people who chose this answer.
-          $percentage = $totals[$component->cid][$questions[1][$qkey]][$options[1]["$okey"]];
+          $item = '';
+          if ($yours || $t) {
+            #$start = '<li>';
+            #$question = '<div class="question-answer sub-answer" style="display: inline-block">' . $option . '</div>';
 
-          // If the percentage is greater than 0% (because it looks ridiculous otherwise), show...
-          if (!empty($percentage)) {
-            $layout .= '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => $percentage)) . '</div>';
+            // If this answer happens to be the one you chose, make a label saying so.
+            /*if ($ya[$component->cid][$questions[1][$qkey]] == $options[1][$okey]) {
+              $yours = ' <div style="color: green; display: inline-block">Your answer!</div>';
+            }*/
+
+            // Get the percentage of people who chose this answer.
+            $percentage = $totals[$component->cid][$questions[1][$qkey]][$options[1]["$okey"]];
+
+            // If the percentage is greater than 0% (because it looks ridiculous otherwise), show...
+            /*if (!empty($percentage)) {
+              $percent = '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => $percentage)) . '</div>';
+            }
+
+            $end = '</li>';*/
+
+            #$layout .= $start . $question . $yours . $percent . $end;
+            #if ($yours && $t) {
+            #  $layout .= $start . $question . $percent . $end;
+            #}
           }
+          else if (defined('SHOW_HIDDEN_SURVEY_ANSWERS') && SHOW_HIDDEN_SURVEY_ANSWERS === true) {
+            $layout .= '<li style="color: red">';
+            $layout .= '<div class="question-answer sub-answer" style="display: inline-block">' . $option . '</div>';
 
-          $layout .= '</li>';
+            // Get the percentage of people who chose this answer.
+            $percentage = $totals[$component->cid][$questions[1][$qkey]][$options[1]["$okey"]];
+
+            // If the percentage is greater than 0% (because it looks ridiculous otherwise), show...
+            $layout .= '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => intval($percentage))) . '</div>';
+
+            $layout .= '</li>';
+          }
         }
 
-        $layout .= '</ul>';
+        $lr = '';
+        foreach ($answers AS $type => $val) {
+          $lr .= '<div class="' . $type . ' result">' . $val . '</div>';
+        }
+        $layout .= $lr;
+
+        $layout .= '</div>';
+
+        #$layout .= '</ul>';
         $layout .= '</li>';
       }
 
