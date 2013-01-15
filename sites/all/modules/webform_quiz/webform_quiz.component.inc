@@ -70,7 +70,7 @@ function _webform_edit_quiz_question($component) {
   foreach ($node->webform['quiz_redirects'] as $i => $redirect) {
     $form['quiz']['responses'][$i] = array(
       '#type' => 'textfield',
-      '#title' => t('Response to redirect to: !url', array('!url' => l($redirect, $redirect))),
+      '#title' => t('Response to redirect to: !url', array('!url' => l($redirect['title'], $redirect['url']))),
       '#default_value' => $component['extra']['responses'][$i],
       '#parents' => array('extra', 'responses', $i),
     );
