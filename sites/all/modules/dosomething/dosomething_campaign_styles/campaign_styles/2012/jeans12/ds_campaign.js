@@ -28,10 +28,6 @@
     // campaign social media injection
     $('#header').prepend($('.socialWrapper'));
 
-    // inject sponsor logo below footer
-    cmpFooter = $('#footer');
-    $('#cmp').after(cmpFooter);
-
     // contact form rebuilding
     var $emailInput = $('#edit-submitted-field-webform-email');
     var $cellInput = $('#edit-submitted-field-webform-mobile');
