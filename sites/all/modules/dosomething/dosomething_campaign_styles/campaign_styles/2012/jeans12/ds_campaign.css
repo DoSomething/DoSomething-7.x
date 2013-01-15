@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html > body {
   font-size: 16px; }
 
@@ -1593,7 +1594,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #edit-submitted-field-webform-email {
     width: 35%; }
   #cmp .form-actions.form-wrapper {
-    width: 15%; }
+    width: 15%;
+    position: static;
+    height: 60px; }
   #cmp #submitted-field-webform-email-add-more-wrapper, #cmp #submitted-field-webform-mobile-add-more-wrapper, #cmp #contact-form h3 {
     width: 90%;
     margin: 0 auto; }
