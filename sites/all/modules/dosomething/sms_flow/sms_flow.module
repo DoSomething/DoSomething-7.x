@@ -154,6 +154,12 @@ function sms_flow_incoming_callback($path) {
     case 'clubs-followup':
       $keyword = 'clubs-followup';
       break;
+    case 'mlk-game-invite':
+      $keyword = 'mlk-game-invite';
+      break;
+    case 'mlk-process-beta':
+      $keyword = 'mlk-process-beta';
+      break;
     default:
       watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
       return NULL;
@@ -233,6 +239,8 @@ function sms_flow_conductor_sms_keywords() {
     'clubs-ftaf' => 'sms_flow_clubs_ftaf',
     'clubs-survey' => 'sms_flow_clubs_survey',
     'clubs-followup' => 'sms_flow_clubs_followup_survey',
+    'mlk-game-invite' => 'sms_flow_mlk_game_invite',
+    'mlk-process-beta' => 'sms_flow_mlk_process_beta',
   );
 }
 
@@ -766,6 +774,61 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'end';
   $activity->title = 'End';
   $activity->inputs = array('fin');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_game_invite 
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_game_invite';
+  $workflow->title = 'MLK Game Invite Friends';
+  $workflow->description = 'Get phone numbers, send invites to friends, and save to sms_flow_records';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('game_invite');
+
+  $activity = $workflow->newActivity('mlk_game_invite');
+  $activity->name = 'game_invite';
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('game_invite');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_process_beta
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_process_beta';
+  $workflow->title = 'MLK Process Invited Betas';
+  $workflow->description = 'Send message to Alphas who invited the Betas and opt Betas into the MLK campaign.';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_process_beta');
+
+  $activity = $workflow->newActivity('mlk_process_beta');
+  $activity->name = 'mlk_process_beta';
+  $activity->accept_responses = array('y','yes','yea','ya','tfjjoin','tfj join');
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_process_beta');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
