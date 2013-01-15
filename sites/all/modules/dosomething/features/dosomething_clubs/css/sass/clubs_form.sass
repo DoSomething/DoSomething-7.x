@@ -6,7 +6,7 @@
 	@else if $type == big
 		width: 100%
 	@else if $type == small
-		width: 206px
+		width: 100%//206px
 
 	height: 53px
 	+border-radius(10px)
@@ -352,23 +352,31 @@ div.form-item-parent-email
 	input
 		@include new-box(small)
 
+#edit-field-club-city
+	width: 206px
+	margin-right: 15px
+
 #edit-field-club-zip
+	width: 154px
+
 	input
-		width: 155px
+		width: 100%
 		margin: 0px
 
 #edit-field-club-state
+	width: 133px
 	margin-right: 15px
 
 	select
-		width: 133px
+		width: 100%
 
 #edit-field-country
 	margin-right: 15px
+	width: 169px
 	float: left
 
 	select
-		width: 169px
+		width: 100%
 
 div#not-logged-in-notice
 	float: right
