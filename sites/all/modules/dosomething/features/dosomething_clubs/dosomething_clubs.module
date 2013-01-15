@@ -289,6 +289,13 @@ function dosomething_clubs_menu() {
     'access callback' => 'user_is_logged_in'
   );
 
+  $items['myclub/invite'] = array(
+    'page callback' => 'dosomething_clubs_my_club_redirect',
+    'page arguments' => array('invite'),
+    'access callback' => 'user_is_logged_in'
+  );
+
+
   $items['clubs/share/%'] = array(
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_clubs_add_users', 2),
@@ -626,7 +633,7 @@ function dosomething_clubs_member_has_a_club() {
 function dosomething_clubs_my_club_redirect($action = 'club') {
   global $user;
 
-  if ($action == 'club') {
+  if ($action == 'club' || $action == 'invite') {
     $club = db_select('node', 'n')
     ->fields('n', array('nid'))
     ->condition('type', 'club', '=')
@@ -637,7 +644,12 @@ function dosomething_clubs_my_club_redirect($action = 'club') {
     ->fetchAll();
 
     if ($club[0]) {
-      drupal_goto(drupal_lookup_path('alias', 'node/' . $club[0]->nid));
+      if ($action == 'club'){
+        drupal_goto(drupal_lookup_path('alias', 'node/' . $club[0]->nid));
+      }
+      else if ($action == 'invite') {
+        drupal_goto('clubs/share/' . $club[0]->nid);
+      }
     }
     else {
       $club = db_select('og_membership', 'o')
@@ -654,7 +666,12 @@ function dosomething_clubs_my_club_redirect($action = 'club') {
       }
 
       if (isset($nid)) {
-        drupal_goto(drupal_lookup_path('alias', 'node/' . $nid));
+        if ($action == 'club') {
+          drupal_goto(drupal_lookup_path('alias', 'node/' . $nid));
+        }
+        else if ($action == 'invite') {
+          drupal_goto('clubs/share/' . $nid);
+        }
       }
       else {
         drupal_goto('clubs/club-not-found');
@@ -2638,6 +2655,7 @@ function dosomething_clubs_role_link($gid, $uid) {
  */
 function dosomething_clubs_page_alter(&$page) {
   $path = request_uri();
+
   if (preg_match('#club\/(.*?)#i', $path)) {
     if (isset($_SESSION['just_created_club'])) {
       global $user;
