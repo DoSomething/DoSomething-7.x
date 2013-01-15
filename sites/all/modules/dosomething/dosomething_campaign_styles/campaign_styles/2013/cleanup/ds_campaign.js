@@ -27,8 +27,16 @@
       .addClass('a')
       .wrapAll('<div id="webform-photo-wrapper">');
 
-    // AJAX form submission here
+    // AJAX form submission on page load
     $('#contact-form .webform-client-form').submit();
+
+    // give users ability to hide system messages
+    var msg_button = '<a href="#" class="go-button" id="msg_button">close</a>';
+    $('.messages').append(msg_button);
+    $('#msg_button').click(function() {
+      console.log("boom");
+      $(this).parent().hide();   
+    });
 
     } // end attach: function
   }; // end Drupal.behaviors
