@@ -140,7 +140,7 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
 
   // Sets up language for your responses vs. worldwide responses
   $stat = array(
-    'yours' => 'You said: <span class="you">!answer</span>',
+    'yours' => 'you said: <span class="you">!answer</span>',
     'theirs' => '!percent% said: <span class="them">!answer</span>',
   );
   $answers = array();
