@@ -63,27 +63,33 @@ html body.admin-menu
 
 // better looking error messages!
 #page .status
-  position: absolute
-  z-index: 201
-  top: 3%
-  left: 15%
-  width: 70%
   background: #FF885E
-  border: 7px solid #EE7C53
-  +border-radius(3px)
+  border: none
   color: #fff
-  font-size: 25px
+  font-size: 15px
   line-height: 35px
+  text-align: center
+  margin: 0
   .go-button
     background: #F8E616
     font-size: 23px
-    margin: 1% auto
-    padding: 5px 10px
+    margin: 5px auto
+    padding: 3px 0 0 0
     height: 35px
     width: 70px
+    display: block
+    +border-radius(3px)
     /* style go-button here */
 
+// fixes tab styling to increase usability + aesthetics
+.tabs
+  background-color: #ff885e
 
+#main-wrapper div[role="main"] ul.primary
+  height: 50px
+  width: 312px
+  margin: 0 auto
+  padding: 20px 0 0 0
 
 // hide elements inherited from global site
 #block-menu-menu-footer,

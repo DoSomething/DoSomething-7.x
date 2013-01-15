@@ -65,29 +65,36 @@ html body.admin-menu {
   margin-top: 0 !important; }
 
 #page .status {
-  position: absolute;
-  z-index: 201;
-  top: 3%;
-  left: 15%;
-  width: 70%;
   background: #ff885e;
-  border: 7px solid #ee7c53;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
+  border: none;
   color: white;
-  font-size: 25px;
-  line-height: 35px; }
+  font-size: 15px;
+  line-height: 35px;
+  text-align: center;
+  margin: 0; }
   #page .status .go-button {
     background: #f8e616;
     font-size: 23px;
-    margin: 1% auto;
-    padding: 5px 10px;
+    margin: 5px auto;
+    padding: 3px 0 0 0;
     height: 35px;
     width: 70px;
+    display: block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
     /* style go-button here */ }
+
+.tabs {
+  background-color: #ff885e; }
+
+#main-wrapper div[role="main"] ul.primary {
+  height: 50px;
+  width: 312px;
+  margin: 0 auto;
+  padding: 20px 0 0 0; }
 
 #block-menu-menu-footer,
 #skip-link,
