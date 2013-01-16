@@ -12,6 +12,7 @@ class ConductorActivityMLKGameInvite extends ConductorActivity {
   public $alpha_optin = 140061;
   public $beta_optin = 140071;
   public $game_id = 1;
+  public $type_override = 'sms_game';
 
   public function run($workflow) {
     $state = $this->getState();
@@ -48,10 +49,8 @@ class ConductorActivityMLKGameInvite extends ConductorActivity {
     );
 
     // Setup values and call sms_flow_start to save the alpha-beta relationship and opt-in users into next paths
-    $alpha_optin = $this->alpha_optin;
-    $beta_optin = $this->beta_optin;
     $form['details']['nid'] = $this->game_id;
-    sms_flow_start($mobile, $alpha_optin, $beta_optin, $numbers, $form, $args, FALSE);
+    sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $numbers, $form, $args, FALSE, $this->type_override);
     
     $state->setContext('sms_response', $response);
     $state->markCompleted();
