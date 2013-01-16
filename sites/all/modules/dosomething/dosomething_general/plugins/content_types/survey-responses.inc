@@ -212,8 +212,8 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
       }
 
       $lr = '';
-      foreach ($answers AS $type => $val) {
-        $lr .= '<div class="' . $type . ' result">' . $val . '</div>';
+      foreach ($stat AS $type => $val) {
+        $lr .= '<div class="' . $type . ' result">' . $answers["$type"] . '</div>';
       }
       $layout .= $lr;
 
@@ -295,8 +295,8 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
         }
 
         $lr = '';
-        foreach ($answers AS $type => $val) {
-          $lr .= '<div class="' . $type . ' result">' . $val . '</div>';
+        foreach ($stat AS $type => $val) {
+          $lr .= '<div class="' . $type . ' result">' . $answers["$type"] . '</div>';
         }
         $layout .= $lr;
 
