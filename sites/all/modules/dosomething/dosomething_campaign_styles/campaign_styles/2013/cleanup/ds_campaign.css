@@ -64,7 +64,7 @@ header[role="banner"] {
 html body.admin-menu {
   margin-top: 0 !important; }
 
-#page .status {
+#page .messages {
   background: #ff885e;
   border: none;
   color: white;
@@ -72,7 +72,7 @@ html body.admin-menu {
   line-height: 35px;
   text-align: center;
   margin: 0; }
-  #page .status .go-button {
+  #page .messages .go-button {
     background: #f8e616;
     font-size: 23px;
     margin: 5px auto;
@@ -245,6 +245,8 @@ html body.admin-menu {
   display: block;
   width: 282px;
   font-size: 35px; }
+#cmp .show #show-report-back {
+  display: none; }
 #cmp #cause i {
   font-style: italic; }
 #cmp .cause-facts {
@@ -284,13 +286,15 @@ html body.admin-menu {
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px; }
+  #cmp #report-back input[type="file"] {
+    border: none; }
   #cmp #report-back legend {
     display: none; }
   #cmp #report-back .description {
     font-size: 10px;
     color: #cccccc; }
-#cmp input[type="file"] {
-  border: none; }
+#cmp #report-back.show {
+  display: block; }
 #cmp #webform-photo-wrapper {
   float: left;
   width: 40%;
