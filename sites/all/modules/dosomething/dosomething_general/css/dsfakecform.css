@@ -1,0 +1,97 @@
+  #cmp #scholarship {
+    overflow: visible;
+    position: relative;
+    color: #fff; }
+    #cmp #scholarship img.scholar-copy {
+      padding: 0; }
+    #cmp #scholarship img {
+      clear: both;
+      display: block;
+      border: 0px;
+      margin: 0 auto;
+      padding: 2% 0; }
+    #cmp #scholarship h1 {
+      color: white;
+      margin: 15px;
+      text-align: center; }
+    #cmp #scholarship p {
+      color: white; }
+    #cmp #scholarship form {
+      margin: 0 auto;
+      max-width: 100%; }
+      #cmp #scholarship form label {
+        color: white;
+        font-weight: 500;
+        text-align: left; }
+      #cmp #scholarship form input[type="text"] {
+        padding: 0.8em 0.5em;
+        float: left;
+        height: 3em;
+        width: 48%;
+        margin: 1%;
+        -webkit-border-radius: 0.3em;
+        -moz-border-radius: 0.3em;
+        -ms-border-radius: 0.3em;
+        -o-border-radius: 0.3em;
+        border-radius: 0.3em; }
+    #cmp #scholarship .align-button {
+      text-align: center; }
+    #cmp #scholarship .go-button {
+      margin: 4% 0 1% 0;
+      padding: 0.6em 0.7em;
+      height: 2em;
+      width: 8em; }
+    #cmp #scholarship #campaign-opt-in {
+      text-align: center; }
+      #cmp #scholarship #campaign-opt-in a {
+        color: white;
+        font-weight: 500; }
+    #cmp #scholarship .quote-highlight p {
+      background: #a78b79;
+      max-width: 525px;
+      margin: 0 auto 0.8em;
+      padding: 3%;
+      font-family: din-web-reg;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1;
+      font-size: 27px;
+      -moz-border-radius: 12px;
+      -webkit-border-radius: 12px;
+      -o-border-radius: 12px;
+      border-radius: 12px; }
+    #cmp #scholarship .scholar-input {
+      float: left;
+      width: 48%;
+      margin: 1%; }
+      #cmp #scholarship .scholar-input input[type="text"] {
+        width: 100%;
+        margin: 1% 0; }
+    #cmp #scholarship .your-input input[type="text"] {
+      width: 100%; }
+    #cmp #scholarship .rules {
+      font-size: 16px; }
+  #cmp label.friends {
+    padding-left: 0.3em; }
+  #cmp .refer5 {
+    background: #0c3565;
+    width: 100%;
+    /*margin: 0 0 0 -4.95%;*/
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; }
+  #page-wrap #cmp .refer5 {
+    width: 797px;
+    margin: 0 0 0 -23px; }
+  #mlk #cmp .refer5 {
+    background: #000; }
+    #mlk #cmp .refer5 .quote-highlight p {
+      background: #808080; }
+  #cmp .refer5-inner {
+    padding: 3%; }
+  #cmp #prizing h2 {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 20px; }
