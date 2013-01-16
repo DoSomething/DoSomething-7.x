@@ -583,6 +583,71 @@ function crazyshit_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-crazy_shit-field_crazy_today_count'.
+  $fields['webform_submission_entity-crazy_shit-field_crazy_today_count'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_crazy_today_count',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'crazy_shit',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 9,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_crazy_today_count',
+      'label' => 'Today Total Count',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'numberfield',
+        'weight' => '11',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-crazy_shit-field_crazy_top_text'.
   $fields['webform_submission_entity-crazy_shit-field_crazy_top_text'] = array(
     'field_config' => array(
@@ -692,7 +757,7 @@ function crazyshit_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_crazy_total_count',
-      'label' => 'Total count',
+      'label' => 'All Time Count',
       'required' => 0,
       'settings' => array(
         'max' => '',
@@ -782,16 +847,83 @@ function crazyshit_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-crazy_shit-field_crazy_week_count'.
+  $fields['webform_submission_entity-crazy_shit-field_crazy_week_count'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_crazy_week_count',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'crazy_shit',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_crazy_week_count',
+      'label' => 'This Week Total Count',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'numberfield',
+        'weight' => '12',
+      ),
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('A Crazy Image');
+  t('All Time Count');
   t('Body');
   t('Bottom Text');
   t('Bullshit count');
   t('Crazy Count');
   t('Image');
+  t('This Week Total Count');
+  t('Today Total Count');
   t('Top Text');
-  t('Total count');
   t('Vouch Count');
 
   return $fields;

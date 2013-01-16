@@ -169,31 +169,13 @@ function crazyshit_submit_vouch() {
 	  ));
 	}
 
-	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
-
-	$value = 0;
-	if (isset($submission->field_crazy_vouch_count[LANGUAGE_NONE])) {
-	   $value = $submission->field_crazy_vouch_count[LANGUAGE_NONE][0]['value'];
-	}
-
-	$value++;
-	$submission->field_crazy_vouch_count[LANGUAGE_NONE][0]['value'] = $value;
-
-	$total = 0;
-	if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
-	   $total = $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
-	}
-
-	$total++;
-	$submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'] = $total;
-
-	webform_entity_save_webform_submission($submission);
+	$update = crazyshit_update_counts(intval($_POST['rel']), 'crazy_vouch_count');
 
 	$fbid = fboauth_fbid_load($user->uid);
 
 	$notification = array(
-	  'sid' => $submission->sid,
-	  'uid' => $submission->uid,
+	  'sid' => $update['sid'],
+	  'uid' => $update['uid'],
 	  'fid' => fboauth_fbid_load($submission->uid),
 	  'from_uid' => $user->uid,
 	  'from_fid' => $fbid,
@@ -206,7 +188,7 @@ function crazyshit_submit_vouch() {
 
 	echo drupal_json_output(array(
 	  'status' => 1,
-	  'count' => $value,
+	  'count' => $update['count'],
 	));
 
 	drupal_exit();
@@ -282,6 +264,59 @@ function crazyshit_submit_craziness() {
 	exit;
 }*/
 
+function crazyshit_update_counts($sid, $field) {
+  // Get the submission, or send an error.
+  $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+  if (!$submission) {
+    watchdog('crazyshit', 'There was an error with the field_' . $field . ' field (SID: ' . $sid . ')');
+    return FALSE;
+  }
+
+  // Get the current B.S. count
+  $value = 0;
+  if (isset($submission->field_{$field}[LANGUAGE_NONE])) {
+     $value = $submission->{'field_' . $field}[LANGUAGE_NONE][0]['value'];
+  }
+
+  // BS++
+  $value++;
+
+  // Update it.
+  $submission->{'field_' . $field}[LANGUAGE_NONE][0]['value'] = $value;
+
+  $total = 0;
+  if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
+   $total = $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
+  }
+
+  $total++;
+  $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'] = $total;
+
+  $total_today = 0;
+  if (isset($submission->field_crazy_today_count[LANGUAGE_NONE])) {
+   $total_today = $submission->field_crazy_today_count[LANGUAGE_NONE][0]['value'];
+  }
+
+  $total_today++;
+  $submission->field_crazy_today_count[LANGUAGE_NONE][0]['value'] = $total_today;
+
+  $total_week = 0;
+  if (isset($submission->field_crazy_week_count[LANGUAGE_NONE])) {
+   $total_week = $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'];
+  }
+
+  $total_week++;
+  $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'] = $total_week;
+
+  webform_entity_save_webform_submission($submission);
+
+  return array(
+  	'sid' => $submission->sid,
+  	'uid' => $submission->uid,
+  	'count' => $value
+  );
+}
+
 /**
  *	Submits a B.S. notification.
  */
@@ -301,34 +336,7 @@ function crazyshit_submit_bullshit() {
 	  $n = 1;
 	}
 
-	// Get the submission, or send an error.
-	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
-	if (!$submission) {
-	  watchdog('crazyshit', 'There was an error with a B.S. share (SID: ' . intval($_POST['rel']) . ')');
-	  return FALSE;
-	}
-
-	// Get the current B.S. count
-	$value = 0;
-	if (isset($submission->field_crazy_bullshit_count[LANGUAGE_NONE])) {
-	   $value = $submission->field_crazy_bullshit_count[LANGUAGE_NONE][0]['value'];
-	}
-
-	// BS++
-	$value++;
-
-	// Update it.
-	$submission->field_crazy_bullshit_count[LANGUAGE_NONE][0]['value'] = $value;
-
-	$total = 0;
-	if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
-	   $total = $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
-	}
-
-	$total++;
-	$submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'] = $total;
-
-	webform_entity_save_webform_submission($submission);
+	$update = crazyshit_update_counts(intval($_POST['rel']), 'crazy_bullshit_count');
 	
 	// Get Drupal and FB user ids
 	$fbid = fboauth_fbid_load($user->uid);
@@ -336,8 +344,8 @@ function crazyshit_submit_bullshit() {
 
 	// Build the notification array.
 	$notification = array(
-	  'sid' => $submission->sid,
-	  'uid' => $submission->uid,
+	  'sid' => $update['sid'],
+	  'uid' => $update['uid'],
 	  'fid' => $to_fbid,
 	  'from_uid' => $user->uid,
 	  'from_fid' => $fbid,
@@ -354,7 +362,7 @@ function crazyshit_submit_bullshit() {
 	echo drupal_json_output(array(
 	  'author' => fboauth_fbid_load($submission->uid),
 	  'status' => 1,
-	  'count' => $value,
+	  'count' => $update['count'],
 	));
 
 	drupal_exit();
