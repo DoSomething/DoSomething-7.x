@@ -530,7 +530,7 @@ function crazyshit_add_lazy_class($matches) {
   else {
 	// If we're within the threshhold of non-lazy images, don't add the "lazy" class to them.
 	// The lazy class causes issues when you first create a post.  So we can't lazy load it.
-	$r = $matches[0] . ' data-original="' . $matches[1] . '" ';
+	$r = 'src="' . $matches[1] . '?o2ijf" data-original="' . $matches[1] . '" ';
   }
 
   $i++;
@@ -542,29 +542,28 @@ function crazyshit_add_lazy_class($matches) {
  */
 function crazyshit_views_query_alter(&$view, &$query) {
   if ($view->name == 'crazy_shit_landing') {
+	if (preg_match('#^\/' . CRAZY_ROOT . '/(friends/)?(?<showid>[0-9]+)$#i', request_uri(), $showid)) {
+	  $showid = $showid['showid'];
+	  // Try and find the submission with this ID and mark it as relevant
+	  $query->fields['ided'] = array(
+	    'field' => 'IF (webform_submissions.sid = ' . $showid . ', 1, 0)',
+	    'table' => '',
+	    'alias' => 'is_the_one',
+	  );
+
+	  // When we're looking for one specific element, we can show it first in the list
+  	  // by doing "is_the_one DESC" (see "is_the_one" definition above).  Everything else
+	  // will resume as normal below the post.
+	  $theone = array(
+	    'field' => 'is_the_one',
+	    'direction' => 'DESC',
+	  );
+
+	  // Prepend "is_the_one" order to the beginning of the orderby array.
+	  array_unshift($query->orderby, $theone);
+	}
+
     if ($view->current_display == 'block') {
-	  if (preg_match('#^\/' . CRAZY_ROOT . '/([0-9]+)$#i', request_uri(), $showid)) {
-	    $showid = $showid[1];
-
-		// Try and find the submission with this ID and mark it as relevant
-		$query->fields['ided'] = array(
-		  'field' => 'IF (webform_submissions.sid = ' . $showid . ', 1, 0)',
-		  'table' => '',
-		  'alias' => 'is_the_one',
-		);
-
-		// When we're looking for one specific element, we can show it first in the list
-		// by doing "is_the_one DESC" (see "is_the_one" definition above).  Everything else
-		// will resume as normal below the post.
-		$theone = array(
-		  'field' => 'is_the_one',
-		  'direction' => 'DESC',
-		);
-
-		// Prepend "is_the_one" order to the beginning of the orderby array.
-		array_unshift($query->orderby, $theone);
-	  }
-
       if (preg_match('#^\/' . CRAZY_ROOT . '/time-(today|week)$#i', request_uri(), $time)) {
 		$time = $time[1];
 
@@ -578,10 +577,12 @@ function crazyshit_views_query_alter(&$view, &$query) {
 		}
 		// Gets submissions posted this week.
 		else if ($time == 'week') {
+		   // Monday is always the start of the week.  Get this week's Monday in days (ago).
+		   $monday = (date('N') - 1);
 		   $query->where[1]['conditions'][] = array(
 			  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
 			  'value' => array(
-				  ':last_week' => date('Y-m-d', strtotime('7 days ago')),
+				  ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
 				  ':today' => date('Y-m-d', REQUEST_TIME),
 				),
 		  	  'operator' => 'formula',
@@ -717,7 +718,7 @@ function crazyshit_add_text_to_image($form, &$form_state) {
 function crazyshit_redirect_to_friends($form, &$form_state) {
   $sid = $form_state['values']['details']['sid'];
   $_SESSION['from_creation'] = $sid;
-  drupal_goto('crazy/friends');
+  drupal_goto('crazy/friends/' . $sid);
 }
 
 /**
