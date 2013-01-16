@@ -321,7 +321,55 @@ function dosomething_general_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['redirect-with-message'] = array(
+    'page callback' => 'dosomething_general_redirect_with_message',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
+}
+
+/**
+ *  Redirects a user to a destination with a message.
+ *
+ *  @uses string $_GET['destination']
+ *    The Drupal destination that the user should be redirect to.
+ *    Do not include a leading "/" in this parameter.
+ *
+ *  @uses string $_GET['message']
+ *    The message that should display when the user lands at
+ *    their destination.
+ *
+ *  @uses string $_GET['status']
+ *    Passes the "status" parameter to drupal_set_message().
+ *    Accepts "status", "warning" and "error".
+ *
+ */
+function dosomething_general_redirect_with_message() {
+  // Get query parameters
+  $params = drupal_get_query_parameters();
+
+  // The message
+  $message = check_plain($params['message']);
+
+  // The status to display in drupal_set_message()
+  $status = check_plain($params['status']);
+
+  // Confirm that the (optionally) provided status is valid.
+  if (!empty($status) && in_array($status, array('status', 'warning', 'error'))) {
+    $status = $status;
+  }
+  // Otherwise defaults to "status"
+  else {
+    $status = 'status';
+  }
+
+  // Show the message.
+  drupal_set_message(t($message), $status, false);
+
+  // Redirect.
+  drupal_goto();
 }
 
 function dosomething_general_find_tfj_team() {
