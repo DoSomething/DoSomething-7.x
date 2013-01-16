@@ -1,3 +1,7 @@
+div#main-wrapper div[role="main"] {
+  background: #fff !important;
+}
+
 .results {
   text-align: center;
   width: 500px;
@@ -15,9 +19,16 @@ ul li {
 }
 
 .component {
-  border-bottom: 1px solid #dedcdb;
-  margin-bottom: 15px;
+  /*border-bottom: 1px solid #dedcdb;*/
+  padding-top: 15px;
   padding-bottom: 16px;
+}
+
+.component.alternate {
+  background: #f2f2f2;
+  width: 797px;
+  padding-left: 23px;
+  margin: 0px 0px 0px -23px;
 }
 
 .component ul { margin: 0px; padding: 0px; }

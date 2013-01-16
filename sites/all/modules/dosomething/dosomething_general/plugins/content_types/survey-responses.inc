@@ -145,10 +145,11 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
   );
   $answers = array();
 
+  $i = 1;
   // Loops through components and builds visual structure.
   foreach ($components AS $key => $component) {
     // Builds the "question" div
-    $layout .= '<div class="component">';
+    $layout .= '<div class="component' . (($i % 2) ? ' alternate' : '') . '">';
     // $component->name is the original (top level) question.
     $layout .= '<h2>' . $component->name . '</h2>';
 
@@ -308,6 +309,7 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
       $layout .= '</ul>';
     }
 
+    $i++;
     $layout .= '</div>';
   }
 
