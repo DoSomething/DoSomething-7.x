@@ -217,41 +217,13 @@ function sms_flow_menu() {
  * for different endpoints to trigger different keyword paths
  */
 function sms_flow_incoming_callback($path) {
-  // TODO: $keyword = path?
-  switch ($path) {
-    case 'drives-create':
-      $keyword = 'drives-create';
-      break;
-    case 'drives-invite':
-      $keyword = 'drives-invite';
-      break;
-    case 'ftaf':
-      $keyword = 'ftaf';
-      break;
-    case 'alcoa-report-back':
-      $keyword = 'alcoa-report-back';
-      break;
-    case 'clubs':
-      $keyword = 'clubs';
-      break;
-    case 'clubs-ftaf':
-      $keyword = 'clubs-ftaf';
-      break;
-    case 'clubs-survey':
-      $keyword = 'clubs-survey';
-      break;
-    case 'clubs-followup':
-      $keyword = 'clubs-followup';
-      break;
-    case 'mlk-game-invite':
-      $keyword = 'mlk-game-invite';
-      break;
-    case 'mlk-process-beta':
-      $keyword = 'mlk-process-beta';
-      break;
-    default:
-      watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
-      return NULL;
+  // Direct correlation between path endpoint and keyword used. If path doesn't match any keyword
+  // specified in the array of keywords, then error out.
+  $keyword = $path;
+  $keyword_map = module_invoke_all('conductor_sms_keywords');
+  if (!array_key_exists($path, $keyword_map)) {
+    watchdog('sms_flow', 'Received message at unsupported path: /sms/sms_flow/$path');
+    return NULL;
   }
 
   // Using same code from sms_mobile_commons_incoming_callback(). Only difference
@@ -319,6 +291,7 @@ function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array(
 function sms_flow_conductor_sms_keywords() {
   return array(
     'alcoa-report-back' => 'sms_flow_alcoa_report_back',
+    'beta-campaign-report-back' => 'sms_flow_beta_campaign_report_back',
     'drives-create' => 'sms_flow_drives_create',
     'tfjcreate' => 'sms_flow_drives_create',
     'jeans' => 'sms_flow_drives_create',
@@ -643,6 +616,63 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'end';
   $activity->title = 'End';
   $activity->inputs = array('50cans_report_back');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_beta_campaign_report_back workflow
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_beta_campaign_report_back';
+  $workflow->title = 'Beta Campaign Report Back';
+  $workflow->description = 'Submits the report back for use with the Cleanup (beta) campaign';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('ask_trash_pickup');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_trash_pickup';
+  $activity->question = t('How many pieces of trash did you pick up?');
+  $activity->inputs = array('start');
+  $activity->outputs = array('ask_people_involved');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_people_involved';
+  $activity->question = t('How many people were involved?');
+  $activity->inputs = array('ask_trash_pickup');
+  $activity->outputs = array('ask_zip');
+
+  $activity = $workflow->newActivity('sms_prompt');
+  $activity->name = 'ask_zip';
+  $activity->question = t('What zip code did you clean up?');
+  $activity->inputs = array('ask_people_involved');
+  $activity->outputs = array('ask_picture');
+
+  $activity = $workflow->newActivity('mms_prompt');
+  $activity->name = 'ask_picture';
+  $activity->question = t('Send us a picture of what you did!');
+  $activity->inputs = array('ask_zip');
+  $activity->outputs = array('strip_signature');
+
+  $activity = $workflow->newActivity('sms_strip_signature');
+  $activity->name = 'strip_signature';
+  $activity->inputs = array('ask_picture');
+  $activity->outputs = array('submit');
+
+  $activity = $workflow->newActivity('beta_campaign_report_back');
+  $activity->name = 'submit';
+  $activity->inputs = array('strip_signature');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->title = 'End';
+  $activity->inputs = array('submit');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
