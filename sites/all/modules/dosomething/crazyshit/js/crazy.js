@@ -93,7 +93,6 @@
 
 	      elm.addClass('clicked');
 	      $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
-	      	console.log(response);
 	      	if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
 	      		settings.crazy.share_count++;
