@@ -3,8 +3,8 @@ Setting up the Crazy $#!T Campaign
 
 1. Enable the "Crazy $#!T Campaign" module /admin/modules
 2. Run "drush cc all" from the command line to clear cache 
-2. Run "drush updb" from the command line for any updates
-3. Run "drush crazy-migrate" from the command line to set up the campaign
+3. Run "drush updb" from the command line for any updates
+4. Run "drush crazy-migrate" from the command line to set up the campaign
 
 Done! The campaign can be found at /crazy
 
@@ -29,3 +29,4 @@ The plugin file found at [/sites/all/modules/dosomething/crazyshit/plugin.php] c
 All "about" pages are HTML files, found in [/sites/all/modules/dosomething/crazyshit/html].  The name of the html file is the name of the page, so for example if you had a scholarships.html, you could access it at /crazy/about/scholarships.  The "/submit/start" template can also be found in the html folder, as "about-submit.html".
 
 Have fun and let me know if you have any questions.
+Mike C.
