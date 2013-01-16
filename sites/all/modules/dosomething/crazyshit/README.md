@@ -1,10 +1,12 @@
 Setting up the Crazy $#!T Campaign
 ==============
 
-1. Enable the "Crazy $#!T Campaign" module
-2. Run "drush updb" from the command line for any updates.
-3. Run "drush crazy-migrate" from the command line to set up the campaign.
-4. The campaign can be found at /crazy
+1. Enable the "Crazy $#!T Campaign" module /admin/modules
+2. Run "drush cc all" from the command line to clear cache 
+2. Run "drush updb" from the command line for any updates
+3. Run "drush crazy-migrate" from the command line to set up the campaign
+
+Done! The campaign can be found at /crazy
 
 A few things to note
 --------------
