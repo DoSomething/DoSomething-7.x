@@ -56,7 +56,7 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
   $layout = '';
 
   // Get all of the form components (questions) for the survey.
-  $components = db_query("SELECT cid, form_key, name, extra from webform_component where nid = {$node} ORDER BY weight ASC")->fetchAll();
+  $components = db_query("SELECT cid, form_key, name, extra from webform_component where nid = :nid AND `extra` NOT LIKE '%s:13:\"title_display\";s:4:\"none\";%' ORDER BY weight ASC", array(':nid' => $node))->fetchAll();
 
   /**
    * Get all of your answers from the survey.  We can't limit this to any particular number
