@@ -47,10 +47,10 @@
     },
 
     // Runs Facebook tasks.
-  	run: function(fun) {
-  		var a = Array.prototype.slice.call(arguments);
+    run: function(fun) {
+      var a = Array.prototype.slice.call(arguments);
       eval('Drupal.behaviors.fb.' + fun + '(a[1])');
-  	},
+    },
 
     /**
      *  Multi-browser safe console.log
@@ -215,8 +215,12 @@
             },
             close: function() {
               if (things.modal) {
-                if (jQuery('#fb-modal').length > 0) {
-                  jQuery('#fb-modal').remove();
+                if ($('#fb-modal').length > 0) {
+                  $('#fb-modal').remove();
+                }
+
+                if ($('#fbc-modal').length > 0) {
+                  $('#fbc-modal').remove();
                 }
               }
 
@@ -927,7 +931,7 @@
     message_dialog: function(things, callback) {
       var m = {
         method: 'send', 
-        link: things.link,
+        link: things.link
       };
 
       if (things.image) {
@@ -939,7 +943,7 @@
           FB.ui(m, function(response) {
             Drupal.behaviors.fb.callback_handler(callback, response);
           });
-        })
+        });
       }
       else {
         FB.ui(m, function(response) {
@@ -979,7 +983,7 @@
         message: config.img_message || '',
         image: config.img_picture, // Needs to be at least 480x480
         image_selector: config.img_picture_selector, // Needs to be an img element that is at least 480x480
-        selector: config.img_selector, 
+        selector: config.img_selector,
         require_login: config.img_require_login
       };
 
@@ -1034,7 +1038,7 @@
      *
      *  @param callback
      *    A callback function which triggers when a post was succesfully made.
-     *    
+     *
      */
     notification: function(config, callback) {
       var things = {
