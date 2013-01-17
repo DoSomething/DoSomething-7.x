@@ -241,13 +241,17 @@ function fb_auth(type, status) {
 
 	if (!status) {
 		if (type == 'login') {
+			console.log('REMOVE ME: Asking to login.');
 			jQuery.fn.dsCrazyPopup('login', 0);
+			return false;
 		}
 		else {
+			console.log('REMOVE ME: trying the submit pop-up');
 			jQuery.fn.dsCrazyPopup('submit', 0);
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 	else {
 		return true;
