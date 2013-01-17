@@ -314,6 +314,10 @@ class clubs_export {
         t('Email invites'),
         t('Total'),
         t('Responded to survey'),
+        t('Last 5 project IDs'),
+        t('Last 5 project dates'),
+        t('Last 5 campaign report back IDs'),
+        t('Last 5 campaign report back dates'),
       );
 
       $handle = fopen($h['file_path'], 'w');
@@ -431,6 +435,7 @@ class clubs_export {
         return $q;
       }
       else {
+        $crbids = dosomething_clubs_pull_get_campaign_report_back_nids();
         foreach ($q->fetchAll() AS $key => $r) {
           $s = (array) $r;
 
@@ -497,6 +502,45 @@ class clubs_export {
 
           $s['sms_responses'] = implode(',', $sms_responses);
 
+          $campaigns = db_query("
+            SELECT
+              webform_submissions.nid AS `nid`,
+              webform_submissions.sid AS `sid`,
+              webform_submissions.submitted AS `submitted`
+            FROM 
+            `webform_submissions` webform_submissions
+            WHERE
+              uid IN (" . $s['member_uids'] . ")
+              AND nid IN (" . implode(',', $crbids) . ")
+            ORDER BY `submitted` DESC
+            LIMIT 5 OFFSET 0
+          ")->fetchAll();
+
+        $projects = db_query("(
+        SELECT
+          webform_submissions.nid AS `nid`,
+          webform_submissions.sid AS `sid`,
+          0 AS `is_node`,
+          webform_submissions.submitted AS `submitted`,
+          `pt`.`field_project_title_value` AS `title`,
+          `img`.`field_picture_fid` AS `fid`,
+          0 AS `blah`
+        FROM 
+        `webform_submissions` webform_submissions
+        LEFT JOIN `users` users_webform_submissions ON webform_submissions.uid = users_webform_submissions.uid
+        LEFT JOIN `field_data_field_project_type` AS `project_status` ON (`project_status`.`entity_id` = `webform_submissions`.`sid`)
+        LEFT JOIN `og_membership` og_membership_users ON users_webform_submissions.uid = og_membership_users.etid AND og_membership_users.entity_type = 'user'
+        LEFT JOIN `og` og_og_membership ON og_membership_users.gid = og_og_membership.gid
+        LEFT JOIN `node` node ON webform_submissions.nid = node.nid
+        LEFT JOIN `field_data_field_project_type` field_data_field_project_type ON webform_submissions.sid = field_data_field_project_type.entity_id AND (field_data_field_project_type.entity_type = 'webform_submission_entity' AND field_data_field_project_type.deleted = '0')
+        LEFT JOIN `field_data_field_project_title` AS `pt` ON (`pt`.`entity_id` = `webform_submissions`.`sid`)
+        LEFT JOIN `field_data_field_picture` AS `img` ON (`img`.`entity_id` = `webform_submissions`.`nid`)
+        WHERE (( (og_membership_users.gid = '" . $r->gid . "' ) )AND(( (node.type IN  ('project_report')) AND (field_data_field_project_type.field_project_type_value IN  ('4')) )))
+        ORDER BY `submitted` DESC
+        LIMIT 5 OFFSET 0)")->fetchAll();
+
+          $s['campaigns'] = $campaigns;
+          $s['projects'] = $projects;
           $results[] = (object)$s;
         }
 
@@ -506,6 +550,17 @@ class clubs_export {
         );
       }
     }
+}
+
+function dosomething_clubs_pull_get_campaign_report_back_nids() {
+  $query = db_select('node', 'n')
+    ->fields('n', array('nid', 'created'))
+    ->condition('type', 'campaign_report_back')
+    ->execute();
+  
+  $r = $query->fetchAllKeyed();
+
+  return array_keys($r);
 }
 
 
@@ -870,6 +925,10 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Email Invites'), 'class' => array('clubs-pull-email-shares')),
     array('data' => t('Total Invites'), 'class' => array('clubs-pull-total-shares')),
     array('data' => t('Responded to survey'), 'class' => array('clubs-pull-survey-response')),
+    array('data' => t('Last 5 project IDs'), 'class' => array('clubs-pull-last-5-project-ids')),
+    array('data' => t('Last 5 project dates'), 'class' => array('clubs-pull-last-5-project-dates')),
+    array('data' => t('Last 5 campaign report back IDs'), 'class' => array('clubs-pull-last-5-campaign-ids')),
+    array('data' => t('Last 5 campaign report back dates'), 'class' => array('clubs-pull-last-5-campaign-dates')),
   );
 
 $count = db_query("SELECT COUNT(*) AS `count` FROM `node` WHERE (( (node.status = '1') AND (node.type IN  ('club')) )) GROUP BY nid, `node`.`title` ORDER BY `node`.`title` ASC");
@@ -909,6 +968,22 @@ $num = $count->rowCount();
       $last_joined_campaign = '';
       if (!empty($result['last_joined_campaign'])) {
         $last_joined_campaign = date('Y/m/d', $result['last_joined_campaign']);
+      }
+
+      $pids = $pdates = array();
+      if (!empty($result['projects'])) {
+        foreach ($result['projects'] AS $key => $project) {
+          $pids[] = $project->sid;
+          $pdates[] = date('Y-m-d', $project->submitted);
+        }
+      }
+
+      $cids = $cdates = array();
+      if (!empty($result['campaigns'])) {
+        foreach ($result['campaigns'] AS $campaign) {
+          $cids[] = $campaign->nid;
+          $cdates[] = date('Y-m-d', $campaign->submitted);
+        }
       }
 
     $pages['rows'][] = array(
@@ -957,6 +1032,10 @@ $num = $count->rowCount();
         'Email invites' => array('data' => $result['shares']['email_shares']),
         'Total' => array('data' => ($result['shares']['sms_shares'] + $result['shares']['fb_shares'] + $result['shares']['email_shares'])),
         'Responded to survey' => array('data' => $result['survey']),
+        'project_ids' => array('data' => implode(', ', $pids)),
+        'project_dates' => array('data' => implode(', ', $pdates)),
+        'campaign_ids' => array('data' => implode(', ', $cids)),
+        'campaign_dates' => array('data' => implode(', ', $cdates)),
       )
     );
   }
