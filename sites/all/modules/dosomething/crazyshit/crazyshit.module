@@ -489,7 +489,12 @@ function crazyshit_page_alter(&$page) {
 		$origin = 2;
 	}
 
+	if (preg_match('#^\/' . CRAZY_ROOT . '/submit#i', request_uri())) {
+		$origin = 3;
+	}
+
 	$settings['facebook'] = $facebook_posts;
+	$settings['fb_app_id'] = variable_get('fboauth_id');
 
 	$settings['origin'] = $origin;
 	// Whether or not to allow notifications.

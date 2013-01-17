@@ -111,15 +111,15 @@
 	    	var sid = $(this).attr('rel');
 
 	    	Drupal.behaviors.fb.image({
-	    		'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
-	    		'img_object': Drupal.settings.crazy.facebook.share.object,
-	    		'img_action': Drupal.settings.crazy.facebook.share.action,
-	    		'img_document': document.location.origin + '/' + Drupal.settings.crazy.crazy_root + '/' + sid,
-	    		'img_message': Drupal.settings.crazy.facebook.share.message,
-	    		'img_picture': img,
-	    		'img_require_login': true,
+	    	   'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
+	    	   'img_object': Drupal.settings.crazy.facebook.share.object,
+	    	   'img_action': Drupal.settings.crazy.facebook.share.action,
+	    	   'img_document': document.location.origin + '/' + Drupal.settings.crazy.crazy_root + '/' + sid,
+	    	   'img_message': Drupal.settings.crazy.facebook.share.message,
+	    	   'img_picture': img,
+	    	   'img_require_login': true,
 	    	}, function(response) {
-	    		console.log(response);
+	    	   console.log(response);
 	    	});
 	    	return false;
 	    });
@@ -137,7 +137,7 @@
 			oa();
 
 		    // If we're on the friends page...
-		    if (Drupal.settings.crazy.origin == 2) {
+		    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
 
 		    	// Occasionally users can log out of Facebook and still count as "authenticated"
 		    	// That's bad.  So let's make sure they're actually connected.
@@ -148,22 +148,11 @@
 	 },
 
 	 fb_status: function() {
-		FB.getLoginStatus(function(response) {
-    	  if (response.status == 'connected' && response.authResponse.userID) {
-    	    // Nothing.  They're authorized.
-    	  }
-    	  else {
-    	    //document.location.href = '/' + Drupal.settings.crazy.crazy_root + '/fb-connect';
-		    FB.login(function(response) {
-		      if (response.status == 'connected') {
-		        document.location.href = document.location.href;
-		      }
-		    }, { scope: 'email' });
-    	  }
-       });
-
-       return false;
-    },
+Drupal.behaviors.fb.gate({
+   gate_call_fb: 2,
+   gate_app_id: Drupal.settings.crazy.fb_app_id
+    }, function(response) { console.log(response); });
+   },
   };
 
   $.fn.extend({

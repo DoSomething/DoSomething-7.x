@@ -1110,7 +1110,7 @@
 
     run_gate: function(things, callback) {
       FB.getLoginStatus(function(response) {
-        if (response.status == 'connected' && response.authResponse.userID) {
+        if (response.status == 'connected' && response.authResponse.userID && !$('body').hasClass('not-logged-in')) {
           // Nothing.  They're authorized.
           // Drupal.behaviors.fb.clog('User is authenticated.  Doing nothing.');
         }
