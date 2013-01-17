@@ -86,7 +86,12 @@ function dosomething_clubs_schema() {
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE
-      )
+      ),
+      'response' => array(
+        'description' => 'The user\'s response.',
+        'type' => 'tinytext',
+        'not null' => TRUE,
+      ),
     ),
     'indexes' => array(
       'nid' => array('nid'),
@@ -360,5 +365,15 @@ function dosomething_clubs_update_7107() {
     'type' => 'int',
     'unsigned' => TRUE,
     'default' => '0',
+  ));
+}
+
+/**
+ *  Adds club user's response column in dosomething_clubs_sms_response table.
+ */
+function dosomething_clubs_update_7108() {
+  db_add_field('dosomething_clubs_sms_response', 'response', array(
+    'type' => 'text',
+    'not null' => TRUE,
   ));
 }
