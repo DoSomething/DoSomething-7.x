@@ -6,7 +6,9 @@
 
 $accent_color: #f8c72f
 $off_black: #231f20
+$off_black_light: #444
 $background: #ccc
+$image_button: #4B84E6
 
 // BASE
 // ----
@@ -68,20 +70,22 @@ $background: #ccc
   background-color: #fff
 
 .crazy-sub-menu
-  margin: 1% auto
+  margin: 0 auto 1%
   width: 400px
   li
-    margin: 2% 0
-    width: 33.33%
+    margin: 2%
+    width: 29%
   a
     font-size: 18px
     line-height: 36px
     color: $off_black
     &:hover
-      color: lighten($off_black, 25)
+      background-color: $off_black_light
+      color: #fff
+      +border-radius(3px)
 
   a.active
-    background-color: $off_black
+    background-color: $off_black_light
     color: #fff
     +border-radius(4px)
     &:hover
@@ -92,72 +96,81 @@ $background: #ccc
 // ----------
 
 .crazy-submission
-  width: 600px
+  background-color: #fff
+  width: 500px
   margin: 2% auto
 
 .fb-picture
   width: 50px
-  margin: 0 0 0 -125px
+  margin: 0 0 0 -75px
 
 .simg
-  background-color: #fff
   margin: -50px 0 0 0
-  padding: 10%
+  padding: 50px 0 10px 0
   +border-radius(2px)
   img
     width: 400px
     display: block
     margin: 0 auto
 
-  .crazy-button, .bs-button, .vouch-button
+// what is the <p class="buttons"></p> tag doing there?
+
+.crazy-button, .bs-button, .vouch-button
+  display: inline-block
+  a
+    background: $image_button
+    color: white
+    padding: 5px
+    text-transform: uppercase
+    +border-radius(2px)
+    &:hover
+      text-decoration: none
+      background-color: lighten($image_button, 5) 
+  a.clicked
+    background: #F1F1F1
+    color: #C1C1C1
+    cursor: default
+    text-decoration: none
+
+  span
+    background-color: #ddd
+    position: relative
     display: inline-block
+    margin: 0 0 0 5px
+    padding: 3px 10px
+    +border-radius(2px)
 
-    a
-      background: gray
-      color: white
-      padding: 5px
-      border-radius: 5px
-      border: 1px solid black
+    &:after, &:before 
+      right: 100%
+      border: solid transparent
+      content: " "
+      height: 0
+      width: 0
+      position: absolute
+      pointer-events: none
+    
+    &:after 
+      border-color: rgba(136, 183, 213, 0)
+      border-right-color: #ddd
+      border-width: 5px
+      top: 50%
+      margin-top: -5px
+    
+    &:before 
+      border-color: rgba(194, 225, 245, 0)
+      border-width: 6px
+      top: 50%
+      margin-top: -6px
 
-      &.clicked
-        background: #F1F1F1
-        color: #C1C1C1
-        cursor: default
-        text-decoration: none
 
-        &:hover
-          text-decoration: none
+.vouch-button
+  margin: 0 25px 25px 50px
 
-    span
-      position: relative
-      display: inline-block
-      border: 1px solid black
-      padding: 0px 5px
-      margin-left: 5px
+.fb-share, .author, .dateline
+  display: none
 
-      &:after, &:before 
-        right: 100%
-        border: solid transparent
-        content: " "
-        height: 0
-        width: 0
-        position: absolute
-        pointer-events: none
-      
-
-      &:after 
-        border-color: rgba(136, 183, 213, 0)
-        border-right-color: #fff
-        border-width: 5px
-        top: 50%
-        margin-top: -5px
-      
-      &:before 
-        border-color: rgba(194, 225, 245, 0)
-        border-right-color: #000
-        border-width: 6px
-        top: 50%
-        margin-top: -6px
+// INVITE FRIENDS
+// --------------
 
 .fb-invite-friends
   display: block
