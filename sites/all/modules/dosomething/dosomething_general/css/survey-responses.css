@@ -64,6 +64,26 @@ ul li {
   float: right;
   position: relative;
   top: 6px;
+  text-decoration: none;
+  color: #000;
+  display: inline-block;
+  background: #fad141;
+  padding: 9px 15px 5px;
+  border-radius: 15px;
+  font-family: din-web;
+  font-weight: 600;
+  font-size: 25px;
+  border: 2px solid #ffe046;
+  background-image: linear-gradient(bottom, rgb(250,207,64) 0%, rgb(252,217,90) 50%, rgb(254,223,86) 75%);
+  background-image: -o-linear-gradient(bottom, rgb(250,207,64) 0%, rgb(252,217,90) 50%, rgb(254,223,86) 75%);
+  background-image: -moz-linear-gradient(bottom, rgb(250,207,64) 0%, rgb(252,217,90) 50%, rgb(254,223,86) 75%);
+  background-image: -webkit-linear-gradient(bottom, rgb(250,207,64) 0%, rgb(252,217,90) 50%, rgb(254,223,86) 75%);
+  background-image: -ms-linear-gradient(bottom, rgb(250,207,64) 0%, rgb(252,217,90) 50%, rgb(254,223,86) 75%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(250,207,64)), color-stop(0.5, rgb(252,217,90)), color-stop(0.75, rgb(254,223,86)));
+}
+
+#share-with-friends:hover {
+  text-decoration: none;
 }
 
 div.ptitle { 
