@@ -19,6 +19,24 @@ header[role="banner"]
   @media only screen and (max-width: 1075px)
     display: none
 
+// fixes admin tab styling to increase usability + aesthetics
+.tabs
+  border: none !important
+  background-color: #ff885e
+
+#main-wrapper div[role="main"] ul.primary
+  height: 50px
+  width: 312px
+  margin: 0 auto
+  padding: 20px 0 0 0
+  li a
+    text-transform: uppercase
+    color: #111
+    background-color: #ddd !important
+    border: none
+    +border-radius(2px)
+    // this is gross; all apologies
+
 // hide elements inherited from global site
 #skip-link,
 .breadcrumb,
