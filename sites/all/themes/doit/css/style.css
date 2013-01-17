@@ -4555,6 +4555,43 @@ h2.block-title, h2.pane-title {
   width: 215px;
 }
 
+#activity-feed {
+  border: 1px solid white;
+  padding: 0;
+}
+#activity-feed .activity-img, #activity-feed .activity-text {
+  float: left;
+  margin: 10px;
+}
+#activity-feed .activity-img {
+  width: 40px;
+}
+#activity-feed .activity-text {
+  width: 276px;
+}
+#activity-feed .pane-content p.action {
+  padding: 0;
+  margin: 0;
+}
+#activity-feed .pane-content p.action span {
+  font-weight: 500;
+}
+#activity-feed .pane-content hr {
+  border-top: 1px dashed white;
+  border-bottom: none;
+  clear: both;
+  padding: 0;
+  margin: 0;
+}
+#activity-feed .pane-content p.time-code {
+  color: #777777;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 0.9em;
+  padding: 0;
+  margin: 0;
+}
+
 .panes-2 .panel-second .pane-title {
   text-align: center;
   margin-bottom: 15px;
