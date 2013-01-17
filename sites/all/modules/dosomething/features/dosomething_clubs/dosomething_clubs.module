@@ -344,6 +344,8 @@ function dosomething_clubs_check_account_exists($contact) {
  */
 function dosomething_clubs_responded_to_txt() {
   $num = $_REQUEST['phone_number_without_country_code'];
+  $response = check_plain($_REQUEST['args']);
+
   if (dosomething_general_valid_cell($num)) {
     $account = dosomething_general_find_user_by_cell($num);
     if (!empty($account->uid)) {
@@ -361,7 +363,8 @@ function dosomething_clubs_responded_to_txt() {
         $data = array(
           'nid' => $n->nid,
           'uid' => $n->uid,
-          'timestamp' => REQUEST_TIME
+          'timestamp' => REQUEST_TIME,
+          'response' => $response,
         );
         drupal_write_record('dosomething_clubs_sms_response', $data);
       }
