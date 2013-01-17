@@ -1,0 +1,25 @@
+// DO IT THEME RESETS
+// ------------------
+
+// hide unwanted elements
+nav[role="navigation"], .region-sidebar-first
+  display: none
+
+#page, body.one-sidebar.sidebar-first [role="main"]
+  width: 100%
+  background: #fff
+  margin: 0
+  padding: 0
+
+// set width of ds.org logo container
+header[role="banner"]
+  width: 800px
+  margin: 0 auto
+  position: relative
+
+// re-position ds.org logo
+#site-name
+  top: -38px
+  left: -94px
+  @media only screen and (max-width: 1075px)
+    display: none

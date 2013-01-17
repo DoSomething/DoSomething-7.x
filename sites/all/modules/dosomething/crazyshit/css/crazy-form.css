@@ -1,14 +1,18 @@
+/* line 17, ../sass/crazy-form.sass */
 nav[role="navigation"] .region-navigation {
   margin: 0px 0px; }
 
+/* line 20, ../sass/crazy-form.sass */
 input#edit-submitted-field-crazy-crazy-picture-und-0-upload-button {
   display: none; }
 
+/* line 23, ../sass/crazy-form.sass */
 input#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   position: relative;
   top: -25px;
   margin-left: 165px; }
 
+/* line 28, ../sass/crazy-form.sass */
 #upload-cover {
   position: relative;
   width: 100px;
@@ -16,6 +20,7 @@ input#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   margin-top: -35px;
   cursor: pointer; }
 
+/* line 36, ../sass/crazy-form.sass */
 .form-file.new {
   position: relative;
   text-align: right;
@@ -23,6 +28,7 @@ input#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   opacity: 0;
   z-index: 2; }
 
+/* line 43, ../sass/crazy-form.sass */
 .fakefile {
   position: absolute;
   top: 0px;
@@ -33,12 +39,15 @@ input#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   border: 1px solid black;
   cursor: pointer; }
 
+/* line 53, ../sass/crazy-form.sass */
 footer.author, #edit-submitted-dosomething-webform-numbering {
   display: none; }
 
+/* line 56, ../sass/crazy-form.sass */
 .step-field {
   margin-bottom: 15px; }
 
+/* line 59, ../sass/crazy-form.sass */
 #top_text {
   position: absolute;
   width: 400px;
@@ -54,6 +63,7 @@ footer.author, #edit-submitted-dosomething-webform-numbering {
   overflow: hidden;
   top: 0px; }
 
+/* line 63, ../sass/crazy-form.sass */
 #bottom_text {
   position: absolute;
   width: 400px;
@@ -69,6 +79,7 @@ footer.author, #edit-submitted-dosomething-webform-numbering {
   overflow: hidden;
   bottom: 0px; }
 
+/* line 67, ../sass/crazy-form.sass */
 div.image-widget-data {
   clear: both;
   width: 400px;
@@ -77,28 +88,21 @@ div.image-widget-data {
   float: none;
   border: 1px solid black; }
 
-.description,
-#edit-submitted-field-crazy-vouch-count,
-#edit-submitted-field-crazy-bullshit-count,
-#edit-submitted-field-crazy-count,
-#edit-submitted-field-crazy-total-count,
-#edit-submitted-field-crazy-today-count,
-#edit-submitted-field-crazy-week-count,
-.image-preview,
-.file,
-.file-size,
-.form-item-submitted-field-crazy-crazy-picture-und-0 label {
+/* line 79, ../sass/crazy-form.sass */
+.description, #edit-submitted-field-crazy-vouch-count, #edit-submitted-field-crazy-bullshit-count, #edit-submitted-field-crazy-count, #edit-submitted-field-crazy-total-count, #edit-submitted-field-crazy-today-count, #edit-submitted-field-crazy-week-count, .image-preview, .file, .file-size, .form-item-submitted-field-crazy-crazy-picture-und-0 label {
   display: none; }
 
+/* line 92, ../sass/crazy-form.sass */
 #edit-submitted-sbutton {
   text-align: center;
   position: relative; }
-  #edit-submitted-sbutton img {
-    position: static;
-    margin-bottom: -2px;
-    z-index: -1;
-    border: 0px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    margin-top: 0px; }
+/* line 96, ../sass/crazy-form.sass */
+#edit-submitted-sbutton img {
+  position: static;
+  margin-bottom: -2px;
+  z-index: -1;
+  border: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin-top: 0px; }
