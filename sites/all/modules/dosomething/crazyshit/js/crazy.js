@@ -222,10 +222,13 @@ function fb_invite_friends() {
 }
 
 function fb_auth(type, status) {
-	FB.getLoginStatus(function(response) {
-		if (response.status == 'unknown' || response.status == 'not_authorized') {
-			status = 0;
-		}
+	Drupal.behaviors.fb.is_authed(function(response) {
+	   if (response.status == 'unknown' || response.status == 'not_authorized') {
+	      status = 0;
+	   }
+	   else {
+	      status = 1;
+	   }
 	});
 
 	if (!status) {

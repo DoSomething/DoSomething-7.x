@@ -122,6 +122,12 @@
       });
     },
 
+    is_authed: function(callback) {
+      FB.getLoginStatus(function(response) {
+	callback(response);
+      });
+    },
+
     /**
      *  Creates the mock Facebook dialog that allows us to extend Facebook functionality.
      *  this should not be called outside of the Facebook object.
