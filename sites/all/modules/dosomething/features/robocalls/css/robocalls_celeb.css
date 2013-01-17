@@ -1,3 +1,6 @@
+.celeb-page-form #webform-component-step-2 {
+  display: none; }
+
 div.pane-taxonomy-term-field-celeb-photo {
   border: 1px solid white;
   height: 316px;
