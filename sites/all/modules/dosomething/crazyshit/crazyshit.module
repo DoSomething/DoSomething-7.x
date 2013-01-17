@@ -122,6 +122,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  }
 
 	  $crazy_menu = array();
+	    
 	  $crazy_menu = array(
 	    '#theme' => 'links',
 	    '#links' => $links,
@@ -137,7 +138,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	    );
 	  }
 
-	  $v = drupal_render($crazy_menu) . drupal_render($crazy_sub_menu) . $v;
+	  $v = '<div class="crazy-top-menu">' . drupal_render($crazy_menu) . '</div><div class="crazy-sub-menu">' . drupal_render($crazy_sub_menu) . '</div>' . $v;
    }
 }
 
