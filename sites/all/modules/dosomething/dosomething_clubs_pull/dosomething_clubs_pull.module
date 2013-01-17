@@ -4,12 +4,12 @@ define('CLUB_PULL_LIMIT', 500);
 define('DEBUG', 1);
 
 function dosomething_clubs_pull_menu() {
-	$items['admin/clubs-pull'] = array(
-		'title' => t('Pull Club Data'),
-		'page callback' => 'dosomething_clubs_pull_data',
+  $items['admin/clubs-pull'] = array(
+    'title' => t('Pull Club Data'),
+    'page callback' => 'dosomething_clubs_pull_data',
     'access arguments' => array('administer group'),
     'type' => MENU_CALLBACK
-	);
+  );
 
   $items['admin/clubs-pull/export'] = array(
     'title' => t('Exporting clubs data...'),
@@ -33,7 +33,7 @@ function dosomething_clubs_pull_menu() {
     'type' => MENU_CALLBACK
   );
 
-	return $items;
+  return $items;
 }
 
 function array_to_csv($array, $header_row = true, $col_sep = ",", $row_sep = "\n", $qut = '"')
@@ -208,10 +208,12 @@ class clubs_export {
         }
       }
 
+      $crbids = dosomething_clubs_pull_get_campaign_report_back_nids();
+
       $cids = $cdates = array();
       if (!empty($stuff['campaigns'])) {
         foreach ($stuff['campaigns'] AS $campaign) {
-          $cids[] = $campaign->nid;
+          $cids[] = $crbids[$campaign->nid];
           $cdates[] = date('Y-m-d', $campaign->submitted);
         }
       }
@@ -456,6 +458,7 @@ class clubs_export {
       }
       else {
         $crbids = dosomething_clubs_pull_get_campaign_report_back_nids();
+        $crbids = array_keys($crbids);
         foreach ($q->fetchAll() AS $key => $r) {
           $s = (array) $r;
 
@@ -573,14 +576,24 @@ class clubs_export {
 }
 
 function dosomething_clubs_pull_get_campaign_report_back_nids() {
-  $query = db_select('node', 'n')
-    ->fields('n', array('nid', 'created'))
-    ->condition('type', 'campaign_report_back')
-    ->execute();
-  
-  $r = $query->fetchAllKeyed();
+  static $nids = array();
 
-  return array_keys($r);
+  if (empty($nids)) {
+    $query = db_select('node', 'n')
+      ->fields('n', array('nid', 'created'))
+      ->condition('type', 'campaign_report_back');
+    $query->leftJoin('field_data_group_audience', 'ga', 'ga.entity_id = n.nid');
+    $query->fields('ga', array('group_audience_gid'));
+    $results = $query->execute();
+    $r = $results->fetchAll();
+
+    $nids = array();
+    foreach ($r AS $key => $info) {
+      $nids[$info->nid] = og_load_entity_from_group($info->group_audience_gid)->nid;
+    }
+  }
+
+  return $nids;
 }
 
 
@@ -990,6 +1003,8 @@ $num = $count->rowCount();
         $last_joined_campaign = date('Y/m/d', $result['last_joined_campaign']);
       }
 
+      $crbids = dosomething_clubs_pull_get_campaign_report_back_nids();
+
       $pids = $pdates = array();
       if (!empty($result['projects'])) {
         foreach ($result['projects'] AS $key => $project) {
@@ -1001,7 +1016,7 @@ $num = $count->rowCount();
       $cids = $cdates = array();
       if (!empty($result['campaigns'])) {
         foreach ($result['campaigns'] AS $campaign) {
-          $cids[] = $campaign->nid;
+          $cids[] = $crbids[$campaign->nid];
           $cdates[] = date('Y-m-d', $campaign->submitted);
         }
       }
