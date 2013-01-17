@@ -200,6 +200,22 @@ class clubs_export {
         $last_joined_campaign = date('Y/m/d', $stuff['last_joined_campaign']);
       }
 
+      $pids = $pdates = array();
+      if (!empty($stuff['projects'])) {
+        foreach ($stuff['projects'] AS $key => $project) {
+          $pids[] = $project->sid;
+          $pdates[] = date('Y-m-d', $project->submitted);
+        }
+      }
+
+      $cids = $cdates = array();
+      if (!empty($stuff['campaigns'])) {
+        foreach ($stuff['campaigns'] AS $campaign) {
+          $cids[] = $campaign->nid;
+          $cdates[] = date('Y-m-d', $campaign->submitted);
+        }
+      }
+
       $writes[] = array(
         'club id' =>          $stuff['nid'],
         'club name' =>        $stuff['node_title'],
@@ -245,6 +261,10 @@ class clubs_export {
         'Email invites' => $stuff['shares']['email_shares'],
         'Total' => ($stuff['shares']['sms_shares'] + $stuff['shares']['fb_shares'] + $stuff['shares']['email_shares']),
         'Responded to survey' => $stuff['survey'],
+        'project_ids' => implode(', ', $pids),
+        'project_dates' => implode(', ', $pdates),
+        'campaign_ids' => implode(', ', $cids),
+        'campaign_dates' => implode(', ', $cdates),
       );
 
       $i++;
