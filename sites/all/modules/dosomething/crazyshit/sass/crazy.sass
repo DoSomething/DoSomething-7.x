@@ -1,140 +1,173 @@
 @import compass
 @import 'drupal'
 
-// CRAZY BASE STYLES
-// -----------------
+// VARIABLES
+// ---------
+
+$accent_color: #f8c72f
+$off_black: #231f20
+$background: #ccc
+
+// BASE
+// ----
+
+#page
+  background-color: $background
+
+
+// NAV & FILTERS
+// -------------
+
+.crazy-menu-wrapper, .crazy-sub-menu-wrapper
+  width: 100%
+  margin: 0
+  padding: 0
+
+.crazy-menu, .crazy-sub-menu
+  overflow: hidden
+  list-style: none
+  li
+    float: left
+    text-align: center
+  a
+    display: block
+    font-family: din-web-reg
+    font-weight: 400
+    text-transform: uppercase
+    &:hover
+      text-decoration: none
+
+// NAV
+// ---
+
+.crazy-menu-wrapper
+  background-color: $off_black
+
+.crazy-menu
+  margin: 0 auto
+  width: 600px
+  li
+    width: 25%
+  a
+    font-size: 25px
+    line-height: 50px
+    color: #fff
+    &:hover
+      color: $accent_color
+
+  a.active
+    color: $accent_color
+    &:hover
+      color: $accent_color
+
+
+// FILTERS
+// -------
+
+.crazy-sub-menu-wrapper
+  background-color: #fff
+
+.crazy-sub-menu
+  margin: 1% auto
+  width: 400px
+  li
+    margin: 2% 0
+    width: 33.33%
+  a
+    font-size: 18px
+    line-height: 36px
+    color: $off_black
+    &:hover
+      color: lighten($off_black, 25)
+
+  a.active
+    background-color: $off_black
+    color: #fff
+    +border-radius(4px)
+    &:hover
+      color: #fff
+
+
+// SUBMISSION
+// ----------
+
 .crazy-submission
-	background: white
-	text-align: center
-	//width: 30%
-	margin: 10px auto
-	border: 1px solid black
-	box-shadow: 0px 0px 5px gray
+  width: 600px
+  margin: 2% auto
 
-	.crazy-button, .bs-button, .vouch-button
-		display: inline-block
+.simg
+  
 
-		a
-			background: gray
-			color: white
-			padding: 5px
-			border-radius: 5px
-			border: 1px solid black
+  .crazy-button, .bs-button, .vouch-button
+    display: inline-block
 
-			&.clicked
-				background: #F1F1F1
-				color: #C1C1C1
-				cursor: default
-				text-decoration: none
+    a
+      background: gray
+      color: white
+      padding: 5px
+      border-radius: 5px
+      border: 1px solid black
 
-				&:hover
-					text-decoration: none
+      &.clicked
+        background: #F1F1F1
+        color: #C1C1C1
+        cursor: default
+        text-decoration: none
 
-		span
-			position: relative
-			display: inline-block
-			border: 1px solid black
-			padding: 0px 5px
-			margin-left: 5px
+        &:hover
+          text-decoration: none
 
-			&:after, &:before 
-				right: 100%
-				border: solid transparent
-				content: " "
-				height: 0
-				width: 0
-				position: absolute
-				pointer-events: none
-			
+    span
+      position: relative
+      display: inline-block
+      border: 1px solid black
+      padding: 0px 5px
+      margin-left: 5px
 
-			&:after 
-				border-color: rgba(136, 183, 213, 0)
-				border-right-color: #fff
-				border-width: 5px
-				top: 50%
-				margin-top: -5px
-			
-			&:before 
-				border-color: rgba(194, 225, 245, 0)
-				border-right-color: #000
-				border-width: 6px
-				top: 50%
-				margin-top: -6px
+      &:after, &:before 
+        right: 100%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+      
+
+      &:after 
+        border-color: rgba(136, 183, 213, 0)
+        border-right-color: #fff
+        border-width: 5px
+        top: 50%
+        margin-top: -5px
+      
+      &:before 
+        border-color: rgba(194, 225, 245, 0)
+        border-right-color: #000
+        border-width: 6px
+        top: 50%
+        margin-top: -6px
 
 .fb-invite-friends
-	display: block
-	width: 200px
-	background: yellow
-	border: 1px solid black
-	padding: 10px
-	box-shadow: 0px 0px 6px gray
-	margin: 0px auto
-	text-align: center
-
-ul.crazyshit-menu
-	margin: 0px
-	padding: 0px
-	border-right: 1px solid #000
-	list-style-type: none
-	height: 30px
-
-	li
-		width: 25%
-		float: left
-		text-align: center
-		border-bottom: 1px solid black
-		border-top: 1px solid black
-		border-left: 1px solid black
-
-		a
-			padding: 5px
-			display: block
-
-			&:hover
-				background: #fff
-				color: #000
-
-			&.active
-				background: #e1e1e1
-
-ul.crazyshit-sub-menu
-	margin: 0px
-	padding: 0px
-	list-style-type: none
-	margin-top: 20px
-	border: 1px solid black
-	border-right: 0px
-	height: 30px
-	width: 425px
-	margin-left: 10px
-
-	li
-		width: 33.3%
-		float: left
-		border-right: 1px solid #000
-		text-align: center
-
-		a
-			padding: 5px
-			display: block
-
-			&:hover
-				background: #fff
-				color: #000
-
-			&.active
-				background: #e1e1e1
+  display: block
+  width: 200px
+  background: yellow
+  border: 1px solid black
+  padding: 10px
+  box-shadow: 0px 0px 6px gray
+  margin: 0px auto
+  text-align: center
 
 .connect-with-facebook
-	text-indent: -119988px
-	overflow: hidden
-	text-align: left
-	background-image: url('/sites/all/themes/doit/css/images/btn-facebook-popup-login.png')
-	background-repeat: no-repeat
-	background-position: 50% 50%
-	width: 300px
-	height: 50px
-	display: block
-	margin-bottom: 2px
-	margin-left: auto
-	margin-right: auto
+  text-indent: -119988px
+  overflow: hidden
+  text-align: left
+  background-image: url('/sites/all/themes/doit/css/images/btn-facebook-popup-login.png')
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  width: 300px
+  height: 50px
+  display: block
+  margin-bottom: 2px
+  margin-left: auto
+  margin-right: auto

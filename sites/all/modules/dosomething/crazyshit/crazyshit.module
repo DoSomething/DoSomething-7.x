@@ -126,7 +126,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  $crazy_menu = array(
 	    '#theme' => 'links',
 	    '#links' => $links,
-	    '#attributes' => array('class' => array('crazyshit-menu')),
+	    '#attributes' => array('class' => array('crazy-menu')),
 	  );
 
 	  $crazy_sub_menu = array();
@@ -134,11 +134,11 @@ function crazyshit_page_templates_alter(&$variables) {
 	    $crazy_sub_menu = array(
 	      '#theme' => 'links',
 	      '#links' => $sub,
-	      '#attributes' => array('class' => array('crazyshit-sub-menu')),
+	      '#attributes' => array('class' => array('crazy-sub-menu')),
 	    );
 	  }
 
-	  $v = '<div class="crazy-top-menu">' . drupal_render($crazy_menu) . '</div><div class="crazy-sub-menu">' . drupal_render($crazy_sub_menu) . '</div>' . $v;
+	  $v = '<div class="crazy-menu-wrapper">' . drupal_render($crazy_menu) . '</div><div class="crazy-sub-menu-wrapper">' . drupal_render($crazy_sub_menu) . '</div>' . $v;
    }
 }
 
