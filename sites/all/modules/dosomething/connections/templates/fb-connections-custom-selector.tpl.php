@@ -377,6 +377,8 @@ textarea {
     border: 1px solid #808080;
     color: #000;
     padding: 5px;
+    line-height: 1.6;
+    max-height: 28px;
 }
 
 #friends-info li div input[type="submit"], .my-submit {
@@ -476,8 +478,18 @@ li#select:hover {
 }
 
 #explicit {
+    clear: both;
     text-align: right;
     margin: 5px 20px;
+}
+
+#fb #my-share input.my-post {
+    background: #fff !important;
+    border: 1px solid #808080;
+    color: #000 !important;
+    line-height: 1.6;
+    padding: 3px;
+    max-height: 28px;
 }
 -->
 </style>
@@ -502,7 +514,7 @@ li#select:hover {
             <img src="http://www.loremipsum.net/pixelgif/pics/pixel.gif" width="50" height="50" style="float: left; margin-right: 5px" id="profile-pic" alt="" />
             <div style="display: inline-block" id="profile-name">&nbsp;</div>
             <div style="margin-top: 8px" id="my-share">
-                <input type="text" name="share-to-me" placeholder="Post on my own wall..." class="my-post" style="background: #fff; border: 1px solid #808080; color: #000" />
+                <input type="text" name="share-to-me" placeholder="Post on my own wall..." class="my-post" />
                 <input type="submit" value="SHARE" class="my-submit" />
             </div>
             <div id="explicit"><label for="explicit-share">Share this on my wall <input type="checkbox" id="explicit-share" checked="checked" /></label></div>
