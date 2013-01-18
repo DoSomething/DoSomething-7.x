@@ -157,3 +157,16 @@ function webform_quiz_clear($nid) {
     ->execute();
 }
 
+function webform_init() {
+  $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
+  if (substr($path, 0, 12) == 'quiz-result/') {
+    if (!user_is_logged_in()) {
+      $fblink = fboauth_action_link_properties('connect', current_path());
+      $fblink = l('Connect with Facebook', $fblink['href'], array('query' => $fblink['query']));
+
+      drupal_add_js(array('fbconnect_button' => $fblink), 'setting');
+      drupal_add_js(drupal_get_path('module', 'webform_quiz') . '/webform_quiz_popup.js');
+      drupal_add_css(drupal_get_path('module', 'webform_quiz') . '/webform_quiz_popup.css', array('weight' => '100', 'group' => CSS_THEME));
+    }
+  }
+}
