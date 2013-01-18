@@ -309,6 +309,9 @@ function sms_flow_conductor_sms_keywords() {
     'clubs-followup' => 'sms_flow_clubs_followup_survey',
     'mlk-game-invite' => 'sms_flow_mlk_game_invite',
     'mlk-invite-path-1' => 'sms_flow_mlk_invite_path_1',
+    'mlk-invite-path-2' => 'sms_flow_mlk_invite_path_2',
+    'mlk-invite-path-3' => 'sms_flow_mlk_invite_path_3',
+    'mlk-invite-path-4' => 'sms_flow_mlk_invite_path_4',
     'mlk-process-beta' => 'sms_flow_mlk_process_beta',
   );
 }
@@ -978,6 +981,93 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'mlk_alpha_invite';
   $activity->alpha_optin = 140771;
   $activity->beta_optin = 140781;
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_alpha_invite');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_invite_path_2
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_invite_path_2';
+  $workflow->title = 'MLK Invite Path 2';
+  $workflow->description = 'MLK Invite Path 2';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_alpha_invite');
+
+  $activity = $workflow->newActivity('mlk_alpha_invite');
+  $activity->name = 'mlk_alpha_invite';
+  $activity->alpha_optin = 140831;
+  $activity->beta_optin = 140841;
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_alpha_invite');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_invite_path_3
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_invite_path_3';
+  $workflow->title = 'MLK Invite Path 3';
+  $workflow->description = 'MLK Invite Path 3';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_alpha_invite');
+
+  $activity = $workflow->newActivity('mlk_alpha_invite');
+  $activity->name = 'mlk_alpha_invite';
+  $activity->alpha_optin = 140861;
+  $activity->beta_optin = 140871;
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_alpha_invite');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_invite_path_3
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_invite_path_3';
+  $workflow->title = 'MLK Invite Path 3';
+  $workflow->description = 'MLK Invite Path 3';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_alpha_invite');
+
+  $activity = $workflow->newActivity('mlk_alpha_invite');
+  $activity->name = 'mlk_alpha_invite';
+  $activity->alpha_optin = 140891;
+  $activity->beta_optin = 140901;
   $activity->inputs = array('start');
   $activity->outputs = array('end');
 
