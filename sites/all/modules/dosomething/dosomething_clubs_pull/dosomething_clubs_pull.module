@@ -69,6 +69,81 @@ function array_to_csv($array, $header_row = true, $col_sep = ",", $row_sep = "\n
 class clubs_export {
   private static $file;
   public static $inited = false;
+  public static $sms_response_dates = array(
+    'spring' => '2013-01-01 - 2013-06-30',
+    'fall' => '2012-07-01 - 2012-12-31',
+  );
+
+  public static $field_labels = array(
+    'Club ID',
+    'Club Name',
+    'Not associated with a school',
+    'Blurb',
+    'Date Created',
+    'Time Created',
+    'Last Updated Date',
+    'User ID',
+    'Created By',
+    'Owner Email',
+    'Owner Cell',
+    'Owner First Name',
+    'Owner Last Name',
+    'Owner Birthday',
+    'Owner Street',
+    'Owner City',
+    'Owner State',
+    'Owner Zip',
+    'Owner Last Login',
+    'Club Street',
+    'Club City',
+    'Club State',
+    'Club Zip',
+    'My Club is Going to Work On',
+    'Send Goodies',
+    'School Name',
+    'School Type',
+    'School Street',
+    'School City',
+    'School State',
+    'School Country',
+    'School ZIP',
+    'Member Count',
+    'Member Emails',
+    'Member UIDs',
+    'Number of Projects',
+    'Most recently created project',
+    'Last joined Campaign time',
+    'SMS Response Times',
+    'SMS Invites',
+    'Facebook invites',
+    'Email invites',
+    'Total',
+    'Responded to survey',
+    'Last 5 project ID: 1',
+    'Last 5 project ID: 2',
+    'Last 5 project ID: 3',
+    'Last 5 project ID: 4',
+    'Last 5 project ID: 5',
+    'Last 5 project date: 1',
+    'Last 5 project date: 2',
+    'Last 5 project date: 3',
+    'Last 5 project date: 4',
+    'Last 5 project date: 5',
+    'Last 5 campaign report back ID: 1',
+    'Last 5 campaign report back ID: 2',
+    'Last 5 campaign report back ID: 3',
+    'Last 5 campaign report back ID: 4',
+    'Last 5 campaign report back ID: 5',
+    'Last 5 campaign report back date: 1',
+    'Last 5 campaign report back date: 2',
+    'Last 5 campaign report back date: 3',
+    'Last 5 campaign report back date: 4',
+    'Last 5 campaign report back date: 5',
+    'Fall 2012 Clubs SMS Response 1',
+    'Fall 2012 Clubs SMS Response 2',
+    'Spring 2013 Clubs SMS Response 1',
+    'Spring 2013 Clubs SMS Response 2',
+  );
 
   public static function export() {
     $page = $limit = 0;
@@ -200,21 +275,50 @@ class clubs_export {
         $last_joined_campaign = date('Y/m/d', $stuff['last_joined_campaign']);
       }
 
-      $pids = $pdates = array();
+      $pids = $pdates = array(
+        0 => ' ',
+        1 => ' ',
+        2 => ' ',
+        3 => ' ',
+        4 => ' ',
+      );
       if (!empty($stuff['projects'])) {
         foreach ($stuff['projects'] AS $key => $project) {
-          $pids[] = $project->sid;
-          $pdates[] = date('Y-m-d', $project->submitted);
+          $pids[$key] = $project->sid;
+          $pdates[$key] = date('Y-m-d', $project->submitted);
         }
       }
 
       $crbids = dosomething_clubs_pull_get_campaign_report_back_nids();
 
-      $cids = $cdates = array();
+      $cids = $cdates = array(
+        0 => ' ',
+        1 => ' ',
+        2 => ' ',
+        3 => ' ',
+        4 => ' ',
+      );
       if (!empty($stuff['campaigns'])) {
         foreach ($stuff['campaigns'] AS $campaign) {
-          $cids[] = $crbids[$campaign->nid];
-          $cdates[] = date('Y-m-d', $campaign->submitted);
+          $cids[$key] = $crbids[$campaign->nid];
+          $cdates[$key] = date('Y-m-d', $campaign->submitted);
+        }
+      }
+
+      // Set fall & spring sms response variables to default as nothing.
+      $fall1 = $fall2 = $spring1 = $spring2 = '';
+
+      // Check to see if ther are any responses floating in there.
+      $sms = dosomething_general_array_vals_multi($stuff['sms_responses']);
+
+      // If not empty...
+      if (!empty($sms)) {
+        foreach ($stuff['sms_responses'] AS $semester => $responses) {
+          foreach ($responses AS $num => $response) {
+            $n = ++$num;
+            // Set the variable with the response.
+            ${"{$semester}{$n}"} = $response->response;
+          }
         }
       }
 
@@ -263,10 +367,30 @@ class clubs_export {
         'Email invites' => $stuff['shares']['email_shares'],
         'Total' => ($stuff['shares']['sms_shares'] + $stuff['shares']['fb_shares'] + $stuff['shares']['email_shares']),
         'Responded to survey' => $stuff['survey'],
-        'project_ids' => implode(', ', $pids),
-        'project_dates' => implode(', ', $pdates),
-        'campaign_ids' => implode(', ', $cids),
-        'campaign_dates' => implode(', ', $cdates),
+        'project_ids_1' => $pids[0],
+        'project_ids_2' => $pids[1],
+        'project_ids_3' => $pids[2],
+        'project_ids_4' => $pids[3],
+        'project_ids_5' => $pids[4],
+        'project_dates_1' => $pdates[0],
+        'project_dates_2' => $pdates[1],
+        'project_dates_3' => $pdates[2],
+        'project_dates_4' => $pdates[3],
+        'project_dates_5' => $pdates[4],
+        'campaign_ids_1' => $cids[0],
+        'campaign_ids_2' => $cids[1],
+        'campaign_ids_3' => $cids[2],
+        'campaign_ids_4' => $cids[3],
+        'campaign_ids_5' => $cids[4],
+        'campaign_dates_1' => $cdates[0],
+        'campaign_dates_2' => $cdates[1],
+        'campaign_dates_3' => $cdates[2],
+        'campaign_dates_4' => $cdates[3],
+        'campaign_dates_5' => $cdates[4],
+        'fall1' => array('data' => $fall1),
+        'fall2' => array('data' => $fall2),
+        'spring1' => array('data' => $spring1),
+        'spring2' => array('data' => $spring2),
       );
 
       $i++;
@@ -291,56 +415,7 @@ class clubs_export {
         'file_path' => drupal_realpath('private://') . '/' . $filename
       );
 
-      $field_labels = array(
-        t('Club ID'),
-        t('Club Name'),
-        t('Not associated with a school'),
-        t('Blurb'),
-        t('Date Created'),
-        t('Time Created'),
-        t('Last Updated Date'),
-        t('User ID'),
-        t('Created By'),
-        t('Owner Email'),
-        t('Owner Cell'),
-        t('Owner First Name'),
-        t('Owner Last Name'),
-        t('Owner Birthday'),
-        t('Owner Street'),
-        t('Owner City'),
-        t('Owner State'),
-        t('Owner Zip'),
-        t('Owner Last Login'),
-        t('Club Street'),
-        t('Club City'),
-        t('Club State'),
-        t('Club Zip'),
-        t('My Club is Going to Work On'),
-        t('Send Goodies'),
-        t('School Name'),
-        t('School Type'),
-        t('School Street'),
-        t('School City'),
-        t('School State'),
-        t('School Country'),
-        t('School ZIP'),
-        t('Member Count'),
-        t('Member Emails'),
-        t('Member UIDs'),
-        t('Number of Projects'),
-        t('Most recently created project'),
-        t('Last joined Campaign time'),
-        t('SMS Response Times'),
-        t('SMS Invites'),
-        t('Facebook invites'),
-        t('Email invites'),
-        t('Total'),
-        t('Responded to survey'),
-        t('Last 5 project IDs'),
-        t('Last 5 project dates'),
-        t('Last 5 campaign report back IDs'),
-        t('Last 5 campaign report back dates'),
-      );
+      $field_labels = clubs_export::$field_labels;
 
       $handle = fopen($h['file_path'], 'w');
       fputcsv($handle, $field_labels);
@@ -517,13 +592,33 @@ class clubs_export {
 
           $s['shares'] = $shares;
 
-          $sms_responses = db_query("
-            SELECT `response`.`timestamp`
+          $sms_responses = array();
+          foreach (clubs_export::$sms_response_dates AS $key => $sms_response_date) {
+            $date = explode(' - ', $sms_response_date);
+            $sr = db_query("
+              SELECT timestamp, response, DATE_FORMAT(ADDTIME(FROM_UNIXTIME(timestamp), SEC_TO_TIME(-18000)), '%Y-%m-%d') AS rd
+              FROM dosomething_clubs_sms_response
+              WHERE nid = :nid
+              HAVING rd BETWEEN :start AND :end
+              ORDER BY timestamp DESC
+              LIMIT 2
+            ", array(
+              ':nid' => $r->nid,
+              ':start' => $date[0],
+              ':end' => $date[1],
+            ))
+            ->fetchAll();
+
+            $sms_responses[$key] = $sr;
+          }
+          /*$sms_responses = db_query("
+            SELECT
+            `response`.`timestamp`
             FROM `dosomething_clubs_sms_response` AS `response`
             WHERE (`response`.`nid` = " . $r->nid . ")
-          ")->fetchAssoc();
+          ")->fetchAssoc();*/
 
-          $s['sms_responses'] = implode(',', $sms_responses);
+          $s['sms_responses'] = $sms_responses;
 
           $campaigns = db_query("
             SELECT
@@ -761,47 +856,7 @@ function dosomething_clubs_pull_batch_process(&$context) {
   }
 
   if (!isset($context['sandbox']['file'])) {
-    $field_labels = array(
-      t('Club ID'),
-      t('Club Name'),
-      t('Not associated with a school'),
-      t('Blurb'),
-      t('Date Created'),
-      t('Time Created'),
-      t('Last Updated Date'),
-      t('User ID'),
-      t('Created By'),
-      t('Owner Email'),
-      t('Owner Cell'),
-      t('Owner First Name'),
-      t('Owner Last Name'),
-      t('Owner Birthday'),
-      t('Owner Street'),
-      t('Owner City'),
-      t('Owner State'),
-      t('Owner Zip'),
-      t('Owner Last Login'),
-      t('Club Street'),
-      t('Club City'),
-      t('Club State'),
-      t('Club Zip'),
-      t('My Club is Going to Work On'),
-      t('Send Goodies'),
-      t('School Name'),
-      t('School Type'),
-      t('School State'),
-      t('Member Count'),
-      t('Member Emails'),
-      t('Member UIDs'),
-      t('Number of Projects'),
-      t('Most recently created project'),
-      t('Last joined Campaign time'),
-      t('SMS Invites'),
-      t('Facebook invites'),
-      t('Email invites'),
-      t('Total'),
-      t('Responded to Survey'),
-    );
+    $field_labels = clubs_export::$field_labels;
 
     $filename = 'clubs_export_' . date('m-d-y', REQUEST_TIME) . '.csv';
     $file_path = file_directory_temp() . '/' . $filename;
@@ -913,59 +968,14 @@ function dosomething_clubs_pull_batch_finished($success, $results, $operations) 
 }
 
 function dosomething_clubs_pull_data() {
-  $header = array(
-    array('data' => t('Club ID'), 'class' => array('page-manager-page-title')),
-    array('data' => t('Club Name'), 'class' => array('page-manager-page-title')),
-    array('data' => t('Not associated with a school'), 'class' => array('clubs-pull-not-associated')),
-    array('data' => t('Blurb'), 'class' => array('clubs-pull-blurb')),
-    array('data' => t('Date Created'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Time Created'), 'class' => array('clubs-pull-time-created')),
-    array('data' => t('Last Updated Date'), 'class' => array('page-manager-page-path')),
-    array('data' => t('User ID'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Created By'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner Email'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner Cell'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner First Name'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner Last Name'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner Birthday'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner Street'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner City'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner State'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner Zip'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Owner Last Login'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Club Street'), 'class' => array('clubs-pull-club-street')),
-    array('data' => t('Club City'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Club State'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Club Zip'), 'class' => array('page-manager-page-storage')),
-    array('data' => t('My Club is Going to Work On'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Send Goodies'), 'class' => array('clubs-pull-send-goodies')),
-    array('data' => t('School Name'), 'class' => array('page-manager-page-path')),
-    array('data' => t('School Type'), 'class' => array('page-manager-page-path')),
-    array('data' => t('School Street'), 'class' => array('clubs-pull-school-street')),
-    array('data' => t('School City'), 'class' => array('clubs-pull-school-city')),
-    array('data' => t('School State'), 'class' => array('clubs-pull-school-state')),
-    array('data' => t('School Country'), 'class' => array('clubs-pull-school-country')),
-    array('data' => t('School ZIP'), 'class' => array('clubs-pull-school-zip')),
-    array('data' => t('Member Count'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Member Emails'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Member UIDs'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Number of Projects'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Most recently created project'), 'class' => array('page-manager-page-path')),
-    array('data' => t('Last joined campaign time'), 'class' => array('clubs-pull-last-joined-campaign')),
-    array('data' => t('SMS Response Times'), 'class' => array('clubs-pull-sms-response-times')),
-    array('data' => t('SMS Invites'), 'class' => array('clubs-pull-sms-shares')),
-    array('data' => t('Facebook Invites'), 'class' => array('clubs-pull-fb-shares')),
-    array('data' => t('Email Invites'), 'class' => array('clubs-pull-email-shares')),
-    array('data' => t('Total Invites'), 'class' => array('clubs-pull-total-shares')),
-    array('data' => t('Responded to survey'), 'class' => array('clubs-pull-survey-response')),
-    array('data' => t('Last 5 project IDs'), 'class' => array('clubs-pull-last-5-project-ids')),
-    array('data' => t('Last 5 project dates'), 'class' => array('clubs-pull-last-5-project-dates')),
-    array('data' => t('Last 5 campaign report back IDs'), 'class' => array('clubs-pull-last-5-campaign-ids')),
-    array('data' => t('Last 5 campaign report back dates'), 'class' => array('clubs-pull-last-5-campaign-dates')),
-  );
+  foreach (clubs_export::$field_labels AS $label) {
+    $header[] = array(
+      'data' => $label, 'class' => array('clubs-pull-' . preg_replace('#[^a-z0-9\-]#i', '-', strtolower($label)))
+    );
+  }
 
-$count = db_query("SELECT COUNT(*) AS `count` FROM `node` WHERE (( (node.status = '1') AND (node.type IN  ('club')) )) GROUP BY nid, `node`.`title` ORDER BY `node`.`title` ASC");
-$num = $count->rowCount();
+  $count = db_query("SELECT COUNT(*) AS `count` FROM `node` WHERE (( (node.status = '1') AND (node.type IN  ('club')) )) GROUP BY nid, `node`.`title` ORDER BY `node`.`title` ASC");
+  $num = $count->rowCount();
 
   $num_per_page = 100;
   $page = pager_default_initialize($num, $num_per_page);
@@ -1005,19 +1015,48 @@ $num = $count->rowCount();
 
       $crbids = dosomething_clubs_pull_get_campaign_report_back_nids();
 
-      $pids = $pdates = array();
+      $pids = $pdates = array(
+        0 => ' ',
+        1 => ' ',
+        2 => ' ',
+        3 => ' ',
+        4 => ' ',
+      );
       if (!empty($result['projects'])) {
         foreach ($result['projects'] AS $key => $project) {
-          $pids[] = $project->sid;
-          $pdates[] = date('Y-m-d', $project->submitted);
+          $pids[$key] = $project->sid;
+          $pdates[$key] = date('Y-m-d', $project->submitted);
         }
       }
 
-      $cids = $cdates = array();
+      $cids = $cdates = array(
+        0 => ' ',
+        1 => ' ',
+        2 => ' ',
+        3 => ' ',
+        4 => ' ',
+      );
       if (!empty($result['campaigns'])) {
         foreach ($result['campaigns'] AS $campaign) {
-          $cids[] = $crbids[$campaign->nid];
-          $cdates[] = date('Y-m-d', $campaign->submitted);
+          $cids[$key] = $crbids[$campaign->nid];
+          $cdates[$key] = date('Y-m-d', $campaign->submitted);
+        }
+      }
+
+      // Set fall & spring sms response variables to default as nothing.
+      $fall1 = $fall2 = $spring1 = $spring2 = '';
+
+      // Check to see if ther are any responses floating in there.
+      $sms = dosomething_general_array_vals_multi($result['sms_responses']);
+
+      // If not empty...
+      if (!empty($sms)) {
+        foreach ($result['sms_responses'] AS $semester => $responses) {
+          foreach ($responses AS $num => $response) {
+            $n = ++$num;
+            // Set the variable with the response.
+            ${"{$semester}{$n}"} = $response->response;
+          }
         }
       }
 
@@ -1067,10 +1106,30 @@ $num = $count->rowCount();
         'Email invites' => array('data' => $result['shares']['email_shares']),
         'Total' => array('data' => ($result['shares']['sms_shares'] + $result['shares']['fb_shares'] + $result['shares']['email_shares'])),
         'Responded to survey' => array('data' => $result['survey']),
-        'project_ids' => array('data' => implode(', ', $pids)),
-        'project_dates' => array('data' => implode(', ', $pdates)),
-        'campaign_ids' => array('data' => implode(', ', $cids)),
-        'campaign_dates' => array('data' => implode(', ', $cdates)),
+        'project_ids_1' => array('data' => $pids[0]),
+        'project_ids_2' => array('data' => $pids[1]),
+        'project_ids_3' => array('data' => $pids[2]),
+        'project_ids_4' => array('data' => $pids[3]),
+        'project_ids_5' => array('data' => $pids[4]),
+        'project_dates_1' => array('data' => $pdates[0]),
+        'project_dates_2' => array('data' => $pdates[1]),
+        'project_dates_3' => array('data' => $pdates[2]),
+        'project_dates_4' => array('data' => $pdates[3]),
+        'project_dates_5' => array('data' => $pdates[4]),
+        'campaign_ids_1' => array('data' => $cids[0]),
+        'campaign_ids_2' => array('data' => $cids[1]),
+        'campaign_ids_3' => array('data' => $cids[2]),
+        'campaign_ids_4' => array('data' => $cids[3]),
+        'campaign_ids_5' => array('data' => $cids[4]),
+        'campaign_dates_1' => array('data' => $cdates[0]),
+        'campaign_dates_2' => array('data' => $cdates[1]),
+        'campaign_dates_3' => array('data' => $cdates[2]),
+        'campaign_dates_4' => array('data' => $cdates[3]),
+        'campaign_dates_5' => array('data' => $cdates[4]),
+        'fall1' => array('data' => $fall1),
+        'fall2' => array('data' => $fall2),
+        'spring1' => array('data' => $spring1),
+        'spring2' => array('data' => $spring2),
       )
     );
   }
