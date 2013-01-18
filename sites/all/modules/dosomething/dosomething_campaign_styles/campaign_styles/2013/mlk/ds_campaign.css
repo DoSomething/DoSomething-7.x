@@ -512,12 +512,12 @@ body {
       width: 80%;
       margin: 0 auto;
       text-align: center !important; }
-  #cmp .divider {
+  #cmp .divider, #cmp .divider-mobile {
     text-align: center;
     border-top: 2px solid #cccccc;
     margin: 0 0 3% 0;
     padding: 0.5em 0 0 0; }
-    #cmp .divider span {
+    #cmp .divider span, #cmp .divider-mobile span {
       background: #241f20;
       padding: 0.5em 0.8em 0.35em;
       position: relative;
@@ -527,10 +527,12 @@ body {
       -webkit-border-bottom-right-radius: 6px;
       -moz-border-bottom-left-radius: 6px;
       -moz-border-bottom-right-radius: 6px;
-      -o-border-bottom-left-radius: 6px;
       -o-border-bottom-right-radius: 6px;
+      -o-border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
       border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px; }
+      color: white;
+      text-transform: uppercase; }
   #cmp .go-button, #cmp #edit-submit {
     font-family: din-web;
     background: #ffcb15;
@@ -634,7 +636,8 @@ body {
     #cmp #scholarship .rule-regs {
       text-align: left;
       margin: 4% 0 1%;
-      font-size: 0.9em; }
+      font-size: 0.9em;
+      line-height: 1em; }
       #cmp #scholarship .rule-regs a {
         color: white;
         font-weight: 400; }
@@ -946,11 +949,33 @@ body {
     #cmp #meet .activist-copy h3 {
       color: #fe002b;
       font-size: 1.4em; }
+  #cmp .section#facts {
+    padding: 0; }
+  #cmp #facts .divider-mobile {
+    display: none; }
   #cmp #facts ol {
+    position: relative;
+    counter-reset: li;
     text-align: left;
-    margin: 4%; }
+    margin: 3% 0; }
     #cmp #facts ol li {
-      margin: 3%; }
+      margin: 0;
+      padding: 3% 6% 3% 9%;
+      position: relative; }
+      #cmp #facts ol li:nth-child(odd) {
+        background: #f1f1f1; }
+      #cmp #facts ol li:before {
+        background: #e1e1e1;
+        padding: 4px 10px 2px;
+        border-radius: 50px;
+        border: 1px solid white;
+        content: counter(li);
+        counter-increment: li;
+        position: absolute;
+        top: 10%;
+        left: 2%; }
+  #cmp #facts .divider {
+    margin: 0 2%; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
@@ -1183,12 +1208,12 @@ body {
       width: 20%; }
     #cmp .pane-campaign-sign-up #edit-submit {
       margin: 1.3em auto 0; }
-    #cmp #action.action-anonymous .col33, #cmp #action.action-participant .col33 {
+    #cmp #action .col33 {
       width: 95%;
       margin: 3% 0; }
-    #cmp #action.action-anonymous h3, #cmp #action.action-participant h3 {
+    #cmp #action h3 {
       text-align: left; }
-    #cmp #action.action-anonymous img {
+    #cmp #action img {
       display: none; }
     #cmp a.print-pdf {
       width: 37%; }
@@ -1218,6 +1243,8 @@ body {
     #cmp #secondary-content p {
       width: 80%;
       margin: 0 auto; }
+    #cmp #facts ol li {
+      padding: 3% 6% 3% 14%; }
     #cmp #social .col33 {
       width: 90%;
       margin: 5%; }
@@ -1227,19 +1254,18 @@ body {
     #cmp #report-back {
       width: 100%; } }
   @media only screen and (max-width: 550px) {
-    #cmp #header {
-      margin-top: 45%; }
-    #cmp .email-spit {
-      width: 100%; }
-      #cmp .email-spit img {
-        width: 50%; }
-    #cmp #search iframe {
-      width: 75%;
-      border: 3px solid #cccccc; }
-    #cmp #content-infographic .mobile {
-      display: block; }
-    #cmp #content-infographic img {
+    #cmp #facts .divider {
       display: none; }
+    #cmp #facts .divider-mobile {
+      display: block; }
+    #cmp #meet .activist-photo, #cmp #meet .activist-copy {
+      clear: both;
+      width: 96%;
+      margin: 0 4%; }
+    #cmp #meet .activist-copy {
+      margin-bottom: 8%; }
+    #cmp #meet .activist-photo {
+      margin-top: 4%; }
     #cmp #game .see-more {
       margin: 0% 2% 8%; }
       #cmp #game .see-more img {

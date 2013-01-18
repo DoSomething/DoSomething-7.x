@@ -48,13 +48,13 @@
   //	#action
   //			//
 
-  #action.action-anonymous, #action.action-participant
+  #action
     .col33
       width: 95%
       margin: 3% 0
     h3
       text-align: left
-  #action.action-anonymous    
+  #action  
     img
       display: none 
 
@@ -101,6 +101,9 @@
       width: 80%
       margin: 0 auto  
 
+  #facts
+    ol li
+      padding: 3% 6% 3% 14%  
 
   //			//
   //  #social
@@ -121,24 +124,22 @@
     width: 100%  
 
 @media only screen and (max-width: 550px)
-  #header
-    margin-top: 45%
 
-  .email-spit
-    width: 100%
-    img
-      width: 50%
-
-  #search
-    iframe
-      width: 75%
-      border: 3px solid #ccc
-
-  #content-infographic
-    .mobile
+  #facts
+    .divider
+      display: none
+    .divider-mobile
       display: block
-    img
-      display: none  
+
+  #meet
+    .activist-photo, .activist-copy
+      clear: both
+      width: 96%
+      margin: 0 4%
+    .activist-copy
+      margin-bottom: 8% 
+    .activist-photo
+      margin-top: 4%   
 
   #game
     .see-more

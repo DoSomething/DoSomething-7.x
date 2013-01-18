@@ -97,7 +97,8 @@
   .rule-regs 
     text-align: left
     margin: 4% 0 1%
-    font-size: 0.9em 
+    font-size: 0.9em
+    line-height: 1em
     a
       color: white
       font-weight: 400  
@@ -432,6 +433,8 @@
       color: #e1e1e1
 
 // ACTIVISTS
+
+
 #meet
   .activist-photo, .activist-copy
     float: left
@@ -448,9 +451,35 @@
       font-size: 1.4em
 
 // FACTS
+.section#facts
+  padding: 0
 #facts
+  .divider-mobile
+    display: none
   ol
+    position: relative
+    counter-reset: li
     text-align: left
-    margin: 4%
+    margin: 3% 0
     li
-      margin: 3%
+      
+      margin: 0
+      padding: 3% 6% 3% 9%
+      position: relative
+      &:nth-child(odd)
+        background: #f1f1f1
+      &:before
+        background: #e1e1e1
+        padding: 4px 10px 2px
+        border-radius: 50px
+        border: 1px solid white
+        //margin: 4px
+        content: counter(li)
+        counter-increment: li
+        position: absolute
+        top: 10%
+        left: 2%
+
+  .divider
+    margin: 0 2%     
+  
