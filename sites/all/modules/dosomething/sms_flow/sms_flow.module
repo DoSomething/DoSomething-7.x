@@ -307,12 +307,14 @@ function sms_flow_conductor_sms_keywords() {
     'clubs-ftaf' => 'sms_flow_clubs_ftaf',
     'clubs-survey' => 'sms_flow_clubs_survey',
     'clubs-followup' => 'sms_flow_clubs_followup_survey',
-    'mlk-game-invite' => 'sms_flow_mlk_game_invite',
     'mlk-invite-path-1' => 'sms_flow_mlk_invite_path_1',
     'mlk-invite-path-2' => 'sms_flow_mlk_invite_path_2',
     'mlk-invite-path-3' => 'sms_flow_mlk_invite_path_3',
     'mlk-invite-path-4' => 'sms_flow_mlk_invite_path_4',
-    'mlk-process-beta' => 'sms_flow_mlk_process_beta',
+    'mlk-process-beta-1' => 'sms_flow_mlk_process_beta_1',
+    'mlk-process-beta-2' => 'sms_flow_mlk_process_beta_2',
+    'mlk-process-beta-3' => 'sms_flow_mlk_process_beta_3',
+    'mlk-process-beta-4' => 'sms_flow_mlk_process_beta_4',
   );
 }
 
@@ -908,40 +910,13 @@ function sms_flow_default_conductor_workflows() {
   $workflows[$workflow->name] = $workflow;
 
   //
-  // sms_flow_mlk_game_invite 
+  // sms_flow_mlk_process_beta_1
   //
   $workflow = new ConductorWorkflow;
   $workflow->wid = 'new';
-  $workflow->name = 'sms_flow_mlk_game_invite';
-  $workflow->title = 'MLK Game Invite Friends';
-  $workflow->description = 'Get phone numbers, send invites to friends, and save to sms_flow_records';
-  $workflow->api_version = '1.0';
-
-  $activity = $workflow->newActivity('start');
-  $activity->name = 'start';
-  $activity->inputs = array();
-  $activity->outputs = array('game_invite');
-
-  $activity = $workflow->newActivity('mlk_game_invite');
-  $activity->name = 'game_invite';
-  $activity->inputs = array('start');
-  $activity->outputs = array('end');
-
-  $activity = $workflow->newActivity('end');
-  $activity->name = 'end';
-  $activity->inputs = array('game_invite');
-  $activity->outputs = array();
-
-  $workflows[$workflow->name] = $workflow;
-
-  //
-  // sms_flow_mlk_process_beta
-  //
-  $workflow = new ConductorWorkflow;
-  $workflow->wid = 'new';
-  $workflow->name = 'sms_flow_mlk_process_beta';
-  $workflow->title = 'MLK Process Invited Betas';
-  $workflow->description = 'Send message to Alphas who invited the Betas and opt Betas into the MLK campaign.';
+  $workflow->name = 'sms_flow_mlk_process_beta_1';
+  $workflow->title = 'MLK Process Invited Beta - Path 1';
+  $workflow->description = 'Handle Betas invited to the MLK game by Alphas';
   $workflow->api_version = '1.0';
 
   $activity = $workflow->newActivity('start');
@@ -951,7 +926,99 @@ function sms_flow_default_conductor_workflows() {
 
   $activity = $workflow->newActivity('mlk_process_beta');
   $activity->name = 'mlk_process_beta';
-  $activity->accept_responses = array('y','yes','yea','ya','tfjjoin','tfj join');
+  $activity->accept_responses = array('y','yes','yea','ya');
+  $activity->beta_message_reject = '[TODO: Beta rejection message Path 1]';
+  $activity->beta_message_accept = '[TODO: Beta acceptance message Path 1]';
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_process_beta');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_process_beta_2
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_process_beta_2';
+  $workflow->title = 'MLK Process Invited Beta - Path 2';
+  $workflow->description = 'Handle Betas invited to the MLK game by Alphas';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_process_beta');
+
+  $activity = $workflow->newActivity('mlk_process_beta');
+  $activity->name = 'mlk_process_beta';
+  $activity->accept_responses = array('y','yes','yea','ya');
+  $activity->beta_message_reject = '[TODO: Beta rejection message Path 2]';
+  $activity->beta_message_accept = '[TODO: Beta acceptance message Path 2]';
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_process_beta');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_process_beta_3
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_process_beta_3';
+  $workflow->title = 'MLK Process Invited Beta - Path 3';
+  $workflow->description = 'Handle Betas invited to the MLK game by Alphas';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_process_beta');
+
+  $activity = $workflow->newActivity('mlk_process_beta');
+  $activity->name = 'mlk_process_beta';
+  $activity->accept_responses = array('y','yes','yea','ya');
+  $activity->beta_message_reject = '[TODO: Beta rejection message Path 3]';
+  $activity->beta_message_accept = '[TODO: Beta acceptance message Path 3]';
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_process_beta');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_process_beta_4
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_process_beta_4';
+  $workflow->title = 'MLK Process Invited Beta - Path 4';
+  $workflow->description = 'Handle Betas invited to the MLK game by Alphas';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_process_beta');
+
+  $activity = $workflow->newActivity('mlk_process_beta');
+  $activity->name = 'mlk_process_beta';
+  $activity->accept_responses = array('y','yes','yea','ya');
+  $activity->beta_message_reject = '[TODO: Beta rejection message Path 4]';
+  $activity->beta_message_accept = '[TODO: Beta acceptance message Path 4]';
   $activity->inputs = array('start');
   $activity->outputs = array('end');
 

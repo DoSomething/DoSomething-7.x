@@ -14,6 +14,8 @@ class ConductorActivityMLKProcessBeta extends ConductorActivity {
   public function option_definition() {
     $options = parent::option_definition();
     $options['accept_responses'] = array('default' => array());
+    $options['beta_message_reject'] = array('default' => '');
+    $options['beta_message_accept'] = array('default' => '');
     return $options;
   }
 
@@ -42,18 +44,18 @@ class ConductorActivityMLKProcessBeta extends ConductorActivity {
         sms_flow_update_accepted_status($alpha, $beta, $this->game_id, $this->type_override);
 
         // Determine if Alpha already received a message from a Beta joining
-        $alpha_received_msg = sms_flow_alpha_received_message($alpha, $this->game_id, $this->type_override);
-        if (!$alpha_received_msg) {
-          $alpha_msg = 'This is the message returned to the alpha. [TODO: get final message for this]';
-          $alpha_options = array('campaign_id' => $this->alpha_campaign_id);
-          $return = sms_mobile_commons_send($alpha, $alpha_msg, $alpha_options);
-        }
+        // $alpha_received_msg = sms_flow_alpha_received_message($alpha, $this->game_id, $this->type_override);
+        // if (!$alpha_received_msg) {
+        //   $alpha_msg = 'This is the message returned to the alpha. [TODO: get final message for this]';
+        //   $alpha_options = array('campaign_id' => $this->alpha_campaign_id);
+        //   $return = sms_mobile_commons_send($alpha, $alpha_msg, $alpha_options);
+        // }
       }
 
-      $beta_response = 'You\'ve joined your friend! Text KEYWORD to do thing. [TODO: get final message for this].';
+      $beta_response = $this->beta_message_accept;
     }
     else {
-      $beta_response = 'You decided not to help out your friend. [TODO: get final message for this]';
+      $beta_response = $this->beta_message_reject;
     }
     
     $state->setContext('sms_response', $beta_response);
