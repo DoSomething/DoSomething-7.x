@@ -597,13 +597,24 @@ function dosomething_login_register_popup_form($form, &$form_state) {
       //'#field_suffix' => theme('dosomething_login_form_required_marker', array()),
     ),
   );
+
+  $e = '';
+  if (!empty($_GET['email'])) {
+    if (valid_email_address($_GET['email'])) {
+      $e = check_plain($_GET['email']);
+    }
+    else {
+      $e = '';
+    }
+  }
+
   $form['email'] = array(
     '#type' => 'textfield',
     '#title' => t('Email') . theme('dosomething_login_form_required_marker', array()),
     '#attributes' => array(
       'placeholder' => t('Email'),
     ),
-    '#default_value' => (valid_email_address($_GET['email']) ? htmlspecialchars($_GET['email']) : ''),
+    '#default_value' => $e,
     '#size' => 20,
     //'#field_suffix' => theme('dosomething_login_form_required_marker', array()),
   );
