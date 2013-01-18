@@ -109,19 +109,23 @@ function conductor_sms_sms_mobile_commons_response_alter(&$output, $context) {
       $output = $workflow->getState()->getContext('sms_response');
     } 
 
+
     if (empty($output)) {
-      $exceptions = '';
-      $states = $workflow->getState()->getFailedActivities();
-      foreach ($states as $state) {
-        if ($state->getContext('failException')) {
-          $e = $state->getContext('failException');
-          $exceptions .= '<pre>';
-          $exceptions .= $e->getMessage() . ': ' . $e->getTraceAsString();
-          $exceptions .= '</pre>';
+      // If this context is set, then don't worry about no response being sent
+      if ($workflow->getState()->getContext('ignore_no_response_error') != TRUE) {
+        $exceptions = '';
+        $states = $workflow->getState()->getFailedActivities();
+        foreach ($states as $state) {
+          if ($state->getContext('failException')) {
+            $e = $state->getContext('failException');
+            $exceptions .= '<pre>';
+            $exceptions .= $e->getMessage() . ': ' . $e->getTraceAsString();
+            $exceptions .= '</pre>';
+          }
         }
+        watchdog('conductor_sms', 'An sms failed to generate a response for user with mobile number @number. !exceptions', array('@number' => $number, '!exceptions' => $exceptions), WATCHDOG_ERROR);
+        $output = t('Aw snap! Something went wrong! We\'ll get right on it!');
       }
-      watchdog('conductor_sms', 'An sms failed to generate a response for user with mobile number @number. !exceptions', array('@number' => $number, '!exceptions' => $exceptions), WATCHDOG_ERROR);
-      $output = t('Aw snap! Something went wrong! We\'ll get right on it!');
     }
   }
   else {
