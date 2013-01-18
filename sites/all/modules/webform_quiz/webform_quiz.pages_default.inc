@@ -276,7 +276,7 @@ function webform_quiz_default_page_manager_pages() {
         'image_link' => '',
       ),
       'context' => 'argument_entity_id:field_collection_item_1',
-      'override_title' => 0,
+      'override_title' => 1,
       'override_title_text' => '',
     );
     $pane->cache = array();
@@ -291,6 +291,33 @@ function webform_quiz_default_page_manager_pages() {
     $display->panels['left'][1] = 'new-2';
     $pane = new stdClass();
     $pane->pid = 'new-3';
+    $pane->panel = 'left';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '<a href="#" class="quiz-share">Share on Facebook</a>',
+      'format' => '1',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'share-pane',
+    );
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-3'] = $pane;
+    $display->panels['left'][2] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
     $pane->subtype = 'field_collection_item:field_body';
@@ -313,12 +340,12 @@ function webform_quiz_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['left'][2] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['left'][3] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'quizzes-panel_pane_1';
@@ -333,10 +360,10 @@ function webform_quiz_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['right'][0] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['right'][0] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_quiz_header';
@@ -364,10 +391,10 @@ function webform_quiz_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][0] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'top';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -389,8 +416,8 @@ function webform_quiz_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['top'][1] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['top'][1] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

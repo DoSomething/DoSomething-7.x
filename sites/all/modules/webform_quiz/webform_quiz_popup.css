@@ -19,3 +19,18 @@
 .ui-dialog .connect-with-facebook {
   margin-top: 50px;
 }
+
+.quiz-share {
+  font-size: 0;
+  background: url('images/share-fb.png');
+  width: 168px;
+  height: 25px;
+  display: block;
+}
+
+.share-pane {
+  height: 45px;
+  background: url('images/arrow.png') bottom right no-repeat;
+  width: 225px;
+  margin-bottom: 20px;
+}
