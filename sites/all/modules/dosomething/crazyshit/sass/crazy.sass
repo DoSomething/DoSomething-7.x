@@ -1,6 +1,7 @@
 @import compass
 @import 'drupal'
 
+
 // VARIABLES
 // ---------
 
@@ -8,7 +9,24 @@ $accent_color: #f8c72f
 $off_black: #231f20
 $off_black_light: #444
 $background: #ccc
-$image_button: #4B84E6
+$blue_button: #4B84E6
+$yellow_button: #FFCB15
+
+
+// VARIABLES
+// ---------
+
+@mixin crazy_img
+  img
+    display: block
+    margin: 0 auto
+    width: 400px
+    @media only screen and (max-width 800px)
+      width: 80%
+
+@mixin blue_hover
+  background-color: lighten($blue_button, 5) 
+
 
 // BASE
 // ----
@@ -71,7 +89,7 @@ $image_button: #4B84E6
 
 .crazy-sub-menu
   margin: 0 auto 1%
-  width: 400px
+  width: 500px
   li
     margin: 2%
     width: 29%
@@ -92,6 +110,16 @@ $image_button: #4B84E6
       color: #fff
 
 
+// GENERAL LAYOUT
+// --------------
+
+.crazy-submission, .submit-start, .node-crazy-shit
+  background-color: #fff
+  width: 500px
+  margin: 2% auto
+  +border-radius(2px)
+
+
 // SUBMISSION
 // ----------
 
@@ -108,24 +136,21 @@ $image_button: #4B84E6
   margin: -50px 0 0 0
   padding: 50px 0 10px 0
   +border-radius(2px)
-  img
-    width: 400px
-    display: block
-    margin: 0 auto
+  +crazy_img
 
 // what is the <p class="buttons"></p> tag doing there?
 
 .crazy-button, .bs-button, .vouch-button
   display: inline-block
   a
-    background: $image_button
+    background: $blue_button
     color: white
     padding: 5px
     text-transform: uppercase
     +border-radius(2px)
     &:hover
       text-decoration: none
-      background-color: lighten($image_button, 5) 
+      +blue_hover
   a.clicked
     background: #F1F1F1
     color: #C1C1C1
@@ -162,12 +187,12 @@ $image_button: #4B84E6
       top: 50%
       margin-top: -6px
 
-
 .vouch-button
   margin: 0 25px 25px 50px
 
 .fb-share, .author, .dateline
   display: none
+
 
 // INVITE FRIENDS
 // --------------
@@ -195,3 +220,103 @@ $image_button: #4B84E6
   margin-bottom: 2px
   margin-left: auto
   margin-right: auto
+
+
+// SUBMIT START
+// ------------
+
+.submit-start
+  p
+    font-size: 18px
+    line-height: 27px
+    text-transform: uppercase
+  .pane-content /* inner wrapper */
+    padding: 50px
+  +crazy_img
+
+
+// SUBMIT FORM
+// -----------
+.node-crazy-shit
+  box-shadow: none
+  .webform-client-form
+    padding: 50px
+  
+
+// BUTTON STYLES
+// -------------
+
+.fakefile /* [upload a file] div underlay */,
+#edit-submitted-field-crazy-crazy-picture-und-0-remove-button /* [remove] uploaded image */
+  background: $yellow_button
+  padding: 10px
+  text-transform: uppercase
+  font-family: din-web
+  font-weight: 600
+  font-size: 22px
+  width: 130px
+  height: 35px
+  +border-radius(2px)
+
+.fakefile
+  position: absolute
+  top: 0px
+  left: 0px
+  z-index: 1
+
+#edit-submitted-field-crazy-crazy-picture-und-0-remove-button
+  margin: -10px auto 25px
+  padding: 2px 0 0 0
+  width: 80px
+  border: none
+  display: block
+
+.form-file.new /* [upload a file] input overlay */
+  position: relative
+  text-align: right
+  -moz-opacity: 0
+  opacity: 0
+  z-index: 2
+  width: 130px
+  height: 35px
+  cursor: pointer
+
+.submit-start button /* [next] (first instace of) */,
+.node-crazy-shit #edit-actions .form-submit /* matches all buttons */
+  margin: 0
+  padding: 0
+  float: right
+  position: relative
+  background: $blue_button
+  color: #fff
+  border: none
+  text-transform: uppercase
+  font-family: din-web-reg
+  font-weight: 400
+  font-size: 18px
+  height: 30px
+  +border-radius(2px)
+  &:hover
+    color: #fff
+    +blue_hover
+//  &:after
+    content: ""
+    position: absolute
+    top: 0
+    right: -30px
+    display: block
+    border-color: transparent transparent transparent $blue_button
+    border-width: 15px
+    border-style: solid
+
+.submit-start button,
+#edit-next /* [next] button */
+  width: 60px !important
+
+#edit-previous /* [back] button */
+  width: 60px !important
+  float: left !important
+
+#edit-submit /* [submit] button */
+  width: 80px
+  float: right !important

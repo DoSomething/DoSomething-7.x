@@ -24,13 +24,13 @@ header[role="banner"] {
   border: none !important;
   background-color: #ff885e; }
 
-/* line 27, ../sass/_drupal.sass */
+/* line 28, ../sass/_drupal.sass */
 #main-wrapper div[role="main"] ul.primary {
   height: 50px;
   width: 312px;
   margin: 0 auto;
   padding: 20px 0 0 0; }
-/* line 32, ../sass/_drupal.sass */
+/* line 33, ../sass/_drupal.sass */
 #main-wrapper div[role="main"] ul.primary li a {
   text-transform: uppercase;
   color: #111111;
@@ -42,82 +42,93 @@ header[role="banner"] {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 41, ../sass/_drupal.sass */
+/* line 42, ../sass/_drupal.sass */
+.webform-client-form {
+  box-shadow: none !important;
+  border: none !important; }
+
+/* line 47, ../sass/_drupal.sass */
+#edit-actions {
+  height: auto !important;
+  margin: 0 !important;
+  text-align: inherit !important; }
+
+/* line 53, ../sass/_drupal.sass */
 #skip-link, .breadcrumb, #breadcrumb, #page-title, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5, #block-menu-menu-footer, .region-sidebar-first, nav[role="navigation"] {
   display: none; }
 
-/* line 16, ../sass/crazy.sass */
+/* line 34, ../sass/crazy.sass */
 #page {
   background-color: #cccccc; }
 
-/* line 23, ../sass/crazy.sass */
+/* line 41, ../sass/crazy.sass */
 .crazy-menu-wrapper, .crazy-sub-menu-wrapper {
   width: 100%;
   margin: 0;
   padding: 0; }
 
-/* line 28, ../sass/crazy.sass */
+/* line 46, ../sass/crazy.sass */
 .crazy-menu, .crazy-sub-menu {
   overflow: hidden;
   list-style: none; }
-/* line 31, ../sass/crazy.sass */
+/* line 49, ../sass/crazy.sass */
 .crazy-menu li, .crazy-sub-menu li {
   float: left;
   text-align: center; }
-/* line 34, ../sass/crazy.sass */
+/* line 52, ../sass/crazy.sass */
 .crazy-menu a, .crazy-sub-menu a {
   display: block;
   font-family: din-web-reg;
   font-weight: 400;
   text-transform: uppercase; }
-/* line 39, ../sass/crazy.sass */
+/* line 57, ../sass/crazy.sass */
 .crazy-menu a:hover, .crazy-sub-menu a:hover {
   text-decoration: none; }
 
-/* line 45, ../sass/crazy.sass */
+/* line 63, ../sass/crazy.sass */
 .crazy-menu-wrapper {
   background-color: #231f20; }
 
-/* line 48, ../sass/crazy.sass */
+/* line 66, ../sass/crazy.sass */
 .crazy-menu {
   margin: 0 auto;
   width: 600px; }
-/* line 51, ../sass/crazy.sass */
+/* line 69, ../sass/crazy.sass */
 .crazy-menu li {
   width: 25%; }
-/* line 53, ../sass/crazy.sass */
+/* line 71, ../sass/crazy.sass */
 .crazy-menu a {
   font-size: 25px;
   line-height: 50px;
   color: white; }
-/* line 57, ../sass/crazy.sass */
+/* line 75, ../sass/crazy.sass */
 .crazy-menu a:hover {
   color: #f8c72f; }
-/* line 60, ../sass/crazy.sass */
+/* line 78, ../sass/crazy.sass */
 .crazy-menu a.active {
   color: #f8c72f; }
-/* line 62, ../sass/crazy.sass */
+/* line 80, ../sass/crazy.sass */
 .crazy-menu a.active:hover {
   color: #f8c72f; }
 
-/* line 69, ../sass/crazy.sass */
+/* line 87, ../sass/crazy.sass */
 .crazy-sub-menu-wrapper {
   background-color: white; }
 
-/* line 72, ../sass/crazy.sass */
+/* line 90, ../sass/crazy.sass */
 .crazy-sub-menu {
   margin: 0 auto 1%;
-  width: 400px; }
-/* line 75, ../sass/crazy.sass */
+  width: 500px; }
+/* line 93, ../sass/crazy.sass */
 .crazy-sub-menu li {
   margin: 2%;
   width: 29%; }
-/* line 78, ../sass/crazy.sass */
+/* line 96, ../sass/crazy.sass */
 .crazy-sub-menu a {
   font-size: 18px;
   line-height: 36px;
   color: #231f20; }
-/* line 82, ../sass/crazy.sass */
+/* line 100, ../sass/crazy.sass */
 .crazy-sub-menu a:hover {
   background-color: #444444;
   color: white;
@@ -126,7 +137,7 @@ header[role="banner"] {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px; }
-/* line 87, ../sass/crazy.sass */
+/* line 105, ../sass/crazy.sass */
 .crazy-sub-menu a.active {
   background-color: #444444;
   color: white;
@@ -135,22 +146,33 @@ header[role="banner"] {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px; }
-/* line 91, ../sass/crazy.sass */
+/* line 109, ../sass/crazy.sass */
 .crazy-sub-menu a.active:hover {
   color: white; }
 
-/* line 98, ../sass/crazy.sass */
+/* line 116, ../sass/crazy.sass */
+.crazy-submission, .submit-start, .node-crazy-shit {
+  background-color: white;
+  width: 500px;
+  margin: 2% auto;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+
+/* line 126, ../sass/crazy.sass */
 .crazy-submission {
   background-color: white;
   width: 500px;
   margin: 2% auto; }
 
-/* line 103, ../sass/crazy.sass */
+/* line 131, ../sass/crazy.sass */
 .fb-picture {
   width: 50px;
   margin: 0 0 0 -75px; }
 
-/* line 107, ../sass/crazy.sass */
+/* line 135, ../sass/crazy.sass */
 .simg {
   margin: -50px 0 0 0;
   padding: 50px 0 10px 0;
@@ -159,16 +181,20 @@ header[role="banner"] {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 111, ../sass/crazy.sass */
+/* line 20, ../sass/crazy.sass */
 .simg img {
-  width: 400px;
   display: block;
-  margin: 0 auto; }
+  margin: 0 auto;
+  width: 400px; }
+@media only screen and (max-width 800px) {
+  /* line 20, ../sass/crazy.sass */
+  .simg img {
+    width: 80%; } }
 
-/* line 118, ../sass/crazy.sass */
+/* line 143, ../sass/crazy.sass */
 .crazy-button, .bs-button, .vouch-button {
   display: inline-block; }
-/* line 120, ../sass/crazy.sass */
+/* line 145, ../sass/crazy.sass */
 .crazy-button a, .bs-button a, .vouch-button a {
   background: #4b84e6;
   color: white;
@@ -179,17 +205,17 @@ header[role="banner"] {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 126, ../sass/crazy.sass */
+/* line 151, ../sass/crazy.sass */
 .crazy-button a:hover, .bs-button a:hover, .vouch-button a:hover {
   text-decoration: none;
   background-color: #6193e9; }
-/* line 129, ../sass/crazy.sass */
+/* line 154, ../sass/crazy.sass */
 .crazy-button a.clicked, .bs-button a.clicked, .vouch-button a.clicked {
   background: #f1f1f1;
   color: #c1c1c1;
   cursor: default;
   text-decoration: none; }
-/* line 135, ../sass/crazy.sass */
+/* line 160, ../sass/crazy.sass */
 .crazy-button span, .bs-button span, .vouch-button span {
   background-color: #dddddd;
   position: relative;
@@ -201,7 +227,7 @@ header[role="banner"] {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 143, ../sass/crazy.sass */
+/* line 168, ../sass/crazy.sass */
 .crazy-button span:after, .crazy-button span:before, .bs-button span:after, .bs-button span:before, .vouch-button span:after, .vouch-button span:before {
   right: 100%;
   border: solid transparent;
@@ -210,29 +236,29 @@ header[role="banner"] {
   width: 0;
   position: absolute;
   pointer-events: none; }
-/* line 152, ../sass/crazy.sass */
+/* line 177, ../sass/crazy.sass */
 .crazy-button span:after, .bs-button span:after, .vouch-button span:after {
   border-color: rgba(136, 183, 213, 0);
   border-right-color: #dddddd;
   border-width: 5px;
   top: 50%;
   margin-top: -5px; }
-/* line 159, ../sass/crazy.sass */
+/* line 184, ../sass/crazy.sass */
 .crazy-button span:before, .bs-button span:before, .vouch-button span:before {
   border-color: rgba(194, 225, 245, 0);
   border-width: 6px;
   top: 50%;
   margin-top: -6px; }
 
-/* line 166, ../sass/crazy.sass */
+/* line 190, ../sass/crazy.sass */
 .vouch-button {
   margin: 0 25px 25px 50px; }
 
-/* line 169, ../sass/crazy.sass */
+/* line 193, ../sass/crazy.sass */
 .fb-share, .author, .dateline {
   display: none; }
 
-/* line 175, ../sass/crazy.sass */
+/* line 200, ../sass/crazy.sass */
 .fb-invite-friends {
   display: block;
   width: 200px;
@@ -243,7 +269,7 @@ header[role="banner"] {
   margin: 0px auto;
   text-align: center; }
 
-/* line 185, ../sass/crazy.sass */
+/* line 210, ../sass/crazy.sass */
 .connect-with-facebook {
   text-indent: -119988px;
   overflow: hidden;
@@ -257,3 +283,108 @@ header[role="banner"] {
   margin-bottom: 2px;
   margin-left: auto;
   margin-right: auto; }
+
+/* line 229, ../sass/crazy.sass */
+.submit-start p {
+  font-size: 18px;
+  line-height: 27px;
+  text-transform: uppercase; }
+/* line 233, ../sass/crazy.sass */
+.submit-start .pane-content {
+  padding: 50px; }
+/* line 20, ../sass/crazy.sass */
+.submit-start img {
+  display: block;
+  margin: 0 auto;
+  width: 400px; }
+@media only screen and (max-width 800px) {
+  /* line 20, ../sass/crazy.sass */
+  .submit-start img {
+    width: 80%; } }
+
+/* line 240, ../sass/crazy.sass */
+.node-crazy-shit {
+  box-shadow: none; }
+/* line 242, ../sass/crazy.sass */
+.node-crazy-shit .webform-client-form {
+  padding: 50px; }
+
+/* line 249, ../sass/crazy.sass */
+.fakefile, #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
+  background: #ffcb15;
+  padding: 10px;
+  text-transform: uppercase;
+  font-family: din-web;
+  font-weight: 600;
+  font-size: 22px;
+  width: 130px;
+  height: 35px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+
+/* line 261, ../sass/crazy.sass */
+.fakefile {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1; }
+
+/* line 267, ../sass/crazy.sass */
+#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
+  margin: -10px auto 25px;
+  padding: 2px 0 0 0;
+  width: 80px;
+  border: none;
+  display: block; }
+
+/* line 274, ../sass/crazy.sass */
+.form-file.new {
+  position: relative;
+  text-align: right;
+  -moz-opacity: 0;
+  opacity: 0;
+  z-index: 2;
+  width: 130px;
+  height: 35px;
+  cursor: pointer; }
+
+/* line 284, ../sass/crazy.sass */
+.submit-start button, .node-crazy-shit #edit-actions .form-submit {
+  margin: 0;
+  padding: 0;
+  float: right;
+  position: relative;
+  background: #4b84e6;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  font-family: din-web-reg;
+  font-weight: 400;
+  font-size: 18px;
+  height: 30px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 299, ../sass/crazy.sass */
+.submit-start button:hover, .node-crazy-shit #edit-actions .form-submit:hover {
+  color: white;
+  background-color: #6193e9; }
+
+/* line 312, ../sass/crazy.sass */
+.submit-start button, #edit-next {
+  width: 60px !important; }
+
+/* line 316, ../sass/crazy.sass */
+#edit-previous {
+  width: 60px !important;
+  float: left !important; }
+
+/* line 320, ../sass/crazy.sass */
+#edit-submit {
+  width: 80px;
+  float: right !important; }

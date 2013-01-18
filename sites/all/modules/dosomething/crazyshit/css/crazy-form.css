@@ -15,39 +15,19 @@ input#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
 /* line 28, ../sass/crazy-form.sass */
 #upload-cover {
   position: relative;
-  width: 100px;
-  margin: 0px auto;
-  margin-top: -35px;
+  margin: -55px auto 0;
+  width: 130px;
   cursor: pointer; }
 
-/* line 36, ../sass/crazy-form.sass */
-.form-file.new {
-  position: relative;
-  text-align: right;
-  -moz-opacity: 0;
-  opacity: 0;
-  z-index: 2; }
-
-/* line 43, ../sass/crazy-form.sass */
-.fakefile {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 1;
-  background: #c1c1c1;
-  padding: 5px;
-  border: 1px solid black;
-  cursor: pointer; }
-
-/* line 53, ../sass/crazy-form.sass */
+/* line 34, ../sass/crazy-form.sass */
 footer.author, #edit-submitted-dosomething-webform-numbering {
   display: none; }
 
-/* line 56, ../sass/crazy-form.sass */
+/* line 37, ../sass/crazy-form.sass */
 .step-field {
   margin-bottom: 15px; }
 
-/* line 59, ../sass/crazy-form.sass */
+/* line 40, ../sass/crazy-form.sass */
 #top_text {
   position: absolute;
   width: 400px;
@@ -63,7 +43,7 @@ footer.author, #edit-submitted-dosomething-webform-numbering {
   overflow: hidden;
   top: 0px; }
 
-/* line 63, ../sass/crazy-form.sass */
+/* line 44, ../sass/crazy-form.sass */
 #bottom_text {
   position: absolute;
   width: 400px;
@@ -79,24 +59,24 @@ footer.author, #edit-submitted-dosomething-webform-numbering {
   overflow: hidden;
   bottom: 0px; }
 
-/* line 67, ../sass/crazy-form.sass */
+/* line 48, ../sass/crazy-form.sass */
 div.image-widget-data {
   clear: both;
   width: 400px;
   height: 400px;
-  margin: 0px auto;
+  margin: 30px auto;
   float: none;
   border: 1px solid black; }
 
-/* line 79, ../sass/crazy-form.sass */
+/* line 59, ../sass/crazy-form.sass */
 .description, #edit-submitted-field-crazy-vouch-count, #edit-submitted-field-crazy-bullshit-count, #edit-submitted-field-crazy-count, #edit-submitted-field-crazy-total-count, #edit-submitted-field-crazy-today-count, #edit-submitted-field-crazy-week-count, .image-preview, .file, .file-size, .form-item-submitted-field-crazy-crazy-picture-und-0 label {
   display: none; }
 
-/* line 92, ../sass/crazy-form.sass */
+/* line 72, ../sass/crazy-form.sass */
 #edit-submitted-sbutton {
   text-align: center;
   position: relative; }
-/* line 96, ../sass/crazy-form.sass */
+/* line 76, ../sass/crazy-form.sass */
 #edit-submitted-sbutton img {
   position: static;
   margin-bottom: -2px;
@@ -106,3 +86,30 @@ div.image-widget-data {
   -moz-box-shadow: none;
   box-shadow: none;
   margin-top: 0px; }
+
+/* line 84, ../sass/crazy-form.sass */
+#edit-submitted-field-crazy-top-text, #edit-submitted-field-crazy-bottom-text {
+  overflow: hidden; }
+/* line 87, ../sass/crazy-form.sass */
+#edit-submitted-field-crazy-top-text label, #edit-submitted-field-crazy-top-text input, #edit-submitted-field-crazy-bottom-text label, #edit-submitted-field-crazy-bottom-text input {
+  float: left;
+  font-size: 15px;
+  line-height: 30px;
+  text-transform: uppercase; }
+/* line 92, ../sass/crazy-form.sass */
+#edit-submitted-field-crazy-top-text label, #edit-submitted-field-crazy-bottom-text label {
+  width: 30%; }
+/* line 94, ../sass/crazy-form.sass */
+#edit-submitted-field-crazy-top-text input, #edit-submitted-field-crazy-bottom-text input {
+  width: 70%;
+  height: 35px;
+  background: whitesmoke;
+  text-transform: uppercase;
+  padding: 0 3%;
+  box-shadow: none;
+  border: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
