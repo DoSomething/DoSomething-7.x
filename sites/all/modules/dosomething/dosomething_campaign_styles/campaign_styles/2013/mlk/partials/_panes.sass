@@ -1,0 +1,456 @@
+// PANES 
+
+//			//
+//	#header			- sign up -
+//			//
+.section#headline
+  background: transparent
+  width: 100%
+  padding: 0
+#headline
+  .headline-img
+    margin: 80px 0 120px
+  .headline-box
+    background: white
+    padding: 10px 0
+  h2
+    display: block
+    background: black
+    color: white
+    font-family: din-web-reg
+    font-weight: 400
+    font-size: 1.2em
+    line-height: 1.2em
+    padding: 20px 10px 15px
+
+
+//			//
+//	#action
+//			//
+#action
+  padding: 3% 0 2%
+
+//			//
+//	#scholarship
+//			//
+
+#scholarship
+  background: $secondaryColor
+  .scholar-headline
+    font-size: 3.2em
+    font-weight: 600
+    font-family: din-web
+    line-height: 1em
+    text-transform: uppercase
+    color: white
+  hr
+    border: 1px solid #FF8993
+    margin: 1%  
+  img.scholar-copy
+    padding: 0
+  img
+    clear: both
+    display: block
+    margin: 0 auto
+    padding: 2% 0
+  overflow: visible 
+  h1
+    color: white
+  p
+    color: #fff
+    width: 70%
+    margin: 1.5% auto 2%
+    font-weight: 300
+    font-family: din-web-reg
+    font-size: 1.2em
+  form
+    margin: 1% auto 0
+    max-width: 600px
+  label
+    font-weight: 400  
+    color: white
+  .friends
+    text-align: left
+    margin: 2% 1% 0  
+  input[type="text"]
+    padding: 0 0.5em
+    float: left
+    width: 48%
+    margin: 1%
+  .go-button
+    margin: 1% 0 2% 0
+    padding: 0.3em 0.7em
+    background: #241F20
+    color: white
+    font-size: 2.8em
+    font-weight: 500
+    font-family: din-web-reg
+    +border-radius(12px)
+    text-align: right
+    &:hover
+      color: #FF8993
+  #campaign-opt-in
+    text-align: center
+    a
+      color: $mainCopy
+      font-weight: 500
+  .rule-regs 
+    text-align: left
+    margin: 4% 0 1%
+    font-size: 0.9em 
+    a
+      color: white
+      font-weight: 400  
+  .quote-highlight p
+    background: #353535
+    max-width: 525px
+    margin: 0 auto 0.8em
+    padding: 2.5% 2%
+    font-family: din-web-reg
+    font-weight: 600
+    font-size: 1.5em
+    line-height: 1.4em
+    -moz-border-radius: 12px
+    -webkit-border-radius: 12px
+    -o-border-radius: 12px
+    border-radius: 12px
+    color: white
+  .scholar-input
+    float: left
+    width: 48%
+    margin: 1% 1% 2%
+    label
+      text-align: left
+    input
+      width: 100%
+      margin: 1% 0
+  .scholar-foot
+    float: left
+    width: 48%
+    margin: 1%
+    text-align: right
+  .msg-data
+    font-size: 0.6em
+    line-height: 1.2em
+    font-weight: 300
+    font-family: din-web-reg
+    color: white
+    text-align: left
+  .rules
+    font-size: 1em
+  #post-scholar
+    padding: 4% 10% 2%
+    p
+      color: $offBlack
+      text-transform: uppercase
+      font-weight: 500
+      font-size: 1.4em
+      strong
+        font-weight: 600
+        background: #F1F1F1
+        padding: 10px 20px 6px
+        border-radius: 40px
+        border: 2px solid #E9E9E9
+      a
+        color: $offBlack  
+    .left, .right
+      float: left
+      padding: 0 5%
+      width: 50%
+      margin-bottom: 1.5em
+    .chances
+      position: relative
+      display: inline-block
+      clear: both
+      color: $mainColor
+      &:before, &:after
+        content: "" 
+        position: absolute
+        top: 0px
+        height: 62px
+        width: 44px
+      &:before  
+        left: -50px
+        background-image: url('http://files.dosomething.org/files/campaigns/grandparents12/money-left.png')
+      &:after
+        right: -50px
+        background-image: url('http://files.dosomething.org/files/campaigns/grandparents12/money-right.png')
+    .chances-rules a
+      color: $offBlack
+      font-size: 0.6em
+      text-transform: none
+      font-weight: 400  
+.refer5
+  background: $secondaryColor
+  width: 110%
+  margin: 0 0 0 -4.95%
+  position: relative
+  &:before, &:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-width: 11px
+    top: -22px
+  &:before
+    border-color: transparent darken($secondaryColor, 12) darken($secondaryColor, 12) transparent
+    left: 0px
+  &:after
+    border-color: transparent transparent darken($secondaryColor, 12) darken($secondaryColor, 12)
+    right: 1px
+.refer5-inner
+  padding: 3% 
+
+
+//      //
+//  #secondary-content
+//      //
+#secondary-content
+  padding: 2% 2% 1%
+  .prizes-a, .prizes-b
+    float: left
+    width: 50%
+    margin: 1em 0
+    h2
+      font-size: 2em
+      line-height: 0.9em
+      margin-bottom: 0.3em
+    span
+      color: $secondaryColor
+      font-weight: 500   
+  .prizes-a
+    text-align: right
+    padding: 0 2% 0 1%
+    img
+      float: left
+  .prizes-b
+    text-align: left
+    padding: 0 1% 0 2%
+    img
+      float: right
+    .end
+      text-transform: uppercase
+      color: $secondaryColor 
+      margin-top: 5px
+      font-weight: 500
+      font-size: 0.95em
+  .contest a
+    clear: both
+    color: $offBlack
+  .psa
+    margin-top: 20px  
+
+//			//
+//  #social     - share 3 stats -
+//      //
+
+#social
+  h3
+    text-transform: none
+    font-size: 1em
+    margin-bottom: 2%
+  img.sharewith
+    margin: 0 auto
+    padding: 0.25% 0 2.5% 15%
+    display: block
+    clear: both
+  .fb-share
+    width: 100%  
+  li
+    display: inline-block
+
+
+//      //
+//  #impact     - gallery -
+//      //
+
+#impact
+  p
+    width: 80%
+    margin: 0 auto
+    font-weight: 500
+  .go-button
+    margin: 2% auto
+    font-size: 2em
+  .tellus
+    margin: 0 auto 2%  
+  .finish
+    margin: 2% auto 0
+    font-weight: 600
+    line-height: 1.4em  
+
+.view-campaign-gallery #slideshow
+  margin: 0 auto
+
+//      //
+//  #faq
+//      //
+
+#faq 
+  div
+    padding: 0 1.2em 1.2em 1.2em
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
+  li
+    margin: 0
+    color: $secondaryColor
+    span
+      color: black 
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 1.2em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("assets/faq2.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position-y: -3.9em
+  .go-button
+    margin: 0 0 1% 0
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase  
+  .action-box
+    position: relative
+    display: inline-block
+  .action-arrow-left, .action-arrow-right
+    position: absolute
+    bottom: 0.5em
+  .action-arrow-right
+    right: -70px
+  .action-arrow-left
+    left: -70px  
+
+// #content-level-up
+#content-level-up
+  h2
+    text-transform: uppercase
+    font-size: 2.4em
+    font-weight: 600
+    line-height: 1em
+  .arrow-box
+    position: relative
+  .arrow-img
+    position: absolute
+    top: 44%
+    right: -30%    
+  .pad-top
+    margin-top: 1em
+//      //
+//  #footer     - sign up button; conditionally displayed -
+//      //
+
+#footer
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 0.7em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  .go-button
+    margin: 0 0 1% 0
+
+// ------------------ MISC
+#iframe_wrapper
+  height: 450px !important
+
+// GAME
+#game
+  .texts
+    max-width: 320px
+    width: 96%
+    margin: 0 auto
+    padding: 10px 0 40px 0
+    text-transform: uppercase
+    h3, p
+      text-align: left
+    p
+      margin: 0 auto 15px
+      font-size: 1.2em
+      font-weight: 600
+    h3
+      font-size: 1.1em
+      margin: 0 auto 15px auto
+      border-bottom: 2px solid lightgray
+      font-family: din-web-reg
+      font-size: 14px
+    .user
+      width: 50%
+      margin-left: 50%
+      margin-bottom: 5px  
+    .red
+      color: $secondaryColor
+      width: 45%
+      margin-left: 55%
+  .see-more
+    position: relative
+    display: inline-block
+    margin: 4% 2% 8% 
+    img
+      position: absolute
+      left: -39px !important
+      top: -57px !important
+  .game-btn
+    background: $secondaryColor
+    color: white
+    text-transform: uppercase
+    padding: 0.4em 0.8em 0.2em
+    font-size: 2em
+    font-weight: 500
+    font-family: din-web-reg
+    +border-radius(12px)
+    text-decoration: none
+    position: relative
+    &:hover
+      color: #e1e1e1
+
+// ACTIVISTS
+#meet
+  .activist-photo, .activist-copy
+    float: left
+    text-align: left
+  .activist-photo
+    clear: both
+    width: 35%
+    margin: 2% 0 4%
+  .activist-copy
+    width: 63%
+    margin: 2% 0 4% 2%
+    h3
+      color: $secondaryColor
+      font-size: 1.4em
+
+// FACTS
+#facts
+  ol
+    text-align: left
+    margin: 4%
+    li
+      margin: 3%
