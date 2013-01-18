@@ -1,0 +1,21 @@
+.ui-dialog {
+  background: none;
+  color: white;
+}
+
+.ui-dialog h1, .ui-widget-content {
+  color: white;
+}
+
+.ui-dialog h1 {
+  border-bottom: 1px solid white;
+  font-size: 6em;
+}
+
+.ui-widget-overlay {
+  opacity: .9;
+}
+
+.ui-dialog .connect-with-facebook {
+  margin-top: 50px;
+}
