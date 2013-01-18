@@ -200,21 +200,33 @@ class clubs_export {
         $last_joined_campaign = date('Y/m/d', $stuff['last_joined_campaign']);
       }
 
-      $pids = $pdates = array();
+      $pids = $pdates = array(
+        0 => ' ',
+        1 => ' ',
+        2 => ' ',
+        3 => ' ',
+        4 => ' ',
+      );
       if (!empty($stuff['projects'])) {
         foreach ($stuff['projects'] AS $key => $project) {
-          $pids[] = $project->sid;
-          $pdates[] = date('Y-m-d', $project->submitted);
+          $pids[$key] = $project->sid;
+          $pdates[$key] = date('Y-m-d', $project->submitted);
         }
       }
 
       $crbids = dosomething_clubs_pull_get_campaign_report_back_nids();
 
-      $cids = $cdates = array();
+      $cids = $cdates = array(
+        0 => ' ',
+        1 => ' ',
+        2 => ' ',
+        3 => ' ',
+        4 => ' ',
+      );
       if (!empty($stuff['campaigns'])) {
         foreach ($stuff['campaigns'] AS $campaign) {
-          $cids[] = $crbids[$campaign->nid];
-          $cdates[] = date('Y-m-d', $campaign->submitted);
+          $cids[$key] = $crbids[$campaign->nid];
+          $cdates[$key] = date('Y-m-d', $campaign->submitted);
         }
       }
 
@@ -263,10 +275,26 @@ class clubs_export {
         'Email invites' => $stuff['shares']['email_shares'],
         'Total' => ($stuff['shares']['sms_shares'] + $stuff['shares']['fb_shares'] + $stuff['shares']['email_shares']),
         'Responded to survey' => $stuff['survey'],
-        'project_ids' => implode(', ', $pids),
-        'project_dates' => implode(', ', $pdates),
-        'campaign_ids' => implode(', ', $cids),
-        'campaign_dates' => implode(', ', $cdates),
+        'project_ids_1' => $pids[0],
+        'project_ids_2' => $pids[1],
+        'project_ids_3' => $pids[2],
+        'project_ids_4' => $pids[3],
+        'project_ids_5' => $pids[4],
+        'project_dates_1' => $pdates[0],
+        'project_dates_2' => $pdates[1],
+        'project_dates_3' => $pdates[2],
+        'project_dates_4' => $pdates[3],
+        'project_dates_5' => $pdates[4],
+        'campaign_ids_1' => $cids[0],
+        'campaign_ids_2' => $cids[1],
+        'campaign_ids_3' => $cids[2],
+        'campaign_ids_4' => $cids[3],
+        'campaign_ids_5' => $cids[4],
+        'campaign_dates_1' => $cdates[0],
+        'campaign_dates_2' => $cdates[1],
+        'campaign_dates_3' => $cdates[2],
+        'campaign_dates_4' => $cdates[3],
+        'campaign_dates_5' => $cdates[4],
       );
 
       $i++;
@@ -336,10 +364,26 @@ class clubs_export {
         t('Email invites'),
         t('Total'),
         t('Responded to survey'),
-        t('Last 5 project IDs'),
-        t('Last 5 project dates'),
-        t('Last 5 campaign report back IDs'),
-        t('Last 5 campaign report back dates'),
+        t('Last 5 project ID: 1'),
+        t('Last 5 project ID: 2'),
+        t('Last 5 project ID: 3'),
+        t('Last 5 project ID: 4'),
+        t('Last 5 project ID: 5'),
+        t('Last 5 project date: 1'),
+        t('Last 5 project date: 2'),
+        t('Last 5 project date: 3'),
+        t('Last 5 project date: 4'),
+        t('Last 5 project date: 5'),
+        t('Last 5 campaign report back ID: 1'),
+        t('Last 5 campaign report back ID: 2'),
+        t('Last 5 campaign report back ID: 3'),
+        t('Last 5 campaign report back ID: 4'),
+        t('Last 5 campaign report back ID: 5'),
+        t('Last 5 campaign report back date: 1'),
+        t('Last 5 campaign report back date: 2'),
+        t('Last 5 campaign report back date: 3'),
+        t('Last 5 campaign report back date: 4'),
+        t('Last 5 campaign report back date: 5'),
       );
 
       $handle = fopen($h['file_path'], 'w');
@@ -958,10 +1002,26 @@ function dosomething_clubs_pull_data() {
     array('data' => t('Email Invites'), 'class' => array('clubs-pull-email-shares')),
     array('data' => t('Total Invites'), 'class' => array('clubs-pull-total-shares')),
     array('data' => t('Responded to survey'), 'class' => array('clubs-pull-survey-response')),
-    array('data' => t('Last 5 project IDs'), 'class' => array('clubs-pull-last-5-project-ids')),
-    array('data' => t('Last 5 project dates'), 'class' => array('clubs-pull-last-5-project-dates')),
-    array('data' => t('Last 5 campaign report back IDs'), 'class' => array('clubs-pull-last-5-campaign-ids')),
-    array('data' => t('Last 5 campaign report back dates'), 'class' => array('clubs-pull-last-5-campaign-dates')),
+    array('data' => t('Last 5 project ID: 1'), 'class' => array('clubs-pull-last-5-project-ids-1')),
+    array('data' => t('Last 5 project ID: 2'), 'class' => array('clubs-pull-last-5-project-ids-2')),
+    array('data' => t('Last 5 project ID: 3'), 'class' => array('clubs-pull-last-5-project-ids-3')),
+    array('data' => t('Last 5 project ID: 4'), 'class' => array('clubs-pull-last-5-project-ids-4')),
+    array('data' => t('Last 5 project ID: 5'), 'class' => array('clubs-pull-last-5-project-ids-5')),
+    array('data' => t('Last 5 project date: 1'), 'class' => array('clubs-pull-last-5-project-dates-1')),
+    array('data' => t('Last 5 project date: 2'), 'class' => array('clubs-pull-last-5-project-dates-2')),
+    array('data' => t('Last 5 project date: 3'), 'class' => array('clubs-pull-last-5-project-dates-3')),
+    array('data' => t('Last 5 project date: 4'), 'class' => array('clubs-pull-last-5-project-dates-4')),
+    array('data' => t('Last 5 project date: 5'), 'class' => array('clubs-pull-last-5-project-dates-5')),
+    array('data' => t('Last 5 campaign report back ID: 1'), 'class' => array('clubs-pull-last-5-campaign-ids-1')),
+    array('data' => t('Last 5 campaign report back ID: 2'), 'class' => array('clubs-pull-last-5-campaign-ids-2')),
+    array('data' => t('Last 5 campaign report back ID: 3'), 'class' => array('clubs-pull-last-5-campaign-ids-3')),
+    array('data' => t('Last 5 campaign report back ID: 4'), 'class' => array('clubs-pull-last-5-campaign-ids-4')),
+    array('data' => t('Last 5 campaign report back ID: 5'), 'class' => array('clubs-pull-last-5-campaign-ids-5')),
+    array('data' => t('Last 5 campaign report back date: 1'), 'class' => array('clubs-pull-last-5-campaign-dates-1')),
+    array('data' => t('Last 5 campaign report back date: 2'), 'class' => array('clubs-pull-last-5-campaign-dates-2')),
+    array('data' => t('Last 5 campaign report back date: 3'), 'class' => array('clubs-pull-last-5-campaign-dates-3')),
+    array('data' => t('Last 5 campaign report back date: 4'), 'class' => array('clubs-pull-last-5-campaign-dates-4')),
+    array('data' => t('Last 5 campaign report back date: 5'), 'class' => array('clubs-pull-last-5-campaign-dates-5')),
   );
 
 $count = db_query("SELECT COUNT(*) AS `count` FROM `node` WHERE (( (node.status = '1') AND (node.type IN  ('club')) )) GROUP BY nid, `node`.`title` ORDER BY `node`.`title` ASC");
@@ -1005,19 +1065,31 @@ $num = $count->rowCount();
 
       $crbids = dosomething_clubs_pull_get_campaign_report_back_nids();
 
-      $pids = $pdates = array();
+      $pids = $pdates = array(
+        0 => ' ',
+        1 => ' ',
+        2 => ' ',
+        3 => ' ',
+        4 => ' ',
+      );
       if (!empty($result['projects'])) {
         foreach ($result['projects'] AS $key => $project) {
-          $pids[] = $project->sid;
-          $pdates[] = date('Y-m-d', $project->submitted);
+          $pids[$key] = $project->sid;
+          $pdates[$key] = date('Y-m-d', $project->submitted);
         }
       }
 
-      $cids = $cdates = array();
+      $cids = $cdates = array(
+        0 => ' ',
+        1 => ' ',
+        2 => ' ',
+        3 => ' ',
+        4 => ' ',
+      );
       if (!empty($result['campaigns'])) {
         foreach ($result['campaigns'] AS $campaign) {
-          $cids[] = $crbids[$campaign->nid];
-          $cdates[] = date('Y-m-d', $campaign->submitted);
+          $cids[$key] = $crbids[$campaign->nid];
+          $cdates[$key] = date('Y-m-d', $campaign->submitted);
         }
       }
 
@@ -1067,10 +1139,26 @@ $num = $count->rowCount();
         'Email invites' => array('data' => $result['shares']['email_shares']),
         'Total' => array('data' => ($result['shares']['sms_shares'] + $result['shares']['fb_shares'] + $result['shares']['email_shares'])),
         'Responded to survey' => array('data' => $result['survey']),
-        'project_ids' => array('data' => implode(', ', $pids)),
-        'project_dates' => array('data' => implode(', ', $pdates)),
-        'campaign_ids' => array('data' => implode(', ', $cids)),
-        'campaign_dates' => array('data' => implode(', ', $cdates)),
+        'project_ids_1' => array('data' => $pids[0]),
+        'project_ids_2' => array('data' => $pids[1]),
+        'project_ids_3' => array('data' => $pids[2]),
+        'project_ids_4' => array('data' => $pids[3]),
+        'project_ids_5' => array('data' => $pids[4]),
+        'project_dates_1' => array('data' => $pdates[0]),
+        'project_dates_2' => array('data' => $pdates[1]),
+        'project_dates_3' => array('data' => $pdates[2]),
+        'project_dates_4' => array('data' => $pdates[3]),
+        'project_dates_5' => array('data' => $pdates[4]),
+        'campaign_ids_1' => array('data' => $cids[0]),
+        'campaign_ids_2' => array('data' => $cids[1]),
+        'campaign_ids_3' => array('data' => $cids[2]),
+        'campaign_ids_4' => array('data' => $cids[3]),
+        'campaign_ids_5' => array('data' => $cids[4]),
+        'campaign_dates_1' => array('data' => $cdates[0]),
+        'campaign_dates_2' => array('data' => $cdates[1]),
+        'campaign_dates_3' => array('data' => $cdates[2]),
+        'campaign_dates_4' => array('data' => $cdates[3]),
+        'campaign_dates_5' => array('data' => $cdates[4]),
       )
     );
   }
