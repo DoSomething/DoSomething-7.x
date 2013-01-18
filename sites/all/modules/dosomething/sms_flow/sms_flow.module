@@ -249,16 +249,18 @@ function sms_flow_incoming_callback($path) {
   sms_incoming($sender, $message, array("carrier" => $carrier, 'keyword' => $keyword, 'response' => $output));
   $args = array('%sender' => $sender, '%message' => $message, '%response' => $output, '%keyword' => $keyword);
   watchdog('sms_flow', 'Received message from %sender: %message with keyword %keyword and responded with %response', $args);
-  $output =
-  '<?xml version="1.0" encoding="UTF-8"?>
-  <response>
-   <reply>
-    <text>
-     <![CDATA[' . $output . ']]>
-    </text>
-   </reply>
-  </response>';
-  print $output;
+  if (!empty($output)) {
+    $output =
+    '<?xml version="1.0" encoding="UTF-8"?>
+    <response>
+     <reply>
+      <text>
+       <![CDATA[' . $output . ']]>
+      </text>
+     </reply>
+    </response>';
+    print $output;
+  }
 
   return NULL;
 }
@@ -306,6 +308,7 @@ function sms_flow_conductor_sms_keywords() {
     'clubs-survey' => 'sms_flow_clubs_survey',
     'clubs-followup' => 'sms_flow_clubs_followup_survey',
     'mlk-game-invite' => 'sms_flow_mlk_game_invite',
+    'mlk-invite-path-1' => 'sms_flow_mlk_invite_path_1',
     'mlk-process-beta' => 'sms_flow_mlk_process_beta',
   );
 }
@@ -952,6 +955,35 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('end');
   $activity->name = 'end';
   $activity->inputs = array('mlk_process_beta');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_invite_path_1
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_invite_path_1';
+  $workflow->title = 'MLK Invite Path 1';
+  $workflow->description = 'MLK Invite Path 1';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_alpha_invite');
+
+  $activity = $workflow->newActivity('mlk_alpha_invite');
+  $activity->name = 'mlk_alpha_invite';
+  $activity->alpha_optin = 140771;
+  $activity->beta_optin = 140781;
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_alpha_invite');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
