@@ -32,13 +32,10 @@
  */
 
 function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_numbers, $form_values, Array $variables, $beta_to_alpha_campaign = FALSE, $type_override = NULL) {
-  if (dosomething_general_valid_cell($alpha_number) && !empty($alpha_optin)) {
-  	dosomething_general_mobile_commons_subscribe($alpha_number, (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign), $variables);
-  }
 
   $nid = 0;
   if (!empty($form_values['details']['nid'])) {
-	 $nid = $form_values['details']['nid'];
+    $nid = $form_values['details']['nid'];
   }
 
   if (empty($type_override)) {
@@ -52,36 +49,43 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
   $alpha_number = preg_replace('#[^0-9]#', '', $alpha_number);
 
   foreach ($beta_numbers AS $key => $field) {
-  	$p = '';
+    $beta_number = '';
 
-  	// Generic $form_state['values']['submitted_tree']
-  	if (isset($form_values['submitted_tree']) && isset($form_values['submitted_tree'][$field][LANGUAGE_NONE][0])) {
-  		$p = current($form_values['submitted_tree'][$field][LANGUAGE_NONE][0]);
-  	}
+    // Generic $form_state['values']['submitted_tree']
+    if (isset($form_values['submitted_tree']) && isset($form_values['submitted_tree'][$field][LANGUAGE_NONE][0])) {
+      $beta_number = current($form_values['submitted_tree'][$field][LANGUAGE_NONE][0]);
+    }
 
-  	// Security for the multiple form_state['values'] that we have migrating around the site.
-  	else if (isset($form_values[$field][LANGUAGE_NONE][0])) {
-  		$p = current($form_values[$field][LANGUAGE_NONE][0]);
-  	}
+    // Security for the multiple form_state['values'] that we have migrating around the site.
+    else if (isset($form_values[$field][LANGUAGE_NONE][0])) {
+      $beta_number = current($form_values[$field][LANGUAGE_NONE][0]);
+    }
 
-  	// Array of phone numbers passed to function
-  	if (dosomething_general_valid_cell($field)) {
-  		$p = preg_replace('#[^0-9]#', '', $field);
-  	}
+    // Array of phone numbers passed to function
+    if (dosomething_general_valid_cell($field)) {
+      $beta_number = preg_replace('#[^0-9]#', '', $field);
+    }
 
-  	// Check if valid cell and opt in to Mobile Commons.
-  	if (dosomething_general_valid_cell($p)) {
-  		dosomething_general_mobile_commons_subscribe($p, $beta_optin, $variables);
+    // Check if valid cell and opt in to Mobile Commons.
+    if (dosomething_general_valid_cell($beta_number)) {
+      dosomething_general_mobile_commons_subscribe_with_friends(
+        $alpha_number,
+        (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign),
+        array($beta_number),  // function expects beta numbers to be an array
+        $beta_optin,
+        $variables
+      );
+
       $record = array(
         'alpha' => $alpha_number,
-        'beta' => $p,
+        'beta' => $beta_number,
         'timestamp' => REQUEST_TIME,
         'type' => $type,
         'nid' => $nid
       );
 
       drupal_write_record('sms_flow_records', $record);
-  	}
+    }
   }
 }
 

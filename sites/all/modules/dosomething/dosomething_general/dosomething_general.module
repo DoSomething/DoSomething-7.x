@@ -1146,17 +1146,17 @@ function dosomething_general_infusionsoft_subscribe($emails, $action_id) {
 function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_opt_in_path, $beta_mobiles, $beta_opt_in_path, $args = array()) {
   $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
 
-  // global $user;
-  // if ($user->uid > 0) {
-  //   $profile = profile2_load_by_user($user, 'main');
-  //   $fname = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-  //   $lname = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+  global $user;
+  if ($user->uid > 0) {
+    $profile = profile2_load_by_user($user, 'main');
+    $fname = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+    $lname = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
 
-  //   $args += array(
-  //     'first_name' => $fname,
-  //     'last_name' => $lname,
-  //   );
-  // }
+    $args += array(
+      'first_name' => $fname,
+      'last_name' => $lname,
+    );
+  }
 
   $friends = '';
   foreach ($beta_mobiles AS $key => $mobile) {
@@ -1193,17 +1193,17 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
 function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $args = array()) {
   $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
 
-  // global $user;
-  // if ($user->uid > 0) {
-  //   $profile = profile2_load_by_user($user, 'main');
-  //   $fname = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-  //   $lname = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+  global $user;
+  if ($user->uid > 0) {
+    $profile = profile2_load_by_user($user, 'main');
+    $fname = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+    $lname = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
 
-  //   $args += array(
-  //     'first_name' => $fname,
-  //     'last_name' => $lname,
-  //   );
-  // }
+    $args += array(
+      'first_name' => $fname,
+      'last_name' => $lname,
+    );
+  }
 
   // Send the post data.
   $options = array(
