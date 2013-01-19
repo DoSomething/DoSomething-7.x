@@ -48,6 +48,7 @@ function dosomething_metatags_find_tag_by_path($path) {
 		$meta_tags = dosomething_metatags_fetch_meta_tags();
 	}
 
+	$t = array();
 	$rl = strlen(trim($path)) - 2;
 	$i = strlen(trim($path)) - 2;
 	while ($i > 0) {
@@ -85,21 +86,23 @@ function dosomething_metatags_find_tag_by_path($path) {
  */
 function dosomething_metatags_page_alter() {
 	if (drupal_is_front_page()) {
-		$path = '<front>';
+	   $path = '<front>';
 	}
 	else {
-		$path = request_uri();
+	   $path = request_uri();
 	}
 	$meta = dosomething_metatags_find_tag_by_path($path);
-	$tags = unserialize($meta['meta_tags']);
-	if ($tags['description']) {
-	   $element = array(
-	      '#tag' => 'meta',
-	      '#attributes' => array(
-	        'property' => 'description', 
-	        'content' => $tags['description']
-	      ),
-	    );
-	    drupal_add_html_head($element, 'ds_meta_desc');
+	if (!empty($meta['meta_tags'])) {
+	   $tags = unserialize($meta['meta_tags']);
+	   if ($tags['description']) {
+		  $element = array(
+		     '#tag' => 'meta',
+		     '#attributes' => array(
+		       'property' => 'description', 
+		       'content' => $tags['description']
+		     ),
+		   );
+		   drupal_add_html_head($element, 'ds_meta_desc');
+	   }
 	}
 }

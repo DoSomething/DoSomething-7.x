@@ -79,8 +79,10 @@ function doit_preprocess_page(&$variables) {
   ));
   
   // Set the webform title to use the submitted title value rather than what is set in webform_submission_title()
-  if ($variables['page']['content']['system_main']['#theme'] == 'webform_submission_page') {
-    drupal_set_title($variables['page']['content']['system_main']['#submission']->field_project_title['und'][0]['value']);
+  if (!empty($variables['page']['content']['system_main']['#theme'])) {
+    if ($variables['page']['content']['system_main']['#theme'] == 'webform_submission_page') {
+      drupal_set_title($variables['page']['content']['system_main']['#submission']->field_project_title['und'][0]['value']);
+    }
   }
 
   // gate beta campaign page
