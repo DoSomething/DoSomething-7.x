@@ -7,6 +7,25 @@ div.pane-taxonomy-term-field-celeb-photo {
   div.pane-taxonomy-term-field-celeb-photo img {
     height: 314px; }
 
+.celeb-page-form {
+  background: red !important; }
+  .celeb-page-form #webform-component-step-2 {
+    display: none !important; }
+  .celeb-page-form label[for="edit-submitted-field-celeb-friend-phone-und-0-value"],
+  .celeb-page-form label[for="edit-submitted-field-celeb-friend-phone-5-und-0-value"] {
+    width: 145px !important; }
+  .celeb-page-form #edit-fb-preview {
+    display: inline; }
+  .celeb-page-form #edit-fb-button {
+    float: left !important;
+    width: 140px !important; }
+  .celeb-page-form #edit-preview {
+    width: 125px !important;
+    float: left !important;
+    padding-left: 20px !important; }
+    .celeb-page-form #edit-preview h3 {
+      margin-right: 0px; }
+
 #robocalls-who-should-celeb-call {
   margin-top: 25px; }
 
