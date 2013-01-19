@@ -48,6 +48,7 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
 
   $alpha_number = preg_replace('#[^0-9]#', '', $alpha_number);
 
+  $valid_beta_numbers = array();
   foreach ($beta_numbers AS $key => $field) {
     $beta_number = '';
 
@@ -68,13 +69,7 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
 
     // Check if valid cell and opt in to Mobile Commons.
     if (dosomething_general_valid_cell($beta_number)) {
-      dosomething_general_mobile_commons_subscribe_with_friends(
-        $alpha_number,
-        (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign),
-        array($beta_number),  // function expects beta numbers to be an array
-        $beta_optin,
-        $variables
-      );
+      $valid_beta_numbers[] = $beta_number;
 
       $record = array(
         'alpha' => $alpha_number,
@@ -87,6 +82,15 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
       drupal_write_record('sms_flow_records', $record);
     }
   }
+
+  // Opt-in alpha and beta to their respective paths
+  dosomething_general_mobile_commons_subscribe_with_friends(
+    $alpha_number,
+    (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign),
+    $valid_beta_numbers,
+    $beta_optin,
+    $variables
+  );
 }
 
 /**
@@ -307,6 +311,7 @@ function sms_flow_conductor_sms_keywords() {
     'clubs-ftaf' => 'sms_flow_clubs_ftaf',
     'clubs-survey' => 'sms_flow_clubs_survey',
     'clubs-followup' => 'sms_flow_clubs_followup_survey',
+    'mlk-invite-end-game' => 'sms_flow_mlk_invite_end_game',
     'mlk-invite-path-1' => 'sms_flow_mlk_invite_path_1',
     'mlk-invite-path-2' => 'sms_flow_mlk_invite_path_2',
     'mlk-invite-path-3' => 'sms_flow_mlk_invite_path_3',
@@ -932,6 +937,35 @@ function sms_flow_default_conductor_workflows() {
   $activity = $workflow->newActivity('end');
   $activity->name = 'end';
   $activity->inputs = array('mlk_process_beta');
+  $activity->outputs = array();
+
+  $workflows[$workflow->name] = $workflow;
+
+  //
+  // sms_flow_mlk_invite_end_game
+  //
+  $workflow = new ConductorWorkflow;
+  $workflow->wid = 'new';
+  $workflow->name = 'sms_flow_mlk_invite_end_game';
+  $workflow->title = 'MLK Invite End Game';
+  $workflow->description = 'Inviting from the end of the game';
+  $workflow->api_version = '1.0';
+
+  $activity = $workflow->newActivity('start');
+  $activity->name = 'start';
+  $activity->inputs = array();
+  $activity->outputs = array('mlk_alpha_invite');
+
+  $activity = $workflow->newActivity('mlk_alpha_invite');
+  $activity->name = 'mlk_alpha_invite';
+  $activity->alpha_optin = 141081;
+  $activity->beta_optin = 140781;
+  $activity->inputs = array('start');
+  $activity->outputs = array('end');
+
+  $activity = $workflow->newActivity('end');
+  $activity->name = 'end';
+  $activity->inputs = array('mlk_alpha_invite');
   $activity->outputs = array();
 
   $workflows[$workflow->name] = $workflow;
