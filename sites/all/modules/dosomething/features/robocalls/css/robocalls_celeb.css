@@ -1,5 +1,15 @@
 .celeb-page-form #webform-component-step-2 {
-  display: none; }
+  display: none !important; }
+.celeb-page-form #edit-fb-preview {
+  display: inline; }
+.celeb-page-form #edit-fb-button {
+  float: left !important;
+  width: 140px !important; }
+.celeb-page-form #edit-preview {
+  width: 90px !important;
+  float: left !important; }
+  .celeb-page-form #edit-preview h3 {
+    margin-right: 0px; }
 
 div.pane-taxonomy-term-field-celeb-photo {
   border: 1px solid white;

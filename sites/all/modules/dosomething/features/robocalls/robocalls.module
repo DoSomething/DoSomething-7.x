@@ -155,31 +155,38 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       '#attributes' => array(
         'class' => array('robocalls-fb-button-container')
       ),
-      '#weight' => 1,
+      '#weight' => 100,
     );
 
     $form['fb_preview']['fb_button']['connect_with_facebook'] = array(
       '#markup' => '<p class="robocalls-fb-find-friends-birthdays"><img src="/' . drupal_get_path('module', 'robocalls') . '/images/facebook-share-button.gif" alt="Share on Facebook" /></p>',
-      '#weight' => 2
+      '#weight' => 110,
     );
 
     if (isset($term->tid) && !empty($term->tid)) {
+
         $form['fb_preview']['preview'] = array(
            '#type' => 'container',
            '#attributes' => array(
               'class' => array('robocalls-preview-button-container')
-    		));
-
-        $form['fb_preview']['preview']['preview_now'] = array(
-           '#markup' => '<p><h3>Preview</h3></p>'
-        );
-
-        $form['fb_preview']['preview']['audio'] = array(
-           '#markup' => '<audio id="robocalls-preview-audio" src="/files' . str_replace(array(DRUPAL_ROOT . '/files', 'var/www/nfs'), '', drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) . '"></audio>'
+          ),
+           '#weight' => 150,
         );
 
         $form['fb_preview']['preview']['button'] = array(
-           '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', str_replace(array(DRUPAL_ROOT . '/', '/var/www/nfs'), array('', 'files'), drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])), array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link')))
+           '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', str_replace(array(DRUPAL_ROOT . '/', '/var/www/nfs'), array('', 'files'), drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])), array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link'))),
+           '#weight' => 1,
+        );
+
+
+        $form['fb_preview']['preview']['preview_now'] = array(
+           '#markup' => '<p><h3>Preview</h3></p>',
+           '#weight' => 1000,
+        );
+
+        $form['fb_preview']['preview']['audio'] = array(
+           '#markup' => '<audio id="robocalls-preview-audio" src="/files' . str_replace(array(DRUPAL_ROOT . '/files', 'var/www/nfs'), '', drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) . '"></audio>',
+           '#weight' => 1010,
         );
     }
 
