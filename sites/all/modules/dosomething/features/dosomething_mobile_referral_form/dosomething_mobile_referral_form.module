@@ -87,7 +87,7 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
 
   if ((isset($form_state['build_info']['args'][0]->title)
     && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form'
-    && $node->nid) || $form_state['build_info']['args'][0]->field_ref_use_default_styles[LANGUAGE_NONE][0]['value']) {
+    && $node->nid) || (!empty($form_state['build_info']['args'][0]) && $form_state['build_info']['args'][0]->field_ref_use_default_styles[LANGUAGE_NONE][0]['value'])) {
     drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/css/mobile_referrals.css', array(
         'group' => CSS_THEME,
         'weight' => 10
