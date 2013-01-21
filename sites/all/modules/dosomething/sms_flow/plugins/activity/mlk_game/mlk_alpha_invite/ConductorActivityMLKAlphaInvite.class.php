@@ -12,6 +12,7 @@ class ConductorActivityMLKAlphaInvite extends ConductorActivity {
     $options = parent::option_definition();
     $options['alpha_optin'] = array('default' => '');
     $options['beta_optin'] = array('default' => '');
+    $options['sms_response'] = array('default' => '');
     return $options;
   }
 
@@ -41,9 +42,14 @@ class ConductorActivityMLKAlphaInvite extends ConductorActivity {
     $form['details']['nid'] = $this->game_id;
     sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $numbers, $form, $args, FALSE, $this->type_override);
     
-    // Setting sms_no_response_required to TRUE will allow workflow to end without
-    // sending a respone to the user and trigger no error.
-    $state->setContext('ignore_no_response_error', TRUE);
+    if (empty($this->sms_response)) {
+      // Setting sms_no_response_required to TRUE will allow workflow to end without
+      // sending a respone to the user and trigger no error.
+      $state->setContext('ignore_no_response_error', TRUE);
+    }
+    else {
+      $state->setContext('sms_response', $this->sms_response);
+    }
     $state->markCompleted();
   }
 
