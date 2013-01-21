@@ -960,6 +960,7 @@ function sms_flow_default_conductor_workflows() {
   $activity->name = 'mlk_alpha_invite';
   $activity->alpha_optin = 141081;
   $activity->beta_optin = 140781;
+  $activity->sms_response = 'Thanks for sharing! Be a different character: text MLK to play again!';
   $activity->inputs = array('start');
   $activity->outputs = array('end');
 
