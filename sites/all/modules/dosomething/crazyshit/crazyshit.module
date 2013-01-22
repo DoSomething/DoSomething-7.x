@@ -433,8 +433,7 @@ function crazyshit_page_alter(&$page) {
     );
     drupal_add_html_head($element, 'picsforpets_social_graph_type');
 
-	// Loads the global javascript file.
-	drupal_add_js(drupal_get_path('module', 'crazyshit') . '/js/crazy.js');
+	$uri = request_uri();
 
 	// Loads CSS files from the $crazy_css array found in plugin.php
 	foreach ($crazy_css AS $path => $css) {
