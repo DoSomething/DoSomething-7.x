@@ -18,12 +18,12 @@
 		   var o = this;
 		   if ($('.image-preview img').length > 0) {
 			  jQuery('.image-preview img').appendTo('.image-widget-data').css({
-				'margin-top': '-19px',
-				'margin-bottom': '-2px',
+				'margin-top': '-50px',
+				'margin-bottom': '0',
 			    '-webkit-box-shadow': 'none',
 			    '-moz-box-shadow': 'none',
 			    'box-shadow': 'none',
-			    'border': '0px'
+			    'border': '0'
 			  });
 		   }
 
@@ -69,6 +69,25 @@
 		  jQuery('<div>').attr('id', 'upload-cover').insertBefore('.form-file');
 		  f.appendTo('#upload-cover').addClass('new');
 		  var n = jQuery('<div>').addClass('fakefile').text('Upload a file').appendTo('#upload-cover');
+      
+      // changes [back] behavior on form
+      $('#edit-previous').click(function(a){
+        a.preventDefault();
+        window.location = '/crazy/submit';
+      });
+      
+      // hide "meme text" divs if either is empty
+//      $('#edit-submit').click(function(b){
+//
+//        if( $('#top_text').html() == "" ) {
+//          $('#top_text').remove();
+//        }
+//
+//        if( $('#bottom_text').html() == "" ) {
+//          $('#bottom_text').remove();
+//        }
+//        
+//      });
 
 		},
 	};
