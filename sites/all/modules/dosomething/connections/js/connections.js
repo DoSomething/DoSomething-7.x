@@ -23,6 +23,7 @@
     my_pic: '',
     debug: false,
     fb_init: false,
+    is_authed: false,
     _feed_callback: null,
     _ograph_callback: null,
     _message_callback: null,
@@ -124,8 +125,19 @@
 
     is_authed: function(callback) {
       FB.getLoginStatus(function(response) {
-	callback(response);
+	 if (typeof callback === 'function') {
+	    callback(response);
+	 }
+
+         if (response.status == 'unknown' || response.status == 'not_authorized') {
+            Drupal.behaviors.fb.is_authed = false;
+         }
+         else {
+            Drupal.behaviors.fb.is_authed = true;
+         }
       });
+
+	return Drupal.behaviors.fb.is_authed;
     },
 
     /**

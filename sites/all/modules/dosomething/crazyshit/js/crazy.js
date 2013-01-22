@@ -1,5 +1,7 @@
 (function($) {
    Drupal.behaviors.dsCrazyScripts = {
+	 authed: false,
+
    	 attach: function(context, settings) { 
 	    var o = this;
 	    if (document.location.hash && parseInt(document.location.hash)) {
@@ -47,12 +49,14 @@
 	    //});
 
 	    $('.bs-button a.button-submit').click(function() {
-	       if ($(this).hasClass('clicked')) return false;
+	       if ($(this).hasClass('clicked') || !Drupal.behaviors.dsCrazyScripts.authed) return false;
 
 	       var elm = $(this);
 	       var na = $(this).hasClass('no-alert');
 
 	       elm.addClass('clicked');
+	       var c = parseInt(elm.parent().find('span').text());
+		elm.parent().find('span').text(++c);
 	       $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-bullshit', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
 	      	  if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
@@ -86,7 +90,7 @@
 	    });
 
 	    $('.vouch-button a.button-submit').click(function() {
-	      if ($(this).hasClass('clicked')) return false;
+	      if ($(this).hasClass('clicked') || !Drupal.behaviors.dsCrazyScripts.authed) return false;
 
 	      var na = $(this).hasClass('no-alert');
 	      var elm = $(this);
@@ -134,6 +138,10 @@
 	 	window.fbAsyncInit = function() {
 			oa();
 
+		    if (Drupal.behaviors.fb.is_authed()) {
+			Drupal.behaviors.dsCrazyScripts.authed = true;
+		    }
+
 		    // If we're on the friends page...
 		    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
 
@@ -176,6 +184,7 @@ Drupal.behaviors.fb.gate({
 	        }
 	      });
 	  });
+	return false;
     }
   });
 })(jQuery);

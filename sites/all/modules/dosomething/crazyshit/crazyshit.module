@@ -473,7 +473,6 @@ function crazyshit_page_alter(&$page) {
 
 	  global $user;
 	  $fbid = fboauth_fbid_load($user->uid);
-
 	  $i = db_or();
 	  $i->condition('from_uid', $user->uid);
 	  $i->condition('from_fid', $fbid);
@@ -482,6 +481,7 @@ function crazyshit_page_alter(&$page) {
 		->fields('n', array('sid', 'type'))
 		->condition($i)
 	    ->condition('type', array(2, 10, 11), 'IN')
+	    ->condition('from_uid', 0, '!=')
 	    ->execute();
 	  $shares = $s->fetchAll();
 
@@ -851,7 +851,7 @@ function crazyshit_init() {
 
   // If user is not authenticated, show the "connect to submit" popup on the submit button.
   if (!crazy_check_fb_auth($facebook)) {
-  	drupal_add_js("jQuery(document).ready(function() { jQuery('.vouch-button a, .bs-button a').click(function() { jQuery.fn.dsCrazyPopup('submit', 0, 0, '" . request_uri() . "'); return false; }); });", 'inline');
+  	drupal_add_js("jQuery(document).ready(function() { jQuery('.vouch-button a, .bs-button a').click(function() { jQuery.fn.dsCrazyPopup('submit', 0, 0, '" . request_uri() . "');  return false; }); });", 'inline');
   }
 
   // If a user just created a new post, show the "share this" popup.
