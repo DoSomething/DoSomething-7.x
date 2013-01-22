@@ -9,7 +9,11 @@
 		   $('html, body').animate({ scrollTop: $('.s-' + h).offset().top }, 'slow');
 	    }
 
-	    Drupal.behaviors.dsCrazyScripts.fb_refresh();
+	    Drupal.behaviors.dsCrazyScripts.fb_refresh(function() {
+            if (Drupal.behaviors.fb.is_authed()) {
+               Drupal.behaviors.dsCrazyScripts.authed = true;
+            }
+	    });
 
 	    if (Drupal.settings.crazy.allow_lazy_loading) {
 		    if ($('img.lazy').length > 0) {
@@ -49,7 +53,7 @@
 	    //});
 
 	    $('.bs-button a.button-submit').click(function() {
-	       if ($(this).hasClass('clicked') || !Drupal.behaviors.dsCrazyScripts.authed) return false;
+	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) return false;
 
 	       var elm = $(this);
 	       var na = $(this).hasClass('no-alert');
@@ -77,7 +81,7 @@
 		      			'notification_user': response.author,
 		      			'notification_template': name + " called BS on your story about the craziest thing you did to save money.  Click here to get support!"
 		      		}, function(response) { 
-		      			console.log(response);
+		      			//console.log(response);
 		      		});
 		      	}
 	          }
@@ -90,12 +94,14 @@
 	    });
 
 	    $('.vouch-button a.button-submit').click(function() {
-	      if ($(this).hasClass('clicked') || !Drupal.behaviors.dsCrazyScripts.authed) return false;
+	      if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) return false;
 
 	      var na = $(this).hasClass('no-alert');
 	      var elm = $(this);
 
 	      elm.addClass('clicked');
+		var c = parseInt(elm.parent().find('span').text());
+		elm.parent().find('span').text(++c);
 	      $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
 	      	if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
@@ -133,14 +139,10 @@
 		}
 	 },
 
-	 fb_refresh: function() {
+	 fb_refresh: function(callback) {
 	 	var oa = window.fbAsyncInit;
 	 	window.fbAsyncInit = function() {
 			oa();
-
-		    if (Drupal.behaviors.fb.is_authed()) {
-			Drupal.behaviors.dsCrazyScripts.authed = true;
-		    }
 
 		    // If we're on the friends page...
 		    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
@@ -149,6 +151,10 @@
 		    	// That's bad.  So let's make sure they're actually connected.
 		    	// Furthermore, FB.getUserID() doesn't work here.
 		    	Drupal.behaviors.dsCrazyScripts.fb_status();
+		    }
+
+		    if (typeof callback === 'function') {
+			callback();
 		    }
 		};
 	 },

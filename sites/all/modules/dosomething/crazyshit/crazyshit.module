@@ -939,14 +939,14 @@ function crazyshit_handle_fb_users($facebook) {
 	      // Then log them in.
 	      fboauth_login_user($account);
 
-	      if (!empty($account->mail)) {
-	          $mid = CRAZY_MAILCHIMP_GROUP;
-	          $email = $account->mail;
+	#      if (!empty($account->mail)) {
+	#          $mid = CRAZY_MAILCHIMP_GROUP;
+	#          $email = $account->mail;
 
-	          if (!empty($mid)) {
-	             dosomething_general_mailchimp_subscribe($email, $mid);
-	          }
-	      }
+	#          if (!empty($mid)) {
+	#             dosomething_general_mailchimp_subscribe($email, $mid);
+	#          }
+	#      }
 	    }
 	    // Condition 2.
 	    elseif (!$user->uid && !$uid && !empty($found_user)) {
@@ -967,6 +967,15 @@ function crazyshit_handle_fb_users($facebook) {
 	      user_user_operations_unblock(array($account->uid));
 	    }
 	  }
+
+          if (!empty($account->mail)) {
+              $mid = CRAZY_MAILCHIMP_GROUP;
+              $email = $account->mail;
+
+              if (!empty($mid) && valid_email_address($email)) {
+                 dosomething_general_mailchimp_subscribe($email, $mid);
+              }
+          }
   }
   catch (Exception $e) {}
 }
