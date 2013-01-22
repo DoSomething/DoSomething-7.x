@@ -1,6 +1,6 @@
 <?php
 
-function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width = 400, $font = '/var/www/html/sites/all/modules/dosomething/crazyshit/fonts/DINComp-CondBold.ttf') {
+function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width = 480, $font = '/var/www/html/qa2/sites/all/modules/dosomething/crazyshit/fonts/DINComp-CondBold.ttf') {
 	// No need to do anything if there is no text.
 	if (empty($top_text) && empty($bottom_text)) {
 		return;
@@ -43,7 +43,6 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 	 */
 	$break = wordwrap($upper_text, 35, '\n', true);
 	$a = explode('\n', $break);
-
 	$height = 6;
 	foreach ($a AS $l) {
 		$box = imagettfbbox(20, 0, $font, $l);
@@ -51,7 +50,7 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 		$height += ($box[0] - $box[7]) + 6; 
 	}
 
-	$top = imagecreate(400, $height);
+	$top = imagecreate($image_width, $height);
 	imagecopymerge($image, $top, 0, 0, 0, 0, $image_width, $height, 25);
 
 	$i = 1;
@@ -81,7 +80,7 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 		// Height = greater Y (lower left) - lesser Y (upper left)
 		$height += ($box[0] - $box[7]) + 6; 
 	}
-	$bottom = imagecreate(400, $height);
+	$bottom = imagecreate($image_width, $height);
 	imagecopymerge($image, $bottom, 0, (imagesy($image) - $height), 0, 0, $image_width, $height, 25);
 
 
@@ -106,5 +105,6 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 	ob_end_clean();
 
 	$i = 'public://styles/crazy_image_dimensions/public/crazyshit/' . basename($image_uri);
+	#file_unmanaged_delete($i);
 	file_unmanaged_save_data($c, $i, FILE_EXISTS_REPLACE);
 }

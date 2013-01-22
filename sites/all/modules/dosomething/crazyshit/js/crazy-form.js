@@ -43,7 +43,7 @@
 	      		if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').val() != '') {
 	      			window.clearInterval(img);
 	      			// Crazy shit
-	      			$('#webform-client-form-724801').submit();
+	      			$('#webform-client-form-726998').submit();
 	      		}
 	      	  });
 	       });

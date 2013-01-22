@@ -169,10 +169,10 @@ $facebook_posts = array(
 		'image' => 'http://files.dosomething.org/files/styles/p4p_fake_button/public/pictures/actionguide/123905097.jpg',
 	),
 	'share' => array(
-		'namespace' => 'ds_petitions',
-		'object' => 'petition',
-		'action' => 'sign',
-		'message' => t('Awesome.'),
+		'namespace' => 'dosomethingapp',
+		'object' => 'crazy_thing',
+		'action' => 'share',
+		'message' => t('I just posted the craziest thing I did to save money.  Now it\'s your turn! Go here to do so.'),
 	),
 );
 

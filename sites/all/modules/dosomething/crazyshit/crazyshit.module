@@ -187,6 +187,7 @@ function crazyshit_submit_vouch() {
 	  'timestamp' => REQUEST_TIME,
 	  'notified' => 1,
 	  'origin' => intval($_POST['origin']),
+	  'ipaddress' => $_SERVER['REMOTE_ADDR'],
 	);
 	drupal_write_record('crazy_notifications', $notification);
 
@@ -222,6 +223,7 @@ function crazyshit_submit_vouch_request($sid) {
 	    'timestamp' => REQUEST_TIME,
 	    'notified' => 1,
 	    'origin' => intval($_POST['origin']),
+	    'ipaddress' => $_SERVER['REMOTE_ADDR'],
 	  );
 
 	  drupal_write_record('crazy_notifications', $notification);
@@ -256,6 +258,7 @@ function crazyshit_submit_craziness() {
 	  'type' => 10,
 	  'timestamp' => REQUEST_TIME,
 	  'notified' => 0,
+	  'ipaddress' => $_SERVER['REMOTE_ADDR'],
 	);
 
 	drupal_write_record('crazy_notifications', $notification);
@@ -357,6 +360,7 @@ function crazyshit_submit_bullshit() {
 	  'timestamp' => REQUEST_TIME,
 	  'notified' => $n,
 	  'origin' => intval($_POST['origin']),
+	  'ipaddress' => $_SERVER['REMOTE_ADDR'],
 	);
 
 	// Write the notification.

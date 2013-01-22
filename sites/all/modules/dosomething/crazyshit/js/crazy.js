@@ -93,6 +93,7 @@
 
 	      elm.addClass('clicked');
 	      $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
+console.log(response);
 	      	if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
 	      		settings.crazy.share_count++;
@@ -109,7 +110,7 @@
 	    $('.fb-share a').click(function() {
 	    	var img = $(this).parent().parent().find('.simg img').attr('data-original');
 	    	var sid = $(this).attr('rel');
-
+console.log(Drupal.settings.crazy.facebook.share);
 	    	Drupal.behaviors.fb.image({
 	    	   'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
 	    	   'img_object': Drupal.settings.crazy.facebook.share.object,
