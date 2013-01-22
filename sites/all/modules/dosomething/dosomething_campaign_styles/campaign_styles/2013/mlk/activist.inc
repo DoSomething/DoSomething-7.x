@@ -28,7 +28,6 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'take action', 'href' => 'mlk', 'fragment' => 'scholarship'),
     array('title' => 'scholarship info', 'href' => 'mlk', 'fragment' => 'scholarship'),
     array('title' => 'learn about activism', 'href' => 'mlk', 'fragment' => 'meet'),
     array('title' => 'questions', 'href' => 'mlk', 'fragment' => 'faq'),
