@@ -138,6 +138,9 @@ $crazy_js = array(
 	'crazy/submit' => array(
 		'crazy-form.js',
 	),
+	'crazy/about' => array(
+		'crazy-about.js',
+	),
 );
 
 // Money saving tips
