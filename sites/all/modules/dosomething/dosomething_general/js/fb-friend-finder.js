@@ -81,6 +81,10 @@
           if (jQuery('#fb-modal').length > 0) {
             jQuery('#fb-modal').remove();
           }
+
+	  if (jQuery('#fbc-modal').length > 0) {
+	    jQuery('#fbc-modal').remove();
+	  }
         },
       });
 

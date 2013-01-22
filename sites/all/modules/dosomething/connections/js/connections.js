@@ -240,6 +240,23 @@
                     $('#fbc-modal').remove();
                   }
                 }
+              //og.remove();
+              //delete og;
+            }
+          }).queue(function() {
+            // Pretend like it's a Facebook dialog feed
+            $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
+
+            // Cancel
+            $('.close-fb-dialog').click(function() {
+              // Fake cancel button to remove "fake" feed
+              $('.og_dialog').dialog('close').remove();
+	      if ($('#fbc-modal').length > 0) {
+		$('#fbc-modal').remove();
+	      }
+              Drupal.friendFinder.clear_friends();
+              return false;
+            });
 
                 $(this).dialog('destroy');
                 //og.remove();
@@ -466,6 +483,7 @@
       	require_login: config.feed_require_login,
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
+	modal_opacity: config.feed_modal_opacity || 0.65,
         friend_selector: config.feed_friend_selector || 'td',
         check_remainder: false,
       };
@@ -534,9 +552,9 @@
           'width': '100%',
           'height': jQuery(document).height(),
           'background': '#000',
-          'opacity': '0.98',
+          'opacity': things.modal_opacity,
           'position': 'absolute',
-          'z-index': 25,
+          'z-index': 999,
           'top': '0px',
         }).attr('id', 'fbc-modal');
 
@@ -568,7 +586,6 @@
                 if (Drupal.friendFinder.t) {
                   things = Drupal.friendFinder.t;
                 }
-
                 if (friends.length > 0) {
                   things.friends = friends;
                   Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
