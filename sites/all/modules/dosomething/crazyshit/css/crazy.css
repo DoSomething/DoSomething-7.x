@@ -254,10 +254,6 @@ header[role="banner"] {
 .vouch-button {
   margin: 0 25px 25px 50px; }
 
-/* line 193, ../sass/crazy.sass */
-.fb-share, .author, .dateline {
-  display: none; }
-
 /* line 200, ../sass/crazy.sass */
 .fb-invite-friends {
   display: block;
