@@ -93,7 +93,6 @@
 
 	      elm.addClass('clicked');
 	      $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
-console.log(response);
 	      	if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
 	      		settings.crazy.share_count++;
@@ -110,7 +109,6 @@ console.log(response);
 	    $('.fb-share a').click(function() {
 	    	var img = $(this).parent().parent().find('.simg img').attr('data-original');
 	    	var sid = $(this).attr('rel');
-console.log(Drupal.settings.crazy.facebook.share);
 	    	Drupal.behaviors.fb.image({
 	    	   'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
 	    	   'img_object': Drupal.settings.crazy.facebook.share.object,
@@ -120,7 +118,6 @@ console.log(Drupal.settings.crazy.facebook.share);
 	    	   'img_picture': img,
 	    	   'img_require_login': true,
 	    	}, function(response) {
-	    	   console.log(response);
 	    	});
 	    	return false;
 	    });
@@ -152,7 +149,7 @@ console.log(Drupal.settings.crazy.facebook.share);
 Drupal.behaviors.fb.gate({
    gate_call_fb: 2,
    gate_app_id: Drupal.settings.crazy.fb_app_id
-    }, function(response) { console.log(response); });
+    }, function(response) {  });
    },
   };
 
@@ -234,12 +231,10 @@ function fb_auth(type, status) {
 
 	if (!status) {
 		if (type == 'login') {
-			console.log('REMOVE ME: Asking to login.');
 			jQuery.fn.dsCrazyPopup('login', 0);
 			return false;
 		}
 		else {
-			console.log('REMOVE ME: trying the submit pop-up');
 			jQuery.fn.dsCrazyPopup('submit', 0);
 			return false;
 		}
