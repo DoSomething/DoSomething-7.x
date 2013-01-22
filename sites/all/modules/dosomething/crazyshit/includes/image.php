@@ -1,6 +1,7 @@
 <?php
 
-function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width = 480, $font = '/var/www/html/qa2/sites/all/modules/dosomething/crazyshit/fonts/DINComp-CondBold.ttf') {
+function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width = 480) {
+	$font = DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/fonts/DINComp-CondBold.ttf';
 	// No need to do anything if there is no text.
 	if (empty($top_text) && empty($bottom_text)) {
 		return;
