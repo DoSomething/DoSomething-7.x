@@ -788,7 +788,7 @@ function crazyshit_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_crazy_vouch_count',
       'field_permissions' => array(
-        'type' => '2',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
