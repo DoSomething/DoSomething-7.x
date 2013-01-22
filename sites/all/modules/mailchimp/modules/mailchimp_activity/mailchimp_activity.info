@@ -1,15 +1,14 @@
-name = MailChimp Lists
-description = Manage and integrate MailChimp lists.
+name = MailChimp Activity
+description = View activity for an email address associated with any entity.
 package = MailChimp
 core = 7.x
+
 dependencies[] = mailchimp
 dependencies[] = entity
-dependencies[] = entity_token
 
-configure = admin/config/services/mailchimp/lists
+files[] = mailchimp_activity.entity.inc
+files[] = mailchimp_activity.ui_controller.inc
 
-files[] = mailchimp_lists.entity.inc
-files[] = mailchimp_lists.admin.inc
 
 ; Information added by drupal.org packaging script on 2013-01-11
 version = "7.x-2.9"
