@@ -1166,6 +1166,12 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
   }
 
   $friends .= '&friends_opt_in_path=' . $beta_opt_in_path;
+
+  $apath = '';
+  if ($alpha_opt_in_path > 0) {
+     $apath = '&opt_in_path[]=' . $alpha_opt_in_path;
+  }
+
   // Send the post data.
   $options = array(
     'headers' => array(
@@ -1173,7 +1179,7 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
       'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     ),
     'method' => 'POST',
-    'data' => "person[phone]=$alpha_mobile&opt_in_path[]=$alpha_opt_in_path" . $friends,
+    'data' => "person[phone]=$alpha_mobile" . $apath . $friends,
   );
 
   if (!empty($args)) {
