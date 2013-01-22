@@ -23,7 +23,7 @@
     my_pic: '',
     debug: false,
     fb_init: false,
-    is_authed: false,
+    is_authorized: false,
     _feed_callback: null,
     _ograph_callback: null,
     _message_callback: null,
@@ -130,14 +130,14 @@
 	 }
 
          if (response.status == 'unknown' || response.status == 'not_authorized') {
-            Drupal.behaviors.fb.is_authed = false;
+            Drupal.behaviors.fb.is_authorized = false;
          }
          else {
-            Drupal.behaviors.fb.is_authed = true;
+            Drupal.behaviors.fb.is_authorized = true;
          }
       });
 
-	return Drupal.behaviors.fb.is_authed;
+	return Drupal.behaviors.fb.is_authorized;
     },
 
     /**
