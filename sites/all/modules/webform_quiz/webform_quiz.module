@@ -166,7 +166,7 @@ function webform_init() {
     drupal_add_js(
       array(
         'fbconnect_button' => $fblink,
-        'quiz_url' => drupal_get_path_alias('node/'.arg(1)),
+        'quiz_url' => url('node/'.arg(1), array('absolute' => TRUE)),
         'logged_in' => user_is_logged_in(),
       ),
       'setting'
