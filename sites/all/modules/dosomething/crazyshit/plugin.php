@@ -77,11 +77,11 @@ $sub_menus = array(
 	'crazy/about' => array(
 		'scholarship' => array(
 			'title' => 'Scholarship',
-			'href' => CRAZY_ROOT . '/about/scholarship',
+			'href' => CRAZY_ROOT . '/about/intro#scholarship',
 		),
 		'tips' => array(
 			'title' => 'Tips',
-			'href' => CRAZY_ROOT . '/about/tips'
+			'href' => CRAZY_ROOT . '/about/intro#tips'
 		),
 		'introduction' => array(
 			'title' => 'Introduction',

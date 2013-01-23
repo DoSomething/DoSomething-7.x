@@ -116,9 +116,20 @@ function crazyshit_page_templates_alter(&$variables) {
 	  foreach ($sub_menus AS $match => $s) {
 	  	if (preg_match('#' . $match . '#i', $u)) {
 	  	  foreach ($sub_menus[$match] AS $key => $type) {
+	  	  	if (strpos($type['href'], '#') !== false) {
+	  	  		preg_match('/(?<href>.*?)#(?<fragment>.*?)$/', $type['href'], $hr);
+	  	  		$href = $hr['href'];
+	  	  		$fragment = $hr['fragment'];
+	  	  	}
+	  	  	else {
+	  	  		$href = $type['href'];
+	  	  		$fragment = '';
+	  	  	}
+
 	  		$sub[] = array(
 	  		   'title' => t($type['title']),
-	  		   'href' => $type['href'],
+	  		   'href' => $href,
+	  		   'fragment' => $fragment,
 	  		);
 	  	  }
 	  	}
