@@ -71,8 +71,8 @@ function crazyshit_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '400',
-          'height' => '400',
+          'width' => '480',
+          'height' => '480',
           'upscale' => 1,
         ),
         'weight' => '1',
@@ -87,8 +87,8 @@ function crazyshit_image_default_styles() {
         'module' => 'image',
         'name' => 'image_resize',
         'data' => array(
-          'width' => '400',
-          'height' => '400',
+          'width' => '480',
+          'height' => '480',
         ),
         'weight' => '2',
       ),
