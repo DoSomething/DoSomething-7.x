@@ -92,13 +92,15 @@ function _webform_render_quiz_question($component, $value = NULL, $filter = TRUE
   $form_item = array(
     '#type' => ($component['extra']['multiple']) ? 'checkboxes' : 'radios',
     '#options' => $component['extra']['responses'],
-    '#title' => $fliter ? _webform_filter_xss($component['extra']['quiz_question']) : $component['extra']['quiz_question'],
+    '#title' => $filter ? _webform_filter_xss($component['extra']['quiz_question']) : $component['extra']['quiz_question'],
     '#required' => $component['mandatory'],
     '#weight' => $component['weight'],
     '#default_value' => $filter ? _webform_filter_values($component['value']) : $component['value'],
     '#prefix' => '<div class="webform-component-quiz-question" id="webform-component-' . $component['form_key'] . '">',
     '#suffix' => '</div>',
   );
+
+  if ($form_item['#default_value'] == '') $form_item['#default_value'] = NULL;
 
   if (isset($value)) {
     $form_item['#default_value'] = $value[0];
