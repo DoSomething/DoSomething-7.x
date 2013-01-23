@@ -6382,6 +6382,11 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 .node-type-quiz .pane-node-webform form.webform-client-form #edit-actions {
   text-align: left;
 }
+.node-type-quiz .messages, .node-type-quiz .status, .node-type-quiz .warning, .node-type-quiz .error, .node-type-quiz
+div.status, .node-type-quiz div.warning, .node-type-quiz div.error {
+  margin-top: -10px;
+  position: relative;
+}
 
 .facebook-plugin {
   width: 50px;
