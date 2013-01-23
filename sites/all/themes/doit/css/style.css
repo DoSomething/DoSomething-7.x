@@ -6380,7 +6380,7 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
   margin-top: -28px;
 }
 .node-type-quiz .pane-node-webform form.webform-client-form #edit-actions {
-  text-align: right;
+  text-align: left;
 }
 
 .facebook-plugin {
