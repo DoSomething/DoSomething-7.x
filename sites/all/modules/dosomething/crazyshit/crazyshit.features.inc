@@ -61,7 +61,7 @@ function crazyshit_image_default_styles() {
   $styles['crazy_image_dimensions'] = array(
     'name' => 'crazy_image_dimensions',
     'effects' => array(
-      20 => array(
+      14 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -71,13 +71,13 @@ function crazyshit_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '480',
-          'height' => '480',
+          'width' => '400',
+          'height' => '400',
           'upscale' => 1,
         ),
         'weight' => '1',
       ),
-      21 => array(
+      15 => array(
         'label' => 'Resize',
         'help' => 'Resizing will make images an exact set of dimensions. This may cause images to be stretched or shrunk disproportionately.',
         'effect callback' => 'image_resize_effect',
@@ -87,8 +87,8 @@ function crazyshit_image_default_styles() {
         'module' => 'image',
         'name' => 'image_resize',
         'data' => array(
-          'width' => '480',
-          'height' => '480',
+          'width' => '400',
+          'height' => '400',
         ),
         'weight' => '2',
       ),
