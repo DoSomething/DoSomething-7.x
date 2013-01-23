@@ -1,9 +1,72 @@
-/* line 7, ../sass/crazy-about.sass */
+/* line 4, ../sass/_buttons.sass */
+.crazy-button, .bs-button, .vouch-button {
+  display: inline-block; }
+/* line 6, ../sass/_buttons.sass */
+.crazy-button a, .bs-button a, .vouch-button a {
+  background: #4b84e6;
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 12, ../sass/_buttons.sass */
+.crazy-button a:hover, .bs-button a:hover, .vouch-button a:hover {
+  text-decoration: none;
+  background-color: #6193e9; }
+/* line 15, ../sass/_buttons.sass */
+.crazy-button a.clicked, .bs-button a.clicked, .vouch-button a.clicked {
+  background: #f1f1f1;
+  color: #c1c1c1;
+  cursor: default;
+  text-decoration: none; }
+/* line 20, ../sass/_buttons.sass */
+.crazy-button span, .bs-button span, .vouch-button span {
+  background-color: #dddddd;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0 5px;
+  padding: 3px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 27, ../sass/_buttons.sass */
+.crazy-button span:after, .crazy-button span:before, .bs-button span:after, .bs-button span:before, .vouch-button span:after, .vouch-button span:before {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none; }
+/* line 35, ../sass/_buttons.sass */
+.crazy-button span:after, .bs-button span:after, .vouch-button span:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: #dddddd;
+  border-width: 5px;
+  top: 50%;
+  margin-top: -5px; }
+/* line 41, ../sass/_buttons.sass */
+.crazy-button span:before, .bs-button span:before, .vouch-button span:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: 6px;
+  top: 50%;
+  margin-top: -6px; }
+
+/* line 47, ../sass/_buttons.sass */
+.vouch-button {
+  margin: 0 25px 25px 50px; }
+
+/* line 8, ../sass/crazy-about.sass */
 .subject_wrapper, .tip_wrapper {
   width: 150px;
   float: left; }
 
-/* line 11, ../sass/crazy-about.sass */
+/* line 12, ../sass/crazy-about.sass */
 .tip_wrapper {
   width: 650px;
   background-color: white;
@@ -12,7 +75,7 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 15, ../sass/crazy-about.sass */
+/* line 16, ../sass/crazy-about.sass */
 .tip_wrapper h1 {
   background-color: #231f20;
   text-transform: uppercase;
@@ -23,7 +86,7 @@
   padding: 5px 0 0 0;
   margin: 20px 0 0 0; }
 
-/* line 25, ../sass/crazy-about.sass */
+/* line 26, ../sass/crazy-about.sass */
 .tip_subject {
   width: 120px;
   height: 50px;
@@ -40,27 +103,27 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 37, ../sass/crazy-about.sass */
+/* line 38, ../sass/crazy-about.sass */
 .tip_subject:hover {
   background-color: #312b2c; }
 
-/* line 40, ../sass/crazy-about.sass */
+/* line 41, ../sass/crazy-about.sass */
 .active_subject {
   background-color: #4b84e6; }
-/* line 42, ../sass/crazy-about.sass */
+/* line 43, ../sass/crazy-about.sass */
 .active_subject:hover {
   background-color: #6193e9; }
 
-/* line 45, ../sass/crazy-about.sass */
+/* line 46, ../sass/crazy-about.sass */
 .tip_col {
   float: left;
   width: 15%; }
 
-/* line 49, ../sass/crazy-about.sass */
+/* line 50, ../sass/crazy-about.sass */
 .tip_center {
   width: 50%; }
 
-/* line 55, ../sass/crazy-about.sass */
+/* line 56, ../sass/crazy-about.sass */
 .section {
   width: 800px;
   margin: 0 auto; }
