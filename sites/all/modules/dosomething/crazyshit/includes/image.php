@@ -84,14 +84,6 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 	 *	Lower text
 	 */
 
-	$l = 0;
-	for ($i = 0; $i < strlen($lower_text); $i++) {
-		$b = imagettfbbox($font_size, 0, $font, $lower_text{$i});
-		$a = (($b[4] - $b[6]) + 2);
-		$l += $a;
-		echo $lower_text{$i} . " = $a<br />";
-	}
-
 	$break = wordwrap($lower_text, $break_limit, '\n', true);
 	$a = explode('\n', $break);
 
