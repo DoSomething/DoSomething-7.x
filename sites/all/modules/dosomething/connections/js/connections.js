@@ -1010,7 +1010,6 @@
       if (things.message) {
           things.picture = things.img_url;
           Drupal.behaviors.fb.fb_dialog('image-post', things, function(response) {
-            console.log(response);
             var fbpost = {
                 'image[0][url]': things.img_url,
                 'image[0][user_generated]': true,
