@@ -43,7 +43,7 @@ $top_links = array(
 	),
 	'crazy/about' => array(
 		'title' => 'About',
-		'href' => CRAZY_ROOT . '/about/intro',
+		'href' => CRAZY_ROOT . '/about',
 		'parent' => '/about',
 	),
 	'crazy/submit' => array(

@@ -103,12 +103,6 @@ function crazyshit_page_templates_alter(&$variables) {
 	  	  'href' => $href,
 	  	  'attributes' => ($info['attributes'] ? $info['attributes'] : array()),
 	  	);
-
-	  	if (preg_match('#^\/' . $match . '#i', $ru)) {
-	  	  $links[$href]['attributes'] += array(
-	  		'class' => array('active'),
-	  	  );
-	  	}
 	  }
 
 	  $sub = array();
@@ -130,6 +124,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  		   'title' => t($type['title']),
 	  		   'href' => $href,
 	  		   'fragment' => $fragment,
+	  		   'attributes' => ($type['attributes'] ? $type['attributes'] : array()),
 	  		);
 	  	  }
 	  	}
