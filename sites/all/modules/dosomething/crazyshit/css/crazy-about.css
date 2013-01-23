@@ -1,0 +1,66 @@
+/* line 7, ../sass/crazy-about.sass */
+.subject_wrapper, .tip_wrapper {
+  width: 150px;
+  float: left; }
+
+/* line 11, ../sass/crazy-about.sass */
+.tip_wrapper {
+  width: 650px;
+  background-color: white;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 15, ../sass/crazy-about.sass */
+.tip_wrapper h1 {
+  background-color: #231f20;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  line-height: 45px;
+  padding: 5px 0 0 0;
+  margin: 20px 0 0 0; }
+
+/* line 25, ../sass/crazy-about.sass */
+.tip_subject {
+  width: 120px;
+  height: 50px;
+  display: block;
+  background: #231f20;
+  color: white;
+  line-height: 50px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 10px;
+  margin: 0 0 10px 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 37, ../sass/crazy-about.sass */
+.tip_subject:hover {
+  background-color: #3e3739; }
+
+/* line 40, ../sass/crazy-about.sass */
+.active_subject {
+  background-color: #4b84e6; }
+/* line 42, ../sass/crazy-about.sass */
+.active_subject:hover {
+  background-color: #78a3ec; }
+
+/* line 45, ../sass/crazy-about.sass */
+.tip_col {
+  float: left;
+  width: 15%; }
+
+/* line 49, ../sass/crazy-about.sass */
+.tip_center {
+  width: 50%; }
+
+/* line 55, ../sass/crazy-about.sass */
+.section {
+  width: 800px;
+  margin: 0 auto; }

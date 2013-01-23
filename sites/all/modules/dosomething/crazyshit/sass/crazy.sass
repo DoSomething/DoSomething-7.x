@@ -1,32 +1,6 @@
 @import compass
+@import 'variables'
 @import 'drupal'
-
-
-// VARIABLES
-// ---------
-
-$accent_color: #f8c72f
-$off_black: #231f20
-$off_black_light: #444
-$background: #ccc
-$blue_button: #4B84E6
-$yellow_button: #FFCB15
-
-
-// VARIABLES
-// ---------
-
-@mixin crazy_img
-  img
-    display: block
-    margin: 0 auto
-    width: 400px
-    @media only screen and (max-width 800px)
-      width: 80%
-
-@mixin blue_hover
-  background-color: lighten($blue_button, 5) 
-
 
 // BASE
 // ----
@@ -299,15 +273,6 @@ $yellow_button: #FFCB15
   &:hover
     color: #fff
     +blue_hover
-//  &:after
-    content: ""
-    position: absolute
-    top: 0
-    right: -30px
-    display: block
-    border-color: transparent transparent transparent $blue_button
-    border-width: 15px
-    border-style: solid
 
 .submit-start button,
 #edit-next /* [next] button */

@@ -1,0 +1,57 @@
+@import compass
+@import 'variables'
+
+// ABOUT PAGE
+// ----------
+
+.subject_wrapper, .tip_wrapper
+  width: 150px
+  float: left
+
+.tip_wrapper
+  width: 650px
+  background-color: #fff
+  +border-radius(2px)
+  h1
+    background-color: $off_black
+    text-transform: uppercase
+    text-align: center
+    color: #fff
+    font-size: 30px
+    line-height: 45px
+    padding: 5px 0 0 0
+    margin: 20px 0 0 0
+
+.tip_subject /* subject buttons */
+  width: 120px
+  height: 50px
+  display: block
+  background: $off_black
+  color: #fff
+  line-height: 50px
+  text-transform: uppercase
+  text-align: center
+  padding: 0 10px
+  margin: 0 0 10px 0 
+  +border-radius(2px)
+  &:hover
+    background-color: lighten($off_black, 10)
+
+.active_subject 
+  background-color: $blue_button
+  &:hover
+    background-color: lighten($blue_button, 10)
+
+.tip_col
+  float: left
+  width: 15%
+
+.tip_center
+  width: 50%
+
+// GENERAL
+// -------
+
+.section
+  width: 800px
+  margin: 0 auto

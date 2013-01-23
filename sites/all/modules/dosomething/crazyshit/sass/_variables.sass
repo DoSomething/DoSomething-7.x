@@ -1,0 +1,25 @@
+// VARIABLES
+// ---------
+
+$accent_color: #f8c72f
+$off_black: #231f20
+$off_black_light: #444
+$background: #ccc
+$blue_button: #4B84E6
+$yellow_button: #FFCB15
+
+
+// MIXINS
+// ------
+
+@mixin crazy_img
+  img
+    display: block
+    margin: 0 auto
+    width: 400px
+    @media only screen and (max-width 800px)
+      width: 80%
+
+@mixin blue_hover
+  background-color: lighten($blue_button, 5) 
+
