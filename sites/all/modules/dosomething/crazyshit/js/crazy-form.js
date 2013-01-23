@@ -77,17 +77,17 @@
       });
       
       // hide "meme text" divs if either is empty
-//      $('#edit-submit').click(function(b){
-//
-//        if( $('#top_text').html() == "" ) {
-//          $('#top_text').remove();
-//        }
-//
-//        if( $('#bottom_text').html() == "" ) {
-//          $('#bottom_text').remove();
-//        }
-//        
-//      });
+      $('#edit-submit').click(function(b){
+
+        if( $('#top_text').html() == "" ) {
+          $('#top_text').remove();
+        }
+
+        if( $('#bottom_text').html() == "" ) {
+          $('#bottom_text').remove();
+        }
+        
+      });
 
 		},
 	};
