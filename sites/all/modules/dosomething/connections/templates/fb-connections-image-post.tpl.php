@@ -230,7 +230,7 @@
 				<textarea name="hidden_comments" id="hidden_comments"></textarea>
 
 				<div id="shared">
-					<img src="http://localhost:8080/files/styles/crazy_image_dimensions/public/crazyshit/image.jpg?o2ijf<?php echo $image; ?>" width="480" height="480" alt="" />
+					<img src="<?php echo $image; ?>" width="480" height="480" alt="" />
 				</div>
 		</div>
 		<div style="clear: both"></div>

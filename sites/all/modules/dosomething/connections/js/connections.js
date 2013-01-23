@@ -961,7 +961,7 @@
      *       img_namespace           (The Open Graph namespace through which to post the image.)
      *       img_action              (The Open Graph action through which to post the image.)
      *       img_document            (The URI to share.  Defaults to document.location.href)
-     *       img_message             (An (optional) message to post with the image.)
+     *       img_message             (Whether or not to ask the user for a user-generated message.  (bool) true or false.)
      *       img_picture          *  (The URI to the image that will be shared.)
      *       img_picture_selector *  (A DOM element t gather the SRC of the image from.)
      *       img_selector            (An (optional) selector that will trigger the share when clicked.)

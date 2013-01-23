@@ -124,7 +124,7 @@
 	    	   'img_object': Drupal.settings.crazy.facebook.share.object,
 	    	   'img_action': Drupal.settings.crazy.facebook.share.action,
 	    	   'img_document': document.location.origin + '/' + Drupal.settings.crazy.crazy_root + '/' + sid,
-	    	   'img_message': Drupal.settings.crazy.facebook.share.message,
+	    	   'img_message': true,
 	    	   'img_picture': img,
 	    	   'img_require_login': true,
 	    	}, function(response) {
