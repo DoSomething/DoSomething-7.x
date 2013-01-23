@@ -24,19 +24,21 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 	}
 
 	$white = imagecolorallocate($image, 255, 255, 255);
-	$black = imagecolorallocate($black, 0, 0, 0);
+	$black = imagecolorallocate($image, 0, 0, 0);
 
 	$upper_text = strtoupper($top_text);
 	$lower_text = strtoupper($bottom_text);
 
-	function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strokecolor, $fontfile, $text, $px) {
-	  for($c1 = ($x-abs($px)); $c1 <= ($x+abs($px)); $c1++) {
-	    for($c2 = ($y-abs($px)); $c2 <= ($y+abs($px)); $c2++) {
-	       $bg = imagettftext($image, $size, $angle, $c1, $c2, $strokecolor, $fontfile, $text);
-	    }
-	  }
+	if (!function_exists('imagettfstroketext')) {
+		function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strokecolor, $fontfile, $text, $px) {
+		  for($c1 = ($x-abs($px)); $c1 <= ($x+abs($px)); $c1++) {
+		    for($c2 = ($y-abs($px)); $c2 <= ($y+abs($px)); $c2++) {
+		       $bg = imagettftext($image, $size, $angle, $c1, $c2, $strokecolor, $fontfile, $text);
+		    }
+		  }
 
-	  return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
+		  return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
+		}
 	}
 
 	/**

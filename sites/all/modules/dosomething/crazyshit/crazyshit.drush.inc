@@ -8,6 +8,9 @@ function crazyshit_drush_command() {
     'crazy-migrate' => array(
       'description' => 'Migrates Crazy $#!T Module to a new machine.',
     ),
+    'crazy-image-fix' => array(
+      'description' => 'Images lose text on image style fixes.  This fixes them.'
+    ),
   );
 }
 
@@ -32,6 +35,39 @@ function drush_crazyshit_crazy_migrate() {
   catch (Exception $e) {
     drush_log(dt('Sorry, there was an error: @error', array('@error' => $e->getMessage())), 'error');
   }
+}
+
+function drush_crazyshit_crazy_image_fix() {
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  $s = webform_get_submissions(array('nid' => variable_get('crazy_webform_id')));
+
+  drush_print(dt('Starting...'));
+
+  $count = count($s);
+  $i = 0;
+  foreach ($s AS $sid => $submission) {
+    if (!empty($submission)) {
+      $path = drupal_realpath('public://') . '/styles/crazy_image_dimensions/public/crazyshit/' . basename($submission->field_crazy_crazy_picture[LANGUAGE_NONE][0]['uri']);
+
+      $top = $submission->field_crazy_top_text[LANGUAGE_NONE][0]['value'];
+      $bottom = $submission->field_crazy_bottom_text[LANGUAGE_NONE][0]['value'];
+
+      if (!empty($top) || !empty($bottom)) {
+        include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/includes/image.php';
+        write_text_to_image($path, $top, $bottom);
+      }
+
+      $m = 'Finished !c / !count';
+    }
+    else {
+      $m = 'Ignored !c / !count';
+    }
+
+    $i++;
+    drush_print(dt($m, array('!c' => $i, '!count' => $count)));
+  }
+
+  drush_print(dt('Finished!'));
 }
 
 function drush_crazyshit_crazy_messages() {
