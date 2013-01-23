@@ -1,5 +1,6 @@
 @import compass
 @import 'variables'
+@import 'buttons'
 
 // ABOUT PAGE
 // ----------
@@ -27,7 +28,7 @@
   height: 50px
   display: block
   background: $off_black
-  color: #fff
+  color: #fff !important
   line-height: 50px
   text-transform: uppercase
   text-align: center
@@ -35,12 +36,12 @@
   margin: 0 0 10px 0 
   +border-radius(2px)
   &:hover
-    background-color: lighten($off_black, 10)
+    background-color: lighten($off_black, 5)
 
 .active_subject 
   background-color: $blue_button
   &:hover
-    background-color: lighten($blue_button, 10)
+    background-color: lighten($blue_button, 5)
 
 .tip_col
   float: left

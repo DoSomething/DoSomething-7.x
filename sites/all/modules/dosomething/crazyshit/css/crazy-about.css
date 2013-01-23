@@ -29,7 +29,7 @@
   height: 50px;
   display: block;
   background: #231f20;
-  color: white;
+  color: white !important;
   line-height: 50px;
   text-transform: uppercase;
   text-align: center;
@@ -42,14 +42,14 @@
   border-radius: 2px; }
 /* line 37, ../sass/crazy-about.sass */
 .tip_subject:hover {
-  background-color: #3e3739; }
+  background-color: #312b2c; }
 
 /* line 40, ../sass/crazy-about.sass */
 .active_subject {
   background-color: #4b84e6; }
 /* line 42, ../sass/crazy-about.sass */
 .active_subject:hover {
-  background-color: #78a3ec; }
+  background-color: #6193e9; }
 
 /* line 45, ../sass/crazy-about.sass */
 .tip_col {
