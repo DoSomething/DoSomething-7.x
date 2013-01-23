@@ -106,6 +106,7 @@ function connections_handle_fb_dialog($t) {
 		'fb-message' => 'connections_message',
 		'multi-feed' => 'connections_multi_feed',
 		'custom-selector' => 'connections_custom_selector',
+		'image-post' => 'connections_image_post',
 	);
 
 	if (!isset($options[$t])) {
@@ -175,6 +176,17 @@ function connections_theme($existing, $type, $theme, $path) {
         'to' => NULL
       ),
       'template' => 'fb-connections-custom-selector',
+    ),
+    'connections_image_post' => array(
+      'path' => $path . '/templates',
+      'variables' => array(
+        'title' => NULL,
+        'caption' => NULL,
+        'description' => NULL,
+        'image' => NULL,
+        'to' => NULL
+      ),
+      'template' => 'fb-connections-image-post',
     ),
   );
 }

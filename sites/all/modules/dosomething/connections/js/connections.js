@@ -980,7 +980,7 @@
         object: config.img_object,
         action: config.img_action,
         link: config.img_document || document.location.href,
-        message: config.img_message || '',
+        message: config.img_message || false,
         image: config.img_picture, // Needs to be at least 480x480
         image_selector: config.img_picture_selector, // Needs to be an img element that is at least 480x480
         selector: config.img_selector,
@@ -1007,22 +1007,32 @@
      *  NOTE: We need Facebook permission to make this a public function.
      */
     run_image: function(things, callback) {
-      var fbpost = {
-          message: things.message,
-          'image[0][url]': things.img_url,
-          'image[0][user_generated]': true
-      };
+      if (things.message) {
+          things.picture = things.img_url;
+          Drupal.behaviors.fb.fb_dialog('image-post', things, function(response) {
+            console.log(response);
+            var fbpost = {
+                'image[0][url]': things.img_url,
+                'image[0][user_generated]': true,
+                'fb:explicitly_shared': response.explicly_shared,
+            };
 
-      fbpost[things.object] = things.link;
+            if (response.comments) {
+              fbpost['message'] = response.comments;
+            }
 
-      FB.api(
-       '/me/' + things.namespace + ':' + things.action,
-        'post',
-        fbpost,
-        function(response) {
-          Drupal.behaviors.fb.callback_handler(callback, response);
-        }
-      );
+            fbpost[things.object] = things.link;
+
+            FB.api(
+             '/me/' + things.namespace + ':' + things.action,
+              'post',
+              fbpost,
+              function(response) {
+                Drupal.behaviors.fb.callback_handler(callback, response);
+              }
+            );
+          });
+      }
     },
 
     /**
