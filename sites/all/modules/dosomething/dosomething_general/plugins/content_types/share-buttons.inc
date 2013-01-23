@@ -50,6 +50,8 @@ function dosomething_share_buttons($subtype, $conf, $panel_args, $context) {
   drupal_add_css(drupal_get_path('module', 'dosomething_general') . '/css/share_buttons.css');
   drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/share-buttons.js');
 
+  $short = shorten_url(url(request_uri(), array('absolute' => TRUE)));
+
   // Get page data.
   $page = reset($context)->data;
   $title = rawurlencode($page->title);
@@ -62,7 +64,7 @@ function dosomething_share_buttons($subtype, $conf, $panel_args, $context) {
   <a href="#" id="facebook-count" class="arrow_box"><span>&nbsp;</span></a>
 </div>
 
-<a href="http://twitter.com/share?url=' . $url . '&amp;count=horizontal&amp;via=dosomething&amp;text=' . $title . '&amp;counturl=' . $url . '" class="twitter-share-button service-links-twitter-widget" title="Tweet This" rel="nofollow" target="_blank"><span class="element-invisible">' . t('Tweet Widget') . '</span></a>
+<a href="http://twitter.com/share?url=' . $short . '&amp;count=horizontal&amp;via=dosomething&amp;text=' . $title . '&amp;counturl=' . $url . '" class="twitter-share-button service-links-twitter-widget" title="Tweet This" rel="nofollow" target="_blank"><span class="element-invisible">' . t('Tweet Widget') . '</span></a>
 
 <a href="/print' . $uri . '" title="Printable version" class="service-links-print" rel="nofollow" target="_blank"><img typeof="foaf:Image" src="/sites/all/modules/service_links/images/print.png" alt="Print HTML" /></a>';
 
