@@ -78,12 +78,12 @@ function crazyshit_schema() {
         'not null' => TRUE,
         'unsigned' => TRUE,
       ),
-      'ipaddress' => array(
+      /*'ipaddress' => array(
         'description' => 'The IP address of the user, if logged out, so we can keep track of what they click.',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
-      ),
+      ),*/
     ),
     'indexes' => array(
       'uid' => array('uid'),

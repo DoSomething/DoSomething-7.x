@@ -1,6 +1,7 @@
 (function($) {
    Drupal.behaviors.dsCrazyScripts = {
 	 authed: false,
+	 probably_unauthed: false,
 
    	 attach: function(context, settings) { 
 	    var o = this;
@@ -53,7 +54,13 @@
 	    //});
 
 	    $('.bs-button a.button-submit').click(function() {
-	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) return false;
+	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) {
+				if (Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) {
+					$.fn.dsCrazyPopup('submit', 0, 0, document.location.href);
+				}
+
+		       	return false;
+	    	}
 
 	       var elm = $(this);
 	       var na = $(this).hasClass('no-alert');
@@ -94,7 +101,13 @@
 	    });
 
 	    $('.vouch-button a.button-submit').click(function() {
-	      if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) return false;
+	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) {
+				if (Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) {
+					$.fn.dsCrazyPopup('submit', 0, 0, document.location.href);
+				}
+
+		       	return false;
+	    	}
 
 	      var na = $(this).hasClass('no-alert');
 	      var elm = $(this);
