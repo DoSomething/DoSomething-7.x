@@ -1,6 +1,6 @@
 <?php
 
-function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width = 480) {
+function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width = 480, $font_size = 25, $break_limit = 35, $debug = false) {
 	$font = DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/fonts/DINComp-CondBold.ttf';
 	// No need to do anything if there is no text.
 	if (empty($top_text) && empty($bottom_text)) {
@@ -10,17 +10,21 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 	$pathinfo = pathinfo($image_uri);
 	$pathinfo['extension'] = strtolower($pathinfo['extension']);
 
+	$end_func = $end_header = '';
 	if ($pathinfo['extension'] == 'png') {
 		$image = imagecreatefrompng($image_uri);
 		$end_func = 'imagepng';
+		$end_header = 'image/png';
 	}
 	else if ($pathinfo['extension'] == 'gif') {
 		$image = imagecreatefromgif($image_uri);
 		$end_func = 'imagegif';
+		$end_header = 'image/gif';
 	}
 	else if (in_array($pathinfo['extension'], array('jpg', 'jpeg'))) {
 		$image = imagecreatefromjpeg($image_uri);
 		$end_func = 'imagejpeg';
+		$end_header = 'image/jpeg';
 	}
 
 	$white = imagecolorallocate($image, 255, 255, 255);
@@ -44,21 +48,26 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 	/**
 	 *	Upper text
 	 */
-	$break = wordwrap($upper_text, 35, '\n', true);
+
+	$break = wordwrap($upper_text, $break_limit, '\n', true);
 	$a = explode('\n', $break);
-	$height = 6;
-	foreach ($a AS $l) {
-		$box = imagettfbbox(20, 0, $font, $l);
-		// Height = greater Y (lower left) - lesser Y (upper left)
-		$height += ($box[0] - $box[7]) + 6; 
-	}
+	$default_height = 6;
+
+	// In theory all lines should be the same height, because they're all
+	// uppercase and all the same font face.  Let's just get the first line's
+	// bounding box and use that to define the line height
+	$box = imagettfbbox($font_size, 0, $font, $a[0]);
+	// Height = greater Y (lower left) - lesser Y (upper left)
+	$line_height = ($box[0] - $box[7]) + $default_height;
+
+	$height = count($a) * $line_height + $default_height;
 
 	$top = imagecreate($image_width, $height);
 	imagecopymerge($image, $top, 0, 0, 0, 0, $image_width, $height, 25);
 
 	$i = 1;
 	foreach ($a AS $line) {
-		$bbox = imagettfbbox(20, 0, $font, $line);
+		$bbox = imagettfbbox($font_size, 0, $font, $line);
 
 		// 6 = top left
 		// 4 = top right
@@ -67,29 +76,33 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 		$centered = $width / 2;
 		$c = $size / 2;
 
-		imagettfstroketext($image, 20, 0, ($c - $centered), ($i * 25), $white, $black, $font, $line, 1);
+		imagettfstroketext($image, $font_size, 0, ($c - $centered), ($i * $line_height), $white, $black, $font, $line, 1);
 		$i++;
 	}
 
 	/**
 	 *	Lower text
 	 */
-	$break = wordwrap($lower_text, 35, '\n', true);
+
+	$l = 0;
+	for ($i = 0; $i < strlen($lower_text); $i++) {
+		$b = imagettfbbox($font_size, 0, $font, $lower_text{$i});
+		$a = (($b[4] - $b[6]) + 2);
+		$l += $a;
+		echo $lower_text{$i} . " = $a<br />";
+	}
+
+	$break = wordwrap($lower_text, $break_limit, '\n', true);
 	$a = explode('\n', $break);
 
-	$height = 6;
-	foreach ($a AS $l) {
-		$box = imagettfbbox(20, 0, $font, $l);
-		// Height = greater Y (lower left) - lesser Y (upper left)
-		$height += ($box[0] - $box[7]) + 6; 
-	}
+	$height = count($a) * $line_height + $default_height;
 	$bottom = imagecreate($image_width, $height);
 	imagecopymerge($image, $bottom, 0, (imagesy($image) - $height), 0, 0, $image_width, $height, 25);
 
 
 	$i = 1;
 	foreach ($a AS $line) {
-		$bbox = imagettfbbox(20, 0, $font, $line);
+		$bbox = imagettfbbox($font_size, 0, $font, $line);
 
 		// 6 = top left
 		// 4 = top right
@@ -98,14 +111,26 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 		$centered = $width / 2;
 		$c = $size / 2;
 
-		imagettfstroketext($image, 20, 0, ($c - $centered), (imagesy($image) - $height) + ($i * 25), $white, $black, $font, $line, 1);
+		imagettfstroketext($image, $font_size, 0, ($c - $centered), (imagesy($image) - $height) + ($i * $line_height), $white, $black, $font, $line, 1);
 		$i++;
 	}
 
-	ob_start();
-	$end_func($image);
-	$c = ob_get_contents();
-	ob_end_clean();
+	if (!$debug) {
+		ob_start();
+		$end_func($image);
+		$c = ob_get_contents();
+		ob_end_clean();
+	}
+	else {
+		// Set the header to view
+		header('Content-Type: ' . $end_header);
+
+		// Show the image.
+		$end_func($image);
+
+		// We actually want to exit.  No need for Drupal finishing touches because we're debugging.
+		exit;
+	}
 
 	$i = 'public://styles/crazy_image_dimensions/public/crazyshit/' . basename($image_uri);
 	#file_unmanaged_delete($i);
