@@ -196,6 +196,14 @@
         msg = '&message=' + encodeURIComponent(things.alert_msg);
       }
 
+      var position;
+      if (things.follow_position) {
+        position = { my: 'center', at: 'center', of: window };
+      }
+      else {
+        position = { my: 'top', at: 'top', of: 'body', offset: '0 180' };
+      }
+
       FB.api('/me/picture', function(response) {
         pic = response.data.url;
         og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
@@ -203,7 +211,7 @@
           $(this).dialog({
             dialogClass: 'og-post-dialog',
             width: (page == 'custom-selector' ? 800 : 650),
-            position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
+            position: position,
             resizable: false,
             modal: (things.modal ? true : false),
             open: function() {
@@ -999,6 +1007,7 @@
       }
 
       Drupal.behaviors.fb.auth_handler('run_image', things, callback);
+      return false;
     },
 
     /**
@@ -1009,6 +1018,7 @@
     run_image: function(things, callback) {
       if (things.message) {
           things.picture = things.img_url;
+          things.follow_position = true;
           Drupal.behaviors.fb.fb_dialog('image-post', things, function(response) {
             var fbpost = {
                 'image[0][url]': things.img_url,
@@ -1022,16 +1032,35 @@
 
             fbpost[things.object] = things.link;
 
-            FB.api(
-             '/me/' + things.namespace + ':' + things.action,
-              'post',
-              fbpost,
-              function(response) {
-                Drupal.behaviors.fb.callback_handler(callback, response);
-              }
-            );
+            Drupal.behaviors.fb.process_image(things, fbpost, callback);
           });
       }
+      else {
+        var fbpost = {
+          'image[0][url]': things.img_url,
+          'image[0][user_generated]': true,
+        };
+
+        fbpost[things.object] = things.link;
+
+        Drupal.behaviors.fb.process_image(things, fbpost, callback);
+      }
+    },
+
+    /** 
+     *  Processes image FB API request.
+     */
+    process_image: function(things, fbpost, callback) {
+      FB.api(
+       '/me/' + things.namespace + ':' + things.action,
+        'post',
+        fbpost,
+        function(response) {
+          Drupal.behaviors.fb.callback_handler(callback, response);
+        }
+      );
+
+      return false;
     },
 
     /**

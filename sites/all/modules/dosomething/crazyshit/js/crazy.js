@@ -116,7 +116,8 @@
 	      return false;
 	    });
 
-	    $('.fb-share a').click(function() {
+	    $('.fb-share a').click(function(e) {
+	    	e.preventDefault();
 	    	var img = $(this).parent().parent().find('.simg img').attr('data-original');
 	    	var sid = $(this).attr('rel');
 	    	Drupal.behaviors.fb.image({
