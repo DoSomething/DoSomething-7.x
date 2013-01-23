@@ -61,6 +61,62 @@
 .vouch-button {
   margin: 0 25px 25px 50px; }
 
+/* line 50, ../sass/_buttons.sass */
+.small_button {
+  background: #4b84e6;
+  color: white !important;
+  padding: 5px 5px 3px 5px;
+  text-transform: uppercase;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 56, ../sass/_buttons.sass */
+.small_button:hover {
+  text-decoration: none;
+  background-color: #6193e9; }
+/* line 59, ../sass/_buttons.sass */
+.small_button .clicked {
+  background: #f1f1f1;
+  color: #c1c1c1;
+  cursor: default;
+  text-decoration: none; }
+/* line 64, ../sass/_buttons.sass */
+.small_button span {
+  background-color: #dddddd;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0 5px;
+  padding: 3px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 71, ../sass/_buttons.sass */
+.small_button span:after, .small_button span:before {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none; }
+/* line 79, ../sass/_buttons.sass */
+.small_button span:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: #dddddd;
+  border-width: 5px;
+  top: 50%;
+  margin-top: -5px; }
+/* line 85, ../sass/_buttons.sass */
+.small_button span:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: 6px;
+  top: 50%;
+  margin-top: -6px; }
+
 /* line 4, ../sass/_drupal.sass */
 #page, body.one-sidebar.sidebar-first [role="main"] {
   width: 100%;

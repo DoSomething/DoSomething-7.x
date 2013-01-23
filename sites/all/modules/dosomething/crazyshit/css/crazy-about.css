@@ -61,6 +61,62 @@
 .vouch-button {
   margin: 0 25px 25px 50px; }
 
+/* line 50, ../sass/_buttons.sass */
+.small_button {
+  background: #4b84e6;
+  color: white !important;
+  padding: 5px 5px 3px 5px;
+  text-transform: uppercase;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 56, ../sass/_buttons.sass */
+.small_button:hover {
+  text-decoration: none;
+  background-color: #6193e9; }
+/* line 59, ../sass/_buttons.sass */
+.small_button .clicked {
+  background: #f1f1f1;
+  color: #c1c1c1;
+  cursor: default;
+  text-decoration: none; }
+/* line 64, ../sass/_buttons.sass */
+.small_button span {
+  background-color: #dddddd;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0 5px;
+  padding: 3px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 71, ../sass/_buttons.sass */
+.small_button span:after, .small_button span:before {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none; }
+/* line 79, ../sass/_buttons.sass */
+.small_button span:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: #dddddd;
+  border-width: 5px;
+  top: 50%;
+  margin-top: -5px; }
+/* line 85, ../sass/_buttons.sass */
+.small_button span:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: 6px;
+  top: 50%;
+  margin-top: -6px; }
+
 /* line 8, ../sass/crazy-about.sass */
 .subject_wrapper, .tip_wrapper {
   width: 150px;
@@ -84,7 +140,7 @@
   font-size: 30px;
   line-height: 45px;
   padding: 5px 0 0 0;
-  margin: 20px 0 0 0; }
+  margin: 5% 0; }
 
 /* line 26, ../sass/crazy-about.sass */
 .tip_subject {
@@ -105,25 +161,54 @@
   border-radius: 2px; }
 /* line 38, ../sass/crazy-about.sass */
 .tip_subject:hover {
+  text-decoration: none;
   background-color: #312b2c; }
 
-/* line 41, ../sass/crazy-about.sass */
+/* line 42, ../sass/crazy-about.sass */
 .active_subject {
   background-color: #4b84e6; }
-/* line 43, ../sass/crazy-about.sass */
+/* line 44, ../sass/crazy-about.sass */
 .active_subject:hover {
   background-color: #6193e9; }
 
-/* line 46, ../sass/crazy-about.sass */
+/* line 47, ../sass/crazy-about.sass */
 .tip_col {
   float: left;
   width: 15%; }
 
-/* line 50, ../sass/crazy-about.sass */
+/* line 51, ../sass/crazy-about.sass */
 .tip_center {
-  width: 50%; }
+  width: 70%; }
+/* line 53, ../sass/crazy-about.sass */
+.tip_center p {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 25px;
+  line-height: 35px; }
 
-/* line 56, ../sass/crazy-about.sass */
+/* line 59, ../sass/crazy-about.sass */
+.tip_left, .tip_right {
+  padding: 20% 2% 2% 2%;
+  background-image: url(//files.dosomething.org/files/campaigns/crazy13/tip_quotes.png);
+  background-repeat: no-repeat; }
+
+/* line 64, ../sass/crazy-about.sass */
+.tip_left {
+  background-position-x: 15px; }
+/* line 66, ../sass/crazy-about.sass */
+.tip_left b {
+  float: left;
+  margin: 15% 0 0 0;
+  text-transform: uppercase; }
+
+/* line 71, ../sass/crazy-about.sass */
+.tip_right {
+  background-position-x: -105px; }
+/* line 73, ../sass/crazy-about.sass */
+.tip_right .small_button {
+  float: right; }
+
+/* line 80, ../sass/crazy-about.sass */
 .section {
   width: 800px;
   margin: 0 auto; }
