@@ -55,4 +55,5 @@ features[variable][] = menu_parent_crazy_shit
 features[variable][] = node_options_crazy_shit
 features[variable][] = node_preview_crazy_shit
 features[variable][] = node_submitted_crazy_shit
+features[views_view][] = crazy_shit_landing
 features[webform_submission_entity_type][] = crazy_shit

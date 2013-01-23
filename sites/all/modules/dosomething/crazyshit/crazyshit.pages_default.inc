@@ -376,7 +376,10 @@ function crazyshit_default_page_manager_pages() {
     );
     $pane->cache = array();
     $pane->style = array();
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'submit-start',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
