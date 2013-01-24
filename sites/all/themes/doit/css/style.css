@@ -1215,12 +1215,6 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
   height: 30px;
   padding: 1px 13px 0;
   background-color: #fed100;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fed100));
-  background-image: -webkit-linear-gradient(top, #ffffff, #fed100);
-  background-image: -moz-linear-gradient(top, #ffffff, #fed100);
-  background-image: -o-linear-gradient(top, #ffffff, #fed100);
-  background-image: -ms-linear-gradient(top, #ffffff, #fed100);
-  background-image: linear-gradient(top, #ffffff, #fed100);
   font-size: 18px;
   text-transform: uppercase;
 }
