@@ -809,34 +809,7 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, #og-ui-confirm-subscribe #edit-actions #edit-submit,
-#og-ui-confirm-subscribe #edit-actions #edit-submit--2, .go-button:hover, #dosomething-blocks-make-an-impact-form input[type="submit"]:hover,
-#dosomething-blocks-make-an-impact-form-front input[type="submit"]:hover, form.webform-client-form #edit-next:hover,
-form.webform-client-form #edit-previous:hover,
-form.webform-client-form #edit-submit:hover,
-form.webform-client-form #edit-submit--2:hover,
-form.webform-client-form #edit-draft:hover, .ds-login-popup-footer #edit-final-submit:hover, .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .views-submit-button a:hover, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:hover,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:hover,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:hover,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:hover, .node-poll input[type="submit"]:hover, #search-api-page-search-form #edit-submit-1:hover, #og-ui-confirm-subscribe #edit-actions #edit-submit:hover,
-#og-ui-confirm-subscribe #edit-actions #edit-submit--2:hover, .go-button:active, #dosomething-blocks-make-an-impact-form input[type="submit"]:active,
-#dosomething-blocks-make-an-impact-form-front input[type="submit"]:active, form.webform-client-form #edit-next:active,
-form.webform-client-form #edit-previous:active,
-form.webform-client-form #edit-submit:active,
-form.webform-client-form #edit-submit--2:active,
-form.webform-client-form #edit-draft:active, .ds-login-popup-footer #edit-final-submit:active, .not-logged-in #dosomething-login-register-block #edit-first-submit:active, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:active, .views-submit-button a:active, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:active,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:active,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:active,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:active, .node-poll input[type="submit"]:active, #search-api-page-search-form #edit-submit-1:active, #og-ui-confirm-subscribe #edit-actions #edit-submit:active,
-#og-ui-confirm-subscribe #edit-actions #edit-submit--2:active, .go-button:visited, #dosomething-blocks-make-an-impact-form input[type="submit"]:visited,
-#dosomething-blocks-make-an-impact-form-front input[type="submit"]:visited, form.webform-client-form #edit-next:visited,
-form.webform-client-form #edit-previous:visited,
-form.webform-client-form #edit-submit:visited,
-form.webform-client-form #edit-submit--2:visited,
-form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final-submit:visited, .not-logged-in #dosomething-login-register-block #edit-first-submit:visited, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:visited, .views-submit-button a:visited, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:visited,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:visited,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:visited,
-.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:visited, .node-poll input[type="submit"]:visited, #search-api-page-search-form #edit-submit-1:visited, #og-ui-confirm-subscribe #edit-actions #edit-submit:visited,
-#og-ui-confirm-subscribe #edit-actions #edit-submit--2:visited, .go-button-logo, .apps-grid .apps-box .apps-link a, .start-a-project a:visited, .suggest-a-cause a:visited {
+#og-ui-confirm-subscribe #edit-actions #edit-submit--2, .go-button-logo, .apps-grid .apps-box .apps-link a, .start-a-project a:visited, .suggest-a-cause a:visited {
   color: #333131;
 }
 
@@ -1205,12 +1178,12 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2, .node-poll input[type="submit"], #search-api-page-search-form #edit-submit-1, #og-ui-confirm-subscribe #edit-actions #edit-submit,
 #og-ui-confirm-subscribe #edit-actions #edit-submit--2 {
   font-weight: bold;
-  -moz-border-radius: 14px;
-  -webkit-border-radius: 14px;
-  -o-border-radius: 14px;
-  -ms-border-radius: 14px;
-  -khtml-border-radius: 14px;
-  border-radius: 14px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
   border: none;
   height: 30px;
   padding: 1px 13px 0;
@@ -1246,6 +1219,7 @@ form.webform-client-form #edit-draft:visited, .ds-login-popup-footer #edit-final
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:visited,
 .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:visited, .node-poll input[type="submit"]:visited, #search-api-page-search-form #edit-submit-1:visited, #og-ui-confirm-subscribe #edit-actions #edit-submit:visited,
 #og-ui-confirm-subscribe #edit-actions #edit-submit--2:visited {
+  color: black;
   text-decoration: none;
 }
 
