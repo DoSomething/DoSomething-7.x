@@ -299,25 +299,14 @@ function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array(
  *   [endpoint] => [conductor workflow]
  */
 function sms_flow_conductor_sms_keywords() {
-  return array(
-    'alcoa-report-back' => 'sms_flow_alcoa_report_back',
-    'beta-campaign-report-back' => 'sms_flow_beta_campaign_report_back',
-    'drives-create' => 'sms_flow_drives_create',
-    'tfjcreate' => 'sms_flow_drives_create',
-    'jeans' => 'sms_flow_drives_create',
-    'drives-invite' => 'sms_flow_drives_invite',
-    'ftaf' => 'sms_flow_ftaf',
-    'clubs' => 'sms_flow_clubs_invite',
-    'clubs-ftaf' => 'sms_flow_clubs_ftaf',
-    'clubs-survey' => 'sms_flow_clubs_survey',
-    'clubs-followup' => 'sms_flow_clubs_followup_survey',
-    'mlk-invite-end-game' => 'sms_flow_mlk_invite_end_game',
-    'mlk-invite-path-1' => 'sms_flow_mlk_invite_path_1',
-    'mlk-invite-path-2' => 'sms_flow_mlk_invite_path_2',
-    'mlk-invite-path-3' => 'sms_flow_mlk_invite_path_3',
-    'mlk-invite-path-4' => 'sms_flow_mlk_invite_path_4',
-    'mlk-process-beta' => 'sms_flow_mlk_process_beta',
-  );
+  $keywords = array();
+
+  include 'plugins/activity/clubs/clubs.keywords.inc';
+  include 'plugins/activity/drives/drives.keywords.inc';
+  include 'plugins/activity/mlk_game/mlk_game.keywords.inc';
+  include 'plugins/activity/report_backs/report_backs.keywords.inc';
+
+  return $keywords;
 }
 
 /**
