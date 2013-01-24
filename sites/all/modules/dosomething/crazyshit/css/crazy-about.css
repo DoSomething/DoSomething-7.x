@@ -133,13 +133,14 @@
 /* line 18, ../sass/crazy-about.sass */
 .tip_wrapper {
   width: 600px;
+  height: 460px;
   background-color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px; }
-/* line 22, ../sass/crazy-about.sass */
+/* line 23, ../sass/crazy-about.sass */
 .tip_wrapper h1 {
   background-color: #231f20;
   text-transform: uppercase;
@@ -150,7 +151,7 @@
   padding: 5px 0 0 0;
   margin: 5% 0; }
 
-/* line 32, ../sass/crazy-about.sass */
+/* line 33, ../sass/crazy-about.sass */
 .tip_subject {
   width: 120px;
   height: 50px;
@@ -167,56 +168,57 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px; }
-/* line 44, ../sass/crazy-about.sass */
+/* line 45, ../sass/crazy-about.sass */
 .tip_subject:hover {
   text-decoration: none;
   background-color: #312b2c; }
 
-/* line 48, ../sass/crazy-about.sass */
+/* line 49, ../sass/crazy-about.sass */
 .active_subject {
   background-color: #4b84e6; }
-/* line 50, ../sass/crazy-about.sass */
+/* line 51, ../sass/crazy-about.sass */
 .active_subject:hover {
   background-color: #6193e9; }
 
-/* line 53, ../sass/crazy-about.sass */
+/* line 54, ../sass/crazy-about.sass */
 .tip_center {
   background-image: url(//files.dosomething.org/files/campaigns/crazy13/tip_bg.png);
   background-repeat: no-repeat;
   background-size: 630px;
   background-position-x: -15px;
   margin: 0 0 2% 0; }
-/* line 59, ../sass/crazy-about.sass */
+/* line 60, ../sass/crazy-about.sass */
 .tip_center p {
-  width: 55%;
+  width: 330px;
+  height: 270px;
   margin: 0 auto;
   font-size: 20px;
   line-height: 30px; }
 
-/* line 65, ../sass/crazy-about.sass */
+/* line 67, ../sass/crazy-about.sass */
 .tip_left, .tip_right {
   float: left;
   width: 50%;
   padding: 0 3% 2%; }
 
-/* line 71, ../sass/crazy-about.sass */
+/* line 73, ../sass/crazy-about.sass */
 .tip_left b {
   float: left;
   clear: left;
   margin: 2% 0 0 0;
   text-transform: uppercase; }
 
-/* line 78, ../sass/crazy-about.sass */
+/* line 80, ../sass/crazy-about.sass */
 .tip_right .small_button {
   float: right; }
 
-/* line 84, ../sass/crazy-about.sass */
+/* line 86, ../sass/crazy-about.sass */
 #scholarship {
   background-color: white; }
-/* line 86, ../sass/crazy-about.sass */
+/* line 88, ../sass/crazy-about.sass */
 #scholarship .section {
   width: 35%; }
-/* line 88, ../sass/crazy-about.sass */
+/* line 90, ../sass/crazy-about.sass */
 #scholarship h1 {
   font-size: 24px;
   font-weight: 500;
@@ -224,28 +226,28 @@
   line-height: 40px;
   text-transform: uppercase;
   margin: 0; }
-/* line 95, ../sass/crazy-about.sass */
+/* line 97, ../sass/crazy-about.sass */
 #scholarship p {
   font-size: 16px;
   font-weight: 500;
   line-height: 24px; }
-/* line 99, ../sass/crazy-about.sass */
+/* line 101, ../sass/crazy-about.sass */
 #scholarship img {
   width: 210px;
   margin: 0 auto 3%;
   display: block; }
 
-/* line 108, ../sass/crazy-about.sass */
+/* line 110, ../sass/crazy-about.sass */
 #video .section {
   width: 600px; }
 
-/* line 111, ../sass/crazy-about.sass */
+/* line 113, ../sass/crazy-about.sass */
 .video_wrapper {
   position: relative;
   padding-bottom: 55%;
   padding-top: 5%;
   height: 0; }
-/* line 116, ../sass/crazy-about.sass */
+/* line 118, ../sass/crazy-about.sass */
 .video_wrapper iframe {
   position: absolute;
   top: 0;
@@ -253,11 +255,11 @@
   width: 79.8;
   height: 91%; }
 
-/* line 127, ../sass/crazy-about.sass */
+/* line 129, ../sass/crazy-about.sass */
 #tips, #scholarship, #video {
   padding: 2% 0; }
 
-/* line 130, ../sass/crazy-about.sass */
+/* line 132, ../sass/crazy-about.sass */
 .section {
   margin: 0 auto;
   overflow: hidden; }
