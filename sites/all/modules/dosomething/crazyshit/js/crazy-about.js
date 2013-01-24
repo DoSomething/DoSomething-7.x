@@ -33,46 +33,46 @@
         "Kiwi."
       ];
 
-      // create counter array & variable
-      var counter = [];
-      for(i=1;i<26;i++){
-        counter.push(i);
-      }
-      var n = 1;
-
       // create containing array
       var all_subjects = [savings, credit_debit, school_loans];
       var current_array = [];
       var current_array = all_subjects[0];
 
-      // select tip subject
-      $('.tip_subject').click(function(){
-        var tip_no = $(this).attr('id').substring(3);
-        current_array = all_subjects[tip_no];
-        $('#tip_wrapper h1').text(current_array[0]);
-        $('#tip_wrapper p').text(current_array[1]);
-        $('#tip_no').text(1);
-        n = 1;
-      });
-
-      // see next or prev tip
-      $('#tip_next').click(function() {
-        $('#tip_wrapper p').text(current_array[counter[n]]);
-        $('#tip_no').text(counter[n]);
-        if(n < 25) {
-          n = n + 1;
-        }
-        console.log(n);
-      }); 
-
-      $('#tip_prev').click(function() {
-        $('#tip_wrapper p').text(current_array[counter[n]]);
-        $('#tip_no').text(counter[n]);
-        if(n >= 1) {
-          n = n - 1;
-        }
-        console.log(n);
-      }); 
+      // create counter array & variable
+//      var counter = [];
+//      for(i=1;i<26;i++){
+//        counter.push(i);
+//      }
+//      var n = 1;
+//
+//      // select tip subject
+//      $('.tip_subject').click(function(){
+//        var tip_no = $(this).attr('id').substring(3);
+//        current_array = all_subjects[tip_no];
+//        $('.tip_wrapper h1').text(current_array[0]);
+//        $('.tip_wrapper p').text(current_array[1]);
+//        $('#tip_no').text(1);
+//        n = 1;
+//      });
+//
+//      // see next or prev tip
+//      $('#tip_next').click(function() {
+//        $('.tip_wrapper p').text(current_array[counter[n]]);
+//        $('#tip_no').text(counter[n]);
+//        if(n < 25) {
+//          n = n + 1;
+//        }
+//        console.log(n);
+//      }); 
+//  
+//      $('#tip_prev').click(function() {
+//        $('.tip_wrapper p').text(current_array[counter[n]]);
+//        $('#tip_no').text(counter[n]);
+//        if(n >= 1) {
+//          n = n - 1;
+//        }
+//        console.log(n);
+//      }); 
 
 		},
 	};
