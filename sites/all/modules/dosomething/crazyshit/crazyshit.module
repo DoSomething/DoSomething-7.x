@@ -147,7 +147,9 @@ function crazyshit_page_templates_alter(&$variables) {
 	    );
 	  }
 
-	  $v = '<div class="crazy-menu-wrapper">' . drupal_render($crazy_menu) . '</div><div class="crazy-sub-menu-wrapper">' . drupal_render($crazy_sub_menu) . '</div>' . $v;
+	  $h = file_get_contents(DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/html/header.html');
+
+	  $v = $h . '<div class="crazy-menu-wrapper">' . drupal_render($crazy_menu) . '</div><div class="crazy-sub-menu-wrapper">' . drupal_render($crazy_sub_menu) . '</div>' . $v;
    }
 }
 
