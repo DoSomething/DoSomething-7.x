@@ -88,14 +88,21 @@
   };
 
   function populateSelects(country) {
-    var $wrapper = $('.field-name-field-webform-school-reference')
-      , $state = $wrapper.find('select.ds-school-state')
-      , $type = $wrapper.find('select.ds-school-type')
-      , url = '/ds_school/data_by_country/' + country;
+    var $wrapper;
+    if ($('.field-name-field-webform-school-reference').length > 0) {
+      $wrapper = $('.field-name-field-webform-school-reference');
+    }
+    else if ($('#edit-field-school-reference').length > 0) {
+      $wrapper = $('#edit-field-school-reference');
+    }
+
+    var $state = $wrapper.find('select.ds-school-state'),
+      $type = $wrapper.find('select.ds-school-type'),
+      url = '/ds_school/data_by_country/' + country;
 
     $.getJSON(url, function(data) {
-      $state.empty();
-      $type.empty();
+      $state.find('option').remove();
+      $type.find('option').remove();
       $('<option/>').val('').html('School State').appendTo($state);
       $('<option/>').val('').html('School Type').appendTo($type);
 
