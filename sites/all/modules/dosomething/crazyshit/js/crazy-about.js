@@ -39,40 +39,60 @@
       var current_array = all_subjects[0];
 
       // create counter array & variable
-//      var counter = [];
-//      for(i=1;i<26;i++){
-//        counter.push(i);
-//      }
-//      var n = 1;
-//
-//      // select tip subject
-//      $('.tip_subject').click(function(){
-//        var tip_no = $(this).attr('id').substring(3);
-//        current_array = all_subjects[tip_no];
-//        $('.tip_wrapper h1').text(current_array[0]);
-//        $('.tip_wrapper p').text(current_array[1]);
-//        $('#tip_no').text(1);
-//        n = 1;
-//      });
-//
-//      // see next or prev tip
-//      $('#tip_next').click(function() {
-//        $('.tip_wrapper p').text(current_array[counter[n]]);
-//        $('#tip_no').text(counter[n]);
-//        if(n < 25) {
-//          n = n + 1;
-//        }
-//        console.log(n);
-//      }); 
-//  
-//      $('#tip_prev').click(function() {
-//        $('.tip_wrapper p').text(current_array[counter[n]]);
-//        $('#tip_no').text(counter[n]);
-//        if(n >= 1) {
-//          n = n - 1;
-//        }
-//        console.log(n);
-//      }); 
+      var counter = [];
+      for(i=1;i<26;i++){
+        counter.push(i);
+      }
+
+      // select tip subject
+      $('.tip_subject').click(function(e){
+        var tip_no = $(this).attr('id').substring(3);
+        current_array = all_subjects[tip_no];
+        $('.tip_wrapper h1').text(current_array[0]);
+        $('.tip_wrapper p').text(current_array[1]);
+        $('#tip_no').text(1);
+        e.preventDefault();
+      });
+
+      // increment or decrement tip num.
+      $('.small_button').click(function(e){
+        var $small_button = $(this);
+        var $tip_num = $('#tip_no');
+        var old_num = $tip_num.text();
+
+        if ($small_button.attr('id') == 'tip_next') {
+          if (old_num < 25) {
+            var new_num = parseFloat(old_num) + 1;
+          }
+        }
+        else {
+          if (old_num > 1) {
+            var new_num = parseFloat(old_num) - 1;
+          }
+        }
+
+        $('.tip_wrapper p').text(current_array[counter[new_num - 1]]);
+        $('#tip_no').text(new_num);
+
+        e.preventDefault();
+      });
+
+      // active class hack on submenu
+      $('.crazy-sub-menu .0 a, .crazy-sub-menu .2 a').removeClass('active');
+      $('.crazy-sub-menu li a').click(function() {
+        var $this = $(this);
+        if ($this.hasClass('active')) {
+          $this.removeClass();
+        }
+        else {
+          $this
+            .addClass('active')
+            .parent()
+            .siblings('li')
+            .children()
+            .removeClass('active');
+        }
+      });
 
 		},
 	};
