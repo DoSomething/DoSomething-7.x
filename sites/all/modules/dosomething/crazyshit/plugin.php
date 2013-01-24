@@ -85,7 +85,7 @@ $sub_menus = array(
 		),
 		'introduction' => array(
 			'title' => 'Introduction',
-			'href' => CRAZY_ROOT . '/about'
+			'href' => CRAZY_ROOT . '/about#video'
 		),
 	),
 );
