@@ -684,6 +684,8 @@ function crazyshit_form_alter(&$form, &$form_state, $form_id) {
 		$u = &$form['submitted'];
 		$page = $form_state['input']['details']['page_num'];
 
+#		echo '<pre>', print_r($u), '</pre>'; exit;
+
 		include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 		if ($page == 0 || !isset($form_state['input']['submitted']['field_crazy_crazy_picture'][LANGUAGE_NONE][0]['fid'])) {
 			$u['s'] = array(

@@ -422,9 +422,10 @@ img.header_background {
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 1; }
+  z-index: 1;
+  width: 146px; }
 
-/* line 220, ../sass/crazy.sass */
+/* line 221, ../sass/crazy.sass */
 #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   margin: -10px auto 25px;
   padding: 2px 0 0 0;
@@ -432,7 +433,7 @@ img.header_background {
   border: none;
   display: block; }
 
-/* line 227, ../sass/crazy.sass */
+/* line 228, ../sass/crazy.sass */
 .form-file.new {
   position: relative;
   text-align: right;
@@ -443,7 +444,7 @@ img.header_background {
   height: 35px;
   cursor: pointer; }
 
-/* line 237, ../sass/crazy.sass */
+/* line 238, ../sass/crazy.sass */
 .submit-start button, .node-crazy-shit #edit-actions .form-submit {
   margin: 0;
   padding: 0;
@@ -462,21 +463,21 @@ img.header_background {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 252, ../sass/crazy.sass */
+/* line 253, ../sass/crazy.sass */
 .submit-start button:hover, .node-crazy-shit #edit-actions .form-submit:hover {
   color: white;
   background-color: #6193e9; }
 
-/* line 256, ../sass/crazy.sass */
+/* line 257, ../sass/crazy.sass */
 .submit-start button, #edit-next {
   width: 60px !important; }
 
-/* line 260, ../sass/crazy.sass */
+/* line 261, ../sass/crazy.sass */
 #edit-previous {
   width: 60px !important;
   float: left !important; }
 
-/* line 264, ../sass/crazy.sass */
+/* line 265, ../sass/crazy.sass */
 #edit-submit {
   width: 80px;
   float: right !important; }

@@ -9,6 +9,14 @@
 			$('#' + field).keyup(function() { // works immediately when user press button inside of the input
 			  if( $('#' + field).val() != $('#' + field).data('val') ){ // check if value changed
 			      $('#' + field).data('val',  $('#' + field).val() ); // save new value
+				  if ($('#' + field).val() != "") {
+				  	if ($('#' + elm).css('visibility') != "visible") {
+						$('#' + elm).css('visibility', 'visible');
+					}
+				  }
+				  else {
+					$('#' + elm).css('visibility', 'hidden');
+				  }
 			      $(this).change(); // simulate "change" event
 			  }
 			});
@@ -25,6 +33,15 @@
 			    'box-shadow': 'none',
 			    'border': '0'
 			  });
+		   }
+		   else if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').length) {
+		   	$('<div></div>').attr('class', 'upload-placeholder').text('Upload a picture and it will appear here').css({
+		   		'text-align': 'center',
+		   		'font-size': '30pt',
+		   		'line-height': '1.2',
+		   		'margin-top': '43%',
+		   	}).appendTo('.image-widget-data');
+		   	$('#edit-actions').remove();
 		   }
 
 		   if ($('.image-widget-data').length > 0) {
@@ -43,6 +60,8 @@
 	      		if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').val() != '') {
 	      			window.clearInterval(img);
 	      			// Crazy shit
+	      			$('.upload-placeholder').remove();
+	      			$('.image-widget-data').css('background', 'url(/sites/all/modules/dosomething/crazyshit/images/loading-img.gif) center center no-repeat');
 	      			$('[id^="webform-client-form-"]').submit();
 	      		}
 	      	  });
@@ -68,7 +87,7 @@
 		  var f = jQuery('.form-file');
 		  jQuery('<div>').attr('id', 'upload-cover').insertBefore('.form-file');
 		  f.appendTo('#upload-cover').addClass('new');
-		  var n = jQuery('<div>').addClass('fakefile').text('Upload a file').appendTo('#upload-cover');
+		  var n = jQuery('<div>').addClass('fakefile').text('Upload Picture').appendTo('#upload-cover');
       
       // changes [back] behavior on form
       $('#edit-previous').click(function(a){
