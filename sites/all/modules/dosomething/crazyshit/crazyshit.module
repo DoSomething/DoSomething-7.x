@@ -561,7 +561,8 @@ function crazyshit_add_lazy_class($matches) {
   else {
 	// If we're within the threshhold of non-lazy images, don't add the "lazy" class to them.
 	// The lazy class causes issues when you first create a post.  So we can't lazy load it.
-	$r = 'src="' . $matches[1] . '?' . $unique_cache . '" data-original="' . $matches[1] . '" ';
+	$p = $matches[1] . '?' . $unique_cache;
+	$r = 'src="' . strval($p) . '?3oirj" data-original="' . $p . '" ';
   }
 
   $i++;

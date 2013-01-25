@@ -30,13 +30,15 @@
 				//	$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .crazy-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
 				//}
 				// Vouch
-				if (Drupal.settings.crazy.shares[i].type == 11) {
-					$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .vouch-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
-				}
-				// BS
-				else if (Drupal.settings.crazy.shares[i].type == 2) {
-					$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .bs-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
-				}
+			$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .vouch-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
+			$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .bs-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
+			//	if (Drupal.settings.crazy.shares[i].type == 11) {
+			//		$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .vouch-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
+			//	}
+			//	// BS
+			//	else if (Drupal.settings.crazy.shares[i].type == 2) {
+			//		$('.s-' + Drupal.settings.crazy.shares[i].sid + ' .bs-button a[rel="' + Drupal.settings.crazy.shares[i].sid + '"]').addClass('clicked');
+			//	}
 	    	}
 	    }
 	    //$('.crazy-button a.button-submit').click(function() {
@@ -55,9 +57,9 @@
 
 	    $('.bs-button a.button-submit').click(function() {
 	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) {
-				if (Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) {
-					$.fn.dsCrazyPopup('submit', 0, 0, document.location.href);
-				}
+			if (Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) {
+				$.fn.dsCrazyPopup('submit', 0, 0, document.location.href);
+			}
 
 		       	return false;
 	    	}
@@ -65,6 +67,7 @@
 	       var elm = $(this);
 	       var na = $(this).hasClass('no-alert');
 
+		$('.s-' + elm.attr('rel')).find('.vouch-button a').addClass('clicked');
 	       elm.addClass('clicked');
 	       var c = parseInt(elm.parent().find('span').text());
 		elm.parent().find('span').text(++c);
@@ -113,6 +116,7 @@
 	      var elm = $(this);
 
 	      elm.addClass('clicked');
+		$('.s-' + elm.attr('rel')).find('.bs-button a').addClass('clicked');
 		var c = parseInt(elm.parent().find('span').text());
 		elm.parent().find('span').text(++c);
 	      $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
@@ -187,6 +191,9 @@ Drupal.behaviors.fb.gate({
 	     jQuery('.s-' + sid + '-picture img').attr('src', jQuery('.s-' + sid + '-picture img').attr('src') + '?' + new Date().getTime());
 	  }
 
+	// Ignore if the popup is already open.
+	if ($('.' + name + '-crazy-popup').length > 0) return;
+
       $.post('/cstemplate/' + name + '/' + sid, { 'goto': goto }, function(response) {
       	  var t = $('<div></div>');
       	  t.html(response);
@@ -201,7 +208,10 @@ Drupal.behaviors.fb.gate({
 	        open: function() {
 	        	// Sets the minimum height for content in the dialog box
 	        	$('.ui-dialog-content').css('min-height', '325px');
-	        }
+	        },
+		close: function() {
+			$('.' + name + '-crazy-popup').remove();
+		}
 	      });
 	  });
 	return false;
