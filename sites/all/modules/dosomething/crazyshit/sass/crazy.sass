@@ -131,6 +131,7 @@ img.header_background
   background-color: #fff
   width: 500px
   margin: 2% auto
+  position: relative
 
 .fb-picture
   width: 50px
@@ -141,6 +142,14 @@ img.header_background
   padding: 50px 0 10px 0
   +border-radius(2px)
   +crazy_img
+
+.fb-share
+  position: relative
+  right: 50px
+  bottom: 25px
+  +img_replace(30px, 30px, '//files.dosomething.org/files/campaigns/crazy13/share_mini.png')
+  &:hover
+    background-position-y: -30px
 
 // what is the <p class="buttons"></p> tag doing there?
 

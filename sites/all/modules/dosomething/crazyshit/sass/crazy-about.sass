@@ -10,25 +10,16 @@
 
 #tips .section
   width: 900px
+  @media only screen and (max-width: 950px)
+    width: 600px
+  @media only screen and (max-width: 630px)
+    width: 96%
 
-.subject_wrapper, .tip_wrapper
+.subject_wrapper
   width: 150px
   float: left
-
-.tip_wrapper
-  width: 600px
-  height: 460px
-  background-color: #fff
-  +border-radius(4px)
-  h1
-    background-color: $off_black
-    text-transform: uppercase
-    text-align: center
-    color: #fff
-    font-size: 30px
-    line-height: 45px
-    padding: 5px 0 0 0
-    margin: 5% 0
+  @media only screen and (max-width: 950px)
+    width: 100%
 
 .tip_subject /* subject buttons */
   width: 120px
@@ -45,11 +36,32 @@
   &:hover
     text-decoration: none
     background-color: lighten($off_black, 5)
+  @media only screen and (max-width: 950px)
+    margin: 0 0 4% 6%
+    float: left
 
 .active_subject 
   background-color: $blue_button
   &:hover
     background-color: lighten($blue_button, 5)
+
+.tip_wrapper
+  width: 600px
+  height: 460px
+  float: left
+  background-color: #fff
+  +border-radius(4px)
+  @media only screen and (max-width: 630px)
+    width: 100%
+  h1
+    background-color: $off_black
+    text-transform: uppercase
+    text-align: center
+    color: #fff
+    font-size: 30px
+    line-height: 45px
+    padding: 5px 0 0 0
+    margin: 5% 0
 
 .tip_center
   background-image: url(//files.dosomething.org/files/campaigns/crazy13/tip_bg.png)

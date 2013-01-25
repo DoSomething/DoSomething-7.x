@@ -23,3 +23,11 @@ $yellow_button: #FFCB15
 @mixin blue_hover
   background-color: lighten($blue_button, 5) 
 
+@mixin img_replace($width, $height, $bg)
+  display: block
+  width: $width
+  height: $height
+  background-image: url($bg)
+  background-color: transparent
+  background-repeat: no-repeat
+  text-indent: -9999em
