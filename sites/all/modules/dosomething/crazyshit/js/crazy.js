@@ -65,7 +65,7 @@
 	    $('.bs-button a.button-submit').click(function() {
 	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) {
 			if (Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) {
-				$.fn.dsCrazyPopup('submit', 0, 0, document.location.href);
+				$.fn.dsCrazyPopup('login', 0, 0, document.location.href);
 			}
 
 		       	return false;
@@ -113,7 +113,7 @@
 	    $('.vouch-button a.button-submit').click(function() {
 	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) {
 				if (Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) {
-					$.fn.dsCrazyPopup('submit', 0, 0, document.location.href);
+					$.fn.dsCrazyPopup('login', 0, 0, document.location.href);
 				}
 
 		       	return false;

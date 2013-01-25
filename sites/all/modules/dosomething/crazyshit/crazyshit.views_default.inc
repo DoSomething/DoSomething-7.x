@@ -35,6 +35,14 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = '<p class="no-results">No posts yet -- <a href="/crazy/submit">submit yours!</a></p>';
+  $handler->display->display_options['empty']['area']['format'] = '3';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Webform submissions: User */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
@@ -727,6 +735,15 @@ function crazyshit_views_default_views() {
 
   /* Display: Friends View */
   $handler = $view->new_display('block', 'Friends View', 'friends_view');
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = '<p>None of your friends have told their story yet.  Click invite friends to get them to tell their tale.</p>';
+  $handler->display->display_options['empty']['area']['format'] = '1';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $export['crazy_shit_landing'] = $view;
 
   return $export;
