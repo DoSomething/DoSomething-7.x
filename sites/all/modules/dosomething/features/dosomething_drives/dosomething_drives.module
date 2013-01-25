@@ -10,6 +10,13 @@ include_once 'dosomething_drives.features.inc';
 
 /**
  * Implements hook_init().
+ *
+ * If the campaign is team-based and the Team Redirect checkbox on the campaign node is
+ * checked, then instead of showing the campaign home page, we want to redirect to the
+ * user's team page. We do this on hook_init to catch it early.
+ *
+ * Note that this behavior can be overridden by passing ?skip_redirect to the URL. This
+ * will prevent the redirect from occurring.
  */
 function dosomething_drives_init() {
   $node = menu_get_object();
@@ -27,7 +34,7 @@ function dosomething_drives_init() {
 }
 
 /**
-* Implementation of hook_ctools_plugin_directory().
+* Implements hook_ctools_plugin_directory().
 */
 function dosomething_drives_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {
@@ -35,7 +42,19 @@ function dosomething_drives_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+/**
+ * Implements hook_form_alter().
+ *
+ * We'll be executing this code on the drive_form content type webform. This content type
+ * is used for adding metadata to a team related to the time when a drive will be taking
+ * place. It contains fields like time, date, and location. It is filled out by drive
+ * admins and is linked to from the drive panels content type plugin.
+ *
+ * This hook_form_alter sets the group_audience of the form and prefills the drive goal
+ * if the user filled it out on the campaign_sign_up before filling out the drive_form.
+ */
 function dosomething_drives_form_alter(&$form, &$form_state, $form_id) {
+  // quick escape if we're on the wrong form.
   if (strpos($form_id, 'webform_client_form_') !== 0 || empty($form_state['webform_entity']) || $form_state['webform_entity']['bundle'] != 'drive_form') {
     return;
   }
@@ -57,6 +76,12 @@ function dosomething_drives_form_alter(&$form, &$form_state, $form_id) {
   $form['#submit'][] = 'dosomething_drives_drive_submit';
 }
 
+/**
+ * Submit handler for drive form submission.
+ *
+ * We want to update the parent submission (campaign_sign_up) team name and goal
+ * fields so they display properly on submission of a drive_form.
+ */
 function dosomething_drives_drive_submit(&$form, &$form_state) {
   $submitted = $form_state['webform_entity']['submission']->submitted;
   $gid = $submitted['group_audience'][LANGUAGE_NONE][0]['gid'];
@@ -87,6 +112,12 @@ function dosomething_drives_drive_submit(&$form, &$form_state) {
   }
 }
 
+/**
+ * We return the CID of a webform_component with the form key equal to
+ * DS_DRIVE_GOAL_FIELD. This way, we don't have to add drive_goal as an entity
+ * field on all campaign_sign_ups, and can add it instead via webform only
+ * on drive-type campaigns.
+ */
 function dosomething_drives_get_drive_cid($node) {
   static $cid;
 
@@ -102,8 +133,12 @@ function dosomething_drives_get_drive_cid($node) {
   return $cid;
 }
 
+/**
+ * Implements hook_module_implements_alter().
+ *
+ * Make sure we come after webform_entity.
+ */
 function dosomething_drives_module_implements_alter(&$implementations, $hook) {
-  // We can only disable our elements if we come after webform_entity, make sure we do.
   if ($hook == 'form_alter' && isset($implementations['dosomething_drives'])) {
     $group = $implementations['dosomething_drives'];
     unset($implementations['dosomething_drives']);
@@ -117,6 +152,7 @@ function dosomething_drives_module_implements_alter(&$implementations, $hook) {
 function dosomething_drives_menu() {
   $items = array();
 
+  // join a drive by URL instead of filling out a submission
   $items['drive/join/%'] = array(
     'page callback' => 'dosomething_drives_join',
     'page arguments' => array(2),
@@ -126,10 +162,17 @@ function dosomething_drives_menu() {
   return $items;
 }
 
+/**
+ * Menu callbck for joining a drive by URL.
+ */
 function dosomething_drives_join($gid, $uid = FALSE, $redirect = TRUE) {
   teams_join_with_webform_submission($gid, $uid, $redirect);
 }
 
+/**
+ * Get the nid of the drive_form for a campaign. The drive_form node should have group_audience
+ * set to the campaign node.
+ */
 function dosomething_drives_get_drive_nid($campaign_group) {
   $gid = $campaign_group->gid;
   // entity field query where we filter by group_group field
@@ -143,12 +186,20 @@ function dosomething_drives_get_drive_nid($campaign_group) {
   return reset($result)->nid;
 }
 
+/**
+ * Implements hook_teams_added_email_alter().
+ *
+ * Set the type of this email to drive.
+ */
 function dosomething_drives_teams_added_email_alter(&$params, $gid) {
   if (!dosomething_drives_is_drive($gid)) return;
 
   $params['type'] = 'drive';
 }
 
+/**
+ * Implements hook_teams_invite_email_alter().
+ */
 function dosomething_drives_teams_invite_email_alter(&$params, $gid) {
   if (!dosomething_drives_is_drive($gid)) return;
 
@@ -156,6 +207,9 @@ function dosomething_drives_teams_invite_email_alter(&$params, $gid) {
   $params['link'] = url("drive/join/$gid", array('absolute' => true));
 }
 
+/**
+ * Check if a group is a drive or just a team.
+ */
 function dosomething_drives_is_drive($gid) {
   $submission = og_load_entity_from_group($gid);
   $node = node_load($submission->nid);
