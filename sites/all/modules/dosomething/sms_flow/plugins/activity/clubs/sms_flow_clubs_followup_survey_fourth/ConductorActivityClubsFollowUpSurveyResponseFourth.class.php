@@ -8,19 +8,6 @@
  */
 class ConductorActivityClubsFollowUpSurveyResponseFourth extends ConductorActivity {
 
-  // Array of responses indicating an acceptance of the invite
-  public $accept_responses = array();
-
-  // Message returned to the user if they reject the invite
-  public $invite_rejected_message = '';
-
-  public function option_definition() {
-    $options = parent::option_definition();
-    $options['accept_responses'] = array('default' => array());
-    $options['invite_rejected_message'] = array('default' => '');
-    return $options;
-  }
-
   public function run($workflow) {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
@@ -38,16 +25,6 @@ class ConductorActivityClubsFollowUpSurveyResponseFourth extends ConductorActivi
     else {
     	$state->markCompleted();
     }
-  }
-
-  private function hasAcceptResponse($response) {
-    $response = strtolower($response);
-    $response = trim($response);
-
-    if (in_array($response, $this->accept_responses)) {
-      return TRUE;
-    }
-    return FALSE;
   }
 
   /**
