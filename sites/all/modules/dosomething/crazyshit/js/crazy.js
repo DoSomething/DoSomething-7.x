@@ -2,6 +2,7 @@
    Drupal.behaviors.dsCrazyScripts = {
 	 authed: false,
 	 probably_unauthed: false,
+	 notify_yourself: false,
 
    	 attach: function(context, settings) { 
 	    var o = this;
@@ -200,7 +201,7 @@ Drupal.behaviors.fb.gate({
 	// Ignore if the popup is already open.
 	if ($('.' + name + '-crazy-popup').length > 0) return;
 
-      $.post('/cstemplate/' + name + '/' + sid, { 'goto': goto }, function(response) {
+      $.post('/cstemplate/' + name + '/' + sid, { 'goto': goto, 'you': Drupal.behaviors.dsCrazyScripts.notify_yourself }, function(response) {
       	  var t = $('<div></div>');
       	  t.html(response);
 

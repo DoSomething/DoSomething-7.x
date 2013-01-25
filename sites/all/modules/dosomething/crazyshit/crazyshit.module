@@ -397,6 +397,7 @@ function crazyshit_template_render($template, $sid) {
   // Start the parameters with just the SID.
   $params = array(
 	'sid' => $sid,
+	'you' => $_POST['you'],
   );
 
   // Add a random tip if it's the tips popup.
@@ -849,7 +850,7 @@ function crazyshit_init() {
 
 	// Load any notifications the user has.
 	$n = db_select('crazy_notifications', 'n')
-	  ->fields('n', array('type', 'sid'))
+	  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
 	  // Make sure it's for the currently logged in user.
 	  ->condition($c)
 	  // Make sure they haven't seen it yet.
@@ -864,7 +865,11 @@ function crazyshit_init() {
 	$ns = $n->fetchAll();
 	$notifications = reset($ns);
 	if (!empty($notifications)) {
-	   drupal_add_js("jQuery(document).ready(function() { window.setTimeout(function() { jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); }, 1500);", 'inline');
+	   if ($notifications->from_fid == $notifications->fid) {
+	      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true;';
+	   }
+
+	   drupal_add_js("jQuery(document).ready(function() { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); }, 1500);", 'inline');
 	}
   }
 
