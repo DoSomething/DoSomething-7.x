@@ -968,7 +968,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
     float: left; }
   #cmp .col33 {
-    width: 33%; }
+    width: 33%;
+    margin-bottom: 4%; }
   #cmp .col33-inner {
     padding: 0 1.5%; }
   #cmp .col40 {
@@ -1153,6 +1154,26 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #action.action-anonymous img, #cmp #action.action-participant img {
     display: block;
     margin: 0 auto; }
+  #cmp #action.action-anonymous .drive-scholarship, #cmp #action.action-participant .drive-scholarship {
+    padding: 2%;
+    margin: 4% -2% 1%;
+    clear: both;
+    background: #0c3565; }
+    #cmp #action.action-anonymous .drive-scholarship h1, #cmp #action.action-participant .drive-scholarship h1 {
+      color: white;
+      line-height: 1.1em;
+      margin: 2% 0 1%; }
+    #cmp #action.action-anonymous .drive-scholarship p, #cmp #action.action-participant .drive-scholarship p {
+      text-align: center;
+      text-transform: uppercase;
+      color: white; }
+    #cmp #action.action-anonymous .drive-scholarship .go-button, #cmp #action.action-participant .drive-scholarship .go-button {
+      margin: 0; }
+    #cmp #action.action-anonymous .drive-scholarship a, #cmp #action.action-participant .drive-scholarship a {
+      color: #1e1d1c; }
+      #cmp #action.action-anonymous .drive-scholarship a:hover, #cmp #action.action-participant .drive-scholarship a:hover {
+        text-decoration: none;
+        color: black; }
   #cmp #action.action-leader {
     text-align: left; }
     #cmp #action.action-leader h1 {
