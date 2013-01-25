@@ -1154,24 +1154,24 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #action.action-anonymous img, #cmp #action.action-participant img {
     display: block;
     margin: 0 auto; }
-  #cmp #action.action-anonymous .drive-scholarship, #cmp #action.action-participant .drive-scholarship {
+  #cmp #action.action-anonymous #drive-scholarship, #cmp #action.action-participant #drive-scholarship {
     padding: 2%;
     margin: 4% -2% 1%;
     clear: both;
     background: #0c3565; }
-    #cmp #action.action-anonymous .drive-scholarship h1, #cmp #action.action-participant .drive-scholarship h1 {
+    #cmp #action.action-anonymous #drive-scholarship h1, #cmp #action.action-participant #drive-scholarship h1 {
       color: white;
       line-height: 1.1em;
       margin: 2% 0 1%; }
-    #cmp #action.action-anonymous .drive-scholarship p, #cmp #action.action-participant .drive-scholarship p {
+    #cmp #action.action-anonymous #drive-scholarship p, #cmp #action.action-participant #drive-scholarship p {
       text-align: center;
       text-transform: uppercase;
       color: white; }
-    #cmp #action.action-anonymous .drive-scholarship .go-button, #cmp #action.action-participant .drive-scholarship .go-button {
+    #cmp #action.action-anonymous #drive-scholarship .go-button, #cmp #action.action-participant #drive-scholarship .go-button {
       margin: 0; }
-    #cmp #action.action-anonymous .drive-scholarship a, #cmp #action.action-participant .drive-scholarship a {
+    #cmp #action.action-anonymous #drive-scholarship a, #cmp #action.action-participant #drive-scholarship a {
       color: #1e1d1c; }
-      #cmp #action.action-anonymous .drive-scholarship a:hover, #cmp #action.action-participant .drive-scholarship a:hover {
+      #cmp #action.action-anonymous #drive-scholarship a:hover, #cmp #action.action-participant #drive-scholarship a:hover {
         text-decoration: none;
         color: black; }
   #cmp #action.action-leader {
