@@ -85,7 +85,7 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 	 *	Lower text
 	 */
 
-	if (!empty($bottom_text)) {
+	if (!empty($lower_text)) {
 		$break = wordwrap($lower_text, $break_limit, '\n', true);
 		$a = explode('\n', $break);
 	
