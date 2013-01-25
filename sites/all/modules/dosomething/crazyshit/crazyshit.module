@@ -556,13 +556,13 @@ function crazyshit_add_lazy_class($matches) {
   // We multiply the lazy load count by 2, because lazy loading includes the facebook pictures.
   if ($i > ($c * 2) && CRAZY_ALLOW_LAZY_LOADING) {
 	// We're beyond the non-lazy threshold, so lazy-load the image.
-	$r = 'src="/' . drupal_get_path('module', 'crazyshit') .'/images/default-img.jpg" data-original="' . $matches[1] . '?' . $unique_cache . '" class="lazy" ';
+	$r = 'src="/' . drupal_get_path('module', 'crazyshit') .'/images/default-img.jpg" data-original="' . $matches[1] . '?' . $unique_cache . '" class="lazy" data-num="' . $i . '" ';
   }
   else {
 	// If we're within the threshhold of non-lazy images, don't add the "lazy" class to them.
 	// The lazy class causes issues when you first create a post.  So we can't lazy load it.
 	$p = $matches[1] . '?' . $unique_cache;
-	$r = 'src="' . strval($p) . '?3oirj" data-original="' . $p . '" ';
+	$r = 'src="' . strval($p) . '" data-num="' . $i . '" data-original="' . $p . '" ';
   }
 
   $i++;

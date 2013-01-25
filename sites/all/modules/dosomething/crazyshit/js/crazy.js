@@ -20,7 +20,13 @@
 		    if ($('img.lazy').length > 0) {
 		    	$('img.lazy').lazyload();
 		    }
-		}
+	    }
+
+	    // Fix for SUPER weird first-image cache problem.
+	    if ($('img[data-num="2"]').length > 0) {
+		var $src = $('img[data-num="2"]').attr('src');
+		$('img[data-num="2"]').attr('src', $src + '?' + new Date().getTime());
+	    }
 
 	    // Updates share buttons to disable ones you've already clicked.
 	    if (typeof Drupal.settings.crazy.shares === 'object') {
