@@ -75,16 +75,16 @@ $sub_menus = array(
 	),
 	// About pages sub-menu
 	'crazy/about' => array(
-		'scholarship' => array(
-			'title' => 'Scholarship',
-			'href' => CRAZY_ROOT . '/about#scholarship',
-		),
 		'tips' => array(
 			'title' => 'Tips',
 			'href' => CRAZY_ROOT . '/about#tips'
 		),
-		'introduction' => array(
-			'title' => 'Introduction',
+		'scholarship' => array(
+			'title' => 'Scholarship',
+			'href' => CRAZY_ROOT . '/about#scholarship',
+		),
+		'video' => array(
+			'title' => 'Video',
 			'href' => CRAZY_ROOT . '/about#video'
 		),
 	),
