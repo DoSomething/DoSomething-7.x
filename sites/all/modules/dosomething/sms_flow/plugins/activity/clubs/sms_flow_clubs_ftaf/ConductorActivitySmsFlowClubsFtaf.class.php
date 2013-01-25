@@ -6,23 +6,16 @@
 class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
 
   // Mobile Commons optin path for inviter to be joined into
-  public $alpha_optin = 0;
+  protected $alpha_optin = 0;
 
   // Mobile Commons optin path for the invitee to be joined into
-  public $beta_optin = 0;
+  protected $beta_optin = 0;
 
   // Response sent to inviter if process fails
-  public $response_fail = '';
+  protected $response_fail = '';
 
-  public function option_definition() {
-    $options = parent::option_definition();
-    $options['alpha_optin'] = array('default' => 0);
-    $options['beta_optin'] = array('default' => 0);
-    $options['response_success'] = array('default' => '');
-    $options['response_fail'] = array('default' => '');
-
-    return $options;
-  }
+  // Response sent to inviter if process fails
+  protected $response_success = '';
   
   public function run($workflow) {
     $state = $this->getState();

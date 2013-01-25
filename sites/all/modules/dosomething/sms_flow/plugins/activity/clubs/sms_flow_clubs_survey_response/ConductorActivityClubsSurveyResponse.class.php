@@ -9,17 +9,10 @@
 class ConductorActivityClubsSurveyResponse extends ConductorActivity {
 
   // Array of responses indicating an acceptance of the invite
-  public $accept_responses = array();
+  protected $accept_responses = array();
 
-  // Message returned to the user if they reject the invite
-  public $invite_rejected_message = '';
-
-  public function option_definition() {
-    $options = parent::option_definition();
-    $options['accept_responses'] = array('default' => array());
-    $options['invite_rejected_message'] = array('default' => '');
-    return $options;
-  }
+  // Array of responses indicating a rejection of the invite
+  protected $deny_responses = array();
 
   public function run($workflow) {
     $state = $this->getState();

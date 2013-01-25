@@ -9,13 +9,7 @@
 class ConductorActivityClubsInvitedBeta extends ConductorActivity {
 
   // Mobile Commons campaign id to place alpha user in when sending feedback message
-  public $alpha_campaign_id = 0;
-
-  public function option_definition() {
-    $options = parent::option_definition();
-    $options['alpha_campaign_id'] = array('default' => '');
-    return $options;
-  }
+  protected $alpha_campaign_id = 0;
 
   public function run($workflow) {
     $state = $this->getState();
