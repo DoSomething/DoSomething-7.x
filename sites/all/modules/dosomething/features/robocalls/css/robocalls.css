@@ -82,7 +82,9 @@ div.view-id-cause_its_your_birthday div.views-field-nothing {
     margin-top: 10px;
     bottom: 3px; }
   div.view-id-cause_its_your_birthday div.views-field-nothing p {
-    height: 35px; }
+    height: 35px;
+    font-size: 9pt;
+    margin-top: -15px; }
 div.view-id-cause_its_your_birthday div.robocall-flag {
   background: rgba(24, 64, 139, 0.7);
   padding: 3px 17px;

@@ -120,6 +120,7 @@ div#robocalls-celeb-form form.webform-client-form {
     line-height: 0;
     padding-top: 7px;
     position: absolute;
+    z-index: 5;
     bottom: 76px;
     right: 10px; }
   div#robocalls-celeb-form form.webform-client-form .date-padding {
