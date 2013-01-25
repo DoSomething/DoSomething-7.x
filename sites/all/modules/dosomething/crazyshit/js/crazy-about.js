@@ -103,7 +103,7 @@
       });
 
       // active class hack on submenu
-      $('.crazy-sub-menu .0 a, .crazy-sub-menu .2 a').removeClass('active');
+      $('.crazy-sub-menu .1 a, .crazy-sub-menu .2 a').removeClass('active');
       $('.crazy-sub-menu li a').click(function() {
         var $this = $(this);
         if ($this.hasClass('active')) {
