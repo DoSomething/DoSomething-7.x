@@ -3,6 +3,7 @@
 	 authed: false,
 	 probably_unauthed: false,
 	 notify_yourself: false,
+	 logged_in: !$('body').hasClass('not-logged-in'),
 
    	 attach: function(context, settings) { 
 	    var o = this;
@@ -63,13 +64,14 @@
 	    //});
 
 	    $('.bs-button a.button-submit').click(function() {
-	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) {
-			if (Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) {
-				$.fn.dsCrazyPopup('login', 0, 0, document.location.href);
-			}
+	       if ((!Drupal.behaviors.fb.is_authed() && Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+		  $.fn.dsCrazyPopup('login', 0, 0, document.location.href);
+		  return false;
+	       }
 
-		       	return false;
-	    	}
+	       if ($(this).hasClass('clicked')) {
+		  return false;
+	       }
 
 	       var elm = $(this);
 	       var na = $(this).hasClass('no-alert');
@@ -111,13 +113,14 @@
 	    });
 
 	    $('.vouch-button a.button-submit').click(function() {
-	       if ($(this).hasClass('clicked') || !Drupal.behaviors.fb.is_authed()) {
-				if (Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) {
-					$.fn.dsCrazyPopup('login', 0, 0, document.location.href);
-				}
+               if ((!Drupal.behaviors.fb.is_authed() && Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+                  $.fn.dsCrazyPopup('login', 0, 0, document.location.href);
+                  return false;
+               }
 
-		       	return false;
-	    	}
+               if ($(this).hasClass('clicked')) {
+                  return false;
+               }
 
 	      var na = $(this).hasClass('no-alert');
 	      var elm = $(this);
