@@ -153,29 +153,33 @@ $money_saving_tips = array(
 // Note: Do NOT use the t() function here.
 // Use !n (exclamation-point, lowercase "N") for the number.
 $fb_messages = array(
-	'vouch' => '!n people have vouched for you! Good for you!',
-	'bs' => '!n people called BS on your submission.  Boooo...',
+	#'vouch' => '!n people have vouched for you! Good for you!',
+	#'bs' => '!n people called BS on your submission.  Boooo...',
+	'notification' => '!n people have rated your story on ' . $campaign_title . '.  Go to app to find out what they said!',
 );
 
 // Facebook posts
 $facebook_posts = array(
+	// Vouch request
 	'posts' => array(
-		'title' => t('Vouch for me?'),
-		'caption' => t('Vouch for my submission'),
-		'description' => t('So, the craziest thing I have ever done to save money...'),
+		'title' => t('The Craziest Thing I Did to Save Money'),
+		'caption' => '',
+		'description' => t('I just told the story about the craziest thing I did to save money, and I need your help to vouch for me.  No one believes me, click here to support!'),
 	),
+	// Invite from friends page.
 	'invite' => array(
 		'document' => 'http://www.dosomething.org/' . CRAZY_ROOT,
-		'title' => t('Crazy $#!T I did to save money'),
-		'caption' => t('Craaazy Shit'),
-		'description' => t('Crazy Description'),
-		'image' => 'http://files.dosomething.org/files/styles/p4p_fake_button/public/pictures/actionguide/123905097.jpg',
+		'title' => t('The Craziest Thing I Did to Save Money'),
+		'caption' => '',
+		'description' => t('I never told anyone this before, but this one time I did this crazy thing to save money..'),
+		'image' => 'http://files.dosomething.org/files/campaigns/crazy13/logo.png',
 	),
+	// Share a particular post.
 	'share' => array(
 		'namespace' => 'dosomethingapp',
 		'object' => 'crazy_thing',
 		'action' => 'share',
-		'message' => t('I just posted the craziest thing I did to save money.  Now it\'s your turn! Go here to do so.'),
+		//'message' => t('I just posted the craziest thing I did to save money.  Now it\'s your turn! Go here to do so.'),   # Ignored -- we can't force a message on a user.
 	),
 );
 

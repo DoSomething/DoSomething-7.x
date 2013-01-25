@@ -88,7 +88,7 @@ function drush_crazyshit_crazy_messages() {
   if (!empty($n)) {
     $users = array();
     foreach ($n AS $key => $info) {
-      $users[$info->fid][$info->type] += $info->count;
+      $users[$info->fid]/*[$info->type]*/ += $info->count;
     }
 
     include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
@@ -110,8 +110,8 @@ function drush_crazyshit_crazy_messages() {
     $b = $i = $c = 0;
     $batches = array();
     foreach ($users AS $id => $counts) {
-      $c = max($counts);
-      $best = array_search($c, $counts);
+      $c = $counts;#max($counts);
+     # $best = array_search($c, $counts);
       
       if ($i == $batch_limit) {
         $b++;
@@ -122,7 +122,7 @@ function drush_crazyshit_crazy_messages() {
       $batches["$b"][] = array(
         'method' => 'POST',
         'relative_url' => '/' . $id . '/notifications',
-        'body' => 'access_token=105775762330|pmFm2r3S-p7merbypvN2EANG4UI&href=http://www.dosomething.org/' . CRAZY_ROOT . '&template=' . t($fb_messages[$types[$best]], array('!n' => $c)),
+        'body' => 'access_token=105775762330|pmFm2r3S-p7merbypvN2EANG4UI&href=http://www.dosomething.org/' . CRAZY_ROOT . '&template=' . t($fb_messages['notification'], array('!n' => $c)),
       );
 
       $i++;

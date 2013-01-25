@@ -864,7 +864,7 @@ function crazyshit_init() {
 	$ns = $n->fetchAll();
 	$notifications = reset($ns);
 	if (!empty($notifications)) {
-	  drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); });", 'inline');
+	   drupal_add_js("jQuery(document).ready(function() { window.setTimeout(function() { jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); }, 1500);", 'inline');
 	}
   }
 
