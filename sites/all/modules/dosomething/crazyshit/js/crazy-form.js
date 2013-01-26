@@ -23,67 +23,67 @@
 		},
 
 		attach: function(context, settings) {
-		   var o = this;
-		   if ($('.image-preview img').length > 0) {
+		  var o = this;
+		  if ($('.image-preview img').length > 0) {
 			  jQuery('.image-preview img').appendTo('.image-widget-data').css({
-				'margin-top': '-50px',
-				'margin-bottom': '0',
+			  'margin-top': '-50px',
+			  'margin-bottom': '0',
 			    '-webkit-box-shadow': 'none',
 			    '-moz-box-shadow': 'none',
 			    'box-shadow': 'none',
 			    'border': '0'
 			  });
-		   }
-		   else if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').length) {
-		   	$('<div></div>').attr('class', 'upload-placeholder').text('Upload a picture and it will appear here').css({
-		   		'text-align': 'center',
-		   		'font-size': '30pt',
-		   		'line-height': '1.2',
-		   		'margin-top': '43%',
-		   	}).appendTo('.image-widget-data');
-		   	$('#edit-actions').remove();
-		   }
+		  }
+		  else if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').length) {
+        $('<div></div>').attr('class', 'upload-placeholder').text('Upload a picture and it will appear here').css({
+          'text-align': 'center',
+          'font-size': '30pt',
+          'line-height': '1.2',
+          'margin-top': '43%',
+        }).appendTo('.image-widget-data');
+        $('#edit-actions').remove();
+		  }
 
 		   if ($('.image-widget-data').length > 0) {
-			 var topText = $('<div></div>').attr('id', 'top_text');
-			 var bottomText = $('<div></div>').attr('id', 'bottom_text');
+         var topText = $('<div></div>').attr('id', 'top_text');
+         var bottomText = $('<div></div>').attr('id', 'bottom_text');
 
-			 this.handle_text_change('edit-submitted-field-crazy-top-text-und-0-value', 'top_text');
-			 this.handle_text_change('edit-submitted-field-crazy-bottom-text-und-0-value', 'bottom_text');
+         this.handle_text_change('edit-submitted-field-crazy-top-text-und-0-value', 'top_text');
+         this.handle_text_change('edit-submitted-field-crazy-bottom-text-und-0-value', 'bottom_text');
 
-			 $('.image-widget-data').append(topText);
-			 $('.image-widget-data').append(bottomText);
+         $('.image-widget-data').append(topText);
+         $('.image-widget-data').append(bottomText);
 		   }
 
 	       $('#edit-submitted-field-crazy-crazy-picture-und-0-upload').click(function() {
 	      	  var img = window.setInterval(function() {
-	      		if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').val() != '') {
-	      			window.clearInterval(img);
-	      			// Crazy shit
-	      			$('.upload-placeholder').remove();
-	      			$('.image-widget-data').css('background', 'url(/sites/all/modules/dosomething/crazyshit/images/loading-img.gif) center center no-repeat');
-	      			$('[id^="webform-client-form-"]').submit();
-	      		}
+              if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').val() != '') {
+                window.clearInterval(img);
+                // Crazy shit
+                $('.upload-placeholder').remove();
+                $('.image-widget-data').css('background', 'url(/sites/all/modules/dosomething/crazyshit/images/loading-img.gif) center center no-repeat');
+                $('[id^="webform-client-form-"]').submit();
+              }
 	      	  });
 	       });
 
 		   if ($('#edit-submitted-field-crazy-crazy-picture-und-0-remove-button').length > 0) {
 		 	 $('#edit-submitted-sbutton-button').hide();
 		 	 $('#edit-submitted-field-crazy-crazy-picture-und-0-remove-button').appendTo('#edit-submitted-sbutton').val('Delete me');
-			 var i = window.setInterval(function() {
-				if ($('.image-widget-data img').length == 0) {
-					window.clearInterval(i);
-					var s = window.setInterval(function() {
-						if ($('#edit-submitted-sbutton-button').length > 0) {
-							window.clearInterval(s);
-							$('#edit-submitted-sbutton-button').click();
-						}
-					})
-				}
+         var i = window.setInterval(function() {
+           if ($('.image-widget-data img').length == 0) {
+             window.clearInterval(i);
+             var s = window.setInterval(function() {
+               if ($('#edit-submitted-sbutton-button').length > 0) {
+                 window.clearInterval(s);
+                 $('#edit-submitted-sbutton-button').click();
+               }
+             })
+           }
 		     });
 		   }
 
-		  // Styles the choose file button
+		  // styles the choose file button
 		  var f = jQuery('.form-file');
 		  jQuery('<div>').attr('id', 'upload-cover').insertBefore('.form-file');
 		  f.appendTo('#upload-cover').addClass('new');
