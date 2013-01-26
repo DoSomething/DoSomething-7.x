@@ -349,7 +349,7 @@ img.header_background {
 
 /* line 146, ../sass/crazy.sass */
 .fb-share {
-  position: relative;
+  position: absolute;
   right: 50px;
   bottom: 25px;
   display: block;
