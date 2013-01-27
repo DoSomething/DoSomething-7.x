@@ -17,26 +17,56 @@
   background-color: #ffc100
 
 div.header_inner
+  height: 200px
   width: 900px
   margin: 0 auto
   position: relative
+  @media only screen and (max-width: 920px)
+    height: 150px
+    width: 98%
+  @media only screen and (max-width: 620px)
+    padding: 2% 0
+    height: auto
 
 img.header_sponsor, img.header_logo
   position: absolute
-  bottom: 10px
-
-img.header_sponsor
-  left: 0
+  bottom: 5px
+  @media only screen and (max-width: 920px)
+    bottom: 5px
+  @media only screen and (max-width: 400px)
+    width: 45%
   
+img.header_background
+  width: 700px
+  +block_center
+  @media only screen and (max-width: 920px)
+    height: 150px
+    width: 500px
+  @media only screen and (max-width: 620px)
+    display: none
+
 img.header_logo
   height: 190px
   right: 0
+  @media only screen and (max-width: 920px)
+    height: 140px
+  @media only screen and (max-width: 620px)
+    display: none
 
-img.header_background
-  width: 700px
-  height: 200px
-  margin: 0 auto
-  display: block
+img.header_sponsor
+  left: 0
+  @media only screen and (max-width: 620px)
+    position: static
+    width: 145px
+
+img.header_logo_mobile /* replaces img.header_logo on lower screen resolutions */
+  display: none
+  @media only screen and (max-width: 620px)
+    width: 155px
+
+img.header_sponsor, img.header_logo_mobile
+  @media only screen and (max-width: 620px)
+    +block_center
 
 // NAV & FILTERS
 // -------------
@@ -69,6 +99,9 @@ img.header_background
 .crazy-menu
   margin: 0 auto
   width: 600px
+  padding: 0
+  @media only screen and (max-width: 650px)
+    width: 100%
   li
     width: 25%
   a
@@ -77,6 +110,9 @@ img.header_background
     color: #fff
     &:hover
       color: $accent_color
+    @media only screen and (max-width: 650px)
+      font-size: 17px
+      line-height: 35px
 
   a.active
     color: $accent_color
@@ -94,9 +130,13 @@ img.header_background
   margin: 0 auto 1%
   padding: 0
   width: 500px
+  @media only screen and (max-width: 650px)
+    width: 100%
   li
     margin: 2%
     width: 29%
+    @media only screen and (max-width: 650px)
+      margin: 1%
   a
     font-size: 18px
     line-height: 36px
@@ -105,6 +145,9 @@ img.header_background
       background-color: $off_black_light
       color: #fff
       +border-radius(3px)
+    @media only screen and (max-width: 650px)
+      font-size: 14px
+      line-height: 23px
 
   a.active
     background-color: $off_black_light

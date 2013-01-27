@@ -102,31 +102,75 @@
         e.preventDefault();
       });
 
-      // active class hack on submenu
-      $('.crazy-sub-menu .1 a, .crazy-sub-menu .2 a').removeClass('active');
-      $('.crazy-sub-menu li a').click(function() {
-        var $this = $(this);
-        if ($this.hasClass('active')) {
-          $this.removeClass();
-        }
-        else {
-          $this
-            .addClass('active')
-            .parent()
-            .siblings('li')
-            .children()
-            .removeClass('active');
-        }
-      });
-      
-      function smooth_scroll(elements) {
-        $(elements).click(function(event) {
-          $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-          event.preventDefault();
-        });
-      }
+//      $('.crazy-sub-menu li a').click(function() {
+//        var $this = $(this);
+//        if ($this.hasClass('active')) {
+//          $this.removeClass();
+//        }
+//        else {
+//          $this
+//            .addClass('active')
+//            .parent()
+//            .siblings('li')
+//            .children()
+//            .removeClass('active');
+//        }
+//      });
+ 
+        // active class hack on submenu
+        $('.crazy-sub-menu .1 a, .crazy-sub-menu .2 a').removeClass('active');
 
-      smooth_scroll('.crazy-sub-menu li a');
+        function add_remove(class_name) {
+          $(this)
+            .addClass(class_name)
+            .siblings()
+            .removeClass(class_name);
+        }
+
+        function add_remove_parent(class_name, element) { 
+          $(this)
+            .addClass(class_name)
+            .parent()
+            .siblings(element)
+            .children()
+            .removeClass(class_name);
+        }
+
+        function switch_active(target, class_name, element) {
+          $(target).click(function() {
+            console.log("Target has been clicked.");
+            console.log(target);
+            // if ($(this).hasClass(class_name)) { 
+            //   $(this).removeClass(class_name);
+            //   console.log("Target is active.");
+            // }
+            if ($(this).not(class_name)) { 
+              console.log("Target is not active.");          
+              if(element) { 
+                console.log(element);                
+                add_remove_parent();
+                console.log("add_remove_parent() was called");
+              }
+              else { 
+                add_remove();
+                console.log("add_remove() was called");
+              }
+            }
+          });            
+        }
+
+        switch_active('.tip_subject', 'active_subject');
+        switch_active('.crazy-sub-menu li a', 'active', 'a');
+
+        // animate scroll to fragment identifier
+        function smooth_scroll(targets) {
+          $(targets).click(function(event) {
+            $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+            event.preventDefault();
+          });
+        }
+
+        smooth_scroll('.crazy-sub-menu li a');
 
 		},
 	};

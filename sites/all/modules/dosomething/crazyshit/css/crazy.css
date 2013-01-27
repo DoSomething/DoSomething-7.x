@@ -137,7 +137,7 @@ header[role="banner"] {
 #site-name {
   top: -38px;
   left: -94px; }
-@media only screen and (max-width: 1075px) {
+@media only screen and (max-width: 920px) {
   /* line 16, ../sass/_drupal.sass */
   #site-name {
     display: none; } }
@@ -190,100 +190,172 @@ header[role="banner"] {
 
 /* line 19, ../sass/crazy.sass */
 div.header_inner {
+  height: 200px;
   width: 900px;
   margin: 0 auto;
   position: relative; }
-
-/* line 24, ../sass/crazy.sass */
-img.header_sponsor, img.header_logo {
-  position: absolute;
-  bottom: 10px; }
-
-/* line 28, ../sass/crazy.sass */
-img.header_sponsor {
-  left: 0; }
+@media only screen and (max-width: 920px) {
+  /* line 19, ../sass/crazy.sass */
+  div.header_inner {
+    height: 150px;
+    width: 98%; } }
+@media only screen and (max-width: 620px) {
+  /* line 19, ../sass/crazy.sass */
+  div.header_inner {
+    padding: 2% 0;
+    height: auto; } }
 
 /* line 31, ../sass/crazy.sass */
+img.header_sponsor, img.header_logo {
+  position: absolute;
+  bottom: 5px; }
+@media only screen and (max-width: 920px) {
+  /* line 31, ../sass/crazy.sass */
+  img.header_sponsor, img.header_logo {
+    bottom: 5px; } }
+@media only screen and (max-width: 400px) {
+  /* line 31, ../sass/crazy.sass */
+  img.header_sponsor, img.header_logo {
+    width: 45%; } }
+
+/* line 39, ../sass/crazy.sass */
+img.header_background {
+  width: 700px;
+  margin: 0 auto;
+  display: block; }
+@media only screen and (max-width: 920px) {
+  /* line 39, ../sass/crazy.sass */
+  img.header_background {
+    height: 150px;
+    width: 500px; } }
+@media only screen and (max-width: 620px) {
+  /* line 39, ../sass/crazy.sass */
+  img.header_background {
+    display: none; } }
+
+/* line 48, ../sass/crazy.sass */
 img.header_logo {
   height: 190px;
   right: 0; }
+@media only screen and (max-width: 920px) {
+  /* line 48, ../sass/crazy.sass */
+  img.header_logo {
+    height: 140px; } }
+@media only screen and (max-width: 620px) {
+  /* line 48, ../sass/crazy.sass */
+  img.header_logo {
+    display: none; } }
 
-/* line 35, ../sass/crazy.sass */
-img.header_background {
-  width: 700px;
-  height: 200px;
-  margin: 0 auto;
-  display: block; }
+/* line 56, ../sass/crazy.sass */
+img.header_sponsor {
+  left: 0; }
+@media only screen and (max-width: 620px) {
+  /* line 56, ../sass/crazy.sass */
+  img.header_sponsor {
+    position: static;
+    width: 145px; } }
 
-/* line 44, ../sass/crazy.sass */
+/* line 62, ../sass/crazy.sass */
+img.header_logo_mobile {
+  display: none; }
+@media only screen and (max-width: 620px) {
+  /* line 62, ../sass/crazy.sass */
+  img.header_logo_mobile {
+    width: 155px; } }
+
+@media only screen and (max-width: 620px) {
+  /* line 67, ../sass/crazy.sass */
+  img.header_sponsor, img.header_logo_mobile {
+    margin: 0 auto;
+    display: block; } }
+
+/* line 74, ../sass/crazy.sass */
 .crazy-menu-wrapper, .crazy-sub-menu-wrapper {
   width: 100%;
   margin: 0;
   padding: 0; }
 
-/* line 49, ../sass/crazy.sass */
+/* line 79, ../sass/crazy.sass */
 .crazy-menu, .crazy-sub-menu {
   overflow: hidden;
   list-style: none; }
-/* line 52, ../sass/crazy.sass */
+/* line 82, ../sass/crazy.sass */
 .crazy-menu li, .crazy-sub-menu li {
   float: left;
   text-align: center; }
-/* line 55, ../sass/crazy.sass */
+/* line 85, ../sass/crazy.sass */
 .crazy-menu a, .crazy-sub-menu a {
   display: block;
   font-family: din-web-reg;
   font-weight: 400;
   text-transform: uppercase; }
-/* line 60, ../sass/crazy.sass */
+/* line 90, ../sass/crazy.sass */
 .crazy-menu a:hover, .crazy-sub-menu a:hover {
   text-decoration: none; }
 
-/* line 66, ../sass/crazy.sass */
+/* line 96, ../sass/crazy.sass */
 .crazy-menu-wrapper {
   background-color: #231f20; }
 
-/* line 69, ../sass/crazy.sass */
+/* line 99, ../sass/crazy.sass */
 .crazy-menu {
   margin: 0 auto;
-  width: 600px; }
-/* line 72, ../sass/crazy.sass */
+  width: 600px;
+  padding: 0; }
+@media only screen and (max-width: 650px) {
+  /* line 99, ../sass/crazy.sass */
+  .crazy-menu {
+    width: 100%; } }
+/* line 105, ../sass/crazy.sass */
 .crazy-menu li {
   width: 25%; }
-/* line 74, ../sass/crazy.sass */
+/* line 107, ../sass/crazy.sass */
 .crazy-menu a {
   font-size: 25px;
   line-height: 50px;
   color: white; }
-/* line 78, ../sass/crazy.sass */
+/* line 111, ../sass/crazy.sass */
 .crazy-menu a:hover {
   color: #f8c72f; }
-/* line 81, ../sass/crazy.sass */
+@media only screen and (max-width: 650px) {
+  /* line 107, ../sass/crazy.sass */
+  .crazy-menu a {
+    font-size: 17px;
+    line-height: 35px; } }
+/* line 117, ../sass/crazy.sass */
 .crazy-menu a.active {
   color: #f8c72f; }
-/* line 83, ../sass/crazy.sass */
+/* line 119, ../sass/crazy.sass */
 .crazy-menu a.active:hover {
   color: #f8c72f; }
 
-/* line 90, ../sass/crazy.sass */
+/* line 126, ../sass/crazy.sass */
 .crazy-sub-menu-wrapper {
   background-color: white; }
 
-/* line 93, ../sass/crazy.sass */
+/* line 129, ../sass/crazy.sass */
 .crazy-sub-menu {
   margin: 0 auto 1%;
   padding: 0;
   width: 500px; }
-/* line 97, ../sass/crazy.sass */
+@media only screen and (max-width: 650px) {
+  /* line 129, ../sass/crazy.sass */
+  .crazy-sub-menu {
+    width: 100%; } }
+/* line 135, ../sass/crazy.sass */
 .crazy-sub-menu li {
   margin: 2%;
   width: 29%; }
-/* line 100, ../sass/crazy.sass */
+@media only screen and (max-width: 650px) {
+  /* line 135, ../sass/crazy.sass */
+  .crazy-sub-menu li {
+    margin: 1%; } }
+/* line 140, ../sass/crazy.sass */
 .crazy-sub-menu a {
   font-size: 18px;
   line-height: 36px;
   color: #231f20; }
-/* line 104, ../sass/crazy.sass */
+/* line 144, ../sass/crazy.sass */
 .crazy-sub-menu a:hover {
   background-color: #444444;
   color: white;
@@ -292,7 +364,12 @@ img.header_background {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px; }
-/* line 109, ../sass/crazy.sass */
+@media only screen and (max-width: 650px) {
+  /* line 140, ../sass/crazy.sass */
+  .crazy-sub-menu a {
+    font-size: 14px;
+    line-height: 23px; } }
+/* line 152, ../sass/crazy.sass */
 .crazy-sub-menu a.active {
   background-color: #444444;
   color: white;
@@ -301,11 +378,11 @@ img.header_background {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px; }
-/* line 113, ../sass/crazy.sass */
+/* line 156, ../sass/crazy.sass */
 .crazy-sub-menu a.active:hover {
   color: white; }
 
-/* line 120, ../sass/crazy.sass */
+/* line 163, ../sass/crazy.sass */
 .crazy-submission, .submit-start, .node-crazy-shit {
   background-color: white;
   width: 500px;
@@ -316,19 +393,19 @@ img.header_background {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 130, ../sass/crazy.sass */
+/* line 173, ../sass/crazy.sass */
 .crazy-submission {
   background-color: white;
   width: 500px;
   margin: 2% auto;
   position: relative; }
 
-/* line 136, ../sass/crazy.sass */
+/* line 179, ../sass/crazy.sass */
 .fb-picture {
   width: 50px;
   margin: 0 0 0 -75px; }
 
-/* line 140, ../sass/crazy.sass */
+/* line 183, ../sass/crazy.sass */
 .simg {
   margin: -50px 0 0 0;
   padding: 50px 0 10px 0;
@@ -347,7 +424,7 @@ img.header_background {
   .simg img {
     width: 80%; } }
 
-/* line 146, ../sass/crazy.sass */
+/* line 189, ../sass/crazy.sass */
 .fb-share {
   position: absolute;
   right: 50px;
@@ -359,15 +436,15 @@ img.header_background {
   background-color: transparent;
   background-repeat: no-repeat;
   text-indent: -9999em; }
-/* line 151, ../sass/crazy.sass */
+/* line 194, ../sass/crazy.sass */
 .fb-share:hover {
   background-position-y: -30px; }
 
-/* line 156, ../sass/crazy.sass */
+/* line 199, ../sass/crazy.sass */
 .dateline, .author {
   display: none; }
 
-/* line 162, ../sass/crazy.sass */
+/* line 205, ../sass/crazy.sass */
 .fb-invite-friends {
   margin: 25px auto 0;
   display: block;
@@ -378,7 +455,7 @@ img.header_background {
   background-repeat: no-repeat;
   text-indent: -9999em; }
 
-/* line 172, ../sass/crazy.sass */
+/* line 215, ../sass/crazy.sass */
 .connect-with-facebook {
   text-indent: -119988px;
   overflow: hidden;
@@ -393,12 +470,12 @@ img.header_background {
   margin-left: auto;
   margin-right: auto; }
 
-/* line 191, ../sass/crazy.sass */
+/* line 234, ../sass/crazy.sass */
 .submit-start p {
   font-size: 18px;
   line-height: 27px;
   text-transform: uppercase; }
-/* line 195, ../sass/crazy.sass */
+/* line 238, ../sass/crazy.sass */
 .submit-start .pane-content {
   padding: 50px; }
 /* line 16, ../sass/_variables.sass */
@@ -411,14 +488,14 @@ img.header_background {
   .submit-start img {
     width: 80%; } }
 
-/* line 202, ../sass/crazy.sass */
+/* line 245, ../sass/crazy.sass */
 .node-crazy-shit {
   box-shadow: none; }
-/* line 204, ../sass/crazy.sass */
+/* line 247, ../sass/crazy.sass */
 .node-crazy-shit .webform-client-form {
   padding: 50px; }
 
-/* line 211, ../sass/crazy.sass */
+/* line 254, ../sass/crazy.sass */
 .fakefile, #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   background: #ffcb15;
   padding: 10px;
@@ -434,7 +511,7 @@ img.header_background {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 223, ../sass/crazy.sass */
+/* line 266, ../sass/crazy.sass */
 .fakefile {
   position: absolute;
   top: 0px;
@@ -442,7 +519,7 @@ img.header_background {
   z-index: 1;
   width: 146px; }
 
-/* line 230, ../sass/crazy.sass */
+/* line 273, ../sass/crazy.sass */
 #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   margin: -10px auto 25px;
   padding: 2px 0 0 0;
@@ -450,7 +527,7 @@ img.header_background {
   border: none;
   display: block; }
 
-/* line 237, ../sass/crazy.sass */
+/* line 280, ../sass/crazy.sass */
 .form-file.new {
   position: relative;
   text-align: right;
@@ -461,7 +538,7 @@ img.header_background {
   height: 35px;
   cursor: pointer; }
 
-/* line 247, ../sass/crazy.sass */
+/* line 290, ../sass/crazy.sass */
 .submit-start button, .node-crazy-shit #edit-actions .form-submit {
   margin: 0;
   padding: 0;
@@ -480,21 +557,21 @@ img.header_background {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 262, ../sass/crazy.sass */
+/* line 305, ../sass/crazy.sass */
 .submit-start button:hover, .node-crazy-shit #edit-actions .form-submit:hover {
   color: white;
   background-color: #6193e9; }
 
-/* line 266, ../sass/crazy.sass */
+/* line 309, ../sass/crazy.sass */
 .submit-start button, #edit-next {
   width: 60px !important; }
 
-/* line 270, ../sass/crazy.sass */
+/* line 313, ../sass/crazy.sass */
 #edit-previous {
   width: 60px !important;
   float: left !important; }
 
-/* line 274, ../sass/crazy.sass */
+/* line 317, ../sass/crazy.sass */
 #edit-submit {
   width: 80px;
   float: right !important; }
