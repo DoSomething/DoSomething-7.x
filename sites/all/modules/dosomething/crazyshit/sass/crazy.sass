@@ -21,6 +21,7 @@ div.header_inner
   width: 900px
   margin: 0 auto
   position: relative
+  overflow: hidden
   @media only screen and (max-width: 920px)
     height: 150px
     width: 98%
@@ -58,15 +59,18 @@ img.header_sponsor
   @media only screen and (max-width: 620px)
     position: static
     width: 145px
+    float: left
+    margin: 0 0 0 10.5%
+  @media only screen and (max-width: 450px)
+    margin: 0 0 0 1.5%
 
-img.header_logo_mobile /* replaces img.header_logo on lower screen resolutions */
+img.header_logo_text /* replaces img.header_logo on lower screen resolutions */
   display: none
   @media only screen and (max-width: 620px)
-    width: 155px
-
-img.header_sponsor, img.header_logo_mobile
-  @media only screen and (max-width: 620px)
+    width: 80%
     +block_center
+  @media only screen and (max-width: 450px)
+    width: 98%
 
 // NAV & FILTERS
 // -------------

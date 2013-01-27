@@ -49,6 +49,15 @@ header[role="banner"]
   margin: 0 !important
   text-align: inherit !important
 
+// hides the admin menu when the styling breaks
+@media only screen and (max-width: 900px)
+  #utility-bar,
+  #admin-menu
+    display: none
+
+  html body.admin-menu
+    margin: 0 !important
+
 // hide elements inherited from global site
 #skip-link,
 .breadcrumb,
