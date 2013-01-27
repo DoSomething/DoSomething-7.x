@@ -175,24 +175,26 @@ img.header_sponsor, img.header_logo_mobile
   width: 500px
   margin: 2% auto
   position: relative
+  @media only screen and (max-width: 700px)
+    width: 430px
+  @media only screen and (max-width: 650px)
+    width: 95% 
 
 .fb-picture
   width: 50px
   margin: 0 0 0 -75px
+  @media only screen and (max-width: 700px)
+    margin: 0 auto
+    padding: 10px 0
 
 .simg
   margin: -50px 0 0 0
   padding: 50px 0 10px 0
   +border-radius(2px)
   +crazy_img
-
-.fb-share
-  position: absolute
-  right: 50px
-  bottom: 25px
-  +img_replace(30px, 30px, '//files.dosomething.org/files/campaigns/crazy13/share_mini.png')
-  &:hover
-    background-position-y: -30px
+  @media only screen and (max-width: 700px)
+    margin: 0
+    padding: 0
 
 // what is the <p class="buttons"></p> tag doing there?
 

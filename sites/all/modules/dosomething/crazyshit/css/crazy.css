@@ -60,8 +60,33 @@
 /* line 47, ../sass/_buttons.sass */
 .vouch-button {
   margin: 0 25px 25px 50px; }
+@media only screen and (max-width: 700px) {
+  /* line 47, ../sass/_buttons.sass */
+  .vouch-button {
+    margin: 0 25px 15px 15px; } }
 
-/* line 50, ../sass/_buttons.sass */
+/* line 52, ../sass/_buttons.sass */
+.fb-share {
+  position: absolute;
+  right: 50px;
+  bottom: 25px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-image: url("//files.dosomething.org/files/campaigns/crazy13/share_mini.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-indent: -9999em; }
+/* line 57, ../sass/_buttons.sass */
+.fb-share:hover {
+  background-position-y: -30px; }
+@media only screen and (max-width: 700px) {
+  /* line 52, ../sass/_buttons.sass */
+  .fb-share {
+    right: 15px;
+    bottom: 15px; } }
+
+/* line 63, ../sass/_buttons.sass */
 .small_button {
   float: left;
   background: #4b84e6;
@@ -76,17 +101,17 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 60, ../sass/_buttons.sass */
+/* line 73, ../sass/_buttons.sass */
 .small_button:hover {
   text-decoration: none;
   background-color: #6193e9; }
-/* line 63, ../sass/_buttons.sass */
+/* line 76, ../sass/_buttons.sass */
 .small_button .clicked {
   background: #f1f1f1;
   color: #c1c1c1;
   cursor: default;
   text-decoration: none; }
-/* line 68, ../sass/_buttons.sass */
+/* line 81, ../sass/_buttons.sass */
 .small_button span {
   background-color: #dddddd;
   position: relative;
@@ -98,7 +123,7 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 75, ../sass/_buttons.sass */
+/* line 88, ../sass/_buttons.sass */
 .small_button span:after, .small_button span:before {
   right: 100%;
   border: solid transparent;
@@ -107,14 +132,14 @@
   width: 0;
   position: absolute;
   pointer-events: none; }
-/* line 83, ../sass/_buttons.sass */
+/* line 96, ../sass/_buttons.sass */
 .small_button span:after {
   border-color: rgba(136, 183, 213, 0);
   border-right-color: #dddddd;
   border-width: 5px;
   top: 50%;
   margin-top: -5px; }
-/* line 89, ../sass/_buttons.sass */
+/* line 102, ../sass/_buttons.sass */
 .small_button span:before {
   border-color: rgba(194, 225, 245, 0);
   border-width: 6px;
@@ -399,13 +424,26 @@ img.header_logo_mobile {
   width: 500px;
   margin: 2% auto;
   position: relative; }
+@media only screen and (max-width: 700px) {
+  /* line 173, ../sass/crazy.sass */
+  .crazy-submission {
+    width: 430px; } }
+@media only screen and (max-width: 650px) {
+  /* line 173, ../sass/crazy.sass */
+  .crazy-submission {
+    width: 95%; } }
 
-/* line 179, ../sass/crazy.sass */
+/* line 183, ../sass/crazy.sass */
 .fb-picture {
   width: 50px;
   margin: 0 0 0 -75px; }
+@media only screen and (max-width: 700px) {
+  /* line 183, ../sass/crazy.sass */
+  .fb-picture {
+    margin: 0 auto;
+    padding: 10px 0; } }
 
-/* line 183, ../sass/crazy.sass */
+/* line 190, ../sass/crazy.sass */
 .simg {
   margin: -50px 0 0 0;
   padding: 50px 0 10px 0;
@@ -423,28 +461,21 @@ img.header_logo_mobile {
   /* line 16, ../sass/_variables.sass */
   .simg img {
     width: 80%; } }
+@media only screen and (max-width: 700px) {
+  /* line 16, ../sass/_variables.sass */
+  .simg img {
+    width: 92%; } }
+@media only screen and (max-width: 700px) {
+  /* line 190, ../sass/crazy.sass */
+  .simg {
+    margin: 0;
+    padding: 0; } }
 
-/* line 189, ../sass/crazy.sass */
-.fb-share {
-  position: absolute;
-  right: 50px;
-  bottom: 25px;
-  display: block;
-  width: 30px;
-  height: 30px;
-  background-image: url("//files.dosomething.org/files/campaigns/crazy13/share_mini.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  text-indent: -9999em; }
-/* line 194, ../sass/crazy.sass */
-.fb-share:hover {
-  background-position-y: -30px; }
-
-/* line 199, ../sass/crazy.sass */
+/* line 201, ../sass/crazy.sass */
 .dateline, .author {
   display: none; }
 
-/* line 205, ../sass/crazy.sass */
+/* line 207, ../sass/crazy.sass */
 .fb-invite-friends {
   margin: 25px auto 0;
   display: block;
@@ -455,7 +486,7 @@ img.header_logo_mobile {
   background-repeat: no-repeat;
   text-indent: -9999em; }
 
-/* line 215, ../sass/crazy.sass */
+/* line 217, ../sass/crazy.sass */
 .connect-with-facebook {
   text-indent: -119988px;
   overflow: hidden;
@@ -470,12 +501,12 @@ img.header_logo_mobile {
   margin-left: auto;
   margin-right: auto; }
 
-/* line 234, ../sass/crazy.sass */
+/* line 236, ../sass/crazy.sass */
 .submit-start p {
   font-size: 18px;
   line-height: 27px;
   text-transform: uppercase; }
-/* line 238, ../sass/crazy.sass */
+/* line 240, ../sass/crazy.sass */
 .submit-start .pane-content {
   padding: 50px; }
 /* line 16, ../sass/_variables.sass */
@@ -487,15 +518,19 @@ img.header_logo_mobile {
   /* line 16, ../sass/_variables.sass */
   .submit-start img {
     width: 80%; } }
+@media only screen and (max-width: 700px) {
+  /* line 16, ../sass/_variables.sass */
+  .submit-start img {
+    width: 92%; } }
 
-/* line 245, ../sass/crazy.sass */
+/* line 247, ../sass/crazy.sass */
 .node-crazy-shit {
   box-shadow: none; }
-/* line 247, ../sass/crazy.sass */
+/* line 249, ../sass/crazy.sass */
 .node-crazy-shit .webform-client-form {
   padding: 50px; }
 
-/* line 254, ../sass/crazy.sass */
+/* line 256, ../sass/crazy.sass */
 .fakefile, #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   background: #ffcb15;
   padding: 10px;
@@ -511,7 +546,7 @@ img.header_logo_mobile {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 266, ../sass/crazy.sass */
+/* line 268, ../sass/crazy.sass */
 .fakefile {
   position: absolute;
   top: 0px;
@@ -519,7 +554,7 @@ img.header_logo_mobile {
   z-index: 1;
   width: 146px; }
 
-/* line 273, ../sass/crazy.sass */
+/* line 275, ../sass/crazy.sass */
 #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   margin: -10px auto 25px;
   padding: 2px 0 0 0;
@@ -527,7 +562,7 @@ img.header_logo_mobile {
   border: none;
   display: block; }
 
-/* line 280, ../sass/crazy.sass */
+/* line 282, ../sass/crazy.sass */
 .form-file.new {
   position: relative;
   text-align: right;
@@ -538,7 +573,7 @@ img.header_logo_mobile {
   height: 35px;
   cursor: pointer; }
 
-/* line 290, ../sass/crazy.sass */
+/* line 292, ../sass/crazy.sass */
 .submit-start button, .node-crazy-shit #edit-actions .form-submit {
   margin: 0;
   padding: 0;
@@ -557,21 +592,21 @@ img.header_logo_mobile {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 305, ../sass/crazy.sass */
+/* line 307, ../sass/crazy.sass */
 .submit-start button:hover, .node-crazy-shit #edit-actions .form-submit:hover {
   color: white;
   background-color: #6193e9; }
 
-/* line 309, ../sass/crazy.sass */
+/* line 311, ../sass/crazy.sass */
 .submit-start button, #edit-next {
   width: 60px !important; }
 
-/* line 313, ../sass/crazy.sass */
+/* line 315, ../sass/crazy.sass */
 #edit-previous {
   width: 60px !important;
   float: left !important; }
 
-/* line 317, ../sass/crazy.sass */
+/* line 319, ../sass/crazy.sass */
 #edit-submit {
   width: 80px;
   float: right !important; }
