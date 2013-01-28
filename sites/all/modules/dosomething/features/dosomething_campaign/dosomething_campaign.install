@@ -3,7 +3,7 @@
 /**
  * Remove deprecated fields from the campaign content type
  */
-function dosomething_campaign_update_7000() {
+function dosomething_campaign_update_7001() {
   $fields = array(
     'field_campaign_logo', 'field_campain_logo_thumbnail', 'field_campaign_promo_image',
     'field_campaign_link', 'field_campaign_headline', 'field_campaign_background_color',
@@ -14,6 +14,12 @@ function dosomething_campaign_update_7000() {
 
   foreach ($fields as $field_name) {
     field_delete_field($field_name);
+  }
+
+  $instances = field_info_instances('node','campaign');
+
+  if (isset($instances['body'])) {
+  	field_delete_instance($instances['body']);
   }
 
   field_purge_batch(count($fields) + 5);
