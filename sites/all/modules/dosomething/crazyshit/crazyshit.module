@@ -642,7 +642,6 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	}
 
 	$ids = crazy_fb_get_multi_fbids($f);
-			
 	if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
 	  // Create a database condition class to narrow viewable posts down to just your friends.
 	  $s = new DatabaseCondition();
@@ -669,7 +668,8 @@ function crazyshit_views_query_alter(&$view, &$query) {
  *		An array of Drupal user ids.
  */
 function crazy_fb_get_multi_fbids(Array $users) {
-  $result = db_query("SELECT uid, 1 FROM {fboauth_users} WHERE fbid IN (:fbid)", array(':fbid' => implode(',', $users)));
+  $result = db_query("SELECT uid, 1 FROM {fboauth_users} WHERE fbid IN (" . implode(',', $users) . ")");
+global $user;
   $uids = $result->fetchAllKeyed();
   
   return array_keys($uids);
