@@ -23,7 +23,9 @@ function dosomething_campaign_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['access']['type'] = 'none';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -41,13 +43,13 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'gallerifficfields';
   $handler->display->display_options['row_options']['slide_field'] = 'field_webform_pictures';
   $handler->display->display_options['row_options']['thumbnail_field'] = 'field_webform_pictures_1';
-  /* Relationship: Group membership: Node group membership */
+  /* Relationship: OG membership: OG membership from Node */
   $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['label'] = 'campagn group';
   $handler->display->display_options['relationships']['og_membership_rel']['required'] = 1;
-  /* Relationship: OG membership: Group gid */
+  /* Relationship: OG membership: OG group gid */
   $handler->display->display_options['relationships']['group']['id'] = 'group';
   $handler->display->display_options['relationships']['group']['table'] = 'og_membership';
   $handler->display->display_options['relationships']['group']['field'] = 'group';
@@ -426,13 +428,13 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Group membership: Node group membership */
+  /* Relationship: OG membership: OG membership from Node */
   $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['label'] = 'campagn group';
   $handler->display->display_options['relationships']['og_membership_rel']['required'] = 1;
-  /* Relationship: OG membership: Group gid */
+  /* Relationship: OG membership: OG group gid */
   $handler->display->display_options['relationships']['group']['id'] = 'group';
   $handler->display->display_options['relationships']['group']['table'] = 'og_membership';
   $handler->display->display_options['relationships']['group']['field'] = 'group';
@@ -1347,6 +1349,10 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Join A Campaign';
   $handler->display->display_options['display_description'] = 'Displays a list of current campaigns';
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -1356,8 +1362,9 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = '<p>DoSomething.org spearheads national campaigns that have real impact. Choose among the following calls to action.</p>
-<h2>New Campaigns</h2>';
+  $handler->display->display_options['header']['area']['content'] = '<p>DoSomething.org spearheads national campaigns so young people can take action on things they care about.  Now, it\'s YOUR turn.  Choose a campaign and make a difference.  Because, let\'s be honest: apathy sucks.</p>
+<h2>Current Campaigns</h2>
+<p>These campaigns are LIVE.  Don\'t wait: pick one and get started today.  As in, now.  At this very moment.  Immediately.  Pronto.  Stat.  ASAP.  Or even sooner.</p>';
   $handler->display->display_options['header']['area']['format'] = '3';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['footer'] = FALSE;
@@ -2104,6 +2111,10 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Future Campaigns';
   $handler->display->display_options['display_description'] = 'Displays a list of future campaigns';
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '6';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -2135,7 +2146,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = 'There are no future campaigns at the moment.';
+  $handler->display->display_options['empty']['area']['content'] = 'Check back soon for our upcoming campaigns.  They\'ll be up shortly, we promise.  Until then, we\'re just playing hard to get.';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -2390,6 +2401,10 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Past Campaigns';
   $handler->display->display_options['display_description'] = 'Displays a list of past campaigns.';
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '518400';
+  $handler->display->display_options['cache']['output_lifespan'] = '518400';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '12';
