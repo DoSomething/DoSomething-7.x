@@ -154,6 +154,21 @@ function dosomething_scholarship_rec_theme($existing, $type, $theme, $path) {
   return $return;
 }
 
+/**
+ * Implements hook_webform_select_options_info().
+ */
+function dosomething_scholarship_rec_webform_select_options_info() {
+  $items = array();
+
+  $items['user_projects'] = array(
+    'title' => t('User\'s Projects'),
+    'options callback' => 'dosomething_scholarship_rec_user_projects',
+    'file' => 'dosomething_scholarship_rec.options.inc',
+  );
+
+  return $items;
+}
+
 function dosomething_scholarship_rec_email_types() {
   return array(
     'rec_request_applicant',
