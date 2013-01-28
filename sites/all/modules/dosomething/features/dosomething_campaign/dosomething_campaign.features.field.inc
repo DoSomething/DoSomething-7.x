@@ -2092,6 +2092,7 @@ function dosomething_campaign_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'campaign_content_page',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
