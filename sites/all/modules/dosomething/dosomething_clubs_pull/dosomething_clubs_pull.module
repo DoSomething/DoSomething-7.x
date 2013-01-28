@@ -1,6 +1,6 @@
 <?php
 
-define('CLUB_PULL_LIMIT', 500);
+define('CLUB_PULL_LIMIT', 250);
 define('DEBUG', 1);
 
 function dosomething_clubs_pull_menu() {
