@@ -354,26 +354,37 @@
 /* line 169, ../sass/crazy-about.sass */
 #video .section {
   width: 600px; }
+@media only screen and (max-width: 630px) {
+  /* line 169, ../sass/crazy-about.sass */
+  #video .section {
+    width: 100%; } }
 
-/* line 172, ../sass/crazy-about.sass */
+/* line 174, ../sass/crazy-about.sass */
 .video_wrapper {
   position: relative;
   padding-bottom: 55%;
-  padding-top: 5%;
+  padding-top: 25%;
   height: 0; }
-/* line 177, ../sass/crazy-about.sass */
+@media only screen and (max-width: 630px) {
+  /* line 174, ../sass/crazy-about.sass */
+  .video_wrapper {
+    margin: 1% 0; } }
+/* line 181, ../sass/crazy-about.sass */
 .video_wrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
-  width: 79.8;
   height: 91%; }
+@media only screen and (max-width: 630px) {
+  /* line 181, ../sass/crazy-about.sass */
+  .video_wrapper iframe {
+    height: 100%; } }
 
-/* line 188, ../sass/crazy-about.sass */
+/* line 192, ../sass/crazy-about.sass */
 #tips, #scholarship, #video {
   padding: 2% 0; }
 
-/* line 191, ../sass/crazy-about.sass */
+/* line 195, ../sass/crazy-about.sass */
 .section {
   margin: 0 auto;
   overflow: hidden; }

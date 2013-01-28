@@ -168,19 +168,23 @@
 
 #video .section
   width: 600px
+  @media only screen and (max-width: 630px)
+    width: 100%
 
 .video_wrapper
   position: relative
   padding-bottom: 55%
-  padding-top: 5%
+  padding-top: 25%
   height: 0
+  @media only screen and (max-width: 630px)
+    margin: 1% 0
   iframe
     position: absolute
     top: 0
     left: 0
-    width: 79.8
     height: 91%
-
+    @media only screen and (max-width: 630px)
+      height: 100%
 
 // GENERAL
 // -------
