@@ -7,17 +7,23 @@
  */
 class ConductorActivityMLKProcessBeta extends ConductorActivity {
 
-  public $alpha_campaign_id = 107981;
-  public $game_id = 1;
-  public $type_override = 'sms_game';
+  // Mobile Commons campaign ID to place the Alpha into
+  private $alpha_campaign_id = 107981;
 
-  public function option_definition() {
-    $options = parent::option_definition();
-    $options['accept_responses'] = array('default' => array());
-    $options['beta_message_reject'] = array('default' => '');
-    $options['beta_message_accept'] = array('default' => '');
-    return $options;
-  }
+  // Identifier for the MLK game
+  private $game_id = 1;
+
+  // Type of entry to submit to the sms_flow_records table
+  private $type_override = 'sms_game';
+
+  // Array of strings denoting an acceptance response
+  protected $accept_responses = array();
+
+  // Message to send if user accepted
+  protected $beta_message_accept = '';
+
+  // Message to send if user rejected
+  protected $beta_message_reject = '';
 
   public function run($workflow) {
     $state = $this->getState();
