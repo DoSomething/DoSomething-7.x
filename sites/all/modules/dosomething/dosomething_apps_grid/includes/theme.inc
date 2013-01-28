@@ -53,7 +53,13 @@ function template_preprocess_dosomething_apps_grid(&$variables) {
       // Add the link with the text 'Go'.
       else {
         // The URL might have been prepared for HTML rendering, parse it.
-        $url_options = drupal_parse_url(str_replace('&amp;', '&', $field['#markup']));
+        $markup = str_replace('&amp;', '&', $field['#markup']);
+
+        // Remove leading forward slash if present
+        $markup = ltrim($markup, '/');
+
+        $url_options = drupal_parse_url($markup);
+      
         $element['link'] = array(
           '#prefix' => $field['#prefix'],
           '#suffix' => $field['#suffix'],
