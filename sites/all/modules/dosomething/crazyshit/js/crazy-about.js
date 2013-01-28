@@ -24,7 +24,8 @@
         "Before opening a checking account, consider the services you need. Seek a free checking account that doesn't require a minimum balance or charge you for each check written.",
         "Don't bounce your checks. Overdrawing your account will cause you to rack up big fees and further hurt a delicate financial situation.",
         "Use your own bank's ATM. Many banks charge a fee to use an ATM that doesn't belong to your bank.",
-        "Review your bank statement every month. It will help you catch mistakes and keep track of any fees."
+        "Review your bank statement every month. It will help you catch mistakes and keep track of any fees.",
+        "Last one!"
       ];
 
       credit_debit = [
@@ -42,7 +43,8 @@
         "Don't go over your credit card limit, as you will incur additional fees.",
         "Establish a good credit score by paying all bills and loans on time. Higher credit scores will help you secure better interest rates and card perks.",
         "Check your monthly credit card statement at the middle and end of the month. This will help you stay on top of unexpected charges or fees.",
-        "Don't use a credit card as a way to borrow money. There are better options with less expensive interest rates, such as a small loan from a credit union."
+        "Don't use a credit card as a way to borrow money. There are better options with less expensive interest rates, such as a small loan from a credit union.",
+        "Last one!"
       ];
 
       school_loans = [
@@ -60,7 +62,8 @@
         "What's in your best interest? A \"fixed\" interest rate will not change. But a \"variable\" interest rate can be raised over time &emdash; often multiple times during the life of a loan. Explore your options before committing to a loan.",
         "Planning to save on interest charges by paying the loan off early? Before you borrow, determine if there are early repayment penalties. Some tricky lenders charge a fee for paying in advance, so they can recoup the loss of interest.",
         "If your lender offers a discount on fees or interest rates for your federal loan, find out if the discount will remain if your loan is sold. This can happen many times in the life of your loan, so you want to be sure you retain these benefits in the long-term.",
-        "If you are offered a good rate on a private loan, get the full offer in writing along with any terms or restrictions, then reach out to other lenders to see if they will beat the rate or offer."
+        "If you are offered a good rate on a private loan, get the full offer in writing along with any terms or restrictions, then reach out to other lenders to see if they will beat the rate or offer.",
+        "Last one!"
       ];
       
       // create containing array
@@ -95,7 +98,7 @@
           }
         }
 
-        $('.tip_wrapper p').text(current_array[new_num - 1]);
+        $('.tip_wrapper p').text(current_array[new_num]);
         $('#tip_no').text(new_num);
 
         e.preventDefault();
@@ -128,7 +131,6 @@
             }
             else { 
               add_remove_flat(class_name);
-              console.log("add_remove() was called");
             }
           }
         });            
@@ -141,15 +143,15 @@
       switch_active('.tip_subject', 'active_subject');
       switch_active('.crazy-sub-menu li a', 'active', true);
 
-        // animate scroll to fragment identifier
-        function smooth_scroll(targets) {
-          $(targets).click(function(event) {
-            $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-            event.preventDefault();
-          });
-        }
+      // animate scroll to fragment identifier
+      function smooth_scroll(targets) {
+        $(targets).click(function(event) {
+          $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+          event.preventDefault();
+        });
+      }
 
-        smooth_scroll('.crazy-sub-menu li a');
+      smooth_scroll('.crazy-sub-menu li a');
 
 		},
 	};
