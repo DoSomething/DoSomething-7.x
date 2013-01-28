@@ -5,6 +5,10 @@
 // ABOUT PAGE
 // ----------
 
+@media only screen and (max-width: 650px)
+  .crazy-sub-menu-wrapper /* hide in-page navigation menu on smaller devices */
+    display: none
+
 // TIPS
 // ----
 
@@ -20,14 +24,15 @@
   float: left
   @media only screen and (max-width: 950px)
     width: 100%
+    overflow: hidden
 
 .tip_subject /* subject buttons */
   width: 120px
   height: 50px
+  line-height: 50px
   display: block
   background: $off_black
   color: #fff !important
-  line-height: 50px
   text-transform: uppercase
   text-align: center
   padding: 0 10px
@@ -37,9 +42,31 @@
     text-decoration: none
     background-color: lighten($off_black, 5)
   @media only screen and (max-width: 950px)
-    margin: 0 0 4% 6%
+    margin: 0 0 2% 0
     float: left
+    height: 40px
+    line-height: 40px
 
+@media only screen and (max-width: 950px)
+  #tip0
+    float: left    
+
+  #tip1
+    margin: 0 20%
+  
+  #tip2
+    float: right
+  
+#tip1
+  @media only screen and (max-width: 650px)
+    margin: 0
+    position: absolute
+    left: 40%
+  @media only screen and (max-width: 525px)
+    left: 38%
+  @media only screen and (max-width: 450px)
+    left: 35%
+  
 .active_subject 
   background-color: $blue_button
   &:hover
@@ -47,7 +74,7 @@
 
 .tip_wrapper
   width: 600px
-  height: 460px
+  height: auto
   float: left
   background-color: #fff
   +border-radius(4px)
@@ -62,6 +89,10 @@
     line-height: 45px
     padding: 5px 0 0 0
     margin: 5% 0
+    @media only screen and (max-width: 630px)
+      font-size: 25px
+      line-height: 45px
+      margin: 2% 0
 
 .tip_center
   background-image: url(//files.dosomething.org/files/campaigns/crazy13/tip_bg.png)
@@ -69,12 +100,20 @@
   background-size: 630px
   background-position-x: -15px
   margin: 0 0 2% 0
+  @media only screen and (max-width: 630px)
+    background-image: none
   p
     width: 330px
     height: 270px
     margin: 0 auto
     font-size: 20px
     line-height: 30px
+    @media only screen and (max-width: 630px)
+      font-size: 16px
+      line-height: 26px
+    @media only screen and (max-width: 450px)
+      width: 94%
+      height: 180px
 
 .tip_left, .tip_right
   float: left
@@ -99,6 +138,10 @@
   background-color: #fff
   .section
     width: 35%
+    @media only screen and (max-width: 750px)
+      width: 50%
+    @media only screen and (max-width: 630px)
+      width: 94%
   h1
     font-size: 24px
     font-weight: 500
