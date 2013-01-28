@@ -98,6 +98,40 @@
           }
         }
 
+        // some CSS to hide and show [prev] and [next]
+        var ghost_button = {
+          'background-color' : '#fff',
+          'cursor' : 'default'
+        }
+
+        var blue_button = {
+          'background-color' : '#4b84e6'
+        }
+
+        // cache variables
+        var $tip_prev = $('#tip_prev');
+        var $tip_next = $('#tip_next');
+
+        // hide [prev] if no previous tips exist
+        if (new_num == 1) {
+          $tip_prev.css(ghost_button);
+        }
+
+        // show [prev] if previously hidden
+        if (new_num == 2) {
+          $tip_prev.css(blue_button);
+        }
+
+        // hide [next] if no more tips exist
+        if (new_num == 15) {
+          $tip_next.css(ghost_button);
+        }
+
+        // show [next] if previously hidden
+        if (new_num == 14) {
+          $tip_next.css(blue_button);
+        }
+
         $('.tip_wrapper p').text(current_array[new_num]);
         $('#tip_no').text(new_num);
 
