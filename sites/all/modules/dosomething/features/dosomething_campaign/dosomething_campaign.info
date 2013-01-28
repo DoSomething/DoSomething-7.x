@@ -40,7 +40,6 @@ features[field][] = node-campaign-group_group
 features[field][] = node-campaign_content_page-body
 features[field][] = node-campaign_content_page-group_audience
 features[field_group][] = group_campaign_list|node|campaign|form
-features[field_group][] = group_social|node|campaign|form
 features[node][] = campaign
 features[node][] = campaign_content_page
 features[page_manager_pages][] = cause_act_now
