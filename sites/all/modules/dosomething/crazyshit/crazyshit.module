@@ -644,11 +644,19 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	$ids = crazy_fb_get_multi_fbids($f);
 			
 	if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
+	  // Create a database condition class to narrow viewable posts down to just your friends.
+	  $s = new DatabaseCondition();
+	  $s->condition('webform_submissions.uid', $ids);
+	  $c = &$s->conditions();
+	  $c['#conjunction'] = 'OR';
+
+          // remove the view's filter criteria to be replaced by the new conditional.
+          unset($query->where[1]['conditions'][1]);
+
+	  // Add the conditional to the query.
 	  $query->where[1]['conditions'][] = array(
-	  	 'field' => 'webform_submissions.uid',
-	   	 'value' => $ids,
-		 'operator' => 'in',
- 	  );
+		'field' => $s,
+	  );
 	}
   }
  }
