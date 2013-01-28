@@ -55,7 +55,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 1,
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -83,7 +83,85 @@ function dosomething_scholarship_rec_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => 31,
+        'weight' => '31',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-scholarship_application_with_rec-field_scholar_rec_enabled_fields'.
+  $fields['node-scholarship_application_with_rec-field_scholar_rec_enabled_fields'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_scholar_rec_enabled_fields',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'field_webform_school_reference' => 'School',
+          'field_webform_first_name' => 'First Name',
+          'field_webform_last_name' => 'Last Name',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'scholarship_application_with_rec',
+      'default_value' => array(
+        0 => array(
+          'value' => 'field_webform_school_reference',
+        ),
+        1 => array(
+          'value' => 'field_webform_first_name',
+        ),
+        2 => array(
+          'value' => 'field_webform_last_name',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_scholar_rec_enabled_fields',
+      'label' => 'Enabled fields',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '32',
       ),
     ),
   );
@@ -124,6 +202,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'scholarship_application_with_rec',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -132,7 +211,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           'module' => 'og',
           'settings' => array(),
           'type' => 'og_list_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -169,7 +248,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'group_audience_autocomplete',
-        'weight' => 0,
+        'weight' => '0',
       ),
       'widget_type' => 'group_audience',
     ),
@@ -419,6 +498,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'scholarship_recommendation',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -714,6 +794,7 @@ function dosomething_scholarship_rec_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'scholarship_recommendation_reque',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -928,7 +1009,7 @@ function dosomething_scholarship_rec_field_default_fields() {
           ),
           'sort' => array(
             'direction' => 'ASC',
-            'field' => '',
+            'field' => 'none',
             'property' => 'sid',
             'type' => 'none',
           ),
@@ -1281,6 +1362,7 @@ function dosomething_scholarship_rec_field_default_fields() {
   t('Body');
   t('Campaign');
   t('Email address');
+  t('Enabled fields');
   t('First Name');
   t('Last Name');
   t('Please stay away from school email addresses and emails that end with @sbcglobal.net or @att.net. Our system doesn\'t work with them. We suggest asking your recommender for an alternate email if that\'s the one you have.');
