@@ -29,13 +29,33 @@ function dosomething_scholarship_rec_menu() {
 /**
  * Implements hook_form_alter().
  */
-function dosomething_scholarship_rec_form_alter($form, &$form_state, $form_id) {
+function dosomething_scholarship_rec_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity'])) {
     $bundle = &$form_state['webform_entity']['bundle'];
 
     $entity_form = &$form['submitted'];
+
+    // application
     if ($bundle == 'scholarship_application_with_rec') {
-      // application
+      $magic_fields = 'field_scholar_rec_enabled_fields';
+      $node = $form['#node'];
+
+      $enabled_fields = array();
+      if (isset($node->{$magic_fields})) {
+        if ($items = field_get_items('node', $node, $magic_fields)) {
+          foreach ($items as $item) {
+            foreach ($item as $field) {
+              $enabled_fields[] = $field;
+            }
+          }
+        }
+      }
+      $field_info = field_info_field($magic_fields);
+      foreach ($field_info['settings']['allowed_values'] as $field_name => $label) {
+        if (isset($entity_form[$field_name]) && !in_array($field_name, $enabled_fields)) {
+          $entity_form[$field_name]['#access'] = FALSE;
+        }
+      }
     }
     else if ($bundle == 'scholarship_recommendation') {
       // recommendation
