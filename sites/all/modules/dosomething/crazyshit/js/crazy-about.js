@@ -61,7 +61,6 @@
         "Planning to save on interest charges by paying the loan off early? Before you borrow, determine if there are early repayment penalties. Some tricky lenders charge a fee for paying in advance, so they can recoup the loss of interest.",
         "If your lender offers a discount on fees or interest rates for your federal loan, find out if the discount will remain if your loan is sold. This can happen many times in the life of your loan, so you want to be sure you retain these benefits in the long-term.",
         "If you are offered a good rate on a private loan, get the full offer in writing along with any terms or restrictions, then reach out to other lenders to see if they will beat the rate or offer."
-        // "Pick the right repayment plan â as the cheapest option isn't always the best option. You can lower your payments by extending the repayment period beyond 10 years, but you will pay a lot more in interest over the life of your loan."
       ];
       
       // create containing array
@@ -102,65 +101,45 @@
         e.preventDefault();
       });
 
-//      $('.crazy-sub-menu li a').click(function() {
-//        var $this = $(this);
-//        if ($this.hasClass('active')) {
-//          $this.removeClass();
-//        }
-//        else {
-//          $this
-//            .addClass('active')
-//            .parent()
-//            .siblings('li')
-//            .children()
-//            .removeClass('active');
-//        }
-//      });
- 
-        // active class hack on submenu
-        $('.crazy-sub-menu .1 a, .crazy-sub-menu .2 a').removeClass('active');
+      function add_remove_flat(class_name) {
+        $this
+          .addClass('justClicked')
+          .parent()
+          .children()
+          .removeClass(class_name);
+        $('.justClicked').removeClass('justClicked').addClass(class_name);
+      }
 
-        function add_remove(class_name) {
-          $(this)
-            .addClass(class_name)
-            .siblings()
-            .removeClass(class_name);
-        }
+      function add_remove_nested(class_name) { 
+        $this
+          .addClass(class_name)
+          .parent()
+          .siblings()
+          .children()
+          .removeClass(class_name);
+      }
 
-        function add_remove_parent(class_name, element) { 
-          $(this)
-            .addClass(class_name)
-            .parent()
-            .siblings(element)
-            .children()
-            .removeClass(class_name);
-        }
-
-        function switch_active(target, class_name, element) {
-          $(target).click(function() {
-            console.log("Target has been clicked.");
-            console.log(target);
-            // if ($(this).hasClass(class_name)) { 
-            //   $(this).removeClass(class_name);
-            //   console.log("Target is active.");
-            // }
-            if ($(this).not(class_name)) { 
-              console.log("Target is not active.");          
-              if(element) { 
-                console.log(element);                
-                add_remove_parent();
-                console.log("add_remove_parent() was called");
-              }
-              else { 
-                add_remove();
-                console.log("add_remove() was called");
-              }
+      function switch_active(target, class_name, is_nested) {
+        $(target).click(function() {
+          $this = $(this);
+          if ($this.not(class_name)) { 
+            if(is_nested) { 
+              add_remove_nested(class_name);
             }
-          });            
-        }
+            else { 
+              add_remove_flat(class_name);
+              console.log("add_remove() was called");
+            }
+          }
+        });            
+      }
 
-        switch_active('.tip_subject', 'active_subject');
-        switch_active('.crazy-sub-menu li a', 'active', 'a');
+      // active class hack on submenu
+      $('.crazy-sub-menu .1 a, .crazy-sub-menu .2 a').removeClass('active');
+
+      // active class switching on /about subject menu and /about sub-menu
+      switch_active('.tip_subject', 'active_subject');
+      switch_active('.crazy-sub-menu li a', 'active', true);
 
         // animate scroll to fragment identifier
         function smooth_scroll(targets) {
