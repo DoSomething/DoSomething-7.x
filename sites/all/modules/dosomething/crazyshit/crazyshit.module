@@ -758,7 +758,13 @@ function crazyshit_add_text_to_image($form, &$form_state) {
  */
 function crazyshit_redirect_to_friends($form, &$form_state) {
   $sid = $form_state['values']['details']['sid'];
-  $_SESSION['from_creation'] = $sid;
+  $image = file_create_url('public://' . $form_state['file_path']);
+  $s = array(
+  	'sid' => $sid,
+  	'image' => $image,
+  );
+
+  $_SESSION['from_creation'] = $s;
   drupal_goto('crazy/friends/' . $sid);
 }
 
@@ -872,10 +878,16 @@ function crazyshit_init() {
 	  ->execute();
 	$ns = $n->fetchAll();
 	$notifications = reset($ns);
+	$pre = '';
 	if (!empty($notifications)) {
 	   if ($notifications->from_fid == $notifications->fid) {
-	      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true;';
+	      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true; ';
 	   }
+
+	   $mp = "var my_post = { 'sid': " . $notifications->sid . ", 'image': '" . file_create_url($submission->field_crazy_crazy_picture[LANGUAGE_NONE][0]['uri']) . "' }; ";
+	   drupal_add_js($mp, 'inline');
+
+	   $submission = array_shift(entity_load('webform_submission_entity', array($notifications->sid)));
 
 	   drupal_add_js("jQuery(document).ready(function() { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); }, 1500);", 'inline');
 	}
@@ -887,15 +899,18 @@ function crazyshit_init() {
   }
 
   // If a user just created a new post, show the "share this" popup.
-  if (isset($_SESSION['from_creation']) && intval($_SESSION['from_creation']) > 0) {
+  if (isset($_SESSION['from_creation']) && !empty($_SESSION['from_creation'])) {
   	// The SID is $_SESSION['from_creation']
-  	$sid = intval($_SESSION['from_creation']);
+  	$sid = intval($_SESSION['from_creation']['sid']);
+  	$image = strval($_SESSION['from_creation']['image']);
+
+  	$p = json_encode($_SESSION['from_creation']);
 
   	// Remove $_SESSION['from_creation']
   	unset($_SESSION['from_creation']);
 
   	// Show the popup
-  	drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('share', " . $sid . ", true); });", 'inline');
+  	drupal_add_js("jQuery(document).ready(function() { var my_post = " . $p . "; jQuery.fn.dsCrazyPopup('share', " . $sid . ", true); });", 'inline');
   }
 
   // Ignore the rest of this if we're not looking at a page that requires authentication.
