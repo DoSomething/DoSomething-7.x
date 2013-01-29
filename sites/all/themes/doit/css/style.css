@@ -383,7 +383,22 @@ input[type=time],
 input[type=number],
 input[type=range],
 input[type=search],
-input[type=color], select.form-select, iframe {
+input[type=color],
+textarea[type=text],
+textarea[type=password],
+textarea[type=email],
+textarea[type=url],
+textarea[type=tel],
+textarea[type=date],
+textarea[type=datetime],
+textarea[type=datetime-local],
+textarea[type=month],
+textarea[type=week],
+textarea[type=time],
+textarea[type=number],
+textarea[type=range],
+textarea[type=search],
+textarea[type=color], .form-textarea, select.form-select, iframe {
   max-width: 100%;
 }
 
@@ -2740,7 +2755,22 @@ input[type=time],
 input[type=number],
 input[type=range],
 input[type=search],
-input[type=color] {
+input[type=color],
+textarea[type=text],
+textarea[type=password],
+textarea[type=email],
+textarea[type=url],
+textarea[type=tel],
+textarea[type=date],
+textarea[type=datetime],
+textarea[type=datetime-local],
+textarea[type=month],
+textarea[type=week],
+textarea[type=time],
+textarea[type=number],
+textarea[type=range],
+textarea[type=search],
+textarea[type=color], .form-textarea {
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
   font-size: 16px;
   border: 1px solid #cccccc;
@@ -2748,12 +2778,12 @@ input[type=color] {
   padding-left: 5px;
 }
 
-.textinput, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color] {
+.textinput, input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=week], input[type=time], input[type=number], input[type=range], input[type=search], input[type=color], textarea[type=text], textarea[type=password], textarea[type=email], textarea[type=url], textarea[type=tel], textarea[type=date], textarea[type=datetime], textarea[type=datetime-local], textarea[type=month], textarea[type=week], textarea[type=time], textarea[type=number], textarea[type=range], textarea[type=search], textarea[type=color] {
   height: 2.2em;
   line-height: 2.2em;
 }
 
-.page-node-edit .textinput, .page-node-edit input[type=text], .page-node-edit input[type=password], .page-node-edit input[type=email], .page-node-edit input[type=url], .page-node-edit input[type=tel], .page-node-edit input[type=date], .page-node-edit input[type=datetime], .page-node-edit input[type=datetime-local], .page-node-edit input[type=month], .page-node-edit input[type=week], .page-node-edit input[type=time], .page-node-edit input[type=number], .page-node-edit input[type=range], .page-node-edit input[type=search], .page-node-edit input[type=color] {
+.page-node-edit .textinput, .page-node-edit input[type=text], .page-node-edit input[type=password], .page-node-edit input[type=email], .page-node-edit input[type=url], .page-node-edit input[type=tel], .page-node-edit input[type=date], .page-node-edit input[type=datetime], .page-node-edit input[type=datetime-local], .page-node-edit input[type=month], .page-node-edit input[type=week], .page-node-edit input[type=time], .page-node-edit input[type=number], .page-node-edit input[type=range], .page-node-edit input[type=search], .page-node-edit input[type=color], .page-node-edit textarea[type=text], .page-node-edit textarea[type=password], .page-node-edit textarea[type=email], .page-node-edit textarea[type=url], .page-node-edit textarea[type=tel], .page-node-edit textarea[type=date], .page-node-edit textarea[type=datetime], .page-node-edit textarea[type=datetime-local], .page-node-edit textarea[type=month], .page-node-edit textarea[type=week], .page-node-edit textarea[type=time], .page-node-edit textarea[type=number], .page-node-edit textarea[type=range], .page-node-edit textarea[type=search], .page-node-edit textarea[type=color] {
   line-height: normal;
   font-size: 12px;
 }
@@ -2774,7 +2804,7 @@ html.js fieldset.collapsed {
   height: 3em;
 }
 
-input {
+input, textarea {
   border: 1px solid #cccccc;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -2783,7 +2813,7 @@ input {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-input:focus {
+input:focus, textarea:focus {
   border: 2px solid #aaaaaa;
 }
 
