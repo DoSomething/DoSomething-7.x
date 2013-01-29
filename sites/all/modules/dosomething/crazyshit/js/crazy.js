@@ -65,21 +65,27 @@
 
 	    $('.bs-button a.button-submit').click(function() {
 	       if ((!Drupal.behaviors.fb.is_authed() && Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) || !Drupal.behaviors.dsCrazyScripts.logged_in) {
-		  $.fn.dsCrazyPopup('login', 0, 0, document.location.href);
-		  return false;
+			  $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
+			  return false;
 	       }
 
 	       if ($(this).hasClass('clicked')) {
-		  return false;
+			  return false;
 	       }
+
 
 	       var elm = $(this);
 	       var na = $(this).hasClass('no-alert');
 
+	       if ($(this).parent().parent().hasClass('by-me')) {
+	          $.fn.dsCrazyPopup('bull', elm.attr('rel'), { 'you': true });
+	          na = true;
+	       }
+
 		$('.s-' + elm.attr('rel')).find('.vouch-button a').addClass('clicked');
 	       elm.addClass('clicked');
 	       var c = parseInt(elm.parent().find('span').text());
-		elm.parent().find('span').text(++c);
+		   elm.parent().find('span').text(++c);
 	       $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-bullshit', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.crazy.origin }, function(response) {
 	      	  if (response.status == 1) {
 	      		elm.parent().find('span').text(response.count);
@@ -114,7 +120,7 @@
 
 	    $('.vouch-button a.button-submit').click(function() {
                if ((!Drupal.behaviors.fb.is_authed() && Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) || !Drupal.behaviors.dsCrazyScripts.logged_in) {
-                  $.fn.dsCrazyPopup('login', 0, 0, document.location.href);
+                  $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
                   return false;
                }
 
@@ -163,7 +169,7 @@
 
 	 tip_shares: function(settings) {
 		if (settings.crazy.share_count == 2) {
-			$.fn.dsCrazyPopup('tip', '0');
+			$.fn.dsCrazyPopup('tip', 0);
 		}
 	 },
 
@@ -188,23 +194,24 @@
 	 },
 
 	 fb_status: function() {
-Drupal.behaviors.fb.gate({
-   gate_call_fb: 2,
-   gate_app_id: Drupal.settings.crazy.fb_app_id
-    }, function(response) {  });
-   },
+		 Drupal.behaviors.fb.gate({
+		   gate_call_fb: 2,
+		   gate_app_id: Drupal.settings.crazy.fb_app_id
+		 }, function(response) {  });
+	 },
   };
 
   $.fn.extend({
-    dsCrazyPopup: function (name, sid, reload, goto) {
-	  if (reload) {
+    dsCrazyPopup: function (name, sid, settings) {
+      if (!settings) { settings = {}; }
+	  if (settings.reload) {
 	     jQuery('.s-' + sid + '-picture img').attr('src', jQuery('.s-' + sid + '-picture img').attr('src') + '?' + new Date().getTime());
 	  }
 
 	// Ignore if the popup is already open.
 	if ($('.' + name + '-crazy-popup').length > 0) return;
 
-      $.post('/cstemplate/' + name + '/' + sid, { 'goto': goto, 'you': Drupal.behaviors.dsCrazyScripts.notify_yourself }, function(response) {
+      $.post('/cstemplate/' + name + '/' + sid, { 'goto': settings.goto, 'you': (Drupal.behaviors.dsCrazyScripts.notify_yourself || settings.you) }, function(response) {
       	  var t = $('<div></div>');
       	  t.html(response);
 
@@ -233,19 +240,21 @@ function fb_invite_friends_post(sid, reload) {
 	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
 
 	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function(res) {
-
 		if (!(typeof res === 'object' && res.perms == 'publish_stream')) {
 		   return false;
 		}
 
 		var img = '';
-		if (typeof my_post === 'object') {
+		if (typeof my_post === 'object' && my_post.sid == sid) {
 			if (my_post.image) {
 				img = my_post.image;
 			}
 			else {
 				img = jQuery('.s-' + sid + '-picture img').attr('data-original');
 			}
+		}
+		else {
+			img = jQuery('.s-' + sid + '-picture img').attr('data-original');
 		}
 
 		Drupal.behaviors.fb.feed({

@@ -540,8 +540,10 @@ function crazyshit_page_alter(&$page) {
  *	Implements hook_views_pre_render()
  */
 function crazyshit_views_post_render(&$view, &$output, &$cache) {
+   global $user;
    // Allows for lazy loading of images...
    $output = preg_replace_callback('#src="([^\"]+)"\s+#i', 'crazyshit_add_lazy_class', $output);
+   $output = str_replace(' a-' . $user->uid, ' a-' . $user->uid . ' by-me', $output);
 }
 
 /**
@@ -909,7 +911,7 @@ function crazyshit_init() {
   	unset($_SESSION['from_creation']);
 
   	// Show the popup
-  	drupal_add_js("jQuery(document).ready(function() { var my_post = " . $p . "; jQuery.fn.dsCrazyPopup('share', " . $sid . ", true); });", 'inline');
+  	drupal_add_js("jQuery(document).ready(function() { var my_post = " . $p . "; jQuery.fn.dsCrazyPopup('share', " . $sid . ", {'reload': true }); });", 'inline');
   }
 
   // Ignore the rest of this if we're not looking at a page that requires authentication.

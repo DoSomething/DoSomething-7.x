@@ -12,31 +12,31 @@ function crazyshit_schema() {
     'fields' => array(
       'sid' => array(
         'description' => 'the group id from og.',
-        'type' => 'int',
+        'type' => 'bigint',
         'unsigned' => true,
         'not null' => true,
       ),
       'uid' => array(
         'description' => 'The Drupal User ID of the person receiving the notification.',
-        'type' => 'int',
+        'type' => 'bigint',
         'unsigned' => TRUE,
         'not null' => true,
       ),
       'fid' => array(
-        'description' => 'The Facebook ID of th eperson receiving the notification.',
-        'type' => 'int',
+        'description' => 'The Facebook ID of the person receiving the notification.',
+        'type' => 'bigint',
         'unsigned' => true,
         'not null' => true,
       ),
       'from_uid' => array(
         'description' => 'The Drupal User ID of the person sending the notification.',
-        'type' => 'int',
+        'type' => 'bigint',
         'unsigned' => TRUE,
         'not null' => true,
       ),
       'from_fid' => array(
-        'description' => 'The Facebook ID of th eperson sending the notification.',
-        'type' => 'int',
+        'description' => 'The Facebook ID of the person sending the notification.',
+        'type' => 'bigint',
         'unsigned' => true,
         'not null' => true,
       ),
@@ -100,4 +100,15 @@ function crazyshit_schema() {
  */
 function crazyshit_update_7100() {
   drupal_install_schema('crazyshit');
+}
+
+/**
+ * Updates crazy fid and uid fields to bigint.
+ */
+function crazyshit_update_7101() {
+  // db_change_field is throwing pointless errors.
+  db_query("ALTER TABLE {crazy_notifications} CHANGE `from_fid` `from_fid` bigint UNSIGNED NOT NULL");
+  db_query("ALTER TABLE {crazy_notifications} CHANGE `fid` `fid` bigint UNSIGNED NOT NULL");
+  db_query("ALTER TABLE {crazy_notifications} CHANGE `from_uid` `from_uid` bigint UNSIGNED NOT NULL");
+  db_query("ALTER TABLE {crazy_notifications} CHANGE `uid` `uid` bigint UNSIGNED NOT NULL");
 }
