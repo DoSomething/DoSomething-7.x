@@ -54,11 +54,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php print $head_title; ?></title>
-  <?php if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') : ?>
-    <link rel="stylesheet" href="https://c308566.ssl.cf1.rackcdn.com/din.css" media="all" />
-  <?php else : ?>
-    <link rel="stylesheet" href="http://c308566.r66.cf1.rackcdn.com/din.css" media="all" />
-  <?php endif; ?>
+
+<?php
+  
+    // TO-DO: If this works, move to custom module and include CSS call to Drupal css stack so it can be included in general aggregation functionality
+    // DDL: 28 Jan 2013
+  
+    // Select Rack Space source based on if secure connection
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+      $rackspace_url = 'https://c308566.ssl.cf1.rackcdn.com';
+    } else {
+      $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
+    }
+  
+    // Select CSS based on requested URL
+    if($is_front) {
+      $dosomething_css = 'din-front.css';
+    } else {
+      $dosomething_css = 'din.css';      
+    }
+    
+    // Essemble style sheet call
+    echo('<link rel="stylesheet" href="'. $rackspace_url .'/'. $dosomething_css .'" media="all" />');
+    
+  ?>
+  
   <?php print $styles; ?>
   <?php print $shiv; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
