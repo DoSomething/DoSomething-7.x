@@ -233,7 +233,7 @@ function fb_invite_friends_post(sid, reload) {
 	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
 
 	Drupal.behaviors.fb.feed({
-		feed_document: 'http://www.dosomething.org/' + Drupal.settings.crazy.crazy_root + '/friends#' + sid,
+		feed_document: 'http://www.dosomething.org/' + Drupal.settings.crazy.crazy_root + '/friends/' + sid,
         feed_title: Drupal.settings.crazy.facebook.posts.title,
         feed_picture: jQuery('.s-' + sid + '-picture img').attr('data-original'),//http://files.dosomething.org/files/styles/p4p_fake_button/public/pictures/actionguide/123905097.jpg',
         feed_caption: Drupal.settings.crazy.facebook.posts.caption,
