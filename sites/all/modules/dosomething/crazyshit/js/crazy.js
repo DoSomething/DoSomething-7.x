@@ -235,6 +235,10 @@ function fb_invite_friends_post(sid, reload) {
 	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function() {
 		var img;
 
+		if (!(typeof res === 'object' && res.perms == 'publish_stream')) {
+		   return false;
+		}
+
 		if (typeof my_post === 'object') {
 			if (my_post.image) {
 				img = my_post.image;
@@ -266,7 +270,11 @@ function fb_invite_friends_post(sid, reload) {
 }
 
 function fb_invite_friends() {
-	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function() {
+	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function(res) {
+		if (!(typeof res === 'object' && res.perms == 'publish_stream')) {
+                   return false;
+                }
+
 		Drupal.behaviors.fb.feed({
 			feed_document: Drupal.settings.crazy.facebook.invite.document,
 			feed_title: Drupal.settings.crazy.facebook.invite.title,

@@ -102,7 +102,7 @@
       FB.api('/me/permissions', function (response) {
         if (response.error) {
           FB.login(function(response) {
-            callback();
+            callback(response);
           }, { scope: permission })
         }
         else {
@@ -120,7 +120,7 @@
             }
 
             FB.ui(req, function(response) {
-              callback();
+              callback(response);
             });
           }
           else {
