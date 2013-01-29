@@ -5831,6 +5831,358 @@ comments.fb_iframe_widget {
   margin-left: 18px;
 }
 
+.page-node-727601 #block-dosomething-login-become-member, .page-node-727601 .block-dosomething-blocks, .page-node-727601 #block-block-5, .page-node-727716 #block-dosomething-login-become-member, .page-node-727716 .block-dosomething-blocks, .page-node-727716 #block-block-5, .page-node-727609 #block-dosomething-login-become-member, .page-node-727609 .block-dosomething-blocks, .page-node-727609 #block-block-5 {
+  display: none;
+}
+
+.page-node-727766 .pane-title, .page-node-727609 .pane-title {
+  display: none;
+}
+.page-node-727766 .panel-pane, .page-node-727609 .panel-pane {
+  border: none;
+}
+
+.page-node-727605 .webform-client-form, .page-node-727716 .webform-client-form {
+  border: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.page-node-727605 .form-item, .page-node-727716 .form-item {
+  margin-bottom: 20px;
+}
+
+#ds-awards-page .award-buttons {
+  clear: both;
+}
+#ds-awards-page .apply-btn, #ds-awards-page .nom-btn {
+  float: left;
+  display: inline-block;
+  margin: 2%;
+}
+#ds-awards-page .apply-btn a.go-button, #ds-awards-page .apply-btn form.webform-client-form a#edit-next, form.webform-client-form #ds-awards-page .apply-btn a#edit-next, #ds-awards-page .apply-btn
+form.webform-client-form a#edit-previous,
+form.webform-client-form #ds-awards-page .apply-btn a#edit-previous, #ds-awards-page .apply-btn
+form.webform-client-form a#edit-submit,
+form.webform-client-form #ds-awards-page .apply-btn a#edit-submit, #ds-awards-page .apply-btn
+form.webform-client-form a#edit-submit--2,
+form.webform-client-form #ds-awards-page .apply-btn a#edit-submit--2, #ds-awards-page .apply-btn
+form.webform-client-form a#edit-draft,
+form.webform-client-form #ds-awards-page .apply-btn a#edit-draft, #ds-awards-page .apply-btn .ds-login-popup-footer a#edit-final-submit, .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit, #ds-awards-page .apply-btn .not-logged-in #dosomething-login-register-block a#edit-first-submit, .not-logged-in #dosomething-login-register-block #ds-awards-page .apply-btn a#edit-first-submit, #ds-awards-page .apply-btn .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link #ds-awards-page .apply-btn a, #ds-awards-page .apply-btn .views-submit-button a, .views-submit-button #ds-awards-page .apply-btn a, #ds-awards-page .apply-btn .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit, #ds-awards-page .apply-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit--2, #ds-awards-page .apply-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit, #ds-awards-page .apply-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit--2, #ds-awards-page .apply-btn #search-api-page-search-form a#edit-submit-1, #search-api-page-search-form #ds-awards-page .apply-btn a#edit-submit-1, #ds-awards-page .apply-btn #og-ui-confirm-subscribe #edit-actions a#edit-submit, #og-ui-confirm-subscribe #edit-actions #ds-awards-page .apply-btn a#edit-submit, #ds-awards-page .apply-btn
+#og-ui-confirm-subscribe #edit-actions a#edit-submit--2,
+#og-ui-confirm-subscribe #edit-actions #ds-awards-page .apply-btn a#edit-submit--2, #ds-awards-page .nom-btn a.go-button, #ds-awards-page .nom-btn form.webform-client-form a#edit-next, form.webform-client-form #ds-awards-page .nom-btn a#edit-next, #ds-awards-page .nom-btn
+form.webform-client-form a#edit-previous,
+form.webform-client-form #ds-awards-page .nom-btn a#edit-previous, #ds-awards-page .nom-btn
+form.webform-client-form a#edit-submit,
+form.webform-client-form #ds-awards-page .nom-btn a#edit-submit, #ds-awards-page .nom-btn
+form.webform-client-form a#edit-submit--2,
+form.webform-client-form #ds-awards-page .nom-btn a#edit-submit--2, #ds-awards-page .nom-btn
+form.webform-client-form a#edit-draft,
+form.webform-client-form #ds-awards-page .nom-btn a#edit-draft, #ds-awards-page .nom-btn .ds-login-popup-footer a#edit-final-submit, .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit, #ds-awards-page .nom-btn .not-logged-in #dosomething-login-register-block a#edit-first-submit, .not-logged-in #dosomething-login-register-block #ds-awards-page .nom-btn a#edit-first-submit, #ds-awards-page .nom-btn .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link #ds-awards-page .nom-btn a, #ds-awards-page .nom-btn .views-submit-button a, .views-submit-button #ds-awards-page .nom-btn a, #ds-awards-page .nom-btn .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit, #ds-awards-page .nom-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit--2, #ds-awards-page .nom-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit, #ds-awards-page .nom-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit--2, #ds-awards-page .nom-btn #search-api-page-search-form a#edit-submit-1, #search-api-page-search-form #ds-awards-page .nom-btn a#edit-submit-1, #ds-awards-page .nom-btn #og-ui-confirm-subscribe #edit-actions a#edit-submit, #og-ui-confirm-subscribe #edit-actions #ds-awards-page .nom-btn a#edit-submit, #ds-awards-page .nom-btn
+#og-ui-confirm-subscribe #edit-actions a#edit-submit--2,
+#og-ui-confirm-subscribe #edit-actions #ds-awards-page .nom-btn a#edit-submit--2 {
+  color: #222222;
+  font-size: 36px;
+  font-weight: 600;
+  padding: 6px 20px 0;
+  border: 2px solid #f5be00;
+}
+#ds-awards-page .apply-btn a.go-button:hover, #ds-awards-page .apply-btn form.webform-client-form a#edit-next:hover, form.webform-client-form #ds-awards-page .apply-btn a#edit-next:hover, #ds-awards-page .apply-btn
+form.webform-client-form a#edit-previous:hover,
+form.webform-client-form #ds-awards-page .apply-btn a#edit-previous:hover, #ds-awards-page .apply-btn
+form.webform-client-form a#edit-submit:hover,
+form.webform-client-form #ds-awards-page .apply-btn a#edit-submit:hover, #ds-awards-page .apply-btn
+form.webform-client-form a#edit-submit--2:hover,
+form.webform-client-form #ds-awards-page .apply-btn a#edit-submit--2:hover, #ds-awards-page .apply-btn
+form.webform-client-form a#edit-draft:hover,
+form.webform-client-form #ds-awards-page .apply-btn a#edit-draft:hover, #ds-awards-page .apply-btn .ds-login-popup-footer a#edit-final-submit:hover, .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit:hover, #ds-awards-page .apply-btn .not-logged-in #dosomething-login-register-block a#edit-first-submit:hover, .not-logged-in #dosomething-login-register-block #ds-awards-page .apply-btn a#edit-first-submit:hover, #ds-awards-page .apply-btn .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link #ds-awards-page .apply-btn a:hover, #ds-awards-page .apply-btn .views-submit-button a:hover, .views-submit-button #ds-awards-page .apply-btn a:hover, #ds-awards-page .apply-btn .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit:hover, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit:hover, #ds-awards-page .apply-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit--2:hover, #ds-awards-page .apply-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit:hover, #ds-awards-page .apply-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #ds-awards-page .apply-btn a#edit-final-submit--2:hover, #ds-awards-page .apply-btn #search-api-page-search-form a#edit-submit-1:hover, #search-api-page-search-form #ds-awards-page .apply-btn a#edit-submit-1:hover, #ds-awards-page .apply-btn #og-ui-confirm-subscribe #edit-actions a#edit-submit:hover, #og-ui-confirm-subscribe #edit-actions #ds-awards-page .apply-btn a#edit-submit:hover, #ds-awards-page .apply-btn
+#og-ui-confirm-subscribe #edit-actions a#edit-submit--2:hover,
+#og-ui-confirm-subscribe #edit-actions #ds-awards-page .apply-btn a#edit-submit--2:hover, #ds-awards-page .nom-btn a.go-button:hover, #ds-awards-page .nom-btn form.webform-client-form a#edit-next:hover, form.webform-client-form #ds-awards-page .nom-btn a#edit-next:hover, #ds-awards-page .nom-btn
+form.webform-client-form a#edit-previous:hover,
+form.webform-client-form #ds-awards-page .nom-btn a#edit-previous:hover, #ds-awards-page .nom-btn
+form.webform-client-form a#edit-submit:hover,
+form.webform-client-form #ds-awards-page .nom-btn a#edit-submit:hover, #ds-awards-page .nom-btn
+form.webform-client-form a#edit-submit--2:hover,
+form.webform-client-form #ds-awards-page .nom-btn a#edit-submit--2:hover, #ds-awards-page .nom-btn
+form.webform-client-form a#edit-draft:hover,
+form.webform-client-form #ds-awards-page .nom-btn a#edit-draft:hover, #ds-awards-page .nom-btn .ds-login-popup-footer a#edit-final-submit:hover, .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit:hover, #ds-awards-page .nom-btn .not-logged-in #dosomething-login-register-block a#edit-first-submit:hover, .not-logged-in #dosomething-login-register-block #ds-awards-page .nom-btn a#edit-first-submit:hover, #ds-awards-page .nom-btn .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link #ds-awards-page .nom-btn a:hover, #ds-awards-page .nom-btn .views-submit-button a:hover, .views-submit-button #ds-awards-page .nom-btn a:hover, #ds-awards-page .nom-btn .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit:hover, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit:hover, #ds-awards-page .nom-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit--2:hover, #ds-awards-page .nom-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit:hover, #ds-awards-page .nom-btn
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #ds-awards-page .nom-btn a#edit-final-submit--2:hover, #ds-awards-page .nom-btn #search-api-page-search-form a#edit-submit-1:hover, #search-api-page-search-form #ds-awards-page .nom-btn a#edit-submit-1:hover, #ds-awards-page .nom-btn #og-ui-confirm-subscribe #edit-actions a#edit-submit:hover, #og-ui-confirm-subscribe #edit-actions #ds-awards-page .nom-btn a#edit-submit:hover, #ds-awards-page .nom-btn
+#og-ui-confirm-subscribe #edit-actions a#edit-submit--2:hover,
+#og-ui-confirm-subscribe #edit-actions #ds-awards-page .nom-btn a#edit-submit--2:hover {
+  color: #111111;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 #cccccc;
+}
+
+#node-727601 .redhead-box, .page-node-727609 .redhead-box {
+  text-align: center;
+  margin-top: 20px;
+}
+#node-727601 .redhead, .page-node-727609 .redhead {
+  background: #2b63b1;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  margin: -8px auto 20px auto;
+  clear: both;
+  padding: 12px;
+  font-size: 28px;
+}
+#node-727601 hr.gray, .page-node-727609 hr.gray {
+  border-top: 1px solid lightgray;
+  border-bottom: none;
+  clear: both;
+}
+
+#node-727601 {
+  background: none;
+}
+#node-727601 .webform-client-form {
+  border: none;
+  box-shadow: none !important;
+}
+#node-727601 .form-item, #node-727601 .form-wrapper {
+  margin-bottom: 16px;
+}
+#node-727601 .formhead, #node-727601 .formheadmargin {
+  text-transform: uppercase;
+  font-size: 28px;
+}
+#node-727601 .formheadmargin {
+  margin-top: 24px;
+}
+#node-727601 .essay-paragraph h3 {
+  font-size: 16px;
+  font-family: din-web-reg;
+  margin: 20px 0 4px;
+}
+#node-727601 .essay-paragraph h3 span {
+  color: red;
+}
+#node-727601 .essay-paragraph p {
+  margin: 0;
+}
+#node-727601 #webform-component-essay-1-copy, #node-727601 #webform-component-essay-2-copy, #node-727601 #webform-component-essay-3-copy, #node-727601 #webform-component-essay-4-copy, #node-727601 .form-type-radio {
+  margin: 0;
+}
+#node-727601 #edit-submitted-field-webform-school-reference-und-0-target-id legend {
+  padding: 12px 0 8px;
+}
+#node-727601 #edit-submitted-field-webform-school-reference-und-0-target-id legend span.fieldset-legend {
+  margin: 12px 0;
+  text-transform: uppercase;
+  font-family: din-web;
+  font-size: 28px;
+}
+#node-727601 .form-type-checkbox {
+  margin: 0 0 10px;
+}
+#node-727601 p.status-btn {
+  display: inline-block;
+  padding: 5px 13px 0;
+  margin: 4px 0 0;
+}
+#node-727601 p.status-btn a {
+  color: #333131;
+  font-weight: bold;
+}
+#node-727601 p.status-btn a:hover {
+  color: black;
+  text-decoration: none;
+}
+#node-727601 #edit-actions input {
+  margin-top: -4px;
+}
+
+.page-node-727609 ol li {
+  margin: 0 0 0 12px;
+}
+.page-node-727609 ol li::before {
+  font-family: din-web-reg;
+  font-size: 16px;
+}
+.page-node-727609 .pane-content h3, .page-node-727609 .pane-content h4 {
+  text-transform: uppercase;
+  font-size: 24px;
+  color: black;
+  line-height: 1em;
+}
+.page-node-727609 .pane-content h3 a, .page-node-727609 .pane-content h4 a {
+  text-transform: lowercase;
+  text-decoration: underline;
+  color: #2b63b1;
+  font-size: 20px;
+}
+.page-node-727609 .pane-content h3, .page-node-727609 .pane-content .send-request {
+  margin-bottom: 15px;
+  color: black;
+}
+.page-node-727609 .pane-content h3 span, .page-node-727609 .pane-content .send-request span {
+  color: #2b63b1;
+}
+.page-node-727609 .pane-content h4 span {
+  color: #2b63b1;
+}
+.page-node-727609 .pane-content .send-request {
+  margin-top: 6px;
+}
+.page-node-727609 .pane-content li {
+  font-size: 14px;
+}
+.page-node-727609 .status-incomplete, .page-node-727609 .status-complete, .page-node-727609 .status-empty {
+  padding: 5px 0 0 34px;
+  margin-bottom: 25px;
+}
+.page-node-727609 .status-incomplete {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-red.png") no-repeat left center;
+}
+.page-node-727609 .status-complete {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-green.png") no-repeat left center;
+}
+.page-node-727609 .status-empty {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png") no-repeat left center;
+}
+.page-node-727609 .send-request {
+  font-size: 16px;
+}
+.page-node-727609 .send-request a {
+  color: #2b63b1;
+  text-decoration: underline;
+}
+.page-node-727609 .send-request a.go-button, .page-node-727609 .send-request form.webform-client-form a#edit-next, form.webform-client-form .page-node-727609 .send-request a#edit-next, .page-node-727609 .send-request
+form.webform-client-form a#edit-previous,
+form.webform-client-form .page-node-727609 .send-request a#edit-previous, .page-node-727609 .send-request
+form.webform-client-form a#edit-submit,
+form.webform-client-form .page-node-727609 .send-request a#edit-submit, .page-node-727609 .send-request
+form.webform-client-form a#edit-submit--2,
+form.webform-client-form .page-node-727609 .send-request a#edit-submit--2, .page-node-727609 .send-request
+form.webform-client-form a#edit-draft,
+form.webform-client-form .page-node-727609 .send-request a#edit-draft, .page-node-727609 .send-request .ds-login-popup-footer a#edit-final-submit, .ds-login-popup-footer .page-node-727609 .send-request a#edit-final-submit, .page-node-727609 .send-request .not-logged-in #dosomething-login-register-block a#edit-first-submit, .not-logged-in #dosomething-login-register-block .page-node-727609 .send-request a#edit-first-submit, .page-node-727609 .send-request .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link .page-node-727609 .send-request a, .page-node-727609 .send-request .views-submit-button a, .views-submit-button .page-node-727609 .send-request a, .page-node-727609 .send-request .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 .send-request a#edit-final-submit, .page-node-727609 .send-request
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 .send-request a#edit-final-submit--2, .page-node-727609 .send-request
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 .send-request a#edit-final-submit, .page-node-727609 .send-request
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 .send-request a#edit-final-submit--2, .page-node-727609 .send-request #search-api-page-search-form a#edit-submit-1, #search-api-page-search-form .page-node-727609 .send-request a#edit-submit-1, .page-node-727609 .send-request #og-ui-confirm-subscribe #edit-actions a#edit-submit, #og-ui-confirm-subscribe #edit-actions .page-node-727609 .send-request a#edit-submit, .page-node-727609 .send-request
+#og-ui-confirm-subscribe #edit-actions a#edit-submit--2,
+#og-ui-confirm-subscribe #edit-actions .page-node-727609 .send-request a#edit-submit--2 {
+  color: white;
+  text-decoration: none;
+}
+.page-node-727609 .go-button, .page-node-727609 #dosomething-blocks-make-an-impact-form input[type="submit"], #dosomething-blocks-make-an-impact-form .page-node-727609 input[type="submit"], .page-node-727609
+#dosomething-blocks-make-an-impact-form-front input[type="submit"],
+#dosomething-blocks-make-an-impact-form-front .page-node-727609 input[type="submit"], .page-node-727609 form.webform-client-form #edit-next, form.webform-client-form .page-node-727609 #edit-next, .page-node-727609
+form.webform-client-form #edit-previous,
+form.webform-client-form .page-node-727609 #edit-previous, .page-node-727609
+form.webform-client-form #edit-submit,
+form.webform-client-form .page-node-727609 #edit-submit, .page-node-727609
+form.webform-client-form #edit-submit--2,
+form.webform-client-form .page-node-727609 #edit-submit--2, .page-node-727609
+form.webform-client-form #edit-draft,
+form.webform-client-form .page-node-727609 #edit-draft, .page-node-727609 .ds-login-popup-footer #edit-final-submit, .ds-login-popup-footer .page-node-727609 #edit-final-submit, .page-node-727609 .not-logged-in #dosomething-login-register-block #edit-first-submit, .not-logged-in #dosomething-login-register-block .page-node-727609 #edit-first-submit, .page-node-727609 .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link .page-node-727609 a, .page-node-727609 .views-submit-button a, .views-submit-button .page-node-727609 a, .page-node-727609 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 #edit-final-submit, .page-node-727609
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 #edit-final-submit--2, .page-node-727609
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 #edit-final-submit, .page-node-727609
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 #edit-final-submit--2, .page-node-727609 .node-poll input[type="submit"], .node-poll .page-node-727609 input[type="submit"], .page-node-727609 #search-api-page-search-form #edit-submit-1, #search-api-page-search-form .page-node-727609 #edit-submit-1, .page-node-727609 #og-ui-confirm-subscribe #edit-actions #edit-submit, #og-ui-confirm-subscribe #edit-actions .page-node-727609 #edit-submit, .page-node-727609
+#og-ui-confirm-subscribe #edit-actions #edit-submit--2,
+#og-ui-confirm-subscribe #edit-actions .page-node-727609 #edit-submit--2 {
+  position: static;
+  color: white;
+  border-radius: 0;
+  padding-top: 4px !important;
+  font-weight: normal;
+  margin-left: 24px;
+  background: #2b63b1;
+}
+
+.page-node-727609 .login-large {
+  margin-top: 10px;
+  font-size: 48px;
+  line-height: 1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.page-node-727609 .login-large span {
+  color: #2b63b1;
+}
+.page-node-727609 .login-large a.go-button, .page-node-727609 .login-large form.webform-client-form a#edit-next, form.webform-client-form .page-node-727609 .login-large a#edit-next, .page-node-727609 .login-large
+form.webform-client-form a#edit-previous,
+form.webform-client-form .page-node-727609 .login-large a#edit-previous, .page-node-727609 .login-large
+form.webform-client-form a#edit-submit,
+form.webform-client-form .page-node-727609 .login-large a#edit-submit, .page-node-727609 .login-large
+form.webform-client-form a#edit-submit--2,
+form.webform-client-form .page-node-727609 .login-large a#edit-submit--2, .page-node-727609 .login-large
+form.webform-client-form a#edit-draft,
+form.webform-client-form .page-node-727609 .login-large a#edit-draft, .page-node-727609 .login-large .ds-login-popup-footer a#edit-final-submit, .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit, .page-node-727609 .login-large .not-logged-in #dosomething-login-register-block a#edit-first-submit, .not-logged-in #dosomething-login-register-block .page-node-727609 .login-large a#edit-first-submit, .page-node-727609 .login-large .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link .page-node-727609 .login-large a, .page-node-727609 .login-large .views-submit-button a, .views-submit-button .page-node-727609 .login-large a, .page-node-727609 .login-large .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit, .page-node-727609 .login-large
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit--2, .page-node-727609 .login-large
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit, .page-node-727609 .login-large
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit--2,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit--2, .page-node-727609 .login-large #search-api-page-search-form a#edit-submit-1, #search-api-page-search-form .page-node-727609 .login-large a#edit-submit-1, .page-node-727609 .login-large #og-ui-confirm-subscribe #edit-actions a#edit-submit, #og-ui-confirm-subscribe #edit-actions .page-node-727609 .login-large a#edit-submit, .page-node-727609 .login-large
+#og-ui-confirm-subscribe #edit-actions a#edit-submit--2,
+#og-ui-confirm-subscribe #edit-actions .page-node-727609 .login-large a#edit-submit--2 {
+  position: static;
+  font-size: 24px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+}
+.page-node-727609 .login-large a.go-button:hover, .page-node-727609 .login-large form.webform-client-form a#edit-next:hover, form.webform-client-form .page-node-727609 .login-large a#edit-next:hover, .page-node-727609 .login-large
+form.webform-client-form a#edit-previous:hover,
+form.webform-client-form .page-node-727609 .login-large a#edit-previous:hover, .page-node-727609 .login-large
+form.webform-client-form a#edit-submit:hover,
+form.webform-client-form .page-node-727609 .login-large a#edit-submit:hover, .page-node-727609 .login-large
+form.webform-client-form a#edit-submit--2:hover,
+form.webform-client-form .page-node-727609 .login-large a#edit-submit--2:hover, .page-node-727609 .login-large
+form.webform-client-form a#edit-draft:hover,
+form.webform-client-form .page-node-727609 .login-large a#edit-draft:hover, .page-node-727609 .login-large .ds-login-popup-footer a#edit-final-submit:hover, .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit:hover, .page-node-727609 .login-large .not-logged-in #dosomething-login-register-block a#edit-first-submit:hover, .not-logged-in #dosomething-login-register-block .page-node-727609 .login-large a#edit-first-submit:hover, .page-node-727609 .login-large .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link .page-node-727609 .login-large a:hover, .page-node-727609 .login-large .views-submit-button a:hover, .views-submit-button .page-node-727609 .login-large a:hover, .page-node-727609 .login-large .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit:hover, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit:hover, .page-node-727609 .login-large
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer a#edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit--2:hover, .page-node-727609 .login-large
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit:hover, .page-node-727609 .login-large
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer a#edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 .login-large a#edit-final-submit--2:hover, .page-node-727609 .login-large #search-api-page-search-form a#edit-submit-1:hover, #search-api-page-search-form .page-node-727609 .login-large a#edit-submit-1:hover, .page-node-727609 .login-large #og-ui-confirm-subscribe #edit-actions a#edit-submit:hover, #og-ui-confirm-subscribe #edit-actions .page-node-727609 .login-large a#edit-submit:hover, .page-node-727609 .login-large
+#og-ui-confirm-subscribe #edit-actions a#edit-submit--2:hover,
+#og-ui-confirm-subscribe #edit-actions .page-node-727609 .login-large a#edit-submit--2:hover {
+  text-decoration: none;
+  color: #f1f1f1;
+  -moz-box-shadow: 0px 2px 2px 0px #cccccc;
+  -webkit-box-shadow: 0px 2px 2px 0px #cccccc;
+  -o-box-shadow: 0px 2px 2px 0px #cccccc;
+  box-shadow: 0px 2px 2px 0px #cccccc;
+}
+
 .page-webform-submission .panel-first h2 {
   background: none;
   padding-left: 0;

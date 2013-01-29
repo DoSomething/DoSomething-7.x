@@ -1,0 +1,185 @@
+///////////////////////////////////////
+// AWARDS PAGES (added Jan 24, 2013)
+//////////////////////////////////////
+
+// Hide Sidebar
+.page-node-727601, .page-node-727716, .page-node-727609
+	#block-dosomething-login-become-member, .block-dosomething-blocks, #block-block-5
+		display: none
+
+// Hide Titles and borders
+.page-node-727766, .page-node-727609
+	.pane-title
+		display: none
+	.panel-pane
+		border: none
+
+// Recommendation Pages
+.page-node-727605, .page-node-727716	
+	.webform-client-form
+		border: none
+		+box-shadow(none)
+	.form-item
+		margin-bottom: 20px	
+
+// Apply Page
+#ds-awards-page
+	.award-buttons
+		clear: both
+	.apply-btn, .nom-btn
+		float: left
+		display: inline-block
+		margin: 2%
+		a.go-button
+			color: #222
+			font-size: 36px
+			font-weight: 600
+			padding: 6px 20px 0
+			border: 2px solid #f5be00
+			&:hover
+				color: #111
+				text-decoration: none
+				box-shadow: 0 2px 2px 0 #ccc
+
+#node-727601, .page-node-727609
+	.redhead-box
+		text-align: center
+		margin-top: 20px		
+	.redhead
+		background: #2b63b1
+		display: inline-block
+		text-align: center
+		text-transform: uppercase
+		color: white
+		margin: -8px auto 20px auto
+		clear: both
+		padding: 12px
+		font-size: 28px
+	hr.gray
+		border-top: 1px solid lightgray
+		border-bottom: none
+		clear: both
+
+#node-727601
+	background: none
+	.webform-client-form
+		border: none
+		box-shadow: none !important
+	.form-item, .form-wrapper
+		margin-bottom: 16px
+	.formhead, .formheadmargin
+		text-transform: uppercase
+		font-size: 28px
+	.formheadmargin
+		margin-top: 24px
+	.essay-paragraph
+		h3
+			font-size: 16px
+			font-family: din-web-reg
+			margin: 20px 0 4px
+			span
+				color: red
+		p
+			margin: 0		
+	#webform-component-essay-1-copy, #webform-component-essay-2-copy, #webform-component-essay-3-copy, #webform-component-essay-4-copy, .form-type-radio
+		margin: 0
+	#edit-submitted-field-webform-school-reference-und-0-target-id
+		legend
+			padding: 12px 0 8px
+			span.fieldset-legend
+				margin: 12px 0
+				text-transform: uppercase
+				font-family: din-web
+				font-size: 28px
+	.form-type-checkbox
+		margin: 0 0 10px
+	p.status-btn
+		display: inline-block
+		padding: 5px 13px 0
+		margin: 4px 0 0
+		a
+			color: #333131
+			font-weight: bold
+			&:hover
+				color: black
+				text-decoration: none
+	#edit-actions input
+		margin-top: -4px
+
+//Nomination Confirmation Page
+
+// STATUS PAGE
+.page-node-727609
+	ol li
+		margin: 0 0 0 12px
+		&::before
+			font-family: din-web-reg
+			font-size: 16px
+
+	.pane-content
+		h3, h4
+			text-transform: uppercase
+			font-size: 24px
+			color: black
+			line-height: 1em
+			a
+				text-transform: lowercase
+				text-decoration: underline
+				color: #2b63b1
+				font-size: 20px
+		h3, .send-request  
+			margin-bottom: 15px
+			color: black
+			span
+				color: #2b63b1
+		h4
+			span
+				color: #2b63b1  
+		.send-request
+			margin-top: 6px   
+		li
+			font-size: 14px 
+	.status-incomplete, .status-complete, .status-empty
+		padding: 5px 0 0 34px
+		margin-bottom: 25px  
+	.status-incomplete
+		background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-red.png') no-repeat left center
+	.status-complete
+		background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-green.png') no-repeat left center
+	.status-empty  
+		background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png') no-repeat left center
+	.send-request
+		font-size: 16px
+		a
+			color: #2b63b1
+			text-decoration: underline 
+		a.go-button
+			color: white
+			text-decoration: none   
+	.go-button
+		position: static
+		color: white
+		border-radius: 0
+		padding-top: 4px !important
+		font-weight: normal
+		margin-left: 24px
+		background: #2b63b1   
+
+// LOGIN
+.page-node-727609
+	.login-large
+		margin-top: 10px
+		font-size: 48px
+		line-height: 1em
+		text-transform: uppercase
+		text-align: center
+		span
+			color: #2b63b1 
+		a.go-button
+			position: static
+			font-size: 24px
+			+border-radius(4px)
+			&:hover
+				text-decoration: none
+				color: #f1f1f1
+				+box-shadow(0px 2px 2px 0px #ccc)
