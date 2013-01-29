@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Remove deprecated fields from the campaign content type
+ */
+function dosomething_campaign_update_7001() {
+
+  $fields = array(
+    'field_campaign_logo', 'field_campain_logo_thumbnail', 'field_campaign_promo_image',
+    'field_campaign_link', 'field_campaign_headline', 'field_campaign_background_color',
+    'field_campaign_foreground_color', 'field_campaign_video', 'field_campaign_psa_image',
+    'field_campaign_facebook_language', 'field_campaign_twitter_language',
+    'field_counter_aggregation', 'field_counter_text', 'field_campaign_doing_padding', 'field_campaign_done_padding'
+  );
+
+  // Remove all of the fields above from all content types
+  foreach ($fields as $field_name) {
+    field_delete_field($field_name);
+  }
+
+  $instances = field_info_instances('node','campaign');
+
+  //  Remove the body field instance from the campaign content type only
+  if (isset($instances['body'])) {
+  	field_delete_instance($instances['body']);
+  }
+
+  $groups =  field_group_read_groups();
+
+  // Remove the group_social field group from the campaign content type
+  if (isset($groups['node']['campaign']['form']['group_social'])) {
+    $group = $groups['node']['campaign']['form']['group_social'];
+    ctools_include('export');
+    field_group_export_delete($group, FALSE);
+  }
+
+  field_purge_batch(count($fields) + 6);
+
+}
