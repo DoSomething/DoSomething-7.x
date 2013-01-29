@@ -4,6 +4,7 @@
 	 probably_unauthed: false,
 	 notify_yourself: false,
 	 logged_in: !$('body').hasClass('not-logged-in'),
+	 started_page: false,
 
    	 attach: function(context, settings) { 
 	    var o = this;
@@ -174,23 +175,25 @@
 	 },
 
 	 fb_refresh: function(callback) {
-	 	var oa = window.fbAsyncInit;
-	 	window.fbAsyncInit = function() {
-			oa();
+	 	if (!Drupal.behaviors.dsCrazyScripts.started_page) {
+		 	var oa = window.fbAsyncInit;
+		 	window.fbAsyncInit = function() {
+				oa();
+				Drupal.behaviors.dsCrazyScripts.started_page = true;
+			    // If we're on the friends page...
+			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
 
-		    // If we're on the friends page...
-		    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
+			    	// Occasionally users can log out of Facebook and still count as "authenticated"
+			    	// That's bad.  So let's make sure they're actually connected.
+			    	// Furthermore, FB.getUserID() doesn't work here.
+			    	Drupal.behaviors.dsCrazyScripts.fb_status();
+			    }
 
-		    	// Occasionally users can log out of Facebook and still count as "authenticated"
-		    	// That's bad.  So let's make sure they're actually connected.
-		    	// Furthermore, FB.getUserID() doesn't work here.
-		    	Drupal.behaviors.dsCrazyScripts.fb_status();
-		    }
-
-		    if (typeof callback === 'function') {
-			callback();
-		    }
-		};
+			    if (typeof callback === 'function') {
+				callback();
+			    }
+			};
+		}
 	 },
 
 	 fb_status: function() {
@@ -250,11 +253,11 @@ function fb_invite_friends_post(sid, reload) {
 				img = my_post.image;
 			}
 			else {
-				img = jQuery('.s-' + sid + '-picture img').attr('data-original');
+				img = jQuery('.s-' + sid + '-picture img').attr('src');
 			}
 		}
 		else {
-			img = jQuery('.s-' + sid + '-picture img').attr('data-original');
+			img = jQuery('.s-' + sid + '-picture img').attr('src');
 		}
 
 		Drupal.behaviors.fb.feed({
