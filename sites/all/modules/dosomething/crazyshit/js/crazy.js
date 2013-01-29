@@ -232,13 +232,13 @@ Drupal.behaviors.fb.gate({
 function fb_invite_friends_post(sid, reload) {
 	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
 
-	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function() {
-		var img;
+	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function(res) {
 
 		if (!(typeof res === 'object' && res.perms == 'publish_stream')) {
 		   return false;
 		}
 
+		var img = '';
 		if (typeof my_post === 'object') {
 			if (my_post.image) {
 				img = my_post.image;
@@ -264,6 +264,8 @@ function fb_invite_friends_post(sid, reload) {
 			});
 			//console.log(response);
 		});
+
+		return false;
 	});
 
 	return false;
@@ -272,8 +274,8 @@ function fb_invite_friends_post(sid, reload) {
 function fb_invite_friends() {
 	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function(res) {
 		if (!(typeof res === 'object' && res.perms == 'publish_stream')) {
-                   return false;
-                }
+           return false;
+        }
 
 		Drupal.behaviors.fb.feed({
 			feed_document: Drupal.settings.crazy.facebook.invite.document,
@@ -288,7 +290,11 @@ function fb_invite_friends() {
 		}, function(response) {
 			//console.log(response);
 		});
+
+		return false;
 	});
+
+	return false;
 }
 
 function fb_auth(type, status) {

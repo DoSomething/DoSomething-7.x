@@ -124,7 +124,8 @@
             });
           }
           else {
-            callback();
+            // Need to pass the permission back to say that we're activated.
+            callback({ 'perms': permission });
           }
         }
       });
@@ -182,10 +183,8 @@
       }
 
       var pic = '';
-      if ($('.og_dialog').length > 0) {
-        $('.og_dialog').remove();
-      }
-      var og;
+
+      var og = '';
       og = $('<div></div>').addClass('og_dialog ' + page);
 
       var to = '';
@@ -213,75 +212,81 @@
 
       FB.api('/me/picture', function(response) {
         pic = response.data.url;
-        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
+          og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
+            og.dialog({
+              dialogClass: 'og-post-dialog',
+              width: (page == 'custom-selector' ? 800 : 650),
+              position: position,
+              resizable: false,
+              modal: (things.modal ? true : false),
+              open: function() {
+                if ($('.og_dialog').length > 1) {
+                  $('.og_dialog').not(this).remove();
+                }
+                if ($('#cancel-og-post').length) {
+                  // This somehow fixes an error where it wouldn't close after the first close
+                  // Don't ask me why.
+                  //$('.og_dialog').html('&nbsp;');
+                 // $(this).closest('.og-post-content').dialog('destroy');
+                }
+              },
+              close: function() {
+                if (things.modal) {
+                  if ($('#fb-modal').length > 0) {
+                    $('#fb-modal').remove();
+                  }
 
-          $(this).dialog({
-            dialogClass: 'og-post-dialog',
-            width: (page == 'custom-selector' ? 800 : 650),
-            position: position,
-            resizable: false,
-            modal: (things.modal ? true : false),
-            open: function() {
-              if ($('#cancel-og-post').length) {
-                // This somehow fixes an error where it wouldn't close after the first close
-                // Don't ask me why.
-                //$('.og_dialog').html('&nbsp;');
-              }
-            },
-            close: function() {
-              if (things.modal) {
-                if ($('#fb-modal').length > 0) {
-                  $('#fb-modal').remove();
+                  if ($('#fbc-modal').length > 0) {
+                    $('#fbc-modal').remove();
+                  }
                 }
 
-                if ($('#fbc-modal').length > 0) {
-                  $('#fbc-modal').remove();
+                $(this).dialog('destroy');
+                //og.remove();
+                //delete og;
+              }
+            }).queue(function() {
+              // Pretend like it's a Facebook dialog feed
+              $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
+
+              // Cancel
+              $('.close-fb-dialog').click(function() {
+                // Fake cancel button to remove "fake" feed
+                $('.og_dialog').dialog('close').remove();
+                $('.og-post-dialog').remove();
+                Drupal.friendFinder.clear_friends();
+                return false;
+              });
+
+              // Submit
+              $('#submit-og-post').click(function() {
+                if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
+                  things.comments = $('#hidden_comments').val();
                 }
-              }
-
-              //og.remove();
-              //delete og;
-            }
-          }).queue(function() {
-            // Pretend like it's a Facebook dialog feed
-            $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
-
-            // Cancel
-            $('.close-fb-dialog').click(function() {
-              // Fake cancel button to remove "fake" feed
-              $('.og_dialog').dialog('close').remove();
-              Drupal.friendFinder.clear_friends();
-              return false;
-            });
-
-            // Submit
-            $('#submit-og-post').click(function() {
-              if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
-                things.comments = $('#hidden_comments').val();
-              }
-              else {
-                things.comments = $('#fb_og_comments').val();
-              }
-
-              things.explicitly_shared = $('#explicit-share').is(':checked');
-
-              if (things.friend_selector == 'custom') {
-                if (!Drupal.behaviors.fb.has_permission('publish_stream')) {
-                  Drupal.behaviors.fb.ask_permission('publish_stream', function() {
-                    callback(things);
-                  });
+                else {
+                  things.comments = $('#fb_og_comments').val();
                 }
-              }
-              else {
-                callback(things);
-              }
 
-              $('.og_dialog').dialog('close');
-              //og.remove();
-              //delete og;
-            });
-          });;
-        });
+                things.explicitly_shared = $('#explicit-share').is(':checked');
+
+                if (things.friend_selector == 'custom') {
+                  if (!Drupal.behaviors.fb.has_permission('publish_stream')) {
+                    Drupal.behaviors.fb.ask_permission('publish_stream', function() {
+                      callback(things);
+                    });
+                  }
+                }
+                else {
+                  callback(things);
+                }
+
+                $('.og_dialog').dialog('close');
+                $('.og-post-dialog').remove();
+                //og.remove();
+                //delete og;
+              });
+            });;
+          });
       });
     },
 
