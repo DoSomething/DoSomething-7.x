@@ -5500,7 +5500,7 @@ comments.fb_iframe_widget {
 }
 .apps-grid .apps-box {
   width: 216px;
-  height: 216px;
+  height: 240px;
   margin-right: 17px;
   margin-bottom: 16px;
   background-color: white;
@@ -5538,6 +5538,7 @@ comments.fb_iframe_widget {
   font-size: 18px;
   line-height: 12px;
   margin-top: 12px;
+  margin-bottom: 0;
 }
 .apps-grid .apps-box .apps-image img {
   max-height: 125px;
@@ -5580,13 +5581,6 @@ comments.fb_iframe_widget {
   bottom: 5px;
   right: 0;
   padding-right: 10px;
-}
-
-.about-us-page .apps-grid .apps-text {
-  padding: 0 10px;
-}
-.about-us-page .apps-grid .apps-box {
-  height: 230px !important;
 }
 
 .pane-project-photo-slider-panel-pane-1 {
