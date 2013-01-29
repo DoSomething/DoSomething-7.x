@@ -232,49 +232,54 @@ Drupal.behaviors.fb.gate({
 function fb_invite_friends_post(sid, reload) {
 	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
 
-	var img;
-	if (my_post.length) {
-		if (my_post.image) {
-			img = my_post.image;
-		}
-		else {
-			img = jQuery('.s-' + sid + '-picture img').attr('data-original');
-		}
-	}
 
-	Drupal.behaviors.fb.feed({
-		feed_document: 'http://www.dosomething.org/' + Drupal.settings.crazy.crazy_root + '/friends/' + sid,
-        feed_title: Drupal.settings.crazy.facebook.posts.title,
-        feed_picture: img,
-        feed_caption: Drupal.settings.crazy.facebook.posts.caption,
-        feed_description: Drupal.settings.crazy.facebook.posts.description,
-        feed_allow_multiple: true,
-        feed_max_friends: 25,
-        feed_modal: false,
-        feed_friend_selector: 'td',
-	}, function(response) {
-		jQuery.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch-request/' + sid, { 'friends': response.friends, 'origin': Drupal.settings.crazy.origin }, function(v) {
-			//console.log(v);
+	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function() {
+		var img;
+		if (my_post.length) {
+			if (my_post.image) {
+				img = my_post.image;
+			}
+			else {
+				img = jQuery('.s-' + sid + '-picture img').attr('data-original');
+			}
+		}
+
+		Drupal.behaviors.fb.feed({
+			feed_document: 'http://www.dosomething.org/' + Drupal.settings.crazy.crazy_root + '/friends/' + sid,
+	        feed_title: Drupal.settings.crazy.facebook.posts.title,
+	        feed_picture: img,
+	        feed_caption: Drupal.settings.crazy.facebook.posts.caption,
+	        feed_description: Drupal.settings.crazy.facebook.posts.description,
+	        feed_allow_multiple: true,
+	        feed_max_friends: 25,
+	        feed_modal: false,
+	        feed_friend_selector: 'td',
+		}, function(response) {
+			jQuery.post('/' + Drupal.settings.crazy.crazy_root + '/submit-vouch-request/' + sid, { 'friends': response.friends, 'origin': Drupal.settings.crazy.origin }, function(v) {
+				//console.log(v);
+			});
+			//console.log(response);
 		});
-		//console.log(response);
 	});
 
 	return false;
 }
 
 function fb_invite_friends() {
-	Drupal.behaviors.fb.feed({
-		feed_document: Drupal.settings.crazy.facebook.invite.document,
-		feed_title: Drupal.settings.crazy.facebook.invite.title,
-		feed_picture: Drupal.settings.crazy.facebook.invite.image,
-		feed_caption: Drupal.settings.crazy.facebook.invite.caption,
-		feed_description: Drupal.settings.crazy.facebook.invite.description,
-		feed_allow_multiple: true,
-		feed_max_friends: 25,
-		feed_modal: false,
-		feed_friend_selector: 'td',
-	}, function(response) {
-		//console.log(response);
+	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function() {
+		Drupal.behaviors.fb.feed({
+			feed_document: Drupal.settings.crazy.facebook.invite.document,
+			feed_title: Drupal.settings.crazy.facebook.invite.title,
+			feed_picture: Drupal.settings.crazy.facebook.invite.image,
+			feed_caption: Drupal.settings.crazy.facebook.invite.caption,
+			feed_description: Drupal.settings.crazy.facebook.invite.description,
+			feed_allow_multiple: true,
+			feed_max_friends: 25,
+			feed_modal: false,
+			feed_friend_selector: 'td',
+		}, function(response) {
+			//console.log(response);
+		});
 	});
 }
 

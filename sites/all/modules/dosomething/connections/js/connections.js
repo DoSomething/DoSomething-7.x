@@ -98,7 +98,7 @@
     /**
      *  Asks for a permission.
      */
-    ask_permission: function(permission, callback) {
+    ask_permission: function(permission, settings, callback) {
       FB.api('/me/permissions', function (response) {
         if (response.error) {
           FB.login(function(response) {
@@ -108,11 +108,18 @@
         else {
           var perms = response.data[0];
           if (!perms[permission]) {
-            FB.ui({
+            var req = {
               method: 'permissions.request',
               perms: permission,
               display: 'popup'
-            }, function(response) {
+            };
+
+            if (settings.display == 'iframe') {
+              req['display'] = 'iframe';
+              req['access_token'] = FB.getAccessToken();
+            }
+
+            FB.ui(req, function(response) {
               callback();
             });
           }
