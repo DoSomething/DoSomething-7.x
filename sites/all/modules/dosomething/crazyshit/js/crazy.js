@@ -232,10 +232,10 @@ Drupal.behaviors.fb.gate({
 function fb_invite_friends_post(sid, reload) {
 	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
 
-
 	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function() {
 		var img;
-		if (my_post.length) {
+
+		if (typeof my_post === 'object') {
 			if (my_post.image) {
 				img = my_post.image;
 			}

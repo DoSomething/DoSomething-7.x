@@ -884,10 +884,9 @@ function crazyshit_init() {
 	      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true; ';
 	   }
 
+ 	   $submission = array_shift(entity_load('webform_submission_entity', array($notifications->sid)));
 	   $mp = "var my_post = { 'sid': " . $notifications->sid . ", 'image': '" . file_create_url($submission->field_crazy_crazy_picture[LANGUAGE_NONE][0]['uri']) . "' }; ";
 	   drupal_add_js($mp, 'inline');
-
-	   $submission = array_shift(entity_load('webform_submission_entity', array($notifications->sid)));
 
 	   drupal_add_js("jQuery(document).ready(function() { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); }, 1500);", 'inline');
 	}
