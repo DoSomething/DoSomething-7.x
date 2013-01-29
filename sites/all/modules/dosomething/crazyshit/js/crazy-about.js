@@ -100,12 +100,11 @@
 
         // some CSS to hide and show [prev] and [next]
         var ghost_button = {
-          'background-color' : '#fff',
-          'cursor' : 'default'
+          'visibility' : 'hidden'
         }
 
         var blue_button = {
-          'background-color' : '#4b84e6'
+          'visibility' : 'visible'
         }
 
         // cache variables
