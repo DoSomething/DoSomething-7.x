@@ -13,11 +13,6 @@ class ConductorActivitySMSPrompt extends ConductorActivity {
     return $options;
   }
 
-  public function question($question) {
-    $this->question = $question;
-    return $this;
-  }
-
 
   /**
    * The start method performs no actions.

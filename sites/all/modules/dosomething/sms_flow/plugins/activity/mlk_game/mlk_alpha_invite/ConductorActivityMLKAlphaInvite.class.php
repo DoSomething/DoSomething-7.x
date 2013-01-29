@@ -5,20 +5,16 @@
  */
 class ConductorActivityMLKAlphaInvite extends ConductorActivity {
 
-  // Identifier for the MLK game
   private $game_id = 1;
-
-  // Type of entry to submit to the sms_flow_records table
   private $type_override = 'sms_game';
 
-  // Alpha's Mobile Commons opt-in path
-  protected $alpha_optin = '';
-
-  // Beta's Mobile Commons opt-in path
-  protected $beta_optin = '';
-
-  // The response to send back to the inviter
-  protected $sms_response = '';
+  public function option_definition() {
+    $options = parent::option_definition();
+    $options['alpha_optin'] = array('default' => '');
+    $options['beta_optin'] = array('default' => '');
+    $options['sms_response'] = array('default' => '');
+    return $options;
+  }
 
   public function run($workflow) {
     $state = $this->getState();

@@ -41,41 +41,6 @@ class ConductorActivity extends ConductorObject {
     return $options;
   }
 
-  /**
-   * Builder functions to help with Activity creation.
-   * TODO: consider making all properties private or protected
-   */
-  public function name($name) {
-    $this->name = $name;
-    return $this;
-  }
-
-  public function title($title) {
-    $this->title = $title;
-    return $this;
-  }
-
-  public function inputs($inputs) {
-    $this->inputs = $inputs;
-    return $this;
-  }
-
-  public function outputs($outputs) {
-    $this->outputs = $outputs;
-    return $this;
-  }
-
-  public function property($property_name, $property_value) {
-    if (!array_key_exists($property_name, $this->option_definition())) {
-      $this->$property_name = $property_value;
-    }
-    else {
-      throw new Exception("Property ($property_name) defined in options array. Not allowed to set through this function.");
-    }
-
-    return $this;
-  }
-
   public function addInput($activity) {
   }
 
