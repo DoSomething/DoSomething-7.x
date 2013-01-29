@@ -71,13 +71,14 @@
   right: 50px;
   bottom: 25px;
   display: block;
+  display: block;
   width: 30px;
   height: 30px;
   background-image: url("//files.dosomething.org/files/campaigns/crazy13/share_mini.png");
   background-color: transparent;
   background-repeat: no-repeat;
   text-indent: -9999em; }
-/* line 57, ../sass/_buttons.sass */
+/* line 58, ../sass/_buttons.sass */
 .fb-share:hover {
   background-position-y: -30px; }
 @media only screen and (max-width: 700px) {
@@ -86,11 +87,12 @@
     right: 15px;
     bottom: 15px; } }
 
-/* line 63, ../sass/_buttons.sass */
-.small_button {
+/* line 64, ../sass/_buttons.sass */
+.small_button, .more_tips {
   float: left;
   background: #4b84e6;
   color: white !important;
+  cursor: pointer !important;
   padding: 5px 7px 1px 7px;
   font-size: 20px;
   font-weight: 400;
@@ -101,18 +103,18 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 73, ../sass/_buttons.sass */
-.small_button:hover {
+/* line 75, ../sass/_buttons.sass */
+.small_button:hover, .more_tips:hover {
   text-decoration: none;
   background-color: #6193e9; }
-/* line 76, ../sass/_buttons.sass */
-.small_button .clicked {
+/* line 78, ../sass/_buttons.sass */
+.small_button .clicked, .more_tips .clicked {
   background: #f1f1f1;
   color: #c1c1c1;
   cursor: default;
   text-decoration: none; }
-/* line 81, ../sass/_buttons.sass */
-.small_button span {
+/* line 83, ../sass/_buttons.sass */
+.small_button span, .more_tips span {
   background-color: #dddddd;
   position: relative;
   display: inline-block;
@@ -123,8 +125,8 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 88, ../sass/_buttons.sass */
-.small_button span:after, .small_button span:before {
+/* line 90, ../sass/_buttons.sass */
+.small_button span:after, .small_button span:before, .more_tips span:after, .more_tips span:before {
   right: 100%;
   border: solid transparent;
   content: " ";
@@ -132,19 +134,25 @@
   width: 0;
   position: absolute;
   pointer-events: none; }
-/* line 96, ../sass/_buttons.sass */
-.small_button span:after {
+/* line 98, ../sass/_buttons.sass */
+.small_button span:after, .more_tips span:after {
   border-color: rgba(136, 183, 213, 0);
   border-right-color: #dddddd;
   border-width: 5px;
   top: 50%;
   margin-top: -5px; }
-/* line 102, ../sass/_buttons.sass */
-.small_button span:before {
+/* line 104, ../sass/_buttons.sass */
+.small_button span:before, .more_tips span:before {
   border-color: rgba(194, 225, 245, 0);
   border-width: 6px;
   top: 50%;
   margin-top: -6px; }
+
+/* line 110, ../sass/_buttons.sass */
+a.no_thanks {
+  color: #cccccc;
+  cursor: pointer;
+  text-transform: lowercase; }
 
 /* line 23, ../sass/crazy-form.sass */
 nav[role="navigation"] .region-navigation {

@@ -1,0 +1,41 @@
+// jQUERY UI DIALOG STYLES
+// -----------------------
+
+.submit-crazy-popup,
+.vouch-crazy-popup,
+.login-crazy-popup,
+.share-crazy-popup,
+.bull-crazy-popup,
+.tip-crazy-popup
+  background-color: #fff
+  font-family: din-web-reg
+  font-size: 16px
+  line-height: 28px
+  +border-radius(2px)
+  h2, p
+    width: 80%
+  h2
+    color: $sponsor_color
+    font-size: 45px
+    line-height: 45px
+    text-align: center
+    text-transform: uppercase
+    border-bottom: 2px solid #444
+    margin: 0.5em auto
+    padding: 0 0 0.2em 0
+  p
+    margin: 0 auto
+  @media only screen and (max-width: 920px)
+    width: 100%
+
+p.dialog_sub_header
+  color: #888
+  text-align: center
+  padding: 0 0 0.5em 0
+
+#crazy-tips-buttons /* dialog button wrapper */
+  width: 115px
+  margin: 4% auto
+  text-align: center
+
+// want more? buttons are in _buttons.sass with .small_button [prev/next]

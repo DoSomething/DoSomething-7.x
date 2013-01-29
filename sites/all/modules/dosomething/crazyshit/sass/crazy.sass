@@ -1,6 +1,7 @@
 @import compass
 @import 'variables'
 @import 'buttons'
+@import 'popups'
 @import 'drupal'
 
 // BASE
@@ -8,7 +9,6 @@
 
 #page
   background-color: $background
-
 
 // HEADER
 // ------
@@ -323,3 +323,7 @@ img.header_logo_text /* replaces img.header_logo on lower screen resolutions */
 #edit-submit /* [submit] button */
   width: 80px
   float: right !important
+
+// throbber margin
+#views_infinite_scroll-ajax-loader
+  margin: 3% 0
