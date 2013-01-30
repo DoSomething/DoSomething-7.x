@@ -23,6 +23,7 @@
     my_pic: '',
     debug: false,
     fb_init: false,
+    is_authorized: false,
     _feed_callback: null,
     _ograph_callback: null,
     _message_callback: null,
@@ -97,29 +98,54 @@
     /**
      *  Asks for a permission.
      */
-    ask_permission: function(permission, callback) {
+    ask_permission: function(permission, settings, callback) {
       FB.api('/me/permissions', function (response) {
         if (response.error) {
           FB.login(function(response) {
-            callback();
+            callback(response);
           }, { scope: permission })
         }
         else {
           var perms = response.data[0];
           if (!perms[permission]) {
-            FB.ui({
+            var req = {
               method: 'permissions.request',
               perms: permission,
               display: 'popup'
-            }, function(response) {
-              callback();
+            };
+
+            if (settings.display == 'iframe') {
+              req['display'] = 'iframe';
+              req['access_token'] = FB.getAccessToken();
+            }
+
+            FB.ui(req, function(response) {
+              callback(response);
             });
           }
           else {
-            callback();
+            // Need to pass the permission back to say that we're activated.
+            callback({ 'perms': permission });
           }
         }
       });
+    },
+
+    is_authed: function(callback) {
+      FB.getLoginStatus(function(response) {
+	 if (typeof callback === 'function') {
+	    callback(response);
+	 }
+
+         if (response.status == 'unknown' || response.status == 'not_authorized') {
+            Drupal.behaviors.fb.is_authorized = false;
+         }
+         else {
+            Drupal.behaviors.fb.is_authorized = true;
+         }
+      });
+
+	return Drupal.behaviors.fb.is_authorized;
     },
 
     /**
@@ -157,10 +183,8 @@
       }
 
       var pic = '';
-      if ($('.og_dialog').length > 0) {
-        $('.og_dialog').remove();
-      }
-      var og;
+
+      var og = '';
       og = $('<div></div>').addClass('og_dialog ' + page);
 
       var to = '';
@@ -178,34 +202,44 @@
         msg = '&message=' + encodeURIComponent(things.alert_msg);
       }
 
+      var position;
+      if (things.follow_position) {
+        position = { my: 'center', at: 'center', of: window };
+      }
+      else {
+        position = { my: 'top', at: 'top', of: 'body', offset: '0 180' };
+      }
+
       FB.api('/me/picture', function(response) {
         pic = response.data.url;
-        og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
-
-          $(this).dialog({
-            dialogClass: 'og-post-dialog',
-            width: (page == 'custom-selector' ? 800 : 650),
-            position: { my: 'top', at: 'top', of: 'body', offset: '0 180' },
-            resizable: false,
-            modal: (things.modal ? true : false),
-            open: function() {
-              if ($('#cancel-og-post').length) {
-                // This somehow fixes an error where it wouldn't close after the first close
-                // Don't ask me why.
-                //$('.og_dialog').html('&nbsp;');
-              }
-            },
-            close: function() {
-              if (things.modal) {
-                if ($('#fb-modal').length > 0) {
-                  $('#fb-modal').remove();
+          og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
+            og.dialog({
+              dialogClass: 'og-post-dialog',
+              width: (page == 'custom-selector' ? 800 : 650),
+              position: position,
+              resizable: false,
+              modal: (things.modal ? true : false),
+              open: function() {
+                if ($('.og_dialog').length > 1) {
+                  $('.og_dialog').not(this).remove();
                 }
-
-                if ($('#fbc-modal').length > 0) {
-                  $('#fbc-modal').remove();
+                if ($('#cancel-og-post').length) {
+                  // This somehow fixes an error where it wouldn't close after the first close
+                  // Don't ask me why.
+                  //$('.og_dialog').html('&nbsp;');
+                 // $(this).closest('.og-post-content').dialog('destroy');
                 }
-              }
+              },
+              close: function() {
+                if (things.modal) {
+                  if ($('#fb-modal').length > 0) {
+                    $('#fb-modal').remove();
+                  }
 
+                  if ($('#fbc-modal').length > 0) {
+                    $('#fbc-modal').remove();
+                  }
+                }
               //og.remove();
               //delete og;
             }
@@ -217,41 +251,58 @@
             $('.close-fb-dialog').click(function() {
               // Fake cancel button to remove "fake" feed
               $('.og_dialog').dialog('close').remove();
-	      if ($('#fbc-modal').length > 0) {
-		$('#fbc-modal').remove();
-	      }
+	              if ($('#fbc-modal').length > 0) {
+	              	$('#fbc-modal').remove();
+	               }
               Drupal.friendFinder.clear_friends();
               return false;
             });
 
-            // Submit
-            $('#submit-og-post').click(function() {
-              if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
-                things.comments = $('#hidden_comments').val();
-              }
-              else {
-                things.comments = $('#fb_og_comments').val();
-              }
+                $(this).dialog('destroy');
+                //og.remove();
+                //delete og;
+            }).queue(function() {
+              // Pretend like it's a Facebook dialog feed
+              $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
 
-              things.explicitly_shared = $('#explicit-share').is(':checked');
+              // Cancel
+              $('.close-fb-dialog').click(function() {
+                // Fake cancel button to remove "fake" feed
+                $('.og_dialog').dialog('close').remove();
+                $('.og-post-dialog').remove();
+                Drupal.friendFinder.clear_friends();
+                return false;
+              });
 
-              if (things.friend_selector == 'custom') {
-                if (!Drupal.behaviors.fb.has_permission('publish_stream')) {
-                  Drupal.behaviors.fb.ask_permission('publish_stream', function() {
-                    callback(things);
-                  });
+              // Submit
+              $('#submit-og-post').click(function() {
+                if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
+                  things.comments = $('#hidden_comments').val();
                 }
-              }
-              else {
-                callback(things);
-              }
+                else {
+                  things.comments = $('#fb_og_comments').val();
+                }
 
-              $('.og_dialog').dialog('close');
-              //og.remove();
-              //delete og;
-            });
-          });;
-        });
+                things.explicitly_shared = $('#explicit-share').is(':checked');
+
+                if (things.friend_selector == 'custom') {
+                  if (!Drupal.behaviors.fb.has_permission('publish_stream')) {
+                    Drupal.behaviors.fb.ask_permission('publish_stream', function() {
+                      callback(things);
+                    });
+                  }
+                }
+                else {
+                  callback(things);
+                }
+
+                $('.og_dialog').dialog('close');
+                $('.og-post-dialog').remove();
+                //og.remove();
+                //delete og;
+              });
+            });;
+          });
       });
     },
 
@@ -946,7 +997,7 @@
      *       img_namespace           (The Open Graph namespace through which to post the image.)
      *       img_action              (The Open Graph action through which to post the image.)
      *       img_document            (The URI to share.  Defaults to document.location.href)
-     *       img_message             (An (optional) message to post with the image.)
+     *       img_message             (Whether or not to ask the user for a user-generated message.  (bool) true or false.)
      *       img_picture          *  (The URI to the image that will be shared.)
      *       img_picture_selector *  (A DOM element t gather the SRC of the image from.)
      *       img_selector            (An (optional) selector that will trigger the share when clicked.)
@@ -965,7 +1016,7 @@
         object: config.img_object,
         action: config.img_action,
         link: config.img_document || document.location.href,
-        message: config.img_message || '',
+        message: config.img_message || false,
         image: config.img_picture, // Needs to be at least 480x480
         image_selector: config.img_picture_selector, // Needs to be an img element that is at least 480x480
         selector: config.img_selector,
@@ -984,6 +1035,7 @@
       }
 
       Drupal.behaviors.fb.auth_handler('run_image', things, callback);
+      return false;
     },
 
     /**
@@ -992,14 +1044,41 @@
      *  NOTE: We need Facebook permission to make this a public function.
      */
     run_image: function(things, callback) {
-      var fbpost = {
-          message: things.message,
+      if (things.message) {
+          things.picture = things.img_url;
+          things.follow_position = true;
+          Drupal.behaviors.fb.fb_dialog('image-post', things, function(response) {
+            var fbpost = {
+                'image[0][url]': things.img_url,
+                'image[0][user_generated]': true,
+                'fb:explicitly_shared': response.explicly_shared,
+            };
+
+            if (response.comments) {
+              fbpost['message'] = response.comments;
+            }
+
+            fbpost[things.object] = things.link;
+
+            Drupal.behaviors.fb.process_image(things, fbpost, callback);
+          });
+      }
+      else {
+        var fbpost = {
           'image[0][url]': things.img_url,
-          'image[0][user_generated]': true
-      };
+          'image[0][user_generated]': true,
+        };
 
-      fbpost[things.object] = things.link;
+        fbpost[things.object] = things.link;
 
+        Drupal.behaviors.fb.process_image(things, fbpost, callback);
+      }
+    },
+
+    /** 
+     *  Processes image FB API request.
+     */
+    process_image: function(things, fbpost, callback) {
       FB.api(
        '/me/' + things.namespace + ':' + things.action,
         'post',
@@ -1008,6 +1087,8 @@
           Drupal.behaviors.fb.callback_handler(callback, response);
         }
       );
+
+      return false;
     },
 
     /**
@@ -1117,7 +1198,7 @@
 
     run_gate: function(things, callback) {
       FB.getLoginStatus(function(response) {
-        if (response.status == 'connected' && response.authResponse.userID) {
+        if (response.status == 'connected' && response.authResponse.userID && !$('body').hasClass('not-logged-in')) {
           // Nothing.  They're authorized.
           // Drupal.behaviors.fb.clog('User is authenticated.  Doing nothing.');
         }

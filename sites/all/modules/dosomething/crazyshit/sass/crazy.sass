@@ -1,0 +1,337 @@
+@import compass
+@import 'variables'
+@import 'buttons'
+@import 'popups'
+@import 'drupal'
+
+// BASE
+// ----
+
+body, div[role="main"], #page
+  background-color: $background !important
+
+// HEADER
+// ------
+
+#header
+  background-color: #ffc100
+
+div.header_inner
+  height: 200px
+  width: 900px
+  margin: 0 auto
+  position: relative
+  overflow: hidden
+  @media only screen and (max-width: 920px)
+    height: 150px
+    width: 98%
+  @media only screen and (max-width: 620px)
+    padding: 2% 0
+    height: auto
+
+img.header_sponsor, img.header_logo
+  position: absolute
+  bottom: 5px
+  @media only screen and (max-width: 920px)
+    bottom: 5px
+  @media only screen and (max-width: 400px)
+    width: 45%
+  
+img.header_background
+  width: 700px
+  +block_center
+  @media only screen and (max-width: 920px)
+    height: 150px
+    width: 500px
+  @media only screen and (max-width: 620px)
+    display: none
+
+img.header_logo
+  height: 190px
+  right: 0
+  @media only screen and (max-width: 920px)
+    height: 140px
+  @media only screen and (max-width: 620px)
+    display: none
+
+img.header_sponsor
+  left: 0
+  @media only screen and (max-width: 620px)
+    position: static
+    width: 145px
+    float: left
+    margin: 0 0 0 10.5%
+  @media only screen and (max-width: 450px)
+    margin: 0 0 0 1.5%
+
+img.header_logo_text /* replaces img.header_logo on lower screen resolutions */
+  display: none
+  @media only screen and (max-width: 620px)
+    width: 80%
+    +block_center
+  @media only screen and (max-width: 450px)
+    width: 98%
+
+img.header_ds_logo /* additional DS logo for lower screen resolutions */
+  display: none
+  position: absolute
+  top: 5px
+  left: 0
+  height: 75px
+  @media only screen and (max-width: 920px)
+    display: block 
+  @media only screen and (max-width: 620px)
+    position: static
+    height: 50px
+    float: right
+    margin: 1% 9.5% 0 0 
+  @media only screen and (max-width: 450px)
+    margin: 1% 0.5% 0 0
+
+// NAV & FILTERS
+// -------------
+
+.crazy-menu-wrapper, .crazy-sub-menu-wrapper
+  width: 100%
+  margin: 0
+  padding: 0
+
+.crazy-menu, .crazy-sub-menu
+  overflow: hidden
+  list-style: none
+  li
+    float: left
+    text-align: center
+  a
+    display: block
+    font-family: din-web-reg
+    font-weight: 400
+    text-transform: uppercase
+    &:hover
+      text-decoration: none
+
+// NAV
+// ---
+
+.crazy-menu-wrapper
+  background-color: $off_black
+
+.crazy-menu
+  margin: 0 auto
+  width: 600px
+  padding: 0
+  @media only screen and (max-width: 650px)
+    width: 100%
+  li
+    width: 25%
+  a
+    font-size: 25px
+    line-height: 50px
+    color: #fff
+    &:hover
+      color: $accent_color
+    @media only screen and (max-width: 650px)
+      font-size: 17px
+      line-height: 35px
+
+  a.active
+    color: $accent_color
+    &:hover
+      color: $accent_color
+
+
+// FILTERS
+// -------
+
+.crazy-sub-menu-wrapper
+  background-color: #fff
+
+.crazy-sub-menu
+  margin: 0 auto 1%
+  padding: 0
+  width: 500px
+  @media only screen and (max-width: 650px)
+    width: 100%
+  li
+    margin: 2%
+    width: 29%
+    @media only screen and (max-width: 650px)
+      margin: 1%
+  a
+    font-size: 18px
+    line-height: 36px
+    color: $off_black
+    &:hover
+      background-color: $off_black
+      color: #fff
+      +border-radius(3px)
+    @media only screen and (max-width: 650px)
+      font-size: 14px
+      line-height: 23px
+
+  a.active
+    background-color: $off_black
+    color: #fff
+    +border-radius(4px)
+    &:hover
+      color: #fff
+
+// GENERAL LAYOUT
+// --------------
+
+.crazy-submission, .submit-start, .node-crazy-shit
+  background-color: #fff
+  width: 500px
+  margin: 2% auto
+  +border-radius(2px)
+  @media only screen and (max-width: 550px)
+    width: 100%
+
+// SUBMISSION
+// ----------
+
+.crazy-submission
+  background-color: #fff
+  width: 500px
+  margin: 2% auto
+  position: relative
+  @media only screen and (max-width: 700px)
+    width: 430px
+  @media only screen and (max-width: 650px)
+    width: 95% 
+
+.fb-picture
+  width: 50px
+  margin: 0 0 0 -75px
+  @media only screen and (max-width: 700px)
+    margin: 0 auto
+    padding: 10px 0
+
+.simg
+  margin: -50px 0 0 0
+  padding: 50px 0 10px 0
+  +border-radius(2px)
+  +crazy_img
+  @media only screen and (max-width: 700px)
+    margin: 0
+    padding: 0
+
+// what is the <p class="buttons"></p> tag doing there?
+
+.dateline, .author /* hide the timestamp and author */
+  display: none
+
+// INVITE FRIENDS
+// --------------
+
+.fb-invite-friends
+  margin: 25px auto 0
+  display: block
+  height: 45px
+  width: 215px
+  background-image: url('//files.dosomething.org/files/campaigns/crazy13/facebook.png')
+  background-color: transparent
+  background-repeat: no-repeat
+  text-indent: -9999em
+
+.connect-with-facebook
+  text-indent: -119988px
+  overflow: hidden
+  text-align: left
+  background-image: url('/sites/all/themes/doit/css/images/btn-facebook-popup-login.png')
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  width: 300px
+  height: 50px
+  display: block
+  margin-bottom: 2px
+  margin-left: auto
+  margin-right: auto
+
+// BUTTON STYLES
+// -------------
+
+.fakefile /* [upload a file] div underlay */,
+#edit-submitted-field-crazy-crazy-picture-und-0-remove-button /* [remove] uploaded image */
+  background: $yellow_button
+  padding: 10px
+  text-transform: uppercase
+  font-family: din-web
+  font-weight: 600
+  font-size: 22px
+  width: 130px
+  height: 35px
+  +border-radius(2px)
+
+.fakefile
+  position: absolute
+  top: 0px
+  left: 0px
+  z-index: 1
+  width: 146px
+
+#edit-submitted-field-crazy-crazy-picture-und-0-remove-button
+  margin: -10px auto 25px
+  padding: 2px 0 0 0
+  width: 80px
+  border: none
+  display: block
+
+.form-file.new /* [upload a file] input overlay */
+  position: relative
+  text-align: right
+  -moz-opacity: 0
+  opacity: 0
+  z-index: 2
+  width: 130px
+  height: 35px
+  cursor: pointer
+
+.submit-start button /* [next] (first instace of) */,
+.node-crazy-shit #edit-actions .form-submit /* matches all buttons */
+  margin: 0
+  padding: 0
+  float: right
+  position: relative
+  background: $blue_button
+  color: #fff
+  border: none
+  text-transform: uppercase
+  font-family: din-web-reg
+  font-weight: 400
+  font-size: 18px
+  height: 30px
+  +border-radius(2px)
+  &:hover
+    color: #fff
+    +blue_hover
+
+.submit-start button,
+#edit-next /* [next] button */
+  width: 60px !important
+
+#edit-previous /* [back] button */
+  width: 60px !important
+  float: left !important
+
+#edit-submit /* [submit] button */
+  width: 80px
+  float: right !important
+
+// throbber margin
+#views_infinite_scroll-ajax-loader
+  margin: 3% 0
+
+// styles empty gallery placeholder
+.no-results
+  font-size: 35px
+  line-height: 45px
+  text-align: center
+  text-transform: uppercase
+  font-weight: 600
+  padding: 20% 0
+  .small_button /* override default button styles */
+    float: none
+    margin: 7% auto 0
+    display: block
+    width: 160px
