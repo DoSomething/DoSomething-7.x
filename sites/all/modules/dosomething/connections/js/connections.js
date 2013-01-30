@@ -214,6 +214,7 @@
       loader.dialog({
         dialogClass: 'facebook-loader',
         width: '575px',
+        resizable: false,
       }).queue(function() {
         $('.facebook-loader').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
       });
