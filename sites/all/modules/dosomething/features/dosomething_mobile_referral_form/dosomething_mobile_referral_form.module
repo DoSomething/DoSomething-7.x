@@ -171,7 +171,7 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
 function redirect_to_shary_stats($form, &$form_state) {
   $nid = $form_state['nid'];
   $form_state['redirect'] = 'share-these-images/' . $nid;
-  $_GET['redirect'] = 'share-these-images/' . $nid;
+  $_GET['redirect'] = 'redirect-with-message?destination=share-these-images/' . $nid . '&message=' . $_SESSION['social_scholars_messages'];
 }
 
 function dosomething_mobile_referral_form_ajax($form, &$form_state) {
