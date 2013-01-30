@@ -194,29 +194,34 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   background-color: #fff
   width: 500px
   margin: 2% auto
+  padding: 70px 50px 0 50px
   position: relative
   @media only screen and (max-width: 700px)
     width: 430px
+    padding: 10px 20px 0
   @media only screen and (max-width: 650px)
     width: 95% 
+  @media only screen and (max-width: 400px)
+    margin: 5% auto
+    padding: 10px 5px 0
 
 .fb-picture
-  width: 50px
-  margin: 0 0 0 -75px
+  margin: -70px 0 0 -125px
+  img
+    +border-radius(2px)
   @media only screen and (max-width: 700px)
+    width: 50px
     margin: 0 auto
-    padding: 10px 0
+    padding: 0 0 10px 0
 
 .simg
-  margin: -50px 0 0 0
-  padding: 50px 0 10px 0
+  margin: -40px 0 0 0
+  padding: 40px 0 0 0
   +border-radius(2px)
   +crazy_img
   @media only screen and (max-width: 700px)
     margin: 0
     padding: 0
-
-// what is the <p class="buttons"></p> tag doing there?
 
 .dateline, .author /* hide the timestamp and author */
   display: none

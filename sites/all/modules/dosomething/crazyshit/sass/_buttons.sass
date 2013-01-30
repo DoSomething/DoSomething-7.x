@@ -45,22 +45,31 @@
       margin-top: -6px
 
 .vouch-button
-  margin: 0 25px 25px 50px
+  margin: 7% 7% 7% 0
   @media only screen and (max-width: 700px)
-    margin: 0 25px 15px 15px
+    margin: 15px 0% 20px 15px
+  @media only screen and (max-width: 320px) /* bump margin-right to force one button per line */
+    margin: 15px 20% 20px 15px 
+
+.vouch-button, .bs-button
+  @media only screen and (max-width: 400px)
+    margin: 15px 0 15px 4%
 
 .fb-share
   position: absolute
   right: 50px
-  bottom: 25px
+  bottom: 20px
   +img_replace(30px, 30px, '//files.dosomething.org/files/campaigns/crazy13/share_mini.png')
   a
     display: block
   &:hover
     background-position-y: -30px
   @media only screen and (max-width: 700px)
-    right: 15px
-    bottom: 15px
+    right: 36px
+    bottom: 19px
+  @media only screen and (max-width: 400px)
+    right: 13px
+    bottom: 14px
   
 .small_button, .more_tips
   float: left
