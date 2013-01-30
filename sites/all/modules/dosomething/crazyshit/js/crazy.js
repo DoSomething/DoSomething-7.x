@@ -78,7 +78,7 @@
 	       var elm = $(this);
 	       var na = $(this).hasClass('no-alert');
 
-	       if ($(this).parent().parent().hasClass('by-me')) {
+	       if ($(this).parent().parent().hasClass('by-me') && Drupal.settings.crazy.origin == 2) {
 	          $.fn.dsCrazyPopup('bull', elm.attr('rel'), { 'you': true });
 	          na = true;
 	       }
