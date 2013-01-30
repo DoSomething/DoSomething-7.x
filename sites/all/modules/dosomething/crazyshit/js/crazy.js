@@ -13,6 +13,10 @@
 		   $('html, body').animate({ scrollTop: $('.s-' + h).offset().top }, 'slow');
 	    }
 
+      if (top.location != self.location) {
+        top.location = self.location.href
+      }
+
 	    Drupal.behaviors.dsCrazyScripts.fb_refresh(function() {
             if (Drupal.behaviors.fb.is_authed()) {
                Drupal.behaviors.dsCrazyScripts.authed = true;

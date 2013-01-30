@@ -166,7 +166,7 @@ function crazyshit_ctools_plugin_directory($module, $plugin) {
  *	Redirects from PFP Facebook app back to DoSomething.
  */
 function crazyshit_redirect_from_pfp() {
-   drupal_goto(CRAZY_ROOT);
+   drupal_goto('https://' . CRAZY_DOMAIN . '/' . CRAZY_ROOT);
 }
 
 /**
