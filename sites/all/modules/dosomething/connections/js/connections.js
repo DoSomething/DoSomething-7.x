@@ -257,6 +257,30 @@
               return false;
             });
 
+              // Submit
+            $('#submit-og-post').click(function() {     
+               if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
+                  things.comments = $('#hidden_comments').val();
+               }
+               else {
+                  things.comments = $('#fb_og_comments').val();
+               }
+               things.explicitly_shared = $('#explicit-share').is(':checked');
+               if (things.friend_selector == 'custom') {
+                  if (!Drupal.behaviors.fb.has_permission('publish_stream')) {
+                      Drupal.behaviors.fb.ask_permission('publish_stream', function() {
+                            callback(things);
+                      });
+                 }
+               }
+               else {
+                  callback(things);
+               }
+               $('.og_dialog').dialog('close');
+               $('.og-post-dialog').remove();
+
+             });
+
             });
           });
       });
@@ -547,7 +571,7 @@
                     var fbObj = {
                       message: response.comments,
                       name: response.title,
-                      picture: response.picture,
+                      picture: response.picture.replace(/\?.*$/, ''),
                       description: response.description,
                       caption: response.caption,
                       link: response.link
