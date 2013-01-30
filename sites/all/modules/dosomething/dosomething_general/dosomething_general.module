@@ -1014,7 +1014,6 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
       dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
     }
   }
-  
 }
 
 /**
