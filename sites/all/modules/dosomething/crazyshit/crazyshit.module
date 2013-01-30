@@ -638,6 +638,10 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
     global $user;
 
+    if (!$user->uid) {
+      drupal_goto(CRAZY_ROOT);
+    }
+
     $f = array(
 	   0 => fboauth_fbid_load($user->uid),
 	);
