@@ -681,3 +681,18 @@ img.header_logo_text {
 /* line 328, ../sass/crazy.sass */
 #views_infinite_scroll-ajax-loader {
   margin: 3% 0; }
+
+/* line 332, ../sass/crazy.sass */
+.no-results {
+  font-size: 35px;
+  line-height: 45px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 20% 0; }
+/* line 339, ../sass/crazy.sass */
+.no-results .small_button {
+  float: none;
+  margin: 7% auto 0;
+  display: block;
+  width: 160px; }
