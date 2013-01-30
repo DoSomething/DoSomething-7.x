@@ -326,7 +326,7 @@ function fb_auth(type, status) {
 	   }
 	});
 
-	if (!status || $('body').hasClass('not-logged-in')) {
+	if (!status || jQuery('body').hasClass('not-logged-in')) {
 		if (type == 'login') {
 			jQuery.fn.dsCrazyPopup('login', 0);
 			return false;
