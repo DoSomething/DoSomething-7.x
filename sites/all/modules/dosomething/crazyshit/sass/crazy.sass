@@ -72,6 +72,22 @@ img.header_logo_text /* replaces img.header_logo on lower screen resolutions */
   @media only screen and (max-width: 450px)
     width: 98%
 
+img.header_ds_logo /* additional DS logo for lower screen resolutions */
+  display: none
+  position: absolute
+  top: 5px
+  left: 0
+  height: 75px
+  @media only screen and (max-width: 920px)
+    display: block 
+  @media only screen and (max-width: 620px)
+    position: static
+    height: 50px
+    float: right
+    margin: 1% 9.5% 0 0 
+  @media only screen and (max-width: 450px)
+    margin: 1% 0.5% 0 0
+
 // NAV & FILTERS
 // -------------
 
