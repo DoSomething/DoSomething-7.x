@@ -34,6 +34,8 @@ function doit_preprocess_page(&$variables) {
   // dsm($variables);
   // dsm($variables['page']);
 
+  drupal_alter('page_templates', $variables);
+
   // Add Social Tracking for Google Analytics
   drupal_add_js($theme_path . '/js/ga_social_tracking.js', array(
     'every_page' => TRUE,

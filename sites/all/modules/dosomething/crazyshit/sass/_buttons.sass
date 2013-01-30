@@ -1,0 +1,116 @@
+// BUTTONS
+// -------
+
+.crazy-button, .bs-button, .vouch-button /* submission view buttons */
+  display: inline-block
+  a
+    background: $blue_button
+    color: white
+    padding: 5px
+    text-transform: uppercase
+    +border-radius(2px)
+    &:hover
+      text-decoration: none
+      +blue_hover
+  a.clicked
+    background: #F1F1F1
+    color: #C1C1C1
+    cursor: default
+    text-decoration: none
+  span
+    background-color: #ddd
+    position: relative
+    display: inline-block
+    margin: 0 0 0 5px
+    padding: 3px 10px
+    +border-radius(2px)
+    &:after, &:before 
+      right: 100%
+      border: solid transparent
+      content: " "
+      height: 0
+      width: 0
+      position: absolute
+      pointer-events: none
+    &:after 
+      border-color: rgba(136, 183, 213, 0)
+      border-right-color: #ddd
+      border-width: 5px
+      top: 50%
+      margin-top: -5px 
+    &:before 
+      border-color: rgba(194, 225, 245, 0)
+      border-width: 6px
+      top: 50%
+      margin-top: -6px
+
+.vouch-button
+  margin: 0 25px 25px 50px
+  @media only screen and (max-width: 700px)
+    margin: 0 25px 15px 15px
+
+.fb-share
+  position: absolute
+  right: 50px
+  bottom: 25px
+  +img_replace(30px, 30px, '//files.dosomething.org/files/campaigns/crazy13/share_mini.png')
+  a
+    display: block
+  &:hover
+    background-position-y: -30px
+  @media only screen and (max-width: 700px)
+    right: 15px
+    bottom: 15px
+  
+.small_button, .more_tips
+  float: left
+  background: $blue_button
+  color: white !important
+  cursor: pointer !important
+  padding: 5px 7px 1px 7px 
+  font-size: 20px
+  font-weight: 400
+  line-height: 25px
+  text-transform: uppercase
+  +border-radius(2px)
+  &:hover
+    text-decoration: none
+    +blue_hover
+  .clicked
+    background: #F1F1F1
+    color: #C1C1C1
+    cursor: default
+    text-decoration: none
+  span
+    background-color: #ddd
+    position: relative
+    display: inline-block
+    margin: 0 0 0 5px
+    padding: 3px 10px
+    +border-radius(2px)
+    &:after, &:before 
+      right: 100%
+      border: solid transparent
+      content: " "
+      height: 0
+      width: 0
+      position: absolute
+      pointer-events: none
+    &:after 
+      border-color: rgba(136, 183, 213, 0)
+      border-right-color: #ddd
+      border-width: 5px
+      top: 50%
+      margin-top: -5px 
+    &:before 
+      border-color: rgba(194, 225, 245, 0)
+      border-width: 6px
+      top: 50%
+      margin-top: -6px
+
+a.no_thanks
+  color: #ccc
+  cursor: pointer
+  text-transform: lowercase
+
+  

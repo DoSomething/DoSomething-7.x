@@ -1,0 +1,700 @@
+/* line 4, ../sass/_buttons.sass */
+.crazy-button, .bs-button, .vouch-button {
+  display: inline-block; }
+/* line 6, ../sass/_buttons.sass */
+.crazy-button a, .bs-button a, .vouch-button a {
+  background: #4b84e6;
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 12, ../sass/_buttons.sass */
+.crazy-button a:hover, .bs-button a:hover, .vouch-button a:hover {
+  text-decoration: none;
+  background-color: #6193e9; }
+/* line 15, ../sass/_buttons.sass */
+.crazy-button a.clicked, .bs-button a.clicked, .vouch-button a.clicked {
+  background: #f1f1f1;
+  color: #c1c1c1;
+  cursor: default;
+  text-decoration: none; }
+/* line 20, ../sass/_buttons.sass */
+.crazy-button span, .bs-button span, .vouch-button span {
+  background-color: #dddddd;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0 5px;
+  padding: 3px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 27, ../sass/_buttons.sass */
+.crazy-button span:after, .crazy-button span:before, .bs-button span:after, .bs-button span:before, .vouch-button span:after, .vouch-button span:before {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none; }
+/* line 35, ../sass/_buttons.sass */
+.crazy-button span:after, .bs-button span:after, .vouch-button span:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: #dddddd;
+  border-width: 5px;
+  top: 50%;
+  margin-top: -5px; }
+/* line 41, ../sass/_buttons.sass */
+.crazy-button span:before, .bs-button span:before, .vouch-button span:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: 6px;
+  top: 50%;
+  margin-top: -6px; }
+
+/* line 47, ../sass/_buttons.sass */
+.vouch-button {
+  margin: 0 25px 25px 50px; }
+@media only screen and (max-width: 700px) {
+  /* line 47, ../sass/_buttons.sass */
+  .vouch-button {
+    margin: 0 25px 15px 15px; } }
+
+/* line 52, ../sass/_buttons.sass */
+.fb-share {
+  position: absolute;
+  right: 50px;
+  bottom: 25px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-image: url("//files.dosomething.org/files/campaigns/crazy13/share_mini.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-indent: -9999em; }
+/* line 57, ../sass/_buttons.sass */
+.fb-share a {
+  display: block; }
+/* line 59, ../sass/_buttons.sass */
+.fb-share:hover {
+  background-position-y: -30px; }
+@media only screen and (max-width: 700px) {
+  /* line 52, ../sass/_buttons.sass */
+  .fb-share {
+    right: 15px;
+    bottom: 15px; } }
+
+/* line 65, ../sass/_buttons.sass */
+.small_button, .more_tips {
+  float: left;
+  background: #4b84e6;
+  color: white !important;
+  cursor: pointer !important;
+  padding: 5px 7px 1px 7px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 25px;
+  text-transform: uppercase;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 76, ../sass/_buttons.sass */
+.small_button:hover, .more_tips:hover {
+  text-decoration: none;
+  background-color: #6193e9; }
+/* line 79, ../sass/_buttons.sass */
+.small_button .clicked, .more_tips .clicked {
+  background: #f1f1f1;
+  color: #c1c1c1;
+  cursor: default;
+  text-decoration: none; }
+/* line 84, ../sass/_buttons.sass */
+.small_button span, .more_tips span {
+  background-color: #dddddd;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0 5px;
+  padding: 3px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 91, ../sass/_buttons.sass */
+.small_button span:after, .small_button span:before, .more_tips span:after, .more_tips span:before {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none; }
+/* line 99, ../sass/_buttons.sass */
+.small_button span:after, .more_tips span:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: #dddddd;
+  border-width: 5px;
+  top: 50%;
+  margin-top: -5px; }
+/* line 105, ../sass/_buttons.sass */
+.small_button span:before, .more_tips span:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: 6px;
+  top: 50%;
+  margin-top: -6px; }
+
+/* line 111, ../sass/_buttons.sass */
+a.no_thanks {
+  color: #cccccc;
+  cursor: pointer;
+  text-transform: lowercase; }
+
+/* line 4, ../sass/_popups.sass */
+.submit-crazy-popup, .vouch-crazy-popup, .login-crazy-popup, .share-crazy-popup, .bull-crazy-popup, .tip-crazy-popup {
+  background-color: white;
+  font-family: din-web-reg;
+  font-size: 16px;
+  line-height: 28px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 15, ../sass/_popups.sass */
+.submit-crazy-popup h2, .submit-crazy-popup p, .vouch-crazy-popup h2, .vouch-crazy-popup p, .login-crazy-popup h2, .login-crazy-popup p, .share-crazy-popup h2, .share-crazy-popup p, .bull-crazy-popup h2, .bull-crazy-popup p, .tip-crazy-popup h2, .tip-crazy-popup p {
+  width: 80%; }
+/* line 17, ../sass/_popups.sass */
+.submit-crazy-popup h2, .vouch-crazy-popup h2, .login-crazy-popup h2, .share-crazy-popup h2, .bull-crazy-popup h2, .tip-crazy-popup h2 {
+  color: #6ebd32;
+  font-size: 45px;
+  line-height: 45px;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 2px solid #444444;
+  margin: 0.4em auto;
+  padding: 0 0 0.2em 0; }
+/* line 26, ../sass/_popups.sass */
+.submit-crazy-popup p, .vouch-crazy-popup p, .login-crazy-popup p, .share-crazy-popup p, .bull-crazy-popup p, .tip-crazy-popup p {
+  margin: 0 auto; }
+@media only screen and (max-width: 550px) {
+  /* line 4, ../sass/_popups.sass */
+  .submit-crazy-popup, .vouch-crazy-popup, .login-crazy-popup, .share-crazy-popup, .bull-crazy-popup, .tip-crazy-popup {
+    width: 90% !important;
+    top: 12% !important;
+    left: 5% !important; } }
+
+/* line 33, ../sass/_popups.sass */
+p.dialog_sub_header {
+  color: #888888;
+  text-align: center;
+  padding: 0 0 0.5em 0; }
+
+/* line 38, ../sass/_popups.sass */
+#crazy-tip-buttons {
+  width: 115px;
+  margin: 4% auto;
+  text-align: center; }
+
+/* line 4, ../sass/_drupal.sass */
+#page, body.one-sidebar.sidebar-first [role="main"] {
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+
+/* line 10, ../sass/_drupal.sass */
+header[role="banner"] {
+  width: 800px;
+  margin: 0 auto;
+  position: relative; }
+
+/* line 16, ../sass/_drupal.sass */
+#site-name {
+  top: -38px;
+  left: -94px; }
+@media only screen and (max-width: 920px) {
+  /* line 16, ../sass/_drupal.sass */
+  #site-name {
+    display: none; } }
+
+/* line 23, ../sass/_drupal.sass */
+.tabs {
+  border: none !important;
+  background-color: #ff885e; }
+
+/* line 28, ../sass/_drupal.sass */
+#main-wrapper div[role="main"] ul.primary {
+  height: 50px;
+  width: 312px;
+  margin: 0 auto;
+  padding: 20px 0 0 0; }
+/* line 33, ../sass/_drupal.sass */
+#main-wrapper div[role="main"] ul.primary li a {
+  text-transform: uppercase;
+  color: #111111;
+  background-color: #dddddd !important;
+  border: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+
+/* line 42, ../sass/_drupal.sass */
+.webform-client-form {
+  box-shadow: none !important;
+  border: none !important; }
+
+/* line 47, ../sass/_drupal.sass */
+#edit-actions {
+  height: auto !important;
+  margin: 0 !important;
+  text-align: inherit !important; }
+
+@media only screen and (max-width: 920px) {
+  /* line 54, ../sass/_drupal.sass */
+  #utility-bar, #admin-menu {
+    display: none; }
+
+  /* line 58, ../sass/_drupal.sass */
+  html body.admin-menu {
+    margin: 0 !important; } }
+/* line 62, ../sass/_drupal.sass */
+#skip-link, .breadcrumb, .pane-title, #breadcrumb, #page-title, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5, #block-menu-menu-footer, .region-sidebar-first, nav[role="navigation"] {
+  display: none; }
+
+/* line 10, ../sass/crazy.sass */
+body, div[role="main"], #page {
+  background-color: #dddddd !important; }
+
+/* line 16, ../sass/crazy.sass */
+#header {
+  background-color: #ffc100; }
+
+/* line 19, ../sass/crazy.sass */
+div.header_inner {
+  height: 200px;
+  width: 900px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden; }
+@media only screen and (max-width: 920px) {
+  /* line 19, ../sass/crazy.sass */
+  div.header_inner {
+    height: 150px;
+    width: 98%; } }
+@media only screen and (max-width: 620px) {
+  /* line 19, ../sass/crazy.sass */
+  div.header_inner {
+    padding: 2% 0;
+    height: auto; } }
+
+/* line 32, ../sass/crazy.sass */
+img.header_sponsor, img.header_logo {
+  position: absolute;
+  bottom: 5px; }
+@media only screen and (max-width: 920px) {
+  /* line 32, ../sass/crazy.sass */
+  img.header_sponsor, img.header_logo {
+    bottom: 5px; } }
+@media only screen and (max-width: 400px) {
+  /* line 32, ../sass/crazy.sass */
+  img.header_sponsor, img.header_logo {
+    width: 45%; } }
+
+/* line 40, ../sass/crazy.sass */
+img.header_background {
+  width: 700px;
+  margin: 0 auto;
+  display: block; }
+@media only screen and (max-width: 920px) {
+  /* line 40, ../sass/crazy.sass */
+  img.header_background {
+    height: 150px;
+    width: 500px; } }
+@media only screen and (max-width: 620px) {
+  /* line 40, ../sass/crazy.sass */
+  img.header_background {
+    display: none; } }
+
+/* line 49, ../sass/crazy.sass */
+img.header_logo {
+  height: 190px;
+  right: 0; }
+@media only screen and (max-width: 920px) {
+  /* line 49, ../sass/crazy.sass */
+  img.header_logo {
+    height: 140px; } }
+@media only screen and (max-width: 620px) {
+  /* line 49, ../sass/crazy.sass */
+  img.header_logo {
+    display: none; } }
+
+/* line 57, ../sass/crazy.sass */
+img.header_sponsor {
+  left: 0; }
+@media only screen and (max-width: 620px) {
+  /* line 57, ../sass/crazy.sass */
+  img.header_sponsor {
+    position: static;
+    width: 145px;
+    float: left;
+    margin: 0 0 0 10.5%; } }
+@media only screen and (max-width: 450px) {
+  /* line 57, ../sass/crazy.sass */
+  img.header_sponsor {
+    margin: 0 0 0 1.5%; } }
+
+/* line 67, ../sass/crazy.sass */
+img.header_logo_text {
+  display: none; }
+@media only screen and (max-width: 620px) {
+  /* line 67, ../sass/crazy.sass */
+  img.header_logo_text {
+    width: 80%;
+    margin: 0 auto;
+    display: block; } }
+@media only screen and (max-width: 450px) {
+  /* line 67, ../sass/crazy.sass */
+  img.header_logo_text {
+    width: 98%; } }
+
+/* line 75, ../sass/crazy.sass */
+img.header_ds_logo {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 75px; }
+@media only screen and (max-width: 920px) {
+  /* line 75, ../sass/crazy.sass */
+  img.header_ds_logo {
+    display: block; } }
+@media only screen and (max-width: 620px) {
+  /* line 75, ../sass/crazy.sass */
+  img.header_ds_logo {
+    position: static;
+    height: 50px;
+    float: right;
+    margin: 1% 9.5% 0 0; } }
+@media only screen and (max-width: 450px) {
+  /* line 75, ../sass/crazy.sass */
+  img.header_ds_logo {
+    margin: 1% 0.5% 0 0; } }
+
+/* line 94, ../sass/crazy.sass */
+.crazy-menu-wrapper, .crazy-sub-menu-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+
+/* line 99, ../sass/crazy.sass */
+.crazy-menu, .crazy-sub-menu {
+  overflow: hidden;
+  list-style: none; }
+/* line 102, ../sass/crazy.sass */
+.crazy-menu li, .crazy-sub-menu li {
+  float: left;
+  text-align: center; }
+/* line 105, ../sass/crazy.sass */
+.crazy-menu a, .crazy-sub-menu a {
+  display: block;
+  font-family: din-web-reg;
+  font-weight: 400;
+  text-transform: uppercase; }
+/* line 110, ../sass/crazy.sass */
+.crazy-menu a:hover, .crazy-sub-menu a:hover {
+  text-decoration: none; }
+
+/* line 116, ../sass/crazy.sass */
+.crazy-menu-wrapper {
+  background-color: #231f20; }
+
+/* line 119, ../sass/crazy.sass */
+.crazy-menu {
+  margin: 0 auto;
+  width: 600px;
+  padding: 0; }
+@media only screen and (max-width: 650px) {
+  /* line 119, ../sass/crazy.sass */
+  .crazy-menu {
+    width: 100%; } }
+/* line 125, ../sass/crazy.sass */
+.crazy-menu li {
+  width: 25%; }
+/* line 127, ../sass/crazy.sass */
+.crazy-menu a {
+  font-size: 25px;
+  line-height: 50px;
+  color: white; }
+/* line 131, ../sass/crazy.sass */
+.crazy-menu a:hover {
+  color: #f8c72f; }
+@media only screen and (max-width: 650px) {
+  /* line 127, ../sass/crazy.sass */
+  .crazy-menu a {
+    font-size: 17px;
+    line-height: 35px; } }
+/* line 137, ../sass/crazy.sass */
+.crazy-menu a.active {
+  color: #f8c72f; }
+/* line 139, ../sass/crazy.sass */
+.crazy-menu a.active:hover {
+  color: #f8c72f; }
+
+/* line 146, ../sass/crazy.sass */
+.crazy-sub-menu-wrapper {
+  background-color: white; }
+
+/* line 149, ../sass/crazy.sass */
+.crazy-sub-menu {
+  margin: 0 auto 1%;
+  padding: 0;
+  width: 500px; }
+@media only screen and (max-width: 650px) {
+  /* line 149, ../sass/crazy.sass */
+  .crazy-sub-menu {
+    width: 100%; } }
+/* line 155, ../sass/crazy.sass */
+.crazy-sub-menu li {
+  margin: 2%;
+  width: 29%; }
+@media only screen and (max-width: 650px) {
+  /* line 155, ../sass/crazy.sass */
+  .crazy-sub-menu li {
+    margin: 1%; } }
+/* line 160, ../sass/crazy.sass */
+.crazy-sub-menu a {
+  font-size: 18px;
+  line-height: 36px;
+  color: #231f20; }
+/* line 164, ../sass/crazy.sass */
+.crazy-sub-menu a:hover {
+  background-color: #231f20;
+  color: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+@media only screen and (max-width: 650px) {
+  /* line 160, ../sass/crazy.sass */
+  .crazy-sub-menu a {
+    font-size: 14px;
+    line-height: 23px; } }
+/* line 172, ../sass/crazy.sass */
+.crazy-sub-menu a.active {
+  background-color: #231f20;
+  color: white;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+/* line 176, ../sass/crazy.sass */
+.crazy-sub-menu a.active:hover {
+  color: white; }
+
+/* line 182, ../sass/crazy.sass */
+.crazy-submission, .submit-start, .node-crazy-shit {
+  background-color: white;
+  width: 500px;
+  margin: 2% auto;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+@media only screen and (max-width: 550px) {
+  /* line 182, ../sass/crazy.sass */
+  .crazy-submission, .submit-start, .node-crazy-shit {
+    width: 100%; } }
+
+/* line 193, ../sass/crazy.sass */
+.crazy-submission {
+  background-color: white;
+  width: 500px;
+  margin: 2% auto;
+  position: relative; }
+@media only screen and (max-width: 700px) {
+  /* line 193, ../sass/crazy.sass */
+  .crazy-submission {
+    width: 430px; } }
+@media only screen and (max-width: 650px) {
+  /* line 193, ../sass/crazy.sass */
+  .crazy-submission {
+    width: 95%; } }
+
+/* line 203, ../sass/crazy.sass */
+.fb-picture {
+  width: 50px;
+  margin: 0 0 0 -75px; }
+@media only screen and (max-width: 700px) {
+  /* line 203, ../sass/crazy.sass */
+  .fb-picture {
+    margin: 0 auto;
+    padding: 10px 0; } }
+
+/* line 210, ../sass/crazy.sass */
+.simg {
+  margin: -50px 0 0 0;
+  padding: 50px 0 10px 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 16, ../sass/_variables.sass */
+.simg img {
+  display: block;
+  margin: 0 auto;
+  width: 400px; }
+@media only screen and (max-width 800px) {
+  /* line 16, ../sass/_variables.sass */
+  .simg img {
+    width: 80%; } }
+@media only screen and (max-width: 700px) {
+  /* line 16, ../sass/_variables.sass */
+  .simg img {
+    width: 92%; } }
+@media only screen and (max-width: 700px) {
+  /* line 210, ../sass/crazy.sass */
+  .simg {
+    margin: 0;
+    padding: 0; } }
+
+/* line 221, ../sass/crazy.sass */
+.dateline, .author {
+  display: none; }
+
+/* line 227, ../sass/crazy.sass */
+.fb-invite-friends {
+  margin: 25px auto 0;
+  display: block;
+  height: 45px;
+  width: 215px;
+  background-image: url("//files.dosomething.org/files/campaigns/crazy13/facebook.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-indent: -9999em; }
+
+/* line 237, ../sass/crazy.sass */
+.connect-with-facebook {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  background-image: url("/sites/all/themes/doit/css/images/btn-facebook-popup-login.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 300px;
+  height: 50px;
+  display: block;
+  margin-bottom: 2px;
+  margin-left: auto;
+  margin-right: auto; }
+
+/* line 254, ../sass/crazy.sass */
+.fakefile, #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
+  background: #ffcb15;
+  padding: 10px;
+  text-transform: uppercase;
+  font-family: din-web;
+  font-weight: 600;
+  font-size: 22px;
+  width: 130px;
+  height: 35px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+
+/* line 266, ../sass/crazy.sass */
+.fakefile {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  width: 146px; }
+
+/* line 273, ../sass/crazy.sass */
+#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
+  margin: -10px auto 25px;
+  padding: 2px 0 0 0;
+  width: 80px;
+  border: none;
+  display: block; }
+
+/* line 280, ../sass/crazy.sass */
+.form-file.new {
+  position: relative;
+  text-align: right;
+  -moz-opacity: 0;
+  opacity: 0;
+  z-index: 2;
+  width: 130px;
+  height: 35px;
+  cursor: pointer; }
+
+/* line 290, ../sass/crazy.sass */
+.submit-start button, .node-crazy-shit #edit-actions .form-submit {
+  margin: 0;
+  padding: 0;
+  float: right;
+  position: relative;
+  background: #4b84e6;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  font-family: din-web-reg;
+  font-weight: 400;
+  font-size: 18px;
+  height: 30px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+/* line 305, ../sass/crazy.sass */
+.submit-start button:hover, .node-crazy-shit #edit-actions .form-submit:hover {
+  color: white;
+  background-color: #6193e9; }
+
+/* line 309, ../sass/crazy.sass */
+.submit-start button, #edit-next {
+  width: 60px !important; }
+
+/* line 313, ../sass/crazy.sass */
+#edit-previous {
+  width: 60px !important;
+  float: left !important; }
+
+/* line 317, ../sass/crazy.sass */
+#edit-submit {
+  width: 80px;
+  float: right !important; }
+
+/* line 322, ../sass/crazy.sass */
+#views_infinite_scroll-ajax-loader {
+  margin: 3% 0; }
+
+/* line 326, ../sass/crazy.sass */
+.no-results {
+  font-size: 35px;
+  line-height: 45px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 20% 0; }
+/* line 333, ../sass/crazy.sass */
+.no-results .small_button {
+  float: none;
+  margin: 7% auto 0;
+  display: block;
+  width: 160px; }

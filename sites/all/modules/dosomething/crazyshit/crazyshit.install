@@ -1,0 +1,119 @@
+<?php
+
+/**
+ * implements hook_schema().
+ */
+function crazyshit_schema() {
+  $schema = array();
+
+  $schema['crazy_notifications'] = array(
+    'description' => 'Stores notifications for users of Crazy Shit',
+    'primary key' => array('notifid'),
+    'fields' => array(
+      'sid' => array(
+        'description' => 'the group id from og.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'uid' => array(
+        'description' => 'The Drupal User ID of the person receiving the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => true,
+      ),
+      'fid' => array(
+        'description' => 'The Facebook ID of the person receiving the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'from_uid' => array(
+        'description' => 'The Drupal User ID of the person sending the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => true,
+      ),
+      'from_fid' => array(
+        'description' => 'The Facebook ID of the person sending the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'type' => array(
+        'description' => 'What action prompted the notification.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE
+      ),
+      'timestamp' => array(
+      	'description' => 'The time that the notification happened',
+      	'type' => 'int',
+      	'unsigned' => TRUE,
+      	'not null' => TRUE,
+      ),
+      'notified' => array(
+        'description' => 'Whether the user has seen this notification.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => '0',
+      ),
+      'origin' => array(
+        'description' => 'The page where the share happened.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'fb' => array(
+        'description' => 'Whether or not the user has gotten a message about it.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => '0'
+      ),
+      'notifid' => array(
+        'description' => 'The ID of the notifications.',
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      /*'ipaddress' => array(
+        'description' => 'The IP address of the user, if logged out, so we can keep track of what they click.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),*/
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'fid' => array('fid'),
+      'type' => array('type'),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ *  Creates Crazy Notifications table
+ */
+function crazyshit_update_7100() {
+  drupal_install_schema('crazyshit');
+}
+
+/**
+ * Updates crazy fid and uid fields to bigint.
+ */
+function crazyshit_update_7101() {
+  // db_change_field is throwing pointless errors.
+  db_query("ALTER TABLE {crazy_notifications} CHANGE `from_fid` `from_fid` bigint UNSIGNED NOT NULL");
+  db_query("ALTER TABLE {crazy_notifications} CHANGE `fid` `fid` bigint UNSIGNED NOT NULL");
+  db_query("ALTER TABLE {crazy_notifications} CHANGE `from_uid` `from_uid` bigint UNSIGNED NOT NULL");
+  db_query("ALTER TABLE {crazy_notifications} CHANGE `uid` `uid` bigint UNSIGNED NOT NULL");
+}

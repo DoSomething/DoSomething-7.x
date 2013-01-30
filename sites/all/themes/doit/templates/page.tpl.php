@@ -80,6 +80,7 @@
        <?php if ($tabs = render($tabs)): ?><div class="tabs"><?php print $tabs; ?></div><?php endif; ?>
        <?php print render($page['help']); ?>
        <?php if ($action_links = render($action_links)): ?><ul class="action-links"><?php print $action_links; ?></ul><?php endif; ?>
+       <?php print render($page['top_navbar']); ?>
        <?php print render($page['content']); ?>
        <?php print $feed_icons; ?>
      </div>
