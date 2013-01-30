@@ -2,18 +2,11 @@
 @import 'variables'
 @import 'buttons'
 
-// ABOUT PAGE
-// ----------
-
-@media only screen and (max-width: 650px)
-  .crazy-sub-menu-wrapper /* hide in-page navigation menu on smaller devices */
-    display: none
-
 // TIPS
 // ----
 
 #tips .section
-  width: 900px
+  width: 750px
   @media only screen and (max-width: 950px)
     width: 600px
   @media only screen and (max-width: 630px)
@@ -26,6 +19,7 @@
     width: 100%
     overflow: hidden
 
+// note: #tip[n] are zero indexed
 .tip_subject /* subject buttons */
   width: 120px
   height: 50px
@@ -42,30 +36,29 @@
     text-decoration: none
     background-color: lighten($off_black, 5)
   @media only screen and (max-width: 950px)
-    margin: 0 0 2% 0
-    float: left
+    margin: 3% 0 0 0
     height: 40px
     line-height: 40px
+  @media only screen and (max-width: 550px)
+    margin: 2% 0 0 0
+    height: 30px
+    line-height: 30px
+    font-size: 10px
+    width: 28%
 
 @media only screen and (max-width: 950px)
-  #tip0
-    float: left    
-
   #tip1
-    margin: 0 20%
+    margin: 1% 20% 0
+    float: left
   
   #tip2
     float: right
   
 #tip1
   @media only screen and (max-width: 650px)
-    margin: 0
+    margin: 0.8% 0 0 0
     position: absolute
-    left: 40%
-  @media only screen and (max-width: 525px)
-    left: 38%
-  @media only screen and (max-width: 450px)
-    left: 35%
+    left: 36%
   
 .active_subject 
   background-color: $blue_button
@@ -75,7 +68,7 @@
 .tip_wrapper
   width: 600px
   height: auto
-  float: left
+  float: right
   background-color: #fff
   +border-radius(4px)
   @media only screen and (max-width: 630px)
