@@ -6732,6 +6732,21 @@ div.status, .node-type-quiz div.warning, .node-type-quiz div.error {
   margin-top: -10px;
   position: relative;
 }
+.node-type-quiz .form-required {
+  display: none;
+}
+.node-type-quiz form.webform-client-form label {
+  font-size: 24px;
+}
+.node-type-quiz form.webform-client-form label.option {
+  font-size: 14px;
+}
+.node-type-quiz form.webform-client-form .webform-component-quiz-question {
+  border-bottom: 2px solid #cccccc;
+}
+.node-type-quiz input[type="checkbox"], .node-type-quiz input[type="radio"] {
+  margin-right: 0.4em;
+}
 
 .facebook-plugin {
   width: 50px;
