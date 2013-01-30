@@ -540,10 +540,12 @@ function crazyshit_page_alter(&$page) {
  *	Implements hook_views_pre_render()
  */
 function crazyshit_views_post_render(&$view, &$output, &$cache) {
-   global $user;
-   // Allows for lazy loading of images...
-   $output = preg_replace_callback('#src="([^\"]+)"\s+#i', 'crazyshit_add_lazy_class', $output);
-   $output = str_replace(' a-' . $user->uid, ' a-' . $user->uid . ' by-me', $output);
+   if (crazyshit_is_crazy_page()) {
+     global $user;
+     // Allows for lazy loading of images...
+     $output = preg_replace_callback('#src="([^\"]+)"\s+#i', 'crazyshit_add_lazy_class', $output);
+     $output = str_replace(' a-' . $user->uid, ' a-' . $user->uid . ' by-me', $output);
+   }
 }
 
 /**
