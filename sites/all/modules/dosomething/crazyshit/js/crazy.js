@@ -159,7 +159,7 @@
 
 	    $('.fb-share a').click(function(e) {
 	    	e.preventDefault();
-	    	var img = $(this).parent().parent().find('.simg img').attr('data-original');
+	    	var img = $(this).parent().parent().parent().find('.simg img').attr('data-original');
 	    	var sid = $(this).attr('rel');
 	    	Drupal.behaviors.fb.image({
 	    	   'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
