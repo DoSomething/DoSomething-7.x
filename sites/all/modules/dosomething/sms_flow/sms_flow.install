@@ -97,7 +97,7 @@ function sms_flow_update_7102() {
 }
 
 /**
- *  Creates sms flow records table.
+ *  Creates sms flow game table.
  */
 function sms_flow_update_7103() {
 
