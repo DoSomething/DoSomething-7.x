@@ -40,7 +40,8 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = '<p class="no-results">No posts yet -- <a href="/crazy/submit">submit yours!</a></p>';
+  $handler->display->display_options['empty']['area']['content'] = 
+    '<div class="crazy-submission"><p class="no-results">no posts yet<a class="small_button" href="/crazy/submit">submit yours!</a></p></div>';
   $handler->display->display_options['empty']['area']['format'] = '3';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Webform submissions: User */

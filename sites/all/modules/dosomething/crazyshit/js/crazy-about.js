@@ -4,7 +4,7 @@
     
       // create three arrays to hold content
       var savings = []; 
-      var credit_debit = []; 
+      var credit_debt = []; 
       var school_loans = []; 
 
       // define array content
@@ -28,8 +28,8 @@
         "Last one!"
       ];
 
-      credit_debit = [
-        "credit/debit",
+      credit_debt = [
+        "credit/debt",
         "Check for annual fees, now and in the future. Even your card starts without a fee, the credit card company may add one on later.",
         "Set your own credit card limit to avoid over-charging, which will result in pricey interest charges.",
         "Determine the default interest rate, which is what you will be charged if you do not pay the minimum payment on time. These interest rates are typically very high, some times 35 percent or more.",
@@ -67,7 +67,7 @@
       ];
       
       // create containing array
-      var all_subjects = [savings, credit_debit, school_loans];
+      var all_subjects = [savings, credit_debt, school_loans];
       var current_array = [];
       var current_array = all_subjects[0];
 

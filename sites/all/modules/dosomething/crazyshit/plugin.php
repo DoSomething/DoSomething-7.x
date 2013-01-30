@@ -153,7 +153,7 @@ $money_saving_tips = array(
     "Before opening a checking account, consider the services you need. Seek a free checking account that doesn't require a minimum balance or charge you for each check written.",
     "Use your own bank's ATM. Many banks charge a fee to use an ATM that doesn't belong to your bank.",
 
-	// Credit/Debit
+	// Credit/Debt
     "Save now to spend later. Rather than buying a big-ticket item on credit, save up to make the purchase so you can avoid interest charges.",
     "Avoid using credit cards to make purchases, as people spend up to 30 percent more when using them.",
     "Familiarize yourself with credit card interest rates. A pair of $50 jeans can become expensive if you are paying 20 percent interest.",
