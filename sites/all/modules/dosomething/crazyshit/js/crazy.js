@@ -250,8 +250,6 @@ function fb_invite_friends_post(sid, reload) {
 	jQuery('.bull-crazy-popup,.share-crazy-popup').remove();
 
 	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function(res) {
-
-	Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function(res) {
 		if (!(typeof res === 'object' && res.perms == 'publish_stream')) {
 		   return false;
 		}

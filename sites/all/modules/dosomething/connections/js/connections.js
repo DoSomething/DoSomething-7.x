@@ -251,9 +251,9 @@
             $('.close-fb-dialog').click(function() {
               // Fake cancel button to remove "fake" feed
               $('.og_dialog').dialog('close').remove();
-	      if ($('#fbc-modal').length > 0) {
-		$('#fbc-modal').remove();
-	      }
+	              if ($('#fbc-modal').length > 0) {
+	              	$('#fbc-modal').remove();
+	               }
               Drupal.friendFinder.clear_friends();
               return false;
             });
@@ -261,7 +261,6 @@
                 $(this).dialog('destroy');
                 //og.remove();
                 //delete og;
-              }
             }).queue(function() {
               // Pretend like it's a Facebook dialog feed
               $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
