@@ -387,9 +387,9 @@ function crazyshit_views_default_views() {
 <div class="fb-picture">[picture]</div>
 <div class="s-[sid]-picture simg">[field_crazy_crazy_picture]</div>
 </div>
-<p class="buttons">
+<div class="buttons">
 [nothing_1]
-</p>
+</div> <!-- closes [nothing_1] -->
 <p class="author">[field_user_first_name]</p>
 <div class="dateline">[submitted]</div>
 </div>
