@@ -21,16 +21,17 @@
 
 // note: #tip[n] are zero indexed
 .tip_subject /* subject buttons */
-  width: 120px
-  height: 50px
-  line-height: 50px
-  display: block
-  background: $off_black
-  color: #fff !important
-  text-transform: uppercase
-  text-align: center
   padding: 0 10px
   margin: 0 0 25px 0 
+  width: 120px
+  height: 50px
+  float: left
+  display: block
+  line-height: 50px
+  text-transform: uppercase
+  text-align: center
+  background-color: $off_black
+  color: #fff !important
   +border-radius(4px)
   &:hover
     text-decoration: none
@@ -48,7 +49,7 @@
 
 @media only screen and (max-width: 950px)
   #tip1
-    margin: 1% 20% 0
+    margin: 3% 20% 0
     float: left
   
   #tip2
@@ -56,8 +57,11 @@
   
 #tip1
   @media only screen and (max-width: 650px)
-    margin: 0.8% 0 0 0
+    margin: 1.3% 0 0 0
     position: absolute
+    left: 40%
+  @media only screen and (max-width: 550px)
+    margin: 0.8% 0 0 0
     left: 36%
   
 .active_subject 
