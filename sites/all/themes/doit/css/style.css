@@ -6151,6 +6151,36 @@ form.webform-client-form .page-node-727609 #edit-draft, .page-node-727609 .ds-lo
   font-weight: normal;
   margin-left: 24px;
   background: #2b63b1;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+}
+.page-node-727609 .go-button:hover, .page-node-727609 #dosomething-blocks-make-an-impact-form input[type="submit"]:hover, #dosomething-blocks-make-an-impact-form .page-node-727609 input[type="submit"]:hover, .page-node-727609
+#dosomething-blocks-make-an-impact-form-front input[type="submit"]:hover,
+#dosomething-blocks-make-an-impact-form-front .page-node-727609 input[type="submit"]:hover, .page-node-727609 form.webform-client-form #edit-next:hover, form.webform-client-form .page-node-727609 #edit-next:hover, .page-node-727609
+form.webform-client-form #edit-previous:hover,
+form.webform-client-form .page-node-727609 #edit-previous:hover, .page-node-727609
+form.webform-client-form #edit-submit:hover,
+form.webform-client-form .page-node-727609 #edit-submit:hover, .page-node-727609
+form.webform-client-form #edit-submit--2:hover,
+form.webform-client-form .page-node-727609 #edit-submit--2:hover, .page-node-727609
+form.webform-client-form #edit-draft:hover,
+form.webform-client-form .page-node-727609 #edit-draft:hover, .page-node-727609 .ds-login-popup-footer #edit-final-submit:hover, .ds-login-popup-footer .page-node-727609 #edit-final-submit:hover, .page-node-727609 .not-logged-in #dosomething-login-register-block #edit-first-submit:hover, .not-logged-in #dosomething-login-register-block .page-node-727609 #edit-first-submit:hover, .page-node-727609 .logged-in #block-dosomething-login-become-member .profile-footer .complete-link a:hover, .logged-in #block-dosomething-login-become-member .profile-footer .complete-link .page-node-727609 a:hover, .page-node-727609 .views-submit-button a:hover, .views-submit-button .page-node-727609 a:hover, .page-node-727609 .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit:hover, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 #edit-final-submit:hover, .page-node-727609
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer #edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .ds-login-popup-footer .page-node-727609 #edit-final-submit--2:hover, .page-node-727609
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 #edit-final-submit:hover, .page-node-727609
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer #edit-final-submit--2:hover,
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] .ds-login-popup-footer .page-node-727609 #edit-final-submit--2:hover, .page-node-727609 .node-poll input[type="submit"]:hover, .node-poll .page-node-727609 input[type="submit"]:hover, .page-node-727609 #search-api-page-search-form #edit-submit-1:hover, #search-api-page-search-form .page-node-727609 #edit-submit-1:hover, .page-node-727609 #og-ui-confirm-subscribe #edit-actions #edit-submit:hover, #og-ui-confirm-subscribe #edit-actions .page-node-727609 #edit-submit:hover, .page-node-727609
+#og-ui-confirm-subscribe #edit-actions #edit-submit--2:hover,
+#og-ui-confirm-subscribe #edit-actions .page-node-727609 #edit-submit--2:hover {
+  -moz-box-shadow: 0 1px 2px 0 #999999;
+  -webkit-box-shadow: 0 1px 2px 0 #999999;
+  -o-box-shadow: 0 1px 2px 0 #999999;
+  box-shadow: 0 1px 2px 0 #999999;
 }
 
 .page-node-727609 .login-large {
