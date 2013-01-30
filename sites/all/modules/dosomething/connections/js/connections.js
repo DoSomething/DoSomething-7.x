@@ -227,7 +227,6 @@
                   // This somehow fixes an error where it wouldn't close after the first close
                   // Don't ask me why.
                   //$('.og_dialog').html('&nbsp;');
-                 // $(this).closest('.og-post-content').dialog('destroy');
                 }
               },
               close: function() {
@@ -258,50 +257,7 @@
               return false;
             });
 
-                $(this).dialog('destroy');
-                //og.remove();
-                //delete og;
-            }).queue(function() {
-              // Pretend like it's a Facebook dialog feed
-              $('.og-post-dialog').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
-
-              // Cancel
-              $('.close-fb-dialog').click(function() {
-                // Fake cancel button to remove "fake" feed
-                $('.og_dialog').dialog('close').remove();
-                $('.og-post-dialog').remove();
-                Drupal.friendFinder.clear_friends();
-                return false;
-              });
-
-              // Submit
-              $('#submit-og-post').click(function() {
-                if ($('#hidden_comments').length > 0 && $('#hidden_comments').val() != '') {
-                  things.comments = $('#hidden_comments').val();
-                }
-                else {
-                  things.comments = $('#fb_og_comments').val();
-                }
-
-                things.explicitly_shared = $('#explicit-share').is(':checked');
-
-                if (things.friend_selector == 'custom') {
-                  if (!Drupal.behaviors.fb.has_permission('publish_stream')) {
-                    Drupal.behaviors.fb.ask_permission('publish_stream', function() {
-                      callback(things);
-                    });
-                  }
-                }
-                else {
-                  callback(things);
-                }
-
-                $('.og_dialog').dialog('close');
-                $('.og-post-dialog').remove();
-                //og.remove();
-                //delete og;
-              });
-            });;
+            });
           });
       });
     },
