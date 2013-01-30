@@ -71,14 +71,16 @@
   right: 50px;
   bottom: 25px;
   display: block;
-  display: block;
   width: 30px;
   height: 30px;
   background-image: url("//files.dosomething.org/files/campaigns/crazy13/share_mini.png");
   background-color: transparent;
   background-repeat: no-repeat;
   text-indent: -9999em; }
-/* line 58, ../sass/_buttons.sass */
+/* line 57, ../sass/_buttons.sass */
+.fb-share a {
+  display: block; }
+/* line 59, ../sass/_buttons.sass */
 .fb-share:hover {
   background-position-y: -30px; }
 @media only screen and (max-width: 700px) {
@@ -87,7 +89,7 @@
     right: 15px;
     bottom: 15px; } }
 
-/* line 64, ../sass/_buttons.sass */
+/* line 65, ../sass/_buttons.sass */
 .small_button, .more_tips {
   float: left;
   background: #4b84e6;
@@ -103,17 +105,17 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 75, ../sass/_buttons.sass */
+/* line 76, ../sass/_buttons.sass */
 .small_button:hover, .more_tips:hover {
   text-decoration: none;
   background-color: #6193e9; }
-/* line 78, ../sass/_buttons.sass */
+/* line 79, ../sass/_buttons.sass */
 .small_button .clicked, .more_tips .clicked {
   background: #f1f1f1;
   color: #c1c1c1;
   cursor: default;
   text-decoration: none; }
-/* line 83, ../sass/_buttons.sass */
+/* line 84, ../sass/_buttons.sass */
 .small_button span, .more_tips span {
   background-color: #dddddd;
   position: relative;
@@ -125,7 +127,7 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 90, ../sass/_buttons.sass */
+/* line 91, ../sass/_buttons.sass */
 .small_button span:after, .small_button span:before, .more_tips span:after, .more_tips span:before {
   right: 100%;
   border: solid transparent;
@@ -134,21 +136,21 @@
   width: 0;
   position: absolute;
   pointer-events: none; }
-/* line 98, ../sass/_buttons.sass */
+/* line 99, ../sass/_buttons.sass */
 .small_button span:after, .more_tips span:after {
   border-color: rgba(136, 183, 213, 0);
   border-right-color: #dddddd;
   border-width: 5px;
   top: 50%;
   margin-top: -5px; }
-/* line 104, ../sass/_buttons.sass */
+/* line 105, ../sass/_buttons.sass */
 .small_button span:before, .more_tips span:before {
   border-color: rgba(194, 225, 245, 0);
   border-width: 6px;
   top: 50%;
   margin-top: -6px; }
 
-/* line 110, ../sass/_buttons.sass */
+/* line 111, ../sass/_buttons.sass */
 a.no_thanks {
   color: #cccccc;
   cursor: pointer;

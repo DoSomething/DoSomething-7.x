@@ -7,8 +7,8 @@
 // BASE
 // ----
 
-#page
-  background-color: $background
+body, div[role="main"], #page
+  background-color: $background !important
 
 // HEADER
 // ------
@@ -146,7 +146,7 @@ img.header_logo_text /* replaces img.header_logo on lower screen resolutions */
     line-height: 36px
     color: $off_black
     &:hover
-      background-color: $off_black_light
+      background-color: $off_black
       color: #fff
       +border-radius(3px)
     @media only screen and (max-width: 650px)
@@ -154,7 +154,7 @@ img.header_logo_text /* replaces img.header_logo on lower screen resolutions */
       line-height: 23px
 
   a.active
-    background-color: $off_black_light
+    background-color: $off_black
     color: #fff
     +border-radius(4px)
     &:hover
