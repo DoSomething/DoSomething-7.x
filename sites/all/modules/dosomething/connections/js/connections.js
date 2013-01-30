@@ -210,9 +210,19 @@
         position = { my: 'top', at: 'top', of: 'body', offset: '0 180' };
       }
 
+      var loader = $('<div id="fb" style="position: relative; background: rgba(82, 82, 82, .7); border-radius: 10px; padding: 10px; font-family: \'lucida grande\', tahoma, verdana, arial, sans-serif; font-size: 11px; line-height: 1.28; font-weight: bold; color: #808080; text-align: left;"><div id="wrapper"><div id="top-bar" style="background: #6D84B4; border: #3B5998;"><a href="#" class="close-fb-dialog" id="close-fb-dialog" style="float: right;font-family: Verdana;font-size: 9px;margin: 7px 2px;text-decoration: none;color: #b6c2da;padding: 3px;display: inline-block;width: 20px;height: 15px;background: url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 0px transparent;"></a><div id="post-title" style="color: #fff; font-size: 14px; font-weight: bold; font-family: \'lucida grande\', tahoma, verdana, arial, sans-serif; line-height: 1.28; padding: 5px; background: url(https://s-static.ak.fbcdn.net/rsrc.php/v2/yD/x/Cou7n-nqK52.gif) no-repeat 5px 50%; padding-left: 25px; border: 1px solid #3B5998;">Facebook</div></div><div id="zone" style="text-align: center; padding: 20px; background: #fff; border-left: 1px solid #555; border-right: 1px solid #555;"><img src="/sites/all/modules/dosomething/connections/images/loading.gif" width="35" height="35" style="text-align: center; margin: 35px 0px;" /><div style="clear: both"></div></div><div id="submit-buttons" style="background: #f2f2f2; box-shadow: -2px -2px 1px #808080; clear: both; position: relative; height: 40px; text-align: right; padding: 10px;"></div></div></div>');
+      loader.dialog({
+        dialogClass: 'facebook-loader',
+        width: '575px',
+        resizable: false,
+      }).queue(function() {
+        $('.facebook-loader').css('background', 'transparent').find('.ui-dialog-titlebar').css('display', 'none');
+      });
+
       FB.api('/me/picture', function(response) {
         pic = response.data.url;
           og.load('/fb-connections/' + page + '?img=' + img + '&title=' + title + '&caption=' + caption + '&desc=' + desc + '&mypic=' + pic + to + tag + msg, function() {
+            loader.dialog('close').remove();
             og.dialog({
               dialogClass: 'og-post-dialog',
               width: (page == 'custom-selector' ? 800 : 650),

@@ -78,7 +78,7 @@
 	       var elm = $(this);
 	       var na = $(this).hasClass('no-alert');
 
-	       if ($(this).parent().parent().hasClass('by-me') && Drupal.settings.crazy.origin == 2) {
+	       if ($(this).parent().parent().parent().hasClass('by-me') && Drupal.settings.crazy.origin == 2) {
 	          $.fn.dsCrazyPopup('bull', elm.attr('rel'), { 'you': true });
 	          na = true;
 	       }
@@ -159,7 +159,7 @@
 
 	    $('.fb-share a').click(function(e) {
 	    	e.preventDefault();
-	    	var img = $(this).parent().parent().find('.simg img').attr('data-original');
+	    	var img = $(this).parent().parent().parent().find('.simg img').attr('data-original');
 	    	var sid = $(this).attr('rel');
 	    	Drupal.behaviors.fb.image({
 	    	   'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
