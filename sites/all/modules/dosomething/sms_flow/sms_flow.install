@@ -50,6 +50,14 @@ function sms_flow_schema() {
 }
 
 /**
+ *  Uninstall function - currently blank but allows for reinstalling and triggering hook_install() which happens
+ *  by default in D7 when a new module is enabled.
+ */
+function sms_flow_uninstall() {
+
+}
+
+/**
  *  Creates sms flow records table.
  */
 function sms_flow_update_7100() {
@@ -86,4 +94,49 @@ function sms_flow_update_7102() {
     'default' => 0,
     'not null' => TRUE,
   ));
+}
+
+/**
+ *  Creates sms flow records table.
+ */
+function sms_flow_update_7103() {
+
+  // Define new sms_flow_game table
+  // http://drupal.org/node/150215
+  
+  $schema['sms_flow_game'] = array(
+    'description' => 'Stores details to SAS games relative to a user / unique phone number.',
+    'fields' => array(
+      'game_id' => array(
+      	'description' => 'Unique identifier for the game/quiz.',
+      	'type' => 'int',
+      	'unsigned' => TRUE,
+      	'not null' => TRUE
+      ),
+      'phone' => array(
+      	'description' => 'Phone number',
+      	'type' => 'varchar',
+      	'length' => 32,
+      	'not null' => true
+      ),
+      'started_paths' => array(
+      	'description' => 'Serialized array of opt-in paths that the user has been sent to.',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true
+      ),
+      'answers' => array(
+      	'description' => 'Serialized struct of answers given by the user {optin-path: {array of answers}}',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true
+      ),
+    ),
+  );
+  
+  // Apply new schema to database
+  db_create_table('sms_flow_game', $schema['sms_flow_game']);
+  
+  drupal_set_message('Update of SMS Flow module. New table added - sms_flow_game', 'status');
+  
 }
