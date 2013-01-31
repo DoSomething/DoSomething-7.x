@@ -637,12 +637,18 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	$facebook = crazy_load_fb();
 	module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
 
+    global $user;
+
+	$fbid = db_select('fboauth_users', 'f')
+		->fields('f', array('fbid'))
+		->condition('uid', $user->uid)
+		->execute();
+	$fb = reset($fbid->fetchAll());
+
 	$access_token = $facebook->getAccessToken();
 	// Try and get the $fbuser object
 	#$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
-	$friends = $facebook->api('/' . $facebook->getUser() . '/friends');
-
-    global $user;
+	$friends = $facebook->api('/' . $fb->fbid . '/friends');
 
     if (!$user->uid) {
       drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . variable_get('fboauth_id') . '&redirect_uri=http://' . CRAZY_DOMAIN . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
