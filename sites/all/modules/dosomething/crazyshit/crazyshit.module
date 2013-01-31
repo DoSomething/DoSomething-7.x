@@ -515,11 +515,11 @@ function crazyshit_page_alter(&$page) {
 	  $origin = 1;
 	}
 
-	if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
+	if (preg_match('#^\/' . CRAZY_ROOT . '/friends#i', $uri)) {
 		$origin = 2;
 	}
 
-	if (preg_match('#^\/' . CRAZY_ROOT . '/submit#i', request_uri())) {
+	if (preg_match('#^\/' . CRAZY_ROOT . '/submit#i', $uri)) {
 		$origin = 3;
 	}
 
@@ -651,6 +651,10 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	);
 	foreach ($friends->data AS $key => $friend) {
 	   $f[] = $friend->id;
+	}
+
+	if ($_GET['debug'] == 'fb_friends') {
+		echo '<pre>', print_r($f), '</pre>';
 	}
 
 	$ids = crazy_fb_get_multi_fbids($f);
