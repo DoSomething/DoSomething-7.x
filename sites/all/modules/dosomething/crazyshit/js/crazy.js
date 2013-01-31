@@ -41,8 +41,10 @@
 
 	    // Fix for SUPER weird first-image cache problem.
 	    if ($('img[data-num="2"]').length > 0) {
-			var $src = $('img[data-num="2"]').attr('src');
-			$('img[data-num="2"]').attr('src', $src + '?' + new Date().getTime());
+	    	$('img[data-num="2"]').each(function() {
+				var $src = $(this).attr('src');
+				$(this).attr('src', $src + '?' + new Date().getTime());
+	    	});
 	    }
 
 	    // Updates share buttons to disable ones you've already clicked.
@@ -119,6 +121,7 @@
 	      				name = Drupal.t('Someone');
 	      			}
 
+	      			Drupal.behaviors.fb.clog("Sending notification as " + name);
 		      		Drupal.behaviors.fb.notification({
 		      			'notification_document': 'crazy', // leave this like this
 		      			'notification_user': response.author,

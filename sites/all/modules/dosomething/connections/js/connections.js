@@ -350,13 +350,15 @@
             // Logged in and authorized.
             FB.api('/me/permissions', function (response) {
               var perms = response.data[0];
-              if (!perms.publish_actions) {
+              if (!perms.publish_stream) {
                 FB.ui({
                   method: 'permissions.request',
-                  perms: 'publish_actions',
+                  perms: 'publish_stream',
                   display: 'popup'
                 }, function(response) {
-                  callback(response);
+                  if (typeof response != 'undefined') {
+                    callback(response);
+                  }
                 });
               }
               else {

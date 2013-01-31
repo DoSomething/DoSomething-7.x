@@ -355,7 +355,7 @@ function crazyshit_submit_bullshit() {
 	
 	// Get Drupal and FB user ids
 	$fbid = fboauth_fbid_load($user->uid);
-	$to_fbid = fboauth_fbid_load($submission->uid);
+	$to_fbid = fboauth_fbid_load($update['uid']);
 
 	// Build the notification array.
 	$notification = array(
@@ -499,9 +499,13 @@ function crazyshit_page_alter(&$page) {
 		->fields('n', array('sid', 'type'))
 		->condition('from_uid', $user->uid)
 	    ->condition('type', array(2, 10, 11), 'IN')
-	    ->condition('from_uid', 0, '!=')
+	    #->condition('from_uid', 0, '!=')
 	    ->execute();
 	  $shares = $s->fetchAll();
+
+	  if ($_GET['debug'] == 'notification') {
+	  	echo '<pre>', print_r($shares), '</pre>';
+	  }
 
 	  $settings = array(
 	    'share_count' => count($shares),
@@ -650,6 +654,11 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	}
 
 	$ids = crazy_fb_get_multi_fbids($f);
+
+	if ($_GET['debug'] == 'fb_friends') {
+		echo '<pre>', print_r($ids), '</pre>';
+	}
+
 	if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
 	  // Create a database condition class to narrow viewable posts down to just your friends.
 	  $s = new DatabaseCondition();
@@ -664,6 +673,10 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  $query->where[1]['conditions'][] = array(
 		'field' => $s,
 	  );
+
+	  if ($_GET['debug'] == 'fb_friends') {
+	  	echo '<pre>', print_r($query->where), '</pre>';
+	  }
 	}
   }
  }
