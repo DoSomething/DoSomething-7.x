@@ -79,7 +79,7 @@
 	    //});
 
 	    $('.bs-button a.button-submit').click(function() {
-	       if ((!Drupal.behaviors.fb.is_authed() && Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+	       if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
 			  $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
 			  return false;
 	       }
@@ -97,7 +97,7 @@
 	          na = true;
 	       }
 
-		$('.s-' + elm.attr('rel')).find('.vouch-button a').addClass('clicked');
+		   $('.s-' + elm.attr('rel')).find('.vouch-button a').addClass('clicked');
 	       elm.addClass('clicked');
 
 	       var c = parseInt(elm.parent().find('span').text());
@@ -137,7 +137,7 @@
 	    });
 
 	    $('.vouch-button a.button-submit').click(function() {
-               if ((!Drupal.behaviors.fb.is_authed() && Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+               if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
                   $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
                   return false;
                }

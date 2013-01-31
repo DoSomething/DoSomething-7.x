@@ -491,13 +491,13 @@ function crazyshit_page_alter(&$page) {
 
 	  global $user;
 	  $fbid = fboauth_fbid_load($user->uid);
-	  $i = db_or();
-	  $i->condition('from_uid', $user->uid);
-	  $i->condition('from_fid', $fbid);
+	  #$i = db_or();
+	  #$i->condition('from_uid', $user->uid);
+	  #$i->condition('from_fid', $fbid);
 
 	  $s = db_select('crazy_notifications', 'n')
 		->fields('n', array('sid', 'type'))
-		->condition($i)
+		->condition('from_uid', $user->uid)
 	    ->condition('type', array(2, 10, 11), 'IN')
 	    ->condition('from_uid', 0, '!=')
 	    ->execute();
