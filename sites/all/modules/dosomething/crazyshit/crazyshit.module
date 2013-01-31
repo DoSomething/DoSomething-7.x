@@ -633,7 +633,7 @@ function crazyshit_views_query_alter(&$view, &$query) {
   }
 
   // If we're viewing the friends gallery page, only show submissions by my Facebook friends.
-  if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
+  if (preg_match('#^\/' . CRAZY_ROOT . '\/friends#i', request_uri())) {
 	$facebook = crazy_load_fb();
 	module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
 
