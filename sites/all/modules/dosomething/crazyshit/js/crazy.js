@@ -3,7 +3,7 @@
 	 authed: false,
 	 probably_unauthed: false,
 	 notify_yourself: false,
-	 logged_in: !$('body').hasClass('not-logged-in'),
+	 logged_in: true,
 	 started_page: false,
 
    	 attach: function(context, settings) { 
@@ -12,6 +12,14 @@
 		   var h = document.location.hash.replace('#', '');
 		   $('html, body').animate({ scrollTop: $('.s-' + h).offset().top }, 'slow');
 	    }
+
+	    if ($('body').hasClass('not-logged-in')) {
+	    	Drupal.behaviors.dsCrazyScripts.logged_in = false;
+	    }
+
+      if (top.location != self.location) {
+        top.location = self.location.href
+      }
 
 	    Drupal.behaviors.dsCrazyScripts.fb_refresh(function() {
             if (Drupal.behaviors.fb.is_authed()) {
@@ -188,7 +196,7 @@
 				oa();
 				Drupal.behaviors.dsCrazyScripts.started_page = true;
 			    // If we're on the friends page...
-			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
+			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3 || (!Drupal.behaviors.dsCrazyScripts.logged_in && Drupal.behaviors.fb.is_authed())) {
 
 			    	// Occasionally users can log out of Facebook and still count as "authenticated"
 			    	// That's bad.  So let's make sure they're actually connected.

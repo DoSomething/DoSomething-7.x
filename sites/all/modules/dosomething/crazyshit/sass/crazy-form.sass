@@ -34,7 +34,7 @@ input#edit-submitted-field-crazy-crazy-picture-und-0-remove-button
 #upload-cover
   position: relative
   margin: -55px auto 0
-  width: 130px
+  width: 147px
   cursor: pointer
 
 footer.author, #edit-submitted-dosomething-webform-numbering
@@ -51,13 +51,18 @@ footer.author, #edit-submitted-dosomething-webform-numbering
   @include meme-text
   bottom: 0px
 
-div.image-widget-data
+div.image-widget-data /* uploaded image wrapper and empty image placeholder */
   clear: both
   width: 400px
   height: 400px
   margin: 30px auto
   float: none
-  border: 1px solid black
+  border: 2px solid $background
+  +border-radius(2px)
+  @media only screen and (max-width: 550px)
+    width: 100%
+    height: auto
+    margin: 7% auto
 
 .description,
 #edit-submitted-field-crazy-vouch-count,
@@ -131,3 +136,10 @@ div.image-widget-data
   box-shadow: none
   .webform-client-form
     padding: 50px
+    @media only screen and (max-width: 550px)
+      padding: 50px 10% 10px
+
+// DRUPAL RESETS
+// -------------
+div.form-wrapper, div.step-field
+  margin: 0 
