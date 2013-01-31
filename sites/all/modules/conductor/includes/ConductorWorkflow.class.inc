@@ -37,35 +37,6 @@ class ConductorWorkflow {
   }
 
   /**
-   * Builder functions to help with workflow creation
-   * TODO: consider making all properties private or protected
-   */
-  public function api_version($api_version) {
-    $this->api_version = $api_version;
-    return $this;
-  }
-
-  public function description($description) {
-    $this->description = $description;
-    return $this;
-  }
-
-  public function name($name) {
-    $this->name = $name;
-    return $this;
-  }
-
-  public function title($title) {
-    $this->title = $title;
-    return $this;
-  }
-  
-  public function wid($wid) {
-    $this->wid = $wid;
-    return $this;
-  }
-
-  /**
    * Save the workflow to the database. If the workflow does not already exist,
    *
    * A wid will be assigned to the workflow and returned from this function.
