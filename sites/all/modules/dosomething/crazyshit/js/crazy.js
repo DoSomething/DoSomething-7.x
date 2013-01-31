@@ -192,7 +192,7 @@
 				oa();
 				Drupal.behaviors.dsCrazyScripts.started_page = true;
 			    // If we're on the friends page...
-			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
+			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3 || (!Drupal.behaviors.dsCrazyScripts.logged_in && Drupal.behaviors.fb.is_authed())) {
 
 			    	// Occasionally users can log out of Facebook and still count as "authenticated"
 			    	// That's bad.  So let's make sure they're actually connected.
