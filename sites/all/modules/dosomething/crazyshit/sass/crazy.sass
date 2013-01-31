@@ -8,13 +8,17 @@
 // ----
 
 body, div[role="main"], #page
-  background-color: $background !important
+  background: $background !important
 
 // HEADER
 // ------
 
+// set bg-color and close gap that appeared above header
 #header
   background-color: #ffc100
+  margin-top: -6px
+  @media only screen and (max-width: 920px) /* breakpoint at which #site-name (ds logo) drops */
+    margin-top: 0
 
 div.header_inner
   height: 200px
@@ -199,11 +203,10 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   @media only screen and (max-width: 700px)
     width: 430px
     padding: 10px 20px 0
-  @media only screen and (max-width: 650px)
-    width: 95% 
   @media only screen and (max-width: 400px)
     margin: 5% auto
     padding: 10px 5px 0
+    width: 98%
 
 .fb-picture
   margin: -70px 0 0 -125px
@@ -273,7 +276,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   top: 0px
   left: 0px
   z-index: 1
-  width: 146px
+  width: 147px
 
 #edit-submitted-field-crazy-crazy-picture-und-0-remove-button
   margin: -10px auto 25px
@@ -288,7 +291,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   -moz-opacity: 0
   opacity: 0
   z-index: 2
-  width: 130px
+  width: 147px
   height: 35px
   cursor: pointer
 

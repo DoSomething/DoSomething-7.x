@@ -37,9 +37,11 @@
 		  else if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').length) {
         $('<div></div>').attr('class', 'upload-placeholder').text('Upload a picture and it will appear here').css({
           'text-align': 'center',
-          'font-size': '30pt',
+          'font-size': '30px',
+          'font-weight': '600',
           'line-height': '1.2',
           'margin-top': '43%',
+          'text-transform': 'uppercase',
         }).appendTo('.image-widget-data');
         $('#edit-actions').remove();
 		  }
