@@ -3,7 +3,7 @@
 	 authed: false,
 	 probably_unauthed: false,
 	 notify_yourself: false,
-	 logged_in: !$('body').hasClass('not-logged-in'),
+	 logged_in: true,
 	 started_page: false,
 
    	 attach: function(context, settings) { 
@@ -11,6 +11,10 @@
 	    if (document.location.hash && parseInt(document.location.hash)) {
 		   var h = document.location.hash.replace('#', '');
 		   $('html, body').animate({ scrollTop: $('.s-' + h).offset().top }, 'slow');
+	    }
+
+	    if ($('body').hasClass('not-logged-in')) {
+	    	Drupal.behaviors.dsCrazyScripts.logged_in = false;
 	    }
 
       if (top.location != self.location) {
