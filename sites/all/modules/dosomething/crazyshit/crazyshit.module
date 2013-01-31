@@ -188,7 +188,7 @@ function crazyshit_submit_vouch() {
 	$notification = array(
 	  'sid' => $update['sid'],
 	  'uid' => $update['uid'],
-	  'fid' => fboauth_fbid_load($submission->uid),
+	  'fid' => fboauth_fbid_load($update['uid']),
 	  'from_uid' => $user->uid,
 	  'from_fid' => $fbid,
 	  'type' => 11,
@@ -863,9 +863,17 @@ function crazyshit_fb_connect() {
 function crazyshit_init() {
   include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 
+  if ($_GET['debug'] == 'notifs') {
+  	echo "Outside...";
+  }
+
   // Return nothing if the page isn't within the crazy $#!T module
   if (!crazyshit_is_crazy_page()) {
 	return;
+  }
+
+  if ($_GET['debug'] == 'notifs') {
+  	echo "Inside...";
   }
 
   global $user;
@@ -876,7 +884,13 @@ function crazyshit_init() {
   // Handles Facebook user system
   crazyshit_handle_fb_users($facebook);
 
+
   $onpage = preg_match('#^/(' . implode('|', $crazy_notification_pages) . ')$#i', request_uri());
+  if ($_GET['debug'] == 'notifs') {
+  	echo "<p>NOTIFICATIONS: " . CRAZY_ALLOW_NOTIFICATIONS;
+  	echo "<p>On page: " . $onpage;
+  }
+
   if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
 	// Set up an or statement for the below query.
 	#$c = db_or();
