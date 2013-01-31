@@ -497,7 +497,7 @@ function crazyshit_page_alter(&$page) {
 
 	  $s = db_select('crazy_notifications', 'n')
 		->fields('n', array('sid', 'type'))
-		->condition('uid', $user->uid)
+		->condition('from_uid', $user->uid)
 	    ->condition('type', array(2, 10, 11), 'IN')
 	    #->condition('from_uid', 0, '!=')
 	    ->execute();
@@ -879,15 +879,15 @@ function crazyshit_init() {
   $onpage = preg_match('#^/(' . implode('|', $crazy_notification_pages) . ')$#i', request_uri());
   if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
 	// Set up an or statement for the below query.
-	$c = db_or();
-	$c->condition('uid', intval($user->uid));
-	$c->condition('fid', intval($fbuser->id));
+	#$c = db_or();
+	#$c->condition('uid', intval($user->uid));
+	#$c->condition('fid', intval($fbuser->id));
 
 	// Load any notifications the user has.
 	$n = db_select('crazy_notifications', 'n')
 	  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
 	  // Make sure it's for the currently logged in user.
-	  ->condition($c)
+	  ->condition('uid', $user->uid)
 	  // Make sure they haven't seen it yet.
 	  ->condition('notified', 0)
 	  // Make sure it's a BS notification.
@@ -898,6 +898,9 @@ function crazyshit_init() {
 	  ->range(0, 1)
 	  ->execute();
 	$ns = $n->fetchAll();
+	if ($_GET['debug'] == 'notifs') {
+		echo '<pre>', print_r($ns), '</pre>';
+	}
 	$notifications = reset($ns);
 	$pre = '';
 	if (!empty($notifications)) {
