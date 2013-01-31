@@ -27,6 +27,12 @@
             }
 	    });
 
+	    window.setTimeout(function() {
+	       if (!Drupal.behaviors.dsCrazyScripts.logged_in && Drupal.behaviors.fb.is_authed()) {
+             Drupal.behaviors.dsCrazyScripts.fb_status();
+           }
+	    }, 500);
+
 	    if (Drupal.settings.crazy.allow_lazy_loading) {
 		    if ($('img.lazy').length > 0) {
 		    	$('img.lazy').lazyload();
@@ -35,8 +41,8 @@
 
 	    // Fix for SUPER weird first-image cache problem.
 	    if ($('img[data-num="2"]').length > 0) {
-		var $src = $('img[data-num="2"]').attr('src');
-		$('img[data-num="2"]').attr('src', $src + '?' + new Date().getTime());
+			var $src = $('img[data-num="2"]').attr('src');
+			$('img[data-num="2"]').attr('src', $src + '?' + new Date().getTime());
 	    }
 
 	    // Updates share buttons to disable ones you've already clicked.
@@ -196,7 +202,7 @@
 				oa();
 				Drupal.behaviors.dsCrazyScripts.started_page = true;
 			    // If we're on the friends page...
-			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3 || (!Drupal.behaviors.dsCrazyScripts.logged_in && Drupal.behaviors.fb.is_authed())) {
+			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
 
 			    	// Occasionally users can log out of Facebook and still count as "authenticated"
 			    	// That's bad.  So let's make sure they're actually connected.
