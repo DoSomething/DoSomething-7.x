@@ -6,7 +6,7 @@
 
 include_once 'crazyshit.features.inc';
 
-define('CRAZY_DOMAIN', variable_get('crazy_domain', 'localhost:8080'));
+define('CRAZY_DOMAIN', variable_get('crazy_domain', 'www.dosomething.org'));
 define('CRAZY_AUTH_PAGES', serialize(explode(',', variable_get('crazy_auth_pages', 'friends,submit'))));
 
 /**
@@ -166,7 +166,7 @@ function crazyshit_ctools_plugin_directory($module, $plugin) {
  *	Redirects from PFP Facebook app back to DoSomething.
  */
 function crazyshit_redirect_from_pfp() {
-   drupal_goto(CRAZY_ROOT);
+   drupal_goto('https://' . CRAZY_DOMAIN . '/' . CRAZY_ROOT);
 }
 
 /**
@@ -639,7 +639,7 @@ function crazyshit_views_query_alter(&$view, &$query) {
     global $user;
 
     if (!$user->uid) {
-      drupal_goto(CRAZY_ROOT);
+      drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . variable_get('fboauth_id') . '&redirect_uri=http://' . CRAZY_DOMAIN . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
     }
 
     $f = array(
