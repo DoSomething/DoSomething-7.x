@@ -63,7 +63,7 @@
 @media only screen and (max-width: 700px) {
   /* line 47, ../sass/_buttons.sass */
   .vouch-button {
-    margin: 15px 0% 20px 15px; } }
+    margin: 5% 5% 20px 4%; } }
 @media only screen and (max-width: 320px) {
   /* line 47, ../sass/_buttons.sass */
   .vouch-button {

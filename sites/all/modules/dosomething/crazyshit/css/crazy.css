@@ -63,7 +63,7 @@
 @media only screen and (max-width: 700px) {
   /* line 47, ../sass/_buttons.sass */
   .vouch-button {
-    margin: 15px 0% 20px 15px; } }
+    margin: 5% 5% 20px 4%; } }
 @media only screen and (max-width: 320px) {
   /* line 47, ../sass/_buttons.sass */
   .vouch-button {
@@ -563,20 +563,17 @@ img.header_ds_logo {
   .crazy-submission {
     width: 430px;
     padding: 10px 20px 0; } }
-@media only screen and (max-width: 650px) {
-  /* line 197, ../sass/crazy.sass */
-  .crazy-submission {
-    width: 95%; } }
 @media only screen and (max-width: 400px) {
   /* line 197, ../sass/crazy.sass */
   .crazy-submission {
     margin: 5% auto;
-    padding: 10px 5px 0; } }
+    padding: 10px 5px 0;
+    width: 98%; } }
 
-/* line 212, ../sass/crazy.sass */
+/* line 211, ../sass/crazy.sass */
 .fb-picture {
   margin: -70px 0 0 -125px; }
-/* line 214, ../sass/crazy.sass */
+/* line 213, ../sass/crazy.sass */
 .fb-picture img {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -584,13 +581,13 @@ img.header_ds_logo {
   -o-border-radius: 2px;
   border-radius: 2px; }
 @media only screen and (max-width: 700px) {
-  /* line 212, ../sass/crazy.sass */
+  /* line 211, ../sass/crazy.sass */
   .fb-picture {
     width: 50px;
     margin: 0 auto;
     padding: 0 0 10px 0; } }
 
-/* line 221, ../sass/crazy.sass */
+/* line 220, ../sass/crazy.sass */
 .simg {
   margin: -40px 0 0 0;
   padding: 40px 0 0 0;
@@ -613,16 +610,16 @@ img.header_ds_logo {
   .simg img {
     width: 92%; } }
 @media only screen and (max-width: 700px) {
-  /* line 221, ../sass/crazy.sass */
+  /* line 220, ../sass/crazy.sass */
   .simg {
     margin: 0;
     padding: 0; } }
 
-/* line 230, ../sass/crazy.sass */
+/* line 229, ../sass/crazy.sass */
 .dateline, .author {
   display: none; }
 
-/* line 236, ../sass/crazy.sass */
+/* line 235, ../sass/crazy.sass */
 .fb-invite-friends {
   margin: 25px auto 0;
   display: block;
@@ -633,7 +630,7 @@ img.header_ds_logo {
   background-repeat: no-repeat;
   text-indent: -9999em; }
 
-/* line 246, ../sass/crazy.sass */
+/* line 245, ../sass/crazy.sass */
 .connect-with-facebook {
   text-indent: -119988px;
   overflow: hidden;
@@ -648,7 +645,7 @@ img.header_ds_logo {
   margin-left: auto;
   margin-right: auto; }
 
-/* line 263, ../sass/crazy.sass */
+/* line 262, ../sass/crazy.sass */
 .fakefile, #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   background: #ffcb15;
   padding: 10px;
@@ -664,7 +661,7 @@ img.header_ds_logo {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 275, ../sass/crazy.sass */
+/* line 274, ../sass/crazy.sass */
 .fakefile {
   position: absolute;
   top: 0px;
@@ -672,7 +669,7 @@ img.header_ds_logo {
   z-index: 1;
   width: 147px; }
 
-/* line 282, ../sass/crazy.sass */
+/* line 281, ../sass/crazy.sass */
 #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   margin: -10px auto 25px;
   padding: 2px 0 0 0;
@@ -680,7 +677,7 @@ img.header_ds_logo {
   border: none;
   display: block; }
 
-/* line 289, ../sass/crazy.sass */
+/* line 288, ../sass/crazy.sass */
 .form-file.new {
   position: relative;
   text-align: right;
@@ -691,7 +688,7 @@ img.header_ds_logo {
   height: 35px;
   cursor: pointer; }
 
-/* line 299, ../sass/crazy.sass */
+/* line 298, ../sass/crazy.sass */
 .submit-start button, .node-crazy-shit #edit-actions .form-submit {
   margin: 0;
   padding: 0;
@@ -710,30 +707,30 @@ img.header_ds_logo {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 314, ../sass/crazy.sass */
+/* line 313, ../sass/crazy.sass */
 .submit-start button:hover, .node-crazy-shit #edit-actions .form-submit:hover {
   color: white;
   background-color: #6193e9; }
 
-/* line 318, ../sass/crazy.sass */
+/* line 317, ../sass/crazy.sass */
 .submit-start button, #edit-next {
   width: 60px !important; }
 
-/* line 322, ../sass/crazy.sass */
+/* line 321, ../sass/crazy.sass */
 #edit-previous {
   width: 60px !important;
   float: left !important; }
 
-/* line 326, ../sass/crazy.sass */
+/* line 325, ../sass/crazy.sass */
 #edit-submit {
   width: 80px;
   float: right !important; }
 
-/* line 331, ../sass/crazy.sass */
+/* line 330, ../sass/crazy.sass */
 #views_infinite_scroll-ajax-loader {
   margin: 3% 0; }
 
-/* line 335, ../sass/crazy.sass */
+/* line 334, ../sass/crazy.sass */
 .no-results {
   font-size: 35px;
   line-height: 45px;
@@ -741,7 +738,7 @@ img.header_ds_logo {
   text-transform: uppercase;
   font-weight: 600;
   padding: 20% 0; }
-/* line 342, ../sass/crazy.sass */
+/* line 341, ../sass/crazy.sass */
 .no-results .small_button {
   float: none;
   margin: 7% auto 0;
