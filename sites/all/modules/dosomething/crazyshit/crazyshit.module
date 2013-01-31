@@ -497,7 +497,7 @@ function crazyshit_page_alter(&$page) {
 
 	  $s = db_select('crazy_notifications', 'n')
 		->fields('n', array('sid', 'type'))
-		->condition('from_uid', $user->uid)
+		->condition('uid', $user->uid)
 	    ->condition('type', array(2, 10, 11), 'IN')
 	    #->condition('from_uid', 0, '!=')
 	    ->execute();
