@@ -121,7 +121,6 @@
 	      				name = Drupal.t('Someone');
 	      			}
 
-	      			Drupal.behaviors.fb.clog("Sending notification as " + name);
 		      		Drupal.behaviors.fb.notification({
 		      			'notification_document': 'crazy', // leave this like this
 		      			'notification_user': response.author,

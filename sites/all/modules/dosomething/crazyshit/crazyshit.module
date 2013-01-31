@@ -323,7 +323,7 @@ function crazyshit_update_counts($sid, $field) {
   $total_week++;
   $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'] = $total_week;
 
-  webform_entity_save_webform_submission($submission);
+  entity_save('webform_submission_entity', $submission);
 
   return array(
   	'sid' => $submission->sid,
@@ -337,6 +337,7 @@ function crazyshit_update_counts($sid, $field) {
  */
 function crazyshit_submit_bullshit() {
 	global $user;
+
 	if (!$user->uid) {
 	  // If a user isn't logged in, they shouldn't be able to vouch for something.
 	  echo drupal_json_output(array(
@@ -352,7 +353,7 @@ function crazyshit_submit_bullshit() {
 	}
 
 	$update = crazyshit_update_counts(intval($_POST['rel']), 'crazy_bullshit_count');
-	
+
 	// Get Drupal and FB user ids
 	$fbid = fboauth_fbid_load($user->uid);
 	$to_fbid = fboauth_fbid_load($update['uid']);
@@ -376,7 +377,7 @@ function crazyshit_submit_bullshit() {
 
 	// Return author, status, new count.
 	echo drupal_json_output(array(
-	  'author' => fboauth_fbid_load($submission->uid),
+	  'author' => $to_fbid,
 	  'status' => 1,
 	  'count' => $update['count'],
 	));
@@ -638,16 +639,15 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
 
     global $user;
-    $fbid = fboauth_fbid_load($user->uid);
-
-	$access_token = $facebook->getAccessToken();
-	// Try and get the $fbuser object
-	#$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
-	$friends = $facebook->api('/' . $fbid . '/friends');
 
     if (!$user->uid) {
       drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . variable_get('fboauth_id') . '&redirect_uri=http://' . CRAZY_DOMAIN . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
     }
+
+    $fbid = fboauth_fbid_load($user->uid);
+
+	$access_token = $facebook->getAccessToken();
+	$friends = $facebook->api('/' . $fbid . '/friends');
 
     $f = array(
 	   0 => $fbid,
@@ -656,15 +656,7 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	   $f[] = $friend['id'];
 	}
 
-	if ($_GET['debug'] == 'fb_friends') {
-		echo '<pre>', print_r($f), '</pre>';
-	}
-
 	$ids = crazy_fb_get_multi_fbids($f);
-
-	if ($_GET['debug'] == 'fb_friends') {
-		echo '<pre>', print_r($ids), '</pre>';
-	}
 
 	if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
 	  // Create a database condition class to narrow viewable posts down to just your friends.
@@ -680,10 +672,6 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  $query->where[1]['conditions'][] = array(
 		'field' => $s,
 	  );
-
-	  if ($_GET['debug'] == 'fb_friends') {
-	  	echo '<pre>', print_r($query->where), '</pre>';
-	  }
 	}
   }
  }
