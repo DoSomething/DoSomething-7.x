@@ -17,9 +17,9 @@
 	    	Drupal.behaviors.dsCrazyScripts.logged_in = false;
 	    }
 
-      if (top.location != self.location) {
-        top.location = self.location.href
-      }
+        if (top.location != self.location) {
+          top.location = self.location.href
+        }
 
 	    Drupal.behaviors.dsCrazyScripts.fb_refresh(function() {
             if (Drupal.behaviors.fb.is_authed()) {

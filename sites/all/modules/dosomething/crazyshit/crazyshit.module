@@ -639,7 +639,9 @@ function crazyshit_views_query_alter(&$view, &$query) {
 
 	$access_token = $facebook->getAccessToken();
 	// Try and get the $fbuser object
-	$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
+	#$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
+	$friends = $facebook->api('/' . $facebook->getUser() . '/friends');
+
     global $user;
 
     if (!$user->uid) {
