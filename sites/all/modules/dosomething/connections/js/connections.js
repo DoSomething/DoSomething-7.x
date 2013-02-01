@@ -235,9 +235,9 @@
               resizable: false,
               modal: (things.modal ? true : false),
               open: function() {
-                //if ($('.og_dialog').length > 1) {
-                 // $('.og_dialog').not(this).remove();
-                //}
+                if ($('.og_dialog').length > 1) {
+                  $('.og_dialog').not(this).remove();
+                }
                 if ($('#cancel-og-post').length) {
                   // This somehow fixes an error where it wouldn't close after the first close
                   // Don't ask me why.
