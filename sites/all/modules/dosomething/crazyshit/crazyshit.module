@@ -92,9 +92,6 @@ function crazyshit_page_templates_alter(&$variables) {
 	  $fbed = crazy_check_fb_auth();
 	  include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 
-	  // Includes the jQuery ui dialog library, regardless of logged in status.
-	  drupal_add_library('system', 'ui.dialog',' true');
-
 	  $ru = request_uri();
 	  foreach ($top_links AS $match => $info) {
 	  	$href = $info['href'];
@@ -476,6 +473,9 @@ function crazyshit_page_alter(&$page) {
       ),
     );
     drupal_add_html_head($element, 'crazy_og_type');
+
+    // Includes the jQuery ui dialog library, regardless of logged in status.
+    drupal_add_library('system', 'ui.dialog');
 
 	// Loads Facebook.
 	drupal_add_library('connections', 'facebook');
