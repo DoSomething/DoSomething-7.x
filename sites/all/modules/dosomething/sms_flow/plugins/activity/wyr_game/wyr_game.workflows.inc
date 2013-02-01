@@ -49,8 +49,8 @@ $activity->outputs = array('ftaf');
 $activity->game_id = 2;
 $activity->incoming_opt_in_path = 142223;
 $activity->type_override = 'sms_game';
-$activity->opt1_valid_answers = array('a', 'a)', 'a.');
-$activity->opt2_valid_answers = array('b', 'b)', 'b.');
+$activity->opt1_valid_answers = array('eat tuna', 'a', 'a eat tuna', 'a eat tuna every day for a month', 'a eat tuna every day', 'a tuna every day for a month', 'a tuna every day', 'a) eat tuna', 'a) eat tuna every day for a month', 'a) eat tuna every day', 'a) tuna every day for a month', 'a) tuna every day', 'a. eat tuna', 'a. eat tuna every day for a month', 'a. eat tuna every day', 'a. tuna every day for a month', 'a. tuna every day');
+$activity->opt2_valid_answers = array('eat ramen', 'b', 'b eat tuna', 'b eat ramen every day for a month', 'b eat ramen every day', 'b ramen every day for a month', 'b ramen every day', 'b) eat ramen', 'b) eat ramen every day for a month', 'a) eat ramen every day', 'b) ramen every day for a month', 'b) ramen every day', 'b. eat ramen', 'b. eat ramen every day for a month', 'b. eat ramen every day', 'b. ramen every day for a month', 'b. ramen every day');
 $activity->sms_response = t("How about making shopping lists? Know what u need so u don't make excess purchases. Txt WYR for more ?s or txt back friends #s to ask what they would rather.");
 
 $activity = $workflow->newActivity('sms_flow_generic_ftaf');
@@ -85,8 +85,8 @@ $activity->outputs = array('ftaf');
 $activity->game_id = 2;
 $activity->incoming_opt_in_path = 142503;
 $activity->type_override = 'sms_game';
-$activity->opt1_valid_answers = array('a');
-$activity->opt2_valid_answers = array('b');
+$activity->opt1_valid_answers = array('get internet at the library', 'a', 'a) access the internet only at the library', 'a) access internet at the library', 'a) go to the library', 'access the internet at the library', 'go to the library', 'the library', 'library', 'a access the internet only at the library', 'a access internet at the library', 'a go to the library');
+$activity->opt2_valid_answers = array('only get internet w ur parents home', 'b', 'b) only with my parents watching at home', 'only with my parents watching', 'only with my parents', 'my parents watching', 'get internet with my parents watching', 'get internet w my parents at home', 'b) only with my parents watching', 'b) only with my parents', 'b) my parents watching', 'b) get internet with my parents watching', 'b) get internet w my parents at home');
 $activity->sms_response = t("Instead of all that, try having ppl over.Watch movies or cook food @ home instead of spending $$ out.Txt WYR for more or txt friends #s to see what they'd do");
 
 $activity = $workflow->newActivity('sms_flow_generic_ftaf');
@@ -121,8 +121,8 @@ $activity->outputs = array('ftaf');
 $activity->game_id = 2;
 $activity->incoming_opt_in_path = 143053;
 $activity->type_override = 'sms_game';
-$activity->opt1_valid_answers = array('a');
-$activity->opt2_valid_answers = array('b');
+$activity->opt1_valid_answers = array('have a flip phone', 'swap my smartphone for a flip phone', 'get a flip phone', 'flip phone', 'a', 'a) have a flip phone', 'a) swap my smartphone for a flip phone', 'a) get a flip phone', 'a) flip phone', 'a have a flip phone', 'a swap my smartphone for a flip phone', 'a get a flip phone', 'a flip phone');
+$activity->opt2_valid_answers = array('give up your car', 'swap my car for a bike', 'swap my car for a bicycle', 'swap my car', 'get a bike', 'get a bicycle', 'swap my car', 'b', 'b)', 'b swap my car for a bike', 'b swap my car for a bicycle', 'b swap my car for a bicycle', 'b swap my car', 'b get a bike', 'b get a bicycle', 'b swap my car', 'b) swap my car for a bike', 'b) swap my car for a bicycle', 'b) swap my car for a bicycle', 'b) swap my car', 'b) get a bike', 'b) get a bicycle', 'b) swap my car');
 $activity->sms_response = t('Hmm, try turning off lights in ur home when leaving.Less lights on = more $$ for you! See crazy stuff ppl do to save: doso.me/8 or txt friends #s to play w them');
 
 $activity = $workflow->newActivity('sms_flow_generic_ftaf');
