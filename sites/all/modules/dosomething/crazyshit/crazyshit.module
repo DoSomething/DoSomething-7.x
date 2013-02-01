@@ -8,6 +8,7 @@ include_once 'crazyshit.features.inc';
 
 define('CRAZY_DOMAIN', variable_get('crazy_domain', 'www.dosomething.org'));
 define('CRAZY_AUTH_PAGES', serialize(explode(',', variable_get('crazy_auth_pages', 'friends,submit'))));
+define('CRAZY_MAILCHIMP_GROUP', 'CraziestThing2013');
 
 /**
  *	Implements hook_menu()
@@ -127,7 +128,6 @@ function crazyshit_js_alter(&$js) {
   }
 }
 
-
 /**
  *	Implements hook_page_templates_alter()
  *	Adds navigation bar to the top of the page.
@@ -147,6 +147,12 @@ function crazyshit_page_templates_alter(&$variables) {
 	  	  'href' => $href,
 	  	  'attributes' => ($info['attributes'] ? $info['attributes'] : array()),
 	  	);
+
+	  	if (preg_match('#^\/' . $match . '#i', $ru)) {
+	  	  $links[$href]['attributes'] += array(
+	  		'class' => array('active'),
+	  	  );
+	  	}
 	  }
 
 	  $sub = array();
@@ -556,10 +562,6 @@ function crazyshit_page_alter(&$page) {
 	    ->execute();
 	  $shares = $s->fetchAll();
 
-	  if ($_GET['debug'] == 'notification') {
-	  	echo '<pre>', print_r($shares), '</pre>';
-	  }
-
 	  $settings = array(
 	    'share_count' => count($shares),
 	    'shares' => $shares,
@@ -959,9 +961,7 @@ function crazyshit_init() {
 	  ->range(0, 1)
 	  ->execute();
 	$ns = $n->fetchAll();
-	if ($_GET['debug'] == 'notifs') {
-		echo '<pre>', print_r($ns), '</pre>';
-	}
+
 	$notifications = reset($ns);
 	$pre = '';
 	if (!empty($notifications)) {
@@ -1002,20 +1002,6 @@ function crazyshit_init() {
   if (!preg_match('#crazy/(' . implode('|', $pages) . ').*?#i', request_uri())) {
   	return;
   }
-
-  // Try and get the $fbuser object
-  /*try {
-	$fbuser = (object) $facebook->api('/me');
-  }
-  catch (Exception $e) {
-	if (request_uri() !== '/' . CRAZY_ROOT . '/friends') {
-		#$l = $facebook->getLoginUrl();
-		#header('location: ' . $l);
-	}
-	else {
-	  	drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('vouch', 0); });", 'inline');
-	}
-  }*/
 }
 
 function crazyshit_handle_fb_users($facebook) {
@@ -1036,15 +1022,22 @@ function crazyshit_handle_fb_users($facebook) {
 	  // 4. User is not logged in and has no DS uid.
 	  //   - Create a new user and log them in.
 
-	  $access_token = $facebook->getAccessToken();
+	  if ($user->uid > 0) {
+		$fbid = fboauth_fbid_load($user->uid);
+		$fbuser = (object) $facebook->api("/$fbid");
+	  }
+	  else {
+		$access_token = $facebook->getAccessToken();
 
-	  // Try and get the $fbuser object
-  	  $fbuser = fboauth_graph_query('me', $access_token);
+		// Try and get the $fbuser object
+	  	$fbuser = fboauth_graph_query('me', $access_token);
+	  }
 
 	  // In some cases we don't get an id. This will break everything so we wrap
 	  // the whole shebang in an if.
 	  if (isset($fbuser->id)) {
-	    $uid = fboauth_uid_load($fbuser->id);
+	    $uid = $user->uid;
+	    $account = $user;
 	    // Not sure if we should do this or not. Seems smarter than leaving it emtpy
 	    // though.
 	    if (!isset($fbuser->email)) {
@@ -1069,15 +1062,6 @@ function crazyshit_handle_fb_users($facebook) {
 	      $account = user_load($account->uid);
 	      // Then log them in.
 	      fboauth_login_user($account);
-
-	#      if (!empty($account->mail)) {
-	#          $mid = CRAZY_MAILCHIMP_GROUP;
-	#          $email = $account->mail;
-
-	#          if (!empty($mid)) {
-	#             dosomething_general_mailchimp_subscribe($email, $mid);
-	#          }
-	#      }
 	    }
 	    // Condition 2.
 	    elseif (!$user->uid && !$uid && !empty($found_user)) {
@@ -1099,14 +1083,14 @@ function crazyshit_handle_fb_users($facebook) {
 	    }
 	  }
 
-          if (!empty($account->mail)) {
-              $mid = CRAZY_MAILCHIMP_GROUP;
-              $email = $account->mail;
+      if (!empty($account->mail)) {
+          $mid = CRAZY_MAILCHIMP_GROUP;
+          $email = $account->mail;
 
-              if (!empty($mid) && valid_email_address($email)) {
-                 dosomething_general_mailchimp_subscribe($email, $mid);
-              }
+          if (!empty($mid) && valid_email_address($email)) {
+             dosomething_general_mailchimp_subscribe($email, $mid);
           }
+      }
   }
   catch (Exception $e) {}
 }
