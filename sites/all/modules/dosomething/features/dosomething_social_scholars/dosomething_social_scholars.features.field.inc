@@ -150,7 +150,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -217,7 +217,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -363,7 +363,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -778,7 +778,7 @@ function dosomething_social_scholars_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -852,7 +852,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
@@ -977,6 +977,78 @@ function dosomething_social_scholars_field_default_fields() {
         ),
         'type' => 'file_generic',
         'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-social_scholarship-field_tip_to_show_on_form'.
+  $fields['node-social_scholarship-field_tip_to_show_on_form'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_tip_to_show_on_form',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'social_scholarship',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'This tip will show up on the top of the form.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 11,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_tip_to_show_on_form',
+      'label' => 'Tip to show on form',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '7',
       ),
     ),
   );
@@ -1488,6 +1560,8 @@ function dosomething_social_scholars_field_default_fields() {
   t('The Language for the Facebook "Recommend" button');
   t('The link to the petition (or other) that will be below the --- OR --- line on the images page.');
   t('The message that appears after a use is redirected to the "redirect to" URL.');
+  t('This tip will show up on the top of the form.');
+  t('Tip to show on form');
   t('Your cell number:');
   t('Your first name:');
   t('Your friend\'s cell numbers:');

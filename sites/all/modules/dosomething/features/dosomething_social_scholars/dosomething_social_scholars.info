@@ -33,6 +33,7 @@ features[field][] = node-social_scholarship-field_petition_link
 features[field][] = node-social_scholarship-field_redirect_message
 features[field][] = node-social_scholarship-field_redirect_to_path
 features[field][] = node-social_scholarship-field_social_scholars_images
+features[field][] = node-social_scholarship-field_tip_to_show_on_form
 features[field][] = webform_submission_entity-social_scholarship-field_social_scholars_cell
 features[field][] = webform_submission_entity-social_scholarship-field_social_scholars_first_name
 features[field][] = webform_submission_entity-social_scholarship-field_social_scholars_friend_1
