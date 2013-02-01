@@ -101,9 +101,14 @@
     ask_permission: function(permission, settings, callback) {
       FB.api('/me/permissions', function (response) {
         if (response.error) {
-          FB.login(function(response) {
-            callback(response);
-          }, { scope: permission })
+          Drupal.behaviors.fb.gate({
+            'gate_call_fb': 2,
+            'gate_app_id': 105775762330,
+            'require_login': true
+          }, function() { });
+          //FB.login(function(response) {
+          //  callback(response);
+          //}, { scope: permission });
         }
         else {
           var perms = response.data[0];
@@ -145,7 +150,7 @@
          }
       });
 
-	return Drupal.behaviors.fb.is_authorized;
+    	return Drupal.behaviors.fb.is_authorized;
     },
 
     /**
@@ -327,17 +332,21 @@
             if (things.require_login == 1) {
               FB.api('/me/permissions', function (response) {
                 if (response.error) {
-                  FB.login(function(response) {
-                    callback(response);
-                  }, { scope: 'publish_actions' })
+                  Drupal.behaviors.fb.gate({
+                    'gate_call_fb': 2,
+                    'gate_app_id': 105775762330,
+                    'require_login': true
+                  }, function() {
+                  });
                 }
                 else {
                   var perms = response.data[0];
-                  if (!perms.publish_actions && !asked) {
+                  if (!perms.publish_stream && !asked) {
                     FB.ui({
                       method: 'permissions.request',
-                      perms: 'publish_actions',
-                      display: 'popoup'
+                      perms: 'publish_stream',
+                      display: 'iframe',
+                      access_token: FB.getAccessToken(),
                     }, function(response) {
                       callback(response);
                     });
@@ -350,13 +359,16 @@
             // Logged in and authorized.
             FB.api('/me/permissions', function (response) {
               var perms = response.data[0];
-              if (!perms.publish_actions) {
+              if (!perms.publish_stream) {
                 FB.ui({
                   method: 'permissions.request',
-                  perms: 'publish_actions',
-                  display: 'popup'
+                  perms: 'publish_stream',
+                  display: 'iframe',
+                  access_token: FB.getAccessToken(),
                 }, function(response) {
-                  callback(response);
+                  if (typeof response != 'undefined') {
+                    callback(response);
+                  }
                 });
               }
               else {
@@ -1035,6 +1047,7 @@
      */
     run_image: function(things, callback) {
       if (things.message) {
+
           things.picture = things.img_url;
           things.follow_position = true;
           Drupal.behaviors.fb.fb_dialog('image-post', things, function(response) {

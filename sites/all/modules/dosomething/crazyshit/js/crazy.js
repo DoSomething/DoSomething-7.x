@@ -17,15 +17,21 @@
 	    	Drupal.behaviors.dsCrazyScripts.logged_in = false;
 	    }
 
-      if (top.location != self.location) {
-        top.location = self.location.href
-      }
+        if (top.location != self.location) {
+          top.location = self.location.href
+        }
 
 	    Drupal.behaviors.dsCrazyScripts.fb_refresh(function() {
             if (Drupal.behaviors.fb.is_authed()) {
                Drupal.behaviors.dsCrazyScripts.authed = true;
             }
 	    });
+
+	    window.setTimeout(function() {
+	       if (!Drupal.behaviors.dsCrazyScripts.logged_in && Drupal.behaviors.fb.is_authed()) {
+             Drupal.behaviors.dsCrazyScripts.fb_status();
+           }
+	    }, 500);
 
 	    if (Drupal.settings.crazy.allow_lazy_loading) {
 		    if ($('img.lazy').length > 0) {
@@ -35,8 +41,10 @@
 
 	    // Fix for SUPER weird first-image cache problem.
 	    if ($('img[data-num="2"]').length > 0) {
-		var $src = $('img[data-num="2"]').attr('src');
-		$('img[data-num="2"]').attr('src', $src + '?' + new Date().getTime());
+	    	$('img[data-num="2"]').each(function() {
+				var $src = $(this).attr('src');
+				$(this).attr('src', $src + '?' + new Date().getTime());
+	    	});
 	    }
 
 	    // Updates share buttons to disable ones you've already clicked.
@@ -58,27 +66,18 @@
 			//	}
 	    	}
 	    }
-	    //$('.crazy-button a.button-submit').click(function() {
-	    //   if ($(this).hasClass('clicked')) return false;
-	    //   var elm = $(this);
-	    //   $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-crazy', { 'rel': $(this).attr('rel') }, function(response) {
-	    //  	 if (response.status == 1) {
-	    //  		settings.crazy.share_count++;
-	    //  		o.tip_shares(settings);
-	    //  		elm.text('Crazied').addClass('clicked');
-	    //  		elm.parent().find('span').text(response.count);
-	    //  	 } 
-	    //   });
-	    //   return false;
-	    //});
 
 	    $('.bs-button a.button-submit').click(function() {
-	       if ((!Drupal.behaviors.fb.is_authed() && Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+	       if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+               	Drupal.behaviors.fb.clog("User is unauthed or not logged in.");
+               	Drupal.behaviors.fb.clog("Auth status: " + Drupal.behaviors.fb.is_authed());
+               	Drupal.behaviors.fb.clog("Logged in status: " + Drupal.behaviors.dsCrazyScripts.logged_in);
 			  $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
 			  return false;
 	       }
 
 	       if ($(this).hasClass('clicked')) {
+	       	Drupal.behaviors.fb.clog("Element has clicked class already.");
 			  return false;
 	       }
 
@@ -91,7 +90,7 @@
 	          na = true;
 	       }
 
-		$('.s-' + elm.attr('rel')).find('.vouch-button a').addClass('clicked');
+		   $('.s-' + elm.attr('rel')).find('.vouch-button a').addClass('clicked');
 	       elm.addClass('clicked');
 
 	       var c = parseInt(elm.parent().find('span').text());
@@ -131,12 +130,16 @@
 	    });
 
 	    $('.vouch-button a.button-submit').click(function() {
-               if ((!Drupal.behaviors.fb.is_authed() && Drupal.behaviors.dsCrazyScripts.probably_unauthed == true) || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+               if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+               	Drupal.behaviors.fb.clog("User is unauthed or not logged in.");
+               	Drupal.behaviors.fb.clog("Auth status: " + Drupal.behaviors.fb.is_authed());
+               	Drupal.behaviors.fb.clog("Logged in status: " + Drupal.behaviors.dsCrazyScripts.logged_in);
                   $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
                   return false;
                }
 
                if ($(this).hasClass('clicked')) {
+			       	Drupal.behaviors.fb.clog("Element has clicked class already.");
                   return false;
                }
 
@@ -166,9 +169,14 @@
 
 
 	    $('.fb-share a').click(function(e) {
-	    	e.preventDefault();
+           if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+              $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
+              return false;
+           }
+
 	    	var img = $(this).parent().parent().parent().find('.simg img').attr('data-original');
 	    	var sid = $(this).attr('rel');
+
 	    	Drupal.behaviors.fb.image({
 	    	   'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
 	    	   'img_object': Drupal.settings.crazy.facebook.share.object,
@@ -196,7 +204,7 @@
 				oa();
 				Drupal.behaviors.dsCrazyScripts.started_page = true;
 			    // If we're on the friends page...
-			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3 || (!Drupal.behaviors.dsCrazyScripts.logged_in && Drupal.behaviors.fb.is_authed())) {
+			    if (Drupal.settings.crazy.origin == 2 || Drupal.settings.crazy.origin == 3) {
 
 			    	// Occasionally users can log out of Facebook and still count as "authenticated"
 			    	// That's bad.  So let's make sure they're actually connected.

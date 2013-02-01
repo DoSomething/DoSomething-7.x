@@ -1,0 +1,187 @@
+// PANES 
+
+//      //
+//  #header     - sign up -
+//      //
+.section#header
+  background: transparent
+#header
+  margin-top: 10%
+  padding: 0
+  h1, h2
+    text-align: left
+    color: black
+    margin: 0
+  h1
+    margin: 0 0 0.5em 0
+    font-weight: 500
+    font-size: 2.4em
+  h2
+    text-align: center
+    text-transform: uppercase
+    font-size: 1.8em
+    font-family: $din
+    font-weight: 600
+    width: 80%
+    margin: 0 auto
+    line-height: 1.2em
+    span
+      color: $secondaryColor
+      font-weight: 700
+      padding: 0
+  span
+    padding: 0
+    text-align: center
+  .tagline
+    padding: 184px 0 0 0
+  .pane-campaign-signed
+    h2
+      text-align: center
+      text-transform: uppercase
+      color: white
+      font-size: 2em
+      font-weight: 400
+    .action-now
+      margin: 0 auto
+      display: inline-block
+      text-align: center         
+      img
+        margin: 0em 0.8em 0 0
+        float: left
+      .go-button
+        margin-top: 0.1em 
+        float: left
+        font-size: 1.8em    
+  .headline
+    background: url('http://files.dosomething.org/files/campaigns/savings/black-50-opacity.png')
+    margin-bottom: 5%
+    h2
+      padding: 1em 0
+      color: white
+      font-size: 1.6em
+      font-weight: 400
+
+//			//
+//	#action
+//			//
+#action
+  padding: 3% 0 2%
+  +border-top-right-radius(6px)
+  +border-top-left-radius(6px)
+
+//      //
+//  #content
+//      //
+#content
+  .go-button
+    margin: 0
+    background: $secondaryColor
+    color: white
+    font-weight: 400
+    font-family: din-web-reg
+    font-size: 1.2em
+    line-height: 2.8em
+    height: 2.5em
+    padding: 0 1.5em
+    text-shadow: 0px 0px 2px #777
+    &:hover
+      color: #f9f9f9
+      +box-shadow(0 2px 2px 0 #ccc)
+  .do-topics
+    max-width: 400px
+    span
+      font-weight: 600    
+
+//			//
+//	#scholarship
+//			//
+#scholarship
+
+
+//      //
+//  #video
+//      //
+#video
+  hr
+    border: 1px solid #ccc
+
+//      //
+//  #faq
+//      //
+
+#faq 
+  div
+    padding: 0 1.2em 1.2em 1.2em
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
+  li
+    margin: 0
+    color: $secondaryColor
+    span
+      color: black 
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 1.2em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("assets/faq2.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position-y: -3.9em
+  .go-button
+    margin: 0 0 1% 0
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase  
+  .action-box
+    position: relative
+    display: inline-block
+  .action-arrow-left, .action-arrow-right
+    position: absolute
+    bottom: 0.5em
+  .action-arrow-right
+    right: -70px
+  .action-arrow-left
+    left: -70px  
+
+
+//      //
+//  #footer     - sign up button; conditionally displayed -
+//      //
+#footer
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 0.7em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  .go-button
+    margin: 0 0 1% 0

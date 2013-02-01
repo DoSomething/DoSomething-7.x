@@ -139,9 +139,6 @@ function crazyshit_page_templates_alter(&$variables) {
 	  $fbed = crazy_check_fb_auth();
 	  include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 
-	  // Includes the jQuery ui dialog library, regardless of logged in status.
-	  drupal_add_library('system', 'ui.dialog',' true');
-
 	  $ru = request_uri();
 	  foreach ($top_links AS $match => $info) {
 	  	$href = $info['href'];
@@ -235,7 +232,7 @@ function crazyshit_submit_vouch() {
 	$notification = array(
 	  'sid' => $update['sid'],
 	  'uid' => $update['uid'],
-	  'fid' => fboauth_fbid_load($submission->uid),
+	  'fid' => fboauth_fbid_load($update['uid']),
 	  'from_uid' => $user->uid,
 	  'from_fid' => $fbid,
 	  'type' => 11,
@@ -370,7 +367,7 @@ function crazyshit_update_counts($sid, $field) {
   $total_week++;
   $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'] = $total_week;
 
-  webform_entity_save_webform_submission($submission);
+  entity_save('webform_submission_entity', $submission);
 
   return array(
   	'sid' => $submission->sid,
@@ -384,6 +381,7 @@ function crazyshit_update_counts($sid, $field) {
  */
 function crazyshit_submit_bullshit() {
 	global $user;
+
 	if (!$user->uid) {
 	  // If a user isn't logged in, they shouldn't be able to vouch for something.
 	  echo drupal_json_output(array(
@@ -399,10 +397,10 @@ function crazyshit_submit_bullshit() {
 	}
 
 	$update = crazyshit_update_counts(intval($_POST['rel']), 'crazy_bullshit_count');
-	
+
 	// Get Drupal and FB user ids
 	$fbid = fboauth_fbid_load($user->uid);
-	$to_fbid = fboauth_fbid_load($submission->uid);
+	$to_fbid = fboauth_fbid_load($update['uid']);
 
 	// Build the notification array.
 	$notification = array(
@@ -423,7 +421,7 @@ function crazyshit_submit_bullshit() {
 
 	// Return author, status, new count.
 	echo drupal_json_output(array(
-	  'author' => fboauth_fbid_load($submission->uid),
+	  'author' => $to_fbid,
 	  'status' => 1,
 	  'count' => $update['count'],
 	));
@@ -523,8 +521,16 @@ function crazyshit_page_alter(&$page) {
     );
     drupal_add_html_head($element, 'crazy_og_type');
 
+    // Includes the jQuery ui dialog library, regardless of logged in status.
+    drupal_add_library('system', 'ui.dialog');
+
 	// Loads Facebook.
 	drupal_add_library('connections', 'facebook');
+	// Backup for weird production facebook issues...
+    // Includes the jQuery ui dialog library, regardless of logged in status.
+	drupal_add_js(drupal_get_path('module', 'connections') . '/js/connections.js', array(
+      'weight' => 500,
+    ));
 
 	$origin = 0;
 
@@ -538,17 +544,21 @@ function crazyshit_page_alter(&$page) {
 
 	  global $user;
 	  $fbid = fboauth_fbid_load($user->uid);
-	  $i = db_or();
-	  $i->condition('from_uid', $user->uid);
-	  $i->condition('from_fid', $fbid);
+	  #$i = db_or();
+	  #$i->condition('from_uid', $user->uid);
+	  #$i->condition('from_fid', $fbid);
 
 	  $s = db_select('crazy_notifications', 'n')
 		->fields('n', array('sid', 'type'))
-		->condition($i)
+		->condition('from_uid', $user->uid)
 	    ->condition('type', array(2, 10, 11), 'IN')
-	    ->condition('from_uid', 0, '!=')
+	    #->condition('from_uid', 0, '!=')
 	    ->execute();
 	  $shares = $s->fetchAll();
+
+	  if ($_GET['debug'] == 'notification') {
+	  	echo '<pre>', print_r($shares), '</pre>';
+	  }
 
 	  $settings = array(
 	    'share_count' => count($shares),
@@ -558,11 +568,11 @@ function crazyshit_page_alter(&$page) {
 	  $origin = 1;
 	}
 
-	if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
+	if (preg_match('#^\/' . CRAZY_ROOT . '/friends#i', $uri)) {
 		$origin = 2;
 	}
 
-	if (preg_match('#^\/' . CRAZY_ROOT . '/submit#i', request_uri())) {
+	if (preg_match('#^\/' . CRAZY_ROOT . '/submit#i', $uri)) {
 		$origin = 3;
 	}
 
@@ -676,27 +686,30 @@ function crazyshit_views_query_alter(&$view, &$query) {
   }
 
   // If we're viewing the friends gallery page, only show submissions by my Facebook friends.
-  if (request_uri() == '/' . CRAZY_ROOT . '/friends') {
+  if (preg_match('#^\/' . CRAZY_ROOT . '\/friends#i', request_uri())) {
 	$facebook = crazy_load_fb();
 	module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
 
-	$access_token = $facebook->getAccessToken();
-	// Try and get the $fbuser object
-	$friends = fboauth_graph_query($facebook->getUser() . '/friends', $access_token);
     global $user;
 
     if (!$user->uid) {
       drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . variable_get('fboauth_id') . '&redirect_uri=http://' . CRAZY_DOMAIN . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
     }
 
+    $fbid = fboauth_fbid_load($user->uid);
+
+	$access_token = $facebook->getAccessToken();
+	$friends = $facebook->api('/' . $fbid . '/friends');
+
     $f = array(
-	   0 => fboauth_fbid_load($user->uid),
+	   0 => $fbid,
 	);
-	foreach ($friends->data AS $key => $friend) {
-	   $f[] = $friend->id;
+	foreach ($friends['data'] AS $key => $friend) {
+	   $f[] = $friend['id'];
 	}
 
 	$ids = crazy_fb_get_multi_fbids($f);
+
 	if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
 	  // Create a database condition class to narrow viewable posts down to just your friends.
 	  $s = new DatabaseCondition();
@@ -897,9 +910,17 @@ function crazyshit_fb_connect() {
 function crazyshit_init() {
   include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 
+  if ($_GET['debug'] == 'notifs') {
+  	echo "Outside...";
+  }
+
   // Return nothing if the page isn't within the crazy $#!T module
   if (!crazyshit_is_crazy_page()) {
 	return;
+  }
+
+  if ($_GET['debug'] == 'notifs') {
+  	echo "Inside...";
   }
 
   global $user;
@@ -910,18 +931,24 @@ function crazyshit_init() {
   // Handles Facebook user system
   crazyshit_handle_fb_users($facebook);
 
+
   $onpage = preg_match('#^/(' . implode('|', $crazy_notification_pages) . ')$#i', request_uri());
+  if ($_GET['debug'] == 'notifs') {
+  	echo "<p>NOTIFICATIONS: " . CRAZY_ALLOW_NOTIFICATIONS;
+  	echo "<p>On page: " . $onpage;
+  }
+
   if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
 	// Set up an or statement for the below query.
-	$c = db_or();
-	$c->condition('uid', intval($user->uid));
-	$c->condition('fid', intval($fbuser->id));
+	#$c = db_or();
+	#$c->condition('uid', intval($user->uid));
+	#$c->condition('fid', intval($fbuser->id));
 
 	// Load any notifications the user has.
 	$n = db_select('crazy_notifications', 'n')
 	  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
 	  // Make sure it's for the currently logged in user.
-	  ->condition($c)
+	  ->condition('uid', $user->uid)
 	  // Make sure they haven't seen it yet.
 	  ->condition('notified', 0)
 	  // Make sure it's a BS notification.
@@ -932,6 +959,9 @@ function crazyshit_init() {
 	  ->range(0, 1)
 	  ->execute();
 	$ns = $n->fetchAll();
+	if ($_GET['debug'] == 'notifs') {
+		echo '<pre>', print_r($ns), '</pre>';
+	}
 	$notifications = reset($ns);
 	$pre = '';
 	if (!empty($notifications)) {
