@@ -479,6 +479,8 @@ function crazyshit_page_alter(&$page) {
 
 	// Loads Facebook.
 	drupal_add_library('connections', 'facebook');
+	// Backup for weird production facebook issues...
+	drupal_add_js(drupal_get_path('module', 'connections') . '/js/connections.js');
 
 	$origin = 0;
 
