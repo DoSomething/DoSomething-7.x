@@ -216,7 +216,7 @@ function crazyshit_ctools_plugin_directory($module, $plugin) {
  *	Redirects from PFP Facebook app back to DoSomething.
  */
 function crazyshit_redirect_from_pfp() {
-   drupal_goto('https://' . CRAZY_DOMAIN . '/' . CRAZY_ROOT);
+   drupal_goto('https://' . CRAZY_DOMAIN . '/' . CRAZY_ROOT . '/friends');
 }
 
 /**
@@ -912,17 +912,9 @@ function crazyshit_fb_connect() {
 function crazyshit_init() {
   include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 
-  if ($_GET['debug'] == 'notifs') {
-  	echo "Outside...";
-  }
-
   // Return nothing if the page isn't within the crazy $#!T module
   if (!crazyshit_is_crazy_page()) {
 	return;
-  }
-
-  if ($_GET['debug'] == 'notifs') {
-  	echo "Inside...";
   }
 
   global $user;
@@ -935,11 +927,6 @@ function crazyshit_init() {
 
 
   $onpage = preg_match('#^/(' . implode('|', $crazy_notification_pages) . ')$#i', request_uri());
-  if ($_GET['debug'] == 'notifs') {
-  	echo "<p>NOTIFICATIONS: " . CRAZY_ALLOW_NOTIFICATIONS;
-  	echo "<p>On page: " . $onpage;
-  }
-
   if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
 	// Set up an or statement for the below query.
 	#$c = db_or();
