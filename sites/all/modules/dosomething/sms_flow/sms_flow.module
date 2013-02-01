@@ -204,6 +204,107 @@ function sms_flow_update_accepted_status($alpha_number, $beta_number, $nid, $typ
 }
 
 /**
+ * Create record in sms_flow_game table
+ */
+function sms_flow_game_create_record($phone, $game_id) {
+  $phone = substr($phone, -10);
+
+  $record = array(
+    'phone' => $phone,
+    'game_id' => $game_id,
+    'started_paths' => '',
+    'answers' => '',
+  );
+
+  $ret = drupal_write_record('sms_flow_game', $record);
+}
+
+/**
+ * Return paths user's been sent to as an array
+ */
+function sms_flow_game_get_paths($phone, $game_id) {
+  $phone = preg_replace('#[^0-9]#i', '', $phone);
+  $phone = substr($phone, -10);
+
+  $select = db_query("
+    SELECT started_paths
+    FROM sms_flow_game
+    WHERE
+       phone = '" . $phone . "'
+       AND game_id = '" . $game_id . "'
+    LIMIT 1
+  ");
+
+  $record = current($select->fetchAll());
+
+  if ($record && !empty($record->started_paths)) {
+    // Deserialize string into array
+    $return = explode(',', $record->started_paths);
+  } 
+
+  return !empty($return) ? $return : array();
+}
+
+/**
+ * Save paths user's been sent to to the sms_flow_game table
+ */
+function sms_flow_game_set_paths($phone, $game_id, $paths) {
+  $phone = substr($phone, -10);
+
+  // Serialize array before writing it to the database
+  $serialized_paths = implode(',', $paths);
+
+  db_update('sms_flow_game')
+    ->fields(array(
+      'started_paths' => $serialized_paths
+    ))
+    ->condition('phone', $phone)
+    ->condition('game_id', $game_id)
+    ->execute();
+}
+
+/**
+ * Return answers from sms_flow_game as an associative array
+ */
+function sms_flow_game_get_answers($phone, $game_id) {
+  $phone = preg_replace('#[^0-9]#i', '', $phone);
+  $phone = substr($phone, -10);
+
+  $select = db_query("
+    SELECT answers
+    FROM sms_flow_game
+    WHERE
+      phone = '" . $phone . "'
+      AND game_id = '" . $game_id . "'
+    LIMIT 1
+  ");
+
+  $record = current($select ->fetchAll());
+
+  if ($record && !empty($record->answers)) {
+    $return = json_decode($record->answers, true);
+  }
+
+  return !empty($return) ? $return : NULL;
+}
+
+/**
+ * Convert answers from associative array to json string and save to sms_flow_game
+ */
+function sms_flow_game_set_answers($phone, $game_id, $answers) {
+  $phone = substr($phone, -10);
+  $serialized_answers = json_encode($answers);
+
+  db_update('sms_flow_game')
+    ->fields(array(
+      'answers' => $serialized_answers
+    ))
+    ->condition('phone', $phone)
+    ->condition('game_id', $game_id)
+    ->execute();
+}
+
+/**
  * Implements hook_menu()
  */
 function sms_flow_menu() {
