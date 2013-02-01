@@ -8,7 +8,7 @@
   input
     &[type="text"],
     &[type="textarea"]
-      +box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
+      //+box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
       @extend .black
       background: $white
       &:focus
@@ -164,7 +164,8 @@
     .description
       float: left
       @extend .black
-      font-size: 12px
+      font-size: 11px
+      line-height: 1.4em
     a
       @extend .blue
       text-decoration: underline
