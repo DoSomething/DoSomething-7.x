@@ -362,6 +362,20 @@ function dosomething_general_redirect_with_message() {
   else if (!empty($params['template'])) {
     $message = $messages[$params['template']];
   }
+  else if (!empty($params['type']) && !empty($params['nid'])) {
+    if ($params['type'] == 'social_scholarship') {
+      $m = db_select('field_data_field_redirect_message', 'm')
+        ->fields('m', array('field_redirect_message_value'));
+      $m->leftJoin('field_data_field_redirect_to_path', 'p', 'p.entity_id = m.entity_id');
+      $m->fields('p', array('field_redirect_to_path_value'));
+      $m->condition('m.entity_id', intval($params['nid']))
+        ->range(0, 1);
+      $info = reset($m->execute()->fetchAll());
+
+      $message = $info->field_redirect_message_value;
+      $_GET['destination'] = ($info->field_redirect_to_path_value ? $info->field_redirect_to_path_value : 'share-these-images/' . intval($params['nid']));
+    }
+  }
 
   // The status to display in drupal_set_message()
   $status = check_plain($params['status']);
