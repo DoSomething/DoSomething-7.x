@@ -82,6 +82,53 @@ function crazyshit_is_crazy_page($page = '') {
 }
 
 /**
+ *  Implements hook_css_alter()
+ *	Removes unused styles.
+ */
+function crazyshit_css_alter(&$css) {
+  if (crazyshit_is_crazy_page()) {
+	$unused = array(
+	   'sites/all/modules/date/date_api/date.css',
+	   'sites/all/modules/date/date_popup/themes/datepicker.1.7.css',
+	   'modules/field/theme/field.css',
+	   'modules/node/node.css',
+	   'modules/poll/poll.css',
+	   'modules/user/user.css',
+	   'sites/all/modules/views_slideshow/views_slideshow.css',
+	   'sites/all/modules/dosomething/dosomething_blocks/css/twitter-widget.css',
+	);
+	foreach ($unused AS $style) {
+	  unset($css[$style]);
+	}
+  }
+}
+
+/**
+ *  Implements hook_js_alter()
+ *	Removes unused scripts.
+ */
+function crazyshit_js_alter(&$js) {
+  if (crazyshit_is_crazy_page()) {
+    $unused = array(
+      'sites/all/modules/dosomething/dosomething_blocks/js/lets_talk_dialog.js',
+      'sites/all/modules/dosomething/dosomething_blocks/js/show-facebook-twitter.js',
+      'sites/all/modules/dosomething/dosomething_menu/js/ds-main-menu.js',
+      'sites/all/themes/doit/js/formalize/jquery.formalize.min.js',
+      'sites/all/themes/doit/js/jQuery-SelectBox/jquery.selectBox.min.js',
+      'sites/all/themes/doit/js/doit-select.js',
+      'sites/all/themes/doit/js/jquery.lettering-0.6.min.js',
+      'sites/all/themes/doit/js/show-search-facets.js',
+      'sites/all/themes/doit/js/doit-lettering.js'
+    );
+
+    foreach ($unused AS $script) {
+      unset($js[$script]);
+    }
+  }
+}
+
+
+/**
  *	Implements hook_page_templates_alter()
  *	Adds navigation bar to the top of the page.
  */
