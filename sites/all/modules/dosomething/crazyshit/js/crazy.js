@@ -66,27 +66,18 @@
 			//	}
 	    	}
 	    }
-	    //$('.crazy-button a.button-submit').click(function() {
-	    //   if ($(this).hasClass('clicked')) return false;
-	    //   var elm = $(this);
-	    //   $.post('/' + Drupal.settings.crazy.crazy_root + '/submit-crazy', { 'rel': $(this).attr('rel') }, function(response) {
-	    //  	 if (response.status == 1) {
-	    //  		settings.crazy.share_count++;
-	    //  		o.tip_shares(settings);
-	    //  		elm.text('Crazied').addClass('clicked');
-	    //  		elm.parent().find('span').text(response.count);
-	    //  	 } 
-	    //   });
-	    //   return false;
-	    //});
 
 	    $('.bs-button a.button-submit').click(function() {
 	       if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+               	Drupal.behaviors.fb.clog("User is unauthed or not logged in.");
+               	Drupal.behaviors.fb.clog("Auth status: " + Drupal.behaviors.fb.is_authed());
+               	Drupal.behaviors.fb.clog("Logged in status: " + Drupal.behaviors.dsCrazyScripts.logged_in);
 			  $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
 			  return false;
 	       }
 
 	       if ($(this).hasClass('clicked')) {
+	       	Drupal.behaviors.fb.clog("Element has clicked class already.");
 			  return false;
 	       }
 
@@ -140,11 +131,15 @@
 
 	    $('.vouch-button a.button-submit').click(function() {
                if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+               	Drupal.behaviors.fb.clog("User is unauthed or not logged in.");
+               	Drupal.behaviors.fb.clog("Auth status: " + Drupal.behaviors.fb.is_authed());
+               	Drupal.behaviors.fb.clog("Logged in status: " + Drupal.behaviors.dsCrazyScripts.logged_in);
                   $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
                   return false;
                }
 
                if ($(this).hasClass('clicked')) {
+			       	Drupal.behaviors.fb.clog("Element has clicked class already.");
                   return false;
                }
 
@@ -174,9 +169,14 @@
 
 
 	    $('.fb-share a').click(function(e) {
-	    	e.preventDefault();
+           if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+              $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
+              return false;
+           }
+
 	    	var img = $(this).parent().parent().parent().find('.simg img').attr('data-original');
 	    	var sid = $(this).attr('rel');
+
 	    	Drupal.behaviors.fb.image({
 	    	   'img_namespace': Drupal.settings.crazy.facebook.share.namespace,
 	    	   'img_object': Drupal.settings.crazy.facebook.share.object,

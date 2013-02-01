@@ -101,9 +101,14 @@
     ask_permission: function(permission, settings, callback) {
       FB.api('/me/permissions', function (response) {
         if (response.error) {
-          FB.login(function(response) {
-            callback(response);
-          }, { scope: permission })
+          Drupal.behaviors.fb.gate({
+            'gate_call_fb': 2,
+            'gate_app_id': 105775762330,
+            'require_login': true
+          }, function() { });
+          //FB.login(function(response) {
+          //  callback(response);
+          //}, { scope: permission });
         }
         else {
           var perms = response.data[0];
@@ -145,7 +150,7 @@
          }
       });
 
-	return Drupal.behaviors.fb.is_authorized;
+    	return Drupal.behaviors.fb.is_authorized;
     },
 
     /**
@@ -230,9 +235,9 @@
               resizable: false,
               modal: (things.modal ? true : false),
               open: function() {
-                if ($('.og_dialog').length > 1) {
-                  $('.og_dialog').not(this).remove();
-                }
+                //if ($('.og_dialog').length > 1) {
+                 // $('.og_dialog').not(this).remove();
+                //}
                 if ($('#cancel-og-post').length) {
                   // This somehow fixes an error where it wouldn't close after the first close
                   // Don't ask me why.
@@ -327,17 +332,21 @@
             if (things.require_login == 1) {
               FB.api('/me/permissions', function (response) {
                 if (response.error) {
-                  FB.login(function(response) {
-                    callback(response);
-                  }, { scope: 'publish_actions' })
+                  Drupal.behaviors.fb.gate({
+                    'gate_call_fb': 2,
+                    'gate_app_id': 105775762330,
+                    'require_login': true
+                  }, function() {
+                  });
                 }
                 else {
                   var perms = response.data[0];
-                  if (!perms.publish_actions && !asked) {
+                  if (!perms.publish_stream && !asked) {
                     FB.ui({
                       method: 'permissions.request',
-                      perms: 'publish_actions',
-                      display: 'popoup'
+                      perms: 'publish_stream',
+                      display: 'iframe',
+                      access_token: FB.getAccessToken(),
                     }, function(response) {
                       callback(response);
                     });
@@ -354,7 +363,8 @@
                 FB.ui({
                   method: 'permissions.request',
                   perms: 'publish_stream',
-                  display: 'popup'
+                  display: 'iframe',
+                  access_token: FB.getAccessToken(),
                 }, function(response) {
                   if (typeof response != 'undefined') {
                     callback(response);
@@ -1037,6 +1047,7 @@
      */
     run_image: function(things, callback) {
       if (things.message) {
+
           things.picture = things.img_url;
           things.follow_position = true;
           Drupal.behaviors.fb.fb_dialog('image-post', things, function(response) {
