@@ -333,8 +333,8 @@ function crazyshit_update_counts($sid, $field) {
 
   // Get the current B.S. count
   $value = 0;
-  if (isset($submission->field_{$field}[LANGUAGE_NONE])) {
-     $value = $submission->{'field_' . $field}[LANGUAGE_NONE][0]['value'];
+  if (isset($submission->{'field_' . $field}[LANGUAGE_NONE])) {
+     $value = (int) $submission->{'field_' . $field}[LANGUAGE_NONE][0]['value'];
   }
 
   // BS++
@@ -345,7 +345,7 @@ function crazyshit_update_counts($sid, $field) {
 
   $total = 0;
   if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
-   $total = $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
+   $total = (int) $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
   }
 
   $total++;
@@ -353,7 +353,7 @@ function crazyshit_update_counts($sid, $field) {
 
   $total_today = 0;
   if (isset($submission->field_crazy_today_count[LANGUAGE_NONE])) {
-   $total_today = $submission->field_crazy_today_count[LANGUAGE_NONE][0]['value'];
+   $total_today = (int) $submission->field_crazy_today_count[LANGUAGE_NONE][0]['value'];
   }
 
   $total_today++;
@@ -361,13 +361,13 @@ function crazyshit_update_counts($sid, $field) {
 
   $total_week = 0;
   if (isset($submission->field_crazy_week_count[LANGUAGE_NONE])) {
-   $total_week = $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'];
+   $total_week = (int) $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'];
   }
 
   $total_week++;
   $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'] = $total_week;
 
-  entity_save('webform_submission_entity', $submission);
+  @entity_save('webform_submission_entity', $submission);
 
   return array(
   	'sid' => $submission->sid,
