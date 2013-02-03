@@ -14,6 +14,12 @@ function doit_preprocess_html(&$variables, $hook) {
   // HTML5 Shiv
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
+  
+  // Assign webfont stylesheet based on current path (page contents)
+  // The less files load in a page request the faster the page loads
+  if (module_exists('dosomething_perfomance_toolbox')) {
+    $variables['webfont_styles'] = dosomething_performance_toolbox_webfonts();
+  }
 }
 
 // function doit_preprocess_panels_pane(&$variables) {
