@@ -21,27 +21,27 @@
  *
  * Bit value: 1
  * @font-face
+ *   font-family: "din-web";
+ *   src: url('DINWeb-CondMedium.eot');
+ *   src: url('DINWeb-CondMedium.eot?iefix') format('eot'), url('DINWeb-CondMedium.woff') format('woff');
+ *   font-style: normal;
+ *   font-weight: 500;
+ *   
+ * Bit value: 2
+ * @font-face
  *   font-family: "din-web"; 
  *   src: url('DINWeb-Cond.eot');
  *   src: url('DINWeb-Cond.eot?iefix') format('eot'), url('DINWeb-Cond.woff') format('woff');
  *   font-style: normal;
  *   font-weight: false;
  *
- * Bit value: 2
+ * Bit value: 4
  * @font-face
  *   font-family: "din-web";
  *   src: url('DINWeb-CondLight.eot');
  *   src: url('DINWeb-CondLight.eot?iefix') format('eot'), url('DINWeb-CondLight.woff') format('woff');
  *   font-style: normal;
  *   font-weight: 200;
- *
- * Bit value: 4
- * @font-face
- *   font-family: "din-web";
- *   src: url('DINWeb-CondMedium.eot');
- *   src: url('DINWeb-CondMedium.eot?iefix') format('eot'), url('DINWeb-CondMedium.woff') format('woff');
- *   font-style: normal;
- *   font-weight: 500;
  *
  * Bit value: 8
  * @font-face
@@ -66,22 +66,22 @@
  *   src: url('DINWeb.eot?iefix') format('eot'), url('DINWeb.woff') format('woff');
  *   font-style: normal;
  *   font-weight: false;
- *
+ *   
  * Bit value: 64
- * @font-face
- *   font-family: "din-web-reg";
- *   src: url('DINWeb-Light.eot');
- *   src: url('DINWeb-Light.eot?iefix') format('eot'), url('DINWeb-Light.woff') format('woff');
- *   font-style: normal;
- *   font-weight: 200;
- *
- * Bit value: 128
  * @font-face {
  *   font-family: "din-web-reg";
  *   src: url('DINWeb-Medium.eot');
  *   src: url('DINWeb-Medium.eot?iefix') format('eot'), url('DINWeb-Medium.woff') format('woff');
  *   font-style: normal;
  *   font-weight: 500;
+ *
+ * Bit value: 128
+ * @font-face
+ *   font-family: "din-web-reg";
+ *   src: url('DINWeb-Light.eot');
+ *   src: url('DINWeb-Light.eot?iefix') format('eot'), url('DINWeb-Light.woff') format('woff');
+ *   font-style: normal;
+ *   font-weight: 200;
  *
  * Bit value: 256
  * @font-face {
@@ -92,6 +92,14 @@
  *   font-weight: 600;
  */
 function dosomething_performance_toolbox_webfonts() {
+    
+    // Constant used to group CSS for aggregation, the higher the value the sooner it will be loaded
+    define('CSS_WEBFONTS', 200);
+    
+    // Other system define CSS constants
+    // CSS_SYSTEM: Any system-layer CSS: -100
+    // CSS_DEFAULT: (default) Any module-layer CSS: 0
+    // CSS_THEME: Any theme-layer CSS: 100
   
       // Select Rack Space source based on if secure connection
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
@@ -99,27 +107,69 @@ function dosomething_performance_toolbox_webfonts() {
     } else {
       $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
     }
+    
+    // Add DINWeb-Medium to all site pages as it's used in the site navigation (used everywhere).
+    $common_data['file'] = $rackspace_url .'/'.'din-1.css';
+    
+    // Add to every page
+    $common_options['every_page'] = TRUE;
+
+    // Add to specific CSS group
+    $common_options['group'] = CSS_WEBFONTS;
+    $common_options['type'] = 'external';
+    
+    // Make this the first item in group
+    $common_options['weight'] = 1;
+    
+    // Add to css stack
+    drupal_add_css($common_data, $common_options);
   
     // Select CSS based on requested URL
-    $bla = $_SERVER['PATH_INFO'];
     $bla2 = $_SERVER['REQUEST_URI'];
     
-    if($is_front) { // Site front page
-      $dosomething_css = 'din-181.css';
-    } elseif ($_SERVER['REQUEST_URI'] == '/teensforjeans') { // 16+32+128+256
-      $dosomething_css = 'din-432.css';
-    } elseif ($_SERVER['REQUEST_URI'] == '/calloffame/honey-badger') { // 4+128+1+32
-      $dosomething_css = 'din-165.css';
-    } elseif ($_SERVER['REQUEST_URI'] == '/tipsandtools') { // 32+4+1+128
-      $dosomething_css = 'din-165.css';
-    } elseif ($_SERVER['REQUEST_URI'] == '/social-scholarship/secondhand-smoke') { // 4+128+32
-      $dosomething_css = 'din-164.css';      
+    // Add font file groupings to specific CSS CSS_WEBFONTS group
+    $options['group'] = CSS_WEBFONTS;
+    
+    // All webfont files are coming from the CDN thus making them external files
+    $options['type'] = 'external';
+    
+    if($is_front) { // Site front page: 
+    
+      // 1+
+      $data['file'] = $rackspace_url .'/'.'din-181.css';
+      
+    } elseif ($_SERVER['REQUEST_URI'] == '/teensforjeans') { // /teensforjeans
+        
+      $data['file'] = $rackspace_url .'/'.'din-304.css';
+      
+    } elseif ($_SERVER['REQUEST_URI'] == '/calloffame/honey-badger') { // 4+1+32
+      $data['file'] = $rackspace_url .'/'.'din-37.css';
+    } elseif ($_SERVER['REQUEST_URI'] == '/tipsandtools') { // 32+4+1
+      $data['file'] = $rackspace_url .'/'.'din-37.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/social-scholarship/') != FALSE) { // 4+32
+
+      // Define path to CSS file
+      $data['file'] = $rackspace_url .'/'.'din-36.css';
+
+      // Add to specific CSS group
+      $options['group'] = CSS_WEBFONTS;
+      
+      // Only load on specific pages, do not aggregate into other css files within the same group
+      // TRUE for stylesheets added via module and theme .info files
+      $options['every_page'] = FALSE;
+
     } else {
-      $dosomething_css = 'din-511.css';      
+        
+      // Define path to CSS file
+      $data['file'] = $rackspace_url .'/'.'din-383.css';
+      
+      
     }
     
-    // Essemble style sheet call
-    return('<link rel="stylesheet" href="'. $rackspace_url .'/'. $dosomething_css .'" media="all" />');
+    // Add stylesheet call to stack, note change in drupal_add_css values based on target css to add 
+    // http://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_add_css/7
+    drupal_add_css($data, $options);
   
   }
   
