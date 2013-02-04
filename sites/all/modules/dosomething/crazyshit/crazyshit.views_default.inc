@@ -427,12 +427,6 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'crazy_shit' => 'crazy_shit',
   );
-  /* Filter criterion: Webform submissions: Submitted */
-  $handler->display->display_options['filters']['submitted']['id'] = 'submitted';
-  $handler->display->display_options['filters']['submitted']['table'] = 'webform_submissions';
-  $handler->display->display_options['filters']['submitted']['field'] = 'submitted';
-  $handler->display->display_options['filters']['submitted']['default_date'] = 'today';
-  $handler->display->display_options['filters']['submitted']['year_range'] = '-0:+3';
 
   /* Display: Gallery View */
   $handler = $view->new_display('block', 'Gallery View', 'block');
@@ -449,8 +443,9 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['filters']['submitted']['id'] = 'submitted';
   $handler->display->display_options['filters']['submitted']['table'] = 'webform_submissions';
   $handler->display->display_options['filters']['submitted']['field'] = 'submitted';
-  $handler->display->display_options['filters']['submitted']['default_date'] = 'today';
-  $handler->display->display_options['filters']['submitted']['year_range'] = '-0:+3';
+  $handler->display->display_options['filters']['submitted']['operator'] = '>';
+  $handler->display->display_options['filters']['submitted']['default_date'] = 'Jan 1, 2013';
+  $handler->display->display_options['filters']['submitted']['year_range'] = '-2:+3';
 
   /* Display: Friends View */
   $handler = $view->new_display('block', 'Friends View', 'friends_view');

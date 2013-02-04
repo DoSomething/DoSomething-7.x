@@ -687,13 +687,13 @@ function crazyshit_views_query_alter(&$view, &$query) {
 		}
 	  }
 	  else if ($uri == '/crazy') {
-	   $query->where[1]['conditions'][1] = array(
-		  'field' => "webform_submissions.submitted >= :beginning",
-		  'value' => array(
-			  ':beginning' => mktime(0, 0, 0, 12, 01, 12)
-			),
-	  	  'operator' => 'formula',
-	   );
+	   #$query->where[1]['conditions'][1] = array(
+		#  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') > :beginning",
+		#  'value' => array(
+		#	  ':beginning' => '2012-12-01',
+		#	),
+	  	#  'operator' => 'formula',
+	  # );
 	  }
     }
 
