@@ -29,7 +29,7 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'infinite_scroll';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '2';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
@@ -40,8 +40,7 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = 
-    '<div class="crazy-submission"><p class="no-results">no posts yet<a class="small_button" href="/crazy/submit">submit yours!</a></p></div>';
+  $handler->display->display_options['empty']['area']['content'] = '<div class="crazy-submission"><p class="no-results">no posts yet<a class="small_button" href="/crazy/submit">submit yours!</a></p></div>';
   $handler->display->display_options['empty']['area']['format'] = '3';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Relationship: Webform submissions: User */
@@ -349,11 +348,11 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
   $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="vouch-button">
-<a href="#" class="button-submit" rel="[sid]">I Believe It</a>
+<a href="#" class="button-submit no-alert" rel="[sid]">I Believe It</a>
 <span>[views_conditional_1]</span>
 </div>
 <div class="bs-button">
-<a href="#" class="button-submit" rel="[sid]">Call BS</a>
+<a href="#" class="button-submit no-alert" rel="[sid]">Call BS</a>
 <span>[views_conditional_2]</span>
 </div>
 <div class="fb-share">
@@ -428,6 +427,12 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'crazy_shit' => 'crazy_shit',
   );
+  /* Filter criterion: Webform submissions: Submitted */
+  $handler->display->display_options['filters']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['filters']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['filters']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['filters']['submitted']['default_date'] = 'today';
+  $handler->display->display_options['filters']['submitted']['year_range'] = '-0:+3';
 
   /* Display: Gallery View */
   $handler = $view->new_display('block', 'Gallery View', 'block');
@@ -440,6 +445,12 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'crazy_shit' => 'crazy_shit',
   );
+  /* Filter criterion: Webform submissions: Submitted */
+  $handler->display->display_options['filters']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['filters']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['filters']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['filters']['submitted']['default_date'] = 'today';
+  $handler->display->display_options['filters']['submitted']['year_range'] = '-0:+3';
 
   /* Display: Friends View */
   $handler = $view->new_display('block', 'Friends View', 'friends_view');
