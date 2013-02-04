@@ -477,14 +477,14 @@
         description: config.feed_description,
       	selector: config.feed_selector,
         allow_multiple: config.feed_allow_multiple,
-        max_friends: config.feed_max_friends || 5,
+        max_friends: 1, // Update 2/14/13: Facebook removed the ability to share on multiple walls at once.
         selector_title: config.feed_selector_title || Drupal.t('Share with your friends'),
         selector_desc: config.feed_selector_desc,
         tagging: config.feed_tagging,
       	require_login: config.feed_require_login,
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
-	modal_opacity: config.feed_modal_opacity || 0.65,
+      	modal_opacity: config.feed_modal_opacity || 0.65,
         friend_selector: config.feed_friend_selector || 'td',
         check_remainder: false,
       };
@@ -589,23 +589,37 @@
                 }
                 if (friends.length > 0) {
                   things.friends = friends;
-                  Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
-                    var fbObj = {
-                      message: response.comments,
-                      name: response.title,
-                      picture: response.picture.replace(/\?.*$/, ''),
-                      description: response.description,
-                      caption: response.caption,
-                      link: response.link
-                    };
 
-                    for (var i in things.friends) {
-                      Drupal.behaviors.fb.send_feed_post(things.friends[i], fbObj);
-                    }
+                  FB.ui({
+                    'method': 'feed',
+                    'to': parseInt(things.friends),
+                    'link': things.link,
+                    'picture': things.picture,
+                    'name': things.title,
+                    'caption': things.caption,
+                    'description': things.description,
+                  }, function(response) {
+                    Drupal.behaviors.fb.callback_handler(callback, response);
+                  });
+                  // 2/4/13
+                  // Nooooooooooooooo...
+                  //Drupal.behaviors.fb.fb_dialog('multi-feed', things, function(response) {
+                  //  var fbObj = {
+                  //    message: response.comments,
+                  //    name: response.title,
+                  //    picture: response.picture.replace(/\?.*$/, ''),
+                  //    description: response.description,
+                  //    caption: response.caption,
+                  //    link: response.link
+                  //  };
+
+                  //  for (var i in things.friends) {
+                  //    Drupal.behaviors.fb.send_feed_post(things.friends[i], fbObj);
+                  //  }
 
                     // Callback for when all posting has completed.
-                    Drupal.behaviors.fb.callback_handler(callback, things);
-                  });
+                  //  Drupal.behaviors.fb.callback_handler(callback, things);
+                  //});
                 }
               }, c, true);
             });

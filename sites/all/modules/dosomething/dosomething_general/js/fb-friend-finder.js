@@ -74,7 +74,7 @@
       });
       var friendSelector = TDFriendSelector.newInstance({
         callbackSubmit : callback,
-        maxSelection   : (typeof options !== 'undefined' ? options.max_friends : 10),
+        maxSelection   : (typeof options !== 'undefined' ? options.max_friends : 1),
         friendsPerPage : 7,
         autoDeselection: true,
         callbackCancel: function() {
