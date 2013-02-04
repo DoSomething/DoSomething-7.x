@@ -82,19 +82,53 @@
 
     // Overlay to Facebook Btn
     $('#overlay-share-btn').click(function() {
-    $('#overlay-homelessness').dialog('close').queue(function() {
-      Drupal.behaviors.fb.feed({
-      feed_document: 'http://www.dosomething.org/teensforjeans',
-      feed_title: 'Homelessness',
-      feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
-      feed_caption: 'I help the homeless because I care. How about you?',
-      feed_description: 'Donate your old or unwanted jeans to a teen in need.',
-      feed_modal: true
-       }, function(response) {
+      $('#overlay-homelessness').dialog('close').queue(function() {
+        Drupal.behaviors.fb.feed({
+        feed_document: 'http://www.dosomething.org/teensforjeans',
+        feed_title: 'Homelessness',
+        feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
+        feed_caption: 'I help the homeless because I care. How about you?',
+        feed_description: 'Donate your old or unwanted jeans to a teen in need.',
+        feed_modal: true
+         }, function(response) {
          }); 
-            });
-                });
+      });
+    });
 
+    jQuery(window).bind('load', function() {
+      var $form = jQuery('#contact-form');
+      var $footer = jQuery('#block-menu-menu-footer');
+      var $document = jQuery(document);
+      var scrollLimitTop = $form.offset().top;
+      $document.scroll(function () {
+        var st = $document.scrollTop();
+        var scrollLimitBot = $document.height() - $form.outerHeight() - $footer.outerHeight();
+        if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $form
+          $form.css({
+            'position'      : 'fixed',
+            'top'           : '0px',
+            'bottom'        : 'auto',
+            'z-index'       : '3',
+            'width'         : '800px',
+            'height'        : '123px',
+            'padding'       : '10px 10px 0 10px',
+            'border-bottom' : '15px solid #fff'
+          }); 
+        }   
+        else if (st >= scrollLimitTop) { // once $form hits $footer
+          scrollLimitTop = $form.offset().top;
+          $form
+            .css('position', 'absolute')
+            .css('top', 'auto')
+            .css('bottom', '25px')
+        }   
+        else { // before scrolling engages $form
+          scrollLimitTop = $form.offset().top;
+          $form
+            .css('position', 'static')
+        }   
+      }); 
+    });
 
     } // end attach: function
   }; // end Drupal.behaviors

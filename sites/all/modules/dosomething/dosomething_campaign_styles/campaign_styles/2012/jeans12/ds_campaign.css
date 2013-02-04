@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html > body {
   font-size: 16px; }
 
@@ -1544,7 +1545,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     text-align: center;
     display: block; }
   #cmp #contact-form {
-    background: #0c3565;
+    background: #ffcb15;
     width: 100%; }
     #cmp #contact-form h3 {
       color: white;
@@ -1556,9 +1557,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #header .form-submit {
     font-weight: 600;
     margin-top: 0.3em;
-    height: 2em; }
+    height: 2em;
+    color: white;
+    background: #0c3565; }
   #cmp .focusOutline {
-    box-shadow: 0px 0px 10px 4px #00adff; }
+    box-shadow: 0px 0px 10px 4px navy; }
   #cmp #edit-submitted-field-webform-mobile-und-0-value {
     float: left; }
   #cmp form.webform-client-form #edit-actions--2 {
