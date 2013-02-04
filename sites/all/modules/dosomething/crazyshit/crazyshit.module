@@ -685,6 +685,8 @@ function crazyshit_views_query_alter(&$view, &$query) {
 		   );
 		}
 	}
+
+	$query->add_groupby('sid');
   }
 
   // If we're viewing the friends gallery page, only show submissions by my Facebook friends.
