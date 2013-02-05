@@ -599,6 +599,7 @@
                     'caption': things.caption,
                     'description': things.description,
                   }, function(response) {
+                    Drupal.behaviors.fb.log('Feed Post', 2, parseInt(things.friends));
                     Drupal.behaviors.fb.callback_handler(callback, response);
                   });
                   // 2/4/13
@@ -1061,7 +1062,6 @@
      */
     run_image: function(things, callback) {
       if (things.message) {
-
           things.picture = things.img_url;
           things.follow_position = true;
           Drupal.behaviors.fb.fb_dialog('image-post', things, function(response) {
@@ -1101,6 +1101,7 @@
         'post',
         fbpost,
         function(response) {
+          Drupal.behaviors.fb.log('Image share', 3);
           Drupal.behaviors.fb.callback_handler(callback, response);
         }
       );
