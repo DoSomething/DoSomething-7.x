@@ -46,6 +46,12 @@
         $('#edit-actions').remove();
 		  }
 
+		  if ($('input[value="Submit"]').length > 0) {
+		  	$('input[value="Submit"]').click(function() {
+		  	   $(this).hide();
+		  	});
+		  }
+
 		   if ($('.image-widget-data').length > 0) {
          var topText = $('<div></div>').attr('id', 'top_text');
          var bottomText = $('<div></div>').attr('id', 'bottom_text');
