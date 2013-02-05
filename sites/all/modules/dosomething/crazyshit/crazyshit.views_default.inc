@@ -455,7 +455,7 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = '<p>None of your friends have told their story yet.  Click invite friends to get them to tell their tale.</p>';
+  $handler->display->display_options['empty']['area']['content'] = '<div class="crazy-submission"><p class="no-results">None of your friends have told their story yet. Click invite friends to get them to tell their tale.</p></div>';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;

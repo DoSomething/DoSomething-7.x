@@ -82,10 +82,10 @@
   display: block;
   width: 30px;
   height: 30px;
+  text-indent: -9999em;
   background-image: url("//files.dosomething.org/files/campaigns/crazy13/share_mini.png");
   background-color: transparent;
-  background-repeat: no-repeat;
-  text-indent: -9999em; }
+  background-repeat: no-repeat; }
 /* line 63, ../sass/_buttons.sass */
 .fb-share a {
   display: block;
@@ -185,8 +185,13 @@ a.no_thanks {
   border-radius: 2px; }
 /* line 15, ../sass/_popups.sass */
 .submit-crazy-popup h2, .submit-crazy-popup p, .vouch-crazy-popup h2, .vouch-crazy-popup p, .login-crazy-popup h2, .login-crazy-popup p, .share-crazy-popup h2, .share-crazy-popup p, .bull-crazy-popup h2, .bull-crazy-popup p, .tip-crazy-popup h2, .tip-crazy-popup p {
-  width: 80%; }
-/* line 17, ../sass/_popups.sass */
+  width: 80%;
+  margin: 0 auto 1em; }
+@media only screen and (max-width: 400px) {
+  /* line 15, ../sass/_popups.sass */
+  .submit-crazy-popup h2, .submit-crazy-popup p, .vouch-crazy-popup h2, .vouch-crazy-popup p, .login-crazy-popup h2, .login-crazy-popup p, .share-crazy-popup h2, .share-crazy-popup p, .bull-crazy-popup h2, .bull-crazy-popup p, .tip-crazy-popup h2, .tip-crazy-popup p {
+    width: 95%; } }
+/* line 20, ../sass/_popups.sass */
 .submit-crazy-popup h2, .vouch-crazy-popup h2, .login-crazy-popup h2, .share-crazy-popup h2, .bull-crazy-popup h2, .tip-crazy-popup h2 {
   color: #6ebd32;
   font-size: 38px;
@@ -196,31 +201,39 @@ a.no_thanks {
   border-bottom: 2px solid #444444;
   margin: 0.4em auto;
   padding: 0 0 0.2em 0; }
-/* line 26, ../sass/_popups.sass */
-.submit-crazy-popup p, .vouch-crazy-popup p, .login-crazy-popup p, .share-crazy-popup p, .bull-crazy-popup p, .tip-crazy-popup p {
-  margin: 0 auto; }
+@media only screen and (max-width: 400) {
+  /* line 20, ../sass/_popups.sass */
+  .submit-crazy-popup h2, .vouch-crazy-popup h2, .login-crazy-popup h2, .share-crazy-popup h2, .bull-crazy-popup h2, .tip-crazy-popup h2 {
+    font-size: 34px; } }
 @media only screen and (max-width: 550px) {
   /* line 4, ../sass/_popups.sass */
   .submit-crazy-popup, .vouch-crazy-popup, .login-crazy-popup, .share-crazy-popup, .bull-crazy-popup, .tip-crazy-popup {
     width: 90% !important;
     top: 12% !important;
     left: 5% !important; } }
+@media only screen and (max-width: 550px) {
+  /* line 4, ../sass/_popups.sass */
+  .submit-crazy-popup, .vouch-crazy-popup, .login-crazy-popup, .share-crazy-popup, .bull-crazy-popup, .tip-crazy-popup {
+    width: 95% !important;
+    top: 1.5% !important;
+    left: 2.5% !important;
+    overflow: visible !important; } }
 
-/* line 33, ../sass/_popups.sass */
+/* line 41, ../sass/_popups.sass */
+.ui-dialog-content {
+  height: auto !important; }
+
+/* line 44, ../sass/_popups.sass */
 p.dialog_sub_header {
   color: #888888;
   text-align: center;
   padding: 0 0 0.5em 0; }
 
-/* line 38, ../sass/_popups.sass */
+/* line 49, ../sass/_popups.sass */
 #crazy-tip-buttons {
   width: 115px;
   margin: 4% auto;
   text-align: center; }
-
-/* line 46, ../sass/_popups.sass */
-.vouch-crazy-popup .connect-with-facebook, .submit-crazy-popup .connect-with-facebook {
-  margin: 4% auto 0; }
 
 /* line 4, ../sass/_drupal.sass */
 #page, body.one-sidebar.sidebar-first [role="main"] {
@@ -566,7 +579,7 @@ img.header_ds_logo {
 @media only screen and (max-width: 400px) {
   /* line 197, ../sass/crazy.sass */
   .crazy-submission {
-    margin: 5% auto;
+    margin: 2% auto;
     padding: 10px 5px 0;
     width: 98%; } }
 
@@ -621,31 +634,29 @@ img.header_ds_logo {
 
 /* line 235, ../sass/crazy.sass */
 .fb-invite-friends {
-  margin: 25px auto 0;
   display: block;
-  height: 45px;
   width: 215px;
+  height: 45px;
+  text-indent: -9999em;
   background-image: url("//files.dosomething.org/files/campaigns/crazy13/facebook.png");
   background-color: transparent;
   background-repeat: no-repeat;
-  text-indent: -9999em; }
+  margin: 15px auto 0; }
 
-/* line 245, ../sass/crazy.sass */
-.connect-with-facebook {
-  text-indent: -119988px;
-  overflow: hidden;
-  text-align: left;
-  background-image: url("/sites/all/themes/doit/css/images/btn-facebook-popup-login.png");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  width: 300px;
-  height: 50px;
-  display: block;
-  margin-bottom: 2px;
-  margin-left: auto;
-  margin-right: auto; }
+/* line 239, ../sass/crazy.sass */
+.connect-with-facebook a {
+  background-position: 50% 0%;
+  margin: 15px auto 0;
+  height: 40px; }
+@media only screen and (max-width: 500px) {
+  /* line 239, ../sass/crazy.sass */
+  .connect-with-facebook a {
+    background-size: 250px;
+    width: 250px;
+    height: 33px;
+    margin: 25px auto 25px; } }
 
-/* line 262, ../sass/crazy.sass */
+/* line 257, ../sass/crazy.sass */
 .fakefile, #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   background: #ffcb15;
   padding: 10px;
@@ -661,7 +672,7 @@ img.header_ds_logo {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 274, ../sass/crazy.sass */
+/* line 269, ../sass/crazy.sass */
 .fakefile {
   position: absolute;
   top: 0px;
@@ -669,7 +680,7 @@ img.header_ds_logo {
   z-index: 1;
   width: 147px; }
 
-/* line 281, ../sass/crazy.sass */
+/* line 276, ../sass/crazy.sass */
 #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   margin: -10px auto 25px;
   padding: 2px 0 0 0;
@@ -677,7 +688,7 @@ img.header_ds_logo {
   border: none;
   display: block; }
 
-/* line 288, ../sass/crazy.sass */
+/* line 283, ../sass/crazy.sass */
 .form-file.new {
   position: relative;
   text-align: right;
@@ -688,7 +699,7 @@ img.header_ds_logo {
   height: 35px;
   cursor: pointer; }
 
-/* line 298, ../sass/crazy.sass */
+/* line 293, ../sass/crazy.sass */
 .submit-start button, .node-crazy-shit #edit-actions .form-submit {
   margin: 0;
   padding: 0;
@@ -707,38 +718,42 @@ img.header_ds_logo {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 313, ../sass/crazy.sass */
+/* line 308, ../sass/crazy.sass */
 .submit-start button:hover, .node-crazy-shit #edit-actions .form-submit:hover {
   color: white;
   background-color: #6193e9; }
 
-/* line 317, ../sass/crazy.sass */
+/* line 312, ../sass/crazy.sass */
 .submit-start button, #edit-next {
   width: 60px !important; }
 
-/* line 321, ../sass/crazy.sass */
+/* line 316, ../sass/crazy.sass */
 #edit-previous {
   width: 60px !important;
   float: left !important; }
 
-/* line 325, ../sass/crazy.sass */
+/* line 320, ../sass/crazy.sass */
 #edit-submit {
   width: 80px;
   float: right !important; }
 
-/* line 330, ../sass/crazy.sass */
+/* line 325, ../sass/crazy.sass */
 #views_infinite_scroll-ajax-loader {
   margin: 3% 0; }
 
-/* line 334, ../sass/crazy.sass */
+/* line 329, ../sass/crazy.sass */
 .no-results {
   font-size: 35px;
   line-height: 45px;
   text-align: center;
   text-transform: uppercase;
   font-weight: 600;
-  padding: 20% 0; }
-/* line 341, ../sass/crazy.sass */
+  padding: 5% 0 20%; }
+@media only screen and (max-width: 500px) {
+  /* line 329, ../sass/crazy.sass */
+  .no-results {
+    padding: 10% 0 20%; } }
+/* line 338, ../sass/crazy.sass */
 .no-results .small_button {
   float: none;
   margin: 7% auto 0;

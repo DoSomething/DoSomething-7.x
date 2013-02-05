@@ -82,10 +82,10 @@
   display: block;
   width: 30px;
   height: 30px;
+  text-indent: -9999em;
   background-image: url("//files.dosomething.org/files/campaigns/crazy13/share_mini.png");
   background-color: transparent;
-  background-repeat: no-repeat;
-  text-indent: -9999em; }
+  background-repeat: no-repeat; }
 /* line 63, ../sass/_buttons.sass */
 .fb-share a {
   display: block;

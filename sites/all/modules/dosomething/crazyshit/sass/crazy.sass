@@ -204,7 +204,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     width: 430px
     padding: 10px 20px 0
   @media only screen and (max-width: 400px)
-    margin: 5% auto
+    margin: 2% auto
     padding: 10px 5px 0
     width: 98%
 
@@ -233,28 +233,23 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 // --------------
 
 .fb-invite-friends
-  margin: 25px auto 0
-  display: block
-  height: 45px
-  width: 215px
-  background-image: url('//files.dosomething.org/files/campaigns/crazy13/facebook.png')
-  background-color: transparent
-  background-repeat: no-repeat
-  text-indent: -9999em
+  +img_replace(215px, 45px, '//files.dosomething.org/files/campaigns/crazy13/facebook.png')
+  margin: 15px auto 0
 
-.connect-with-facebook
-  text-indent: -119988px
-  overflow: hidden
-  text-align: left
-  background-image: url('/sites/all/themes/doit/css/images/btn-facebook-popup-login.png')
-  background-repeat: no-repeat
-  background-position: 50% 50%
-  width: 300px
-  height: 50px
-  display: block
-  margin-bottom: 2px
-  margin-left: auto
-  margin-right: auto
+.connect-with-facebook a /* override styles inherited from the 'do it' theme */
+  background-position: 50% 0%
+  margin: 15px auto 0
+  height: 40px
+  @media only screen and (max-width: 500px)
+    background-size: 250px
+    width: 250px
+    height: 33px
+    margin: 25px auto 25px
+
+// .connect-with-facebook /* '.connect-with-facebook a' already loads from 'do-it' theme */
+//   +img_replace(300px, 50px, '/sites/all/themes/doit/css/images/btn-facebook-popup-login.png')
+//   background-position: 50% 0%
+//   margin: 15px auto 0
 
 // BUTTON STYLES
 // -------------
@@ -337,7 +332,9 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   text-align: center
   text-transform: uppercase
   font-weight: 600
-  padding: 20% 0
+  padding: 5% 0 20% 
+  @media only screen and (max-width: 500px)
+    padding: 10% 0 20%
   .small_button /* override default button styles */
     float: none
     margin: 7% auto 0
