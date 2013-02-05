@@ -350,17 +350,27 @@ a.no_thanks {
 #scholarship {
   background-color: white; }
 /* line 142, ../sass/crazy-about.sass */
+#scholarship .go-button {
+  display: block;
+  margin: 0 auto 25px;
+  padding: 11px;
+  width: 200px;
+  height: 40px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center; }
+/* line 151, ../sass/crazy-about.sass */
 #scholarship .section {
   width: 35%; }
 @media only screen and (max-width: 750px) {
-  /* line 142, ../sass/crazy-about.sass */
+  /* line 151, ../sass/crazy-about.sass */
   #scholarship .section {
     width: 50%; } }
 @media only screen and (max-width: 630px) {
-  /* line 142, ../sass/crazy-about.sass */
+  /* line 151, ../sass/crazy-about.sass */
   #scholarship .section {
     width: 94%; } }
-/* line 148, ../sass/crazy-about.sass */
+/* line 157, ../sass/crazy-about.sass */
 #scholarship h1 {
   font-size: 24px;
   font-weight: 500;
@@ -368,51 +378,51 @@ a.no_thanks {
   line-height: 40px;
   text-transform: uppercase;
   margin: 0; }
-/* line 155, ../sass/crazy-about.sass */
+/* line 164, ../sass/crazy-about.sass */
 #scholarship p {
   font-size: 16px;
   font-weight: 500;
   line-height: 24px; }
-/* line 159, ../sass/crazy-about.sass */
+/* line 168, ../sass/crazy-about.sass */
 #scholarship img {
   width: 210px;
   margin: 0 auto 3%;
   display: block; }
 
-/* line 168, ../sass/crazy-about.sass */
+/* line 177, ../sass/crazy-about.sass */
 #video .section {
   width: 600px; }
 @media only screen and (max-width: 630px) {
-  /* line 168, ../sass/crazy-about.sass */
+  /* line 177, ../sass/crazy-about.sass */
   #video .section {
     width: 96%; } }
 
-/* line 173, ../sass/crazy-about.sass */
+/* line 182, ../sass/crazy-about.sass */
 .video_wrapper {
   position: relative;
   padding-bottom: 55%;
   padding-top: 25%;
   height: 0; }
 @media only screen and (max-width: 630px) {
-  /* line 173, ../sass/crazy-about.sass */
+  /* line 182, ../sass/crazy-about.sass */
   .video_wrapper {
     margin: 1% 0; } }
-/* line 180, ../sass/crazy-about.sass */
+/* line 189, ../sass/crazy-about.sass */
 .video_wrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
   height: 91%; }
 @media only screen and (max-width: 630px) {
-  /* line 180, ../sass/crazy-about.sass */
+  /* line 189, ../sass/crazy-about.sass */
   .video_wrapper iframe {
     height: 100%; } }
 
-/* line 191, ../sass/crazy-about.sass */
+/* line 200, ../sass/crazy-about.sass */
 #tips, #scholarship, #video {
   padding: 2% 0; }
 
-/* line 194, ../sass/crazy-about.sass */
+/* line 203, ../sass/crazy-about.sass */
 .section {
   margin: 0 auto;
   overflow: hidden; }
