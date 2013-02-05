@@ -57,6 +57,8 @@ $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';
 $activity->inputs = array('process_qset_answers');
 $activity->outputs = array('end');
+$activity->response_error = 'Sorry! Looks like we\'ve run into a problem. Text WYR to get a new set of questions.';
+$activity->response_success = 'We\'ll send you your friends\' answers once they complete the questions. Text WYR to get more ?s yourself.';
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -93,6 +95,8 @@ $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';
 $activity->inputs = array('process_qset_answers');
 $activity->outputs = array('end');
+$activity->response_error = 'Sorry! Looks like we\'ve run into a problem. Text WYR to get a new set of questions.';
+$activity->response_success = 'We\'ll send you your friends\' answers once they complete the questions. Text WYR to get more ?s yourself.';
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -129,6 +133,8 @@ $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';
 $activity->inputs = array('process_qset_answers');
 $activity->outputs = array('end');
+$activity->response_error = 'Sorry! Looks like we\'ve run into a problem. Text WYR to get a new set of questions.';
+$activity->response_success = 'We\'ll send you your friends\' answers once they complete the questions. Text WYR to get more ?s yourself.';
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';

@@ -10,9 +10,9 @@ class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
   protected $alpha_optin;
   protected $beta_optin;
   protected $id_override;
-  protected $response_error;
-  protected $response_success;
   protected $type_override;
+  public $response_error;
+  public $response_success;
 
   public function run($workflow) {
     $state = $this->getState();
@@ -59,3 +59,4 @@ class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
   }
 
 }
+
