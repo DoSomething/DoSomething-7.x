@@ -58,7 +58,7 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
       // Find Alpha inviter, if any, and send Alpha the feedback message
       $alpha_mobile = sms_flow_find_alpha(substr($mobile, -10), $this->game_id, $this->type_override);
       if ($alpha_mobile) {
-        $alpha_msg = "Your friend ($mobile) said they'd rather {{ wyr_q1_answer }}, {{ wyr_q2_answer }}, and {{ wyr_q3_answer }}. Want to play more. Text WYR.";
+        $alpha_msg = "Your friend ($mobile) said they'd rather $q1_answer, $q2_answer, and $q3_answer. Want to play more. Text WYR.";
         sms_mobile_commons_send($alpha_mobile, $alpha_msg);
       }
 
