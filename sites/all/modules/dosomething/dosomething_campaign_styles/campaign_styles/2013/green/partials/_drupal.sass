@@ -1,0 +1,394 @@
+// HEREIN LIES A POEM TITLED 'DIE DRUPAL DIE'
+
+html > body
+  font-size: 16px
+
+img.logo
+  margin-bottom: 15px  
+
+#main-wrapper
+  div[role="main"]
+    padding: 0!important
+    margin: 0!important
+    background: transparent
+    width: 800px
+  #breadcrumb, #page-title, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5, #block-dosomething-campaign-styles-campaign-nav
+    display: none
+  ul.primary
+    border-bottom: none
+    margin: 0
+    padding: 15px 0 0 8px
+    height: 37px
+  .logo-processed
+    margin-left: -15px
+
+
+.ds-panel .pane-content
+  padding-bottom: 0
+    
+body
+  background: $fallbackBG
+  background-image: -ms-linear-gradient(left, #009452 0%, #2BB855 100%)
+  background-image: -moz-linear-gradient(left, #009452 0%, #2BB855 100%)
+  background-image: -o-linear-gradient(left, #009452 0%, #2BB855 100%)
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #009452), color-stop(1, #2BB855))
+  background-image: -webkit-linear-gradient(left, #009452 0%, #2BB855 100%)
+  background-image: linear-gradient(to right, #009452 0%, #2BB855 100%)
+
+@media only screen and (max-width: 550px)
+  body
+    background-position: 49% 0%
+
+// Hide either the Join or Start header depending on which page we're on
+.page-team #contact-form 
+  #webform-component-start-header
+    display: none  
+.page-node-724776 #contact-form 
+  #webform-component-join-header
+    display: none  
+
+//.region-sidebar-first
+  //margin-top: 276px
+
+
+@media only screen and (max-width: 1075px)
+  .region-sidebar-first
+    display: none
+  #site-name
+    position: relative
+    top: -53px
+    left: 23px
+    a
+      height: 50px
+      width: 60px
+      background-size: 60px 
+  #utility-bar
+    height: 55px
+  #utility-bar #block-dosomething-blocks-dosomething-utility-bar
+    .search, #help-center
+      display: none
+    .login
+      padding: 0.5em 1em 0 0
+      font-size: 1.5em
+  #page
+    width: 100%
+  #main-wrapper div[role="main"]
+    float: none
+    width: 100%
+  nav[role="navigation"]
+    display: none
+  .container
+    margin: 0 auto
+    width: 100%
+  header[role="banner"]
+    @media only screen and (max-width: 775px)
+      width: 100%
+  #block-menu-menu-footer .content
+    width: 80%
+    margin: 0 auto
+  #block-menu-menu-footer .content ul.menu li span
+    font-size: 16px
+    line-height: 1em
+  #block-menu-menu-footer .content ul.menu ul li a
+    font-size: 14px
+    line-height: 1em
+  #cmp
+    .pane-content .s0
+      margin-top: 0
+    #campaign-opt-in
+      text-align: center
+
+#cmp 
+  //background: #fff
+  img
+    +noShadow
+  .pane-title
+    display: none
+
+// jQuery UI styling for "add to drive" popup
+
+.invite_friends
+  background: #fff
+  padding: 0.5% 2% 2% 2%
+  h2
+    padding: 0 0 0.8em 0
+    text-align: center
+    font-weight: 600
+    font-size: 2em
+  h3
+    font-family: din-web
+    font-size: 3em
+    text-transform: uppercase
+    color: #bbb
+    margin: 50% 0 0 0
+  .invite-module-facebook, .invite-module-or, .invite-module-email
+    width: 43%
+    float: left
+  .invite-module-facebook, .invite-module-or, .invite-module-email
+    p
+      font-size: 0.8em
+  .invite-module-or
+    width: 14%
+  .ui-dialog-titlebar
+    margin: 0 0 0 -5.5%
+  .facebook-action-connect
+    display: block
+    margin: 8% auto 0
+    width: 40%
+  #edit-submit
+    font-family: din-web
+    background: $buttonBG
+    margin: 0 0 0 5%
+    font-size: 1.5em
+    height: 1.4em
+    display: inline-block
+    +noBorder
+    +border-radius(5px)
+    &:hover
+      background: darken($buttonBG, 5)
+
+#edit-friend
+  background: #ddd
+  width: 11em
+  color: #444
+  +border-radius(4px)
+
+// hide the nav when the user is signing up or reporting back
+.node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
+.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav
+  display: none
+
+#block-dosomething-campaign-styles-campaign-nav
+  background: white
+  padding: 1.5em 0 0 0
+  width: 215px
+  -webkit-transition: background 5s ease-in
+  transition: background 5s ease-in
+  line-height: 1.2em
+  +box-shadow(0 0 6px 0px #555)
+  img
+    +noBorder
+  .content
+    width: 100%
+  ul
+    margin: 0
+    padding: 0
+    //border-bottom: solid 2px #EEE
+  li
+    margin: 0
+    padding: 2% 0
+  a
+    font-family: din-web-reg
+    font-weight: 600
+    font-size: 0.95em
+    padding: 0.2em 1em 0 1.5em
+    text-transform: uppercase
+    color: $mainColor
+    &:hover
+      text-decoration: none
+      color: $secondaryColor
+  .campaign-menu-prefix
+    color: #ccc
+    text-transform: uppercase
+    margin: 0 10% 4%
+    font-weight: 500
+    p
+      margin: 0
+  .campaign-menu-suffix
+    padding: 0
+    img
+      margin: 0 auto 10px
+      display: block
+      +noShadow
+    p
+      padding: 0 1em 0 1em
+      font-family: din-web-reg
+      color: #ccc
+      text-align: center
+      width: 100%
+      margin-bottom: 1em
+      font-size: 0.8em
+    a
+      font-weight: normal
+      font-size: 1em
+      padding: 0
+      text-transform: none
+      color: #ccc
+      text-decoration: underline
+      &:hover
+        color: $secondaryColor
+    hr
+      border-top: none
+      border-bottom: 1px solid #ccc
+    .nav-count
+      background: $secondaryColor
+      padding: 0.5em 0 0.3em
+      margin: 1em 0
+      p
+        width: 60%
+        margin: 0
+        text-transform: uppercase
+        float: right
+        text-align: left
+        line-height: 1.3em
+        color: white
+      #sb-counter
+        width: 40%
+        float: left
+        line-height: 1.1em
+        padding: 0 2%
+        font-size: 2em
+        text-align: right
+        color: white
+
+#block-dosomething-campaign-styles-campaign-nav
+  margin: 15px 0 0 -20px
+  .highlight a
+    background: $linkBG
+
+  .ui-icon.ui-icon-closethick
+    margin: -20px -13px!important
+
+// hack around the hack -- jQuery UI dialog styling outside of #cmp
+
+.ui-widget-overlay
+  opacity: 0.9
+
+#dosomething-login-register-popup-form .disclaimer .description,
+#dosomething-login-register-facebook .disclaimer .description
+  color: #fff
+
+#edit-title-text div
+  display: block
+  max-width: 24em
+  margin: 0 auto
+
+.js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
+  background: none !important
+  width: 100% !important
+  height: 1000px !important
+  min-height: 1000px !important
+  top: 0 !important
+  left: 0 !important
+
+.ui-dialog .ui-dialog-content
+  height: 1000px !important
+  min-height: 1000px !important
+
+#dosomething-login-register-popup-form #edit-title-text,
+#dosomething-login-register-popup-form #edit-title-text--2,
+#dosomething-login-register-facebook #edit-title-text,
+#dosomething-login-register-facebook #edit-title-text--2
+  margin: 2em 0
+  label, div
+    border-bottom: none
+    text-align: center
+    color: #fff
+  label
+    text-transform: uppercase
+
+#dosomething-login-register-popup-form
+  label
+    color: #fff
+    span
+      color: #EC0000
+      position: static !important
+      padding-left: 0.2em
+  #edit-birthday
+    float: left
+    width: 250px
+    margin: 0
+    label
+      width: 100% !important
+      margin: 0
+    span.login-popup-birthday
+      font-size: 18px 
+      font-weight: 500 
+      font-family: Verdana, Arial, sans-serif
+      line-height: 24px 
+      color: #fff
+    input
+      height: 2.5em
+      margin: 0.2em 0 0 0
+      padding: 0 0.6em
+      width: 100%
+      +border-radius(4px)
+    .form-item
+      margin-top: 0
+  #edit-final-submit
+    position: static
+    width: 55%
+    margin: 0 auto
+    display: block
+    font-size: 1.7em
+    color: #222
+    background: $buttonBG
+    max-width: 15em
+    height: 1.5em
+    padding: 0.05em 0.5em 0.5em
+    +border-radius(5px)
+
+#dosomething-login-register-popup-form
+  .form-type-textfield,
+  .form-type-password
+    float: left
+    margin: 0
+    width: 100%
+    margin: 0.5em 0
+    input
+      height: 2.5em
+      padding: 0 0.6em
+      font-size: 0.9em
+      width: 100%
+      +border-radius(4px)
+  .form-item-day, .form-item-month, .form-item-year
+    width: 3em
+    margin: 0.5em
+    margin-left: 0
+    input
+      width: 3em
+  .form-item-year /* widends year wrapper */
+    width: 5em !important
+    input
+      width: 5em
+  .ds-login-popup-footer
+    width: 80%
+    height: 100%
+    margin: 0 auto
+    .description /* help text */
+      color: #fff !important
+      font-size: 0.7em
+      a
+        color: $buttonBG !important
+
+.popup-content /* wraps user creation form */,
+.ds-login-popup-footer /* wraps "finish" button and legal copy */
+  width: 66%
+  padding: 0 1em
+  background: none
+  +noShadow
+
+.form-wrapper /* wraps "Connect with Facebook" */
+  margin: 0
+
+.separator /* wraps "OR" */
+  font-family: din-web
+  font-weight: 600
+  font-size: 40px
+  line-height: 40px
+  text-transform: uppercase
+  padding: 0.5em 0 0 0
+  color: #fff
+  
+@media only screen and (max-width: 450px)
+  
+  .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"], .js div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
+    background: none !important
+
+  #dosomething-login-register-popup-form .popup-content,
+  #dosomething-login-register-facebook .popup-content
+    width: 100%
+
+  #dosomething-login-register-popup-form
+    #edit-submit
+      width: 85%    

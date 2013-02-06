@@ -1,0 +1,23 @@
+// style forms loaded outside #cmp wrapper
+
+
+//      //
+//  #sign-up & #report-back hacks
+//      //
+
+#sign-up, #report-back
+  background: white
+  max-width: 500px
+  margin: 6% auto
+  padding: 2%
+  +border-radius(8px)
+  .panel-pane, form
+    +border-radius(8px)
+    +noShadow
+    padding: 0
+  .pane-title, legend, #edit-submitted-field-webform-email, #edit-submitted-field-webform-mobile, .fb-social-comments-plugin
+    display: none
+  input.form-autocomplete
+    width: 100%
+  input, .form-item
+    margin-bottom: 1em  

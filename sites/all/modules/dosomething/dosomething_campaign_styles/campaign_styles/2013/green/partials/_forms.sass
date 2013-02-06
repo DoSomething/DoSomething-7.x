@@ -1,0 +1,226 @@
+label
+  cursor: default
+
+//      //
+//  #contact-form
+//      //
+#contact-form2
+  padding: 2%
+  margin: 0 0 2% 0 !important
+
+#faq #contact-form3
+  margin-top: -2%
+  div
+    padding: 0
+  p
+    text-align: center
+  .pane-campaign-sign-up
+    padding: 2% 0 0 0 !important
+
+#contact-form2, #contact-form3
+  overflow: hidden
+  +border-radius(5px)
+
+#contact-form, #contact-form2, #contact-form3
+  margin: 0 0 2%
+  padding-bottom: 10px
+  background: $thirdColor
+  width: 100%
+  h3
+    color: #fff
+    font-size: 1.25em
+    line-height: 1.2em
+    font-weight: 500
+    text-align: left
+    padding: 1.1em 0 0.3em 0
+  span
+    text-transform: uppercase
+    font-weight: 500  
+  #campaign-opt-in
+    display: none
+  #webform-component-start-header
+    h3
+      width: 100%
+    p
+      text-align: left
+      color: white
+      font-size: 0.6em
+      margin-top: 0.5em
+      font-weight: 300
+  .form-actions
+    p
+      color: white
+      margin-top: 5px
+      font-size: 0.75em
+      font-weight: 500
+    a
+      color: white
+      text-transform: uppercase
+      &:hover
+        color: #f1f1f1
+        text-decoration: underline 
+        
+.focusOutline /* defines input highlighting */
+  box-shadow: 0px 0px 10px 4px #FFF742
+
+#edit-submitted-field-webform-mobile-und-0-value /* float to fix centered input on tablet */
+  float: left
+
+.pane-campaign-sign-up /* drupal name; contact-form wrapper */
+  input[type="text"], input[type="tel"]
+    height: 3em
+    padding-left: 0.7em
+    +border-radius(5px)
+  label
+    color: #fff
+    width: 100%
+    font-size: 1.1em
+    font-weight: 500
+    font-family: din-web-reg
+    line-height: 1.5em
+    text-transform: uppercase
+    text-align: left
+  #edit-submit
+    position: static
+    height: 2em
+    margin: 1.1em auto 0
+    padding: 0 0.7em
+    line-height: 2.3em
+
+#campaign-opt-in
+  clear: both
+  text-align: left
+  padding: 0.3em 0 0 0 !important
+  span
+    font-size: 0.7em
+    line-height: 0.7em
+    background: transparent
+    color: #fff
+  strong
+    font-weight: 600
+
+.webform-client-form
+  box-shadow: none
+
+.already_submitted
+  margin: 0 0 2% 0
+  .go-button
+    margin: 0 0 1% 0
+
+/* element floats */
+#webform-component-join-header, #webform-component-start-header, #edit-submitted-field-webform-email, #edit-submitted-field-webform-mobile, .form-actions.form-wrapper
+  width: 25%
+  float: left
+
+#edit-submitted-field-webform-email
+  width: 35%
+
+.form-actions.form-wrapper
+  width: 15%
+
+/* centers wrappers contained within floated segments */
+#submitted-field-webform-email-add-more-wrapper, #submitted-field-webform-mobile-add-more-wrapper, #contact-form h3
+  width: 90%   
+  margin: 0 auto 
+
+//      //
+//  #sign-up
+//      //
+
+#sign-up
+  .form-wrapper
+    float: none
+  input
+    margin-bottom: 10px
+
+
+//      //
+//  #report-back
+//      //
+
+#report-back
+  margin-top: 30%
+  border: none
+  width: 70%
+  padding: 1% 2%
+  background: white
+  h1
+    font-size: 1.4em
+    line-height: 1.1em
+  #edit-submitted-field-webform-pictures
+    background: #f1f1f1
+    border: 2px solid #e1e1e1 
+    padding: 1% 3% 1.5%
+    margin: 2% 0
+    max-width: 375px
+    border-radius: 6px
+    -o-border-radius: 6px
+    -moz-border-radius: 6px
+    -webkit-border-radius: 6px
+    legend
+      margin-bottom: 0.3em
+    span
+      font-weight: 400
+      font-size: 1.5em
+      text-transform: uppercase
+  .pane-title,
+  .fb-social-comments-plugin
+    display: none
+  form
+    border: none
+    input#edit-submit
+      margin: 0.5em 0 1em
+    input.form-text, textarea
+      font-size: 14px
+      margin-bottom: 0.5em
+    label
+      font-size: 1.4em
+    #edit-submitted-how-many-people-participated-in-this-drive,
+    #edit-submitted-how-many-potential-donors-were-registered
+      width: 60px
+    .form-item
+      margin-top: 10px
+    .fb-social-comments-plugin
+      display: none
+    #edit-submitted-taxonomy-vocabulary-5,
+    #edit-submitted-field-webform-email,
+    #edit-submitted-field-webform-mobile,
+    #edit-submitted-field-webform-videos,
+    #edit-submitted-field-webform-school-reference,
+    #edit-submitted-field-webform-school,
+    #edit-submitted-field-webform-school-zip
+      display: none
+    #edit-submitted-field-webform-pictures-und-0-upload-button
+      display: block !important
+      margin: 10px !important
+
+  #edit-submitted-ew
+    +noBorder
+    +noShadow
+    color: #999
+    font-size: 1.1em
+  label[for="edit-submitted-ew"]
+    color: #999
+
+  
+.go-button, #edit-submit, .form-submit
+  font-family: din-web
+  background: $buttonBG
+  margin: 4% 0 1%
+  padding: 0.3em 0.7em
+  font-size: 1.5em
+  height: 1.4em
+  display: inline-block
+  color: $offBlack
+  +border-radius(5px)
+  border: none
+  line-height: 1em
+  &:hover
+    color: darken($mainColor, 12)
+
+// hide the nav when the user is signing up or reporting back
+.node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
+.node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav
+  display: none
+
+
