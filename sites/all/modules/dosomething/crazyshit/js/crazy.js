@@ -237,7 +237,7 @@
 	// Ignore if the popup is already open.
 	if ($('.' + name + '-crazy-popup').length > 0) return;
 
-      $.post('/cstemplate/' + name + '/' + sid, { 'goto': settings.goto, 'you': (Drupal.behaviors.dsCrazyScripts.notify_yourself || settings.you) }, function(response) {
+      $.post('/cstemplate/' + name + '/' + sid, { 'goto': settings.goto, 'you': (Drupal.behaviors.dsCrazyScripts.notify_yourself || settings.you), 'source': document.location.pathname }, function(response) {
       	  var t = $('<div></div>');
       	  t.html(response);
 

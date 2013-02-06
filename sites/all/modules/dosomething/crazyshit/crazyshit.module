@@ -461,6 +461,12 @@ function crazyshit_template_render($template, $sid) {
 	$params['goto'] = $_POST['goto'];
   }
 
+  if (isset($_POST['source'])) {
+  	$source = substr(check_plain($_POST['source']), 1);
+  }
+
+  $params['source'] = $source;
+
   // Return the template.
   echo theme($template, $params);
 
