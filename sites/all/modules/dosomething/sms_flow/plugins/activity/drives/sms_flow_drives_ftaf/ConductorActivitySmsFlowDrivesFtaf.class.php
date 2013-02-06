@@ -3,7 +3,7 @@
 /**
  * Process phone numbers and forward invites on to users using sms_flow_start()
  */
-class ConductorActivitySmsFlowFtaf extends ConductorActivity {
+class ConductorActivitySmsFlowDrivesFtaf extends ConductorActivity {
 
   // Mobile Commons optin path for inviter to be joined into
   public $alpha_optin = 0;
@@ -13,16 +13,6 @@ class ConductorActivitySmsFlowFtaf extends ConductorActivity {
 
   // Response sent to inviter if process fails
   public $response_fail = '';
-
-  public function option_definition() {
-    $options = parent::option_definition();
-    $options['alpha_optin'] = array('default' => 0);
-    $options['beta_optin'] = array('default' => 0);
-    $options['response_success'] = array('default' => '');
-    $options['response_fail'] = array('default' => '');
-
-    return $options;
-  }
   
   public function run($workflow) {
     $state = $this->getState();
