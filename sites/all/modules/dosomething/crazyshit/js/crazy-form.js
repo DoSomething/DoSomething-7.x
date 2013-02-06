@@ -1,5 +1,7 @@
 (function($) {
 	Drupal.behaviors.crazy = {
+		submitting_form: false,
+
 		handle_text_change: function(field, elm) {
 			$('#' + field).data('val',  $('#' + field).val() ); // save value
 			$('#' + field).change(function() { // works when input will be blured and the value was changed
@@ -47,6 +49,23 @@
 		  }
 
 		  if ($('input[value="Submit"]').length > 0) {
+			$('#edit-submitted-field-crazy-top-text-und-0-value, #edit-submitted-field-crazy-bottom-text-und-0-value').keydown(function(e) {
+			   if (e.which == 13) {
+			     e.stopPropagation();
+			     return false;
+			   }
+			});
+
+		  	$('[id^="webform-client-form-"]').submit(function() {
+			   if (!Drupal.behaviors.crazy.submitting_form) {
+			      Drupal.behaviors.crazy.submitting_form = true;
+			      return true;
+			   }
+			   else {
+			      return false;
+			   }
+		  	});
+
 		  	$('input[value="Submit"]').click(function() {
 		  	   $(this).hide();
 		  	   var t = $('<div></div>').text(Drupal.t('Loading...'));
