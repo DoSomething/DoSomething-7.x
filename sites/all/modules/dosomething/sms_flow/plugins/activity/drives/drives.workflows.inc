@@ -105,7 +105,7 @@ $activity->name = 'strip_signature_3';
 $activity->inputs = array('create_drive');
 $activity->outputs = array('ftaf_process');
 
-$activity = $workflow->newActivity('sms_flow_ftaf');
+$activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
 $activity->alpha_optin = 131891;
 $activity->beta_optin = 129751;
@@ -141,10 +141,12 @@ $activity->outputs = array('drive_invite_response');
 $activity = $workflow->newActivity('sms_flow_drive_invite_response');
 $activity->name = 'drive_invite_response';
 $activity->title = 'Process user rejection or acceptance of the invite';
-$activity->accept_responses = array('y','yes','yea','ya','tfjjoin','tfj join');
-$activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive. If you want to join in the future, text back TFJJOIN.');
 $activity->inputs = array('start');
 $activity->outputs = array('check_account_exists', 'end');
+$activity->accept_responses = array('y','yes','yea','ya','tfjjoin','tfj join');
+$activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive. If you want to join in the future, text back TFJJOIN.');
+$activity->no_numbers_message = t('Oops. Did you mean to invite someone to your drive? Text TFJINVITE and try to invite again. Trying to join a drive? Text TFJJOIN to try to join again.');
+$activity->already_in_drive_message = t('You already previously joined this drive. You can view it online at http://doso.me/2. Want to invite friends to the drive? Text TFJINVITE.');
 
 $activity = $workflow->newActivity('sms_check_account_exists');
 $activity->name = 'check_account_exists';
@@ -181,9 +183,13 @@ $activity->outputs = array('process_beta');
 $activity = $workflow->newActivity('sms_flow_drives_invited_beta');
 $activity->name = 'process_beta';
 $activity->title = 'Process Drive Betas';
-$activity->alpha_campaign_id = 99961;
 $activity->inputs = array('account_exists', 'create_account');
 $activity->outputs = array('ftaf_prompt');
+$activity->alpha_campaign_id = 99961;
+$activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething Teens for Jeans team! Who else should be involved? Text back TFJINVITE and we\'ll invite them too.';
+$activity->drive_link = 'http://doso.me/2';
+$activity->success_message = t('You\'ve joined the largest youth led clothing drive in the US! - What\'s ur goal for how many jeans you\'ll collect?');
+$activity->mcommons_update_field = 'TeensforJeans2013_Goals';
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ftaf_prompt';
@@ -191,15 +197,15 @@ $activity->question = t('Amazing! Last year we collected over a million pairs. T
 $activity->inputs = array('process_beta');
 $activity->outputs = array('ftaf_process');
 
-$activity = $workflow->newActivity('sms_flow_ftaf');
+$activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
 $activity->title = 'Forward to a Friend';
+$activity->inputs = array('ftaf_prompt');
+$activity->outputs = array('end');
 $activity->alpha_optin = 131891;
 $activity->beta_optin = 129751;
 $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with TFJINVITE if you want to invite more.');
 $activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the drive again, text TFJJOIN. To invite ppl to ur drive, text TFJINVITE.');
-$activity->inputs = array('ftaf_prompt');
-$activity->outputs = array('end');
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -210,11 +216,11 @@ $activity->outputs = array();
 $workflows[$workflow->name] = $workflow;
 
 //
-// sms_flow_ftaf workflow
+// sms_flow_drives_ftaf workflow
 //
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
-$workflow->name = 'sms_flow_ftaf';
+$workflow->name = 'sms_flow_drives_ftaf';
 $workflow->title = 'Forward to a Friend';
 $workflow->description = 'Custom forward to a friend workflow';
 $workflow->api_version = '1.0';
@@ -238,14 +244,14 @@ $activity->title = 'Strip Signature';
 $activity->inputs = array('ftaf_prompt');
 $activity->outputs = array('ftaf_process');
 
-$activity = $workflow->newActivity('sms_flow_ftaf');
+$activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
 $activity->title = 'Forward to a Friend';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
 $activity->alpha_optin = 131891;
 $activity->beta_optin = 129751;
 $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with TFJINVITE.');
-$activity->inputs = array('strip_signature');
-$activity->outputs = array('end');
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
