@@ -2,6 +2,48 @@
 /**
  * A collection of functionality related to website performance.
  **/
+
+/**
+ * Perform setup tasks for non-cached page requests.
+ *
+ * This hook is run at the beginning of the page request. It is typically used to set up
+ * global parameters that are needed later in the request. When this hook is called, the
+ * theme and all modules are already loaded in memory.
+ * 
+ * This hook is not run on cached pages.
+ *
+ * To add CSS or JS that should be present on all pages, modules should not implement this
+ * hook, but declare these files in their .info file.
+ *
+ * http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_init/7
+ *
+ * Inject code in dosomething_performance_toolbox_webfonts to selectivly add css for webfonts.
+ * Note the feature that this function is not called on cached pages. Also note the advice about
+ * not using this page to add css or js to *all* pages. In this case is a selective process of
+ * choosing specific webfont by page URL in an effort to only load what is needed.
+ */
+function dosomething_performance_toolbox_init() {
+    
+    echo('BLA');
+    exit;
+    
+    if ($bla) {
+        $bla = TRUE;
+    }
+    
+    // Selectivly add webfont css call to pages.
+    dosomething_performance_toolbox_webfonts();
+    
+    
+    
+ }
+ 
+ function dosomething_performance_toolbox_exit() {
+    
+    echo('BLA');
+    exit;
+    
+ }
  
  /**
  * Construct a <link> tag for the page head that calls a css file that contains @webfont
@@ -107,22 +149,6 @@ function dosomething_performance_toolbox_webfonts() {
     } else {
       $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
     }
-    
-    // Add DINWeb-Medium to all site pages as it's used in the site navigation (used everywhere).
-    $common_data['file'] = $rackspace_url .'/'.'din-1.css';
-    
-    // Add to every page
-    $common_options['every_page'] = TRUE;
-
-    // Add to specific CSS group
-    $common_options['group'] = CSS_WEBFONTS;
-    $common_options['type'] = 'external';
-    
-    // Make this the first item in group
-    $common_options['weight'] = 1;
-    
-    // Add to css stack
-    drupal_add_css($common_data, $common_options);
   
     // Select CSS based on requested URL
     $bla2 = $_SERVER['REQUEST_URI'];
@@ -131,43 +157,47 @@ function dosomething_performance_toolbox_webfonts() {
     $options['group'] = CSS_WEBFONTS;
     
     // All webfont files are coming from the CDN thus making them external files
+    // Externally hosted stylesheets are never aggregated or compressed.
     $options['type'] = 'external';
     
-    if($is_front) { // Site front page: 
+    $bla = $is_front;
+    $bla2 = $_SERVER['REQUEST_URI'];
     
-      // 1+
-      $data['file'] = $rackspace_url .'/'.'din-181.css';
+    if($_SERVER['REQUEST_URI'] == '/') { // Site front page: 
+    
+      // 1+16+32+2 = 51
+      $data = $rackspace_url .'/'.'din-51.css';
       
-    } elseif ($_SERVER['REQUEST_URI'] == '/teensforjeans') { // /teensforjeans
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/teensforjeans') != FALSE) { // /teensforjeans
         
-      $data['file'] = $rackspace_url .'/'.'din-304.css';
+      // 1+16+32+256+64 = 369
+      $data = $rackspace_url .'/'.'din-369.css';
       
-    } elseif ($_SERVER['REQUEST_URI'] == '/calloffame/honey-badger') { // 4+1+32
-      $data['file'] = $rackspace_url .'/'.'din-37.css';
-    } elseif ($_SERVER['REQUEST_URI'] == '/tipsandtools') { // 32+4+1
-      $data['file'] = $rackspace_url .'/'.'din-37.css';
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /calloffame
+        
+      // ??
+      $data = $rackspace_url .'/'.'din-??.css';
       
-    } elseif (strpos( $_SERVER['REQUEST_URI'], '/social-scholarship/') != FALSE) { // 4+32
+    } elseif ($_SERVER['REQUEST_URI'] == '/tipsandtools') { // /tipsandtools
+        
+      // ??
+      $data = $rackspace_url .'/'.'din-??.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/social-scholarship/') != FALSE) { // /social-scholarship/
 
-      // Define path to CSS file
-      $data['file'] = $rackspace_url .'/'.'din-36.css';
-
-      // Add to specific CSS group
-      $options['group'] = CSS_WEBFONTS;
-      
-      // Only load on specific pages, do not aggregate into other css files within the same group
-      // TRUE for stylesheets added via module and theme .info files
-      $options['every_page'] = FALSE;
+      // ??
+      $data = $rackspace_url .'/'.'din-??.css';
 
     } else {
         
-      // Define path to CSS file
-      $data['file'] = $rackspace_url .'/'.'din-383.css';
+      // Define path to DEFAULT font CSS file for general application to site 1+2+4+8+16+32+64+128a+256 = 
+      $data = $rackspace_url .'/'.'din-511.css';
       
       
     }
     
-    // Add stylesheet call to stack, note change in drupal_add_css values based on target css to add 
+    // Add stylesheet call to CSS stack, note change in drupal_add_css values based on addition of specific CSS
+    // hook_css_alter uses these values to custom aggregate CSS based on groups
     // http://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_add_css/7
     drupal_add_css($data, $options);
   
