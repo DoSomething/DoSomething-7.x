@@ -18,7 +18,7 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
   public $no_numbers_message = '';
 
   // Message returned to the users if they are already in a drive.
-  public $already_in_drive_messsage = '';
+  public $already_in_drive_message = '';
 
   public function run($workflow) {
     $state = $this->getState();
@@ -72,7 +72,7 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
         }
 
         if ($already_in_drive) {
-          $state->setContext('sms_response', $this->already_in_drive_messsage);
+          $state->setContext('sms_response', $this->already_in_drive_message);
         }
         else {
           $state->setContext('sms_response', $this->invite_rejected_message);
