@@ -27,7 +27,6 @@ function dosomething_campaign_field_group_info() {
       1 => 'field_campaign_teaser',
       2 => 'field_campain_date',
       3 => 'field_campaign_call_to_action',
-      4 => 'field_campaign_link',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

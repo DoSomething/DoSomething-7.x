@@ -72,7 +72,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '39',
+        'weight' => '15',
       ),
     ),
   );
@@ -139,7 +139,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '40',
+        'weight' => '16',
       ),
     ),
   );
@@ -284,7 +284,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '11',
+        'weight' => '8',
       ),
     ),
   );
@@ -497,29 +497,27 @@ function dosomething_campaign_field_default_fields() {
         ),
       ),
       'locked' => '0',
-      'module' => 'image',
+      'module' => 'file',
       'settings' => array(
-        'default_image' => 0,
+        'display_default' => 0,
+        'display_field' => 0,
         'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
-      'type' => 'image',
+      'type' => 'file',
     ),
     'field_instance' => array(
       'bundle' => 'campaign',
       'deleted' => '0',
-      'description' => 'Upload an image for display on the Start Something landing page slideshow.',
+      'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
-          'weight' => '14',
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => 28,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -530,36 +528,86 @@ function dosomething_campaign_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_campaign_promo_image',
-      'label' => 'Promo image',
+      'label' => 'Campaign Promo Image',
       'required' => 0,
       'settings' => array(
-        'alt_field' => 0,
-        'default_image' => 0,
+        'description_field' => 0,
         'file_directory' => '',
-        'file_extensions' => 'png gif jpg jpeg',
+        'file_extensions' => 'jpg jpeg png gif',
         'max_filesize' => '',
-        'max_resolution' => '',
-        'min_resolution' => '',
-        'title_field' => 0,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'image',
+        'module' => 'file',
         'settings' => array(
           'insert' => 0,
           'insert_class' => '',
-          'insert_default' => array(
-            0 => 'auto',
-          ),
+          'insert_default' => 'auto',
           'insert_styles' => array(
-            0 => 'auto',
+            'auto' => 'auto',
+            'image' => 0,
+            'image_490x200' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
+            'image_campaign_blog_thumbnail' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_carousel_center' => 0,
+            'image_carousel_inner' => 0,
+            'image_carousel_outer' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_crazy_facebook_picture' => 0,
+            'image_crazy_image_dimensions' => 0,
+            'image_explore_action_guides' => 0,
+            'image_fb_post_image' => 0,
+            'image_front_slider' => 0,
+            'image_gallery_thumbnail' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_p4p_fake_button' => 0,
+            'image_petdetail_regular' => 0,
+            'image_petdetail_retina' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_search_results_thumbnail' => 0,
+            'image_social_scholarship_images_petition_735x150' => 0,
+            'image_social_scholarship_stat_image_190x190' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_thumbnail_regular' => 0,
+            'image_thumbnail_retina' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
           ),
           'insert_width' => '',
-          'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
-        'type' => 'image_image',
+        'type' => 'file_generic',
         'weight' => '3',
       ),
     ),
@@ -653,7 +701,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '9',
+        'weight' => '6',
       ),
     ),
   );
@@ -797,7 +845,7 @@ function dosomething_campaign_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '32',
+        'weight' => '14',
       ),
     ),
   );
@@ -872,7 +920,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '8',
+        'weight' => '5',
       ),
     ),
   );
@@ -1304,7 +1352,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'text_textfield',
-        'weight' => '18',
+        'weight' => '13',
       ),
     ),
   );
@@ -1449,7 +1497,7 @@ function dosomething_campaign_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '17',
+        'weight' => '12',
       ),
     ),
   );
@@ -1532,7 +1580,7 @@ function dosomething_campaign_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '10',
+        'weight' => '7',
       ),
       'widget_type' => 'options_select',
     ),
@@ -1712,6 +1760,7 @@ function dosomething_campaign_field_default_fields() {
   t('Call to action');
   t('Campaign Date');
   t('Campaign Logo Thumbnail');
+  t('Campaign Promo Image');
   t('Causes/Issues');
   t('Counter Aggregation Field');
   t('Counter Text');
@@ -1724,7 +1773,6 @@ function dosomething_campaign_field_default_fields() {
   t('Main Image');
   t('PSA image');
   t('Please select a start and end date for the campaign.');
-  t('Promo image');
   t('Relate this Campaign to a Cause or Issue.');
   t('Report Back HTML');
   t('Team Redirect');
@@ -1732,7 +1780,6 @@ function dosomething_campaign_field_default_fields() {
   t('Text to appear in Current Campaigns list');
   t('This is the HTML copy that will be displayed after the user has signed up in the sign-up block. Make sure to check your input type.');
   t('Twitter Sharing Language');
-  t('Upload an image for display on the Start Something landing page slideshow.');
   t('Upload an image to be displayed on the campaign list page.');
   t('Video');
   t('You can include a 60px by 60px version of the campaign logo here. The image will not be resized automatically. ');
