@@ -42,6 +42,9 @@ function fboauth_action_page($action) {
     if (empty($destination)) {
       $destination = isset($_REQUEST['destination']) ? $_REQUEST['destination'] : '<front>';
     }
+
+    // Lets us perform actions when a user is authenticated.
+    module_invoke_all('fboauth_redirect', $destination);
     drupal_goto($destination);
   }
 

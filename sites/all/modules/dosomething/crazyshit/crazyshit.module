@@ -922,6 +922,27 @@ function crazyshit_fb_connect() {
 }
 
 
+function crazyshit_fboauth_redirect($destination) {
+  if (strpos($destination, 'crazy') !== -1) {
+  	global $user;
+	if (!empty($user->mail)) {
+	    $mid = CRAZY_MAILCHIMP_GROUP;
+	    $email = $user->mail;
+
+	    if (!empty($mid) && valid_email_address($email)) {
+	       dosomething_general_mailchimp_subscribe($email, $mid);
+	    }
+
+	    $u = array(
+	      'uid' => $user->uid,
+	      'email' => $user->mail,
+	      'timestamp' => REQUEST_TIME,
+	    );
+	    drupal_write_record('crazy_emails', $u);
+	}
+  }
+}
+
 /**
  * Implements hook_init().
  */
@@ -940,7 +961,6 @@ function crazyshit_init() {
 
   // Handles Facebook user system
   crazyshit_handle_fb_users($facebook);
-
 
   $onpage = preg_match('#^/(' . implode('|', $crazy_notification_pages) . ')$#i', request_uri());
   if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
@@ -1085,15 +1105,6 @@ function crazyshit_handle_fb_users($facebook) {
 	      user_user_operations_unblock(array($account->uid));
 	    }
 	  }
-
-      if (!empty($account->mail)) {
-          $mid = CRAZY_MAILCHIMP_GROUP;
-          $email = $account->mail;
-
-          if (!empty($mid) && valid_email_address($email)) {
-             dosomething_general_mailchimp_subscribe($email, $mid);
-          }
-      }
   }
   catch (Exception $e) {}
 }
