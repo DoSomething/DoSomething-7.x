@@ -1,0 +1,15 @@
+name = DoSomething Responsive
+description = A responsive theme for <a href="http://www.dosomething.org">DoSomething.org</a>
+package = DoSomething
+version = VERSION
+core = 7.x
+
+; regions
+regions[utility] = Utility Bar
+regions[header] = Header
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[page_top] = Page Top
+regions[content] = Content
+regions[page_bottom] = Page Bottom
+regions[footer] = Footer
