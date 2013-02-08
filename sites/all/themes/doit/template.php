@@ -14,6 +14,7 @@ function doit_preprocess_html(&$variables, $hook) {
   // HTML5 Shiv
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
+  
 }
 
 // function doit_preprocess_panels_pane(&$variables) {
