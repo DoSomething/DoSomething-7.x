@@ -22,7 +22,7 @@ function dosomething_mobile_referral_form_module_implements_alter(&$implementati
 function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form_id) {
   $node = menu_get_object();
 
-  $editing = preg_match('#^\/node\/[0-9]+\/(webform|edit)#i', request_uri());
+  /*$editing = preg_match('#^\/node\/[0-9]+\/(webform|edit)#i', request_uri());
   if ($editing) {
     return;
   }
@@ -83,16 +83,14 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
     }
 
     $form['#submit'][] = 'dosomething_mobile_referral_form_wild_submit';
-  }
+  }*/
 
-  if ((isset($form_state['build_info']['args'][0]->title)
-    && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form'
-    && $node->nid) || (!empty($form_state['build_info']['args'][0]) && $form_state['build_info']['args'][0]->field_ref_use_default_styles[LANGUAGE_NONE][0]['value'])) {
-    drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/css/mobile_referrals.css', array(
+  if ($node->type == 'mobile_referral_form') {
+    /*drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/css/mobile_referrals.css', array(
         'group' => CSS_THEME,
         'weight' => 10
-    ));
-    drupal_add_js(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/js/mobile_referrals.js');
+    ));*/
+    #drupal_add_js(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/js/mobile_referrals.js');
 
     if (!isset($form_state['goto']) && !isset($_SESSION['goto'])) {
       $_SESSION['goto'] = $_SERVER['REQUEST_URI'];
@@ -100,7 +98,7 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
     }
     $u = &$form['submitted'];
 
-    $form['actions']['submit']['#value'] = 'SEND';
+#    $form['actions']['submit']['#value'] = 'SEND';
     $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
     if (!user_is_logged_in()) {
       $form['actions']['submit']['#ajax'] = array(
@@ -130,40 +128,6 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
 
 
     $form['#validate'][] = 'dosomething_mobile_referral_form_validate';
-    if ($node->type == 'social_scholarship') {
-      if (!isset($form_state['nid'])) {
-        $form_state['nid'] = $node->nid;
-      }
-
-      if (isset($_SESSION['social_scholars_message'])) {
-        unset($_SESSION['social_scholars_message']);
-      }
-      $_SESSION['social_scholars_messages'] = nl2br($node->field_redirect_message[LANGUAGE_NONE][0]['value']);
-
-      if (!isset($form_state['alphas'])) {
-        if (isset($node->field_alphas_campaign[LANGUAGE_NONE][0]['value']) && !empty($node->field_alphas_campaign[LANGUAGE_NONE][0]['value'])) {
-          $form_state['alphas'] = $node->field_alphas_campaign[LANGUAGE_NONE][0]['value'];
-        }
-      }
-      if (!isset($form_state['betas'])) {
-        if (isset($node->field_betas_campaign[LANGUAGE_NONE][0]['value']) && !empty($node->field_betas_campaign[LANGUAGE_NONE][0]['value'])) {
-          $form_state['betas'] = $node->field_betas_campaign[LANGUAGE_NONE][0]['value'];
-        }
-      }
-
-      if (isset($node->field_official_rules_document[LANGUAGE_NONE][0]['filename']) && !empty($node->field_official_rules_document[LANGUAGE_NONE][0]['filename'])) {
-        $form['submitted']['referall_your_info']['terms_and_conditions']['#markup'] = str_replace('these official rules', l(t('these official rules'), 'files/social_scholarships/official_rules/' . $node->field_official_rules_document[LANGUAGE_NONE][0]['filename'], array(
-        'attributes' => array('target' => '_blank'))), $form['submitted']['referall_your_info']['terms_and_conditions']['#markup']);
-      }
-  
-      $goto = 'share-these-images/' . $node->nid;
-      if (!empty($node->field_redirect_to_path[LANGUAGE_NONE][0]['value'])) {
-        $goto = $node->field_redirect_to_path[LANGUAGE_NONE][0]['value'];
-      }
-
-      $_SESSION['goto'] = $goto;
-      $form_state['goto'] = $goto;
-    }
     $form['#submit'][] = 'dosomething_mobile_referral_form_submit';
   }
 }
