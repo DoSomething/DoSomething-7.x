@@ -956,9 +956,6 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   }
   
   if (!empty($email)) {
-    if (!empty($node->field_infusion_action[LANGUAGE_NONE][0]['value'])) {
-      dosomething_general_infusionsoft_subscribe($email, $node->field_infusion_action[LANGUAGE_NONE][0]['value']);
-    }
     if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
       dosomething_general_mailchimp_subscribe($email, $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']);
     }
@@ -1144,6 +1141,9 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
       $options['data'] .= "&person[$key]=" . urlencode($val);
     }
   }
+  
+  $bla = $api_opt_in_path_url;
+  $bla2 = $options;
 
   $result = drupal_http_request($api_opt_in_path_url, $options);
   return $result;
