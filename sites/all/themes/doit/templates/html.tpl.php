@@ -63,7 +63,7 @@
       $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
     }
   ?>
-  <link rel="stylesheet" href="</php print $rackspace_url ?>/din.css" media="all" />
+  <link rel="stylesheet" href="<?php print $rackspace_url ?>/din.css" media="all" />
   <?php print $styles; ?>
   <?php print $shiv; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
