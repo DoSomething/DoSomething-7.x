@@ -1245,6 +1245,37 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $ar
 }
 
 /**
+ * Update the Mobile Commons profile for a given number
+ *
+ * @param $mobile
+ *    Mobile number of profile to update
+ * @param $args
+ *    Array of fields to update for that profile
+ */
+function dosomething_general_mobile_commons_profile_update($mobile, $args = array()) {
+  $api_opt_in_path_url = 'https://secure.mcommons.com/api/profile_update';
+
+  $options = array(
+    'headers' => array(
+      'Content-type' => 'application/x-www-form-urlencoded',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'Authorization' => 'Basic ' . base64_encode('developers@dosomething.org:80276608'),
+    ),
+    'method' => 'POST',
+    'data' => "phone_number=$mobile",
+  );
+
+  if (!empty($args)) {
+    foreach ($args AS $key => $val) {
+      $options['data'] .= '&' . $key . '=' . urlencode($val);
+    }
+  }
+
+  $response = drupal_http_request($api_opt_in_path_url, $options);
+  return $response;
+}
+
+/**
  * Subscribe the email to the mailchimp DoSomething Members List.
  *
  * @param $email
