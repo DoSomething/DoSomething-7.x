@@ -1059,41 +1059,6 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
 }
 
 /**
- * Subscribe an email address to InfusionSoft using an action.
- * Note: tags are assigned in InfusionSoft via the action, not in Drupal.
- */
-function dosomething_general_infusionsoft_subscribe($emails, $action_id) {
-  if (!is_array($emails)) $emails = array($emails);
-
-  include_once('infusionsoft_sdk/src/isdk.php');
-  $app = new iSDK;
-
-  if($app->cfgCon("emaildrop")) {
-    foreach ($emails as $email) {
-      if (empty($email)) continue;
-      // set up the data to send to infusionsoft
-      $contact = array('Email' => $email);
-
-      //check for existing contact;
-      $returnFields = array('Id');
-      $dups = $app->findByEmail($contact['Email'], $returnFields);
-
-      /*If email is not a duplicate*/
-      if (empty($dups)) {
-        // add new contact and add them to the action set
-        $dups = $app->addCon($contact);
-        $app->runAS($dups, $action_id);
-      }
-      else {
-        /*If the email is a duplicate*/
-        $contactId = $dups[0]['Id'];
-        $app->runAS($contactId, $action_id);
-      }
-    }
-  }
-}
-
-/**
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
  * configured opt-in path.  Send messages to friends as well.
  */
@@ -1141,9 +1106,6 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
       $options['data'] .= "&person[$key]=" . urlencode($val);
     }
   }
-  
-  $bla = $api_opt_in_path_url;
-  $bla2 = $options;
 
   $result = drupal_http_request($api_opt_in_path_url, $options);
   return $result;
