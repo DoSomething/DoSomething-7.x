@@ -2358,9 +2358,7 @@ function dosomething_clubs_entity_update($entity, $type) {
     );
 
     drupal_mail('dosomething_clubs', 'approved_email', $email, $language, $params);
-    if (!empty($email)) {
-      //dosomething_general_infusionsoft_subscribe($email, ACTION_ID);
-    }
+
   }
 }
 
