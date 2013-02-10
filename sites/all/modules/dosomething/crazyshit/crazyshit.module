@@ -962,7 +962,7 @@ function crazyshit_init() {
   // Handles Facebook user system
   crazyshit_handle_fb_users($facebook);
 
-  $onpage = preg_match('#^/(' . implode('|', $crazy_notification_pages) . ')$#i', request_uri());
+  $onpage = preg_match('#^(' . implode('|', $crazy_notification_pages) . ')$#i', request_path());
   if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
 	// Set up an or statement for the below query.
 	#$c = db_or();
@@ -987,6 +987,12 @@ function crazyshit_init() {
 
 	$notifications = reset($ns);
 	$pre = '';
+
+	$from_fb = false;
+	if (isset($_GET['fb'])) {
+		$from_fb = (bool) intval($_GET['fb']);
+	}
+
 	if (!empty($notifications)) {
 	   if ($notifications->from_fid == $notifications->fid) {
 	      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true; ';
@@ -997,6 +1003,9 @@ function crazyshit_init() {
 	   drupal_add_js($mp, 'inline');
 
 	   drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); } }, 1500);", 'inline');
+	}
+	else if ($from_fb) {
+	   drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { jQuery.fn.dsCrazyPopup('bull', 0); }); } }, 1500);", 'inline');
 	}
   }
 
