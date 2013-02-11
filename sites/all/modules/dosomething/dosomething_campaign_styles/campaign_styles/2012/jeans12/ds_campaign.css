@@ -1049,8 +1049,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     padding: 2%; }
   #cmp .pane-campaign-social {
     display: none; }
+  #cmp #social_media {
+    margin: 0 0 250px 0; }
   #cmp .socialWrapper {
-    margin: 15px 15px 170px; }
+    margin: 0; }
     #cmp .socialWrapper .socialButton:last-child {
       display: none; }
   #cmp #next-steps {
