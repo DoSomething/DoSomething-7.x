@@ -1024,12 +1024,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -o-border-radius: 5px;
     border-radius: 5px; }
   #cmp #header {
-    background-image: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg");
-    background-position: 100% 35%;
+    background-image: url("//files.dosomething.org/files/campaigns/jeans12/flip_header.png");
     background-repeat: no-repeat;
-    background-color: #e5e7e9;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    min-height: 375px; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
       color: #0c3565;
@@ -1051,7 +1050,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .pane-campaign-social {
     display: none; }
   #cmp .socialWrapper {
-    margin: 1em 0 0 0.5em; }
+    margin: 15px 15px 170px; }
     #cmp .socialWrapper .socialButton:last-child {
       display: none; }
   #cmp #next-steps {

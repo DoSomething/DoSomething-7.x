@@ -22,7 +22,7 @@
     }
 
     // campaign logo injection
-    var logo = '//files.dosomething.org/files/campaigns/jeans12/logo.png';
+    var logo = '//files.dosomething.org/files/campaigns/jeans12/flip_logo.png';
     $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a>');
     
     // campaign social media injection
