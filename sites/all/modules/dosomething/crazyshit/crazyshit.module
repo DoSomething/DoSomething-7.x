@@ -119,7 +119,8 @@ function crazyshit_js_alter(&$js) {
       'sites/all/themes/doit/js/doit-select.js',
       'sites/all/themes/doit/js/jquery.lettering-0.6.min.js',
       'sites/all/themes/doit/js/show-search-facets.js',
-      'sites/all/themes/doit/js/doit-lettering.js'
+      'sites/all/themes/doit/js/doit-lettering.js',
+      'sites/all/modules/dosomething/dosomething_general/js/iframe-defer.js',
     );
 
     foreach ($unused AS $script) {
