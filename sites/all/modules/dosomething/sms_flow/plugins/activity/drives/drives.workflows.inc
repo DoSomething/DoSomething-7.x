@@ -281,7 +281,7 @@ $activity->outputs = array('check_account_exists', 'end');
 $activity->accept_responses = array('y','yes','yea','ya','gysjoin','gys join');
 $activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive. If you want to join in the future, text back GYSJOIN.');
 $activity->no_numbers_message = t('Oops. Did you mean to invite someone to your drive? Text GYSINVITE and try to invite again. Trying to join a drive? Text GYSJOIN to try to join again.');
-$activity->already_in_drive_message = t('You already previously joined this drive. You can view it online at http://doso.me/2 [TODO: change link]. Want to invite friends to the drive? Text GYSINVITE.');
+$activity->already_in_drive_message = t('You already previously joined this drive. You can view it online at http://doso.me/9. Want to invite friends to the drive? Text GYSINVITE.');
 
 $activity = $workflow->newActivity('sms_check_account_exists');
 $activity->name = 'check_account_exists';
@@ -320,13 +320,13 @@ $activity->inputs = array('account_exists', 'create_account');
 $activity->outputs = array('ftaf_prompt');
 $activity->alpha_campaign_id = 110073;
 $activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething Green Your School team! Who else should be involved? Text back GYSINVITE and we\'ll invite them too.';
-$activity->drive_link = 'http://doso.me/2'; // TODO: update link
-$activity->success_message = t('[TODO: update this copy] You\'ve joined the Green Your School drive! - What\'s ur goal for how many school you\'ll green?');
+$activity->drive_link = 'http://doso.me/9';
+$activity->success_message = t('You\'ve joined the Green Your School drive! - How many people from your school do you plan to have join?');
 $activity->mcommons_update_field = 'GreenYourSchool2013_Goals';
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ftaf_prompt';
-$activity->question = t('[TODO: update this copy] Amazing! Last year we green over a million schools. Text us your friends numbers to invite them to join your drive.');
+$activity->question = t('Amazing! Want to start building that team now? Text us your friends numbers to invite them to join your drive.');
 $activity->inputs = array('process_beta');
 $activity->outputs = array('ftaf_process');
 
