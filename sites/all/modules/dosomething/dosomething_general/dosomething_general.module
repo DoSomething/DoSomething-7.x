@@ -983,7 +983,7 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
 
 /**
  * Generic handler that uses field_webform_email and field_webform_mobile
- * combined with the $node values for inserting values into InfusionSoft/Mailchimp
+ * combined with the $node values for inserting values into Mailchimp
  * and/or Mobile Commons
  */
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
@@ -1011,6 +1011,8 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
       $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     }
   }
+  
+  $bla = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
   
   if (!empty($email)) {
     if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
@@ -1107,6 +1109,8 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
     // Submit to MailChimp
     dosomething_general_mailchimp_subscribe($nominees_email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $nominees_merge_vars);
   }
+  
+  $bla = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
 
   // Submit to MailChimp
   dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
@@ -1216,8 +1220,10 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $ar
  *   Boolean indicating success.
  */
 function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
+  
   /* Our function */
   $mcapi = mailchimp_get_api_object();
+  
   // Catching function
   // Hardcoding the list to the dosomething members
   $listid = 'f2fab1dfd4';
@@ -1248,7 +1254,11 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
       array('id' => $groupingIdByGroupName[$groupName], 'groups' => $groupName),
     )
   );
-  return $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE,FALSE);
+  
+  // http://apidocs.mailchimp.com/api/rtfm/listsubscribe.func.php
+  // listSubscribe(string apikey, string id, string email_address, array merge_vars,
+  //   string email_type, bool double_optin, bool update_existing, bool replace_interests, bool send_welcome)
+  return $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE, FALSE);
 }
 
 /**
