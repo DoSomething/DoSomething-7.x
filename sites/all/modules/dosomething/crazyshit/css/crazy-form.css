@@ -301,7 +301,7 @@ div.image-widget-data {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 116, ../sass/crazy-form.sass */
+/* line 115, ../sass/crazy-form.sass */
 .submit-start h1 {
   text-transform: uppercase;
   text-align: center;
@@ -310,13 +310,13 @@ div.image-widget-data {
   width: 66%;
   margin: 0 auto 5%;
   padding: 0 0 3% 0; }
-/* line 124, ../sass/crazy-form.sass */
+/* line 123, ../sass/crazy-form.sass */
 .submit-start p {
   font-size: 18px;
   line-height: 27px;
   text-transform: uppercase;
-  font-weight: 600; }
-/* line 129, ../sass/crazy-form.sass */
+  font-weight: 500; }
+/* line 128, ../sass/crazy-form.sass */
 .submit-start .pane-content {
   padding: 50px; }
 /* line 16, ../sass/_variables.sass */
@@ -333,17 +333,21 @@ div.image-widget-data {
   .submit-start img {
     width: 92%; } }
 
-/* line 135, ../sass/crazy-form.sass */
+/* line 132, ../sass/crazy-form.sass */
+#extra_guidelines {
+  display: none; }
+
+/* line 137, ../sass/crazy-form.sass */
 .node-crazy-shit {
   box-shadow: none; }
-/* line 137, ../sass/crazy-form.sass */
+/* line 139, ../sass/crazy-form.sass */
 .node-crazy-shit .webform-client-form {
   padding: 50px; }
 @media only screen and (max-width: 550px) {
-  /* line 137, ../sass/crazy-form.sass */
+  /* line 139, ../sass/crazy-form.sass */
   .node-crazy-shit .webform-client-form {
     padding: 50px 10% 10px; } }
 
-/* line 144, ../sass/crazy-form.sass */
+/* line 146, ../sass/crazy-form.sass */
 div.form-wrapper, div.step-field {
   margin: 0; }
