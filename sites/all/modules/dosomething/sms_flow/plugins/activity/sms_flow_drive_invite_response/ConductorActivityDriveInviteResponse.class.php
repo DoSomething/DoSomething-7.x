@@ -11,15 +11,14 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
   // Array of responses indicating an acceptance of the invite
   public $accept_responses = array();
 
-  // Message returned to the user if they reject the invite
+  // Message returned to the users if they reject the invite
   public $invite_rejected_message = '';
 
-  public function option_definition() {
-    $options = parent::option_definition();
-    $options['accept_responses'] = array('default' => array());
-    $options['invite_rejected_message'] = array('default' => '');
-    return $options;
-  }
+  // Message returned to the user if no numbers are found
+  public $no_numbers_message = '';
+
+  // Message returned to the users if they are already in a drive.
+  public $already_in_drive_message = '';
 
   public function run($workflow) {
     $state = $this->getState();
@@ -33,11 +32,10 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
     else {
       $this->removeOutput('check_account_exists');
 
-      // Defense against cases where people should've gone from process_beta to sms_flow_ftaf, but didn't
+      // Defense against cases where people should've gone from process_beta to sms_flow_ftaf, but didn't.
       preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $_REQUEST['args']), $numbers);
       if (!empty($numbers['numbers'])) {
-        $num_detected_msg = 'Oops. Did you mean to invite someone to your drive? Text TFJINVITE and try to invite again. Trying to join a drive? Text TFJJOIN to try to join again.';
-        $state->setContext('sms_response', $num_detected_msg);
+        $state->setContext('sms_response', $this->no_numbers_message);
       }
       else {
         $already_in_drive = FALSE;
@@ -74,7 +72,7 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
         }
 
         if ($already_in_drive) {
-          $state->setContext('sms_response', t('You already previously joined this drive. You can view it online at http://doso.me/2. Want to invite friends to the drive? Text TFJINVITE.'));
+          $state->setContext('sms_response', $this->already_in_drive_message);
         }
         else {
           $state->setContext('sms_response', $this->invite_rejected_message);

@@ -11,18 +11,24 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
   // Mobile Commons campaign id to place alpha user in when sending feedback message
   public $alpha_campaign_id = 0;
 
-  public function option_definition() {
-    $options = parent::option_definition();
-    $options['alpha_campaign_id'] = array('default' => '');
-    return $options;
-  }
+  // Message sent back to the alpha inviter. If @name is set, will use the beta's first name.
+  public $alpha_message = '';
+
+  // URL to the drive page
+  public $drive_link = '';
+
+  // Message returned to user on success
+  public $success_message = '';
+
+  // Name of the Mobile Commons custom field to update with the user's response to the invitation confirmation
+  public $mcommons_update_field = '';
 
   public function run($workflow) {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
-    $jeans_goal = $state->getContext($this->name . ':message');
-    if ($jeans_goal === FALSE) {
+    $user_response = $state->getContext($this->name . ':message');
+    if ($user_response === FALSE) {
       $success_message = '';
 
       $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
@@ -57,7 +63,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
         $profile = profile2_load_by_user($account, 'main');
         $first_name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
 
-        $alphaMsg = "Ur friend $first_name accepted your invite to join ur DoSomething Teens for Jeans team! Who else should be involved? Text back TFJINVITE and we'll invite them too.";
+        $alphaMsg = t($this->alpha_message, array('@name' => $first_name));
         $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
         $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
       }
@@ -67,15 +73,15 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       // The new_account_password value is set by sms_flow_create_account activity. If none
       // found, assume that no new account was created.
       if (empty($password)) {
-        $link_message = t('View ur drive at http://doso.me/2');
+        $link_message = t('View ur drive at @link.', array('@link' => $this->drive_link));
       }
       else {
-        $link_message = t('Ur pword to login at http://doso.me/2 is @pass', array('@pass' => $password));
+        $link_message = t('Ur pword to login at @link is @pass.', array('@link' => $this->drive_link, '@pass' => $password));
       }
 
-      $success_message = "You've joined the largest youth led clothing drive in the US! $link_message - What's ur goal for how many jeans you'll collect?";
+      $this->success_message = $link_message . ' ' . $this->success_message;
 
-      $state->setContext('sms_response', $success_message);
+      $state->setContext('sms_response', $this->success_message);
       $state->setContext('drives_invite_gid', $drives_invite_gid);
 
       $state->markSuspended();
@@ -86,7 +92,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
 
       $fields = array(
         'phone_number' => urlencode($mobile),
-        'TeensforJeans2013_Goals' => urlencode($jeans_goal),
+        $this->mcommons_update_field => urlencode($user_response),
       );
 
       $fields_query = http_build_query($fields);

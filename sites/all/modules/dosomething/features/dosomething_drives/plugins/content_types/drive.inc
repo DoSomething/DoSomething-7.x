@@ -314,7 +314,7 @@ function dosomething_drives_drive_action_link($gid, $leader, $campaign, $team_fi
     $return['popup'] = array(
       '#type' => 'container',
       '#attributes' => array('class' => array('invite-module')),
-      'content' => dosomething_drives_drive_invite_module($gid),
+      'content' => dosomething_drives_drive_invite_module($gid, $campaign),
     );
   }
   else {
@@ -347,7 +347,7 @@ function dosomething_drives_drive_action_link($gid, $leader, $campaign, $team_fi
   return $return;
 }
 
-function dosomething_drives_drive_invite_module($gid) {
+function dosomething_drives_drive_invite_module($gid, $campaign = NULL) {
   global $user;
   $fb_connected = fboauth_fbid_load($user->uid);
 
@@ -403,8 +403,9 @@ function dosomething_drives_drive_invite_module($gid) {
     ),
   );
 
-  // TODO: this also feels hacky. Different invite form being used if it's for TFJ
-  if (stripos(current_path(), 'jeans') !== FALSE) {
+  if ($campaign != NULL &&
+      $campaign->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'] > 0 &&
+      $campaign->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'] > 0) {
     $return['phone'] = array(
       '#type' => 'container',
       '#attributes' => array('class' => array('invite-module-sms')),
@@ -416,7 +417,7 @@ function dosomething_drives_drive_invite_module($gid) {
       '#suffix' => '</h3>',
     );
 
-    $return['phone']['form'] = drupal_get_form('sms_flow_team_invite_form', $gid);
+    $return['phone']['form'] = drupal_get_form('sms_flow_team_invite_form', $gid, $campaign->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'], $campaign->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value']);
   }
   else {
     $return['email'] = array(
