@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
+        afterReplaceText : 'Just register with DoSomething.org to join the Green Your School Challenge!',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
