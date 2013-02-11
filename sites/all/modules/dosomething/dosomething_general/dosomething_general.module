@@ -1011,9 +1011,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
       $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     }
   }
-  
-  $bla = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
-  
+   
   if (!empty($email)) {
     if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
       dosomething_general_mailchimp_subscribe($email, $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']);
@@ -1109,8 +1107,6 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
     // Submit to MailChimp
     dosomething_general_mailchimp_subscribe($nominees_email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $nominees_merge_vars);
   }
-  
-  $bla = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
 
   // Submit to MailChimp
   dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
@@ -1258,7 +1254,15 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   // http://apidocs.mailchimp.com/api/rtfm/listsubscribe.func.php
   // listSubscribe(string apikey, string id, string email_address, array merge_vars,
   //   string email_type, bool double_optin, bool update_existing, bool replace_interests, bool send_welcome)
-  return $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE, FALSE);
+  $mc_signup_results = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
+  
+  if ($mc_signup_results) {
+    return $mc_signup_results;
+  }
+  else {
+    drupal_set_message('Failed to signup new user to MailChimp.', 'error');
+  }
+
 }
 
 /**
