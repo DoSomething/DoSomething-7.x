@@ -1,7 +1,8 @@
 <?php
 
 /**
- *
+ * Extends ConductorActivitySMSPrompt. Asks user a question and expects an MMS 
+ * image in return.
  */
 class ConductorActivityMMSPrompt extends ConductorActivitySMSPrompt {
   
