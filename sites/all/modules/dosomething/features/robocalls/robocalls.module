@@ -11,6 +11,7 @@ define('MAX_CALLS_PER_DAY', 1);
 define('ROUND_TO', 10);
 define('ROBOCALLS_TAXONOMY_ID', 28);
 define('ROBOCALLS_FEATURED_CELEB_TAG', 'Says Hayyy to Your Friends');
+define('ROBOCALLS_MCOMMONS_ALPHAS_CAMPAIGN', 144433);
 
 /**
  *  Implements hook_panels_pre_render()
@@ -575,6 +576,8 @@ function robocalls_call_submit(&$form, &$form_state) {
         $profile->save();
      }
    }
+
+   dosomething_general_mobile_commons_subscribe($my_phone, ROBOCALLS_MCOMMONS_ALPHAS_CAMPAIGN);
 
   $code = base64_encode(json_encode(array(
      'name' => $term_name,
