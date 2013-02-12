@@ -301,7 +301,7 @@ $activity->outputs = array('ask_first_name');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_first_name';
-$activity->question = t('Awesome! Reply with ur first name and we\'ll set u up with a login for our website where you can learn more about the drive details and about DoSomething.org');
+$activity->question = t('Awesome! Reply with ur first name and we\'ll set u up with a login for DoSomething.org where you can learn more about why your school sucks (energy).');
 $activity->inputs = array('no_account_exists');
 $activity->outputs = array('strip_signature');
 
@@ -318,22 +318,15 @@ $activity->outputs = array('process_beta');
 $activity = $workflow->newActivity('sms_flow_drives_invited_beta');
 $activity->name = 'process_beta';
 $activity->inputs = array('account_exists', 'create_account');
-$activity->outputs = array('ftaf_prompt');
-$activity->alpha_campaign_id = 110073;
-$activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething Green Your School team! Who else should be involved? Text back GYSINVITE and we\'ll invite them too.';
-$activity->drive_link = 'http://doso.me/9';
-$activity->success_message = t('You\'ve joined the Green Your School drive! - How many people from your school do you plan to have join?');
-$activity->mcommons_update_field = 'GreenYourSchool2013_Goals';
-
-$activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ftaf_prompt';
-$activity->question = t('Amazing! Want to start building that team now? Text us your friends numbers to invite them to join your drive.');
-$activity->inputs = array('process_beta');
 $activity->outputs = array('ftaf_process');
+$activity->alpha_campaign_id = 110073;
+$activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething Green Your School Challenge Team! Who else should be involved? Text back GYSINVITE and we\'ll invite them too.';
+$activity->drive_link = 'http://doso.me/9';
+$activity->success_message = t('Awesome! You\'ve been added to the drive at DS.org/green. Who else should be involved? Respond with their phone #s and we\'ll invite them to join you.');
 
 $activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
-$activity->inputs = array('ftaf_prompt');
+$activity->inputs = array('process_beta');
 $activity->outputs = array('end');
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;

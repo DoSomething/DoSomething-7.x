@@ -87,27 +87,33 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       $state->markSuspended();
     }
     else {
-      // Update Mobile Commons profile with TFJ goals
-      $url = "https://secure.mcommons.com/api/profile_update";
+      if (!empty($this->mcommons_update_field)) {
+        // Update Mobile Commons profile with drive goals
+        $url = "https://secure.mcommons.com/api/profile_update";
 
-      $fields = array(
-        'phone_number' => urlencode($mobile),
-        $this->mcommons_update_field => urlencode($user_response),
-      );
+        $fields = array(
+          'phone_number' => urlencode($mobile),
+          $this->mcommons_update_field => urlencode($user_response),
+        );
 
-      $fields_query = http_build_query($fields);
+        $fields_query = http_build_query($fields);
 
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-      curl_setopt($ch, CURLOPT_USERPWD, "developers@dosomething.org:80276608");
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_POST, count($fields));
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_query);
-      $updateResult = curl_exec($ch);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "developers@dosomething.org:80276608");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, count($fields));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_query);
+        $updateResult = curl_exec($ch);
 
-      curl_close($ch);
+        curl_close($ch);
+      }
+      // if no mcommons field specified, then expect phone #s for a FTAF
+      else {
+        $state->setContext('ftaf_prompt:message', $user_response);
+      }
 
       $state->markCompleted();
     }
