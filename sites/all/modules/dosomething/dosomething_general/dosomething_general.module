@@ -1013,8 +1013,9 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   }
    
   if (!empty($email)) {
-    if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
-      dosomething_general_mailchimp_subscribe($email, $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']);
+    if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) && !empty($email)) {
+      $mc_merge_vars['MMERGE7'] = $cell;
+      dosomething_general_mailchimp_subscribe($email, $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'], $mc_merge_vars);
     }
   }
   
@@ -1206,37 +1207,6 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $ar
 }
 
 /**
- * Update the Mobile Commons profile for a given number
- *
- * @param $mobile
- *    Mobile number of profile to update
- * @param $args
- *    Array of fields to update for that profile
- */
-function dosomething_general_mobile_commons_profile_update($mobile, $args = array()) {
-  $api_opt_in_path_url = 'https://secure.mcommons.com/api/profile_update';
-
-  $options = array(
-    'headers' => array(
-      'Content-type' => 'application/x-www-form-urlencoded',
-      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Authorization' => 'Basic ' . base64_encode('developers@dosomething.org:80276608'),
-    ),
-    'method' => 'POST',
-    'data' => "phone_number=$mobile",
-  );
-
-  if (!empty($args)) {
-    foreach ($args AS $key => $val) {
-      $options['data'] .= '&' . $key . '=' . urlencode($val);
-    }
-  }
-
-  $response = drupal_http_request($api_opt_in_path_url, $options);
-  return $response;
-}
-
-/**
  * Subscribe the email to the mailchimp DoSomething Members List.
  *
  * @param $email
@@ -1286,12 +1256,13 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   // listSubscribe(string apikey, string id, string email_address, array merge_vars,
   //   string email_type, bool double_optin, bool update_existing, bool replace_interests, bool send_welcome)
   $mc_signup_results = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
+  // mailchimp_subscribe_user($list, $email, $merge_vars, $message = TRUE, $mcapi = NULL)
   
   if ($mc_signup_results) {
     return $mc_signup_results;
   }
   else {
-    drupal_set_message('Failed to signup new user to MailChimp.', 'error');
+    drupal_set_message('Failed to signup new user ('. $email .') to MailChimp.', 'error');
   }
 
 }
