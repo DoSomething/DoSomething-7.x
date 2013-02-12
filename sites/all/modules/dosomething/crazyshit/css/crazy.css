@@ -314,7 +314,7 @@ header[role="banner"] {
 
 /* line 10, ../sass/crazy.sass */
 body, div[role="main"], #page {
-  background: #dddddd !important; }
+  background: #dddddd; }
 
 /* line 17, ../sass/crazy.sass */
 #header {
