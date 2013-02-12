@@ -122,7 +122,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_level';
 $activity->inputs = array('start');
 $activity->outputs = array('ask_school_state');
-$activity->question = '1/3 Great, let\'s get you started. There will be 3 questions. Are you in 1) middle/high school or 2) college? Reply with 1 or 2.';
+$activity->question = '1/3 First, let\'s find your school. There will be 3 questions. Are you in 1) middle/high school or 2) college? Reply with 1 or 2.';
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_state';
