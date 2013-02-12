@@ -251,6 +251,7 @@ $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->alpha_optin = 131891;
 $activity->beta_optin = 129751;
+$activity->response_success = t('Text TFJINVITE if you want to invite more!');
 $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with TFJINVITE.');
 
 $activity = $workflow->newActivity('end');
@@ -375,6 +376,7 @@ $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;
+$activity->response_success = t('Text GYSINVITE if you want to invite more!');
 $activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with GYSINVITE.');
 
 $activity = $workflow->newActivity('end');
