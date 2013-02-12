@@ -322,7 +322,7 @@ $activity->outputs = array('ftaf_process');
 $activity->alpha_campaign_id = 110073;
 $activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething Green Your School Challenge Team! Who else should be involved? Text back GYSINVITE and we\'ll invite them too.';
 $activity->drive_link = 'http://doso.me/9';
-$activity->success_message = t('Awesome! You\'ve been added to the drive at DS.org/green. Who else should be involved? Respond with their phone #s and we\'ll invite them to join you.');
+$activity->success_message = t('Awesome! You\'ve been added to the drive at http://doso.me/9. Who else should be involved? Respond with their phone #s and we\'ll invite them to join you.');
 
 $activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
