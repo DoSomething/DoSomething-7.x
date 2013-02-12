@@ -8,6 +8,7 @@
       var school_loans = []; 
 
       // define array content
+      var last_tip = $('<span>Want more? Download the <a target="_blank" href="//files.dosomething.org/files/campaigns/crazy13/crazy_pocket_guide.pdf">pocket guide!</a></span>');
       
       savings = [
         "savings",
@@ -25,9 +26,9 @@
         "Don't bounce your checks. Overdrawing your account will cause you to rack up big fees and further hurt a delicate financial situation.",
         "Use your own bank's ATM. Many banks charge a fee to use an ATM that doesn't belong to your bank.",
         "Review your bank statement every month. It will help you catch mistakes and keep track of any fees.",
-        "Last one!"
+        last_tip
       ];
-
+      
       credit_debt = [
         "credit/debt",
         "Check for annual fees, now and in the future. Even your card starts without a fee, the credit card company may add one on later.",
@@ -44,7 +45,7 @@
         "Establish a good credit score by paying all bills and loans on time. Higher credit scores will help you secure better interest rates and card perks.",
         "Check your monthly credit card statement at the middle and end of the month. This will help you stay on top of unexpected charges or fees.",
         "Don't use a credit card as a way to borrow money. There are better options with less expensive interest rates, such as a small loan from a credit union.",
-        "Last one!"
+        last_tip
       ];
 
       school_loans = [
@@ -63,7 +64,7 @@
         "Planning to save on interest charges by paying the loan off early? Before you borrow, determine if there are early repayment penalties. Some tricky lenders charge a fee for paying in advance, so they can recoup the loss of interest.",
         "If your lender offers a discount on fees or interest rates for your federal loan, find out if the discount will remain if your loan is sold. This can happen many times in the life of your loan, so you want to be sure you retain these benefits in the long-term.",
         "If you are offered a good rate on a private loan, get the full offer in writing along with any terms or restrictions, then reach out to other lenders to see if they will beat the rate or offer.",
-        "Last one!"
+        last_tip
       ];
       
       // create containing array
@@ -71,15 +72,19 @@
       var current_array = [];
       var current_array = all_subjects[0];
 
-      // select tip subject
-      $('.tip_subject').click(function(e){
-        var tip_no = $(this).attr('id').substring(3);
-        current_array = all_subjects[tip_no];
-        $('.tip_wrapper h1').text(current_array[0]);
-        $('.tip_wrapper p').text(current_array[1]);
-        $('#tip_no').text(1);
-        e.preventDefault();
-      });
+      // define some variables outside of function 
+      // some CSS to hide and show [prev] and [next]
+      var ghost_button = {
+        'visibility' : 'hidden'
+      }
+
+      var blue_button = {
+        'visibility' : 'visible'
+      }
+
+      // cache variables
+      var $tip_prev = $('#tip_prev');
+      var $tip_next = $('#tip_next');
 
       // increment or decrement tip num.
       $('.small_button').click(function(e){
@@ -97,19 +102,6 @@
             var new_num = parseFloat(old_num) - 1;
           }
         }
-
-        // some CSS to hide and show [prev] and [next]
-        var ghost_button = {
-          'visibility' : 'hidden'
-        }
-
-        var blue_button = {
-          'visibility' : 'visible'
-        }
-
-        // cache variables
-        var $tip_prev = $('#tip_prev');
-        var $tip_next = $('#tip_next');
 
         // hide [prev] if no previous tips exist
         if (new_num == 1) {
@@ -130,12 +122,25 @@
         if (new_num == 14) {
           $tip_next.css(blue_button);
         }
-
-        $('.tip_wrapper p').text(current_array[new_num]);
+        
+        $('.tip_wrapper p').html(current_array[new_num]);
         $('#tip_no').text(new_num);
 
         e.preventDefault();
       });
+      
+      // select tip subject
+      $('.tip_subject').click(function(e){
+        var tip_no = $(this).attr('id').substring(3);
+        current_array = all_subjects[tip_no];
+        $('.tip_wrapper h1').text(current_array[0]);
+        $('.tip_wrapper p').html(current_array[1]);
+        $('#tip_no').text(1);
+        $tip_next.css(blue_button);
+        $tip_prev.css(ghost_button);
+        e.preventDefault();
+      });
+
 
       function add_remove_flat(class_name) {
         $this
