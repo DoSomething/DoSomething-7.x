@@ -120,7 +120,7 @@ $activity->outputs = array('ask_school_level');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_level';
-$activity->inputs = array('start');
+$activity->inputs = array('no_school_found');
 $activity->outputs = array('ask_school_state');
 $activity->question = '1/3 First, let\'s find your school. There will be 3 questions. Are you in 1) middle/high school or 2) college? Reply with 1 or 2.';
 
@@ -151,7 +151,7 @@ $activity->schools_found_post_message = t('Text back your school ID# to continue
 
 $activity = $workflow->newActivity('activity');
 $activity->name = 'school_found';
-$activity->inputs = array('check_school');
+$activity->inputs = array('check_school', 'school_search');
 $activity->outputs = array('ask_jeans');
 
 $activity = $workflow->newActivity('sms_prompt');
@@ -179,13 +179,13 @@ $activity->outputs = array('submit_report_back');
 
 $activity = $workflow->newActivity('tfj_report_back');
 $activity->name = 'submit_report_back';
-$activity->inputs = array('ask_photo');
+$activity->inputs = array('strip_signature_2');
 $activity->outputs = array('end');
 $activity->webform_nid = 727486;
 $activity->completion_opt_in = 144704;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('test');
+$activity->inputs = array('submit_report_back', 'school_search');
 
 $workflows[$workflow->name] = $workflow;
