@@ -29,6 +29,34 @@ $activity->inputs = array('wyr_game_start');
 $workflows[$workflow->name] = $workflow;
 
 /**
+ * Randomizes TIPS sent to user. Uses same activity as wyr_game_start, but
+ * with different id and paths.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_wyr_tips';
+$workflow->title = 'Would You Rather - Tips';
+$workflow->description = 'Select random tips to send to the user.';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('wyr_game_tips');
+
+$activity = $workflow->newActivity('wyr_game_start');
+$activity->name = 'wyr_game_tips';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->game_id = 3;
+$activity->opt_in_paths = array(144643, 144663, 144683);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('wyr_game_tips');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
  * Handle the end of WYR question set #1. Process response to final answer
  */
 $workflow = new ConductorWorkflow();

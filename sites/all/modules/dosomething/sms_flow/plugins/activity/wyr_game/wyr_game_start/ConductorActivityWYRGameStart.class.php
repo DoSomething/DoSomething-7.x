@@ -37,7 +37,7 @@ class ConductorActivityWYRGameStart extends ConductorActivity {
     }
 
     // Send user to selected opt-in path
-   dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path);
+    dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path);
 
     // If no existing record, create one
     if (empty($started_paths)) {
