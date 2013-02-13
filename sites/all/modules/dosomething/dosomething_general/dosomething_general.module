@@ -1296,9 +1296,8 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
     return $mc_signup_results;
   }
   else {
-    drupal_set_message('Failed to signup new user ('. $email .') to MailChimp.', 'error');
+    // drupal_set_message('Failed to signup new user ('. $email .') to MailChimp.', 'error');
   }
-
 }
 
 /**
