@@ -931,7 +931,7 @@ function crazyshit_fboauth_redirect($destination) {
 	    $email = $user->mail;
 
 	    if (!empty($mid) && valid_email_address($email) && !empty($email)) {
-	       dosomething_general_mailchimp_subscribe($email, $mid, NULL);
+	       dosomething_general_mailchimp_subscribe($email, $mid);
 	    }
 
 	    $u = array(
