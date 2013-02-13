@@ -13,6 +13,9 @@ class ConductorActivitySmsFlowDrivesFtaf extends ConductorActivity {
 
   // Response sent to inviter if process fails
   public $response_fail = '';
+
+  // Response appended to message if process succeeds
+  public $response_success = '';
   
   public function run($workflow) {
     $state = $this->getState();
@@ -79,7 +82,8 @@ class ConductorActivitySmsFlowDrivesFtaf extends ConductorActivity {
       }
 
       $args = array(
-        'tfj2013_inviter' => $inviter_name,
+        'tfj2013_inviter' => $inviter_name, // TODO: should remove when TFJ closes
+        'drives_inviter' => $inviter_name,
         'drives_invite_gid' => $drives_invite_gid,
       );
 
@@ -122,7 +126,7 @@ class ConductorActivitySmsFlowDrivesFtaf extends ConductorActivity {
         $response .= '. ';
       }
 
-      $response .= 'Text TFJINVITE if you want to invite more!';
+      $response .= $this->response_success;
 
       sms_flow_start($mobile, $this->alpha_optin, $this->beta_optin, $vetted_numbers, $f, $args, FALSE);
     }

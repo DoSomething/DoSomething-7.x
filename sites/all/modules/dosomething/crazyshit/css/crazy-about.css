@@ -419,10 +419,14 @@ a.no_thanks {
     height: 100%; } }
 
 /* line 200, ../sass/crazy-about.sass */
-#tips, #scholarship, #video {
+#tips, #scholarship, #video, #footer {
   padding: 2% 0; }
 
 /* line 203, ../sass/crazy-about.sass */
 .section {
   margin: 0 auto;
   overflow: hidden; }
+
+/* line 209, ../sass/crazy-about.sass */
+#footer {
+  text-align: center; }

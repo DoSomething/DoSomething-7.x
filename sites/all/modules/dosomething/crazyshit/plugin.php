@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($fbed)) {
+  $fbed = 0;
+}
+
 // Whether or not to allow notifications.
 $allow_notifications = true;
 
