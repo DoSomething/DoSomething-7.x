@@ -8,8 +8,8 @@ class ConductorActivityTFJReportBack extends ConductorActivity {
   // NID of the webform to submit to
   public $webform_nid = 0;
 
-  // Message to send to users when report back succeeds
-  public $success_message;
+  // Mobile Commons opt-in path to send to users when report back succeeds
+  public $completion_opt_in;
 
   public function run($workflow) {
     $state = $this->getState();
@@ -96,7 +96,9 @@ class ConductorActivityTFJReportBack extends ConductorActivity {
     } 
     catch(Exception $e) {}
 
-    $state->setContext('sms_response', $this->success_message);
+    // Send user to MC opt-in path to complete workflow
+    dosomething_general_mobile_commons_subscribe($mobile, $this->completion_opt_in);
+    $state->setContext('ignore_no_response_error', TRUE);
     $state->markCompleted();
   }
 

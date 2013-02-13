@@ -182,7 +182,7 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_photo');
 $activity->outputs = array('end');
 $activity->webform_nid = 727486;
-$activity->success_message = t('[TODO] Thanks for reporting back on Teens for Jeans!');
+$activity->completion_opt_in = 144704;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
