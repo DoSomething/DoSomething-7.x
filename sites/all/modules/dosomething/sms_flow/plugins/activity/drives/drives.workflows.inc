@@ -101,10 +101,16 @@ $activity = $workflow->newActivity('sms_create_drive');
 $activity->name = 'create_drive';
 $activity->title = 'Create a new drive at the user\'s school.';
 $activity->inputs = array('account_exists', 'create_account');
-$activity->outputs = array('strip_signature_3', 'end');
+$activity->outputs = array('strip_signature_post_create_drive', 'end');
+$activity->campaign_url = 'teensforjeans';
+$activity->sign_up_nid = 725896;
+$activity->response_error = 'Sorry! We ran into a problem creating your drive. Text JEANS to try again or visit http://doso.me/6 to try online.';
+$activity->response_in_drive = 'You already signed up for a drive! Login at http://doso.me/6 to visit it. Have friends you want to invite? Reply with their #\'s and we\'ll invite them!';
+$activity->response_new_account = 'Great! Your school is signed up for a T4J drive and to receive a T4J banner! Login at http://doso.me/6. Ur password is: @pass. Text us your friends\' #s to invite them too';
+$activity->response_success = 'Great! Your school is signed up for a T4J drive, and signed up to receive a T4J banner! Login at http://doso.me/6. Text us your friends\' #s to invite them too';
 
 $activity = $workflow->newActivity('sms_strip_signature');
-$activity->name = 'strip_signature_3';
+$activity->name = 'strip_signature_post_create_drive';
 $activity->inputs = array('create_drive');
 $activity->outputs = array('ftaf_process');
 
@@ -114,7 +120,7 @@ $activity->alpha_optin = 131891;
 $activity->beta_optin = 129751;
 $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with TFJINVITE if you want to invite more.');
 $activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your drive again, text TFJINVITE.');
-$activity->inputs = array('strip_signature_3');
+$activity->inputs = array('strip_signature_post_create_drive');
 $activity->outputs = array('end');
 
 $activity = $workflow->newActivity('end');
