@@ -269,6 +269,117 @@ $activity->outputs = array();
 $workflows[$workflow->name] = $workflow;
 
 //
+// sms_flow_gys_drives_create workflow
+//
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_gys_drives_create';
+$workflow->title = 'SMS Flow Drives Create for GYS';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->inputs = array();
+$activity->outputs = array('ask_school_level');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_school_level';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_school_state');
+$activity->question = t('1/3 Great, let\'s get you started. There will be 3 questions. Are you in 1) middle/high school or 2) college? Reply with 1 or 2.');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_school_state';
+$activity->inputs = array('ask_school_level');
+$activity->outputs = array('ask_school_name');
+$activity->question = t('2/3 What state is your school in? Reply with the 2 letter abbreviation (ex: NY)');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_school_name';
+$activity->inputs = array('ask_school_state');
+$activity->outputs = array('strip_signature');
+$activity->question = t('3/3 Last question before we look up your school. What\'s the name of your school?');
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_school_name');
+$activity->outputs = array('school_search');
+
+$activity = $workflow->newActivity('sms_flow_school_search');
+$activity->name = 'school_search';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('check_account_exists', 'end');
+
+$activity = $workflow->newActivity('sms_check_account_exists');
+$activity->name = 'check_account_exists';
+$activity->inputs = array('school_search');
+$activity->outputs = array('account_exists', 'no_account_exists');
+
+$activity = $workflow->newActivity('activity');
+$activity->name = 'account_exists';
+$activity->inputs = array('check_account_exists');
+$activity->outputs = array('create_drive');
+
+$activity = $workflow->newActivity('activity');
+$activity->name = 'no_account_exists';
+$activity->inputs = array('check_account_exists');
+$activity->outputs = array('ask_email');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_email';
+$activity->inputs = array('no_account_exists');
+$activity->outputs = array('ask_first_name');
+$activity->question = t('Cool, let\'s get started with adding you to the school\'s drive. What\'s your email address? We\'ll need it to contact you with details about your drive.');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_first_name';
+$activity->inputs = array('ask_email');
+$activity->outputs = array('strip_signature_2');
+$activity->question = t('One last question - what\'s your first name?');
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature_2';
+$activity->inputs = array('ask_first_name');
+$activity->outputs = array('create_account');
+
+$activity = $workflow->newActivity('sms_flow_create_account');
+$activity->name = 'create_account';
+$activity->inputs = array('strip_signature_2');
+$activity->outputs = array('create_drive');
+
+$activity = $workflow->newActivity('sms_create_drive');
+$activity->name = 'create_drive';
+$activity->inputs = array('account_exists', 'create_account');
+$activity->outputs = array('strip_signature_post_create_drive', 'end');
+$activity->campaign_url = 'greenyourschool';  // TODO: this is probably changing depending on name of campaign
+$activity->sign_up_nid = 727941;
+$activity->response_error = 'Sorry! We ran into a problem creating your drive. Text GYS to try again or visit http://doso.me/9 to try online.';
+$activity->response_in_drive = 'You already signed up for a drive! Login at http://doso.me/9 to visit it. Have friends you want to invite? Reply with their #\'s and we\'ll invite them!';
+$activity->response_new_account = 'Great! Your school is signed up for a GYS drive and to receive a GYS banner! Login at http://doso.me/9. Ur password is: @pass. Text us your friends\' #s to invite them too';
+$activity->response_success = 'Great! Your school is signed up for a GYS drive! Login at http://doso.me/9. Text us your friends\' #s to invite them too';
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature_post_create_drive';
+$activity->inputs = array('create_drive');
+$activity->outputs = array('ftaf_process');
+
+$activity = $workflow->newActivity('sms_flow_drives_ftaf');
+$activity->name = 'ftaf_process';
+$activity->alpha_optin = 143633;
+$activity->beta_optin = 143653;
+$activity->response_success = t('We\'ve sent along invites to your friends. Reply back with GYSINVITE if you want to invite more.');
+$activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your drive again, text GYSINVITE.');
+$activity->inputs = array('strip_signature_post_create_drive');
+$activity->outputs = array('end');
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ftaf_process', 'create_drive', 'school_search');
+$activity->outputs = array();
+
+$workflows[$workflow->name] = $workflow;
+
+//
 // sms_flow_gys_invite workflow
 //
 $workflow = new ConductorWorkflow;
