@@ -871,8 +871,8 @@ function crazy_load_fb() {
 	return;
   }
 
-  $appid = variable_get('fboauth_id');
-  $secret = variable_get('fboauth_secret');
+  $appid = variable_get('fboauth_id', 105775762330);
+  $secret = variable_get('fboauth_secret', '68e767e16e139277b1e7d2e2ba16a4f6');
 
   $facebook = new Facebook(array(
 	'appId' => $appid,
