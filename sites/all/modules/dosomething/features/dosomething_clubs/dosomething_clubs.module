@@ -1026,7 +1026,9 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
     $image = 'http://' . $_SERVER['HTTP_HOST'] . '/files/styles/action_results_thumbnail/public/' . str_replace(' ', '%20', $n->field_club_picture[LANGUAGE_NONE][0]['filename']);
   }
 
-  drupal_add_js("var fb_link, fb_title, fb_blurb;\r\nfb_link = '" . dosomething_clubs_invite_link($g->gid, '', true) . "'\r\nfb_title = '" . addslashes($n->title) . "'\r\nfb_blurb = '" . addslashes($n->field_club_blurb[LANGUAGE_NONE][0]['value']) . "'\r\nfb_image = '" . $image . "';", array(
+  $blurb = isset($n->field_club_blurb[LANGUAGE_NONE][0]['value']) ? $n->field_club_blurb[LANGUAGE_NONE][0]['value'] : '';
+
+  drupal_add_js("var fb_link, fb_title, fb_blurb;\r\nfb_link = '" . dosomething_clubs_invite_link($g->gid, '', true) . "'\r\nfb_title = '" . addslashes($n->title) . "'\r\nfb_blurb = '" . addslashes($blurb) . "'\r\nfb_image = '" . $image . "';", array(
     'type' => 'inline',
     'weight' => -1000,
   ));
