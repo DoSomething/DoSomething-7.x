@@ -30,6 +30,41 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
       'weight' => 1000,
     ));
 
+    $campaign_nid = $node->field_linked_campaign[LANGUAGE_NONE][0]['nid'];
+    $scheme_id = $node->field_color_scheme[LANGUAGE_NONE][0]['value'];
+    require_once drupal_get_path('module', 'dosomething_social_scholars') . '/style_config.php';
+
+    if (!empty($campaign_styles[$campaign_nid]) || !empty($scheme_styles[$scheme_id])) {
+      if (isset($campaign_nid)) {
+        $s = $campaign_styles[$campaign_nid]['longform'];
+      }
+      else if (isset($scheme_id)) {
+        $s = $scheme_styles[$scheme_id]['longform'];
+      }
+
+      $css = '
+        #sas-form .webform-client-form {
+          background: ' . $s['background'] . ' !important;
+          color: ' . $s['font_color'] . ' !important;
+        }
+
+        #sas-form .webform-client-form h1,
+        #sas-form .webform-client-form label {
+          color: ' . $s['font_color'] . ' !important;
+        }
+
+        #sas-form .webform-client-form .quote-highlight p {
+          background: ' . $s['tip'] . ' !important;
+          color: ' . $s['tip_color'] . ' !important;
+        }
+      ';
+      drupal_add_css($css, array(
+        'type' => 'inline',
+        'group' => CSS_THEME,
+        'weight' => 10000,
+      ));
+    }
+
     drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/js/dosomething_social_scholars.js');
 
     $f = &$form['submitted'];
@@ -76,9 +111,9 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
     $f['beta_opt_in']['#default_value'] = $node->field_betas_campaign[LANGUAGE_NONE][0]['value'];
     $f['sas_nid']['#default_value'] = $node->nid;
 
-    $form['actions']['submit']['#value'] = t('Submit');
-    $form['#validate'][] = 'dosomething_social_scholars_validate';
-    $form['#submit'][] = 'dosomething_social_scholars_submit';
+    #$form['actions']['submit']['#value'] = t('Submit');
+    $form['#validate'][] = 'dosomething_social_scholars_validate_form';
+    $form['#submit'][] = 'dosomething_social_scholars_submit_form';
 
     if (!user_is_logged_in()) {
       $form['actions']['submit']['#ajax'] = array(
@@ -91,12 +126,7 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
 /**
  *  Validates share-a-stat forms
  */
-function dosomething_social_scholars_validate($form, &$form_state) {
-  $editing = preg_match('#^\/node\/[0-9]+\/(webform|edit)#i', request_uri());
-  if ($editing) {
-    return;
-  }
-
+function dosomething_social_scholars_validate_form($form, &$form_state) {
   $error = 0;
   $s = $form_state['input']['submitted'];
 
@@ -130,7 +160,12 @@ function dosomething_social_scholars_validate($form, &$form_state) {
 function dosomething_social_scholars_ajax($form, &$form_state) {
   $commands = array();
   $errors = form_get_errors();
-  if ($errors) {
+
+  if (!empty($errors)) {
+    // Scrolls up the page to show the error messages.
+    $loop_back = '<script type="text/javascript"> jQuery("html, body").animate({ scrollTop: jQuery(".error").offset().top }, "slow"); </script>';
+    $commands[] = ajax_command_before('#page-title', $loop_back);
+
     $error_list = '';
     foreach ($errors AS $key => $error) {
       $error_list .= '<li>' . $error . '</li>';
@@ -159,7 +194,7 @@ function dosomething_social_scholars_ajax($form, &$form_state) {
 /**
  *  Submission details for share-a-stat forms.
  */
-function dosomething_social_scholars_submit($form, &$form_state) {
+function dosomething_social_scholars_submit_form($form, &$form_state) {
   $s = $form_state['input']['submitted'];
 
   $you = $s['referall_your_info'];
@@ -187,19 +222,21 @@ function dosomething_social_scholars_submit($form, &$form_state) {
   dosomething_general_mobile_commons_subscribe_with_friends($your_number, $alphas_campaign, $them, $betas_campaign);
 
   // Set the message to the redirect message found on the form.
-  drupal_set_message(t($node->field_redirect_message[LANGUAGE_NONE][0]['value']));
+  #drupal_set_message(t($node->field_redirect_message[LANGUAGE_NONE][0]['value']));
 
-  // If we set up the redirect path in the form, use that.
-  if (!empty($node->field_redirect_to_path[LANGUAGE_NONE][0]['value'])) {
-    $_GET['destination'] = $node->field_redirect_to_path[LANGUAGE_NONE][0]['value'];
-  }
-  // Otherwise, redirect to the default "show the images" page.
-  else {
-    $_GET['destination'] = 'share-these-images/' . $node->nid;
-  }
+  if (user_is_logged_in()) {
+    // If we set up the redirect path in the form, use that.
+    if (!empty($node->field_redirect_to_path[LANGUAGE_NONE][0]['value'])) {
+      $_GET['destination'] = $node->field_redirect_to_path[LANGUAGE_NONE][0]['value'];
+    }
+    // Otherwise, redirect to the default "show the images" page.
+    else {
+      $_GET['destination'] = 'sas-landing/' . $node->nid;
+    }
 
-  // Redirect.
-  drupal_goto();
+    // Redirect.
+    drupal_goto();
+  }
 }
 
 /**
@@ -228,6 +265,15 @@ function dosomething_social_scholars_theme($existing, $type, $theme, $path) {
       'template' => 'sas-footer',
       'variables' => array(
         'rules_uri' => NULL,
+      )
+    ),
+    // Campaign short form
+    'sas-campaign-short-form' => array(
+      'path' => $path . '/templates',
+      'template' => 'sas-campaign-short-form',
+      'variables' => array(
+        'alias' => NULL,
+        'nid' => NULL
       )
     ),
   );

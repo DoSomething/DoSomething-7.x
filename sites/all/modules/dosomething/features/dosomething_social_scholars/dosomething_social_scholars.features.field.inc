@@ -150,7 +150,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '9',
+        'weight' => '8',
       ),
     ),
   );
@@ -217,7 +217,78 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '10',
+        'weight' => '9',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-social_scholarship-field_color_scheme'.
+  $fields['node-social_scholarship-field_color_scheme'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_color_scheme',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'green' => 'Green',
+          'red' => 'Red',
+          'black' => 'Black',
+          'gray' => 'Gray',
+          'white' => 'White',
+          'yellow' => 'Yellow',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'social_scholarship',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 15,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_color_scheme',
+      'label' => 'Color Scheme',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '18',
       ),
     ),
   );
@@ -363,7 +434,145 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-social_scholarship-field_linked_campaign'.
+  $fields['node-social_scholarship-field_linked_campaign'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_linked_campaign',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'nid' => array(
+          'columns' => array(
+            'nid' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'nid' => array(
+          0 => 'nid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'node_reference',
+      'settings' => array(
+        'profile2_private' => FALSE,
+        'referenceable_types' => array(
+          'action_guide' => 0,
+          'api_key' => 0,
+          'awards_archive' => 0,
+          'bc_bio_form' => 0,
+          'blog' => 0,
+          'campaign' => 0,
+          'campaign_art_2011' => 0,
+          'campaign_blog_post' => 0,
+          'campaign_bully_2011' => 0,
+          'campaign_cancer_2011' => 0,
+          'campaign_contact_form' => 0,
+          'campaign_content_page' => 0,
+          'campaign_ew_2011' => 0,
+          'campaign_macys_2011' => 0,
+          'campaign_report_back' => 0,
+          'campaign_sign_up' => 0,
+          'campaign_sports_2011' => 0,
+          'cancer_2011_signup' => 0,
+          'cause_video' => 0,
+          'club' => 0,
+          'club_event' => 0,
+          'crazy_shit' => 0,
+          'decade_2011_signup' => 0,
+          'drive_form' => 0,
+          'ds_award_judging' => 0,
+          'dsaward_rec' => 0,
+          'dsu_askprof' => 0,
+          'dsu_guides' => 0,
+          'easy_idea' => 0,
+          'editorial_content_' => 0,
+          'ewaste_signup_2011' => 0,
+          'fb_app_data_gathering_form' => 0,
+          'final_grant_update' => 0,
+          'grant_alumni' => 0,
+          'grant_application' => 0,
+          'grant_judge' => 0,
+          'help_ticket' => 0,
+          'member_opportunity' => 0,
+          'mobile_referral_form' => 0,
+          'page' => 0,
+          'petition' => 0,
+          'poll' => 0,
+          'press' => 0,
+          'program_short_form' => 0,
+          'project_report' => 0,
+          'project_update' => 0,
+          'quiz' => 0,
+          'robo_calls' => 0,
+          'scholarship' => 0,
+          'scholarship_application' => 0,
+          'scholarship_application_with_rec' => 0,
+          'scholarship_recommendation' => 0,
+          'scholarship_recommendation_reque' => 0,
+          'school' => 0,
+          'scroller' => 0,
+          'share_of_day' => 0,
+          'shelter' => 0,
+          'social_scholarship' => 0,
+          'sponsor' => 0,
+          'team_challenge' => 0,
+          'tips_and_tools' => 0,
+          'webform' => 0,
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'references_1',
+          'view_name' => 'campaign_list_for_clubs',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'node_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'social_scholarship',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'node_reference',
+          'settings' => array(),
+          'type' => 'node_reference_default',
+          'weight' => 14,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_linked_campaign',
+      'label' => 'Linked campaign',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '17',
       ),
     ),
   );
@@ -778,7 +987,7 @@ function dosomething_social_scholars_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '12',
+        'weight' => '11',
       ),
     ),
   );
@@ -852,7 +1061,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '10',
       ),
     ),
   );
@@ -1117,7 +1326,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -1188,7 +1397,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '30',
         ),
         'type' => 'text_textfield',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
@@ -1257,7 +1466,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '33',
+        'weight' => '4',
       ),
     ),
   );
@@ -1326,7 +1535,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '34',
+        'weight' => '5',
       ),
     ),
   );
@@ -1395,7 +1604,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '35',
+        'weight' => '6',
       ),
     ),
   );
@@ -1464,7 +1673,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '36',
+        'weight' => '7',
       ),
     ),
   );
@@ -1533,7 +1742,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '37',
+        'weight' => '8',
       ),
     ),
   );
@@ -1543,12 +1752,14 @@ function dosomething_social_scholars_field_default_fields() {
   t('Alphas Campaign');
   t('Betas Campaign');
   t('Body');
+  t('Color Scheme');
   t('Either: The relative path to the page NOT including the first / (e.g. blog/7-facts-about-kittens)
 <br />OR: The full url to a webpage (e.g. http://www.google.com)');
   t('Facebook "Recommend" Language');
   t('Facebook "Share" Language');
   t('Friend\'s cell number:');
   t('Images');
+  t('Linked campaign');
   t('Official Rules Document');
   t('Optional.  A campaign number on Mobile Commons for Alphas.');
   t('Optional.  A mobile commons ID for betas.');

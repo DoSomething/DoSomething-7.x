@@ -1,0 +1,33 @@
+<?php
+
+$campaign_styles = array(
+	// Green your school
+	'718328' => array(
+		'longform' => array(
+			'background' => '#8dc641',
+			'tip' => '#163a26',
+			'font_color' => '#000000',
+			'tip_color' => '#ffffff',
+		),
+		'shortform' => array(
+			'background' => '#8dc641',
+			'font_color' => '#ffffff',
+		),
+	),
+);
+
+$scheme_styles = array(
+	// Green
+	'green' => array(
+		'longform' => array(
+			'background' => '#8dc641',
+			'tip' => '#163a26',
+			'font_color' => '#000000',
+			'tip_color' => '#ffffff',
+		),
+		'shortform' => array(
+			'background' => '#8dc641',
+			'font_color' => '#ffffff',
+		),
+	),
+);
