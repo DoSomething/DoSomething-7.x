@@ -46,6 +46,12 @@ function crazyshit_menu() {
 	  'access callback' => TRUE,
 	);
 
+	$items['crazy/fb-share/%'] = array(
+	  'page callback' => 'crazyshit_fb_share',
+	  'page arguments' => array(2),
+	  'access callback' => TRUE,
+	);
+
 	$items['crazy/fb-connect'] = array(
 	  'page callback' => 'crazyshit_fb_connect',
 	  'access callback' => TRUE
@@ -289,6 +295,36 @@ function crazyshit_submit_vouch_request($sid) {
 	}
 }
 
+/**
+ *  Adds weight to posts from a Facebook image share.
+ *
+ *	@param int $sid
+ *	   The submission ID of the post that should be updated.
+ */
+function crazyshit_fb_share($sid) {
+  $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+  $total = 0;
+  if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
+    $total = (int) $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
+  }
+
+  $weight = 0;
+  // Check for existing weight and update accordingly.
+  if (isset($submission->field_craziness_weight[LANGUAGE_NONE][0]['value'])) {
+  	$weight = $submission->field_craziness_weight[LANGUAGE_NONE][0]['value'];
+  }
+
+  // We want to get the nearest 10, 100, 1000, 10000, etc...
+  $top = pow(10, strlen((string) $total));
+  $multiplier = (10 / $top);
+
+  $weight += (0.5 * $multiplier);
+
+  $submission->field_crazyness_weight[LANGUAGE_NONE][0]['value'] = $weight;
+  @entity_save('webform_submission_entity', $submission);
+}
+
 /*
 function crazyshit_submit_craziness() {
 	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
@@ -385,15 +421,15 @@ function crazyshit_update_counts($sid, $field) {
 
   // We want to get the nearest 10, 100, 1000, 10000, etc...
   $top = pow(10, strlen((string) $total));
-  $divisor = (10 / $top);
+  $multiplier = (10 / $top);
 
-  // Add new weights, depending on 
+  // Add new weights, depending on the action.
   switch ($field) {
   	case 'crazy_vouch_count':
-  	   $weight += (0.75 * $divisor);
+  	   $weight += (0.75 * $multiplier);
   	break;
   	case 'crazy_bullshit_count':
-  	   $weight += (0.25 * $divisor);
+  	   $weight += (0.25 * $multiplier);
   	break;
   }
 
