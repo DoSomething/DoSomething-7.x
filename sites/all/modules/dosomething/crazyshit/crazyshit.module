@@ -397,7 +397,7 @@ function crazyshit_update_counts($sid, $field) {
   	break;
   }
 
-  $submission->field_crazyiness_weight[LANGUAGE_NONE][0]['value'] = $weight;
+  $submission->field_craziness_weight[LANGUAGE_NONE][0]['value'] = $weight;
 
   @entity_save('webform_submission_entity', $submission);
 
