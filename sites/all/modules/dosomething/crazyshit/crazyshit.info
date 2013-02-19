@@ -29,6 +29,7 @@ features[fe_block_settings][] = views-crazy_shit_landing-friends_view
 features[features_api][] = api:1
 features[field][] = node-crazy_shit-body
 features[field][] = node-crazy_shit-field_crazy_image
+features[field][] = webform_submission_entity-crazy_shit-field_craziness_weight
 features[field][] = webform_submission_entity-crazy_shit-field_crazy_bottom_text
 features[field][] = webform_submission_entity-crazy_shit-field_crazy_bullshit_count
 features[field][] = webform_submission_entity-crazy_shit-field_crazy_count
