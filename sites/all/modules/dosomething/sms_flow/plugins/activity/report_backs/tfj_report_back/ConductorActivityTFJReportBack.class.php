@@ -87,9 +87,14 @@ class ConductorActivityTFJReportBack extends ConductorActivity {
         if (!empty($mms_url)) {
           $f_name = 'public://' . basename($mms_url);
           $attach_contents = file_get_contents($mms_url);
-          $attach_data = file_save_data($attach_contents, $f_name);
-          $attach_array = get_object_vars($attach_data);
-          $wrapper->value()->field_webform_pictures[LANGUAGE_NONE][] = $attach_array;
+          if ($attach_contents !== FALSE) {
+            $attach_data = file_save_data($attach_contents, $f_name);
+            $attach_array = get_object_vars($attach_data);
+            $wrapper->value()->field_webform_pictures[LANGUAGE_NONE][] = $attach_array;
+          }
+          else {
+            watchdog('sms_flow', t('Unable to get contents from %url for user %mobile', array('%url' => $mms_url, '%mobile' => $mobile)));
+          }
         }
 
         $wrapper->save();

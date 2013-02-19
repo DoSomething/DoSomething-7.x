@@ -158,13 +158,13 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_jeans';
 $activity->inputs = array('school_found');
 $activity->outputs = array('ask_people');
-$activity->question = 'Awesome! How many pairs of jeans did you collect?';
+$activity->question = 'Awesome! How many pairs of jeans did you collect? Reply with a number.';
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_people';
 $activity->inputs = array('ask_jeans');
 $activity->outputs = array('ask_photo');
-$activity->question = 'How many people helped with your drive?';
+$activity->question = 'How many people helped with your drive? Reply with a number.';
 
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_photo';
