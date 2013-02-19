@@ -44,6 +44,9 @@
     $('#campaign-opt-in br').remove();
     $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
 
+    // Add Gallery link hashtag to take user back to gallery area on reload
+    $('.pager li a').attr("href", function(i, href) { return href + "#galleriffic"; });
+
     // FAQ drop down animation
     $('#faq h4').next('div').css('display','none');
     $('#faq h4.activeFAQ').next('div').css('display','block');
