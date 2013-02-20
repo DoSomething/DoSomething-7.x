@@ -1,4 +1,4 @@
-<form class="webform-client-form" enctype="multipart/form-data" action="/<?php echo $alias; ?>/contact-form" method="post" id="webform-client-form-<?php echo $nid; ?>" accept-charset="UTF-8">
+<form class="webform-client-form" enctype="multipart/form-data" action="/<?php echo $alias; ?>" method="post" id="webform-client-form-<?php echo $nid; ?>" accept-charset="UTF-8">
 <div>
 <div class="form-item webform-component webform-component-markup" id="webform-component-start-header">
  <h3>Join your school's drive &amp; get a free banner</h3>

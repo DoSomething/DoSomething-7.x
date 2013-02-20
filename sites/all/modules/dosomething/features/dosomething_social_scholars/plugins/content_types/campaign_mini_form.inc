@@ -11,12 +11,12 @@ $plugin = array(
 );
 
 function dosomething_social_scholars_sas_campaign_shortform_content_type_render($subtype, $conf, $panel_args, $context) {
-  $node = menu_get_object();
   $block = new StdClass();
 
+  // Get the campaign in question.
   $campaign = end($context)->data;
-  $alias = drupal_get_path_alias('node/' . $campaign->nid);
 
+  // Get user information, if possible.
   global $user;
   $mail = $mobile = '';
   if ($user->uid > 0) {
@@ -28,6 +28,23 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
     }
   }
 
+  // Get the group ID for the campaign in question.
+  $gid = og_get_group('node', $campaign->nid)->gid;
+
+  // Get the node ID for the campaign short form...for the campaign in question.
+  $sf = db_select('field_data_group_audience', 'ga')
+    ->fields('ga', array('entity_id'))
+    ->condition('entity_type', 'node')
+    ->condition('bundle', 'campaign_contact_form')
+    ->condition('group_audience_gid', $gid)
+    ->range(0, 1)
+    ->execute();
+  $short_form = reset($sf->fetchAll());
+
+  // Try and get the alias for the campaign short form.
+  $alias = drupal_get_path_alias('node/' . $short_form->entity_id);
+
+  // Styling information.
   $campaign_nid = $campaign->nid;
   require_once drupal_get_path('module', 'dosomething_social_scholars') . '/style_config.php';
 
@@ -50,6 +67,7 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
     ));
   }
 
+  // Build the container.
   $content['shortform'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -67,6 +85,7 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
     ),
   );
 
+  // Set the block content and return it
   $block->content = $content;
   return $block;
 }
