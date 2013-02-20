@@ -312,6 +312,9 @@ $activity = $workflow->newActivity('sms_flow_school_search');
 $activity->name = 'school_search';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('check_account_exists', 'end');
+$activity->invalid_id_message = t('That\'s not a valid school ID. Text GYSCREATE to search again. Or go to http://doso.me/9 for more info.');
+$activity->no_school_message = t('Sorry, we couldn\'t find any matching schools. Text GYSCREATE to search again. Or visit http://doso.me/9 for more info.');
+$activity->schools_found_post_message = t('Text back your school ID# to start your drive. Didn\'t find your school? Text GYSCREATE to try again. Or visit http://doso.me/9 for more info.');
 
 $activity = $workflow->newActivity('sms_check_account_exists');
 $activity->name = 'check_account_exists';
