@@ -186,6 +186,9 @@
 	    	   'img_picture': img,
 	    	   'img_require_login': true,
 	    	}, function(response) {
+	    		$.post('/crazy/fb-share/' + sid, {}, function(response) {
+	    			// Nothing!
+	    		});
 	    	});
 	    	return false;
 	    });

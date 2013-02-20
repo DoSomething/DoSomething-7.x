@@ -28,8 +28,11 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* No results behavior: Global: Text area */
@@ -407,16 +410,44 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
-  /* Sort criterion: Webform Submission: All Time Count (field_crazy_total_count) */
-  $handler->display->display_options['sorts']['field_crazy_total_count_value']['id'] = 'field_crazy_total_count_value';
-  $handler->display->display_options['sorts']['field_crazy_total_count_value']['table'] = 'field_data_field_crazy_total_count';
-  $handler->display->display_options['sorts']['field_crazy_total_count_value']['field'] = 'field_crazy_total_count_value';
-  $handler->display->display_options['sorts']['field_crazy_total_count_value']['order'] = 'DESC';
-  /* Sort criterion: Webform submissions: Submitted */
-  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
-  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
-  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
-  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
+  /* Field: Webform Submission: Craziness weight */
+  $handler->display->display_options['fields']['field_craziness_weight']['id'] = 'field_craziness_weight';
+  $handler->display->display_options['fields']['field_craziness_weight']['table'] = 'field_data_field_craziness_weight';
+  $handler->display->display_options['fields']['field_craziness_weight']['field'] = 'field_craziness_weight';
+  $handler->display->display_options['fields']['field_craziness_weight']['group_type'] = 'sum';
+  $handler->display->display_options['fields']['field_craziness_weight']['label'] = '';
+  $handler->display->display_options['fields']['field_craziness_weight']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_craziness_weight']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_craziness_weight']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_craziness_weight']['type'] = 'number_unformatted';
+  $handler->display->display_options['fields']['field_craziness_weight']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_craziness_weight']['field_api_classes'] = 0;
+  /* Sort criterion: Webform Submission: Craziness weight (field_craziness_weight) */
+  $handler->display->display_options['sorts']['field_craziness_weight_value']['id'] = 'field_craziness_weight_value';
+  $handler->display->display_options['sorts']['field_craziness_weight_value']['table'] = 'field_data_field_craziness_weight';
+  $handler->display->display_options['sorts']['field_craziness_weight_value']['field'] = 'field_craziness_weight_value';
+  $handler->display->display_options['sorts']['field_craziness_weight_value']['order'] = 'DESC';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -436,13 +467,6 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'crazy_shit' => 'crazy_shit',
   );
-  /* Filter criterion: Webform submissions: Submitted */
-  $handler->display->display_options['filters']['submitted']['id'] = 'submitted';
-  $handler->display->display_options['filters']['submitted']['table'] = 'webform_submissions';
-  $handler->display->display_options['filters']['submitted']['field'] = 'submitted';
-  $handler->display->display_options['filters']['submitted']['operator'] = '>';
-  $handler->display->display_options['filters']['submitted']['default_date'] = 'Jan 1, 2013';
-  $handler->display->display_options['filters']['submitted']['year_range'] = '-2:+3';
 
   /* Display: Friends View */
   $handler = $view->new_display('block', 'Friends View', 'friends_view');

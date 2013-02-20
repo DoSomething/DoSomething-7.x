@@ -233,6 +233,72 @@ function crazyshit_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-crazy_shit-field_craziness_weight'.
+  $fields['webform_submission_entity-crazy_shit-field_craziness_weight'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_craziness_weight',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'decimal_separator' => '.',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_float',
+    ),
+    'field_instance' => array(
+      'bundle' => 'crazy_shit',
+      'default_value' => array(
+        0 => array(
+          'value' => '0.0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 2,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_decimal',
+          'weight' => 11,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_craziness_weight',
+      'label' => 'Craziness weight',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-crazy_shit-field_crazy_bottom_text'.
   $fields['webform_submission_entity-crazy_shit-field_crazy_bottom_text'] = array(
     'field_config' => array(
@@ -501,7 +567,7 @@ function crazyshit_field_default_fields() {
         'default_image' => 0,
         'file_directory' => 'crazyshit',
         'file_extensions' => 'png gif jpg jpeg',
-        'max_filesize' => '1.5 MB',
+        'max_filesize' => '',
         'max_resolution' => '',
         'min_resolution' => '',
         'title_field' => 0,
@@ -527,6 +593,7 @@ function crazyshit_field_default_fields() {
             'image_boot_camp_bio' => 0,
             'image_campaign_blog_thumbnail' => 0,
             'image_campaign_microsite_logo' => 0,
+            'image_campaign_report_back_style' => 0,
             'image_campaigns_image' => 0,
             'image_campaigns_logo' => 0,
             'image_carousel_center' => 0,
@@ -540,7 +607,6 @@ function crazyshit_field_default_fields() {
             'image_crazy_facebook_picture' => 0,
             'image_crazy_image_dimensions' => 0,
             'image_explore_action_guides' => 0,
-            'image_fb_post_image' => 0,
             'image_front_slider' => 0,
             'image_gallery_thumbnail' => 0,
             'image_grants_landing' => 0,
@@ -550,7 +616,6 @@ function crazyshit_field_default_fields() {
             'image_member_photo_gallery' => 0,
             'image_my_somethings' => 0,
             'image_nav_page_bottom' => 0,
-            'image_p4p_fake_button' => 0,
             'image_petdetail_regular' => 0,
             'image_petdetail_retina' => 0,
             'image_project_gallery_thumb' => 0,
@@ -920,6 +985,7 @@ function crazyshit_field_default_fields() {
   t('Body');
   t('Bottom Text');
   t('Bullshit count');
+  t('Craziness weight');
   t('Crazy Count');
   t('Image');
   t('This Week Total Count');

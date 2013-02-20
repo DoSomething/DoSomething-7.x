@@ -106,8 +106,8 @@ function crazyshit_field_group_info() {
     'label' => 'Page 2 crazyness',
     'weight' => '3',
     'children' => array(
-      0 => 'field_crazy_top_text',
-      1 => 'field_crazy_bottom_text',
+      0 => 'field_crazy_bottom_text',
+      1 => 'field_crazy_top_text',
     ),
     'format_type' => 'multipage',
     'format_settings' => array(

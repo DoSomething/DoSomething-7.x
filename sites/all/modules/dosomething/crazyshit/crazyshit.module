@@ -46,6 +46,12 @@ function crazyshit_menu() {
 	  'access callback' => TRUE,
 	);
 
+	$items['crazy/fb-share/%'] = array(
+	  'page callback' => 'crazyshit_fb_share',
+	  'page arguments' => array(2),
+	  'access callback' => TRUE,
+	);
+
 	$items['crazy/fb-connect'] = array(
 	  'page callback' => 'crazyshit_fb_connect',
 	  'access callback' => TRUE
@@ -289,6 +295,36 @@ function crazyshit_submit_vouch_request($sid) {
 	}
 }
 
+/**
+ *  Adds weight to posts from a Facebook image share.
+ *
+ *	@param int $sid
+ *	   The submission ID of the post that should be updated.
+ */
+function crazyshit_fb_share($sid) {
+  $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+  $total = 0;
+  if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
+    $total = (int) $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
+  }
+
+  $weight = 0;
+  // Check for existing weight and update accordingly.
+  if (isset($submission->field_craziness_weight[LANGUAGE_NONE][0]['value'])) {
+  	$weight = $submission->field_craziness_weight[LANGUAGE_NONE][0]['value'];
+  }
+
+  // We want to get the nearest 10, 100, 1000, 10000, etc...
+  $top = pow(10, strlen((string) $total));
+  $multiplier = (10 / $top);
+
+  $weight += (0.5 * $multiplier);
+
+  $submission->field_crazyness_weight[LANGUAGE_NONE][0]['value'] = $weight;
+  @entity_save('webform_submission_entity', $submission);
+}
+
 /*
 function crazyshit_submit_craziness() {
 	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
@@ -373,6 +409,31 @@ function crazyshit_update_counts($sid, $field) {
 
   $total_week++;
   $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'] = $total_week;
+
+  /**
+   *  Updates the craziness weight to properly order submissions.
+   */
+  $weight = 0;
+  // Check for existing weight and update accordingly.
+  if (isset($submission->field_craziness_weight[LANGUAGE_NONE][0]['value'])) {
+  	$weight = $submission->field_craziness_weight[LANGUAGE_NONE][0]['value'];
+  }
+
+  // We want to get the nearest 10, 100, 1000, 10000, etc...
+  $top = pow(10, strlen((string) $total));
+  $multiplier = (10 / $top);
+
+  // Add new weights, depending on the action.
+  switch ($field) {
+  	case 'crazy_vouch_count':
+  	   $weight += (0.75 * $multiplier);
+  	break;
+  	case 'crazy_bullshit_count':
+  	   $weight += (0.25 * $multiplier);
+  	break;
+  }
+
+  $submission->field_craziness_weight[LANGUAGE_NONE][0]['value'] = $weight;
 
   @entity_save('webform_submission_entity', $submission);
 
@@ -702,6 +763,14 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  	#  'operator' => 'formula',
 	  # );
 	  }
+
+	  $query->fields['real_weight'] = array(
+	    'field' => '(((webform_submissions.submitted - ' . REQUEST_TIME . ') + 10800) + field_data_field_craziness_weight.field_craziness_weight_value)',
+	    'table' => '',
+	    'alias' => 'real_weight',
+	  );
+	  
+	  $query->orderby[0]['field'] = 'real_weight';
     }
 
   // If we're viewing the friends gallery page, only show submissions by my Facebook friends.
