@@ -30,7 +30,7 @@ $plugin = array(
   'menu' => array(
     array('title' => 'home', 'href' => 'footlocker/associate'),
     array('title' => 'about', 'href' => 'footlocker/associate/about'),
-    array('title' => 'apply', 'href' => 'footlocker/associate/apply'),
+    array('title' => 'apply', 'href' => 'footlocker/associate/status'),
     array('title' => 'faq', 'href' => 'footlocker/associate/faq'),
   ),
 );
