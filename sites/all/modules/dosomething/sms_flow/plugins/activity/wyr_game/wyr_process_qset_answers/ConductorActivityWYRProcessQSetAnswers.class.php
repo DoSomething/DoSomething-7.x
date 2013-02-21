@@ -49,8 +49,20 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
       // Get opt-in path from parameters
       $this->incoming_opt_in_path = $_REQUEST['opt_in_path_id'];
 
+      // Get WYR answers
+      $q1_answer = self::getMobileCommonsProfileValue($mobile, 'profile_wyr_q1_answer');
+      $q2_answer = self::getMobileCommonsProfileValue($mobile, 'profile_wyr_q2_answer');
+      $q3_answer = self::getMobileCommonsProfileValue($mobile, 'profile_wyr_q3_answer');
+      $q4_answer = self::getMobileCommonsProfileValue($mobile, 'profile_wyr_q4_answer');
+
+      // Since question 4 is the answer the user is sending to this activity, we can also
+      // check the args parameters if q4_answer is still empty
+      if (empty($q4_answer)) {
+        $q4_answer = $_REQUEST['args'];
+      }
+
       // Normalize answer
-      $q4_answer = self::normalizeAnswer($_REQUEST['profile_wyr_q4_answer'], $this->incoming_opt_in_path);
+      $q4_answer = self::normalizeAnswer($q4_answer, $this->incoming_opt_in_path);
 
       // Update Mobile Commons with normalized answer
       self::updateMobileCommonsProfile($mobile, 'wyr_q4_answer', $q4_answer);
@@ -61,11 +73,6 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
       if (empty($answers)) {
         $answers = array();
       }
-      
-      // TODO: should use a fallback to pull from the profile, and also use 'args' if profile_wyr_q4_answer' isn't available.
-      $q1_answer = $_REQUEST['profile_wyr_q1_answer'];
-      $q2_answer = $_REQUEST['profile_wyr_q2_answer'];
-      $q3_answer = $_REQUEST['profile_wyr_q3_answer'];
 
       // Save new answers to the DB
       $answers[$this->incoming_opt_in_path] = array();
@@ -156,5 +163,46 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_query);
     curl_exec($ch);
     curl_close($ch);
+  }
+
+  /**
+   * Gets value from Mobile Commons profile field. Checks the $_REQUEST
+   * parameters first. If not there, then goes straight to the profile.
+   */
+  private function getMobileCommonsProfileValue($mobile, $field_name) {
+    // Pull the value from $_REQUEST parameters if they're there
+    if (!empty($_REQUEST[$field_name])) {
+      return $_REQUEST[$field_name];
+    }
+    // Otherwise go to Mobile Commons for the value
+    else {
+      $url = "https://secure.mcommons.com/api/profile?phone_number=$mobile";
+
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+      curl_setopt($ch, CURLOPT_USERPWD, "developers@dosomething.org:80276608");
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($ch, CURLOPT_URL, $url);
+      $xml = curl_exec($ch);
+      curl_close();
+
+      // Strip off 'profile_' from the beginning of the string
+      $field_name = str_replace('profile_', '', $field_name);
+      return self::getFieldValueFromXml($xml, $field_name);
+    }
+  }
+
+  /**
+   * Use regex to parse xml and pull field value out
+   */
+  private function getFieldValueFromXml($xml, $field_name) {
+    $pattern = '#\<custom_column name\="' . $field_name . '"\>(.*?)\<\/custom_column\>#is';
+    preg_match($pattern, $xml, $patternMatches);
+    if (count($patternMatches) >= 2) {
+      return trim($patternMatches[1]);
+    }
+
+    return NULL;
   }
 }
