@@ -591,7 +591,7 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
       text-shadow: -1px -1px 3px white; }
 
 hr.gray {
-  border-top: 1px solid lightgray;
+  border-top: 1px solid lightgrey;
   border-bottom: none;
   clear: both; }
 
@@ -638,8 +638,8 @@ hr.gray {
 
 .application-box {
   width: 248px;
-  border-right: 1px solid lightgray;
-  border-left: 1px solid lightgray; }
+  border-right: 1px solid lightgrey;
+  border-left: 1px solid lightgrey; }
 
 .date-box {
   float: left;
@@ -755,45 +755,45 @@ hr.gray {
     width: 300px;
     border: 1px solid #f1f1f1 !important; }
 
-.page-node-724721 .pane-content h3, .page-node-724721 .pane-content h4 {
+.page-node-728045 .pane-content h3, .page-node-728045 .pane-content h4 {
   text-transform: uppercase;
   font-size: 24px;
   color: black;
   line-height: 1em; }
-  .page-node-724721 .pane-content h3 a, .page-node-724721 .pane-content h4 a {
+  .page-node-728045 .pane-content h3 a, .page-node-728045 .pane-content h4 a {
     text-transform: lowercase;
     text-decoration: underline;
     color: #e31837;
     font-size: 20px; }
-.page-node-724721 .pane-content h3, .page-node-724721 .pane-content .send-request {
+.page-node-728045 .pane-content h3, .page-node-728045 .pane-content .send-request {
   margin-bottom: 15px;
   color: black; }
-  .page-node-724721 .pane-content h3 span, .page-node-724721 .pane-content .send-request span {
+  .page-node-728045 .pane-content h3 span, .page-node-728045 .pane-content .send-request span {
     color: #e31837; }
-.page-node-724721 .pane-content h4 span {
+.page-node-728045 .pane-content h4 span {
   color: #e31837; }
-.page-node-724721 .pane-content .send-request {
+.page-node-728045 .pane-content .send-request {
   margin-top: 6px; }
-.page-node-724721 .pane-content li {
+.page-node-728045 .pane-content li {
   font-size: 14px; }
-.page-node-724721 .status-incomplete, .page-node-724721 .status-complete, .page-node-724721 .status-empty {
+.page-node-728045 .status-incomplete, .page-node-728045 .status-complete, .page-node-728045 .status-empty {
   padding: 5px 0 0 34px;
   margin-bottom: 25px; }
-.page-node-724721 .status-incomplete {
+.page-node-728045 .status-incomplete {
   background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-red.png") no-repeat left center; }
-.page-node-724721 .status-complete {
+.page-node-728045 .status-complete {
   background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-green.png") no-repeat left center; }
-.page-node-724721 .status-empty {
+.page-node-728045 .status-empty {
   background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png") no-repeat left center; }
-.page-node-724721 .send-request {
+.page-node-728045 .send-request {
   font-size: 16px; }
-  .page-node-724721 .send-request a {
+  .page-node-728045 .send-request a {
     color: #e31837;
     text-decoration: underline; }
-  .page-node-724721 .send-request a.go-button {
+  .page-node-728045 .send-request a.go-button {
     color: white;
     text-decoration: none; }
-.page-node-724721 .go-button {
+.page-node-728045 .go-button {
   position: static;
   color: white;
   border-radius: 0;
@@ -801,7 +801,7 @@ hr.gray {
   font-weight: normal;
   margin-left: 24px;
   background: #e31837; }
-.page-node-724721 .the-indent {
+.page-node-728045 .the-indent {
   margin-left: 15px; }
 
 .fl-bottom-pane {
