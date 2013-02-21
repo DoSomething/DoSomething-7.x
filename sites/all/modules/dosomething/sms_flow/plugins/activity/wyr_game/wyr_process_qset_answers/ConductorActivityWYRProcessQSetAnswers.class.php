@@ -11,6 +11,9 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
   // Type of entry to submit to the sms_flow_records table
   public $type_override;
 
+  // Default message sent to user in case of error
+  public $default_response;
+
   // Opt-in path that has triggered this workflow. And in turn should also
   // be forwarded along to any invited friends.
   private $incoming_opt_in_path;
@@ -74,28 +77,35 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
         $answers = array();
       }
 
-      // Save new answers to the DB
-      $answers[$this->incoming_opt_in_path] = array();
-      $answers[$this->incoming_opt_in_path][] = $q1_answer;
-      $answers[$this->incoming_opt_in_path][] = $q2_answer;
-      $answers[$this->incoming_opt_in_path][] = $q3_answer;
-      $answers[$this->incoming_opt_in_path][] = $q4_answer;
+      if (!empty($q1_answer) && !empty($q2_answer) && !empty($q3_answer) && !empty($q4_answer)) {
+        // Save new answers to the DB
+        $answers[$this->incoming_opt_in_path] = array();
+        $answers[$this->incoming_opt_in_path][] = $q1_answer;
+        $answers[$this->incoming_opt_in_path][] = $q2_answer;
+        $answers[$this->incoming_opt_in_path][] = $q3_answer;
+        $answers[$this->incoming_opt_in_path][] = $q4_answer;
+      }
 
-      sms_flow_game_set_answers($mobile, $this->game_id, $answers);
+      if (count($answers[$this->incoming_opt_in_path]) > 0) {
+        sms_flow_game_set_answers($mobile, $this->game_id, $answers);
 
-      // Find Alpha inviter, if any, and send Alpha the feedback message
-      $alpha_mobile = sms_flow_find_alpha(substr($mobile, -10), $this->game_id, $this->type_override);
-      if ($alpha_mobile) {
-        $alpha_msg = "Your friend ($mobile) said they'd rather $q1_answer, $q2_answer, $q3_answer, and $q4_answer. Want to play more. Text WYR.";
-        sms_mobile_commons_send($alpha_mobile, $alpha_msg);
+        // Find Alpha inviter, if any, and send Alpha the feedback message
+        $alpha_mobile = sms_flow_find_alpha(substr($mobile, -10), $this->game_id, $this->type_override);
+        if ($alpha_mobile) {
+          $alpha_msg = "Your friend ($mobile) said they'd rather $q1_answer, $q2_answer, $q3_answer, and $q4_answer. Want to play more. Text WYR.";
+          sms_mobile_commons_send($alpha_mobile, $alpha_msg);
+        }
       }
 
       // Send response back to the user
-      if ($this->user_answer == 1) {
-        $sms_response = $this->answer_sets[$this->incoming_opt_in_path]['sms_response_opt1'];
-      }
-      else {
-        $sms_response = $this->answer_sets[$this->incoming_opt_in_path]['sms_response_opt2'];
+      $sms_response = $this->default_response;
+      if (array_key_exists($this->incoming_opt_in_path, $this->answer_sets)) {
+        if ($this->user_answer == 1) {
+          $sms_response = $this->answer_sets[$this->incoming_opt_in_path]['sms_response_opt1'];
+        }
+        else {
+          $sms_response = $this->answer_sets[$this->incoming_opt_in_path]['sms_response_opt2'];
+        }
       }
 
       $state->setContext('sms_response', $sms_response);
