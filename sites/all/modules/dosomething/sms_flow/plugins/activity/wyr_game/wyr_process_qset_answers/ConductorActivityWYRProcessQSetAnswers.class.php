@@ -13,22 +13,32 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
 
   // Opt-in path that has triggered this workflow. And in turn should also
   // be forwarded along to any invited friends.
-  public $incoming_opt_in_path;
-
-  // Array of valid answers for option 1
-  public $opt1_valid_answers = array();
-
-  // Array of valid answers for option 2
-  public $opt2_valid_answers = array();
-
-  // Response sent back to user if they answer for option 1
-  public $sms_response_opt1;
-
-  // Response sent back to user if they answer for option 2
-  public $sms_response_opt2;
+  private $incoming_opt_in_path;
 
   // User's answer to Q4. Equals 0 for invalid, 1 for option 1, and 2 for option 2.
   private $user_answer;
+
+  // Array containing answers and responses grouped by the opt-in path the user is coming from
+  private $answer_sets = array(
+    '142223' => array(
+      'opt1_valid_answers' => array('eat tuna', 'a', 'a eat tuna', 'a eat tuna every day for a month', 'a eat tuna every day', 'a tuna every day for a month', 'a tuna every day', 'a) eat tuna', 'a) eat tuna every day for a month', 'a) eat tuna every day', 'a) tuna every day for a month', 'a) tuna every day', 'a. eat tuna', 'a. eat tuna every day for a month', 'a. eat tuna every day', 'a. tuna every day for a month', 'a. tuna every day'),
+      'opt2_valid_answers' => array('eat ramen', 'b', 'b eat tuna', 'b eat ramen every day for a month', 'b eat ramen every day', 'b ramen every day for a month', 'b ramen every day', 'b) eat ramen', 'b) eat ramen every day for a month', 'a) eat ramen every day', 'b) ramen every day for a month', 'b) ramen every day', 'b. eat ramen', 'b. eat ramen every day for a month', 'b. eat ramen every day', 'b. ramen every day for a month', 'b. ramen every day'),
+      'sms_response_opt1' => 'That would cost less than $1000, but that\'s pretty nasty. Want better avice on saving $$? Text TIPS. Or, text a friend\'s number to see what they\'d do.',
+      'sms_response_opt2' => 'That would cost less than $300/yr, but it\'s not very healthy. Want better advice on saving $$? Text TIPS. Or, text a friend\'s number to see what they\'d do',
+    ),
+    '142503' => array(
+      'opt1_valid_answers' => array('get internet at the library', 'a', 'a) access the internet only at the library', 'a) access internet at the library', 'a) go to the library', 'access the internet at the library', 'go to the library', 'the library', 'library', 'a access the internet only at the library', 'a access internet at the library', 'a go to the library'),
+      'opt2_valid_answers' => array('only get internet w ur parents home', 'b', 'b) only with my parents watching at home', 'only with my parents watching', 'only with my parents', 'my parents watching', 'get internet with my parents watching', 'get internet w my parents at home', 'b) only with my parents watching', 'b) only with my parents', 'b) my parents watching', 'b) get internet with my parents watching', 'b) get internet w my parents at home'),
+      'sms_response_opt1' => 'Internet can be $100-500 per year, yikes! Want some easier ways to save money? Text TIPS. Or, text a friend\'s number to see what they\'d do',
+      'sms_response_opt2' => 'Internet can be $100-500 per year, yikes! Want some easier ways to save money? Text TIPS. Or, text a friend\'s number to see what they\'d do',
+    ),
+    '143053' => array(
+      'opt1_valid_answers' => array('have a flip phone', 'swap my smartphone for a flip phone', 'get a flip phone', 'flip phone', 'a', 'a) have a flip phone', 'a) swap my smartphone for a flip phone', 'a) get a flip phone', 'a) flip phone', 'a have a flip phone', 'a swap my smartphone for a flip phone', 'a get a flip phone', 'a flip phone'),
+      'opt2_valid_answers' => array('give up your car', 'swap my car for a bike', 'swap my car for a bicycle', 'swap my car', 'get a bike', 'get a bicycle', 'swap my car', 'b', 'b)', 'b swap my car for a bike', 'b swap my car for a bicycle', 'b swap my car for a bicycle', 'b swap my car', 'b get a bike', 'b get a bicycle', 'b swap my car', 'b) swap my car for a bike', 'b) swap my car for a bicycle', 'b) swap my car for a bicycle', 'b) swap my car', 'b) get a bike', 'b) get a bicycle', 'b) swap my car'),
+      'sms_response_opt1' => 'That could save you up to $500/yr, but then you lose Angry Birds. Want an easier way to save money? Text TIPS. Or, respond w/ a friends number to see what they\'d do',
+      'sms_response_opt2' => 'That could save you up to $2000/yr in gas. Not bad. Want an easier way to save money? Text TIPS. Or, respond w a friends number to see what they\'d do',
+    ),
+  );
 
   public function run($workflow) {
     $state = $this->getState();
@@ -36,8 +46,11 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
 
     $ftaf_number = $state->getContext($this->name . ':message');
     if ($ftaf_number === FALSE) {
+      // Get opt-in path from parameters
+      $this->incoming_opt_in_path = $_REQUEST['opt_in_path_id'];
+
       // Normalize answer
-      $q4_answer = self::normalizeAnswer($_REQUEST['profile_wyr_q4_answer']);
+      $q4_answer = self::normalizeAnswer($_REQUEST['profile_wyr_q4_answer'], $this->incoming_opt_in_path);
 
       // Update Mobile Commons with normalized answer
       self::updateMobileCommonsProfile($mobile, 'wyr_q4_answer', $q4_answer);
@@ -49,7 +62,7 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
         $answers = array();
       }
       
-      // TODO: is this ok? or should we be getting the answers from mCommons thru their API 
+      // TODO: should use a fallback to pull from the profile, and also use 'args' if profile_wyr_q4_answer' isn't available.
       $q1_answer = $_REQUEST['profile_wyr_q1_answer'];
       $q2_answer = $_REQUEST['profile_wyr_q2_answer'];
       $q3_answer = $_REQUEST['profile_wyr_q3_answer'];
@@ -72,10 +85,10 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
 
       // Send response back to the user
       if ($this->user_answer == 1) {
-        $sms_response = $this->sms_response_opt1;
+        $sms_response = $this->answer_sets[$this->incoming_opt_in_path]['sms_response_opt1'];
       }
       else {
-        $sms_response = $this->sms_response_opt2;
+        $sms_response = $this->answer_sets[$this->incoming_opt_in_path]['sms_response_opt2'];
       }
 
       $state->setContext('sms_response', $sms_response);
@@ -86,7 +99,6 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
       $state->setContext('ftaf_beta_optin', $this->incoming_opt_in_path);
       $state->setContext('ftaf_id_override', $this->game_id);
       $state->setContext('ftaf_type_override', $this->type_override);
-      $state->setContext('ftaf_sms_flow_args', $test);
 
       $state->markCompleted();
     }
@@ -105,15 +117,15 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
    * Search through possible answers, and if one matches, return the value at
    * the first index of the array to be the answer.
    */
-  private function normalizeAnswer($answer) {
+  private function normalizeAnswer($answer, $opt_in_path_id) {
     $answer = strtolower($answer);
-    if (in_array($answer, $this->opt1_valid_answers)) {
+    if (in_array($answer, $this->answer_sets[$opt_in_path_id]['opt1_valid_answers'])) {
       $this->user_answer = 1;
-      return $this->opt1_valid_answers[0];
+      return $this->answer_sets[$opt_in_path_id]['opt1_valid_answers'][0];
     }
-    elseif (in_array($answer, $this->opt2_valid_answers)) {
+    elseif (in_array($answer, $this->answer_sets[$opt_in_path_id]['opt2_valid_answers'])) {
       $this->user_answer = 2;
-      return $this->opt2_valid_answers[0];
+      return $this->answer_sets[$opt_in_path_id]['opt2_valid_answers'][0];
     }
     else {
       $this->user_answer = 0;
