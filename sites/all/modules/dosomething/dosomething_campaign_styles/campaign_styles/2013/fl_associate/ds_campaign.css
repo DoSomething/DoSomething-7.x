@@ -735,10 +735,10 @@ hr.gray {
     text-align: right; }
 
 .status-btn {
-  display: inline-block;
-  font-size: 24px;
-  padding-top: 13px; }
+  display: inline-block; }
   .status-btn a {
+    font-weight: 800;
+    line-height: 27px;
     color: #333131; }
     .status-btn a:hover {
       text-decoration: none; }
