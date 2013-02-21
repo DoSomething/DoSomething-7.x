@@ -21,8 +21,14 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
   // Array of valid answers for option 2
   public $opt2_valid_answers = array();
 
-  // Response sent back to user
-  public $sms_response;
+  // Response sent back to user if they answer for option 1
+  public $sms_response_opt1;
+
+  // Response sent back to user if they answer for option 2
+  public $sms_response_opt2;
+
+  // User's answer to Q4. Equals 0 for invalid, 1 for option 1, and 2 for option 2.
+  private $user_answer;
 
   public function run($workflow) {
     $state = $this->getState();
@@ -31,10 +37,10 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
     $ftaf_number = $state->getContext($this->name . ':message');
     if ($ftaf_number === FALSE) {
       // Normalize answer
-      $q3_answer = self::normalizeAnswer($_REQUEST['profile_wyr_q3_answer']);
+      $q4_answer = self::normalizeAnswer($_REQUEST['profile_wyr_q4_answer']);
 
       // Update Mobile Commons with normalized answer
-      self::updateMobileCommonsProfile($mobile, 'wyr_q3_answer', $q3_answer);
+      self::updateMobileCommonsProfile($mobile, 'wyr_q4_answer', $q4_answer);
 
       // Get any previous answers for this user from the DB
       $answers = sms_flow_game_get_answers($mobile, $this->game_id);
@@ -46,24 +52,33 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
       // TODO: is this ok? or should we be getting the answers from mCommons thru their API 
       $q1_answer = $_REQUEST['profile_wyr_q1_answer'];
       $q2_answer = $_REQUEST['profile_wyr_q2_answer'];
+      $q3_answer = $_REQUEST['profile_wyr_q3_answer'];
 
       // Save new answers to the DB
       $answers[$this->incoming_opt_in_path] = array();
       $answers[$this->incoming_opt_in_path][] = $q1_answer;
       $answers[$this->incoming_opt_in_path][] = $q2_answer;
       $answers[$this->incoming_opt_in_path][] = $q3_answer;
+      $answers[$this->incoming_opt_in_path][] = $q4_answer;
 
       sms_flow_game_set_answers($mobile, $this->game_id, $answers);
 
       // Find Alpha inviter, if any, and send Alpha the feedback message
       $alpha_mobile = sms_flow_find_alpha(substr($mobile, -10), $this->game_id, $this->type_override);
       if ($alpha_mobile) {
-        $alpha_msg = "Your friend ($mobile) said they'd rather $q1_answer, $q2_answer, and $q3_answer. Want to play more. Text WYR.";
+        $alpha_msg = "Your friend ($mobile) said they'd rather $q1_answer, $q2_answer, $q3_answer, and $q4_answer. Want to play more. Text WYR.";
         sms_mobile_commons_send($alpha_mobile, $alpha_msg);
       }
 
       // Send response back to the user
-      $state->setContext('sms_response', $this->sms_response);
+      if ($this->user_answer == 1) {
+        $sms_response = $this->sms_response_opt1;
+      }
+      else {
+        $sms_response = $this->sms_response_opt2;
+      }
+
+      $state->setContext('sms_response', $sms_response);
       $state->markSuspended();
     }
     else {
@@ -93,12 +108,15 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
   private function normalizeAnswer($answer) {
     $answer = strtolower($answer);
     if (in_array($answer, $this->opt1_valid_answers)) {
+      $this->user_answer = 1;
       return $this->opt1_valid_answers[0];
     }
     elseif (in_array($answer, $this->opt2_valid_answers)) {
+      $this->user_answer = 2;
       return $this->opt2_valid_answers[0];
     }
     else {
+      $this->user_answer = 0;
       return NULL;
     }
   }
