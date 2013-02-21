@@ -9,15 +9,27 @@ define('MCOMMONS_ROBOCALL_CAMPAIGN', 18301);
 define('ROBOCALLS_WEBFORM_NID', 723327);//724089
 define('MAX_CALLS_PER_DAY', 1);
 define('ROUND_TO', 10);
-define('ROBOCALLS_TAXONOMY_ID', 28);
+define('ROBOCALLS_TAXONOMY_ID', variable_get('robocalls_taxonomy_vocab', 25));
 define('ROBOCALLS_FEATURED_CELEB_TAG', 'Says Hayyy to Your Friends');
 define('ROBOCALLS_MCOMMONS_ALPHAS_CAMPAIGN', 144433);
+
+function robocalls_is_robo_page($page = '') {
+  if (empty($page)) {
+    $page = request_path();
+  }
+
+  if (NULL !== (strpos($page, 'calloffame'))) {
+    return true;
+  }
+
+  return false;
+}
 
 /**
  *  Implements hook_panels_pre_render()
  */
 function robocalls_panels_pre_render($display) {
-  if ($display->layout == 'flexible:cause_calls' || $display->layout == 'flexible:cause_calls_landing' || request_uri() == '/calloffame/about') {
+  if (robocalls_is_robo_page()) {
     // Adds Robocalls CSS
     drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls.css', array(
         'group' => CSS_THEME,
@@ -83,11 +95,24 @@ function robocalls_module_implements_alter(&$implementations, $hook) {
   }
 }
 
+function robocalls_get_celebrities() {
+  $celebs = array();
+  foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
+    if ($celeb->parents[0] > 0 && $celeb->name != '???') {
+      $celebs[$celeb->tid] = $celeb->name;
+    }
+  }
+
+  return $celebs;
+}
+
 /**
  *  Implements hook_form_alter()
  */
 function robocalls_form_alter(&$form, $form_state, $form_id) {
   global $term_info, $flags;
+
+  $action = $form_state['build_info']['args'][0]->webform['action'];
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
     $termid = arg(2);
 
@@ -284,6 +309,44 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     $form['#validate'][] = 'robocalls_call_validate';
     $form['#submit'][] = 'robocalls_call_submit';
     $form['#redirect'] = $form_state['return_to'];
+  }
+  else {
+    if ($action == '/robo-calls/homepage-webform') {
+      $u =& $form['submitted'];
+
+      $u['my_info']['my_name']['#attributes']['placeholder'] = t('My Name');
+      $u['my_info']['my_number']['#attributes']['placeholder'] = t('My Number');
+      $u['my_info']['my_password']['#attributes']['placeholder'] = t('My Password');
+
+      // Get celebrities and populate the select box.
+      $celebs = robocalls_get_celebrities();
+      $u['friends_info']['primary_friend']['select_call']['#options'] += $celebs;
+
+      // Make sure the password field is a password field.
+      $u['my_info']['my_password']['#type'] = 'password';
+
+      // Change the "submit" button text to "Send the call!"
+      $form['actions']['submit']['#value'] = t('Send The Call!');
+      $form['#submit'][] = 'robocalls_test';
+    }
+  }
+}
+
+function robocalls_test($form, &$form_state) {
+  $my = array(
+    'name' => $form_state['input']['submitted']['my_info']['my_name'],
+    'cell' => $form_state['input']['submitted']['my_info']['my_name'],
+    'pass' => $form_state['input']['submitted']['my_info']['my_name'],
+  );
+
+  $friends = array(
+    $form_state['input']['submitted']['friends_info']['primary_friend']['friends_number'] => $form_state['input']['submitted']['friends_info']['primary_friend']['select_call'],
+  );
+
+  foreach ($form_state['input']['submitted']['friends_info']['primary_friend']['more_calls'] AS $key => $call) {
+    if ($form_state['input']['submitted']['friends_info']['primary_friend']['more_friends'][$key]) {
+      $friends[$form_state['input']['submitted']['friends_info']['primary_friend']['more_friends'][$key]] = $call;
+    }
   }
 }
 

@@ -1,20 +1,30 @@
 body {
   background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) top left; }
-  body.one-sidebar.sidebar-first [role="main"] {
-    width: 791px; }
+  body div#page {
+    width: 100% !important; }
   body .region-sidebar-first .block-menu-block .content ul.menu {
     background: #f6eed2;
     margin-right: -5px; }
+
+#webform-component-friends-info--primary-friend {
+  width: 33%;
+  display: inline-block; }
+
+#cof-submit-form #webform-component-my-info #webform-component-my-info--my-name,
+#cof-submit-form #webform-component-my-info #webform-component-my-info--my-number,
+#cof-submit-form #webform-component-my-info #webform-component-my-info--my-password {
+  width: 33%;
+  display: inline-block; }
 
 div[role="main"] {
   background: url(/sites/all/modules/dosomething/features/robocalls/images/section_background.png) top left;
   padding: 30px;
   margin: 0px;
-  width: 791px;
   padding-top: 0px; }
   div[role="main"] nav#breadcrumb {
     display: none; }
   div[role="main"] h1#page-title {
+    display: none;
     color: transparent;
     background: url(/sites/all/modules/dosomething/features/robocalls/images/logo.png) top left no-repeat;
     height: 200px;
@@ -61,7 +71,6 @@ div.view-id-cause_its_your_birthday div.views-row {
 div.view-id-cause_its_your_birthday div.views-field-nothing {
   clear: left;
   width: 205px;
-  height: 215px;
   margin-left: 0px;
   margin-bottom: 8px;
   text-align: center;
@@ -113,7 +122,8 @@ div.view-id-cause_its_your_birthday div.robocall-flag {
 div.view-id-cause_its_your_birthday div.file-audio {
   position: absolute;
   z-index: 0;
-  bottom: 0; }
+  top: 0;
+  margin: 1px; }
   div.view-id-cause_its_your_birthday div.file-audio span.file {
     display: inline;
     float: left; }
