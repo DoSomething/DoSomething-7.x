@@ -43,6 +43,8 @@
         if ($('.status').has("Submission saved")) {
         $('.status').html('<p>Your application has been saved. To return to your status page and complete your recommendation requests, select "Status Page" at the bottom of the page</p>'); }
 
+        // add status button
+        jQuery('#webform-client-form-728012 > div > #edit-actions').append('<p class="status-btn go-button"><a href="//www.dosomething.org/awards/apply/status/">Status Page</a></p>');
     }
   };
 })(jQuery);
