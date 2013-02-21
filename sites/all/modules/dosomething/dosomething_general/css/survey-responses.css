@@ -41,12 +41,12 @@ ul li {
    height: 18px;
    font-weight: 500;
 }
-
+/*
 .result.yours {
    padding-right: 32px;
    border-right: 1px solid #000;
    text-align: right;
-}
+}*/
 
 .result.theirs {
    padding-left: 32px;
