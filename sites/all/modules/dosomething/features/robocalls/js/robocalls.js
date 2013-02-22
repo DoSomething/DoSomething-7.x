@@ -1,6 +1,7 @@
 (function ($) {
   Drupal.behaviors.robocalls = {
     friends_field_count: 1,
+    friends_limit: 6,
 
     attach: function(context, settings) {
       if (typeof Drupal.behaviors.fb !== 'undefined') {
@@ -14,7 +15,12 @@
       var new_field, f = '';
       new_field = '<fieldset class="webform-component-fieldset form-wrapper" id="webform-component-friends-info--primary-friend"><div class="fieldset-wrapper"><div class="form-item webform-component webform-component-select" id="webform-component-friends-info--primary-friend--select-call"><label for="edit-submitted-friends-info-primary-friend-select-call">Select Call </label>#SELECT</div><div class="form-item webform-component webform-component-textfield" id="webform-component-friends-info--primary-friend--friends-number"><label for="edit-submitted-friends-info-primary-friend-friends-number">Friend\'s Number </label>#INPUT</div></div></fieldset>';
 
-      select = '<select id="edit-submitted-friends-info-primary-friend-select-call" name="submitted[friends_info][primary_friend][more_calls][#N]" class="form-select"><option value="" selected="selected">- None -</option><option value="0">None</option><option value="9587">Dr. Martin Luther King</option><option value="9579">iJustine</option><option value="9499">Maci Bookout</option><option value="9449">Randall (Honey Badger)</option><option value="9580">iJustine</option><option value="9452">Hayden Panettiere</option><option value="9492">Bella Thorne</option><option value="9451">Harry Shum Jr</option><option value="9450">Randall (Honey Badger)</option><option value="9493">Shanae Grimes</option><option value="9456">Tyler Oakley</option><option value="9497">Maci Bookout</option></select>';
+      var celebs = '';
+      for (i in Drupal.settings.calloffame.celebs) {
+        celebs += '<option value="' + i + '">' + Drupal.settings.calloffame.celebs[i] + '</option>';
+      }
+
+      select = '<select id="edit-submitted-friends-info-primary-friend-select-call" name="submitted[friends_info][primary_friend][more_calls][#N]" class="form-select"><option value="" selected="selected">- None -</option>' + celebs + '</select>';
       input = '<input type="text" id="edit-submitted-friends-info-primary-friend-friends-number" name="submitted[friends_info][primary_friend][more_friends][#N]" value="" size="60" maxlength="128" class="form-text" />';
 
       n = Drupal.behaviors.robocalls.friends_field_count;
@@ -26,20 +32,24 @@
       $(f).insertAfter('#webform-component-friends-info--primary-friend');
 
       $('#cof-descriptive a').click(function() {
+        var n = Drupal.behaviors.robocalls.friends_field_count;
+        if (n >= Drupal.behaviors.robocalls.friends_limit) {
+          return false;
+        }
+
         var new_field, f = '';
         new_field = '<fieldset class="webform-component-fieldset form-wrapper" id="webform-component-friends-info--primary-friend"><div class="fieldset-wrapper"><div class="form-item webform-component webform-component-select" id="webform-component-friends-info--primary-friend--select-call"><label for="edit-submitted-friends-info-primary-friend-select-call">Select Call </label>#SELECT</div><div class="form-item webform-component webform-component-textfield" id="webform-component-friends-info--primary-friend--friends-number"><label for="edit-submitted-friends-info-primary-friend-friends-number">Friend\'s Number </label>#INPUT</div></div></fieldset>';
 
-        select = '<select id="edit-submitted-friends-info-primary-friend-select-call" name="submitted[friends_info][primary_friend][more_calls][#N]" class="form-select"><option value="" selected="selected">- None -</option><option value="0">None</option><option value="9587">Dr. Martin Luther King</option><option value="9579">iJustine</option><option value="9499">Maci Bookout</option><option value="9449">Randall (Honey Badger)</option><option value="9580">iJustine</option><option value="9452">Hayden Panettiere</option><option value="9492">Bella Thorne</option><option value="9451">Harry Shum Jr</option><option value="9450">Randall (Honey Badger)</option><option value="9493">Shanae Grimes</option><option value="9456">Tyler Oakley</option><option value="9497">Maci Bookout</option></select>';
+        select = '<select id="edit-submitted-friends-info-primary-friend-select-call" name="submitted[friends_info][primary_friend][more_calls][#N]" class="form-select"><option value="" selected="selected">- None -</option>' + celebs + '</select>';
         input = '<input type="text" id="edit-submitted-friends-info-primary-friend-friends-number" name="submitted[friends_info][primary_friend][more_friends][#N]" value="" size="60" maxlength="128" class="form-text" />';
 
         n = Drupal.behaviors.robocalls.friends_field_count;
-        console.log(n);
         for (var i = n; i < (n + 3); i++) {
           f += new_field.replace('#SELECT', select.replace('#N', i)).replace('#INPUT', input.replace('#N', i));
           Drupal.behaviors.robocalls.friends_field_count++;
         }
 
-        $(f).insertAfter('#webform-component-friends-info--primary-friend');
+        $(f).appendTo('#webform-component-friends-info');
         return false;
       });
 

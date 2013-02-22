@@ -112,7 +112,8 @@ function robocalls_get_celebrities() {
 function robocalls_form_alter(&$form, $form_state, $form_id) {
   global $term_info, $flags;
 
-  $action = $form_state['build_info']['args'][0]->webform['action'];
+  // Remove any query strings...they screw up the action later!
+  $action = preg_replace('#(\?.*)?$#', '', $form_state['build_info']['args'][0]->webform['action']);
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
     $termid = arg(2);
 
@@ -320,6 +321,12 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
       // Get celebrities and populate the select box.
       $celebs = robocalls_get_celebrities();
+
+      $settings = array(
+        'celebs' => $celebs
+      );
+      drupal_add_js(array('calloffame' => $settings), 'setting');
+
       $u['friends_info']['primary_friend']['select_call']['#options'] += $celebs;
 
       // Make sure the password field is a password field.
