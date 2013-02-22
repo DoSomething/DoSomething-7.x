@@ -26,7 +26,7 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
     '142223' => array(
       'opt1_valid_answers' => array('eat tuna', 'a', 'a eat tuna', 'a eat tuna every day for a month', 'a eat tuna every day', 'a tuna every day for a month', 'a tuna every day', 'a) eat tuna', 'a) eat tuna every day for a month', 'a) eat tuna every day', 'a) tuna every day for a month', 'a) tuna every day', 'a. eat tuna', 'a. eat tuna every day for a month', 'a. eat tuna every day', 'a. tuna every day for a month', 'a. tuna every day'),
       'opt2_valid_answers' => array('eat ramen', 'b', 'b eat tuna', 'b eat ramen every day for a month', 'b eat ramen every day', 'b ramen every day for a month', 'b ramen every day', 'b) eat ramen', 'b) eat ramen every day for a month', 'a) eat ramen every day', 'b) ramen every day for a month', 'b) ramen every day', 'b. eat ramen', 'b. eat ramen every day for a month', 'b. eat ramen every day', 'b. ramen every day for a month', 'b. ramen every day'),
-      'sms_response_opt1' => 'That would cost less than $1000, but that\'s pretty nasty. Want better avice on saving $$? Text TIPS. Or, text a friend\'s number to see what they\'d do.',
+      'sms_response_opt1' => 'That would cost less than $1000, but that\'s pretty nasty. Want better advice on saving $$? Text TIPS. Or, text a friend\'s number to see what they\'d do.',
       'sms_response_opt2' => 'That would cost less than $300/yr, but it\'s not very healthy. Want better advice on saving $$? Text TIPS. Or, text a friend\'s number to see what they\'d do',
     ),
     '142503' => array(
