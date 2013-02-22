@@ -86,7 +86,7 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
         $answers[$this->incoming_opt_in_path][] = $q4_answer;
       }
 
-      if (count($answers[$this->incoming_opt_in_path]) > 0) {
+      if ($this->incoming_opt_in_path > 0 && count($answers[$this->incoming_opt_in_path]) > 0) {
         sms_flow_game_set_answers($mobile, $this->game_id, $answers);
 
         // Find Alpha inviter, if any, and send Alpha the feedback message
