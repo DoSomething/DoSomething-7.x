@@ -26,6 +26,47 @@ body
 		background: #F6EED2
 		margin-right: -5px
 
+	table, tr, td
+		border: 0px !important
+
+	div.views-field-nothing
+		position: relative
+
+		div.hover-state
+			display: none
+			position: absolute
+			width: 100%
+			height: 100%
+			z-index: 1
+			top: 0
+			background: rgba(0, 0, 0, 0.3)
+			color: #fff
+
+			.preview-share
+				div.preview
+					display: inline-block
+					margin-left: -70px
+
+					.file
+						display: inline-block
+						margin-left: -8px
+
+					span.preview
+						position: relative
+						top: 5px
+						left: 12px
+
+				div.share
+					display: inline-block
+					float: right
+					margin: 7px
+
+			.name
+				position: absolute
+				bottom: 0px
+
+				a
+					color: #fff
 
 #webform-component-friends-info--primary-friend
 	width: 33%

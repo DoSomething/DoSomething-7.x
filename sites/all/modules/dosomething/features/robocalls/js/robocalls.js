@@ -1,7 +1,7 @@
 (function ($) {
   Drupal.behaviors.robocalls = {
     friends_field_count: 1,
-    friends_limit: 6,
+    friends_limit: 9,
 
     attach: function(context, settings) {
       if (typeof Drupal.behaviors.fb !== 'undefined') {
@@ -10,7 +10,13 @@
         }
       }
 
-      Drupal.behaviors.robocalls.friends_field_count
+      $('.views-field-nothing').hover(function() {
+        $(this).find('.hover-state').show();
+      });
+
+      $('.views-field-nothing').blur(function() {
+        $(this).find('.hover-state').hide();
+      });
 
       var new_field, f = '';
       new_field = '<fieldset class="webform-component-fieldset form-wrapper" id="webform-component-friends-info--primary-friend"><div class="fieldset-wrapper"><div class="form-item webform-component webform-component-select" id="webform-component-friends-info--primary-friend--select-call"><label for="edit-submitted-friends-info-primary-friend-select-call">Select Call </label>#SELECT</div><div class="form-item webform-component webform-component-textfield" id="webform-component-friends-info--primary-friend--friends-number"><label for="edit-submitted-friends-info-primary-friend-friends-number">Friend\'s Number </label>#INPUT</div></div></fieldset>';
