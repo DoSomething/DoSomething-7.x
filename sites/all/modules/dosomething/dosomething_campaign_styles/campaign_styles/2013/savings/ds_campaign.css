@@ -951,6 +951,10 @@ body {
         margin-top: 10px; }
       #cmp #report-back form .fb-social-comments-plugin {
         display: none; }
+      #cmp #report-back form #edit-submitted-taxonomy-vocabulary-5,
+      #cmp #report-back form #edit-submitted-field-webform-email,
+      #cmp #report-back form #edit-submitted-field-webform-mobile,
+      #cmp #report-back form #edit-submitted-field-webform-videos,
       #cmp #report-back form #edit-submitted-field-webform-school-zip {
         display: none; }
       #cmp #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
