@@ -44,6 +44,7 @@ features[image][] = social_scholarship_stat_image_190x190
 features[node][] = social_scholarship
 features[page_manager_handlers][] = node_view_panel_context_4
 features[page_manager_pages][] = animal_cruelty_stats_images
+features[page_manager_pages][] = share_a_stat_landing_page
 features[page_manager_pages][] = social_scholarship_image_page
 features[panels_layout][] = social_scholars
 features[variable][] = field_bundle_settings_node__social_scholarship
