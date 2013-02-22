@@ -87,7 +87,13 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
       }
 
       if ($this->incoming_opt_in_path > 0 && count($answers[$this->incoming_opt_in_path]) > 0) {
-        sms_flow_game_set_answers($mobile, $this->game_id, $answers);
+        // In case of DB error (ex: data string of answers is too long)
+        try {
+          sms_flow_game_set_answers($mobile, $this->game_id, $answers);
+        }
+        catch (Exception $e) {
+          watchdog('sms_flow_game', 'ConductorActivityWYRProcessQSetAnswers exception - ' . $e->getMessage());
+        }
 
         // Find Alpha inviter, if any, and send Alpha the feedback message
         $alpha_mobile = sms_flow_find_alpha(substr($mobile, -10), $this->game_id, $this->type_override);
