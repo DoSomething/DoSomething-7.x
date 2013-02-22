@@ -28,11 +28,11 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'sign up', 'href' => 'savings', 'fragment' => 'header'),
-    array('title' => 'scholarship', 'href' => 'savings', 'fragment' => 'scholoarship'),
-    array('title' => 'tell us about it', 'href' => 'savings/report-back'),
-    array('title' => 'video', 'href' => 'savings', 'fragment' => 'video'),
-    array('title' => 'questions', 'href' => 'savings', 'fragment' => 'faq'),
+    array('title' => 'sign up', 'href' => '', 'fragment' => 'header', 'external' => TRUE),
+    array('title' => 'scholarship', 'href' => '', 'fragment' => 'scholarship', 'external' => TRUE),
+    array('title' => 'tell us about it', 'href' => 'save/report-back'),
+    array('title' => 'video', 'href' => '', 'fragment' => 'video', 'external' => TRUE),
+    array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
     '#markup' => '<hr><img src="//files.dosomething.org/files/campaigns/savings/momm-hrblock-logo.png"><p>Got questions? Email Greg at <a href="mailto:save@dosomething.org">save@dosomething.org</a>!</p>'
