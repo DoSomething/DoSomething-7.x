@@ -10,6 +10,7 @@ define('CRAZY_DOMAIN', variable_get('crazy_domain', 'www.dosomething.org'));
 define('CRAZY_AUTH_PAGES', serialize(explode(',', variable_get('crazy_auth_pages', 'friends,submit'))));
 define('CRAZY_MAILCHIMP_GROUP', 'CraziestThing2013');
 define('CRAZY_RANKING_POINT', 43200); // in seconds
+define('CRAZY_GRACE_PERIOD', 3600); // in seconds
 
 /**
  *	Implements hook_menu()
@@ -766,7 +767,7 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  }
 
 	  $query->fields['real_weight'] = array(
-	    'field' => '(((webform_submissions.submitted - ' . REQUEST_TIME . ') + 10800) + field_data_field_craziness_weight.field_craziness_weight_value)',
+	    'field' => '(((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . CRAZY_GRACE_PERIOD . ') + field_data_field_craziness_weight.field_craziness_weight_value)',
 	    'table' => '',
 	    'alias' => 'real_weight',
 	  );
