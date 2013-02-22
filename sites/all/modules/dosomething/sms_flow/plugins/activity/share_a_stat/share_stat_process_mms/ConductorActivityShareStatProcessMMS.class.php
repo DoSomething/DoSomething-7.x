@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Determine if MMS was received and route to the next appropriate opt-in path.
+ */
+class ConductorActivityShareStatProcessMMS extends ConductorActivity {
+
+  // Nested array of opt-in paths and their destinations
+  // = array(
+  //     <incoming opt-in path> => array (
+  //       'mms' => mms opt-in path
+  //       'no_mms' => no mms opt-in path
+  //     ),
+  //     ...
+  //   )
+  public $routes;
+
+  public function run($workflow) {
+    $state = $this->getState();
+    $mobile = $state->getContext('sms_number');
+    $opt_in_path = $_REQUEST['opt_in_path_id'];
+    $mms_url = $_REQUEST['mms_image_url'];
+    $next_path = 0;
+
+    if (array_key_exists($opt_in_path, $this->routes)) {
+      if (!empty($mms_url)) {
+        $next_path = $this->routes[$opt_in_path]['mms'];
+      }
+      else {
+        $next_path = $this->routes[$opt_in_path]['no_mms'];
+      }
+    }
+
+    if ($next_path > 0) {
+      dosomething_general_mobile_commons_subscribe($mobile, $next_path);
+    }
+
+    $state->setContext('ignore_no_response_error', TRUE);
+    $state->markCompleted();
+  }
+
+}
