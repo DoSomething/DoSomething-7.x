@@ -8,6 +8,12 @@
     margin-left: auto
     margin-right: auto
 
+  #contact-form
+    margin: 2% 0 0 0
+    +border-radius(0)
+  #action
+    +border-radius(0)
+
 
 @media only screen and (max-width: 775px)
 
@@ -70,14 +76,11 @@
   
   #scholarship
     padding: 2% 0
-    .col50
-      width: 100%
+    .scholar-box
+      float: none
+      width: 96%
+      margin: 3% 2%
 
-  .refer5
-    width: 100%
-    margin: 0
-    &:before, &:after
-      display: none 
 
 
   //      //
@@ -101,10 +104,6 @@
       width: 80%
       margin: 0 auto  
 
-  #facts
-    ol li
-      padding: 3% 6% 3% 14%  
-
   //			//
   //  #social
   //      //
@@ -125,27 +124,8 @@
 
 @media only screen and (max-width: 550px)
 
-  #facts
-    .divider
-      display: none
-    .divider-mobile
-      display: block
 
-  #meet
-    .activist-photo, .activist-copy
-      clear: both
-      width: 96%
-      margin: 0 4%
-    .activist-copy
-      margin-bottom: 8% 
-    .activist-photo
-      margin-top: 4%   
 
-  #game
-    .see-more
-      margin: 0% 2% 8%
-      img
-        display: none
 
 @media only screen and (max-width: 450px)
   .section
@@ -208,17 +188,8 @@
   //			//
 
 
-  //			//
-  //  #scholarship
-  //      //
-  
-  #scholarship
-    h2.scholar-headline
-      font-size: 2.5em
-      padding: 0 2%
-    padding: 2% 0
-    .go-button
-      font-size: 2.4em
+
+
 
   //			//
   //  #social

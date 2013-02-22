@@ -2,7 +2,8 @@ html > body {
   font-size: 16px; }
 
 img.logo {
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  margin-left: -20px; }
 
 #main-wrapper div[role="main"] {
   padding: 0 !important;
@@ -154,7 +155,9 @@ body {
   border-radius: 4px; }
 
 .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
-.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav {
+.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav,
+.page-node-727978 #block-dosomething-campaign-styles-campaign-nav,
+.page-node-728363 #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -524,18 +527,15 @@ body {
     padding: 0.5em 0 0 0; }
     #cmp .divider span, #cmp .divider-mobile span {
       background: #241f20;
-      padding: 0.5em 0.8em 0.35em;
+      padding: 0.5em 1em 0.35em;
       position: relative;
       font-weight: 400;
       letter-spacing: 0.1em;
-      -webkit-border-bottom-left-radius: 6px;
-      -webkit-border-bottom-right-radius: 6px;
-      -moz-border-bottom-left-radius: 6px;
-      -moz-border-bottom-right-radius: 6px;
-      -o-border-bottom-right-radius: 6px;
-      -o-border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px;
-      border-bottom-left-radius: 6px;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -o-border-radius: 2px;
+      border-radius: 2px;
       color: white;
       text-transform: uppercase; }
   #cmp .go-button, #cmp #edit-submit {
@@ -618,7 +618,17 @@ body {
     -moz-border-radius-topleft: 6px;
     -webkit-border-top-left-radius: 6px;
     border-top-left-radius: 6px; }
-  #cmp #content .go-button {
+  #cmp #content {
+    padding-bottom: 1em; }
+    #cmp #content .do-topics {
+      max-width: 400px;
+      margin: 1.5em auto; }
+      #cmp #content .do-topics span {
+        font-weight: 600; }
+    #cmp #content .do-tell {
+      max-width: 620px;
+      margin: 1em auto 1.5em; }
+  #cmp #content .go-button, #cmp #scholarship .go-button {
     margin: 0;
     background: #57cb41;
     color: white;
@@ -629,17 +639,36 @@ body {
     height: 2.5em;
     padding: 0 1.5em;
     text-shadow: 0px 0px 2px #777777; }
-    #cmp #content .go-button:hover {
+    #cmp #content .go-button:hover, #cmp #scholarship .go-button:hover {
       color: #f9f9f9;
       -webkit-box-shadow: 0 2px 2px 0 #cccccc;
       -moz-box-shadow: 0 2px 2px 0 #cccccc;
       box-shadow: 0 2px 2px 0 #cccccc; }
-  #cmp #content .do-topics {
-    max-width: 400px; }
-    #cmp #content .do-topics span {
-      font-weight: 600; }
+  #cmp #scholarship .scholar-box {
+    float: left;
+    width: 38%;
+    margin: 0 6%;
+    padding: 1em; }
+    #cmp #scholarship .scholar-box h3 {
+      background: #57cb41;
+      padding: 0.2em 0.2em 0em;
+      color: white;
+      line-height: 1.1em;
+      font-weight: 400;
+      margin-bottom: 0.5em; }
+    #cmp #scholarship .scholar-box span, #cmp #scholarship .scholar-box p {
+      color: #999999; }
+    #cmp #scholarship .scholar-box h2 {
+      font-family: din-web-reg;
+      font-weight: 600;
+      font-size: 3em; }
+  #cmp #scholarship .official-rules {
+    clear: both;
+    margin-bottom: 0.5em; }
   #cmp #video hr {
     border: 1px solid #cccccc; }
+  #cmp #video .video {
+    margin: 1em 0 0; }
   #cmp #faq div {
     padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq div.divider {
@@ -698,6 +727,32 @@ body {
     right: -70px; }
   #cmp #faq .action-arrow-left {
     left: -70px; }
+  #cmp #workshops {
+    margin-top: 2%; }
+    #cmp #workshops h2 {
+      line-height: 1.2em; }
+    #cmp #workshops .option {
+      display: inline-block;
+      margin: 0 auto; }
+    #cmp #workshops img {
+      float: left;
+      margin: 20px 20px; }
+    #cmp #workshops .go-button {
+      margin: 0 0 1em;
+      background: #57cb41;
+      color: white;
+      font-weight: 400;
+      font-family: din-web-reg;
+      font-size: 1.2em;
+      line-height: 2.8em;
+      height: 2.5em;
+      padding: 0 1.5em;
+      text-shadow: 0px 0px 2px #777777; }
+      #cmp #workshops .go-button:hover {
+        color: #f9f9f9;
+        -webkit-box-shadow: 0 2px 2px 0 #cccccc;
+        -moz-box-shadow: 0 2px 2px 0 #cccccc;
+        box-shadow: 0 2px 2px 0 #cccccc; }
   #cmp #footer h1 {
     font-size: 2em;
     font-family: din-web;
@@ -836,7 +891,7 @@ body {
   #cmp #sign-up input {
     margin-bottom: 10px; }
   #cmp #report-back {
-    margin-top: 30%;
+    margin-top: 3%;
     border: none;
     width: 70%;
     padding: 1% 2%;
@@ -844,16 +899,33 @@ body {
     #cmp #report-back h1 {
       font-size: 1.4em;
       line-height: 1.1em; }
+    #cmp #report-back h2 {
+      font-size: 1.6em;
+      line-height: 1.2em; }
+    #cmp #report-back #submitted-field-webform-school-reference-add-more-wrapper {
+      background: #f1f1f1;
+      border: 2px solid #e1e1e1;
+      padding: 1% 3% 1.5%;
+      margin: 2% 0;
+      max-width: 375px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      border-radius: 6px; }
+      #cmp #report-back #submitted-field-webform-school-reference-add-more-wrapper #edit-submitted-field-webform-school-reference-und-0-target-id-name {
+        width: 100%; }
     #cmp #report-back #edit-submitted-field-webform-pictures {
       background: #f1f1f1;
       border: 2px solid #e1e1e1;
       padding: 1% 3% 1.5%;
       margin: 2% 0;
       max-width: 375px;
-      border-radius: 6px;
-      -o-border-radius: 6px;
+      -webkit-border-radius: 6px;
       -moz-border-radius: 6px;
-      -webkit-border-radius: 6px; }
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      border-radius: 6px; }
       #cmp #report-back #edit-submitted-field-webform-pictures legend {
         margin-bottom: 0.3em; }
       #cmp #report-back #edit-submitted-field-webform-pictures span {
@@ -883,13 +955,19 @@ body {
       #cmp #report-back form #edit-submitted-field-webform-email,
       #cmp #report-back form #edit-submitted-field-webform-mobile,
       #cmp #report-back form #edit-submitted-field-webform-videos,
-      #cmp #report-back form #edit-submitted-field-webform-school-reference,
-      #cmp #report-back form #edit-submitted-field-webform-school,
       #cmp #report-back form #edit-submitted-field-webform-school-zip {
         display: none; }
       #cmp #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
         display: block !important;
         margin: 10px !important; }
+      #cmp #report-back form .form-type-radio input, #cmp #report-back form .form-type-radio .option {
+        font-size: 18px; }
+      #cmp #report-back form .form-type-radio input {
+        margin-left: 20px; }
+      #cmp #report-back form #webform-component-budgeting,
+      #cmp #report-back form #webform-component-credit-cards,
+      #cmp #report-back form #webform-component-student-loans {
+        display: none; }
     #cmp #report-back #edit-submitted-ew {
       border: none !important;
       -moz-box-shadow: none !important;
@@ -924,7 +1002,20 @@ body {
   @media only screen and (max-width: 1075px) {
     #cmp #report-back {
       margin-left: auto;
-      margin-right: auto; } }
+      margin-right: auto; }
+    #cmp #contact-form {
+      margin: 2% 0 0 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      border-radius: 0; }
+    #cmp #action {
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      border-radius: 0; } }
   @media only screen and (max-width: 775px) {
     #cmp .section {
       width: 100%;
@@ -958,13 +1049,10 @@ body {
         margin: 5% auto; }
     #cmp #scholarship {
       padding: 2% 0; }
-      #cmp #scholarship .col50 {
-        width: 100%; }
-    #cmp .refer5 {
-      width: 100%;
-      margin: 0; }
-      #cmp .refer5:before, #cmp .refer5:after {
-        display: none; }
+      #cmp #scholarship .scholar-box {
+        float: none;
+        width: 96%;
+        margin: 3% 2%; }
     #cmp #secondary-content .divider {
       margin-bottom: 6%; }
     #cmp #secondary-content .prizes-a, #cmp #secondary-content .prizes-b {
@@ -980,8 +1068,6 @@ body {
     #cmp #secondary-content p {
       width: 80%;
       margin: 0 auto; }
-    #cmp #facts ol li {
-      padding: 3% 6% 3% 14%; }
     #cmp #social .col33 {
       width: 90%;
       margin: 5%; }
@@ -990,23 +1076,6 @@ body {
       width: 40%; }
     #cmp #report-back {
       width: 100%; } }
-  @media only screen and (max-width: 550px) {
-    #cmp #facts .divider {
-      display: none; }
-    #cmp #facts .divider-mobile {
-      display: block; }
-    #cmp #meet .activist-photo, #cmp #meet .activist-copy {
-      clear: both;
-      width: 96%;
-      margin: 0 4%; }
-    #cmp #meet .activist-copy {
-      margin-bottom: 8%; }
-    #cmp #meet .activist-photo {
-      margin-top: 4%; }
-    #cmp #game .see-more {
-      margin: 0% 2% 8%; }
-      #cmp #game .see-more img {
-        display: none; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 0 auto; }
@@ -1030,13 +1099,6 @@ body {
       width: 85%; }
     #cmp .views-field-nothing {
       margin: 0; }
-    #cmp #scholarship {
-      padding: 2% 0; }
-      #cmp #scholarship h2.scholar-headline {
-        font-size: 2.5em;
-        padding: 0 2%; }
-      #cmp #scholarship .go-button {
-        font-size: 2.4em; }
     #cmp #social .col33 {
       width: 90%;
       margin: 2% 5%; }
