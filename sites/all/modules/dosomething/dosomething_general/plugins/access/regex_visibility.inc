@@ -20,7 +20,7 @@ $plugin = array(
 function ctools_regex_ctools_access_settings($form, &$form_state, $conf) {
   $form['settings']['note'] = array(
     '#type' => 'markup',
-    '#markup' => '<p>Regular expressions are a powerful way to match against dynamic data.  RegEx is also very dangerous if used wrong...<b>If you\'re not sure what you\'re doing, don\'t use this!</b>',
+    '#markup' => "<p>Regular expressions are a powerful way to match against dynamic data.  RegEx is also very dangerous if used wrong...<b>If you're not sure what you're doing, don't use this!</b>",
   );
 
   $form['settings']['context'] = array(
@@ -34,9 +34,9 @@ function ctools_regex_ctools_access_settings($form, &$form_state, $conf) {
 
   $form['settings']['expression'] = array(
     '#type' => 'textarea',
-    '#title' => t('Pattern'),
+    '#title' => t('Expression'),
     '#default_value' => $conf['expression'],
-    '#description' => t('The expression written in this textarea will match against the criteria chosen above.'),
+    '#description' => t('This expression will attempt to match against the criteria chosen above.'),
   );
 
   $form['#validate'][] = 'ctools_regex_ctools_validate';
@@ -44,11 +44,14 @@ function ctools_regex_ctools_access_settings($form, &$form_state, $conf) {
   return $form;
 }
 
+/**
+ *  Validates the settings form to check for valid regular expression.
+ */
 function ctools_regex_ctools_validate($form, &$form_state) {
   $regex = $form_state['input']['settings']['expression'];
 
   if (@preg_match('/' . $regex . '/si', '/crazy/about') === FALSE) {
-    form_set_error('settings][expression', t('Your regular expression is invalid.'));
+    form_set_error('settings][expression', t('Your regular expression is invalid.  Remember to escape your meta characters.  The delimeter is a forward-slash ("/")'));
   }
 }
 
