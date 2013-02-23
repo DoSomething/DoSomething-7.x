@@ -433,14 +433,14 @@ function dosomething_clubs_change_logo(&$form, &$form_state) {
   $nid = $form_state['build_info']['args'][0];
   $validators = array(
      #'file_validate_is_image' => array(),
-     #'file_validate_image_resolution' => array(variable_get('btn_dimensions', '124x124')), 
+     #'file_validate_image_resolution' => array(variable_get('btn_dimensions', '124x124')),
      #'file_validate_size' => array(variable_get('btn_file_size', '5') * 1024),
   );
 
   $node = node_load($nid);
 
   // Save file
-  $file = file_save_upload('file', $validators, 'public://'); 
+  $file = file_save_upload('file', $validators, 'public://');
   $file->status = 1;
   $nf = file_save($file);
 
@@ -472,7 +472,7 @@ function dosomething_clubs_change_logo(&$form, &$form_state) {
   node_save($node);
 
   drupal_set_message(t("Image successfully changed!"));
-  drupal_goto(drupal_lookup_path('alias', 'node/' . $nid));  
+  drupal_goto(drupal_lookup_path('alias', 'node/' . $nid));
 }
 
 /**
@@ -606,7 +606,7 @@ function dosomething_clubs_member_has_a_club() {
   ->execute()
   ->fetchAll();
 
-  if ($club[0]) {
+  if (isset($club[0])) {
     return TRUE;
   }
   else {
@@ -1326,7 +1326,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
  *    The Group ID of the club.  If blank, the function will figure it out.
  *
  *  @param $add_now (optional)
- *    
+ *
  *
  *  @return
  *    Nothing.  This function sends out invitations.
@@ -1796,7 +1796,7 @@ function dosomething_clubs_form_validate(&$form, &$form_state) {
       form_set_error('form', t("It looks like you've created !another in the last 24 hours.  Please wait a full day before making a new club, or delete your old club and try again.  Received this in error? !email",
         array(
           '!email' => l(t('Email clubs@dosomething.org'), 'mailto:clubs@dosomething.org'),
-          '!another' => l(t('another club'), drupal_lookup_path('alias', 'node/' . $r[0]->nid)) 
+          '!another' => l(t('another club'), drupal_lookup_path('alias', 'node/' . $r[0]->nid))
         )
       ));
     }
@@ -1995,7 +1995,7 @@ function dosomething_clubs_form_node_form_alter(&$form, &$form_state, $form_id) 
 
 /**
  * Implement hook_node_submit().
- * 
+ *
  * Replace auto nodetitle functionality.
  */
 function dosomething_clubs_node_save($node, $form, &$form_state) {
