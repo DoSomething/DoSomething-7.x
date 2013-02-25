@@ -585,6 +585,11 @@ body {
       text-align: center; }
     #cmp #header .tagline {
       padding: 184px 0 0 0; }
+    #cmp #header .pane-campaign-signed p {
+      color: white;
+      margin: 0 auto; }
+    #cmp #header .pane-campaign-signed .top-signed {
+      margin-bottom: 1em; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -734,11 +739,8 @@ body {
     #cmp #workshops .option {
       display: inline-block;
       margin: 0 auto; }
-    #cmp #workshops img {
-      float: left;
-      margin: 20px 20px; }
     #cmp #workshops .go-button {
-      margin: 0 0 1em;
+      margin: 1em 0 1em;
       background: #57cb41;
       color: white;
       font-weight: 400;
@@ -753,6 +755,30 @@ body {
         -webkit-box-shadow: 0 2px 2px 0 #cccccc;
         -moz-box-shadow: 0 2px 2px 0 #cccccc;
         box-shadow: 0 2px 2px 0 #cccccc; }
+    #cmp #workshops .budget-icon, #cmp #workshops .credit-icon, #cmp #workshops .debt-icon {
+      float: left;
+      margin: 20px; }
+    #cmp #workshops .budget-icon {
+      background: url("http://files.dosomething.org/files/campaigns/savings/budget2.png");
+      width: 88px;
+      height: 80px;
+      display: block; }
+      #cmp #workshops .budget-icon:hover {
+        background: url("http://files.dosomething.org/files/campaigns/savings/budget-green.png"); }
+    #cmp #workshops .credit-icon {
+      background: url("http://files.dosomething.org/files/campaigns/savings/credit2.png");
+      width: 60px;
+      height: 88px;
+      display: block; }
+      #cmp #workshops .credit-icon:hover {
+        background: url("http://files.dosomething.org/files/campaigns/savings/credit-green.png"); }
+    #cmp #workshops .debt-icon {
+      background: url("http://files.dosomething.org/files/campaigns/savings/debt.png");
+      width: 57px;
+      height: 80px;
+      display: block; }
+      #cmp #workshops .debt-icon:hover {
+        background: url("http://files.dosomething.org/files/campaigns/savings/debt-green.png"); }
   #cmp #footer h1 {
     font-size: 2em;
     font-family: din-web;
@@ -859,6 +885,22 @@ body {
     font-size: 1.4em; }
     #cmp .pane-campaign-sign-up #edit-submit:hover {
       color: #f1f1f1; }
+  #cmp .pane-campaign-signed .go-button {
+    margin: 0;
+    background: #57cb41;
+    color: white;
+    font-weight: 400;
+    font-family: din-web-reg;
+    font-size: 1.2em;
+    line-height: 2.8em;
+    height: 2.5em;
+    padding: 0 1.5em;
+    text-shadow: 0px 0px 2px #777777; }
+    #cmp .pane-campaign-signed .go-button:hover {
+      color: #f9f9f9;
+      -webkit-box-shadow: 0 2px 2px 0 #111111;
+      -moz-box-shadow: 0 2px 2px 0 #111111;
+      box-shadow: 0 2px 2px 0 #111111; }
   #cmp #campaign-opt-in {
     clear: both;
     text-align: left;
