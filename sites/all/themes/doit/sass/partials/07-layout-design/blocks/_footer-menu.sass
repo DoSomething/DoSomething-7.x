@@ -3,13 +3,13 @@
 // site map menus in columns
 ////////////////////////////
 #block-menu-menu-footer
-  @extend .clearfix
+  @extend %clearfix
   background-color: $gray2
   padding-top: $s0
   padding-bottom: 20px
   font-family: $font-din
   .content
-    @extend .container
+    @extend %container
     ul.menu
       font-family: $font-din
       padding: 0
@@ -23,8 +23,8 @@
         width: 206px
         +float-left
         span
-          @extend .white
-          @extend .medium
+          @extend %white
+          @extend %medium
           padding: 0
           line-height: 33px
           text-transform: uppercase
@@ -41,10 +41,10 @@
           padding-top: 0
           line-height: 24px
           a
-            @extend .white
+            @extend %white
             line-height: 14px
             font-size: 16px
-            @extend .normal
+            @extend %normal
             text-transform: none
           a[href="http://www.facebook.com/dosomething"]
             background: image_url("icn-footer-fb.png") no-repeat 0 50%

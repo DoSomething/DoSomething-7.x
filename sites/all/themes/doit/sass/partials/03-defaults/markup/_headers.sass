@@ -1,32 +1,32 @@
 /* Headings --------------------------------------------------------------
 
 // #{headers(all)},
-.h1, .h2, .h3, .h4, .h5, .h6
-  @extend .page-headline
+%h1, %h2, %h3, %h4, %h5, %h6
+  @extend %page-headline
   text-rendering: optimizeLegibility
   margin-top: 0
   margin-bottom: 12px
 
-.h1
+%h1
   font-size: $s10
   line-height: 1
   margin-bottom: 12px
 
-.h2
+%h2
   font-size: $s5
   line-height: 22px
 
-.h3
+%h3
   font-size: $s3
 
-.h4
+%h4
   +adjust-font-size-to($s0, 1)
 
 h1
-  @extend .h1
+  @extend %h1
 h2
-  @extend .h2
+  @extend %h2
 h3
-  @extend .h3
+  @extend %h3
 h4
-  @extend .h4
+  @extend %h4
