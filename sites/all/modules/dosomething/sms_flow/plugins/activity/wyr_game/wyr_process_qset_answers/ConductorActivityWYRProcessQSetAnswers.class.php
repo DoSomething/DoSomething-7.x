@@ -50,7 +50,7 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
     $ftaf_number = $state->getContext($this->name . ':message');
     if ($ftaf_number === FALSE) {
       // Get opt-in path from parameters
-      $this->incoming_opt_in_path = $_REQUEST['opt_in_path_id'];
+      $this->incoming_opt_in_path = check_plain($_REQUEST['opt_in_path_id']);
 
       // Get WYR answers
       $q1_answer = self::getMobileCommonsProfileValue($mobile, 'profile_wyr_q1_answer');
@@ -61,7 +61,7 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
       // Since question 4 is the answer the user is sending to this activity, we can also
       // check the args parameters if q4_answer is still empty
       if (empty($q4_answer)) {
-        $q4_answer = $_REQUEST['args'];
+        $q4_answer = check_plain($_REQUEST['args']);
       }
 
       // Normalize answer
@@ -188,7 +188,7 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
   private function getMobileCommonsProfileValue($mobile, $field_name) {
     // Pull the value from $_REQUEST parameters if they're there
     if (!empty($_REQUEST[$field_name])) {
-      return $_REQUEST[$field_name];
+      return check_plain($_REQUEST[$field_name]);
     }
     // Otherwise go to Mobile Commons for the value
     else {
