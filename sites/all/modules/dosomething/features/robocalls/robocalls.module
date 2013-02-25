@@ -181,200 +181,6 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
     $form['actions']['submit']['#value'] = t('Send The Call!');
     $form['#submit'][] = 'robocalls_celeb_form_submission';
-
-    // $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value']
-    #echo '<Pre>', print_r($u), '</pre>'; exit;
-    #echo '<pre>', print_R($term), '</pre>'; exit;
-    /*$termid = arg(2);
-
-    if (!$termid && request_uri() == '/calloffame') {
-      $f = db_query("SELECT entity_id FROM field_data_field_celeb_featured_celebrity WHERE field_celeb_featured_celebrity_value = 1 LIMIT 1");
-      $f = reset($f->fetchAll());
-
-      $termid = $f->entity_id;
-    }
-
-    $term = taxonomy_term_load($termid);
-    $u = &$form['submitted'];
-
-    // Get current date value (may be before the time that the page was loaded)
-    $current = strtotime($u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value']);
-    // Get the next 10 for minute
-    $next = ceil(date('i', $current) / ROUND_TO) * ROUND_TO;
-    // Recreate the date with the next 10
-    $real = date('Y-m-d H:' . $next . ':s', $current);
-    // And set the form fields to reflect that.
-    $u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value'] = $real;
-
-    $scholarship = !empty($term->field_celeb_scholarship_langauge[LANGUAGE_NONE][0]['value']);
-    if ($scholarship) {
-      drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb_scholarship.css');
-    }
-    else {
-      drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb.css');
-    }
-
-    if (!empty($term)) {
-       $term_info = array();
-       $term_info['parent'] = key(taxonomy_get_parents($term->tid));
-       $term_info['tid'] = $term->tid;
-       $term_info['name'] = $term->name;
-       $term_info['desc'] = $term->description;
-       $term_info['image'] = $term->field_celeb_photo[LANGUAGE_NONE][0]['uri'];
-       $term_info['flag'] = $term->field_short_name[LANGUAGE_NONE][0]['value'];
-
-      $form['call_limit'] = array(
-        '#type' => 'hidden',
-        '#value' => $term->field_call_limit[LANGUAGE_NONE][0]['value']
-      );
-
-      $form['mobile_commons_id'] = array(
-        '#type' => 'hidden', 
-        '#value' => $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value']
-      );
-	  }
-
-    $form['actions']['submit']['#value'] = t('SEND');
-    $form['actions']['submit']['#attributes']['class'] = array('go-button robocalls-submit');
-    $form['submit_button'] = $form['actions']['submit'];
-    $form['actions']['submit']['#access'] = FALSE;
-
-    $form['fb_preview'] = array(
-       '#type' => 'container',
-       '#attributes' => array(
-          'class' => array('robocalls-fb-container')
-       ),
-       '#weight' => 100,
-  	);
-
-    $form['fb_preview']['fb_button'] = array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array('robocalls-fb-button-container')
-      ),
-      '#weight' => 100,
-    );
-
-    $form['fb_preview']['fb_button']['connect_with_facebook'] = array(
-      '#markup' => '<p class="robocalls-fb-find-friends-birthdays"><img src="/' . drupal_get_path('module', 'robocalls') . '/images/facebook-share-button.gif" alt="Share on Facebook" /></p>',
-      '#weight' => 110,
-    );
-
-    if (isset($term->tid) && !empty($term->tid)) {
-
-        $form['fb_preview']['preview'] = array(
-           '#type' => 'container',
-           '#attributes' => array(
-              'class' => array('robocalls-preview-button-container')
-          ),
-           '#weight' => 150,
-        );
-
-        $form['fb_preview']['preview']['button'] = array(
-           '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', str_replace(array(DRUPAL_ROOT . '/', '/var/www/nfs'), array('', 'files'), drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])), array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link'))),
-           '#weight' => 1,
-        );
-
-
-        $form['fb_preview']['preview']['preview_now'] = array(
-           '#markup' => '<p><h3>Preview</h3></p>',
-           '#weight' => 1000,
-        );
-
-        $form['fb_preview']['preview']['audio'] = array(
-           '#markup' => '<audio id="robocalls-preview-audio" src="/files' . str_replace(array(DRUPAL_ROOT . '/files', 'var/www/nfs'), '', drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) . '"></audio>',
-           '#weight' => 1010,
-        );
-    }
-
-    if (!user_is_logged_in()) {
-       $form['submit_button']['#ajax'] = array(
-         'callback' => 'robocalls_ajax_call',
-       );
-    }
-
-
-    if (isset($term->field_timed_call) && !empty($term->field_timed_call)) {
-      $date = (strtotime($term->field_timed_call[LANGUAGE_NONE][0]['value']) + 18000);
-      $label = $term->field_timed_call_label[LANGUAGE_NONE][0]['value'];
-      $predate = date('Y-m-d H:i:00', $date);
-      $u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value'] = $predate;
-      $form['pointless'] = array(
-        '#type' => 'hidden',
-        '#value' => ($label ? "{$label} - " : '') . date('F j, Y', $date),
-        '#attributes' => array('id' => array('pointless-hidden-box'))
-      );
-      $u['field_celeb_date']['#attributes']['class'] = array('robocalls-timed-form-times');
-      $u['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
-    }
-    else
-    {
-      $u['field_celeb_send_now']['#attributes']['id'] = 'or-send-now-button';
-    }
-
-    if (user_is_logged_in()) {
-       global $user;
-       $profile = profile2_load_by_user($user, 'main');
-
-       // Cell number population
-       if (!empty($profile->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
-          $u['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile->field_user_mobile[LANGUAGE_NONE][0]['value'];
-       }
-
-       // First name population
-       if (!empty($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
-          $u['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-       }
-    }
-
-    
-    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls.js', array(
-       'weight' => -100,
-       'cache' => FALSE
-    ));
-
-    if (isset($_GET['done'])) {
-       // Pop up the "Done!" pop up
-       drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls_done.js', array(
-         'weight' => -99,
-         'cache' => FALSE
-       ));
-    }
-
-    $u['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
-
-    unset($u['top_disclaimer']);
-
-    $u['field_celebrity_chooser'][LANGUAGE_NONE]['#title'] = t('Choose a Celeb');
-
-    if (request_uri() == '/calloffame') {
-      $u['header'] = array(
-        '#markup' => '<h2>' . t('!name ' . ROBOCALLS_FEATURED_CELEB_TAG, array('!name' => $term->name)) . '</h2>',
-        '#weight' => -1000
-      );
-    }
-
-    $nopages = preg_match('#^\/(calloffame|cause\/animals|issues\/teen-pregnancy)#i', request_uri());
-    $form_state['side_bar'] = false;
-    if (isset($term->tid) && !empty($term->tid) && !$nopages) {
-       unset($u['top_disclaimer']);
-       unset($u['step_2']);
-    }
-    else {
-       $form_state['side_bar'] = true;
-       drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_remote_webform.css', array(
-         'group' => CSS_THEME,
-         'weight' => 9999,
-       ));
-    }
-
-    if (!isset($form_state['return_to'])) {
-       $form_state['return_to'] = $_SERVER['REQUEST_URI'];
-    }
-
-    $form['#validate'][] = 'robocalls_call_validate';
-    $form['#submit'][] = 'robocalls_call_submit';
-    $form['#redirect'] = $form_state['return_to'];*/
   }
   else {
     if ($action == '/robo-calls/homepage-webform') {
@@ -397,12 +203,63 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       // Make sure the password field is a password field.
       $u['my_info']['my_password']['#type'] = 'password';
 
+
+      $form['more_stuff'] = array(
+        '#markup' => '<a href="#" class="add-more-friends-front">Send to more friends</a>',
+        '#weight' => 25,
+      );
+
       // Change the "submit" button text to "Send the call!"
       $form['actions']['submit']['#value'] = t('Send The Call!');
       $form['#submit'][] = 'robocalls_test';
     }
+    else if (request_uri() == '/calloffame/walkthrough') {
+      $u =& $form['submitted'];
+      $u['friends_number']['#attributes']['placeholder'] = t("Friend's Number");
+
+      $u['page_3']['#access'] = false;
+      $u['my_number']['#access'] = false;
+      global $user;
+      $p = profile2_load_by_user($user, 'main');
+      $form_state['input']['my_number'] = '610-368-3195';
+      if ($p->field_user_mobile[LANGUAGE_NONE][0]['value']) {
+        $form_state['input']['my_number'] = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
+        $form_state['values']['my_number'] = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
+        $u['my_number']['#default_value'] = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
+      }
+
+      $form['#submit'][] = 'robocalls_blah';
+    }
   }
 }
+
+function robocalls_blah($form, &$form_state) {
+  if (isset($form_state['input']['submitted']['friends_number'])) {
+    #$form_state['values']['my_number'] = '610-368-3195';
+    #$form_state['input']['my_number'] = '610-368-3195';
+    #$form_state['values']['submitted_tree']['my_number'] = '610-368-3195';
+    #$form_state['input']['submitted']['my_number'] = '610-368-3195';
+    #drupal_form_submit('webform_client_form_727831', $form_state);
+    #echo '<pre>', print_r($form_state['values']), '</pre>'; exit;
+
+    #drupal_goto('calloffame');
+  }
+
+#  echo '<pre>', print_r($form_state['clicked_button']['value']), '</pre>'; exit;
+}
+
+/**
+ *  Implements hook_webform_select_options_info()
+ */
+function robocalls_webform_select_options_info() {
+  return array(
+    'calls' => array(
+      'title' => t('Project Prank Calls'),
+      'options callback' => 'robocalls_get_celebrities',
+    ),
+  );
+}
+
 
 function robocalls_celeb_form_submission($form, &$form_state) {
   $friend_fields = array(
@@ -418,13 +275,17 @@ function robocalls_celeb_form_submission($form, &$form_state) {
   foreach ($friend_fields AS $field) {
     $friends[] = $form_state['input']['submitted']['your_friends_info'][$field][LANGUAGE_NONE][0]['value'];
   }
-  $friends += $form_state['input']['submitted']['additional_friends'];
+  if (!empty($form_state['input']['submitted']['additional_friends']) && is_array($form_state['input']['submitted']['additional_friends'])) {
+    $friends += $form_state['input']['submitted']['additional_friends'];
+  }
+
   $friends = array_unique($friends);
 
-  dosomething_general_telapi_request('610-368-3195', '610-368-3195', 'blah');
-  
-  echo '<pre>', print_r($friends), '</pre>';
-  exit;
+  $call = dosomething_general_telapi_request('718-578-7681', $friends, 'blah');
+
+  if (!empty($call)) {
+    drupal_goto($_SERVER['HTTP_REFERER'] . '?c=' . base64_encode(serialize($call)));
+  }
 }
 
 function robocalls_test($form, &$form_state) {

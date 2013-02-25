@@ -37,7 +37,7 @@
 
       $(f).insertAfter('#webform-component-friends-info--primary-friend');
 
-      $('#cof-descriptive a').click(function() {
+      $('.add-more-friends-front').click(function() {
         var n = Drupal.behaviors.robocalls.friends_field_count;
         if (n >= Drupal.behaviors.robocalls.friends_limit) {
           return false;

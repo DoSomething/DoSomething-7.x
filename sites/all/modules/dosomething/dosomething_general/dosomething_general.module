@@ -1114,7 +1114,7 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   
 }
 
-function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_url, $type = 'call') {
+function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_url, $type = 'calls') {
   $path = libraries_get_path('telapi');
   require_once $path . '/library/TelApi.php';
   
@@ -1123,6 +1123,31 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_ur
     'account_sid' => 'AC69dc373627334a05b0d58dfe67b215cc',
     'auth_token' => '02eb30fb3df44204ba3bed9b5bda9afe',
   ));
+
+  if (is_array($beta_number)) {
+    foreach ($beta_number AS $cell) {
+      $call = $api->create($type, array(
+        'From' => $alpha_number,
+        'To' => $cell,
+        'Url' => 'http://qa3.dosomething.org/test.php',
+        'method' => 'GET',
+      ));
+    }
+  }
+  else {
+    $call = $api->create($type, array(
+      'From' => $alpha_number,
+      'To' => $beta_number,
+      'Url' => 'http://qa3.dosomething.org/test.php',
+      'method' => 'GET',
+    ));
+  }
+
+  if ($call->sid) {
+    return $call;
+  }
+
+  return false;
 }
 
 
