@@ -26,20 +26,20 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
     '142223' => array(
       'opt1_valid_answers' => array('eat tuna', 'a', 'a eat tuna', 'a eat tuna every day for a month', 'a eat tuna every day', 'a tuna every day for a month', 'a tuna every day', 'a) eat tuna', 'a) eat tuna every day for a month', 'a) eat tuna every day', 'a) tuna every day for a month', 'a) tuna every day', 'a. eat tuna', 'a. eat tuna every day for a month', 'a. eat tuna every day', 'a. tuna every day for a month', 'a. tuna every day'),
       'opt2_valid_answers' => array('eat ramen', 'b', 'b eat tuna', 'b eat ramen every day for a month', 'b eat ramen every day', 'b ramen every day for a month', 'b ramen every day', 'b) eat ramen', 'b) eat ramen every day for a month', 'a) eat ramen every day', 'b) ramen every day for a month', 'b) ramen every day', 'b. eat ramen', 'b. eat ramen every day for a month', 'b. eat ramen every day', 'b. ramen every day for a month', 'b. ramen every day'),
-      'sms_response_opt1' => 'That would cost less than $1000, but that\'s pretty nasty. Want better advice on saving $$? Text TIPS. Or, text a friend\'s number to see what they\'d do.',
-      'sms_response_opt2' => 'That would cost less than $300/yr, but it\'s not very healthy. Want better advice on saving $$? Text TIPS. Or, text a friend\'s number to see what they\'d do',
+      'sms_response_opt1' => 'Hmm. You seem like you want mo\' $$$. Txt TIPS for some less fishy saving tips, or text back friends numbers see what crazy things they\'d do for cash money.',
+      'sms_response_opt2' => 'Hmm. You seem like you want mo\' $$$. Txt TIPS for some non-rameny saving tips, or text back friends numbers see what crazy things they\'d do for cash money.',
     ),
     '142503' => array(
-      'opt1_valid_answers' => array('get internet at the library', 'a', 'a) access the internet only at the library', 'a) access internet at the library', 'a) go to the library', 'access the internet at the library', 'go to the library', 'the library', 'library', 'a access the internet only at the library', 'a access internet at the library', 'a go to the library'),
-      'opt2_valid_answers' => array('only get internet w ur parents home', 'b', 'b) only with my parents watching at home', 'only with my parents watching', 'only with my parents', 'my parents watching', 'get internet with my parents watching', 'get internet w my parents at home', 'b) only with my parents watching', 'b) only with my parents', 'b) my parents watching', 'b) get internet with my parents watching', 'b) get internet w my parents at home'),
-      'sms_response_opt1' => 'Internet can be $100-500 per year, yikes! Want some easier ways to save money? Text TIPS. Or, text a friend\'s number to see what they\'d do',
-      'sms_response_opt2' => 'Internet can be $100-500 per year, yikes! Want some easier ways to save money? Text TIPS. Or, text a friend\'s number to see what they\'d do',
+      'opt1_valid_answers' => array('share a bar of soap', 'a', 'a)', 'a.'),
+      'opt2_valid_answers' => array('share a toothbrush', 'b', 'b)', 'b.'),
+      'sms_response_opt1' => 'Hmm. You seem like you want mo\' $$$. Txt TIPS for some, err... cleaner saving tips, or text back friends numbers to see what crazy things they\'d do for money.',
+      'sms_response_opt2' => 'Hmm. You seem like you want mo\' $$$. Txt TIPS for some, err... cleaner saving tips, or text back friends numbers to see what crazy things they\'d do for money.',
     ),
     '143053' => array(
-      'opt1_valid_answers' => array('have a flip phone', 'swap my smartphone for a flip phone', 'get a flip phone', 'flip phone', 'a', 'a) have a flip phone', 'a) swap my smartphone for a flip phone', 'a) get a flip phone', 'a) flip phone', 'a have a flip phone', 'a swap my smartphone for a flip phone', 'a get a flip phone', 'a flip phone'),
-      'opt2_valid_answers' => array('give up your car', 'swap my car for a bike', 'swap my car for a bicycle', 'swap my car', 'get a bike', 'get a bicycle', 'swap my car', 'b', 'b)', 'b swap my car for a bike', 'b swap my car for a bicycle', 'b swap my car for a bicycle', 'b swap my car', 'b get a bike', 'b get a bicycle', 'b swap my car', 'b) swap my car for a bike', 'b) swap my car for a bicycle', 'b) swap my car for a bicycle', 'b) swap my car', 'b) get a bike', 'b) get a bicycle', 'b) swap my car'),
-      'sms_response_opt1' => 'That could save you up to $500/yr, but then you lose Angry Birds. Want an easier way to save money? Text TIPS. Or, respond w/ a friends number to see what they\'d do',
-      'sms_response_opt2' => 'That could save you up to $2000/yr in gas. Not bad. Want an easier way to save money? Text TIPS. Or, respond w a friends number to see what they\'d do',
+      'opt1_valid_answers' => array('eat a stranger\'s leftovers', 'a', 'a)', 'a.'),
+      'opt2_valid_answers' => array('eat old fish', 'b', 'b)', 'b.'),
+      'sms_response_opt1' => 'Hmm. You seem like you want mo\' $$$. Txt TIPS for some tastier saving tips, or text back friends numbers to see what crazy things they\'d do for money.',
+      'sms_response_opt2' => 'Hmm. You seem like you want mo\' $$$. Txt TIPS for some tastier saving tips, or text back friends numbers to see what crazy things they\'d do for money.',
     ),
   );
 

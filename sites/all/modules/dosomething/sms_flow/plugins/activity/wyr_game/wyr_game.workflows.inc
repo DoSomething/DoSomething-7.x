@@ -48,7 +48,7 @@ $activity->name = 'wyr_game_tips';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->game_id = 3;
-$activity->opt_in_paths = array(144643, 144663, 144683);
+$activity->opt_in_paths = array(144643, 144663, 144683, 145563, 145573, 145583, 145593, 145603, 145613, 145623, 145633, 145643, 145653, 145663, 145673, 145683, 145693, 145703, 145713, 145723);
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
