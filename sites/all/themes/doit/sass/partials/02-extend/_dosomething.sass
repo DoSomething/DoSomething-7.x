@@ -7,78 +7,78 @@
 // extend these liberally
 ////////////////////////////
 /* ABSTRACT EXTENDABLES
-.italic
+%italic
   font-style: italic
-
-.normal
+  
+%normal
   font-weight: normal
   font-weight: 300
-
-.medium
+  
+%medium
   font-weight: bold
   font-weight: 500
-
-.bold
+  
+%bold
   // As discussed on 3/1/12, please globally switch from DIN bold font to medium.
   // font-weight: bold
   // font-weight: 600
-  @extend .medium
+  @extend %medium
 
-.yellow
+%yellow, .yellow
   color: $yellow
-.blue
+%blue, .blue
   color: $blue
-.black
+%black, .black
   color: $black
-.gold
+%gold, .gold
   color: $gold
-.purple
+%purple, .purple
   color: $purple
-.white
+%white, .white
   color: $white
-.black
+%black, .black
   color: $black
-.gray1
+%gray1, .gray1
   color: $gray1
-.gray2
+%gray2, .gray2
   color: $gray2
-.gray3
+%gray3, .gray3
   color: $gray3
-.gray4
+%gray4, .gray4
   color: $gray4
-.gray5
+%gray5, .gray5
   color: $gray5
-.gray6
+%gray6, .gray6
   color: $gray6
-.blue-light
+%blue-light, .blue-light
   color: $blue-light
 
-.alert-green
+%alert-green, .alert-green
   color: $alert-green
-.alert-red
+%alert-red, .alert-red
   color: red
 
-.small
+%small, .small
   font-size: $s-1
 
-.tight-leading
+%tight-leading, .tight-leading
   font-size: $s0
   line-height: $s1
 
-.text-shadow
+%text-shadow, .text-shadow
   +text-shadow($gray2-trans 1px 1px 2px)
-.box-shadow
+%box-shadow, .box-shadow
   +box-shadow($gray3-trans 0 0 12px)
-.box-shadow-none
+%box-shadow-none, .box-shadow-none
   +box-shadow($gray3-trans 0 0px 0px)
 
-.white-border
+%white-border, .white-border
   border: 1px $white solid
 
 // Used for 60x60, 120x120, dosomething-stats, and on forms
-.border-and-shadow
-  @extend .white-border
-  @extend .box-shadow
+%border-and-shadow, .border-and-shadow
+  @extend %white-border
+  @extend %box-shadow
 
 ////////////////////////////
 // LARGE IMAGE FIELD SHADOW AND WHITE BORDER
@@ -91,7 +91,7 @@
   .ie7 &
     +background(image_url("rounded-bottom-shadow.gif") no-repeat left 0 322px)
   img
-    @extend .white-border
+    @extend %white-border
     margin-bottom: 24px
 
 // REMOVE SHADOWS FROM TAXONOMY
@@ -111,29 +111,29 @@
       max-height: 330px
 
 // Extendable bottom borders
-.gray3-border
+%gray3-border, .gray3-border
   border-bottom: 1px $gray3 solid
 
-.gray6-border
+%gray6-border, .gray6-border
   border-bottom: 1px $gray6 solid
 
 ////////////////////////////
 // GENERAL EXTENDABLES
 ////////////////////////////
 /* GENERAL EXTENDABLES
-.bold-caps-header
-  @extend .headers
-  @extend .bold
-  @extend .caps
+%bold-caps-header, .bold-caps-header
+  @extend %headers
+  @extend %bold
+  @extend %caps
 
-.large-bold-caps
-  @extend .bold-caps-header
+%large-bold-caps, .large-bold-caps
+  @extend %bold-caps-header
   font-size: $s5
 
-.page-headline
-  @extend .headers
-  @extend .bold
-  @extend .black
+%page-headline, .page-headline
+  @extend %headers
+  @extend %bold
+  @extend %black
 
 h1.title
   +ds-bevel-single
@@ -146,7 +146,7 @@ h3.subhead
 
 // Alternate h2.title for panels
 // Black and no background or padding
-.black-h2
+%black-h2, .black-h2
   h2,
   h2.pane-title
     background-color: transparent
@@ -161,11 +161,11 @@ h3.subhead
 // PROFILE INFO
 // din, 21px, 17px
 ////////////////////////////
-.large-profile-info
-  @extend .headers
+%large-profile-info, .large-profile-info
+  @extend %headers
   font-size: $s5
 .medium-profile-info
-  @extend .headers
+  @extend %headers
   font-size: $s3
 
 ////////////////////////////
@@ -174,10 +174,10 @@ h3.subhead
 // din, 33px, bold, white
 ////////////////////////////
 .purple-ribbon
-  @extend .headers
-  @extend .bold
-  @extend .white
-  @extend .text-shadow
+  @extend %headers
+  @extend %bold
+  @extend %white
+  @extend %text-shadow
   font-size: $s8
 
 ////////////////////////////
@@ -186,21 +186,21 @@ h3.subhead
 // din, 69px, bold, gold
 ////////////////////////////
 .dothis-button-large
-  @extend .headers
-  @extend .bold
-  @extend .gold
-  @extend .text-shadow
+  @extend %headers
+  @extend %bold
+  @extend %gold
+  @extend %text-shadow
   font-size: $s11
 
 ////////////////////////////
 // GO BUTTON
 // small with 2-tone gold like on log in overlay
 ////////////////////////////
-.go-button
-  @extend .headers
-  // @extend .bold
+%go-button, .go-button
+  @extend %headers
+  // @extend %bold
   font-weight: bold
-  @extend .gray2
+  @extend %gray2
   //+border-radius($s0)
   +border-radius (6px)
   //+box-shadow (1px 1px 3px 0px #999)
@@ -212,14 +212,14 @@ h3.subhead
   font-size: $s4
   text-transform: uppercase
   &:hover, &:active, &:visited
-    //@extend .gray2
+    //@extend %gray2
     color: black
     text-decoration: none
 
-.go-button-logo
-  @extend .headers
-  @extend .bold
-  @extend .gray2
+%go-button-logo, .go-button-logo
+  @extend %headers
+  @extend %bold
+  @extend %gray2
   display: block
   background-image: image-url("go-button-logo.png")
   background-repeat: no-repeat
@@ -236,7 +236,7 @@ h3.subhead
 // float submit buttons to
 // right on inline forms
 ////////////////////////////
-.submit-right
+%submit-right, .submit-right
   float: right
   clear: none
 
@@ -244,25 +244,25 @@ h3.subhead
 // TEXT ON DARK BACKGROUND
 // normal, white
 ////////////////////////////
-.text-on-dark
-  @extend .white
+%text-on-dark, .text-on-dark
+  @extend %white
 
 ////////////////////////////
 // HILIGHT ON DARK
 // hilight text (gold) for dark backgrounds
 // normal, gold
 ////////////////////////////
-.highlight-on-dark
-  @extend .gold
+%highlight-on-dark, .highlight-on-dark
+  @extend %gold
 
 ////////////////////////////
 // DARK BACKGROUNDS
 // white text
 // links: light gray, gold hover
 ////////////////////////////
-.dark-background
+%dark-background, .dark-background
   background-color: $gray1
-  @extend .text-on-dark
+  @extend %text-on-dark
   a
     +link-colors($gray6, $gold, $gold, $gray6, false)
 
@@ -272,63 +272,63 @@ h3.subhead
 // light gray
 ////////////////////////////
 .field-text
-  @extend .gray5
+  @extend %gray5
 
 ////////////////////////////
 // DROPDOWNS
 // din, bold, white
 ////////////////////////////
-.dropdown
-  @extend .headers
-  @extend .bold
-  @extend .white
+%dropdown, .dropdown
+  @extend %headers
+  @extend %bold
+  @extend %white
 ////////////////////////////
 // DROPDOWN CATEGORIES
 // 14px
 ////////////////////////////
-.dropdown-categories
-  @extend .dropdown
+%dropdown-categories, .dropdown-categories
+  @extend %dropdown
   font-size: $s5
 ////////////////////////////
 // DROPDOWN CHOICES
 // 12px / 21px
 ////////////////////////////
 .dropdown-choices
-  @extend .dropdown
-  @extend .gray6
+  @extend %dropdown
+  @extend %gray6
   font-size: $s3
   line-height: $s6
   &:hover
-    @extend .gold
+    @extend %gold
 
 
 ////////////////////////////
 // SIDEBAR DROPDOWNS
 ////////////////////////////
 .sidebar-dropdown-categories
-  @extend .dropdown
+  @extend %dropdown
   font-size: $s1
 .sidebar-dropdown-choices
-  @extend .dropdown
-  @extend .gray5
+  @extend %dropdown
+  @extend %gray5
   font-size: $s0
   line-height: $s5
   &:hover
-    @extend .gold
+    @extend %gold
 
 
 
 ////////////////////////////
 // MEMBER DROPDOWN CHOICES
 ////////////////////////////
-.member-expanded
-  @extend .headers
-  @extend .medium
-  @extend .gray5
+%member-expanded, .member-expanded
+  @extend %headers
+  @extend %medium
+  @extend %gray5
   font-size: $s0
   line-height: $s5
   &:hover
-    @extend .gold
+    @extend %gold
 
 
 
@@ -337,9 +337,9 @@ h3.subhead
 // din, blue, 18px
 ////////////////////////////
 .teaser-heading
-  @extend .headers
-  @extend .bold
-  @extend .blue
+  @extend %headers
+  @extend %bold
+  @extend %blue
   font-size: $s4
 
 ////////////////////////////
@@ -347,9 +347,9 @@ h3.subhead
 // din, medium, gray4
 ////////////////////////////
 .teaser-date
-  @extend .headers
-  @extend .medium
-  @extend .gray4
+  @extend %headers
+  @extend %medium
+  @extend %gray4
 
 
 ////////////////////////////
@@ -357,9 +357,9 @@ h3.subhead
 // din, bold, white, 14px
 ////////////////////////////
 .sponsors-who-rock
-  @extend .headers
-  @extend .bold
-  @extend .white
+  @extend %headers
+  @extend %bold
+  @extend %white
   font-size: $s1
 
 
@@ -373,19 +373,19 @@ h3.subhead
 // din, medium
 ////////////////////////////
 .app-footer
-  @extend .headers
-  @extend .medium
+  @extend %headers
+  @extend %medium
 
 ////////////////////////////
 // APP PURPLE RIBBON
 // purple, bg, din, bold, white, caps, shadow
 ////////////////////////////
 .app-purple-ribbon
-  @extend .headers
-  @extend .bold
-  @extend .white
-  @extend .caps
-  @extend .text-shadow
+  @extend %headers
+  @extend %bold
+  @extend %white
+  @extend %caps
+  @extend %text-shadow
   background-color: $purple
 
 
@@ -394,18 +394,18 @@ h3.subhead
 // din, bold, white
 ////////////////////////////
 .accordian
-  @extend .white
+  @extend %white
 .accordian-selected-category
-  @extend .headers
-  @extend .bold
-  @extend .white
+  @extend %headers
+  @extend %bold
+  @extend %white
   font-size: $s4
 
 ////////////////////////////
 // TWO COLUMN GRID
 // Used on the action guides landing, and member profile more pages
 ////////////////////////////
-.two-column-grid
+%two-column-grid
   .views-row
     width: 49%
     .ie8 &
@@ -421,7 +421,7 @@ h3.subhead
   .views-row-even
     float: right
   .pane-content
-    @extend .clearfix
+    @extend %clearfix
 
 ////////////////////////////
 // IMAGE TEASER MODULE
@@ -429,16 +429,16 @@ h3.subhead
 // white box filling the
 // rest of the space
 ////////////////////////////
-.image-teaser-module
-  @extend .clearfix
+%image-teaser-module
+  @extend %clearfix
   margin-bottom: $s0
-.image-teaser-module-image
-  @extend .border-and-shadow
+%image-teaser-module-image
+  @extend %border-and-shadow
   float: left
   width: 120px
   height: 120px
-.image-teaser-module-teaser
-  @extend .border-and-shadow
+%image-teaser-module-teaser
+  @extend %border-and-shadow
   background-color: $white
   min-height: 120px
   padding: $s6 $s0 0 $s0
@@ -446,12 +446,12 @@ h3.subhead
   .ie8 &
     min-height: 97px
   h2
-    @extend .bold
+    @extend %bold
     display: block
     line-height: 22px
     margin-bottom: 10px
   p
-    @extend .tight-leading
+    @extend %tight-leading
     margin-bottom: 0
 
 ////////////////////////////
@@ -459,7 +459,7 @@ h3.subhead
 ////////////////////////////
 li.search-result
   img
-    @extend .border-and-shadow
+    @extend %border-and-shadow
 
 ////////////////////////////
 // BOX-DETAILS LAYOUTS
@@ -473,47 +473,47 @@ li.search-result
 // THE STYLE GUIDE
 ////////////////////////////
 .main-nav
-  @extend .headers
-  @extend .yellow
-  @extend .bold
-  @extend .caps
+  @extend %headers
+  @extend %yellow
+  @extend %bold
+  @extend %caps
   font-size: $s9
   &.hover
-    @extend .white
+    @extend %white
 
 .main-nav-dropdown
-  @extend .headers
-  @extend .white
-  @extend .bold
-  @extend .caps
+  @extend %headers
+  @extend %white
+  @extend %bold
+  @extend %caps
   font-size: $s4
   line-height: 38px
   &.hover
-    @extend .yellow
+    @extend %yellow
 
-.main-footer-nav
-  @extend .headers
-  @extend .white
-  @extend .caps
+%main-footer-nav
+  @extend %headers
+  @extend %white
+  @extend %caps
   font-size: $s4
 
 .footer-links
-  @extend .headers
-  @extend .white
-  @extend .medium
-  @extend .caps
+  @extend %headers
+  @extend %white
+  @extend %medium
+  @extend %caps
   font-size: $s1
 
-.page-links
+%page-links
   a
-    @extend .blue
+    @extend %blue
     font-size: $s0
     +remove-link-underlines
     &.hover
       text-decoration: underline
 
 // More link when in custom panel
-.more-link-right
+%more-link-right
   float: right
   margin-bottom: 2em
 
@@ -523,72 +523,72 @@ li.search-result
   text-transform: lowercase
 
 .filter-dropdowns
-  @extend .main-footer-nav
+  @extend %main-footer-nav
 
 .page-content-text
-  @extend .page-links
-  @extend .black
+  @extend %page-links
+  @extend %black
   line-height: 14px
   text-transform: none
 
 .module-titles
-  @extend .headers
-  @extend .bold
-  @extend .white
-  @extend .caps
+  @extend %headers
+  @extend %bold
+  @extend %white
+  @extend %caps
   font-size: $s5
 
 .headlines
   a
-    @extend .headers
-    @extend .bold
-    @extend .blue
-    @extend .caps
+    @extend %headers
+    @extend %bold
+    @extend %blue
+    @extend %caps
     +remove-link-underlines
     font-size: $s1
     &.hover
       text-decoration: underline
 
 // Block header white title style with blue background
-.block-header
-  @extend .white
+%block-header
+  @extend %white
   background-color: $blue
   padding: 0 $s2
   margin-top: 0
   margin-bottom: 0
   line-height: 1.714285714
 
-.content-text
-  @extend .black
+%content-text
+  @extend %black
   font-size: $s0
   line-height: 14px
 
-.right-sidebar-headlines
+%right-sidebar-headlines
   a
-    @extend .headers
+    @extend %headers
     font-size: bold
-    @extend .blue
+    @extend %blue
     +remove-link-underlines
     &.hover
       text-decoration: underline
 
 .right-sidebar
   .sidebar-title
-    @extend .headers
-    @extend .bold
-    @extend .white
-    @extend .caps
+    @extend %headers
+    @extend %bold
+    @extend %white
+    @extend %caps
   .headlines
-    @extend .right-sidebar-headlines
+    @extend %right-sidebar-headlines
   .content-text
-    @extend .content-text
+    @extend %content-text
 
 // Label styling for vital stats counter
-.counter-labels
-  @extend .headers
-  @extend .bold
-  @extend .black
-  @extend .caps
+%counter-labels
+  @extend %headers
+  @extend %bold
+  @extend %black
+  @extend %caps
   display: inline
   font-size: $s5
   letter-spacing: 0
@@ -597,7 +597,7 @@ li.search-result
 
 // Number styling for vital stats counter
 =stats-digits
-  @extend .counter-labels
+  @extend %counter-labels
   background: image_url("counter.png") no-repeat -1px -1px
   border: 1px $gray5 solid
   font-size: 27px
@@ -626,9 +626,9 @@ li.search-result
   z-index: 2
 
 // White Headline title style used in modal popups
-.popup-title
-  @extend .white
-  @extend .bold
+%popup-title, .popup-title
+  @extend %white
+  @extend %bold
   font-family: $font-headline
   font-size: 40px
   border-bottom: 1px $gray-border-alt solid
@@ -636,7 +636,7 @@ li.search-result
   padding-bottom: 12px
 
 // Gray second border under title in modal popups
-.popup-title-border
+%popup-title-border, .popup-title-border
   border-top: 1px $gray-border solid
   padding-top: 12px
 
@@ -650,7 +650,7 @@ li.search-result
 .pane-news-stuff
   .pane-content
     h3
-      @extend .bold
+      @extend %bold
       +adjust-font-size-to($s5, 1)
       margin-bottom: 0.25em
     p
@@ -659,9 +659,9 @@ li.search-result
     img
       +float-left
       margin-right: 14px
-      @extend .border-and-shadow
+      @extend %border-and-shadow
   .views-row
-    @extend .clearfix
+    @extend %clearfix
     padding-top: 30px
   .news-title
     padding-top: 15px
@@ -669,20 +669,20 @@ li.search-result
 
 // Narrow block with header, thumbnail, and title with teaser
 // i.e. related stuff, doing it, done it, club members, act now, resources
-.pane-narrow-block
+%pane-narrow-block
   ul
     list-style: none
   .item-list ul li
     margin: 0
   .views-row
-    @extend .clearfix
+    @extend %clearfix
     +ds-bevel-single
     padding: $s2 0
     &:last-of-type
       +box-shadow-none
       border-bottom: none
   .views-field-title
-    @extend .right-sidebar-headlines
+    @extend %right-sidebar-headlines
     a
       font-size: 14px
       font-weight: bold
@@ -693,7 +693,7 @@ li.search-result
     margin-right: $s0
     width: 60px
     img
-      @extend .border-and-shadow
+      @extend %border-and-shadow
       height: 60px
       width: 60px
 
@@ -705,9 +705,9 @@ li.search-result
   margin-top: 12px
   &:before
     content: 'Start a Project'
-    @extend .counter-labels
+    @extend %counter-labels
   a:visited
-    @extend .gray2
+    @extend %gray2
 
 ////////////////////////////
 // OLD CLASSES
@@ -732,6 +732,16 @@ ul.hover-image
   
   li:first-child
     display: none
+
+// Added to support staff listing
+.content
+  div.staff_bio
+    width: 100%
+    overflow: auto
+    margin-bottom: 20px
+    box-sizing: border-box
+    img
+      margin-top: 0
 
 // CTIA signup buttom
 .pane-campaign-sign-up #edit-actions

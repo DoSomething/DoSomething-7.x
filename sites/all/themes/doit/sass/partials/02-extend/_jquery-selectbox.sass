@@ -1,7 +1,7 @@
 // Front page Action Block
 body.front
   .pane-dosomething-blocks-dosomething-make-impact-front
-    @extend .border-and-shadow
+    @extend %border-and-shadow
     height: 195px
     .pane-title
       border-bottom: 1px $white solid
@@ -13,7 +13,7 @@ body.front
       label
         display: none
     .selectBox-dropdown
-      @extend .dropdown-categories
+      @extend %dropdown-categories
       width: 100%
   .selectBox-dropdown-menu
     border: 0
@@ -22,7 +22,7 @@ body.front
     position: absolute
 
   .selectBox-dropdown
-    @extend .dropdown-categories
+    @extend %dropdown-categories
     width: 100% !important
     background: $gray4
     .selectBox-label
@@ -49,20 +49,20 @@ body.front
       padding-left: 14px
       margin-bottom: 6px
       font-family: $font-headline
-      @extend .medium
+      @extend %medium
       a
         +remove-link-underlines
-        @extend .white
+        @extend %white
       &.selectBox-hover a
         +remove-link-underlines
-        @extend .gold
+        @extend %gold
       &.selectBox-selected
         display: none
 
 // Side bar Action Finder block
 
 .selectBox-options
-  @extend .bold
+  @extend %bold
   font-size: 16px
   list-style: none
   display: block
@@ -77,13 +77,13 @@ body.front
     margin-bottom: 6px
     font-family: $font-headline
     font-size: $s0
-    @extend .medium
+    @extend %medium
     a
       +remove-link-underlines
-      @extend .white
+      @extend %white
     &.selectBox-hover a
       +remove-link-underlines
-      @extend .gold
+      @extend %gold
 
 body.not-front
   .selectBox-options
@@ -95,12 +95,12 @@ body.not-front
 #block-dosomething-blocks-dosomething-make-impact
   .content
     padding: 32px 0px 52px 0
-    @extend .clearfix
+    @extend %clearfix
   .form-type-select
     label
       display: none
   .selectBox-dropdown
-    @extend .dropdown-categories
+    @extend %dropdown-categories
     width: 100% !important
     background: $gray2
     font-size: 16px
@@ -134,7 +134,7 @@ body.not-front
     .pane-dosomething-blocks-dosomething-make-impact-front
       width: 100%
     .selectBox-dropdown
-      @extend .dropdown-categories
+      @extend %dropdown-categories
       width: 100%
       background: $gray4
       .selectBox-label
@@ -169,13 +169,13 @@ body.not-front
         padding-left: 14px
         margin-bottom: 6px
         font-family: $font-headline
-        @extend .medium
+        @extend %medium
         a
           +remove-link-underlines
-          @extend .white
+          @extend %white
         &.selectBox-hover a
           +remove-link-underlines
-          @extend .gold
+          @extend %gold
 
 // Dropdown sort filters like on /poll
 .views-exposed-form .views-exposed-widget .form-submit
@@ -187,9 +187,9 @@ body.not-front
     display: none
   .content
     padding: 32px 0px 52px 0
-    @extend .clearfix
+    @extend %clearfix
   .selectBox-dropdown
-    @extend .dropdown-categories
+    @extend %dropdown-categories
     width: 175px !important
     background: $gray2
     font-size: 16px
@@ -218,7 +218,7 @@ body.not-front
 #dosomething-blocks-make-an-impact-form,
 #dosomething-blocks-make-an-impact-form-front
   input[type="submit"]
-    @extend .go-button
+    @extend %go-button
     +float-right
     margin-top: 8px
     .ie7 &
@@ -230,7 +230,7 @@ body.not-front
   margin: 12px 0
 .ctools-jump-menu-select
   .selectBox-label
-    @extend .dropdown-categories
+    @extend %dropdown-categories
     background: $gray2
     +background-image(image_url('gold-arrow.png'))
     background-repeat: no-repeat

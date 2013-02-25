@@ -14,18 +14,18 @@
     a
       font-weight: bold
 
-.page-blog
+.page-blog,
 .panel-top
   h2.pane-title
-    @extend .black
+    @extend %black
 
 // Right sidebar
 .pane-blog-center
-  @extend .pane-narrow-block
+  @extend %pane-narrow-block
 
 #blog-archives-pane
   h3
-    @extend .bold
+    @extend %bold
     margin-bottom: 0
     line-height: 1em
     padding-top: 12px
@@ -36,19 +36,19 @@
     +float-right
 
 .blog-landing-pane-post
-  @extend .image-teaser-module
+  @extend %image-teaser-module
   .blog-large-thumbnail
-    @extend .image-teaser-module-image
+    @extend %image-teaser-module-image
   .views-field-body
-    @extend .image-teaser-module-teaser
+    @extend %image-teaser-module-teaser
     h2
       margin-bottom: 0
     p
       margin-top: 6px
 
 .blog-post-date
-  @extend .headers
-  @extend .bold
+  @extend %headers
+  @extend %bold
   font-size: 14px
   color: $gray4
   font-family: $font-din-reg
@@ -56,7 +56,7 @@
 .page-taxonomy-term
   .field-name-field-picture
     img
-      @extend .box-shadow-none
+      @extend %box-shadow-none
       margin-bottom: 0
   .region-content
     .node-teaser
@@ -64,8 +64,8 @@
       margin-bottom: 12px
       padding: 0 12px 12px 12px
       h2
-        @extend .headers
-        @extend .bold
+        @extend %headers
+        @extend %bold
         a
           @extend .views-field-title
       .field-type-text-with-summary

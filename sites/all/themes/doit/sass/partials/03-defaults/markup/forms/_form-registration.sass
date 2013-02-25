@@ -9,7 +9,7 @@
     &[type="text"],
     &[type="textarea"]
       //+box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
-      @extend .black
+      @extend %black
       background: $white
       &:focus
         outline: none
@@ -27,7 +27,7 @@
     margin-top: 0
     margin-bottom: 15px
     label
-      @extend .black
+      @extend %black
       font-weight: 600
       font-family: $font-headline
       font-size: 40px
@@ -41,8 +41,8 @@
     top: -1px
 
   .error
-    @extend .alert-red
-    @extend .medium
+    @extend %alert-red
+    @extend %medium
     font-size: 12px
 
   // Gray box
@@ -113,7 +113,7 @@
 
   // Password fields
   .ok
-    @extend .alert-green
+    @extend %alert-green
 
   label.error
     // margin-top: 22px
@@ -163,16 +163,16 @@
     margin-top: 30px
     .description
       float: left
-      @extend .black
+      @extend %black
       font-size: 11px
       line-height: 1.4em
     a
-      @extend .blue
+      @extend %blue
       text-decoration: underline
 
 // Register to be a user button 'Finish'
 .ds-login-popup-footer #edit-final-submit
-  @extend .go-button
+  @extend %go-button
   position: relative
   top: -52px
   right: -525px

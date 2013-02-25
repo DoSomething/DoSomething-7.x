@@ -2,7 +2,7 @@
 /* tables still need 'cellspacing="0"' in the markup
 
 table
-  @extend .constrain-to-parent
+  @extend %constrain-to-parent
   border: 1px $gray5 solid
 
 table, td, th
@@ -42,17 +42,17 @@ thead tr th
   border-bottom: none
   font-family: $font-headline
   height: $s9
-  @extend .medium
+  @extend %medium
   padding-left: $s0
   &:last-of-type
     border-right: none
   &,
   a
-    @extend .white
+    @extend %white
     font-size: $s5
     line-height: 1.5
     &:hover
-      @extend .white
+      @extend %white
 
 tr
   &.odd, &.even
@@ -81,9 +81,9 @@ th.field-label
     tr
       th
         background-color: transparent
-        @extend .sans
-        @extend .gray1
-        #extend .bold
+        @extend %sans
+        @extend %gray1
+        #extend %bold
         font-size: $s0
         text-transform: none
         &:nth-of-type(odd)

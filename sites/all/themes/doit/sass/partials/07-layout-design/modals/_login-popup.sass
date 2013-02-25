@@ -23,7 +23,7 @@
     &[type="text"],
     &[type="textarea"]
       +box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
-      @extend .black
+      @extend %black
       background: $white
       &:focus
         outline: none
@@ -105,24 +105,24 @@
       margin-top: 30px
       .description
         float: left
-        @extend .black
+        @extend %black
         font-size: 12px
       a
-        @extend .blue
+        @extend %blue
         text-decoration: underline
 
   // Register to be a user button 'Finish'
   .ds-login-popup-footer #edit-final-submit,
   .ds-login-popup-footer #edit-final-submit--2
-    @extend .go-button
+    @extend %go-button
     position: relative
     top: -38px
     right: -403px
 
   // Already a member text
-  .already-member,
+  %already-member,
   .see-whats-new
-    @extend .bold
+    @extend %bold
     font-family: $font-headline
     float: right
     font-size: 18px
@@ -145,7 +145,7 @@
     margin-top: 0
     margin-bottom: 15px
     label
-      @extend .black
+      @extend %black
       font-weight: 600
       font-family: $font-headline
       font-size: 40px
