@@ -1075,93 +1075,91 @@ function crazyshit_theme() {
  * Implements hook_init().
  */
 function crazyshit_init() {
-  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
-
   // Return nothing if the page isn't within the crazy $#!T module
-  if (!crazyshit_is_crazy_page()) {
-	return;
-  }
+  if (crazyshit_is_crazy_page()) {
+	  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 
-  global $user;
+	  global $user;
 
-  // Load the Facebook object
-  $facebook = crazy_load_fb();
+	  // Load the Facebook object
+	  $facebook = crazy_load_fb();
 
-  // Handles Facebook user system
-  crazyshit_handle_fb_users($facebook);
+	  // Handles Facebook user system
+	  crazyshit_handle_fb_users($facebook);
 
-  $onpage = preg_match('#^(' . implode('|', $crazy_notification_pages) . ')$#i', request_path());
-  if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
-	// Set up an or statement for the below query.
-	#$c = db_or();
-	#$c->condition('uid', intval($user->uid));
-	#$c->condition('fid', intval($fbuser->id));
+	  $onpage = preg_match('#^(' . implode('|', $crazy_notification_pages) . ')$#i', request_path());
+	  if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
+		// Set up an or statement for the below query.
+		#$c = db_or();
+		#$c->condition('uid', intval($user->uid));
+		#$c->condition('fid', intval($fbuser->id));
 
-	// Load any notifications the user has.
-	$n = db_select('crazy_notifications', 'n')
-	  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
-	  // Make sure it's for the currently logged in user.
-	  ->condition('uid', $user->uid)
-	  // Make sure they haven't seen it yet.
-	  ->condition('notified', 0)
-	  // Make sure it's a BS notification.
-	  ->condition('type', 2)
-	  // Make sure it comes from the friends page.
-	  ->condition('origin', 2)
-	  // Show only one at a time.
-	  ->range(0, 1)
-	  ->execute();
-	$ns = $n->fetchAll();
+		// Load any notifications the user has.
+		$n = db_select('crazy_notifications', 'n')
+		  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
+		  // Make sure it's for the currently logged in user.
+		  ->condition('uid', $user->uid)
+		  // Make sure they haven't seen it yet.
+		  ->condition('notified', 0)
+		  // Make sure it's a BS notification.
+		  ->condition('type', 2)
+		  // Make sure it comes from the friends page.
+		  ->condition('origin', 2)
+		  // Show only one at a time.
+		  ->range(0, 1)
+		  ->execute();
+		$ns = $n->fetchAll();
 
-	$notifications = reset($ns);
-	$pre = '';
+		$notifications = reset($ns);
+		$pre = '';
 
-	$from_fb = false;
-	if (isset($_GET['fb'])) {
-		$from_fb = (bool) intval($_GET['fb']);
-	}
+		$from_fb = false;
+		if (isset($_GET['fb'])) {
+			$from_fb = (bool) intval($_GET['fb']);
+		}
 
-	if (!empty($notifications)) {
-	   if ($notifications->from_fid == $notifications->fid) {
-	      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true; ';
-	   }
+		if (!empty($notifications)) {
+		   if ($notifications->from_fid == $notifications->fid) {
+		      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true; ';
+		   }
 
- 	   $submission = array_shift(entity_load('webform_submission_entity', array($notifications->sid)));
-	   $mp = "var my_post = { 'sid': " . $notifications->sid . ", 'image': '" . file_create_url($submission->field_crazy_crazy_picture[LANGUAGE_NONE][0]['uri']) . "' }; ";
-	   drupal_add_js($mp, 'inline');
+	 	   $submission = array_shift(entity_load('webform_submission_entity', array($notifications->sid)));
+		   $mp = "var my_post = { 'sid': " . $notifications->sid . ", 'image': '" . file_create_url($submission->field_crazy_crazy_picture[LANGUAGE_NONE][0]['uri']) . "' }; ";
+		   drupal_add_js($mp, 'inline');
 
-	   drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); } }, 1500);", 'inline');
-	}
-	else if ($from_fb) {
-	   drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { jQuery.fn.dsCrazyPopup('bull', 0); }); } }, 1500);", 'inline');
-	}
-  }
+		   drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); } }, 1500);", 'inline');
+		}
+		else if ($from_fb) {
+		   drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { jQuery.fn.dsCrazyPopup('bull', 0); }); } }, 1500);", 'inline');
+		}
+	  }
 
-  // If user is not authenticated, show the "connect to submit" popup on the submit button.
-  if (!crazy_check_fb_auth($facebook)) {
-  	drupal_add_js("jQuery(document).ready(function() { Drupal.behaviors.dsCrazyScripts.probably_unauthed = true; });", 'inline');
-  }
+	  // If user is not authenticated, show the "connect to submit" popup on the submit button.
+	  if (!crazy_check_fb_auth($facebook)) {
+	  	drupal_add_js("jQuery(document).ready(function() { Drupal.behaviors.dsCrazyScripts.probably_unauthed = true; });", 'inline');
+	  }
 
-  // If a user just created a new post, show the "share this" popup.
-  if (isset($_SESSION['from_creation']) && !empty($_SESSION['from_creation'])) {
-  	// The SID is $_SESSION['from_creation']
-  	$sid = intval($_SESSION['from_creation']['sid']);
-  	$image = strval($_SESSION['from_creation']['image']);
+	  // If a user just created a new post, show the "share this" popup.
+	  if (isset($_SESSION['from_creation']) && !empty($_SESSION['from_creation'])) {
+	  	// The SID is $_SESSION['from_creation']
+	  	$sid = intval($_SESSION['from_creation']['sid']);
+	  	$image = strval($_SESSION['from_creation']['image']);
 
-  	$p = json_encode($_SESSION['from_creation']);
+	  	$p = json_encode($_SESSION['from_creation']);
 
-  	// Remove $_SESSION['from_creation']
-  	unset($_SESSION['from_creation']);
+	  	// Remove $_SESSION['from_creation']
+	  	unset($_SESSION['from_creation']);
 
-  	// Show the popup
-  	drupal_add_js("jQuery(document).ready(function() { var my_post = " . $p . "; jQuery.fn.dsCrazyPopup('share', " . $sid . ", {'reload': true }); });", 'inline');
-  }
+	  	// Show the popup
+	  	drupal_add_js("jQuery(document).ready(function() { var my_post = " . $p . "; jQuery.fn.dsCrazyPopup('share', " . $sid . ", {'reload': true }); });", 'inline');
+	  }
 
-  // Ignore the rest of this if we're not looking at a page that requires authentication.
-  $pages = unserialize(CRAZY_AUTH_PAGES);
-  if (!preg_match('#crazy/(' . implode('|', $pages) . ').*?#i', request_uri())) {
-  	return;
-  }
+	  // Ignore the rest of this if we're not looking at a page that requires authentication.
+	  $pages = unserialize(CRAZY_AUTH_PAGES);
+	  if (!preg_match('#crazy/(' . implode('|', $pages) . ').*?#i', request_uri())) {
+	  	return;
+	  }
+   }
 }
 
 function crazyshit_handle_fb_users($facebook) {
