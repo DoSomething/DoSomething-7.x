@@ -1114,6 +1114,18 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   
 }
 
+function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_url, $type = 'call') {
+  $path = libraries_get_path('telapi');
+  require_once $path . '/library/TelApi.php';
+  
+  $api = TelApi::getInstance();
+  $api->setOptions(array(
+    'account_sid' => 'AC69dc373627334a05b0d58dfe67b215cc',
+    'auth_token' => '02eb30fb3df44204ba3bed9b5bda9afe',
+  ));
+}
+
+
 /**
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
  * configured opt-in path.  Send messages to friends as well.

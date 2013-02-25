@@ -1,7 +1,9 @@
 (function ($) {
   Drupal.behaviors.robocalls = {
     friends_field_count: 1,
+    celeb_friends_field_count: 7,
     friends_limit: 9,
+    celebs: [],
 
     attach: function(context, settings) {
       if (typeof Drupal.behaviors.fb !== 'undefined') {
@@ -14,16 +16,14 @@
         $(this).find('.hover-state').show();
       });
 
-      $('.views-field-nothing').blur(function() {
-        $(this).find('.hover-state').hide();
-      });
-
       var new_field, f = '';
       new_field = '<fieldset class="webform-component-fieldset form-wrapper" id="webform-component-friends-info--primary-friend"><div class="fieldset-wrapper"><div class="form-item webform-component webform-component-select" id="webform-component-friends-info--primary-friend--select-call"><label for="edit-submitted-friends-info-primary-friend-select-call">Select Call </label>#SELECT</div><div class="form-item webform-component webform-component-textfield" id="webform-component-friends-info--primary-friend--friends-number"><label for="edit-submitted-friends-info-primary-friend-friends-number">Friend\'s Number </label>#INPUT</div></div></fieldset>';
 
       var celebs = '';
-      for (i in Drupal.settings.calloffame.celebs) {
-        celebs += '<option value="' + i + '">' + Drupal.settings.calloffame.celebs[i] + '</option>';
+      if (typeof Drupal.settings.calloffame != 'undefined') {
+        for (i in Drupal.settings.calloffame.celebs) {
+          celebs += '<option value="' + i + '">' + Drupal.settings.calloffame.celebs[i] + '</option>';
+        }
       }
 
       select = '<select id="edit-submitted-friends-info-primary-friend-select-call" name="submitted[friends_info][primary_friend][more_calls][#N]" class="form-select"><option value="" selected="selected">- None -</option>' + celebs + '</select>';
@@ -56,6 +56,19 @@
         }
 
         $(f).appendTo('#webform-component-friends-info');
+        return false;
+      });
+
+      $('.add-more-friends').click(function() {
+        var str = '';
+        var n = Drupal.behaviors.robocalls.celeb_friends_field_count;
+
+        for (i = n; i < (n + 3); i++) {
+          str += '<div class="field-type-text field-name-field-celeb-friend-phone-5 field-widget-telwidget form-wrapper" id="edit-submitted-field-celeb-friend-phone-5"><div id="submitted-field-celeb-friend-phone-5-add-more-wrapper"><div class="form-item form-type-telfield form-item-submitted-field-celeb-friend-phone-5-und-0-value"><label for="edit-submitted-field-celeb-friend-phone-5-und-0-value">Friend\'s Number #5 </label><input placeholder="Friend\'s Number" type="tel" id="edit-submitted-field-celeb-friend-phone-5-und-0-value" name="submitted[additional_friends][' + i + ']" value="" size="20" maxlength="64" class="form-text form-tel"></div></div></div>';
+          Drupal.behaviors.robocalls.celeb_friends_field_count++;
+        }
+
+        $(str).appendTo($('#webform-component-your-friends-info'));
         return false;
       });
 

@@ -17,8 +17,7 @@ function robocalls_is_robo_page($page = '') {
   if (empty($page)) {
     $page = request_path();
   }
-
-  if (NULL !== (strpos($page, 'calloffame'))) {
+  if (strpos(request_uri(), 'calloffame')) {
     return true;
   }
 
@@ -110,12 +109,83 @@ function robocalls_get_celebrities() {
  *  Implements hook_form_alter()
  */
 function robocalls_form_alter(&$form, $form_state, $form_id) {
-  global $term_info, $flags;
+  global $term_info, $flags, $user;
 
   // Remove any query strings...they screw up the action later!
   $action = preg_replace('#(\?.*)?$#', '', $form_state['build_info']['args'][0]->webform['action']);
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
-    $termid = arg(2);
+    // Load the taxonomy term.
+    $term = taxonomy_term_load(arg(2));
+
+    // Try and load your profile information -- first name and cell
+    $profile = profile2_load_by_user($user, 'main');
+    $first_name = $mobile = '';
+    if (isset($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+      $first_name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+    }
+    if (isset($profile->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
+      $mobile = $profile->field_user_mobile[LANGUAGE_NONE][0]['value'];
+    }
+
+    // Load the form information.
+    $u = &$form['submitted'];
+
+    // Placeholder and theoretical population of my name
+    $u['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Name');
+    if (!empty($first_name)) {
+      $u['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $first_name;
+    }
+
+    // Placeholder and theoretical population of my number
+    $u['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Number');
+    if (!empty($mobile)) {
+      $u['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $mobile;
+    }
+
+    // Placeholder for my password
+    $u['field_celeb_your_password'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Password');
+
+    // Set the celebrity chooser as the term ID
+    $u['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
+
+    // Set the mobile commons ID
+    $u['field_mobile_commons_id'][LANGUAGE_NONE][0]['value']['#default_value'] = $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value'];
+
+    // Remove the password field if you're logged in.
+    if (user_is_logged_in()) {
+      $u['field_celeb_your_password'][LANGUAGE_NONE][0]['value']['#attributes']['class'][] = 'not-required';
+    }
+
+    // Set placeholder for all friend mobile fields
+    $friend_fields = array(
+      'field_celeb_friend_phone',
+      'field_celeb_friend_phone_2',
+      'field_celeb_friend_phone_3',
+      'field_celeb_friend_phone_4',
+      'field_celeb_friend_phone_5',
+      'field_celeb_friend_phone_6',
+    );
+    foreach ($friend_fields AS $field) {
+      $u['your_friends_info'][$field][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('Friend\'s Number');
+    }
+
+    $form['more_stuff'] = array(
+      '#markup' => '<a href="#" class="add-more-friends">Send to more friends</a>',
+      '#weight' => 25,
+    );
+
+    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls_celeb.css', array(
+      'group' => CSS_THEME,
+      'weight' => 9999
+    ));
+
+    $form['actions']['submit']['#value'] = t('Send The Call!');
+    $form['#submit'][] = 'robocalls_celeb_form_submission';
+
+    // $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value']
+    #echo '<Pre>', print_r($u), '</pre>'; exit;
+    #echo '<pre>', print_R($term), '</pre>'; exit;
+    /*$termid = arg(2);
 
     if (!$termid && request_uri() == '/calloffame') {
       $f = db_query("SELECT entity_id FROM field_data_field_celeb_featured_celebrity WHERE field_celeb_featured_celebrity_value = 1 LIMIT 1");
@@ -125,7 +195,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     }
 
     $term = taxonomy_term_load($termid);
-    $u = &$form['submitted']/*['celeb_call_information']*/;
+    $u = &$form['submitted'];
 
     // Get current date value (may be before the time that the page was loaded)
     $current = strtotime($u['field_celeb_date'][LANGUAGE_NONE][0]['#default_value']['value']);
@@ -223,11 +293,6 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
        );
     }
 
-    /**
-      * If a user is logged in, pre-populate:
-      * - Cell #
-      * - First name
-      */
 
     if (isset($term->field_timed_call) && !empty($term->field_timed_call)) {
       $date = (strtotime($term->field_timed_call[LANGUAGE_NONE][0]['value']) + 18000);
@@ -309,7 +374,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
     $form['#validate'][] = 'robocalls_call_validate';
     $form['#submit'][] = 'robocalls_call_submit';
-    $form['#redirect'] = $form_state['return_to'];
+    $form['#redirect'] = $form_state['return_to'];*/
   }
   else {
     if ($action == '/robo-calls/homepage-webform') {
@@ -337,6 +402,29 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       $form['#submit'][] = 'robocalls_test';
     }
   }
+}
+
+function robocalls_celeb_form_submission($form, &$form_state) {
+  $friend_fields = array(
+    'field_celeb_friend_phone',
+    'field_celeb_friend_phone_2',
+    'field_celeb_friend_phone_3',
+    'field_celeb_friend_phone_4',
+    'field_celeb_friend_phone_5',
+    'field_celeb_friend_phone_6',
+  );
+
+  $friends = array();
+  foreach ($friend_fields AS $field) {
+    $friends[] = $form_state['input']['submitted']['your_friends_info'][$field][LANGUAGE_NONE][0]['value'];
+  }
+  $friends += $form_state['input']['submitted']['additional_friends'];
+  $friends = array_unique($friends);
+
+  dosomething_general_telapi_request('610-368-3195', '610-368-3195', 'blah');
+  
+  echo '<pre>', print_r($friends), '</pre>';
+  exit;
 }
 
 function robocalls_test($form, &$form_state) {
