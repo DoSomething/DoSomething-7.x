@@ -5,8 +5,8 @@
 
 // Styling for the container that holds the right side and left side
 .dosomething-stats
-  @extend .border-and-shadow
-  @extend .clearfix
+  @extend %border-and-shadow
+  @extend %clearfix
   padding: 33px 23px 15px 23px
   ul
     list-style: none
@@ -21,9 +21,9 @@
   font-family: $font-headline
   font-size: $s2
   h2
-    @extend .large-profile-info
-    @extend .bold
-    @extend .black
+    @extend %large-profile-info
+    @extend %bold
+    @extend %black
     height: 24px
   .dosomething-member-misc
     list-style: none
@@ -48,8 +48,8 @@
     padding-left: 0
   .title,
   .name
-    @extend .large-profile-info
-    @extend .bold
+    @extend %large-profile-info
+    @extend %bold
   .title
     margin-bottom: $s6
   .info

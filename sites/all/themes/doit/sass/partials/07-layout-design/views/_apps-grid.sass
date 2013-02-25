@@ -12,14 +12,14 @@
     margin-bottom: 16px
     background-color: $white
     position: relative
-    @extend .box-shadow
+    @extend %box-shadow
     &.last
       float: right
       margin-right: 0
     .apps-banner
       position: absolute
-      @extend .headers
-      @extend .white
+      @extend %headers
+      @extend %white
       width: 115px
       height: 24px
       background-color: $purple
@@ -35,7 +35,7 @@
         left: 0px
         bottom: -8px
     .apps-title
-      @extend .bold
+      @extend %bold
       text-align: center
       font-size: $s4
       line-height: 12px
@@ -51,8 +51,8 @@
       max-height: 5em
       line-height: 14px
     .apps-footer
-      @extend .headers
-      @extend .medium
+      @extend %headers
+      @extend %medium
       position: absolute
       bottom: 0
       width: 150px
@@ -68,4 +68,4 @@
       right: 0
       padding-right: $s-1
       a
-        @extend .go-button-logo
+        @extend %go-button-logo

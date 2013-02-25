@@ -15,7 +15,7 @@ form.webform-client-form
   #edit-submit,
   #edit-submit--2,
   #edit-draft
-    @extend .go-button
+    @extend %go-button
     +inline-block
     margin-right: 6px
 
@@ -32,7 +32,7 @@ form.webform-client-form
   // Save as draft link
   // #edit-draft
   //   -webkit-appearance: none
-  //   @extend .blue
+  //   @extend %blue
   //   background: none
   //   border: none
   //   display: block
@@ -48,7 +48,7 @@ form.webform-client-form
     .form-wrapper
       margin-bottom: 0
     .dosomething-webform-page-number
-      @extend .gray4
+      @extend %gray4
       float: right
       line-height: 8px
     .dosomething-webform-percentage
@@ -65,5 +65,5 @@ form.webform-client-form
         max-width: 100%
         width: 0%
       .label
-        @extend .gray4
+        @extend %gray4
         font-size: $s-1

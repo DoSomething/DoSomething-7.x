@@ -4,7 +4,7 @@
   // Gray box
   +clearfix
   background: $gray6
-  @extend .box-shadow
+  @extend %box-shadow
   min-height: 240px
   padding: 18px
   width: 100%
@@ -23,15 +23,15 @@
 .popup-content
   +clearfix
   background: $gray6
-  @extend .box-shadow
+  @extend %box-shadow
   // min-height: 240px
   // padding: 18px
   // width: 478px
   // margin: auto
 
 // Already a member text
-.already-member
-  @extend .bold
+%already-member
+  @extend %bold
   font-family: $font-headline
   float: right
   font-size: 18px
@@ -41,11 +41,11 @@
     text-decoration: underline
 
 .see-whats-new
-  @extend .already-member
+  @extend %already-member
   +float-left
 
 .separator
-  @extend .bold
+  @extend %bold
   font-size: 21px
   font-family: $font-headline
   margin-bottom: 12px
@@ -63,15 +63,15 @@ fieldset
   margin-left: 0
   border: none
   legend
-    @extend .large-profile-info
-    @extend .bold
+    @extend %large-profile-info
+    @extend %bold
     padding: $s4a 0
 
 input[type=button], input[type=submit], button
   cursor: pointer
 
 label
-  @extend .bold
+  @extend %bold
   font-size: 16px
 
 .form-item .description
@@ -79,23 +79,23 @@ label
   clear: both
 
 form.webform-client-form
-  @extend .border-and-shadow
+  @extend %border-and-shadow
   padding: $s0
 
 // General field styles
 .text-full,
-.textinput, .form-textarea
-  //@extend .sans
+%textinput, .textinput, .form-textarea
+  //@extend %sans
   font-family: $font-din-reg
   font-size: 16px
-  @extend .constrain-to-parent
+  @extend %constrain-to-parent
   border: 1px solid #ccc
   //+box-shadow(rgba(#979797, .5) 0 0 4px 1px inset)
   outline: none
   padding-left: 5px
 
 // Single field height
-.textinput
+%textinput, .textinput
   height: 2.2em
   line-height: 2.2em
 
@@ -126,7 +126,7 @@ input, textarea
   &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
   &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
   &[type=number], &[type=range], &[type=search], &[type=color]
-    @extend .textinput
+    @extend %textinput
 //   // reset webkit search styles
 //   &[type=search]
 //     -webkit-appearance: none
@@ -149,19 +149,14 @@ textarea.placeholder-text
 
 // Help text
 .description
-  @extend .sans
-  @extend .gray4
+  @extend %sans
+  @extend %gray4
   font-size: 13px
 
 // Text area styles
 .form-textarea
   padding: 10px
 
-// Resizable area - Grippie style
-.resizable-textarea
-  .grippie
-    border-
-
 select.form-select
-  @extend .constrain-to-parent
+  @extend %constrain-to-parent
   max-width: 525px

@@ -10,7 +10,7 @@
 // Top block styling
 .dosomething-stats
   .club-image
-    @extend .border-and-shadow
+    @extend %border-and-shadow
     img
       height: 120px
       width: 120px
@@ -18,7 +18,7 @@
     float: left
     font-family: $font-headline
     font-size: 21px
-    @extend .black
+    @extend %black
     width: 230px
     margin-top: 18px
     .school-name,
@@ -28,7 +28,7 @@
     .school-name
       padding-top: 0
     .invite-link
-      @extend .bold
+      @extend %bold
       text-transform: uppercase
       padding-top: 18px
     .see-all-members
@@ -46,14 +46,14 @@
   .pane-club-projects-panel-pane-2,
   .pane-profile-panel-pane-1
     .views-row
-      @extend .clearfix
+      @extend %clearfix
       +ds-bevel-single
       padding: $s2 0
       &:last-of-type
         +box-shadow-none
         border-bottom: none
     .views-field-field-project-title
-      @extend .right-sidebar-headlines
+      @extend %right-sidebar-headlines
       a
         font-size: 14px
         font-weight: bold
@@ -63,7 +63,7 @@
       margin-right: $s0
       width: 60px
       img
-        @extend .border-and-shadow
+        @extend %border-and-shadow
         height: 60px
         width: 60px
 
@@ -79,7 +79,7 @@ label[for="edit-submitted-field-webform-email-und-0-value"]
   #edit-actions
     #edit-submit,
     #edit-submit--2
-      @extend .go-button
+      @extend %go-button
       margin-right: 12px
 
 // Members page
