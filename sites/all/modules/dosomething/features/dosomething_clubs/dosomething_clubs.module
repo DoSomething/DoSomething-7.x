@@ -620,7 +620,7 @@ function dosomething_clubs_member_has_a_club() {
       ->execute()
       ->fetchAll();
 
-    if ($club[0]) {
+    if (isset($club[0])) {
       return TRUE;
     }
     else {
@@ -646,7 +646,7 @@ function dosomething_clubs_my_club_redirect($action = 'club') {
     ->execute()
     ->fetchAll();
 
-    if ($club[0]) {
+    if (isset($club[0])) {
       if ($action == 'club'){
         drupal_goto(drupal_lookup_path('alias', 'node/' . $club[0]->nid));
       }
@@ -690,7 +690,7 @@ function dosomething_clubs_my_club_redirect($action = 'club') {
     ->execute()
     ->fetchAll();
 
-    if ($club[0]) {
+    if (isset($club[0])) {
       drupal_goto('node/' . $club[0]->nid . '/edit');
     }
     else {
