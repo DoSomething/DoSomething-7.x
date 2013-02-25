@@ -1001,7 +1001,25 @@ function crazyshit_fboauth_redirect($destination) {
 	    $email = $user->mail;
 
 	    if (!empty($mid) && valid_email_address($email) && !empty($email)) {
-	       dosomething_general_mailchimp_subscribe($email, $mid);
+		
+		// Add email to MailChimp group
+	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
+	       
+	       $params = array(
+                 'signer' => 'Greg'
+		);
+	       
+	       // drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
+	       // Message will be sent through Mandrill as a transactional
+               // $mail_status = drupal_mail('crazyshit', 'welcome', $email, 'en', $params);
+	       $message_content = theme('crazyshit_welcome');
+	       $mail_status = crazyshit_drupal_mail('Greg <crazy@dosomething.org>', $email, 'What is the craziest thing you have done to save money?', $message_content, 'crazyshit');
+	       
+	       if (!$mail_status) {
+	         watchdog('crazyshit', 'Failed to send welcome message after user registration: %email using the parameters: %param',
+			   array('%email' => $params['email'], '%parm' => print_r($params)), WATCHDOG_ERROR);
+	       }
+
 	    }
 
 	    $u = array(
@@ -1012,6 +1030,44 @@ function crazyshit_fboauth_redirect($destination) {
 	    drupal_write_record('crazy_emails', $u);
 	}
   }
+}
+
+/**
+ *	Implements hook_theme()
+ */
+function crazyshit_theme() {
+  $path = drupal_get_path('module', 'crazyshit');
+
+  return array(
+    'crazyshit_welcome' => array(
+      'path' => $path . '/templates',
+      'template' => 'crazyshit-welcome-email',
+    ),
+    'bull' => array(
+      'path' => $path . '/templates',
+      'template' => 'bullshit-alert',
+    ),
+    'vouch' => array(
+      'path' => $path . '/templates',
+      'template' => 'vouch-alert',
+    ),
+    'login' => array(
+      'path' => $path . '/templates',
+      'template' => 'login-alert',
+    ),
+    'submit' => array(
+      'path' => $path . '/templates',
+      'template' => 'submit-alert',
+    ),
+    'tip' => array(
+      'path' => $path . '/templates',
+      'template' => 'tip',
+    ),
+    'share' => array(
+	  'path' => $path . '/templates',
+	  'template' => 'share-alert',
+    ),
+  );
 }
 
 /**
@@ -1190,35 +1246,35 @@ function crazyshit_handle_fb_users($facebook) {
 }
 
 /**
- *	Implements hook_theme()
- */
-function crazyshit_theme() {
-  $path = drupal_get_path('module', 'crazyshit');
+* Simple wrapper function for drupal_mail() to avoid extraneous code.
+*
+* This needs to be moved to a mail / MailChimp DS custom module module to it can be used
+* by other modules - no, not dosomething_general :)
+*/
+function crazyshit_drupal_mail($from = 'default_from', $to, $subject, $message, $module) {
 
-  return array(
-    'bull' => array(
-      'path' => $path . '/templates',
-      'template' => 'bullshit-alert',
-    ),
-    'vouch' => array(
-      'path' => $path . '/templates',
-      'template' => 'vouch-alert',
-    ),
-    'login' => array(
-      'path' => $path . '/templates',
-      'template' => 'login-alert',
-    ),
-    'submit' => array(
-      'path' => $path . '/templates',
-      'template' => 'submit-alert',
-    ),
-    'tip' => array(
-      'path' => $path . '/templates',
-      'template' => 'tip',
-    ),
-    'share' => array(
-	  'path' => $path . '/templates',
-	  'template' => 'share-alert',
+  $my_mail_token = microtime();
+  if ($from == 'default_from') {
+    // Change this to your own default 'from' email address.
+    $from = variable_get('system_mail', 'Dee <dlee@dosomething.org>');
+  }
+  $message = array(
+    'id' => $module . '_' . $my_mail_token,
+    'to' => $to,
+    'subject' => $subject,
+    'body' => array($message),
+    'headers' => array(
+      'From' => $from, 
+      'Sender' => $from, 
+      'Return-Path' => $from,
     ),
   );
+  $system = drupal_mail_system($module, $my_mail_token);
+  $message = $system->format($message);
+  if ($system->mail($message)) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
 }
