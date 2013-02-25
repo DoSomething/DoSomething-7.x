@@ -23,7 +23,7 @@
 
     // campaign logo injection
     var logo = '//files.dosomething.org/files/campaigns/jeans12/flip_logo.png';
-    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a>');
+    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a><h2>IN STORE DROP OFF<br>IS CLOSED</h2>');
     
     // campaign social media injection
     $('#header').prepend($('.socialWrapper'));

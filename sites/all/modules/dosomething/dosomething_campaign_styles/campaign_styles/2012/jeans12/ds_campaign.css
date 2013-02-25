@@ -2,6 +2,9 @@
 html > body {
   font-size: 16px; }
 
+#block-dosomething-campaign-styles-campaign-nav {
+  display: none; }
+
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
@@ -297,6 +300,11 @@ body {
 
 .page-node-724802 #block-dosomething-campaign-styles-campaign-nav, .page-node-727497 #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
+
+.region-sidebar-first h2 {
+  color: white;
+  text-align: center;
+  margin-top: 10px; }
 
 #rsvp {
   margin: 5% 0;
@@ -1057,7 +1065,13 @@ div[aria-labelledby="ui-dialog-title-1"] {
       display: none; }
   #cmp #post-flip {
     background: #0c3565;
-    padding: 5%; }
+    padding: 2% 4%;
+    margin: 2% 4%;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
     #cmp #post-flip h1 {
       font-weight: 800;
       color: white; }
@@ -1166,7 +1180,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .drive-participants-list li {
     padding: 0.2em 0; }
   #cmp .drive-action-link {
-    text-align: center; }
+    display: none; }
   #cmp #action.action-anonymous h3, #cmp #action.action-participant h3 {
     line-height: 2em; }
   #cmp #action.action-anonymous p, #cmp #action.action-participant p {
