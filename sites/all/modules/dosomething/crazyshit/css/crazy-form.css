@@ -1,8 +1,8 @@
 /* line 4, ../sass/_buttons.sass */
-.crazy-button, .bs-button, .vouch-button {
+.crazy-button, .bs-button, .vouch-button, .pager-previous, .pager-next {
   display: inline-block; }
 /* line 6, ../sass/_buttons.sass */
-.crazy-button a, .bs-button a, .vouch-button a {
+.crazy-button a, .bs-button a, .vouch-button a, .pager-previous a, .pager-next a {
   background: #4b84e6;
   color: white;
   padding: 5px;
@@ -13,17 +13,17 @@
   -o-border-radius: 2px;
   border-radius: 2px; }
 /* line 12, ../sass/_buttons.sass */
-.crazy-button a:hover, .bs-button a:hover, .vouch-button a:hover {
+.crazy-button a:hover, .bs-button a:hover, .vouch-button a:hover, .pager-previous a:hover, .pager-next a:hover {
   text-decoration: none;
   background-color: #6193e9; }
 /* line 15, ../sass/_buttons.sass */
-.crazy-button a.clicked, .bs-button a.clicked, .vouch-button a.clicked {
+.crazy-button a.clicked, .bs-button a.clicked, .vouch-button a.clicked, .pager-previous a.clicked, .pager-next a.clicked {
   background: #f1f1f1;
   color: #c1c1c1;
   cursor: default;
   text-decoration: none; }
 /* line 20, ../sass/_buttons.sass */
-.crazy-button span, .bs-button span, .vouch-button span {
+.crazy-button span, .bs-button span, .vouch-button span, .pager-previous span, .pager-next span {
   background-color: #dddddd;
   position: relative;
   display: inline-block;
@@ -35,7 +35,7 @@
   -o-border-radius: 2px;
   border-radius: 2px; }
 /* line 27, ../sass/_buttons.sass */
-.crazy-button span:after, .crazy-button span:before, .bs-button span:after, .bs-button span:before, .vouch-button span:after, .vouch-button span:before {
+.crazy-button span:after, .crazy-button span:before, .bs-button span:after, .bs-button span:before, .vouch-button span:after, .vouch-button span:before, .pager-previous span:after, .pager-previous span:before, .pager-next span:after, .pager-next span:before {
   right: 100%;
   border: solid transparent;
   content: " ";
@@ -44,14 +44,14 @@
   position: absolute;
   pointer-events: none; }
 /* line 35, ../sass/_buttons.sass */
-.crazy-button span:after, .bs-button span:after, .vouch-button span:after {
+.crazy-button span:after, .bs-button span:after, .vouch-button span:after, .pager-previous span:after, .pager-next span:after {
   border-color: rgba(136, 183, 213, 0);
   border-right-color: #dddddd;
   border-width: 5px;
   top: 50%;
   margin-top: -5px; }
 /* line 41, ../sass/_buttons.sass */
-.crazy-button span:before, .bs-button span:before, .vouch-button span:before {
+.crazy-button span:before, .bs-button span:before, .vouch-button span:before, .pager-previous span:before, .pager-next span:before {
   border-color: rgba(194, 225, 245, 0);
   border-width: 6px;
   top: 50%;
@@ -240,7 +240,7 @@ div.image-widget-data {
   clear: both;
   width: 400px;
   height: 400px;
-  margin: 30px auto;
+  margin: 30px auto !important;
   float: none;
   border: 2px solid #dddddd;
   -webkit-border-radius: 2px;
@@ -294,7 +294,7 @@ div.image-widget-data {
   text-transform: uppercase;
   padding: 0 3%;
   box-shadow: none;
-  border: none;
+  border: 1px solid #e4dddd;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
