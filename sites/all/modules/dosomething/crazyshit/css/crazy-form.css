@@ -256,14 +256,14 @@ div.image-widget-data {
     margin: 7% auto; } }
 
 /* line 67, ../sass/crazy-form.sass */
-.description, #edit-submitted-field-craziness-weight, #edit-submitted-field-crazy-vouch-count, #edit-submitted-field-crazy-bullshit-count, #edit-submitted-field-crazy-count, #edit-submitted-field-crazy-total-count, #edit-submitted-field-crazy-today-count, #edit-submitted-field-crazy-week-count, .image-preview, .file, .file-size, .form-item-submitted-field-crazy-crazy-picture-und-0 label {
+.description, #edit-submitted-field-crazy-flagged, #edit-submitted-field-craziness-weight, #edit-submitted-field-crazy-vouch-count, #edit-submitted-field-crazy-bullshit-count, #edit-submitted-field-crazy-count, #edit-submitted-field-crazy-total-count, #edit-submitted-field-crazy-today-count, #edit-submitted-field-crazy-week-count, .image-preview, .file, .file-size, .form-item-submitted-field-crazy-crazy-picture-und-0 label {
   display: none; }
 
-/* line 81, ../sass/crazy-form.sass */
+/* line 82, ../sass/crazy-form.sass */
 #edit-submitted-sbutton {
   text-align: center;
   position: relative; }
-/* line 85, ../sass/crazy-form.sass */
+/* line 86, ../sass/crazy-form.sass */
 #edit-submitted-sbutton img {
   position: static;
   margin-bottom: -2px;
@@ -274,19 +274,19 @@ div.image-widget-data {
   box-shadow: none;
   margin-top: 0px; }
 
-/* line 93, ../sass/crazy-form.sass */
+/* line 94, ../sass/crazy-form.sass */
 #edit-submitted-field-crazy-top-text, #edit-submitted-field-crazy-bottom-text {
   overflow: hidden; }
-/* line 96, ../sass/crazy-form.sass */
+/* line 97, ../sass/crazy-form.sass */
 #edit-submitted-field-crazy-top-text label, #edit-submitted-field-crazy-top-text input, #edit-submitted-field-crazy-bottom-text label, #edit-submitted-field-crazy-bottom-text input {
   float: left;
   font-size: 15px;
   line-height: 30px;
   text-transform: uppercase; }
-/* line 101, ../sass/crazy-form.sass */
+/* line 102, ../sass/crazy-form.sass */
 #edit-submitted-field-crazy-top-text label, #edit-submitted-field-crazy-bottom-text label {
   width: 30%; }
-/* line 103, ../sass/crazy-form.sass */
+/* line 104, ../sass/crazy-form.sass */
 #edit-submitted-field-crazy-top-text input, #edit-submitted-field-crazy-bottom-text input {
   width: 70%;
   height: 35px;
@@ -301,7 +301,7 @@ div.image-widget-data {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 116, ../sass/crazy-form.sass */
+/* line 117, ../sass/crazy-form.sass */
 .submit-start h1 {
   text-transform: uppercase;
   text-align: center;
@@ -310,13 +310,13 @@ div.image-widget-data {
   width: 66%;
   margin: 0 auto 5%;
   padding: 0 0 3% 0; }
-/* line 124, ../sass/crazy-form.sass */
+/* line 125, ../sass/crazy-form.sass */
 .submit-start p {
   font-size: 18px;
   line-height: 27px;
   text-transform: uppercase;
   font-weight: 500; }
-/* line 129, ../sass/crazy-form.sass */
+/* line 130, ../sass/crazy-form.sass */
 .submit-start .pane-content {
   padding: 50px; }
 /* line 16, ../sass/_variables.sass */
@@ -333,21 +333,21 @@ div.image-widget-data {
   .submit-start img {
     width: 92%; } }
 
-/* line 133, ../sass/crazy-form.sass */
+/* line 134, ../sass/crazy-form.sass */
 #extra_guidelines {
   display: none; }
 
-/* line 138, ../sass/crazy-form.sass */
+/* line 139, ../sass/crazy-form.sass */
 .node-crazy-shit {
   box-shadow: none; }
-/* line 140, ../sass/crazy-form.sass */
+/* line 141, ../sass/crazy-form.sass */
 .node-crazy-shit .webform-client-form {
   padding: 50px; }
 @media only screen and (max-width: 550px) {
-  /* line 140, ../sass/crazy-form.sass */
+  /* line 141, ../sass/crazy-form.sass */
   .node-crazy-shit .webform-client-form {
     padding: 50px 10% 10px; } }
 
-/* line 147, ../sass/crazy-form.sass */
+/* line 148, ../sass/crazy-form.sass */
 div.form-wrapper, div.step-field {
   margin: 0; }

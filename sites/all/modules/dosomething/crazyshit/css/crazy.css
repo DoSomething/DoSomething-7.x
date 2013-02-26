@@ -601,6 +601,12 @@ img.header_ds_logo {
     padding: 0 0 10px 0; } }
 
 /* line 220, ../sass/crazy.sass */
+.flag {
+  clear: both;
+  height: 45px;
+  text-align: right; }
+
+/* line 225, ../sass/crazy.sass */
 .simg {
   margin: -40px 0 0 0;
   padding: 40px 0 0 0;
@@ -623,16 +629,16 @@ img.header_ds_logo {
   .simg img {
     width: 92%; } }
 @media only screen and (max-width: 700px) {
-  /* line 220, ../sass/crazy.sass */
+  /* line 225, ../sass/crazy.sass */
   .simg {
     margin: 0;
     padding: 0; } }
 
-/* line 229, ../sass/crazy.sass */
+/* line 234, ../sass/crazy.sass */
 .dateline, .author {
   display: none; }
 
-/* line 235, ../sass/crazy.sass */
+/* line 240, ../sass/crazy.sass */
 .fb-invite-friends {
   display: block;
   width: 215px;
@@ -643,20 +649,20 @@ img.header_ds_logo {
   background-repeat: no-repeat;
   margin: 15px auto 0; }
 
-/* line 239, ../sass/crazy.sass */
+/* line 244, ../sass/crazy.sass */
 .connect-with-facebook a {
   background-position: 50% 0%;
   margin: 15px auto 0;
   height: 40px; }
 @media only screen and (max-width: 500px) {
-  /* line 239, ../sass/crazy.sass */
+  /* line 244, ../sass/crazy.sass */
   .connect-with-facebook a {
     background-size: 250px;
     width: 250px;
     height: 33px;
     margin: 25px auto 25px; } }
 
-/* line 257, ../sass/crazy.sass */
+/* line 262, ../sass/crazy.sass */
 .fakefile, #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   background: #ffcb15;
   padding: 10px;
@@ -672,7 +678,7 @@ img.header_ds_logo {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 269, ../sass/crazy.sass */
+/* line 274, ../sass/crazy.sass */
 .fakefile {
   position: absolute;
   top: 0px;
@@ -680,7 +686,7 @@ img.header_ds_logo {
   z-index: 1;
   width: 147px; }
 
-/* line 276, ../sass/crazy.sass */
+/* line 281, ../sass/crazy.sass */
 #edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   margin: -10px auto 25px;
   padding: 2px 0 0 0;
@@ -688,7 +694,7 @@ img.header_ds_logo {
   border: none;
   display: block; }
 
-/* line 283, ../sass/crazy.sass */
+/* line 288, ../sass/crazy.sass */
 .form-file.new {
   position: relative;
   text-align: right;
@@ -699,7 +705,7 @@ img.header_ds_logo {
   height: 35px;
   cursor: pointer; }
 
-/* line 293, ../sass/crazy.sass */
+/* line 298, ../sass/crazy.sass */
 .submit-start button, .node-crazy-shit #edit-actions .form-submit {
   margin: 0;
   padding: 0;
@@ -718,30 +724,30 @@ img.header_ds_logo {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
-/* line 308, ../sass/crazy.sass */
+/* line 313, ../sass/crazy.sass */
 .submit-start button:hover, .node-crazy-shit #edit-actions .form-submit:hover {
   color: white;
   background-color: #6193e9; }
 
-/* line 312, ../sass/crazy.sass */
+/* line 317, ../sass/crazy.sass */
 .submit-start button, #edit-next {
   width: 60px !important; }
 
-/* line 316, ../sass/crazy.sass */
+/* line 321, ../sass/crazy.sass */
 #edit-previous {
   width: 60px !important;
   float: left !important; }
 
-/* line 320, ../sass/crazy.sass */
+/* line 325, ../sass/crazy.sass */
 #edit-submit {
   width: 80px;
   float: right !important; }
 
-/* line 325, ../sass/crazy.sass */
+/* line 330, ../sass/crazy.sass */
 #views_infinite_scroll-ajax-loader {
   margin: 3% 0; }
 
-/* line 329, ../sass/crazy.sass */
+/* line 334, ../sass/crazy.sass */
 .no-results {
   font-size: 35px;
   line-height: 45px;
@@ -750,10 +756,10 @@ img.header_ds_logo {
   font-weight: 600;
   padding: 5% 0 20%; }
 @media only screen and (max-width: 500px) {
-  /* line 329, ../sass/crazy.sass */
+  /* line 334, ../sass/crazy.sass */
   .no-results {
     padding: 10% 0 20%; } }
-/* line 338, ../sass/crazy.sass */
+/* line 343, ../sass/crazy.sass */
 .no-results .small_button {
   float: none;
   margin: 7% auto 0;
