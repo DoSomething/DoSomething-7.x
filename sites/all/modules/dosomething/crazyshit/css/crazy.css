@@ -761,14 +761,27 @@ img.header_ds_logo {
   width: 160px; }
 
 /* line 348, ../sass/crazy.sass */
-.item-list .pager .pager-current, .item-list .pager .pager-item, .item-list .pager .pager-ellipsis, .item-list .pager .pager-last {
+.item-list .pager .pager-current, .item-list .pager .pager-item, .item-list .pager .pager-ellipsis, .item-list .pager .pager-first, .item-list .pager .pager-last {
   display: none; }
 
 /* line 351, ../sass/crazy.sass */
-.pager {
-  width: 200px;
+.item-list .pager {
+  width: 500px;
   margin: 0 auto; }
-/* line 354, ../sass/crazy.sass */
-.pager .pager-previous, .pager .pager-next {
-  margin: 0 25px;
-  display: block; }
+@media only screen and (max-width: 700px) {
+  /* line 351, ../sass/crazy.sass */
+  .item-list .pager {
+    width: 430px; } }
+@media only screen and (max-width: 430px) {
+  /* line 351, ../sass/crazy.sass */
+  .item-list .pager {
+    width: 98%; } }
+/* line 358, ../sass/crazy.sass */
+.item-list .pager a {
+  color: white; }
+/* line 360, ../sass/crazy.sass */
+.item-list .pager .pager-previous {
+  float: left; }
+/* line 362, ../sass/crazy.sass */
+.item-list .pager .pager-next {
+  float: right; }
