@@ -74,8 +74,13 @@ function crazyshit_menu() {
 }
 
 function crazyshit_flag($sid) {
-
+  if (!intval($sid)) {
+  	 return false;
+  }
   $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+  if (!isset($submission->sid)) {
+    return false;
+  }
 
   $state = 1;
   if ($submission->field_crazy_flagged[LANGUAGE_NONE][0]['value'] == 1) {

@@ -22,11 +22,11 @@
 	    	var l = $(this).parent().parent().parent();
 	    	$.post('/' + Drupal.settings.crazy.crazy_root + '/flag/' + $(this).attr('data-sid'), {}, function(response) {
 	    		if (response == 1) {
-	    			l.css('background', '#808080');
+	    			l.addClass('flagged');
 	    			i.children('span').text('Unflag');
 	    		}
 	    		else if (response == 0) {
-	    			l.css('background', '#fff');
+	    			l.removeClass('flagged');
 	    			i.children('span').text('Flag');
 	    		}
 	    	});
