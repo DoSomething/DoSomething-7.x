@@ -287,7 +287,7 @@ function robocalls_webform_select_options_info() {
 function robocalls_celeb_form_submission($form, &$form_state) {
   $s = $form_state['input']['submitted'];
   $your_cell = $s['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
-  dosomething_api_user_login($your_cell);
+  dosomething_api_user_log_in($your_cell);
 
   $friend_fields = array(
     'field_celeb_friend_phone',

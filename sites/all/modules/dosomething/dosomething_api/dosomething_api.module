@@ -1,6 +1,19 @@
 <?php
 
-function dosomething_api_user_login($e_or_c, $account = array()) {
+/**
+ *  Log in a user.
+ *
+ *  @param string $e_or_c
+ *    A user's email or cell.  Will check against a formatted (e.g. with dashes)
+ *    and unformatted version of a mobile number, if appropriate.
+ *
+ *  @param object $account
+ *    If available, the account object for the user.  If unspecified, will get the
+ *    object from dosomething_api_user_lookup() function.
+ *
+ *  @see dosomething_api_user_lookup()
+ */
+function dosomething_api_user_log_in($e_or_c, $account = object()) {
   if (empty($account)) {
     $account = dosomething_api_user_lookup($e_or_c);
   }
