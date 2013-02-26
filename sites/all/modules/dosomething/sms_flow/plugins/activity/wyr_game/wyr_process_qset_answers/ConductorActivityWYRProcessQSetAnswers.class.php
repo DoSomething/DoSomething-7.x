@@ -114,12 +114,12 @@ class ConductorActivityWYRProcessQSetAnswers extends ConductorActivity {
         }
       }
 
+      $state->setContext('ftaf_beta_optin', $this->incoming_opt_in_path);
       $state->setContext('sms_response', $sms_response);
       $state->markSuspended();
     }
     else {
       $state->setContext('ftaf_prompt:message', $ftaf_number);
-      $state->setContext('ftaf_beta_optin', $this->incoming_opt_in_path);
       $state->setContext('ftaf_id_override', $this->game_id);
       $state->setContext('ftaf_type_override', $this->type_override);
 
