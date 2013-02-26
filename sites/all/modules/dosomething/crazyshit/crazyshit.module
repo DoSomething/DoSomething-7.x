@@ -64,7 +64,37 @@ function crazyshit_menu() {
 	  'access callback' => TRUE,
 	);
 
+	$items['crazy/flag/%'] = array(
+	  'page callback' => 'crazyshit_flag',
+	  'page arguments' => array(2),
+	  'access arguments' => array('administer users'),
+	);
+
 	return $items;
+}
+
+function crazyshit_flag($sid) {
+  if (!intval($sid)) {
+  	 return false;
+  }
+  $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+  if (!isset($submission->sid)) {
+    return false;
+  }
+
+  $state = 1;
+  if ($submission->field_crazy_flagged[LANGUAGE_NONE][0]['value'] == 1) {
+  	$submission->field_crazy_flagged[LANGUAGE_NONE][0]['value'] = 0;
+  	$state = 0;
+  }
+  else {
+  	$submission->field_crazy_flagged[LANGUAGE_NONE][0]['value'] = 1;
+  }
+
+  @entity_save('webform_submission_entity', $submission);
+
+  echo $state;
+  drupal_exit();
 }
 
 /**
@@ -674,6 +704,13 @@ function crazyshit_views_post_render(&$view, &$output, &$cache) {
      // Allows for lazy loading of images...
      $output = preg_replace_callback('#src="([^\"]+)"\s+#i', 'crazyshit_add_lazy_class', $output);
      $output = str_replace(' a-' . $user->uid, ' a-' . $user->uid . ' by-me', $output);
+
+     // Very hacky but it's a quick fix for now.
+     // Will be implemented properly later.
+     $admin = user_access('delete all webform submissions');
+     if (!$admin) {
+     	$output = preg_replace('#<div class="flag">.*</div>#i', '', $output);
+     }
    }
 }
 

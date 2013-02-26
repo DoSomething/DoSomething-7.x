@@ -649,6 +649,73 @@ function crazyshit_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-crazy_shit-field_crazy_flagged'.
+  $fields['webform_submission_entity-crazy_shit-field_crazy_flagged'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_crazy_flagged',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'crazy_shit',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 12,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_crazy_flagged',
+      'label' => 'Flagged',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '32',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-crazy_shit-field_crazy_today_count'.
   $fields['webform_submission_entity-crazy_shit-field_crazy_today_count'] = array(
     'field_config' => array(
@@ -987,6 +1054,7 @@ function crazyshit_field_default_fields() {
   t('Bullshit count');
   t('Craziness weight');
   t('Crazy Count');
+  t('Flagged');
   t('Image');
   t('This Week Total Count');
   t('Today Total Count');
