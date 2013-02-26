@@ -345,13 +345,16 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 // ----------
 
 .item-list .pager /* hides the default Drupal pagination links save [prev] & [next]*/
-  .pager-current,  .pager-item,  .pager-ellipsis, .pager-last
+  .pager-current,  .pager-item,  .pager-ellipsis, .pager-first, .pager-last
     display: none
 
-.pager
-  width: 200px
+.item-list .pager
+  width: 500px
   margin: 0 auto
-  .pager-previous, .pager-next
-    margin: 0 25px
-    display: block
+  a
+    color: #fff
+  .pager-previous
+    float: left
+  .pager-next
+    float: right
     
