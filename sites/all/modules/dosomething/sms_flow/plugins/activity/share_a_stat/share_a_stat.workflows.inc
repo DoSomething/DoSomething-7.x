@@ -3,22 +3,22 @@
 //
 // sms_flow_share_stat_mms
 //
-$w = new ConductorWorkflow;
-$w->wid = 'new';
-$w->name = 'sms_flow_share_stat_mms';
-$w->title = 'Share a Stat MMS Handler';
-$w->api_version = '1.0';
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_share_stat_mms';
+$workflow->title = 'Share a Stat MMS Handler';
+$workflow->api_version = '1.0';
 
-$a = $w->newActivity('start');
-$a->name = 'start';
-$a->inputs = array();
-$a->outputs = array('process_mms');
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->inputs = array();
+$activity->outputs = array('process_mms');
 
-$a = $w->newActivity('share_stat_process_mms');
-$a->name = 'process_mms';
-$a->inputs = array('start');
-$a->outputs = array('end');
-$a->routes = array(
+$activity = $workflow->newActivity('share_stat_process_mms');
+$activity->name = 'process_mms';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->routes = array(
     '145523' => array(
       'mms' => 145793,
       'no_mms' => 146293,
@@ -53,9 +53,9 @@ $a->routes = array(
     ),
   );
 
-$a = $w->newActivity('end');
-$a->name = 'end';
-$a->inputs = array('process_mms');
-$a->outputs = array();
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('process_mms');
+$activity->outputs = array();
 
-$workflows[$w->name] = $w;
+$workflows[$workflow->name] = $workflow;
