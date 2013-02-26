@@ -17,6 +17,22 @@
 	    	Drupal.behaviors.dsCrazyScripts.logged_in = false;
 	    }
 
+	    $('.flag a').click(function() {
+	    	var i = $(this);
+	    	var l = $(this).parent().parent().parent();
+	    	$.post('/' + Drupal.settings.crazy.crazy_root + '/flag/' + $(this).attr('data-sid'), {}, function(response) {
+	    		if (response == 1) {
+	    			l.addClass('flagged');
+	    			i.children('span').text('Unflag');
+	    		}
+	    		else if (response == 0) {
+	    			l.removeClass('flagged');
+	    			i.children('span').text('Flag');
+	    		}
+	    	});
+	    	return false;
+	    });
+
         if (top.location != self.location) {
           top.location = self.location.href
         }
