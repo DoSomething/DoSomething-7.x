@@ -348,3 +348,25 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     margin: 7% auto 0
     display: block
     width: 160px
+
+// PAGINATION
+// ----------
+
+.item-list .pager /* hides the default Drupal pagination links save [prev] & [next]*/
+  .pager-current,  .pager-item,  .pager-ellipsis, .pager-first, .pager-last
+    display: none
+
+.item-list .pager
+  width: 500px
+  margin: 0 auto
+  @media only screen and (max-width: 700px)
+    width: 430px
+  @media only screen and (max-width: 430px)
+    width: 98%
+  a
+    color: #fff
+  .pager-previous
+    float: left
+  .pager-next
+    float: right
+    
