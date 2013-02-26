@@ -136,10 +136,22 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       $u['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $first_name;
     }
 
+#    $u['field_celeb_your_name']['#access'] = FALSE;
+
     // Placeholder and theoretical population of my number
     $u['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Number');
     if (!empty($mobile)) {
       $u['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $mobile;
+    }
+
+    if (user_is_logged_in()) {
+      $u['field_celeb_your_password']['#access'] = FALSE;
+      if (!empty($first_name)) {
+        $u['field_celeb_your_name']['#access'] = FALSE;
+      }
+      if (!empty($mobile)) {
+        $u['field_celeb_your_phone']['#access'] = FALSE;
+      }
     }
 
     // Placeholder for my password
@@ -150,11 +162,6 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
     // Set the mobile commons ID
     $u['field_mobile_commons_id'][LANGUAGE_NONE][0]['value']['#default_value'] = $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value'];
-
-    // Remove the password field if you're logged in.
-    if (user_is_logged_in()) {
-      $u['field_celeb_your_password'][LANGUAGE_NONE][0]['value']['#attributes']['class'][] = 'not-required';
-    }
 
     // Set placeholder for all friend mobile fields
     $friend_fields = array(
@@ -180,6 +187,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     ));
 
     $form['actions']['submit']['#value'] = t('Send The Call!');
+    $form['#validate'][] = 'robocalls_celeb_form_validation';
     $form['#submit'][] = 'robocalls_celeb_form_submission';
   }
   else {
@@ -233,6 +241,20 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
   }
 }
 
+function robocalls_celeb_form_validation($form, &$form_state) {
+  require_once DRUPAL_ROOT . '/includes/password.inc';
+  echo '<pre>', print_r($form_state['values']), '</pre>'; exit;
+
+      /*if ($account && $account->status) {
+        // && $account->uid != $user->uid
+        if ($form_state['values']['password']) {
+          // If they've provided a proper password, log them in.
+          if (!user_check_password($form_state['values']['password'], $account)) {
+            form_set_error('password', t("Sorry, that's not a valid password for this email / cell.  Try again?"));
+            $error++;
+          }*/
+}
+
 function robocalls_blah($form, &$form_state) {
   if (isset($form_state['input']['submitted']['friends_number'])) {
     #$form_state['values']['my_number'] = '610-368-3195';
@@ -262,6 +284,7 @@ function robocalls_webform_select_options_info() {
 
 
 function robocalls_celeb_form_submission($form, &$form_state) {
+  echo '<pre>', print_r($form_state['values']), '</pre>'; exit;
   $friend_fields = array(
     'field_celeb_friend_phone',
     'field_celeb_friend_phone_2',
@@ -272,17 +295,28 @@ function robocalls_celeb_form_submission($form, &$form_state) {
   );
 
   $friends = array();
+  // Add all friend fields to the friends array
   foreach ($friend_fields AS $field) {
     $friends[] = $form_state['input']['submitted']['your_friends_info'][$field][LANGUAGE_NONE][0]['value'];
   }
+
+  // Add any additional friend fields, if applicable.
   if (!empty($form_state['input']['submitted']['additional_friends']) && is_array($form_state['input']['submitted']['additional_friends'])) {
     $friends += $form_state['input']['submitted']['additional_friends'];
   }
 
+  // Strip any non-numeric characters to ensure we only get unique phone numbers.
+  array_walk($friends, function(&$val, $key) {
+    $val = preg_replace('#[^0-9]#', '', $val);
+  });
+
+  // Get only unique phone numbers.
   $friends = array_unique($friends);
 
+  // Send the call(s)!
   $call = dosomething_general_telapi_request('718-578-7681', $friends, 'blah');
 
+  // Redirect back home, with a GET variable with the call information.
   if (!empty($call)) {
     drupal_goto($_SERVER['HTTP_REFERER'] . '?c=' . base64_encode(serialize($call)));
   }

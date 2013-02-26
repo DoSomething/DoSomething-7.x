@@ -1126,21 +1126,25 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_ur
 
   if (is_array($beta_number)) {
     foreach ($beta_number AS $cell) {
+      if (dosomething_general_valid_cell($cell)) {
+        $call = $api->create($type, array(
+          'From' => $alpha_number,
+          'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $cell),
+          'Url' => 'http://qa3.dosomething.org/test.php',
+          'method' => 'GET',
+        ));
+      }
+    }
+  }
+  else {
+    if (dosomething_general_valid_cell($cell)) {
       $call = $api->create($type, array(
         'From' => $alpha_number,
-        'To' => $cell,
+        'To' => $beta_number,
         'Url' => 'http://qa3.dosomething.org/test.php',
         'method' => 'GET',
       ));
     }
-  }
-  else {
-    $call = $api->create($type, array(
-      'From' => $alpha_number,
-      'To' => $beta_number,
-      'Url' => 'http://qa3.dosomething.org/test.php',
-      'method' => 'GET',
-    ));
   }
 
   if ($call->sid) {

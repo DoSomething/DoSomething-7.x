@@ -12,6 +12,18 @@
         }
       }
 
+      var call = {};
+      if (document.location.search && document.location.search.indexOf('c=')) {
+        call = document.location.search.replace(/\?c=/, '');
+        var msie = /*@cc_on!@*/0;
+        if (!msie) {
+          var h = new Object();
+          history.pushState(h, '', window.location.href.replace(/\?c=.+/, ''));
+        }
+      }
+
+      $('#edit-submitted-field-celeb-your-password-und-0-value').attr('type', 'password');
+
       $('.views-field-nothing').hover(function() {
         $(this).find('.hover-state').show();
       });
