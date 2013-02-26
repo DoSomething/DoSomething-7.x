@@ -1637,7 +1637,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
     box-shadow: none; }
   #cmp .already_submitted {
     margin: 0 auto;
-    width: 85%; }
+    width: 85%;
+    height: 123px;
+    padding: 40px 0 0 0; }
     #cmp .already_submitted img {
       margin: 2% 0 0 0;
       float: left; }
