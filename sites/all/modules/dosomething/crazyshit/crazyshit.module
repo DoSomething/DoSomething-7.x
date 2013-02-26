@@ -83,7 +83,7 @@ function crazyshit_is_crazy_page($page = '') {
 	$page = request_uri();
   }
 
-  if (preg_match('#^\/' . CRAZY_ROOT . '#i', $page)) {
+  if (preg_match('#^\/crazy#i', $page)) {
 	return true;
   }
 
