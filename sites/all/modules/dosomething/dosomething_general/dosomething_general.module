@@ -1013,9 +1013,34 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   }
    
   if (!empty($email)) {
-    if (!empty($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) && !empty($email)) {
-      $mc_merge_vars['MMERGE7'] = $cell;
-      dosomething_general_mailchimp_subscribe($email, $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'], $mc_merge_vars);
+    if ( (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) || ($node->type == 'petition') ) && !empty($email)) {
+      
+      // Cell
+      if ($cell) {
+        $mc_merge_vars['MMERGE7'] = $cell;
+      }
+      
+      // From petitions
+      if ($node->type == 'petition') {
+        
+        $mc_group = 'Petitions2012';
+      
+        // Petition Name - Webform ID
+        $mc_merge_vars['MMERGE27'] = $form['#action'];
+
+
+        // Drupal User ID - UID
+        if ($form['#submission']->details['uid'] > 0) {
+          $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
+        }
+        
+      }
+      else {
+        $mc_group = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
+      }
+
+      dosomething_general_mailchimp_subscribe($email, $mc_group, $mc_merge_vars);
+
     }
   }
   
