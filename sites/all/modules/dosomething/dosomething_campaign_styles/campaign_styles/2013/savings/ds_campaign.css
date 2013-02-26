@@ -588,8 +588,6 @@ body {
     #cmp #header .pane-campaign-signed p {
       color: white;
       margin: 0 auto; }
-    #cmp #header .pane-campaign-signed .top-signed {
-      margin-bottom: 1em; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -779,6 +777,8 @@ body {
       display: block; }
       #cmp #workshops .debt-icon:hover {
         background: url("http://files.dosomething.org/files/campaigns/savings/debt-green.png"); }
+  #cmp #workshops-anonymous .go-button {
+    margin-bottom: 2em; }
   #cmp #footer h1 {
     font-size: 2em;
     font-family: din-web;
@@ -886,7 +886,7 @@ body {
     #cmp .pane-campaign-sign-up #edit-submit:hover {
       color: #f1f1f1; }
   #cmp .pane-campaign-signed .go-button {
-    margin: 0;
+    margin: 1em 0;
     background: #57cb41;
     color: white;
     font-weight: 400;
