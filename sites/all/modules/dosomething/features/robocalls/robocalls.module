@@ -243,16 +243,17 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
 function robocalls_celeb_form_validation($form, &$form_state) {
   require_once DRUPAL_ROOT . '/includes/password.inc';
-  echo '<pre>', print_r($form_state['values']), '</pre>'; exit;
 
-      /*if ($account && $account->status) {
-        // && $account->uid != $user->uid
-        if ($form_state['values']['password']) {
-          // If they've provided a proper password, log them in.
-          if (!user_check_password($form_state['values']['password'], $account)) {
-            form_set_error('password', t("Sorry, that's not a valid password for this email / cell.  Try again?"));
-            $error++;
-          }*/
+  if ($account = dosomething_general_find_user_by_cell($form_state['values']['submitted']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'])) {
+    if (!user_check_password($form_state['values']['submitted']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'], $account)) {
+      form_set_error('password', t('That is not the correct password for this account.'));
+      $error++;
+    }
+  }
+
+  if ($error > 0) {
+    drupal_goto($_SERVER['HTTP_REFERER']);
+  }
 }
 
 function robocalls_blah($form, &$form_state) {
@@ -284,7 +285,15 @@ function robocalls_webform_select_options_info() {
 
 
 function robocalls_celeb_form_submission($form, &$form_state) {
-  echo '<pre>', print_r($form_state['values']), '</pre>'; exit;
+  $s = $form_state['input']['submitted'];
+  $your_cell = $s['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
+  if (!empty($your_cell) && dosomething_general_valid_cell($your_cell)) {
+    if ($account = dosomething_general_find_user_by_cell($your_cell)) {
+      $f = array('uid' => $account->uid);
+      user_login_submit(array(), $f);
+    }
+  }
+
   $friend_fields = array(
     'field_celeb_friend_phone',
     'field_celeb_friend_phone_2',

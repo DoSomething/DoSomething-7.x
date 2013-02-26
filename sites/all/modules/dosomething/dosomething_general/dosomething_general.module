@@ -1429,9 +1429,13 @@ function dosomething_general_find_user_by_cell($number) {
  *   The user account or false if none is found.
  */
 function dosomething_load_user_by_profile_cell($mobile) {
+  $without = preg_replace('#[^0-9]#', '', $mobile);
+  $with = preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $without);
+  $possibilities = array($with, $without);
+
   $query = new EntityFieldQuery('profile2');
   $results = $query->entityCondition('entity_type', 'profile2')
-    ->fieldCondition('field_user_mobile', 'value', $mobile, '=')
+    ->fieldCondition('field_user_mobile', 'value', $possibilities, 'IN')
     ->deleted(FALSE)
     // Look for more than one user but cap it at two so we don't waste all day.
     ->range(0, 2)
