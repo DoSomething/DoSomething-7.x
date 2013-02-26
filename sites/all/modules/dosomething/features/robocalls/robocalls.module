@@ -258,20 +258,35 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       $u =& $form['submitted'];
       $u['friends_number']['#attributes']['placeholder'] = t("Friend's Number");
 
-      $u['page_3']['#access'] = false;
-      $u['my_number']['#access'] = false;
-      global $user;
-      $p = profile2_load_by_user($user, 'main');
-      $form_state['input']['my_number'] = '610-368-3195';
-      if ($p->field_user_mobile[LANGUAGE_NONE][0]['value']) {
-        $form_state['input']['my_number'] = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
-        $form_state['values']['my_number'] = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
-        $u['my_number']['#default_value'] = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
+      $u['my_number']['#attributes']['placeholder'] = t('My Number');
+      $u['my_name']['#attributes']['placeholder'] = t('My Name');
+      $u['my_password']['#attributes']['placeholder'] = t('My Password');
+
+      if (user_is_logged_in()) {
+        $me = dosomething_api_user_fetch_data(array(
+          'profile' => array(
+            'field_user_first_name' => 'name',
+            'field_user_mobile' => 'mobile'
+          ),
+        ));
+        $u['my_number']['#default_value'] = $me['mobile'];
+        $u['my_name']['#default_value'] = $me['name'];
       }
 
-      $form['#submit'][] = 'robocalls_blah';
+      if (isset($u['my_password'])) {
+        $u['my_password']['#type'] = 'password';
+        if (user_is_logged_in()) {
+          $u['my_password']['#access'] = FALSE;
+        }
+      }
+
+      $form['#submit'][] = 'robocalls_walkthrough_submission';
     }
   }
+}
+
+function robocalls_walkthrough_submission() {
+
 }
 
 function robocalls_celeb_form_validation($form, &$form_state) {
