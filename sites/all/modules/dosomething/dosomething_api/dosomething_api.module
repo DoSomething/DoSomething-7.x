@@ -13,7 +13,7 @@
  *
  *  @see dosomething_api_user_lookup()
  */
-function dosomething_api_user_log_in($e_or_c, $account = object()) {
+function dosomething_api_user_log_in($e_or_c, $account = array()) {
   if (empty($account)) {
     $account = dosomething_api_user_lookup($e_or_c);
   }
@@ -22,6 +22,8 @@ function dosomething_api_user_log_in($e_or_c, $account = object()) {
   	$u = array('uid' => $account->uid);
   	user_login_submit(array(), $u);
   }
+
+  return $account;
 }
 
 /**
