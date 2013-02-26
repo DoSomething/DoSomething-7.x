@@ -5,6 +5,7 @@ require_once 'dosomething_social_scholars.features.inc';
 define('SHARE_A_STAT_NUM_CELLS', 5);
 define('SHARE_A_STAT_USER_TXT', 117381);
 define('SHARE_A_STAT_FRIEND_TXT', 117391);
+define('SAS_AJAX_STATE', true); // user_is_logged_in()
 
 /**
  * Implements hook_ctools_plugin_directory()
@@ -115,11 +116,14 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
     $form['#validate'][] = 'dosomething_social_scholars_validate_form';
     $form['#submit'][] = 'dosomething_social_scholars_submit_form';
 
-    if (!user_is_logged_in()) {
+    /*
+     * NIXED 2/26/13: Users will be able to sign up when they join a campaign.
+     * so this popup is pointless.
+    if (!SAS_AJAX_STATE) {
       $form['actions']['submit']['#ajax'] = array(
         'callback' => 'dosomething_social_scholars_ajax',
       );
-    }
+    }*/
   }
 }
 
@@ -149,7 +153,7 @@ function dosomething_social_scholars_validate_form($form, &$form_state) {
     $error++;
   }
 
-  if ($error > 0 && user_is_logged_in()) {
+  if ($error > 0 && SAS_AJAX_STATE) {
     drupal_goto($_SERVER['HTTP_REFERER']);
   }
 }
@@ -224,7 +228,7 @@ function dosomething_social_scholars_submit_form($form, &$form_state) {
   // Set the message to the redirect message found on the form.
   #drupal_set_message(t($node->field_redirect_message[LANGUAGE_NONE][0]['value']));
 
-  if (user_is_logged_in()) {
+  if (SAS_AJAX_STATE) {
     // If we set up the redirect path in the form, use that.
     if (!empty($node->field_redirect_to_path[LANGUAGE_NONE][0]['value'])) {
       $_GET['destination'] = $node->field_redirect_to_path[LANGUAGE_NONE][0]['value'];
