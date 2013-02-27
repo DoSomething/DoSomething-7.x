@@ -1333,9 +1333,6 @@ function crazyshit_mail($key, &$message, $params) {
  */
 function crazyshit_mail_send($email, $message) {
 	
-  if ($bla) {
-	$bla = TRUE;
-  }
   // All system mails need to specify the module and template key (mirrored from
   // hook_mail()) that the message they want to send comes from.
   $module = 'crazyshit';
