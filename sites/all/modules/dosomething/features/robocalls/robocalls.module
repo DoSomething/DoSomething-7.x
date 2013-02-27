@@ -96,15 +96,6 @@ function robocalls_call_xml($tid) {
  *  Implements hook_panels_pre_render()
  */
 function robocalls_page_alter(&$page) {
-  $n = menu_get_object();
-  unset($n->nid);
-  unset($n->vid);
-  unset($n->webform['nid']);
-  foreach ($n->webform['components'] AS $key => $component) {
-    unset($n->webform['components'][$key]['nid']);
-  }
-
-  echo serialize($n); exit;
   if (robocalls_is_robo_page()) {
     $robocalls = robocalls_load_config();
     
