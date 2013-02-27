@@ -99,6 +99,22 @@ function robocalls_panels_pre_render($display) {
         'cache' => FALSE
     ));
 
+    if (preg_match('#^' . ROBO_PATH . '(/([0-9]+))?#', request_path())) {
+      // Adds Robocalls JS
+      drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls_front.js', array(
+          'weight' => -100,
+          'cache' => FALSE
+      ));
+    }
+
+    if (preg_match('#^' . ROBO_PATH . '/([A-Za-z0-9\-\_ ]+)#', request_path())) {
+      // Adds Robocalls JS
+      drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls_celeb.js', array(
+          'weight' => -100,
+          'cache' => FALSE
+      ));
+    }
+
     // Loads Facebook.
     drupal_add_library('connections', 'facebook');
   }
