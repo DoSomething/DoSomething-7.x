@@ -1,3 +1,5 @@
+function base64_decode(data){var b64="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";var o1,o2,o3,h1,h2,h3,h4,bits,i=0,ac=0,dec="",tmp_arr=[];if(!data){return data}data+='';do{h1=b64.indexOf(data.charAt(i++));h2=b64.indexOf(data.charAt(i++));h3=b64.indexOf(data.charAt(i++));h4=b64.indexOf(data.charAt(i++));bits=h1<<18|h2<<12|h3<<6|h4;o1=bits>>16&0xff;o2=bits>>8&0xff;o3=bits&0xff;if(h3==64){tmp_arr[ac++]=String.fromCharCode(o1)}else if(h4==64){tmp_arr[ac++]=String.fromCharCode(o1,o2)}else{tmp_arr[ac++]=String.fromCharCode(o1,o2,o3)}}while(i<data.length);dec=tmp_arr.join('');return dec}
+
 (function ($) {
   Drupal.behaviors.robocalls = {
     friends_field_count: 1,
@@ -7,34 +9,43 @@
 
     attach: function(context, settings) {
       var call = {};
-      if (document.location.search && document.location.search.indexOf('c=')) {
-        call = document.location.search.replace(/\?c=/, '');
+      if (document.location.search && document.location.search.indexOf('call=')) {
+        var str = document.location.search.replace(/\?call=/, '');
+        d = base64_decode(str);
+        console.log(d);
+        call = $.parseJSON(base64_decode(document.location.search.replace(/\?call=/, '')));
+        console.log(call.call_sid);
         var msie = /*@cc_on!@*/0;
-        if (!msie) {
+        if (false) {
           var h = new Object();
-          history.pushState(h, '', window.location.href.replace(/\?c=.+/, ''));
+          history.pushState(h, '', window.location.href.replace(/\?call=.+/, ''));
         }
       }
-
-      $('#edit-submitted-field-celeb-your-password-und-0-value').attr('type', 'password');
 
       $('.views-field-nothing').hover(function() {
         $(this).find('.hover-state').show();
       });
 
 
-      Drupal.behaviors.fb.feed({
-        'feed_document': document.location.href,
-        'feed_title': 'MLK',
-        'feed_picture': document.location.origin + $('.celeb-image').find('img').attr('src'),
-        'feed_caption': 'Check out this call.',
-        'feed_description': 'I just sent a call from DoSomething.org\'s Project Prank!',
-        'feed_allow_multiple': true,
-        'feed_require_login': true,
-        'feed_selector': '.facebook-share-celeb'
-      }, function(response) {
-        console.log(response);
-      });
+      if ($('.facebook-share-celeb').length) {
+        Drupal.behaviors.fb.feed({
+          'feed_document': document.location.href,
+          'feed_title': 'MLK',
+          'feed_picture': document.location.origin + $('.celeb-image').find('img').attr('src'),
+          'feed_caption': 'Check out this call.',
+          'feed_description': 'I just sent a call from DoSomething.org\'s Project Prank!',
+          'feed_allow_multiple': true,
+          'feed_require_login': true,
+          'feed_selector': '.facebook-share-celeb'
+        }, function(response) {
+          console.log(response);
+        });
+      }
+      else if ($('.facebook-share-call').length) {
+        //Drupal.behaviors.fb.feed({
+        //  feed_document: '',
+        //});
+      }
 
       var new_field, f = '';
       new_field = '<fieldset class="webform-component-fieldset form-wrapper" id="webform-component-friends-info--primary-friend"><div class="fieldset-wrapper"><div class="form-item webform-component webform-component-select" id="webform-component-friends-info--primary-friend--select-call">#SELECT</div><div class="form-item webform-component webform-component-textfield" id="webform-component-friends-info--primary-friend--friends-number">#INPUT</div></div></fieldset>';

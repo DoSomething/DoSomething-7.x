@@ -1137,7 +1137,6 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_ur
     }
   }
   else {
-    echo $alpha_number . '<br />' . $beta_number; exit;
     if (dosomething_general_valid_cell($alpha_number) && dosomething_general_valid_cell($beta_number)) {
       $call = $api->create($type, array(
         'From' => $alpha_number,
@@ -1145,9 +1144,6 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_ur
         'Url' => 'http://qa3.dosomething.org/test.php',
         'method' => 'GET',
       ));
-
-      echo "!";
-      echo '<pre>', print_r($call), '</pre>'; exit;
     }
   }
 

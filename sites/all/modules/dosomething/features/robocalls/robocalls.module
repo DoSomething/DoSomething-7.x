@@ -240,6 +240,12 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         '#weight' => 10000,
       );
       $form['#submit'][] = 'robocalls_homepage_form_submission';
+
+      if (isset($_SESSION['front_page_call'])) {
+        $i = $_SESSION['front_page_call'];
+        unset($_SESSION['front_page_call']);
+        drupal_add_js(array('call' => $i), 'setting');
+      }
     }
     else if (request_uri() == '/calloffame/walkthrough') {
       $u =& $form['submitted'];
@@ -425,12 +431,29 @@ function robocalls_homepage_form_submission($form, &$form_state) {
     robocalls_create_or_log_in_user(array('name' => $my['name'], 'cell' => $my['cell'], 'password' => $my['pass']));
   }
 
+  $i = 0;
   foreach ($friends AS $number => $callid) {
-    $call = dosomething_general_telapi_request($my['cell'], $number, 'projectprank/' . $callid);
+    if ($i == 0) {
+      $call = dosomething_general_telapi_request($my['cell'], $number, 'projectprank/' . $callid); 
+    }
+    else {
+      dosomething_general_telapi_request($my['cell'], $number, 'projectprank/' . $callid);
+    }
   }
 
   if (!empty($call)) {
+    $cid = array_shift($friends);
+    $celeb = taxonomy_term_load($cid);
+
+    $c = array(
+      'call_sid' => $call->sid,
+      'celeb_tid' => $cid,
+      'celeb_image' => file_create_url($celeb->field_celeb_photo[LANGUAGE_NONE][0]['uri']),
+      'celeb_name' => $celeb->name
+    );
+
     $sid = $form_state['values']['details']['sid'];
-    drupal_goto('calloffame/' . $sid, array('query' => array('c' => base64_encode(serialize($call)))));
+    $_SESSION['front_page_call'] = $c;
+    drupal_goto('calloffame/' . $sid);
   }
 }
