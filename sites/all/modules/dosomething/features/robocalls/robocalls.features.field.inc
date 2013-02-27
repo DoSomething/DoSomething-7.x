@@ -1586,6 +1586,71 @@ function robocalls_field_default_fields() {
     ),
   );
 
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_friend_phone_6'.
+  $fields['webform_submission_entity-robo_calls-field_celeb_friend_phone_6'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_celeb_friend_phone_6',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'robo_calls',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 12,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_celeb_friend_phone_6',
+      'label' => 'Friend\'s Number #6',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'telwidget',
+        'weight' => '9',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-robo_calls-field_celeb_your_name'.
   $fields['webform_submission_entity-robo_calls-field_celeb_your_name'] = array(
     'field_config' => array(
@@ -1655,6 +1720,73 @@ function robocalls_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_your_password'.
+  $fields['webform_submission_entity-robo_calls-field_celeb_your_password'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_celeb_your_password',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'robo_calls',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 13,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_celeb_your_password',
+      'label' => 'My Password',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '3',
       ),
     ),
   );
@@ -1806,73 +1938,6 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_mobile_commons_id'.
-  $fields['webform_submission_entity-robo_calls-field_mobile_commons_id'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_mobile_commons_id',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'robo_calls',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 7,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_mobile_commons_id',
-      'label' => 'Mobile Commons ID',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '10',
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('A fun fact about the celebrity, which will appear below the celebrity form.  Example: Tyler Oakley, YouTube star extraordinaire, makes it a point to cry once a day.');
@@ -1890,16 +1955,17 @@ function robocalls_field_default_fields() {
   t('Friend\'s Number #3');
   t('Friend\'s Number #4');
   t('Friend\'s Number #5');
+  t('Friend\'s Number #6');
   t('Fun Fact');
   t('How many calls to any given number per day should be allowed on this celebrity?');
   t('If this particular celebrity has a scholarship, fill in the scholarship language here and it will appear on the page.');
   t('Is this celebrity a timed call (that is -- can it only call on a certain date / certain time?) An example of this: Voting campaign or Holiday calls.  Users will be able to specify what hour and minute they want this call to take place, within the specified day.
 ');
   t('Is this celebrity visible on the Call of Fame home page? Check this box to make sure they show up.');
-  t('Mobile Commons ID');
   t('Mobile Commons MConnect ID');
   t('My Name');
   t('My Number');
+  t('My Password');
   t('Photo');
   t('Photo thumbnail');
   t('Scholarship Langauge');
