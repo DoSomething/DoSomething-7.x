@@ -19,8 +19,9 @@ function drush_robocalls_robocall($fnid) {
 }
 
 function drush_robocalls_robo_migrate() {
-  $w = dosomething_general_save_node_from_file(drupal_get_path('module', 'robocalls') . '/webforms/homepage.txt', 'robo-calls/homepage-webform');
-  drush_print(dt('Done! See ' . $w->nid));
+  $homepage_webform = dosomething_general_save_node_from_file(drupal_get_path('module', 'robocalls') . '/webforms/homepage.txt', 'robo-calls/homepage-webform');
+  $walkthrough_webform = dosomething_general_save_node_from_file(drupal_get_path('module', 'robocalls') . '/webforms/homepage.txt', 'robo-calls/homepage-webform');
+  drush_print(dt('Done! See node/' . $homepage_webform->nid . ' (re-alias as robo-calls/homepage-webform) and node/' . $walkthrough_webform->nid . ' (re-alias as prank/walkthrough)'));
 }
 
 ?>
