@@ -57,6 +57,7 @@ features[field][] = webform_submission_entity-robo_calls-field_celebrity_chooser
 features[field][] = webform_submission_entity-robo_calls-field_mobile_commons_id
 features[image][] = robocall_celeb_photo
 features[image][] = robocall_celeb_thumbnail_205x115
+features[image][] = robocalls_gallery_thumb
 features[menu_custom][] = main-menu
 features[node][] = robo_calls
 features[page_manager_handlers][] = term_view_panel_context
