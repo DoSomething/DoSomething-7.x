@@ -10,7 +10,6 @@ define('ROBOCALLS_WEBFORM_NID', 723327);//724089
 define('MAX_CALLS_PER_DAY', 1);
 define('ROUND_TO', 10);
 define('ROBOCALLS_TAXONOMY_ID', variable_get('robocalls_taxonomy_vocab', 25));
-define('ROBOCALLS_FEATURED_CELEB_TAG', 'Says Hayyy to Your Friends');
 define('ROBOCALLS_MCOMMONS_ALPHAS_CAMPAIGN', 144433);
 
 function robocalls_is_robo_page($page = '') {
@@ -40,6 +39,9 @@ function robocalls_panels_pre_render($display) {
         'weight' => -100,
         'cache' => FALSE
     ));
+
+    // Loads Facebook.
+    drupal_add_library('connections', 'facebook');
   }
 }
 
@@ -52,36 +54,6 @@ function robocalls_ctools_plugin_directory($module, $plugin) {
   }
 }
 
-/**
- *  Sends a phone call request to Mobile Commons.
- *
- *  @param $mobile
- *    The phone number to call.
- *
- *  @param $name (optional)
- *    The name of the person who is calling.
- *
- *  @param $opt_in_path
- *    The numeric Mobile Commons opt in path ID
- *
- *  @return
- *    An object as defined from drupal_http_request()
- */
-function robocalls_mcommons_call($mobile, $name = '', $opt_in_path) {
-  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
-
-  // Send the post data.
-  $options = array(
-    'headers' => array(
-      'Content-type' => 'application/x-www-form-urlencoded',
-      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    ),
-    'method' => 'POST',
-    'data' => "person[phone]=$mobile&person[user_s_name]=" . urlencode($name) . "&mconnect=$opt_in_path",
-  );
-
-  drupal_http_request($api_opt_in_path_url, $options);
-}
 
 /**
  *  Implements hook_module_implements_alter()
@@ -186,6 +158,14 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       'weight' => 9999
     ));
 
+
+    $form['need-help'] = array(
+      '#prefix' => '<p class="need-help">',
+      '#markup' => l(t('Need Help?'), 'calloffame/walkthrough'),
+      '#suffix' => '</p>',
+      '#weight' => 10000,
+    );
+
     $form['actions']['submit']['#value'] = t('Send The Call!');
     $form['#validate'][] = 'robocalls_celeb_form_validation';
     $form['#submit'][] = 'robocalls_celeb_form_submission';
@@ -239,6 +219,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       );
       drupal_add_js(array('calloffame' => $settings), 'setting');
 
+      $u['friends_info']['primary_friend']['friends_number']['#attributes']['placeholder'] = t('Friend\'s Number');
       $u['friends_info']['primary_friend']['select_call']['#options'] += $celebs;
 
       // Make sure the password field is a password field.
@@ -252,6 +233,12 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
       // Change the "submit" button text to "Send the call!"
       $form['actions']['submit']['#value'] = t('Send The Call!');
+      $form['need-help'] = array(
+        '#prefix' => '<p class="need-help">',
+        '#markup' => l(t('Need Help?'), 'calloffame/walkthrough'),
+        '#suffix' => '</p>',
+        '#weight' => 10000,
+      );
       $form['#submit'][] = 'robocalls_homepage_form_submission';
     }
     else if (request_uri() == '/calloffame/walkthrough') {
@@ -269,8 +256,8 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
             'field_user_mobile' => 'mobile'
           ),
         ));
-        $u['my_number']['#default_value'] = $me['mobile'];
-        $u['my_name']['#default_value'] = $me['name'];
+        $u['my_number']['#value'] = $me['mobile'];
+        $u['my_name']['#value'] = $me['name'];
       }
 
       if (isset($u['my_password'])) {
@@ -285,8 +272,24 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
   }
 }
 
-function robocalls_walkthrough_submission() {
+function robocalls_walkthrough_submission($form, &$form_state) {
+  if (isset($form_state['clicked_button']['#value']) && $form_state['clicked_button']['#value'] == 'Submit') {
+    // Mindfuck of the day: The submitted data is NOT all stored in form_state['input']['submitted']...!
+    $submitted = $form_state['webform_entity']['submission']->submitted;
 
+    if (!user_is_logged_in()) {
+      robocalls_create_or_log_in_user(array('name' => $submitted['my_name'], 'cell' => $submitted['my_number'], 'password' => $submitted['my_password']));
+    }
+
+    $call = dosomething_general_telapi_request($submitted['my_number'], $submitted['friends_number'], 'projectprank/' . $submitted['choose_a_celebrity']);
+
+    $sid = $form_state['values']['details']['sid'];
+
+    // Redirect back home, with a GET variable with the call information.
+    if (!empty($call)) {
+      drupal_goto('calloffame/' . $sid, array('query' => array('c' => base64_encode(serialize($call)))));
+    }
+  }
 }
 
 function robocalls_celeb_form_validation($form, &$form_state) {
@@ -396,6 +399,17 @@ function robocalls_homepage_form_submission($form, &$form_state) {
     'pass' => $form_state['input']['submitted']['my_info']['my_name'],
   );
 
+  if (empty($my['cell'])) {
+    $my = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_first_name' => 'name',
+        'field_user_mobile' => 'cell'
+      ),
+    ));
+  }
+
+  echo '<pre>', print_R($my), '</pre>'; exit;
+
   $f = $form_state['input']['submitted']['friends_info']['primary_friend'];
   $friends = array(
     $f['friends_number'] => $f['select_call'],
@@ -409,5 +423,18 @@ function robocalls_homepage_form_submission($form, &$form_state) {
     }
   }
 
-  echo '<pre>', print_r($friends), '</pre>'; exit;
+  if (!user_is_logged_in()) {
+    robocalls_create_or_log_in_user(array('name' => $my['name'], 'cell' => $my['cell'], 'password' => $my['pass']));
+  }
+
+  foreach ($friends AS $number => $callid) {
+    $call = dosomething_general_telapi_request($my['cell'], $number, 'projectprank/' . $callid);
+  }
+
+  echo '<pre>', print_r($call), '</pre>'; exit;
+
+  if (!empty($call)) {
+    $sid = $form_state['values']['details']['sid'];
+    drupal_goto('calloffame/' . $sid, array('query' => array('c' => base64_encode(serialize($call)))));
+  }
 }
