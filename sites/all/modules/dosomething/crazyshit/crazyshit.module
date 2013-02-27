@@ -786,18 +786,23 @@ function crazyshit_views_query_alter(&$view, &$query) {
     }
 
     $fbid = fboauth_fbid_load($user->uid);
+    if ($fbid) {
+	  $access_token = $facebook->getAccessToken();
+	  $friends = $facebook->api('/' . $fbid . '/friends');
 
-	$access_token = $facebook->getAccessToken();
-	$friends = $facebook->api('/' . $fbid . '/friends');
+	  $f = array(
+	    0 => $fbid,
+	  );
+	  foreach ($friends['data'] AS $key => $friend) {
+	    $f[] = $friend['id'];
+	  }
 
-    $f = array(
-	   0 => $fbid,
-	);
-	foreach ($friends['data'] AS $key => $friend) {
-	   $f[] = $friend['id'];
+	  $ids = crazy_fb_get_multi_fbids($f);
 	}
 
-	$ids = crazy_fb_get_multi_fbids($f);
+	if (empty($ids)) {
+	  $ids = array($user->uid);
+	}
 
 	if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
 	  // Create a database condition class to narrow viewable posts down to just your friends.
@@ -806,8 +811,8 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  $c = &$s->conditions();
 	  $c['#conjunction'] = 'OR';
 
-          // remove the view's filter criteria to be replaced by the new conditional.
-          unset($query->where[1]['conditions'][1]);
+      // remove the view's filter criteria to be replaced by the new conditional.
+      unset($query->where[1]['conditions'][1]);
 
 	  // Add the conditional to the query.
 	  $query->where[1]['conditions'][] = array(
