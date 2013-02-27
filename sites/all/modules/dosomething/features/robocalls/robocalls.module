@@ -18,10 +18,20 @@ define('ROBO_PATH', 'prank');
  */
 function robocalls_init() {
   if (robocalls_is_robo_page()) {
-    require_once drupal_get_path('module', 'robocalls') . '/plugin.php';
+    $robocalls = robocalls_load_config();
 
     drupal_set_title(t($robocalls['title']));
   }
+}
+
+function robocalls_load_config() {
+  global $robocalls;
+
+  if (!isset($robocalls)) {
+    require drupal_get_path('module', 'robocalls') . '/plugin.php';
+  }
+
+  return $robocalls;
 }
 
 function robocalls_is_robo_page($page = '') {
@@ -85,34 +95,33 @@ function robocalls_call_xml($tid) {
 /**
  *  Implements hook_panels_pre_render()
  */
-function robocalls_panels_pre_render($display) {
+function robocalls_page_alter(&$page) {
   if (robocalls_is_robo_page()) {
+    $robocalls = robocalls_load_config();
+    
+    $p = request_path();
     // Adds Robocalls CSS
-    drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/robocalls.css', array(
-        'group' => CSS_THEME,
-        'weight' => 3000
-    ));
-
-    // Adds Robocalls JS
-    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls.js', array(
-        'weight' => -100,
-        'cache' => FALSE
-    ));
-
-    if (preg_match('#^' . ROBO_PATH . '(/([0-9]+))?#', request_path())) {
-      // Adds Robocalls JS
-      drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls_front.js', array(
-          'weight' => -100,
-          'cache' => FALSE
-      ));
+    foreach ($robocalls['css'] AS $path => $styles) {
+      if (preg_match('#^' . $path . '#', $p)) {
+        foreach ($styles AS $style) {
+          drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/' . $style, array(
+              'group' => CSS_THEME,
+              'weight' => 3000
+          ));
+        }
+      }
     }
 
-    if (preg_match('#^' . ROBO_PATH . '/([A-Za-z0-9\-\_ ]+)#', request_path())) {
-      // Adds Robocalls JS
-      drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/robocalls_celeb.js', array(
-          'weight' => -100,
-          'cache' => FALSE
-      ));
+    foreach ($robocalls['js'] AS $path => $scripts) {
+      if (preg_match('#^' . $path . '#', $p)) {
+        foreach ($scripts AS $script) {
+          // Adds Robocalls JS
+          drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/' . $script, array(
+              'weight' => -100,
+              'cache' => FALSE
+          ));   
+        }
+      }
     }
 
     // Loads Facebook.

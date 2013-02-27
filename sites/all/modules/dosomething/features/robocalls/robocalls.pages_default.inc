@@ -129,7 +129,7 @@ function robocalls_default_page_manager_handlers() {
       'admin_title' => 'Celeb Preview Bar',
       'title' => '',
       'body' => '<div class="preview-facebook-bar">
-<div class="preview">%term:field_celeb_call</div>
+<div class="preview"><audio src="%term:field_celeb_call"></audio><a href="%term:field_celeb_call">Preview</a></div>
 <div class="facebook"><a href="#"class="facebook-share-celeb"><span>Facebook</span></a></div>
 </div>',
       'format' => '3',

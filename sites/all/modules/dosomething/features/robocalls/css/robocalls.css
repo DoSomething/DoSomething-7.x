@@ -1,4 +1,4 @@
-/* line 14, ../sass/robocalls.sass */
+/* line 3, ../sass/robocalls.sass */
 .preview a {
   display: inline-block;
   background: url(/sites/all/modules/dosomething/features/robocalls/images/play.png) top left no-repeat;
@@ -7,33 +7,26 @@
   height: 26px;
   width: 26px; }
 
-/* line 22, ../sass/robocalls.sass */
+/* line 11, ../sass/robocalls.sass */
 body {
   background: white; }
-/* line 25, ../sass/robocalls.sass */
+/* line 14, ../sass/robocalls.sass */
 body div#site-name {
   display: none; }
-/* line 28, ../sass/robocalls.sass */
+/* line 17, ../sass/robocalls.sass */
 body div#page {
   width: 100% !important; }
-/* line 34, ../sass/robocalls.sass */
-body .region-sidebar-first .block-menu-block .content ul.menu {
-  background: #f6eed2;
-  margin-right: -5px; }
-/* line 38, ../sass/robocalls.sass */
-body table, body tr, body td {
-  border: 0px !important; }
-/* line 41, ../sass/robocalls.sass */
+/* line 20, ../sass/robocalls.sass */
 body div.gallery-col {
   float: left; }
-/* line 44, ../sass/robocalls.sass */
+/* line 23, ../sass/robocalls.sass */
 body .panels-flexible-row-last {
   width: 1030px;
   margin: 0px auto; }
-/* line 48, ../sass/robocalls.sass */
+/* line 27, ../sass/robocalls.sass */
 body div.views-field-nothing {
   position: relative; }
-/* line 51, ../sass/robocalls.sass */
+/* line 30, ../sass/robocalls.sass */
 body div.views-field-nothing div.hover-state {
   display: none;
   position: absolute;
@@ -43,52 +36,52 @@ body div.views-field-nothing div.hover-state {
   top: 0;
   background: rgba(0, 0, 0, 0.3);
   color: white; }
-/* line 62, ../sass/robocalls.sass */
+/* line 41, ../sass/robocalls.sass */
 body div.views-field-nothing div.hover-state .preview-share div.preview {
   display: inline-block;
   margin-left: -70px; }
-/* line 66, ../sass/robocalls.sass */
+/* line 45, ../sass/robocalls.sass */
 body div.views-field-nothing div.hover-state .preview-share div.preview .file {
   display: inline-block;
   margin-left: -8px; }
-/* line 70, ../sass/robocalls.sass */
+/* line 49, ../sass/robocalls.sass */
 body div.views-field-nothing div.hover-state .preview-share div.preview span.preview {
   position: relative;
   top: 5px;
   left: 12px; }
-/* line 75, ../sass/robocalls.sass */
+/* line 54, ../sass/robocalls.sass */
 body div.views-field-nothing div.hover-state .preview-share div.share {
   display: inline-block;
   float: right;
   margin: 7px; }
-/* line 80, ../sass/robocalls.sass */
+/* line 59, ../sass/robocalls.sass */
 body div.views-field-nothing div.hover-state .name {
   position: absolute;
   bottom: 0px; }
-/* line 84, ../sass/robocalls.sass */
+/* line 63, ../sass/robocalls.sass */
 body div.views-field-nothing div.hover-state .name a {
   color: white; }
 
-/* line 87, ../sass/robocalls.sass */
+/* line 66, ../sass/robocalls.sass */
 #webform-component-friends-info--primary-friend {
   width: 33%;
   display: inline-block; }
 
-/* line 93, ../sass/robocalls.sass */
+/* line 72, ../sass/robocalls.sass */
 #cof-submit-form #webform-component-my-info #webform-component-my-info--my-name, #cof-submit-form #webform-component-my-info #webform-component-my-info--my-number, #cof-submit-form #webform-component-my-info #webform-component-my-info--my-password {
   width: 33%;
   display: inline-block; }
 
-/* line 100, ../sass/robocalls.sass */
+/* line 79, ../sass/robocalls.sass */
 div[role="main"] {
   background: white;
   padding: 30px;
   margin: 0px;
   padding-top: 0px; }
-/* line 107, ../sass/robocalls.sass */
+/* line 86, ../sass/robocalls.sass */
 div[role="main"] nav#breadcrumb {
   display: none; }
-/* line 110, ../sass/robocalls.sass */
+/* line 89, ../sass/robocalls.sass */
 div[role="main"] h1#page-title {
   color: transparent;
   background: url(/sites/all/modules/dosomething/features/robocalls/images/header.png) top left no-repeat;
@@ -99,54 +92,13 @@ div[role="main"] h1#page-title {
   -webkit-box-shadow: 0px !important;
   -moz-box-shadow: 0px !important;
   box-shadow: 0px !important; }
-/* line 119, ../sass/robocalls.sass */
+/* line 98, ../sass/robocalls.sass */
 div[role="main"] h2.pane-title {
   background: #6bb5b2;
   color: black;
   padding: 0px 0px 10px 0px; }
-/* line 124, ../sass/robocalls.sass */
-div[role="main"] #robocalls-landing-celebs h2, div[role="main"] #robocalls-who-should-celeb-call h2 {
-  background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) repeat-x, #d81f2a;
-  height: 39px;
-  background-size: 100% 10px, 100% 35px;
-  padding-top: 18px;
-  width: 791px;
-  margin-left: -30px;
-  padding-left: 15px;
-  color: #f6eed2;
-  font-size: 19pt; }
-/* line 135, ../sass/robocalls.sass */
-div[role="main"] #robocalls-sponsor-zone, div[role="main"] #robocalls-partner-zone {
-  text-align: center; }
-/* line 138, ../sass/robocalls.sass */
-div[role="main"] #robocalls-sponsor-zone h2, div[role="main"] #robocalls-partner-zone h2 {
-  font-size: 14px; }
-/* line 141, ../sass/robocalls.sass */
-div[role="main"] #robocalls-sponsor-zone.sponsor-right, div[role="main"] #robocalls-partner-zone.sponsor-right {
-  display: inline;
-  float: right; }
-/* line 144, ../sass/robocalls.sass */
-div[role="main"] #robocalls-here-how-it-works {
-  margin: 20px 0px; }
-/* line 147, ../sass/robocalls.sass */
-div[role="main"] #robocalls-about-block {
-  margin-top: 15px; }
-/* line 150, ../sass/robocalls.sass */
-div[role="main"] .ui-dialog .ui-dialog-titlebar {
-  float: right;
-  margin-right: 10px; }
 
-/* line 156, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.views-row {
-  float: left; }
-/* line 159, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.views-row img {
-  height: 115px;
-  width: 205px;
-  -webkit-box-shadow: 0px 0px 3px gray;
-  -moz-box-shadow: 0px 0px 3px gray;
-  box-shadow: 0px 0px 3px gray; }
-/* line 164, ../sass/robocalls.sass */
+/* line 105, ../sass/robocalls.sass */
 div.view-id-cause_its_your_birthday div.views-field-nothing {
   clear: left;
   width: 205px;
@@ -160,71 +112,3 @@ div.view-id-cause_its_your_birthday div.views-field-nothing {
   box-sizing: border-box;
   margin: 10px 10px 15px 10px;
   position: relative; }
-/* line 177, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.views-field-nothing h4 {
-  font-size: 13pt; }
-/* line 180, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.views-field-nothing a.go-button {
-  position: absolute;
-  z-index: 0;
-  right: 3px;
-  height: 22px;
-  margin-top: 10px;
-  bottom: 3px; }
-/* line 188, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.views-field-nothing p {
-  height: 35px;
-  font-size: 9pt;
-  margin-top: -15px; }
-/* line 193, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.robocall-flag {
-  background: rgba(24, 64, 139, 0.7);
-  padding: 3px 17px;
-  height: 24px;
-  position: absolute;
-  z-index: 0;
-  top: 10px;
-  left: -7px;
-  color: white;
-  text-transform: uppercase;
-  font-size: 17pt;
-  line-height: 1;
-  font-family: din-web; }
-/* line 207, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.robocall-flag.birthday {
-  background: rgba(216, 31, 42, 0.7); }
-/* line 210, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.robocall-flag:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  bottom: -7px;
-  left: 0px;
-  background: transparent;
-  z-index: -1;
-  border-top: 7px solid black;
-  border-left: 7px solid transparent; }
-/* line 213, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.file-audio {
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  margin: 1px; }
-/* line 219, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.file-audio span.file {
-  display: inline;
-  float: left; }
-/* line 222, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.file-audio span.file img.file-icon {
-  display: none; }
-/* line 225, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.file-audio a {
-  background: url(/sites/all/modules/dosomething/features/robocalls/images/play.png) top left no-repeat;
-  width: 26px;
-  height: 26px;
-  font-size: 1px;
-  color: transparent;
-  display: block; }
-/* line 233, ../sass/robocalls.sass */
-div.view-id-cause_its_your_birthday div.file-audio a.paused {
-  background: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png) top left no-repeat; }

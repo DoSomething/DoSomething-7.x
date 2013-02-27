@@ -1,14 +1,4 @@
 @import compass
-@mixin flag-corner
-	content: " "
-	display: block
-	position: absolute
-	bottom: -7px
-	left: 0px
-	background: transparent
-	z-index: -1
-	border-top: 7px solid #000000
-	border-left: 7px solid transparent
 
 .preview
 	a
@@ -27,16 +17,6 @@ body
 
 	div#page
 		width: 100% !important
-
-	&.one-sidebar.sidebar-first [role="main"]
-		//width: 791px
-
-	.region-sidebar-first .block-menu-block .content ul.menu
-		background: #F6EED2
-		margin-right: -5px
-
-	table, tr, td
-		border: 0px !important
 
 	div.gallery-col
 		float: left
@@ -121,46 +101,8 @@ div[role="main"]
 		color: #000000
 		padding: 0px 0px 10px 0px
 
-	#robocalls-landing-celebs h2, #robocalls-who-should-celeb-call h2
-		background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) repeat-x, #D81F2A
-		height: 39px
-		background-size: 100% 10px, 100% 35px
-		padding-top: 18px
-		width: 791px
-		margin-left: -30px
-		padding-left: 15px
-		color: #F6EED2
-		font-size: 19pt
-
-	#robocalls-sponsor-zone, #robocalls-partner-zone
-		text-align: center
-
-		h2
-			font-size: 14px
-
-		&.sponsor-right
-			+float-right
-
-	#robocalls-here-how-it-works
-		margin: 20px 0px
-
-	#robocalls-about-block
-		margin-top: 15px
-
-	.ui-dialog .ui-dialog-titlebar
-		float: right
-		margin-right: 10px
-
 
 div.view-id-cause_its_your_birthday
-	div.views-row
-		float: left
-
-		img
-			height: 115px
-			width: 205px
-			+box-shadow(0px 0px 3px #808080)
-
 	div.views-field-nothing
 		clear: left
 		width: 205px
@@ -173,62 +115,3 @@ div.view-id-cause_its_your_birthday
 		box-sizing: border-box
 		margin: 10px 10px 15px 10px
 		position: relative
-
-		h4
-			font-size: 13pt
-
-		a.go-button
-			position: absolute
-			z-index: 0
-			right: 3px
-			height: 22px
-			margin-top: 10px
-			bottom: 3px
-
-		p
-			height: 35px
-			font-size: 9pt
-			margin-top: -15px
-
-	div.robocall-flag
-		background: rgba(24, 64, 139, 0.7)
-		padding: 3px 17px
-		height: 24px
-		position: absolute
-		z-index: 0
-		top: 10px
-		left: -7px
-		color: #ffffff
-		text-transform: uppercase
-		font-size: 17pt
-		line-height: 1
-		font-family: din-web
-
-		&.birthday
-			background: rgba(216,31,42,0.7)
-
-		&:after
-			@include flag-corner
-
-	div.file-audio
-		position: absolute
-		z-index: 0
-		top: 0
-		margin: 1px
-
-		span.file
-			+float-left
-
-			img.file-icon
-				display: none
-
-		a
-			background: url(/sites/all/modules/dosomething/features/robocalls/images/play.png) top left no-repeat
-			width: 26px
-			height: 26px
-			font-size: 1px
-			color: transparent
-			display: block
-
-			&.paused
-				background: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png) top left no-repeat

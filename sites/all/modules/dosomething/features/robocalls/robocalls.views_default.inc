@@ -382,7 +382,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_celeb_call']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_celeb_call']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_celeb_call']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_celeb_call']['type'] = 'file_rendered';
+  $handler->display->display_options['fields']['field_celeb_call']['type'] = 'file_url_plain';
   $handler->display->display_options['fields']['field_celeb_call']['settings'] = array(
     'file_view_mode' => 'media_link',
   );
@@ -472,7 +472,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="hover-state">
 <div class="preview-share">
-<div class="preview">[field_celeb_call] <span class="preview">Preview</span></div>
+<div class="preview"><audio src="[field_celeb_call]"></audio> <a href="[field_celeb_call]">Preview</a></div>
 <div class="share"><span>Share</span></div>
 </div>
 <div class="name">
