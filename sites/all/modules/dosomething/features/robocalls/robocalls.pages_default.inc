@@ -80,11 +80,11 @@ function robocalls_default_page_manager_handlers() {
       ),
     );
     $pane->configuration = array(
-      'admin_title' => 'Sweet',
+      'admin_title' => 'Nice!',
       'title' => '',
-      'body' => '<h2>Sweet.  Your Call Was Sent!</h2>
-<a href="#" class="share-on-facebook">Share the call on Facebook!</a>
-<p class="send-this-call">Or send this call to your friends.</p>',
+      'body' => '<h3 class="confirmation-message">Nice!  Your Call Was Sent!</h3>
+<div class="share-on-facebook-arrow"></div>
+<a href="#" class="share-on-facebook">Share the call on Facebook!</a>',
       'format' => '3',
       'substitute' => 1,
     );
@@ -98,39 +98,6 @@ function robocalls_default_page_manager_handlers() {
     $display->panels['celeb_information'][0] = 'new-1';
     $pane = new stdClass();
     $pane->pid = 'new-2';
-    $pane->panel = 'celeb_information';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'regex_visibility',
-          'settings' => array(
-            'context' => '2',
-            'expression' => 'c=[A-Za-z0-9]+',
-          ),
-          'not' => TRUE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Celebrity tagline',
-      'title' => '',
-      'body' => '<h2>%term:field_celeb_tagline</h2>',
-      'format' => '1',
-      'substitute' => 1,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $display->content['new-2'] = $pane;
-    $display->panels['celeb_information'][1] = 'new-2';
-    $pane = new stdClass();
-    $pane->pid = 'new-3';
     $pane->panel = 'celeb_information';
     $pane->type = 'block';
     $pane->subtype = 'webform-client-block-724089';
@@ -147,10 +114,35 @@ function robocalls_default_page_manager_handlers() {
       'css_class' => 'celeb-page-form',
     );
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-2'] = $pane;
+    $display->panels['celeb_information'][1] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Celeb Preview Bar',
+      'title' => '',
+      'body' => '<div class="preview-facebook-bar">
+<div class="preview">%term:field_celeb_call</div>
+<div class="facebook"><a href="#"class="facebook-share-celeb"><span>Facebook</span></a></div>
+</div>',
+      'format' => '3',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
     $pane->locks = array();
     $display->content['new-3'] = $pane;
-    $display->panels['celeb_information'][2] = 'new-3';
+    $display->panels['center'][0] = 'new-3';
     $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'center';
@@ -180,14 +172,50 @@ function robocalls_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array();
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'celeb-image',
+    );
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $display->content['new-4'] = $pane;
-    $display->panels['center'][0] = 'new-4';
+    $display->panels['center'][1] = 'new-4';
     $pane = new stdClass();
     $pane->pid = 'new-5';
+    $pane->panel = 'center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'regex_visibility',
+          'settings' => array(
+            'context' => '2',
+            'expression' => 'c=[A-Za-z0-9]+',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Celebrity tagline',
+      'title' => '',
+      'body' => '<h2>%term:field_celeb_tagline</h2>',
+      'format' => '1',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['center'][2] = 'new-5';
+    $pane = new stdClass();
+    $pane->pid = 'new-6';
     $pane->panel = 'choose_another';
     $pane->type = 'views';
     $pane->subtype = 'cause_its_your_birthday';
@@ -215,8 +243,8 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['choose_another'][0] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['choose_another'][0] = 'new-6';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -392,7 +420,7 @@ function robocalls_default_page_manager_pages() {
       'url' => '',
       'display' => 'block_robocall_celebs',
       'override_title' => 1,
-      'override_title_text' => '',
+      'override_title_text' => 'Click to Learn About Each Celebrity Call',
     );
     $pane->cache = array();
     $pane->style = array();
@@ -412,8 +440,7 @@ function robocalls_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Descriptive',
       'title' => '',
-      'body' => '<p>Descriptive graphic / logo</p>
-<p><a href="/calloffame/walkthrough">Need help?</a></p>',
+      'body' => '<p><img src="/sites/all/modules/dosomething/features/robocalls/images/pick.png" alt="Pick a Prank" /></p>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -482,8 +509,10 @@ function robocalls_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Sweet.',
       'title' => '',
-      'body' => '<h1>Sweet.  Your Call Was Sent!</h1>',
-      'format' => '1',
+      'body' => '<h3 class="confirmation-message">Nice! Your call was sent!</h3>
+<p class="facebook-arrow"></p>
+<p class="facebook-button"><a href="#" class="facebook-share-call">Share the call on Facebook!</a></p>',
+      'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -496,39 +525,6 @@ function robocalls_default_page_manager_pages() {
     $display->panels['test_region'][1] = 'new-4';
     $pane = new stdClass();
     $pane->pid = 'new-5';
-    $pane->panel = 'test_region';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'regex_visibility',
-          'settings' => array(
-            'context' => '0',
-            'expression' => 'calloffame\\/\\d+',
-          ),
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Facebook button',
-      'title' => '',
-      'body' => '<p class="facebook-button"><a href="#" onclick="return share_this_call();">Share the call on Facebook!</a></p>',
-      'format' => '3',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['test_region'][2] = 'new-5';
-    $pane = new stdClass();
-    $pane->pid = 'new-6';
     $pane->panel = 'test_region';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -558,12 +554,12 @@ function robocalls_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['test_region'][3] = 'new-6';
+    $display->content['new-5'] = $pane;
+    $display->panels['test_region'][2] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-6';
     $pane->panel = 'test_region';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -592,45 +588,12 @@ function robocalls_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['test_region'][4] = 'new-7';
+    $display->content['new-6'] = $pane;
+    $display->panels['test_region'][3] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
-    $pane->panel = 'test_region';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'regex_visibility',
-          'settings' => array(
-            'context' => '0',
-            'expression' => 'calloffame\\/\\d+',
-          ),
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Send another call',
-      'title' => '',
-      'body' => '<p class="send-another">Or send another call!</p>',
-      'format' => '3',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 5;
-    $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['test_region'][5] = 'new-8';
-    $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-7';
     $pane->panel = 'test_region';
     $pane->type = 'block';
     $pane->subtype = 'webform-client-block-727830';
@@ -647,10 +610,10 @@ function robocalls_default_page_manager_pages() {
       'css_class' => '',
     );
     $pane->extras = array();
-    $pane->position = 6;
+    $pane->position = 4;
     $pane->locks = array();
-    $display->content['new-9'] = $pane;
-    $display->panels['test_region'][6] = 'new-9';
+    $display->content['new-7'] = $pane;
+    $display->panels['test_region'][4] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
@@ -697,7 +660,7 @@ function robocalls_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-8';
     $pane->panel = 'center';
     $pane->type = 'block';
     $pane->subtype = 'webform-client-block-727831';
@@ -713,8 +676,8 @@ function robocalls_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['center'][0] = 'new-10';
+    $display->content['new-8'] = $pane;
+    $display->panels['center'][0] = 'new-8';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
