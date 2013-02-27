@@ -262,16 +262,16 @@ function robocalls_default_page_manager_pages() {
   $page->api_version = 1;
   $page->name = 'cause_its_your_birthday';
   $page->task = 'page';
-  $page->admin_title = 'The Celebrity Cause Call';
-  $page->admin_description = 'Cause it\'s your birthday / RoboCalls structures';
-  $page->path = 'calloffame';
+  $page->admin_title = 'Project Prank';
+  $page->admin_description = 'Robocalls';
+  $page->path = 'prank';
   $page->access = array(
     'plugins' => array(
       0 => array(
         'name' => 'path_visibility',
         'settings' => array(
           'visibility_setting' => '1',
-          'paths' => 'calloffame*',
+          'paths' => 'prank*',
         ),
         'context' => 'empty',
         'not' => FALSE,
@@ -320,7 +320,7 @@ function robocalls_default_page_manager_pages() {
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'calloffame*',
+            'paths' => 'prank*',
           ),
           'context' => 'empty',
           'not' => FALSE,
@@ -460,7 +460,7 @@ function robocalls_default_page_manager_pages() {
     $pane->panel = 'test_region';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array(
       'plugins' => array(
         0 => array(

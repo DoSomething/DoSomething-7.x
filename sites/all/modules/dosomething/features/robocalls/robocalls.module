@@ -11,12 +11,24 @@ define('MAX_CALLS_PER_DAY', 1);
 define('ROUND_TO', 10);
 define('ROBOCALLS_TAXONOMY_ID', variable_get('robocalls_taxonomy_vocab', 25));
 define('ROBOCALLS_MCOMMONS_ALPHAS_CAMPAIGN', 144433);
+define('ROBO_PATH', 'prank');
+
+/**
+ *  Implements hook_init()
+ */
+function robocalls_init() {
+  if (robocalls_is_robo_page()) {
+    require_once drupal_get_path('module', 'robocalls') . '/plugin.php';
+
+    drupal_set_title(t($robocalls['title']));
+  }
+}
 
 function robocalls_is_robo_page($page = '') {
   if (empty($page)) {
     $page = request_path();
   }
-  if (strpos(request_uri(), 'calloffame')) {
+  if (FALSE !== strpos($page, ROBO_PATH)) {
     return true;
   }
 
@@ -208,7 +220,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
     $form['need-help'] = array(
       '#prefix' => '<p class="need-help">',
-      '#markup' => l(t('Need Help?'), 'calloffame/walkthrough'),
+      '#markup' => l(t('Need Help?'), ROBO_PATH . '/walkthrough'),
       '#suffix' => '</p>',
       '#weight' => 10000,
     );
@@ -282,7 +294,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       $form['actions']['submit']['#value'] = t('Send The Call!');
       $form['need-help'] = array(
         '#prefix' => '<p class="need-help">',
-        '#markup' => l(t('Need Help?'), 'calloffame/walkthrough'),
+        '#markup' => l(t('Need Help?'), ROBO_PATH . '/walkthrough'),
         '#suffix' => '</p>',
         '#weight' => 10000,
       );
@@ -307,7 +319,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         drupal_add_js(array('call' => $i), 'setting');
       }*/
     }
-    else if (request_uri() == '/calloffame/walkthrough') {
+    else if (request_uri() == '/' . ROBO_PATH . '/walkthrough') {
       $u =& $form['submitted'];
       $u['friends_number']['#attributes']['placeholder'] = t("Friend's Number");
 
@@ -353,7 +365,7 @@ function robocalls_walkthrough_submission($form, &$form_state) {
 
     // Redirect back home, with a GET variable with the call information.
     if (!empty($call)) {
-      drupal_goto('calloffame/' . $sid, array('query' => array('c' => base64_encode(serialize($call)))));
+      drupal_goto(ROBO_PATH . '/' . $sid, array('query' => array('c' => base64_encode(serialize($call)))));
     }
   }
 }
@@ -514,6 +526,6 @@ function robocalls_homepage_form_submission($form, &$form_state) {
     $_SESSION['front_page_call'] = $c;
   */
     $sid = $form_state['values']['details']['sid'];
-    drupal_goto('calloffame/' . $sid);
+    drupal_goto(ROBO_PATH . '/' . $sid);
   }
 }

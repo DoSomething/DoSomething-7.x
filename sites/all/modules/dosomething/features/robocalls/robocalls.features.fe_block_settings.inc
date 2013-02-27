@@ -54,7 +54,7 @@ function robocalls_default_fe_block_settings() {
     'pages' => '<front>
 start-something
 action-finder
-calloffame*',
+prank*',
     'title' => '',
     'cache' => 8,
   );
@@ -83,7 +83,7 @@ calloffame*',
     'custom' => '0',
     'visibility' => '0',
     'pages' => 'judge-register
-calloffame*',
+prank*',
     'title' => '',
     'cache' => -1,
   );
@@ -133,7 +133,7 @@ calloffame*',
     'pages' => '<front>
 start-something
 action-finder
-calloffame*',
+prank*',
     'title' => '',
     'cache' => 8,
   );
@@ -162,7 +162,7 @@ calloffame*',
     'custom' => '0',
     'visibility' => '0',
     'pages' => 'judge-register
-calloffame*',
+prank*',
     'title' => '',
     'cache' => -1,
   );
@@ -212,7 +212,7 @@ calloffame*',
     'pages' => '<front>
 start-something
 action-finder
-calloffame*',
+prank*',
     'title' => '',
     'cache' => 8,
   );
@@ -241,7 +241,7 @@ calloffame*',
     'custom' => '0',
     'visibility' => '0',
     'pages' => 'judge-register
-calloffame*',
+prank*',
     'title' => '',
     'cache' => -1,
   );
