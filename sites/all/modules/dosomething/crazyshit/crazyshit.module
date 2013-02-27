@@ -827,15 +827,19 @@ function crazyshit_views_query_alter(&$view, &$query) {
     }
 
     $fbid = fboauth_fbid_load($user->uid);
+    if ($fbid) {
+	  $access_token = $facebook->getAccessToken();
+	  $friends = $facebook->api('/' . $fbid . '/friends');
 
-	$access_token = $facebook->getAccessToken();
-	$friends = $facebook->api('/' . $fbid . '/friends');
-
-    $f = array(
-	   0 => $fbid,
-	);
-	foreach ($friends['data'] AS $key => $friend) {
-	   $f[] = $friend['id'];
+	  $f = array(
+	    0 => $fbid,
+	  );
+	  foreach ($friends['data'] AS $key => $friend) {
+	    $f[] = $friend['id'];
+	  }
+	}
+	else {
+	  drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . variable_get('fboauth_id') . '&redirect_uri=http://' . CRAZY_DOMAIN . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
 	}
 
 	$ids = crazy_fb_get_multi_fbids($f);
@@ -847,8 +851,8 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  $c = &$s->conditions();
 	  $c['#conjunction'] = 'OR';
 
-          // remove the view's filter criteria to be replaced by the new conditional.
-          unset($query->where[1]['conditions'][1]);
+      // remove the view's filter criteria to be replaced by the new conditional.
+      unset($query->where[1]['conditions'][1]);
 
 	  // Add the conditional to the query.
 	  $query->where[1]['conditions'][] = array(
