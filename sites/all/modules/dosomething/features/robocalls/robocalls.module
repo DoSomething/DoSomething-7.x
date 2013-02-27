@@ -96,6 +96,9 @@ function robocalls_call_xml($tid) {
  *  Implements hook_panels_pre_render()
  */
 function robocalls_page_alter(&$page) {
+  $n = menu_get_object();
+
+  echo serialize($n); exit;
   if (robocalls_is_robo_page()) {
     $robocalls = robocalls_load_config();
     
