@@ -773,9 +773,12 @@ function crazyshit_views_query_alter(&$view, &$query) {
 
 		// Gets submissions posted today.
 		if ($time == 'today') {
+		   // Note 2/27/13:
+		   // Here's a weird one: We can't use the DATE_FORMAT(etc. etc.) format as seen below for today
+		   // because it doesn't show all of the posts! So let's just use a unix timestamp format.
 		   $query->where[1]['conditions'][1] = array(
-			 'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') = :today",
-			 'value' => array(':today' => date('Y-m-d')),
+			 'field' => "webform_submissions.submitted >= :today",
+			 'value' => array(':today' => mktime(0, 0, 0)),
 		 	 'operator' => 'formula',
 		   );
 		}
