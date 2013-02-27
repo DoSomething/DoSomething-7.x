@@ -1043,19 +1043,27 @@ function crazyshit_fboauth_redirect($destination) {
 		// Add email to MailChimp group
 	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
 	       
-	       $params = array(
-                 'signer' => 'Greg'
-		);
-	       
-	       // drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
-	       // Message will be sent through Mandrill as a transactional
-               // $mail_status = drupal_mail('crazyshit', 'welcome', $email, 'en', $params);
-	       $message_content = theme('crazyshit_welcome');
-	       $mail_status = crazyshit_drupal_mail('Greg <crazy@dosomething.org>', $email, 'What is the craziest thing you have done to save money?', $message_content, 'crazyshit');
-	       
+               $message['subject'] = "What's the craziest thing you've done to save money?";
+      
+               // Note that the message body is an array, not a string.
+               $message['body'][] = "<strong>Hey there!</strong>";
+
+               $message['body'][] = '<p>We\'ve all done something crazy to save money... some of us have done more than others. If you haven\'t already,
+                            <a href="http://www.dosomething.org/crazy/submit/start">submit your story</a> and you will be entered to win a $4,000
+			     scholarship to help you avoid crazy things in the future. (contest rules here)</p>';
+			     
+               $message['body'][] = '<p>I\'ll send you some highlighted stories every so often, along with a couple ideas on how they could have sanely
+                            saved money instead.  Our site is still in beta right now, so if you have any comments that could help us make it
+			    better, <strong><a href="https://docs.google.com/forms/d/1tDNHmnIrbBwXs7yrsA5Mdw4eFKTBEbQ6-0li3hQax7U/viewform">click here.
+		            </a></strong></p><br /><br />';
+			    
+               $message['body'][] = '<p>Stay Crazy,<br />Greg from DoSomething.org</p>';
+		
+               $mail_status = crazyshit_mail_send($email, $message);
+
 	       if (!$mail_status) {
 	         watchdog('crazyshit', 'Failed to send welcome message after user registration: %email using the parameters: %param',
-			   array('%email' => $params['email'], '%parm' => print_r($params)), WATCHDOG_ERROR);
+			   array('%email' => $email, '%message' => $message), WATCHDOG_ERROR);
 	       }
 
 	    }
@@ -1282,35 +1290,91 @@ function crazyshit_handle_fb_users($facebook) {
 }
 
 /**
-* Simple wrapper function for drupal_mail() to avoid extraneous code.
-*
-* This needs to be moved to a mail / MailChimp DS custom module module to it can be used
-* by other modules - no, not dosomething_general :)
-*/
-function crazyshit_drupal_mail($from = 'default_from', $to, $subject, $message, $module) {
+ * Impliments hook_mail. Provides functionality to be triggered by key value.
+ *
+ * @param $key
+ *   Value to customize message content.
+ * @param $$message
+ *   Array by reference to build message values to be sent.
+ * @params
+ *   Potential parameters to react to for specific $key values.
+ */
+function crazyshit_mail($key, &$message, $params) {
 
-  $my_mail_token = microtime();
-  if ($from == 'default_from') {
-    // Change this to your own default 'from' email address.
-    $from = variable_get('system_mail', 'Dee <dlee@dosomething.org>');
+  switch ($key) {
+    // Send a simple message from the contact form.
+    case 'intro':
+	
+     $headers = array(
+        'MIME-Version' => '1.0',
+        'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
+        'Content-Transfer-Encoding' => '8Bit',
+        'X-Mailer' => 'Drupal'
+      );
+      foreach ($headers as $key => $value) {
+        $message['headers'][$key] = $value;
+      }
+
+      break;
   }
-  $message = array(
-    'id' => $module . '_' . $my_mail_token,
-    'to' => $to,
-    'subject' => $subject,
-    'body' => array($message),
-    'headers' => array(
-      'From' => $from, 
-      'Sender' => $from, 
-      'Return-Path' => $from,
-    ),
-  );
-  $system = drupal_mail_system($module, $my_mail_token);
-  $message = $system->format($message);
-  if ($system->mail($message)) {
-    return TRUE;
+	
+	
+}
+
+/**
+ * Send email message speific to the Crazy project.
+ *
+ * @param $email
+ *   Users email address.
+ * @param $message
+ *   The cotents of the message to be sent.
+ * @return
+ *   Boolean indicating success.
+ */
+function crazyshit_mail_send($email, $message) {
+  // All system mails need to specify the module and template key (mirrored from
+  // hook_mail()) that the message they want to send comes from.
+  $module = 'crazyshit';
+  $key = 'intro';
+
+  // Specify 'to' and 'from' addresses.
+  $to = $email;
+  $from = 'crazy@dosomething.org';
+
+  // "params" loads in additional context for email content completion in
+  // hook_mail(). In this case, we want to pass in the values the user entered
+  // into the form, which include the message body in $form_values['message'].
+  $params = $message;
+
+  // The language of the e-mail. This will one of three values:
+  // * user_preferred_language(): Used for sending mail to a particular website
+  //   user, so that the mail appears in their preferred language.
+  // * global $language: Used when sending a mail back to the user currently
+  //   viewing the site. This will send it in the language they're currently
+  //   using.
+  // * language_default(): Used when sending mail to a pre-existing, 'neutral'
+  //   address, such as the system e-mail address, or when you're unsure of the
+  //   language preferences of the intended recipient.
+  //
+  // Since in our case, we are sending a message to a random e-mail address that
+  // is not necessarily tied to a user account, we will use the site's default
+  // language.
+  $language = language_default();
+
+  // Whether or not to automatically send the mail when drupal_mail() is
+  // called. This defaults to TRUE, and is normally what you want unless you
+  // need to do additional processing before drupal_mail_send() is called.
+  $send = TRUE;
+  // Send the mail, and check for success. Note that this does not guarantee
+  // message delivery; only that there were no PHP-related issues encountered
+  // while sending.
+  $result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
+  
+  if ($result['result'] == FALSE) {	
+    watchdog('crazyshit', 'Failed to send intro email message.');
   }
-  else {
-    return FALSE;
-  }
+  
+  return $result['result'];
+
+
 }
