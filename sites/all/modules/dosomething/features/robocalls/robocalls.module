@@ -408,8 +408,6 @@ function robocalls_homepage_form_submission($form, &$form_state) {
     ));
   }
 
-  echo '<pre>', print_R($my), '</pre>'; exit;
-
   $f = $form_state['input']['submitted']['friends_info']['primary_friend'];
   $friends = array(
     $f['friends_number'] => $f['select_call'],
@@ -430,8 +428,6 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   foreach ($friends AS $number => $callid) {
     $call = dosomething_general_telapi_request($my['cell'], $number, 'projectprank/' . $callid);
   }
-
-  echo '<pre>', print_r($call), '</pre>'; exit;
 
   if (!empty($call)) {
     $sid = $form_state['values']['details']['sid'];
