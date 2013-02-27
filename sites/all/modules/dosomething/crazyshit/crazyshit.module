@@ -1050,10 +1050,10 @@ function crazyshit_fboauth_redirect($destination) {
 		// Add email to MailChimp group
 	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
 	       
-               $message['subject'] = "What's the craziest thing you've done to save money?";
+               $message['subject'] = 'What\'s the craziest thing you\'ve done to save money?';
       
                // Note that the message body is an array, not a string.
-               $message['body'][] = "<strong>Hey there!</strong>";
+               $message['body'][] = '<strong>Hey there!</strong>';
 
                $message['body'][] = '<p>We\'ve all done something crazy to save money... some of us have done more than others. If you haven\'t already,
                             <a href="http://www.dosomething.org/crazy/submit/start">submit your story</a> and you will be entered to win a $4,000
@@ -1339,6 +1339,10 @@ function crazyshit_mail($key, &$message, $params) {
  *   Boolean indicating success.
  */
 function crazyshit_mail_send($email, $message) {
+	
+  if ($bla) {
+	$bla = TRUE;
+  }
   // All system mails need to specify the module and template key (mirrored from
   // hook_mail()) that the message they want to send comes from.
   $module = 'crazyshit';
