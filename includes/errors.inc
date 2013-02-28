@@ -257,7 +257,7 @@ function _drupal_log_error($error, $fatal = FALSE) {
       drupal_set_title(t('Error'));
       // We fallback to a maintenance page at this point, because the page generation
       // itself can generate errors.
-      print theme('maintenance_page', array('content' => t('The website encountered an unexpected error. Please try again later.')));
+      print theme('maintenance_page', array('content' => t('The website encountered an unexpected error. Please try again later or head <a href="/">home</a>.')));
       exit;
     }
   }
