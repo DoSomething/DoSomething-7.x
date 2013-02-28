@@ -162,15 +162,6 @@ function robocalls_call_xml($tid) {
  *  Implements hook_panels_pre_render()
  */
 function robocalls_page_alter(&$page) {
-  $number = '610-368-3195';
-  $call = db_select('call_records', 'r')
-    ->fields('r', array('call_id'))
-    ->condition('beta', preg_replace('#[^0-9]#', '', $number))
-    ->orderBy('timestamp', 'DESC')
-    ->range(0, 1)
-    ->execute()->fetchAll();
-    $id = reset($call)->call_id;
-  exit;
   if (robocalls_is_robo_page()) {
     $robocalls = robocalls_load_config();
     
