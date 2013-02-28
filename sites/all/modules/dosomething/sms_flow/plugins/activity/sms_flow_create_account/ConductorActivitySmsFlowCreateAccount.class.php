@@ -6,6 +6,9 @@
  */
 class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
 
+  // Mailchimp bucket emails should get added into
+  public $mailchimp_group_name;
+
   public function run($workflow) {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
@@ -57,6 +60,9 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
       $account->pass = $hashed_pass;
       if (!empty($email)) {
         $account->mail = $email;
+        if (!empty($mailchimp_group_name)) {
+          dosomething_general_mailchimp_subscribe($email, $this->mailchimp_group_name);
+        }
       }
       else {
         $account->mail = $mobile . '@mobile';

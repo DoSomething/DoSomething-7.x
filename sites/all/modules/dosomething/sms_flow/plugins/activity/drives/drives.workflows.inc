@@ -352,6 +352,7 @@ $activity = $workflow->newActivity('sms_flow_create_account');
 $activity->name = 'create_account';
 $activity->inputs = array('strip_signature_2');
 $activity->outputs = array('create_drive');
+$activity->mailchimp_group_name = 'Sucker2013';
 
 $activity = $workflow->newActivity('sms_create_drive');
 $activity->name = 'create_drive';
@@ -437,6 +438,7 @@ $activity = $workflow->newActivity('sms_flow_create_account');
 $activity->name = 'create_account';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('process_beta');
+$activity->mailchimp_group_name = 'Sucker2013';
 
 $activity = $workflow->newActivity('sms_flow_drives_invited_beta');
 $activity->name = 'process_beta';
