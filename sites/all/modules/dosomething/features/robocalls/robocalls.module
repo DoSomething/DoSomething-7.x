@@ -78,11 +78,18 @@ function robocalls_call_completed() {
 }
 
 function robocalls_beta_response() {
+  #dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
+  $numbers = preg_match_all('#1?(\d{3}\d{3}\d{4})#', preg_replace('#[^0-9]#', '', $_REQUEST['args']));
+  ob_start();
+  print_r($numbers);
+  $n = ob_get_contents();
+  ob_end_clean();
+
     echo '<?xml version="1.0" encoding="UTF-8"?>
     <response>
      <reply>
       <text>
-       <![CDATA[Thanks! We\'ll send it to them.]]>
+       <![CDATA[' . $n . ']]>
       </text>
      </reply>
     </response>';
@@ -413,7 +420,7 @@ function robocalls_walkthrough_submission($form, &$form_state) {
       robocalls_create_or_log_in_user(array('name' => $submitted['my_name'], 'cell' => $submitted['my_number'], 'password' => $submitted['my_password']));
     }
 
-    $call = dosomething_general_telapi_request($submitted['my_number'], $submitted['friends_number'], 'projectprank/' . $submitted['choose_a_celebrity']);
+    $call = dosomething_general_telapi_request($submitted['my_number'], $submitted['friends_number'], $submitted['choose_a_celebrity']);
 
     $sid = $form_state['values']['details']['sid'];
 
@@ -560,10 +567,10 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   $i = 0;
   foreach ($friends AS $number => $callid) {
     if ($i == 0) {
-      $call = dosomething_general_telapi_request($my['cell'], $number, 'projectprank/' . $callid); 
+      $call = dosomething_general_telapi_request($my['cell'], $number, $callid); 
     }
     else {
-      dosomething_general_telapi_request($my['cell'], $number, 'projectprank/' . $callid);
+      dosomething_general_telapi_request($my['cell'], $number, $callid);
     }
   }
 

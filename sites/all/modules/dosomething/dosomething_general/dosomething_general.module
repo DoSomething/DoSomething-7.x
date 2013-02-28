@@ -1114,7 +1114,7 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   
 }
 
-function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_url, $type = 'calls') {
+function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
   $path = libraries_get_path('telapi');
   require_once $path . '/library/TelApi.php';
 
@@ -1130,7 +1130,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_ur
         $call = $api->create($type, array(
           'From' => $alpha_number,
           'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $cell),
-          'Url' => 'http://qa3.dosomething.org/test.php',
+          'Url' => 'http://qa3.dosomething.org/prank/xml/' . $celeb_id,
           'method' => 'GET',
         ));
       }
@@ -1141,7 +1141,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $xml_ur
       $call = $api->create($type, array(
         'From' => $alpha_number,
         'To' => $beta_number,
-        'Url' => 'http://qa3.dosomething.org/test.php',
+        'Url' => 'http://qa3.dosomething.org/prank/xml/' . $celeb_id,
         'method' => 'GET',
       ));
     }
