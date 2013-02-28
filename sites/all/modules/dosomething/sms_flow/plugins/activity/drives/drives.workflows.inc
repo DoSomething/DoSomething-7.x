@@ -289,7 +289,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_level';
 $activity->inputs = array('start');
 $activity->outputs = array('ask_school_state');
-$activity->question = t('1/3 Great, let\'s get you started. There will be 3 questions. Are you in 1) middle/high school or 2) college? Reply with 1 or 2.');
+$activity->question = t('1/3 Welcome to the DoSomething energy vampire slayers! Let\'s find your school. Are you in 1) middle or high school or 2) college? Reply with 1 or 2');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_state';
@@ -301,7 +301,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_name';
 $activity->inputs = array('ask_school_state');
 $activity->outputs = array('strip_signature');
-$activity->question = t('3/3 Last question before we look up your school. What\'s the name of your school?');
+$activity->question = t('3/3 Last question before we go looking for your school... what\'s the name of your school?');
 
 $activity = $workflow->newActivity('sms_strip_signature');
 $activity->name = 'strip_signature';
@@ -312,9 +312,9 @@ $activity = $workflow->newActivity('sms_flow_school_search');
 $activity->name = 'school_search';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('check_account_exists', 'end');
-$activity->invalid_id_message = t('That\'s not a valid school ID. Text GYSCREATE to search again. Or go to http://doso.me/9 for more info.');
-$activity->no_school_message = t('Sorry, we couldn\'t find any matching schools. Text GYSCREATE to search again. Or visit http://doso.me/9 for more info.');
-$activity->schools_found_post_message = t('Text back your school ID# to start your drive. Didn\'t find your school? Text GYSCREATE to try again. Or visit http://doso.me/9 for more info.');
+$activity->invalid_id_message = t('That\'s not a valid school ID. Text POWER to try again. Or visit http://doso.me/9 for more info.');
+$activity->no_school_message = t('Sorry, we couldn\'t find any matching schools. Text POWER to try again. Or visit http://doso.me/9 for more info.');
+$activity->schools_found_post_message = t('Text back your school ID# to start your drive. Didn\'t find your school? Text POWER to try again. Or visit http://doso.me/9 for more info.');
 
 $activity = $workflow->newActivity('sms_check_account_exists');
 $activity->name = 'check_account_exists';
@@ -335,7 +335,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_email';
 $activity->inputs = array('no_account_exists');
 $activity->outputs = array('ask_first_name');
-$activity->question = t('Cool, let\'s get started with adding you to the school\'s drive. What\'s your email address? We\'ll need it to contact you with details about your drive.');
+$activity->question = t('Cool, let\'s get started with adding you to the school\'s team. What\'s your email address? We\'ll need it to contact you with tips for fighting energy vampires.');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_first_name';
@@ -357,11 +357,11 @@ $activity = $workflow->newActivity('sms_create_drive');
 $activity->name = 'create_drive';
 $activity->inputs = array('account_exists', 'create_account');
 $activity->outputs = array('strip_signature_post_create_drive', 'end');
-$activity->campaign_url = 'greenyourschool';  // TODO: this is probably changing depending on name of campaign
+$activity->campaign_url = 'sucker';
 $activity->sign_up_nid = 727941;
-$activity->response_error = 'Sorry! We ran into a problem creating your drive. Text GYS to try again or visit http://doso.me/9 to try online.';
-$activity->response_in_drive = 'You already signed up for a drive! Login at http://doso.me/9 to visit it. Have friends you want to invite? Reply with their #\'s and we\'ll invite them!';
-$activity->response_new_account = 'Great! Your school is signed up for a GYS drive and to receive a GYS banner! Login at http://doso.me/9. Ur password is: @pass. Text us your friends\' #s to invite them too';
+$activity->response_error = 'Sorry! We ran into a problem creating your drive. Text POWER to try again or visit http://doso.me/9 to try online.';
+$activity->response_in_drive = 'You already signed up for a team! Login at http://doso.me/9 to visit it. Have friends you want to invite? Reply with their #\'s and we\'ll invite them!';
+$activity->response_new_account = 'Great! You can login to see your team here http://doso.me/9. Ur password is: @pass. Text us your friends\' #s to invite them too';
 $activity->response_success = 'Great! Your school is signed up for a GYS drive! Login at http://doso.me/9. Text us your friends\' #s to invite them too';
 
 $activity = $workflow->newActivity('sms_strip_signature');
