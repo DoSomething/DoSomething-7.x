@@ -86,22 +86,44 @@ function robocalls_call_completed() {
 }
 
 function robocalls_beta_response() {
-  #dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
-  $numbers = preg_match_all('#1?(\d{3}\d{3}\d{4})#', preg_replace('#[^0-9]#', '', $_REQUEST['args']));
-  ob_start();
-  print_r($numbers);
-  $n = ob_get_contents();
-  ob_end_clean();
+  preg_match_all('#1?(\d{3}\d{3}\d{4})#', preg_replace('#[^0-9]#', '', $_REQUEST['args']), $numbers);
 
-    echo '<?xml version="1.0" encoding="UTF-8"?>
-    <response>
-     <reply>
-      <text>
-       <![CDATA[' . $n . ']]>
-      </text>
-     </reply>
-    </response>';
-    exit;
+  $my_number = preg_replace('#[^0-9]#', '', $_REQUEST['phone_number_without_country_code']);
+  $call = db_select('call_records', 'r')
+    ->fields('r', array('call_id'))
+    ->condition('beta', $my_number)
+    ->orderBy('timestamp', 'DESC')
+    ->range(0, 1)
+    ->execute()->fetchAll();
+  $id = reset($call)->call_id;
+
+  $n = '';
+  foreach ($numbers[1] AS $key => $number) {
+    $n .= preg_replace('#(\d{3})(\d{3})(\d{4})#', '(\\1) \\2-\\3', $number) . ($key == (count($numbers[1]) - 2) ? ' and ' : ($key == (count($numbers[1]) - 1) ? '.' : ', '));
+    dosomething_general_telapi_request('718-578-7681'/*$my_number*/, $number, $id);
+    robocalls_record_call('718-578-7681'/*$my_number*/, $number, $id);
+  }
+
+  echo '<?xml version="1.0" encoding="UTF-8"?>
+  <response>
+   <reply>
+    <text>
+     <![CDATA[Great, we\'ve sent this call to ' . $n . '.  Txt back with more #s to send more calls.]]>
+    </text>
+   </reply>
+  </response>';
+  exit;
+}
+
+function robocalls_record_call($alpha, $beta, $call_id) {
+  $record = array(
+    'timestamp' => REQUEST_TIME,
+    'alpha' => preg_replace('#[^0-9]#', '', $alpha),
+    'beta' => preg_replace('#[^0-9]#', '', $beta),
+    'call_id' => $call_id
+  );
+
+  drupal_write_record('call_records', $record);
 }
 
 /**
@@ -140,6 +162,15 @@ function robocalls_call_xml($tid) {
  *  Implements hook_panels_pre_render()
  */
 function robocalls_page_alter(&$page) {
+  $number = '610-368-3195';
+  $call = db_select('call_records', 'r')
+    ->fields('r', array('call_id'))
+    ->condition('beta', preg_replace('#[^0-9]#', '', $number))
+    ->orderBy('timestamp', 'DESC')
+    ->range(0, 1)
+    ->execute()->fetchAll();
+    $id = reset($call)->call_id;
+  exit;
   if (robocalls_is_robo_page()) {
     $robocalls = robocalls_load_config();
     
@@ -434,6 +465,7 @@ function robocalls_walkthrough_submission($form, &$form_state) {
 
     // Redirect back home, with a GET variable with the call information.
     if (!empty($call)) {
+      robocalls_record_call($submitted['my_number'], $submitted['friends_number'], $submitted['choose_a_celebrity']);
       drupal_goto(ROBO_PATH . '/' . $sid, array('query' => array('c' => base64_encode(serialize($call)))));
     }
   }
@@ -535,6 +567,9 @@ function robocalls_celeb_form_submission($form, &$form_state) {
 
   // Redirect back home, with a GET variable with the call information.
   if (!empty($call)) {
+    foreach ($friends AS $friend) {
+      robocalls_record_call('718-578-7681', $friend, 12345);
+    }
     drupal_goto($_SERVER['HTTP_REFERER'] . '?c=' . base64_encode(serialize($call)));
   }
 }
@@ -575,11 +610,13 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   $i = 0;
   foreach ($friends AS $number => $callid) {
     if ($i == 0) {
-      $call = dosomething_general_telapi_request($my['cell'], $number, $callid); 
+      $call = dosomething_general_telapi_request('718-578-7681'/*$my['cell']*/, $number, $callid); 
     }
     else {
-      dosomething_general_telapi_request($my['cell'], $number, $callid);
+      dosomething_general_telapi_request('718-578-7681'/*$my['cell']*/, $number, $callid);
     }
+
+    robocalls_record_call('718-578-7681'/*$my['cell']*/, $number, $callid);
   }
 
   if (!empty($call)) {
