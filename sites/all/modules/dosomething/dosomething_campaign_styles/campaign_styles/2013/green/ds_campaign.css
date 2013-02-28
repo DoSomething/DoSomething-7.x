@@ -23,13 +23,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: #00af56;
-  background-image: -ms-linear-gradient(left, #009452 0%, #2bb855 100%);
-  background-image: -moz-linear-gradient(left, #009452 0%, #2bb855 100%);
-  background-image: -o-linear-gradient(left, #009452 0%, #2bb855 100%);
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #009452), color-stop(1, #2bb855));
-  background-image: -webkit-linear-gradient(left, #009452 0%, #2bb855 100%);
-  background-image: linear-gradient(to right, #009452 0%, #2bb855 100%); }
+  background: #231f20; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -186,10 +180,10 @@ body {
     font-size: 0.95em;
     padding: 0.2em 1em 0 1.5em;
     text-transform: uppercase;
-    color: black; }
+    color: #231f20; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none;
-      color: #009452; }
+      color: #50b848; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix {
     color: #cccccc;
     text-transform: uppercase;
@@ -222,12 +216,12 @@ body {
       color: #cccccc;
       text-decoration: underline; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
-        color: #009452; }
+        color: #50b848; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix hr {
       border-top: none;
       border-bottom: 1px solid #cccccc; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count {
-      background: #009452;
+      background: #50b848;
       padding: 0.5em 0 0.3em;
       margin: 1em 0; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count p {
@@ -996,8 +990,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("http://files.dosomething.org/files/campaigns/green/gysc-header.jpg") top center no-repeat; }
+    background: url("http://files.dosomething.org/files/campaigns/green/header-bg.jpg") top center no-repeat;
+    margin-bottom: 2%; }
   #cmp #header {
+    text-align: left;
     padding: 0; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
@@ -1017,7 +1013,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       margin: 0 auto;
       line-height: 1.2em; }
       #cmp #header h2 span {
-        color: #009452;
+        color: #50b848;
         font-weight: 700;
         padding: 0; }
     #cmp #header span {
@@ -1063,7 +1059,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       max-width: 430px; }
   #cmp #content .go-button {
     margin: 0;
-    background: #009452;
+    background: #50b848;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
@@ -1086,9 +1082,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #scholarship .divider {
     margin: 0 2% 3%; }
   #cmp #scholarship li {
-    color: #009452; }
+    color: #50b848; }
   #cmp #scholarship h2 {
-    background: #2058bd;
+    background: #50b848;
     color: white;
     text-transform: uppercase;
     font-weight: 500;
@@ -1141,7 +1137,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     line-height: 1.4em; }
   #cmp #faq li {
     margin: 0;
-    color: #009452; }
+    color: #50b848; }
     #cmp #faq li span {
       color: black; }
   #cmp #faq h1 {
@@ -1215,7 +1211,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .drive-info-title h2 {
       text-transform: uppercase;
       font-size: 1.8em;
-      color: #009452;
+      color: #50b848;
       line-height: 1.1em; }
     #cmp .drive-info-title h3 {
       line-height: 1.1em; }
@@ -1259,9 +1255,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -o-border-radius: 5px;
     border-radius: 5px; }
   #cmp #contact-form, #cmp #contact-form2, #cmp #contact-form3 {
-    margin: 0 0 2%;
+    margin: 0;
     padding-bottom: 10px;
-    background: #2058bd;
+    background: #50b848;
     width: 100%; }
     #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
       color: white;
@@ -1434,7 +1430,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     border: none;
     line-height: 1em; }
     #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
-      color: black; }
+      color: #030202; }
   #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
   #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
     display: none; }
