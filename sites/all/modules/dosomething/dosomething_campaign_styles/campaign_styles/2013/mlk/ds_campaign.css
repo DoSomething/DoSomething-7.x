@@ -21,7 +21,10 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: black url("//files.dosomething.org/files/campaigns/mlk/mlk-bg.jpg") center top no-repeat; }
+  background: black url("//files.dosomething.org/files/campaigns/mlk/activist-bg.jpg") center top no-repeat; }
+
+#block-dosomething-campaign-styles-campaign-nav .content {
+  margin-bottom: 20px; }
 
 @media only screen and (max-width: 550px) {
   body {
