@@ -75,6 +75,14 @@ function robocalls_call_completed() {
   if ($_REQUEST['CallStatus'] == 'completed') {
     dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']), 146913);
   }
+
+  ob_start();
+  print_r($_REQUEST);
+  $c = ob_get_contents();
+  ob_end_clean();
+
+  mail('mchittenden@dosomething.org', 'Call Completed', $c);
+  exit;
 }
 
 function robocalls_beta_response() {
