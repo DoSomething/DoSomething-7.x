@@ -359,10 +359,10 @@ $activity->inputs = array('account_exists', 'create_account');
 $activity->outputs = array('strip_signature_post_create_drive', 'end');
 $activity->campaign_url = 'sucker';
 $activity->sign_up_nid = 727941;
-$activity->response_error = 'Sorry! We ran into a problem creating your drive. Text POWER to try again or visit http://doso.me/9 to try online.';
+$activity->response_error = 'Sorry! We ran into a problem creating your team. Text POWER to try again or visit http://doso.me/9 to try online.';
 $activity->response_in_drive = 'You already signed up for a team! Login at http://doso.me/9 to visit it. Have friends you want to invite? Reply with their #\'s and we\'ll invite them!';
-$activity->response_new_account = 'Great! You can login to see your team here http://doso.me/9. Ur password is: @pass. Text us your friends\' #s to invite them too';
-$activity->response_success = 'Great! Your school is signed up for a DBS drive! Login at http://doso.me/9. Text us your friends\' #s to invite them too';
+$activity->response_new_account = 'Great! You can login to see your team here http://doso.me/9. Ur password is: @pass. Grow your team of vampire slayers. Text #s to invite friends';
+$activity->response_success = 'Great! You can login to see your team here: http://doso.me/9. Grow your team of vampire slayers by inviting friends. Text #s to invite';
 
 $activity = $workflow->newActivity('sms_strip_signature');
 $activity->name = 'strip_signature_post_create_drive';
@@ -374,7 +374,7 @@ $activity->name = 'ftaf_process';
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;
 $activity->response_success = t('We\'ve sent along invites to your friends. Reply back with DBSINVITE if you want to invite more.');
-$activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your drive again, text DBSINVITE.');
+$activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your team again, text DBSINVITE.');
 $activity->inputs = array('strip_signature_post_create_drive');
 $activity->outputs = array('end');
 
@@ -404,7 +404,7 @@ $activity->inputs = array('start');
 $activity->outputs = array('check_account_exists', 'end');
 $activity->accept_responses = array('y','yes','yea','ya','dbsjoin','dbs join');
 $activity->invite_rejected_message = t('No prob. You\'re not getting added to the team. If you want to join in the future, text back DBSJOIN.');
-$activity->no_numbers_message = t('Oops. Did you mean to invite someone to your team? Text DBSINVITE and try to invite again. Trying to join a drive? Text DBSJOIN to try to join again.');
+$activity->no_numbers_message = t('Oops. Did you mean to invite someone to your team? Text DBSINVITE and try to invite again. Trying to join a team? Text DBSJOIN to try to join again.');
 $activity->already_in_drive_message = t('You already previously joined this team. You can view it online at http://doso.me/9. Want to invite friends to the team? Text DBSINVITE.');
 
 $activity = $workflow->newActivity('sms_check_account_exists');
@@ -445,7 +445,7 @@ $activity->outputs = array('ftaf_process');
 $activity->alpha_campaign_id = 110073;
 $activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething team of energy vampire slayers! Who else should be involved? Text back DBSINVITE and we\'ll invite them too.';
 $activity->drive_link = 'http://doso.me/9';
-$activity->success_message = t('Awesome! You\'ve been added to the drive at http://doso.me/9. Grow your team of vampire slayers by inviting friends. Text #s to invite.');
+$activity->success_message = t('Great! You can see your team here: http://doso.me/9. Grow your team of vampire slayers by inviting friends. Text #s to invite.');
 
 $activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
