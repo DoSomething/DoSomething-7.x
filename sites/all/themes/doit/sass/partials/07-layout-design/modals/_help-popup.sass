@@ -11,10 +11,10 @@ div[aria-labelledby="ui-dialog-title-lets-talk-dialog"]
   overflow: visible
   padding-top: 12px
   h2
-    @extend .popup-title
+    @extend %popup-title
     margin: 0
   #content
-    @extend .popup-title-border
+    @extend %popup-title-border
     font-family: $font-headline
     font-size: 18px
   .row
@@ -24,9 +24,9 @@ div[aria-labelledby="ui-dialog-title-lets-talk-dialog"]
       margin-bottom: 0
   .title,
   .detail
-    @extend .white
+    @extend %white
     a
-      @extend .gold
+      @extend %gold
       border-bottom: none
       outline: none
   .title

@@ -17,6 +17,22 @@
 	    	Drupal.behaviors.dsCrazyScripts.logged_in = false;
 	    }
 
+	    $('.flag a').click(function() {
+	    	var i = $(this);
+	    	var l = $(this).parent().parent().parent();
+	    	$.post('/' + Drupal.settings.crazy.crazy_root + '/flag/' + $(this).attr('data-sid'), {}, function(response) {
+	    		if (response == 1) {
+	    			l.addClass('flagged');
+	    			i.children('span').text('Unflag');
+	    		}
+	    		else if (response == 0) {
+	    			l.removeClass('flagged');
+	    			i.children('span').text('Flag');
+	    		}
+	    	});
+	    	return false;
+	    });
+
         if (top.location != self.location) {
           top.location = self.location.href
         }
@@ -186,6 +202,9 @@
 	    	   'img_picture': img,
 	    	   'img_require_login': true,
 	    	}, function(response) {
+	    		$.post('/crazy/fb-share/' + sid, {}, function(response) {
+	    			// Nothing!
+	    		});
 	    	});
 	    	return false;
 	    });
@@ -237,7 +256,7 @@
 	// Ignore if the popup is already open.
 	if ($('.' + name + '-crazy-popup').length > 0) return;
 
-      $.post('/cstemplate/' + name + '/' + sid, { 'goto': settings.goto, 'you': (Drupal.behaviors.dsCrazyScripts.notify_yourself || settings.you) }, function(response) {
+      $.post('/cstemplate/' + name + '/' + sid, { 'goto': settings.goto, 'you': (Drupal.behaviors.dsCrazyScripts.notify_yourself || settings.you), 'source': document.location.pathname }, function(response) {
       	  var t = $('<div></div>');
       	  t.html(response);
 
@@ -270,21 +289,26 @@ function fb_invite_friends_post(sid, reload) {
 		   return false;
 		}
 
-		var img = '';
-		if (typeof my_post === 'object' && my_post.sid == sid) {
-			if (my_post.image) {
-				img = my_post.image;
+		var img = 'http://files.dosomething.org/files/campaigns/crazy13/logo.png';
+		var path = 'http://www.dosomething.org/' + Drupal.settings.crazy.crazy_root + '/friends';
+		if (sid > 0) {
+			if (typeof my_post === 'object' && my_post.sid == sid) {
+				if (my_post.image) {
+					img = my_post.image;
+				}
+				else {
+					img = jQuery('.s-' + sid + '-picture img').attr('src');
+				}
 			}
 			else {
 				img = jQuery('.s-' + sid + '-picture img').attr('src');
 			}
-		}
-		else {
-			img = jQuery('.s-' + sid + '-picture img').attr('src');
+
+			path = 'http://www.dosomething.org/' + Drupal.settings.crazy.crazy_root + '/friends/' + sid;
 		}
 
 		Drupal.behaviors.fb.feed({
-			feed_document: 'http://www.dosomething.org/' + Drupal.settings.crazy.crazy_root + '/friends/' + sid,
+			feed_document: path,
 	        feed_title: Drupal.settings.crazy.facebook.posts.title,
 	        feed_picture: img,
 	        feed_caption: Drupal.settings.crazy.facebook.posts.caption,

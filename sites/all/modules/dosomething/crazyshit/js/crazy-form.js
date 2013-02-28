@@ -1,5 +1,7 @@
 (function($) {
 	Drupal.behaviors.crazy = {
+		submitting_form: false,
+
 		handle_text_change: function(field, elm) {
 			$('#' + field).data('val',  $('#' + field).val() ); // save value
 			$('#' + field).change(function() { // works when input will be blured and the value was changed
@@ -35,26 +37,54 @@
 			  });
 		  }
 		  else if ($('#edit-submitted-field-crazy-crazy-picture-und-0-upload').length) {
-        $('<div></div>').attr('class', 'upload-placeholder').text('Upload a picture and it will appear here').css({
-          'text-align': 'center',
-          'font-size': '30px',
-          'font-weight': '600',
-          'line-height': '1.2',
-          'margin-top': '43%',
-          'text-transform': 'uppercase',
-        }).appendTo('.image-widget-data');
-        $('#edit-actions').remove();
+	        $('<div></div>').attr('class', 'upload-placeholder').text('Upload a picture and it will appear here').css({
+	          'text-align': 'center',
+	          'font-size': '30px',
+	          'font-weight': '600',
+	          'line-height': '1.2',
+	          'margin-top': '43%',
+	          'text-transform': 'uppercase',
+	        }).appendTo('.image-widget-data');
+	        $('#edit-actions').remove();
+		  }
+
+		  if ($('input[value="Submit"]').length > 0) {
+			$('#edit-submitted-field-crazy-top-text-und-0-value, #edit-submitted-field-crazy-bottom-text-und-0-value').keydown(function(e) {
+			   if (e.which == 13) {
+			     e.stopPropagation();
+			     return false;
+			   }
+			});
+
+		  	$('[id^="webform-client-form-"]').submit(function() {
+			   if (!Drupal.behaviors.crazy.submitting_form) {
+			      Drupal.behaviors.crazy.submitting_form = true;
+			      return true;
+			   }
+			   else {
+			      return false;
+			   }
+		  	});
+
+		  	$('input[value="Submit"]').click(function() {
+		  	   $(this).hide();
+		  	   var t = $('<div></div>').text(Drupal.t('Loading...'));
+		  	   t.insertAfter($(this)).css({
+		  	   	  'text-align': 'right',
+		  	   	  'margin-top': '5px',
+		  	   });
+		  	});
 		  }
 
 		   if ($('.image-widget-data').length > 0) {
-         var topText = $('<div></div>').attr('id', 'top_text');
-         var bottomText = $('<div></div>').attr('id', 'bottom_text');
+	         var topText = $('<div></div>').attr('id', 'top_text');
+	         var bottomText = $('<div></div>').attr('id', 'bottom_text');
 
-         this.handle_text_change('edit-submitted-field-crazy-top-text-und-0-value', 'top_text');
-         this.handle_text_change('edit-submitted-field-crazy-bottom-text-und-0-value', 'bottom_text');
+	         this.handle_text_change('edit-submitted-field-crazy-top-text-und-0-value', 'top_text');
+	         this.handle_text_change('edit-submitted-field-crazy-bottom-text-und-0-value', 'bottom_text');
 
-         $('.image-widget-data').append(topText);
-         $('.image-widget-data').append(bottomText);
+	         $('.image-widget-data').append(topText);
+	         $('.image-widget-data').append(bottomText);
 		   }
 
 	       $('#edit-submitted-field-crazy-crazy-picture-und-0-upload').click(function() {
@@ -108,6 +138,12 @@
           $('#bottom_text').remove();
         }
         
+      });
+
+      // show more guidelines
+      $('#extra_link').click(function(a){
+        $('#extra_guidelines').slideDown();
+        a.preventDefault(); 
       });
 
 		},

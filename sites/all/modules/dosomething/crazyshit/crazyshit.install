@@ -97,6 +97,35 @@ function crazyshit_schema() {
     ),
   );
 
+  $schema['crazy_emails'] = array(
+    'description' => 'Stores emails of crazy members.',
+    'fields' => array(
+      'uid' => array(
+        'description' => 'The Drupal user UID',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'email' => array(
+        'description' => 'The user email address.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+      ),
+      'timestamp' => array(
+        'description' => 'The time that they joined.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'email' => array('email'),
+    )
+  );
+
   return $schema;
 }
 
@@ -116,4 +145,43 @@ function crazyshit_update_7101() {
   db_query("ALTER TABLE {crazy_notifications} CHANGE `fid` `fid` bigint UNSIGNED NOT NULL");
   db_query("ALTER TABLE {crazy_notifications} CHANGE `from_uid` `from_uid` bigint UNSIGNED NOT NULL");
   db_query("ALTER TABLE {crazy_notifications} CHANGE `uid` `uid` bigint UNSIGNED NOT NULL");
+}
+
+/**
+ *  Adds crazy emails table to temporarily hold emails.
+ */
+function crazyshit_update_7102() {
+  $schema = array();
+  $schema['crazy_emails'] = array(
+    'description' => 'Stores emails of crazy members.',
+    'fields' => array(
+      'uid' => array(
+        'description' => 'The Drupal user UID',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'email' => array(
+        'description' => 'The user email address.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE
+      ),
+      'timestamp' => array(
+        'description' => 'The time that they joined.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'email' => array('email'),
+    )
+  );
+
+  if (!db_table_exists('crazy_emails')) {
+    db_create_table('crazy_emails', $schema['crazy_emails']);
+  }
 }

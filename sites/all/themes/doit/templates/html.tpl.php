@@ -55,14 +55,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php print $head_title; ?></title>
  
-  <?php
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
-      $rackspace_url = 'https://c308566.ssl.cf1.rackcdn.com';
-    } else {
-      $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
-    }
-  ?>
-  <link rel="stylesheet" href="<?php echo $rackspace_url ?>/din.css" media="all" />
   <?php print $styles; ?>
   <?php print $shiv; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>

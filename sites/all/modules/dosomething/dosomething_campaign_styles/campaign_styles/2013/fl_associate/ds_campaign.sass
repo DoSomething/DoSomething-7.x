@@ -1,0 +1,991 @@
+// FOOTLOCKER
+
+// Base imports. Be sure to compile using the --compass switch
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+//////////////////////////////////////////
+///////// campaign definitions //////////
+////////////////////////////////////////
+
+// colors
+$baseColor: #E31837 /* red */
+$complement: #FFFFFF
+$secondaryLink: black
+
+// borders
+$borderTop: 1px solid #BE1E2D
+$borderBot: 1px solid #E51937
+
+// fonts - don't change these. if you do, -50 life points
+$accent: din-web,"Trebuchet MS",sans-serif
+$body: "Trebuchet MS",sans-serif
+
+// page background
+$imageBackground: url('http://files.dosomething.org/files/campaigns/footlocker/fl-bg.jpg')
+$bgFallback: #000000
+$bgGray: #C8C8C8
+
+// block definition (all blocks--don't define width or float here)
+@mixin block
+  background: white
+
+// top and bottom border for elements
+// use with &:before and &:after
+@mixin insetBorder
+  +clearfix
+  display: block
+  content: ''
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+@mixin noBoxShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@mixin noBorder
+  border: none !important
+
+@mixin redLine
+  border-top: $borderTop
+  border-bottom: $borderBot
+
+//////////////////////////////////////////
+///////// general definitions ///////////
+////////////////////////////////////////
+
+p
+  font-size: 14px
+
+a
+  color: $baseColor
+  &:hover
+    color: $secondaryLink
+  &:visited
+    color: $baseColor  
+
+h1.title
+  display: none
+
+img
+  +noBoxShadow
+  +noBorder  
+
+hr
+  +redLine
+
+body
+  background-color: $bgFallback
+  background-image: $imageBackground
+  background-repeat: no-repeat
+  background-position: center top
+
+img.center
+  margin: 0 auto
+  display: block  
+
+div[role="main"]
+  +block
+  @include box-shadow(black 0 0 30px -10px)
+  margin-top: 20px
+  padding-top: 10px 
+
+.three-boxes
+  background: $bgGray !important
+  float: left
+  font-weight: 600
+  margin-right: 6.5%
+  width: 29%
+  &:last-child
+    margin-right: 0
+  .pane-content
+    height: 166px
+    padding: 1.5em
+    text-align: center
+
+.three-boxes-last-child
+  margin-right: 0 !important
+
+.line-top
+  &:before
+    +insetBorder
+.line-bottom
+  &:after
+    +insetBorder
+
+//////////////////////////////////////////
+////////////// sections /////////////////
+////////////////////////////////////////
+
+// navigation
+#block-dosomething-campaign-styles-campaign-nav
+  background: transparent
+  margin-right: -5px
+  padding: 0
+  font-family: $accent
+  ul.menu
+    +block
+    background-image: none
+    text-align: right
+    a
+      display: inline-block
+      width: 100%
+      padding: 10px 19px 10px 0
+      font-size: 21px
+      font-weight: 600
+      text-transform: uppercase
+      color: $secondaryLink
+      &:hover, .active
+        color: $baseColor
+        text-decoration: none
+
+.box-shadow-none
+  +noBoxShadow
+
+.margin-right-0
+  margin-right: 0 !important
+
+.nominate-box
+  background: $bgGray !important
+  float: left
+  margin-right: 5%
+  width: 66%
+  .go-button
+    bottom: 1.25em
+    padding-top: 3px
+  .pane-content
+    height: 166px
+    padding-bottom: 0
+  .webform-client-form
+    +noBoxShadow
+    border: none
+  // Below is for webform block solution
+  #webform-component-fieldset-1
+    float: left
+    width: 186px
+  #webform-component-fieldset-2
+    float: left
+    width: 186px
+  #edit-actions, #edit-actions--2
+    bottom: 0
+    margin-bottom: 20px !important
+    margin-right: 12px
+    position: absolute
+    right: 0
+  #webform-component-help-text
+    font-weight: 600
+    padding: 0
+    width: 80%
+
+.nominate-box-help-text
+  font-weight: 600
+  padding: 0.5em 1em 0 1em
+  width: 80%
+
+.nominate-form-column
+  float: left
+  width: 38%
+  margin-right: 2%
+
+.pane-campaign-sign-up
+  position: relative
+  .pane-content
+    .form-actions
+      position: absolute
+      display: block
+      bottom: 5px
+      right: 30px
+  .campaign-opt-in
+    padding: 0 0 10px 15px
+    a
+      color: #000
+  .webform-client-form
+    padding: 0
+
+.pane-campaign-social
+  .pane-content
+    padding-bottom: 0
+  .socialWrapper
+    &:before
+      +redLine
+      content: ""
+      display: block
+      left: -18px
+      margin-bottom: 8px
+      position: relative
+      width: 248px
+  .fb-facepile
+    &:before
+      +redLine
+
+.pane-node-field-campaign-logo
+  img
+    +noBoxShadow
+    border: none
+    margin: 0 !important
+    width: 80%
+  .field-item
+    text-align: center
+  .pane-content
+    padding-bottom: 0
+
+.pane-node-field-campaign-teaser
+  .pane-content
+    padding-bottom: 0
+    p
+      margin-bottom: 0
+      font-size: 24px
+
+.pane-node-field-campain-date
+  .field-item
+    font-weight: 600
+  .pane-content
+    color: $baseColor
+    padding-bottom: 0
+
+// top right wrapper
+.panel-row-top-right
+  // mini-info panel
+  .panel-top-right-mini-info
+    font-family: $accent
+    .pane-title
+      background: none
+      color: $baseColor
+      padding: 0
+      font-size: 26px
+      line-height: 1em
+    .pane-content
+      font-size: 21px
+      line-height: 1.4em
+
+//social
+.panel-top-right-social
+  padding-bottom: 0
+
+// actions panel (sign-up and counter)
+.panel-row-actions
+  background: $bgGray
+  margin-top: 0
+  .pane-title
+    background: $baseColor
+  .pane-content
+    padding: 18px
+  form
+    border: none
+    box-shadow: none
+    -moz-box-shadow: none
+    -webkit-box-shadow: none
+    padding-bottom: 0
+
+.panel-row-actions-sign-up
+  #edit-submit
+    display: block
+    position: relative
+    bottom: 35px
+
+// ad row (quick info and psa)
+.panel-row-ad
+  .panel-row-ad-quick-info
+    width: 100%
+
+.panel-row-ad-quick-info
+  .pane-title
+    font-size: 35px
+    padding: 0
+    background: transparent
+    text-transform: uppercase
+    color: $baseColor !important
+    line-height: 1.3em
+    font-weight: 500
+    &:after
+      +redLine
+  .pane-content
+    h3
+      color: $baseColor
+      font-size: 26px
+      text-transform: uppercase
+      font-weight: 600
+      line-height: 1em
+    p
+      margin: 0
+    &:before
+      margin-bottom: 20px
+
+
+.panel-row-flexible
+  .panel-pane
+    +block
+    .pane-title
+      background: $baseColor
+  .blog
+    background: transparent
+    &:before, &:after
+      +insetBorder
+    &:before,&:after
+      +insetBorder
+
+.panel-row-flexible-bot
+  margin-bottom: 2em
+
+.panel-row-flexible-mid
+  h2
+    line-height: 1em
+    letter-spacing: 1px
+    font-size: 22px
+    text-transform: capitalize
+    padding: 10px
+    background: $baseColor
+    color: #fff
+
+// logos
+.panel-row-logos
+  .pane-title
+    color: $baseColor
+    background: none
+    margin: 0
+    padding: 0
+
+// campaign sign-up extend
+.pane-campaign-sign-up
+  h2.pane-title
+    white-space: nowrap
+    position: relative
+
+.text-align-right
+  text-align: right
+
+// campaign counter styling
+.campaign-counter-labels
+  color: white
+  float: left
+  font-family: din-web
+  font-size: 18px
+  font-weight: 600
+  line-height: 35px
+  // setting margin-top so that the labels line up better with numbers
+  margin-top: -2px
+  text-transform: uppercase
+  .campaign-counter-label-top
+    margin-left: -46px  
+  
+.campaign-counter-numbers
+  float: right
+  font-family: din-web
+  font-size: 22px
+  font-weight: bold
+  line-height: 35px
+  .counter-number
+    +background-image(linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%))
+    padding: 2px 2px 0px 5px
+    letter-spacing: 5px
+    border: 1px white solid
+// winners
+.winners
+  float: left
+  padding: 5px
+  img
+    margin-bottom: 5px
+  
+.winner
+  text-align: center
+  font-family: $accent
+  color: white
+  background: $bgFallback
+  padding: 5px
+  font-weight: 600
+  font-size: 18px
+  width: 121px
+  p
+    display: none
+  span
+    color: white
+    font-family: $accent
+    font-size: 65px
+  b
+    color: $baseColor
+    font-weight: bold
+    font-family: $accent
+    font-size: 16px
+
+//finalist styles
+
+#finalist_container
+  margin: 15px 0 0 18px
+  padding: 0
+  li
+    float: left
+    list-style: none
+    margin-right: 25px
+  h3
+    background-color: $bgFallback
+    color: #fff
+    margin-bottom: 15px
+    padding: 8px 0
+    text-align: center
+    font-size: 18px
+
+//ds-popup styles
+
+.ui-dialog
+  background: #000
+  p
+    color: #fff
+    line-height: 1.7em
+  h1
+    border-bottom: 3px solid $baseColor
+    text-transform: uppercase
+    text-align: center
+    font-size: 60px
+    color: #fff
+  span
+    text-transform: uppercase
+    color: $baseColor
+  -webkit-border-radius: 15px
+  -moz-border-radius: 15px
+  border-radius: 15px
+
+.ui-dialog .ui-dialog-titlebar-close
+  right: -425px
+
+#campaign-opt-in
+  font-size: 11px
+  a
+  padding-top: 3px !important
+    //vertical-align: super
+    font-weight: bold
+  a:hover
+    color: $secondaryLink
+    text-decoration: none
+
+form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--2
+  overflow: visible
+
+#breadcrumb
+  display: none
+
+// SHORT FORM
+.panel-row-actions
+  margin: 0 0 15px 0
+  width: 750px
+  #edit-actions, #edit-actions--2
+    position: absolute
+    right: 52px
+    top: 40px
+  .form-wrapper
+    margin-bottom: 8px !important
+  .pane-content
+    padding: 18px
+  .panel-row-actions-sign-up
+    form 
+      padding-bottom: 0
+    .pane-campaign-sign-up
+      margin: 0
+      .pane-title
+        color: white
+    .pane-content
+      //padding: 0
+      .field-name-field-webform-email
+        font-size: 14px
+        width: 280px
+        margin-bottom: 0.5em
+        input
+          width: 100%
+      .field-name-field-webform-mobile  
+        font-size: 14px
+        width: 240px
+        margin-bottom: 0.5em
+        input
+          width: 75%
+          margin-top: 5px  
+  
+// ABOUT AND NOMINATE BLOCKS
+#footlocker-about
+  float: left
+  width: 43%
+  padding-right: 4%
+  margin: 0 2% 0 4%
+  h2.pane-title
+    font-size: 24px
+  border-right: 3px solid #E7E8E9
+  .pane-content
+    padding-bottom: 0 !important 
+
+#footlocker-nominate
+  float: left
+  width: 40%
+  margin: 0 4% 0 2%
+  h2.pane-title
+    font-size: 24px
+
+#footlocker-about
+  font-size: 16px
+  line-height: 1.3em    
+
+#footlocker-nominate
+  form.webform-client-form
+    padding: 0px
+    border: none
+    box-shadow: none
+    -webkit-box-shadow: none
+    -moz-box-shadow: none 
+    font-size: 14px
+  .form-item
+    margin-bottom: 8px
+  .form-wrapper
+    margin-bottom: 0 !important 
+  .pane-content
+    padding-bottom: 0 !important    
+  #edit-submit
+    color: white
+    background: $baseColor
+    font-size: 18px
+    font-weight: normal
+    letter-spacing: 2px
+    padding: 2px 6px 2px 8px
+  #edit-actions
+    position: absolute
+    right: -20px
+    bottom: -20px  
+  .webform-component  
+    width: 220px
+    input
+      &:focus
+        background: lightyellow
+  #webform-component-copy  
+    width: 100%
+    font-size: 16px
+    margin: 0 0 18px 0
+    line-height: 1.3em 
+
+.center
+  text-align: center 
+.fl-paragraph
+  font-size: 16px
+  margin: 16px auto -10px auto
+  width: 80%
+  text-align: center
+
+
+
+// CLASS WHITE LINE
+.winners-pane
+  h2
+    height: 36px
+  .white-line
+    border-top: 3px solid white
+    width: 98%
+    position: absolute
+    top: 18px
+    left: 1%
+  .white-text
+    background: #e31837
+    padding: 0 12px
+    position: relative
+    top: -13px
+
+// IMAGES
+.fl-hat, .fl-cup, .fl-flag
+  display: block
+  margin:  auto
+  box-shadow: none !important 
+  -webkit-box-shadow: none !important
+  -moz-box-shadow: none !important
+
+.field-name-field-campaign-logo
+  img
+    padding-bottom: 10px !important
+
+.field-name-field-campain-date
+  padding-top: 20px      
+
+// POPUPS
+.fl-popup-main-text
+  text-transform: uppercase
+  font-size: 54px
+  font-weight: bold
+  line-height: 1.2em !important 
+  font-family: din-web
+  margin-bottom: 20px
+
+.fl-popup-subtext
+  font-size: 22px
+  font-family: din-web
+  line-height: 1.4em !important
+  color: #e31837 !important
+  text-transform: uppercase
+  text-align: center
+  margin-bottom: 0
+  span
+    font-weight: bold
+    text-decoration: underline 
+
+// NOMINTATE POPUP
+#fl-nominate-confirmation-popup
+  a
+    margin-top: 30px
+    padding: 5px 5px 0 5px
+    background: #f1f1f1
+    border: 5px solid #DF3049
+    color: black
+    font-size: 24px
+    font-family: din-web
+    text-transform: uppercase
+    &:hover
+      text-decoration: none
+  .fl-popup-btn
+    margin-top: 40px
+    text-align: center
+  .fl-popup-main-text
+    font-size: 52px !important       
+
+.ui-icon.ui-icon-closethick
+  text-indent: -9999px
+
+// APPLY NOW BUTTON
+.apply-headline
+  //h2.pane-title
+    //width: 750px
+    //position: relative
+  h2.apply-button
+    position: absolute
+    top: 18px
+    right: 115px
+    font-size: 36px
+    padding: 20px 20px 32px
+    -webkit-border-radius: 22px
+    -moz-border-radius: 22px
+    border-radius: 22px
+    a
+      color: black
+      text-shadow: 1px 1px 3px white
+      &:hover
+        text-decoration: none
+        color: #1b1b1b
+        text-shadow: -1px -1px 3px white 
+
+// ABOUT PAGE
+hr.gray
+  border-top: 1px solid lightgray 
+  border-bottom: none
+  clear: both       
+.redhead-box
+  text-align: center
+  margin-top: 20px
+.redhead
+  background: $baseColor
+  display: inline-block
+  text-align: center
+  text-transform: uppercase
+  color: white
+  margin: -7px auto 15px auto
+  clear: both
+  padding: 12px
+  font-size: 28px  
+
+.page-node-719430
+  .phases
+    h2
+      text-transform: uppercase
+    li
+      font-size: 14px  
+.judging-box, .application-box, .questions-box
+  float: left
+  width: 250px
+  padding: 20px
+  text-align: center
+  margin-bottom: 30px
+  h3
+    font-size: 30px
+    text-transform: uppercase
+    margin-bottom: 15px  
+.judging-box
+  position: relative
+  img
+    position: absolute
+    top: 20px
+    left: 50%
+    margin-left: -64px
+  p
+    margin-top: 168px
+.application-box
+  width: 248px
+  border-right: 1px solid lightgray
+  border-left: 1px solid lightgray 
+
+.date-box
+  float: left
+  width: 172px
+  border: 1px solid #d1d1d1
+  margin: 15px 20px 40px 0px
+  height: 125px
+  -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.25)
+  -moz-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.25)
+  box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.5)
+  h2
+    text-transform: uppercase
+    text-align: center
+    background: $baseColor
+    color: white
+    font-size: 30px
+    padding: 12px 0 6px 0
+  p
+    text-align: center
+    font-size: 16px
+    text-transform: uppercase
+    padding: 10px
+    line-height: 1.2em
+.last-date-box
+  margin-right: 0px
+
+
+// APPLICATION + RECOMMEND FORMS
+#node-724592, #node-724596, #node-724597, #node-724764, #node-724859, #node-724594, #node-724595
+  form
+    border: none !important
+    +noBoxShadow
+    input
+      border: 1px solid #f1f1f1 !important 
+  .field-name-group-audience, .field-name-field-recommendation-form, .field-name-field-application-form, .field-type-node-reference  
+    display: none
+  .formhead
+    text-transform: uppercase
+    font-size: 28px
+  label
+    font-size: 14px
+    margin-top: 20px
+  .form-wrapper
+    margin-bottom: 0 !important
+  #webform-component-one-of-the-following
+    margin-top: 10px
+    p
+      margin: 0
+  #webform-component-cumulative-sat-score, #webform-component-cumulative-act-score, #webform-component-pre-sat-score, #webform-component-plan-score
+    margin-left: 20px
+    label
+      width: 150px
+      float: left
+      clear: both
+      margin-top: 7px
+    input  
+      margin-bottom: 10px
+      width: 100px
+  .webform-client-form
+    #edit-actions
+      //position: static
+      bottom: 120px
+      left: 0px
+      right: auto
+      input.form-submit
+        font-size: 24px
+      #edit-previous, #edit-next  
+        width: inherit !important
+        padding: 0 10px
+      #edit-previous, #edit-next, #edit-draft
+        margin-bottom: 15px  
+  h2.other
+    font-size: 28px
+    margin-top: 28px
+    text-transform: uppercase    
+  h3
+    color: $baseColor
+    span
+      color: gray
+  textarea
+    margin: 10px 0 20px 0
+  label[for=edit-submitted-contact-me], label[for=edit-submitted-legal-stuff], label[for=edit-submitted-confirm-true], label[for=edit-submitted-permission]
+    display: none
+.fl-form-footer
+  float: left
+  width: 100%
+  margin: 40px 0 0 0
+  img
+    float: right
+  hr
+    clear: both
+  p
+    text-align: right
+
+.status-btn
+  display: inline-block
+  a
+    font-weight: 800
+    line-height: 27px
+    color: #333131
+    &:hover
+      text-decoration: none
+
+// REQUEST PAGE
+#node-724597, #node-724596, #node-724594, #node-724595
+  .description
+    width: 300px
+  #edit-actions
+    position: relative
+    text-align: center !important
+    margin: -34px
+  #webform-component-recommendation-1, #webform-component-recommendation-2, #edit-submitted-field-application, #edit-submitted-field-webform-name, #webform-component-relationship-to-you, #edit-submitted-field-webform-email, #webform-component-phone-number
+    margin-left: 200px
+    input
+      width: 300px
+      border: 1px solid #f1f1f1 !important   
+
+// STATUS PAGE     
+.page-node-728045
+  .pane-content
+    h3, h4
+      text-transform: uppercase
+      font-size: 24px
+      color: black
+      line-height: 1em
+      a
+        text-transform: lowercase
+        text-decoration: underline
+        color: $baseColor
+        font-size: 20px
+    h3, .send-request  
+      margin-bottom: 15px
+      color: black
+      span
+        color: $baseColor
+    h4
+      span
+        color: $baseColor    
+    .send-request
+      margin-top: 6px   
+    li
+      font-size: 14px 
+
+  .status-incomplete, .status-complete, .status-empty
+    padding: 5px 0 0 34px
+    margin-bottom: 25px  
+  .status-incomplete
+    background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-red.png') no-repeat left center
+  .status-complete
+    background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-green.png') no-repeat left center
+  .status-empty  
+    background: url('http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png') no-repeat left center
+  .send-request
+    font-size: 16px
+    a
+      color: $baseColor
+      text-decoration: underline 
+    a.go-button
+      color: white
+      text-decoration: none   
+  .go-button
+    position: static
+    color: white
+    border-radius: 0
+    padding-top: 4px !important
+    font-weight: normal
+    margin-left: 24px
+    background: $baseColor    
+  .the-indent
+    margin-left: 15px 
+
+.fl-bottom-pane
+  padding-bottom: 0 !important
+  margin-bottom: -24px 0px
+  .pane-content
+    padding-bottom: 0 !important
+
+// LOGIN
+.login-large
+  margin-top: 10px
+  font-size: 48px
+  line-height: 1em
+  text-transform: uppercase
+  text-align: center
+  span
+    color: $baseColor
+  a.go-button
+    position: static
+    font-size: 24px
+    text-shadow: 1px 1px 3px white
+    &:hover
+      text-decoration: none
+      color: #1b1b1b
+      text-shadow: -1px -1px 3px white 
+
+// Hide DS Sidebar
+#block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
+  display: none  
+
+// APPLY PAGE
+.page-node-724722
+  .pane-content
+    h2
+      text-transform: uppercase
+    li
+      font-size: 14px
+    ul
+      margin: 20px 0     
+
+// JUDGES PAGE
+p.judge-intro
+  font-size: 16px
+  line-height: 1.4em
+.judges
+  margin: 0 40px
+  padding: 0
+  list-style-type: none
+  img
+    margin: 0px 50px
+    box-shadow: 0px 0px 8px #e1e1e1 !important
+  li
+    float: left
+    list-style: none
+  h3
+    background-color: $baseColor
+    color: #fff
+    margin-bottom: 15px
+    padding: 8px 0
+    text-align: center
+    font-size: 18px
+    margin: 0px 50px 36px
+  a
+    color: white
+    text-decoration: none
+    &:hover
+      text-decoration: none
+
+.page-node-719431, .page-node-724872
+  .ui-dialog
+    width: 500px !important
+  .ui-icon-closethick
+    left: 0 !important
+
+// FAQ PAGE
+.faq
+  margin-bottom: 5px
+  h4
+    color: $baseColor
+    background-image: url('http://files.dosomething.org/files/campaigns/vote/vote-red-arrow.png')
+    background-repeat: no-repeat
+    background-position-y: 6px
+    cursor: pointer
+    font-size: 20px
+    line-height: 1.2em
+    margin-top: 10px
+  h4, p
+    padding-left: 15px
+  .activeFAQ
+    background-image: url('http://files.dosomething.org/files/campaigns/vote/vote-downarrow.png')
+    color: black
+
+.fl-confirm
+  width: 500px
+  margin: 0 auto
+  line-height: 1.3em
+  text-align: center     
+
+// EMPOLYEE POPUP
+.ui-icon.ui-icon-closethick
+  top: -15px
+  left: -100px
+
+//FORM LEGEND STYLE
+#edit-submitted-field-webform-school-reference-und-0-target-id
+  legend
+    padding: 20px 0 0 !important  

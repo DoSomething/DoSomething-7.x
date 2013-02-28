@@ -1,0 +1,901 @@
+p {
+  font-size: 14px; }
+
+a {
+  color: #e31837; }
+  a:hover {
+    color: black; }
+  a:visited {
+    color: #e31837; }
+
+h1.title {
+  display: none; }
+
+img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important; }
+
+hr {
+  border-top: 1px solid #be1e2d;
+  border-bottom: 1px solid #e51937; }
+
+body {
+  background-color: black;
+  background-image: url("http://files.dosomething.org/files/campaigns/footlocker/fl-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center top; }
+
+img.center {
+  margin: 0 auto;
+  display: block; }
+
+div[role="main"] {
+  background: white;
+  -webkit-box-shadow: black 0 0 30px -10px;
+  -moz-box-shadow: black 0 0 30px -10px;
+  box-shadow: black 0 0 30px -10px;
+  margin-top: 20px;
+  padding-top: 10px; }
+
+.three-boxes {
+  background: #c8c8c8 !important;
+  float: left;
+  font-weight: 600;
+  margin-right: 6.5%;
+  width: 29%; }
+  .three-boxes:last-child {
+    margin-right: 0; }
+  .three-boxes .pane-content {
+    height: 166px;
+    padding: 1.5em;
+    text-align: center; }
+
+.three-boxes-last-child {
+  margin-right: 0 !important; }
+
+.line-top:before {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid #be1e2d;
+  border-bottom: 1px solid #e51937; }
+
+.line-bottom:after {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  content: "";
+  border-top: 1px solid #be1e2d;
+  border-bottom: 1px solid #e51937; }
+
+#block-dosomething-campaign-styles-campaign-nav {
+  background: transparent;
+  margin-right: -5px;
+  padding: 0;
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  #block-dosomething-campaign-styles-campaign-nav ul.menu {
+    background: white;
+    background-image: none;
+    text-align: right; }
+    #block-dosomething-campaign-styles-campaign-nav ul.menu a {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 19px 10px 0;
+      font-size: 21px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: black; }
+      #block-dosomething-campaign-styles-campaign-nav ul.menu a:hover, #block-dosomething-campaign-styles-campaign-nav ul.menu a .active {
+        color: #e31837;
+        text-decoration: none; }
+
+.box-shadow-none {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+
+.margin-right-0 {
+  margin-right: 0 !important; }
+
+.nominate-box {
+  background: #c8c8c8 !important;
+  float: left;
+  margin-right: 5%;
+  width: 66%; }
+  .nominate-box .go-button {
+    bottom: 1.25em;
+    padding-top: 3px; }
+  .nominate-box .pane-content {
+    height: 166px;
+    padding-bottom: 0; }
+  .nominate-box .webform-client-form {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none; }
+  .nominate-box #webform-component-fieldset-1 {
+    float: left;
+    width: 186px; }
+  .nominate-box #webform-component-fieldset-2 {
+    float: left;
+    width: 186px; }
+  .nominate-box #edit-actions, .nominate-box #edit-actions--2 {
+    bottom: 0;
+    margin-bottom: 20px !important;
+    margin-right: 12px;
+    position: absolute;
+    right: 0; }
+  .nominate-box #webform-component-help-text {
+    font-weight: 600;
+    padding: 0;
+    width: 80%; }
+
+.nominate-box-help-text {
+  font-weight: 600;
+  padding: 0.5em 1em 0 1em;
+  width: 80%; }
+
+.nominate-form-column {
+  float: left;
+  width: 38%;
+  margin-right: 2%; }
+
+.pane-campaign-sign-up {
+  position: relative; }
+  .pane-campaign-sign-up .pane-content .form-actions {
+    position: absolute;
+    display: block;
+    bottom: 5px;
+    right: 30px; }
+  .pane-campaign-sign-up .campaign-opt-in {
+    padding: 0 0 10px 15px; }
+    .pane-campaign-sign-up .campaign-opt-in a {
+      color: black; }
+  .pane-campaign-sign-up .webform-client-form {
+    padding: 0; }
+
+.pane-campaign-social .pane-content {
+  padding-bottom: 0; }
+.pane-campaign-social .socialWrapper:before {
+  border-top: 1px solid #be1e2d;
+  border-bottom: 1px solid #e51937;
+  content: "";
+  display: block;
+  left: -18px;
+  margin-bottom: 8px;
+  position: relative;
+  width: 248px; }
+.pane-campaign-social .fb-facepile:before {
+  border-top: 1px solid #be1e2d;
+  border-bottom: 1px solid #e51937; }
+
+.pane-node-field-campaign-logo img {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none;
+  margin: 0 !important;
+  width: 80%; }
+.pane-node-field-campaign-logo .field-item {
+  text-align: center; }
+.pane-node-field-campaign-logo .pane-content {
+  padding-bottom: 0; }
+
+.pane-node-field-campaign-teaser .pane-content {
+  padding-bottom: 0; }
+  .pane-node-field-campaign-teaser .pane-content p {
+    margin-bottom: 0;
+    font-size: 24px; }
+
+.pane-node-field-campain-date .field-item {
+  font-weight: 600; }
+.pane-node-field-campain-date .pane-content {
+  color: #e31837;
+  padding-bottom: 0; }
+
+.panel-row-top-right .panel-top-right-mini-info {
+  font-family: din-web, "Trebuchet MS", sans-serif; }
+  .panel-row-top-right .panel-top-right-mini-info .pane-title {
+    background: none;
+    color: #e31837;
+    padding: 0;
+    font-size: 26px;
+    line-height: 1em; }
+  .panel-row-top-right .panel-top-right-mini-info .pane-content {
+    font-size: 21px;
+    line-height: 1.4em; }
+
+.panel-top-right-social {
+  padding-bottom: 0; }
+
+.panel-row-actions {
+  background: #c8c8c8;
+  margin-top: 0; }
+  .panel-row-actions .pane-title {
+    background: #e31837; }
+  .panel-row-actions .pane-content {
+    padding: 18px; }
+  .panel-row-actions form {
+    border: none;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    padding-bottom: 0; }
+
+.panel-row-actions-sign-up #edit-submit {
+  display: block;
+  position: relative;
+  bottom: 35px; }
+
+.panel-row-ad .panel-row-ad-quick-info {
+  width: 100%; }
+
+.panel-row-ad-quick-info .pane-title {
+  font-size: 35px;
+  padding: 0;
+  background: transparent;
+  text-transform: uppercase;
+  color: #e31837 !important;
+  line-height: 1.3em;
+  font-weight: 500; }
+  .panel-row-ad-quick-info .pane-title:after {
+    border-top: 1px solid #be1e2d;
+    border-bottom: 1px solid #e51937; }
+.panel-row-ad-quick-info .pane-content h3 {
+  color: #e31837;
+  font-size: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1em; }
+.panel-row-ad-quick-info .pane-content p {
+  margin: 0; }
+.panel-row-ad-quick-info .pane-content:before {
+  margin-bottom: 20px; }
+
+.panel-row-flexible .panel-pane {
+  background: white; }
+  .panel-row-flexible .panel-pane .pane-title {
+    background: #e31837; }
+.panel-row-flexible .blog {
+  background: transparent; }
+  .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid #be1e2d;
+    border-bottom: 1px solid #e51937; }
+  .panel-row-flexible .blog:before, .panel-row-flexible .blog:after {
+    overflow: hidden;
+    *zoom: 1;
+    display: block;
+    content: "";
+    border-top: 1px solid #be1e2d;
+    border-bottom: 1px solid #e51937; }
+
+.panel-row-flexible-bot {
+  margin-bottom: 2em; }
+
+.panel-row-flexible-mid h2 {
+  line-height: 1em;
+  letter-spacing: 1px;
+  font-size: 22px;
+  text-transform: capitalize;
+  padding: 10px;
+  background: #e31837;
+  color: white; }
+
+.panel-row-logos .pane-title {
+  color: #e31837;
+  background: none;
+  margin: 0;
+  padding: 0; }
+
+.pane-campaign-sign-up h2.pane-title {
+  white-space: nowrap;
+  position: relative; }
+
+.text-align-right {
+  text-align: right; }
+
+.campaign-counter-labels {
+  color: white;
+  float: left;
+  font-family: din-web;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 35px;
+  margin-top: -2px;
+  text-transform: uppercase; }
+  .campaign-counter-labels .campaign-counter-label-top {
+    margin-left: -46px; }
+
+.campaign-counter-numbers {
+  float: right;
+  font-family: din-web;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 35px; }
+  .campaign-counter-numbers .counter-number {
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e2e2e2), color-stop(8%, #dbdbdb), color-stop(18%, #efefef), color-stop(100%, #fefefe));
+    background-image: -webkit-linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
+    background-image: -moz-linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
+    background-image: -o-linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
+    background-image: linear-gradient(top, #e2e2e2 0%, #dbdbdb 8%, #efefef 18%, #fefefe 100%);
+    padding: 2px 2px 0px 5px;
+    letter-spacing: 5px;
+    border: 1px white solid; }
+
+.winners {
+  float: left;
+  padding: 5px; }
+  .winners img {
+    margin-bottom: 5px; }
+
+.winner {
+  text-align: center;
+  font-family: din-web, "Trebuchet MS", sans-serif;
+  color: white;
+  background: black;
+  padding: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  width: 121px; }
+  .winner p {
+    display: none; }
+  .winner span {
+    color: white;
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-size: 65px; }
+  .winner b {
+    color: #e31837;
+    font-weight: bold;
+    font-family: din-web, "Trebuchet MS", sans-serif;
+    font-size: 16px; }
+
+#finalist_container {
+  margin: 15px 0 0 18px;
+  padding: 0; }
+  #finalist_container li {
+    float: left;
+    list-style: none;
+    margin-right: 25px; }
+  #finalist_container h3 {
+    background-color: black;
+    color: white;
+    margin-bottom: 15px;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 18px; }
+
+.ui-dialog {
+  background: black;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px; }
+  .ui-dialog p {
+    color: white;
+    line-height: 1.7em; }
+  .ui-dialog h1 {
+    border-bottom: 3px solid #e31837;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 60px;
+    color: white; }
+  .ui-dialog span {
+    text-transform: uppercase;
+    color: #e31837; }
+
+.ui-dialog .ui-dialog-titlebar-close {
+  right: -425px; }
+
+#campaign-opt-in {
+  font-size: 11px;
+  padding-top: 3px !important;
+    padding-top-font-weight: bold; }
+  #campaign-opt-in a:hover {
+    color: black;
+    text-decoration: none; }
+
+form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--2 {
+  overflow: visible; }
+
+#breadcrumb {
+  display: none; }
+
+.panel-row-actions {
+  margin: 0 0 15px 0;
+  width: 750px; }
+  .panel-row-actions #edit-actions, .panel-row-actions #edit-actions--2 {
+    position: absolute;
+    right: 52px;
+    top: 40px; }
+  .panel-row-actions .form-wrapper {
+    margin-bottom: 8px !important; }
+  .panel-row-actions .pane-content {
+    padding: 18px; }
+  .panel-row-actions .panel-row-actions-sign-up form {
+    padding-bottom: 0; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up {
+    margin: 0; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-campaign-sign-up .pane-title {
+      color: white; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email {
+    font-size: 14px;
+    width: 280px;
+    margin-bottom: 0.5em; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-email input {
+      width: 100%; }
+  .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile {
+    font-size: 14px;
+    width: 240px;
+    margin-bottom: 0.5em; }
+    .panel-row-actions .panel-row-actions-sign-up .pane-content .field-name-field-webform-mobile input {
+      width: 75%;
+      margin-top: 5px; }
+
+#footlocker-about {
+  float: left;
+  width: 43%;
+  padding-right: 4%;
+  margin: 0 2% 0 4%;
+  border-right: 3px solid #e7e8e9; }
+  #footlocker-about h2.pane-title {
+    font-size: 24px; }
+  #footlocker-about .pane-content {
+    padding-bottom: 0 !important; }
+
+#footlocker-nominate {
+  float: left;
+  width: 40%;
+  margin: 0 4% 0 2%; }
+  #footlocker-nominate h2.pane-title {
+    font-size: 24px; }
+
+#footlocker-about {
+  font-size: 16px;
+  line-height: 1.3em; }
+
+#footlocker-nominate form.webform-client-form {
+  padding: 0px;
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  font-size: 14px; }
+#footlocker-nominate .form-item {
+  margin-bottom: 8px; }
+#footlocker-nominate .form-wrapper {
+  margin-bottom: 0 !important; }
+#footlocker-nominate .pane-content {
+  padding-bottom: 0 !important; }
+#footlocker-nominate #edit-submit {
+  color: white;
+  background: #e31837;
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  padding: 2px 6px 2px 8px; }
+#footlocker-nominate #edit-actions {
+  position: absolute;
+  right: -20px;
+  bottom: -20px; }
+#footlocker-nominate .webform-component {
+  width: 220px; }
+  #footlocker-nominate .webform-component input:focus {
+    background: lightyellow; }
+#footlocker-nominate #webform-component-copy {
+  width: 100%;
+  font-size: 16px;
+  margin: 0 0 18px 0;
+  line-height: 1.3em; }
+
+.center {
+  text-align: center; }
+
+.fl-paragraph {
+  font-size: 16px;
+  margin: 16px auto -10px auto;
+  width: 80%;
+  text-align: center; }
+
+.winners-pane h2 {
+  height: 36px; }
+.winners-pane .white-line {
+  border-top: 3px solid white;
+  width: 98%;
+  position: absolute;
+  top: 18px;
+  left: 1%; }
+.winners-pane .white-text {
+  background: #e31837;
+  padding: 0 12px;
+  position: relative;
+  top: -13px; }
+
+.fl-hat, .fl-cup, .fl-flag {
+  display: block;
+  margin: auto;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important; }
+
+.field-name-field-campaign-logo img {
+  padding-bottom: 10px !important; }
+
+.field-name-field-campain-date {
+  padding-top: 20px; }
+
+.fl-popup-main-text {
+  text-transform: uppercase;
+  font-size: 54px;
+  font-weight: bold;
+  line-height: 1.2em !important;
+  font-family: din-web;
+  margin-bottom: 20px; }
+
+.fl-popup-subtext {
+  font-size: 22px;
+  font-family: din-web;
+  line-height: 1.4em !important;
+  color: #e31837 !important;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0; }
+  .fl-popup-subtext span {
+    font-weight: bold;
+    text-decoration: underline; }
+
+#fl-nominate-confirmation-popup a {
+  margin-top: 30px;
+  padding: 5px 5px 0 5px;
+  background: #f1f1f1;
+  border: 5px solid #df3049;
+  color: black;
+  font-size: 24px;
+  font-family: din-web;
+  text-transform: uppercase; }
+  #fl-nominate-confirmation-popup a:hover {
+    text-decoration: none; }
+#fl-nominate-confirmation-popup .fl-popup-btn {
+  margin-top: 40px;
+  text-align: center; }
+#fl-nominate-confirmation-popup .fl-popup-main-text {
+  font-size: 52px !important; }
+
+.ui-icon.ui-icon-closethick {
+  text-indent: -9999px; }
+
+.apply-headline h2.apply-button {
+  position: absolute;
+  top: 18px;
+  right: 115px;
+  font-size: 36px;
+  padding: 20px 20px 32px;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px; }
+  .apply-headline h2.apply-button a {
+    color: black;
+    text-shadow: 1px 1px 3px white; }
+    .apply-headline h2.apply-button a:hover {
+      text-decoration: none;
+      color: #1b1b1b;
+      text-shadow: -1px -1px 3px white; }
+
+hr.gray {
+  border-top: 1px solid lightgrey;
+  border-bottom: none;
+  clear: both; }
+
+.redhead-box {
+  text-align: center;
+  margin-top: 20px; }
+
+.redhead {
+  background: #e31837;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  margin: -7px auto 15px auto;
+  clear: both;
+  padding: 12px;
+  font-size: 28px; }
+
+.page-node-719430 .phases h2 {
+  text-transform: uppercase; }
+.page-node-719430 .phases li {
+  font-size: 14px; }
+
+.judging-box, .application-box, .questions-box {
+  float: left;
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 30px; }
+  .judging-box h3, .application-box h3, .questions-box h3 {
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-bottom: 15px; }
+
+.judging-box {
+  position: relative; }
+  .judging-box img {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    margin-left: -64px; }
+  .judging-box p {
+    margin-top: 168px; }
+
+.application-box {
+  width: 248px;
+  border-right: 1px solid lightgrey;
+  border-left: 1px solid lightgrey; }
+
+.date-box {
+  float: left;
+  width: 172px;
+  border: 1px solid #d1d1d1;
+  margin: 15px 20px 40px 0px;
+  height: 125px;
+  -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.25);
+  box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.5); }
+  .date-box h2 {
+    text-transform: uppercase;
+    text-align: center;
+    background: #e31837;
+    color: white;
+    font-size: 30px;
+    padding: 12px 0 6px 0; }
+  .date-box p {
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 10px;
+    line-height: 1.2em; }
+
+.last-date-box {
+  margin-right: 0px; }
+
+#node-724592 form, #node-724596 form, #node-724597 form, #node-724764 form, #node-724859 form, #node-724594 form, #node-724595 form {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
+  #node-724592 form input, #node-724596 form input, #node-724597 form input, #node-724764 form input, #node-724859 form input, #node-724594 form input, #node-724595 form input {
+    border: 1px solid #f1f1f1 !important; }
+#node-724592 .field-name-group-audience, #node-724592 .field-name-field-recommendation-form, #node-724592 .field-name-field-application-form, #node-724592 .field-type-node-reference, #node-724596 .field-name-group-audience, #node-724596 .field-name-field-recommendation-form, #node-724596 .field-name-field-application-form, #node-724596 .field-type-node-reference, #node-724597 .field-name-group-audience, #node-724597 .field-name-field-recommendation-form, #node-724597 .field-name-field-application-form, #node-724597 .field-type-node-reference, #node-724764 .field-name-group-audience, #node-724764 .field-name-field-recommendation-form, #node-724764 .field-name-field-application-form, #node-724764 .field-type-node-reference, #node-724859 .field-name-group-audience, #node-724859 .field-name-field-recommendation-form, #node-724859 .field-name-field-application-form, #node-724859 .field-type-node-reference, #node-724594 .field-name-group-audience, #node-724594 .field-name-field-recommendation-form, #node-724594 .field-name-field-application-form, #node-724594 .field-type-node-reference, #node-724595 .field-name-group-audience, #node-724595 .field-name-field-recommendation-form, #node-724595 .field-name-field-application-form, #node-724595 .field-type-node-reference {
+  display: none; }
+#node-724592 .formhead, #node-724596 .formhead, #node-724597 .formhead, #node-724764 .formhead, #node-724859 .formhead, #node-724594 .formhead, #node-724595 .formhead {
+  text-transform: uppercase;
+  font-size: 28px; }
+#node-724592 label, #node-724596 label, #node-724597 label, #node-724764 label, #node-724859 label, #node-724594 label, #node-724595 label {
+  font-size: 14px;
+  margin-top: 20px; }
+#node-724592 .form-wrapper, #node-724596 .form-wrapper, #node-724597 .form-wrapper, #node-724764 .form-wrapper, #node-724859 .form-wrapper, #node-724594 .form-wrapper, #node-724595 .form-wrapper {
+  margin-bottom: 0 !important; }
+#node-724592 #webform-component-one-of-the-following, #node-724596 #webform-component-one-of-the-following, #node-724597 #webform-component-one-of-the-following, #node-724764 #webform-component-one-of-the-following, #node-724859 #webform-component-one-of-the-following, #node-724594 #webform-component-one-of-the-following, #node-724595 #webform-component-one-of-the-following {
+  margin-top: 10px; }
+  #node-724592 #webform-component-one-of-the-following p, #node-724596 #webform-component-one-of-the-following p, #node-724597 #webform-component-one-of-the-following p, #node-724764 #webform-component-one-of-the-following p, #node-724859 #webform-component-one-of-the-following p, #node-724594 #webform-component-one-of-the-following p, #node-724595 #webform-component-one-of-the-following p {
+    margin: 0; }
+#node-724592 #webform-component-cumulative-sat-score, #node-724592 #webform-component-cumulative-act-score, #node-724592 #webform-component-pre-sat-score, #node-724592 #webform-component-plan-score, #node-724596 #webform-component-cumulative-sat-score, #node-724596 #webform-component-cumulative-act-score, #node-724596 #webform-component-pre-sat-score, #node-724596 #webform-component-plan-score, #node-724597 #webform-component-cumulative-sat-score, #node-724597 #webform-component-cumulative-act-score, #node-724597 #webform-component-pre-sat-score, #node-724597 #webform-component-plan-score, #node-724764 #webform-component-cumulative-sat-score, #node-724764 #webform-component-cumulative-act-score, #node-724764 #webform-component-pre-sat-score, #node-724764 #webform-component-plan-score, #node-724859 #webform-component-cumulative-sat-score, #node-724859 #webform-component-cumulative-act-score, #node-724859 #webform-component-pre-sat-score, #node-724859 #webform-component-plan-score, #node-724594 #webform-component-cumulative-sat-score, #node-724594 #webform-component-cumulative-act-score, #node-724594 #webform-component-pre-sat-score, #node-724594 #webform-component-plan-score, #node-724595 #webform-component-cumulative-sat-score, #node-724595 #webform-component-cumulative-act-score, #node-724595 #webform-component-pre-sat-score, #node-724595 #webform-component-plan-score {
+  margin-left: 20px; }
+  #node-724592 #webform-component-cumulative-sat-score label, #node-724592 #webform-component-cumulative-act-score label, #node-724592 #webform-component-pre-sat-score label, #node-724592 #webform-component-plan-score label, #node-724596 #webform-component-cumulative-sat-score label, #node-724596 #webform-component-cumulative-act-score label, #node-724596 #webform-component-pre-sat-score label, #node-724596 #webform-component-plan-score label, #node-724597 #webform-component-cumulative-sat-score label, #node-724597 #webform-component-cumulative-act-score label, #node-724597 #webform-component-pre-sat-score label, #node-724597 #webform-component-plan-score label, #node-724764 #webform-component-cumulative-sat-score label, #node-724764 #webform-component-cumulative-act-score label, #node-724764 #webform-component-pre-sat-score label, #node-724764 #webform-component-plan-score label, #node-724859 #webform-component-cumulative-sat-score label, #node-724859 #webform-component-cumulative-act-score label, #node-724859 #webform-component-pre-sat-score label, #node-724859 #webform-component-plan-score label, #node-724594 #webform-component-cumulative-sat-score label, #node-724594 #webform-component-cumulative-act-score label, #node-724594 #webform-component-pre-sat-score label, #node-724594 #webform-component-plan-score label, #node-724595 #webform-component-cumulative-sat-score label, #node-724595 #webform-component-cumulative-act-score label, #node-724595 #webform-component-pre-sat-score label, #node-724595 #webform-component-plan-score label {
+    width: 150px;
+    float: left;
+    clear: both;
+    margin-top: 7px; }
+  #node-724592 #webform-component-cumulative-sat-score input, #node-724592 #webform-component-cumulative-act-score input, #node-724592 #webform-component-pre-sat-score input, #node-724592 #webform-component-plan-score input, #node-724596 #webform-component-cumulative-sat-score input, #node-724596 #webform-component-cumulative-act-score input, #node-724596 #webform-component-pre-sat-score input, #node-724596 #webform-component-plan-score input, #node-724597 #webform-component-cumulative-sat-score input, #node-724597 #webform-component-cumulative-act-score input, #node-724597 #webform-component-pre-sat-score input, #node-724597 #webform-component-plan-score input, #node-724764 #webform-component-cumulative-sat-score input, #node-724764 #webform-component-cumulative-act-score input, #node-724764 #webform-component-pre-sat-score input, #node-724764 #webform-component-plan-score input, #node-724859 #webform-component-cumulative-sat-score input, #node-724859 #webform-component-cumulative-act-score input, #node-724859 #webform-component-pre-sat-score input, #node-724859 #webform-component-plan-score input, #node-724594 #webform-component-cumulative-sat-score input, #node-724594 #webform-component-cumulative-act-score input, #node-724594 #webform-component-pre-sat-score input, #node-724594 #webform-component-plan-score input, #node-724595 #webform-component-cumulative-sat-score input, #node-724595 #webform-component-cumulative-act-score input, #node-724595 #webform-component-pre-sat-score input, #node-724595 #webform-component-plan-score input {
+    margin-bottom: 10px;
+    width: 100px; }
+#node-724592 .webform-client-form #edit-actions, #node-724596 .webform-client-form #edit-actions, #node-724597 .webform-client-form #edit-actions, #node-724764 .webform-client-form #edit-actions, #node-724859 .webform-client-form #edit-actions, #node-724594 .webform-client-form #edit-actions, #node-724595 .webform-client-form #edit-actions {
+  bottom: 120px;
+  left: 0px;
+  right: auto; }
+  #node-724592 .webform-client-form #edit-actions input.form-submit, #node-724596 .webform-client-form #edit-actions input.form-submit, #node-724597 .webform-client-form #edit-actions input.form-submit, #node-724764 .webform-client-form #edit-actions input.form-submit, #node-724859 .webform-client-form #edit-actions input.form-submit, #node-724594 .webform-client-form #edit-actions input.form-submit, #node-724595 .webform-client-form #edit-actions input.form-submit {
+    font-size: 24px; }
+  #node-724592 .webform-client-form #edit-actions #edit-previous, #node-724592 .webform-client-form #edit-actions #edit-next, #node-724596 .webform-client-form #edit-actions #edit-previous, #node-724596 .webform-client-form #edit-actions #edit-next, #node-724597 .webform-client-form #edit-actions #edit-previous, #node-724597 .webform-client-form #edit-actions #edit-next, #node-724764 .webform-client-form #edit-actions #edit-previous, #node-724764 .webform-client-form #edit-actions #edit-next, #node-724859 .webform-client-form #edit-actions #edit-previous, #node-724859 .webform-client-form #edit-actions #edit-next, #node-724594 .webform-client-form #edit-actions #edit-previous, #node-724594 .webform-client-form #edit-actions #edit-next, #node-724595 .webform-client-form #edit-actions #edit-previous, #node-724595 .webform-client-form #edit-actions #edit-next {
+    width: inherit !important;
+    padding: 0 10px; }
+  #node-724592 .webform-client-form #edit-actions #edit-previous, #node-724592 .webform-client-form #edit-actions #edit-next, #node-724592 .webform-client-form #edit-actions #edit-draft, #node-724596 .webform-client-form #edit-actions #edit-previous, #node-724596 .webform-client-form #edit-actions #edit-next, #node-724596 .webform-client-form #edit-actions #edit-draft, #node-724597 .webform-client-form #edit-actions #edit-previous, #node-724597 .webform-client-form #edit-actions #edit-next, #node-724597 .webform-client-form #edit-actions #edit-draft, #node-724764 .webform-client-form #edit-actions #edit-previous, #node-724764 .webform-client-form #edit-actions #edit-next, #node-724764 .webform-client-form #edit-actions #edit-draft, #node-724859 .webform-client-form #edit-actions #edit-previous, #node-724859 .webform-client-form #edit-actions #edit-next, #node-724859 .webform-client-form #edit-actions #edit-draft, #node-724594 .webform-client-form #edit-actions #edit-previous, #node-724594 .webform-client-form #edit-actions #edit-next, #node-724594 .webform-client-form #edit-actions #edit-draft, #node-724595 .webform-client-form #edit-actions #edit-previous, #node-724595 .webform-client-form #edit-actions #edit-next, #node-724595 .webform-client-form #edit-actions #edit-draft {
+    margin-bottom: 15px; }
+#node-724592 h2.other, #node-724596 h2.other, #node-724597 h2.other, #node-724764 h2.other, #node-724859 h2.other, #node-724594 h2.other, #node-724595 h2.other {
+  font-size: 28px;
+  margin-top: 28px;
+  text-transform: uppercase; }
+#node-724592 h3, #node-724596 h3, #node-724597 h3, #node-724764 h3, #node-724859 h3, #node-724594 h3, #node-724595 h3 {
+  color: #e31837; }
+  #node-724592 h3 span, #node-724596 h3 span, #node-724597 h3 span, #node-724764 h3 span, #node-724859 h3 span, #node-724594 h3 span, #node-724595 h3 span {
+    color: gray; }
+#node-724592 textarea, #node-724596 textarea, #node-724597 textarea, #node-724764 textarea, #node-724859 textarea, #node-724594 textarea, #node-724595 textarea {
+  margin: 10px 0 20px 0; }
+#node-724592 label[for=edit-submitted-contact-me], #node-724592 label[for=edit-submitted-legal-stuff], #node-724592 label[for=edit-submitted-confirm-true], #node-724592 label[for=edit-submitted-permission], #node-724596 label[for=edit-submitted-contact-me], #node-724596 label[for=edit-submitted-legal-stuff], #node-724596 label[for=edit-submitted-confirm-true], #node-724596 label[for=edit-submitted-permission], #node-724597 label[for=edit-submitted-contact-me], #node-724597 label[for=edit-submitted-legal-stuff], #node-724597 label[for=edit-submitted-confirm-true], #node-724597 label[for=edit-submitted-permission], #node-724764 label[for=edit-submitted-contact-me], #node-724764 label[for=edit-submitted-legal-stuff], #node-724764 label[for=edit-submitted-confirm-true], #node-724764 label[for=edit-submitted-permission], #node-724859 label[for=edit-submitted-contact-me], #node-724859 label[for=edit-submitted-legal-stuff], #node-724859 label[for=edit-submitted-confirm-true], #node-724859 label[for=edit-submitted-permission], #node-724594 label[for=edit-submitted-contact-me], #node-724594 label[for=edit-submitted-legal-stuff], #node-724594 label[for=edit-submitted-confirm-true], #node-724594 label[for=edit-submitted-permission], #node-724595 label[for=edit-submitted-contact-me], #node-724595 label[for=edit-submitted-legal-stuff], #node-724595 label[for=edit-submitted-confirm-true], #node-724595 label[for=edit-submitted-permission] {
+  display: none; }
+
+.fl-form-footer {
+  float: left;
+  width: 100%;
+  margin: 40px 0 0 0; }
+  .fl-form-footer img {
+    float: right; }
+  .fl-form-footer hr {
+    clear: both; }
+  .fl-form-footer p {
+    text-align: right; }
+
+.status-btn {
+  display: inline-block; }
+  .status-btn a {
+    font-weight: 800;
+    line-height: 27px;
+    color: #333131; }
+    .status-btn a:hover {
+      text-decoration: none; }
+
+#node-724597 .description, #node-724596 .description, #node-724594 .description, #node-724595 .description {
+  width: 300px; }
+#node-724597 #edit-actions, #node-724596 #edit-actions, #node-724594 #edit-actions, #node-724595 #edit-actions {
+  position: relative;
+  text-align: center !important;
+  margin: -34px; }
+#node-724597 #webform-component-recommendation-1, #node-724597 #webform-component-recommendation-2, #node-724597 #edit-submitted-field-application, #node-724597 #edit-submitted-field-webform-name, #node-724597 #webform-component-relationship-to-you, #node-724597 #edit-submitted-field-webform-email, #node-724597 #webform-component-phone-number, #node-724596 #webform-component-recommendation-1, #node-724596 #webform-component-recommendation-2, #node-724596 #edit-submitted-field-application, #node-724596 #edit-submitted-field-webform-name, #node-724596 #webform-component-relationship-to-you, #node-724596 #edit-submitted-field-webform-email, #node-724596 #webform-component-phone-number, #node-724594 #webform-component-recommendation-1, #node-724594 #webform-component-recommendation-2, #node-724594 #edit-submitted-field-application, #node-724594 #edit-submitted-field-webform-name, #node-724594 #webform-component-relationship-to-you, #node-724594 #edit-submitted-field-webform-email, #node-724594 #webform-component-phone-number, #node-724595 #webform-component-recommendation-1, #node-724595 #webform-component-recommendation-2, #node-724595 #edit-submitted-field-application, #node-724595 #edit-submitted-field-webform-name, #node-724595 #webform-component-relationship-to-you, #node-724595 #edit-submitted-field-webform-email, #node-724595 #webform-component-phone-number {
+  margin-left: 200px; }
+  #node-724597 #webform-component-recommendation-1 input, #node-724597 #webform-component-recommendation-2 input, #node-724597 #edit-submitted-field-application input, #node-724597 #edit-submitted-field-webform-name input, #node-724597 #webform-component-relationship-to-you input, #node-724597 #edit-submitted-field-webform-email input, #node-724597 #webform-component-phone-number input, #node-724596 #webform-component-recommendation-1 input, #node-724596 #webform-component-recommendation-2 input, #node-724596 #edit-submitted-field-application input, #node-724596 #edit-submitted-field-webform-name input, #node-724596 #webform-component-relationship-to-you input, #node-724596 #edit-submitted-field-webform-email input, #node-724596 #webform-component-phone-number input, #node-724594 #webform-component-recommendation-1 input, #node-724594 #webform-component-recommendation-2 input, #node-724594 #edit-submitted-field-application input, #node-724594 #edit-submitted-field-webform-name input, #node-724594 #webform-component-relationship-to-you input, #node-724594 #edit-submitted-field-webform-email input, #node-724594 #webform-component-phone-number input, #node-724595 #webform-component-recommendation-1 input, #node-724595 #webform-component-recommendation-2 input, #node-724595 #edit-submitted-field-application input, #node-724595 #edit-submitted-field-webform-name input, #node-724595 #webform-component-relationship-to-you input, #node-724595 #edit-submitted-field-webform-email input, #node-724595 #webform-component-phone-number input {
+    width: 300px;
+    border: 1px solid #f1f1f1 !important; }
+
+.page-node-728045 .pane-content h3, .page-node-728045 .pane-content h4 {
+  text-transform: uppercase;
+  font-size: 24px;
+  color: black;
+  line-height: 1em; }
+  .page-node-728045 .pane-content h3 a, .page-node-728045 .pane-content h4 a {
+    text-transform: lowercase;
+    text-decoration: underline;
+    color: #e31837;
+    font-size: 20px; }
+.page-node-728045 .pane-content h3, .page-node-728045 .pane-content .send-request {
+  margin-bottom: 15px;
+  color: black; }
+  .page-node-728045 .pane-content h3 span, .page-node-728045 .pane-content .send-request span {
+    color: #e31837; }
+.page-node-728045 .pane-content h4 span {
+  color: #e31837; }
+.page-node-728045 .pane-content .send-request {
+  margin-top: 6px; }
+.page-node-728045 .pane-content li {
+  font-size: 14px; }
+.page-node-728045 .status-incomplete, .page-node-728045 .status-complete, .page-node-728045 .status-empty {
+  padding: 5px 0 0 34px;
+  margin-bottom: 25px; }
+.page-node-728045 .status-incomplete {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-red.png") no-repeat left center; }
+.page-node-728045 .status-complete {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-green.png") no-repeat left center; }
+.page-node-728045 .status-empty {
+  background: url("http://files.dosomething.org/files/campaigns/footlocker/circle-blank.png") no-repeat left center; }
+.page-node-728045 .send-request {
+  font-size: 16px; }
+  .page-node-728045 .send-request a {
+    color: #e31837;
+    text-decoration: underline; }
+  .page-node-728045 .send-request a.go-button {
+    color: white;
+    text-decoration: none; }
+.page-node-728045 .go-button {
+  position: static;
+  color: white;
+  border-radius: 0;
+  padding-top: 4px !important;
+  font-weight: normal;
+  margin-left: 24px;
+  background: #e31837; }
+.page-node-728045 .the-indent {
+  margin-left: 15px; }
+
+.fl-bottom-pane {
+  padding-bottom: 0 !important;
+  margin-bottom: -24px 0px; }
+  .fl-bottom-pane .pane-content {
+    padding-bottom: 0 !important; }
+
+.login-large {
+  margin-top: 10px;
+  font-size: 48px;
+  line-height: 1em;
+  text-transform: uppercase;
+  text-align: center; }
+  .login-large span {
+    color: #e31837; }
+  .login-large a.go-button {
+    position: static;
+    font-size: 24px;
+    text-shadow: 1px 1px 3px white; }
+    .login-large a.go-button:hover {
+      text-decoration: none;
+      color: #1b1b1b;
+      text-shadow: -1px -1px 3px white; }
+
+#block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5 {
+  display: none; }
+
+.page-node-724722 .pane-content h2 {
+  text-transform: uppercase; }
+.page-node-724722 .pane-content li {
+  font-size: 14px; }
+.page-node-724722 .pane-content ul {
+  margin: 20px 0; }
+
+p.judge-intro {
+  font-size: 16px;
+  line-height: 1.4em; }
+
+.judges {
+  margin: 0 40px;
+  padding: 0;
+  list-style-type: none; }
+  .judges img {
+    margin: 0px 50px;
+    box-shadow: 0px 0px 8px #e1e1e1 !important; }
+  .judges li {
+    float: left;
+    list-style: none; }
+  .judges h3 {
+    background-color: #e31837;
+    color: white;
+    margin-bottom: 15px;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 18px;
+    margin: 0px 50px 36px; }
+  .judges a {
+    color: white;
+    text-decoration: none; }
+    .judges a:hover {
+      text-decoration: none; }
+
+.page-node-719431 .ui-dialog, .page-node-724872 .ui-dialog {
+  width: 500px !important; }
+.page-node-719431 .ui-icon-closethick, .page-node-724872 .ui-icon-closethick {
+  left: 0 !important; }
+
+.faq {
+  margin-bottom: 5px; }
+  .faq h4 {
+    color: #e31837;
+    background-image: url("http://files.dosomething.org/files/campaigns/vote/vote-red-arrow.png");
+    background-repeat: no-repeat;
+    background-position-y: 6px;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1.2em;
+    margin-top: 10px; }
+  .faq h4, .faq p {
+    padding-left: 15px; }
+  .faq .activeFAQ {
+    background-image: url("http://files.dosomething.org/files/campaigns/vote/vote-downarrow.png");
+    color: black; }
+
+.fl-confirm {
+  width: 500px;
+  margin: 0 auto;
+  line-height: 1.3em;
+  text-align: center; }
+
+.ui-icon.ui-icon-closethick {
+  top: -15px;
+  left: -100px; }
+
+#edit-submitted-field-webform-school-reference-und-0-target-id legend {
+  padding: 20px 0 0 !important; }

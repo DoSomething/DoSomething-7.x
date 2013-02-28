@@ -1,0 +1,36 @@
+// BASE 
+
+// backgrounds colors
+$dividerBG: #241F20
+$buttonBG: #ffcb15
+$transBG: rgba(0, 0, 0, 0.9)
+
+
+// colors
+$mainColor: #292929
+$secondaryColor: #26C7C2
+$offBlack: #1E1D1C
+$pinkColor: #E41444
+$yellowColor: #FFC40B
+$orangeColor: #FF9A0F
+$grayColor: #292929
+
+// link color
+$mainLink: #18408B
+
+
+// font-family
+$din: din-web-reg,"Trebuchet MS",sans-serif
+
+// mixin definitions
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@function em-calc($target)
+  @return ($target/16)*1em

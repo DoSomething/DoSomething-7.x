@@ -1,0 +1,41 @@
+// BASE 
+
+// backgrounds colors
+$fallbackBG: #00AF56
+$panelBG: #FF4600
+$scholarshipBG: #57CB41
+$dividerBG: #241F20
+$buttonBG: #ffcb15
+$linkBG: #009452
+$transBG: rgba(0, 0, 0, 0.9)
+$borderColor: #ccc
+$button: #FFCB15
+$facebookBlue: #3B5998
+
+// colors
+$mainColor: #000000
+$secondaryColor: #009452
+$thirdColor: #2058BD
+$offBlack: #1E1D1C
+$yellow: #F7C000
+$mainCopy: #fff
+
+// link color
+$mainLink: #009452
+$navLink: #009452
+
+// font-family
+$din: din-web-reg,"Trebuchet MS",sans-serif
+
+// mixin definitions
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@function em-calc($target)
+  @return ($target/16)*1em

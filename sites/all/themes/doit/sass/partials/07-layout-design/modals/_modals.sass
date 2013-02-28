@@ -3,11 +3,11 @@
 ////////////////////////////
 
 .ui-dialog
-  @extend .white
+  @extend %white
   background: $gray3
   border: none
   padding: 23px
-  @extend .clearfix
+  @extend %clearfix
   +border-radius(0)
   .ui-dialog-content
     padding: 0
@@ -51,7 +51,7 @@
   input
     &[type="text"],
     &[type="textarea"]
-      @extend .white
+      @extend %white
       background: $gray2
       +box-shadow(none)
       +float-left

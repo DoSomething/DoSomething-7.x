@@ -1,10 +1,8 @@
 p
   margin-top: 0
-
-hr
-
+  
 pre
-  @extend .mono
+  @extend %mono
   margin: $base-rhythm-unit
   white-space: pre
   white-space: pre-wrap
@@ -31,8 +29,8 @@ ol
     // text-indent: -1.2em
     margin-bottom: $kit-baseline
     &:before
-      @extend .headers
-      @extend .bold
+      @extend %headers
+      @extend %bold
       font-size: $s5
 
 ul
@@ -50,9 +48,5 @@ dt
 dd
   padding-left: $kit-gutter
 
-figure
-
-figcaption
-
 address
-  @extend .italic
+  @extend %italic

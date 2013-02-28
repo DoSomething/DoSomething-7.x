@@ -19,9 +19,10 @@ $ratio: $golden !default
 $base-size: 12px !default
 $property: font-size !default
 $class-slug: ms !default
+$round_pixels: true !default
 
 // Modular Scale function
-@function modular-scale($multiple, $base-size, $ratio)
+@function modular-scale($multiple, $base-size: $base-size, $ratio: $ratio, $round_pixels: $round_pixels)
   // return the $base-size if $multiple is zero
   @if $multiple == 0
     @return $base-size
@@ -81,9 +82,9 @@ $class-slug: ms !default
     @return $modular-scale
 
 // Shortcut
-@function ms($multiple, $base-size, $ratio)
+@function ms($args...)
   // Return the value from the Modular Scale function
-  @return modular-scale($multiple, $base-size, $ratio)
+  @return modular-scale($args...)
 
 // Mixin
 =modular-scale($property, $multiple, $base-size, $ratio)

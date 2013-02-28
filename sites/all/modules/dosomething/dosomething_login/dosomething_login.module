@@ -515,7 +515,14 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
  */
 function dosomething_login_register_popup_form($form, &$form_state) {
   // we want to cache this form, because we'll be using ajax_get_form, which requires that the form be secure
-  $fb_link = fboauth_action_link_properties('connect', current_path());
+  if ($_GET['destination']) {
+    $path = $_GET['destination'];
+  }
+  else {
+    $path = current_path();
+  }
+
+  $fb_link = fboauth_action_link_properties('connect', $path);
   $fb_url = url($fb_link['href'], array('query' => $fb_link['query']));
   $form_state['cache'] = true;
   $form['#validate'][] = 'dosomething_login_register_block_validate';
@@ -1081,9 +1088,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   drupal_write_record('profile', $profile);
   $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $values['first_name'];
   $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $values['last_name'];
-  $birthday = new DateObject($birthdate);
-  $time = $birthday->format(DATE_FORMAT_DATETIME);
-  $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = $time;
+  $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = date('Y-m-d h:i:s', strtotime($birthdate));
   $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($birthdate, 13);
   $profile->field_user_newsletter_optin[LANGUAGE_NONE][0]['value'] = 1;
 
@@ -1135,8 +1140,10 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $merge_vars['TURNS26'] = date('m/d/Y', strtotime('+26 years', $birthdate));
   
   // Phone
-  $merge_vars['MMERGE7'] = $form_state['values']['phone'];
-
+  if ($form_state['values']['phone'] != '') {
+    $merge_vars['MMERGE7'] = $form_state['values']['phone'];
+  }
+  
   // Submit to MailChimp
   dosomething_general_mailchimp_subscribe($account->mail, 'NewMembers2012', $merge_vars);
   

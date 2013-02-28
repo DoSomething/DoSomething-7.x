@@ -7,13 +7,13 @@
 .logged-in #block-dosomething-login-become-member
   padding: 0 0 5px 0
   .dosomething-login-user-name
-    @extend .block-header
+    @extend %block-header
     height: 36px
     padding: 0
     h2
       padding: 6px 12px 6px 12px
-      @extend .bold
-      @extend .white
+      @extend %bold
+      @extend %white
       line-height: 22px !important
       font-size: 23px !important
       background-color: $blue
@@ -39,17 +39,17 @@
         max-width: 100%
         width: 0%
       .label
-        @extend .highlight-on-dark
-        @extend .small
+        @extend %highlight-on-dark
+        @extend %small
   .profile-footer
     margin-top: 25px
     margin-bottom: 15px
-    @extend .clearfix
+    @extend %clearfix
     .complete-profile
       font-size: $s1
-      @extend .headers
-      @extend .bold
-      @extend .white
+      @extend %headers
+      @extend %bold
+      @extend %white
       display: inline
       line-height: 30px
     .complete-link
@@ -57,7 +57,7 @@
       float: right
       margin-top: 6px
       a
-        @extend .go-button
+        @extend %go-button
         float: none
   .dosomething-login-profile
     border-bottom: 1px $black solid
@@ -65,8 +65,8 @@
   .doing-it,
   .done-it,
   .my-clubs
-    @extend .white
-    @extend .bold
+    @extend %white
+    @extend %bold
     .inner
       padding: 2px 5px
       +background(image_url("btn-leftsidebar-feeds-plus.png") no-repeat 168px center)
@@ -75,7 +75,7 @@
         +background(image_url("btn-leftsidebar-feeds-minus.png") no-repeat 168px center)
     ul,
     li
-      @extend .member-expanded
+      @extend %member-expanded
       list-style: none
     li
       margin-left: 5px

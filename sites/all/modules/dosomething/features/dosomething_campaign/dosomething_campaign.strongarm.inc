@@ -39,10 +39,10 @@ function dosomething_campaign_strongarm() {
           'weight' => '0',
         ),
         'redirect' => array(
-          'weight' => '14',
+          'weight' => '9',
         ),
         'path' => array(
-          'weight' => '15',
+          'weight' => '10',
         ),
       ),
       'display' => array(),

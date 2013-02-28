@@ -8,6 +8,9 @@ include_once 'crazyshit.features.inc';
 
 define('CRAZY_DOMAIN', variable_get('crazy_domain', 'www.dosomething.org'));
 define('CRAZY_AUTH_PAGES', serialize(explode(',', variable_get('crazy_auth_pages', 'friends,submit'))));
+define('CRAZY_MAILCHIMP_GROUP', 'CraziestThing2013');
+define('CRAZY_RANKING_POINT', 43200); // in seconds
+define('CRAZY_GRACE_PERIOD', 3600); // in seconds
 
 /**
  *	Implements hook_menu()
@@ -45,6 +48,12 @@ function crazyshit_menu() {
 	  'access callback' => TRUE,
 	);
 
+	$items['crazy/fb-share/%'] = array(
+	  'page callback' => 'crazyshit_fb_share',
+	  'page arguments' => array(2),
+	  'access callback' => TRUE,
+	);
+
 	$items['crazy/fb-connect'] = array(
 	  'page callback' => 'crazyshit_fb_connect',
 	  'access callback' => TRUE
@@ -55,7 +64,37 @@ function crazyshit_menu() {
 	  'access callback' => TRUE,
 	);
 
+	$items['crazy/flag/%'] = array(
+	  'page callback' => 'crazyshit_flag',
+	  'page arguments' => array(2),
+	  'access arguments' => array('administer users'),
+	);
+
 	return $items;
+}
+
+function crazyshit_flag($sid) {
+  if (!intval($sid)) {
+  	 return false;
+  }
+  $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+  if (!isset($submission->sid)) {
+    return false;
+  }
+
+  $state = 1;
+  if ($submission->field_crazy_flagged[LANGUAGE_NONE][0]['value'] == 1) {
+  	$submission->field_crazy_flagged[LANGUAGE_NONE][0]['value'] = 0;
+  	$state = 0;
+  }
+  else {
+  	$submission->field_crazy_flagged[LANGUAGE_NONE][0]['value'] = 1;
+  }
+
+  @entity_save('webform_submission_entity', $submission);
+
+  echo $state;
+  drupal_exit();
 }
 
 /**
@@ -74,11 +113,58 @@ function crazyshit_is_crazy_page($page = '') {
 	$page = request_uri();
   }
 
-  if (preg_match('#^\/' . CRAZY_ROOT . '#i', $page)) {
+  if (preg_match('#^\/crazy#i', $page)) {
 	return true;
   }
 
   return false;
+}
+
+/**
+ *  Implements hook_css_alter()
+ *	Removes unused styles.
+ */
+function crazyshit_css_alter(&$css) {
+  if (crazyshit_is_crazy_page()) {
+	$unused = array(
+	   'sites/all/modules/date/date_api/date.css',
+	   'sites/all/modules/date/date_popup/themes/datepicker.1.7.css',
+	   'modules/field/theme/field.css',
+	   'modules/node/node.css',
+	   'modules/poll/poll.css',
+	   'modules/user/user.css',
+	   'sites/all/modules/views_slideshow/views_slideshow.css',
+	   'sites/all/modules/dosomething/dosomething_blocks/css/twitter-widget.css',
+	);
+	foreach ($unused AS $style) {
+	  unset($css[$style]);
+	}
+  }
+}
+
+/**
+ *  Implements hook_js_alter()
+ *	Removes unused scripts.
+ */
+function crazyshit_js_alter(&$js) {
+  if (crazyshit_is_crazy_page()) {
+    $unused = array(
+      'sites/all/modules/dosomething/dosomething_blocks/js/lets_talk_dialog.js',
+      'sites/all/modules/dosomething/dosomething_blocks/js/show-facebook-twitter.js',
+      'sites/all/modules/dosomething/dosomething_menu/js/ds-main-menu.js',
+      'sites/all/themes/doit/js/formalize/jquery.formalize.min.js',
+      'sites/all/themes/doit/js/jQuery-SelectBox/jquery.selectBox.min.js',
+      'sites/all/themes/doit/js/doit-select.js',
+      'sites/all/themes/doit/js/jquery.lettering-0.6.min.js',
+      'sites/all/themes/doit/js/show-search-facets.js',
+      'sites/all/themes/doit/js/doit-lettering.js',
+      'sites/all/modules/dosomething/dosomething_general/js/iframe-defer.js',
+    );
+
+    foreach ($unused AS $script) {
+      unset($js[$script]);
+    }
+  }
 }
 
 /**
@@ -100,6 +186,12 @@ function crazyshit_page_templates_alter(&$variables) {
 	  	  'href' => $href,
 	  	  'attributes' => ($info['attributes'] ? $info['attributes'] : array()),
 	  	);
+
+	  	if (preg_match('#^\/' . $match . '#i', $ru)) {
+	  	  $links[$href]['attributes'] += array(
+	  		'class' => array('active'),
+	  	  );
+	  	}
 	  }
 
 	  $sub = array();
@@ -163,7 +255,7 @@ function crazyshit_ctools_plugin_directory($module, $plugin) {
  *	Redirects from PFP Facebook app back to DoSomething.
  */
 function crazyshit_redirect_from_pfp() {
-   drupal_goto('https://' . CRAZY_DOMAIN . '/' . CRAZY_ROOT);
+   drupal_goto('https://' . CRAZY_DOMAIN . '/' . CRAZY_ROOT . '/friends?fb=1');
 }
 
 /**
@@ -235,6 +327,36 @@ function crazyshit_submit_vouch_request($sid) {
 	}
 }
 
+/**
+ *  Adds weight to posts from a Facebook image share.
+ *
+ *	@param int $sid
+ *	   The submission ID of the post that should be updated.
+ */
+function crazyshit_fb_share($sid) {
+  $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+  $total = 0;
+  if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
+    $total = (int) $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
+  }
+
+  $weight = 0;
+  // Check for existing weight and update accordingly.
+  if (isset($submission->field_craziness_weight[LANGUAGE_NONE][0]['value'])) {
+  	$weight = $submission->field_craziness_weight[LANGUAGE_NONE][0]['value'];
+  }
+
+  // We want to get the nearest 10, 100, 1000, 10000, etc...
+  $top = pow(10, strlen((string) $total));
+  $multiplier = (CRAZY_RANKING_POINT / $top);
+
+  $weight += (0.5 * $multiplier);
+
+  $submission->field_crazyness_weight[LANGUAGE_NONE][0]['value'] = $weight;
+  @entity_save('webform_submission_entity', $submission);
+}
+
 /*
 function crazyshit_submit_craziness() {
 	$submission = array_shift(entity_load('webform_submission_entity', array(intval($_POST['rel']))));
@@ -286,8 +408,8 @@ function crazyshit_update_counts($sid, $field) {
 
   // Get the current B.S. count
   $value = 0;
-  if (isset($submission->field_{$field}[LANGUAGE_NONE])) {
-     $value = $submission->{'field_' . $field}[LANGUAGE_NONE][0]['value'];
+  if (isset($submission->{'field_' . $field}[LANGUAGE_NONE])) {
+     $value = (int) $submission->{'field_' . $field}[LANGUAGE_NONE][0]['value'];
   }
 
   // BS++
@@ -298,7 +420,7 @@ function crazyshit_update_counts($sid, $field) {
 
   $total = 0;
   if (isset($submission->field_crazy_total_count[LANGUAGE_NONE])) {
-   $total = $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
+   $total = (int) $submission->field_crazy_total_count[LANGUAGE_NONE][0]['value'];
   }
 
   $total++;
@@ -306,7 +428,7 @@ function crazyshit_update_counts($sid, $field) {
 
   $total_today = 0;
   if (isset($submission->field_crazy_today_count[LANGUAGE_NONE])) {
-   $total_today = $submission->field_crazy_today_count[LANGUAGE_NONE][0]['value'];
+   $total_today = (int) $submission->field_crazy_today_count[LANGUAGE_NONE][0]['value'];
   }
 
   $total_today++;
@@ -314,13 +436,38 @@ function crazyshit_update_counts($sid, $field) {
 
   $total_week = 0;
   if (isset($submission->field_crazy_week_count[LANGUAGE_NONE])) {
-   $total_week = $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'];
+   $total_week = (int) $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'];
   }
 
   $total_week++;
   $submission->field_crazy_week_count[LANGUAGE_NONE][0]['value'] = $total_week;
 
-  entity_save('webform_submission_entity', $submission);
+  /**
+   *  Updates the craziness weight to properly order submissions.
+   */
+  $weight = 0;
+  // Check for existing weight and update accordingly.
+  if (isset($submission->field_craziness_weight[LANGUAGE_NONE][0]['value'])) {
+  	$weight = $submission->field_craziness_weight[LANGUAGE_NONE][0]['value'];
+  }
+
+  // We want to get the nearest 10, 100, 1000, 10000, etc...
+  $top = pow(10, strlen((string) $total));
+  $multiplier = (CRAZY_RANKING_POINT / $top);
+
+  // Add new weights, depending on the action.
+  switch ($field) {
+  	case 'crazy_vouch_count':
+  	   $weight += (0.75 * $multiplier);
+  	break;
+  	case 'crazy_bullshit_count':
+  	   $weight += (0.25 * $multiplier);
+  	break;
+  }
+
+  $submission->field_craziness_weight[LANGUAGE_NONE][0]['value'] = $weight;
+
+  @entity_save('webform_submission_entity', $submission);
 
   return array(
   	'sid' => $submission->sid,
@@ -407,6 +554,12 @@ function crazyshit_template_render($template, $sid) {
   if (isset($_POST['goto'])) {
 	$params['goto'] = $_POST['goto'];
   }
+
+  if (isset($_POST['source'])) {
+  	$source = substr(check_plain($_POST['source']), 1);
+  }
+
+  $params['source'] = $source;
 
   // Return the template.
   echo theme($template, $params);
@@ -509,10 +662,6 @@ function crazyshit_page_alter(&$page) {
 	    ->execute();
 	  $shares = $s->fetchAll();
 
-	  if ($_GET['debug'] == 'notification') {
-	  	echo '<pre>', print_r($shares), '</pre>';
-	  }
-
 	  $settings = array(
 	    'share_count' => count($shares),
 	    'shares' => $shares,
@@ -555,6 +704,13 @@ function crazyshit_views_post_render(&$view, &$output, &$cache) {
      // Allows for lazy loading of images...
      $output = preg_replace_callback('#src="([^\"]+)"\s+#i', 'crazyshit_add_lazy_class', $output);
      $output = str_replace(' a-' . $user->uid, ' a-' . $user->uid . ' by-me', $output);
+
+     // Very hacky but it's a quick fix for now.
+     // Will be implemented properly later.
+     $admin = user_access('delete all webform submissions');
+     if (!$admin) {
+     	$output = preg_replace('#<div class="flag">.*</div>#i', '', $output);
+     }
    }
 }
 
@@ -589,6 +745,7 @@ function crazyshit_add_lazy_class($matches) {
  */
 function crazyshit_views_query_alter(&$view, &$query) {
   if ($view->name == 'crazy_shit_landing') {
+	$uri = request_path();
 	if (preg_match('#^\/' . CRAZY_ROOT . '/(friends/)?(?<showid>[0-9]+)$#i', request_uri(), $showid)) {
 	  $showid = $showid['showid'];
 	  // Try and find the submission with this ID and mark it as relevant
@@ -611,14 +768,17 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	}
 
     if ($view->current_display == 'block') {
-      if (preg_match('#^\/' . CRAZY_ROOT . '/time-(today|week)$#i', request_uri(), $time)) {
+      if (preg_match('#^' . CRAZY_ROOT . '/time-(today|week)$#i', $uri, $time)) {
 		$time = $time[1];
 
 		// Gets submissions posted today.
 		if ($time == 'today') {
-		   $query->where[1]['conditions'][] = array(
-			 'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') = :today",
-			 'value' => array(':today' => date('Y-m-d', REQUEST_TIME)),
+		   // Note 2/27/13:
+		   // Here's a weird one: We can't use the DATE_FORMAT(etc. etc.) format as seen below for today
+		   // because it doesn't show all of the posts! So let's just use a unix timestamp format.
+		   $query->where[1]['conditions'][1] = array(
+			 'field' => "webform_submissions.submitted >= :today",
+			 'value' => array(':today' => mktime(0, 0, 0)),
 		 	 'operator' => 'formula',
 		   );
 		}
@@ -626,20 +786,37 @@ function crazyshit_views_query_alter(&$view, &$query) {
 		else if ($time == 'week') {
 		   // Monday is always the start of the week.  Get this week's Monday in days (ago).
 		   $monday = (date('N') - 1);
-		   $query->where[1]['conditions'][] = array(
+		   $query->where[1]['conditions'][1] = array(
 			  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
 			  'value' => array(
 				  ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
-				  ':today' => date('Y-m-d', REQUEST_TIME),
+				  ':today' => date('Y-m-d'),
 				),
 		  	  'operator' => 'formula',
 		   );
 		}
-	}
-  }
+	  }
+	  else if ($uri == CRAZY_ROOT) {
+	   #$query->where[1]['conditions'][1] = array(
+		#  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') > :beginning",
+		#  'value' => array(
+		#	  ':beginning' => '2012-12-01',
+		#	),
+	  	#  'operator' => 'formula',
+	  # );
+	  }
+
+	  $query->fields['real_weight'] = array(
+	    'field' => '(((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . CRAZY_GRACE_PERIOD . ') + field_data_field_craziness_weight.field_craziness_weight_value)',
+	    'table' => '',
+	    'alias' => 'real_weight',
+	  );
+	  
+	  $query->orderby[0]['field'] = 'real_weight';
+    }
 
   // If we're viewing the friends gallery page, only show submissions by my Facebook friends.
-  if (preg_match('#^\/' . CRAZY_ROOT . '\/friends#i', request_uri())) {
+  if (preg_match('#^' . CRAZY_ROOT . '\/friends#i', $uri)) {
 	$facebook = crazy_load_fb();
 	module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
 
@@ -650,15 +827,19 @@ function crazyshit_views_query_alter(&$view, &$query) {
     }
 
     $fbid = fboauth_fbid_load($user->uid);
+    if ($fbid) {
+	  $access_token = $facebook->getAccessToken();
+	  $friends = $facebook->api('/' . $fbid . '/friends');
 
-	$access_token = $facebook->getAccessToken();
-	$friends = $facebook->api('/' . $fbid . '/friends');
-
-    $f = array(
-	   0 => $fbid,
-	);
-	foreach ($friends['data'] AS $key => $friend) {
-	   $f[] = $friend['id'];
+	  $f = array(
+	    0 => $fbid,
+	  );
+	  foreach ($friends['data'] AS $key => $friend) {
+	    $f[] = $friend['id'];
+	  }
+	}
+	else {
+	  drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . variable_get('fboauth_id') . '&redirect_uri=http://' . CRAZY_DOMAIN . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
 	}
 
 	$ids = crazy_fb_get_multi_fbids($f);
@@ -670,8 +851,8 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  $c = &$s->conditions();
 	  $c['#conjunction'] = 'OR';
 
-          // remove the view's filter criteria to be replaced by the new conditional.
-          unset($query->where[1]['conditions'][1]);
+      // remove the view's filter criteria to be replaced by the new conditional.
+      unset($query->where[1]['conditions'][1]);
 
 	  // Add the conditional to the query.
 	  $query->where[1]['conditions'][] = array(
@@ -805,8 +986,8 @@ function crazy_load_fb() {
 	return;
   }
 
-  $appid = variable_get('fboauth_id');
-  $secret = variable_get('fboauth_secret');
+  $appid = variable_get('fboauth_id', 105775762330);
+  $secret = variable_get('fboauth_secret', '68e767e16e139277b1e7d2e2ba16a4f6');
 
   $facebook = new Facebook(array(
 	'appId' => $appid,
@@ -857,211 +1038,51 @@ function crazyshit_fb_connect() {
 }
 
 
-/**
- * Implements hook_init().
- */
-function crazyshit_init() {
-  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
+function crazyshit_fboauth_redirect($destination) {
+  if (strpos($destination, 'crazy') !== -1) {
+  	global $user;
+	if (!empty($user->mail)) {
+	    $mid = CRAZY_MAILCHIMP_GROUP;
+	    $email = $user->mail;
 
-  if ($_GET['debug'] == 'notifs') {
-  	echo "Outside...";
-  }
+	    if (!empty($mid) && valid_email_address($email) && !empty($email)) {
+		
+		// Add email to MailChimp group
+	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
+	       
+               $message['subject'] = 'What\'s the craziest thing you\'ve done to save money?';
+      
+               // Note that the message body is an array, not a string.
+               $message['body'][] = '<strong>Hey there!</strong>';
 
-  // Return nothing if the page isn't within the crazy $#!T module
-  if (!crazyshit_is_crazy_page()) {
-	return;
-  }
+               $message['body'][] = '<p>We\'ve all done something crazy to save money... some of us have done more than others. If you haven\'t already,
+                            <a href="http://www.dosomething.org/crazy/submit/start">submit your story</a> and you will be entered to win a $4,000
+			     scholarship to help you avoid crazy things in the future. (contest rules here)</p>';
+			     
+               $message['body'][] = '<p>I\'ll send you some highlighted stories every so often, along with a couple ideas on how they could have sanely
+                            saved money instead.  Our site is still in beta right now, so if you have any comments that could help us make it
+			    better, <strong><a href="https://docs.google.com/forms/d/1tDNHmnIrbBwXs7yrsA5Mdw4eFKTBEbQ6-0li3hQax7U/viewform">click here.
+		            </a></strong></p><br /><br />';
+			    
+               $message['body'][] = '<p>Stay Crazy,<br />Greg from DoSomething.org</p>';
+		
+               $mail_status = crazyshit_mail_send($email, $message);
 
-  if ($_GET['debug'] == 'notifs') {
-  	echo "Inside...";
-  }
+	       if (!$mail_status) {
+	         watchdog('crazyshit', 'Failed to send welcome message after user registration: %email using the parameters: %param',
+			   array('%email' => $email, '%message' => $message), WATCHDOG_ERROR);
+	       }
 
-  global $user;
+	    }
 
-  // Load the Facebook object
-  $facebook = crazy_load_fb();
-
-  // Handles Facebook user system
-  crazyshit_handle_fb_users($facebook);
-
-
-  $onpage = preg_match('#^/(' . implode('|', $crazy_notification_pages) . ')$#i', request_uri());
-  if ($_GET['debug'] == 'notifs') {
-  	echo "<p>NOTIFICATIONS: " . CRAZY_ALLOW_NOTIFICATIONS;
-  	echo "<p>On page: " . $onpage;
-  }
-
-  if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
-	// Set up an or statement for the below query.
-	#$c = db_or();
-	#$c->condition('uid', intval($user->uid));
-	#$c->condition('fid', intval($fbuser->id));
-
-	// Load any notifications the user has.
-	$n = db_select('crazy_notifications', 'n')
-	  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
-	  // Make sure it's for the currently logged in user.
-	  ->condition('uid', $user->uid)
-	  // Make sure they haven't seen it yet.
-	  ->condition('notified', 0)
-	  // Make sure it's a BS notification.
-	  ->condition('type', 2)
-	  // Make sure it comes from the friends page.
-	  ->condition('origin', 2)
-	  // Show only one at a time.
-	  ->range(0, 1)
-	  ->execute();
-	$ns = $n->fetchAll();
-	if ($_GET['debug'] == 'notifs') {
-		echo '<pre>', print_r($ns), '</pre>';
-	}
-	$notifications = reset($ns);
-	$pre = '';
-	if (!empty($notifications)) {
-	   if ($notifications->from_fid == $notifications->fid) {
-	      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true; ';
-	   }
-
- 	   $submission = array_shift(entity_load('webform_submission_entity', array($notifications->sid)));
-	   $mp = "var my_post = { 'sid': " . $notifications->sid . ", 'image': '" . file_create_url($submission->field_crazy_crazy_picture[LANGUAGE_NONE][0]['uri']) . "' }; ";
-	   drupal_add_js($mp, 'inline');
-
-	   drupal_add_js("jQuery(document).ready(function() { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); }, 1500);", 'inline');
+	    $u = array(
+	      'uid' => $user->uid,
+	      'email' => $user->mail,
+	      'timestamp' => REQUEST_TIME,
+	    );
+	    drupal_write_record('crazy_emails', $u);
 	}
   }
-
-  // If user is not authenticated, show the "connect to submit" popup on the submit button.
-  if (!crazy_check_fb_auth($facebook)) {
-  	drupal_add_js("jQuery(document).ready(function() { Drupal.behaviors.dsCrazyScripts.probably_unauthed = true; });", 'inline');
-  }
-
-  // If a user just created a new post, show the "share this" popup.
-  if (isset($_SESSION['from_creation']) && !empty($_SESSION['from_creation'])) {
-  	// The SID is $_SESSION['from_creation']
-  	$sid = intval($_SESSION['from_creation']['sid']);
-  	$image = strval($_SESSION['from_creation']['image']);
-
-  	$p = json_encode($_SESSION['from_creation']);
-
-  	// Remove $_SESSION['from_creation']
-  	unset($_SESSION['from_creation']);
-
-  	// Show the popup
-  	drupal_add_js("jQuery(document).ready(function() { var my_post = " . $p . "; jQuery.fn.dsCrazyPopup('share', " . $sid . ", {'reload': true }); });", 'inline');
-  }
-
-  // Ignore the rest of this if we're not looking at a page that requires authentication.
-  $pages = unserialize(CRAZY_AUTH_PAGES);
-  if (!preg_match('#crazy/(' . implode('|', $pages) . ').*?#i', request_uri())) {
-  	return;
-  }
-
-  // Try and get the $fbuser object
-  /*try {
-	$fbuser = (object) $facebook->api('/me');
-  }
-  catch (Exception $e) {
-	if (request_uri() !== '/' . CRAZY_ROOT . '/friends') {
-		#$l = $facebook->getLoginUrl();
-		#header('location: ' . $l);
-	}
-	else {
-	  	drupal_add_js("jQuery(document).ready(function() { jQuery.fn.dsCrazyPopup('vouch', 0); });", 'inline');
-	}
-  }*/
-}
-
-function crazyshit_handle_fb_users($facebook) {
-  global $user;
-
-  try {
-	  // Load the FBOAuth include file so we can use it's functions.
-	  module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
-
-	  // Conditions.
-	  // 1. User already logged into Dosomething but not associed with FB.
-	  //   - Associate user id with fb id if not associated.
-	  // 2. User is not logged in but has a DS uid that is not associated.
-	  //   - No way to detect that unless the email matches - in which case
-	  //     connect them.
-	  // 3. User is not logged in and has an associated fb id
-	  //   - Log them in. Nothing else needed.
-	  // 4. User is not logged in and has no DS uid.
-	  //   - Create a new user and log them in.
-
-	  $access_token = $facebook->getAccessToken();
-
-	  // Try and get the $fbuser object
-  	  $fbuser = fboauth_graph_query('me', $access_token);
-
-	  // In some cases we don't get an id. This will break everything so we wrap
-	  // the whole shebang in an if.
-	  if (isset($fbuser->id)) {
-	    $uid = fboauth_uid_load($fbuser->id);
-	    // Not sure if we should do this or not. Seems smarter than leaving it emtpy
-	    // though.
-	    if (!isset($fbuser->email)) {
-	      $fbuser->email = $fbuser->id . '@facebook.com';
-	    }
-	    $found_users = user_load_multiple(array(), array('mail' => $fbuser->email));
-	    $found_user = array_shift($found_users);
-
-	    // Start our search for the appropriate condition.
-	    // Condition 3.
-	    if (!$user->uid && $uid && ($account = user_load($uid))) {
-	      // The fb uid maps to a user. Unblock the user, then log them in.
-	      user_user_operations_unblock(array($account->uid));
-	      fboauth_login_user($account);
-	    }
-	    // Condition 4.
-	    elseif (!$user->uid && !$uid && empty($found_user)) {
-	      $account = fboauth_create_user($fbuser);
-	      // Unblock the user.
-	      $accounts = array($account->uid);
-	      user_user_operations_unblock($accounts);
-	      $account = user_load($account->uid);
-	      // Then log them in.
-	      fboauth_login_user($account);
-
-	#      if (!empty($account->mail)) {
-	#          $mid = CRAZY_MAILCHIMP_GROUP;
-	#          $email = $account->mail;
-
-	#          if (!empty($mid)) {
-	#             dosomething_general_mailchimp_subscribe($email, $mid);
-	#          }
-	#      }
-	    }
-	    // Condition 2.
-	    elseif (!$user->uid && !$uid && !empty($found_user)) {
-	      // We found a matching user. Associate the FB account with them. Then
-	      // log them in.
-	      fboauth_save($found_user->uid, $fbuser->id);
-	      // Unblock the user.
-	      user_user_operations_unblock(array($found_user->uid));
-	      $account = user_load($found_user->uid);
-	      fboauth_login_user($account);
-	    }
-	    // Condition 1.
-	    elseif ($user->uid && !$uid) {
-	      // The user is already logged into Dosomething. Associate
-	      // TODO THIS MIGHT NEED SOME LOVE TO ENSURE WE DON'T MISSASSOCIATE USERS.
-	      fboauth_save($user->uid, $fbuser->id);
-	      // Make sure the user is unblocked.
-	      user_user_operations_unblock(array($account->uid));
-	    }
-	  }
-
-          if (!empty($account->mail)) {
-              $mid = CRAZY_MAILCHIMP_GROUP;
-              $email = $account->mail;
-
-              if (!empty($mid) && valid_email_address($email)) {
-                 dosomething_general_mailchimp_subscribe($email, $mid);
-              }
-          }
-  }
-  catch (Exception $e) {}
 }
 
 /**
@@ -1071,6 +1092,10 @@ function crazyshit_theme() {
   $path = drupal_get_path('module', 'crazyshit');
 
   return array(
+    'crazyshit_welcome' => array(
+      'path' => $path . '/templates',
+      'template' => 'crazyshit-welcome-email',
+    ),
     'bull' => array(
       'path' => $path . '/templates',
       'template' => 'bullshit-alert',
@@ -1096,4 +1121,268 @@ function crazyshit_theme() {
 	  'template' => 'share-alert',
     ),
   );
+}
+
+/**
+ * Implements hook_init().
+ */
+function crazyshit_init() {
+  // Return nothing if the page isn't within the crazy $#!T module
+  if (crazyshit_is_crazy_page()) {
+	  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
+
+	  global $user;
+
+	  // Load the Facebook object
+	  $facebook = crazy_load_fb();
+
+	  // Handles Facebook user system
+	  crazyshit_handle_fb_users($facebook);
+
+	  $onpage = preg_match('#^(' . implode('|', $crazy_notification_pages) . ')$#i', request_path());
+	  if (CRAZY_ALLOW_NOTIFICATIONS && $onpage) {
+		// Set up an or statement for the below query.
+		#$c = db_or();
+		#$c->condition('uid', intval($user->uid));
+		#$c->condition('fid', intval($fbuser->id));
+
+		// Load any notifications the user has.
+		$n = db_select('crazy_notifications', 'n')
+		  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
+		  // Make sure it's for the currently logged in user.
+		  ->condition('uid', $user->uid)
+		  // Make sure they haven't seen it yet.
+		  ->condition('notified', 0)
+		  // Make sure it's a BS notification.
+		  ->condition('type', 2)
+		  // Make sure it comes from the friends page.
+		  ->condition('origin', 2)
+		  // Show only one at a time.
+		  ->range(0, 1)
+		  ->execute();
+		$ns = $n->fetchAll();
+
+		$notifications = reset($ns);
+		$pre = '';
+
+		$from_fb = false;
+		if (isset($_GET['fb'])) {
+			$from_fb = (bool) intval($_GET['fb']);
+		}
+
+		if (!empty($notifications)) {
+		   if ($notifications->from_fid == $notifications->fid) {
+		      $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true; ';
+		   }
+
+	 	   $submission = array_shift(entity_load('webform_submission_entity', array($notifications->sid)));
+		   $mp = "var my_post = { 'sid': " . $notifications->sid . ", 'image': '" . file_create_url($submission->field_crazy_crazy_picture[LANGUAGE_NONE][0]['uri']) . "' }; ";
+		   drupal_add_js($mp, 'inline');
+
+		   drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); } }, 1500);", 'inline');
+		}
+		else if ($from_fb) {
+		   drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { jQuery.fn.dsCrazyPopup('bull', 0); }); } }, 1500);", 'inline');
+		}
+	  }
+
+	  // If user is not authenticated, show the "connect to submit" popup on the submit button.
+	  if (!crazy_check_fb_auth($facebook)) {
+	  	drupal_add_js("jQuery(document).ready(function() { Drupal.behaviors.dsCrazyScripts.probably_unauthed = true; });", 'inline');
+	  }
+
+	  // If a user just created a new post, show the "share this" popup.
+	  if (isset($_SESSION['from_creation']) && !empty($_SESSION['from_creation'])) {
+	  	// The SID is $_SESSION['from_creation']
+	  	$sid = intval($_SESSION['from_creation']['sid']);
+	  	$image = strval($_SESSION['from_creation']['image']);
+
+	  	$p = json_encode($_SESSION['from_creation']);
+
+	  	// Remove $_SESSION['from_creation']
+	  	unset($_SESSION['from_creation']);
+
+	  	// Show the popup
+	  	drupal_add_js("jQuery(document).ready(function() { var my_post = " . $p . "; jQuery.fn.dsCrazyPopup('share', " . $sid . ", {'reload': true }); });", 'inline');
+	  }
+
+	  // Ignore the rest of this if we're not looking at a page that requires authentication.
+	  $pages = unserialize(CRAZY_AUTH_PAGES);
+	  if (!preg_match('#crazy/(' . implode('|', $pages) . ').*?#i', request_uri())) {
+	  	return;
+	  }
+   }
+}
+
+function crazyshit_handle_fb_users($facebook) {
+  global $user;
+
+  try {
+	  // Load the FBOAuth include file so we can use it's functions.
+	  module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
+
+	  // Conditions.
+	  // 1. User already logged into Dosomething but not associed with FB.
+	  //   - Associate user id with fb id if not associated.
+	  // 2. User is not logged in but has a DS uid that is not associated.
+	  //   - No way to detect that unless the email matches - in which case
+	  //     connect them.
+	  // 3. User is not logged in and has an associated fb id
+	  //   - Log them in. Nothing else needed.
+	  // 4. User is not logged in and has no DS uid.
+	  //   - Create a new user and log them in.
+
+	  if ($user->uid > 0) {
+		$fbid = fboauth_fbid_load($user->uid);
+		$fbuser = (object) $facebook->api("/$fbid");
+	  }
+	  else {
+		$access_token = $facebook->getAccessToken();
+
+		// Try and get the $fbuser object
+	  	$fbuser = fboauth_graph_query('me', $access_token);
+	  }
+
+	  // In some cases we don't get an id. This will break everything so we wrap
+	  // the whole shebang in an if.
+	  if (isset($fbuser->id)) {
+	    $uid = $user->uid;
+	    $account = $user;
+	    // Not sure if we should do this or not. Seems smarter than leaving it emtpy
+	    // though.
+	    if (!isset($fbuser->email)) {
+	      $fbuser->email = $fbuser->id . '@facebook.com';
+	    }
+	    $found_users = user_load_multiple(array(), array('mail' => $fbuser->email));
+	    $found_user = array_shift($found_users);
+
+	    // Start our search for the appropriate condition.
+	    // Condition 3.
+	    if (!$user->uid && $uid && ($account = user_load($uid))) {
+	      // The fb uid maps to a user. Unblock the user, then log them in.
+	      user_user_operations_unblock(array($account->uid));
+	      fboauth_login_user($account);
+	    }
+	    // Condition 4.
+	    elseif (!$user->uid && !$uid && empty($found_user)) {
+	      $account = fboauth_create_user($fbuser);
+	      // Unblock the user.
+	      $accounts = array($account->uid);
+	      user_user_operations_unblock($accounts);
+	      $account = user_load($account->uid);
+	      // Then log them in.
+	      fboauth_login_user($account);
+	    }
+	    // Condition 2.
+	    elseif (!$user->uid && !$uid && !empty($found_user)) {
+	      // We found a matching user. Associate the FB account with them. Then
+	      // log them in.
+	      fboauth_save($found_user->uid, $fbuser->id);
+	      // Unblock the user.
+	      user_user_operations_unblock(array($found_user->uid));
+	      $account = user_load($found_user->uid);
+	      fboauth_login_user($account);
+	    }
+	    // Condition 1.
+	    elseif ($user->uid && !$uid) {
+	      // The user is already logged into Dosomething. Associate
+	      // TODO THIS MIGHT NEED SOME LOVE TO ENSURE WE DON'T MISSASSOCIATE USERS.
+	      fboauth_save($user->uid, $fbuser->id);
+	      // Make sure the user is unblocked.
+	      user_user_operations_unblock(array($account->uid));
+	    }
+	  }
+  }
+  catch (Exception $e) {}
+}
+
+/**
+ * Impliments hook_mail. Provides functionality to be triggered by key value.
+ *
+ * @param $key
+ *   Value to customize message content.
+ * @param $$message
+ *   Array by reference to build message values to be sent.
+ * @params
+ *   Potential parameters to react to for specific $key values.
+ */
+function crazyshit_mail($key, &$message, $params) {
+
+  switch ($key) {
+    // Send a simple message from the contact form.
+    case 'intro':
+	
+     $headers = array(
+        'MIME-Version' => '1.0',
+        'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
+        'Content-Transfer-Encoding' => '8Bit',
+        'X-Mailer' => 'Drupal'
+      );
+      foreach ($headers as $key => $value) {
+        $message['headers'][$key] = $value;
+      }
+
+      break;
+  }
+	
+	
+}
+
+/**
+ * Send email message speific to the Crazy project.
+ *
+ * @param $email
+ *   Users email address.
+ * @param $message
+ *   The cotents of the message to be sent.
+ * @return
+ *   Boolean indicating success.
+ */
+function crazyshit_mail_send($email, $message) {
+	
+  // All system mails need to specify the module and template key (mirrored from
+  // hook_mail()) that the message they want to send comes from.
+  $module = 'crazyshit';
+  $key = 'intro';
+
+  // Specify 'to' and 'from' addresses.
+  $to = $email;
+  $from = 'crazy@dosomething.org';
+
+  // "params" loads in additional context for email content completion in
+  // hook_mail(). In this case, we want to pass in the values the user entered
+  // into the form, which include the message body in $form_values['message'].
+  $params = $message;
+
+  // The language of the e-mail. This will one of three values:
+  // * user_preferred_language(): Used for sending mail to a particular website
+  //   user, so that the mail appears in their preferred language.
+  // * global $language: Used when sending a mail back to the user currently
+  //   viewing the site. This will send it in the language they're currently
+  //   using.
+  // * language_default(): Used when sending mail to a pre-existing, 'neutral'
+  //   address, such as the system e-mail address, or when you're unsure of the
+  //   language preferences of the intended recipient.
+  //
+  // Since in our case, we are sending a message to a random e-mail address that
+  // is not necessarily tied to a user account, we will use the site's default
+  // language.
+  $language = language_default();
+
+  // Whether or not to automatically send the mail when drupal_mail() is
+  // called. This defaults to TRUE, and is normally what you want unless you
+  // need to do additional processing before drupal_mail_send() is called.
+  $send = TRUE;
+  // Send the mail, and check for success. Note that this does not guarantee
+  // message delivery; only that there were no PHP-related issues encountered
+  // while sending.
+  $result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
+  
+  if ($result['result'] == FALSE) {	
+    watchdog('crazyshit', 'Failed to send intro email message.');
+  }
+  
+  return $result['result'];
+
+
 }

@@ -22,8 +22,8 @@
     }
 
     // campaign logo injection
-    var logo = '//files.dosomething.org/files/campaigns/jeans12/logo.png';
-    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a>');
+    var logo = '//files.dosomething.org/files/campaigns/jeans12/flip_logo.png';
+    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a><h2>IN STORE DROP OFF<br>IS CLOSED</h2>');
     
     // campaign social media injection
     $('#header').prepend($('.socialWrapper'));
@@ -43,6 +43,9 @@
     // format CTIA copy (remove line break and insert space)
     $('#campaign-opt-in br').remove();
     $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
+
+    // Add Gallery link hashtag to take user back to gallery area on reload
+    $('.pager li a').attr("href", function(i, href) { return href + "#galleriffic"; });
 
     // FAQ drop down animation
     $('#faq h4').next('div').css('display','none');
@@ -82,18 +85,18 @@
 
     // Overlay to Facebook Btn
     $('#overlay-share-btn').click(function() {
-    $('#overlay-homelessness').dialog('close').queue(function() {
-      Drupal.behaviors.fb.feed({
-      feed_document: 'http://www.dosomething.org/teensforjeans',
-      feed_title: 'Homelessness',
-      feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
-      feed_caption: 'I help the homeless because I care. How about you?',
-      feed_description: 'Donate your old or unwanted jeans to a teen in need.',
-      feed_modal: true
-       }, function(response) {
+      $('#overlay-homelessness').dialog('close').queue(function() {
+        Drupal.behaviors.fb.feed({
+        feed_document: 'http://www.dosomething.org/teensforjeans',
+        feed_title: 'Homelessness',
+        feed_picture: 'http://files.dosomething.org/files/u/home/official-doer1.png',
+        feed_caption: 'I help the homeless because I care. How about you?',
+        feed_description: 'Donate your old or unwanted jeans to a teen in need.',
+        feed_modal: true
+         }, function(response) {
          }); 
-            });
-                });
+      });
+    });
 
 
     } // end attach: function
