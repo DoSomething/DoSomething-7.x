@@ -63,17 +63,30 @@ function robocalls_menu() {
     'access callback' => TRUE,
   );
 
+  $items['prank/beta-response'] = array(
+    'page callback' => 'robocalls_beta_response',
+    'access callback' => TRUE,
+  );
+
   return $items;
 }
 
 function robocalls_call_completed() {
-  ob_start();
-  echo '<pre>', print_r($_REQUEST), '</pre>';
-  $c = ob_get_contents();
-  ob_end_clean();
+  if ($_REQUEST['CallStatus'] == 'completed') {
+    dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']));
+  }
+}
 
-  mail('mchittenden@dosomething.org', 'Call Completed', $c);
-  exit;
+function robocalls_beta_response() {
+    echo '<?xml version="1.0" encoding="UTF-8"?>
+    <response>
+     <reply>
+      <text>
+       <![CDATA[Thanks! We\'ll send it to them.]]>
+      </text>
+     </reply>
+    </response>';
+    exit;
 }
 
 /**
