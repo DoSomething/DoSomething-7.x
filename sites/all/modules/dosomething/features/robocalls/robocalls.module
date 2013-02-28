@@ -58,7 +58,22 @@ function robocalls_menu() {
     'access callback' => TRUE,
   );
 
+  $items['prank/call-done'] = array(
+    'page callback' => 'robocalls_call_completed',
+    'access callback' => TRUE,
+  );
+
   return $items;
+}
+
+function robocalls_call_completed() {
+  ob_start();
+  echo '<pre>', print_r($_REQUEST), '</pre>';
+  $c = ob_get_contents();
+  ob_end_clean();
+
+  mail('mchittenden@dosomething.org', 'Call Completed', $c);
+  exit;
 }
 
 /**
