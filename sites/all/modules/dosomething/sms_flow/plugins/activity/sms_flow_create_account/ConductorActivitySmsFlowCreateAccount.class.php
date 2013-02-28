@@ -60,7 +60,7 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
       $account->pass = $hashed_pass;
       if (!empty($email)) {
         $account->mail = $email;
-        if (!empty($mailchimp_group_name)) {
+        if (!empty($this->mailchimp_group_name)) {
           dosomething_general_mailchimp_subscribe($email, $this->mailchimp_group_name);
         }
       }
