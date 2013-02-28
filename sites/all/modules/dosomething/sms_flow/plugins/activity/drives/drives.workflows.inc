@@ -277,7 +277,7 @@ $workflows[$workflow->name] = $workflow;
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_gys_drives_create';
-$workflow->title = 'SMS Flow Drives Create for GYS';
+$workflow->title = 'SMS Flow Drives Create for DBS';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
@@ -362,7 +362,7 @@ $activity->sign_up_nid = 727941;
 $activity->response_error = 'Sorry! We ran into a problem creating your drive. Text POWER to try again or visit http://doso.me/9 to try online.';
 $activity->response_in_drive = 'You already signed up for a team! Login at http://doso.me/9 to visit it. Have friends you want to invite? Reply with their #\'s and we\'ll invite them!';
 $activity->response_new_account = 'Great! You can login to see your team here http://doso.me/9. Ur password is: @pass. Text us your friends\' #s to invite them too';
-$activity->response_success = 'Great! Your school is signed up for a GYS drive! Login at http://doso.me/9. Text us your friends\' #s to invite them too';
+$activity->response_success = 'Great! Your school is signed up for a DBS drive! Login at http://doso.me/9. Text us your friends\' #s to invite them too';
 
 $activity = $workflow->newActivity('sms_strip_signature');
 $activity->name = 'strip_signature_post_create_drive';
@@ -373,8 +373,8 @@ $activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;
-$activity->response_success = t('We\'ve sent along invites to your friends. Reply back with GYSINVITE if you want to invite more.');
-$activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your drive again, text GYSINVITE.');
+$activity->response_success = t('We\'ve sent along invites to your friends. Reply back with DBSINVITE if you want to invite more.');
+$activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your drive again, text DBSINVITE.');
 $activity->inputs = array('strip_signature_post_create_drive');
 $activity->outputs = array('end');
 
@@ -391,7 +391,7 @@ $workflows[$workflow->name] = $workflow;
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_gys_invite';
-$workflow->title = 'GYS Drives Invite';
+$workflow->title = 'DBS Drives Invite';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
@@ -402,10 +402,10 @@ $activity = $workflow->newActivity('sms_flow_drive_invite_response');
 $activity->name = 'drive_invite_response';
 $activity->inputs = array('start');
 $activity->outputs = array('check_account_exists', 'end');
-$activity->accept_responses = array('y','yes','yea','ya','gysjoin','gys join');
-$activity->invite_rejected_message = t('No prob. You\'re not getting added into the drive. If you want to join in the future, text back GYSJOIN.');
-$activity->no_numbers_message = t('Oops. Did you mean to invite someone to your drive? Text GYSINVITE and try to invite again. Trying to join a drive? Text GYSJOIN to try to join again.');
-$activity->already_in_drive_message = t('You already previously joined this drive. You can view it online at http://doso.me/9. Want to invite friends to the drive? Text GYSINVITE.');
+$activity->accept_responses = array('y','yes','yea','ya','dbsjoin','dbs join');
+$activity->invite_rejected_message = t('No prob. You\'re not getting added to the team. If you want to join in the future, text back DBSJOIN.');
+$activity->no_numbers_message = t('Oops. Did you mean to invite someone to your team? Text DBSINVITE and try to invite again. Trying to join a drive? Text DBSJOIN to try to join again.');
+$activity->already_in_drive_message = t('You already previously joined this team. You can view it online at http://doso.me/9. Want to invite friends to the team? Text DBSINVITE.');
 
 $activity = $workflow->newActivity('sms_check_account_exists');
 $activity->name = 'check_account_exists';
@@ -443,9 +443,9 @@ $activity->name = 'process_beta';
 $activity->inputs = array('account_exists', 'create_account');
 $activity->outputs = array('ftaf_process');
 $activity->alpha_campaign_id = 110073;
-$activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething Green Your School Challenge Team! Who else should be involved? Text back GYSINVITE and we\'ll invite them too.';
+$activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething team of energy vampire slayers! Who else should be involved? Text back DBSINVITE and we\'ll invite them too.';
 $activity->drive_link = 'http://doso.me/9';
-$activity->success_message = t('Awesome! You\'ve been added to the drive at http://doso.me/9. Who else should be involved? Respond with their phone #s and we\'ll invite them to join you.');
+$activity->success_message = t('Awesome! You\'ve been added to the drive at http://doso.me/9. Grow your team of vampire slayers by inviting friends. Text #s to invite.');
 
 $activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
@@ -453,8 +453,8 @@ $activity->inputs = array('process_beta');
 $activity->outputs = array('end');
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;
-$activity->response_success = t('We\'ve sent along invites to your friends. Reply back with GYSINVITE if you want to invite more.');
-$activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the drive again, text GYSJOIN. To invite ppl to ur drive, text GYSINVITE.');
+$activity->response_success = t('We\'ve sent invites to your friends. Reply back with DBSINVITE if you want to invite more.');
+$activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the team again, text DBSJOIN. To invite ppl to ur team, text DBSINVITE.');
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -468,7 +468,7 @@ $workflows[$workflow->name] = $workflow;
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_gys_ftaf';
-$workflow->title = 'GYS Drives FTAF';
+$workflow->title = 'Dont Be A Sucker Team FTAF';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
@@ -477,7 +477,7 @@ $activity->outputs = array('ftaf_prompt');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ftaf_prompt';
-$activity->question = t('Awesome! All you need to do is text us your friends cell phone numbers and we\'ll invite then to participate in your Green Your School drive.');
+$activity->question = t('Awesome! Grow your team of vampire slayers by inviting friends. Text back their #s to invite them.');
 $activity->inputs = array('start');
 $activity->outputs = array('strip_signature');
 
@@ -492,8 +492,8 @@ $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;
-$activity->response_success = t('Text GYSINVITE if you want to invite more!');
-$activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with GYSINVITE.');
+$activity->response_success = t('Text DBSINVITE if you want to invite more!');
+$activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with DBSINVITE.');
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
