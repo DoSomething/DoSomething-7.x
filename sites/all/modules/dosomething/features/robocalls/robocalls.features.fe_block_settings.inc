@@ -14,21 +14,6 @@ function robocalls_default_fe_block_settings() {
 
   // Theme independent visibility settings.
   $export['visibility'] = array(
-    'dosomething_blocks-dosomething_make_impact' => array(
-      'delta' => 'dosomething_make_impact',
-      'module' => 'dosomething_blocks',
-    ),
-    'dosomething_blocks-dosomething_utility_bar' => array(
-      'delta' => 'dosomething_utility_bar',
-      'module' => 'dosomething_blocks',
-    ),
-    'dosomething_login-become_member' => array(
-      'delta' => 'become_member',
-      'module' => 'dosomething_login',
-      'node_type' => array(
-        'robo_calls' => TRUE,
-      ),
-    ),
     'views-43e5f8c3da7cdbaf9be68f0db57cc6a0' => array(
       'delta' => '43e5f8c3da7cdbaf9be68f0db57cc6a0',
       'module' => 'views',
@@ -41,52 +26,6 @@ function robocalls_default_fe_block_settings() {
 
   // doit
   $theme = array();
-
-  $theme['dosomething_blocks-dosomething_make_impact'] = array(
-    'module' => 'dosomething_blocks',
-    'delta' => 'dosomething_make_impact',
-    'theme' => 'doit',
-    'status' => '1',
-    'weight' => '-70',
-    'region' => 'sidebar_first',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '<front>
-start-something
-action-finder
-prank*',
-    'title' => '',
-    'cache' => 8,
-  );
-
-  $theme['dosomething_blocks-dosomething_utility_bar'] = array(
-    'module' => 'dosomething_blocks',
-    'delta' => 'dosomething_utility_bar',
-    'theme' => 'doit',
-    'status' => '1',
-    'weight' => '-68',
-    'region' => 'utility',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => -1,
-  );
-
-  $theme['dosomething_login-become_member'] = array(
-    'module' => 'dosomething_login',
-    'delta' => 'become_member',
-    'theme' => 'doit',
-    'status' => '1',
-    'weight' => '-71',
-    'region' => 'sidebar_first',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => 'judge-register
-prank*',
-    'title' => '',
-    'cache' => -1,
-  );
 
   $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
     'module' => 'views',
@@ -121,52 +60,6 @@ prank*',
   // ds
   $theme = array();
 
-  $theme['dosomething_blocks-dosomething_make_impact'] = array(
-    'module' => 'dosomething_blocks',
-    'delta' => 'dosomething_make_impact',
-    'theme' => 'ds',
-    'status' => '1',
-    'weight' => '-23',
-    'region' => 'sidebar_first',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '<front>
-start-something
-action-finder
-prank*',
-    'title' => '',
-    'cache' => 8,
-  );
-
-  $theme['dosomething_blocks-dosomething_utility_bar'] = array(
-    'module' => 'dosomething_blocks',
-    'delta' => 'dosomething_utility_bar',
-    'theme' => 'ds',
-    'status' => '1',
-    'weight' => '-22',
-    'region' => 'utility',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => -1,
-  );
-
-  $theme['dosomething_login-become_member'] = array(
-    'module' => 'dosomething_login',
-    'delta' => 'become_member',
-    'theme' => 'ds',
-    'status' => '1',
-    'weight' => '-24',
-    'region' => 'sidebar_first',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => 'judge-register
-prank*',
-    'title' => '',
-    'cache' => -1,
-  );
-
   $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
     'module' => 'views',
     'delta' => '43e5f8c3da7cdbaf9be68f0db57cc6a0',
@@ -199,52 +92,6 @@ prank*',
 
   // picsforpets
   $theme = array();
-
-  $theme['dosomething_blocks-dosomething_make_impact'] = array(
-    'module' => 'dosomething_blocks',
-    'delta' => 'dosomething_make_impact',
-    'theme' => 'picsforpets',
-    'status' => 0,
-    'weight' => '-62',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '<front>
-start-something
-action-finder
-prank*',
-    'title' => '',
-    'cache' => 8,
-  );
-
-  $theme['dosomething_blocks-dosomething_utility_bar'] = array(
-    'module' => 'dosomething_blocks',
-    'delta' => 'dosomething_utility_bar',
-    'theme' => 'picsforpets',
-    'status' => 0,
-    'weight' => '-68',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => -1,
-  );
-
-  $theme['dosomething_login-become_member'] = array(
-    'module' => 'dosomething_login',
-    'delta' => 'become_member',
-    'theme' => 'picsforpets',
-    'status' => 0,
-    'weight' => '-63',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => 'judge-register
-prank*',
-    'title' => '',
-    'cache' => -1,
-  );
 
   $theme['views-43e5f8c3da7cdbaf9be68f0db57cc6a0'] = array(
     'module' => 'views',

@@ -10,6 +10,28 @@
 function dosomething_layout_default_fe_block_settings() {
   $export = array();
 
+  $export['version'] = '1.0';
+
+  // Theme independent visibility settings.
+  $export['visibility'] = array(
+    'dosomething_blocks-dosomething_make_impact' => array(
+      'delta' => 'dosomething_make_impact',
+      'module' => 'dosomething_blocks',
+    ),
+    'dosomething_blocks-dosomething_utility_bar' => array(
+      'delta' => 'dosomething_utility_bar',
+      'module' => 'dosomething_blocks',
+    ),
+    'dosomething_login-become_member' => array(
+      'delta' => 'become_member',
+      'module' => 'dosomething_login',
+    ),
+    'menu-menu-footer' => array(
+      'delta' => 'menu-footer',
+      'module' => 'menu',
+    ),
+  );
+
   // doit
   $theme = array();
 
@@ -18,13 +40,14 @@ function dosomething_layout_default_fe_block_settings() {
     'delta' => 'dosomething_make_impact',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-62',
+    'weight' => '-70',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
     'pages' => '<front>
 start-something
-action-finder',
+action-finder
+prank*',
     'title' => '',
     'cache' => 8,
   );
@@ -48,11 +71,12 @@ action-finder',
     'delta' => 'become_member',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-63',
+    'weight' => '-71',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => 'judge-register',
+    'pages' => 'judge-register
+prank*',
     'title' => '',
     'cache' => -1,
   );
@@ -71,7 +95,7 @@ action-finder',
     'cache' => -1,
   );
 
-  $export['doit'] = $theme;
+  $export['theme']['doit'] = $theme;
 
   // ds
   $theme = array();
@@ -87,7 +111,8 @@ action-finder',
     'visibility' => '0',
     'pages' => '<front>
 start-something
-action-finder',
+action-finder
+prank*',
     'title' => '',
     'cache' => 8,
   );
@@ -115,7 +140,8 @@ action-finder',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => 'judge-register',
+    'pages' => 'judge-register
+prank*',
     'title' => '',
     'cache' => -1,
   );
@@ -134,7 +160,7 @@ action-finder',
     'cache' => -1,
   );
 
-  $export['ds'] = $theme;
+  $export['theme']['ds'] = $theme;
 
   // picsforpets
   $theme = array();
@@ -150,7 +176,8 @@ action-finder',
     'visibility' => '0',
     'pages' => '<front>
 start-something
-action-finder',
+action-finder
+prank*',
     'title' => '',
     'cache' => 8,
   );
@@ -178,7 +205,8 @@ action-finder',
     'region' => '',
     'custom' => '0',
     'visibility' => '0',
-    'pages' => 'judge-register',
+    'pages' => 'judge-register
+prank*',
     'title' => '',
     'cache' => -1,
   );
@@ -197,13 +225,13 @@ action-finder',
     'cache' => -1,
   );
 
-  $export['picsforpets'] = $theme;
+  $export['theme']['picsforpets'] = $theme;
 
   $theme_default = variable_get('theme_default', 'garland');
   $themes = list_themes();
   foreach ($export as $theme_key => $settings) {
     if ($theme_key != $theme_default && empty($themes[$theme_key]->status)) {
-      unset($export[$theme_key]);
+      unset($export['theme'][$theme_key]);
     }
   }
   return $export;
