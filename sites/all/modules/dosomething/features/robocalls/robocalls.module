@@ -38,7 +38,8 @@ function robocalls_is_robo_page($page = '') {
   if (empty($page)) {
     $page = request_path();
   }
-  if (FALSE !== strpos($page, ROBO_PATH)) {
+
+  if (preg_match('#^(calloffame|' . ROBO_PATH . ')#', $page)) {
     return true;
   }
 
