@@ -270,11 +270,9 @@ function dosomething_drives_drive_title($drive, $type, $leader, $campaign) {
 function dosomething_drives_drive_description($drive) {
   $cid = dosomething_drives_get_drive_cid(node_load($drive->nid));
 
-  if (!isset($drive->data[$cid]['value'][0])) {
-    $goal = '';
-  }
-  else {
-    $goal = $drive->data[$cid]['value'][0];
+  $goal = '';
+  if (isset($drive->data[$cid]['value'][0])) {
+     $goal = $drive->data[$cid]['value'][0];
   }
 
   return array(
