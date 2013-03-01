@@ -20,7 +20,7 @@
             <div class="panel-top-right-social panel-last panel-panel"><?php print $content['social']; ?></div>
           <?php endif; ?>
 
-        </div>cd 
+        </div>
       <?php endif; ?>
     </div>
   <?php endif; ?>
