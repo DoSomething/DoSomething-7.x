@@ -10,7 +10,7 @@ define('CRAZY_DOMAIN', variable_get('crazy_domain', 'www.dosomething.org'));
 define('CRAZY_AUTH_PAGES', serialize(explode(',', variable_get('crazy_auth_pages', 'friends,submit'))));
 define('CRAZY_MAILCHIMP_GROUP', 'CraziestThing2013');
 define('CRAZY_RANKING_POINT', 43200); // in seconds
-define('CRAZY_GRACE_PERIOD', 3600); // in seconds
+define('CRAZY_GRACE_PERIOD', 1800); // in seconds
 
 /**
  *	Implements hook_menu()
@@ -110,10 +110,10 @@ function crazyshit_flag($sid) {
  */
 function crazyshit_is_crazy_page($page = '') {
   if (empty($page)) {
-	$page = request_uri();
+	$page = request_path();
   }
 
-  if (preg_match('#^\/crazy#i', $page)) {
+  if (preg_match('#^' . CRAZY_ROOT . '#', $page)) {
 	return true;
   }
 
@@ -178,7 +178,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  $fbed = crazy_check_fb_auth();
 	  include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 
-	  $ru = request_uri();
+	  $ru = request_path();
 	  foreach ($top_links AS $match => $info) {
 	  	$href = $info['href'];
 	  	$links[$href] = array(
@@ -187,7 +187,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  	  'attributes' => ($info['attributes'] ? $info['attributes'] : array()),
 	  	);
 
-	  	if (preg_match('#^\/' . $match . '#i', $ru)) {
+	  	if (preg_match('#^' . $match . '#i', $ru)) {
 	  	  $links[$href]['attributes'] += array(
 	  		'class' => array('active'),
 	  	  );
@@ -195,7 +195,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  }
 
 	  $sub = array();
-	  $u = substr($ru, 1);
+	  $u = $ru;
 	  foreach ($sub_menus AS $match => $s) {
 	  	if (preg_match('#' . $match . '#i', $u)) {
 	  	  foreach ($sub_menus[$match] AS $key => $type) {
