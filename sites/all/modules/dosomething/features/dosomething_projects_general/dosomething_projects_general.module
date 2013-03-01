@@ -100,7 +100,8 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
 function dosomething_projects_general_form_club_node_form_alter(&$form, &$form_state) {
   $form_state['previous_participants'] = array();
   $node = isset($form['#node']) ? $form['#node'] : NULL;
-  if (!empty($node) && $node->nid) {
+
+  if (!empty($node) && isset($node->nid)) {
     // Pass along previous participants so they don't get contacted again.
     if (!empty($form['#node']->field_participants[LANGUAGE_NONE])) {
       foreach ($form['#node']->field_participants[LANGUAGE_NONE] as $item) {

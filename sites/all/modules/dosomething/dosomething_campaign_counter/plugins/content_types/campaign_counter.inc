@@ -39,7 +39,7 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
     $sign_up_count = webform_get_submission_count($campaign_contact_form) + $doing_padding;
 
     $count = 0;
-    if ($campaign_entity->field_counter_aggregation[LANGUAGE_NONE][0]['value'] == '#count') {
+    if (isset($campaign_entity->field_counter_aggregation[LANGUAGE_NONE][0]['value']) && $campaign_entity->field_counter_aggregation[LANGUAGE_NONE][0]['value'] == '#count') {
       $count = webform_get_submission_count($campaign_report_back);
     }
     else {
