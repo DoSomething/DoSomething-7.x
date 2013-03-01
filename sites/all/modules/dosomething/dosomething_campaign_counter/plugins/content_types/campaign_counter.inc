@@ -52,9 +52,14 @@ function dosomething_campaign_counter_campaign_counter_content_type_render($subt
         ->execute();
       $subs = array_keys($result['webform_submission_entity']);
 
+      $cca = '';
+      if (isset($campaign_entity->field_counter_aggregation[LANGUAGE_NONE][0]['value'])) {
+        $cca = $campaign_entity->field_counter_aggregation[LANGUAGE_NONE][0]['value'];
+      }
+
       $node = node_load($campaign_report_back);
       foreach ($node->webform['components'] as $component) {
-        if ($component['form_key'] == $campaign_entity->field_counter_aggregation[LANGUAGE_NONE][0]['value']) {
+        if ($component['form_key'] == $cca) {
           $fid = $component['cid'];
           break;
         }

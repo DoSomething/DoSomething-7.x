@@ -443,18 +443,28 @@ function dosomething_drives_drive_get_drives($gid) {
     ->propertyCondition('entity_type', 'webform_submission_entity')
     ->execute();
 
-  $memberships = entity_load('og_membership', array_keys($result['og_membership']));
-  foreach ($memberships as $membership) {
-    $load[] = $membership->etid;
-  }
-  $subs = entity_load('webform_submission_entity', $load);
-
   $return = NULL;
-  foreach ($subs as $sub) {
-    if ($sub->bundle == 'drive_form') {
-      $return = $sub;
+  if (isset($result['og_membership']) && is_array($result['og_membership'])) {
+    $memberships = entity_load('og_membership', array_keys($result['og_membership']));
+
+    if (is_array($memberships) && !empty($memberships)) {
+      $load = array();
+      foreach ($memberships as $membership) {
+        $load[] = $membership->etid;
+      }
+
+      $subs = entity_load('webform_submission_entity', $load);
+
+      if (is_array($subs) && !empty($subs)) {
+        foreach ($subs as $sub) {
+          if ($sub->bundle == 'drive_form') {
+            $return = $sub;
+          }
+        }
+      }
     }
   }
+
   return $return;
 }
 

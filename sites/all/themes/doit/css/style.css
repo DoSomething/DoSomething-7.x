@@ -174,7 +174,8 @@ textarea[type=color], .textinput, .form-textarea, select.form-select, iframe {
 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-row,
 .page-node-done-it .pane-profile-panel-pane-3 .views-row,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-row,
-.page-node-done-it .pane-club-projects-panel-pane-4 .views-row, .pane-news-stuff .views-row, .panes-2 .panel-second .views-row, .pane-blog-center .views-row, #block-dosomething-blocks-dosomething-make-impact .content, .views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .dosomething-stats, .ui-dialog, .page-webform-submission .pane-ds-project-stats, .node-type-club .pane-club-projects-panel-pane-1 .views-row,
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-row, .pane-news-stuff .views-row, .panes-2 .panel-second .views-row, .pane-blog-center .views-row,
+.pane-narrow-block .views-row, #block-dosomething-blocks-dosomething-make-impact .content, .views-exposed-widget .content, .region-sidebar-first .block, #block-menu-menu-footer, .logged-in #block-dosomething-login-become-member .profile-footer, .dosomething-stats, .ui-dialog, .page-webform-submission .pane-ds-project-stats, .node-type-club .pane-club-projects-panel-pane-1 .views-row,
 .node-type-club .pane-club-projects-panel-pane-2 .views-row,
 .node-type-club .pane-profile-panel-pane-1 .views-row {
   *zoom: 1;
@@ -215,7 +216,8 @@ textarea[type=color], .textinput, .form-textarea, select.form-select, iframe {
 .page-node-doing-it .pane-club-projects-panel-pane-4 .views-row:after,
 .page-node-done-it .pane-profile-panel-pane-3 .views-row:after,
 .page-node-done-it .pane-club-projects-panel-pane-3 .views-row:after,
-.page-node-done-it .pane-club-projects-panel-pane-4 .views-row:after, .pane-news-stuff .views-row:after, .panes-2 .panel-second .views-row:after, .pane-blog-center .views-row:after, #block-dosomething-blocks-dosomething-make-impact .content:after, .views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .dosomething-stats:after, .ui-dialog:after, .page-webform-submission .pane-ds-project-stats:after, .node-type-club .pane-club-projects-panel-pane-1 .views-row:after,
+.page-node-done-it .pane-club-projects-panel-pane-4 .views-row:after, .pane-news-stuff .views-row:after, .panes-2 .panel-second .views-row:after, .pane-blog-center .views-row:after,
+.pane-narrow-block .views-row:after, #block-dosomething-blocks-dosomething-make-impact .content:after, .views-exposed-widget .content:after, .region-sidebar-first .block:after, #block-menu-menu-footer:after, .logged-in #block-dosomething-login-become-member .profile-footer:after, .dosomething-stats:after, .ui-dialog:after, .page-webform-submission .pane-ds-project-stats:after, .node-type-club .pane-club-projects-panel-pane-1 .views-row:after,
 .node-type-club .pane-club-projects-panel-pane-2 .views-row:after,
 .node-type-club .pane-profile-panel-pane-1 .views-row:after {
   content: "";
@@ -253,7 +255,10 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .logged-in #block-dosomething-login-become-member .done-it ul,
 .logged-in #block-dosomething-login-become-member .done-it li,
 .logged-in #block-dosomething-login-become-member .my-clubs ul,
-.logged-in #block-dosomething-login-become-member .my-clubs li, .member-expanded, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .headlines a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
+.logged-in #block-dosomething-login-become-member .my-clubs li, .member-expanded, .teaser-heading, .teaser-date, .sponsors-who-rock, .app-footer, .app-purple-ribbon, .accordian-selected-category, .main-nav, .main-nav-dropdown, .filter-dropdowns, .footer-links, .module-titles, .headlines a, .right-sidebar .headlines a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a,
+.pane-narrow-block .views-field-title a,
+.pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-project-title a,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a, .right-sidebar .sidebar-title, .digits span, .empty-digit, .start-a-project:before, .suggest-a-cause:before, ol li:before, .logged-in #block-dosomething-login-become-member .profile-footer .complete-profile, .block-facetapi ul.facetapi-facetapi-checkbox-links li, .block-facetapi ul.facetapi-facetapi-checkbox-links li a, #mini-panel-home_page .pane-share-of-day, .apps-grid .apps-box .apps-banner, .apps-grid .apps-box .apps-footer, .ribbon-front, .node-poll .poll .text,
 .node-poll .poll .total, .blog-post-date, .page-taxonomy-term .region-content .node-teaser h2, .pane-ds-current-somethings-all .something-description .views-field-title, .pane-ds-current-somethings-all .something-description .page-taxonomy-term .region-content .node-teaser h2 a, .page-taxonomy-term .region-content .node-teaser h2 .pane-ds-current-somethings-all .something-description a,
@@ -472,7 +477,10 @@ address, em, cite, q, dfn, i {
   color: yellow;
 }
 
-.teaser-heading, .page-content-text a, .headlines a, .right-sidebar .headlines a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
+.teaser-heading, .page-content-text a, .headlines a, .right-sidebar .headlines a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a,
+.pane-narrow-block .views-field-title a,
+.pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-project-title a,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a, #dosomething-login-register-popup-form .disclaimer a,
 #dosomething-login-register-facebook .disclaimer a, .region-sidebar-first .block-menu-block .content li a, .member-profile .dosomething-login-percentage .label, .js div[aria-labelledby="ui-dialog-title-dosomething-login-register-popup-form"] .popup-content .disclaimer a,
@@ -678,7 +686,10 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .panes-2 .panel-second .project-related-thumb img,
 .pane-blog-center .project-related-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-picture img,
+.pane-blog-center .pane-narrow-thumb img,
+.pane-narrow-block .views-field-views-ifempty img,
+.pane-narrow-block .project-related-thumb img,
+.pane-narrow-block .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-picture img,
 .node-type-club .pane-club-projects-panel-pane-1 .views-field-views-ifempty img,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-picture img,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-views-ifempty img,
@@ -744,7 +755,10 @@ form.webform-client-form #edit-draft, .ds-login-popup-footer #edit-final-submit,
 .panes-2 .panel-second .project-related-thumb img,
 .pane-blog-center .project-related-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-picture img,
+.pane-blog-center .pane-narrow-thumb img,
+.pane-narrow-block .views-field-views-ifempty img,
+.pane-narrow-block .project-related-thumb img,
+.pane-narrow-block .pane-narrow-thumb img, body.front .pane-dosomething-blocks-dosomething-make-impact-front, form.webform-client-form, .dosomething-stats, .member-profile .mem-img, .page-webform-submission .field-type-image img, .page-webform-submission .pane-ds-project-stats, .dosomething-stats .club-image, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-picture img,
 .node-type-club .pane-club-projects-panel-pane-1 .views-field-views-ifempty img,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-picture img,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-views-ifempty img,
@@ -1428,22 +1442,34 @@ h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member
   line-height: 14px;
 }
 
-.right-sidebar .headlines a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
+.right-sidebar .headlines a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a,
+.pane-narrow-block .views-field-title a,
+.pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-project-title a,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a {
   font-size: bold;
 }
-.right-sidebar .headlines a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
+.right-sidebar .headlines a, .panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a,
+.pane-narrow-block .views-field-title a,
+.pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-project-title a,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a {
   border-bottom: none;
 }
-.right-sidebar .headlines a:hover, .panes-2 .panel-second .views-field-title a:hover, .pane-blog-center .views-field-title a:hover, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a:hover, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a:hover, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a:hover, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a:hover, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a:hover,
+.right-sidebar .headlines a:hover, .panes-2 .panel-second .views-field-title a:hover, .pane-blog-center .views-field-title a:hover, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a:hover, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a:hover, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a:hover, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a:hover,
+.pane-narrow-block .views-field-title a:hover,
+.pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a:hover,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a:hover, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a:hover,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-project-title a:hover,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a:hover {
   border-bottom: none;
 }
-.right-sidebar .headlines a.hover, .panes-2 .panel-second .views-field-title a.hover, .pane-blog-center .views-field-title a.hover, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a.hover, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a.hover, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a.hover, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a.hover, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a.hover,
+.right-sidebar .headlines a.hover, .panes-2 .panel-second .views-field-title a.hover, .pane-blog-center .views-field-title a.hover, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a.hover, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a.hover, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a.hover, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a.hover,
+.pane-narrow-block .views-field-title a.hover,
+.pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a.hover,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a.hover, .node-type-club .pane-club-projects-panel-pane-1 .views-field-field-project-title a.hover,
 .node-type-club .pane-club-projects-panel-pane-2 .views-field-field-project-title a.hover,
 .node-type-club .pane-profile-panel-pane-1 .views-field-field-project-title a.hover {
   text-decoration: underline;
@@ -1539,27 +1565,34 @@ h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member
   padding-top: 15px;
 }
 
-.panes-2 .panel-second ul, .pane-blog-center ul {
+.panes-2 .panel-second ul, .pane-blog-center ul,
+.pane-narrow-block ul {
   list-style: none;
 }
-.panes-2 .panel-second .item-list ul li, .pane-blog-center .item-list ul li {
+.panes-2 .panel-second .item-list ul li, .pane-blog-center .item-list ul li,
+.pane-narrow-block .item-list ul li {
   margin: 0;
 }
-.panes-2 .panel-second .views-row, .pane-blog-center .views-row {
+.panes-2 .panel-second .views-row, .pane-blog-center .views-row,
+.pane-narrow-block .views-row {
   -webkit-box-shadow: #d4d2d1 0 1px 0 0;
   -moz-box-shadow: #d4d2d1 0 1px 0 0;
   box-shadow: #d4d2d1 0 1px 0 0;
   border-bottom: 1px white solid;
   padding: 15px 0;
 }
-.panes-2 .panel-second .views-row:last-of-type, .pane-blog-center .views-row:last-of-type {
+.panes-2 .panel-second .views-row:last-of-type, .pane-blog-center .views-row:last-of-type,
+.pane-narrow-block .views-row:last-of-type {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   -o-box-shadow: none;
   box-shadow: none;
   border-bottom: none;
 }
-.panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a {
+.panes-2 .panel-second .views-field-title a, .pane-blog-center .views-field-title a, .panes-2 .panel-second .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .panes-2 .panel-second a a, .pane-blog-center .page-taxonomy-term .region-content .node-teaser h2 a a, .page-taxonomy-term .region-content .node-teaser h2 .pane-blog-center a a,
+.pane-narrow-block .views-field-title a,
+.pane-narrow-block .page-taxonomy-term .region-content .node-teaser h2 a a,
+.page-taxonomy-term .region-content .node-teaser h2 .pane-narrow-block a a {
   font-size: 14px;
   font-weight: bold;
 }
@@ -1567,7 +1600,10 @@ h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member
 .panes-2 .panel-second .project-related-thumb,
 .pane-blog-center .project-related-thumb,
 .panes-2 .panel-second .pane-narrow-thumb,
-.pane-blog-center .pane-narrow-thumb {
+.pane-blog-center .pane-narrow-thumb,
+.pane-narrow-block .views-field-views-ifempty,
+.pane-narrow-block .project-related-thumb,
+.pane-narrow-block .pane-narrow-thumb {
   float: left;
   margin-right: 14px;
   width: 60px;
@@ -1576,7 +1612,10 @@ h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member
 .panes-2 .panel-second .project-related-thumb img,
 .pane-blog-center .project-related-thumb img,
 .panes-2 .panel-second .pane-narrow-thumb img,
-.pane-blog-center .pane-narrow-thumb img {
+.pane-blog-center .pane-narrow-thumb img,
+.pane-narrow-block .views-field-views-ifempty img,
+.pane-narrow-block .project-related-thumb img,
+.pane-narrow-block .pane-narrow-thumb img {
   height: 60px;
   width: 60px;
 }
@@ -5780,6 +5819,10 @@ body.page-node-submission div.tabs ul.tabs li:first-child {
 }
 .suggest-a-cause:before {
   content: "Suggest a Cause";
+}
+
+.pane-cause-filter {
+  margin-bottom: 10px;
 }
 
 .node-type-blog .print-link {
