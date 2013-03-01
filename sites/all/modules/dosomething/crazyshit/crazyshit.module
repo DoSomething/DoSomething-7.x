@@ -184,7 +184,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  	$links[$href] = array(
 	  	  'title' => t($info['title']),
 	  	  'href' => $href,
-	  	  'attributes' => ($info['attributes'] ? $info['attributes'] : array()),
+	  	  'attributes' => (isset($info['attributes']) ? $info['attributes'] : array()),
 	  	);
 
 	  	if (preg_match('#^' . $match . '#i', $ru)) {
@@ -213,7 +213,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  		   'title' => t($type['title']),
 	  		   'href' => $href,
 	  		   'fragment' => $fragment,
-	  		   'attributes' => ($type['attributes'] ? $type['attributes'] : array()),
+	  		   'attributes' => (isset($type['attributes']) ? $type['attributes'] : array()),
 	  		);
 	  	  }
 	  	}
