@@ -235,12 +235,12 @@ function connections_page_alter(&$page) {
 
 				   $faces[$fb_actions[$action]] = $stuff;
 
-				   if ($stuff['og_post_description'] || $stuff['feed_description']) {
+				   if (isset($stuff['og_post_description']) || isset($stuff['feed_description'])) {
 				   	  global $fb_og_desc;
-				   	  $fb_og_desc = ($stuff['og_post_description'] ? $stuff['og_post_description'] : $stuf['feed_description']);
+				   	  $fb_og_desc = (isset($stuff['og_post_description']) ? $stuff['og_post_description'] : $stuff['feed_description']);
 				   }
 
-				   if ($stuff['img_object'] && $stuff['img_namespace']) {
+				   if (isset($stuff['img_object']) && isset($stuff['img_namespace'])) {
 					  global $og_stuff;
 					  $og_stuff = array(
 					  	'namespace' => $stuff['img_namespace'],
