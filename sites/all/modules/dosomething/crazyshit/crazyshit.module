@@ -542,7 +542,7 @@ function crazyshit_template_render($template, $sid) {
   // Start the parameters with just the SID.
   $params = array(
 	'sid' => $sid,
-	'you' => $_POST['you'],
+	'you' => (isset($_POST['you']) ? intval($_POST['you']) : 0),
   );
 
   // Add a random tip if it's the tips popup.

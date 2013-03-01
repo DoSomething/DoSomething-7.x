@@ -73,7 +73,7 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     else {
       $node = $form['#node'];
 
-      if (!isset($node->field_login_check) || $node->field_login_check[LANGUAGE_NONE][0]['value'] == 0) {
+      if (!isset($node->field_login_check) || (isset($node->field_login_check[LANGUAGE_NONE][0]['value']) && $node->field_login_check[LANGUAGE_NONE][0]['value'] == 0)) {
         $form['actions']['submit']['#ajax'] = array(
           'callback' => 'dosomething_campaign_contact_form_login_form_popup_form',
           'event' => 'click',

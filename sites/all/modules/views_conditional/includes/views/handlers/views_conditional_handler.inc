@@ -173,7 +173,7 @@ class views_conditional_handler extends views_handler_field {
         $parse = false;
       }
 
-      if ($f['alter']['prefix'] || $f['alter']['suffix']) {
+      if (isset($f['alter']['prefix']) || isset($f['alter']['suffix'])) {
         $parse = false;
       }
 
