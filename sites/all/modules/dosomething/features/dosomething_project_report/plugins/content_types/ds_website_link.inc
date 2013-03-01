@@ -38,7 +38,7 @@ function dosomething_project_report_website_link_render($subtype, $conf, $args, 
   $info = $title = $link = '';
   if ($entity_type == 'webform_submission_entity' && $bundle == 'project_report') {
     $info = (array)$wrapper->value();
-    if ($info['field_link'][LANGUAGE_NONE][0]['url'] || $info['field_link'][LANGUAGE_NONE][0]['title']) {
+    if (isset($info['field_link'][LANGUAGE_NONE][0]['url']) || isset($info['field_link'][LANGUAGE_NONE][0]['title'])) {
        $link = (isset($info['field_link'][LANGUAGE_NONE][0]['url']) ? $info['field_link'][LANGUAGE_NONE][0]['url'] : '');
        $title = (isset($info['field_link'][LANGUAGE_NONE][0]['title']) ? $info['field_link'][LANGUAGE_NONE][0]['title'] : '');
        if ($link && $title) {
