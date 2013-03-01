@@ -1,65 +1,8 @@
 <?php
 /**
  * A collection of functionality related to website performance.
- **/
-
-/**
- * Perform setup tasks for non-cached page requests.
  *
- * This hook is run at the beginning of the page request. It is typically used to set up
- * global parameters that are needed later in the request. When this hook is called, the
- * theme and all modules are already loaded in memory.
- * 
- * This hook is not run on cached pages.
- *
- * To add CSS or JS that should be present on all pages, modules should not implement this
- * hook, but declare these files in their .info file.
- *
- * http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_init/7
- *
- * Inject code in dosomething_performance_toolbox_webfonts to selectivly add css for webfonts.
- * Note the feature that this function is not called on cached pages. Also note the advice about
- * not using this page to add css or js to *all* pages. In this case is a selective process of
- * choosing specific webfont by page URL in an effort to only load what is needed.
- */
-function dosomething_performance_toolbox_init() {
-    
-    echo('BLA');
-    exit;
-    
-    if ($bla) {
-        $bla = TRUE;
-    }
-    
-    // Selectivly add webfont css call to pages.
-    dosomething_performance_toolbox_webfonts();
-    
-    
-    
- }
- 
- function dosomething_performance_toolbox_exit() {
-    
-    echo('BLA');
-    exit;
-    
- }
- 
- /**
- * Construct a <link> tag for the page head that calls a css file that contains @webfont
- * definitions based on the specific page contents. A default list of webfonts is loaded
- * but in some cases custom css files are defined for specific page or path resulting in a
- * shorter list. The less number of files / calls needed to define a page results in less
- * latency and faster load time.
- *
- * The effectivitness of adjusting these lists is dependent on the user not already having the webfont
- * on their local machine. They may have visted our site before or visited a different site that also
- * uses the same webfonts.
- *
- * The goal is to speed page load times for users visting the site and the specific page for
- * the first time.
- *
- * The supported webfonts and the bit values are:
+ *  * The supported webfonts and the bit values are:
  *
  * Bit value: 1
  * @font-face
@@ -132,26 +75,84 @@ function dosomething_performance_toolbox_init() {
  *   src: url('DINWeb-Bold.eot?iefix') format('eot'), url('DINWeb-Bold.woff') format('woff');
  *   font-style: normal;
  *   font-weight: 600;
+ *
+ **/
+
+ /*
+  * Other system define CSS constants
+  * CSS_SYSTEM: Any system-layer CSS: -100
+  * CSS_DEFAULT: (default) Any module-layer CSS: 0
+  * CSS_THEME: Any theme-layer CSS: 100
+  * 
+  */
+
+// Constant used to group CSS for aggregation, the higher the value the sooner it will be loaded
+define('CSS_WEBFONTS', 200);
+
+/**
+ * Perform setup tasks for non-cached page requests.
+ *
+ * This hook is run at the beginning of the page request. It is typically used to set up
+ * global parameters that are needed later in the request. When this hook is called, the
+ * theme and all modules are already loaded in memory.
+ * 
+ * This hook is not run on cached pages.
+ *
+ * To add CSS or JS that should be present on all pages, modules should not implement this
+ * hook, but declare these files in their .info file.
+ *
+ * http://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_page_alter/7
+ *
+ * Fires injection code in dosomething_performance_toolbox_webfonts to selectivly add css for webfonts.
+ * Perform alterations before a page is rendered. Use this hook when you want to remove or alter elements
+ * at the page level, or add elements at the page level that depend on an other module's elements In this
+ * case is a selective process of choosing specific webfont by page URL in an effort to only load what is
+ * needed.
+ */
+function dosomething_performance_toolbox_init() {
+    
+    echo('dosomething_performance_toolbox_init');
+    exit; 
+ 
+}
+
+
+function dosomething_performance_toolbox_page_alter(&$page) {
+    
+    if ($bla) {
+        $bla = TRUE;
+    }
+    
+    echo('dosomething_performance_toolbox_page_alter');
+    exit;
+    
+    // Selectivly add webfont css call to pages.
+    dosomething_performance_toolbox_webfonts();
+    
+}
+ 
+ /**
+ * Construct a <link> tag for the page head that calls a css file that contains @webfont
+ * definitions based on the specific page contents. A default list of webfonts is loaded
+ * but in some cases custom css files are defined for specific page or path resulting in a
+ * shorter list. The less number of files / calls needed to define a page results in less
+ * latency and faster load time.
+ *
+ * The effectivitness of adjusting these lists is dependent on the user not already having the webfont
+ * on their local machine. They may have visted our site before or visited a different site that also
+ * uses the same webfonts.
+ *
+ * The goal is to speed page load times for users visting the site and the specific page for
+ * the first time.
  */
 function dosomething_performance_toolbox_webfonts() {
-    
-    // Constant used to group CSS for aggregation, the higher the value the sooner it will be loaded
-    define('CSS_WEBFONTS', 200);
-    
-    // Other system define CSS constants
-    // CSS_SYSTEM: Any system-layer CSS: -100
-    // CSS_DEFAULT: (default) Any module-layer CSS: 0
-    // CSS_THEME: Any theme-layer CSS: 100
   
-      // Select Rack Space source based on if secure connection
+      // Select Rack Space source based on secure connection
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
       $rackspace_url = 'https://c308566.ssl.cf1.rackcdn.com';
     } else {
       $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
     }
-  
-    // Select CSS based on requested URL
-    $bla2 = $_SERVER['REQUEST_URI'];
     
     // Add font file groupings to specific CSS CSS_WEBFONTS group
     $options['group'] = CSS_WEBFONTS;
@@ -163,7 +164,7 @@ function dosomething_performance_toolbox_webfonts() {
     $bla = $is_front;
     $bla2 = $_SERVER['REQUEST_URI'];
     
-    if($_SERVER['REQUEST_URI'] == '/') { // Site front page: 
+    if ($_SERVER['REQUEST_URI'] == '/') { // Site front page: 
     
       // 1+16+32+2 = 51
       $data = $rackspace_url .'/'.'din-51.css';
@@ -175,25 +176,34 @@ function dosomething_performance_toolbox_webfonts() {
       
     } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /calloffame
         
-      // ??
-      $data = $rackspace_url .'/'.'din-??.css';
+      // 1+64+32+2
+      $data = $rackspace_url .'/'.'din-99.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /activist
+        
+      // 256+32+1+16+64
+      $data = $rackspace_url .'/'.'din-369.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /cleanup
+        
+      // 1+32+64
+      $data = $rackspace_url .'/'.'din-97.css'; 
       
     } elseif ($_SERVER['REQUEST_URI'] == '/tipsandtools') { // /tipsandtools
         
-      // ??
-      $data = $rackspace_url .'/'.'din-??.css';
+      // 1+32+2
+      $data = $rackspace_url .'/'.'din-35.css';
       
-    } elseif (strpos( $_SERVER['REQUEST_URI'], '/social-scholarship/') != FALSE) { // /social-scholarship/
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/social-scholarship/') != FALSE) { // /scholarships
 
-      // ??
-      $data = $rackspace_url .'/'.'din-??.css';
+      // 1+2+64+256+32
+      $data = $rackspace_url .'/'.'din-355.css';
 
     } else {
         
-      // Define path to DEFAULT font CSS file for general application to site 1+2+4+8+16+32+64+128a+256 = 
+      // Define path to DEFAULT font CSS file for general application to site 1+2+4+8+16+32+64+128a+256 
       $data = $rackspace_url .'/'.'din-511.css';
-      
-      
+
     }
     
     // Add stylesheet call to CSS stack, note change in drupal_add_css values based on addition of specific CSS
@@ -206,16 +216,17 @@ function dosomething_performance_toolbox_webfonts() {
 /**
  * Implements hook_css_alter().
  *
+ * Drupal 7: Taking control of CSS and JS aggregation
+ * http://www.metaltoad.com/blog/drupal-7-taking-control-css-and-js-aggregation
+ *
  * Added to control how css files are grouped together when agrigration is enabled
  * Note condition added to break the grouping into two sets as grouping everything
  * into a single file was result in a file that contained over 
- * @param $email
+ * @param &$css
  *   Users email address.
- * @param $groupName
- *   The campaign name that the email is to be subscribed to.
- * @return
- *   Boolean indicating success.
  */
+
+ /*
 function dosomething_performance_toolbox_css_alter(&$css) {
   // Set all aggregated css to the CSS_DEFAULT group.
   // This prevents individual css files per group
@@ -224,23 +235,35 @@ function dosomething_performance_toolbox_css_alter(&$css) {
   uasort($css, 'drupal_sort_css_js');
   $i = 0;
   foreach ($css as $name => $style) {
-    $css[$name]['weight'] = $i++;
     
-    // Break grouping into two sets - CSS_SYSTEM, (-100) and the rest
-    if ($style['group'] == -100) {
-      $css[$name]['group'] = CSS_SYSTEM;
+    // Exclude webfonts, always load as it's own css file
+    if ($css[$name]['group'] = CSS_WEBFONTS) {
+      $css[$name]['weight'] = $i++;
+      $css[$name]['group'] = CSS_WEBFONTS;
+      $css[$name]['every_page'] = FALSE;
     }
     else {
+      $css[$name]['weight'] = $i++;
       $css[$name]['group'] = CSS_DEFAULT;
+      $css[$name]['every_page'] = FALSE;        
     }
-    
-    $css[$name]['every_page'] = FALSE;
+
   }
 }
 
+*/
+
 /**
  * Implements hook_js_alter().
+ *
+ * Added to control how css files are grouped together when agrigration is enabled
+ * Note condition added to break the grouping into two sets as grouping everything
+ * into a single file was result in a file that contained over 
+ * @param &$javascript
+ *   The campaign name that the email is to be subscribed to.
  */
+
+ /*
 function dosomething_performance_toolbox_js_alter(&$javascript) {
   // Set all aggregated javascript to the JS_DEFAULT group.
   // Possible values: JS_LIBRARY, JS_DEFAULT, and JS_THEME
@@ -253,3 +276,5 @@ function dosomething_performance_toolbox_js_alter(&$javascript) {
     $javascript[$name]['every_page'] = FALSE;
   }
 }
+
+*/
