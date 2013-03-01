@@ -53,8 +53,12 @@ function dosomething_share_buttons($subtype, $conf, $panel_args, $context) {
   $short = shorten_url(url(request_uri(), array('absolute' => TRUE)));
 
   // Get page data.
-  $page = reset($context)->data;
-  $title = rawurlencode($page->title);
+  $page = $title = $uri = '';
+  if (is_object($context)) {
+    $page = reset($context)->data;
+    $title = (isset($page->title) ? rawurlencode($page->title) : '(Untitled)');
+  }
+
   $uri = request_uri();
   $url = url($uri, array('absolute' => TRUE));
 

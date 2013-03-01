@@ -894,11 +894,11 @@ function crazyshit_module_implements_alter(&$implementations, $hook) {
 function crazyshit_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'crazy_shit') {
 		$u = &$form['submitted'];
-		$page = $form_state['input']['details']['page_num'];
+		$page = (isset($form_state['input']['details']['page_num']) ? isset($form_state['input']['details']['page_num'] : 0);
 
 		include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 		if ($page == 0 || !isset($form_state['input']['submitted']['field_crazy_crazy_picture'][LANGUAGE_NONE][0]['fid'])) {
-			$u['s'] = array(
+			/*$u['s'] = array(
 				'#type' => 'container',
 				'step' => array(
 					'#markup' => t($submit_form['steps']['step1']),
@@ -907,19 +907,19 @@ function crazyshit_form_alter(&$form, &$form_state, $form_id) {
 				'#attributes' => array(
 					'class' => array('step-field'),
 				),
-			);
+			);*/
 
 			$form['submitted']['webform_entity_form']['#groups']['group_crazy_page1']->children[] = 'sbutton';
 			$form['submitted']['webform_entity_form']['#group_children']['sbutton'] = 'group_crazy_page1';
 		}
 		else {
-			$u['s'] = array(
+			/*$u['s'] = array(
 				'#type' => 'container',
 				'step' => array(
 					'#markup' => t($submit_form['steps']['step2']),
 				),
 				'#weight' => -1000,
-			);
+			);*/
 
 			$file = file_load($form_state['input']['submitted']['field_crazy_crazy_picture'][LANGUAGE_NONE][0]['fid']);
 			$path = str_replace(drupal_realpath('public://') . '/', '', drupal_realpath($file->uri));
