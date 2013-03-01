@@ -528,13 +528,14 @@ function doit_field($variables) {
   // Render the items.
   $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
   foreach ($variables['items'] as $delta => $item) {
-    // dsm($variables['element']['#field_type']);
     if ($variables['element']['#field_type'] == 'image') {
-      // dsm($item);
-      // dsm($item['#item']['title']);
-      // dsm(strlen($item['title']));
-      if (strlen($item['#item']['title']) > 0) {
-        $variables['item_attributes'][$delta] .= ' data-img-title="' . $item['#item']['title'] . '" ';
+      $title = '';
+      if (isset($item['#item']['title'])) {
+        $title = $item['#item']['title'];
+      }
+
+      if (strlen($title) > 0) {
+        $variables['item_attributes'][$delta] .= ' data-img-title="' . $title . '" ';
       }
     }
     $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
