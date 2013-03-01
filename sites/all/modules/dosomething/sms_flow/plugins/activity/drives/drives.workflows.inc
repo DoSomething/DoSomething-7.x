@@ -374,8 +374,8 @@ $activity = $workflow->newActivity('sms_flow_drives_ftaf');
 $activity->name = 'ftaf_process';
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;
-$activity->response_success = t('We\'ve sent along invites to your friends. Reply back with DBSINVITE if you want to invite more.');
-$activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your team again, text DBSINVITE.');
+$activity->response_success = t('We\'ve sent along invites to your friends. Reply back with SLAYERS if you want to invite more.');
+$activity->response_fail = t('Sorry, we didn\'t understand your last response. To invite ppl to your team again, text SLAYERS.');
 $activity->inputs = array('strip_signature_post_create_drive');
 $activity->outputs = array('end');
 
@@ -405,8 +405,8 @@ $activity->inputs = array('start');
 $activity->outputs = array('check_account_exists', 'end');
 $activity->accept_responses = array('y','yes','yea','ya','dbsjoin','dbs join');
 $activity->invite_rejected_message = t('No prob. You\'re not getting added to the team. If you want to join in the future, text back DBSJOIN.');
-$activity->no_numbers_message = t('Oops. Did you mean to invite someone to your team? Text DBSINVITE and try to invite again. Trying to join a team? Text DBSJOIN to try to join again.');
-$activity->already_in_drive_message = t('You already previously joined this team. You can view it online at http://doso.me/9. Want to invite friends to the team? Text DBSINVITE.');
+$activity->no_numbers_message = t('Oops. Did you mean to invite someone to your team? Text SLAYERS and try to invite again. Trying to join a team? Text DBSJOIN to try to join again.');
+$activity->already_in_drive_message = t('You already previously joined this team. You can view it online at http://doso.me/9. Want to invite friends to the team? Text SLAYERS.');
 
 $activity = $workflow->newActivity('sms_check_account_exists');
 $activity->name = 'check_account_exists';
@@ -445,7 +445,7 @@ $activity->name = 'process_beta';
 $activity->inputs = array('account_exists', 'create_account');
 $activity->outputs = array('ftaf_process');
 $activity->alpha_campaign_id = 110073;
-$activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething team of energy vampire slayers! Who else should be involved? Text back DBSINVITE and we\'ll invite them too.';
+$activity->alpha_message = 'Ur friend @name accepted your invite to join ur DoSomething team of energy vampire slayers! Who else should be involved? Text back SLAYERS and we\'ll invite them too.';
 $activity->drive_link = 'http://doso.me/9';
 $activity->success_message = t('Great! You can see your team here: http://doso.me/9. Grow your team of vampire slayers by inviting friends. Text #s to invite.');
 
@@ -455,8 +455,8 @@ $activity->inputs = array('process_beta');
 $activity->outputs = array('end');
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;
-$activity->response_success = t('We\'ve sent invites to your friends. Reply back with DBSINVITE if you want to invite more.');
-$activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the team again, text DBSJOIN. To invite ppl to ur team, text DBSINVITE.');
+$activity->response_success = t('We\'ve sent invites to your friends. Reply back with SLAYERS if you want to invite more.');
+$activity->response_fail = t('Sorry, we didn\'t understand your last response. To join the team again, text DBSJOIN. To invite ppl to ur team, text SLAYERS.');
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -494,8 +494,8 @@ $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->alpha_optin = 143633;
 $activity->beta_optin = 143653;
-$activity->response_success = t('Text DBSINVITE if you want to invite more!');
-$activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with DBSINVITE.');
+$activity->response_success = t('Text SLAYERS if you want to invite more!');
+$activity->response_fail = t('Sorry, we didn\'t understand your last response. To try again, reply back with SLAYERS.');
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
