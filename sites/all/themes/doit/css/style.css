@@ -6293,6 +6293,44 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
   margin-right: 0.4em;
 }
 
+#site-name.maintenance-style {
+  top: 0;
+  right: 1%;
+}
+#site-name.maintenance-style a {
+  width: 75px;
+  height: 75px;
+  background-size: 75px;
+  float: right;
+}
+@media only screen and (max-width: 800px) {
+  #site-name.maintenance-style {
+    right: 3%;
+  }
+}
+
+#page.maintenance-style {
+  margin: 3% auto;
+  padding: 3%;
+  width: 800px;
+  background: white;
+  position: relative;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 5px 10px 0 #243c6f;
+  -moz-box-shadow: 0 5px 10px 0 #243c6f;
+  box-shadow: 0 5px 10px 0 #243c6f;
+}
+@media only screen and (max-width: 800px) {
+  #page.maintenance-style {
+    width: 93%;
+    padding: 5%;
+  }
+}
+
 .facebook-plugin {
   width: 50px;
 }
