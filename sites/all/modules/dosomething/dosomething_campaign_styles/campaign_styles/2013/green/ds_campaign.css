@@ -9,7 +9,7 @@ img.logo {
   margin: 0 !important;
   background: transparent;
   width: 800px; }
-#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper, #main-wrapper #block-block-5, #main-wrapper #block-dosomething-campaign-styles-campaign-nav {
+#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper, #main-wrapper #block-block-5 {
   display: none; }
 #main-wrapper ul.primary {
   border-bottom: none;
@@ -17,7 +17,7 @@ img.logo {
   padding: 15px 0 0 8px;
   height: 37px; }
 #main-wrapper .logo-processed {
-  margin-left: -15px; }
+  margin-left: -20px; }
 
 .ds-panel .pane-content {
   padding-bottom: 0; }
@@ -242,9 +242,9 @@ body {
         color: white; }
 
 #block-dosomething-campaign-styles-campaign-nav {
-  margin: 15px 0 0 -20px; }
+  margin: 15px 0 0 0; }
   #block-dosomething-campaign-styles-campaign-nav .highlight a {
-    background: #009452; }
+    background: #50b848; }
   #block-dosomething-campaign-styles-campaign-nav .ui-icon.ui-icon-closethick {
     margin: -20px -13px !important; }
 
@@ -925,7 +925,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp input[type="submit"] {
     font-size: 1.5em; }
   #cmp a {
-    color: #009452;
+    color: #50b848;
     text-decoration: underline; }
     #cmp a:hover {
       text-decoration: none; }
@@ -999,10 +999,21 @@ div[aria-labelledby="ui-dialog-title-1"] {
       text-align: left;
       color: black;
       margin: 0; }
+    #cmp #header .headline {
+      max-width: 800px;
+      margin: 0 auto 10%; }
     #cmp #header h1 {
-      margin: 0 0 0.5em 0;
-      font-weight: 500;
-      font-size: 2.4em; }
+      margin: 1.5% 0 1.5% 1.5%;
+      background: #50b848;
+      zoom: 1;
+      filter: alpha(opacity=85);
+      opacity: 0.85;
+      float: left;
+      font-weight: 600;
+      font-size: 3.4em;
+      color: white;
+      padding: 1.5% 1.5% 0;
+      line-height: 1em; }
     #cmp #header h2 {
       text-align: center;
       text-transform: uppercase;
@@ -1016,11 +1027,17 @@ div[aria-labelledby="ui-dialog-title-1"] {
         color: #50b848;
         font-weight: 700;
         padding: 0; }
-    #cmp #header span {
-      padding: 0;
-      text-align: center; }
-    #cmp #header .tagline {
-      padding: 184px 0 0 0; }
+    #cmp #header .subhead {
+      color: white;
+      background: #231f20;
+      zoom: 1;
+      filter: alpha(opacity=85);
+      opacity: 0.85;
+      margin: 0 0 1.5% 1.5%;
+      float: left;
+      clear: both;
+      font-size: 1.2em;
+      padding: 1% 1.5%; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -1038,8 +1055,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
         margin-top: 0.1em;
         float: left;
         font-size: 1.8em; }
-    #cmp #header .headline {
-      margin: 5% 0; }
   #cmp #action {
     padding: 3% 0 2%; }
     #cmp #action h2 {
@@ -1077,54 +1092,36 @@ div[aria-labelledby="ui-dialog-title-1"] {
     max-width: 400px; }
     #cmp #content .do-topics span {
       font-weight: 600; }
-  #cmp .section#scholarship {
-    padding: 0; }
-  #cmp #scholarship .divider {
-    margin: 0 2% 3%; }
-  #cmp #scholarship li {
-    color: #50b848; }
-  #cmp #scholarship h2 {
+  #cmp #scholarship {
     background: #50b848;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500;
-    line-height: 1.2em;
-    padding: 0.2em 0.5em 0; }
-  #cmp #scholarship h3 {
-    margin: 0.5em 0 0.1em;
-    padding: 0 1em; }
-  #cmp #scholarship h3.recycle {
-    display: inline-block; }
-    #cmp #scholarship h3.recycle:before, #cmp #scholarship h3.recycle:after {
-      position: relative;
-      top: 4px; }
-    #cmp #scholarship h3.recycle:before {
-      content: url(http://files.dosomething.org/files/campaigns/green/recycle.png);
-      padding-right: 6px; }
-    #cmp #scholarship h3.recycle:after {
-      content: url(http://files.dosomething.org/files/campaigns/green/recycle.png);
-      padding-left: 6px; }
-  #cmp #scholarship h3.lights {
-    display: inline-block; }
-    #cmp #scholarship h3.lights:before, #cmp #scholarship h3.lights:after {
-      position: relative;
-      top: 6px; }
-    #cmp #scholarship h3.lights:before {
-      content: url(http://files.dosomething.org/files/campaigns/green/light-left.png);
-      padding-right: 8px; }
-    #cmp #scholarship h3.lights:after {
-      content: url(http://files.dosomething.org/files/campaigns/green/light-right.png);
-      padding-left: 8px;
-      vertical-align: middle; }
-  #cmp #scholarship h3.sparks {
-    display: inline-block; }
-    #cmp #scholarship h3.sparks:before {
-      content: url(http://files.dosomething.org/files/campaigns/green/flash-left.png);
-      padding-right: 4px; }
-    #cmp #scholarship h3.sparks:after {
-      content: url(http://files.dosomething.org/files/campaigns/green/flash-right.png);
-      padding-left: 4px;
-      vertical-align: middle; }
+    padding: 2%; }
+    #cmp #scholarship h2, #cmp #scholarship h3, #cmp #scholarship p {
+      color: white;
+      text-transform: uppercase; }
+    #cmp #scholarship h2 {
+      font-weight: 400;
+      font-size: 1.4em;
+      line-height: 1.2em;
+      margin-bottom: 1em; }
+    #cmp #scholarship .third {
+      float: left;
+      width: 33%; }
+      #cmp #scholarship .third h3 {
+        font-size: 4em;
+        font-weight: 600; }
+      #cmp #scholarship .third h4 {
+        text-transform: uppercase;
+        font-size: 1.8em;
+        font-weight: 500; }
+      #cmp #scholarship .third p {
+        padding-top: 1.2em;
+        font-size: 1.8em;
+        font-weight: 600; }
+    #cmp #scholarship .go-button {
+      font-size: 2.4em; }
+  #cmp #impact p {
+    max-width: 350px;
+    margin: 0 auto; }
   #cmp #faq div {
     padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq div.divider {
@@ -1185,8 +1182,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #faq .action-arrow-left {
     left: -70px; }
   #cmp #drive {
-    padding-bottom: 2.5em;
-    border-bottom: 2px solid #cccccc; }
+    padding-bottom: 2.5em; }
   #cmp #contact-form .already_submitted h3 {
     text-transform: none;
     display: inline-block;
@@ -1198,12 +1194,18 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .drive-info-wrapper {
     width: 60%; }
   #cmp .drive-participants {
+    text-align: left;
+    padding: 0 2%;
     width: 40%;
     border-left: 2px solid #cccccc; }
     #cmp .drive-participants h3, #cmp .drive-participants .item-list, #cmp .drive-participants .drive-action-link {
       padding: 4px 4px 4px 8px; }
+    #cmp .drive-participants h3 {
+      text-align: left; }
     #cmp .drive-participants .drive-action-link a {
       height: auto; }
+    #cmp .drive-participants .drive-action-link {
+      text-align: center; }
   #cmp .drive-info-description, #cmp .drive-share {
     display: none; }
   #cmp .drive-info-title {
@@ -1217,12 +1219,87 @@ div[aria-labelledby="ui-dialog-title-1"] {
       line-height: 1.1em; }
     #cmp .drive-info-title h2, #cmp .drive-info-title h3, #cmp .drive-info-title p {
       padding: 4px; }
+  #cmp .section#drive-content {
+    padding: 0; }
   #cmp #drive-content {
     text-align: left; }
     #cmp #drive-content p {
       margin-bottom: 1.2em; }
     #cmp #drive-content .go-button {
       margin: 0 0 1em; }
+    #cmp #drive-content h3 {
+      background: #50b848;
+      padding: 0.4em 1em 0;
+      color: white;
+      display: inline-block;
+      margin-bottom: 0.5em; }
+    #cmp #drive-content ul {
+      list-style: disc;
+      margin-left: 2.6em;
+      margin-bottom: 1em; }
+    #cmp #drive-content li {
+      margin-bottom: 0.5em; }
+    #cmp #drive-content img {
+      margin: 1em auto 3em;
+      display: block; }
+  #cmp .section#teeth {
+    padding-top: 0; }
+  #cmp #teeth {
+    background: white url("//files.dosomething.org/files/campaigns/green/team-bg.jpg") top center no-repeat; }
+    #cmp #teeth .divider {
+      border-top: none; }
+    #cmp #teeth h2 {
+      color: white;
+      font-size: 1.2em;
+      font-weight: 400;
+      line-height: 1.4em;
+      margin: 0 auto 2em;
+      max-width: 550px;
+      letter-spacing: 1px; }
+      #cmp #teeth h2 span {
+        font-size: 1.4em;
+        font-weight: 600; }
+    #cmp #teeth .bottom-h2 {
+      margin-bottom: 0; }
+    #cmp #teeth .go-button {
+      margin: 0.4em auto 1em;
+      font-size: 2em; }
+  #cmp #square-wrap {
+    margin: 0 auto;
+    max-width: 650px; }
+  #cmp .square {
+    float: left;
+    width: 325px;
+    text-align: center; }
+    #cmp .square img {
+      margin: 0 auto 12px auto;
+      display: block; }
+    #cmp .square h3 {
+      font-size: 20px;
+      text-transform: uppercase;
+      font-family: din-web-reg;
+      line-height: 1.2em; }
+    #cmp .square p {
+      line-height: 1.4em; }
+  #cmp .sq-one, #cmp .sq-two, #cmp .sq-three, #cmp .sq-four {
+    height: 375px;
+    padding-top: 20px;
+    padding-bottom: 20px; }
+  #cmp .sq-one {
+    border-right: 2px solid lightgrey;
+    border-bottom: 2px solid lightgrey; }
+  #cmp .sq-two {
+    border-bottom: 2px solid lightgrey; }
+  #cmp .sq-three {
+    border-right: 2px solid lightgrey; }
+  #cmp .sq-one, #cmp .sq-three {
+    padding-left: 0;
+    padding-right: 50px; }
+  #cmp .sq-two, #cmp .sq-four {
+    padding-right: 0;
+    padding-left: 50px; }
+  #cmp .sq-three, #cmp .sq-four {
+    margin-bottom: 40px; }
   #cmp #footer h1 {
     font-size: 2em;
     font-family: din-web;
@@ -1442,6 +1519,26 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .section {
       width: 100%;
       margin: 0 auto; }
+    #cmp #teeth h2 {
+      font-size: 1em; }
+    #cmp #toolkit .square {
+      float: none;
+      width: auto; }
+      #cmp #toolkit .square img {
+        margin: 0 auto 12px auto;
+        display: block; }
+      #cmp #toolkit .square h3 {
+        font-size: 20px;
+        text-transform: uppercase;
+        font-family: din-web-reg;
+        line-height: 1.2em; }
+      #cmp #toolkit .square p {
+        line-height: 1.4em; }
+    #cmp #toolkit .sq-one, #cmp #toolkit .sq-two, #cmp #toolkit .sq-three, #cmp #toolkit .sq-four {
+      height: auto;
+      padding: 0;
+      margin: 2em auto 3em;
+      border: none; }
     #cmp #contact-form h3 {
       margin: 0; }
     #cmp #webform-component-start-header {
@@ -1504,6 +1601,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
   @media only screen and (max-width: 550px) {
     #cmp #scholarship h3:before, #cmp #scholarship h3:after {
       display: none; }
+    #cmp #scholarship .third {
+      width: 94%;
+      margin: 3%; }
+      #cmp #scholarship .third p {
+        padding-top: 0.1em; }
     #cmp #facts .divider {
       display: none; }
     #cmp #facts .divider-mobile {

@@ -13,10 +13,21 @@
     text-align: left
     color: black
     margin: 0
+  .headline
+    max-width: 800px
+    margin: 0 auto 10%
   h1
-    margin: 0 0 0.5em 0
-    font-weight: 500
-    font-size: 2.4em
+    margin: 1.5% 0 1.5% 1.5%
+    background: $secondaryColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    float: left
+    font-weight: 600
+    font-size: 3.4em
+    color: white
+    padding: 1.5% 1.5% 0
+    line-height: 1em
   h2
     text-align: center
     text-transform: uppercase
@@ -30,11 +41,17 @@
       color: $secondaryColor
       font-weight: 700
       padding: 0
-  span
-    padding: 0
-    text-align: center
-  .tagline
-    padding: 184px 0 0 0  
+  .subhead
+    color: white
+    background: $grayColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 0 0 1.5% 1.5% 
+    float: left
+    clear: both
+    font-size: 1.2em
+    padding: 1% 1.5%
   .pane-campaign-signed
     h2
       text-align: center
@@ -52,9 +69,7 @@
       .go-button
         margin-top: 0.1em 
         float: left
-        font-size: 1.8em    
-  .headline
-    margin: 5% 0
+        font-size: 1.8em
 
 //			//
 //	#action
@@ -104,55 +119,42 @@
 //			//
 //	#scholarship
 //			//
-.section#scholarship
-  padding: 0
 #scholarship
-  .divider
-    margin: 0 2% 3%
-  li
-    color: $secondaryColor
-  h2
-    background: $secondaryColor
+  background: $secondaryColor
+  padding: 2%
+  h2, h3, p
     color: white
     text-transform: uppercase
-    font-weight: 500
+  h2
+    font-weight: 400
+    font-size: 1.4em
     line-height: 1.2em
-    padding: 0.2em 0.5em 0
-  h3
-    margin: 0.5em 0 0.1em
-    padding: 0 1em
-  h3.recycle
-    display: inline-block
-    &:before, &:after
-      position: relative
-      top: 4px
-    &:before
-      content: url(http://files.dosomething.org/files/campaigns/green/recycle.png)
-      padding-right: 6px
-    &:after
-      content: url(http://files.dosomething.org/files/campaigns/green/recycle.png)
-      padding-left: 6px
-  h3.lights
-    display: inline-block
-    &:before, &:after
-      position: relative
-      top: 6px
-    &:before
-      content: url(http://files.dosomething.org/files/campaigns/green/light-left.png)
-      padding-right: 8px
-    &:after
-      content: url(http://files.dosomething.org/files/campaigns/green/light-right.png)
-      padding-left: 8px
-      vertical-align: middle
-  h3.sparks
-    display: inline-block
-    &:before
-      content: url(http://files.dosomething.org/files/campaigns/green/flash-left.png)
-      padding-right: 4px
-    &:after
-      content: url(http://files.dosomething.org/files/campaigns/green/flash-right.png)
-      padding-left: 4px
-      vertical-align: middle
+    margin-bottom: 1em
+  .third
+    float: left
+    width: 33%
+    h3
+      font-size: 4em
+      font-weight: 600
+    h4
+      text-transform: uppercase
+      font-size: 1.8em
+      font-weight: 500
+    p
+      padding-top: 1.2em
+      font-size: 1.8em
+      font-weight: 600
+  .go-button
+    font-size: 2.4em
+
+
+//      //
+//  #impact
+//      //
+#impact
+  p
+    max-width: 350px
+    margin: 0 auto
 
 //      //
 //  #faq
@@ -224,7 +226,7 @@
 //      //
 #drive
   padding-bottom: 2.5em
-  border-bottom: 2px solid $borderColor
+
 #contact-form .already_submitted h3
   text-transform: none
   display: inline-block
@@ -237,12 +239,18 @@
 .drive-info-wrapper
   width: 60%
 .drive-participants
+  text-align: left
+  padding: 0 2%
   width: 40%
   border-left: 2px solid $borderColor
   h3, .item-list, .drive-action-link
     padding: 4px 4px 4px 8px
+  h3
+    text-align: left
   .drive-action-link a
-    height: auto  
+    height: auto
+  .drive-action-link
+    text-align: center
 .drive-info-description, .drive-share
   display: none
 .drive-info-title
@@ -257,12 +265,98 @@
   h2, h3, p
     padding: 4px
 
+.section#drive-content
+  padding: 0
+
 #drive-content
   text-align: left
   p
     margin-bottom: 1.2em
   .go-button
     margin: 0 0 1em
+  h3
+    background: $secondaryColor
+    padding: 0.4em 1em 0
+    color: white
+    display: inline-block
+    margin-bottom: 0.5em
+  ul
+    list-style: disc
+    margin-left: 2.6em
+    margin-bottom: 1em
+  li
+    margin-bottom: 0.5em
+  img
+    margin: 1em auto 3em
+    display: block
+
+//      //
+//  #teeth
+//      //
+.section#teeth
+  padding-top: 0
+#teeth
+  background: #fff url('//files.dosomething.org/files/campaigns/green/team-bg.jpg') top center no-repeat
+  .divider
+    border-top: none
+  h2
+    color: white
+    font-size: 1.2em
+    font-weight: 400
+    line-height: 1.4em
+    margin: 0 auto 2em
+    max-width: 550px
+    letter-spacing: 1px
+    span
+      font-size: 1.4em
+      font-weight: 600
+  .bottom-h2
+    margin-bottom: 0
+  .go-button
+    margin: 0.4em auto 1em
+    font-size: 2em
+
+
+//      //
+//  #toolkit
+//      //
+#square-wrap
+  margin: 0 auto
+  max-width: 650px
+.square
+  float: left
+  width: 325px
+  text-align: center
+  img
+    margin: 0 auto 12px auto
+    display: block
+  h3
+    font-size: 20px
+    text-transform: uppercase
+    font-family: din-web-reg
+    line-height: 1.2em
+  p
+    line-height: 1.4em
+.sq-one, .sq-two, .sq-three, .sq-four
+  height: 375px
+  padding-top: 20px
+  padding-bottom: 20px
+.sq-one
+  border-right: 2px solid lightgray
+  border-bottom: 2px solid lightgray    
+.sq-two
+  border-bottom: 2px solid lightgray
+.sq-three
+  border-right: 2px solid lightgray
+.sq-one, .sq-three
+  padding-left: 0
+  padding-right: 50px
+.sq-two, .sq-four
+  padding-right: 0
+  padding-left: 50px
+.sq-three, .sq-four
+  margin-bottom: 40px
+
 
 //      //
 //  #footer     - sign up button; conditionally displayed -
