@@ -596,6 +596,7 @@ function dosomething_school_make_label($entity) {
 function dosomething_school_autocomplete_callback($type, $state, $name) {
   $result = _dosomething_school_schools_query($type, $state, $name);
 
+  $matches = array();
   $entity_type = 'ds_school';
   if (!empty($result[$entity_type])) {
     foreach (entity_load($entity_type, array_keys($result[$entity_type])) as $info) {
