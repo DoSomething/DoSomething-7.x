@@ -5821,6 +5821,10 @@ body.page-node-submission div.tabs ul.tabs li:first-child {
   content: "Suggest a Cause";
 }
 
+.pane-cause-filter {
+  margin-bottom: 10px;
+}
+
 .node-type-blog .print-link {
   display: none;
 }

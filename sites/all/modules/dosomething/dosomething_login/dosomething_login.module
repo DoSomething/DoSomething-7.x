@@ -109,6 +109,7 @@ function dosomething_login_library() {
     'js' => array(
       drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-ajax-popups.js' => array(),
     ),
+    'version' => '1.0',
     'dependencies' => array(
       array('system', 'jquery'),
       array('system', 'drupal.ajax'),
