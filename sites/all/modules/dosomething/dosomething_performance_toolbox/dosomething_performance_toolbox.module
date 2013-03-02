@@ -2,15 +2,29 @@
 /**
  * A collection of functionality related to website performance.
  *
- * Other system define CSS constants
- * CSS_SYSTEM: Any system-layer CSS: -100
- * CSS_DEFAULT: (default) Any module-layer CSS: 0
- * CSS_THEME: Any theme-layer CSS: 100
+ * In an effort to reduce lantancy (the time it takes a connection to start and finish)
+ * the web sides load time can be improved by reducding the number of connections necessary
+ * to assemble a page.
+ *
+ * These tools are an attempt to address this issue.
+ * 
+ **/
+
+/*
+ * 'group': A number identifying the group in which to add the stylesheet. Available constants are:
+ * 
+ * CSS_SYSTEM (-100): Any system-layer CSS.
+ * CSS_DEFAULT (0 - default): (default) Any module-layer CSS.
+ * CSS_THEME (100): Any theme-layer CSS.
+ * 
+ * The group number serves as a weight: the markup for loading a stylesheet within a lower weight
+ * group is output to the page before the markup for loading a stylesheet within a higher weight
+ * group, so CSS within higher weight groups take precendence over CSS within lower weight groups.
  * 
  */
 
 // Constant used to group CSS for aggregation, the higher the value the sooner it will be loaded
-define('CSS_WEBFONTS', -500);
+define('CSS_WEBFONTS', 200);
 
 /**
  * Perform setup tasks for non-cached page requests.
@@ -34,8 +48,8 @@ define('CSS_WEBFONTS', -500);
  */
 function dosomething_performance_toolbox_init() {
     
-    // Selectivly add webfont css call to pages.
-    dosomething_performance_toolbox_webfonts();
+  // Selectivly add specifically selected webfont combinations css call to pages.
+  dosomething_performance_toolbox_webfonts();
     
 }
  
@@ -61,16 +75,13 @@ function dosomething_performance_toolbox_webfonts() {
     } else {
       $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
     }
-    
+
     // Add font file groupings to specific CSS CSS_WEBFONTS group
     $options['group'] = CSS_WEBFONTS;
     
     // All webfont files are coming from the CDN thus making them external files
     // Externally hosted stylesheets are never aggregated or compressed.
     $options['type'] = 'external';
-    
-    $bla = $is_front;
-    $bla2 = $_SERVER['REQUEST_URI'];
     
     if ($_SERVER['REQUEST_URI'] == '/') { // Site front page: 
     
@@ -79,8 +90,8 @@ function dosomething_performance_toolbox_webfonts() {
       
     } elseif (strpos( $_SERVER['REQUEST_URI'], '/teensforjeans') != FALSE) { // /teensforjeans
         
-      // 1+16+32+256+64 = 369
-      $data = $rackspace_url .'/'.'din-369.css';
+      // 1+12_6+32+256+64 = 371
+      $data = $rackspace_url .'/'.'din-371.css';
       
     } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /calloffame
         
@@ -92,7 +103,7 @@ function dosomething_performance_toolbox_webfonts() {
       // 256+32+1+16+64
       $data = $rackspace_url .'/'.'din-369.css';
       
-    } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /cleanup
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/cleanup') != FALSE) { // /cleanup
         
       // 1+32+64
       $data = $rackspace_url .'/'.'din-97.css'; 

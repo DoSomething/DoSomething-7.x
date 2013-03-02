@@ -7,7 +7,7 @@
      src: url('DINWeb-CondMedium.eot?iefix') format('eot'), url('DINWeb-CondMedium.woff') format('woff');
      font-style: normal;
      font-weight: 500;
-     
+
    Bit value: 2
    @font-face
      font-family: "din-web"; 
