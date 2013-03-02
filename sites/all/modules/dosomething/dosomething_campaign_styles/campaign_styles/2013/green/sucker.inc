@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'Green Your School',
+  'title' => 'Don\'t Be a Sucker',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -30,7 +30,6 @@ $plugin = array(
   'menu' => array(
     array('title' => 'take action', 'href' => 'sucker', 'fragment' => 'header'),
     array('title' => 'scholarship info', 'href' => 'sucker', 'fragment' => 'scholarship'),
-    array('title' => 'learn about activism', 'href' => 'sucker/report-back'),
     array('title' => 'questions', 'href' => 'sucker', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(

@@ -113,11 +113,14 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
             $response = "We found " . $num_schools . " school.\n";
           }
 
+          $sids = array();
           for ($i = 0; $i < $num_schools; $i++) {
             $response .= $i+1 . ') ' . $data[$i]['name'] . '. ' . $data[$i]['street'] . ', ' . $data[$i]['city'] . ', ' . $data[$i]['state'] . '. ID#: ' . $data[$i]['sid'] . " \n";
+            $sids[] = $data[$i]['sid'];
           }
 
           $response .= $this->schools_found_post_message;
+          $state->setContext('school_search_results', $sids);
           $state->markSuspended();
         }
       }
@@ -134,8 +137,17 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
     else {
       $words = explode(' ', $user_reply);
       $first_word = $words[0];
+      $sid_reply = intval($first_word);
 
-      $school_sid = self::checkSchoolSID($first_word);
+      $school_sid = 0;
+      if ($sid_reply > 0 && $sid_reply <= self::MAX_RESULTS) {
+        $found_sids = $state->getContext('school_search_results');
+        $school_sid = $found_sids[$sid_reply - 1];
+      }
+      else {
+        $school_sid = self::checkSchoolSID($first_word);
+      }
+
       if ($school_sid) {
         $state->setContext('school_sid', $school_sid);
 

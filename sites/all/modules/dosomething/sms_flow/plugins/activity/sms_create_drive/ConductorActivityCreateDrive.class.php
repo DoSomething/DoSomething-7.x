@@ -6,8 +6,23 @@
  */
 class ConductorActivityCreateDrive extends ConductorActivity {
   
-    // nid of the webform node to associate report backs with
-  const JEANS12_CAMPAIGN_SIGN_UP_NID = 725896;
+  // URL for campaign - used to get gid of the user's team
+  public $campaign_url;
+
+  // nid of the webform node to associate report backs with
+  public $sign_up_nid;
+  
+  // Response sent to users in case of error
+  public $response_error;
+
+  // Response sent to users when it's found that they are already in a drive
+  public $response_in_drive;
+
+  // Response sent to users when drive join is successful, and they've created a new account
+  public $response_new_account;
+
+  // Response sent to users when drive join is successful, and they already have an account
+  public $response_success;
 
   public function run($workflow) {
     
@@ -31,7 +46,7 @@ class ConductorActivityCreateDrive extends ConductorActivity {
       module_load_include('inc', 'webform', 'includes/webform.submissions');
       
       // Determine if the user is already signed up
-      $count = webform_get_submission_count(self::JEANS12_CAMPAIGN_SIGN_UP_NID, $user->uid);
+      $count = webform_get_submission_count($this->sign_up_nid, $user->uid);
       
       if ($count == 0) {
         // Build out array for webform submission
@@ -42,24 +57,24 @@ class ConductorActivityCreateDrive extends ConductorActivity {
             'submission' => NULL,
             'submitted' => array(),
             'details' => array(
-              'nid' => self::JEANS12_CAMPAIGN_SIGN_UP_NID,
+              'nid' => $this->sign_up_nid,
               'sid' => NULL,
               'uid' => $user->uid,
             ),
             'op' => t('Submit'),
             'submit' => t('Submit'),
-            'form_id' => 'webform_client_form_'.self::JEANS12_CAMPAIGN_SIGN_UP_NID,
+            'form_id' => 'webform_client_form_'.$this->sign_up_nid,
           ),
         );
         $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] = $mobile;
         $form_state['webform_entity']['submission']->submitted['field_webform_school_reference'][LANGUAGE_NONE][0]['target_id'] = $school_id;
         $form_state['webform_entity']['submission']->bundle = $form_state['webform_entity']['bundle'] = 'campaign_sign_up';
 
-        drupal_form_submit('webform_client_form_' . self::JEANS12_CAMPAIGN_SIGN_UP_NID, $form_state, node_load(self::JEANS12_CAMPAIGN_SIGN_UP_NID));
+        drupal_form_submit('webform_client_form_' . $this->sign_up_nid, $form_state, node_load($this->sign_up_nid));
 
         if (form_get_errors()) {
-          $state->setContext('sms_response', t('Sorry! We ran into a problem creating your drive. Text JEANS to try again or visit http://doso.me/6 to try online.'));
-          $this->removeOutput('strip_signature_3');
+          $state->setContext('sms_response', $this->response_error);
+          $this->removeOutput('strip_signature_post_create_drive');
           $state->markCompleted();
 
           return;
@@ -68,20 +83,20 @@ class ConductorActivityCreateDrive extends ConductorActivity {
           // If new_account_password is set, indicates a new user was created previously in the flow
           $new_account_password = $state->getContext('new_account_password');
           if ($new_account_password !== FALSE) {
-            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive and to receive a T4J banner! Login at http://doso.me/6. Ur password is: @pass. Text us your friends\' #s to invite them too', array('@pass' => $new_account_password)));
+            $state->setContext('sms_response', t($this->response_new_account, array('@pass' => $new_account_password)));
           }
           else {
-            $state->setContext('sms_response', t('Great! Your school is signed up for a T4J drive, and signed up to receive a T4J banner! Login at http://doso.me/6. Text us your friends\' #s to invite them too'));
+            $state->setContext('sms_response', $this->response_success);
           }
         }
       }
       else {
-        $state->setContext('sms_response', t('You already signed up for a drive! Login at http://doso.me/6 to visit it. Have friends you want to invite? Reply with their #\'s and we\'ll invite them!'));
+        $state->setContext('sms_response', $this->response_in_drive);
       } 
 
       // Gets the GID of the drive this user is a part of. Then sets that value to
       // drives_invite_gid to be used in a later activity for doing a FTAF.
-      $my_teams = teams_get_my_teams_for_url('teensforjeans');
+      $my_teams = teams_get_my_teams_for_url($this->campaign_url);
       $team_sid = $my_teams[0];
       $gid = og_get_group('webform_submission_entity', $team_sid, true)->gid;
       $state->setContext('drives_invite_gid', $gid);

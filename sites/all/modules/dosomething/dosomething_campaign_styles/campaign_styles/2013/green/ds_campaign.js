@@ -21,8 +21,8 @@
 
 
     // campaign logo injection
-    var logo = '//files.dosomething.org/files/campaigns/green/gysc-logo.png';
-    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/greenyourschool"><img src="' + logo + '"/></a>');
+    var logo = '//files.dosomething.org/files/campaigns/green/logo2.png';
+    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').css('margin-left','-20px').prepend('<a href="/greenyourschool"><img src="' + logo + '"/></a>');
     
     // campaign social media injection
     $('#header').prepend($('.socialWrapper'));

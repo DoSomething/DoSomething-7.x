@@ -182,8 +182,13 @@ function dosomething_drives_get_drive_nid($campaign_group) {
     ->propertyCondition('type', 'drive_form')
     ->fieldCondition('group_audience', 'gid', $gid)
     ->execute();
-  $result = reset($result);
-  return reset($result)->nid;
+
+  if (is_array($result) && !empty($result)) {
+    $result = reset($result);
+    return reset($result)->nid;
+  }
+
+  return 0;
 }
 
 /**

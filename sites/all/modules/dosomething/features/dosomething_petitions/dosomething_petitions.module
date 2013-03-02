@@ -30,11 +30,16 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'petition') {
     global $user, $submitted_form;
 
+    $nid = 0;
+    if (isset($node->nid)) {
+      $nid = $node->nid;
+    }
+
     $form['hidden-email-link'] = array(
-      '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
+      '#markup' => l(t('Share with email'), 'contact-scraper/' . $nid, array(
         'attributes' => array(
           'class' => array('hidden-email-link'),
-          'onclick' => 'return invite_find_emails(' . $node->nid . ')',
+          'onclick' => 'return invite_find_emails(' . $nid . ')',
           'style' => 'display: none',
         ),
       )),
