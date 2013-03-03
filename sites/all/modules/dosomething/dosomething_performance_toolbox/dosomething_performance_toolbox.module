@@ -146,9 +146,14 @@ function dosomething_performance_toolbox_webfonts() {
  */
 
 function dosomething_performance_toolbox_css_alter(&$css) {
+    
   // Set all aggregated css to the CSS_DEFAULT group.
   // This prevents individual css files per group
   // Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
   
   uasort($css, 'drupal_sort_css_js');
   $i = 0;
@@ -180,9 +185,15 @@ function dosomething_performance_toolbox_css_alter(&$css) {
  */
 
 function dosomething_performance_toolbox_js_alter(&$javascript) {
+    
   // Set all aggregated javascript to the JS_DEFAULT group.
   // Possible values: JS_LIBRARY, JS_DEFAULT, and JS_THEME
   // This prevents individual js files per group
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
   uasort($javascript, 'drupal_sort_css_js');
   $i = 0;
   foreach ($javascript as $name => $script) {
