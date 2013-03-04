@@ -74,7 +74,18 @@ function crazyshit_default_page_manager_pages() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'regex_visibility',
+          'settings' => array(
+            'context' => '0',
+            'expression' => 'crazy\\/friends\\/[0-9]+',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => 'Invite Friends Button',
       'title' => '',
