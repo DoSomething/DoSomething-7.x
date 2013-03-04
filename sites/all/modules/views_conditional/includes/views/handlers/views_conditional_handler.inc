@@ -160,32 +160,30 @@ class views_conditional_handler extends views_handler_field {
   }
 
   function clean_var($var, $key) {
+    $f = array();
     if (isset($var->view->query->pager->display->handler->options['fields'][$key])) {
       $f = $var->view->query->pager->display->handler->options['fields'][$key];
-
-      $unparsed = trim($var->last_render);
-      $parse = true;
-      if (!empty($f['element_type'])) {
-        $parse = false;
-      }
-
-      if ($f['alter']['make_link'] == 1) {
-        $parse = false;
-      }
-
-      if (isset($f['alter']['prefix']) || isset($f['alter']['suffix'])) {
-        $parse = false;
-      }
-
-      if ($parse) {
-        $unparsed = strip_tags($unparsed);
-      }
-
-      return trim($unparsed);
     }
-    else {
-      return;
+
+    $unparsed = trim($var->last_render);
+    $parse = true;
+    if (!empty($f['element_type'])) {
+      $parse = false;
     }
+
+    if (isset($f['alter']['make_link']) && $f['alter']['make_link'] == 1) {
+      $parse = false;
+    }
+
+    if (isset($f['alter']['prefix']) || isset($f['alter']['suffix'])) {
+      $parse = false;
+    }
+
+    if ($parse) {
+      $unparsed = strip_tags($unparsed);
+    }
+
+    return trim($unparsed);
   }
 
   /**

@@ -65,15 +65,15 @@ $sub_menus = array(
 	// Time based filters sub-menu (landing page)
 	'crazy(/(time-.*?|[0-9]+))?$' => array(
 		'today' => array(
-			'title' => 'Today',
+			'title' => 'New',
 			'href' => CRAZY_ROOT . '/time-today',
 		),
 		'week' => array(
-			'title' => 'This Week',
+			'title' => 'Popular',
 			'href' => CRAZY_ROOT . '/time-week',
 		),
 		'forever' => array(
-			'title' => 'All Time',
+			'title' => 'Best Ever',
 			'href' => CRAZY_ROOT,
 		),
 	),
