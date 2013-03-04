@@ -18,7 +18,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $leader_name = dosomething_drives_drive_get_name($submission);
   $drive = dosomething_drives_drive_get_drives($group->gid);
   $drive_nid = dosomething_drives_get_drive_nid($campaign_group);
-  $is_admin = (og_user_access($group->gid, 'administer group') || user_access('administer group')) && !$conf['disable_admin_functions'];
+  $is_admin = (og_user_access($group->gid, 'administer group') || user_access('administer group')) && empty($conf['disable_admin_functions']));
 
   drupal_add_js(array('dosomething_drives' => array('gid' => $group->gid)), 'setting');
 
@@ -35,16 +35,16 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
 
   // get the member list (use a function!)
 
-  $content['header']['title'] = dosomething_drives_drive_title($submission, $conf['team_name'], $leader_name, $campaign->title);
+  $content['header']['title'] = dosomething_drives_drive_title($submission, (isset($conf['team_name']) ? $conf['team_name'] : ''), $leader_name, $campaign->title);
   $content['header']['description'] = dosomething_drives_drive_description($submission);
   $content['header']['countdown'] = dosomething_drives_drive_countdown($drive);
 
-  if (!$conf['disable_admin_functions']) {
+  if (empty($conf['disable_admin_functions'])) {
     $content['content']['drive_info'] = dosomething_drives_drive_info($drive, $drive_nid, $group->gid, $is_admin);
   }
 
   $content['content']['drive_share'] = dosomething_drives_drive_share();
-  $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, $conf['team_name']);
+  $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, (isset($conf['team_name']) ? $conf['team_name'] : ''));
 
   $content['#attached']['js'] = array(
     drupal_get_path('module', 'teams') . '/teams.js' => array(),
@@ -397,9 +397,10 @@ function dosomething_drives_drive_invite_module($gid, $campaign = NULL) {
     ),
   );
 
-  if ($campaign != NULL &&
-      $campaign->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'] > 0 &&
-      $campaign->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'] > 0) {
+  if ($campaign != NULL 
+      && (isset($campaign->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value']) && $campaign->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'] > 0)
+      && (isset($campaign->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value']) && $campaign->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'] > 0)
+  ) {
     $return['phone'] = array(
       '#type' => 'container',
       '#attributes' => array('class' => array('invite-module-sms')),
@@ -484,7 +485,7 @@ function dosomething_drives_drive_content_type_edit_form($form, &$form_state) {
   $form['disable_admin_functions'] = array(
     '#type' => 'checkbox',
     '#title' => t('Disable team member removal by leader.'),
-    '#default_value' => $conf['disable_admin_functions'],
+    '#default_value' => ($conf['disable_admin_functions'] ? $conf['disable_admin_functions'] : 0),
   );
   return $form;
 }
