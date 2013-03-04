@@ -67,6 +67,11 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
     ));
   }
 
+  drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_short_form.css', array(
+     'group' => CSS_THEME,
+     'weight' => 1000
+  ));
+
   // Build the container.
   $content['shortform'] = array(
     '#type' => 'container',

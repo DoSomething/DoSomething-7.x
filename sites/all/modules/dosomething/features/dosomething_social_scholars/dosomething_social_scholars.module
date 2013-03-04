@@ -17,6 +17,53 @@ function dosomething_social_scholars_ctools_plugin_directory($module, $plugin) {
 }
 
 /**
+ *  Implements hook_menu()
+ */
+function dosomething_social_scholars_menu() {
+  $items = array();
+
+  $items['sas-response/%'] = array(
+    'page callback' => 'dosomething_social_scholars_mms_response',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function dosomething_social_scholars_mms_response($nid) {
+  global $user;
+  $picture = 'http://www.rpgsite.net/images/cache/articles/400-Dragon-Quest-VII-Warriors-of-Eden_2012_11-14-12_009.jpg';
+
+  // Build report back submission and submit
+  $submission = new stdClass;
+  $submission->bundle = 'social_scholarship';
+  $submission->nid = $nid;
+  $submission->data = array();
+  $submission->uid = $user->uid;
+  $submission->submitted = REQUEST_TIME;
+  $submission->remote_addr = ip_address();
+  $submission->is_draft = FALSE;
+  $submission->sid = NULL;
+
+  // Save user responses to 
+  $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
+
+  // Download and save image
+  if (!empty($picture)) {
+    $f_name = 'public://' . basename($picture);
+    $attach_contents = file_get_contents($picture);
+    $attach_data = file_save_data($attach_contents, $f_name);
+    $attach_array = get_object_vars($attach_data);
+    $wrapper->value()->field_webform_pictures[LANGUAGE_NONE][] = $attach_array;
+  }
+
+  $wrapper->save();
+
+  echo "DONE!";
+}
+
+/**
  *  Implements hook_form_alter()
  */
 function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) {
