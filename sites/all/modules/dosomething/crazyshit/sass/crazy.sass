@@ -115,6 +115,26 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     &:hover
       text-decoration: none
 
+.crazy-sub-menu-header
+  width: 500px
+  margin: 2% auto 0
+  @media only screen and (max-width: 700px)
+    width: 430px
+  @media only screen and (max-width: 450px)
+    width: 94%
+    margin: 3% auto 0
+  h1, h2
+    text-transform: uppercase
+    text-align: left
+  h1
+    font-size: 30px
+    font-weight: 600
+    color: #222
+    @media only screen and (max-width: 450px)
+      font-size: 21px
+  h2
+    color: rgb(204, 36, 36) 
+    
 // NAV
 // ---
 
@@ -162,6 +182,9 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
         font-size: 15px
       &:hover
         color: #fff
+
+  .last.active a /* when [submit] nave is selected -- do not display active color */
+    color: #fff
 
 // FILTERS
 // -------
@@ -222,7 +245,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   @media only screen and (max-width: 700px)
     width: 430px
     padding: 10px 20px 0
-  @media only screen and (max-width: 400px)
+  @media only screen and (max-width: 450px)
     margin: 2% auto
     padding: 10px 5px 0
     width: 98%
