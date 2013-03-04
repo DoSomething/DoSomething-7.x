@@ -18,7 +18,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $leader_name = dosomething_drives_drive_get_name($submission);
   $drive = dosomething_drives_drive_get_drives($group->gid);
   $drive_nid = dosomething_drives_get_drive_nid($campaign_group);
-  $is_admin = (og_user_access($group->gid, 'administer group') || user_access('administer group')) && empty($conf['disable_admin_functions']));
+  $is_admin = (og_user_access($group->gid, 'administer group') || user_access('administer group')) && empty($conf['disable_admin_functions']);
 
   drupal_add_js(array('dosomething_drives' => array('gid' => $group->gid)), 'setting');
 
