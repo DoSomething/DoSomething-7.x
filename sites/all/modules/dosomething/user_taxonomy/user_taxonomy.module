@@ -90,7 +90,7 @@ function user_taxonomy_tag($account, $tags) {
     }
   }
   // re-index the array
-  if (is_array($account->field_user_tags[LANGUAGE_NONE])) {
+  if (!empty($account->field_user_tags[LANGUAGE_NONE]) && is_array($account->field_user_tags[LANGUAGE_NONE])) {
     $account->field_user_tags[LANGUAGE_NONE] = array_values($account->field_user_tags[LANGUAGE_NONE]);
   }
 }
