@@ -49,6 +49,7 @@
 <!--[if (gte IE 10)|!(IE)]><!--> <html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?> class="no-js"> <!--<![endif]-->
 
 <head profile="<?php print $grddl_profile; ?>">
+  <!-- MAMP Local -->
   <?php print $head; ?>
  
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
