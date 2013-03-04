@@ -1141,7 +1141,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $merge_vars['TURNS26'] = date('m/d/Y', strtotime('+26 years', $birthdate));
   
   // Phone
-  if ($form_state['values']['phone'] != '') {
+  if (isset($form_state['values']['phone']) && $form_state['values']['phone'] != '') {
     $merge_vars['MMERGE7'] = $form_state['values']['phone'];
   }
   
