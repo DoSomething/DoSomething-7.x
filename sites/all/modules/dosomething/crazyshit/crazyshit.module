@@ -763,12 +763,18 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	    'direction' => 'DESC',
 	  );
 
+	  $query->where[1]['conditions'][] = array(
+	    'field' => 'webform_submissions.sid = :sid',
+		'value' => array(':sid' => $showid),
+		'operator' => 'formula',
+	  );
+
 	  // Prepend "is_the_one" order to the beginning of the orderby array.
 	  array_unshift($query->orderby, $theone);
 	}
 
     if ($view->current_display == 'block') {
-      if (preg_match('#^' . CRAZY_ROOT . '/time-(today|week)$#i', $uri, $time)) {
+      if (preg_match('#^' . CRAZY_ROOT . '/time-(today|week|all)$#i', $uri, $time)) {
 		$time = $time[1];
 
 		// Gets submissions posted today.
@@ -781,29 +787,25 @@ function crazyshit_views_query_alter(&$view, &$query) {
 			 'value' => array(':today' => mktime(0, 0, 0)),
 		 	 'operator' => 'formula',
 		   );
+		   unset($query->orderby[1]);
 		}
 		// Gets submissions posted this week.
-		else if ($time == 'week') {
-		   // Monday is always the start of the week.  Get this week's Monday in days (ago).
-		   $monday = (date('N') - 1);
-		   $query->where[1]['conditions'][1] = array(
-			  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
-			  'value' => array(
-				  ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
-				  ':today' => date('Y-m-d'),
-				),
-		  	  'operator' => 'formula',
-		   );
+		else if ($time == 'all') {
+		   unset($query->orderby[0]);
 		}
 	  }
 	  else if ($uri == CRAZY_ROOT) {
-	   #$query->where[1]['conditions'][1] = array(
-		#  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') > :beginning",
-		#  'value' => array(
-		#	  ':beginning' => '2012-12-01',
-		#	),
-	  	#  'operator' => 'formula',
-	  # );
+	    // Monday is always the start of the week.  Get this week's Monday in days (ago).
+	    $monday = (date('N') - 1);
+	    $query->where[1]['conditions'][1] = array(
+		  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
+		  'value' => array(
+			  ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
+			  ':today' => date('Y-m-d'),
+			),
+	  	  'operator' => 'formula',
+	    );
+	    unset($query->orderby[1]);
 	  }
 
 	  $query->fields['real_weight'] = array(
@@ -1192,6 +1194,8 @@ function crazyshit_init() {
 	  }
 
 	  // If a user just created a new post, show the "share this" popup.
+	  /* Cut 3/4/13...but it may come back.
+	   *
 	  if (isset($_SESSION['from_creation']) && !empty($_SESSION['from_creation'])) {
 	  	// The SID is $_SESSION['from_creation']
 	  	$sid = intval($_SESSION['from_creation']['sid']);
@@ -1204,7 +1208,7 @@ function crazyshit_init() {
 
 	  	// Show the popup
 	  	drupal_add_js("jQuery(document).ready(function() { var my_post = " . $p . "; jQuery.fn.dsCrazyPopup('share', " . $sid . ", {'reload': true }); });", 'inline');
-	  }
+	  }*/
 
 	  // Ignore the rest of this if we're not looking at a page that requires authentication.
 	  $pages = unserialize(CRAZY_AUTH_PAGES);

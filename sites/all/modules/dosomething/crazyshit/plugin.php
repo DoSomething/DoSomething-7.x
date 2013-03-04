@@ -70,11 +70,11 @@ $sub_menus = array(
 		),
 		'week' => array(
 			'title' => 'Popular',
-			'href' => CRAZY_ROOT . '/time-week',
+			'href' => CRAZY_ROOT,
 		),
 		'forever' => array(
 			'title' => 'Best Ever',
-			'href' => CRAZY_ROOT,
+			'href' => CRAZY_ROOT . '/time-all',
 		),
 	),
 	// About pages sub-menu

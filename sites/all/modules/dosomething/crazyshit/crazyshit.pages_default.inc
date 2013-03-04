@@ -93,6 +93,39 @@ function crazyshit_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'regex_visibility',
+          'settings' => array(
+            'context' => '0',
+            'expression' => 'crazy\\/friends\\/[0-9]+',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Thanks',
+      'title' => '',
+      'body' => '<div class="thanks">Thanks for submitting your crazy story! Now, share it with your friends.</div>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-2'] = $pane;
+    $display->panels['center'][1] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'center';
     $pane->type = 'views';
     $pane->subtype = 'crazy_shit_landing';
     $pane->shown = TRUE;
@@ -117,10 +150,46 @@ function crazyshit_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-2'] = $pane;
-    $display->panels['center'][1] = 'new-2';
+    $display->content['new-3'] = $pane;
+    $display->panels['center'][2] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'regex_visibility',
+          'settings' => array(
+            'context' => '0',
+            'expression' => 'crazy\\/friends\\/[0-9]+',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Single post share',
+      'title' => '',
+      'body' => '<div class="single-post-share">
+<a href="#" class="share-on-facebook">Share on Facebook</a>
+<a href="/crazy" class="go-to-gallery">Or go to gallery</a>
+</div>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $display->content['new-4'] = $pane;
+    $display->panels['center'][3] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -188,7 +257,7 @@ function crazyshit_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-5';
     $pane->panel = 'middle';
     $pane->type = 'crazy_html';
     $pane->subtype = 'crazy_html';
@@ -205,10 +274,10 @@ function crazyshit_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['middle'][0] = 'new-3';
+    $display->content['new-5'] = $pane;
+    $display->panels['middle'][0] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-6';
     $pane->panel = 'middle';
     $pane->type = 'crazy_html';
     $pane->subtype = 'crazy_html';
@@ -225,10 +294,10 @@ function crazyshit_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['middle'][1] = 'new-4';
+    $display->content['new-6'] = $pane;
+    $display->panels['middle'][1] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-7';
     $pane->panel = 'middle';
     $pane->type = 'crazy_html';
     $pane->subtype = 'crazy_html';
@@ -245,10 +314,10 @@ function crazyshit_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['middle'][2] = 'new-5';
+    $display->content['new-7'] = $pane;
+    $display->panels['middle'][2] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-8';
     $pane->panel = 'middle';
     $pane->type = 'crazy_html';
     $pane->subtype = 'crazy_html';
@@ -265,10 +334,10 @@ function crazyshit_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['middle'][3] = 'new-6';
+    $display->content['new-8'] = $pane;
+    $display->panels['middle'][3] = 'new-8';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3';
+  $display->title_pane = 'new-5';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['crazy_scholarship'] = $page;
@@ -334,7 +403,7 @@ function crazyshit_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-9';
     $pane->panel = 'center';
     $pane->type = 'views';
     $pane->subtype = 'crazy_shit_landing';
@@ -362,8 +431,8 @@ function crazyshit_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['center'][0] = 'new-7';
+    $display->content['new-9'] = $pane;
+    $display->panels['center'][0] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -431,7 +500,7 @@ function crazyshit_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-10';
     $pane->panel = 'center';
     $pane->type = 'crazy_html';
     $pane->subtype = 'crazy_html';
@@ -451,8 +520,8 @@ function crazyshit_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['center'][0] = 'new-8';
+    $display->content['new-10'] = $pane;
+    $display->panels['center'][0] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

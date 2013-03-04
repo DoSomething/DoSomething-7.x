@@ -33,6 +33,10 @@
 	    	return false;
 	    });
 
+	    if ($('.single-post-share a.share-on-facebook').length) {
+	    	$('.fb-share a').click();
+	    }
+
         if (top.location != self.location) {
           top.location = self.location.href
         }
