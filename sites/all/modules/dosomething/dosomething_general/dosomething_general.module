@@ -1294,11 +1294,13 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   else {
     $groupingIdByGroupName = array();
     $groupings = $mcapi->listInterestGroupings($listid);
-    foreach ($groupings as $grouping) {
-      foreach ($grouping['groups'] as $group) {
-        // If two groupnames are the same in different groupings
-        // then it may pick the wrong group.
-        $groupingIdByGroupName[$group['name']] = $grouping['id'];
+    if (is_array($groupings) && !empty($groupings)) {
+      foreach ($groupings as $grouping) {
+        foreach ($grouping['groups'] as $group) {
+          // If two groupnames are the same in different groupings
+          // then it may pick the wrong group.
+          $groupingIdByGroupName[$group['name']] = $grouping['id'];
+        }
       }
     }
     cache_set($cid, $groupingIdByGroupName);
@@ -1311,7 +1313,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   $merge_vars += array(
     'GROUPINGS' => array(
       array(
-        'id' => $groupingIdByGroupName[$groupName],
+        'id' => (isset($groupingIdByGroupName[$groupName]) ? $groupingIdByGroupName[$groupName] : 0),
         'groups' => $groupName
       ),
     )
