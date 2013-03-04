@@ -746,7 +746,7 @@ function crazyshit_add_lazy_class($matches) {
 function crazyshit_views_query_alter(&$view, &$query) {
   if ($view->name == 'crazy_shit_landing') {
 	$uri = request_path();
-	if (preg_match('#^\/' . CRAZY_ROOT . '/(friends/)?(?<showid>[0-9]+)$#i', request_uri(), $showid)) {
+	if (preg_match('#^' . CRAZY_ROOT . '/(friends/)?(?<showid>[0-9]+)$#i', $uri, $showid)) {
 	  $showid = $showid['showid'];
 	  // Try and find the submission with this ID and mark it as relevant
 	  $query->fields['ided'] = array(
