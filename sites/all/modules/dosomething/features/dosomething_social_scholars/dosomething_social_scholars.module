@@ -33,7 +33,11 @@ function dosomething_social_scholars_menu() {
 
 function dosomething_social_scholars_mms_response($nid) {
   global $user;
-  $picture = 'http://www.rpgsite.net/images/cache/articles/400-Dragon-Quest-VII-Warriors-of-Eden_2012_11-14-12_009.jpg';
+  if (!isset($_REQUEST['mms_image_url'])) {
+    return;
+  }
+
+  $picture = check_plain($_REQUEST['mms_image_url']);
 
   // Build report back submission and submit
   $submission = new stdClass;
@@ -55,12 +59,13 @@ function dosomething_social_scholars_mms_response($nid) {
     $attach_contents = file_get_contents($picture);
     $attach_data = file_save_data($attach_contents, $f_name);
     $attach_array = get_object_vars($attach_data);
-    $wrapper->value()->field_webform_pictures[LANGUAGE_NONE][] = $attach_array;
+    $wrapper->value()->field_share_your_own_image[LANGUAGE_NONE][] = $attach_array;
   }
 
   $wrapper->save();
 
-  echo "DONE!";
+  dosomething_general_mobile_commons_response(t('Generic message of thanks for submitting a file.'));
+  exit;
 }
 
 /**
