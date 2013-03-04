@@ -912,7 +912,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
         color: #ffcb15;
         font-weight: 500; }
   #cmp .refer5 {
-    background: #7f3f80;
+    background: #dddddd;
     width: 110%;
     margin: 0 0 0 -4.95%;
     padding: 3%; }
@@ -923,10 +923,10 @@ div[aria-labelledby="ui-dialog-title-1"] {
       border-width: 11px;
       top: -6px; }
     #cmp .refer5:before {
-      border-color: transparent #562b57 #562b57 transparent;
+      border-color: transparent #bebebe #bebebe transparent;
       left: -23px; }
     #cmp .refer5:after {
-      border-color: transparent transparent #562b57 #562b57;
+      border-color: transparent transparent #bebebe #bebebe;
       right: -22px; }
   #cmp #social img.fb-share {
     width: auto; }

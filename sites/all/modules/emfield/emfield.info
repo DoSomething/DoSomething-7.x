@@ -1,7 +1,0 @@
-name = Embedded Media Field
-description = Provides an upgrade path from Emfield Drupal 6 version to Media module for Drupal 7.
-dependencies[] = media
-dependencies[] = file_entity
-dependencies[] = content_migrate
-package = Media
-core = 7.x

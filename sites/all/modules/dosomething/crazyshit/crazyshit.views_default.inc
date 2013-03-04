@@ -28,8 +28,11 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* No results behavior: Global: Text area */
@@ -380,6 +383,7 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="crazy-submission s-[sid] a-[uid]">
 <div class="fb-and-pic">
+<div class="flag"><a href="/crazy/flag/[sid]" data-sid="[sid]"><span>Flag</span></a></div>
 <div class="fb-picture">[picture]</div>
 <div class="s-[sid]-picture simg">[field_crazy_crazy_picture]</div>
 </div>
@@ -407,16 +411,48 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
-  /* Sort criterion: Webform Submission: All Time Count (field_crazy_total_count) */
-  $handler->display->display_options['sorts']['field_crazy_total_count_value']['id'] = 'field_crazy_total_count_value';
-  $handler->display->display_options['sorts']['field_crazy_total_count_value']['table'] = 'field_data_field_crazy_total_count';
-  $handler->display->display_options['sorts']['field_crazy_total_count_value']['field'] = 'field_crazy_total_count_value';
-  $handler->display->display_options['sorts']['field_crazy_total_count_value']['order'] = 'DESC';
-  /* Sort criterion: Webform submissions: Submitted */
-  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
-  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
-  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
-  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
+  /* Field: Webform Submission: Craziness weight */
+  $handler->display->display_options['fields']['field_craziness_weight']['id'] = 'field_craziness_weight';
+  $handler->display->display_options['fields']['field_craziness_weight']['table'] = 'field_data_field_craziness_weight';
+  $handler->display->display_options['fields']['field_craziness_weight']['field'] = 'field_craziness_weight';
+  $handler->display->display_options['fields']['field_craziness_weight']['group_type'] = 'sum';
+  $handler->display->display_options['fields']['field_craziness_weight']['label'] = '';
+  $handler->display->display_options['fields']['field_craziness_weight']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_craziness_weight']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_craziness_weight']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_craziness_weight']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_craziness_weight']['type'] = 'number_unformatted';
+  $handler->display->display_options['fields']['field_craziness_weight']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_craziness_weight']['field_api_classes'] = 0;
+  /* Sort criterion: Webform Submission: Craziness weight (field_craziness_weight) */
+  $handler->display->display_options['sorts']['field_craziness_weight_value']['id'] = 'field_craziness_weight_value';
+  $handler->display->display_options['sorts']['field_craziness_weight_value']['table'] = 'field_data_field_craziness_weight';
+  $handler->display->display_options['sorts']['field_craziness_weight_value']['field'] = 'field_craziness_weight_value';
+  $handler->display->display_options['sorts']['field_craziness_weight_value']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -424,10 +460,33 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'crazy_shit' => 'crazy_shit',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'not in';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
+    0 => '0',
+  );
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
 
   /* Display: Gallery View */
   $handler = $view->new_display('block', 'Gallery View', 'block');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -436,13 +495,22 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'crazy_shit' => 'crazy_shit',
   );
-  /* Filter criterion: Webform submissions: Submitted */
-  $handler->display->display_options['filters']['submitted']['id'] = 'submitted';
-  $handler->display->display_options['filters']['submitted']['table'] = 'webform_submissions';
-  $handler->display->display_options['filters']['submitted']['field'] = 'submitted';
-  $handler->display->display_options['filters']['submitted']['operator'] = '>';
-  $handler->display->display_options['filters']['submitted']['default_date'] = 'Jan 1, 2013';
-  $handler->display->display_options['filters']['submitted']['year_range'] = '-2:+3';
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'not in';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
 
   /* Display: Friends View */
   $handler = $view->new_display('block', 'Friends View', 'friends_view');
@@ -456,6 +524,10 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -464,11 +536,31 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'crazy_shit' => 'crazy_shit',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Webform submissions: UID */
   $handler->display->display_options['filters']['uid']['id'] = 'uid';
   $handler->display->display_options['filters']['uid']['table'] = 'webform_submissions';
   $handler->display->display_options['filters']['uid']['field'] = 'uid';
   $handler->display->display_options['filters']['uid']['value'] = '1';
+  $handler->display->display_options['filters']['uid']['group'] = 1;
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'not in';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
+    0 => '0',
+  );
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
   $export['crazy_shit_landing'] = $view;
 
   return $export;

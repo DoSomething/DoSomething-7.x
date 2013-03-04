@@ -15,7 +15,7 @@ a.selectBox, .selectBox-dropdown-menu a
   
 
 em
-  @extend .italic
+  @extend %italic
 
 strong
   font-weight: bold
@@ -23,13 +23,13 @@ strong
 small
   +adjust-font-size-to(ms(-1))
 
-s
+// s
 
 cite
-  @extend .italic
+  @extend %italic
 
 q
-  @extend .italic
+  @extend %italic
   quotes: "“" "”"
   &:before
     content: open-quote
@@ -37,27 +37,27 @@ q
     content: close-quote
 
 dfn
-  @extend .bold
-  @extend .italic
+  @extend %bold
+  @extend %italic
 
 abbr, acronym
   // border-bottom: 1px dotted
   cursor: help
 
-time
+// time
 
 code
-  @extend .mono
+  @extend %mono
 
-var
+// var
 
-samp
+// samp
 
 kbd
-  @extend .mono
+  @extend %mono
 
 tt
-  @extend .mono
+  @extend %mono
 
 sup, sub
   font-size: 75%
@@ -72,12 +72,12 @@ sub
   bottom: -0.25em
 
 i
-  @extend .italic
+  @extend %italic
 
 b
-  @extend .bold
+  @extend %bold
 
-u
+// u
 
 mark
   background: $red
@@ -85,31 +85,12 @@ mark
   background-color: rgba($yellow, 0.5)
   text-shadow: none
 
-ruby
-
-rt
-
-rp
-
-bdi
-
-bdo
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ruby
+//
+// rt
+//
+// rp
+//
+// bdi
+//
+// bdo

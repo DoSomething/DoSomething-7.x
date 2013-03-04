@@ -115,11 +115,12 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
   // Get the total count of submissions given the node and component IDs
   $count = db_query("SELECT * FROM webform_submitted_data d WHERE d.nid = {$node} AND d.cid IN (" . implode(',', $cids) . ") GROUP BY sid")->rowCount();
 
+  // KILLED 2/21/13: This ate everything!
   /**
    * Get data from the results:
    * - Component IDs, answers, count
    */
-  $results = db_query("
+  /*$results = db_query("
     SELECT distinct sid, d.cid, data, IF (no REGEXP '^[0-9]+$', c.form_key, no) AS no, IF (no REGEXP '^[0-9]+$', 1, 0) AS changed, count(distinct sid) AS fcount
     FROM webform_submitted_data d
       LEFT JOIN webform_component c ON (c.cid = d.cid)
@@ -136,12 +137,12 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
 
     // Adds to $totals array
     $totals[$r->cid][$r->no][$r->data] = round(($r->fcount / $count) * 100);
-  }
+  }*/
 
   // Sets up language for your responses vs. worldwide responses
   $stat = array(
     'yours' => 'you said: <span class="you">!answer</span>',
-    'theirs' => '!percent% said: <span class="them">!answer</span>',
+    #'theirs' => '!percent% said: <span class="them">!answer</span>',
   );
   $answers = array();
 
@@ -160,44 +161,29 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
     if (!empty($cs['items'])) {
       $layout .= '<div class="results">';
 
-      $top = dosomething_general_array_vals_multi($totals[$component->cid]);
-      $thetop = array_search(max($top), $top);
+      #$top = dosomething_general_array_vals_multi($totals[$component->cid]);
+      #$thetop = array_search(max($top), $top);
 
       // Get human readable names for fields.
       preg_match_all('#([a-zA-Z0-9\_\-]+)\|(.*)#i', $cs['items'], $options);
       // Loop through questions and print them out.
       foreach ($options[2] AS $key => $title) {
         $yours = $ya[$component->cid][$options[1]["$key"]];
-        $t = ($options[1]["$key"] == $thetop);
+        #$t = ($options[1]["$key"] == $thetop);
 
-        if ($yours || $t) {
-          #$start = '<li class="' . ($yours ? 'yours' : 'top') . '">';
-          #$question = '<div class="question-answer" style="display: inline-block">' . $title . '</div>';
+        if ($yours/* || $t*/) {
 
           // Get the percentage of people who chose this answer.
-          $percentage = $totals[$component->cid][$options[1]["$key"]][$options[1]["$key"]];
+          #$percentage = $totals[$component->cid][$options[1]["$key"]][$options[1]["$key"]];
 
           if ($t) {
-            $answers['theirs'] = t($stat['theirs'], array('!percent' => $percentage, '!answer' => strtoupper($title)));
+            #$answers['theirs'] = t($stat['theirs'], array('!percent' => $percentage, '!answer' => strtoupper($title)));
           }
           if ($yours) {
             $answers['yours'] = t($stat['yours'], array('!answer' => strtoupper($title)));
           }
-
-          // If the percentage is greater than 0% (because it looks ridiculous otherwise), show...
-          /*if (!empty($percentage)) {
-            $percent = '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => $percentage)) . '</div>';
-          }*/
-
-          #$end = '</li>';
-
-          #$layout .= $start . $question . $yours . $percent . $end;
-          // If your answer also happens to be the top answer, show the top answer as a separate item.
-          #if ($yours && $t) {
-          #  $layout .= $start . $question . $percent . $end;
-          #}
         }
-        else if (defined('SHOW_HIDDEN_SURVEY_ANSWERS') && SHOW_HIDDEN_SURVEY_ANSWERS === true) {
+        /*else if (defined('SHOW_HIDDEN_SURVEY_ANSWERS') && SHOW_HIDDEN_SURVEY_ANSWERS === true) {
           $layout .= '<li style="color: red">';
           $layout .= '<div class="question-answer" style="display: inline-block">' . $title . '</div>';
 
@@ -208,7 +194,7 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
           $layout .= '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => intval($percentage))) . '</div>';
 
           $layout .= '</li>';
-        }
+        }*/
       }
 
       $lr = '';
@@ -238,47 +224,25 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
         $layout .= '<li>';
         $layout .= '<div class="question sub">' . $question . '</div>';
 
-        $top = dosomething_general_array_vals_multi($totals[$component->cid][$questions[1][$qkey]]);
-        $thetop = array_search(max($top), $top);
+        #$top = dosomething_general_array_vals_multi($totals[$component->cid][$questions[1][$qkey]]);
+        #$thetop = array_search(max($top), $top);
 
         $layout .= '<div class="results">';
         #$layout .= '<ul class="grid-options">';
         // Show the grid options
         foreach ($options[2] AS $okey => $option) {
           $yours = $ya[$component->cid][$questions[1][$qkey]] == $options[1][$okey];
-          $t = ($options[1]["$okey"] == $thetop);
+          #$t = ($options[1]["$okey"] == $thetop);
 
-          if ($t) {
-            $answers['theirs'] = t($stat['theirs'], array('!percent' => $percentage, '!answer' => strtoupper($option)));
-          }
+          #if ($t) {
+           # $answers['theirs'] = t($stat['theirs'], array('!percent' => $percentage, '!answer' => strtoupper($option)));
+          #}
           if ($yours) {
             $answers['yours'] = t($stat['yours'], array('!answer' => strtoupper($option)));
           }
 
           $item = '';
-          if ($yours || $t) {
-            #$start = '<li>';
-            #$question = '<div class="question-answer sub-answer" style="display: inline-block">' . $option . '</div>';
-
-            // If this answer happens to be the one you chose, make a label saying so.
-            /*if ($ya[$component->cid][$questions[1][$qkey]] == $options[1][$okey]) {
-              $yours = ' <div style="color: green; display: inline-block">Your answer!</div>';
-            }*/
-
-            // Get the percentage of people who chose this answer.
-            $percentage = $totals[$component->cid][$questions[1][$qkey]][$options[1]["$okey"]];
-
-            // If the percentage is greater than 0% (because it looks ridiculous otherwise), show...
-            /*if (!empty($percentage)) {
-              $percent = '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => $percentage)) . '</div>';
-            }
-
-            $end = '</li>';*/
-
-            #$layout .= $start . $question . $yours . $percent . $end;
-            #if ($yours && $t) {
-            #  $layout .= $start . $question . $percent . $end;
-            #}
+          /*if ($yours || $t) {
           }
           else if (defined('SHOW_HIDDEN_SURVEY_ANSWERS') && SHOW_HIDDEN_SURVEY_ANSWERS === true) {
             $layout .= '<li style="color: red">';
@@ -291,7 +255,7 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
             $layout .= '<div style="margin-left: 150px; display: inline-block">' . t('!percentage% of people said this.', array('!percentage' => intval($percentage))) . '</div>';
 
             $layout .= '</li>';
-          }
+          }*/
         }
 
         $lr = '';

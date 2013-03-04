@@ -140,6 +140,12 @@
         
       });
 
+      // show more guidelines
+      $('#extra_link').click(function(a){
+        $('#extra_guidelines').slideDown();
+        a.preventDefault(); 
+      });
+
 		},
 	};
 })(jQuery);

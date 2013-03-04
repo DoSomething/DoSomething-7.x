@@ -2,6 +2,9 @@
 html > body {
   font-size: 16px; }
 
+#block-dosomething-campaign-styles-campaign-nav {
+  display: none; }
+
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
@@ -297,6 +300,11 @@ body {
 
 .page-node-724802 #block-dosomething-campaign-styles-campaign-nav, .page-node-727497 #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
+
+.region-sidebar-first h2 {
+  color: white;
+  text-align: center;
+  margin-top: 10px; }
 
 #rsvp {
   margin: 5% 0;
@@ -1024,12 +1032,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -o-border-radius: 5px;
     border-radius: 5px; }
   #cmp #header {
-    background-image: url("//files.dosomething.org/files/campaigns/jeans12/header1.jpg");
-    background-position: 100% 35%;
+    background-image: url("//files.dosomething.org/files/campaigns/jeans12/flip_header.png");
     background-repeat: no-repeat;
-    background-color: #e5e7e9;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    min-height: 375px; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
       color: #0c3565;
@@ -1050,10 +1057,36 @@ div[aria-labelledby="ui-dialog-title-1"] {
     padding: 2%; }
   #cmp .pane-campaign-social {
     display: none; }
+  #cmp #social_media {
+    margin: 0 0 250px 0; }
   #cmp .socialWrapper {
-    margin: 1em 0 0 0.5em; }
+    margin: 0; }
     #cmp .socialWrapper .socialButton:last-child {
       display: none; }
+  #cmp #post-flip {
+    background: #0c3565;
+    padding: 2% 4%;
+    margin: 2% 4%;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+    #cmp #post-flip h1 {
+      font-weight: 800;
+      color: white; }
+    #cmp #post-flip h2 {
+      color: #ffcb15; }
+    #cmp #post-flip span {
+      background: #ffcb15;
+      display: inline-block;
+      margin: 10px 0;
+      padding: 5px 20px 0;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -o-border-radius: 2px;
+      border-radius: 2px; }
   #cmp #next-steps {
     padding: 5%; }
     #cmp #next-steps h3, #cmp #next-steps p {
@@ -1147,7 +1180,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp .drive-participants-list li {
     padding: 0.2em 0; }
   #cmp .drive-action-link {
-    text-align: center; }
+    display: none; }
   #cmp #action.action-anonymous h3, #cmp #action.action-participant h3 {
     line-height: 2em; }
   #cmp #action.action-anonymous p, #cmp #action.action-participant p {
@@ -1545,7 +1578,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     text-align: center;
     display: block; }
   #cmp #contact-form {
-    background: #ffcb15;
+    background: #0c3565;
     width: 100%; }
     #cmp #contact-form h3 {
       color: white;
@@ -1558,8 +1591,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     font-weight: 600;
     margin-top: 0.3em;
     height: 2em;
-    color: white;
-    background: #0c3565; }
+    color: black;
+    background: #ffcb15; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 10px 4px navy; }
   #cmp #edit-submitted-field-webform-mobile-und-0-value {
@@ -1604,7 +1637,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
     box-shadow: none; }
   #cmp .already_submitted {
     margin: 0 auto;
-    width: 85%; }
+    width: 85%;
+    height: 123px;
+    padding: 40px 0 0 0; }
     #cmp .already_submitted img {
       margin: 2% 0 0 0;
       float: left; }

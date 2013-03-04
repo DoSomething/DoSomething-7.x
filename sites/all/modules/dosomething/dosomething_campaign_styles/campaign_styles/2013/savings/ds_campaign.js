@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
+        afterReplaceText : 'Just register with DoSomething.org to join Mind On My Money!',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
@@ -17,6 +17,10 @@
         }
       }
 
+      // has logo, will inject
+      var logo = '//files.dosomething.org/files/campaigns/savings/momm-logo.png';
+      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/savings"><img width="215" class="logo" src="' + logo + '"/></a>');
+
       $('#cmp #edit-actions').removeAttr('id');
      
       // hacktastic form rebuilding
@@ -29,7 +33,7 @@
 
 
       // contact form login
-      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/718394" class="sign-in-popup">log in</a></p>');
+      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/728323" class="sign-in-popup">log in</a></p>');
 
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
@@ -124,7 +128,17 @@
           $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
       });
 
+      //report-back radio option select questions to show
+      //$('#edit-submitted-which-session-did-you-lead-1').val('webform-component-budgeting');
+      //$('#edit-submitted-which-session-did-you-lead-2').val('webform-component-credit-cards');
+      //$('#edit-submitted-which-session-did-you-lead-3').val('webform-component-student-loans');
 
+      $("input[type=radio]").click(function() {
+        var test = $(this).val();
+        $(".webform-component-fieldset").hide();
+        $("#"+test).show();
+        $("#" +test + "> div.fieldset-wrapper > div.webform-component-textarea > div.form-textarea-wrapper > textarea").validate();
+      }); 
 
          
     } // end attach: function

@@ -73,6 +73,7 @@ function dosomething_clubs_club_members_content_type_render($subtype, $conf, $pa
     $members += reset($memberships_no_titles);
   }
 
+  $ds_admin = user_access('administer users');
   $memberships = entity_load('og_membership', array_keys($members));
 
   $member_list['member_list'] = array('#type' => 'container', '#attributes' => array());
@@ -113,7 +114,7 @@ function dosomething_clubs_club_members_content_type_render($subtype, $conf, $pa
 
       $links = array();
       $links[] = l(t('Update title'), '',  array('attributes' => array('class' => array('member-title-update')))+$base);
-      if ($membership->etid <> $user->uid && $membership->etid <> $owner) {
+      if (($ds_admin || $membership->etid <> $user->uid) && $membership->etid <> $owner) {
         $links[] = l(t('Delete member'), '', array('attributes' => array('class' => array('member-delete')))+$base);
       }
       if ($owner <> $membership->etid) {

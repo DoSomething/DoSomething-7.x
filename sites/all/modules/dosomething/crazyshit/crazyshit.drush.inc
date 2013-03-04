@@ -122,7 +122,7 @@ function drush_crazyshit_crazy_messages() {
       $batches["$b"][] = array(
         'method' => 'POST',
         'relative_url' => '/' . $id . '/notifications',
-        'body' => 'access_token=105775762330|pmFm2r3S-p7merbypvN2EANG4UI&href=http://www.dosomething.org/' . CRAZY_ROOT . '&template=' . t($fb_messages['notification'], array('!n' => $c)),
+        'body' => 'access_token=105775762330|pmFm2r3S-p7merbypvN2EANG4UI&href=' . CRAZY_ROOT . '&template=' . t($fb_messages['notification'], array('!n' => $c)),
       );
 
       $i++;

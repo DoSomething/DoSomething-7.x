@@ -7,7 +7,14 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
 
   const MAX_RESULTS = 3;
 
-  const ERROR_RESPONSE = "Sorry, we couldn't find any matching schools. Text JEANS to search again. Or visit http://doso.me/6 for more info.";
+  // Message sent to user if they input an invalid school ID
+  public $invalid_id_message;
+
+  // Message sent to user if no school is found
+  public $no_school_message;
+
+  // Appended to message when schools are found
+  public $schools_found_post_message;
 
   private $state_abbr_map = array(
     'alabama' => 'AL',
@@ -91,7 +98,7 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
         $data = dosomething_school_sms_query($school_level, $school_state, $school_name);
 
         if (count($data) == 0) {
-          $response = self::ERROR_RESPONSE;
+          $response = $this->no_school_message;
 
           $this->removeOutput('check_account_exists');
           $state->markCompleted();
@@ -106,16 +113,19 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
             $response = "We found " . $num_schools . " school.\n";
           }
 
+          $sids = array();
           for ($i = 0; $i < $num_schools; $i++) {
             $response .= $i+1 . ') ' . $data[$i]['name'] . '. ' . $data[$i]['street'] . ', ' . $data[$i]['city'] . ', ' . $data[$i]['state'] . '. ID#: ' . $data[$i]['sid'] . " \n";
+            $sids[] = $data[$i]['sid'];
           }
 
-          $response .= "Text back your school ID# to start your drive. Didn't find your school? Text JEANS to try again. Or visit http://doso.me/6 for more info.";
+          $response .= $this->schools_found_post_message;
+          $state->setContext('school_search_results', $sids);
           $state->markSuspended();
         }
       }
       else {
-        $response = self::ERROR_RESPONSE;
+        $response = $this->no_school_message;
 
         $this->removeOutput('check_account_exists');
         $state->markCompleted();
@@ -127,15 +137,24 @@ class ConductorActivitySmsSchoolSearch extends ConductorActivity {
     else {
       $words = explode(' ', $user_reply);
       $first_word = $words[0];
+      $sid_reply = intval($first_word);
 
-      $school_sid = self::checkSchoolSID($first_word);
+      $school_sid = 0;
+      if ($sid_reply > 0 && $sid_reply <= self::MAX_RESULTS) {
+        $found_sids = $state->getContext('school_search_results');
+        $school_sid = $found_sids[$sid_reply - 1];
+      }
+      else {
+        $school_sid = self::checkSchoolSID($first_word);
+      }
+
       if ($school_sid) {
         $state->setContext('school_sid', $school_sid);
 
         $this->removeOutput('end');
       }
       else {
-        $response = "That's not a valid school ID. Text JEANS to search again. Or go to http://doso.me/6 for more info.";
+        $response = $this->invalid_id_message;
         $state->setContext('sms_response', $response);
 
         $this->removeOutput('check_account_exists');

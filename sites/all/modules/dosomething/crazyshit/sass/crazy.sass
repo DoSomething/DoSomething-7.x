@@ -8,7 +8,7 @@
 // ----
 
 body, div[role="main"], #page
-  background: $background !important
+  background: $background
 
 // HEADER
 // ------
@@ -208,6 +208,9 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     padding: 10px 5px 0
     width: 98%
 
+.flagged
+  background: #808080
+
 .fb-picture
   margin: -70px 0 0 -125px
   img
@@ -216,6 +219,11 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     width: 50px
     margin: 0 auto
     padding: 0 0 10px 0
+
+.flag
+  clear: both
+  height: 45px
+  text-align: right
 
 .simg
   margin: -40px 0 0 0
@@ -340,3 +348,25 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     margin: 7% auto 0
     display: block
     width: 160px
+
+// PAGINATION
+// ----------
+
+.item-list .pager /* hides the default Drupal pagination links save [prev] & [next]*/
+  .pager-current,  .pager-item,  .pager-ellipsis, .pager-first, .pager-last
+    display: none
+
+.item-list .pager
+  width: 500px
+  margin: 0 auto
+  @media only screen and (max-width: 700px)
+    width: 430px
+  @media only screen and (max-width: 430px)
+    width: 98%
+  a
+    color: #fff
+  .pager-previous
+    float: left
+  .pager-next
+    float: right
+    

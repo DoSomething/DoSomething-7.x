@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
+        afterReplaceText : 'Just register with DoSomething.org to join the Green Your School Challenge!',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
@@ -21,8 +21,8 @@
 
 
     // campaign logo injection
-    var logo = '//files.dosomething.org/files/campaigns/green/gysc-logo.png';
-    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/greenyourschool"><img src="' + logo + '"/></a>');
+    var logo = '//files.dosomething.org/files/campaigns/green/logo2.png';
+    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').css('margin-left','-20px').prepend('<a href="/greenyourschool"><img src="' + logo + '"/></a>');
     
     // campaign social media injection
     $('#header').prepend($('.socialWrapper'));

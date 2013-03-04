@@ -15,8 +15,8 @@
  *    ALTERNATELY: An array of valid phone numbers to opt in through the opt-in path.
  *  @param $form_values
  *    An array of form values from the submitted webform.
- *  @param $variables
- *    An array of custom variables to send with the opt-in.  These translate to {{variables}} on Mobile Commons.
+ *  @param $beta_variables
+ *    An array of custom variables to send with the opt-in. Are only applied to the Beta profiles. These translate to {{variables}} on Mobile Commons.
  *  @param $beta_to_alpha_campaign
  *    A campaign that the beta (then Gamma, then whatever is after Gamma) should be opted into when they invite their friends.  Optional.
  *  @param $type_override (optional)
@@ -31,7 +31,7 @@
  *
  */
 
-function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_numbers, $form_values, Array $variables, $beta_to_alpha_campaign = FALSE, $type_override = NULL) {
+function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_numbers, $form_values, Array $beta_variables, $beta_to_alpha_campaign = FALSE, $type_override = NULL) {
 
   $nid = 0;
   if (!empty($form_values['details']['nid'])) {
@@ -80,6 +80,9 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
       );
 
       drupal_write_record('sms_flow_records', $record);
+
+      // Create and update the beta's Mobile Commons profile
+      dosomething_general_mobile_commons_profile_update($beta_number, $beta_variables);
     }
   }
 
@@ -88,8 +91,7 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
     $alpha_number,
     (!$beta_to_alpha_campaign ? $alpha_optin : $beta_to_alpha_campaign),
     $valid_beta_numbers,
-    $beta_optin,
-    $variables
+    $beta_optin
   );
 }
 
@@ -470,7 +472,7 @@ function sms_flow_default_conductor_workflows() {
   return $workflows;
 }
 
-function sms_flow_team_invite_form($form, &$form_state, $gid) {
+function sms_flow_team_invite_form($form, &$form_state, $gid, $alpha_optin = 0, $beta_optin = 0) {
   $form['alpha'] = array(
     '#type' => 'textfield',
     '#title' => 'Your Cell Number:',
@@ -505,6 +507,18 @@ function sms_flow_team_invite_form($form, &$form_state, $gid) {
     '#value' => $gid,
   );
 
+  $form['alpha-optin'] = array(
+    '#type' => 'hidden',
+    '#default_value' => 0,
+    '#value' => $alpha_optin,
+  );
+
+  $form['beta-optin'] = array(
+    '#type' => 'hidden',
+    '#default_value' => 0,
+    '#value' => $beta_optin,
+  );
+
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => 'Invite',
@@ -533,14 +547,16 @@ function sms_flow_team_invite_form_submit($form, &$form_state) {
     }
   }
 
+  $alpha_optin = $form_state['values']['alpha-optin'];
+  $beta_optin = $form_state['values']['beta-optin'];
   $invite_gid = $form_state['values']['invite-gid'];
   // TODO: sms_flow_start expects NID value to be here. Might want to consider modifying that
   $form_state['values']['details']['nid'] = $invite_gid;
 
   if (count($beta_numbers) > 0) {
-    // TODO: opt in paths are hardcoded for TFJ
-    sms_flow_start($alpha_mobile, 131891, 129751, $beta_numbers, $form_state['values'], array(
-        'tfj2013_inviter' => $inviter,
+    sms_flow_start($alpha_mobile, $alpha_optin, $beta_optin, $beta_numbers, $form_state['values'], array(
+        'tfj2013_inviter' => $inviter,  // TODO: should remove this eventually when TFJ is done
+        'drives_inviter' => $inviter,
         'drives_invite_gid' => $invite_gid,
       )
     );

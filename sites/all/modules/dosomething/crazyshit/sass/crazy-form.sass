@@ -55,7 +55,7 @@ div.image-widget-data /* uploaded image wrapper and empty image placeholder */
   clear: both
   width: 400px
   height: 400px
-  margin: 30px auto
+  margin: 30px auto !important
   float: none
   border: 2px solid $background
   +border-radius(2px)
@@ -65,6 +65,8 @@ div.image-widget-data /* uploaded image wrapper and empty image placeholder */
     margin: 7% auto
 
 .description,
+#edit-submitted-field-crazy-flagged,
+#edit-submitted-field-craziness-weight,
 #edit-submitted-field-crazy-vouch-count,
 #edit-submitted-field-crazy-bullshit-count, 
 #edit-submitted-field-crazy-count,
@@ -106,12 +108,11 @@ div.image-widget-data /* uploaded image wrapper and empty image placeholder */
     text-transform: uppercase
     padding: 0 3%
     box-shadow: none
-    border: none
+    border: 1px solid rgb(228, 221, 221)
     +border-radius(2px)
 
 // SUBMIT START
 // ------------
-
 .submit-start
   h1
     text-transform: uppercase
@@ -125,10 +126,13 @@ div.image-widget-data /* uploaded image wrapper and empty image placeholder */
     font-size: 18px
     line-height: 27px
     text-transform: uppercase
-    font-weight: 600
+    font-weight: 500
   .pane-content /* inner wrapper */
     padding: 50px
   +crazy_img
+
+#extra_guidelines
+  display: none
 
 // SUBMIT FORM
 // -----------

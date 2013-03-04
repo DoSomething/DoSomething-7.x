@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the dosomething_api module.
+ */
+
+/**
+ * Remove deprecated API Key content type
+ */
+function dosomething_api_update_7000() {
+
+  $type = 'api_key';
+
+  // Get the nids for all of the api_key nodes (there should only be a handful)
+  $result = db_query("SELECT nid FROM {node} n WHERE type = :type", array(':type' => $type));
+  $nids = array();
+  foreach ($result as $record) {
+    $nids[] = $record->nid;
+  }
+  // Delete all of the nodes
+  node_delete_multiple($nids);
+
+  // Remove the content type
+  node_type_delete($type);
+  variable_del('node_preview_' . $type);
+
+  // Rebuild to cache
+  node_types_rebuild();
+  menu_rebuild();
+}

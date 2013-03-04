@@ -28,13 +28,13 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'take action', 'href' => 'greenyourschool', 'fragment' => 'header'),
-    array('title' => 'scholarship info', 'href' => 'greenyourschool', 'fragment' => 'scholoarship'),
-    array('title' => 'learn about activism', 'href' => 'greenyourschool/report-back'),
-    array('title' => 'questions', 'href' => 'greenyourschool', 'fragment' => 'faq'),
+    array('title' => 'take action', 'href' => 'sucker', 'fragment' => 'header'),
+    array('title' => 'scholarship info', 'href' => 'sucker', 'fragment' => 'scholarship'),
+    array('title' => 'learn about activism', 'href' => 'sucker/report-back'),
+    array('title' => 'questions', 'href' => 'sucker', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
-    '#markup' => '<hr><p>Got questions? Email Greg at <a href="mailto:save@dosomething.org">save@dosomething.org</a>!</p>'
+    '#markup' => '<hr><p>Got questions? Email Hilary at <a href="mailto:sucker@dosomething.org">sucker@dosomething.org</a>!</p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'
