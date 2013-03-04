@@ -231,6 +231,7 @@ function dosomething_social_scholars_submit_form($form, &$form_state) {
   if (SAS_AJAX_STATE) {
     // If we set up the redirect path in the form, use that.
     if (!empty($node->field_redirect_to_path[LANGUAGE_NONE][0]['value'])) {
+      drupal_set_message(t($node->field_redirect_message[LANGUAGE_NONE][0]['value']));
       $_GET['destination'] = $node->field_redirect_to_path[LANGUAGE_NONE][0]['value'];
     }
     // Otherwise, redirect to the default "show the images" page.

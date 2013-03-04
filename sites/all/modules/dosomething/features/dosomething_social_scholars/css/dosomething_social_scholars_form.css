@@ -65,3 +65,7 @@
   .page-node .content form.webform-client-form #edit-actions {
     margin: 20px 0px;
     text-align: center; }
+  .page-node .content form.webform-client-form #edit-submitted-field-webform-pictures,
+  .page-node .content form.webform-client-form #edit-submitted-field-webform-school-reference,
+  .page-node .content form.webform-client-form #edit-submitted-field-webform-videos {
+    display: none; }
