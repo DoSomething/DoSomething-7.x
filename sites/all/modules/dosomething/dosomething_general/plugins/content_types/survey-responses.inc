@@ -232,19 +232,19 @@ function dosomething_survey_responses($subtype, $conf, $panel_args, $context) {
         // Show the grid options
         foreach ($options[2] AS $okey => $option) {
           $yours = $ya[$component->cid][$questions[1][$qkey]] == $options[1][$okey];
-          $t = ($options[1]["$okey"] == $thetop);
+          #$t = ($options[1]["$okey"] == $thetop);
 
-          if ($t) {
+          #if ($t) {
            # $answers['theirs'] = t($stat['theirs'], array('!percent' => $percentage, '!answer' => strtoupper($option)));
-          }
+          #}
           if ($yours) {
             $answers['yours'] = t($stat['yours'], array('!answer' => strtoupper($option)));
           }
 
           $item = '';
-          if ($yours || $t) {
+          /*if ($yours || $t) {
           }
-          /*else if (defined('SHOW_HIDDEN_SURVEY_ANSWERS') && SHOW_HIDDEN_SURVEY_ANSWERS === true) {
+          else if (defined('SHOW_HIDDEN_SURVEY_ANSWERS') && SHOW_HIDDEN_SURVEY_ANSWERS === true) {
             $layout .= '<li style="color: red">';
             $layout .= '<div class="question-answer sub-answer" style="display: inline-block">' . $option . '</div>';
 

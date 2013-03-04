@@ -1677,7 +1677,7 @@ function dosomething_login_save_profile_pic($uid, $fbid) {
     file_validate_image_resolution($picture_file, $max_dimensions);
 
     // Update the user record.
-    $picture_file->uid = $account->uid;
+    $picture_file->uid = (isset($account->uid) ? $account->uid : 0);
     $picture_file = file_save($picture_file);
     file_usage_add($picture_file, 'user', 'user', $uid);
     db_update('users')
