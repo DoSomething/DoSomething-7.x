@@ -770,28 +770,54 @@ img.header_ds_logo {
   display: block;
   width: 160px; }
 
-/* line 348, ../sass/crazy.sass */
+/* line 347, ../sass/crazy.sass */
 .item-list .pager .pager-current, .item-list .pager .pager-item, .item-list .pager .pager-ellipsis, .item-list .pager .pager-first, .item-list .pager .pager-last {
   display: none; }
 
-/* line 351, ../sass/crazy.sass */
+/* line 350, ../sass/crazy.sass */
 .item-list .pager {
   width: 500px;
   margin: 0 auto; }
 @media only screen and (max-width: 700px) {
-  /* line 351, ../sass/crazy.sass */
+  /* line 350, ../sass/crazy.sass */
   .item-list .pager {
     width: 430px; } }
 @media only screen and (max-width: 430px) {
-  /* line 351, ../sass/crazy.sass */
+  /* line 350, ../sass/crazy.sass */
   .item-list .pager {
     width: 98%; } }
-/* line 358, ../sass/crazy.sass */
+/* line 357, ../sass/crazy.sass */
 .item-list .pager a {
   color: white; }
-/* line 360, ../sass/crazy.sass */
+/* line 359, ../sass/crazy.sass */
 .item-list .pager .pager-previous {
   float: left; }
-/* line 362, ../sass/crazy.sass */
+/* line 361, ../sass/crazy.sass */
 .item-list .pager .pager-next {
   float: right; }
+
+/* line 366, ../sass/crazy.sass */
+#page .messages {
+  width: 500px;
+  margin: 0 auto;
+  border: none;
+  background: inherit;
+  font-size: 15px;
+  color: #222222; }
+/* line 373, ../sass/crazy.sass */
+#page .messages .placeholder {
+  background: #e6b7b7;
+  padding: 0 0.3em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+@media only screen and (max-width: 700px) {
+  /* line 366, ../sass/crazy.sass */
+  #page .messages {
+    width: 430px; } }
+@media only screen and (max-width: 400px) {
+  /* line 366, ../sass/crazy.sass */
+  #page .messages {
+    width: 98%; } }
