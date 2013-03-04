@@ -23,5 +23,6 @@
 <div class="form-actions form-wrapper">
 	<input type="submit" id="edit-submit" name="op" value="start" class="form-submit">
 </div>
+<p class='ctia'>Sign up to receive weekly updates. Msg &amp; data rates may apply. Text STOP to opt-out, HELP for help.</p>
 </div>
 </form>

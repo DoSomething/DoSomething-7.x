@@ -1,0 +1,33 @@
+.dosomething-share-a-stat-campaign-short-form #webform-component-start-header,
+.dosomething-share-a-stat-campaign-short-form #edit-submitted-field-webform-email,
+.dosomething-share-a-stat-campaign-short-form #edit-submitted-field-webform-mobile,
+.dosomething-share-a-stat-campaign-short-form .form-actions.form-wrapper {
+  float: left !important;
+  width: 25%; }
+.dosomething-share-a-stat-campaign-short-form #edit-submitted-field-webform-email {
+  width: 35%; }
+.dosomething-share-a-stat-campaign-short-form .form-actions.form-wrapper {
+  width: 15%; }
+.dosomething-share-a-stat-campaign-short-form input {
+  padding-left: 0.7em;
+  height: 3em; }
+.dosomething-share-a-stat-campaign-short-form form.webform-client-form #edit-submit {
+  height: 2em;
+  margin: 0 auto;
+  padding: 0 0.7em;
+  line-height: 2.3em;
+  font-size: 1.7em; }
+.dosomething-share-a-stat-campaign-short-form #webform-component-start-header h3 {
+  color: white !important;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  font-weight: 500;
+  text-align: left;
+  text-transform: uppercase; }
+.dosomething-share-a-stat-campaign-short-form .ctia {
+  clear: both;
+  font-size: 0.8em;
+  color: white !important; }
+.dosomething-share-a-stat-campaign-short-form #submitted-field-webform-email-add-more-wrapper,
+.dosomething-share-a-stat-campaign-short-form #submitted-field-webform-mobile-add-more-wrapper {
+  width: 90%; }
