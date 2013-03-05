@@ -1193,6 +1193,27 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
 }
 
 /**
+ * A wrapper function that returns the mc api object
+ */
+function dosomething_general_mailchimp_get_api_object() {
+  libraries_load('mailchimp');
+  $q = new MCAPI(variable_get('mailchimp_api_key', ''));
+
+  // set the timeout to something reasonsable to avoid taking down the Drupal site
+  $q->setTimeout(60);
+
+  // specify if a secure connection should be used wit the API
+  $q->useSecure(variable_get('mailchimp_use_secure', TRUE));
+
+  if ($q->errorCode) {
+    watchdog('mailchimp', 'MCAPI Error: %errmsg', array('%errmsg' => $q->errorMessage), WATCHDOG_ERROR);
+    return NULL;
+  }
+
+  return $q;
+}
+
+/**
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
  * configured opt-in path.
  */
@@ -1278,7 +1299,7 @@ function dosomething_general_mobile_commons_profile_update($mobile, $args = arra
 function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
   
   /* Our function */
-  $mcapi = mailchimp_get_api_object();
+  $mcapi = dosomething_general_mailchimp_get_api_object();
   
   // Catching function
   // Hardcoding the list to the dosomething members
@@ -1324,7 +1345,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
   $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
 
-  if ($mc_signup_flag) {
+  if ($mc_signup_flag === TRUE) {
     // drupal_set_message('MailChimp email added', 'status');
     watchdog('dosomething_general_mailchimp_subscribe',
              'Added ( %email ) to MailChimp group %group.',
