@@ -92,49 +92,103 @@ function robocalls_menu() {
  *  to the user who received the phone call afterwards.
  */
 function robocalls_call_completed() {
+  // Confirm that we're only responding to a completed call.
   if ($_REQUEST['CallStatus'] == 'completed') {
-    dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']), 146913);
+    if (
+      (isset($_REQUEST['From']) && dosomething_general_valid_cell($_REQUEST['From']))
+      && (isset($_REQUEST['To']) && dosomething_general_valid_cell($_REQUEST['To']))
+    ) {
+      dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']), 146913);
+    }
+  }
+}
+
+/**
+ *  After a beta receives a phone call, they get a text message thanking them for
+ *  getting the call.  If they respond with their friends' numbers, we send that same
+ *  call to their friends.
+ *
+ *  @return string|xml
+ *    Mobile Commons XML response for the beta.
+ */
+function robocalls_beta_response() {
+  // Ignore everything if we don't receive a response from the user.
+  if (!isset($_REQUEST['args'])) {
+    dosomething_general_sms_mdata_response(t('Sorry, we didn\'t catch that.  Txt us ur friends\' #s and we\'ll send this call to them.'));
+    drupal_exit();
   }
 
-  ob_start();
-  print_r($_REQUEST);
-  $c = ob_get_contents();
-  ob_end_clean();
+  // Ignore if there is no phone number associated with this text message.
+  if (!isset($_REQUEST['phone_number_without_country_code'])) {
+    return;
+  }
 
-  mail('mchittenden@dosomething.org', 'Call Completed', $c);
+  // Strip all non-numeric characters from the response and attempt to grab phone 10-digit phone numbers, optionally preceded with a 1.
+  preg_match_all('#1?(\d{3}\d{3}\d{4})#', preg_replace('#[^0-9]#', '', $_REQUEST['args']), $numbers);
+
+  // Attempt to get my number.
+  $my_number = preg_replace('#[^0-9]#', '', $_REQUEST['phone_number_without_country_code']);
+
+  // Assuming your phone number is a phone number.
+  if (!empty($my_number) && dosomething_general_valid_cell($my_number)) {
+    $id = $my_number = $n = '';
+
+    // Attempt to get the last record of the call you (the beta) were a part of.
+    $call = db_select('call_records', 'r')
+      ->fields('r', array('call_id'))
+      ->condition('beta', $my_number)
+      ->orderBy('timestamp', 'DESC')
+      ->range(0, 1)
+      ->execute()->fetchAll();
+
+    // Get the ID of the celebrity for that call.
+    $id = reset($call)->call_id;
+
+    // If numbers (from above) is not empty, place calls!
+    if (!empty($numbers) && is_array($numbers) && isset($numbers[1])) {
+      foreach ($numbers[1] AS $key => $number) {
+        // Format the phone number to be uniform throughout.
+        $n .= preg_replace('#(\d{3})(\d{3})(\d{4})#', '(\\1) \\2-\\3', $number) . ($key == (count($numbers[1]) - 2) ? ' and ' : ($key == (count($numbers[1]) - 1) ? '.' : ', '));
+
+        // Send the TelAPI request.
+        dosomething_general_telapi_request('718-578-7681'/*$my_number*/, $number, $id);
+
+        // Make a record of the call.
+        robocalls_record_call('718-578-7681'/*$my_number*/, $number, $id);
+      }
+    }
+    // If we didn't get any phone numbers, let 'em know.
+    else {
+      dosomething_general_sms_mdata_response(t('Sorry, it doesn\'t look like you sent us any phone numbers.  Txt us ur friends\' #s to send them this call.'));
+      return;
+    }
+
+    dosomething_general_sms_mdata_response(t('Great, we\'ve sent this call to !numbers.  Txt back with more #s to send more calls.', array('!numbers' => $n)));
+  }
+  // How didn't we get their phone number?
+  else {
+    dosomething_general_sms_mdata_response(t('Whoa.  We didn\'t get your phone number.  Txt us back with ur friends\' #s to send them this call.'));
+  }
+
+  // Fin.
   drupal_exit();
 }
 
-function robocalls_beta_response() {
-  preg_match_all('#1?(\d{3}\d{3}\d{4})#', preg_replace('#[^0-9]#', '', $_REQUEST['args']), $numbers);
-
-  $my_number = preg_replace('#[^0-9]#', '', $_REQUEST['phone_number_without_country_code']);
-  $call = db_select('call_records', 'r')
-    ->fields('r', array('call_id'))
-    ->condition('beta', $my_number)
-    ->orderBy('timestamp', 'DESC')
-    ->range(0, 1)
-    ->execute()->fetchAll();
-  $id = reset($call)->call_id;
-
-  $n = '';
-  foreach ($numbers[1] AS $key => $number) {
-    $n .= preg_replace('#(\d{3})(\d{3})(\d{4})#', '(\\1) \\2-\\3', $number) . ($key == (count($numbers[1]) - 2) ? ' and ' : ($key == (count($numbers[1]) - 1) ? '.' : ', '));
-    dosomething_general_telapi_request('718-578-7681'/*$my_number*/, $number, $id);
-    robocalls_record_call('718-578-7681'/*$my_number*/, $number, $id);
-  }
-
-  echo '<?xml version="1.0" encoding="UTF-8"?>
-  <response>
-   <reply>
-    <text>
-     <![CDATA[Great, we\'ve sent this call to ' . $n . '.  Txt back with more #s to send more calls.]]>
-    </text>
-   </reply>
-  </response>';
-  exit;
-}
-
+/**
+ *  Makes a record of the call, for gamma ftaf and for data purposes.
+ *
+ *  @param int|string $alpha
+ *    The alpha's phone number.  Stripped of non-numeric character
+ *    in this function so both strings and integers are allowed.
+ *
+ *  @param int|string $beta
+ *    The beta's phone number.  Stripped of non-numeric character
+ *    in this function so both strings and integers are allowed.
+ *
+ *  @param int $call_id
+ *    The id of the celebrity who called.
+ *
+ */
 function robocalls_record_call($alpha, $beta, $call_id) {
   $record = array(
     'timestamp' => REQUEST_TIME,
@@ -152,7 +206,7 @@ function robocalls_record_call($alpha, $beta, $call_id) {
  *  @param integer $tid
  *    The taxonomy term ID for the celebrity to call.
  *
- *  @return xml
+ *  @return xml|string
  *    Returns the Inbound XML document, as specified by TelAPI library.
  */
 function robocalls_call_xml($tid) {
@@ -468,6 +522,9 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
   }
 }
 
+/**
+ *  Handles submissions from the walkthrough.
+ */
 function robocalls_walkthrough_submission($form, &$form_state) {
   if (isset($form_state['clicked_button']['#value']) && $form_state['clicked_button']['#value'] == 'Submit') {
     // Mindfuck of the day: The submitted data is NOT all stored in form_state['input']['submitted']...!
@@ -489,6 +546,9 @@ function robocalls_walkthrough_submission($form, &$form_state) {
   }
 }
 
+/**
+ *  Handles validation of celebrity page submissions.
+ */
 function robocalls_celeb_form_validation($form, &$form_state) {
   require_once DRUPAL_ROOT . '/includes/password.inc';
 
@@ -514,24 +574,37 @@ function robocalls_celeb_form_validation($form, &$form_state) {
   }
 }
 
+/**
+ *  Either creates, or logs in a user, depending on their account status.
+ *
+ *  @param array $info
+ *    An array containing:
+ *      - Name
+ *      - Cell
+ *      - Password
+*     Confirms the existence (or lack thereof) of a user and plans accordingly.
+ */
 function robocalls_create_or_log_in_user($info = array('name' => '', 'cell' => '', 'password' => '')) {
-  if (!user_is_logged_in()) {
-    $your_cell = $info['cell'];
-    $your_name = $info['name'];
-    $your_password = $info['password'];
+  // Only run this if a user is not logged in.
+  if (user_is_logged_in()) {
+    return;
+  }
 
-    $account = dosomething_api_user_log_in($your_cell);
+  $your_cell = $info['cell'];
+  $your_name = $info['name'];
+  $your_password = $info['password'];
 
-    if (empty($account)) {
-      $account = dosomething_api_user_create(array(
-        'name' => $your_name,
-        'mobile' => $your_cell,
-        'password' => $your_password
-      ));
+  $account = dosomething_api_user_log_in($your_cell);
 
-      if (!empty($account)) {
-        dosomething_api_user_log_in($your_cell);
-      }
+  if (empty($account)) {
+    $account = dosomething_api_user_create(array(
+      'name' => $your_name,
+      'mobile' => $your_cell,
+      'password' => $your_password
+    ));
+
+    if (!empty($account)) {
+      dosomething_api_user_log_in($your_cell);
     }
   }
 }
@@ -548,7 +621,9 @@ function robocalls_webform_select_options_info() {
   );
 }
 
-
+/**
+ *  Handles submissions from celeb page.
+ */
 function robocalls_celeb_form_submission($form, &$form_state) {
   $s = $form_state['input']['submitted'];
 
@@ -592,6 +667,9 @@ function robocalls_celeb_form_submission($form, &$form_state) {
   }
 }
 
+/**
+ *  Handles submissions from homepage webform.
+ */
 function robocalls_homepage_form_submission($form, &$form_state) {
   $my = array(
     'name' => $form_state['input']['submitted']['my_info']['my_name'],
