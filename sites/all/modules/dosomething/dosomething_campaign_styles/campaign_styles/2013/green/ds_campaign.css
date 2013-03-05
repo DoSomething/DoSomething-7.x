@@ -151,7 +151,9 @@ body {
   border-radius: 4px; }
 
 .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
-.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav {
+.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav,
+.node-type-campaign-sign-up #block-dosomething-campaign-styles-campaign-nav,
+.page-team #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -1001,9 +1003,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
       margin: 0; }
     #cmp #header .headline {
       max-width: 800px;
-      margin: 0 auto 10%; }
+      margin: 0 auto; }
     #cmp #header h1 {
-      margin: 1.5% 0 1.5% 1.5%;
+      margin: 1.5%;
       background: #50b848;
       zoom: 1;
       filter: alpha(opacity=85);
@@ -1033,11 +1035,23 @@ div[aria-labelledby="ui-dialog-title-1"] {
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
-      margin: 0 0 1.5% 1.5%;
+      margin: 0 1.5% 1.5% 1.5%;
       float: left;
       clear: both;
       font-size: 1.2em;
       padding: 1% 1.5%; }
+    #cmp #header .date {
+      color: white;
+      background: #231f20;
+      zoom: 1;
+      filter: alpha(opacity=85);
+      opacity: 0.85;
+      margin: 5% 1.5% 1.5% 1.5%;
+      float: right;
+      clear: both;
+      font-size: 1.2em;
+      padding: 1% 1.5%;
+      text-transform: uppercase; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -1117,6 +1131,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
         padding-top: 1.2em;
         font-size: 1.8em;
         font-weight: 600; }
+      #cmp #scholarship .third p.head {
+        font-size: 1em;
+        font-weight: 400; }
     #cmp #scholarship .go-button {
       font-size: 2.4em; }
   #cmp #impact p {
