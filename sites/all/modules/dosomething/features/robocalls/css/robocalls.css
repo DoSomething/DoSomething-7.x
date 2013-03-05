@@ -1,4 +1,3 @@
-/* line 3, ../sass/robocalls.sass */
 .preview a {
   display: inline-block;
   background: url(/sites/all/modules/dosomething/features/robocalls/images/play.png) top left no-repeat;
@@ -7,98 +6,85 @@
   height: 26px;
   width: 26px; }
 
-/* line 11, ../sass/robocalls.sass */
 body {
   background: white; }
-/* line 14, ../sass/robocalls.sass */
-body div#site-name {
-  display: none; }
-/* line 17, ../sass/robocalls.sass */
-body div#page {
-  width: 100% !important; }
-/* line 20, ../sass/robocalls.sass */
-body div.gallery-col {
-  float: left; }
-/* line 23, ../sass/robocalls.sass */
-body .panels-flexible-row-last {
-  width: 1030px;
-  margin: 0px auto; }
-/* line 27, ../sass/robocalls.sass */
-body div.views-field-nothing {
-  position: relative; }
-/* line 30, ../sass/robocalls.sass */
-body div.views-field-nothing div.hover-state {
-  display: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  top: 0;
-  background: rgba(0, 0, 0, 0.3);
-  color: white; }
-/* line 41, ../sass/robocalls.sass */
-body div.views-field-nothing div.hover-state .preview-share div.preview {
-  display: inline-block;
-  margin-left: -70px; }
-/* line 45, ../sass/robocalls.sass */
-body div.views-field-nothing div.hover-state .preview-share div.preview .file {
-  display: inline-block;
-  margin-left: -8px; }
-/* line 49, ../sass/robocalls.sass */
-body div.views-field-nothing div.hover-state .preview-share div.preview span.preview {
-  position: relative;
-  top: 5px;
-  left: 12px; }
-/* line 54, ../sass/robocalls.sass */
-body div.views-field-nothing div.hover-state .preview-share div.share {
-  display: inline-block;
-  float: right;
-  margin: 7px; }
-/* line 59, ../sass/robocalls.sass */
-body div.views-field-nothing div.hover-state .name {
-  position: absolute;
-  bottom: 0px; }
-/* line 63, ../sass/robocalls.sass */
-body div.views-field-nothing div.hover-state .name a {
-  color: white; }
+  body div#site-name {
+    display: none; }
+  body div#page {
+    width: 100% !important; }
+  body div.gallery-col {
+    float: left; }
+  body .panels-flexible-row-last {
+    width: 1030px;
+    margin: 0px auto; }
+  body div.views-field-nothing {
+    position: relative; }
+    body div.views-field-nothing div.hover-state {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      top: 0;
+      background: rgba(0, 0, 0, 0.3);
+      color: white; }
+      body div.views-field-nothing div.hover-state .preview-share div.preview {
+        display: inline-block;
+        margin-left: -70px; }
+        body div.views-field-nothing div.hover-state .preview-share div.preview .file {
+          display: inline-block;
+          margin-left: -8px; }
+        body div.views-field-nothing div.hover-state .preview-share div.preview span.preview {
+          position: relative;
+          top: 5px;
+          left: 12px; }
+      body div.views-field-nothing div.hover-state .preview-share div.share {
+        display: inline-block;
+        float: right;
+        margin: 7px; }
+      body div.views-field-nothing div.hover-state .name {
+        position: absolute;
+        bottom: 0px; }
+        body div.views-field-nothing div.hover-state .name a {
+          color: white; }
 
-/* line 66, ../sass/robocalls.sass */
 #webform-component-friends-info--primary-friend {
   width: 33%;
   display: inline-block; }
 
-/* line 72, ../sass/robocalls.sass */
-#cof-submit-form #webform-component-my-info #webform-component-my-info--my-name, #cof-submit-form #webform-component-my-info #webform-component-my-info--my-number, #cof-submit-form #webform-component-my-info #webform-component-my-info--my-password {
+#cof-submit-form #webform-component-my-info #webform-component-my-info--my-name,
+#cof-submit-form #webform-component-my-info #webform-component-my-info--my-number,
+#cof-submit-form #webform-component-my-info #webform-component-my-info--my-password {
   width: 33%;
   display: inline-block; }
 
-/* line 79, ../sass/robocalls.sass */
+#edit-submitted-field-webform-pictures,
+#edit-submitted-field-webform-videos,
+#edit-submitted-field-webform-school-reference {
+  display: none; }
+
 div[role="main"] {
   background: white;
   padding: 30px;
   margin: 0px;
   padding-top: 0px; }
-/* line 86, ../sass/robocalls.sass */
-div[role="main"] nav#breadcrumb {
-  display: none; }
-/* line 89, ../sass/robocalls.sass */
-div[role="main"] h1#page-title {
-  color: transparent;
-  background: url(/sites/all/modules/dosomething/features/robocalls/images/header.png) top left no-repeat;
-  height: 275px;
-  width: 1810px;
-  margin-left: -31px;
-  border-bottom: none;
-  -webkit-box-shadow: 0px !important;
-  -moz-box-shadow: 0px !important;
-  box-shadow: 0px !important; }
-/* line 98, ../sass/robocalls.sass */
-div[role="main"] h2.pane-title {
-  background: #6bb5b2;
-  color: black;
-  padding: 0px 0px 10px 0px; }
+  div[role="main"] nav#breadcrumb {
+    display: none; }
+  div[role="main"] h1#page-title {
+    color: transparent;
+    background: url(/sites/all/modules/dosomething/features/robocalls/images/header.png) top left no-repeat;
+    height: 275px;
+    width: 1810px;
+    margin-left: -31px;
+    border-bottom: none;
+    -webkit-box-shadow: 0px !important;
+    -moz-box-shadow: 0px !important;
+    box-shadow: 0px !important; }
+  div[role="main"] h2.pane-title {
+    background: #6bb5b2;
+    color: black;
+    padding: 0px 0px 10px 0px; }
 
-/* line 105, ../sass/robocalls.sass */
 div.view-id-cause_its_your_birthday div.views-field-nothing {
   clear: left;
   width: 205px;
