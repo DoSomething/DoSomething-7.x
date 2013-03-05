@@ -87,11 +87,10 @@ $sub_menus = array(
 			'title' => 'Scholarship',
 			'href' => CRAZY_ROOT . '/about#scholarship',
 		),
-/* hidden until PSA released */
-/*		'video' => array(
+		'video' => array(
 			'title' => 'Video',
 			'href' => CRAZY_ROOT . '/about#video'
-    ), */
+    ),
 	),
 );
 

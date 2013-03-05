@@ -73,7 +73,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       // The new_account_password value is set by sms_flow_create_account activity. If none
       // found, assume that no new account was created.
       if (empty($password)) {
-        $link_message = t('View ur drive at @link.', array('@link' => $this->drive_link));
+        $link_message = t('View ur team at @link.', array('@link' => $this->drive_link));
       }
       else {
         $link_message = t('Ur pword to login at @link is @pass.', array('@link' => $this->drive_link, '@pass' => $password));
