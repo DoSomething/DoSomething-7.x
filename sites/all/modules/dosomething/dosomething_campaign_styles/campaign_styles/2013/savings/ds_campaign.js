@@ -18,7 +18,7 @@
       }
 
       // has logo, will inject
-      var logo = '//files.dosomething.org/files/campaigns/savings/momm-logo.png';
+      var logo = '//files.dosomething.org/files/campaigns/savings/logo3.png';
       $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/savings"><img width="215" class="logo" src="' + logo + '"/></a>');
 
       $('#cmp #edit-actions').removeAttr('id');

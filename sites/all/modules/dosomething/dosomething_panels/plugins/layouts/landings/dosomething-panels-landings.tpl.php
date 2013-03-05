@@ -54,7 +54,7 @@
   <?php endif; ?>
 
   <?php if ($content['mid-left'] || $content['mid-center'] || $content['mid-right']): ?>
-    <div class="panel-row panel-row-middle <?php if (isset($mid_row_classes)) { print $mid_row_classes } ?>">
+    <div class="panel-row panel-row-middle <?php if (isset($mid_row_classes)) { print $mid_row_classes; } ?>">
       <?php if ($content['mid-left']): ?>
         <div class="panel-first panel-panel pane-narrow-block">
            <?php print $content['mid-left']; ?>

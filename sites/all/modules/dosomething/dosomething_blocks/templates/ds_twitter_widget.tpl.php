@@ -1,5 +1,6 @@
 <div class="twtr-widget twtr-widget-profile" id="twtr-widget-1">
 
+  <?php if (is_array($tweets) && !empty($tweets)): ?>
   <?php foreach ($tweets as $tweet): ?>
     <div class="twtr-tweet">
       <div class="twtr-tweet-wrap">
@@ -25,5 +26,6 @@
       </div>
     </div>
   <?php endforeach; ?>
+  <?php endif; ?>
 
 </div>

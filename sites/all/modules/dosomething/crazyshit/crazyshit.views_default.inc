@@ -449,6 +449,11 @@ function crazyshit_views_default_views() {
   $handler->display->display_options['sorts']['field_craziness_weight_value']['table'] = 'field_data_field_craziness_weight';
   $handler->display->display_options['sorts']['field_craziness_weight_value']['field'] = 'field_craziness_weight_value';
   $handler->display->display_options['sorts']['field_craziness_weight_value']['order'] = 'DESC';
+  /* Sort criterion: Webform Submission: All Time Count (field_crazy_total_count) */
+  $handler->display->display_options['sorts']['field_crazy_total_count_value']['id'] = 'field_crazy_total_count_value';
+  $handler->display->display_options['sorts']['field_crazy_total_count_value']['table'] = 'field_data_field_crazy_total_count';
+  $handler->display->display_options['sorts']['field_crazy_total_count_value']['field'] = 'field_crazy_total_count_value';
+  $handler->display->display_options['sorts']['field_crazy_total_count_value']['order'] = 'DESC';
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
     2 => 'OR',

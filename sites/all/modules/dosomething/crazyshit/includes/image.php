@@ -7,6 +7,11 @@ function write_text_to_image($image_uri, $top_text, $bottom_text, $image_width =
 		return;
 	}
 
+	// Ignore if the file doesn't exist.
+	if (!file_exists($image_uri)) {
+		return;
+	}
+
 	$pathinfo = pathinfo($image_uri);
 	$pathinfo['extension'] = strtolower($pathinfo['extension']);
 

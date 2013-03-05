@@ -2,13 +2,16 @@
 @import 'variables'
 @import 'buttons'
 
+.crazy-sub-menu-header /* hide header tagline throughout the submission process */
+  display: none
+
 // FORMS
 // -----
 
 @mixin meme-text
   visibility: hidden
   position: absolute
-  width: 400px
+  width: 99%
   text-align: center
   color: #fff
   background: rgba(0, 0, 0, .25)
@@ -110,6 +113,9 @@ div.image-widget-data /* uploaded image wrapper and empty image placeholder */
     box-shadow: none
     border: 1px solid rgb(228, 221, 221)
     +border-radius(2px)
+
+#edit-submitted-field-crazy-top-text
+  margin: 0 0 7% 0
 
 // SUBMIT START
 // ------------
