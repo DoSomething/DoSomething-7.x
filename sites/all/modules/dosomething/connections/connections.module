@@ -111,7 +111,7 @@ function connections_handle_fb_dialog($t) {
 
 	$params = array();
 	$params = array(
-		'image' => (isset($_GET['img']) ? $_GET['image'] : ''),
+		'image' => (isset($_GET['img']) ? $_GET['img'] : ''),
 		'title' => (isset($_GET['title']) ? $_GET['title'] : ''),
 		'caption' => (isset($_GET['caption']) ? $_GET['caption'] : ''),
 		'description' => (isset($_GET['desc']) ? $_GET['desc'] : ''),
