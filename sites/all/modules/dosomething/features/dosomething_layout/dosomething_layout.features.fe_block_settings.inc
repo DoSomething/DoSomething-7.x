@@ -14,6 +14,10 @@ function dosomething_layout_default_fe_block_settings() {
 
   // Theme independent visibility settings.
   $export['visibility'] = array(
+    'block-android_app_sidebar' => array(
+      'machine_name' => 'android_app_sidebar',
+      'module' => 'block',
+    ),
     'dosomething_blocks-dosomething_make_impact' => array(
       'delta' => 'dosomething_make_impact',
       'module' => 'dosomething_blocks',
@@ -54,6 +58,20 @@ function dosomething_layout_default_fe_block_settings() {
 
   // doit
   $theme = array();
+
+  $theme['block-android_app_sidebar'] = array(
+    'module' => 'block',
+    'theme' => 'doit',
+    'status' => '1',
+    'weight' => '-67',
+    'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => 'prank*',
+    'title' => 'Download Our Android App',
+    'cache' => -1,
+    'machine_name' => 'android_app_sidebar',
+  );
 
   $theme['dosomething_blocks-dosomething_make_impact'] = array(
     'module' => 'dosomething_blocks',
@@ -190,6 +208,20 @@ prank*',
   // ds
   $theme = array();
 
+  $theme['block-android_app_sidebar'] = array(
+    'module' => 'block',
+    'theme' => 'ds',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => 'prank*',
+    'title' => 'Download Our Android App',
+    'cache' => -1,
+    'machine_name' => 'android_app_sidebar',
+  );
+
   $theme['dosomething_blocks-dosomething_make_impact'] = array(
     'module' => 'dosomething_blocks',
     'delta' => 'dosomething_make_impact',
@@ -324,6 +356,20 @@ prank*',
 
   // picsforpets
   $theme = array();
+
+  $theme['block-android_app_sidebar'] = array(
+    'module' => 'block',
+    'theme' => 'picsforpets',
+    'status' => 0,
+    'weight' => '-59',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => 'prank*',
+    'title' => 'Download Our Android App',
+    'cache' => -1,
+    'machine_name' => 'android_app_sidebar',
+  );
 
   $theme['dosomething_blocks-dosomething_make_impact'] = array(
     'module' => 'dosomething_blocks',
