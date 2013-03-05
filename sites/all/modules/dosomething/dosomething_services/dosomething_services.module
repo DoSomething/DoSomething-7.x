@@ -280,7 +280,7 @@ function _dosomething_services_facebook_login($access_token, $group_name) {
  * Interest Group on Mailchimp
  */
 function _dosomething_services_mailchimp_subscribe($group_name, $email) {
-  $mcapi = dosomething_mailchimp_get_api_object();
+  $mcapi = dosomething_general_mailchimp_get_api_object();
   // Hardcoding the id to Do Something Members list
   $listid = 'f2fab1dfd4';
 

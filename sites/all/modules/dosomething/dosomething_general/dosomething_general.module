@@ -1319,7 +1319,7 @@ function dosomething_general_mailchimp_get_api_object() {
 function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
   
   /* Our function */
-  $mcapi = dosomething_mailchimp_get_api_object();
+  $mcapi = dosomething_general_mailchimp_get_api_object();
   
   // Catching function
   // Hardcoding the list to the dosomething members
