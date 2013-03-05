@@ -24,6 +24,12 @@ function robocalls_init() {
   }
 }
 
+/**
+ *  Loads the configuration file for robocalls and returns it.
+ *
+ *  @return array
+ *    The array of options for robo calls
+ */
 function robocalls_load_config() {
   global $robocalls;
 
@@ -34,6 +40,15 @@ function robocalls_load_config() {
   return $robocalls;
 }
 
+/**
+ *  Confirms that the page you're currently on is a robocalls page
+ *
+ *  @param string $page
+ *    A string identifier for your preferred page.
+ *
+ *  @return bool
+ *    Boolean true if the current request URI matches $page, or false otherwise.
+ */
 function robocalls_is_robo_page($page = '') {
   if (empty($page)) {
     $page = request_path();
@@ -71,6 +86,11 @@ function robocalls_menu() {
   return $items;
 }
 
+/**
+ *  TelAPI call completion callback.  Receives a request from TelAPI
+ *  when a call is in session, and when the call is completed.  Sends a text
+ *  to the user who received the phone call afterwards.
+ */
 function robocalls_call_completed() {
   if ($_REQUEST['CallStatus'] == 'completed') {
     dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']), 146913);
@@ -82,7 +102,7 @@ function robocalls_call_completed() {
   ob_end_clean();
 
   mail('mchittenden@dosomething.org', 'Call Completed', $c);
-  exit;
+  drupal_exit();
 }
 
 function robocalls_beta_response() {
@@ -216,6 +236,13 @@ function robocalls_module_implements_alter(&$implementations, $hook) {
   }
 }
 
+/**
+ *  Gets all celebrities.
+ *
+ *  @return array
+ *    An array of celebrities, with keys as the TID and values as
+ *    the name of the celebrity.
+ */
 function robocalls_get_celebrities() {
   $celebs = array();
   foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
