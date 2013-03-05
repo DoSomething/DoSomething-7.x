@@ -677,8 +677,10 @@ function dosomething_blocks_preprocess_dosomething_blocks_twitter_widget(&$varia
     $twitter_data = $cache->data;
   }
 
-  foreach ($twitter_data as $key => $data) {
-    $twitter_data[$key]['date'] = date('F j g:ia', strtotime($data['created_at']));
+  if (is_array($twitter_data) && !empty($twitter_data)) {
+    foreach ($twitter_data as $key => $data) {
+      $twitter_data[$key]['date'] = date('F j g:ia', strtotime($data['created_at']));
+    }
   }
 
   $variables['tweets'] = $twitter_data;
