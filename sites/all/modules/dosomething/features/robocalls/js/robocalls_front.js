@@ -83,7 +83,15 @@
           $('.add-more-friends-front').remove();
         }
 
-        $(f).appendTo('#webform-component-friends-info');
+        $(f).appendTo('#webform-component-friends-info').queue(function() {
+          if ($('#edit-submitted-friends-info-primary-friend-select-call').val() != "") {
+            $('.robo-select-celeb').each(function() {
+              if ($(this).val() == "") {
+                $(this).val($('#edit-submitted-friends-info-primary-friend-select-call').val());
+              }
+            });
+          }
+        });
         return false;
       });
     }
