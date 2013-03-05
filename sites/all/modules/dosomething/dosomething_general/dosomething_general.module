@@ -265,6 +265,13 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
     'dosomething_general_facebook_friend_pic' => array(
       'variables' => array('fbid' => NULL, 'uid' => NULL, 'image_style' => NULL),
     ),
+    'mc-response' => array(
+      'path' => $path . '/templates',
+      'template' => 'mc-response',
+      'variables' => array(
+        'message' => NULL,
+      ),
+    ),
   );
 }
 
@@ -1229,6 +1236,19 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $ar
 
   $response = drupal_http_request($api_opt_in_path_url, $options);
   return $response;
+}
+
+/**
+ *  Returns an XML Mobile Commons response.
+ *
+ *  @param string $message
+ *     The message that should be displayed.
+ *
+ *  @return string|xml
+ *     The XML document, prepared as a mobile commons response.
+ */
+function dosomething_general_mobile_commons_response($message) {
+  echo theme('mc-response', array('message' => $message));
 }
 
 /**
