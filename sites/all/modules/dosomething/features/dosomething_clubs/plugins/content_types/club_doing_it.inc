@@ -82,11 +82,12 @@ LIMIT 4 OFFSET 0)")->fetchAll();
 	global $user;
 	$i = 0;
 	foreach ($query AS $key => $data) {
-		if (!$data->title) continue;
-		$file = file_load($data->fid);
-		if (!is_object($file)) {
-			$file = new stdClass();
+		if (!isset($data->title)) continue;
+		$file = new stdClass();
+		if (isset($data->fid)) {
+			$file = file_load($data->fid);
 		}
+
 		if (!isset($file->uri)) {
 		  $file->uri = 'default-profile-picture.jpg';
 	    }
@@ -94,14 +95,6 @@ LIMIT 4 OFFSET 0)")->fetchAll();
 		$image = theme('image_style', array('path' => $file->uri, 'style_name' => 'project_related_thumb'));
 		$link = ($data->is_node ? drupal_lookup_path('alias', 'node/' . $data->nid) : drupal_lookup_path('alias', 'webform-submission/' . $data->sid));
 
-		/*$output['member_links'][] = array(
-			'#markup' => '
-			<div style="clear: both; height: 60px; margin: 0px 5px 10px 10px">
-				<div class="views-field views-field-picture" style="float: left; margin-right: 5px;"><div class="field-content">' . $image . '</div>  </div>  
-	  			<div class="views-field views-field-field-user-full-name"><div class="field-content">' . l($data->title, $link) . '</div></div>
-	  		</div>
-	  			'
-		);*/
 		$output['member_links'][] = array(
 	        '#type' => 'container',
 	        '#attributes' => array(
