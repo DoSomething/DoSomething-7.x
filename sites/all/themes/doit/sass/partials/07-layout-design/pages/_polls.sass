@@ -12,8 +12,8 @@
     width: 100%
     .text,
     .total
-      @extend .headers
-      @extend .bold
+      @extend %headers
+      @extend %bold
       font-size: $s2
       color: white
     .percent
@@ -22,18 +22,18 @@
     .foreground
       height: 7px
   input[type="submit"]
-    @extend .go-button
+    @extend %go-button
     float: right
 
 // Poll landing page
 .pane-polls-landing-panel-pane-1
-  @extend .two-column-grid
+  @extend %two-column-grid
   .views-row
-    @extend .image-teaser-module
+    @extend %image-teaser-module
   .views-field-field-picture
-    @extend .image-teaser-module-image
+    @extend %image-teaser-module-image
   .unimage-wrapper
-    @extend .image-teaser-module-teaser
+    @extend %image-teaser-module-teaser
 
 // poll width
 .node-poll .poll

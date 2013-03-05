@@ -23,7 +23,7 @@
 
     // campaign logo injection
     var logo = '//files.dosomething.org/files/campaigns/jeans12/flip_logo.png';
-    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a>');
+    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/teensforjeans"><img src="' + logo + '"/></a><h2>IN STORE DROP OFF<br>IS CLOSED</h2>');
     
     // campaign social media injection
     $('#header').prepend($('.socialWrapper'));
@@ -98,40 +98,6 @@
       });
     });
 
-    jQuery(window).bind('load', function() {
-      var $form = jQuery('#contact-form');
-      var $footer = jQuery('#block-menu-menu-footer');
-      var $document = jQuery(document);
-      var scrollLimitTop = $form.offset().top;
-      $document.scroll(function () {
-        var st = $document.scrollTop();
-        var scrollLimitBot = $document.height() - $form.outerHeight() - $footer.outerHeight();
-        if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $form
-          $form.css({
-            'position'      : 'fixed',
-            'top'           : '0px',
-            'bottom'        : 'auto',
-            'z-index'       : '3',
-            'width'         : '800px',
-            'height'        : '123px',
-            'padding'       : '10px 10px 0 10px',
-            'border-bottom' : '15px solid #fff'
-          }); 
-        }   
-        else if (st >= scrollLimitTop) { // once $form hits $footer
-          scrollLimitTop = $form.offset().top;
-          $form
-            .css('position', 'absolute')
-            .css('top', 'auto')
-            .css('bottom', '25px')
-        }   
-        else { // before scrolling engages $form
-          scrollLimitTop = $form.offset().top;
-          $form
-            .css('position', 'static')
-        }   
-      }); 
-    });
 
     } // end attach: function
   }; // end Drupal.behaviors

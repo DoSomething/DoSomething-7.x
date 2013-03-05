@@ -109,6 +109,7 @@ function dosomething_login_library() {
     'js' => array(
       drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-ajax-popups.js' => array(),
     ),
+    'version' => '1.0',
     'dependencies' => array(
       array('system', 'jquery'),
       array('system', 'drupal.ajax'),
@@ -515,7 +516,7 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
  */
 function dosomething_login_register_popup_form($form, &$form_state) {
   // we want to cache this form, because we'll be using ajax_get_form, which requires that the form be secure
-  if ($_GET['destination']) {
+  if (isset($_GET['destination'])) {
     $path = $_GET['destination'];
   }
   else {
@@ -1140,7 +1141,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $merge_vars['TURNS26'] = date('m/d/Y', strtotime('+26 years', $birthdate));
   
   // Phone
-  if ($form_state['values']['phone'] != '') {
+  if (isset($form_state['values']['phone']) && $form_state['values']['phone'] != '') {
     $merge_vars['MMERGE7'] = $form_state['values']['phone'];
   }
   
@@ -1676,7 +1677,7 @@ function dosomething_login_save_profile_pic($uid, $fbid) {
     file_validate_image_resolution($picture_file, $max_dimensions);
 
     // Update the user record.
-    $picture_file->uid = $account->uid;
+    $picture_file->uid = (isset($account->uid) ? $account->uid : 0);
     $picture_file = file_save($picture_file);
     file_usage_add($picture_file, 'user', 'user', $uid);
     db_update('users')

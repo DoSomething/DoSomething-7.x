@@ -1,8 +1,8 @@
 /* line 4, ../sass/_buttons.sass */
-.crazy-button, .bs-button, .vouch-button {
+.crazy-button, .bs-button, .vouch-button, .pager-previous, .pager-next {
   display: inline-block; }
 /* line 6, ../sass/_buttons.sass */
-.crazy-button a, .bs-button a, .vouch-button a {
+.crazy-button a, .bs-button a, .vouch-button a, .pager-previous a, .pager-next a {
   background: #4b84e6;
   color: white;
   padding: 5px;
@@ -13,17 +13,17 @@
   -o-border-radius: 2px;
   border-radius: 2px; }
 /* line 12, ../sass/_buttons.sass */
-.crazy-button a:hover, .bs-button a:hover, .vouch-button a:hover {
+.crazy-button a:hover, .bs-button a:hover, .vouch-button a:hover, .pager-previous a:hover, .pager-next a:hover {
   text-decoration: none;
   background-color: #6193e9; }
 /* line 15, ../sass/_buttons.sass */
-.crazy-button a.clicked, .bs-button a.clicked, .vouch-button a.clicked {
+.crazy-button a.clicked, .bs-button a.clicked, .vouch-button a.clicked, .pager-previous a.clicked, .pager-next a.clicked {
   background: #f1f1f1;
   color: #c1c1c1;
   cursor: default;
   text-decoration: none; }
 /* line 20, ../sass/_buttons.sass */
-.crazy-button span, .bs-button span, .vouch-button span {
+.crazy-button span, .bs-button span, .vouch-button span, .pager-previous span, .pager-next span {
   background-color: #dddddd;
   position: relative;
   display: inline-block;
@@ -35,7 +35,7 @@
   -o-border-radius: 2px;
   border-radius: 2px; }
 /* line 27, ../sass/_buttons.sass */
-.crazy-button span:after, .crazy-button span:before, .bs-button span:after, .bs-button span:before, .vouch-button span:after, .vouch-button span:before {
+.crazy-button span:after, .crazy-button span:before, .bs-button span:after, .bs-button span:before, .vouch-button span:after, .vouch-button span:before, .pager-previous span:after, .pager-previous span:before, .pager-next span:after, .pager-next span:before {
   right: 100%;
   border: solid transparent;
   content: " ";
@@ -44,14 +44,14 @@
   position: absolute;
   pointer-events: none; }
 /* line 35, ../sass/_buttons.sass */
-.crazy-button span:after, .bs-button span:after, .vouch-button span:after {
+.crazy-button span:after, .bs-button span:after, .vouch-button span:after, .pager-previous span:after, .pager-next span:after {
   border-color: rgba(136, 183, 213, 0);
   border-right-color: #dddddd;
   border-width: 5px;
   top: 50%;
   margin-top: -5px; }
 /* line 41, ../sass/_buttons.sass */
-.crazy-button span:before, .bs-button span:before, .vouch-button span:before {
+.crazy-button span:before, .bs-button span:before, .vouch-button span:before, .pager-previous span:before, .pager-next span:before {
   border-color: rgba(194, 225, 245, 0);
   border-width: 6px;
   top: 50%;
@@ -172,40 +172,44 @@ a.no_thanks {
   cursor: pointer;
   text-transform: lowercase; }
 
-/* line 23, ../sass/crazy-form.sass */
+/* line 5, ../sass/crazy-form.sass */
+.crazy-sub-menu-header {
+  display: none; }
+
+/* line 26, ../sass/crazy-form.sass */
 nav[role="navigation"] .region-navigation {
   margin: 0px 0px; }
 
-/* line 26, ../sass/crazy-form.sass */
+/* line 29, ../sass/crazy-form.sass */
 input#edit-submitted-field-crazy-crazy-picture-und-0-upload-button {
   display: none; }
 
-/* line 29, ../sass/crazy-form.sass */
+/* line 32, ../sass/crazy-form.sass */
 input#edit-submitted-field-crazy-crazy-picture-und-0-remove-button {
   position: relative;
   top: -45px;
   margin-left: 40%; }
 
-/* line 34, ../sass/crazy-form.sass */
+/* line 37, ../sass/crazy-form.sass */
 #upload-cover {
   position: relative;
   margin: -55px auto 0;
   width: 147px;
   cursor: pointer; }
 
-/* line 40, ../sass/crazy-form.sass */
+/* line 43, ../sass/crazy-form.sass */
 footer.author, #edit-submitted-dosomething-webform-numbering {
   display: none; }
 
-/* line 43, ../sass/crazy-form.sass */
+/* line 46, ../sass/crazy-form.sass */
 .step-field {
   margin-bottom: 15px; }
 
-/* line 46, ../sass/crazy-form.sass */
+/* line 49, ../sass/crazy-form.sass */
 #top_text {
   visibility: hidden;
   position: absolute;
-  width: 400px;
+  width: 99%;
   text-align: center;
   color: white;
   background: rgba(0, 0, 0, 0.25);
@@ -218,11 +222,11 @@ footer.author, #edit-submitted-dosomething-webform-numbering {
   overflow: hidden;
   top: 0px; }
 
-/* line 50, ../sass/crazy-form.sass */
+/* line 53, ../sass/crazy-form.sass */
 #bottom_text {
   visibility: hidden;
   position: absolute;
-  width: 400px;
+  width: 99%;
   text-align: center;
   color: white;
   background: rgba(0, 0, 0, 0.25);
@@ -235,12 +239,12 @@ footer.author, #edit-submitted-dosomething-webform-numbering {
   overflow: hidden;
   bottom: 0px; }
 
-/* line 54, ../sass/crazy-form.sass */
+/* line 57, ../sass/crazy-form.sass */
 div.image-widget-data {
   clear: both;
   width: 400px;
   height: 400px;
-  margin: 30px auto;
+  margin: 30px auto !important;
   float: none;
   border: 2px solid #dddddd;
   -webkit-border-radius: 2px;
@@ -249,21 +253,21 @@ div.image-widget-data {
   -o-border-radius: 2px;
   border-radius: 2px; }
 @media only screen and (max-width: 550px) {
-  /* line 54, ../sass/crazy-form.sass */
+  /* line 57, ../sass/crazy-form.sass */
   div.image-widget-data {
     width: 100%;
     height: auto;
     margin: 7% auto; } }
 
-/* line 67, ../sass/crazy-form.sass */
-.description, #edit-submitted-field-craziness-weight, #edit-submitted-field-crazy-vouch-count, #edit-submitted-field-crazy-bullshit-count, #edit-submitted-field-crazy-count, #edit-submitted-field-crazy-total-count, #edit-submitted-field-crazy-today-count, #edit-submitted-field-crazy-week-count, .image-preview, .file, .file-size, .form-item-submitted-field-crazy-crazy-picture-und-0 label {
+/* line 70, ../sass/crazy-form.sass */
+.description, #edit-submitted-field-crazy-flagged, #edit-submitted-field-craziness-weight, #edit-submitted-field-crazy-vouch-count, #edit-submitted-field-crazy-bullshit-count, #edit-submitted-field-crazy-count, #edit-submitted-field-crazy-total-count, #edit-submitted-field-crazy-today-count, #edit-submitted-field-crazy-week-count, .image-preview, .file, .file-size, .form-item-submitted-field-crazy-crazy-picture-und-0 label {
   display: none; }
 
-/* line 81, ../sass/crazy-form.sass */
+/* line 85, ../sass/crazy-form.sass */
 #edit-submitted-sbutton {
   text-align: center;
   position: relative; }
-/* line 85, ../sass/crazy-form.sass */
+/* line 89, ../sass/crazy-form.sass */
 #edit-submitted-sbutton img {
   position: static;
   margin-bottom: -2px;
@@ -274,19 +278,19 @@ div.image-widget-data {
   box-shadow: none;
   margin-top: 0px; }
 
-/* line 93, ../sass/crazy-form.sass */
+/* line 97, ../sass/crazy-form.sass */
 #edit-submitted-field-crazy-top-text, #edit-submitted-field-crazy-bottom-text {
   overflow: hidden; }
-/* line 96, ../sass/crazy-form.sass */
+/* line 100, ../sass/crazy-form.sass */
 #edit-submitted-field-crazy-top-text label, #edit-submitted-field-crazy-top-text input, #edit-submitted-field-crazy-bottom-text label, #edit-submitted-field-crazy-bottom-text input {
   float: left;
   font-size: 15px;
   line-height: 30px;
   text-transform: uppercase; }
-/* line 101, ../sass/crazy-form.sass */
+/* line 105, ../sass/crazy-form.sass */
 #edit-submitted-field-crazy-top-text label, #edit-submitted-field-crazy-bottom-text label {
   width: 30%; }
-/* line 103, ../sass/crazy-form.sass */
+/* line 107, ../sass/crazy-form.sass */
 #edit-submitted-field-crazy-top-text input, #edit-submitted-field-crazy-bottom-text input {
   width: 70%;
   height: 35px;
@@ -294,14 +298,18 @@ div.image-widget-data {
   text-transform: uppercase;
   padding: 0 3%;
   box-shadow: none;
-  border: none;
+  border: 1px solid #e4dddd;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 116, ../sass/crazy-form.sass */
+/* line 117, ../sass/crazy-form.sass */
+#edit-submitted-field-crazy-top-text {
+  margin: 0 0 7% 0; }
+
+/* line 123, ../sass/crazy-form.sass */
 .submit-start h1 {
   text-transform: uppercase;
   text-align: center;
@@ -310,13 +318,13 @@ div.image-widget-data {
   width: 66%;
   margin: 0 auto 5%;
   padding: 0 0 3% 0; }
-/* line 124, ../sass/crazy-form.sass */
+/* line 131, ../sass/crazy-form.sass */
 .submit-start p {
   font-size: 18px;
   line-height: 27px;
   text-transform: uppercase;
   font-weight: 500; }
-/* line 129, ../sass/crazy-form.sass */
+/* line 136, ../sass/crazy-form.sass */
 .submit-start .pane-content {
   padding: 50px; }
 /* line 16, ../sass/_variables.sass */
@@ -333,21 +341,21 @@ div.image-widget-data {
   .submit-start img {
     width: 92%; } }
 
-/* line 133, ../sass/crazy-form.sass */
+/* line 140, ../sass/crazy-form.sass */
 #extra_guidelines {
   display: none; }
 
-/* line 138, ../sass/crazy-form.sass */
+/* line 145, ../sass/crazy-form.sass */
 .node-crazy-shit {
   box-shadow: none; }
-/* line 140, ../sass/crazy-form.sass */
+/* line 147, ../sass/crazy-form.sass */
 .node-crazy-shit .webform-client-form {
   padding: 50px; }
 @media only screen and (max-width: 550px) {
-  /* line 140, ../sass/crazy-form.sass */
+  /* line 147, ../sass/crazy-form.sass */
   .node-crazy-shit .webform-client-form {
     padding: 50px 10% 10px; } }
 
-/* line 147, ../sass/crazy-form.sass */
+/* line 154, ../sass/crazy-form.sass */
 div.form-wrapper, div.step-field {
   margin: 0; }

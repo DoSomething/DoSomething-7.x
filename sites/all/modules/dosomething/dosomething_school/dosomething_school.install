@@ -272,3 +272,27 @@ function dosomething_school_update_7005() {
     'initial' => '',
   ));
 }
+
+/**
+ * Remove deprecated School node type & nodes
+ */
+function dosomething_school_update_7006() {
+   $type = 'school';
+
+  // Get the nids for all of the api_key nodes (there should only be a handful)
+  $result = db_query("SELECT nid FROM {node} n WHERE type = :type", array(':type' => $type));
+  $nids = array();
+  foreach ($result as $record) {
+    $nids[] = $record->nid;
+  }
+  // Delete all of the nodes
+  node_delete_multiple($nids);
+
+  // Remove the content type
+  node_type_delete($type);
+  variable_del('node_preview_' . $type);
+
+  // Rebuild to cache
+  node_types_rebuild();
+  menu_rebuild();
+}

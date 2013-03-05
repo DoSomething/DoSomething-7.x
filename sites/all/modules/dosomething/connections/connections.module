@@ -1,27 +1,23 @@
 <?php
 
-function pr($stuff) {
-	echo '<pre>', print_r($stuff), '</pre>';
-}
-
-function fb_log_action($action, $uid, $fbid) {
+function fb_log_action() {
 	global $user;
 
 	$l = array(
-	  'path' => $_POST['link'],
-      'action' => $_POST['action'],
-      'action_key' => intval($_POST['key']),
+	  'path' => (isset($_POST['link']) ? $_POST['link'] : ''),
+      'action' => (isset($_POST['action']) ? $_POST['action'] : ''),
+      'action_key' => (isset($_POST['key']) ? intval($_POST['key']) : 0),
       'uid' => $user->uid,
-      'fbid' => intval($_POST['fbid']),
-      'to_fbid' => intval($_POST['to']),
+      'fbid' => (isset($_POST['fbid']) ? intval($_POST['fbid']) : 0),
+      'to_fbid' => (isset($_POST['to']) ? intval($_POST['to']) : 0),
       'timestamp' => REQUEST_TIME,
 	);
 
 	drupal_write_record('fb_log', $l);
 
 	$response = array(
-		'action' => $_POST['action'],
-		'key' => intval($_POST['key']),
+		'action' => (isset($_POST['action']) ? $_POST['action'] : ''),
+		'key' => (isset($_POST['key']) ? intval($_POST['key']) : 0),
 		'time' => date('m/d/Y g:iA'),
 		'success' => TRUE,
 	);
@@ -115,14 +111,14 @@ function connections_handle_fb_dialog($t) {
 
 	$params = array();
 	$params = array(
-		'image' => $_GET['img'],
-		'title' => $_GET['title'],
-		'caption' => $_GET['caption'],
-		'description' => $_GET['desc'],
-		'to' => $_GET['to'],
-		'photo' => $_GET['mypic'],
-		'tagging' => intval($_GET['tagging']),
-		'message' => htmlspecialchars($_GET['message'])
+		'image' => (isset($_GET['img']) ? $_GET['img'] : ''),
+		'title' => (isset($_GET['title']) ? $_GET['title'] : ''),
+		'caption' => (isset($_GET['caption']) ? $_GET['caption'] : ''),
+		'description' => (isset($_GET['desc']) ? $_GET['desc'] : ''),
+		'to' => (isset($_GET['to']) ? $_GET['to'] : ''),
+		'photo' => (isset($_GET['mypic']) ? $_GET['mypic'] : ''),
+		'tagging' => intval((isset($_GET['tagging']) ? $_GET['tagging'] : 0)),
+		'message' => htmlspecialchars((isset($_GET['message']) ? $_GET['message'] : ''))
 	);
 
 	echo theme($options[$t], $params);
@@ -235,12 +231,12 @@ function connections_page_alter(&$page) {
 
 				   $faces[$fb_actions[$action]] = $stuff;
 
-				   if ($stuff['og_post_description'] || $stuff['feed_description']) {
+				   if (isset($stuff['og_post_description']) || isset($stuff['feed_description'])) {
 				   	  global $fb_og_desc;
-				   	  $fb_og_desc = ($stuff['og_post_description'] ? $stuff['og_post_description'] : $stuf['feed_description']);
+				   	  $fb_og_desc = (isset($stuff['og_post_description']) ? $stuff['og_post_description'] : $stuff['feed_description']);
 				   }
 
-				   if ($stuff['img_object'] && $stuff['img_namespace']) {
+				   if (isset($stuff['img_object']) && isset($stuff['img_namespace'])) {
 					  global $og_stuff;
 					  $og_stuff = array(
 					  	'namespace' => $stuff['img_namespace'],

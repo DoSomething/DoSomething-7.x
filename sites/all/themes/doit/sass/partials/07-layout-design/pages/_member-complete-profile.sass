@@ -3,7 +3,7 @@
 // List items of stuff you need to do and stuff you have done
 ////////////////////////////
 .pane-ds-stuff-you-need
-  @extend .black-h2
+  @extend %black-h2
   .pane-content
     +box-shadow($gray5 0 1px 0 inset)
     border-top: 1px $white solid
@@ -15,9 +15,9 @@
     // right: 0
 
 h3 .stuff-header
-  @extend .headers
-  @extend .black
-  @extend .bold
+  @extend %headers
+  @extend %black
+  @extend %bold
   font-size: 14px
   padding: 12px 0
 

@@ -69,14 +69,9 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
     }
   }
   else {
-    if (user_is_logged_in()) {
-      $member_link = drupal_render(drupal_get_form('dosomething_clubs_join_form', $group->gid));
-    }
-    else {
-      $member_link = drupal_render(drupal_get_form('dosomething_clubs_join_form', $group->gid));
-      // 1. pop up login/register box with ?destination set
-      // 2. destination is a new page, with destination URL encoded
-      // 3. redirect back to the club page
+    if (isset($group->gid)) {
+      $f = drupal_get_form('dosomething_clubs_join_form', $group->gid);
+      $member_link = drupal_render($f);
     }
   }
   /*if ($user->uid == 0) {
@@ -122,6 +117,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
   $link = 'http://www.facebook.com/sharer/sharer.php?u=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
   $edit_photo_perm = '';
+  $edit_link = array();
   if ($user->uid == $node->uid || user_access('administer group', $user) || in_array(DSCLUBS_ADMIN_ROLE, og_get_user_roles($group->gid, $user->uid))) {
     $edit_photo_perm = ' admin-manage';
 
@@ -176,7 +172,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
             '#suffix' => '</div>',
           ),
           'blurb' => array(
-            '#markup' => $node->field_club_blurb[LANGUAGE_NONE][0]['value'],
+            '#markup' => (isset($node->field_club_blurb[LANGUAGE_NONE][0]['value']) ? $node->field_club_blurb[LANGUAGE_NONE][0]['value'] : ''),
             '#prefix' => '<p class="club-blurb">',
             '#suffix' => '</p>'
           ),

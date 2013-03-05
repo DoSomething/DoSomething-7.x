@@ -1,7 +1,7 @@
 .page-causes
   .content
     h3
-      @extend .bold
+      @extend %bold
     .apps-text
       padding-top: 6px
 
@@ -11,8 +11,9 @@
   text-align: right
   &:before
     content: 'Suggest a Cause'
-    @extend .counter-labels
+    @extend %counter-labels
   a:visited
-    @extend .gray2
+    @extend %gray2
 
-
+.pane-cause-filter
+  margin-bottom: 10px

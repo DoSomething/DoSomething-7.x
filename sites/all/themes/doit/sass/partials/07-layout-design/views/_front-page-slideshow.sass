@@ -30,12 +30,12 @@
       +background(image_url("rounded-bottom-shadow.gif") no-repeat bottom center)
   .home-slide
     img
-      @extend .white-border
+      @extend %white-border
       margin-bottom: 24px
 
 .ribbon-front
-  @extend .headers
-  @extend .gold
+  @extend %headers
+  @extend %gold
   +box-shadow(rgba(#000, 0.8) -5px 3px 10px)
   background-color: $purple
   height: 65px
@@ -63,8 +63,8 @@
   a,
   a:hover,
   a:visited
-    @extend .white
-    @extend .bold
+    @extend %white
+    @extend %bold
     font-size: 33px
     line-height: 70px
     margin-left: 210px

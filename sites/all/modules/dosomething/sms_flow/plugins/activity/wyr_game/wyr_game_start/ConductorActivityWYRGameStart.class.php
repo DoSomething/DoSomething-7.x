@@ -39,14 +39,19 @@ class ConductorActivityWYRGameStart extends ConductorActivity {
     // Send user to selected opt-in path
     dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path);
 
-    // If no existing record, create one
-    if (empty($started_paths)) {
-      sms_flow_game_create_record($mobile, $this->game_id);
-    }
+    try {
+      // If no existing record, create one
+      if (empty($started_paths)) {
+        sms_flow_game_create_record($mobile, $this->game_id);
+      }
 
-    // Update existing record, adding the newly selected path
-    $started_paths[] = $opt_in_path;
-    sms_flow_game_set_paths($mobile, $this->game_id, $started_paths);
+      // Update existing record, adding the newly selected path
+      $started_paths[] = $opt_in_path;
+      sms_flow_game_set_paths($mobile, $this->game_id, $started_paths);
+    }
+    catch (Exception $e) {
+      watchdog('sms_flow_game', 'ConductorActivityWYRGameStart exception - ' . $e->getMessage());
+    }
     
     // Allow workflow to end without sending a response back to the user
     $state->setContext('ignore_no_response_error', TRUE);

@@ -18,7 +18,7 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
   $leader_name = dosomething_drives_drive_get_name($submission);
   $drive = dosomething_drives_drive_get_drives($group->gid);
   $drive_nid = dosomething_drives_get_drive_nid($campaign_group);
-  $is_admin = (og_user_access($group->gid, 'administer group') || user_access('administer group')) && !$conf['disable_admin_functions'];
+  $is_admin = (og_user_access($group->gid, 'administer group') || user_access('administer group')) && empty($conf['disable_admin_functions']);
 
   drupal_add_js(array('dosomething_drives' => array('gid' => $group->gid)), 'setting');
 
@@ -35,16 +35,16 @@ function dosomething_drives_drive_content_type_render($subtype, $conf, $panel_ar
 
   // get the member list (use a function!)
 
-  $content['header']['title'] = dosomething_drives_drive_title($submission, $conf['team_name'], $leader_name, $campaign->title);
+  $content['header']['title'] = dosomething_drives_drive_title($submission, (isset($conf['team_name']) ? $conf['team_name'] : ''), $leader_name, $campaign->title);
   $content['header']['description'] = dosomething_drives_drive_description($submission);
   $content['header']['countdown'] = dosomething_drives_drive_countdown($drive);
 
-  if (!$conf['disable_admin_functions']) {
+  if (empty($conf['disable_admin_functions'])) {
     $content['content']['drive_info'] = dosomething_drives_drive_info($drive, $drive_nid, $group->gid, $is_admin);
   }
 
   $content['content']['drive_share'] = dosomething_drives_drive_share();
-  $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, $conf['team_name']);
+  $content['content']['participants'] = dosomething_drives_drive_participants($group, $leader_name, $campaign, $is_admin, (isset($conf['team_name']) ? $conf['team_name'] : ''));
 
   $content['#attached']['js'] = array(
     drupal_get_path('module', 'teams') . '/teams.js' => array(),
@@ -148,7 +148,7 @@ function dosomething_drives_drive_get_info($drive, $is_admin) {
 
 function dosomething_drives_drive_share() {
   drupal_add_js(drupal_get_path('module', 'dosomething_drives') . '/js/twitter.js');
-#  $url = url(request_path(), array('absolute' => TRUE));
+  $url = url(request_path(), array('absolute' => TRUE));
   return array(
     '#type' => 'container',
     '#suffix' => '</div> <!-- .drive-info-wrapper -->',
@@ -189,18 +189,6 @@ function dosomething_drives_drive_participants($group, $leader_name, $campaign, 
   );
 }
 
-function dosomething_drives_drive_censor_participant_name($name) {
-  $name = implode(' ', $name);
-  $curses = array('anus', 'arse ', 'arsehole', 'ass ', 'ass-hat ', 'ass-jabber', 'ass-pirate ', 'assbag', 'assbandit ', 'assbanger', 'assbite ', 'assclown ', 'asscock ', 'asscracker', 'asses', 'assface', 'assfuck', 'assfucker', 'assgoblin', 'asshat ', 'asshead', 'asshole', 'asshopper', 'assjacker', 'asslick ', 'asslicker', 'assmonkey', 'assmunch', 'assmuncher ', 'asspirate ', 'assshit ', 'assshole ', 'asssucker', 'asswad', 'asswipe ', 'axwound ', 'bastard ', 'beaner ', 'bitch ', 'bitchass ', 'bitches ', 'bitchtits ', 'bitchy ', 'blow job ', 'blowjob ', 'bollocks ', 'bollox ', 'boner', 'brotherfucker', 'bullshit', 'bumblefuck ', 'butt plug ', 'butt-pirate ', 'buttfucka ', 'buttfucker', 'camel toe ', 'carpetmuncher ', 'chesticle ', 'chinc', 'chink ', 'choad ', 'chode ', 'clit ', 'clitface ', 'clitfuck ', 'clusterfuck ', 'cock ', 'cockass ', 'cockbite ', 'cockburger ', 'cockface ', 'cockfucker ', 'cockhead ', 'cockjockey', 'cockknoker ', 'cockmaster ', 'cockmongler ', 'cockmongruel ', 'cockmonkey ', 'cockmuncher ', 'cocknose ', 'cocknugget ', 'cockshit', 'cocksmith ', 'cocksmoke ', 'cocksmoker ', 'cocksniffer', 'cocksucker ', 'cockwaffle ', 'coochie ', 'coochy ', 'coon ', 'cooter ', 'cum', 'cumbubble ', 'cumdumpster', 'cumguzzler', 'cumjockey', 'cumslut ', 'cumtart ', 'cunnie ', 'cunnilingus', 'cunt ', 'cuntass ', 'cuntface', 'cunthole ', 'cuntlicker', 'cuntrag', 'cuntslut ', 'dago', 'damn', 'deggo', 'dick', 'dick-sneeze', 'dickbag', 'dickbeaters', 'dickface', 'dickfuck', 'dickfucker', 'dickhead', 'dickhole', 'dickjuice', 'dickmilk', 'dickmonger', 'dicks', 'dickslap', 'dicksucker', 'dicksucking', 'dicktickler', 'dickwad', 'dickweasel', 'dickweed', 'dickwod', 'dike', 'dildo', 'dipshit', 'doochbag', 'dookie', 'douche', 'douche-fag', 'douchebag', 'douchewaffle', 'dumass', 'dumb ass', 'dumbass', 'dumbfuck', 'dumbshit', 'dumshit', 'dyke', 'fag', 'fagbag', 'fagfucker', 'faggit', 'faggot', 'faggotcock', 'fagtard', 'fatass', 'fellatio', 'feltch', 'flamer', 'fuck', 'fuckass', 'fuckbag', 'fuckboy', 'fuckbrain', 'fuckbutt', 'fuckbutter', 'fucked', 'fucker', 'fuckersucker', 'fuckface', 'fuckhead', 'fuckhole', 'fuckin', 'fucking', 'fucknut', 'fucknutt', 'fuckoff', 'fucks', 'fuckstick', 'fucktard', 'fucktart', 'fuckup', 'fuckwad', 'fuckwit', 'fuckwitt', 'fudgepacker', 'gay', 'gayass', 'gaybob', 'gaydo', 'gayfuck', 'gayfuckist', 'gaylord', 'gaytard', 'gaywad', 'goddamn', 'goddamnit', 'gooch', 'gook', 'gringo', 'guido', 'handjob', 'hard on', 'heeb', 'hell', 'ho', 'hoe', 'homo', 'homodumbshit', 'honkey', 'humping', 'jackass', 'jagoff', 'jap', 'jerk off', 'jerkass', 'jigaboo', 'jizz', 'jungle bunny', 'junglebunny', 'kike', 'kooch', 'kootch', 'kraut', 'kunt', 'kyke', 'lameass', 'lardass', 'lesbian', 'lesbo', 'lezzie', 'mcfagget', 'mick', 'minge', 'mothafucka', 'mothafuckin', 'motherfucker', 'motherfucking', 'muff', 'muffdiver', 'munging', 'negro', 'nigaboo', 'nigga', 'nigger', 'niggers', 'niglet', 'nut sack', 'nutsack', 'paki', 'panooch', 'pecker', 'peckerhead', 'penis', 'penisbanger', 'penisfucker', 'penispuffer', 'piss', 'pissed', 'pissed off', 'pissflaps', 'polesmoker', 'pollock', 'poon', 'poonani', 'poonany', 'poontang', 'porch monkey', 'porchmonkey', 'prick', 'punanny', 'punta', 'pussies', 'pussy', 'pussylicking', 'puto', 'queef', 'queer', 'queerbait', 'queerhole', 'renob', 'rimjob', 'ruski', 'sand nigger', 'sandnigger', 'schlong', 'scrote', 'shit', 'shitass', 'shitbag', 'shitbagger', 'shitbrains', 'shitbreath', 'shitcanned', 'shitcunt', 'shitdick', 'shitface', 'shitfaced', 'shithead', 'shithole', 'shithouse', 'shitspitter', 'shitstain', 'shitter', 'shittiest', 'shitting', 'shitty', 'shiz', 'shiznit', 'skank', 'skeet', 'skullfuck', 'slut', 'slutbag', 'smeg', 'snatch', 'spic', 'spick', 'splooge', 'spook', 'suckass', 'tard', 'testicle', 'thundercunt', 'tit', 'titfuck', 'tits', 'tittyfuck', 'twat', 'twatlips', 'twats', 'twatwaffle', 'unclefucker', 'vajj', 'vag', 'vagina', 'vajayjay', 'vjayjay', 'wank', 'wankjob', 'wetback', 'whore', 'whorebag', 'whoreface', 'wop');
-
-    $cleared = preg_replace('#[^A-Za-z]#', '', $name);
-    if (in_array($name, $curses) || in_array($cleared, $curses)) {
-      $name = t('Anonymous');
-    }
-
-    return $name;
-}
-
 function dosomething_drives_drive_create_participant_list($gid, $members, $admin) {
   global $user;
   $return = array();
@@ -210,8 +198,9 @@ function dosomething_drives_drive_create_participant_list($gid, $members, $admin
     if ($admin && $user->uid != $member->uid) {
       $name['form'] = drupal_render(drupal_get_form('teams_remove_member_form', $gid, $member->uid));
     }
+    $name = implode(' ', $name);
     $return[] = array(
-      'data' => dosomething_drives_drive_censor_participant_name($name),
+      'data' => dosomething_general_censor_word($name),
       'id' => 'team-member-' . $member->uid,
     );
   }
@@ -239,11 +228,14 @@ function dosomething_drives_drive_countdown($drive) {
 }
 
 function dosomething_drives_drive_title($drive, $type, $leader, $campaign) {
+  $title = $tagline = '';
   switch($type) {
     case 'field_webform_school_reference':
       $entity = reset(entity_load('ds_school', array($drive->field_webform_school_reference[LANGUAGE_NONE][0]['target_id'])));
-      $title = $entity->name;
-      $tagline = "{$entity->street}, {$entity->city}, {$entity->state} {$entity->zip}";
+      if (!empty($entity)) {
+        $title = (isset($entity->name) ? $entity->name : '');
+        $tagline = "{$entity->street}, {$entity->city}, {$entity->state} {$entity->zip}";
+      }
       break;
     default:
       $title = $drive->field_team_name[LANGUAGE_NONE][0]['value'];
@@ -280,7 +272,12 @@ function dosomething_drives_drive_title($drive, $type, $leader, $campaign) {
 
 function dosomething_drives_drive_description($drive) {
   $cid = dosomething_drives_get_drive_cid(node_load($drive->nid));
-  $goal = $drive->data[$cid]['value'][0];
+
+  $goal = '';
+  if (isset($drive->data[$cid]['value'][0])) {
+     $goal = $drive->data[$cid]['value'][0];
+  }
+
   return array(
     '#type' => 'container',
     '#attributes' => array('class' => array('drive-info-description')),
@@ -403,9 +400,10 @@ function dosomething_drives_drive_invite_module($gid, $campaign = NULL) {
     ),
   );
 
-  if ($campaign != NULL &&
-      $campaign->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'] > 0 &&
-      $campaign->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'] > 0) {
+  if ($campaign != NULL 
+      && (isset($campaign->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value']) && $campaign->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'] > 0)
+      && (isset($campaign->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value']) && $campaign->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'] > 0)
+  ) {
     $return['phone'] = array(
       '#type' => 'container',
       '#attributes' => array('class' => array('invite-module-sms')),
@@ -449,18 +447,28 @@ function dosomething_drives_drive_get_drives($gid) {
     ->propertyCondition('entity_type', 'webform_submission_entity')
     ->execute();
 
-  $memberships = entity_load('og_membership', array_keys($result['og_membership']));
-  foreach ($memberships as $membership) {
-    $load[] = $membership->etid;
-  }
-  $subs = entity_load('webform_submission_entity', $load);
-
   $return = NULL;
-  foreach ($subs as $sub) {
-    if ($sub->bundle == 'drive_form') {
-      $return = $sub;
+  if (isset($result['og_membership']) && is_array($result['og_membership'])) {
+    $memberships = entity_load('og_membership', array_keys($result['og_membership']));
+
+    if (is_array($memberships) && !empty($memberships)) {
+      $load = array();
+      foreach ($memberships as $membership) {
+        $load[] = $membership->etid;
+      }
+
+      $subs = entity_load('webform_submission_entity', $load);
+
+      if (is_array($subs) && !empty($subs)) {
+        foreach ($subs as $sub) {
+          if ($sub->bundle == 'drive_form') {
+            $return = $sub;
+          }
+        }
+      }
     }
   }
+
   return $return;
 }
 
@@ -480,7 +488,7 @@ function dosomething_drives_drive_content_type_edit_form($form, &$form_state) {
   $form['disable_admin_functions'] = array(
     '#type' => 'checkbox',
     '#title' => t('Disable team member removal by leader.'),
-    '#default_value' => $conf['disable_admin_functions'],
+    '#default_value' => ($conf['disable_admin_functions'] ? $conf['disable_admin_functions'] : 0),
   );
   return $form;
 }
