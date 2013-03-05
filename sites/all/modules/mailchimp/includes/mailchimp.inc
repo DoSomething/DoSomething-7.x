@@ -20,7 +20,7 @@ class MailChimp extends MCAPI {
     $post_vars = http_build_query($params);
 
     $response = drupal_http_request(
-      $protocol . $host . $this->apiUrl["path"] . '?method=' . $method,
+      $protocol . $host . $this->apiUrl["path"] . '?' . $this->apiUrl["query"] . '&method=' . $method,
       array(
         'method' => 'POST',
         'data' => $post_vars,
