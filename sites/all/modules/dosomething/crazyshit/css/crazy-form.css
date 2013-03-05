@@ -209,7 +209,7 @@ footer.author, #edit-submitted-dosomething-webform-numbering {
 #top_text {
   visibility: hidden;
   position: absolute;
-  width: 400px;
+  width: 99%;
   text-align: center;
   color: white;
   background: rgba(0, 0, 0, 0.25);
@@ -226,7 +226,7 @@ footer.author, #edit-submitted-dosomething-webform-numbering {
 #bottom_text {
   visibility: hidden;
   position: absolute;
-  width: 400px;
+  width: 99%;
   text-align: center;
   color: white;
   background: rgba(0, 0, 0, 0.25);
@@ -305,7 +305,11 @@ div.image-widget-data {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
-/* line 120, ../sass/crazy-form.sass */
+/* line 117, ../sass/crazy-form.sass */
+#edit-submitted-field-crazy-top-text {
+  margin: 0 0 7% 0; }
+
+/* line 123, ../sass/crazy-form.sass */
 .submit-start h1 {
   text-transform: uppercase;
   text-align: center;
@@ -314,13 +318,13 @@ div.image-widget-data {
   width: 66%;
   margin: 0 auto 5%;
   padding: 0 0 3% 0; }
-/* line 128, ../sass/crazy-form.sass */
+/* line 131, ../sass/crazy-form.sass */
 .submit-start p {
   font-size: 18px;
   line-height: 27px;
   text-transform: uppercase;
   font-weight: 500; }
-/* line 133, ../sass/crazy-form.sass */
+/* line 136, ../sass/crazy-form.sass */
 .submit-start .pane-content {
   padding: 50px; }
 /* line 16, ../sass/_variables.sass */
@@ -337,21 +341,21 @@ div.image-widget-data {
   .submit-start img {
     width: 92%; } }
 
-/* line 137, ../sass/crazy-form.sass */
+/* line 140, ../sass/crazy-form.sass */
 #extra_guidelines {
   display: none; }
 
-/* line 142, ../sass/crazy-form.sass */
+/* line 145, ../sass/crazy-form.sass */
 .node-crazy-shit {
   box-shadow: none; }
-/* line 144, ../sass/crazy-form.sass */
+/* line 147, ../sass/crazy-form.sass */
 .node-crazy-shit .webform-client-form {
   padding: 50px; }
 @media only screen and (max-width: 550px) {
-  /* line 144, ../sass/crazy-form.sass */
+  /* line 147, ../sass/crazy-form.sass */
   .node-crazy-shit .webform-client-form {
     padding: 50px 10% 10px; } }
 
-/* line 151, ../sass/crazy-form.sass */
+/* line 154, ../sass/crazy-form.sass */
 div.form-wrapper, div.step-field {
   margin: 0; }

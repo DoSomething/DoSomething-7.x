@@ -1,5 +1,4 @@
 @import compass
-@import compass/css3
 @import 'variables'
 @import 'buttons'
 @import 'popups'
@@ -114,26 +113,6 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     text-transform: uppercase
     &:hover
       text-decoration: none
-
-.crazy-sub-menu-header
-  width: 500px
-  margin: 2% auto 0
-  @media only screen and (max-width: 700px)
-    width: 430px
-  @media only screen and (max-width: 450px)
-    width: 94%
-    margin: 3% auto 0
-  h1, h2
-    text-transform: uppercase
-    text-align: left
-  h1
-    font-size: 30px
-    font-weight: 600
-    color: #222
-    @media only screen and (max-width: 450px)
-      font-size: 21px
-  h2
-    color: rgb(204, 36, 36) 
     
 // NAV
 // ---
@@ -183,7 +162,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
       &:hover
         color: #fff
 
-  .last.active a /* when [submit] nave is selected -- do not display active color */
+  .last a.active /* when [submit] nave is selected -- do not display active color */
     color: #fff
 
 // FILTERS
@@ -221,6 +200,28 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     +border-radius(4px)
     &:hover
       color: #fff
+
+// SUB-NAV HEADER TEXT
+// -------------------
+.scroll-header-style
+  width: 500px
+  margin: 2% auto 0
+  @media only screen and (max-width: 700px)
+    width: 430px
+  @media only screen and (max-width: 450px)
+    width: 94%
+    margin: 3% auto 0
+  h1, h2
+    text-transform: uppercase
+    text-align: left
+  h1
+    font-size: 30px
+    font-weight: 600
+    color: #222
+    @media only screen and (max-width: 450px)
+      font-size: 21px
+  h2
+    color: rgb(204, 36, 36) 
 
 // GENERAL LAYOUT
 // --------------
@@ -261,6 +262,11 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     width: 50px
     margin: 0 auto
     padding: 0 0 10px 0
+
+.go-to-gallery
+  text-align: center
+  text-transform: uppercase
+  display: block
 
 .flag
   clear: both

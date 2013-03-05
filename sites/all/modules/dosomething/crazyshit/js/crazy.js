@@ -386,3 +386,18 @@ function fb_auth(type, status) {
 		return true;
 	}
 }
+
+// quick hack to display Greg's text
+// REMOVE and build into future version
+(function($) {
+  Drupal.behaviors.crazyLocationCheck = {
+    attach: function(context, settings) {
+      var has_number = /\d/;
+      var current_path = window.location.pathname;
+      if( current_path.slice(0,14) === '/crazy/friends' && has_number.test(current_path)) {
+        // page is single post view
+        $('.crazy-sub-menu-header').hide(); 
+      }
+    }
+  }
+})(jQuery);
