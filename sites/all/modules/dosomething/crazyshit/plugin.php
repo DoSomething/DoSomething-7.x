@@ -65,16 +65,16 @@ $sub_menus = array(
 	// Time based filters sub-menu (landing page)
 	'crazy(/(time-.*?|[0-9]+))?$' => array(
 		'today' => array(
-			'title' => 'Today',
+			'title' => 'New',
 			'href' => CRAZY_ROOT . '/time-today',
 		),
 		'week' => array(
-			'title' => 'This Week',
-			'href' => CRAZY_ROOT . '/time-week',
+			'title' => 'Popular',
+			'href' => CRAZY_ROOT,
 		),
 		'forever' => array(
-			'title' => 'All Time',
-			'href' => CRAZY_ROOT,
+			'title' => 'Best Ever',
+			'href' => CRAZY_ROOT . '/time-all',
 		),
 	),
 	// About pages sub-menu
