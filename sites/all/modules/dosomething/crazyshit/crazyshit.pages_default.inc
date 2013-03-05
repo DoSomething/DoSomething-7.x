@@ -122,7 +122,9 @@ function crazyshit_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Thanks',
       'title' => '',
-      'body' => '<div class="thanks">Thanks for submitting your crazy story! Now, share it with your friends.</div>',
+      'body' => '<div class="thanks scroll-header-style">
+                 <h1>Thanks for submitting your crazy story!</h1>
+                 <h2>Now, share it with your friends</h2></div>',
       'format' => '3',
       'substitute' => TRUE,
     );
@@ -187,9 +189,10 @@ function crazyshit_default_page_manager_pages() {
       'admin_title' => 'Single post share',
       'title' => '',
       'body' => '<div class="single-post-share">
-<a href="#" class="share-on-facebook">Share on Facebook</a>
-<a href="/crazy" class="go-to-gallery">Or go to gallery</a>
-</div>',
+                 <a href="#" class="share-on-facebook fb-invite-friends">Share on Facebook</a>
+                 <br>
+                 <a href="/crazy" class="go-to-gallery">go to gallery</a>
+                 </div>',
       'format' => '3',
       'substitute' => TRUE,
     );
