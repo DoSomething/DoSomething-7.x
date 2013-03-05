@@ -14,6 +14,19 @@ $campaign_styles = array(
 			'font_color' => '#ffffff',
 		),
 	),
+  // Don't be a sucker
+  '727940' => array(
+    'longform' => array(
+       'background' => '#8dc641',
+       'tip' => '#163a26',
+       'font_color' => '#000000',
+       'tip_color' => '#ffffff',
+     ),
+     'shortform' => array(
+       'background' => '#8dc641',
+       'font_color' => '#ffffff',
+     ),
+  ),
 );
 
 $scheme_styles = array(
