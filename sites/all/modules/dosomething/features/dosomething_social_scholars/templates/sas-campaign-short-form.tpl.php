@@ -1,7 +1,7 @@
 <form class="webform-client-form" enctype="multipart/form-data" action="/<?php echo $alias; ?>" method="post" id="webform-client-form-<?php echo $nid; ?>" accept-charset="UTF-8">
 <div>
 <div class="form-item webform-component webform-component-markup" id="webform-component-start-header">
- <h3>Join your school's drive &amp; get a free banner</h3>
+ <h3>Start here to join your school</h3>
 </div>
 <div class="field-type-email field-name-field-webform-email field-widget-email-textfield form-wrapper" id="edit-submitted-field-webform-email">
 <div id="submitted-field-webform-email-add-more-wrapper" class="ds-processed">
@@ -23,5 +23,6 @@
 <div class="form-actions form-wrapper">
 	<input type="submit" id="edit-submit" name="op" value="start" class="form-submit">
 </div>
+<p class='ctia'>Sign up to receive weekly updates. Msg &amp; data rates may apply. Text STOP to opt-out, HELP for help.</p>
 </div>
 </form>

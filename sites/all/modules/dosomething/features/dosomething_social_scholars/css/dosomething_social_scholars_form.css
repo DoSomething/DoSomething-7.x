@@ -61,7 +61,7 @@
   .page-node .content form.webform-client-form #campaign-opt-in {
     text-align: center; }
     .page-node .content form.webform-client-form #campaign-opt-in a {
-      color: white; }
+      text-decoration: underline; }
   .page-node .content form.webform-client-form #edit-actions {
     margin: 20px 0px;
     text-align: center; }
