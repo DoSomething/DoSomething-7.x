@@ -3,7 +3,7 @@
 /**
  * Process phone numbers and forward invites on to users using sms_flow_start()
  */
-class ConductorActivitySmsFlowClubsFtaf extends ConductorActivity {
+class ConductorActivitySmsFlowFriends extends ConductorActivity {
 
   // Mobile Commons optin path for inviter to be joined into
   public $alpha_optin = 0;

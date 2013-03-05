@@ -5,7 +5,7 @@ if (module_exists('entity')) {
     'title' => t('Forward to a Friend'),
     'description' => t('Handler for accepting and processing numbers in a forward to a friend flow'),
     'handler' => array(
-      'class' => 'ConductorActivitySmsFlowFtaf',
+      'class' => 'ConductorActivitySmsFlowFriends',
     ),
   );
 }
