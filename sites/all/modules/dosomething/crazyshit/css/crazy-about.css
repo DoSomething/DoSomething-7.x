@@ -172,6 +172,33 @@ a.no_thanks {
   cursor: pointer;
   text-transform: lowercase; }
 
+/* line 127, ../sass/_buttons.sass */
+.single-post-share .share-on-facebook {
+  display: block;
+  margin: 0 auto 1em;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: white;
+  width: 13em;
+  text-align: center;
+  background-color: #3f61cf;
+  background: -webkit-linear-gradient(top, #6981b1, #43609b);
+  height: 3em;
+  padding: 18px 5px;
+  border: 1px solid #6981b1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+/* line 141, ../sass/_buttons.sass */
+.single-post-share .share-on-facebook:hover {
+  text-decoration: none;
+  background: -webkit-linear-gradient(top, #6981b1, #3b5589);
+  -webkit-box-shadow: 0px 10px 15px -5px #cccccc;
+  -moz-box-shadow: 0px 10px 15px -5px #cccccc;
+  box-shadow: 0px 10px 15px -5px #cccccc; }
+
 /* line 8, ../sass/crazy-about.sass */
 .crazy-sub-menu-header {
   display: none; }
