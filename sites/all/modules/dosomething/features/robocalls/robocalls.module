@@ -218,13 +218,18 @@ function robocalls_call_xml($tid) {
   // Load the term in question.
   $term = taxonomy_term_load($tid);
 
+  // Make sure we actually have a call to play.  
+  if (!isset($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) {
+    return;
+  }
+
   // Load the TelAPI InboundXML library
   $path = libraries_get_path('telapi');
   require_once $path . '/library/TelApi/InboundXML.php';
 
   // Build the InboundXML object
   $xml = new TelApi_InboundXML();
-  $xml->say('This is a call from do something dot org', array('voice' => 'woman'));
+  //$xml->say('This is a call from do something dot org', array('voice' => 'woman'));
   $xml->play(file_create_url($term->field_celeb_call[LANGUAGE_NONE][0]['uri']));
 
   // Spit out the XML
@@ -423,7 +428,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         $u['my_info']['my_number']['#default_value'] = $me['mobile'];
       }
 
-      $u['my_info']['my_password']['#attributes']['placeholder'] = t('My Password');
+      $u['my_info']['my_password']['#attributes']['placeholder'] = t('* My Password');
 
       if (user_is_logged_in()) {
         $u['my_info']['my_password']['#access'] = FALSE;
@@ -470,6 +475,8 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         '#suffix' => '</p>',
         '#weight' => 10000,
       );
+
+      $form['#validate'][] = 'robocalls_homepage_form_validation';
       $form['#submit'][] = 'robocalls_homepage_form_submission';
 
       if (intval(basename(request_path()))) {
@@ -668,13 +675,71 @@ function robocalls_celeb_form_submission($form, &$form_state) {
 }
 
 /**
+ *  Handles homepage form validation.
+ */
+function robocalls_homepage_form_validation($form, &$form_state) {
+  $errors = 0;
+
+  $v = $form_state['input']['submitted'];
+  $my = $v['my_info'];
+  $friend = $v['friends_info']['primary_friend'];
+
+  if (!empty($my) && is_array($my)) {
+    require_once DRUPAL_ROOT . '/includes/password.inc';
+    if ($account = dosomething_api_user_lookup($my['my_number'])) {
+      if (!user_check_password($my['my_password'], $account)) {
+        form_set_error('submitted[my_info][my_password]', t('Sorry, that password does not match the account in question..'));
+        $error++;
+      }
+    }
+  }
+
+  if (!dosomething_general_valid_cell($my['my_number'])) {
+    form_set_error('my_number', t('Your phone number must be valid.'));
+    $error++;
+  }
+
+  $bad_numbers = $bad_callids = 0;
+  foreach ($friends['more_friends'] AS $key => $number) {
+    if (!empty($number)) {
+      if (!dosomething_general_valid_cell($number)) {
+        $bad_numbers++;
+      }
+
+      if (empty($friends['more_calls'][$key])) {
+        $bad_callids++;
+      }
+    }
+  }
+
+  if (!dosomething_general_valid_cell($friend['friends_number']) || $bad_numbers > 0) {
+    form_set_error('submitted][friends_info][primary_friend][friends_number', t('Your friends\' numbers must all be valid cell phone numbers.'));
+    $error++;
+  }
+
+  if (empty($friend['select_call']) || $bad_callids > 0) {
+    form_set_error('submitted][friends_info][primary_friend][select_call', t('All friends must have valid calls to send.'));
+    $error++;
+  }
+
+  if ($error > 0) {
+    drupal_goto('prank');
+  }
+  else {
+    if (!user_is_logged_in()) {
+      robocalls_create_or_log_in_user(array('name' => $my['my_name'], 'cell' => $my['my_number'], 'password' => $my['my_password']));
+    }
+  }
+}
+
+/**
  *  Handles submissions from homepage webform.
  */
 function robocalls_homepage_form_submission($form, &$form_state) {
   $my = array(
     'name' => $form_state['input']['submitted']['my_info']['my_name'],
-    'cell' => $form_state['input']['submitted']['my_info']['my_name'],
-    'pass' => $form_state['input']['submitted']['my_info']['my_name'],
+    'cell' => $form_state['input']['submitted']['my_info']['my_number'],
+    'pass' => $form_state['input']['submitted']['my_info']['my_password'],
   );
 
   if (empty($my['cell'])) {
@@ -697,10 +762,6 @@ function robocalls_homepage_form_submission($form, &$form_state) {
         $friends[$f['more_friends'][$key]] = $call;
       }
     }
-  }
-
-  if (!user_is_logged_in()) {
-    robocalls_create_or_log_in_user(array('name' => $my['name'], 'cell' => $my['cell'], 'password' => $my['pass']));
   }
 
   $i = 0;
