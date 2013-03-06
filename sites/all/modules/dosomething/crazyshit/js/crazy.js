@@ -34,7 +34,10 @@
 	    });
 
 	    if ($('.single-post-share a.share-on-facebook').length) {
-	    	$('.fb-share a').click();
+	    	$('.single-post-share a.share-on-facebook').click(function() {
+	    		$('.fb-share a').click();
+	    		return false;
+	    	});
 	    }
 
         if (top.location != self.location) {
