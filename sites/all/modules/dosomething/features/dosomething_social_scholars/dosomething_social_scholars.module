@@ -77,21 +77,21 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
   $sas_fid = variable_get('sas_webform_id', 'webform_client_form_724211');
 
   // As long as we're looking at a social scholarship, and it's not a node/ path (e.g. we're editing one)...
-  if ($node->type == 'social_scholarship' && !preg_match('#^\/node\/[0-9]+#', $uri) && $form_id == $sas_fid) {
+  if ((isset($node->type) && $node->type == 'social_scholarship') && !preg_match('#^\/node\/[0-9]+#', $uri) && $form_id == $sas_fid) {
     drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_form.css', array(
       'group' => CSS_THEME,
       'weight' => 1000,
     ));
 
-    $campaign_nid = $node->field_linked_campaign[LANGUAGE_NONE][0]['nid'];
-    $scheme_id = $node->field_color_scheme[LANGUAGE_NONE][0]['value'];
+    $campaign_nid = (isset($node->field_linked_campaign[LANGUAGE_NONE][0]['nid']) ? $node->field_linked_campaign[LANGUAGE_NONE][0]['nid'] : 0);
+    $scheme_id = (isset($node->field_color_scheme[LANGUAGE_NONE][0]['value']) ? $node->field_color_scheme[LANGUAGE_NONE][0]['value'] : '');
     require_once drupal_get_path('module', 'dosomething_social_scholars') . '/style_config.php';
 
     if (!empty($campaign_styles[$campaign_nid]) || !empty($scheme_styles[$scheme_id])) {
-      if (isset($campaign_nid)) {
+      if (isset($campaign_nid) && !empty($campaign_id)) {
         $s = $campaign_styles[$campaign_nid]['longform'];
       }
-      else if (isset($scheme_id)) {
+      else if (isset($scheme_id) && !empty($scheme_id)) {
         $s = $scheme_styles[$scheme_id]['longform'];
       }
 

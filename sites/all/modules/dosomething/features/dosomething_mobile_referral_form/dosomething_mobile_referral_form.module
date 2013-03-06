@@ -85,7 +85,7 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
     $form['#submit'][] = 'dosomething_mobile_referral_form_wild_submit';
   }*/
 
-  if ($node->type == 'mobile_referral_form') {
+  if (isset($node->type) && $node->type == 'mobile_referral_form') {
     /*drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/css/mobile_referrals.css', array(
         'group' => CSS_THEME,
         'weight' => 10

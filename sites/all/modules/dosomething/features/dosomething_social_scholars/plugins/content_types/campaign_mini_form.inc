@@ -35,7 +35,7 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
   $sf = db_select('field_data_group_audience', 'ga')
     ->fields('ga', array('entity_id'))
     ->condition('entity_type', 'node')
-    ->condition('bundle', 'campaign_contact_form')
+    ->condition('bundle', 'campaign_sign_up')
     ->condition('group_audience_gid', $gid)
     ->range(0, 1)
     ->execute();
