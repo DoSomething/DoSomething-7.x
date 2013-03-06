@@ -4,6 +4,9 @@ package = DoSomething
 version = VERSION
 core = 7.x
 
+; stylesheets
+stylesheets[all][] = css/base.css
+
 ; regions
 regions[utility] = Utility Bar
 regions[header] = Header
