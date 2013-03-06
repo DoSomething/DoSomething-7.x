@@ -18,9 +18,9 @@
 
       var fbObj = {
         feed_document: document.location.href,
-        feed_title: Drupal.t('Saving a life is as easy as giving your spit.'),
-        feed_picture: 'http://files.dosomething.org/files/campaigns/spit/logo.png',
-        feed_description: Drupal.t('Join your friend\'s cheek swab drive to help save the 10,000 blood cancer patients looking for a life saving donation. You can either sign up to donate, or spread the word about your friend\'s awesome drive.'),
+        feed_title: Drupal.t('Don\'t Be a Sucker!'),
+        feed_picture: 'http://files.dosomething.org/files/campaigns/green/logo2.png',
+        feed_description: Drupal.t('Energy vampires in the classroom make school suck...energy. Let\'s do something about the $10 billion of power they waste. Join my team of vampire energy slayers for a chance to win a scholarship and a school grant.'),
         feed_allow_multiple: true,
         feed_selector: '.fb-friend-finder-init',
         require_login: true

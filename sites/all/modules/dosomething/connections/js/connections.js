@@ -485,7 +485,7 @@
         alert_msg: config.feed_dialog_msg,
         modal: config.feed_modal || false,
       	modal_opacity: config.feed_modal_opacity || 0.65,
-        friend_selector: config.feed_friend_selector || 'td',
+        friend_selector: 'td', // updated 3/6/13: Need to use TD to force only one friend at a time.
         check_remainder: false,
       };
 

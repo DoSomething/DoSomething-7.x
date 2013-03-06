@@ -1002,6 +1002,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
 
+  $email = $cell = '';
   // Different instances of the email field use different widgets so we have to
   // look in two places to find their email address.
   if (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
@@ -1023,7 +1024,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
     if ( (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) || ($node->type == 'petition') ) && !empty($email)) {
       
       // Cell
-      if ($cell) {
+      if (!empty($cell)) {
         $mc_merge_vars['MMERGE7'] = $cell;
       }
       
@@ -1505,7 +1506,7 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
   }
   
   // Make sure merge_vars is formatted correctly even if no values are assigned
-  if (count($merge_vars) == 0) {
+  if (empty($merge_vars) || count($merge_vars) == 0) {
     $merge_vars['UID'] = 0;
   }
 
