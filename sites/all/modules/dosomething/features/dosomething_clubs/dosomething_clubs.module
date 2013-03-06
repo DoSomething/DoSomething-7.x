@@ -989,6 +989,7 @@ function dosomething_clubs_share_page(&$form, &$form_state) {
  *  Massive form to handle inviting friends.
  */
 function dosomething_clubs_add_users($form, &$form_state, $nid) {
+  $just_created = false;
   if (isset($_SESSION['just_created_club'])) {
     $just_created = true;
     unset($_SESSION['just_created_club']);
@@ -1347,7 +1348,7 @@ function dosomething_clubs_add_user_by_email_or_cell($contact, $nid, $gid = 0, $
     dosomething_clubs_invite_message($contact, $gid, FALSE, TRUE, $nid);
   }
   else {
-    dosomething_clubs_no_account_join($contact);
+    dosomething_clubs_no_account_join($contact, $gid);
     dosomething_clubs_invite_message($contact, $gid, false, false, 0, 'share');
   }
 }
@@ -2098,7 +2099,7 @@ function dosomething_clubs_invite_form_ajax($form, &$form_state) {
     dosomething_clubs_invite_message($invite, $gid, FALSE, TRUE, $nid);
   }
   else {
-    dosomething_clubs_no_account_join($invite);
+    dosomething_clubs_no_account_join($invite, $gid);
     dosomething_clubs_invite_message($invite, $gid, false, false, 0, 'club');
   }
 
@@ -2230,7 +2231,7 @@ function dosomething_clubs_member_title_submit($form, &$form_state) {
  * Submit handler for club join form.
  */
 function dosomething_clubs_join_form_submit($form, &$form_state) {
-  global $user;
+  global $user, $langauge;
 
   $gid = $form_state['values']['gid'];
 
@@ -2255,7 +2256,7 @@ function dosomething_clubs_join_form_submit($form, &$form_state) {
 /**
  * Store a record of a member being invited to a team.
  */
-function dosomething_clubs_no_account_join($email) {
+function dosomething_clubs_no_account_join($email, $gid) {
   $data = array(
     'gid' => $gid,
     'invite' => $email,
