@@ -35,12 +35,9 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
     );
   }
   $content['or'] = array(
-    '#prefix' => '<p style="position: relative;">',
+    '#prefix' => '<p class="or">',
     '#suffix' => '</p>',
     '#markup' => 'OR',
-    '#attributes' => array(
-      'style' => 'text-align: center; position: relative; top: -10px;'
-    ),
     '#weight' => 1
   );
 
@@ -53,6 +50,25 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
       'external' => TRUE,
     )),
     '#weight' => 10
+  );
+
+
+  $content['twitter_or'] = array(
+    '#prefix' => '<p class="or">',
+    '#suffix' => '</p>',
+    '#markup' => 'OR',
+    '#weight' => 15,
+  );
+
+  $content['twitter'] = array(
+    '#markup' => l('Share on Twitter', '', array(
+      'attributes' => array(
+        'id' => 'petition-twitter',
+      ),
+      'fragment' => ' ',
+      'external' => TRUE,
+    )),
+    '#weight' => 20
   );
 
   $content['form'] = drupal_get_form('dosomething_petitions_email_form', $node->nid);
