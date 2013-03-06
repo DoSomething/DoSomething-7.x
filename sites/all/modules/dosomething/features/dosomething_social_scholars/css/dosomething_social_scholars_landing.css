@@ -40,6 +40,11 @@
 
 #galleriffic span.image-wrapper {
   position: relative; }
+#galleriffic .content {
+  float: none; }
+#galleriffic ul.thumbs li {
+  float: left;
+  margin: 5px; }
 
 form.webform-client-form#webform-client-form-727422 {
   box-shadow: none;
