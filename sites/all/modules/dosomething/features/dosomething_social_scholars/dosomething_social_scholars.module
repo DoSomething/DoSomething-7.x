@@ -76,6 +76,11 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
   $uri = request_uri();
   $sas_fid = variable_get('sas_webform_id', 'webform_client_form_724211');
 
+  if (preg_match('#sas-landing\/[0-9]+$#', $uri)) {
+    drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/js/dosomething_social_scholars_landing.js');
+    drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_landing.css');
+  }
+
   // As long as we're looking at a social scholarship, and it's not a node/ path (e.g. we're editing one)...
   if ((isset($node->type) && $node->type == 'social_scholarship') && !preg_match('#^\/node\/[0-9]+#', $uri) && $form_id == $sas_fid) {
     drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_form.css', array(
