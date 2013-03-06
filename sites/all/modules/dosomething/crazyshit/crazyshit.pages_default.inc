@@ -123,8 +123,8 @@ function crazyshit_default_page_manager_pages() {
       'admin_title' => 'Thanks',
       'title' => '',
       'body' => '<div class="thanks scroll-header-style">
-                 <h1>Thanks for submitting your crazy story!</h1>
-                 <h2>Now, share it with your friends</h2></div>',
+                 <h1>Thanks for sharing your story.</h1>
+                 <h2>Share it with your friends below.</h2></div>',
       'format' => '3',
       'substitute' => TRUE,
     );
