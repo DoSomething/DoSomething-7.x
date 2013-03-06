@@ -375,7 +375,7 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
     '#attributes' => array(
       'id' => 'invite_data'
     ),
-    '#default_value' => $node->nid
+    '#default_value' => (isset($node->nid) ? $node->nid : 0),
   );
 
   for ($i = 0; $i < PETITIONS_NUM_EMAILS; $i++) {
