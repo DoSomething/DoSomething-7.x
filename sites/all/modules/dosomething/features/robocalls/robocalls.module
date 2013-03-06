@@ -1,7 +1,21 @@
 <?php
 /**
- * @file
- * Code for the DoSomething Robocalls feature.
+ *  @file
+ *  Robo calls, also known as Project Prank, is a product that
+ *  sends phone calls to a user "on behalf of" a celebrity.
+ *  A user can select a celebrity from a list, input their friends'
+ *  phone numbers, and we'll send the call.
+ *
+ *  The product can be found at /prank.  All associated celebrities
+ *  should follow the "/prank/[celebrity name]" standard.
+ *
+ *  Project Prank uses TelAPI to send phone calls, and Mobile Commons
+ *  to send text messages.
+ *
+ *  @see http://www.telapi.com
+ *  @see http://dosomething.mcommons.org
+ *  @see dosomething_general_telapi_request() in dosomething_general.module
+ *
  */
 
 include_once 'robocalls.features.inc';
@@ -98,6 +112,7 @@ function robocalls_call_completed() {
       (isset($_REQUEST['From']) && dosomething_general_valid_cell($_REQUEST['From']))
       && (isset($_REQUEST['To']) && dosomething_general_valid_cell($_REQUEST['To']))
     ) {
+      // Assuming the call is complete, send the text message!
       dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']), 146913);
     }
   }
@@ -194,9 +209,10 @@ function robocalls_record_call($alpha, $beta, $call_id) {
     'timestamp' => REQUEST_TIME,
     'alpha' => preg_replace('#[^0-9]#', '', $alpha),
     'beta' => preg_replace('#[^0-9]#', '', $beta),
-    'call_id' => $call_id
+    'call_id' => $call_id,
   );
 
+  // Make a record.
   drupal_write_record('call_records', $record);
 }
 
@@ -257,10 +273,10 @@ function robocalls_page_alter(&$page) {
       }
     }
 
+    // Add robocalls javascript
     foreach ($robocalls['js'] AS $path => $scripts) {
       if (preg_match('#^' . $path . '#', $p)) {
         foreach ($scripts AS $script) {
-          // Adds Robocalls JS
           drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/' . $script, array(
               'weight' => -100,
               'cache' => FALSE
@@ -555,34 +571,6 @@ function robocalls_walkthrough_submission($form, &$form_state) {
 }
 
 /**
- *  Handles validation of celebrity page submissions.
- */
-function robocalls_celeb_form_validation($form, &$form_state) {
-  require_once DRUPAL_ROOT . '/includes/password.inc';
-
-  if ($account = dosomething_general_find_user_by_cell($form_state['values']['submitted']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'])) {
-    if (!user_check_password($form_state['values']['submitted']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'], $account)) {
-      form_set_error('password', t('That is not the correct password for this account.'));
-      $error++;
-    }
-  }
-
-  if ($error > 0) {
-    drupal_goto($_SERVER['HTTP_REFERER']);
-  }
-  else {
-    if (!user_is_logged_in()) {
-      $v = $form_state['values']['submitted'];
-      $your_cell = $v['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
-      $your_name = $v['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
-      $your_password = $v['field_celeb_your_password'][LANGUAGE_NONE][0]['value'];
-
-      robocalls_create_or_log_in_user(array('name' => $your_name, 'cell' => $your_cell, 'password' => $your_password));
-    }
-  }
-}
-
-/**
  *  Either creates, or logs in a user, depending on their account status.
  *
  *  @param array $info
@@ -627,6 +615,36 @@ function robocalls_webform_select_options_info() {
       'options callback' => 'robocalls_get_celebrities',
     ),
   );
+}
+
+/**
+ *  Handles validation of celebrity page submissions.
+ */
+function robocalls_celeb_form_validation($form, &$form_state) {
+  require_once DRUPAL_ROOT . '/includes/password.inc';
+
+  if ($account = dosomething_general_find_user_by_cell($form_state['values']['submitted']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'])) {
+    if (!user_check_password($form_state['values']['submitted']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'], $account)) {
+      form_set_error('password', t('That is not the correct password for this account.'));
+      $error++;
+    }
+  }
+
+  // If errors, send back to the celeb page.
+  if ($error > 0) {
+    drupal_goto($_SERVER['HTTP_REFERER']);
+  }
+  // Otherwise, if not logged in...log in! or register.
+  else {
+    if (!user_is_logged_in()) {
+      $v = $form_state['values']['submitted'];
+      $your_cell = $v['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
+      $your_name = $v['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
+      $your_password = $v['field_celeb_your_password'][LANGUAGE_NONE][0]['value'];
+
+      robocalls_create_or_log_in_user(array('name' => $your_name, 'cell' => $your_cell, 'password' => $your_password));
+    }
+  }
 }
 
 /**
@@ -686,6 +704,7 @@ function robocalls_homepage_form_validation($form, &$form_state) {
   $friend = $v['friends_info']['primary_friend'];
 
   if (!empty($my) && is_array($my)) {
+    // Confirm the password is correct.
     require_once DRUPAL_ROOT . '/includes/password.inc';
     if ($account = dosomething_api_user_lookup($my['my_number'])) {
       if (!user_check_password($my['my_password'], $account)) {
@@ -693,14 +712,16 @@ function robocalls_homepage_form_validation($form, &$form_state) {
         $error++;
       }
     }
-  }
 
-  if (!dosomething_general_valid_cell($my['my_number'])) {
-    form_set_error('my_number', t('Your phone number must be valid.'));
-    $error++;
+    // Confirm the phone number is correct.
+    if (!dosomething_general_valid_cell($my['my_number'])) {
+      form_set_error('my_number', t('Your phone number must be valid.'));
+      $error++;
+    }
   }
 
   $bad_numbers = $bad_callids = 0;
+  // Double check all friends' phone numbers and callids
   foreach ($friends['more_friends'] AS $key => $number) {
     if (!empty($number)) {
       if (!dosomething_general_valid_cell($number)) {
@@ -713,20 +734,24 @@ function robocalls_homepage_form_validation($form, &$form_state) {
     }
   }
 
+  // Verify first (primary) friend's phone number.
   if (!dosomething_general_valid_cell($friend['friends_number']) || $bad_numbers > 0) {
     form_set_error('submitted][friends_info][primary_friend][friends_number', t('Your friends\' numbers must all be valid cell phone numbers.'));
     $error++;
   }
 
+  // Verify first (primary) friend's call id
   if (empty($friend['select_call']) || $bad_callids > 0) {
     form_set_error('submitted][friends_info][primary_friend][select_call', t('All friends must have valid calls to send.'));
     $error++;
   }
 
+  // If errors, return home.
   if ($error > 0) {
     drupal_goto('prank');
   }
   else {
+    // Otherwise, if not logged in...log in! or register.
     if (!user_is_logged_in()) {
       robocalls_create_or_log_in_user(array('name' => $my['my_name'], 'cell' => $my['my_number'], 'password' => $my['my_password']));
     }
