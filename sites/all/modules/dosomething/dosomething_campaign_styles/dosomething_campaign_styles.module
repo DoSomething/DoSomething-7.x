@@ -267,7 +267,11 @@ function dosomething_campaign_styles_og_context_panels() {
     foreach ($item['map'] as $map) {
       if (is_object($map) && get_class($map) == 'ctools_context') {
         if ($map->plugin == 'entity:node') {
-          $gid = og_get_group('node', $map->data->nid)->gid;
+          $gid = 0;
+          if (isset($map->data->nid)) {
+            $gid = og_get_group('node', $map->data->nid)->gid;
+          }
+
           $context[] = array($gid);
         }
       }
