@@ -1,6 +1,6 @@
 (function ($) {
   Drupal.behaviors.dosomethingPetitions = {
-    'twitter_message': 'I just signed a petition on DoSomething.org',
+    'twitter_message': Drupal.t('I just signed a petition on DoSomething.org'),
 
     attach: function (context, settings) {
 
