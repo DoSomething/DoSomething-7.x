@@ -29,7 +29,7 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'take action', 'href' => 'sucker', 'fragment' => 'header'),
-    array('title' => 'scholarship info', 'href' => 'sucker', 'fragment' => 'scholarship'),
+    array('title' => 'vampires', 'href' => 'sucker', 'fragment' => 'header'),
     array('title' => 'questions', 'href' => 'sucker', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
