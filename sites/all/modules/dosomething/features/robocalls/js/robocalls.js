@@ -25,6 +25,16 @@
         }
         return false;
       });
+
+      if ($('#edit-actions').length) {
+        var d = new Date();
+        var current_hour = d.getHours();
+
+        // Make sure that people don't send calls after 10pm (their time!)
+        if (current_hour >= 22) {
+          $('#edit-actions').html("Sorry, it's too late to send a call now.  Try again tomorrow!");
+        }
+      }
     }
   };
 })(jQuery);
