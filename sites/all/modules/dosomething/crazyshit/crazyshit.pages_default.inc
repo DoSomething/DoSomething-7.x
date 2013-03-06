@@ -189,7 +189,7 @@ function crazyshit_default_page_manager_pages() {
       'admin_title' => 'Single post share',
       'title' => '',
       'body' => '<div class="single-post-share">
-                 <a href="#" class="share-on-facebook fb-invite-friends">Share on Facebook</a>
+                 <a href="#" class="share-on-facebook">on Facebook</a>
                  <br>
                  <a href="/crazy" class="go-to-gallery">go to gallery</a>
                  </div>',
