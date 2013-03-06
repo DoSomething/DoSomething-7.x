@@ -21,11 +21,33 @@
         if ($('#caption').length) {
           window.clearInterval(caption);
           var block = $('<div></div>').addClass('buttons');
-          var twitter = $('<a></a>').attr('href', 'http://twitter.com').text('Twitter');
-          twitter.appendTo(block);
-          var facebook = $('<a></a>').attr('href', 'http://facebook.com').text('Facebook');
+          var facebook = $('<a></a>').attr('href', 'http://facebook.com').text('Facebook').click(function() {
+            var img = $('.current img').attr('src');
+            var nid = parseInt(document.location.pathname.replace('/sas-landing/', ''));
+            Drupal.behaviors.fb.feed({
+              'feed_document': 'http://www.dosomething.org/node/' + nid,
+              'feed_title': 'I just shared a stat',
+              'feed_picture': document.location.origin + img,
+              'feed_caption': 'Caption',
+              'feed_description': 'Description',
+              'feed_require_login': true
+            }, function(response) { });
+            return false;
+          });
           facebook.appendTo(block);
-          var tumblr = $('<a></a>').attr('href', 'http://tumblr.com').text('Tumblr');
+          //var twitter = $('<a></a>').attr('href', 'http://twitter.com').text('Twitter').click(function() {
+          //  var img = $('.current img').attr('src');
+          //  var url = 'https://twitter.com/intent/tweet?original_referer=' + encodeURIComponent(document.location.origin + img) + '&text=Thanks&tw_p=tweetbutton&url=google.com&via=dosomething';
+          //  window.open(url, '_twitter', 'toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300');
+          //  return false;
+          //  //<a href="http://www.tumblr.com/share/photo?source=&caption=<?php echo urlencode(INSERT_CAPTION_HERE) ?>&clickthru=<?php echo urlencode(INSERT_CLICK_THRU_HERE) ?>" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;">Share on Tumblr</a>
+          //});
+          //twitter.appendTo(block);
+          var tumblr = $('<a></a>').attr('href', 'http://tumblr.com').text('Tumblr').click(function() {
+            var img = $('.current img').attr('src');
+            window.open('http://www.tumblr.com/share/photo?source=' + encodeURIComponent(document.location.origin + img) + '&caption=Caption&clickthru=' + encodeURIComponent(document.location.href), '_tumblr', 'toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300');
+            return false;
+          });
           tumblr.appendTo(block);
           block.insertBefore($('#caption'));
         }

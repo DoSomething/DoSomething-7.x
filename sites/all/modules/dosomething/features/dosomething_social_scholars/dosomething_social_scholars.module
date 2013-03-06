@@ -71,6 +71,7 @@ function dosomething_social_scholars_mms_response($nid) {
 function dosomething_social_scholars_page_alter(&$page) {
   $uri = request_path();
   if (preg_match('#^sas-landing\/[0-9]+$#', $uri)) {
+    drupal_add_library('connections', 'facebook');
     drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/js/dosomething_social_scholars_landing.js');
     drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_landing.css');
   }
