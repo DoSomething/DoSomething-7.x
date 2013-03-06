@@ -16,6 +16,20 @@
           }
         });
       });
+
+      var caption = window.setInterval(function() {
+        if ($('#caption').length) {
+          window.clearInterval(caption);
+          var block = $('<div></div>').addClass('buttons');
+          var twitter = $('<a></a>').attr('href', 'http://twitter.com').text('Twitter');
+          twitter.appendTo(block);
+          var facebook = $('<a></a>').attr('href', 'http://facebook.com').text('Facebook');
+          facebook.appendTo(block);
+          var tumblr = $('<a></a>').attr('href', 'http://tumblr.com').text('Tumblr');
+          tumblr.appendTo(block);
+          block.insertBefore($('#caption'));
+        }
+      });
     }
   };
 })(jQuery);
