@@ -5,6 +5,14 @@ version = VERSION
 core = 7.x
 
 ; stylesheets
+
+; stylesheets - system
+stylesheets[all][] = system.base.css
+stylesheets[all][] = system.menus.css
+stylesheets[all][] = system.messages.css
+stylesheets[all][] = system.theme.css
+
+; stylesheets - theme
 stylesheets[all][] = css/base.css
 
 ; regions
