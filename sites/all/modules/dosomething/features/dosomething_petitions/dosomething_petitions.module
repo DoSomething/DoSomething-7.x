@@ -19,7 +19,12 @@ function dosomething_petitions_page_alter(&$page) {
         'content' => 'dosomethingapp:petition',
       ),
     );
+
     drupal_add_html_head($element, 'petitions_og_type');
+
+
+    $short = shorten_url(url(request_uri(), array('absolute' => TRUE)));
+    drupal_add_js(array('petition' => array('short_url' => $short)), 'setting');
   }
 }
 
