@@ -7,8 +7,13 @@
     previewing: false,
 
     attach: function(context, settings) {
-      $('.views-field-nothing').hover(function() {
-        $(this).find('.hover-state').show();
+      // Hate to do this with Javascript, but CSS wasn't working.
+      $('.views-field-nothing').mouseover(function() {
+        $(this).find('.name, .preview-share').show();
+      });
+
+      $('.views-field-nothing').mouseout(function() {
+        $(this).find('.name, .preview-share').hide();
       });
 
       if ($('.facebook-share-call').length) {

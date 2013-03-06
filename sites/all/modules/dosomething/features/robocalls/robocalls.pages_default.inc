@@ -500,7 +500,7 @@ function robocalls_default_page_manager_pages() {
           'name' => 'regex_visibility',
           'settings' => array(
             'context' => '0',
-            'expression' => 'calloffame\\/\\d+',
+            'expression' => 'prank\\/\\d+',
           ),
           'not' => FALSE,
         ),
@@ -570,7 +570,7 @@ function robocalls_default_page_manager_pages() {
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'calloffame',
+            'paths' => 'prank',
           ),
           'context' => 'empty',
           'not' => FALSE,

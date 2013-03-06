@@ -463,21 +463,43 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['views_conditional']['equalto'] = '???';
   $handler->display->display_options['fields']['views_conditional']['then'] = '[name_3]';
   $handler->display->display_options['fields']['views_conditional']['or'] = '[name_2]';
-  /* Field: Hover State */
+  /* Field: Preview / Share bar */
+  $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
+  $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_2']['ui_name'] = 'Preview / Share bar';
+  $handler->display->display_options['fields']['nothing_2']['label'] = '';
+  $handler->display->display_options['fields']['nothing_2']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '<div class="preview-share">
+<div class="preview"><audio src="[field_celeb_call]"></audio> <a href="[field_celeb_call]">Preview</a></div>
+<div class="share"><span>Share</span></div>
+</div>';
+  $handler->display->display_options['fields']['nothing_2']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nothing_2']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nothing_2']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing_2']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nothing_2']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['hide_alter_empty'] = 0;
+  /* Field: Celeb Name / Link */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing_1']['ui_name'] = 'Hover State';
+  $handler->display->display_options['fields']['nothing_1']['ui_name'] = 'Celeb Name / Link';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
   $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="hover-state">
-<div class="preview-share">
-<div class="preview"><audio src="[field_celeb_call]"></audio> <a href="[field_celeb_call]">Preview</a></div>
-<div class="share"><span>Share</span></div>
-</div>
-<div class="name">
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="name">
 <span>[name]</span>
-</div>
 </div>';
   $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
@@ -501,7 +523,8 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_celeb_photo]
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[nothing_2]
+[field_celeb_photo]
 [nothing_1]';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
