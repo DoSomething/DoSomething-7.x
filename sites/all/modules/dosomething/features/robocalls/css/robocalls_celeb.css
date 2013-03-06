@@ -1,18 +1,1 @@
-/* line 3, ../sass/robocalls_celeb.sass */
-#edit-submitted-field-celeb-your-name, #edit-submitted-field-celeb-your-phone, #edit-submitted-field-celeb-your-password, .field-widget-telwidget {
-  width: 33%;
-  display: inline-block;
-  padding: 10px; }
-/* line 11, ../sass/robocalls_celeb.sass */
-#edit-submitted-field-celeb-your-name input, #edit-submitted-field-celeb-your-phone input, #edit-submitted-field-celeb-your-password input, .field-widget-telwidget input {
-  width: 100%; }
-/* line 14, ../sass/robocalls_celeb.sass */
-#edit-submitted-field-celeb-your-name input.not-required, #edit-submitted-field-celeb-your-phone input.not-required, #edit-submitted-field-celeb-your-password input.not-required, .field-widget-telwidget input.not-required {
-  display: none; }
-/* line 17, ../sass/robocalls_celeb.sass */
-#edit-submitted-field-celeb-your-name label, #edit-submitted-field-celeb-your-phone label, #edit-submitted-field-celeb-your-password label, .field-widget-telwidget label {
-  display: none; }
-
-/* line 20, ../sass/robocalls_celeb.sass */
-#edit-submitted-field-celebrity-chooser, #edit-submitted-field-mobile-commons-id {
-  display: none; }
+#edit-submitted-field-celeb-your-name,#edit-submitted-field-celeb-your-phone,#edit-submitted-field-celeb-your-password,.field-widget-telwidget{width:33%;display:inline-block;padding:10px}#edit-submitted-field-celeb-your-name input,#edit-submitted-field-celeb-your-phone input,#edit-submitted-field-celeb-your-password input,.field-widget-telwidget input{width:100%}#edit-submitted-field-celeb-your-name input.not-required,#edit-submitted-field-celeb-your-phone input.not-required,#edit-submitted-field-celeb-your-password input.not-required,.field-widget-telwidget input.not-required{display:none}#edit-submitted-field-celeb-your-name label,#edit-submitted-field-celeb-your-phone label,#edit-submitted-field-celeb-your-password label,.field-widget-telwidget label{display:none}#edit-submitted-field-celebrity-chooser,#edit-submitted-field-mobile-commons-id,#edit-submitted-field-celeb-send-now,#edit-submitted-field-celeb-date{display:none}

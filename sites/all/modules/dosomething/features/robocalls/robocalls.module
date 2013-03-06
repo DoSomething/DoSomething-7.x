@@ -394,13 +394,13 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       'weight' => 9999
     ));
 
-
-    $form['need-help'] = array(
+    // On hold 3/6/13
+    /*$form['need-help'] = array(
       '#prefix' => '<p class="need-help">',
       '#markup' => l(t('Need Help?'), ROBO_PATH . '/walkthrough'),
       '#suffix' => '</p>',
       '#weight' => 10000,
-    );
+    );*/
 
     $form['actions']['submit']['#value'] = t('Send The Call!');
     $form['#validate'][] = 'robocalls_celeb_form_validation';
@@ -469,12 +469,13 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
       // Change the "submit" button text to "Send the call!"
       $form['actions']['submit']['#value'] = t('Send The Call!');
+      /* On hold 3/6/13
       $form['need-help'] = array(
         '#prefix' => '<p class="need-help">',
         '#markup' => l(t('Need Help?'), ROBO_PATH . '/walkthrough'),
         '#suffix' => '</p>',
         '#weight' => 10000,
-      );
+      );*/
 
       $form['#validate'][] = 'robocalls_homepage_form_validation';
       $form['#submit'][] = 'robocalls_homepage_form_submission';
