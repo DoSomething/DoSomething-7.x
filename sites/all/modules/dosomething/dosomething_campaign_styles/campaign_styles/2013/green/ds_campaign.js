@@ -132,7 +132,8 @@
           $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
       });
 
-
+      // Social Share Buttons
+      $('#header').prepend($('.panel-top-right-social'));
 
          
     } // end attach: function
