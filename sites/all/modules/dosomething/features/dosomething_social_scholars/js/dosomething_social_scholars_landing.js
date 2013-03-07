@@ -7,6 +7,7 @@
       f.appendTo('#upload-cover').addClass('new');
       var n = $('<div>').addClass('fakefile').text('Upload Picture').appendTo('#upload-cover');
 
+      $('h1#page-title').wrap('<div class="background-image"></div>');
 
       $('#edit-submitted-field-share-your-own-image-und-0-upload').click(function() {
         var img = window.setInterval(function() {
