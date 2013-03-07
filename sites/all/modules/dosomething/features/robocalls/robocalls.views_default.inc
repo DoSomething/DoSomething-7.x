@@ -300,7 +300,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_photo_thumbnail']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_photo_thumbnail']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_photo_thumbnail']['settings'] = array(
-    'image_style' => 'robocall_celeb_thumbnail_205x115',
+    'image_style' => 'robocalls_gallery_thumb',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_photo_thumbnail']['field_api_classes'] = 0;
