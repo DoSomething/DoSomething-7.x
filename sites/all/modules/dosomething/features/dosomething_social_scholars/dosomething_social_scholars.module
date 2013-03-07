@@ -88,7 +88,7 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
     require_once drupal_get_path('module', 'dosomething_social_scholars') . '/style_config.php';
 
     if (!empty($campaign_styles[$campaign_nid]) || !empty($scheme_styles[$scheme_id])) {
-      if (isset($campaign_nid) && !empty($campaign_id)) {
+      if (isset($campaign_nid) && !empty($campaign_nid)) {
         $s = $campaign_styles[$campaign_nid]['longform'];
       }
       else if (isset($scheme_id) && !empty($scheme_id)) {
