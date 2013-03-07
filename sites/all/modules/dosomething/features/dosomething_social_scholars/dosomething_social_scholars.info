@@ -26,6 +26,7 @@ features[features_api][] = api:1
 features[field][] = node-social_scholarship-body
 features[field][] = node-social_scholarship-field_alphas_campaign
 features[field][] = node-social_scholarship-field_betas_campaign
+features[field][] = node-social_scholarship-field_email_mailchimp_bucket
 features[field][] = node-social_scholarship-field_facebook_share_language
 features[field][] = node-social_scholarship-field_fb_language
 features[field][] = node-social_scholarship-field_is_a_campaign_share_a_stat

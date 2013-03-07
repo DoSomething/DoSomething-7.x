@@ -28,7 +28,28 @@ function dosomething_social_scholars_menu() {
     'access callback' => TRUE,
   );
 
+  $items['sas-redirect'] = array(
+    'page callback' => 'dosomething_social_scholars_redirect',
+    'access callback' => TRUE,
+  );
+
   return $items;
+}
+
+function dosomething_social_scholars_redirect() {
+  $args = drupal_get_query_parameters($_REQUEST);
+  $email = (isset($args['submitted']['field_webform_email'][LANGUAGE_NONE][0]['email']) ? $args['submitted']['field_webform_email'][LANGUAGE_NONE][0]['email'] : '');
+  $bucket = (isset($args['mailchimp_bucket']) ? $args['mailchimp_bucket'] : '');
+
+  if (empty($email) || !valid_email_address($email)) {
+    drupal_set_message(t('We need at least your email...!'), 'error');
+    $_GET['destination'] = 'sas-landing/' . $args['from_nid'];
+  }
+  else {
+    #dosomething_general_mailchimp_subscribe($email, $bucket);
+  }
+
+  drupal_goto();
 }
 
 function dosomething_social_scholars_mms_response($nid) {
@@ -347,7 +368,10 @@ function dosomething_social_scholars_theme($existing, $type, $theme, $path) {
       'template' => 'sas-campaign-short-form',
       'variables' => array(
         'alias' => NULL,
-        'nid' => NULL
+        'nid' => NULL,
+        'from_nid' => NULL,
+        'email' => NULL,
+        'cell' => NULL,
       )
     ),
   );

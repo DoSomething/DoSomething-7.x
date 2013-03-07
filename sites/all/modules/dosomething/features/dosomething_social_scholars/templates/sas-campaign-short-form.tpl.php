@@ -1,4 +1,4 @@
-<form class="webform-client-form" enctype="multipart/form-data" action="/<?php echo $alias; ?>" method="post" id="webform-client-form-<?php echo $nid; ?>" accept-charset="UTF-8">
+<form class="webform-client-form" enctype="multipart/form-data" action="/sas-redirect?from_nid=<?php echo $from_nid; ?>&amp;destination=<?php echo rawurlencode($alias); ?>" method="post" id="webform-client-form-<?php echo $nid; ?>" accept-charset="UTF-8">
 <div>
 <div class="form-item webform-component webform-component-markup" id="webform-component-start-header">
  <h3>Start here to join your school</h3>
@@ -20,6 +20,7 @@
 </div>
 </div>
 <input type="hidden" name="details[sid]" value="">
+<input type="hidden" name="mailchimp_bucket" value="<?php echo $mailchimp_bucket; ?>" />
 <div class="form-actions form-wrapper">
 	<input type="submit" id="edit-submit" name="op" value="start" class="form-submit">
 </div>

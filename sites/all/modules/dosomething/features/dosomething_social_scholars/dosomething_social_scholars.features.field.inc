@@ -222,6 +222,79 @@ function dosomething_social_scholars_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-social_scholarship-field_email_mailchimp_bucket'.
+  $fields['node-social_scholarship-field_email_mailchimp_bucket'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_email_mailchimp_bucket',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'social_scholarship',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'If this is a campaign share a stat, the user will be presented with a shortform after they complete the actual share a stat.  Put the mailchimp bucket their email should land in after they fill it out.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 18,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_email_mailchimp_bucket',
+      'label' => 'Email mailchimp bucket',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '19',
+      ),
+    ),
+  );
+
   // Exported field: 'node-social_scholarship-field_facebook_share_language'.
   $fields['node-social_scholarship-field_facebook_share_language'] = array(
     'field_config' => array(
@@ -1359,8 +1432,10 @@ function dosomething_social_scholars_field_default_fields() {
   t('Check this box if this share a stat is linked to a campaign.');
   t('Either: The relative path to the page NOT including the first / (e.g. blog/7-facts-about-kittens)
 <br />OR: The full url to a webpage (e.g. http://www.google.com)');
+  t('Email mailchimp bucket');
   t('Facebook "Recommend" Language');
   t('Facebook "Share" Language');
+  t('If this is a campaign share a stat, the user will be presented with a shortform after they complete the actual share a stat.  Put the mailchimp bucket their email should land in after they fill it out.');
   t('Images');
   t('Is a campaign Share a Stat?');
   t('Linked campaign');
