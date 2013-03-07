@@ -279,6 +279,11 @@ function robocalls_page_alter(&$page) {
   if (robocalls_is_robo_page()) {
     $robocalls = robocalls_load_config();
 
+    // These aren't being added...for some reason.
+    drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/jquery-validation-1.9.0/jquery.validate.min.js');
+    drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/lets_talk_dialog.js');
+    drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-popup-lightbox.js');
+    drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js');
     drupal_set_title(t($robocalls['title']));
 
     $p = request_path();
