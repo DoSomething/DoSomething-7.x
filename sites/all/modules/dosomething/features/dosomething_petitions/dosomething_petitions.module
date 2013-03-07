@@ -8,7 +8,7 @@ include_once 'dosomething_petitions.features.inc';
 
 define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
-define('PETITIONS_MCOMMONS', 117371);
+define('PETITIONS_MCOMMONS', 147563);
 
 function dosomething_petitions_page_alter(&$page) {
   if (preg_match('#\/petition\/(.*?)#i', request_uri())) {
