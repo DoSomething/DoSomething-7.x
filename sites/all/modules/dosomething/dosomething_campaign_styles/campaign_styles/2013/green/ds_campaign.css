@@ -1108,26 +1108,23 @@ div[aria-labelledby="ui-dialog-title-1"] {
       font-size: 1.4em;
       line-height: 1.2em;
       margin-bottom: 1em; }
-    #cmp #scholarship .third {
-      float: left;
-      width: 33%; }
-      #cmp #scholarship .third h3 {
-        font-size: 2.8em;
-        font-weight: 600;
-        line-height: 1.1em;
-        margin-top: 0.2em; }
-      #cmp #scholarship .third h4 {
-        text-transform: uppercase;
-        font-size: 1.8em;
-        font-weight: 500; }
-      #cmp #scholarship .third p {
-        padding-top: 1.2em;
-        font-size: 1.8em;
-        font-weight: 600; }
-      #cmp #scholarship .third p.head {
-        font-size: 1em;
-        font-weight: 500;
-        color: black; }
+    #cmp #scholarship .third h3 {
+      font-size: 2.8em;
+      font-weight: 600;
+      line-height: 1.1em;
+      margin-top: 0.2em; }
+    #cmp #scholarship .third h4 {
+      text-transform: uppercase;
+      font-size: 1.8em;
+      font-weight: 500; }
+    #cmp #scholarship .third p {
+      padding-top: 1.2em;
+      font-size: 1.8em;
+      font-weight: 600; }
+    #cmp #scholarship .third p.head {
+      font-size: 1em;
+      font-weight: 500;
+      color: black; }
     #cmp #scholarship .go-button {
       font-size: 2.4em;
       margin-top: 1%; }
