@@ -982,6 +982,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -o-border-radius: 5px;
     border-radius: 5px;
     text-decoration: none; }
+  #cmp .panel-top-right-social {
+    float: right;
+    margin: 10px 0; }
+    #cmp .panel-top-right-social a {
+      text-decoration: none; }
   #cmp .section#header {
     background: url("http://files.dosomething.org/files/campaigns/green/header-bg.jpg") top center no-repeat;
     margin-bottom: 2%; }
