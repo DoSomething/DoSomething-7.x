@@ -277,11 +277,6 @@ function dosomething_petitions_opt_in($form, $form_state) {
       $author = $a->name;
     }
 
-    drupal_mail('dosomething_petitions', 'thanks_for_signing', $val, $language, array(
-      'name' => $name,
-      'petition' => $node->title,
-    ));
-    
     // Add signup to MailChimp
     dosomething_general_webform_email_and_mobile_subscribe($form, $form_state);
     
