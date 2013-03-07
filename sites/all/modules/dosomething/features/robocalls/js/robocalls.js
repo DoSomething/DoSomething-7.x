@@ -31,8 +31,8 @@
         var current_hour = d.getHours();
 
         // Make sure that people don't send calls after 10pm (their time!)
-        if (current_hour >= 22) {
-          $('#edit-actions').html("Sorry, it's too late to send a call now.  Try again tomorrow!");
+        if (current_hour >= 22 || current_hour <= 6) {
+          $('#edit-actions').html("Now's not a good time to send a call.  Try again tomorrow!");
         }
       }
     }

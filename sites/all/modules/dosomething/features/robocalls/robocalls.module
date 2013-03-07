@@ -55,6 +55,36 @@ function robocalls_load_config() {
 }
 
 /**
+ *  Implements hook_webform_select_options_info()
+ */
+function robocalls_webform_select_options_info() {
+  return array(
+    'calls' => array(
+      'title' => t('Project Prank Calls'),
+      'options callback' => 'robocalls_get_celebrities',
+    ),
+  );
+}
+
+/**
+ *  Gets all celebrities.
+ *
+ *  @return array
+ *    An array of celebrities, with keys as the TID and values as
+ *    the name of the celebrity.
+ */
+function robocalls_get_celebrities() {
+  $celebs = array();
+  foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
+    if ($celeb->parents[0] > 0 && $celeb->name != '???') {
+      $celebs[$celeb->tid] = $celeb->name;
+    }
+  }
+
+  return $celebs;
+}
+
+/**
  *  Confirms that the page you're currently on is a robocalls page
  *
  *  @param string $page
@@ -266,8 +296,8 @@ function robocalls_page_alter(&$page) {
       if (preg_match('#^' . $path . '#', $p)) {
         foreach ($styles AS $style) {
           drupal_add_css(drupal_get_path('module', 'robocalls') . '/css/' . $style, array(
-              'group' => CSS_THEME,
-              'weight' => 3000
+            'group' => CSS_THEME,
+            'weight' => 3000
           ));
         }
       }
@@ -278,8 +308,8 @@ function robocalls_page_alter(&$page) {
       if (preg_match('#^' . $path . '#', $p)) {
         foreach ($scripts AS $script) {
           drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/' . $script, array(
-              'weight' => -100,
-              'cache' => FALSE
+            'weight' => -100,
+            'cache' => FALSE
           ));   
         }
       }
@@ -309,24 +339,6 @@ function robocalls_module_implements_alter(&$implementations, $hook) {
     unset($implementations['robocalls']);
     $implementations['robocalls'] = $group;
   }
-}
-
-/**
- *  Gets all celebrities.
- *
- *  @return array
- *    An array of celebrities, with keys as the TID and values as
- *    the name of the celebrity.
- */
-function robocalls_get_celebrities() {
-  $celebs = array();
-  foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
-    if ($celeb->parents[0] > 0 && $celeb->name != '???') {
-      $celebs[$celeb->tid] = $celeb->name;
-    }
-  }
-
-  return $celebs;
 }
 
 /**
@@ -547,27 +559,85 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 }
 
 /**
- *  Handles submissions from the walkthrough.
+ *  Handles generic validation for all Robocalls forms.
+ *
+ *  @param array $my_info
+ *     An array of the user's information.  Must include:
+ *        - number (Phone number)
+ *        - password (Password)
+ *
+ *  @param array $friends_info
+ *     An array of arrays, including the friends' information.
+ *     array[friends]
+ *        - Phone numbers of all friends.
+ *     array[calls]
+ *        - The Call IDs, with keys matching the phone # key.
  */
-function robocalls_walkthrough_submission($form, &$form_state) {
-  if (isset($form_state['clicked_button']['#value']) && $form_state['clicked_button']['#value'] == 'Submit') {
-    // Mindfuck of the day: The submitted data is NOT all stored in form_state['input']['submitted']...!
-    $submitted = $form_state['webform_entity']['submission']->submitted;
+function robocalls_general_validation($my_info, $friends) {
+  $error = 0;
 
-    if (!user_is_logged_in()) {
-      robocalls_create_or_log_in_user(array('name' => $submitted['my_name'], 'cell' => $submitted['my_number'], 'password' => $submitted['my_password']));
-    }
+  // Confirm user information is correct...assuming they're not logged in.
+  if (!user_is_logged_in()) {
+    if (!empty($my_info) && is_array($my_info)) {
+      // Confirm the password is correct.
+      require_once DRUPAL_ROOT . '/includes/password.inc';
+      if ($account = dosomething_api_user_lookup($my_info['number'])) {
+        if (!user_check_password($my_info['password'], $account)) {
+          form_set_error('password', t('Sorry, that password does not match the account in question..'));
+          $error++;
+        }
+      }
 
-    $call = dosomething_general_telapi_request($submitted['my_number'], $submitted['friends_number'], $submitted['choose_a_celebrity']);
-
-    $sid = $form_state['values']['details']['sid'];
-
-    // Redirect back home, with a GET variable with the call information.
-    if (!empty($call)) {
-      robocalls_record_call($submitted['my_number'], $submitted['friends_number'], $submitted['choose_a_celebrity']);
-      drupal_goto(ROBO_PATH . '/' . $sid, array('query' => array('c' => base64_encode(serialize($call)))));
+      // Confirm the phone number is correct.
+      if (!dosomething_general_valid_cell($my_info['number'])) {
+        form_set_error('number', t('Your phone number must be valid.'));
+        $error++;
+      }
     }
   }
+
+  $bad_numbers = $bad_callids = 0;
+  // Double check all friends' phone numbers and callids
+  foreach ($friends['numbers'] AS $key => $number) {
+    // If the phone number is *not* empty
+    if (!empty($number)) {
+
+      // If not a valid cell phone number...
+      if (!dosomething_general_valid_cell($number)) {
+        $bad_numbers++;
+      }
+
+      // If the call is invalid or empty.
+      if (empty($friends['calls'][$key])) {
+        $bad_callids++;
+      }
+    }
+    else if (empty($number)) {
+      // If the call *is* empty, and it's the first (required) number...
+      if ($key == 0) {
+        $bad_numbers++;
+      }
+
+      // If the call is empty, and it's the first phone number.
+      if (empty($friends['calls'][$key]) && $key == 0) {
+        $bad_callids++;
+      }
+    }
+  }
+
+  // Verify first (primary) friend's phone number.
+  if ($bad_numbers > 0) {
+    form_set_error('friends', t('Your friends\' numbers must all be valid cell phone numbers.'));
+    $error++;
+  }
+
+  // Verify first (primary) friend's call id
+  if ($bad_callids > 0) {
+    form_set_error('select_call', t('All friends must have valid calls to send.'));
+    $error++;
+  }
+
+  return $error;
 }
 
 /**
@@ -606,145 +676,36 @@ function robocalls_create_or_log_in_user($info = array('name' => '', 'cell' => '
 }
 
 /**
- *  Implements hook_webform_select_options_info()
- */
-function robocalls_webform_select_options_info() {
-  return array(
-    'calls' => array(
-      'title' => t('Project Prank Calls'),
-      'options callback' => 'robocalls_get_celebrities',
-    ),
-  );
-}
-
-/**
- *  Handles validation of celebrity page submissions.
- */
-function robocalls_celeb_form_validation($form, &$form_state) {
-  require_once DRUPAL_ROOT . '/includes/password.inc';
-
-  if ($account = dosomething_general_find_user_by_cell($form_state['values']['submitted']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'])) {
-    if (!user_check_password($form_state['values']['submitted']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'], $account)) {
-      form_set_error('password', t('That is not the correct password for this account.'));
-      $error++;
-    }
-  }
-
-  // If errors, send back to the celeb page.
-  if ($error > 0) {
-    drupal_goto($_SERVER['HTTP_REFERER']);
-  }
-  // Otherwise, if not logged in...log in! or register.
-  else {
-    if (!user_is_logged_in()) {
-      $v = $form_state['values']['submitted'];
-      $your_cell = $v['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
-      $your_name = $v['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
-      $your_password = $v['field_celeb_your_password'][LANGUAGE_NONE][0]['value'];
-
-      robocalls_create_or_log_in_user(array('name' => $your_name, 'cell' => $your_cell, 'password' => $your_password));
-    }
-  }
-}
-
-/**
- *  Handles submissions from celeb page.
- */
-function robocalls_celeb_form_submission($form, &$form_state) {
-  $s = $form_state['input']['submitted'];
-
-  $friend_fields = array(
-    'field_celeb_friend_phone',
-    'field_celeb_friend_phone_2',
-    'field_celeb_friend_phone_3',
-    'field_celeb_friend_phone_4',
-    'field_celeb_friend_phone_5',
-    'field_celeb_friend_phone_6',
-  );
-
-  $friends = array();
-  // Add all friend fields to the friends array
-  foreach ($friend_fields AS $field) {
-    $friends[] = $form_state['input']['submitted']['your_friends_info'][$field][LANGUAGE_NONE][0]['value'];
-  }
-
-  // Add any additional friend fields, if applicable.
-  if (!empty($form_state['input']['submitted']['additional_friends']) && is_array($form_state['input']['submitted']['additional_friends'])) {
-    $friends += $form_state['input']['submitted']['additional_friends'];
-  }
-
-  // Strip any non-numeric characters to ensure we only get unique phone numbers.
-  array_walk($friends, function(&$val, $key) {
-    $val = preg_replace('#[^0-9]#', '', $val);
-  });
-
-  // Get only unique phone numbers.
-  $friends = array_unique($friends);
-
-  // Send the call(s)!
-  $call = dosomething_general_telapi_request('718-578-7681', $friends, 'blah');
-
-  // Redirect back home, with a GET variable with the call information.
-  if (!empty($call)) {
-    foreach ($friends AS $friend) {
-      robocalls_record_call('718-578-7681', $friend, 12345);
-    }
-    drupal_goto($_SERVER['HTTP_REFERER'] . '?c=' . base64_encode(serialize($call)));
-  }
-}
-
-/**
  *  Handles homepage form validation.
  */
 function robocalls_homepage_form_validation($form, &$form_state) {
-  $errors = 0;
-
   $v = $form_state['input']['submitted'];
   $my = $v['my_info'];
   $friend = $v['friends_info']['primary_friend'];
 
-  if (!empty($my) && is_array($my)) {
-    // Confirm the password is correct.
-    require_once DRUPAL_ROOT . '/includes/password.inc';
-    if ($account = dosomething_api_user_lookup($my['my_number'])) {
-      if (!user_check_password($my['my_password'], $account)) {
-        form_set_error('submitted[my_info][my_password]', t('Sorry, that password does not match the account in question..'));
-        $error++;
-      }
-    }
+  // Put the first friend's information into a tidy array for validation.
+  $friends = array(
+    'numbers' => array(
+      $friend['friends_number']
+    ),
+    'calls' => array(
+      $friend['select_call']
+    ),
+  );
 
-    // Confirm the phone number is correct.
-    if (!dosomething_general_valid_cell($my['my_number'])) {
-      form_set_error('my_number', t('Your phone number must be valid.'));
-      $error++;
-    }
-  }
-
-  $bad_numbers = $bad_callids = 0;
-  // Double check all friends' phone numbers and callids
-  foreach ($friends['more_friends'] AS $key => $number) {
-    if (!empty($number)) {
-      if (!dosomething_general_valid_cell($number)) {
-        $bad_numbers++;
-      }
-
-      if (empty($friends['more_calls'][$key])) {
-        $bad_callids++;
-      }
+  // Confirm there actually *are* more friends.
+  if (!empty($friend['more_friends']) && is_array($friend['more_friends'])) {
+    // Add friends' information to that tidy array...for validation.
+    foreach ($friend['more_friends'] AS $key => $number) {
+      $friends['numbers'][] = $number;
+      $friends['calls'][] = $friend['more_calls'][$key];
     }
   }
 
-  // Verify first (primary) friend's phone number.
-  if (!dosomething_general_valid_cell($friend['friends_number']) || $bad_numbers > 0) {
-    form_set_error('submitted][friends_info][primary_friend][friends_number', t('Your friends\' numbers must all be valid cell phone numbers.'));
-    $error++;
-  }
-
-  // Verify first (primary) friend's call id
-  if (empty($friend['select_call']) || $bad_callids > 0) {
-    form_set_error('submitted][friends_info][primary_friend][select_call', t('All friends must have valid calls to send.'));
-    $error++;
-  }
+  $error = robocalls_general_validation(array(
+    'number' => $my['my_number'],
+    'password' => $my['my_password'],
+  ), $friends);
 
   // If errors, return home.
   if ($error > 0) {
@@ -816,5 +777,158 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   */
     $sid = $form_state['values']['details']['sid'];
     drupal_goto(ROBO_PATH . '/' . $sid);
+  }
+}
+
+/**
+ *  Handles validation of celebrity page submissions.
+ */
+function robocalls_celeb_form_validation($form, &$form_state) {
+  $v = $form_state['input']['submitted'];
+
+  // Get all the fields that have or could have phone numbers.
+  $friend_fields = array(
+    'field_celeb_friend_phone',
+    'field_celeb_friend_phone_2',
+    'field_celeb_friend_phone_3',
+    'field_celeb_friend_phone_4',
+    'field_celeb_friend_phone_5',
+    'field_celeb_friend_phone_6',
+  );
+
+  $f = array();
+  // Add all friend fields to the friends array
+  foreach ($friend_fields AS $field) {
+    if (!empty($v['your_friends_info'][$field][LANGUAGE_NONE][0]['value'])) {
+      $f[] = $v['your_friends_info'][$field][LANGUAGE_NONE][0]['value'];
+    }
+  }
+
+  // Add any additional friend fields, if applicable.
+  if (!empty($v['additional_friends']) && is_array($v['additional_friends'])) {
+    $f += $v['additional_friends'];
+  }
+
+  // Strip any non-numeric characters to ensure we only get unique phone numbers.
+  $k = 0;
+
+  // Walk through and strip extraneous characters.
+  array_walk($f, function(&$val, &$huh, &$key) {
+    $val = preg_replace('#[^0-9]#', '', $val);
+  });
+
+  // Get the call...
+  $call = $v['field_celebrity_chooser'][LANGUAGE_NONE];
+
+  // Get only unique phone numbers.
+  $f = array_unique($f);
+  // Reset keys to match calls...
+  sort($f);
+
+  // Fill the friends array with data.
+  $friends = array();
+  $friends['numbers'] = $f;
+  $friends['calls'] = array_fill(0, count($f), $call);
+
+  // Check for errors
+  $error = robocalls_general_validation(array(
+    'number' => $v['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'],
+    'password' => $v['field_celeb_your_password'][LANGUAGE_NONE][0]['value'],
+  ), $friends);
+/*
+  require_once DRUPAL_ROOT . '/includes/password.inc';
+
+  if ($account = dosomething_general_find_user_by_cell($form_state['values']['submitted']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'])) {
+    if (!user_check_password($form_state['values']['submitted']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'], $account)) {
+      form_set_error('password', t('That is not the correct password for this account.'));
+      $error++;
+    }
+  }*/
+
+  // If errors, send back to the celeb page.
+  if ($error > 0) {
+    drupal_goto($_SERVER['HTTP_REFERER']);
+  }
+  // Otherwise, if not logged in...log in! or register.
+  else {
+    if (!user_is_logged_in()) {
+      $v = $form_state['values']['submitted'];
+      $your_cell = $v['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
+      $your_name = $v['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
+      $your_password = $v['field_celeb_your_password'][LANGUAGE_NONE][0]['value'];
+
+      robocalls_create_or_log_in_user(array('name' => $your_name, 'cell' => $your_cell, 'password' => $your_password));
+    }
+  }
+}
+
+/**
+ *  Handles submissions from celeb page.
+ */
+function robocalls_celeb_form_submission($form, &$form_state) {
+  $s = $form_state['input']['submitted'];
+
+  $friend_fields = array(
+    'field_celeb_friend_phone',
+    'field_celeb_friend_phone_2',
+    'field_celeb_friend_phone_3',
+    'field_celeb_friend_phone_4',
+    'field_celeb_friend_phone_5',
+    'field_celeb_friend_phone_6',
+  );
+
+  $friends = array();
+  // Add all friend fields to the friends array
+  foreach ($friend_fields AS $field) {
+    $friends[] = $form_state['input']['submitted']['your_friends_info'][$field][LANGUAGE_NONE][0]['value'];
+  }
+
+  // Add any additional friend fields, if applicable.
+  if (!empty($form_state['input']['submitted']['additional_friends']) && is_array($form_state['input']['submitted']['additional_friends'])) {
+    $friends += $form_state['input']['submitted']['additional_friends'];
+  }
+
+  // Strip any non-numeric characters to ensure we only get unique phone numbers.
+  array_walk($friends, function(&$val, $key) {
+    $val = preg_replace('#[^0-9]#', '', $val);
+  });
+
+  // Get only unique phone numbers.
+  $friends = array_unique($friends);
+
+  // Send the call(s)!
+  $call = dosomething_general_telapi_request('718-578-7681', $friends, 'blah');
+
+  // Redirect back home, with a GET variable with the call information.
+  if (!empty($call)) {
+    foreach ($friends AS $friend) {
+      robocalls_record_call('718-578-7681', $friend, 12345);
+    }
+    drupal_goto($_SERVER['HTTP_REFERER'] . '?c=' . base64_encode(serialize($call)));
+  }
+}
+
+
+/**
+ *  Handles submissions from the walkthrough.
+ */
+function robocalls_walkthrough_submission($form, &$form_state) {
+  if (isset($form_state['clicked_button']['#value']) && $form_state['clicked_button']['#value'] == 'Submit') {
+    // Mindfuck of the day: The submitted data is NOT all stored in form_state['input']['submitted']...!
+    $submitted = $form_state['webform_entity']['submission']->submitted;
+
+    if (!user_is_logged_in()) {
+      robocalls_create_or_log_in_user(array('name' => $submitted['my_name'], 'cell' => $submitted['my_number'], 'password' => $submitted['my_password']));
+    }
+
+    $call = dosomething_general_telapi_request($submitted['my_number'], $submitted['friends_number'], $submitted['choose_a_celebrity']);
+
+    $sid = $form_state['values']['details']['sid'];
+
+    // Redirect back home, with a GET variable with the call information.
+    if (!empty($call)) {
+      robocalls_record_call($submitted['my_number'], $submitted['friends_number'], $submitted['choose_a_celebrity']);
+      drupal_goto(ROBO_PATH . '/' . $sid, array('query' => array('c' => base64_encode(serialize($call)))));
+    }
   }
 }
