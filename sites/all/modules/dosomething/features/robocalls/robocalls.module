@@ -28,17 +28,6 @@ define('ROBOCALLS_MCOMMONS_ALPHAS_CAMPAIGN', 144433);
 define('ROBO_PATH', 'prank');
 
 /**
- *  Implements hook_init()
- */
-function robocalls_init() {
-  if (robocalls_is_robo_page()) {
-    $robocalls = robocalls_load_config();
-
-    drupal_set_title(t($robocalls['title']));
-  }
-}
-
-/**
  *  Loads the configuration file for robocalls and returns it.
  *
  *  @return array
@@ -289,7 +278,9 @@ function robocalls_call_xml($tid) {
 function robocalls_page_alter(&$page) {
   if (robocalls_is_robo_page()) {
     $robocalls = robocalls_load_config();
-    
+
+    drupal_set_title(t($robocalls['title']));
+
     $p = request_path();
     // Adds Robocalls CSS
     foreach ($robocalls['css'] AS $path => $styles) {
@@ -478,6 +469,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       // Get celebrities and populate the select box.
       $celebs = robocalls_get_celebrities();
 
+      // Make sure we can use the celebs array for further field creation.
       $settings = array(
         'celebs' => $celebs
       );
@@ -489,7 +481,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       // Make sure the password field is a password field.
       $u['my_info']['my_password']['#type'] = 'password';
 
-
+      // Send to more friends link.
       $form['more_stuff'] = array(
         '#markup' => '<a href="#" class="add-more-friends-front">Send to more friends</a>',
         '#weight' => 25,
@@ -520,7 +512,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
           )), 'setting');
         }
       }
-/*
+      /* On hold until we record calls -- this wll hold call information.
       if (isset($_SESSION['front_page_call'])) {
         $i = $_SESSION['front_page_call'];
         unset($_SESSION['front_page_call']);
@@ -835,15 +827,6 @@ function robocalls_celeb_form_validation($form, &$form_state) {
     'number' => $v['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'],
     'password' => $v['field_celeb_your_password'][LANGUAGE_NONE][0]['value'],
   ), $friends);
-/*
-  require_once DRUPAL_ROOT . '/includes/password.inc';
-
-  if ($account = dosomething_general_find_user_by_cell($form_state['values']['submitted']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'])) {
-    if (!user_check_password($form_state['values']['submitted']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'], $account)) {
-      form_set_error('password', t('That is not the correct password for this account.'));
-      $error++;
-    }
-  }*/
 
   // If errors, send back to the celeb page.
   if ($error > 0) {

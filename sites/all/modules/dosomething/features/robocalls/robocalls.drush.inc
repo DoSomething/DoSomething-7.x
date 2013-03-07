@@ -19,6 +19,12 @@ function drush_robocalls_robocall($fnid) {
 }
 
 function drush_robocalls_robo_migrate() {
+  drush_print(dt('Enabling the DoSomething API module...'));
+  $modules = array(
+    'dosomething_api',
+  );
+  drush_invoke_process('@self', 'en', $modules, array('--yes', '--verbose'));
+
   $homepage_webform = dosomething_general_save_node_from_file(drupal_get_path('module', 'robocalls') . '/webforms/homepage.txt', 'robo-calls/homepage-webform');
   #$walkthrough_webform = dosomething_general_save_node_from_file('sites/all/modules/dosomething/features/robocalls/webforms/walkthrough.txt', 'prank/walkthrough');
   drush_print(dt('See node/' . $homepage_webform->nid . ' (re-alias as robo-calls/homepage-webform).'));
