@@ -42,11 +42,11 @@ function dosomething_social_scholars_redirect() {
   $bucket = (isset($args['mailchimp_bucket']) ? $args['mailchimp_bucket'] : '');
 
   if (empty($email) || !valid_email_address($email)) {
-    drupal_set_message(t('We need at least your email...!'), 'error');
+    drupal_set_message(t('You must specify at least your email to sign up for this campaign.'), 'error');
     $_GET['destination'] = 'sas-landing/' . $args['from_nid'];
   }
   else {
-    #dosomething_general_mailchimp_subscribe($email, $bucket);
+    dosomething_general_mailchimp_subscribe($email, $bucket);
   }
 
   drupal_goto();
