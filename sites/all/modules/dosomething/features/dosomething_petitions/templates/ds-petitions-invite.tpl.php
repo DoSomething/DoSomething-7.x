@@ -1,11 +1,12 @@
 Hey,
 
-I just signed the petition "<?php echo $title; ?>" and am hoping you could help by adding your name.
+I just signed the petition "<?php echo $title; ?>" because it's something I care about.  It would mean so much to me if you could sign, too, and share with friends.
 
-Our goal is to reach <?php echo $signatures; ?> signatures - to get there, we need your support. You can read more and sign the petition here: <?php echo $url; ?>
+Our goal is to reach <?php echo $signatures; ?> signatures, and we need your support to get there.  Step up, speak out, and sign here: <?php echo $url; ?>
 
+Every voice and every name matters.
 
-Thanks!
+Thanks in advance for both of yours,
 <?php echo $first_name; ?>
 
 --------

@@ -1,5 +1,7 @@
 (function ($) {
   Drupal.behaviors.dosomethingPetitions = {
+    'twitter_message': Drupal.t('I just signed this petition! Now, it\'s YOUR turn: step up and sign here'),
+
     attach: function (context, settings) {
 
       if (window.location.hash && window.location.hash == '#contacts') {
@@ -51,6 +53,14 @@
             e.hide();
             $field.attr('placeholder', e.text());
           }
+        });
+      }
+
+      if ($('#petition-twitter').length) {
+        $('#petition-twitter').click(function() {
+          var url = 'https://twitter.com/intent/tweet?original_referer=' + document.location.href.replace('#', '') + '&text=' + encodeURIComponent(Drupal.behaviors.dosomethingPetitions.twitter_message) + '&tw_p=tweetbutton&url=' + Drupal.settings.petition.short_url + '&via=dosomething';
+          window.open(url, '_tweet', 'toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300');
+          return false;
         });
       }
     }
