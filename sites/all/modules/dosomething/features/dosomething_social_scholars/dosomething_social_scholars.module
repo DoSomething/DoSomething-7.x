@@ -46,7 +46,9 @@ function dosomething_social_scholars_redirect() {
     $_GET['destination'] = 'sas-landing/' . $args['from_nid'];
   }
   else {
-    dosomething_general_mailchimp_subscribe($email, $bucket);
+    if (!empty($bucket)) {
+      dosomething_general_mailchimp_subscribe($email, $bucket);
+    }
   }
 
   drupal_goto();
