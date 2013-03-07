@@ -16,6 +16,29 @@
         $(this).find('.name, .preview-share').hide();
       });
 
+      if ($('.share-single-celeb').length) {
+        $('.share-single-celeb').click(function() {
+          var elm = $(this).parent().parent().parent();
+          var img = document.location.origin + elm.find('img').attr('src');
+          var name = elm.find('.name a').text();
+          var href = document.location.origin + elm.find('.name a').attr('href');
+
+          console.log(img);
+
+          Drupal.behaviors.fb.feed({
+            'feed_document': href,
+            'feed_title': name + ' just called my friend!',
+            'feed_picture': img,
+            'feed_caption': 'Check it.',
+            'feed_description': name + ' just sent a call for me, from DoSomething.org\'s Project Prank!',
+            'feed_allow_multiple': true,
+            'feed_require_login': true,
+          });
+
+          return false;
+        });
+      }
+
       if ($('.facebook-share-call').length) {
         $('.facebook-share-call').click(function() {
           var call = Drupal.settings.call;

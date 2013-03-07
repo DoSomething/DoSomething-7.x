@@ -472,7 +472,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing_2']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '<div class="preview-share">
 <div class="preview"><audio src="[field_celeb_call]"></audio> <a href="[field_celeb_call]">Preview</a></div>
-<div class="share"><span>Share</span></div>
+<div class="share"><a href="#" class="share-single-celeb">Share</a></div>
 </div>';
   $handler->display->display_options['fields']['nothing_2']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing_2']['alter']['absolute'] = 0;
@@ -571,6 +571,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['name_1']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['name_1']['link_to_taxonomy'] = 0;
   $handler->display->display_options['fields']['name_1']['convert_spaces'] = 0;
+  $handler->display->display_options['block_caching'] = '-1';
 
   /* Display: Choose Another Celebrity */
   $handler = $view->new_display('block', 'Choose Another Celebrity', 'block_robocalls_choose_another_celeb');

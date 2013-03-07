@@ -52,7 +52,7 @@ function robocalls_default_fe_block_settings() {
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => -1,
+    'cache' => '-1',
   );
 
   $export['theme']['doit'] = $theme;
@@ -85,7 +85,7 @@ function robocalls_default_fe_block_settings() {
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => -1,
+    'cache' => '-1',
   );
 
   $export['theme']['ds'] = $theme;
@@ -118,7 +118,7 @@ function robocalls_default_fe_block_settings() {
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => -1,
+    'cache' => '-1',
   );
 
   $export['theme']['picsforpets'] = $theme;
