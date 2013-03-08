@@ -1561,9 +1561,6 @@ h2.block-title, h2.pane-title, .logged-in #block-dosomething-login-become-member
 .pane-news-stuff .views-row {
   padding-top: 30px;
 }
-.pane-news-stuff .news-title {
-  padding-top: 15px;
-}
 
 .panes-2 .panel-second ul, .pane-blog-center ul,
 .pane-narrow-block ul {
@@ -6294,8 +6291,8 @@ label[for="edit-submitted-field-webform-email-und-0-value"] .form-required {
 }
 
 #site-name.maintenance-style {
-  top: 0;
-  right: 1%;
+  top: 5%;
+  right: 2%;
 }
 #site-name.maintenance-style a {
   width: 75px;
