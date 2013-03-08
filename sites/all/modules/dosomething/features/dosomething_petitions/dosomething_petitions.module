@@ -476,6 +476,15 @@ function dosomething_petitions_email_form_submit($form, $form_state) {
  *  If someone signs a petition, and their email is in this table,
  *  the person who invited them will get an email saying that their
  *  invitee signed!
+ *
+ *  @param int $nid
+ *    The node ID of the petition in question.
+ *
+ *  @param int $uid
+ *    The User ID of the inviter
+ *
+ *  @param string $invite
+ *    The email address of the invitee
  */
 function dosomething_petitions_store_email($nid, $uid, $invite) {
   $data = array(
@@ -611,6 +620,17 @@ function dosomething_petitions_theme($existing, $type, $theme, $path) {
   );
 }
 
+/**
+ *  Forms petition signers' names to be only the first name, and first
+ *  initial of their last name.
+ *
+ *  @param int $nid
+ *    The node ID of the petition in question.
+ *
+ *  @return array
+ *    Returns an array containing the user's first name, last initial,
+ *    and full name.
+ */
 function dosomething_petitions_name($nid) {
   global $user;
   module_load_include('inc', 'webform', 'includes/webform.submissions');
@@ -652,6 +672,10 @@ function dosomething_petitions_name($nid) {
   );
 }
 
+/**
+ *  Implements hook_contact_scraper_emails()
+ *  Sets up emails that will be sent by the contact scraper.
+ */
 function dosomething_petitions_contact_scraper_emails() {
   $emails = array();
   $node = node_load(intval(basename(request_uri())));
