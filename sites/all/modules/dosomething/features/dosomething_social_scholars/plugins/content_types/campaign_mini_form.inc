@@ -72,6 +72,9 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
      'weight' => 1000
   ));
 
+  $from_nid = reset($context)->data->nid;
+  $mailchimp_bucket = reset($context)->data->field_email_mailchimp_bucket[LANGUAGE_NONE][0]['value'];
+
   // Build the container.
   $content['shortform'] = array(
     '#type' => 'container',
@@ -83,9 +86,11 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
     'campaign-short-form' => array(
       '#markup' => theme('sas-campaign-short-form', array(
         'alias' => $alias,
+        'from_nid' => $from_nid,
         'nid' => $campaign->nid,
         'email' => $mail,
         'mobile' => $mobile,
+        'mailchimp_bucket' => $mailchimp_bucket,
       )),
     ),
   );
