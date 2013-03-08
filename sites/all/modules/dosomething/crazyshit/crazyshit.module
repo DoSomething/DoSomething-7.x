@@ -1052,7 +1052,8 @@ function crazyshit_fboauth_redirect($destination) {
 		// Add email to MailChimp group
 	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
 		
-               $mail_status = crazyshit_mail_send($email);
+	       // Send email message, start with '', build content from tpl file.
+               $mail_status = crazyshit_mail_send($email, '');
 
 	       if (!$mail_status) {
 	         watchdog('crazyshit', 'Failed to send welcome message after user registration: %email using the parameters: %param',
@@ -1363,7 +1364,7 @@ function crazyshit_mail_send($email, $message) {
   // called. This defaults to TRUE, and is normally what you want unless you
   // need to do additional processing before drupal_mail_send() is called.
   $send = TRUE;
-  // Send the mail, and check for success. Note that this does not guarantee
+  // Send the mail and check for success. Note that this does not guarantee
   // message delivery; only that there were no PHP-related issues encountered
   // while sending.
   $result = drupal_mail($module, $key, $to, $language, $message, $from, $send);
