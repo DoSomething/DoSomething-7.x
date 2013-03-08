@@ -74,7 +74,11 @@
       delete Drupal.behaviors.dosomethingLoginRegister;
       delete Drupal.behaviors.dosomethingLoginLogin;
       delete Drupal.behaviors.dosomethingPetitions;
-      
+ 
+      if (!url) {
+        url = document.location.href;
+      }
+
       var popupForm = $('#dosomething-login-register-popup-form');
       var loginForm = $('#dosomething-login-login-popup-form');
 
@@ -100,7 +104,7 @@
       // change the text of the popup
       popupForm.find('#edit-title-text label')
         .text("Shared.")
-        .after('<h2>Now become a member of DoSomething.ogr and reap the benefits, such as scholarships, pizza parties and more.</h2>');
+        .after('<h2>Now become a member of DoSomething.org and reap the benefits, such as scholarships, pizza parties and more.</h2>');
 
       loginForm.find('#edit-title-text--2 label')
         .text("Shared.")
