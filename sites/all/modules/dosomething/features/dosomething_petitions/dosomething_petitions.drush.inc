@@ -54,11 +54,11 @@ function drush_dosomething_petitions_petitions_check_counts() {
         $bypass_update = variable_get('petitions_bypass_' . $nid, 0);
 
         // Ignore this petition if we're bypassing it.
-        if ($bypass_count) {
+        if ($bypass_update) {
           continue;
         }
 
-          // "Real" petition count.
+        // "Real" petition count.
         $real_count = webform_get_submission_count($nid);
 
         // "Current" count
