@@ -11,7 +11,8 @@ function dosomething_petitions_petition_progress_ctools_content_types() {
 
 function dosomething_petitions_petition_progress_content_type_render($subtype, $conf, $panel_args, $context) {
   $node = menu_get_object();
-  $submission_count = webform_get_submission_count($node->nid);
+
+  $submission_count = variable_get('petitions_signed_count_' . $node->nid);
   $goal = $node->field_petition_goal[LANGUAGE_NONE][0]['value'];
   $percent = round($submission_count / $goal * 100, 4);
   if ($percent > 100) $percent = 100;
