@@ -86,7 +86,10 @@ function submit_emails() {
 }
 
 jQuery(document).ready(function() {
+  console.log("Wait for it..");
+  hide_scraper_loader();
   if (typeof hide_scraper_loader == 'function') {
+    console.log("!");
     hide_scraper_loader();
   }
 
