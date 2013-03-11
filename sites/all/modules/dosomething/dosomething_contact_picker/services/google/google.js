@@ -9,7 +9,7 @@ var google = {
   path: '',
 
   pull: function(token, path) {
-    jQuery.post('/' + google.path + '/gapi.php', { 'do': 'blah', 'key': token }, function(response) {
+    jQuery.post('/contact-picker/google', { 'do': 'blah', 'key': token }, function(response) {
        jQuery('#response').html(response).css('overflow', 'auto');
        jQuery('#check-area, #send-emails, #submit-emails-block').fadeIn('fast');
        jQuery('#loading').fadeOut('fast');

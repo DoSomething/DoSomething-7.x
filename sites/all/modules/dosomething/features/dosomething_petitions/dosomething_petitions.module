@@ -232,9 +232,16 @@ function dosomething_petitions_opt_in($form, $form_state) {
   $sub = $form['#submission']->submitted;
   $val = $sub['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
 
+  $_SESSION['guest_user_info'] = array(
+    'first_name' => $sub['field_webform_first_name'][LANGUAGE_NONE][0]['value'],
+    'last_name' => $sub['field_webform_last_name'][LANGUAGE_NONE][0]['value'],
+    'email' => $val
+  );
+
   $nid = $form_state['values']['details']['nid'];
   $count = variable_get('petitions_signed_count_' . $nid, 0);
   variable_set('petitions_signed_count_' . $nid, ++$count);
+
 
   if (valid_email_address($val)) {
     global $language, $user;
@@ -700,13 +707,24 @@ function dosomething_petitions_contact_scraper_emails() {
     $me = $user->name;
   }
 
+  $email = $user->mail;
+
+  if (!$me) {
+    if (isset($_SESSION['guest_user_info'])) {
+      $me = $_SESSION['guest_user_info']['first_name'];
+      $last = $_SESSION['guest_user_info']['last_name'];
+      $email = $_SESSION['guest_user_info']['email'];
+    }
+  }
+
   // Petitions "client email" link information
   $e = theme('ds_petitions_invite', array(
     'title' => $node->title,
     'nid' => $node->nid,
     'signatures' => $node->goal,
     'url' => $node->link,
-    'first_name' => $me
+    'first_name' => $me,
+    'last_name' => $last
   ));
   $emails['petition']['client_email']['title'] = $node->title . t('- Sign the petition!');
   $emails['petition']['client_email']['body'] = $e;
@@ -721,7 +739,7 @@ function dosomething_petitions_contact_scraper_emails() {
       'url' => $node->link,
       'first_name' => $me,
       'last_name' => $last,
-      'inviter_email' => $user->mail
+      'inviter_email' => $email,
     );
   $emails['petition']['invited']['store_function'] = 'dosomething_petitions_store_email';
 

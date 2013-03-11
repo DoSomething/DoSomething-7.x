@@ -20,7 +20,15 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
     '#weight' => -1
   );
 
+  drupal_add_js(drupal_get_path('module', 'dosomething_contact_picker') . '/js/scraper_init.js',
+    array(
+      'group' => JS_LIBRARY,
+      'preprocess' => FALSE,
+      'every_page' => TRUE
+    )
+  );
   contact_scraper::add_scraper_button($content, 0, array('style' => 'display: inline-block'));
+
   if (preg_match('#\/petition\/put-end-to-bullying#i', request_uri())) {
     $content['invite_by_email'] = array(
       '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
