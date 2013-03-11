@@ -797,14 +797,24 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  else if ($uri == CRAZY_ROOT) {
 	    // Monday is always the start of the week.  Get this week's Monday in days (ago).
 	    $monday = (date('N') - 1);
-	    $query->where[1]['conditions'][1] = array(
-		  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
-		  'value' => array(
+	    if ($monday == 0) {
+		  $query->where[1]['conditions'][1] = array(
+		    'field' => "webform_submissions.submitted >= :today",
+		    'value' => array(':today' => mktime(0, 0, 0)),
+		    'operator' => 'formula',
+		  );
+	    }
+	    else {
+	      $query->where[1]['conditions'][1] = array(
+		    'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
+		    'value' => array(
 			  ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
 			  ':today' => date('Y-m-d'),
-			),
-	  	  'operator' => 'formula',
-	    );
+		    ),
+		    'operator' => 'formula',
+	      );
+		}
+
 	    unset($query->orderby[1]);
 	  }
 
