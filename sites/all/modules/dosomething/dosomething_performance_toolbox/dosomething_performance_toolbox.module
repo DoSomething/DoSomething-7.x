@@ -57,7 +57,7 @@ function dosomething_performance_toolbox_init() {
     
     $loaded = $path;
     
-    // Selectivly add specifically selected webfont combinations css call to pages.
+    // Add specifically selected webfont combinations using drupal_add_css call to pages.
     dosomething_performance_toolbox_webfonts();
     
   }
