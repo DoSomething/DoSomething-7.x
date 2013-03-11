@@ -49,21 +49,13 @@
 <!--[if (gte IE 10)|!(IE)]><!--> <html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?> class="no-js"> <!--<![endif]-->
 
 <head profile="<?php print $grddl_profile; ?>">
+  <!-- MAMP Local -->
   <?php print $head; ?>
  
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php print $head_title; ?></title>
  
-  <?php
-    // Select Rack Space source based on if secure connection
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
-      $rackspace_url = 'https://c308566.ssl.cf1.rackcdn.com';
-    } else {
-      $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
-    }
-  ?>
-  <link rel="stylesheet" href="<?php print $rackspace_url ?>/din.css" media="all" />
   <?php print $styles; ?>
   <?php print $shiv; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>

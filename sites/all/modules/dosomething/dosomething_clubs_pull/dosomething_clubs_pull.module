@@ -156,7 +156,8 @@ class clubs_export {
       $nopage = false;
     }
 
-    if (!intval($_GET['limit'])) {
+    $limit = $_GET['limit'];
+    if (!intval($limit)) {
       $limit = CLUB_PULL_LIMIT;
     }
     else {
@@ -166,7 +167,8 @@ class clubs_export {
     $start = (!$nopage ? ($page * ($limit)) : 0);
     if (!$nopage) { $page++; }
 
-    if ($_GET['debug']) {
+    $get_debug = $_GET['debug'];
+    if ($get_debug) {
       exit;
     }
 

@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "din-web";
+  src: url('DINWeb-CondMedium.eot');
+  src: url('DINWeb-CondMedium.eot?iefix') format('eot'), url('DINWeb-CondMedium.woff') format('woff');
+  font-style: normal;
+  font-weight: 500;
+}

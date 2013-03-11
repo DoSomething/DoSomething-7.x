@@ -208,56 +208,6 @@ function dosomething_general_page_alter(&$page) {
 }
 
 /**
- * Implements hook_js_alter().
- */
-function dosomething_general_js_alter(&$javascript) {
-  // Set all aggregated javascript to the JS_DEFAULT group.
-  // Possible values: JS_LIBRARY, JS_DEFAULT, and JS_THEME
-  // This prevents individual js files per group
-  uasort($javascript, 'drupal_sort_css_js');
-  $i = 0;
-  foreach ($javascript as $name => $script) {
-    $javascript[$name]['weight'] = $i++;
-    $javascript[$name]['group'] = JS_DEFAULT;
-    $javascript[$name]['every_page'] = FALSE;
-  }
-}
-
-/**
- * Implements hook_css_alter().
- *
- * Added to control how css files are grouped together when agrigration is enabled
- * Note condition added to break the grouping into two sets as grouping everything
- * into a single file was result in a file that contained over 
- */
-
- /* Pulled due to continued IE8 issues
-  * 
-function dosomething_general_css_alter(&$css) {
-  // Set all aggregated css to the CSS_DEFAULT group.
-  // This prevents individual css files per group
-  // Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
-  
-  uasort($css, 'drupal_sort_css_js');
-  $i = 0;
-  foreach ($css as $name => $style) {
-    $css[$name]['weight'] = $i++;
-    
-    // Break grouping into two sets - CSS_SYSTEM, (-100) and the rest
-    if ($style['group'] == -100) {
-      $css[$name]['group'] = CSS_SYSTEM;
-    }
-    else {
-      $css[$name]['group'] = CSS_DEFAULT;
-    }
-    
-    $css[$name]['every_page'] = FALSE;
-  }
-}
-
-*/
-
-/**
  * Implements hook_theme().
  */
 function dosomething_general_theme($existing, $type, $theme, $path) {
