@@ -1752,8 +1752,7 @@ function dosomething_general_user_logout($account) {
  *  @return string
  *    The cleaned string.
  */
-
 function dosomething_general_clean_string($string, $nix = '[^A-Za-z0-9\-\_]', $replace_with = '_') {
-  $string = preg_replace('#' . $nix . '#i', '_', $string);
+  $string = preg_replace('#' . $nix . '#i', $replace_with, $string);
   return $string;
 }
