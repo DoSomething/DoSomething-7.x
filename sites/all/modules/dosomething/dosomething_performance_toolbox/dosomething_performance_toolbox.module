@@ -1,0 +1,205 @@
+<?php
+/**
+ * A collection of functionality related to website performance.
+ *
+ * In an effort to reduce lantancy (the time it takes a connection to start and finish)
+ * the web sides load time can be improved by reducding the number of connections necessary
+ * to assemble a page.
+ *
+ * These tools are an attempt to address this issue.
+ * 
+ **/
+
+/*
+ * 'group': A number identifying the group in which to add the stylesheet. Available constants are:
+ * 
+ * CSS_SYSTEM (-100): Any system-layer CSS.
+ * CSS_DEFAULT (0 - default): (default) Any module-layer CSS.
+ * CSS_THEME (100): Any theme-layer CSS.
+ * 
+ * The group number serves as a weight: the markup for loading a stylesheet within a lower weight
+ * group is output to the page before the markup for loading a stylesheet within a higher weight
+ * group, so CSS within higher weight groups take precendence over CSS within lower weight groups.
+ * 
+ */
+
+// Constant used to group CSS for aggregation, the higher the value the sooner it will be loaded
+define('CSS_WEBFONTS', 200);
+
+/**
+ * Perform setup tasks for non-cached page requests.
+ *
+ * This hook is run at the beginning of the page request. It is typically used to set up
+ * global parameters that are needed later in the request. When this hook is called, the
+ * theme and all modules are already loaded in memory.
+ * 
+ * This hook is not run on cached pages.
+ *
+ * To add CSS or JS that should be present on all pages, modules should not implement this
+ * hook, but declare these files in their .info file.
+ *
+ * http://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_page_alter/7
+ *
+ * Fires injection code in dosomething_performance_toolbox_webfonts to selectivly add css for webfonts.
+ * Perform alterations before a page is rendered. Use this hook when you want to remove or alter elements
+ * at the page level, or add elements at the page level that depend on an other module's elements In this
+ * case is a selective process of choosing specific webfont by page URL in an effort to only load what is
+ * needed.
+ */
+function dosomething_performance_toolbox_init() {
+  
+  // Flags to prevent access from URL (AJAX) other than orginal path  
+  GLOBAL $loaded;
+  $path = $_SERVER['REQUEST_URI'];
+  
+  if ($loaded == $path) {
+    
+    $loaded = $path;
+    
+    // Selectivly add specifically selected webfont combinations css call to pages.
+    dosomething_performance_toolbox_webfonts();
+    
+  }
+    
+}
+ 
+ /**
+ * Construct a <link> tag for the page head that calls a css file that contains @webfont
+ * definitions based on the specific page contents. A default list of webfonts is loaded
+ * but in some cases custom css files are defined for specific page or path resulting in a
+ * shorter list. The less number of files / calls needed to define a page results in less
+ * latency and faster load time.
+ *
+ * The effectivitness of adjusting these lists is dependent on the user not already having the webfont
+ * on their local machine. They may have visted our site before or visited a different site that also
+ * uses the same webfonts.
+ *
+ * The goal is to speed page load times for users visting the site and the specific page for
+ * the first time.
+ */
+function dosomething_performance_toolbox_webfonts() {
+  
+      // Select Rack Space source based on secure connection
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+      $rackspace_url = 'https://c308566.ssl.cf1.rackcdn.com';
+    } else {
+      $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
+    }
+
+    // Add font file groupings to specific CSS CSS_WEBFONTS group
+    $options['group'] = CSS_WEBFONTS;
+    
+    // All webfont files are coming from the CDN thus making them external files
+    // Externally hosted stylesheets are never aggregated or compressed.
+    $options['type'] = 'external';
+    
+    if ($_SERVER['REQUEST_URI'] == '/') { // Site front page: 
+    
+      // 1+16+32+2 = 51
+      $data = $rackspace_url .'/'.'din-51.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/teensforjeans') != FALSE) { // /teensforjeans
+        
+      // 1+12_6+32+256+64 = 371
+      $data = $rackspace_url .'/'.'din-371.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /calloffame
+        
+      // 1+64+32+2
+      $data = $rackspace_url .'/'.'din-99.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /activist
+        
+      // 256+32+1+16+64
+      $data = $rackspace_url .'/'.'din-369.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/cleanup') != FALSE) { // /cleanup
+        
+      // 1+32+64
+      $data = $rackspace_url .'/'.'din-97.css'; 
+      
+    } elseif ($_SERVER['REQUEST_URI'] == '/tipsandtools') { // /tipsandtools
+        
+      // 1+32+2
+      $data = $rackspace_url .'/'.'din-35.css';
+      
+    } elseif (strpos( $_SERVER['REQUEST_URI'], '/social-scholarship/') != FALSE) { // /scholarships
+
+      // 1+2+64+256+32
+      $data = $rackspace_url .'/'.'din-355.css';
+
+    } else {
+        
+      // Define path to DEFAULT font CSS file for general application to site 1+2+4+8+16+32+64+128a+256 
+      $data = $rackspace_url .'/'.'din-511.css';
+
+    }
+    
+    // Add stylesheet call to CSS stack, note change in drupal_add_css values based on addition of specific CSS
+    // hook_css_alter uses these values to custom aggregate CSS based on groups
+    // http://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_add_css/7
+    drupal_add_css($data, $options);
+  
+  }
+  
+/**
+ * Implements hook_css_alter().
+ *
+ * Drupal 7: Taking control of CSS and JS aggregation
+ * http://www.metaltoad.com/blog/drupal-7-taking-control-css-and-js-aggregation
+ *
+ * Added to control how css files are grouped together when agrigration is enabled
+ * Note condition added to break the grouping into two sets as grouping everything
+ * into a single file was result in a file that contained over 
+ * @param &$css
+ *   Users email address.
+ */
+    
+function dosomething_performance_toolbox_css_alter(&$css) {
+    
+    // From common.inc, ln: 3121
+    // If the item can be grouped with other items, set $group_keys to an array
+    // of information that must be the same for all items in its group. If the
+    // item can't be grouped with other items, set $group_keys to FALSE. We
+    // put items into a group that can be aggregated together: whether they will
+    // be aggregated is up to the _drupal_css_aggregate() function or an
+    // override of that function specified in hook_css_alter(), but regardless
+    // of the details of that function, a group represents items that can be
+    // aggregated. Since a group may be rendered with a single HTML tag, all
+    // items in the group must share the same information that would need to be
+    // part of that HTML tag.
+    
+    // Set all aggregated css to the CSS_DEFAULT group.
+    // This prevents individual css files per group
+    // Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
+  
+    uasort($css, 'drupal_sort_css_js');
+    $i = 0;
+    foreach ($css as $name => $style) {
+      $css[$name]['weight'] = $i++;
+      $css[$name]['group'] = CSS_DEFAULT;
+      $css[$name]['every_page'] = FALSE;
+    }
+  
+}
+
+/**
+ * Implements hook_js_alter().
+ *
+ * Added to control how css files are grouped together when agrigration is enabled
+ * Note condition added to break the grouping into two sets as grouping everything
+ * into a single file was result in a file that contained over 
+ * @param &$javascript
+ *   The campaign name that the email is to be subscribed to.
+ */
+
+function dosomething_performance_toolbox_js_alter(&$javascript) {
+    
+  uasort($javascript, 'drupal_sort_css_js');
+  $i = 0;
+  foreach ($javascript as $name => $script) {
+    $javascript[$name]['weight'] = $i++;
+    $javascript[$name]['group'] = JS_DEFAULT;
+    $javascript[$name]['every_page'] = FALSE;
+  }
+}
