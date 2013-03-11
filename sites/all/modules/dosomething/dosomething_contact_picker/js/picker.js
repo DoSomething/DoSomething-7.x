@@ -86,12 +86,11 @@ function submit_emails() {
 }
 
 jQuery(document).ready(function() {
-  console.log("Wait for it..");
-  hide_scraper_loader();
-  if (typeof hide_scraper_loader == 'function') {
-    console.log("!");
-    hide_scraper_loader();
-  }
+  $('.remove-that-loader', window.parent.document).hide();
+  //hide_scraper_loader();
+  //if (typeof hide_scraper_loader == 'function') {
+  //  hide_scraper_loader();
+  //}
 
   jQuery('#contacts-scraper-dialog', window.parent.document).css('height', 'auto');
 });
