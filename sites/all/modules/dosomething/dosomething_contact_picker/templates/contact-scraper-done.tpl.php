@@ -10,7 +10,7 @@
   <body>
     <script type="text/javascript">
     <!--
-    window.parent.close_scraper_and_load_long_form();
+        window.parent.close_scraper_and_load_long_form();
     -->
     </script>
     <h1>Done.</h1>

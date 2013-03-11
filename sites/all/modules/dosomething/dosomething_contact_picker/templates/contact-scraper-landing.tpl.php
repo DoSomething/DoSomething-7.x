@@ -7,6 +7,13 @@
     <script src="/<?php echo drupal_get_path('module', 'dosomething_contact_picker'); ?>/js/picker.js"></script>
     <link rel="stylesheet" type="text/css" href="/<?php echo drupal_get_path('module', 'dosomething_contact_picker'); ?>/css/picker.css" />
     <?php echo $s['scripts']; ?>
+
+    <script type="text/javascript">
+    <!--
+      var e_body = "<?php echo ($email_body); ?>";
+      var e_title = "<?php echo ($email_title); ?>";
+    -->
+    </script>
   </head>
   <body>
     <h1 id="connect-message">Connect your email address book to email your contacts:</h1>
