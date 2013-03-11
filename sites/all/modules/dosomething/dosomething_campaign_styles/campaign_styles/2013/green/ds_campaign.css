@@ -1008,7 +1008,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       background: white;
       border: 1px solid #c1c1c1;
       font-family: "Helvetica Neue", Arial, sans-serif; }
-    #cmp .panel-top-right-social .service-links-print {
+    #cmp .panel-top-right-social .service-links-print, #cmp .panel-top-right-social .twitter-share-button {
       display: none; }
   #cmp .section#header {
     background: url("http://files.dosomething.org/files/campaigns/green/header-bg.jpg") top center no-repeat;
