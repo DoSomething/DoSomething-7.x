@@ -48,7 +48,8 @@ define('CSS_WEBFONTS', 200);
  */
 function dosomething_performance_toolbox_init() {
   
-  // Flags to prevent access from URL (AJAX) other than orginal path  
+  // Flags to prevent access from URL (AJAX) other than orginal path.
+  // hook_init will double fire if there are AJAX calls on the page. 
   GLOBAL $loaded;
   $path = $_SERVER['REQUEST_URI'];
   
@@ -78,9 +79,11 @@ function dosomething_performance_toolbox_init() {
  * the first time.
  */
 function dosomething_performance_toolbox_webfonts() {
+    
+    $https = $_SERVER['HTTPS'];
   
       // Select Rack Space source based on secure connection
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+    if (isset($https) && $https == 'on') {
       $rackspace_url = 'https://c308566.ssl.cf1.rackcdn.com';
     } else {
       $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
@@ -93,37 +96,39 @@ function dosomething_performance_toolbox_webfonts() {
     // Externally hosted stylesheets are never aggregated or compressed.
     $options['type'] = 'external';
     
-    if ($_SERVER['REQUEST_URI'] == '/') { // Site front page: 
+    $request_uri = $_SERVER['REQUEST_URI'];
+    
+    if ($request_uri == '/') { // Site front page: 
     
       // 1+16+32+2 = 51
       $data = $rackspace_url .'/'.'din-51.css';
       
-    } elseif (strpos( $_SERVER['REQUEST_URI'], '/teensforjeans') != FALSE) { // /teensforjeans
+    } elseif (strpos( $request_uri, '/teensforjeans') != FALSE) { // /teensforjeans
         
       // 1+12_6+32+256+64 = 371
       $data = $rackspace_url .'/'.'din-371.css';
       
-    } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /calloffame
+    } elseif (strpos( $request_uri, '/calloffame') != FALSE) { // /calloffame
         
       // 1+64+32+2
       $data = $rackspace_url .'/'.'din-99.css';
       
-    } elseif (strpos( $_SERVER['REQUEST_URI'], '/calloffame') != FALSE) { // /activist
+    } elseif (strpos( $request_uri, '/activist') != FALSE) { // /activist
         
       // 256+32+1+16+64
       $data = $rackspace_url .'/'.'din-369.css';
       
-    } elseif (strpos( $_SERVER['REQUEST_URI'], '/cleanup') != FALSE) { // /cleanup
+    } elseif (strpos( $request_uri, '/cleanup') != FALSE) { // /cleanup
         
       // 1+32+64
       $data = $rackspace_url .'/'.'din-97.css'; 
       
-    } elseif ($_SERVER['REQUEST_URI'] == '/tipsandtools') { // /tipsandtools
+    } elseif ( $request_uri == '/tipsandtools') { // /tipsandtools
         
       // 1+32+2
       $data = $rackspace_url .'/'.'din-35.css';
       
-    } elseif (strpos( $_SERVER['REQUEST_URI'], '/social-scholarship/') != FALSE) { // /scholarships
+    } elseif (strpos( $request_uri, '/social-scholarship/') != FALSE) { // /scholarships
 
       // 1+2+64+256+32
       $data = $rackspace_url .'/'.'din-355.css';
