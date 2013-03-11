@@ -23,29 +23,14 @@ function dosomething_contact_picker_menu() {
   );
 
   $items['contact-picker/google'] = array(
-  	'page callback' => 'contact_picker_handle_google',
+  	'page callback' => 'dosomething_contact_picker_handle_google',
   	'access callback' => TRUE,
   );
 
   return $items;
 }
 
-function clean_email($email) {
-  $email = preg_replace('#[^A-Za-z0-9\-\_]#i', '_', $email);
-  return $email;
-}
-
-function associate_emails($emails, $names) {
-  foreach ($emails AS $key => $email) {
-    $list["$email"] = $names["$key"];
-  }
-
-  ksort($list);
-  return $list;
-}
-
-
-function contact_picker_handle_google() {
+function dosomething_contact_picker_handle_google() {
 $node = json_decode(base64_decode(($_GET['nid']))); 
 if ($_POST['do'] == 'blah') {
   require_once DRUPAL_ROOT . '/google-api-php-client/src/apiClient.php';
@@ -97,7 +82,7 @@ if ($_POST['do'] == 'blah') {
       if (!empty($s['e'])) {
         $res .= '
         <li>
-          <input type="checkbox" class="email-checkbox" checked="checked" name="emails[]" value="' . $s['e'] . '" id="' . clean_email($s['e']) . '" />
+          <input type="checkbox" class="email-checkbox" checked="checked" name="emails[]" value="' . $s['e'] . '" id="' . dosomething_general_clean_string($s['e']) . '" />
           <strong>' . $s['e'] . '</strong>
           <span>' . $s['n'] . '</span>
         </li>';

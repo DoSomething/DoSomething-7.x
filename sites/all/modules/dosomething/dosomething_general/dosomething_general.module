@@ -1735,3 +1735,25 @@ function dosomething_general_user_logout($account) {
   $goto = str_replace('http://' . $_SERVER['HTTP_HOST'] . '/', '', $_SERVER['HTTP_REFERER']);
   $_GET['destination'] = $goto;
 }
+
+/**
+ *  Cleans a string of risky characters and replaces them.
+ *
+ *  @param string $string
+ *    The string you want to clean.
+ *
+ *  @param string $nix
+ *    The characters that should be replaced.  Must be a valid regular expression,
+ *    given two '#' delimiters.
+ *
+ *  @param string $replace_with
+ *    What to replace the unneeded characters with.
+ *
+ *  @return string
+ *    The cleaned string.
+ */
+
+function dosomething_general_clean_string($string, $nix = '[^A-Za-z0-9\-\_]', $replace_with = '_') {
+  $string = preg_replace('#' . $nix . '#i', '_', $string);
+  return $string;
+}
