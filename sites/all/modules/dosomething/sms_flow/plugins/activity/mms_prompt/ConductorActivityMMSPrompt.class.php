@@ -5,13 +5,16 @@
  * image in return.
  */
 class ConductorActivityMMSPrompt extends ConductorActivitySMSPrompt {
+
+  // If FALSE, image is already incoming without the need for a prompt
+  public $should_prompt = TRUE;
   
   public function run($workflow) {
     $state = $this->getState();
 
     // If :has_prompted is not set, then this is first time through the activity
     // and should prompt the user with the question
-    if ($state->getContext($this->name . ':has_prompted') === FALSE) {
+    if ($state->getContext($this->name . ':has_prompted') === FALSE && $this->should_prompt) {
       $state->setContext($this->name . ':has_prompted', TRUE);
       parent::run();
     }
