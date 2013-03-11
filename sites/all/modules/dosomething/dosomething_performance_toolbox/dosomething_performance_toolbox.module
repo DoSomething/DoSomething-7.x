@@ -96,9 +96,10 @@ function dosomething_performance_toolbox_webfonts() {
     // Externally hosted stylesheets are never aggregated or compressed.
     $options['type'] = 'external';
     
-    $request_uri = $_SERVER['REQUEST_URI'];
-    
-    if ($request_uri == '/') { // Site front page: 
+    // http://api.drupal.org/api/drupal/includes!bootstrap.inc/function/request_uri/7
+    $request_uri = request_uri();
+
+    if ($request_uri == '/') { // Site front page
     
       // 1+16+32+2 = 51
       $data = $rackspace_url .'/'.'din-51.css';
@@ -123,7 +124,7 @@ function dosomething_performance_toolbox_webfonts() {
       // 1+32+64
       $data = $rackspace_url .'/'.'din-97.css'; 
       
-    } elseif ( $request_uri == '/tipsandtools') { // /tipsandtools
+    } elseif (strpos( $request_uri, '/tipsandtools') != FALSE) { // /tipsandtools
         
       // 1+32+2
       $data = $rackspace_url .'/'.'din-35.css';
