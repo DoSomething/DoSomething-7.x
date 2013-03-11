@@ -1,0 +1,29 @@
+name = DoSomething Flatiron
+description = A clean, responsive theme for <a href="http://www.dosomething.org">DoSomething.org</a>
+package = DoSomething
+version = VERSION
+core = 7.x
+
+; stylesheets
+
+; stylesheets - system
+stylesheets[all][] = system.base.css
+stylesheets[all][] = system.menus.css
+stylesheets[all][] = system.messages.css
+stylesheets[all][] = system.theme.css
+
+; stylesheets - theme
+stylesheets[all][] = css/style.css
+
+; regions
+regions[utility] = Utility Bar
+regions[navigation] = Navigation
+regions[header] = Header
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[page_top] = Page Top
+regions[sidebar_first]  = Left sidebar
+# regions[sidebar_second] = Right sidebar
+regions[content] = Content
+regions[page_bottom] = Page Bottom
+regions[footer] = Footer
