@@ -22,7 +22,7 @@ function dosomething_mobile_referral_form_module_implements_alter(&$implementati
 function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form_id) {
   $node = menu_get_object();
 
-  $editing = preg_match('#^\/node\/[0-9]+\/(webform|edit)#i', request_uri());
+  /*$editing = preg_match('#^\/node\/[0-9]+\/(webform|edit)#i', request_uri());
   if ($editing) {
     return;
   }
@@ -83,16 +83,14 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
     }
 
     $form['#submit'][] = 'dosomething_mobile_referral_form_wild_submit';
-  }
+  }*/
 
-  if ((isset($form_state['build_info']['args'][0]->title)
-    && $form_state['build_info']['args'][0]->title == 'Mobile Referral Form'
-    && $node->nid) || (!empty($form_state['build_info']['args'][0]) && isset($form_state['build_info']['args'][0]->field_ref_use_default_styles[LANGUAGE_NONE][0]['value']))) {
-    drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/css/mobile_referrals.css', array(
+  if (isset($node->type) && $node->type == 'mobile_referral_form') {
+    /*drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/css/mobile_referrals.css', array(
         'group' => CSS_THEME,
         'weight' => 10
-    ));
-    drupal_add_js(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/js/mobile_referrals.js');
+    ));*/
+    #drupal_add_js(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/js/mobile_referrals.js');
 
     if (!isset($form_state['goto']) && !isset($_SESSION['goto'])) {
       $_SESSION['goto'] = $_SERVER['REQUEST_URI'];
@@ -100,7 +98,7 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
     }
     $u = &$form['submitted'];
 
-    $form['actions']['submit']['#value'] = 'SEND';
+#    $form['actions']['submit']['#value'] = 'SEND';
     $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
     if (!user_is_logged_in()) {
       $form['actions']['submit']['#ajax'] = array(

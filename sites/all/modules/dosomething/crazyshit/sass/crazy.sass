@@ -113,7 +113,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     text-transform: uppercase
     &:hover
       text-decoration: none
-
+    
 // NAV
 // ---
 
@@ -128,6 +128,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     width: 100%
   li
     width: 25%
+    margin: 0 0 -5px 0
   a
     font-size: 25px
     line-height: 50px
@@ -136,13 +137,33 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
       color: $accent_color
     @media only screen and (max-width: 650px)
       font-size: 17px
-      line-height: 35px
+      line-height: 45px
 
   a.active
     color: $accent_color
     &:hover
       color: $accent_color
 
+  .last /* styles [submit] as a button */
+    background-image: -webkit-linear-gradient(top, rgb(225, 19, 19), rgb(180, 16, 16))
+    margin: 7px 0 0 0
+    width: 15%
+    height: 30px
+    @media only screen and (max-width: 650px)
+      width: 20%
+      height: 25px
+    +border-radius(3px)
+    a
+      margin: -8px 0 0 0
+      font-size: 20px
+      opacity: 0.9
+      @media only screen and (max-width: 650px)
+        font-size: 15px
+      &:hover
+        color: #fff
+
+  .last a.active /* when [submit] nave is selected -- do not display active color */
+    color: #fff
 
 // FILTERS
 // -------
@@ -180,6 +201,29 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     &:hover
       color: #fff
 
+// SUB-NAV HEADER TEXT
+// -------------------
+.scroll-header-style
+  width: 500px
+  margin: 2% auto 0
+  @media only screen and (max-width: 700px)
+    width: 430px
+  @media only screen and (max-width: 450px)
+    width: 94%
+    margin: 3% auto 0
+  h1, h2
+    text-transform: uppercase
+    text-align: left
+  h1
+    font-size: 30px
+    font-weight: 600
+    color: #222
+    margin: 0
+    @media only screen and (max-width: 450px)
+      font-size: 21px
+  h2
+    color: rgb(204, 36, 36) 
+
 // GENERAL LAYOUT
 // --------------
 
@@ -203,7 +247,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   @media only screen and (max-width: 700px)
     width: 430px
     padding: 10px 20px 0
-  @media only screen and (max-width: 400px)
+  @media only screen and (max-width: 450px)
     margin: 2% auto
     padding: 10px 5px 0
     width: 98%
@@ -219,6 +263,11 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     width: 50px
     margin: 0 auto
     padding: 0 0 10px 0
+
+.go-to-gallery
+  text-align: center
+  text-transform: uppercase
+  display: block
 
 .flag
   clear: both
@@ -351,7 +400,6 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 
 // PAGINATION
 // ----------
-
 .item-list .pager /* hides the default Drupal pagination links save [prev] & [next]*/
   .pager-current,  .pager-item,  .pager-ellipsis, .pager-first, .pager-last
     display: none
@@ -370,3 +418,20 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   .pager-next
     float: right
     
+// ERROR MESSAGES
+// --------------
+#page .messages /* increased specificity to over-ride do it theme styles */
+  width: 500px
+  margin: 0 auto
+  border: none
+  background: inherit
+  font-size: 15px
+  color: #222
+  .placeholder /* styles file name & file size */
+    background: rgb(230, 183, 183)
+    padding: 0 0.3em
+    +border-radius(2px)
+  @media only screen and (max-width: 700px)
+    width: 430px
+  @media only screen and (max-width: 400px)
+    width: 98%

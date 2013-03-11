@@ -151,7 +151,10 @@ body {
   border-radius: 4px; }
 
 .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
-.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav {
+.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav,
+.node-type-campaign-sign-up #block-dosomething-campaign-styles-campaign-nav,
+.page-team #block-dosomething-campaign-styles-campaign-nav,
+.page-node-728531 #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -414,18 +417,8 @@ body {
   background: white;
   max-width: 500px;
   margin: 6% auto;
-  padding: 2%;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px; }
+  padding: 2%; }
   #sign-up .panel-pane, #sign-up form, #report-back .panel-pane, #report-back form {
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    border-radius: 8px;
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     -o-box-shadow: none !important;
@@ -989,10 +982,40 @@ div[aria-labelledby="ui-dialog-title-1"] {
     -o-border-radius: 5px;
     border-radius: 5px;
     text-decoration: none; }
+  #cmp .panel-top-right-social {
+    float: right;
+    margin: 10px 0; }
+    #cmp .panel-top-right-social a {
+      text-decoration: none; }
+    #cmp .panel-top-right-social #facebook-wrapper {
+      margin-right: 10px; }
+    #cmp .panel-top-right-social #ds-facebook-share-button {
+      font-size: 10.5px;
+      padding: 1px 5px;
+      color: #333333;
+      border: 1px solid #cccccc; }
+      #cmp .panel-top-right-social #ds-facebook-share-button b {
+        font-weight: bold;
+        color: #333333; }
+    #cmp .panel-top-right-social #facebook-count {
+      margin-top: -2px;
+      padding: 3px;
+      font-size: 8pt;
+      text-decoration: none;
+      color: #333333; }
+    #cmp .panel-top-right-social .arrow_box {
+      position: relative;
+      background: white;
+      border: 1px solid #c1c1c1;
+      font-family: "Helvetica Neue", Arial, sans-serif; }
+    #cmp .panel-top-right-social .service-links-print {
+      display: none; }
   #cmp .section#header {
     background: url("http://files.dosomething.org/files/campaigns/green/header-bg.jpg") top center no-repeat;
     margin-bottom: 2%; }
   #cmp #header {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: left;
     padding: 0; }
     #cmp #header h1, #cmp #header h2 {
@@ -1001,9 +1024,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
       margin: 0; }
     #cmp #header .headline {
       max-width: 800px;
-      margin: 0 auto 10%; }
+      margin: 0 auto; }
     #cmp #header h1 {
-      margin: 1.5% 0 1.5% 1.5%;
+      margin: 1.5%;
       background: #50b848;
       zoom: 1;
       filter: alpha(opacity=85);
@@ -1033,11 +1056,22 @@ div[aria-labelledby="ui-dialog-title-1"] {
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
-      margin: 0 0 1.5% 1.5%;
+      margin: 1.5% 1.5% 17%;
       float: left;
-      clear: both;
       font-size: 1.2em;
       padding: 1% 1.5%; }
+    #cmp #header .date {
+      color: white;
+      background: #231f20;
+      zoom: 1;
+      filter: alpha(opacity=85);
+      opacity: 0.85;
+      margin: 5% 1.5% 1.5% 1.5%;
+      float: right;
+      clear: both;
+      font-size: 1.2em;
+      padding: 1% 1.5%;
+      text-transform: uppercase; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -1103,22 +1137,31 @@ div[aria-labelledby="ui-dialog-title-1"] {
       font-size: 1.4em;
       line-height: 1.2em;
       margin-bottom: 1em; }
-    #cmp #scholarship .third {
-      float: left;
-      width: 33%; }
-      #cmp #scholarship .third h3 {
-        font-size: 4em;
-        font-weight: 600; }
-      #cmp #scholarship .third h4 {
-        text-transform: uppercase;
-        font-size: 1.8em;
-        font-weight: 500; }
-      #cmp #scholarship .third p {
-        padding-top: 1.2em;
-        font-size: 1.8em;
-        font-weight: 600; }
+    #cmp #scholarship .third h3 {
+      font-size: 2.8em;
+      font-weight: 600;
+      line-height: 1.1em;
+      margin-top: 0.2em; }
+    #cmp #scholarship .third h4 {
+      text-transform: uppercase;
+      font-size: 1.8em;
+      font-weight: 500; }
+    #cmp #scholarship .third p {
+      padding-top: 1.2em;
+      font-size: 1.8em;
+      font-weight: 600; }
+    #cmp #scholarship .third p.head {
+      font-size: 1em;
+      font-weight: 500;
+      color: black; }
     #cmp #scholarship .go-button {
-      font-size: 2.4em; }
+      font-size: 2.4em;
+      margin-top: 1%; }
+    #cmp #scholarship a.rules {
+      color: white;
+      font-size: 0.8em;
+      font-weight: 400;
+      text-transform: none; }
   #cmp #impact p {
     max-width: 350px;
     margin: 0 auto; }
@@ -1262,8 +1305,13 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #teeth .bottom-h2 {
       margin-bottom: 0; }
     #cmp #teeth .go-button {
-      margin: 0.4em auto 1em;
+      margin: 0.4em auto 0.8em;
       font-size: 2em; }
+    #cmp #teeth a.rules {
+      font-size: 0.8em;
+      font-weight: 400;
+      text-transform: none;
+      margin-bottom: 1em; }
   #cmp #square-wrap {
     margin: 0 auto;
     max-width: 650px; }
@@ -1426,7 +1474,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
   #cmp #sign-up input {
     margin-bottom: 10px; }
   #cmp #report-back {
-    margin-top: 30%;
+    margin-top: 3%;
     border: none;
     width: 70%;
     padding: 1% 2%;
@@ -1490,6 +1538,32 @@ div[aria-labelledby="ui-dialog-title-1"] {
       font-size: 1.1em; }
     #cmp #report-back label[for="edit-submitted-ew"] {
       color: #999999; }
+  #cmp .order-form#report-back #edit-submitted-field-webform-school-reference,
+  #cmp .order-form#report-back #edit-submitted-field-webform-school,
+  #cmp .order-form#report-back #edit-submitted-field-webform-school-zip {
+    display: block !important;
+    background: #f1f1f1;
+    border: 2px solid #e1e1e1;
+    padding: 1% 3% 1.5%;
+    margin: 2% 0;
+    max-width: 375px;
+    border-radius: 6px;
+    -o-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px; }
+    #cmp .order-form#report-back #edit-submitted-field-webform-school-reference legend,
+    #cmp .order-form#report-back #edit-submitted-field-webform-school legend,
+    #cmp .order-form#report-back #edit-submitted-field-webform-school-zip legend {
+      margin-bottom: 0.3em; }
+    #cmp .order-form#report-back #edit-submitted-field-webform-school-reference span,
+    #cmp .order-form#report-back #edit-submitted-field-webform-school span,
+    #cmp .order-form#report-back #edit-submitted-field-webform-school-zip span {
+      font-weight: 400;
+      font-size: 1.5em;
+      text-transform: uppercase; }
+  #cmp .order-form#report-back p {
+    margin-bottom: 1em;
+    font-size: 1.4em; }
   #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
     font-family: din-web;
     background: #ffcb15;
@@ -1599,6 +1673,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #report-back {
       width: 100%; } }
   @media only screen and (max-width: 550px) {
+    #cmp #header .subhead {
+      margin-bottom: 30%; }
     #cmp #scholarship h3:before, #cmp #scholarship h3:after {
       display: none; }
     #cmp #scholarship .third {

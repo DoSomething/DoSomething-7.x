@@ -215,6 +215,13 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
     'dosomething_general_facebook_friend_pic' => array(
       'variables' => array('fbid' => NULL, 'uid' => NULL, 'image_style' => NULL),
     ),
+    'mc-response' => array(
+      'path' => $path . '/templates',
+      'template' => 'mc-response',
+      'variables' => array(
+        'message' => NULL,
+      ),
+    ),
   );
 }
 
@@ -945,6 +952,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
 
+  $email = $cell = '';
   // Different instances of the email field use different widgets so we have to
   // look in two places to find their email address.
   if (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
@@ -966,7 +974,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
     if ( (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) || ($node->type == 'petition') ) && !empty($email)) {
       
       // Cell
-      if ($cell) {
+      if (!empty($cell)) {
         $mc_merge_vars['MMERGE7'] = $cell;
       }
       
@@ -1182,6 +1190,19 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $ar
 }
 
 /**
+ *  Returns an XML Mobile Commons response.
+ *
+ *  @param string $message
+ *     The message that should be displayed.
+ *
+ *  @return string|xml
+ *     The XML document, prepared as a mobile commons response.
+ */
+function dosomething_general_mobile_commons_response($message) {
+  echo theme('mc-response', array('message' => $message));
+}
+
+/**
  * Update the Mobile Commons profile for a given number
  *
  * @param $mobile
@@ -1216,6 +1237,27 @@ function dosomething_general_mobile_commons_profile_update($mobile, $args = arra
 }
 
 /**
+ * A wrapper function that returns the mc api object
+ */
+function dosomething_general_mailchimp_get_api_object() {
+  libraries_load('mailchimp');
+  $q = new MCAPI(variable_get('mailchimp_api_key', ''));
+
+  // set the timeout to something reasonsable to avoid taking down the Drupal site
+  $q->setTimeout(60);
+
+  // specify if a secure connection should be used wit the API
+  $q->useSecure(variable_get('mailchimp_use_secure', TRUE));
+
+  if ($q->errorCode) {
+    watchdog('mailchimp', 'MCAPI Error: %errmsg', array('%errmsg' => $q->errorMessage), WATCHDOG_ERROR);
+    return NULL;
+  }
+
+  return $q;
+}
+
+/**
  * Subscribe the email to the mailchimp DoSomething Members List.
  *
  * @param $email
@@ -1228,7 +1270,7 @@ function dosomething_general_mobile_commons_profile_update($mobile, $args = arra
 function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
   
   /* Our function */
-  $mcapi = mailchimp_get_api_object();
+  $mcapi = dosomething_general_mailchimp_get_api_object();
   
   // Catching function
   // Hardcoding the list to the dosomething members
@@ -1244,11 +1286,13 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   else {
     $groupingIdByGroupName = array();
     $groupings = $mcapi->listInterestGroupings($listid);
-    foreach ($groupings as $grouping) {
-      foreach ($grouping['groups'] as $group) {
-        // If two groupnames are the same in different groupings
-        // then it may pick the wrong group.
-        $groupingIdByGroupName[$group['name']] = $grouping['id'];
+    if (is_array($groupings) && !empty($groupings)) {
+      foreach ($groupings as $grouping) {
+        foreach ($grouping['groups'] as $group) {
+          // If two groupnames are the same in different groupings
+          // then it may pick the wrong group.
+          $groupingIdByGroupName[$group['name']] = $grouping['id'];
+        }
       }
     }
     cache_set($cid, $groupingIdByGroupName);
@@ -1257,11 +1301,18 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   // Collect user details by email based on current values in user account for MailChimp signup / update
   $merge_vars += dosomething_general_collect_merge_vars($email);
   
+  if (!isset($groupingIdByGroupName[$groupName])) {
+    watchdog('dosomething_general_mailchimp_subscribe',
+      'Cannot find Group ID for group named %name',
+      array('%name' => $groupName),
+      $severity = WATCHDOG_ERROR
+    );
+  }
   // TODO: Error Handling for groupname, still add the user if error occurs.
   $merge_vars += array(
     'GROUPINGS' => array(
       array(
-        'id' => $groupingIdByGroupName[$groupName],
+        'id' => (isset($groupingIdByGroupName[$groupName]) ? $groupingIdByGroupName[$groupName] : 0),
         'groups' => $groupName
       ),
     )
@@ -1283,7 +1334,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   }
   else {
     // drupal_set_message('FAILED to add email to MailChimp.', 'error');
-    $merge_vars = print_r($merge_vars);
+    $merge_vars = print_r($merge_vars, true);
     watchdog('dosomething_general_mailchimp_subscribe',
              'Failed to signup new user ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
              array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
@@ -1364,7 +1415,7 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
   }
   
   // Make sure merge_vars is formatted correctly even if no values are assigned
-  if (count($merge_vars) == 0) {
+  if (empty($merge_vars) || count($merge_vars) == 0) {
     $merge_vars['UID'] = 0;
   }
 

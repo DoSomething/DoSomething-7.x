@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join the Green Your School Challenge!',
+        afterReplaceText : 'Just register with DoSomething.org to join Don\'t Be A Sucker!',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
@@ -132,7 +132,8 @@
           $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
       });
 
-
+      // Social Share Buttons
+      $('#header').prepend($('.panel-top-right-social'));
 
          
     } // end attach: function

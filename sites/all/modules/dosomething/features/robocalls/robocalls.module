@@ -121,20 +121,20 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     if (!empty($term)) {
        $term_info = array();
        $term_info['parent'] = key(taxonomy_get_parents($term->tid));
-       $term_info['tid'] = $term->tid;
-       $term_info['name'] = $term->name;
-       $term_info['desc'] = $term->description;
-       $term_info['image'] = $term->field_celeb_photo[LANGUAGE_NONE][0]['uri'];
-       $term_info['flag'] = $term->field_short_name[LANGUAGE_NONE][0]['value'];
+       $term_info['tid'] = (isset($term->tid) ? $term->tid : 0);
+       $term_info['name'] = (isset($term->name) ? $term->name : '');
+       $term_info['desc'] = (isset($term->description) ? $term->description : '');
+       $term_info['image'] = (isset($term->field_celeb_photo[LANGUAGE_NONE][0]['uri']) ? $term->field_celeb_photo[LANGUAGE_NONE][0]['uri'] : '');
+       $term_info['flag'] = (isset($term->field_short_name[LANGUAGE_NONE][0]['value']) ? $term->field_short_name[LANGUAGE_NONE][0]['value'] : '');
 
       $form['call_limit'] = array(
         '#type' => 'hidden',
-        '#value' => $term->field_call_limit[LANGUAGE_NONE][0]['value']
+        '#value' => (isset($term->field_call_limit[LANGUAGE_NONE][0]['value']) ? $term->field_call_limit[LANGUAGE_NONE][0]['value'] : 0),
       );
 
       $form['mobile_commons_id'] = array(
         '#type' => 'hidden', 
-        '#value' => $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value']
+        '#value' => (isset($term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value']) ? $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value'] : 0),
       );
 	  }
 
@@ -175,7 +175,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         );
 
         $form['fb_preview']['preview']['button'] = array(
-           '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', str_replace(array(DRUPAL_ROOT . '/', '/var/www/nfs'), array('', 'files'), drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])), array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link'))),
+           '#markup' => l('<img src="/' . drupal_get_path('module', 'robocalls') . '/images/robocall-preview.png" alt="" />', file_create_url((isset($term->field_celeb_call[LANGUAGE_NONE][0]['uri']) ? $term->field_celeb_call[LANGUAGE_NONE][0]['uri'] : '')), array('html' => TRUE, 'attributes' => array('id' => 'robocalls_preview_link'))),
            '#weight' => 1,
         );
 
@@ -186,7 +186,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         );
 
         $form['fb_preview']['preview']['audio'] = array(
-           '#markup' => '<audio id="robocalls-preview-audio" src="/files' . str_replace(array(DRUPAL_ROOT . '/files', 'var/www/nfs'), '', drupal_realpath($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) . '"></audio>',
+           '#markup' => '<audio id="robocalls-preview-audio" src="' . file_create_url((isset($term->field_celeb_call[LANGUAGE_NONE][0]['uri']) ? $term->field_celeb_call[LANGUAGE_NONE][0]['uri'] : '')) . '"></audio>',
            '#weight' => 1010,
         );
     }
