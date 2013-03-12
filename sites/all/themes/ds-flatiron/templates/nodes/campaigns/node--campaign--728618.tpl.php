@@ -1,7 +1,7 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="content"<?php print $content_attributes; ?>>
 
-    <div class="header">
+    <section class="header">
       <div>
         <a class="ds_logo" href="//www.dosomething.org/">
           <img src="//files.dosomething.org/files/campaigns/beta/logo.png" alt="DoSomething.org logo" />
@@ -9,25 +9,25 @@
         <a class="log_out" href="/user/logout">log out</a>
       </div>
       <img class="beta_logo" src="//files.dosomething.org/files/campaigns/beta/header-logo.png" alt="Project Clean Up logo" />
-    </div> <!-- .header -->
+    </section> <!-- .header -->
 
-    <div class="project">
+    <section class="project">
       <div>
         <img src="//files.dosomething.org/files/campaigns/beta/project_header.png" alt="the proejct"/>
         <h1>76% of all littering is done by people under the age of 26</h1>
         <h1>Be part of the 24% that cares & make your community cleaner</h1>
       </div>
-    </div> <!-- .project -->
+    </section> <!-- .project -->
 
-    <div class="mission">
+    <section class="mission">
       <div>
         <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/mission_header2.png" alt="your mission"/>
         <h2>Pick up <strong>10</strong> pieces of trash in your local community.</h2>
         <h2>Prove it by submitting a before and an after picture below.</h2>
       </div>
-    </div> <!-- .mission -->
+    </section> <!-- .mission -->
 
-    <div class="scholarship">
+    <section class="scholarship">
       <div>
         <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/scholarship-header.png" alt="scholarship"/>
         <h2>We're giving away <strong>$5,000</strong>.</h2>
@@ -36,9 +36,9 @@
         <a id="show-report-back" class="go-button" href="#">enter scholarship</a>
         <a class="official_rules" href="//files.dosomething.org/files/campaigns/beta/official_rules.pdf">official rules</a>
       </div>
-    </div> <!-- .scholarship -->
+    </section> <!-- .scholarship -->
 
-    <div class="cause">
+    <section class="cause">
 
       <div>
           <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/cause-header.png" alt="why trash?">
@@ -123,20 +123,20 @@
         </ul>
       </div> <!-- .cause-facts --> 
 
-    </div> <!-- .cause -->
+    </section> <!-- .cause -->
 
-    <div class="conversation">
+    <section class="conversation">
       <div>
         <img src="//files.dosomething.org/files/campaigns/beta/join_header.png"/>
       </div>
-    </div> <!-- .conversation -->
+    </section> <!-- .conversation -->
 
-    <div class="footer">
+    <section class="footer">
       <div>
         <img src="//files.dosomething.org/files/campaigns/beta/footer-header.png"/>
         <p>questions? e-mail <a href="mailto:cleanup@dosomething.org">cleanup@dosomething.org</a></p>
       </div>
-    </div> <!-- .footer -->
+    </section> <!-- .footer -->
 
   </div>
 </div>
