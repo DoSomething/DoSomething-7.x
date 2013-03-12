@@ -71,6 +71,7 @@
  */
 ?>
 
+  <?php /* @todo kill these <divs> */ ?>
   <div id="page-wrapper"><div id="page">
 
     <div id="header"><div class="section clearfix">
