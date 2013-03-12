@@ -1,0 +1,116 @@
+// CONTACT FORM
+// ------------
+#contact-form
+  display: none
+
+// REPORT BACK FORM
+// ----------------
+td
+  display: block
+
+#report-back
+  display: none
+  form
+    width: 800px
+    margin: 0 auto
+    @media only screen and (max-width: 825px)
+      width: 100%
+    &:first-child
+      overflow: hidden
+  input[type="text"]
+    width: 20em
+    border: 1px solid #ddd
+    +border-radius(3px)
+  input[type="file"]
+    border: none
+  legend
+    display: none
+  .description
+    font-size: 10px
+    color: #ccc
+
+#report-back.show
+  display: block
+
+#webform-photo-wrapper
+  float: left
+  width: 40%
+  margin: 0 0 5% 0
+  @media only screen and (max-width: 550px)
+    margin: 5% 0
+
+#webform-component-wrapper-text
+  float: left
+  width: 60%
+
+#webform-photo-wrapper,
+#webform-component-wrapper-text
+  @media only screen and (max-width: 550px)
+    float: none
+    width: 100%
+
+#webform-component-wrapper-photo
+  display: none
+
+// reset bizarre styles wrapping submit button
+.webform-client-form #edit-actions
+  height: auto
+  margin: auto
+  overflow: visible
+
+// hide "add new file" label and ajax throbber
+.form-type-managed-file label,
+.ajax-progress
+  display: none
+
+// upload photo button
+#edit-submitted-wrapper-photo-field-webform-pictures-und-0-upload-button
+  margin: 0.5em 0
+  padding: 0 0.5em
+  width: 4em
+  
+// IMAGE PREVIEW SECTION
+// --------------------
+#report-back
+  .tabledrag-toggle-weight-wrapper, thead, .tabledrag-handle, .image-preview, .file img, .file-size
+    display: none
+
+#edit-submitted-wrapper-photo-field-webform-pictures-und-1-upload,
+#edit-submitted-wrapper-photo-field-webform-pictures-und-2-upload
+  margin-top: 5px
+
+tr
+  background-color: #fff
+
+// REPORT BACK BUTTONS
+// -------------------
+
+// [UPLOAD] button
+#edit-submitted-field-webform-pictures-und-0-upload-button,
+#edit-submitted-field-webform-pictures-und-1-upload-button
+  margin: 7px 0
+  padding: 0
+  width: 70px
+  font-size: 22px
+
+// hide third upload button as we only want two photos
+#edit-submitted-wrapper-photo-field-webform-pictures-und-2-upload-button
+  display: none
+
+// [REMOVE] button
+#edit-submitted-field-webform-pictures-und-0-remove-button,
+#edit-submitted-field-webform-pictures-und-1-remove-button,
+#edit-submitted-field-webform-pictures-und-2-remove-button,
+#edit-submitted-field-webform-pictures-und-3-remove-button
+  margin: 5px 0
+  padding: 0 8px
+  background: #ddd
+  color: #666
+  font-size: 16px
+
+// [FINISH] button
+#edit-submit
+  float: left
+  margin: 5px 0
+  padding: 0 10px
+  font-size: 30px

@@ -1,0 +1,97 @@
+// GENERAL
+// -------
+.mission, .complete, .cause, .footer
+  background: $section_bg
+
+.header_img
+  float: left
+  margin: 0 0 0.7em 0
+
+.error
+  background: none
+
+// HEADER
+// ------
+.header
+  background-image: url(//files.dosomething.org/files/campaigns/beta/panorama.jpg)
+  a
+    color: $off_black
+  .log_out
+    float: right
+  .ds_logo
+    display: none
+    @media only screen and (max-width: 1075px)
+      display: block
+      float: left
+      width: 73px
+      height: 65px
+  .beta_logo
+    margin: 5% auto
+    display: block
+    width: 450px
+    clear: both
+    @media only screen and (max-width: 550px)
+      width: 400px
+
+// MISSION
+// -------
+// #mission
+
+// COMPLETE
+// -------
+.complete
+  .go-button
+    height: 35px
+    width: 100px
+    font-size: 30px
+    font-weight: 600
+    margin: 10px auto
+    padding: 11px 0 0 6px
+
+// SCHOLARSHIP
+// -----------
+.scholarship
+  .go-button
+    margin: 0.5em auto 0.3em
+    padding: 0.5em 0.5em 0 0.6em
+    display: block
+    width: 282px
+    font-size: 35px
+    
+.show #show-report-back
+  display: none
+
+.official_rules
+  float: right
+  color: $section_bg
+
+// CAUSE
+// -----
+.cause i
+  font-style: italic
+
+.cause-facts
+  display: none
+  padding: 2% 0
+  border-bottom: #fff dashed 5px
+
+.current-facts
+  display: block
+
+.twitter-link
+  text-decoration: none
+  color: $accent_color
+
+// FB COMMENTS PLUGIN
+// ------------------
+.fb-social-comments-plugin
+  float: left
+
+// FOOTER
+// ------
+.footer
+  p
+    text-align: center
+  img
+    width: 50px
+    +blockCenter
