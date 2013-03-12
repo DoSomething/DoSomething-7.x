@@ -1,21 +1,14 @@
 <?php
 
+error_reporting(0);
+
 require 'globals.php';
 require 'oauth_helper.php';
 
-function associate_emails($emails, $names) {
-  foreach ($emails AS $key => $email) {
-    $list["$email"] = $names["$key"];
-  }
-
-  ksort($list);
-  return $list;
-}
-
-class yahooauth {
-	private $callback = 'http://www.dosomething.org/sites/all/modules/dosomething/dosomething_contact_picker/yo';
-	private $consumer_key = 'dj0yJmk9WFlWdUFPZGoxUm1zJmQ9WVdrOVdqbHdWR3BzTTJVbWNHbzlOekUxTkRrMU1UWXkmcz1jb25zdW1lcnNlY3JldCZ4PTQ2';
-	private $consumer_secret = 'ce75ff10eb700dc4d7a6dbc471f9f8c7502a11a6';
+class Yahoo {
+	private $callback = 'http://dosomething.org/sites/all/modules/dosomething/dosomething_contact_picker/yo';
+	private $consumer_key = 'dj0yJmk9R2p0WUhCRjF1cUVvJmQ9WVdrOVYxcFBVblJNTldrbWNHbzlNVFV4T1RBM01ETTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD01Nw--';
+	private $consumer_secret = 'febf95e9c9d8a9a2463d48a4c9f56d7198937f21';
 
 	private $oauth_token = '';
 	private $oauth_secret = '';
@@ -28,7 +21,87 @@ class yahooauth {
 	private $real_oauth_guid = '';
 
 	public function __construct() {
+	}
+
+	public function is_authed() {
+	  return (isset($_GET['oauth_token']) || isset($_COOKIE['y_oauth_token']));
+	}
+
+	private function get_contacts($consumer_key, $consumer_secret, $guid, $access_token, $access_token_secret, $usePost=false, $passOAuthInHeader=true)
+	{
+	  $retarr = array();  // return value
+	  $response = array();
+
+	  $url = 'http://social.yahooapis.com/v1/user/' . $guid . '/contacts';
+	  $params['format'] = 'json';
+	  $params['view'] = 'compact';
+	  $params['oauth_version'] = '1.0';
+	  $params['oauth_nonce'] = mt_rand();
+	  $params['oauth_timestamp'] = time();
+	  $params['oauth_consumer_key'] = $consumer_key;
+	  $params['oauth_token'] = $access_token;
+
+	  // compute hmac-sha1 signature and add it to the params list
+	  $params['oauth_signature_method'] = 'HMAC-SHA1';
+	  $params['oauth_signature'] =
+	      oauth_compute_hmac_sig($usePost? 'POST' : 'GET', $url, $params,
+	                             $consumer_secret, $access_token_secret);
+
+	  // Pass OAuth credentials in a separate header or in the query string
+	  if ($passOAuthInHeader) {
+	    $query_parameter_string = oauth_http_build_query($params, true);
+	    $header = build_oauth_header($params, "yahooapis.com");
+	    $headers[] = $header;
+	  } else {
+	    $query_parameter_string = oauth_http_build_query($params);
+	  }
+
+	  // POST or GET the request
+	  if ($usePost) {
+	    $request_url = $url;
+	    $headers[] = 'Content-Type: application/x-www-form-urlencoded';
+	    $response = do_post($request_url, $query_parameter_string, 80, $headers);
+	  } else {
+	    $request_url = $url . ($query_parameter_string ?
+	                           ('?' . $query_parameter_string) : '' );
+	    $response = do_get($request_url, 80, $headers);
+	  }
+
+	  // extract successful response
+	  if (! empty($response)) {
+	    list($info, $header, $body) = $response;
+	    if ($body) {
+	      print(json_pretty_print($body));
+	    }
+	    $retarr = $response;
+	  }
+
+	  return $retarr;
+	}
+
+}
+
+
+
+class yahooauth {
+	private $callback = 'http://dosomething.org/sites/all/modules/dosomething/dosomething_contact_picker/yo';
+	private $consumer_key = 'dj0yJmk9R2p0WUhCRjF1cUVvJmQ9WVdrOVYxcFBVblJNTldrbWNHbzlNVFV4T1RBM01ETTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD01Nw--';
+	private $consumer_secret = 'febf95e9c9d8a9a2463d48a4c9f56d7198937f21';
+
+	private $oauth_token = '';
+	private $oauth_secret = '';
+	private $oauth_verifier = '';
+	private $redirect = '';
+
+	private $real_oauth_token = '';
+	private $real_oauth_secret = '';
+	private $real_oauth_session = '';
+	private $real_oauth_guid = '';
+
+	public function __construct() {
+		$info = $this->get_access_token()[0];
 		if (!$_GET['oauth_token']) {
+
 			$this->authenticate();
 		}
 		else {
@@ -57,7 +130,7 @@ class yahooauth {
 		setcookie('y_oauth_token', $this->oauth_token);
 		$this->oauth_secret = $retarr[3]['oauth_token_secret'];
 		setcookie('y_oauth_secret', $this->oauth_secret);
-		
+
 		header('location: ' . $this->redirect);
 	}
 
@@ -263,62 +336,6 @@ html;
 	    }
 	    $retarr = $response;
 	    $retarr[] = $body_parsed;
-	  }
-
-	  return $retarr;
-	}
-
-	private function get_contacts($consumer_key, $consumer_secret, $guid, $access_token, $access_token_secret, $usePost=false, $passOAuthInHeader=true)
-	{
-	  $retarr = array();  // return value
-	  $response = array();
-
-	  $url = 'http://social.yahooapis.com/v1/user/' . $guid . '/contacts';
-	  $params['format'] = 'json';
-	  $params['view'] = 'compact';
-	  $params['oauth_version'] = '1.0';
-	  $params['oauth_nonce'] = mt_rand();
-	  $params['oauth_timestamp'] = time();
-	  $params['oauth_consumer_key'] = $consumer_key;
-	  $params['oauth_token'] = $access_token;
-
-	  // compute hmac-sha1 signature and add it to the params list
-	  $params['oauth_signature_method'] = 'HMAC-SHA1';
-	  $params['oauth_signature'] =
-	      oauth_compute_hmac_sig($usePost? 'POST' : 'GET', $url, $params,
-	                             $consumer_secret, $access_token_secret);
-
-	  // Pass OAuth credentials in a separate header or in the query string
-	  if ($passOAuthInHeader) {
-	    $query_parameter_string = oauth_http_build_query($params, true);
-	    $header = build_oauth_header($params, "yahooapis.com");
-	    $headers[] = $header;
-	  } else {
-	    $query_parameter_string = oauth_http_build_query($params);
-	  }
-
-	  // POST or GET the request
-	  if ($usePost) {
-	    $request_url = $url;
-	    logit("callcontact:INFO:request_url:$request_url");
-	    logit("callcontact:INFO:post_body:$query_parameter_string");
-	    $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-	    $response = do_post($request_url, $query_parameter_string, 80, $headers);
-	  } else {
-	    $request_url = $url . ($query_parameter_string ?
-	                           ('?' . $query_parameter_string) : '' );
-	    logit("callcontact:INFO:request_url:$request_url");
-	    $response = do_get($request_url, 80, $headers);
-	  }
-
-	  // extract successful response
-	  if (! empty($response)) {
-	    list($info, $header, $body) = $response;
-	    if ($body) {
-	      logit("callcontact:INFO:response:");
-	      print(json_pretty_print($body));
-	    }
-	    $retarr = $response;
 	  }
 
 	  return $retarr;

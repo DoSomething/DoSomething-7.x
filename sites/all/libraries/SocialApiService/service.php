@@ -1,6 +1,6 @@
 <?php
 
-class EmailApiService {
+class SocialApiService {
   public static $_instance;
   protected $dir = __DIR__;
 
@@ -22,6 +22,6 @@ class EmailApiService {
   }
 }
 
-abstract class EmailServiceLayer extends EmailApiService {
+abstract class SocialServiceLayer extends SocialApiService {
 
 }

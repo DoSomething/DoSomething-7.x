@@ -14,7 +14,6 @@ var google = {
        $('#response').html(response).queue(function() {
          DS.ContactPicker.init_results();
        });
-       //stretch_scraper();
     });
   },
 

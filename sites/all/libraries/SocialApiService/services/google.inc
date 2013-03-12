@@ -1,6 +1,6 @@
 <?php
 
-class google extends EmailServiceLayer {
+class google extends SocialServiceLayer {
   private $creds;
   private $client;
 
@@ -55,7 +55,7 @@ class google extends EmailServiceLayer {
 	  preg_match_all('#<entry>(.*?)</entry>#si', $response, $entries);
 	  foreach ($entries[1] AS $key => $entry) {
 	    preg_match('#<title type\=("|\'|)text(\\1)>(.*?)<\/title>#i', $entry, $name);
-	    preg_match('#<gd\:email([^<]*)(address\=("|\'|)([^("|\'|)]*))#i', $entry, $email);
+	    preg_match('#<gd\:email([^(<]*)(address\=("|\'|)([^("|\'|)]*))#i', $entry, $email);
 
 	    if (!empty($email[4])) {
 	      $n = (isset($name[3]) ? $name[3] : '');

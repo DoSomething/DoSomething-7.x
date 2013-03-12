@@ -16,8 +16,8 @@ $(document).ready(function() {
 var DS = {};
 DS.ContactPicker = {
   service: function(s) {
-    jQuery('#loading').show().html('<img src="/sites/all/modules/dosomething/dosomething_contact_picker/images/loading.gif" alt="" /> Loading.  Please wait...');
-    eval(s).auth('/sites/all/modules/dosomething/dosomething_contact_picker');
+    jQuery('#loading').show().html('<img src="' + path + '/images/loading.gif" alt="" /> Loading.  Please wait...');
+    eval(s).auth(path);
     return false;
   },
 

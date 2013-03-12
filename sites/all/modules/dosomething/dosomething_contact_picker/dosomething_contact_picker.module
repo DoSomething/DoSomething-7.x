@@ -62,7 +62,7 @@ function dosomething_contact_picker_portal($nid) {
   	return;
   }
 
-  if ($path = libraries_get_path('SearchApiService')) {
+  if ($path = libraries_get_path('SocialApiService')) {
   	require_once $path . '/service.php';
   }
 
