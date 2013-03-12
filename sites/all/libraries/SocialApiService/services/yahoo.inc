@@ -31,6 +31,12 @@ class yahoo extends SocialServiceLayer {
 
     $ree = $this->api->get_contacts();
     $response = json_decode($ree[2]);
+
+    // Redirect on a very bizarre error.
+    if (isset($retarr[3]['oauth_problem']) && $retarr[3]['oauth_problem'] == 'oauth_verifier_invalid') {
+      drupal_goto('contact-picker/service/yahoo');
+    }
+
     $count = $ree->total;
     $contacts = $response->contacts->contact;
 

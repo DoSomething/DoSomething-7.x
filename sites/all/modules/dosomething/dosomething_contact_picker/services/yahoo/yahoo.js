@@ -3,7 +3,9 @@ var yahoo = {
 
   auth: function() {
     $.post('/contact-picker/service/yahoo', {}, function(response) {
-  	  if (typeof response == 'object' && response.state == 0) {
+      res = { 'state': false };
+      //var res = $.parseJSON(response);
+  	  if (typeof res == 'object' && res.state == 0) {
   	    window.open('/contact-picker/service/yahoo', 'yahoo', 'width=500,height=350,scrollbars=no,resizeable=no,location=no,status=no,titlebar=no,toolbar=no');
   	  }
   	  else {

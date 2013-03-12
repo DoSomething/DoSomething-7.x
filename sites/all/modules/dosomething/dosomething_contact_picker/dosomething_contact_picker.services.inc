@@ -40,6 +40,7 @@ function dosomething_contact_picker_handle_yahoo() {
     }
     else {
       $contacts = $y->getContacts();
+
       echo theme('contact_picker_contacts', array(
         'contacts' => $contacts,
         'close' => TRUE,
