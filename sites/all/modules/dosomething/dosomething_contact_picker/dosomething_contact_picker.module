@@ -10,6 +10,12 @@ function dosomething_contact_picker_menu() {
   	'access callback' => TRUE,
   );
 
+  $items['contact-picker/%/done'] = array(
+    'page callback' => 'dosomething_contact_picker_done',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+
   $items['contact-picker/service/%'] = array(
     'page callback' => 'dosomething_contact_picker_load_service',
     'page arguments' => array(2),
@@ -61,17 +67,69 @@ function dosomething_contact_picker_portal($nid) {
   }
 
   echo theme('contact_picker_portal', array(
-    'nid' => $nid,
+    'nid' => $node->nid,
+    'type' => $node->type,
+    'hash' => drupal_get_token(),
   ));
   drupal_exit();
 }
 
 /**
- * Invites emails.
+ * Sends emails.
  */
 function dosomething_contact_picker_invite_emails($nid) {
-  echo '<pre>', print_r($_POST), '</pre>';
-  exit;
+  $hash = check_plain($_POST['hash']);
+
+  if (!drupal_valid_token($hash)) {
+    echo 'Something went wrong.  Sorry!';
+    exit;
+  }
+
+  $type = check_plain($_POST['type']);
+  $contacts = $_POST['emails'];
+
+  global $user, $language;
+
+  $emails = module_invoke_all('contact_scraper_emails');
+  if (isset($emails[$type]['invited'])) {
+    $e = $emails[$type]['invited'];
+
+    foreach ($contacts AS $email) {
+      if (valid_email_address(trim($email))) {
+        if (isset($_SESSION['guest_user_info']) && !user_is_logged_in()) {
+          $e['params']['first_name'] = $_SESSION['guest_user_info']['first_name'];
+          $e['params']['last_name'] = $_SESSION['guest_user_info']['last_name'];
+        }
+
+        $e['params']['email'] = $email;
+        $e['params']['email'] .= '/' . md5($email . md5('ds.org'));
+
+        drupal_mail($e['group'], $e['email'], trim($email), $language, ($e['params'] ? $e['params'] : array()));
+
+        // If a "store" function is set, store this node ID, user ID and email in the database.
+        if (isset($e['store_function'])) {
+          $e['store_function']($nid, $user->uid, $email);
+        }
+      }
+    }
+  }
+
+  // Email the inviter
+  if ($user->mail && isset($emails[$type]['inviter'])) {
+    $i = $emails[$type]['inviter'];
+    drupal_mail($i['group'], $i['email'], $user->mail, $language, ($i['params'] ? $i['params'] : array()));
+  }
+
+  drupal_goto('contact-picker/' . $nid . '/done');
+  drupal_exit();
+}
+
+function dosomething_contact_picker_done($nid) {
+  echo theme('contact_picker_done', array(
+    'nid' => $nid
+  ));
+
+  drupal_exit();
 }
 
 /**
@@ -90,6 +148,11 @@ function dosomething_contact_picker_theme($existing, $type, $theme, $path) {
         'contacts' => NULL,
       ),
       'template' => 'contact-picker-contacts',
+    ),
+    'contact_picker_done' => array(
+      'path' => $path . '/templates',
+      'variables' => array(),
+      'template' => 'contact-scraper-done',
     ),
   );
 }

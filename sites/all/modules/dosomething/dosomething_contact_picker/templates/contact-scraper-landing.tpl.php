@@ -31,8 +31,11 @@
 <p id="client-email-link"><?php echo $client_email; ?></p>
 
 <form action="/contact-picker/invite/<?php echo $nid; ?>" method="post">
+<input type="hidden" name="type" value="<?php echo $type; ?>" />
+<input type="hidden" name="hash" value="<?php echo $hash; ?>" />
 
-<div id="check-area">
+<div class="check-area">
+  <div class="search"><input type="search" name="search" id="search-contacts" placeholder="<?php echo t('Search your contacts...'); ?>" /></div>
   <a href="#" class="check-all"><?php echo t('Check all'); ?></a>
   / <a href="#" class="check-none"><?php echo t('None'); ?></a>
 </div>
@@ -40,12 +43,12 @@
 <p id="loading"></p>
 <div id="response">&nbsp;</div>
 
-<div id="check-area">
+<div class="check-area below">
   <a href="#" class="check-all"><?php echo t('Check all'); ?></a>
   / <a href="#" class="check-none"><?php echo t('None'); ?></a>
 </div>
 
-<p><input type="submit" onclick="return submit_emails()" value="Invite" id="send-emails" /></p>
+<p class="invite-button"><input type="submit" onclick="return submit_emails()" value="<?php echo t('Invite'); ?>" id="send-emails" /></p>
 <p class="rather"><a href="#" onclick="return window.parent.load_fb();"><?php echo t("I'd rather share on Facebook"); ?></a></p>
 
 </form>

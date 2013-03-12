@@ -15,6 +15,9 @@ ul
 		padding: 10px
 		height: 20px
 
+		&.hidden
+			display: none
+
 		&:hover
 			background: #ebebeb
 			cursor: pointer
@@ -71,3 +74,23 @@ div#socials
 	border-top: 1px solid #000
 	margin-top: 15px
 
+.invite-button
+	display: none
+
+.check-area
+	@extend .invite-button
+
+	&.bottom
+		margin-top: 5px
+
+	.search
+		float: right
+		width: 175px
+
+		input
+			width: 100%
+
+#response
+	max-height: 450px
+	clear: both
+	overflow: auto
