@@ -38,6 +38,8 @@
       </div>
     </section> <!-- .scholarship -->
 
+    <?php print render($content['report_back']); ?>
+
     <section class="cause">
 
       <div>
