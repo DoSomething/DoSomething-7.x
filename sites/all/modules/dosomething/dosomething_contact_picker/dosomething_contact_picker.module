@@ -10,6 +10,19 @@ function dosomething_contact_picker_menu() {
   	'access callback' => TRUE,
   );
 
+  $items['contact-picker/service/%'] = array(
+    'page callback' => 'dosomething_contact_picker_load_service',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'file' => 'dosomething_contact_picker.services.inc',
+  );
+
+  $items['contact-picker/invite/%'] = array(
+    'page callback' => 'dosomething_contact_picker_invite_emails',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+  );
+
   return $items;
 }
 
@@ -47,10 +60,18 @@ function dosomething_contact_picker_portal($nid) {
   	require_once $path . '/service.php';
   }
 
-  $type = $node->type;
-
-  echo theme('contact_picker_portal');
+  echo theme('contact_picker_portal', array(
+    'nid' => $nid,
+  ));
   drupal_exit();
+}
+
+/**
+ * Invites emails.
+ */
+function dosomething_contact_picker_invite_emails($nid) {
+  echo '<pre>', print_r($_POST), '</pre>';
+  exit;
 }
 
 /**
@@ -62,6 +83,13 @@ function dosomething_contact_picker_theme($existing, $type, $theme, $path) {
       'path' => $path . '/templates',
       'variables' => array(),
       'template' => 'contact-scraper-landing',
+    ),
+    'contact_picker_contacts' => array(
+      'path' => $path . '/templates',
+      'variable' => array(
+        'contacts' => NULL,
+      ),
+      'template' => 'contact-picker-contacts',
     ),
   );
 }

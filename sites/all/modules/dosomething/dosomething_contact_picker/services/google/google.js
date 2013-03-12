@@ -9,12 +9,13 @@ var google = {
   path: '',
 
   pull: function(token, path) {
-    jQuery.post('/contact-picker/google', { 'do': 'blah', 'key': token }, function(response) {
-       jQuery('#response').html(response).css('overflow', 'auto');
-       jQuery('#check-area, #send-emails, #submit-emails-block').fadeIn('fast');
-       jQuery('#loading').fadeOut('fast');
-       stretch_scraper();
-       prepare_clicks();
+    $.post('/contact-picker/service/google', { 'key': token }, function(response) {
+       $('#response').html(response).css('overflow', 'auto').queue(function() {
+         $('#check-area, #send-emails, #submit-emails-block').fadeIn('fast');
+         $('#loading').fadeOut('fast');
+         DS.ContactPicker.prepare_clicks();
+       });
+       //stretch_scraper();
     });
   },
 
