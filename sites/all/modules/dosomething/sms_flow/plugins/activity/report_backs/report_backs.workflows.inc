@@ -113,12 +113,13 @@ $activity = $workflow->newActivity('submit_report_back');
 $activity->name = 'sucker_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
+$activity->success_response = 'Thanks for sharing! You now have @submission_count entries in the scholarship lottery. Unplugged more rooms? Text SHARE. Or text DONE if you\'re finished';
 $activity->submission_fields = array(
   'ask_unplugged' => 4,
   'ask_tvs' => 5,
   'picture' => 'ask_picture:mms',
 );
-$activity->success_response = 'Thanks for sharing! You now have @submission_count entries in the scholarship lottery. Unplugged more rooms? Text SHARE. Or text DONE if you\'re finished';
+$activity->webform_nid = 728508;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';

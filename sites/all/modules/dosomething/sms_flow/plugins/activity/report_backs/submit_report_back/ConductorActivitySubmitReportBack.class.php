@@ -20,22 +20,22 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
     $mobile = $state->getContext('sms_number');
 
     $num_submissions = 0;
-    $picture = $state->getContext($this->data['picture']);
+    $picture = $state->getContext($this->submission_fields['picture']);
 
     $user = sms_flow_get_or_create_user_by_cell($mobile);
     if ($user) {
       $submission = new stdClass;
       $submission->bundle = 'campaign_report_back';
-      $submission->nid = self::REPORT_BACK_NID;
+      $submission->nid = $this->webform_nid;
       $submission->data = array();
-      $submission->uid = $account->uid;
+      $submission->uid = $user->uid;
       $submission->submitted = REQUEST_TIME;
       $submission->remote_addr = ip_address();
       $submission->is_draft = FALSE;
       $submission->sid = NULL;
 
       $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
-      foreach($submission_fields as $key) {
+      foreach($this->submission_fields as $key => $value) {
         if ($key == 'picture') {
           if (!empty($picture)) {
             $f_name = 'public://' . basename($picture);
@@ -46,13 +46,14 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
           }
         }
         else {
-          $data_index = intval($this->submission_fields[$key]);
-          $wrapper->value()->submission_fields[$data_index]['value'][0] = $state->getContext($key . ':message');
+          $data_index = intval($value);
+          $wrapper->value()->data[$data_index]['value'][0] = $state->getContext($key . ':message');
         }
       }
 
       $wrapper->save();
 
+      module_load_include('inc', 'webform', 'includes/webform.submissions');
       $num_submissions = webform_get_submission_count($this->webform_nid, $user->uid);
     }
 

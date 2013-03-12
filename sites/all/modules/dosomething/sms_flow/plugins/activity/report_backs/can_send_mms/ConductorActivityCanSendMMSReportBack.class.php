@@ -20,15 +20,11 @@ class ConductorActivityCanSendMMSReportBack extends ConductorActivity {
       $user_first_word = strtolower(array_shift($user_words));
       $yes_answers = array('y', 'yes', 'ya', 'yea');
       if (in_array($user_first_word, $yes_answers) && $this->routes[$opt_in_path]['yes'] > 0) {
-echo "[YES] optin path: ".$this->routes[$opt_in_path]['yes']."\n";
-// TODO: before commit, uncomment the below
-//        dosomething_general_mobile_commons_subscribe($mobile, $this->routes[$opt_in_path]['yes']);
+       dosomething_general_mobile_commons_subscribe($mobile, $this->routes[$opt_in_path]['yes']);
         $state->setContext('ignore_no_response_error', TRUE);
       }
       elseif ($this->routes[$opt_in_path]['no'] > 0) {
-echo "[NO] optin path: ".$this->routes[$opt_in_path]['no']."\n";
-// TODO: before commit, uncomment the below
-//        dosomething_general_mobile_commons_subscribe($mobile, $this->routes[$opt_in_path]['no']);
+       dosomething_general_mobile_commons_subscribe($mobile, $this->routes[$opt_in_path]['no']);
         $state->setContext('ignore_no_response_error', TRUE);
       }
       else {
