@@ -1,3 +1,7 @@
+<?php if ($close): ?>
+<div id="return">
+<?php endif; ?>
+
 <ul id="contacts">
 <?php
 
@@ -14,3 +18,14 @@ foreach ($contacts AS $e => $s) {
 
 ?>
 </ul>
+
+<?php if ($close): ?>
+</div>
+
+<script type="text/javascript">
+<!--
+	window.opener.DS.ContactPicker.load_data(document.getElementById('return').innerHTML);
+	window.close();
+-->
+</script>
+<?php endif; ?>

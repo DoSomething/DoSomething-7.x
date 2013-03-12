@@ -10,10 +10,7 @@ var google = {
 
   pull: function(token, path) {
     $.post('/contact-picker/service/google', { 'key': token }, function(response) {
-       $('#loading').fadeOut('fast');
-       $('#response').html(response).queue(function() {
-         DS.ContactPicker.init_results();
-       });
+       DS.ContactPicker.load_data(response);
     });
   },
 

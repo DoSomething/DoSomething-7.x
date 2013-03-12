@@ -146,6 +146,7 @@ function dosomething_contact_picker_theme($existing, $type, $theme, $path) {
       'path' => $path . '/templates',
       'variable' => array(
         'contacts' => NULL,
+        'close' => FALSE,
       ),
       'template' => 'contact-picker-contacts',
     ),

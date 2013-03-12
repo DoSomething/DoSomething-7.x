@@ -39,7 +39,11 @@ function dosomething_contact_picker_handle_yahoo() {
       $y->authenticate();
     }
     else {
-      $c = $y->getContacts();
+      $contacts = $y->getContacts();
+      echo theme('contact_picker_contacts', array(
+        'contacts' => $contacts,
+        'close' => TRUE,
+      ));
     }
   }
 

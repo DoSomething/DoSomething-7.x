@@ -8,15 +8,12 @@ var yahoo = {
   	    window.open('/contact-picker/service/yahoo', 'yahoo', 'width=500,height=350,scrollbars=no,resizeable=no,location=no,status=no,titlebar=no,toolbar=no');
   	  }
   	  else {
-	    yahoo.pull(response);
+	      yahoo.pull(response);
   	  }
     });
   },
 
   pull: function(data) {
-    $('#loading').fadeOut('fast');
-    $('#response').html(data).queue(function() {
-      DS.ContactPicker.init_results();
-    });
+    DS.ContactPicker.load_data(data);
   }
 }

@@ -77,4 +77,11 @@ DS.ContactPicker = {
       });
     }
   },
+
+  load_data: function(data) {
+    $('#loading').fadeOut('fast');
+    $('#response').html(data).queue(function() {
+      DS.ContactPicker.init_results();
+    });
+  }
 };
