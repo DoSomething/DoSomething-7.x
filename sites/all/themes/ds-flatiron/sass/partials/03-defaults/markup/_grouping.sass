@@ -1,0 +1,52 @@
+p
+  margin-top: 0
+  
+pre
+  @extend %mono
+  margin: $base-rhythm-unit
+  white-space: pre
+  white-space: pre-wrap
+  word-wrap: break-word
+
+blockquote
+  margin: $base-rhythm-unit $kit-gutter
+  font-style: italic
+  font-weight: 300
+
+/* Lists --------------------------------------------------------------
+
+ol, ul
+  padding-left: 2em
+
+dl
+  margin-left: 0
+
+ol
+  list-style: decimal
+  padding-left: 0
+  +replace-list-numbers
+  li
+    // text-indent: -1.2em
+    margin-bottom: $kit-baseline
+    &:before
+      @extend %headers
+      @extend %bold
+      font-size: $s5
+
+ul
+  list-style: disc
+  li &
+    list-style-type: disc
+
+dt
+  +leader
+  font-style: italic
+  color: $base-color
+  &:first-of-type
+    +leader(0)
+
+dd
+  padding-left: $kit-gutter
+
+address
+  @extend %italic

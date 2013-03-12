@@ -25,6 +25,8 @@ function ds_flatiron_preprocess_node(&$vars) {
 function ds_flatiron_preprocess_page(&$vars) {
   if ($vars['node']->type == 'campaign') {
   	$vars['page']['footer']['#access'] = FALSE;
+    // @TODO - THIS SHOULD BE REVISITED
+    array_push( $vars['theme_hook_suggestions'], 'page__campaign' );
   }
 }
 

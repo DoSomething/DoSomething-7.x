@@ -1,0 +1,95 @@
+////////////////////////////
+// left sidebar blocks
+// LOGGED IN
+// member block
+////////////////////////////
+
+.logged-in #block-dosomething-login-become-member
+  padding: 0 0 5px 0
+  .dosomething-login-user-name
+    @extend %block-header
+    height: 36px
+    padding: 0
+    h2
+      padding: 6px 12px 6px 12px
+      @extend %bold
+      @extend %white
+      line-height: 22px !important
+      font-size: 23px !important
+      background-color: $blue
+      // padding: 0 $s2
+      margin-top: 0
+      margin-bottom: 0
+  .ds-member-name-bar
+    text-decoration: none
+    &:hover
+      text-decoration: none
+  .dosomething-user-block-collapsible
+    padding: 0 15px
+  .dosomething-login-percentage
+    background-color: $white
+    margin-top: 15px
+    margin-bottom: 5px
+    .ratio
+      height: 7px
+      .inner
+        background-color: $purple
+        height: 7px
+        margin: 0 0 2px 0
+        max-width: 100%
+        width: 0%
+      .label
+        @extend %highlight-on-dark
+        @extend %small
+  .profile-footer
+    margin-top: 25px
+    margin-bottom: 15px
+    @extend %clearfix
+    .complete-profile
+      font-size: $s1
+      @extend %headers
+      @extend %bold
+      @extend %white
+      display: inline
+      line-height: 30px
+    .complete-link
+      display: inline
+      float: right
+      margin-top: 6px
+      a
+        @extend %go-button
+        float: none
+  .dosomething-login-profile
+    border-bottom: 1px $black solid
+    margin-bottom: 10px
+  .doing-it,
+  .done-it,
+  .my-clubs
+    @extend %white
+    @extend %bold
+    .inner
+      padding: 2px 5px
+      +background(image_url("btn-leftsidebar-feeds-plus.png") no-repeat 168px center)
+    &.active
+      .inner
+        +background(image_url("btn-leftsidebar-feeds-minus.png") no-repeat 168px center)
+    ul,
+    li
+      @extend %member-expanded
+      list-style: none
+    li
+      margin-left: 5px
+
+// login block field widths
+.not-logged-in #dosomething-login-register-block
+  // first and last name fields
+  #edit-first-name,
+  #edit-last-name
+    .ie8 &,
+    .ie7 &
+      width: 100%
+  // cell or email field
+  #edit-cell-or-email
+    .ie8 &,
+    .ie7 &
+      width: 100%

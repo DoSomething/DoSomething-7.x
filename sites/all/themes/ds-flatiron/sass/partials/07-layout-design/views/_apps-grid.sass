@@ -1,0 +1,71 @@
+////////////////////////////
+// APPS GRID LAYOUT
+// goes with custom views display
+////////////////////////////
+.apps-grid
+  width: 682px
+  margin-left: 33px
+  .apps-box
+    width: 216px
+    height: 240px
+    margin-right: 17px
+    margin-bottom: 16px
+    background-color: $white
+    position: relative
+    @extend %box-shadow
+    &.last
+      float: right
+      margin-right: 0
+    .apps-banner
+      position: absolute
+      @extend %headers
+      @extend %white
+      width: 115px
+      height: 24px
+      background-color: $purple
+      font-size: $s4a
+      line-height: 24px
+      left: -8px
+      top: 6px
+      padding-left: 14px
+      &:before
+        +triangle(top-right, 4px, 4px, $black)
+        content: "\0020"
+        position: absolute
+        left: 0px
+        bottom: -8px
+    .apps-title
+      @extend %bold
+      text-align: center
+      font-size: $s4
+      line-height: 12px
+      margin-top: 12px
+      margin-bottom: 0
+    .apps-image
+      img
+        max-height: 125px
+        max-width: 216px
+    .apps-text
+      text-align: center
+      padding: $s-1 $s-1 0
+      max-height: 5em
+      line-height: 14px
+    .apps-footer
+      @extend %headers
+      @extend %medium
+      position: absolute
+      bottom: 0
+      width: 150px
+      padding-left: $s-1
+    .doingit-icon
+      +replace-text-with-dimensions("doing-it-guy.png")
+      +inline-block
+      margin-bottom: 5px
+      margin-right: 5px
+    .apps-link
+      position: absolute
+      bottom: $s-2
+      right: 0
+      padding-right: $s-1
+      a
+        @extend %go-button-logo
