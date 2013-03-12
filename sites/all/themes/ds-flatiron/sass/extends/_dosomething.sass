@@ -274,8 +274,8 @@ h3.subhead
 %dark-background, .dark-background
   background-color: $gray1
   @extend %text-on-dark
-  a
-    +link-colors($gray6, $gold, $gold, $gray6, false)
+//  a
+//    +link-colors($gray6, $gold, $gold, $gray6, false)
 
 
 ////////////////////////////
@@ -431,8 +431,6 @@ h3.subhead
     float: left
   .views-row-even
     float: right
-  .pane-content
-    @extend %clearfix
 
 ////////////////////////////
 // IMAGE TEASER MODULE
@@ -441,7 +439,6 @@ h3.subhead
 // rest of the space
 ////////////////////////////
 %image-teaser-module
-  @extend %clearfix
   margin-bottom: $s0
 %image-teaser-module-image
   @extend %border-and-shadow
@@ -659,17 +656,13 @@ li.search-result
   .pane-content
     h3
       @extend %bold
-      +adjust-font-size-to($s5, 1)
       margin-bottom: 0.25em
     p
-      +adjust-font-size-to($s2)
       line-height: 1.3em
     img
-      +float-left
       margin-right: 14px
       @extend %border-and-shadow
   .views-row
-    @extend %clearfix
     padding-top: 30px
   .news-title
     padding-top: 15px
@@ -684,7 +677,6 @@ li.search-result
   .item-list ul li
     margin: 0
   .views-row
-    @extend %clearfix
     +ds-bevel-single
     padding: $s2 0
     &:last-of-type
