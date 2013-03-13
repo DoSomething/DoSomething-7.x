@@ -1,3 +1,7 @@
+if (typeof $ === 'undefined') {
+  var $ = jQuery;
+}
+
 $(document).ready(function() {
   $('.remove-that-loader', window.parent.document).hide();
   $('#contacts-scraper-dialog', window.parent.document).css('height', 'auto');
@@ -14,6 +18,10 @@ $(document).ready(function() {
 });
 
 var DS = {};
+if (typeof path === 'undefined') {
+  var path = '/sites/all/modules/dosomething/dosomething_contact_picker';
+}
+
 DS.ContactPicker = {
   service: function(s) {
     jQuery('#loading').show().html('<img src="' + path + '/images/loading.gif" alt="" /> Loading.  Please wait...');

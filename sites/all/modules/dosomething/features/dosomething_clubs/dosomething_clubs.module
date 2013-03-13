@@ -1010,10 +1010,12 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
   drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/clubs-share.js');
   drupal_add_css(drupal_get_path('module', 'dosomething_clubs') . '/css/clubs_share_page.css');
 
-  drupal_add_js('https://apis.google.com/js/client.js');
-  drupal_add_js(drupal_get_path('module', 'dosomething_contact_picker') . '/js/picker.js');
-  drupal_add_js(drupal_get_path('module', 'dosomething_contact_picker') . '/services/google/google.js');
-  drupal_add_js(drupal_get_path('module', 'dosomething_contact_picker') . '/services/yahoo/yahoo.js');
+  $sapi = libraries_get_path('SocialApiService');
+  $path = drupal_get_path('module', 'dosomething_contact_picker');
+  drupal_add_js($path . '/js/dosomething_contact_picker_portal.js');
+  drupal_add_js($sapi . '/services/scripts/google/google-client.js');
+  drupal_add_js($sapi . '/services/scripts/google/google.js');
+  drupal_add_js($sapi . '/services/scripts/yahoo/yahoo.js');
 
   drupal_add_library('connections', 'facebook');
 
@@ -1144,7 +1146,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
       ),
     ),
     'rather' => array(
-      '#prefix' => '<p id="rather">',
+      '#prefix' => '<p class="rather">',
       '#markup' => t("I'd rather !type", array('!type' => l(t('type in my own friend\'s email addresses'), '#'))),
       '#suffix' => '</p>',
     ),
@@ -1279,9 +1281,9 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
 
   $form['select_boxes'] = array(
     '#type' => 'container',
-    '#attributes' => array('id' => 'check-area'),
+    '#attributes' => array('id' => 'check-area', 'class' => array('check-area')),
     'select-area' => array(
-      '#markup' => l(t('Select All'), '#', array('attributes' => array('id' => 'check-all'))) . ' / ' . l(t('None'), '#', array('attributes' => array('id' => 'check-none'))),
+      '#markup' => l(t('Select All'), '#', array('attributes' => array('id' => 'check-all', 'class' => array('check-all')))) . ' / ' . l(t('None'), '#', array('attributes' => array('id' => 'check-none', 'class' => array('check-none')))),
     ),
   );
 
@@ -1291,7 +1293,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
 
   $form['submit_emails_block'] = array(
     '#type' => 'container',
-    '#attributes' => array('id' => 'submit-emails-block'),
+    '#attributes' => array('id' => 'submit-emails-block', 'class' => array('invite-button')),
     'submit_emails' => array(
       '#type' => 'submit',
       '#value' => 'Send Emails',

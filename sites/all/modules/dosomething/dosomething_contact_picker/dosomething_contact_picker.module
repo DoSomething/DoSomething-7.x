@@ -72,6 +72,18 @@ function dosomething_contact_picker_library() {
   	),
   );
 
+  $sapi = libraries_get_path('SocialApiService');
+  $libraries['contact_picker_standalone'] = array(
+    'title' => 'Standalone files for Contact Picker',
+    'version' => '2.0',
+    'js' => array(
+      $path . '/js/dosomething_contact_picker_portal.js',
+      $sapi . '/services/scripts/google/google-client.js',
+      $sapi . '/services/scripts/google/google.js',
+      $sapi . '/services/scripts/yahoo/yahoo.js',
+    ),
+  );
+
   return $libraries;
 }
 
