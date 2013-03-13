@@ -72,10 +72,26 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
      'weight' => 1000
   ));
 
-  $from_nid = reset($context)->data->nid;
-  $mailchimp_bucket = reset($context)->data->field_email_mailchimp_bucket[LANGUAGE_NONE][0]['value'];
+  $n = reset($context)->data;
+  $from_nid = $n->nid;
+  $mailchimp_bucket = $n->field_email_mailchimp_bucket[LANGUAGE_NONE][0]['value'];
 
-  // Build the container.
+  $output = '';
+  if (isset($n->field_shortform_image[LANGUAGE_NONE][0]['uri'])) {
+    $output = l(theme('image', array('path' => $n->field_shortform_image[LANGUAGE_NONE][0]['uri'])), $alias, array('html' => TRUE));
+  }
+  else {
+    $output = theme('sas-campaign-short-form', array(
+      'alias' => $alias,
+      'from_nid' => $from_nid,
+      'nid' => $campaign->nid,
+      'email' => $mail,
+      'mobile' => $mobile,
+      'mailchimp_bucket' => $mailchimp_bucket,
+    ));
+  }
+ 
+ // Build the container.
   $content['shortform'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -84,14 +100,7 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
       )
     ),
     'campaign-short-form' => array(
-      '#markup' => theme('sas-campaign-short-form', array(
-        'alias' => $alias,
-        'from_nid' => $from_nid,
-        'nid' => $campaign->nid,
-        'email' => $mail,
-        'mobile' => $mobile,
-        'mailchimp_bucket' => $mailchimp_bucket,
-      )),
+      '#markup' => $output
     ),
   );
 
