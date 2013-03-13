@@ -21,7 +21,7 @@ nav[role=navigation]
     &:hover, &:active
       text-decoration: none
     &.active, &.active-trail
-      color: white
+      color: $gold
   .region-navigation
     @extend %container
     .block-menu-block
@@ -39,6 +39,7 @@ nav[role=navigation]
           display: table-cell
           width: 203px
           position: relative
+          top: -3px
           .ie7 &
             display: inline-block
             float: left
@@ -50,6 +51,8 @@ nav[role=navigation]
           a
             position: relative
             z-index: 1
+            font-family: din-web
+            text-decoration: none
           ul
             position: absolute
             top: 0
