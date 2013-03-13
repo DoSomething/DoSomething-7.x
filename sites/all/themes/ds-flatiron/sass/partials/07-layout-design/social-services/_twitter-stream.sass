@@ -1,0 +1,33 @@
+////////////////////////////
+// TWITTER STREAM
+////////////////////////////
+.twtr-widget
+  .twtr-doc
+    background-color: transparent !important
+  .twtr-hd, .twtr-ft
+    display: none
+  .twtr-timeline
+    min-height: 300px
+    height: auto !important
+  .twtr-tweet
+    border-bottom: none !important
+  .twtr-tweet-wrap
+    padding: 6px 0 6px 8px !important
+  .twtr-avatar
+    width: auto
+    height: auto
+    .twtr-img
+      width: auto
+      height: auto
+      img
+        width: 32px
+        height: 32px
+.social-activity-content
+  #twtr-widget-1 .twtr-new-results, #twtr-widget-1 .twtr-results-inner, #twtr-widget-1 .twtr-timeline,
+  #twtr-widget-1 .twtr-doc, #twtr-widget-1 .twtr-hd a, #twtr-widget-1 h3, #twtr-widget-1 h4
+    background: transparent !important
+  #twtr-widget-1 .twtr-tweet a
+    @extend %bold
+    color: $white !important
+  #twtr-widget-1 .twtr-bd, #twtr-widget-1 .twtr-timeline i a, #twtr-widget-1 .twtr-bd p
+    color: $gray5 !important

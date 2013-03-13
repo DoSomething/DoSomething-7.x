@@ -1,0 +1,26 @@
+// VARIABLES
+// ---------
+$accent_color: #FF8858
+$section_bg: #EEE
+$off_black: #1E1D1C
+$anchor_color: #33ADFF
+$button_color: #FFCB15
+$din: din-web-reg,"Trebuchet MS",sans-serif
+
+// MIXINS
+// -----
+@mixin noBorder
+  border: none !important
+  
+@mixin blockCenter
+  margin: 0 auto
+  display: block
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@function em-calc($target)
+  @return ($target/12)*1em

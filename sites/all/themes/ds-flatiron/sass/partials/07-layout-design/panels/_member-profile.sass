@@ -1,0 +1,56 @@
+////////////////////////////
+// MEMBER PROFILE PANE
+// Variation of dosomething-stats pane on /user
+////////////////////////////
+
+.pane-ds-profile-info
+  margin-bottom: 21px
+
+.member-profile
+  padding: $s2
+  .dosomething-login-percentage
+    background-color: $white
+    border: 1px $gray5 solid
+    .ratio
+      height: 7px
+    .inner
+      background-color: $purple
+      height: 7px
+      margin: 0 0 2px 0
+      max-width: 100%
+      width: 0%
+    .label
+      @extend %blue
+      @extend %small
+  .mem-profile
+    margin-top: 28px
+  .mem-img
+    @extend %border-and-shadow
+    float: left
+    height: 120px
+    margin-right: $s0
+    overflow: hidden
+    width: 120px
+  .dosomething-member-facts
+    width: 230px
+  .upper
+    +ds-bevel-single
+    padding-bottom: $s-2
+  .lower
+    padding-top: $s-2
+  .mem-stat
+    letter-spacing: 0
+    margin-left: 20px
+    @extend %caps
+  .mem-since
+    margin-left: 25px
+  .update-profile
+    font-family: $font-body
+    font-size: $s-1
+  .vital-stats
+    padding-top: 6px
+
+.page-user-complete-profile
+  .panel-pane
+    h2.pane-title
+      @extend %black

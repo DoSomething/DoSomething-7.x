@@ -1,0 +1,23 @@
+/* Images --------------------------------------------------------------
+
+img
+  @extend %constrain-to-parent
+  border: 0
+  vertical-align: middle
+  height: auto
+  -ms-interpolation-mode: bicubic
+  &.left
+    float: left
+    margin: $kit-baseline-half $kit-gutter $kit-baseline-half 0
+  &.right
+    float: right
+    margin: $kit-baseline-half 0 $kit-baseline-half $kit-gutter
+
+// @NOTE: REMOVED FOR PB&JS
+// .node-page, .page-node, .page-why-become-a-member
+  .content
+    img
+      @extend %box-shadow
+      @extend %white-border
+      margin-top: 12px
+      margin-bottom: 12px
