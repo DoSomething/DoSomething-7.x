@@ -36,13 +36,27 @@ function dosomething_social_scholars_menu() {
 function dosomething_social_scholars_mms_response() {
 
   $routes = array(
-    /*
-    '1234' => array(    // key = Mobile Commons opt-in path
-      'nid' => 1234,    // NID of the webform to submit mms to
-      'mms' => 1234,    // MC opt-in path to send user to if MMS is received
-      'no_mms' => 1234  // MC opt-in path to send user to if no MMS is received
+    // nid 728622 for Paper Chicken Share-A-Stat
+    '148113' => array(    // key = Mobile Commons opt-in path
+      'nid' => 728622,    // NID of the webform to submit mms to
+      'mms' => 148133,    // MC opt-in path to send user to if MMS is received
+      'no_mms' => 148143  // MC opt-in path to send user to if no MMS is received
     ),
-    */
+    '148203' => array(
+      'nid' => 728622,
+      'mms' => 148213,
+      'no_mms' => 148223
+    ),
+    '148273' => array(
+      'nid' => 728622,
+      'mms' => 148283,
+      'no_mms' => 148293
+    ),
+    '148303' => array(
+      'nid' => 728622,
+      'mms' => 148313,
+      'no_mms' => 148323
+    ),
   );
 
   $opt_in_path = intval($_REQUEST['opt_in_path_id']);
@@ -99,7 +113,7 @@ function dosomething_social_scholars_mms_response() {
     watchdog('dosomething_social_scholars', 'Received message from invalid opt in path: '. $opt_in_path);
   }
 
-  dosomething_general_mobile_commons_response(t('TODO: Some generic error message here.'));
+  dosomething_general_mobile_commons_response(t('Agh! We ran into a problem. Please try again.'));
   exit;
 }
 
