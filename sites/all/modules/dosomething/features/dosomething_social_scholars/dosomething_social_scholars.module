@@ -27,7 +27,30 @@ function dosomething_social_scholars_menu() {
     'access callback' => TRUE,
   );
 
+  $items['sas-redirect'] = array(
+    'page callback' => 'dosomething_social_scholars_redirect',
+    'access callback' => TRUE,
+  );
+
   return $items;
+}
+
+function dosomething_social_scholars_redirect() {
+  $args = drupal_get_query_parameters($_REQUEST);
+  $email = (isset($args['submitted']['field_webform_email'][LANGUAGE_NONE][0]['email']) ? $args['submitted']['field_webform_email'][LANGUAGE_NONE][0]['email'] : '');
+  $bucket = (isset($args['mailchimp_bucket']) ? $args['mailchimp_bucket'] : '');
+
+  if (empty($email) || !valid_email_address($email)) {
+    drupal_set_message(t('You must specify at least your email to sign up for this campaign.'), 'error');
+    $_GET['destination'] = 'sas-landing/' . $args['from_nid'];
+  }
+  else {
+    if (!empty($bucket)) {
+      dosomething_general_mailchimp_subscribe($email, $bucket);
+    }
+  }
+
+  drupal_goto();
 }
 
 /**
@@ -117,6 +140,23 @@ function dosomething_social_scholars_mms_response() {
   exit;
 }
 
+function dosomething_social_scholars_page_alter(&$page) {
+  $uri = request_path();
+  if (preg_match('#^sas-landing\/([0-9]+)$#', $uri, $url)) {
+    drupal_add_library('connections', 'facebook');
+    drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/js/dosomething_social_scholars_landing.js');
+    drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_landing.css');
+
+    $node = menu_get_object('node', 1, 'node/' . $url[1]);
+    if (isset($node->field_logo_image[LANGUAGE_NONE][0]['uri'])) {
+      drupal_set_title('<div class="money">' . t('$2000 Scholarship') . '</div><div class="scholarship-title">' . preg_replace('#\$\d+ scholarship\:?#i', '', $node->title) . '</div>', PASS_THROUGH);
+      drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_header.css');
+      $css = '.background-image {background-image: url(' . file_create_url($node->field_logo_image[LANGUAGE_NONE][0]['uri']) . ');}';
+      drupal_add_css($css, 'inline');
+    }
+  }
+}
+
 /**
  *  Implements hook_form_alter()
  */
@@ -137,7 +177,7 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
     require_once drupal_get_path('module', 'dosomething_social_scholars') . '/style_config.php';
 
     if (!empty($campaign_styles[$campaign_nid]) || !empty($scheme_styles[$scheme_id])) {
-      if (isset($campaign_nid) && !empty($campaign_id)) {
+      if (isset($campaign_nid) && !empty($campaign_nid)) {
         $s = $campaign_styles[$campaign_nid]['longform'];
       }
       else if (isset($scheme_id) && !empty($scheme_id)) {
@@ -379,7 +419,10 @@ function dosomething_social_scholars_theme($existing, $type, $theme, $path) {
       'template' => 'sas-campaign-short-form',
       'variables' => array(
         'alias' => NULL,
-        'nid' => NULL
+        'nid' => NULL,
+        'from_nid' => NULL,
+        'email' => NULL,
+        'cell' => NULL,
       )
     ),
   );
