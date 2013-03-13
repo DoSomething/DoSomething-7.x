@@ -13,11 +13,7 @@
   <script src="/<?php echo $path; ?>/js/jquery.min.js"></script>    
   <script src="/<?php echo $path; ?>/js/dosomething_contact_picker_portal.js"></script>
   <link rel="stylesheet" type="text/css" href="/<?php echo $path; ?>/css/dosomething_contact_picker_portal.css" />
-  <script type="text/javascript" src="/<?php echo $path; ?>/js/google-client.js"></script>
-  <script type="text/javascript" src="/<?php echo $path; ?>/services/google/google.js"></script>
-  <script type="text/javascript" src="/<?php echo $path; ?>/services/yahoo/yahoo.js"></script>
-
-  <?php echo $s['scripts']; ?>
+  <?php echo $scripts; ?>
  </head>
 <body>
 

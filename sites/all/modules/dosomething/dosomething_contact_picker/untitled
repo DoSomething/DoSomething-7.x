@@ -1,8 +1,0 @@
-<?php
-
-function dosomething_contact_picker_load_service($service) {
-  if (function_exists('dosomething_contact_picker_handle_' . $service)) {
-  	$function = 'dosomething_contact_picker_handle_' . $service;
-  	$function();
-  }
-}
