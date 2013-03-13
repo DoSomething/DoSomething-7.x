@@ -64,7 +64,7 @@
 
     </div> <!-- /#main -->
 
-    <?php print render($page['sidebar_first']); ?>
+    <?php // print render($page['sidebar_first']); ?>
 
     <?php // print render($page['sidebar_second']); ?>
 
