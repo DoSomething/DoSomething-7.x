@@ -268,7 +268,7 @@ function robocalls_call_xml($tid) {
   $xml->play(file_create_url($term->field_celeb_call[LANGUAGE_NONE][0]['uri']));
 
   // Spit out the XML
-  echo $xml;
+  echo trim($xml);
   exit;
 }
 
@@ -394,7 +394,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     $u['my_info']['field_celeb_your_password'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Password');
 
     // Set the celebrity chooser as the term ID
-    $u['my_info']['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
+    $u['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
 
     // Set the mobile commons ID
     $u['field_mobile_commons_id'][LANGUAGE_NONE][0]['value']['#default_value'] = $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value'];
@@ -860,6 +860,23 @@ function robocalls_celeb_form_validation($form, &$form_state) {
 function robocalls_celeb_form_submission($form, &$form_state) {
   $s = $form_state['input']['submitted'];
 
+  $my = array(
+    'name' => $s['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value'],
+    'cell' => $s['my_info']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'],
+    'pass' => $s['my_info']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'],
+  );
+
+  if (empty($my['cell'])) {
+    $my = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_first_name' => 'name',
+        'field_user_mobile' => 'cell'
+      ),
+    ));
+  }
+
+  $callid = $s['field_celebrity_chooser'][LANGUAGE_NONE];
+
   $friend_fields = array(
     'field_celeb_friend_phone',
     'field_celeb_friend_phone_2',
@@ -889,13 +906,14 @@ function robocalls_celeb_form_submission($form, &$form_state) {
   $friends = array_unique($friends);
 
   // Send the call(s)!
-  $call = dosomething_general_telapi_request('718-578-7681', $friends, 'blah');
+  $call = dosomething_general_telapi_request('718-578-7681'/*$my['cell']*/, $friends, $callid);
 
   // Redirect back home, with a GET variable with the call information.
   if (!empty($call)) {
     foreach ($friends AS $friend) {
-      robocalls_record_call('718-578-7681', $friend, 12345);
+      robocalls_record_call('718-578-7681'/*$my['cell']*/, $friend, $callid);
     }
+
     drupal_goto($_SERVER['HTTP_REFERER'] . '?c=' . base64_encode(serialize($call)));
   }
 }
