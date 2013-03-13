@@ -265,7 +265,7 @@ function robocalls_call_xml($tid) {
   // Build the InboundXML object
   $xml = new TelApi_InboundXML();
   //$xml->say('This is a call from do something dot org', array('voice' => 'woman'));
-  $xml->play(file_create_url($term->field_celeb_call[LANGUAGE_NONE][0]['uri']));
+  $xml->play(str_replace('files.dosomething.org', 'www.dosomething.org', file_create_url($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])));
 
   // Spit out the XML
   echo trim($xml);
