@@ -121,7 +121,7 @@
 })(jQuery);
 
 function close_scraper_and_load_long_form() {
-  jQuery('#contacts-scraper-dialog').dialog('close');
+  jQuery('#contact-picker-dialog').dialog('close');
   jQuery.fn.dsPetitionSubmit();
 }
 

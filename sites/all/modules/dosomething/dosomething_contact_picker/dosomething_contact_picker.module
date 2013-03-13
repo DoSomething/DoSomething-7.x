@@ -1,309 +1,279 @@
 <?php
 
+/**
+ *  @file
+ *  The DoSomething Contact Picker was originally a project designed for
+ *  petitions on DoSomething.org.  Over time, it branched out into clubs and
+ *  eventually become a project that was used across different products and campaigns.
+ *
+ *  The Contact Picker is a jQuery dialog that appears when a button is clicked, and encourages you
+ *  to select your GMail or Yahoo contacts, to share what you were just looking at with them.
+ *  Clicking on Gmail or Yahoo will force the user to log in / authenticate (as needed),
+ *  then will reload the page with the contacts.  A user can search, select all or select
+ *  individual contacts from the list.  When a user clicks the large red "Invite" button,
+ *  the system sends the selected email addressed emails, as defined through hook_contact_scraper_emails()
+ *
+ *  The Contact Picker loads the Google and Yahoo API's through the SocialApiService library.
+ *
+ *  @see SocialApiService library
+ *  @see hook_contact_scraper_emails() 
+ *
+ *  @date 3/13/13
+ *  @author Michael Chittenden
+ */
+
+/**
+ * Implements hook_menu()
+ */
 function dosomething_contact_picker_menu() {
-  $items['invite-by-email-scraper/%'] = array(
-    'page callback' => 'contact_scraper::scraper_invite',
-    'page arguments' => array(1),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-
-  $items['contacts-scraper/%'] = array(
-    'page callback' => 'contact_scraper::scraper_landing',
-    'page arguments' => array(1),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-
-  $items['contacts-scraper/%/done'] = array(
-    'page callback' => 'contact_scraper::scraper_landing',
-    'page arguments' => array(1, TRUE),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-
-  $items['contact-picker/google'] = array(
-  	'page callback' => 'dosomething_contact_picker_handle_google',
+  $items['contact-picker/%'] = array(
+  	'page callback' => 'dosomething_contact_picker_portal',
+  	'page arguments' => array(1),
   	'access callback' => TRUE,
+  );
+
+  $items['contact-picker/%/done'] = array(
+    'page callback' => 'dosomething_contact_picker_done',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+
+  $items['contact-picker/service/%'] = array(
+    'page callback' => 'dosomething_contact_picker_load_service',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'file' => 'dosomething_contact_picker.services.inc',
+  );
+
+  $items['contact-picker/invite/%'] = array(
+    'page callback' => 'dosomething_contact_picker_invite_emails',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
   );
 
   return $items;
 }
 
-function dosomething_contact_picker_handle_google() {
-$node = json_decode(base64_decode(($_GET['nid']))); 
-if ($_POST['do'] == 'blah') {
-  require_once DRUPAL_ROOT . '/google-api-php-client/src/apiClient.php';
-  require_once DRUPAL_ROOT . '/google-api-php-client/src/contrib/apiPlusService.php';
+/**
+ * Implements hook_library().
+ */
+function dosomething_contact_picker_library() {
+  $libraries = array();
 
-  $client = new apiClient();
-  $client->setApplicationName('Google Contacts Test');
-  $client->setScopes('http://www.google.com/m8/feeds');
+  $path = drupal_get_path('module', 'dosomething_contact_picker');
+  $libraries['contact_picker'] = array(
+  	'title' => 'DoSomething Contact Picker',
+  	'version' => '2.0',
+  	'js' => array(
+  		$path . '/js/dosomething_contact_picker.js' => array(),
+  	),
+  	'css' => array(
+  		$path . '/css/dosomething_contact_picker.css' => array(),
+  	),
+  );
 
-  $client->setClientId('1000659299351.apps.googleusercontent.com');
-  $client->setClientSecret('sp-8HDxoUCFZH1bH9XOUuglO');
-  $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/contact-picker/google');
+  $sapi = libraries_get_path('SocialApiService');
+  $libraries['contact_picker_standalone'] = array(
+    'title' => 'Standalone files for Contact Picker',
+    'version' => '2.0',
+    'js' => array(
+      $path . '/js/dosomething_contact_picker_portal.js',
+      $sapi . '/services/scripts/google/google-client.js',
+      $sapi . '/services/scripts/google/google.js',
+      $sapi . '/services/scripts/yahoo/yahoo.js',
+    ),
+  );
 
-  $k = $_POST['key'];
-  $key = json_encode(array(
-    'access_token' => $k['access_token'],
-    'token_type' => $k['token_type'],
-    'expires_in' => $k['expires_in'],
-    'created' => time()
+  return $libraries;
+}
+
+/**
+ * Builds the portal for the contact picker.
+ */
+function dosomething_contact_picker_portal($nid) {
+  // Load the node that we're talking about.
+  $node = menu_get_object('node', 1, 'node/' . $nid);
+
+  // Assuming it's not a real node, stop right here.
+  if (!isset($node->nid)) {
+  	return;
+  }
+
+  // Get the path to the library.
+  if ($path = libraries_get_path('SocialApiService')) {
+  	require_once $path . '/service.php';
+  }
+  // If no path(???), stop now.
+  else {
+    return;
+  }
+
+  // Load the service
+  $api = SocialApiService::getInstance();
+  // Get the scripts.
+  $thescripts = $api->getScripts();
+
+  // Run through the scripts array and make them into <script> tags.
+  $scripts = '';
+  foreach ($thescripts AS $script) {
+    $scripts .= '<script type="text/javascript" src="/' . $path . "/$script" . '"></script>';
+  }
+
+  // Print the portal template.
+  echo theme('contact_picker_portal', array(
+    'scripts' => $scripts,
+    'nid' => $node->nid,
+    'type' => $node->type,
+    'hash' => drupal_get_token(),
   ));
-  $client->setAccessToken($key);
+  // Stop so nothing else shows up.
+  drupal_exit();
+}
 
-  if ($client->getAccessToken()) {
-    $req = new apiHttpRequest('https://www.google.com/m8/feeds/contacts/default/full?max-results=1000');
-    if (!$val = $client->getIo()->authenticatedRequest($req)) {
-      echo "Please refresh the page and log back in to Google.";
-      exit;
-    }
+/**
+ * Sends emails.
+ */
+function dosomething_contact_picker_invite_emails($nid) {
+  // Get the hash from the invite form.
+  $hash = check_plain($_POST['hash']);
 
-    $xml = ($val->getResponseBody());
-    $res .= '<ul id="blah">';
-    $vals = array();
-    preg_match_all('#<entry>(.*?)</entry>#si', $xml, $entries);
-    foreach ($entries[1] AS $key => $entry) {
-      preg_match('#\<title type\=("|\'|)text(\\1)\>(.*?)\<\/title\>#i', $entry, $name);
-      preg_match('#<gd\:email([^(<]*)(address\=("|\'|)([^("|\'|)]*))#i', $entry, $email);
+  // If it's not a valid hash, stop!
+  if (!drupal_valid_token($hash)) {
+    echo 'Something went wrong.  Sorry!';
+    exit;
+  }
 
-      $n = $name[3];
-      $e = $email[4];
+  // Get the type from the form.
+  $type = check_plain($_POST['type']);
 
-      $vals[strtolower($e)] = array(
-        'e' => $e,
-        'n' => $n
-      );
-    }
+  // Get the emails from the form.
+  $contacts = $_POST['emails'];
 
-    ksort($vals);
-    foreach ($vals AS $e => $s) {
-      if (!empty($s['e'])) {
-        $res .= '
-        <li>
-          <input type="checkbox" class="email-checkbox" checked="checked" name="emails[]" value="' . $s['e'] . '" id="' . dosomething_general_clean_string($s['e']) . '" />
-          <strong>' . $s['e'] . '</strong>
-          <span>' . $s['n'] . '</span>
-        </li>';
+  // Stop us here if there are no contacts.
+  if (empty($contacts)) {
+    echo 'Please choose some contacts to email.';
+    exit;
+  }
+
+  global $user, $language;
+
+  // Get all email templates
+  $emails = module_invoke_all('contact_picker_emails');
+  if (isset($emails[$type]['invited'])) {
+    $e = $emails[$type]['invited'];
+
+    if (!empty($contacts) && is_array($contacts)) {
+      // Loop through all emails.
+      foreach ($contacts AS $email) {
+        // Make sure it's a valid email..
+        if (valid_email_address(trim($email))) {
+          // If it's a guest, we probably don't have their name, so let's see it's in the session variables.
+          if (isset($_SESSION['guest_user_info']) && !user_is_logged_in()) {
+            $e['params']['first_name'] = $_SESSION['guest_user_info']['first_name'];
+            $e['params']['last_name'] = $_SESSION['guest_user_info']['last_name'];
+          }
+
+          // Set some parameters...
+          $e['params']['email'] = $email;
+          $e['params']['email'] .= '/' . md5($email . md5('ds.org'));
+
+          // Send the email
+          drupal_mail($e['group'], $e['email'], trim($email), $language, ($e['params'] ? $e['params'] : array()));
+
+          // If a "store" function is set, run that function with this node ID, user ID and email.
+          if (isset($e['store_function'])) {
+            $e['store_function']($nid, $user->uid, $email);
+          }
+        }
       }
     }
-
-    $res .= '</ul>';
-
-    echo $res;
   }
-  exit;
-}
-}
 
-class contact_scraper {
-	public static function add_scraper_button(&$form, $weight = 0, $attributes = array()) {
-	  $node = menu_get_object();
-	  $form['invite_by_email'] = array(
-	    '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
-	      'attributes' => array(
-	        'class' => array('invite-by-email-link'),
-	        'onclick' => 'return invite_find_emails(' . $node->nid . ')',
-	      ) + $attributes,
-	    )),
-	    '#prefix' => '<p id="invite-by-email">',
-	    '#suffix' => '</p>',
-	    '#weight' => $weight,
-	  );
+  // Email the inviter, if applicable.
+  if ($user->mail && isset($emails[$type]['inviter'])) {
+    $i = $emails[$type]['inviter'];
+    drupal_mail($i['group'], $i['email'], $user->mail, $language, ($i['params'] ? $i['params'] : array()));
+  }
 
-	  $form['#attached']['js'][] = array(
-	      'data' => drupal_get_path('module', 'dosomething_contact_picker') . '/js/scraper_init.js',
-	      'options' => array(
-	        'group' => JS_LIBRARY,
-	        'preprocess' => FALSE,
-	        'every_page' => TRUE
-	      )
-	  );
+  // Redirect to "Done" page.
+  drupal_goto('contact-picker/' . $nid . '/done');
 
-	  $form['#attached']['css'][] = array(
-	      'data' => drupal_get_path('module', 'dosomething_contact_picker') . '/css/scraper_init.css',
-	  );
-	}
-
-	public static function get_services(&$form) {
-		$path = drupal_get_path('module', 'dosomething_contact_picker');
-		$services = shell_exec("grep -r 'name\:' " . $path . "/services/*");
-		preg_match_all('#([^/]+\.js)\:\s+name\:\s*(\'|\")(.*)\\2#i', $services, $matches);
-
-		$r = $s = '';
-		foreach ($matches[3] AS $key => $service) {
-			$s = str_replace('.js', '', $matches[1][$key]);
-			$scripts .= '<script type="text/javascript" src="/' . $path . '/services/' . $s . '/' . $matches[1][$key] . '"></script>';
-
-			$r .= '<div class="service">';
-			$r .= '<a href="#" onclick="return service(\'' . $s . '\', \'' . $path . '\')"><img class="service-image" src="/' . drupal_get_path('module', 'dosomething_contact_picker') . '/services/' . $s . '/' . $s . '.png' . '" alt="" />';
-			$r .= t('Get !service contacts', array('!service' => $service));
-			$r .= '</a>';
-			$r .= '</div>';
-		}
-
-		return array(
-			'scripts' => $scripts,
-			'services' => $r
-		);
-	}
-
-	public static function scraper_landing($nid, $done = FALSE) {
-		if (empty($nid) || !intval($nid)) {
-			exit;
-		}
-
-		$email = module_invoke_all('contact_scraper_emails');
-		$node = node_load($nid);
-
-		if (!$done && intval($nid)) {
-		  $params = array(
-			'title' => $node->title,
-			'nid' => $node->nid,
-		  );
-
-		  if (isset($email["{$node->type}"]['client_email'])) {
-		  	$e = $email["{$node->type}"]['client_email'];
-			$e['body'] = str_replace(array("\n", '"'), array('\r\n', '\"'), $e['body']);
-
-		  	$params['client_email'] = t('I prefer to !send', array('!send' => '<a href="#" onclick=\'return scraper_email(e_title, e_body)\'>' . t('use my own email client') . '</a>.'));
-		  }
-
-		  $params['email_title'] = $e['title'];
-		  $params['email_body'] = $e['body'];
-
-		  echo theme('contact_scraper_landing', $params);
-		}
-		else if ($done) {
-		  echo theme('contact_scraper_done', array(
-			'title' => $node->title,
-			'nid' => $node->nid
-		  ));
-		}
-		exit;
-	}
-
-	public static function scraper_invite($nid) {
-	  if ($_POST['do'] == 'email') {
-		global $user, $language;
-		$node = node_load($nid);
-
-		$emails = module_invoke_all('contact_scraper_emails');
-		if (isset($emails["{$node->type}"]['invited'])) {
-		  $e = $emails["{$node->type}"]['invited'];
-
-		  foreach (explode(',', $_POST['real_emails']) AS $email) {
-			if (valid_email_address(trim($email))) {
-  			  if (isset($_SESSION['guest_user_info']) && !user_is_logged_in()) {
-				  $e['params']['first_name'] = $_SESSION['guest_user_info']['first_name'];
-				  $e['params']['last_name'] = $_SESSION['guest_user_info']['last_name'];
-  			  }
-			  $e['params']['email'] = $email;
-			  $e['params']['email'] .= '/' . md5($email . md5('ds.org'));
-
-			  drupal_mail($e['group'], $e['email'], trim($email), $language, ($e['params'] ? $e['params'] : array()));
-
-			  // If a "store" function is set, store this node ID, user ID and email in the database.
-			  if (isset($e['store_function'])) {
-			    $e['store_function']($node->nid, $user->uid, $email);
-			  }
-			}
-		  }
-		}
-
-		// Email the inviter
-		if ($user->mail && isset($emails["{$node->type}"]['inviter'])) {
-		  $i = $emails["{$node->type}"]['inviter'];
-		  drupal_mail($i['group'], $i['email'], $user->mail, $language, ($i['params'] ? $i['params'] : array()));
-		}
-
-		drupal_goto('contacts-scraper/' . $node->nid . '/done');
-	  }
-	}
+  // And exit, just for good measure.
+  drupal_exit();
 }
 
+/**
+ *  Handles the "Done" page.  In theory this will never be seen, but in case we
+ *  want to bring it back...there you go.
+ *
+ *  @param int $nid
+ *    The node ID of the node that is being shared.
+ *
+ *  @return string
+ *    Returns the templatized "Done" page.
+ */
+function dosomething_contact_picker_done($nid) {
+  echo theme('contact_picker_done', array(
+    'nid' => $nid
+  ));
+
+  drupal_exit();
+}
+
+/**
+ * Implements hook_theme()
+ */
 function dosomething_contact_picker_theme($existing, $type, $theme, $path) {
   return array(
-    'contact_scraper_landing' => array(
+    'contact_picker_portal' => array(
       'path' => $path . '/templates',
-      'variables' => array(
-        'title' => NULL,
-        'nid' => NULL,
-        'email_text' => NULL
-      ),
+      'variables' => array(),
       'template' => 'contact-scraper-landing',
     ),
-    'contact_scraper_done' => array(
+    'contact_picker_contacts' => array(
       'path' => $path . '/templates',
-      'variables' => array(
-        'title' => NULL,
-        'nid' => NULL
+      'variable' => array(
+        'contacts' => NULL,
+        'close' => FALSE,
       ),
+      'template' => 'contact-picker-contacts',
+    ),
+    'contact_picker_done' => array(
+      'path' => $path . '/templates',
+      'variables' => array(),
       'template' => 'contact-scraper-done',
-    )
-   );
- }
-
-
-function dosomething_contact_scraper_land($nid, $done = FALSE) {
-	if (empty($nid) || !intval($nid)) {
-		exit;
-	}
-
-	$email = module_invoke_all('contact_scraper_emails');
-	$node = node_load($nid);
-
-	if (!$done && intval($nid)) {
-	  $params = array(
-		'title' => $node->title,
-		'nid' => $node->nid,
-	  );
-
-	  if (isset($email["{$node->type}"]['client_email'])) {
-	  	$e = $email["{$node->type}"]['client_email'];
-		$e['body'] = str_replace(array("\n", '"'), array('\r\n', '\"'), $e['body']);
-
-	  	$params['client_email'] = t('I prefer to !send', array('!send' => '<a href="#" onclick=\'return scraper_email("' . $e['title'] . '", "' . $e['body'] . '")\'>' . t('use my own email client') . '</a>.'));
-	  }
-
-	  echo theme('contact_scraper_landing', $params);
-	}
-	else if ($done) {
-	  echo theme('contact_scraper_done', array(
-		'title' => $node->title,
-		'nid' => $node->nid
-	  ));
-	}
-	exit;
+    ),
+  );
 }
 
-function dosomething_contact_scraper_invite($nid) {
-  if ($_POST['do'] == 'email') {
-	global $user, $language;
-	$node = node_load($nid);
-
-	$emails = module_invoke_all('contact_scraper_emails');
-	if (isset($emails["{$node->type}"]['invited'])) {
-	  $e = $emails["{$node->type}"]['invited'];
-
-	  foreach (explode(',', $_POST['real_emails']) AS $email) {
-		if (valid_email_address(trim($email))) {
-		  drupal_mail($e['group'], $e['email'], trim($email), $language, ($e['params'] ? $e['params'] : array()));
-
-		  // If a "store" function is set, store this node ID, user ID and email in the database.
-		  if (isset($e['store_function'])) {
-		    $e['store_function']($node->nid, $user->uid, $email);
-		  }
-		}
-	  }
-	}
-
-	if ($user->mail && isset($emails["{$node->type}"]['inviter'])) {
-	  $i = $emails["{$node->type}"]['inviter'];
-	  drupal_mail($i['group'], $i['email'], $user->mail, $language, ($i['params'] ? $i['params'] : array()));
-	}
-
-	drupal_goto('contacts-scraper/' . $node->nid . '/done');
-  }
+/**
+ *  Defines data and structure for Contact Picker emails.
+ */
+function hook_contact_picker_emails() {
+  /**
+   *  This function needs to return a multidimensional array of email information.  The
+   *  array MUST be strucuted like so:
+   *
+   *  array(
+   *    'node-type' => array(
+   *       'client_email' => array(
+   *         'title' => '',           // The title of the email the user would send if they clicked "I want to use my own email client."
+   *         'body' => '',            // The body of the email the user would send if they clicked "I want to use my own email client."
+   *       ),
+   *       'invited' => array(
+   *         'group' => '',           // Used in drupal_mail(): the module that has the email you want to send.
+   *         'email' => '',           // Used in drupal_mail(): the name of the email as defined in hook_mail().
+   *         'params' => array(),     // Used in drupal_mail(): parameters to pass to drupal_mail()
+   *         'store_function' => '',  // (Optional) a function that will store the email that is being invited, along with the UID, time, and NID
+   *       ),
+   *       'inviter' => array(
+   *         'group' => '',           // Used in drupal_mail(): the module that has the email the INVITER should get
+   *         'email' => '',           // Used in drupal_mail(): the email that the INVITER should get.
+   *         'params' => array(),     // Used in drupal_mail(): parameters to pass to the email that the INVITER gets.
+   *       ),
+   *     ),
+   *   ),
+   *
+   *  Return the array when finished.
+   */
 }
