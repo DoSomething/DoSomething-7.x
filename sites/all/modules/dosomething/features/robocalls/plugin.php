@@ -2,7 +2,7 @@
 
 // The title of the product
 $robocalls = array(
-	'title' => 'Project Prank - Pranking Your Friends for Good',
+	'title' => '<div class="prank-logo"><img src="//files.dosomething.org/files/u/calloffame/prank-logo.png" alt="Project Prank"></div>Project Prank - Pranking Your Friends for Good',
 
 	'css' => array(
 		// Matches anything under /prank

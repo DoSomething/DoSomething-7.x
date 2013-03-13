@@ -463,6 +463,32 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['views_conditional']['equalto'] = '???';
   $handler->display->display_options['fields']['views_conditional']['then'] = '[name_3]';
   $handler->display->display_options['fields']['views_conditional']['or'] = '[name_2]';
+  /* Field: Taxonomy term: Short Name */
+  $handler->display->display_options['fields']['field_short_name']['id'] = 'field_short_name';
+  $handler->display->display_options['fields']['field_short_name']['table'] = 'field_data_field_short_name';
+  $handler->display->display_options['fields']['field_short_name']['field'] = 'field_short_name';
+  $handler->display->display_options['fields']['field_short_name']['label'] = '';
+  $handler->display->display_options['fields']['field_short_name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_short_name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_short_name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_short_name']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_short_name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_short_name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_short_name']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_short_name']['field_api_classes'] = 0;
   /* Field: Preview / Share bar */
   $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
   $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
@@ -500,6 +526,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="name">
 <span>[name]</span>
+<div class="type">[field_short_name]</div>
 </div>';
   $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;

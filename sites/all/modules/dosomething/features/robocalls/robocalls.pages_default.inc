@@ -299,6 +299,70 @@ function robocalls_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'page_cause_its_your_birthday_panel_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'cause_its_your_birthday';
+  $handler->handler = 'panel_context';
+  $handler->weight = -30;
+  $handler->conf = array(
+    'title' => 'Project Prank Walkthrough',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'logic' => 'and',
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'calloffame/walkthrough',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'flexible';
+  $display->layout_settings = array();
+  $display->panel_settings = array();
+  $display->cache = array();
+  $display->title = '';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-1';
+    $pane->panel = 'center';
+    $pane->type = 'block';
+    $pane->subtype = 'webform-client-block-727831';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-1'] = $pane;
+    $display->panels['center'][0] = 'new-1';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'page_cause_its_your_birthday_panel_context';
   $handler->task = 'page';
   $handler->subtask = 'cause_its_your_birthday';
@@ -400,7 +464,7 @@ function robocalls_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-1';
+    $pane->pid = 'new-2';
     $pane->panel = 'celebrities_list';
     $pane->type = 'views';
     $pane->subtype = 'cause_its_your_birthday';
@@ -428,33 +492,8 @@ function robocalls_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-1'] = $pane;
-    $display->panels['celebrities_list'][0] = 'new-1';
-    $pane = new stdClass();
-    $pane->pid = 'new-2';
-    $pane->panel = 'center';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Descriptive',
-      'title' => '',
-      'body' => '<p><img src="/sites/all/modules/dosomething/features/robocalls/images/pick.png" alt="Pick a Prank" /></p>',
-      'format' => '3',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array(
-      'css_id' => 'cof-descriptive',
-      'css_class' => '',
-    );
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
     $display->content['new-2'] = $pane;
-    $display->panels['center'][0] = 'new-2';
+    $display->panels['celebrities_list'][0] = 'new-2';
     $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'test_region';
@@ -510,14 +549,17 @@ function robocalls_default_page_manager_pages() {
       'admin_title' => 'Sweet.',
       'title' => '',
       'body' => '<h3 class="confirmation-message">Nice! Your call was sent!</h3>
-<p class="facebook-arrow"></p>
-<p class="facebook-button"><a href="#" class="facebook-share-call">Share the call on Facebook!</a></p>',
+<p class="facebook-arrow"><img src="//files.dosomething.org/files/u/calloffame/call-arrow.png" alt="arrow"></p>
+<p class="facebook-button"><a href="#" class="facebook-share-call"><img src="//files.dosomething.org/files/u/calloffame/fb-call.png" alt="Share the call on Facebook"></a></p>',
       'format' => '3',
       'substitute' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array();
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'clearfix fb-btn-wrap',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
@@ -528,7 +570,7 @@ function robocalls_default_page_manager_pages() {
     $pane->panel = 'test_region';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array(
       'plugins' => array(
         0 => array(
@@ -563,7 +605,7 @@ function robocalls_default_page_manager_pages() {
     $pane->panel = 'test_region';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array(
       'plugins' => array(
         0 => array(
@@ -595,18 +637,21 @@ function robocalls_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-7';
     $pane->panel = 'test_region';
-    $pane->type = 'block';
-    $pane->subtype = 'webform-client-block-727830';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
+      'admin_title' => 'Descriptive',
+      'title' => '',
+      'body' => '<p><img src="/sites/all/modules/dosomething/features/robocalls/images/pick.png" alt="Pick a Prank" /></p>',
+      'format' => '3',
+      'substitute' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array();
     $pane->css = array(
-      'css_id' => 'cof-submit-form',
+      'css_id' => 'cof-descriptive',
       'css_class' => '',
     );
     $pane->extras = array();
@@ -614,56 +659,11 @@ function robocalls_default_page_manager_pages() {
     $pane->locks = array();
     $display->content['new-7'] = $pane;
     $display->panels['test_region'][4] = 'new-7';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-2';
-  $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
-  $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
-  $handler->name = 'page_cause_its_your_birthday_panel_context_2';
-  $handler->task = 'page';
-  $handler->subtask = 'cause_its_your_birthday';
-  $handler->handler = 'panel_context';
-  $handler->weight = -30;
-  $handler->conf = array(
-    'title' => 'Project Prank Walkthrough',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
-    'css_id' => '',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-    'access' => array(
-      'logic' => 'and',
-      'plugins' => array(
-        0 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '1',
-            'paths' => 'calloffame/walkthrough',
-          ),
-          'context' => 'empty',
-          'not' => FALSE,
-        ),
-      ),
-    ),
-  );
-  $display = new panels_display();
-  $display->layout = 'flexible';
-  $display->layout_settings = array();
-  $display->panel_settings = array();
-  $display->cache = array();
-  $display->title = '';
-  $display->content = array();
-  $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-8';
-    $pane->panel = 'center';
+    $pane->panel = 'test_region';
     $pane->type = 'block';
-    $pane->subtype = 'webform-client-block-727831';
+    $pane->subtype = 'webform-client-block-727984';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -674,12 +674,12 @@ function robocalls_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 5;
     $pane->locks = array();
     $display->content['new-8'] = $pane;
-    $display->panels['center'][0] = 'new-8';
+    $display->panels['test_region'][5] = 'new-8';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
+  $display->title_pane = 'new-7';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['cause_its_your_birthday'] = $page;

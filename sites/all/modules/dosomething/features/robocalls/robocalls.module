@@ -363,34 +363,38 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     $u = &$form['submitted'];
 
     // Placeholder and theoretical population of my name
-    $u['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Name');
+    $u['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Name');
     if (!empty($first_name)) {
-      $u['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $first_name;
+      $u['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $first_name;
     }
 
 #    $u['field_celeb_your_name']['#access'] = FALSE;
 
     // Placeholder and theoretical population of my number
-    $u['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Number');
+    $u['my_info']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Number');
     if (!empty($mobile)) {
-      $u['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $mobile;
+      $u['my_info']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $mobile;
     }
 
     if (user_is_logged_in()) {
-      $u['field_celeb_your_password']['#access'] = FALSE;
+      $u['my_info']['field_celeb_your_password']['#access'] = FALSE;
       if (!empty($first_name)) {
-        $u['field_celeb_your_name']['#access'] = FALSE;
+        $u['my_info']['field_celeb_your_name']['#access'] = FALSE;
       }
       if (!empty($mobile)) {
-        $u['field_celeb_your_phone']['#access'] = FALSE;
+        $u['my_info']['field_celeb_your_phone']['#access'] = FALSE;
+      }
+
+      if (!empty($first_name) && !empty($mobile)) {
+        $u['my_info']['#access'] = FALSE;
       }
     }
 
     // Placeholder for my password
-    $u['field_celeb_your_password'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Password');
+    $u['my_info']['field_celeb_your_password'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Password');
 
     // Set the celebrity chooser as the term ID
-    $u['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
+    $u['my_info']['field_celebrity_chooser'][LANGUAGE_NONE]['#default_value'][] = $term->tid;
 
     // Set the mobile commons ID
     $u['field_mobile_commons_id'][LANGUAGE_NONE][0]['value']['#default_value'] = $term->field_call_mobile_commons_id[LANGUAGE_NONE][0]['value'];
@@ -829,8 +833,8 @@ function robocalls_celeb_form_validation($form, &$form_state) {
 
   // Check for errors
   $error = robocalls_general_validation(array(
-    'number' => $v['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'],
-    'password' => $v['field_celeb_your_password'][LANGUAGE_NONE][0]['value'],
+    'number' => $v['my_info']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'],
+    'password' => $v['my_info']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'],
   ), $friends);
 
   // If errors, send back to the celeb page.
@@ -841,9 +845,9 @@ function robocalls_celeb_form_validation($form, &$form_state) {
   else {
     if (!user_is_logged_in()) {
       $v = $form_state['values']['submitted'];
-      $your_cell = $v['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
-      $your_name = $v['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
-      $your_password = $v['field_celeb_your_password'][LANGUAGE_NONE][0]['value'];
+      $your_cell = $v['my_info']['field_celeb_your_phone'][LANGUAGE_NONE][0]['value'];
+      $your_name = $v['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value'];
+      $your_password = $v['my_info']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'];
 
       robocalls_create_or_log_in_user(array('name' => $your_name, 'cell' => $your_cell, 'password' => $your_password));
     }
