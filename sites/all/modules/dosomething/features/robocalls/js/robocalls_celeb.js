@@ -7,6 +7,15 @@
     previewing: false,
 
     attach: function(context, settings) {
+      // Clear ?c=etc. if it's there.
+      if (document.location.search && document.location.search.indexOf('c=') != -1) {
+        var msie = /*@cc_on!@*/0;
+        if (!msie) {
+          var h = new Object();
+          history.pushState(h, '', window.location.href.replace(/\?c=.+/, ''));
+        }
+      }
+
       if ($('.facebook-share-celeb').length) {
         Drupal.behaviors.fb.feed({
           'feed_document': document.location.href,

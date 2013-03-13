@@ -914,7 +914,8 @@ function robocalls_celeb_form_submission($form, &$form_state) {
       robocalls_record_call($my['cell'], $friend, $callid);
     }
 
-    drupal_goto($_SERVER['HTTP_REFERER'] . '?c=' . base64_encode(serialize($call)));
+    $referer = preg_replace('#\?.*#', '', $_SERVER['HTTP_REFERER']);
+    drupal_goto($referer . '?c=' . base64_encode(serialize($call)));
   }
 }
 
