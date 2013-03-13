@@ -672,7 +672,10 @@ function robocalls_default_page_manager_pages() {
     );
     $pane->cache = array();
     $pane->style = array();
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'prank-home-web-form',
+    );
     $pane->extras = array();
     $pane->position = 5;
     $pane->locks = array();
