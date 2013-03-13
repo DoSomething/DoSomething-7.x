@@ -1,0 +1,79 @@
+////////////////////////////
+// FRONT PAGE SLIDESHOW
+// views slideshow on front page
+////////////////////////////
+
+.pane-home-slideshow-panel-pane-1
+  margin-bottom: 0
+
+.photo-slider
+  height: 365px
+  .slide-count
+    position: relative
+    top: 330px
+    right: 0
+  .photo-slider-row
+    position: absolute
+    .ie8 &
+      .not-logged-in &
+        right: 24px
+      .logged-in &
+        right: 20px
+
+.view-home-slideshow
+  .views-row
+    +background(image_url("rounded-bottom-shadow.png") no-repeat bottom center)
+    .ie8 &
+      width: 750px
+    .ie8 &,
+    .ie7 &
+      +background(image_url("rounded-bottom-shadow.gif") no-repeat bottom center)
+  .home-slide
+    img
+      @extend %white-border
+      margin-bottom: 24px
+
+.ribbon-front
+  @extend %headers
+  @extend %gold
+  +box-shadow(rgba(#000, 0.8) -5px 3px 10px)
+  background-color: $purple
+  height: 65px
+  position: absolute
+  width: 624px
+  right: -16px
+  top: 236px
+  &:before
+    +triangle(top-left, 8px, 8px, $black)
+    content: "\0020"
+    position: absolute
+    right: 0
+    bottom: -16px
+  .dothis-title
+    font-weight: 600
+    font-size: 60px
+    position: absolute
+    left: 4px
+    padding-top: 29px
+    +text-shadow(rgba(#000, 0.8) 0 0 10px)
+    text-transform: uppercase
+    .ie7 &
+      line-height: 65px
+      top: 8px
+  a,
+  a:hover,
+  a:visited
+    @extend %white
+    @extend %bold
+    font-size: 33px
+    line-height: 70px
+    margin-left: 210px
+    text-decoration: none
+    
+#home-slide-wrap
+  height: 360px
+  margin-bottom: 5px
+  overflow: hidden
+  .contextual-links-region
+    position: static
+  
