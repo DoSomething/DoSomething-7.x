@@ -82,15 +82,18 @@ function robocalls_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Nice!',
       'title' => '',
-      'body' => '<h3 class="confirmation-message">Nice!  Your Call Was Sent!</h3>
-<div class="share-on-facebook-arrow"></div>
-<a href="#" class="share-on-facebook">Share the call on Facebook!</a>',
+      'body' => '<h3 class="confirmation-message">Nice! Your call was sent!</h3>
+<p class="facebook-arrow"><img src="//files.dosomething.org/files/u/calloffame/call-arrow.png" alt="arrow"></p>
+<p class="facebook-button"><a href="#" class="facebook-share-call"><img src="//files.dosomething.org/files/u/calloffame/fb-call.png" alt="Share the call on Facebook"></a></p>',
       'format' => '3',
       'substitute' => 1,
     );
     $pane->cache = array();
     $pane->style = array();
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'clearfix fb-btn-wrap-secondary',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
@@ -208,7 +211,10 @@ function robocalls_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array();
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'celeb-tagline',
+    );
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();

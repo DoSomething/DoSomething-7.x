@@ -83,10 +83,14 @@ form.webform-client-form #edit-submit
 	margin-top: 0.8em
 	font-weight: 400
 	font-size: 1.4em
-.fb-btn-wrap
+.fb-btn-wrap, .fb-btn-wrap-secondary
 	border-bottom: 1px solid #ccc
 	float: right
+.fb-btn-wrap
 	width: 62%
+.fb-btn-wrap-secondary
+	width: 92%
+	margin: 0 4% 4%
 
 select
 	width: 100%
@@ -229,7 +233,7 @@ div[role="main"]
 		color: transparent
 		background: url(//files.dosomething.org/files/u/calloffame/prank-bg.png) top left repeat-x
 		+box-shadow(none)
-		margin: 0
+		margin: 0 0 2%
 		font-size: 0
 		.prank-logo
 			max-width: 1030px
@@ -325,6 +329,18 @@ form
 .celeb-image img
 	width: 100%
 
+//Celeb Tagline
+.celeb-tagline
+	margin: 0.8em 0
+	border-top: 1px solid #20BCB9
+	h2
+		font-size: 1.8em
+		margin: 0.6em 0 0
+		font-family: din-web-reg
+		font-weight: 400
+		line-height: 1.2em
+
+
 
 // Breakpoints for Drupal, Drupal, Drupal
 @media only screen and (max-width: 1075px)
@@ -381,6 +397,9 @@ form
 
 @media only screen and (max-width: 775px)
 	body
+		div[role="main"]
+			h1#page-title
+				margin-bottom: 0
 		div.gallery-col
 			width: 50%
 		.col-2
@@ -459,6 +478,9 @@ form
 	form
 		.field-widget-telwidget, #edit-submitted-field-celeb-your-name, #edit-submitted-field-celeb-your-phone, #edit-submitted-field-celeb-your-password
 			margin-left: 0
+
+	.panels-flexible-region-inside
+		padding: 0
 
 	.prank-home-web-form
 		width: 100%
