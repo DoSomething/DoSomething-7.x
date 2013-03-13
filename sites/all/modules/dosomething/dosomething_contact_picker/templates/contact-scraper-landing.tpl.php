@@ -44,7 +44,7 @@
   / <a href="#" class="check-none"><?php echo t('None'); ?></a>
 </div>
 
-<p class="invite-button"><input type="submit" onclick="return submit_emails()" value="<?php echo t('Invite'); ?>" id="send-emails" /></p>
+<p class="invite-button"><input type="submit" value="<?php echo t('Invite'); ?>" id="send-emails" /></p>
 <p class="rather"><a href="#" onclick="return window.parent.load_fb();"><?php echo t("I'd rather share on Facebook"); ?></a></p>
 
 </form>

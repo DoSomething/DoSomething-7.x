@@ -680,10 +680,10 @@ function dosomething_petitions_name($nid) {
 }
 
 /**
- *  Implements hook_contact_scraper_emails()
+ *  Implements hook_contact_picker_emails()
  *  Sets up emails that will be sent by the contact scraper.
  */
-function dosomething_petitions_contact_scraper_emails() {
+function dosomething_petitions_contact_picker_emails() {
   $emails = array();
   $node = node_load(intval(basename(request_uri())));
 

@@ -21,14 +21,12 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
   );
 
   drupal_add_library('dosomething_contact_picker', 'contact_picker');
-  //contact_scraper::add_scraper_button($content, 0, array('style' => 'display: inline-block'));
 
   $content['invite_by_email'] = array(
     '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
       'attributes' => array(
         'class' => array('contact-picker'),
         'data-nid' => $node->nid,
-        #'onclick' => 'return invite_find_emails(' . $node->nid . ')'
       ),
     )),
     '#prefix' => '<p id="invite-by-email">',
