@@ -185,10 +185,10 @@ function robocalls_beta_response() {
         $n .= preg_replace('#(\d{3})(\d{3})(\d{4})#', '(\\1) \\2-\\3', $number) . ($key == (count($numbers[1]) - 2) ? ' and ' : ($key == (count($numbers[1]) - 1) ? '.' : ', '));
 
         // Send the TelAPI request.
-        dosomething_general_telapi_request('718-578-7681'/*$my_number*/, $number, $id);
+        dosomething_general_telapi_request($my_number, $number, $id);
 
         // Make a record of the call.
-        robocalls_record_call('718-578-7681'/*$my_number*/, $number, $id);
+        robocalls_record_call($my_number, $number, $id);
       }
     }
     // If we didn't get any phone numbers, let 'em know.
@@ -755,13 +755,13 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   $i = 0;
   foreach ($friends AS $number => $callid) {
     if ($i == 0) {
-      $call = dosomething_general_telapi_request('718-578-7681'/*$my['cell']*/, $number, $callid); 
+      $call = dosomething_general_telapi_request($my['cell'], $number, $callid); 
     }
     else {
-      dosomething_general_telapi_request('718-578-7681'/*$my['cell']*/, $number, $callid);
+      dosomething_general_telapi_request($my['cell'], $number, $callid);
     }
 
-    robocalls_record_call('718-578-7681'/*$my['cell']*/, $number, $callid);
+    robocalls_record_call($my['cell'], $number, $callid);
   }
 
   if (!empty($call)) {
@@ -906,12 +906,12 @@ function robocalls_celeb_form_submission($form, &$form_state) {
   $friends = array_unique($friends);
 
   // Send the call(s)!
-  $call = dosomething_general_telapi_request('718-578-7681'/*$my['cell']*/, $friends, $callid);
+  $call = dosomething_general_telapi_request($my['cell'], $friends, $callid);
 
   // Redirect back home, with a GET variable with the call information.
   if (!empty($call)) {
     foreach ($friends AS $friend) {
-      robocalls_record_call('718-578-7681'/*$my['cell']*/, $friend, $callid);
+      robocalls_record_call($my['cell'], $friend, $callid);
     }
 
     drupal_goto($_SERVER['HTTP_REFERER'] . '?c=' . base64_encode(serialize($call)));
