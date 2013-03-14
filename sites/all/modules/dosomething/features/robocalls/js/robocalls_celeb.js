@@ -16,18 +16,18 @@
         }
       }
 
-      if ($('.facebook-share-celeb').length) {
+      if ($('.facebook-button').length) {
         Drupal.behaviors.fb.feed({
           'feed_document': document.location.href,
-          'feed_title': 'MLK',
+          'feed_title': 'I just prank called my friends with a call from ' + Drupal.settings.calloffame.name,
           'feed_picture': document.location.origin + $('.celeb-image').find('img').attr('src'),
-          'feed_caption': 'Check out this call.',
-          'feed_description': 'I just sent a call from DoSomething.org\'s Project Prank!',
+          'feed_caption': '',
+          'feed_description': 'Seriously, check out DoSomething.org\'s Project Prank.',
           'feed_allow_multiple': true,
           'feed_require_login': true,
-          'feed_selector': '.facebook-share-celeb'
+          'feed_selector': '.facebook-button'
         }, function(response) {
-          console.log(response);
+          
         });
       }
 

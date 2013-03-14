@@ -31,10 +31,9 @@
           // Share the celebrity on Facebook.
           Drupal.behaviors.fb.feed({
             'feed_document': href,
-            'feed_title': name + ' just called my friend!',
+            'feed_title': name + ' will prank your friends!',
             'feed_picture': img,
-            'feed_caption': 'Check it.',
-            'feed_description': name + ' just sent a call for me, from DoSomething.org\'s Project Prank!',
+            'feed_description': name + ' can prank dial your friends from DoSomething.org\'s Project Prank!',
             'feed_allow_multiple': true,
             'feed_require_login': true,
           });
@@ -49,10 +48,10 @@
           var call = Drupal.settings.call;
           Drupal.behaviors.fb.feed({
             'feed_document': call.celeb_path,
-            'feed_title': call.celeb_name,
+            'feed_title': 'I just prank called my friends with a call from ' + call.celeb_name + '!',
             'feed_picture': call.celeb_image,
-            'feed_caption': 'Check out this call.',
-            'feed_description': 'I just sent a call from DoSomething.org\'s Project Prank!',
+            'feed_caption': '',
+            'feed_description': 'Seriously, check out DoSomething.org\'s Project Prank.',
             'feed_allow_multiple': true,
             'feed_require_login': true
           });
