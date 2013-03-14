@@ -692,7 +692,7 @@ function robocalls_homepage_form_validation($form, &$form_state) {
     drupal_goto(ROBO_PATH);
   }
 
-  $my = $v['my_info'];
+  $my = (isset($v['my_info']) ? $v['my_info'] : array());
   $friend = $v['friends_info']['primary_friend'];
 
   // Put the first friend's information into a tidy array for validation.
