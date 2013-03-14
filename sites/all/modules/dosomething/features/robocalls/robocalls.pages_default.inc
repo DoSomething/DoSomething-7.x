@@ -669,7 +669,7 @@ function robocalls_default_page_manager_pages() {
     $pane->pid = 'new-8';
     $pane->panel = 'test_region';
     $pane->type = 'block';
-    $pane->subtype = 'webform-client-block-727984';
+    $pane->subtype = 'webform-client-block-727830';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(

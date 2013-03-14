@@ -4,7 +4,7 @@
     celeb_friends_field_count: 7,
     friends_limit: 9,
     celebs: [],
-    previewing: false,
+    now_playing: 0,
 
     attach: function(context, settings) {
       $('.preview').each(function() {
@@ -15,13 +15,14 @@
       });
 
       $('.preview a').click(function() {
-        if (!Drupal.behaviors.robocalls.previewing) { 
-          Drupal.behaviors.robocalls.previewing = true;
+        if ($(this).attr('data-tid') != Drupal.behaviors.robocalls.now_playing) { 
+          Drupal.behaviors.robocalls.now_playing = $(this).attr('data-tid');
+          $('audio').trigger('pause');
           $(this).parent().find('audio').trigger('play');
         }
         else {
-          $(this).parent().find('audio').trigger('pause'); 
-          Drupal.behaviors.robocalls.previewing = false;
+          $(this).parent().find('audio').trigger('pause');
+          Drupal.behaviors.robocalls.now_playing = 0;
         }
         return false;
       });

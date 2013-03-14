@@ -489,6 +489,32 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_short_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_short_name']['type'] = 'text_plain';
   $handler->display->display_options['fields']['field_short_name']['field_api_classes'] = 0;
+  /* Field: Taxonomy term: Term ID */
+  $handler->display->display_options['fields']['tid']['id'] = 'tid';
+  $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['tid']['field'] = 'tid';
+  $handler->display->display_options['fields']['tid']['label'] = '';
+  $handler->display->display_options['fields']['tid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['tid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['tid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['tid']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['tid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['tid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['tid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['tid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['tid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['tid']['separator'] = '';
+  $handler->display->display_options['fields']['tid']['format_plural'] = 0;
   /* Field: Preview / Share bar */
   $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
   $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
@@ -497,7 +523,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing_2']['label'] = '';
   $handler->display->display_options['fields']['nothing_2']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '<div class="preview-share">
-<div class="preview"><audio src="[field_celeb_call]"></audio> <a href="[field_celeb_call]">Preview</a></div>
+<div class="preview"><audio src="[field_celeb_call]"></audio> <a href="[field_celeb_call]" data-tid="[tid]">Preview</a></div>
 <div class="share"><a href="#" class="share-single-celeb">Share</a></div>
 </div>';
   $handler->display->display_options['fields']['nothing_2']['alter']['make_link'] = 0;
@@ -517,6 +543,21 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing_2']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing_2']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing_2']['hide_alter_empty'] = 0;
+  /* Field: Views: Views Conditional */
+  $handler->display->display_options['fields']['views_conditional_1']['id'] = 'views_conditional_1';
+  $handler->display->display_options['fields']['views_conditional_1']['table'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional_1']['field'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional_1']['label'] = '';
+  $handler->display->display_options['fields']['views_conditional_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['views_conditional_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['views_conditional_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['views_conditional_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['views_conditional_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['views_conditional_1']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['views_conditional_1']['if'] = 'name';
+  $handler->display->display_options['fields']['views_conditional_1']['condition'] = '2';
+  $handler->display->display_options['fields']['views_conditional_1']['equalto'] = '???';
+  $handler->display->display_options['fields']['views_conditional_1']['then'] = '[nothing_2]';
   /* Field: Celeb Name / Link */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
@@ -550,7 +591,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[nothing_2]
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[views_conditional_1]
 [field_celeb_photo]
 [nothing_1]';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
