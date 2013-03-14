@@ -797,14 +797,24 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  else if ($uri == CRAZY_ROOT) {
 	    // Monday is always the start of the week.  Get this week's Monday in days (ago).
 	    $monday = (date('N') - 1);
-	    $query->where[1]['conditions'][1] = array(
-		  'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
-		  'value' => array(
+	    if ($monday == 0) {
+		  $query->where[1]['conditions'][1] = array(
+		    'field' => "webform_submissions.submitted >= :today",
+		    'value' => array(':today' => mktime(0, 0, 0)),
+		    'operator' => 'formula',
+		  );
+	    }
+	    else {
+	      $query->where[1]['conditions'][1] = array(
+		    'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
+		    'value' => array(
 			  ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
 			  ':today' => date('Y-m-d'),
-			),
-	  	  'operator' => 'formula',
-	    );
+		    ),
+		    'operator' => 'formula',
+	      );
+		}
+
 	    unset($query->orderby[1]);
 	  }
 
@@ -1051,24 +1061,9 @@ function crazyshit_fboauth_redirect($destination) {
 		
 		// Add email to MailChimp group
 	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
-	       
-               $message['subject'] = 'What\'s the craziest thing you\'ve done to save money?';
-      
-               // Note that the message body is an array, not a string.
-               $message['body'][] = '<strong>Hey there!</strong>';
-
-               $message['body'][] = '<p>We\'ve all done something crazy to save money... some of us have done more than others. If you haven\'t already,
-                            <a href="http://www.dosomething.org/crazy/submit/start">submit your story</a> and you will be entered to win a $4,000
-			     scholarship to help you avoid crazy things in the future. (contest rules here)</p>';
-			     
-               $message['body'][] = '<p>I\'ll send you some highlighted stories every so often, along with a couple ideas on how they could have sanely
-                            saved money instead.  Our site is still in beta right now, so if you have any comments that could help us make it
-			    better, <strong><a href="https://docs.google.com/forms/d/1tDNHmnIrbBwXs7yrsA5Mdw4eFKTBEbQ6-0li3hQax7U/viewform">click here.
-		            </a></strong></p><br /><br />';
-			    
-               $message['body'][] = '<p>Stay Crazy,<br />Greg from DoSomething.org</p>';
 		
-               $mail_status = crazyshit_mail_send($email, $message);
+	       // Send email message, start with '', build content from tpl file.
+               $mail_status = crazyshit_mail_send($email, '');
 
 	       if (!$mail_status) {
 	         watchdog('crazyshit', 'Failed to send welcome message after user registration: %email using the parameters: %param',
@@ -1094,10 +1089,11 @@ function crazyshit_theme() {
   $path = drupal_get_path('module', 'crazyshit');
 
   return array(
-    'crazyshit_welcome' => array(
-      'path' => $path . '/templates',
-      'template' => 'crazyshit-welcome-email',
-    ),
+    'crazyshit_welcome' => array(	  	
+       'path' => $path . '/templates',	  	 	
+       'template' => 'crazyshit-welcome',  	
+     ),
+    
     'bull' => array(
       'path' => $path . '/templates',
       'template' => 'bullshit-alert',
@@ -1313,23 +1309,29 @@ function crazyshit_handle_fb_users($facebook) {
 function crazyshit_mail($key, &$message, $params) {
 
   switch ($key) {
-    // Send a simple message from the contact form.
-    case 'intro':
+	
+    // Send a simple into message.
+    case 'crazyshit-intro':
 	
      $headers = array(
-        'MIME-Version' => '1.0',
+	'From' => $message['from'],	  	
+	'Sender' => $message['from'],	  	
+	'Return-Path' => $message['from'],	  	
+	'Reply-to' => $message['from'],  	
+	'Errors-To' => $message['from'],
         'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
-        'Content-Transfer-Encoding' => '8Bit',
-        'X-Mailer' => 'Drupal'
       );
+     
       foreach ($headers as $key => $value) {
-        $message['headers'][$key] = $value;
+        $message['headers'][$key] = mime_header_encode($value);
       }
+      
+      $message['subject'] = t('What\'s the craziest thing you\'ve done to save money?');	  	
+      $message['body'][] = theme('crazyshit_welcome', $params);
 
       break;
   }
-	
-	
+		
 }
 
 /**
@@ -1347,16 +1349,11 @@ function crazyshit_mail_send($email, $message) {
   // All system mails need to specify the module and template key (mirrored from
   // hook_mail()) that the message they want to send comes from.
   $module = 'crazyshit';
-  $key = 'intro';
+  $key = 'crazyshit-intro';
 
   // Specify 'to' and 'from' addresses.
   $to = $email;
   $from = 'crazy@dosomething.org';
-
-  // "params" loads in additional context for email content completion in
-  // hook_mail(). In this case, we want to pass in the values the user entered
-  // into the form, which include the message body in $form_values['message'].
-  $params = $message;
 
   // The language of the e-mail. This will one of three values:
   // * user_preferred_language(): Used for sending mail to a particular website
@@ -1377,10 +1374,10 @@ function crazyshit_mail_send($email, $message) {
   // called. This defaults to TRUE, and is normally what you want unless you
   // need to do additional processing before drupal_mail_send() is called.
   $send = TRUE;
-  // Send the mail, and check for success. Note that this does not guarantee
+  // Send the mail and check for success. Note that this does not guarantee
   // message delivery; only that there were no PHP-related issues encountered
   // while sending.
-  $result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
+  $result = drupal_mail($module, $key, $to, $language, $message, $from, $send);
   
   if ($result['result'] == FALSE) {	
     watchdog('crazyshit', 'Failed to send intro email message.');
@@ -1388,5 +1385,19 @@ function crazyshit_mail_send($email, $message) {
   
   return $result['result'];
 
+
+}
+
+/**	  	
+ *  Extends default mail system to use crazyshitMailSystem which sends emails as HTML	  	
+ */	  	
+class crazyshitMailSystem extends DefaultMailSystem {
+	
+  public function format(array $message) {
+    $message['body'] = implode("\n\n", $message['body']);
+    $message['body'] = drupal_wrap_mail($message['body']);
+
+    return $message;
+  }
 
 }

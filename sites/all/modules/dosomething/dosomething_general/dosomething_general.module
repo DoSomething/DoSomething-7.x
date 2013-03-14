@@ -1002,6 +1002,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
 
+  $email = $cell = '';
   // Different instances of the email field use different widgets so we have to
   // look in two places to find their email address.
   if (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
@@ -1023,7 +1024,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
     if ( (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) || ($node->type == 'petition') ) && !empty($email)) {
       
       // Cell
-      if ($cell) {
+      if (!empty($cell)) {
         $mc_merge_vars['MMERGE7'] = $cell;
       }
       
@@ -1464,7 +1465,7 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
   }
   
   // Make sure merge_vars is formatted correctly even if no values are assigned
-  if (count($merge_vars) == 0) {
+  if (empty($merge_vars) || count($merge_vars) == 0) {
     $merge_vars['UID'] = 0;
   }
 
@@ -1733,4 +1734,25 @@ function dosomething_general_ctools_plugin_directory($module, $plugin) {
 function dosomething_general_user_logout($account) {
   $goto = str_replace('http://' . $_SERVER['HTTP_HOST'] . '/', '', $_SERVER['HTTP_REFERER']);
   $_GET['destination'] = $goto;
+}
+
+/**
+ *  Cleans a string of risky characters and replaces them.
+ *
+ *  @param string $string
+ *    The string you want to clean.
+ *
+ *  @param string $nix
+ *    The characters that should be replaced.  Must be a valid regular expression,
+ *    given two '#' delimiters.
+ *
+ *  @param string $replace_with
+ *    What to replace the unneeded characters with.
+ *
+ *  @return string
+ *    The cleaned string.
+ */
+function dosomething_general_clean_string($string, $nix = '[^A-Za-z0-9\-\_]', $replace_with = '_') {
+  $string = preg_replace('#' . $nix . '#i', $replace_with, $string);
+  return $string;
 }

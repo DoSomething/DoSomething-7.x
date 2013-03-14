@@ -1,13 +1,14 @@
 Dear <?php echo $name; ?>,
 
-Thanks for signing the petition, "<?php echo $petition; ?>."
+Thanks for signing the petition! You've made your voice heard, you badass do-gooder.  Now, amplify that voice by spreading the word:
 
-Now help this movement grow by sharing with your friends.  They'll share with their friends, who will then...well, you get the idea.
+1. Share a link to the petition on Facebook.
+2. Email your friends and family about it.
+3. Tweet, tweet!
 
-Increase your impact: Ask your friends to sign
-<?php echo $petition_link; ?>
+And, you can speak out again: sign another petition here: http://www.dosomething.org/petitions
 
+Thanks for being a rockstar,
 
-Thanks for taking action.
-
-<?php echo $author; ?> and the DoSomething.org Team.
+Ben
+petitions@dosomething.org

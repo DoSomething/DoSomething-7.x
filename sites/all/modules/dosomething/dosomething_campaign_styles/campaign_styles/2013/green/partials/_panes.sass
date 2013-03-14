@@ -1,12 +1,47 @@
 // PANES 
 
 //      //
+//  .panel-top-right-social
+//      //
+.panel-top-right-social
+  float: right
+  margin: 10px 0
+  a
+    text-decoration: none
+  #facebook-wrapper
+    margin-right: 10px
+  #ds-facebook-share-button
+    font-size: 10.5px
+    padding: 1px 5px
+    color: #333
+    border: 1px solid #ccc
+    b
+      font-weight: bold
+      color: #333
+  #facebook-count
+    margin-top: -2px
+    padding: 3px
+    font-size: 8pt
+    text-decoration: none
+    color: #333
+  .arrow_box
+    position: relative
+    background: #ffffff
+    border: 1px solid #c1c1c1
+    font-family: 'Helvetica Neue', Arial, sans-serif
+  .service-links-print, .twitter-share-button
+    display: none
+
+
+//      //
 //  #header     - sign up -
 //      //
 .section#header
   background: url('http://files.dosomething.org/files/campaigns/green/header-bg.jpg') top center no-repeat
   margin-bottom: 2%
 #header
+  max-width: 800px
+  margin: 0 auto
   text-align: left
   padding: 0
   h1, h2
@@ -15,9 +50,9 @@
     margin: 0
   .headline
     max-width: 800px
-    margin: 0 auto 10%
+    margin: 0 auto
   h1
-    margin: 1.5% 0 1.5% 1.5%
+    margin: 1.5%
     background: $secondaryColor
     zoom: 1
     filter: alpha(opacity=85)
@@ -47,11 +82,22 @@
     zoom: 1
     filter: alpha(opacity=85)
     opacity: 0.85
-    margin: 0 0 1.5% 1.5% 
+    margin: 1.5% 1.5% 17%
     float: left
+    font-size: 1.2em
+    padding: 1% 1.5%
+  .date
+    color: white
+    background: $grayColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 5% 1.5% 1.5% 1.5% 
+    float: right
     clear: both
     font-size: 1.2em
     padding: 1% 1.5%
+    text-transform: uppercase
   .pane-campaign-signed
     h2
       text-align: center
@@ -131,11 +177,11 @@
     line-height: 1.2em
     margin-bottom: 1em
   .third
-    float: left
-    width: 33%
     h3
-      font-size: 4em
+      font-size: 2.8em
       font-weight: 600
+      line-height: 1.1em
+      margin-top: 0.2em
     h4
       text-transform: uppercase
       font-size: 1.8em
@@ -144,8 +190,18 @@
       padding-top: 1.2em
       font-size: 1.8em
       font-weight: 600
+    p.head
+      font-size: 1em
+      font-weight: 500
+      color: black
   .go-button
     font-size: 2.4em
+    margin-top: 1%
+  a.rules
+    color: white
+    font-size: 0.8em
+    font-weight: 400
+    text-transform: none
 
 
 //      //
@@ -313,9 +369,13 @@
   .bottom-h2
     margin-bottom: 0
   .go-button
-    margin: 0.4em auto 1em
+    margin: 0.4em auto 0.8em
     font-size: 2em
-
+  a.rules
+    font-size: 0.8em
+    font-weight: 400
+    text-transform: none
+    margin-bottom: 1em
 
 //      //
 //  #toolkit

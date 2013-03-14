@@ -10,6 +10,9 @@ define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
 define('PETITIONS_MCOMMONS', 117371);
 
+/**
+ *  Implements hook_page_alter()
+ */
 function dosomething_petitions_page_alter(&$page) {
   if (preg_match('#\/petition\/(.*?)#i', request_uri())) {
     $element = array(
@@ -19,8 +22,21 @@ function dosomething_petitions_page_alter(&$page) {
         'content' => 'dosomethingapp:petition',
       ),
     );
+
     drupal_add_html_head($element, 'petitions_og_type');
+
+
+    $short = shorten_url(url(request_uri(), array('absolute' => TRUE)));
+    drupal_add_js(array('petition' => array('short_url' => $short)), 'setting');
   }
+}
+
+/**
+ *  Implements hook_cron()
+ */
+function dosomething_petitions_cron() {
+  // Make sure counts and variables are in line.
+  drush_invoke('petitions-check-counts');
 }
 
 /**
@@ -100,6 +116,9 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+/**
+ *  Petitions basic CAPTCHA system to discourage spammers.
+ */
 function dosomething_petitions_captcha(&$form, &$form_state) {
   $vals = $form_state['values'];
   if (isset($vals['fav_color']) && !empty($vals['fav_color'])) {
@@ -107,6 +126,21 @@ function dosomething_petitions_captcha(&$form, &$form_state) {
   }
 }
 
+/**
+ *  Sends an email to all signers of a webform when we reach a goal.
+ *
+ *  @param string $email
+ *    The key of the email to send.  Should be defined in hook_mail()
+ *
+ *  @param int $nid
+ *    The node ID of the petition that reached a goal.
+ *
+ *  @param int $goal
+ *    The ultimate goal that the petition should reach.
+ *
+ *  @param int $count
+ *    The current number of submissions that the petition has.
+ */
 function dosomething_petitions_send_goal_email($email, $nid, $goal, $count) {
   $signers = db_query("
   SELECT DISTINCT u.mail
@@ -157,8 +191,17 @@ function dosomething_petitions_send_goal_email($email, $nid, $goal, $count) {
   }
 }
 
+/**
+ *  Sends emails when the petitions goal is reached.
+ *  
+ *  @param int $goal
+ *    The ultimate goal for the petition.
+ *
+ *  @param int $nid
+ *    The node id of the petition in question.
+ */
 function dosomething_petitions_goal_email($goal, $nid) {
-  $count = webform_get_submission_count($nid);
+  $count = variable_get('petitions_signed_count_' . $nid);
 
   if ($count == $goal) {
     dosomething_petitions_send_goal_email('petitions_goal_reached', $nid, $goal, $count);
@@ -188,6 +231,17 @@ function dosomething_petitions_goal_email($goal, $nid) {
 function dosomething_petitions_opt_in($form, $form_state) {
   $sub = $form['#submission']->submitted;
   $val = $sub['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
+
+  $_SESSION['guest_user_info'] = array(
+    'first_name' => $sub['field_webform_first_name'][LANGUAGE_NONE][0]['value'],
+    'last_name' => $sub['field_webform_last_name'][LANGUAGE_NONE][0]['value'],
+    'email' => $val
+  );
+
+  $nid = $form_state['values']['details']['nid'];
+  $count = variable_get('petitions_signed_count_' . $nid, 0);
+  variable_set('petitions_signed_count_' . $nid, ++$count);
+
 
   if (valid_email_address($val)) {
     global $language, $user;
@@ -271,7 +325,7 @@ function dosomething_petitions_opt_in($form, $form_state) {
     if (!trim($author)) {
       $author = $a->name;
     }
-    
+
     // Add signup to MailChimp
     dosomething_general_webform_email_and_mobile_subscribe($form, $form_state);
     
@@ -365,7 +419,7 @@ function dosomething_petitions_email_form($form, &$form_state, $nid) {
     '#attributes' => array(
       'id' => 'invite_data'
     ),
-    '#default_value' => $node->nid
+    '#default_value' => (isset($node->nid) ? $node->nid : 0),
   );
 
   for ($i = 0; $i < PETITIONS_NUM_EMAILS; $i++) {
@@ -424,6 +478,21 @@ function dosomething_petitions_email_form_submit($form, $form_state) {
   drupal_set_message(t('Great! We\'ll send them a link to this petition. Share with more friends below.'));
 }
 
+/**
+ *  Stores an email in the dosomething_petitions_invites table.
+ *  If someone signs a petition, and their email is in this table,
+ *  the person who invited them will get an email saying that their
+ *  invitee signed!
+ *
+ *  @param int $nid
+ *    The node ID of the petition in question.
+ *
+ *  @param int $uid
+ *    The User ID of the inviter
+ *
+ *  @param string $invite
+ *    The email address of the invitee
+ */
 function dosomething_petitions_store_email($nid, $uid, $invite) {
   $data = array(
     'nid' => $nid,
@@ -446,7 +515,7 @@ function dosomething_petitions_mail($key, &$message, $params) {
       $message['body'][] = theme('ds_petitions_invite', $params);
       break;
     case 'thanks_for_signing':
-      $message['subject'] = t('!name sent you a message', array('!name' => $params['author']));
+      $message['subject'] = t('You signed the petition...now what?');
       $message['body'][] = theme('ds_petitions_thanks_for_signing', $params);
       $message['headers']['From'] = $params['author'] . ' <petitions-no-reply@dosomething.org>';
       #$message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
@@ -558,6 +627,17 @@ function dosomething_petitions_theme($existing, $type, $theme, $path) {
   );
 }
 
+/**
+ *  Forms petition signers' names to be only the first name, and first
+ *  initial of their last name.
+ *
+ *  @param int $nid
+ *    The node ID of the petition in question.
+ *
+ *  @return array
+ *    Returns an array containing the user's first name, last initial,
+ *    and full name.
+ */
 function dosomething_petitions_name($nid) {
   global $user;
   module_load_include('inc', 'webform', 'includes/webform.submissions');
@@ -599,7 +679,11 @@ function dosomething_petitions_name($nid) {
   );
 }
 
-function dosomething_petitions_contact_scraper_emails() {
+/**
+ *  Implements hook_contact_picker_emails()
+ *  Sets up emails that will be sent by the contact scraper.
+ */
+function dosomething_petitions_contact_picker_emails() {
   $emails = array();
   $node = node_load(intval(basename(request_uri())));
 
@@ -623,13 +707,24 @@ function dosomething_petitions_contact_scraper_emails() {
     $me = $user->name;
   }
 
+  $email = $user->mail;
+
+  if (!$me) {
+    if (isset($_SESSION['guest_user_info'])) {
+      $me = $_SESSION['guest_user_info']['first_name'];
+      $last = $_SESSION['guest_user_info']['last_name'];
+      $email = $_SESSION['guest_user_info']['email'];
+    }
+  }
+
   // Petitions "client email" link information
   $e = theme('ds_petitions_invite', array(
     'title' => $node->title,
     'nid' => $node->nid,
     'signatures' => $node->goal,
     'url' => $node->link,
-    'first_name' => $me
+    'first_name' => $me,
+    'last_name' => $last
   ));
   $emails['petition']['client_email']['title'] = $node->title . t('- Sign the petition!');
   $emails['petition']['client_email']['body'] = $e;
@@ -644,7 +739,7 @@ function dosomething_petitions_contact_scraper_emails() {
       'url' => $node->link,
       'first_name' => $me,
       'last_name' => $last,
-      'inviter_email' => $user->mail
+      'inviter_email' => $email,
     );
   $emails['petition']['invited']['store_function'] = 'dosomething_petitions_store_email';
 

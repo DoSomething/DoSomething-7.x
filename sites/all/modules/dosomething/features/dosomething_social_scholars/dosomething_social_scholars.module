@@ -22,50 +22,139 @@ function dosomething_social_scholars_ctools_plugin_directory($module, $plugin) {
 function dosomething_social_scholars_menu() {
   $items = array();
 
-  $items['sas-response/%'] = array(
+  $items['sas-mms-response'] = array(
     'page callback' => 'dosomething_social_scholars_mms_response',
-    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+
+  $items['sas-redirect'] = array(
+    'page callback' => 'dosomething_social_scholars_redirect',
     'access callback' => TRUE,
   );
 
   return $items;
 }
 
-function dosomething_social_scholars_mms_response($nid) {
-  global $user;
-  if (!isset($_REQUEST['mms_image_url'])) {
-    return;
+function dosomething_social_scholars_redirect() {
+  $args = drupal_get_query_parameters($_REQUEST);
+  $email = (isset($args['submitted']['field_webform_email'][LANGUAGE_NONE][0]['email']) ? $args['submitted']['field_webform_email'][LANGUAGE_NONE][0]['email'] : '');
+  $bucket = (isset($args['mailchimp_bucket']) ? $args['mailchimp_bucket'] : '');
+
+  if (empty($email) || !valid_email_address($email)) {
+    drupal_set_message(t('You must specify at least your email to sign up for this campaign.'), 'error');
+    $_GET['destination'] = 'sas-landing/' . $args['from_nid'];
+  }
+  else {
+    if (!empty($bucket)) {
+      dosomething_general_mailchimp_subscribe($email, $bucket);
+    }
   }
 
+  drupal_goto();
+}
+
+/**
+ * Receives MMS and routes user to next message via a Mobile Commons opt-in path
+ */
+function dosomething_social_scholars_mms_response() {
+
+  $routes = array(
+    // nid 728622 for Paper Chicken Share-A-Stat
+    '148113' => array(    // key = Mobile Commons opt-in path
+      'nid' => 728622,    // NID of the webform to submit mms to
+      'mms' => 148133,    // MC opt-in path to send user to if MMS is received
+      'no_mms' => 148143  // MC opt-in path to send user to if no MMS is received
+    ),
+    '148203' => array(
+      'nid' => 728622,
+      'mms' => 148213,
+      'no_mms' => 148223
+    ),
+    '148273' => array(
+      'nid' => 728622,
+      'mms' => 148283,
+      'no_mms' => 148293
+    ),
+    '148303' => array(
+      'nid' => 728622,
+      'mms' => 148313,
+      'no_mms' => 148323
+    ),
+  );
+
+  $opt_in_path = intval($_REQUEST['opt_in_path_id']);
   $picture = check_plain($_REQUEST['mms_image_url']);
+  $mobile = check_plain($_REQUEST['phone']);
 
-  // Build report back submission and submit
-  $submission = new stdClass;
-  $submission->bundle = 'social_scholarship';
-  $submission->nid = $nid;
-  $submission->data = array();
-  $submission->uid = $user->uid;
-  $submission->submitted = REQUEST_TIME;
-  $submission->remote_addr = ip_address();
-  $submission->is_draft = FALSE;
-  $submission->sid = NULL;
+  if (array_key_exists($opt_in_path, $routes)) {
+    $next_path = 0;
 
-  // Save user responses to 
-  $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
+    if (!empty($picture)) {
+      $next_path = $routes[$opt_in_path]['mms'];
+      $webform_nid = $routes[$opt_in_path]['nid'];
 
-  // Download and save image
-  if (!empty($picture)) {
-    $f_name = 'public://' . basename($picture);
-    $attach_contents = file_get_contents($picture);
-    $attach_data = file_save_data($attach_contents, $f_name);
-    $attach_array = get_object_vars($attach_data);
-    $wrapper->value()->field_share_your_own_image[LANGUAGE_NONE][] = $attach_array;
+      $user = sms_flow_get_or_create_user_by_cell($mobile);
+      if ($user) {
+        // Build report back submission and submit
+        $submission = new stdClass;
+        $submission->bundle = 'social_scholarship';
+        $submission->nid = $webform_nid;
+        $submission->data = array();
+        $submission->uid = $user->uid;
+        $submission->submitted = REQUEST_TIME;
+        $submission->remote_addr = ip_address();
+        $submission->is_draft = FALSE;
+        $submission->sid = NULL;
+
+        $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
+
+        // Download and save image
+        if (!empty($picture)) {
+          $f_name = 'public://' . basename($picture);
+          $attach_contents = file_get_contents($picture);
+          $attach_data = file_save_data($attach_contents, $f_name);
+          $attach_array = get_object_vars($attach_data);
+          $wrapper->value()->field_share_your_own_image[LANGUAGE_NONE][] = $attach_array;
+        }
+
+        $wrapper->save();
+      }
+    }
+    else {
+      $next_path = $routes[$opt_in_path]['no_mms'];
+    }
+
+    if ($next_path > 0 && !empty($mobile)) {
+      dosomething_general_mobile_commons_subscribe($mobile, $next_path);
+      exit;
+    }
+    else {
+      watchdog('dosomething_social_scholars', "Invalid mobile # ($mobile) or next path ($next_path).");
+    }
+  }
+  else {
+    watchdog('dosomething_social_scholars', 'Received message from invalid opt in path: '. $opt_in_path);
   }
 
-  $wrapper->save();
-
-  dosomething_general_mobile_commons_response(t('Generic message of thanks for submitting a file.'));
+  dosomething_general_mobile_commons_response(t('Agh! We ran into a problem. Please try again.'));
   exit;
+}
+
+function dosomething_social_scholars_page_alter(&$page) {
+  $uri = request_path();
+  if (preg_match('#^sas-landing\/([0-9]+)$#', $uri, $url)) {
+    drupal_add_library('connections', 'facebook');
+    drupal_add_js(drupal_get_path('module', 'dosomething_social_scholars') . '/js/dosomething_social_scholars_landing.js');
+    drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_landing.css');
+
+    $node = menu_get_object('node', 1, 'node/' . $url[1]);
+    if (isset($node->field_logo_image[LANGUAGE_NONE][0]['uri'])) {
+      drupal_set_title('<div class="money">' . t('$2000 Scholarship') . '</div><div class="scholarship-title">' . preg_replace('#\$\d+ scholarship\:?#i', '', $node->title) . '</div>', PASS_THROUGH);
+      drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_header.css');
+      $css = '.background-image {background-image: url(' . file_create_url($node->field_logo_image[LANGUAGE_NONE][0]['uri']) . ');}';
+      drupal_add_css($css, 'inline');
+    }
+  }
 }
 
 /**
@@ -88,7 +177,7 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
     require_once drupal_get_path('module', 'dosomething_social_scholars') . '/style_config.php';
 
     if (!empty($campaign_styles[$campaign_nid]) || !empty($scheme_styles[$scheme_id])) {
-      if (isset($campaign_nid) && !empty($campaign_id)) {
+      if (isset($campaign_nid) && !empty($campaign_nid)) {
         $s = $campaign_styles[$campaign_nid]['longform'];
       }
       else if (isset($scheme_id) && !empty($scheme_id)) {
@@ -330,7 +419,10 @@ function dosomething_social_scholars_theme($existing, $type, $theme, $path) {
       'template' => 'sas-campaign-short-form',
       'variables' => array(
         'alias' => NULL,
-        'nid' => NULL
+        'nid' => NULL,
+        'from_nid' => NULL,
+        'email' => NULL,
+        'cell' => NULL,
       )
     ),
   );
