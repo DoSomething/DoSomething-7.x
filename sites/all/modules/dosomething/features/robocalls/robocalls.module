@@ -687,7 +687,7 @@ function robocalls_create_or_log_in_user($info = array('name' => '', 'cell' => '
  */
 function robocalls_homepage_form_validation($form, &$form_state) {
   $v = $form_state['input']['submitted'];
-  if (!isset($v['my_info']) || !isset($v['friends_info']['primary_friend'])) {
+  if ((!isset($v['my_info']) && !user_is_logged_in()) || !isset($v['friends_info']['primary_friend'])) {
     form_set_error('form', t('There was an error processing your call.'));
     drupal_goto(ROBO_PATH);
   }
@@ -715,8 +715,8 @@ function robocalls_homepage_form_validation($form, &$form_state) {
   }
 
   $error = robocalls_general_validation(array(
-    'number' => $my['my_number'],
-    'password' => $my['my_password'],
+    'number' => (isset($my['my_number']) ? $my['my_number'] : ''),
+    'password' => (isset($my['my_password']) ? $my['my_password'] : ''),
   ), $friends);
 
   // If errors, return home.
