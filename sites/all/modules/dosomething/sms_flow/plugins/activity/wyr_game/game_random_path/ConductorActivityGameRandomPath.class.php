@@ -1,16 +1,22 @@
 <?php
 
 /**
- * Starting point for the Would You Rather SMS quiz game. Selects random question
- * set to send the user to. Ensures same question set does not get sent again.
+ * Primarily for SMS game use (ex: Would You Rather). Selects random Mobile Commons
+ * opt-in path to send the user to. Ensures same opt-in path does not get sent again.
  */
-class ConductorActivityWYRGameStart extends ConductorActivity {
+class ConductorActivityGameRandomPath extends ConductorActivity {
 
   // Unique identifier for the SMS game
   public $game_id;
 
   // Array of possible opt-in paths to send the user to
   public $opt_in_paths = array();
+
+  // Specific opt-in path to send user to after a specific number of times through this randomizer
+  public $path_special = 0;
+
+  // If > 0, send user to path_special on this iteration through the randomizer
+  public $send_to_special_on = 0;
 
   public function run($workflow) {
     $state = $this->getState();
@@ -21,20 +27,28 @@ class ConductorActivityWYRGameStart extends ConductorActivity {
 
     // Randomly select opt-in path to send user to
     $opt_in_path = 0;
-    $path_selected = FALSE;
-    $iter = 0; // fail-safe against an infinite loop
-    while (!$path_selected && $iter < 100) {
-      $iter++;
-      $selected_idx = rand(0, count($this->opt_in_paths)-1);
-      $opt_in_path = $this->opt_in_paths[$selected_idx];
+    if ($this->send_to_special_on > 0 
+        && $this->path_special > 0
+        && count($started_paths) == $this->send_to_special_on - 1) {
+      $opt_in_path = $this->path_special;
+    }
+    else {
+      $path_selected = FALSE;
+      $iter = 0; // fail-safe against an infinite loop
+      while (!$path_selected && $iter < 1000) {
+        $iter++;
+        $selected_idx = rand(0, count($this->opt_in_paths)-1);
+        $opt_in_path = $this->opt_in_paths[$selected_idx];
 
-      // Ensure selected path hasn't already been chosen for the user
-      if (empty($started_paths) 
-          || count($started_paths) == count($this->opt_in_paths)
-          || !in_array($opt_in_path, $started_paths)) {
-        $path_selected = TRUE;
+        // Ensure selected path hasn't already been chosen for the user
+        if (empty($started_paths) 
+            || count($started_paths) == count($this->opt_in_paths)
+            || !in_array($opt_in_path, $started_paths)) {
+          $path_selected = TRUE;
+        }
       }
     }
+
 
     // Send user to selected opt-in path
     dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path);

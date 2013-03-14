@@ -15,7 +15,7 @@ $activity = $workflow->newActivity('start');
 $activity->name = 'start';
 $activity->outputs = array('wyr_game_start');
 
-$activity = $workflow->newActivity('wyr_game_start');
+$activity = $workflow->newActivity('game_random_path');
 $activity->name = 'wyr_game_start';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
@@ -43,12 +43,14 @@ $activity = $workflow->newActivity('start');
 $activity->name = 'start';
 $activity->outputs = array('wyr_game_tips');
 
-$activity = $workflow->newActivity('wyr_game_start');
+$activity = $workflow->newActivity('game_random_path');
 $activity->name = 'wyr_game_tips';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->game_id = 3;
 $activity->opt_in_paths = array(144643, 144663, 144683, 145563, 145573, 145583, 145593, 145603, 145613, 145623, 145633, 145643, 145653, 145663, 145673, 145683, 145693, 145703, 145713, 145723);
+$activity->path_special = 148393;
+$activity->send_to_special_on = 2;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
