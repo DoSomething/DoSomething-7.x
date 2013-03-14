@@ -17,6 +17,9 @@
         $(this).find('.name, .preview-share').hide();
       });
 
+      // Annoying fix for the ??? "celebrity" preview bar.
+      $('a[data-tid="9501"]').parent().parent().remove();
+
       // Share a celebrity from the gallery.
       if ($('.share-single-celeb').length) {
         $('.share-single-celeb').click(function() {
