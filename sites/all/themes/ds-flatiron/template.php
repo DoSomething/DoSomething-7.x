@@ -10,10 +10,20 @@ function ds_flatiron_preprocess_node(&$vars) {
   	switch($vars['node']->nid) {
 	    case '728618':  //PB&J  	  	
 
+        // Give me the contact form - individual
+        $block = block_load('webform', 'client-block-728660');
+        $vars['content']['contact']['individual'] = _block_get_renderable_array(
+          _block_render_blocks(array($block))
+        );
+
+        // Give me the contact form - team
+        $block = block_load('webform', 'client-block-728661');
+        $vars['content']['contact']['team'] = _block_get_renderable_array(
+          _block_render_blocks(array($block))
+        );
+        
         // Give me the report back block
         $block = block_load('webform', 'client-block-728619');
-        $content = _block_get_renderable_array(_block_render_blocks(array($block)));
-
   	  	$vars['content']['report_back'] = _block_get_renderable_array(
           _block_render_blocks(array($block))
         );
