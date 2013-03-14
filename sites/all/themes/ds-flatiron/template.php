@@ -14,10 +14,9 @@ function ds_flatiron_preprocess_node(&$vars) {
         $block = block_load('webform', 'client-block-728619');
         $content = _block_get_renderable_array(_block_render_blocks(array($block)));
 
-  	  	$vars['content']['report_back'] = array(
-  	  	  '#type' => 'markup',
-  	  	  '#markup' => $content
-  	  	);
+  	  	$vars['content']['report_back'] = _block_get_renderable_array(
+          _block_render_blocks(array($block))
+        );
 
   	    break;
   	}
