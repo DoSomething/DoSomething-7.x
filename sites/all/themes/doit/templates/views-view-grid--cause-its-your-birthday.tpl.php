@@ -11,7 +11,7 @@ if (!empty($title)) {
   print '<h3>' . $title . '</h3>';
 }
 // Render columns if needed.
-if ($columns) {
+if (isset($columns)) {
   print '<div class="view-columns view-columns-' . count($columns) . '">';
   foreach ($columns as $column_id => $rows) {
     print '<div' . ($columns_classes[$column_id] ? ' class="' . $columns_classes[$column_id] .'"' : '') . '>';
@@ -26,13 +26,9 @@ if ($columns) {
 else {
   $d = array();
   foreach ($rows AS $key => $junk) {
-
-    #echo '<div class="gallery-row row-' . $key . '">';
     foreach ($junk AS $key => $data) {
-      #echo $data;
       $d[] = $data;
     }
-    #echo '</div>';
   }
 
   $nd = array();
@@ -53,8 +49,4 @@ else {
     }
     echo '</div>';
   }
-
-  #foreach ($rows as $id => $row) {
-  #  print '<div' . ($classes_array[$id] ? ' class="' . $classes_array[$id] .'"' : '') . '>' . $row . '</div>';
-  #}
 }

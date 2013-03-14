@@ -344,8 +344,12 @@ function robocalls_module_implements_alter(&$implementations, $hook) {
 function robocalls_form_alter(&$form, $form_state, $form_id) {
   global $term_info, $flags, $user;
 
-  // Remove any query strings...they screw up the action later!
-  $action = preg_replace('#(\?.*)?$#', '', $form_state['build_info']['args'][0]->webform['action']);
+  $action = '';
+  if (isset($form_state['build_info']['args'][0]->webform['action'])) {
+    // Remove any query strings...they screw up the action later!
+    $action = preg_replace('#(\?.*)?$#', '', $form_state['build_info']['args'][0]->webform['action']);
+  }
+
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'robo_calls') {
     // Load the taxonomy term.
     $term = taxonomy_term_load(arg(2));
@@ -511,7 +515,8 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       $form['#submit'][] = 'robocalls_homepage_form_submission';
 
       if (intval(basename(request_path()))) {
-        $submission = array_shift(entity_load('webform_submission_entity', array(intval(basename(request_path())))));
+        $sid = array(intval(basename(request_path())));
+        $submission = array_shift(entity_load('webform_submission_entity', $sid));
         if ($tid = $submission->data[5]['value'][0]) {
           $term = taxonomy_term_load($tid);
           drupal_add_js(array('call' => array(
@@ -682,6 +687,11 @@ function robocalls_create_or_log_in_user($info = array('name' => '', 'cell' => '
  */
 function robocalls_homepage_form_validation($form, &$form_state) {
   $v = $form_state['input']['submitted'];
+  if (!isset($v['my_info']) || !isset($v['friends_info']['primary_friend'])) {
+    form_set_error('form', t('There was an error processing your call.'));
+    drupal_goto(ROBO_PATH);
+  }
+
   $my = $v['my_info'];
   $friend = $v['friends_info']['primary_friend'];
 
@@ -711,7 +721,7 @@ function robocalls_homepage_form_validation($form, &$form_state) {
 
   // If errors, return home.
   if ($error > 0) {
-    drupal_goto('prank');
+    drupal_goto(ROBO_PATH);
   }
   else {
     // Otherwise, if not logged in...log in! or register.
@@ -745,10 +755,12 @@ function robocalls_homepage_form_submission($form, &$form_state) {
     $f['friends_number'] => $f['select_call'],
   );
 
-  foreach ($f['more_calls'] AS $key => $call) {
-    if ($f['more_friends'][$key]) {
-      if (!$friends[$f['more_friends'][$key]]) {
-        $friends[$f['more_friends'][$key]] = $call;
+  if (is_array($f['more_calls']) && !empty($f['more_calls'])) {
+    foreach ($f['more_calls'] AS $key => $call) {
+      if ($f['more_friends'][$key]) {
+        if (!$friends[$f['more_friends'][$key]]) {
+          $friends[$f['more_friends'][$key]] = $call;
+        }
       }
     }
   }
