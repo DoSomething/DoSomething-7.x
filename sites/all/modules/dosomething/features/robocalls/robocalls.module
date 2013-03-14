@@ -26,6 +26,7 @@ define('ROUND_TO', 10);
 define('ROBOCALLS_TAXONOMY_ID', variable_get('robocalls_taxonomy_vocab', 25));
 define('ROBOCALLS_MCOMMONS_ALPHAS_CAMPAIGN', 144433);
 define('ROBO_PATH', 'prank');
+define('ROBOCALLS_DEFAULT_PHONE_NUMBER', '+1 209-645-7443');
 
 /**
  *  Loads the configuration file for robocalls and returns it.
@@ -765,19 +766,26 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   }
 
   if (!empty($call)) {
-  /*  $cid = array_shift($friends);
-    $celeb = taxonomy_term_load($cid);
+    /* On hold 3/6/13: We're going to be using the call data at a later point.
+      $cid = array_shift($friends);
+      $celeb = taxonomy_term_load($cid);
 
-    $c = array(
-      'call_sid' => $call->sid,
-      'celeb_tid' => $cid,
-      'celeb_image' => file_create_url($celeb->field_celeb_photo[LANGUAGE_NONE][0]['uri']),
-      'celeb_name' => $celeb->name
-    );
-    $_SESSION['front_page_call'] = $c;
-  */
+      $c = array(
+        'call_sid' => $call->sid,
+        'celeb_tid' => $cid,
+        'celeb_image' => file_create_url($celeb->field_celeb_photo[LANGUAGE_NONE][0]['uri']),
+        'celeb_name' => $celeb->name
+      );
+      $_SESSION['front_page_call'] = $c;
+    */
+
     $sid = $form_state['values']['details']['sid'];
     drupal_goto(ROBO_PATH . '/' . $sid);
+  }
+  else {
+    // In case the call fails, let them know.
+    drupal_set_message(t('Sorry, there was an error sending your call.  Please try again.'), 'error');
+    drupal_goto(ROBO_PATH);
   }
 }
 

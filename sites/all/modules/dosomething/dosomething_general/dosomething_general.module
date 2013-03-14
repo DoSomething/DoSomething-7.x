@@ -1158,25 +1158,71 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
   ));
 
   if (is_array($beta_number)) {
+    // Clean up the alpha number.
+    $alpha = preg_replace('#[^0-9]#', '', $alpha_number);
     foreach ($beta_number AS $cell) {
       if (dosomething_general_valid_cell($cell)) {
-        $call = $api->create($type, array(
-          'From' => $alpha_number,
+        // Clean up the beta number.
+        $beta = preg_replace('#[^0-9]#', '', $cell);
+
+        // Set up the call request.
+        $req = array(
           'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $cell),
           'Url' => variable_get('prank_site', 'http://qa3.dosomething.org') . '/prank/xml/' . $celeb_id,
           'method' => 'GET',
-        ));
+        );
+
+        // You can't call yourself and spoof your own number...
+        // So if you're calling yourself, default to the basic phone #.
+        if ($alpha != $beta) {
+          $req['From'] = $alpha;
+        }
+        else {
+          $req['From'] = ROBOCALLS_DEFAULT_PHONE_NUMBER;
+        }
+
+        try {
+          // Send the call.
+          $call = $api->create($type, $req);
+        }
+        catch (TelApi_Exception $e) {
+          
+          watchdog('robocalls', $e->getMessage());
+          return false;
+        }
       }
     }
   }
   else {
     if (dosomething_general_valid_cell($alpha_number) && dosomething_general_valid_cell($beta_number)) {
-      $call = $api->create($type, array(
-        'From' => $alpha_number,
-        'To' => $beta_number,
+      // Clean up the numbers.
+      $alpha = preg_replace('#[^0-9]#', '', $alpha_number);
+      $beta = preg_replace('#[^0-9]#', '', $beta_number);
+
+      // Set up the call request.
+      $req = array(
+        'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $beta_number),
         'Url' => variable_get('prank_site', 'http://qa3.dosomething.org') . '/prank/xml/' . $celeb_id,
         'method' => 'GET',
-      ));
+      );
+
+      // You can't call yourself and spoof your own number...
+      // So if you're calling yourself, default to the basic phone #.
+      if ($alpha != $beta) {
+        $req['From'] = $alpha;
+      }
+      else {
+        $req['From'] = ROBOCALLS_DEFAULT_PHONE_NUMBER;
+      }
+
+      try {
+        // Send the call.
+        $call = $api->create($type, $req);
+      }
+      catch (TelApi_Exception $e) {
+        watchdog('robocalls', $e->getMessage());
+        return false;
+      }
     }
   }
 
