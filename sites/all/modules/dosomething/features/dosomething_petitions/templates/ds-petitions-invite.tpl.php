@@ -9,4 +9,4 @@
 <p>Every voice and every name matters.  Thanks in advance for both of yours.</p>
 
 <p>--------</p>
-<p>You're receiving this message because <?php echo $first_name . ' ' . $last_name; ?> sent you an email through DoSomething.org's petition sharing tool.  DoSomething.org has not stored your email address.  If you believe you have received this message in error, respond directly to Mike Fantini at mfantini12@gmail.com.  To stop receiving emails from your friends about DoSomething.org petitions, click here: http://www.dosomething.org/unsubscribe-email/<?php echo $email; ?></p>
+<p>You're receiving this message because <?php echo $first_name . ' ' . $last_name; ?> sent you an email through DoSomething.org's petition sharing tool.  DoSomething.org has not stored your email address.  If you believe you have received this message in error, respond directly to <?php echo $first_name . ' ' . $last_name; ?> at <?php echo $inviter_email; ?>.  To stop receiving emails from your friends about DoSomething.org petitions, click here: http://www.dosomething.org/unsubscribe-email/<?php echo $email; ?></p>
