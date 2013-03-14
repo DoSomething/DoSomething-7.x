@@ -669,9 +669,15 @@ function dosomething_blocks_views_api() {
 function dosomething_blocks_preprocess_dosomething_blocks_twitter_widget(&$variables) {
   $cache = cache_get('ds_twitter_data');
   if ($cache === FALSE || $cache->expire < REQUEST_TIME) {
-    $twitter = new Twitter();
-    $twitter_data = $twitter->call('statuses/user_timeline/dosomething', array('count' => 6));
-    cache_set('ds_twitter_data', $twitter_data, 'cache', REQUEST_TIME + 86400);
+    // Catches Twitter exceptions...so the site doesn't come crashing down.
+    try {
+      $twitter = new Twitter();
+      $twitter_data = $twitter->call('statuses/user_timeline/dosomething', array('count' => 6));
+      cache_set('ds_twitter_data', $twitter_data, 'cache', REQUEST_TIME + 86400);
+    }
+    catch (TwitterException $e) {
+      watchdog('twitter', $e->getMessage());
+    }
   }
   else {
     $twitter_data = $cache->data;
