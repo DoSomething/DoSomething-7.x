@@ -8,11 +8,11 @@
 class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
 
   protected $alpha_optin;
-  protected $beta_optin;
-  protected $id_override;
-  protected $type_override;
+  public $beta_optin;
+  public $id_override;
   public $response_error;
   public $response_success;
+  public $type_override;
 
   public function run($workflow) {
     $state = $this->getState();
@@ -24,6 +24,12 @@ class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
     $this->response_error = empty($this->response_error) ? $state->getContext('ftaf_response_error') : $this->response_error;
     $this->response_success = empty($this->response_success) ? $state->getContext('ftaf_response_success') : $this->response_success;
     $this->type_override = empty($this->type_override) ? $state->getContext('ftaf_type_override') : $this->type_override;
+
+    // If opt-in paths are arrays, randomly select one
+    if (is_array($this->beta_optin)) {
+      $selected_idx = rand(0, count($this->beta_optin) - 1);
+      $this->beta_optin = $this->beta_optin[$selected_idx];
+    }
 
     $ftaf_numbers_unvetted = $state->getContext('ftaf_prompt:message');
 
