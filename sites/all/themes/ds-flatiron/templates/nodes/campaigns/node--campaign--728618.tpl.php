@@ -1,40 +1,46 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="content"<?php print $content_attributes; ?>>
 
+    <?php
+      
+      require('node-field-variables.php');
+
+    ?>
+
     <section class="header">
       <div>
         <a class="ds_logo" href="//www.dosomething.org/">
-          <img src="//files.dosomething.org/files/campaigns/beta/logo.png" alt="DoSomething.org logo" />
+          <img src="<?php print($files_source . 'logo-ds.png'); ?>" alt="DoSomething.org logo" />
         </a>
         <a class="log_out" href="/user/logout">log out</a>
       </div>
-      <img class="beta_logo" src="//files.dosomething.org/files/campaigns/beta/header-logo.png" alt="Project Clean Up logo" />
+      <img class="beta_logo" src="<?php print($files_source . 'logo' . '$cmp_short' . '.png'); ?>" alt="Project Clean Up logo" />
     </section> <!-- .header -->
 
     <section class="project">
       <div>
-        <img src="//files.dosomething.org/files/campaigns/beta/project_header.png" alt="the proejct"/>
+        <img src="<?php print($files_source . 'h-project.png') ?>" alt="The Project" />
         <h1>76% of all littering is done by people under the age of 26</h1>
         <h1>Be part of the 24% that cares & make your community cleaner</h1>
       </div>
     </section> <!-- .project -->
 
-    <section class="mission">
+    <section class="challenge">
       <div>
-        <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/mission_header2.png" alt="your mission"/>
+        <img class="header_img" src="<?php print($files_source . 'h-mission.png'); ?>" alt="your mission" />
         <h2>Pick up <strong>10</strong> pieces of trash in your local community.</h2>
         <h2>Prove it by submitting a before and an after picture below.</h2>
       </div>
-    </section> <!-- .mission -->
+    </section> <!-- .challenge -->
 
     <section class="scholarship">
       <div>
-        <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/scholarship-header.png" alt="scholarship"/>
+        <img class="header_img" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
         <h2>We're giving away <strong>$5,000</strong>.</h2>
         <h2>Every 10 pieces of trash you pick up is another chance to win.
         <h2>Prove it by submitting a before and after picture of the area you cleaned.</h2>
         <a id="show-report-back" class="go-button" href="#">enter scholarship</a>
-        <a class="official_rules" href="//files.dosomething.org/files/campaigns/beta/official_rules.pdf">official rules</a>
+        <a class="official_rules" href="<?php print($files_source . 'official_rules.pdf'); ?>">official rules</a>
       </div>
     </section> <!-- .scholarship -->
 
@@ -43,7 +49,7 @@
     <section class="cause">
 
       <div>
-          <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/cause-header.png" alt="why trash?">
+        <img class="header_img" src="<?php print($files_source . 'h-cause.png'); ?>" alt="why <?php $cause ?>?" />
       </div>
       
       <div class="cause-facts current-facts">
@@ -127,15 +133,9 @@
 
     </section> <!-- .cause -->
 
-    <section class="conversation">
-      <div>
-        <img src="//files.dosomething.org/files/campaigns/beta/join_header.png"/>
-      </div>
-    </section> <!-- .conversation -->
-
     <section class="footer">
       <div>
-        <img src="//files.dosomething.org/files/campaigns/beta/footer-header.png"/>
+        <img src="<?php print($files_source . 'h-footer.png'); ?>" />
         <p>questions? e-mail <a href="mailto:cleanup@dosomething.org">cleanup@dosomething.org</a></p>
       </div>
     </section> <!-- .footer -->
