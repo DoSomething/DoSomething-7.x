@@ -417,6 +417,28 @@ body {
 
   #dosomething-login-register-popup-form #edit-submit {
     width: 85%; } }
+#sign-up {
+  background: white;
+  max-width: 500px;
+  margin: 6% auto;
+  padding: 2%; }
+  #sign-up .panel-pane, #sign-up form {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important;
+    padding: 0; }
+  #sign-up .pane-title, #sign-up legend, #sign-up #edit-submitted-field-webform-email, #sign-up #edit-submitted-field-webform-mobile, #sign-up .fb-social-comments-plugin {
+    display: none; }
+  #sign-up input.form-autocomplete {
+    width: 100%; }
+  #sign-up input, #sign-up .form-item {
+    margin-bottom: 1em; }
+  #sign-up #edit-submitted-field-webform-school-reference,
+  #sign-up #edit-submitted-field-webform-school,
+  #sign-up #edit-submitted-field-webform-school-zip {
+    display: block; }
+
 #cmp {
   /* element floats */
   /* centers wrappers contained within floated segments */ }

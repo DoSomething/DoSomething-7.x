@@ -20,20 +20,19 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
     '#weight' => -1
   );
 
-  contact_scraper::add_scraper_button($content, 0, array('style' => 'display: inline-block'));
-  if (preg_match('#\/petition\/put-end-to-bullying#i', request_uri())) {
-    $content['invite_by_email'] = array(
-      '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
-        'attributes' => array(
-          'class' => array('invite-by-email-link'),
-          'onclick' => 'return invite_find_emails(' . $node->nid . ')'
-        ),
-      )),
-      '#prefix' => '<p id="invite-by-email">',
-      '#suffix' => '</p>',
-      '#weight' => 0,
-    );
-  }
+  drupal_add_library('dosomething_contact_picker', 'contact_picker');
+
+  $content['invite_by_email'] = array(
+    '#markup' => l(t('Share with email'), 'contact-scraper/' . $node->nid, array(
+      'attributes' => array(
+        'class' => array('contact-picker'),
+        'data-nid' => $node->nid,
+      ),
+    )),
+    '#prefix' => '<p id="invite-by-email">',
+    '#suffix' => '</p>',
+    '#weight' => 0,
+  );
   $content['or'] = array(
     '#prefix' => '<p class="or">',
     '#suffix' => '</p>',

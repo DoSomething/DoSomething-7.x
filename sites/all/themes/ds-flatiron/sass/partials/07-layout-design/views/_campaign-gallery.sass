@@ -1,0 +1,45 @@
+.view-campaign-gallery
+  position: relative
+  #controls
+    width: 100%
+    a
+      padding: 0 5px
+      display: block
+      width: 45px
+      +replace-text('scroller_arrows.png')
+      height: 480px
+      position: absolute
+      top: 0
+      &.prev
+        background-position: center left
+        left: 0
+      &.next
+        background-position: center right
+        right: 0
+  #gallery
+    height: 480px
+    padding: 16px 61px
+    text-align: center
+  #slideshow
+    height: 100%
+    display: table
+    height: 100%
+    .image-wrapper
+      display: table-cell
+      vertical-align: middle
+
+  #thumbs
+    +clearfix
+    margin: 16px 0
+    li
+      padding: 8px
+      float: left
+      width: 20%
+      list-style-type: none
+      text-align: center
+
+  .pager
+    text-align: center
+    margin: 16px
+    li
+      float: none

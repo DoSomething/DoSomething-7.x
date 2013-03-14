@@ -39,7 +39,7 @@ function dosomething_clubs_progress_content_type_render($subtype, $conf, $panel_
       global $user;
       if ($user->uid == $node->uid) {
         // Club leader...
-        $progress_label = t('Congrats! Check your email Tuesday for !pizza redemption!', array(
+        $progress_label = t('Congrats! Check your email soon for !pizza redemption!', array(
           '!pizza' => l(t('pizza party'), 'pizza')
         ));
         $done_shrink = true;

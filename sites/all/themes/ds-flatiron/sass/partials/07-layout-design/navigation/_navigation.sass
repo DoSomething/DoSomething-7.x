@@ -1,0 +1,123 @@
+////////////////////////////
+// MAIN NAVIGATION STYLES
+////////////////////////////
+
+nav[role=navigation]
+  @extend %medium
+  position: relative
+  z-index: 100
+  background-color: $blue
+  font-size: $s9
+  line-height: 45px / $s9
+  text-rendering: optimizeLegibility
+  font-family: $font-headline
+  text-transform: uppercase
+  .ie7 &
+    background-color: transparent
+  ul
+    margin-top: 0
+  a
+    +link-colors($gold, $white, $white, $gold, false)
+    &:hover, &:active
+      text-decoration: none
+    &.active, &.active-trail
+      color: $gold
+  .region-navigation
+    @extend %container
+    .block-menu-block
+      width: 100%
+      padding-left: 233px
+      display: table
+      .ie7 &
+        padding-left: 170px
+      ul.menu
+        font-family: din-web
+        display: table-row
+        li.expanded
+          list-style: none
+        li
+          display: table-cell
+          width: 203px
+          position: relative
+          top: -3px
+          .ie7 &
+            display: inline-block
+            float: left
+            background-color: $blue
+          &.first
+            padding-left: 3px
+          &:nth-of-type(3)
+            padding-left: 10px
+          a
+            position: relative
+            z-index: 1
+            font-family: din-web
+            text-decoration: none
+          ul
+            position: absolute
+            top: 0
+            display: block
+            padding-top: 45px
+            padding-left: 0
+            width: 204px
+            height: 0
+            overflow: hidden
+            opacity: 0
+            font-size: $s4
+            line-height: 38px
+            text-transform: capitalize
+            +transition(opacity 0.2s 'ease-out')
+            margin-left: -28px
+            .ie7 &
+              margin-left: -150px
+            li
+              display: block
+              width: 100%
+              background-color: $gray1
+              -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75)
+              filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75)
+              background-color: $gray1-trans
+              text-align: left
+              line-height: 22px
+              &.first
+                padding-left: 0
+              &:nth-of-type(3)
+                padding-left: 0
+              &.last
+                margin-left: 0
+              a
+                +link-colors($white, $gold, $gold, $white, false)
+                padding: 12px 18px
+                display: block
+                &:hover
+                  background-color: $gray1
+                  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75)
+                  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75)
+                  background-color: $gray1-trans
+              .ie7 &
+                background-color: $gray1
+          &.first
+            ul
+              margin-left: -3px
+              .ie7 &
+                margin-left: -113px
+          &.last
+            width: 300px
+            margin-left: -20px
+            ul
+              width: 232px
+              .ie7 &
+                margin-left: -233px
+              li.last
+                width: 232px
+                margin-left: 0
+          &:hover
+            ul
+              opacity: 1
+              height: auto
+
+// main nav last link width
+nav[role="navigation"] .region-navigation .block-menu-block ul.menu li.last
+  .ie8 &,
+  .ie7 &
+    width: 210px

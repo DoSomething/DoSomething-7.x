@@ -1,0 +1,35 @@
+////////////////////////////
+// HELP CENTER POPUP
+// gray popup from Help Center links in header and footer
+////////////////////////////
+div[aria-labelledby="ui-dialog-title-lets-talk-dialog"]
+  .ui-icon.ui-icon-closethick
+    right: -400px
+    top: -18px
+
+#lets-talk-dialog
+  overflow: visible
+  padding-top: 12px
+  h2
+    @extend %popup-title
+    margin: 0
+  #content
+    @extend %popup-title-border
+    font-family: $font-headline
+    font-size: 18px
+  .row
+    +pie-clearfix
+    margin-bottom: 15px
+    &:last-child
+      margin-bottom: 0
+  .title,
+  .detail
+    @extend %white
+    a
+      @extend %gold
+      border-bottom: none
+      outline: none
+  .title
+    +float-left
+  .detail
+    +float-right

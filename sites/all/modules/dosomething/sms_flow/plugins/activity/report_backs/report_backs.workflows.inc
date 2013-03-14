@@ -1,8 +1,8 @@
 <?php
 
-//
-// sms_flow_alcoa_report_back workflow
-//
+/**
+ * sms_flow_alcoa_report_back workflow
+ */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_alcoa_report_back';
@@ -36,9 +36,101 @@ $activity->outputs = array();
 
 $workflows[$workflow->name] = $workflow;
 
-//
-// sms_flow_beta_campaign_report_back workflow
-//
+/**
+ * sms_flow_can_send_mms_report_back workflow
+ *  can_send_mms activity replaces the End activity and should be the
+ *  last one in the workflow.
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_can_send_mms_report_back';
+$workflow->title = 'Handles response to whether or not user can send MMS.';
+$workflow->description = 'Handles response to whether or not user can send MMS.';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->inputs = array();
+$activity->outputs = array('can_send_mms');
+
+$activity = $workflow->newActivity('can_send_mms');
+$activity->name = 'can_send_mms';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->routes = array(
+  '147823' => array(
+    'yes' => '147743',
+    'no' => '147753'
+  ),
+);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('can_send_mms');
+$activity->outputs = array();
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * sms_flow_sucker2013_report_back workflow
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_sucker_report_back';
+$workflow->title = 'Sucker Campaign Report Back';
+$workflow->description = 'Submits the report back for use with the Don\'t Be A Sucker campaign';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->inputs = array();
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_unplugged');
+$activity->should_prompt = FALSE;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_unplugged';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_tvs');
+$activity->question = t('How many total vampires did you unplug in this room?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_tvs';
+$activity->inputs = array('ask_unplugged');
+$activity->outputs = array('strip_signature');
+$activity->question = t('How many of those were TVs?');
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_tvs');
+$activity->outputs = array('sucker_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'sucker_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+$activity->success_response = 'Thanks for sharing! You now have @submission_count entries in the scholarship lottery. Unplugged more rooms? Text SHARE. Or text DONE if you\'re finished';
+$activity->submission_fields = array(
+  'ask_unplugged' => 4,
+  'ask_tvs' => 5,
+  'picture' => 'ask_picture:mms',
+);
+$activity->webform_nid = 728508;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('sucker_report_back');
+$activity->outputs = array();
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * sms_flow_beta_campaign_report_back workflow
+ */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_beta_campaign_report_back';
@@ -93,9 +185,9 @@ $activity->outputs = array();
 
 $workflows[$workflow->name] = $workflow;
 
-//
-// sms_flow_tfj2013_report_back
-//
+/**
+ * sms_flow_tfj2013_report_back
+ */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_tfj2013_report_back';

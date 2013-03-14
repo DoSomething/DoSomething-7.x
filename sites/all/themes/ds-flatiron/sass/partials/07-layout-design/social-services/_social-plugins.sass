@@ -1,0 +1,58 @@
+////////////////////////////
+// PLUGIN STYLES FOR THE SOCIAL PLUGINS
+//  Called in dosomething_blocks_social_node_plugins in dosomething_blocks.module
+////////////////////////////
+
+.panel-one-two .panel-top
+  +pie-clearfix
+  // +ds-bevel-single
+  margin-bottom: 15px
+
+.pane-dosomething-blocks-dosomething-social-node-buttons
+  //  +clearfix
+  margin-bottom: 0
+  width: 50%
+  .pane-content
+    float: left
+    width: 100%
+.pane-dosomething-blocks-dosomething-facepile-general
+  float: right
+  margin-bottom: 0
+  width: 50%
+
+.facebook-plugin
+  float: left
+
+.social-plugin-wrapper
+  +clearfix
+  .connect_widget_number_cloud,
+  .twitter-plugin,
+  .sharethis-plugin
+    float: left
+    .stBubble
+      margin-top: 0
+  .twitter-plugin
+    margin: 0 12px
+    width: 55px
+
+// Width for facebook like dialog getting cut in chrome
+.fb_edge_widget_with_comment span.fb_edge_comment_widget
+  width: 410px
+
+// quote of say block social plugins
+#mini-panel-home_page .pane-dosomething-blocks-dosomething-social-node-buttons
+  .ie8 &,
+  .ie7 &
+    padding-left: 98px
+    width: 73%
+
+.page-node .content .service-links img, .service-links img
+  border: none
+  +box-shadow(none)
+
+.service-links
+  iframe, div
+    vertical-align: middle
+    height: 20px
+  a
+    margin-right: 24px

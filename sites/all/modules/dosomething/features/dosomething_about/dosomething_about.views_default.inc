@@ -43,7 +43,7 @@ function dosomething_about_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = 'We love teens. They are creative, active, wired…and frustrated that our world is so messed up. DoSomething.org harnesses that awesome energy and unleashes it on causes teens care about. Almost every week, we launch a new national campaign. The call to action is always something that has a real impact and doesn’t require money, an adult, or a car. With a goal of 5 million active members by 2015, DoSomething.org is one of the largest organizations in the US for teens and social change.';
+  $handler->display->display_options['header']['area']['content'] = 'DoSomething.org is the country’s largest nonprofit for young people and social change. We have 1,425,974 million members (and counting) who kick ass on causes they care about. Bullying. Homelessness. Cancer. The list goes on. DoSomething.org spearheads national campaigns so 13- to 25-year-olds can make an impact - without ever needing money, an adult, or a car. Over 2.4 million people took action through DoSomething.org in 2012. You know, because apathy sucks.';
   $handler->display->display_options['header']['area']['format'] = '1';
   $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Field: Taxonomy term: Name */

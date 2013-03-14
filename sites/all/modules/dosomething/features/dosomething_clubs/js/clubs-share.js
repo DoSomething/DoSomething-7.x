@@ -48,13 +48,13 @@
 
 			$('.gmail a').click(function() {
 				Drupal.behaviors.clubsShare.clear_buckets();
-				service('google', 'sites/all/modules/dosomething/dosomething_contact_picker');
+				DS.ContactPicker.service('google', 'sites/all/modules/dosomething/dosomething_contact_picker');
 				return false;
 			});
 
 			$('.yahoo').click(function() {
 				Drupal.behaviors.clubsShare.clear_buckets();
-				service('yahoo', '/sites/all/modules/dosomething/dosomething_contact_picker');
+				DS.ContactPicker.service('yahoo', '/sites/all/modules/dosomething/dosomething_contact_picker');
 				return false;
 			});
 

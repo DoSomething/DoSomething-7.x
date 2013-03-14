@@ -1,0 +1,61 @@
+////////////////////////////
+// PANELS PANES
+////////////////////////////
+//.panel-pane
+
+// #edit-submit-action-finder
+.views-submit-button
+  +float-left
+  a
+    @extend %go-button
+
+.views-exposed-widgets
+  .views-submit-button
+    @extend %submit-right
+
+// one-three-one layout column widths
+.panes-3 .panel-panel
+  .ie8 &,
+  .ie7 &
+    width: 215px
+
+// pages using landing layout like /scholarships
+.panel-landings .panel-row-middle .panel-panel
+  .ie8 &,
+  .ie7 &
+    width: 215px
+
+
+////////////////////////////
+// FAKE ACTIVITY FEED
+////////////////////////////
+
+#activity-feed
+  border: 1px solid white
+  padding: 0
+  .activity-img, .activity-text
+    float: left
+    margin: 10px
+  .activity-img
+    width: 40px
+  .activity-text
+    width: 276px
+  .pane-content
+    p.action
+      padding: 0
+      margin: 0
+      span
+        font-weight: 500
+    hr
+      border-top: 1px dashed white
+      border-bottom: none
+      clear: both
+      padding: 0
+      margin: 0
+    p.time-code
+      color: #777
+      font-weight: 300
+      font-style: italic
+      font-size: 0.9em
+      padding: 0
+      margin: 0 

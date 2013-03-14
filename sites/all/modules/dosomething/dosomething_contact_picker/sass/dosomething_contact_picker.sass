@@ -1,0 +1,32 @@
+@import compass
+
+.contact-picker
+	width: 82%
+	border: 1px solid black
+	color: #FEFEFE
+	margin: 0px auto
+	display: block
+	font-size: 11pt
+	text-transform: uppercase
+	font-weight: bold
+	padding: 5px
+	border-radius: 10px
+
+	@include background-image(linear-gradient(color-stops(#a90329, #6d0019)))
+
+	&:hover
+		color: #fff
+		text-decoration: none
+
+.contact-picker-dialog
+	background: #fff !important
+
+	.ui-dialog-titlebar
+		position: relative
+		top: -20px
+
+	.remove-that-loader
+		position: absolute
+		z-index: 0
+		margin-left: 50%
+		margin-top: 20%
