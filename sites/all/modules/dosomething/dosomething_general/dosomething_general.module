@@ -1284,6 +1284,7 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
   }
 
   $result = drupal_http_request($api_opt_in_path_url, $options);
+  mail('mchittenden@dosomething.org', 'mc result', $result);
   return $result;
 }
 
