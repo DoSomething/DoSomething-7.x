@@ -44,7 +44,18 @@
       </div>
     </section> <!-- .scholarship -->
 
-    <?php print render($content['report_back']); ?>
+    <section class="contact">
+      <div>
+        <?php print render($content['contact']['individual']); ?>
+        <?php print render($content['contact']['team']); ?>
+      </div>
+    </section>  <!-- .contact -->
+
+    <section class="scholarship">
+      <div>
+        <?php print render($content['report_back']); ?>
+      </div>
+    </section>  <!-- .report_back -->
 
     <section class="cause">
 
