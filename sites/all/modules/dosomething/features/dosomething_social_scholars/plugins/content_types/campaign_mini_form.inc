@@ -28,21 +28,27 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
     }
   }
 
-  // Get the group ID for the campaign in question.
-  $gid = og_get_group('node', $campaign->nid)->gid;
+  $n = reset($context)->data;
+  if (!isset($n->field_shortform_image[LANGUAGE_NONE][0]['uri'])) {
+    // Get the group ID for the campaign in question.
+    $gid = og_get_group('node', $campaign->nid)->gid;
 
-  // Get the node ID for the campaign short form...for the campaign in question.
-  $sf = db_select('field_data_group_audience', 'ga')
-    ->fields('ga', array('entity_id'))
-    ->condition('entity_type', 'node')
-    ->condition('bundle', 'campaign_sign_up')
-    ->condition('group_audience_gid', $gid)
-    ->range(0, 1)
-    ->execute();
-  $short_form = reset($sf->fetchAll());
+    // Get the node ID for the campaign short form...for the campaign in question.
+    $sf = db_select('field_data_group_audience', 'ga')
+      ->fields('ga', array('entity_id'))
+      ->condition('entity_type', 'node')
+      ->condition('bundle', 'campaign_sign_up')
+      ->condition('group_audience_gid', $gid)
+      ->range(0, 1)
+      ->execute();
+    $short_form = reset($sf->fetchAll());
 
-  // Try and get the alias for the campaign short form.
-  $alias = drupal_get_path_alias('node/' . $short_form->entity_id);
+    // Try and get the alias for the campaign short form.
+    $alias = drupal_get_path_alias('node/' . $short_form->entity_id);
+  }
+  else {
+    $alias = drupal_get_path_alias('node/' . $campaign->nid);
+  }
 
   // Styling information.
   $campaign_nid = $campaign->nid;
@@ -72,7 +78,6 @@ function dosomething_social_scholars_sas_campaign_shortform_content_type_render(
      'weight' => 1000
   ));
 
-  $n = reset($context)->data;
   $from_nid = $n->nid;
   $mailchimp_bucket = $n->field_email_mailchimp_bucket[LANGUAGE_NONE][0]['value'];
 
