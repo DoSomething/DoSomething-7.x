@@ -95,20 +95,22 @@ function doit_preprocess_page(&$variables) {
   }
   
   // Load Webfonts specific to the page
-  dosomething_perfomance_toolbox_webfonts();
+  if (module_exists('dosomething_perfomance_toolbox')) {
+    dosomething_perfomance_toolbox_webfonts();
+  }
+  
 
 }
 
 // preprocess maintenance page copy for 500 error
 function doit_preprocess_maintenance_page(&$vars) {
-    if ($GLOBALS['conf']['maintenance_mode'] === 0) {
-      
-      // Include fonts in error page
-      dosomething_perfomance_toolbox_webfonts();
-      
-      /* we have an error */
-      $vars['content'] = '<p>' . t("We're on it! For now, try refreshing the page.") . '</p>';
-    }
+  
+  if ($GLOBALS['conf']['maintenance_mode'] === 0) {
+    
+    /* we have an error */
+    $vars['content'] = '<p>' . t("We're on it! For now, try refreshing the page.") . '</p>';
+  }
+  
 }
 
 // /**
