@@ -1634,6 +1634,155 @@ function dosomething_social_scholars_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-social_scholarship-field_sponsor_image'.
+  $fields['node-social_scholarship-field_sponsor_image'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_sponsor_image',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'social_scholarship',
+      'deleted' => '0',
+      'description' => '(Optional) sponsor image that will appear at the bottom of all pages for this Share a Stat.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => 20,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_sponsor_image',
+      'label' => 'Sponsor image',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'default_image' => 0,
+        'file_directory' => 'share-a-stat/sponsors',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'insert' => 0,
+          'insert_class' => '',
+          'insert_default' => 'auto',
+          'insert_styles' => array(
+            'auto' => 'auto',
+            'image' => 0,
+            'image_490x200' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
+            'image_campaign_blog_thumbnail' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_carousel_center' => 0,
+            'image_carousel_inner' => 0,
+            'image_carousel_outer' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_crazy_facebook_picture' => 0,
+            'image_crazy_image_dimensions' => 0,
+            'image_explore_action_guides' => 0,
+            'image_fb_post_image' => 0,
+            'image_front_slider' => 0,
+            'image_gallery_thumbnail' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_p4p_fake_button' => 0,
+            'image_petdetail_regular' => 0,
+            'image_petdetail_retina' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
+            'image_robocalls_gallery_thumb' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_search_results_thumbnail' => 0,
+            'image_social_scholarship_images_petition_735x150' => 0,
+            'image_social_scholarship_stat_image_190x190' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_thumbnail_regular' => 0,
+            'image_thumbnail_retina' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
+          ),
+          'insert_width' => '',
+          'preview_image_style' => '',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '21',
+      ),
+    ),
+  );
+
   // Exported field: 'node-social_scholarship-field_tip_to_show_on_form'.
   $fields['node-social_scholarship-field_tip_to_show_on_form'] = array(
     'field_config' => array(
@@ -1851,6 +2000,7 @@ function dosomething_social_scholars_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('(Optional) sponsor image that will appear at the bottom of all pages for this Share a Stat.');
   t('Alphas Campaign');
   t('An image that will appear in the header, should you want it to.');
   t('Betas Campaign');
@@ -1876,6 +2026,7 @@ function dosomething_social_scholars_field_default_fields() {
   t('Redirect to path');
   t('Share your own image');
   t('Shortform replacement image');
+  t('Sponsor image');
   t('Text to accompany the Facebook share links.  These will correspond, in order, with the order of the images that were uploaded above (e.g. the first description will accompany the first image, the second with the second image, etc...)');
   t('The Language for the Facebook "Recommend" button');
   t('The link to the petition (or other) that will be below the --- OR --- line on the images page.');
