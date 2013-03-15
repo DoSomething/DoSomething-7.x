@@ -21,8 +21,11 @@
       var caption = window.setInterval(function() {
         if ($('#caption').length) {
           window.clearInterval(caption);
+
+          $('.view-share-a-stat-gallery').addClass('view-campaign-gallery view-id-campaign_gallery');
+
           var block = $('<div></div>').addClass('buttons');
-          var facebook = $('<a></a>').attr('href', 'http://facebook.com').text('Facebook').click(function() {
+          var facebook = $('<a></a>').attr('href', 'http://facebook.com').html('<img src="/sites/all/modules/dosomething/features/dosomething_social_scholars/images/facebook.png" class="share-button" alt="Share on Facebook" />').click(function() {
             var img = $('.current img').attr('src');
             var nid = parseInt(document.location.pathname.replace('/sas-landing/', ''));
             Drupal.behaviors.fb.feed({
@@ -44,7 +47,7 @@
           //  //<a href="http://www.tumblr.com/share/photo?source=&caption=<?php echo urlencode(INSERT_CAPTION_HERE) ?>&clickthru=<?php echo urlencode(INSERT_CLICK_THRU_HERE) ?>" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;">Share on Tumblr</a>
           //});
           //twitter.appendTo(block);
-          var tumblr = $('<a></a>').attr('href', 'http://tumblr.com').text('Tumblr').click(function() {
+          var tumblr = $('<a></a>').attr('href', 'http://tumblr.com').html('<img src="/sites/all/modules/dosomething/features/dosomething_social_scholars/images/tumblr.png" class="share-button" alt="Share on Tumblr" />').click(function() {
             var img = $('.current img').attr('src');
             window.open('http://www.tumblr.com/share/photo?source=' + encodeURIComponent(document.location.origin + img) + '&caption=Caption&clickthru=' + encodeURIComponent(document.location.href), '_tumblr', 'toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300');
             return false;
