@@ -43,6 +43,16 @@ define('CSS_WEBFONTS', 200);
  * case is a selective process of choosing specific webfont by page URL in an effort to only load what is
  * needed.
  */
+
+ // hook_page_alter(&$page)
+ // http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_page_alter/7
+ /*
+  * Use this hook when you want to remove or alter elements at the page level, or add elements at the page level
+  * that depend on an other module's elements (this hook runs after hook_page_build().
+  *
+  */
+ 
+/*
 function dosomething_perfomance_toolbox_init() {
     
   // Don't load into js paths - admin menu module as an example of js code that forces hook_init to fire twice on page load.
@@ -56,6 +66,8 @@ function dosomething_perfomance_toolbox_init() {
   }
     
 }
+
+*/
  
  /**
  * Construct a <link> tag for the page head that calls a css file that contains @webfont
