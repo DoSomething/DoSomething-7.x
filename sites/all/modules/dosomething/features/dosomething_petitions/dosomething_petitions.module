@@ -46,19 +46,23 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'petition') {
     global $user, $submitted_form;
 
+    $node = menu_get_object();
     $nid = 0;
     if (isset($node->nid)) {
       $nid = $node->nid;
     }
 
+    drupal_add_library('dosomething_contact_picker', 'contact_picker');
+
     $form['hidden-email-link'] = array(
-      '#markup' => l(t('Share with email'), 'contact-scraper/' . $nid, array(
+      '#markup' => l(t('Share with email'), 'contact-picker/' . $node->nid, array(
         'attributes' => array(
-          'class' => array('hidden-email-link'),
-          'onclick' => 'return invite_find_emails(' . $nid . ')',
-          'style' => 'display: none',
+          'class' => array('contact-picker hidden-email-link'),
+          'data-nid' => $node->nid,
         ),
       )),
+      '#prefix' => '<p id="invite-by-email">',
+      '#suffix' => '</p>',
       '#weight' => 0,
     );
 
