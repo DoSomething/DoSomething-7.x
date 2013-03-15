@@ -10,21 +10,31 @@
 	float: left
 	width: 62%
 
-.panels-flexible-region-436-test_region
+//.panels-flexible-region-436-test_region
+.panels-flexible-region.panels-flexible-region-last
 	width: 100%
+
+//headline
+.headline h2
+	float: right
+	width: 60%
+	color: #333
+	margin: 2% 0 0
 
 // sign up wrap
 #webform-component-my-info
 	border-top: 1px solid #ccc
 	input
-		width: 31%
+		width: 31.33%
 		float: left
 		margin: 0 0 0 2%
 
 .sign-up
 	margin: 2% 2% 0.8em
+	//font-size: 0.9em
 
-.panels-flexible-region-436-test_region-inside .panel-separator
+//.panels-flexible-region-436-test_region-inside .panel-separator
+.panels-flexible-region-inside .panel-separator
 	margin: 0
 
 .youre-calling
@@ -38,9 +48,15 @@ form.webform-client-form
 	max-width: 1030px
 	margin: 0 auto
 
-.panels-flexible-region-436-celebrities_list
-	width: 100%
-	float: none
+//.panels-flexible-region-436-celebrities_list
+	//.panels-flexible-region-first .panels-flexible-region-last
+	//.panels-flexible-region
+	//width: 100%
+	//float: none
+
+.panels-flexible-region.panels-flexible-region-cause_calls-center
+	width: 30%
+	float: left
 
 .panels-flexible-region-436-center
 	width: 38%
@@ -202,17 +218,19 @@ body
 
 
 #webform-component-friends-info--primary-friend
-	width: 31%
+	width: 31.33%
 	display: inline-block
 	margin: 0 0 0 2%
 
-#cof-submit-form
-	#webform-component-my-info
-		#webform-component-my-info--my-name,
-		#webform-component-my-info--my-number,
-		#webform-component-my-info--my-password
-			width: 33%
-			display: inline-block
+#webform-component-my-info
+	clear: both
+	#webform-component-my-info--my-name,
+	#webform-component-my-info--my-number,
+	#webform-component-my-info--my-password
+		width: 31.33%
+		margin-left: 2%
+		padding: 0
+		float: left
 
 
 #edit-submitted-field-webform-pictures,
@@ -233,7 +251,7 @@ div[role="main"]
 		color: transparent
 		background: url(//files.dosomething.org/files/u/calloffame/prank-bg.png) top left repeat-x
 		+box-shadow(none)
-		margin: 0 0 2%
+		margin: 0 0 0%
 		font-size: 0
 		.prank-logo
 			max-width: 1030px
@@ -245,7 +263,7 @@ div[role="main"]
 	h2.pane-title
 		background: #20BCB9
 		color: #fff
-		padding: 0.5em 0 0.2em 0
+		padding: 0.5em 2% 0.2em
 		text-align: center
 		font-family: din-web-reg
 		font-weight: 400
@@ -268,12 +286,13 @@ div.view-id-cause_its_your_birthday
 // Secondary Page
 
 form
-	.field-widget-telwidget, #edit-submitted-field-celeb-your-name, #edit-submitted-field-celeb-your-phone, #edit-submitted-field-celeb-your-password
-		width: 31%
+	.field-widget-telwidget, #edit-submitted-field-celeb-your-name, #edit-submitted-field-celeb-your-phone, #edit-submitted-field-celeb-your-password, #webform-component-my-info--my-name
+		width: 31.33%
 		margin-left: 2%
 		padding: 0
 
-#robocalls-celeb-form .webform-client-form
+#robocalls-celeb-form .webform-client-form, .webform-client-form
+	padding-top: 0
 	label
 		display: none
 	#webform-component-my-info
@@ -283,22 +302,34 @@ form
 			float: none
 			margin: 0
 	#edit-submitted-my-info-field-celeb-your-name, #edit-submitted-my-info-field-celeb-your-password
-		width: 31%
+		width: 31.33%
 		float: left
 		margin: 0 0 0 2%
+
+#webform-component-your-friends-info
+	margin: 0
 
 
 .field-type-text
 	margin-bottom: 0
 
+// @NOTE - delete me
+audio
+	height: 0
+	display: none
+
 .preview-facebook-bar
 	background: black
 	text-align: left
-	margin-top: 14px
+	margin-top: 20px
 
 	div.preview
-		display: inline-block
+		//display: inline-block
+		clear: both
 		padding: 6px
+		float: left
+		width: 100px
+		margin: 0
 		a
 			display: inline-block
 			background: url(//files.dosomething.org/files/u/calloffame/prank-play.png) center left no-repeat
@@ -313,8 +344,10 @@ form
 				text-decoration: none
 
 	div.facebook
-		display: inline-block
+		//display: none
+		//display: inline-block
 		float: right
+		width: 22px
 		margin: 8px
 		a
 			background: url(//files.dosomething.org/files/u/calloffame/fb-prank.png) center right no-repeat
@@ -322,6 +355,7 @@ form
 			width: 22px
 			display: inline-block
 			text-indent: -99999px
+			//margin: 8px
 
 .panels-flexible-region-cause_calls-center-inside .panel-separator
 	margin: 0
@@ -386,7 +420,7 @@ form
 		padding: 0 2%
 
 	.panels-flexible-region-cause_calls-center
-		padding: 2%
+		padding-left: 2%
 
 	.facebook-arrow
 		display: none
@@ -394,6 +428,9 @@ form
 	#cof-descriptive
 		width: 36%
 		margin-right: 2%
+
+	.prank-home-web-form .webform-client-form
+		margin: 0 4% 0 0
 
 @media only screen and (max-width: 775px)
 	body
@@ -432,9 +469,26 @@ form
 	#webform-component-my-info
 		margin-bottom: 0
 
-		
+	#webform-component-my-info
+		#webform-component-my-info--my-name,
+		#webform-component-my-info--my-number,
+		#webform-component-my-info--my-password
+			width: 100%
+			margin-left: 0%
+			margin-bottom: 1em
+
+
+	.headline h2
+		width: 62%
+		margin-top: 2%
 
 @media only screen and (max-width: 550px)
+	
+	//secondary page photo
+	.panels-flexible-region.panels-flexible-region-cause_calls-center
+		width: 96%
+		margin: 0 2%
+
 	div[role="main"]
 		h1#page-title
 			img
@@ -449,8 +503,8 @@ form
 
 		#cof-descriptive
 			display: none
-		.panels-flexible-region-436-test_region
-			width: 100%
+		//.panels-flexible-region-436-test_region
+			//width: 100%
 		.youre-calling
 			text-align: center
 		div.views-field-nothing .name
@@ -458,6 +512,9 @@ form
 
 	form.webform-client-form #edit-submit
 		width: 100%
+
+	.prank-home-web-form .webform-client-form
+		margin: 0 4%
 
 	.prank-home-web-form, #robocalls-celeb-form
 		.webform-client-form
@@ -493,3 +550,19 @@ form
 			margin: 0 auto
 	.facebook-button
 		float: none
+
+	.headline
+		margin: 0 2%
+		h2
+			width: 100%
+			margin-top: 4%
+			text-align: center
+			font-size: 2em
+			line-height: 1.1em
+	.celeb-tagline
+		margin-bottom: 0
+		h2
+			text-align: center
+
+	.panels-flexible-region-cause_calls-center
+		padding: 0 2%

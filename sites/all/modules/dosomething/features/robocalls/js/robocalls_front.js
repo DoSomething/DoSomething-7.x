@@ -104,6 +104,10 @@
         });
       });
 
+      //Move "Send to more friends" to numbers area
+      $('#webform-component-friends-info').after($('.add-more-friends-front'));
+
+
       // Add 3 more friends when you click the "Add more friends" link.
       $('.add-more-friends-front').click(function() {
         var n = Drupal.behaviors.robocalls.friends_field_count;

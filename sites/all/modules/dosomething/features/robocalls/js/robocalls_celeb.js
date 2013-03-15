@@ -46,6 +46,10 @@
         $('.additional-friends').mask("(999) 999-9999");
         return false;
       });
+
+      //Move "Send to more friends" to numbers area
+      $('#webform-component-your-friends-info').after($('.add-more-friends'));
+      
     }
   };
 })(jQuery);
