@@ -46,19 +46,23 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'petition') {
     global $user, $submitted_form;
 
+    $node = menu_get_object();
     $nid = 0;
     if (isset($node->nid)) {
       $nid = $node->nid;
     }
 
+    drupal_add_library('dosomething_contact_picker', 'contact_picker');
+
     $form['hidden-email-link'] = array(
-      '#markup' => l(t('Share with email'), 'contact-scraper/' . $nid, array(
+      '#markup' => l(t('Share with email'), 'contact-picker/' . $node->nid, array(
         'attributes' => array(
-          'class' => array('hidden-email-link'),
-          'onclick' => 'return invite_find_emails(' . $nid . ')',
-          'style' => 'display: none',
+          'class' => array('contact-picker hidden-email-link'),
+          'data-nid' => $node->nid,
         ),
       )),
+      '#prefix' => '<p id="invite-by-email">',
+      '#suffix' => '</p>',
       '#weight' => 0,
     );
 
@@ -113,6 +117,26 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
     $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
 
     $form['#submit'][] = 'dosomething_petitions_opt_in';
+  }
+  else if ($form_id == 'webform_client_form_' . variable_get('petitions_ideas_form_id', 728676) && request_path() == 'petitions/ideas') {
+    $form['#submit'][] = 'dosomething_petitions_ideas';
+  }
+}
+
+/**
+ *  Handles petitions ideas submissions -- for MailChimp and Mobile Commons
+ */
+function dosomething_petitions_ideas($form, $form_state) {
+  $s = $form_state['input']['submitted'];
+
+  // Add to MailChimp
+  if (!empty($s['your_email']) && valid_email_address($s['your_email'])) {
+    dosomething_general_mailchimp_subscribe($s['your_email'], 'UserSubmittedPetitions2013');
+  }
+
+  // Add to Mobile Commons
+  if (!empty($s['your_cell_phone_number']) && dosomething_general_valid_cell($s['your_cell_phone_number'])) {
+    dosomething_general_mobile_commons_subscribe($s['your_cell_phone_number'], 147563);
   }
 }
 
