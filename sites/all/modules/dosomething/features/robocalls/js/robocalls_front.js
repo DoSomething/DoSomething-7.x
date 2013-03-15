@@ -78,7 +78,7 @@
 
       // Select and inpout...
       select = '<select name="submitted[friends_info][primary_friend][more_calls][#N]" class="form-select robo-select-celeb"><option value="" selected="selected">Select Call</option>' + celebs + '</select>';
-      input = '<input type="text" id="edit-submitted-friends-info-primary-friend-friends-number" name="submitted[friends_info][primary_friend][more_friends][#N]" value="" size="60" maxlength="128" class="form-text" placeholder="Friend\'s Number" />';
+      input = '<input type="text" id="edit-submitted-friends-info-primary-friend-friends-number" name="submitted[friends_info][primary_friend][more_friends][#N]" value="" size="60" maxlength="128" class="additional-friends form-text" placeholder="Friend\'s Number" />';
 
       // Add fields x2, with replacement variables..replaced.
       n = Drupal.behaviors.robocalls.friends_field_count;
@@ -89,6 +89,7 @@
 
       // Add to form
       $(f).insertAfter('#webform-component-friends-info--primary-friend');
+      $('.additional-friends').mask("(999) 999-9999");
       // Confirm that first select option is called "Select Call"
       $('option[value=""]').text('Select Call');
 
@@ -115,7 +116,7 @@
         new_field = '<fieldset class="webform-component-fieldset form-wrapper" id="webform-component-friends-info--primary-friend"><div class="fieldset-wrapper"><div class="form-item webform-component webform-component-select" id="webform-component-friends-info--primary-friend--select-call">#SELECT</div><div class="form-item webform-component webform-component-textfield" id="webform-component-friends-info--primary-friend--friends-number">#INPUT</div></div></fieldset>';
 
         select = '<select name="submitted[friends_info][primary_friend][more_calls][#N]" class="form-select robo-select-celeb"><option value="" selected="selected">Select Call</option>' + celebs + '</select>';
-        input = '<input type="text" id="edit-submitted-friends-info-primary-friend-friends-number" name="submitted[friends_info][primary_friend][more_friends][#N]" value="" size="60" maxlength="128" class="form-text" placeholder="Friend\'s Number" />';
+        input = '<input type="text" id="edit-submitted-friends-info-primary-friend-friends-number" name="submitted[friends_info][primary_friend][more_friends][#N]" value="" size="60" maxlength="128" class="additional-friends form-text" placeholder="Friend\'s Number" />';
 
         n = Drupal.behaviors.robocalls.friends_field_count;
         for (var i = n; i < (n + 3); i++) {
@@ -128,6 +129,7 @@
         }
 
         $(f).appendTo('#webform-component-friends-info').queue(function() {
+          $('.additional-friends').mask("(999) 999-9999");
           if ($('#edit-submitted-friends-info-primary-friend-select-call').val() != "") {
             $('.robo-select-celeb').each(function() {
               if ($(this).val() == "") {

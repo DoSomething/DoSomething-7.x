@@ -14,6 +14,8 @@
         }
       });
 
+      $('#edit-submitted-friends-info-primary-friend-friends-number').mask("(999) 999-9999");
+
       $('.preview a').click(function() {
         if ($(this).attr('data-tid') != Drupal.behaviors.robocalls.now_playing) { 
           Drupal.behaviors.robocalls.now_playing = $(this).attr('data-tid');

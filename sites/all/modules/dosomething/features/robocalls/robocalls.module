@@ -287,6 +287,7 @@ function robocalls_page_alter(&$page) {
     drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/lets_talk_dialog.js');
     drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration-popup-lightbox.js');
     drupal_add_js(drupal_get_path('module', 'dosomething_login') . '/js/dosomething-login-registration.js');
+    drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/jquery.maskedinput.min.js');
     drupal_set_title($robocalls['title'], PASS_THROUGH);
 
     $p = request_path();
