@@ -84,7 +84,7 @@ function robocalls_default_page_manager_handlers() {
       'title' => '',
       'body' => '<h3 class="confirmation-message">Nice! Your call was sent!</h3>
 <p class="facebook-arrow"><img src="//files.dosomething.org/files/u/calloffame/call-arrow.png" alt="arrow"></p>
-<p class="facebook-button"><a href="#" class="facebook-share-call"><img src="//files.dosomething.org/files/u/calloffame/fb-call.png" alt="Share the call on Facebook"></a></p>',
+<p class="facebook-button"><a href="#" class="facebook-share-celeb"><img src="//files.dosomething.org/files/u/calloffame/fb-call.png" alt="Share the call on Facebook"></a></p>',
       'format' => '3',
       'substitute' => 1,
     );
@@ -251,6 +251,28 @@ function robocalls_default_page_manager_handlers() {
     $pane->locks = array();
     $display->content['new-6'] = $pane;
     $display->panels['choose_another'][0] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
+    $pane->panel = 'who_should_____call_';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Send your friends a prank!',
+      'title' => '',
+      'body' => '<p class="call-tagline">Send your friends a prank call from %term:name! (They\'ll think you\'re calling them.  Buahaha)</p>',
+      'format' => '3',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-7'] = $pane;
+    $display->panels['who_should_____call_'][0] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
