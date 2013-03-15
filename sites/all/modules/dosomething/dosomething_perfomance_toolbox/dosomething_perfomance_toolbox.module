@@ -21,14 +21,14 @@
  * group is output to the page before the markup for loading a stylesheet within a higher weight
  * group, so CSS within higher weight groups take precendence over CSS within lower weight groups.
  * 
- * In summery, constants used to group CSS for aggregation, the higher the value the sooner it will be loaded
+ * Constant used to group CSS for aggregation, the higher the value the sooner it will be loaded
  */
 define('CSS_WEBFONTS', 200);
 
 /**
  * Perform setup tasks for non-cached page requests.
  *
- * This hook (hook_init) is run at the beginning of the page request. It is typically used to set up
+ * This hook is run at the beginning of the page request. It is typically used to set up
  * global parameters that are needed later in the request. When this hook is called, the
  * theme and all modules are already loaded in memory.
  * 
@@ -43,6 +43,16 @@ define('CSS_WEBFONTS', 200);
  * case is a selective process of choosing specific webfont by page URL in an effort to only load what is
  * needed.
  */
+
+ // hook_page_alter(&$page)
+ // http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_page_alter/7
+ /*
+  * Use this hook when you want to remove or alter elements at the page level, or add elements at the page level
+  * that depend on an other module's elements (this hook runs after hook_page_build().
+  *
+  */
+ 
+/*
 function dosomething_perfomance_toolbox_init() {
     
   // Don't load into js paths - admin menu module as an example of js code that forces hook_init to fire twice on page load.
@@ -56,6 +66,8 @@ function dosomething_perfomance_toolbox_init() {
   }
     
 }
+
+*/
  
  /**
  * Construct a <link> tag for the page head that calls a css file that contains @webfont
@@ -81,6 +93,16 @@ function dosomething_perfomance_toolbox_webfonts() {
     } else {
       $rackspace_url = 'http://c308566.r66.cf1.rackcdn.com';
     }
+    
+    // Set options for  drupal_add_css call
+    $options = array();
+
+    // Add font file groupings to specific CSS CSS_WEBFONTS group
+    $options['group'] = CSS_WEBFONTS;
+    
+    // All webfont files are coming from the CDN thus making them external files
+    // Externally hosted stylesheets are never aggregated or compressed.
+    $options['type'] = 'external';
     
     // http://api.drupal.org/api/drupal/includes!bootstrap.inc/function/request_uri/7
     $request_uri = request_uri();
@@ -127,16 +149,6 @@ function dosomething_perfomance_toolbox_webfonts() {
 
     }
     
-    // Set options for  drupal_add_css call
-    $options = array();
-
-    // Add font file groupings to specific CSS CSS_WEBFONTS group
-    $options['group'] = CSS_WEBFONTS;
-    
-    // All webfont files are coming from the CDN thus making them external files
-    // Externally hosted stylesheets (CSS) are never aggregated or compressed by Drupal.
-    $options['type'] = 'external';
-    
     // Add stylesheet call to CSS stack, note change in drupal_add_css values based on addition of specific CSS
     // hook_css_alter uses these values to custom aggregate CSS based on groups
     // http://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_add_css/7
@@ -150,32 +162,31 @@ function dosomething_perfomance_toolbox_webfonts() {
  * Drupal 7: Taking control of CSS and JS aggregation
  * http://www.metaltoad.com/blog/drupal-7-taking-control-css-and-js-aggregation
  *
- * From common.inc, ln: 3121
- * If the item can be grouped with other items, set $group_keys to an array
- * of information that must be the same for all items in its group. If the
- * item can't be grouped with other items, set $group_keys to FALSE. We
- * put items into a group that can be aggregated together: whether they will
- * be aggregated is up to the _drupal_css_aggregate() function or an
- * override of that function specified in hook_css_alter(), but regardless
- * of the details of that function, a group represents items that can be
- * aggregated. Since a group may be rendered with a single HTML tag, all
- * items in the group must share the same information that would need to be
- * part of that HTML tag.
- *
- * Set all aggregated css to the CSS_DEFAULT group.
- * This prevents individual css files per group
- * Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
- * 
- * Default core
- * behaviour results in four seperate css files for each group. In an effort to reduce latency all
- * css files are agregrated into as few files as possible.
- *
+ * Added to control how css files are grouped together when agrigration is enabled
+ * Note condition added to break the grouping into two sets as grouping everything
+ * into a single file was result in a file that contained over 
  * @param &$css
- *   Array of css file entries.
+ *   Users email address.
  */
     
 function dosomething_perfomance_toolbox_css_alter(&$css) {
     
+    // From common.inc, ln: 3121
+    // If the item can be grouped with other items, set $group_keys to an array
+    // of information that must be the same for all items in its group. If the
+    // item can't be grouped with other items, set $group_keys to FALSE. We
+    // put items into a group that can be aggregated together: whether they will
+    // be aggregated is up to the _drupal_css_aggregate() function or an
+    // override of that function specified in hook_css_alter(), but regardless
+    // of the details of that function, a group represents items that can be
+    // aggregated. Since a group may be rendered with a single HTML tag, all
+    // items in the group must share the same information that would need to be
+    // part of that HTML tag.
+    
+    // Set all aggregated css to the CSS_DEFAULT group.
+    // This prevents individual css files per group
+    // Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
+  
     uasort($css, 'drupal_sort_css_js');
     $i = 0;
     foreach ($css as $name => $style) {
@@ -189,10 +200,9 @@ function dosomething_perfomance_toolbox_css_alter(&$css) {
 /**
  * Implements hook_js_alter().
  *
- * Added to control how css files are grouped together when agrigration is enabled. Default core
- * behaviour results in four seperate css files for each group. In an effort to reduce latency all
- * css files are agregrated into as few files as possible.
- * 
+ * Added to control how css files are grouped together when agrigration is enabled
+ * Note condition added to break the grouping into two sets as grouping everything
+ * into a single file was result in a file that contained over 
  * @param &$javascript
  *   The campaign name that the email is to be subscribed to.
  */
