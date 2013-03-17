@@ -15,6 +15,10 @@ stylesheets[all][] = system.theme.css
 ; stylesheets - theme
 stylesheets[all][] = css/style.css
 
+; javascripts - theme
+scripts[] = js/script.js
+scripts[] = js/gate.js
+
 ; regions
 regions[utility] = Utility Bar
 regions[navigation] = Navigation
