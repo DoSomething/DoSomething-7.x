@@ -2,9 +2,6 @@
 
 function ds_flatiron_preprocess_node(&$vars) {
 
-  $theme_path = drupal_get_path('theme', 'doit');
-  $variables['scripts'] = '<script type="text/javascript" src="/' . $theme_path . '/js/script.js"></script>';
-
   if ($vars['node']->type == 'campaign') {
   	// node--campaign--[nid] <---- This should be some org wide id
   	array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $vars['node']->nid );
