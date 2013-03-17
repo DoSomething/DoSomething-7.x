@@ -1,0 +1,229 @@
+// GATE
+// ----
+
+body.html
+  background: #f7f7f7
+
+// page wrapper
+#page.container
+  width: 100%
+
+// page container
+#main-wrapper div[role="main"]
+  float: none
+  width: 800px
+  min-height: auto /* corrects fixed height inherited from sitewide styles */
+  margin: 2% auto 0
+  padding: 3% 3% 1% 3%
+  background: #fff
+  border: 1px solid #ddd
+  +border-radius(2px)
+  +box-shadow(#ccc 0px 15px 20px -10px)
+  @media only screen and (max-width: 850px)
+    width: 96%  
+    padding: 6% 6% 1% 6%
+
+// text styles
+#reg_header, #reg_leftcol
+  h1
+    color: $campaign-main
+    text-transform: uppercase
+
+// header
+#reg_header
+  width: 100%
+  overflow: hidden
+  h1, h2
+    text-align: right
+    float: right
+    width: 70%
+  h1
+    font-size: 50px
+    font-weight: 600
+    margin: 0.4em 0 0 0
+  h2
+    margin: 0.5em 0.3em 0 0
+  img.ds_logo
+    float: left
+    width: 28%
+  img.bang
+    width: 30px
+    margin: -6px 5px 0
+
+#reg_header
+  @media only screen and (max-width: 650px)
+    float: none
+    h1
+      margin: 0.5em 0 0 0
+      font-size: 31px
+    h2
+      margin: 0.1em 0.2em 0 0
+      font-size: 19px
+    img.ds_logo
+      width: 25%
+    img.bang
+      width: 20px
+      margin: -6px 2px 0
+  @media only screen and (max-width: 530px)
+    h1
+      margin: 0.2em 0 0 0
+
+
+// left column
+#reg_leftcol
+  float: left
+  width: 40%
+  margin-left: 3%
+  h1
+    font-size: 25px
+    margin-top: 4em
+  h2
+    font-size: 18px
+  p
+    margin-top: 14em
+
+#reg_leftcol
+  @media only screen and (max-width: 650px)
+    float: none
+    margin: 2% auto
+    width: 95%
+    h1, p
+      margin-top: 1em
+
+// footer
+#reg_footer
+  clear: both
+  width: 95%
+  padding: 3% 0 0 0
+  p, a
+    color: #ddd
+  p
+    font-size: 10px
+    text-align: center
+  a
+    text-decoration: underline
+
+// mutual form styling
+#dosomething-login-register-popup-form, #dosomething-login-login-popup-form
+  div.popup-content
+    background: #fff
+    min-height: auto
+    margin: 0 auto
+    padding: 0
+    width: 100%
+    box-shadow: none
+
+// user registration form
+#main-content, #page-title, #edit-title-text, #edit-connect, #edit-or, .form-required
+  display: none
+
+#dosomething-login-register-popup-form
+  margin: 0 0 2% 0
+  float: right
+  width: 50%
+  @media only screen and (max-width: 650px)
+    float: none
+    margin: 5% auto
+    width: 95%
+  @media only screen and (max-width: 500px)
+    margin: 8% auto 4%
+
+// user registration form
+#dosomething-login-register-popup-form div
+  .popup-content
+    .disclaimer
+      display: none
+    label
+      text-transform: lowercase
+      padding: 0 0 0.4em 0
+      font-weight: 600
+      font-size: 13px
+      color: #666
+    .under-13-field
+      padding: 0
+    .form-item-parent-email
+      margin: 0.5em 0 0 0
+  .form_header
+    margin: 0 0 4% 0
+    display: block
+  .form-item
+    width: 100%
+    float: none !important
+    margin: 0
+  .form-item-first-name, .form-item-last-name
+    float: left !important
+    width: 40%
+  .form-item-last-name
+    width: 55%
+    margin: 0 0 0 5%
+  #edit-birthday
+    label
+      float: none !important
+      margin: 0
+    span
+      position: static !important
+  .form-item-day, .form-item-month, .form-item-year
+    float: left !important
+    width: 10%
+    margin: 0 5% 0 0
+    padding: 0
+  .form-item-year
+    width: 15%
+  .ds-login-popup-footer
+    margin: 0 0 1em 0
+  .already-member
+    float: none
+    padding: 0
+    font-family: din-web-reg
+    font-weight: 500
+    font-size: 14px
+    color: #222
+
+// submit button for both forms
+#dosomething-login-register-popup-form #edit-final-submit,
+#dosomething-login-login-popup-form #edit-final-submit--2
+  background: #fed100
+  margin: 1% 0 0 0
+  padding: 1px 0 0 0
+  position: static
+  font-size: 22px
+  height: 31px
+  width: 65px
+  display: block
+  color: #333131
+  +border-radius(3px) 
+
+// input fields for both forms
+#dosomething-login-register-popup-form, 
+#dosomething-login-login-popup-form
+  input
+    height: 2.5em
+    width: 100%
+    margin: 0 0 1em 0
+    background: #fafafa
+    border: none
+    border: 1px solid #ddd
+    +border-radius(3px)
+
+// user login form
+#dosomething-login-login-popup-form
+  .already-member
+    display: none
+
+// jQuery UI sits outside of above #wrapper
+div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
+  @media only screen and (max-width: 550px)
+    width: 100% !important
+  .ui-dialog-titlebar
+    float: right
+  .ui-dialog-titlebar-close
+    top: -15px
+    right: 5px
+    z-index: 3
+
+// hide questionable elements
+// TODO - DELETE THIS NOISE IN PHP
+#edit-or--2, #edit-title-text--2, #edit-connect--2, .see-whats-new
+  display: none !important
+
+// NOTE: do not forget to combine '.popup-content' styles across both forms!
