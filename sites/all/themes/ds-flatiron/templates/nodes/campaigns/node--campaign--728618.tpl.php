@@ -79,7 +79,7 @@
 
     <section class="footer">
       <div class="section-container">
-        <p>questions? e-mail <a href="mailto:<?php print($cmp_url); ?>@dosomething.org"><?php print($cmp_url); ?>@dosomething.org</a></p>
+        <p>Questions? E-mail <a href="mailto:<?php print($cmp_url); ?>@dosomething.org"><?php print($cmp_url); ?>@dosomething.org</a>!</p>
       </div>
     </section> <!-- .footer -->
 
