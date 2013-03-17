@@ -31,9 +31,9 @@
     $('#contact-form .webform-client-form').submit();
 
     // give users ability to hide system messages
-    var btn-message = '<a href="#" class="go-button" id="btn-message">close</a>';
-    $('.messages').append(btn-message);
-    $('#btn-message').click(function() {
+    var btn_message = '<a href="#" class="go-button" id="btn_message">close</a>';
+    $('.messages').append(btn_message);
+    $('#btn_message').click(function() {
       $(this).parent().hide();   
     });
 
