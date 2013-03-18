@@ -129,6 +129,60 @@ $activity->outputs = array();
 $workflows[$workflow->name] = $workflow;
 
 /**
+ * PBJ Report Back workflow
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pbj_report_back';
+$workflow->title = 'PBJ Report Back';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_jars');
+$activity->should_prompt = FALSE;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_jars';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_people');
+$activity->question = 'Sweet Peanut Butter Batman! Q1 - How many jars you got there?';
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_jars');
+$activity->outputs = array('strip_signature');
+$activity->question = 'Jamtastic! Q2 - How many people helped out?';
+
+$activity = $workflow->newActivity('strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('pbj_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'pbj_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+// TODO: determine what data index values these should go to
+// $activity->submission_fields = array(
+//   'ask_jars' => ,
+//   'ask_people' => ,
+//   'picture' => 'ask_picture:mms',
+// );
+// TODO: $activity->webform_nid = ;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('pbj_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
  * sms_flow_beta_campaign_report_back workflow
  */
 $workflow = new ConductorWorkflow;
