@@ -62,19 +62,21 @@
     </section> <!-- .scholarship -->
 
     <section class="cause">
+      <div class="section-container">
 
-      <?php for ($i=1;$i<5;$i++): ?>
-        <div class="section-container cause-facts <?php if($i == 1){ print("current-facts"); } ?>">
-          <img class="bg-header" src="<?php print($files_source . 'h-cause' . $i . '.png'); ?>" alt="why <?php print($cause_subject); ?>?" />
-          <ul>
-            <?php for ($j=1;$j<5;$j++): ?>
-              <li><p><?php print($cause[$i][$j]); ?></p></li>
-            <?php endfor; ?>
-          </ul>
-          <a class="cause-link" href="#"><?php print($cause['links'][$i]); ?></a>
-        </div> <!-- .cause-facts -->
-      <?php endfor; ?>
+        <?php for ($i=1;$i<5;$i++): ?>
+          <div class="cause-facts <?php if($i == 1){ print("active-fact"); } ?>">
+            <img class="bg-header" src="<?php print($files_source . 'h-cause' . $i . '.png'); ?>" alt="why <?php print($cause_subject); ?>?" />
+            <ul>
+              <?php for ($j=1;$j<5;$j++): ?>
+                <li><p><?php print($cause[$i][$j]); ?></p></li>
+              <?php endfor; ?>
+            </ul>
+            <a class="cause-link" href="#"><?php print($cause['links'][$i]); ?></a>
+          </div> <!-- .cause-facts -->
+        <?php endfor; ?>
 
+      </div> <!-- .section-container -->
     </section> <!-- .cause -->
 
     <section class="footer">

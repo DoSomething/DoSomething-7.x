@@ -12,7 +12,7 @@
     // triggered cause facts 
     $('.cause-link').click(function(d){
       d.preventDefault();
-      $(this).parent().next().show();   
+      $(this).parent().next().toggleClass('active-fact');
     })
 
     // button coloration on report back form
