@@ -9,120 +9,120 @@
   float: left;
   width: 62%; }
 
-/* line 14, ../sass/robocalls.sass */
+/* line 13, ../sass/robocalls.sass */
 .panels-flexible-region.panels-flexible-region-last {
   width: 100%; }
 
-/* line 18, ../sass/robocalls.sass */
+/* line 17, ../sass/robocalls.sass */
 .headline h2 {
   float: right;
   width: 60%;
   color: #333333;
   margin: 2% 0 0; }
 
-/* line 25, ../sass/robocalls.sass */
+/* line 24, ../sass/robocalls.sass */
 #webform-component-my-info {
   border-top: 1px solid #cccccc; }
-/* line 27, ../sass/robocalls.sass */
+/* line 26, ../sass/robocalls.sass */
 #webform-component-my-info input {
   width: 31.33%;
   float: left;
   margin: 0 0 0 2%; }
 
-/* line 32, ../sass/robocalls.sass */
+/* line 31, ../sass/robocalls.sass */
 .sign-up {
   margin: 2% 2% 0.8em; }
 
-/* line 37, ../sass/robocalls.sass */
+/* line 35, ../sass/robocalls.sass */
 .panels-flexible-region-inside .panel-separator {
   margin: 0; }
 
-/* line 40, ../sass/robocalls.sass */
+/* line 38, ../sass/robocalls.sass */
 .youre-calling {
   color: #999999; }
 
-/* line 43, ../sass/robocalls.sass */
+/* line 41, ../sass/robocalls.sass */
 form.webform-client-form {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
 
-/* line 47, ../sass/robocalls.sass */
+/* line 45, ../sass/robocalls.sass */
 .region-content {
   max-width: 1030px;
   margin: 0 auto; }
 
-/* line 57, ../sass/robocalls.sass */
+/* line 49, ../sass/robocalls.sass */
 .panels-flexible-region.panels-flexible-region-cause_calls-center {
   width: 30%;
   float: left; }
 
-/* line 67, ../sass/robocalls.sass */
+/* line 53, ../sass/robocalls.sass */
 .prank-home-web-form .webform-client-form {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
   padding: 0; }
 
-/* line 71, ../sass/robocalls.sass */
+/* line 57, ../sass/robocalls.sass */
 #webform-component-friends-info {
   width: 100%; }
 
-/* line 74, ../sass/robocalls.sass */
+/* line 60, ../sass/robocalls.sass */
 .add-more-friends-front, .add-more-friends {
   float: right;
   text-decoration: underline;
   margin-bottom: 0.8em; }
-/* line 78, ../sass/robocalls.sass */
+/* line 64, ../sass/robocalls.sass */
 .add-more-friends-front:hover, .add-more-friends:hover {
   text-decoration: none; }
 
-/* line 80, ../sass/robocalls.sass */
+/* line 66, ../sass/robocalls.sass */
 #edit-actions {
   clear: both; }
 
-/* line 82, ../sass/robocalls.sass */
+/* line 68, ../sass/robocalls.sass */
 form.webform-client-form #edit-submit {
   margin: 0;
   font-size: 2.2em;
   height: 1.4em; }
 
-/* line 87, ../sass/robocalls.sass */
+/* line 73, ../sass/robocalls.sass */
 #webform-component-friends-info {
   margin-bottom: 0; }
 
-/* line 91, ../sass/robocalls.sass */
+/* line 77, ../sass/robocalls.sass */
 .facebook-arrow {
   float: left;
   margin: 0 2.5em 1.4em; }
 
-/* line 94, ../sass/robocalls.sass */
+/* line 80, ../sass/robocalls.sass */
 .facebook-button {
   float: left;
   margin: 0 0 1.4em; }
 
-/* line 97, ../sass/robocalls.sass */
+/* line 83, ../sass/robocalls.sass */
 .confirmation-message {
   font-family: din-web-reg;
   margin-top: 0.8em;
   font-weight: 400;
   font-size: 1.4em; }
 
-/* line 102, ../sass/robocalls.sass */
+/* line 88, ../sass/robocalls.sass */
 .fb-btn-wrap, .fb-btn-wrap-secondary {
   border-bottom: 1px solid #cccccc;
   float: right; }
 
-/* line 105, ../sass/robocalls.sass */
+/* line 91, ../sass/robocalls.sass */
 .fb-btn-wrap {
   width: 62%; }
 
-/* line 107, ../sass/robocalls.sass */
+/* line 93, ../sass/robocalls.sass */
 .fb-btn-wrap-secondary {
   width: 92%;
   margin: 0 4% 4%; }
 
-/* line 111, ../sass/robocalls.sass */
+/* line 97, ../sass/robocalls.sass */
 select {
   width: 100%;
   font-size: 16px;
@@ -137,42 +137,42 @@ select {
   border-radius: 5px;
   margin: 0 0 0.8em; }
 
-/* line 121, ../sass/robocalls.sass */
+/* line 107, ../sass/robocalls.sass */
 input {
   margin: 0 0 1em; }
 
-/* line 124, ../sass/robocalls.sass */
+/* line 110, ../sass/robocalls.sass */
 body {
   background: white; }
-/* line 127, ../sass/robocalls.sass */
+/* line 113, ../sass/robocalls.sass */
 body header {
   max-width: 1030px;
   margin: 0 auto;
   position: relative; }
-/* line 132, ../sass/robocalls.sass */
+/* line 118, ../sass/robocalls.sass */
 body .prank-bg {
   background: url("//files.dosomething.org/files/u/calloffame/prank-bg2.png") top center repeat-x; }
-/* line 135, ../sass/robocalls.sass */
+/* line 121, ../sass/robocalls.sass */
 body div#page {
   width: 100% !important; }
-/* line 138, ../sass/robocalls.sass */
+/* line 124, ../sass/robocalls.sass */
 body div.gallery-col {
   float: left;
   width: 25%; }
-/* line 141, ../sass/robocalls.sass */
+/* line 127, ../sass/robocalls.sass */
 body div.gallery-col img {
   display: block;
   margin: 0 auto;
   width: 100%; }
-/* line 146, ../sass/robocalls.sass */
+/* line 132, ../sass/robocalls.sass */
 body .panels-flexible-row-last {
   max-width: 1030px;
   width: 100%;
   margin: 0px auto; }
-/* line 151, ../sass/robocalls.sass */
+/* line 137, ../sass/robocalls.sass */
 body div.views-field-nothing {
   position: relative; }
-/* line 154, ../sass/robocalls.sass */
+/* line 140, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share {
   display: none;
   position: absolute;
@@ -180,11 +180,11 @@ body div.views-field-nothing .preview-share {
   top: 0px;
   width: 100%;
   text-align: left; }
-/* line 162, ../sass/robocalls.sass */
+/* line 148, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.preview {
   display: inline-block;
   padding: 6px; }
-/* line 165, ../sass/robocalls.sass */
+/* line 151, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.preview a {
   display: inline-block;
   background: url(//files.dosomething.org/files/u/calloffame/prank-play.png) center left no-repeat;
@@ -195,31 +195,31 @@ body div.views-field-nothing .preview-share div.preview a {
   color: white;
   text-transform: uppercase;
   font-weight: 400; }
-/* line 175, ../sass/robocalls.sass */
+/* line 161, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.preview a:hover {
   text-decoration: none; }
-/* line 178, ../sass/robocalls.sass */
+/* line 164, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.preview .file {
   display: inline-block;
   margin-left: -8px; }
-/* line 182, ../sass/robocalls.sass */
+/* line 168, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.preview span.preview {
   position: relative;
   top: 5px;
   left: 12px; }
-/* line 187, ../sass/robocalls.sass */
+/* line 173, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.share {
   display: inline-block;
   float: right;
   margin: 8px; }
-/* line 191, ../sass/robocalls.sass */
+/* line 177, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.share a {
   background: url(//files.dosomething.org/files/u/calloffame/fb-prank.png) center right no-repeat;
   height: 21px;
   width: 22px;
   display: inline-block;
   text-indent: -99999px; }
-/* line 199, ../sass/robocalls.sass */
+/* line 185, ../sass/robocalls.sass */
 body div.views-field-nothing .name {
   display: none;
   position: absolute;
@@ -231,48 +231,48 @@ body div.views-field-nothing .name {
   padding: 0.2em 0.5em 0.1em;
   width: 100%;
   text-transform: uppercase; }
-/* line 210, ../sass/robocalls.sass */
+/* line 196, ../sass/robocalls.sass */
 body div.views-field-nothing .name a {
   color: white;
   font-weight: 500; }
-/* line 213, ../sass/robocalls.sass */
+/* line 199, ../sass/robocalls.sass */
 body div.views-field-nothing .name a:hover {
   text-decoration: none; }
-/* line 215, ../sass/robocalls.sass */
+/* line 201, ../sass/robocalls.sass */
 body div.views-field-nothing .name .type {
   font-weight: 400;
   font-size: 0.7em; }
 
-/* line 220, ../sass/robocalls.sass */
+/* line 206, ../sass/robocalls.sass */
 #webform-component-friends-info--primary-friend {
   width: 31.33%;
   display: inline-block;
   margin: 0 0 0 2%; }
 
-/* line 225, ../sass/robocalls.sass */
+/* line 211, ../sass/robocalls.sass */
 #webform-component-my-info {
   clear: both; }
-/* line 227, ../sass/robocalls.sass */
+/* line 213, ../sass/robocalls.sass */
 #webform-component-my-info #webform-component-my-info--my-name, #webform-component-my-info #webform-component-my-info--my-number, #webform-component-my-info #webform-component-my-info--my-password {
   width: 31.33%;
   margin-left: 2%;
   padding: 0;
   float: left; }
 
-/* line 236, ../sass/robocalls.sass */
+/* line 222, ../sass/robocalls.sass */
 #edit-submitted-field-webform-pictures, #edit-submitted-field-webform-videos, #edit-submitted-field-webform-school-reference {
   display: none; }
 
-/* line 241, ../sass/robocalls.sass */
+/* line 227, ../sass/robocalls.sass */
 div[role="main"] {
   background: white;
   padding: 0px;
   margin: 0px;
   padding-top: 0px; }
-/* line 247, ../sass/robocalls.sass */
+/* line 233, ../sass/robocalls.sass */
 div[role="main"] nav#breadcrumb {
   display: none; }
-/* line 250, ../sass/robocalls.sass */
+/* line 236, ../sass/robocalls.sass */
 div[role="main"] h1#page-title {
   color: transparent;
   background: url(//files.dosomething.org/files/u/calloffame/prank-bg.png) top left repeat-x;
@@ -281,15 +281,15 @@ div[role="main"] h1#page-title {
   box-shadow: none;
   margin: 0 0 0%;
   font-size: 0; }
-/* line 256, ../sass/robocalls.sass */
+/* line 242, ../sass/robocalls.sass */
 div[role="main"] h1#page-title .prank-logo {
   max-width: 1030px;
   margin: 0 auto; }
-/* line 259, ../sass/robocalls.sass */
+/* line 245, ../sass/robocalls.sass */
 div[role="main"] h1#page-title img {
   display: block;
   margin: 4% 0 4% 250px; }
-/* line 263, ../sass/robocalls.sass */
+/* line 249, ../sass/robocalls.sass */
 div[role="main"] h2.pane-title {
   background: #20bcb9;
   color: white;
@@ -300,7 +300,7 @@ div[role="main"] h2.pane-title {
   text-transform: uppercase;
   line-height: 1.2em; }
 
-/* line 275, ../sass/robocalls.sass */
+/* line 261, ../sass/robocalls.sass */
 div.view-id-cause_its_your_birthday div.views-field-nothing {
   clear: left;
   width: 84%;
@@ -310,68 +310,70 @@ div.view-id-cause_its_your_birthday div.views-field-nothing {
   margin: 8%;
   position: relative; }
 
-/* line 289, ../sass/robocalls.sass */
+/* line 275, ../sass/robocalls.sass */
 form .field-widget-telwidget, form #edit-submitted-field-celeb-your-name, form #edit-submitted-field-celeb-your-phone, form #edit-submitted-field-celeb-your-password, form #webform-component-my-info--my-name {
   width: 31.33%;
   margin-left: 2%;
   padding: 0; }
 
-/* line 294, ../sass/robocalls.sass */
+/* line 280, ../sass/robocalls.sass */
 #robocalls-celeb-form .webform-client-form, .webform-client-form {
   padding-top: 0; }
-/* line 296, ../sass/robocalls.sass */
+/* line 282, ../sass/robocalls.sass */
 #robocalls-celeb-form .webform-client-form label, .webform-client-form label {
   display: none; }
-/* line 298, ../sass/robocalls.sass */
+/* line 284, ../sass/robocalls.sass */
 #robocalls-celeb-form .webform-client-form #webform-component-my-info, .webform-client-form #webform-component-my-info {
   border-top: 1px solid #cccccc; }
-/* line 300, ../sass/robocalls.sass */
+/* line 286, ../sass/robocalls.sass */
 #robocalls-celeb-form .webform-client-form #webform-component-my-info input, .webform-client-form #webform-component-my-info input {
   width: 100%;
   float: none;
   margin: 0; }
-/* line 304, ../sass/robocalls.sass */
+/* line 290, ../sass/robocalls.sass */
 #robocalls-celeb-form .webform-client-form #edit-submitted-my-info-field-celeb-your-name, #robocalls-celeb-form .webform-client-form #edit-submitted-my-info-field-celeb-your-password, .webform-client-form #edit-submitted-my-info-field-celeb-your-name, .webform-client-form #edit-submitted-my-info-field-celeb-your-password {
   width: 31.33%;
   float: left;
   margin: 0 0 0 2%; }
 
-/* line 309, ../sass/robocalls.sass */
+/* line 295, ../sass/robocalls.sass */
 #webform-component-your-friends-info {
   margin: 0; }
 
-/* line 312, ../sass/robocalls.sass */
+/* line 298, ../sass/robocalls.sass */
 .panels-flexible-region.panels-flexible-region-cause_calls-celeb_information.panels-flexible-region-last {
   width: 70%; }
 
-/* line 315, ../sass/robocalls.sass */
+/* line 301, ../sass/robocalls.sass */
 .field-type-text {
   margin-bottom: 0; }
 
-/* line 318, ../sass/robocalls.sass */
+/* line 304, ../sass/robocalls.sass */
 .call-tagline {
-  width: 66%;
-  float: right;
-  margin-right: 4%; }
+  margin: 2% 4% 0;
+  color: #333333;
+  font-weight: 400;
+  font-size: 1.6em;
+  line-height: 1.3em; }
 
-/* line 323, ../sass/robocalls.sass */
+/* line 312, ../sass/robocalls.sass */
 audio {
   height: 0;
   display: none; }
 
-/* line 327, ../sass/robocalls.sass */
+/* line 316, ../sass/robocalls.sass */
 .preview-facebook-bar {
   background: black;
   text-align: left;
   margin-top: 20px; }
-/* line 332, ../sass/robocalls.sass */
+/* line 321, ../sass/robocalls.sass */
 .preview-facebook-bar div.preview {
   clear: both;
   padding: 6px;
   float: left;
   width: 100px;
   margin: 0; }
-/* line 339, ../sass/robocalls.sass */
+/* line 328, ../sass/robocalls.sass */
 .preview-facebook-bar div.preview a {
   display: inline-block;
   background: url(//files.dosomething.org/files/u/calloffame/prank-play.png) center left no-repeat;
@@ -382,15 +384,15 @@ audio {
   color: white;
   text-transform: uppercase;
   font-weight: 400; }
-/* line 349, ../sass/robocalls.sass */
+/* line 338, ../sass/robocalls.sass */
 .preview-facebook-bar div.preview a:hover {
   text-decoration: none; }
-/* line 352, ../sass/robocalls.sass */
+/* line 341, ../sass/robocalls.sass */
 .preview-facebook-bar div.facebook {
   float: right;
   width: 22px;
   margin: 8px; }
-/* line 358, ../sass/robocalls.sass */
+/* line 347, ../sass/robocalls.sass */
 .preview-facebook-bar div.facebook a {
   background: url(//files.dosomething.org/files/u/calloffame/fb-prank.png) center right no-repeat;
   height: 21px;
@@ -398,19 +400,19 @@ audio {
   display: inline-block;
   text-indent: -99999px; }
 
-/* line 366, ../sass/robocalls.sass */
+/* line 355, ../sass/robocalls.sass */
 .panels-flexible-region-cause_calls-center-inside .panel-separator {
   margin: 0; }
 
-/* line 369, ../sass/robocalls.sass */
+/* line 358, ../sass/robocalls.sass */
 .celeb-image img {
   width: 100%; }
 
-/* line 373, ../sass/robocalls.sass */
+/* line 362, ../sass/robocalls.sass */
 .celeb-tagline {
   margin: 0.8em 0;
   border-top: 1px solid #20bcb9; }
-/* line 376, ../sass/robocalls.sass */
+/* line 365, ../sass/robocalls.sass */
 .celeb-tagline h2 {
   font-size: 1.8em;
   margin: 0.6em 0 0;
@@ -419,225 +421,229 @@ audio {
   line-height: 1.2em; }
 
 @media only screen and (max-width: 1075px) {
-  /* line 387, ../sass/robocalls.sass */
+  /* line 376, ../sass/robocalls.sass */
   #site-name {
     top: -53px;
     left: 23px; }
-  /* line 390, ../sass/robocalls.sass */
+  /* line 379, ../sass/robocalls.sass */
   #site-name a {
     height: 50px;
     width: 60px;
     background-size: 60px; }
 
-  /* line 394, ../sass/robocalls.sass */
+  /* line 383, ../sass/robocalls.sass */
   #utility-bar {
     height: 55px; }
 
-  /* line 397, ../sass/robocalls.sass */
+  /* line 386, ../sass/robocalls.sass */
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .search, #utility-bar #block-dosomething-blocks-dosomething-utility-bar #help-center {
     display: none; }
-  /* line 399, ../sass/robocalls.sass */
+  /* line 388, ../sass/robocalls.sass */
   #utility-bar #block-dosomething-blocks-dosomething-utility-bar .login {
     padding: 0.5em 1em 0 0;
     font-size: 24px; }
 
-  /* line 402, ../sass/robocalls.sass */
+  /* line 391, ../sass/robocalls.sass */
   nav[role="navigation"] {
     display: none; }
 
-  /* line 404, ../sass/robocalls.sass */
+  /* line 393, ../sass/robocalls.sass */
   .container {
     margin: 0 auto;
     width: 100%; }
 
-  /* line 410, ../sass/robocalls.sass */
+  /* line 399, ../sass/robocalls.sass */
   #block-menu-menu-footer .content {
     width: 80%;
     margin: 0 auto; }
 
-  /* line 413, ../sass/robocalls.sass */
+  /* line 402, ../sass/robocalls.sass */
   #block-menu-menu-footer .content ul.menu li span {
     font-size: 16px;
     line-height: 1em; }
 
-  /* line 416, ../sass/robocalls.sass */
+  /* line 405, ../sass/robocalls.sass */
   #block-menu-menu-footer .content ul.menu ul li a {
     font-size: 14px;
     line-height: 1em; }
 
-  /* line 422, ../sass/robocalls.sass */
+  /* line 411, ../sass/robocalls.sass */
   div[role="main"] h1#page-title img {
     margin: 3% auto 4%;
     padding: 0 2%; }
 
-  /* line 428, ../sass/robocalls.sass */
+  /* line 415, ../sass/robocalls.sass */
   .panels-flexible-region-cause_calls-center {
     padding-left: 2%; }
 
-  /* line 431, ../sass/robocalls.sass */
+  /* line 418, ../sass/robocalls.sass */
   .facebook-arrow {
     display: none; }
 
-  /* line 434, ../sass/robocalls.sass */
+  /* line 421, ../sass/robocalls.sass */
   #cof-descriptive {
     width: 36%;
     margin-right: 2%; }
 
-  /* line 438, ../sass/robocalls.sass */
+  /* line 425, ../sass/robocalls.sass */
   .prank-home-web-form .webform-client-form {
     margin: 0 4% 0 0; } }
 @media only screen and (max-width: 1075px) and (max-width: 775px) {
-  /* line 407, ../sass/robocalls.sass */
+  /* line 396, ../sass/robocalls.sass */
   header[role="banner"] {
     width: 100%; } }
 
 @media only screen and (max-width: 775px) {
-  /* line 444, ../sass/robocalls.sass */
+  /* line 431, ../sass/robocalls.sass */
   body div[role="main"] h1#page-title {
     margin-bottom: 0; }
-  /* line 446, ../sass/robocalls.sass */
+  /* line 433, ../sass/robocalls.sass */
   body div.gallery-col {
     width: 50%; }
-  /* line 448, ../sass/robocalls.sass */
+  /* line 435, ../sass/robocalls.sass */
   body .col-2 {
     clear: both; }
 
-  /* line 450, ../sass/robocalls.sass */
+  /* line 437, ../sass/robocalls.sass */
   #webform-component-friends-info--primary-friend {
     width: 100%;
     margin: 0; }
 
-  /* line 454, ../sass/robocalls.sass */
+  /* line 441, ../sass/robocalls.sass */
   form .field-widget-telwidget, form #edit-submitted-field-celeb-your-name, form #edit-submitted-field-celeb-your-phone, form #edit-submitted-field-celeb-your-password {
     width: 100%;
     margin-left: 0; }
 
-  /* line 460, ../sass/robocalls.sass */
+  /* line 447, ../sass/robocalls.sass */
   #robocalls-celeb-form .webform-client-form #webform-component-my-info input {
     margin: 0 0 1em; }
-  /* line 462, ../sass/robocalls.sass */
+  /* line 449, ../sass/robocalls.sass */
   #robocalls-celeb-form .webform-client-form #edit-submitted-my-info-field-celeb-your-name, #robocalls-celeb-form .webform-client-form #edit-submitted-my-info-field-celeb-your-password {
     width: 100%;
     margin-left: 0; }
 
-  /* line 467, ../sass/robocalls.sass */
+  /* line 454, ../sass/robocalls.sass */
   #webform-component-my-info .youre-calling {
     margin: 0 0 0.8em 0; }
-  /* line 469, ../sass/robocalls.sass */
+  /* line 456, ../sass/robocalls.sass */
   #webform-component-my-info input {
     width: 100%;
     margin: 0 0 0.8em; }
 
-  /* line 472, ../sass/robocalls.sass */
+  /* line 459, ../sass/robocalls.sass */
   .sign-up {
     margin: 2% 0 0.8em; }
 
-  /* line 475, ../sass/robocalls.sass */
+  /* line 462, ../sass/robocalls.sass */
   #webform-component-my-info {
     margin-bottom: 0; }
 
-  /* line 479, ../sass/robocalls.sass */
+  /* line 466, ../sass/robocalls.sass */
   #webform-component-my-info #webform-component-my-info--my-name, #webform-component-my-info #webform-component-my-info--my-number, #webform-component-my-info #webform-component-my-info--my-password {
     width: 100%;
     margin-left: 0%;
     margin-bottom: 1em; }
 
-  /* line 487, ../sass/robocalls.sass */
+  /* line 474, ../sass/robocalls.sass */
   .headline h2 {
     width: 62%;
     margin-top: 2%; } }
 @media only screen and (max-width: 550px) {
-  /* line 494, ../sass/robocalls.sass */
+  /* line 481, ../sass/robocalls.sass */
   .panels-flexible-region.panels-flexible-region-cause_calls-center {
     width: 96%;
     margin: 0 2%; }
 
-  /* line 498, ../sass/robocalls.sass */
+  /* line 485, ../sass/robocalls.sass */
   .panels-flexible-region.panels-flexible-region-cause_calls-celeb_information.panels-flexible-region-last {
     width: 96%;
     margin: 0 2%; }
 
-  /* line 504, ../sass/robocalls.sass */
+  /* line 489, ../sass/robocalls.sass */
+  .call-tagline {
+    display: none; }
+
+  /* line 494, ../sass/robocalls.sass */
   div[role="main"] h1#page-title img {
     margin: 4% auto 5%; }
 
-  /* line 507, ../sass/robocalls.sass */
+  /* line 497, ../sass/robocalls.sass */
   body div.gallery-col {
     width: 100%; }
-  /* line 511, ../sass/robocalls.sass */
+  /* line 501, ../sass/robocalls.sass */
   body div.views-field-nothing .preview-share, body div.views-field-nothing .name {
     display: block; }
-  /* line 514, ../sass/robocalls.sass */
+  /* line 504, ../sass/robocalls.sass */
   body #cof-descriptive {
     display: none; }
-  /* line 518, ../sass/robocalls.sass */
+  /* line 507, ../sass/robocalls.sass */
   body .youre-calling {
     text-align: center; }
-  /* line 520, ../sass/robocalls.sass */
+  /* line 509, ../sass/robocalls.sass */
   body div.views-field-nothing .name {
     display: block; }
 
-  /* line 523, ../sass/robocalls.sass */
+  /* line 512, ../sass/robocalls.sass */
   form.webform-client-form #edit-submit {
     width: 100%; }
 
-  /* line 526, ../sass/robocalls.sass */
+  /* line 515, ../sass/robocalls.sass */
   .prank-home-web-form .webform-client-form {
     margin: 0 4%; }
 
-  /* line 530, ../sass/robocalls.sass */
+  /* line 519, ../sass/robocalls.sass */
   .prank-home-web-form .webform-client-form, #robocalls-celeb-form .webform-client-form {
     text-align: center; }
-  /* line 532, ../sass/robocalls.sass */
+  /* line 521, ../sass/robocalls.sass */
   .prank-home-web-form .webform-client-form a, #robocalls-celeb-form .webform-client-form a {
     float: none;
     display: inline-block; }
 
-  /* line 535, ../sass/robocalls.sass */
+  /* line 524, ../sass/robocalls.sass */
   #webform-component-my-info {
     margin-bottom: 0; }
 
-  /* line 538, ../sass/robocalls.sass */
+  /* line 527, ../sass/robocalls.sass */
   .panels-flexible-region-cause_calls-center {
     width: 100%; }
-  /* line 540, ../sass/robocalls.sass */
+  /* line 529, ../sass/robocalls.sass */
   .panels-flexible-region-cause_calls-center img {
     display: block;
     margin: 0 auto; }
 
-  /* line 543, ../sass/robocalls.sass */
+  /* line 532, ../sass/robocalls.sass */
   .panels-flexible-region-cause_calls-celeb_information {
     width: 100%; }
 
-  /* line 546, ../sass/robocalls.sass */
+  /* line 535, ../sass/robocalls.sass */
   form .field-widget-telwidget, form #edit-submitted-field-celeb-your-name, form #edit-submitted-field-celeb-your-phone, form #edit-submitted-field-celeb-your-password {
     margin-left: 0; }
 
-  /* line 549, ../sass/robocalls.sass */
+  /* line 538, ../sass/robocalls.sass */
   .panels-flexible-region-inside {
     padding: 0; }
 
-  /* line 552, ../sass/robocalls.sass */
+  /* line 541, ../sass/robocalls.sass */
   .prank-home-web-form {
     width: 100%; }
 
-  /* line 555, ../sass/robocalls.sass */
+  /* line 544, ../sass/robocalls.sass */
   .fb-btn-wrap {
     width: 100%;
     text-align: center; }
-  /* line 558, ../sass/robocalls.sass */
+  /* line 547, ../sass/robocalls.sass */
   .fb-btn-wrap img {
     display: block;
     margin: 0 auto; }
 
-  /* line 561, ../sass/robocalls.sass */
+  /* line 550, ../sass/robocalls.sass */
   .facebook-button {
     float: none; }
 
-  /* line 564, ../sass/robocalls.sass */
+  /* line 553, ../sass/robocalls.sass */
   .headline {
     margin: 0 2%; }
-  /* line 566, ../sass/robocalls.sass */
+  /* line 555, ../sass/robocalls.sass */
   .headline h2 {
     width: 100%;
     margin-top: 4%;
@@ -645,13 +651,13 @@ audio {
     font-size: 2em;
     line-height: 1.1em; }
 
-  /* line 572, ../sass/robocalls.sass */
+  /* line 561, ../sass/robocalls.sass */
   .celeb-tagline {
     margin-bottom: 0; }
-  /* line 574, ../sass/robocalls.sass */
+  /* line 563, ../sass/robocalls.sass */
   .celeb-tagline h2 {
     text-align: center; }
 
-  /* line 577, ../sass/robocalls.sass */
+  /* line 566, ../sass/robocalls.sass */
   .panels-flexible-region-cause_calls-center {
     padding: 0 2%; } }
