@@ -6,13 +6,13 @@
 
 // page background color
 body
-  background: #fff
+  background: $bg-light
 
 // set inner container width, remove floats and center
 #main-wrapper div[role="main"]
   padding: 0 !important
   margin: 0 auto !important
-  background: #fff
+  background: $bg-light
   width: 100%
   float: none
   ul.primary
@@ -47,23 +47,29 @@ header[role="banner"]
 
 // better looking error messages!
 #page .messages
-  background: #FF885E
+  background: $campaign-main
   border: none
   color: $font-light
-  font-size: 15px
-  line-height: 35px
+  font-size: 20px
+  line-height: 1.75em
   text-align: center
+  font-family: din-web-reg
   margin: 0
   .go-button
-    background: #F8E616
-    font-size: 23px
+    background: $btn-color
+    font-size: 14px
+    font-weight: 600
+    font-family: din-web-reg
+    text-align: center
     margin: 5px auto
     padding: 3px 0 0 0
     height: 35px
     width: 70px
     display: block
     +border-radius(3px)
-    /* style go-button here */
+
+.messages .element-invisible /* hide title */
+  display: none
 
 // fixes tab styling to increase usability + aesthetics
 .tabs
