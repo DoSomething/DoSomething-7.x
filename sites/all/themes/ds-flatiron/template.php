@@ -39,6 +39,21 @@ function ds_flatiron_preprocess_page(&$vars) {
   	$vars['page']['footer']['#access'] = FALSE;
     // @TODO - THIS SHOULD BE REVISITED
     array_push( $vars['theme_hook_suggestions'], 'page__campaign' );
+
+    if (user_is_anonymous()) {
+
+      $redirect = array(
+        'query' => array(
+          'destination' => 'node/' . $vars['node']->nid,
+        )
+      );
+      drupal_goto('user/register/campaign', $redirect);
+    }
+
+    if (arg(0) == 'user') {
+      drupal_add_css( drupal_get_path('theme','ds-flatiron') . '/css/gate.css' );
+    }
+
   }
 }
 
