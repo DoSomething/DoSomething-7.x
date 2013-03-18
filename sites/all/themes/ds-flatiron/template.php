@@ -11,6 +11,13 @@ function ds_flatiron_preprocess_node(&$vars) {
   	switch($vars['node']->nid) {
 	    case '728618':  //PB&J  	  	
 
+        $params = drupal_get_query_parameters();
+        if (isset($params['success'])) {
+          $vars['content']['#access'] = FALSE;
+          $vars['success'] = TRUE;
+          break;
+        }
+
         // Give me the contact form - individual
         $block = block_load('webform', 'client-block-728660');
         $vars['content']['contact']['individual'] = _block_get_renderable_array(
