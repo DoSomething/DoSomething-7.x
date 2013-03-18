@@ -156,7 +156,8 @@ html body.admin-menu {
     margin: 0 auto; }
     @media only screen and (max-width: 825px) {
       #cmp .section > div {
-        width: 100%; } }
+        width: 100%;
+        padding: 3%; } }
 #cmp .deadline {
   text-transform: uppercase; }
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
@@ -220,7 +221,8 @@ html body.admin-menu {
     text-align: right;
     color: white;
     font-weight: 600;
-    letter-spacing: 2px; }
+    letter-spacing: 2px;
+    clear: none; }
   #cmp #header .deadline-date {
     color: #e9e7e7; }
   #cmp #header .log_out {
@@ -234,14 +236,26 @@ html body.admin-menu {
         float: left;
         width: 73px;
         height: 65px; } }
-  #cmp #header .beta_logo {
+  #cmp #header .beta_logo, #cmp #header .beta_text {
     margin: 5% auto;
     display: block;
     width: 450px;
     clear: both; }
     @media only screen and (max-width: 550px) {
-      #cmp #header .beta_logo {
+      #cmp #header .beta_logo, #cmp #header .beta_text {
         width: 400px; } }
+  #cmp #header .beta_text {
+    margin: 1em auto 0.3em;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1em;
+    font-weight: 600;
+    font-size: 75px;
+    color: white; }
+    @media only screen and (max-width: 550px) {
+      #cmp #header .beta_text {
+        width: 100%;
+        font-size: 50px; } }
 #cmp #complete .go-button {
   height: 35px;
   width: 100px;
