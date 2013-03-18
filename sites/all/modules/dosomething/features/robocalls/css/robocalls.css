@@ -684,4 +684,8 @@ audio {
 
   /* line 577, ../sass/robocalls.sass */
   .panels-flexible-region-cause_calls-center {
-    padding: 0 2%; } }
+    padding: 0 2%; }
+
+  /* line 580, ../sass/robocalls.sass */
+  .facebook-share-call img {
+    padding: 0 4%; } }
