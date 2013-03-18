@@ -1089,6 +1089,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
         margin-top: 0.1em;
         float: left;
         font-size: 1.8em; }
+    #cmp #header .ctia_bottom, #cmp #header .ctia_top {
+      font-weight: 400;
+      text-transform: none; }
   #cmp #action {
     padding: 3% 0 2%; }
     #cmp #action h2 {
@@ -1394,8 +1397,6 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp #contact-form span, #cmp #contact-form2 span, #cmp #contact-form3 span {
       text-transform: uppercase;
       font-weight: 500; }
-    #cmp #contact-form #campaign-opt-in, #cmp #contact-form2 #campaign-opt-in, #cmp #contact-form3 #campaign-opt-in {
-      display: none; }
     #cmp #contact-form #webform-component-start-header h3, #cmp #contact-form2 #webform-component-start-header h3, #cmp #contact-form3 #webform-component-start-header h3 {
       width: 100%; }
     #cmp #contact-form #webform-component-start-header p, #cmp #contact-form2 #webform-component-start-header p, #cmp #contact-form3 #webform-component-start-header p {
