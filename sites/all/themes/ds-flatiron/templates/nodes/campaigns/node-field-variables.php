@@ -60,10 +60,10 @@
       "Wash your hands after you donate (just in case)",
     ),
     "links" => array(
+      /* There should be one less link than there are fact arrays! */
       1 => "More Facts",
       2 => "Even More Facts",
       3 => "Yes, we have even more facts",
-      4 => "Fact: you will click on this",
     ),
    );
 
