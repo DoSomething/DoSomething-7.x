@@ -1,6 +1,13 @@
 // GATE
 // ----
 
+// TODO - REMOVE THIS SECTION AND PREPROCESS OFF TEMPLATE
+body.page-user-registration
+  #header,
+  nav[role="navigation"],
+  #block-menu-menu-footer
+    display: none
+
 // base HTML styling
 body.html
   background: #f7f7f7
@@ -75,8 +82,8 @@ body.page-user-registration #content
     img.ds_logo
       width: 25%
     img.bang
-      width: 20px
-      margin: -6px 2px 0
+      width: 17px
+      margin: 0 2px -2px 2px
   @media only screen and (max-width: 530px)
     h1
       margin: 0.2em 0 0 0
@@ -89,6 +96,8 @@ body.page-user-registration #content
   padding: 1em
   position: relative
   background: $campaign-main
+  @media only screen and (max-width: 865px)
+    padding: 1em 1em 1em 7% 
   h1, h2
     color: $font-light
   h1
@@ -110,10 +119,17 @@ body.page-user-registration #content
 #reg_leftcol
   @media only screen and (max-width: 650px)
     float: none
-    margin: 2% auto
+    margin: 0
+    padding: 3%
     width: 95%
-    h1, p
-      margin-top: 1em
+    background: none
+    +box-shadow(none)
+    &:after
+      border: none
+    h1
+      color: $campaign-main
+    h2
+      color: $off-black
 
 // footer
 #reg_footer
