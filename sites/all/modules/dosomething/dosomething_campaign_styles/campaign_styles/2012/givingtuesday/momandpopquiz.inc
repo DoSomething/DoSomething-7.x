@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'Old People',
+  'title' => 'Mom and Pop Quiz',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -28,10 +28,10 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'what is it?', 'href' => 'oldpeople', 'fragment' => 'action'),
-    array('title' => 'share with old people', 'href' => 'oldpeople', 'fragment' => 'refer'),
-    array('title' => 'take the quiz', 'href' => 'oldpeople', 'fragment' => 'quiz'),    
-    array('title' => 'faqs', 'href' => 'oldpeople', 'fragment' => 'faq'),
+    array('title' => 'what is it?', 'href' => 'momandpopquiz', 'fragment' => 'action'),
+    array('title' => 'share with old people', 'href' => 'momandpopquiz', 'fragment' => 'refer'),
+    array('title' => 'take the quiz', 'href' => 'momandpopquiz', 'fragment' => 'quiz'),    
+    array('title' => 'faqs', 'href' => 'momandpopquiz', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
     '#markup' => '<div class="nav-count clearfix"><p id="sb-counter"></p><p>Quizzes<br>Taken</p></div><p class="email">Got questions? Email Liz at <a href="mailto:eeddy@dosomething.org">eeddy@dosomething.org</a>!</p>'
