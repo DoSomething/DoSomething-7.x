@@ -149,7 +149,7 @@ function dosomething_social_scholars_page_alter(&$page) {
 
     $node = menu_get_object('node', 1, 'node/' . $url[1]);
     if (isset($node->field_logo_image[LANGUAGE_NONE][0]['uri'])) {
-      drupal_set_title('<div class="money">' . t('$2000 Scholarship') . '</div><div class="scholarship-title">' . preg_replace('#\$\d+ scholarship\:?#i', '', $node->title) . '</div>', PASS_THROUGH);
+      drupal_set_title('<div class="scholarship-title">' . preg_replace('#\$\d+ scholarship\:?#i', '', $node->title) . '</div>', PASS_THROUGH);
       drupal_add_css(drupal_get_path('module', 'dosomething_social_scholars') . '/css/dosomething_social_scholars_header.css');
       $css = '.background-image {background-image: url(' . file_create_url($node->field_logo_image[LANGUAGE_NONE][0]['uri']) . ');}';
       drupal_add_css($css, 'inline');
