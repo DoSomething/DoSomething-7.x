@@ -20,9 +20,12 @@
         if ($(this).attr('data-tid') != Drupal.behaviors.robocalls.now_playing) { 
           Drupal.behaviors.robocalls.now_playing = $(this).attr('data-tid');
           $('audio').trigger('pause');
+          $('.preview a').removeClass('paused');
+          $(this).addClass('paused');
           $(this).parent().find('audio').trigger('play');
         }
         else {
+          $(this).removeClass('paused');
           $(this).parent().find('audio').trigger('pause');
           Drupal.behaviors.robocalls.now_playing = 0;
         }
