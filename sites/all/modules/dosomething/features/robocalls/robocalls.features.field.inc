@@ -150,7 +150,7 @@ function robocalls_field_default_fields() {
           'display_label' => 0,
         ),
         'type' => 'options_onoff',
-        'weight' => '7',
+        'weight' => '5',
       ),
     ),
   );
@@ -215,7 +215,7 @@ function robocalls_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -282,7 +282,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '13',
+        'weight' => '11',
       ),
     ),
   );
@@ -414,7 +414,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '12',
+        'weight' => '10',
       ),
     ),
   );
@@ -481,7 +481,7 @@ function robocalls_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '14',
+        'weight' => '12',
       ),
     ),
   );
@@ -689,11 +689,11 @@ function robocalls_field_default_fields() {
             'link' => 0,
           ),
           'insert_width' => '',
-          'preview_image_style' => '',
+          'preview_image_style' => 'robocall_celeb_photo',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '10',
+        'weight' => '8',
       ),
     ),
   );
@@ -759,7 +759,7 @@ function robocalls_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -961,11 +961,11 @@ function robocalls_field_default_fields() {
             'link' => 0,
           ),
           'insert_width' => '',
-          'preview_image_style' => '',
+          'preview_image_style' => 'robocall_celeb_thumbnail_205x115',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '11',
+        'weight' => '9',
       ),
     ),
   );
@@ -1115,7 +1115,7 @@ function robocalls_field_default_fields() {
           'year_range' => '-0:+3',
         ),
         'type' => 'date_select',
-        'weight' => '8',
+        'weight' => '6',
       ),
     ),
   );
@@ -1182,7 +1182,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '7',
       ),
     ),
   );
@@ -1310,7 +1310,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_friend_phone',
-      'label' => 'Friend\'s Number #1',
+      'label' => 'Your Friend\'s Cell',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1321,7 +1321,7 @@ function robocalls_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '4',
+        'weight' => '2',
       ),
     ),
   );
@@ -1375,7 +1375,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_friend_phone_2',
-      'label' => 'Friend\'s Number #2',
+      'label' => 'Your Friend\'s Cell',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1386,7 +1386,7 @@ function robocalls_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -1440,7 +1440,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_friend_phone_3',
-      'label' => 'Friend\'s Number #3',
+      'label' => 'Your Friend\'s Cell',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1451,7 +1451,7 @@ function robocalls_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -1505,7 +1505,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_friend_phone_4',
-      'label' => 'Friend\'s Number #4',
+      'label' => 'Your Friend\'s Cell',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1516,7 +1516,7 @@ function robocalls_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '7',
+        'weight' => '5',
       ),
     ),
   );
@@ -1570,7 +1570,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_friend_phone_5',
-      'label' => 'Friend\'s Number #5',
+      'label' => 'Your Friend\'s Cell',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1581,7 +1581,7 @@ function robocalls_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '8',
+        'weight' => '6',
       ),
     ),
   );
@@ -1706,7 +1706,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_your_name',
-      'label' => 'My Name',
+      'label' => 'Your First Name',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1719,7 +1719,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '1',
+        'weight' => '0',
       ),
     ),
   );
@@ -1847,7 +1847,7 @@ function robocalls_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_celeb_your_phone',
-      'label' => 'My Number',
+      'label' => 'Your Cell',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -1858,7 +1858,7 @@ function robocalls_field_default_fields() {
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'telwidget',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
@@ -1933,7 +1933,7 @@ function robocalls_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '0',
+        'weight' => '8',
       ),
     ),
   );
@@ -1950,11 +1950,6 @@ function robocalls_field_default_fields() {
   t('Check this box if this is the featured celebrity for the front page.');
   t('Check this box if this particular Robo Call is a birthday call.');
   t('Featured Celebrity');
-  t('Friend\'s Number #1');
-  t('Friend\'s Number #2');
-  t('Friend\'s Number #3');
-  t('Friend\'s Number #4');
-  t('Friend\'s Number #5');
   t('Friend\'s Number #6');
   t('Fun Fact');
   t('How many calls to any given number per day should be allowed on this celebrity?');
@@ -1963,8 +1958,6 @@ function robocalls_field_default_fields() {
 ');
   t('Is this celebrity visible on the Call of Fame home page? Check this box to make sure they show up.');
   t('Mobile Commons MConnect ID');
-  t('My Name');
-  t('My Number');
   t('My Password');
   t('Photo');
   t('Photo thumbnail');
@@ -1978,6 +1971,9 @@ function robocalls_field_default_fields() {
   t('Thumbnail that will appear for this celebrity on the Call of Fame landing page.');
   t('Timed Call Label');
   t('Timed Call?');
+  t('Your Cell');
+  t('Your First Name');
+  t('Your Friend\'s Cell');
 
   return $fields;
 }

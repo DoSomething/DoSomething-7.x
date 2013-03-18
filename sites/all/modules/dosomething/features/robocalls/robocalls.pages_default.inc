@@ -109,7 +109,7 @@ function robocalls_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Send your friends a prank!',
       'title' => '',
-      'body' => '<p class="call-tagline">Send your friends a prank call from %term:name! (They\'ll think you\'re calling them.  Buahaha)</p>',
+      'body' => '<p class="call-tagline">Send your friends a prank call from %term:name!<br><span>(They\'ll think you\'re calling them. Buahaha)</span></p>',
       'format' => '3',
       'substitute' => 1,
     );
@@ -515,7 +515,7 @@ function robocalls_default_page_manager_pages() {
       'url' => '',
       'display' => 'block_robocall_celebs',
       'override_title' => 1,
-      'override_title_text' => 'Click to Learn About Each Celebrity Call',
+      'override_title_text' => 'Click a Celeb Below to Learn About Each Call!',
     );
     $pane->cache = array();
     $pane->style = array();
