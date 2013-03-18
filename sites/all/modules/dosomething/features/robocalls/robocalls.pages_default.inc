@@ -23,7 +23,7 @@ function robocalls_default_page_manager_handlers() {
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
+    'body_classes_to_add' => 'secondary-prank',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -102,6 +102,28 @@ function robocalls_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'celeb_information';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Send your friends a prank!',
+      'title' => '',
+      'body' => '<p class="call-tagline">Send your friends a prank call from %term:name! (They\'ll think you\'re calling them.  Buahaha)</p>',
+      'format' => '3',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-2'] = $pane;
+    $display->panels['celeb_information'][1] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'celeb_information';
     $pane->type = 'block';
     $pane->subtype = 'webform-client-block-724089';
     $pane->shown = TRUE;
@@ -117,12 +139,12 @@ function robocalls_default_page_manager_handlers() {
       'css_class' => 'celeb-page-form',
     );
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-2'] = $pane;
-    $display->panels['celeb_information'][1] = 'new-2';
+    $display->content['new-3'] = $pane;
+    $display->panels['celeb_information'][2] = 'new-3';
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-4';
     $pane->panel = 'center';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -131,7 +153,7 @@ function robocalls_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Celeb Preview Bar',
       'title' => '',
-      'body' => '<div class="preview-facebook-bar">
+      'body' => '<div class="preview-facebook-bar clearfix">
 <div class="preview"><audio src="%term:field_celeb_call"></audio><a href="%term:field_celeb_call">Preview</a></div>
 <div class="facebook"><a href="#"class="facebook-share-celeb"><span>Facebook</span></a></div>
 </div>',
@@ -140,14 +162,17 @@ function robocalls_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array();
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['center'][0] = 'new-3';
+    $display->content['new-4'] = $pane;
+    $display->panels['center'][0] = 'new-4';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-5';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'taxonomy_term:field_celeb_photo';
@@ -182,10 +207,10 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['center'][1] = 'new-4';
+    $display->content['new-5'] = $pane;
+    $display->panels['center'][1] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-6';
     $pane->panel = 'center';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -218,10 +243,10 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['center'][2] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['center'][2] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'choose_another';
     $pane->type = 'views';
     $pane->subtype = 'cause_its_your_birthday';
@@ -249,30 +274,8 @@ function robocalls_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['choose_another'][0] = 'new-6';
-    $pane = new stdClass();
-    $pane->pid = 'new-7';
-    $pane->panel = 'who_should_____call_';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Send your friends a prank!',
-      'title' => '',
-      'body' => '<p class="call-tagline">Send your friends a prank call from %term:name! (They\'ll think you\'re calling them.  Buahaha)</p>',
-      'format' => '3',
-      'substitute' => 1,
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
     $display->content['new-7'] = $pane;
-    $display->panels['who_should_____call_'][0] = 'new-7';
+    $display->panels['choose_another'][0] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -598,6 +601,31 @@ function robocalls_default_page_manager_pages() {
     $pane->panel = 'test_region';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'headline',
+      'title' => '',
+      'body' => '<h2>Prank Call Your Friends. Because You Care That Much.</h2>',
+      'format' => '3',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'headline',
+    );
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['test_region'][2] = 'new-5';
+    $pane = new stdClass();
+    $pane->pid = 'new-6';
+    $pane->panel = 'test_region';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
     $pane->shown = FALSE;
     $pane->access = array(
       'plugins' => array(
@@ -624,12 +652,12 @@ function robocalls_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['test_region'][2] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['test_region'][3] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-7';
     $pane->panel = 'test_region';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -658,12 +686,12 @@ function robocalls_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['test_region'][3] = 'new-6';
+    $display->content['new-7'] = $pane;
+    $display->panels['test_region'][4] = 'new-7';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'test_region';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -683,15 +711,15 @@ function robocalls_default_page_manager_pages() {
       'css_class' => '',
     );
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 5;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['test_region'][4] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['test_region'][5] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-9';
     $pane->panel = 'test_region';
     $pane->type = 'block';
-    $pane->subtype = 'webform-client-block-727830';
+    $pane->subtype = 'webform-client-block-727984';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -705,12 +733,12 @@ function robocalls_default_page_manager_pages() {
       'css_class' => 'prank-home-web-form',
     );
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 6;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['test_region'][5] = 'new-8';
+    $display->content['new-9'] = $pane;
+    $display->panels['test_region'][6] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-7';
+  $display->title_pane = 'new-8';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['cause_its_your_birthday'] = $page;
