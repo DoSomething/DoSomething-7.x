@@ -401,6 +401,8 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       if (!empty($first_name) && !empty($mobile)) {
         $u['my_info']['#access'] = FALSE;
       }
+
+      $u['my_info']['logged_out_copy']['#access'] = FALSE;
     }
 
     // Placeholder for my password
@@ -486,6 +488,8 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         if ($i == 2) {
           $u['my_info']['#access'] = false;
         }
+
+        $u['my_info']['youre_calling']['#access'] = FALSE;
       }
 
       // Get celebrities and populate the select box.
