@@ -19,7 +19,8 @@
         <?php endif; ?>
       </div> <!-- .section-container -->
     </section> <!-- .header -->
-
+    
+    <?php if (!isset($success)): ?>
     <section class="project">
       <div class="section-container">
         <img class="bg-header" src="<?php print($files_source . 'h-project.png') ?>" alt="The Project" />
@@ -78,6 +79,12 @@
 
       </div> <!-- .section-container -->
     </section> <!-- .cause -->
+
+    <?php else: ?>
+    
+      <!-- I am success! -->
+
+    <?php endif; ?>
 
     <section class="footer">
       <div class="section-container">
