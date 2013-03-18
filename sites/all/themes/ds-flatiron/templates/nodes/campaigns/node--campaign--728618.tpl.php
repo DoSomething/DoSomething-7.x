@@ -17,7 +17,7 @@
         <?php if ($sponsor): ?>
           <img class="logo-sponsor" src="<?php print($files_source . 'logo-' . $sponsor . '.png'); ?>" alt="<?php print($sponsor); ?> logo" />
         <?php endif; ?>
-      </div>
+      </div> <!-- .section-container -->
     </section> <!-- .header -->
 
     <section class="project">
@@ -25,7 +25,7 @@
         <img class="bg-header" src="<?php print($files_source . 'h-project.png') ?>" alt="The Project" />
         <h1><?php print($project[1]); ?></h1>
         <h1><?php print($project[2]); ?></h1>
-      </div>
+      </div> <!-- .section-container -->
     </section> <!-- .project -->
 
     <section class="challenge">
@@ -33,7 +33,7 @@
         <img class="bg-header" src="<?php print($files_source . 'h-challenge.png'); ?>" alt="your challenge" />
         <h2><?php print($challenge[1]); ?></h2>
         <h2><?php print($challenge[2]); ?></h2>
-      </div>
+      </div> <!-- .section-container -->
     </section> <!-- .challenge -->
 
     <section class="scholarship">
@@ -43,22 +43,22 @@
         <h2><?php print($scholarship[2]); ?></h2>
         <?php /* FIXME - OFFICIAL RULES LINK ON FILES SERVER */ ?>
         <a class="official-rules" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
-      </div>
 
-      <section class="contact">
-        <div class="section-container">
+        <div class="contact-form contact-form-individual">
           <?php print render($content['contact']['individual']); ?>
-          <?php print render($content['contact']['team']); ?>
-        </div>
-      </section>  <!-- .contact -->
+        </div>  <!-- .contact-form (individual) -->
 
-      <section class="report-back">
-        <div class="section-container">
+        <div class="contact-form contact-form-group">
+          <?php print render($content['contact']['team']); ?>
+        </div>  <!-- .contact-form (group) -->
+
+        <div class="report-back">
           <h2><?php print($scholarship[1]); ?></h2>
           <h2><?php print($scholarship[2]); ?></h2>
           <?php print render($content['report_back']); ?>
-        </div>
-      </section>  <!-- .report_back -->
+        </div>  <!-- .report_back -->
+
+      </div> <!-- .section-container -->
     </section> <!-- .scholarship -->
 
     <section class="cause">
