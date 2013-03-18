@@ -35,6 +35,7 @@ features[field][] = node-social_scholarship-field_fb_language
 features[field][] = node-social_scholarship-field_is_a_campaign_share_a_stat
 features[field][] = node-social_scholarship-field_linked_campaign
 features[field][] = node-social_scholarship-field_logo_image
+features[field][] = node-social_scholarship-field_logo_text
 features[field][] = node-social_scholarship-field_official_rules_document
 features[field][] = node-social_scholarship-field_petition_image
 features[field][] = node-social_scholarship-field_petition_link

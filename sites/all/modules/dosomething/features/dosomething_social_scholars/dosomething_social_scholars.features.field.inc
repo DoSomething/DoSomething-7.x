@@ -361,7 +361,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '20',
+        'weight' => '21',
       ),
     ),
   );
@@ -868,6 +868,79 @@ function dosomething_social_scholars_field_default_fields() {
         ),
         'type' => 'image_image',
         'weight' => '18',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-social_scholarship-field_logo_text'.
+  $fields['node-social_scholarship-field_logo_text'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_logo_text',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'social_scholarship',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The text that will appear in front of the logo image, if applicable.  If left blank, this share a stat will use the title instead.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 21,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_logo_text',
+      'label' => 'Logo text',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '19',
       ),
     ),
   );
@@ -1505,7 +1578,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '19',
+        'weight' => '20',
       ),
     ),
   );
@@ -1778,7 +1851,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '21',
+        'weight' => '22',
       ),
     ),
   );
@@ -1971,7 +2044,6 @@ function dosomething_social_scholars_field_default_fields() {
             'image_related-posts' => 0,
             'image_robocall_celeb_photo' => 0,
             'image_robocall_celeb_thumbnail_205x115' => 0,
-            'image_robocalls_gallery_thumb' => 0,
             'image_rotoslider_homepage_main' => 0,
             'image_rotoslider_nav' => 0,
             'image_rotoslider_start_something_main' => 0,
@@ -1989,7 +2061,7 @@ function dosomething_social_scholars_field_default_fields() {
             'link' => 0,
           ),
           'insert_width' => '',
-          'preview_image_style' => 'large',
+          'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
@@ -2017,6 +2089,7 @@ function dosomething_social_scholars_field_default_fields() {
   t('Is a campaign Share a Stat?');
   t('Linked campaign');
   t('Logo Image');
+  t('Logo text');
   t('Official Rules Document');
   t('Optional.  A campaign number on Mobile Commons for Alphas.');
   t('Optional.  A mobile commons ID for betas.');
@@ -2031,6 +2104,7 @@ function dosomething_social_scholars_field_default_fields() {
   t('The Language for the Facebook "Recommend" button');
   t('The link to the petition (or other) that will be below the --- OR --- line on the images page.');
   t('The message that appears after a use is redirected to the "redirect to" URL.');
+  t('The text that will appear in front of the logo image, if applicable.  If left blank, this share a stat will use the title instead.');
   t('This tip will show up on the top of the form.');
   t('Tip to show on form');
 
