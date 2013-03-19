@@ -121,24 +121,29 @@
             <form action="//dosomething.mcommons.com/profiles/join" method="POST">
               <input type="hidden" name="redirect_to" value="<?php print(url($nid, $thanks_redirect_param)); ?>" />
 
-              <div class="share-alpha-name share-alpha-wrapper">
+              <div class="share-alpha-name share-input-wrapper">
                 <label>Your First Name:</label>
                 <input class="share-input" type="text" name="person[first_name]" placeholder="Your name:"/>
               </div>
 
-              <div class="share-alpha-mobile share-alpha-wrapper">
+              <div class="share-alpha-mobile share-input-wrapper">
                 <label>Your Cell #:</label>
                 <input class="share-input" type="text" name="person[phone]" placeholder="You cell #:" />
               </div>
 
               <label class="share-beta-mobile">Friend's Cell #s:</label>
 
-              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
-              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
-              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
-              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
-              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
-              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              <div class="share-input-wrapper">
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              </div>
+
+              <div class="share-input-wrapper">
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              </div>
 
               <input type="hidden" name="opt_in_path" value="<?php print($alpha_opt_in); ?>" />
               <input type="hidden" name="friends_opt_in_path" value="<?php print($beta_opt_in); ?>" />
