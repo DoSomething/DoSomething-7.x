@@ -1,0 +1,69 @@
+<?php
+
+function robocalls_schema() {
+  $schema = array();
+
+  $schema['call_records'] = array(
+    'description' => 'Records calls through Project Prank.',
+    'primary key' => array('recordid'),
+    'fields' => array(
+      'recordid' => array(
+        'description' => 'A unique numeric ID for the record.',
+        'type' => 'serial',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'timestamp' => array(
+        'description' => 'The time that the call happened.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'alpha' => array(
+        'description' => 'The inviter.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => true,
+        'not null' => true
+      ),
+      'beta' => array(
+        'description' => 'The invitee.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'call_id' => array(
+        'description' => 'The call ID ',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'alpha' => array('alpha'),
+      'beta' => array('beta')
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ *  Adds Robocalls call record table.
+ */
+function robocalls_update_7100() {
+  drupal_install_schema('robocalls');
+}
+
+/**
+ *  Changes Robocalls recordid field to type serial
+ */
+function robocalls_update_7101() {
+  db_change_field('call_records', 'recordid', 'recordid', array(
+    'description' => 'A unique numeric ID for the record.',
+    'type' => 'serial',
+    'unsigned' => true,
+    'not null' => true,
+  ));
+}

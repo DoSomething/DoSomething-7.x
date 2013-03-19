@@ -486,6 +486,73 @@ function robocalls_field_default_fields() {
     ),
   );
 
+  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_fun_fact'.
+  $fields['taxonomy_term-vocabulary_99-field_celeb_fun_fact'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_celeb_fun_fact',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vocabulary_99',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'A fun fact about the celebrity, which will appear below the celebrity form.  Example: Tyler Oakley, YouTube star extraordinaire, makes it a point to cry once a day.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 14,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_celeb_fun_fact',
+      'label' => 'Fun Fact',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '3',
+      ),
+    ),
+  );
+
   // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_photo'.
   $fields['taxonomy_term-vocabulary_99-field_celeb_photo'] = array(
     'field_config' => array(
@@ -693,6 +760,73 @@ function robocalls_field_default_fields() {
         ),
         'type' => 'text_textarea',
         'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_tagline'.
+  $fields['taxonomy_term-vocabulary_99-field_celeb_tagline'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_celeb_tagline',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vocabulary_99',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The tagline for this celebrity\'s page.  Example: Tyler will say hayyy girl to yo\' friends.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 13,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_celeb_tagline',
+      'label' => 'Tagline',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '2',
       ),
     ),
   );
@@ -1053,83 +1187,69 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_date'.
-  $fields['webform_submission_entity-robo_calls-field_celeb_date'] = array(
+  // Exported field: 'taxonomy_term-vocabulary_99-field_visible_celebrity'.
+  $fields['taxonomy_term-vocabulary_99-field_visible_celebrity'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_celeb_date',
+      'field_name' => 'field_visible_celebrity',
       'field_permissions' => array(
         'type' => '0',
       ),
       'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'date',
-      'settings' => array(
-        'cache_count' => '4',
-        'cache_enabled' => 0,
-        'granularity' => array(
-          'day' => 'day',
-          'hour' => 'hour',
-          'minute' => 'minute',
-          'month' => 'month',
-          'second' => 0,
-          'year' => 'year',
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
         ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
         'profile2_private' => FALSE,
-        'timezone_db' => 'UTC',
-        'todate' => '',
-        'tz_handling' => 'user',
       ),
       'translatable' => '0',
-      'type' => 'datetime',
+      'type' => 'list_boolean',
     ),
     'field_instance' => array(
-      'bundle' => 'robo_calls',
+      'bundle' => 'vocabulary_99',
+      'default_value' => array(
+        0 => array(
+          'value' => 1,
+        ),
+      ),
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Is this celebrity visible on the Call of Fame home page? Check this box to make sure they show up.',
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '3',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '3',
+          'type' => 'list_default',
+          'weight' => 12,
         ),
       ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_celeb_date',
-      'label' => 'or Choose a Date:',
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_visible_celebrity',
+      'label' => 'Active Celebrity',
       'required' => 0,
       'settings' => array(
-        'default_value' => 'now',
-        'default_value2' => 'same',
-        'default_value_code' => '',
-        'default_value_code2' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'date',
+        'module' => 'options',
         'settings' => array(
-          'display_all_day' => 0,
-          'increment' => '10',
-          'input_format' => 'custom',
-          'input_format_custom' => 'm-d-Y H:ia',
-          'label_position' => 'none',
-          'text_parts' => array(),
-          'year_range' => '-0:+3',
+          'display_label' => 1,
         ),
-        'type' => 'date_select',
-        'weight' => '7',
+        'type' => 'options_onoff',
+        'weight' => '15',
       ),
     ),
   );
@@ -1466,69 +1586,67 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_send_now'.
-  $fields['webform_submission_entity-robo_calls-field_celeb_send_now'] = array(
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_friend_phone_6'.
+  $fields['webform_submission_entity-robo_calls-field_celeb_friend_phone_6'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_celeb_send_now',
+      'field_name' => 'field_celeb_friend_phone_6',
       'field_permissions' => array(
         'type' => '0',
       ),
-      'foreign keys' => array(),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
       'indexes' => array(
-        'value' => array(
-          0 => 'value',
+        'format' => array(
+          0 => 'format',
         ),
       ),
       'locked' => '0',
-      'module' => 'list',
+      'module' => 'text',
       'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => '',
-        ),
-        'allowed_values_function' => '',
+        'max_length' => '255',
         'profile2_private' => FALSE,
       ),
       'translatable' => '0',
-      'type' => 'list_boolean',
+      'type' => 'text',
     ),
     'field_instance' => array(
       'bundle' => 'robo_calls',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 6,
+          'type' => 'text_default',
+          'weight' => 12,
         ),
       ),
       'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_celeb_send_now',
-      'label' => 'Send Later',
+      'field_name' => 'field_celeb_friend_phone_6',
+      'label' => 'Friend\'s Number #6',
       'required' => 0,
       'settings' => array(
+        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '10',
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'telwidget',
+        'weight' => '9',
       ),
     ),
   );
@@ -1602,6 +1720,73 @@ function robocalls_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '0',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-robo_calls-field_celeb_your_password'.
+  $fields['webform_submission_entity-robo_calls-field_celeb_your_password'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_celeb_your_password',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'robo_calls',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 13,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_celeb_your_password',
+      'label' => 'My Password',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '3',
       ),
     ),
   );
@@ -1753,104 +1938,42 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-robo_calls-field_mobile_commons_id'.
-  $fields['webform_submission_entity-robo_calls-field_mobile_commons_id'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_mobile_commons_id',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'robo_calls',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 7,
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_mobile_commons_id',
-      'label' => 'Mobile Commons ID',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '11',
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
+  t('A fun fact about the celebrity, which will appear below the celebrity form.  Example: Tyler Oakley, YouTube star extraordinaire, makes it a point to cry once a day.');
   t('A label to denote the timed call.  For example -- "Election Day" is November 4th.');
   t('A short description of this category.  \'Awesome, I just had SO-AND-SO call my friends to say "Do Something about _____"\'.  Fill in the blank.  Required.');
+  t('Active Celebrity');
   t('Birthday Call?');
   t('Body');
   t('Call Limit Number');
   t('Check this box if this is the featured celebrity for the front page.');
   t('Check this box if this particular Robo Call is a birthday call.');
   t('Featured Celebrity');
+  t('Friend\'s Number #6');
+  t('Fun Fact');
   t('How many calls to any given number per day should be allowed on this celebrity?');
   t('If this particular celebrity has a scholarship, fill in the scholarship language here and it will appear on the page.');
   t('Is this celebrity a timed call (that is -- can it only call on a certain date / certain time?) An example of this: Voting campaign or Holiday calls.  Users will be able to specify what hour and minute they want this call to take place, within the specified day.
 ');
-  t('Mobile Commons ID');
+  t('Is this celebrity visible on the Call of Fame home page? Check this box to make sure they show up.');
   t('Mobile Commons MConnect ID');
+  t('My Password');
   t('Photo');
   t('Photo thumbnail');
   t('Scholarship Langauge');
-  t('Send Later');
   t('Short Name');
   t('Sound File');
   t('Step 1: Choose Who is Calling');
+  t('Tagline');
   t('The ID of the mobile commons MConnect');
+  t('The tagline for this celebrity\'s page.  Example: Tyler will say hayyy girl to yo\' friends.');
   t('Thumbnail that will appear for this celebrity on the Call of Fame landing page.');
   t('Timed Call Label');
   t('Timed Call?');
   t('Your Cell');
   t('Your First Name');
   t('Your Friend\'s Cell');
-  t('or Choose a Date:');
 
   return $fields;
 }

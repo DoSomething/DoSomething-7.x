@@ -1,0 +1,4 @@
+name = 'DoSomething Public API'
+description = 'Public API for DoSomething.org.  Makes it possible for the public to access clubs, projects and action guides.'
+core = 7.x
+package = DoSomething

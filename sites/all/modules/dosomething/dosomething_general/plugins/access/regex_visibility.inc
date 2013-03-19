@@ -29,6 +29,8 @@ function ctools_regex_ctools_access_settings($form, &$form_state, $conf) {
     '#description' => t('What context should the regular expression match against?'),
     '#options' => array(
       0 => t('Current path (default)'),
+      1 => t('Request URI (includes query strings)'),
+      2 => t('Query string'),
     )
   );
 
@@ -66,6 +68,12 @@ function ctools_regex_ctools_access_check($context, $something, $conf) {
   switch ($what) {
     case 0:
       $match = request_path();
+    break;
+    case 1:
+      $match = request_uri();
+    break;
+    case 2:
+      $match = $_SERVER['QUERY_STRING'];
     break;
   }
 

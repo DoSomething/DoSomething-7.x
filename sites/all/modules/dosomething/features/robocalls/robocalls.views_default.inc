@@ -15,7 +15,7 @@ function robocalls_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'taxonomy_term_data';
-  $view->human_name = 'Cause Call / Robo Call';
+  $view->human_name = 'Call of Fame';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -217,6 +217,13 @@ function robocalls_views_default_views() {
   $handler->display->display_options['filters']['field_celeb_photo_fid']['table'] = 'field_data_field_celeb_photo';
   $handler->display->display_options['filters']['field_celeb_photo_fid']['field'] = 'field_celeb_photo_fid';
   $handler->display->display_options['filters']['field_celeb_photo_fid']['operator'] = 'not empty';
+  /* Filter criterion: Taxonomy term: Active Celebrity (field_visible_celebrity) */
+  $handler->display->display_options['filters']['field_visible_celebrity_value']['id'] = 'field_visible_celebrity_value';
+  $handler->display->display_options['filters']['field_visible_celebrity_value']['table'] = 'field_data_field_visible_celebrity';
+  $handler->display->display_options['filters']['field_visible_celebrity_value']['field'] = 'field_visible_celebrity_value';
+  $handler->display->display_options['filters']['field_visible_celebrity_value']['value'] = array(
+    1 => '1',
+  );
 
   /* Display: Cause Call Landing Page */
   $handler = $view->new_display('block', 'Cause Call Landing Page', 'block_robocall_celebs');
@@ -225,7 +232,8 @@ function robocalls_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_plugin'] = 'grid';
+  $handler->display->display_options['style_options']['fill_single_line'] = 1;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -262,7 +270,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_celeb_photo']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_celeb_photo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_celeb_photo']['settings'] = array(
-    'image_style' => 'robocall_celeb_thumbnail_205x115',
+    'image_style' => 'robocalls_gallery_thumb',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_celeb_photo']['field_api_classes'] = 0;
@@ -292,7 +300,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_photo_thumbnail']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_photo_thumbnail']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_photo_thumbnail']['settings'] = array(
-    'image_style' => 'robocall_celeb_thumbnail_205x115',
+    'image_style' => 'robocalls_gallery_thumb',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_photo_thumbnail']['field_api_classes'] = 0;
@@ -374,7 +382,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_celeb_call']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_celeb_call']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_celeb_call']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_celeb_call']['type'] = 'file_rendered';
+  $handler->display->display_options['fields']['field_celeb_call']['type'] = 'file_url_plain';
   $handler->display->display_options['fields']['field_celeb_call']['settings'] = array(
     'file_view_mode' => 'media_link',
   );
@@ -455,16 +463,137 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['views_conditional']['equalto'] = '???';
   $handler->display->display_options['fields']['views_conditional']['then'] = '[name_3]';
   $handler->display->display_options['fields']['views_conditional']['or'] = '[name_2]';
+  /* Field: Taxonomy term: Short Name */
+  $handler->display->display_options['fields']['field_short_name']['id'] = 'field_short_name';
+  $handler->display->display_options['fields']['field_short_name']['table'] = 'field_data_field_short_name';
+  $handler->display->display_options['fields']['field_short_name']['field'] = 'field_short_name';
+  $handler->display->display_options['fields']['field_short_name']['label'] = '';
+  $handler->display->display_options['fields']['field_short_name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_short_name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_short_name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_short_name']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_short_name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_short_name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_short_name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_short_name']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_short_name']['field_api_classes'] = 0;
+  /* Field: Taxonomy term: Term ID */
+  $handler->display->display_options['fields']['tid']['id'] = 'tid';
+  $handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['tid']['field'] = 'tid';
+  $handler->display->display_options['fields']['tid']['label'] = '';
+  $handler->display->display_options['fields']['tid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['tid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['tid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['tid']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['tid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['tid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['tid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['tid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['tid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['tid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['tid']['separator'] = '';
+  $handler->display->display_options['fields']['tid']['format_plural'] = 0;
+  /* Field: Preview / Share bar */
+  $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
+  $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_2']['ui_name'] = 'Preview / Share bar';
+  $handler->display->display_options['fields']['nothing_2']['label'] = '';
+  $handler->display->display_options['fields']['nothing_2']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '<div class="preview-share">
+<div class="preview"><audio src="[field_celeb_call]"></audio> <a href="[field_celeb_call]" data-tid="[tid]">Preview</a></div>
+<div class="share"><a href="#" class="share-single-celeb">Share</a></div>
+</div>';
+  $handler->display->display_options['fields']['nothing_2']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nothing_2']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nothing_2']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing_2']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nothing_2']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nothing_2']['hide_alter_empty'] = 0;
+  /* Field: Views: Views Conditional */
+  $handler->display->display_options['fields']['views_conditional_1']['id'] = 'views_conditional_1';
+  $handler->display->display_options['fields']['views_conditional_1']['table'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional_1']['field'] = 'views_conditional';
+  $handler->display->display_options['fields']['views_conditional_1']['label'] = '';
+  $handler->display->display_options['fields']['views_conditional_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['views_conditional_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['views_conditional_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['views_conditional_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['views_conditional_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['views_conditional_1']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['views_conditional_1']['if'] = 'name';
+  $handler->display->display_options['fields']['views_conditional_1']['condition'] = '2';
+  $handler->display->display_options['fields']['views_conditional_1']['equalto'] = '???';
+  $handler->display->display_options['fields']['views_conditional_1']['then'] = '[nothing_2]';
+  /* Field: Celeb Name / Link */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['ui_name'] = 'Celeb Name / Link';
+  $handler->display->display_options['fields']['nothing_1']['label'] = '';
+  $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<div class="name">
+<span>[name]</span>
+<div class="type">[field_short_name]</div>
+</div>';
+  $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_photo_thumbnail]
-<h4>[name]</h4>
-[description]
-[field_celeb_call]
-[views_conditional]';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[nothing_2]
+[field_celeb_photo]
+[nothing_1]';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
@@ -510,6 +639,7 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['name_1']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['name_1']['link_to_taxonomy'] = 0;
   $handler->display->display_options['fields']['name_1']['convert_spaces'] = 0;
+  $handler->display->display_options['block_caching'] = '-1';
 
   /* Display: Choose Another Celebrity */
   $handler = $view->new_display('block', 'Choose Another Celebrity', 'block_robocalls_choose_another_celeb');
