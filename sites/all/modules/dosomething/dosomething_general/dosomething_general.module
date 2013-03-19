@@ -1168,7 +1168,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
         // Set up the call request.
         $req = array(
           'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $cell),
-          'Url' => variable_get('prank_site', 'http://qa3.dosomething.org') . '/prank/xml/' . $celeb_id,
+          'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
           'method' => 'GET',
         );
 
@@ -1202,7 +1202,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
       // Set up the call request.
       $req = array(
         'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $beta_number),
-        'Url' => variable_get('prank_site', 'http://qa3.dosomething.org') . '/prank/xml/' . $celeb_id,
+        'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
         'method' => 'GET',
       );
 
@@ -1284,7 +1284,6 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
   }
 
   $result = drupal_http_request($api_opt_in_path_url, $options);
-  mail('mchittenden@dosomething.org', 'mc result', $result);
   return $result;
 }
 
