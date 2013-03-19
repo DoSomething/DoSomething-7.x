@@ -41,18 +41,17 @@
 
     // take zipcode and pass it as anchor destination
     var $food_bank_finder = $('.food_bank_finder');
-    var zip_code = $('food-bank-finder input').val();
-    $('.food-bank-finder .form-submit').click(function(f) {
-      console.log(zip_code);
+    var $finder_input = $('.food-bank-finder-input');
 
-      if (!this.value || this.value.length !== 5) {
+    $('.food-bank-finder .form-submit').click(function() {
+    
+      if (!$finder_input.val().match(/^\d+$/) || $finder_input.val().length !== 5) {
         $('.food-bank-finder-error').show();
         return false;
       }
 
-      else if (this.value.length == 5){
-        console.log('yes?');
-        $('.food-bank-finder .form-submit').attr('href', 'http://feedingamerica.org/foodbank-results.aspx?zip=' + $food_bank_finder.val());
+      else if ($finder_input.val().match(/^\d+$/) && $finder_input.val().length == 5) {
+        $('.food-bank-finder .form-submit').attr('href', 'http://feedingamerica.org/foodbank-results.aspx?zip=' + $finder_input.val());
       }
 
     });
