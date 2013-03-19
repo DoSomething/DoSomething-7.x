@@ -18,18 +18,21 @@ function ds_flatiron_preprocess_node(&$vars) {
           break;
         }
 
-        // Give me the contact form - individual
-        $block = block_load('webform', 'client-block-728660');
-        $vars['content']['contact']['individual'] = _block_get_renderable_array(
-          _block_render_blocks(array($block))
+	// Check if the user has submitted an individual or team form
+	$contact_forms = array(
+          'individual' => node_load(728660), 
+          'team' => node_load(728661)
         );
-
-        // Give me the contact form - team
-        $block = block_load('webform', 'client-block-728661');
-        $vars['content']['contact']['team'] = _block_get_renderable_array(
-          _block_render_blocks(array($block))
-        );
-        
+	
+	foreach($contact_forms as $type => $form){
+	  $block = block_load('webform', 'client-block-' . $form->nid);
+          $block_content = _block_render_blocks(array($block));
+	  if (!empty($block_content)) {
+	    $vars[$type] = TRUE;
+	    $vars['content']['contact'][$type] = _block_get_renderable_array($block_content);
+	  }
+        }  
+ 
         // Give me the report back block
         $block = block_load('webform', 'client-block-728619');
   	  	$vars['content']['report_back'] = _block_get_renderable_array(
