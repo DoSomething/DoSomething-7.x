@@ -31,10 +31,14 @@
     1 => "Collect and donate <strong>10 jars</strong> of peanut butter or jam.",
     2 => "Then use the food bank finder & drop off your jars by May 14th.",
   );
-  
+  // if (isset($team) || isset($individual)) with a Group / Alone
+
+  $contact_scope = isset($team) ? ' with a group' : '';
+  $contact_scope = isset($individual) ? ' alone' : $contact_scope;
+
   $scholarship = array(
     1 => "We're giving away a <strong>$4,000 SCHOLARSHIP</strong>. Every 10 jars collected = another entry to win.",
-    2 => "Great! You're gonna do this <span id=\"scholarship_status\"></span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\" . $files_source . 'action-guide.pdf'\">download</a> your PB&JS Kit.",
+    2 => "Great! You're gonna do this<span id=\"scholarship_status\">".$contact_scope."</span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\" . $files_source . 'action-guide.pdf'\">download</a> your PB&JS Kit.",
   );
 
   $cause_subject = 'Peanut Butter';
