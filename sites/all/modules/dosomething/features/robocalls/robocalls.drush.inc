@@ -28,6 +28,15 @@ function drush_robocalls_robo_migrate() {
   $homepage_webform = dosomething_general_save_node_from_file(drupal_get_path('module', 'robocalls') . '/webforms/homepage.txt', 'robo-calls/homepage-webform');
   #$walkthrough_webform = dosomething_general_save_node_from_file('sites/all/modules/dosomething/features/robocalls/webforms/walkthrough.txt', 'prank/walkthrough');
   drush_print(dt('See node/' . $homepage_webform->nid . ' (re-alias as robo-calls/homepage-webform).'));
+
+  $fr = array(
+    'dosomething_layout',
+    'robocalls',
+  );
+  drush_invoke_process('@self', 'fr', $fr, array('--yes'));
+
+  cache_clear_all();
+  
   #$celeb_webform = dosomething_general_save_node_from_file(drupal_get_path('module', 'robocalls') . '/webforms/celeb.txt', 'robo-calls/webform');
   #drush_print(dt('Updated robo-calls/webform'));
   drush_print(dt('Done! See Mike for final steps.'));

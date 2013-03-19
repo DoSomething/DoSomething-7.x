@@ -133,7 +133,6 @@ function robocalls_call_completed() {
       && (isset($_REQUEST['To']) && dosomething_general_valid_cell($_REQUEST['To']))
     ) {
 
-      mail('mchittenden@dosomething.org', 'call complete', "A call from " . $_REQUEST['From'] . ' to ' . $_REQUEST['To'] . ' just completed.');
       // Assuming the call is complete, send the text message!
       dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']), 146913);
     }
