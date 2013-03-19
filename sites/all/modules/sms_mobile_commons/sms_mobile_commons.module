@@ -315,6 +315,42 @@ function sms_mobile_commons_add_user_to_campaign($number, $first_name = '', $las
 }
 
 /**
+ * Removes a number from one or multiple Mobile Commons campaigns
+ *
+ * @param $number
+ *   The number that should be opted out of a campaign.
+ *
+ * @param $campaigns
+ *   The single Mobile Commons campaign id, or array of campaign ids to opt the number out of.
+ */
+function sms_mobile_commons_campaign_opt_out($number, $campaigns) {
+  $api_opt_out_url = 'https://secure.mcommons.com/profiles/opt_out';
+  $auth_string = $config['sms_mobile_commons_email'] . ':' . $config['sms_mobile_commons_password'];
+
+  $content = array(
+    'company' => $config['sms_mobile_commons_company_id'],
+    'person[phone]' => $number,
+  );
+
+  if (is_array($campaigns)) {
+    foreach ($campaigns as $campaign) {
+      $content['campaign[]'] = $campaign;
+    }
+  }
+  else {
+    $content['campaign'] = $campaigns;
+  }
+
+  $opts = array(
+    'http' => array(
+      'method' => 'POST',
+      'header'  => sprintf("Authorization: Basic %s\r\n", base64_encode($auth_string)) . "Content-type: application/x-www-form-urlencoded\r\n",
+      'content' => http_build_query($content),
+    )
+  );
+}
+
+/**
  * Send a message to an SMS number.
  *
  * @param $number
