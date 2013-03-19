@@ -55,6 +55,7 @@ function ds_flatiron_preprocess_node(&$vars) {
 }
 
 function ds_flatiron_preprocess_page(&$vars) {
+  
   if ($vars['node']->type == 'campaign') {
   	$vars['page']['footer']['#access'] = FALSE;
     // @TODO - THIS SHOULD BE REVISITED
@@ -64,10 +65,10 @@ function ds_flatiron_preprocess_page(&$vars) {
 
       $redirect = array(
         'query' => array(
-          'destination' => 'node/' . $vars['node']->nid,
+          'destination' => 'pbj',
         )
       );
-      drupal_goto('user/register/campaign', $redirect);
+      drupal_goto('user/registration/campaign', $redirect);
     }
 
     if (arg(0) == 'user') {
@@ -76,4 +77,3 @@ function ds_flatiron_preprocess_page(&$vars) {
 
   }
 }
-
