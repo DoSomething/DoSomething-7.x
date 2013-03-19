@@ -20,7 +20,9 @@
       </div> <!-- .section-container -->
     </section> <!-- .header -->
     
-    <?php if(!isset($complete)): ?>
+    <?php if (!isset($complete)): ?>
+
+      <?php /* TODO - PREVENT THOSE WHO HAVEN'T SUBMITTED THE REPORT BACK FROM FROM SEEING THIS SECTION */ ?>
 
       <section class="project">
         <div class="section-container">
@@ -43,9 +45,9 @@
           <img class="bg-header" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
           <h2><?php print($scholarship[1]); ?></h2>
           <h2><?php print($scholarship[2]); ?></h2>
-          <div class="official-rules">
-            <a href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
-          </div> <!-- .official-rules -->
+          <div class="official-rules-wrapper">
+            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
+          </div> <!-- .official-rules-wrapper -->
 
           <div class="contact-form contact-form-individual">
             <?php print render($content['contact']['individual']); ?>
@@ -83,6 +85,16 @@
 
     <?php else: ?>
 
+      <?php if (isset($shared)): ?>
+
+        <section class="thanks">
+          <div class="section-container">
+            <h2><?php print($thanks[1]); ?></h2>
+          </div> <!-- .section-container -->
+        </section>
+
+      <?php endif; ?>
+
       <section class="success">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-success.png'); ?>" alt="grand slam!" />
@@ -93,39 +105,57 @@
     
       <section class="share">
         <div class="section-container">
+        
+          <img class="bg-header" src="<?php print($files_source . 'h-share.png'); ?>" alt="spread the word" />
+          <img class="bg-share" src="<?php print($files_source . 'bg-share.png'); ?>" alt="text message preview" />
 
-          <div class="refer5">
-          <div class="refer5-inner">  
-            <img class="scholar-copy" src="//files.dosomething.org/files/campaigns/alcoa/scholarship-copy.png" alt="share this fact">
+            <?php 
+              $nid = 'node/' . $node->nid;
+              $thanks_redirect_param = array(
+                'query' => array(
+                  'thanks' => NULL,
+                )
+              );
+            ?>
 
             <form action="//dosomething.mcommons.com/profiles/join" method="POST">
-              <input type="hidden" name="redirect_to" value="http://www.dosomething.org/redirect-with-message?destination=teensforjeans&message=Thanks%20for%20entering%20the%20Teens%20for%20Jeans%20scholarship.%20Sign%20up%20below%20to%20run%20a%20drive%20and%20be%20eligible%20for%20awesome%20prizes!" />
-              <div class="scholar-input your-input">
+              <input type="hidden" name="redirect_to" value="<?php print(url($nid, $thanks_redirect_param)); ?>" />
+
+              <div class="share-alpha-name share-alpha-wrapper">
                 <label>Your First Name:</label>
-                <input type="text" name="person[first_name]" class="field space-after" placeholder="Your name:"/>
+                <input class="share-input" type="text" name="person[first_name]" placeholder="Your name:"/>
               </div>
-              <div class="scholar-input your-input">
+
+              <div class="share-alpha-mobile share-alpha-wrapper">
                 <label>Your Cell #:</label>
-                <input type="text" name="person[phone]" class="field space-after" placeholder="You cell #:" />
+                <input class="share-input" type="text" name="person[phone]" placeholder="You cell #:" />
               </div>
-              <img src="//files.dosomething.org/files/campaigns/alcoa/line.png" alt="line">
-              <label class="friends">Friend's Cell #'s:</label>
-              <input type="text" class="field left" name="friends[]" placeholder="Friend's cell #:"/>
-              <input type="text" class="field left" name="friends[]" placeholder="Friend's cell #:"/>
-              <input type="text" class="field left" name="friends[]" placeholder="Friend's cell #:"/>
-              <input type="text" class="field left" name="friends[]" placeholder="Friend's cell #:"/>
-              <input type="text" class="field left" name="friends[]" placeholder="Friend's cell #:"/>
-              <input type="text" class="field left" name="friends[]" placeholder="Friend's cell #:"/>
-              <input type="hidden" name="friends_opt_in_path" value="134511" />
-              <input type="hidden" name="opt_in_path" value="134501" />
-              <input type="submit" class="go-button" value="Submit" />
+
+              <label class="share-beta-mobile">Friend's Cell #s:</label>
+
+              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+
+              <input type="hidden" name="opt_in_path" value="<?php print($alpha_opt_in); ?>" />
+              <input type="hidden" name="friends_opt_in_path" value="<?php print($beta_opt_in); ?>" />
+
+              <input type="submit" class="form-submit" value="invite friends" />
+
             </form> 
 
+            <div class="campaign-opt-in">
 
-            <div id="campaign-opt-in"><span class="ctia_bottom">
-              <a class="rules" href="//files.dosomething.org/files/campaigns/jeans12/2013_offical_rules.pdf">Official Rules.</a> 
-              Msg &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help. </span>
-            </div>
+              <p>Message &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</p>
+
+              <div class="official-rules-wrapper">
+                <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
+              </div> <!-- .official-rules-wrapper -->
+
+            </div> <!-- .campaign-opt-in -->
 
         </div> <!-- .section-container -->
       </section> <!-- .section -->
