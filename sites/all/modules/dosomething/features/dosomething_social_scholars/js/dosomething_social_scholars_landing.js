@@ -36,10 +36,10 @@
             var nid = parseInt(document.location.pathname.replace('/sas-landing/', ''));
             Drupal.behaviors.fb.feed({
               'feed_document': document.location.href + h,
-              'feed_title': 'Make a stand against animal cruelty',
+              'feed_title': "Don't Chicken Out: Take a Stand Against Animal Cruelty",
               'feed_picture': img,
-              'feed_caption': '',
-              'feed_description': 'Help make a stand against animal cruelty by clicking this link and doing the #PaperChicken.',
+              'feed_caption': 'www.dosomething.org/paper-chicken',
+              'feed_description': 'Want to fight animal cruelty? Click here to upload and share photos of you doing the #PaperChicken.',
               'feed_require_login': true
             }, function(response) { });
             return false;
