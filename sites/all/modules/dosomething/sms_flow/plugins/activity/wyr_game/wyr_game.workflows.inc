@@ -147,7 +147,7 @@ $activity->name = 'pbj_markt_tips';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->game_id = 4;
-$activity->opt_in_paths = array(/* TODO: opt in paths for tips */);
+$activity->opt_in_paths = array(148843, 148853, 148863, 148873, 148883, 148893, 148903, 148913, 148923, 148933, 148943);
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -173,7 +173,7 @@ $activity->name = 'pbj_run_tips';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->game_id = 5;
-$activity->opt_in_paths = array(/* TODO: opt in paths for tips */);
+$activity->opt_in_paths = array(148953, 148963, 148973, 148983, 148993);
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
