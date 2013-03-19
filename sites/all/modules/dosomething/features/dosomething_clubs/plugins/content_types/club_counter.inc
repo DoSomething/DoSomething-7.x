@@ -110,10 +110,6 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
     $location = $node->field_club_city[LANGUAGE_NONE][0]['value'] . ', ' . $node->field_club_state[LANGUAGE_NONE][0]['value'];
   }
 
-  /*$link = 'http://www.facebook.com/dialog/feed?'
-  . 'app_id=105775762330&'
-  . 'display=popup&'
-  . 'link=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];*/
   $link = 'http://www.facebook.com/sharer/sharer.php?u=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
   $edit_photo_perm = '';
@@ -131,6 +127,28 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
       '#prefix' => '<div class="edit-logo">',
       '#suffix' => '</div>'
     );
+  }
+
+  if (dosomething_clubs_is_club_admin($group->gid)) {
+    $blurb = '<div class="blurb-wrapper">';
+    $blurb .= '<span class="edit"><a href="/node/' . $node->nid . '/edit">EDIT</a></span>';
+    $blurb .= '<div class="blurb-text">';
+    $text = $t = '';
+    if (isset($node->field_club_blurb[LANGUAGE_NONE][0]['value'])) {
+      $t = $node->field_club_blurb[LANGUAGE_NONE][0]['value'];
+      $text = $t;
+    }
+    else {
+      $t = '<span class="blurb-placeholder">' . t('Insert your club\'s status update here...') . '</span>';
+    }
+
+    $blurb .= '<textarea name="blurb" maxlength="140" placeholder="Insert your club\'s status update here...">' . $text . '</textarea>';
+    $blurb .= '<span class="blurb-placeholder">' . $t . '</span>';
+
+    $blurb .= '<div style="clear: both"></div></div></div>';
+  }
+  else {
+    $blurb = (isset($node->field_club_blurb[LANGUAGE_NONE][0]['value']) ? $node->field_club_blurb[LANGUAGE_NONE][0]['value'] : '');
   }
 
   $output = array(
@@ -172,10 +190,11 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
             '#suffix' => '</div>',
           ),
           'blurb' => array(
-            '#markup' => (isset($node->field_club_blurb[LANGUAGE_NONE][0]['value']) ? $node->field_club_blurb[LANGUAGE_NONE][0]['value'] : ''),
+            '#markup' => $blurb,
             '#prefix' => '<p class="club-blurb">',
             '#suffix' => '</p>'
           ),
+
           'member_link' => array(
             '#markup' => $member_link,
             '#prefix' => '<div class="invite-link">',
@@ -287,11 +306,7 @@ function dosomething_clubs_club_counter_right() {
   }
 
   $output[] = array(
-    '#markup' => l('<div' . $w . '>' . t('View Members') . '</div>' . $s, 'club/'.$group->gid.'/members', array('attributes' => array(
-        'class' => array('go-button', 'member-popup-trigger')
-      ),
-    'html' => TRUE
-    )),
+      '#markup' => '<div class="button-container">' . l(t('Invite friends'), 'clubs/share/' . $n->nid, array('attributes' => array('class' => array('go-button')))) . l('<div' . $w . '>' . t('View Members') . '</div>' . $s, 'club/'.$group->gid.'/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')), 'html' => TRUE)) . '</div>',
   );
 
   return drupal_render($output);

@@ -5,6 +5,37 @@
       $members.hide();
       $members.find('form').hide();
 
+      $('.blurb-wrapper a').click(function() {
+        if (!$(this).hasClass('done')) {
+          $(this).data('current-text', $(this).parent().parent().find('textarea').val());
+          $(this).text('Done');
+          $(this).addClass('done');
+          $(this).parent().parent().addClass('editing');
+        }
+        else {
+          var elm = $(this);
+          var v = $(this).parent().parent().find('textarea').val();
+          if ($(this).data('current-text') != v) {
+            $.post('/club/edit-blurb/' + Drupal.settings.club.nid, { 'text': v }, function(response) {
+              var res = $.parseJSON(response);
+              if (!res.error) {
+                elm.removeClass('done');
+                elm.text('Edit');
+                $('.blurb-wrapper').removeClass('editing');
+                $('.blurb-placeholder').text(v);
+              }
+            });
+          }
+          else {
+            elm.removeClass('done');
+            elm.text('Edit');
+            $('.blurb-wrapper').removeClass('editing');
+            $('.blurb-placeholder').html(v);
+          }
+        }
+        return false;
+      });
+
       var memberclick = false;
       $('a.member-change-owner:not(.club-processed)').addClass('club-processed').click(function() {
         if (memberclick) {
