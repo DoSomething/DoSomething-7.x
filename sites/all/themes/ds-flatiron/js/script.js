@@ -12,12 +12,6 @@
 // CONTACT FORM
 // ------------
 
-    // show report back on form submission 
-    $('.contact-form').click(function() {
-      $('.report-back-form').show();
-      $('.contact-form').hide();
-    });
-
     // change language of group status based on contact form interaction
     var $scholarship_status = $('#scholarship_status')
 
