@@ -14,7 +14,7 @@ function ds_flatiron_preprocess_node(&$vars) {
         $params = drupal_get_query_parameters();
         if (isset($params['success'])) {
           $vars['content']['#access'] = FALSE;
-          $vars['success'] = TRUE;
+          $vars['complete'] = TRUE;
           break;
         }
 
