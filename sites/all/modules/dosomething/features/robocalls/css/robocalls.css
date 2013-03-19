@@ -206,7 +206,7 @@ body div.views-field-nothing .preview-share div.preview a:hover {
   text-decoration: none; }
 /* line 168, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.preview a.paused {
-  background-image: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png); }
+  background-image: url(//www.dosomething.org/files/u/calloffame/prank-pause2.png); }
 /* line 171, ../sass/robocalls.sass */
 body div.views-field-nothing .preview-share div.preview .file {
   display: inline-block;
@@ -403,7 +403,7 @@ audio {
   text-decoration: none; }
 /* line 350, ../sass/robocalls.sass */
 .preview-facebook-bar div.preview a.paused {
-  background-image: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png); }
+  background-image: url(//www.dosomething.org/files/u/calloffame/prank-pause2.png); }
 /* line 353, ../sass/robocalls.sass */
 .preview-facebook-bar div.facebook {
   float: right;
