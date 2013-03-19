@@ -488,8 +488,9 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         if ($i == 2) {
           $u['my_info']['#access'] = false;
         }
-
-        $u['my_info']['youre_calling']['#access'] = FALSE;
+        else {
+          $u['my_info']['youre_calling']['#markup'] = preg_replace('#Or just .*\.#', '', $u['my_info']['youre_calling']['#markup']);
+        }
       }
 
       // Get celebrities and populate the select box.
