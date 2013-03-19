@@ -16,6 +16,10 @@
   $sponsor = 'walmart';
   $files_source = '//www.dosomething.org/files/campaigns/' . $cmp_machine . '/';
 
+  /* MOBILE COMMONS NOISE */
+  $alpha_opt_in = '148093';
+  $beta_opt_in = '148123';
+
   /* SECTIONS CONTENT */
 
   $project = array(
@@ -71,10 +75,14 @@
     1 => "Team Crunchy or Smooth? Help settle one of biggest debates in American history.",
    );
 
-  // post-completion content sections
+  /* POST REPORT-BACK PAGE VIEW */
   $success = array(
     1 => "Congrats on successfully completing the challenge!",
     2 => "Thanks to you someone in your community won't go hungry.",
   );
   
+  $thanks = array(
+    1 => "Thanks for sharing the campaign with your friends!",
+  );
+
 ?>
