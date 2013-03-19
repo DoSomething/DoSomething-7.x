@@ -180,7 +180,7 @@ $activity->submission_fields = array(
   'ask_zip' => 1,
   'picture' => 'ask_picture:mms',
 );
-$activity->success_response = 'You are a rockstar. You\'ve been entered to win @submission_count times. Have more pics to share? Text MORE. All set? Text DONE!';
+$activity->success_response = 'You are a rockstar. You\'ve been entered to win @submission_count times. Have more pics to share? Text EXTRA. All set? Text FINISH!';
 $activity->webform_nid = 728619;
 
 $activity = $workflow->newActivity('end');

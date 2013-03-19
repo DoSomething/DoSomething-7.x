@@ -134,16 +134,16 @@ $workflows[$workflow->name] = $workflow;
  */
 $workflow = new ConductorWorkflow();
 $workflow->wid = 'new';
-$workflow->name = 'sms_flow_pbj_markt';
+$workflow->name = 'sms_flow_pbj_mrkt';
 $workflow->title = 'PBJ - MARKT Tips';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
 $activity->name = 'start';
-$activity->outputs = array('pbj_markt_tips');
+$activity->outputs = array('pbj_mrkt_tips');
 
 $activity = $workflow->newActivity('game_random_path');
-$activity->name = 'pbj_markt_tips';
+$activity->name = 'pbj_mrkt_tips';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->game_id = 4;
@@ -151,7 +151,7 @@ $activity->opt_in_paths = array(148843, 148853, 148863, 148873, 148883, 148893, 
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('pbj_markt_tips');
+$activity->inputs = array('pbj_mrkt_tips');
 
 $workflows[$workflow->name] = $workflow;
 
