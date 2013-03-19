@@ -30,10 +30,10 @@
             var nid = parseInt(document.location.pathname.replace('/sas-landing/', ''));
             Drupal.behaviors.fb.feed({
               'feed_document': 'http://www.dosomething.org/node/' + nid,
-              'feed_title': 'I just shared a stat',
-              'feed_picture': document.location.origin + img,
-              'feed_caption': 'Caption',
-              'feed_description': 'Description',
+              'feed_title': 'Make a stand against animal cruelty',
+              'feed_picture': img,
+              'feed_caption': '',
+              'feed_description': 'Help make a stand against animal cruelty by clicking this link and doing the #PaperChicken.',
               'feed_require_login': true
             }, function(response) { });
             return false;
@@ -49,7 +49,7 @@
           //twitter.appendTo(block);
           var tumblr = $('<a></a>').attr('href', 'http://tumblr.com').html('<img src="/sites/all/modules/dosomething/features/dosomething_social_scholars/images/tumblr.png" class="share-button" alt="Share on Tumblr" />').click(function() {
             var img = $('.current img').attr('src');
-            window.open('http://www.tumblr.com/share/photo?source=' + encodeURIComponent(document.location.origin + img) + '&caption=Caption&clickthru=' + encodeURIComponent(document.location.href), '_tumblr', 'toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300');
+            window.open('http://www.tumblr.com/share/photo?source=' + encodeURIComponent(img) + '&caption=Caption&clickthru=' + encodeURIComponent(document.location.href), '_tumblr', 'toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300');
             return false;
           });
           tumblr.appendTo(block);
