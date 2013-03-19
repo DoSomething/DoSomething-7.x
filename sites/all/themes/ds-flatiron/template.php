@@ -26,9 +26,8 @@ function ds_flatiron_preprocess_node(&$vars) {
         }
 
 	      $contact_forms = array(
-          //'individual' => node_load(728660), 
-          //'team' => node_load(728661)
-          'team' => node_load(728657)
+          'individual' => node_load(728660), 
+          'team' => node_load(728661)
         );
 
         $submitted = _ds_flatiron_user_submitted(array(
