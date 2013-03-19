@@ -12,14 +12,14 @@
               right++;
             }
           });
-          $quizForm.attr('action', $quizForm.attr('action')+'?destination=givingtuesday/results/'+right);
+          $quizForm.attr('action', $quizForm.attr('action')+'?destination=momandpopquiz/results/'+right);
           return true;
         });
       }
 
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
+        afterReplaceText : 'Just register with DoSomething.org!',
       };
 
       if (window.location.pathname.substr(0, 5) == '/team') {
