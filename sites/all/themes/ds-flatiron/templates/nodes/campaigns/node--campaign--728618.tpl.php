@@ -57,10 +57,12 @@
             <?php print render($content['contact']['team']); ?>
           </div>  <!-- .contact-form (group) -->
 
+          <?php if (!isset($team) || !isset($individual)): ?>
           <div class="report-back-form">
             <h2><?php print($scholarship[2]); ?></h2>
             <?php print render($content['report_back']); ?>
           </div>  <!-- .report_back -->
+          <?php endif; ?>
 
         </div> <!-- .section-container -->
       </section> <!-- .scholarship -->
