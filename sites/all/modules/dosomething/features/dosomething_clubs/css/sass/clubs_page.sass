@@ -29,6 +29,52 @@ div[aria-labelledby="ui-dialog-title-1"]
 		@include opacity(.75)
 		@include background(#fff image-url('/sites/all/modules/dosomething/features/dosomething_clubs/images/club-edit-photo.png') 90% 50% no-repeat)
 
+.blurb-wrapper
+	border: 2px solid #efefef
+	width: 305px
+	height: 55px
+	font-style: italic
+	position: relative
+
+	.blurb-placeholder
+		padding: 5px
+
+	textarea
+		display: none
+		width: 301px
+		height: 51px
+
+	.edit
+		display: none
+		position: absolute
+		top: 0px
+		right: 0px
+		background: #d1cfd0
+		padding: 0px 5px
+		font-style: normal
+
+	a
+		font-family: din-web-reg, "Trebuchet MS", sans-serif
+		font-size: 10pt
+
+	.blurb-text
+		@extend a
+		//padding: 5px
+
+
+	&:hover
+		border: 2px solid #d1cfd0
+
+		& > .edit
+			display: block
+
+	&.editing
+		textarea
+			display: inline
+
+		.blurb-placeholder
+			display: none
+
 ul.tabs.primary
 	margin-top: -30px
 	border: 0px
@@ -46,11 +92,17 @@ ul.tabs.primary
 div.dosomething-stats
 	position: relative
 
-.go-button.member-popup-trigger.club-processed
+.button-container
 	position: absolute
 	bottom: 10px
 	right: 10px
 	padding-top: 8px
+
+	.member-popup-trigger
+		margin-left: 10px
+
+		div
+			display: inline
 
 .invite-link
 	width: 300px
