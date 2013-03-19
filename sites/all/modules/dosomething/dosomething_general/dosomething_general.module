@@ -1147,6 +1147,93 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   
 }
 
+function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
+  $path = libraries_get_path('telapi');
+  require_once $path . '/library/TelApi.php';
+
+  $api = TelApi::getInstance();
+  $api->setOptions(array(
+    'account_sid' => 'AC69dc373627334a05b0d58dfe67b215cc',
+    'auth_token' => '02eb30fb3df44204ba3bed9b5bda9afe',
+  ));
+
+  if (is_array($beta_number)) {
+    // Clean up the alpha number.
+    $alpha = preg_replace('#[^0-9]#', '', $alpha_number);
+    foreach ($beta_number AS $cell) {
+      if (dosomething_general_valid_cell($cell)) {
+        // Clean up the beta number.
+        $beta = preg_replace('#[^0-9]#', '', $cell);
+
+        // Set up the call request.
+        $req = array(
+          'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $cell),
+          'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
+          'method' => 'GET',
+        );
+
+        // You can't call yourself and spoof your own number...
+        // So if you're calling yourself, default to the basic phone #.
+        if ($alpha != $beta) {
+          $req['From'] = $alpha;
+        }
+        else {
+          $req['From'] = ROBOCALLS_DEFAULT_PHONE_NUMBER;
+        }
+
+        try {
+          // Send the call.
+          $call = $api->create($type, $req);
+        }
+        catch (TelApi_Exception $e) {
+          
+          watchdog('robocalls', $e->getMessage());
+          return false;
+        }
+      }
+    }
+  }
+  else {
+    if (dosomething_general_valid_cell($alpha_number) && dosomething_general_valid_cell($beta_number)) {
+      // Clean up the numbers.
+      $alpha = preg_replace('#[^0-9]#', '', $alpha_number);
+      $beta = preg_replace('#[^0-9]#', '', $beta_number);
+
+      // Set up the call request.
+      $req = array(
+        'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $beta_number),
+        'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
+        'method' => 'GET',
+      );
+
+      // You can't call yourself and spoof your own number...
+      // So if you're calling yourself, default to the basic phone #.
+      if ($alpha != $beta) {
+        $req['From'] = $alpha;
+      }
+      else {
+        $req['From'] = ROBOCALLS_DEFAULT_PHONE_NUMBER;
+      }
+
+      try {
+        // Send the call.
+        $call = $api->create($type, $req);
+      }
+      catch (TelApi_Exception $e) {
+        watchdog('robocalls', $e->getMessage());
+        return false;
+      }
+    }
+  }
+
+  if ($call->sid) {
+    return $call;
+  }
+
+  return false;
+}
+
+
 /**
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
  * configured opt-in path.  Send messages to friends as well.
@@ -1548,9 +1635,13 @@ function dosomething_general_find_user_by_cell($number) {
  *   The user account or false if none is found.
  */
 function dosomething_load_user_by_profile_cell($mobile) {
+  $without = preg_replace('#[^0-9]#', '', $mobile);
+  $with = preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $without);
+  $possibilities = array($with, $without);
+
   $query = new EntityFieldQuery('profile2');
   $results = $query->entityCondition('entity_type', 'profile2')
-    ->fieldCondition('field_user_mobile', 'value', $mobile, '=')
+    ->fieldCondition('field_user_mobile', 'value', $possibilities, 'IN')
     ->deleted(FALSE)
     // Look for more than one user but cap it at two so we don't waste all day.
     ->range(0, 2)
@@ -1593,12 +1684,23 @@ function dosomething_general_load_user_by_mail_or_cell($value) {
  *
  * @param $number
  *   A cell phone number which may contain special characters.
- * @return
+ * @return bool
  *  Either FALSE or the cleaned up cell phone number (only digits).
  */
 function dosomething_general_valid_cell($number) {
-  $trimmed_number = ltrim(preg_replace('/[^0-9]/', '', $number), 1);
-  return strlen($trimmed_number) == 10 ? $trimmed_number : FALSE;
+  $trimmed_number = ltrim(preg_replace('#[^0-9]#', '', $number), 1);
+
+  // Make sure the number is 10 digits long.
+  if (strlen($trimmed_number) != 10) {
+    return false;
+  }
+
+  // Three 5's in a row, in the first 6 digits, constitute a bad phone number.
+  if (preg_match('#(5{3})#', substr($trimmed_number, 0, 6))) {
+    return false;
+  }
+
+  return $trimmed_number;
 }
 
 /**

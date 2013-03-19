@@ -45,7 +45,7 @@ function dosomething_layout_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-45',
+    'weight' => '-44',
     'parent_path' => '<nolink>',
   );
   // Translatables
