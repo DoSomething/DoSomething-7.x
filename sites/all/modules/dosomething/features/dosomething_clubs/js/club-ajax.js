@@ -16,7 +16,7 @@
           var elm = $(this);
           var v = $(this).parent().parent().find('textarea').val();
           if ($(this).data('current-text') != v) {
-            $.post('/club/edit-blurb/727244', { 'text': v }, function(response) {
+            $.post('/club/edit-blurb/' + Drupal.settings.club.nid, { 'text': v }, function(response) {
               var res = $.parseJSON(response);
               if (!res.error) {
                 elm.removeClass('done');

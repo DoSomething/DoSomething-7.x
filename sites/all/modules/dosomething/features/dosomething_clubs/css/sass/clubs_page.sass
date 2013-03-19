@@ -32,7 +32,7 @@ div[aria-labelledby="ui-dialog-title-1"]
 .blurb-wrapper
 	border: 2px solid #efefef
 	width: 305px
-	height: 55px
+	min-height: 55px
 	font-style: italic
 	position: relative
 
@@ -53,14 +53,9 @@ div[aria-labelledby="ui-dialog-title-1"]
 		padding: 0px 5px
 		font-style: normal
 
-	a
+	a, .blurb-text
 		font-family: din-web-reg, "Trebuchet MS", sans-serif
 		font-size: 10pt
-
-	.blurb-text
-		@extend a
-		//padding: 5px
-
 
 	&:hover
 		border: 2px solid #d1cfd0

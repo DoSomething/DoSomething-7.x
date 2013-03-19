@@ -2723,6 +2723,12 @@ function dosomething_clubs_page_alter(&$page) {
 
       drupal_goto('clubs/share/' . $node->nid);
     }
+
+    $node = menu_get_object();
+    drupal_add_js(array('club' => array(
+      'nid' => $node->nid,
+      'title' => $node->title
+    )), 'setting');
   }
 
   if ($path == '/clubs') {
