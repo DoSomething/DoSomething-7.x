@@ -77,3 +77,13 @@ function ds_flatiron_preprocess_page(&$vars) {
 
   }
 }
+
+function ds_flatiron_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'webform_client_form_728660') {
+    $form['actions']['submit']['#value'] = t('I want to donate solo');
+  }
+  if ($form_id == 'webform_client_form_728661') {
+    $form['actions']['submit']['#value'] = t('I want to run a drive');
+  }
+}
+  
