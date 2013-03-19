@@ -121,7 +121,7 @@ $activity->beta_optin = array(142223, 142503, 143053);
 $activity->id_override = 2;
 $activity->type_override = 'sms_game';
 $activity->response_error = 'Sorry! We didn\'t understand that. Text WYR to get a new set of questions. Or text TIPS for easy ways to save money.';
-$activity->response_success = 'We\'ll send you your friends\' answers once they complete the questions. Text WYR to get more ?s yourself.';
+$activity->response_success = 'Cool, we\'ll let you know what your friend\'s say they\'d do to save some $$. Text WYR to get more ?s yourself.';
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
