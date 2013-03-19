@@ -150,31 +150,31 @@ $activity->should_prompt = FALSE;
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_jars';
 $activity->inputs = array('ask_picture');
-$activity->outputs = array('ask_people');
-$activity->question = 'Sweet Peanut Butter Batman! Q1 - How many jars you got there?';
+$activity->outputs = array('ask_zip');
+$activity->question = 'Sweet Peanut Butter Batman! Next: Question 1 - How many jars did you collect in total?';
 
 $activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_people';
+$activity->name = 'ask_zip';
 $activity->inputs = array('ask_jars');
 $activity->outputs = array('strip_signature');
-$activity->question = 'Jamtastic! Q2 - How many people helped out?';
+$activity->question = 'Jamtastic! Now Question 2 - Where did you donate your jars? (Text back the zipcode)';
 
 $activity = $workflow->newActivity('strip_signature');
 $activity->name = 'strip_signature';
-$activity->inputs = array('ask_people');
+$activity->inputs = array('ask_zip');
 $activity->outputs = array('pbj_report_back');
 
 $activity = $workflow->newActivity('submit_report_back');
 $activity->name = 'pbj_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
-// TODO: determine what data index values these should go to
-// $activity->submission_fields = array(
-//   'ask_jars' => ,
-//   'ask_people' => ,
-//   'picture' => 'ask_picture:mms',
-// );
-// TODO: $activity->webform_nid = ;
+$activity->submission_fields = array(
+  'ask_jars' => 2,
+  'ask_zip' => 1,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 'You are a rockstar. You\'ve been entered to win @submission_count times. Have more pics to share? Text MORE. All set? Text DONE!';
+$activity->webform_nid = 728619;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
