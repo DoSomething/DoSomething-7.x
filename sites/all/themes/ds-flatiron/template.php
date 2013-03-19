@@ -18,19 +18,19 @@ function ds_flatiron_preprocess_node(&$vars) {
           break;
         }
 
-	// Check if the user has submitted an individual or team form
-	$contact_forms = array(
+	      // Check if the user has submitted an individual or team form
+	      $contact_forms = array(
           'individual' => node_load(728660), 
           'team' => node_load(728661)
         );
 	
-	foreach($contact_forms as $type => $form){
-	  $block = block_load('webform', 'client-block-' . $form->nid);
-          $block_content = _block_render_blocks(array($block));
-	  if (!empty($block_content)) {
-	    $vars[$type] = TRUE;
-	    $vars['content']['contact'][$type] = _block_get_renderable_array($block_content);
-	  }
+      	foreach($contact_forms as $type => $form){
+      	  $block = block_load('webform', 'client-block-' . $form->nid);
+                $block_content = _block_render_blocks(array($block));
+      	  if (!empty($block_content)) {
+      	    $vars[$type] = TRUE;
+      	    $vars['content']['contact'][$type] = _block_get_renderable_array($block_content);
+      	  }
         }  
  
         // Give me the report back block
