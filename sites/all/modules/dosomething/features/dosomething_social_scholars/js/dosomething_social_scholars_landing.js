@@ -10,6 +10,11 @@
       $('h1#page-title').wrap('<div class="background-image"></div>');
 
       $('#edit-submitted-field-share-your-own-image-und-0-upload').click(function() {
+        if ($('body').hasClass('not-logged-in')) {
+          $.fn.dsSaSLogin();
+          return false;
+        }
+
         var img = window.setInterval(function() {
           if ($('#edit-submitted-field-share-your-own-image-und-0-upload').val() != '') {
             window.clearInterval(img);
@@ -27,9 +32,10 @@
           var block = $('<div></div>').addClass('buttons');
           var facebook = $('<a></a>').attr('href', 'http://facebook.com').html('<img src="/sites/all/modules/dosomething/features/dosomething_social_scholars/images/facebook.png" class="share-button" alt="Share on Facebook" />').click(function() {
             var img = $('.current img').attr('src');
+            var h = $('.current a').attr('href');
             var nid = parseInt(document.location.pathname.replace('/sas-landing/', ''));
             Drupal.behaviors.fb.feed({
-              'feed_document': 'http://www.dosomething.org/node/' + nid,
+              'feed_document': document.location.href + h,
               'feed_title': 'Make a stand against animal cruelty',
               'feed_picture': img,
               'feed_caption': '',
@@ -58,4 +64,43 @@
       });
     }
   };
+
+  // Define our own jQuery plugin so we can call it from Drupal's AJAX callback
+  $.fn.extend({
+    dsSaSLogin: function (url, is_user) {
+      // Whelp, these were breaking things, so let's just destroy them.
+      // This is bad practice.
+      delete Drupal.behaviors.dosomethingLoginRegister;
+      delete Drupal.behaviors.dosomethingLoginLogin;
+ 
+      if (!url) {
+        url = document.location.pathname.replace(/\//, '');
+      }
+
+      var popupForm = $('#dosomething-login-register-popup-form');
+      var loginForm = $('#dosomething-login-login-popup-form');
+
+      // make sure users get directed to the right page
+      popupForm.attr('action', '/user/registration?destination='+url);
+      popupForm.find('.already-member .sign-in-popup').attr('href', '/user?destination='+url);
+      loginForm.attr('action', '/user?destination='+url);
+
+      var form = popupForm;
+      var other = loginForm;
+      if (is_user) {
+        form = loginForm;
+        other = popupForm;
+      }
+
+      // popup!
+      form.dialog({
+        resizable: false,
+        draggable: false,
+        modal: true,
+        width: 550,
+        dialogClass: 'sas-pop-up',
+        open: function(event, ui) {},
+      });
+    }
+  });  
 })(jQuery);
