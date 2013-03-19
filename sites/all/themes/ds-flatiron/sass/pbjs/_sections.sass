@@ -1,6 +1,6 @@
 // COLLECTIVE
 // ----------
-.challenge, .complete, .cause
+.challenge, .complete, .cause, .share
   background: $bg-alt
 
 // HEADER
@@ -28,27 +28,12 @@
       width: 400px
 
 // CHALLENGE
-// -------
-
-// COMPLETE
-// -------
-.complete
-  .go-button
-    height: 35px
-    width: 100px
-    font-size: 30px
-    font-weight: 600
-    margin: 10px auto
-    padding: 11px 0 0 6px
+// ---------
 
 // SCHOLARSHIP
 // -----------
-.scholarship
-
-.official-rules
-  text-align: right
-  a
-    color: $bg-alt !important
+.scholarship .official-rules-link
+  color: $bg-alt
     
 .show #show-report-back
   display: none
@@ -77,6 +62,54 @@
   text-decoration: none
   color: $campaign-main
 
+// SUCCESS
+// -------
+
+// SHARE
+// -----
+.share
+  label
+    margin: 3% 0 -1%
+  form
+    width: 80%
+  .form-submit /* TODO - CONSOLIDATE BUTTON STYLES  */
+    font-size: 15px
+    font-family: din-web-reg
+    font-weight: 600
+    padding: 5px 10px
+    height: 2em
+  .official-rules-link
+    text-transform: uppercase
+
+.bg-share
+  margin: 0 auto 2%
+  display: block
+
+.share-input
+  width: 30%
+  margin: 2% 5% 0 0
+
+.share-alpha-wrapper
+  float: left
+  width: 35.8%
+  margin: 0 0 4% 0
+  input
+    width: 83.5%
+
+.share-beta-mobile
+  clear: both
+  margin: 5% 0 -1%
+
+// THANKS
+// ------
+.thanks
+  padding: 2.5% 0 0 0
+  h2
+    text-transform: uppercase
+    font-weight: 600
+    font-size: 26px
+    color: $campaign-main
+
 // FOOTER
 // ------
 .footer
@@ -84,4 +117,4 @@
     text-align: center
   img
     width: 50px
-    +blockCenter
+    +block-center

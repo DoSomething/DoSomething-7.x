@@ -12,9 +12,17 @@ function ds_flatiron_preprocess_node(&$vars) {
 	    case '728618':  //PB&J  	  	
 
         $params = drupal_get_query_parameters();
+
+        // POST-REPORT BACK VIEW
         if (isset($params['success'])) {
           $vars['content']['#access'] = FALSE;
           $vars['complete'] = TRUE;
+          break;
+        }
+
+        // POST-SHARE W/FRIENDS VIEW
+        if (isset($params['thanks'])) {
+          $vars['shared'] = TRUE;
           break;
         }
 
