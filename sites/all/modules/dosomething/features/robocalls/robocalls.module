@@ -256,7 +256,7 @@ function robocalls_call_xml($tid) {
   // Load the term in question.
   $term = taxonomy_term_load($tid);
 
-  // Make sure we actually have a call to play.  
+  // Make sure we actually have a call to play.
   if (!isset($term->field_celeb_call[LANGUAGE_NONE][0]['uri'])) {
     return;
   }
@@ -310,7 +310,7 @@ function robocalls_page_alter(&$page) {
           drupal_add_js(drupal_get_path('module', 'robocalls') . '/js/' . $script, array(
             'weight' => -100,
             'cache' => FALSE
-          ));   
+          ));
         }
       }
     }
@@ -476,7 +476,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       if (user_is_logged_in()) {
         $u['my_info']['my_password']['#access'] = FALSE;
         $i = 0;
-        if ($me['name']) {
+        if (/*$me['name']*/1) {
           $u['my_info']['my_name']['#access'] = FALSE;
           $i++;
         }
@@ -781,7 +781,7 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   $i = 0;
   foreach ($friends AS $number => $callid) {
     if ($i == 0) {
-      $call = dosomething_general_telapi_request($my['cell'], $number, $callid); 
+      $call = dosomething_general_telapi_request($my['cell'], $number, $callid);
     }
     else {
       dosomething_general_telapi_request($my['cell'], $number, $callid);
