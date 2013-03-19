@@ -1,15 +1,25 @@
 // CONTACT FORM
 // ------------
-#contact-form
+.contact-form
+  width: 50%
+  float: left
+  .form-wrapper /* TODO - REMOVE THIS RESET FROM THE INHERITED DOIT THEME STYLES */
+    margin: 0
+
+  h2, #campaign-opt-in /* TODO - TWO OF THESE ARE BEING GENERATED -- CHANGE ID TO A CLASS IN THE MODULE */
+    display: none
+
+#webform-component-contact-form-individual-wrapper,
+#webform-component-contact-form-group-wrapper
   display: none
 
 // REPORT BACK FORM
 // ----------------
-td
-  display: block
-
-#report-back
-  display: none
+.report-back-form
+  h2 /* TODO - WHERE ARE THESE FORM TITLES COMING FROM? */
+    display: none
+  td
+    display: block
   form
     width: 800px
     margin: 0 auto
@@ -23,13 +33,18 @@ td
     +border-radius(3px)
   input[type="file"]
     border: none
+  input[name="submitted_field_webform_pictures_und_0_upload_button"].form-submit
+    background: $btn-grey
   legend
     display: none
   .description
     font-size: 10px
     color: $font-grey
 
-#report-back.show
+.food-bank-finder-error
+  display: none
+
+.report-back-form.show
   display: block
 
 #webform-photo-wrapper
@@ -39,12 +54,12 @@ td
   @media only screen and (max-width: 550px)
     margin: 5% 0
 
-#webform-component-wrapper-text
+#webform-component-wrapper-zip
   float: left
   width: 60%
 
 #webform-photo-wrapper,
-#webform-component-wrapper-text
+#webform-component-wrapper-zip
   @media only screen and (max-width: 550px)
     float: none
     width: 100%
@@ -71,7 +86,7 @@ td
   
 // IMAGE PREVIEW SECTION
 // --------------------
-#report-back
+.report-back-form
   .tabledrag-toggle-weight-wrapper, thead, .tabledrag-handle, .image-preview, .file img, .file-size
     display: none
 
@@ -114,3 +129,13 @@ tr
   margin: 5px 0
   padding: 0 10px
   font-size: 30px
+
+// GO-BUTTON STYLES
+// ----------------
+.contact-form,
+.report-back-form
+  .form-submit, input[name="submitted_field_webform_pictures_und_0_upload_button"].form-submit
+    font-weight: 600
+    height: 40px
+    margin: 0 auto
+    padding: 3px 20px 0px 20px
