@@ -7,7 +7,7 @@
 
     ?>
 
-    <section class="header">
+    <section class="header" id="header">
       <div class="section-container">
         <a class="logo-dosomething" href="//www.dosomething.org/">
           <img src="<?php print($files_source . 'logo-ds.png'); ?>" alt="DoSomething.org logo" />
@@ -24,7 +24,7 @@
 
       <?php /* TODO - PREVENT THOSE WHO HAVEN'T SUBMITTED THE REPORT BACK FROM FROM SEEING THIS SECTION */ ?>
 
-      <section class="project">
+      <section class="project" id="project">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-project.png') ?>" alt="The Project" />
           <h1><?php print($project[1]); ?></h1>
@@ -32,7 +32,7 @@
         </div> <!-- .section-container -->
       </section> <!-- .project -->
 
-      <section class="challenge">
+      <section class="challenge" id="challenge">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-challenge.png'); ?>" alt="your challenge" />
           <h2><?php print($challenge[1]); ?></h2>
@@ -40,7 +40,7 @@
         </div> <!-- .section-container -->
       </section> <!-- .challenge -->
 
-      <section class="scholarship">
+      <section class="scholarship" id="scholarship">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
           <h2><?php print($scholarship[1]); ?></h2>
@@ -67,7 +67,7 @@
         </div> <!-- .section-container -->
       </section> <!-- .scholarship -->
 
-      <section class="cause">
+      <section class="cause" id="cause">
         <div class="section-container">
 
           <?php for ($i=1;$i<5;$i++): ?>
@@ -89,7 +89,7 @@
 
       <?php if (isset($shared)): ?>
 
-        <section class="thanks">
+        <section class="thanks" id="thanks">
           <div class="section-container">
             <h2><?php print($thanks[1]); ?></h2>
           </div> <!-- .section-container -->
@@ -97,7 +97,7 @@
 
       <?php endif; ?>
 
-      <section class="success">
+      <section class="success" id="success">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-success.png'); ?>" alt="grand slam!" />
           <h1><?php print($success[1]); ?></h1>
@@ -105,7 +105,7 @@
         </div> <!-- .section-container -->
       </section> <!-- .section -->
     
-      <section class="share">
+      <section class="share" id="share">
         <div class="section-container">
         
           <img class="bg-header" src="<?php print($files_source . 'h-share.png'); ?>" alt="spread the word" />
@@ -168,7 +168,7 @@
       </section> <!-- .section -->
     <?php endif; ?>
 
-    <section class="footer">
+    <section class="footer" id="footer">
       <div class="section-container">
         <p>Questions? E-mail <a href="mailto:<?php print($cmp_url); ?>@dosomething.org"><?php print($cmp_url); ?>@dosomething.org</a>!</p>
       </div>

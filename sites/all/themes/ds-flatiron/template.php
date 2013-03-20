@@ -28,6 +28,7 @@ function ds_flatiron_preprocess_node(&$vars) {
 	      $contact_forms = array(
           'individual' => node_load(728660), 
           'team' => node_load(728661)
+          //'team' => node_load(728657)
         );
 
         $submitted = _ds_flatiron_user_submitted(array(
@@ -88,9 +89,14 @@ function ds_flatiron_preprocess_page(&$vars) {
 function ds_flatiron_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'webform_client_form_728660') {
     $form['actions']['submit']['#value'] = t('I want to donate solo');
+    $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
   }
   if ($form_id == 'webform_client_form_728661') {
     $form['actions']['submit']['#value'] = t('I want to run a drive');
+    $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
+  }
+  if($form_id == 'webform_client_form_728619') {
+    $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
   }
 }
 
