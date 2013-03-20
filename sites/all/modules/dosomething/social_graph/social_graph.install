@@ -1,0 +1,200 @@
+<?php
+
+function social_graph_schema() {
+  $schema = array();
+
+  $schema['social_graph_users'] = array(
+    'description' => 'Stores social graph users.',
+    'primary key' => array('guid'),
+    'fields' => array(
+      'guid' => array(
+        'description' => 'The Social Graph user id.',
+        'type' => 'serial',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'uid' => array(
+      	'description' => 'The Drupal User ID of the user, if applicable.',
+      	'type' => 'int',
+      	'unsigned' => true,
+      	'not null' => true,
+      	'default' => 0,
+      ),
+      'fbid' => array(
+        'description' => 'The Facebook ID of the user.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'default' => 0,
+      ),
+      'email' => array(
+      	'description' => 'The Email of the user.',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true,
+      	'default' => '',
+      ),
+      'cell' => array(
+      	'description' => 'The cell phone number of the user.',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true,
+      	'default' => '',
+      ),
+      'first_name' => array(
+      	'description' => "The user's first name",
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true,
+      	'default' => '',
+      ),
+      'last_name' => array(
+      	'description' => "The user's last name",
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true,
+      	'default' => '',
+      ),
+      'created' => array(
+        'description' => 'The time that the user was created.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'default' => 0,
+      ),
+      'ipaddress' => array(
+        'description' => "The user's IP Address at registration.",
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => true,
+        'default' => '',
+      ),
+      'inviter_guid' => array(
+        'description' => 'The GUID of the user (alpha) that invited this person.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'default' => 0,
+      ),
+      'extra' => array(
+      	'description' => 'Additional information about the user.',
+      	'type' => 'text',
+      	'not null' => true,
+      ),
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'fbid' => array('fbid'),
+      'email' => array('email'),
+      'cell' => array('cell'),
+      'inviter_guid' => array('inviter_guid'),
+    ),
+  );
+
+  $schema['social_graph_friends'] = array(
+    'description' => "Stores user's friends, and people they may know.",
+    'primary key' => array('guid'),
+    'fields' => array(
+      'guid' => array(
+      	'description' => 'The GUID of the alpha',
+      	'type' => 'int',
+      	'unsigned' => true,
+      	'not null' => true,
+      	'default' => 0,
+      ),
+      'friend_guid' => array(
+      	'description' => 'The GUID of the user\'s friend',
+      	'type' => 'int',
+      	'unsigned' => true,
+      	'not null' => true,
+      	'default' => 0,
+      ),
+      'verified' => array(
+        'description' => 'Whether or not this friend has been verified by the alpha..',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'default' => 0,
+      ),
+      'weight' => array(
+        'description' => 'How many people know this friend.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'default' => 0,
+      ),
+      'degree' => array(
+        'description' => 'The degree to which this person knows another person.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'default' => 0,
+      ),
+      'know_through' => array(
+        'description' => 'The Graph UID of the person you may know this person through.',
+        'type' => 'int',
+        'unsigned' => true,
+        'not null' => true,
+        'default' => 0,
+      ),
+    ),
+    'indexes' => array(
+       'friend_guid' => array('friend_guid'),
+    ),
+  );
+
+  $schema['social_graph_actions'] = array(
+    'description' => 'Stores social graph actions.',
+    'primary key' => array('sgaid'),
+    'fields' => array(
+      'sgaid' => array(
+        'description' => 'The social graph action ID (for administrative purposes)',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'timestamp' => array(
+        'description' => 'The time that the action happened.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'path' => array(
+      	'description' => 'The Absolute URL of the page where the action happened.',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true,
+      ),
+      'guid' => array(
+        'description' => 'The graph user ID of the person performing the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'to_guid' => array(
+        'description' => 'The graph user ID of the person receiving the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'action_key' => array(
+      	'description' => 'A machine name for the action that occurred.',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true,
+      ),
+      'additional' => array(
+      	'description' => 'What exactly the action added/updated/deleted',
+      	'type' => 'varchar',
+      	'length' => 255,
+      	'not null' => true,
+      ),
+    ),
+    'indexes' => array(
+      'guid' => array('guid'),
+      'to_guid' => array('to_guid'),
+    ),
+  );
+
+  return $schema;
+}

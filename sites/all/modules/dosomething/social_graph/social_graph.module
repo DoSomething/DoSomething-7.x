@@ -1,0 +1,498 @@
+<?php
+
+function social_graph_menu() {
+   $items['social-graph'] = array(
+      'page callback' => 'social_graph_show_stuff',
+      'access callback' => TRUE,
+   );
+
+   return $items;
+}
+
+function social_graph_show_stuff() {
+   global $user;
+
+$g = db_select('social_graph_friends', 'f')
+   ->fields('f', array('guid', 'friend_guid'))
+   ->execute()
+   ->fetchAll();
+$friends = array();
+foreach ($g AS $key => $f) {
+   $friends[$f->guid][1][] = $f->friend_guid;
+}
+
+$me_graph = $friends;
+
+$s = build_connections($me_graph);
+
+#echo '<pre>', print_r($me_graph), '</pre>'; exit;
+
+$inserts = array();
+foreach ($me_graph AS $guid => $stats) {
+   foreach ($stats AS $degree => $stuff) {
+      if ($degree == 1) continue;
+
+      foreach ($stuff AS $k => $w) {
+         $inserts[$guid][$w['name']] = array(
+            'degree' => $degree,
+            'know_through' => $w['know_through'],
+            'weight' => $s[$guid][$w['name']],
+         );
+      }
+   }
+}
+#echo '<pre>', print_r($inserts), '</pre>'; exit;
+
+foreach ($inserts AS $gid => $in) {
+   foreach ($in AS $know => $degr) {
+      db_insert('social_graph_friends')
+      ->fields(array(
+         'guid' => $gid,
+         'friend_guid' => $know,
+         'verified' => 0,
+         'weight' => $degr['weight'],
+         'degree' => $degr['degree'],
+         'know_through' => $degr['know_through'],
+      ))
+      ->execute();
+   }
+}
+
+echo "<p>DONE!";
+
+
+   /*if (!intval($_GET['page'])) {
+      $page = 1;
+   }
+   else {
+      $page = intval($_GET['page']);
+   }
+
+
+   $users = db_select('users', 'u')
+      ->fields('u', array('uid', 'mail'));
+   $users->leftJoin('fbconnect_users', 'f', 'f.uid = u.uid');
+   $users->fields('f', array('fbuid'));
+   $users->range((100 * ($page - 1)), 100);
+   $u = $users->execute()->fetchAll();
+
+   $t = count($u);
+   foreach ($u AS $key => $us) {
+      if ($us->uid > 0) {
+         $p = profile2_load_by_user($us, 'main');
+         $u[$key]->first_name = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+         $u[$key]->last_name = $p->field_user_last_name[LANGUAGE_NONE][0]['value'];
+         $u[$key]->mobile = $p->field_user_mobile[LANGUAGE_NONE][0]['value'];
+
+         $graph = new SocialGraph();
+         $graph->addFacebook($u[$key]->fbuid);
+         $graph->addEmail($u[$key]->mail);
+         $graph->addMobile($u[$key]->mobile);
+         $graph->addUserUid($u[$key]->uid);
+         $graph->addUserFirstName($u[$key]->first_name);
+         $graph->addUserLastName($u[$key]->last_name);
+         $graph->createGraphUser();
+      }
+   }
+
+   $graph = new SocialGraph();
+   $graph->getContext();
+   $friends = $graph->getFriends();
+   echo '<pre>', print_r($friends), '</pre>';
+   $e = "Done " . $page * 100 . ".";
+   if ($t == 100) {
+      $e .= 'Going to next page...';
+      $e .= '<script type="text/javascript"> setTimeout(function() {
+         document.location.href="/social-graph?page=' . (intval($_GET['page']) + 1) . '";
+      }, 500);
+      </script>';
+   }
+
+   echo $e;
+   exit;*/
+}
+
+function build_connections(&$me_graph) {
+   global $steps;
+   $steps = array();
+   $visited = $vname = array();
+   foreach ($me_graph AS $w => $de) {
+     foreach ($de AS $deg => $connections) {
+      $do = array();
+      foreach ($connections AS $name) {
+        if ($me_graph[$name]) {
+         $do[] = $name;
+        }
+      }
+
+      connect_friends($me_graph, $w, $do, $w);
+     }
+   }
+
+   return $steps;
+}
+
+function connect_friends(&$me_graph, $started, $who, $to, $degree = 1) {
+  global $visited, $steps;
+
+  foreach ($who AS $name) {
+   if (isset($me_graph[$name])) {
+      foreach ($me_graph[$name] AS $deg => $connections) {
+       if ($deg > 1) break;
+       $do = array();
+       $deeeg = ($degree + 1);
+       foreach ($connections AS $n) {
+         if ($n != $started) {
+            $steps[$started][$n]++;# .= "$name,";
+         }
+         if ($n != $started && !$visited[$started][$n] && !is_numeric(array_search($n, $me_graph[$started][1]))) {
+          $visited[$started][$n] = $deeeg;
+          $me_graph[$started][$deeeg][] = array(
+            'name' => $n,
+            'know_through' => $name,
+          );
+          if ($me_graph[$n]) {
+             $do[] = $n;
+          }
+         }
+       }
+
+       connect_friends($me_graph, $started, $do, $started, $deeeg);
+      }
+   }
+  }
+}
+
+class SocialGraph {
+   private $crud_functions = array(
+      'add',
+      'update',
+      'delete',
+   );
+
+   public $doc;
+   public $me;
+
+   public function __construct() {
+      $services = scandir(DRUPAL_ROOT . '/' . drupal_get_path('module', 'social_graph') . '/services');
+
+      require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'social_graph') . '/includes/doc.inc';
+      $this->doc = new DocHelper;
+
+      foreach ($services AS $key => $service) {
+         if ($service == '.' || $service == '..') continue;
+
+         require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'social_graph') . '/services/' . $service;
+         $s = str_replace('.inc', '', $service);
+         $this->{$s} = new $s;
+
+
+         $reflector = new ReflectionClass($s);
+         $c = $reflector->getProperties();
+         foreach ($c AS $key => $property) {
+            $p = $property->getDocComment();
+            $this->_build_column_info($property->class, $property->name, $p);
+         }
+      }
+   }
+
+   /**
+    *  Parses property doc comments to get Graph information,
+    *  validation and dependencies.
+    * 
+    *  @param $class
+    *    The property's class.
+    *
+    *  @param $property
+    *    The name of the property.
+    *
+    *  @param
+    *    The doc comments for the property.
+    */
+   public function _build_column_info($class, $property, $doc) {
+      if (!empty($doc)) {
+         preg_match_all('#\@Graph\\\(?<function>.*?)\((?<args>.*?)\)#', $doc, $docFunctions);
+         foreach ($docFunctions['function'] AS $key => $function) {
+            $func = strtolower($function);
+
+            if (!empty($func)) {
+               $this->doc->{$func}($class, $property, $docFunctions['args'][$key]);
+            }
+         }
+      }
+   }
+
+   public function __call($method, $args) {
+      preg_match('#(?<action>' . implode('|', $this->crud_functions) . ')(?<service>[A-Z]{1}[a-z0-9]+)(?<submethod>[A-Z]{1}[A-Za-z0-9]+)?#', $method, $call);
+      if (!empty($call['action']) && !empty($call['service'])) {
+         $s = strtolower($call['service']);
+         $a = strtolower($call['action']);
+
+         if (!empty($call['submethod'])) {
+            array_push($args, ($call['submethod']));
+         }
+
+         // If we can find the service invocation of this function, run that instead!
+         if (method_exists($s, $a)) {
+            $this->{$s}->{$a}($args);
+         }
+         else {
+            // An error running what would otherwise be a perfectly fine function.  Most likely it can't find the service and/or method.
+            throw new SocialGraphException('We tried finding the "' . $a . '" method in the "' . $s . '" service, but no luck.  Make sure your service exists in the social_graph/services directory.');
+         }
+      }
+      else {
+         // Malformed method call.
+         throw new SocialGraphException("Couldn't run malformed method \"{$method}\".  Please read the documentation in social_graph.module for proper method structure.");
+      }
+   }
+
+   public function getContext($u = array()) {
+      global $user;
+      $p = profile2_load_by_user($user, 'main');
+      $ua = array(
+         'uid' => $user->uid,
+         'email' => $user->mail,
+         'fbid' => fboauth_fbid_load($user->uid),
+         'cell' => $p->field_user_mobile[LANGUAGE_NONE][0]['value'],
+      );
+
+      $u = array_merge($ua, $u);
+      $o = db_or();
+      foreach ($u AS $key => $val) {
+         $o->condition($key, $val);
+      }
+
+      $me = db_select('social_graph_users', 'u')
+         ->fields('u')
+         ->condition($o)
+         ->execute();
+      $mei = $me
+         ->fetchAll();
+
+      $this->me = reset($mei);
+   }
+
+   public function getFriends() {
+      if (empty($this->me)) {
+         throw new SocialGraphException('You must call getContext() before calling getFriends().');
+      }
+
+      $flist = db_select('social_graph_friends', 'f')
+         ->condition('f.guid', $this->me->guid);
+      $flist->leftJoin('social_graph_users', 'u', 'u.guid = f.friend_guid');
+      $flist->fields('u');
+
+      $fr = $flist->execute()->fetchAll();
+
+      return $fr;
+   }
+
+   public function add_property($property, $value) {
+      if (is_array($value) && count($value) == 1) {
+         $value = reset($value);
+      }
+
+      // Check to see if the property exists by itself.
+      $without = strtolower($property);
+      if (property_exists($this, $without)) {
+         $this->{$without} = $value;
+      }
+      // Otherwise, check to see if the property exists with underscores strategically placed next to UpperCase characters.
+      else {
+         $with = $property;
+         // Replace the first character with an underscore character -- because we don't want to lead the property with an underscore!
+         $with{0} = strtolower($with{0});
+         // Replace uppercase characters with underscores, followed by the lowercase character.
+         $with = strtolower(preg_replace('#[A-Z]#', '_\\0', $with));
+         
+         // Noooow try again...
+         if (property_exists($this, $with)) {
+            $this->{$with} = $value;
+         }
+         else {
+            throw new SocialGraphException('Could not find property ' . $property);
+         }
+      }
+   }
+
+   private function _check_entities() {
+      $errors = array(
+         'int' => 'The following fields need to be numeric: !fields.  ',
+         'string' => 'The following fields need to be a string: !fields.  ',
+      );
+
+      $missing = $oneof = array();
+      $validators = $this->doc->getValidators();
+      $table = $this->doc->getTable();
+      $groups = $this->doc->getGroups();
+
+      foreach ($table AS $entity => $fields) {
+         foreach ($fields AS $field) {
+            $error = 0;
+            $f = $this->{$entity}->{$field['name']};
+            if (isset($field['required']) && $field['required'] == 'true') {
+               if (empty($f)) {
+                  $missing[] = $field['name'];
+                  $error++;
+               }
+            }
+
+            if (!empty($f)) {
+               switch ($field['type']) {
+                  case 'integer':
+                     if (intval($f) == 0) {
+                        $malformed['int'][] = $field['name'];
+                        $error++;
+                     }
+                  break;
+                  case 'string':
+                     if (!stval($f)) {
+                        $malformed['string'][] = $field['name'];
+                        $error++;
+                     }
+                  break;
+               }
+            }
+
+            $v = '';
+            if (isset($validators[$entity])) {
+               $v = $validators[$entity][$field['name']];
+               if (!empty($v)) {
+                  if ($v['function']) {
+                     if (!$v['function']($f)) {
+                        $invalid[] = $field['name'] . ' (given "' . $f . '"; needs to pass "' . $v['function'] . '()" validation)';
+                        $error++;
+                     }
+                  }
+
+                  if ($v['regex']) {
+                     if (!preg_match('#^' . $v['regex'] . '$#', $f)) {
+                        $invalid[] = $field['name'] . ' (given "' . $f . '"; needs to match "' . $v['regex'] . '")';
+                        $error++;
+                     }
+                  }
+               }
+            }
+
+            if ($error == 0) {
+               foreach ($groups AS $group => $fields) {
+                  if (!empty($f) && isset($fields[$entity][$field['name']])) {
+                     if (isset($groups[$group][$entity][$field['name']])) {
+                        $groups[$group][$entity][$field['name']] = 1;
+                     }
+                  }
+                  else {
+                     if (isset($fields[$entity][$field['name']])) {
+                        $oneof[$group][] = $field['name'] . ' (' . $entity . ')';
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      if (!empty($missing)) {
+         throw new SocialGraphException("Missing fields: " . implode(', ', $missing));
+      }
+
+      if (!empty($malformed)) {
+         $elist = '';
+         foreach ($malformed AS $type => $fields) {
+            $elist .= t($errors["$type"], array('!fields' => implode(', ', $fields)));
+         }
+
+         throw new SocialGraphException($elist);
+      }
+
+      if (!empty($invalid)) {
+         throw new SocialGraphException("Invalid fields: " . implode(', ', $invalid) . ".");
+      }
+
+      if (!empty($oneof)) {
+         $m = '';
+         $ec = 0;
+         foreach ($oneof AS $e => $missing) {
+
+            $total = count(dosomething_general_array_vals_multi($groups[$e]));  
+            if (count($oneof[$e]) == $total) {
+               if ($ec == 0) {
+                  $m .= ' one of: ';
+               }
+               else {
+                  $m .= ', and one of: ';
+               }
+
+               $m .= implode(', ', $oneof[$e]);
+               $ec++;
+            }
+         }
+         
+         if ($ec > 0) {
+            throw new SocialGraphException('You must have at least' . $m);
+         }
+      }
+   }
+
+   public function createGraphUser() {
+      $this->_check_entities();
+
+      $fields = $this->_get_table_structure();
+      $fields += array(
+         'created' => REQUEST_TIME,
+         'ipaddress' => $_SERVER['REMOTE_ADDR'],
+         'inviter_guid' => 0,
+         'extra' => '',
+      );
+
+      try {
+         drupal_write_record('social_graph_users', $fields);
+      }
+      catch (Exception $e) {
+         watchdog('social_graph', 'There was an error creating a new social graph user: ' . $e->getMessage());
+      }
+   }
+
+   private function _get_table_structure() {
+      $table = $this->doc->getTable();
+      $return = array();
+
+      foreach ($table AS $entity => $fields) {
+         foreach ($fields AS $field => $info) {
+            $return[$field] = $this->{$entity}->{$field};
+         }
+      }
+      
+      return $return;
+   }
+
+   public function updateGraphUser() {
+      $this->_check_entities();
+
+      try {
+         $condition = db_or();
+         $condition->condition('uid', $this->user->uid);
+         $condition->condition('email', $this->email->email);
+         $condition->condition('fbid', $this->facebook->fbid);
+         $condition->condition('cell', $this->mobile->cell);
+
+         $fields = $this->_get_table_structure();
+
+         db_update('social_graph_users')
+         ->fields($fields)
+         ->condition($condition)
+         ->execute();
+      }
+      catch (Exception $e) {
+         watchdog('social_graph', t('There was an error updating the social graph user: ' . $e->getMessage()));
+      }
+   }
+}
+
+abstract class SocialGraphService extends SocialGraph {
+   abstract public function add($id);
+   abstract public function update($id);
+   abstract public function delete($id);
+}
+
+class SocialGraphException extends Exception {}
