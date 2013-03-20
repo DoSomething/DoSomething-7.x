@@ -145,7 +145,10 @@ body.page-user-registration #content
     text-decoration: underline
 
 // mutual form styling
-#dosomething-login-register-popup-form, #dosomething-login-login-popup-form
+#dosomething-login-register-popup-form,
+#dosomething-login-register-popup-form--2,
+#dosomething-login-login-popup-form,
+#dosomething-login-login-popup-form--2
   div.popup-content
     background: #fff
     min-height: auto
@@ -222,7 +225,8 @@ body.page-user-registration #content
 
 // submit button for both forms
 #dosomething-login-register-popup-form #edit-final-submit,
-#dosomething-login-login-popup-form #edit-final-submit--2
+#dosomething-login-login-popup-form #edit-final-submit--2,
+#dosomething-login-login-popup-form--2 #edit-final-submit--3
   background: #fed100
   margin: 1% 0 0 0
   padding: 1px 0 0 0
@@ -236,18 +240,22 @@ body.page-user-registration #content
 
 // input fields for both forms
 #dosomething-login-register-popup-form, 
-#dosomething-login-login-popup-form
+#dosomething-login-register-popup-form--2,
+#dosomething-login-login-popup-form,
+#dosomething-login-login-popup-form--2
   input
     height: 2.5em
     width: 100%
-    margin: 0 0 1em 0
+    margin: 0.3em 0 1em 0
     background: #fafafa
     border: none
     border: 1px solid #ddd
+    box-shadow: none
     +border-radius(3px)
 
 // user login form
-#dosomething-login-login-popup-form
+#dosomething-login-login-popup-form,
+#dosomething-login-login-popup-form--2
   .already-member
     display: none
 
@@ -264,7 +272,26 @@ div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"]
 
 // hide questionable elements
 // TODO - DELETE THIS NOISE IN PHP
-#edit-or--2, #edit-title-text--2, #edit-connect--2, .see-whats-new
+#edit-or--2,
+#edit-or--3,
+#edit-title-text--2,
+#edit-title-text--3,
+#edit-connect--2,
+#edit-connect--3,
+.see-whats-new
   display: none !important
+
+div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form--2"]
+  .ui-dialog-titlebar
+    float: right
+  .ui-dialog-titlebar-close
+    top: -15px
+    right: 5px
+    z-index: 3
+
+#dosomething-login-login-popup-form--2
+  .description a
+    margin: 1em 0
+    display: block
 
 // NOTE: do not forget to combine '.popup-content' styles across both forms!
