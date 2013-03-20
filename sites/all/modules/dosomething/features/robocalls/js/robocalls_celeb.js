@@ -18,7 +18,7 @@
 
       $('#edit-submitted-your-friends-info-field-celeb-friend-phone-und-0-value, #edit-submitted-your-friends-info-field-celeb-friend-phone-2-und-0-value, #edit-submitted-your-friends-info-field-celeb-friend-phone-3-und-0-value, #edit-submitted-your-friends-info-field-celeb-friend-phone-4-und-0-value, #edit-submitted-your-friends-info-field-celeb-friend-phone-5-und-0-value, #edit-submitted-your-friends-info-field-celeb-friend-phone-6-und-0-value').mask("(999) 999-9999");
 
-      if ($('.facebook-button').length) {
+      if ($('.facebook-share-celeb').length) {
         Drupal.behaviors.fb.feed({
           'feed_document': document.location.href,
           'feed_title': 'I just prank called my friends with a call from ' + Drupal.settings.calloffame.name,
@@ -27,7 +27,7 @@
           'feed_description': 'Seriously, check out DoSomething.org\'s Project Prank.',
           'feed_allow_multiple': true,
           'feed_require_login': true,
-          'feed_selector': '.facebook-button'
+          'feed_selector': '.facebook-share-celeb'
         }, function(response) {
           
         });

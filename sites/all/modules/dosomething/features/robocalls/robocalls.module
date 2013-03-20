@@ -375,7 +375,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     $u = &$form['submitted'];
 
     // Placeholder and theoretical population of my name
-    $u['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Name');
+    $u['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('My Name');
     if (!empty($first_name)) {
       $u['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $first_name;
     }
@@ -459,7 +459,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         ),
       ));
 
-      $u['my_info']['my_name']['#attributes']['placeholder'] = t('* My Name');
+      $u['my_info']['my_name']['#attributes']['placeholder'] = t('My Name');
       if (!empty($me['name'])) {
         $u['my_info']['my_name']['#default_value'] = $me['name'];
       }
