@@ -20,7 +20,7 @@
       </div> <!-- .section-container -->
     </section> <!-- .header -->
     
-    <?php if (!isset($complete)): ?>
+    <?php if (!isset($complete) && !isset($shared)): ?>
 
       <?php /* TODO - PREVENT THOSE WHO HAVEN'T SUBMITTED THE REPORT BACK FROM FROM SEEING THIS SECTION */ ?>
 
