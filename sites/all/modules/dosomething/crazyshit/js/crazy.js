@@ -92,15 +92,10 @@
 
 	    $('.bs-button a.button-submit').click(function() {
 	       if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
-               	Drupal.behaviors.fb.clog("User is unauthed or not logged in.");
-               	Drupal.behaviors.fb.clog("Auth status: " + Drupal.behaviors.fb.is_authed());
-               	Drupal.behaviors.fb.clog("Logged in status: " + Drupal.behaviors.dsCrazyScripts.logged_in);
-			  $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
-			  return false;
+			  $.fn.dsCrazyPopup('share-login', 0, { 'goto': document.location.href });
 	       }
 
 	       if ($(this).hasClass('clicked')) {
-	       	Drupal.behaviors.fb.clog("Element has clicked class already.");
 			  return false;
 	       }
 
@@ -154,15 +149,10 @@
 
 	    $('.vouch-button a.button-submit').click(function() {
                if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
-               	Drupal.behaviors.fb.clog("User is unauthed or not logged in.");
-               	Drupal.behaviors.fb.clog("Auth status: " + Drupal.behaviors.fb.is_authed());
-               	Drupal.behaviors.fb.clog("Logged in status: " + Drupal.behaviors.dsCrazyScripts.logged_in);
-                  $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
-                  return false;
+                  $.fn.dsCrazyPopup('share-login', 0, { 'goto': document.location.href });
                }
 
                if ($(this).hasClass('clicked')) {
-			       	Drupal.behaviors.fb.clog("Element has clicked class already.");
                   return false;
                }
 
@@ -193,7 +183,7 @@
 
 	    $('.fb-share a').click(function(e) {
            if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
-              $.fn.dsCrazyPopup('login', 0, { 'goto': document.location.href });
+              $.fn.dsCrazyPopup('share-login', 0, { 'goto': document.location.href });
               return false;
            }
 
@@ -262,7 +252,6 @@
 
 	// Ignore if the popup is already open.
 	if ($('.' + name + '-crazy-popup').length > 0) return;
-
       $.post('/cstemplate/' + name + '/' + sid, { 'goto': settings.goto, 'you': (Drupal.behaviors.dsCrazyScripts.notify_yourself || settings.you), 'source': document.location.pathname }, function(response) {
       	  var t = $('<div></div>');
       	  t.html(response);
@@ -273,7 +262,7 @@
 	        modal: true,
 	        width: 550,
 	        height: 325,
-	        'dialogClass': name + '-crazy-popup',
+	        'dialogClass': (name == 'share-login' ? 'login' : name) + '-crazy-popup',
 	        open: function() {
 	        	// Sets the minimum height for content in the dialog box
 	        	$('.ui-dialog-content').css('min-height', '325px');
