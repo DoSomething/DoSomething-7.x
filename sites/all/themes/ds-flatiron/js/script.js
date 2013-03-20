@@ -27,7 +27,7 @@
 // -----------
 
     // inject wrapper because putting the Picture filed inside a fieldset breaks webform entity
-    $('#webform-component-step-two, #webform-component-step-two, #edit-submitted-field-webform-pictures, #webform-component-donation-location-zip, #webform-component-donation-item-count, #webform-component-item-upload-description, .report-back-form .form-actions')
+    $('#webform-component-step-two, #webform-component-step-two, #edit-submitted-field-webform-pictures, #webform-component-donation-location-zip, #webform-component-donation-item-count, #webform-component-item-upload-description, #webform-component-people-involved, .report-back-form .form-actions')
       .not('.a')
       .addClass('a')
       .wrapAll('<div id="webform-photo-wrapper">')
