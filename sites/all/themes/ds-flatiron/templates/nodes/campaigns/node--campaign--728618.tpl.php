@@ -46,7 +46,7 @@
           <h2><?php print($scholarship[1]); ?></h2>
           <h2><?php print($scholarship[2]); ?></h2>
           <div class="official-rules-wrapper">
-            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
+            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>"  target="_blank">official rules</a>
           </div> <!-- .official-rules-wrapper -->
 
           <div class="contact-form contact-form-individual">
