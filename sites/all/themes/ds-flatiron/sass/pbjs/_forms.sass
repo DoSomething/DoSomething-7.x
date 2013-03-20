@@ -9,8 +9,11 @@
   h2, #campaign-opt-in /* TODO - TWO OF THESE ARE BEING GENERATED -- CHANGE ID TO A CLASS IN THE MODULE */
     display: none
 
-#webform-component-contact-form-individual-wrapper,
-#webform-component-contact-form-group-wrapper
+// hides the input fields 
+#edit-submitted-field-webform-email,
+#edit-submitted-field-webform-email--2,
+#edit-submitted-field-webform-mobile,
+#edit-submitted-field-webform-mobile--2
   display: none
 
 // REPORT BACK FORM
@@ -41,7 +44,7 @@
   .description
     font-size: 10px
     color: $font-grey
-    margin: 0 0 2em 0
+    margin: 0 0 1em 0
 
 .food-bank-finder, .image-widget-data /* TODO - FIX THIS I'M TIRED; THIS IS SLOPPY */
   .form-submit /* TODO - REMOVE HARD CODED COLOR */
@@ -66,8 +69,10 @@
   color: $font-grey
 
 .image-widget-data .form-submit /* TODO */
-  margin: 0 !important
+  margin: 0 0 0.5em 0 !important
   padding: 2px 15px 0px 15px !important
+  float: left
+  clear: left
 
 .food-bank-finder-error
   display: none

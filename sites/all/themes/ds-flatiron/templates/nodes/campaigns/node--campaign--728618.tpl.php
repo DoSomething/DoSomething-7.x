@@ -43,11 +43,11 @@
       <section class="scholarship" id="scholarship">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
-          <h2><?php print($scholarship[1]); ?></h2>
-          <h2><?php print($scholarship[2]); ?></h2>
-          <div class="official-rules-wrapper">
-            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
-          </div> <!-- .official-rules-wrapper -->
+
+          <?php /* Display pre-opt in copy if the user has not submitted the contact form */ ?>
+          <?php if (!isset($team) && !isset($individual)): ?>
+            <h2><?php print($scholarship[1]); ?></h2>
+          <?php endif; ?>
 
           <div class="contact-form contact-form-individual">
             <?php print render($content['contact']['individual']); ?>
@@ -57,12 +57,17 @@
             <?php print render($content['contact']['team']); ?>
           </div>  <!-- .contact-form (group) -->
 
+          <?php /* Display post-opt in copy after the user has submitted the contact form */ ?>
           <?php if (isset($team) || isset($individual)): ?>
-          <div class="report-back-form">
             <h2><?php print($scholarship[2]); ?></h2>
-            <?php print render($content['report_back']); ?>
-          </div>  <!-- .report_back -->
+            <div class="report-back-form">
+              <?php print render($content['report_back']); ?>
+            </div>  <!-- .report_back -->
           <?php endif; ?>
+
+          <div class="official-rules-wrapper">
+            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>"  target="_blank">official rules</a>
+          </div> <!-- .official-rules-wrapper -->
 
         </div> <!-- .section-container -->
       </section> <!-- .scholarship -->
@@ -159,7 +164,7 @@
               <p>Message &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</p>
 
               <div class="official-rules-wrapper">
-                <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
+                <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>" target="_blank">official rules</a>
               </div> <!-- .official-rules-wrapper -->
 
             </div> <!-- .campaign-opt-in -->
