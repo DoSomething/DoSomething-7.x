@@ -45,13 +45,9 @@
           <img class="bg-header" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
 
           <?php /* Display pre-opt in copy if the user has not submitted the contact form */ ?>
-          <?php if (!isset($team) || !isset($individual)): ?>
+          <?php if (!isset($team) && !isset($individual)): ?>
             <h2><?php print($scholarship[1]); ?></h2>
           <?php endif; ?>
-
-          <div class="official-rules-wrapper">
-            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>"  target="_blank">official rules</a>
-          </div> <!-- .official-rules-wrapper -->
 
           <div class="contact-form contact-form-individual">
             <?php print render($content['contact']['individual']); ?>
@@ -68,6 +64,10 @@
               <?php print render($content['report_back']); ?>
             </div>  <!-- .report_back -->
           <?php endif; ?>
+
+          <div class="official-rules-wrapper">
+            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>"  target="_blank">official rules</a>
+          </div> <!-- .official-rules-wrapper -->
 
         </div> <!-- .section-container -->
       </section> <!-- .scholarship -->
