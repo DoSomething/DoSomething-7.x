@@ -157,7 +157,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_people';
 $activity->inputs = array('ask_jars');
 $activity->outputs = array('ask_zip');
-$activity->question = 'Jamtastic! Now Question 2 - How many people helped out?';
+$activity->question = 'Jamtastic! Now Question 2 - How many people were involved?';
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_zip';
@@ -176,7 +176,7 @@ $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
   'ask_jars' => 2,
-  'ask_people' => 3,
+  'ask_people' => 8,
   'ask_zip' => 1,
   'picture' => 'ask_picture:mms',
 );

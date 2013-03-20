@@ -147,7 +147,7 @@ $activity->name = 'pbj_mrkt_tips';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->game_id = 4;
-$activity->opt_in_paths = array(148843, 148853, 148863, 148873, 148883, 148893, 148903, 148913, 148923, 148933, 148943);
+$activity->opt_in_paths = array(148843, 148853, 148863, 148873, 148883, 148893, 148903, 148913, 148923, 148933, 148943, 149243);
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
