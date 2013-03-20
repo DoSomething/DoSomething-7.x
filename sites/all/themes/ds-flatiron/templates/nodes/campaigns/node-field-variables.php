@@ -38,7 +38,7 @@
 
   $scholarship = array(
     1 => "We're giving away a <strong>$4,000 SCHOLARSHIP</strong>. Every 10 jars collected = another entry to win.",
-    2 => "Great! You're gonna do this<span id=\"scholarship_status\">" . $contact_scope . "</span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\"" . $files_source . 'action-guide.pdf' . "\">download</a> your PB&J Kit.",
+    2 => "Great! You're gonna do this<span id=\"scholarship_status\">" . $contact_scope . "</span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\"" . $files_source . 'action-guide.pdf' . "\"  target=\"_blank\">download</a> your PB&J Kit.",
   );
 
   $cause_subject = 'Peanut Butter';
