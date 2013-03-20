@@ -95,7 +95,10 @@ function doit_preprocess_page(&$variables) {
   }
   
   // Load Webfonts specific to the page
-  dosomething_perfomance_toolbox_webfonts();
+  if (module_exists('dosomething_perfomance_toolbox')) {
+    dosomething_perfomance_toolbox_webfonts();
+  }
+  
 
 }
 
