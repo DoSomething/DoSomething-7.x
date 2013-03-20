@@ -1095,7 +1095,6 @@ function crazyshit_theme() {
        'path' => $path . '/templates',	  	 	
        'template' => 'crazyshit-welcome',  	
      ),
-    
     'bull' => array(
       'path' => $path . '/templates',
       'template' => 'bullshit-alert',
@@ -1107,6 +1106,10 @@ function crazyshit_theme() {
     'login' => array(
       'path' => $path . '/templates',
       'template' => 'login-alert',
+    ),
+    'share-login' => array(
+      'path' => $path . '/templates',
+      'template' => 'share-login-alert'
     ),
     'submit' => array(
       'path' => $path . '/templates',
@@ -1151,6 +1154,8 @@ function crazyshit_init() {
 		  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
 		  // Make sure it's for the currently logged in user.
 		  ->condition('uid', $user->uid)
+		  // Make sure it's not guests.
+		  ->condition('uid', 0, '!=')
 		  // Make sure they haven't seen it yet.
 		  ->condition('notified', 0)
 		  // Make sure it's a BS notification.
