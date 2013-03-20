@@ -159,7 +159,7 @@
               <p>Message &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</p>
 
               <div class="official-rules-wrapper">
-                <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
+                <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>" target="_blank">official rules</a>
               </div> <!-- .official-rules-wrapper -->
 
             </div> <!-- .campaign-opt-in -->
