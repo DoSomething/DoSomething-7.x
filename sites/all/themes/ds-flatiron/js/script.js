@@ -12,17 +12,6 @@
 // CONTACT FORM
 // ------------
 
-    // change language of group status based on contact form interaction
-    var $scholarship_status = $('#scholarship_status')
-
-    $('.contact-form-individual .form-submit').click(function() {
-      $scholarship_status.text('solo'); 
-    });
-    
-    $('.contact-form-group .form-submit').click(function() {
-      $scholarship_status.text('with a group'); 
-    });
-
 // REPORT BACK
 // -----------
 

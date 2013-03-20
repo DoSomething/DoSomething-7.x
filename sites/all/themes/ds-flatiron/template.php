@@ -1,7 +1,6 @@
 <?php
 
 function ds_flatiron_preprocess_node(&$vars) {
-
   if ($vars['node']->type == 'campaign') {
   	// node--campaign--[nid] <---- This should be some org wide id
   	array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $vars['node']->nid );
@@ -26,22 +25,30 @@ function ds_flatiron_preprocess_node(&$vars) {
           break;
         }
 
-	      // Check if the user has submitted an individual or team form
 	      $contact_forms = array(
           'individual' => node_load(728660), 
           'team' => node_load(728661)
         );
-	
-      	foreach($contact_forms as $type => $form){
-      	  $block = block_load('webform', 'client-block-' . $form->nid);
-          $block_content = _block_render_blocks(array($block));
-      	 
-          if (!empty($block_content)) {
+
+        $submitted = _ds_flatiron_user_submitted(array(
+          $contact_forms['individual']->nid,
+          $contact_forms['team']->nid
+        ));
+	 
+        if (empty($submitted)) {
+        	foreach($contact_forms as $type => $form){
+        	  $block = block_load('webform', 'client-block-' . $form->nid);
+            $block_content = _block_render_blocks(array($block));
             $vars['content']['contact'][$type] = _block_get_renderable_array($block_content);
-          }else{
-            $vars[$type] = TRUE;
+          }  
+        }
+        else {
+          foreach($contact_forms as $type => $form){
+            if (isset($submitted[$form->nid])) {
+              $vars[$type] = TRUE;
+            }
           }
-        }  
+        }
  
         // Give me the report back block
         $block = block_load('webform', 'client-block-728619');
@@ -77,3 +84,28 @@ function ds_flatiron_preprocess_page(&$vars) {
 
   }
 }
+
+function ds_flatiron_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'webform_client_form_728660') {
+    $form['actions']['submit']['#value'] = t('I want to donate solo');
+  }
+  if ($form_id == 'webform_client_form_728661') {
+    $form['actions']['submit']['#value'] = t('I want to run a drive');
+  }
+}
+
+function _ds_flatiron_user_submitted($nid = array(), $uid = NULL) {
+  if ($uid === NULL) {
+    global $user;
+    $uid = $user->uid;
+  }
+
+  $query = db_select('webform_submissions', 'ws');
+  $query->fields('ws');
+  $query->condition('ws.uid', $uid, '=');
+  $query->condition('ws.nid', $nid, 'IN');
+  $rs = $query->execute()->fetchAllKeyed();;
+
+  return $rs;
+}
+  
