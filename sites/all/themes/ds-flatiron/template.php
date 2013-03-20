@@ -95,6 +95,9 @@ function ds_flatiron_form_alter(&$form, &$form_state, $form_id) {
     $form['actions']['submit']['#value'] = t('I want to run a drive');
     $form['#action'] = url('pbj', array('fragment' =>  $form['#id']));
   }
+  if($form_id == 'webform_client_form_728619') {
+    $form['#action'] = url('pbj', array('fragment' =>  $form['#id']));
+  }
 }
 
 function _ds_flatiron_user_submitted($nid = array(), $uid = NULL) {
