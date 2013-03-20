@@ -854,7 +854,9 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . variable_get('fboauth_id') . '&redirect_uri=http://' . CRAZY_DOMAIN . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
 	}
 
-	$ids = crazy_fb_get_multi_fbids($f);
+	if (empty($ids)) {
+	  $ids = array($user->uid);
+	}
 
 	if ($view->name == 'crazy_shit_landing' && $view->current_display == 'friends_view' && !empty($ids)) {
 	  // Create a database condition class to narrow viewable posts down to just your friends.

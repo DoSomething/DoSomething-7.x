@@ -1,4 +1,4 @@
-name = 'DoSomething API'
-description = 'API for DoSomething.org.  Makes it possible for the public to access clubs, projects and action guides.'
+name = 'DoSomething API Library'
+description = 'Access data from the DoSomething API'
 core = 7.x
 package = DoSomething

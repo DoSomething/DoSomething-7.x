@@ -1,0 +1,137 @@
+// COLLECTIVE
+// ----------
+.challenge, .complete, .cause, .share
+  background: $bg-alt
+
+// HEADER
+// ------
+.header
+  background-image: url($bg-header)
+  background-size: 100%
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  @media only screen and (max-width: 1075px)
+    background-size: auto
+  .log-out
+    color: $font-light
+  .logo-dosomething
+    display: none
+    @media only screen and (max-width: 1075px)
+      display: block
+      float: left
+      width: 73px
+      height: 65px
+  .logo-campaign
+    margin: 0 auto
+    display: block
+    width: 450px
+    clear: both
+    @media only screen and (max-width: 550px)
+      width: 400px
+
+// CHALLENGE
+// ---------
+
+// SCHOLARSHIP
+// -----------
+.scholarship
+  .official-rules-wrapper
+    text-align: right
+  .official-rules-link
+    color: $bg-alt
+    
+.show #show-report-back
+  display: none
+
+// CAUSE
+// -----
+.cause 
+  padding: 0 0 3%
+  i
+    font-style: italic
+  .bg-header
+    margin: 2em 0 0.5em
+
+.cause-facts
+  display: none
+  border-bottom: #fff dashed 5px
+
+.active-fact
+  display: block
+
+.cause-link
+  display: inline-block
+  margin: 0.5em 0 1em
+
+.twitter-link
+  text-decoration: none
+  color: $campaign-main
+
+// SUCCESS
+// -------
+
+// SHARE
+// -----
+.share
+  label
+    margin: 3% 0 0
+  form
+    width: 80%
+    margin: 0 auto
+  .form-submit /* TODO - CONSOLIDATE BUTTON STYLES  */
+    font-size: 15px
+    font-family: din-web-reg
+    font-weight: 600
+    padding: 5px 10px
+    height: 2em
+  .campaign-opt-in
+    width: 80%
+    font-size: 10px
+    margin: 3% auto 2%
+  .official-rules-wrapper
+    margin: 1% 0 0 0
+  .official-rules-link
+    text-transform: uppercase
+
+.bg-share
+  margin: 0 auto 2%
+  display: block
+
+.share-input-wrapper
+  width: 50%
+  float: left
+  margin: 0 0 4% 0
+
+.share-input
+  width: 85%
+  margin: 5% 0 0 0
+
+.share-alpha-wrapper
+  float: left
+  width: 35.8%
+  margin: 0 0 4% 0
+  input
+    width: 83.5%
+
+.share-beta-mobile
+  clear: both
+  margin: 5% 0 -1%
+
+// THANKS
+// ------
+.thanks
+  padding: 2.5% 0 0 0
+  h2
+    text-transform: uppercase
+    font-weight: 600
+    font-size: 26px
+    color: $campaign-main
+
+// FOOTER
+// ------
+.footer
+  p
+    text-align: center
+  img
+    width: 50px
+    +block-center

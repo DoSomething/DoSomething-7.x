@@ -1,30 +1,240 @@
 @import compass
-@mixin flag-corner
-	content: " "
-	display: block
-	position: absolute
-	bottom: -7px
-	left: 0px
-	background: transparent
-	z-index: -1
-	border-top: 7px solid #000000
-	border-left: 7px solid transparent
+
+//block flow
+#cof-descriptive
+	float: left
+	width: 38%
+	clear: both
+
+.prank-home-web-form
+	float: left
+	width: 62%
+
+.panels-flexible-region.panels-flexible-region-last
+	width: 100%
+
+.headline h2
+	float: right
+	width: 56.33%
+	color: #333
+	margin: 2% 4% 0 1.66%
+	color: #333
+	font-weight: 400
+	font-size: 1.6em
+	line-height: 1.3em
+	font-family: din-web-reg
+
+// sign up wrap
+#webform-component-my-info
+	border-top: 1px solid #ccc
+	padding-top: 2%
+	input
+		width: 31.33%
+		float: left
+		margin: 0 0 0 2%
+
+.sign-up
+	margin: 0 2% 0.8em
+
+.panels-flexible-region-inside .panel-separator
+	margin: 0
+
+.youre-calling
+	color: #999
+
+form.webform-client-form
+	+box-shadow(none)
+
+// main course 
+.region-content
+	max-width: 1030px
+	margin: 0 auto
+
+.panels-flexible-region.panels-flexible-region-cause_calls-center
+	width: 30%
+	float: left
+
+.prank-home-web-form .webform-client-form
+	+box-shadow(none)
+	padding: 0
+
+#webform-component-friends-info
+	width: 100%
+
+.add-more-friends-front, .add-more-friends
+	float: right
+	text-decoration: underline
+	margin-bottom: 0.8em
+	&:hover
+		text-decoration: none
+#edit-actions
+	clear: both
+form.webform-client-form #edit-submit
+	margin: 0
+	font-size: 2.2em
+	height: 1.4em
+
+#webform-component-friends-info
+	margin-bottom: 0
+
+//Facebook Share
+.facebook-arrow
+	float: left
+	margin: 0 2.5em 1.4em
+.facebook-button
+	float: left
+	margin: 0 0 1.4em
+.confirmation-message
+	font-family: din-web-reg
+	margin-top: 0.8em
+	font-weight: 400
+	font-size: 1.4em
+.fb-btn-wrap, .fb-btn-wrap-secondary
+	border-bottom: 1px solid #ccc
+	float: right
+.fb-btn-wrap
+	width: 62%
+.fb-btn-wrap-secondary
+	width: 92%
+	margin: 0 4% 4%
+
+select
+	width: 100%
+	font-size: 16px
+	height: 2.2em
+	line-height: 2.2em
+	padding: 5px
+	border: 1px solid #ccc
+	+border-radius(5px)
+	margin: 0 0 0.8em
+
+input
+	margin: 0 0 1em
 
 body
-	background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) top left
+	background: #fff
 
-	&.one-sidebar.sidebar-first [role="main"]
-		width: 791px
+	header
+		max-width: 1030px
+		margin: 0 auto
+		position: relative
 
-	.region-sidebar-first .block-menu-block .content ul.menu
-		background: #F6EED2
-		margin-right: -5px
+	.prank-bg
+		background: url('//files.dosomething.org/files/u/calloffame/prank-bg2.png') top center repeat-x
+
+	div#page
+		width: 100% !important
+
+	div.gallery-col
+		float: left
+		width: 25%
+		img
+			display: block
+			margin: 0 auto
+			width: 100%
+
+	.panels-flexible-row-last
+		max-width: 1030px
+		width: 100%
+		margin: 0px auto
+
+	div.views-field-nothing
+		position: relative
+
+		.preview-share
+			display: none
+			position: absolute
+			background: black
+			top: 0px
+			width: 100%
+			text-align: left
+
+			div.preview
+				display: inline-block
+				padding: 6px
+				a
+					display: inline-block
+					background: url(//files.dosomething.org/files/u/calloffame/prank-play.png) center left no-repeat
+					padding-left: 30px
+					padding-top: 4px
+					height: 25px
+					width: 24px
+					color: white
+					text-transform: uppercase
+					font-weight: 400
+					&:hover
+						text-decoration: none
+
+					&.paused
+						background-image: url(//www.dosomething.org/files/u/calloffame/prank-pause2.png)
+
+				.file
+					display: inline-block
+					margin-left: -8px
+
+				span.preview
+					position: relative
+					top: 5px
+					left: 12px
+
+			div.share
+				display: inline-block
+				float: right
+				margin: 8px
+				a
+					background: url(//files.dosomething.org/files/u/calloffame/fb-prank.png) center right no-repeat
+					height: 21px
+					width: 22px
+					display: inline-block
+					text-indent: -99999px
+
+
+		.name
+			display: none
+			position: absolute
+			bottom: 0px
+			text-align: left
+			line-height: 1.1em
+			font-size: 1.8em
+			background: #20BCB9
+			padding: 0.2em 0.5em 0.1em
+			width: 100%
+			text-transform: uppercase
+			a
+				color: #fff
+				font-weight: 500
+				&:hover
+					text-decoration: none
+			.type
+				font-weight: 400
+				font-size: 0.7em
+
+
+#webform-component-friends-info--primary-friend
+	width: 31.33%
+	display: inline-block
+	margin: 0 0 0 2%
+
+#webform-component-my-info
+	clear: both
+	#webform-component-my-info--my-name,
+	#webform-component-my-info--my-number,
+	#webform-component-my-info--my-password
+		width: 31.33%
+		margin-left: 2%
+		padding: 0
+		float: left
+
+
+#edit-submitted-field-webform-pictures,
+#edit-submitted-field-webform-videos,
+#edit-submitted-field-webform-school-reference
+	display: none
 
 div[role="main"]
-	background: url(/sites/all/modules/dosomething/features/robocalls/images/section_background.png) top left
-	padding: 30px
+	background: #fff
+	padding: 0px
 	margin: 0px
-	width: 791px
 	padding-top: 0px
 
 	nav#breadcrumb
@@ -32,124 +242,340 @@ div[role="main"]
 
 	h1#page-title
 		color: transparent
-		background: url(/sites/all/modules/dosomething/features/robocalls/images/logo.png) top left no-repeat
-		height: 200px
-		width: 793px
-		margin-left: -31px
-		border-bottom: none
+		background: url(//files.dosomething.org/files/u/calloffame/prank-bg.png) top left repeat-x
+		+box-shadow(none)
+		margin: 0 0 0%
+		font-size: 0
+		.prank-logo
+			max-width: 1030px
+			margin: 0 auto
+		img
+			display: block
+			margin: 4% 0 4% 250px
 
 	h2.pane-title
-		background: none
-		color: #000000
-		padding: 0px 0px 10px 0px
-
-	#robocalls-landing-celebs h2, #robocalls-who-should-celeb-call h2
-		background: url(/sites/all/modules/dosomething/features/robocalls/images/tile.png) repeat-x, #D81F2A
-		height: 39px
-		background-size: 100% 10px, 100% 35px
-		padding-top: 18px
-		width: 791px
-		margin-left: -30px
-		padding-left: 15px
-		color: #F6EED2
-		font-size: 19pt
-
-	#robocalls-sponsor-zone, #robocalls-partner-zone
+		background: #20BCB9
+		color: #fff
+		padding: 0.5em 2% 0.2em
 		text-align: center
-
-		h2
-			font-size: 14px
-
-		&.sponsor-right
-			+float-right
-
-	#robocalls-here-how-it-works
-		margin: 20px 0px
-
-	#robocalls-about-block
-		margin-top: 15px
-
-	.ui-dialog .ui-dialog-titlebar
-		float: right
-		margin-right: 10px
+		font-family: din-web-reg
+		font-weight: 400
+		text-transform: uppercase
+		line-height: 1.2em
 
 
 div.view-id-cause_its_your_birthday
-	div.views-row
-		float: left
-
-		img
-			height: 115px
-			width: 205px
-			+box-shadow(0px 0px 3px #808080)
-
 	div.views-field-nothing
 		clear: left
-		width: 205px
-		height: 215px
-		margin-left: 0px
-		margin-bottom: 8px
+		width: 84%
 		text-align: center
 		background: #fff
-		+box-shadow(0px 0px 15px #808080)
 		box-sizing: border-box
-		margin: 10px 10px 15px 10px
+		margin: 8%
 		position: relative
 
-		h4
-			font-size: 13pt
 
-		a.go-button
-			position: absolute
-			z-index: 0
-			right: 3px
-			height: 22px
-			margin-top: 10px
-			bottom: 3px
+// Secondary Page
 
-		p
-			height: 35px
-			font-size: 9pt
-			margin-top: -15px
+form
+	.field-widget-telwidget, #edit-submitted-field-celeb-your-name, #edit-submitted-field-celeb-your-phone, #edit-submitted-field-celeb-your-password, #webform-component-my-info--my-name
+		width: 31.33%
+		margin-left: 2%
+		padding: 0
 
-	div.robocall-flag
-		background: rgba(24, 64, 139, 0.7)
-		padding: 3px 17px
-		height: 24px
-		position: absolute
-		z-index: 0
-		top: 10px
-		left: -7px
-		color: #ffffff
-		text-transform: uppercase
-		font-size: 17pt
-		line-height: 1
-		font-family: din-web
+#robocalls-celeb-form .webform-client-form, .webform-client-form
+	padding-top: 0
+	label
+		display: none
+	#webform-component-my-info
+		border-top: 1px solid #ccc
+		padding-top: 2%
+		input
+			width: 100%
+			float: none
+			margin: 0
+	#edit-submitted-my-info-field-celeb-your-name, #edit-submitted-my-info-field-celeb-your-password
+		width: 31.33%
+		float: left
+		margin: 0 0 0 2%
 
-		&.birthday
-			background: rgba(216,31,42,0.7)
+#webform-component-your-friends-info
+	margin: 0
 
-		&:after
-			@include flag-corner
+.panels-flexible-region.panels-flexible-region-cause_calls-celeb_information.panels-flexible-region-last
+	width: 70%
 
-	div.file-audio
-		position: absolute
-		z-index: 0
-		bottom: 0
+.field-type-text
+	margin-bottom: 0
 
-		span.file
-			+float-left
+.call-tagline
+	margin: 2% 4% 0
+	color: #333
+	font-weight: 400
+	font-size: 1.6em
+	line-height: 1.3em
+	span
+		color: #999
+		font-size: 0.8em
 
-			img.file-icon
-				display: none
 
+audio
+	height: 0
+	display: none
+
+.preview-facebook-bar
+	background: black
+	text-align: left
+	margin-top: 20px
+
+	div.preview
+		clear: both
+		padding: 6px
+		float: left
+		width: 100px
+		margin: 0
 		a
-			background: url(/sites/all/modules/dosomething/features/robocalls/images/play.png) top left no-repeat
-			width: 26px
-			height: 26px
-			font-size: 1px
-			color: transparent
-			display: block
+			display: inline-block
+			background: url(//files.dosomething.org/files/u/calloffame/prank-play.png) center left no-repeat
+			padding-left: 30px
+			padding-top: 4px
+			height: 25px
+			width: 24px
+			color: white
+			text-transform: uppercase
+			font-weight: 400
+			&:hover
+				text-decoration: none
 
 			&.paused
-				background: url(/sites/all/modules/dosomething/features/robocalls/images/pause.png) top left no-repeat
+				background-image: url(//www.dosomething.org/files/u/calloffame/prank-pause2.png)
+
+	div.facebook
+		float: right
+		width: 22px
+		margin: 8px
+		a
+			background: url(//files.dosomething.org/files/u/calloffame/fb-prank.png) center right no-repeat
+			height: 21px
+			width: 22px
+			display: inline-block
+			text-indent: -99999px
+
+.panels-flexible-region-cause_calls-center-inside .panel-separator
+	margin: 0
+
+.celeb-image img
+	width: 100%
+
+//Celeb Tagline
+.celeb-tagline
+	margin: 0.8em 0
+	border-top: 1px solid #20BCB9
+	h2
+		font-size: 1.8em
+		margin: 0.6em 0 0
+		font-family: din-web-reg
+		font-weight: 400
+		line-height: 1.2em
+
+
+
+// Breakpoints for Drupal, Drupal, Drupal
+@media only screen and (max-width: 1075px)
+	#site-name
+		top: -53px
+		left: 23px
+		a
+			height: 50px
+			width: 60px
+			background-size: 60px 
+	#utility-bar
+		height: 55px
+	#utility-bar #block-dosomething-blocks-dosomething-utility-bar
+		.search, #help-center
+			display: none
+		.login
+			padding: 0.5em 1em 0 0
+			font-size: 24px
+	nav[role="navigation"]
+		display: none
+	.container
+		margin: 0 auto
+		width: 100%
+	header[role="banner"]
+		@media only screen and (max-width: 775px)
+			width: 100%
+	#block-menu-menu-footer .content
+		width: 80%
+		margin: 0 auto
+	#block-menu-menu-footer .content ul.menu li span
+		font-size: 16px
+		line-height: 1em
+	#block-menu-menu-footer .content ul.menu ul li a
+		font-size: 14px
+		line-height: 1em
+
+	div[role="main"]
+		h1#page-title
+			img
+				margin: 3% auto 4%
+				padding: 0 2%
+
+	.panels-flexible-region-cause_calls-center
+		padding-left: 2%
+
+	.facebook-arrow
+		display: none
+
+	#cof-descriptive
+		width: 36%
+		margin-right: 2%
+
+	.prank-home-web-form .webform-client-form
+		margin: 0 4% 0 0
+
+@media only screen and (max-width: 775px)
+	body
+		div[role="main"]
+			h1#page-title
+				margin-bottom: 0
+		div.gallery-col
+			width: 50%
+		.col-2
+			clear: both
+	#webform-component-friends-info--primary-friend
+		width: 100%
+		margin: 0
+	form
+		.field-widget-telwidget, #edit-submitted-field-celeb-your-name, #edit-submitted-field-celeb-your-phone, #edit-submitted-field-celeb-your-password
+			width: 100%
+			margin-left: 0
+
+	#robocalls-celeb-form .webform-client-form
+		#webform-component-my-info
+			padding-top: 4%
+			input
+				margin: 0 0 1em
+		#edit-submitted-my-info-field-celeb-your-name, #edit-submitted-my-info-field-celeb-your-password
+			width: 100%
+			margin-left: 0
+	.webform-client-form #webform-component-my-info
+		padding-top: 4%
+
+	#webform-component-my-info
+		.youre-calling
+			margin: 0 0 0.8em 0
+		input
+			width: 100%
+			margin: 0 0 0.8em
+	.sign-up
+		margin: 0 0 0.8em
+
+	#webform-component-my-info
+		margin-bottom: 0
+
+	#webform-component-my-info
+		#webform-component-my-info--my-name,
+		#webform-component-my-info--my-number,
+		#webform-component-my-info--my-password
+			width: 100%
+			margin-left: 0%
+			margin-bottom: 1em
+
+
+	.headline h2
+		width: 58%
+		margin: 2% 4% 0 0
+
+@media only screen and (max-width: 550px)
+
+	.panels-flexible-region.panels-flexible-region-cause_calls-center
+		width: 96%
+		margin: 0 2%
+
+	.panels-flexible-region.panels-flexible-region-cause_calls-celeb_information.panels-flexible-region-last
+		width: 96%
+		margin: 0 2%
+
+	.call-tagline
+		display: none	
+
+	div[role="main"]
+		h1#page-title
+			img
+				margin: 4% auto 5%
+	body
+		div.gallery-col
+			width: 100%
+
+		div.views-field-nothing
+			.preview-share, .name
+				display: block
+
+		#cof-descriptive
+			display: none
+
+		.youre-calling
+			text-align: center
+		div.views-field-nothing .name
+			display: block
+
+	form.webform-client-form #edit-submit
+		width: 100%
+
+	.prank-home-web-form .webform-client-form
+		margin: 0 4%
+
+	.prank-home-web-form, #robocalls-celeb-form
+		.webform-client-form
+			text-align: center
+			a
+				float: none
+				display: inline-block
+	#webform-component-my-info
+		margin-bottom: 0
+
+	.panels-flexible-region-cause_calls-center
+		width: 100%
+		img
+			display: block
+			margin: 0 auto
+	.panels-flexible-region-cause_calls-celeb_information
+		width: 100%
+	form
+		.field-widget-telwidget, #edit-submitted-field-celeb-your-name, #edit-submitted-field-celeb-your-phone, #edit-submitted-field-celeb-your-password
+			margin-left: 0
+
+	.panels-flexible-region-inside
+		padding: 0
+
+	.prank-home-web-form
+		width: 100%
+
+	.fb-btn-wrap
+		width: 100%
+		text-align: center
+		img
+			display: block
+			margin: 0 auto
+	.facebook-button
+		float: none
+
+	.headline
+		margin: 0 2%
+		h2
+			width: 96%
+			margin: 4% 2% 0
+			text-align: center
+			font-size: 2em
+			line-height: 1.1em
+	.celeb-tagline
+		margin-bottom: 0
+		h2
+			text-align: center
+
+	.panels-flexible-region-cause_calls-center
+		padding: 0 2%
+
+	.facebook-share-call img
+		padding: 0 4%
