@@ -608,10 +608,12 @@ node/*/picks/*',
     $pane = new stdClass();
     $pane->pid = 'new-14';
     $pane->panel = 'top';
-    $pane->type = 'clubs_progress';
-    $pane->subtype = 'clubs_progress';
+    $pane->type = 'share-buttons';
+    $pane->subtype = 'share-buttons';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(),
+    );
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array();
@@ -624,6 +626,22 @@ node/*/picks/*',
     $pane = new stdClass();
     $pane->pid = 'new-15';
     $pane->panel = 'top';
+    $pane->type = 'clubs_progress';
+    $pane->subtype = 'clubs_progress';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-15'] = $pane;
+    $display->panels['top'][1] = 'new-15';
+    $pane = new stdClass();
+    $pane->pid = 'new-16';
+    $pane->panel = 'top';
     $pane->type = 'club_counter';
     $pane->subtype = 'club_counter';
     $pane->shown = TRUE;
@@ -635,12 +653,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = '';
-    $display->content['new-15'] = $pane;
-    $display->panels['top'][1] = 'new-15';
+    $display->content['new-16'] = $pane;
+    $display->panels['top'][2] = 'new-16';
     $pane = new stdClass();
-    $pane->pid = 'new-16';
+    $pane->pid = 'new-17';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'club_projects-panel_pane_3';
@@ -670,12 +688,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = '';
-    $display->content['new-16'] = $pane;
-    $display->panels['top'][2] = 'new-16';
+    $display->content['new-17'] = $pane;
+    $display->panels['top'][3] = 'new-17';
     $pane = new stdClass();
-    $pane->pid = 'new-17';
+    $pane->pid = 'new-18';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'club_projects-panel_pane_4';
@@ -704,12 +722,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = '';
-    $display->content['new-17'] = $pane;
-    $display->panels['top'][3] = 'new-17';
+    $display->content['new-18'] = $pane;
+    $display->panels['top'][4] = 'new-18';
     $pane = new stdClass();
-    $pane->pid = 'new-18';
+    $pane->pid = 'new-19';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'profile-panel_pane_3';
@@ -739,12 +757,12 @@ node/*/picks/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 5;
     $pane->locks = '';
-    $display->content['new-18'] = $pane;
-    $display->panels['top'][4] = 'new-18';
+    $display->content['new-19'] = $pane;
+    $display->panels['top'][5] = 'new-19';
     $pane = new stdClass();
-    $pane->pid = 'new-19';
+    $pane->pid = 'new-20';
     $pane->panel = 'top';
     $pane->type = 'club_members';
     $pane->subtype = 'club_members';
@@ -755,10 +773,10 @@ node/*/picks/*',
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 6;
     $pane->locks = array();
-    $display->content['new-19'] = $pane;
-    $display->panels['top'][5] = 'new-19';
+    $display->content['new-20'] = $pane;
+    $display->panels['top'][6] = 'new-20';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -1245,7 +1263,20 @@ function dosomething_clubs_default_page_manager_pages() {
       'format' => '3',
       'substitute' => TRUE,
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'panels_hash_cache',
+      'settings' => array(
+        'lifetime' => '604800',
+        'granularity' => array(
+          'args' => 0,
+          'context' => 0,
+          'user' => 0,
+          'user_role' => 0,
+          'url' => 0,
+          'path' => 0,
+        ),
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -1270,7 +1301,20 @@ function dosomething_clubs_default_page_manager_pages() {
       'format' => '3',
       'substitute' => TRUE,
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'panels_hash_cache',
+      'settings' => array(
+        'lifetime' => '604800',
+        'granularity' => array(
+          'args' => 0,
+          'context' => 0,
+          'user' => 0,
+          'user_role' => 0,
+          'url' => 0,
+          'path' => 0,
+        ),
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -1289,13 +1333,19 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'Resources',
-      'body' => '<p>This ain\'t a boring, obvious guide. Find everything you need to start and maintain a club.</p>
-<a href="clubs/resources" class="go-button">GO</a>',
+      'title' => 'Club Handbook',
+      'body' => '<p>Download your digital guide to running a club, marketing materials, or an official letter of partnership.</p>
+<a href="/clubs/starter-kit" class="go-button">GO</a>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'simple',
+      'settings' => array(
+        'lifetime' => '604800',
+        'granularity' => 'none',
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -1314,13 +1364,18 @@ function dosomething_clubs_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'Club Starter Kit',
-      'body' => '<p>Download the free one-stop-shop for everything you need to start your club.</p>
-<a href="clubs/starter-kit" class="go-button">GO</a>',
+      'title' => 'Club Marketing Kit',
+      'body' => '<p>Meeting flyers, service hour tracking sheets, and social media graphics you can use to promote your club online and in your school.</p>
+<a href="clubs/marketing-kit" class="go-button">GO</a>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'page',
+      'settings' => array(
+        'lifetime' => '604800',
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -1374,7 +1429,20 @@ about issues you care about.',
       'format' => '3',
       'substitute' => TRUE,
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'panels_hash_cache',
+      'settings' => array(
+        'lifetime' => '604800',
+        'granularity' => array(
+          'args' => 0,
+          'context' => 0,
+          'user' => 0,
+          'user_role' => 0,
+          'url' => 0,
+          'path' => 0,
+        ),
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -1395,21 +1463,26 @@ about issues you care about.',
       'admin_title' => '',
       'title' => 'QUICK INFO:',
       'body' => '<h3>STEP 1</h3>
-Find some friends looking to take action
-and brainstorm projects you want to work
-on - like our <a href=/campaigns target="_blank">Do Something campaigns</a>
+<p><a href=/node/add/club target="_blank">Register your club with DoSomething.</a></p>
+<br>
 
 <h3>STEP 2</h3>
-Make your club an <a href=/node/add/club> official Do Something Club</a>
+<p>Invite your friends to join.</p>
+<br>
 
 <h3>STEP 3</h3>
-Take Action! Share your results with the
-DoSomething.org community and you
-could win scholarships and sweeet prizes',
-      'format' => '1',
-      'substitute' => TRUE,
+<p><a href=/campaigns>Join a campaign</a> or <a href=/projects>start a project.</a></p>
+<br>',
+      'format' => '3',
+      'substitute' => 1,
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'simple',
+      'settings' => array(
+        'lifetime' => '604800',
+        'granularity' => 'none',
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
