@@ -325,7 +325,6 @@ function sms_mobile_commons_add_user_to_campaign($number, $first_name = '', $las
  *
  * @param $number
  *   The number that should be opted out of a campaign.
- *
  * @param $campaigns
  *   Array of single or multiple Mobile Commons campaign ids to opt the number out of.
  */
@@ -395,12 +394,49 @@ function sms_mobile_commons_message_send($number, $message, $campaign_id, $auth_
 }
 
 /**
+ * Opt-in the mobile number to a Mobile Commons campaign opt-in path.
+ *
+ * @param $number
+ *   The number to opt-in.
+ * @param $opt_in_path
+ *   The Mobile Commons opt-in path id number to opt the user into.
+ * @param $args
+ *   Array of key-value pairs for additional parameters to include with the
+ *   opt-in request. More info can be found at https://secure.mcommons.com/help/forms
+ */
+function sms_mobile_commons_opt_in($number, $opt_in_path, $args = array()) {
+  $api_opt_in_url = 'https://secure.mcommons.com/profiles/join';
+
+  $content = array(
+    'person[phone]' => $number,
+    'opt_in_path[]' => $opt_in_path,
+  );
+
+  if (!empty($args)) {
+    foreach ($args as $key => $val) {
+      $content[$key] = urlencode($val);
+    }
+  }
+
+  $opts = array(
+    'http' => array(
+      'method'  => 'POST',
+      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+      'content' => http_build_query($content),
+    )
+  );
+
+  $context = stream_context_create($opts);
+  return file_get_contents($api_opt_in_url, FALSE, $context);
+}
+
+/**
  * Update the Mobile Commons profile for a given number
  *
  * @param $mobile
  *    Mobile number of profile to update
  * @param $args
- * Array of fields to update for that profile
+ *    Array of fields to update for that profile
  */
 function sms_mobile_commons_profile_update($number, $args = array()) {
   $api_profile_update_url = 'https://secure.mcommons.com/api/profile_update';
