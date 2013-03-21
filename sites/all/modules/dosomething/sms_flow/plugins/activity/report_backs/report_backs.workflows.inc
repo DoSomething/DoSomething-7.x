@@ -173,7 +173,7 @@ $activity->outputs = array('pbj_report_back');
 $activity = $workflow->newActivity('submit_report_back');
 $activity->name = 'pbj_report_back';
 $activity->inputs = array('strip_signature');
-$activity->outputs = array('end');
+$activity->outputs = array('mcommons_opt_out');
 $activity->submission_fields = array(
   'ask_jars' => 2,
   'ask_people' => 8,
@@ -183,9 +183,15 @@ $activity->submission_fields = array(
 $activity->success_response = 'You are a rockstar. You\'ve been entered to win @submission_count times. Have more pics to share? Text EXTRA. All set? Text FINISH!';
 $activity->webform_nid = 728619;
 
+$activity = $workflow->newActivity('mobile_commons_opt_out');
+$activity->name = 'mcommons_opt_out';
+$activity->inputs = array('pbj_report_back');
+$activity->outputs = array('end');
+$activity->opt_out_ids = array(112733);
+
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('pbj_report_back');
+$activity->inputs = array('mcommons_opt_out');
 
 $workflows[$workflow->name] = $workflow;
 
