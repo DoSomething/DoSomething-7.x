@@ -165,7 +165,10 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $page->admin_title = 'Animal Cruelty Stats Images';
   $page->admin_description = '';
   $page->path = 'animal-social-stats';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -231,6 +234,8 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $page->path = 'sas-landing/%node';
   $page->access = array(
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'none',
@@ -581,6 +586,8 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $page->path = 'share-these-images/%node';
   $page->access = array(
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'none',
