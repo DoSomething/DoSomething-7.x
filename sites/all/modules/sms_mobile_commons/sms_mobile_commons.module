@@ -48,11 +48,17 @@ function sms_mobile_commons_admin_form($configuration) {
     '#description' => t('The email address that is used to authenticate you to Mobile Commons'),
     '#required' => TRUE,
   );
+  $form['sms_mobile_commons_company_uuid'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Company UUID'),
+    '#default_value' => isset($configuration['sms_mobile_commons_company_uuid']) ? $configuration['sms_mobile_commons_company_uuid'] : '',
+    '#description' => t('The company UUID is needed by some API calls like the profile opt-out. It can be found in your Mobile Commons company setup page (https://secure.mcommons.com/companies).'),
+  );
   $form['sms_mobile_commons_campaign'] = array(
     '#type' => 'textfield',
     '#title' => t('Campaign ID'),
     '#default_value' => isset($configuration['sms_mobile_commons_campaign']) ? $configuration['sms_mobile_commons_campaign'] : '',
-    '#description' => t('The campaign ID of your Mobile Commons campaign that the users are associted with.'),
+    '#description' => t('The campaign ID of your Mobile Commons campaign that the users are associated with.'),
   );
   $form['sms_mobile_commons_password'] = array(
     '#type' => 'password',
@@ -196,7 +202,7 @@ function sms_mobile_commons_send($number, $message, $options = array()) {
   $gateway = sms_gateways('gateways');
   $config = $gateway['sms_mobile_commons']['configuration'];
   $api_send_url = $config['sms_mobile_commons_custom_url'];
-  $auth_string = $config['sms_mobile_commons_email'] . ':' . $config['sms_mobile_commons_password'];
+  $auth_string = _sms_mobile_commons_get_auth_string();
 
   // Remove http or https at beginning of string.
   $api_send_url = str_replace('https://', '', $api_send_url);
@@ -321,33 +327,42 @@ function sms_mobile_commons_add_user_to_campaign($number, $first_name = '', $las
  *   The number that should be opted out of a campaign.
  *
  * @param $campaigns
- *   The single Mobile Commons campaign id, or array of campaign ids to opt the number out of.
+ *   Array of single or multiple Mobile Commons campaign ids to opt the number out of.
  */
 function sms_mobile_commons_campaign_opt_out($number, $campaigns) {
   $api_opt_out_url = 'https://secure.mcommons.com/profiles/opt_out';
-  $auth_string = $config['sms_mobile_commons_email'] . ':' . $config['sms_mobile_commons_password'];
 
   $content = array(
-    'company' => $config['sms_mobile_commons_company_id'],
+    'company_uuid' => _sms_mobile_commons_get_company_uuid(),
     'person[phone]' => $number,
   );
 
-  if (is_array($campaigns)) {
-    foreach ($campaigns as $campaign) {
-      $content['campaign[]'] = $campaign;
+  if (count($campaigns) > 1) {
+    // Manually concatenating additional campaigns onto the build query.
+    // Additional campaigns must be in the format "&campaign[]="
+    $content_query = http_build_query($content);
+    foreach ($campaigns as $id) {
+      $content_query .= '&campaign%5B%5D=' . $id;
     }
   }
   else {
-    $content['campaign'] = $campaigns;
+    if (count($campaigns) == 1) {
+      $content['campaign'] = $campaigns[0];
+    }
+
+    $content_query = http_build_query($content);
   }
 
   $opts = array(
     'http' => array(
-      'method' => 'POST',
-      'header'  => sprintf("Authorization: Basic %s\r\n", base64_encode($auth_string)) . "Content-type: application/x-www-form-urlencoded\r\n",
-      'content' => http_build_query($content),
+      'method'  => 'POST',
+      'header'  => sprintf("Authorization: Basic %s\r\n", base64_encode(_sms_mobile_commons_get_auth_string())) . "Content-type: application/x-www-form-urlencoded\r\n",
+      'content' => $content_query,
     )
   );
+
+  $context = stream_context_create($opts);
+  return file_get_contents($api_opt_out_url, FALSE, $context);
 }
 
 /**
@@ -377,4 +392,55 @@ function sms_mobile_commons_message_send($number, $message, $campaign_id, $auth_
 
   $context = stream_context_create($opts);
   return file_get_contents($api_send_url, FALSE, $context);
+}
+
+/**
+ * Update the Mobile Commons profile for a given number
+ *
+ * @param $mobile
+ *    Mobile number of profile to update
+ * @param $args
+ * Array of fields to update for that profile
+ */
+function sms_mobile_commons_profile_update($number, $args = array()) {
+  $api_profile_update_url = 'https://secure.mcommons.com/api/profile_update';
+
+  $content = array(
+    'phone_number' => $number,
+  );
+
+  if (!empty($args)) {
+    foreach ($args AS $key => $val) {
+      $content[$key] = $val;
+    }
+  }
+
+  $opts = array(
+    'http' => array(
+      'method'  => 'POST',
+      'header'  => sprintf("Authorization: Basic %s\r\n", base64_encode(_sms_mobile_commons_get_auth_string())) . "Content-type: application/x-www-form-urlencoded\r\n",
+      'content' => http_build_query($content),
+    )
+  );
+
+  $context = stream_context_create($opts);
+  return file_get_contents($api_profile_update_url, FALSE, $context);
+}
+
+/**
+ * Get the Mobile Commons authorization string for API calls
+ */
+function _sms_mobile_commons_get_auth_string() {
+  $gateway = sms_gateways('gateways');
+  $config = $gateway['sms_mobile_commons']['configuration'];
+  return $config['sms_mobile_commons_email'] . ':' . $config['sms_mobile_commons_password'];
+}
+
+/**
+ * Get the Mobile Commons Company UUID
+ */
+function _sms_mobile_commons_get_company_uuid() {
+  $gateway = sms_gateways('gateways');
+  $config = $gateway['sms_mobile_commons']['configuration'];
+  return $config['sms_mobile_commons_company_uuid'];
 }
