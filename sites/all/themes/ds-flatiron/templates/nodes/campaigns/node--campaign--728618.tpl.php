@@ -1,142 +1,181 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="content"<?php print $content_attributes; ?>>
 
-    <section class="header">
-      <div>
-        <a class="ds_logo" href="//www.dosomething.org/">
-          <img src="//files.dosomething.org/files/campaigns/beta/logo.png" alt="DoSomething.org logo" />
-        </a>
-        <a class="log_out" href="/user/logout">log out</a>
-      </div>
-      <img class="beta_logo" src="//files.dosomething.org/files/campaigns/beta/header-logo.png" alt="Project Clean Up logo" />
-    </section> <!-- .header -->
-
-    <section class="project">
-      <div>
-        <img src="//files.dosomething.org/files/campaigns/beta/project_header.png" alt="the proejct"/>
-        <h1>76% of all littering is done by people under the age of 26</h1>
-        <h1>Be part of the 24% that cares & make your community cleaner</h1>
-      </div>
-    </section> <!-- .project -->
-
-    <section class="mission">
-      <div>
-        <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/mission_header2.png" alt="your mission"/>
-        <h2>Pick up <strong>10</strong> pieces of trash in your local community.</h2>
-        <h2>Prove it by submitting a before and an after picture below.</h2>
-      </div>
-    </section> <!-- .mission -->
-
-    <section class="scholarship">
-      <div>
-        <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/scholarship-header.png" alt="scholarship"/>
-        <h2>We're giving away <strong>$5,000</strong>.</h2>
-        <h2>Every 10 pieces of trash you pick up is another chance to win.
-        <h2>Prove it by submitting a before and after picture of the area you cleaned.</h2>
-        <a id="show-report-back" class="go-button" href="#">enter scholarship</a>
-        <a class="official_rules" href="//files.dosomething.org/files/campaigns/beta/official_rules.pdf">official rules</a>
-      </div>
-    </section> <!-- .scholarship -->
-
-    <?php print render($content['report_back']); ?>
-
-    <section class="cause">
-
-      <div>
-          <img class="header_img" src="//files.dosomething.org/files/campaigns/beta/cause-header.png" alt="why trash?">
-      </div>
+    <?php
       
-      <div class="cause-facts current-facts">
-        <ul>
-          <li><p><strong>Litter is costly:</strong> Litter clean up costs the US more than $11.5 billion each year</p></li>
-          <li><p><strong>Litter is dangerous:</strong> Litter on roadways nationwide causes 25,000 accidents each year and more than 80 fatalities</p></li>
-          <li><p><strong>Litter is ugly:</strong> Neighborhoods with visible litter have lower property values and higher crime rates</p></li>
-          <li><p><strong>Litter is solvable:</strong> People are less likely to dump trash in clean areas. Keeping your community litter free reduces future clean up needs</p></li>
-        </ul>
-        <a class="cause-link" href="#">More Facts</a>
-      </div> <!-- .cause-facts -->
+      require('node-field-variables.php');
 
-      <div class="cause-facts">
-        <ul>
-          <li><p>Cleaning up litter is the #1 volunteer activity for youth in America</p></li>
-          <li><p>80% of litter is the result of men</p></li>
-          <li><p>76% of all littering is done by people under the age of 26</p></li>
-          <li><p>People that clean up litter tend to live longer, happier lives</p></li>
-        </ul>
-        <a class="cause-link" href="#">Even More Facts</a>
-      </div> <!-- .cause-facts -->
+    ?>
 
-      <div class="cause-facts">
-        <ul>
-          <li><p>Litter comes from the French word <i>litiere</i>, meaning portable bed</p></li>
-          <li><p>The French word <i>litiere</i> comes from the Latin <i>lectus</i>, used to describe the sundry straw found in bedding starting in the 15th century</p></li>
-          <li><p>On average, each mile of US roadways has 6,729 pieces of litter</p></li>
-          <li><p>If you litter, you are a jerk</p></li>
-        </ul>
-        <a class="cause-link" href="#">Yes, we have even more facts</a>
-      </div> <!-- .cause-facts -->
+    <section class="header" id="header">
+      <div class="section-container">
+        <a class="logo-dosomething" href="//www.dosomething.org/">
+          <img src="<?php print($files_source . 'logo-ds.png'); ?>" alt="DoSomething.org logo" />
+        </a>
+        <a class="log-out" href="/user/logout">log out</a>
+        <img class="logo-campaign" src="<?php print($files_source . 'logo-' . $cmp_short . '.png'); ?>" alt="<?php print($cmp_name); ?> logo" />
+        <?php if ($sponsor): ?>
+          <img class="logo-sponsor" src="<?php print($files_source . 'logo-' . $sponsor . '.png'); ?>" alt="<?php print($sponsor); ?> logo" />
+        <?php endif; ?>
+      </div> <!-- .section-container -->
+    </section> <!-- .header -->
+    
+    <?php if (!isset($complete) && !isset($shared)): ?>
 
-      <div class="cause-facts">
-        <ul>
-          <li><p>Ingesting litter causes injury or death to thousands of pets, wild, and farm animals each year</p></li>
-          <li><p>Cigarette butts are the most littered item in the world, with 4.5 trillion discarded annually</p></li>
-          <li><p>80% of marine debris originates as land based litter</p></li>
-          <li><p>"Don't Mess with Texas" is the official anti-litter slogan of the state</p></li>
-        </ul>
-        <a class="cause-link" href="#">Only way to see more facts is to click here</a>
-      </div> <!-- .cause-facts -->
+      <?php /* TODO - PREVENT THOSE WHO HAVEN'T SUBMITTED THE REPORT BACK FROM FROM SEEING THIS SECTION */ ?>
 
-      <div class="cause-facts">
-        <ul>
-          <li><p>Discarded wool socks can take up to 5 years to biodegrade</p></li>
-          <li><p>Plastic bottle will never naturally biodegrade</p></li>
-          <li><p>Washington state has the lowest rate of littering</p></li>
-          <li><p>Kentucky is America's most littered state</p></li>
-        </ul>
-        <a class="cause-link" href="#">Enjoying yourself? We can go all day</a>
-      </div> <!-- .cause-facts -->
+      <section class="project" id="project">
+        <div class="section-container">
+          <img class="bg-header" src="<?php print($files_source . 'h-project.png') ?>" alt="The Project" />
+          <h1><?php print($project[1]); ?></h1>
+          <h1><?php print($project[2]); ?></h1>
+        </div> <!-- .section-container -->
+      </section> <!-- .project -->
 
-       <div class="cause-facts">
-        <ul>
-          <li><p>90% of women would not date a man who litters</p></li>
-          <li><p>Cleaning up trash is great idea for a first date</p></li>
-          <li><p>The <a class="twitter-link" href="https://twitter.com/litter">@litter</a> twitter account has only 15 followers and tweets mostly in stream of thought format. Example: "maple syrup redux softly tossed against a real cowboys shirt"</p></li>
-          <li><p>The only thing worse than littering is hoarding. Do not hoard.</p></li>
-        </ul>
-        <a class="cause-link" href="#">What are you still doing here?</a>
-      </div> <!-- .cause-facts -->
+      <section class="challenge" id="challenge">
+        <div class="section-container">
+          <img class="bg-header" src="<?php print($files_source . 'h-challenge.png'); ?>" alt="your challenge" />
+          <h2><?php print($challenge[1]); ?></h2>
+          <h2><?php print($challenge[2]); ?></h2>
+        </div> <!-- .section-container -->
+      </section> <!-- .challenge -->
 
-      <div class="cause-facts">
-        <ul>
-          <li><p>The term "litterbug" was coined by Paul B. Gioni, a copywriter in New York City who originated it for The American Ad Council in 1947</p></li>
-          <li><p>The crying Native American from the 1970's anti-littering campaigns was named Iron Eyes Cody. He died on January 4th, 1999.</p></li>
-          <li><p>Littering is illegal in all 50 states</p></li>
-          <li><p>A man in eastern Kentucky was sentenced to 12 months jail time for littering in 2008. He was released in 2009.</p></li>
-        </ul>
-        <a class="cause-link" href="#">Fact: you will click on this</a>
-      </div> <!-- .cause-facts -->
+      <section class="scholarship" id="scholarship">
+        <div class="section-container">
+          <img class="bg-header" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
 
-      <div class="cause-facts">
-        <ul>
-          <li><p>There are 51,500,000 Google search results for "litter"</p></li>
-          <li><p>There are 65,800 results for "I hate litter"</p></li>
-          <li><p>#YOLO</p></li>
-          <li><p>In 2009 a man from Pontypidd, England was fined £340 for tossing a banana peel out of his car window. Pick up yo' peels!</p></li>
-        </ul>
-      </div> <!-- .cause-facts --> 
+          <?php /* Display pre-opt in copy if the user has not submitted the contact form */ ?>
+          <?php if (!isset($team) && !isset($individual)): ?>
+            <h2><?php print($scholarship[1]); ?></h2>
+          <?php endif; ?>
 
-    </section> <!-- .cause -->
+          <div class="contact-form contact-form-individual">
+            <?php print render($content['contact']['individual']); ?>
+          </div>  <!-- .contact-form (individual) -->
 
-    <section class="conversation">
-      <div>
-        <img src="//files.dosomething.org/files/campaigns/beta/join_header.png"/>
-      </div>
-    </section> <!-- .conversation -->
+          <div class="contact-form contact-form-group">
+            <?php print render($content['contact']['team']); ?>
+          </div>  <!-- .contact-form (group) -->
 
-    <section class="footer">
-      <div>
-        <img src="//files.dosomething.org/files/campaigns/beta/footer-header.png"/>
-        <p>questions? e-mail <a href="mailto:cleanup@dosomething.org">cleanup@dosomething.org</a></p>
+          <?php /* Display post-opt in copy after the user has submitted the contact form */ ?>
+          <?php if (isset($team) || isset($individual)): ?>
+            <h2><?php print($scholarship[2]); ?></h2>
+            <div class="report-back-form">
+              <?php print render($content['report_back']); ?>
+            </div>  <!-- .report_back -->
+          <?php endif; ?>
+
+          <div class="official-rules-wrapper">
+            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>"  target="_blank">official rules</a>
+          </div> <!-- .official-rules-wrapper -->
+
+        </div> <!-- .section-container -->
+      </section> <!-- .scholarship -->
+
+      <section class="cause" id="cause">
+        <div class="section-container">
+
+          <?php for ($i=1;$i<5;$i++): ?>
+            <div class="cause-facts <?php if($i == 1){ print("active-fact"); } ?>">
+              <img class="bg-header" src="<?php print($files_source . 'h-cause' . $i . '.png'); ?>" alt="why <?php print($cause_subject); ?>?" />
+              <ul>
+                <?php for ($j=1;$j<5;$j++): ?>
+                  <li><p><?php print($cause[$i][$j]); ?></p></li>
+                <?php endfor; ?>
+              </ul>
+              <a class="cause-link" href="#"><?php print($cause['links'][$i]); ?></a>
+            </div> <!-- .cause-facts -->
+          <?php endfor; ?>
+
+        </div> <!-- .section-container -->
+      </section> <!-- .cause -->
+
+    <?php else: ?>
+
+      <?php if (isset($shared)): ?>
+
+        <section class="thanks" id="thanks">
+          <div class="section-container">
+            <h2><?php print($thanks[1]); ?></h2>
+          </div> <!-- .section-container -->
+        </section>
+
+      <?php endif; ?>
+
+      <section class="success" id="success">
+        <div class="section-container">
+          <img class="bg-header" src="<?php print($files_source . 'h-success.png'); ?>" alt="grand slam!" />
+          <h1><?php print($success[1]); ?></h1>
+          <h1><?php print($success[2]); ?></h1>
+        </div> <!-- .section-container -->
+      </section> <!-- .section -->
+    
+      <section class="share" id="share">
+        <div class="section-container">
+        
+          <img class="bg-header" src="<?php print($files_source . 'h-share.png'); ?>" alt="spread the word" />
+          <img class="bg-share" src="<?php print($files_source . 'bg-share.png'); ?>" alt="text message preview" />
+
+            <?php 
+              $nid = 'node/' . $node->nid;
+              $thanks_redirect_param = array(
+                'query' => array(
+                  'thanks' => NULL,
+                )
+              );
+            ?>
+
+            <form action="//dosomething.mcommons.com/profiles/join" method="POST">
+              <input type="hidden" name="redirect_to" value="<?php print(url($nid, $thanks_redirect_param)); ?>" />
+
+              <div class="share-alpha-name share-input-wrapper">
+                <label>Your First Name:</label>
+                <input class="share-input" type="text" name="person[first_name]" placeholder="Your name:"/>
+              </div>
+
+              <div class="share-alpha-mobile share-input-wrapper">
+                <label>Your Cell #:</label>
+                <input class="share-input" type="text" name="person[phone]" placeholder="You cell #:" />
+              </div>
+
+              <label class="share-beta-mobile">Friend's Cell #s:</label>
+
+              <div class="share-input-wrapper">
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              </div>
+
+              <div class="share-input-wrapper">
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+                <input class="share-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+              </div>
+
+              <input type="hidden" name="opt_in_path" value="<?php print($alpha_opt_in); ?>" />
+              <input type="hidden" name="friends_opt_in_path" value="<?php print($beta_opt_in); ?>" />
+
+              <input type="submit" class="form-submit" value="invite friends" />
+
+            </form> 
+
+            <div class="campaign-opt-in">
+
+              <p>Message &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</p>
+
+              <div class="official-rules-wrapper">
+                <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>" target="_blank">official rules</a>
+              </div> <!-- .official-rules-wrapper -->
+
+            </div> <!-- .campaign-opt-in -->
+
+        </div> <!-- .section-container -->
+      </section> <!-- .section -->
+    <?php endif; ?>
+
+    <section class="footer" id="footer">
+      <div class="section-container">
+        <p>Questions? E-mail <a href="mailto:<?php print($cmp_url); ?>@dosomething.org"><?php print($cmp_url); ?>@dosomething.org</a>!</p>
       </div>
     </section> <!-- .footer -->
 

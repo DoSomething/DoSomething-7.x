@@ -128,3 +128,55 @@ $activity->name = 'end';
 $activity->inputs = array('ftaf');
 
 $workflows[$workflow->name] = $workflow;
+
+/**
+ * Randomized drive marketing tips for PBJ campaign.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pbj_mrkt';
+$workflow->title = 'PBJ - MARKT Tips';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('pbj_mrkt_tips');
+
+$activity = $workflow->newActivity('game_random_path');
+$activity->name = 'pbj_mrkt_tips';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->game_id = 4;
+$activity->opt_in_paths = array(148843, 148853, 148863, 148873, 148883, 148893, 148903, 148913, 148923, 148933, 148943, 149243);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('pbj_mrkt_tips');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Randomized tips for running a PBJ campaign.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pbj_run';
+$workflow->title = 'PBJ - RUN Tips';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('pbj_run_tips');
+
+$activity = $workflow->newActivity('game_random_path');
+$activity->name = 'pbj_run_tips';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->game_id = 5;
+$activity->opt_in_paths = array(148953, 148963, 148973, 148983, 148993);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('pbj_run_tips');
+
+$workflows[$workflow->name] = $workflow;

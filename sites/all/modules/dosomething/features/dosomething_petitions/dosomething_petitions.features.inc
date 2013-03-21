@@ -13,6 +13,10 @@ function dosomething_petitions_ctools_plugin_api() {
     return array("version" => "1");
   }
   list($module, $api) = func_get_args();
+  if ($module == "js_injector" && $api == "js_injector_rules") {
+    return array("version" => "1");
+  }
+  list($module, $api) = func_get_args();
   if ($module == "page_manager" && $api == "pages_default") {
     return array("version" => "1");
   }

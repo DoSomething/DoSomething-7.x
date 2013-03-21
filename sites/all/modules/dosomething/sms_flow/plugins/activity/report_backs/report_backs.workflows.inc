@@ -129,6 +129,67 @@ $activity->outputs = array();
 $workflows[$workflow->name] = $workflow;
 
 /**
+ * PBJ Report Back workflow
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pbj_report_back';
+$workflow->title = 'PBJ Report Back';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_jars');
+$activity->should_prompt = FALSE;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_jars';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_people');
+$activity->question = 'Sweet Peanut Butter Batman! Next: Question 1 - How many jars did you collect in total?';
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_jars');
+$activity->outputs = array('ask_zip');
+$activity->question = 'Jamtastic! Now Question 2 - How many people were involved?';
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_zip';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('strip_signature');
+$activity->question = 'Final question - Where did you donate your jars? (Text back the zipcode)';
+
+$activity = $workflow->newActivity('strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_zip');
+$activity->outputs = array('pbj_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'pbj_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  'ask_jars' => 2,
+  'ask_people' => 8,
+  'ask_zip' => 1,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 'You are a rockstar. You\'ve been entered to win @submission_count times. Have more pics to share? Text EXTRA. All set? Text FINISH!';
+$activity->webform_nid = 728619;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('pbj_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
  * sms_flow_beta_campaign_report_back workflow
  */
 $workflow = new ConductorWorkflow;

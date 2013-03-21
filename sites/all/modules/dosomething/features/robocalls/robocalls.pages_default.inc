@@ -109,7 +109,7 @@ function robocalls_default_page_manager_handlers() {
     $pane->configuration = array(
       'admin_title' => 'Send your friends a prank!',
       'title' => '',
-      'body' => '<p class="call-tagline">Send your friends a prank call from %term:name!<br><span>(They\'ll think you\'re calling them. Buahaha)</span></p>',
+      'body' => '<p class="call-tagline">Send your friends a prank call from %term:name!<br><span>They\'ll think you\'re calling them. Buahaha</span></p>',
       'format' => '3',
       'substitute' => 1,
     );
@@ -719,7 +719,7 @@ function robocalls_default_page_manager_pages() {
     $pane->pid = 'new-9';
     $pane->panel = 'test_region';
     $pane->type = 'block';
-    $pane->subtype = 'webform-client-block-727984';
+    $pane->subtype = 'webform-client-block-728721';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(

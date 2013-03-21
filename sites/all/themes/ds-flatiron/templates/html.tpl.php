@@ -66,8 +66,8 @@
   <?php print $shiv; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
   <?php print $scripts; ?>
-  <?php /* print $selectivizr; */ ?>
-  <?php /* print $placeholder_shiv; */ ?>
+  <?php print $selectivizr; ?>
+  <?php print $placeholder_shiv; ?>
 
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>

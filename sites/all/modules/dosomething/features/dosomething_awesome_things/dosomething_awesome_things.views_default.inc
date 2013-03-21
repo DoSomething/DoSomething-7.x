@@ -131,8 +131,9 @@ function dosomething_awesome_things_views_default_views() {
   $handler->display->display_options['fields']['field_athings_landing_image']['field'] = 'field_athings_landing_image';
   $handler->display->display_options['fields']['field_athings_landing_image']['label'] = '';
   $handler->display->display_options['fields']['field_athings_landing_image']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_athings_landing_image']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_athings_landing_image']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_athings_landing_image']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['field_athings_landing_image']['alter']['path'] = 'http://www.dosomething.org[field_athings_url]';
+  $handler->display->display_options['fields']['field_athings_landing_image']['alter']['absolute'] = 1;
   $handler->display->display_options['fields']['field_athings_landing_image']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_athings_landing_image']['alter']['replace_spaces'] = 0;
   $handler->display->display_options['fields']['field_athings_landing_image']['alter']['trim_whitespace'] = 0;
@@ -178,6 +179,10 @@ function dosomething_awesome_things_views_default_views() {
   $handler->display->display_options['fields']['description']['hide_empty'] = 0;
   $handler->display->display_options['fields']['description']['empty_zero'] = 0;
   $handler->display->display_options['fields']['description']['hide_alter_empty'] = 1;
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';

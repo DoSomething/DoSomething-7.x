@@ -65,10 +65,16 @@ function robocalls_webform_select_options_info() {
  */
 function robocalls_get_celebrities() {
   $celebs = array();
-  foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
-    if ($celeb->parents[0] > 0 && $celeb->name != '???') {
-      $celebs[$celeb->tid] = $celeb->name;
+  $celebs = cache_get('robo_celebrities')->data;
+  if (empty($celebs)) {
+    foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
+      $c = taxonomy_term_load($celeb->tid);
+      if ($celeb->parents[0] > 0 && $celeb->name != '???' && $c->field_visible_celebrity[LANGUAGE_NONE][0]['value'] == 1) {
+        $celebs[$celeb->tid] = $celeb->name . ' (' . $c->field_short_name[LANGUAGE_NONE][0]['value'] . ')';
+      }
     }
+
+    cache_set('robo_celebrities', $celebs);
   }
 
   return $celebs;
@@ -375,7 +381,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
     $u = &$form['submitted'];
 
     // Placeholder and theoretical population of my name
-    $u['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('* My Name');
+    $u['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#attributes']['placeholder'] = t('My Name');
     if (!empty($first_name)) {
       $u['my_info']['field_celeb_your_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $first_name;
     }
@@ -459,7 +465,7 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
         ),
       ));
 
-      $u['my_info']['my_name']['#attributes']['placeholder'] = t('* My Name');
+      $u['my_info']['my_name']['#attributes']['placeholder'] = t('My Name');
       if (!empty($me['name'])) {
         $u['my_info']['my_name']['#default_value'] = $me['name'];
       }

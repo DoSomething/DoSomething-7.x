@@ -1,15 +1,28 @@
 // CONTACT FORM
 // ------------
-#contact-form
+.contact-form
+  width: 50%
+  float: left
+  .form-wrapper /* TODO - REMOVE THIS RESET FROM THE INHERITED DOIT THEME STYLES */
+    margin: 0
+
+  h2, #campaign-opt-in /* TODO - TWO OF THESE ARE BEING GENERATED -- CHANGE ID TO A CLASS IN THE MODULE */
+    display: none
+
+// hides the input fields 
+#edit-submitted-field-webform-email,
+#edit-submitted-field-webform-email--2,
+#edit-submitted-field-webform-mobile,
+#edit-submitted-field-webform-mobile--2
   display: none
 
 // REPORT BACK FORM
 // ----------------
-td
-  display: block
-
-#report-back
-  display: none
+.report-back-form
+  h2 /* TODO - WHERE ARE THESE FORM TITLES COMING FROM? */
+    display: none
+  td
+    display: block
   form
     width: 800px
     margin: 0 auto
@@ -18,39 +31,75 @@ td
     &:first-child
       overflow: hidden
   input[type="text"]
-    width: 20em
+    width: 12em
     border: 1px solid #ddd
+    float: left
     +border-radius(3px)
   input[type="file"]
     border: none
+  input[name="submitted_field_webform_pictures_und_0_upload_button"].form-submit
+    background: $btn-grey
   legend
     display: none
   .description
     font-size: 10px
-    color: #ccc
+    color: $font-grey
+    margin: 0 0 1em 0
 
-#report-back.show
+.food-bank-finder, .image-widget-data /* TODO - FIX THIS I'M TIRED; THIS IS SLOPPY */
+  .form-submit /* TODO - REMOVE HARD CODED COLOR */
+    float: left
+    margin: 0 0 0 10% !important
+    padding: 10px 15px 0 !important
+    height: 35px !important
+    font-size: 18px
+    background: $btn-grey
+    color: #444
+
+// this overrides the default button styles for [remove]
+.report-back-form td .form-submit
+  background: none
+  font-weight: 400
+  font-family: din-web-reg
+  font-size: 14px
+  text-transform: lowercase
+  text-decoration: underline
+  margin: 0
+  padding: 0
+  color: $font-grey
+
+.image-widget-data .form-submit /* TODO */
+  margin: 0 0 0.5em 0 !important
+  padding: 2px 15px 0px 15px !important
+  float: left
+  clear: left
+
+.food-bank-finder-error
+  display: none
+
+.report-back-form.show
   display: block
 
-#webform-photo-wrapper
-  float: left
-  width: 40%
-  margin: 0 0 5% 0
-  @media only screen and (max-width: 550px)
-    margin: 5% 0
-
-#webform-component-wrapper-text
-  float: left
-  width: 60%
-
 #webform-photo-wrapper,
-#webform-component-wrapper-text
+#webform-component-wrapper-zip
+  float: left
+  width: 50%
   @media only screen and (max-width: 550px)
     float: none
     width: 100%
 
-#webform-component-wrapper-photo
-  display: none
+#webform-photo-wrapper /* TODO - FIX THESE WONKY ID NAMES */
+  label, p
+    margin: 1em 0 0.5em 0
+  .form-item, .field-name-field-webform-pictures, .form-actions
+    float: left
+    clear: left
+  @media only screen and (max-width: 550px)
+    margin: 5% 0
+
+#webform-component-wrapper-zip
+  label
+    margin: 1em 0 0.5em 0
 
 // reset bizarre styles wrapping submit button
 .webform-client-form #edit-actions
@@ -63,15 +112,9 @@ td
 .ajax-progress
   display: none
 
-// upload photo button
-#edit-submitted-wrapper-photo-field-webform-pictures-und-0-upload-button
-  margin: 0.5em 0
-  padding: 0 0.5em
-  width: 4em
-  
 // IMAGE PREVIEW SECTION
 // --------------------
-#report-back
+.report-back-form
   .tabledrag-toggle-weight-wrapper, thead, .tabledrag-handle, .image-preview, .file img, .file-size
     display: none
 
@@ -80,10 +123,21 @@ td
   margin-top: 5px
 
 tr
-  background-color: #fff
+  background: $bg-light
 
 // REPORT BACK BUTTONS
 // -------------------
+
+// [CHOOSE FILE] button
+#edit-submitted-field-webform-pictures-und-0-upload,
+#edit-submitted-field-webform-pictures-und-1-upload,
+#edit-submitted-field-webform-pictures-und-2-upload,
+#edit-submitted-field-webform-pictures-und-3-upload,
+#edit-submitted-field-webform-pictures-und-4-upload,
+#edit-submitted-field-webform-pictures-und-5-upload,
+#edit-submitted-field-webform-pictures-und-6-upload
+  float: left
+  margin: 0 0 2em 0
 
 // [UPLOAD] button
 #edit-submitted-field-webform-pictures-und-0-upload-button,
@@ -101,11 +155,14 @@ tr
 #edit-submitted-field-webform-pictures-und-0-remove-button,
 #edit-submitted-field-webform-pictures-und-1-remove-button,
 #edit-submitted-field-webform-pictures-und-2-remove-button,
-#edit-submitted-field-webform-pictures-und-3-remove-button
+#edit-submitted-field-webform-pictures-und-3-remove-button,
+#edit-submitted-field-webform-pictures-und-4-remove-button,
+#edit-submitted-field-webform-pictures-und-5-remove-button,
+#edit-submitted-field-webform-pictures-und-6-remove-button
   margin: 5px 0
   padding: 0 8px
-  background: #ddd
-  color: #666
+  background: $btn-grey
+  color: darken($btn-grey, 10)
   font-size: 16px
 
 // [FINISH] button
@@ -114,3 +171,17 @@ tr
   margin: 5px 0
   padding: 0 10px
   font-size: 30px
+
+// GO-BUTTON STYLES
+// ----------------
+.contact-form,
+.report-back-form
+  .form-submit, input[name="submitted_field_webform_pictures_und_0_upload_button"].form-submit
+    font-weight: 600
+    height: 40px
+    margin: 0 auto
+    padding: 3px 20px 0px 20px
+
+// TODO - WHAT IS THIS NONSENSE? REMOVE!
+.form-wrapper
+  margin: 0

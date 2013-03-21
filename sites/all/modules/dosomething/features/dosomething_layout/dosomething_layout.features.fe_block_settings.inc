@@ -354,6 +354,153 @@ prank*',
 
   $export['theme']['ds'] = $theme;
 
+  // ds_flatiron
+  $theme = array();
+
+  $theme['block-android_app_sidebar'] = array(
+    'module' => 'block',
+    'theme' => 'ds_flatiron',
+    'status' => '1',
+    'weight' => '-67',
+    'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => 'Download Our Android App',
+    'cache' => -1,
+    'machine_name' => 'android_app_sidebar',
+  );
+
+  $theme['dosomething_blocks-dosomething_make_impact'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_make_impact',
+    'theme' => 'ds_flatiron',
+    'status' => '1',
+    'weight' => '-70',
+    'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '<front>
+start-something
+action-finder',
+    'title' => '',
+    'cache' => 8,
+  );
+
+  $theme['dosomething_blocks-dosomething_make_impact_front'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_make_impact_front',
+    'theme' => 'ds_flatiron',
+    'status' => 0,
+    'weight' => '-56',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => 8,
+  );
+
+  $theme['dosomething_blocks-dosomething_social_node_buttons'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_social_node_buttons',
+    'theme' => 'ds_flatiron',
+    'status' => 0,
+    'weight' => '-54',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '<front>',
+    'title' => '',
+    'cache' => 8,
+  );
+
+  $theme['dosomething_blocks-dosomething_social_skyscraper'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_social_skyscraper',
+    'theme' => 'ds_flatiron',
+    'status' => '1',
+    'weight' => '-69',
+    'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => 'Social Stream',
+    'cache' => 8,
+  );
+
+  $theme['dosomething_blocks-dosomething_utility_bar'] = array(
+    'module' => 'dosomething_blocks',
+    'delta' => 'dosomething_utility_bar',
+    'theme' => 'ds_flatiron',
+    'status' => '1',
+    'weight' => '-68',
+    'region' => 'utility',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['dosomething_campaign_styles-campaign_nav'] = array(
+    'module' => 'dosomething_campaign_styles',
+    'delta' => 'campaign_nav',
+    'theme' => 'ds_flatiron',
+    'status' => '1',
+    'weight' => '-75',
+    'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['dosomething_login-become_member'] = array(
+    'module' => 'dosomething_login',
+    'delta' => 'become_member',
+    'theme' => 'ds_flatiron',
+    'status' => '1',
+    'weight' => '-71',
+    'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => 'judge-register',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['dosomething_login-register_block'] = array(
+    'module' => 'dosomething_login',
+    'delta' => 'register_block',
+    'theme' => 'ds_flatiron',
+    'status' => 0,
+    'weight' => '-4',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['menu-menu-footer'] = array(
+    'module' => 'menu',
+    'delta' => 'menu-footer',
+    'theme' => 'ds_flatiron',
+    'status' => '1',
+    'weight' => '-61',
+    'region' => 'footer',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '<none>',
+    'cache' => -1,
+  );
+
+  $export['theme']['ds_flatiron'] = $theme;
+
   // picsforpets
   $theme = array();
 
