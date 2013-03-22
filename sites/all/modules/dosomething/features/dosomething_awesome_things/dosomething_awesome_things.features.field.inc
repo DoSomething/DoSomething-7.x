@@ -10,7 +10,7 @@
 function dosomething_awesome_things_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'taxonomy_term-awesome_things-field_athings_landing_image'
+  // Exported field: 'taxonomy_term-awesome_things-field_athings_landing_image'.
   $fields['taxonomy_term-awesome_things-field_athings_landing_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_awesome_things_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -65,6 +66,7 @@ function dosomething_awesome_things_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -86,7 +88,7 @@ function dosomething_awesome_things_field_default_fields() {
             0 => 'auto',
           ),
           'insert_width' => '',
-          'preview_image_style' => 'issue_main',
+          'preview_image_style' => '',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
@@ -95,7 +97,7 @@ function dosomething_awesome_things_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-awesome_things-field_athings_turl'
+  // Exported field: 'taxonomy_term-awesome_things-field_athings_turl'.
   $fields['taxonomy_term-awesome_things-field_athings_turl'] = array(
     'field_config' => array(
       'active' => '1',
@@ -119,6 +121,7 @@ function dosomething_awesome_things_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -161,7 +164,7 @@ function dosomething_awesome_things_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-awesome_things-field_athings_url'
+  // Exported field: 'taxonomy_term-awesome_things-field_athings_url'.
   $fields['taxonomy_term-awesome_things-field_athings_url'] = array(
     'field_config' => array(
       'active' => '1',
@@ -174,6 +177,7 @@ function dosomething_awesome_things_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(

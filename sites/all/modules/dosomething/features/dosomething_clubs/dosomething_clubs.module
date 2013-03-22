@@ -313,7 +313,54 @@ function dosomething_clubs_menu() {
     'access callback' => TRUE,
   );
 
+  $items['club/edit-blurb/%'] = array(
+    'page callback' => 'dosomething_clubs_edit_blurb',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+  );
+
   return $items;
+}
+
+/**
+ *  Handles blurb editing.
+ */
+function dosomething_clubs_edit_blurb($nid) {
+  global $user;
+
+  // Get the group ID
+  $gid = og_get_group('node', $nid)->gid;
+
+  // Make sure that there is text, and you're an admin.
+  if (empty($nid) || !isset($_POST['text']) || !dosomething_clubs_is_club_admin($gid)) {
+    echo drupal_json_encode(array(
+      'error' => true,
+    ));
+    drupal_exit();
+  }
+
+  // Get the cleaned blurb.
+  $blurb = check_plain($_POST['text']);
+
+  // The blurb can't be more than 255 characters or it'll break.
+  if (strlen($blurb) > 140) {
+    $blurb = substr($blurb, 0, 140);
+  }
+
+  // Get the nid
+  $node = node_load($nid);
+
+  // Set the blurb.
+  $node->field_club_blurb[LANGUAGE_NONE][0]['value'] = $blurb;
+
+  // Save
+  node_save($node);
+
+  // Return true!
+  echo drupal_json_encode(array(
+    'success' => true,
+  ));
+  drupal_exit();
 }
 
 function dosomething_clubs_check_account_exists($contact) {
@@ -2076,11 +2123,11 @@ function dosomething_clubs_invite_form($form, &$form_state, $gid) {
     '#markup' => '',
     '#prefix' => '<div id="invite-sent">',
     '#suffix' => '</div>'
-  );*/
+  );
 
   $form['link'] = array(
     '#markup' => l(t('Invite your friends'), 'clubs/share/' . $n->nid, array('attributes' => array('class' => array('go-button')))),
-  );
+  );*/
 
   //$form['#submit'][] = 'dosomething_clubs_invite_form_submit';
 
@@ -2676,6 +2723,12 @@ function dosomething_clubs_page_alter(&$page) {
 
       drupal_goto('clubs/share/' . $node->nid);
     }
+
+    $node = menu_get_object();
+    drupal_add_js(array('club' => array(
+      'nid' => $node->nid,
+      'title' => $node->title
+    )), 'setting');
   }
 
   if ($path == '/clubs') {

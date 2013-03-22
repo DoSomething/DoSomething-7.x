@@ -10,6 +10,16 @@
 function dosomething_sponsors_default_fe_block_settings() {
   $export = array();
 
+  $export['version'] = '1.0';
+
+  // Theme independent visibility settings.
+  $export['visibility'] = array(
+    'views-sponsors_who_rock-block_1' => array(
+      'delta' => 'sponsors_who_rock-block_1',
+      'module' => 'views',
+    ),
+  );
+
   // doit
   $theme = array();
 
@@ -18,7 +28,7 @@ function dosomething_sponsors_default_fe_block_settings() {
     'delta' => 'sponsors_who_rock-block_1',
     'theme' => 'doit',
     'status' => '1',
-    'weight' => '-60',
+    'weight' => '-68',
     'region' => 'sidebar_first',
     'custom' => '0',
     'visibility' => '1',
@@ -27,7 +37,7 @@ function dosomething_sponsors_default_fe_block_settings() {
     'cache' => -1,
   );
 
-  $export['doit'] = $theme;
+  $export['theme']['doit'] = $theme;
 
   // ds
   $theme = array();
@@ -46,7 +56,26 @@ function dosomething_sponsors_default_fe_block_settings() {
     'cache' => -1,
   );
 
-  $export['ds'] = $theme;
+  $export['theme']['ds'] = $theme;
+
+  // ds_flatiron
+  $theme = array();
+
+  $theme['views-sponsors_who_rock-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'sponsors_who_rock-block_1',
+    'theme' => 'ds_flatiron',
+    'status' => '1',
+    'weight' => '-68',
+    'region' => 'sidebar_first',
+    'custom' => '0',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $export['theme']['ds_flatiron'] = $theme;
 
   // picsforpets
   $theme = array();
@@ -65,13 +94,13 @@ function dosomething_sponsors_default_fe_block_settings() {
     'cache' => -1,
   );
 
-  $export['picsforpets'] = $theme;
+  $export['theme']['picsforpets'] = $theme;
 
   $theme_default = variable_get('theme_default', 'garland');
   $themes = list_themes();
   foreach ($export as $theme_key => $settings) {
     if ($theme_key != $theme_default && empty($themes[$theme_key]->status)) {
-      unset($export[$theme_key]);
+      unset($export['theme'][$theme_key]);
     }
   }
   return $export;

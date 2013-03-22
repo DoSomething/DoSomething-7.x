@@ -8,51 +8,38 @@ function robocalls_drush_command() {
         'fnid' => 'The ID of the webform that runs Robocalls',
       ),
     ),
+    'robo-migrate' => array(
+      'description' => 'Migrates webforms &etc. for Robocalls v2',
+    ),
   );
 }
 
 function drush_robocalls_robocall($fnid) {
-  date_default_timezone_set('UTC');
+  // Removed 2/27/13
+}
 
-  $time = mktime(date('H'), date('i'), 0);
-  $q = new EntityFieldQuery;
-  $result = $q
-    ->entityCondition('entity_type', 'webform_submission_entity')
-    ->propertyCondition('nid', $fnid)
-    ->propertyCondition('uid', 0, '>')
-    ->propertyOrderBy('submitted', 'DESC')
-    ->fieldCondition('field_celeb_date', 'value', date('Y-m-d H:i:00', $time), '=')
-    ->fieldCondition('field_celeb_send_now', 'value', 0, '!=')
-    ->fieldCondition('field_mobile_commons_id', 'value', 0, '!=')
-    ->execute();
-  if (!empty($result))
-  {
-  	foreach ($result['webform_submission_entity'] AS $key => $r)
-  	{
-      $s = array_shift(entity_load('webform_submission_entity', array((int) $key)));
-      if ($s->field_celeb_date[LANGUAGE_NONE][0]['timezone']) {
+function drush_robocalls_robo_migrate() {
+  drush_print(dt('Enabling the DoSomething API module...'));
+  $modules = array(
+    'dosomething_api',
+  );
+  drush_invoke_process('@self', 'en', $modules, array('--yes', '--verbose'));
 
-        $usertz = new DateTimeZone($s->field_celeb_date[LANGUAGE_NONE][0]['timezone']);
-        $t = new DateTime($s->field_celeb_date[LANGUAGE_NONE][0]['value'], $usertz);
+  $homepage_webform = dosomething_general_save_node_from_file(drupal_get_path('module', 'robocalls') . '/webforms/homepage.txt', 'robo-calls/homepage-webform');
+  #$walkthrough_webform = dosomething_general_save_node_from_file('sites/all/modules/dosomething/features/robocalls/webforms/walkthrough.txt', 'prank/walkthrough');
+  drush_print(dt('See node/' . $homepage_webform->nid . ' (re-alias as robo-calls/homepage-webform).'));
 
-        $offset = $t->getOffset();
-        $now = array_sum(array($time, $offset));
-        $thetime = array_sum(array(strtotime($s->field_celeb_date[LANGUAGE_NONE][0]['value']), $offset));
+  $fr = array(
+    'dosomething_layout',
+    'robocalls',
+  );
+  drush_invoke_process('@self', 'fr', $fr, array('--yes'));
 
-        $cell = $s->field_celeb_friend_phone[LANGUAGE_NONE][0]['value'];
-  	    if ($now == $thetime)
-  	    {
-          $mid = $s->field_mobile_commons_id[LANGUAGE_NONE][0]['value'];
-          robocalls_mcommons_call($cell, '', $mid);
-  	    }
-
-       echo (date('Y-m-d H:i:00', $now)) . ' ' . date('Y-m-d H:i:00', $thetime) . " (@" . $cell . ' ... ' . $s->field_celeb_date[LANGUAGE_NONE][0]['value'] . " | " . $t->getOffset() . ")\r\n";
-      }
-  	}
-  }
-  else {
-    echo "Nothing found ($fnid).";
-  }
+  cache_clear_all();
+  
+  #$celeb_webform = dosomething_general_save_node_from_file(drupal_get_path('module', 'robocalls') . '/webforms/celeb.txt', 'robo-calls/webform');
+  #drush_print(dt('Updated robo-calls/webform'));
+  drush_print(dt('Done! See Mike for final steps.'));
 }
 
 ?>

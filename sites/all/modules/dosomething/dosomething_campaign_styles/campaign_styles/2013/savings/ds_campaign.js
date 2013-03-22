@@ -43,6 +43,10 @@
       var changeForm = $('.pane-campaign-signed');
       $('#header #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
 
+      // on lines 9-10 terrible things happen
+      $('#campaign-opt-in br').remove();
+      $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
+
       // pop, bang, lovely
       $('#faq h4').next('div').css('display','none');
       $('#faq h4.activeFAQ').next('div').css('display','block');

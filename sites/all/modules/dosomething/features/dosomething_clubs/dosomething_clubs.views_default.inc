@@ -180,12 +180,12 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Club members pictures coming soon!';
   $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
-  /* Relationship: Group membership: User group membership */
+  /* Relationship: OG membership: OG membership from User */
   $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'users';
   $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['required'] = 0;
-  /* Relationship: OG membership: Group gid */
+  /* Relationship: OG membership: OG group gid */
   $handler->display->display_options['relationships']['group']['id'] = 'group';
   $handler->display->display_options['relationships']['group']['table'] = 'og_membership';
   $handler->display->display_options['relationships']['group']['field'] = 'group';
@@ -256,7 +256,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['sorts']['created_1']['field'] = 'created';
   $handler->display->display_options['sorts']['created_1']['relationship'] = 'og_membership_rel';
   $handler->display->display_options['sorts']['created_1']['order'] = 'DESC';
-  /* Contextual filter: OG membership: Group gid */
+  /* Contextual filter: OG membership: OG group gid */
   $handler->display->display_options['arguments']['group']['id'] = 'group';
   $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
   $handler->display->display_options['arguments']['group']['field'] = 'group';
@@ -300,7 +300,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: OG membership: Group gid */
+  /* Contextual filter: OG membership: OG group gid */
   $handler->display->display_options['arguments']['group']['id'] = 'group';
   $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
   $handler->display->display_options['arguments']['group']['field'] = 'group';
@@ -483,13 +483,13 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
   $handler->display->display_options['relationships']['uid']['required'] = 0;
-  /* Relationship: Group membership: User group membership */
+  /* Relationship: OG membership: OG membership from User */
   $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'users';
   $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['og_membership_rel']['relationship'] = 'uid';
   $handler->display->display_options['relationships']['og_membership_rel']['required'] = 0;
-  /* Relationship: OG membership: Group gid */
+  /* Relationship: OG membership: OG group gid */
   $handler->display->display_options['relationships']['group']['id'] = 'group';
   $handler->display->display_options['relationships']['group']['table'] = 'og_membership';
   $handler->display->display_options['relationships']['group']['field'] = 'group';
@@ -586,7 +586,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
   $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
   $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
-  /* Contextual filter: OG membership: Group gid */
+  /* Contextual filter: OG membership: OG group gid */
   $handler->display->display_options['arguments']['group']['id'] = 'group';
   $handler->display->display_options['arguments']['group']['table'] = 'og_membership';
   $handler->display->display_options['arguments']['group']['field'] = 'group';

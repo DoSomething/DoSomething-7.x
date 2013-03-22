@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'Giving Tuesday',
+  'title' => 'Old People',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -28,13 +28,13 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'what is it?', 'href' => 'givingtuesday', 'fragment' => 'action'),
-    array('title' => 'share with old people', 'href' => 'givingtuesday', 'fragment' => 'refer'),
-    array('title' => 'take the quiz', 'href' => 'givingtuesday', 'fragment' => 'quiz'),    
-    array('title' => 'faqs', 'href' => 'givingtuesday', 'fragment' => 'faq'),
+    array('title' => 'what is it?', 'href' => 'oldpeople', 'fragment' => 'action'),
+    array('title' => 'share with old people', 'href' => 'oldpeople', 'fragment' => 'refer'),
+    array('title' => 'take the quiz', 'href' => 'oldpeople', 'fragment' => 'quiz'),    
+    array('title' => 'faqs', 'href' => 'oldpeople', 'fragment' => 'faq'),
   ),
   'menu_suffix' => array(
-    '#markup' => '<div class="nav-count clearfix"><p id="sb-counter"></p><p>Quizzes<br>Taken</p></div><p>In Partnership with</p><img src="//files.dosomething.org/files/campaigns/tuesday12/givingtuesdaylogo.png"/><p class="email">Got questions? Email Liz at <a href="mailto:eeddy@dosomething.org">eeddy@dosomething.org</a>!</p>'
+    '#markup' => '<div class="nav-count clearfix"><p id="sb-counter"></p><p>Quizzes<br>Taken</p></div><p class="email">Got questions? Email Liz at <a href="mailto:eeddy@dosomething.org">eeddy@dosomething.org</a>!</p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<img class="bow" src="//files.dosomething.org/files/campaigns/tuesday12/bow.png" /> <p>Go To:</p>'

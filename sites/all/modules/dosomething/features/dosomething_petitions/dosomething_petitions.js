@@ -5,7 +5,7 @@
     attach: function (context, settings) {
 
       if (window.location.hash && window.location.hash == '#contacts') {
-        $('.hidden-email-link').click();
+        $('.contact-picker').click();
       }
       // check if the browser supports placeholder elements
       var placeholder = (function () {

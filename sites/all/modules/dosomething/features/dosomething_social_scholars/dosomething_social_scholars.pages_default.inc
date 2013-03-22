@@ -115,6 +115,36 @@ function dosomething_social_scholars_default_page_manager_handlers() {
     $pane->locks = array();
     $display->content['new-3'] = $pane;
     $display->panels['center'][2] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'form';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_sponsor_image';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'image',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'file_view_mode' => 'default',
+        'image_style' => '',
+        'image_link' => '',
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-4'] = $pane;
+    $display->panels['form'][0] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-2';
   $handler->conf['display'] = $display;
@@ -135,7 +165,10 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $page->admin_title = 'Animal Cruelty Stats Images';
   $page->admin_description = '';
   $page->path = 'animal-social-stats';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -201,6 +234,8 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $page->path = 'sas-landing/%node';
   $page->access = array(
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'none',
@@ -506,6 +541,35 @@ function dosomething_social_scholars_default_page_manager_pages() {
     $pane->locks = array();
     $display->content['new-6'] = $pane;
     $display->panels['center'][3] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
+    $pane->panel = 'center';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_sponsor_image';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'image',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'image_style' => '',
+        'image_link' => '',
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $display->content['new-7'] = $pane;
+    $display->panels['center'][4] = 'new-7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-3';
   $handler->conf['display'] = $display;
@@ -522,6 +586,8 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $page->path = 'share-these-images/%node';
   $page->access = array(
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'none',
@@ -578,7 +644,7 @@ function dosomething_social_scholars_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'center';
     $pane->type = 'new_shary_images';
     $pane->subtype = 'new_shary_images';
@@ -591,10 +657,10 @@ function dosomething_social_scholars_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['center'][0] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['center'][0] = 'new-8';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-7';
+  $display->title_pane = 'new-8';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['social_scholarship_image_page'] = $page;

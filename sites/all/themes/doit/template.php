@@ -93,12 +93,22 @@ function doit_preprocess_page(&$variables) {
   if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $beta_campaign))) {
     drupal_goto('user/registration?destination=node/' . $beta_campaign);
   }
+  
+  // Load Webfonts specific to the page
+  if (module_exists('dosomething_perfomance_toolbox')) {
+    dosomething_perfomance_toolbox_webfonts();
+  }
+  
 
 }
 
 // preprocess maintenance page copy for 500 error
 function doit_preprocess_maintenance_page(&$vars) {
     if ($GLOBALS['conf']['maintenance_mode'] === 0) {
+      
+      // Include fonts in error page
+      dosomething_perfomance_toolbox_webfonts();
+      
       /* we have an error */
       $vars['content'] = '<p>' . t("We're on it! For now, try refreshing the page.") . '</p>';
     }

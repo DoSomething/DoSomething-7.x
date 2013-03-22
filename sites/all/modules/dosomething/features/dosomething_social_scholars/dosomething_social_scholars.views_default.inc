@@ -161,23 +161,28 @@ function dosomething_social_scholars_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'views_galleriffic';
+  $handler->display->display_options['style_options']['css'] = '';
   $handler->display->display_options['style_options']['preload'] = '1';
   $handler->display->display_options['style_options']['renderss'] = '';
   $handler->display->display_options['style_options']['history'] = 'true';
   $handler->display->display_options['row_plugin'] = 'gallerifficfields';
-  $handler->display->display_options['row_options']['slide_field'] = 'field_share_your_own_image';
-  $handler->display->display_options['row_options']['thumbnail_field'] = 'field_share_your_own_image_1';
+  $handler->display->display_options['row_options']['slide_field'] = 'field_share_your_own_image_1';
+  $handler->display->display_options['row_options']['thumbnail_field'] = 'field_share_your_own_image';
   /* Field: Webform submissions: Sid */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'webform_submissions';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Field: Webform Submission: Share your own image */
+  /* Field: Thumbnail */
   $handler->display->display_options['fields']['field_share_your_own_image']['id'] = 'field_share_your_own_image';
   $handler->display->display_options['fields']['field_share_your_own_image']['table'] = 'field_data_field_share_your_own_image';
   $handler->display->display_options['fields']['field_share_your_own_image']['field'] = 'field_share_your_own_image';
+  $handler->display->display_options['fields']['field_share_your_own_image']['ui_name'] = 'Thumbnail';
   $handler->display->display_options['fields']['field_share_your_own_image']['label'] = '';
   $handler->display->display_options['fields']['field_share_your_own_image']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_share_your_own_image']['alter']['make_link'] = 0;
@@ -199,14 +204,15 @@ function dosomething_social_scholars_views_default_views() {
   $handler->display->display_options['fields']['field_share_your_own_image']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_share_your_own_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_share_your_own_image']['settings'] = array(
-    'image_style' => 'gallery_thumbnail',
+    'image_style' => 'thumbnail',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_share_your_own_image']['field_api_classes'] = 0;
-  /* Field: Webform Submission: Share your own image */
+  /* Field: Large */
   $handler->display->display_options['fields']['field_share_your_own_image_1']['id'] = 'field_share_your_own_image_1';
   $handler->display->display_options['fields']['field_share_your_own_image_1']['table'] = 'field_data_field_share_your_own_image';
   $handler->display->display_options['fields']['field_share_your_own_image_1']['field'] = 'field_share_your_own_image';
+  $handler->display->display_options['fields']['field_share_your_own_image_1']['ui_name'] = 'Large';
   $handler->display->display_options['fields']['field_share_your_own_image_1']['label'] = '';
   $handler->display->display_options['fields']['field_share_your_own_image_1']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_share_your_own_image_1']['alter']['make_link'] = 0;
@@ -228,10 +234,15 @@ function dosomething_social_scholars_views_default_views() {
   $handler->display->display_options['fields']['field_share_your_own_image_1']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_share_your_own_image_1']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_share_your_own_image_1']['settings'] = array(
-    'image_style' => 'gallery_thumbnail',
+    'image_style' => 'large',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_share_your_own_image_1']['field_api_classes'] = 0;
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';

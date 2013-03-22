@@ -299,7 +299,7 @@ class clubs_export {
         4 => ' ',
       );
       if (!empty($stuff['campaigns'])) {
-        foreach ($stuff['campaigns'] AS $campaign) {
+        foreach ($stuff['campaigns'] AS $key => $campaign) {
           $cids[$key] = $crbids[$campaign->nid];
           $cdates[$key] = date('Y-m-d', $campaign->submitted);
         }
@@ -387,10 +387,10 @@ class clubs_export {
         'campaign_dates_3' => $cdates[2],
         'campaign_dates_4' => $cdates[3],
         'campaign_dates_5' => $cdates[4],
-        'fall1' => array('data' => $fall1),
-        'fall2' => array('data' => $fall2),
-        'spring1' => array('data' => $spring1),
-        'spring2' => array('data' => $spring2),
+        'fall1' => $fall1,
+        'fall2' => $fall2,
+        'spring1' => $spring1,
+        'spring2' => $spring2,
       );
 
       $i++;
@@ -523,6 +523,7 @@ class clubs_export {
     LEFT JOIN `ds_school` AS `sc` ON (`sc`.`sid` = `school`.`field_school_reference_target_id`)
     #LEFT JOIN `dosomething_clubs_sms_response` AS `response` ON (`response`.`nid` = `node`.`nid`)
     WHERE (( (node.status = '1') AND (node.type IN  ('club')) ))
+    " . (intval($_GET['clubid']) ? " AND node.nid = " . intval($_GET['clubid']) : '') . "
     GROUP BY nid, node_title ASC
     ORDER BY `node`.`created` DESC
     " . (is_numeric($limit) ? " limit $limit" . (is_numeric($offset) ? ", $offset" : '') : '');
@@ -630,6 +631,7 @@ class clubs_export {
             WHERE
               uid IN (" . $s['member_uids'] . ")
               AND nid IN (" . implode(',', $crbids) . ")
+            GROUP BY webform_submissions.nid
             ORDER BY `submitted` DESC
             LIMIT 5 OFFSET 0
           ")->fetchAll();
@@ -1037,7 +1039,7 @@ function dosomething_clubs_pull_data() {
         4 => ' ',
       );
       if (!empty($result['campaigns'])) {
-        foreach ($result['campaigns'] AS $campaign) {
+        foreach ($result['campaigns'] AS $key => $campaign) {
           $cids[$key] = $crbids[$campaign->nid];
           $cdates[$key] = date('Y-m-d', $campaign->submitted);
         }

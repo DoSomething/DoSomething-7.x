@@ -39,6 +39,10 @@
       // contact form login
       $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/727940" class="sign-in-popup">log in</a></p>');
 
+      // on lines 9-10 terrible things happen
+      $('#campaign-opt-in br').remove();
+      $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
+
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
       $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
