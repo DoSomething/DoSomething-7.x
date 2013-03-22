@@ -66,6 +66,12 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
       '#weight' => 0,
     );
 
+    $form['ctia'] = array(
+      '#markup' => t('Sign up to receive weekly updates. Msg & data rates may apply. Text STOP to opt-out, HELP for help.'),
+      '#prefix' => '<p style="font-size: 9px;">',
+      '#suffix' => '</p>',
+    );
+
     if (!user_is_logged_in()) {
       $form['fav_color'] = array(
         '#type' => 'textfield',
