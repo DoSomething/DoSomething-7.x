@@ -1169,6 +1169,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
         $req = array(
           'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $cell),
           'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
+          'StatusCallback' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/call-done',
           'method' => 'GET',
         );
 
@@ -1203,6 +1204,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
       $req = array(
         'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $beta_number),
         'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
+        'StatusCallback' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/call-done',
         'method' => 'GET',
       );
 
