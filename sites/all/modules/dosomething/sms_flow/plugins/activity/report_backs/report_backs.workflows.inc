@@ -135,42 +135,50 @@ $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_pbj_report_back';
 $workflow->title = 'PBJ Report Back';
+$workflow->description = 'Submits the report back for use with the PBJ campaign';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
+$activity->title = 'start';
 $activity->name = 'start';
 $activity->outputs = array('ask_picture');
 
 $activity = $workflow->newActivity('mms_prompt');
+$activity->title = 'ask_picture';
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
 $activity->outputs = array('ask_jars');
 $activity->should_prompt = FALSE;
 
 $activity = $workflow->newActivity('sms_prompt');
+$activity->title = 'ask_jars';
 $activity->name = 'ask_jars';
 $activity->inputs = array('ask_picture');
 $activity->outputs = array('ask_people');
 $activity->question = 'Sweet Peanut Butter Batman! Next: Question 1 - How many jars did you collect in total?';
 
 $activity = $workflow->newActivity('sms_prompt');
+$activity->title = 'ask_people';
 $activity->name = 'ask_people';
 $activity->inputs = array('ask_jars');
 $activity->outputs = array('ask_zip');
 $activity->question = 'Jamtastic! Now Question 2 - How many people were involved?';
 
 $activity = $workflow->newActivity('sms_prompt');
+$activity->title = 'ask_zip';
 $activity->name = 'ask_zip';
 $activity->inputs = array('ask_people');
 $activity->outputs = array('strip_signature');
 $activity->question = 'Final question - Where did you donate your jars? (Text back the zipcode)';
 
-$activity = $workflow->newActivity('strip_signature');
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->title = 'strip_signature';
 $activity->name = 'strip_signature';
 $activity->inputs = array('ask_zip');
 $activity->outputs = array('pbj_report_back');
 
 $activity = $workflow->newActivity('submit_report_back');
+$activity->title = 'pbj_report_back';
 $activity->name = 'pbj_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('mcommons_opt_out');
@@ -184,12 +192,14 @@ $activity->success_response = 'You are a rockstar. You\'ve been entered to win @
 $activity->webform_nid = 728619;
 
 $activity = $workflow->newActivity('mobile_commons_opt_out');
+$activity->title = 'mcommons_opt_out';
 $activity->name = 'mcommons_opt_out';
 $activity->inputs = array('pbj_report_back');
 $activity->outputs = array('end');
 $activity->opt_out_ids = array(112733);
 
 $activity = $workflow->newActivity('end');
+$activity->title = 'end';
 $activity->name = 'end';
 $activity->inputs = array('mcommons_opt_out');
 
