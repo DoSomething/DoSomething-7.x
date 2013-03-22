@@ -312,7 +312,9 @@ function sms_mobile_commons_add_user_to_campaign($number, $first_name = '', $las
       'method'  => 'POST',
       'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
       'content' => http_build_query(array(
-        'person[phone]' => $number,
+        'person' => array(
+          'phone' => $number,
+        ),
       )),
     )
   );
@@ -333,7 +335,9 @@ function sms_mobile_commons_campaign_opt_out($number, $campaigns) {
 
   $content = array(
     'company_uuid' => _sms_mobile_commons_get_company_uuid(),
-    'person[phone]' => $number,
+    'person' => array(
+      'phone' => $number,
+    ),
   );
 
   if (count($campaigns) > 1) {
@@ -341,7 +345,8 @@ function sms_mobile_commons_campaign_opt_out($number, $campaigns) {
     // Additional campaigns must be in the format "&campaign[]="
     $content_query = http_build_query($content);
     foreach ($campaigns as $id) {
-      $content_query .= '&campaign%5B%5D=' . $id;
+      $campaign_key = urlencode('campaign[]');
+      $content_query .= '&' . $campaign_key . '=' . $id;
     }
   }
   else {
@@ -408,8 +413,10 @@ function sms_mobile_commons_opt_in($number, $opt_in_path, $args = array()) {
   $api_opt_in_url = 'https://secure.mcommons.com/profiles/join';
 
   $content = array(
-    'person[phone]' => $number,
     'opt_in_path[]' => $opt_in_path,
+    'person' => array(
+      'phone' => $number,
+    ),
   );
 
   if (!empty($args)) {
