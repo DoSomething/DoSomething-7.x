@@ -354,7 +354,7 @@ function dosomething_mailchimp_toolbox_collect_merge_vars($target_email = NULL, 
 }
 
 /**
- *  Extends default mail system to use crazyshitMailSystem which sends emails as HTML
+ *  Extends default mail system to use DoSomethingMailSystem which sends emails as HTML
  */
 class DoSomethingMailSystem extends DefaultMailSystem {
 
