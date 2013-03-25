@@ -80,10 +80,10 @@
               <img class="bg-header" src="<?php print($files_source . 'h-cause' . $i . '.png'); ?>" alt="why <?php print($cause_subject); ?>?" />
               <ul>
                 <?php for ($j=1;$j<5;$j++): ?>
-                  <li><p><?php print($cause[$i][$j]); ?></p></li>
+                  <li><p><?php if (isset($cause[$i][$j])): print($cause[$i][$j]); endif; ?></p></li>
                 <?php endfor; ?>
               </ul>
-              <a class="cause-link" href="#"><?php print($cause['links'][$i]); ?></a>
+              <a class="cause-link" href="#"><?php if (isset($cause['links'][$i])): print($cause['links'][$i]); endif; ?></a>
             </div> <!-- .cause-facts -->
           <?php endfor; ?>
 
