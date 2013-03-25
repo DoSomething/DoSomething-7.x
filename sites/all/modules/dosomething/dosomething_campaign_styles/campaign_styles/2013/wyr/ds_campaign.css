@@ -21,10 +21,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: black url("//files.dosomething.org/files/campaigns/mlk/activist-bg.jpg") center top no-repeat; }
-
-#block-dosomething-campaign-styles-campaign-nav .content {
-  margin-bottom: 20px; }
+  background: black url("//files.dosomething.org/files/campaigns/mlk/mlk-bg.jpg") center top no-repeat; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -414,6 +411,8 @@ body {
     width: 85%; } }
 #cmp {
   /* element floats */
+  /* centers wrappers contained within floated segments */
+  /* element floats */
   /* centers wrappers contained within floated segments */ }
   #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
   #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
@@ -493,7 +492,215 @@ body {
     font-size: 0.625em;
     font-weight: 500;
     line-height: 1em; }
-  #cmp .section {
+  #cmp bel {
+    cursor: default; }
+  #cmp #contact-form2 {
+    padding: 2%;
+    margin: 0 0 2% 0 !important; }
+  #cmp #faq #contact-form3 {
+    margin-top: -2%; }
+    #cmp #faq #contact-form3 div {
+      padding: 0; }
+    #cmp #faq #contact-form3 p {
+      text-align: center; }
+    #cmp #faq #contact-form3 .pane-campaign-sign-up {
+      padding: 2% 0 0 0 !important; }
+  #cmp #contact-form2, #cmp #contact-form3 {
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+  #cmp #contact-form, #cmp #contact-form2, #cmp #contact-form3 {
+    margin: 5px 0 0;
+    padding-bottom: 10px;
+    background: black;
+    background: #fe002b;
+    width: 100%;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-top-left-radius: 6px;
+    -moz-border-top-right-radius: 6px;
+    -o-border-top-left-radius: 6px;
+    -o-border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px; }
+    #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
+      color: white;
+      font-size: 1.05em;
+      line-height: 1.3em;
+      font-weight: 500;
+      text-align: left;
+      padding: 0.2em 0 0 0; }
+    #cmp #contact-form span, #cmp #contact-form2 span, #cmp #contact-form3 span {
+      text-transform: uppercase;
+      font-weight: 500; }
+    #cmp #contact-form #campaign-opt-in, #cmp #contact-form2 #campaign-opt-in, #cmp #contact-form3 #campaign-opt-in {
+      display: none; }
+    #cmp #contact-form #webform-component-start-header h3, #cmp #contact-form2 #webform-component-start-header h3, #cmp #contact-form3 #webform-component-start-header h3 {
+      width: 100%; }
+    #cmp #contact-form #webform-component-start-header p, #cmp #contact-form2 #webform-component-start-header p, #cmp #contact-form3 #webform-component-start-header p {
+      text-align: left;
+      color: white;
+      font-size: 0.6em;
+      margin-top: 0.5em;
+      font-weight: 300; }
+    #cmp #contact-form .form-actions p, #cmp #contact-form2 .form-actions p, #cmp #contact-form3 .form-actions p {
+      color: white;
+      margin-top: 5px;
+      font-size: 0.75em;
+      font-weight: 500; }
+    #cmp #contact-form .form-actions a, #cmp #contact-form2 .form-actions a, #cmp #contact-form3 .form-actions a {
+      color: white;
+      text-transform: uppercase; }
+      #cmp #contact-form .form-actions a:hover, #cmp #contact-form2 .form-actions a:hover, #cmp #contact-form3 .form-actions a:hover {
+        color: #f7c000;
+        text-decoration: underline; }
+  #cmp .focusOutline {
+    box-shadow: 0px 0px 10px 4px #fff742; }
+  #cmp #edit-submitted-field-webform-mobile-und-0-value {
+    float: left; }
+  #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
+    height: 3em;
+    padding-left: 0.7em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+  #cmp .pane-campaign-sign-up label {
+    color: white;
+    width: 100%;
+    font-size: 1.1em;
+    font-weight: 500;
+    font-family: din-web-reg;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    text-align: left; }
+  #cmp .pane-campaign-sign-up #edit-submit {
+    position: static;
+    height: 2em;
+    margin: 1.1em auto 0;
+    padding: 0.3em 0.7em; }
+  #cmp #campaign-opt-in {
+    clear: both;
+    text-align: left;
+    padding: 0.3em 0 0 0 !important; }
+    #cmp #campaign-opt-in span {
+      font-size: 0.7em;
+      line-height: 0.7em;
+      background: transparent;
+      color: white; }
+    #cmp #campaign-opt-in strong {
+      font-weight: 600; }
+  #cmp .webform-client-form {
+    box-shadow: none; }
+  #cmp .already_submitted {
+    margin: 0 0 2% 0; }
+    #cmp .already_submitted .go-button {
+      margin: 0 0 1% 0; }
+  #cmp #webform-component-join-header, #cmp #webform-component-start-header, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
+    width: 25%;
+    float: left; }
+  #cmp #edit-submitted-field-webform-email {
+    width: 35%; }
+  #cmp .form-actions.form-wrapper {
+    width: 15%; }
+  #cmp #submitted-field-webform-email-add-more-wrapper, #cmp #submitted-field-webform-mobile-add-more-wrapper, #cmp #contact-form h3 {
+    width: 90%;
+    margin: 0 auto; }
+  #cmp #sign-up .form-wrapper {
+    float: none; }
+  #cmp #sign-up input {
+    margin-bottom: 10px; }
+  #cmp #report-back {
+    margin-top: 30%;
+    border: none;
+    width: 70%;
+    padding: 1% 2%;
+    background: white; }
+    #cmp #report-back h1 {
+      font-size: 1.4em;
+      line-height: 1.1em; }
+    #cmp #report-back #edit-submitted-field-webform-pictures {
+      background: #f1f1f1;
+      border: 2px solid #e1e1e1;
+      padding: 1% 3% 1.5%;
+      margin: 2% 0;
+      max-width: 375px;
+      border-radius: 6px;
+      -o-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px; }
+      #cmp #report-back #edit-submitted-field-webform-pictures legend {
+        margin-bottom: 0.3em; }
+      #cmp #report-back #edit-submitted-field-webform-pictures span {
+        font-weight: 400;
+        font-size: 1.5em;
+        text-transform: uppercase; }
+    #cmp #report-back .pane-title,
+    #cmp #report-back .fb-social-comments-plugin {
+      display: none; }
+    #cmp #report-back form {
+      border: none; }
+      #cmp #report-back form input#edit-submit {
+        margin: 0.5em 0 1em; }
+      #cmp #report-back form input.form-text, #cmp #report-back form textarea {
+        font-size: 14px;
+        margin-bottom: 0.5em; }
+      #cmp #report-back form label {
+        font-size: 1.4em; }
+      #cmp #report-back form #edit-submitted-how-many-people-participated-in-this-drive,
+      #cmp #report-back form #edit-submitted-how-many-potential-donors-were-registered {
+        width: 60px; }
+      #cmp #report-back form .form-item {
+        margin-top: 10px; }
+      #cmp #report-back form .fb-social-comments-plugin {
+        display: none; }
+      #cmp #report-back form #edit-submitted-taxonomy-vocabulary-5,
+      #cmp #report-back form #edit-submitted-field-webform-email,
+      #cmp #report-back form #edit-submitted-field-webform-mobile,
+      #cmp #report-back form #edit-submitted-field-webform-videos,
+      #cmp #report-back form #edit-submitted-field-webform-school-reference,
+      #cmp #report-back form #edit-submitted-field-webform-school,
+      #cmp #report-back form #edit-submitted-field-webform-school-zip {
+        display: none; }
+      #cmp #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
+        display: block !important;
+        margin: 10px !important; }
+    #cmp #report-back #edit-submitted-ew {
+      border: none !important;
+      -moz-box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      -o-box-shadow: none !important;
+      box-shadow: none !important;
+      color: #999999;
+      font-size: 1.1em; }
+    #cmp #report-back label[for="edit-submitted-ew"] {
+      color: #999999; }
+  #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
+    font-family: din-web;
+    background: #ffcb15;
+    margin: 4% 0 1%;
+    padding: 0.3em 0.7em;
+    font-size: 1.5em;
+    height: 1.4em;
+    display: inline-block;
+    color: #1e1d1c;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    line-height: 1em; }
+    #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
+      color: black; }
+  #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
+  #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
+    display: none; }
+  #cmp ection {
     overflow: hidden;
     background: white;
     margin: 0 auto;
@@ -571,7 +778,7 @@ body {
     line-height: 1.2em;
     padding: 20px 10px 15px; }
   #cmp #action {
-    padding: 0 0 2%; }
+    padding: 3% 0 2%; }
   #cmp #scholarship {
     background: #fe002b;
     overflow: visible; }
@@ -979,7 +1186,7 @@ body {
         left: 2%; }
   #cmp #facts .divider {
     margin: 0 2%; }
-  #cmp label {
+  #cmp bel {
     cursor: default; }
   #cmp #contact-form2 {
     padding: 2%;
