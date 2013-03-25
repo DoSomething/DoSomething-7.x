@@ -269,7 +269,8 @@ function dosomething_campaign_styles_og_context_panels() {
         if ($map->plugin == 'entity:node') {
           $gid = 0;
           if (isset($map->data->nid)) {
-            $gid = og_get_group('node', $map->data->nid)->gid;
+            $g = og_get_group('node', $map->data->nid);
+            $gid = (isset($g->gid) ? $g->gid : 0);
           }
 
           $context[] = array($gid);

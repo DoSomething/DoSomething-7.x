@@ -63,11 +63,11 @@
   ?>
   <link rel="stylesheet" href="<?php print $rackspace_url ?>/din.css" media="all" />
   <?php print $styles; ?>
-  <?php print $shiv; ?>
+  <?php if (isset($shiv)): print $shiv; endif; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
   <?php print $scripts; ?>
-  <?php print $selectivizr; ?>
-  <?php print $placeholder_shiv; ?>
+  <?php if (isset($selectivizr)): print $selectivizr; endif; ?>
+  <?php if (isset($placeholder_shiv)): print $placeholder_shiv; endif; ?>
 
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
