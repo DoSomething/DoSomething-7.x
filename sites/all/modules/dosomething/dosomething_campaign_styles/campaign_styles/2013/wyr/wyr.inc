@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'MLK',
+  'title' => 'Would You Rather?',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -28,12 +28,13 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    //array('title' => 'scholarship info', 'href' => 'mlk', 'fragment' => 'scholarship'),
-    array('title' => 'learn about activism', 'href' => 'mlk', 'fragment' => 'meet'),
+    array('title' => 'take action', 'href' => 'mlk', 'fragment' => 'action'),
+    array('title' => 'play the game', 'href' => 'mlk', 'fragment' => 'game'),
+    array('title' => 'scholarship', 'href' => 'mlk', 'fragment' => 'scholarship'),
     array('title' => 'questions', 'href' => 'mlk', 'fragment' => 'faq'),
-  //),
-  //'menu_suffix' => array(
-    //'#markup' => '<hr><p>Got questions? Email Christina at <a href="mailto:activist@dosomething.org">activist@dosomething.org</a>!</p>'
+  ),
+  'menu_suffix' => array(
+    '#markup' => '<hr><p>Got questions? Email Christina at <a href="mailto:mlk@dosomething.org">mlk@dosomething.org</a>!</p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'

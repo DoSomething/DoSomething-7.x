@@ -103,7 +103,6 @@
         return false;
       });
 
-
       // nav highlighting 
       var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
       var firstNav = plainNav + ' a' + '.first';
@@ -113,9 +112,6 @@
           $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
       });
 
-
-
-         
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
