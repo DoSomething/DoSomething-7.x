@@ -4,8 +4,9 @@ function fb_log_action() {
 	global $user;
 
 	$l = array(
-	  'path' => (isset($_POST['link']) ? $_POST['link'] : ''),
-      'action' => (isset($_POST['action']) ? $_POST['action'] : ''),
+	  'element' => (isset($_POST['element']) ? check_plain($_POST['element']) : ''),
+	  'path' => (isset($_POST['link']) ? check_plain($_POST['link']) : ''),
+      'action' => (isset($_POST['action']) ? check_plain($_POST['action']) : ''),
       'action_key' => (isset($_POST['key']) ? intval($_POST['key']) : 0),
       'uid' => $user->uid,
       'fbid' => (isset($_POST['fbid']) ? intval($_POST['fbid']) : 0),
@@ -16,7 +17,7 @@ function fb_log_action() {
 	drupal_write_record('fb_log', $l);
 
 	$response = array(
-		'action' => (isset($_POST['action']) ? $_POST['action'] : ''),
+		'action' => (isset($_POST['action']) ? check_plain($_POST['action']) : ''),
 		'key' => (isset($_POST['key']) ? intval($_POST['key']) : 0),
 		'time' => date('m/d/Y g:iA'),
 		'success' => TRUE,
@@ -85,7 +86,54 @@ function connections_menu() {
   	'access callback' => TRUE,
   );
 
+  $items['connections/get-counts'] = array(
+  	'page callback' => 'connections_get_counts',
+  	'access callback' => TRUE,
+  );
+
   return $items;
+}
+
+function connections_get_counts() {
+  // Ignore if there are no elements to check.
+  if (empty($_POST['elements'])) {
+  	drupal_json_output(array(
+  	  'status' => 0,
+  	  'error' => 'No elements.',
+  	));
+  	drupal_exit();
+  }
+
+  // Get the elements..
+  $elements = &$_POST['elements'];
+
+  // Clean up the elements.
+  array_walk($elements, function(&$item, &$key, $prefix) {
+  	// Make sure that it's not empty...
+  	if (!empty($item)) {
+	  $item = check_plain($item);
+	}
+	// And if it is, ignore it.
+	else {
+	  unset($_POST['elements'][$key]);
+	}
+  });
+
+  // Get counts.
+  $n = db_select('fb_log', 'l');
+  $n->fields('l', array('element'));
+  $n->addExpression("COUNT(l.element)", 'total');
+  $n->condition('element', $elements, 'IN');
+  $n->condition('path', '%' . check_plain($_POST['page']) . '%', 'LIKE');
+  $n->groupBy('l.element');
+  $r = $n->execute()->fetchAllKeyed();
+
+  // Return that shit
+  drupal_json_output(array(
+  	'status' => 1,
+  	'results' => $r,
+  ));
+  drupal_exit();
 }
 
 /**
