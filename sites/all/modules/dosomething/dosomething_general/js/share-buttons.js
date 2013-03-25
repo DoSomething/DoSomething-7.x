@@ -18,7 +18,7 @@
       }
 
       // Run a standard Facebook feed dialog.
-      Drupal.behaviors.fb.feed({}, function(response) {
+      Drupal.behaviors.fb.feed({ 'feed_selector': '#facebook-wrapper', 'feed_noclick': true }, function(response) {
         // Only perform any actions if the response actually posted something.
         if (typeof response !== 'undefined' && typeof response.post_id !== 'undefined') {
           // Disable Facebook "recommend" btuton
