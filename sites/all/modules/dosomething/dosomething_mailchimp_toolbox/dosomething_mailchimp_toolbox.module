@@ -352,3 +352,71 @@ function dosomething_mailchimp_toolbox_collect_merge_vars($target_email = NULL, 
   return $merge_vars;
   
 }
+
+/**
+ *  Extends default mail system to use crazyshitMailSystem which sends emails as HTML
+ */
+class DoSomethingMailSystem extends DefaultMailSystem {
+
+  public function format(array $message) {
+    $message['body'] = implode("\n\n", $message['body']);
+    $message['body'] = drupal_wrap_mail($message['body']);
+
+    return $message;
+  }
+
+}
+
+/**
+ * Send email message speific to the Crazy project.
+ *
+ * @param $email
+ *   Users email address.
+ * @param $message
+ *   The cotents of the message to be sent.
+ * @return
+ *   Boolean indicating success.
+ */
+function dosomething_mailchimp_toolbox_mail_send($email, $message) {
+
+  // All system mails need to specify the module and template key (mirrored from
+  // hook_mail()) that the message they want to send comes from.
+  $module = 'dosomething_mailchimp_toolbox';
+  $key = 'default';
+
+  // Specify 'to' and 'from' addresses.
+  $to = $email;
+  $from = 'dosomething@dosomething.org';
+
+  // The language of the e-mail. This will one of three values:
+  // * user_preferred_language(): Used for sending mail to a particular website
+  //   user, so that the mail appears in their preferred language.
+  // * global $language: Used when sending a mail back to the user currently
+  //   viewing the site. This will send it in the language they're currently
+  //   using.
+  // * language_default(): Used when sending mail to a pre-existing, 'neutral'
+  //   address, such as the system e-mail address, or when you're unsure of the
+  //   language preferences of the intended recipient.
+  //
+  // Since in our case, we are sending a message to a random e-mail address that
+  // is not necessarily tied to a user account, we will use the site's default
+  // language.
+  $language = language_default();
+
+  // Whether or not to automatically send the mail when drupal_mail() is
+  // called. This defaults to TRUE, and is normally what you want unless you
+  // need to do additional processing before drupal_mail_send() is called.
+  $send = TRUE;
+  // Send the mail and check for success. Note that this does not guarantee
+  // message delivery; only that there were no PHP-related issues encountered
+  // while sending.
+  $result = drupal_mail($module, $key, $to, $language, $message, $from, $send);
+
+  if ($result['result'] == FALSE) {
+    watchdog('dosomething_mailchimp_toolbox', 'Failed to send email message.');
+  }
+
+  return $result['result'];
+
+
+}
