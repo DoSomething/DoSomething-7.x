@@ -38,6 +38,10 @@ function connections_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'element' => array(
+        'type' => 'varchar',
+        'length' => 255
+      ),
       'path' => array(
         'description' => 'The absolute URL where the action happened.',
         'type' => 'varchar',
@@ -176,5 +180,14 @@ function connections_update_7104() {
 function connections_update_7105() {
   if (db_table_exists('fb_log')) {
     db_query("ALTER TABLE fb_log ADD to_fbid varchar(255) not null after fbid");
+  }
+}
+
+/**
+ *  Adds "element" column.
+ */
+function connections_update_7106() {
+  if (db_table_exists('fb_log')) {
+    db_query("ALTER TABLE fb_log ADD `element` varchar(255) after `lid`");
   }
 }
