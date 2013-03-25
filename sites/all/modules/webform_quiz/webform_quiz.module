@@ -120,9 +120,11 @@ function webform_quiz_node_load($nodes, $types) {
       }
     }
     else {
-      foreach ($result as $rid => $webform_quiz) {
-        $add['title'] = $add['url'] = $webform_quiz['redirect_url'];
-        $nodes[$nid]->webform['quiz_redirects'][$rid] = $add;
+      if (!empty($result) && is_array($result)) {
+        foreach ($result as $rid => $webform_quiz) {
+          $add['title'] = $add['url'] = $webform_quiz['redirect_url'];
+          $nodes[$nid]->webform['quiz_redirects'][$rid] = $add;
+        }
       }
     }
   }
