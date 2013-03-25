@@ -227,6 +227,7 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
  */
 function dosomething_clubs_club_counter_right() {
   $group = og_context();
+  $n = menu_get_object();
   $items = array();
 
   // Get all users for the group.
@@ -305,8 +306,11 @@ function dosomething_clubs_club_counter_right() {
     $s = '<span style="float: right; background: #E01B6A; color: white; padding: 3px; position: relative; top: -5px; border-radius: 5px;" title="' . t('This club has ' . $pending . ' member(s) pending approval.') . '">' . $pending . '</span>';
   }
 
+  $nid = (isset($n->nid) ? $n->nid : 0);
+  $gid = (isset($group->gid) ? $group->gid : 0);
+
   $output[] = array(
-      '#markup' => '<div class="button-container">' . l(t('Invite friends'), 'clubs/share/' . $n->nid, array('attributes' => array('class' => array('go-button')))) . l('<div' . $w . '>' . t('View Members') . '</div>' . $s, 'club/'.$group->gid.'/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')), 'html' => TRUE)) . '</div>',
+      '#markup' => '<div class="button-container">' . l(t('Invite friends'), 'clubs/share/' . $nid, array('attributes' => array('class' => array('go-button')))) . l('<div' . $w . '>' . t('View Members') . '</div>' . $s, 'club/' . $gid . '/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')), 'html' => TRUE)) . '</div>',
   );
 
   return drupal_render($output);

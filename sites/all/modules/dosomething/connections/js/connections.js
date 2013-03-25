@@ -24,6 +24,7 @@
     debug: false,
     fb_init: false,
     is_authorized: false,
+    numbers: {},
     _feed_callback: null,
     _ograph_callback: null,
     _message_callback: null,
@@ -64,13 +65,17 @@
     /**
      *  Logs Facebook actions.
      */
-    log: function(action, key, to) {
+    log: function(action, key, to, element) {
       var fbid = FB.getUserID();
       if (!fbid) {
         fbid = 0;
       }
 
-      $.post('/fb/log', { 'fbid': fbid, 'link': document.location.href, 'action': action, 'key': key, 'to': to }, function(response) {
+      if (typeof element === 'undefined' || typeof element === 'null') {
+        element = '';
+      }
+
+      $.post('/fb/log', { 'fbid': fbid, 'link': document.location.href, 'element': element, 'action': action, 'key': key, 'to': to }, function(response) {
         //Drupal.behaviors.fb.clog(response);
       });
     },
@@ -151,6 +156,27 @@
       });
 
     	return Drupal.behaviors.fb.is_authorized;
+    },
+
+    /**
+     *  Gets counts for clicked elements.
+     *
+     *  @param array elements
+     *    An array of elements that were clicked.
+     *
+     *  @param string page
+     *    The full path to the page you're referring to.  If blank,
+     *    will default to the current page.
+     */
+    get_counts: function(elements, page) {
+      $.post('/connections/get-counts', { 'elements': elements, 'page': page || document.location.href }, function(response) {
+        if (typeof response.error != 'undefined') {
+          Drupal.behaviors.fb.clog('Error: ' + response.error);
+        }
+        else if (typeof response.status != 'undefined' && response.status == 1) {
+          Drupal.behaviors.fb.numbers = response.results;
+        }
+      });
     },
 
     /**
@@ -463,6 +489,7 @@
      *       feed_allow_multiple   (Uses the TD Friend Selector to allow multiple friends to be posted-to)
      *       feed_require_login    (Initializes the login procedure if a user is not logged in.)
      *       feed_dialog_msg       (An optional message that will appear on the top of the share dialog.  Only appears if multi-friend-selecting is enabled.)
+     *       feed_noclick          (Whether or not to ignore the automatic onclick event handler -- useful if we want to specify the element but ignore the click)
      *
      *  @param callback
      *    A callback function which triggers when a post was succesfully made.
@@ -487,6 +514,7 @@
       	modal_opacity: config.feed_modal_opacity || 0.65,
         friend_selector: 'td', // updated 3/6/13: Need to use TD to force only one friend at a time.
         check_remainder: false,
+        noclick: config.feed_noclick || false,
       };
 
       if (typeof callback == 'undefined' && typeof Drupal.behaviors.fb._feed_callback == 'function') {
@@ -528,7 +556,7 @@
         things.modal = true;
       }
 
-      if (things.selector) {
+      if (things.selector && !things.noclick) {
       	jQuery('body ' + things.selector).click(function() {
         	Drupal.behaviors.fb.feed_runner(things, share, callback);
           return false;
@@ -564,7 +592,7 @@
 
       if (things.allow_multiple > 0) {
         Drupal.behaviors.fb.real_auth(things, function(response) {
-          Drupal.behaviors.fb.log('Feed Dialog', 1);
+          Drupal.behaviors.fb.log('Feed Dialog', 1, 0, things.selector);
           var c;
           if (!things) {
             c = {};
@@ -599,7 +627,7 @@
                     'caption': things.caption,
                     'description': things.description,
                   }, function(response) {
-                    Drupal.behaviors.fb.log('Feed Post', 2, parseInt(things.friends));
+                    Drupal.behaviors.fb.log('Feed Post', 2, parseInt(things.friends), things.selector);
                     Drupal.behaviors.fb.callback_handler(callback, response);
                   });
                   // 2/4/13
@@ -718,7 +746,7 @@
       else {
         FB.ui(share, function(response) {
           Drupal.behaviors.fb.callback_handler(callback, response);
-          Drupal.behaviors.fb.log('Feed Post', 2);
+          Drupal.behaviors.fb.log('Feed Post', 2, 0, things.selector);
         });
 
         if ($('#fbc-modal').length > 0) {
@@ -745,7 +773,7 @@
     send_feed_post: function(friendid, post) {
       FB.api('/' + friendid + '/feed', 'post', post, function(response) {
          Drupal.behaviors.fb.clog(response);
-         Drupal.behaviors.fb.log('Feed Post', 2, friendid);
+         Drupal.behaviors.fb.log('Feed Post', 2, friendid, things.selector);
       });
     },
 
@@ -850,7 +878,7 @@
     ograph_message: function(things, fbpost, callback) {
       Drupal.behaviors.fb.real_auth(things, function() {
         Drupal.behaviors.fb.fb_dialog('og-post', things, function(response) {
-          Drupal.behaviors.fb.log('Open Graph Dialog', 1);
+          Drupal.behaviors.fb.log('Open Graph Dialog', 1, 0, things.selector);
 
           if (response.comments) {
             fbpost.message = response.comments;
@@ -1101,7 +1129,7 @@
         'post',
         fbpost,
         function(response) {
-          Drupal.behaviors.fb.log('Image share', 3);
+          Drupal.behaviors.fb.log('Image share', 3, 0, things.selector);
           Drupal.behaviors.fb.callback_handler(callback, response);
         }
       );
