@@ -418,8 +418,13 @@ function dosomething_general_find_tfj_team() {
     drupal_goto('team/teensforjeans/' . $team->sid);
   }
   else {
-    $p = profile2_load_by_user($user, 'main');
-    if ($cell = $p->field_user_mobile[LANGUAGE_NONE][0]['value']) {
+    $my = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_mobile' => 'cell',
+      ),
+    ));
+
+    if ($cell = $my['cell']) {
       // Make sure we get only the digits...and presume the last 10 are the real number.
       $cell = substr(preg_replace('#[^0-9]#', '', $cell), -10);
       // Rebuild with dashes
@@ -511,8 +516,15 @@ function search_by_email_results($form, &$form_state) {
 
     $r = $u->execute()->fetchAll();
     foreach ($r AS $key => $user) {
-      $u = user_load($user->uid);
-      $p = profile2_load_by_user($u, 'main');
+      $u = dosomething_api_user_fetch_data(array(
+        'profile' => array(
+          'field_user_first_name' => 'first_name',
+          'field_user_last_name' => 'last_name',
+          'field_user_mobile' => 'mobile',
+          'field_user_birthday' => 'birthday',
+          'field_user_gender' => 'gender',
+        ),
+      ), $user->uid);
 
      // Mailing address
       $c = db_select('field_data_field_club_address', 'a')
@@ -537,11 +549,11 @@ function search_by_email_results($form, &$form_state) {
       $club = reset($mailing);
 
       $extends = array(
-        'first_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
-        'last_name' => $p->field_user_last_name[LANGUAGE_NONE][0]['value'],
-        'cell_number' => $p->field_user_mobile[LANGUAGE_NONE][0]['value'],
-        'birthday' => $p->field_user_birthday[LANGUAGE_NONE][0]['value'],
-        'gender' => $p->fild_user_gender[LANGUAGE_NONE][0]['value'],
+        'first_name' => $u['first_name'],
+        'last_name' => $u['last_name'],
+        'cell_number' => $u['mobile'],
+        'birthday' => $u['birthday'],
+        'gender' => $u['gender'],
         'mailing_address' => array(
           'address' => $club->address,
           'city' => $club->city,
@@ -972,9 +984,11 @@ function dosomething_general_webform_email_and_mail_validate(&$form, &$form_stat
 function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state) {
   global $user;
   if (isset($form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
-    $profile = profile2_load_by_user($user, 'main');
-    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-    $profile->save();
+    dosomething_api_user_update(array(
+      'profile' => array(
+        'field_user_mobile' => $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']
+      )
+    ));
   }
   if (isset($form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email']) && $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'] != '') {
     $variables = array(
@@ -1245,13 +1259,16 @@ function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile
 
   global $user;
   if ($user->uid > 0) {
-    $profile = profile2_load_by_user($user, 'main');
-    $fname = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-    $lname = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+    $me = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_first_name' => 'first_name',
+        'field_user_last_name' => 'last_name'
+      ),
+    ));
 
     $args += array(
-      'first_name' => $fname,
-      'last_name' => $lname,
+      'first_name' => $me['first_name'],
+      'last_name' => $me['last_name'],
     );
   }
 
@@ -1298,13 +1315,16 @@ function dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $ar
 
   global $user;
   if ($user->uid > 0) {
-    $profile = profile2_load_by_user($user, 'main');
-    $fname = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-    $lname = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+    $me = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_first_name' => 'first_name',
+        'field_user_last_name' => 'last_name'
+      ),
+    ));
 
     $args += array(
-      'first_name' => $fname,
-      'last_name' => $lname,
+      'first_name' => $me['first_name'],
+      'last_name' => $me['last_name'],
     );
   }
 
@@ -1470,20 +1490,23 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
   
   // check to see if user account is found
   if ($user) {
-  
     // Merge vars for user
     $merge_vars['UID'] = $user->uid;
     $merge_vars['MMERGE3'] =  $user->name;
     
     // Mobile
-    $user2 = profile2_load_by_user($user, 'main');
-    $mobile = field_get_items('profile2', $user2, 'field_user_mobile');
+    $u = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_mobile' => 'mobile',
+        'field_user_birthday' => 'birthday',
+      ),
+    ), $user);
     
     if (!empty($target_mobile)) {
       $merge_vars['MMERGE7'] = $target_mobile;
     }
-    elseif(!empty($mobile)) {
-      $merge_vars['MMERGE7'] = $mobile;
+    elseif(!empty($u['mobile'])) {
+      $merge_vars['MMERGE7'] = $u['mobile'];
       
       // TO-DO ?
       // if ($target_mobile != $mobile) {
@@ -1496,11 +1519,8 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
     }
     
     // Birthday
-    $birthday = field_get_items('profile2', $user2, 'field_user_birthday');
-    
-    if (!empty($birthday)) {
-      
-      $birthday_bits = explode('-', $birthday[0]['value']);   
+    if (!empty($u['birthday'])) {
+      $birthday_bits = explode('-', $u['birthday']);   
       $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  substr($birthday_bits[2], 0, strpos($birthday_bits[2],' ')), $birthday_bits[0]);
       
       $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
@@ -1540,12 +1560,17 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
 function dosomething_general_get_full_name($account, $display_type = 'public') {
   $full_name = '';
   $names = array();
-  $profile = profile2_load_by_user($account, 'main');
 
-  if (is_object($profile)) {
-    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-    $first_name = $profile_wrapper->field_user_first_name->value();
-    $last_name = $profile_wrapper->field_user_last_name->value();
+  $profile = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'field_user_first_name' => 'first_name',
+      'field_user_last_name' => 'last_name'
+    ),
+  ), $account);
+
+  if (is_array($profile)) {
+    $first_name = $profile['first_name'];
+    $last_name = $profile['last_name'];
 
     switch ($display_type) {
       case 'private':

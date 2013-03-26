@@ -25,10 +25,6 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
 
   drupal_add_library('system', 'drupal.ajax');
   drupal_add_js(drupal_get_path('module', 'dosomething_clubs') . '/js/club-ajax.js');
-  /*drupal_add_css(drupal_get_path('module', 'dosomething_clubs') . '/css/clubs-addons.css', array(
-         'group' => CSS_THEME,
-         'weight' => 100
-       ));*/
 
   if (isset($node->field_club_picture[LANGUAGE_NONE][0]['uri'])) {
     $image = $node->field_club_picture[LANGUAGE_NONE][0];
@@ -45,17 +41,14 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
 
   $see_all = '';
   $member_link = '';
-  // Anonymous user.
+
   $membership = og_get_group_membership($group->gid, 'user', $user->uid);
 
   if (isset($membership->state) && $membership->state == OG_STATE_ACTIVE && isset($group->gid)) {
-    $gid = $group->gid;
-    $f = drupal_get_form('dosomething_clubs_invite_form', $gid);
-    $form = drupal_render($f);
-    $member_link = $form;
+    $member_link = '';
   }
   else if (isset($membership->state) && $membership->state == OG_STATE_PENDING) {
-    $member_link = 'Your membership is pending.';
+    $member_link = t('Your membership is pending.');
 
     $nag = db_select('dosomething_clubs_nag', 'n')
       ->fields('n', array('uid'))
@@ -74,28 +67,6 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
       $member_link = drupal_render($f);
     }
   }
-  /*if ($user->uid == 0) {
-    $member_link = t('Join the club') . l('Go', 'user/registration', array('query' => array('destination' => 'group/node/' . $node->nid . '/subscribe'), 'attributes' => array('class' => 'go-button')));
-  }
-  // Logged in non-member.
-  elseif (!$membership) {
-    $member_link = t('Join the club') . l('Go', 'group/node/' . $node->nid . '/subscribe', array('attributes' => array('class' => 'go-button')));
-  }
-  else {
-    // Pending member.
-    if ($membership->state == 2) {
-      $member_link = t('Membership Pending');
-    }
-    // Approved member with edit access.
-    elseif ($membership->state == 1 && node_access('update', $node)) {
-      $member_link = t('Invite Friends') . l('Go', 'node/' . $node->nid . '/edit', array('attributes' => array('class' => 'go-button')));
-      $see_all = l('or see all', 'club/' . $group->gid . '/members');
-    }
-    // Approved member.
-    elseif ($membership->state == 1) {
-      $member_link = t('Member');
-    }
-  }*/
 
   $location = '';
   $school_name = '';

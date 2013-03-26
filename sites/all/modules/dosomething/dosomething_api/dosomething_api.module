@@ -48,8 +48,19 @@ function dosomething_api_user_lookup($value) {
   return $account;
 }
 
-function dosomething_api_user_fetch_data($data = array('account' => array(), 'profile' => array())) {
-  global $user;
+function dosomething_api_user_fetch_data($data = array('account' => array(), 'profile' => array()), $account = array()) {
+  if (empty($account)) {
+    global $user;
+  }
+  else {
+    if (is_array($account) || is_object($account)) {
+      $user = $account;
+    }
+    else if (is_numeric($account)) {
+      $user = user_load($account);
+    }
+  }
+
   if (!$user->uid) {
     return false;
   }
@@ -67,6 +78,9 @@ function dosomething_api_user_fetch_data($data = array('account' => array(), 'pr
     foreach ($data['profile'] AS $field => $alias) {
       if (isset($p->{$field}[LANGUAGE_NONE][0]['value'])) {
         $return[($alias ? $alias : $field)] = $p->{$field}[LANGUAGE_NONE][0]['value'];
+      }
+      else {
+        $return[($alias ? $alias : $field)] = $p->{$field}[LANGUAGE_NONE][0];
       }
     }
   }
@@ -138,4 +152,36 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   $account->profile = $profile;
 
   return $account;
+}
+
+function dosomething_api_user_update($data = array('user' => array(), 'profile' => array())) {
+  global $user;
+
+  $user_changes = $profile_changes = false;
+  if (isset($data['user']) && !empty($data['user']) && is_array($data['user'])) {
+    foreach ($data['user'] AS $field => $val) {
+      if (isset($user->{$field}) && ($user->{$field} != $val)) {
+        $user->{$field} = $val;
+        $user_changes = true;
+      }
+    }
+
+    if ($user_changes === true) {
+      user_save($user);
+    }
+  }
+
+  if (isset($data['profile']) && !empty($data['profile']) && is_array($data['profile'])) {
+    $profile = profile2_load_by_user($user, 'main');
+    foreach ($data['profile'] AS $field => $val) {
+      if (isset($profile->{$field}[LANGUAGE_NONE][0]['value']) && ($profile->{$field}[LANGUAGE_NONE][0]['value'] != $val)) {
+        $profile->{$field}[LANGUAGE_NONE][0]['value'] = $val;
+        $profile_changes = true;
+      }
+    }
+
+    if ($profile_changes === true) {
+      profile2_save($profile);
+    }
+  }
 }
