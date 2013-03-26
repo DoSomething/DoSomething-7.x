@@ -1,6 +1,22 @@
 <?php
 
 /**
+ *  @file
+ *  Entityqueues are groups full of entities that fall under certain entity types.  For example,
+ *  an entityqueue can be of type "webform submissions" and hold webform submission IDs.  
+ *  Or an entityqueue could be of type Node and hold nodes (of a a particular type).  Entityqueues
+ *  are useful in that they allow you to aggregate large amounts of data into one spot, and use that
+ *  data to show results or display items together.
+ *
+ *  DoSomething's treatment of entityqueue allows us to easily add / remove / swap / move all items within
+ *  an entityqueue with functions that can be used from anywhere (though are callable through the URI).
+ *
+ *  @author Chris Johnson (chris@crisistextline.org), Michael Chittenden (mchittenden@dosomething.org),
+ *          Jody Hamilton, Tim Plunkett
+ *  @date 3/26/13
+ */
+
+/**
  * Implements hook_entityqueue_types().
  */
 function dosomething_entityqueue_entityqueue_types() {
@@ -32,60 +48,182 @@ function dosomething_entityqueue_menu() {
 
   $items['entityqueue/add/%/%'] = array(
     'page callback' => 'dosomething_entityqueue_add',
-    'page arguments' => array(2,3),
+    'page arguments' => array(2, 3),
   ) + $base;
 
   $items['entityqueue/swap/%/%/%'] = array(
     'page callback' => 'dosomething_entityqueue_swap',
-    'page arguments' => array(2,3,4),
+    'page arguments' => array(2, 3, 4),
   ) + $base;
 
   $items['entityqueue/remove/%/%'] = array(
     'page callback' => 'dosomething_entityqueue_remove',
-    'page arguments' => array(2,3),
+    'page arguments' => array(2, 3),
+  ) + $base;
+
+  $items['entityqueue/add_all/%/%'] = array(
+    'page callback' => 'dosomething_entityqueue_add_all',
+    'page arguments' => array(2, 3),
   ) + $base;
 
   return $items;
 }
 
+/**
+ *  Adds an entity to an entityqueue.
+ *
+ *  @param string $entityqueue
+ *    The machine name for the entityqueue to add the entity to.
+ *
+ *  @param int $etid
+ *    An integer representing an entity that will be added to the entityqueue.
+ *
+ *  @param bool $skip_goto (false)
+ *    Whether or not to skip redirecting back to the page.
+ */
 function dosomething_entityqueue_add($entityqueue, $etid, $skip_goto = FALSE) {
+  // Load the entityqueue.
   $entityqueue_entity = reset(entity_load('entityqueue', array($entityqueue)));
+  // And the entities within it.
   $entity_ids = &$entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE];
 
+  // Assume that we're going to add the entity.
   $add = TRUE;
+
+  // But double check to make sure that the entity isn't already there.  If it is, ignore.
   foreach ($entity_ids as $key => $etid_wrapper) {
     if ($etid_wrapper['target_id'] == $etid) {
       $add = FALSE;
     }
   }
+
+  // Assuming we're still good, add it to the array.
   if ($add) $entity_ids[] = array('target_id' => $etid);
 
+  // Save.
   $entityqueue_entity->save();
 
+  // Set the message
   drupal_set_message(t('Submission !sid has been added to !entityqueue.', array('!sid' => $etid, '!entityqueue' => $entityqueue_entity->label)));
 
+  // Redirect?
   if (!$skip_goto) drupal_goto();
 }
 
-function dosomething_entityqueue_swap($entityqueue_from, $entityqueue_to, $etid) {
+/**
+ *  Swaps an entity out of one entityqueue, and places it in another.
+ *
+ *  @param string entityqueue_from
+ *    The machine name of the entityqueue that the entity should leave.
+ *
+ *  @param string $entityqueue_to
+ *    The machine name of the entityqueue that the entity should arrive in.
+ *
+ *  @param int $etid
+ *    An integer representing the entity that should be moved.
+ *
+ *  @param bool $skip_goto (false)
+ *    Whether or not to skip redirecting back to the page.
+ */
+function dosomething_entityqueue_swap($entityqueue_from, $entityqueue_to, $etid, $skip_goto = FALSE) {
+  // Remove from old entityqueue
   dosomething_entityqueue_remove($entityqueue_from, $etid, TRUE);
+
+  // Add to new entityqueue
   dosomething_entityqueue_add($entityqueue_to, $etid, TRUE);
-  drupal_goto();
+
+  // Gooooooooooooo....
+  if (!$skip_goto) drupal_goto();
 }
 
+/**
+ *  Removes an entity from an entityqueue.
+ *
+ *  @param string $entityqueue
+ *    The machine name of the entityqueue that the entity is a part of.
+ *
+ *  @param int $etid
+ *    An integer representing the entity that should be removed.
+ *
+ *  @param bool $skip_goto (false)
+ *    Whether or not to skip redirecting back to the page.
+ */
 function dosomething_entityqueue_remove($entityqueue, $etid, $skip_goto = FALSE) {
+  // Load the entityqueue
   $entityqueue_entity = reset(entity_load('entityqueue', array($entityqueue)));
+  // And the items within it
   $entity_ids = &$entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE];
 
+  // Loop through to find the entity, then remove it.
   foreach ($entity_ids as $key => $etid_wrapper) {
     if ($etid_wrapper['target_id'] == $etid) {
       unset($entity_ids[$key]);
+      break;
     }
   }
+
+  // Restore the list of entity IDs
   $entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE] = array_values($entity_ids);
 
+  // Save the new list of entity IDs
   $entityqueue_entity->save();
 
+  // Send the message.
   drupal_set_message(t('Submission !sid has been removed from !entityqueue.', array('!sid' => $etid, '!entityqueue' => $entityqueue_entity->label)));
+
+  // Redirect if applicable.
+  if (!$skip_goto) drupal_goto();
+}
+
+/**
+ *  Moves a comma-separated list of entities into an entityqueue
+ *
+ *  @param string $entityqueue
+ *    The machine name of the entityqueue that the entities should be placed into.
+ *
+ *  @param string $entities
+ *    A comma-separated list of (numerical) entities that should be added to the entityqueue.
+ *
+ *  @param bool $skip_goto (false)
+ *    Whether or not to skip redirecting back to the page.
+ */
+function dosomething_entityqueue_add_all($entityqueue, $entities, $skip_goto = FALSE) {
+  // Load the entityqueue
+  $landing_queue = reset(entity_load('entityqueue', array($entityqueue)));
+
+  // And the entities within that entityqueue
+  $existing_entities = &$landing_queue->eq_webform_submission_entity[LANGUAGE_NONE];
+
+  // Break up the entities.
+  $entities = explode(',', $entities);
+
+  // Loop through to make sure that the requested entities aren't already in the queue.
+  // If they are...ignore it.
+  $ignore = $added = array();
+  foreach ($existing_entities AS $key => $etid) {
+    if (in_array($etid['target_id'], $entities)) {
+      $ignore[] = $etid['target_id'];
+    }
+  }
+
+  // Loop through the (un-ignored) entities and add them to the list.
+  foreach ($entities AS $key => $ent) {
+    if (!in_array($ent, $ignore)) {
+      $existing_entities[] = array('target_id' => $ent);
+      $added[] = $ent;
+    }
+  }
+
+  // Save.
+  $landing_queue->save();
+
+  // Set message
+  drupal_set_message(t('Submissions !added were added.', array('!added' => implode(', ', $added), '!ignored' => implode(', ', $ignored))));
+
+  if (!isset($_GET['destination'])) {
+    $_GET['destination'] = $_SERVER['HTTP_REFERER'];
+  }
+
+  // Redirect if appropriate.
   if (!$skip_goto) drupal_goto();
 }
