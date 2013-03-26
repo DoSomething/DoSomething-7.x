@@ -21,7 +21,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: black url("//files.dosomething.org/files/campaigns/mlk/mlk-bg.jpg") center top no-repeat; }
+  background: #231f20; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -125,7 +125,7 @@ body {
     width: 40%; }
   .invite_friends #edit-submit {
     font-family: din-web;
-    background: #ffcb15;
+    background: #ffe600;
     margin: 0 0 0 5%;
     font-size: 1.5em;
     height: 1.4em;
@@ -137,7 +137,7 @@ body {
     -o-border-radius: 5px;
     border-radius: 5px; }
     .invite_friends #edit-submit:hover {
-      background: #fbc300; }
+      background: #e6cf00; }
 
 #edit-friend {
   background: #dddddd;
@@ -157,6 +157,7 @@ body {
   background: white;
   padding: 1.5em 0 0 0;
   width: 215px;
+  -webkit-backface-visibility: hidden;
   -webkit-transition: background 5s ease-in;
   transition: background 5s ease-in;
   line-height: 1.2em;
@@ -180,12 +181,12 @@ body {
     font-size: 0.95em;
     padding: 0.2em 1em 0 1.5em;
     text-transform: uppercase;
-    color: black; }
+    color: #279ed5; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none;
-      color: #fe002b; }
+      color: #5db7e1; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix {
-    color: black;
+    color: #222222;
     text-transform: uppercase;
     margin: 0 12% 4%; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix p {
@@ -330,7 +331,7 @@ body {
   display: block;
   font-size: 1.7em;
   color: #222222;
-  background: #ffcb15;
+  background: #ffe600;
   max-width: 15em;
   height: 1.5em;
   padding: 0.05em 0.5em 0.5em;
@@ -375,7 +376,7 @@ body {
     color: white !important;
     font-size: 0.7em; }
     #dosomething-login-register-popup-form .ds-login-popup-footer .description a {
-      color: #ffcb15 !important; }
+      color: #ffe600 !important; }
 
 .popup-content,
 .ds-login-popup-footer {
@@ -410,8 +411,6 @@ body {
   #dosomething-login-register-popup-form #edit-submit {
     width: 85%; } }
 #cmp {
-  /* element floats */
-  /* centers wrappers contained within floated segments */
   /* element floats */
   /* centers wrappers contained within floated segments */ }
   #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
@@ -479,7 +478,7 @@ body {
   #cmp input[type="submit"] {
     font-size: 1.5em; }
   #cmp a {
-    color: #fe002b;
+    color: #279ed5;
     text-decoration: underline; }
     #cmp a:hover {
       text-decoration: none; }
@@ -492,215 +491,7 @@ body {
     font-size: 0.625em;
     font-weight: 500;
     line-height: 1em; }
-  #cmp bel {
-    cursor: default; }
-  #cmp #contact-form2 {
-    padding: 2%;
-    margin: 0 0 2% 0 !important; }
-  #cmp #faq #contact-form3 {
-    margin-top: -2%; }
-    #cmp #faq #contact-form3 div {
-      padding: 0; }
-    #cmp #faq #contact-form3 p {
-      text-align: center; }
-    #cmp #faq #contact-form3 .pane-campaign-sign-up {
-      padding: 2% 0 0 0 !important; }
-  #cmp #contact-form2, #cmp #contact-form3 {
-    overflow: hidden;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px; }
-  #cmp #contact-form, #cmp #contact-form2, #cmp #contact-form3 {
-    margin: 5px 0 0;
-    padding-bottom: 10px;
-    background: black;
-    background: #fe002b;
-    width: 100%;
-    -webkit-border-top-left-radius: 6px;
-    -webkit-border-top-right-radius: 6px;
-    -moz-border-top-left-radius: 6px;
-    -moz-border-top-right-radius: 6px;
-    -o-border-top-left-radius: 6px;
-    -o-border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px; }
-    #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
-      color: white;
-      font-size: 1.05em;
-      line-height: 1.3em;
-      font-weight: 500;
-      text-align: left;
-      padding: 0.2em 0 0 0; }
-    #cmp #contact-form span, #cmp #contact-form2 span, #cmp #contact-form3 span {
-      text-transform: uppercase;
-      font-weight: 500; }
-    #cmp #contact-form #campaign-opt-in, #cmp #contact-form2 #campaign-opt-in, #cmp #contact-form3 #campaign-opt-in {
-      display: none; }
-    #cmp #contact-form #webform-component-start-header h3, #cmp #contact-form2 #webform-component-start-header h3, #cmp #contact-form3 #webform-component-start-header h3 {
-      width: 100%; }
-    #cmp #contact-form #webform-component-start-header p, #cmp #contact-form2 #webform-component-start-header p, #cmp #contact-form3 #webform-component-start-header p {
-      text-align: left;
-      color: white;
-      font-size: 0.6em;
-      margin-top: 0.5em;
-      font-weight: 300; }
-    #cmp #contact-form .form-actions p, #cmp #contact-form2 .form-actions p, #cmp #contact-form3 .form-actions p {
-      color: white;
-      margin-top: 5px;
-      font-size: 0.75em;
-      font-weight: 500; }
-    #cmp #contact-form .form-actions a, #cmp #contact-form2 .form-actions a, #cmp #contact-form3 .form-actions a {
-      color: white;
-      text-transform: uppercase; }
-      #cmp #contact-form .form-actions a:hover, #cmp #contact-form2 .form-actions a:hover, #cmp #contact-form3 .form-actions a:hover {
-        color: #f7c000;
-        text-decoration: underline; }
-  #cmp .focusOutline {
-    box-shadow: 0px 0px 10px 4px #fff742; }
-  #cmp #edit-submitted-field-webform-mobile-und-0-value {
-    float: left; }
-  #cmp .pane-campaign-sign-up input[type="text"], #cmp .pane-campaign-sign-up input[type="tel"] {
-    height: 3em;
-    padding-left: 0.7em;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px; }
-  #cmp .pane-campaign-sign-up label {
-    color: white;
-    width: 100%;
-    font-size: 1.1em;
-    font-weight: 500;
-    font-family: din-web-reg;
-    line-height: 1.5em;
-    text-transform: uppercase;
-    text-align: left; }
-  #cmp .pane-campaign-sign-up #edit-submit {
-    position: static;
-    height: 2em;
-    margin: 1.1em auto 0;
-    padding: 0.3em 0.7em; }
-  #cmp #campaign-opt-in {
-    clear: both;
-    text-align: left;
-    padding: 0.3em 0 0 0 !important; }
-    #cmp #campaign-opt-in span {
-      font-size: 0.7em;
-      line-height: 0.7em;
-      background: transparent;
-      color: white; }
-    #cmp #campaign-opt-in strong {
-      font-weight: 600; }
-  #cmp .webform-client-form {
-    box-shadow: none; }
-  #cmp .already_submitted {
-    margin: 0 0 2% 0; }
-    #cmp .already_submitted .go-button {
-      margin: 0 0 1% 0; }
-  #cmp #webform-component-join-header, #cmp #webform-component-start-header, #cmp #edit-submitted-field-webform-email, #cmp #edit-submitted-field-webform-mobile, #cmp .form-actions.form-wrapper {
-    width: 25%;
-    float: left; }
-  #cmp #edit-submitted-field-webform-email {
-    width: 35%; }
-  #cmp .form-actions.form-wrapper {
-    width: 15%; }
-  #cmp #submitted-field-webform-email-add-more-wrapper, #cmp #submitted-field-webform-mobile-add-more-wrapper, #cmp #contact-form h3 {
-    width: 90%;
-    margin: 0 auto; }
-  #cmp #sign-up .form-wrapper {
-    float: none; }
-  #cmp #sign-up input {
-    margin-bottom: 10px; }
-  #cmp #report-back {
-    margin-top: 30%;
-    border: none;
-    width: 70%;
-    padding: 1% 2%;
-    background: white; }
-    #cmp #report-back h1 {
-      font-size: 1.4em;
-      line-height: 1.1em; }
-    #cmp #report-back #edit-submitted-field-webform-pictures {
-      background: #f1f1f1;
-      border: 2px solid #e1e1e1;
-      padding: 1% 3% 1.5%;
-      margin: 2% 0;
-      max-width: 375px;
-      border-radius: 6px;
-      -o-border-radius: 6px;
-      -moz-border-radius: 6px;
-      -webkit-border-radius: 6px; }
-      #cmp #report-back #edit-submitted-field-webform-pictures legend {
-        margin-bottom: 0.3em; }
-      #cmp #report-back #edit-submitted-field-webform-pictures span {
-        font-weight: 400;
-        font-size: 1.5em;
-        text-transform: uppercase; }
-    #cmp #report-back .pane-title,
-    #cmp #report-back .fb-social-comments-plugin {
-      display: none; }
-    #cmp #report-back form {
-      border: none; }
-      #cmp #report-back form input#edit-submit {
-        margin: 0.5em 0 1em; }
-      #cmp #report-back form input.form-text, #cmp #report-back form textarea {
-        font-size: 14px;
-        margin-bottom: 0.5em; }
-      #cmp #report-back form label {
-        font-size: 1.4em; }
-      #cmp #report-back form #edit-submitted-how-many-people-participated-in-this-drive,
-      #cmp #report-back form #edit-submitted-how-many-potential-donors-were-registered {
-        width: 60px; }
-      #cmp #report-back form .form-item {
-        margin-top: 10px; }
-      #cmp #report-back form .fb-social-comments-plugin {
-        display: none; }
-      #cmp #report-back form #edit-submitted-taxonomy-vocabulary-5,
-      #cmp #report-back form #edit-submitted-field-webform-email,
-      #cmp #report-back form #edit-submitted-field-webform-mobile,
-      #cmp #report-back form #edit-submitted-field-webform-videos,
-      #cmp #report-back form #edit-submitted-field-webform-school-reference,
-      #cmp #report-back form #edit-submitted-field-webform-school,
-      #cmp #report-back form #edit-submitted-field-webform-school-zip {
-        display: none; }
-      #cmp #report-back form #edit-submitted-field-webform-pictures-und-0-upload-button {
-        display: block !important;
-        margin: 10px !important; }
-    #cmp #report-back #edit-submitted-ew {
-      border: none !important;
-      -moz-box-shadow: none !important;
-      -webkit-box-shadow: none !important;
-      -o-box-shadow: none !important;
-      box-shadow: none !important;
-      color: #999999;
-      font-size: 1.1em; }
-    #cmp #report-back label[for="edit-submitted-ew"] {
-      color: #999999; }
-  #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
-    font-family: din-web;
-    background: #ffcb15;
-    margin: 4% 0 1%;
-    padding: 0.3em 0.7em;
-    font-size: 1.5em;
-    height: 1.4em;
-    display: inline-block;
-    color: #1e1d1c;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    border: none;
-    line-height: 1em; }
-    #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
-      color: black; }
-  #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
-  #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
-    display: none; }
-  #cmp ection {
+  #cmp .section {
     overflow: hidden;
     background: white;
     margin: 0 auto;
@@ -721,14 +512,15 @@ body {
     #cmp .col33-inner p {
       width: 80%;
       margin: 0 auto;
-      text-align: center !important; }
+      text-align: center !important;
+      font-size: 0.9em; }
   #cmp .divider, #cmp .divider-mobile {
     text-align: center;
     border-top: 2px solid #cccccc;
     margin: 0 0 3% 0;
     padding: 0.5em 0 0 0; }
     #cmp .divider span, #cmp .divider-mobile span {
-      background: #241f20;
+      background: #231f20;
       padding: 0.5em 0.8em 0.35em;
       position: relative;
       font-weight: 400;
@@ -745,7 +537,7 @@ body {
       text-transform: uppercase; }
   #cmp .go-button, #cmp #edit-submit {
     font-family: din-web;
-    background: #ffcb15;
+    background: #ffe600;
     margin: 4% 0 1%;
     padding: 0.4em 0.7em;
     position: static;
@@ -759,48 +551,38 @@ body {
     -o-border-radius: 5px;
     border-radius: 5px;
     text-decoration: none; }
-  #cmp .section#headline {
-    background: transparent;
-    width: 100%;
-    padding: 0; }
-  #cmp #headline .headline-img {
-    margin: 80px 0 120px; }
-  #cmp #headline .headline-box {
-    background: white;
-    padding: 10px 0; }
-  #cmp #headline h2 {
-    display: block;
-    background: black;
-    color: white;
-    font-family: din-web-reg;
-    font-weight: 400;
-    font-size: 1.2em;
-    line-height: 1.2em;
-    padding: 20px 10px 15px; }
+  #cmp #header.section {
+    background-image: url(//www.dosomething.org/files/campaigns/wyr/bg-header.jpg);
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: 0% 50%;
+    margin: 0 0 2% 0;
+    height: 200px; }
+    #cmp #header.section h2 {
+      text-transform: uppercase;
+      color: #279ed5;
+      font-weight: 600;
+      font-size: 35px;
+      line-height: 1em;
+      text-align: right; }
+    #cmp #header.section .header-right {
+      float: right;
+      width: 50%; }
   #cmp #action {
     padding: 3% 0 2%; }
   #cmp #scholarship {
-    background: #fe002b;
+    background: #279ed5;
     overflow: visible; }
-    #cmp #scholarship .scholar-headline {
-      font-size: 3.2em;
-      font-weight: 600;
-      font-family: din-web;
-      line-height: 1em;
-      text-transform: uppercase;
-      color: white; }
-    #cmp #scholarship hr {
-      border: 1px solid #ff8993;
-      margin: 1%; }
-    #cmp #scholarship img.scholar-copy {
-      padding: 0; }
-    #cmp #scholarship img {
-      clear: both;
-      display: block;
-      margin: 0 auto;
-      padding: 2% 0; }
     #cmp #scholarship h1 {
       color: white; }
+    #cmp #scholarship h2 {
+      font-size: 1.3em;
+      width: 80%;
+      margin: 0 auto;
+      color: white;
+      font-weight: 400; }
+      #cmp #scholarship h2 i {
+        color: #ffe600; }
     #cmp #scholarship p {
       color: white;
       width: 70%;
@@ -808,25 +590,39 @@ body {
       font-weight: 300;
       font-family: din-web-reg;
       font-size: 1.2em; }
+    #cmp #scholarship img {
+      clear: both;
+      display: block;
+      margin: 0 auto;
+      padding: 2% 0; }
+    #cmp #scholarship hr {
+      border: white 1px solid; }
     #cmp #scholarship form {
       margin: 1% auto 0;
       max-width: 600px; }
     #cmp #scholarship label {
       font-weight: 400;
       color: white; }
-    #cmp #scholarship .friends {
-      text-align: left;
-      margin: 2% 1% 0; }
     #cmp #scholarship input[type="text"] {
       padding: 0 0.5em;
       float: left;
       width: 48%;
       margin: 1%; }
+    #cmp #scholarship .scholar-headline {
+      font-size: 3.2em;
+      font-weight: 600;
+      font-family: din-web;
+      line-height: 1em;
+      text-transform: uppercase;
+      color: white; }
+    #cmp #scholarship .friends {
+      text-align: left;
+      margin: 2% 1% 0; }
     #cmp #scholarship .go-button {
       margin: 1% 0 2% 0;
       padding: 0.3em 0.7em;
-      background: #241f20;
-      color: white;
+      background: #ffe600;
+      color: #279ed5;
       font-size: 2.8em;
       font-weight: 500;
       font-family: din-web-reg;
@@ -837,7 +633,7 @@ body {
       border-radius: 12px;
       text-align: right; }
       #cmp #scholarship .go-button:hover {
-        color: #ff8993; }
+        background: #ffec42; }
     #cmp #scholarship #campaign-opt-in {
       text-align: center; }
       #cmp #scholarship #campaign-opt-in a {
@@ -930,25 +726,25 @@ body {
         font-size: 0.6em;
         text-transform: none;
         font-weight: 400; }
-  #cmp .refer5 {
-    background: #fe002b;
-    width: 110%;
-    margin: 0 0 0 -4.95%;
-    position: relative; }
-    #cmp .refer5:before, #cmp .refer5:after {
-      content: "";
-      position: absolute;
-      border-style: solid;
-      border-width: 11px;
-      top: -22px; }
-    #cmp .refer5:before {
-      border-color: transparent #c10021 #c10021 transparent;
-      left: 0px; }
-    #cmp .refer5:after {
-      border-color: transparent transparent #c10021 #c10021;
-      right: 1px; }
-  #cmp .refer5-inner {
-    padding: 3%; }
+    #cmp #scholarship .refer5 {
+      background: #fe002b;
+      width: 110%;
+      margin: 0 0 0 -4.95%;
+      position: relative; }
+      #cmp #scholarship .refer5:before, #cmp #scholarship .refer5:after {
+        content: "";
+        position: absolute;
+        border-style: solid;
+        border-width: 11px;
+        top: -22px; }
+      #cmp #scholarship .refer5:before {
+        border-color: transparent #c10021 #c10021 transparent;
+        left: 0px; }
+      #cmp #scholarship .refer5:after {
+        border-color: transparent transparent #c10021 #c10021;
+        right: 1px; }
+    #cmp #scholarship .refer5-inner {
+      padding: 3%; }
   #cmp #secondary-content {
     padding: 2% 2% 1%; }
     #cmp #secondary-content .prizes-a, #cmp #secondary-content .prizes-b {
@@ -1012,7 +808,7 @@ body {
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
   #cmp #faq div {
-    padding: 0 1.2em 1.2em 1.2em; }
+    padding: 0 1.2em; }
   #cmp #faq div.divider {
     padding: 0.5em 0 0; }
   #cmp #faq h4, #cmp #faq li, #cmp #faq p {
@@ -1026,24 +822,15 @@ body {
     color: #fe002b; }
     #cmp #faq li span {
       color: black; }
-  #cmp #faq h1 {
-    font-size: 2em;
-    font-family: din-web;
-    text-transform: uppercase;
-    background: url("assets/faq3.png");
-    background-repeat: no-repeat;
-    background-position: 50% 1.2em;
-    padding: 0 0 1em 0;
-    margin: 0 0 -1em 0; }
   #cmp #faq h4 {
     color: #1e1d1c;
     cursor: pointer;
-    background: url("assets/faq2.png");
+    background: url("//www.dosomething.org/files/campaigns/prep/arrows.png");
     background-repeat: no-repeat;
     background-position-y: 0.4em;
     padding: 0.3em 1.2em; }
   #cmp #faq h4.activeFAQ {
-    background-position-y: -3.9em; }
+    background-position-y: -23px; }
   #cmp #faq .go-button {
     margin: 0 0 1% 0; }
   #cmp #faq .back-to-top {
@@ -1095,98 +882,39 @@ body {
     margin: 0 0 1% 0; }
   #cmp #iframe_wrapper {
     height: 450px !important; }
-  #cmp #game .texts {
-    max-width: 320px;
-    width: 96%;
-    margin: 0 auto;
-    padding: 10px 0 40px 0;
-    text-transform: uppercase; }
-    #cmp #game .texts h3, #cmp #game .texts p {
-      text-align: left; }
-    #cmp #game .texts p {
-      margin: 0 auto 15px;
-      font-size: 1.2em;
-      font-weight: 600; }
-    #cmp #game .texts h3 {
-      font-size: 1.1em;
-      margin: 0 auto 15px auto;
-      border-bottom: 2px solid lightgrey;
-      font-family: din-web-reg;
-      font-size: 14px; }
-    #cmp #game .texts .user {
-      width: 50%;
-      margin-left: 50%;
-      margin-bottom: 5px; }
-    #cmp #game .texts .red {
-      color: #fe002b;
-      width: 45%;
-      margin-left: 55%; }
-  #cmp #game .see-more {
-    position: relative;
-    display: inline-block;
-    margin: 4% 2% 8%; }
-    #cmp #game .see-more img {
+  #cmp #game {
+    padding: 2%; }
+    #cmp #game .img-game-left {
+      float: left; }
+    #cmp #game .img-game-right {
+      float: right; }
+    #cmp #game .img-see-more {
+      position: relative;
+      right: 40px;
+      margin: 0 0 1% 0; }
+    #cmp #game .go-button {
       position: absolute;
-      left: -39px !important;
-      top: -57px !important; }
-  #cmp #game .game-btn {
-    background: #fe002b;
-    color: white;
-    text-transform: uppercase;
-    padding: 0.4em 0.8em 0.2em;
-    font-size: 2em;
-    font-weight: 500;
-    font-family: din-web-reg;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-    border-radius: 12px;
-    text-decoration: none;
-    position: relative; }
-    #cmp #game .game-btn:hover {
-      color: #e1e1e1; }
-  #cmp #meet .activist-photo, #cmp #meet .activist-copy {
-    float: left;
-    text-align: left; }
-  #cmp #meet .activist-photo {
-    clear: both;
-    width: 35%;
-    margin: 2% 0 4%; }
-  #cmp #meet .activist-copy {
-    width: 63%;
-    margin: 2% 0 4% 2%; }
-    #cmp #meet .activist-copy h3 {
-      color: #fe002b;
-      font-size: 1.4em; }
-  #cmp .section#facts {
-    padding: 0; }
-  #cmp #facts .divider-mobile {
-    display: none; }
-  #cmp #facts ol {
-    position: relative;
-    counter-reset: li;
-    text-align: left;
-    margin: 3% 0; }
-    #cmp #facts ol li {
-      margin: 0;
-      padding: 3% 6% 3% 9%;
-      position: relative; }
-      #cmp #facts ol li:nth-child(odd) {
-        background: #f1f1f1; }
-      #cmp #facts ol li:before {
-        background: #e1e1e1;
-        padding: 4px 10px 2px;
-        border-radius: 50px;
-        border: 1px solid white;
-        content: counter(li);
-        counter-increment: li;
-        position: absolute;
-        top: 10%;
-        left: 2%; }
-  #cmp #facts .divider {
-    margin: 0 2%; }
-  #cmp bel {
+      left: 39.5%;
+      bottom: 3%;
+      width: 7em; }
+    #cmp #game .divider {
+      margin: 0 2%; }
+  #cmp #rules {
+    background: #279ed5;
+    padding: 0 2% 2% 2%; }
+    #cmp #rules h2 {
+      color: white;
+      width: 60%;
+      margin: 0 auto; }
+      #cmp #rules h2 a {
+        color: white;
+        text-decoration: underline; }
+    #cmp #rules .official-rules {
+      color: white;
+      font-weight: 400; }
+    #cmp #rules .divider {
+      border: none; }
+  #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
     padding: 2%;
@@ -1375,7 +1103,7 @@ body {
       color: #999999; }
   #cmp .go-button, #cmp #edit-submit, #cmp .form-submit {
     font-family: din-web;
-    background: #ffcb15;
+    background: #ffe600;
     margin: 4% 0 1%;
     padding: 0.3em 0.7em;
     font-size: 1.5em;
