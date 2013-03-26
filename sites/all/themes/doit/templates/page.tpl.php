@@ -96,8 +96,3 @@
 </div>
 
 <?php print render($page['footer']); ?>
-
-
-
-
-

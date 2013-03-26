@@ -266,7 +266,7 @@ function crazyshit_submit_vouch() {
 	global $user;
 	if (!$user->uid) {
 	  // If a user isn't logged in, they shouldn't be able to vouch for something.
-	  echo drupal_json_output(array(
+	  drupal_json_output(array(
 		'status' => 0
 	  ));
 	}
@@ -289,7 +289,7 @@ function crazyshit_submit_vouch() {
 	);
 	drupal_write_record('crazy_notifications', $notification);
 
-	echo drupal_json_output(array(
+	drupal_json_output(array(
 	  'status' => 1,
 	  'count' => $update['count'],
 	));
@@ -485,7 +485,7 @@ function crazyshit_submit_bullshit() {
 
 	if (!$user->uid) {
 	  // If a user isn't logged in, they shouldn't be able to vouch for something.
-	  echo drupal_json_output(array(
+	  drupal_json_output(array(
 		'status' => 0
 	  ));
 	}
@@ -521,7 +521,7 @@ function crazyshit_submit_bullshit() {
 	drupal_write_record('crazy_notifications', $notification);
 
 	// Return author, status, new count.
-	echo drupal_json_output(array(
+	drupal_json_output(array(
 	  'author' => $to_fbid,
 	  'status' => 1,
 	  'count' => $update['count'],
