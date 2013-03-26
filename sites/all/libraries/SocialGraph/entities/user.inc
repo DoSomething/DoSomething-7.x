@@ -1,6 +1,9 @@
 <?php
 
-class user extends SocialGraphService {
+namespace SocialGraph\Entities;
+use SocialGraph\SocialGraphService;
+
+class User extends SocialGraphService {
   /**
    *  @var integer $uid;
    *    The user's Drupal ID.
@@ -28,6 +31,22 @@ class user extends SocialGraphService {
    *  @Graph\Validate(regex="[A-Za-z\s\-\']+")
    */
   protected $last_name;
+
+  /**
+   *  @var object $facebook
+   *    The user's facebook credentials.
+   *  
+   *  @Graph\Contains("\SocialGraph\Services\Facebook")
+   */
+  protected $facebook;
+
+  /**
+   *  @var object $email
+   *    The user's email information.
+   *
+   *  @Graph\Contains("\SocialGraph\Services\Email")
+   */
+  protected $email;
 
   public function __construct() { }
 

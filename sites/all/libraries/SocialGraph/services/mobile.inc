@@ -1,9 +1,12 @@
 <?php
 
+namespace SocialGraph\Services;
+use SocialGraph\SocialGraphService;
+
 /**
  *  Mobile service: Handles phone numbers and SMS sending.
  */
-class mobile extends SocialGraphService {
+class Mobile extends SocialGraphService {
   /**
    *  @var varchar(255) $cell;
    *    The user's cell phone number.

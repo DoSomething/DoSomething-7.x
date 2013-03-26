@@ -1,9 +1,12 @@
 <?php
 
+namespace SocialGraph\Services;
+use SocialGraph\SocialGraphService;
+
 /**
  *  Email service: handles all email addresses and email sending.
  */
-class email extends SocialGraphService {
+class Email extends SocialGraphService {
   /**
    *  @var varchar(255) $email;
    *    The user's Drupal ID.
