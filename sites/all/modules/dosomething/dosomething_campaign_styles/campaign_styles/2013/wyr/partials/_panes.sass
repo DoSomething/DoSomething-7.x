@@ -3,26 +3,23 @@
 //      //
 //  #header     - sign up -
 //      //
-.section#headline
-  background: transparent
-  width: 100%
-  padding: 0
-#headline
-  .headline-img
-    margin: 80px 0 120px
-  .headline-box
-    background: white
-    padding: 10px 0
+#header.section
+  background-image: url(//www.dosomething.org/files/campaigns/wyr/bg-header.jpg)
+  background-repeat: no-repeat
+  background-color: #fff
+  background-position: 0% 50%
+  margin: 0 0 2% 0
+  height: 200px
   h2
-    display: block
-    background: black
-    color: white
-    font-family: din-web-reg
-    font-weight: 400
-    font-size: 1.2em
-    line-height: 1.2em
-    padding: 20px 10px 15px
-
+    text-transform: uppercase
+    color: $scholarshipBG
+    font-weight: 600
+    font-size: 35px
+    line-height: 1em
+    text-align: right
+  .header-right
+    float: right
+    width: 50%
 
 //      //
 //  #action
@@ -35,27 +32,18 @@
 //      //
 
 #scholarship
-  background: $secondaryColor
-  .scholar-headline
-    font-size: 3.2em
-    font-weight: 600
-    font-family: din-web
-    line-height: 1em
-    text-transform: uppercase
-    color: white
-  hr
-    border: 1px solid #FF8993
-    margin: 1%  
-  img.scholar-copy
-    padding: 0
-  img
-    clear: both
-    display: block
-    margin: 0 auto
-    padding: 2% 0
+  background: $campaign-main
   overflow: visible 
   h1
     color: white
+  h2
+    font-size: 1.3em
+    width: 80%
+    margin: 0 auto
+    color: #fff
+    font-weight: 400
+    i
+      color: $campaign-accent
   p
     color: #fff
     width: 70%
@@ -63,32 +51,46 @@
     font-weight: 300
     font-family: din-web-reg
     font-size: 1.2em
+  img
+    clear: both
+    display: block
+    margin: 0 auto
+    padding: 2% 0
+  hr
+    border: #fff 1px solid
   form
     margin: 1% auto 0
     max-width: 600px
   label
     font-weight: 400  
     color: white
-  .friends
-    text-align: left
-    margin: 2% 1% 0  
   input[type="text"]
     padding: 0 0.5em
     float: left
     width: 48%
     margin: 1%
+  .scholar-headline
+    font-size: 3.2em
+    font-weight: 600
+    font-family: din-web
+    line-height: 1em
+    text-transform: uppercase
+    color: white
+  .friends
+    text-align: left
+    margin: 2% 1% 0  
   .go-button
     margin: 1% 0 2% 0
     padding: 0.3em 0.7em
-    background: #241F20
-    color: white
+    background: $campaign-accent
+    color: $campaign-main
     font-size: 2.8em
     font-weight: 500
     font-family: din-web-reg
     +border-radius(12px)
     text-align: right
     &:hover
-      color: #FF8993
+      background: lighten($campaign-accent, 13)
   #campaign-opt-in
     text-align: center
     a
@@ -181,25 +183,26 @@
       font-size: 0.6em
       text-transform: none
       font-weight: 400  
-.refer5
-  background: $secondaryColor
-  width: 110%
-  margin: 0 0 0 -4.95%
-  position: relative
-  &:before, &:after
-    content: ""
-    position: absolute
-    border-style: solid
-    border-width: 11px
-    top: -22px
-  &:before
-    border-color: transparent darken($secondaryColor, 12) darken($secondaryColor, 12) transparent
-    left: 0px
-  &:after
-    border-color: transparent transparent darken($secondaryColor, 12) darken($secondaryColor, 12)
-    right: 1px
-.refer5-inner
-  padding: 3% 
+
+  .refer5
+    background: $secondaryColor
+    width: 110%
+    margin: 0 0 0 -4.95%
+    position: relative
+    &:before, &:after
+      content: ""
+      position: absolute
+      border-style: solid
+      border-width: 11px
+      top: -22px
+    &:before
+      border-color: transparent darken($secondaryColor, 12) darken($secondaryColor, 12) transparent
+      left: 0px
+    &:after
+      border-color: transparent transparent darken($secondaryColor, 12) darken($secondaryColor, 12)
+      right: 1px
+  .refer5-inner
+    padding: 3% 
 
 
 //      //
@@ -288,7 +291,7 @@
 
 #faq 
   div
-    padding: 0 1.2em 1.2em 1.2em
+    padding: 0 1.2em
   div.divider
     padding: 0.5em 0 0  
   h4, li, p
@@ -302,24 +305,15 @@
     color: $secondaryColor
     span
       color: black 
-  h1
-    font-size: 2em
-    font-family: din-web
-    text-transform: uppercase
-    background: url("assets/faq3.png")
-    background-repeat: no-repeat
-    background-position: 50% 1.2em
-    padding: 0 0 1em 0
-    margin: 0 0 -1em 0
   h4
     color: $offBlack
     cursor: pointer
-    background: url("assets/faq2.png")
+    background: url("//www.dosomething.org/files/campaigns/prep/arrows.png")
     background-repeat: no-repeat
     background-position-y: 0.4em
     padding: 0.3em 1.2em
   h4.activeFAQ
-    background-position-y: -3.9em
+    background-position-y: -23px
   .go-button
     margin: 0 0 1% 0
   .back-to-top
@@ -384,102 +378,36 @@
 
 // GAME
 #game
-  .texts
-    max-width: 320px
-    width: 96%
-    margin: 0 auto
-    padding: 10px 0 40px 0
-    text-transform: uppercase
-    h3, p
-      text-align: left
-    p
-      margin: 0 auto 15px
-      font-size: 1.2em
-      font-weight: 600
-    h3
-      font-size: 1.1em
-      margin: 0 auto 15px auto
-      border-bottom: 2px solid lightgray
-      font-family: din-web-reg
-      font-size: 14px
-    .user
-      width: 50%
-      margin-left: 50%
-      margin-bottom: 5px  
-    .red
-      color: $secondaryColor
-      width: 45%
-      margin-left: 55%
-  .see-more
-    position: relative
-    display: inline-block
-    margin: 4% 2% 8% 
-    img
-      position: absolute
-      left: -39px !important
-      top: -57px !important
-  .game-btn
-    background: $secondaryColor
-    color: white
-    text-transform: uppercase
-    padding: 0.4em 0.8em 0.2em
-    font-size: 2em
-    font-weight: 500
-    font-family: din-web-reg
-    +border-radius(12px)
-    text-decoration: none
-    position: relative
-    &:hover
-      color: #e1e1e1
-
-// ACTIVISTS
-
-
-#meet
-  .activist-photo, .activist-copy
+  padding: 2%
+  .img-game-left
     float: left
-    text-align: left
-  .activist-photo
-    clear: both
-    width: 35%
-    margin: 2% 0 4%
-  .activist-copy
-    width: 63%
-    margin: 2% 0 4% 2%
-    h3
-      color: $secondaryColor
-      font-size: 1.4em
-
-// FACTS
-.section#facts
-  padding: 0
-#facts
-  .divider-mobile
-    display: none
-  ol
+  .img-game-right
+    float: right
+  .img-see-more
     position: relative
-    counter-reset: li
-    text-align: left
-    margin: 3% 0
-    li
-      
-      margin: 0
-      padding: 3% 6% 3% 9%
-      position: relative
-      &:nth-child(odd)
-        background: #f1f1f1
-      &:before
-        background: #e1e1e1
-        padding: 4px 10px 2px
-        border-radius: 50px
-        border: 1px solid white
-        //margin: 4px
-        content: counter(li)
-        counter-increment: li
-        position: absolute
-        top: 10%
-        left: 2%
-
+    right: 40px
+    margin: 0 0 1% 0
+  .go-button
+    position: absolute
+    left: 39.5%
+    bottom: 3%
+    width: 7em
   .divider
     margin: 0 2%     
   
+// RULES
+#rules
+  background: $scholarshipBG
+  padding: 0 2% 2% 2%
+  h2
+    color: #fff
+    width: 60%
+    margin: 0 auto
+    a
+      color: #fff
+      text-decoration: underline
+  .official-rules 
+    color: #fff
+    font-weight: 400
+  .divider
+    border: none

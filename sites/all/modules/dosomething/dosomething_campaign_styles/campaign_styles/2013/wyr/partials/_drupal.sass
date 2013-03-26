@@ -24,7 +24,7 @@ img.logo
   padding-bottom: 0
     
 body
-  background: $fallbackBG url('//files.dosomething.org/files/campaigns/mlk/mlk-bg.jpg') center top no-repeat
+  background: $fallbackBG 
   //background-position: 50% 0%
 
 @media only screen and (max-width: 550px)
@@ -154,6 +154,7 @@ body
   background: white
   padding: 1.5em 0 0 0
   width: 215px
+  -webkit-backface-visibility: hidden
   -webkit-transition: background 5s ease-in
   transition: background 5s ease-in
   line-height: 1.2em
@@ -168,7 +169,6 @@ body
   ul
     margin: 0
     padding: 0
-    //border-bottom: solid 2px #EEE
   li
     margin: 0
     padding: 2% 0
@@ -178,12 +178,12 @@ body
     font-size: 0.95em
     padding: 0.2em 1em 0 1.5em
     text-transform: uppercase
-    color: $mainColor
+    color: $campaign-main
     &:hover
       text-decoration: none
-      color: $secondaryColor
+      color: lighten($campaign-main, 13)
   .campaign-menu-prefix
-    color: $mainColor
+    color: #222
     text-transform: uppercase
     margin: 0 12% 4%
     p
