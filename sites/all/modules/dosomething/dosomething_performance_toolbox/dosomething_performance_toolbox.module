@@ -24,6 +24,222 @@
  * Constant used to group CSS for aggregation, the higher the value the sooner it will be loaded
  */
 define('CSS_WEBFONTS', 200);
+
+
+
+
+function dosomething_performance_toolbox_permission() {
+  return array(
+    'administer performance toolbox' => array(
+      'title' => t('Performance Toolbox'),
+      'description' => t('General access to performance site tools.'),
+    ),   
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_performance_toolbox_menu() {
+    
+  $items = array();
+    
+  $items['admin/dosomething_performance_toolbox'] = array(
+    'title' => 'Performance Toolbox',
+    'description' => 'A collection of tools focused on website performance.',
+    'access arguments' => array('administer performance toolbox'),
+    'page callback' => '_dosomething_performance_toolbox_welcome',
+    'type' => MENU_NORMAL_ITEM,
+    'weight' => 0,
+  );
+  
+  // For the default local task, we need very little configuration, as the
+  // callback and other conditions are handled by the parent callback.
+  $items['admin/dosomething_performance_toolbox/welcome'] = array(
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'title' => 'Welcome',
+    'access arguments' => array('administer performance toolbox'),
+  );
+
+  $items["admin/dosomething_performance_toolbox/webfonts"] = array(
+    'type' => MENU_LOCAL_TASK,
+    'title' => t('Webfonts'),
+    'page callback' => '_dosomething_performance_toolbox_webfonts',
+    'access arguments' => array('administer performance toolbox'),
+    'weight' => 10,
+  );
+  
+  $items["admin/dosomething_performance_toolbox/webfonts/%/%/%"] = array(
+    'type' => MENU_LOCAL_TASK,
+    'title' => t('CRUD'),
+    'page callback' => '_dosomething_performance_toolbox_webfonts_crud',
+    'page arguments' => array(1, 2, 3),
+    'access arguments' => array('administer performance toolbox'),
+    'weight' => 0,
+  );
+  
+  $items["admin/dosomething_performance_toolbox/aggregation"] = array(
+    'type' => MENU_LOCAL_TASK,
+    'title' => t('Aggregation'),
+    'page callback' => '_dosomething_performance_toolbox_aggregation',
+    'access arguments' => array('administer performance toolbox'),
+    'weight' => 20,
+  );
+
+  return $items;
+  
+}
+
+
+
+function dosomething_performance_toolbox_theme($existing, $type, $theme, $path) {
+  return array(
+    'dosomething_performance_toolbox_welcome' => array(
+      'variables' => array('webfont_stats' => array(), 'aggregation_stats' => array()),
+      'template' => 'templates/dosomething-performance-toolbox-welcome',
+    ),
+    'dosomething_performance_toolbox_webfonts' => array(
+      'variables' => array('webfont_stats' => array(), 'themes' => array()),
+      'template' => 'templates/dosomething-performance-toolbox-webfonts',
+    ),
+    'dosomething_performance_toolbox_aggregation' => array(
+      'template' => 'templates/dosomething-performance-toolbox-aggregation',
+    ),
+  ); 
+}
+
+
+function _dosomething_performance_toolbox_welcome() {
+    
+  $webfont_stats = array(
+    '#theme' => 'table',
+    '#rows' => $webfont_stats_rows,
+    '#header' => $webfont_stats_header,
+  );
+  
+  $aggregation_stats = array(
+    '#theme' => 'table',
+    '#rows' => $aggregation_stats_rows,
+    '#header' => $aggregation_stats_header,
+  );
+  
+  return theme('dosomething_performance_toolbox_welcome',
+                array(
+                  'webfont_stats' => $webfont_stats,
+                  'aggregation_stats' => $aggregation_stats,
+                )
+              );
+
+}
+
+function _dosomething_performance_toolbox_webfonts() {
+    
+  // List entries by path showing assigned font files, grouped by theme
+  
+  // Lookup listing of current webfont entries
+  // Links in list to add/edit/delete
+  
+  // Example "theme ID "-" font file bit.css"
+  // Font file bit: Any combination for font files
+  // Clear entries cache
+  
+  // $refresh = FALSE
+  $themes = list_themes(TRUE);
+
+  return theme('dosomething_performance_toolbox_webfonts',
+           array(
+             'webfont_stats' => $webfont_stats,
+             'themes' => $themes,
+           )
+         );
+
+}
+
+function _dosomething_performance_toolbox_webfonts_crud($webfont_entry_id, $target_theme_id, $crud) {
+    
+  switch($crud) {
+    
+      case 'create':
+        
+        // ** Load form
+        // - Target theme (dropdown)
+        
+        // - Webfont Name (font-family)
+        // - Server
+        // - src
+        // - IE
+        // - font-style
+        // - font-weight
+        
+        /*
+         * @font-face {
+         *   font-family: "din-web";
+         *   src: url('DINWeb-Cond.eot');
+         *   src: url('DINWeb-Cond.eot?iefix') format('eot'), url('DINWeb-Cond.woff') format('woff');
+         *   font-style: normal;
+         *   font-weight: false;
+         * }
+         */
+        // submit goes to form submit funciton, redirects back to "read" listing
+        
+        break;
+    
+      case 'read':
+        
+        // Generate listing / table
+        
+        break;
+    
+      case 'update':
+        
+        // Load form with populated fields
+        
+        break;
+    
+      case 'delete':
+        
+        // Delete entry, retuan to "read".
+        
+        break;
+  }
+
+    
+    
+    
+  // Add / edit / delete of path entry
+  // Path textfield and checkbox list of webfonts by selected theme
+
+  // Example "theme ID "-" font file bit.css"
+  // Font file bit: Any combination for font files
+
+  return('_dosomething_performance_toolbox_webfonts_crud');
+
+}
+
+function _dosomething_performance_toolbox_webfonts_add_font() {
+    
+  // Listing of font files, add new font entries for target theme
+  // Add: Select theme, Font file Title, file name, location (server), path
+  // Assigns bit value
+
+  return(' _dosomething_performance_toolbox_webfonts_add_font');
+
+}
+
+function _dosomething_performance_toolbox_aggregation() {
+    
+  // Generates listing of css and js file load order (grouping)
+  // Helps to optimize / explain grouping in support of aggregation
+  // Manage groups for future aggregation combination based on user page flow  
+
+  return theme('dosomething_performance_toolbox_aggregation',
+           array(
+             'aggregation_stats' => $aggregation_stats,
+           )
+         );
+
+}
  
  /**
  * Construct a <link> tag for the page head that calls a css file that contains @webfont
@@ -39,7 +255,7 @@ define('CSS_WEBFONTS', 200);
  * The goal is to speed page load times for users visting the site and the specific page for
  * the first time.
  */
-function dosomething_perfomance_toolbox_webfonts() {
+function dosomething_performance_toolbox_webfonts() {
     
     $https = $_SERVER['HTTPS'];
   
@@ -125,7 +341,7 @@ function dosomething_perfomance_toolbox_webfonts() {
  *   Users email address.
  */
     
-function dosomething_perfomance_toolbox_css_alter(&$css) {
+function dosomething_performance_toolbox_css_alter(&$css) {
     
     // From common.inc, ln: 3121
     // If the item can be grouped with other items, set $group_keys to an array
@@ -163,7 +379,7 @@ function dosomething_perfomance_toolbox_css_alter(&$css) {
  *   The campaign name that the email is to be subscribed to.
  */
 
-function dosomething_perfomance_toolbox_js_alter(&$javascript) {
+function dosomething_performance_toolbox_js_alter(&$javascript) {
     
   uasort($javascript, 'drupal_sort_css_js');
   $i = 0;
