@@ -620,8 +620,6 @@ body {
       display: block;
       margin: 0 auto;
       padding: 2% 0; }
-    #cmp #scholarship hr {
-      border: white 1px solid; }
     #cmp #scholarship form {
       margin: 1% auto 0;
       max-width: 600px; }
@@ -633,6 +631,28 @@ body {
       float: left;
       width: 48%;
       margin: 1%; }
+    #cmp #scholarship .success_msg {
+      width: 95%;
+      padding: 0.5em;
+      margin: 1em auto 1.5em;
+      -webkit-box-shadow: 0px 10px 15px -5px #1f7eaa;
+      -moz-box-shadow: 0px 10px 15px -5px #1f7eaa;
+      box-shadow: 0px 10px 15px -5px #1f7eaa;
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(50%, #f9f9af), color-stop(100%, #f5f580));
+      background-image: -webkit-linear-gradient(#f9f9af 50%, #f5f580);
+      background-image: -moz-linear-gradient(#f9f9af 50%, #f5f580);
+      background-image: -o-linear-gradient(#f9f9af 50%, #f5f580);
+      background-image: linear-gradient(#f9f9af 50%, #f5f580);
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -o-border-radius: 2px;
+      border-radius: 2px; }
+      #cmp #scholarship .success_msg h2 {
+        width: 100%;
+        color: #333333;
+        font-weight: 600;
+        text-transform: uppercase; }
     #cmp #scholarship .scholar-headline {
       font-size: 3.2em;
       font-weight: 600;
