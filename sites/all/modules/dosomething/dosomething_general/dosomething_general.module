@@ -964,6 +964,8 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
         'callback' => 'dosomething_general_million_users_login',
       );
     }
+
+    $form['#submit'][] = 'dosomething_general_million_users_opt_in';
   }
 }
 
@@ -1878,24 +1880,83 @@ function dosomething_general_block_view($delta = '') {
   return $block;
 }
 
+/**
+ *  Loads the 1 million members webform into the block.
+ */
 function dosomething_general_get_1_million_member_form() {
+  // Get the node.
   $node = node_load(variable_get('million_webform', 728731));
+
+  // Load the form.
   $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
 
-  drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/million.js');    
+  if (!user_is_logged_in()) {
+    // Add the javasript, so long as the user is logged out.
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/million.js');    
+  }
 
+  // Render the form
   $theform = drupal_render($form);
+
+  // Load the template
   return theme('million-members-block', array(
     'form' => $theform
   ));
 }
 
+/**
+ *  Ajax to pop up the "login" form, or show errors if there are any.
+ */
 function dosomething_general_million_users_login($form, &$form_state) {
   $commands = array();
-  $commands[] = ajax_command_invoke('#dosomething-login-login-popup-form', 'dsMillionSubmit');
+
+  // See if there are any errors
+  $errors = form_get_errors();
+  if (!empty($errors)) {
+    // Create a fake error template.
+    $error_list = '';
+    foreach ($errors AS $key => $error) {
+       $error_list .= '<li>' . $error . '</li>';
+    }
+
+    // This is the actual template.
+    $fake_error_template = '<div class="messages error">
+      <h2 class="element-invisible">Error message</h2>
+      <ul>' . $error_list . '</ul></div>
+    ';
+
+    // Show the errors at the top of the page.
+    $commands[] = ajax_command_before('#main-content', $fake_error_template);
+  }
+  else {
+    // Pop up the login / register popup form
+    $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsMillionSubmit');
+  }
 
   return array(
     '#type' => 'ajax',
     '#commands' => $commands
   );
+}
+
+/**
+ *  Opt phone numbers into mobile commons
+ */
+function dosomething_general_million_users_opt_in($form, &$form_state) {
+  // Get the values
+  $values = $form_state['input']['submitted'];
+
+  // Mobile commons opt-in paths
+  $alpha_opt_in = 150023;
+  $beta_opt_in = 150033;
+
+  // Beta fields
+  $betas = array(
+    1 => $values['friends_number'],
+    2 => $values['friends_number_2'],
+    3 => $values['friends_number_3'],
+  );
+
+  // Send the ftaf text message
+  dosomething_general_mobile_commons_subscribe_with_friends($values['your_number'], $alpha_opt_in, $betas, $beta_opt_in, array('name' => $values['your_name'],));
 }
