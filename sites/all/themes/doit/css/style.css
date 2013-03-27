@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* The Coding Designer's Survival Kit
  * A framework for designing websites in the browser.
  *
@@ -3753,6 +3752,42 @@ h2.block-title, h2.pane-title {
   color: #111111;
 }
 
+#block-block-10 .millionth-user {
+  padding: 1em 0;
+}
+#block-block-10 .millionth-user img {
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+}
+#block-block-10 .millionth-user p {
+  line-height: 1.4em;
+}
+#block-block-10 .millionth-user h2 {
+  font-size: 16px;
+  text-align: center;
+  margin: 1em 0;
+}
+#block-block-10 .millionth-user form {
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+#block-block-10 .millionth-user input[type="text"] {
+  width: 100%;
+  margin-bottom: 8px;
+}
+#block-block-10 .millionth-user #edit-actions {
+  clear: both;
+  height: auto;
+}
+#block-block-10 .millionth-user #edit-actions input {
+  margin: 0;
+}
+#block-block-10 .millionth-user span, #block-block-10 .millionth-user strong {
+  color: gold;
+}
 #block-block-10 .ds-sb-saying {
   padding-top: 10px;
 }
