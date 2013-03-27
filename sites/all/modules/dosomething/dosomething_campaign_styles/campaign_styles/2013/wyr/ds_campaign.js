@@ -6,36 +6,18 @@
         afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
       };
 
-      if (window.location.pathname.substr(0, 5) == '/team') {
-        $signIn = $('#dosomething-login-login-popup-form');
-        $signUp = $('#dosomething-login-register-popup-form');
-        
-        // if a popup has been triggered, set its destination
-        if ($signIn.is(':visible') || $signUp.is(':visible')) {
-          //var actionLink = $('.drive-action-link a').attr('href');
-          //if (actionLink.charAt(0) == '/') actionLink = actionLink.substr(1);
-          $signIn.attr('action', destinationReplace($signIn.attr('action'), actionLink));
-          $signUp.attr('action', destinationReplace($signUp.attr('action'), actionLink));
-        }
-      }
+      // LOGO - injection
+      var logo = '//www.dosomething.org/files/campaigns/wyr/logo-campaign.png';
+      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/wyr"><img class="logo-campaign" src="' + logo + '"/></a>');
 
-     
-      // hacktastic form rebuilding
-      var $emailInput = $('#edit-submitted-field-webform-email');
-      var $cellInput = $('#edit-submitted-field-webform-mobile');
-
-      $cellInput.before($emailInput); // re-arranges input field order
-      $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-email-label'));
-      $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-cell-label'));
-
-      // pop, bang, lovely
-      $('#faq h4').next('div').css('display','none');
+      // FAQ - onClick visibility
+      $('#faqh4').next('div').css('display','none');
       $('#faq h4.activeFAQ').next('div').css('display','block');
-      $('#faq h4').click(function(){
-        if($(this).hasClass('activeFAQ')){
+      $('#faq h4').click(function() {
+        if($(this).hasClass('activeFAQ')) {
           $(this).removeClass().next('div').slideUp();
         }
-        else{
+        else {
           $(this).addClass('activeFAQ');
           $(this).siblings('h4').removeClass('activeFAQ');
           $(this).next('div').slideToggle();
@@ -84,33 +66,6 @@
           }
         });
       }); // end scrolling nav
-
-      $(document).ready(function(){
-        $(webformEmail).focus().addClass('focusOutline');
-      });
-      $(webformBoth).focus(function(){
-        $(this).addClass('focusOutline');
-      });
-      $(webformBoth).blur(function() {
-        $(this).removeClass('focusOutline');
-      });
-
-      $(allAnchors).click(function(event){
-        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-        if($(this).attr('href') == '#header'){
-          $(webformEmail).focus().addClass('focusOutline');
-        }
-        return false;
-      });
-
-      // nav highlighting 
-      var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
-      var firstNav = plainNav + ' a' + '.first';
-
-      $(firstNav).css('background','#FFCB15');
-      $(plainNav + ' a').click(function(){
-          $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
-      });
 
     } // end attach: function
   }; // end Drupal.behaviors
