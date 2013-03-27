@@ -949,9 +949,21 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
   }
 
   if ($form_id == 'webform_client_form_' . variable_get('million_webform', 728731)) {
-    $form['actions']['submit']['#ajax'] = array(
-      'callback' => 'dosomething_general_million_users_login',
-    );
+    // Load the form information.
+    $f = &$form['submitted'];
+
+    // Set placeholders.
+    $f['your_name']['#attributes']['placeholder'] = t('Your Name');
+    $f['your_number']['#attributes']['placeholder'] = t('Your Number');
+    $f['friends_number']['#attributes']['placeholder'] = t("Friend's Number");
+    $f['friends_number_2']['#attributes']['placeholder'] = t("Friend's Number");
+    $f['friends_number_3']['#attributes']['placeholder'] = t("Friend's Number");
+
+    if (!user_is_logged_in()) {
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'dosomething_general_million_users_login',
+      );
+    }
   }
 }
 
@@ -1858,7 +1870,7 @@ function dosomething_general_block_view($delta = '') {
   $block = array();
   switch ($delta) {
     case '1-million-members':
-      $block['subject'] = t("We're Sending You and Your Friends to Disney World");
+      $block['subject'] = t("We're Sending You and Your Friends to Six Flags");
       $block['content'] = dosomething_general_get_1_million_member_form();
     break;
   }
@@ -1867,17 +1879,15 @@ function dosomething_general_block_view($delta = '') {
 }
 
 function dosomething_general_get_1_million_member_form() {
-  if (!user_is_logged_in()) {
-    $node = node_load(variable_get('million_webform', 728731));
-    $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
+  $node = node_load(variable_get('million_webform', 728731));
+  $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
 
-    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/million.js');    
+  drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/million.js');    
 
-    $theform = drupal_render($form);
-    return theme('million-members-block', array(
-      'form' => $theform
-    ));
-  }
+  $theform = drupal_render($form);
+  return theme('million-members-block', array(
+    'form' => $theform
+  ));
 }
 
 function dosomething_general_million_users_login($form, &$form_state) {
