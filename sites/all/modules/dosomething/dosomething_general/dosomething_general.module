@@ -85,7 +85,7 @@ function dosomething_general_sms_mdata_response($text) {
  *  Implements hook_module_implements_alter().
  */
 function dosomething_general_module_implements_alter(&$implementations, $hook) {
-  if ($hook == 'mail_alter' && isset($implementations['dosomething_general'])) {
+  if (($hook == 'mail_alter' || $hook == 'block_view') && isset($implementations['dosomething_general'])) {
     $group = $implementations['dosomething_general'];
     unset($implementations['dosomething_general']);
     $implementations['dosomething_general'] = $group;
@@ -270,6 +270,13 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
       'template' => 'mc-response',
       'variables' => array(
         'message' => NULL,
+      ),
+    ),
+    'million-members-block' => array(
+      'path' => $path . '/templates',
+      'template' => 'million-members-block',
+      'variables' => array(
+        'form' => NULL,
       ),
     ),
   );
@@ -939,6 +946,12 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
     );
 
     $form['#validate'][] = 'help_form_captcha';
+  }
+
+  if ($form_id == 'webform_client_form_' . variable_get('million_webform', 728731)) {
+    $form['actions']['submit']['#ajax'] = array(
+      'callback' => 'dosomething_general_million_users_login',
+    );
   }
 }
 
@@ -1825,4 +1838,54 @@ function dosomething_general_user_logout($account) {
 function dosomething_general_clean_string($string, $nix = '[^A-Za-z0-9\-\_]', $replace_with = '_') {
   $string = preg_replace('#' . $nix . '#i', $replace_with, $string);
   return $string;
+}
+
+/**
+ *  Implements hook_block_info()
+ */
+function dosomething_general_block_info() {
+  $blocks['1-million-members'] = array(
+    'info' => t('1 Million Members block'),
+  );
+
+  return $blocks;
+}
+
+/**
+ *  Implements hook_block_view
+ */
+function dosomething_general_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case '1-million-members':
+      $block['subject'] = t("We're Sending You and Your Friends to Disney World");
+      $block['content'] = dosomething_general_get_1_million_member_form();
+    break;
+  }
+
+  return $block;
+}
+
+function dosomething_general_get_1_million_member_form() {
+  if (!user_is_logged_in()) {
+    $node = node_load(variable_get('million_webform', 728731));
+    $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
+
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/million.js');    
+
+    $theform = drupal_render($form);
+    return theme('million-members-block', array(
+      'form' => $theform
+    ));
+  }
+}
+
+function dosomething_general_million_users_login($form, &$form_state) {
+  $commands = array();
+  $commands[] = ajax_command_invoke('#dosomething-login-login-popup-form', 'dsMillionSubmit');
+
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands
+  );
 }
