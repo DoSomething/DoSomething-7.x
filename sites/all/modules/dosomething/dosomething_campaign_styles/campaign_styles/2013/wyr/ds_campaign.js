@@ -72,6 +72,31 @@
         return false;
       });
 
+    // #share section Facebook fun
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/wyr/bg-share1.png';
+    var fb_share_title = 'Would You Rather?';
+    var fb_share_caption = 'What would you rather do to save money?';
+
+    Drupal.behaviors.fb.feed({
+      'feed_picture': fb_share_img,
+      'feed_title': fb_share_title,
+      'feed_caption': fb_share_caption,
+      'feed_description': 'I would eat only ramen every day for a month!',
+      'feed_selector': '.share-link-ramen',
+    }, function(response) { 
+      document.location.href = '/wyr#share';
+    });
+
+    Drupal.behaviors.fb.feed({
+      'feed_picture': fb_share_img,
+      'feed_title': fb_share_title,
+      'feed_caption': fb_share_caption,
+      'feed_description': 'I would eat only canned tuna every day for a month!',
+      'feed_selector': '.share-link-tuna',
+    }, function(response) { 
+      document.location.href = '/wyr#share';
+    });
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)

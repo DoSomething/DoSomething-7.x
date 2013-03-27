@@ -954,6 +954,20 @@ body {
       font-weight: 400; }
     #cmp #rules .divider {
       border: none; }
+  #cmp #share {
+    border-top: 2px solid #dddddd; }
+    #cmp #share p {
+      font-size: 1.2em;
+      margin: 1em auto;
+      max-width: 200px;
+      display: block; }
+    #cmp #share .share-col {
+      width: 50%;
+      float: left; }
+    #cmp #share .share-bg-header {
+      display: block;
+      margin: 0 auto;
+      width: 350px; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
