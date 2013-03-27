@@ -10,6 +10,10 @@
   background-position: 0% 50%
   margin: 0 0 2% 0
   height: 200px
+  @media only screen and (max-width: 800px)
+    background-position: -50% 50%
+  @media only screen and (max-width: 550px)
+    background: #fff
   h2
     text-transform: uppercase
     color: $scholarshipBG
@@ -19,7 +23,20 @@
     text-align: right
   .header-right
     float: right
-    width: 50%
+    width: 38%
+    margin: 5% 0 0 0
+    @media only screen and (max-width: 1075px)
+      width: 25%
+      margin: 0 
+    @media only screen and (max-width: 900px)
+      width: 30%
+      margin: 2% 0 0 0
+    @media only screen and (max-width: 800px)
+      width: 40%
+      margin: 2% 0 0 0
+    @media only screen and (max-width: 550px)
+      width: 80%
+      margin: 2% 0 0 0
 
 //      //
 //  #action
@@ -81,7 +98,7 @@
     margin: 2% 1% 0  
   .go-button
     margin: 1% 0 2% 0
-    padding: 0.3em 0.7em
+    padding: 0 0.7em
     background: $campaign-accent
     color: $campaign-main
     font-size: 2.8em

@@ -11,7 +11,7 @@
       $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/wyr"><img class="logo-campaign" src="' + logo + '"/></a>');
 
       // FAQ - onClick visibility
-      $('#faqh4').next('div').css('display','none');
+      $('#faq h4').next('div').css('display','none');
       $('#faq h4.activeFAQ').next('div').css('display','block');
       $('#faq h4').click(function() {
         if($(this).hasClass('activeFAQ')) {
@@ -66,6 +66,11 @@
           }
         });
       }); // end scrolling nav
+
+     $(allAnchors).click(function(event){
+        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+        return false;
+      });
 
     } // end attach: function
   }; // end Drupal.behaviors
