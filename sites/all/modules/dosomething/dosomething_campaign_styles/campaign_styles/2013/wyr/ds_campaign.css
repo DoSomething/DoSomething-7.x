@@ -4,6 +4,9 @@ html > body {
 img.logo {
   margin-bottom: 15px; }
 
+.logo-campaign {
+  margin-left: -27px; }
+
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
@@ -510,9 +513,8 @@ body {
   #cmp .col33-inner {
     padding: 0 1.5%; }
     #cmp .col33-inner p {
-      width: 80%;
       margin: 0 auto;
-      text-align: center !important;
+      text-align: left;
       font-size: 0.9em; }
   #cmp .divider, #cmp .divider-mobile {
     text-align: center;
@@ -558,6 +560,12 @@ body {
     background-position: 0% 50%;
     margin: 0 0 2% 0;
     height: 200px; }
+    @media only screen and (max-width: 800px) {
+      #cmp #header.section {
+        background-position: -50% 50%; } }
+    @media only screen and (max-width: 550px) {
+      #cmp #header.section {
+        background: white; } }
     #cmp #header.section h2 {
       text-transform: uppercase;
       color: #279ed5;
@@ -567,7 +575,24 @@ body {
       text-align: right; }
     #cmp #header.section .header-right {
       float: right;
-      width: 50%; }
+      width: 38%;
+      margin: 5% 0 0 0; }
+      @media only screen and (max-width: 1075px) {
+        #cmp #header.section .header-right {
+          width: 25%;
+          margin: 0; } }
+      @media only screen and (max-width: 900px) {
+        #cmp #header.section .header-right {
+          width: 30%;
+          margin: 2% 0 0 0; } }
+      @media only screen and (max-width: 800px) {
+        #cmp #header.section .header-right {
+          width: 40%;
+          margin: 2% 0 0 0; } }
+      @media only screen and (max-width: 550px) {
+        #cmp #header.section .header-right {
+          width: 80%;
+          margin: 2% 0 0 0; } }
   #cmp #action {
     padding: 3% 0 2%; }
   #cmp #scholarship {
@@ -619,8 +644,9 @@ body {
       text-align: left;
       margin: 2% 1% 0; }
     #cmp #scholarship .go-button {
+      color: #333333;
       margin: 1% 0 2% 0;
-      padding: 0.3em 0.7em;
+      padding: 0 0.7em;
       background: #ffe600;
       color: #279ed5;
       font-size: 2.8em;
@@ -830,7 +856,7 @@ body {
     background-position-y: 0.4em;
     padding: 0.3em 1.2em; }
   #cmp #faq h4.activeFAQ {
-    background-position-y: -23px; }
+    background-position: 0 -23px; }
   #cmp #faq .go-button {
     margin: 0 0 1% 0; }
   #cmp #faq .back-to-top {
@@ -884,21 +910,35 @@ body {
     height: 450px !important; }
   #cmp #game {
     padding: 2%; }
+    @media only screen and (max-width: 400px) {
+      #cmp #game .img-game-left, #cmp #game .img-game-right {
+        display: none; } }
     #cmp #game .img-game-left {
       float: left; }
+    @media only screen and (max-width: 1075px) {
+      #cmp #game .img-game-center {
+        margin: 3% 0 5%; } }
     #cmp #game .img-game-right {
       float: right; }
+    #cmp #game .divider {
+      margin: 0 2%; }
     #cmp #game .img-see-more {
       position: relative;
       right: 40px;
       margin: 0 0 1% 0; }
+      @media only screen and (max-width: 1075px) {
+        #cmp #game .img-see-more {
+          display: none; } }
     #cmp #game .go-button {
       position: absolute;
       left: 39.5%;
       bottom: 3%;
       width: 7em; }
-    #cmp #game .divider {
-      margin: 0 2%; }
+      @media only screen and (max-width: 400px) {
+        #cmp #game .go-button {
+          position: static;
+          display: block;
+          margin: 0 auto; } }
   #cmp #rules {
     background: #279ed5;
     padding: 0 2% 2% 2%; }
