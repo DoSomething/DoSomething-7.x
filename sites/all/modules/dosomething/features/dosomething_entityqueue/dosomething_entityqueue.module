@@ -13,7 +13,7 @@
  *
  *  @author Chris Johnson (chris@crisistextline.org), Michael Chittenden (mchittenden@dosomething.org),
  *          Jody Hamilton, Tim Plunkett
- *  @date 3/26/13
+ *  @date 3/27/13
  */
 
 /**
@@ -63,6 +63,11 @@ function dosomething_entityqueue_menu() {
 
   $items['entityqueue/add_all/%/%'] = array(
     'page callback' => 'dosomething_entityqueue_add_all',
+    'page arguments' => array(2, 3),
+  ) + $base;
+
+  $items['entityqueue/remove_all/%/%'] = array(
+    'page callback' => 'dosomething_entityqueue_remove_all',
     'page arguments' => array(2, 3),
   ) + $base;
 
@@ -176,7 +181,7 @@ function dosomething_entityqueue_remove($entityqueue, $etid, $skip_goto = FALSE)
 }
 
 /**
- *  Moves a comma-separated list of entities into an entityqueue
+ *  Adds a comma-separated list of entities into an entityqueue
  *
  *  @param string $entityqueue
  *    The machine name of the entityqueue that the entities should be placed into.
@@ -188,6 +193,17 @@ function dosomething_entityqueue_remove($entityqueue, $etid, $skip_goto = FALSE)
  *    Whether or not to skip redirecting back to the page.
  */
 function dosomething_entityqueue_add_all($entityqueue, $entities, $skip_goto = FALSE) {
+  // Set the destination to the referer if there isn't one.
+  if (!isset($_GET['destination'])) {
+    $_GET['destination'] = $_SERVER['HTTP_REFERER'];
+  }
+
+  // Stop here if there are no entities.
+  if (empty($entities)) {
+    drupal_set_message(t('No entities were selected.'), 'error');
+    drupal_goto();
+  }
+
   // Load the entityqueue
   $landing_queue = reset(entity_load('entityqueue', array($entityqueue)));
 
@@ -218,11 +234,63 @@ function dosomething_entityqueue_add_all($entityqueue, $entities, $skip_goto = F
   $landing_queue->save();
 
   // Set message
-  drupal_set_message(t('Submissions !added were added.', array('!added' => implode(', ', $added), '!ignored' => implode(', ', $ignored))));
+  drupal_set_message(t('Submissions !added were added.', array('!added' => implode(', ', $added))));
 
+  // Redirect if appropriate.
+  if (!$skip_goto) drupal_goto();
+}
+
+/**
+ *  Removes a comma-separated list of entities from an entityqueue
+ *
+ *  @param string $entityqueue
+ *    The machine name of the entityqueue that the entities should be removed from.
+ *
+ *  @param string $entities
+ *    A comma-separated list of (numerical) entities that should be removed from the entityqueue.
+ *
+ *  @param bool $skip_goto (false)
+ *    Whether or not to skip redirecting back to the page.
+ */
+function dosomething_entityqueue_remove_all($entityqueue, $entities, $skip_goto = FALSE) {
+  // Set the destination to the referer if there isn't one.
   if (!isset($_GET['destination'])) {
     $_GET['destination'] = $_SERVER['HTTP_REFERER'];
   }
+
+  // Stop here if there are no entities.
+  if (empty($entities)) {
+    drupal_set_message(t('No entities were selected.'), 'error');
+    drupal_goto();
+  }
+
+  // Load the entityqueue
+  $landing_queue = reset(entity_load('entityqueue', array($entityqueue)));
+
+  // And the entities within that entityqueue
+  $existing_entities = &$landing_queue->eq_webform_submission_entity[LANGUAGE_NONE];
+
+  // Break up the entities.
+  $entities = explode(',', $entities);
+
+  $removed = array();
+
+  // Loop through to find the entity, then remove it.
+  foreach ($existing_entities as $key => $entity) {
+    if (in_array($entity['target_id'], $entities)) {
+      unset($existing_entities[$key]);
+      $removed[] = $entity['target_id'];
+    }
+  }
+
+  // Restore the list of entity IDs
+  $entityqueue_entity->eq_webform_submission_entity[LANGUAGE_NONE] = array_values($existing_entities);
+
+  // Save.
+  $landing_queue->save();
+
+  // Set message
+  drupal_set_message(t('Submissions !removed were removed.', array('!removed' => implode(', ', $removed))));
 
   // Redirect if appropriate.
   if (!$skip_goto) drupal_goto();
