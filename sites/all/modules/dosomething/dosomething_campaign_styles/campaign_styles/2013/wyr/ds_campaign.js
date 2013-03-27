@@ -72,30 +72,30 @@
         return false;
       });
 
+    // Mobile Commons success message
+    if (document.location.search.slice(1,8) === 'success') {
+      var success_msg = '<div class="success_msg"><h2>Have we told you how amazing you are lately? Just the best.</h2></div>';
+      $('#scholarship').prepend(success_msg);
+    }
+
     // #share section Facebook fun
     var fb_share_img = 'http://www.dosomething.org/files/campaigns/wyr/bg-share1.png';
-    var fb_share_title = 'Would You Rather?';
-    var fb_share_caption = 'What would you rather do to save money?';
 
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
-      'feed_title': fb_share_title,
-      'feed_caption': fb_share_caption,
-      'feed_description': 'I would eat only ramen every day for a month!',
+      'feed_title': 'BLUE BOTTLE COFFEE',
+      'feed_caption': 'BB CAPTION',
+      'feed_description': 'BB DESC',
       'feed_selector': '.share-link-ramen',
-    }, function(response) { 
-      document.location.href = '/wyr#share';
     });
 
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
-      'feed_title': fb_share_title,
-      'feed_caption': fb_share_caption,
-      'feed_description': 'I would eat only canned tuna every day for a month!',
+      'feed_title': 'GIMMIE COFFEE',
+      'feed_caption': 'GC CAPTION',
+      'feed_description': 'BB DESC',
       'feed_selector': '.share-link-tuna',
-    }, function(response) { 
-      document.location.href = '/wyr#share';
-    });
+    }); 
 
     } // end attach: function
   }; // end Drupal.behaviors
