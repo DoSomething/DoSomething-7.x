@@ -1,9 +1,9 @@
 <div class="millionth-user">
 <img src="//www.dosomething.org/files/u/sidebar/millionth-counter.png" />
 
-<h2>BE OUR 1 MILLIONTH MOBILE MEMBER<h2>
-<p>Our 1 millionth member <span>wins a trip to Disney World</span> for you and your friends, on us!</p>
-<p>Already a member? If any of YOUR friends are the 1 millionth member, you all win the trip!</p>
+<h2>BE OUR 1 MILLIONTH MOBILE MEMBER</h2>
+<p>...and we'll send you to <span>6 Flags with 3 friends</span></p>
+<p>Already a member? If your friend wins, you win too.</p>
 
 <?php echo $form; ?>
 
