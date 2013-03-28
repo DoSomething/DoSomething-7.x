@@ -367,14 +367,20 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
       'image' => file_create_url($term->field_celeb_photo[LANGUAGE_NONE][0]['uri']),
     )), 'setting');
 
+    $profile = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_first_name' => 'first_name',
+        'field_user_mobile' => 'mobile',
+      ),
+    ));
+
     // Try and load your profile information -- first name and cell
-    $profile = profile2_load_by_user($user, 'main');
     $first_name = $mobile = '';
-    if (isset($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
-      $first_name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+    if (!empty($profile['first_name'])) {
+      $first_name = $profile['last_name'];
     }
-    if (isset($profile->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
-      $mobile = $profile->field_user_mobile[LANGUAGE_NONE][0]['value'];
+    if (!empty($profile['mobile'])) {
+      $mobile = $profile['mobile'];
     }
 
     // Load the form information.
