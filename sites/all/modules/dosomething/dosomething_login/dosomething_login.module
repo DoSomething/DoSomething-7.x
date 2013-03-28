@@ -1005,12 +1005,28 @@ function dosomething_login_register_block_validate($form, &$form_state) {
   }
   if ($values['cell']) {
     if ($number = dosomething_general_valid_cell($values['cell'])) {
-      if (db_select('field_data_field_user_mobile')->fields('field_data_field_user_mobile', array('entity_id'))->condition('field_user_mobile_value', db_like($number), 'LIKE')->range(0, 1)->execute()->fetchField()) {
-        form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
+       
+      if (db_select('field_data_field_user_mobile')
+            ->fields('field_data_field_user_mobile', array('entity_id'))
+            ->condition('field_user_mobile_value', db_like($number), 'LIKE')
+            ->range(0, 1)
+            ->execute()
+            ->fetchField()) {
+        
+        form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>',
+                                 array('%phone' =>$values['cell'], '@password' => url('user/password'))));
       }
-      else if (db_select('users')->fields('users', array('uid'))->condition('mail', db_like($number . '@mobile'), 'LIKE')->range(0, 1)->execute()->fetchField()) {
-        form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>', array('%phone' => $values['cell'], '@password' => url('user/password'))));
+      elseif (db_select('users')
+               ->fields('users', array('uid'))
+               ->condition('mail', db_like($number . '@mobile'), 'LIKE')
+               ->range(0, 1)
+               ->execute()
+               ->fetchField()) {
+        
+        form_set_error('cell', t('The phone number %phone is already registered. <a href="@password">Have you forgotten your password?</a>',
+                                 array('%phone' =>                       $values['cell'], '@password' => url('user/password'))));
       }
+      
       $form_state['values']['phone'] = $number;
       if (!valid_email_address($form_state['values']['mail'])) {
         $form_state['values']['mail'] = $number . '@mobile';
@@ -1096,11 +1112,13 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   if (isset($form_state['values']['phone'])) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['values']['phone'];
   }
+  
   field_attach_insert('profile2', $profile);
 
   $form_state['profile'] = $profile;
   $form_state['account'] = $account;
   $form_state['uid'] = $account->uid;
+  
   if (isset($account->mail) && $account->status) {
     // Removed send message for initial registrations - re instructions from Marah.
     // Bug #1785 - Fwd: Welcome to DoSomething.org marah poop
@@ -1146,11 +1164,20 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   }
   
   // Submit to MailChimp
-  dosomething_general_mailchimp_subscribe($account->mail, 'NewMembers2012', $merge_vars);
+  $mailchimp_subscribe_results = dosomething_general_mailchimp_subscribe($account->mail, 'NewMembers2012', $merge_vars);
   
   // Log user in.
   if ($account->status) {
     user_login_submit(array(), $form_state);
+  }
+  
+  // Add to Mobile Commons if number provided
+  if (isset($form_state['values']['phone'])) {
+    
+    // https://secure.mcommons.com/campaigns/5091 - opt_in_path: "join" of "Campaigns › Do Something Master Campaign"
+    // https://secure.mcommons.com/campaigns/5091/opt_in_paths/87681
+    $mobile_commons_subscribe_results = dosomething_general_mobile_commons_subscribe($form_state['values']['phone'], 87681);
+
   }
 
   // Clear any logged registration data.
