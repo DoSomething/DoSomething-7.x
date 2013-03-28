@@ -22,83 +22,13 @@ function dosomething_mobile_referral_form_module_implements_alter(&$implementati
 function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form_id) {
   $node = menu_get_object();
 
-  /*$editing = preg_match('#^\/node\/[0-9]+\/(webform|edit)#i', request_uri());
-  if ($editing) {
-    return;
-  }
-
-  if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'mobile_referral_form') {
-
-    $top = $node->field_top_of_form_html[LANGUAGE_NONE][0]['value'];
-    if (empty($top) && !empty($form_state['build_info']['args'][0]->field_top_of_form_html[LANGUAGE_NONE][0]['value'])) {
-      $top = $form_state['build_info']['args'][0]->field_top_of_form_html[LANGUAGE_NONE][0]['value'];
-    }
-
-    $bottom = $node->field_bottom_of_form_html[LANGUAGE_NONE][0]['value'];
-    if (empty($bottom) && !empty($form_state['build_info']['args'][0]->field_bottom_of_form_html[LANGUAGE_NONE][0]['value'])) {
-      $bottom = $form_state['build_info']['args'][0]->field_bottom_of_form_html[LANGUAGE_NONE][0]['value'];
-    }
-
-    $u = &$form['submitted'];
-
-    $u['header'] = array(
-      '#type' => 'container',
-      '#weight' => -10,
-      'header' => array(
-        '#markup' => $top,
-      ),
-    );
-
-    $u['bar'] = array(
-      '#type' => 'container',
-      '#weight' => 1.5,
-      '#attributes' => array(
-        'id' => 'form-separator',
-      ),
-      'bar' => array(
-        '#markup' => '',
-      ),
-    );
-
-    $u['footer'] = array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'id' => 'form_footer',
-      ),
-      '#weight' => 100,
-      'bottom' => array(
-        '#markup' => $bottom,
-      ),
-    );
-
-    if (!isset($form_state['alphas'])) {
-      if (isset($node->field_referral_alphas_campaign[LANGUAGE_NONE][0]['value']) && !empty($node->field_referral_alphas_campaign[LANGUAGE_NONE][0]['value'])) {
-        $form_state['alphas'] = $node->field_referral_alphas_campaign[LANGUAGE_NONE][0]['value'];
-      }
-    }
-    if (!isset($form_state['betas'])) {
-      if (isset($node->field_referral_betas_campaign[LANGUAGE_NONE][0]['value']) && !empty($node->field_referral_betas_campaign[LANGUAGE_NONE][0]['value'])) {
-        $form_state['betas'] = $node->field_referral_betas_campaign[LANGUAGE_NONE][0]['value'];
-      }
-    }
-
-    $form['#submit'][] = 'dosomething_mobile_referral_form_wild_submit';
-  }*/
-
   if (isset($node->type) && $node->type == 'mobile_referral_form') {
-    /*drupal_add_css(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/css/mobile_referrals.css', array(
-        'group' => CSS_THEME,
-        'weight' => 10
-    ));*/
-    #drupal_add_js(drupal_get_path('module', 'dosomething_mobile_referral_form') . '/js/mobile_referrals.js');
-
     if (!isset($form_state['goto']) && !isset($_SESSION['goto'])) {
       $_SESSION['goto'] = $_SERVER['REQUEST_URI'];
       $form_state['goto'] = $_SERVER['REQUEST_URI'];
     }
     $u = &$form['submitted'];
 
-#    $form['actions']['submit']['#value'] = 'SEND';
     $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
     if (!user_is_logged_in()) {
       $form['actions']['submit']['#ajax'] = array(
@@ -128,41 +58,6 @@ function dosomething_mobile_referral_form_form_alter(&$form, &$form_state, $form
 
 
     $form['#validate'][] = 'dosomething_mobile_referral_form_validate';
-    if ($node->type == 'social_scholarship') {
-      if (!isset($form_state['nid'])) {
-        $form_state['nid'] = $node->nid;
-      }
-
-      if (isset($_SESSION['social_scholars_message'])) {
-        unset($_SESSION['social_scholars_message']);
-      }
-      $_SESSION['social_scholars_messages'] = nl2br($node->field_redirect_message[LANGUAGE_NONE][0]['value']);
-
-      if (!isset($form_state['alphas'])) {
-        if (isset($node->field_alphas_campaign[LANGUAGE_NONE][0]['value']) && !empty($node->field_alphas_campaign[LANGUAGE_NONE][0]['value'])) {
-          $form_state['alphas'] = $node->field_alphas_campaign[LANGUAGE_NONE][0]['value'];
-        }
-      }
-      if (!isset($form_state['betas'])) {
-        if (isset($node->field_betas_campaign[LANGUAGE_NONE][0]['value']) && !empty($node->field_betas_campaign[LANGUAGE_NONE][0]['value'])) {
-          $form_state['betas'] = $node->field_betas_campaign[LANGUAGE_NONE][0]['value'];
-        }
-      }
-
-      if (isset($node->field_official_rules_document[LANGUAGE_NONE][0]['filename']) && !empty($node->field_official_rules_document[LANGUAGE_NONE][0]['filename'])) {
-        $form['submitted']['referall_your_info']['terms_and_conditions']['#markup'] = str_replace('these official rules', l(t('these official rules'), 'files/social_scholarships/official_rules/' . $node->field_official_rules_document[LANGUAGE_NONE][0]['filename'], array(
-        'attributes' => array('target' => '_blank'))), $form['submitted']['referall_your_info']['terms_and_conditions']['#markup']);
-      }
-
-      $goto = 'share-these-images/' . $node->nid;
-      if (!empty($node->field_redirect_to_path[LANGUAGE_NONE][0]['value'])) {
-        $goto = $node->field_redirect_to_path[LANGUAGE_NONE][0]['value'];
-      }
-
-      $_SESSION['goto'] = $goto;
-      $form_state['goto'] = $goto;
-    }
-    $form['#submit'][] = 'dosomething_mobile_referral_form_submit';
   }
 }
 
@@ -257,12 +152,11 @@ function dosomething_mobile_referral_form_wild_submit($form, &$form_state) {
 
 
   if (user_is_logged_in()) {
-    global $user;
-    $profile = profile2_load_by_user($user, 'main');
-    if (!$profile->field_user_mobile[LANGUAGE_NONE][0]['value'] || $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] !== $you['cell']) {
-       $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $you['cell'];
-       $profile->save();
-    }
+    dosomething_api_user_update(array(
+      'profile' => array(
+        'field_user_mobile' => $you['cell']
+      ),
+    ));
   }
 
   $alphas_campaign = MCOMMONS_ALPHAS_CAMPAIGN;
@@ -314,12 +208,11 @@ function dosomething_mobile_referral_form_submit($form, &$form_state) {
   $them = dosomething_general_array_vals_multi($them);
 
   if (user_is_logged_in()) {
-    global $user;
-    $profile = profile2_load_by_user($user, 'main');
-    if (!$profile->field_user_mobile[LANGUAGE_NONE][0]['value'] || $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] !== $yn) {
-       $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $yn;
-       $profile->save();
-    }
+    dosomething_api_user_update(array(
+      'profile' => array(
+        'field_user_mobile' => $yn
+      ),
+    ));
   }
 
   $alphas_campaign = MCOMMONS_ALPHAS_CAMPAIGN;
