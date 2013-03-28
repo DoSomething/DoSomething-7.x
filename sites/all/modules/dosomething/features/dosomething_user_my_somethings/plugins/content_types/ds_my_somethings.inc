@@ -22,9 +22,9 @@ function dosomething_user_my_somethings_ds_my_somethings_content_type_render($su
   $account = isset($context->data) ? clone $context->data : NULL;
   $block = new stdClass();
   if ($account) {
-    $profile = profile2_load_by_user($account->uid, 'main');
-    if (isset($profile->field_user_address['und'][0]['locality']) && $profile->field_user_address['und'][0]['administrative_area']) {
-      $block->content = '<div><span class="label">' . t('Hometown:') .'</span>' . $profile->field_user_address['und'][0]['locality'] . ', ' . $profile->field_user_address['und'][0]['administrative_area'] . '</div>';
+    $profile = profile2_load_by_user($account->uid);
+    if (isset($profile['main']->field_user_address['und'][0]['locality']) && $profile['main']->field_user_address['und'][0]['administrative_area']) {
+      $block->content = '<div><span class="label">' . t('Hometown:') .'</span>' . $profile['main']->field_user_address['und'][0]['locality'] . ', ' . $profile['main']->field_user_address['und'][0]['administrative_area'] . '</div>';
     }
     $role = dosomething_user_my_somethings_user_role($account);
     $block->content .= '<div><span class="label">' . t('Member Status:') . '</span>' . ucwords($role) . '</div>';

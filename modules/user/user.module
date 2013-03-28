@@ -187,7 +187,7 @@ function user_entity_info() {
 }
 
 /**
- * Entity URI callback.
+ * Entity uri callback.
  */
 function user_uri($user) {
   return array(
@@ -933,18 +933,14 @@ function user_search_execute($keys = NULL, $conditions = NULL) {
   $query = db_select('users')->extend('PagerDefault');
   $query->fields('users', array('uid'));
   if (user_access('administer users')) {
-    // Administrators can also search in the otherwise private email field,
-    // and they don't need to be restricted to only active users.
+    // Administrators can also search in the otherwise private email field.
     $query->fields('users', array('mail'));
     $query->condition(db_or()->
       condition('name', '%' . db_like($keys) . '%', 'LIKE')->
       condition('mail', '%' . db_like($keys) . '%', 'LIKE'));
   }
   else {
-    // Regular users can only search via usernames, and we do not show them
-    // blocked accounts.
-    $query->condition('name', '%' . db_like($keys) . '%', 'LIKE')
-      ->condition('status', 1);
+    $query->condition('name', '%' . db_like($keys) . '%', 'LIKE');
   }
   $uids = $query
     ->limit(15)
@@ -1311,6 +1307,7 @@ function user_login_block($form) {
   );
   $form['pass'] = array('#type' => 'password',
     '#title' => t('Password'),
+    '#maxlength' => 60,
     '#size' => 15,
     '#required' => TRUE,
   );
@@ -1876,7 +1873,7 @@ function user_menu_link_alter(&$link) {
  */
 function user_translated_menu_link_alter(&$link) {
   // Hide the "User account" link for anonymous users.
-  if ($link['link_path'] == 'user' && $link['module'] == 'system' && !$GLOBALS['user']->uid) {
+  if ($link['link_path'] == 'user' && $link['module'] == 'system' && user_is_anonymous()) {
     $link['hidden'] = 1;
   }
 }
@@ -2393,6 +2390,14 @@ function user_cancel($edit, $uid, $method) {
       array('_user_cancel', array($edit, $account, $method)),
     ),
   );
+
+  // After cancelling account, ensure that user is logged out.
+  if ($account->uid == $user->uid) {
+    // Batch API stores data in the session, so use the finished operation to
+    // manipulate the current user's session id.
+    $batch['finished'] = '_user_cancel_session_regenerate';
+  }
+
   batch_set($batch);
 
   // Batch processing is either handled via Form API or has to be invoked
@@ -2435,14 +2440,27 @@ function _user_cancel($edit, $account, $method) {
       break;
   }
 
-  // After cancelling account, ensure that user is logged out.
+  // After cancelling account, ensure that user is logged out. We can't destroy
+  // their session though, as we might have information in it, and we can't
+  // regenerate it because batch API uses the session ID, we will regenerate it
+  // in _user_cancel_session_regenerate().
   if ($account->uid == $user->uid) {
-    // Destroy the current session, and reset $user to the anonymous user.
-    session_destroy();
+    $user = drupal_anonymous_user();
   }
 
   // Clear the cache for anonymous users.
   cache_clear_all();
+}
+
+/**
+ * Finished batch processing callback for cancelling a user account.
+ *
+ * @see user_cancel()
+ */
+function _user_cancel_session_regenerate() {
+  // Regenerate the users session instead of calling session_destroy() as we
+  // want to preserve any messages that might have been set.
+  drupal_session_regenerate();
 }
 
 /**
@@ -2577,14 +2595,6 @@ function user_build_content($account, $view_mode = 'full', $langcode = NULL) {
   // Remove previously built content, if exists.
   $account->content = array();
 
-  // Allow modules to change the view mode.
-  $context = array(
-    'entity_type' => 'user',
-    'entity' => $account,
-    'langcode' => $langcode,
-  );
-  drupal_alter('entity_view_mode', $view_mode, $context);
-
   // Build fields content.
   field_attach_prepare_view('user', array($account->uid => $account), $view_mode, $langcode);
   entity_prepare_view('user', array($account->uid => $account), $langcode);
@@ -2593,10 +2603,6 @@ function user_build_content($account, $view_mode = 'full', $langcode = NULL) {
   // Populate $account->content with a render() array.
   module_invoke_all('user_view', $account, $view_mode, $langcode);
   module_invoke_all('entity_view', $account, 'user', $view_mode, $langcode);
-
-  // Make sure the current view mode is stored if no module has already
-  // populated the related key.
-  $account->content += array('#view_mode' => $view_mode);
 }
 
 /**

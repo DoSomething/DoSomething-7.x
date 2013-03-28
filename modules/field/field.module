@@ -376,7 +376,7 @@ function field_system_info_alter(&$info, $file, $type) {
       }
       if ($non_deleted) {
         if (module_exists('field_ui')) {
-          $explanation = t('Field type(s) in use - see <a href="@fields-page">Field list</a>', array('@fields-page' => url('admin/reports/fields')));
+          $explanation = t('Field type(s) in use - see !link', array('!link' => l(t('Field list'), 'admin/reports/fields')));
         }
         else {
           $explanation = t('Fields type(s) in use');
@@ -503,14 +503,16 @@ function field_get_default_value($entity_type, $entity, $field, $instance, $lang
  *   the array keys to ensure sequential deltas.
  */
 function _field_filter_items($field, $items) {
-  $function = $field['module'] . '_field_is_empty';
-  foreach ((array) $items as $delta => $item) {
-    // Explicitly break if the function is undefined.
-    if ($function($item, $field)) {
-      unset($items[$delta]);
+  if (!empty($field['module'])) {
+    $function = $field['module'] . '_field_is_empty';
+    foreach ((array) $items as $delta => $item) {
+      // Explicitly break if the function is undefined.
+      if ($function($item, $field)) {
+        unset($items[$delta]);
+      }
     }
+    return array_values($items);
   }
-  return array_values($items);
 }
 
 /**
