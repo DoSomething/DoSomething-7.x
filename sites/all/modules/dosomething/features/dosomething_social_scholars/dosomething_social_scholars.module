@@ -349,12 +349,11 @@ function dosomething_social_scholars_submit_form($form, &$form_state) {
   $your_number = $you['referral_phone_number'];
 
   if (user_is_logged_in()) {
-    global $user;
-    $profile = profile2_load_by_user($user, 'main');
-    if (!$profile->field_user_mobile[LANGUAGE_NONE][0]['value'] || $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] !== $your_number) {
-       $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $your_number;
-       $profile->save();
-    }
+    dosomething_api_user_update(array(
+      'profile' => array(
+        'field_user_mobile' => $your_number,
+      ),
+    ));
   }
 
   // Get the alphas and betas campaign.
