@@ -48,7 +48,10 @@ function dosomething_api_user_lookup($value) {
   return $account;
 }
 
-function dosomething_api_user_fetch_data($data = array('account' => array(), 'profile' => array()), $account = array()) {
+function dosomething_api_user_fetch_data($data = array('account' => array(), 'profile' => array()), $account = array(), $cache = TRUE) {
+  // Check this out.
+  static $cache = array();
+
   if (empty($account)) {
     global $user;
   }
@@ -67,20 +70,40 @@ function dosomething_api_user_fetch_data($data = array('account' => array(), 'pr
 
   $return = array();
   if (isset($data['account'])) {
-    foreach ($data['account'] AS $field) {
+    $cached = array_intersect($data['account'], array_keys($cache[$user->uid]));
+    foreach ($data['account'] AS $field => $alias) {
+      $a = ($alias ? $alias : $field);
+      if (isset($cached[$a])) {
+        $return[$a] = $cached[$a];
+      }
       if (isset($user->{$field})) {
-        $return[$field] = $user->{$field};
+        $cache[$user->uid][$a] = $user->{$field};
+        $return[$a] = $user->{$field};
       }
     }
   }
   if (isset($data['profile'])) {
-    $p = profile2_load_by_user($user, 'main');
+    $cached = array_intersect($data['profile'], array_keys($cache[$user->uid]));
+    $uncached = array_diff($data['profile'], $cached);
+
+    if (!empty($uncached)) {
+      $p = profile2_load_by_user($user, 'main');
+    }
+
     foreach ($data['profile'] AS $field => $alias) {
-      if (isset($p->{$field}[LANGUAGE_NONE][0]['value'])) {
-        $return[($alias ? $alias : $field)] = $p->{$field}[LANGUAGE_NONE][0]['value'];
+      $a = ($alias ? $alias : $field);
+      if (isset($cached[$a])) {
+        $return[$a] = $cached[$a];
       }
       else {
-        $return[($alias ? $alias : $field)] = $p->{$field}[LANGUAGE_NONE][0];
+        if (isset($p->{$field}[LANGUAGE_NONE][0]['value'])) {
+          $cache[$user->uid][$a] = $p->{$field}[LANGUAGE_NONE][0]['value'];
+          $return[$a] = $p->{$field}[LANGUAGE_NONE][0]['value'];
+        }
+        else {
+          $cache[$user->uid][$a] = $p->{$field}[LANGUAGE_NONE][0];
+          $return[$a] = $p->{$field}[LANGUAGE_NONE][0];
+        }
       }
     }
   }

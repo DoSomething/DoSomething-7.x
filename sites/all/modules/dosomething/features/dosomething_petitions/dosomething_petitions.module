@@ -87,21 +87,28 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
       );*/
     }
     else {
-      $profile = profile2_load_by_user($user, 'main');
+      $profile = dosomething_api_user_fetch_data(array(
+        'profile' => array(
+          'field_user_first_name' => 'first_name',
+          'field_user_last_name' => 'last_name',
+          'field_user_mobile' => 'mobile',
+        ),
+      ));
+
       $entity_form = &$form['submitted'];
       $field = &$entity_form['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
       $fname = &$entity_form['field_webform_first_name'][LANGUAGE_NONE][0]['value'];
       $lname = &$entity_form['field_webform_last_name'][LANGUAGE_NONE][0]['value'];
 
       if ($profile) {
-        $profile_first = field_get_items('profile2', $profile, 'field_user_first_name');
-        $profile_last = field_get_items('profile2', $profile, 'field_user_last_name');
+        $profile_first = $profile['first_name'];
+        $profile_last = $profile['last_name'];
 
-        if (isset($profile_first[0]['value']) && $profile_first[0]['value'] != '') {
-          $fname['#default_value'] = $profile_first[0]['value'];
+        if (isset($profile_first) && $profile_first != '') {
+          $fname['#default_value'] = $profile_first;
         }
-        if (isset($profile_last[0]['value']) && $profile_last[0]['value'] != '') {
-          $lname['#default_value'] = $profile_last[0]['value'];
+        if (isset($profile_last) && $profile_last != '') {
+          $lname['#default_value'] = $profile_last;
         }
       }
       // If this email isn't actually a magic mobile number, prepopulate the form with it.
@@ -111,9 +118,9 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
       else {
         if ($profile) {
           // If we have a profile and don't have a value for the mobile number, provide the one from the profile as a default.
-          $mobile = field_get_items('profile2', $profile, 'field_user_mobile');
-          if (isset($mobile[0]['value']) && $field['#default_value'] == '') {
-            $field['#default_value'] = $mobile[0]['value'];
+          $mobile = $profile['mobile'];
+          if (isset($mobile) && $field['#default_value'] == '') {
+            $field['#default_value'] = $mobile;
           }
         }  
       }
@@ -181,11 +188,20 @@ function dosomething_petitions_send_goal_email($email, $nid, $goal, $count) {
   ")->fetchAll();
 
   $node = node_load($nid);
-  $a = user_load($node->uid);
-  $p = profile2_load_by_user($a, 'main');
-  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+
+  $user = dosomething_api_user_fetch_data(array(
+    'user' => array(
+      'name' => 'name',
+    ),
+    'profile' => array(
+      'field_user_first_name' => 'first_name',
+    ),
+  ), $node->uid);
+
+
+  $author = $user['first_name'];
   if (!trim($author)) {
-    $author = $a->name;
+    $author = $user['name'];
   }
 
   $sims = db_select('node', 'n')
@@ -272,7 +288,6 @@ function dosomething_petitions_opt_in($form, $form_state) {
   $count = variable_get('petitions_signed_count_' . $nid, 0);
   variable_set('petitions_signed_count_' . $nid, ++$count);
 
-
   if (valid_email_address($val)) {
     global $language, $user;
 
@@ -292,29 +307,50 @@ function dosomething_petitions_opt_in($form, $form_state) {
 
     if (!empty($invited)) {
       if ($invited['uid']) {
-        $ui = user_load($invited['uid']);
-        $up = profile2_load_by_user($ui, 'main');
-        if (!empty($up->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
-          $name = $up->field_user_first_name[LANGUAGE_NONE][0]['value'];
+        $ui = dosomething_api_user_fetch_data(array(
+          'user' => array(
+            'uid' => 'uid',
+            'name' => 'name',
+          ),
+          'profile' => array(
+            'field_user_first_name' => 'first_name',
+          ),
+        ), $invited['uid']);
+
+        if (!empty($ui['first_name'])) {
+          $name = $ui['first_name'];
         }
         else {
-          $name = $user->name;
+          $name = $ui['name'];
         }
 
         if (!$user->uid) {
-          $guest = dosomething_general_load_user_by_mail_or_cell($val);
-          $prof = profile2_load_by_user($guest, 'main');
-          if (!empty($prof->field_user_first_name[LANGUAGE_NONE][0]['value']) && !empty($prof->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
-            $invitee = $prof->field_user_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $prof->field_user_last_name[LANGUAGE_NONE][0]['value'];
+          $guest = dosomething_api_user_lookup($val);
+
+          $prof = dosomething_api_user_fetch_data(array(
+            'profile' => array(
+              'field_user_first_name' => 'first_name',
+              'field_user_last_name' => 'last_name',
+            ),
+          ), $guest);
+
+          if (!empty($prof['first_name']) && !empty($prof['last_name'])) {
+            $invitee = $prof['first_name'] . ' ' . $prof['last_name'];
           }
           else {
             $invitee = $guest->name;
           }
         }
         else {
-          $uprof = profile2_load_by_user($user, 'main');
-          if (!empty($uprof->field_user_first_name[LANGUAGE_NONE][0]['value']) && !empty($uprof->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
-            $invitee = $uprof->field_user_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $uprof->field_user_last_name[LANGUAGE_NONE][0]['value'];
+          $uprof = dosomething_api_user_fetch_data(array(
+            'profile' => array(
+              'field_user_first_name' => 'first_name',
+              'field_user_last_name' => 'last_name',
+            ),
+          ));
+
+          if (!empty($uprof['first_name']) && !empty($uprof['last_name'])) {
+            $invitee = $uprof['first_name'] . ' ' . $uprof['last_name'];
           }
           else {
             $invitee = $user->name;
@@ -338,8 +374,13 @@ function dosomething_petitions_opt_in($form, $form_state) {
     }
 
     if ($user->uid) {
-      $profile = profile2_load_by_user($user, 'main');
-      $name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+      $profile = dosomething_api_user_fetch_data(array(
+        'profile' => array(
+          'field_user_first_name' => 'first_name',
+        ),
+      ));
+
+      $name = $profile['first_name'];
       if (!trim($name)) {
         $name = $user->name;
       }
@@ -349,11 +390,19 @@ function dosomething_petitions_opt_in($form, $form_state) {
     }
 
     dosomething_petitions_goal_email($node->field_petition_goal[LANGUAGE_NONE][0]['value'], $node->nid);
-    $a = user_load($node->uid);
-    $p = profile2_load_by_user($a, 'main');
-    $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+
+    $p = dosomething_api_user_fetch_data(array(
+      'user' => array(
+        'name' => 'name',
+      ),
+      'profile' => array(
+        'field_user_first_name' => 'first_name',
+      ),
+    ), $node->uid);
+
+    $author = $p['first_name'];
     if (!trim($author)) {
-      $author = $a->name;
+      $author = $p['name'];
     }
 
     // Add signup to MailChimp
@@ -432,80 +481,6 @@ function dosomething_petitions_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {
     return 'plugins/' . $plugin;
   }
-}
-
-/**
- * Refer a friend via email form.
- */
-function dosomething_petitions_email_form($form, &$form_state, $nid) {
-  $form = array();
-  $node = node_load($nid);
-
-  global $user;
-  $profile = profile2_load_by_user($user, 'main');
-
-  $form['invite_data'] = array(
-    '#type' => 'hidden',
-    '#attributes' => array(
-      'id' => 'invite_data'
-    ),
-    '#default_value' => (isset($node->nid) ? $node->nid : 0),
-  );
-
-  for ($i = 0; $i < PETITIONS_NUM_EMAILS; $i++) {
-    $form['email_'.$i] = array(
-      '#type' => 'textfield',
-      '#title' => 'Friend\'s email',
-    );
-  }
-
-  $form['nid'] = array(
-    '#type' => 'hidden',
-    '#value' => $nid,
-    '#default_value' => $nid,
-  );
-  /*$form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Share This',
-    '#attributes' => array(
-      'class' => array('go-button'),
-    ),
-  );
-
-  $form['#submit'][] = 'dosomething_petitions_email_form_submit';*/
-
-  return $form;
-}
-
-/**
- * Petitions email form submit handler.
- */
-function dosomething_petitions_email_form_submit($form, $form_state) {
-  global $user, $language;
-  $node = node_load($form_state['values']['nid']);
-  $url = entity_uri('node', $node);
-  $url = url($url['path'], array('absolute' => true));
-  $name = dosomething_petitions_name($node->nid);
-
-  $params = array(
-    'title' => $node->title,
-    'first_name' => $name['first'],
-    'last_name' => $name['last'],
-    'full_name' => $name['full'],
-    'summary' => $node->field_petition_about[LANGUAGE_NONE][0]['summary'],
-    'signatures' => number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']),
-    'who' => $node->field_petition_target[LANGUAGE_NONE][0]['value'],
-    'url' => $url,
-  );
-
-  for ($i = 0; $i < PETITIONS_NUM_EMAILS; $i++) {
-    $email = $form_state['values']['email_'.$i];
-    if (valid_email_address($email)) {
-      drupal_mail('dosomething_petitions', 'petition_invite', $email, $language, $params);
-      dosomething_petitions_store_email($node->nid, $user->uid, $email);
-    }
-  }
-  drupal_set_message(t('Great! We\'ll send them a link to this petition. Share with more friends below.'));
 }
 
 /**
@@ -658,86 +633,50 @@ function dosomething_petitions_theme($existing, $type, $theme, $path) {
 }
 
 /**
- *  Forms petition signers' names to be only the first name, and first
- *  initial of their last name.
- *
- *  @param int $nid
- *    The node ID of the petition in question.
- *
- *  @return array
- *    Returns an array containing the user's first name, last initial,
- *    and full name.
- */
-function dosomething_petitions_name($nid) {
-  global $user;
-  module_load_include('inc', 'webform', 'includes/webform.submissions');
-
-  $conditions = array('nid' => $nid);
-
-  if ($user->uid) {
-    $conditions['uid'] = $user->uid;
-  }
-  else {
-    $conditions['remote_addr'] = ip_address();
-  }
-
-  $submission = end(webform_get_submissions($conditions));
-  $first_name = $submission->field_webform_first_name[LANGUAGE_NONE][0]['value'];
-  $last_name = $submission->field_webform_last_name[LANGUAGE_NONE][0]['value'];
-
-  if (empty($first_name)) {
-    $profile = profile2_load_by_user($user, 'main');
-
-    if (is_object($profile)) {
-      $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-      $first_name = $profile_wrapper->field_user_first_name->value();
-      $last_name = $profile_wrapper->field_user_last_name->value();
-    }
-  }
-
-  $last_init = substr($last_name, 0, 1);
-  $full_name = "$first_name $last_init.";
-
-  if (empty($first_name)) {
-    $full_name = 'Your Friend';
-  }
-
-  return array(
-    'first' => $first_name,
-    'last' => $last_name,
-    'full' => $full_name,
-  );
-}
-
-/**
  *  Implements hook_contact_picker_emails()
  *  Sets up emails that will be sent by the contact scraper.
  */
 function dosomething_petitions_contact_picker_emails() {
   $emails = array();
-  $node = node_load(intval(basename(request_uri())));
+  $nid = intval(basename(request_uri()));
+  $node = menu_get_object('node', 1, 'node/' . $nid);
 
-  $a = user_load($node->uid);
-  $p = profile2_load_by_user($a, 'main');
-  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  $a = dosomething_api_user_fetch_data(array(
+    'user' => array(
+      'name' => 'name',
+    ),
+    'profile' => array(
+      'field_user_first_name' => 'first_name'
+    ),
+  ), $node->uid);
+
+  $author = $a['first_name'];
   if (!trim($author)) {
-    $author = $a->name;
+    $author = $a['name'];
   }
 
   $node->link = url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE));
   $node->goal = number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']);
 
-  global $user;
-  $p = profile2_load_by_user($user, 'main');
-  if (isset($p->field_user_first_name[LANGUAGE_NONE][0]['value']) && !empty($p->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
-    $me = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
-    $last = $p->field_user_last_name[LANGUAGE_NONE][0]['value'];
+  $p = dosomething_api_user_fetch_data(array(
+    'user' => array(
+      'name' => 'name',
+      'mail' => 'mail',
+    ),
+    'profile' => array(
+      'field_user_first_name' => 'first_name',
+      'field_user_last_name' => 'last_name',
+    ),
+  ));
+  if (!empty($p['first_name'])) {
+    $me = $p['first_name'];
+    $last = $p['last_name'];
   }
   else {
-    $me = $user->name;
+    $me = $p['name'];
   }
 
-  $email = $user->mail;
+  $email = $p['mail'];
 
   if (!$me) {
     if (isset($_SESSION['guest_user_info'])) {
