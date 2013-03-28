@@ -46,7 +46,6 @@ function dosomething_scholarship_application_form_alter(&$form, &$form_state, $f
 
   // Load data.
   $profile = profile2_load_by_user($user, 'main');
-
   $augmented = FALSE;
 
   if ($profile) {
