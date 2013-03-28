@@ -28,12 +28,12 @@ class ConductorActivityCanSendMMSReportBack extends ConductorActivity {
         $state->setContext('ignore_no_response_error', TRUE);
       }
       else {
-        $state->setContext('sms_response', t('TODO: Some other sort of error message'));
+        $state->setContext('sms_response', t('Sorry, we\'ve run into an error. Please try again later.'));
         watchdog('sms_flow', "Invalid workflow or opt-in path output for path ($opt_in_path).");
       }
     }
     else {
-      $state->setContext('sms_response', t('TODO: Some sort of error message about something not being setup on our end'));
+      $state->setContext('sms_response', t('Sorry, we\'ve run into an error. Please try again later.'));
       watchdog('sms_flow', "Incoming opt-in ($opt_in_path) path not handled by ConductorActivityCanSendMMSReportBack");
     }
 
