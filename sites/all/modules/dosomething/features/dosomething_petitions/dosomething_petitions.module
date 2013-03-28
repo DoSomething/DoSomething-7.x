@@ -6,8 +6,6 @@
 
 include_once 'dosomething_petitions.features.inc';
 
-define('PETITIONS_NUM_EMAILS', 0);
-define('PETITIONS_INFUSIONSOFT', 1648);
 define('PETITIONS_MCOMMONS', 117371);
 
 /**
