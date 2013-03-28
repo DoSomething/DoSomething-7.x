@@ -72,6 +72,37 @@
         return false;
       });
 
+    // Mobile Commons success message
+    if (document.location.search.slice(1,8) === 'success') {
+      var success_msg = '<div class="success_msg"><h2>Have we told you how amazing you are lately? Just the best.</h2></div>';
+      $('#scholarship').prepend(success_msg);
+    }
+
+    // #share section Facebook fun
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/wyr/bg-share1.png';
+    var fb_title = 'Would You Rather?';
+    var fb_caption = 'What would you rather do to save money?';
+
+    Drupal.behaviors.fb.feed({
+      'feed_picture': fb_share_img,
+      'feed_title': fb_title,
+      'feed_caption': fb_caption,
+      'feed_description': 'I would eat only ramen for a month!',
+      'feed_selector': '.share-link-ramen',
+    }, function(response){
+      window.location.href = '/wyr#share';
+    });
+
+    Drupal.behaviors.fb.feed({
+      'feed_picture': fb_share_img,
+      'feed_title': fb_title,
+      'feed_caption': fb_caption,
+      'feed_description': 'I would eat only canned tuna for a month!',
+      'feed_selector': '.share-link-tuna',
+    }, function(response){
+      window.location.href = '/wyr#share';
+    }); 
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)

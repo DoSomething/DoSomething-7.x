@@ -3833,6 +3833,44 @@ h2.block-title, h2.pane-title {
   color: black;
 }
 
+#block-dosomething-general-1-million-members .content {
+  text-align: left;
+  padding: 1em 0;
+}
+#block-dosomething-general-1-million-members .content img {
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+}
+#block-dosomething-general-1-million-members .content p {
+  line-height: 1.4em;
+}
+#block-dosomething-general-1-million-members .content h2 {
+  font-size: 16px;
+  text-align: center;
+  margin: 1em 0;
+}
+#block-dosomething-general-1-million-members .content form {
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+#block-dosomething-general-1-million-members .content input[type="text"] {
+  width: 100%;
+  margin-bottom: 8px;
+}
+#block-dosomething-general-1-million-members .content #edit-actions {
+  clear: both;
+  height: auto;
+}
+#block-dosomething-general-1-million-members .content #edit-actions input {
+  margin: 0;
+}
+#block-dosomething-general-1-million-members .content span, #block-dosomething-general-1-million-members .content strong {
+  color: gold;
+}
+
 #block-menu-menu-footer {
   background-color: #333131;
   padding-top: 14px;

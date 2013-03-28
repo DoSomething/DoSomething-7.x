@@ -62,6 +62,10 @@ $activity->routes = array(
     'yes' => '147743',
     'no' => '147753'
   ),
+  '149003' => array(
+    'yes' => '149023',
+    'no' => '149013'
+  ),
 );
 
 $activity = $workflow->newActivity('end');
