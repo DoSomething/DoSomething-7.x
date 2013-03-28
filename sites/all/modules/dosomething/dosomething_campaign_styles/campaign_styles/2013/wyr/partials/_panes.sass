@@ -73,8 +73,6 @@
     display: block
     margin: 0 auto
     padding: 2% 0
-  hr
-    border: #fff 1px solid
   form
     margin: 1% auto 0
     max-width: 600px
@@ -86,6 +84,18 @@
     float: left
     width: 48%
     margin: 1%
+  .success_msg
+    width: 95%
+    padding: 0.5em
+    margin: 1em auto 1.5em
+    +box-shadow(0px 10px 15px -5px darken($campaign-main, 10))
+    +background-image(linear-gradient(color-stops(#F9F9AF 50%, darken(#F9F9AF, 10))))
+    +border-radius(2px)
+    h2
+      width: 100%
+      color: #333
+      font-weight: 600
+      text-transform: uppercase
   .scholar-headline
     font-size: 3.2em
     font-weight: 600
@@ -441,3 +451,19 @@
     font-weight: 400
   .divider
     border: none
+
+// SHARE
+#share
+  border-top: 2px solid #ddd
+  p
+    font-size: 1.2em
+    margin: 1em auto
+    max-width: 200px
+    display: block
+  .share-col
+    width: 50%
+    float: left
+  .share-bg-header
+    display: block
+    margin: 0 auto
+    width: 350px

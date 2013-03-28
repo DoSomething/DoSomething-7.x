@@ -21,9 +21,9 @@ $plugin = array(
   // the first two parameters to drupal_add_library().  The third parameter
   // is always FALSE because these styles are campaign specific and not site
   // wide.
-  //'libraries' => array(
-  //  array('system', 'ui.draggable'),
-  //),
+  'libraries' => array(
+    array('connections', 'facebook'),
+  ),
 
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
