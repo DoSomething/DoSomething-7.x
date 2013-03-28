@@ -85,7 +85,7 @@ function dosomething_general_sms_mdata_response($text) {
  *  Implements hook_module_implements_alter().
  */
 function dosomething_general_module_implements_alter(&$implementations, $hook) {
-  if ($hook == 'mail_alter' && isset($implementations['dosomething_general'])) {
+  if (($hook == 'mail_alter' || $hook == 'block_view') && isset($implementations['dosomething_general'])) {
     $group = $implementations['dosomething_general'];
     unset($implementations['dosomething_general']);
     $implementations['dosomething_general'] = $group;
@@ -270,6 +270,13 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
       'template' => 'mc-response',
       'variables' => array(
         'message' => NULL,
+      ),
+    ),
+    'million-members-block' => array(
+      'path' => $path . '/templates',
+      'template' => 'million-members-block',
+      'variables' => array(
+        'form' => NULL,
       ),
     ),
   );
@@ -939,6 +946,26 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
     );
 
     $form['#validate'][] = 'help_form_captcha';
+  }
+
+  if ($form_id == 'webform_client_form_' . variable_get('million_webform', 728731)) {
+    // Load the form information.
+    $f = &$form['submitted'];
+
+    // Set placeholders.
+    $f['your_name']['#attributes']['placeholder'] = t('Your Name');
+    $f['your_number']['#attributes']['placeholder'] = t('Your Number');
+    $f['friends_number']['#attributes']['placeholder'] = t("Friend's Number");
+    $f['friends_number_2']['#attributes']['placeholder'] = t("Friend's Number");
+    $f['friends_number_3']['#attributes']['placeholder'] = t("Friend's Number");
+
+    if (!user_is_logged_in()) {
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'dosomething_general_million_users_login',
+      );
+    }
+
+    $form['#submit'][] = 'dosomething_general_million_users_opt_in';
   }
 }
 
@@ -1826,4 +1853,111 @@ function dosomething_general_user_logout($account) {
 function dosomething_general_clean_string($string, $nix = '[^A-Za-z0-9\-\_]', $replace_with = '_') {
   $string = preg_replace('#' . $nix . '#i', $replace_with, $string);
   return $string;
+}
+
+/**
+ *  Implements hook_block_info()
+ */
+function dosomething_general_block_info() {
+  $blocks['1-million-members'] = array(
+    'info' => t('1 Million Members block'),
+  );
+
+  return $blocks;
+}
+
+/**
+ *  Implements hook_block_view
+ */
+function dosomething_general_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case '1-million-members':
+      $block['subject'] = t("We're Sending You and Your Friends to Six Flags");
+      $block['content'] = dosomething_general_get_1_million_member_form();
+    break;
+  }
+
+  return $block;
+}
+
+/**
+ *  Loads the 1 million members webform into the block.
+ */
+function dosomething_general_get_1_million_member_form() {
+  // Get the node.
+  $node = node_load(variable_get('million_webform', 728731));
+
+  // Load the form.
+  $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
+
+  if (!user_is_logged_in()) {
+    // Add the javasript, so long as the user is logged out.
+    drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/million.js');    
+  }
+
+  // Render the form
+  $theform = drupal_render($form);
+
+  // Load the template
+  return theme('million-members-block', array(
+    'form' => $theform
+  ));
+}
+
+/**
+ *  Ajax to pop up the "login" form, or show errors if there are any.
+ */
+function dosomething_general_million_users_login($form, &$form_state) {
+  $commands = array();
+
+  // See if there are any errors
+  $errors = form_get_errors();
+  if (!empty($errors)) {
+    // Create a fake error template.
+    $error_list = '';
+    foreach ($errors AS $key => $error) {
+       $error_list .= '<li>' . $error . '</li>';
+    }
+
+    // This is the actual template.
+    $fake_error_template = '<div class="messages error">
+      <h2 class="element-invisible">Error message</h2>
+      <ul>' . $error_list . '</ul></div>
+    ';
+
+    // Show the errors at the top of the page.
+    $commands[] = ajax_command_before('#main-content', $fake_error_template);
+  }
+  else {
+    // Pop up the login / register popup form
+    $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsMillionSubmit');
+  }
+
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands
+  );
+}
+
+/**
+ *  Opt phone numbers into mobile commons
+ */
+function dosomething_general_million_users_opt_in($form, &$form_state) {
+  // Get the values
+  $values = $form_state['input']['submitted'];
+
+  // Mobile commons opt-in paths
+  $alpha_opt_in = 150023;
+  $beta_opt_in = 150033;
+
+  // Beta fields
+  $betas = array(
+    1 => $values['friends_number'],
+    2 => $values['friends_number_2'],
+    3 => $values['friends_number_3'],
+  );
+
+  // Send the ftaf text message
+  dosomething_general_mobile_commons_subscribe_with_friends($values['your_number'], $alpha_opt_in, $betas, $beta_opt_in, array('name' => $values['your_name'],));
 }
