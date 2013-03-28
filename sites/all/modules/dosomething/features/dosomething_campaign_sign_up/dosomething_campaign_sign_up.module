@@ -7,6 +7,18 @@
 include_once('dosomething_campaign_sign_up.features.inc');
 
 /**
+ * Implements hook_module_implements_alter().
+ */
+function dosomething_campaign_sign_up_module_implements_alter(&$implementations, $hook) {
+  // We can only disable our elements if we come after webform_entity, make sure we do.
+  if ($hook == 'form_alter' && isset($implementations['dosomething_campaign_sign_up'])) {
+    $group = $implementations['dosomething_campaign_sign_up'];
+    unset($implementations['dosomething_campaign_sign_up']);
+    $implementations['dosomething_campaign_sign_up'] = $group;
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id) {
@@ -91,18 +103,6 @@ function dosomething_campaign_sign_up_form_alter(&$form, &$form_state, $form_id)
 
   $form['#validate'][] = 'dosomething_general_webform_email_and_mail_validate';
   $form['#submit'][] = 'dosomething_general_webform_email_and_mail_submit';
-}
-
-/**
- * Implements hook_module_implements_alter().
- */
-function dosomething_campaign_sign_up_module_implements_alter(&$implementations, $hook) {
-  // We can only disable our elements if we come after webform_entity, make sure we do.
-  if ($hook == 'form_alter' && isset($implementations['dosomething_campaign_sign_up'])) {
-    $group = $implementations['dosomething_campaign_sign_up'];
-    unset($implementations['dosomething_campaign_sign_up']);
-    $implementations['dosomething_campaign_sign_up'] = $group;
-  }
 }
 
 /**

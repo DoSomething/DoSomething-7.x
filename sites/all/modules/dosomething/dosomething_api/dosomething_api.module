@@ -51,6 +51,7 @@ function dosomething_api_user_lookup($value) {
 function dosomething_api_user_fetch_data($data = array('account' => array(), 'profile' => array()), $account = array(), $cache = TRUE) {
   // Check this out.
   static $cache = array();
+  static $times = 0;
 
   if (empty($account)) {
     global $user;

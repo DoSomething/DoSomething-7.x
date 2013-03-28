@@ -53,7 +53,6 @@ function dosomething_campaign_styles_campaign_sign_up_content_type_render($subty
           $block->title = $campaign_entity->field_label_post_sign[LANGUAGE_NONE][0]['value'];
         }
       }
-
     }
     // if the block is empty, return nothing so it doesn't get rendered
     if (empty($block->content)) {
