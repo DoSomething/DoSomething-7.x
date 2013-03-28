@@ -146,11 +146,17 @@ function dosomething_projects_general_participants_submit($form, &$form_state) {
         else {
           // Otherwise send a message to the user.
           $submission_account = user_load($form_state['values']['details']['uid']);
-          $profile = profile2_load_by_user($submission_account, 'main');
-          $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
+
+          $profile = dosomething_api_user_fetch_data(array(
+            'profile' => array(
+              'field_user_first_name' => 'first_name',
+              'field_user_last_name' => 'last_name',
+            ),
+          ), $submission_account);
+
           // TODO: Sending message and mail means no sanitization.
-          $first = $profile_wrapper->field_user_first_name->value();
-          $last = $profile_wrapper->field_user_last_name->value();
+          $first = $profile['first_name'];
+          $last = $profile['last_name'];
           $subject = t('Invitation to join DoSomething Project');
           $message = "<p>Hey,</p><p> $first $last has invited you to join '$title' on DoSomething.org</p><p>All you have to do is head over to $base_url and fill out the form to become a DoSomething.org member. Then you'll be able to update the DoSomething.org community on the projects we're working on, add our other members to the project profile page, and lots more. Not to mention the fact that you can win prizes, scholarships, and grants, just for being a DoSomething.org member.</p><p>If you have any questions, email Celia at clubs@dosomething.org (she's super helpful).</p>";
           if (valid_email_address($item['value'])) {
@@ -485,13 +491,17 @@ function dosomething_projects_general_webform_submission_insert($node, $submissi
     global $user;
     
     // Get additional details about the user
-    $user2 = array();
-    $user2 = profile2_load_by_user($user, 'main');  
-    $mobile = field_get_items('profile2', $user2, 'field_user_mobile');
-    $birthday = field_get_items('profile2', $user2, 'field_user_birthday');
+    $user2 = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_mobile' => 'mobile',
+        'field_user_birthday' => 'birthday'
+      ),
+    ));
+    $mobile = $user2['mobile'];
+    $birthday = $user2['birthday'];
     
     // Convert birthday data to timestamp
-    $birthday_bits = explode('-', $birthday[0]['value']);   
+    $birthday_bits = explode('-', $birthday);   
     $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  substr($birthday_bits[2], 0, strpos($birthday_bits[2],' ')), $birthday_bits[0]);
 
     $language = $user->language;
@@ -508,10 +518,10 @@ function dosomething_projects_general_webform_submission_insert($node, $submissi
 
     // If alias is not found build on basic patter, I assume this is hard wirded somewhere
     if (!$alias_url) {
-      $alias_url = '/project/'. strtolower(str_replace(' ', '-', $params['project_title']));
+      $alias_url = 'project/'. strtolower(str_replace(' ', '-', $params['project_title']));
     }
     
-    $params['url'] = 'http://' . $_SERVER['HTTP_HOST'] . $alias_url;
+    $params['url'] = url($alias_url, array('absolute' => TRUE));
 
     // Send welcome email message - sent by Mandrill if module enabled
     drupal_mail('dosomething_projects_general', 'welcome_email', $email[0]['value'], $language, $params);
@@ -538,9 +548,9 @@ function dosomething_projects_general_webform_submission_insert($node, $submissi
     $merge_vars['TURNS26'] = $target_date ."/". $target_year_26;
 
     // Phone
-    if (strlen($mobile[0]['value']) > 0) {
+    if (strlen($mobile) > 0) {
       
-      $merge_vars['MMERGE7'] = $mobile[0]['value'];
+      $merge_vars['MMERGE7'] = $mobile;
       
       // Add user to Mobile Commons group
       //  dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $args = array())
