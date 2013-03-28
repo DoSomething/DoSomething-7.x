@@ -45,36 +45,43 @@ function dosomething_scholarship_application_form_alter(&$form, &$form_state, $f
   }
 
   // Load data.
-  $profile = profile2_load_by_user($user, 'main');
+  $profile = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'field_user_first_name' => 'first_name',
+      'field_user_last_name' => 'last_name',
+      'field_user_birthday' => 'birthday',
+      'field_user_address' => 'address',
+      'field_user_mobile' => 'mobile',
+    ),
+  ));
   $augmented = FALSE;
 
   if ($profile) {
     $augmented = TRUE;
 
-    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
     // Get a shortcut to our part of the form.
     $entity_form = &$form['submitted'];
 
     // If  the name is empty, prepoulate it with the user's name from her profile.
     if ($entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
-      $entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_first_name->value() . ' ' . $profile_wrapper->field_user_last_name->value() ;
+      $entity_form['field_webform_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile['first_name'] . ' ' . $profile['last_name'];
     }
 
     // If we have a birthday, prepopulate the field.
-    if (is_numeric($profile_wrapper->field_user_birthday->raw())) {
-      $entity_form['field_webform_birthdate'][LANGUAGE_NONE][0]['#default_value']['value']  = date('Y-m-d H:i:s', $profile_wrapper->field_user_birthday->raw());
+    if (is_numeric($profile['birthdayd'])) {
+      $entity_form['field_webform_birthdate'][LANGUAGE_NONE][0]['#default_value']['value']  = date('Y-m-d H:i:s', $profile['birthday']);
     }
 
     // If no address is yet set on this form, prepoulate it with the one from the user's profile.
     if ($form['#submission'] == array()) {
       $address_values = $form['submitted']['field_webform_address'][LANGUAGE_NONE][0]['#address'];
-      $form['submitted']['field_webform_address'][LANGUAGE_NONE][0]['#address'] = $profile_wrapper->field_user_address->value();
+      $form['submitted']['field_webform_address'][LANGUAGE_NONE][0]['#address'] = $profile['address'];
     }
 
 
     // If the mobile number is empty, prepopulate it.
     if ($entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] == '') {
-      $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile_wrapper->field_user_mobile->value();
+      $entity_form['field_webform_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] = $profile['mobile'];
     }
   }
 
@@ -114,18 +121,22 @@ function dosomething_scholarship_application_form_submit(&$form, &$form_state) {
   global $user;
   $values = $form_state['values'];
   // Update profile values with contact info from the application.
-  $profile = profile2_load_by_user($user, 'main');
-  if (isset($values['field_webform_mobile'][LANGUAGE_NONE][0]['value']) && $values['field_webform_mobile'][LANGUAGE_NONE][0]['value'] != '') {
-    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $values['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-  }
+
+  $address = array();
   if (isset($values['field_webform_address'][LANGUAGE_NONE][0]['element_key'])) {
     foreach (element_children($values['field_webform_address'][LANGUAGE_NONE][0]) as $address_line) {
       if ($values['field_webform_address'][LANGUAGE_NONE][0][$address_line] != '' && $address_line != 'element_key') {
-        $profile->field_user_address[LANGUAGE_NONE][0][$address_line] = $values['field_webform_address'][LANGUAGE_NONE][0][$address_line];
+        $address[$address_line] = $values['field_webform_address'][LANGUAGE_NONE][0][$address_line];
       }
     }
   }
-  $profile->save();
+
+  dosomething_api_user_update(array(
+    'profile' => array(
+      'field_user_mobile' => $values['field_webform_mobile'][LANGUAGE_NONE][0]['value'],
+      'field_user_address' => $address
+    ),
+  ));
 
   if (isset($values['field_webform_email'][LANGUAGE_NONE][0]['email']) && $values['field_webform_email'][LANGUAGE_NONE][0]['email'] != '' && $values['field_webform_email'][LANGUAGE_NONE][0]['email'] != $user->mail) {
     $variables = array(
