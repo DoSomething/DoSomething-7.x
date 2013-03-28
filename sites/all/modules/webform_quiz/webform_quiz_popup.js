@@ -28,18 +28,13 @@
           });
       }
       else {
-        var fbobj = {
-          method: 'feed',
-          link: settings.quiz_url,
-          picture: $('.field-name-field-editorial-image img').attr('src'),
-          name: 'I\'m ' + $('.pane-page-title h1').text(),
-          caption: $('.panel-top .pane-2 h3').text(),
-          description: $('.field-name-field-body').text() 
-        };
-
-        $('.quiz-share').click(function () {
-          FB.ui(fbobj);
-          return false;
+        Drupal.behaviors.fb.feed({
+          'feed_document': settings.quiz_url,
+          'feed_title': $('.pane-page-title h1').text(),
+          'feed_picture': $('.field-name-field-editorial-image img').attr('src'),
+          'feed_caption': $('.panel-top .pane-2 h3').text(),
+          'feed_description': $('.field-name-field-body').text(),
+          'feed_selector': '.quiz-share',
         });
       }
     }

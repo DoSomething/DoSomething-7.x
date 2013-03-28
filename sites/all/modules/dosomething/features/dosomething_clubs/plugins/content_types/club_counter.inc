@@ -44,8 +44,11 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
 
   $membership = og_get_group_membership($group->gid, 'user', $user->uid);
 
+  global $show_invite_link;
+  $show_invite_link = false;
   if (isset($membership->state) && $membership->state == OG_STATE_ACTIVE && isset($group->gid)) {
     $member_link = '';
+    $show_invite_link = true;
   }
   else if (isset($membership->state) && $membership->state == OG_STATE_PENDING) {
     $member_link = t('Your membership is pending.');
@@ -165,7 +168,6 @@ function dosomething_clubs_club_counter_content_type_render($subtype, $conf, $pa
             '#prefix' => '<p class="club-blurb">',
             '#suffix' => '</p>'
           ),
-
           'member_link' => array(
             '#markup' => $member_link,
             '#prefix' => '<div class="invite-link">',
@@ -244,15 +246,6 @@ function dosomething_clubs_club_counter_right() {
     }
   }
 
- /* $items['campaigns_completed'] = array(
-    'title' => t('Campaigns Completed'),
-    'value' => $counts['campaign_report_back'],
-  );
-  $items['projects_uploaded'] = array(
-    'title' => t('Projects Uploaded'),
-    'value' => $counts['project_report'],
-  );*/
-
   $items['actions_taken'] = array(
     'title' => t('Actions Taken'),
     'value' => ($counts['campaign_report_back'] + $counts['project_report'])
@@ -280,8 +273,9 @@ function dosomething_clubs_club_counter_right() {
   $nid = (isset($n->nid) ? $n->nid : 0);
   $gid = (isset($group->gid) ? $group->gid : 0);
 
+  global $show_invite_link;
   $output[] = array(
-      '#markup' => '<div class="button-container">' . l(t('Invite friends'), 'clubs/share/' . $nid, array('attributes' => array('class' => array('go-button')))) . l('<div' . $w . '>' . t('View Members') . '</div>' . $s, 'club/' . $gid . '/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')), 'html' => TRUE)) . '</div>',
+      '#markup' => '<div class="button-container">' . ($show_invite_link ? l(t('Invite friends'), 'clubs/share/' . $nid, array('attributes' => array('class' => array('go-button')))) : '') . l('<div' . $w . '>' . t('View Members') . '</div>' . $s, 'club/' . $gid . '/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')), 'html' => TRUE)) . '</div>',
   );
 
   return drupal_render($output);

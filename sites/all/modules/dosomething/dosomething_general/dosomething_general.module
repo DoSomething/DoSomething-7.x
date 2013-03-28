@@ -228,21 +228,21 @@ function dosomething_general_js_alter(&$javascript) {
  *
  * Added to control how css files are grouped together when agrigration is enabled
  * Note condition added to break the grouping into two sets as grouping everything
- * into a single file was result in a file that contained over 
+ * into a single file was result in a file that contained over
  */
 
  /* Pulled due to continued IE8 issues
-  * 
+  *
 function dosomething_general_css_alter(&$css) {
   // Set all aggregated css to the CSS_DEFAULT group.
   // This prevents individual css files per group
   // Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
-  
+
   uasort($css, 'drupal_sort_css_js');
   $i = 0;
   foreach ($css as $name => $style) {
     $css[$name]['weight'] = $i++;
-    
+
     // Break grouping into two sets - CSS_SYSTEM, (-100) and the rest
     if ($style['group'] == -100) {
       $css[$name]['group'] = CSS_SYSTEM;
@@ -250,7 +250,7 @@ function dosomething_general_css_alter(&$css) {
     else {
       $css[$name]['group'] = CSS_DEFAULT;
     }
-    
+
     $css[$name]['every_page'] = FALSE;
   }
 }
@@ -1027,26 +1027,26 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   }
   elseif (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
     if (strpos($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'], '@') > 0) {
-      $email = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']; 
+      $email = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     }
     else {
       $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     }
   }
-   
+
   if (!empty($email)) {
     if ( (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) || ($node->type == 'petition') ) && !empty($email)) {
-      
+
       // Cell
       if (!empty($cell)) {
         $mc_merge_vars['MMERGE7'] = $cell;
       }
-      
+
       // From petitions
       if ($node->type == 'petition') {
-        
+
         $mc_group = 'Petitions2012';
-      
+
         // Petition Name - Webform ID
         $mc_merge_vars['MMERGE27'] = $form['#action'];
 
@@ -1055,7 +1055,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
         if ($form['#submission']->details['uid'] > 0) {
           $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
         }
-        
+
       }
       else {
         $mc_group = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
@@ -1065,7 +1065,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
 
     }
   }
-  
+
   // Will use previous cell value if already set from Petition submission
   $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
   if (!empty($cell)) {
@@ -1083,7 +1083,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
  * @param $form_state
  */
 function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_state) {
-  
+
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
 
@@ -1136,29 +1136,29 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   if ( !empty($submitted['first_name']) ||
        !empty($submitted['last_name']) ||
        !empty($submitted['your_name']) ) {
-    
+
     $merge_vars['MMERGE3'] = $submitted['first_name'] . ' ' . $submitted['last_name'];
-    
+
     if (!empty($submitted['your_name'])) {
       $merge_vars['MMERGE3'] = $submitted['your_name'];
     }
-    
+
   }
-  
+
   // Check for secondary name submissions - ie: Footlocker nominee
   if (!empty($submitted['nominees_name'])) {
-    
+
     $nominees_email = $submitted['nominees_email'];
     $nominees_merge_vars = array();
     $nominees_merge_vars['MMERGE3'] = $submitted['nominees_name'];
-    
+
     // Submit to MailChimp
     dosomething_general_mailchimp_subscribe($nominees_email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $nominees_merge_vars);
   }
 
   // Submit to MailChimp
   dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
-  
+
 }
 
 function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
@@ -1201,7 +1201,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
           $call = $api->create($type, $req);
         }
         catch (TelApi_Exception $e) {
-          
+
           watchdog('robocalls', $e->getMessage());
           return false;
         }
@@ -1393,10 +1393,10 @@ function dosomething_general_mailchimp_get_api_object() {
  *   Boolean indicating success.
  */
 function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
-  
+
   /* Our function */
   $mcapi = dosomething_general_mailchimp_get_api_object();
-  
+
   // Catching function
   // Hardcoding the list to the dosomething members
   $listid = 'f2fab1dfd4';
@@ -1422,10 +1422,10 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
     }
     cache_set($cid, $groupingIdByGroupName);
   }
-  
+
   // Collect user details by email based on current values in user account for MailChimp signup / update
   $merge_vars += dosomething_general_collect_merge_vars($email);
-  
+
   if (!isset($groupingIdByGroupName[$groupName])) {
     watchdog('dosomething_general_mailchimp_subscribe',
       'Cannot find Group ID for group named %name',
@@ -1442,11 +1442,11 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
       ),
     )
   );
-  
+
   // http://apidocs.mailchimp.com/api/rtfm/listsubscribe.func.php
   // listSubscribe(string apikey, string id, string email_address, array merge_vars,
   //   string email_type, bool double_optin, bool update_existing, bool replace_interests, bool send_welcome)
-  
+
   // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
   $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
 
@@ -1465,9 +1465,9 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
              array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
              $severity = WATCHDOG_ERROR);
   }
-  
+
   return $mc_signup_flag;
-    
+
 }
 
 /**
@@ -1477,7 +1477,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
  *   Target email address to reference for additional information
  * @param $target_mobile
  *   Target mobile number to reference for additional information
- *   
+ *
  * @return
  *   Array $merge_vars collection user information.
  */
@@ -1485,15 +1485,15 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
 
   // Collect the user details
   $user = user_load_by_mail($target_email);
-  
+
   // TO-DO: add lookup by mobile
-  
+
   // check to see if user account is found
   if ($user) {
     // Merge vars for user
     $merge_vars['UID'] = $user->uid;
     $merge_vars['MMERGE3'] =  $user->name;
-    
+
     // Mobile
     $u = dosomething_api_user_fetch_data(array(
       'profile' => array(
@@ -1501,51 +1501,51 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
         'field_user_birthday' => 'birthday',
       ),
     ), $user);
-    
+
     if (!empty($target_mobile)) {
       $merge_vars['MMERGE7'] = $target_mobile;
     }
     elseif(!empty($u['mobile'])) {
       $merge_vars['MMERGE7'] = $u['mobile'];
-      
+
       // TO-DO ?
       // if ($target_mobile != $mobile) {
       //   Update user record with new mobile number?
       // }
-      
+
       // Validates number - perhaps already done before sent to this function?
       // dosomething_general_valid_cell
-      
+
     }
-    
+
     // Birthday
     if (!empty($u['birthday'])) {
-      $birthday_bits = explode('-', $u['birthday']);   
+      $birthday_bits = explode('-', $u['birthday']);
       $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  substr($birthday_bits[2], 0, strpos($birthday_bits[2],' ')), $birthday_bits[0]);
-      
+
       $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
       $merge_vars['BDAYFULL'] = date('m/d/Y', $birthday_stamp);
-    
+
       // Need to store date values as var to allow recasting in final string
       $target_date = date('m/d', $birthday_stamp);
-      $target_year_18 = date('Y', $birthday_stamp) + 18;    
-      $target_year_26 = date('Y', $birthday_stamp) + 26;  
-      
+      $target_year_18 = date('Y', $birthday_stamp) + 18;
+      $target_year_26 = date('Y', $birthday_stamp) + 26;
+
       // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
       $merge_vars['TURNS18'] = $target_date ."/". $target_year_18;
       $merge_vars['TURNS26'] = $target_date ."/". $target_year_26;
-  
+
     }
-    
+
   }
-  
+
   // Make sure merge_vars is formatted correctly even if no values are assigned
   if (empty($merge_vars) || count($merge_vars) == 0) {
     $merge_vars['UID'] = 0;
   }
 
   return $merge_vars;
-  
+
 }
 
 /**
