@@ -71,7 +71,7 @@ function dosomething_api_user_fetch_data($data = array('account' => array(), 'pr
 
   $return = array();
   if (isset($data['account'])) {
-    $cached = array_intersect($data['account'], array_keys($cache[$user->uid]));
+    $cached = (array) array_intersect($data['account'], array_keys($cache[$user->uid]));
     foreach ($data['account'] AS $field => $alias) {
       $a = ($alias ? $alias : $field);
       if (isset($cached[$a])) {
@@ -84,8 +84,8 @@ function dosomething_api_user_fetch_data($data = array('account' => array(), 'pr
     }
   }
   if (isset($data['profile'])) {
-    $cached = array_intersect($data['profile'], array_keys($cache[$user->uid]));
-    $uncached = array_diff($data['profile'], $cached);
+    $cached = (array) array_intersect($data['profile'], array_keys($cache[$user->uid]));
+    $uncached = (array) array_diff($data['profile'], $cached);
 
     if (!empty($uncached)) {
       $p = profile2_load_by_user($user, 'main');

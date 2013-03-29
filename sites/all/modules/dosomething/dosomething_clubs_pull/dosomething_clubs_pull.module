@@ -541,16 +541,22 @@ class clubs_export {
           /**  Yes, this is literally the worst thing ever
             *  but it saves so much query time from above it's crazy
             */ 
-          $p = profile2_load_by_user((object) array(
-            'uid' => $r->creator_id
-          ), 'main');
+          $p = dosomething_api_user_fetch_data(array(
+            'profile' => array(
+              'field_user_address' => 'address',
+              'field_user_first_name' => 'first_name',
+              'field_user_last_name' => 'last_name',
+              'field_user_birthday' => 'birthday',
+              'field_user_mobile' => 'mobile',
+            ),
+          ), $r->creator_id);
 
-          $address = $p->field_user_address[LANGUAGE_NONE][0];
+          $address = $p['address'];
           $s += array(
-            'first_name' => $p->field_user_first_name[LANGUAGE_NONE][0]['value'],
-            'last_name' => $p->field_user_last_name[LANGUAGE_NONE][0]['value'],
-            'birth_day' => $p->field_user_birthday[LANGUAGE_NONE][0]['value'],
-            'phone' => $p->field_user_mobile[LANGUAGE_NONE][0]['value'],
+            'first_name' => $p['first_name'],
+            'last_name' => $p['last_name'],
+            'birth_day' => $p['birthday'],
+            'phone' => $p['mobile'],
             'owner_street' => $address['thoroughfare'],
             'owner_city' => $address['locality'],
             'owner_state' => $address['administrative_area'],
