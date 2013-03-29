@@ -526,10 +526,14 @@ function sms_flow_team_invite_form($form, &$form_state, $gid, $alpha_optin = 0, 
 }
 
 function sms_flow_team_invite_form_submit($form, &$form_state) {
-  global $user;
-  $profile = profile2_load_by_user($user, 'main');
-  if ($profile) {
-    $inviter = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  $profile = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'field_user_first_name' => 'first_name',
+    ),
+  ));
+
+  if (!empty($profile['first_name'])) {
+    $inviter = $profile['first_name'];
   }
 
   if (empty($inviter)) {
