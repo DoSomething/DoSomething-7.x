@@ -205,7 +205,7 @@ html body.admin-menu {
   #cmp .go-button:hover, #cmp #edit-submit:hover, #cmp .form-submit:hover {
     color: #1e1d1c;
     text-decoration: none; }
-#cmp #mission, #cmp #complete, #cmp #cause, #cmp #footer {
+#cmp #mission, #cmp #flip, #cmp #complete, #cmp #cause, #cmp #footer {
   background: #eeeeee; }
 #cmp .header_img {
   float: left;
@@ -217,12 +217,11 @@ html body.admin-menu {
   #cmp #header a {
     color: #1e1d1c; }
   #cmp #header .deadline {
-    float: right;
     text-align: right;
     color: white;
     font-weight: 600;
     letter-spacing: 2px;
-    clear: none; }
+    clear: both; }
   #cmp #header .deadline-date {
     color: #e9e7e7; }
   #cmp #header .log_out {
@@ -256,6 +255,18 @@ html body.admin-menu {
       #cmp #header .beta_text {
         width: 100%;
         font-size: 50px; } }
+#cmp #next h2 a {
+  text-decoration: none;
+  color: #33adff; }
+  #cmp #next h2 a:hover {
+    text-decoration: underline; }
+#cmp #next .go-button {
+  font-size: 28px;
+  text-align: center;
+  margin: 0.5em auto;
+  padding: 17px 0 0 0;
+  width: 250px;
+  height: 50px; }
 #cmp #complete .go-button {
   height: 35px;
   width: 100px;
