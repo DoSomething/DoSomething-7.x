@@ -88,6 +88,140 @@ function robocalls_field_default_fields() {
     ),
   );
 
+  // Exported field: 'taxonomy_term-vocabulary_99-field_alpha_opt_in'.
+  $fields['taxonomy_term-vocabulary_99-field_alpha_opt_in'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_alpha_opt_in',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vocabulary_99',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'If applicable, the opt in path in mobile commons that alphas should be added to when the call is complete.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 16,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_alpha_opt_in',
+      'label' => 'Mobile Commons Alpha Opt In',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '15',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-vocabulary_99-field_beta_opt_in'.
+  $fields['taxonomy_term-vocabulary_99-field_beta_opt_in'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_beta_opt_in',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vocabulary_99',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The ID of the opt-in-path on Mobile Commons that the beta will be added to when the call is completed.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 15,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_beta_opt_in',
+      'label' => 'Mobile Commons Beta Opt in',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '14',
+      ),
+    ),
+  );
+
   // Exported field: 'taxonomy_term-vocabulary_99-field_birthday_call'.
   $fields['taxonomy_term-vocabulary_99-field_birthday_call'] = array(
     'field_config' => array(
@@ -150,7 +284,7 @@ function robocalls_field_default_fields() {
           'display_label' => 0,
         ),
         'type' => 'options_onoff',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
@@ -215,7 +349,7 @@ function robocalls_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '4',
+        'weight' => '6',
       ),
     ),
   );
@@ -282,7 +416,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '13',
       ),
     ),
   );
@@ -414,7 +548,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '10',
+        'weight' => '12',
       ),
     ),
   );
@@ -481,7 +615,7 @@ function robocalls_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '12',
+        'weight' => '16',
       ),
     ),
   );
@@ -693,7 +827,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '8',
+        'weight' => '10',
       ),
     ),
   );
@@ -759,7 +893,7 @@ function robocalls_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -965,7 +1099,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '9',
+        'weight' => '11',
       ),
     ),
   );
@@ -1115,7 +1249,7 @@ function robocalls_field_default_fields() {
           'year_range' => '-0:+3',
         ),
         'type' => 'date_select',
-        'weight' => '6',
+        'weight' => '8',
       ),
     ),
   );
@@ -1182,7 +1316,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '9',
       ),
     ),
   );
@@ -1249,7 +1383,7 @@ function robocalls_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '15',
+        'weight' => '17',
       ),
     ),
   );
@@ -1953,10 +2087,13 @@ function robocalls_field_default_fields() {
   t('Friend\'s Number #6');
   t('Fun Fact');
   t('How many calls to any given number per day should be allowed on this celebrity?');
+  t('If applicable, the opt in path in mobile commons that alphas should be added to when the call is complete.');
   t('If this particular celebrity has a scholarship, fill in the scholarship language here and it will appear on the page.');
   t('Is this celebrity a timed call (that is -- can it only call on a certain date / certain time?) An example of this: Voting campaign or Holiday calls.  Users will be able to specify what hour and minute they want this call to take place, within the specified day.
 ');
   t('Is this celebrity visible on the Call of Fame home page? Check this box to make sure they show up.');
+  t('Mobile Commons Alpha Opt In');
+  t('Mobile Commons Beta Opt in');
   t('Mobile Commons MConnect ID');
   t('My Password');
   t('Photo');
@@ -1967,6 +2104,7 @@ function robocalls_field_default_fields() {
   t('Step 1: Choose Who is Calling');
   t('Tagline');
   t('The ID of the mobile commons MConnect');
+  t('The ID of the opt-in-path on Mobile Commons that the beta will be added to when the call is completed.');
   t('The tagline for this celebrity\'s page.  Example: Tyler will say hayyy girl to yo\' friends.');
   t('Thumbnail that will appear for this celebrity on the Call of Fame landing page.');
   t('Timed Call Label');
