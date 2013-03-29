@@ -1203,24 +1203,36 @@ function theme_dosomething_login_form_required_marker($variables) {
 }
 
 /**
- * Determine if a drupal user is over the given age.
+ *  Determine if a drupal user is over the given age.
  *  If no birthday is set, the default answer is no.
  *
- * @param $uid
- *  (int) numeric id of drupal user.
+ * @param int $uid
+ *  numeric id of drupal user.
+ *
+ * @param int $age (default 13)
+ *   The minimum age they need to be, to be COPPA compliant.
+ *
+ * @param int|null $end_timestamp
+ *   The end timestamp to check against.
+ *
  * @return @boolean
+ *   True if they are over 13.
  */
 function dosomething_login_drupal_user_is_over_age($uid, $age = 13, $end_timestamp = NULL) {
-  $account = user_load($uid);
-  $profile = profile2_load_by_user($account, 'main');
-  if (is_object($profile)) {
-    $birthday = field_get_items('profile2', $profile, 'field_user_birthday');
-    if (isset($birthday[0]['value'])) {
-      // this is only a a time (no time) so timezone is not important.
-      $timestamp = strtotime($birthday[0]['value']);
-      return dosomething_login_person_is_over_age($timestamp, $age, $end_timestamp);
-    }
+  // Fetch the user information.
+  $profile = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'fiefld_user_birthday' => 'birthday',
+    ),
+  ), $uid);
+
+  // Confirm their birthday.
+  if (!empty($profile['birthday'])) {
+    $timestamp = strtotime($profile['birthday']);
+    return dosomething_login_person_is_over_age($timestamp, $age, $end_timestamp);
   }
+
+  // If no birthday, default to FALSE
   return FALSE;
 }
 
@@ -1241,17 +1253,16 @@ function dosomething_login_person_is_over_age($birthday, $age = 13, $timestamp =
 }
 
 /**
- * Mark a user as being over 13.
+ *  Mark a user as being over 13.
  *  They don't need parental permission at this point.
  */
 function dosomething_login_mark_user_account_over_13($uid) {
-  $account = user_load($uid);
-  $profile = profile2_load_by_user($account, 'main');
-  if (is_object($profile)) {
-    $birthday = field_get_items('profile2', $profile, 'field_user_birthday');
-    $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 1;
-    profile2_save($profile);
-  }
+  // Update their profile to let us know they're 13.
+  dosomething_api_user_update(array(
+    'profile' => array(
+      'field_user_is_over13' => 1,
+    ),
+  ), $uid);
 }
 
 /**
@@ -1259,17 +1270,14 @@ function dosomething_login_mark_user_account_over_13($uid) {
  */
 function dosomething_login_get_user_full_name($account) {
   $full_name = '';
-  $names = array();
-  $profile = profile2_load_by_user($account, 'main');
-  if (is_object($profile)) {
-    foreach (array('field_user_first_name', 'field_user_last_name') as $field) {
-      $stored_names = field_get_items('profile2', $profile, $field);
-      if (isset($stored_names[0]['safe_value'])) {
-        $names[] = $stored_names[0]['safe_value'];
-      }
-    }
-    $full_name = implode(' ', $names);
-  }
+  $name = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'field_user_first_name' => 'first',
+      'field_user_last_name' => 'last',
+    ),
+  ), $account);
+  $full_name = implode(' ', $name);
+
   return $full_name;
 }
 
