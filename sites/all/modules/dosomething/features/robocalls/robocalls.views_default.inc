@@ -274,7 +274,7 @@ function robocalls_views_default_views() {
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_celeb_photo']['field_api_classes'] = 0;
-  /* Field: Taxonomy term: Photo thumbnail */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_photo_thumbnail']['id'] = 'field_photo_thumbnail';
   $handler->display->display_options['fields']['field_photo_thumbnail']['table'] = 'field_data_field_photo_thumbnail';
   $handler->display->display_options['fields']['field_photo_thumbnail']['field'] = 'field_photo_thumbnail';
@@ -298,12 +298,6 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_photo_thumbnail']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_photo_thumbnail']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_photo_thumbnail']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_photo_thumbnail']['settings'] = array(
-    'image_style' => 'robocalls_gallery_thumb',
-    'image_link' => 'content',
-  );
-  $handler->display->display_options['fields']['field_photo_thumbnail']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
@@ -731,7 +725,7 @@ function robocalls_views_default_views() {
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_celeb_photo']['field_api_classes'] = 0;
-  /* Field: Taxonomy term: Photo thumbnail */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_photo_thumbnail']['id'] = 'field_photo_thumbnail';
   $handler->display->display_options['fields']['field_photo_thumbnail']['table'] = 'field_data_field_photo_thumbnail';
   $handler->display->display_options['fields']['field_photo_thumbnail']['field'] = 'field_photo_thumbnail';
@@ -755,12 +749,6 @@ function robocalls_views_default_views() {
   $handler->display->display_options['fields']['field_photo_thumbnail']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_photo_thumbnail']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_photo_thumbnail']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_photo_thumbnail']['settings'] = array(
-    'image_style' => 'robocall_celeb_thumbnail_205x115',
-    'image_link' => 'content',
-  );
-  $handler->display->display_options['fields']['field_photo_thumbnail']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
