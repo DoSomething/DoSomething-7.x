@@ -656,13 +656,16 @@ function dosomething_roles_user_submitted_grant($uid, $timestamp) {
  *   UNIX timestamp of their anniversary or the current time if none was found.
  */
 function dosomething_roles_get_anniversary($account) {
-  $profile = profile2_load_by_user($account, 'main');
-  if (is_object($profile)) {
-    $date = field_get_items('profile2', $profile, 'field_user_anniversary');
-    if (isset($date[0]['value'])) {
-      return $date[0]['value'];
-    }
+  $profile = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'field_user_anniversary' => 'anniversary',
+    ),
+  ), $account);
+
+  if (!empty($profile['anniversary'])) {
+    return $profile['anniversary'];
   }
+
   return REQUEST_TIME;
 }
 
