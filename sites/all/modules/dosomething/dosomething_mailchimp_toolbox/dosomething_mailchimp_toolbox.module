@@ -300,9 +300,15 @@ function dosomething_mailchimp_toolbox_collect_merge_vars($target_email = NULL, 
     $merge_vars['UID'] = $user->uid;
     $merge_vars['MMERGE3'] =  $user->name;
     
+    $profile = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_mobile' => 'mobile',
+        'field_user_birthday' => 'birthday',
+      ),
+    ), $user);
+
     // Mobile
-    $user2 = profile2_load_by_user($user, 'main');
-    $mobile = field_get_items('profile2', $user2, 'field_user_mobile');
+    $mobile = $profile['mobile'];
     
     if (!empty($target_mobile)) {
       $merge_vars['MMERGE7'] = $target_mobile;
@@ -321,11 +327,11 @@ function dosomething_mailchimp_toolbox_collect_merge_vars($target_email = NULL, 
     }
     
     // Birthday
-    $birthday = field_get_items('profile2', $user2, 'field_user_birthday');
+    $birthday = $profile['birthday'];
     
     if (!empty($birthday)) {
       
-      $birthday_bits = explode('-', $birthday[0]['value']);   
+      $birthday_bits = explode('-', $birthday);   
       $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  substr($birthday_bits[2], 0, strpos($birthday_bits[2],' ')), $birthday_bits[0]);
       
       $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
