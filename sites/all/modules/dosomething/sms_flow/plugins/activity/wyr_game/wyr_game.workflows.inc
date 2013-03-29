@@ -180,3 +180,109 @@ $activity->name = 'end';
 $activity->inputs = array('pbj_run_tips');
 
 $workflows[$workflow->name] = $workflow;
+
+/**
+ * Randomized WAIT tips for Pregnancy Text.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pregnancy_wait';
+$workflow->title = 'Pregnancy Text - WAIT';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('wait_tips');
+
+$activity = $workflow->newActivity('game_random_path');
+$activity->name = 'wait_tips';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->game_id = 6;
+$activity->opt_in_paths = array();  // TODO: need opt-in paths
+$activity->path_special = 0;        // TODO: need opt-in path
+$activity->send_to_special_on = 3;  // TODO: confirm iteration the special path is sent
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('wait_tips');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Randomized SAFE tips for Pregnancy Text.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pregnancy_safe';
+$workflow->title = 'Pregnancy Text - SAFE';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('safe_tips');
+
+$activity = $workflow->newActivity('game_random_path');
+$activity->name = 'safe_tips';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->game_id = 7;
+$activity->opt_in_paths = array(); // TODO: need opt-in paths
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('safe_tips');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Randomized PARENT tips for Pregnancy Text.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pregnancy_parent';
+$workflow->title = 'Pregnancy Text - PARENT';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('parent_tips');
+
+$activity = $workflow->newActivity('game_random_path');
+$activity->name = 'parent_tips';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->game_id = 8;
+$activity->opt_in_paths = array(); // TODO: need opt-in paths
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('parent_tips');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Randomized RIGHTS tips for Pregnancy Text.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pregnancy_rights';
+$workflow->title = 'Pregnancy Text - RIGHTS';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('rights_tips');
+
+$activity = $workflow->newActivity('game_random_path');
+$activity->name = 'rights_tips';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->game_id = 9;
+$activity->opt_in_paths = array(); // TODO: need opt-in paths
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('rights_tips');
+
+$workflows[$workflow->name] = $workflow;
