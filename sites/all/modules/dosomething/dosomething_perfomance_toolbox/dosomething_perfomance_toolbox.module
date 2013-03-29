@@ -169,6 +169,7 @@ function dosomething_perfomance_toolbox_webfonts() {
  *   Users email address.
  */
 
+/*
 function dosomething_perfomance_toolbox_css_alter(&$css) {
 
     // From common.inc, ln: 3121
@@ -196,6 +197,7 @@ function dosomething_perfomance_toolbox_css_alter(&$css) {
     }
 
 }
+*/
 
 /**
  * Implements hook_js_alter().
