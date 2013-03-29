@@ -274,30 +274,6 @@ function robocalls_views_default_views() {
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_celeb_photo']['field_api_classes'] = 0;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_photo_thumbnail']['id'] = 'field_photo_thumbnail';
-  $handler->display->display_options['fields']['field_photo_thumbnail']['table'] = 'field_data_field_photo_thumbnail';
-  $handler->display->display_options['fields']['field_photo_thumbnail']['field'] = 'field_photo_thumbnail';
-  $handler->display->display_options['fields']['field_photo_thumbnail']['label'] = '';
-  $handler->display->display_options['fields']['field_photo_thumbnail']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_photo_thumbnail']['hide_alter_empty'] = 1;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
@@ -637,6 +613,7 @@ function robocalls_views_default_views() {
 
   /* Display: Choose Another Celebrity */
   $handler = $view->new_display('block', 'Choose Another Celebrity', 'block_robocalls_choose_another_celeb');
+  $handler->display->display_options['enabled'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'jcarousel';
   $handler->display->display_options['style_options']['wrap'] = 'both';
