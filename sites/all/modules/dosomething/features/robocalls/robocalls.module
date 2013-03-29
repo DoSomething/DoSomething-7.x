@@ -138,9 +138,36 @@ function robocalls_call_completed() {
       (isset($_REQUEST['From']) && dosomething_general_valid_cell($_REQUEST['From']))
       && (isset($_REQUEST['To']) && dosomething_general_valid_cell($_REQUEST['To']))
     ) {
+    // Attempt to get my number.
+    $my_number = preg_replace('#[^0-9]#', '', $_REQUEST['To']);
+    if ($my_number{0} == 1) {
+      $my_number = substr($my_number, 1);
+    }
+
+    // Attempt to get the last record of the call the beta was a part of.
+    $call = db_select('call_records', 'r')
+      ->fields('r', array('call_id'))
+      ->condition('beta', $my_number)
+      ->orderBy('timestamp', 'DESC')
+      ->range(0, 1)
+      ->execute()->fetchAll();
+
+      // Get the ID of the celebrity for that call.
+      $id = reset($call)->call_id;
+
+      $term = taxonomy_term_load($id);
+      $beta_opt_in_id = 146913; // default, generic message
+      if (isset($term->field_beta_opt_in[LANGUAGE_NONE][0]['value'])) {
+        $beta_opt_in_id = $term->field_beta_opt_in[LANGUAGE_NONE][0]['value'];
+      }
+
+      $alpha_opt_in_id = 0; // default, no message
+      if (isset($term->field_alpha_opt_in[LANGUAGE_NONE][0]['value'])) {
+        $alpha_opt_in_id = $term->field_alpha_opt_in[LANGUAGE_NONE][0]['value'];
+      }
 
       // Assuming the call is complete, send the text message!
-      dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']), 146913);
+      dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], $alpha_opt_in_id, array($_REQUEST['To']), $beta_opt_in_id);
     }
   }
 }
