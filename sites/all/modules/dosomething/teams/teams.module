@@ -550,10 +550,15 @@ function teams_add_member($friend, $gid) {
   // if the email/cell doesn't have an associated user account, then we need
   // to send them a custom URL to join the team.
   else {
-    $profile = profile2_load_by_user($user, 'main');
-    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-    $first = $profile_wrapper->field_user_first_name->value();
-    $last = $profile_wrapper->field_user_last_name->value();
+    $profile = dosomething_api_user_fetch_data(array(
+      'profile' => array(
+        'field_user_first_name' => 'first_name',
+        'field_user_last_name' => 'last_name',
+      ),
+    ), $user);
+
+    $first = $profile['first_name'];
+    $last = $profile['last_name'];
 
     if ($type == 'email') {
       $group_hash = teams_get_group_hash($gid);
@@ -679,10 +684,13 @@ function teams_join_with_webform_submission($gid, $uid = FALSE, $redirect = TRUE
   $submission = reset(entity_load('webform_submission_entity', array($group->etid)));
   $nid = $submission->nid;
 
-  $profile = profile2_load_by_user($account, 'main');
-  if ($profile) {
-    $mobile = field_get_items('profile2', $profile, 'field_user_mobile');
-    $mobile = $mobile[0]['value'];
+  $profile = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'field_user_mobile' => 'mobile',
+    ),
+  ), $account);
+  if (!empty($profile)) {
+    $mobile = $profile['mobile'];
     $submission = (object) array(
       'sid' => NULL,
       'nid' => $nid,
