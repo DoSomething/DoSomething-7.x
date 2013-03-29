@@ -1282,21 +1282,6 @@ function dosomething_login_get_user_full_name($account) {
 }
 
 /**
- * Retrieve a user's cell phone number from their profile.
- */
-function dosomething_login_get_cell_phone_number($account, $profile = NULL) {
-  $number = FALSE;
-  if (is_null($profile)) {
-    $profile = profile2_load_by_user($account, 'main');
-  }
-  if (is_object($profile)) {
-    $numbers = field_get_items('profile2', $profile, 'field_user_mobile');
-    $number = isset($numbers[0]['value']) ? ltrim(preg_replace('/[^0-9]/', '', $numbers[0]['value']), 1) : FALSE;
-  }
-  return $number;
-}
-
-/**
  * Determine if user has parentel consent to use this site.
  *  If they are over 13, then they don't need it.
  */
