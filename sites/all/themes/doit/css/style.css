@@ -3422,6 +3422,10 @@ div[role=main] {
   line-height: 1.4em;
 }
 
+.scholarship-current {
+  border: none !important;
+}
+
 #breadcrumb {
   font-size: 0.71429em;
   line-height: 2.4em;
