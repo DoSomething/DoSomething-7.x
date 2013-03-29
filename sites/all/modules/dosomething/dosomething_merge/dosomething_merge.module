@@ -205,13 +205,14 @@ function dosomething_merge_move_entities($primary_uid, $mobile_uid, $mobile_numb
 }
 
 function dosomething_merge_fiddle_user($primary_uid, $mobile_uid, $mobile_number, &$context) {
-  $mobile_profile = profile2_load_by_user($mobile_uid, 'main');
-
-  $primary_profile = profile2_load_by_user($primary_uid, 'main');
-  // TODO: we should probably see if there's anything worth copying off of the
-  // $mobile_profile.
-  $primary_profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile_number;
-  $primary_profile->save();
+  /* Unused for now but may be used at a later point.
+   * $mobile_profile = profile2_load_by_user($mobile_uid, 'main');
+   */
+  dosomething_api_user_update(array(
+    'profile' => array(
+      'field_user_mobile' => $mobile_number,
+    ),
+  ), $primary_uid);
 
   user_delete($mobile_uid);
 }
