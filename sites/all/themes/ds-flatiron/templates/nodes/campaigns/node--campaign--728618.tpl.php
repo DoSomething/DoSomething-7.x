@@ -2,7 +2,7 @@
   <div class="content"<?php print $content_attributes; ?>>
 
     <?php
-      
+
       require('node-field-variables.php');
 
     ?>
@@ -19,7 +19,7 @@
         <?php endif; ?>
       </div> <!-- .section-container -->
     </section> <!-- .header -->
-    
+
     <?php if (!isset($complete) && !isset($shared)): ?>
 
       <?php /* TODO - PREVENT THOSE WHO HAVEN'T SUBMITTED THE REPORT BACK FROM FROM SEEING THIS SECTION */ ?>
@@ -109,14 +109,14 @@
           <h1><?php print($success[2]); ?></h1>
         </div> <!-- .section-container -->
       </section> <!-- .section -->
-    
+
       <section class="share" id="share">
         <div class="section-container">
-        
+
           <img class="bg-header" src="<?php print($files_source . 'h-share.png'); ?>" alt="spread the word" />
           <img class="bg-share" src="<?php print($files_source . 'bg-share.png'); ?>" alt="text message preview" />
 
-            <?php 
+            <?php
               $nid = 'node/' . $node->nid;
               $thanks_redirect_param = array(
                 'query' => array(
@@ -157,7 +157,7 @@
 
               <input type="submit" class="form-submit" value="invite friends" />
 
-            </form> 
+            </form>
 
             <div class="campaign-opt-in">
 
@@ -170,6 +170,18 @@
             </div> <!-- .campaign-opt-in -->
 
         </div> <!-- .section-container -->
+
+        <!--
+        Edvisors tracking pixel
+        @todo - Ideally this will be handled in a more automated fashion.  This
+        can be achieved by Stashing the Edvisor offer id on the campaign and
+        using a a standardize (but themable) webform confirmation page.
+        @todo - add a http referrer check as well
+        -->
+        <!-- Offer Conversion: DoSomething.org -->
+        <iframe src="http://tracking.edvisors.com/aff_l?offer_id=98" scrolling="no" frameborder="0" width="1" height="1"></iframe>
+        <!-- // End Offer Conversion -->
+
       </section> <!-- .section -->
     <?php endif; ?>
 
