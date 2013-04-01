@@ -1,6 +1,0 @@
-name = Webform Devel
-description = Provides a devel tab for webform submissions.
-package = Webform
-core = 7.x
-dependencies[] = webform
-dependencies[] = devel
