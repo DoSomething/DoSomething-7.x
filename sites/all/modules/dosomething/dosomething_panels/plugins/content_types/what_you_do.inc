@@ -1,4 +1,3 @@
-
 <?php
 
 $plugin = array(
