@@ -21,31 +21,33 @@ $activity->outputs = array('end');
 $activity->no_match_response = 'This is the no_match_response message.';
 $activity->response_sets = array(
   array(
-    'exact_match' => array('test1', 'test2', 'test3'),
-    'AND_match'   => array(
+    'phrase_match' => array('phrase 1', 'phrase 2'),
+    'AND_match'    => array(
       array('test1A', 'test2A'),
       array('test1B', 'test 2 B'),
     ),
-    'negation'    => TRUE,
-    'response'    => 'Response Message #1 Negation',
+    'exact_match'  => array('test1', 'test2', 'test3'),
+    'negation'     => TRUE,
+    'response'     => 'Response Message #1 Negation',
   ),
   array(
-    'exact_match' => array('test1', 'test2', 'test3'),
-    'AND_match'   => array(
+    'phrase_match' => array('phrase 1', 'phrase 2'),
+    'AND_match'    => array(
       array('test1a', 'test2a'),
       array('test1B', 'test 2 B'),
     ),
-    'negation'    => FALSE,
-    'response'    => 'Response Message #1',
+    'exact_match'  => array('test1', 'test2', 'test3'),
+    'negation'     => FALSE,
+    'response'     => 'Response Message #1',
   ),
   array(
-    'exact_match' => array('test4', 'test5', 'test6'),
-    'AND_match'   => array(
+    'AND_match'    => array(
       array('test1C', 'test2C'),
       array('test1D', 'test 2 D'),
     ),
-    'negation'    => FALSE,
-    'response'    => 'Response Message #2',
+    'exact_match'  => array('test4', 'test5', 'test6'),
+    'negation'     => FALSE,
+    'response'     => 'Response Message #2',
   ),
 );
 

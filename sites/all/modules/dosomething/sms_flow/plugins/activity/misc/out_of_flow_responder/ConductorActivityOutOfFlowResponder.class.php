@@ -10,12 +10,13 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   // Expected structure:
   //  array(
   //    array(
-  //      'exact_match' => array('singleWord', 'or match a phrase', ...),
+  //      'phrase_match' => array('phrase 1', 'phrase 2'),
   //      'AND_match'   => array(
   //        array('word1A', 'word1B'),
   //        array('word2A', 'word2B', 'phrase 2 C'),
   //        ...
   //      ),
+  //      'exact_match' => array('word1', 'word2', ...),
   //      'negation'    => boolean. If TRUE, matches succeed only if the user message is a negation.
   //                       ex: "I do NOT love you"
   //      'response'    => string. Message to send back to user if match is found.
@@ -41,16 +42,16 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     for ($i = 0; $i < count($this->response_sets) && !$bMatchFound; $i++) {
       $set = $this->response_sets[$i];
 
-      // Search for exactly matched words
-      foreach ($set['exact_match'] as $matchWord) {
-        if (self::in_arrayi($matchWord, $userWords)) {
+      // Search for exactly matched phrases
+      foreach ($set['phrase_match'] as $matchPhrase) {
+        if (stripos($userMessage, $matchPhrase) >= 0) {
           $bMatchFound = TRUE;
           break;
         }
       }
 
+      // Search for sets of words in the user message to match against
       if (!$bMatchFound) {
-        // Each word in the set must be present in the user message to match
         foreach ($set['AND_match'] as $matchSet) {
           $bSetMatches = TRUE;
           foreach ($matchSet as $matchWord) {
@@ -61,6 +62,16 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
           }
 
           if ($bSetMatches) {
+            $bMatchFound = TRUE;
+            break;
+          }
+        }
+      }
+
+      // Search for exactly matched words
+      if (!$bMatchFound) {
+        foreach ($set['exact_match'] as $matchWord) {
+          if (self::in_arrayi($matchWord, $userWords)) {
             $bMatchFound = TRUE;
             break;
           }
