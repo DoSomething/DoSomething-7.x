@@ -17,6 +17,20 @@
         <?php if ($sponsor): ?>
           <img class="logo-sponsor" src="<?php print($files_source . 'logo-' . $sponsor . '.png'); ?>" alt="<?php print($sponsor); ?> logo" />
         <?php endif; ?>
+
+        <div class="header-social">
+
+          <!-- Facebook Like Button -->
+          <a href="#" class="header-facebook-share">
+            <img src="//www.dosomething.org/files/campaigns/wyr/bg-recommend.png" alt="Recommend" />
+          </a>
+
+          <!-- Twitter Tweet Button -->
+          <div class="header-twitter-share">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.dosomething.org/wyr" data-text="I'm #TeamCrunchy when it comes to my peanut butter! What are you? Pick sides in @dosomething's #PBJSlam now: http://www.dosomething.org/pbj" data-via="dosomething" data-count="none">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+
       </div> <!-- .section-container -->
     </section> <!-- .header -->
 
