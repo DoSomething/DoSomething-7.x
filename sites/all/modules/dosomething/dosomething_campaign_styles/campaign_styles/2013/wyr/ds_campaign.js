@@ -21,7 +21,7 @@
           $(this).addClass('activeFAQ');
           $(this).siblings('h4').removeClass('activeFAQ');
           $(this).next('div').slideToggle();
-          $(this).siblings().next('div').slideUp();      
+          $(this).siblings().next('div').slideUp();
         }
       });
 
@@ -83,6 +83,19 @@
     var fb_title = 'Would You Rather?';
     var fb_caption = 'What would you rather do to save money?';
 
+    // #header section Facebook fun
+    var fb_header_caption = 'What would you rather do to save money?';
+
+    Drupal.behaviors.fb.feed({
+      'feed_picture': fb_share_img,
+      'feed_title': fb_title,
+      'feed_caption': fb_header_caption,
+      'feed_description': 'Would you rather get a hair cut from a 5 yr old, or not get it cut for a year? Play Would You Rather w/ @dosomething: www.dosomething.org/wyr',
+      'feed_selector': '.header-facebook-share',
+    }, function(response){
+      window.location.href = '/wyr#header';
+    });
+
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
@@ -101,7 +114,7 @@
       'feed_selector': '.share-link-tuna',
     }, function(response){
       window.location.href = '/wyr#share';
-    }); 
+    });
 
     } // end attach: function
   }; // end Drupal.behaviors
