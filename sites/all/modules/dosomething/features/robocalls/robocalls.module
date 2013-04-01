@@ -74,7 +74,7 @@ function robocalls_get_celebrities() {
       }
     }
 
-    cache_set('robo_celebrities', $celebs);
+    cache_set('robo_celebrities', $celebs, 'cache', CACHE_TEMPORARY);
   }
 
   return $celebs;
