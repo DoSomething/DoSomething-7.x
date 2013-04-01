@@ -76,7 +76,13 @@
    );
 
   $social = array(
+    /* The zero-indexed string is the alt text for the bg-header image */
+    0 => "Which team are you on?",
     1 => "Team Crunchy or Smooth? Help settle one of biggest debates in American history.",
+    2 => "Team Crunchy Mascot",
+    3 => "#teamcrunchy",
+    4 => "Team Smooth Mascot",
+    5 => "#teamsmooth",
    );
 
   /* POST REPORT-BACK PAGE VIEW */
