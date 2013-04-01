@@ -48,8 +48,36 @@
       $(this).parent().next().toggleClass('active-fact');
     })
 
-    // MISC FUNCTIONALITY
-    // ------------------
+// SOCIAL SECTION
+// --------------
+
+    // create local variables
+    var fb_share_img = 'http://www.dosomething.org/files/styles/campaigns_image/public/pbj-campaign.jpg';
+    var fb_title = 'Which Team Are You?';
+    var fb_caption = 'Are you Team Crunchy or Team Smooth?';
+
+    Drupal.behaviors.fb.feed({
+      'feed_picture': 'http://www.dosomething.org/files/campaigns/pbjs13/bg-social1.png',
+      'feed_title': fb_title,
+      'feed_caption': fb_caption,
+      'feed_description': 'I\'m #TeamCrunchy when it comes to my peanut butter! What are you? Pick sides in @dosomething\'s #PBJSlam now: http://www.dosomething.org/pbj',
+      'feed_selector': '.share-link-social1',
+    }, function(response){
+      window.location.href = '/wyr#social';
+    });
+
+    Drupal.behaviors.fb.feed({
+      'feed_picture': 'http://www.dosomething.org/files/campaigns/pbjs13/bg-social2.png',
+      'feed_title': fb_title,
+      'feed_caption': fb_caption,
+      'feed_description': 'I\'m #TeamSmooth when it comes to my peanut butter! What are you? Pick sides in @dosomething\'s #PBJSlam now: http://www.dosomething.org/pbj',
+      'feed_selector': '.share-link-social2',
+    }, function(response){
+      window.location.href = '/wyr#social';
+    });
+
+// MISC FUNCTIONALITY
+// ------------------
 
     // give users ability to hide system messages
     var btn_message = '<a href="#" class="go-button" id="btn_message">close</a>';
