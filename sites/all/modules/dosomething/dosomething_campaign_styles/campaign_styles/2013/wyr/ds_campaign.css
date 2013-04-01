@@ -593,6 +593,27 @@ body {
         #cmp #header.section .header-right {
           width: 80%;
           margin: 2% 0 0 0; } }
+  #cmp .header-social {
+    float: left; }
+  #cmp .header-facebook-share,
+  #cmp .header-twitter-share {
+    display: block;
+    height: 20px; }
+  #cmp .header-facebook-share {
+    width: 75px;
+    height: 20px;
+    border: 1px solid #cad4e7;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px; }
+    #cmp .header-facebook-share:hover {
+      border: 1px solid #eceef5; }
+  #cmp .header-twitter-share {
+    float: left;
+    width: 54px;
+    margin: 5px 0 0 0; }
   #cmp #action {
     padding: 3% 0 2%; }
   #cmp #scholarship {
