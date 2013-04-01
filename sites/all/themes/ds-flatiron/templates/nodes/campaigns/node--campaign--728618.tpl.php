@@ -94,18 +94,18 @@
 
           <div class="col-social">
             <img src="<?php print($files_source . 'bg-social1.png'); ?>" alt="<?php print($share[2]); ?>" />
-            <a href="#" class="share-link-social1">
+            <a href="#" class="share-link-social share-link-social1">
               <?php print($social[3]); ?>
             </a>
           </div> <!-- .social-col -->
 
           <div class="col-social">
             <img src="<?php print($files_source . 'bg-social2.png'); ?>" alt="<?php print($share[4]); ?>" />
-            <a href="#" class="share-link-social2">
+            <a href="#" class="share-link-social share-link-social2">
               <?php print($social[5]); ?>
             </a>
           </div> <!-- .social-col -->
-          
+
         </div> <!-- .section-container -->
       </section> <!-- .social -->
 
