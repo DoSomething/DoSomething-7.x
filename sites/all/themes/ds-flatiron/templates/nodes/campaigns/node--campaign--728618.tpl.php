@@ -86,6 +86,29 @@
         </div> <!-- .section-container -->
       </section> <!-- .scholarship -->
 
+      <section class="social" id="social">
+        <div class="section-container">
+
+          <img class="bg-header" src="<?php print($files_source . 'h-social.png'); ?>" alt="<?php print($share[0]); ?>" />
+          <h2><?php print($share[1]); ?></h2>
+
+          <div class="col-social">
+            <img src="<?php print($files_source . 'bg-social1.png'); ?>" alt="<?php print($share[2]); ?>" />
+            <a href="#" class="share-link-social1">
+              <?php print($social[3]); ?>
+            </a>
+          </div> <!-- .social-col -->
+
+          <div class="col-social">
+            <img src="<?php print($files_source . 'bg-social2.png'); ?>" alt="<?php print($share[4]); ?>" />
+            <a href="#" class="share-link-social2">
+              <?php print($social[5]); ?>
+            </a>
+          </div> <!-- .social-col -->
+          
+        </div> <!-- .section-container -->
+      </section> <!-- .social -->
+
       <section class="cause" id="cause">
         <div class="section-container">
 
