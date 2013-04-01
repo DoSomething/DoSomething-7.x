@@ -220,10 +220,12 @@ function robocalls_beta_response() {
         $n .= preg_replace('#(\d{3})(\d{3})(\d{4})#', '(\\1) \\2-\\3', $number) . ($key == (count($numbers[1]) - 2) ? ' and ' : ($key == (count($numbers[1]) - 1) ? '.' : ', '));
 
         // Send the TelAPI request.
-        dosomething_general_telapi_request($my_number, $number, $id);
+        $call = dosomething_general_telapi_request($my_number, $number, $id);
 
-        // Make a record of the call.
-        robocalls_record_call($my_number, $number, $id);
+        if (!empty($call)) {
+          // Make a record of the call.
+          robocalls_record_call($my_number, $number, $id);
+        }
       }
     }
     // If we didn't get any phone numbers, let 'em know.
@@ -816,10 +818,12 @@ function robocalls_homepage_form_submission($form, &$form_state) {
       $call = dosomething_general_telapi_request($my['cell'], $number, $callid);
     }
     else {
-      dosomething_general_telapi_request($my['cell'], $number, $callid);
+      $c = dosomething_general_telapi_request($my['cell'], $number, $callid);
     }
 
-    robocalls_record_call($my['cell'], $number, $callid);
+    if (!empty($call) || !empty($c)) {
+      robocalls_record_call($my['cell'], $number, $callid);
+    }
   }
 
   if (!empty($call)) {
