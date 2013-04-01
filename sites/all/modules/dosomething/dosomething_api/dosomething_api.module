@@ -209,3 +209,15 @@ function dosomething_api_user_update($data = array('user' => array(), 'profile' 
     }
   }
 }
+
+/**
+ *  Removes a member.
+ *
+ *  @param int $uid
+ *    The user ID of the member.
+ */
+function dosomething_api_member_delete($uid) {
+  $profile = profile2_load_by_user(user_load($uid));
+  profile2_delete($profile);
+  user_delete($uid);
+}
