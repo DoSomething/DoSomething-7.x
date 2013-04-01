@@ -26,8 +26,9 @@
 define('CSS_WEBFONTS', 200);
 
 
-
-
+/**
+ * Implements hook_permission().
+ */
 function dosomething_performance_toolbox_permission() {
   return array(
     'administer performance toolbox' => array(
@@ -92,7 +93,9 @@ function dosomething_performance_toolbox_menu() {
 }
 
 
-
+/**
+ * Implements hook_theme().
+ */
 function dosomething_performance_toolbox_theme($existing, $type, $theme, $path) {
   return array(
     'dosomething_performance_toolbox_welcome' => array(
@@ -110,6 +113,9 @@ function dosomething_performance_toolbox_theme($existing, $type, $theme, $path) 
 }
 
 
+/**
+ * Internal "Welcome" page.
+ */
 function _dosomething_performance_toolbox_welcome() {
     
   $webfont_stats = array(
@@ -133,6 +139,9 @@ function _dosomething_performance_toolbox_welcome() {
 
 }
 
+/**
+ * Internal page to list webfonts.
+ */
 function _dosomething_performance_toolbox_webfonts() {
     
   // List entries by path showing assigned font files, grouped by theme
@@ -156,6 +165,9 @@ function _dosomething_performance_toolbox_webfonts() {
 
 }
 
+/**
+ * Internal funciton to direct crud functions.
+ */
 function _dosomething_performance_toolbox_webfonts_crud($webfont_entry_id, $target_theme_id, $crud) {
     
   switch($crud) {
@@ -199,7 +211,7 @@ function _dosomething_performance_toolbox_webfonts_crud($webfont_entry_id, $targ
     
       case 'delete':
         
-        // Delete entry, retuan to "read".
+        // Delete entry, return to "read".
         
         break;
   }
@@ -217,6 +229,9 @@ function _dosomething_performance_toolbox_webfonts_crud($webfont_entry_id, $targ
 
 }
 
+/**
+ * Internal page to add webfonts.
+ */
 function _dosomething_performance_toolbox_webfonts_add_font() {
     
   // Listing of font files, add new font entries for target theme
@@ -227,6 +242,9 @@ function _dosomething_performance_toolbox_webfonts_add_font() {
 
 }
 
+/**
+ * Internal page to list aggregation details.
+ */
 function _dosomething_performance_toolbox_aggregation() {
     
   // Generates listing of css and js file load order (grouping)
@@ -340,7 +358,8 @@ function dosomething_performance_toolbox_webfonts() {
  * @param &$css
  *   Users email address.
  */
-    
+
+/*
 function dosomething_performance_toolbox_css_alter(&$css) {
     
     // From common.inc, ln: 3121
@@ -368,6 +387,8 @@ function dosomething_performance_toolbox_css_alter(&$css) {
     }
   
 }
+
+*/
 
 /**
  * Implements hook_js_alter().
