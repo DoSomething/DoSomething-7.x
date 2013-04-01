@@ -91,7 +91,7 @@ function ds_flatiron_form_alter(&$form, &$form_state, $form_id) {
     $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
   }
   if ($form_id == 'webform_client_form_728661') {
-    $form['actions']['submit']['#value'] = t('I want to run a drive');
+    $form['actions']['submit']['#value'] = t('I want to donate with a group');
     $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
   }
   if($form_id == 'webform_client_form_728619') {
