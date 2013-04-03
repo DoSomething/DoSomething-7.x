@@ -65,16 +65,16 @@ function robocalls_webform_select_options_info() {
  */
 function robocalls_get_celebrities() {
   $celebs = array();
-  $celebs = cache_get('robo_celebrities')->data;
+  #$celebs = cache_get('robo_celebrities')->data;
   if (empty($celebs)) {
     foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
       $c = taxonomy_term_load($celeb->tid);
-      if ($celeb->parents[0] > 0 && $celeb->name != '???' && $c->field_visible_celebrity[LANGUAGE_NONE][0]['value'] == 1) {
-        $celebs[$celeb->tid] = $celeb->name . ' (' . $c->field_short_name[LANGUAGE_NONE][0]['value'] . ')';
+      if ($celeb->name != '???' && $c->field_visible_celebrity[LANGUAGE_NONE][0]['value'] == 1) {
+        $celebs[$celeb->tid] = $celeb->name . (!empty($c->field_short_name[LANGUAGE_NONE][0]['value']) ? ' (' . $c->field_short_name[LANGUAGE_NONE][0]['value'] . ')' : '');
       }
     }
 
-    cache_set('robo_celebrities', $celebs, 'cache', CACHE_TEMPORARY);
+    #cache_set('robo_celebrities', $celebs, 'cache', CACHE_TEMPORARY);
   }
 
   return $celebs;
