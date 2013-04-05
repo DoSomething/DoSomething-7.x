@@ -384,7 +384,7 @@ class dosomething_mailchimp_toolboxMailSystem extends DefaultMailSystem {
 
 */
 
-class DoSomethingMailSystem extends DefaultMailSystem {
+class DoSomethingMailchimpToolboxMailSystem extends DefaultMailSystem {
 
   public function format(array $message) {
     $message['body'] = implode("\n\n", $message['body']);
