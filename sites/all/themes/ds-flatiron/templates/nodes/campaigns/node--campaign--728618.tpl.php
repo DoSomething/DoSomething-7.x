@@ -36,7 +36,6 @@
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-challenge.png'); ?>" alt="your challenge" />
           <h2><?php print($challenge[1]); ?></h2>
-          <h2><?php print($challenge[2]); ?></h2>
         </div> <!-- .section-container -->
       </section> <!-- .challenge -->
 
