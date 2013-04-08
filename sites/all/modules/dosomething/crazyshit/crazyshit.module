@@ -1399,6 +1399,7 @@ function crazyshit_mail_send($email, $message) {
 /**
  *  Extends default mail system to use crazyshitMailSystem which sends emails as HTML
  */
+/*
 class crazyshitMailSystem extends DefaultMailSystem {
 
   public function format(array $message) {
@@ -1409,3 +1410,4 @@ class crazyshitMailSystem extends DefaultMailSystem {
   }
 
 }
+*/
