@@ -429,8 +429,8 @@ function dosomething_clubs_responded_to_txt() {
       }
     }
 
-    $clubs_yes_response = variable_get('clubs_yes_response', 0);
-    $clubs_no_response = variable_get('clubs_no_response', 0);
+    $clubs_yes_response = variable_get('clubs_yes_response', 151633);
+    $clubs_no_response = variable_get('clubs_no_response', 151643);
 
     if (strtolower($response{0}) == 'y') {
       dosomething_general_mobile_commons_subscribe($num, $clubs_yes_response);
