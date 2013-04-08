@@ -3,14 +3,14 @@
  * A collection of functionality related to MailChimp functionality.
  *
  * A central location for all things MailChimp within the DoSomething.org site.
- *
+ * 
  **/
 
 /*
  * Implementation of hook_webform_submission_presave()
  *
- * For a particular Webform node, use the submitted value of a component to determine whether or not
- * the submitter will be subscribed to a Simplenews newsletter.
+ * For a particular Webform node, use the submitted value of a component to determine whether or not 
+ * the submitter will be subscribed to a Simplenews newsletter. 
  *
  * Catch all webform submissions to add submission details to MailChimp based on an assigned MailChimp group by specific webform.
  * This functionality will ber expanded to includ an admin form to add the MailChimp group by webform rather than the current hardcoded
@@ -22,111 +22,59 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
   // 727601: Do Something Awards Application
   // 727716: DO SOMETHING AWARDS NOMINATION FORM
   if ($submission->nid == 727601 || $submission->nid == 727716) {
-
+    
     if ($submission->nid == 727601) {
-
+    
       // Target email - MailChimp key
       $application_email = $submission->data[5]['value'][0];
-
+  
       // Name
       $merge_vars['FNAME'] = $submission->field_webform_first_name['und'][0]['value'];
       $merge_vars['LNAME'] = $submission->field_webform_last_name['und'][0]['value'];
       $merge_vars['MMERGE3'] = $merge_vars['FNAME'] .' '. $merge_vars['LNAME'];
-
+  
       // Birthday
       $birthday_bits = explode('-', $submission->data[12]['value'][0]);
       $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  $birthday_bits[2], $birthday_bits[0]);
-
+      
       $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
       $merge_vars['BDAYFULL'] = date('m/d/Y', $birthday_stamp);
-
+      
       // Need to store date values as var to allow recasting in final string
       $target_date = date('m/d', $birthday_stamp);
-      $target_year_18 = date('Y', $birthday_stamp) + 18;
-      $target_year_26 = date('Y', $birthday_stamp) + 26;
-
+      $target_year_18 = date('Y', $birthday_stamp) + 18;    
+      $target_year_26 = date('Y', $birthday_stamp) + 26;  
+        
       // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
       $merge_vars['TURNS18'] = $target_date ."/". $target_year_18;
       $merge_vars['TURNS26'] = $target_date ."/". $target_year_26;
-
+  
       // Cell
       $merge_vars['MMERGE7'] = $submission->data[6]['value'][0];
-
+      
       // Assign target MailChimp group
       $MailChimp_group = 'DSA2013Applicants';
-
+      
     }
     elseif ($submission->nid == 727716) {
-
+      
       // Target email - MailChimp key
       $application_email = $submission->data[2]['value'][0];
-
+      
       // Full name
       $merge_vars['MMERGE3'] = $submission->data[1]['value'][0];
-
+      
       // Assign target MailChimp group
       $MailChimp_group = 'DSA2013Nominees';
-
+      
     }
-
-
+    
     // Submit to MailChimp
-    $mailChimp_results = dosomething_mailchimp_toolbox_mailchimp_subscribe($application_email, $MailChimp_group, $merge_vars);
-
+    $mailChimp_results= dosomething_mailchimp_toolbox_mailchimp_subscribe($application_email, $MailChimp_group, $merge_vars);
+    
   }
- /*
-  echo('<pre>');
-  print_r($submission);
-  echo('</ pre>');
- */
-  // exit;
-
-  // TEMP HOME for webform submissions related to Mobile Commons - this module needs to be renamed to dosomething_webform_??
-  // 719551: Grants
-  // 719546: Scholarships
-  // 719366: Trashy
-  if ($submission->nid == 719551 || $submission->nid == 719546 || $submission->nid == 719366) {
-
-    switch ($submission->nid) {
-
-      // 719551: Grants
-      case 719551:
-
-        $mobile_commons_optin_id = 150463;
-        $mobile_number = $submission->field_webform_mobile['und'][0]['value'];
-
-        break;
-
-      // 719546: Scholarships
-      case 719546:
-
-        $mobile_commons_optin_id = 150493;
-        $mobile_number = $submission->field_webform_mobile['und'][0]['value'];
-
-        break;
-
-      // 719366: Trashy
-      case 719366:
-
-        $mobile_commons_optin_id = NULL;
-        $mobile_number = $submission->field_webform_mobile['und'][0]['value'];
-
-        break;
-
-    }
-
-    // Submit to Mobile Commons
-    if (isset($mobile_commons_optin_id) && isset($mobile_number)) {
-      $mobile_commons_subscribe_results = dosomething_general_mobile_commons_subscribe($mobile_number, $mobile_commons_optin_id);
-    }
-    else {
-      watchdog('dosomething_mailchimp_toolbox', 'Failed to assign mobile number: %mobile_number to Mobile Commons Campaign.', array('%mobile_number' => $mobile_number),WATCHDOG_ALERT);
-    }
-
-  }
-
+  
 }
-
 
 /**
  *  Implements hook_module_implements_alter()
@@ -139,49 +87,291 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
  * @param &$implementations: Array of implimented hooks. Passed as reference allowing for alteration to be passed
  * on to Drupal bootstrap. This allows the placement of this module at the bottom of the stack thus gaining access
  * to all that comes before it. Specifically webform entity entries are now available,
- *
+ * 
  * @param $hook: Array - All of the hooks implimented.
- *
+ *  
  */
 function dosomething_mailchimp_toolbox_module_implements_alter(&$implementations, $hook) {
-
+  
   if ($hook == 'webform_submission_presave') {
     $group = $implementations['dosomething_mailchimp_toolbox'];
     unset($implementations['dosomething_mailchimp_toolbox']);
     $implementations['dosomething_mailchimp_toolbox'] = $group;
   }
-
+  
 }
 
 /**
- *  Extends default mail system to use DoSomethingMailSystem which sends emails as HTML
+ * Multi-function form submit handler that aggressively looks for emails and
+ * other data in form submissions, then sends them to mailchimp.
+ *
+ * @param $form
+ * @param $form_state
  */
-class DoSomethingMailSystem extends DefaultMailSystem {
+function dosomething_mailchimp_toolbox_webform_mailchimp_find_and_send(&$form, &$form_state) {
+  
+  $node = $form['#node'];
+  $submitted = $form_state['webform_entity']['submission']->submitted;
+
+  $email = '';
+  if (!empty($submitted['email'])) {
+    $email = $submitted['email'];
+  }
+  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  }
+  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+  }
+  elseif (!empty($submitted['your_email'])) {
+    $email = $submitted['your_email'];
+  }
+
+  // An email and a mailchimp group id are the base requirements. Without them,
+  // bail out.
+  if (empty($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) || empty($email)) {
+    return;
+  }
+
+  // Now, find extra fields.
+  $merge_vars = array();
+
+  if (!empty($submitted['birthday'])
+      && !empty($submitted['birthday']['month'])
+      && !empty($submitted['birthday']['day'])) {
+    $month = str_pad($submitted['birthday']['month'], 2, '0', STR_PAD_LEFT);
+    $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
+    if (!empty($submitted['birthday']['year'])) {
+      $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
+
+      // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
+      $merge_vars['TURNS18'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 18;
+      $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;
+    }
+  }
+
+  if (!empty($submitted['first_name'])) {
+    $merge_vars['FNAME'] = $submitted['first_name'];
+  }
+
+  if (!empty($submitted['last_name'])) {
+    $merge_vars['LNAME'] = $submitted['last_name'];
+  }
+
+  // Full name - MMERGE3
+  if ( !empty($submitted['first_name']) ||
+       !empty($submitted['last_name']) ||
+       !empty($submitted['your_name']) ) {
+    
+    $merge_vars['MMERGE3'] = $submitted['first_name'] . ' ' . $submitted['last_name'];
+    
+    if (!empty($submitted['your_name'])) {
+      $merge_vars['MMERGE3'] = $submitted['your_name'];
+    }
+    
+  }
+  
+  // Check for secondary name submissions - ie: Footlocker nominee
+  if (!empty($submitted['nominees_name'])) {
+    
+    $nominees_email = $submitted['nominees_email'];
+    $nominees_merge_vars = array();
+    $nominees_merge_vars['MMERGE3'] = $submitted['nominees_name'];
+    
+    // Submit to MailChimp
+    dosomething_mailchimp_toolbox_mailchimp_subscribe($nominees_email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $nominees_merge_vars);
+  }
+
+  // Submit to MailChimp
+  dosomething_mailchimp_toolbox_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
+  
+}
+
+/**
+ * Subscribe the email to the mailchimp DoSomething Members List.
+ *
+ * @param $email
+ *   Users email address.
+ * @param $groupName
+ *   The campaign name that the email is to be subscribed to.
+ * @return
+ *   Boolean indicating success.
+ */
+function dosomething_mailchimp_toolbox_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
+  
+  /* Our function */
+  $mcapi = dosomething_general_mailchimp_get_api_object();
+  
+  // Catching function
+  // Hardcoding the list to the dosomething members
+  $listid = 'f2fab1dfd4';
+
+  // We do not want them to have to know the grouping id so we will build
+  // the table to look it up by using the group name specified.
+  $cid = "dosomething_general_mailchimp_group_mapping_$listid";
+  $cache = cache_get($cid);
+  if (!empty($cache->data)) {
+    $groupingIdByGroupName = $cache->data;
+  }
+  else {
+    $groupingIdByGroupName = array();
+    $groupings = $mcapi->listInterestGroupings($listid);
+    if (is_array($groupings) && !empty($groupings)) {
+      foreach ($groupings as $grouping) {
+        foreach ($grouping['groups'] as $group) {
+          // If two groupnames are the same in different groupings
+          // then it may pick the wrong group.
+          $groupingIdByGroupName[$group['name']] = $grouping['id'];
+        }
+      }
+    }
+    cache_set($cid, $groupingIdByGroupName);
+  }
+  
+  // Collect user details by email based on current values in user account for MailChimp signup / update
+  $merge_vars += dosomething_general_collect_merge_vars($email);
+  
+  if (!isset($groupingIdByGroupName[$groupName])) {
+    watchdog('dosomething_mailchimp_toolbox_mailchimp_subscribe',
+      'Cannot find Group ID for group named %name',
+      array('%name' => $groupName),
+      $severity = WATCHDOG_ERROR
+    );
+  }
+  // TODO: Error Handling for groupname, still add the user if error occurs.
+  $merge_vars += array(
+    'GROUPINGS' => array(
+      array(
+        'id' => (isset($groupingIdByGroupName[$groupName]) ? $groupingIdByGroupName[$groupName] : 0),
+        'groups' => $groupName
+      ),
+    )
+  );
+  
+  // http://apidocs.mailchimp.com/api/rtfm/listsubscribe.func.php
+  // listSubscribe(string apikey, string id, string email_address, array merge_vars,
+  //   string email_type, bool double_optin, bool update_existing, bool replace_interests, bool send_welcome)
+  
+  // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
+  $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
+
+  if ($mc_signup_flag) {
+    watchdog('dosomething_mailchimp_toolbox_mailchimp_subscribe',
+             'Added ( %email ) to MailChimp group %group.',
+             array('%email' => $email, '%group' => $groupName),
+             $severity = WATCHDOG_NOTICE);
+  }
+  else {
+    $merge_vars = print_r($merge_vars, true);
+    watchdog('dosomething_mailchimp_toolbox_mailchimp_subscribe',
+             'Failed to signup new user ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
+             array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
+             $severity = WATCHDOG_ERROR);
+  }
+  
+  return $mc_signup_flag;
+    
+}
+
+/**
+ * Build out $merge_vars values on what's available in the Drupal user account.
+ *
+ * @param $target_email
+ *   Target email address to reference for additional information
+ * @param $target_mobile
+ *   Target mobile number to reference for additional information
+ *   
+ * @return
+ *   Array $merge_vars collection user information.
+ */
+function dosomething_mailchimp_toolbox_collect_merge_vars($target_email = NULL, $target_mobile = NULL) {
+
+  // Collect the user details
+  $user = user_load_by_mail($target_email);
+  
+  // TO-DO: add lookup by mobile
+  
+  // check to see if user account is found
+  if ($user) {
+  
+    // Merge vars for user
+    $merge_vars['UID'] = $user->uid;
+    $merge_vars['MMERGE3'] =  $user->name;
+    
+    // Mobile
+    $user2 = profile2_load_by_user($user, 'main');
+    $mobile = field_get_items('profile2', $user2, 'field_user_mobile');
+    
+    if (!empty($target_mobile)) {
+      $merge_vars['MMERGE7'] = $target_mobile;
+    }
+    elseif(!empty($mobile)) {
+      $merge_vars['MMERGE7'] = $mobile;
+      
+      // TO-DO ?
+      // if ($target_mobile != $mobile) {
+      //   Update user record with new mobile number?
+      // }
+      
+      // Validates number - perhaps already done before sent to this function?
+      // dosomething_general_valid_cell
+      
+    }
+    
+    // Birthday
+    $birthday = field_get_items('profile2', $user2, 'field_user_birthday');
+    
+    if (!empty($birthday)) {
+      
+      $birthday_bits = explode('-', $birthday[0]['value']);   
+      $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  substr($birthday_bits[2], 0, strpos($birthday_bits[2],' ')), $birthday_bits[0]);
+      
+      $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
+      $merge_vars['BDAYFULL'] = date('m/d/Y', $birthday_stamp);
+    
+      // Need to store date values as var to allow recasting in final string
+      $target_date = date('m/d', $birthday_stamp);
+      $target_year_18 = date('Y', $birthday_stamp) + 18;    
+      $target_year_26 = date('Y', $birthday_stamp) + 26;  
+      
+      // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
+      $merge_vars['TURNS18'] = $target_date ."/". $target_year_18;
+      $merge_vars['TURNS26'] = $target_date ."/". $target_year_26;
+  
+    }
+    
+  }
+  
+  // Make sure merge_vars is formatted correctly even if no values are assigned
+  if (empty($merge_vars) || count($merge_vars) == 0) {
+    $merge_vars['UID'] = 0;
+  }
+
+  return $merge_vars;
+  
+}
+
+
+/**
+ *  Extends default mail system to use DoSomethingMailchimpToolboxMailSystem which sends emails as HTML
+ */
+class DoSomethingMailchimpToolboxMailSystem extends DefaultMailSystem {
 
   public function format(array $message) {
-
+    
     // HTML Header
     $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
 
-    // Only convery line feeds to <br /> if <p> is not in the text
-    if (strpos($message['body'][0], '<p>') === FALSE) {
-
-      $body = $message['body'][0];
-      $body = nl2br($body);
-      $message['body'][0] = $body;
-
-    }
-
-    drupal_wrap_mail($message['body']);
+    $message['body'] = implode("\n\n", $message['body']);
+    $message['body'] = drupal_wrap_mail($message['body']);
 
     return $message;
-
   }
 
 }
 
 /**
- * Send email message to be used by all module as MailSystem.
+ * Send email message speific to the Crazy project.
  *
  * @param $email
  *   Users email address.
@@ -230,5 +420,6 @@ function dosomething_mailchimp_toolbox_mail_send($email, $message) {
   }
 
   return $result['result'];
+
 
 }
