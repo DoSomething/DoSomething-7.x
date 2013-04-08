@@ -395,6 +395,7 @@ function dosomething_clubs_responded_to_txt() {
 
   if (dosomething_general_valid_cell($num)) {
     $account = dosomething_general_find_user_by_cell($num);
+
     if (!empty($account->uid)) {
       $q = db_select('node', 'n')
         ->fields('n', array('nid', 'uid'))
@@ -404,12 +405,23 @@ function dosomething_clubs_responded_to_txt() {
         ->range(0, 1)
         ->execute();
 
-      $nodes = array();
       $r = $q->fetchAll();
-      foreach ($r AS $key => $n) {
+
+      if (!empty($r) && is_array($r)) {
+        foreach ($r AS $key => $n) {
+          $data = array(
+            'nid' => $n->nid,
+            'uid' => $n->uid,
+            'timestamp' => REQUEST_TIME,
+            'response' => $response,
+          );
+          drupal_write_record('dosomething_clubs_sms_response', $data);
+        }
+      }
+      else {
         $data = array(
-          'nid' => $n->nid,
-          'uid' => $n->uid,
+          'nid' => 0,
+          'uid' => $account->uid,
           'timestamp' => REQUEST_TIME,
           'response' => $response,
         );
@@ -417,14 +429,16 @@ function dosomething_clubs_responded_to_txt() {
       }
     }
 
-    echo '<?xml version="1.0" encoding="UTF-8"?>
-    <response>
-     <reply>
-      <text>
-       <![CDATA[We are glad to know you are an active club.  Did you know we are giving away free pizza parties to clubs with 10+ members? Txt PIZZA for more.]]>
-      </text>
-     </reply>
-    </response>';
+    $clubs_yes_response = variable_get('clubs_yes_response', 0);
+    $clubs_no_response = variable_get('clubs_no_response', 0);
+
+    if (strtolower($response{0}) == 'y') {
+      dosomething_general_mobile_commons_subscribe($num, $clubs_yes_response);
+    }
+    else if (strtolower($response{0}) == 'n') {
+      dosomething_general_mobile_commons_subscribe($num, $clubs_no_response);
+    }
+
     exit;
   }
 }
