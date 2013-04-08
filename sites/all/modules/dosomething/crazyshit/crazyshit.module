@@ -1395,17 +1395,3 @@ function crazyshit_mail_send($email, $message) {
 
 
 }
-
-/**
- *  Extends default mail system to use crazyshitMailSystem which sends emails as HTML
- */
-class crazyshitMailSystem extends DefaultMailSystem {
-
-  public function format(array $message) {
-    $message['body'] = implode("\n\n", $message['body']);
-    $message['body'] = drupal_wrap_mail($message['body']);
-
-    return $message;
-  }
-
-}
