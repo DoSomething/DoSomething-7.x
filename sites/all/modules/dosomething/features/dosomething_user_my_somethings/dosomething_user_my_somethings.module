@@ -666,7 +666,6 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   if($variables['profile']) {
     // Reset the profile in case the user just updated it.
     $profile = profile2_load($variables['profile']->pid, TRUE);
-    $profile = entity_metadata_wrapper('profile2', $profile);
   }
 
   $variables['member_fullname'] = dosomething_general_get_full_name($account, 'private');
@@ -706,7 +705,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $variables['member_school'] = '';
   $variables['hometown'] = '';
   if (isset($profile)) {
-    $address = $profile->field_user_address->value();
+    $address = field_get_items('profile2', $profile, 'field_user_address');
     if (isset($address->name)) {
       $variables['member_school'] = $address->name;
     }

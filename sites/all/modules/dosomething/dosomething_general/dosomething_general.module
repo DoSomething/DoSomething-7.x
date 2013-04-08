@@ -1598,9 +1598,10 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
   $profile = profile2_load_by_user($account, 'main');
 
   if (is_object($profile)) {
-    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-    $first_name = $profile_wrapper->field_user_first_name->value();
-    $last_name = $profile_wrapper->field_user_last_name->value();
+    $first_name = reset(field_get_items('profile2', $profile, 'field_user_first_name'));
+    $first_name = (isset($first_name['value']) ? $first_name['value'] : '');
+    $last_name = reset(field_get_items('profile2', $profile, 'field_user_last_name'));
+    $last_name = (isset($last_name['value']) ? $last_name['value'] : '');
 
     switch ($display_type) {
       case 'private':

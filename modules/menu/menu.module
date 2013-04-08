@@ -497,7 +497,7 @@ function menu_block_view($delta = '') {
  */
 function menu_block_view_alter(&$data, $block) {
   // Add contextual links for system menu blocks.
-  if (isset($block->module) && $block->module == 'system' && !empty($data['content'])) {
+  if ($block->module == 'system' && !empty($data['content'])) {
     $system_menus = menu_list_system_menus();
     if (isset($system_menus[$block->delta])) {
       $data['content']['#contextual_links']['menu'] = array('admin/structure/menu/manage', array($block->delta));
