@@ -500,6 +500,9 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
       // Get celebrities and populate the select box.
       $celebs = robocalls_get_celebrities();
+      if (!is_array($celebs)) {
+        $celebs = array();
+      }
 
       // Make sure we can use the celebs array for further field creation.
       $settings = array(
