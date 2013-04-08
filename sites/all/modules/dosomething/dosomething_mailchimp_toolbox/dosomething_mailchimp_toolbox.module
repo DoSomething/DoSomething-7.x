@@ -357,36 +357,13 @@ function dosomething_mailchimp_toolbox_collect_merge_vars($target_email = NULL, 
 /**
  *  Extends default mail system to use DoSomethingMailSystem which sends emails as HTML
  */
-/*
-class dosomething_mailchimp_toolboxMailSystem extends DefaultMailSystem {
+class DoSomethingMailchimpToolboxMailSystem extends DefaultMailSystem {
 
   public function format(array $message) {
     
     // HTML Header
-    // $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
 
-    // Only convery line feeds to <br /> if <p> is not in the text
-    if (strpos($message['body'][0], '<p>') === FALSE) {
-      
-      $body = $message['body'][0];
-      $body = nl2br($body);
-      $message['body'][0] = $body;
-      
-    }
-    
-    drupal_wrap_mail($message['body']);
-    
-    return $message;
-  
-  }
-
-}
-
-*/
-
-class DoSomethingMailchimpToolboxMailSystem extends DefaultMailSystem {
-
-  public function format(array $message) {
     $message['body'] = implode("\n\n", $message['body']);
     $message['body'] = drupal_wrap_mail($message['body']);
 
