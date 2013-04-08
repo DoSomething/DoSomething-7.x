@@ -161,7 +161,7 @@ function robocalls_call_completed() {
         $beta_opt_in_id = $term->field_beta_opt_in[LANGUAGE_NONE][0]['value'];
       }
 
-      $alpha_opt_in_id = 0; // default, no message
+      $alpha_opt_in_id = 151543; // default, no message
       if (isset($term->field_alpha_opt_in[LANGUAGE_NONE][0]['value'])) {
         $alpha_opt_in_id = $term->field_alpha_opt_in[LANGUAGE_NONE][0]['value'];
       }
