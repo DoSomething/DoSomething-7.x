@@ -543,13 +543,19 @@ function dosomething_projects_general_webform_submission_insert($node, $submissi
       $merge_vars['MMERGE7'] = $mobile[0]['value'];
       
       // Add user to Mobile Commons group
-      //  dosomething_general_mobile_commons_subscribe($mobile, $opt_in_path, $args = array())
-      // dosomething_general_mobile_commons_subscribe($user->phone, NULL);
+      
+      // https://secure.mcommons.com/campaigns/5091 - opt_in_path: "join" of "Campaigns Ý Do Something Master Campaign"
+      // https://secure.mcommons.com/campaigns/5091/opt_in_paths/87681
+      $mobile_commons_subscribe_results = dosomething_general_mobile_commons_subscribe($mobile[0]['value'], 150223);
       
     }
     
     // Subscribe user to MailChimp
     dosomething_general_mailchimp_subscribe($params['email'], 'Projects2012', $merge_vars);
+    
+    
+    // Subscribe user to Mobile Commons
+    
 
   }
 
