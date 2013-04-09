@@ -6,7 +6,7 @@
 $workflow = new ConductorWorkflow();
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_million_member_ftaf';
-$workflow->title = '';
+$workflow->title = 'Process FTAFs sent from the million member broadcast';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
