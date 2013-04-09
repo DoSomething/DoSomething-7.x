@@ -37,7 +37,11 @@ $activity->response_sets = array(
     ),
     'word_match'  => array('test1', 'test2', 'test3'),
     'negation'     => FALSE,
-    'response'     => 'Response Message #1',
+    'response'     => array(
+      'Random Response Message #1A',
+      'Random Response Message #1B',
+      'Random Response Message #1C',
+    ),
   ),
   array(
     'AND_match'    => array(

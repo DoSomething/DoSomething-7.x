@@ -107,7 +107,16 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
     // Reply back to the user with the appropriate response if available
     if ($bMatchFound && $matchingSet >= 0) {
-      $state->setContext('sms_response', $this->response_sets[$matchingSet]['response']);
+      $response = $this->response_sets[$matchingSet]['response'];
+      if (is_array($response)) {
+        // Select a random response
+        $selectedIdx = rand(0, count($response) - 1);
+        $selectedResponse = $response[$selectedIdx];
+        $state->setContext('sms_response', $selectedResponse);
+      }
+      else {
+        $state->setContext('sms_response', $response);
+      }
     }
     elseif (!empty($this->no_match_response)) {
       $state->setContext('sms_response', $this->no_match_response);
