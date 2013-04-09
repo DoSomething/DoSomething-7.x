@@ -16,7 +16,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   //        array('word2A', 'word2B', 'phrase 2 C'),
   //        ...
   //      ),
-  //      'exact_match' => array('word1', 'word2', ...),
+  //      'word_match' => array('word1', 'word2', ...),
   //      'negation'    => boolean. If TRUE, matches succeed only if the user message is a negation.
   //                       ex: "I do NOT love you"
   //      'response'    => string. Message to send back to user if match is found.
@@ -33,6 +33,11 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
     $userMessage = check_plain($_REQUEST['args']);
+
+    // Remove all non alphanumeric characters from the user message
+    $userMessage = preg_replace('/[^A-Za-z0-9 ]/', ' ', $userMessage);
+    // Matches multi-character whitespace with a single space
+    $userMessage = preg_replace('/\s+/', ' ', $userMessage);
 
     // Break message into array of individual words
     $userWords = explode(' ', $userMessage);
@@ -70,7 +75,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
       // Search for exactly matched words
       if (!$bMatchFound) {
-        foreach ($set['exact_match'] as $matchWord) {
+        foreach ($set['word_match'] as $matchWord) {
           if (self::in_arrayi($matchWord, $userWords)) {
             $bMatchFound = TRUE;
             break;

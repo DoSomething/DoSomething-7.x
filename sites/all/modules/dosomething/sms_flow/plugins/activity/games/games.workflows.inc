@@ -18,7 +18,6 @@ $activity = $workflow->newActivity('out_of_flow_responder');
 $activity->name = 'out_of_flow_responder';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
-$activity->no_match_response = 'This is the no_match_response message.';
 $activity->response_sets = array(
   array(
     'phrase_match' => array('phrase 1', 'phrase 2'),
@@ -26,7 +25,7 @@ $activity->response_sets = array(
       array('test1A', 'test2A'),
       array('test1B', 'test 2 B'),
     ),
-    'exact_match'  => array('test1', 'test2', 'test3'),
+    'word_match'  => array('test1', 'test2', 'test3'),
     'negation'     => TRUE,
     'response'     => 'Response Message #1 Negation',
   ),
@@ -36,7 +35,7 @@ $activity->response_sets = array(
       array('test1a', 'test2a'),
       array('test1B', 'test 2 B'),
     ),
-    'exact_match'  => array('test1', 'test2', 'test3'),
+    'word_match'  => array('test1', 'test2', 'test3'),
     'negation'     => FALSE,
     'response'     => 'Response Message #1',
   ),
@@ -45,7 +44,7 @@ $activity->response_sets = array(
       array('test1C', 'test2C'),
       array('test1D', 'test 2 D'),
     ),
-    'exact_match'  => array('test4', 'test5', 'test6'),
+    'word_match'  => array('test4', 'test5', 'test6'),
     'negation'     => FALSE,
     'response'     => 'Response Message #2',
   ),
