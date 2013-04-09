@@ -7,11 +7,22 @@
  */
 class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
 
+  // Mobile Commons opt-in path that Alpha inviters are sent into after the FTAF
   protected $alpha_optin;
+
+  // Mobile Commons opt-in path that the Betas are invited to
   public $beta_optin;
+
+  // Number identifier of an invite sent for a particular campaign, sms game, etc
   public $id_override;
+
+  // Response to send on an error
   public $response_error;
+
+  // Response to send if FTAF is successful
   public $response_success;
+
+  // Type of invite sent - particularly if it's for an sms_game or club
   public $type_override;
 
   public function run($workflow) {
