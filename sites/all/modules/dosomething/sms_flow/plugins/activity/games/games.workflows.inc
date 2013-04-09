@@ -22,35 +22,36 @@ $activity->response_sets = array(
   array(
     'phrase_match' => array('phrase 1', 'phrase 2'),
     'AND_match'    => array(
-      array('test1A', 'test2A'),
-      array('test1B', 'test 2 B'),
-    ),
-    'word_match'  => array('test1', 'test2', 'test3'),
-    'negation'     => TRUE,
-    'response'     => 'Response Message #1 Negation',
-  ),
-  array(
-    'phrase_match' => array('phrase 1', 'phrase 2'),
-    'AND_match'    => array(
       array('test1a', 'test2a'),
       array('test1B', 'test 2 B'),
     ),
     'word_match'  => array('test1', 'test2', 'test3'),
-    'negation'     => FALSE,
-    'response'     => array(
+    'response'    => array(
       'Random Response Message #1A',
       'Random Response Message #1B',
       'Random Response Message #1C',
     ),
+    'response_negative' => array(
+      'Response Message #1A Negation',
+      'Response Message #1B Negation',
+      'Response Message #1C Negation',
+    ),
   ),
   array(
-    'AND_match'    => array(
+    'AND_match'   => array(
       array('test1C', 'test2C'),
       array('test1D', 'test 2 D'),
     ),
     'word_match'  => array('test4', 'test5', 'test6'),
-    'negation'     => FALSE,
-    'response'     => 'Response Message #2',
+    'response'    => 'Response Message #2',
+  ),
+  array(
+    'phrase_match' => array('i love you'),
+    'response' => 'i love you too!',
+  ),
+  array(
+    'phrase_match' => array('i dont love you'),
+    'response' => 'i don\'t love you either!',
   ),
 );
 
