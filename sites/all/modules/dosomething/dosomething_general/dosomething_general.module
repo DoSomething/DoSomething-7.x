@@ -986,7 +986,7 @@ function dosomething_general_volunteer_webform_submit($form, &$form_state) {
   }
 
   // Connects email to MailChimp
-  $mailchimp_bucket = variable_get('volunteer_mailchimp_bucket', 'Volunteers2013');
+  $mailchimp_bucket = 'Volunteers2013';
   if (!empty($mailchimp_bucket) && !empty($values['e_mail'])) {
     dosomething_general_mailchimp_subscribe($values['e_mail'], $mailchimp_bucket);
   }
@@ -1429,7 +1429,12 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   
   // Catching function
   // Hardcoding the list to the dosomething members
-  $listid = 'f2fab1dfd4';
+  if ($groupName == 'Volunteers2013') {
+    $listid = 'a27895fe0c';
+  }
+  else {
+    $listid = 'f2fab1dfd4';
+  }
 
   // We do not want them to have to know the grouping id so we will build
   // the table to look it up by using the group name specified.
@@ -1593,9 +1598,10 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
   $profile = profile2_load_by_user($account, 'main');
 
   if (is_object($profile)) {
-    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-    $first_name = $profile_wrapper->field_user_first_name->value();
-    $last_name = $profile_wrapper->field_user_last_name->value();
+    $first_name = reset(field_get_items('profile2', $profile, 'field_user_first_name'));
+    $first_name = (isset($first_name['value']) ? $first_name['value'] : '');
+    $last_name = reset(field_get_items('profile2', $profile, 'field_user_last_name'));
+    $last_name = (isset($last_name['value']) ? $last_name['value'] : '');
 
     switch ($display_type) {
       case 'private':

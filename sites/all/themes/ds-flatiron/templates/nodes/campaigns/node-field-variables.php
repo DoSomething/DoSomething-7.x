@@ -28,8 +28,7 @@
   );
 
   $challenge = array(
-    1 => "Collect and donate <strong>10 jars</strong> of peanut butter or jam.",
-    2 => "Then use the food bank finder & drop off your jars by May 14th.",
+    1 => "Collect and donate 10 jars of peanut butter, jelly or any non-perishable food item by May 14th.",
   );
   // if (isset($team) || isset($individual)) with a Group / Alone
 
@@ -38,7 +37,7 @@
 
   $scholarship = array(
     1 => "We're giving away a <strong>$4,000 SCHOLARSHIP</strong>. Every 10 jars collected = another entry.",
-    2 => "Great! You're gonna do this<span id=\"scholarship_status\">" . $contact_scope . "</span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\"" . $files_source . 'action-guide.pdf' . "\"  target=\"_blank\">download</a> your PB&J Kit.",
+    2 => "Great! You're gonna do this<span id=\"scholarship_status\">" . $contact_scope . "</span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\"" . $files_source . 'welcome-package.pdf' . "\"  target=\"_blank\">download</a> your PB&J Kit.",
   );
 
   $cause_subject = 'Peanut Butter';
