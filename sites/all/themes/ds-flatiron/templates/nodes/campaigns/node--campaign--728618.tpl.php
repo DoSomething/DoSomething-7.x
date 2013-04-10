@@ -27,7 +27,7 @@
 
           <!-- Twitter Tweet Button -->
           <div class="header-twitter-share">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.dosomething.org/pbj" data-text="I am teaming up with DoSomething.org to fight hunger in my community. Join #PBJSlam now:" data-via="dosomething" data-count="none">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.dosomething.org/pbj" data-text="1 in 6 people in America will go hungry at some point during the year. Help stock your local food pantry to make sure they have something to eat by joining @doSomething's PB & Jam Slam" data-count="none">Tweet</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
 
@@ -92,17 +92,17 @@
           <h2><?php print($share[1]); ?></h2>
 
           <div class="col-social">
-            <img src="<?php print($files_source . 'bg-social1.png'); ?>" alt="<?php print($share[2]); ?>" />
-            <a href="#" class="share-link-social share-link-social1">
+            <img class="share-img-social"src="<?php print($files_source . 'bg-social1.png'); ?>" alt="<?php print($share[2]); ?>" />
+            <div class="share-link-social share-link-social1">
               <?php print($social[3]); ?>
-            </a>
+            </div>
           </div> <!-- .social-col -->
 
           <div class="col-social">
-            <img src="<?php print($files_source . 'bg-social2.png'); ?>" alt="<?php print($share[4]); ?>" />
-            <a href="#" class="share-link-social share-link-social2">
+            <img class="share-img-social"src="<?php print($files_source . 'bg-social2.png'); ?>" alt="<?php print($share[4]); ?>" />
+            <div class="share-link-social share-link-social2">
               <?php print($social[5]); ?>
-            </a>
+            </div>
           </div> <!-- .social-col -->
 
         </div> <!-- .section-container -->
