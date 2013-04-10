@@ -152,7 +152,7 @@
             ?>
 
             <form action="//dosomething.mcommons.com/profiles/join" method="POST">
-              <input type="hidden" name="redirect_to" value="<?php print(url($nid, $thanks_redirect_param)); ?>" />
+              <input type="hidden" name="redirect_to" value="<?php print($cmp_url . '-thanks'); ?>" />
 
               <div class="share-alpha-name share-input-wrapper">
                 <label>Your First Name:</label>
