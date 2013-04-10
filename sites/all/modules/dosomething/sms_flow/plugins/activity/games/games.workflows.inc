@@ -20,38 +20,53 @@ $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->response_sets = array(
   array(
-    'phrase_match' => array('phrase 1', 'phrase 2'),
-    'AND_match'    => array(
-      array('test1a', 'test2a'),
-      array('test1B', 'test 2 B'),
-    ),
-    'word_match'  => array('test1', 'test2', 'test3'),
-    'response'    => array(
-      'Random Response Message #1A',
-      'Random Response Message #1B',
-      'Random Response Message #1C',
-    ),
-    'response_negative' => array(
-      'Response Message #1A Negation',
-      'Response Message #1B Negation',
-      'Response Message #1C Negation',
-    ),
+    'phrase_match' => array('Im not up', 'Im not awake'),
+    'word_match' => array('asleep'),
+    'response' => array("You are now!"),
   ),
   array(
-    'AND_match'   => array(
-      array('test1C', 'test2C'),
-      array('test1D', 'test 2 D'),
-    ),
-    'word_match'  => array('test4', 'test5', 'test6'),
-    'response'    => 'Response Message #2',
+    'phrase_match' => array('I hate you', 'suck it'),
+    'word_match' => array('die'),
+    'response' => array("Deal with it."),
   ),
   array(
-    'phrase_match' => array('i love you'),
-    'response' => 'i love you too!',
+    'phrase_match' => array('Feeds baby', 'heres breakfast'),
+    'word_match' => array('Eggs', 'pancakes', 'waffles', 'bagles', 'milk', 'orange juice', 'cereal', 'applesauce', 'bottle', 'feed'),
+    'response' => array("Yum! I'll get you next time"),
   ),
   array(
-    'phrase_match' => array('i dont love you'),
-    'response' => 'i don\'t love you either!',
+    'phrase_match' => array('I dont want to', 'no'),
+    'response' => array("But I'm the baby, you have to!"),
+  ),
+  array(
+    'word_match' => array('Gross', 'ew'),
+    'response' => array("But my cute face balances it out..."),
+  ),
+  array(
+    'phrase_match' => array('Its okay', 'thats okay'),
+    'response' => array("Thanks for understanding"),
+  ),
+  array(
+    'phrase_match' => array('Shake baby'),
+    'response' => array("OW"),
+  ),
+  array(
+    'phrase_match' => array('I already changed you'),
+    'AND_match' => array(array('change', 'already')),
+    'response' => array("Well, I poop a lot.", "Call me Sir Poops A Lot"),
+  ),
+  array(
+    'phrase_match' => array('Are you hungry', 'Do you need food', 'Do you need a bottle', 'Something to eat'),
+    'response' => array("Yes please, I'm always hungry"),
+  ),
+  array(
+    'phrase_match' => array('Please dont cry'),
+    'response' => array("I'm a baby, it's what I do"),
+  ),
+  array(
+    'AND_match' => array(array('test1', 'test2'), array('test1a', 'test2a')),
+    'response' => array("Test Response 1"),
+    'response_negative' => array("Test, Negative Response 1A", "Test Negative Response, 1B"),
   ),
 );
 

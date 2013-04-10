@@ -35,8 +35,8 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     $mobile = $state->getContext('sms_number');
     $userMessage = $_REQUEST['args'];
 
-    // Special negative form case where the punctuation shouldn't be replaced by a space
-    $userMessage = preg_replace('/n\'t/', 'nt', $userMessage);
+    // Single quote to be removed instead of replacing with whitespace to conserve integrity of word
+    $userMessage = preg_replace('/\'/', '', $userMessage);
     // Remove all non alphanumeric characters from the user message
     $userMessage = preg_replace('/[^A-Za-z0-9 ]/', ' ', $userMessage);
     // Matches multi-character whitespace with a single space
@@ -54,7 +54,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
       // Search for exactly matched phrases
       foreach ($set['phrase_match'] as $matchPhrase) {
-        if (stripos($userMessage, $matchPhrase) !== FALSE) {
+        if (strcmp($userMessage, $matchPhrase) == 0) {
           $bMatchFound = TRUE;
           break;
         }
@@ -92,7 +92,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
       // ie - "I do love you" vs "I do not love you"
       if ($bMatchFound) {
         $negativeFormWords = array('no', 'not', 'n\'t');
-        foreach ($this->negativeFormWords as $matchWord) {
+        foreach ($negativeFormWords as $matchWord) {
           if (self::in_arrayi($matchWord, $userWords)) {
             // Negative form response found. Make sure we have a response for that kind of message.
             if (isset($set['response_negative'])) {
