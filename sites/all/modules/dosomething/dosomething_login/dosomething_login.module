@@ -60,6 +60,12 @@ function dosomething_login_menu() {
   return $items;
 }
 
+/**
+ *  Confirms that the user has access to view the registration form.
+ *
+ *  @return bool
+ *    True if they have access, else false.
+ */
 function dosomething_login_user_register_access() {
   return (
     user_is_anonymous() &&
@@ -72,11 +78,16 @@ function dosomething_login_user_register_access() {
   );
 }
 
+/**
+ *  Loads the registration form (assuming the user is logged out), or redirects away if they're logged in.
+ */
 function dosomething_login_user_register() {
+  // If the user is logged in, redirect to their ultimate destination because they're already registered.
   if (!empty($_GET['destination']) && drupal_valid_path($_GET['destination']) && user_is_logged_in()) {
     drupal_goto($_GET['destination']);
   }
 
+  // Otherwise, show the registration form.
   return drupal_get_form('dosomething_login_register_popup_form');
 }
 
@@ -284,6 +295,13 @@ function dosomething_login_form_user_profile_form_alter(&$form, &$form_state) {
     dosomething_login_set_parental_consent_message();
     drupal_goto('user');
   }
+
+  // Assuming we don't have permission to edit users...
+  if (!user_access('administer users')) {
+    // Hide the registration page field.  We don't want them to change that.
+    $form['profile_main']['field_registration_page']['#access'] = FALSE;
+  }
+
   // Add custom validation to this form.
   $form['#validate'][] = 'dosomething_login_profile_form_validate';
 }
@@ -348,93 +366,93 @@ function dosomething_login_form_dosomething_login_register_popup_form_alter(&$fo
   }
 }
 
-  /**
-   * Implements hook_form_FORM_ID_alter().
-   */
-  function dosomething_login_form_user_pass_alter(&$form, &$form_state) {
-    unset($form['#validate']);
-    $form['#validate'] = array('dosomething_login_sms_password_recovery_validate');
-    $form['#submit'] = array('dosomething_login_sms_password_recovery_submit');
-  }
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dosomething_login_form_user_pass_alter(&$form, &$form_state) {
+  unset($form['#validate']);
+  $form['#validate'] = array('dosomething_login_sms_password_recovery_validate');
+  $form['#submit'] = array('dosomething_login_sms_password_recovery_submit');
+}
 
-  /**
-   * Validation function for resetting passwords that adds mobile phone based
-   * signup reset capabilities.
-   */
-  function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) {
-    $name = trim($form_state['values']['name']);
+/**
+ * Validation function for resetting passwords that adds mobile phone based
+ * signup reset capabilities.
+ */
+function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) {
+  $name = trim($form_state['values']['name']);
 
-    // Check if they gave us a mobile number. We want to do this first because
-    // we can't send emails to the accounts we've generated with
-    // "{$number}@mobile" addresses.
-    $number = dosomething_general_valid_cell($name);
-    if ($number) {
-      $account = dosomething_general_find_user_by_cell($number);
-      if ($account) {
-        // Send a text message with the reset password.
-        $form_state['send_sms_reset'] = TRUE;
-        form_set_value(array('#parents' => array('account')), $account, $form_state);
-        return;
-      }
-    }
-
-    // Not going to be sending an SMS text at this point.
-    $form_state['send_sms_reset'] = FALSE;
-
-    // Code from here on is copied from user_pass_validate()--asside from the
-    // error message.
-
-    // Try to load by email.
-    $users = user_load_multiple(array(), array('mail' => $name, 'status' => '1'));
-    $account = reset($users);
-    if (!$account) {
-      // No success, try to load by name.
-      $users = user_load_multiple(array(), array('name' => $name, 'status' => '1'));
-      $account = reset($users);
-    }
-    if (isset($account->uid)) {
+  // Check if they gave us a mobile number. We want to do this first because
+  // we can't send emails to the accounts we've generated with
+  // "{$number}@mobile" addresses.
+  $number = dosomething_general_valid_cell($name);
+  if ($number) {
+    $account = dosomething_general_find_user_by_cell($number);
+    if ($account) {
+      // Send a text message with the reset password.
+      $form_state['send_sms_reset'] = TRUE;
       form_set_value(array('#parents' => array('account')), $account, $form_state);
-    }
-    else {
-      form_set_error('name', t('Sorry, %name is not recognized as a user name, e-mail address, or mobile number.', array('%name' => $name)));
-    }
-  }
-
-  /**
-   * Submition handler for resetting passwords that adds mobile phone based
-   * signup reset capabilities.
-   */
-  function dosomething_login_sms_password_recovery_submit($form, &$form_state) {
-    // Check the incoming form state. If send_sms_reset is false then do what
-    // we do normally.
-    if (!isset($form_state['send_sms_reset']) || !$form_state['send_sms_reset']) {
-      user_pass_submit($form, $form_state);
       return;
     }
-    elseif (isset($form_state['values']['account']->uid)) {
-      $account = $form_state['values']['account'];
-      require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
-      $reset_link = user_pass_reset_url($account);
-      $pass = user_password(6);
-      $account = user_load($account->uid);
-      $account->pass = user_hash_password($pass);
-      user_save($account);
-      $number = preg_replace('/\D/', '', trim($form_state['values']['name']));
-      // Note: If the message is too long, then it won't go through.
-      $message = "Your DoSomething password is now $pass";
-      $response = sms_mobile_commons_send($number, $message);
-      watchdog('SMS', 'A user with the mobile number of %number asked for a password reset. The text message user validation response was "%validation" and the message sending status was "%message"',
-        array('%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
-        WATCHDOG_NOTICE
-      );
-      drupal_set_message(t('A text message with reset instructions has been sent to your mobile phone.'));
-    }
   }
 
-  /**
-   * Implements hook_element_info().
-   */
-  function dosomething_login_element_info() {
+  // Not going to be sending an SMS text at this point.
+  $form_state['send_sms_reset'] = FALSE;
+
+  // Code from here on is copied from user_pass_validate()--asside from the
+  // error message.
+
+  // Try to load by email.
+  $users = user_load_multiple(array(), array('mail' => $name, 'status' => '1'));
+  $account = reset($users);
+  if (!$account) {
+    // No success, try to load by name.
+    $users = user_load_multiple(array(), array('name' => $name, 'status' => '1'));
+    $account = reset($users);
+  }
+  if (isset($account->uid)) {
+    form_set_value(array('#parents' => array('account')), $account, $form_state);
+  }
+  else {
+    form_set_error('name', t('Sorry, %name is not recognized as a user name, e-mail address, or mobile number.', array('%name' => $name)));
+  }
+}
+
+/**
+ * Submition handler for resetting passwords that adds mobile phone based
+ * signup reset capabilities.
+ */
+function dosomething_login_sms_password_recovery_submit($form, &$form_state) {
+  // Check the incoming form state. If send_sms_reset is false then do what
+  // we do normally.
+  if (!isset($form_state['send_sms_reset']) || !$form_state['send_sms_reset']) {
+    user_pass_submit($form, $form_state);
+    return;
+  }
+  elseif (isset($form_state['values']['account']->uid)) {
+    $account = $form_state['values']['account'];
+    require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+    $reset_link = user_pass_reset_url($account);
+    $pass = user_password(6);
+    $account = user_load($account->uid);
+    $account->pass = user_hash_password($pass);
+    user_save($account);
+    $number = preg_replace('/\D/', '', trim($form_state['values']['name']));
+    // Note: If the message is too long, then it won't go through.
+    $message = "Your DoSomething password is now $pass";
+    $response = sms_mobile_commons_send($number, $message);
+    watchdog('SMS', 'A user with the mobile number of %number asked for a password reset. The text message user validation response was "%validation" and the message sending status was "%message"',
+      array('%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
+      WATCHDOG_NOTICE
+    );
+    drupal_set_message(t('A text message with reset instructions has been sent to your mobile phone.'));
+  }
+}
+
+/**
+ * Implements hook_element_info().
+ */
+function dosomething_login_element_info() {
   $types = array();
   $types['dosomething_password_confirm'] = array(
     '#input' => TRUE,
@@ -1108,6 +1126,17 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = date('Y-m-d h:i:s', strtotime($birthdate));
   $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($birthdate, 13);
   $profile->field_user_newsletter_optin[LANGUAGE_NONE][0]['value'] = 1;
+
+  // Adds the page that the user registered on.
+  if (isset($_SERVER['HTTP_REFERER']) || isset($_GET['destination'])) {
+    $referer = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $_GET['destination']);
+    $referer = preg_replace('#https?\:\/\/' . $_SERVER['HTTP_HOST'] . '/', '', $referer);
+    if (preg_match('#node/[0-9]+#', $referer)) {
+      $referer = drupal_get_path_alias($referer);
+    }
+
+    $profile->field_registration_page[LANGUAGE_NONE][0]['value'] = $referer;
+  }
 
   if (isset($form_state['values']['phone'])) {
     $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $form_state['values']['phone'];
@@ -2036,3 +2065,22 @@ function dosomething_login_user_taxonomy_user_taxonomy_insert($account) {
     return 'fb_created_account';
   }
 }
+
+/**
+ *  Implements hook_fboauth_user_save()
+ */
+function dosomething_login_fboauth_user_save($account, $fbuser) {
+  // Adds the page that the user registered on.
+  if (isset($_GET['destination'])) {
+    $referer = $_GET['destination'];
+    if (preg_match('#node/[0-9]+#', $referer)) {
+      // Get the alias if we see the real path.
+      $referer = drupal_get_path_alias($referer);
+    }
+
+    $profile = profile2_load_by_user($account, 'main');
+    $profile->field_registration_page[LANGUAGE_NONE][0]['value'] = $referer;
+    $profile->save();
+  }
+}
+
