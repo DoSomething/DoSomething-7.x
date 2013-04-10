@@ -12,8 +12,8 @@
   $cmp_short = 'pbjs';      /* the campaign's abbreviation               */
   $cmp_machine = 'pbjs13';  /* the campaign's machine name - a unique id */
   $cmp_name = 'Peanut Butter & Jam Slam';
-  $cmp_lead = 'Saige';
-  $sponsor = 'walmart';
+  $cmp_lead = 'Greg';
+  $sponsor = 'walmart';     /* The capitalization of this variable must match the capitalization of the file name! */
   $files_source = '//www.dosomething.org/files/campaigns/' . $cmp_machine . '/';
 
   /* MOBILE COMMONS NOISE */
