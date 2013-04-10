@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * @deprecated Replaced by sms_flow_mcommons_random_path
+ *
  * Starting point for the WYR game. Randomize which question set the user
  * will be sent to.
  */
@@ -29,6 +31,8 @@ $activity->inputs = array('wyr_game_start');
 $workflows[$workflow->name] = $workflow;
 
 /**
+ * @deprecated Replaced by sms_flow_mcommons_random_path
+ *
  * Randomizes TIPS sent to user. Uses same activity as wyr_game_start, but
  * with different id and paths.
  */
@@ -130,7 +134,7 @@ $activity->inputs = array('ftaf');
 $workflows[$workflow->name] = $workflow;
 
 /**
- * @deprecated Replaced by sms_flow_game_random_path
+ * @deprecated Replaced by sms_flow_mcommons_random_path
  *
  * Randomized drive marketing tips for PBJ campaign.
  */
@@ -158,7 +162,7 @@ $activity->inputs = array('pbj_mrkt_tips');
 $workflows[$workflow->name] = $workflow;
 
 /**
- * @deprecated Replaced by sms_flow_game_random_path
+ * @deprecated Replaced by sms_flow_mcommons_random_path
  * 
  * Randomized tips for running a PBJ campaign.
  */
