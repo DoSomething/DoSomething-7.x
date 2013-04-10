@@ -1,0 +1,4 @@
+name = 'DoSomething - Create and Share Campaign Template'
+description = 'Create and Share Campaign Template'
+core = '7.x'
+package = 'DoSomething'

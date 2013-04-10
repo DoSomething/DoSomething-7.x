@@ -1,0 +1,366 @@
+<?php
+
+/**
+ *  @file
+ *  Creates structure for Create and Share template.
+ */
+
+
+/**
+ *  Implements hook_menu()
+ */
+function create_and_share_menu() {
+  $paths = array();
+
+  $paths['cas/%/vote/%/%'] = array(
+    'page callback' => 'create_and_share_action',
+    'page arguments' => array(1, 3, 4),
+    'access callback' => TRUE,
+  );
+
+  $paths['cas/%/request/%/%/'] = array(
+    'page callback' => 'create_and_share_request',
+    'page arguments' => array(1, 3, 4),
+    'access callback' => TRUE,
+  );
+
+  $paths['cas/%/share/%/%'] = array(
+    'page callback' => 'create_and_share_update_counts',
+    'page arguments' => array(1, 3, 4),
+    'access callback' => TRUE,
+  );
+
+  $paths['cas/%/template/%/%'] = array(
+    'page callback' => 'create_and_share_template_render',
+    'page arguments' => array(1, 3, 4),
+    'access callback' => TRUE,
+  );
+
+  return $paths;
+}
+
+/**
+ *  Responds to a "thumbs-down" action.
+ *
+ *  @param string $campaign
+ *    The machine name of the campaign 'pon which this is taking place.
+ *
+ *  @param string $action
+ *    The action (e.g. "up" for thumbs-up or "down" for thumbs-down)
+ *
+ *  @param int $etid
+ *    The numeric ID of the submission / post / whatever that is being given the thumbs-down
+ *
+ *  @return json
+ *    Returns a json array indicating success or failure.
+ */
+function create_and_share_action($campaign, $type, $etid) {
+  global $user;
+
+  if (!is_numeric($etid) || !is_numeric($_POST['origin'])) {
+    drupal_json_output(array(
+      'status' => 0
+    ));
+
+  	return false;
+  }
+
+  $settings = create_and_share_get_settings($campaign);
+
+  if (!$user->uid && !$settings['allow_anonymous_votes']) {
+    // If a user isn't logged in, they shouldn't 
+    drupal_json_output(array(
+      'status' => 0
+    ));
+
+    return;
+  }
+
+  $alert = (isset($_POST['alert']) ? check_plain($_POST['alert']) : 0);
+
+  $notified = 0;
+  // If we have disabled notifications, set notified = true
+  // so the user doesn't see the notification when they come back.
+  if ($alert == 'true'  || !$settings['allow_notifications']) {
+    $notified = 1;
+  }
+
+  $update = create_and_share_update_counts($campaign, $etid, $action);
+
+  // Get Drupal and FB user ids
+  $fbid = fboauth_fbid_load($user->uid);
+  $to_fbid = fboauth_fbid_load($update['uid']);
+
+  // Build the notification array.
+  $notification = array(
+    'campaign' => $campaign,
+    'etid' => $update['sid'],
+    'uid' => $update['uid'],
+    'fid' => $to_fbid,
+    'from_uid' => $user->uid,
+    'from_fid' => $fbid,
+    'type' => $action,
+    'timestamp' => REQUEST_TIME,
+    'notified' => $n,
+    'origin' => intval($_POST['origin']),
+    'ipaddress' => $_SERVER['REMOTE_ADDR'],
+  );
+
+  // Write the notification.
+  drupal_write_record('create_and_share_notifications', $notification);
+
+  // Return author, status, new count.
+  drupal_json_output(array(
+    'status' => 1,
+    'author' => $to_fbid,
+    'count' => $update['count'],
+  ));
+
+  drupal_exit();
+}
+
+/**
+ *  Accepts an array of "friends" and sends a request to them.
+ *
+ *  @param string $campaign
+ *    The machine name of the campaign 'pon which this is taking place.
+ *
+ *  @param string $action
+ *    The action (e.g. "up" for thumbs-up or "down" for thumbs-down)
+ *
+ *  @param int $etid
+ *    The numeric ID of the submission / post / whatever that is being given the thumbs-down
+ *
+ *  @return json
+ *    Returns a json array indicating success or failure.
+ *
+ */
+function create_and_share_request($campaign, $type, $etid) {
+  $friends = $_POST['friends'];
+  if (empty($friends)) {
+    drupal_json_output(array(
+      'status' => 0
+    ));
+
+    return;
+  }
+
+  if (!is_array($friends)) {
+    $friends = explode(',', $friends);
+  }
+
+  $friends = array_filter($friends, function($val) {
+    if (!is_numeric($val) || !intval($val)) return false;
+    return true;
+  });
+
+  $submission = array_shift(entity_load('webform_submission_entity', array($etid)));
+  global $user;
+
+  $fbid = fboauth_fbid_load($user->uid);
+
+  if (is_array($friends) && !empty($friends)) {
+    foreach ($friends AS $key => $friend) {
+      $notification = array(
+        'campaign' => $campaign,
+        'etid' => $submission->sid,
+        'uid' => fboauth_uid_load($friend),
+        'fid' => $friend,
+        'from_uid' => $user->uid,
+        'from_fid' => $fbid,
+        'type' => $type,
+        'timestamp' => REQUEST_TIME,
+        'notified' => 1,
+        'origin' => intval($_POST['origin']),
+        'ipaddress' => $_SERVER['REMOTE_ADDR'],
+      );
+  
+      drupal_write_record('create_and_share_notifications', $notification);
+    }
+  }
+}
+
+/**
+ *  Adds weight to posts from a Facebook image share.
+ *
+ *  @param string $campaign
+ *    The campaign that this action is happening in.
+ *
+ *	@param int $etid
+ *	  The submission ID of the post that should be updated.
+ *
+ *  @param string $action
+ *    The action that should update the counts.
+ */
+function create_and_share_update_counts($campaign, $etid, $action) {
+  $submission = array_shift(entity_load('webform_submission_entity', array($etid)));
+
+  $settings = create_and_share_get_settings($campaign);
+
+  $weight = 0;
+
+  // Check for existing weight
+  if (isset($submission->field_{$settings['fields']['weight']}[LANGUAGE_NONE][0]['value'])) {
+    $weight = $submission->field_{$settings['fields']['weight']}[LANGUAGE_NONE][0]['value'];
+  }
+
+  // We want to get the nearest 10, 100, 1000, 10000, etc...
+  $top = pow(10, strlen((string) $total));
+  $multiplier = ($settings['point_count'] / $top);
+
+  $weight += ($settings['fields'][$action]['weight'] * $multiplier);
+
+  $submission->field_{$settings['fields']['weight']}[LANGUAGE_NONE][0]['value'] = $weight;
+
+  $count = 0;
+  if (isset($submission->field_{$settings['fields'][$action]['field']}[LANGUAGE_NONE][0]['value'])) {
+    $count = $submission->field_{$settings['fields'][$action]['field']}[LANGUAGE_NONE][0]['value'];
+  }
+
+  // Update the counts.
+  $submission->field_{$settings['fields'][$action]['field']}[LANGUAGE_NONE][0]['value'] = ++$count;
+
+  // Save the submission.
+  @entity_save('webform_submission_entity', $submission);
+}
+
+/**
+ *  Adds weight to posts from a Facebook image share.
+ *
+ *  @param string $campaign
+ *    The campaign that this action is happening in.
+ *
+ *	@param int $etid
+ *	  The submission ID of the post that should be updated.
+ *
+ *  @param string $template
+ *    The template to show.
+ *
+ *  @return string
+ *    The template.
+ */
+function create_and_share_template_render($campaign, $etid, $template) {
+  // Start the parameters with just the SID.
+  $params = array(
+    'etid' => $etid,
+    'you' => (isset($_POST['you']) ? intval($_POST['you']) : 0),
+  );
+
+  $settings = create_and_share_get_settings($campaign);
+
+  $params += $settings['template_vars'][$template];
+
+  if (isset($_POST['goto'])) {
+    $params['goto'] = $_POST['goto'];
+  }
+
+  if (isset($_POST['source'])) {
+    $source = substr(check_plain($_POST['source']), 1);
+    $params['source'] = $source;
+  }
+
+  // Return the template.
+  echo theme($template, $params);
+
+  // Update the notifications table that the user saw it.
+  db_update('create_and_share_notifications')
+  ->fields(array(
+    'notified' => 1
+  ))
+  ->condition('etid', intval($etid))
+  ->execute();
+
+  // Finished.
+  drupal_exit();
+}
+
+/**
+ *  Loads and returns settings.
+ */
+function create_and_share_get_settings($campaign, $category = 'settings') {
+  require_once __DIR__ . '/campaigns/' . $campaign . '/settings.inc';
+  return $settings[$category];
+}
+
+function create_and_share_page_alter(&$page) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+    drupal_set_title($settings['title']);
+
+    $element = array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'property' => 'og:type',
+        'content' => $settings['facebook']['share']['namespace'] . ':' . $settings['facebook']['share']['object'],
+      ),
+    );
+    drupal_add_html_head($element, 'create_and_share_og_header');
+
+    $uri = request_uri();
+
+    if (!empty($settings['css']) && is_array($settings['css'])) {
+      foreach ($settings['css'] AS $path => $css) {
+        if (preg_match('#^/' . $path . '#i', $uri)) {
+          foreach ($css AS $style) {
+            drupal_add_css(create_and_share_get_campaign_path($campaign) . '/css/' . $style, array(
+              'group' => CSS_THEME,
+              'weight' => 1000,
+            ));
+          }
+        }
+      }
+    }
+
+    if (!empty($settings['js']) && is_array($settings['js'])) {
+      foreach ($settings['js'] AS $path => $js) {
+        if (preg_match('#^/' . $path . '#i', $uri)) {
+          foreach ($js AS $script) {
+            drupal_add_css(create_and_share_get_campaign_path($campaign) . '/js/' . $script, array(
+              'weight' => 1000,
+            ));
+          }
+        }
+      }
+    }
+
+    // Add ui.dialog library, regardless of your logged in status.
+    drupal_add_library('system', 'ui.dialog');
+
+    // Add Facebook library.
+    drupal_add_library('connections', 'facebook');
+
+    if (preg_match('#^/' . $settings['campaign_root'] . '/?(' . implode('|', $settings['setup_pages']) . ')?#i', $uri)) {
+      if ($settings['allow_lazy_loading']) {
+      	drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/jquery.lazyload.js');
+      }
+
+      global $user;
+      $fbid = fboauth_fbid_load($user->uid);
+      $s = db_select('create_and_share_notifications', 'n')
+        ->fields('n', array('etid', 'type'))
+        ->condition('from_uid', $user->uid)
+        ->condition('campaign', $campaign)
+        ->condition('type', $settings['gallery_pages'], 'IN')
+        ->execute();
+      $shares = $s->fetchAll();
+
+      $settings = array(
+      	'share_count' => count($shares),
+      	'shares' => $shares,
+      );
+
+      $origin = 1;
+    }
+
+    if (!empty($settings['friends_page'])) {
+      $friends_path = $settings['campaign_root'] . '/' . $settings['friends_page'];
+      $length = strlen($friends_path);
+      if (substr($uri, 0, $length) == '/' . $friends_path) {
+        $origin = 2;
+      }
+    }
+
+    
+  }
+}
+
