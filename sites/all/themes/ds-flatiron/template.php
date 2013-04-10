@@ -114,6 +114,5 @@ function _ds_flatiron_user_submitted($nid = array(), $uid = NULL) {
   return $rs;
 }
   
-
 /* Add Chittenden's FB Library */
-// drupal_add_js('sites/all/modules/dosomething/connections/js/selector.js');
+drupal_add_js('sites/all/modules/dosomething/connections/js/connections.js', array('weight' => 4));
