@@ -5,14 +5,14 @@ package = MailChimp
 
 configure = admin/config/services/mandrill
 
-files[] = mandrill.module
-files[] = mandrill.admin.inc
-files[] = mandrill.mail.inc
-files[] = mandrill.class.php
+dependencies[] = mailsystem (2.x)
 
-; Information added by drupal.org packaging script on 2012-10-09
-version = "7.x-1.2"
+files[] = lib/mandrill.mail.inc
+files[] = lib/mandrill.inc
+
+; Information added by drupal.org packaging script on 2013-03-18
+version = "7.x-1.4"
 core = "7.x"
 project = "mandrill"
-datestamp = "1349810817"
+datestamp = "1363645212"
 
