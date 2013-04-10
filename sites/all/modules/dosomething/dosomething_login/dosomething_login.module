@@ -1130,7 +1130,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   // Adds the page that the user registered on.
   if (isset($_SERVER['HTTP_REFERER']) || isset($_GET['destination'])) {
     $referer = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $_GET['destination']);
-    $referer = preg_replace('#https?\:\/\/' . $_SERVER['HTTP_HOST'] . '/#i', '', $referer);
+    $referer = preg_replace('#https?\:\/\/' . preg_quote($_SERVER['HTTP_HOST']) . '/#i', '', $referer);
     if (preg_match('#node/[0-9]+#', $referer)) {
       $referer = drupal_get_path_alias($referer);
     }
