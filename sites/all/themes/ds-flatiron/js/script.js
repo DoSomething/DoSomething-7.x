@@ -63,7 +63,7 @@
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'I am teaming up with DoSomething.org to fight hunger in my community. Join #PBJSlam now: http://www.dosomething.org/pbj',
+      'feed_description': '1 in 6 people in America will go hungry at some point during the year. Help stock your local food pantry to make sure they have something to eat by joining @doSomething\'s PB & Jam Slam http://www.dosomething.org/pbj',
       'feed_selector': '.header-facebook-share',
     }, function(response){
       window.location.href = '/pbj#header';
