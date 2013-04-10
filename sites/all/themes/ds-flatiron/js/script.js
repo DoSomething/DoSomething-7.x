@@ -99,6 +99,12 @@
       $(this).parent().hide();
     });
 
+    // Mobile Commons success message
+    if (document.location.search.slice(1,7) === 'thanks') {
+      var success_msg = '<div class="success_msg"><h2>Thanks for sharing the Peanut Butter & Jam Slam with your friends!</h2></div>';
+      $('#success .section-container').prepend(success_msg);
+    }
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
