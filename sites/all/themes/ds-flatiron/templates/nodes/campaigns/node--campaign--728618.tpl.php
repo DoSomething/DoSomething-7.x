@@ -27,7 +27,7 @@
 
           <!-- Twitter Tweet Button -->
           <div class="header-twitter-share">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.dosomething.org/wyr" data-text="I'm #TeamCrunchy when it comes to my peanut butter! What are you? Pick sides in @dosomething's #PBJSlam now: http://www.dosomething.org/pbj" data-via="dosomething" data-count="none">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.dosomething.org/pbj" data-text="I am teaming up with DoSomething.org to fight hunger in my community. Join #PBJSlam now:" data-via="dosomething" data-count="none">Tweet</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
 
