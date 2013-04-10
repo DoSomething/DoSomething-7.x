@@ -60,7 +60,7 @@
     text-align: right
   .official-rules-link
     color: $bg-alt
-    
+
 .show #show-report-back
   display: none
 
@@ -76,15 +76,29 @@
   .col-social
     width: 50%
     float: left
+  .share-img-social
+    margin: 0 auto
+    display: block
   .share-link-social
+    cursor: pointer
     text-transform: uppercase
-    background: $campaign-main
+    background: $campaign-accent
+    margin: 0.2em auto
+    padding: 0.5em 0.6em 0.4em
+    color: #fff
+    font-size: 1.3em
+    font-weight: 600
+    +border-radius(2px)
     &:hover
       text-decoration: none
+  .share-link-social1
+    width: 9.3em
+  .share-link-social2
+    width: 8.9em
 
 // CAUSE
 // -----
-.cause 
+.cause
   padding: 0 0 3%
   i
     font-style: italic
