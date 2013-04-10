@@ -90,8 +90,4 @@
     2 => "Thanks to you someone in your community won't go hungry.",
   );
   
-  $thanks = array(
-    1 => "Thanks for sharing the campaign with your friends!",
-  );
-
 ?>
