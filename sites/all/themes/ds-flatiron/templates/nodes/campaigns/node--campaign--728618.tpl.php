@@ -128,16 +128,6 @@
 
     <?php else: ?>
 
-      <?php if (isset($shared)): ?>
-
-        <section class="thanks" id="thanks">
-          <div class="section-container">
-            <h2><?php print($thanks[1]); ?></h2>
-          </div> <!-- .section-container -->
-        </section>
-
-      <?php endif; ?>
-
       <section class="success" id="success">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-success.png'); ?>" alt="grand slam!" />
