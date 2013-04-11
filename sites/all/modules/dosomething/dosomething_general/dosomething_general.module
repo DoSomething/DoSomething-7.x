@@ -1989,3 +1989,27 @@ function dosomething_general_million_users_opt_in($form, &$form_state) {
   // Send the ftaf text message
   dosomething_general_mobile_commons_subscribe_with_friends($values['your_number'], $alpha_opt_in, $betas, $beta_opt_in, array('name' => $values['your_name'],));
 }
+
+/**
+ *  Gets multiple Drupal user IDs, given an array of Facebook IDs
+ *
+ *  @param array $users
+ *    An array of Facebook user IDs.
+ *
+ *  @return bool|array
+ *    false if array is empty or not an array; an array of FBids matched to UIDs
+ *    on success.
+ */
+function dosomething_general_get_multi_fbids($users) {
+  if (empty($users) || !is_array($users)) {
+    return false;
+  }
+
+  // Query for FBID's given UIDs
+  $result = db_query("SELECT uid, 1 FROM {fboauth_users} WHERE fbid IN (" . implode(',', $users) . ")");
+  // Fetch keyed so we don't get excess information
+  $uids = $result->fetchAllKeyed();
+
+  // Return the keys
+  return array_keys($uids);
+}
