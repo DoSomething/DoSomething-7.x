@@ -5,6 +5,17 @@
  *  Creates structure for Create and Share template.
  */
 
+/**
+ *  Implements hook_permission()
+ */
+function create_and_share_permission() {
+  return array(
+    'flag campaign submissions' => array(
+      'title' => t('Flag Campaign Submissions'),
+      'description' => t('Can flag submissions to disappear.'),
+    ),
+  );
+}
 
 /**
  *  Implements hook_menu()
@@ -37,6 +48,50 @@ function create_and_share_menu() {
   );
 
   return $paths;
+}
+
+/**
+ *	Implements hook_theme()
+ */
+function create_and_share_theme($existing, $type, $theme, $path) {
+  $settings = create_and_share_get_settings();
+
+  $path .= '/' . $settings['campaign_path'] . '/templates';
+
+  return array(
+    'crazyshit_welcome' => array(
+       'path' => $path,
+       'template' => $settings['template_prefix'] . '-welcome',
+     ),
+    'bull' => array(
+      'path' => $path,
+      'template' => $settings['template_prefix'] . 'bullshit-alert',
+    ),
+    'vouch' => array(
+      'path' => $path,
+      'template' => $settings['template_prefix'] . 'vouch-alert',
+    ),
+    'login' => array(
+      'path' => $path,
+      'template' => $settings['template_prefix'] . 'login-alert',
+    ),
+    'share-login' => array(
+      'path' => $path,
+      'template' => $settings['template_prefix'] . 'share-login-alert'
+    ),
+    'submit' => array(
+      'path' => $path,
+      'template' => $settings['template_prefix'] . 'submit-alert',
+    ),
+    'tip' => array(
+      'path' => $path,
+      'template' => $settings['template_prefix'] . 'tip',
+    ),
+    'share' => array(
+	  'path' => $path,
+	  'template' => $settings['template_prefix'] . 'share-alert',
+    ),
+  );
 }
 
 /**
@@ -282,6 +337,9 @@ function create_and_share_get_settings($campaign, $category = 'settings') {
   return $settings[$category];
 }
 
+/**
+ *  Implements hook_page_alter()
+ */
 function create_and_share_page_alter(&$page) {
   if ($campaign = create_and_share_is_campaign_page()) {
     $settings = create_and_share_get_settings($campaign);
@@ -331,7 +389,7 @@ function create_and_share_page_alter(&$page) {
 
     if (preg_match('#^/' . $settings['campaign_root'] . '/?(' . implode('|', $settings['setup_pages']) . ')?#i', $uri)) {
       if ($settings['allow_lazy_loading']) {
-      	drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/jquery.lazyload.js');
+        drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/jquery.lazyload.js');
       }
 
       global $user;
@@ -344,23 +402,539 @@ function create_and_share_page_alter(&$page) {
         ->execute();
       $shares = $s->fetchAll();
 
-      $settings = array(
-      	'share_count' => count($shares),
-      	'shares' => $shares,
+      $js_settings = array(
+        'share_count' => count($shares),
+        'shares' => $shares,
       );
-
-      $origin = 1;
     }
 
-    if (!empty($settings['friends_page'])) {
-      $friends_path = $settings['campaign_root'] . '/' . $settings['friends_page'];
-      $length = strlen($friends_path);
-      if (substr($uri, 0, $length) == '/' . $friends_path) {
-        $origin = 2;
-      }
+    $p = str_replace('/' . $settings['campaign_root'] . '/', '', $uri);
+    if (isset($settings['pages'][$p])) {
+      $origin = $settings['pages'][$p];
+      $js_settings['origin'] = $origin;
     }
 
+    $js_settings['facebook'] = $settings['facebook_language'];
     
+    $fb_app_id = variable_get('fboauth_id');
+    if (isset($settings['fb_app_id'])) {
+      $fb_app_id = $settings['fb_app_id'];
+    }
+
+    // Facebook App ID
+    $js_settings['fb_app_id'] = $fb_app_id;
+
+    // Allow notifications?
+    $js_settings['allow_notifications'] = $settings['allow_notifications'];
+
+    // Allow lazy loading?
+    $js_settings['allow_lazy_loading'] = $settings['allow_lazy_loading'];
+
+    // Campaign root.
+    $js_settings['campaign_root'] . $settings['campaign_root'];
+
+    // Get all campaign information all up in there.
+    drupal_add_js(array('campaign' => $js_settings), 'setting');
   }
 }
 
+/**
+ *  Implements hook_views_post_render()
+ */
+function create_and_share_post_render(&$view, &$output, &$cache) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    global $user;
+
+    $settings = create_and_share_get_settings($campaign);
+    if ($settings['allow_lazy_loading']) {
+      // Allows for lazy loading of images
+      $output = preg_replace_callback('#src="([^\"]+)"\s+#i', 'create_and_share_add_lazy_class', $output);
+    }
+
+    // Add "by-me" class if we recognize the post author as yourself.
+    $output = str_replace(' a-' . $user->uid, ' a-' . $user->uid . ' by-me', $output);
+
+    // If a user doesn't have flagging permissions, hide the flag link.
+    $admin = user_access('flag campaign submissions');
+    if (!$admin) {
+      $output = preg_replace('#<div class="flag">.*</div>#i', '', $output);
+    }
+  }
+}
+
+/**
+ *  Adds "lazy" class to images.
+ *
+ *  @param array $matches
+ *    An array returned from preg_replace_callback, with matches.
+ *
+ *  @return string
+ *    The replaced source string with the "lazy" class, if applicable.
+ */
+function create_and_share_add_lazy_class($matches) {
+  static $i = 1;
+  static $settings = array();
+
+  if (empty($settings)) {
+    $settings = create_and_share_get_settings();
+  }
+
+  // Lazy load count always needs to be at least 1.
+  $c = ($settings['lazy_load_count'] < 1) ? 1 : $settings['lazy_load_count'];
+
+   // We multiply the lazy load count by 2, because lazy loading includes the facebook pictures.
+  if ($i > ($c * 2) && $settings['lazy_load_count']) {
+    // We're beyond the non-lazy threshold, so lazy-load the image.
+    $r = 'src="/' . drupal_get_path('module', 'create_and_share') .'/images/default-img.jpg" data-original="' . $matches[1] . '?' . $unique_cache . '" class="lazy" data-num="' . $i . '" ';
+  }
+  else {
+    // If we're within the threshhold of non-lazy images, don't add the "lazy" class to them.
+    // The lazy class causes issues when you first create a post.  So we can't lazy load it.
+    $p = $matches[1] . '?' . $unique_cache;
+    $r = 'src="' . strval($p) . '" data-num="' . $i . '" data-original="' . $p . '" ';
+  }
+
+  $i++;
+  return $r;
+}
+
+
+/**
+ *  Implements hook_views_query_alter()
+ */
+function create_and_share_views_query_alter(&$view, &$query) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+
+    if ($view->name == $settings['views']['wrapper']) {
+      $uri = request_path();
+      if (preg_match('#^' . $settings['campaign_root'] . '/(' . $settings['friends_path'] . '/)?(?<showid>[0-9]+)$#i', $uri, $showid)) {
+        $showid = $showid['showid'];
+        // Try and find the submission with this ID and mark it as relevant
+        $query->fields['ided'] = array(
+          'field' => 'IF (webform_submissions.sid = ' . $showid . ', 1, 0)',
+          'table' => '',
+          'alias' => 'is_the_one',
+        );
+
+        // When we're looking for one specific element, we can show it first in the list
+        // by doing "is_the_one DESC" (see "is_the_one" definition above).  Everything else
+        // will resume as normal below the post.
+        $theone = array(
+          'field' => 'is_the_one',
+          'direction' => 'DESC',
+        );
+
+        $query->where[1]['conditions'][] = array(
+          'field' => 'webform_submissions.sid = :sid',
+          'value' => array(':sid' => $showid),
+          'operator' => 'formula',
+        );
+
+        // Prepend "is_the_one" order to the beginning of the orderby array.
+        array_unshift($query->orderby, $theone);
+      }
+
+      if ($view->current_display == $settings['views']['time-filters']) {
+        if (preg_match('#^' . $settings['campaign_root'] . '/time-(' . implode('|', $settings['filters']['time']) . ')$#i', $uri, $time)) {
+          $time = $time[1];
+
+          // Gets submissions posted today.
+          if ($time == 'today') {
+             // Note 2/27/13:
+             // Here's a weird one: We can't use the DATE_FORMAT(etc. etc.) format as seen below for today
+             // because it doesn't show all of the posts! So let's just use a unix timestamp format.
+             $query->where[1]['conditions'][1] = array(
+               'field' => "webform_submissions.submitted >= :today",
+               'value' => array(':today' => mktime(0, 0, 0)),
+               'operator' => 'formula',
+             );
+             unset($query->orderby[1]);
+          }
+          // Gets submissions posted this week.
+          else if ($time == 'all') {
+            unset($query->orderby[0]);
+          }
+        }
+        else if ($uri == $settings['campaign_root']) {
+          // Monday is always the start of the week.  Get this week's Monday in days (ago).
+          $monday = (date('N') - 1);
+          if ($monday == 0) {
+            $query->where[1]['conditions'][1] = array(
+              'field' => "webform_submissions.submitted >= :today",
+              'value' => array(':today' => mktime(0, 0, 0)),
+              'operator' => 'formula',
+            );
+          }
+          else {
+            $query->where[1]['conditions'][1] = array(
+              'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
+              'value' => array(
+                ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
+                ':today' => date('Y-m-d'),
+              ),
+              'operator' => 'formula',
+            );
+          }
+
+          unset($query->orderby[1]);
+        }
+
+        $query->fields['real_weight'] = array(
+          'field' => '((((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . $settings['grace_period'] . ') / ' . $settings['weight_divisor'] . ') + field_data_field_' . $settings['fields']['weight']['field'] . '.field_' . $settings['fields']['weight']['field'] . '_value)',
+          'table' => '',
+          'alias' => 'real_weight',
+        );
+
+        $query->orderby[0]['field'] = 'real_weight';
+      }
+
+      // If we're viewing the friends gallery page, only show submissions by my Facebook friends.
+      if (preg_match('#^' . $settings['campaign_root'] . '\/' . $settings['friends_path'] . '#i', $uri)) {
+        $facebook = create_and_share_load_fb();
+        module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
+
+        global $user;
+
+        if (!$user->uid) {
+          drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . $settings['fb_app_id'] . '&redirect_uri=http://' . $settings['campaign_domain'] . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
+        }
+
+        $fbid = fboauth_fbid_load($user->uid);
+        if (!empty($fbid)) {
+          $friends = $facebook->api('/' . $fbid . '/friends');
+
+          $f = array(
+            0 => $fbid,
+          );
+          foreach ($friends['data'] AS $key => $friend) {
+            $f[] = $friend['id'];
+          }
+        }
+        else {
+          drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . $settings['fb_app_id'] . '&redirect_uri=http://' . $settings['campaign_domain'] . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
+        }
+
+        if (empty($ids)) {
+          $ids = array($user->uid);
+        }
+
+        if ($view->name == $settings['views']['wrapper'] && $view->current_display == $settings['views']['friends'] && !empty($ids)) {
+          // Create a database condition class to narrow viewable posts down to just your friends.
+          $s = new DatabaseCondition();
+          $s->condition('webform_submissions.uid', $ids);
+          $c = &$s->conditions();
+          $c['#conjunction'] = 'OR';
+  
+          // remove the view's filter criteria to be replaced by the new conditional.
+          unset($query->where[1]['conditions'][1]);
+  
+          // Add the conditional to the query.
+          $query->where[1]['conditions'][] = array(
+            'field' => $s,
+          );
+        }
+      }
+    }
+  }
+}
+
+/**
+ *  Implements hook_module_implements_alter()
+ */
+function create_and_share_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter' && isset($implementations['create_and_share'])) {
+    $group = $implementations['create_and_share'];
+    unset($implementations['create_and_share']);
+    $implementations['create_and_share'] = $group;
+  }
+}
+
+/**
+ *	Implements hook_form_alter()
+ */
+function create_and_share_form_alter(&$form, &$form_state, $form_id) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+
+    if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == $settings['form_bundle']) {
+      $u = &$form['submitted'];
+      $page = (isset($form_state['input']['details']['page_num']) ? $form_state['input']['details']['page_num'] : 0);
+
+      if ($page == 0 || !isset($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid'])) {
+        $form['submitted']['webform_entity_form']['#groups']['group_crazy_page1']->children[] = 'sbutton';
+        $form['submitted']['webform_entity_form']['#group_children']['sbutton'] = 'group_crazy_page1';
+      }
+      else {
+        $file = file_load($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid']);
+        $path = str_replace(drupal_realpath('public://') . '/', '', drupal_realpath($file->uri));
+        $form_state['file_path'] = $path;
+
+        $u['sbutton'] = array(
+          '#type' => 'container',
+          'preview_image' => array(
+            '#markup' => '<img src="/files/styles/' . $settings['fields']['picture']['style'] . '/public/' . $path . '" alt="" />',
+          ),
+          '#weight' => 10,
+          '#attributes' => array(
+            'class' => array('image-widget-data')
+          ),
+        );
+
+        if ($settings['add_text_to_image']) {
+          $form['#submit'][] = 'create_and_share_add_text_to_image';
+        }
+
+        $form['#submit'][] = 'create_and_share_redirect';
+      }
+    }
+  }
+}
+
+/**
+ *  Adds text to image.
+ */
+function create_and_share_add_text_to_image($form, &$form_state) {
+  $top = $form_state['input']['submitted']['field_' . $settings['fields']['top_text_field']['field']][LANGUAGE_NONE][0]['value'];
+  $bottom = $form_state['input']['submitted']['field_' . $settings['fields']['bottom_text_field']['field']][LANGUAGE_NONE][0]['value'];
+
+  $path = drupal_realpath('public://') . '/styles/' . $settings['fields']['picture']['style'] . '/public/' . $settings['fields']['picture']['directory'] . '/' . basename($form_state['file_path']);
+
+  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'create_and_share') . '/includes/image.php';
+
+  $settings = create_and_share_get_settings();
+  write_text_to_image($settings, $path, $top, $bottom);
+}
+
+/**
+ *  Redirects somewhere.
+ */
+function create_and_share_redirect($form, &$form_state) {
+  $settings = create_and_share_get_settings();
+
+  $sid = $form_state['values']['details']['sid'];
+  $image = file_create_url('public://' . $form_state['file_path']);
+  $s = array(
+  	'sid' => $sid,
+  	'image' => $image,
+  );
+
+  $_SESSION['from_creation'] = $s;
+  drupal_goto($settings['campaign_root'] . '/' . $settings['friends_path'] . '/' . $sid);
+}
+
+/**
+ *	Loads the Facebook object and returns it.
+ *
+ *  @return object
+ *    The Facebook object.
+ */
+function create_and_share_load_fb() {
+  // Some browsers won't let the third party cookies through by default unless
+  // a compact privacy policy is set in the headers.
+  drupal_add_http_header('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
+  $path = libraries_get_path('facebook');
+  if (!empty($path)) {
+	require_once(DRUPAL_ROOT . '/' . $path . '/facebook.php');
+  }
+  else {
+	drupal_set_message('You are missing the Facebook SDK');
+	return;
+  }
+
+  $settings = create_and_share_get_settings();
+
+  $appid = ($settings['fb_app_id'] ? $settings['fb_app_id'] : variable_get('fboauth_id', 105775762330));
+  $secret = ($settings['fb_app_secret'] ? $settings['fb_app_secret'] : variable_get('fboauth_secret', '68e767e16e139277b1e7d2e2ba16a4f6'));
+
+  $facebook = new Facebook(array(
+	'appId' => $appid,
+	'secret' => $secret,
+  ));
+
+  return $facebook;
+}
+
+
+function crazyshit_fboauth_redirect($destination) {
+  if (strpos($destination, 'crazy') !== -1) {
+  	global $user;
+	if (!empty($user->mail)) {
+	    $mid = CRAZY_MAILCHIMP_GROUP;
+	    $email = $user->mail;
+
+	    if (!empty($mid) && valid_email_address($email) && !empty($email)) {
+
+		// Add email to MailChimp group
+	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
+
+	       // Send email message, start with '', build content from tpl file.
+               $mail_status = crazyshit_mail_send($email, '');
+
+	       if (!$mail_status) {
+	         watchdog('crazyshit', 'Failed to send welcome message after user registration: %email using the parameters: %param',
+			   array('%email' => $email, '%message' => $message), WATCHDOG_ERROR);
+	       }
+
+	    }
+
+	    $u = array(
+	      'uid' => $user->uid,
+	      'email' => $user->mail,
+	      'timestamp' => REQUEST_TIME,
+	    );
+	    drupal_write_record('crazy_emails', $u);
+	}
+  }
+}
+
+
+/**
+ * Implements hook_init().
+ */
+function crazyshit_init() {
+  // Return nothing if the page isn't within the crazy $#!T module
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+
+    $onpage = preg_match('#^(' . implode('|', $settings['notification_pages']) . ')$#i', request_path());
+    if ($settings['allow_notifications'] && $onpage) {
+      global $user;
+
+      // Load any notifications the user has.
+      $n = db_select('create_and_share_notifications', 'n')
+        ->fields('n', array('type', 'etid', 'from_fid', 'fid'))
+        // Make sure it's for the currently logged in user.
+        ->condition('uid', $user->uid)
+        // Make sure it's not guests.
+        ->condition('uid', 0, '!=')
+        // Show only for this campaign.
+        ->condition('campaign', $campaign)
+        // Make sure they haven't seen it yet.
+        ->condition('notified', 0)
+        // Make sure it's a BS notification.
+        ->condition('type', 2)
+        // Make sure it comes from the friends page.
+        ->condition('origin', 2)
+        // Show only one at a time.
+        ->range(0, 1)
+        ->execute();
+        $ns = $n->fetchAll();
+
+        $notifications = reset($ns);
+        $pre = '';
+
+        $from_fb = false;
+        if (isset($_GET['fb'])) {
+          $from_fb = (bool) intval($_GET['fb']);
+        }
+
+        if (!empty($notifications)) {
+          if ($notifications->from_fid == $notifications->fid) {
+            $pre = 'Drupal.behaviors.dsCrazyScripts.notify_yourself = true; ';
+          }
+
+          $submission = array_shift(entity_load('webform_submission_entity', array($notifications->etid)));
+          $mp = "var my_post = { 'sid': " . $notifications->etid . ", 'image': '" . file_create_url($submission->field_{$settings['fields']['picture']['field']}[LANGUAGE_NONE][0]['uri']) . "' }; ";
+          drupal_add_js($mp, 'inline');
+
+          drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { " . $pre . " jQuery.fn.dsCrazyPopup('bull', " . intval($notifications->sid) . "); }); } }, 1500);", 'inline');
+        }
+        else if ($from_fb) {
+          drupal_add_js("jQuery(document).ready(function() { if (top.location == self.location) { window.setTimeout(function() { jQuery.fn.dsCrazyPopup('bull', 0); }); } }, 1500);", 'inline');
+        }
+      }
+   }
+}
+
+/**
+ * Impliments hook_mail. Provides functionality to be triggered by key value.
+ *
+ * @param $key
+ *   Value to customize message content.
+ * @param $$message
+ *   Array by reference to build message values to be sent.
+ * @params
+ *   Potential parameters to react to for specific $key values.
+ */
+function crazyshit_mail($key, &$message, $params) {
+
+  switch ($key) {
+
+    // Send a simple into message.
+    case 'crazyshit-intro':
+
+     $headers = array(
+	'From' => $message['from'],
+	'Sender' => $message['from'],
+	'Return-Path' => $message['from'],
+	'Reply-to' => $message['from'],
+	'Errors-To' => $message['from'],
+        'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
+      );
+
+      foreach ($headers as $key => $value) {
+        $message['headers'][$key] = mime_header_encode($value);
+      }
+
+      $message['subject'] = t('What\'s the craziest thing you\'ve done to save money?');
+      $message['body'][] = theme('crazyshit_welcome', $params);
+
+      break;
+  }
+
+}
+
+/**
+ * Send email message speific to the Crazy project.
+ *
+ * @param $email
+ *   Users email address.
+ * @param $message
+ *   The cotents of the message to be sent.
+ * @return
+ *   Boolean indicating success.
+ */
+function crazyshit_mail_send($email, $message) {
+
+  // All system mails need to specify the module and template key (mirrored from
+  // hook_mail()) that the message they want to send comes from.
+  $module = 'crazyshit';
+  $key = 'crazyshit-intro';
+
+  // Specify 'to' and 'from' addresses.
+  $to = $email;
+  $from = 'crazy@dosomething.org';
+
+  // The language of the e-mail. This will one of three values:
+  // * user_preferred_language(): Used for sending mail to a particular website
+  //   user, so that the mail appears in their preferred language.
+  // * global $language: Used when sending a mail back to the user currently
+  //   viewing the site. This will send it in the language they're currently
+  //   using.
+  // * language_default(): Used when sending mail to a pre-existing, 'neutral'
+  //   address, such as the system e-mail address, or when you're unsure of the
+  //   language preferences of the intended recipient.
+  //
+  // Since in our case, we are sending a message to a random e-mail address that
+  // is not necessarily tied to a user account, we will use the site's default
+  // language.
+  $language = language_default();
+
+  // Whether or not to automatically send the mail when drupal_mail() is
+  // called. This defaults to TRUE, and is normally what you want unless you
+  // need to do additional processing before drupal_mail_send() is called.
+  $send = TRUE;
+  // Send the mail and check for success. Note that this does not guarantee
+  // message delivery; only that there were no PHP-related issues encountered
+  // while sending.
+  $result = drupal_mail($module, $key, $to, $language, $message, $from, $send);
+
+  if ($result['result'] == FALSE) {
+    watchdog('crazyshit', 'Failed to send intro email message.');
+  }
+
+  return $result['result'];
+
+
+}
