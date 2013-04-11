@@ -1,0 +1,70 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Optimizely module
+ *
+ * Download the schema module to auto-generate a schema array for a table:
+ * http://drupal.org/project/schema.
+ *
+ * In this file, we grab the output from the schema 'info' page, paste it
+ * in here and update the descriptions.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function optimizely_install() {
+	drupal_set_message(t('Optimizely table created.'), 'status');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function optimizely_uninstall() {
+	drupal_set_message(t('Optimizely table has been dropped.'), 'status');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function optimizely_schema() {
+	$schema['optimizely'] = array(
+		'description' => 'This table holds the values entered in the Optimizely Setup form.',
+		'fields' => array(
+			'oid' => array(
+				'description' => 'The unique identifier of each Optimizely Setup.',
+				'type' => 'serial',
+				'not null' => TRUE,
+			),
+			'project_title' => array(
+				'description' => 'The title of each project.',
+				'type' => 'text',
+				'not null' => TRUE,
+			),			
+			'onoff' => array(
+				'description' => 'Show Optimizely snippet on specific pages.',
+				'type' => 'varchar',
+				'length' => '10',
+				'not null' => FALSE,
+			),
+			'path' => array(
+				'description' => 'A serialized array of paths where the Optimizely code
+						snippet appears',
+				'type' => 'text',
+				'not null' => FALSE,
+			),
+			'project_code' => array(
+				'description' => 'The Optimizely project code.',
+				'type' => 'varchar',
+        'length' => '128',
+        'not null' => FALSE,
+			),
+		),
+		'primary key' => array('oid'),
+	);
+	
+	return $schema;
+	
+}
