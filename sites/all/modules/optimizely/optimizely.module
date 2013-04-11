@@ -155,11 +155,12 @@ function optimizely_setup_account_id_validate($form, &$form_state) {
  */
 function optimizely_add_update_form_submit($form, &$form_state) {
 
-	$project_title = $form_state['values']['project_title'];
-	$project_code = $form_state['values']['project_code'];
-	$optimizely_path = $form_state['values']['optimizely_path'];
+	$project_title = check_plain($form_state['values']['project_title']);
+	$project_code =  check_plain($form_state['values']['project_code']);
+	$optimizely_path = check_plain($form_state['values']['optimizely_path']);
 	$path_array = preg_split('/[\r\n]+/', $optimizely_path, -1, PREG_SPLIT_NO_EMPTY);
 	$onoff = $form_state['values']['optimizely_onoff'];
+	
   if ($form['submit']['#value'] == 'Add') {
 		db_insert('optimizely')
 			->fields(array(
