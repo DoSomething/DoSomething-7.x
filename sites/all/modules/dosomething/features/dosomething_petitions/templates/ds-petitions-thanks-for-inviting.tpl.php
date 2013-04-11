@@ -1,17 +1,17 @@
-Dear <?php echo $name; ?>,
+<p>Dear <?php echo $name; ?>,</p>
 
-Thanks for signing the petition, "<?php echo $petition; ?>."
+<p>Thanks for signing the petition, "<?php echo $petition; ?>."</p>
 
-Winning this campaign is now up to you.
+<p>Winning this campaign is now up to you.</p>
 
-Now that you’ve invited friends to sign, we're building momentum.
+<p>Now that you’ve invited friends to sign, we're building momentum.</p>
 
-Help us cross the finish line by sharing with more friends. They'll share with their friends, who will...well, you get the idea. From your signature will come dozens, maybe even hundreds.
+<p>Help us cross the finish line by sharing with more friends. They'll share with their friends, who will...well, you get the idea. From your signature will come dozens, maybe even hundreds.</p>
 
-Invite more of your friends with email:
-<?php echo $petition_link; ?>
+<p>Invite more of your friends with email:
+<?php echo $petition_link; ?></p>
 
+<br />
+<p>Thanks for taking action,</p>
 
-Thanks for taking action,
-
-<?php echo $author; ?> and the DoSomething.org Team
+<p><?php echo $author; ?> and the DoSomething.org Team</p>

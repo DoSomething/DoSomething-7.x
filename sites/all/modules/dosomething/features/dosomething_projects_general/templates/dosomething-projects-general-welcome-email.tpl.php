@@ -1,10 +1,10 @@
-Subject: Success! You have posted "<?php echo $project_title; ?>"!
+<p>Subject: Success! You have posted "<?php echo $project_title; ?>"!</p>
 
-Hi <?php echo $name; ?>!
+<p>Hi <?php echo $name; ?>!</p>
 
-Thanks for posting your project on our listing at DoSomething.org. We are so glad you shared your inspiring idea with us and the whole DoSomething.org community.
+<p>Thanks for posting your project on our listing at DoSomething.org. We are so glad you shared your inspiring idea with us and the whole DoSomething.org community.</p>
 
-Did you know that you are now eligible to apply for grant money for your project at dosomething.org/grants?
+<p>Did you know that you are now eligible to apply for grant money for your project at dosomething.org/grants?</p>
 
-Review your project listing and keep it up to date:
-<?php echo $url; ?>
+<p>Review your project listing and keep it up to date:
+<?php echo $url; ?></p>
