@@ -1,7 +1,7 @@
-Hi!
+<p>Hi!</p>
 
-<?php echo $account; ?> has joined your <?php echo $type; ?> for <?php echo $campaign_name; ?>.
+<p><?php echo $account; ?> has joined your <?php echo $type; ?> for <?php echo $campaign_name; ?>.</p>
 
-Head over to your page to check out who else is on your team and to invite more friends to participate:
+<p>Head over to your page to check out who else is on your team and to invite more friends to participate:</p>
 
-<?php echo $link; ?>
+<p><?php echo $link; ?></p>
