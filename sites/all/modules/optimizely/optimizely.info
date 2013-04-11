@@ -1,0 +1,7 @@
+name = Optimizely
+description = Adds Optimizely account javascript to a site to support account projects / experiments.
+package = Other
+core = 7.x
+version = "7.x-2.0"
+php = 5.2
+project = "optimizely"
