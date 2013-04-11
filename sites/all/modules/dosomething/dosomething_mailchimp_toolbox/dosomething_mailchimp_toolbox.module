@@ -68,6 +68,18 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
       $MailChimp_group = 'DSA2013Nominees';
       
     }
+    elseif ($submission->nid == 728929) {  // /gun-policy
+      
+      // Target email - MailChimp key
+      $application_email = $submission->data[2]['value'][0];
+      
+      // Assign target MailChimp group
+      $MailChimp_group = 'GunControlReport2013';
+      
+      // Birthday
+      
+      
+    }
     
     // Submit to MailChimp
     $mailChimp_results= dosomething_mailchimp_toolbox_mailchimp_subscribe($application_email, $MailChimp_group, $merge_vars);
