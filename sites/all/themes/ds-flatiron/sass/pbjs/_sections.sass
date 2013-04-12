@@ -29,6 +29,27 @@
     @media only screen and (max-width: 550px)
       width: 400px
 
+.header-social
+  float: right
+
+.header-facebook-share,
+.header-twitter-share
+  display: block
+  height: 20px
+
+.header-facebook-share
+  width: 75px
+  height: 20px
+  border: 1px solid rgb(202, 212, 231)
+  +border-radius(2px)
+  &:hover
+    border: 1px solid rgb(236, 238, 245) 
+
+.header-twitter-share
+  float: right
+  width: 54px
+  margin: 5px 0 0 0
+
 // CHALLENGE
 // ---------
 
@@ -38,14 +59,46 @@
   .official-rules-wrapper
     text-align: right
   .official-rules-link
-    color: $bg-alt
-    
+    color: $btn-grey
+
 .show #show-report-back
   display: none
 
+// SOCIAL
+// ------
+.social
+  border-top: 2px solid #ddd
+  p
+    font-size: 1.2em
+    margin: 1em auto
+    max-width: 200px
+    display: block
+  .col-social
+    width: 50%
+    float: left
+  .share-img-social
+    margin: 0 auto
+    display: block
+  .share-link-social
+    cursor: pointer
+    text-transform: uppercase
+    background: $campaign-accent
+    margin: 0.2em auto
+    padding: 0.5em 0.6em 0.4em
+    color: #fff
+    font-size: 1.3em
+    font-weight: 600
+    +border-radius(2px)
+    &:hover
+      text-decoration: none
+  .share-link-social1
+    width: 9.3em
+  .share-link-social2
+    width: 8.9em
+
 // CAUSE
 // -----
-.cause 
+.cause
   padding: 0 0 3%
   i
     font-style: italic
@@ -119,13 +172,13 @@
 
 // THANKS
 // ------
-.thanks
-  padding: 2.5% 0 0 0
+.success_msg
+  margin: 0 auto 1em
   h2
     text-transform: uppercase
     font-weight: 600
     font-size: 26px
-    color: $campaign-main
+    color: $campaign-accent
 
 // FOOTER
 // ------

@@ -12,8 +12,8 @@
   $cmp_short = 'pbjs';      /* the campaign's abbreviation               */
   $cmp_machine = 'pbjs13';  /* the campaign's machine name - a unique id */
   $cmp_name = 'Peanut Butter & Jam Slam';
-  $cmp_lead = 'Saige';
-  $sponsor = 'walmart';
+  $cmp_lead = 'Greg';
+  $sponsor = 'walmart';     /* The capitalization of this variable must match the capitalization of the file name! */
   $files_source = '//www.dosomething.org/files/campaigns/' . $cmp_machine . '/';
 
   /* MOBILE COMMONS NOISE */
@@ -75,7 +75,13 @@
    );
 
   $social = array(
+    /* The zero-indexed string is the alt text for the bg-header image */
+    0 => "Which team are you on?",
     1 => "Team Crunchy or Smooth? Help settle one of biggest debates in American history.",
+    2 => "Team Crunchy Mascot",
+    3 => "#teamcrunchy",
+    4 => "Team Smooth Mascot",
+    5 => "#teamsmooth",
    );
 
   /* POST REPORT-BACK PAGE VIEW */
@@ -84,8 +90,4 @@
     2 => "Thanks to you someone in your community won't go hungry.",
   );
   
-  $thanks = array(
-    1 => "Thanks for sharing the campaign with your friends!",
-  );
-
 ?>

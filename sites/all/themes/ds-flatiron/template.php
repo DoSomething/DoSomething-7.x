@@ -91,7 +91,7 @@ function ds_flatiron_form_alter(&$form, &$form_state, $form_id) {
     $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
   }
   if ($form_id == 'webform_client_form_728661') {
-    $form['actions']['submit']['#value'] = t('I want to run a drive');
+    $form['actions']['submit']['#value'] = t('I want to donate with a group');
     $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
   }
   if($form_id == 'webform_client_form_728619') {
@@ -114,3 +114,5 @@ function _ds_flatiron_user_submitted($nid = array(), $uid = NULL) {
   return $rs;
 }
   
+/* Add Chittenden's FB Library */
+drupal_add_js('sites/all/modules/dosomething/connections/js/connections.js', array('weight' => 4));
