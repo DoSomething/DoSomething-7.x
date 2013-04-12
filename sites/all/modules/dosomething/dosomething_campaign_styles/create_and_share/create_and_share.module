@@ -47,17 +47,7 @@ function create_and_share_menu() {
     'access callback' => TRUE,
   );
 
-  $paths['craziness/friends'] = array(
-    'page callback' => 'create_and_share_friends_page',
-    'access callback' => TRUE,
-  );
-
   return $paths;
-}
-
-function create_and_share_friends_page() {
-
-  return "!";
 }
 
 /**
@@ -1129,4 +1119,67 @@ function create_and_share_get_campaign_path($campaign) {
   }
 
   return $cache[$campaign];
+}
+
+/**
+ *  Implements hook_node_insert()
+ */
+function create_and_share_node_insert($node) {
+  if ($node->type == 'create_and_share_campaign') {
+    $paths = array(
+      'friends',
+      'submit',
+      'about'
+    );
+
+    // Create all of the path aliases to make this campaign work.
+    $p = array();
+    foreach ($paths AS $path) {
+      $p = array(
+        'source' => 'node/' . $node->nid . '/' . $path,
+        'alias' => $node->path['alias'] . '/' . $path,
+      );
+
+      path_save($p);
+    }
+
+    module_load_include('inc', 'webform', 'includes/webform.components');
+    // Add submit fix hidden field to webform
+    $component = array(
+      'nid' => $node->nid,
+      'cid' => 1,
+      'pid' => 0,
+      'form_key' => 'submit_fix',
+      'name' => 'Submit fix',
+      'type' => 'hidden',
+      'value' => 1,
+      'extra' => array(
+        'hidden_type' => 'hidden',
+        'conditional_operator' => '=',
+        'private' => 0,
+      ),
+      'mandatory' => 0,
+      'weight' => 100,
+    );
+    webform_component_insert($component);
+  }
+}
+
+/**
+ *  Implements hook_node_delete()
+ */
+function create_and_share_node_delete($node) {
+  if ($node->type == 'create_and_share_campaign') {
+    $paths = array(
+      'friends',
+      'submit',
+      'about'
+    );
+
+    $p = array();
+    foreach ($paths AS $path) {
+      $p = path_load('node/' . $node->nid . '/' . $path);
+      path_delete($p['pid']);
+    }
+  }
 }
