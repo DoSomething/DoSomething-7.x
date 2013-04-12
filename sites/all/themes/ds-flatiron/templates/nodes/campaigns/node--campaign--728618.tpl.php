@@ -17,6 +17,20 @@
         <?php if ($sponsor): ?>
           <img class="logo-sponsor" src="<?php print($files_source . 'logo-' . $sponsor . '.png'); ?>" alt="<?php print($sponsor); ?> logo" />
         <?php endif; ?>
+
+        <div class="header-social">
+
+          <!-- Facebook Like Button -->
+          <a href="#" class="header-facebook-share">
+            <img src="//www.dosomething.org/files/campaigns/wyr/bg-recommend.png" alt="Recommend" />
+          </a>
+
+          <!-- Twitter Tweet Button -->
+          <div class="header-twitter-share">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.dosomething.org/pbj" data-text="1 in 6 people in America will go hungry at some point during the year. Help @dosomething about feeding the hungry: http://www.dosomething.org/pbj" data-count="none">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+
       </div> <!-- .section-container -->
     </section> <!-- .header -->
 
@@ -71,6 +85,29 @@
         </div> <!-- .section-container -->
       </section> <!-- .scholarship -->
 
+      <section class="social" id="social">
+        <div class="section-container">
+
+          <img class="bg-header" src="<?php print($files_source . 'h-social.png'); ?>" alt="<?php print($share[0]); ?>" />
+          <h2><?php print($share[1]); ?></h2>
+
+          <div class="col-social">
+            <img class="share-img-social"src="<?php print($files_source . 'bg-social1.png'); ?>" alt="<?php print($share[2]); ?>" />
+            <div class="share-link-social share-link-social1">
+              <?php print($social[3]); ?>
+            </div>
+          </div> <!-- .social-col -->
+
+          <div class="col-social">
+            <img class="share-img-social"src="<?php print($files_source . 'bg-social2.png'); ?>" alt="<?php print($share[4]); ?>" />
+            <div class="share-link-social share-link-social2">
+              <?php print($social[5]); ?>
+            </div>
+          </div> <!-- .social-col -->
+
+        </div> <!-- .section-container -->
+      </section> <!-- .social -->
+
       <section class="cause" id="cause">
         <div class="section-container">
 
@@ -90,16 +127,6 @@
       </section> <!-- .cause -->
 
     <?php else: ?>
-
-      <?php if (isset($shared)): ?>
-
-        <section class="thanks" id="thanks">
-          <div class="section-container">
-            <h2><?php print($thanks[1]); ?></h2>
-          </div> <!-- .section-container -->
-        </section>
-
-      <?php endif; ?>
 
       <section class="success" id="success">
         <div class="section-container">
@@ -125,7 +152,7 @@
             ?>
 
             <form action="//dosomething.mcommons.com/profiles/join" method="POST">
-              <input type="hidden" name="redirect_to" value="<?php print(url($nid, $thanks_redirect_param)); ?>" />
+              <input type="hidden" name="redirect_to" value="<?php print($cmp_url . '-thanks'); ?>" />
 
               <div class="share-alpha-name share-input-wrapper">
                 <label>Your First Name:</label>
