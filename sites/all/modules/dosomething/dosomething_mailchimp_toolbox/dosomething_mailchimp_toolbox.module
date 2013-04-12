@@ -21,9 +21,9 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
   // To-Do: Replace with variables table lookup set by admin interface
   // 727601: Do Something Awards Application
   // 727716: DO SOMETHING AWARDS NOMINATION FORM
-  if ($submission->nid == 727601 || $submission->nid == 727716) {
+  if ($submission->nid == 727601 || $submission->nid == 727716 || $submission->nid == 728929) {
     
-    if ($submission->nid == 727601) {
+    if ($submission->nid == 727601) { //Do Something Awards Application
     
       // Target email - MailChimp key
       $application_email = $submission->data[5]['value'][0];
@@ -56,7 +56,7 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
       $MailChimp_group = 'DSA2013Applicants';
       
     }
-    elseif ($submission->nid == 727716) {
+    elseif ($submission->nid == 727716) { // DO SOMETHING AWARDS NOMINATION FORM
       
       // Target email - MailChimp key
       $application_email = $submission->data[2]['value'][0];
@@ -71,13 +71,13 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
     elseif ($submission->nid == 728929) {  // /gun-policy
       
       // Target email - MailChimp key
-      $application_email = $submission->data[2]['value'][0];
+      $application_email = $submission->data[1]['value'][0];
+      
+      // Birthday
+      $merge_vars['BDAY'] = $submission->data[2]['value'][0];
       
       // Assign target MailChimp group
       $MailChimp_group = 'GunControlReport2013';
-      
-      // Birthday
-      
       
     }
     
