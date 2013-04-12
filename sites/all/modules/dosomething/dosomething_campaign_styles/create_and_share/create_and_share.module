@@ -47,14 +47,32 @@ function create_and_share_menu() {
     'access callback' => TRUE,
   );
 
+  $paths['craziness/friends'] = array(
+    'page callback' => 'create_and_share_friends_page',
+    'access callback' => TRUE,
+  );
+
   return $paths;
+}
+
+function create_and_share_friends_page() {
+
+  return "!";
 }
 
 /**
  *	Implements hook_theme()
  */
 function create_and_share_theme($existing, $type, $theme, $path) {
-  $settings = create_and_share_get_settings();
+  $path = $path . '/templates';
+
+  return array(
+    'create_and_share_header' => array(
+      'path' => $path,
+      'template' => 'header'
+    ),
+  );
+  /*$settings = create_and_share_get_settings();
 
   $path .= '/' . $settings['campaign_path'] . '/templates';
 
@@ -91,7 +109,83 @@ function create_and_share_theme($existing, $type, $theme, $path) {
 	  'path' => $path,
 	  'template' => $settings['template_prefix'] . 'share-alert',
     ),
-  );
+  );*/
+}
+
+/**
+ *  Implements hook_page_templates_alter()
+ *  Adds navigation bar to the top of the page.
+ */
+function create_and_share_page_templates_alter(&$variables) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+    $v = &$variables['page']['top_navbar'];
+
+    $ru = request_path();
+    foreach ($settings['top_links'] AS $match => $info) {
+      $href = $info['href'];
+      $links[$href] = array(
+        'title' => t($info['title']),
+        'href' => $href,
+        'attributes' => (isset($info['attributes']) ? $info['attributes'] : array()),
+      );
+
+      if (preg_match('#^' . $match . '#i', $ru)) {
+        $links[$href]['attributes'] += array(
+        'class' => array('active'),
+        );
+      }
+    }
+
+    $sub = array();
+    $u = $ru;
+
+    foreach ($settings['sub_menus'] AS $match => $s) {
+      if (preg_match('#' . $match . '#i', $u)) {
+        foreach ($settings['sub_menus'][$match] AS $key => $type) {
+          if (strpos($type['href'], '#') !== false) {
+            preg_match('/(?<href>.*?)#(?<fragment>.*?)$/', $type['href'], $hr);
+            $href = $hr['href'];
+            $fragment = $hr['fragment'];
+          }
+          else {
+            $href = $type['href'];
+            $fragment = '';
+          }
+
+          $sub[] = array(
+             'title' => t($type['title']),
+             'href' => $href,
+             'fragment' => $fragment,
+             'attributes' => (isset($type['attributes']) ? $type['attributes'] : array()),
+          );
+        }
+      }
+    }
+
+    $crazy_menu = array();
+
+    $crazy_menu = array(
+      '#theme' => 'links',
+      '#links' => $links,
+      '#attributes' => array('class' => array('crazy-menu')),
+    );
+
+    $crazy_sub_menu = array();
+    if (!empty($sub)) {
+      $crazy_sub_menu = array(
+        '#theme' => 'links',
+        '#links' => $sub,
+        '#attributes' => array('class' => array('crazy-sub-menu')),
+      );
+    }
+
+    $v = theme('create_and_share_header', array(
+      'top_menu' => $crazy_menu,
+      'sub_menu' => $crazy_sub_menu,
+    )) . $v;
+
+   }
 }
 
 /**
@@ -255,8 +349,8 @@ function create_and_share_update_counts($campaign, $etid, $action) {
   $weight = 0;
 
   // Check for existing weight
-  if (isset($submission->field_{$settings['fields']['weight']}[LANGUAGE_NONE][0]['value'])) {
-    $weight = $submission->field_{$settings['fields']['weight']}[LANGUAGE_NONE][0]['value'];
+  if (isset($submission->field_{$settings['fields']['weight']['field']}[LANGUAGE_NONE][0]['value'])) {
+    $weight = $submission->field_{$settings['fields']['weight']['field']}[LANGUAGE_NONE][0]['value'];
   }
 
   // We want to get the nearest 10, 100, 1000, 10000, etc...
@@ -265,7 +359,7 @@ function create_and_share_update_counts($campaign, $etid, $action) {
 
   $weight += ($settings['fields'][$action]['weight'] * $multiplier);
 
-  $submission->field_{$settings['fields']['weight']}[LANGUAGE_NONE][0]['value'] = $weight;
+  $submission->field_{$settings['fields']['weight']['field']}[LANGUAGE_NONE][0]['value'] = $weight;
 
   $count = 0;
   if (isset($submission->field_{$settings['fields'][$action]['field']}[LANGUAGE_NONE][0]['value'])) {
@@ -332,9 +426,21 @@ function create_and_share_template_render($campaign, $etid, $template) {
 /**
  *  Loads and returns settings.
  */
-function create_and_share_get_settings($campaign, $category = 'settings') {
-  require_once __DIR__ . '/campaigns/' . $campaign . '/settings.inc';
-  return $settings[$category];
+function create_and_share_get_settings($campaign, $category = 'all') {
+  static $cache = array();
+
+  if (empty($campaign)) {
+    // :(
+  }
+
+  if (empty($cache[$campaign])) {
+    if (file_exists(create_and_share_get_campaign_path($campaign) . '/settings.inc')) {
+      require_once create_and_share_get_campaign_path($campaign) . '/settings.inc';
+      $cache[$campaign] = $settings;
+    }
+  }
+
+  return ($category != 'all' ? $cache[$campaign][$category] : $cache[$campaign]);
 }
 
 /**
@@ -343,7 +449,8 @@ function create_and_share_get_settings($campaign, $category = 'settings') {
 function create_and_share_page_alter(&$page) {
   if ($campaign = create_and_share_is_campaign_page()) {
     $settings = create_and_share_get_settings($campaign);
-    drupal_set_title($settings['title']);
+
+    drupal_set_title($settings['campaign_title']);
 
     $element = array(
       '#tag' => 'meta',
@@ -398,7 +505,7 @@ function create_and_share_page_alter(&$page) {
         ->fields('n', array('etid', 'type'))
         ->condition('from_uid', $user->uid)
         ->condition('campaign', $campaign)
-        ->condition('type', $settings['gallery_pages'], 'IN')
+        ->condition('type', (array) $settings['gallery_pages'], 'IN')
         ->execute();
       $shares = $s->fetchAll();
 
@@ -414,7 +521,7 @@ function create_and_share_page_alter(&$page) {
       $js_settings['origin'] = $origin;
     }
 
-    $js_settings['facebook'] = $settings['facebook_language'];
+    $js_settings['facebook'] = $settings['facebook'];
     
     $fb_app_id = variable_get('fboauth_id');
     if (isset($settings['fb_app_id'])) {
@@ -756,7 +863,7 @@ function create_and_share_load_fb() {
 }
 
 
-function crazyshit_fboauth_redirect($destination) {
+function create_and_share_fboauth_redirect($destination) {
   if (strpos($destination, 'crazy') !== -1) {
   	global $user;
 	if (!empty($user->mail)) {
@@ -792,7 +899,7 @@ function crazyshit_fboauth_redirect($destination) {
 /**
  * Implements hook_init().
  */
-function crazyshit_init() {
+function create_and_share_init() {
   // Return nothing if the page isn't within the crazy $#!T module
   if ($campaign = create_and_share_is_campaign_page()) {
     $settings = create_and_share_get_settings($campaign);
@@ -857,7 +964,7 @@ function crazyshit_init() {
  * @params
  *   Potential parameters to react to for specific $key values.
  */
-function crazyshit_mail($key, &$message, $params) {
+function create_and_share_mail($key, &$message, $params) {
 
   switch ($key) {
 
@@ -895,7 +1002,7 @@ function crazyshit_mail($key, &$message, $params) {
  * @return
  *   Boolean indicating success.
  */
-function crazyshit_mail_send($email, $message) {
+function create_and_share_mail_send($email, $message) {
 
   // All system mails need to specify the module and template key (mirrored from
   // hook_mail()) that the message they want to send comes from.
@@ -937,4 +1044,89 @@ function crazyshit_mail_send($email, $message) {
   return $result['result'];
 
 
+}
+
+/**
+ *  Checks whether a specified path is a valid Create and Share campaign page.
+ *  
+ *  @param string $path
+ *    The path to check against.  Defaults to the current path (using request_path())
+ *
+ *  @return mixed string|bool
+ *    The name of the campaign if it exists, or false.
+ */
+function create_and_share_is_campaign_page($path = '') {
+  static $cache = array();
+
+  // Use request_path() if no path is specified (by default)
+  if (empty($path)) {
+    $path = request_path();
+  }
+
+  // Get alias if request_path() returns 'node/12345'
+  if (substr($path, 0, 5) == 'node/') {
+    $path = drupal_get_path_alias($path);
+  }
+
+  // Only get the definitive dirname if there are slashes somewhere in there.
+  if (strpos($path, '/') !== FALSE) {
+    $camp = preg_replace('#^(?:cas/)?([a-zA-Z0-9\-\_ ]+)\/.*#', '\\1', $path);
+  }
+  else {
+    $camp = $path;
+  }
+
+  if (empty($cache[$camp])) {
+    $p = create_and_share_get_campaign_path($camp);
+    // True if there is a campaign path there and the settings file exists.
+    $cache[$camp] = (false !== $p && file_exists(DRUPAL_ROOT . '/' . $p . '/settings.inc')) ? $camp : false;
+  }
+
+  return $cache[$camp];
+}
+
+/**
+ *  Attemps to get the path for a campaign setup.
+ *  
+ *  @param string $campaign
+ *    The campaign that we need the path for.
+ *
+ *  @return string|bool
+ *    The path to the campaign, or false.
+ */
+function create_and_share_get_campaign_path($campaign) {
+  static $cache = array();
+
+  // Just stop here if $campaign is empty.
+  if (empty($campaign)) {
+    return false;
+  }
+
+  if (empty($cache[$campaign])) {
+    $paths = (array) cache_get('create_and_share_paths')->data;
+    $path = drupal_get_path('module', 'create_and_share');
+    $new_paths = array();
+
+    if (isset($paths[$campaign])) {
+      $cache[$campaign] = $paths[$campaign];
+    }
+    else if (is_dir($path . '/campaigns/' . $campaign)) {
+      $new_paths[$campaign] = $path . '/campaigns/' . $campaign;
+
+      if (!empty($new_paths)) {
+        // Merge in the new paths
+        $paths = ($paths + $new_paths);
+
+        // Reset the cache
+        cache_set('create_and_share_paths', $paths, 'cache', CACHE_TEMPORARY);
+      }
+
+      $cache[$campaign] = $path . '/campaigns/' . $campaign;
+    }
+    else {
+      $cache[$campaign] = false;
+    }
+  }
+
+  return $cache[$campaign];
 }
