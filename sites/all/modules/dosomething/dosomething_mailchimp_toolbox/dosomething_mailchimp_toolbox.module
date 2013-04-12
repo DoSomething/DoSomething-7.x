@@ -76,9 +76,18 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
       // Birthday
       $merge_vars['BDAY'] = $submission->data[2]['value'][0];
       
-      // Assign target MailChimp group
-      $MailChimp_group = 'GunControlReport2013';
+      // Assign target MailChimp group by age
+      $datebits = explode('-', $submission->data[2]['value'][0]);
+      $bd_stamp = mktime(0, 0, 0, $datebits[1], $datebits[2], $datebits[0]);
+      $ageout_stamp = mktime(0, 0, 0, date("m"), date("d"), date("Y")-25);
       
+      if ($bd_stamp >= $ageout_stamp) { // Young people
+        $MailChimp_group = 'ControlSurvey2013';
+      }
+      else { // Old people
+        $MailChimp_group = 'GunControlReport2013';
+      }
+
     }
     
     // Submit to MailChimp
@@ -215,8 +224,13 @@ function dosomething_mailchimp_toolbox_mailchimp_subscribe($email, $groupName, $
   $mcapi = dosomething_general_mailchimp_get_api_object();
   
   // Catching function
-  // Hardcoding the list to the dosomething members
-  $listid = 'f2fab1dfd4';
+  // Hardcoding the list to the Old People List
+  if ($groupName == 'Volunteers2013' || $groupName == 'GunControlReport2013') {
+    $listid = 'a27895fe0c';
+  }
+  else { // Do Something Members
+    $listid = 'f2fab1dfd4';
+  }
 
   // We do not want them to have to know the grouping id so we will build
   // the table to look it up by using the group name specified.
