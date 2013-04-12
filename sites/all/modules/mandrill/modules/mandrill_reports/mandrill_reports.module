@@ -54,18 +54,23 @@ function mandrill_reports_data() {
     // all time
     $data['all_time_series'] = $api->tags_all_time_series();
 
-    // senders
-    $senders = $api->senders_list();
-    foreach ($senders as $sender) {
-      $data['senders'][$sender['address']] = $api->senders_info($sender['address']);
-      $data['senders'][$sender['address']]['time_series'] = $api->senders_time_series($sender['address']);
-    }
+    // senders: data is not being used, and the API currently (3/12/13) behaves badly
+    // if you have a bad email address anywhere in your sender history, so commenting out for now:
+    // $senders = $api->senders_list();
+    // foreach ($senders as $sender) {
+    //   $data['senders'][$sender['address']] = $api->senders_info($sender['address']);
+    //   $data['senders'][$sender['address']]['time_series'] = $api->senders_time_series($sender['address']);
+    // }
 
     // urls
     $urls = $api->urls_list();
     foreach ($urls as $url) {
-      $data['urls'][$url['url']] = $url;
-      $data['urls'][$url['url']]['time_series'] = $api->urls_time_series($url['url']);
+      // Api has been intermittently tacking on incomplete $url arrays,
+      // so we have to check validity first:
+      if (isset($url['url'])) {
+        $data['urls'][$url['url']] = $url;
+        $data['urls'][$url['url']]['time_series'] = $api->urls_time_series($url['url']);
+      }
     }
 
     cache_set('mandrill_report_data', $data, 'cache', CACHE_TEMPORARY);
@@ -84,7 +89,6 @@ function mandrill_reports_data() {
  */
 function mandrill_reports_dashboard_page() {
   $data = mandrill_reports_data();
-
   // all time series chart data
   foreach ($data['all_time_series'] as $series) {
     $settings['mandrill_reports']['volume'][] = array(
@@ -95,8 +99,8 @@ function mandrill_reports_dashboard_page() {
     );
     $settings['mandrill_reports']['engagement'][] = array(
       'date' => $series['time'],
-      'open_rate' => $series['unique_opens']/$series['sent'],
-      'click_rate' => $series['unique_clicks']/$series['sent']
+      'open_rate' => $series['sent'] == 0 ? 0 : $series['unique_opens']/$series['sent'],
+      'click_rate' => $series['sent'] == 0 ? 0 : $series['unique_clicks']/$series['sent']
     );
   }
 

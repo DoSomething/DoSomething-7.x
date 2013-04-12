@@ -1,12 +1,12 @@
-Dear <?php echo $name; ?>,
+<p>Dear <?php echo $name; ?>,</p>
 
-We've reached our goal: "<?php echo $petition; ?>" has collected over <?php echo $goal; ?> signatures.
+<p>We've reached our goal: "<?php echo $petition; ?>" has collected over <?php echo $goal; ?> signatures.</p>
 
-We're now sending these signatures to <?php echo $petition_recipient; ?>.  We'll keep you posted.
+<p>We're now sending these signatures to <?php echo $petition_recipient; ?>.  We'll keep you posted.</p>
 
-Thanks for taking action,
-<?php echo $author; ?> and the DoSomething.org Team
+<p>Thanks for taking action,<br />
+<?php echo $author; ?> and the DoSomething.org Team</p>
 
-
-People who signed this petition also signed...
-<?php echo $similar_petitions; ?>
+<br />
+<p>People who signed this petition also signed...
+<?php echo $similar_petitions; ?></p>
