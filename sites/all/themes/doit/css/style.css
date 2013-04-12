@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* The Coding Designer's Survival Kit
  * A framework for designing websites in the browser.
  *
@@ -1681,6 +1682,10 @@ ul.hover-image li:first-child {
   left: 90px !important;
 }
 
+.page-node .field-name-field-mailchimp-group-id {
+  display: none;
+}
+
 .page-scholarships #breadcrumb {
   display: none;
 }
@@ -2273,7 +2278,7 @@ tr.odd, tr.even {
 }
 
 td {
-  border-right: 1px solid #d4d2d1;
+  border: 1px solid #d4d2d1;
   padding: 14px;
 }
 td:last-of-type {
