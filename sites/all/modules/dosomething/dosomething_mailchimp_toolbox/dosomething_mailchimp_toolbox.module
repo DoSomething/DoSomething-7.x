@@ -21,9 +21,9 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
   // To-Do: Replace with variables table lookup set by admin interface
   // 727601: Do Something Awards Application
   // 727716: DO SOMETHING AWARDS NOMINATION FORM
-  if ($submission->nid == 727601 || $submission->nid == 727716) {
+  if ($submission->nid == 727601 || $submission->nid == 727716 || $submission->nid == 728929) {
     
-    if ($submission->nid == 727601) {
+    if ($submission->nid == 727601) { //Do Something Awards Application
     
       // Target email - MailChimp key
       $application_email = $submission->data[5]['value'][0];
@@ -56,7 +56,7 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
       $MailChimp_group = 'DSA2013Applicants';
       
     }
-    elseif ($submission->nid == 727716) {
+    elseif ($submission->nid == 727716) { // DO SOMETHING AWARDS NOMINATION FORM
       
       // Target email - MailChimp key
       $application_email = $submission->data[2]['value'][0];
@@ -67,6 +67,27 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
       // Assign target MailChimp group
       $MailChimp_group = 'DSA2013Nominees';
       
+    }
+    elseif ($submission->nid == 728929) {  // /gun-policy
+      
+      // Target email - MailChimp key
+      $application_email = $submission->data[1]['value'][0];
+      
+      // Birthday
+      $merge_vars['BDAY'] = $submission->data[2]['value'][0];
+      
+      // Assign target MailChimp group by age
+      $datebits = explode('-', $submission->data[2]['value'][0]);
+      $bd_stamp = mktime(0, 0, 0, $datebits[1], $datebits[2], $datebits[0]);
+      $ageout_stamp = mktime(0, 0, 0, date("m"), date("d"), date("Y")-25);
+      
+      if ($bd_stamp >= $ageout_stamp) { // Young people
+        $MailChimp_group = 'ControlSurvey2013';
+      }
+      else { // Old people
+        $MailChimp_group = 'GunControlReport2013';
+      }
+
     }
     
     // Submit to MailChimp
@@ -203,8 +224,13 @@ function dosomething_mailchimp_toolbox_mailchimp_subscribe($email, $groupName, $
   $mcapi = dosomething_general_mailchimp_get_api_object();
   
   // Catching function
-  // Hardcoding the list to the dosomething members
-  $listid = 'f2fab1dfd4';
+  // Hardcoding the list to the Old People List
+  if ($groupName == 'Volunteers2013' || $groupName == 'GunControlReport2013') {
+    $listid = 'a27895fe0c';
+  }
+  else { // Do Something Members
+    $listid = 'f2fab1dfd4';
+  }
 
   // We do not want them to have to know the grouping id so we will build
   // the table to look it up by using the group name specified.

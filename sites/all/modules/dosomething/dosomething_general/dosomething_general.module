@@ -1428,11 +1428,11 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   $mcapi = dosomething_general_mailchimp_get_api_object();
   
   // Catching function
-  // Hardcoding the list to the dosomething members
-  if ($groupName == 'Volunteers2013') {
+  // Hardcoding the list to the Old People List
+  if ($groupName == 'Volunteers2013' || $groupName == 'GunControlReport2013') {
     $listid = 'a27895fe0c';
   }
-  else {
+  else { // Do Something Members
     $listid = 'f2fab1dfd4';
   }
 
@@ -1486,14 +1486,12 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
   $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
 
   if ($mc_signup_flag) {
-    // drupal_set_message('MailChimp email added', 'status');
     watchdog('dosomething_general_mailchimp_subscribe',
              'Added ( %email ) to MailChimp group %group.',
              array('%email' => $email, '%group' => $groupName),
-             $severity = WATCHDOG_ERROR);
+             $severity = WATCHDOG_NOTICE);
   }
   else {
-    // drupal_set_message('FAILED to add email to MailChimp.', 'error');
     $merge_vars = print_r($merge_vars, true);
     watchdog('dosomething_general_mailchimp_subscribe',
              'Failed to signup new user ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
