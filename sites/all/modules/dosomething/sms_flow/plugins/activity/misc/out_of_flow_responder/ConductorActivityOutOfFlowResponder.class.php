@@ -54,7 +54,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
       // Search for exactly matched phrases
       foreach ($set['phrase_match'] as $matchPhrase) {
-        if (strcmp($userMessage, $matchPhrase) == 0) {
+        if (strcasecmp($userMessage, $matchPhrase) == 0) {
           $bMatchFound = TRUE;
           break;
         }
