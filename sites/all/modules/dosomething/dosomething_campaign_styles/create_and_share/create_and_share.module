@@ -23,6 +23,13 @@ function create_and_share_permission() {
 function create_and_share_menu() {
   $paths = array();
 
+  $paths['cas/%/flag/%'] = array(
+    'page callback' => 'create_and_share_flag',
+    'page arguments' => array(1, 3),
+    'access callback' => 'user_access',
+    'access arguments' => array('flag campaign submissions'),
+  );
+
   $paths['cas/%/vote/%/%'] = array(
     'page callback' => 'create_and_share_action',
     'page arguments' => array(1, 3, 4),
@@ -61,6 +68,12 @@ function create_and_share_theme($existing, $type, $theme, $path) {
       'path' => $path,
       'template' => 'header'
     ),
+    'views_view_fields__create_and_share__create_and_share_gallery' => array(
+      'arguments' => array('view' => NULL, 'field' => NULL, 'row' => NULL),
+      'template' => 'views-view-fields--create-and-share--create-and-share-gallery',
+      'path' => $path,
+    ),
+    // Post template
   );
   /*$settings = create_and_share_get_settings();
 
@@ -326,6 +339,43 @@ function create_and_share_request($campaign, $type, $etid) {
 }
 
 /**
+ *  Flags a submission.
+ *
+ *  @param string $campaign
+ *    The machine name of the campaign that owns the submission.
+ *
+ *  @param int $sid
+ *    The submission ID of the post that is being flagged.
+ *
+ *  @return mixed string|int
+ *    1 if is flagged, 0 if not    
+ */
+function create_and_share_flag($campaign, $sid) {
+  if (!intval($sid) || !is_numeric($sid)) {
+    return false;
+  }
+
+  $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+  if (!isset($submission->sid)) {
+    return false;
+  }
+
+  $state = 1;
+  if ($submission->field_cas_flagged[LANGUAGE_NONE][0]['value'] == 1) {
+    $submission->field_cas_flagged[LANGUAGE_NONE][0]['value'] = 0;
+    $state = 0;
+  }
+  else {
+    $submission->field_cas_flagged[LANGUAGE_NONE][0]['value'] = 1;
+  }
+
+  @entity_save('webform_submission_entity', $submission);
+
+  echo $state;
+  drupal_exit();
+}
+
+/**
  *  Adds weight to posts from a Facebook image share.
  *
  *  @param string $campaign
@@ -490,12 +540,14 @@ function create_and_share_page_alter(&$page) {
     // Add Facebook library.
     drupal_add_library('connections', 'facebook');
 
+    drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/campaign.js');
+
     if (preg_match('#^/' . $settings['campaign_root'] . '/?(' . implode('|', $settings['setup_pages']) . ')?#i', $uri)) {
       if ($settings['allow_lazy_loading']) {
         drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/jquery.lazyload.js');
       }
 
-      /*global $user;
+      global $user;
       $fbid = fboauth_fbid_load($user->uid);
       $s = db_select('create_and_share_notifications', 'n')
         ->fields('n', array('etid', 'type'))
@@ -503,7 +555,7 @@ function create_and_share_page_alter(&$page) {
         ->condition('campaign', $campaign)
         ->condition('type', (array) $settings['gallery_pages'], 'IN')
         ->execute();
-      $shares = $s->fetchAll();*/
+      $shares = $s->fetchAll();
 
       $js_settings = array(
         'share_count' => count($shares),
@@ -535,6 +587,8 @@ function create_and_share_page_alter(&$page) {
 
     // Campaign root.
     $js_settings['campaign_root'] . $settings['campaign_root'];
+
+    $js_settings['can_flag_posts'] = user_access('flag campaign submissions');
 
     // Get all campaign information all up in there.
     drupal_add_js(array('campaign' => $js_settings), 'setting');
