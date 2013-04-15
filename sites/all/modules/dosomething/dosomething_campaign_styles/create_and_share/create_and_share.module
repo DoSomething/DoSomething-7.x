@@ -143,12 +143,18 @@ function create_and_share_page_templates_alter(&$variables) {
             $fragment = '';
           }
 
-          $sub[] = array(
+          $a = array(
              'title' => t($type['title']),
              'href' => $href,
              'fragment' => $fragment,
              'attributes' => (isset($type['attributes']) ? $type['attributes'] : array()),
           );
+
+          if (preg_match('#^' . $type['href'] . '$#i', $ru)) {
+            $a['attributes']['class'] = array('active');
+          }
+
+          $sub[] = $a;
         }
       }
     }
@@ -425,7 +431,7 @@ function create_and_share_get_settings($campaign, $category = 'all') {
 
   if (empty($cache[$campaign])) {
     if (file_exists(create_and_share_get_campaign_path($campaign) . '/settings.inc')) {
-      require_once create_and_share_get_campaign_path($campaign) . '/settings.inc';
+      require create_and_share_get_campaign_path($campaign) . '/settings.inc';
       $cache[$campaign] = $settings;
     }
   }
@@ -470,7 +476,7 @@ function create_and_share_page_alter(&$page) {
       foreach ($settings['js'] AS $path => $js) {
         if (preg_match('#^/' . $path . '#i', $uri)) {
           foreach ($js AS $script) {
-            drupal_add_css(create_and_share_get_campaign_path($campaign) . '/js/' . $script, array(
+            drupal_add_js(create_and_share_get_campaign_path($campaign) . '/js/' . $script, array(
               'weight' => 1000,
             ));
           }
@@ -489,7 +495,7 @@ function create_and_share_page_alter(&$page) {
         drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/jquery.lazyload.js');
       }
 
-      global $user;
+      /*global $user;
       $fbid = fboauth_fbid_load($user->uid);
       $s = db_select('create_and_share_notifications', 'n')
         ->fields('n', array('etid', 'type'))
@@ -497,7 +503,7 @@ function create_and_share_page_alter(&$page) {
         ->condition('campaign', $campaign)
         ->condition('type', (array) $settings['gallery_pages'], 'IN')
         ->execute();
-      $shares = $s->fetchAll();
+      $shares = $s->fetchAll();*/
 
       $js_settings = array(
         'share_count' => count($shares),
@@ -602,10 +608,9 @@ function create_and_share_add_lazy_class($matches) {
 function create_and_share_views_query_alter(&$view, &$query) {
   if ($campaign = create_and_share_is_campaign_page()) {
     $settings = create_and_share_get_settings($campaign);
-
     if ($view->name == $settings['views']['wrapper']) {
       $uri = request_path();
-      if (preg_match('#^' . $settings['campaign_root'] . '/(' . $settings['friends_path'] . '/)?(?<showid>[0-9]+)$#i', $uri, $showid)) {
+      if (preg_match('#^' . $settings['campaign_root'] . '/(friends/)?(?<showid>[0-9]+)$#i', $uri, $showid)) {
         $showid = $showid['showid'];
         // Try and find the submission with this ID and mark it as relevant
         $query->fields['ided'] = array(
@@ -654,17 +659,25 @@ function create_and_share_views_query_alter(&$view, &$query) {
           }
         }
         else if ($uri == $settings['campaign_root']) {
+          // Make sure we're only viewing posts from this node.
+          $node = menu_get_object();
+          $query->where[1]['conditions'][] = array(
+            'field' => 'node.nid',
+            'value' => $node->nid,
+            'operator' => '=',
+          );
+
           // Monday is always the start of the week.  Get this week's Monday in days (ago).
           $monday = (date('N') - 1);
           if ($monday == 0) {
-            $query->where[1]['conditions'][1] = array(
+            $query->where[1]['conditions'][] = array(
               'field' => "webform_submissions.submitted >= :today",
               'value' => array(':today' => mktime(0, 0, 0)),
               'operator' => 'formula',
             );
           }
           else {
-            $query->where[1]['conditions'][1] = array(
+            $query->where[1]['conditions'][] = array(
               'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
               'value' => array(
                 ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
@@ -1122,27 +1135,34 @@ function create_and_share_get_campaign_path($campaign) {
 }
 
 /**
+ *  Gets all campaigns (from the /campaigns directory) and returns an array
+ *  of campaign => nid
+ *
+ *  @return array
+ *    An array where the keys are the paths to the campaign, and the values are the NID's.
+ */
+function create_and_share_get_all_campaigns() {
+  $dirs = scandir(__DIR__ . '/campaigns');
+
+  $return = array();
+  if (!empty($dirs)) {
+    foreach ($dirs AS $dir) {
+      if ($dir == '.' || $dir == '..') continue;
+
+      require_once __DIR__ . '/campaigns/' . $dir . '/settings.inc';
+      $return[$settings['campaign_root']] = $settings['campaign_nid'];
+      unset($settings);
+    }
+  }
+
+  return $return;
+}
+
+/**
  *  Implements hook_node_insert()
  */
 function create_and_share_node_insert($node) {
   if ($node->type == 'create_and_share_campaign') {
-    $paths = array(
-      'friends',
-      'submit',
-      'about'
-    );
-
-    // Create all of the path aliases to make this campaign work.
-    $p = array();
-    foreach ($paths AS $path) {
-      $p = array(
-        'source' => 'node/' . $node->nid . '/' . $path,
-        'alias' => $node->path['alias'] . '/' . $path,
-      );
-
-      path_save($p);
-    }
-
     module_load_include('inc', 'webform', 'includes/webform.components');
     // Add submit fix hidden field to webform
     $component = array(
@@ -1166,20 +1186,32 @@ function create_and_share_node_insert($node) {
 }
 
 /**
- *  Implements hook_node_delete()
+ *  Implements hook_url_inbound_alter()
  */
-function create_and_share_node_delete($node) {
-  if ($node->type == 'create_and_share_campaign') {
-    $paths = array(
-      'friends',
-      'submit',
-      'about'
-    );
+function create_and_share_url_inbound_alter(&$path, $original_path, $path_language) {
+  // Get all campaigns
+  $campaigns = create_and_share_get_all_campaigns();
+  $c = implode('|', array_keys($campaigns));
 
-    $p = array();
-    foreach ($paths AS $path) {
-      $p = path_load('node/' . $node->nid . '/' . $path);
-      path_delete($p['pid']);
+  // Friends, submit
+  if (preg_match('#(' . $c . ')/(friends|submit)#i', $path, $matches)) {
+    switch ($matches[2]) {
+      case 'friends':
+        $path = 'node/' . $campaigns[$matches[1]] . '/friends';
+      break;
+      case 'submit':
+        $path = 'node/' . $campaigns[$matches[1]] . '/submit';
+      break;
     }
+  }
+
+  // Time filters
+  if (preg_match('#(' . $c . ')/(time-.*?)#', $path, $matches)) {
+    $path = 'node/' . $campaigns[$matches[1]] . '/' . $matches[2];
+  }
+
+  // Single-post view
+  if (preg_match('#(' . $c . ')/(?:friends/)?([0-9]+)#i', $path, $matches)) {
+    $path = 'node/' . $campaigns[$matches[1]] . '/view/' . $matches[2];
   }
 }

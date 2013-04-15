@@ -4,8 +4,8 @@ $settings = array(
   // The domain that the campaign is hosted on.  Default is dosomething.org.
   'campaign_domain' => 'http://www.dosomething.org',
   // The path to the campaign minus leading slash (e.g. 'crazy')
-  'campaign_root' => 'craziness',
-  'campaign_nid' => 728841,
+  'campaign_root' => 'blah',
+  'campaign_nid' => 728847,
 
   // The webform entity bundle for this campaign
   'form_bundle' => 'crazy_shit',
@@ -14,23 +14,31 @@ $settings = array(
 
   // Global switch: Allow anonymous voting?
   'allow_anonymous_votes' => TRUE,
-  // Global switch: Allow notifications? 
+  // Global switch: Allow notifications?
   'allow_notifications' => TRUE,
   // Global switch: Lazy loading
   'allow_lazy_loading' => TRUE,
 
+  'grace_period' => 1800,
+  'weight_divisor' => 3,
+
   'fields' => array(
     'weight' => array(
-      'field' => 'craziness_weight',
+      'field' => 'cas_weight',
     ),
     'vouch' => array(
-      'field' => 'crazy_vouch_count',
+      'field' => 'cas_thumbs_up_count',
       'weight' => 0.75,
     ),
     'bull' => array(
-      'field' => 'crazy_bullshit_count',
+      'field' => 'cas_thumbs_down_count',
       'weight' => 0.5,
     ),
+  ),
+
+  'views' => array(
+    'wrapper' => 'create_and_share',
+    'time-filters' => 'default',
   ),
 
   // The number that votes will add up to over X amount of time.
@@ -70,30 +78,30 @@ $settings = array(
 
   // CSS
   'css' => array(
-    'craziness' => array(
+    'blah' => array(
       'crazy.css'
     ),
-    'craziness/about' => array(
+    'blah/about' => array(
       'crazy-about.css',
     ),
-    'craziness/submit' => array(
+    'blah/submit' => array(
       'crazy-form.css',
     ),
   ),
 
   // Javascript
   'js' => array(
-    'craziness' => array(
+    'blah' => array(
       'crazy.js',
     ),
-    'craziness/submit' => array(
+    'blah/submit' => array(
       'crazy-form.js',
     ),
-    'craziness/about' => array(
+    'blah/about' => array(
       'crazy-about.js',
     ),
   ),
-  
+
   'setup_pages' => array(
   	'friends',
   	'time-.*?',
@@ -107,25 +115,25 @@ $settings = array(
 
   // Top menu links.
   'top_links' => array(
-    'craziness(/(time-.*?|[0-9]+))?$' => array(
+    'blah(/(time-.*?|[0-9]+))?$' => array(
       'title' => 'Gallery',
-      'href' => 'craziness',
+      'href' => 'blah',
     ),
-    'craziness/friends' => array(
+    'blah/friends' => array(
       'title' => 'Friends',
-      'href' => 'craziness/friends',
+      'href' => 'blah/friends',
       'attributes' => array(
         'onclick' => "return fb_auth('login', " . $fbed . ")",
       ),
     ),
-    'craziness/about' => array(
+    'blah/about' => array(
       'title' => 'About',
-      'href' => 'craziness/about',
+      'href' => 'blah/about',
       'parent' => '/about',
     ),
-    'craziness/submit' => array(
+    'blah/submit' => array(
       'title' => 'Submit',
-      'href' => 'craziness/submit/start',
+      'href' => 'blah/submit/start',
       'parent' => '/submit',
       'attributes' => array(
         'onclick' => "return fb_auth('submit', " . $fbed . ")",
@@ -136,34 +144,38 @@ $settings = array(
   // Sub menus
   'sub_menus' => array(
     // Time based filters sub-menu (landing page)
-    'craziness(/(time-.*?|[0-9]+))?$' => array(
+    'blah(/(time-.*?|[0-9]+))?$' => array(
       'today' => array(
         'title' => 'New',
-        'href' => 'craziness/time-today',
+        'href' => 'blah/time-today',
       ),
       'week' => array(
         'title' => 'Popular',
-        'href' => 'craziness',
+        'href' => 'blah',
       ),
       'forever' => array(
         'title' => 'Best Ever',
-        'href' => 'craziness/time-all',
+        'href' => 'blah/time-all',
       ),
     ),
     // About pages sub-menu
-    'craziness/about' => array(
+    'blah/about' => array(
       'tips' => array(
         'title' => 'Tips',
-        'href' => 'craziness/about#tips'
+        'href' => 'blah/about#tips'
       ),
       'scholarship' => array(
         'title' => 'Scholarship',
-        'href' => 'craziness/about#scholarship',
+        'href' => 'blah/about#scholarship',
       ),
       'video' => array(
         'title' => 'Video',
-        'href' => 'craziness/about#video'
+        'href' => 'blah/about#video'
       ),
+    ),
+
+    'filters' => array(
+      'time' => array('today', 'week', 'all'),
     ),
   ),
 );
