@@ -553,9 +553,9 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("http://www.dosomething.org/files/campaigns/pregnancy/header.jpg") top center no-repeat;
+    background: url("http://www.dosomething.org/files/campaigns/pregnancy/baby-header.jpg") top center no-repeat;
     margin-bottom: 0;
-    height: 311px; }
+    height: 260px; }
   #cmp #header {
     max-width: 800px;
     margin: 0 auto;
@@ -603,10 +603,10 @@ body {
       opacity: 0.85;
       margin: 1.5% 0;
       float: left;
-      font-size: 2.2em;
+      font-size: 1.4em;
       padding: 1% 1.5% 0; }
     #cmp #header .subhead2 {
-      max-width: 535px;
+      max-width: 375px;
       color: white;
       background: #2792c9;
       zoom: 1;
@@ -614,8 +614,9 @@ body {
       opacity: 0.85;
       margin: 1.5% 0;
       float: left;
-      font-size: 1.8em;
-      padding: 1% 1.5%; }
+      font-size: 1.3em;
+      padding: 1% 1.5%;
+      clear: both; }
     #cmp #header .date {
       color: white;
       background: #333333;
