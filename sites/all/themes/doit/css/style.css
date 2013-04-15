@@ -5566,7 +5566,6 @@ comments.fb_iframe_widget {
   right: 0;
 }
 .view-campaign-gallery #gallery {
-  height: 480px;
   padding: 16px 61px;
   text-align: center;
 }
@@ -5585,7 +5584,7 @@ comments.fb_iframe_widget {
   margin: 16px 0;
 }
 .view-campaign-gallery #thumbs li {
-  padding: 8px;
+  padding: 0 8px 8px 8px;
   float: left;
   width: 20%;
   list-style-type: none;
