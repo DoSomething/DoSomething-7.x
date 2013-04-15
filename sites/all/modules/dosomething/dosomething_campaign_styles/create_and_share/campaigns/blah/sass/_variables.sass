@@ -1,0 +1,39 @@
+// VARIABLES
+// ---------
+
+$accent_color: #f8c72f
+$sponsor_color: #6EBD32
+$off_black: #231f20
+$background: #ddd
+$blue_button: #4B84E6
+$yellow_button: #FFCB15
+
+
+// MIXINS
+// ------
+
+@mixin crazy_img
+  img
+    display: block
+    margin: 0 auto
+    width: 100%
+    @media only screen and (max-width 800px)
+      width: 80%
+    @media only screen and (max-width: 700px)
+      width: 92%
+
+@mixin block_center
+  margin: 0 auto
+  display: block
+
+@mixin blue_hover
+  background-color: lighten($blue_button, 5) 
+
+@mixin img_replace($width, $height, $bg)
+  display: block
+  width: $width
+  height: $height
+  text-indent: -9999em
+  background-image: url($bg)
+  background-color: transparent
+  background-repeat: no-repeat

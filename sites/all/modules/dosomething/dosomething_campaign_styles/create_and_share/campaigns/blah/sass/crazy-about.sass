@@ -1,0 +1,214 @@
+@import compass
+@import 'variables'
+@import 'buttons'
+
+// GENERAL
+// -------
+
+.crazy-sub-menu-header /* hide header tagline on about page */
+  display: none
+
+// TIPS
+// ----
+
+#tips .section
+  width: 900px
+  @media only screen and (max-width: 950px)
+    width: 600px
+  @media only screen and (max-width: 630px)
+    width: 96%
+
+.subject_wrapper
+  width: 150px
+  float: left
+  @media only screen and (max-width: 950px)
+    width: 100%
+    overflow: hidden
+
+// note: #tip[n] are zero indexed
+.tip_subject /* subject buttons */
+  padding: 0 10px
+  margin: 0 0 25px 0 
+  width: 120px
+  height: 50px
+  float: left
+  display: block
+  line-height: 50px
+  text-transform: uppercase
+  text-align: center
+  background-color: $off_black
+  color: #fff !important
+  +border-radius(4px)
+  &:hover
+    text-decoration: none
+    background-color: lighten($off_black, 5)
+  @media only screen and (max-width: 950px)
+    margin: 3% 0 0 0
+    height: 40px
+    line-height: 40px
+  @media only screen and (max-width: 550px)
+    margin: 2% 0 0 0
+    height: 30px
+    line-height: 30px
+    font-size: 10px
+    width: 28%
+
+@media only screen and (max-width: 950px)
+  #tip1
+    margin: 3% 20% 0
+    float: left
+  
+  #tip2
+    float: right
+  
+#tip1
+  @media only screen and (max-width: 650px)
+    margin: 1.3% 0 0 0
+    position: absolute
+    left: 40%
+  @media only screen and (max-width: 550px)
+    margin: 0.8% 0 0 0
+    left: 36%
+  
+.active_subject 
+  background-color: $blue_button
+  &:hover
+    background-color: lighten($blue_button, 5)
+
+.tip_wrapper
+  width: 600px
+  margin: 0 150px 0 0
+  height: auto
+  float: right
+  background-color: #fff
+  +border-radius(4px)
+  @media only screen and (max-width: 950px)
+    margin: 0
+  @media only screen and (max-width: 630px)
+    width: 100%
+  h1
+    background-color: $off_black
+    text-transform: uppercase
+    text-align: center
+    color: #fff
+    font-size: 30px
+    line-height: 45px
+    padding: 5px 0 0 0
+    margin: 5% 0
+    @media only screen and (max-width: 630px)
+      font-size: 25px
+      line-height: 45px
+      margin: 2% 0
+
+.tip_center
+  background-image: url(//files.dosomething.org/files/campaigns/crazy13/tip_bg.png)
+  background-repeat: no-repeat
+  background-size: 630px
+  background-position-x: -15px
+  margin: 0 0 2% 0
+  @media only screen and (max-width: 630px)
+    background-image: none
+  p
+    width: 330px
+    height: 270px
+    margin: 0 auto
+    font-size: 20px
+    line-height: 30px
+    @media only screen and (max-width: 630px)
+      font-size: 16px
+      line-height: 26px
+    @media only screen and (max-width: 450px)
+      width: 94%
+      height: 180px
+
+.tip_left, .tip_right
+  float: left
+  width: 50%
+  padding: 0 3% 2%
+
+.tip_left
+  b
+    float: left
+    clear: left
+    margin: 2% 0 0 0
+    text-transform: uppercase
+
+.tip_right
+  .small_button
+    float: right
+
+#tip_prev /* hide on page load */
+  visibility: hidden
+
+// SCHOLARSHIP
+// -----------
+
+#scholarship
+  background-color: #fff
+  .go-button
+    display: block
+    margin: 0 auto 25px
+    padding: 11px
+    width: 200px
+    height: 40px
+    font-size: 22px
+    font-weight: 600
+    text-align: center
+  .section
+    width: 35%
+    @media only screen and (max-width: 750px)
+      width: 50%
+    @media only screen and (max-width: 630px)
+      width: 94%
+  h1
+    font-size: 24px
+    font-weight: 500
+    font-family: din-web-reg
+    line-height: 40px
+    text-transform: uppercase
+    margin: 0
+  p
+    font-size: 16px
+    font-weight: 500
+    line-height: 24px
+  img
+    width: 210px
+    margin: 0 auto 3%
+    display: block
+    
+
+// VIDEO
+// -----
+
+#video .section
+  width: 600px
+  @media only screen and (max-width: 630px)
+    width: 96%
+
+.video_wrapper
+  position: relative
+  padding-bottom: 25%
+  padding-top: 25%
+  height: 0
+  @media only screen and (max-width: 630px)
+    margin: 1% 0
+  iframe
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+
+// GENERAL
+// -------
+
+#tips, #scholarship, #video, #footer
+  padding: 2% 0
+
+.section
+  margin: 0 auto
+  overflow: hidden
+
+// FOOTER
+// -------
+#footer
+  text-align: center

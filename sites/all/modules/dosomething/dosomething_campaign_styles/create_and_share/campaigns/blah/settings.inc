@@ -8,7 +8,7 @@ $settings = array(
   'campaign_nid' => 728847,
 
   // The webform entity bundle for this campaign
-  'form_bundle' => 'crazy_shit',
+  'form_bundle' => 'create_and_share_campaign',
   // The font to use to write text to images
   'font' => 'DINComp-CondBold.ttf',
 
@@ -33,6 +33,10 @@ $settings = array(
     'bull' => array(
       'field' => 'cas_thumbs_down_count',
       'weight' => 0.5,
+    ),
+    'picture' => array(
+      'field' => 'cas_image',
+      'style' => 'crazy_image_dimensions',
     ),
   ),
 

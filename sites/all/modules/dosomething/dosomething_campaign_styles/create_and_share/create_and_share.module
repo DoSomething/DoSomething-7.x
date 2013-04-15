@@ -825,9 +825,9 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
       $u = &$form['submitted'];
       $page = (isset($form_state['input']['details']['page_num']) ? $form_state['input']['details']['page_num'] : 0);
 
-      if ($page == 0 || !isset($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid'])) {
-        $form['submitted']['webform_entity_form']['#groups']['group_crazy_page1']->children[] = 'sbutton';
-        $form['submitted']['webform_entity_form']['#group_children']['sbutton'] = 'group_crazy_page1';
+      if (!isset($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid'])) {
+        #$form['submitted']['webform_entity_form']['#groups']['group_crazy_page1']->children[] = 'sbutton';
+        #$form['submitted']['webform_entity_form']['#group_children']['sbutton'] = 'group_crazy_page1';
       }
       else {
         $file = file_load($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid']);
