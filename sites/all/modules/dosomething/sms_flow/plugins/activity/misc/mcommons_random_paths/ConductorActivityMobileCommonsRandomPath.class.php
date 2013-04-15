@@ -52,20 +52,24 @@ class ConductorActivityMobileCommonsRandomPath extends ConductorActivity {
           $opt_in_path = $set['path_special'];
         }
         else {
-          $path_selected = FALSE;
-          $iter = 0; // fail safe against an infinite loop
-          while (!$path_selected && $iter < 1000) {
-            $iter++;
-            $selected_idx = rand(0, count($set['opt_in_paths']) - 1);
-            $opt_in_path = $set['opt_in_paths'][$selected_idx];
+          $opt_in_paths = $set['opt_in_paths'];
 
-            // Ensure selected path hasn't already been chosen for the user
-            if (empty($started_path)
-                || count($started_paths) == count($set['opt_in_paths'])
-                || !in_array($opt_in_path, $started_paths)) {
-              $path_selected = TRUE;
+          // If started_paths is less than opt_in_paths, indicates there are still
+          // untravelled paths for the user to select. Remove the started paths from
+          // the array of paths to choose from.
+          if (count($started_paths) < count($opt_in_paths)) {
+            foreach($started_paths as $path) {
+              if (($index = array_search($path, $opt_in_paths)) !== FALSE) {
+                unset($opt_in_paths[$index]);
+              }
             }
+
+            // Re-index the array
+            $opt_in_paths = array_values($opt_in_paths);
           }
+
+          $selected_idx = rand(0, count($opt_in_paths) - 1);
+          $opt_in_path = $opt_in_paths[$selected_idx];
         }
 
         // Send user to selected opt-in path
@@ -78,7 +82,9 @@ class ConductorActivityMobileCommonsRandomPath extends ConductorActivity {
           }
 
           // Update existing record, adding the newly selected path
-          $started_paths[] = $opt_in_path;
+          if (in_array($opt_in_path, $started_paths) == FALSE && $opt_in_path > 0) {
+            $started_paths[] = $opt_in_path;
+          }
           sms_flow_game_set_paths($mobile, $set['game_id'], $started_paths);
         }
         catch (Exception $e) {
