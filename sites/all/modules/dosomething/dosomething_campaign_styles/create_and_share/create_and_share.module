@@ -70,9 +70,9 @@ function create_and_share_theme($existing, $type, $theme, $path) {
       'path' => $path,
       'template' => 'header'
     ),
-    'views_view_fields__create_and_share__create_and_share_gallery' => array(
+    'views_view_fields__create_and_share' => array(
       'arguments' => array('view' => NULL, 'field' => NULL, 'row' => NULL),
-      'template' => 'views-view-fields--create-and-share--create-and-share-gallery',
+      'template' => 'views-view-fields--create-and-share',
       'path' => $path,
     ),
     // Post template
@@ -137,7 +137,7 @@ function create_and_share_page_templates_alter(&$variables) {
 
       if (preg_match('#^' . $match . '#i', $ru)) {
         $links[$href]['attributes'] += array(
-        'class' => array('active'),
+          'class' => array('active'),
         );
       }
     }
@@ -159,10 +159,10 @@ function create_and_share_page_templates_alter(&$variables) {
           }
 
           $a = array(
-             'title' => t($type['title']),
-             'href' => $href,
-             'fragment' => $fragment,
-             'attributes' => (isset($type['attributes']) ? $type['attributes'] : array()),
+            'title' => t($type['title']),
+            'href' => $href,
+            'fragment' => $fragment,
+            'attributes' => (isset($type['attributes']) ? $type['attributes'] : array()),
           );
 
           if (preg_match('#^' . $type['href'] . '$#i', $ru)) {
@@ -667,139 +667,22 @@ function create_and_share_views_query_alter(&$view, &$query) {
     $settings = create_and_share_get_settings($campaign);
     if ($view->name == $settings['views']['wrapper']) {
       $uri = request_path();
-      if (preg_match('#^' . $settings['campaign_root'] . '/(friends/)?(?<showid>[0-9]+)$#i', $uri, $showid)) {
-        $showid = $showid['showid'];
-        // Try and find the submission with this ID and mark it as relevant
-        $query->fields['ided'] = array(
-          'field' => 'IF (webform_submissions.sid = ' . $showid . ', 1, 0)',
-          'table' => '',
-          'alias' => 'is_the_one',
-        );
 
-        // When we're looking for one specific element, we can show it first in the list
-        // by doing "is_the_one DESC" (see "is_the_one" definition above).  Everything else
-        // will resume as normal below the post.
-        $theone = array(
-          'field' => 'is_the_one',
-          'direction' => 'DESC',
-        );
+      // Load the filters
+      $filter = array();
+      $path = create_and_share_get_campaign_path($campaign) . '/filters.inc';
 
-        $query->where[1]['conditions'][] = array(
-          'field' => 'webform_submissions.sid = :sid',
-          'value' => array(':sid' => $showid),
-          'operator' => 'formula',
-        );
+      // If the filter file exists, load it up in here.
+      if (file_exists($path)) {
+        require_once $path;
 
-        // Prepend "is_the_one" order to the beginning of the orderby array.
-        array_unshift($query->orderby, $theone);
-      }
-
-      if ($view->current_display == $settings['views']['time-filters']) {
-        if (preg_match('#^' . $settings['campaign_root'] . '/time-(' . implode('|', $settings['filters']['time']) . ')$#i', $uri, $time)) {
-          $time = $time[1];
-
-          // Gets submissions posted today.
-          if ($time == 'today') {
-             // Note 2/27/13:
-             // Here's a weird one: We can't use the DATE_FORMAT(etc. etc.) format as seen below for today
-             // because it doesn't show all of the posts! So let's just use a unix timestamp format.
-             $query->where[1]['conditions'][1] = array(
-               'field' => "webform_submissions.submitted >= :today",
-               'value' => array(':today' => mktime(0, 0, 0)),
-               'operator' => 'formula',
-             );
-             unset($query->orderby[1]);
+        if (is_array($filter) && !empty($filter)) {
+          // Loop through and try to find a match for the current URI
+          foreach ($filter AS $match => $function) {
+            if (preg_match('#' . $match . '#', $uri, $match)) {
+              $function($match, $view, $query, $settings);
+            }
           }
-          // Gets submissions posted this week.
-          else if ($time == 'all') {
-            unset($query->orderby[0]);
-          }
-        }
-        else if ($uri == $settings['campaign_root']) {
-          // Monday is always the start of the week.  Get this week's Monday in days (ago).
-          $monday = (date('N') - 1);
-          if ($monday == 0) {
-            $query->where[1]['conditions'][] = array(
-              'field' => "webform_submissions.submitted >= :today",
-              'value' => array(':today' => mktime(0, 0, 0)),
-              'operator' => 'formula',
-            );
-          }
-          else {
-            $query->where[1]['conditions'][] = array(
-              'field' => "DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') >= :last_week AND DATE_FORMAT(ADDTIME(FROM_UNIXTIME(webform_submissions.submitted), SEC_TO_TIME(-18000)), '%Y-%m-%d') <= :today",
-              'value' => array(
-                ':last_week' => date('Y-m-d', strtotime($monday . ' days ago')),
-                ':today' => date('Y-m-d'),
-              ),
-              'operator' => 'formula',
-            );
-          }
-
-          unset($query->orderby[1]);
-        }
-
-        // Make sure we're only viewing posts from this node.
-        $node = menu_get_object();
-        $query->where[1]['conditions'][] = array(
-          'field' => 'node.nid',
-          'value' => $node->nid,
-          'operator' => '=',
-        );
-
-        $query->fields['real_weight'] = array(
-          'field' => '((((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . $settings['grace_period'] . ') / ' . $settings['weight_divisor'] . ') + field_data_field_' . $settings['fields']['weight']['field'] . '.field_' . $settings['fields']['weight']['field'] . '_value)',
-          'table' => '',
-          'alias' => 'real_weight',
-        );
-
-        $query->orderby[0]['field'] = 'real_weight';
-      }
-
-      // If we're viewing the friends gallery page, only show submissions by my Facebook friends.
-      if (preg_match('#^' . $settings['campaign_root'] . '\/' . $settings['friends_path'] . '#i', $uri)) {
-        $facebook = create_and_share_load_fb();
-        module_load_include('inc', 'fboauth', 'includes/fboauth.fboauth');
-
-        global $user;
-
-        if (!$user->uid) {
-          drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . $settings['fb_app_id'] . '&redirect_uri=http://' . $settings['campaign_domain'] . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
-        }
-
-        $fbid = fboauth_fbid_load($user->uid);
-        if (!empty($fbid)) {
-          $friends = $facebook->api('/' . $fbid . '/friends');
-
-          $f = array(
-            0 => $fbid,
-          );
-          foreach ($friends['data'] AS $key => $friend) {
-            $f[] = $friend['id'];
-          }
-        }
-        else {
-          drupal_goto('https://www.facebook.com/dialog/oauth?client_id=' . $settings['fb_app_id'] . '&redirect_uri=http://' . $settings['campaign_domain'] . '/fboauth/connect%3Fdestination%3D' . substr(request_uri(), 1) . '&scope=email,user_birthday');
-        }
-
-        if (empty($ids)) {
-          $ids = array($user->uid);
-        }
-
-        if ($view->name == $settings['views']['wrapper'] && $view->current_display == $settings['views']['friends'] && !empty($ids)) {
-          // Create a database condition class to narrow viewable posts down to just your friends.
-          $s = new DatabaseCondition();
-          $s->condition('webform_submissions.uid', $ids);
-          $c = &$s->conditions();
-          $c['#conjunction'] = 'OR';
-  
-          // remove the view's filter criteria to be replaced by the new conditional.
-          unset($query->where[1]['conditions'][1]);
-  
-          // Add the conditional to the query.
-          $query->where[1]['conditions'][] = array(
-            'field' => $s,
-          );
         }
       }
     }
@@ -902,21 +785,21 @@ function create_and_share_load_fb() {
   drupal_add_http_header('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
   $path = libraries_get_path('facebook');
   if (!empty($path)) {
-	require_once(DRUPAL_ROOT . '/' . $path . '/facebook.php');
+	  require_once(DRUPAL_ROOT . '/' . $path . '/facebook.php');
   }
   else {
-	drupal_set_message('You are missing the Facebook SDK');
-	return;
+	  drupal_set_message('You are missing the Facebook SDK');
+	  return;
   }
 
   $settings = create_and_share_get_settings();
 
-  $appid = ($settings['fb_app_id'] ? $settings['fb_app_id'] : variable_get('fboauth_id', 105775762330));
-  $secret = ($settings['fb_app_secret'] ? $settings['fb_app_secret'] : variable_get('fboauth_secret', '68e767e16e139277b1e7d2e2ba16a4f6'));
+  $appid = (isset($settings['facebook']['app_id']) ? $settings['facebook']['app_id'] : variable_get('fboauth_id', 105775762330));
+  $secret = (isset($settings['facebook']['app_secret']) ? $settings['facebook']['app_secret'] : variable_get('fboauth_secret', '68e767e16e139277b1e7d2e2ba16a4f6'));
 
   $facebook = new Facebook(array(
-	'appId' => $appid,
-	'secret' => $secret,
+	  'appId' => $appid,
+	  'secret' => $secret,
   ));
 
   return $facebook;

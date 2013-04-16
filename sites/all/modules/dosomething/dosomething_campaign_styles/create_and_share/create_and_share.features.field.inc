@@ -442,6 +442,160 @@ function create_and_share_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-create_and_share_campaign-field_cas_thumbs_down_text'.
+  $fields['node-create_and_share_campaign-field_cas_thumbs_down_text'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_thumbs_down_text',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 'Thumbs Down',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The "Thumbs Down" text.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 6,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_cas_thumbs_down_text',
+      'label' => 'Thumbs Down Text',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '9',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-create_and_share_campaign-field_cas_thumbs_up_text'.
+  $fields['node-create_and_share_campaign-field_cas_thumbs_up_text'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_thumbs_up_text',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 'Thumbs Up',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The "Thumbs Up" button text.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 5,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_cas_thumbs_up_text',
+      'label' => 'Thumbs Up Text',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '8',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_flagged'.
   $fields['webform_submission_entity-create_and_share_campaign-field_cas_flagged'] = array(
     'field_config' => array(
@@ -925,9 +1079,13 @@ function create_and_share_field_default_fields() {
   t('Image');
   t('Image Font');
   t('Notification Pages');
+  t('The "Thumbs Down" text.');
+  t('The "Thumbs Up" button text.');
   t('The page(s) that notifications should be allowed on.  One per line.  Use regular expression syntax to denote abstracted paths.');
   t('Thumbs Down Count');
+  t('Thumbs Down Text');
   t('Thumbs Up Count');
+  t('Thumbs Up Text');
   t('Total Count');
   t('Weight');
 
