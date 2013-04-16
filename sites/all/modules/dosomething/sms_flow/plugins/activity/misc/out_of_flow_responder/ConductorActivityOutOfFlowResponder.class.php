@@ -47,16 +47,28 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     $userWords = explode(' ', $userMessage);
 
     $bMatchFound = FALSE;
+    $bIgnoreNegativeForm = FALSE;
     $isNegativeForm = FALSE;
     $matchingSet = -1;
     for ($i = 0; $i < count($this->response_sets) && !$bMatchFound; $i++) {
       $set = $this->response_sets[$i];
 
-      // Search for exactly matched phrases
-      foreach ($set['phrase_match'] as $matchPhrase) {
-        if (strcasecmp($userMessage, $matchPhrase) == 0) {
+      // Search for exactly matched responses
+      foreach ($set['exact_match'] as $exactMatch) {
+        if (strcasecmp($userMessage, $exactMatch) == 0) {
           $bMatchFound = TRUE;
+          $bIgnoreNegativeForm = TRUE;
           break;
+        }
+      }
+
+      // Search for phrases within the user message
+      if (!$bMatchFound) {
+        foreach ($set['phrase_match'] as $matchPhrase) {
+          if (stripos($userMessage, $matchPhrase) !== FALSE) {
+            $bMatchFound = TRUE;
+            break;
+          }
         }
       }
 
@@ -90,7 +102,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
       // Check if user response is in negative form
       // ie - "I do love you" vs "I do not love you"
-      if ($bMatchFound) {
+      if ($bMatchFound && !$bIgnoreNegativeForm) {
         $negativeFormWords = array('no', 'not', 'n\'t');
         foreach ($negativeFormWords as $matchWord) {
           if (self::in_arrayi($matchWord, $userWords)) {
