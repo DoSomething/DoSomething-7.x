@@ -5,6 +5,8 @@
  *  Creates structure for Create and Share template.
  */
 
+include 'create_and_share.features.inc';
+
 /**
  *  Implements hook_permission()
  */

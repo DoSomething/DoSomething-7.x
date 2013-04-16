@@ -37,16 +37,3 @@ function create_and_share_node_info() {
   );
   return $items;
 }
-
-/**
- * Implements hook_default_webform_submission_entity_type().
- */
-function create_and_share_default_webform_submission_entity_type() {
-  $items = array();
-  $items['create_and_share_campaign'] = entity_import('webform_submission_entity_type', '{
-    "type" : "create_and_share_campaign",
-    "data" : null,
-    "rdf_mapping" : []
-  }');
-  return $items;
-}

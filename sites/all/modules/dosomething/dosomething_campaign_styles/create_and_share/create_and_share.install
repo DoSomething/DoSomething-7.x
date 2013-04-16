@@ -62,7 +62,6 @@ function create_and_share_schema() {
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
-        'unsigned' => TRUE
       ),
       'timestamp' => array(
       	'description' => 'The time that the notification happened',
