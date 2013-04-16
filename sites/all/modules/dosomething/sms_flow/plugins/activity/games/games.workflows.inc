@@ -52,7 +52,7 @@ $activity->response_sets = array(
   array(
     'phrase_match' => array('good morning'),
     'word_match' => array('Goodmorning', ' morning'),
-    'response' => array("Goodmorning!", "It IS a good morning!"),
+    'response' => array("Good morning!", "It IS a good morning!"),
   ),
   array(
     'phrase_match' => array('Youre cute', 'youre adorable'),
@@ -63,7 +63,8 @@ $activity->response_sets = array(
     'response' => array("I can't even stand up on my own yet!"),
   ),
   array(
-    'phrase_match' => array('I dont want to', 'no'),
+    'exact_match' => array('no'),
+    'phrase_match' => array('I dont want to'),
     'response' => array("But I'm the baby, you have to!"),
   ),
   array(
@@ -126,7 +127,7 @@ $activity->response_sets = array(
     'response' => array("I pretty much always need my diaper changed", "Yeah, I think there might be a situation down town"),
   ),
   array(
-    'phrase_match' => array('Are you sleepy', 'Are you tired'),
+    'phrase_match' => array('Are you sleepy', 'Are you tired', 'are you sleep', 'are you asleep'),
     'response' => array("I'm a little sleepy"),
   ),
   array(
@@ -150,8 +151,8 @@ $activity->response_sets = array(
     'response' => array("Well they tell me I look like my parents..."),
   ),
   array(
-    'phrase_match' => array('Goo goo gaga'),
-    'word_match' => array('tickle'),
+    'phrase_match' => array('Goo goo gaga', 'goo goo ga ga'),
+    'AND_match' => array(array('goo', 'ga'), array('goo', 'gaga')),
     'response' => array("Aw, look at you trying to talk back. That's so cute."),
   ),
   array(
