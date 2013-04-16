@@ -178,8 +178,4 @@ $settings = array(
       ),
     ),
   ),
-  
-  'filters' => array(
-    'time' => array('today', 'week', 'all'),
-  ),
 );

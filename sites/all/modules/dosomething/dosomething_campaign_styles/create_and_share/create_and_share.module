@@ -484,6 +484,11 @@ function create_and_share_get_settings($campaign, $category = 'all') {
   if (empty($cache[$campaign])) {
     if (file_exists(create_and_share_get_campaign_path($campaign) . '/settings.inc')) {
       require create_and_share_get_campaign_path($campaign) . '/settings.inc';
+
+      $filter = array();
+      include_once create_and_share_get_campaign_path($campaign) . '/filters.inc';
+      $settings['filters'] = $filter;
+
       $cache[$campaign] = $settings;
       unset($settings);
     }
@@ -668,17 +673,13 @@ function create_and_share_views_query_alter(&$view, &$query) {
     if ($view->name == $settings['views']['wrapper']) {
       $uri = request_path();
 
-      // Load the filters
-      $filter = array();
-      $path = create_and_share_get_campaign_path($campaign) . '/filters.inc';
-
       // If the filter file exists, load it up in here.
       if (file_exists($path)) {
         require_once $path;
 
-        if (is_array($filter) && !empty($filter)) {
+        if (is_array($settings['filters']) && !empty($settings['filters'])) {
           // Loop through and try to find a match for the current URI
-          foreach ($filter AS $match => $function) {
+          foreach ($settings['filters'] AS $match => $function) {
             if (preg_match('#' . $match . '#', $uri, $match)) {
               $function($match, $view, $query, $settings);
             }
@@ -711,11 +712,7 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
       $u = &$form['submitted'];
       $page = (isset($form_state['input']['details']['page_num']) ? $form_state['input']['details']['page_num'] : 0);
 
-      if (!isset($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid'])) {
-        #$form['submitted']['webform_entity_form']['#groups']['group_crazy_page1']->children[] = 'sbutton';
-        #$form['submitted']['webform_entity_form']['#group_children']['sbutton'] = 'group_crazy_page1';
-      }
-      else {
+      if (isset($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid'])) {
         $file = file_load($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid']);
         $path = str_replace(drupal_realpath('public://') . '/', '', drupal_realpath($file->uri));
         $form_state['file_path'] = $path;
@@ -731,7 +728,7 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
           ),
         );
 
-        if ($settings['add_text_to_image']) {
+        if (isset($settings['add_text_to_image']) && $settings['add_text_to_image'] == 1) {
           $form['#submit'][] = 'create_and_share_add_text_to_image';
         }
 
@@ -1129,30 +1126,20 @@ function create_and_share_node_insert($node) {
  *  Implements hook_url_inbound_alter()
  */
 function create_and_share_url_inbound_alter(&$path, $original_path, $path_language) {
-  // Get all campaigns
-  $campaigns = create_and_share_get_all_campaigns();
-  $c = implode('|', array_keys($campaigns));
+  // Get the current campaign page.
+  if ($campaign = create_and_share_is_campaign_page()) {
+    // Settings.
+    $settings = create_and_share_get_settings($campaign);
 
-  // Friends, submit
-  if (preg_match('#(' . $c . ')/(friends|submit)#i', $path, $matches)) {
-    switch ($matches[2]) {
-      case 'friends':
-        $path = 'node/' . $campaigns[$matches[1]] . '/friends';
-      break;
-      case 'submit':
-        $path = 'node/' . $campaigns[$matches[1]] . '/submit';
-      break;
+    // Match your standard submit page.
+    if (preg_match('#(' . $settings['campaign_root'] . ')/submit#i', $path)) {
+      $path = 'node/' . $settings['campaign_nid'] . '/submit';
     }
-  }
 
-  // Time filters
-  if (preg_match('#(' . $c . ')/(time-.*?)#', $path, $matches)) {
-    $path = 'node/' . $campaigns[$matches[1]] . '/' . $matches[2];
-  }
-
-  // Single-post view
-  if (preg_match('#(' . $c . ')/(?:friends/)?([0-9]+)#i', $path, $matches)) {
-    $path = 'node/' . $campaigns[$matches[1]] . '/view/' . $matches[2];
+    // Match any defined filters.
+    if (preg_match('#(' . implode('|', array_keys($settings['filters'])) . ')#i', $path, $matches)) {
+      $path = 'node/' . $settings['campaign_nid'] . '/filter';
+    }
   }
 }
 

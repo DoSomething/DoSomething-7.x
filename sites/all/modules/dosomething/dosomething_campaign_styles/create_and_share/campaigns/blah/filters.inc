@@ -107,7 +107,7 @@ $filter['^(' . $settings['campaign_root'] . ')/friends$'] = function($match, &$v
     $ids = array($user->uid);
   }
 
-  if ($view->name == $settings['views']['wrapper'] && $view->current_display == $settings['views']['friends'] && !empty($ids)) {
+  if (!empty($ids)) {
     // Create a database condition class to narrow viewable posts down to just your friends.
     $s = new DatabaseCondition();
     $s->condition('webform_submissions.uid', $ids);

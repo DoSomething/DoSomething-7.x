@@ -150,5 +150,39 @@
         return true;
       }
     }
-  }
+  };
+
+  $.fn.extend({
+    dsCampaignPopup: function (name, sid, settings) {
+      if (!settings) { settings = {}; }
+      if (settings.reload) {
+        jQuery('.s-' + sid + '-picture img').attr('src', jQuery('.s-' + sid + '-picture img').attr('src') + '?' + new Date().getTime());
+      }
+
+      // Ignore if the popup is already open.
+      if ($('.' + name + '-crazy-popup').length > 0) return;
+        $.post('/cstemplate/' + name + '/' + sid, { 'goto': settings.goto, 'you': (Drupal.behaviors.dsCrazyScripts.notify_yourself || settings.you), 'source': document.location.pathname }, function(response) {
+          var t = $('<div></div>');
+          t.html(response);
+
+          t.dialog({
+            resizable: false,
+            draggable: false,
+            modal: true,
+            width: 550,
+            height: 325,
+            'dialogClass': (name == 'share-login' ? 'login' : name) + '-crazy-popup',
+            open: function() {
+              // Sets the minimum height for content in the dialog box
+              $('.ui-dialog-content').css('min-height', '325px');
+            },
+            close: function() {
+              $('.' + name + '-crazy-popup').remove();
+            }
+        });
+      });
+
+      return false;
+    }
+  });  
 })(jQuery);
