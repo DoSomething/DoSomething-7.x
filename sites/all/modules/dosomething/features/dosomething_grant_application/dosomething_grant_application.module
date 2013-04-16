@@ -114,9 +114,14 @@ function dosomething_grant_application_webform_submission_insert($node, $submiss
       $mobile_commons_subscribe_results = dosomething_general_mobile_commons_subscribe($mobile[0]['value'], 150463);
       
     }
+    else {
+      $merge_vars = array();
+    }
     
     // Subscribe user to MailChimp
-    dosomething_general_mailchimp_subscribe($params['email'], 'Grants2013', $merge_vars);
+    if (isset($params['email'])) {
+      dosomething_general_mailchimp_subscribe($params['email'], 'Grants2013', $merge_vars);
+    }
 
   }
 
