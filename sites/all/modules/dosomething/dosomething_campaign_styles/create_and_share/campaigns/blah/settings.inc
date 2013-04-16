@@ -42,7 +42,7 @@ $settings = array(
 
   'views' => array(
     'wrapper' => 'create_and_share',
-    'time-filters' => 'default',
+    'time-filters' => 'blah',
   ),
 
   // The number that votes will add up to over X amount of time.
@@ -177,9 +177,9 @@ $settings = array(
         'href' => 'blah/about#video'
       ),
     ),
-
-    'filters' => array(
-      'time' => array('today', 'week', 'all'),
-    ),
+  ),
+  
+  'filters' => array(
+    'time' => array('today', 'week', 'all'),
   ),
 );

@@ -713,14 +713,6 @@ function create_and_share_views_query_alter(&$view, &$query) {
           }
         }
         else if ($uri == $settings['campaign_root']) {
-          // Make sure we're only viewing posts from this node.
-          $node = menu_get_object();
-          $query->where[1]['conditions'][] = array(
-            'field' => 'node.nid',
-            'value' => $node->nid,
-            'operator' => '=',
-          );
-
           // Monday is always the start of the week.  Get this week's Monday in days (ago).
           $monday = (date('N') - 1);
           if ($monday == 0) {
@@ -743,6 +735,14 @@ function create_and_share_views_query_alter(&$view, &$query) {
 
           unset($query->orderby[1]);
         }
+
+        // Make sure we're only viewing posts from this node.
+        $node = menu_get_object();
+        $query->where[1]['conditions'][] = array(
+          'field' => 'node.nid',
+          'value' => $node->nid,
+          'operator' => '=',
+        );
 
         $query->fields['real_weight'] = array(
           'field' => '((((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . $settings['grace_period'] . ') / ' . $settings['weight_divisor'] . ') + field_data_field_' . $settings['fields']['weight']['field'] . '.field_' . $settings['fields']['weight']['field'] . '_value)',
@@ -1267,5 +1267,14 @@ function create_and_share_url_inbound_alter(&$path, $original_path, $path_langua
   // Single-post view
   if (preg_match('#(' . $c . ')/(?:friends/)?([0-9]+)#i', $path, $matches)) {
     $path = 'node/' . $campaigns[$matches[1]] . '/view/' . $matches[2];
+  }
+}
+
+/**
+ *  Implements hook_ctools_plugin_directory()
+ */
+function create_and_share_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
   }
 }

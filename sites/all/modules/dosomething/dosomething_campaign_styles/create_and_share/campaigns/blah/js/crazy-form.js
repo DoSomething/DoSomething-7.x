@@ -119,12 +119,12 @@
       var f = jQuery('.form-file');
       jQuery('<div>').attr('id', 'upload-cover').insertBefore('.form-file');
       f.appendTo('#upload-cover').addClass('new');
-      var n = jQuery('<div>').addClass('fakefile').text('Upload Picture').appendTo('#upload-cover');
+      var n = jQuery('<div>').addClass('fakefile').text(Drupal.t('Upload Picture')).appendTo('#upload-cover');
 
       // changes [back] behavior on form
       $('#edit-previous').click(function(a){
         a.preventDefault();
-        window.location = '/crazy/submit';
+        window.location = '/' + Drupal.settings.campaign.campaign_root + '/submit';
       });
 
       // hide "meme text" divs if either is empty
