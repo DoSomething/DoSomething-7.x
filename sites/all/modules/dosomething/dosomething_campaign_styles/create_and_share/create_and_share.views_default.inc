@@ -141,7 +141,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['sid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['sid']['separator'] = '';
   $handler->display->display_options['fields']['sid']['format_plural'] = 0;
-  /* Field: Broken/missing handler */
+  /* Field: Webform Submission: Image */
   $handler->display->display_options['fields']['field_cas_image']['id'] = 'field_cas_image';
   $handler->display->display_options['fields']['field_cas_image']['table'] = 'field_data_field_cas_image';
   $handler->display->display_options['fields']['field_cas_image']['field'] = 'field_cas_image';
@@ -165,7 +165,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['field_cas_image']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_cas_image']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_cas_image']['hide_alter_empty'] = 1;
-  /* Field: Broken/missing handler */
+  /* Field: Webform Submission: Thumbs Down Count */
   $handler->display->display_options['fields']['field_cas_thumbs_down_count']['id'] = 'field_cas_thumbs_down_count';
   $handler->display->display_options['fields']['field_cas_thumbs_down_count']['table'] = 'field_data_field_cas_thumbs_down_count';
   $handler->display->display_options['fields']['field_cas_thumbs_down_count']['field'] = 'field_cas_thumbs_down_count';
@@ -204,7 +204,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['views_conditional_2']['condition'] = '5';
   $handler->display->display_options['fields']['views_conditional_2']['then'] = '0';
   $handler->display->display_options['fields']['views_conditional_2']['or'] = '[field_cas_thumbs_down_count]';
-  /* Field: Broken/missing handler */
+  /* Field: Webform Submission: Thumbs Up Count */
   $handler->display->display_options['fields']['field_cas_thumbs_up_count']['id'] = 'field_cas_thumbs_up_count';
   $handler->display->display_options['fields']['field_cas_thumbs_up_count']['table'] = 'field_data_field_cas_thumbs_up_count';
   $handler->display->display_options['fields']['field_cas_thumbs_up_count']['field'] = 'field_cas_thumbs_up_count';
@@ -243,7 +243,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['views_conditional_1']['condition'] = '5';
   $handler->display->display_options['fields']['views_conditional_1']['then'] = '0';
   $handler->display->display_options['fields']['views_conditional_1']['or'] = '[field_cas_thumbs_up_count]';
-  /* Field: Broken/missing handler */
+  /* Field: Profile: First Name */
   $handler->display->display_options['fields']['field_user_first_name']['id'] = 'field_user_first_name';
   $handler->display->display_options['fields']['field_user_first_name']['table'] = 'field_data_field_user_first_name';
   $handler->display->display_options['fields']['field_user_first_name']['field'] = 'field_user_first_name';
@@ -293,56 +293,6 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['submitted']['empty_zero'] = 0;
   $handler->display->display_options['fields']['submitted']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['submitted']['date_format'] = 'field_recipient_birthdate_medium';
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['id'] = 'field_cas_thumbs_up_text';
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['table'] = 'field_data_field_cas_thumbs_up_text';
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['field'] = 'field_cas_thumbs_up_text';
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['relationship'] = 'nid';
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['label'] = '';
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_up_text']['hide_alter_empty'] = 1;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['id'] = 'field_cas_thumbs_down_text';
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['table'] = 'field_data_field_cas_thumbs_down_text';
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['field'] = 'field_cas_thumbs_down_text';
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['relationship'] = 'nid';
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['label'] = '';
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_cas_thumbs_down_text']['hide_alter_empty'] = 1;
   /* Field: Buttons */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
@@ -414,7 +364,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
-  /* Field: Broken/missing handler */
+  /* Field: Webform Submission: Weight */
   $handler->display->display_options['fields']['field_cas_weight']['id'] = 'field_cas_weight';
   $handler->display->display_options['fields']['field_cas_weight']['table'] = 'field_data_field_cas_weight';
   $handler->display->display_options['fields']['field_cas_weight']['field'] = 'field_cas_weight';
@@ -438,12 +388,12 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['field_cas_weight']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_cas_weight']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_cas_weight']['hide_alter_empty'] = 1;
-  /* Sort criterion: Broken/missing handler */
+  /* Sort criterion: Webform Submission: Weight (field_cas_weight) */
   $handler->display->display_options['sorts']['field_cas_weight_value_1']['id'] = 'field_cas_weight_value_1';
   $handler->display->display_options['sorts']['field_cas_weight_value_1']['table'] = 'field_data_field_cas_weight';
   $handler->display->display_options['sorts']['field_cas_weight_value_1']['field'] = 'field_cas_weight_value';
   $handler->display->display_options['sorts']['field_cas_weight_value_1']['order'] = 'DESC';
-  /* Sort criterion: Broken/missing handler */
+  /* Sort criterion: Webform Submission: Total Count (field_cas_total_count) */
   $handler->display->display_options['sorts']['field_cas_total_count_value_1']['id'] = 'field_cas_total_count_value_1';
   $handler->display->display_options['sorts']['field_cas_total_count_value_1']['table'] = 'field_data_field_cas_total_count';
   $handler->display->display_options['sorts']['field_cas_total_count_value_1']['field'] = 'field_cas_total_count_value';
@@ -460,7 +410,7 @@ function create_and_share_views_default_views() {
     'crazy_shit' => 'crazy_shit',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
@@ -469,7 +419,7 @@ function create_and_share_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
   $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
   $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
   $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
@@ -495,13 +445,13 @@ function create_and_share_views_default_views() {
     'create_and_share_campaign' => 'create_and_share_campaign',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
   $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
   $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
   $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
@@ -551,7 +501,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['uid']['field'] = 'uid';
   $handler->display->display_options['filters']['uid']['value'] = '1';
   $handler->display->display_options['filters']['uid']['group'] = 1;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
@@ -560,7 +510,7 @@ function create_and_share_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
   $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
   $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
   $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
@@ -600,14 +550,13 @@ function create_and_share_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['is_draft']['group'] = 1;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
   $handler->display->display_options['filters']['field_cas_flagged_value']['id'] = 'field_cas_flagged_value';
   $handler->display->display_options['filters']['field_cas_flagged_value']['table'] = 'field_data_field_cas_flagged';
   $handler->display->display_options['filters']['field_cas_flagged_value']['field'] = 'field_cas_flagged_value';
   $handler->display->display_options['filters']['field_cas_flagged_value']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_cas_flagged_value']['value'] = array();
   $handler->display->display_options['filters']['field_cas_flagged_value']['group'] = 2;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
   $handler->display->display_options['filters']['field_cas_flagged_value_1']['id'] = 'field_cas_flagged_value_1';
   $handler->display->display_options['filters']['field_cas_flagged_value_1']['table'] = 'field_data_field_cas_flagged';
   $handler->display->display_options['filters']['field_cas_flagged_value_1']['field'] = 'field_cas_flagged_value';

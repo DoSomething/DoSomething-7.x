@@ -35,3 +35,4 @@ features[variable][] = menu_parent_create_and_share_campaign
 features[variable][] = node_options_create_and_share_campaign
 features[variable][] = node_preview_create_and_share_campaign
 features[variable][] = node_submitted_create_and_share_campaign
+features[views_view][] = create_and_share
