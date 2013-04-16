@@ -614,7 +614,7 @@ body {
       opacity: 0.85;
       margin: 1.5% 0;
       float: left;
-      font-size: 1.3em;
+      font-size: 1.1em;
       padding: 1% 1.5%;
       clear: both; }
     #cmp #header .date {
@@ -757,10 +757,11 @@ body {
       font-size: 1.4em;
       font-weight: 500; }
     #cmp #info .divider {
-      margin: 0 2% 3% 2%; }
+      margin: 0 2% 3%; }
   @media only screen and (max-width: 550px) {
     #cmp #info .divider {
-      font-size: 0.9em; } }
+      font-size: 0.7em;
+      padding-top: 0.1em; } }
   #cmp #faq div {
     padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq div.divider {
@@ -1096,6 +1097,12 @@ body {
       width: 37%; }
       #cmp a.print-pdf img {
         margin: 5% auto; } }
+  #cmp .section#header {
+    background-position: 80% 0%; }
+    #cmp .section#header #header .subhead {
+      font-size: 1.2em; }
+    #cmp .section#header #header .subhead2 {
+      font-size: 1em; }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 0 auto; }
