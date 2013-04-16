@@ -5,7 +5,7 @@ $settings = array(
   'campaign_domain' => 'http://www.dosomething.org',
   // The path to the campaign minus leading slash (e.g. 'crazy')
   'campaign_root' => 'blah',
-  'campaign_nid' => 728847,
+  'campaign_nid' => '729034',
 
   // The webform entity bundle for this campaign
   'form_bundle' => 'create_and_share_campaign',

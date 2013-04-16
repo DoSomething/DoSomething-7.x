@@ -485,6 +485,7 @@ function create_and_share_get_settings($campaign, $category = 'all') {
     if (file_exists(create_and_share_get_campaign_path($campaign) . '/settings.inc')) {
       require create_and_share_get_campaign_path($campaign) . '/settings.inc';
       $cache[$campaign] = $settings;
+      unset($settings);
     }
   }
 
@@ -1205,7 +1206,7 @@ function create_and_share_get_all_campaigns() {
     foreach ($dirs AS $dir) {
       if ($dir == '.' || $dir == '..') continue;
 
-      require_once __DIR__ . '/campaigns/' . $dir . '/settings.inc';
+      $settings = create_and_share_get_settings($dir);
       $return[$settings['campaign_root']] = $settings['campaign_nid'];
       unset($settings);
     }
