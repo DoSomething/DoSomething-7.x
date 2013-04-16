@@ -68,7 +68,7 @@ class ConductorActivityMobileCommonsRandomPath extends ConductorActivity {
             $opt_in_paths = array_values($opt_in_paths);
           }
 
-          $selected_idx = rand(0, count($opt_in_paths) - 1);
+          $selected_idx = array_rand($opt_in_paths);
           $opt_in_path = $opt_in_paths[$selected_idx];
         }
 
