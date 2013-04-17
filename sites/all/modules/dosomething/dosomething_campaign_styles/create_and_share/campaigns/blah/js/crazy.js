@@ -24,11 +24,11 @@
         }
 
         var elm = $(this);
-        var na = $(this).hasClass('no-alert');
+        var no_alert = $(this).hasClass('no-alert');
 
         if ($(this).parent().parent().parent().hasClass('by-me') && Drupal.settings.campaign.origin == 2) {
           $.fn.dsCampaignPopup('bull', elm.attr('rel'), { 'you': true });
-          na = true;
+          no_alert = true;
         }
 
         $('.s-' + elm.attr('rel')).find('.vouch-button a').addClass('clicked');
@@ -37,13 +37,13 @@
         var c = parseInt(elm.parent().find('span').text());
         elm.parent().find('span').text(++c);
 
-        $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/vote/down/' + elm.attr('rel'), { 'alert': na, 'origin': document.location.pathname.substr(1,document.location.pathname.length) }, function(response) {
+        $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/vote/down/' + elm.attr('rel'), { 'alert': no_alert, 'origin': document.location.pathname.substr(1,document.location.pathname.length) }, function(response) {
           if (response.status == 1) {
             elm.parent().find('span').text(response.count);
             settings.campaign.share_count++;
             Drupal.behaviors.blahCampaign.tip_shares(settings);
 
-            if (!na && Drupal.settings.campaign.allow_notifications) {
+            if (!no_alert && Drupal.settings.campaign.allow_notifications) {
               var name = '';
               if (FB.getUserID()) {
                 name = '@[' + FB.getUserID() + ']';
@@ -53,10 +53,10 @@
               }
 
               Drupal.behaviors.fb.notification({
-                'notification_document': Drupal.settings.campaign.campaign_root, // leave this like this
+                'notification_document': settings.campaign.campaign_root, // leave this like this
                 'notification_user': response.author,
-                'notification_template': name + " called BS on your story about the craziest thing you did to save money.  Click here to get support!"
-              }, function(response) {});
+                'notification_template': settings.campaign.facebook.notification.message.replace('{name}', [name])
+              }, function(response) { });
             }
           }
           else {
@@ -76,7 +76,7 @@
           return false;
         }
 
-        var na = $(this).hasClass('no-alert');
+        var no_alert = $(this).hasClass('no-alert');
         var elm = $(this);
 
         elm.addClass('clicked');
@@ -85,7 +85,7 @@
         var c = parseInt(elm.parent().find('span').text());
         elm.parent().find('span').text(++c);
 
-        $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/vote/up/' + elm.attr('rel'), { 'alert': na, 'origin': Drupal.settings.campaign.origin }, function(response) {
+        $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/vote/up/' + elm.attr('rel'), { 'alert': no_alert, 'origin': Drupal.settings.campaign.origin }, function(response) {
           if (response.status == 1) {
             elm.parent().find('span').text(response.count);
             settings.campaign.share_count++;

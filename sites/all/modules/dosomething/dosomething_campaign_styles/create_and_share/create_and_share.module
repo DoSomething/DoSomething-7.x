@@ -405,7 +405,7 @@ function create_and_share_update_counts($campaign, $etid, $action) {
 
   // We want to get the nearest 10, 100, 1000, 10000, etc...
   $top = pow(10, strlen((string) $total));
-  $multiplier = ($settings['point_count'] / $top);
+  $multiplier = ($settings['algorithm']['action_point'] / $top);
 
   $weight += ($settings['fields'][$action]['weight'] * $multiplier);
 
@@ -463,7 +463,9 @@ function create_and_share_template_render($campaign, $etid, $template) {
 
   $settings = create_and_share_get_settings($campaign);
 
-  $params += $settings['template_vars'][$template];
+  if (isset($settings['template_vars'][$template]) && is_array($settings['template_vars'][$template])) {
+    $params += $settings['template_vars'][$template];
+  }
 
   if (isset($_POST['goto'])) {
     $params['goto'] = $_POST['goto'];
@@ -502,6 +504,51 @@ function create_and_share_get_settings($campaign, $category = 'all') {
   if (empty($cache[$campaign])) {
     if (file_exists(create_and_share_get_campaign_path($campaign) . '/settings.inc')) {
       require create_and_share_get_campaign_path($campaign) . '/settings.inc';
+
+      // Add in data from the node.
+      $c = menu_get_object('node', 1, 'node/' . $settings['campaign_nid']);
+      $settings += array(
+        'type' => $c->type,
+        'campaign_root' => drupal_get_path_alias('node/' . $c->nid),
+        'campaign_domain' => url(),
+        'allow_anonymous_votes' => (bool) $c->field_cas_allow_anonymous_voting[LANGUAGE_NONE][0]['value'],
+        'allow_notifications' => (bool) $c->field_cas_allow_notifications[LANGUAGE_NONE][0]['value'],
+        'allow_lazy_loading' => (bool) $c->field_cas_allow_lazy_loading[LANGUAGE_NONE][0]['value'],
+        'allow_ranking_algorithm' => (bool) $c->field_cas_ranking_algorithm[LANGUAGE_NONE][0]['value'],
+        'image_writing' => array(
+          'enabled' => (!empty($c->field_cas_image_font[LANGUAGE_NONE][0]['value']) && file_exists(drupal_get_path('module', 'create_and_share') . '/fonts/' . $c->field_cas_image_font[LANGUAGE_NONE][0]['value'])),
+          'font' => $c->field_cas_image_font[LANGUAGE_NONE][0]['value'],
+        ),
+        'fields' => array(
+          'weight' => array(
+            'field' => $c->field_cas_weight_field[LANGUAGE_NONE][0]['value'],
+          ),
+          'picture' => array(
+            'field' => $c->field_cas_image_field[LANGUAGE_NONE][0]['value'],
+            'style' => $c->field_cas_image_style[LANGUAGE_NONE][0]['value'],
+          ),
+          'up' => array(
+            'field' => $c->field_cas_thumbs_up_field[LANGUAGE_NONE][0]['value'],
+            'weight' => $c->field_cas_thumbs_up_weight[LANGUAGE_NONE][0]['value'],
+          ),
+          'down' => array(
+            'field' => $c->field_cas_thumbs_down_field[LANGUAGE_NONE][0]['value'],
+            'weight' => $c->field_cas_thumbs_down_weight[LANGUAGE_NONE][0]['value'],
+          ),
+          'total' => array(
+            'field' => $c->field_cas_total_count_field[LANGUAGE_NONE][0]['value'],
+          ),
+        ),
+        'views' => array(
+          'wrapper' => $c->field_cas_views_wrapper[LANGUAGE_NONE][0]['value'],
+          'time-filters' => $c->field_cas_views_display[LANGUAGE_NONE][0]['value'],
+        ),
+        'algorithm' => array(
+          'grace_period' => $c->field_cas_time_loss_grace_period[LANGUAGE_NONE][0]['value'],
+          'weight_divisor' => $c->field_cas_time_loss_divisor[LANGUAGE_NONE][0]['value'],
+          'action_point' => $c->field_cas_ranking_action_point[LANGUAGE_NONE][0]['value'],
+        ),
+      );
 
       $filter = array();
       include_once create_and_share_get_campaign_path($campaign) . '/filters.inc';
@@ -591,7 +638,7 @@ function create_and_share_page_alter(&$page) {
         $posts[] = $share->etid;
       }
 
-      // If it's to me, it's probably a 
+      // If it's to me, it's a notification (assuming I haven't sene it yet).
       if ($share->uid == $user->uid && !$share->notified) {
         $notices[$share->type][] = array(
           'etid' => $share->etid,
@@ -744,7 +791,7 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
   if ($campaign = create_and_share_is_campaign_page()) {
     $settings = create_and_share_get_settings($campaign);
 
-    if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == $settings['form_bundle']) {
+    if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == $settings['type']) {
       $u = &$form['submitted'];
       $page = (isset($form_state['input']['details']['page_num']) ? $form_state['input']['details']['page_num'] : 0);
 
@@ -764,7 +811,7 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
           ),
         );
 
-        if (isset($settings['add_text_to_image']) && $settings['add_text_to_image'] == 1) {
+        if (isset($settings['image_writing']['enabled']) && $settings['image_writing']['enabled'] == 1) {
           $form['#submit'][] = 'create_and_share_add_text_to_image';
         }
 
@@ -778,10 +825,10 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
  *  Adds text to image.
  */
 function create_and_share_add_text_to_image($form, &$form_state) {
-  $top = $form_state['input']['submitted']['field_' . $settings['fields']['top_text_field']['field']][LANGUAGE_NONE][0]['value'];
-  $bottom = $form_state['input']['submitted']['field_' . $settings['fields']['bottom_text_field']['field']][LANGUAGE_NONE][0]['value'];
+  $top = $form_state['input']['submitted']['field_cas_top_text'][LANGUAGE_NONE][0]['value'];
+  $bottom = $form_state['input']['submitted']['field_cas_bottom_text'][LANGUAGE_NONE][0]['value'];
 
-  $path = drupal_realpath('public://') . '/styles/' . $settings['fields']['picture']['style'] . '/public/' . $settings['fields']['picture']['directory'] . '/' . basename($form_state['file_path']);
+  $path = drupal_realpath('public://') . '/styles/' . $settings['fields']['picture']['style'] . '/public/create_and_share/' . basename($form_state['file_path']);
 
   include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'create_and_share') . '/includes/image.php';
 

@@ -137,7 +137,7 @@ $filter['^(' . $settings['campaign_root'] . ')'] = function($match, &$view, &$qu
   );
 
   $query->fields['real_weight'] = array(
-    'field' => '((((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . $settings['grace_period'] . ') / ' . $settings['weight_divisor'] . ') + field_data_field_' . $settings['fields']['weight']['field'] . '.field_' . $settings['fields']['weight']['field'] . '_value)',
+    'field' => '((((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . $settings['algorithm']['grace_period'] . ') / ' . $settings['algorithm']['weight_divisor'] . ') + field_data_field_' . $settings['fields']['weight']['field'] . '.field_' . $settings['fields']['weight']['field'] . '_value)',
     'table' => '',
     'alias' => 'real_weight',
   );

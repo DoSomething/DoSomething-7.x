@@ -7,11 +7,11 @@
 <!-- buttons -->
 <div class="buttons">
 <div class="vouch-button">
-<a href="#" class="button-submit no-alert" rel="<?php echo $row->sid; ?>"><?php echo $row->field_field_cas_thumbs_up_text[0]['rendered']['#markup']; ?></a>
+<a href="#" class="button-submit<?php if (!$settings['allow_notifications']): ?> no-alert<?php endif; ?>" rel="<?php echo $row->sid; ?>"><?php echo $row->field_field_cas_thumbs_up_text[0]['rendered']['#markup']; ?></a>
 <span><?php echo $row->field_field_cas_thumbs_up_count[0]['rendered']['#markup']; ?></span>
 </div>
 <div class="bs-button">
-<a href="#" class="button-submit no-alert" rel="<?php echo $row->sid; ?>"><?php echo $row->field_field_cas_thumbs_down_text[0]['rendered']['#markup']; ?></a>
+<a href="#" class="button-submit<?php if (!$settings['allow_notifications']): ?> no-alert<?php endif; ?>" rel="<?php echo $row->sid; ?>"><?php echo $row->field_field_cas_thumbs_down_text[0]['rendered']['#markup']; ?></a>
 <span><?php echo $row->field_field_cas_thumbs_down_count[0]['rendered']['#markup']; ?></span>
 </div>
 <div class="fb-share">

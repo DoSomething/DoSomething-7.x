@@ -4,6 +4,7 @@
 if ($campaign = create_and_share_is_campaign_page()) {
   // If we have a custom template for one of the campaigns, load that instead.
   $file = create_and_share_get_campaign_path($campaign) . '/templates/campaign-post.tpl.php';
+  $settings = create_and_share_get_settings($campaign);
   if (file_exists(create_and_share_get_campaign_path($campaign) . '/templates/campaign-post.tpl.php')) {
   	require $file;
   }
