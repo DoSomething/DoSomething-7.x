@@ -4,7 +4,7 @@
 
     attach: function(context, settings) { 
       if ($('body').hasClass('not-logged-in')) {
-        Drupal.behaviors.dsCrazyScripts.logged_in = false;
+        Drupal.behaviors.create_and_share.logged_in = false;
       }
 
       /**
@@ -138,11 +138,11 @@
   
       if (!status || $('body').hasClass('not-logged-in')) {
         if (type == 'login') {
-          $.fn.dsCrazyPopup('login', 0);
+          $.fn.dsCampaignPopup('login', 0);
           return false;
         }
         else {
-          $.fn.dsCrazyPopup('submit', 0);
+          $.fn.dsCampaignPopup('submit', 0);
           return false;
         }
   
@@ -155,15 +155,17 @@
   };
 
   $.fn.extend({
-    dsCampaignPopup: function (name, sid, settings) {
-      if (!settings) { settings = {}; }
+    dsCampaignPopup: function (campaign, template, etid, settings) {
+      if (typeof settings === 'undefined') { settings = {}; }
+      console.log("ARRR");
+
       if (settings.reload) {
-        jQuery('.s-' + sid + '-picture img').attr('src', jQuery('.s-' + sid + '-picture img').attr('src') + '?' + new Date().getTime());
+        $('.s-' + etid + '-picture img').attr('src', $('.s-' + etid + '-picture img').attr('src') + '?' + new Date().getTime());
       }
 
       // Ignore if the popup is already open.
       if ($('.' + name + '-crazy-popup').length > 0) return;
-        $.post('/cstemplate/' + name + '/' + sid, { 'goto': settings.goto, 'you': (Drupal.behaviors.dsCrazyScripts.notify_yourself || settings.you), 'source': document.location.pathname }, function(response) {
+        $.post('/cas/' + campaign + '/template/' + template + '/' + etid, { 'goto': settings.goto, 'you': settings.you, 'source': document.location.pathname }, function(response) {
           var t = $('<div></div>');
           t.html(response);
 
@@ -173,7 +175,7 @@
             modal: true,
             width: 550,
             height: 325,
-            'dialogClass': (name == 'share-login' ? 'login' : name) + '-crazy-popup',
+            'dialogClass': (name == 'share-login' ? 'login' : name) + '-campaign-notification',
             open: function() {
               // Sets the minimum height for content in the dialog box
               $('.ui-dialog-content').css('min-height', '325px');

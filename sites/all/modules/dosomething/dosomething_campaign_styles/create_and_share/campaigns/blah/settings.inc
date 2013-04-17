@@ -1,5 +1,9 @@
 <?php
 
+/**
+ *  Settings that don't fit within the node form.  These settings affect the campaign defined by
+ *  campaign_nid below.  These settings are merged with the settings defined in the node form.
+ */
 $settings = array(
   // The node ID of the campaign node.  This ensures that all campaign pages
   // gather the same settings.

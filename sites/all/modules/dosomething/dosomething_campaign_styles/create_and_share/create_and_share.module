@@ -25,6 +25,15 @@ function create_and_share_permission() {
 function create_and_share_menu() {
   $paths = array();
 
+  /**
+   *  Flags a campaign submission.  This normally hides the submission.
+   *
+   *  @param campaign (1)
+   *    The campaign that contains the submission.
+   *
+   *  @param etid (3)
+   *    The submission SID for the post that should be flagged.
+   */
   $paths['cas/%/flag/%'] = array(
     'page callback' => 'create_and_share_flag',
     'page arguments' => array(1, 3),
@@ -73,6 +82,11 @@ function create_and_share_theme($existing, $type, $theme, $path) {
     'views_view_fields__create_and_share' => array(
       'arguments' => array('view' => NULL, 'field' => NULL, 'row' => NULL),
       'template' => 'views-view-fields--create-and-share',
+      'path' => $path,
+    ),
+    'notification' => array(
+      'arguments' => array(),
+      'template' => 'notification',
       'path' => $path,
     ),
     // Post template
@@ -445,16 +459,16 @@ function create_and_share_update_counts($campaign, $etid, $action) {
  *  @param string $campaign
  *    The campaign that this action is happening in.
  *
- *	@param int $etid
- *	  The submission ID of the post that should be updated.
- *
  *  @param string $template
  *    The template to show.
+ *
+ *	@param int $etid
+ *	  The submission ID of the post that should be updated.
  *
  *  @return string
  *    The template.
  */
-function create_and_share_template_render($campaign, $etid, $template) {
+function create_and_share_template_render($campaign, $template, $etid) {
   // Start the parameters with just the SID.
   $params = array(
     'etid' => $etid,
@@ -476,8 +490,14 @@ function create_and_share_template_render($campaign, $etid, $template) {
     $params['source'] = $source;
   }
 
+  $params += array(
+    'campaign' => $campaign,
+    'template' => $template,
+    'settings' => $settings,
+  );
+
   // Return the template.
-  echo theme($template, $params);
+  echo theme('notification', $params);
 
   // Update the notifications table that the user saw it.
   db_update('create_and_share_notifications')
