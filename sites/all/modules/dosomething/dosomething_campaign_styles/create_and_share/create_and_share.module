@@ -518,7 +518,8 @@ function create_and_share_get_settings($campaign, $category = 'all') {
   static $cache = array();
 
   if (empty($campaign)) {
-    // :(
+    $uri = request_path();
+    $campaign = dirname($uri);
   }
 
   if (empty($cache[$campaign])) {
@@ -830,13 +831,13 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
             'class' => array('image-widget-data')
           ),
         );
-
-        if (isset($settings['image_writing']['enabled']) && $settings['image_writing']['enabled'] == 1) {
-          $form['#submit'][] = 'create_and_share_add_text_to_image';
-        }
-
-        $form['#submit'][] = 'create_and_share_redirect';
       }
+
+      if (isset($settings['image_writing']['enabled']) && $settings['image_writing']['enabled'] == 1) {
+        $form['#submit'][] = 'create_and_share_add_text_to_image';
+      }
+
+      $form['#submit'][] = 'create_and_share_redirect';
     }
   }
 }
@@ -870,7 +871,7 @@ function create_and_share_redirect($form, &$form_state) {
   );
 
   $_SESSION['from_creation'] = $s;
-  drupal_goto($settings['campaign_root'] . '/' . $settings['friends_path'] . '/' . $sid);
+  drupal_goto($settings['campaign_root'] . '/' . $sid);
 }
 
 /**

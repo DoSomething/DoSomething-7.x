@@ -1,6 +1,27 @@
 <?php
 
 /**
+ *  @file
+ *  Filters allow us to show only specific content on specific pages.  Example filters:
+ *    - "/friends" filter shows only posts from your facebook friends
+ *    - "/time-week" filter shows only posts from the previous week.
+ *
+ *  The possibility are endless.  All of the following filters are anonymous functions that
+ *  respond to a specific path being viewed (specified as the key in each filter, using a
+ *  regular expression syntax).  Each filter is run within hook_views_query_alter()
+ *  with four (4) parameters passed into the callback function:
+ *    - $match: The output from preg_match, as defined by your regular expression path.
+ *    - &$view: (alter-able) instance of the view object.
+ *    - &$query: (alter-able) instance of the views query object.
+ *    - $settings: The settings for the current campaign.
+ *
+ *  Altering the query parameter allows us to change the actual view query, and, as a result,
+ *  the output of the query.  Each filter creates a responsive path -- when the campaign is
+ *  constructed, it enables any routes that match any regular expression key found below.
+ *
+ */
+
+/**
  *  Handles time filters.
  */
 $filter['^(' . $settings['campaign_root'] . ')/(time-(.*))$'] = function($match, &$view, &$query) {
@@ -127,20 +148,22 @@ $filter['^(' . $settings['campaign_root'] . ')/friends$'] = function($match, &$v
 /**
  *  General settings -- Algorithm across all filters.
  */
-$filter['^(' . $settings['campaign_root'] . ')'] = function($match, &$view, &$query, $settings) {
-  // Make sure we're only viewing posts from this node.
-  $node = menu_get_object();
+$filter['^(' . $settings['campaign_root'] . ')'] = function($match, &$view, &$query, $settings) {    // Make sure we're only viewing posts from this node.
+  // Make sure we're only showing posts from the campaign we're looking at.
   $query->where[1]['conditions'][] = array(
     'field' => 'node.nid',
-    'value' => $node->nid,
+    'value' => $settings['campaign_nid'],
     'operator' => '=',
   );
 
-  $query->fields['real_weight'] = array(
-    'field' => '((((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . $settings['algorithm']['grace_period'] . ') / ' . $settings['algorithm']['weight_divisor'] . ') + field_data_field_' . $settings['fields']['weight']['field'] . '.field_' . $settings['fields']['weight']['field'] . '_value)',
-    'table' => '',
-    'alias' => 'real_weight',
-  );
+  // If the algorithm is enabled, use it!
+  if ($settings['allow_ranking_algorithm']) {
+    $query->fields['real_weight'] = array(
+      'field' => '((((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . $settings['algorithm']['grace_period'] . ') / ' . $settings['algorithm']['weight_divisor'] . ') + field_data_field_' . $settings['fields']['weight']['field'] . '.field_' . $settings['fields']['weight']['field'] . '_value)',
+      'table' => '',
+      'alias' => 'real_weight',
+    );
 
-  $query->orderby[0]['field'] = 'real_weight';
+    $query->orderby[0]['field'] = 'real_weight';
+  }
 };

@@ -15,12 +15,13 @@ body, div[role="main"], #page
 
 // set bg-color and close gap that appeared above header
 #header
-  background-color: #ffc100
+  background: url(/sites/all/modules/dosomething/dosomething_campaign_styles/create_and_share/campaigns/blah/images/header.jpg) top left
   margin-top: -6px
   @media only screen and (max-width: 920px) /* breakpoint at which #site-name (ds logo) drops */
     margin-top: 0
 
 div.header_inner
+  visibility: hidden
   height: 200px
   width: 900px
   margin: 0 auto
@@ -34,6 +35,7 @@ div.header_inner
     height: auto
 
 img.header_sponsor, img.header_logo
+  visibility: hidden
   position: absolute
   bottom: 5px
   @media only screen and (max-width: 920px)
@@ -42,6 +44,7 @@ img.header_sponsor, img.header_logo
     width: 45%
   
 img.header_background
+  visibility: hidden
   width: 700px
   +block_center
   @media only screen and (max-width: 920px)
@@ -51,6 +54,7 @@ img.header_background
     display: none
 
 img.header_logo
+  visibility: hidden
   height: 190px
   right: 0
   @media only screen and (max-width: 920px)
@@ -59,6 +63,7 @@ img.header_logo
     display: none
 
 img.header_sponsor
+  visibility: hidden
   left: 0
   @media only screen and (max-width: 620px)
     position: static
