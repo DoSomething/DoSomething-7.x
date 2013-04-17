@@ -1,0 +1,319 @@
+// PANES 
+
+///      //
+//  #header     - sign up -
+//      //
+.section#header
+  background: url('//www.dosomething.org/files/campaigns/thumb13/header.jpg') top center no-repeat
+  margin-bottom: 0
+#header
+  max-width: 800px
+  margin: 0 auto
+  text-align: left
+  position: relative
+  padding: 0
+  h1, h2
+    text-align: left
+    color: black
+    margin: 0
+  .headline
+    max-width: 800px
+    margin: 0 auto
+  h1
+    margin: 1.5%
+    background: $secondaryColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    float: left
+    font-weight: 600
+    font-size: 3.4em
+    color: white
+    padding: 1.5% 1.5% 0
+    line-height: 1em
+  h2
+    text-align: center
+    text-transform: uppercase
+    font-size: 1.8em
+    font-family: $din
+    font-weight: 600
+    width: 80%
+    margin: 0 auto
+    line-height: 1.2em
+    span
+      color: $secondaryColor
+      font-weight: 700
+      padding: 0
+  .subhead
+    text-transform: uppercase
+    color: black
+    background: $secondaryColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 3% 0
+    float: left
+    font-size: 1.4em
+    padding: 1% 1.5% 0
+    font-weight: 500
+    max-width: 635px
+  .subhead2
+    text-transform: uppercase
+    color: $secondaryColor
+    margin: 14% 0 0%
+    float: left
+    font-size: 1.3em
+    padding: 1% 1.5%
+    clear: both
+    font-weight: 500
+  .date
+    color: white
+    background: #333
+    margin: 5% 1.5% 1.5% 1.5% 
+    float: right
+    clear: both
+    font-size: 1.2em
+    padding: 1% 1.5%
+    text-transform: uppercase
+  .pane-campaign-signed
+    h2
+      text-align: center
+      text-transform: uppercase
+      color: white
+      font-size: 2em
+      font-weight: 400
+      color: $secondaryColor
+      float: left
+      margin-top: 7px
+    .go-button
+      color: black
+      text-transform: uppercase
+      margin: 0 auto
+    .action-now
+      margin: 0 auto
+      display: inline-block
+      text-align: center         
+      img
+        margin: 0em 0.8em 0 0
+        float: left
+      .go-button
+        margin-top: 0.1em 
+        float: left
+        font-size: 1.8em
+  .header-social
+    float: right
+    margin: 14% 1em 0
+  .header-facebook-share, .header-twitter-share
+    display: inline-block
+    margin: 0 2px
+
+  .ctia_bottom, .ctia_top
+    font-weight: 400
+    text-transform: none
+
+
+
+//      //
+//  #scholarship
+//      //
+#scholarship
+  color: white
+  background: $secondaryColor
+  h2, h3
+    max-width: 550px
+    margin: 0 auto
+  h2
+    color: black
+    line-height: 1.1em
+    font-size: 2em
+  h3
+    color: $thirdColor
+    font-weight: 600
+    text-transform: uppercase
+    font-size: 3em
+  .bubble
+    max-width: 475px
+    margin: 1% auto 4%
+    display: inline-block
+    background: $thirdColor
+    color: $secondaryColor
+    padding: 2%
+    +border-radius(4px)
+    font-size: 1.5em
+    line-height: 1.4em
+    text-align: left
+    font-weight: 300
+    position: relative
+    &:before
+      content: ''
+      position: absolute
+      width: 0
+      height: 0
+      left: 50px
+      bottom: -25px
+      border: 25px solid
+      border-color: $thirdColor $thirdColor transparent transparent
+  label
+    color: black
+  form
+    max-width: 600px
+    margin: 0 auto
+  hr
+    border: 1px solid white
+    border-bottom: 0
+    clear: both
+  input[type="text"]
+    float: left
+    width: 48%
+    margin: 2% 1%
+  .scholar-input
+    float: left
+    width: 50%
+    label
+      margin-top: 2%
+    input
+      width: 96%
+      margin: 2% 1% 4%
+  .scholar-foot
+    float: left
+    width: 50%
+    input[type="submit"]
+      background: $thirdColor
+      color: $secondaryColor
+      float: right
+      margin: 0 2% 4%
+      font-size: 2.5em
+      font-family: din-web-reg
+      &:hover
+        opacity: 0.95
+    .msg-data
+      margin-left: 2%
+      text-align: left
+      font-size: 0.55em
+      line-height: 1.2em
+      font-weight: 300
+      color: black
+    .rule-regs
+      margin-left: 2%
+      font-size: 1em
+      text-align: left
+      a
+        font-weight: 600
+  .success_msg p
+    color: black
+    margin-bottom: 1.5em
+    border: 1px solid #e1e1e1
+    padding: 2%
+    display: inline-block
+
+
+//			//
+//	#action
+//			//
+#action
+  padding: 3% 0 2%
+
+
+//      //
+//  #action-logged
+//      //
+.section#action-logged
+  padding: 2% 0
+#action-logged
+  text-align: left
+  h2
+    background: $secondaryColor
+    padding: 0.2em 3% 0
+    display: inline-block
+    text-transform: uppercase
+  h3
+    margin: 0 3%
+    font-size: 1.1em
+  p
+    margin: 1em 3%
+  .sub
+    margin: 0 3% 1em
+
+//      //
+//  #video
+//      //    
+#video
+  .lg-vid
+    display: block
+    margin: 0 auto 1em
+  .sm-vid
+    margin: 0 0.25em
+
+
+//      //
+//  #info
+//      //
+#info
+  h2
+    text-transform: uppercase
+  .rem
+    clear: both
+    padding: 1em 0
+  .do
+    margin-bottom: 1em
+
+//      //
+//  #faq
+//      //
+#faq 
+  div
+    padding: 0 1.2em 1.2em 1.2em
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
+  li
+    margin: 0
+    color: $secondaryColor
+    span
+      color: black 
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 1.2em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position-y: -1.4em
+  .go-button
+    margin: 2% auto
+    font-size: 2em
+    font-family: din-web-reg
+    &:hover
+      opacity: 0.85
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase
+    font-size: 1.2em
+    line-height: 1em
+    font-weight: 600
+    margin: 1em 0 0
