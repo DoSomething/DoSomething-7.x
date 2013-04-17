@@ -72,6 +72,7 @@
 
           <?php /* Display post-opt in copy after the user has submitted the contact form */ ?>
           <?php if (isset($team) || isset($individual)): ?>
+            <h2 class="scholarship-header"><?php print($scholarship[1]); ?></h2>
             <h2><?php print($scholarship[2]); ?></h2>
             <div class="report-back-form">
               <?php print render($content['report_back']); ?>
@@ -80,6 +81,10 @@
 
           <div class="official-rules-wrapper">
             <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>"  target="_blank">official rules</a>
+          </div> <!-- .official-rules-wrapper -->
+
+          <div class="official-rules-wrapper">
+            <a class="official-rules-link" href="<?php print($files_source . 'official-rules-extra.pdf'); ?>"  target="_blank">more official rules</a>
           </div> <!-- .official-rules-wrapper -->
 
         </div> <!-- .section-container -->
