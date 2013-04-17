@@ -260,7 +260,7 @@ function create_and_share_action($campaign, $type, $etid) {
     'fid' => $to_fbid,
     'from_uid' => $user->uid,
     'from_fid' => $fbid,
-    'type' => $action,
+    'type' => $type,
     'timestamp' => REQUEST_TIME,
     'notified' => $notified,
     'origin' => $origin,
@@ -568,25 +568,43 @@ function create_and_share_page_alter(&$page) {
 
     drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/campaign.js');
 
-    if (preg_match('#^/' . $settings['campaign_root'] . '/?(' . implode('|', $settings['setup_pages']) . ')?#i', $uri)) {
-      if ($settings['allow_lazy_loading']) {
-        drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/jquery.lazyload.js');
+    if ($settings['allow_lazy_loading']) {
+      drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/jquery.lazyload.js');
+    }
+
+    global $user;
+
+    $fromto = db_or();
+    $fromto->condition('from_uid', $user->uid);
+    $fromto->condition('uid', $user->uid);
+
+    $s = db_select('create_and_share_notifications', 'n')
+      ->fields('n', array('etid', 'type', 'from_uid', 'uid', 'notified'))
+      ->condition($fromto)
+      ->condition('campaign', $campaign);
+    $shares = $s->execute()->fetchAll();
+
+    $notices = $posts = array();
+    foreach ($shares AS $key => $share) {
+      // If it's from me, it's a post from me!
+      if ($share->from_uid == $user->uid) {
+        $posts[] = $share->etid;
       }
 
-      global $user;
-      $s = db_select('create_and_share_notifications', 'n')
-        ->fields('n', array('etid', 'type'))
-        ->condition('from_uid', $user->uid)
-        ->condition('campaign', $campaign)
-        #->condition('type', (array) $settings['gallery_pages'], 'IN')
-        ->execute();
-      $shares = $s->fetchAll();
-
-      $js_settings = array(
-        'share_count' => count($shares),
-        'shares' => $shares,
-      );
+      // If it's to me, it's probably a 
+      if ($share->uid == $user->uid && !$share->notified) {
+        $notices[$share->type][] = array(
+          'etid' => $share->etid,
+          'uid' => $share->from_uid,
+        );
+      }
     }
+
+    $js_settings = array(
+      'share_count' => count($posts),
+      'shares' => $posts,
+      'notices' => $notices,
+    );
 
     $p = str_replace('/' . $settings['campaign_root'] . '/', '', $uri);
     if (isset($settings['pages'][$p])) {

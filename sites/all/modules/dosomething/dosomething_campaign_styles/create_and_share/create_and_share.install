@@ -78,9 +78,9 @@ function create_and_share_schema() {
       ),
       'origin' => array(
         'description' => 'The page where the share happened.',
-        'type' => 'int',
+        'type' => 'varchar',
+        'length' => 255,
         'not null' => TRUE,
-        'unsigned' => TRUE,
       ),
       'seen' => array(
         'description' => 'Whether or not the user has gotten a message about it.',

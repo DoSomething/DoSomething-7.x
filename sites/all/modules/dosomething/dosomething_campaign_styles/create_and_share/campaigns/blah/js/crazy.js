@@ -9,8 +9,8 @@
       // Updates share buttons to disable ones you've already clicked.
       if (typeof Drupal.settings.campaign.shares === 'object') {
         for (i in Drupal.settings.campaign.shares) {
-          $('.s-' + Drupal.settings.campaign.shares[i].sid + ' .vouch-button a[rel="' + Drupal.settings.campaign.shares[i].sid + '"]').addClass('clicked');
-          $('.s-' + Drupal.settings.campaign.shares[i].sid + ' .bs-button a[rel="' + Drupal.settings.campaign.shares[i].sid + '"]').addClass('clicked');
+          $('.s-' + Drupal.settings.campaign.shares[i] + ' .vouch-button a[rel="' + Drupal.settings.campaign.shares[i] + '"]').addClass('clicked');
+          $('.s-' + Drupal.settings.campaign.shares[i] + ' .bs-button a[rel="' + Drupal.settings.campaign.shares[i] + '"]').addClass('clicked');
         }
       }
 
@@ -38,8 +38,6 @@
         elm.parent().find('span').text(++c);
 
         $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/vote/down/' + elm.attr('rel'), { 'alert': na, 'origin': document.location.pathname.substr(1,document.location.pathname.length) }, function(response) {
-        	console.log(response);
-        	return false;
           if (response.status == 1) {
             elm.parent().find('span').text(response.count);
             settings.campaign.share_count++;
