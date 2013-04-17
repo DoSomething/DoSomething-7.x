@@ -36,7 +36,7 @@
   $contact_scope = isset($individual) ? ' alone' : $contact_scope;
 
   $scholarship = array(
-    1 => "We're giving away a <strong>$4,000 SCHOLARSHIP</strong>. Every 10 jars collected = another entry.",
+    1 => "Every 10 jars collected = another entry for a $4,000 scholarship.  If you collect and donate 5,000 jars, you automatically win a $1,000 scholarship (30 available).",
     2 => "Great! You're gonna do this<span id=\"scholarship_status\">" . $contact_scope . "</span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\"" . $files_source . 'welcome-package.pdf' . "\"  target=\"_blank\">download</a> your PB&J Kit.",
   );
 
