@@ -1,5 +1,7 @@
 (function($) {
   Drupal.behaviors.create_and_share = {
+    logged_in: true,
+
     attach: function(context, settings) { 
       if ($('body').hasClass('not-logged-in')) {
         Drupal.behaviors.dsCrazyScripts.logged_in = false;

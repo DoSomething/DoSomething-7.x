@@ -1,9 +1,8 @@
 (function($) {
-  Drupal.behaviors.dsCrazyScripts = {
+  Drupal.behaviors.blahCampaign = {
     authed: false,
     probably_unauthed: false,
     notify_yourself: false,
-    logged_in: true,
     started_page: false,
 
     attach: function(context, settings) { 
@@ -16,7 +15,7 @@
       }
 
       $('.bs-button a.button-submit').click(function() {
-        if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+        if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.create_and_share.logged_in) {
           $.fn.dsCampaignPopup('share-login', 0, { 'goto': document.location.href });
         }
 
@@ -38,11 +37,13 @@
         var c = parseInt(elm.parent().find('span').text());
         elm.parent().find('span').text(++c);
 
-        $.post('/' + Drupal.settings.campaign.campaign_root + '/submit-bullshit', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.campaign.origin }, function(response) {
+        $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/vote/down/' + elm.attr('rel'), { 'alert': na, 'origin': document.location.pathname.substr(1,document.location.pathname.length) }, function(response) {
+        	console.log(response);
+        	return false;
           if (response.status == 1) {
             elm.parent().find('span').text(response.count);
-            settings.crazy.share_count++;
-            o.tip_shares(settings);
+            settings.campaign.share_count++;
+            Drupal.behaviors.blahCampaign.tip_shares(settings);
 
             if (!na && Drupal.settings.campaign.allow_notifications) {
               var name = '';
@@ -54,7 +55,7 @@
               }
 
               Drupal.behaviors.fb.notification({
-                'notification_document': 'crazy', // leave this like this
+                'notification_document': Drupal.settings.campaign.campaign_root, // leave this like this
                 'notification_user': response.author,
                 'notification_template': name + " called BS on your story about the craziest thing you did to save money.  Click here to get support!"
               }, function(response) {});
@@ -69,7 +70,7 @@
       });
 
       $('.vouch-button a.button-submit').click(function() {
-        if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+        if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.create_and_share.logged_in) {
           $.fn.dsCampaignPopup('share-login', 0, { 'goto': document.location.href });
         }
 
@@ -86,11 +87,11 @@
         var c = parseInt(elm.parent().find('span').text());
         elm.parent().find('span').text(++c);
 
-        $.post('/' + Drupal.settings.campaign.campaign_root + '/submit-vouch', { 'rel': elm.attr('rel'), 'alert': na, 'origin': Drupal.settings.campaign.origin }, function(response) {
+        $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/vote/up/' + elm.attr('rel'), { 'alert': na, 'origin': Drupal.settings.campaign.origin }, function(response) {
           if (response.status == 1) {
             elm.parent().find('span').text(response.count);
-            settings.crazy.share_count++;
-            o.tip_shares(settings);
+            settings.campaign.share_count++;
+            Drupal.behaviors.blahCampaign.tip_shares(settings);
           }
           else {
             elm.removeClass('clicked');
@@ -101,7 +102,7 @@
       });
 
       $('.fb-share a').click(function(e) {
-        if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.dsCrazyScripts.logged_in) {
+        if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.create_and_share.logged_in) {
           $.fn.dsCampaignPopup('share-login', 0, { 'goto': document.location.href });
           return false;
         }
@@ -118,7 +119,7 @@
           'img_picture': img,
           'img_require_login': true,
         }, function(response) {
-          $.post('/crazy/fb-share/' + sid, {}, function(response) {
+          $.post('/' + Drupal.settings.campaign.campaign_root + '/fb-share/' + sid, {}, function(response) {
             // Nothing!
           });
         });
@@ -128,7 +129,7 @@
     },
 
     tip_shares: function(settings) {
-      if (settings.crazy.share_count == 2) {
+      if (settings.campaign.share_count == 2) {
         $.fn.dsCampaignPopup('tip', 0);
       }
     },

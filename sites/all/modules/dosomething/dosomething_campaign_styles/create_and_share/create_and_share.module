@@ -217,7 +217,7 @@ function create_and_share_page_templates_alter(&$variables) {
 function create_and_share_action($campaign, $type, $etid) {
   global $user;
 
-  if (!is_numeric($etid) || !is_numeric($_POST['origin'])) {
+  if (!is_numeric($etid) || empty($_POST['origin'])) {
     drupal_json_output(array(
       'status' => 0
     ));
@@ -225,6 +225,7 @@ function create_and_share_action($campaign, $type, $etid) {
   	return false;
   }
 
+  $origin = check_plain($_POST['origin']);
   $settings = create_and_share_get_settings($campaign);
 
   if (!$user->uid && !$settings['allow_anonymous_votes']) {
@@ -236,16 +237,16 @@ function create_and_share_action($campaign, $type, $etid) {
     return;
   }
 
-  $alert = (isset($_POST['alert']) ? check_plain($_POST['alert']) : 0);
+  $alert = (bool) (isset($_POST['alert']) ? check_plain($_POST['alert']) : 0);
 
   $notified = 0;
   // If we have disabled notifications, set notified = true
   // so the user doesn't see the notification when they come back.
-  if ($alert == 'true'  || !$settings['allow_notifications']) {
+  if ($alert === true  || !$settings['allow_notifications']) {
     $notified = 1;
   }
 
-  $update = create_and_share_update_counts($campaign, $etid, $action);
+  $update = create_and_share_update_counts($campaign, $etid, $type);
 
   // Get Drupal and FB user ids
   $fbid = fboauth_fbid_load($user->uid);
@@ -254,16 +255,16 @@ function create_and_share_action($campaign, $type, $etid) {
   // Build the notification array.
   $notification = array(
     'campaign' => $campaign,
-    'etid' => $update['sid'],
+    'etid' => $update['etid'],
     'uid' => $update['uid'],
     'fid' => $to_fbid,
     'from_uid' => $user->uid,
     'from_fid' => $fbid,
     'type' => $action,
     'timestamp' => REQUEST_TIME,
-    'notified' => $n,
-    'origin' => intval($_POST['origin']),
-    'ipaddress' => $_SERVER['REMOTE_ADDR'],
+    'notified' => $notified,
+    'origin' => $origin,
+    'ipaddress' => ip_address(),
   );
 
   // Write the notification.
@@ -397,8 +398,9 @@ function create_and_share_update_counts($campaign, $etid, $action) {
   $weight = 0;
 
   // Check for existing weight
-  if (isset($submission->field_{$settings['fields']['weight']['field']}[LANGUAGE_NONE][0]['value'])) {
-    $weight = $submission->field_{$settings['fields']['weight']['field']}[LANGUAGE_NONE][0]['value'];
+  $weight_field = 'field_' . $settings['fields']['weight']['field'];
+  if (isset($submission->{$weight_field}[LANGUAGE_NONE][0]['value'])) {
+    $weight = $submission->{$weight_field}[LANGUAGE_NONE][0]['value'];
   }
 
   // We want to get the nearest 10, 100, 1000, 10000, etc...
@@ -407,18 +409,34 @@ function create_and_share_update_counts($campaign, $etid, $action) {
 
   $weight += ($settings['fields'][$action]['weight'] * $multiplier);
 
-  $submission->field_{$settings['fields']['weight']['field']}[LANGUAGE_NONE][0]['value'] = $weight;
+  $submission->{$weight_field}[LANGUAGE_NONE][0]['value'] = $weight;
 
+  $action_field = 'field_' . $settings['fields'][$action]['field'];
   $count = 0;
-  if (isset($submission->field_{$settings['fields'][$action]['field']}[LANGUAGE_NONE][0]['value'])) {
-    $count = $submission->field_{$settings['fields'][$action]['field']}[LANGUAGE_NONE][0]['value'];
+  if (isset($submission->{$action_field}[LANGUAGE_NONE][0]['value'])) {
+    $count = $submission->{$action_field}[LANGUAGE_NONE][0]['value'];
   }
 
   // Update the counts.
-  $submission->field_{$settings['fields'][$action]['field']}[LANGUAGE_NONE][0]['value'] = ++$count;
+  $submission->{$action_field}[LANGUAGE_NONE][0]['value'] = ++$count;
+
+  $total_field = 'field_' . $settings['fields']['total']['field'];
+  $total = 0;
+  if (isset($submission->{$total_field}[LANGUAGE_NONE][0]['value'])) {
+    $total = $submission->{$total_field}[LANGUAGE_NONE][0]['value'];
+  }
+
+  // Increment total count.
+  $submission->{$total_field}[LANGUAGE_NONE][0]['value'] = ++$total;
 
   // Save the submission.
   @entity_save('webform_submission_entity', $submission);
+
+  return array(
+    'etid' => $submission->sid,
+    'uid' => $submission->uid,
+    'count' => $value,
+  );
 }
 
 /**
@@ -556,12 +574,11 @@ function create_and_share_page_alter(&$page) {
       }
 
       global $user;
-      $fbid = fboauth_fbid_load($user->uid);
       $s = db_select('create_and_share_notifications', 'n')
         ->fields('n', array('etid', 'type'))
         ->condition('from_uid', $user->uid)
         ->condition('campaign', $campaign)
-        ->condition('type', (array) $settings['gallery_pages'], 'IN')
+        #->condition('type', (array) $settings['gallery_pages'], 'IN')
         ->execute();
       $shares = $s->fetchAll();
 
@@ -594,8 +611,9 @@ function create_and_share_page_alter(&$page) {
     $js_settings['allow_lazy_loading'] = $settings['allow_lazy_loading'];
 
     // Campaign root.
-    $js_settings['campaign_root'] . $settings['campaign_root'];
+    $js_settings['campaign_root'] = $settings['campaign_root'];
 
+    // Can flag posts?
     $js_settings['can_flag_posts'] = user_access('flag campaign submissions');
 
     // Get all campaign information all up in there.

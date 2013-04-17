@@ -38,6 +38,17 @@ $settings = array(
       'field' => 'cas_image',
       'style' => 'crazy_image_dimensions',
     ),
+    'up' => array(
+      'field' => 'cas_thumbs_up_count',
+      'weight' => 0.75,
+    ),
+    'down' => array(
+      'field' => 'cas_thumbs_down_count',
+      'weight' => 0.5,
+    ),
+    'total' => array(
+      'field' => 'cas_total_count',
+    ),
   ),
 
   'views' => array(
