@@ -63,7 +63,11 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
           if ((!$bDoDistanceCheck && strcasecmp($userMessage, $exactMatch) == 0)
               || ($bDoDistanceCheck && self::damerauLevenshteinDistance($exactMatch, $userMessage) <= $this->match_threshold)) {
             $bMatchFound = TRUE;
-            $bIgnoreNegativeForm = TRUE;
+
+            if (self::hasNegativeFormWord($$exactMatch)) {
+              $bIgnoreNegativeForm = TRUE;
+            }
+
             break;
           }
         }
@@ -73,6 +77,11 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
           foreach ($set['phrase_match'] as $matchPhrase) {
             if (stripos($userMessage, $matchPhrase) !== FALSE) {
               $bMatchFound = TRUE;
+
+              if (self::hasNegativeFormWord($matchPhrase)) {
+                $bIgnoreNegativeForm = TRUE;
+              }
+
               break;
             }
           }
@@ -116,17 +125,13 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
         // Check if user response is in negative form
         // ie - "I do love you" vs "I do not love you"
         if ($bMatchFound && !$bIgnoreNegativeForm) {
-          $negativeFormWords = array('no', 'not', 'n\'t');
-          foreach ($negativeFormWords as $matchWord) {
-            if (self::in_arrayi($matchWord, $userWords)) {
-              // Negative form response found. Make sure we have a response for that kind of message.
-              if (isset($set['response_negative'])) {
-                $isNegativeForm = TRUE;
-              }
-              else {
-                $bMatchFound = FALSE;
-              }
-              break;
+          if (self::hasNegativeFormWord($userWords)) {
+            // Negative form response found. Make sure we have a response for that kind of message.
+            if (isset($set['response_negative'])) {
+              $isNegativeForm = TRUE;
+            }
+            else {
+              $bMatchFound = FALSE;
             }
           }
         }
@@ -174,6 +179,24 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   function in_arrayi($needle, $haystack) {
     foreach ($haystack as $value) {
       if (strtolower($value) == strtolower($needle)) {
+        return TRUE;
+      }
+    }
+
+    return FALSE;
+  }
+
+  // Determine if negative-form word exists in $needles
+  function hasNegativeFormWord($needles) {
+    $negativeFormWords = array('no', 'not');
+
+    // If $needles is a string, convert it into an array of its words
+    if (is_string($needles)) {
+      $needles = explode(' ', $needles);
+    }
+
+    foreach ($negativeFormWords as $matchWord) {
+      if (self::in_arrayi($matchWord, $needles)) {
         return TRUE;
       }
     }
