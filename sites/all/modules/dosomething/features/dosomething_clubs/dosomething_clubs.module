@@ -1107,7 +1107,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
     ),*/
     'title' => array(
       '#prefix' => '<h1 class="title">',
-      '#markup' => t(($just_created ? 'Congrats, your club has been created!' : 'Invite your friends to your club.')),
+      '#markup' => t('Invite your friends to your club.'),
       '#suffix' => '</h1>',
     ),
     'but' => array(
