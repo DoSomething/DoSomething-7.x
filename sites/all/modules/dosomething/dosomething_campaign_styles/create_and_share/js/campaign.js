@@ -157,7 +157,6 @@
   $.fn.extend({
     dsCampaignPopup: function (campaign, template, etid, settings) {
       if (typeof settings === 'undefined') { settings = {}; }
-      console.log("ARRR");
 
       if (settings.reload) {
         $('.s-' + etid + '-picture img').attr('src', $('.s-' + etid + '-picture img').attr('src') + '?' + new Date().getTime());

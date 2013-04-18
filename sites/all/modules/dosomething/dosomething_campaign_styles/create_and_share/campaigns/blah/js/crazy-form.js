@@ -66,6 +66,7 @@
           }
         });
     
+        $('input[value="Submit"]').addClass('go-button');
         $('input[value="Submit"]').click(function() {
           $(this).hide();
           var t = $('<div></div>').text(Drupal.t('Loading...'));
