@@ -1,14 +1,16 @@
-Dear <?php echo $name; ?>,
+<p>Dear <?php echo $name; ?>,</p>
 
-Thanks for signing the petition! You've made your voice heard, you badass do-gooder.  Now, amplify that voice by spreading the word:
+<p>Thanks for signing the petition! You've made your voice heard, you badass do-gooder.  Now, amplify that voice by spreading the word:</p>
 
-1. Share a link to the petition on Facebook.
-2. Email your friends and family about it.
-3. Tweet, tweet!
+<ol>
+  <li>Share a link to the petition on Facebook.</li>
+  <li>Email your friends and family about it.</li>
+  <li>Tweet, tweet!</li>
+</ol>
 
-And, you can speak out again: sign another petition here: http://www.dosomething.org/petitions
+<p>And, you can speak out again: sign another petition here: http://www.dosomething.org/petitions</p>
 
-Thanks for being a rockstar,
+<p>Thanks for being a rockstar,</p>
 
-Ben
-petitions@dosomething.org
+<p>Ben<br />
+petitions@dosomething.org</p>

@@ -12,8 +12,8 @@
   $cmp_short = 'pbjs';      /* the campaign's abbreviation               */
   $cmp_machine = 'pbjs13';  /* the campaign's machine name - a unique id */
   $cmp_name = 'Peanut Butter & Jam Slam';
-  $cmp_lead = 'Saige';
-  $sponsor = 'walmart';
+  $cmp_lead = 'Greg';
+  $sponsor = 'walmart';     /* The capitalization of this variable must match the capitalization of the file name! */
   $files_source = '//www.dosomething.org/files/campaigns/' . $cmp_machine . '/';
 
   /* MOBILE COMMONS NOISE */
@@ -36,7 +36,7 @@
   $contact_scope = isset($individual) ? ' alone' : $contact_scope;
 
   $scholarship = array(
-    1 => "We're giving away a <strong>$4,000 SCHOLARSHIP</strong>. Every 10 jars collected = another entry.",
+    1 => "Every 10 jars collected = another entry for a $4,000 scholarship.  If you collect and donate 5,000 jars, you automatically win a $1,000 scholarship (30 available).",
     2 => "Great! You're gonna do this<span id=\"scholarship_status\">" . $contact_scope . "</span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\"" . $files_source . 'welcome-package.pdf' . "\"  target=\"_blank\">download</a> your PB&J Kit.",
   );
 
@@ -75,7 +75,13 @@
    );
 
   $social = array(
+    /* The zero-indexed string is the alt text for the bg-header image */
+    0 => "Which team are you on?",
     1 => "Team Crunchy or Smooth? Help settle one of biggest debates in American history.",
+    2 => "Team Crunchy Mascot",
+    3 => "#teamcrunchy",
+    4 => "Team Smooth Mascot",
+    5 => "#teamsmooth",
    );
 
   /* POST REPORT-BACK PAGE VIEW */
@@ -84,8 +90,4 @@
     2 => "Thanks to you someone in your community won't go hungry.",
   );
   
-  $thanks = array(
-    1 => "Thanks for sharing the campaign with your friends!",
-  );
-
 ?>

@@ -591,7 +591,7 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
       text-shadow: -1px -1px 3px white; }
 
 hr.gray {
-  border-top: 1px solid lightgray;
+  border-top: 1px solid lightgrey;
   border-bottom: none;
   clear: both; }
 
@@ -638,8 +638,8 @@ hr.gray {
 
 .application-box {
   width: 248px;
-  border-right: 1px solid lightgray;
-  border-left: 1px solid lightgray; }
+  border-right: 1px solid lightgrey;
+  border-left: 1px solid lightgrey; }
 
 .date-box {
   float: left;
@@ -865,9 +865,9 @@ p.judge-intro {
     .judges a:hover {
       text-decoration: none; }
 
-.page-node-719431 .ui-dialog, .page-node-724872 .ui-dialog {
+.page-node-719431 .ui-dialog, .page-node-724872 .ui-dialog, .page-node-719305 .ui-dialog {
   width: 500px !important; }
-.page-node-719431 .ui-icon-closethick, .page-node-724872 .ui-icon-closethick {
+.page-node-719431 .ui-icon-closethick, .page-node-724872 .ui-icon-closethick, .page-node-719305 .ui-icon-closethick {
   left: 0 !important; }
 
 .faq {
