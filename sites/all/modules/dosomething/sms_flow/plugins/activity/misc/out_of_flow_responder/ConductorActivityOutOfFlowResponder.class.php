@@ -30,7 +30,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   // Response to send to the user if no match is found
   public $no_match_response = '';
 
-  // Maximum allowed Damerau-Levenshtein distance to trigger a successful match
+  // Maximum allowed string edit distance to trigger a successful match
   public $match_threshold = 1;
 
   public function run($workflow) {
@@ -61,7 +61,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
         // Search for exactly matched responses
         foreach ($set['exact_match'] as $exactMatch) {
           if ((!$bDoDistanceCheck && strcasecmp($userMessage, $exactMatch) == 0)
-              || ($bDoDistanceCheck && self::damerauLevenshteinDistance($exactMatch, $userMessage) <= $this->match_threshold)) {
+              || ($bDoDistanceCheck && self::stringEditDistance($exactMatch, $userMessage) <= $this->match_threshold)) {
             $bMatchFound = TRUE;
 
             if (self::hasNegativeFormWord($$exactMatch)) {
@@ -110,7 +110,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
           foreach ($set['word_match'] as $matchWord) {
             foreach ($userWords as $userWord) {
               if ((!$bDoDistanceCheck && strcasecmp($matchWord, $userWord) == 0)
-                  || ($bDoDistanceCheck && self::damerauLevenshteinDistance($matchWord, $userWord) <= $this->match_threshold)) {
+                  || ($bDoDistanceCheck && self::stringEditDistance($matchWord, $userWord) <= $this->match_threshold)) {
                 $bMatchFound = TRUE;
                 break;
               }
@@ -216,26 +216,36 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   }
 
   // Distance formula to determine a measure of difference between two strings
+  // - Based off the Damerau-Levenshtein distance algorithm
   // - http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
-  function damerauLevenshteinDistance($source, $target) {
+  function stringEditDistance($source, $target) {
+    $sourceLen = strlen($source);
+    $targetLen = strlen($target);
+
     if (empty($source)) {
       if (empty($target)) {
         return 0;
       }
       else {
-        return strlen($target);
+        return $targetLen;
       }
     }
     elseif (empty($target)) {
-      return strlen($source);
+      return $sourceLen;
     }
 
     // If target word is under a certain length, then just do a direct compare
-    if (strlen($target) <= 4) {
+    if ($targetLen <= 4 || $sourceLen <= 4) {
       if (strcasecmp($source, $target) == 0)
         return 0;
       else
         return 999;
+    }
+
+    // If string lengths are larger than the threshold, then just early fail out
+    // String length diffs larger than the threshold will have a minimum score of that diff
+    if (abs($targetLen - $sourceLen) > $this->match_threshold) {
+      return 999;
     }
 
     // Convert strings to same case
@@ -244,18 +254,18 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
     // Setup $score double array
     $score = array();
-    for ($i = 0; $i < strlen($source) + 2; $i++) {
+    for ($i = 0; $i < $sourceLen + 2; $i++) {
       $score[$i] = array();
     }
 
-    $inf = strlen($source) + strlen($target);
+    $inf = $sourceLen + $targetLen;
     $score[0][0] = $inf;
 
-    for ($i = 0; $i < strlen($source); $i++) {
+    for ($i = 0; $i < $sourceLen; $i++) {
       $score[$i + 1][0] = $inf;
       $score[$i + 1][1] = $i;
     }
-    for ($j = 0; $j < strlen($target); $j++) {
+    for ($j = 0; $j < $targetLen; $j++) {
       $score[0][$j + 1] = $inf;
       $score[1][$j + 1] = $j;
     }
@@ -272,9 +282,9 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
       }
     }
 
-    for ($i = 1; $i <= strlen($source); $i++) {
+    for ($i = 1; $i <= $sourceLen; $i++) {
       $db = 0;
-      for ($j = 1; $j <= strlen($target); $j++) {
+      for ($j = 1; $j <= $targetLen; $j++) {
         $i1 = $dictionary[$target[j - 1]];
         $j1 = $db;
 
@@ -292,8 +302,8 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
       $dictionary[$source[$i - 1]] = $i;
     }
 
-    $i = strlen($source) + 1;
-    $j = strlen($target) + 1;
+    $i = $sourceLen + 1;
+    $j = $targetLen + 1;
     return $score[$i][$j];
   }
 }
