@@ -23,12 +23,12 @@ $activity->response_sets = array(
     'phrase_match' => array('I hate you', 'suck it', 'kill yourself', 'youre the worst', 'shut up'),
     'word_match' => array('die'),
     'response' => array("Okay, your baby is going away. If you change your mind and want baby back, text BABY"),
-    'trigger_opt_out' => 96721,
+    'trigger_opt_out' => 115103,
   ),
   array(
     'phrase_match' => array('Who is this', 'Who are you', 'Who the hell is this What is this?'),
     'response' => array("Okay, your baby is going away. If you change your mind and want baby back, text BABY"),
-    'trigger_opt_out' => 96721,
+    'trigger_opt_out' => 115103,
   ),
   array(
     'phrase_match' => array('Im not up', 'Im not awake'),
