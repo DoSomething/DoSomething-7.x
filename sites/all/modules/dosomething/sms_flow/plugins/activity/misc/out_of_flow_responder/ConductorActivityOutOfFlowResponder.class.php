@@ -17,6 +17,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   //        ...
   //      ),
   //      'word_match'   => array('word1', 'word2', ...),
+  //      'word_match_exact' => boolean. If true, will not do a levenshtein distance check.
   //      'response'     => string. Message to send back to user if match is found.
   //      'response_negative' => string. Message to send back to user if match is found and user message is a negative form.
   //                             ex: User responds with, "I do NOT love you"
@@ -59,7 +60,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
               || ($bDoDistanceCheck && levenshtein($exactMatch, $userMessage) <= $this->match_threshold)) {
             $bMatchFound = TRUE;
 
-            if (self::hasNegativeFormWord($$exactMatch)) {
+            if (self::hasNegativeFormWord($exactMatch)) {
               $bIgnoreNegativeForm = TRUE;
             }
 
@@ -68,9 +69,10 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
         }
 
         // Search for phrases within the user message
-        if (!$bMatchFound && !$bDoDistanceCheck) {
+        if (!$bMatchFound) {
           foreach ($set['phrase_match'] as $matchPhrase) {
-            if (stripos($userMessage, $matchPhrase) !== FALSE) {
+            if ((!$bDoDistanceCheck && stripos($userMessage, $matchPhrase) !== FALSE) 
+                || ($bDoDistanceCheck && levenshtein($userMessage, $matchPhrase) <= $this->match_threshold)) {
               $bMatchFound = TRUE;
 
               if (self::hasNegativeFormWord($matchPhrase)) {
@@ -105,7 +107,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
           foreach ($set['word_match'] as $matchWord) {
             foreach ($userWords as $userWord) {
               if ((!$bDoDistanceCheck && strcasecmp($matchWord, $userWord) == 0)
-                  || ($bDoDistanceCheck && levenshtein($matchWord, $userWord) <= $this->match_threshold)) {
+                  || ($bDoDistanceCheck && !$set['word_match_exact'] && levenshtein($matchWord, $userWord) <= $this->match_threshold)) {
                 $bMatchFound = TRUE;
                 break;
               }
