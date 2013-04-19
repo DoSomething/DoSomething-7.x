@@ -20,6 +20,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   //      'response'     => string. Message to send back to user if match is found.
   //      'response_negative' => string. Message to send back to user if match is found and user message is a negative form.
   //                             ex: User responds with, "I do NOT love you"
+  //      'trigger_opt_out'   => mixed. Could be either a single number or array of numbers for campaign ids to opt out of.
   //    )
   //  )
   // 
@@ -156,7 +157,11 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     if ($bMatchFound && $matchingSet >= 0) {
       $set = $this->response_sets[$matchingSet];
 
-      if ($isNegativeForm) {
+      if ($set['trigger_opt_out'] > 0) {
+        sms_mobile_commons_campaign_opt_out($mobile, $set['trigger_opt_out']);
+        $response = self::selectResponse($set['response']);
+      }
+      elseif ($isNegativeForm) {
         $response = self::selectResponse($set['response_negative']);
       }
       else {
@@ -207,7 +212,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   // Selects a random response if multiple are given, or if $response is a string, just returns it back
   function selectResponse($response) {
     if (is_array($response)) {
-      $selectedIdx = rand(0, count($response) - 1);
+      $selectedIdx = array_rand($response);
       return $response[$selectedIdx];
     }
     else {
