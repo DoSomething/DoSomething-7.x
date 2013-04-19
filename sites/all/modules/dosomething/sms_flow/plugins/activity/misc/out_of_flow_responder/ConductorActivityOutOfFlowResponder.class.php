@@ -39,14 +39,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     $mobile = $state->getContext('sms_number');
     $userMessage = $_REQUEST['args'];
 
-    // Single quote to be removed instead of replacing with whitespace to conserve integrity of word
-    $userMessage = preg_replace('/\'/', '', $userMessage);
-    // Remove all non alphanumeric characters from the user message
-    $userMessage = preg_replace('/[^A-Za-z0-9 ]/', ' ', $userMessage);
-    // Matches multi-character whitespace with a single space
-    $userMessage = preg_replace('/\s+/', ' ', $userMessage);
-    $userMessage = check_plain($userMessage);
-    $userMessage = self::convertAbbreviatedWords($userMessage);
+    $userMessage = self::sanitizeMessage($userMessage);
 
     // Break message into array of individual words
     $userWords = explode(' ', $userMessage);
@@ -63,7 +56,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
         // Search for exactly matched responses
         foreach ($set['exact_match'] as $exactMatch) {
           if ((!$bDoDistanceCheck && strcasecmp($userMessage, $exactMatch) == 0)
-              || ($bDoDistanceCheck && self::stringEditDistance($exactMatch, $userMessage) <= $this->match_threshold)) {
+              || ($bDoDistanceCheck && levenshtein($exactMatch, $userMessage) <= $this->match_threshold)) {
             $bMatchFound = TRUE;
 
             if (self::hasNegativeFormWord($$exactMatch)) {
@@ -112,7 +105,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
           foreach ($set['word_match'] as $matchWord) {
             foreach ($userWords as $userWord) {
               if ((!$bDoDistanceCheck && strcasecmp($matchWord, $userWord) == 0)
-                  || ($bDoDistanceCheck && self::stringEditDistance($matchWord, $userWord) <= $this->match_threshold)) {
+                  || ($bDoDistanceCheck && levenshtein($matchWord, $userWord) <= $this->match_threshold)) {
                 $bMatchFound = TRUE;
                 break;
               }
@@ -211,7 +204,15 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   }
 
   // Function to convert select words from their abbreviated form
-  function convertAbbreviatedWords($message) {
+  function sanitizeMessage($message) {
+    // Single quote to be removed instead of replacing with whitespace to conserve integrity of word
+    $userMessage = preg_replace('/\'/', '', $userMessage);
+    // Remove all non alphanumeric characters from the user message
+    $userMessage = preg_replace('/[^A-Za-z0-9 ]/', ' ', $userMessage);
+    // Matches multi-character whitespace with a single space
+    $userMessage = preg_replace('/\s+/', ' ', $userMessage);
+    $userMessage = check_plain($userMessage);
+
     $abbreviations = array(
       'u' => 'you',
       'ur' => 'your',
@@ -221,7 +222,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     $words = explode(' ', $message);
 
     for ($i = 0; $i < count($words); $i++) {
-      if(array_key_exists($words[$i], $abbreviations)) {
+      if(isset($abbreviations[$words[$i]])) {
         $key = $words[$i];
         $words[$i] = $abbreviations[$key];
       }
@@ -240,97 +241,5 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     else {
       return $response;
     }
-  }
-
-  // Distance formula to determine a measure of difference between two strings
-  // - Based off the Damerau-Levenshtein distance algorithm
-  // - http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
-  function stringEditDistance($source, $target) {
-    $sourceLen = strlen($source);
-    $targetLen = strlen($target);
-
-    if (empty($source)) {
-      if (empty($target)) {
-        return 0;
-      }
-      else {
-        return $targetLen;
-      }
-    }
-    elseif (empty($target)) {
-      return $sourceLen;
-    }
-
-    // If target word is under a certain length, then just do a direct compare
-    if ($targetLen <= 4 || $sourceLen <= 4) {
-      if (strcasecmp($source, $target) == 0)
-        return 0;
-      else
-        return 999;
-    }
-
-    // If string lengths are larger than the threshold, then just early fail out
-    // String length diffs larger than the threshold will have a minimum score of that diff
-    if (abs($targetLen - $sourceLen) > $this->match_threshold) {
-      return 999;
-    }
-
-    // Convert strings to same case
-    $source = strtolower($source);
-    $target = strtolower($target);
-
-    // Setup $score double array
-    $score = array();
-    for ($i = 0; $i < $sourceLen + 2; $i++) {
-      $score[$i] = array();
-    }
-
-    $inf = $sourceLen + $targetLen;
-    $score[0][0] = $inf;
-
-    for ($i = 0; $i < $sourceLen; $i++) {
-      $score[$i + 1][0] = $inf;
-      $score[$i + 1][1] = $i;
-    }
-    for ($j = 0; $j < $targetLen; $j++) {
-      $score[0][$j + 1] = $inf;
-      $score[1][$j + 1] = $j;
-    }
-
-    $dictionary = array();
-    $combined = $source . $target;
-    for ($i = 0; $i < strlen($combined); $i++) {
-      // Ignore spaces
-      if ($combined[$i] != ' ') {
-        $letter = $combined[$i];
-        if (!array_key_exists($letter, $dictionary)) {
-          $dictionary[$letter] = 0;
-        }
-      }
-    }
-
-    for ($i = 1; $i <= $sourceLen; $i++) {
-      $db = 0;
-      for ($j = 1; $j <= $targetLen; $j++) {
-        $i1 = $dictionary[$target[j - 1]];
-        $j1 = $db;
-
-        if ($source[$i - 1] == $target[$j - 1]) {
-          $score[$i + 1][$j + 1] = $score[$i][$j];
-          $db = $j;
-        }
-        else {
-          $score[$i + 1][$j + 1] = min($score[$i][$j], min($score[$i + 1][$j], $score[$i][$j + 1])) + 1;
-        }
-
-        $score[$i + 1][$j + 1] = min($score[$i + 1][$j + 1], $score[$i1][$j1] + ($i - $i1 - 1) + 1 + ($j - $j1 - 1));
-      }
-
-      $dictionary[$source[$i - 1]] = $i;
-    }
-
-    $i = $sourceLen + 1;
-    $j = $targetLen + 1;
-    return $score[$i][$j];
   }
 }

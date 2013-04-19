@@ -22,13 +22,10 @@ $activity->response_sets = array(
   array(
     'phrase_match' => array('I hate you', 'suck it', 'kill yourself', 'youre the worst', 'shut up'),
     'word_match' => array('die'),
-    'response' => array("Okay, your baby is going away. If you change your mind and want baby back, text BABY"),
-    'trigger_opt_out' => 115103,
+    'response' => array("That's no way to talk to a baby. If you really really want me to go away, text END and I'll be gone."),
   ),
   array(
-    'phrase_match' => array('Who is this', 'Who are you', 'Who the hell is this What is this?'),
-    'response' => array("Okay, your baby is going away. If you change your mind and want baby back, text BABY"),
-    'trigger_opt_out' => 115103,
+    'phrase_match' => array('Who is this', 'Who are you', 'Who the hell is this', 'What is this'),
   ),
   array(
     'phrase_match' => array('Im not up', 'Im not awake'),
@@ -36,8 +33,7 @@ $activity->response_sets = array(
   ),
   array(
     'phrase_match' => array('I will feed you'),
-    'response' => array("
-Thanks!", "Thank you!", "You're the best."),
+    'response' => array("Thanks!", "Thank you!", "You're the best."),
   ),
   array(
     'phrase_match' => array('Im tired'),
