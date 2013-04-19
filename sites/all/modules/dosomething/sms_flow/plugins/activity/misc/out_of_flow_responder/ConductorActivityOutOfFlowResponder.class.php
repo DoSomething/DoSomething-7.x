@@ -46,6 +46,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     // Matches multi-character whitespace with a single space
     $userMessage = preg_replace('/\s+/', ' ', $userMessage);
     $userMessage = check_plain($userMessage);
+    $userMessage = self::convertAbbreviatedWords($userMessage);
 
     // Break message into array of individual words
     $userWords = explode(' ', $userMessage);
@@ -207,6 +208,27 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     }
 
     return FALSE;
+  }
+
+  // Function to convert select words from their abbreviated form
+  function convertAbbreviatedWords($message) {
+    $abbreviations = array(
+      'u' => 'you',
+      'ur' => 'your',
+      'urself' => 'yourself',
+    );
+
+    $words = explode(' ', $message);
+
+    for ($i = 0; $i < count($words); $i++) {
+      if(array_key_exists($words[$i], $abbreviations)) {
+        $key = $words[$i];
+        $words[$i] = $abbreviations[$key];
+      }
+    }
+
+    $message = implode(' ', $words);
+    return $message;
   }
 
   // Selects a random response if multiple are given, or if $response is a string, just returns it back
