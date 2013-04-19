@@ -154,8 +154,7 @@ body {
 
 .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
 .node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav,
-.page-node-727978 #block-dosomething-campaign-styles-campaign-nav,
-.page-node-728363 #block-dosomething-campaign-styles-campaign-nav {
+.node-type-campaign-sign-up #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -971,6 +970,24 @@ body {
     float: none; }
   #cmp #sign-up input {
     margin-bottom: 10px; }
+  #cmp .node-campaign-sign-up {
+    background: white;
+    padding: 2%; }
+    #cmp .node-campaign-sign-up h2 {
+      font-size: 1.4em;
+      line-height: 1.1em;
+      margin-bottom: 1em; }
+    #cmp .node-campaign-sign-up h4 {
+      font-weight: 400;
+      margin: 0.5em auto; }
+    #cmp .node-campaign-sign-up p {
+      font-size: 1.2em;
+      line-height: 1.1em;
+      margin-bottom: 1em; }
+    #cmp .node-campaign-sign-up input {
+      margin-bottom: 1em; }
+    #cmp .node-campaign-sign-up label[for="edit-submitted-tell-us-why-you-will-share-the-socks-with-these-people-this-answer-determines-if-you-get-socks"] {
+      margin-top: 1em; }
   #cmp #report-back {
     margin-top: 3%;
     border: none;

@@ -36,7 +36,7 @@
 
 
       // contact form login
-      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/722102" class="sign-in-popup">log in</a></p>');
+      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/729076" class="sign-in-popup">log in</a></p>');
 
       // on lines 9-10 terrible things happen
       $('#campaign-opt-in br').remove();
