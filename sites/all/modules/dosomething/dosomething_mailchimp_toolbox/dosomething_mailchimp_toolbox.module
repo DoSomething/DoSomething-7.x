@@ -7,16 +7,12 @@
  **/
 
 /**
- * Implements hook_permission().
+ * Implements hook_permission(). - sets up access permission needed to access the specified
+ * callbacks for this module
  *
- * @param $form
- *   ?
- * @param &$form_state
- *   ?
- * @param $webfont_id
- *   ?
+ * @param NONE
  *   
- * @return
+ * @return NONE
  */
 function dosomething_mailchimp_toolbox_permission() {
   return array(
@@ -28,16 +24,11 @@ function dosomething_mailchimp_toolbox_permission() {
 }
 
  /**
- * Implements hook_menu().
+ * Implements hook_menu() - callbacks.
  *
- * @param $form
- *   ?
- * @param &$form_state
- *   ?
- * @param $webfont_id
- *   ?
+ * @param NONE
  *   
- * @return
+ * @return $items - the defined callbacks for the module.
  */
 function dosomething_mailchimp_toolbox_menu() {
     
@@ -57,16 +48,18 @@ function dosomething_mailchimp_toolbox_menu() {
 }
 
 /**
- * Implements hook_theme().
+ * Implements hook_theme() - defines the templates for the module
  *
- * @param $form
+ * @param $existing
  *   ?
- * @param &$form_state
+ * @param $type
  *   ?
- * @param $webfont_id
+ * @param $theme
+ *   ?
+ * @param $path
  *   ?
  *   
- * @return
+ * @return NONE
  */
 function dosomething_mailchimp_toolbox_theme($existing, $type, $theme, $path) {
   return array(
@@ -199,127 +192,167 @@ function dosomething_mailchimp_toolbox_module_implements_alter(&$implementations
 }
 
 
-
+/**
+ * _dosomething_mailchimp_toolbox_webform_report() - report generation of all webforms and what the MailChimp and Mobile Commons groups are assigned to the form.
+ *
+ * @param NONE
+ *   
+ * @return - call to dosomething_mailchimp_toolbox_forms_report template to generate report
+ *   results as interactive table.
+ */
 function _dosomething_mailchimp_toolbox_webform_report() {
   
-  /*
-  SELECT
-    ->   n.nid AS "NID",
-    ->   n.title AS "Submission Title",
-    ->   west.type AS "Type"
-    -> FROM
-    ->   webform_entity_submission_type west
-    ->   LEFT JOIN
-    ->    node n ON (west.type = n.type)
-    -> ORDER BY
-    ->   west.type;
+  // Add CSS to format table
+  drupal_add_css(
+    drupal_get_path('module', 'dosomething_mailchimp_toolbox') . '/css/dosomething_mailchimp_toolbox.css',
+    array('group' => CSS_DEFAULT, 'every_page' => FALSE));
+  
+  // Respond to user input for column sorting
+  if (isset($_GET['sort']) && isset($_GET['order'])) {
     
-    f(isset($_GET['sort']) && isset($_GET['order'])){
-  // Sort it Ascending or Descending?
-  if($_GET['sort'] == 'asc')
-    $sort = 'ASC';
-  else
-    $sort = 'DESC';
+    // Sort it Ascending or Descending?
+    if($_GET['sort'] == 'asc') {
+      $sort = 'ASC';
+    }
+    else {
+      $sort = 'DESC';
+    }
  
-  // Which column will be sorted
-  switch($_GET['order']){
-    case 'Name':
-      $order = 'name';
-      break;
-    case 'Type':
-      $order = 'type';
-      break;
-    case 'Filename':
-      $order = 'filename';
-      break;
-    case 'Module':
-      $order = 'module';
-      break;
-    default:
-      $order = 'name';
+    // Which column will be sorted
+    switch($_GET['order']){
+      
+      case 'Title':
+        $order = 'n.title';
+        break;
+      
+      case 'Date':
+        $order = 'n.changed';
+        break;
+      
+      case 'Type':
+        $order = 'west.type';
+        break;
+      
+      case 'MailChimp Group':
+        $order = 'fdfmgi.field_mailchimp_group_id_value';
+        break;
+      
+      case 'Mobile Group':
+        $order = 'fdfmo.field_mc_optin_value';
+        break;
+      
+      default:
+        $order = 'n.title';
+    }
+    
   }
-}
-else{
-  // Default sort
-  $sort = 'ASC';
-  $order = ' name';
-}
-
-
-
-    $query = db_select('variable', 'v')
-    ->extend('PagerDefault')
-    ->orderBy('name')
-    ->fields('v', array('name'));
+  else {
   
-
-
- */
-
+    // Default sort
+    $sort = 'ASC';
+    $order = ' n.title';
+    
+  }
   
+  // Form name search
+  if (isset($_GET['search'])) {        
+    $search_bits = explode('+', $_GET['search']);
+  }
+
   $query = db_select('webform_entity_submission_type', 'west');
   
-  // Join node and webform_entity_submission_type tables
-  $query->join('node', 'n', 'west.type = n.type');
+  // Join webform_entity_submission_type table to node table to get general node details about
+  // each webform_entity_submission_type entry
+  $query->leftJoin('node', 'n', 'n.type = west.type');
   
-  // Fields in table columns
-  $query->fields('n', array('nid', 'title'))
-        ->fields('west', array('type'));
-    
-    
-    // $query->orderBy($order, $sort);
-
-    
-  $query = $query->extend('TableSort')->extend('PagerDefault')->limit(50);
-    
-  $results = $query->execute();
+  // MailChimp
+  $query->leftJoin('field_data_field_mailchimp_group_id', 'fdfmgi', 'n.nid = fdfmgi.entity_id');
   
-  if ($bla) {
-    $bla = TRUE;
+  // Mobile Commons
+  $query->leftJoin('field_data_field_mc_optin', 'fdfmo', 'n.nid = fdfmo.entity_id');
+  
+  // Fields of interest in all joined tables
+  $query->fields('n', array('nid', 'title', 'created', 'changed'))
+        ->fields('west', array('type'))
+        ->fields('fdfmgi', array('field_mailchimp_group_id_value'))
+        ->fields('fdfmo', array('field_mc_optin_value'));
+        
+  // TO-DO - Add MailChimp Group lookup to confirm valid Group / Interest Group
+  // assignment and to show number of email addresses assigned to group to indicate
+  // activity.
+  // http://apidocs.mailchimp.com/api/1.3/listinterestgroupings.func.php
+  // listInterestGroupings(string apikey, string id)
+        
+  // Loop through title search words to create AND condition for target terms
+  if (count($search_bits) > 1) {
+    
+    $db_or = db_or();
+    foreach($search_bits as $search_bit => $search_bit_text) {
+      $db_or->condition('n.title', '%'. $search_bit_text .'%', 'LIKE');
+    }
+    $query->condition($db_or);
+    
   }
+  elseif (isset($search_bits)) {
+    $query->condition('n.title', '%'. $_GET['search'] .'%', 'LIKE');
+  }
+  
+  // Sorting by column - dynamic based on user selection
+  $query->orderBy($order, $sort);
+  
+  // Extra functionality for query - enable column sorting and pager
+  $query = $query->extend('TableSort')
+                 ->extend('PagerDefault')
+                 ->limit(30);
+
+  // Submit query for processing
+  $results = $query->execute();
   
   // Build details on each entry for listing as table
   foreach ($results as $form_row) {
+    
+    // Date details in readable format
+    $date_details = date('M j, Y', $form_row->created) .' / '.  date('M j, Y', $form_row->changed);
  
     $rows[] = array(
       $form_row->title,
+      $date_details,
       $form_row->type,
-      l('Edit', 'node' . $form_row->nid . '/edit'),
+      $form_row->field_mailchimp_group_id_value,
+      $form_row->field_mc_optin_value, 
+      l('Edit', 'node/' . $form_row->nid . '/edit'),
     );
     
   }
   
-  // Headers for theme_table().  
-  $header = array('Title', 'Type', 'Edit');
+  // Prepare table header
+  $header = array(
+    array(
+      'data' => t('Title'),
+      'field' => 'n.title',
+      'sort' => 'ASC',
+    ),
+    array(
+      'data' => t('Date'),
+      'field' => 'n.changed',
+    ),
+    array(
+      'data' => t('Type'),
+      'field' => 'west.type',
+    ),
+    array(
+      'data' => t('MailChimp Group'),
+      'field' => 'fdfmgi.field_mailchimp_group_id_value',
+    ),
+    array(
+      'data' => t('Mobile Group'),
+      'field' => 'fdfmo.field_mc_optin_value',
+    ),
+    'Edit',
+  );
   
-  /*
-    Prepare table header
-$header = array(
-  array(
-    "data" => t('Name'),
-    "field" => "name"
-  ),
-  array(
-    "data" => t('Type'),
-    "field" => "type"
-  ),
-  array(
-    "data" => t('Filename'),
-    "field" => "filename"
-  ),
-  array(
-    "data" => t('Module'),
-    "field" => "module"
-  ),
-  array(
-    "data" => t('Weight'),
-    "field" => "weight"
-  )
-);
-
-*/
-  
-    $forms_listing = theme('table', 
+  // Table theme options
+  $forms_listing = theme('table', 
     array(
       "header" => $header,
       "rows" => $rows,
@@ -327,13 +360,10 @@ $header = array(
       "sticky" => true, // Table header will be sticky
       "caption" => "",
       "colgroups" => array(),
-      "empty" => t("Table has no row!") // The message to be displayed if table is empty
+      "empty" => t("No results found!") // The message to be displayed if table is empty
     )
   ).theme("pager");
   
-  if ($bla) {
-    $bla = TRUE;
-  }
   return theme('dosomething_mailchimp_toolbox_forms_report',
            array(
              'forms_listing' => $forms_listing,
@@ -341,3 +371,69 @@ $header = array(
          );
 }
 
+
+/**
+ * dosomething_mailchimp_toolbox_webform_search_form - FAPI definition of form elements for
+ * search field on report page.
+ *
+ * @param NONE
+ *   
+ * @return $form - array of form elements.
+ */
+function dosomething_mailchimp_toolbox_webform_search_form() {
+  
+  $form['dosomething_mailchimp_toolbox_webform_title_keyword'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Webform Title Search'),
+    '#default_value' => !empty($_GET['search']) ? urldecode($_GET['search']) : '',
+    '#description' => t('Search webforms by title.'),
+    '#size' => 35,
+    '#maxlength' => 60,
+    '#required' => FALSE,
+  );
+  
+  $form['dosomething_mailchimp_toolbox_webform_sort']  = array(
+    '#type' => 'value',
+    '#value' => isset($_GET['sort']) ? $_GET['sort'] : NULL ,
+  );
+  
+  $form['dosomething_mailchimp_toolbox_webform_order']  = array(
+    '#type' => 'value',
+    '#value' => isset($_GET['order']) ? $_GET['order'] : NULL,
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Search',
+  );
+  
+  return $form;
+
+}
+
+/**
+ * dosomething_mailchimp_toolbox_webform_search_form_submit() - Submit functionality for
+ * search field on report page. 
+ *
+ * @param $form
+ *   ?
+ *
+ * @param &$form_state
+ *   ?
+ *   
+ * @return - NONE
+ */
+function dosomething_mailchimp_toolbox_webform_search_form_submit($form, &$form_state) {
+  
+  $title_search = str_replace(' ', '+', $form['dosomething_mailchimp_toolbox_webform_title_keyword']['#value']);
+  
+  $parmaters = array(
+    'search' => $title_search,
+    'sort'   => $form['dosomething_mailchimp_toolbox_webform_sort']['#value'],
+    'order'  => $form['dosomething_mailchimp_toolbox_webform_order']['#value'],
+  );
+  
+  // Redirect back to form with search parameters
+  drupal_goto('/admin/reports/dosomething_mailchimp_toolbox', array('query'=>$parmaters));
+  
+}
