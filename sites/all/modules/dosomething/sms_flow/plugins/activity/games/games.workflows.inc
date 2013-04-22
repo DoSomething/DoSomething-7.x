@@ -20,9 +20,12 @@ $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->response_sets = array(
   array(
-    'phrase_match' => array('I hate you', 'suck it', 'kill yourself', 'die', 'youre the worst', 'shut up'),
+    'phrase_match' => array('I hate you', 'suck it', 'kill yourself', 'youre the worst', 'shut up'),
     'word_match' => array('die'),
-    'response' => array("That's no way to talk to a baby.", "Well that's not very nice", "Hey, be nice!"),
+    'response' => array("That's no way to talk to a baby. If you really really want me to go away, text END and I'll be gone."),
+  ),
+  array(
+    'phrase_match' => array('Who is this', 'Who are you', 'Who the hell is this', 'What is this'),
   ),
   array(
     'phrase_match' => array('Im not up', 'Im not awake'),
@@ -30,7 +33,7 @@ $activity->response_sets = array(
   ),
   array(
     'phrase_match' => array('I will feed you'),
-    'response' => array("Thanks!"),
+    'response' => array("Thanks!", "Thank you!", "You're the best."),
   ),
   array(
     'phrase_match' => array('Im tired'),
@@ -73,7 +76,7 @@ $activity->response_sets = array(
   ),
   array(
     'phrase_match' => array('Its okay', 'thats okay'),
-    'response' => array("Thanks for understanding"),
+    'response' => array("Thanks for understanding", "You're so understanding"),
   ),
   array(
     'phrase_match' => array('Ill change my shirt', 'clean shirt'),
@@ -82,10 +85,12 @@ $activity->response_sets = array(
   array(
     'phrase_match' => array('fuck you', 'you suck', 'screw you', 'you bitch', 'blow job', 'butt plug', 'camel toe', 'dumb ass', 'hard on', 'jerk off', 'jungle bunny', 'pissed off', 'porch monkey', 'nut sack', 'sand nigger'),
     'word_match' => array('anus', 'arse', 'arsehole', 'ass', 'asshat', 'assjabber', 'asspirate', 'assbag', 'assbandit', 'assbanger', 'assbite', 'assclown', 'asscock', 'asscracker', 'asses', 'assface', 'assfuck', 'assfucker', 'assgoblin', 'asshat', 'asshead', 'asshole', 'asshopper', 'assjacker', 'asslick', 'asslicker', 'assmonkey', 'assmunch', 'assmuncher', 'asspirate', 'assshit', 'assshole', 'asssucker', 'asswad', 'asswipe', 'axwound', 'bastard', 'beaner', 'bitch', 'bitchass', 'bitches', 'bitchtits', 'bitchy', 'blowjob', 'bollocks', 'bollox', 'boner', 'brotherfucker', 'bullshit', 'bumblefuck', 'buttpirate', 'buttfucka', 'buttfucker', 'carpetmuncher', 'chesticle', 'chinc', 'chink', 'choad', 'chode', 'clit', 'clitface', 'clitfuck', 'clusterfuck', 'cock', 'cockass', 'cockbite', 'cockburger', 'cockface', 'cockfucker', 'cockhead', 'cockjockey', 'cockknoker', 'cockmaster', 'cockmongler', 'cockmongruel', 'cockmonkey', 'cockmuncher', 'cocknose', 'cocknugget', 'cockshit', 'cocksmith', 'cocksmoke', 'cocksmoker', 'cocksniffer', 'cocksucker', 'cockwaffle', 'coochie', 'coochy', 'coon', 'cooter', 'cum', 'cumbubble', 'cumdumpster', 'cumguzzler', 'cumjockey', 'cumslut', 'cumtart', 'cunnie', 'cunnilingus', 'cunt', 'cuntass', 'cuntface', 'cunthole', 'cuntlicker', 'cuntrag', 'cuntslut', 'dago', 'damn', 'deggo', 'dick', 'dicksneeze', 'dickbag', 'dickbeaters', 'dickface', 'dickfuck', 'dickfucker', 'dickhead', 'dickhole', 'dickjuice', 'dickmilk', 'dickmonger', 'dicks', 'dickslap', 'dicksucker', 'dicksucking', 'dicktickler', 'dickwad', 'dickweasel', 'dickweed', 'dickwod', 'dike', 'dildo', 'dipshit', 'doochbag', 'dookie', 'douche', 'douchefag', 'douchebag', 'douchewaffle', 'dumass', 'dumbass', 'dumbfuck', 'dumbshit', 'dumshit', 'dyke', 'fag', 'fagbag', 'fagfucker', 'faggit', 'faggot', 'faggotcock', 'fagtard', 'fatass', 'fellatio', 'feltch', 'flamer', 'fuck', 'fuckass', 'fuckbag', 'fuckboy', 'fuckbrain', 'fuckbutt', 'fuckbutter', 'fucked', 'fucker', 'fuckersucker', 'fuckface', 'fuckhead', 'fuckhole', 'fuckin', 'fucking', 'fucknut', 'fucknutt', 'fuckoff', 'fucks', 'fuckstick', 'fucktard', 'fucktart', 'fuckup', 'fuckwad', 'fuckwit', 'fuckwitt', 'fudgepacker', 'gay', 'gayass', 'gaybob', 'gaydo', 'gayfuck', 'gayfuckist', 'gaylord', 'gaytard', 'gaywad', 'goddamn', 'goddamnit', 'gooch', 'gook', 'gringo', 'guido', 'handjob', 'heeb', 'hell', 'ho', 'hoe', 'homo', 'homodumbshit', 'honkey', 'humping', 'jackass', 'jagoff', 'jap', 'jerkass', 'jigaboo', 'jizz', 'junglebunny', 'kike', 'kooch', 'kootch', 'kraut', 'kunt', 'kyke', 'lameass', 'lardass', 'lesbian', 'lesbo', 'lezzie', 'mcfagget', 'mick', 'minge', 'mothafucka', 'mothafuckin', 'motherfucker', 'motherfucking', 'muff', 'muffdiver', 'munging', 'negro', 'nigaboo', 'nigga', 'nigger', 'niggers', 'niglet', 'nutsack', 'paki', 'panooch', 'pecker', 'peckerhead', 'penis', 'penisbanger', 'penisfucker', 'penispuffer', 'piss', 'pissed', 'pissflaps', 'polesmoker', 'pollock', 'poon', 'poonani', 'poonany', 'poontang', 'porchmonkey', 'prick', 'punanny', 'punta', 'pussies', 'pussy', 'pussylicking', 'puto', 'queef', 'queer', 'queerbait', 'queerhole', 'renob', 'rimjob', 'ruski', 'sandnigger', 'schlong', 'scrote', 'shit', 'shitass', 'shitbag', 'shitbagger', 'shitbrains', 'shitbreath', 'shitcanned', 'shitcunt', 'shitdick', 'shitface', 'shitfaced', 'shithead', 'shithole', 'shithouse', 'shitspitter', 'shitstain', 'shitter', 'shittiest', 'shitting', 'shitty', 'shiz', 'shiznit', 'skank', 'skeet', 'skullfuck', 'slut', 'slutbag', 'smeg', 'snatch', 'spic', 'spick', 'splooge', 'spook', 'suckass', 'tard', 'testicle', 'thundercunt', 'tit', 'titfuck', 'tits', 'tittyfuck', 'twat', 'twatlips', 'twats', 'twatwaffle', 'unclefucker', 'vajj', 'vag', 'vagina', 'vajayjay', 'vjayjay', 'wank', 'wankjob', 'wetback', 'whore', 'whorebag', 'whoreface', 'wop'),
-    'response' => array("You kiss your mother with that mouth?", "Woah, that's too much for my baby ears to handle"),
+    'word_match_exact' => TRUE,
+    'response' => array("That's no way to talk to a baby. If you want me to go away, I will, just text END.", "You kiss your mother with that mouth? If you want me to go away, I will, just text END.", "Woah, that's too much for my baby ears to handle. If you want me to go away, I will, just text END."),
   ),
   array(
     'phrase_match' => array('Calm down'),
+    'AND_match' => array(array('calm', 'down')),
     'response' => array("I'm trying, I swear!"),
   ),
   array(
@@ -136,10 +141,12 @@ $activity->response_sets = array(
   ),
   array(
     'phrase_match' => array('Chill out'),
+    'AND_match' => array(array('chill', 'out')),
     'response' => array("This is me chilled out"),
   ),
   array(
     'phrase_match' => array('Stay still'),
+    'AND_match' => array(array('stay', 'still')),
     'response' => array("BUT I. DONT. WANNAAAAAA"),
   ),
   array(
@@ -160,6 +167,10 @@ $activity->response_sets = array(
     'response' => array("Okay, I'll try to be quiet til you're done"),
   ),
   array(
+    'phrase_match' => array('driving me crazy', 'drive me crazy'),
+    'response' => array("But the cute makes up for it :)"),
+  ),
+  array(
     'phrase_match' => array('get adopted', 'putting you up for adoption'),
     'response' => array("You don't mean that :("),
   ),
@@ -168,20 +179,34 @@ $activity->response_sets = array(
     'response' => array("Nom nom nom nom"),
   ),
   array(
+    'phrase_match' => array('There was no school today', 'school is already out', 'school has been out', 'Its the weekend', 'Its Saturday', 'Its Sunday'),
+  ),
+  array(
+    'phrase_match' => array('Yes I have to study'),
+  ),
+  array(
     'phrase_match' => array('I dont have to study'),
-    'response' => array("Perfect! Then we can play alll night"),
+    'response' => array("Perfect! Then we can play allll night"),
   ),
   array(
     'phrase_match' => array('I dont take algebra', 'I already took algebra'),
     'response' => array("I can't even say my name yet, I don't know the difference between school subjects"),
   ),
   array(
+    'phrase_match' => array('I cant sing', 'I dont know any lullabies', 'I dont know a lullaby'),
+    'response' => array("I'm sure whatever you sing will be perfect."),
+  ),
+  array(
     'phrase_match' => array('I dont want to sing'),
-    'response' => array("But it'll make me shut up and go to sleep"),
+    'response' => array("But it'll make me go to sleep"),
   ),
   array(
     'phrase_match' => array('You do it'),
     'response' => array("I can't even say my own name yet, how am I supposed to do it?"),
+  ),
+  array(
+    'phrase_match' => array('Whats your name?'),
+    'response' => array("That's your job! Just don't go all celeb on me and name me Flamingo or something."),
   ),
 );
 
