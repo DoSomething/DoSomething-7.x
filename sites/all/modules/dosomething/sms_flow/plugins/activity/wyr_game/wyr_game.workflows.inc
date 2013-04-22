@@ -119,7 +119,9 @@ $activity->sets = array(
   array(
     'mdata_id'     => 10223,
     'game_id'      => 6,
-    'opt_in_paths' => array(153183, 153193, 153203, 153213, 153223, 153233, 153243, 153253, 153263, 153273),
+    'opt_in_paths' => array(153193, 153203, 153213, 153223, 153233, 153243, 153253, 153263, 153273),
+    'path_special' => 153183,
+    'send_to_special_on' => 3,
   ),
   // Pregnancy Text SAFE tips
   array(
