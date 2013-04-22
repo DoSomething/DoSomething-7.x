@@ -158,7 +158,7 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
     }
     
     // Submit to MailChimp
-    $mailChimp_results= dosomething_general_mailchimp_subscribe($application_email, $MailChimp_group, $merge_vars);
+    $mailChimp_results = dosomething_general_mailchimp_subscribe($application_email, $MailChimp_group, $merge_vars);
     
   }
   
@@ -206,6 +206,13 @@ function _dosomething_mailchimp_toolbox_webform_report() {
   drupal_add_css(
     drupal_get_path('module', 'dosomething_mailchimp_toolbox') . '/css/dosomething_mailchimp_toolbox.css',
     array('group' => CSS_DEFAULT, 'every_page' => FALSE));
+  
+  if ($bla) {
+    $bla;
+  }
+  
+  // Collect uptodate details about MailChimp groups
+  list($MC_groupNames, $MC_currentGroup_subscribers, $MC_groupingIdByGroup_Subscribers) = dosomething_mailchimp_toolbox_mailchimp_group_info();
   
   // Respond to user input for column sorting
   if (isset($_GET['sort']) && isset($_GET['order'])) {
@@ -308,17 +315,34 @@ function _dosomething_mailchimp_toolbox_webform_report() {
   // Submit query for processing
   $results = $query->execute();
   
+  $row_count = 0;
+  
   // Build details on each entry for listing as table
   foreach ($results as $form_row) {
     
+    $row_count++;
+    
     // Date details in readable format
     $date_details = date('M j, Y', $form_row->created) .' / '.  date('M j, Y', $form_row->changed);
- 
+    
+    // Check to see if MailChimp group ID setting is valid, highlight if not
+    if ($form_row->field_mailchimp_group_id_value == NULL) {
+      $cell['data'] = 'Undefined';
+      $cell['class'] = 'warning';
+    }
+    elseif (in_array($form_row->field_mailchimp_group_id_value, $MC_groupNames) == FALSE) {
+      $cell['data'] = $form_row->field_mailchimp_group_id_value;
+      $cell['class'] = 'alert';
+    } else {
+      $cell['data'] = $form_row->field_mailchimp_group_id_value .'('. $MC_currentGroup_subscribers . ')';
+      $cell['class'] = 'confirmed';
+    }
+
     $rows[] = array(
       $form_row->title,
       $date_details,
       $form_row->type,
-      $form_row->field_mailchimp_group_id_value,
+      $cell,
       $form_row->field_mc_optin_value, 
       l('Edit', 'node/' . $form_row->nid . '/edit'),
     );
@@ -348,7 +372,7 @@ function _dosomething_mailchimp_toolbox_webform_report() {
       'data' => t('Mobile Group'),
       'field' => 'fdfmo.field_mc_optin_value',
     ),
-    'Edit',
+    t('Edit'),
   );
   
   // Table theme options
@@ -437,3 +461,151 @@ function dosomething_mailchimp_toolbox_webform_search_form_submit($form, &$form_
   drupal_goto('/admin/reports/dosomething_mailchimp_toolbox', array('query'=>$parmaters));
   
 }
+
+/**
+ * A wrapper function that returns the mc api object
+ *
+ * @param $form
+ *   ?
+ *   
+ * @return - MCAPI connection object.
+ */
+function dosomething_mailchimp_toolbox_mailchimp_group_info() {
+  
+  // Our function - alternative to contrib MailChimp module due to connection bug
+  $mcapi = dosomething_general_mailchimp_get_api_object();
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
+  // Work around, connecting to both lists immedatly seems to work rahter than looping through them as needed
+  $groupings['old_people'] = $mcapi->listInterestGroupings('a27895fe0c');
+  $groupings['dosomething_members'] = $mcapi->listInterestGroupings('f2fab1dfd4');
+  
+    
+  // Old People
+  // $list_ids['old_people'] = 'a27895fe0c';
+
+  // DoSomething Members
+  // $list_ids['dosomething_members'] = 'f2fab1dfd4';
+  
+  $groupNames = array();
+  $group_subscribers = array();
+
+  // Collect list details with caching
+  foreach ($groupings as $list_name => $grouping) {
+
+    // Collect group details for list
+    // $groupings = $mcapi->listInterestGroupings($listid);
+    
+    // Check for erros connecting to MCAPI
+    if ($grouping != FALSE) {
+          
+      // Collect details for each group in list
+      foreach ($grouping as $groups) {
+        foreach ($groups['groups'] as $group) {
+            
+          // Collect details of list group
+          $groupNames[] = $group['name'];
+          $currentGroup_subscribers[$group['name']] = $group['subscribers'];
+            
+        }
+      }
+
+      
+      // Cache ID
+      $cids = "dosomething_general_mailchimp_group_subscribers_$list_name";
+      
+      // Collect cached info for list ID subscribers
+      $cache = cache_get($cids);
+      
+      // Check last data point vs collection interval
+      if (!empty($cache->data) || $cache->data['snapshot_due'] < time()) {
+        $groupingIdByGroup_Subscribers = $cache->data;
+      }
+      else { // Rebuild list group subscriber data
+      
+        $groupingIdByGroup_Subscribers = array();
+        
+        // Collect group details for list
+        // $groupings = $mcapi->listInterestGroupings($listid);
+        
+        // Confirm results are found
+        if (is_array($grouping) && !empty($grouping)) {
+          
+          // Set timestamp of when next subscribers count refresh is due - daily
+          // NOTE: Need cron job to build on interval rather than user access to get regular intervals of data points
+          $groupingIdByGroup_Subscribers['snapshot_due'] = time() + (1 * 24 * 60 * 60);
+          
+          // Collect details for each group in list
+          foreach ($grouping as $groups) {
+            foreach ($groups['groups'] as $group) {
+              
+              // Collect details of list group subscribers
+              $timestamp = time();
+              $groupingIdByGroup_Subscribers[$list_name][$group['name']][$timestamp] = $group['subscribers'];
+              
+            }
+          }
+          
+        }
+        
+        if ($bla) {
+          $bla = TRUE;
+        }
+        
+        // Cache results
+        cache_set($cid, $groupingIdByGroup_Subscribers);
+        
+      }
+      
+    }
+    else {
+      drupal_set_message('Failed to connect to MailChimp API to collect group details for "'. $list_name . '" list.', 'error');
+    }
+    
+  } // END MC Lists loop - General & Old People
+  
+  return array($groupNames, $currentGroup_subscribers, $groupingIdByGroup_Subscribers);
+  
+}
+
+/**
+ * A wrapper function that returns the mc api object
+ *
+ * @param $form
+ *   ?
+ *   
+ * @return - MCAPI connection object.
+ */
+function dosomething_mailchimp_toolbox_mailchimp_get_api_object() {
+  
+  libraries_load('mailchimp');
+  $q = new MCAPI(variable_get('mailchimp_api_key', ''));
+
+  // set the timeout to something reasonsable to avoid taking down the Drupal site
+  $q->setTimeout(300);
+
+  // specify if a secure connection should be used wit the API
+  $q->useSecure(variable_get('mailchimp_use_secure', TRUE));
+
+  if ($q->errorCode) {
+    watchdog('dosomething_mailchimp_toolbox', 'MCAPI Error: %errmsg', array('%errmsg' => $q->errorMessage), WATCHDOG_ERROR);
+    return NULL;
+  }
+
+  return $q;
+}
+
+/*
+ 
+ <div class="bar">
+    <div class="percentage" style="width:66%">This is 66% wide div</div>
+</div>
+CSS:
+
+.bar { width: 99%; border: 1px solid #000; }
+.percentage { background: #000; }
+
+*/
