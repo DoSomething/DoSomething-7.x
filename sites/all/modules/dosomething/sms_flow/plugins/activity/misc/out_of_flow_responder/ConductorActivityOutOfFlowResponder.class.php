@@ -178,13 +178,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
   // Case-insensitive version of in_array()
   function in_arrayi($needle, $haystack) {
-    foreach ($haystack as $value) {
-      if (strtolower($value) == strtolower($needle)) {
-        return TRUE;
-      }
-    }
-
-    return FALSE;
+    return in_array(strtolower($needle), array_map('strtolower', $haystack));
   }
 
   // Determine if negative-form word exists in $needles
