@@ -42,48 +42,48 @@ function optimizely_permission() {
  *
  * If the radio button 'optimizely_onoff' is set to 'off' it means that the snippet
  * will be added to all pages except those listed.
+ *
+ * The project must be enabled.
  */
  function optimizely_init() {
- 
-   $query = db_select('optimizely', 'op')
-    ->orderBy('oid')
-    ->fields('op');
+ $query = db_select('optimizely', 'op')
+	->orderBy('oid')
+	->fields('op');
     
   // Fetch the result set.
   $result = $query->execute();
-
-  // Grab the ID, but only proceed if it's set to something.
-  //$optimizely_id = variable_get('optimizely_id', 'NONE');
   
-  while ($row = $result->fetchAssoc()) {  
-		$optimizely_onoff = $row['onoff'];
-		$records = unserialize($row['path']);
-		$optimizely_script = '//cdn.optimizely.com/js/' . $row['project_code'] . '.js';
-		$cur_path = current_path(); 
-		$path_alias = drupal_get_path_alias($cur_path);
+  if ($result) {
+		while ($row = $result->fetchAssoc()) {
+			$optimizely_enabled = $row['enabled'];
+			if ($optimizely_enabled) {  
+				$optimizely_onoff = $row['onoff'];
+				$records = unserialize($row['path']);
+				$optimizely_script = '//cdn.optimizely.com/js/' . $row['project_code'] . '.js';
+				$cur_path = current_path(); 
+				$path_alias = drupal_get_path_alias($cur_path);
 	
-		if ($optimizely_onoff == 'on' && $optimizely_id != "NONE") {
-	//    preg_match('/<script src="(.*)?"><\/script>/s', $optimizely_script, $script_src);
-	//    drupal_add_js($script_src[1], 'external');
-
-			foreach ($records as $path) {						
-				$match = drupal_match_path($path_alias, $path);
-				if($match) {
-					drupal_add_js($optimizely_script, 'external');
-					break 1;
-				}	
-			}
-		} elseif ($optimizely_onoff == 'off' && $optimizely_id != "NONE") {
-			$add_script = true;
-			foreach ($records as $path) {						
-				$match = drupal_match_path($path_alias, $path);
-				if($match) {
-						$add_script = false;
-						break 1;
+				if ($optimizely_onoff == 'on') {
+					foreach ($records as $path) {						
+						$match = drupal_match_path($path_alias, $path);
+						if($match) {
+							drupal_add_js($optimizely_script, 'external');
+							break 1;
+						}	
+					}
+				} elseif ($optimizely_onoff == 'off') {
+					$add_script = true;
+					foreach ($records as $path) {						
+						$match = drupal_match_path($path_alias, $path);
+						if($match) {
+								$add_script = false;
+								break 1;
+						}
+					}
+					if ($add_script) {
+						drupal_add_js($optimizely_script, 'external');
+					}
 				}
-			}
-			if ($add_script) {
-				drupal_add_js($optimizely_script, 'external');
 			}
 		}
 	}
@@ -121,7 +121,7 @@ function optimizely_menu() {
   );
   
   $items['admin/config/system/optimizely/list'] = array(
-  	'title' => 'List of Projects',
+  	'title' => 'Project Listing',
   	'description' => 'List of all different projects to put Optimizely code snippet.',
   	'page callback' => 'optimizely_list_page',
   	'access arguments' => array('administer optimizely'),
@@ -138,7 +138,8 @@ function optimizely_menu() {
 		'page arguments' => array('optimizely_delete_page'),
     'access arguments' => array('administer optimizely'),
     'file' => 'optimizely.admin.inc',
-  	'file path' => drupal_get_path('module', 'optimizely'),	
+  	'file path' => drupal_get_path('module', 'optimizely'),
+  	'type' => MENU_CALLBACK,	
 	);
 	  	
   return $items;
@@ -148,41 +149,4 @@ function optimizely_setup_account_id_validate($form, &$form_state) {
   if (!preg_match('/^\d+$/', $form_state['values']['optimizely_id'])) {
     form_set_error('optimizely_id', t('Your Optimizely ID should be numeric.'));
   }
-}
-
-/**
- * Either Adds or Updates a record from the setup form
- */
-function optimizely_add_update_form_submit($form, &$form_state) {
-
-	$project_title = check_plain($form_state['values']['project_title']);
-	$project_code =  check_plain($form_state['values']['project_code']);
-	$optimizely_path = check_plain($form_state['values']['optimizely_path']);
-	$path_array = preg_split('/[\r\n]+/', $optimizely_path, -1, PREG_SPLIT_NO_EMPTY);
-	$onoff = $form_state['values']['optimizely_onoff'];
-	
-  if ($form['submit']['#value'] == 'Add') {
-		db_insert('optimizely')
-			->fields(array(
-				'project_title' => $project_title,
-				'onoff' => $onoff,
-				'path' => serialize($path_array),
-				'project_code' => $project_code,
-			))
-			->execute();
-	} else if ($form['submit']['#value'] == 'Update') {
-	
-		$oid = $form_state['values']['oid'];
-		db_update('optimizely')
-			->fields(array(
-				'project_title' => $project_title,
-				'onoff' => $onoff,
-				'path' => serialize($path_array),
-				'project_code' => $project_code,
-			))
-			->condition('oid', $oid)
-			->execute();	
-	}
-  
-  drupal_goto('admin/config/system/optimizely/list');   
 }

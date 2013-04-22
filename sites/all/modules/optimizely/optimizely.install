@@ -68,3 +68,18 @@ function optimizely_schema() {
 	return $schema;
 	
 }
+
+/**
+ * Adds new field to optimizely table.
+ */
+function optimizely_update_7001() {
+  $spec = array(
+    'type' => 'int',
+    'size' => 'tiny',
+    'not null' => TRUE,
+    'default' => 0,
+   'description' => 'Field determines if a project is enabled.',
+  );
+
+  db_add_field('optimizely', 'enabled', $spec);
+}

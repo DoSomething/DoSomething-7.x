@@ -1,7 +1,9 @@
 name = Optimizely
-description = Adds Optimizely account javascript to a site to support account projects / experiments.
+description = Adds the Optimizely code in your site
 package = Other
 core = 7.x
-version = "7.x-2.0"
 php = 5.2
+; Information added by drupal.org packaging script on 2011-10-11
+version = "7.x-1.11"
+core = "7.x"
 project = "optimizely"
