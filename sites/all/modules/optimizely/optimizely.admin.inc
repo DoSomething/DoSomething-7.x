@@ -15,18 +15,19 @@
 
 function optimizely_add_update_form($form, &$form_submit) {
 
-	if (!arg(4)) {
+  $arg = check_plain(arg(4));
+	if (!$arg) {
 		$form_action = 'Add';	
   } else {
 		$query = db_select('optimizely', 'op')
-			->condition('op.oid', arg(4), '=')
+			->condition('op.oid', $arg, '=')
 			->fields('op');		
 		$result = $query->execute();
 		$record = $result->fetch();
 		
 		$form['oid'] = array(
   	'#type' => 'value',
-  	'#value' => arg(4),  	
+  	'#value' => $arg,  	
   	);
   	$form_action = 'Update';    	
   }	
@@ -67,6 +68,16 @@ function optimizely_add_update_form($form, &$form_submit) {
       'off' => 'All pages except those listed',      
     ),
   );
+  
+    $form['enabled'] = array(
+    '#type' => 'radios',
+  	'#title' => t('Enable/Disable Project'),
+  	'#default_value' => arg(4) ? $record->enabled : 0,
+    '#options' => array(
+    	1 => 'Enable project',
+      0 => 'Disable project',      
+    ),
+  );
 
     $form['optimizely_path'] = array(
     '#type' => 'textarea',
@@ -97,7 +108,20 @@ function optimizely_setup_account_id($form_state) {
     '#type' => 'markup',
     '#markup' => '<p>' . t('In order to use this module, you need an <a href="@url">Optimizely</a> account. A Free 30 day trial account is available.',
                   array('@url' => url('http://www.optimizely.com/'))) . '</p><p>' .
-                  t('Most of the configuration and setup for the A/B and other tests is done by logging into your account on the Optimizely website.') . '</p>',
+                  t('Most of the configuration and setup for the A/B and other tests is done by logging into your account on the Optimizely website.') . '</p><p>'.
+                  t('The default Project js file (snippet) uses the account ID. If there\'s no entries in 
+                  the <a href="@url">List Of Products</a> page this will be used as a default site wide.',
+                  array('@url' => url('admin/config/system/optimizely/list'))) . '</p>',
+  );
+
+  $form['optimizely_onoff'] = array(
+    '#type' => 'radios',
+    '#title' => t('Show Optimizely snippet on specific pages'),
+    '#default_value' => variable_get('optimizely_onoff', 'on'),
+    '#options' => array(
+      'on' => 'Only the listed pages',
+      'off' => 'All pages except those listed',
+    ),
   );
 
   $form['optimizely_id'] = array(
@@ -132,16 +156,17 @@ function optimizely_list_page() {
   foreach ($result as $row) {
     $rows[] = array(
       $row->project_title,
-      l('Edit', 'admin/config/system/optimizely/' . $row->oid),
-      l('Delete', 'admin/config/system/optimizely/delete/' . $row->oid),
+      l(t('Update'), 'admin/config/system/optimizely/' . $row->oid),
+      l(t('Delete'), 'admin/config/system/optimizely/delete/' . $row->oid),
 			$row->onoff,
       implode('<br />', unserialize($row->path)),
       $row->project_code,
+      $row->enabled ? t('Enabled') : t('Disabled'),
     );
   }
 
   // Headers for theme_table().  
-  $header = array('Project Title', 'Update', 'Delete','Only the Paths/Pages Listed', 'Paths/Pages', 'Project Code');
+  $header = array('Project Title', 'Update', 'Delete','Only the Paths/Pages Listed', 'Paths/Pages', 'Project Code', 'Enabled');
   
   // Format output.
   $output = theme('table', array('header' => $header, 'rows' => $rows)) . theme('pager');
@@ -188,3 +213,45 @@ function optimizely_delete_page_confirm_submit($form, &$form_state) {
   
   drupal_goto('admin/config/system/optimizely/list'); 
 }
+
+/**
+ * Either Adds or Updates a record from the setup form
+ */
+function optimizely_add_update_form_submit($form, &$form_state) {
+
+	$project_title = check_plain($form_state['values']['project_title']);
+	$project_code = check_plain($form_state['values']['project_code']);
+	//$optimizely_path = check_plain($form_state['values']['optimizely_path']);
+	$optimizely_path = $form_state['values']['optimizely_path'];
+	$path_array = preg_split('/[\r\n]+/', $optimizely_path, -1, PREG_SPLIT_NO_EMPTY);
+	$onoff = check_plain($form_state['values']['optimizely_onoff']);
+	$enabled = check_plain($form_state['values']['enabled']);
+
+  if ($form['submit']['#value'] == 'Add') {
+		db_insert('optimizely')
+			->fields(array(
+				'project_title' => $project_title,
+				'onoff' => $onoff,
+				'path' => serialize($path_array),
+				'project_code' => $project_code,
+				'enabled' => $enabled,
+			))
+			->execute();
+	} else if ($form['submit']['#value'] == 'Update') {
+	
+		$oid = $form_state['values']['oid'];
+		db_update('optimizely')
+			->fields(array(
+				'project_title' => $project_title,
+				'onoff' => $onoff,
+				'path' => serialize($path_array),
+				'project_code' => $project_code,
+				'enabled' => $enabled,
+			))
+			->condition('oid', $oid)
+			->execute();	
+	}
+  
+  drupal_goto('admin/config/system/optimizely/list');   
+}
+
