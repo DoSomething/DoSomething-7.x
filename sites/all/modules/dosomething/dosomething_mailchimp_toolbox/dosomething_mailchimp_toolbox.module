@@ -240,11 +240,11 @@ function _dosomething_mailchimp_toolbox_webform_report() {
         $order = 'west.type';
         break;
       
-      case 'MailChimp Group':
+      case 'MailChimpGroup':
         $order = 'fdfmgi.field_mailchimp_group_id_value';
         break;
       
-      case 'Mobile Group':
+      case 'MobileGroup':
         $order = 'fdfmo.field_mc_optin_value';
         break;
       
@@ -334,7 +334,7 @@ function _dosomething_mailchimp_toolbox_webform_report() {
       $cell['data'] = $form_row->field_mailchimp_group_id_value;
       $cell['class'] = 'alert';
     } else {
-      $cell['data'] = $form_row->field_mailchimp_group_id_value .'('. $MC_currentGroup_subscribers . ')';
+      $cell['data'] = $form_row->field_mailchimp_group_id_value .' ('. $MC_currentGroup_subscribers[$form_row->field_mailchimp_group_id_value] . ' subscribers)';
       $cell['class'] = 'confirmed';
     }
 
@@ -365,11 +365,11 @@ function _dosomething_mailchimp_toolbox_webform_report() {
       'field' => 'west.type',
     ),
     array(
-      'data' => t('MailChimp Group'),
+      'data' => t('MailChimpGroup'),
       'field' => 'fdfmgi.field_mailchimp_group_id_value',
     ),
     array(
-      'data' => t('Mobile Group'),
+      'data' => t('MobileGroup'),
       'field' => 'fdfmo.field_mc_optin_value',
     ),
     t('Edit'),
