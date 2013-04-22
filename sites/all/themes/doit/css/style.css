@@ -1702,6 +1702,10 @@ ul.hover-image li:first-child {
   border-bottom: none;
 }
 
+body.page-node table#edit-field-picture-und-table .image-widget.form-managed-file {
+  width: 380px;
+}
+
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
   height: 195px;
 }
