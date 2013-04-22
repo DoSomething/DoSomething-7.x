@@ -1,5 +1,7 @@
 <?php
 
+include 'webform_quiz.features.inc';
+
 /**
  * Implements hook_webform_component_info().
  */
@@ -222,16 +224,34 @@ function webform_quiz_clear($nid) {
     ->execute();
 }
 
-function webform_init() {
+function webform_quiz_init() {
   $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
   if (arg(0) == 'quiz-result' && is_numeric(arg(1))) {
     $fblink = fboauth_action_link_properties('connect', current_path());
     $fblink = l('Connect with Facebook', $fblink['href'], array('query' => $fblink['query']));
 
+    $facebook = array(
+      'title' => '',
+      'caption' => '',
+      'description' => '',
+    );
+
+    $node = node_load(arg(1));
+    if (!empty($node->field_quiz_facebook_post_title[LANGUAGE_NONE][0]['value'])) {
+      $facebook['title'] = $node->field_quiz_facebook_post_title[LANGUAGE_NONE][0]['value'];
+    }
+    if (!empty($node->field_quiz_facebook_post_caption[LANGUAGE_NONE][0]['value'])) {
+      $facebook['caption'] = $node->field_quiz_facebook_post_caption[LANGUAGE_NONE][0]['value'];
+    }
+    if (!empty($node->field_quiz_facebook_post_desc[LANGUAGE_NONE][0]['value'])) {
+      $facebook['description'] = $node->field_quiz_facebook_post_desc[LANGUAGE_NONE][0]['value'];
+    }
+
     drupal_add_js(
       array(
+        'facebook' => $facebook,
         'fbconnect_button' => $fblink,
-        'quiz_url' => url('node/'.arg(1), array('absolute' => TRUE)),
+        'quiz_url' => url('node/' . arg(1), array('absolute' => TRUE)),
         'logged_in' => user_is_logged_in(),
       ),
       'setting'
