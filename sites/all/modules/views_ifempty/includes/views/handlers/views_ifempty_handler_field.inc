@@ -57,7 +57,7 @@ class views_ifempty_handler_field extends views_handler_field {
   /**
    * Validate the options form.
    */
-  function options_validate($form, &$form_state) {
+  function options_validate(&$form, &$form_state) {
     $values = &$form_state['values']['options'];
     if (empty($values['emptyfield']) || empty($values['outputfield'])) {
       if (empty($values['emptyfield'])) {
