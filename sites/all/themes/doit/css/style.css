@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+@charset "UTF-8";
 /* The Coding Designer's Survival Kit
  * A framework for designing websites in the browser.
  *
@@ -1682,6 +1682,10 @@ ul.hover-image li:first-child {
   left: 90px !important;
 }
 
+.page-node .field-name-field-mailchimp-group-id {
+  display: none;
+}
+
 .page-scholarships #breadcrumb {
   display: none;
 }
@@ -1696,6 +1700,14 @@ ul.hover-image li:first-child {
   -o-box-shadow: none;
   box-shadow: none;
   border-bottom: none;
+}
+
+.field-type-image #edit-field-picture-und-table td {
+  width: 300px;
+}
+
+body.page-node table#edit-field-picture-und-table .image-widget.form-managed-file {
+  width: 380px;
 }
 
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
@@ -2274,7 +2286,7 @@ tr.odd, tr.even {
 }
 
 td {
-  border-right: 1px solid #d4d2d1;
+  border: 1px solid #d4d2d1;
   padding: 14px;
 }
 td:last-of-type {
@@ -5562,8 +5574,8 @@ comments.fb_iframe_widget {
   right: 0;
 }
 .view-campaign-gallery #gallery {
-  height: 480px;
-  padding: 16px 61px;
+  margin: 0px auto -8px;
+  padding: 0;
   text-align: center;
 }
 .view-campaign-gallery #slideshow {
@@ -5581,7 +5593,7 @@ comments.fb_iframe_widget {
   margin: 16px 0;
 }
 .view-campaign-gallery #thumbs li {
-  padding: 8px;
+  padding: 0 8px 8px 8px;
   float: left;
   width: 20%;
   list-style-type: none;

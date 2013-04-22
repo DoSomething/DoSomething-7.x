@@ -773,8 +773,12 @@ ul.hover-image
 .btn-tell
   .mcommons-webform-column 
     .go-button
-      left: 90px !important    
-
+      left: 90px !important
+      
+// Hide MailChimp group
+.page-node
+  .field-name-field-mailchimp-group-id
+    display: none
 
 // SCHOLARSHIP PAGE
 .page-scholarships
@@ -797,3 +801,8 @@ ul.hover-image
   #edit-field-picture-und-table
     td
       width: 300px
+
+body.page-node
+  table#edit-field-picture-und-table
+    .image-widget.form-managed-file
+      width: 380px

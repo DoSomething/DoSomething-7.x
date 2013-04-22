@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html > body {
   font-size: 16px; }
 
@@ -1063,6 +1062,44 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 0; }
     #cmp .socialWrapper .socialButton:last-child {
       display: none; }
+  #cmp #flip-winners h2 {
+    clear: both;
+    color: #ffb915;
+    text-transform: uppercase;
+    font-size: 2.8em;
+    font-weight: 600;
+    line-height: 1em;
+    margin: 2% auto; }
+  #cmp #flip-winners img {
+    clear: both;
+    float: left;
+    width: 48%;
+    margin: 0 2% 2% 0; }
+  #cmp #flip-winners .para {
+    float: right;
+    width: 48%;
+    margin: 0 0 2% 2%; }
+    #cmp #flip-winners .para p {
+      text-align: left;
+      line-height: 1.3em;
+      font-size: 1.4em; }
+      #cmp #flip-winners .para p span {
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #ffb915;
+        font-size: 0.9em; }
+      #cmp #flip-winners .para p strong {
+        text-transform: uppercase;
+        font-size: 1.2em;
+        font-weight: 500; }
+  #cmp #flip-winners .top100 {
+    text-transform: uppercase;
+    font-size: 1.4em;
+    clear: both;
+    margin: 2% auto; }
+    #cmp #flip-winners .top100 a {
+      text-decoration: underline;
+      font-weight: 600; }
   #cmp #post-flip {
     background: #0c3565;
     padding: 2% 4%;
@@ -1806,6 +1843,18 @@ div[aria-labelledby="ui-dialog-title-1"] {
         font-size: 2.5em;
         margin-top: 3%; }
       #cmp #header h2 {
+        font-size: 1em; }
+    #cmp #flip-winners h2 {
+      font-size: 2.2em;
+      font-weigh: 500;
+      margin: 4% 0 2%; }
+    #cmp #flip-winners img {
+      width: 100%;
+      margin: 0 auto 2%; }
+    #cmp #flip-winners .para {
+      width: 100%;
+      margin: 0 auto 4%; }
+      #cmp #flip-winners .para p {
         font-size: 1em; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {

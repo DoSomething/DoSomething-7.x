@@ -436,8 +436,10 @@ body {
     color: #ffc40b; }
   #cmp #content .box4 h4 {
     color: #ff9a0f; }
-  #cmp #content .box2, #cmp #content .box3 {
+  #cmp #content .box2 {
     margin-left: 0.68em;
+    margin-right: 0.68em; }
+  #cmp #content .box3 {
     margin-right: 0.68em; }
   #cmp #content .med-box-wrap {
     display: inline-block; }

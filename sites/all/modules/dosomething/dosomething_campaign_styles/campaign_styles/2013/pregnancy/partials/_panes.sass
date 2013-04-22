@@ -1,0 +1,308 @@
+// PANES 
+
+///      //
+//  #header     - sign up -
+//      //
+.section#header
+  background: url('http://www.dosomething.org/files/campaigns/pregnancy/baby-header.jpg') top center no-repeat
+  margin-bottom: 0
+  height: 260px
+#header
+  max-width: 800px
+  margin: 0 auto
+  text-align: left
+  position: relative
+  padding: 0
+  h1, h2
+    text-align: left
+    color: black
+    margin: 0
+  .headline
+    max-width: 800px
+    margin: 0 auto
+  h1
+    margin: 1.5%
+    background: $secondaryColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    float: left
+    font-weight: 600
+    font-size: 3.4em
+    color: white
+    padding: 1.5% 1.5% 0
+    line-height: 1em
+  h2
+    text-align: center
+    text-transform: uppercase
+    font-size: 1.8em
+    font-family: $din
+    font-weight: 600
+    width: 80%
+    margin: 0 auto
+    line-height: 1.2em
+    span
+      color: $secondaryColor
+      font-weight: 700
+      padding: 0
+  .subhead
+    text-transform: uppercase
+    color: white
+    background: $secondaryColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 1.5% 0
+    float: left
+    font-size: 1.4em
+    padding: 1% 1.5% 0
+  .subhead2
+    max-width: 375px
+    color: white
+    background: $blueColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 1.5% 0
+    float: left
+    font-size: 1.1em
+    padding: 1% 1.5%
+    clear: both
+  .date
+    color: white
+    background: #333
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 5% 1.5% 1.5% 1.5% 
+    float: right
+    clear: both
+    font-size: 1.2em
+    padding: 1% 1.5%
+    text-transform: uppercase
+  .pane-campaign-signed
+    h2
+      text-align: center
+      text-transform: uppercase
+      color: white
+      font-size: 2em
+      font-weight: 400
+    .action-now
+      margin: 0 auto
+      display: inline-block
+      text-align: center         
+      img
+        margin: 0em 0.8em 0 0
+        float: left
+      .go-button
+        margin-top: 0.1em 
+        float: left
+        font-size: 1.8em
+  .header-social
+    position: absolute
+    bottom: 0
+    right: 8px
+  .header-facebook-share, .header-twitter-share
+    display: inline-block
+    margin: 0 2px
+
+  .ctia_bottom, .ctia_top
+    font-weight: 400
+    text-transform: none
+
+
+
+//      //
+//  #game
+//      //
+#game
+  color: white
+  background: $blueColor
+  h2, h3
+    max-width: 600px
+    margin: 0 auto
+  h2
+    color: $thirdColor
+    line-height: 1.1em
+  h3
+    color: white
+    font-weight: 400
+    text-transform: none
+    font-size: 1.5em
+  label
+    color: white
+  form
+    max-width: 600px
+    margin: 0 auto
+  hr
+    border: 1px solid white
+    border-bottom: 0
+    clear: both
+  input[type="text"]
+    float: left
+    width: 48%
+    margin: 2% 1%
+  .scholar-input
+    float: left
+    width: 50%
+    label
+      margin-top: 2%
+    input
+      width: 96%
+      margin: 2% 1% 4%
+  .scholar-foot
+    float: left
+    width: 50%
+    input[type="submit"]
+      background: $thirdColor
+      color: $secondaryColor
+      float: right
+      margin: 0 2% 4%
+      font-size: 2.5em
+      font-family: din-web-reg
+      &:hover
+        opacity: 0.95
+    .msg-data
+      margin-left: 2%
+      text-align: left
+      font-size: 0.55em
+      line-height: 1.2em
+      font-weight: 300
+    .rule-regs
+      margin-left: 2%
+      font-size: 0.8em
+      text-align: left
+      a
+        color: white
+        font-weight: 400
+  .success_msg p
+    color: white
+    margin-bottom: 1.5em
+    border: 1px solid #e1e1e1
+    padding: 2%
+    display: inline-block
+
+
+//			//
+//	#action
+//			//
+#action
+  padding: 3% 0 2%
+
+//      //
+//  #how
+//      //
+#how
+  .exp
+    max-width: 267px
+    float: left
+  .go-button
+    background: $thirdColor
+    color: $secondaryColor
+    margin: 2% auto
+    font-size: 2em
+    font-family: din-web-reg
+    &:hover
+      opacity: 0.85
+  .clear
+    clear: both
+
+//      //
+//  #info
+//      //
+.section#info
+  padding: 2% 0
+#info
+  text-align: left
+  p
+    margin-bottom: 1em
+    padding: 0 4%
+  .gray
+    color: #999
+    font-style: italic
+  h2
+    background: $blueColor
+    color: white
+    display: inline-block
+    padding: 0.2em 2% 0
+    margin-bottom: 0.7em
+    text-transform: uppercase
+    font-size: 1.4em
+    font-weight: 500
+  .divider
+    margin: 0 2% 3%
+@media only screen and (max-width: 550px)
+  #info
+    .divider
+      font-size: 0.7em
+      padding-top: 0.1em
+
+
+//      //
+//  #faq
+//      //
+#faq 
+  div
+    padding: 0 1.2em 1.2em 1.2em
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
+  li
+    margin: 0
+    color: $secondaryColor
+    span
+      color: black 
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 1.2em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position-y: -1.4em
+  .go-button
+    background: $thirdColor
+    color: $secondaryColor
+    margin: 2% auto
+    font-size: 2em
+    font-family: din-web-reg
+    &:hover
+      opacity: 0.85
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase  
+  .action-box
+    position: relative
+    display: inline-block
+  .action-arrow-left, .action-arrow-right
+    position: absolute
+    bottom: 0.5em
+  .action-arrow-right
+    right: -70px
+  .action-arrow-left
+    left: -70px  

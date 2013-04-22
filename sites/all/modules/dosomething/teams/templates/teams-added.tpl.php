@@ -1,6 +1,3 @@
-<?php
-
-?>
 Hey!
 <br><br>
 <?php echo $full_name; ?> has added you to their DoSomething.org <?php echo $type; ?> for <?php echo $campaign_name; ?>.

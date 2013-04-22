@@ -328,7 +328,7 @@ function sms_mobile_commons_add_user_to_campaign($number, $first_name = '', $las
  * @param $number
  *   The number that should be opted out of a campaign.
  * @param $campaigns
- *   Array of single or multiple Mobile Commons campaign ids to opt the number out of.
+ *   Number or array of single or multiple Mobile Commons campaign ids to opt the number out of.
  */
 function sms_mobile_commons_campaign_opt_out($number, $campaigns) {
   $api_opt_out_url = 'https://secure.mcommons.com/profiles/opt_out';
@@ -340,21 +340,30 @@ function sms_mobile_commons_campaign_opt_out($number, $campaigns) {
     ),
   );
 
-  if (count($campaigns) > 1) {
-    // Manually concatenating additional campaigns onto the build query.
-    // Additional campaigns must be in the format "&campaign[]="
-    $content_query = http_build_query($content);
-    foreach ($campaigns as $id) {
-      $campaign_key = urlencode('campaign[]');
-      $content_query .= '&' . $campaign_key . '=' . $id;
+  if (is_array($campaigns)) {
+    if (count($campaigns) > 1) {
+      // Manually concatenating additional campaigns onto the build query.
+      // Additional campaigns must be in the format "&campaign[]="
+      $content_query = http_build_query($content);
+      foreach ($campaigns as $id) {
+        $campaign_key = urlencode('campaign[]');
+        $content_query .= '&' . $campaign_key . '=' . $id;
+      }
+    }
+    else {
+      if (count($campaigns) == 1) {
+        $content['campaign'] = $campaigns[0];
+      }
+
+      $content_query = http_build_query($content);
     }
   }
-  else {
-    if (count($campaigns) == 1) {
-      $content['campaign'] = $campaigns[0];
-    }
-
+  elseif (is_numeric($campaigns) && $campaigns > 0) {
+    $content['campaign'] = $campaigns;
     $content_query = http_build_query($content);
+  }
+  else {
+    return FALSE;
   }
 
   $opts = array(

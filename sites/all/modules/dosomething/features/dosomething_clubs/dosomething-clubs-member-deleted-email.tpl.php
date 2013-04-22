@@ -1,8 +1,8 @@
-Hi <?php echo $name; ?>!
+<p>Hi <?php echo $name; ?>!</p>
 
-Your member profile is no longer associated with "<?php echo $club_name; ?>."  You still can access DoSomething.org (hint: <?php echo $email; ?> is your email login) to get involved in campaigns or join other clubs.
+<p>Your member profile is no longer associated with "<?php echo $club_name; ?>."  You still can access DoSomething.org (hint: <?php echo $email; ?> is your email login) to get involved in campaigns or join other clubs.</p>
 
-Check out our current campaigns:
-http://www.dosomething.org/campaigns
+<p>Check out our current campaigns:<br />
+http://www.dosomething.org/campaigns</p>
 
-If you have any questions, email Crystal at clubs@dosomething.org.
+<p>If you have any questions, email Crystal at clubs@dosomething.org.</p>

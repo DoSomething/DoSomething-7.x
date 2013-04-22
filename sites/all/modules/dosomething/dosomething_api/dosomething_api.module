@@ -1,6 +1,47 @@
 <?php
 
 /**
+ *  Either creates, or logs in a user, depending on their account status.
+ *
+ *  @param string $name
+ *    The person's first name.
+ *
+ *  @param string $contact
+ *    The email or cell phone number of the person.
+ *
+ *  @param string $password
+ *    The user's password.
+ */
+function dosomething_api_create_or_log_in_user($name = '', $contact = '', $password = '') {
+  // Only run this if a user is not logged in.
+  if (user_is_logged_in()) {
+    return;
+  }
+
+  $account = dosomething_api_user_log_in($contact);
+
+  if (empty($account)) {
+    $u = array(
+      'name' => $name,
+      'password' => $password
+    );
+
+    if (valid_email_address($contact)) {
+      $u['email'] = $contact;
+    }
+    else if (dosomething_general_valid_cell($contact)) {
+      $u['mobile'] = $contact;
+    }
+
+    $account = dosomething_api_user_create($u);
+
+    if (!empty($account)) {
+      dosomething_api_user_log_in($contact);
+    }
+  }
+}
+
+/**
  *  Log in a user.
  *
  *  @param string $e_or_c
@@ -138,4 +179,30 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   $account->profile = $profile;
 
   return $account;
+}
+
+/**
+ *  Checks whether a password for a given user is a valid password.
+ *
+ *  @param string $contact
+ *    Either the email or the cell phone # of the account in question.
+ *
+ *  @param string $password
+ *    The proposed password for that account.
+ *
+ *  @return bool
+ *    True if the password is correct, else false.
+ */
+function dosomething_api_valid_password($contact, $password) {
+  require_once DRUPAL_ROOT . '/includes/password.inc';
+  if ($account = dosomething_api_user_lookup($contact)) {
+    if (!user_check_password($password, $account)) {
+      return FALSE;
+    }
+    else {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
 }
