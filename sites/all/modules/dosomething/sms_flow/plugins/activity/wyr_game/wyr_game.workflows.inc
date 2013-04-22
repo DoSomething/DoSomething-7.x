@@ -119,25 +119,25 @@ $activity->sets = array(
   array(
     'mdata_id'     => 10223,
     'game_id'      => 6,
-    'opt_in_paths' => array(),
+    'opt_in_paths' => array(153183, 153193, 153203, 153213, 153223, 153233, 153243, 153253, 153263, 153273),
   ),
   // Pregnancy Text SAFE tips
   array(
     'mdata_id'     => 10233,
     'game_id'      => 7,
-    'opt_in_paths' => array(),
+    'opt_in_paths' => array(153283, 153293, 153303, 153313, 153323, 153333, 153343, 153353),
   ),
   // Pregnancy Text PARENT tips
   array(
     'mdata_id'     => 10243,
     'game_id'      => 8,
-    'opt_in_paths' => array(),
+    'opt_in_paths' => array(153363, 153373, 153383),
   ),
   // Pregnancy Text RIGHTS tips
   array(
     'mdata_id'     => 10253,
     'game_id'      => 9,
-    'opt_in_paths' => array(),
+    'opt_in_paths' => array(153393, 153403, 153413),
   ),
 );
 
