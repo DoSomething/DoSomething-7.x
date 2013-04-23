@@ -985,13 +985,13 @@ function create_and_share_is_campaign_page($path = '') {
 }
 
 /**
- *  Attemps to get the path for a campaign setup.
+ * Attemps to get the path for a campaign setup.
  *  
- *  @param string $campaign
- *    The campaign that we need the path for.
+ * @param string $campaign
+ *   The campaign that we need the path for.
  *
- *  @return string|bool
- *    The path to the campaign, or false.
+ * @return string|bool
+ *   The path to the campaign, or false.
  */
 function create_and_share_get_campaign_path($campaign) {
   static $cache = array();
@@ -1054,6 +1054,13 @@ function create_and_share_node_insert($node) {
       'weight' => 100,
     );
     webform_component_insert($component);
+
+    // Load the Carpenter class, to build the create and share scaffold.
+    require_once libraries_get_path('Carpenter') . '/Carpenter.class.php';
+    $builder = new Carpenter('create_and_share');
+    $builder->set('name', $node->path['alias']);
+    $builder->setToken('nid', $node->nid);
+    $builder->build();
   }
 }
 

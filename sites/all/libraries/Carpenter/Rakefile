@@ -1,0 +1,326 @@
+=begin
+
+  @file 
+  Scaffolds are data structures that may be quickly and easily replicated.  
+  Scaffolds are generally combinations of files and directories.  With simple
+  commands, you can create new scaffolds and copy them over to new areas.
+
+  Example usage:
+  Imagine that you have a directory structure that you use again and again.
+  Instead of manually creating the same files and folders time and time again,
+  you can create the structure only once.
+
+  Functions:
+
+  rake scaffold:setup
+    Sets up the scaffold system.
+
+  rake scaffold:about
+    About the scaffold system.
+
+  rake scaffold:list
+    List all scaffolds.
+
+  rake scaffold:create[SCAFFOLD_NAME]
+    Creates scaffold named NAME in the scaffolds directory.
+
+  rake scaffold:generate[SCAFFOLD_NAME,PATH,DIRECTORY_NAME]
+    Creates a SCAFFOLD_NAME scaffold named DIRECTORY_NAME at PATH.
+
+=end
+
+namespace :scaffold do
+  scaffold_dir = '/Users/mchittenden/DoSomething/html/sites/all/libraries/Carpenter/scaffolds'
+  scaffold_conf_file = 'scaffold.conf'
+
+  task :about do
+    puts "\e[37;44m                                   \e[0m"
+    puts "\e[37;44m  Welcome to the Scaffold system!  \e[0m"
+    puts "\e[37;44m                                   \e[0m"
+    puts
+    puts "Scaffolds are a system that let you recreate data structures quickly and efficiently."
+    puts "Scaffolds can be a combination of both files and directories.  It doesn't matter where and how"
+    puts "you place things, because the structure and everything within it will be copied to a new location."
+    puts 
+    puts "Remember that scaffolds can't be used for *everything*, but are pretty useful for your standard"
+    puts "repetitive tasks."
+    puts
+    puts "This scaffold generator is fairly simple.  You can create new scaffolds with the following command:"
+    puts "   rake scaffold:create[SCAFFOLD_NAME]   "
+    puts
+    puts "SCAFFOLD_NAME should be an ALL LOWERCASE name for the scaffold.  The command will also create a #{scaffold_conf_file} file." 
+    puts "The #{scaffold_conf_file} file contains a number of variables that let you define defaults, and actions to take after the scaffold is created."
+    puts
+    puts "The system will create the new scaffold directory in the appropriate place. (DIRECTORY NAME)"
+    puts "Place new files and directories within the scaffold directory to be copied over."
+    puts
+    puts "You may put \"dummy variables\" in both the file NAME and the file CONTENTS.  They are as follows:"
+    puts "{name} - The given name exactly as defined in the rake:build command.  This is not parsed."
+    puts "{pname} - The parsed name.  (e.g. \"DoSomething General\" becomes \"dosomething_general\" after being parsed.)"
+    puts
+    puts "Dummy variables will be replaced at run time."
+  end
+
+  task :setup do
+    if (File.exists? scaffold_dir)
+       puts "You're set up!"
+    else
+       puts "We can't find the scaffold directory.  Attempting to create."
+       FileUtils.mkdir scaffold_dir
+       if (File.exists? scaffold_dir)
+          puts "You're set up!"
+       else
+          puts "Sorry, we couldn't create the scaffold directory for some reason.  Try creating the directory #{scaffold_dir}."
+       end
+    end
+  end
+
+  task :create, [:name] do |t, args|
+    abort("Please provide a name for your new scaffold") if !args.name
+
+    if (File.exists? "#{scaffold_dir}/" + filter_name(args.name))
+      abort("Sorry, it looks like that scaffold already exists.")
+    else
+      Rake.application.invoke_task("scaffold:generate[scaffold,#{scaffold_dir},#{args.name}]")
+      puts "Fin!"
+    end
+  end
+
+  task :remove, [:name] do |t, args|
+    abort("Sorry, please provide a name to of a scaffold to remove.") if !args.name
+
+    abort("Sorry, that scaffold doesn't exist!") if !File.exists?("#{scaffold_dir}/#{args.name}")
+
+    load "#{scaffold_dir}/#{args.name}/#{scaffold_conf_file}"
+    abort("Sorry, that scaffold cannot be removed.") if Scaffold.conf['removable'] === false
+
+    if (!File.exists? "#{scaffold_dir}/#{args.name}")
+      abort("Sorry, the #{args.name} scaffold doesn't seem to exist.")
+    else
+      FileUtils.rm_r "#{scaffold_dir}/#{args.name}", :force => true
+      puts "Finished removing scaffold #{args.name}"
+    end
+  end
+
+  task :list do
+    puts
+    puts "\e[37;44m         Scaffold list!         \e[0m"
+    puts
+
+    puts "Scaffold          Description"
+    puts "--------------------------------------------"
+    Dir.foreach(scaffold_dir) do |file|
+      next if file == '.' or file == '..'
+      print file
+
+      if (file.length < 18)
+        $i = 18 - file.length
+        print " " * $i
+      end
+
+      load "#{scaffold_dir}/#{file}/#{scaffold_conf_file}"
+      print Scaffold.conf['description']
+      puts
+    end
+
+    puts
+  end
+
+  task :generate, [:scaff, :path, :name] do |t, args|
+    abort("Sorry, you need to specify the name of a scaffold!") if !args.scaff
+
+    puts "\e[37;44m  Welcome to the Scaffold system!  \e[0m"
+
+    if (args[:scaff][:scaff])
+      args = args[:scaff]
+    end
+
+    if (File.exists? scaffold_dir)
+       puts "Looking for your scaffold.  Please wait..."
+       Rake::Task["scaffold:find_scaffold"].invoke(args)
+    else
+       puts "We can't find the scaffolds directory."
+       puts "Trying to create it..."
+       FileUtils.mkdir scaffold_dir
+       if (File.exists? scaffold_dir)
+          puts "The scaffolds directory was successfully created."
+          puts "Looking for your scaffold.  Please wait..."
+        	Rake::Task["scaffold:find_scaffold"].invoke(args)
+       else
+          puts "Sorry, I couldn't make a scaffold directory in #{scaffold_dir}.  Try making one yourself?"
+       end
+    end
+  end
+
+  task :find_scaffold, [:scaff, :path, :name] => :generate do |t, args|
+    scaff = args[:scaff]
+    deep_dive = true
+    scaff_options = {
+      'path' => scaff.path,
+      'name' => scaff.name,
+      'directory_name' => '',
+      'deep' => deep_dive,
+      'custom_vars' => {}
+    }
+    has_conf_file = false
+
+    if (File.exists? "#{scaffold_dir}/#{scaff.scaff}")
+  	 puts green("Found the \"#{scaff.scaff}\" scaffold.  Configuring...")
+
+     if (File.exists? "#{scaffold_dir}/#{scaff.scaff}/#{scaffold_conf_file}")
+       has_conf_file = true
+
+       puts "Looking for the config file."
+
+       load "#{scaffold_dir}/#{scaff.scaff}/#{scaffold_conf_file}"
+       if (!Scaffold.conf['default_path'].empty? && (scaff.path.nil? || scaff.path === 'nil'))
+          puts yellow("You didn't specify a destination path but that's okay.  We've found a default path called #{Scaffold.conf['default_path']}")
+
+          scaff_options['path'] = Scaffold.conf['default_path']
+       elsif (Scaffold.conf['default_path'].empty? && (scaff.path.nil? || scaff.path === 'nil'))
+          abort("Scaffold path was not defined anywhere! You can define it as the second parameter of your shell command (e.g. rake scaffold[module,/var/www/html]) or as a default in the configuration file.")
+       end
+
+       if (!Scaffold.conf['default_name'].empty? && scaff.name.nil?)
+          puts yellow("You didn't specify a name but that's fine.  Defaulting to \"#{Scaffold.conf['default_name']}\".")
+          scaff_options['name'] = Scaffold.conf['default_name']
+       elsif (!scaff.name.empty?)
+          scaff_options['name'] = scaff.name
+       elsif
+         abort("Whoops! You're going to need a name for this campaign.")
+       end
+     else
+	 abort("Sorry, there needs to be a #{scaffold_conf_file}")
+     end
+
+     scaff_options['directory_name'] = filter_name(scaff_options['name'])
+     scaff_options['custom_vars'] = Scaffold.custom_vars
+
+
+     scaff_options['custom_vars'].each do |key, val|
+        if (!ENV[key].nil? and !ENV[key].empty?)
+          scaff_options['custom_vars'][key] = ENV[key]
+        end
+     end
+
+     if (File.exists? "#{scaff_options['path']}/#{scaff_options['directory_name']}")
+        abort("Sorry, it looks like \"#{scaff_options['path']}/#{scaff_options['directory_name']}\" already exists.  You can fix this by deleting the directory, or specify a unique path and/or name for this new scaffold.")
+     end
+
+     FileUtils.cp_r("#{scaffold_dir}/#{scaff.scaff}", "#{scaff_options['path']}/#{scaff_options['directory_name']}")
+     if (has_conf_file and scaff.scaff != 'scaffold')
+       FileUtils.rm("#{scaff_options['path']}/#{scaff_options['directory_name']}/#{scaffold_conf_file}")
+     end
+
+     puts green("Successfully built scaffold directory.  We're not done yet...")
+     cd("#{scaff_options['path']}/#{scaff_options['directory_name']}")
+     if (pwd() == "#{scaff_options['path']}/#{scaff_options['directory_name']}")
+        puts "Looking for replacement variables..."
+
+        scan_files_for_replacements('.', scaff_options)
+
+        puts "Finished replacement variables."
+     else
+        puts "Sorry, we couldn't find your new scaffold directory! Something probably went wrong there."
+     end
+
+     puts "----------"
+
+    else
+  	 abort("Sorry, the \"#{scaff.scaff}\" scaffold doesn't seem to exist.  Create one in #{scaffold_dir}.")
+    end
+
+    puts green("Congrats! Your \"#{scaff.scaff}\" scaffold has been created in #{scaff_options['path']}/#{scaff_options['directory_name']}.")
+
+    #if (!Scaffold.dependencies.empty?)
+  #Scaffold.dependencies.each do |s, info|
+  #    puts "Creating #{s}..."
+  #    create_dependency(s)
+  #    puts "Finished creating #{s}."
+  #end
+     # Rake::Task['scaffold:generate'].enhance do
+     #   Rake.application.invoke_task("scaffold:blah")
+     # end
+    #end
+
+    #Scaffold.post_process.each do |action|
+    #  if (action.include? '{name}' or action.include? '{path}')
+    #    action = action.gsub('{name}', scaff_options['directory_name']).gsub('{path}', "#{scaff_options['path']}/#{scaff_options['directory_name']}")
+    #  end
+
+#      system "#{action}"
+#      puts "Successfully ran \"#{action}\""
+ #   end
+
+    puts green("Done!")
+
+  end
+
+  task :blah do
+    sleep(1)
+    Rake.application.invoke_task("scaffold:generate[blue]")
+  end
+end
+
+def scan_files_for_replacements(dir, scaff_options)
+  if (dir == '.')
+    puts "Scanning current directory..."
+  else
+    puts "Scanning #{dir}..."
+  end
+
+  Dir.foreach(dir) do |item|
+    next if item == '.' or item == '..'
+
+    matched = item[/\{.*?\}/]
+    if (!matched.nil?)
+      filename = File.basename("#{dir}/#{item}")
+      new_filename = filename.gsub('{name}', scaff_options['directory_name'])
+      puts new_filename
+
+      if (scaff_options['custom_vars'].length > 0)
+        scaff_options['custom_vars'].each do |key, val|
+          new_filename = new_filename.gsub("{#{key}}", val)
+        end
+      end
+
+      File.rename("#{dir}/#{item}", "#{dir}/#{new_filename}")
+      filename = new_filename
+    else
+      filename = item
+    end
+
+    if (!File.directory? "#{dir}/#{filename}")
+      if (scaff_options['deep'])
+        f = File.read("#{dir}/#{filename}")
+        fmatched = f[/\{.*?\}/]
+        if (!fmatched.nil?)
+          replaced = f.gsub('{dir_name}', scaff_options['directory_name']).gsub('{name}', scaff_options['name'])
+
+          if (scaff_options['custom_vars'].length > 0)
+            scaff_options['custom_vars'].each do |key, val|
+              replaced = replaced.gsub("{#{key}}", val)
+            end
+          end
+
+          File.open("#{dir}/#{filename}", 'w') { |file| file.puts replaced }
+        end
+      end
+    else
+      scan_files_for_replacements("#{dir}/#{filename}", scaff_options)
+    end
+  end
+end
+
+def filter_name(name)
+  name = name.gsub(/[^A-Za-z0-9\_\-]+/, '_')
+  name.downcase
+end
+
+def colorize(text, color_code)
+   "\e[#{color_code}m#{text}\e[0m"
+end
+
+def red(text); colorize(text, 31); end
+def green(text); colorize(text, 32); end
+def yellow(text); colorize(text, 33); end
