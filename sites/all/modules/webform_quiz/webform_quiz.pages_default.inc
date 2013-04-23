@@ -17,7 +17,7 @@ function webform_quiz_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -13;
+  $handler->weight = -16;
   $handler->conf = array(
     'title' => 'Quiz',
     'no_blocks' => 0,
@@ -93,20 +93,7 @@ function webform_quiz_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
-    $pane->cache = array(
-      'method' => 'panels_hash_cache',
-      'settings' => array(
-        'lifetime' => '604800',
-        'granularity' => array(
-          'url' => 'url',
-          'args' => 0,
-          'context' => 0,
-          'user' => 0,
-          'user_role' => 0,
-          'path' => 0,
-        ),
-      ),
-    );
+    $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
@@ -137,12 +124,7 @@ function webform_quiz_default_page_manager_handlers() {
       'override_title' => 1,
       'override_title_text' => '',
     );
-    $pane->cache = array(
-      'method' => 'page',
-      'settings' => array(
-        'lifetime' => '604800',
-      ),
-    );
+    $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
@@ -177,24 +159,6 @@ function webform_quiz_default_page_manager_handlers() {
     $pane->locks = array();
     $display->content['new-4'] = $pane;
     $display->panels['top'][1] = 'new-4';
-    $pane = new stdClass();
-    $pane->pid = 'new-5';
-    $pane->panel = 'top';
-    $pane->type = 'page_messages';
-    $pane->subtype = 'page_messages';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][2] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

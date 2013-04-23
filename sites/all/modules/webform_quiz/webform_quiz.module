@@ -1,7 +1,5 @@
 <?php
 
-include 'webform_quiz.features.inc';
-
 /**
  * Implements hook_webform_component_info().
  */
@@ -21,69 +19,6 @@ function webform_quiz_webform_component_info() {
   );
 
   return $components;
-}
-
-/**
- *  Implements hook_form_alter()
- */
-function webform_quiz_form_alter(&$form, &$form_state, $form_id) {
-  $node = &$form['#node'];
-  if ($node->type == 'quiz' && !user_is_logged_in()) {
-    drupal_add_css(drupal_get_path('module', 'webform_quiz') . '/css/quiz_logged_out.css');
-    $f = &$form['submitted'];
-    $f['first_name'] = array(
-      '#type' => 'textfield',
-      '#weight' => 10000,
-      '#default_value' => '',
-      '#required' => TRUE,
-      '#attributes' => array(
-        'placeholder' => t('Your first name'),
-      ),
-    );
-
-    $f['email_or_cell'] = array(
-      '#type' => 'textfield',
-      '#weight' => 10001,
-      '#default_value' => '',
-      '#required' => TRUE,
-      '#attributes' => array(
-        'placeholder' => t('Your Email / Cell'),
-      ),
-    );
-
-    $f['password'] = array(
-      '#type' => 'password',
-      '#weight' => 10002,
-      '#default_value' => '',
-      '#required' => TRUE,
-      '#attributes' => array(
-        'placeholder' => t('Your Password'),
-      ),
-    );
-
-    $form['#validate'][] = 'webform_quiz_validate_login_or_register';
-    $form['#submit'][] = 'webform_quiz_login_or_register';
-  }
-}
-
-/**
- *  Validates that the password is legit.
- */
-function webform_quiz_validate_login_or_register($form, &$form_state) {
-  $data = $form_state['input']['submitted'];
-
-  // Check the password.
-  if (!dosomething_api_valid_password($data['email_or_cell'], $data['password'])) {
-    form_set_error('password', t('Invalid email / password combination.'));
-  }
-}
-
-/**
- *  Logs in or registers a user.
- */
-function webform_quiz_login_or_register($form, &$form_state) {
-  $data = $form_state['input']['submitted'];
-  dosomething_api_create_or_log_in_user($data['first_name'], $data['email_or_cell'], $data['password']);
 }
 
 /**
@@ -224,34 +159,16 @@ function webform_quiz_clear($nid) {
     ->execute();
 }
 
-function webform_quiz_init() {
+function webform_init() {
   $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
   if (arg(0) == 'quiz-result' && is_numeric(arg(1))) {
     $fblink = fboauth_action_link_properties('connect', current_path());
     $fblink = l('Connect with Facebook', $fblink['href'], array('query' => $fblink['query']));
 
-    $facebook = array(
-      'title' => '',
-      'caption' => '',
-      'description' => '',
-    );
-
-    $node = node_load(arg(1));
-    if (!empty($node->field_quiz_facebook_post_title[LANGUAGE_NONE][0]['value'])) {
-      $facebook['title'] = $node->field_quiz_facebook_post_title[LANGUAGE_NONE][0]['value'];
-    }
-    if (!empty($node->field_quiz_facebook_post_caption[LANGUAGE_NONE][0]['value'])) {
-      $facebook['caption'] = $node->field_quiz_facebook_post_caption[LANGUAGE_NONE][0]['value'];
-    }
-    if (!empty($node->field_quiz_facebook_post_desc[LANGUAGE_NONE][0]['value'])) {
-      $facebook['description'] = $node->field_quiz_facebook_post_desc[LANGUAGE_NONE][0]['value'];
-    }
-
     drupal_add_js(
       array(
-        'facebook' => $facebook,
         'fbconnect_button' => $fblink,
-        'quiz_url' => url('node/' . arg(1), array('absolute' => TRUE)),
+        'quiz_url' => url('node/'.arg(1), array('absolute' => TRUE)),
         'logged_in' => user_is_logged_in(),
       ),
       'setting'

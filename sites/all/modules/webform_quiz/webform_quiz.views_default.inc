@@ -10,7 +10,7 @@
 function webform_quiz_views_default_views() {
   $export = array();
 
-  $view = new view();
+  $view = new view;
   $view->name = 'quizzes';
   $view->description = '';
   $view->tag = 'default';
@@ -24,7 +24,6 @@ function webform_quiz_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Quizzes';
   $handler->display->display_options['css_class'] = 'action-finder-list';
-  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -38,26 +37,58 @@ function webform_quiz_views_default_views() {
   $handler->display->display_options['fields']['field_quiz_header']['table'] = 'field_data_field_quiz_header';
   $handler->display->display_options['fields']['field_quiz_header']['field'] = 'field_quiz_header';
   $handler->display->display_options['fields']['field_quiz_header']['label'] = '';
-  $handler->display->display_options['fields']['field_quiz_header']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['field_quiz_header']['alter']['text'] = '<span class="views-field-field-picture">[field_quiz_header]</span>';
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_quiz_header']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_quiz_header']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_quiz_header']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_quiz_header']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_quiz_header']['settings'] = array(
     'image_style' => 'action_results_thumbnail',
     'image_link' => 'content',
   );
+  $handler->display->display_options['fields']['field_quiz_header']['field_api_classes'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['title']['alter']['text'] = '<div class="unimage-wrapper">
 <h2>[title]</h2>
 </div>';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -99,6 +130,8 @@ function webform_quiz_views_default_views() {
     'field_quiz_header' => 'field_quiz_header',
     'title' => 'title',
   );
+  $handler->display->display_options['row_options']['hide_empty'] = 0;
+  $handler->display->display_options['row_options']['default_field_elements'] = 1;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Quiz Header */
@@ -106,21 +139,55 @@ function webform_quiz_views_default_views() {
   $handler->display->display_options['fields']['field_quiz_header']['table'] = 'field_data_field_quiz_header';
   $handler->display->display_options['fields']['field_quiz_header']['field'] = 'field_quiz_header';
   $handler->display->display_options['fields']['field_quiz_header']['label'] = '';
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_quiz_header']['element_class'] = 'project-related-thumb';
   $handler->display->display_options['fields']['field_quiz_header']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_quiz_header']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_quiz_header']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_quiz_header']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_quiz_header']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_quiz_header']['settings'] = array(
     'image_style' => 'project_related_thumb',
     'image_link' => 'content',
   );
+  $handler->display->display_options['fields']['field_quiz_header']['field_api_classes'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   $export['quizzes'] = $view;
 
   return $export;
