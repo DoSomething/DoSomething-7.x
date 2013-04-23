@@ -17,3 +17,6 @@ sites/all/libraries/FirePHPCore/
 
 # Ignore sass-cache
 .sass-cache
+
+# Ignore local dev settings
+sites/default/local-settings.php
