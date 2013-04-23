@@ -27,7 +27,7 @@
 $filter['^(' . $settings['campaign_root'] . ')/(time-(.*))$'] = function($match, &$view, &$query) {
   $time = $match[3];
   if ($time == 'today') {
-    $quey->where[1]['conditions'][1] = array(
+    $query->where[1]['conditions'][1] = array(
       'field' => 'webform_submissions.submitted',
       'value' => mktime(0, 0, 0),
       'operator' => '>=',

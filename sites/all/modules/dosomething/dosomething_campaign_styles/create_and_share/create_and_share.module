@@ -749,7 +749,7 @@ function create_and_share_page_alter(&$page) {
 /**
  *  Implements hook_views_post_render()
  */
-function create_and_share_post_render(&$view, &$output, &$cache) {
+function create_and_share_views_post_render(&$view, &$output, &$cache) {
   if ($campaign = create_and_share_is_campaign_page()) {
     global $user;
 
