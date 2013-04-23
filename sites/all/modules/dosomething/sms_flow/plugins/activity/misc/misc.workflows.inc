@@ -6,7 +6,7 @@
 $workflow = new ConductorWorkflow();
 $workflow->wid = 'new';
 $workflow->name = 'sms_flow_mdata_ftaf';
-$workflow->title = 'Process FTAFs sent from the Pregnancy Text';
+$workflow->title = 'Process FTAFs sent directly into an mData';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
