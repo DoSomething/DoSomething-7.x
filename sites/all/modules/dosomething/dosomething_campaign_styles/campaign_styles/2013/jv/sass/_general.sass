@@ -1,0 +1,88 @@
+// SECTION STYLES
+// --------------
+
+section
+  margin: 0 auto
+  padding: 2% 0 1%
+  overflow: hidden
+  background: $bg-light
+  @media only screen and (max-width: 825px)
+    padding: 3% 2%
+
+.section-container
+  width: 800px
+  margin: 0 auto
+  @media only screen and (max-width: 825px)
+    width: 100%
+
+// GENERAL-USE CLASSES
+.bg-header
+  margin: 0 0 0.5em 0
+
+.log-out
+  float: right
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+.official-rules-wrapper .official-rules-link
+  color: $off-black
+
+.error
+  background: none
+
+// TYPOGRAPHY
+// ----------
+
+h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
+  font-weight: 500
+  font-family: $din
+  text-align: left
+  color: $off_black
+
+h1, h2, p
+  clear: left
+
+strong
+  font-weight: 800
+
+section a /* increase specificity */
+  text-decoration: none
+  &:link, &:visited, &:active
+    color: $campaign-main
+  &:hover
+    text-decoration: underline
+
+h1
+  font-size: 28px
+  line-height: 38px
+
+h2
+  font-size: 21px
+  line-height: 31px
+
+.cause p, .footer p
+  font-size: 16px
+  line-height: 26px
+
+// BUTTON STYLES
+// -------------
+
+.form-submit
+  background: $btn-color
+  margin: 4% 0 1%
+  padding: 0.3em 0.7em
+  position: static
+  font-size: 1.5em
+  height: 1.4em
+  display: block
+  border: none
+  color: $off_black
+  font-family: din-web
+  font-weight: 500
+  text-decoration: none
+  text-transform: uppercase
+  +border-radius(5px)
+  &:hover
+    color: $off_black
+    text-decoration: none

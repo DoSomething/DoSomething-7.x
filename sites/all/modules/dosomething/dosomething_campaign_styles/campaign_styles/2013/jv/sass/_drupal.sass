@@ -1,0 +1,133 @@
+// @TODO: THIS PARTIAL SHOULD NOT EXIST
+
+// remove white border and box-shadow
+.webform-client-form
+  +noBorder
+  +noShadow
+
+// hide some things
+#skip-link,
+#breadcrumb,
+#page-title
+  display: none
+
+.tabs .element-invisible
+  display: none
+
+// page background color
+body
+  background: $bg-light
+
+// set inner container width, remove floats and center
+#main-wrapper div[role="main"]
+  padding: 0 !important
+  margin: 0 auto !important
+  background: $bg-light
+  width: 100%
+  float: none
+  ul.primary
+    border-bottom: none
+    margin: 0
+    padding: 15px 0 0 8px
+    height: 37px
+
+// set page container to full width
+.container
+  width: 100%
+  
+// adjust nav to accommodate hidden #utility-bar
+nav[role="navigation"]
+  height: 45px
+  padding: 3px 0 0 0
+  @media only screen and (max-width: 1075px)
+    display: none
+
+// set width of ds.org logo container
+header[role="banner"]
+  width: 800px
+  margin: 0 auto
+  position: relative
+
+// re-position ds.org logo
+#site-name
+  top: -38px
+  left: -94px
+  @media only screen and (max-width: 1075px)
+    display: none
+
+// better looking error messages!
+#page .messages
+  background: $campaign-main
+  border: none
+  color: $font-light
+  font-size: 20px
+  line-height: 1.75em
+  text-align: center
+  font-family: din-web-reg
+  margin: 0
+  .go-button
+    background: $btn-color
+    font-size: 14px
+    font-weight: 600
+    font-family: din-web-reg
+    text-align: center
+    margin: 5px auto
+    padding: 3px 0 0 0
+    height: 35px
+    width: 70px
+    display: block
+    +border-radius(3px)
+
+.messages .element-invisible /* hide title */
+  display: none
+
+// fixes tab styling to increase usability + aesthetics
+.tabs
+  background: $campaign-main
+  li
+    display: inline
+  a
+    padding-top: 8px
+    padding-bottom: 8px
+    background-color: #ddd
+    border-color: #bbb
+    border-style: solid solid none solid
+    border-width: 1px
+    height: auto
+    margin-right: 0.5em
+    padding: 0 1em
+    text-decoration: none
+    +border-radius(0 2px 2px 0)
+
+#main-wrapper div[role="main"] ul.primary
+  height: 50px
+  width: 375px
+  margin: 0 auto
+  padding: 20px 0 0 0
+
+// #utility-bar stuff
+#utility-bar
+  .container
+    width: 900px
+    margin: 0 auto
+  a
+    font-size: 13px
+    text-decoration: none
+
+// hide random Geocode Data field
+#edit-submitted-field-geocode-data
+  display: none
+
+// hide elements inherited from global site
+// #block-menu-menu-footer,
+// #skip-link,
+// #admin-menu,
+// #breadcrumb,
+// #page-title,
+// #utility-bar,
+// #block-dosomething-login-become-member,
+// #block-dosomething-blocks-dosomething-make-impact,
+// #block-dosomething-blocks-dosomething-social-skyscraper,
+// #block-block-5,
+// .region-sidebar-first,
+//   display: none  

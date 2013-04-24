@@ -1,0 +1,195 @@
+// COLLECTIVE
+// ----------
+.challenge, .complete, .cause, .share
+  background: $bg-alt
+
+// HEADER
+// ------
+.header
+  background-image: url($bg-header)
+  background-size: 100%
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  @media only screen and (max-width: 1075px)
+    background-size: auto
+  .log-out
+    color: $font-light
+  .logo-dosomething
+    display: none
+    @media only screen and (max-width: 1075px)
+      display: block
+      float: left
+      width: 73px
+      height: 65px
+  .logo-campaign
+    margin: 0 auto
+    display: block
+    width: 450px
+    clear: both
+    @media only screen and (max-width: 550px)
+      width: 400px
+
+.header-social
+  float: right
+
+.header-facebook-share,
+.header-twitter-share
+  display: block
+  height: 20px
+
+.header-facebook-share
+  width: 75px
+  height: 20px
+  border: 1px solid rgb(202, 212, 231)
+  +border-radius(2px)
+  &:hover
+    border: 1px solid rgb(236, 238, 245) 
+
+.header-twitter-share
+  float: right
+  width: 54px
+  margin: 5px 0 0 0
+
+// CHALLENGE
+// ---------
+
+// SCHOLARSHIP
+// -----------
+.scholarship
+  h2
+    padding: 0 0 0.5em 0
+  .scholarship-header
+    margin: 0 0 1em 0
+    border-bottom: 1px solid #eee
+  .official-rules-wrapper
+    text-align: right
+  .official-rules-link
+    color: $btn-grey
+
+.show #show-report-back
+  display: none
+
+// SOCIAL
+// ------
+.social
+  border-top: 2px solid #ddd
+  p
+    font-size: 1.2em
+    margin: 1em auto
+    max-width: 200px
+    display: block
+  .col-social
+    width: 50%
+    float: left
+  .share-img-social
+    margin: 0 auto
+    display: block
+  .share-link-social
+    cursor: pointer
+    text-transform: uppercase
+    background: $campaign-accent
+    margin: 0.2em auto
+    padding: 0.5em 0.6em 0.4em
+    color: #fff
+    font-size: 1.3em
+    font-weight: 600
+    +border-radius(2px)
+    &:hover
+      text-decoration: none
+  .share-link-social1
+    width: 9.3em
+  .share-link-social2
+    width: 8.9em
+
+// CAUSE
+// -----
+.cause
+  padding: 0 0 3%
+  i
+    font-style: italic
+  .bg-header
+    margin: 2em 0 0.5em
+
+.cause-facts
+  display: none
+  border-bottom: #fff dashed 5px
+
+.active-fact
+  display: block
+
+.cause-link
+  display: inline-block
+  margin: 0.5em 0 1em
+
+.twitter-link
+  text-decoration: none
+  color: $campaign-main
+
+// SUCCESS
+// -------
+
+// SHARE
+// -----
+.share
+  label
+    margin: 3% 0 0
+  form
+    width: 80%
+    margin: 0 auto
+  .form-submit /* TODO - CONSOLIDATE BUTTON STYLES  */
+    font-size: 15px
+    font-family: din-web-reg
+    font-weight: 600
+    padding: 5px 10px
+    height: 2em
+  .campaign-opt-in
+    width: 80%
+    font-size: 10px
+    margin: 3% auto 2%
+  .official-rules-wrapper
+    margin: 1% 0 0 0
+  .official-rules-link
+    text-transform: uppercase
+
+.bg-share
+  margin: 0 auto 2%
+  display: block
+
+.share-input-wrapper
+  width: 50%
+  float: left
+  margin: 0 0 4% 0
+
+.share-input
+  width: 85%
+  margin: 5% 0 0 0
+
+.share-alpha-wrapper
+  float: left
+  width: 35.8%
+  margin: 0 0 4% 0
+  input
+    width: 83.5%
+
+.share-beta-mobile
+  clear: both
+  margin: 5% 0 -1%
+
+// THANKS
+// ------
+.success_msg
+  margin: 0 auto 1em
+  h2
+    text-transform: uppercase
+    font-weight: 600
+    font-size: 26px
+    color: $campaign-accent
+
+// FOOTER
+// ------
+.footer
+  p
+    text-align: center
+  img
+    width: 50px
+    +block-center
