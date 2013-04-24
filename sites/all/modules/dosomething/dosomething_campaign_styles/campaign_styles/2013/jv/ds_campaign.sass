@@ -1,18 +1,17 @@
 @import compass/css3
 
-// imports base variables and mixins
-@import "partials/base"
+// global variables and mixins
+@import "sass/base"
 
-// base style reset for ds.org theme
-// theme reset goes here
-@import "partials/drupal"
+// "do it" theme-specific overrides
+@import "sass/drupal"
+@import "sass/reset"
 
-// imports all campaign partials under #cmp to force styles
-// campaign-specific styles go here
-#cmp
-  @import "partials/reset"
-  @import "partials/typography"
-  @import "partials/framework"
-  @import "partials/panes"
-  @import "partials/forms"
-  @import "partials/breakpoints" 
+// "jv" template styles
+@import "sass/general"
+@import "sass/sections"
+@import "sass/forms"
+
+// "general"  = generic HTML element styling, typography and global classes
+// "sections" = specific styles that pertain to individual sections of the page (e.g. .header)
+// "forms"    = all form-related styles (input fields, form-specific buttons, etc.)
