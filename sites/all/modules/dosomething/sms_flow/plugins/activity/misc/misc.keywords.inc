@@ -1,3 +1,3 @@
 <?php
 
-$keywords['million-member-ftaf'] = 'sms_flow_million_member_ftaf';
+$keywords['mdata-ftaf'] = 'sms_flow_mdata_ftaf';
