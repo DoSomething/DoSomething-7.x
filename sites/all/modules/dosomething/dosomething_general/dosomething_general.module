@@ -5,6 +5,26 @@
  * General custom tweaks to dosomething.
  */
 
+/*! \mainpage DoSomething.org - The nation's largest organization for teens and social change.
+ *  \section intro_sec Introduction
+ *  DoSomething.org is the largest organization for teens and social change in the United States.
+ *  We reach out to teens through campaigns and products that target 13-25-year-olds' interests
+ *  and hobbies.  Through positive reinforcement, we help them make a difference.
+ *  \section staff_sec Tech Team
+ *  DoSomething.org's tech team is the best in the business.
+ *
+ *  - Matt (CTO)
+ *  - Desmond (Director of Engineering)
+ *  - Michael (Software Engineer)
+ *  - Dee (Software Engineer)
+ *  - Aaron (Software Engineer)
+ *  - Barry (Director of Technical Product)
+ *  - Maxwell (Front end Engineer)
+ *  - Jacob (Front end Engineer)
+ *  - Uy (Mobile Engineer)
+ */
+
+
 /**
  * Implements hook_init().
  */
@@ -1242,6 +1262,24 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
 
 }
 
+/**
+ * Sends a phone call request to TelApi, to $beta_number from $alpha_number.
+ *
+ * @param string|int $alpha_number
+ *   The alpha phone number (the number that will be spoofed).
+ *
+ * @param string|int $beta_number
+ *   The beta phone number (the number that will receive the call).
+ *
+ * @param int $celeb_id
+ *   An integer representing the celebrity who will "send" the call.
+ *
+ * @param string $type
+ *   Default "calls".  The type of request. 
+ * 
+ * @todo Make $type worthwhile.
+ *  
+ */
 function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
   $path = libraries_get_path('telapi');
   require_once $path . '/library/TelApi.php';
