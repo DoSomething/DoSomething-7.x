@@ -1,6 +1,5 @@
 ******************************************************************************************
 
-This release fixes hook_init so it doesn't generate log message:
-Undefined variable: optimizely_id in optimizely_init() 
-
+ This release flushes all caches when a project is added, updated or deleted.
+ 
 ******************************************************************************************

@@ -210,7 +210,7 @@ function optimizely_delete_page_confirm_submit($form, &$form_state) {
 	$query = db_delete('optimizely')
 		->condition('oid', $oid);  
   $query->execute();
-  
+	optimizely_flush_all_caches();
   drupal_goto('admin/config/system/optimizely/list'); 
 }
 
@@ -251,7 +251,19 @@ function optimizely_add_update_form_submit($form, &$form_state) {
 			->condition('oid', $oid)
 			->execute();	
 	}
-  
+	optimizely_flush_all_caches();
   drupal_goto('admin/config/system/optimizely/list');   
+}
+
+/**
+ * Flushes all the caches.  Needed when updating, adding
+ * and deleting projects. Without it, the Optimizely snippet
+ * appear, or does not appear in the appropriate pages
+ * when not logged in as an administrator.
+ */
+function optimizely_flush_all_caches()
+{
+  drupal_flush_all_caches();
+  drupal_set_message('all caches flushed.');  
 }
 
