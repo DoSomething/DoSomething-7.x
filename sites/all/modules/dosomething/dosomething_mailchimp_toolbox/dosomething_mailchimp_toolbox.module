@@ -191,22 +191,39 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
       
       // 719564: Contact Me About Boot Camp
       if ($submission->nid == 719564) {
+        
         $MailChimp_group = 'Bootcamp2012NYC';
+        $mobile_commons_bucket = '150443';
+        
       } // 719546: Contact Me About Scholarships
       elseif ($submission->nid == 719546) {
+        
         $MailChimp_group = 'ScholarshipInterest2012';
+        $mobile_commons_bucket = '150443';
+                
       } // 719550: Contact Me About Clubs
       elseif ($submission->nid == 719550) {
+        
         $MailChimp_group = 'Clubs2012';
+        $mobile_commons_bucket = '150223';
+                
       } // 719551: Contact Me About Grants
       elseif ($submission->nid == 719551) {
+        
         $MailChimp_group = 'Grants2012';
+        $mobile_commons_bucket = '150443';
+                
       }
   
     }
     
     // Submit to MailChimp
     $mailChimp_results = dosomething_general_mailchimp_subscribe($application_email, $MailChimp_group, $merge_vars);
+    
+    // Mobile Commons
+    if ($merge_vars['MMERGE7'] != '') {
+      dosomething_general_mobile_commons_subscribe($merge_vars['MMERGE7'], $mobile_commons_bucket);
+    }
     
   }
   
