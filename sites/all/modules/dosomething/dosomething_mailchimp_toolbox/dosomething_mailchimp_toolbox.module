@@ -101,7 +101,18 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
   // To-Do: Replace with variables table lookup set by admin interface
   // 727601: Do Something Awards Application
   // 727716: DO SOMETHING AWARDS NOMINATION FORM
-  if ($submission->nid == 727601 || $submission->nid == 727716 || $submission->nid == 728929) {
+  // 728929  gun-policy
+  // 719564: Contact Me About Boot Camp
+  // 719546: Contact Me About Scholarships
+  // 719550: Contact Me About Clubs
+  // 719551: Contact Me About Grants
+  if ($submission->nid == 727601 ||
+      $submission->nid == 727716 ||
+      $submission->nid == 728929 ||
+      $submission->nid == 719564 ||
+      $submission->nid == 719546 ||
+      $submission->nid == 719550 ||
+      $submission->nid == 719551) {
     
     if ($submission->nid == 727601) {
     
@@ -136,7 +147,7 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
       $MailChimp_group = 'DSA2013Applicants';
       
     }
-    elseif ($submission->nid == 727716) {
+    elseif ($submission->nid == 727716) { //
       
       // Target email - MailChimp key
       $application_email = $submission->data[2]['value'][0];
@@ -167,6 +178,31 @@ function dosomething_mailchimp_toolbox_webform_submission_presave($node, &$submi
         $MailChimp_group = 'GunControlReport2013';
       }
       
+    } elseif ($submission->nid == 719564 ||
+              $submission->nid == 719546 ||
+              $submission->nid == 719550 ||
+              $submission->nid == 719551) {
+      
+      // Target email - MailChimp key
+      $application_email = $submission->field_webform_email[LANGUAGE_NONE][0]['email'];
+      
+      // Mobile
+      $merge_vars['MMERGE7'] = $submission->field_webform_mobile[LANGUAGE_NONE][0]['value'];
+      
+      // 719564: Contact Me About Boot Camp
+      if ($submission->nid == 719564) {
+        $MailChimp_group = 'Bootcamp2012NYC';
+      } // 719546: Contact Me About Scholarships
+      elseif ($submission->nid == 719546) {
+        $MailChimp_group = 'ScholarshipInterest2012';
+      } // 719550: Contact Me About Clubs
+      elseif ($submission->nid == 719550) {
+        $MailChimp_group = 'Clubs2012';
+      } // 719551: Contact Me About Grants
+      elseif ($submission->nid == 719551) {
+        $MailChimp_group = 'Grants2012';
+      }
+  
     }
     
     // Submit to MailChimp
@@ -269,8 +305,9 @@ function _dosomething_mailchimp_toolbox_webform_report() {
   }
   
   // Form name search
-  if (isset($_GET['search'])) {        
-    $search_bits = explode('+', $_GET['search']);
+  $search = check_plain($_GET['search']);
+  if ($search != '') {        
+    $search_bits = explode('+', $search);
   }
 
   $query = db_select('webform_entity_submission_type', 'west');
@@ -308,7 +345,7 @@ function _dosomething_mailchimp_toolbox_webform_report() {
     
   }
   elseif (isset($search_bits)) {
-    $query->condition('n.title', '%'. $_GET['search'] .'%', 'LIKE');
+    $query->condition('n.title', '%'. $search .'%', 'LIKE');
   }
   
   // Sorting by column - dynamic based on user selection
@@ -413,10 +450,14 @@ function _dosomething_mailchimp_toolbox_webform_report() {
  */
 function dosomething_mailchimp_toolbox_webform_search_form() {
   
+  $search = check_plain($_GET['search']);
+  $sort = check_plain($_GET['sort']);
+  $order = check_plain($_GET['order']); 
+  
   $form['dosomething_mailchimp_toolbox_webform_title_keyword'] = array(
     '#type' => 'textfield',
     '#title' => t('Webform Title Search'),
-    '#default_value' => !empty($_GET['search']) ? urldecode($_GET['search']) : '',
+    '#default_value' => !empty($search) ? urldecode($search) : '',
     '#description' => t('Search webforms by title.'),
     '#size' => 35,
     '#maxlength' => 60,
@@ -425,12 +466,12 @@ function dosomething_mailchimp_toolbox_webform_search_form() {
   
   $form['dosomething_mailchimp_toolbox_webform_sort']  = array(
     '#type' => 'value',
-    '#value' => isset($_GET['sort']) ? $_GET['sort'] : NULL ,
+    '#value' => isset($sort) ? $sort : NULL ,
   );
   
   $form['dosomething_mailchimp_toolbox_webform_order']  = array(
     '#type' => 'value',
-    '#value' => isset($_GET['order']) ? $_GET['order'] : NULL,
+    '#value' => isset($order) ? $order : NULL,
   );
   
   $form['submit'] = array(
@@ -612,3 +653,35 @@ CSS:
 .percentage { background: #000; }
 
 */
+
+/*
+ * $message: An array containing the message data. Keys in this array include:
+ *
+ * 'id': The drupal_mail() id of the message. Look at module source code or drupal_mail() for possible id values.
+ * 'to': The address or addresses the message will be sent to. The formatting of this string will be validated with the PHP e-mail validation filter.
+ * 'from': The address the message will be marked as being from, which is either a custom address or the site-wide default email address.
+ * 'subject': Subject of the email to be sent. This must not contain any newline characters, or the email may not be sent properly.
+ * 'body': An array of strings containing the message text. The message body is created by concatenating the individual array strings into a
+ *    single text string using "\n\n" as a separator.
+ * 'headers': Associative array containing mail headers, such as From, Sender, MIME-Version, Content-Type, etc.
+ * 'params': An array of optional parameters supplied by the caller of drupal_mail() that is used to build the message before hook_mail_alter() is invoked.
+ * 'language': The language object used to build the message before hook_mail_alter() is invoked.
+ * 'send': Set to FALSE to abort sending this email message.
+ *
+ * If you would like to use additional template (or other) Mandrill API variables not implemented in this module, set them in hook_mail_alter under:
+ *
+ * $params['mandrill']. Have a look at mandrill.mail.inc to learn more.
+ * (Search for "mandrill parameters".)
+ *
+ * http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_mail_alter/7
+ *
+ */
+
+function dosomething_mailchimp_toolbox_mail_alter(&$message) {
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
+
+}
