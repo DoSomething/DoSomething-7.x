@@ -1,8 +1,23 @@
 <?php
 
 /**
- *  @file
- *  Creates structure for Create and Share campaigns.
+ * @file
+ * Create and Share campaigns are campaigns where a member
+ * is encouraged to upload an image related to a certain
+ * topic, connect it with some type of content (e.g. "Craziest
+ * thing I did to save money", or "pet shelter"), and post it.
+ *
+ * When an image is posted on a gallery, members can take actions
+ * on that post, such as a "thumbs up" or "thumbs down", or share
+ * it on Facebook.
+ *
+ * Further actions are possible but are dependent on the campaign
+ * in question.  The important aspect of Create and Share campaigns
+ * are the gallery of images that appears, encouraging members to take
+ * action upon them.
+ *
+ * @author Michael Chittenden (mchittenden@dosomething.org)
+ * @date 4/23/13
  */
 
 include 'create_and_share.features.inc';
@@ -552,6 +567,17 @@ function create_and_share_template_render($campaign, $template, $etid) {
 
 /**
  *  Loads and returns settings.
+ *
+ *  @param string $campaign
+ *    The machine name of the campaign that the settings should be
+ *    retrieved from.
+ *
+ *  @param string $category
+ *    The "category", if applicable, of settings that should be returned.
+ *    By default, returns everything.
+ *
+ *  @return array
+ *    The cached array of settings from $campaign.
  */
 function create_and_share_get_settings($campaign, $category = 'all') {
   static $cache = array();

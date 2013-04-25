@@ -183,7 +183,7 @@ function robocalls_call_completed() {
 function robocalls_beta_response() {
   // Ignore everything if we don't receive a response from the user.
   if (!isset($_REQUEST['args'])) {
-    dosomething_general_sms_mdata_response(t('Sorry, we didn\'t catch that.  Txt us ur friends\' #s and we\'ll send this call to them.'));
+    dosomething_general_mobile_commons_response(t('Sorry, we didn\'t catch that.  Txt us ur friends\' #s and we\'ll send this call to them.'));
     drupal_exit();
   }
 
@@ -230,15 +230,15 @@ function robocalls_beta_response() {
     }
     // If we didn't get any phone numbers, let 'em know.
     else {
-      dosomething_general_sms_mdata_response(t('Sorry, it doesn\'t look like you sent us any phone numbers.  Txt us ur friends\' #s to send them this call.'));
+      dosomething_general_mobile_commons_response(t('Sorry, it doesn\'t look like you sent us any phone numbers.  Txt us ur friends\' #s to send them this call.'));
       return;
     }
 
-    dosomething_general_sms_mdata_response(t('Great, we\'ve sent this call to !numbers.  Txt back with more #s to send more calls.', array('!numbers' => $n)));
+    dosomething_general_mobile_commons_response(t('Great, we\'ve sent this call to !numbers.  Txt back with more #s to send more calls.', array('!numbers' => $n)));
   }
   // How didn't we get their phone number?
   else {
-    dosomething_general_sms_mdata_response(t('Whoa.  We didn\'t get your phone number.  Txt us back with ur friends\' #s to send them this call.'));
+    dosomething_general_mobile_commons_response(t('Whoa.  We didn\'t get your phone number.  Txt us back with ur friends\' #s to send them this call.'));
   }
 
   // Fin.
