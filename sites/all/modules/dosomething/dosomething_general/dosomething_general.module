@@ -1080,12 +1080,12 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
   // If we don't have a node or a webform submission there's really nothing we
   // can do. This handler was probably put on the wrong form.
+
   if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
     return;
   }
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
-
   $email = $cell = '';
   // Different instances of the email field use different widgets so we have to
   // look in two places to find their email address.
@@ -1093,7 +1093,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
     $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
   }
   elseif (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE3][0]['value'];
   }
   elseif (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
     if (strpos($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'], '@') > 0) {
@@ -1103,39 +1103,37 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
       $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     }
   }
-
+  // If we have an email field, check whether or not to subscribe it.
   if (!empty($email)) {
-    if ( (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) || ($node->type == 'petition') ) && !empty($email)) {
-
-      // Cell
-      if (!empty($cell)) {
-        $mc_merge_vars['MMERGE7'] = $cell;
-      }
-
-      // From petitions
-      if ($node->type == 'petition') {
-
-        $mc_group = 'Petitions2012';
-
-        // Petition Name - Webform ID
-        $mc_merge_vars['MMERGE27'] = $form['#action'];
-
-
-        // Drupal User ID - UID
-        if ($form['#submission']->details['uid'] > 0) {
-          $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
-        }
-
-      }
-      else {
-        $mc_group = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
-      }
-
-      dosomething_general_mailchimp_subscribe($email, $mc_group, $mc_merge_vars);
-
+    $mc_merge_vars = array();
+    // Pretty sure this is never going to occur... would any webform use field_webform_or_cell as the cell #?
+    if (!empty($cell)) {
+      $mc_merge_vars['MMERGE7'] = $cell;
     }
+    // Grab node's group mailchimp id field value
+    if (isset($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
+      $mc_group = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
+    }
+    // Somehow the mailchimp group id gets included in the submission? Could have sworn I saw this work someplace.
+    elseif (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
+      $mc_group = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
+    }
+    // Petitions Group ID is hardcoded, for now.
+    if ($node->type == 'petition') {
+      // @todo: Remove line below once Petitions gets mc_optin field added.
+      $mc_group = 'Petitions2012';
+      // Petition Name - Webform ID
+      $mc_merge_vars['MMERGE27'] = $form['#action'];
+      // Drupal User ID - UID
+      if ($form['#submission']->details['uid'] > 0) {
+        $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
+      }
+    }
+    // If we have a mailchimp group, subscribe the email to it.
+    if (isset($mc_group)) {
+      dosomething_general_mailchimp_subscribe($email, $mc_group, $mc_merge_vars);
+    }    
   }
-
   // Will use previous cell value if already set from Petition submission
   $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
   if (!empty($cell)) {
