@@ -480,6 +480,25 @@ function sms_mobile_commons_profile_update($number, $args = array()) {
 }
 
 /**
+ * Get the Mobile Commons profile summary for a given number
+ *
+ * @param  $number
+ *    Mobile number of profile to get summary for
+ */
+function sms_mobile_commons_profile_summary($number) {
+  $api_profile_summary_url = 'https://secure.mcommons.com/api/profile?phone_number=' . $number;
+
+  $opts = array(
+    'http' => array(
+      'method'  => 'GET',
+      'header'  => sprintf("Authorization: Basic %s\r\n", base64_encode(_sms_mobile_commons_get_auth_string())) . "Content-type: application/x-www-form-urlencoded\r\n",
+    )
+  );
+
+  $context = stream_context_create($opts);
+  return file_get_contents($api_profile_summary_url, FALSE, $context);
+}
+/**
  * Get the Mobile Commons authorization string for API calls
  */
 function _sms_mobile_commons_get_auth_string() {
