@@ -476,7 +476,7 @@ function dosomething_mailchimp_toolbox_webform_search_form() {
   
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => 'Search',
+    '#value' => t('Search'),
   );
   
   return $form;
