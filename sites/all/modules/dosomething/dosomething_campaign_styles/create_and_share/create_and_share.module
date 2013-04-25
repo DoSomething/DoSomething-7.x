@@ -150,6 +150,12 @@ function create_and_share_menu() {
     'access callback' => TRUE,
   );
 
+  /**
+   * Responds to / autocompletes some variety of selector on a post.
+   *
+   * @param string campaign (arg 1)
+   *   The campaign that contains the options for the autocomplete.
+   */
   $paths['cas/%/autocomplete'] = array(
     'page callback' => 'create_and_share_autocomplete',
     'page arguments' => array(1),
@@ -159,6 +165,15 @@ function create_and_share_menu() {
   return $paths;
 }
 
+/**
+ * Provides data for selector autocomplete, from campaign settings.
+ *
+ * @param string $campaign
+ *   The machine name of the campaign that contains the autocomplete options.
+ *
+ * @return string|json
+ *   A JSON encoded array of options for the autocomplete textfield.
+ */
 function create_and_share_autocomplete($campaign) {
   if ($settings = create_and_share_get_settings($campaign)) {
     drupal_json_output($settings['autocomplete']['options']);
