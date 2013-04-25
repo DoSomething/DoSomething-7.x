@@ -150,7 +150,19 @@ function create_and_share_menu() {
     'access callback' => TRUE,
   );
 
+  $paths['cas/%/autocomplete'] = array(
+    'page callback' => 'create_and_share_autocomplete',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+
   return $paths;
+}
+
+function create_and_share_autocomplete($campaign) {
+  if ($settings = create_and_share_get_settings($campaign)) {
+    drupal_json_output($settings['autocomplete']['options']);
+  }
 }
 
 /**
@@ -841,17 +853,11 @@ function create_and_share_views_query_alter(&$view, &$query) {
     $settings = create_and_share_get_settings($campaign);
     if ($view->name == $settings['views']['wrapper']) {
       $uri = request_path();
-
-      // If the filter file exists, load it up in here.
-      if (file_exists($path)) {
-        require_once $path;
-
-        if (is_array($settings['filters']) && !empty($settings['filters'])) {
-          // Loop through and try to find a match for the current URI
-          foreach ($settings['filters'] AS $match => $function) {
-            if (preg_match('#' . $match . '#', $uri, $match)) {
-              $function($match, $view, $query, $settings);
-            }
+      if (is_array($settings['filters']) && !empty($settings['filters'])) {
+        // Loop through and try to find a match for the current URI
+        foreach ($settings['filters'] AS $match => $function) {
+          if (preg_match('#' . $match . '#', $uri, $match)) {
+            $function($match, $view, $query, $settings);
           }
         }
       }
@@ -880,6 +886,10 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
     if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == $settings['type']) {
       $u = &$form['submitted'];
       $page = (isset($form_state['input']['details']['page_num']) ? $form_state['input']['details']['page_num'] : 0);
+
+      if (isset($u['selector']) && !empty($settings['autocomplete']['options'])) {
+        $u['selector']['#autocomplete_path'] = 'cas/' . $campaign . '/autocomplete';
+      }
 
       if (isset($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid'])) {
         $file = file_load($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid']);
