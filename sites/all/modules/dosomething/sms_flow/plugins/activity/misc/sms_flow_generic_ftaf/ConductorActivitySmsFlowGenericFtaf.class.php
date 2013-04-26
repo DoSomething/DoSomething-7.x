@@ -75,7 +75,18 @@ class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
     // Matches phone numbers regardless of separators and delimiters
     preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $ftaf_numbers_unvetted), $numbers);
     if (!empty($numbers['numbers'])) {
-       $ftaf_numbers = $numbers['numbers'];
+      $ftaf_numbers = $numbers['numbers'];
+
+      // Remove any items where the value equals the user's number
+      $userNumKeys = array_keys($ftaf_numbers, $mobile);
+      if (count($userNumKeys) > 0) {
+        foreach ($userNumKeys as $key) {
+          unset($ftaf_numbers[$key]);
+        }
+
+        // Re-index the array
+        $ftaf_numbers = array_values($ftaf_numbers);
+      }
     }
 
     if (count($ftaf_numbers) > 0) {

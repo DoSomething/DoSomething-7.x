@@ -226,6 +226,10 @@ $activity->response_sets = array(
     'response' => array("I'm sure whatever you sing will be perfect."),
   ),
   array(
+    'phrase_match' => array('cant send a photo', 'cant send a picture', 'cant send a pic', 'Do I have to send a picture', 'Do I have to send a photo'),
+    'response' => array("You don’t have to send me a picture. You just take so many of me, I thought it would be nice to have one of you!"),
+  ),
+  array(
     'phrase_match' => array('I dont want to sing'),
     'response' => array("But it'll make me go to sleep"),
   ),
@@ -245,6 +249,10 @@ $activity->response_sets = array(
     'exact_match' => array('boo'),
     'phrase_match' => array('peek a boo'),
     'response' => array("Ah! You scared me."),
+  ),
+  array(
+    'phrase_match' => array('passing you off', 'pass you off'),
+    'response' => array("You can’t just pass me off, I’m here to stay!"),
   ),
 );
 
