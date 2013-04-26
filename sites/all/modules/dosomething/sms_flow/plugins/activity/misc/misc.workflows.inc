@@ -36,7 +36,9 @@ $activity->inputs = array('ftaf');
 $workflows[$workflow->name] = $workflow;
 
 /**
- * TODO: description
+ * Workflow for signing petitions via SMS. Expected initial message from the user
+ * will include first name and last initial. Signing of the petition will be followed
+ * by an FTAF.
  */
 $workflow = new ConductorWorkflow();
 $workflow->wid = 'new';
@@ -51,19 +53,21 @@ $activity->outputs = array('args_to_context');
 $activity = $workflow->newActivity('args_to_context_value');
 $activity->name = 'args_to_context';
 $activity->inputs = array('start');
-$activity->outputs = array('sms_petition_incoming_response');
+$activity->outputs = array('sign_petition');
+$activity->context_field = 'sms_petition_incoming_response';
 
 $activity = $workflow->newActivity('sms_sign_petition');
 $activity->name = 'sign_petition';
-$activity->inputs = array('start');
+$activity->inputs = array('args_to_context');
 $activity->outputs = array('ftaf_prompt', 'sms_flow_generic_ftaf', 'end');
-// TODO: need success and error copy
-// TODO: need beta -> alpha confirmation message
+// TODO: need actual NID for the petition form
+// TODO: need beta -> alpha confirmation message & error message
 $activity->petitions = array(
   array(
     'nid' => 727420,
     'mdata_id' => 123456,
-    'ftaf_beta_optin' => 123456,
+    'ftaf_beta_optin' => 0,
+    'ftaf_response_success' => 'Thanks for sharing. Get more people involved, text MUSIC. Want to be in Phillp Phillips new music video? Go to: www.youtube.com to find out how.',
   ),
 );
 
@@ -71,8 +75,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ftaf_prompt';
 $activity->inputs = array('sign_petition');
 $activity->outputs = array('ftaf');
-// TODO: get actual copy
-$activity->question = t('TODO: You signed the petition. Text back friends\' numbers to get them to sign too.');
+$activity->question = t('Great! Organize your friends to get involved, Text 5 friends #s to have them add their voice to the petition.');
 
 $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';

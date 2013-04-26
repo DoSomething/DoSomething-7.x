@@ -43,17 +43,22 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
         self::selectNextOutput('end');
       }
       else {
-        $xml = sms_mobile_commons_profile_summary($mobile);
-        $xmlObj = new SimpleXMLElement($xml);
-        $firstName = $xmlObj->profile->first_name;
-        $lastName = $xmlObj->profile->last_name;
+        // Parse message for first name and last initial
+        $msgWords = explode(' ', $userMsg);
+        $firstName = $msgWords[0];
+        $lastName = substr($msgWords[1], 0, 1);
 
         $user = sms_flow_get_or_create_user_by_cell($mobile);
         if ($user) {
           // Update the user's profile
           $profile = profile2_load_by_user($user, 'main');
-          $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $firstName;
-          $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $lastName;
+          if (empty($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+            $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $firstName;
+          }
+          // Only updating profile names if current values are empty
+          if (empty($profile->field_user_last_name[LANGUAGE_NONE][0]['value'])) {
+            $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $lastName;
+          }
           profile2_save($profile);
 
           // Create and save the webform submission
@@ -86,6 +91,9 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
             // sms_mobile_commons_opt_in($alphaMobile, $optInPath);
           }
 
+          // Setup success message upon successful FTAF
+          $state->setContext('ftaf_response_success', $petition['ftaf_response_success']);
+
           // Prompt user for FTAF next
           self::selectNextOutput('ftaf_prompt');
         }
@@ -100,8 +108,23 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
     $state->markCompleted();
   }
 
-  // TODO
+  /**
+   * Check if the user response has valid info for us to go forward and sign the petition
+   *
+   * @param $msg Response string from the user
+   *
+   * @return TRUE if msg is fine. FALSE otherwise.
+   */
   private function hasValidInfo($msg) {
+    $msgWords = explode(' ', $msg);
+    $firstName = $msgWords[0];
+    $lastName = substr($msgWords[1], 0, 1);
+
+    if (empty($firstName) || empty($lastName)) {
+      return FALSE;
+    }
+    // TODO: also check for questions and other preset non-valid responses
+
     return TRUE;
   }
 
