@@ -46,47 +46,84 @@ function optimizely_permission() {
  * The project must be enabled.
  */
  function optimizely_init() {
- $query = db_select('optimizely', 'op')
+  
+  // Load all entries in the optimizely table
+  $query = db_select('optimizely', 'op')
 	->orderBy('oid')
 	->fields('op');
     
   // Fetch the result set.
   $result = $query->execute();
   
+  // Query results found
   if ($result) {
-		while ($row = $result->fetchAssoc()) {
-			$optimizely_enabled = $row['enabled'];
-			if ($optimizely_enabled) {  
-				$optimizely_onoff = $row['onoff'];
-				$records = unserialize($row['path']);
-				$optimizely_script = '//cdn.optimizely.com/js/' . $row['project_code'] . '.js';
-				$cur_path = current_path(); 
-				$path_alias = drupal_get_path_alias($cur_path);
 	
-				if ($optimizely_onoff == 'on') {
-					foreach ($records as $path) {						
-						$match = drupal_match_path($path_alias, $path);
-						if($match) {
-							drupal_add_js($optimizely_script, 'external');
-							break 1;
-						}	
-					}
-				} elseif ($optimizely_onoff == 'off') {
-					$add_script = true;
-					foreach ($records as $path) {						
-						$match = drupal_match_path($path_alias, $path);
-						if($match) {
-								$add_script = false;
-								break 1;
-						}
-					}
-					if ($add_script) {
-						drupal_add_js($optimizely_script, 'external');
-					}
-				}
+	// Loop through each row of the found results
+    while ($row = $result->fetchAssoc()) {
+	  
+      $optimizely_enabled = $row['enabled'];
+	  
+	  // Only process the entries that are enabled
+	  if ($optimizely_enabled) {
+		  
+		$optimizely_onoff = $row['onoff'];
+	    $records = unserialize($row['path']);
+	    $optimizely_script = '//cdn.optimizely.com/js/' . $row['project_code'] . '.js';
+		  
+		// The current path acessed by the request calling hook_init
+	    $cur_path = current_path();
+		  
+  	    // Find comparable alias that could match the paths entered in the optimizely table
+	    // ** Consider adding logic to form submit function to prevent scanning url_alias table for every page load at the time of hook_init
+		$path_alias = drupal_get_path_alias($cur_path);
+	
+	    // Find path match by inclusive or exclusive path match
+		if ($optimizely_onoff == 'on') {
+			
+		  // Loop through each path for the individual Optimizely experiment / project
+		  foreach ($records as $path) {
+			  
+			$match = drupal_match_path($path_alias, $path);
+			  
+		    if($match) {
+				
+	  		  drupal_add_js($optimizely_script, 'external');
+  			  break 1;
+
+            }
+			  
+          }
+			
+	    } // Match by exclusion
+	    elseif ($optimizely_onoff == 'off') {
+			
+	      $add_script = true;
+		  
+		  foreach ($records as $path) {
+			  
+			$match = drupal_match_path($path_alias, $path);
+			  
+			if($match) {
+				
+			  $add_script = FALSE;
+			  break 1;
+			  
 			}
-		}
-	}
+			  
+		  }
+			
+		  if ($add_script) {
+			drupal_add_js($optimizely_script, 'external');
+		  }
+			
+		} // END $optimizely_onoff
+		  
+	  } // END $optimizely_enabled
+		
+	} // END while $row
+	
+  } // END if $results
+  
 }
 /**
  * Implements hook_menu().
