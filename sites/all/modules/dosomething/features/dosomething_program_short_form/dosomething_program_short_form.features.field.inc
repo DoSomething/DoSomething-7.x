@@ -10,7 +10,7 @@
 function dosomething_program_short_form_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-program_short_form-field_mailchimp_group_id'
+  // Exported field: 'node-program_short_form-field_mailchimp_group_id'.
   $fields['node-program_short_form-field_mailchimp_group_id'] = array(
     'field_config' => array(
       'active' => '1',
@@ -34,6 +34,7 @@ function dosomething_program_short_form_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -81,7 +82,74 @@ function dosomething_program_short_form_field_default_fields() {
     ),
   );
 
-  // Exported field: 'webform_submission_entity-program_short_form-field_webform_email'
+  // Exported field: 'node-program_short_form-field_mc_optin'.
+  $fields['node-program_short_form-field_mc_optin'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mc_optin',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'program_short_form',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 2,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mc_optin',
+      'label' => 'Mobile Commons Opt-In Path',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '34',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-program_short_form-field_webform_email'.
   $fields['webform_submission_entity-program_short_form-field_webform_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -94,6 +162,7 @@ function dosomething_program_short_form_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -123,15 +192,17 @@ function dosomething_program_short_form_field_default_fields() {
       ),
       'widget' => array(
         'active' => 0,
-        'module' => 'html5_tools',
-        'settings' => array(),
-        'type' => 'emailwidget',
+        'module' => 'email',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'email_textfield',
         'weight' => '32',
       ),
     ),
   );
 
-  // Exported field: 'webform_submission_entity-program_short_form-field_webform_mobile'
+  // Exported field: 'webform_submission_entity-program_short_form-field_webform_mobile'.
   $fields['webform_submission_entity-program_short_form-field_webform_mobile'] = array(
     'field_config' => array(
       'active' => '1',
@@ -155,6 +226,7 @@ function dosomething_program_short_form_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '100',
@@ -199,6 +271,7 @@ function dosomething_program_short_form_field_default_fields() {
   t('Cell');
   t('Email');
   t('Mailchimp Interest Group');
+  t('Mobile Commons Opt-In Path');
   t('Name of the Mailchimp Interest Group');
 
   return $fields;
