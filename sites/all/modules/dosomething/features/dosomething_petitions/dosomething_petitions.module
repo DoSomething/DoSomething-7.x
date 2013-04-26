@@ -785,3 +785,14 @@ function dosomething_petitions_contact_picker_emails() {
 
   return $emails;
 }
+
+/**
+ * Increment the number of signatures for a petition
+ *
+ * @param $nid
+ *    Node ID for the petition
+ */
+function dosomething_petitions_increment_signature_count($nid) {
+  $count = variable_get('petitions_signed_count_' . $nid, 0);
+  variable_set('petitions_signed_count_' . $nid, ++$count);
+}
