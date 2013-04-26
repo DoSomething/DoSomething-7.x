@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Handles subscription API calls based on webform submissions (or other form submissions)
+ **/
+
+/**
+ * Actions to take when a Webform submission is made.
+ *
+ * @param array $node
+ *   Standard node array created in the webform submission.
+ * @param array $submission
+ *   Array with submitted webform component values.
+ */
+function dosomething_subscribe_webform_submission_insert($node, $submission) {
+  //$node field_mailchimp_group_id
+  //watchdog('dosomething_subscribe', 'Testing ' . print_r($node, TRUE) . ' - ' . print_r($submission, TRUE));
+  //drupal_set_message(print_r($submission, TRUE));
+}

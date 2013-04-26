@@ -1093,7 +1093,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
     $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
   }
   elseif (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE3][0]['value'];
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
   }
   elseif (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
     if (strpos($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'], '@') > 0) {
