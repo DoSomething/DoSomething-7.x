@@ -2,7 +2,7 @@
 
 /**
  * Parses user message and sends back a response if match is found. If no match
- * is found, should just remain silent unless a $no_match_response is specified.
+ * is found, should just remain silent unless $no_match_responses are specified.
  */
 class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
@@ -30,7 +30,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   public $response_sets = array();
 
   // Response to send to the user if no match is found
-  public $no_match_response = '';
+  public $no_match_responses = array();
 
   // Maximum allowed string edit distance to trigger a successful match
   public $match_threshold = 1;
@@ -166,8 +166,9 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
       $state->setContext('sms_response', $response);
     }
-    elseif (!empty($this->no_match_response)) {
-      $state->setContext('sms_response', $this->no_match_response);
+    elseif (count($this->no_match_responses) > 0) {
+      $response = self::selectResponse($this->no_match_responses);
+      $state->setContext('sms_response', $response);
     }
     else {
       $state->setContext('ignore_no_response_error', TRUE);
