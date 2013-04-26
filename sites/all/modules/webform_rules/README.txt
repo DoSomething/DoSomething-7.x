@@ -23,7 +23,8 @@ a new rule.
 -- USAGE --
 
 Using the submitted data in a rule is easy, as you can access it either via PHP
-or using tokens (after installing the Token-module).
+(requires core module "PHP Filter") or using tokens (after installing the
+Token-module [http://drupal.org/project/token]).
 
 PHP:
  Each rule reacting on an event thrown by "Webform Rules" gets 3 arguments to
@@ -44,18 +45,18 @@ PHP:
      )</code>
      Given this structure, you can access the value of a component called
      "email" with
-     <code><?php print $data['components']['email']['value']; ?></code>.
+     <code><?php print $data['components']['email']['value'][0]; ?></code>.
 
      Warning:
       This is raw user input! Make sure to run this through check_plain() before
       using it.
 
      Note:
-      Some components (for example "grid") return arrays, so 'value' isn't a
-      simple string always.
+      The component value is always an array since the submission data is saved
+      this way.
 
 Token:
- There are 8 pre-defined tokens for the webform data:
+ There are 9 pre-defined tokens for the webform data:
   * [data:sid]
     Token to get the unique identifier of the submission.
   * [data:data]
@@ -91,6 +92,10 @@ Condition:
  Webform Rules adds a new condition to the rules configuration. With this
  condition you can tell rules to react only on one specific webform by selecting
  its title.
+
+Actions:
+ Webform Rules provides some additional actions to either open or close webforms
+ or fetch a list of submissions for a webform.
 
 
 -- AUTHOR --

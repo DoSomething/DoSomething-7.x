@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * @file
+ * Webform entity provides fields that are not "proper" webform components.
+ * As a result, when attempting to set up emails through webform, we could
+ * not choose a webform entity field as an email "to" value.  This was
+ * a problem for content creators.
+ *
+ * This module fixes that by gathering all webform entity fields and appending
+ * them to the array of fields found when adding new webform emails.  This allows
+ * anyone to send an email to a user's email that happens to be a webform entity
+ * field.
+ *
+ * @author Chris Johnson (chris@crisistextline.org)
+ */
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function webform_entity_emails_form_webform_emails_form_alter(&$form, &$form_state, $form_id) {

@@ -57,7 +57,7 @@ function create_and_share_default_page_manager_handlers() {
     $pane->panel = 'center';
     $pane->type = 'create_and_share_view';
     $pane->subtype = 'create_and_share_view';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array(
       'plugins' => array(
         0 => array(
@@ -84,7 +84,7 @@ function create_and_share_default_page_manager_handlers() {
     $pane->panel = 'center';
     $pane->type = 'entity_field_extra';
     $pane->subtype = 'node:webform';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array(
       'plugins' => array(
         0 => array(
