@@ -60,12 +60,12 @@ $activity = $workflow->newActivity('sms_sign_petition');
 $activity->name = 'sign_petition';
 $activity->inputs = array('args_to_context');
 $activity->outputs = array('ftaf_prompt', 'sms_flow_generic_ftaf', 'end');
-// TODO: need actual NID for the petition form
 // TODO: need beta -> alpha confirmation message & error message
+// TODO: consider also supproting opt_in_path_id instead of just mdata_id
 $activity->petitions = array(
   array(
-    'nid' => 727420,
-    'mdata_id' => 123456,
+    'nid' => 729172,
+    'mdata_id' => 10413,
     'ftaf_beta_optin' => 0,
     'ftaf_response_success' => 'Thanks for sharing. Get more people involved, text MUSIC. Want to be in Phillp Phillips new music video? Go to: www.youtube.com to find out how.',
   ),
