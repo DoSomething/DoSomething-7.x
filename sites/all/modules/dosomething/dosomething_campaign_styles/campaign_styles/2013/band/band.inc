@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'Pregnancy Text',
+  'title' => 'Band Together',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -27,16 +27,16 @@ $plugin = array(
 
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
-  'menu' => array(
-    array('title' => 'take action', 'href' => '', 'fragment' => 'action', 'external' => TRUE),
-    array('title' => 'play the game', 'href' => '', 'fragment' => 'game', 'external' => TRUE),
-    array('title' => 'scholarship', 'href' => '', 'fragment' => 'game', 'external' => TRUE),
-    array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
-  ),
-  'menu_suffix' => array(
-    '#markup' => '<hr><p>Got questions? Email Alyssa at <a href="mailto:baby@dosomething.org">baby@dosomething.org</a>!</p>'
-  ),
-    'menu_prefix' => array(
-    '#markup' => '<p>Go To:</p>'
-  ),
+  // 'menu' => array(
+  //   array('title' => 'take action', 'href' => '', 'fragment' => 'action', 'external' => TRUE),
+  //   array('title' => 'play the game', 'href' => '', 'fragment' => 'game', 'external' => TRUE),
+  //   array('title' => 'scholarship', 'href' => '', 'fragment' => 'game', 'external' => TRUE),
+  //   array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
+  // ),
+  // 'menu_suffix' => array(
+  //   '#markup' => '<hr><p>Got questions? Email Alyssa at <a href="mailto:baby@dosomething.org">baby@dosomething.org</a>!</p>'
+  // ),
+  //   'menu_prefix' => array(
+  //   '#markup' => '<p>Go To:</p>'
+  // ),
 );
