@@ -15,11 +15,11 @@ include_once 'dosomething_subscribe.update_field_values.inc';
  * @param array $submission
  *   Array with submitted webform component values.
  */
+/*
 function dosomething_subscribe_webform_submission_insert($node, $submission) {
 
   //drupal_set_message(print_r($submission, TRUE));
 
-  /*
   // This is gonna be nice.
   $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
   $mobilecommons = $node->field_mc_optin[LANGUAGE_NONE][0]['value'];
@@ -29,5 +29,39 @@ function dosomething_subscribe_webform_submission_insert($node, $submission) {
   if ($mobilecommons) {
 	dosomething_subscribe_mobilecommons_signup($submission->email, $mobilecommons);
   }
-  */
 }
+*/
+
+/**
+ *  Implements hook_module_implements_alter().
+ *  Reorder the module load order to gain access to the fields added to the webform by webform entity.
+ */
+ // Don't know if we need this or not.
+/*
+function dosomething_subscribe_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['dosomething_subscribe'];
+    unset($implementations['dosomething_subscribe']);
+    $implementations['dosomething_subscribe'] = $group;
+  }
+}
+*/
+
+/**
+ * Implements hook_form_alter().
+ */
+/*
+function dosomething_subscribe_form_alter(&$form, &$form_state, $form_id) {
+
+//  dsm($form);
+//  dsm($form_state);
+ dsm($form_state);
+ if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
+    return;
+  }
+  $node = $form['#node'];
+  $submitted = $form_state['webform_entity']['submission']->submitted;
+  dsm($submitted);
+  drupal_set_message('test');
+}
+*/

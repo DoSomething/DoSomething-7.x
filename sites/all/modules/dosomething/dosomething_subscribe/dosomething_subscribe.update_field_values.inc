@@ -10,7 +10,9 @@
  */
 function dosomething_subscribe_update_field_values() {
 
-  // For node type: grant_applications (dosomething_petitions_ideas)
+  //////// Bulk update nodes by type: //////////////
+
+  // Grant Application (see dosomething_petitions_ideas)
   $mobilecommons = 150463;
   $mailchimp = 'Grants2013';
   $nids = dosomething_subscribe_get_nids('grant_application');
@@ -18,16 +20,7 @@ function dosomething_subscribe_update_field_values() {
     dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
   }
 
-  // Petitions Ideas webform - dosomething_petitions_form_alter -> dosomething_petitions_ideas
-  $nid = 728676;
-  $mobilecommons = 147563;
-  $mailchimp = 'UserSubmittedPetitions2013';
-  dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
-
-  // if node_type == petition
-  // dosomething_petitions_optin:
-  //dosomething_general_webform_email_and_mobile_subscribe($form, $form_state);
-  //dosomething_general_mobile_commons_subscribe($val, PETITIONS_MCOMMONS);
+  // Petition
   $mailchimp = 'Petitions2012'; //from dosomething_general_webform_email_and_mobile_subscribe
   $mobilecommons = 117371; //dosomething_general_mobile_commons_subscribe($val, PETITIONS_MCOMMONS);
   $nids = dosomething_subscribe_get_nids('petition');
@@ -35,13 +28,15 @@ function dosomething_subscribe_update_field_values() {
     dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
   }
 
-  // For node node type: project_report
+  // Project_report
 	$mobilecommons = 150223;
 	$mailchimp = 'Projects2012';
   $nids = dosomething_subscribe_get_nids('project_report');
   foreach ($nids as $nid) {
     dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
   }
+
+  //////// Individual nodes: /////////////////
 
   // Volunteer webform:
   // if ($form_id == 'webform_client_form_' . variable_get('volunteer_webform', 728802)) {
@@ -50,8 +45,49 @@ function dosomething_subscribe_update_field_values() {
   // $mobile_commons_bucket = variable_get('volunteer_mobile_commons_bucket', 150443);
   // variable volunteer_mobile_commons_bucket is not defined
   $nid = 728802;
-  $mobilecommons = 150443;
+  $mobilecommons = '150443';
   $mailchimp = 'Volunteers2013';
+  dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
+
+  // 727601: Do Something Awards Application
+  $nid = 727601;
+  $mailchimp = 'DSA2013Applicants';
+  dosomething_subscribe_update_node_fields($nid, $mailchimp);
+
+  // 727716: DO SOMETHING AWARDS NOMINATION FORM
+  $nid = 727716;
+  $mailchimp = 'DSA2013Nominees';
+  dosomething_subscribe_update_node_fields($nid, $mailchimp);
+
+  // 728929  gun-policy has a conditional signup.  Based on birthdate field, subscribe to two different groups.
+  //@todo: 1) do we even need this? 2) how would we do conditionals?
+  $nid = 728929;
+  $mailchimp = 'ControlSurvey2013'; // Young People
+  $mailchimp_2 = 'GunControlReport2013'; // Old People.
+  dosomething_subscribe_update_node_fields($nid, $mailchimp);
+
+  // 719564: Contact Me About Boot Camp
+  $nid = 719564;
+  $mailchimp = 'Bootcamp2012NYC';
+  $mobilecommons = '116183';
+  dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
+
+  // 719546: Contact Me About Scholarships
+  $nid = 719546;
+  $mailchimp = 'ScholarshipInterest2012';
+  $mobilecommons = '112523';
+  dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
+
+  // 719550: Contact Me About Clubs
+  $nid = 719550;
+  $mailchimp = 'Clubs2012';
+  $mobilecommons = '95961';
+  dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
+
+  // 719551: Contact Me About Grants
+  $nid = 719551;
+  $mobilecommons = '112513';
+  $mailchimp = 'Grants2012';
   dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
 
 }
@@ -66,9 +102,11 @@ function dosomething_subscribe_get_nids($node_type) {
   return $nids;
 }
 
-function dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons) {
+function dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons = NULL) {
   $node = node_load($nid);
-  $node->field_mc_optin[LANGUAGE_NONE][0]['value'] = $mobilecommons;
   $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] = $mailchimp;
+  if ($mobilecommons) {
+    $node->field_mc_optin[LANGUAGE_NONE][0]['value'] = $mobilecommons;
+  }
   node_save($node);  
 }
