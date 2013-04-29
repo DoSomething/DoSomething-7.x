@@ -30,13 +30,12 @@ include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'media_youtube') . '/
  * Implements hook_media_internet_providers().
  */
 function media_youtube_media_internet_providers() {
-  $path = drupal_get_path('module', 'media_youtube');
-  return array(
-    'MediaInternetYouTubeHandler' => array(
-      'title' => 'youtube',
-      'image' => $path . '/images/stream-youtube.png'
-    ),
+  $info['MediaInternetYouTubeHandler'] = array(
+    'title' => t('YouTube'),
+    'image' => drupal_get_path('module', 'media_youtube') . '/images/stream-youtube.png',
   );
+
+  return $info;
 }
 
 /**
@@ -68,8 +67,9 @@ function media_youtube_theme($existing, $type, $theme, $path) {
       'file' => 'media_youtube.theme.inc',
       'path' => $path . '/includes/themes',
     ),
+    // Note that all the variables after options are now deprecated.
     'media_youtube_video' => array(
-      'variables' => array('uri' => NULL, 'width' => NULL, 'height' => NULL, 'autoplay' => NULL, 'fullscreen' => NULL),
+      'variables' => array('uri' => NULL, 'options' => array(), 'width' => NULL, 'height' => NULL, 'autoplay' => NULL, 'fullscreen' => NULL, 'related' => NULL),
       'file' => 'media_youtube.theme.inc',
       'path' => $path . '/includes/themes',
       'template' => 'media-youtube-video',
