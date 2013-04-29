@@ -22,8 +22,8 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: url("http://www.dosomething.org/files/campaigns/bands13/bandtogether-bg.jpg") top center fixed no-repeat;
-  background-size: 100%; }
+  background: url("http://www.dosomething.org/files/campaigns/bands13/bandtogether-bg.jpg") top left fixed no-repeat;
+  background-size: cover; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -153,6 +153,7 @@ body {
   -o-border-radius: 4px;
   border-radius: 4px; }
 
+#block-dosomething-campaign-styles-campaign-nav,
 .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
 .node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav,
 .page-node-727978 #block-dosomething-campaign-styles-campaign-nav,
@@ -484,7 +485,7 @@ body {
   #cmp input[type="submit"] {
     font-size: 1.5em; }
   #cmp a {
-    color: #f80071;
+    color: #4b81c3;
     text-decoration: underline; }
     #cmp a:hover {
       text-decoration: none; }
@@ -554,9 +555,8 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("//www.dosomething.org/files/campaigns/band13/header1.jpg") top center no-repeat;
-    margin-bottom: 0;
-    height: 260px; }
+    background: none;
+    margin-bottom: 0; }
   #cmp #header {
     max-width: 800px;
     margin: 0 auto;
@@ -568,9 +568,7 @@ body {
       color: black;
       margin: 0; }
     #cmp #header .header-social {
-      position: absolute;
-      bottom: 0;
-      right: 8px; }
+      float: right; }
     #cmp #header .header-facebook-share, #cmp #header .header-twitter-share {
       display: inline-block;
       margin: 0 2px; }
