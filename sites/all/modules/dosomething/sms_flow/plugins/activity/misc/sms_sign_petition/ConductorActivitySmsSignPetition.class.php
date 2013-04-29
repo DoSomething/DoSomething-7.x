@@ -30,12 +30,13 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
 
       // If there's a number in the message, then assume it's for the FTAF
       if (self::hasPhoneNumbers($userMsg)) {
-        // Set values to be used by sms_flow_generic_ftaf activity
+        // Set values to be used by ftaf activity
         $state->setContext('ftaf_prompt:message', $userMsg);
         $state->setContext('ftaf_beta_optin', $petition['ftaf_beta_optin']);
         $state->setContext('ftaf_id_override', $petition['nid']);
+        $state->setContext('ftaf_response_success', $petition['ftaf_response_success']);
 
-        self::selectNextOutput('sms_flow_generic_ftaf');
+        self::selectNextOutput('ftaf');
       }
       // TODO: if any values are invalid, give a different message instead
       elseif (!self::hasValidInfo($userMsg)) {
@@ -84,14 +85,12 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
           // If user was invited by an Alpha, send back confirmation message
           $alphaMobile = sms_flow_find_alpha(substr($mobile, -10), $petition['nid']);
           if ($alphaMobile) {
-            // TODO: get message to send to user. Send via an opt-in or send function...?
-            // $alphaOptions = array('campaign_id' => $this->alpha_campaign_id);
-            // sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
-            // OR (I think the opt-in would be preferred)
-            // sms_mobile_commons_opt_in($alphaMobile, $optInPath);
+            sms_mobile_commons_opt_in($alphaMobile, $petition['beta_to_alpha_feedback']);
           }
 
-          // Setup success message upon successful FTAF
+          // Setup success message and other needed values upon successful FTAF
+          $state->setContext('ftaf_beta_optin', $petition['ftaf_beta_optin']);
+          $state->setContext('ftaf_id_override', $petition['nid']);
           $state->setContext('ftaf_response_success', $petition['ftaf_response_success']);
 
           // Prompt user for FTAF next
@@ -140,6 +139,7 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
     preg_match_all('#(?:1)?(?<numbers>\d{3}\d{3}\d{4})#i', preg_replace('#[^0-9]#', '', $msg), $numbers);
     if (!empty($numbers['numbers'])) {
       // Remove any items where the value equals the user's number
+      $state = $this->getState();
       $userNum = $state->getContext('sms_number');
       $userNumKeys = array_keys($numbers['numbers'], $userNum);
       
@@ -156,22 +156,22 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
    * Helper function to manage the output links and leave only the one we want
    * to go to next.
    *
-   * @param $outputName Name of the output link to go to. Options: ftaf_prompt, sms_flow_generic_ftaf, end.
+   * @param $outputName Name of the output link to go to. Options: ftaf_prompt, ftaf, end.
    */
   private function selectNextOutput($outputName) {
     switch ($outputName) {
       case 'ftaf_prompt':
-        $this->removeOutput('sms_flow_generic_ftaf');
+        $this->removeOutput('ftaf');
         $this->removeOutput('end');
         break;
-      case 'sms_flow_generic_ftaf':
+      case 'ftaf':
         $this->removeOutput('ftaf_prompt');
         $this->removeOutput('end');
         break;
       case 'end':
       default:
         $this->removeOutput('ftaf_prompt');
-        $this->removeOutput('sms_flow_generic_ftaf');
+        $this->removeOutput('ftaf');
         break;
     }
   }
