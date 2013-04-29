@@ -76,6 +76,8 @@ $activity->petitions = array(
     'opt_in_path_id' => 154033,
     'skip_ftaf' => TRUE,
     'success_response' => 154153,
+    'beta_to_alpha_feedback' => "Your friend @name signed the petition! You're on a roll, organize more friends to sign by texting SIGN, or join our music video challenge: http://doso.me/h",
+    'alpha_campaign_id' => 116263,
   ),
 );
 
