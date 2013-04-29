@@ -977,26 +977,6 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'help_form_captcha';
   }
-
-  if ($form_id == 'webform_client_form_' . variable_get('million_webform', 728731)) {
-    // Load the form information.
-    $f = &$form['submitted'];
-
-    // Set placeholders.
-    $f['your_name']['#attributes']['placeholder'] = t('Your Name');
-    $f['your_number']['#attributes']['placeholder'] = t('Your Number');
-    $f['friends_number']['#attributes']['placeholder'] = t("Friend's Number");
-    $f['friends_number_2']['#attributes']['placeholder'] = t("Friend's Number");
-    $f['friends_number_3']['#attributes']['placeholder'] = t("Friend's Number");
-
-    if (!user_is_logged_in()) {
-      $form['actions']['submit']['#ajax'] = array(
-        'callback' => 'dosomething_general_million_users_login',
-      );
-    }
-    //@todo: subscribe_cleanup
-    $form['#submit'][] = 'dosomething_general_million_users_opt_in';
-  }
   //@todo: subscribe_cleanup
   if ($form_id == 'webform_client_form_' . variable_get('volunteer_webform', 728802)) {
     $form['#submit'][] = 'dosomething_general_volunteer_webform_submit';
