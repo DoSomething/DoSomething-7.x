@@ -5,13 +5,15 @@
 
 // "do it" theme-specific overrides
 @import "sass/drupal"
-@import "sass/reset"
 
 // "jv" template styles
-@import "sass/general"
-@import "sass/sections"
-@import "sass/forms"
+#cmp
+  @import "sass/reset"
+  @import "sass/general"
+  @import "sass/sections"
+  @import "sass/forms"
 
+// "reset"    = Eric Meyer CSS reset
 // "general"  = generic HTML element styling, typography and global classes
 // "sections" = specific styles that pertain to individual sections of the page (e.g. .header)
 // "forms"    = all form-related styles (input fields, form-specific buttons, etc.)
