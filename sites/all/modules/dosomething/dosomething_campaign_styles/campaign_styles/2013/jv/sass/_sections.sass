@@ -1,17 +1,20 @@
 // GENERAL
 // -------
 .header,
-.contact-form,
+.call-to-action,
 .toolkit
   background: $bg-alt
 
 // HEADER
 // ------
 .header
-  background-image: none
-  background-size: 100%
+  background-image: url($bg-header)
+  background-size: 100% 100%
   background-repeat: no-repeat
   background-position: 50% 50%
+  height: 330px
+  margin: 0
+  padding: 0
   @media only screen and (max-width: 1075px)
     background-size: auto
   .log-out
@@ -30,6 +33,15 @@
     clear: both
     @media only screen and (max-width: 550px)
       width: 400px
+  .header-logotype
+    text-align: center
+    color: #fff
+    text-shadow: #888 2px 1px 3px
+    text-transform: uppercase
+    line-height: 1.2em
+    font-size: 4em
+    width: 8em
+    margin: 0.5em auto
 
 .header-social
   float: right
@@ -44,15 +56,36 @@
   border: 1px solid rgb(202, 212, 231)
   +border-radius(2px)
   &:hover
-    border: 1px solid rgb(236, 238, 245) 
+    border: 1px solid rgb(236, 238, 245)
 
 .header-twitter-share
   float: right
   width: 54px
   margin: 0 0 0 5px
 
-// CHALLENGE
-// ---------
+// HEADLINE
+// --------
+.headline-callout
+  text-align: center
+  margin: 0 auto
+  span
+    display: inline-block
+    background: $bg-alt
+    text-align: center
+    padding: 0.2em 0.5em 0px
+    color: #fff
+
+h1.headline-callout
+  padding: 0 0 0.5em 0
+
+// h2.headline-callout
+
+// CALL TO ACTION
+// --------------
+.call-to-action
+  .btn-cta-medium
+    width: 9em
+    margin: 1em auto
 
 // SCHOLARSHIP
 // -----------
@@ -139,12 +172,6 @@
   form
     width: 80%
     margin: 0 auto
-  .form-submit /* TODO - CONSOLIDATE BUTTON STYLES  */
-    font-size: 15px
-    font-family: din-web-reg
-    font-weight: 600
-    padding: 5px 10px
-    height: 2em
   .campaign-opt-in
     width: 80%
     font-size: 10px
@@ -153,6 +180,9 @@
     margin: 1% 0 0 0
   .official-rules-link
     text-transform: uppercase
+  .btn-cta-medium
+    padding: 0.25em 0 1em 0
+    width: 10em
 
 .bg-share
   margin: 0 auto 2%
@@ -239,7 +269,10 @@
   .action-arrow-right
     right: -70px
   .action-arrow-left
-    left: -70px 
+    left: -70px
+  .btn-cta-medium
+    width: 10em
+    margin: 2em auto
 
 // FOOTER
 // ------

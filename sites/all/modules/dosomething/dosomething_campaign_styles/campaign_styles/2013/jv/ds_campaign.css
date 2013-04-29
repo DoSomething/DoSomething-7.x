@@ -39,7 +39,7 @@ nav[role="navigation"] {
       display: none; } }
 
 header[role="banner"] {
-  width: 800px;
+  width: 960px;
   margin: 0 auto;
   position: relative; }
 
@@ -165,14 +165,14 @@ header[role="banner"] {
   border-spacing: 0; }
 #cmp section {
   margin: 0 auto;
-  padding: 2% 0 1%;
+  padding: 1% 0;
   overflow: hidden;
   background: white; }
   @media only screen and (max-width: 825px) {
     #cmp section {
       padding: 3% 2%; } }
 #cmp .section-container {
-  width: 800px;
+  width: 960px;
   margin: 0 auto; }
   @media only screen and (max-width: 825px) {
     #cmp .section-container {
@@ -190,7 +190,7 @@ header[role="banner"] {
   background: none; }
 #cmp .section-unit {
   float: left;
-  width: 266.66667px; }
+  width: 320px; }
   #cmp .section-unit h1, #cmp .section-unit h2, #cmp .section-unit h3, #cmp .section-unit h4, #cmp .section-unit p {
     text-align: center; }
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
@@ -217,18 +217,20 @@ header[role="banner"] {
 #cmp .cause p, #cmp .footer p {
   font-size: 16px;
   line-height: 26px; }
-#cmp .form-submit {
+#cmp .form-submit, #cmp .btn-cta-medium {
   background: #ffcb15;
-  margin: 4% 0 1%;
-  padding: 0.3em 0.7em;
+  margin: 1em 0;
+  padding: 0.4em 0;
   position: static;
-  font-size: 1.5em;
-  height: 1.4em;
+  font-size: 16px;
+  height: 2em;
   display: block;
   border: none;
-  color: #1e1d1c;
-  font-family: din-web;
-  font-weight: 500;
+  cursor: pointer;
+  color: #1e1d1c !important;
+  font-family: din-web-reg;
+  font-weight: 600;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   -webkit-border-radius: 5px;
@@ -236,18 +238,21 @@ header[role="banner"] {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px; }
-  #cmp .form-submit:hover {
+  #cmp .form-submit:link, #cmp .form-submit:active, #cmp .form-submit:hover, #cmp .btn-cta-medium:link, #cmp .btn-cta-medium:active, #cmp .btn-cta-medium:hover {
     color: #1e1d1c;
     text-decoration: none; }
 #cmp .header,
-#cmp .contact-form,
+#cmp .call-to-action,
 #cmp .toolkit {
   background: #eeeeee; }
 #cmp .header {
-  background-image: none;
-  background-size: 100%;
+  background-image: url("./assets/bg-header.jpg");
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: 50% 50%; }
+  background-position: 50% 50%;
+  height: 330px;
+  margin: 0;
+  padding: 0; }
   @media only screen and (max-width: 1075px) {
     #cmp .header {
       background-size: auto; } }
@@ -269,6 +274,15 @@ header[role="banner"] {
     @media only screen and (max-width: 550px) {
       #cmp .header .logo-campaign {
         width: 400px; } }
+  #cmp .header .header-logotype {
+    text-align: center;
+    color: white;
+    text-shadow: #888888 2px 1px 3px;
+    text-transform: uppercase;
+    line-height: 1.2em;
+    font-size: 4em;
+    width: 8em;
+    margin: 0.5em auto; }
 #cmp .header-social {
   float: right; }
 #cmp .header-facebook-share,
@@ -289,10 +303,24 @@ header[role="banner"] {
   float: right;
   width: 54px;
   margin: 0 0 0 5px; }
+#cmp .headline-callout {
+  text-align: center;
+  margin: 0 auto; }
+  #cmp .headline-callout span {
+    display: inline-block;
+    background: #eeeeee;
+    text-align: center;
+    padding: 0.2em 0.5em 0px;
+    color: white; }
+#cmp h1.headline-callout {
+  padding: 0 0 0.5em 0; }
+#cmp .call-to-action .btn-cta-medium {
+  width: 9em;
+  margin: 1em auto; }
 #cmp .scholarship h2 {
   padding: 0 0 0.5em 0; }
 #cmp .scholarship .section-container {
-  width: 533.33333px;
+  width: 640px;
   margin: 0 auto; }
 #cmp .scholarship .scholarship-header {
   margin: 0 0 1em 0;
@@ -356,12 +384,6 @@ header[role="banner"] {
 #cmp .share form {
   width: 80%;
   margin: 0 auto; }
-#cmp .share .form-submit {
-  font-size: 15px;
-  font-family: din-web-reg;
-  font-weight: 600;
-  padding: 5px 10px;
-  height: 2em; }
 #cmp .share .campaign-opt-in {
   width: 80%;
   font-size: 10px;
@@ -370,6 +392,9 @@ header[role="banner"] {
   margin: 1% 0 0 0; }
 #cmp .share .official-rules-link {
   text-transform: uppercase; }
+#cmp .share .btn-cta-medium {
+  padding: 0.25em 0 1em 0;
+  width: 10em; }
 #cmp .bg-share {
   margin: 0 auto 2%;
   display: block; }
@@ -443,6 +468,9 @@ header[role="banner"] {
   right: -70px; }
 #cmp .faq .action-arrow-left {
   left: -70px; }
+#cmp .faq .btn-cta-medium {
+  width: 10em;
+  margin: 2em auto; }
 #cmp .footer p {
   text-align: center; }
 #cmp .footer img {
@@ -459,7 +487,7 @@ header[role="banner"] {
 #cmp .report-back-form td {
   display: block; }
 #cmp .report-back-form form {
-  width: 800px;
+  width: 960px;
   margin: 0 auto; }
   @media only screen and (max-width: 825px) {
     #cmp .report-back-form form {
