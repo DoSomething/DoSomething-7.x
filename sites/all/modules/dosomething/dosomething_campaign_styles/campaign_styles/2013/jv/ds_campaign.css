@@ -421,56 +421,28 @@ header[role="banner"] {
     font-weight: 600;
     font-size: 26px;
     color: #d5904c; }
-#cmp .faq div {
-  padding: 0 1.2em; }
-#cmp .faq h4, #cmp .faq li, #cmp .faq p {
-  text-align: left; }
-#cmp .faq ul {
-  list-style: disc;
-  margin: 0 0 0 2em;
-  line-height: 1.4em; }
-#cmp .faq li {
-  margin: 0;
-  color: #d5904c; }
-  #cmp .faq li span {
-    color: #1e1d1c; }
-#cmp .faq h4 {
-  color: #1e1d1c;
-  cursor: pointer;
-  background: url("//www.dosomething.org/files/campaigns/prep/arrows.png");
-  background-repeat: no-repeat;
-  background-position-y: 0.4em;
-  padding: 0.3em 1.2em; }
-#cmp .faq h4.activeFAQ {
-  background-position: 0 -23px; }
-#cmp .faq .go-button {
-  margin: 0 0 1% 0; }
+#cmp .faq h1 {
+  padding: 1.5em 0 0.5em;
+  font-weight: 400;
+  font-size: 2em;
+  color: #cccccc; }
+#cmp .faq p {
+  font-weight: 400;
+  color: #222222; }
+#cmp .faq .btn-cta-medium {
+  width: 10em;
+  margin: 2em auto; }
 #cmp .faq .back-to-top {
   text-align: right;
   padding: 1em 0 1em; }
 #cmp .faq .top-btn {
   font-weight: 400;
   color: #c6c7c8;
-  padding: 0px 0px 0px 15px;
+  padding: 0px 0px 0px 1em;
   text-decoration: none;
   background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
   background-repeat: no-repeat;
-  background-position-y: 0.5em; }
-#cmp .faq .action-copy {
-  text-transform: uppercase; }
-#cmp .faq .action-box {
-  position: relative;
-  display: inline-block; }
-#cmp .faq .action-arrow-left, #cmp .faq .action-arrow-right {
-  position: absolute;
-  bottom: 0.5em; }
-#cmp .faq .action-arrow-right {
-  right: -70px; }
-#cmp .faq .action-arrow-left {
-  left: -70px; }
-#cmp .faq .btn-cta-medium {
-  width: 10em;
-  margin: 2em auto; }
+  background-position: 0% 40%; }
 #cmp .footer p {
   text-align: center; }
 #cmp .footer img {
