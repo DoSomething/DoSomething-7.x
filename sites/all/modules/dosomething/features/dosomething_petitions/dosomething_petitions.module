@@ -8,6 +8,7 @@ include_once 'dosomething_petitions.features.inc';
 
 define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
+//@todo: remove mcommons once subscribe_cleanup
 define('PETITIONS_MCOMMONS', 117371);
 
 /**
