@@ -60,14 +60,22 @@ $activity = $workflow->newActivity('sms_sign_petition');
 $activity->name = 'sign_petition';
 $activity->inputs = array('args_to_context');
 $activity->outputs = array('ftaf_prompt', 'ftaf', 'end');
-// TODO: consider also supporting opt_in_path_id instead of just mdata_id
+// TODO: consider also supporting broadcast_id
 $activity->petitions = array(
+  // Band Together Broadcast signatures
   array(
     'nid' => 729172,
     'mdata_id' => 10413,
     'ftaf_beta_optin' => 154033,
     'ftaf_response_success' => 'Thanks for sharing. Get more people involved, text SIGN. Want to be in Phillp Phillips new music video? Go to: http://doso.me/h to find out how.',
     'beta_to_alpha_feedback' => 154113,
+  ),
+  // Band Together Beta signatures
+  array(
+    'nid' => 729172,
+    'opt_in_path_id' => 154033,
+    'skip_ftaf' => TRUE,
+    'success_response' => 154153,
   ),
 );
 

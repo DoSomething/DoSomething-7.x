@@ -12,17 +12,29 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
-    // Verify mdata_id is supported
-    $mdataID = intval($_REQUEST['mdata_id']);
+    // Verify mdata_id or opt_in_path_id is supported
+    $optInPathID = intval($_REQUEST['opt_in_path_id']);
     $petition = NULL;
+    // Higher prioritization given to petition sets with the opt_in_path_id setup
     foreach ($this->petitions as $p) {
-      if ($p['mdata_id'] == $mdataID) {
+      if ($p['opt_in_path_id'] == $optInPathID) {
         $petition = $p;
+        break;
+      }
+    }
+    if (!$petition) {
+      // Otherwise, check for matching sets for the mdata_id
+      $mdataID = intval($_REQUEST['mdata_id']);
+      foreach ($this->petitions as $p) {
+        if ($p['mdata_id'] == $mdataID) {
+          $petition = $p;
+          break;
+        }
       }
     }
 
     if (!$petition) {
-      watchdog('sms_petition', 'Received response from an unsupported mData ID %mdata_id', array('%mdata_id' => $mdataID));
+      watchdog('sms_petition', 'Received response from an unsupported path. mData ID: %mdata_id. Opt In Path ID: %opt_in_path_id', array('%mdata_id' => $mdataID, '%opt_in_path_id' => $optInPathID));
       self::selectNextOutput('end');
     }
     else {
@@ -88,13 +100,20 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
             sms_mobile_commons_opt_in($alphaMobile, $petition['beta_to_alpha_feedback']);
           }
 
-          // Setup success message and other needed values upon successful FTAF
-          $state->setContext('ftaf_beta_optin', $petition['ftaf_beta_optin']);
-          $state->setContext('ftaf_id_override', $petition['nid']);
-          $state->setContext('ftaf_response_success', $petition['ftaf_response_success']);
+          // Some user flows will not require an FTAF follow up. ie - invited beta users
+          if ($petition['skip_ftaf']) {
+            sms_mobile_commons_opt_in($mobile, $petition['success_response']);
+            self::selectNextOutput('end');
+          }
+          else {
+            // Setup success message and other needed values upon successful FTAF
+            $state->setContext('ftaf_beta_optin', $petition['ftaf_beta_optin']);
+            $state->setContext('ftaf_id_override', $petition['nid']);
+            $state->setContext('ftaf_response_success', $petition['ftaf_response_success']);
 
-          // Prompt user for FTAF next
-          self::selectNextOutput('ftaf_prompt');
+            // Prompt user for FTAF next
+            self::selectNextOutput('ftaf_prompt');
+          }
         }
         else {
           // In case of error, just end the workflow
