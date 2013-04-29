@@ -7,10 +7,10 @@ img.logo {
 
 #main-wrapper div[role="main"] {
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   background: transparent;
   width: 800px; }
-#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper, #main-wrapper #block-block-5 {
+#main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper, #main-wrapper #block-block-5, #main-wrapper .region-sidebar-first {
   display: none; }
 #main-wrapper ul.primary {
   border-bottom: none;
@@ -20,6 +20,9 @@ img.logo {
 
 .ds-panel .pane-content {
   padding-bottom: 0; }
+
+body.one-sidebar.sidebar-first [role=main] {
+  float: none; }
 
 body {
   background: url("http://www.dosomething.org/files/campaigns/bands13/bandtogether-bg.jpg") top left fixed no-repeat;
