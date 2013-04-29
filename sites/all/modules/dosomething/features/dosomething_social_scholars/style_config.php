@@ -42,6 +42,20 @@ $campaign_styles = array(
 			'font_color' => '#000',
 		),
 	  ),
+
+	  // Battle for the Bands
+	  '718285' => array(
+		'longform' => array(
+			'background' => '#ccc',
+			'tip' => '#E31837',
+			'font_color' => '#000000',
+			'tip_color' => '#ffffff',
+		),
+		'shortform' => array(
+			'background' => '#ff9e10',
+			'font_color' => '#ffffff',
+		),
+	  ),
 	);
 
 $scheme_styles = array(
