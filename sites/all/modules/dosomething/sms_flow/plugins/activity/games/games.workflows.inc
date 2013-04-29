@@ -88,6 +88,10 @@ $activity->response_sets = array(
     'response' => array("It’s a good thing I’m so cute...it makes up for all of the smelly and gross."),
   ),
   array(
+    'phrase_match' => array('It smells', 'you smell', 'smelly', 'that smells'),
+    'response' => array("What can I say? Babies are stinky."),
+  ),
+  array(
     'exact_match' => array('poop', 'fart'),
     'phrase_match' => array('its poop', 'its a poop', 'its a fart'),
     'response' => array("There’s no real right answer. You sort of lose either way."),
@@ -134,7 +138,8 @@ $activity->response_sets = array(
     'response' => array("So fresh and so clean clean", "Thanks!", "Thanks! When you smell better, you feel better"),
   ),
   array(
-    'phrase_match' => array('all done', 'I did it', 'I will', 'I am', 'I did', 'Im done', 'ok', 'okay', 'done'),
+    'exact_match' => array('ok', 'okay', 'done'),
+    'phrase_match' => array('all done', 'I did it', 'I will', 'I am', 'I did', 'Im done'),
     'response' => array("You're the best!", "Thanks!", "Thank you!", "Phew, so much better"),
   ),
   array(
@@ -157,6 +162,10 @@ $activity->response_sets = array(
   array(
     'phrase_match' => array('Do you need to be changed', 'Diaper change', 'Check diaper', ' change diaper'),
     'response' => array("I pretty much always need my diaper changed", "Yeah, I think there might be a situation downtown"),
+  ),
+  array(
+    'phrase_match' => array('Sit in your soiled clothes', 'sit in your dirty diaper'),
+    'response' => array("Well that’s just gross, imagine it for a second. Go ahead."),
   ),
   array(
     'phrase_match' => array('Are you sleepy', 'Are you tired', 'are you sleep', 'are you asleep'),
