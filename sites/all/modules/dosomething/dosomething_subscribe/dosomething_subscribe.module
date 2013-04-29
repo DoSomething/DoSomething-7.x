@@ -5,6 +5,8 @@
  * Handles subscription API calls based on webform submissions (or other form submissions)
  **/
 
+include_once 'dosometing_subscribe.update_field_values.inc';
+
 /**
  * Actions to take when a Webform submission is made.
  *
@@ -17,4 +19,12 @@ function dosomething_subscribe_webform_submission_insert($node, $submission) {
   //$node field_mailchimp_group_id
   //watchdog('dosomething_subscribe', 'Testing ' . print_r($node, TRUE) . ' - ' . print_r($submission, TRUE));
   //drupal_set_message(print_r($submission, TRUE));
+}
+
+function dosomething_subscribe_import_values() {
+
+  // For node type: petitions (dosomething_petitions_ideas)
+  // Mailchimp Group ID: UserSubmittedPetitions2013
+  // Mobile commons 147563
+
 }

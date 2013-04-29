@@ -994,10 +994,10 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
         'callback' => 'dosomething_general_million_users_login',
       );
     }
-
+    //@todo: subscribe_cleanup
     $form['#submit'][] = 'dosomething_general_million_users_opt_in';
   }
-
+  //@todo: subscribe_cleanup
   if ($form_id == 'webform_client_form_' . variable_get('volunteer_webform', 728802)) {
     $form['#submit'][] = 'dosomething_general_volunteer_webform_submit';
   }
@@ -1006,6 +1006,7 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 /**
  *  Connections volunteer webform to Mobile Commons and MailChimp
  */
+//@todo: remove this - subscribe_cleanup
 function dosomething_general_volunteer_webform_submit($form, &$form_state) {
   $values = $form_state['input']['submitted'];
 
@@ -1077,6 +1078,7 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
  * combined with the $node values for inserting values into Mailchimp
  * and/or Mobile Commons
  */
+//@todo: this will be moved over to dosomething_subscribe.module 
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
   // If we don't have a node or a webform submission there's really nothing we
   // can do. This handler was probably put on the wrong form.
@@ -1472,6 +1474,7 @@ function dosomething_general_mailchimp_get_api_object() {
  * @return
  *   Boolean indicating success.
  */
+//@todo: move this to dosomething_subscribe_mailchimp_signup().
 function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
 
   /* Our function */
@@ -1566,6 +1569,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
  * @return
  *   Array $merge_vars collection user information.
  */
+//@todo: move this to dosomething_subscribe_mailchimp_collect_merge_vars().
 function dosomething_general_collect_merge_vars($target_email = NULL, $target_mobile = NULL) {
 
   // Collect the user details
