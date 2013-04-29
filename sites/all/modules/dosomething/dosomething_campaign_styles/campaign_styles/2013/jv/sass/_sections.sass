@@ -1,12 +1,14 @@
-// COLLECTIVE
-// ----------
-.challenge, .complete, .cause, .share
+// GENERAL
+// -------
+.header,
+.contact-form,
+.toolkit
   background: $bg-alt
 
 // HEADER
 // ------
 .header
-  background-image: url($bg-header)
+  background-image: none
   background-size: 100%
   background-repeat: no-repeat
   background-position: 50% 50%
@@ -34,12 +36,11 @@
 
 .header-facebook-share,
 .header-twitter-share
-  display: block
+  display: inline-block
   height: 20px
 
 .header-facebook-share
-  width: 75px
-  height: 20px
+  width: 80px
   border: 1px solid rgb(202, 212, 231)
   +border-radius(2px)
   &:hover
@@ -48,7 +49,7 @@
 .header-twitter-share
   float: right
   width: 54px
-  margin: 5px 0 0 0
+  margin: 0 0 0 5px
 
 // CHALLENGE
 // ---------
@@ -58,6 +59,9 @@
 .scholarship
   h2
     padding: 0 0 0.5em 0
+  .section-container /* TODO - add media query */
+    width: ($section-unit-width*2)
+    margin: 0 auto
   .scholarship-header
     margin: 0 0 1em 0
     border-bottom: 1px solid #eee
@@ -72,7 +76,6 @@
 // SOCIAL
 // ------
 .social
-  border-top: 2px solid #ddd
   p
     font-size: 1.2em
     margin: 1em auto
@@ -184,6 +187,59 @@
     font-weight: 600
     font-size: 26px
     color: $campaign-accent
+
+// FAQ
+// ---
+
+// TODO - REFACTOR THIS SECTION
+.faq
+  div
+    padding: 0 1.2em
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
+  li
+    margin: 0
+    color: $campaign-accent
+    span
+      color: $off-black
+  h4
+    color: $off-black
+    cursor: pointer
+    background: url("//www.dosomething.org/files/campaigns/prep/arrows.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position: 0 -23px
+  .go-button
+    margin: 0 0 1% 0
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase
+  .action-box
+    position: relative
+    display: inline-block
+  .action-arrow-left, .action-arrow-right
+    position: absolute
+    bottom: 0.5em
+  .action-arrow-right
+    right: -70px
+  .action-arrow-left
+    left: -70px 
 
 // FOOTER
 // ------

@@ -34,7 +34,7 @@ body
 // set page container to full width
 .container
   width: 100%
-  
+
 // adjust nav to accommodate hidden #utility-bar
 nav[role="navigation"]
   height: 45px
@@ -118,16 +118,16 @@ header[role="banner"]
 #edit-submitted-field-geocode-data
   display: none
 
-// hide elements inherited from global site
-// #block-menu-menu-footer,
-// #skip-link,
-// #admin-menu,
-// #breadcrumb,
-// #page-title,
-// #utility-bar,
-// #block-dosomething-login-become-member,
-// #block-dosomething-blocks-dosomething-make-impact,
-// #block-dosomething-blocks-dosomething-social-skyscraper,
-// #block-block-5,
-// .region-sidebar-first,
-//   display: none  
+// Hide elements inherited from global site
+// Panelizer and any other Drupal nonsense
+.region-sidebar-first,
+.pane-title,
+#block-menu-menu-footer,
+#skip-link,
+#breadcrumb,
+#page-title,
+#block-dosomething-login-become-member,
+#block-dosomething-blocks-dosomething-make-impact,
+#block-dosomething-blocks-dosomething-social-skyscraper,
+#block-block-5
+  display: none
