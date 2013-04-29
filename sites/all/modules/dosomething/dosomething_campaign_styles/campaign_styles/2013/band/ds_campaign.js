@@ -18,15 +18,15 @@
       });
 
     // #header section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/pregnancy/logo.png';
-    var fb_title = 'Pregnancy Text';
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/bands13/bandcampain.png';
+    var fb_title = 'Band Together';
     var fb_header_caption = '';
 
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'Guys sort of play a big role in getting pregnant, so we think it’s time for them to learn a bit about it too. Put a baby in your friends\' phones for a day with @Do Something\'s Pregnancy Text and get them talking about how life would change if they were a parent: http://www.dosomething.org/baby',
+      'feed_description': 'I used my voice to help save music education with DoSomething.org and the VH1 Save The Music Foundation. Join me at www.dosomething.org/band',
       'feed_selector': '.header-facebook-share',
     }, function(response){
       window.location.href = '/band#header';
@@ -36,3 +36,5 @@
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
+
+
