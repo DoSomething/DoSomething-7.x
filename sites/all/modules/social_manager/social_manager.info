@@ -1,0 +1,5 @@
+name = "Social Media Manager"
+description = "Provides a UI to set up social actions and authentication."
+core = 7.x
+package = Social
+php = 5.2.4

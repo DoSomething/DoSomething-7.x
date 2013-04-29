@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function social_manager_schema() {
+  $schema = array();
+
+  $schema['social_services'] = array(
+    'description' => 'Stores the social services that may be used.',
+    'primary key' => array('sid'),
+    'fields' => array(
+      'sid' => array(
+        'description' => 'A numeric ID signifying the service.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'The name of the service.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'machine_name' => array(
+        'description' => 'The machine name of the service.  The service directory should mirror this.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'description' => array(
+        'description' => 'Descriptive text about the service.',
+        'type' => 'text',
+        'size' => 'small',
+        'not null' => TRUE,
+      ),
+      'image' => array(
+        'description' => 'An image that is married to the service.  For aesthetic\'s sake.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+    ),
+  );
+
+  $schema['social_actions'] = array(
+    'description' => 'Stores Social actions.',
+    'primary key' => array('aid'),
+    'fields' => array(
+      'aid' => array(
+        'description' => 'A numeric ID representing the action.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'service' => array(
+        'description' => 'The service that holds the action.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'description' => 'The action that should be performed.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'paths' => array(
+        'description' => 'Path(s) that this action will happen on.',
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+      'data' => array(
+        'description' => 'A serialized array of data that will be sent to the action.',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE,
+      ),
+    ),
+  );
+
+  return $schema;
+}
