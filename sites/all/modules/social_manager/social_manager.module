@@ -1,3 +1,64 @@
 <?php
 
+/**
+ * @file
+ * Social Media takes many forms: Twitter and Facebook are extremely
+ * popular, but of course handle different tasks and therefore have
+ * different functionality.  Instead of installing different modules
+ * to handle Twitter and Facebook's constant changes (and they are
+ * constant), why not have everything in one place?
+ *
+ * This module provides the ability to create "actions" under a certain
+ * service (e.g. Facebook) and perform them within certain paths.  Examples:
+ *   - Set a Facebook App ID
+ *   - Create a button that shares a page.
+ *   - Gate a page for non-authenticated users.
+ *   - Request permission to post on a user's behalf.
+ *
+ * The list goes on, and the applications are endless.  Good luck.
+ *
+ * @author Michael Chittenden (mchittenden@dosomething.org)
+ * @date 4/29/13
+ */
 
+/**
+ * Implements hook_menu().
+ */
+function social_manager_menu() {
+  $paths = array();
+  $paths['admin/structure/social'] = array(
+  	'title' => t('Social Media Manager'),
+    'page callback' => 'social_manager_manage_list',
+    'access callback' => TRUE,
+  );
+
+  $paths['admin/structure/social/add'] = array(
+    'title' => t('Add Action'),
+    'page callback' => 'social_manager_add',
+    'access callback' => TRUE,
+  );
+
+  $paths['social/services/%'] = array(
+  	'page callback' => 'drupal_get_form',
+  	'page arguments' => array('social_manager_get_services', 2),
+  	'delivery callback' => 'social_manager_return_blank_form',
+  	'access callback' => TRUE,
+  );
+
+  return $paths;
+}
+
+function social_manager_add() {
+  echo "!"; exit;
+}
+
+function social_manager_manage_list() {
+	return "TEST";
+}
+
+function social_manager_get_services($form, $form_state, $service) {
+  module_load_include('inc', 'social_manager', 'services/facebook');
+  FacebookService::appidAction($form);
+
+  return $form;
+}
