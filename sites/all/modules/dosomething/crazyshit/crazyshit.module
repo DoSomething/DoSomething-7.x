@@ -239,7 +239,7 @@ function crazyshit_page_templates_alter(&$variables) {
 
 	  $h = file_get_contents(DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/html/header.html');
 
-	  $v = $h . '<div class="crazy-menu-wrapper">' . drupal_render($crazy_menu) . '</div><div class="crazy-sub-menu-wrapper">' . drupal_render($crazy_sub_menu) . '</div><div class="crazy-sub-menu-header scroll-header-style"><h1>People do crazy things to save money</h1><h2>Tell us if you believe their stories</h2></div>' . $v;
+	  $v = $h /*. '<div class="crazy-menu-wrapper">' . drupal_render($crazy_menu) . '</div><div class="crazy-sub-menu-wrapper">' . drupal_render($crazy_sub_menu) . '</div><!--<div class="crazy-sub-menu-header scroll-header-style"><h1>People do crazy things to save money</h1><h2>Tell us if you believe their stories</h2></div>-->'*/ . $v;
    }
 }
 
