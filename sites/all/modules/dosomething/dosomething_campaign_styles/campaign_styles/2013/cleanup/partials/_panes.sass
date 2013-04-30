@@ -1,6 +1,6 @@
 // GENERAL
 // -------
-#mission, #complete, #cause, #footer
+#mission, #flip, #complete, #cause, #footer
   background: $section_bg
 
 .header_img
@@ -17,12 +17,11 @@
   a
     color: $off_black
   .deadline
-    float: right
     text-align: right
     color: #fff
     font-weight: 600
     letter-spacing: 2px
-    clear: none
+    clear: both
   .deadline-date
     color: rgb(233, 231, 231)
   .log_out
@@ -58,6 +57,26 @@
 // MISSION
 // -------
 // #mission
+
+// FLIP
+// -------
+// #flip
+
+// NEXT
+// -------
+#next
+  h2 a
+    text-decoration: none
+    color: $anchor_color
+    &:hover
+      text-decoration: underline
+  .go-button
+    font-size: 28px
+    text-align: center
+    margin: 0.5em auto
+    padding: 17px 0 0 0
+    width: 250px
+    height: 50px
 
 // COMPLETE
 // -------

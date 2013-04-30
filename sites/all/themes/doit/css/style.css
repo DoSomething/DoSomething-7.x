@@ -1682,6 +1682,10 @@ ul.hover-image li:first-child {
   left: 90px !important;
 }
 
+.page-node .field-name-field-mailchimp-group-id {
+  display: none;
+}
+
 .page-scholarships #breadcrumb {
   display: none;
 }
@@ -1696,6 +1700,14 @@ ul.hover-image li:first-child {
   -o-box-shadow: none;
   box-shadow: none;
   border-bottom: none;
+}
+
+.field-type-image #edit-field-picture-und-table td {
+  width: 300px;
+}
+
+body.page-node table#edit-field-picture-und-table .image-widget.form-managed-file {
+  width: 380px;
 }
 
 body.front .pane-dosomething-blocks-dosomething-make-impact-front {
@@ -2274,7 +2286,7 @@ tr.odd, tr.even {
 }
 
 td {
-  border-right: 1px solid #d4d2d1;
+  border: 1px solid #d4d2d1;
   padding: 14px;
 }
 td:last-of-type {
@@ -3423,6 +3435,37 @@ div[role=main] {
   line-height: 1.4em;
 }
 
+.scholarship-current {
+  border: none !important;
+}
+
+#mobile-apps-maybe .pane-title {
+  display: none;
+}
+#mobile-apps-maybe form {
+  box-shadow: none;
+  border: none;
+  background: #f1f1f1;
+}
+#mobile-apps-maybe label {
+  margin-top: 16px;
+}
+#mobile-apps-maybe h2 {
+  font-size: 21px;
+  line-height: 1.2em;
+  font-weight: 500;
+  font-family: din-web-reg;
+  color: #444444;
+}
+#mobile-apps-maybe input[type="text"] {
+  width: 320px;
+}
+#mobile-apps-maybe input[type="submit"] {
+  float: left;
+  margin: 16px 0 0;
+  font-size: 21px;
+}
+
 #breadcrumb {
   font-size: 0.71429em;
   line-height: 2.4em;
@@ -3753,6 +3796,42 @@ h2.block-title, h2.pane-title {
   color: #111111;
 }
 
+#block-block-10 .millionth-user {
+  padding: 1em 0;
+}
+#block-block-10 .millionth-user img {
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+}
+#block-block-10 .millionth-user p {
+  line-height: 1.4em;
+}
+#block-block-10 .millionth-user h2 {
+  font-size: 16px;
+  text-align: center;
+  margin: 1em 0;
+}
+#block-block-10 .millionth-user form {
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+#block-block-10 .millionth-user input[type="text"] {
+  width: 100%;
+  margin-bottom: 8px;
+}
+#block-block-10 .millionth-user #edit-actions {
+  clear: both;
+  height: auto;
+}
+#block-block-10 .millionth-user #edit-actions input {
+  margin: 0;
+}
+#block-block-10 .millionth-user span, #block-block-10 .millionth-user strong {
+  color: gold;
+}
 #block-block-10 .ds-sb-saying {
   padding-top: 10px;
 }
@@ -3796,6 +3875,44 @@ h2.block-title, h2.pane-title {
 }
 #block-block-10 .ds-sb-saying a:hover {
   color: black;
+}
+
+#block-dosomething-general-1-million-members .content {
+  text-align: left;
+  padding: 1em 0;
+}
+#block-dosomething-general-1-million-members .content img {
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+}
+#block-dosomething-general-1-million-members .content p {
+  line-height: 1.4em;
+}
+#block-dosomething-general-1-million-members .content h2 {
+  font-size: 16px;
+  text-align: center;
+  margin: 1em 0 10px;
+}
+#block-dosomething-general-1-million-members .content form {
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+#block-dosomething-general-1-million-members .content input[type="text"] {
+  width: 100%;
+  margin-bottom: 8px;
+}
+#block-dosomething-general-1-million-members .content #edit-actions {
+  clear: both;
+  height: auto;
+}
+#block-dosomething-general-1-million-members .content #edit-actions input {
+  margin: 0;
+}
+#block-dosomething-general-1-million-members .content span, #block-dosomething-general-1-million-members .content strong {
+  color: gold;
 }
 
 #block-menu-menu-footer {
@@ -5457,8 +5574,8 @@ comments.fb_iframe_widget {
   right: 0;
 }
 .view-campaign-gallery #gallery {
-  height: 480px;
-  padding: 16px 61px;
+  margin: 0px auto -8px;
+  padding: 0;
   text-align: center;
 }
 .view-campaign-gallery #slideshow {
@@ -5476,7 +5593,7 @@ comments.fb_iframe_widget {
   margin: 16px 0;
 }
 .view-campaign-gallery #thumbs li {
-  padding: 8px;
+  padding: 0 8px 8px 8px;
   float: left;
   width: 20%;
   list-style-type: none;

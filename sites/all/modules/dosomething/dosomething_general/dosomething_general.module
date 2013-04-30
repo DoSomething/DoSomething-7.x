@@ -2,7 +2,34 @@
 
 /**
  * @file
- * General custom tweaks to dosomething.
+ * This module handles "everything else" on DoSomething.org.
+ * DS.org has hundreds of modules to handle a number of products
+ * and campaigns, but we often find that there is a function that
+ * can be, or is used across several different modules.  This module
+ * acts as a centerpoint for functions that are used across the site.
+ *
+ * If a function will only be used for a particular product or campaign,
+ * create that function in a more appropriate module.  Only functions that
+ * will consistently be used site-wide should live here.
+ */
+
+/*! \mainpage DoSomething.org - The nation's largest organization for teens and social change.
+ *  \section intro_sec Introduction
+ *  DoSomething.org is the largest organization for teens and social change in the United States.
+ *  We reach out to teens through campaigns and products that target 13-25-year-olds' interests
+ *  and hobbies.  Through positive reinforcement, we help them make a difference.
+ *  \section staff_sec Tech Team
+ *  DoSomething.org's tech team is the best in the business.
+ *
+ *  - Matt (CTO)
+ *  - Desmond (Director of Engineering)
+ *  - Barry (Director of Technical Product)
+ *  - Michael (Software Engineer)
+ *  - Dee (Software Engineer)
+ *  - Aaron (Software Engineer)
+ *  - Maxwell (Front end Engineer)
+ *  - Jacob (Front end Engineer)
+ *  - Uy (Mobile Engineer)
  */
 
 /**
@@ -58,37 +85,52 @@ function dosomething_general_save_node_from_file($path, $alias, $variable = null
   return $webform;
 }
 
+/**
+ *  Censors a word.  Replaces curse words with another word.
+ *
+ *  @param string $string
+ *    The word that should be censored.
+ *
+ *  @param string $backup
+ *    The word that should replace the curse word.
+ *
+ *  @return string
+ *    The replaced word.
+ */
 function dosomething_general_censor_word($word, $backup = 'Anonymous') {
+  // All the curses.
   $curses = array('anus', 'arse ', 'arsehole', 'ass ', 'ass-hat ', 'ass-jabber', 'ass-pirate ', 'assbag', 'assbandit ', 'assbanger', 'assbite ', 'assclown ', 'asscock ', 'asscracker', 'asses', 'assface', 'assfuck', 'assfucker', 'assgoblin', 'asshat ', 'asshead', 'asshole', 'asshopper', 'assjacker', 'asslick ', 'asslicker', 'assmonkey', 'assmunch', 'assmuncher ', 'asspirate ', 'assshit ', 'assshole ', 'asssucker', 'asswad', 'asswipe ', 'axwound ', 'bastard ', 'beaner ', 'bitch ', 'bitchass ', 'bitches ', 'bitchtits ', 'bitchy ', 'blow job ', 'blowjob ', 'bollocks ', 'bollox ', 'boner', 'brotherfucker', 'bullshit', 'bumblefuck ', 'butt plug ', 'butt-pirate ', 'buttfucka ', 'buttfucker', 'camel toe ', 'carpetmuncher ', 'chesticle ', 'chinc', 'chink ', 'choad ', 'chode ', 'clit ', 'clitface ', 'clitfuck ', 'clusterfuck ', 'cock ', 'cockass ', 'cockbite ', 'cockburger ', 'cockface ', 'cockfucker ', 'cockhead ', 'cockjockey', 'cockknoker ', 'cockmaster ', 'cockmongler ', 'cockmongruel ', 'cockmonkey ', 'cockmuncher ', 'cocknose ', 'cocknugget ', 'cockshit', 'cocksmith ', 'cocksmoke ', 'cocksmoker ', 'cocksniffer', 'cocksucker ', 'cockwaffle ', 'coochie ', 'coochy ', 'coon ', 'cooter ', 'cum', 'cumbubble ', 'cumdumpster', 'cumguzzler', 'cumjockey', 'cumslut ', 'cumtart ', 'cunnie ', 'cunnilingus', 'cunt ', 'cuntass ', 'cuntface', 'cunthole ', 'cuntlicker', 'cuntrag', 'cuntslut ', 'dago', 'damn', 'deggo', 'dick', 'dick-sneeze', 'dickbag', 'dickbeaters', 'dickface', 'dickfuck', 'dickfucker', 'dickhead', 'dickhole', 'dickjuice', 'dickmilk', 'dickmonger', 'dicks', 'dickslap', 'dicksucker', 'dicksucking', 'dicktickler', 'dickwad', 'dickweasel', 'dickweed', 'dickwod', 'dike', 'dildo', 'dipshit', 'doochbag', 'dookie', 'douche', 'douche-fag', 'douchebag', 'douchewaffle', 'dumass', 'dumb ass', 'dumbass', 'dumbfuck', 'dumbshit', 'dumshit', 'dyke', 'fag', 'fagbag', 'fagfucker', 'faggit', 'faggot', 'faggotcock', 'fagtard', 'fatass', 'fellatio', 'feltch', 'flamer', 'fuck', 'fuckass', 'fuckbag', 'fuckboy', 'fuckbrain', 'fuckbutt', 'fuckbutter', 'fucked', 'fucker', 'fuckersucker', 'fuckface', 'fuckhead', 'fuckhole', 'fuckin', 'fucking', 'fucknut', 'fucknutt', 'fuckoff', 'fucks', 'fuckstick', 'fucktard', 'fucktart', 'fuckup', 'fuckwad', 'fuckwit', 'fuckwitt', 'fudgepacker', 'gay', 'gayass', 'gaybob', 'gaydo', 'gayfuck', 'gayfuckist', 'gaylord', 'gaytard', 'gaywad', 'goddamn', 'goddamnit', 'gooch', 'gook', 'gringo', 'guido', 'handjob', 'hard on', 'heeb', 'hell', 'ho', 'hoe', 'homo', 'homodumbshit', 'honkey', 'humping', 'jackass', 'jagoff', 'jap', 'jerk off', 'jerkass', 'jigaboo', 'jizz', 'jungle bunny', 'junglebunny', 'kike', 'kooch', 'kootch', 'kraut', 'kunt', 'kyke', 'lameass', 'lardass', 'lesbian', 'lesbo', 'lezzie', 'mcfagget', 'mick', 'minge', 'mothafucka', 'mothafuckin', 'motherfucker', 'motherfucking', 'muff', 'muffdiver', 'munging', 'negro', 'nigaboo', 'nigga', 'nigger', 'niggers', 'niglet', 'nut sack', 'nutsack', 'paki', 'panooch', 'pecker', 'peckerhead', 'penis', 'penisbanger', 'penisfucker', 'penispuffer', 'piss', 'pissed', 'pissed off', 'pissflaps', 'polesmoker', 'pollock', 'poon', 'poonani', 'poonany', 'poontang', 'porch monkey', 'porchmonkey', 'prick', 'punanny', 'punta', 'pussies', 'pussy', 'pussylicking', 'puto', 'queef', 'queer', 'queerbait', 'queerhole', 'renob', 'rimjob', 'ruski', 'sand nigger', 'sandnigger', 'schlong', 'scrote', 'shit', 'shitass', 'shitbag', 'shitbagger', 'shitbrains', 'shitbreath', 'shitcanned', 'shitcunt', 'shitdick', 'shitface', 'shitfaced', 'shithead', 'shithole', 'shithouse', 'shitspitter', 'shitstain', 'shitter', 'shittiest', 'shitting', 'shitty', 'shiz', 'shiznit', 'skank', 'skeet', 'skullfuck', 'slut', 'slutbag', 'smeg', 'snatch', 'spic', 'spick', 'splooge', 'spook', 'suckass', 'tard', 'testicle', 'thundercunt', 'tit', 'titfuck', 'tits', 'tittyfuck', 'twat', 'twatlips', 'twats', 'twatwaffle', 'unclefucker', 'vajj', 'vag', 'vagina', 'vajayjay', 'vjayjay', 'wank', 'wankjob', 'wetback', 'whore', 'whorebag', 'whoreface', 'wop');
 
-    $cleared = preg_replace('#[^A-Za-z]#', '', $word);
-    if (in_array($word, $curses) || in_array($cleared, $curses)) {
-      $word = t($backup);
-    }
+  // Get a copy of the string that doesn't have any punctuation.
+  $cleared = preg_replace('#[^A-Za-z]#', '', $word);
 
-    return $word;
-}
+  // If the real string, or the cleaned string, is a curse in the above array...
+  if (in_array($word, $curses) || in_array($cleared, $curses)) {
+    // Replace the word with the "backup" word.  Translate that word.
+    $word = t($backup);
+  }
 
-function dosomething_general_sms_mdata_response($text) {
-    echo '<?xml version="1.0" encoding="UTF-8"?>
-    <response>
-     <reply>
-      <text>
-       <![CDATA[' . $text . ']]>
-      </text>
-     </reply>
-    </response>';
-    drupal_exit();
+  // Return the new cleaned up word.
+  return $word;
 }
 
 /**
  *  Implements hook_module_implements_alter().
  */
 function dosomething_general_module_implements_alter(&$implementations, $hook) {
-  if ($hook == 'mail_alter' && isset($implementations['dosomething_general'])) {
+  if (($hook == 'mail_alter' || $hook == 'block_view') && isset($implementations['dosomething_general'])) {
     $group = $implementations['dosomething_general'];
     unset($implementations['dosomething_general']);
     $implementations['dosomething_general'] = $group;
+  }
+
+  if ($hook == 'cron') {
+    // Remove the system cron temporarily until we
+    // figure out why it is killing crazy
+    // The "safe" system cron tasks have been replicated
+    // and included in this modules implementation
+    // of hook_cron
+    unset($implementations['system']);
   }
 }
 
@@ -224,40 +266,6 @@ function dosomething_general_js_alter(&$javascript) {
 }
 
 /**
- * Implements hook_css_alter().
- *
- * Added to control how css files are grouped together when agrigration is enabled
- * Note condition added to break the grouping into two sets as grouping everything
- * into a single file was result in a file that contained over 
- */
-
- /* Pulled due to continued IE8 issues
-  * 
-function dosomething_general_css_alter(&$css) {
-  // Set all aggregated css to the CSS_DEFAULT group.
-  // This prevents individual css files per group
-  // Possible values CSS_SYSTEM (-100), CSS_DEFAULT (0), and CSS_THEME (100)
-  
-  uasort($css, 'drupal_sort_css_js');
-  $i = 0;
-  foreach ($css as $name => $style) {
-    $css[$name]['weight'] = $i++;
-    
-    // Break grouping into two sets - CSS_SYSTEM, (-100) and the rest
-    if ($style['group'] == -100) {
-      $css[$name]['group'] = CSS_SYSTEM;
-    }
-    else {
-      $css[$name]['group'] = CSS_DEFAULT;
-    }
-    
-    $css[$name]['every_page'] = FALSE;
-  }
-}
-
-*/
-
-/**
  * Implements hook_theme().
  */
 function dosomething_general_theme($existing, $type, $theme, $path) {
@@ -270,6 +278,13 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
       'template' => 'mc-response',
       'variables' => array(
         'message' => NULL,
+      ),
+    ),
+    'million-members-block' => array(
+      'path' => $path . '/templates',
+      'template' => 'million-members-block',
+      'variables' => array(
+        'form' => NULL,
       ),
     ),
   );
@@ -319,12 +334,6 @@ function dosomething_general_menu() {
   $items['admin/people/search-by-email/results/export/file'] = array(
     'page callback' => 'dosomething_general_pull_user_export_file',
     'access arguments' => array('administer users'),
-    'type' => MENU_CALLBACK,
-  );
-
-  $items['mytfj'] = array(
-    'page callback' => 'dosomething_general_find_tfj_team',
-    'access callback' => 'user_is_logged_in',
     'type' => MENU_CALLBACK,
   );
 
@@ -403,57 +412,12 @@ function dosomething_general_redirect_with_message() {
   drupal_goto();
 }
 
-function dosomething_general_find_tfj_team() {
-  global $user;
-  $t = db_select('webform_submissions', 's')
-    ->fields('s', array('sid'))
-    ->condition('nid', 725896)
-    ->condition('uid', $user->uid)
-    ->condition('bundle', 'campaign_sign_up')
-    ->orderBy('sid', 'DESC')
-    ->range(0, 1);
-  $team = reset($t->execute()->fetchAll());
-
-  if (!empty($team->sid)) {
-    drupal_goto('team/teensforjeans/' . $team->sid);
-  }
-  else {
-    $p = profile2_load_by_user($user, 'main');
-    if ($cell = $p->field_user_mobile[LANGUAGE_NONE][0]['value']) {
-      // Make sure we get only the digits...and presume the last 10 are the real number.
-      $cell = substr(preg_replace('#[^0-9]#', '', $cell), -10);
-      // Rebuild with dashes
-      $with = preg_replace('#([0-9]{3})([0-9]{3})([0-9]{4})#', '\\1-\\2-\\3', $cell);
-      // Without dashes
-      $without = $cell;
-
-      $or = db_or();
-      $or->condition('beta', $with);
-      $or->condition('beta', $without);
-
-      $r = db_select('sms_flow_records', 'r')
-        ->condition($or);
-      $r->leftJoin('field_data_field_user_mobile', 'm', 'm.field_user_mobile_value = r.alpha');
-      $r->leftJoin('profile', 'p', 'p.pid = m.entity_id');
-      $r->leftJoin('webform_submissions', 's', "s.uid = p.uid AND s.bundle = 'campaign_sign_up'");
-      $r->fields('s', array('sid'));
-      $r->condition('s.nid', 'r.nid');
-      $r->orderBy('s.sid', 'DESC');
-      $r->range(0, 1);
-
-      $result = reset($r->execute()->fetchAll());
-      if (!empty($result->sid)) {
-        // If the user got invited to a particular team, send them to that team.
-        drupal_goto('team/teensforjeans/' . $result->sid);
-      }
-      else {
-        // Else, send them to the landing page.
-        drupal_goto('teensforjeans');
-      }
-    }
-  }
-}
-
+/**
+ *  The form that handles "Search By Email".
+ *
+ *  @return array
+ *    The form.
+ */
 function search_by_email_form($form, &$form_state) {
   $form['description'] = array(
     '#markup' => 'Paste a comma-separated list of emails here.',
@@ -480,10 +444,16 @@ function search_by_email_form($form, &$form_state) {
   return $form;
 }
 
+/**
+ *  Trims an email address.
+ */
 function dosomething_general_trim_email_addresses(&$email, $key, $prefix) {
   $email = trim($email);
 }
 
+/**
+ *  Shows the results of the multi-email search.
+ */
 function search_by_email_results($form, &$form_state) {
   $emails = $form_state['values']['emails'];
   $emails = explode("\r\n", $emails);
@@ -567,6 +537,9 @@ function search_by_email_results($form, &$form_state) {
   exit;
 }
 
+/**
+ *  Prepares the table to show search-by-email results.
+ */
 function dosomething_general_search_by_email_results() {
   $header = array(
     array('data' => t('User ID'), 'class' => array('user-lookup-uid')),
@@ -633,6 +606,10 @@ function dosomething_general_search_by_email_results() {
   return $content;
 }
 
+/**
+ *  Loads the search-by-email results into a CSV file,
+ *  and loads that into the user's browser.
+ */
 function dosomething_general_pull_user_export_file() {
   if (strpos($_SESSION['csv_download_file'], drupal_realpath('private://')) === FALSE) {
     return 'Access denied!';
@@ -647,6 +624,9 @@ function dosomething_general_pull_user_export_file() {
   exit;
 }
 
+/**
+ *  "Finished!" message for search-by-email functionality.
+ */
 function dosomething_general_pull_user_export_finished() {
   global $base_url;
 
@@ -667,6 +647,9 @@ function dosomething_general_pull_user_export_finished() {
 
 define('USER_PULL_LIMIT', 25);
 
+/**
+ *  Handles batch processing for search-by-email.
+ */
 function dosomething_general_pull_user_export() {
   $count = count($_SESSION['users']);
 
@@ -685,6 +668,9 @@ function dosomething_general_pull_user_export() {
   batch_process('admin/people/search-by-email/results/export/finished');
 }
 
+/**
+ *  Handles the search-users-by-email csv data.
+ */
 function dosomething_general_pull_user_batch_finished($success, $results, $operations) {
   if ($success) {
     $message = t('The User Data was successfully exported.  Your file should begin downloading automatically, or !click.', array('!click' => l(t('click here'), 'admin/people/search-by-email/results/export/file')));
@@ -703,6 +689,9 @@ function dosomething_general_pull_user_batch_finished($success, $results, $opera
   drupal_set_message(check_plain($message), $warning);
 }
 
+/**
+ *  Handles batch processing for search-by-email
+ */
 function dosomething_general_pull_user_batch_process(&$context) {
   static $context;
 
@@ -810,6 +799,20 @@ function dosomething_general_pull_user_batch_process(&$context) {
   ));
 }
 
+/**
+ *  Unsubscribes an email from the DoSomething.org mailing list.
+ *
+ *  @param string $email
+ *    The email that should be unsubscribed.
+ *
+ *  @param string $hash
+ *    The hash to check the validity of.  This is sent in emails with
+ *    the unsubscribe link, and is an md5 of the email, with an md5
+ *    of 'ds.org'.
+ *
+ *  @return string
+ *    Returns the body text, verifying that the user has unsubscribed.
+ */
 function dosomething_general_unsubscribe_email($email, $hash) {
   $real_hash = md5($email . md5('ds.org'));
   if ($hash !== $real_hash) {
@@ -819,8 +822,6 @@ function dosomething_general_unsubscribe_email($email, $hash) {
   $unsub = new stdClass;
   $unsub->email = $email;
   $unsub->timestamp = REQUEST_TIME;
-#  $unsub->type = 'petition';
-#  $unsub->hash = $hash;
 
   drupal_write_record('dosomething_unsubscribed', $unsub);
 
@@ -829,7 +830,7 @@ function dosomething_general_unsubscribe_email($email, $hash) {
   return $t;
 }
 
-/*
+/**
  * Implements hook_library().
  */
 function dosomething_general_library() {
@@ -860,6 +861,42 @@ function dosomething_general_cron() {
   if (function_exists('newrelic_background_job')) {
     newrelic_background_job(TRUE);
   }
+
+  // SYSTEM CRON TASKS
+  // Move "safe" system module cron tasks here until we figure out
+  // what is going on with crazy
+
+  // Cleanup the flood.
+  db_delete('flood')
+    ->condition('expiration', REQUEST_TIME, '<')
+    ->execute();
+
+  $core = array('cache', 'cache_path', 'cache_filter', 'cache_page', 'cache_form', 'cache_menu');
+  $cache_tables = array_merge(module_invoke_all('flush_caches'), $core);
+  foreach ($cache_tables as $table) {
+    cache_clear_all(NULL, $table);
+  }
+
+  // Cleanup the batch table and the queue for failed batches.
+  db_delete('batch')
+    ->condition('timestamp', REQUEST_TIME - 864000, '<')
+    ->execute();
+  db_delete('queue')
+    ->condition('created', REQUEST_TIME - 864000, '<')
+    ->condition('name', 'drupal_batch:%', 'LIKE')
+    ->execute();
+
+  // Reset expired items in the default queue implementation table. If that's
+  // not used, this will simply be a no-op.
+  db_update('queue')
+    ->fields(array(
+      'expire' => 0,
+    ))
+    ->condition('expire', 0, '<>')
+    ->condition('expire', REQUEST_TIME, '<')
+    ->execute();
+   // END SYSTEM CRON TASKS
+
 }
 
 /**
@@ -940,8 +977,55 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'help_form_captcha';
   }
+
+  if ($form_id == 'webform_client_form_' . variable_get('million_webform', 728731)) {
+    // Load the form information.
+    $f = &$form['submitted'];
+
+    // Set placeholders.
+    $f['your_name']['#attributes']['placeholder'] = t('Your Name');
+    $f['your_number']['#attributes']['placeholder'] = t('Your Number');
+    $f['friends_number']['#attributes']['placeholder'] = t("Friend's Number");
+    $f['friends_number_2']['#attributes']['placeholder'] = t("Friend's Number");
+    $f['friends_number_3']['#attributes']['placeholder'] = t("Friend's Number");
+
+    if (!user_is_logged_in()) {
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'dosomething_general_million_users_login',
+      );
+    }
+
+    $form['#submit'][] = 'dosomething_general_million_users_opt_in';
+  }
+
+  if ($form_id == 'webform_client_form_' . variable_get('volunteer_webform', 728802)) {
+    $form['#submit'][] = 'dosomething_general_volunteer_webform_submit';
+  }
 }
 
+/**
+ *  Connections volunteer webform to Mobile Commons and MailChimp
+ */
+function dosomething_general_volunteer_webform_submit($form, &$form_state) {
+  $values = $form_state['input']['submitted'];
+
+  // Gets Mobile Commons bucket and sets up cell field to sign up the mobile number.
+  $mobile_commons_bucket = variable_get('volunteer_mobile_commons_bucket', 150443);
+  if (!empty($mobile_commons_bucket) && !empty($values['cell'])) {
+    dosomething_general_mobile_commons_subscribe($values['cell'], $mobile_commons_bucket);
+  }
+
+  // Connects email to MailChimp
+  $mailchimp_bucket = 'Volunteers2013';
+  if (!empty($mailchimp_bucket) && !empty($values['e_mail'])) {
+    dosomething_general_mailchimp_subscribe($values['e_mail'], $mailchimp_bucket);
+  }
+}
+
+/**
+ *  Fake CAPTCHA for the help form.  Users shouldn't be able to fill out the
+ *  "favorite color" field.
+ */
 function help_form_captcha($form, &$form_state) {
   if (isset($form_state['values']['fav_color']) && !empty($form_state['values']['fav_color'])) {
     form_set_error('form', t('Sorry, there was an error with your submission.'));
@@ -1013,26 +1097,26 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
   }
   elseif (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
     if (strpos($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'], '@') > 0) {
-      $email = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']; 
+      $email = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     }
     else {
       $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     }
   }
-   
+
   if (!empty($email)) {
     if ( (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) || ($node->type == 'petition') ) && !empty($email)) {
-      
+
       // Cell
       if (!empty($cell)) {
         $mc_merge_vars['MMERGE7'] = $cell;
       }
-      
+
       // From petitions
       if ($node->type == 'petition') {
-        
+
         $mc_group = 'Petitions2012';
-      
+
         // Petition Name - Webform ID
         $mc_merge_vars['MMERGE27'] = $form['#action'];
 
@@ -1041,7 +1125,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
         if ($form['#submission']->details['uid'] > 0) {
           $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
         }
-        
+
       }
       else {
         $mc_group = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
@@ -1051,7 +1135,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
 
     }
   }
-  
+
   // Will use previous cell value if already set from Petition submission
   $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
   if (!empty($cell)) {
@@ -1069,7 +1153,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
  * @param $form_state
  */
 function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_state) {
-  
+
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
 
@@ -1122,31 +1206,49 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
   if ( !empty($submitted['first_name']) ||
        !empty($submitted['last_name']) ||
        !empty($submitted['your_name']) ) {
-    
+
     $merge_vars['MMERGE3'] = $submitted['first_name'] . ' ' . $submitted['last_name'];
-    
+
     if (!empty($submitted['your_name'])) {
       $merge_vars['MMERGE3'] = $submitted['your_name'];
     }
-    
+
   }
-  
+
   // Check for secondary name submissions - ie: Footlocker nominee
   if (!empty($submitted['nominees_name'])) {
-    
+
     $nominees_email = $submitted['nominees_email'];
     $nominees_merge_vars = array();
     $nominees_merge_vars['MMERGE3'] = $submitted['nominees_name'];
-    
+
     // Submit to MailChimp
     dosomething_general_mailchimp_subscribe($nominees_email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $nominees_merge_vars);
   }
 
   // Submit to MailChimp
   dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
-  
+
 }
 
+/**
+ * Sends a phone call request to TelApi, to $beta_number from $alpha_number.
+ *
+ * @param string|int $alpha_number
+ *   The alpha phone number (the number that will be spoofed).
+ *
+ * @param string|int $beta_number
+ *   The beta phone number (the number that will receive the call).
+ *
+ * @param int $celeb_id
+ *   An integer representing the celebrity who will "send" the call.
+ *
+ * @param string $type
+ *   Default "calls".  The type of request. 
+ * 
+ * @todo Make $type worthwhile.
+ *  
+ */
 function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
   $path = libraries_get_path('telapi');
   require_once $path . '/library/TelApi.php';
@@ -1169,6 +1271,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
         $req = array(
           'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $cell),
           'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
+          'StatusCallback' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/call-done',
           'method' => 'GET',
         );
 
@@ -1186,7 +1289,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
           $call = $api->create($type, $req);
         }
         catch (TelApi_Exception $e) {
-          
+
           watchdog('robocalls', $e->getMessage());
           return false;
         }
@@ -1203,6 +1306,7 @@ function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_
       $req = array(
         'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $beta_number),
         'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
+        'StatusCallback' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/call-done',
         'method' => 'GET',
       );
 
@@ -1340,40 +1444,6 @@ function dosomething_general_mobile_commons_response($message) {
 }
 
 /**
- * Update the Mobile Commons profile for a given number
- *
- * @param $mobile
- *    Mobile number of profile to update
- * @param $args
- * Array of fields to update for that profile
- */
-  	
-function dosomething_general_mobile_commons_profile_update($mobile, $args = array()) {
-  
-  $api_opt_in_path_url = 'https://secure.mcommons.com/api/profile_update';
-	  	
-  $options = array(
-      'headers' => array(
-      'Content-type' => 'application/x-www-form-urlencoded',
-      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Authorization' => 'Basic ' . base64_encode('developers@dosomething.org:80276608'),
-    ),
-    'method' => 'POST',
-    'data' => "phone_number=$mobile",
-  );
-	  	
-  if (!empty($args)) {
-    foreach ($args AS $key => $val) {
-      $options['data'] .= '&' . $key . '=' . urlencode($val);
-    }
-  }
-  
-  $response = drupal_http_request($api_opt_in_path_url, $options);
-  return $response;
-
-}
-
-/**
  * A wrapper function that returns the mc api object
  */
 function dosomething_general_mailchimp_get_api_object() {
@@ -1405,13 +1475,18 @@ function dosomething_general_mailchimp_get_api_object() {
  *   Boolean indicating success.
  */
 function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
-  
+
   /* Our function */
   $mcapi = dosomething_general_mailchimp_get_api_object();
-  
+
   // Catching function
   // Hardcoding the list to the dosomething members
-  $listid = 'f2fab1dfd4';
+  if ($groupName == 'Volunteers2013') {
+    $listid = 'a27895fe0c';
+  }
+  else {
+    $listid = 'f2fab1dfd4';
+  }
 
   // We do not want them to have to know the grouping id so we will build
   // the table to look it up by using the group name specified.
@@ -1434,10 +1509,10 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
     }
     cache_set($cid, $groupingIdByGroupName);
   }
-  
+
   // Collect user details by email based on current values in user account for MailChimp signup / update
   $merge_vars += dosomething_general_collect_merge_vars($email);
-  
+
   if (!isset($groupingIdByGroupName[$groupName])) {
     watchdog('dosomething_general_mailchimp_subscribe',
       'Cannot find Group ID for group named %name',
@@ -1454,11 +1529,11 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
       ),
     )
   );
-  
+
   // http://apidocs.mailchimp.com/api/rtfm/listsubscribe.func.php
   // listSubscribe(string apikey, string id, string email_address, array merge_vars,
   //   string email_type, bool double_optin, bool update_existing, bool replace_interests, bool send_welcome)
-  
+
   // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
   $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
 
@@ -1477,9 +1552,9 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
              array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
              $severity = WATCHDOG_ERROR);
   }
-  
+
   return $mc_signup_flag;
-    
+
 }
 
 /**
@@ -1489,7 +1564,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
  *   Target email address to reference for additional information
  * @param $target_mobile
  *   Target mobile number to reference for additional information
- *   
+ *
  * @return
  *   Array $merge_vars collection user information.
  */
@@ -1497,67 +1572,67 @@ function dosomething_general_collect_merge_vars($target_email = NULL, $target_mo
 
   // Collect the user details
   $user = user_load_by_mail($target_email);
-  
+
   // TO-DO: add lookup by mobile
-  
+
   // check to see if user account is found
   if ($user) {
-  
+
     // Merge vars for user
     $merge_vars['UID'] = $user->uid;
     $merge_vars['MMERGE3'] =  $user->name;
-    
+
     // Mobile
     $user2 = profile2_load_by_user($user, 'main');
     $mobile = field_get_items('profile2', $user2, 'field_user_mobile');
-    
+
     if (!empty($target_mobile)) {
       $merge_vars['MMERGE7'] = $target_mobile;
     }
     elseif(!empty($mobile)) {
       $merge_vars['MMERGE7'] = $mobile;
-      
+
       // TO-DO ?
       // if ($target_mobile != $mobile) {
       //   Update user record with new mobile number?
       // }
-      
+
       // Validates number - perhaps already done before sent to this function?
       // dosomething_general_valid_cell
-      
+
     }
-    
+
     // Birthday
     $birthday = field_get_items('profile2', $user2, 'field_user_birthday');
-    
+
     if (!empty($birthday)) {
-      
-      $birthday_bits = explode('-', $birthday[0]['value']);   
+
+      $birthday_bits = explode('-', $birthday[0]['value']);
       $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  substr($birthday_bits[2], 0, strpos($birthday_bits[2],' ')), $birthday_bits[0]);
-      
+
       $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
       $merge_vars['BDAYFULL'] = date('m/d/Y', $birthday_stamp);
-    
+
       // Need to store date values as var to allow recasting in final string
       $target_date = date('m/d', $birthday_stamp);
-      $target_year_18 = date('Y', $birthday_stamp) + 18;    
-      $target_year_26 = date('Y', $birthday_stamp) + 26;  
-      
+      $target_year_18 = date('Y', $birthday_stamp) + 18;
+      $target_year_26 = date('Y', $birthday_stamp) + 26;
+
       // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
       $merge_vars['TURNS18'] = $target_date ."/". $target_year_18;
       $merge_vars['TURNS26'] = $target_date ."/". $target_year_26;
-  
+
     }
-    
+
   }
-  
+
   // Make sure merge_vars is formatted correctly even if no values are assigned
   if (empty($merge_vars) || count($merge_vars) == 0) {
     $merge_vars['UID'] = 0;
   }
 
   return $merge_vars;
-  
+
 }
 
 /**
@@ -1575,9 +1650,10 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
   $profile = profile2_load_by_user($account, 'main');
 
   if (is_object($profile)) {
-    $profile_wrapper = entity_metadata_wrapper('profile2', $profile);
-    $first_name = $profile_wrapper->field_user_first_name->value();
-    $last_name = $profile_wrapper->field_user_last_name->value();
+    $first_name = reset(field_get_items('profile2', $profile, 'field_user_first_name'));
+    $first_name = (isset($first_name['value']) ? $first_name['value'] : '');
+    $last_name = reset(field_get_items('profile2', $profile, 'field_user_last_name'));
+    $last_name = (isset($last_name['value']) ? $last_name['value'] : '');
 
     switch ($display_type) {
       case 'private':
@@ -1832,7 +1908,9 @@ function dosomething_general_ctools_plugin_directory($module, $plugin) {
   }
 }
 
-// Return them to the page that they were on, if possible.
+/**
+ *  Implements hook_user_logout().
+ */
 function dosomething_general_user_logout($account) {
   $goto = str_replace('http://' . $_SERVER['HTTP_HOST'] . '/', '', $_SERVER['HTTP_REFERER']);
   $_GET['destination'] = $goto;
@@ -1857,4 +1935,28 @@ function dosomething_general_user_logout($account) {
 function dosomething_general_clean_string($string, $nix = '[^A-Za-z0-9\-\_]', $replace_with = '_') {
   $string = preg_replace('#' . $nix . '#i', $replace_with, $string);
   return $string;
+}
+
+/**
+ *  Gets multiple Drupal user IDs, given an array of Facebook IDs
+ *
+ *  @param array $users
+ *    An array of Facebook user IDs.
+ *
+ *  @return bool|array
+ *    false if array is empty or not an array; an array of FBids matched to UIDs
+ *    on success.
+ */
+function dosomething_general_get_multi_fbids($users) {
+  if (empty($users) || !is_array($users)) {
+    return false;
+  }
+
+  // Query for FBID's given UIDs
+  $result = db_query("SELECT uid, 1 FROM {fboauth_users} WHERE fbid IN (" . implode(',', $users) . ")");
+  // Fetch keyed so we don't get excess information
+  $uids = $result->fetchAllKeyed();
+
+  // Return the keys
+  return array_keys($uids);
 }

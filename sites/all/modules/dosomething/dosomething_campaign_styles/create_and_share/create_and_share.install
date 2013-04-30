@@ -1,0 +1,101 @@
+<?php
+
+/**
+ *  Implements hook_schema().
+ */
+function create_and_share_schema() {
+  $schema = array();
+
+  $schema['create_and_share_notifications'] = array(
+    'description' => 'Stores notifications for users of Create and Share campaigns',
+    'primary key' => array('notification_id'),
+    'fields' => array(
+      'notification_id' => array(
+        'description' => 'The ID of the notifications.',
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'campaign' => array(
+        'description' => 'The campaign that this notification is being sent from.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'etid' => array(
+        'description' => 'The ID of the entity that received the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'uid' => array(
+        'description' => 'The Drupal User ID of the person receiving the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => true,
+      ),
+      'fid' => array(
+        'description' => 'The Facebook ID of the person receiving the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'from_uid' => array(
+        'description' => 'The Drupal User ID of the person sending the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => true,
+      ),
+      'from_fid' => array(
+        'description' => 'The Facebook ID of the person sending the notification.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => true,
+        'not null' => true,
+      ),
+      'type' => array(
+        'description' => 'What action prompted the notification.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'timestamp' => array(
+      	'description' => 'The time that the notification happened',
+      	'type' => 'int',
+      	'unsigned' => TRUE,
+      	'not null' => TRUE,
+      ),
+      'notified' => array(
+        'description' => 'Whether the user has seen this notification.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => '0',
+      ),
+      'origin' => array(
+        'description' => 'The page where the share happened.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'seen' => array(
+        'description' => 'Whether or not the user has gotten a message about it.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => '0'
+      ),
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'fid' => array('fid'),
+      'type' => array('type'),
+    ),
+  );
+
+  return $schema;
+}

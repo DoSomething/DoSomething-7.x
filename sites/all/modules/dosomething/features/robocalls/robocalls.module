@@ -65,10 +65,16 @@ function robocalls_webform_select_options_info() {
  */
 function robocalls_get_celebrities() {
   $celebs = array();
-  foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
-    if ($celeb->parents[0] > 0 && $celeb->name != '???') {
-      $celebs[$celeb->tid] = $celeb->name;
+  #$celebs = cache_get('robo_celebrities')->data;
+  if (empty($celebs)) {
+    foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
+      $c = taxonomy_term_load($celeb->tid);
+      if ($celeb->name != '???' && $c->field_visible_celebrity[LANGUAGE_NONE][0]['value'] == 1) {
+        $celebs[$celeb->tid] = $celeb->name . (!empty($c->field_short_name[LANGUAGE_NONE][0]['value']) ? ' (' . $c->field_short_name[LANGUAGE_NONE][0]['value'] . ')' : '');
+      }
     }
+
+    #cache_set('robo_celebrities', $celebs, 'cache', CACHE_TEMPORARY);
   }
 
   return $celebs;
@@ -132,9 +138,36 @@ function robocalls_call_completed() {
       (isset($_REQUEST['From']) && dosomething_general_valid_cell($_REQUEST['From']))
       && (isset($_REQUEST['To']) && dosomething_general_valid_cell($_REQUEST['To']))
     ) {
+    // Attempt to get my number.
+    $my_number = preg_replace('#[^0-9]#', '', $_REQUEST['To']);
+    if ($my_number{0} == 1) {
+      $my_number = substr($my_number, 1);
+    }
+
+    // Attempt to get the last record of the call the beta was a part of.
+    $call = db_select('call_records', 'r')
+      ->fields('r', array('call_id'))
+      ->condition('beta', $my_number)
+      ->orderBy('timestamp', 'DESC')
+      ->range(0, 1)
+      ->execute()->fetchAll();
+
+      // Get the ID of the celebrity for that call.
+      $id = reset($call)->call_id;
+
+      $term = taxonomy_term_load($id);
+      $beta_opt_in_id = 146913; // default, generic message
+      if (isset($term->field_beta_opt_in[LANGUAGE_NONE][0]['value'])) {
+        $beta_opt_in_id = $term->field_beta_opt_in[LANGUAGE_NONE][0]['value'];
+      }
+
+      $alpha_opt_in_id = 151543; // default, no message
+      if (isset($term->field_alpha_opt_in[LANGUAGE_NONE][0]['value'])) {
+        $alpha_opt_in_id = $term->field_alpha_opt_in[LANGUAGE_NONE][0]['value'];
+      }
 
       // Assuming the call is complete, send the text message!
-      dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], 0, array($_REQUEST['To']), 146913);
+      dosomething_general_mobile_commons_subscribe_with_friends($_REQUEST['From'], $alpha_opt_in_id, array($_REQUEST['To']), $beta_opt_in_id);
     }
   }
 }
@@ -150,7 +183,7 @@ function robocalls_call_completed() {
 function robocalls_beta_response() {
   // Ignore everything if we don't receive a response from the user.
   if (!isset($_REQUEST['args'])) {
-    dosomething_general_sms_mdata_response(t('Sorry, we didn\'t catch that.  Txt us ur friends\' #s and we\'ll send this call to them.'));
+    dosomething_general_mobile_commons_response(t('Sorry, we didn\'t catch that.  Txt us ur friends\' #s and we\'ll send this call to them.'));
     drupal_exit();
   }
 
@@ -187,23 +220,25 @@ function robocalls_beta_response() {
         $n .= preg_replace('#(\d{3})(\d{3})(\d{4})#', '(\\1) \\2-\\3', $number) . ($key == (count($numbers[1]) - 2) ? ' and ' : ($key == (count($numbers[1]) - 1) ? '.' : ', '));
 
         // Send the TelAPI request.
-        dosomething_general_telapi_request($my_number, $number, $id);
+        $call = dosomething_general_telapi_request($my_number, $number, $id);
 
-        // Make a record of the call.
-        robocalls_record_call($my_number, $number, $id);
+        if (!empty($call)) {
+          // Make a record of the call.
+          robocalls_record_call($my_number, $number, $id);
+        }
       }
     }
     // If we didn't get any phone numbers, let 'em know.
     else {
-      dosomething_general_sms_mdata_response(t('Sorry, it doesn\'t look like you sent us any phone numbers.  Txt us ur friends\' #s to send them this call.'));
+      dosomething_general_mobile_commons_response(t('Sorry, it doesn\'t look like you sent us any phone numbers.  Txt us ur friends\' #s to send them this call.'));
       return;
     }
 
-    dosomething_general_sms_mdata_response(t('Great, we\'ve sent this call to !numbers.  Txt back with more #s to send more calls.', array('!numbers' => $n)));
+    dosomething_general_mobile_commons_response(t('Great, we\'ve sent this call to !numbers.  Txt back with more #s to send more calls.', array('!numbers' => $n)));
   }
   // How didn't we get their phone number?
   else {
-    dosomething_general_sms_mdata_response(t('Whoa.  We didn\'t get your phone number.  Txt us back with ur friends\' #s to send them this call.'));
+    dosomething_general_mobile_commons_response(t('Whoa.  We didn\'t get your phone number.  Txt us back with ur friends\' #s to send them this call.'));
   }
 
   // Fin.
@@ -494,6 +529,9 @@ function robocalls_form_alter(&$form, $form_state, $form_id) {
 
       // Get celebrities and populate the select box.
       $celebs = robocalls_get_celebrities();
+      if (!is_array($celebs)) {
+        $celebs = array();
+      }
 
       // Make sure we can use the celebs array for further field creation.
       $settings = array(
@@ -753,13 +791,24 @@ function robocalls_homepage_form_submission($form, &$form_state) {
     'pass' => $form_state['input']['submitted']['my_info']['my_password'],
   );
 
-  if (empty($my['cell'])) {
-    $my = dosomething_api_user_fetch_data(array(
-      'profile' => array(
-        'field_user_first_name' => 'name',
-        'field_user_mobile' => 'cell'
-      ),
-    ));
+  $profile = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'field_user_first_name' => 'name',
+      'field_user_mobile' => 'cell'
+    ),
+  ));
+
+  // Update my profile to include my phone # if I don't have one yet.
+  if (!empty($my['cell']) && empty($profile['cell'])) {
+    global $user;
+    $p = profile2_load_by_user($user, 'main');
+    $p->field_user_mobile[LANGUAGE_NONE][0]['value'] = $my['cell'];
+    $p->save();
+  }
+  // If we're logged in, $my['cell'] will generally be empty.  Hopefully
+  // $profile['cell'] won't be empty -- use that!
+  else if (empty($my['cell']) && !empty($profile['cell'])) {
+    $my['cell'] = $profile['cell'];
   }
 
   $f = $form_state['input']['submitted']['friends_info']['primary_friend'];
@@ -783,10 +832,12 @@ function robocalls_homepage_form_submission($form, &$form_state) {
       $call = dosomething_general_telapi_request($my['cell'], $number, $callid);
     }
     else {
-      dosomething_general_telapi_request($my['cell'], $number, $callid);
+      $c = dosomething_general_telapi_request($my['cell'], $number, $callid);
     }
 
-    robocalls_record_call($my['cell'], $number, $callid);
+    if (!empty($call) || !empty($c)) {
+      robocalls_record_call($my['cell'], $number, $callid);
+    }
   }
 
   if (!empty($call)) {
@@ -898,13 +949,24 @@ function robocalls_celeb_form_submission($form, &$form_state) {
     'pass' => $s['my_info']['field_celeb_your_password'][LANGUAGE_NONE][0]['value'],
   );
 
-  if (empty($my['cell'])) {
-    $my = dosomething_api_user_fetch_data(array(
-      'profile' => array(
-        'field_user_first_name' => 'name',
-        'field_user_mobile' => 'cell'
-      ),
-    ));
+  $profile = dosomething_api_user_fetch_data(array(
+    'profile' => array(
+      'field_user_first_name' => 'name',
+      'field_user_mobile' => 'cell'
+    ),
+  ));
+
+  // Update my profile to include my phone # if I don't have one yet.
+  if (!empty($my['cell']) && empty($profile['cell'])) {
+    global $user;
+    $p = profile2_load_by_user($user, 'main');
+    $p->field_user_mobile[LANGUAGE_NONE][0]['value'] = $my['cell'];
+    $p->save();
+  }
+  // If we're logged in, $my['cell'] will generally be empty.  Hopefully
+  // $profile['cell'] won't be empty -- use that!
+  else if (empty($my['cell']) && !empty($profile['cell'])) {
+    $my['cell'] = $profile['cell'];
   }
 
   $callid = $s['field_celebrity_chooser'][LANGUAGE_NONE];

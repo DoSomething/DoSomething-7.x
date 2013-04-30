@@ -88,69 +88,136 @@ function robocalls_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-vocabulary_99-field_birthday_call'.
-  $fields['taxonomy_term-vocabulary_99-field_birthday_call'] = array(
+  // Exported field: 'taxonomy_term-vocabulary_99-field_alpha_opt_in'.
+  $fields['taxonomy_term-vocabulary_99-field_alpha_opt_in'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_birthday_call',
+      'field_name' => 'field_alpha_opt_in',
       'field_permissions' => array(
         'type' => '0',
       ),
-      'foreign keys' => array(),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
       'indexes' => array(
-        'value' => array(
-          0 => 'value',
+        'format' => array(
+          0 => 'format',
         ),
       ),
       'locked' => '0',
-      'module' => 'list',
+      'module' => 'text',
       'settings' => array(
-        'allowed_values' => array(
-          0 => '',
-          1 => 'This is a birthday call.',
-        ),
-        'allowed_values_function' => '',
+        'max_length' => '255',
         'profile2_private' => FALSE,
       ),
       'translatable' => '0',
-      'type' => 'list_boolean',
+      'type' => 'text',
     ),
     'field_instance' => array(
       'bundle' => 'vocabulary_99',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Check this box if this particular Robo Call is a birthday call.',
+      'description' => 'If applicable, the opt in path in mobile commons that alphas should be added to when the call is complete.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '3',
+          'type' => 'text_default',
+          'weight' => 16,
         ),
       ),
       'entity_type' => 'taxonomy_term',
-      'field_name' => 'field_birthday_call',
-      'label' => 'Birthday Call?',
+      'field_name' => 'field_alpha_opt_in',
+      'label' => 'Mobile Commons Alpha Opt In',
       'required' => 0,
       'settings' => array(
+        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'options',
+        'module' => 'text',
         'settings' => array(
-          'display_label' => 0,
+          'size' => '60',
         ),
-        'type' => 'options_onoff',
-        'weight' => '5',
+        'type' => 'text_textfield',
+        'weight' => '15',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-vocabulary_99-field_beta_opt_in'.
+  $fields['taxonomy_term-vocabulary_99-field_beta_opt_in'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_beta_opt_in',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vocabulary_99',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The ID of the opt-in-path on Mobile Commons that the beta will be added to when the call is completed.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 15,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_beta_opt_in',
+      'label' => 'Mobile Commons Beta Opt in',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '14',
       ),
     ),
   );
@@ -215,7 +282,7 @@ function robocalls_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '4',
+        'weight' => '6',
       ),
     ),
   );
@@ -282,7 +349,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '13',
       ),
     ),
   );
@@ -414,141 +481,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '10',
-      ),
-    ),
-  );
-
-  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_featured_celebrity'.
-  $fields['taxonomy_term-vocabulary_99-field_celeb_featured_celebrity'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_celeb_featured_celebrity',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '0',
-          1 => '1',
-        ),
-        'allowed_values_function' => '',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'vocabulary_99',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'deleted' => '0',
-      'description' => 'Check this box if this is the featured celebrity for the front page.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 11,
-        ),
-      ),
-      'entity_type' => 'taxonomy_term',
-      'field_name' => 'field_celeb_featured_celebrity',
-      'label' => 'Featured Celebrity',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
         'weight' => '12',
-      ),
-    ),
-  );
-
-  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_fun_fact'.
-  $fields['taxonomy_term-vocabulary_99-field_celeb_fun_fact'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_celeb_fun_fact',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'vocabulary_99',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'A fun fact about the celebrity, which will appear below the celebrity form.  Example: Tyler Oakley, YouTube star extraordinaire, makes it a point to cry once a day.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 14,
-        ),
-      ),
-      'entity_type' => 'taxonomy_term',
-      'field_name' => 'field_celeb_fun_fact',
-      'label' => 'Fun Fact',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '3',
       ),
     ),
   );
@@ -693,73 +626,7 @@ function robocalls_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '8',
-      ),
-    ),
-  );
-
-  // Exported field: 'taxonomy_term-vocabulary_99-field_celeb_scholarship_langauge'.
-  $fields['taxonomy_term-vocabulary_99-field_celeb_scholarship_langauge'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_celeb_scholarship_langauge',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'vocabulary_99',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'If this particular celebrity has a scholarship, fill in the scholarship language here and it will appear on the page.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 10,
-        ),
-      ),
-      'entity_type' => 'taxonomy_term',
-      'field_name' => 'field_celeb_scholarship_langauge',
-      'label' => 'Scholarship Langauge',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '1',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '3',
+        'weight' => '10',
       ),
     ),
   );
@@ -827,145 +694,6 @@ function robocalls_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '2',
-      ),
-    ),
-  );
-
-  // Exported field: 'taxonomy_term-vocabulary_99-field_photo_thumbnail'.
-  $fields['taxonomy_term-vocabulary_99-field_photo_thumbnail'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_photo_thumbnail',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'fid' => array(
-          'columns' => array(
-            'fid' => 'fid',
-          ),
-          'table' => 'file_managed',
-        ),
-      ),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'image',
-      'settings' => array(
-        'default_image' => 0,
-        'profile2_private' => FALSE,
-        'uri_scheme' => 'public',
-      ),
-      'translatable' => '0',
-      'type' => 'image',
-    ),
-    'field_instance' => array(
-      'bundle' => 'vocabulary_99',
-      'deleted' => '0',
-      'description' => 'Thumbnail that will appear for this celebrity on the Call of Fame landing page.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
-          'weight' => 9,
-        ),
-      ),
-      'entity_type' => 'taxonomy_term',
-      'field_name' => 'field_photo_thumbnail',
-      'label' => 'Photo thumbnail',
-      'required' => 0,
-      'settings' => array(
-        'alt_field' => 0,
-        'default_image' => 0,
-        'file_directory' => 'robocalls',
-        'file_extensions' => 'png gif jpg jpeg',
-        'max_filesize' => '',
-        'max_resolution' => '',
-        'min_resolution' => '',
-        'title_field' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'image',
-        'settings' => array(
-          'insert' => 0,
-          'insert_class' => '',
-          'insert_default' => 'auto',
-          'insert_styles' => array(
-            'auto' => 'auto',
-            'image' => 0,
-            'image_490x200' => 0,
-            'image_action_results_thumbnail' => 0,
-            'image_blog_landscape' => 0,
-            'image_blog_large_image' => 0,
-            'image_blog_large_thumbnail' => 0,
-            'image_blog_portrait' => 0,
-            'image_blog_square' => 0,
-            'image_boot_camp_bio' => 0,
-            'image_campaign_blog_thumbnail' => 0,
-            'image_campaign_microsite_logo' => 0,
-            'image_campaign_report_back_style' => 0,
-            'image_campaigns_image' => 0,
-            'image_campaigns_logo' => 0,
-            'image_carousel_center' => 0,
-            'image_carousel_inner' => 0,
-            'image_carousel_outer' => 0,
-            'image_cause_main' => 0,
-            'image_cause_vertical' => 0,
-            'image_club_gallery_photos_120x120' => 0,
-            'image_club_profile' => 0,
-            'image_content_main' => 0,
-            'image_explore_action_guides' => 0,
-            'image_front_slider' => 0,
-            'image_gallery_thumbnail' => 0,
-            'image_grants_landing' => 0,
-            'image_issue_main' => 0,
-            'image_large' => 0,
-            'image_medium' => 0,
-            'image_member_photo_gallery' => 0,
-            'image_my_somethings' => 0,
-            'image_nav_page_bottom' => 0,
-            'image_petdetail_regular' => 0,
-            'image_petdetail_retina' => 0,
-            'image_project_gallery_thumb' => 0,
-            'image_project_related_thumb' => 0,
-            'image_related-posts' => 0,
-            'image_robocall_celeb_photo' => 0,
-            'image_robocall_celeb_thumbnail_205x115' => 0,
-            'image_rotoslider_homepage_main' => 0,
-            'image_rotoslider_nav' => 0,
-            'image_rotoslider_start_something_main' => 0,
-            'image_search_results_thumbnail' => 0,
-            'image_social_scholarship_images_petition_735x150' => 0,
-            'image_social_scholarship_stat_image_190x190' => 0,
-            'image_sponsor_logo' => 0,
-            'image_square_thumbnail' => 0,
-            'image_thumbnail' => 0,
-            'image_thumbnail_regular' => 0,
-            'image_thumbnail_retina' => 0,
-            'image_tips_tools_node' => 0,
-            'image_upcoming_somethings_thumb' => 0,
-            'image_whats_happening_now_thumbnail' => 0,
-            'link' => 0,
-          ),
-          'insert_width' => '',
-          'preview_image_style' => 'robocall_celeb_thumbnail_205x115',
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'image_image',
-        'weight' => '9',
       ),
     ),
   );
@@ -1115,7 +843,7 @@ function robocalls_field_default_fields() {
           'year_range' => '-0:+3',
         ),
         'type' => 'date_select',
-        'weight' => '6',
+        'weight' => '8',
       ),
     ),
   );
@@ -1182,7 +910,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '9',
       ),
     ),
   );
@@ -1249,7 +977,7 @@ function robocalls_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '15',
+        'weight' => '17',
       ),
     ),
   );
@@ -1719,7 +1447,7 @@ function robocalls_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '0',
+        'weight' => 0,
       ),
     ),
   );
@@ -1940,35 +1668,29 @@ function robocalls_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('A fun fact about the celebrity, which will appear below the celebrity form.  Example: Tyler Oakley, YouTube star extraordinaire, makes it a point to cry once a day.');
   t('A label to denote the timed call.  For example -- "Election Day" is November 4th.');
   t('A short description of this category.  \'Awesome, I just had SO-AND-SO call my friends to say "Do Something about _____"\'.  Fill in the blank.  Required.');
   t('Active Celebrity');
-  t('Birthday Call?');
   t('Body');
   t('Call Limit Number');
-  t('Check this box if this is the featured celebrity for the front page.');
-  t('Check this box if this particular Robo Call is a birthday call.');
-  t('Featured Celebrity');
   t('Friend\'s Number #6');
-  t('Fun Fact');
   t('How many calls to any given number per day should be allowed on this celebrity?');
-  t('If this particular celebrity has a scholarship, fill in the scholarship language here and it will appear on the page.');
+  t('If applicable, the opt in path in mobile commons that alphas should be added to when the call is complete.');
   t('Is this celebrity a timed call (that is -- can it only call on a certain date / certain time?) An example of this: Voting campaign or Holiday calls.  Users will be able to specify what hour and minute they want this call to take place, within the specified day.
 ');
   t('Is this celebrity visible on the Call of Fame home page? Check this box to make sure they show up.');
+  t('Mobile Commons Alpha Opt In');
+  t('Mobile Commons Beta Opt in');
   t('Mobile Commons MConnect ID');
   t('My Password');
   t('Photo');
-  t('Photo thumbnail');
-  t('Scholarship Langauge');
   t('Short Name');
   t('Sound File');
   t('Step 1: Choose Who is Calling');
   t('Tagline');
   t('The ID of the mobile commons MConnect');
+  t('The ID of the opt-in-path on Mobile Commons that the beta will be added to when the call is completed.');
   t('The tagline for this celebrity\'s page.  Example: Tyler will say hayyy girl to yo\' friends.');
-  t('Thumbnail that will appear for this celebrity on the Call of Fame landing page.');
   t('Timed Call Label');
   t('Timed Call?');
   t('Your Cell');

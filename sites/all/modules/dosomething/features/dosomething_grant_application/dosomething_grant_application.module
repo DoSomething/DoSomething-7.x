@@ -7,6 +7,25 @@
 include_once('dosomething_grant_application.features.inc');
 
 /**
+ *  Implements hook_views_query_alter()
+ */
+function dosomething_grant_application_views_query_alter($view, $query) {
+  // Hide this conditional from the actual archive page.  That's rather counter-productive.
+  if ($view->name == 'grants_application_queues' && $view->current_display != 'page_7') {
+    // Dirty dirty fix for archiving on the grants applications.  113 is the entityqueue ID for the archive group.
+    $query->fields['archived'] = array(
+      'field' => 'IF (FIND_IN_SET(113, (SELECT GROUP_CONCAT(entity_id) FROM field_data_eq_webform_submission_entity where field_data_eq_webform_submission_entity.eq_webform_submission_entity_target_id = webform_submissions.sid)), 1, 0)',
+      'table' => '',
+      'alias' => 'archived',
+    );
+
+    // Make sure we don't include archived items.
+    $query->add_groupby('webform_submissions.sid');
+    $query->add_having(1, 'archived', '0', '=');
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function dosomething_grant_application_form_alter(&$form, &$form_state, $form_id) {
@@ -90,4 +109,39 @@ function dosomething_grant_application_module_implements_alter(&$implementations
     unset($implementations['dosomething_grant_application']);
     $implementations['dosomething_grant_application'] = $group;
   }
+}
+
+
+ /**
+ * Actions to take when a new Grant Application entry is made.
+ *
+ * @param array $node
+ *   Standard node array created in the webform submission.
+ * @param array $submission
+ */
+function dosomething_grant_application_webform_submission_insert($node, $submission) {
+  
+  if ($node->type == 'grant_application') {
+
+    // Phone
+    if (strlen($mobile[0]['value']) > 0) {
+      
+      $merge_vars['MMERGE7'] = $mobile[0]['value'];
+      
+      // Add user to Mobile Commons group
+      // https://secure.mcommons.com/campaigns/112513/opt_in_paths/150463
+      $mobile_commons_subscribe_results = dosomething_general_mobile_commons_subscribe($mobile[0]['value'], 150463);
+      
+    }
+    else {
+      $merge_vars = array();
+    }
+    
+    // Subscribe user to MailChimp
+    if (isset($params['email'])) {
+      dosomething_general_mailchimp_subscribe($params['email'], 'Grants2013', $merge_vars);
+    }
+
+  }
+
 }

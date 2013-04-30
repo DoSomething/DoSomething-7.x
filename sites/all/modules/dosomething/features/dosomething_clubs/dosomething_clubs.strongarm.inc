@@ -105,7 +105,7 @@ function dosomething_clubs_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'mail_system';
   $strongarm->value = array(
-    'default-system' => 'MandrillMailSystem',
+    'default-system' => 'DefaultMailSystem',
   );
   $export['mail_system'] = $strongarm;
 

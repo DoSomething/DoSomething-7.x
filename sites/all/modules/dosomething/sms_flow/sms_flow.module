@@ -82,7 +82,7 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
       drupal_write_record('sms_flow_records', $record);
 
       // Create and update the beta's Mobile Commons profile
-      dosomething_general_mobile_commons_profile_update($beta_number, $beta_variables);
+      sms_mobile_commons_profile_update($beta_number, $beta_variables);
     }
   }
 

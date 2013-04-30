@@ -1,4 +1,0 @@
-name = 'DoSomething - Meta Tag handling by page'
-description = 'Handles meta tags based off of pages.'
-core = 7.x
-package = DoSomething

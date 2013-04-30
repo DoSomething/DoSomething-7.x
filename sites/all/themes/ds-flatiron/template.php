@@ -28,7 +28,6 @@ function ds_flatiron_preprocess_node(&$vars) {
 	      $contact_forms = array(
           'individual' => node_load(728660), 
           'team' => node_load(728661)
-          //'team' => node_load(728657)
         );
 
         $submitted = _ds_flatiron_user_submitted(array(
@@ -64,6 +63,12 @@ function ds_flatiron_preprocess_node(&$vars) {
 
 function ds_flatiron_preprocess_page(&$vars) {
   
+  $cur_path = current_path();
+  if (($cur_path == 'user/registration/campaign') || ($cur_path == 'about/team/jobs')) {
+	$optimizely_script = '//cdn.optimizely.com/js/220680109.js';
+	drupal_add_js($optimizely_script, 'external');
+  }
+  
   if ($vars['node']->type == 'campaign') {
   	$vars['page']['footer']['#access'] = FALSE;
     // @TODO - THIS SHOULD BE REVISITED
@@ -92,7 +97,7 @@ function ds_flatiron_form_alter(&$form, &$form_state, $form_id) {
     $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
   }
   if ($form_id == 'webform_client_form_728661') {
-    $form['actions']['submit']['#value'] = t('I want to run a drive');
+    $form['actions']['submit']['#value'] = t('I want to donate with a group');
     $form['#action'] = url('pbj', array('fragment' => 'scholarship'));
   }
   if($form_id == 'webform_client_form_728619') {
@@ -115,3 +120,5 @@ function _ds_flatiron_user_submitted($nid = array(), $uid = NULL) {
   return $rs;
 }
   
+/* Add Chittenden's FB Library */
+drupal_add_js('sites/all/modules/dosomething/connections/js/connections.js', array('weight' => 4));

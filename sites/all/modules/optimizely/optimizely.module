@@ -1,0 +1,189 @@
+<?php
+
+/**
+ * @file
+ * Optimizely module
+ *
+ * Originally for Visual Website Optimizer by Awesome Software, http://www.awesome-software.net/
+ * and Ted Cooper (ELC) http://drupal.org/user/784944 
+ *
+ * Ported to Optimizely by netstudio.gr and Yannis Karampelas (http://drupal.org/user/1145950).
+ *
+ * Adds a small amount of javascript to the page which loads the A/B test from
+ * the optimizely.com website. All configuration after setting
+ * the Account ID happens on the Optimizely website.
+ */
+
+/**
+ * Implements of hook_permission().
+ */
+function optimizely_permission() {
+  return array(
+    'administer optimizely' => array(
+      'title' => t('Administer Optimizely module'),
+      'description' => t('Administer access to everything in module'),
+      'restrict access' => TRUE,
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_init().
+ *
+ * This function was modified so that the optimizely js snippet would only appear
+ * certain pages and paths. These paths are specified in the textarea 'optimizely_path'.
+ * You can specify the actual page path or use wildcards.
+ *
+ * For instance, 'front' will put the optimizely snippet on the front page, and
+ * 'clubs/*' will place the snippet on all pages bellow 'clubs/'. Note: The snippet 
+ * will only appear on the actual 'clubs' page if you specify 'clubs'
+ * without the wildcard.
+ *
+ * If the radio button 'optimizely_onoff' is set to 'off' it means that the snippet
+ * will be added to all pages except those listed.
+ *
+ * The project must be enabled.
+ */
+ function optimizely_init() {
+  
+  // Load all entries in the optimizely table
+  $query = db_select('optimizely', 'op')
+	->orderBy('oid')
+	->fields('op');
+    
+  // Fetch the result set.
+  $result = $query->execute();
+  
+  // Query results found
+  if ($result) {
+	
+	// Loop through each row of the found results
+    while ($row = $result->fetchAssoc()) {
+	  
+      $optimizely_enabled = $row['enabled'];
+	  
+	  // Only process the entries that are enabled
+	  if ($optimizely_enabled) {
+		  
+		$optimizely_onoff = $row['onoff'];
+	    $records = unserialize($row['path']);
+	    $optimizely_script = '//cdn.optimizely.com/js/' . $row['project_code'] . '.js';
+		  
+		// The current path acessed by the request calling hook_init
+	    $cur_path = current_path();
+		  
+  	    // Find comparable alias that could match the paths entered in the optimizely table
+	    // ** Consider adding logic to form submit function to prevent scanning url_alias table for every page load at the time of hook_init
+		$path_alias = drupal_get_path_alias($cur_path);
+	
+	    // Find path match by inclusive or exclusive path match
+		if ($optimizely_onoff == 'on') {
+			
+		  // Loop through each path for the individual Optimizely experiment / project
+		  foreach ($records as $path) {
+			  
+			$match = drupal_match_path($path_alias, $path);
+			  
+		    if($match) {
+				
+	  		  drupal_add_js($optimizely_script, 'external');
+  			  break 1;
+
+            }
+			  
+          }
+			
+	    } // Match by exclusion
+	    elseif ($optimizely_onoff == 'off') {
+			
+	      $add_script = true;
+		  
+		  foreach ($records as $path) {
+			  
+			$match = drupal_match_path($path_alias, $path);
+			  
+			if($match) {
+				
+			  $add_script = FALSE;
+			  break 1;
+			  
+			}
+			  
+		  }
+			
+		  if ($add_script) {
+			drupal_add_js($optimizely_script, 'external');
+		  }
+			
+		} // END $optimizely_onoff
+		  
+	  } // END $optimizely_enabled
+		
+	} // END while $row
+	
+  } // END if $results
+  
+}
+/**
+ * Implements hook_menu().
+ */
+function optimizely_menu() {
+  $items['admin/config/system/optimizely'] = array(
+    'title' => 'Optimizely Setup',
+    'description' => 'Configure Optimizely',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('optimizely_add_update_form'),
+    'access arguments' => array('administer optimizely'),
+    'file' => 'optimizely.admin.inc',
+    'file path' => drupal_get_path('module', 'optimizely'),
+  );
+  
+  $items['admin/config/system/optimizely/default'] = array(
+  	'title' => 'Add/Update Project',
+  	'type' => MENU_DEFAULT_LOCAL_TASK,
+  	'weight' => -10,
+  );	
+  
+  $items['admin/config/system/optimizely/optimizelyid'] = array(
+    'title' => 'Set Account Info',
+    'description' => 'Configure your Optimizely account ID',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('optimizely_setup_account_id'),
+    'access arguments' => array('administer optimizely'),
+    'file' => 'optimizely.admin.inc',
+    'file path' => drupal_get_path('module', 'optimizely'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+  );
+  
+  $items['admin/config/system/optimizely/list'] = array(
+  	'title' => 'Project Listing',
+  	'description' => 'List of all different projects to put Optimizely code snippet.',
+  	'page callback' => 'optimizely_list_page',
+  	'access arguments' => array('administer optimizely'),
+    'file' => 'optimizely.admin.inc',
+  	'file path' => drupal_get_path('module', 'optimizely'),
+  	'type' => MENU_LOCAL_TASK,
+  	'weight' => -5,
+	);
+
+	$items['admin/config/system/optimizely/delete'] = array(
+		'title' => 'Delete Project',
+		'description' => 'Deletes the project from the database.',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('optimizely_delete_page'),
+    'access arguments' => array('administer optimizely'),
+    'file' => 'optimizely.admin.inc',
+  	'file path' => drupal_get_path('module', 'optimizely'),
+  	'type' => MENU_CALLBACK,	
+	);
+	  	
+  return $items;
+}
+
+function optimizely_setup_account_id_validate($form, &$form_state) {
+  if (!preg_match('/^\d+$/', $form_state['values']['optimizely_id'])) {
+    form_set_error('optimizely_id', t('Your Optimizely ID should be numeric.'));
+  }
+}

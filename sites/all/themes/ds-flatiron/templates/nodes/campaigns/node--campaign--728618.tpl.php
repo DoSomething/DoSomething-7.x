@@ -2,7 +2,7 @@
   <div class="content"<?php print $content_attributes; ?>>
 
     <?php
-      
+
       require('node-field-variables.php');
 
     ?>
@@ -17,9 +17,23 @@
         <?php if ($sponsor): ?>
           <img class="logo-sponsor" src="<?php print($files_source . 'logo-' . $sponsor . '.png'); ?>" alt="<?php print($sponsor); ?> logo" />
         <?php endif; ?>
+
+        <div class="header-social">
+
+          <!-- Facebook Like Button -->
+          <a href="#" class="header-facebook-share">
+            <img src="//www.dosomething.org/files/campaigns/wyr/bg-recommend.png" alt="Recommend" />
+          </a>
+
+          <!-- Twitter Tweet Button -->
+          <div class="header-twitter-share">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.dosomething.org/pbj" data-text="1 in 6 people in America will go hungry at some point during the year. Help @dosomething about feeding the hungry: http://www.dosomething.org/pbj" data-count="none">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+
       </div> <!-- .section-container -->
     </section> <!-- .header -->
-    
+
     <?php if (!isset($complete) && !isset($shared)): ?>
 
       <?php /* TODO - PREVENT THOSE WHO HAVEN'T SUBMITTED THE REPORT BACK FROM FROM SEEING THIS SECTION */ ?>
@@ -36,18 +50,17 @@
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-challenge.png'); ?>" alt="your challenge" />
           <h2><?php print($challenge[1]); ?></h2>
-          <h2><?php print($challenge[2]); ?></h2>
         </div> <!-- .section-container -->
       </section> <!-- .challenge -->
 
       <section class="scholarship" id="scholarship">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
-          <h2><?php print($scholarship[1]); ?></h2>
-          <h2><?php print($scholarship[2]); ?></h2>
-          <div class="official-rules-wrapper">
-            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
-          </div> <!-- .official-rules-wrapper -->
+
+          <?php /* Display pre-opt in copy if the user has not submitted the contact form */ ?>
+          <?php if (!isset($team) && !isset($individual)): ?>
+            <h2><?php print($scholarship[1]); ?></h2>
+          <?php endif; ?>
 
           <div class="contact-form contact-form-individual">
             <?php print render($content['contact']['individual']); ?>
@@ -57,15 +70,48 @@
             <?php print render($content['contact']['team']); ?>
           </div>  <!-- .contact-form (group) -->
 
+          <?php /* Display post-opt in copy after the user has submitted the contact form */ ?>
           <?php if (isset($team) || isset($individual)): ?>
-          <div class="report-back-form">
+            <h2 class="scholarship-header"><?php print($scholarship[1]); ?></h2>
             <h2><?php print($scholarship[2]); ?></h2>
-            <?php print render($content['report_back']); ?>
-          </div>  <!-- .report_back -->
+            <div class="report-back-form">
+              <?php print render($content['report_back']); ?>
+            </div>  <!-- .report_back -->
           <?php endif; ?>
+
+          <div class="official-rules-wrapper">
+            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>"  target="_blank">official rules</a>
+          </div> <!-- .official-rules-wrapper -->
+
+          <div class="official-rules-wrapper">
+            <a class="official-rules-link" href="<?php print($files_source . 'official-rules-extra.pdf'); ?>"  target="_blank">more official rules</a>
+          </div> <!-- .official-rules-wrapper -->
 
         </div> <!-- .section-container -->
       </section> <!-- .scholarship -->
+
+      <section class="social" id="social">
+        <div class="section-container">
+
+          <img class="bg-header" src="<?php print($files_source . 'h-social.png'); ?>" alt="<?php print($share[0]); ?>" />
+          <h2><?php print($share[1]); ?></h2>
+
+          <div class="col-social">
+            <img class="share-img-social"src="<?php print($files_source . 'bg-social1.png'); ?>" alt="<?php print($share[2]); ?>" />
+            <div class="share-link-social share-link-social1">
+              <?php print($social[3]); ?>
+            </div>
+          </div> <!-- .social-col -->
+
+          <div class="col-social">
+            <img class="share-img-social"src="<?php print($files_source . 'bg-social2.png'); ?>" alt="<?php print($share[4]); ?>" />
+            <div class="share-link-social share-link-social2">
+              <?php print($social[5]); ?>
+            </div>
+          </div> <!-- .social-col -->
+
+        </div> <!-- .section-container -->
+      </section> <!-- .social -->
 
       <section class="cause" id="cause">
         <div class="section-container">
@@ -75,10 +121,10 @@
               <img class="bg-header" src="<?php print($files_source . 'h-cause' . $i . '.png'); ?>" alt="why <?php print($cause_subject); ?>?" />
               <ul>
                 <?php for ($j=1;$j<5;$j++): ?>
-                  <li><p><?php print($cause[$i][$j]); ?></p></li>
+                  <li><p><?php if (isset($cause[$i][$j])): print($cause[$i][$j]); endif; ?></p></li>
                 <?php endfor; ?>
               </ul>
-              <a class="cause-link" href="#"><?php print($cause['links'][$i]); ?></a>
+              <a class="cause-link" href="#"><?php if (isset($cause['links'][$i])): print($cause['links'][$i]); endif; ?></a>
             </div> <!-- .cause-facts -->
           <?php endfor; ?>
 
@@ -87,16 +133,6 @@
 
     <?php else: ?>
 
-      <?php if (isset($shared)): ?>
-
-        <section class="thanks" id="thanks">
-          <div class="section-container">
-            <h2><?php print($thanks[1]); ?></h2>
-          </div> <!-- .section-container -->
-        </section>
-
-      <?php endif; ?>
-
       <section class="success" id="success">
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-success.png'); ?>" alt="grand slam!" />
@@ -104,14 +140,14 @@
           <h1><?php print($success[2]); ?></h1>
         </div> <!-- .section-container -->
       </section> <!-- .section -->
-    
+
       <section class="share" id="share">
         <div class="section-container">
-        
+
           <img class="bg-header" src="<?php print($files_source . 'h-share.png'); ?>" alt="spread the word" />
           <img class="bg-share" src="<?php print($files_source . 'bg-share.png'); ?>" alt="text message preview" />
 
-            <?php 
+            <?php
               $nid = 'node/' . $node->nid;
               $thanks_redirect_param = array(
                 'query' => array(
@@ -121,7 +157,7 @@
             ?>
 
             <form action="//dosomething.mcommons.com/profiles/join" method="POST">
-              <input type="hidden" name="redirect_to" value="<?php print(url($nid, $thanks_redirect_param)); ?>" />
+              <input type="hidden" name="redirect_to" value="<?php print($cmp_url . '-thanks'); ?>" />
 
               <div class="share-alpha-name share-input-wrapper">
                 <label>Your First Name:</label>
@@ -152,19 +188,31 @@
 
               <input type="submit" class="form-submit" value="invite friends" />
 
-            </form> 
+            </form>
 
             <div class="campaign-opt-in">
 
               <p>Message &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</p>
 
               <div class="official-rules-wrapper">
-                <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>">official rules</a>
+                <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>" target="_blank">official rules</a>
               </div> <!-- .official-rules-wrapper -->
 
             </div> <!-- .campaign-opt-in -->
 
         </div> <!-- .section-container -->
+
+        <!--
+        Edvisors tracking pixel
+        @todo - Ideally this will be handled in a more automated fashion.  This
+        can be achieved by Stashing the Edvisor offer id on the campaign and
+        using a a standardize (but themable) webform confirmation page.
+        @todo - add a http referrer check as well
+        -->
+        <!-- Offer Conversion: DoSomething.org -->
+        <iframe src="http://tracking.edvisors.com/aff_l?offer_id=98" scrolling="no" frameborder="0" width="1" height="1"></iframe>
+        <!-- // End Offer Conversion -->
+
       </section> <!-- .section -->
     <?php endif; ?>
 

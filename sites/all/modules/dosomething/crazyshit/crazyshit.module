@@ -11,6 +11,7 @@ define('CRAZY_AUTH_PAGES', serialize(explode(',', variable_get('crazy_auth_pages
 define('CRAZY_MAILCHIMP_GROUP', 'CraziestThing2013');
 define('CRAZY_RANKING_POINT', 43200); // in seconds
 define('CRAZY_GRACE_PERIOD', 1800); // in seconds
+define('CRAZY_DIVISOR', 3); // divide the time by this number to get real subtracted #
 
 /**
  *	Implements hook_menu()
@@ -220,7 +221,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  }
 
 	  $crazy_menu = array();
-	    
+
 	  $crazy_menu = array(
 	    '#theme' => 'links',
 	    '#links' => $links,
@@ -265,7 +266,7 @@ function crazyshit_submit_vouch() {
 	global $user;
 	if (!$user->uid) {
 	  // If a user isn't logged in, they shouldn't be able to vouch for something.
-	  echo drupal_json_output(array(
+	  drupal_json_output(array(
 		'status' => 0
 	  ));
 	}
@@ -288,7 +289,7 @@ function crazyshit_submit_vouch() {
 	);
 	drupal_write_record('crazy_notifications', $notification);
 
-	echo drupal_json_output(array(
+	drupal_json_output(array(
 	  'status' => 1,
 	  'count' => $update['count'],
 	));
@@ -373,7 +374,7 @@ function crazyshit_submit_craziness() {
 	$value++;
 	$submission->field_crazy_count[LANGUAGE_NONE][0]['value'] = $value;
 	webform_entity_save_webform_submission($submission);
-	
+
 	global $user;
 	$fbid = fboauth_fbid_load($user->uid);
 	$notification = array(
@@ -484,7 +485,7 @@ function crazyshit_submit_bullshit() {
 
 	if (!$user->uid) {
 	  // If a user isn't logged in, they shouldn't be able to vouch for something.
-	  echo drupal_json_output(array(
+	  drupal_json_output(array(
 		'status' => 0
 	  ));
 	}
@@ -520,7 +521,7 @@ function crazyshit_submit_bullshit() {
 	drupal_write_record('crazy_notifications', $notification);
 
 	// Return author, status, new count.
-	echo drupal_json_output(array(
+	drupal_json_output(array(
 	  'author' => $to_fbid,
 	  'status' => 1,
 	  'count' => $update['count'],
@@ -819,11 +820,11 @@ function crazyshit_views_query_alter(&$view, &$query) {
 	  }
 
 	  $query->fields['real_weight'] = array(
-	    'field' => '(((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . CRAZY_GRACE_PERIOD . ') + field_data_field_craziness_weight.field_craziness_weight_value)',
+	    'field' => '((((webform_submissions.submitted - ' . REQUEST_TIME . ') + ' . CRAZY_GRACE_PERIOD . ') / ' . CRAZY_DIVISOR . ') + field_data_field_craziness_weight.field_craziness_weight_value)',
 	    'table' => '',
 	    'alias' => 'real_weight',
 	  );
-	  
+
 	  $query->orderby[0]['field'] = 'real_weight';
     }
 
@@ -887,7 +888,7 @@ function crazy_fb_get_multi_fbids(Array $users) {
   $result = db_query("SELECT uid, 1 FROM {fboauth_users} WHERE fbid IN (" . implode(',', $users) . ")");
 global $user;
   $uids = $result->fetchAllKeyed();
-  
+
   return array_keys($uids);
 }
 
@@ -1060,10 +1061,10 @@ function crazyshit_fboauth_redirect($destination) {
 	    $email = $user->mail;
 
 	    if (!empty($mid) && valid_email_address($email) && !empty($email)) {
-		
+
 		// Add email to MailChimp group
 	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
-		
+
 	       // Send email message, start with '', build content from tpl file.
                $mail_status = crazyshit_mail_send($email, '');
 
@@ -1091,11 +1092,10 @@ function crazyshit_theme() {
   $path = drupal_get_path('module', 'crazyshit');
 
   return array(
-    'crazyshit_welcome' => array(	  	
-       'path' => $path . '/templates',	  	 	
-       'template' => 'crazyshit-welcome',  	
+    'crazyshit_welcome' => array(
+       'path' => $path . '/templates',
+       'template' => 'crazyshit-welcome',
      ),
-    
     'bull' => array(
       'path' => $path . '/templates',
       'template' => 'bullshit-alert',
@@ -1107,6 +1107,10 @@ function crazyshit_theme() {
     'login' => array(
       'path' => $path . '/templates',
       'template' => 'login-alert',
+    ),
+    'share-login' => array(
+      'path' => $path . '/templates',
+      'template' => 'share-login-alert'
     ),
     'submit' => array(
       'path' => $path . '/templates',
@@ -1151,6 +1155,8 @@ function crazyshit_init() {
 		  ->fields('n', array('type', 'sid', 'from_fid', 'fid'))
 		  // Make sure it's for the currently logged in user.
 		  ->condition('uid', $user->uid)
+		  // Make sure it's not guests.
+		  ->condition('uid', 0, '!=')
 		  // Make sure they haven't seen it yet.
 		  ->condition('notified', 0)
 		  // Make sure it's a BS notification.
@@ -1311,29 +1317,29 @@ function crazyshit_handle_fb_users($facebook) {
 function crazyshit_mail($key, &$message, $params) {
 
   switch ($key) {
-	
+
     // Send a simple into message.
     case 'crazyshit-intro':
-	
+
      $headers = array(
-	'From' => $message['from'],	  	
-	'Sender' => $message['from'],	  	
-	'Return-Path' => $message['from'],	  	
-	'Reply-to' => $message['from'],  	
+	'From' => $message['from'],
+	'Sender' => $message['from'],
+	'Return-Path' => $message['from'],
+	'Reply-to' => $message['from'],
 	'Errors-To' => $message['from'],
         'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
       );
-     
+
       foreach ($headers as $key => $value) {
         $message['headers'][$key] = mime_header_encode($value);
       }
-      
-      $message['subject'] = t('What\'s the craziest thing you\'ve done to save money?');	  	
+
+      $message['subject'] = t('What\'s the craziest thing you\'ve done to save money?');
       $message['body'][] = theme('crazyshit_welcome', $params);
 
       break;
   }
-		
+
 }
 
 /**
@@ -1347,7 +1353,7 @@ function crazyshit_mail($key, &$message, $params) {
  *   Boolean indicating success.
  */
 function crazyshit_mail_send($email, $message) {
-	
+
   // All system mails need to specify the module and template key (mirrored from
   // hook_mail()) that the message they want to send comes from.
   $module = 'crazyshit';
@@ -1380,26 +1386,12 @@ function crazyshit_mail_send($email, $message) {
   // message delivery; only that there were no PHP-related issues encountered
   // while sending.
   $result = drupal_mail($module, $key, $to, $language, $message, $from, $send);
-  
-  if ($result['result'] == FALSE) {	
+
+  if ($result['result'] == FALSE) {
     watchdog('crazyshit', 'Failed to send intro email message.');
   }
-  
+
   return $result['result'];
 
-
-}
-
-/**	  	
- *  Extends default mail system to use crazyshitMailSystem which sends emails as HTML	  	
- */	  	
-class crazyshitMailSystem extends DefaultMailSystem {
-	
-  public function format(array $message) {
-    $message['body'] = implode("\n\n", $message['body']);
-    $message['body'] = drupal_wrap_mail($message['body']);
-
-    return $message;
-  }
 
 }

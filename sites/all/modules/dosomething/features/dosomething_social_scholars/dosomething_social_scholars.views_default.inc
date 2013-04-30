@@ -238,6 +238,11 @@ function dosomething_social_scholars_views_default_views() {
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_share_your_own_image_1']['field_api_classes'] = 0;
+  /* Sort criterion: Webform submissions: Submitted */
+  $handler->display->display_options['sorts']['submitted']['id'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['table'] = 'webform_submissions';
+  $handler->display->display_options['sorts']['submitted']['field'] = 'submitted';
+  $handler->display->display_options['sorts']['submitted']['order'] = 'DESC';
   /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';

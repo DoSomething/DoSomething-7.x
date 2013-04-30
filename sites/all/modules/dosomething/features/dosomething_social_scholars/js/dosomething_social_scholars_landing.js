@@ -32,10 +32,10 @@
           var block = $('<div></div>').addClass('buttons');
           var facebook = $('<a></a>').attr('href', 'http://facebook.com').html('<img src="/sites/all/modules/dosomething/features/dosomething_social_scholars/images/facebook.png" class="share-button" alt="Share on Facebook" />').click(function() {
             var img = $('.current img').attr('src');
-            var h = $('.current a').attr('href');
+
             var nid = parseInt(document.location.pathname.replace('/sas-landing/', ''));
             Drupal.behaviors.fb.feed({
-              'feed_document': document.location.href + h,
+              'feed_document': 'http://www.dosomething.org/paper-chicken',
               'feed_title': "Don't Chicken Out: Take a Stand Against Animal Cruelty",
               'feed_picture': img,
               'feed_caption': 'www.dosomething.org/paper-chicken',

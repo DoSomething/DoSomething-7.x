@@ -1,11 +1,11 @@
-Hi <?php echo $name; ?>!
+<p>Hi <?php echo $name; ?>!</p>
 
-<?php echo $approvee; ?> accepted your invitation to join "<?php echo $club_name; ?>."  Login to your account at DoSomething.org (hint: <?php echo $email; ?> is your email login) to see them on the member roster.
+<p><?php echo $approvee; ?> accepted your invitation to join "<?php echo $club_name; ?>."  Login to your account at DoSomething.org (hint: <?php echo $email; ?> is your email login) to see them on the member roster.</p>
 
-And the more the merrier! Head over to your Clubs Profile page to invite more friends!
+<p>And the more the merrier! Head over to your Clubs Profile page to invite more friends!</p>
 
-Click here now to get started:
-<?php echo $club_link; ?>
+<p>Click here now to get started:<br />
+<?php echo $club_link; ?></p>
 
-
-If you have any questions, email Crystal at clubs@dosomething.org.
+<br />
+<p>If you have any questions, email Crystal at clubs@dosomething.org.</p>

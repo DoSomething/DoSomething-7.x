@@ -1856,7 +1856,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_types' => array(),
       'field_name' => 'field_mailchimp_group_id',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '1',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -1975,11 +1975,7 @@ sports|Sports Equipment - our fall sports equipment drive',
     ),
     'field_instance' => array(
       'bundle' => 'club',
-      'default_value' => array(
-        0 => array(
-          'value' => '',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -2022,19 +2018,17 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_type' => 'node',
       'field_name' => 'field_name',
       'label' => 'First Name',
-      'required' => '1',
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'weight' => '-7',
       'widget' => array(
-        'active' => '1',
+        'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'default_value_php' => NULL,
-          'rows' => '1',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'text_textfield',
         'weight' => '9',

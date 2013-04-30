@@ -1,0 +1,1100 @@
+<?php
+
+/**
+ * @file
+ * Create and Share campaigns are campaigns where a member
+ * is encouraged to upload an image related to a certain
+ * topic, connect it with some type of content (e.g. "Craziest
+ * thing I did to save money", or "pet shelter"), and post it.
+ *
+ * When an image is posted on a gallery, members can take actions
+ * on that post, such as a "thumbs up" or "thumbs down", or share
+ * it on Facebook.
+ *
+ * Further actions are possible but are dependent on the campaign
+ * in question.  The important aspect of Create and Share campaigns
+ * are the gallery of images that appears, encouraging members to take
+ * action upon them.
+ *
+ * @author Michael Chittenden (mchittenden@dosomething.org)
+ * @date 4/23/13
+ */
+
+include 'create_and_share.features.inc';
+
+/**
+ *  Implements hook_permission()
+ */
+function create_and_share_permission() {
+  return array(
+    'flag campaign submissions' => array(
+      'title' => t('Flag Campaign Submissions'),
+      'description' => t('Can flag submissions to disappear.'),
+    ),
+  );
+}
+
+/**
+ *  Implements hook_url_inbound_alter()
+ */
+function create_and_share_url_inbound_alter(&$path, $original_path, $path_language) {
+  // Get the current campaign page.
+  if ($campaign = create_and_share_is_campaign_page()) {
+    // Settings.
+    $settings = create_and_share_get_settings($campaign);
+
+    // Match your standard submit page.
+    if (preg_match('#(' . $settings['campaign_root'] . ')/submit#i', $path)) {
+      $path = 'node/' . $settings['campaign_nid'] . '/submit';
+    }
+
+    // Match any defined filters.
+    if (preg_match('#(' . implode('|', array_keys($settings['filters'])) . ')#i', $path, $matches)) {
+      $path = 'node/' . $settings['campaign_nid'] . '/filter';
+    }
+  }
+}
+
+/**
+ *  Implements hook_menu()
+ *  See documentation for each path for explanations of their uses.
+ *  Assuming that args are an array beginning with 0.
+ */
+function create_and_share_menu() {
+  $paths = array();
+
+  /**
+   *  Flags a campaign submission.  This normally hides the submission.
+   *
+   *  @param string campaign (arg 1)
+   *    The campaign that contains the submission.
+   *
+   *  @param int etid (arg 3)
+   *    The submission SID for the post that should be flagged.
+   */
+  $paths['cas/%/flag/%'] = array(
+    'page callback' => 'create_and_share_flag',
+    'page arguments' => array(1, 3),
+    'access callback' => 'user_access',
+    'access arguments' => array('flag campaign submissions'),
+  );
+
+  /**
+   *  Vote a campaign submission up or down.
+   *
+   *  @param string campaign (arg 1)
+   *    The campaign that contains the submission.
+   *
+   *  @param string type (arg 3)
+   *    The type (e.g. "up" or "down") of vote.  Should match a field definition.
+   *
+   *  @param int etid (arg 4)
+   *    The entity ID of the submission that is being voted up / down.
+   */
+  $paths['cas/%/vote/%/%'] = array(
+    'page callback' => 'create_and_share_action',
+    'page arguments' => array(1, 3, 4),
+    'access callback' => TRUE,
+  );
+
+  /**
+   *  Send a request to an array of friends.  Pass an array of 'friends' through POST.
+   *
+   *  @param string campaign (arg 1)
+   *    The campaign that contains the submission.
+   *
+   *  @param string type (arg 3)
+   *    The type of request (e.g. "vouch").
+   *
+   *  @param int etid (arg 4)
+   *    The entity ID of the submission referenced in the request.
+   */
+  $paths['cas/%/request/%/%'] = array(
+    'page callback' => 'create_and_share_request',
+    'page arguments' => array(1, 3, 4),
+    'access callback' => TRUE,
+  );
+
+  /**
+   *  Logs a share within a campaign.
+   *
+   *  @param string campaign (arg 1)
+   *    The campaign that contains the submission that is being shared.
+   *
+   *  @param string etid (arg 3)
+   *    The entity ID of the submission that is being shared.
+   */
+  $paths['cas/%/share/%'] = array(
+    'page callback' => 'create_and_share_update_counts',
+    'page arguments' => array(1, 3, 'share'),
+    'access callback' => TRUE,
+  );
+
+  /**
+   *  Renders a template found within a campaign.
+   *
+   *  @param string campaign (arg 1)
+   *    The campaign that contains the requested template.
+   *
+   *  @param string template (arg 3)
+   *    The template that should be displayed.
+   *
+   *  @param int etid (arg 4)
+   *    An (optional) entity ID matching a submission on the campaign.
+   *
+   *  @see create_and_share_template_render()
+   */
+  $paths['cas/%/template/%/%'] = array(
+    'page callback' => 'create_and_share_template_render',
+    'page arguments' => array(1, 3, 4),
+    'access callback' => TRUE,
+  );
+
+  return $paths;
+}
+
+/**
+ *	Implements hook_theme()
+ */
+function create_and_share_theme($existing, $type, $theme, $path) {
+  $path = $path . '/templates';
+
+  return array(
+    'create_and_share_header' => array(
+      'path' => $path,
+      'template' => 'header'
+    ),
+    'views_view_fields__create_and_share' => array(
+      'arguments' => array('view' => NULL, 'field' => NULL, 'row' => NULL),
+      'template' => 'views-view-fields--create-and-share',
+      'path' => $path,
+    ),
+    'notification' => array(
+      'arguments' => array(),
+      'template' => 'notification',
+      'path' => $path,
+    ),
+  );
+}
+
+/**
+ *  Implements hook_page_templates_alter()
+ *  Adds navigation bar to the top of the page.
+ */
+function create_and_share_page_templates_alter(&$variables) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+    $v = &$variables['page']['top_navbar'];
+
+    $ru = request_path();
+    foreach ($settings['top_links'] AS $match => $info) {
+      $href = $info['href'];
+      $links[$href] = array(
+        'title' => t($info['title']),
+        'href' => $href,
+        'attributes' => (isset($info['attributes']) ? $info['attributes'] : array()),
+      );
+
+      if (preg_match('#^' . $match . '#i', $ru)) {
+        $links[$href]['attributes'] += array(
+          'class' => array('active'),
+        );
+      }
+    }
+
+    $sub = array();
+    $u = $ru;
+
+    foreach ($settings['sub_menus'] AS $match => $s) {
+      if (preg_match('#' . $match . '#i', $u)) {
+        foreach ($settings['sub_menus'][$match] AS $key => $type) {
+          if (strpos($type['href'], '#') !== false) {
+            preg_match('/(?<href>.*?)#(?<fragment>.*?)$/', $type['href'], $hr);
+            $href = $hr['href'];
+            $fragment = $hr['fragment'];
+          }
+          else {
+            $href = $type['href'];
+            $fragment = '';
+          }
+
+          $a = array(
+            'title' => t($type['title']),
+            'href' => $href,
+            'fragment' => $fragment,
+            'attributes' => (isset($type['attributes']) ? $type['attributes'] : array()),
+          );
+
+          if (preg_match('#^' . $type['href'] . '$#i', $ru)) {
+            $a['attributes']['class'] = array('active');
+          }
+
+          $sub[] = $a;
+        }
+      }
+    }
+
+    $crazy_menu = array();
+
+    $crazy_menu = array(
+      '#theme' => 'links',
+      '#links' => $links,
+      '#attributes' => array('class' => array('crazy-menu')),
+    );
+
+    $crazy_sub_menu = array();
+    if (!empty($sub)) {
+      $crazy_sub_menu = array(
+        '#theme' => 'links',
+        '#links' => $sub,
+        '#attributes' => array('class' => array('crazy-sub-menu')),
+      );
+    }
+
+    $v = theme('create_and_share_header', array(
+      'top_menu' => $crazy_menu,
+      'sub_menu' => $crazy_sub_menu,
+    )) . $v;
+
+    array_push($variables['theme_hook_suggestions'], 'node__create_and_share_campaign');
+
+  }
+}
+
+/**
+ *  Responds to a "thumbs-down" action.
+ *
+ *  @param string $campaign
+ *    The machine name of the campaign 'pon which this is taking place.
+ *
+ *  @param string $action
+ *    The action (e.g. "up" for thumbs-up or "down" for thumbs-down)
+ *
+ *  @param int $etid
+ *    The numeric ID of the submission / post / whatever that is being given the thumbs-down
+ *
+ *  @return json
+ *    Returns a json array indicating success or failure.
+ */
+function create_and_share_action($campaign, $type, $etid) {
+  global $user;
+
+  if (!is_numeric($etid) || empty($_POST['origin'])) {
+    drupal_json_output(array(
+      'status' => 0
+    ));
+
+  	return false;
+  }
+
+  $origin = check_plain($_POST['origin']);
+  $settings = create_and_share_get_settings($campaign);
+
+  if (!$user->uid && !$settings['allow_anonymous_votes']) {
+    // If a user isn't logged in, they shouldn't 
+    drupal_json_output(array(
+      'status' => 0
+    ));
+
+    return;
+  }
+
+  $alert = (bool) (isset($_POST['alert']) ? check_plain($_POST['alert']) : 0);
+
+  $notified = 0;
+  // If we have disabled notifications, set notified = true
+  // so the user doesn't see the notification when they come back.
+  if ($alert === true  || !$settings['allow_notifications']) {
+    $notified = 1;
+  }
+
+  $update = create_and_share_update_counts($campaign, $etid, $type);
+
+  // Get Drupal and FB user ids
+  $fbid = fboauth_fbid_load($user->uid);
+  $to_fbid = fboauth_fbid_load($update['uid']);
+
+  // Build the notification array.
+  $notification = array(
+    'campaign' => $campaign,
+    'etid' => $update['etid'],
+    'uid' => $update['uid'],
+    'fid' => $to_fbid,
+    'from_uid' => $user->uid,
+    'from_fid' => $fbid,
+    'type' => $type,
+    'timestamp' => REQUEST_TIME,
+    'notified' => $notified,
+    'origin' => $origin,
+    'ipaddress' => ip_address(),
+  );
+
+  // Write the notification.
+  drupal_write_record('create_and_share_notifications', $notification);
+
+  // Return author, status, new count.
+  drupal_json_output(array(
+    'status' => 1,
+    'author' => $to_fbid,
+    'count' => $update['count'],
+  ));
+
+  drupal_exit();
+}
+
+/**
+ *  Accepts an array of "friends" and sends a request to them.
+ *
+ *  @param string $campaign
+ *    The machine name of the campaign 'pon which this is taking place.
+ *
+ *  @param string $action
+ *    The action (e.g. "up" for thumbs-up or "down" for thumbs-down)
+ *
+ *  @param int $etid
+ *    The numeric ID of the submission / post / whatever that is being given the thumbs-down
+ *
+ *  @return json
+ *    Returns a json array indicating success or failure.
+ *
+ */
+function create_and_share_request($campaign, $type, $etid) {
+  $friends = $_POST['friends'];
+  if (empty($friends)) {
+    drupal_json_output(array(
+      'status' => 0
+    ));
+
+    return;
+  }
+
+  if (!is_array($friends)) {
+    $friends = explode(',', $friends);
+  }
+
+  $friends = array_filter($friends, function($val) {
+    if (!is_numeric($val) || !intval($val)) return false;
+    return true;
+  });
+
+  $submission = array_shift(entity_load('webform_submission_entity', array($etid)));
+  global $user;
+
+  $fbid = fboauth_fbid_load($user->uid);
+
+  if (is_array($friends) && !empty($friends)) {
+    foreach ($friends AS $key => $friend) {
+      $notification = array(
+        'campaign' => $campaign,
+        'etid' => $submission->sid,
+        'uid' => fboauth_uid_load($friend),
+        'fid' => $friend,
+        'from_uid' => $user->uid,
+        'from_fid' => $fbid,
+        'type' => $type,
+        'timestamp' => REQUEST_TIME,
+        'notified' => 1,
+        'origin' => intval($_POST['origin']),
+        'ipaddress' => $_SERVER['REMOTE_ADDR'],
+      );
+  
+      drupal_write_record('create_and_share_notifications', $notification);
+    }
+  }
+}
+
+/**
+ *  Flags a submission.
+ *
+ *  @param string $campaign
+ *    The machine name of the campaign that owns the submission.
+ *
+ *  @param int $sid
+ *    The submission ID of the post that is being flagged.
+ *
+ *  @return mixed string|int
+ *    1 if is flagged, 0 if not    
+ */
+function create_and_share_flag($campaign, $sid) {
+  if (!intval($sid) || !is_numeric($sid)) {
+    return false;
+  }
+
+  $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+  if (!isset($submission->sid)) {
+    return false;
+  }
+
+  $state = 1;
+  if ($submission->field_cas_flagged[LANGUAGE_NONE][0]['value'] == 1) {
+    $submission->field_cas_flagged[LANGUAGE_NONE][0]['value'] = 0;
+    $state = 0;
+  }
+  else {
+    $submission->field_cas_flagged[LANGUAGE_NONE][0]['value'] = 1;
+  }
+
+  @entity_save('webform_submission_entity', $submission);
+
+  echo $state;
+  drupal_exit();
+}
+
+/**
+ *  Adds weight to posts from a Facebook image share.
+ *
+ *  @param string $campaign
+ *    The campaign that this action is happening in.
+ *
+ *	@param int $etid
+ *	  The submission ID of the post that should be updated.
+ *
+ *  @param string $action
+ *    The action that should update the counts.
+ */
+function create_and_share_update_counts($campaign, $etid, $action) {
+  $submission = array_shift(entity_load('webform_submission_entity', array($etid)));
+
+  $settings = create_and_share_get_settings($campaign);
+
+  $weight = 0;
+
+  // Check for existing weight
+  $weight_field = 'field_' . $settings['fields']['weight']['field'];
+  if (isset($submission->{$weight_field}[LANGUAGE_NONE][0]['value'])) {
+    $weight = $submission->{$weight_field}[LANGUAGE_NONE][0]['value'];
+  }
+
+  // We want to get the nearest 10, 100, 1000, 10000, etc...
+  $top = pow(10, strlen((string) $total));
+  $multiplier = ($settings['algorithm']['action_point'] / $top);
+
+  $weight += ($settings['fields'][$action]['weight'] * $multiplier);
+
+  $submission->{$weight_field}[LANGUAGE_NONE][0]['value'] = $weight;
+
+  $action_field = 'field_' . $settings['fields'][$action]['field'];
+  $count = 0;
+  if (isset($submission->{$action_field}[LANGUAGE_NONE][0]['value'])) {
+    $count = $submission->{$action_field}[LANGUAGE_NONE][0]['value'];
+  }
+
+  // Update the counts.
+  $submission->{$action_field}[LANGUAGE_NONE][0]['value'] = ++$count;
+
+  $total_field = 'field_' . $settings['fields']['total']['field'];
+  $total = 0;
+  if (isset($submission->{$total_field}[LANGUAGE_NONE][0]['value'])) {
+    $total = $submission->{$total_field}[LANGUAGE_NONE][0]['value'];
+  }
+
+  // Increment total count.
+  $submission->{$total_field}[LANGUAGE_NONE][0]['value'] = ++$total;
+
+  // Save the submission.
+  @entity_save('webform_submission_entity', $submission);
+
+  return array(
+    'etid' => $submission->sid,
+    'uid' => $submission->uid,
+    'count' => $value,
+  );
+}
+
+/**
+ *  Renders templates.  This function users a wrapper template, notification.tpl.php,
+ *  found within the "create_and_share" module, in the "templates" directory.  notifications.tpl.php
+ *  attempts to find the requested template (defined by parameter) within the requested
+ *  campaign (also defined by parameter) directory, then spits out that template.
+ *
+ *  For example, if /cas/blah/template/login/12345 is called, the wrapper template will look for
+ *  campaigns/blah/templates/login.tpl.php, and, if it exists, show that template.
+ *
+ *  @param string $campaign
+ *    The campaign that has the template in question.
+ *
+ *  @param string $template
+ *    The template to show.
+ *
+ *	@param int $etid
+ *	  Optional submission ID of the submission that should be passed into the template.
+ *
+ *  @return string
+ *    The template.
+ */
+function create_and_share_template_render($campaign, $template, $etid) {
+  // Start the parameters with just the SID.
+  $params = array(
+    'etid' => $etid,
+    'you' => (isset($_POST['you']) ? intval($_POST['you']) : 0),
+  );
+
+  $settings = create_and_share_get_settings($campaign);
+
+  if (isset($settings['template_vars'][$template]) && is_array($settings['template_vars'][$template])) {
+    $params += $settings['template_vars'][$template];
+  }
+
+  if (isset($_POST['goto'])) {
+    $params['goto'] = $_POST['goto'];
+  }
+
+  if (isset($_POST['source'])) {
+    $source = substr(check_plain($_POST['source']), 1);
+    $params['source'] = $source;
+  }
+
+  $params += array(
+    'campaign' => $campaign,
+    'template' => $template,
+    'settings' => $settings,
+  );
+
+  // Return the template.
+  echo theme('notification', $params);
+
+  // Update the notifications table that the user saw it.
+  db_update('create_and_share_notifications')
+  ->fields(array(
+    'notified' => 1
+  ))
+  ->condition('etid', intval($etid))
+  ->execute();
+
+  // Finished.
+  drupal_exit();
+}
+
+/**
+ *  Loads and returns settings.
+ *
+ *  @param string $campaign
+ *    The machine name of the campaign that the settings should be
+ *    retrieved from.
+ *
+ *  @param string $category
+ *    The "category", if applicable, of settings that should be returned.
+ *    By default, returns everything.
+ *
+ *  @return array
+ *    The cached array of settings from $campaign.
+ */
+function create_and_share_get_settings($campaign, $category = 'all') {
+  static $cache = array();
+
+  if (empty($campaign)) {
+    $uri = request_path();
+    $campaign = dirname($uri);
+  }
+
+  if (empty($cache[$campaign])) {
+    if (file_exists(create_and_share_get_campaign_path($campaign) . '/settings.inc')) {
+      require create_and_share_get_campaign_path($campaign) . '/settings.inc';
+
+      // Add in data from the node.
+      $c = menu_get_object('node', 1, 'node/' . $settings['campaign_nid']);
+      $settings += array(
+        'type' => $c->type,
+        'campaign_root' => drupal_get_path_alias('node/' . $c->nid),
+        'campaign_domain' => url(),
+        'allow_anonymous_votes' => (bool) $c->field_cas_allow_anonymous_voting[LANGUAGE_NONE][0]['value'],
+        'allow_notifications' => (bool) $c->field_cas_allow_notifications[LANGUAGE_NONE][0]['value'],
+        'allow_lazy_loading' => (bool) $c->field_cas_allow_lazy_loading[LANGUAGE_NONE][0]['value'],
+        'allow_ranking_algorithm' => (bool) $c->field_cas_ranking_algorithm[LANGUAGE_NONE][0]['value'],
+        'image_writing' => array(
+          'enabled' => (!empty($c->field_cas_image_font[LANGUAGE_NONE][0]['value']) && file_exists(drupal_get_path('module', 'create_and_share') . '/fonts/' . $c->field_cas_image_font[LANGUAGE_NONE][0]['value'])),
+          'font' => $c->field_cas_image_font[LANGUAGE_NONE][0]['value'],
+        ),
+        'fields' => array(
+          'weight' => array(
+            'field' => $c->field_cas_weight_field[LANGUAGE_NONE][0]['value'],
+          ),
+          'picture' => array(
+            'field' => $c->field_cas_image_field[LANGUAGE_NONE][0]['value'],
+            'style' => $c->field_cas_image_style[LANGUAGE_NONE][0]['value'],
+          ),
+          'up' => array(
+            'field' => $c->field_cas_thumbs_up_field[LANGUAGE_NONE][0]['value'],
+            'weight' => $c->field_cas_thumbs_up_weight[LANGUAGE_NONE][0]['value'],
+          ),
+          'down' => array(
+            'field' => $c->field_cas_thumbs_down_field[LANGUAGE_NONE][0]['value'],
+            'weight' => $c->field_cas_thumbs_down_weight[LANGUAGE_NONE][0]['value'],
+          ),
+          'total' => array(
+            'field' => $c->field_cas_total_count_field[LANGUAGE_NONE][0]['value'],
+          ),
+        ),
+        'views' => array(
+          'wrapper' => $c->field_cas_views_wrapper[LANGUAGE_NONE][0]['value'],
+          'time-filters' => $c->field_cas_views_display[LANGUAGE_NONE][0]['value'],
+        ),
+        'algorithm' => array(
+          'grace_period' => $c->field_cas_time_loss_grace_period[LANGUAGE_NONE][0]['value'],
+          'weight_divisor' => $c->field_cas_time_loss_divisor[LANGUAGE_NONE][0]['value'],
+          'action_point' => $c->field_cas_ranking_action_point[LANGUAGE_NONE][0]['value'],
+        ),
+      );
+
+      $filter = array();
+      include_once create_and_share_get_campaign_path($campaign) . '/filters.inc';
+      $settings['filters'] = $filter;
+
+      $cache[$campaign] = $settings;
+      unset($settings);
+    }
+  }
+
+  return ($category != 'all' ? $cache[$campaign][$category] : $cache[$campaign]);
+}
+
+/**
+ *  Implements hook_page_alter()
+ */
+function create_and_share_page_alter(&$page) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+
+    drupal_set_title($settings['campaign_title']);
+
+    $element = array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'property' => 'og:type',
+        'content' => $settings['facebook']['share']['namespace'] . ':' . $settings['facebook']['share']['object'],
+      ),
+    );
+    drupal_add_html_head($element, 'create_and_share_og_header');
+
+    $uri = request_uri();
+
+    if (!empty($settings['css']) && is_array($settings['css'])) {
+      foreach ($settings['css'] AS $path => $css) {
+        if (preg_match('#^/' . $path . '#i', $uri)) {
+          foreach ($css AS $style) {
+            drupal_add_css(create_and_share_get_campaign_path($campaign) . '/css/' . $style, array(
+              'group' => CSS_THEME,
+              'weight' => 1000,
+            ));
+          }
+        }
+      }
+    }
+
+    if (!empty($settings['js']) && is_array($settings['js'])) {
+      foreach ($settings['js'] AS $path => $js) {
+        if (preg_match('#^/' . $path . '#i', $uri)) {
+          foreach ($js AS $script) {
+            drupal_add_js(create_and_share_get_campaign_path($campaign) . '/js/' . $script, array(
+              'weight' => 1000,
+            ));
+          }
+        }
+      }
+    }
+
+    // Add ui.dialog library, regardless of your logged in status.
+    drupal_add_library('system', 'ui.dialog');
+
+    // Add Facebook library.
+    drupal_add_library('connections', 'facebook');
+
+    drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/campaign.js');
+
+    if ($settings['allow_lazy_loading']) {
+      drupal_add_js(drupal_get_path('module', 'create_and_share') . '/js/jquery.lazyload.js');
+    }
+
+    global $user;
+
+    $fromto = db_or();
+    $fromto->condition('from_uid', $user->uid);
+    $fromto->condition('uid', $user->uid);
+
+    $s = db_select('create_and_share_notifications', 'n')
+      ->fields('n', array('etid', 'type', 'from_uid', 'uid', 'notified'))
+      ->condition($fromto)
+      ->condition('campaign', $campaign);
+    $shares = $s->execute()->fetchAll();
+
+    $notices = $posts = array();
+    foreach ($shares AS $key => $share) {
+      // If it's from me, it's a post from me!
+      if ($share->from_uid == $user->uid) {
+        $posts[] = $share->etid;
+      }
+
+      // If it's to me, it's a notification (assuming I haven't sene it yet).
+      if ($share->uid == $user->uid && !$share->notified) {
+        $notices[$share->type][] = array(
+          'etid' => $share->etid,
+          'uid' => $share->from_uid,
+        );
+      }
+    }
+
+    $js_settings = array(
+      'share_count' => count($posts),
+      'shares' => $posts,
+      'notices' => $notices,
+    );
+
+    $p = str_replace('/' . $settings['campaign_root'] . '/', '', $uri);
+    if (isset($settings['pages'][$p])) {
+      $origin = $settings['pages'][$p];
+      $js_settings['origin'] = $origin;
+    }
+
+    $js_settings['facebook'] = $settings['facebook'];
+    
+    $fb_app_id = variable_get('fboauth_id');
+    if (isset($settings['fb_app_id'])) {
+      $fb_app_id = $settings['fb_app_id'];
+    }
+
+    // Facebook App ID
+    $js_settings['fb_app_id'] = $fb_app_id;
+
+    // Allow notifications?
+    $js_settings['allow_notifications'] = $settings['allow_notifications'];
+
+    // Allow lazy loading?
+    $js_settings['allow_lazy_loading'] = $settings['allow_lazy_loading'];
+
+    // Campaign root.
+    $js_settings['campaign_root'] = $settings['campaign_root'];
+
+    // Can flag posts?
+    $js_settings['can_flag_posts'] = user_access('flag campaign submissions');
+
+    // Get all campaign information all up in there.
+    drupal_add_js(array('campaign' => $js_settings), 'setting');
+  }
+}
+
+/**
+ *  Implements hook_views_post_render()
+ */
+function create_and_share_views_post_render(&$view, &$output, &$cache) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    global $user;
+
+    $settings = create_and_share_get_settings($campaign);
+    if ($settings['allow_lazy_loading']) {
+      // Allows for lazy loading of images
+      $output = preg_replace_callback('#src="([^\"]+)"\s+#i', 'create_and_share_add_lazy_class', $output);
+    }
+
+    // Add "by-me" class if we recognize the post author as yourself.
+    $output = str_replace(' a-' . $user->uid, ' a-' . $user->uid . ' by-me', $output);
+
+    // If a user doesn't have flagging permissions, hide the flag link.
+    $admin = user_access('flag campaign submissions');
+    if (!$admin) {
+      $output = preg_replace('#<div class="flag">.*</div>#i', '', $output);
+    }
+  }
+}
+
+/**
+ *  Adds "lazy" class to images.
+ *
+ *  @param array $matches
+ *    An array returned from preg_replace_callback, with matches.
+ *
+ *  @return string
+ *    The replaced source string with the "lazy" class, if applicable.
+ */
+function create_and_share_add_lazy_class($matches) {
+  static $i = 1;
+  static $settings = array();
+
+  if (empty($settings)) {
+    $settings = create_and_share_get_settings();
+  }
+
+  // Lazy load count always needs to be at least 1.
+  $c = ($settings['lazy_load_count'] < 1) ? 1 : $settings['lazy_load_count'];
+
+   // We multiply the lazy load count by 2, because lazy loading includes the facebook pictures.
+  if ($i > ($c * 2) && $settings['lazy_load_count']) {
+    // We're beyond the non-lazy threshold, so lazy-load the image.
+    $r = 'src="/' . drupal_get_path('module', 'create_and_share') . '/images/default-img.jpg" data-original="' . $matches[1] . '?' . $unique_cache . '" class="lazy" data-num="' . $i . '" ';
+  }
+  else {
+    // If we're within the threshhold of non-lazy images, don't add the "lazy" class to them.
+    // The lazy class causes issues when you first create a post.  So we can't lazy load it.
+    $p = $matches[1] . '?' . $unique_cache;
+    $r = 'src="' . strval($p) . '" data-num="' . $i . '" data-original="' . $p . '" ';
+  }
+
+  $i++;
+  return $r;
+}
+
+
+/**
+ *  Implements hook_views_query_alter()
+ */
+function create_and_share_views_query_alter(&$view, &$query) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+    if ($view->name == $settings['views']['wrapper']) {
+      $uri = request_path();
+
+      // If the filter file exists, load it up in here.
+      if (file_exists($path)) {
+        require_once $path;
+
+        if (is_array($settings['filters']) && !empty($settings['filters'])) {
+          // Loop through and try to find a match for the current URI
+          foreach ($settings['filters'] AS $match => $function) {
+            if (preg_match('#' . $match . '#', $uri, $match)) {
+              $function($match, $view, $query, $settings);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ *  Implements hook_module_implements_alter()
+ */
+function create_and_share_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter' && isset($implementations['create_and_share'])) {
+    $group = $implementations['create_and_share'];
+    unset($implementations['create_and_share']);
+    $implementations['create_and_share'] = $group;
+  }
+}
+
+/**
+ *	Implements hook_form_alter()
+ */
+function create_and_share_form_alter(&$form, &$form_state, $form_id) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+
+    if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == $settings['type']) {
+      $u = &$form['submitted'];
+      $page = (isset($form_state['input']['details']['page_num']) ? $form_state['input']['details']['page_num'] : 0);
+
+      if (isset($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid'])) {
+        $file = file_load($form_state['input']['submitted']['field_' . $settings['fields']['picture']['field']][LANGUAGE_NONE][0]['fid']);
+        $path = str_replace(drupal_realpath('public://') . '/', '', drupal_realpath($file->uri));
+        $form_state['file_path'] = $path;
+
+        $u['sbutton'] = array(
+          '#type' => 'container',
+          'preview_image' => array(
+            '#markup' => '<img src="/files/styles/' . $settings['fields']['picture']['style'] . '/public/' . $path . '" alt="" />',
+          ),
+          '#weight' => 10,
+          '#attributes' => array(
+            'class' => array('image-widget-data')
+          ),
+        );
+      }
+
+      if (isset($settings['image_writing']['enabled']) && $settings['image_writing']['enabled'] == 1) {
+        $form['#submit'][] = 'create_and_share_add_text_to_image';
+      }
+
+      $form['#submit'][] = 'create_and_share_redirect';
+    }
+  }
+}
+
+/**
+ *  Adds text to image.
+ */
+function create_and_share_add_text_to_image($form, &$form_state) {
+  $top = $form_state['input']['submitted']['field_cas_top_text'][LANGUAGE_NONE][0]['value'];
+  $bottom = $form_state['input']['submitted']['field_cas_bottom_text'][LANGUAGE_NONE][0]['value'];
+
+  $path = drupal_realpath('public://') . '/styles/' . $settings['fields']['picture']['style'] . '/public/create_and_share/' . basename($form_state['file_path']);
+
+  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'create_and_share') . '/includes/image.php';
+
+  $settings = create_and_share_get_settings();
+  write_text_to_image($settings, $path, $top, $bottom);
+}
+
+/**
+ *  Redirects somewhere.
+ */
+function create_and_share_redirect($form, &$form_state) {
+  $settings = create_and_share_get_settings();
+
+  $sid = $form_state['values']['details']['sid'];
+  $image = file_create_url('public://' . $form_state['file_path']);
+  $s = array(
+  	'sid' => $sid,
+  	'image' => $image,
+  );
+
+  $_SESSION['from_creation'] = $s;
+  drupal_goto($settings['campaign_root'] . '/' . $sid);
+}
+
+/**
+ *	Loads the Facebook object and returns it.
+ *
+ *  @return object
+ *    The Facebook object.
+ */
+function create_and_share_load_fb() {
+  // Some browsers won't let the third party cookies through by default unless
+  // a compact privacy policy is set in the headers.
+  drupal_add_http_header('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
+  $path = libraries_get_path('facebook');
+  if (!empty($path)) {
+	  require_once(DRUPAL_ROOT . '/' . $path . '/facebook.php');
+  }
+  else {
+	  drupal_set_message('You are missing the Facebook SDK');
+	  return;
+  }
+
+  $settings = create_and_share_get_settings();
+
+  $appid = (isset($settings['facebook']['app_id']) ? $settings['facebook']['app_id'] : variable_get('fboauth_id', 105775762330));
+  $secret = (isset($settings['facebook']['app_secret']) ? $settings['facebook']['app_secret'] : variable_get('fboauth_secret', '68e767e16e139277b1e7d2e2ba16a4f6'));
+
+  $facebook = new Facebook(array(
+	  'appId' => $appid,
+	  'secret' => $secret,
+  ));
+
+  return $facebook;
+}
+
+/**
+ *  Checks whether a specified path is a valid Create and Share campaign page.
+ *  
+ *  @param string $path
+ *    The path to check against.  Defaults to the current path (using request_path())
+ *
+ *  @return mixed string|bool
+ *    The name of the campaign if it exists, or false.
+ */
+function create_and_share_is_campaign_page($path = '') {
+  static $cache = array();
+
+  // Use request_path() if no path is specified (by default)
+  if (empty($path)) {
+    $path = request_path();
+  }
+
+  // Get alias if request_path() returns 'node/12345'
+  if (substr($path, 0, 5) == 'node/') {
+    $path = drupal_get_path_alias($path);
+  }
+
+  // Only get the definitive dirname if there are slashes somewhere in there.
+  if (strpos($path, '/') !== FALSE) {
+    $camp = preg_replace('#^(?:cas/)?([a-zA-Z0-9\-\_ ]+)\/.*#', '\\1', $path);
+  }
+  else {
+    $camp = $path;
+  }
+
+  if (empty($cache[$camp])) {
+    $p = create_and_share_get_campaign_path($camp);
+    // True if there is a campaign path there and the settings file exists.
+    $cache[$camp] = (false !== $p && file_exists(DRUPAL_ROOT . '/' . $p . '/settings.inc')) ? $camp : false;
+  }
+
+  return $cache[$camp];
+}
+
+/**
+ * Attemps to get the path for a campaign setup.
+ *  
+ * @param string $campaign
+ *   The campaign that we need the path for.
+ *
+ * @return string|bool
+ *   The path to the campaign, or false.
+ */
+function create_and_share_get_campaign_path($campaign) {
+  static $cache = array();
+
+  // Just stop here if $campaign is empty.
+  if (empty($campaign)) {
+    return false;
+  }
+
+  if (empty($cache[$campaign])) {
+    $paths = (array) cache_get('create_and_share_paths')->data;
+    $path = drupal_get_path('module', 'create_and_share');
+    $new_paths = array();
+
+    if (isset($paths[$campaign])) {
+      $cache[$campaign] = $paths[$campaign];
+    }
+    else if (is_dir($path . '/campaigns/' . $campaign)) {
+      $new_paths[$campaign] = $path . '/campaigns/' . $campaign;
+
+      if (!empty($new_paths)) {
+        // Merge in the new paths
+        $paths = ($paths + $new_paths);
+
+        // Reset the cache
+        cache_set('create_and_share_paths', $paths, 'cache', CACHE_TEMPORARY);
+      }
+
+      $cache[$campaign] = $path . '/campaigns/' . $campaign;
+    }
+    else {
+      $cache[$campaign] = false;
+    }
+  }
+
+  return $cache[$campaign];
+}
+
+/**
+ *  Implements hook_node_insert()
+ */
+function create_and_share_node_insert($node) {
+  if ($node->type == 'create_and_share_campaign') {
+    module_load_include('inc', 'webform', 'includes/webform.components');
+    // Add submit fix hidden field to webform
+    $component = array(
+      'nid' => $node->nid,
+      'cid' => 1,
+      'pid' => 0,
+      'form_key' => 'submit_fix',
+      'name' => 'Submit fix',
+      'type' => 'hidden',
+      'value' => 1,
+      'extra' => array(
+        'hidden_type' => 'hidden',
+        'conditional_operator' => '=',
+        'private' => 0,
+      ),
+      'mandatory' => 0,
+      'weight' => 100,
+    );
+    webform_component_insert($component);
+
+    // Load the Carpenter class, to build the create and share scaffold.
+    require_once libraries_get_path('Carpenter') . '/Carpenter.class.php';
+    $builder = new Carpenter('create_and_share');
+    $builder->set('name', $node->path['alias']);
+    $builder->setToken('nid', $node->nid);
+    $builder->build();
+  }
+}
+
+/**
+ *  Implements hook_ctools_plugin_directory()
+ */
+function create_and_share_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}

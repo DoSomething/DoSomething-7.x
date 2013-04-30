@@ -1,11 +1,27 @@
 <?php
 
 /**
- *  Log in a user.
+ * @file
+ * The DoSomething API is a library that connects with DoSomething.org's datastore.
+ * Functions within this library allow us to connect with users' information, posts,
+ * comments, articles, etc.
+ *
+ * @author Michael Chittenden (mchittenden@dosomething.org)
+ */
+
+/**
+ *  Log in a user.  Assuming $e_or_c is a valid email or cell phone
+ *  number of a DoSomething.org member:
+ *  @code
+ *    dosomething_api_user_log_in('email@dosomething.org');
+ *  @endcode
  *
  *  @param string $e_or_c
  *    A user's email or cell.  Will check against a formatted (e.g. with dashes)
  *    and unformatted version of a mobile number, if appropriate.
+ *
+ *  @param int $uid
+ *    (Optional) The user ID belonging to the account in question.
  *
  *  @param object $account
  *    If available, the account object for the user.  If unspecified, will get the
@@ -114,7 +130,7 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   $profile_values = array('type' => 'main');
   $profile = profile2_create($profile_values);
   $profile->uid = $account->uid;
-      
+
   // If we have the user's phone number, set that.
   if (!empty($info['mobile'])) {
    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $info['mobile'];

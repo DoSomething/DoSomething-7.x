@@ -14,7 +14,7 @@ $campaign_styles = array(
 			'font_color' => '#000',
 		),
 	),
-	
+
 	  // Don't be a sucker
 	  '727940' => array(
 		'longform' => array(
@@ -41,6 +41,20 @@ $campaign_styles = array(
 			'background' => '#86005D',
 			'font_color' => '#000',
 		),
+	  ),
+
+	  // Band Together
+	  '729194' => array(
+		  'longform' => array(
+			  'background' => '#ccc',
+			  'tip' => '#E31837',
+			  'font_color' => '#000000',
+			  'tip_color' => '#ffffff',
+		  ),
+		  'shortform' => array(
+		  	'background' => '#ff9e10',
+		  	'font_color' => '#ffffff',
+		  ),
 	  ),
 	);
 

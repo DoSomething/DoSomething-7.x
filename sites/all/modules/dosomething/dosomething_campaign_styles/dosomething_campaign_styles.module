@@ -116,6 +116,7 @@ function dosomething_campaign_styles_init() {
         }
         drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/css/dosomething_campaign_signup.css');
         drupal_add_library('dosomething_general', 'fb-friend-finder');
+        drupal_add_library('connections', 'facebook');
       }
     }
   }
@@ -269,7 +270,8 @@ function dosomething_campaign_styles_og_context_panels() {
         if ($map->plugin == 'entity:node') {
           $gid = 0;
           if (isset($map->data->nid)) {
-            $gid = og_get_group('node', $map->data->nid)->gid;
+            $g = og_get_group('node', $map->data->nid);
+            $gid = (isset($g->gid) ? $g->gid : 0);
           }
 
           $context[] = array($gid);

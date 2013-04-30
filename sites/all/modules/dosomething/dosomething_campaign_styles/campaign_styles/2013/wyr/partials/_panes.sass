@@ -1,0 +1,490 @@
+// PANES 
+
+//      //
+//  #header     - sign up -
+//      //
+#header.section
+  background-image: url(//www.dosomething.org/files/campaigns/wyr/bg-header.jpg)
+  background-repeat: no-repeat
+  background-color: #fff
+  background-position: 0% 50%
+  margin: 0 0 2% 0
+  height: 200px
+  @media only screen and (max-width: 800px)
+    background-position: -50% 50%
+  @media only screen and (max-width: 550px)
+    background: #fff
+  h2
+    text-transform: uppercase
+    color: $scholarshipBG
+    font-weight: 600
+    font-size: 35px
+    line-height: 1em
+    text-align: right
+  .header-right
+    float: right
+    width: 38%
+    margin: 5% 0 0 0
+    @media only screen and (max-width: 1075px)
+      width: 25%
+      margin: 0 
+    @media only screen and (max-width: 900px)
+      width: 30%
+      margin: 2% 0 0 0
+    @media only screen and (max-width: 800px)
+      width: 40%
+      margin: 2% 0 0 0
+    @media only screen and (max-width: 550px)
+      width: 80%
+      margin: 2% 0 0 0
+
+.header-social
+  float: left
+
+.header-facebook-share,
+.header-twitter-share
+  display: block
+  height: 20px
+
+.header-facebook-share
+  width: 75px
+  height: 20px
+  border: 1px solid rgb(202, 212, 231)
+  +border-radius(2px)
+  &:hover
+    border: 1px solid rgb(236, 238, 245) 
+
+.header-twitter-share
+  float: left
+  width: 54px
+  margin: 5px 0 0 0
+
+//      //
+//  #action
+//      //
+#action
+  padding: 3% 0 2%
+
+//      //
+//  #scholarship
+//      //
+
+#scholarship
+  background: $campaign-main
+  overflow: visible 
+  h1
+    color: white
+  h2
+    font-size: 1.3em
+    width: 80%
+    margin: 0 auto
+    color: #fff
+    font-weight: 400
+    i
+      color: $campaign-accent
+  p
+    color: #fff
+    width: 70%
+    margin: 1.5% auto 2%
+    font-weight: 300
+    font-family: din-web-reg
+    font-size: 1.2em
+  img
+    clear: both
+    display: block
+    margin: 0 auto
+    padding: 2% 0
+  form
+    margin: 1% auto 0
+    max-width: 600px
+  label
+    font-weight: 400  
+    color: white
+  input[type="text"]
+    padding: 0 0.5em
+    float: left
+    width: 48%
+    margin: 1%
+  .success_msg
+    width: 95%
+    padding: 0.5em
+    margin: 1em auto 1.5em
+    +box-shadow(0px 10px 15px -5px darken($campaign-main, 10))
+    +background-image(linear-gradient(color-stops(#F9F9AF 50%, darken(#F9F9AF, 10))))
+    +border-radius(2px)
+    h2
+      width: 100%
+      color: #333
+      font-weight: 600
+      text-transform: uppercase
+  .scholar-headline
+    font-size: 3.2em
+    font-weight: 600
+    font-family: din-web
+    line-height: 1em
+    text-transform: uppercase
+    color: white
+  .friends
+    text-align: left
+    margin: 2% 1% 0  
+  .go-button
+    color: #333
+    margin: 1% 0 2% 0
+    padding: 0 0.7em
+    background: $campaign-accent
+    color: $campaign-main
+    font-size: 2.8em
+    font-weight: 500
+    font-family: din-web-reg
+    +border-radius(12px)
+    text-align: right
+    &:hover
+      background: lighten($campaign-accent, 13)
+  #campaign-opt-in
+    text-align: center
+    a
+      color: $mainCopy
+      font-weight: 500
+  .rule-regs 
+    text-align: left
+    margin: 4% 0 1%
+    font-size: 0.9em
+    line-height: 1em
+    a
+      color: white
+      font-weight: 400  
+  .quote-highlight p
+    background: #353535
+    max-width: 525px
+    margin: 0 auto 0.8em
+    padding: 2.5% 2%
+    font-family: din-web-reg
+    font-weight: 600
+    font-size: 1.5em
+    line-height: 1.4em
+    -moz-border-radius: 12px
+    -webkit-border-radius: 12px
+    -o-border-radius: 12px
+    border-radius: 12px
+    color: white
+  .scholar-input
+    float: left
+    width: 48%
+    margin: 1% 1% 2%
+    label
+      text-align: left
+    input
+      width: 100%
+      margin: 1% 0
+  .scholar-foot
+    float: left
+    width: 48%
+    margin: 1%
+    text-align: right
+  .msg-data
+    font-size: 0.6em
+    line-height: 1.2em
+    font-weight: 300
+    font-family: din-web-reg
+    color: white
+    text-align: left
+  .rules
+    font-size: 1em
+  #post-scholar
+    padding: 4% 10% 2%
+    p
+      color: $offBlack
+      text-transform: uppercase
+      font-weight: 500
+      font-size: 1.4em
+      strong
+        font-weight: 600
+        background: #F1F1F1
+        padding: 10px 20px 6px
+        border-radius: 40px
+        border: 2px solid #E9E9E9
+      a
+        color: $offBlack  
+    .left, .right
+      float: left
+      padding: 0 5%
+      width: 50%
+      margin-bottom: 1.5em
+    .chances
+      position: relative
+      display: inline-block
+      clear: both
+      color: $mainColor
+      &:before, &:after
+        content: "" 
+        position: absolute
+        top: 0px
+        height: 62px
+        width: 44px
+      &:before  
+        left: -50px
+        background-image: url('http://files.dosomething.org/files/campaigns/grandparents12/money-left.png')
+      &:after
+        right: -50px
+        background-image: url('http://files.dosomething.org/files/campaigns/grandparents12/money-right.png')
+    .chances-rules a
+      color: $offBlack
+      font-size: 0.6em
+      text-transform: none
+      font-weight: 400  
+
+  .refer5
+    background: $secondaryColor
+    width: 110%
+    margin: 0 0 0 -4.95%
+    position: relative
+    &:before, &:after
+      content: ""
+      position: absolute
+      border-style: solid
+      border-width: 11px
+      top: -22px
+    &:before
+      border-color: transparent darken($secondaryColor, 12) darken($secondaryColor, 12) transparent
+      left: 0px
+    &:after
+      border-color: transparent transparent darken($secondaryColor, 12) darken($secondaryColor, 12)
+      right: 1px
+  .refer5-inner
+    padding: 3% 
+
+
+//      //
+//  #secondary-content
+//      //
+#secondary-content
+  padding: 2% 2% 1%
+  .prizes-a, .prizes-b
+    float: left
+    width: 50%
+    margin: 1em 0
+    h2
+      font-size: 2em
+      line-height: 0.9em
+      margin-bottom: 0.3em
+    span
+      color: $secondaryColor
+      font-weight: 500   
+  .prizes-a
+    text-align: right
+    padding: 0 2% 0 1%
+    img
+      float: left
+  .prizes-b
+    text-align: left
+    padding: 0 1% 0 2%
+    img
+      float: right
+    .end
+      text-transform: uppercase
+      color: $secondaryColor 
+      margin-top: 5px
+      font-weight: 500
+      font-size: 0.95em
+  .contest a
+    clear: both
+    color: $offBlack
+  .psa
+    margin-top: 20px  
+
+//      //
+//  #social     - share 3 stats -
+//      //
+
+#social
+  h3
+    text-transform: none
+    font-size: 1em
+    margin-bottom: 2%
+  img.sharewith
+    margin: 0 auto
+    padding: 0.25% 0 2.5% 15%
+    display: block
+    clear: both
+  .fb-share
+    width: 100%  
+  li
+    display: inline-block
+
+
+//      //
+//  #impact     - gallery -
+//      //
+
+#impact
+  p
+    width: 80%
+    margin: 0 auto
+    font-weight: 500
+  .go-button
+    margin: 2% auto
+    font-size: 2em
+  .tellus
+    margin: 0 auto 2%  
+  .finish
+    margin: 2% auto 0
+    font-weight: 600
+    line-height: 1.4em  
+
+.view-campaign-gallery #slideshow
+  margin: 0 auto
+
+//      //
+//  #faq
+//      //
+
+#faq 
+  div
+    padding: 0 1.2em
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 0 0 0 2em
+    line-height: 1.4em
+  li
+    margin: 0
+    color: $secondaryColor
+    span
+      color: black 
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("//www.dosomething.org/files/campaigns/prep/arrows.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position: 0 -23px
+  .go-button
+    margin: 0 0 1% 0
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase  
+  .action-box
+    position: relative
+    display: inline-block
+  .action-arrow-left, .action-arrow-right
+    position: absolute
+    bottom: 0.5em
+  .action-arrow-right
+    right: -70px
+  .action-arrow-left
+    left: -70px  
+
+// #content-level-up
+#content-level-up
+  h2
+    text-transform: uppercase
+    font-size: 2.4em
+    font-weight: 600
+    line-height: 1em
+  .arrow-box
+    position: relative
+  .arrow-img
+    position: absolute
+    top: 44%
+    right: -30%    
+  .pad-top
+    margin-top: 1em
+//      //
+//  #footer     - sign up button; conditionally displayed -
+//      //
+
+#footer
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 0.7em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  .go-button
+    margin: 0 0 1% 0
+
+// ------------------ MISC
+#iframe_wrapper
+  height: 450px !important
+
+// GAME
+#game
+  padding: 2%
+  @media only screen and (max-width: 400px)
+    .img-game-left, .img-game-right
+      display: none
+  .img-game-left
+    float: left
+  .img-game-center
+    @media only screen and (max-width: 1075px)
+      margin: 3% 0 5%
+  .img-game-right
+    float: right
+  .divider
+    margin: 0 2%     
+  .img-see-more
+    position: relative
+    right: 40px
+    margin: 0 0 1% 0
+    @media only screen and (max-width: 1075px)
+      display: none
+  .go-button
+    position: absolute
+    left: 39.5%
+    bottom: 3%
+    width: 7em
+    @media only screen and (max-width: 400px)
+      position: static
+      display: block
+      margin: 0 auto
+  
+// RULES
+#rules
+  background: $scholarshipBG
+  padding: 0 2% 2% 2%
+  h2
+    color: #fff
+    width: 60%
+    margin: 0 auto
+    a
+      color: #fff
+      text-decoration: underline
+  .official-rules 
+    color: #fff
+    font-weight: 400
+  .divider
+    border: none
+
+// SHARE
+#share
+  border-top: 2px solid #ddd
+  p
+    font-size: 1.2em
+    margin: 1em auto
+    max-width: 200px
+    display: block
+  .share-col
+    width: 50%
+    float: left
+  .share-bg-header
+    display: block
+    margin: 0 auto
+    width: 350px

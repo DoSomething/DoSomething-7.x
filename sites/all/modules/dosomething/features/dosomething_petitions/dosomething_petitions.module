@@ -66,6 +66,12 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
       '#weight' => 0,
     );
 
+    $form['ctia'] = array(
+      '#markup' => t('Sign up to receive weekly updates. Msg & data rates may apply. Text STOP to opt-out, HELP for help.'),
+      '#prefix' => '<p style="font-size: 9px;">',
+      '#suffix' => '</p>',
+    );
+
     if (!user_is_logged_in()) {
       $form['fav_color'] = array(
         '#type' => 'textfield',
@@ -778,4 +784,15 @@ function dosomething_petitions_contact_picker_emails() {
   );
 
   return $emails;
+}
+
+/**
+ * Increment the number of signatures for a petition
+ *
+ * @param $nid
+ *    Node ID for the petition
+ */
+function dosomething_petitions_increment_signature_count($nid) {
+  $count = variable_get('petitions_signed_count_' . $nid, 0);
+  variable_set('petitions_signed_count_' . $nid, ++$count);
 }
