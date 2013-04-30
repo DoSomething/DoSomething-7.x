@@ -20,6 +20,8 @@ function dosomething_program_short_form_form_alter(&$form, &$form_state, $form_i
     // not *quite* common enough to completely generalize, so there is some
     // duplication.  If you need to make a change here you likely need to make it
     // in the other places as well.
+
+    //@todo: comment this out once dosomething_subscribe_webform_submission_insert() is working.
     $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
 
     $form['#suffix'] = '<div id="campaign-opt-in"><span class="ctia_top">Sign up to receive weekly updates. No spam, we promise.</span><br /><span class="ctia_bottom">Msg &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</span></div>';

@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Handles Mailchimp API calls.
+ **/
+
+/**
+ * Send a subscribe request to a Mailchimp Group ID for a given email address.
+ *
+ * @param string $email
+ *   Email address to signup.
+ * @param string $mc_group_id
+ *   Mailchimp Group ID to subscribe to.
+ */
+function dosomething_subscribe_mobilecommons_signup($email, $mc_group_id) {
+
+  return "Mobile Commons";
+
+}

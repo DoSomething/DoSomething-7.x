@@ -1,0 +1,4 @@
+name = DoSomething - Subscribe Mailchimp
+description = Provides Mailchimp subscription integration for DoSomething.org
+core = 7.x
+package = "DoSomething"

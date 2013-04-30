@@ -1,0 +1,4 @@
+name = DoSomething - Subscribe
+description = Provides 3rd party subscription integration for DoSomething.org
+core = 7.x
+package = "DoSomething"
