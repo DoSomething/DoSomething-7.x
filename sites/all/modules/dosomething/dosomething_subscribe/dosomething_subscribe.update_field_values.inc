@@ -69,25 +69,25 @@ function dosomething_subscribe_update_field_values() {
   // 719564: Contact Me About Boot Camp
   $nid = 719564;
   $mailchimp = 'Bootcamp2012NYC';
-  $mobilecommons = '116183';
+  $mobilecommons = '153803';
   dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
 
   // 719546: Contact Me About Scholarships
   $nid = 719546;
   $mailchimp = 'ScholarshipInterest2012';
-  $mobilecommons = '112523';
+  $mobilecommons = '150493';
   dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
 
   // 719550: Contact Me About Clubs
   $nid = 719550;
   $mailchimp = 'Clubs2012';
-  $mobilecommons = '95961';
+  $mobilecommons = '124101';
   dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
 
   // 719551: Contact Me About Grants
   $nid = 719551;
-  $mobilecommons = '112513';
   $mailchimp = 'Grants2012';
+  $mobilecommons = '150463';
   dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
 
 }
