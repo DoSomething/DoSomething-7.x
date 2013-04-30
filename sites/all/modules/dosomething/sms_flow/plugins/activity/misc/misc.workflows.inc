@@ -76,6 +76,8 @@ $activity->petitions = array(
     'opt_in_path_id' => 154033,
     'skip_ftaf' => TRUE,
     'success_response' => 154153,
+    'beta_to_alpha_feedback' => "Your friend @name signed the petition! You're on a roll, organize more friends to sign by texting SIGN, or join our music video challenge: http://doso.me/h",
+    'alpha_campaign_id' => 116263,
   ),
 );
 
@@ -83,7 +85,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ftaf_prompt';
 $activity->inputs = array('sign_petition');
 $activity->outputs = array('ftaf');
-$activity->question = t('Great! Organize your friends to get involved, Text 5 friends #s to have them add their voice to the petition.');
+$activity->question = t("Thanks! Once we get 10K signatures they'll be delivered to the Common App Board of Directors. Organize ur friends to sign. Txt 5 friends #s to add their voice.");
 
 $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';

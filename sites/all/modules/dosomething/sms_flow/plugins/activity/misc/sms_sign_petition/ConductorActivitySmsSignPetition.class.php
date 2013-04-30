@@ -96,7 +96,21 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
           // If user was invited by an Alpha, send back confirmation message
           $alphaMobile = sms_flow_find_alpha(substr($mobile, -10), $petition['nid']);
           if ($alphaMobile) {
-            sms_mobile_commons_opt_in($alphaMobile, $petition['beta_to_alpha_feedback']);
+            if (is_numeric($petition['beta_to_alpha_feedback'])) {
+              sms_mobile_commons_opt_in($alphaMobile, $petition['beta_to_alpha_feedback']);
+            }
+            else {
+              // By default, use this person's mobile
+              $name = $mobile;
+              // If we have a first name, then use it
+              if (!empty($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+                $name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+              }
+
+              $alphaMsg = t($petition['beta_to_alpha_feedback'], array('@name' => $name));
+              $alphaOptions = array('campaign_id' => $petition['alpha_campaign_id']);
+              $return = sms_mobile_commons_send($alphaMobile, $alphaMsg, $alphaOptions);
+            }
           }
 
           // Some user flows will not require an FTAF follow up. ie - invited beta users
