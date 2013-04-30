@@ -8,6 +8,23 @@
 include_once 'dosomething_subscribe.update_field_values.inc';
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_subscribe_menu() {
+  $items = array();
+  $items['admin/reports/dosomething_subscribe'] = array(
+    'title' => 'Webform Subscribe Status',
+    'description' => 'A listing of webform status relative to external services.',
+    //@todo: create specific permission for this report?
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'dosomething_subscribe_page_status_report',
+    'file' => 'dosomething_subscribe.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );  
+  return $items;
+}
+
+/**
  * Actions to take when a Webform submission is made.
  *
  * @param array $node
