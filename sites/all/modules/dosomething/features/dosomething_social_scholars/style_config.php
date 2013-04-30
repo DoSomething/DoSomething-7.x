@@ -44,7 +44,7 @@ $campaign_styles = array(
 	  ),
 
 	  // Band Together
-	  '729194' => array(
+	  '729203' => array(
 		  'longform' => array(
 			  'background' => '#ccc',
 			  'tip' => '#E31837',
