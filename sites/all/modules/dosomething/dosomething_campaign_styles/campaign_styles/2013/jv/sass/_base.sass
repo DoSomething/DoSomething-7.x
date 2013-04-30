@@ -27,15 +27,15 @@ $section-unit-width: ($section-container-width/3)
 @mixin noBorder
   border: none !important
 
-@mixin block-center
-  margin: 0 auto
-  display: block
-
 @mixin noShadow
   -moz-box-shadow: none !important
   -webkit-box-shadow: none !important
   -o-box-shadow: none !important
   box-shadow: none !important
 
+@mixin block-center
+  margin: 0 auto
+  display: block
+
 @function em-calc($target)
-  @return ($target/12)*1em
+  @return ($target/16)*1em

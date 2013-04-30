@@ -1,3 +1,9 @@
+// DO IT THEME RESETS
+// ------------------
+img
+  +noBorder
+  +noShadow
+
 // SECTION STYLES
 // --------------
 
@@ -15,6 +21,22 @@ section
   @media only screen and (max-width: 825px)
     width: 100%
 
+.section-unit-single,
+.section-unit-double
+  padding: 0 2% 0 0
+  width: $section-unit-width
+  float: left
+  text-align: center
+  img
+    width: 100px
+    margin: 0 auto 1em
+    display: block
+
+.section-unit-double
+  width: 2 * $section-unit-width
+  margin: 0 0 2em 0
+  border-bottom: 1px solid #ddd
+
 // GENERAL-USE CLASSES
 .bg-header
   margin: 0 0 0.5em 0
@@ -25,30 +47,43 @@ section
   &:hover
     text-decoration: underline
 
-.official-rules-wrapper .official-rules-link
-  color: $off-black
+.official-rules
+  font-size: em-calc( 12 )
 
 .error
   background: none
-
-.section-unit
-  float: left
-  width: $section-unit-width
-  // TODO - add media query
-  h1, h2, h3, h4, p
-    text-align: center
 
 // TYPOGRAPHY
 // ----------
 
 h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
-  font-weight: 500
+  font-weight: 400
   font-family: $din
   text-align: left
   color: $off_black
+  line-height: em-calc(28)
 
-h1, h2, p
-  clear: left
+h1, h2, h3, p, img
+  text-align: center
+
+p
+  color: #222
+  display: inline
+  font-weight: 400
+  line-height: 1.5em
+  font-size: 16px
+
+h1
+  font-size: em-calc(28)
+
+h2
+  font-size: em-calc(24)
+
+h3
+  font-size: em-calc(18)
+
+h4
+  font-size: em-calc(16)
 
 strong
   font-weight: 800
@@ -60,18 +95,6 @@ section a /* increase specificity */
   &:hover
     text-decoration: underline
 
-h1
-  font-size: 28px
-  line-height: 38px
-
-h2
-  font-size: 21px
-  line-height: 31px
-
-.cause p, .footer p
-  font-size: 16px
-  line-height: 26px
-
 // BUTTON STYLES
 // -------------
 
@@ -80,8 +103,8 @@ h2
 
 .form-submit, .btn-cta-medium
   background: $btn-color
-  margin: 1em 0
-  padding: 0.4em 0
+  margin: 1em auto
+  padding: 0.25em 0
   position: static
   font-size: 16px
   height: 2em
