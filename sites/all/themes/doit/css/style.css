@@ -1685,7 +1685,9 @@ ul.hover-image li:first-child {
 .page-node .field-name-field-mailchimp-group-id {
   display: none;
 }
-
+.node-form .field-name-field-mailchimp-group-id {
+  display: block;
+}
 .page-scholarships #breadcrumb {
   display: none;
 }

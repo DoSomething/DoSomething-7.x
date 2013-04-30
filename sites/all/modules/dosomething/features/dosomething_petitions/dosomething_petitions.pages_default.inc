@@ -17,7 +17,7 @@ function dosomething_petitions_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -17;
+  $handler->weight = -15;
   $handler->conf = array(
     'title' => 'Petition',
     'no_blocks' => 0,
