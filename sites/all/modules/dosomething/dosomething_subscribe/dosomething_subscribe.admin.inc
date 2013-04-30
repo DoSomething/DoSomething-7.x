@@ -205,3 +205,30 @@ function dosomething_subscribe_page_status_report() {
            )
          );
 }
+
+/**
+ * dosomething_subscribe_webform_search_form_submit() - Submit functionality for
+ * search field on report page. 
+ *
+ * @param $form
+ *   FAPI details for form
+ *
+ * @param &$form_state
+ *   Current status of form elements on submission
+ *   
+ * @return - NONE
+ */
+function dosomething_subscribe_webform_search_form_submit($form, &$form_state) {
+  
+  $title_search = str_replace(' ', '+', $form['dosomething_subscribe_webform_title_keyword']['#value']);
+  
+  $parmaters = array(
+    'search' => $title_search,
+    'sort'   => $form['dosomething_subscribe_webform_sort']['#value'],
+    'order'  => $form['dosomething_subscribe_webform_order']['#value'],
+  );
+  
+  // Redirect back to form with search parameters
+  drupal_goto('/admin/reports/dosomething_subscribe', array('query'=>$parmaters));
+  
+}
