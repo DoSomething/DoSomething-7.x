@@ -50,9 +50,13 @@ function dosomething_subscribe_update_field_values() {
   dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
 
   // 727601: Do Something Awards Application
+  /*
+  // This is commented out for now, scholarship_application_with_rec doesn't 
+  // have the mailchimp field added yet because the features are so cray.
   $nid = 727601;
   $mailchimp = 'DSA2013Applicants';
   dosomething_subscribe_update_node_fields($nid, $mailchimp);
+  */
 
   // 727716: DO SOMETHING AWARDS NOMINATION FORM
   $nid = 727716;
