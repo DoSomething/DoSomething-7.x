@@ -17,7 +17,7 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
 
     // Attempt to find existing account associated with the email
     if (!empty($email)) {
-      $account = user_load_by_mail($email);
+      $account = dosomething_api_user_lookup($email);
     }
 
     // If not found yet, attempt to find existing account with the mobile number
@@ -45,43 +45,15 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
     }
     // No accounts were found. Create a new one.
     else {
-      $account = new stdClass;
-
-      $suffix = 0;
-      $account->name = $first_name;
-      while (user_load_by_name($account->name)) {
-        $suffix++;
-        $account->name = $first_name . '-' . $suffix;
-      }
-
       $pass = strtoupper(user_password(6));
-      require_once('includes/password.inc');
-      $hashed_pass = user_hash_password($pass);
-      $account->pass = $hashed_pass;
+      $account = dosomething_api_user_create(array('name' => $first_name, 'email' => $email, 'mobile' => $mobile, 'password' => $pass));
+
       if (!empty($email)) {
         $account->mail = $email;
         if (!empty($this->mailchimp_group_name)) {
           dosomething_general_mailchimp_subscribe($email, $this->mailchimp_group_name);
         }
       }
-      else {
-        $account->mail = $mobile . '@mobile';
-      }
-      $account->status = 1;
-
-      $account = user_save($account);
-
-      $profile_values = array('type' => 'main');
-      $profile = profile2_create($profile_values);
-      $profile->uid = $account->uid;
-      
-      $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
-      $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $first_name;
-
-      try {
-        profile2_save($profile);
-      }
-      catch( Exception $e ) {}
 
       $message = t('Ur password to login at http://www.dosomething.org is @pass. ', array('@pass' => $pass));
     }
