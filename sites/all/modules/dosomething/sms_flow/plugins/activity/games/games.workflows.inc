@@ -67,6 +67,10 @@ $activity->response_sets = array(
     'response' => array("Good morning!", "It IS a good morning!"),
   ),
   array(
+    'exact_match' => array('youre welcome'),
+    'response' => array("Now I know where I get my good manners. Such a good example!", "Such good manners"),
+  ),
+  array(
     'phrase_match' => array('Youre cute', 'youre adorable'),
     'response' => array("I get my good looks from my parents", "Daww you're making me blush", "You sure know how to make a baby feel good", "Remember you said that next time I poop :)"),
   ),
@@ -77,7 +81,7 @@ $activity->response_sets = array(
   array(
     'exact_match' => array('no'),
     'phrase_match' => array('I dont want to'),
-    'response' => array("But I'm the baby, you have to!"),
+    'response' => array("But I'm the baby, you have to!", "Tough break, you’ve gotta!"),
   ),
   array(
     'word_match' => array('Gross', 'ew', 'disgusting', 'fowl', 'smelly', 'stinky'),
@@ -118,6 +122,10 @@ $activity->response_sets = array(
     'phrase_match' => array('Calm down'),
     'AND_match' => array(array('calm', 'down')),
     'response' => array("I'm trying, I swear!"),
+  ),
+  array(
+    'exact_match' => array('wait'),
+    'response' => array("I don’t control these things."),
   ),
   array(
     'phrase_match' => array('Potty trained', ' potty train', ' use the toilet'),
@@ -172,6 +180,10 @@ $activity->response_sets = array(
     'response' => array("I'm a little sleepy"),
   ),
   array(
+    'phrase_match' => array('Im sleeping', 'Im asleep'),
+    'response' => array("Not anymore!"),
+  ),
+  array(
     'phrase_match' => array('Please dont cry'),
     'AND_match' => array(array('dont', 'cry')),
     'response' => array("I'm a baby, it's what I do!"),
@@ -191,8 +203,17 @@ $activity->response_sets = array(
     'response' => array("Can't wait to see you!", "YAY!"),
   ),
   array(
-    'phrase_match' => array('Youre ugly'),
-    'response' => array("Well they tell me I look like my parents..."),
+    'phrase_match' => array('on my way'),
+    'word_match' => array('omw'),
+    'response' => array("Woohoo! See you soon!", "Yay! See you in a little.", "Good :)"),
+  ),
+  array(
+    'phrase_match' => array('Youre ugly', 'youre not cute'),
+    'response' => array("Well they tell me I look like my parents...", "Where do you think I get my looks from?", "I’m lookin at you.."),
+  ),
+  array(
+    'exact_match' => array('No it doesnt', 'No youre not'),
+    'response' => array("Hey, don’t argue with a baby.", "I’m the baby, I’m always right", "There’s no arguing with a baby-“I’m a baby” is the ultimate trump card."),
   ),
   array(
     'phrase_match' => array('Goo goo gaga', 'goo goo ga ga'),
@@ -255,13 +276,34 @@ $activity->response_sets = array(
     'response' => array("Ok fine I won’t go, I would miss you too much anyway."),
   ),
   array(
+    'phrase_match' => array('i miss you', 'i missed you'),
+    'response' => array("Daww :)"),
+  ),
+  array(
     'exact_match' => array('boo'),
     'phrase_match' => array('peek a boo'),
     'response' => array("Ah! You scared me."),
   ),
   array(
+    'phrase_match' => array('What do you want to play'),
+    'response' => array("Peek-a-boo! Duh."),
+  ),
+  array(
     'phrase_match' => array('passing you off', 'pass you off'),
     'response' => array("You can’t just pass me off, I’m here to stay!"),
+  ),
+  array(
+    'exact_match' => array('tell me'),
+    'phrase_match' => array('Tell me what you need', 'Tell me what you want'),
+    'response' => array("I wish I could!", "I’m trying but I can’t!"),
+  ),
+  array(
+    'phrase_match' => array('Try harder', 'Youre not trying'),
+    'response' => array("I really am trying. Things will be so much easier when I learn how to talk out loud. "),
+  ),
+  array(
+    'word_match' => array('Hah', 'Haha', 'Hahah', 'LOL', 'LMAO'),
+    'response' => array("Glad you find me funny :)", "I’m just a regular comedian. ", "I’m glad you think I’m as funny as I do!"),
   ),
 );
 
