@@ -58,7 +58,7 @@ function dosomething_api_user_lookup($value) {
   if (valid_email_address($value)) {
     $account = user_load_by_mail($value);
   }
-  else if ($number = dosomething_general_valid_cell($value)) {
+  else if ($number = dosomething_general_clean_cell_number($value)) {
     $account = dosomething_general_find_user_by_cell($number);
   }
   return $account;

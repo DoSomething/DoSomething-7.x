@@ -1764,15 +1764,28 @@ function dosomething_general_load_user_by_mail_or_cell($value) {
  *  Either FALSE or the cleaned up cell phone number (only digits).
  */
 function dosomething_general_valid_cell($number) {
+  $trimmed_number = dosomething_general_clean_cell_number($number);
+
+  // Three 5's in a row, in the first 6 digits, constitute a bad phone number.
+  if (preg_match('#(5{3})#', substr($trimmed_number, 0, 6))) {
+    return false;
+  }
+
+  return $trimmed_number;
+}
+
+/**
+ * Clean input phone number of all non-numeric characters.
+ *
+ * @param $number String to format into a 10-digit phone number
+ *
+ * @return Numeric-only string of the phone number, or FALSE if input is not a 10-digit number
+ */
+function dosomething_general_clean_cell_number($number) {
   $trimmed_number = ltrim(preg_replace('#[^0-9]#', '', $number), 1);
 
   // Make sure the number is 10 digits long.
   if (strlen($trimmed_number) != 10) {
-    return false;
-  }
-
-  // Three 5's in a row, in the first 6 digits, constitute a bad phone number.
-  if (preg_match('#(5{3})#', substr($trimmed_number, 0, 6))) {
     return false;
   }
 
