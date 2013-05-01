@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file Functionality for DoSomething SMS specific tasks
+ *
+ **/
 
 function dosomething_sms_conductor_sms_keywords() {
   return array(
@@ -539,3 +543,181 @@ function dosomething_sms_default_conductor_workflows() {
   return $workflows;
 }
 
+/**
+ * Impliments hook_cron()
+ **/
+function dosomething_sms_cron() {
+  
+  // Run job every week
+  $interval = variable_get('dosomething_sms_interval', 60 * 60 * 24 * 7);
+  $next_run = variable_get('dosomething_sms_next_execution', 0);
+
+  // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
+  if (time() >= $next_run) {
+    
+    // Delete entries that are older than a week (interval - dosomething_sms_interval)
+    $number_deleted = db_delete('conductor_instance_pointer')
+                      ->condition('timestamp', $next_run + $interval, '>=')
+                      ->execute();
+                      
+    /*
+     * Create report to see where users are getting stuck
+     * 
+     * SELECT
+     *   workflow_name,
+     *   activity_name,
+     *   count(activity_name)
+     * FROM
+     *   conductor_instance_pointer
+     * GROUP BY
+     *   activity_name
+     * ORDER BY
+     *   workflow_name
+     */
+    
+    /* TO-DO: Need to debug email report functionality
+     
+    $result = db_select('conductor_instance_pointer', 'cip')
+              ->field('cip', 'workflow_name', 'workflow_name')
+              ->field('cip', 'activity_name', 'activity_name')
+              ->field('cip', COUNT(activity_name), 'activity_name_count')
+              ->groupby('activity_name')
+              ->orderby('workflow_name', 'DESC')
+              ->execute();
+              
+    // Headers for theme_table().  
+    $header = array('Workflow Name', 'Activity Name', 'Activity Name Count');
+    
+    // Loop through results          
+    foreach ($result as $row) {
+      
+      $rows[] = array(
+        $row->workflow_name,
+        $row->activity_name,
+        $row->activity_name_count,
+      );
+      
+    }
+    
+  
+    // Format output.
+    $output = theme('table', array('header' => $header, 'rows' => $rows));
+    
+    // Send email repor
+    $mail_status = dosomething_sms_mail_send($email, $output);
+
+    if (!$mail_status) {
+	  watchdog('dosomething_sms', 'Failed to send welcome message after cron run at %current_time. %number_deleted entries deleted.', array('%current_date' => date_iso8601(time(0)), '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
+	}
+	
+	*/
+
+    // Log run
+    watchdog('dosomething_sms', 'dosomething_sms cron ran at %current_time. %number_deleted entries deleted.', array('%current_date' => date_iso8601(time(0)), '%number_deleted' => $number_deleted), WATCHDOG_INFO);
+
+    // Schedule next run
+    variable_set('dosomething_sms_next_execution', time() + $interval);
+    
+  }
+  
+}
+
+function dosomething_sms_theme() {
+  $path = drupal_get_path('module', 'dosomething_sms');
+
+  return array(
+    'dosomething_sms_cron' => array(
+       'path' => $path . '/templates',
+       'template' => 'dosomething-sms-cron',
+     ),
+    
+  );
+}
+
+/**
+ * Impliments hook_mail. Provides functionality to be triggered by key value.
+ *
+ * @param $key
+ *   Value to customize message content.
+ * @param $$message
+ *   Array by reference to build message values to be sent.
+ * @params
+ *   Potential parameters to react to for specific $key values.
+ */
+function dosomething_sms_mail($key, &$message, $params) {
+
+  switch ($key) {
+
+    // Send a simple into message.
+    case 'dosomething-sms-cron':
+
+     $headers = array(
+	'From' => $message['from'],
+	'Sender' => $message['from'],
+	'Return-Path' => $message['from'],
+	'Reply-to' => $message['from'],
+	'Errors-To' => $message['from'],
+        'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
+      );
+
+      foreach ($headers as $key => $value) {
+        $message['headers'][$key] = mime_header_encode($value);
+      }
+
+      $message['subject'] = t('DoSomething.org SMS Cron Report');
+      $message['body'][] = theme('dosomething_sms_cron', $params);
+
+      break;
+  }
+
+}
+
+/**
+ * Send email message speific to the Crazy project.
+ *
+ * @param $email
+ *   Users email address.
+ * @param $message
+ *   The cotents of the message to be sent.
+ * @return
+ *   Boolean indicating success.
+ */
+function dosomething_sms_mail_send($email, $message) {
+
+  // All system mails need to specify the module and template key (mirrored from
+  // hook_mail()) that the message they want to send comes from.
+  $module = 'dosomething_sms';
+  $key = 'dosomething-sms-cron';
+
+  // Specify 'to' and 'from' addresses.
+  $to = $email;
+  $from = 'sms@dosomething.org';
+
+  // The language of the e-mail. This will one of three values:
+  // * user_preferred_language(): Used for sending mail to a particular website
+  //   user, so that the mail appears in their preferred language.
+  // * global $language: Used when sending a mail back to the user currently
+  //   viewing the site. This will send it in the language they're currently
+  //   using.
+  // * language_default(): Used when sending mail to a pre-existing, 'neutral'
+  //   address, such as the system e-mail address, or when you're unsure of the
+  //   language preferences of the intended recipient.
+  //
+  // Since in our case, we are sending a message to a random e-mail address that
+  // is not necessarily tied to a user account, we will use the site's default
+  // language.
+  $language = language_default();
+
+  // Whether or not to automatically send the mail when drupal_mail() is
+  // called. This defaults to TRUE, and is normally what you want unless you
+  // need to do additional processing before drupal_mail_send() is called.
+  $send = TRUE;
+  // Send the mail and check for success. Note that this does not guarantee
+  // message delivery; only that there were no PHP-related issues encountered
+  // while sending.
+  $result = drupal_mail($module, $key, $to, $language, $message, $from, $send);
+
+  return $result['result'];
+
+
+}
