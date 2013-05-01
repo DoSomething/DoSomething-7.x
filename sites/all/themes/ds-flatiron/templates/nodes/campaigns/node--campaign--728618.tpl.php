@@ -13,7 +13,7 @@
           <img src="<?php print($files_source . 'logo-ds.png'); ?>" alt="DoSomething.org logo" />
         </a>
         <a class="log-out" href="/user/logout">log out</a>
-        <img class="logo-campaign" src="<?php print($files_source . 'logo-' . $cmp_short . '.png'); ?>" alt="<?php print($cmp_name); ?> logo" />
+        <img class="logo-campaign" src="<?php print($files_source . 'logo-' . $cmp_short . '-updated.png'); ?>" alt="<?php print($cmp_name); ?> logo" />
         <?php if ($sponsor): ?>
           <img class="logo-sponsor" src="<?php print($files_source . 'logo-' . $sponsor . '.png'); ?>" alt="<?php print($sponsor); ?> logo" />
         <?php endif; ?>
