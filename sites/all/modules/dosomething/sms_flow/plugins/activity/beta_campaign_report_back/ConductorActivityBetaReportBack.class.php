@@ -17,7 +17,7 @@ class ConductorActivityBetaReportBack extends ConductorActivity {
     $picture = $state->getContext('ask_picture:mms');
 
     // Get or create user's account
-    $account = _sms_flow_find_user_by_cell($mobile);
+    $account = dosomething_api_user_lookup($mobile);
     if (!$account) {
       $account = new stdClass;
       $account->name = $mobile;

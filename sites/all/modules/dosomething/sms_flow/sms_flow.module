@@ -567,7 +567,7 @@ function sms_flow_team_invite_form_submit($form, &$form_state) {
  * creates one to then return.
  */
 function sms_flow_get_or_create_user_by_cell($mobile) {
-  $account = _sms_flow_find_user_by_cell($mobile);
+  $account = dosomething_api_user_lookup($mobile);
   if (!$account) {
     $account = new stdClass;
     $account->name = $mobile;
@@ -595,21 +595,6 @@ function sms_flow_get_or_create_user_by_cell($mobile) {
       watchdog('sms_flow', "Failed to save newly created profile. m:$mobile / uid:$profile->uid / name:$account->name");
       return NULL;
     }
-  }
-
-  return $account;
-}
-
-/**
- * Get user account from cell number.
- * find_user_by_cell() doesn't handle international code when searching by profile's
- * field_user_mobile value. Only handles international code with an @mobile email address
- */
-function _sms_flow_find_user_by_cell($mobile) {
-  $account = dosomething_general_find_user_by_cell($mobile);
-  if (!$account && strlen($mobile) > 10) {
-    $mobile = substr($mobile, -10);
-    $account = dosomething_general_find_user_by_cell($mobile);
   }
 
   return $account;

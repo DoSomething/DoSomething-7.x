@@ -42,7 +42,7 @@ class ConductorActivity50CansReportBack extends ConductorActivity {
     }
 
     // Get or create user's account
-    $account = _sms_flow_find_user_by_cell($mobile);
+    $account = dosomething_api_user_lookup($mobile);
     if (!$account) {
       $account = new stdClass;
       $account->name = $mobile;

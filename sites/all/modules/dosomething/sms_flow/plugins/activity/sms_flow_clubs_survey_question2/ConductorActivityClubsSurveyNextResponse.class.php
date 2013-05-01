@@ -27,7 +27,7 @@ class ConductorActivityClubsSurveyNextResponse extends ConductorActivity {
 
     // Invite accepted
     if (self::hasAcceptResponse($_REQUEST['args'])) {
-      $account = _sms_flow_find_user_by_cell($mobile);
+      $account = dosomething_api_user_lookup($mobile);
 
       $responses = array(
         'a' => t("We're sad to hear that.  Is there anything we could have done to support you better?"),

@@ -29,7 +29,7 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
       $mobile = $state->getContext('sms_number');
 
       // If we have a user with this mobile, update their info.
-      $account = _sms_flow_find_user_by_cell($mobile);
+      $account = dosomething_api_user_lookup($mobile);
 
       // Create account for this user if none is found
       if (!$account) {

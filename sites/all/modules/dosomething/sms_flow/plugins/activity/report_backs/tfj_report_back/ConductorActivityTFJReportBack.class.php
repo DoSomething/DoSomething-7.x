@@ -20,11 +20,9 @@ class ConductorActivityTFJReportBack extends ConductorActivity {
     $mms_url = $state->getContext('ask_photo:mms');
     $school_sid = $state->getContext('school_sid');
 
-    $account = _sms_flow_find_user_by_cell($mobile);
-
     // Get or create a user account by the user's cell phone number
     $profile_changed = FALSE;
-    $account = _sms_flow_find_user_by_cell($mobile);
+    $account = dosomething_api_user_lookup($mobile);
     if (!$account) {
       $account = new stdClass;
       $account->name = $mobile;

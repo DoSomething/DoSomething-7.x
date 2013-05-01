@@ -22,7 +22,7 @@ class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
 
     // If not found yet, attempt to find existing account with the mobile number
     if (!$account) {
-      $account = _sms_flow_find_user_by_cell($mobile);
+      $account = dosomething_api_user_lookup($mobile);
     }
 
     // Update info in found account
