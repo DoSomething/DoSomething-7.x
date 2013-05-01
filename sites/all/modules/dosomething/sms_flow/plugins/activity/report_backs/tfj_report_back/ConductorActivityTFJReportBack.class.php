@@ -24,24 +24,7 @@ class ConductorActivityTFJReportBack extends ConductorActivity {
     $profile_changed = FALSE;
     $account = dosomething_api_user_lookup($mobile);
     if (!$account) {
-      $account = new stdClass;
-      $account->name = $mobile;
-
-      $suffix = 0;
-      $base_name = $account->name;
-      while (user_load_by_name($acount->name)) {
-        $suffix++;
-        $account->name = $base_name . '-' . $suffix;
-      }
-      $account->mail = $mobile . '@mobile';
-      $account->status = 1;
-
-      $account = user_save($account);
-
-      $profile_values = array('type' => 'main');
-      $profile = profile2_create($profile_values);
-      $profile->uid = $account->uid;
-      $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile; 
+      $account = dosomething_api_user_create(array('name' => $mobile, 'mobile' => $mobile));
       $profile_changed = TRUE;
     }
 

@@ -42,32 +42,7 @@ class ConductorActivity50CansReportBack extends ConductorActivity {
     }
 
     // Get or create user's account
-    $account = dosomething_api_user_lookup($mobile);
-    if (!$account) {
-      $account = new stdClass;
-      $account->name = $mobile;
-
-      $suffix = 0;
-      $base_name = $account->name;
-      while (user_load_by_name($account->name)) {
-        $suffix++;
-        $account->name = $base_name . '-' . $suffix;
-      }
-      $account->mail = $mobile . '@mobile';
-      $account->status = 1;
-
-      $account = user_save($account);
-
-      $profile_values = array('type' => 'main');
-      $profile = profile2_create($profile_values);
-      $profile->uid = $account->uid;
-      $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
-
-      try {
-        profile2_save($profile);
-      }
-      catch( Exception $e ) {}
-    }
+    $account = sms_flow_get_or_create_user_by_cell($mobile);
     
     // Build report back submission and submit
     $submission = new stdClass;
