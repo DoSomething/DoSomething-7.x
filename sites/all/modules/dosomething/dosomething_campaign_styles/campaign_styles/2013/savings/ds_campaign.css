@@ -820,6 +820,26 @@ body {
     margin: 0 0 -1em 0; }
   #cmp #footer .go-button {
     margin: 0 0 1% 0; }
+  #cmp #flip-winners {
+    padding: 4em 0; }
+    #cmp #flip-winners p, #cmp #flip-winners h2, #cmp #flip-winners h3 {
+      text-transform: uppercase;
+      line-height: 1.1em; }
+    #cmp #flip-winners p {
+      background: #29a5dc;
+      display: inline-block;
+      color: white;
+      padding: 0.3em 1em 0.1em;
+      font-size: 1.2em; }
+    #cmp #flip-winners h2 {
+      font-size: 3.2em;
+      color: #29a5dc;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin: 0.2em 0 0.1em; }
+    #cmp #flip-winners h3 {
+      font-size: 2em;
+      letter-spacing: 1px; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
@@ -1087,6 +1107,12 @@ body {
       -o-border-radius: 0;
       border-radius: 0; } }
   @media only screen and (max-width: 775px) {
+    #cmp #flip-winners h2 {
+      font-size: 2.2em;
+      margin: 0.5em 0; }
+    #cmp #flip-winners h3 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em; }
     #cmp .section {
       width: 100%;
       margin: 0 auto; }
@@ -1106,12 +1132,12 @@ body {
       width: 20%; }
     #cmp .pane-campaign-sign-up #edit-submit {
       margin: 1.3em auto 0; }
-    #cmp #action .col33 {
+    #cmp #action .col33, #cmp #flip-workshops .col33 {
       width: 95%;
       margin: 3% 0; }
-    #cmp #action h3 {
+    #cmp #action h3, #cmp #flip-workshops h3 {
       text-align: left; }
-    #cmp #action img {
+    #cmp #action img, #cmp #flip-workshops img {
       display: none; }
     #cmp a.print-pdf {
       width: 37%; }
@@ -1146,6 +1172,13 @@ body {
       width: 40%; }
     #cmp #report-back {
       width: 100%; } }
+  @media only screen and (max-width: 550px) {
+    #cmp #flip-winners h2 {
+      font-size: 1.4em;
+      margin: 1em 0; }
+    #cmp #flip-winners h3 {
+      font-size: 1.2em;
+      margin-bottom: 1em; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 0 auto; }
