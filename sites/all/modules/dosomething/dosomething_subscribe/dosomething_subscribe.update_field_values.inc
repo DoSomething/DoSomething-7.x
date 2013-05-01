@@ -101,12 +101,18 @@ function dosomething_subscribe_get_nids($node_type) {
       ->fetchCol(); // returns an indexed array
   return $nids;
 }
-
+/**
+ * Updates given node for nid with given mailchimp and mobilecommons ids.
+ */
 function dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons = NULL) {
+  watchdog('dosomething_subscribe', 'Updating fields for ' . $nid . ' mailchimp=' . $mailchimp . ' mobilecommons=' . $mobilecommons);
   $node = node_load($nid);
+  watchdog('dosomething_subscribe', 'Node ' . $node->nid . ' loaded');
   $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] = $mailchimp;
   if ($mobilecommons) {
     $node->field_mc_optin[LANGUAGE_NONE][0]['value'] = $mobilecommons;
   }
-  node_save($node);  
+  watchdog('dosomething_subscribe', 'Node ' . $node->nid . ' updated');
+  node_save($node);
+  watchdog('dosomething_subscribe', 'Node ' . $node->nid . ' saved');
 }
