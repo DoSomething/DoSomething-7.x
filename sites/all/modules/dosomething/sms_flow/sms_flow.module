@@ -569,32 +569,7 @@ function sms_flow_team_invite_form_submit($form, &$form_state) {
 function sms_flow_get_or_create_user_by_cell($mobile) {
   $account = dosomething_api_user_lookup($mobile);
   if (!$account) {
-    $account = new stdClass;
-    $account->name = $mobile;
-
-    $suffix = 0;
-    $base_name = $account->name;
-    while (user_load_by_name($account->name)) {
-      $suffix++;
-      $account->name = $base_name . '-' . $suffix;
-    }
-    $account->mail = $mobile . '@mobile';
-    $account->status = 1;
-
-    $account = user_save($account);
-
-    $profile_values = array('type' => 'main');
-    $profile = profile2_create($profile_values);
-    $profile->uid = $account->uid;
-    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
-
-    try {
-      profile2_save($profile);
-    }
-    catch( Exception $e ) {
-      watchdog('sms_flow', "Failed to save newly created profile. m:$mobile / uid:$profile->uid / name:$account->name");
-      return NULL;
-    }
+    $account = dosomething_api_user_create(array('name' => $mobile, 'mobile' => $mobile));
   }
 
   return $account;
