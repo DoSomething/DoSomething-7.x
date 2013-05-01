@@ -40,7 +40,7 @@ class ConductorActivityCreateDrive extends ConductorActivity {
       $old_state = drupal_save_session(FALSE);
 
       // See sms_flow.module - lookup user by mobile number based on Context value
-      $user = _sms_flow_find_user_by_cell($mobile);
+      $user = dosomething_api_user_lookup($mobile);
 
       // Force load webform submission functionality
       module_load_include('inc', 'webform', 'includes/webform.submissions');

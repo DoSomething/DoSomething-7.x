@@ -18,7 +18,7 @@ class ConductorActivityGAS2012ReportBack extends ConductorActivity {
     $howManySwabbed = $state->getContext('how_many_swabbed:message');
 
     // Get or create a user by the user's cell phone number
-    $account = _sms_flow_find_user_by_cell($mobile);
+    $account = dosomething_api_user_lookup($mobile);
     if (!$account) {
       $account = new stdClass;
       $account->name = $mobile;
