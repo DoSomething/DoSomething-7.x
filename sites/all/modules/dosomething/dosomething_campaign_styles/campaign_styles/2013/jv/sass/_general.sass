@@ -12,12 +12,14 @@ section
   padding: 1% 0
   overflow: hidden
   background: $bg-light
+  +border-bottom-subtle
   @media only screen and (max-width: 825px)
     padding: 3% 2%
 
 .section-container
   width: $section-container-width
   margin: 0 auto
+  overflow: hidden
   @media only screen and (max-width: 825px)
     width: 100%
 
@@ -35,9 +37,30 @@ section
 .section-unit-double
   width: 2 * $section-unit-width
   margin: 0 0 2em 0
-  border-bottom: 1px solid #ddd
+  +border-bottom-subtle
 
 // GENERAL-USE CLASSES
+// -------------------
+
+.headline-callout
+  font-weight: 600
+  text-align: center
+  margin: 0 auto
+  span
+    display: inline-block
+    background: $bg-alt
+    text-align: center
+    padding: 0.2em 0.5em 0px
+    color: lighten($off-black, 50)
+
+h1.headline-callout
+  padding: 0 0 0.5em 0
+
+.headline-callout.alt
+  span
+    background: $bg-light
+    color: darken($bg-alt, 50)
+
 .bg-header
   margin: 0 0 0.5em 0
 
@@ -48,10 +71,16 @@ section
     text-decoration: underline
 
 .official-rules
-  font-size: em-calc( 12 )
+  font-size: em-calc(12)
 
 .error
   background: none
+
+.section-header
+  font-weight: 500
+  text-align: left
+  text-transform: uppercase
+  padding: 0 0 0.5em 0
 
 // TYPOGRAPHY
 // ----------
@@ -74,10 +103,12 @@ p
   font-size: 16px
 
 h1
-  font-size: em-calc(28)
+  font-size: em-calc(32)
+  font-weight: 500
 
 h2
   font-size: em-calc(24)
+  font-weight: 500
 
 h3
   font-size: em-calc(18)

@@ -10,6 +10,8 @@ $btn-color: #FFCB15
 $bg-light: #FFF
 $bg-alt: #EEE
 
+$subtle-border: 1px solid #eee
+
 // images
 $bg-header: './assets/bg-header.jpg'
 
@@ -36,6 +38,9 @@ $section-unit-width: ($section-container-width/3)
 @mixin block-center
   margin: 0 auto
   display: block
+
+@mixin border-bottom-subtle
+  border-bottom: $subtle-border
 
 @function em-calc($target)
   @return ($target/16)*1em
