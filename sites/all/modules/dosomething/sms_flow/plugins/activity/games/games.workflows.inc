@@ -25,6 +25,9 @@ $activity->no_match_responses = array(
   "Shh don't get between a baby and it's food. I'm eating.",
   "I'm just a baby, I can't understand what you're saying.",
 );
+$activity->mms_match_responses = array(
+  "Now that’s a good looking picture",
+);
 $activity->response_sets = array(
   array(
     'phrase_match' => array('I hate you', 'suck it', 'kill yourself', 'youre the worst', 'shut up'),

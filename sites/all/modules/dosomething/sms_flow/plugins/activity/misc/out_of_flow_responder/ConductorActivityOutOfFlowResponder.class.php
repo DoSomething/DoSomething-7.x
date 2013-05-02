@@ -32,12 +32,24 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   // Response to send to the user if no match is found
   public $no_match_responses = array();
 
+  // Responses to send if MMS was received from the user
+  public $mms_match_responses = array();
+
   // Maximum allowed string edit distance to trigger a successful match
   public $match_threshold = 1;
 
   public function run($workflow) {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
+
+    // Check for MMS before attempting to do any message processing
+    if (!empty($_REQUEST['mms_image_url']) && count($this->mms_match_responses) > 0) {
+      $response = self::selectResponse($this->mms_match_responses);
+      $state->setContext('sms_response', $response);
+      $state->markCompleted();
+      return;
+    }
+
     $userMessage = $_REQUEST['args'];
 
     $userMessage = self::sanitizeMessage($userMessage);
