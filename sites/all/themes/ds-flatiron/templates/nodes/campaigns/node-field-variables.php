@@ -28,7 +28,7 @@
   );
 
   $challenge = array(
-    1 => "Collect and donate 10 jars of peanut butter, jelly or any non-perishable food item by May 14th.",
+    1 => "Collect and donate 10 jars of peanut butter, jelly or any non-perishable food item by May 21st.",
   );
   // if (isset($team) || isset($individual)) with a Group / Alone
 
