@@ -92,12 +92,9 @@ function dosomething_general_module_implements_alter(&$implementations, $hook) {
   }
 
   if ($hook == 'cron') {
-    // Remove the system cron temporarily until we
-    // figure out why it is killing crazy
-    // The "safe" system cron tasks have been replicated
-    // and included in this modules implementation
-    // of hook_cron
-    unset($implementations['system']);
+    // Field cron is what is killing our submissions. 
+    // Lets remove for now
+    unset($implementations['field']);
   }
 }
 
