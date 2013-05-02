@@ -1462,7 +1462,8 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
 
   // Catching function
   // Hardcoding the list to the dosomething members
-  if ($groupName == 'Volunteers2013') {
+  $old_people_groups = array('GunControlReport2013', 'Volunteers2013');
+  if (in_array($groupName, $old_people_groups)) {
     $listid = 'a27895fe0c';
   }
   else {
