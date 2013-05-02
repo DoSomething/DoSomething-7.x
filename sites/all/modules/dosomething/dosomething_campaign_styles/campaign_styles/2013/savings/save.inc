@@ -28,9 +28,7 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'sign up', 'href' => '', 'fragment' => 'header', 'external' => TRUE),
-    array('title' => 'scholarship', 'href' => '', 'fragment' => 'scholarship', 'external' => TRUE),
-    array('title' => 'tell us about it', 'href' => 'save/report-back'),
+    array('title' => 'results', 'href' => '', 'fragment' => 'flip-winners', 'external' => TRUE),
     array('title' => 'video', 'href' => '', 'fragment' => 'video', 'external' => TRUE),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),

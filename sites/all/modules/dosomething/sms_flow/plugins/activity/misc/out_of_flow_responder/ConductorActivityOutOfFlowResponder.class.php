@@ -203,12 +203,12 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   // Function to convert select words from their abbreviated form
   function sanitizeMessage($message) {
     // Single quote to be removed instead of replacing with whitespace to conserve integrity of word
-    $userMessage = preg_replace('/\'/', '', $userMessage);
+    $message = preg_replace('/\'/', '', $message);
     // Remove all non alphanumeric characters from the user message
-    $userMessage = preg_replace('/[^A-Za-z0-9 ]/', ' ', $userMessage);
+    $message = preg_replace('/[^A-Za-z0-9 ]/', ' ', $message);
     // Matches multi-character whitespace with a single space
-    $userMessage = preg_replace('/\s+/', ' ', $userMessage);
-    $userMessage = check_plain($userMessage);
+    $message = preg_replace('/\s+/', ' ', $message);
+    $message = check_plain($message);
 
     $abbreviations = array(
       'u' => 'you',
