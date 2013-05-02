@@ -72,7 +72,7 @@ class ConductorActivitySmsFlowDrivesFtaf extends ConductorActivity {
       
       $inviter_name = $mobile;
 
-      $account = _sms_flow_find_user_by_cell($mobile);
+      $account = dosomething_api_user_lookup($mobile);
 
       if ($account) {
         $profile = profile2_load_by_user($account);
@@ -97,7 +97,7 @@ class ConductorActivitySmsFlowDrivesFtaf extends ConductorActivity {
         $number = $vetted_numbers[$i];
 
         // Check if this number is in the team already
-        $friendAccount = _sms_flow_find_user_by_cell($number);
+        $friendAccount = dosomething_api_user_lookup($number);
         if ($friendAccount && $friendAccount->uid) {
           foreach ($teamUIDs as $uid) {
             if ($friendAccount->uid == $uid) {
