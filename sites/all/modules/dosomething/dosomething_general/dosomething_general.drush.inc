@@ -22,7 +22,235 @@ function dosomething_general_drush_command() {
     'aliases' => array('dsei'),
   );
 
+  $commands['ds-merge-numbers'] = array(
+    'description' => 'Merges mobile numbers into accounts.',
+    'arguments' => array(
+      'status' => 'li (logged in) or lo (logged out)'
+    ),
+  );
+
   return $commands;
+}
+
+/**
+ * Connects users to phone #'s
+ *
+ * @param string $status
+ *  li for logged in or lo for logged out
+ */
+function drush_dosomething_general_ds_merge_numbers($status) {
+  static $count;
+
+  // Merge phone numbers that people put into a webform into their account,
+  // assuming it wasn't saved.
+  if ($status == 'li') {
+    /*
+      select
+      distinct u.uid,
+      d.data,
+      m.field_user_mobile_value
+      FROM webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.uid = s.uid)
+      left join profile p on (p.uid = u.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where d.data regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and u.uid is not null
+      and u.uid != 0
+      and m.field_user_mobile_value is null
+      GROUP BY u.uid
+      limit 250
+    */
+
+    drush_print(dt('Getting counts and data...'));
+
+    $results = db_query("
+      select
+      u.uid,
+      d.data
+      FROM webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.uid = s.uid)
+      left join profile p on (p.uid = u.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where d.data regexp :regex
+      and u.uid is not null
+      and u.uid != 0
+      and m.field_user_mobile_value is null
+      group by u.uid
+      limit 250
+    ", 
+      // Need to pass the regex as a replacement, because db_query strips curly brackets in the query above.
+      array(':regex' => '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$')
+    )->fetchAllKeyed();
+
+    // We need to get the total count so we can continue accordingly...
+    if (empty($count)) {
+      $count = db_query("
+        select
+        distinct u.uid,
+        d.data
+        FROM webform_submitted_data d
+        left join webform_submissions s on (s.sid = d.sid)
+        left join users u on (u.uid = s.uid)
+        left join profile p on (p.uid = u.uid)
+        left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+        where d.data regexp :regex
+        and u.uid is not null
+        and u.uid != 0
+        and m.field_user_mobile_value is null
+        group by u.uid
+      ", 
+        // Need to pass the regex as a replacement, because db_query strips curly brackets in the query above.
+        array(':regex' => '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$')
+      )->rowCount();
+    }
+
+    drush_print(dt('Starting...'));
+
+    // We only need to run this if there are results.
+    if (count($results) <= $count) {
+      $i = 0;
+      foreach ($results AS $uid => $mobile) {
+        // Get profile information...
+        $user = user_load($uid);
+        $profile = profile2_load_by_user($user, 'main');
+
+        // Apparently there are users without profiles.  Who knew?
+        // Let's create a profile for them if they don't have one.
+        if (!$profile) {
+          $profile = profile2_create(array('type' => 'main'));
+          $profile->setUser($user);
+          $profile->is_new = TRUE;
+        }
+
+        // Strip non-numeric characters from the phone number.
+        $mobile = preg_replace('#[^0-9]#', '', $mobile);
+
+        // Sets the mobile number.
+        $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
+
+        // Saves their profile.
+        $profile->save();
+
+        // Plus plus
+        $i++;
+
+        // Hey we saved one!
+        drush_print(dt("Saved UID {$uid} ({$i})"));
+      }
+    }
+
+    drush_print(dt("Done."));
+
+    if ($i < $count) {
+      drush_print(dt("But wait, there's more.  Continuing..."));
+      drush_invoke('ds-merge-numbers', array('status' => 'li'));
+    }
+    else {
+      drush_print(dt("Okay, really done."));
+    }
+  }
+  // If a user filled out a form with their contact information while logged out, we
+  // didn't connect that submission with them.  Let's try and find 
+  elseif ($status == 'lo') {
+    drush_print(dt('Wait for it...'));
+    /*
+    select
+    s.sid,
+    s.uid,
+    u.uid,
+    d.data,
+    m.field_user_mobile_value
+    FROM webform_submitted_data d
+    left join webform_submissions s on (s.sid = d.sid)
+    left join field_data_field_user_mobile m on (m.field_user_mobile_value = d.data)
+    left join profile p on (p.pid = m.entity_id)
+    left join users u on (u.uid = p.uid)
+    where d.data regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+    and s.uid = 0
+    and u.uid is not null
+    and u.uid != 0
+    limit 250;
+    */
+
+    drush_print(dt('Getting numbers and data.  This may take a while...'));
+
+    $count = cache_get('logged_out_numbers_count')->data;
+    if (empty($count)) {
+      $count = db_query("
+        select
+        s.sid,
+        s.uid,
+        u.uid,
+        d.data,
+        m.field_user_mobile_value
+        FROM webform_submitted_data d
+        left join webform_submissions s on (s.sid = d.sid)
+        left join field_data_field_user_mobile m on (m.field_user_mobile_value = d.data)
+        left join profile p on (p.pid = m.entity_id)
+        left join users u on (u.uid = p.uid)
+        where d.data regexp :regex
+        and s.uid = 0
+        and u.uid is not null
+        and u.uid != 0",
+        array(':regex' => '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$')
+      )->rowCount();
+
+      cache_set('logged_out_numbers_count', $count, 'cache', (time() + 10800));
+    }
+
+    $results = db_query("
+      select
+      s.sid,
+      s.uid as s_uid,
+      u.uid,
+      d.data,
+      m.field_user_mobile_value
+      FROM webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = d.data)
+      left join profile p on (p.pid = m.entity_id)
+      left join users u on (u.uid = p.uid)
+      where d.data regexp :regex
+      and s.uid = 0
+      and u.uid is not null
+      and u.uid != 0
+      limit 500
+    ",
+      array(':regex' => '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$')
+    )->fetchAllKeyed(0,2);
+
+    drush_print(dt('Starting...'));
+
+    $i = 0;
+    if (count($results) <= $count) {
+      foreach ($results AS $sid => $uid) {
+        $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+        // Just to double check...
+        if ($submission->uid == 0) {
+          $submission->uid = $uid;
+        }
+
+        // Save it.
+        @entity_save('webform_submission_entity', $submission);
+        $i++;
+        drush_print(dt("Connected SID {$sid} to UID {$uid} ({$i})"));
+      }
+    }
+
+    drush_print(dt("Done."));
+
+    if ($i < $count) {
+      drush_print(dt("But wait, there's more.  Continuing..."));
+      sleep(0.5);
+      drush_invoke('ds-merge-numbers', array('status' => 'lo'));
+    }
+    else {
+      drush_print(dt("Okay, really done."));
+    }
+  }
 }
 
 function drush_dosomething_general_dosomething_export_images() {
