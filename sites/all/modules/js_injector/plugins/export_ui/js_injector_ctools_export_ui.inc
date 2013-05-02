@@ -35,13 +35,16 @@ $plugin = array(
 function js_injector_ctools_export_ui_form(&$form, &$form_state) {
   $rule = $form_state['item'];
 
-  $form['description'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Description'),
-    '#description' => t('The human readable description of this rule.'),
-    '#default_value' => $rule->description,
-    '#required' => true,
-  );
+  // Alter the name field (this is set by the default export_ui class).
+  $form['info']['name']['#title'] = t('Friendly name');
+  $form['info']['name']['#description'] = t('This is the unique ID for this rule. Only alphanumeric characters, spaces, underscores and dashes are allowed.');
+
+  // Alter the admin_description field (this is set by the default export_ui
+  // class).
+  $form['info']['admin_description']['#title'] = t('Description');
+  $form['info']['admin_description']['#type'] = 'textfield';
+  $form['info']['admin_description']['#description'] = t('The human readable description of this rule.');
+  $form['info']['admin_description']['#required'] = TRUE;
 
   $form['js'] = array(
     '#type' => 'textarea',
@@ -100,7 +103,7 @@ function js_injector_ctools_export_ui_form(&$form, &$form_state) {
     0 => t('Every page except the listed pages'),
     1 => t('The listed pages only'),
   );
-  if (module_exists('php') && user_access('use PHP for tracking visibility')) {
+  if (module_exists('php') && user_access('use PHP for settings')) {
     $options[] = t('Pages on which this PHP code returns <code>TRUE</code> (experts only)');
     $title = t('Pages or PHP code');
     $description .= ' ' . t('If the PHP option is chosen, enter PHP code between %php. Note that executing incorrect PHP code can break your Drupal site.', array('%php' => '<?php ?>'));
@@ -128,6 +131,10 @@ function js_injector_ctools_export_ui_form_validate($form, &$form_state) {
   // if preprocess is ticked, then ensure inline is not (they conflict)
   if ($form_state['values']['preprocess'] == 1) {
     $form_state['values']['inline'] = 0;
+  }
+  // Ensure the name field only contains URL safe characters.
+  if (preg_match('/[^A-Za-z0-9_\-\ ]+/', $form_state['values']['name'])) {
+    form_set_error('name', t('Illegal characters found in the friendly name, please remove them.'));
   }
 }
 

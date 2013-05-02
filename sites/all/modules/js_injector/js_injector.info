@@ -6,9 +6,9 @@ configure = admin/config/development/js-injector
 
 dependencies[] = ctools
 
-; Information added by drupal.org packaging script on 2012-07-10
-version = "7.x-2.x-dev"
+; Information added by drupal.org packaging script on 2012-11-24
+version = "7.x-2.0+4-dev"
 core = "7.x"
 project = "js_injector"
-datestamp = "1341880359"
+datestamp = "1353761994"
 

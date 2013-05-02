@@ -213,10 +213,9 @@ function _js_injector_visibility_pages($rule) {
  */
 function _js_injector_rule_path($crid) {
   if (!empty($crid)) {
-    $local_path = drupal_realpath(_js_injector_rule_uri($crid));
-    // Now remove the part before the drupal root.
-    // The +1 gets rid of the leading '/'.
-    $local_path = substr_replace($local_path, '', 0, strlen(DRUPAL_ROOT) + 1);
+    $local_path = file_create_url(_js_injector_rule_uri($crid));
+    //Now remove the part before the drupal root.
+    $local_path = preg_replace('/^' . preg_quote($GLOBALS['base_url'], '/') . '\//', '', $local_path);
     return $local_path;
   }
   return NULL;

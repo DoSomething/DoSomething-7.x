@@ -39,7 +39,8 @@ function js_injector_schema() {
         'description' => 'The primary identifier for the JS injection rule',
         'no export' => TRUE, // do not export database-only keys.
       ),
-      'description' => array(
+      // Changed to 'admin_description' in an update hook.
+      'admin_description' => array(
         'type' => 'varchar',
         'length' => '255',
         'description' => 'A human readable name of a rule.',
@@ -123,4 +124,18 @@ function js_injector_requirements($phase) {
   }
 
   return $requirements;
+}
+
+/**
+ * Change the description field to be called 'admin_description' so that it is displayed on the export UI list form.
+ */
+function js_injector_update_7001(&$sandbox) {
+  // Quick sanity check to ensure the column exists.
+  if (db_field_exists('js_injector_rule', 'description')) {
+    db_change_field('js_injector_rule', 'description', 'admin_description', array(
+      'type' => 'varchar',
+      'length' => '255',
+      'description' => 'A human readable name of a rule.',
+    ));
+  }
 }
