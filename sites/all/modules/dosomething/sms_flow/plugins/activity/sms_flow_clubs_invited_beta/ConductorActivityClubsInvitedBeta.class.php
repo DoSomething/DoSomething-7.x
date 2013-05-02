@@ -29,44 +29,22 @@ class ConductorActivityClubsInvitedBeta extends ConductorActivity {
       $mobile = $state->getContext('sms_number');
 
       // If we have a user with this mobile, update their info.
-      $account = _sms_flow_find_user_by_cell($mobile);
+      $account = dosomething_api_user_lookup($mobile);
 
       // Create account for this user if none is found
       if (!$account) {
-        $account = new stdClass;
-
-        $suffix = 0;
-        $account->name = $name;
-        while (user_load_by_name($account->name)) {
-          $suffix++;
-          $account->name = $name . '-' . $suffix;
-        }
-
         $pass = strtoupper(user_password(6));
-        require_once('includes/password.inc');
-        $hashed_pass = user_hash_password($pass);
-        $account->pass = $hashed_pass;
-        $account->mail = $mobile . '@mobile';
-        $account->status = 1;
+        $account = dosomething_api_user_create(array('name' => $mobile, 'mobile' => $mobile, 'password' => $pass));
 
-        $account = user_save($account);
-
-        $profile_values = array('type' => 'main');
-        $profile = profile2_create($profile_values);
-        $profile->uid = $account->uid;
-        
-        $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
-        $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $name;
-        $first_name = $name;
-
-        try {
-          profile2_save($profile);
-        }
-        catch( Exception $e ) {
+        if (!$account) {
           $success_message .= t('Sorry, there was a problem creating your account.  To try again, text CJOIN.');
         }
+        else {
+          $profile = profile2_load_by_user($account, 'main');
+          $first_name = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
 
-        $success_message .= t('Login with this phone # & this password (@pass) at dosomething.org/myclub. ', array('@pass' => $pass));
+          $success_message .= t('Login with this phone # & this password (@pass) at dosomething.org/myclub. ', array('@pass' => $pass));
+        }
       }
       else {
         $success_message .= t('Awesome! You\'ve been added to your friend\'s club at dosomething.org/myclub. ');

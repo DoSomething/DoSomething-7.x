@@ -10,11 +10,7 @@ class ConductorActivityCheckAccountExists extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
-    $account = _sms_flow_find_user_by_cell($mobile);
-    
-    if ($bla) {
-      $bla = TRUE;
-    }
+    $account = dosomething_api_user_lookup($mobile);
 
     // No account found. Only output should be 'no_account_exists'
     if (!$account) {

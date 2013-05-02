@@ -42,7 +42,7 @@ class ConductorActivityDrivesInvitedBeta extends ConductorActivity {
       $xml = curl_exec($ch);
       curl_close();
 
-      $account = _sms_flow_find_user_by_cell($mobile);
+      $account = dosomething_api_user_lookup($mobile);
 
       $drives_invite_gid = 0;
       $pattern = '#\<custom_column name\="drives_invite_gid"\>(.*?)\<\/custom_column\>#is';

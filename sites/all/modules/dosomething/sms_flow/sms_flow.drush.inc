@@ -108,7 +108,7 @@ function drush_sms_flow_mcommons_rb_image_update($nid, $campaign_id, $var_last_p
 
       // Find user. Ignore if none found.
       $mobile = $message->phone_number;
-      $account = _sms_flow_find_user_by_cell($mobile);
+      $account = dosomething_api_user_lookup($mobile);
       if (!$account)
         continue;
 

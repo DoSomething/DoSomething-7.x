@@ -110,7 +110,7 @@ function dosomething_api_user_lookup($value) {
   if (valid_email_address($value)) {
     $account = user_load_by_mail($value);
   }
-  else if ($number = dosomething_general_valid_cell($value)) {
+  else if ($number = dosomething_general_clean_cell_number($value)) {
     $account = dosomething_general_find_user_by_cell($number);
   }
   return $account;
@@ -160,11 +160,11 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   }
 
   // Create a random password for the user.
-  if (!$this['password']) {
+  if (!$info['password']) {
     $pass = user_password(6);
   }
   else {
-    $pass = $this['password'];
+    $pass = $info['password'];
   }
   require_once('includes/password.inc');
   $hashed_pass = user_hash_password($pass);
@@ -185,11 +185,11 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
 
   // If we have the user's phone number, set that.
   if (!empty($info['mobile'])) {
-   $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $info['mobile'];
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $info['mobile'];
   }
   // If they have a real first name, set that.
-  if ($info['name'] != 'Guest user') {
-     $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $info['name'];
+  if ($info['name'] != 'Guest user' && $info['name'] != $info['mobile']) {
+    $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $info['name'];
   }
 
   // Try and save the profile and set a message that we did so...
