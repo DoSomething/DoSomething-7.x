@@ -242,8 +242,10 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
   background-color: #fff
   width: 500px
   margin: 2% auto
-  padding: 70px 50px 0 50px
+  padding: 75px 50px 50px 50px
   position: relative
+  border: 1px solid #ccc
+  +box-shadow(0 10px 20px -10px #999)
   @media only screen and (max-width: 700px)
     width: 430px
     padding: 10px 20px 0
@@ -251,6 +253,39 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     margin: 2% auto
     padding: 10px 5px 0
     width: 98%
+
+.crazy-submission-superlative
+  background: $accent_color
+  background: linear-gradient(#F9CB70, #FABD2D 20%)
+  background: linear-gradient(90deg, darken($accent_color, 10), $accent_color 10%, $accent_color 90%, darken($accent_color, 10))
+  width: 500px
+  margin: 90px auto -94px auto
+  position: relative
+  z-index: 3
+  @media only screen and (max-width: 550px)
+    width: 100%
+  h1
+    color: #fff
+    text-align: center
+    text-transform: uppercase
+    padding: 10px 0 5px 0
+    font-size: 36px
+    border-left: 1px solid #ccc
+    border-right: 1px solid #ccc
+    &:before, &:after
+      content: ""
+      background: url("http://www.dosomething.org/files/campaigns/crazy13/superlative-star.png")
+      background-repeat: no-repeat
+      position: absolute
+      display: block
+      z-index: 6
+      height: 25px
+      width: 25px
+      top: 11px
+    &:before
+      left: 12px
+    &:after
+      right: 12px
 
 .flagged
   background: #808080
