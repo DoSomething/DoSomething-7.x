@@ -125,7 +125,7 @@ $activity->response_sets = array(
   ),
   array(
     'exact_match' => array('wait'),
-    'response' => array("I don’t control these things."),
+    'response' => array("I don’t control these things. "),
   ),
   array(
     'phrase_match' => array('Potty trained', ' potty train', ' use the toilet'),
@@ -172,7 +172,7 @@ $activity->response_sets = array(
     'response' => array("I pretty much always need my diaper changed", "Yeah, I think there might be a situation downtown"),
   ),
   array(
-    'phrase_match' => array('Sit in your soiled clothes', 'sit in your dirty diaper'),
+    'phrase_match' => array('Sit in your soiled clothes', 'sit in your dirty diaper', 'stay dirty'),
     'response' => array("Well that’s just gross, imagine it for a second. Go ahead."),
   ),
   array(
@@ -194,9 +194,8 @@ $activity->response_sets = array(
     'response' => array("This is me chilled out"),
   ),
   array(
-    'phrase_match' => array('Stay still'),
-    'AND_match' => array(array('stay', 'still')),
-    'response' => array("BUT I. DONT. WANNAAAAAA"),
+    'AND_match' => array(array('stay', 'still'), array('hold', 'still')),
+    'response' => array("BUT I. DONT. WANNAAAAAA", "This is about as still as I get."),
   ),
   array(
     'phrase_match' => array('Im coming', 'Im here', 'here I come', 'coming', 'here', 'im home'),
