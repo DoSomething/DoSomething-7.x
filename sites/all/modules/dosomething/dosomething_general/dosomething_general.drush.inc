@@ -143,7 +143,7 @@ function drush_dosomething_general_ds_merge_numbers($status) {
 
     drush_print(dt("Done."));
 
-    if ($i < $count) {
+    if ($i < $count && $i != 0) {
       drush_print(dt("But wait, there's more.  Continuing..."));
       drush_invoke('ds-merge-numbers', array('status' => 'li'));
     }
@@ -242,7 +242,7 @@ function drush_dosomething_general_ds_merge_numbers($status) {
 
     drush_print(dt("Done."));
 
-    if ($i < $count) {
+    if ($i < $count && $i != 0) {
       drush_print(dt("But wait, there's more.  Continuing..."));
       sleep(0.5);
       drush_invoke('ds-merge-numbers', array('status' => 'lo'));
