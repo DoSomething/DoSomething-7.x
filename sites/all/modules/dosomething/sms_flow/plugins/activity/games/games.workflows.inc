@@ -87,16 +87,12 @@ $activity->response_sets = array(
     'response' => array("But I'm the baby, you have to!", "Tough break, you’ve gotta!"),
   ),
   array(
-    'word_match' => array('Gross', 'ew', 'disgusting', 'fowl', 'smelly', 'stinky'),
-    'response' => array("But my cute face balances it out..."),
-  ),
-  array(
-    'word_match' => array('eww', 'ewww', 'ewwww', 'ewwwww'),
-    'response' => array("It’s a good thing I’m so cute...it makes up for all of the smelly and gross."),
+    'word_match' => array('Gross', 'ew', 'eww', 'ewww', 'ewwww', 'ewwwww', 'disgusting', 'fowl', 'foul', 'smelly', 'stinky'),
+    'response' => array("But my cute face balances it out...", "I’m a baby, what do you expect?", "I can’t help it, I’m a baby, this is what I do!", "It’s a good thing I’m so cute...it makes up for all of the smelly and gross."),
   ),
   array(
     'phrase_match' => array('It smells', 'you smell', 'smelly', 'that smells'),
-    'response' => array("What can I say? Babies are stinky."),
+    'response' => array("What can I say? Babies are stinky.", "I’m a baby, that’s sort of my M.O."),
   ),
   array(
     'exact_match' => array('poop', 'fart'),
