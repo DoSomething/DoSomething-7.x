@@ -55,17 +55,63 @@ function dosomething_subscribe_webform_submission_insert($node, $submission) {
   if (isset($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
     
     $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
-    $mailchimp_merge_vars = array();
+    $merge_vars = array();
 
-    // Check for various places within $submitted that email can be stored:
+    // Check for various places within $submitted that email can be stored.
+    // Webform Entity compoments are idnexed with the field name in the $submission array, but Webform Components are indexed with just the component id (e.g. $submission->data[5]['value'])
 
     // field_webform_email:
     // Used in Program Short Form.
     if (isset($submission->field_webform_email[LANGUAGE_NONE][0]['email'])) {
       $email = $submission->field_webform_email[LANGUAGE_NONE][0]['email'];
     }
-    //@todo: collect merge_vars
+    // 727601: Webform: Do Something Awards Nomination Form 
+    elseif ($submission->nid == 727716) {
+      $email = $submission->data[2]['value'][0];    
+      // Full name.
+      $merge_vars['MMERGE3'] = $submission->data[1]['value'][0];
+    }
+    // 728929: Webform: Young People Speak Out About Gun Control
+    elseif ($submission->nid == 728929) {
+      $email = $submission->data[1]['value'][0];
+      // Assign target MailChimp group by age.
+      $datebits = explode('-', $submission->data[2]['value'][0]);
+      $bd_stamp = mktime(0, 0, 0, $datebits[1], $datebits[2], $datebits[0]);
+      $ageout_stamp = mktime(0, 0, 0, date("m"), date("d"), date("Y")-25);
+      $merge_vars['BDAY'] = $datebits[1] .'/'. $datebits[2] .'/'.$datebits[0]; 
+      // For young people, use node value.
+      // For old people, use this group.
+      // Possibly look into having 2 Mailchimp Group ID fields to specify young/old mailinst lists.
+      if ($bd_stamp < $ageout_stamp) {
+        $mailchimp = 'GunControlReport2013';
+      } 
+    }
   }
+  // For now, Scholarship Application with Recommendation doesn't have field_mailchimp_group_id added yet, so we need to hardcode this machimp id.
+  // 727601: scholarship_application_with_rec: 
+  // Do Something Awards Application
+  elseif ($submission->nid == 727601) {
+    $mailchimp = 'DSA2013Applicants';
+    $email = $submission->data[5]['value'][0];
+    $merge_vars['FNAME'] = $submission->field_webform_first_name['und'][0]['value'];
+    $merge_vars['LNAME'] = $submission->field_webform_last_name['und'][0]['value'];
+    $merge_vars['MMERGE3'] = $merge_vars['FNAME'] .' '. $merge_vars['LNAME'];
+    // Birthday
+    $birthday_bits = explode('-', $submission->data[12]['value'][0]);
+    $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  $birthday_bits[2], $birthday_bits[0]);
+    $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
+    $merge_vars['BDAYFULL'] = date('m/d/Y', $birthday_stamp);
+    // Need to store date values as var to allow recasting in final string
+    $target_date = date('m/d', $birthday_stamp);
+    $target_year_18 = date('Y', $birthday_stamp) + 18;    
+    $target_year_26 = date('Y', $birthday_stamp) + 26;   
+    // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
+    $merge_vars['TURNS18'] = $target_date ."/". $target_year_18;
+    $merge_vars['TURNS26'] = $target_date ."/". $target_year_26;
+    // Cell
+    $cell = $submission->data[6]['value'][0];
+    $merge_vars['MMERGE7'] = $cell;
+  }  
 
   // Find cell value in $submisson:
 
@@ -78,13 +124,13 @@ function dosomething_subscribe_webform_submission_insert($node, $submission) {
   // Store merge_vars.
   if ($mailchimp) {
     if (!empty($cell)) {
-      $mailchimp_merge_vars['MMERGE7'] = $cell;
+      $merge_vars['MMERGE7'] = $cell;
     }
     if ($node->type == 'petition') {
       //@todo: dosomething_general uses $form[action] here. investigate what to store.
-      $mailchimp_merge_vars['MMERGE27'] = $node->title;
+      $merge_vars['MMERGE27'] = $node->title;
       if ($submission->uid > 0) {
-        $mailchimp_merge_vars['UID'] = $form['#submission']->details['uid'];
+        $merge_vars['UID'] = $form['#submission']->details['uid'];
       }
     }
   }
@@ -96,8 +142,8 @@ function dosomething_subscribe_webform_submission_insert($node, $submission) {
 
   // Call subscribe functions.
   if ($mailchimp && !empty($email)) {
-	  //dosomething_subscribe_mailchimp_signup($email, $mailchimp);
-    dosomething_general_mailchimp_subscribe($email, $mailchimp, $mailchimp_merge_vars);
+	  //dosomething_subscribe_mailchimp_signup($email, $mailchimp, $merge_vars);
+    dosomething_general_mailchimp_subscribe($email, $mailchimp, $merge_vars);
   }
   if ($mobilecommons && !empty($cell)) {
 	  //dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons);
