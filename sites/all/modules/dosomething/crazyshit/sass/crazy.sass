@@ -40,7 +40,7 @@ img.header_sponsor, img.header_logo
     bottom: 5px
   @media only screen and (max-width: 400px)
     width: 45%
-  
+
 img.header_background
   width: 700px
   +block_center
@@ -222,7 +222,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     @media only screen and (max-width: 450px)
       font-size: 21px
   h2
-    color: rgb(204, 36, 36) 
+    color: rgb(204, 36, 36)
 
 // GENERAL LAYOUT
 // --------------
@@ -230,7 +230,7 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 .crazy-submission, .submit-start, .node-crazy-shit
   background-color: #fff
   width: 500px
-  margin: 2% auto
+  margin: 30px auto
   +border-radius(2px)
   @media only screen and (max-width: 550px)
     width: 100%
@@ -241,16 +241,59 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 .crazy-submission
   background-color: #fff
   width: 500px
-  margin: 2% auto
-  padding: 70px 50px 0 50px
+  margin: 0 auto
+  padding: 75px 50px 50px 50px
   position: relative
+  border: 1px solid #ccc
+  +box-shadow(0 10px 20px -10px #999)
   @media only screen and (max-width: 700px)
     width: 430px
-    padding: 10px 20px 0
+    padding: 70px 15px 15px
   @media only screen and (max-width: 450px)
-    margin: 2% auto
+    padding: 75px 10px 10px 10px
+    width: 96%
+
+.crazy-submission-superlative
+  background: $accent_color
+  background: linear-gradient(#F9CB70, #FABD2D 20%)
+  background: linear-gradient(90deg, darken($accent_color, 10), $accent_color 10%, $accent_color 90%, darken($accent_color, 10))
+  width: 500px
+  margin: 60px auto -76px auto
+  position: relative
+  z-index: 3
+  @media only screen and (max-width: 550px)
+    width: 100%
+  @media only screen and (max-width: 700px)
+    width: 430px
+    margin: 45px auto -74px
+  @media only screen and (max-width: 450px)
     padding: 10px 5px 0
-    width: 98%
+    width: 95.2%
+  h1
+    color: #fff
+    text-align: center
+    text-transform: uppercase
+    padding: 10px 0 5px 0
+    font-size: 36px
+    @media only screen and (max-width: 450px)
+      padding: 0 0 5px 0
+      font-size: 27px
+    &:before, &:after
+      content: ""
+      background: url("http://www.dosomething.org/files/campaigns/crazy13/superlative-star.png")
+      background-repeat: no-repeat
+      position: absolute
+      display: block
+      z-index: 6
+      height: 25px
+      width: 25px
+      top: 11px
+      @media only screen and (max-width: 450px)
+        top: 7px
+    &:before
+      left: 12px
+    &:after
+      right: 12px
 
 .flagged
   background: #808080
@@ -435,3 +478,25 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
     width: 430px
   @media only screen and (max-width: 400px)
     width: 98%
+
+// FLIP MESSAGE
+// ------------
+.crazy-close-outer
+  background: #fff
+
+.crazy-close-inner
+  width: 700px
+  margin: 0 auto
+  padding: 2em 0 1em
+  @media only screen and (max-width: 750px)
+    width: 90%
+    padding: 1em 0
+  @media only screen and (max-width: 450px)
+    width: 96%
+  h1
+    color: #C31C24
+    font-size: 32px
+    text-transform: uppercase
+  p
+    font-size: 18px
+    font-weight: 500

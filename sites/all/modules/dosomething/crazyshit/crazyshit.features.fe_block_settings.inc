@@ -32,7 +32,7 @@ function crazyshit_default_fe_block_settings() {
     'delta' => 'crazy_shit_landing-block',
     'theme' => 'doit',
     'status' => 0,
-    'weight' => '0',
+    'weight' => '-10',
     'region' => '',
     'custom' => '0',
     'visibility' => '0',
@@ -46,7 +46,7 @@ function crazyshit_default_fe_block_settings() {
     'delta' => 'crazy_shit_landing-friends_view',
     'theme' => 'doit',
     'status' => 0,
-    'weight' => '0',
+    'weight' => '-11',
     'region' => '',
     'custom' => '0',
     'visibility' => '0',
@@ -89,6 +89,39 @@ function crazyshit_default_fe_block_settings() {
   );
 
   $export['theme']['ds'] = $theme;
+
+  // ds_flatiron
+  $theme = array();
+
+  $theme['views-crazy_shit_landing-block'] = array(
+    'module' => 'views',
+    'delta' => 'crazy_shit_landing-block',
+    'theme' => 'ds_flatiron',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $theme['views-crazy_shit_landing-friends_view'] = array(
+    'module' => 'views',
+    'delta' => 'crazy_shit_landing-friends_view',
+    'theme' => 'ds_flatiron',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
+  $export['theme']['ds_flatiron'] = $theme;
 
   // picsforpets
   $theme = array();

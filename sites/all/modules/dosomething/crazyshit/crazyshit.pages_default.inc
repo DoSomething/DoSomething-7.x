@@ -420,7 +420,7 @@ function crazyshit_default_page_manager_pages() {
     $pane->panel = 'center';
     $pane->type = 'views';
     $pane->subtype = 'crazy_shit_landing';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'override_pager_settings' => 0,
@@ -446,6 +446,26 @@ function crazyshit_default_page_manager_pages() {
     $pane->locks = array();
     $display->content['new-9'] = $pane;
     $display->panels['center'][0] = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'center';
+    $pane->type = 'crazy_html';
+    $pane->subtype = 'crazy_html';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'html_source' => 'close.html',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-10'] = $pane;
+    $display->panels['center'][1] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -513,7 +533,7 @@ function crazyshit_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-11';
     $pane->panel = 'center';
     $pane->type = 'crazy_html';
     $pane->subtype = 'crazy_html';
@@ -533,8 +553,8 @@ function crazyshit_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['center'][0] = 'new-10';
+    $display->content['new-11'] = $pane;
+    $display->panels['center'][0] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
