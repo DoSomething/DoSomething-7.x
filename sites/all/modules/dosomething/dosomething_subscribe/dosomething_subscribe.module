@@ -48,6 +48,7 @@ function dosomething_subscribe_theme($existing, $type, $theme, $path) {
 function dosomething_subscribe_webform_submission_insert($node, $submission) {
 
   //dsm($submission);
+  /*
   $mailchimp = $mobilecommons = FALSE;
   $email = $cell = '';
 
@@ -64,6 +65,18 @@ function dosomething_subscribe_webform_submission_insert($node, $submission) {
     // Used in Program Short Form.
     if (isset($submission->field_webform_email[LANGUAGE_NONE][0]['email'])) {
       $email = $submission->field_webform_email[LANGUAGE_NONE][0]['email'];
+    }
+    // I don't think this format is actually used anywhere, but don't know for sure yet.
+    elseif (isset($submission->field_webform_email[LANGUAGE_NONE][0]['value'])) {
+      $email = $submission->field_webform_email[LANGUAGE_NONE][0]['value'];
+    }
+    // Form_key 'your_email' can be found in webforms:
+    elseif (isset($submission->your_email)) {
+      $email = $submission->your_email;
+    }
+    // Form_key 'email' can also be found in webforms:
+    elseif (isset($submission->email)) {
+      $email = $submission->your_email;
     }
     // 727601: Webform: Do Something Awards Nomination Form 
     elseif ($submission->nid == 727716) {
@@ -149,4 +162,163 @@ function dosomething_subscribe_webform_submission_insert($node, $submission) {
 	  //dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons);
     dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
   }
+  
+  // If this is a nominate someone form, also subscribe them.
+  */
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dosomething_subscribe_form_alter(&$form, &$form_state, $form_id) {
+  // If this is a webform / webform entity, check for subscribe fields.
+  if (isset($form['#node'])) {
+    //$form['#submit'][] = 'dosomething_general_webform_mailchimp_find_and_send';
+    $form['#submit'][] = 'dosomething_subscribe_find_and_signup';
+  }
+}
+
+/**
+ * Looks for Group IDs to subscribe to in a given form's node. 
+ * If found, looks for submitted values to use to sign up to the relevant Groups.
+ */
+function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
+  // If we don't have a node or a webform submission there's really nothing we
+  // can do. This handler was probably put on the wrong form.
+  if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
+    return;
+  }
+  $node = $form['#node'];
+  $submitted = $form_state['webform_entity']['submission']->submitted;
+  // If saving a form as draft, submitted is just a timestamp.
+  if (!is_array($submitted)) {
+    return;
+  }
+  //dsm($submitted);
+
+  $mailchimp = $mobilecommons = FALSE;
+  $email = $cell = '';
+
+  // --------- MailChimp ---------
+
+  // Check if webform node should be subscribing to a Mailchimp Group ID.
+  if (isset($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
+    $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
+  }
+  // For now, Scholarship Application with Recommendation nodes don't have field_mailchimp_group_id added yet, so we need to hardcode this mailchimp id.
+  // Nid 727601: Do Something Awards Application
+  elseif ($submission->nid == 727601) {
+    $mailchimp = 'DSA2013Applicants';
+  }
+
+  // Check various form_keys for email value to use.
+  if (!empty($submitted['email'])) {
+    $email = $submitted['email'];
+  }
+  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  }
+  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+  }
+  elseif (!empty($submitted['your_email'])) {
+    $email = $submitted['your_email'];
+  }
+
+  // Check for cell:
+  if (isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'])) {
+    $cell = $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+  }
+
+  // Find merge_vars:
+  if (!empty($cell)) {
+    $mc_merge_vars['MMERGE7'] = $cell;
+  }
+  if ($node->type == 'petition') {
+    // Petition Name - Webform ID
+    $mc_merge_vars['MMERGE27'] = $form['#action'];
+    // Drupal User ID - UID
+    if ($form['#submission']->details['uid'] > 0) {
+      $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
+    }
+  }
+  if (!empty($submitted['birthday'])
+      && !empty($submitted['birthday']['month'])
+      && !empty($submitted['birthday']['day'])) {
+    $month = str_pad($submitted['birthday']['month'], 2, '0', STR_PAD_LEFT);
+    $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
+    if (!empty($submitted['birthday']['year'])) {
+      $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
+      // Support for target dates based on user birthday - 18 and 26 years old. 
+      // Used by auto responders in MailChimp
+      $merge_vars['TURNS18'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 18;
+      $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;
+    }
+  }
+  // First Name
+  if (!empty($submitted['first_name'])) {
+    $first_name = $submitted['first_name'];
+  }
+  elseif (isset($submitted['field_webform_first_name'][LANGUAGE_NONE][0]['value'])) {
+    $first_name = $submitted['field_webform_first_name'][LANGUAGE_NONE][0]['value'];
+  }
+  if (isset($first_name)) {
+    $merge_vars['FNAME'] = $first_name;
+  }
+
+  // Last Name
+  if (!empty($submitted['last_name'])) {
+    $last_name = $submitted['first_name'];
+  }
+  elseif (isset($submitted['field_webform_last_name'][LANGUAGE_NONE][0]['value'])) {
+    $last_name = $submitted['field_webform_last_name'][LANGUAGE_NONE][0]['value'];
+  }
+  if (isset($last_name)) {
+    $merge_vars['LNAME'] = $last_name;
+  }
+
+  // Full name - MMERGE3
+  if (isset($first_name) || isset($last_name)) {
+    $merge_vars['MMERGE3'] = $first_name . ' ' . $last_name;
+  }
+  elseif (!empty($submitted['your_name'])) {
+    $merge_vars['MMERGE3'] = $submitted['your_name'];
+  }
+  elseif (!empty($submitted['your_first__last_name'])) {
+    $merge_vars['MMERGE3'] = $submitted['your_first__last_name'];
+  }
+  
+  // Call subscribe functions.
+  if ($mailchimp && !empty($email)) {
+    //dosomething_subscribe_mailchimp_signup($email, $mailchimp, $merge_vars);
+    //dosomething_general_mailchimp_subscribe($email, $mailchimp, $merge_vars);
+
+    // Check for nominee's email, and subscribe if so.
+    // @todo: change webforms to use a form_key called beta_email instead?
+    if (isset($submitted['nominees_email'])) {
+      $nominee_email = $submitted['nominees_email'];
+      $nominee_merge_vars = array();
+      if (isset($submitted['nominees_name'])) {
+        $nominee_merge_vars['MMERGE3'] = $submitted['nominees_name'];
+      }
+      elseif (isset($submitted['nominees_first__last_name'])) {
+        $nominee_merge_vars['MMERGE3'] = $submitted['nominees_first__last_name'];
+      }
+      //dosomething_general_mailchimp_subscribe($nominee_email, $mailchimp, $nominee_merge_vars);
+    }
+  }
+
+  // --------- Mobile Commons ---------
+  
+  // Check if webform node should be subscribing to a Mobilecommons Opt-in Path.
+  if (isset($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
+    $mobilecommons = $node->field_mc_optin[LANGUAGE_NONE][0]['value'];
+  }
+
+  /*
+  if ($mobilecommons && !empty($cell)) {
+    //dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons);
+    dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+  }
+  */
 }
