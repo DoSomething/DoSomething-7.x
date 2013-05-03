@@ -359,6 +359,128 @@ function drush_dosomething_general_ds_merge_emails($status) {
       drush_invoke('ds-merge-emails', array('status' => 'li'));
     }
     else {
+      // We need to check the email field tables for any other emails.
+      drush_print(dt("Checking field tables..."));
+      $extra_queries = array(
+        "SELECT
+        e.field_email_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_email_value not like '%@mobile%'
+        group by e.field_email_value",
+
+        "SELECT
+        e.field_email_0_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_email_0 e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_email_0_value not like '%@mobile%'
+        group by e.field_email_0_value",
+
+        "SELECT
+        e.field_pfp_contact_email_address_email,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_pfp_contact_email_address e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_pfp_contact_email_address_email not like '%@mobile%'
+        group by e.field_pfp_contact_email_address_email",
+
+        "SELECT
+        e.field_plumgrant_email_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_plumgrant_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_plumgrant_email_value not like '%@mobile%'
+        group by e.field_plumgrant_email_value",
+
+        "SELECT
+        e.field_posters_email_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_posters_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_posters_email_value not like '%@mobile%'
+        group by e.field_posters_email_value",
+
+        "SELECT
+        e.field_webform_email_email,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_webform_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_webform_email_email not like '%@mobile%'
+        group by field_webform_email_email",
+
+        "SELECT
+        e.field_webform_email_or_cell_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_webform_email_or_cell e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_webform_email_or_cell_value like '%@%'
+        and e.field_webform_email_or_cell_value not like '%@mobile%'
+        group by field_webform_email_or_cell_value"
+      );
+
+      $n = 0;
+      foreach ($extra_queries AS $q) {
+        $res = db_query($q)->fetchAllKeyed();
+        if (!empty($res)) {
+          foreach ($res AS $email => $uid) {
+            $user = user_load($uid);
+            if (strpos($user->mail, '@mobile') === FALSE) {
+              $user->mail = $email;
+              user_save($user);
+              $n++;
+            }
+          }
+        }
+      }
+
+      if ($n > 0) {
+        drush_print(dt("Finished {$n} additional emails."));
+      }
+
       drush_print(dt("Okay, really done."));
     }
   }
@@ -460,6 +582,136 @@ function drush_dosomething_general_ds_merge_emails($status) {
       drush_invoke('ds-merge-emails', array('status' => 'lo'));
     }
     else {
+      $extra_queries = array(
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_email_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_email_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid;
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_email_0 e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_email_0_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_email_0_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid;
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_pfp_contact_email_address e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_pfp_contact_email_address_email)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_pfp_contact_email_address_email not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid;
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_plumgrant_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_plumgrant_email_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_plumgrant_email_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_posters_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_posters_email_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_posters_email_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_webform_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_webform_email_email)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_webform_email_email not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_webform_email_or_cell e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_webform_email_or_cell_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_webform_email_or_cell_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+      );
+
+      $t = 0;
+      foreach ($extra_queries AS $q) {
+        $res = db_query($q)->fetchAllKeyed();
+        if (!empty($res)) {
+          $n = 0;
+          foreach ($res AS $sid => $uid) {
+            if ($uid != 0) {
+              $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+              // Just to double check...
+              if ($submission->uid == 0) {
+                $submission->uid = $uid;
+              }
+
+              // Save it.
+              @entity_save('webform_submission_entity', $submission);
+
+              $n++;
+              $t++;
+              drush_print(dt("Connected SID {$sid} to UID {$uid} ($n)"));
+            }
+          }
+        }
+      }
+
+      if ($t > 0) {
+        drush_print(dt("Finished {$t} additional emails."));
+      }
+
       drush_print(dt("Okay, really done."));
     }
   }
