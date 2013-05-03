@@ -511,9 +511,9 @@ body {
     width: 50%; }
   #cmp .col60 {
     width: 60%; }
-  #cmp .col33-inner {
+  #cmp .col33-inner, #cmp .col50-inner {
     padding: 0 1.5%; }
-    #cmp .col33-inner p {
+    #cmp .col33-inner p, #cmp .col50-inner p {
       width: 80%;
       margin: 0 auto;
       text-align: center !important; }
