@@ -29,6 +29,13 @@ function dosomething_general_drush_command() {
     ),
   );
 
+  $commands['ds-merge-emails'] = array(
+    'description' => 'Merges emails into accounts.',
+    'arguments' => array(
+      'status' => 'li (logged in) or lo (logged out)'
+    ),
+  );
+
   return $commands;
 }
 
@@ -62,7 +69,7 @@ function drush_dosomething_general_ds_merge_numbers($status) {
       limit 250
     */
 
-    drush_print(dt('Getting counts and data...'));
+    drush_print(dt('Getting counts and data.  This may take a while...'));
 
     $results = db_query("
       select
@@ -109,8 +116,8 @@ function drush_dosomething_general_ds_merge_numbers($status) {
     drush_print(dt('Starting...'));
 
     // We only need to run this if there are results.
+    $i = 0;
     if (count($results) <= $count) {
-      $i = 0;
       foreach ($results AS $uid => $mobile) {
         // Get profile information...
         $user = user_load($uid);
@@ -174,7 +181,7 @@ function drush_dosomething_general_ds_merge_numbers($status) {
     limit 250;
     */
 
-    drush_print(dt('Getting numbers and data.  This may take a while...'));
+    drush_print(dt('Getting counts and data.  This may take a while...'));
 
     $count = cache_get('logged_out_numbers_count')->data;
     if (empty($count)) {
@@ -246,6 +253,211 @@ function drush_dosomething_general_ds_merge_numbers($status) {
       drush_print(dt("But wait, there's more.  Continuing..."));
       sleep(0.5);
       drush_invoke('ds-merge-numbers', array('status' => 'lo'));
+    }
+    else {
+      drush_print(dt("Okay, really done."));
+    }
+  }
+}
+
+/**
+ * Connects users to emails
+ *
+ * @param string $status
+ *  li for logged in or lo for logged out
+ */
+function drush_dosomething_general_ds_merge_emails($status) {
+  static $count;
+
+  // Find submissions where users put in their email, but their account
+  // has their phone number as their primary email (e.g. @mobile email).
+  // Change the user's email to be their actual email.
+  if ($status == 'li') {
+    /*
+    select
+    u.uid,
+    d.data
+    #u.mail
+    from webform_submitted_data d
+    left join webform_submissions s on (s.sid = d.sid)
+    left join users u on (u.uid = s.uid)
+    where d.data regexp '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\_\-]+\.[A-Za-z0-9\.]{2,10}$'
+    and d.data not like '%@mobile%'
+    #and u.mail regexp '\@mobile(\.com)?$'
+    and u.uid is not null
+    and u.uid != 0
+    group by u.uid
+    limit 1
+    */
+
+    drush_print(dt('Getting counts and data.  This may take a while...'));
+
+    $count = db_query("
+      select
+      u.uid,
+      d.data
+      #u.mail
+      from webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.uid = s.uid)
+      where d.data regexp :regex1
+      and d.data not like '%@mobile%'
+      and u.mail regexp :regex2
+      and u.uid is not null
+      and u.uid != 0
+      group by u.uid
+    ", // Need to pass the regex as a replacement, because db_query strips curly brackets in the query above.
+      array(
+        ':regex1' => '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,6}$',
+        ':regex2' => '\@mobile(\.com)?$',
+      ))->rowCount();
+
+    $results = db_query("
+      select
+      u.uid,
+      d.data
+      #u.mail
+      from webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.uid = s.uid)
+      where d.data regexp :regex1
+      and d.data not like '%@mobile%'
+      and u.mail regexp :regex2
+      and u.uid is not null
+      and u.uid != 0
+      group by u.uid
+      limit 250
+    ", 
+      // Need to pass the regex as a replacement, because db_query strips curly brackets in the query above.
+      array(
+        ':regex1' => '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,6}$',
+        ':regex2' => '\@mobile(\.com)?$',
+      )
+    )->fetchAllKeyed();
+
+    drush_print(dt('Starting...'));
+
+    $i = 0;
+    if (count($results) <= $count) {
+      foreach ($results AS $uid => $email) {
+        $user = user_load($uid);
+
+        if (isset($user->uid)) {
+          $user->mail = $email;
+        }
+        user_save($user);
+        $i++;
+
+        drush_print(dt("Updated UID {$uid} email to {$email} ($i)"));
+      }
+    }
+
+    drush_print(dt("Done."));
+
+    if ($i < $count && $i != 0) {
+      drush_print(dt("But wait, there's more.  Continuing..."));
+      drush_invoke('ds-merge-emails', array('status' => 'li'));
+    }
+    else {
+      drush_print(dt("Okay, really done."));
+    }
+  }
+
+  // Find submissions from logged out members where they put in their email address.
+  // See if there's an account with that email.  If so, connect the submission to the
+  // account.
+  elseif ($status == 'lo') {
+    drush_print(dt('Wait for it...'));
+    /*
+    select
+    s.sid,
+    s.uid as s_suid,
+    u.uid,
+    d.data,
+    u.mail
+    FROM webform_submitted_data d
+    left join webform_submissions s on (s.sid = d.sid)
+    left join users u on (u.mail = d.data)
+    where
+    d.data regexp '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,10}$'
+    and s.uid = 0
+    and u.uid is not null
+    and u.uid != 0
+    group by s.sid
+    */
+
+    drush_print(dt('Getting counts and data.  This may take a while...'));
+
+    $count = cache_get('logged_out_emails_count')->data;
+    if (empty($count)) {
+      $count = db_query("
+        select
+        s.sid,
+        s.uid as s_suid,
+        u.uid,
+        d.data,
+        u.mail
+        FROM webform_submitted_data d
+        left join webform_submissions s on (s.sid = d.sid)
+        left join users u on (u.mail = d.data)
+        where
+        d.data regexp :regex
+        and s.uid = 0
+        and u.uid is not null
+        and u.uid != 0
+        group by s.sid",
+        array(':regex' => '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,10}$')
+      )->rowCount();
+
+      cache_set('logged_out_emails_count', $count, 'cache', (time() + 10800));
+    }
+
+    $results = db_query("
+      select
+      s.sid,
+      s.uid as s_suid,
+      u.uid,
+      d.data,
+      u.mail
+      FROM webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.mail = d.data)
+      where
+      d.data regexp :regex
+      and s.uid = 0
+      and u.uid is not null
+      and u.uid != 0
+      group by s.sid
+      limit 500
+    ",
+      array(':regex' => '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,10}$')
+    )->fetchAllKeyed(0,2);
+
+    drush_print(dt('Starting...'));
+
+    $i = 0;
+    if (count($results) <= $count) {
+      foreach ($results AS $sid => $uid) {
+        $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+        // Just to double check...
+        if ($submission->uid == 0) {
+          $submission->uid = $uid;
+        }
+
+        // Save it.
+        @entity_save('webform_submission_entity', $submission);
+        $i++;
+        drush_print(dt("Connected SID {$sid} to UID {$uid} ({$i})"));
+      }
+    }
+
+    drush_print(dt("Done."));
+
+    if ($i < $count && $i != 0) {
+      drush_print(dt("But wait, there's more.  Continuing..."));
+      sleep(0.5);
+      drush_invoke('ds-merge-emails', array('status' => 'lo'));
     }
     else {
       drush_print(dt("Okay, really done."));
