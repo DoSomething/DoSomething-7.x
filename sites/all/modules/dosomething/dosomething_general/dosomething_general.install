@@ -43,3 +43,12 @@ function dosomething_general_update_7100() {
 function dosomething_general_update_7101() {
   db_drop_table('flag_content');
 }
+
+/**
+ * Removes browscap & browscap_statistics tables
+ */
+function dosomething_general_update_7102() {
+  db_drop_table('browscap');
+  db_drop_table('browscap_statistics');
+}
+
