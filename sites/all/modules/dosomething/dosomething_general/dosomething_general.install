@@ -45,10 +45,36 @@ function dosomething_general_update_7101() {
 }
 
 /**
- * Removes browscap & browscap_statistics tables
+ * Removes a number of unused, deprecated & abandoned tables
  */
 function dosomething_general_update_7102() {
-  db_drop_table('browscap');
-  db_drop_table('browscap_statistics');
+
+  $schemas = array(
+    'browscap', 'browscap_statistics',  #browscap module not uninstalled properly
+    'delete_me', #the name says it best
+    'dosome_migrating_og_membership_change','dosome_migrating_user_changed',  #from migration
+    'dosomething_metatags',  #not unsinatlled properly
+    'ds_opp', #3 rows with George's, Miles' and Lauren Holman's contact info??
+    'ds_school_import', #from initial schools import
+    'feedback', #not uninstalled properly
+    'feeds_term_item','feeds_source', 'feeds_node_item', 'feeds_importer', #not uninstalled properly
+    'files', #d6 table,
+    'generic_lookup', #from migration,
+    'hosting_stats_log', #not uninstalled propery
+    'job_schedule', #job scheduler not uninstalled properly (feeds modules)
+    'metatag', 'metatag_config', #module was not uninstalled properly
+    'migrate_message_pfpshelter', 'migrate_map_pfpshelter', #from migration
+    'node_import_status', 'node_import_tasks',  #d6 module
+    'node_state',  #d5 table
+    'nodewords_custom', 'nodewords', #module was not uninstalled properly
+    'spamicide',  #module was not uninstalled properly
+    'states_custom',  #D5 states module
+    'users_uid_lookup', #remnant of migration
+    'votingapi_cache', 'votingapi_vote' #module was not uninstalled properly
+  );
+
+  foreach ($schemas as $schema) {
+    db_drop_table($schema);
+  }
 }
 
