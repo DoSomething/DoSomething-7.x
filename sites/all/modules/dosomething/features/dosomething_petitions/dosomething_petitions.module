@@ -8,8 +8,6 @@ include_once 'dosomething_petitions.features.inc';
 
 define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
-//@todo: remove mcommons once subscribe_cleanup
-define('PETITIONS_MCOMMONS', 117371);
 
 /**
  *  Implements hook_page_alter()
@@ -334,13 +332,6 @@ function dosomething_petitions_opt_in($form, $form_state) {
     if (!trim($author)) {
       $author = $a->name;
     }
-
-    // Add signup to MailChimp
-    dosomething_general_webform_email_and_mobile_subscribe($form, $form_state);
-    
-  }
-  else if (dosomething_general_valid_cell($val)) {
-    dosomething_general_mobile_commons_subscribe($val, PETITIONS_MCOMMONS);
   }
 }
 

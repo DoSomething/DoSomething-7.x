@@ -98,6 +98,17 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     $cell = $submitted['your_cell_phone_number'];
   }
 
+  // If field_webform_email_or_cell field is used, check which one it is.
+  if (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
+    $email_or_cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
+    if (valid_email_address($email_or_cell)) {
+      $email = $email_or_cell;
+    }
+    elseif (dosomething_general_valid_cell($email_or_cell)) {
+      $cell = $email_or_cell;
+    }
+  } 
+
   // --------- MailChimp ---------
 
   // Check if webform node should be subscribing to a Mailchimp Group ID.
