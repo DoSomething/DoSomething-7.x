@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html > body {
   font-size: 16px; }
 
@@ -1062,6 +1063,8 @@ div[aria-labelledby="ui-dialog-title-1"] {
     margin: 0; }
     #cmp .socialWrapper .socialButton:last-child {
       display: none; }
+  #cmp .section#flip-image {
+    padding: 2% 0 0; }
   #cmp #flip-winners h2 {
     clear: both;
     color: #ffb915;
@@ -1075,6 +1078,9 @@ div[aria-labelledby="ui-dialog-title-1"] {
     float: left;
     width: 48%;
     margin: 0 2% 2% 0; }
+  #cmp #flip-winners .content-img {
+    float: none;
+    width: 100%; }
   #cmp #flip-winners .para {
     float: right;
     width: 48%;
