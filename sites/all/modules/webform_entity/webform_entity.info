@@ -1,0 +1,9 @@
+name = Webform Submission Entity
+description = Provides a base fieldable entity that webforms can add fields to.
+package = Webform
+core = 7.x
+dependencies[] = webform
+dependencies[] = entity
+
+files[] = webform_entity.module
+files[] = webform_entity.migrate.inc
