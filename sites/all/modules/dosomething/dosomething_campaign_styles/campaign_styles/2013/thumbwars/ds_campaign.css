@@ -656,6 +656,8 @@ body {
     #cmp #header .ctia_bottom, #cmp #header .ctia_top {
       font-weight: 400;
       text-transform: none; }
+  #cmp .view-campaign-gallery #slideshow {
+    margin: 0 auto; }
   #cmp #scholarship {
     color: white;
     background: #ffd900; }
