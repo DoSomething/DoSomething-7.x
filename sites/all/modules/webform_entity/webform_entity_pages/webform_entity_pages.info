@@ -1,0 +1,5 @@
+name = Webform Submission Entity Pages
+description = Provides a page callback with path auto and page manager support for Webform Submission entities.
+package = Webform
+core = 7.x
+dependencies[] = webform_entity
