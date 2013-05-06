@@ -63,6 +63,7 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     return;
   }
 
+  global $user;
   $mailchimp = $mobilecommons = FALSE;
   $email = $cell = '';
   $merge_vars = array();
@@ -83,6 +84,10 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
   elseif (!empty($submitted['e_mail'])) {
     $email = $submitted['e_mail'];
   }
+  // If no email submitted form value, and user is logged in, use user email.
+  elseif (empty($email) && $user->uid >0) {
+    $email = $user->mail;
+  }
 
   // Check various form_keys for cell value:
   if (isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'])) {
@@ -96,6 +101,13 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
   }
   elseif (isset($submitted['your_cell_phone_number'])) {
     $cell = $submitted['your_cell_phone_number'];
+  }
+  // If no cell submitted form value, and user is logged in, use profile value if we have it.
+  elseif (empty($email) && $user->uid >0) {
+    $user2 = array();
+    $user2 = profile2_load_by_user($user, 'main');  
+    $cell = field_get_items('profile2', $user2, 'field_user_mobile');
+    $cell = $cell[0]['value'];
   }
 
   // If field_webform_email_or_cell field is used, check which one it is.

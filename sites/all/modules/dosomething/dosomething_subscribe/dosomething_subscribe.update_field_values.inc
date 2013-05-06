@@ -14,7 +14,7 @@ function dosomething_subscribe_update_field_values() {
 
   // Grant Application (see dosomething_petitions_ideas)
   $mobilecommons = 150463;
-  $mailchimp = 'Grants2013';
+  $mailchimp = 'Grants2012';
   $nids = dosomething_subscribe_get_nids('grant_application');
   foreach ($nids as $nid) {
     dosomething_subscribe_update_node_fields($nid, $mailchimp, $mobilecommons);
