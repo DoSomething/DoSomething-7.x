@@ -2,7 +2,7 @@
 
 /**
  * Parses user message and sends back a response if match is found. If no match
- * is found, should just remain silent unless a $no_match_response is specified.
+ * is found, should just remain silent unless $no_match_responses are specified.
  */
 class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
@@ -30,7 +30,10 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   public $response_sets = array();
 
   // Response to send to the user if no match is found
-  public $no_match_response = '';
+  public $no_match_responses = array();
+
+  // Responses to send if MMS was received from the user
+  public $mms_match_responses = array();
 
   // Maximum allowed string edit distance to trigger a successful match
   public $match_threshold = 1;
@@ -38,6 +41,15 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   public function run($workflow) {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
+
+    // Check for MMS before attempting to do any message processing
+    if (!empty($_REQUEST['mms_image_url']) && count($this->mms_match_responses) > 0) {
+      $response = self::selectResponse($this->mms_match_responses);
+      $state->setContext('sms_response', $response);
+      $state->markCompleted();
+      return;
+    }
+
     $userMessage = $_REQUEST['args'];
 
     $userMessage = self::sanitizeMessage($userMessage);
@@ -166,8 +178,9 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
       $state->setContext('sms_response', $response);
     }
-    elseif (!empty($this->no_match_response)) {
-      $state->setContext('sms_response', $this->no_match_response);
+    elseif (count($this->no_match_responses) > 0) {
+      $response = self::selectResponse($this->no_match_responses);
+      $state->setContext('sms_response', $response);
     }
     else {
       $state->setContext('ignore_no_response_error', TRUE);
@@ -202,12 +215,12 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   // Function to convert select words from their abbreviated form
   function sanitizeMessage($message) {
     // Single quote to be removed instead of replacing with whitespace to conserve integrity of word
-    $userMessage = preg_replace('/\'/', '', $userMessage);
+    $message = preg_replace('/\'/', '', $message);
     // Remove all non alphanumeric characters from the user message
-    $userMessage = preg_replace('/[^A-Za-z0-9 ]/', ' ', $userMessage);
+    $message = preg_replace('/[^A-Za-z0-9 ]/', ' ', $message);
     // Matches multi-character whitespace with a single space
-    $userMessage = preg_replace('/\s+/', ' ', $userMessage);
-    $userMessage = check_plain($userMessage);
+    $message = preg_replace('/\s+/', ' ', $message);
+    $message = check_plain($message);
 
     $abbreviations = array(
       'u' => 'you',

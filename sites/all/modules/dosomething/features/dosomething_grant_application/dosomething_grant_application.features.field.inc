@@ -83,7 +83,147 @@ function dosomething_grant_application_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => -4,
+        'weight' => '-4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_mailchimp_group_id'.
+  $fields['node-grant_application-field_mailchimp_group_id'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mailchimp_group_id',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mailchimp_group_id',
+      'label' => 'Mailchimp Interest Group',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '32',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-grant_application-field_mc_optin'.
+  $fields['node-grant_application-field_mc_optin'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mc_optin',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'grant_application',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 2,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mc_optin',
+      'label' => 'Mobile Commons Opt-In Path',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '34',
       ),
     ),
   );
@@ -612,7 +752,7 @@ function dosomething_grant_application_field_default_fields() {
       'settings' => array(
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
-          'author_only' => 1,
+          'author_only' => 0,
           'behaviors' => array(
             'views-select-list' => array(
               'status' => 0,
@@ -751,6 +891,9 @@ function dosomething_grant_application_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_project_website',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
@@ -765,6 +908,7 @@ function dosomething_grant_application_field_default_fields() {
           'url_cutoff' => 80,
         ),
         'enable_tokens' => 1,
+        'profile2_private' => FALSE,
         'title' => 'optional',
         'title_value' => '',
         'url' => 0,
@@ -776,7 +920,7 @@ function dosomething_grant_application_field_default_fields() {
       'bundle' => 'grant_application',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Give us the full URL to your website, including the "http://" part (e.g. http://www.example.com).',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -804,10 +948,6 @@ function dosomething_grant_application_field_default_fields() {
         'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
-        'webform_entity' => array(
-          'pid' => '0',
-          'weight' => '',
-        ),
       ),
       'widget' => array(
         'active' => 0,
@@ -919,7 +1059,7 @@ function dosomething_grant_application_field_default_fields() {
           ),
           'sort' => array(
             'direction' => 'ASC',
-            'field' => '',
+            'field' => 'none',
             'property' => 'sid',
             'type' => 'none',
           ),
@@ -980,7 +1120,10 @@ function dosomething_grant_application_field_default_fields() {
   t('Body');
   t('Email');
   t('Geocode Data');
+  t('Give us the full URL to your website, including the "http://" part (e.g. http://www.example.com).');
   t('If your project is ongoing, feel free to leave the end date blank');
+  t('Mailchimp Interest Group');
+  t('Mobile Commons Opt-In Path');
   t('Mobile Phone Number');
   t('Name');
   t('Personal project website URL');

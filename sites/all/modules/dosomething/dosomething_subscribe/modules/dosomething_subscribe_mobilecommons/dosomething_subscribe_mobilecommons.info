@@ -1,0 +1,4 @@
+name = DoSomething - Subscribe Mobile Commons
+description = Provides Mobile Commons subscription integration for DoSomething.org
+core = 7.x
+package = "DoSomething"

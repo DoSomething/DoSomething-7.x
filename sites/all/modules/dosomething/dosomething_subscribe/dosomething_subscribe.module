@@ -1,0 +1,123 @@
+<?php
+
+/**
+ * @file
+ * Handles subscription API calls based on webform submissions (or other form submissions)
+ **/
+
+include_once 'dosomething_subscribe.update_field_values.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_subscribe_menu() {
+  $items = array();
+  $items['admin/reports/dosomething_subscribe'] = array(
+    'title' => 'Webform Subscription Report',
+    'description' => 'A listing of webform status relative to external services.',
+    //@todo: create specific permission for this report?
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'dosomething_subscribe_page_status_report',
+    'file' => 'dosomething_subscribe.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );  
+  return $items;
+}
+
+/**
+ * Implements hook_theme() - defines the templates for the module
+ *
+ * @param $existing
+ * array $existing: An array of existing implementations that may be used for override purposes. This is primarily
+ * useful for themes that may wish to examine existing implementations to extract data (such as arguments) so that
+ * it may properly register its own, higher priority implementations.
+ *
+ * @param $type
+ * $type: Whether a theme, module, etc. is being processed. This is primarily useful so that themes tell if they are
+ * the actual theme being called or a parent theme. May be one of:
+ *
+ * 'module': A module is being checked for theme implementations.
+ * 'base_theme_engine': A theme engine is being checked for a theme that is a parent of the actual theme being used.
+ * 'theme_engine': A theme engine is being checked for the actual theme being used.
+ * 'base_theme': A base theme is being checked for theme implementations.
+ * 'theme': The actual theme in use is being checked.
+ *
+ * @param $type
+ * $theme: The actual name of theme, module, etc. that is being being processed.
+ * 
+ * @param $path
+ * $path: The directory path of the theme or module, so that it doesn't need to be looked up.
+ * 
+ * @return NONE
+ */
+function dosomething_subscribe_theme($existing, $type, $theme, $path) {
+  return array(
+
+    'dosomething_subscribe_forms_report' => array(
+      'variables' => array(
+                      'forms_listing' => NULL,
+                    ),
+      'template' => 'templates/dosomething-subscribe-forms-report',
+    ),
+    
+  ); 
+}
+
+/**
+ * Actions to take when a Webform submission is made.
+ *
+ * @param array $node
+ *   Standard node array created in the webform submission.
+ * @param array $submission
+ *   Array with submitted webform component values.
+ */
+/*
+function dosomething_subscribe_webform_submission_insert($node, $submission) {
+
+  //drupal_set_message(print_r($submission, TRUE));
+
+  // This is gonna be nice.
+  $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
+  $mobilecommons = $node->field_mc_optin[LANGUAGE_NONE][0]['value'];
+  if ($mailchimp) {
+	dosomething_subscribe_mailchimp_signup($submission->email, $mailchimp);
+  }
+  if ($mobilecommons) {
+	dosomething_subscribe_mobilecommons_signup($submission->email, $mobilecommons);
+  }
+}
+*/
+
+/**
+ *  Implements hook_module_implements_alter().
+ *  Reorder the module load order to gain access to the fields added to the webform by webform entity.
+ */
+ // Don't know if we need this or not.
+/*
+function dosomething_subscribe_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['dosomething_subscribe'];
+    unset($implementations['dosomething_subscribe']);
+    $implementations['dosomething_subscribe'] = $group;
+  }
+}
+*/
+
+/**
+ * Implements hook_form_alter().
+ */
+/*
+function dosomething_subscribe_form_alter(&$form, &$form_state, $form_id) {
+
+//  dsm($form);
+//  dsm($form_state);
+ dsm($form_state);
+ if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
+    return;
+  }
+  $node = $form['#node'];
+  $submitted = $form_state['webform_entity']['submission']->submitted;
+  dsm($submitted);
+  drupal_set_message('test');
+}
+*/

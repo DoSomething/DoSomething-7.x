@@ -119,6 +119,7 @@ function dosomething_grant_application_module_implements_alter(&$implementations
  *   Standard node array created in the webform submission.
  * @param array $submission
  */
+//@todo: remove this when dosomething_subscribe_webform_submission_insert() is working.
 function dosomething_grant_application_webform_submission_insert($node, $submission) {
   
   if ($node->type == 'grant_application') {

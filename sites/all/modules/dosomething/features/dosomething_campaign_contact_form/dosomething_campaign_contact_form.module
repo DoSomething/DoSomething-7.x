@@ -36,6 +36,8 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
     );
 
     $form['actions']['submit']['#value'] = 'SIGN UP';
+
+    //@todo: comment this out once dosomething_subscribe_webform_submission_insert() is working.
     $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
     
     // Replace labels with HTML5 Placeholder text.

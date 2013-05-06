@@ -8,6 +8,7 @@ include_once 'dosomething_petitions.features.inc';
 
 define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
+//@todo: remove mcommons once subscribe_cleanup
 define('PETITIONS_MCOMMONS', 117371);
 
 /**
@@ -784,4 +785,15 @@ function dosomething_petitions_contact_picker_emails() {
   );
 
   return $emails;
+}
+
+/**
+ * Increment the number of signatures for a petition
+ *
+ * @param $nid
+ *    Node ID for the petition
+ */
+function dosomething_petitions_increment_signature_count($nid) {
+  $count = variable_get('petitions_signed_count_' . $nid, 0);
+  variable_set('petitions_signed_count_' . $nid, ++$count);
 }

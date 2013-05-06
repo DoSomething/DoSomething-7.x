@@ -63,6 +63,12 @@ function ds_flatiron_preprocess_node(&$vars) {
 
 function ds_flatiron_preprocess_page(&$vars) {
   
+  $cur_path = current_path();
+  if (($cur_path == 'user/registration/campaign') || ($cur_path == 'about/team/jobs')) {
+	$optimizely_script = '//cdn.optimizely.com/js/220680109.js';
+	drupal_add_js($optimizely_script, 'external');
+  }
+  
   if ($vars['node']->type == 'campaign') {
   	$vars['page']['footer']['#access'] = FALSE;
     // @TODO - THIS SHOULD BE REVISITED
