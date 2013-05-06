@@ -8,6 +8,13 @@
   </div>
 </div> <!-- #header -->
 
+<div class="picsforpets-submit-area">
+  <?php if ($settings['user']['post_count'] < 1): ?>
+  	Help us save an animal's life: <a href="/picsforpets/submit">Submit your picture</a>
+  <?php else: ?>
+  	<a href="/picsforpets">Back to Gallery</a> <a href="/picsforpets/submit">Submit Another Pic</a>
+  <?php endif; ?>
+</div>
 
 <div class="crazy-menu-wrapper">
 	<?php echo drupal_render($top_menu); ?>

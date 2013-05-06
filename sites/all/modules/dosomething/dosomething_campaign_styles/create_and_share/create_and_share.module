@@ -890,10 +890,21 @@ function create_and_share_views_query_alter(&$view, &$query) {
  *  Implements hook_module_implements_alter()
  */
 function create_and_share_module_implements_alter(&$implementations, $hook) {
-  if ($hook == 'form_alter' && isset($implementations['create_and_share'])) {
+  if (($hook == 'form_alter' || $hook == 'module_implements_alter') && isset($implementations['create_and_share'])) {
     $group = $implementations['create_and_share'];
     unset($implementations['create_and_share']);
     $implementations['create_and_share'] = $group;
+  }
+  else {
+    if ($campaign = create_and_share_is_campaign_page()) {
+      // Mad idea: Remove all non-essential hooks for this campaign.
+      // This speeds the page up like a mofo'
+      foreach ($implementations AS $key => $g) {
+        if (strpos($key, 'dosomething') !== FALSE) {
+          unset($implementations[$key]);
+        }
+      }
+    }
   }
 }
 
