@@ -125,7 +125,7 @@ function dosomething_general_module_implements_alter(&$implementations, $hook) {
   }
 
   if ($hook == 'cron') {
-    // Field cron is what is killing our submissions. 
+    // Field cron is what is killing our submissions.
     // Lets remove for now
     unset($implementations['field']);
   }
@@ -1055,7 +1055,7 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
  * combined with the $node values for inserting values into Mailchimp
  * and/or Mobile Commons
  */
-//@todo: this will be moved over to dosomething_subscribe.module 
+//@todo: this will be moved over to dosomething_subscribe.module
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
   // If we don't have a node or a webform submission there's really nothing we
   // can do. This handler was probably put on the wrong form.
@@ -1111,7 +1111,7 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
     // If we have a mailchimp group, subscribe the email to it.
     if (isset($mc_group)) {
       dosomething_general_mailchimp_subscribe($email, $mc_group, $mc_merge_vars);
-    }    
+    }
   }
   // Will use previous cell value if already set from Petition submission
   $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
@@ -1221,10 +1221,10 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
  *   An integer representing the celebrity who will "send" the call.
  *
  * @param string $type
- *   Default "calls".  The type of request. 
- * 
+ *   Default "calls".  The type of request.
+ *
  * @todo Make $type worthwhile.
- *  
+ *
  */
 function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
   $path = libraries_get_path('telapi');
@@ -1952,3 +1952,51 @@ function dosomething_general_get_multi_fbids($users) {
   // Return the keys
   return array_keys($uids);
 }
+
+/**
+ * Implements hook_file_presave().
+ */
+function dosomething_general_file_presave($file) {
+  // Resize image file if it is larger than 800 wide or tall
+  _dosomething_general_imagefile_scale($file, 800);
+}
+
+/**
+ *  Takes a file object and scales it down if it is of
+ *  type image. The filesize on the file object is then updated.
+ *
+ *  @param object $file
+ *    A file object.
+ *
+ *  @param int $scale
+ *    The max width or height to scale the image to.
+ *
+ *  @return bool
+ */
+function _dosomething_general_imagefile_scale($file, $scale = 800) {
+  // Make sure the file is an image
+  if (preg_match('/^image\//', $file->filemime) !== 1) return FALSE;
+
+  // Load the image object
+  if (!$img = image_load($file->uri)) return FALSE;
+
+  $dim = array(
+    'width' => $img->info['width'],
+    'height' => $img->info['height']
+  );
+
+  // Check if this image can be scaled down
+  if (!image_dimensions_scale($dim, $scale, $scale, FALSE) ) return FALSE;
+
+  // Lets resize the image.
+  if (!image_resize($img, $dim['width'], $dim['height'])) return FALSE;
+
+  // Save the image file object
+  if (!image_save($img)) return FALSE;
+
+  // Update the file object with the new file size
+  $file->filesize = $img->info['file_size'];
+
+  return TRUE;
+}
+

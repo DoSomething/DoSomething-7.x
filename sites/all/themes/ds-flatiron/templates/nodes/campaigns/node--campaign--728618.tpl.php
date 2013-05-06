@@ -80,11 +80,11 @@
           <?php endif; ?>
 
           <div class="official-rules-wrapper">
-            <a class="official-rules-link" href="<?php print($files_source . 'official-contest-rules.pdf'); ?>"  target="_blank">official contest rules</a>
+            <a class="official-rules-link" href="<?php print($files_source . 'new-contest-rules.pdf'); ?>"  target="_blank">official contest rules</a>
           </div> <!-- .official-rules-wrapper -->
 
           <div class="official-rules-wrapper">
-            <a class="official-rules-link" href="<?php print($files_source . 'official-sweepstakes-rules.pdf'); ?>"  target="_blank">official sweepstakes rules</a>
+            <a class="official-rules-link" href="<?php print($files_source . 'new-sweepstakes-rules.pdf'); ?>"  target="_blank">official sweepstakes rules</a>
           </div> <!-- .official-rules-wrapper -->
 
         </div> <!-- .section-container -->
