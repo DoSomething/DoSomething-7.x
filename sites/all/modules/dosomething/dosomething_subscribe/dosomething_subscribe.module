@@ -67,6 +67,34 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
   $email = $cell = '';
   $merge_vars = array();
 
+  // Check various form_keys for email value to use.
+  if (!empty($submitted['email'])) {
+    $email = $submitted['email'];
+  }
+  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+  }
+  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
+    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+  }
+  elseif (!empty($submitted['your_email'])) {
+    $email = $submitted['your_email'];
+  }
+  elseif (!empty($submitted['e_mail'])) {
+    $email = $submitted['e_mail'];
+  }
+
+  // Check various form_keys for cell value:
+  if (isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'])) {
+    $cell = $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+  }
+  elseif (isset($submitted['cell_number'])) {
+    $cell = $submitted['cell_number'];
+  }
+  elseif (isset($submitted['cell'])) {
+    $cell = $submitted['cell'];
+  }
+
   // --------- MailChimp ---------
 
   // Check if webform node should be subscribing to a Mailchimp Group ID.
@@ -91,29 +119,7 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     }
   }
 
-  // Check various form_keys for email value to use.
-  if (!empty($submitted['email'])) {
-    $email = $submitted['email'];
-  }
-  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  }
-  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
-  }
-  elseif (!empty($submitted['your_email'])) {
-    $email = $submitted['your_email'];
-  }
-
-  // Check various form_keys for cell value:
-  if (isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'])) {
-    $cell = $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-  }
-  elseif (isset($submitted['cell_number'])) {
-    $cell = $submitted['cell_number'];
-  }
-
-  // Find merge_vars:
+  // Find merge_vars from form values:
   if (!empty($cell)) {
     $merge_vars['MMERGE7'] = $cell;
   }

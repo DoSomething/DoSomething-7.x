@@ -974,30 +974,6 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'help_form_captcha';
   }
-  //@todo: subscribe_cleanup
-  if ($form_id == 'webform_client_form_' . variable_get('volunteer_webform', 728802)) {
-    $form['#submit'][] = 'dosomething_general_volunteer_webform_submit';
-  }
-}
-
-/**
- *  Connections volunteer webform to Mobile Commons and MailChimp
- */
-//@todo: remove this - subscribe_cleanup
-function dosomething_general_volunteer_webform_submit($form, &$form_state) {
-  $values = $form_state['input']['submitted'];
-
-  // Gets Mobile Commons bucket and sets up cell field to sign up the mobile number.
-  $mobile_commons_bucket = variable_get('volunteer_mobile_commons_bucket', 150443);
-  if (!empty($mobile_commons_bucket) && !empty($values['cell'])) {
-    dosomething_general_mobile_commons_subscribe($values['cell'], $mobile_commons_bucket);
-  }
-
-  // Connects email to MailChimp
-  $mailchimp_bucket = 'Volunteers2013';
-  if (!empty($mailchimp_bucket) && !empty($values['e_mail'])) {
-    dosomething_general_mailchimp_subscribe($values['e_mail'], $mailchimp_bucket);
-  }
 }
 
 /**
