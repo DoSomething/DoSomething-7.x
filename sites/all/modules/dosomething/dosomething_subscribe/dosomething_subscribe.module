@@ -94,6 +94,9 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
   elseif (isset($submitted['cell'])) {
     $cell = $submitted['cell'];
   }
+  elseif (isset($submitted['your_cell_phone_number'])) {
+    $cell = $submitted['your_cell_phone_number'];
+  }
 
   // --------- MailChimp ---------
 
