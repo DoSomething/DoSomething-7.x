@@ -180,7 +180,15 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     }
     elseif (count($this->no_match_responses) > 0) {
       $response = self::selectResponse($this->no_match_responses);
-      $state->setContext('sms_response', $response);
+      if (is_numeric($this->no_match_responses[0])) {
+        // If it's an array of numbers, then push user to the selected opt-in path id
+        sms_mobile_commons_opt_in($mobile, $response);
+        $state->setContext('ignore_no_response_error', TRUE);
+      }
+      else {
+        // Otherwise, expect it's an array of strings, then respond with a selected string
+        $state->setContext('sms_response', $response);
+      }
     }
     else {
       $state->setContext('ignore_no_response_error', TRUE);

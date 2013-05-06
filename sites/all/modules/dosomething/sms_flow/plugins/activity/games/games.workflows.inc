@@ -18,13 +18,7 @@ $activity = $workflow->newActivity('out_of_flow_responder');
 $activity->name = 'out_of_flow_responder';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
-$activity->no_match_responses = array(
-  "Aw, look at you trying to talk back. That's so cute. Goo-goo ga-ga.",
-  "BbbbEEEEELLchh......hiccup.. hehehe. You were saying something?",
-  "Shhhhhhh. No talking! Baby is sleeping.",
-  "Shh don't get between a baby and it's food. I'm eating.",
-  "I'm just a baby, I can't understand what you're saying.",
-);
+$activity->no_match_responses = array(155123, 155133, 155143, 155153);
 $activity->mms_match_responses = array(
   "Now that's a good looking picture",
 );
