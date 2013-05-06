@@ -1011,7 +1011,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
     #cmp .panel-top-right-social .service-links-print, #cmp .panel-top-right-social .twitter-share-button {
       display: none; }
   #cmp .section#header {
-    background: url("http://files.dosomething.org/files/campaigns/green/header-bg.jpg") top center no-repeat;
+    background: url("http://www.dosomething.org/files/campaigns/green/sucker-flip-header-2.jpg") top center no-repeat;
     margin-bottom: 2%; }
   #cmp #header {
     max-width: 800px;
@@ -1056,7 +1056,7 @@ div[aria-labelledby="ui-dialog-title-1"] {
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
-      margin: 1.5% 1.5% 17%;
+      margin: 1.5% 1.5% 20%;
       float: left;
       font-size: 1.2em;
       padding: 1% 1.5%; }
