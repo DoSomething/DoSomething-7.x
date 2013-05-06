@@ -78,7 +78,7 @@ function create_and_share_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -151,7 +151,7 @@ function create_and_share_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -224,7 +224,80 @@ function create_and_share_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '5',
+        'weight' => '6',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-create_and_share_campaign-field_cas_gated'.
+  $fields['node-create_and_share_campaign-field_cas_gated'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_gated',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Is this campaign gated? If checked, logged out users will be required to login / register before they may visit the campaign.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 22,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_cas_gated',
+      'label' => 'Gated',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '3',
       ),
     ),
   );
@@ -376,11 +449,13 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'available_options_php' => '',
           'markup_available_options_php' => '&lt;none&gt;',
           'other' => 'Other',
+          'other_size' => 60,
+          'other_title' => '',
           'other_unknown_defaults' => 'append',
           'sort_options' => 0,
         ),
         'type' => 'select_or_other',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -529,7 +604,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -1421,7 +1496,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '19',
+        'weight' => '18',
       ),
     ),
   );
@@ -2063,10 +2138,12 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('An integer denoting how much an action (like thumbs up / down) is worth, in "weight".');
   t('Can users "vote", regardless of their logged in status?');
   t('Flagged');
+  t('Gated');
   t('Image');
   t('Image Field');
   t('Image Font');
   t('Image Style');
+  t('Is this campaign gated? If checked, logged out users will be required to login / register before they may visit the campaign.');
   t('Notification Pages');
   t('Ranking Action "Point"');
   t('The "Thumbs Down" text.');

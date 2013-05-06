@@ -23,6 +23,7 @@ features[features_api][] = api:1
 features[field][] = node-create_and_share_campaign-field_cas_allow_anonymous_voting
 features[field][] = node-create_and_share_campaign-field_cas_allow_lazy_loading
 features[field][] = node-create_and_share_campaign-field_cas_allow_notifications
+features[field][] = node-create_and_share_campaign-field_cas_gated
 features[field][] = node-create_and_share_campaign-field_cas_image_field
 features[field][] = node-create_and_share_campaign-field_cas_image_font
 features[field][] = node-create_and_share_campaign-field_cas_image_style

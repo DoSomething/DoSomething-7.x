@@ -7,22 +7,7 @@
 $settings = array(
   // The node ID of the picsforpets campaign.  This ensures that all campaign pages
   // gather the same settings.
-  'campaign_nid' => '729048',
-
-  // Global vars for templates:
-  'template_vars' => array(
-    'template_a' => array(
-      'tip' => 'quetty',
-    ),
-  ),
-
-  'autocomplete' => array(
-    'options' => array(
-      0 => "Mike's",
-      1 => "Tom's",
-      2 => "Jim's",
-    ),
-  ),
+  'campaign_nid' => '729195',
 
   // Facebook language
   'facebook' => array(
@@ -81,63 +66,21 @@ $settings = array(
 
   // Top menu links.
   'top_links' => array(
-    'picsforpets(/(time-.*?|[0-9]+))?$' => array(
-      'title' => 'Gallery',
+    'picsforpets$' => array(
+      'title' => 'All',
       'href' => 'picsforpets',
     ),
-    'picsforpets/friends' => array(
-      'title' => 'Friends',
-      'href' => 'picsforpets/friends',
-      'attributes' => array(
-        'onclick' => "return fb_auth('login', " . $fbed . ")",
-      ),
+    'picsforpets/cats' => array(
+      'title' => 'Cats',
+      'href' => 'picsforpets/cats',
     ),
-    'picsforpets/about' => array(
-      'title' => 'About',
-      'href' => 'picsforpets/about',
-      'parent' => '/about',
+    'picsforpets/dogs' => array(
+      'title' => 'Dogs',
+      'href' => 'picsforpets/dogs',
     ),
-    'picsforpets/submit' => array(
-      'title' => 'Submit',
-      'href' => 'picsforpets/submit/start',
-      'parent' => '/submit',
-      'attributes' => array(
-        'onclick' => "return fb_auth('submit', " . $fbed . ")",
-      ),
-    ),
-  ),
-
-  // Sub menus
-  'sub_menus' => array(
-    // Time based filters sub-menu (landing page)
-    'picsforpets(/(time-.*?|[0-9]+))?$' => array(
-      'today' => array(
-        'title' => 'New',
-        'href' => 'picsforpets/time-today',
-      ),
-      'week' => array(
-        'title' => 'Popular',
-        'href' => 'picsforpets',
-      ),
-      'forever' => array(
-        'title' => 'Best Ever',
-        'href' => 'picsforpets/time-all',
-      ),
-    ),
-    // About pages sub-menu
-    'picsforpets/about' => array(
-      'tips' => array(
-        'title' => 'Tips',
-        'href' => 'picsforpets/about#tips'
-      ),
-      'scholarship' => array(
-        'title' => 'Scholarship',
-        'href' => 'picsforpets/about#scholarship',
-      ),
-      'video' => array(
-        'title' => 'Video',
-        'href' => 'picsforpets/about#video'
-      ),
+    'picsforpets/other' => array(
+      'title' => 'Other',
+      'href' => 'picsforpets/other',
     ),
   ),
 );

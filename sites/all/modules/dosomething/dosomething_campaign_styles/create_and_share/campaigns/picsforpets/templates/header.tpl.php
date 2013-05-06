@@ -8,10 +8,74 @@
   </div>
 </div> <!-- #header -->
 
-<div class="crazy-menu-wrapper"><?php echo drupal_render($top_menu); ?></div>
-<div class="crazy-sub-menu-wrapper"><?php echo drupal_render($sub_menu); ?></div>
 
-<div class="crazy-sub-menu-header scroll-header-style">
-	<h1>People do crazy things to save money</h1>
-	<h2>Tell us if you believe their stories</h2>
+<div class="crazy-menu-wrapper">
+	<?php echo drupal_render($top_menu); ?>
+	<select name="state-filter">
+	<?php
+		$states = array(
+		    'AL' => 'AL',
+		    'AK' => 'AK',
+		    'AS' => 'AS',
+		    'AZ' => 'AZ',
+		    'AR' => 'AR',
+		    'CA' => 'CA',
+		    'CO' => 'CO',
+		    'CT' => 'CT',
+		    'DE' => 'DE',
+		    'DC' => 'DC',
+		    'FL' => 'FL',
+		    'GA' => 'GA',
+		    'GU' => 'GU',
+		    'HI' => 'HI',
+		    'ID' => 'ID',
+		    'IL' => 'IL',
+		    'IN' => 'IN',
+		    'IA' => 'IA',
+		    'KS' => 'KS',
+		    'KY' => 'KY',
+		    'LA' => 'LA',
+		    'ME' => 'ME',
+		    'MH' => 'MH',
+		    'MD' => 'MD',
+		    'MA' => 'MA',
+		    'MI' => 'MI',
+		    'MN' => 'MN',
+		    'MS' => 'MS',
+		    'MO' => 'MO',
+		    'MT' => 'MT',
+		    'NE' => 'NE',
+		    'NV' => 'NV',
+		    'NH' => 'NH',
+		    'NJ' => 'NJ',
+		    'NM' => 'NM',
+		    'NY' => 'NY',
+		    'NC' => 'NC',
+		    'ND' => 'ND',
+		    'MP' => 'MP',
+		    'OH' => 'OH',
+		    'OK' => 'OK',
+		    'OR' => 'OR',
+		    'PW' => 'PW',
+		    'PA' => 'PA',
+		    'PR' => 'PR',
+		    'RI' => 'RI',
+		    'SC' => 'SC',
+		    'SD' => 'SD',
+		    'TN' => 'TN',
+		    'TX' => 'TX',
+		    'UT' => 'UT',
+		    'VT' => 'VT',
+		    'VI' => 'VI',
+		    'VA' => 'VA',
+		    'WA' => 'WA',
+		    'WV' => 'WV',
+		    'WI' => 'WI',
+		    'WY' => 'WY',
+		);
+		foreach ($states as $key => $state) {
+		  echo '<option value="' . $key . '">' . $state . '</option>';
+		}
+	?>
+	</select>
 </div>

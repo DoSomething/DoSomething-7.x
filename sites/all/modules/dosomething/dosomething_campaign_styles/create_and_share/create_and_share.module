@@ -213,6 +213,7 @@ function create_and_share_page_templates_alter(&$variables) {
     $settings = create_and_share_get_settings($campaign);
     $v = &$variables['page']['top_navbar'];
 
+    $links = array();
     $ru = request_path();
     foreach ($settings['top_links'] AS $match => $info) {
       $href = $info['href'];
@@ -231,7 +232,6 @@ function create_and_share_page_templates_alter(&$variables) {
 
     $sub = array();
     $u = $ru;
-
     foreach ($settings['sub_menus'] AS $match => $s) {
       if (preg_match('#' . $match . '#i', $u)) {
         foreach ($settings['sub_menus'][$match] AS $key => $type) {
@@ -283,8 +283,8 @@ function create_and_share_page_templates_alter(&$variables) {
       'sub_menu' => $crazy_sub_menu,
     )) . $v;
 
+    // Let's use the create and share campaign template.
     array_push($variables['theme_hook_suggestions'], 'node__create_and_share_campaign');
-
   }
 }
 
@@ -666,6 +666,12 @@ function create_and_share_get_settings($campaign, $category = 'all') {
       $filter = array();
       include_once create_and_share_get_campaign_path($campaign) . '/filters.inc';
       $settings['filters'] = $filter;
+
+      global $user;
+      module_load_include('inc', 'webform', 'includes/webform.submissions');
+      // Get information from the current user.
+      $settings['user'] = array();
+      $settings['user']['post_count'] = webform_get_submission_count($settings['campaign_nid'], $user->uid);
 
       $cache[$campaign] = $settings;
       unset($settings);
