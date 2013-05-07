@@ -22,7 +22,955 @@ function dosomething_general_drush_command() {
     'aliases' => array('dsei'),
   );
 
+  $commands['ds-merge-numbers'] = array(
+    'description' => 'Merges mobile numbers into accounts.',
+    'arguments' => array(
+      'status' => 'li (logged in) or lo (logged out)'
+    ),
+  );
+
+  $commands['ds-merge-emails'] = array(
+    'description' => 'Merges emails into accounts.',
+    'arguments' => array(
+      'status' => 'li (logged in) or lo (logged out)'
+    ),
+  );
+
   return $commands;
+}
+
+/**
+ * Connects users to phone #'s
+ *
+ * @param string $status
+ *  li for logged in or lo for logged out
+ */
+function drush_dosomething_general_ds_merge_numbers($status) {
+  static $count;
+
+  // Merge phone numbers that people put into a webform into their account,
+  // assuming it wasn't saved.
+  if ($status == 'li') {
+    /*
+      select
+      distinct u.uid,
+      d.data,
+      m.field_user_mobile_value
+      FROM webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.uid = s.uid)
+      left join profile p on (p.uid = u.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where d.data regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and u.uid is not null
+      and u.uid != 0
+      and m.field_user_mobile_value is null
+      GROUP BY u.uid
+      limit 250
+    */
+
+    drush_print(dt('Getting counts and data.  This may take a while...'));
+
+    $results = db_query("
+      select
+      u.uid,
+      d.data
+      FROM webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.uid = s.uid)
+      left join profile p on (p.uid = u.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where d.data regexp :regex
+      and u.uid is not null
+      and u.uid != 0
+      and m.field_user_mobile_value is null
+      group by u.uid
+      limit 250
+    ", 
+      // Need to pass the regex as a replacement, because db_query strips curly brackets in the query above.
+      array(':regex' => '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$')
+    )->fetchAllKeyed();
+
+    // We need to get the total count so we can continue accordingly...
+    if (empty($count)) {
+      $count = db_query("
+        select
+        distinct u.uid,
+        d.data
+        FROM webform_submitted_data d
+        left join webform_submissions s on (s.sid = d.sid)
+        left join users u on (u.uid = s.uid)
+        left join profile p on (p.uid = u.uid)
+        left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+        where d.data regexp :regex
+        and u.uid is not null
+        and u.uid != 0
+        and m.field_user_mobile_value is null
+        group by u.uid
+      ", 
+        // Need to pass the regex as a replacement, because db_query strips curly brackets in the query above.
+        array(':regex' => '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$')
+      )->rowCount();
+    }
+
+    drush_print(dt('Starting...'));
+
+    // We only need to run this if there are results.
+    $i = 0;
+    if (count($results) <= $count) {
+      foreach ($results AS $uid => $mobile) {
+        // Get profile information...
+        $user = user_load($uid);
+        $profile = profile2_load_by_user($user, 'main');
+
+        // Apparently there are users without profiles.  Who knew?
+        // Let's create a profile for them if they don't have one.
+        if (!$profile) {
+          $profile = profile2_create(array('type' => 'main'));
+          $profile->setUser($user);
+          $profile->is_new = TRUE;
+        }
+
+        // Strip non-numeric characters from the phone number.
+        $mobile = preg_replace('#[^0-9]#', '', $mobile);
+
+        // Sets the mobile number.
+        $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
+
+        // Saves their profile.
+        $profile->save();
+
+        // Plus plus
+        $i++;
+
+        // Hey we saved one!
+        drush_print(dt("Saved UID {$uid} ({$i})"));
+      }
+    }
+
+    drush_print(dt("Done."));
+
+    if ($i < $count && $i != 0) {
+      drush_print(dt("But wait, there's more.  Continuing..."));
+      drush_invoke('ds-merge-numbers', array('status' => 'li'));
+    }
+    else {
+      $extra_queries = array("
+      SELECT
+      c.field_referral_your_cell_value,
+      s.uid
+      FROM
+      field_data_field_referral_your_cell c
+      left join webform_submissions s on (s.sid = c.entity_id)
+      left join profile p on (p.uid = s.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where (s.uid != 0 and s.uid is not null)
+      and c.field_referral_your_cell_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (m.field_user_mobile_value = '' OR m.field_user_mobile_value is null)
+      group by c.field_referral_your_cell_value
+      ",
+      "SELECT
+      c.field_webform_email_or_cell_value,
+      s.uid
+      FROM
+      field_data_field_webform_email_or_cell c
+      left join webform_submissions s on (s.sid = c.entity_id)
+      left join profile p on (p.uid = s.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where (s.uid != 0 and s.uid is not null)
+      and c.field_webform_email_or_cell_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (m.field_user_mobile_value = '' OR m.field_user_mobile_value is null)
+      group by c.field_webform_email_or_cell_value
+      ",
+      "SELECT
+      c.field_webform_mobile_value,
+      s.uid
+      FROM
+      field_data_field_webform_mobile c
+      left join webform_submissions s on (s.sid = c.entity_id)
+      left join profile p on (p.uid = s.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where (s.uid != 0 and s.uid is not null)
+      and c.field_webform_mobile_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (m.field_user_mobile_value = '' OR m.field_user_mobile_value is null)
+      group by c.field_webform_mobile_value
+      ",
+      "SELECT
+      c.field_pfp_phone_number_value,
+      s.uid
+      FROM
+      field_data_field_pfp_phone_number c
+      left join webform_submissions s on (s.sid = c.entity_id)
+      left join profile p on (p.uid = s.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where (s.uid != 0 and s.uid is not null)
+      and c.field_pfp_phone_number_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (m.field_user_mobile_value = '' OR m.field_user_mobile_value is null)
+      group by c.field_pfp_phone_number_value
+      ",
+      "SELECT
+      c.field_phone_number_1_value,
+      s.uid
+      FROM
+      field_data_field_phone_number_1 c
+      left join webform_submissions s on (s.sid = c.entity_id)
+      left join profile p on (p.uid = s.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where (s.uid != 0 and s.uid is not null)
+      and c.field_phone_number_1_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (m.field_user_mobile_value = '' OR m.field_user_mobile_value is null)
+      group by c.field_phone_number_1_value
+      ",
+      "SELECT
+      c.field_phone_number_optional_value,
+      s.uid
+      FROM
+      field_data_field_phone_number_optional c
+      left join webform_submissions s on (s.sid = c.entity_id)
+      left join profile p on (p.uid = s.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where (s.uid != 0 and s.uid is not null)
+      and c.field_phone_number_optional_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (m.field_user_mobile_value = '' OR m.field_user_mobile_value is null)
+      group by c.field_phone_number_optional_value
+      ",
+      "SELECT
+      c.field_phone_required_value,
+      s.uid
+      FROM
+      field_data_field_phone_required c
+      left join webform_submissions s on (s.sid = c.entity_id)
+      left join profile p on (p.uid = s.uid)
+      left join field_data_field_user_mobile m on (m.entity_id = p.pid)
+      where (s.uid != 0 and s.uid is not null)
+      and c.field_phone_required_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (m.field_user_mobile_value = '' OR m.field_user_mobile_value is null)
+      group by c.field_phone_required_value
+      ");
+
+      $t = 0;
+      foreach ($extra_queries AS $q) {
+        $res = db_query($q)->fetchAllKeyed();
+        if (!empty($res)) {
+          $n = 0;
+          foreach ($res AS $mobile => $uid) {
+            if ($uid != 0) {
+              // Get profile information...
+              $user = user_load($uid);
+              $profile = profile2_load_by_user($user, 'main');
+
+              // Apparently there are users without profiles.  Who knew?
+              // Let's create a profile for them if they don't have one.
+              if (!$profile) {
+                $profile = profile2_create(array('type' => 'main'));
+                $profile->setUser($user);
+                $profile->is_new = TRUE;
+              }
+
+              // Strip non-numeric characters from the phone number.
+              $mobile = preg_replace('#[^0-9]#', '', $mobile);
+
+              // Sets the mobile number.
+              $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $mobile;
+
+              // Saves their profile.
+              $profile->save();
+
+              $n++;
+              $t++;
+              drush_print(dt("Connected Mobile # {$mobile} to UID {$uid} ($n)"));
+            }
+          }
+        }
+      }
+
+      if ($t > 0) {
+        drush_print(dt("Finished {$t} additional numbers."));
+      }
+
+      drush_print(dt("Okay, really done."));
+    }
+  }
+  // If a user filled out a form with their contact information while logged out, we
+  // didn't connect that submission with them.  Let's try and find 
+  elseif ($status == 'lo') {
+    drush_print(dt('Wait for it...'));
+    /*
+    select
+    s.sid,
+    s.uid,
+    u.uid,
+    d.data,
+    m.field_user_mobile_value
+    FROM webform_submitted_data d
+    left join webform_submissions s on (s.sid = d.sid)
+    left join field_data_field_user_mobile m on (m.field_user_mobile_value = d.data)
+    left join profile p on (p.pid = m.entity_id)
+    left join users u on (u.uid = p.uid)
+    where d.data regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+    and s.uid = 0
+    and u.uid is not null
+    and u.uid != 0
+    limit 250;
+    */
+
+    drush_print(dt('Getting counts and data.  This may take a while...'));
+
+    $count = cache_get('logged_out_numbers_count')->data;
+    if (empty($count)) {
+      $count = db_query("
+        select
+        s.sid,
+        s.uid,
+        u.uid,
+        d.data,
+        m.field_user_mobile_value
+        FROM webform_submitted_data d
+        left join webform_submissions s on (s.sid = d.sid)
+        left join field_data_field_user_mobile m on (m.field_user_mobile_value = d.data)
+        left join profile p on (p.pid = m.entity_id)
+        left join users u on (u.uid = p.uid)
+        where d.data regexp :regex
+        and s.uid = 0
+        and u.uid is not null
+        and u.uid != 0",
+        array(':regex' => '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$')
+      )->rowCount();
+
+      cache_set('logged_out_numbers_count', $count, 'cache', (time() + 10800));
+    }
+
+    $results = db_query("
+      select
+      s.sid,
+      s.uid as s_uid,
+      u.uid,
+      d.data,
+      m.field_user_mobile_value
+      FROM webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = d.data)
+      left join profile p on (p.pid = m.entity_id)
+      left join users u on (u.uid = p.uid)
+      where d.data regexp :regex
+      and s.uid = 0
+      and u.uid is not null
+      and u.uid != 0
+      limit 500
+    ",
+      array(':regex' => '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$')
+    )->fetchAllKeyed(0,2);
+
+    drush_print(dt('Starting...'));
+
+    $i = 0;
+    if (count($results) <= $count) {
+      foreach ($results AS $sid => $uid) {
+        $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+        // Just to double check...
+        if ($submission->uid == 0) {
+          $submission->uid = $uid;
+        }
+
+        // Save it.
+        @entity_save('webform_submission_entity', $submission);
+        $i++;
+        drush_print(dt("Connected SID {$sid} to UID {$uid} ({$i})"));
+      }
+    }
+
+    drush_print(dt("Done."));
+
+    if ($i < $count && $i != 0) {
+      drush_print(dt("But wait, there's more.  Continuing..."));
+      sleep(0.5);
+      drush_invoke('ds-merge-numbers', array('status' => 'lo'));
+    }
+    else {
+      $extra_queries = array("
+      SELECT
+      p.uid,
+      s.sid
+      FROM
+      field_data_field_referral_your_cell c
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = c.field_referral_your_cell_value)
+      left join profile p on (p.pid = m.entity_id)
+      left join webform_submissions s ON (s.sid = c.entity_id)
+      where (s.uid = 0 or s.uid is null)
+      and c.field_referral_your_cell_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (p.uid != 0 and p.uid is not null)
+      and (s.sid is not null and s.sid != 0)
+      group by s.sid",
+      "SELECT
+      p.uid,
+      s.sid
+      FROM
+      field_data_field_webform_email_or_cell c
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = c.field_webform_email_or_cell_value)
+      left join profile p on (p.pid = m.entity_id)
+      left join webform_submissions s ON (s.sid = c.entity_id)
+      where (s.uid = 0 or s.uid is null)
+      and c.field_webform_email_or_cell_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (p.uid != 0 and p.uid is not null)
+      and (s.sid is not null and s.sid != 0)
+      group by s.sid",
+      "SELECT
+      p.uid,
+      s.sid
+      FROM
+      field_data_field_webform_mobile c
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = c.field_webform_mobile_value)
+      left join profile p on (p.pid = m.entity_id)
+      left join webform_submissions s ON (s.sid = c.entity_id)
+      where (s.uid = 0 or s.uid is null)
+      and c.field_webform_mobile_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (p.uid != 0 and p.uid is not null)
+      and (s.sid is not null and s.sid != 0)
+      group by s.sid",
+      "SELECT
+      p.uid,
+      s.sid
+      FROM
+      field_data_field_pfp_phone_number c
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = c.field_pfp_phone_number_value)
+      left join profile p on (p.pid = m.entity_id)
+      left join webform_submissions s ON (s.sid = c.entity_id)
+      where (s.uid = 0 or s.uid is null)
+      and c.field_pfp_phone_number_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (p.uid != 0 and p.uid is not null)
+      and (s.sid is not null and s.sid != 0)
+      group by s.sid",
+      "SELECT
+      p.uid,
+      s.sid
+      FROM
+      field_data_field_phone_number_1 c
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = c.field_phone_number_1_value)
+      left join profile p on (p.pid = m.entity_id)
+      left join webform_submissions s ON (s.sid = c.entity_id)
+      where (s.uid = 0 or s.uid is null)
+      and c.field_phone_number_1_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (p.uid != 0 and p.uid is not null)
+      and (s.sid is not null and s.sid != 0)
+      group by s.sid",
+      "SELECT
+      p.uid,
+      s.sid
+      FROM
+      field_data_field_phone_number_optional c
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = c.field_phone_number_optional_value)
+      left join profile p on (p.pid = m.entity_id)
+      left join webform_submissions s ON (s.sid = c.entity_id)
+      where (s.uid = 0 or s.uid is null)
+      and c.field_phone_number_optional_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (p.uid != 0 and p.uid is not null)
+      and (s.sid is not null and s.sid != 0)
+      group by s.sid",
+      "SELECT
+      p.uid,
+      s.sid
+      FROM
+      field_data_field_phone_required c
+      left join field_data_field_user_mobile m on (m.field_user_mobile_value = c.field_phone_required_value)
+      left join profile p on (p.pid = m.entity_id)
+      left join webform_submissions s ON (s.sid = c.entity_id)
+      where (s.uid = 0 or s.uid is null)
+      and c.field_phone_required_value regexp '^1?[\s\-]?[\(]?[0-9]{3}[\)]?[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$'
+      and (p.uid != 0 and p.uid is not null)
+      and (s.sid is not null and s.sid != 0)
+      group by s.sid"
+      );
+
+      $t = 0;
+      foreach ($extra_queries AS $q) {
+        $res = db_query($q)->fetchAllKeyed();
+        if (!empty($res)) {
+          $n = 0;
+          foreach ($res AS $uid => $sid) {
+            if ($uid != 0) {
+              $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+              // Just to double check...
+              if ($submission->uid == 0) {
+                $submission->uid = $uid;
+              }
+
+              // Save it.
+              @entity_save('webform_submission_entity', $submission);
+
+              $n++;
+              $t++;
+              drush_print(dt("Connected SID {$sid} to UID {$uid} ($n)"));
+            }
+          }
+        }
+      }
+
+      if ($t > 0) {
+        drush_print(dt("Finished {$t} additional numbers."));
+      }
+
+      drush_print(dt("Okay, really done."));
+    }
+  }
+}
+
+/**
+ * Connects users to emails
+ *
+ * @param string $status
+ *  li for logged in or lo for logged out
+ */
+function drush_dosomething_general_ds_merge_emails($status) {
+  static $count;
+
+  // Find submissions where users put in their email, but their account
+  // has their phone number as their primary email (e.g. @mobile email).
+  // Change the user's email to be their actual email.
+  if ($status == 'li') {
+    /*
+    select
+    u.uid,
+    d.data
+    #u.mail
+    from webform_submitted_data d
+    left join webform_submissions s on (s.sid = d.sid)
+    left join users u on (u.uid = s.uid)
+    where d.data regexp '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\_\-]+\.[A-Za-z0-9\.]{2,10}$'
+    and d.data not like '%@mobile%'
+    #and u.mail regexp '\@mobile(\.com)?$'
+    and u.uid is not null
+    and u.uid != 0
+    group by u.uid
+    limit 1
+    */
+
+    drush_print(dt('Getting counts and data.  This may take a while...'));
+
+    $count = db_query("
+      select
+      u.uid,
+      d.data
+      #u.mail
+      from webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.uid = s.uid)
+      where d.data regexp :regex1
+      and d.data not like '%@mobile%'
+      and u.mail regexp :regex2
+      and u.uid is not null
+      and u.uid != 0
+      group by u.uid
+    ", // Need to pass the regex as a replacement, because db_query strips curly brackets in the query above.
+      array(
+        ':regex1' => '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,6}$',
+        ':regex2' => '\@mobile(\.com)?$',
+      ))->rowCount();
+
+    $results = db_query("
+      select
+      u.uid,
+      d.data
+      #u.mail
+      from webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.uid = s.uid)
+      where d.data regexp :regex1
+      and d.data not like '%@mobile%'
+      and u.mail regexp :regex2
+      and u.uid is not null
+      and u.uid != 0
+      group by u.uid
+      limit 250
+    ", 
+      // Need to pass the regex as a replacement, because db_query strips curly brackets in the query above.
+      array(
+        ':regex1' => '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,6}$',
+        ':regex2' => '\@mobile(\.com)?$',
+      )
+    )->fetchAllKeyed();
+
+    drush_print(dt('Starting...'));
+
+    $i = 0;
+    if (count($results) <= $count) {
+      foreach ($results AS $uid => $email) {
+        $user = user_load($uid);
+
+        if (isset($user->uid)) {
+          $user->mail = $email;
+        }
+        user_save($user);
+        $i++;
+
+        drush_print(dt("Updated UID {$uid} email to {$email} ($i)"));
+      }
+    }
+
+    drush_print(dt("Done."));
+
+    if ($i < $count && $i != 0) {
+      drush_print(dt("But wait, there's more.  Continuing..."));
+      drush_invoke('ds-merge-emails', array('status' => 'li'));
+    }
+    else {
+      // We need to check the email field tables for any other emails.
+      drush_print(dt("Checking field tables..."));
+      $extra_queries = array(
+        "SELECT
+        e.field_email_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_email_value not like '%@mobile%'
+        group by e.field_email_value",
+
+        "SELECT
+        e.field_email_0_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_email_0 e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_email_0_value not like '%@mobile%'
+        group by e.field_email_0_value",
+
+        "SELECT
+        e.field_pfp_contact_email_address_email,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_pfp_contact_email_address e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_pfp_contact_email_address_email not like '%@mobile%'
+        group by e.field_pfp_contact_email_address_email",
+
+        "SELECT
+        e.field_plumgrant_email_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_plumgrant_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_plumgrant_email_value not like '%@mobile%'
+        group by e.field_plumgrant_email_value",
+
+        "SELECT
+        e.field_posters_email_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_posters_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_posters_email_value not like '%@mobile%'
+        group by e.field_posters_email_value",
+
+        "SELECT
+        e.field_webform_email_email,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_webform_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_webform_email_email not like '%@mobile%'
+        group by field_webform_email_email",
+
+        "SELECT
+        e.field_webform_email_or_cell_value,
+        s.uid
+        #u.mail
+        FROM
+        field_data_field_webform_email_or_cell e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.uid = s.uid)
+        where s.uid != 0
+        and s.uid is not null
+        and u.mail like '%@mobile%'
+        and e.field_webform_email_or_cell_value like '%@%'
+        and e.field_webform_email_or_cell_value not like '%@mobile%'
+        group by field_webform_email_or_cell_value"
+      );
+
+      $n = 0;
+      foreach ($extra_queries AS $q) {
+        $res = db_query($q)->fetchAllKeyed();
+        if (!empty($res)) {
+          foreach ($res AS $email => $uid) {
+            $user = user_load($uid);
+            if (strpos($user->mail, '@mobile') === FALSE) {
+              $user->mail = $email;
+              user_save($user);
+              $n++;
+            }
+          }
+        }
+      }
+
+      if ($n > 0) {
+        drush_print(dt("Finished {$n} additional emails."));
+      }
+
+      drush_print(dt("Okay, really done."));
+    }
+  }
+
+  // Find submissions from logged out members where they put in their email address.
+  // See if there's an account with that email.  If so, connect the submission to the
+  // account.
+  elseif ($status == 'lo') {
+    drush_print(dt('Wait for it...'));
+    /*
+    select
+    s.sid,
+    s.uid as s_suid,
+    u.uid,
+    d.data,
+    u.mail
+    FROM webform_submitted_data d
+    left join webform_submissions s on (s.sid = d.sid)
+    left join users u on (u.mail = d.data)
+    where
+    d.data regexp '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,10}$'
+    and s.uid = 0
+    and u.uid is not null
+    and u.uid != 0
+    group by s.sid
+    */
+
+    drush_print(dt('Getting counts and data.  This may take a while...'));
+
+    $count = cache_get('logged_out_emails_count')->data;
+    if (empty($count)) {
+      $count = db_query("
+        select
+        s.sid,
+        s.uid as s_suid,
+        u.uid,
+        d.data,
+        u.mail
+        FROM webform_submitted_data d
+        left join webform_submissions s on (s.sid = d.sid)
+        left join users u on (u.mail = d.data)
+        where
+        d.data regexp :regex
+        and s.uid = 0
+        and u.uid is not null
+        and u.uid != 0
+        group by s.sid",
+        array(':regex' => '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,10}$')
+      )->rowCount();
+
+      cache_set('logged_out_emails_count', $count, 'cache', (time() + 10800));
+    }
+
+    $results = db_query("
+      select
+      s.sid,
+      s.uid as s_suid,
+      u.uid,
+      d.data,
+      u.mail
+      FROM webform_submitted_data d
+      left join webform_submissions s on (s.sid = d.sid)
+      left join users u on (u.mail = d.data)
+      where
+      d.data regexp :regex
+      and s.uid = 0
+      and u.uid is not null
+      and u.uid != 0
+      group by s.sid
+      limit 500
+    ",
+      array(':regex' => '^[A-Za-z0-9\.\_\-]+\@[A-Za-z0-9\.\_\-]+\.[A-Za-z0-9\.]{2,10}$')
+    )->fetchAllKeyed(0,2);
+
+    drush_print(dt('Starting...'));
+
+    $i = 0;
+    if (count($results) <= $count) {
+      foreach ($results AS $sid => $uid) {
+        $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+        // Just to double check...
+        if ($submission->uid == 0) {
+          $submission->uid = $uid;
+        }
+
+        // Save it.
+        @entity_save('webform_submission_entity', $submission);
+        $i++;
+        drush_print(dt("Connected SID {$sid} to UID {$uid} ({$i})"));
+      }
+    }
+
+    drush_print(dt("Done."));
+
+    if ($i < $count && $i != 0) {
+      drush_print(dt("But wait, there's more.  Continuing..."));
+      sleep(0.5);
+      drush_invoke('ds-merge-emails', array('status' => 'lo'));
+    }
+    else {
+      $extra_queries = array(
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_email_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_email_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_email_0 e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_email_0_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_email_0_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_pfp_contact_email_address e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_pfp_contact_email_address_email)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_pfp_contact_email_address_email not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_plumgrant_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_plumgrant_email_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_plumgrant_email_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_posters_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_posters_email_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_posters_email_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_webform_email e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_webform_email_email)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_webform_email_email not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+        "
+        SELECT
+        s.sid,
+        u.uid
+        FROM
+        field_data_field_webform_email_or_cell e
+        left join webform_submissions s on (s.sid = e.entity_id)
+        left join users u on (u.mail = e.field_webform_email_or_cell_value)
+        where (s.uid = 0 or s.uid is null)
+        and e.field_webform_email_or_cell_value not like '%@mobile%'
+        and (u.uid is not null and u.uid > 0)
+        and (s.sid is not null and s.sid > 0)
+        group by s.sid
+        ",
+      );
+
+      $t = 0;
+      foreach ($extra_queries AS $q) {
+        $res = db_query($q)->fetchAllKeyed();
+        if (!empty($res)) {
+          $n = 0;
+          foreach ($res AS $sid => $uid) {
+            if ($uid != 0) {
+              $submission = array_shift(entity_load('webform_submission_entity', array($sid)));
+
+              // Just to double check...
+              if ($submission->uid == 0) {
+                $submission->uid = $uid;
+              }
+
+              // Save it.
+              @entity_save('webform_submission_entity', $submission);
+
+              $n++;
+              $t++;
+              drush_print(dt("Connected SID {$sid} to UID {$uid} ($n)"));
+            }
+          }
+        }
+      }
+
+      if ($t > 0) {
+        drush_print(dt("Finished {$t} additional emails."));
+      }
+
+      drush_print(dt("Okay, really done."));
+    }
+  }
 }
 
 function drush_dosomething_general_dosomething_export_images() {
