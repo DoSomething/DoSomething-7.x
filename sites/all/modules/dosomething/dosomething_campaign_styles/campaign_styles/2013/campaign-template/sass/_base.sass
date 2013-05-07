@@ -1,0 +1,49 @@
+// VARIABLES
+// ---------
+
+// colors
+$off-black: #1E1D1C
+$campaign-main: #86005D
+$campaign-accent: #D5904C
+$btn-grey: #CCC
+$btn-color: #FFCB15
+$bg-light: #FFF
+$bg-alt: #EEE
+
+$bg-header-color: #c09
+$bg-header-fallback: #c09
+
+$subtle-border: 1px solid #eee
+
+// images
+$bg-header-image: './assets/bg-header.jpg'
+
+// fonts
+$font-grey: #CCC
+$font-light: #FFF
+$din: din-web-reg,"Trebuchet MS",sans-serif
+
+// layout
+$section-container-width: 960px
+$section-unit-width: ($section-container-width/3)
+
+// MIXINS
+// -----
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@mixin block-center
+  margin: 0 auto
+  display: block
+
+@mixin border-bottom-subtle
+  border-bottom: $subtle-border
+
+@function em-calc($target)
+  @return ($target/16)*1em
