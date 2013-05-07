@@ -87,31 +87,6 @@ function dosomething_mailchimp_toolbox_theme($existing, $type, $theme, $path) {
 }
 
 /**
- *  Implements hook_module_implements_alter()
- *  Reorder the module load order to gain access to the fields added to the webform by webform entity.
- *
- *  // http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_module_implements_alter/7
- *  This hook is invoked during module_implements(). A module may implement this hook in order to reorder
- *  the implementing modules, which are otherwise ordered by the module's system weight.
- *
- * @param &$implementations: Array of implimented hooks. Passed as reference allowing for alteration to be passed
- * on to Drupal bootstrap. This allows the placement of this module at the bottom of the stack thus gaining access
- * to all that comes before it. Specifically webform entity entries are now available,
- * 
- * @param $hook: Array - All of the hooks implimented.
- *  
- */
-function dosomething_mailchimp_toolbox_module_implements_alter(&$implementations, $hook) {
-  
-  if ($hook == 'webform_submission_presave') {
-    $group = $implementations['dosomething_mailchimp_toolbox'];
-    unset($implementations['dosomething_mailchimp_toolbox']);
-    $implementations['dosomething_mailchimp_toolbox'] = $group;
-  }
-  
-}
-
-/**
  * _dosomething_mailchimp_toolbox_webform_report() - report generation of all webforms and what the MailChimp and Mobile
  * Commons groups are assigned to the form.
  *
