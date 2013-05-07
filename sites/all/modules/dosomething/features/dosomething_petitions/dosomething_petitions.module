@@ -8,8 +8,6 @@ include_once 'dosomething_petitions.features.inc';
 
 define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
-//@todo: remove mcommons once subscribe_cleanup
-define('PETITIONS_MCOMMONS', 117371);
 
 /**
  *  Implements hook_page_alter()
@@ -119,31 +117,9 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
         }  
       }
     }
-
     $form['actions']['submit']['#value'] = 'SIGN THIS';
     $form['actions']['submit']['#attributes'] = array('class' => array('go-button'));
-
     $form['#submit'][] = 'dosomething_petitions_opt_in';
-  }
-  else if ($form_id == 'webform_client_form_' . variable_get('petitions_ideas_form_id', 728676) && request_path() == 'petitions/ideas') {
-    $form['#submit'][] = 'dosomething_petitions_ideas';
-  }
-}
-
-/**
- *  Handles petitions ideas submissions -- for MailChimp and Mobile Commons
- */
-function dosomething_petitions_ideas($form, $form_state) {
-  $s = $form_state['input']['submitted'];
-
-  // Add to MailChimp
-  if (!empty($s['your_email']) && valid_email_address($s['your_email'])) {
-    dosomething_general_mailchimp_subscribe($s['your_email'], 'UserSubmittedPetitions2013');
-  }
-
-  // Add to Mobile Commons
-  if (!empty($s['your_cell_phone_number']) && dosomething_general_valid_cell($s['your_cell_phone_number'])) {
-    dosomething_general_mobile_commons_subscribe($s['your_cell_phone_number'], 147563);
   }
 }
 
@@ -356,13 +332,6 @@ function dosomething_petitions_opt_in($form, $form_state) {
     if (!trim($author)) {
       $author = $a->name;
     }
-
-    // Add signup to MailChimp
-    dosomething_general_webform_email_and_mobile_subscribe($form, $form_state);
-    
-  }
-  else if (dosomething_general_valid_cell($val)) {
-    dosomething_general_mobile_commons_subscribe($val, PETITIONS_MCOMMONS);
   }
 }
 

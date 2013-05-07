@@ -462,102 +462,38 @@ function dosomething_projects_general_update_participants_contact_value($new_val
 }
 
  /**
+ * 
+ * Implements hook_webform_submission_insert().
+ *
  * Actions to take when a new project entry is made.
  *
- * When a user submits a new project entry informaiton on the user and project
+ * When a user submits a new project entry, information on the user and project
  * are collected to generate a "Welcome" email message. The email details are
  * defined in the dosomething_projects_general hook_mail function which points
  * to a template file for message contents. Edit the template file to adjust the
- * message sent to the user. Implements hook_webform_submission_insert().
- *
- * @param array $node
- *   Standard node array created in the webform submission.
- * @param array $submission
+ * message sent to the user. 
  */
- //@todo: remove this when dosomething_subscribe_webform_submission_insert() is working.
 function dosomething_projects_general_webform_submission_insert($node, $submission) {
-  
   if ($node->type == 'project_report') {
-    
-    // Values to customize email message
+    // Initialize values to customize email message.
     $params = array();
-    
-    // Gather active user details - creator of project
+    // Gather active user details - creator of project:
     global $user;
-    
-    // Get additional details about the user
-    $user2 = array();
-    $user2 = profile2_load_by_user($user, 'main');  
-    $mobile = field_get_items('profile2', $user2, 'field_user_mobile');
-    $birthday = field_get_items('profile2', $user2, 'field_user_birthday');
-    
-    // Convert birthday data to timestamp
-    $birthday_bits = explode('-', $birthday[0]['value']);   
-    $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  substr($birthday_bits[2], 0, strpos($birthday_bits[2],' ')), $birthday_bits[0]);
-
     $language = $user->language;
-
     $params['name'] = $user->name;
     $params['email'] = $user->mail;
-    
-    // Gather project details for email message to project creator
+    // Gather project details for email message to project creator:
     $params['project_title'] = $submission->field_project_title['und'][0]['value'];
-    
-    // URL to project page
+    // URL to project page:
     $system_url = url('node/'. $node->nid .'/submission/'. $submission->sid);
     $alias_url = drupal_lookup_path('alias', $system_url);
-
-    // If alias is not found build on basic patter, I assume this is hard wirded somewhere
+    // If alias is not found build on basic pattern, I assume this is hard wired somewhere.
+    // @todo: Investigate the assumption.
     if (!$alias_url) {
       $alias_url = '/project/'. strtolower(str_replace(' ', '-', $params['project_title']));
     }
-    
     $params['url'] = 'http://' . $_SERVER['HTTP_HOST'] . $alias_url;
-
-    // Send welcome email message - sent by Mandrill if module enabled
-    drupal_mail('dosomething_projects_general', 'welcome_email', $email[0]['value'], $language, $params);
-    
-    // Add user to MailChimp group
-    $merge_vars = array();
-    
-    $merge_vars['FNAME'] = $submitted['first_name'];
-    $merge_vars['LNAME'] = $submitted['last_name'];
-    $merge_vars['MMERGE3'] =  $user->name;
-    
-    $merge_vars['UID'] = $user->uid;
-    
-    $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
-    $merge_vars['BDAYFULL'] = date('m/d/Y', $birthday_stamp);
-    
-    // Need to store date values as var to allow recasting in final string
-    $target_date = date('m/d', $birthday_stamp);
-    $target_year_18 = date('Y', $birthday_stamp) + 18;    
-    $target_year_26 = date('Y', $birthday_stamp) + 26;  
-      
-    // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
-    $merge_vars['TURNS18'] = $target_date ."/". $target_year_18;
-    $merge_vars['TURNS26'] = $target_date ."/". $target_year_26;
-
-    // Phone
-    if (strlen($mobile[0]['value']) > 0) {
-      
-      $merge_vars['MMERGE7'] = $mobile[0]['value'];
-      
-      // Add user to Mobile Commons group
-      
-      // https://secure.mcommons.com/campaigns/5091 - opt_in_path: "join" of "Campaigns İ Do Something Master Campaign"
-      // https://secure.mcommons.com/campaigns/5091/opt_in_paths/87681
-      $mobile_commons_subscribe_results = dosomething_general_mobile_commons_subscribe($mobile[0]['value'], 150223);
-      
-    }
-    
-    // Subscribe user to MailChimp
-    dosomething_general_mailchimp_subscribe($params['email'], 'Projects2012', $merge_vars);
-    
-    
-    // Subscribe user to Mobile Commons
-    
-
+    // Send welcome email message - sent by Mandrill if module enabled.
+    drupal_mail('dosomething_projects_general', 'welcome_email', $user->mail, $language, $params);
   }
-
 }
