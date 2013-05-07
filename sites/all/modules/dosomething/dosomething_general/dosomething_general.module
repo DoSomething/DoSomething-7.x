@@ -1349,8 +1349,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
 
   // Catching function
   // Hardcoding the list to the dosomething members
-  $old_people_groups = array('GunControlReport2013', 'Volunteers2013');
-  if (in_array($groupName, $old_people_groups)) {
+  if ($groupName == 'GunControlReport2013' || $groupName == 'Volunteers2013') {
     $listid = 'a27895fe0c';
   }
   else {
@@ -1405,18 +1404,15 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
 
   // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
   $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
-  $merge_vars = print_r($merge_vars, true);
+  $merge_vars = print_r($merge_vars, TRUE);
 
   if ($mc_signup_flag) {
-    // drupal_set_message('MailChimp email added', 'status');
     watchdog('dosomething_general_mailchimp_subscribe',
              'Added ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
              array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
              $severity = WATCHDOG_INFO);
   }
   else {
-    // drupal_set_message('FAILED to add email to MailChimp.', 'error');
-    
     watchdog('dosomething_general_mailchimp_subscribe',
              'Failed to signup new user ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
              array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
@@ -1904,7 +1900,6 @@ function _dosomething_general_imagefile_scale($file, $scale = 800) {
 function dosomething_general_get_nids_by_type($node_type) {
   return db_select('node', 'n')
       ->fields('n', array('nid'))
-      ->fields('n', array('type'))
       ->condition('n.type', $node_type)
       ->execute()
       ->fetchCol();

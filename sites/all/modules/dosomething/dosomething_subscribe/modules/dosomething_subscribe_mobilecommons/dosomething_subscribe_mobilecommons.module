@@ -10,10 +10,10 @@
  *
  * @param string $cell
  *   Cell number to signup.
- * @param string $mobilecommons
+ * @param string $mobilecommons_optin
  *   Mobile Commons Opt-in to subscribe to.
  */
-function dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons) {
+function dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons_optin) {
   //@todo: Move dosomething_general_mobile_commons_subscribe code here and replace globally.
   return;
 }

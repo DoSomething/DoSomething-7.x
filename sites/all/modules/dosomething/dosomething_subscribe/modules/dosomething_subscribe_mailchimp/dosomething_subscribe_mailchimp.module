@@ -10,10 +10,10 @@
  *
  * @param string $email
  *   Email address to signup.
- * @param string $mailchimp
+ * @param string $mailchimp_group_id
  *   Mailchimp Group ID to subscribe to.
  */
-function dosomething_subscribe_mailchimp_signup($email, $mailchimp) {
+function dosomething_subscribe_mailchimp_signup($email, $mailchimp_group_id) {
   //@todo: Move dosomething_general_mailchimp_subscribe code here and replace globally.
   return;
 }

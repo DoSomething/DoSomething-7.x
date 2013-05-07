@@ -28,7 +28,9 @@ function dosomething_subscribe_menu() {
 function dosomething_subscribe_theme($existing, $type, $theme, $path) {
   return array(
     'dosomething_subscribe_forms_report' => array(
-      'variables' => array('forms_listing' => NULL,),
+      'variables' => array(
+        'forms_listing' => NULL,
+      ),
       'template' => 'templates/dosomething-subscribe-forms-report',
     ),
   ); 
