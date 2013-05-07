@@ -16,9 +16,34 @@
   <?php endif; ?>
 </div>
 
-<div class="crazy-menu-wrapper">
-	<?php echo drupal_render($top_menu); ?>
-	<select name="state-filter">
+<div class="crazy-menu-wrapper" style="text-align: center; padding: 10px">
+	<?php
+	  $filters = explode('-', basename(request_path()));
+
+	  $types = array('all' => '');
+	  $done = false;
+	  foreach ($filters AS $filter) {
+	  	if (in_array($filter, array('cat', 'cats', 'dog', 'dogs', 'other', 'others'))) {
+	  	  $types[$filter] = ' selected="selected"';
+	  	  $done = true;
+	  	}
+	  	else {
+	  	  $types[$filter] = '';
+	  	}
+	  }
+
+	  if (!$done) {
+	  	$types['all'] = ' selected="selected"';
+	  }
+	?>
+	<select name="type-filter" class="type-filter">
+		<option value="all"<?php echo $types['all']; ?>>All</option>
+		<option value="cats"<?php echo $types['cats']; ?>>Cats</option>
+		<option value="dogs"<?php echo $types['dogs']; ?>>Dogs</option>
+		<option value="other"<?php echo $types['other']; ?>>Other</option>
+	</select>
+	<select name="state-filter" class="state-filter">
+		<option value="" selected="selected">Select State</option>
 	<?php
 		$states = array(
 		    'AL' => 'AL',
@@ -80,9 +105,12 @@
 		    'WI' => 'WI',
 		    'WY' => 'WY',
 		);
+
+		$path = request_path();
 		foreach ($states as $key => $state) {
-		  echo '<option value="' . $key . '">' . $state . '</option>';
+		  echo '<option value="' . $key . '"' . (strpos($path, $state) !== FALSE ? ' selected="selected"' : '') . '>' . $state . '</option>';
 		}
 	?>
 	</select>
+	<input type="button" value="Go" class="go-filter" />
 </div>

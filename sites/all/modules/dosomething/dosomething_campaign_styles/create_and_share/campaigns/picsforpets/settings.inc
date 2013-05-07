@@ -30,6 +30,9 @@ $settings = array(
       'namespace' => 'dosomethingapp',
       'object' => 'crazy_thing',
       'action' => 'share',
+      'title' => 'I did stuff.',
+      'caption' => 'cheese',
+      'description' => 'Some things.',
       //'message' => t('I just posted the craziest thing I did to save money.  Now it\'s your turn! Go here to do so.'),   # Ignored -- we can't force a message on a user.
     ),
     // Use {name} to denote the person's name
@@ -54,17 +57,14 @@ $settings = array(
   // Javascript
   'js' => array(
     'picsforpets' => array(
-      'crazy.js',
+      'pics.js',
     ),
     'picsforpets/submit' => array(
-      'crazy-form.js',
-    ),
-    'picsforpets/about' => array(
-      'crazy-about.js',
+      'pics-form.js',
     ),
   ),
 
-  // Top menu links.
+  /*// Top menu links.
   'top_links' => array(
     'picsforpets$' => array(
       'title' => 'All',
@@ -82,5 +82,5 @@ $settings = array(
       'title' => 'Other',
       'href' => 'picsforpets/other',
     ),
-  ),
+  ),*/
 );

@@ -97,5 +97,60 @@ function create_and_share_schema() {
     ),
   );
 
+  $schema['create_and_share_clickthroughs'] = array(
+    'description' => 'Stores clickthroughs for users (in case we want to store their info when they click thru to a form).',
+    'primary key' => array('ctid'),
+    'fields' => array(
+      'ctid' => array(
+        'description' => 'The ID of the notifications.',
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'campaign' => array(
+        'description' => 'The campaign where the clickthrough happened.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'destination' => array(
+        'description' => 'Where the user was going.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'The Drupal User ID of the user who clicked through.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'email' => array(
+        'description' => 'The email address of the person who clicked through, at time of clickthrough.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'cell' => array(
+        'description' => 'The cell phone number of the person who clicked through, at time of clickthrough.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'timestamp' => array(
+        'description' => 'The time that the clickthrough happened.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'campaign' => array('campaign'),
+    ),
+    'unique keys' => array(
+      'uid' => array('uid'),
+    ),
+  );
+
   return $schema;
 }

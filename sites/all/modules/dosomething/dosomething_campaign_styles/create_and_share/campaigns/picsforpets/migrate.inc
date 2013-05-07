@@ -18,6 +18,14 @@ function create_and_share_import_picsforpets($nid) {
   	),
   	'mandatory' => 1,
   );
+  $migrate['Adopted'] = array(
+  	'type' => 'select',
+  	'extra' => array(
+  	  'items' => "1|Adopted",
+  	  'multiple' => 1,
+  	),
+  	'mandatory' => 1,
+  );
 
   return $migrate;
 }

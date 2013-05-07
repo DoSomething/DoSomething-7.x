@@ -49,7 +49,7 @@ function create_and_share_permission() {
 }
 
 /**
- * Implements hook_url_inbound_alter()
+ * Implements hook_url_inbound_alter().
  */
 function create_and_share_url_inbound_alter(&$path, $original_path, $path_language) {
   // Get the current campaign page.
@@ -70,7 +70,8 @@ function create_and_share_url_inbound_alter(&$path, $original_path, $path_langua
 }
 
 /**
- * Implements hook_menu()
+ * Implements hook_menu().
+ *
  * See documentation for each path for explanations of their uses.
  * Assuming that args are an array beginning with 0.
  */
@@ -78,13 +79,13 @@ function create_and_share_menu() {
   $paths = array();
 
   /**
-   *  Flags a campaign submission.  This normally hides the submission.
+   * Flags a campaign submission.  This normally hides the submission.
    *
-   *  @param string campaign (arg 1)
-   *    The campaign that contains the submission.
+   * @param string campaign (arg 1)
+   *   The campaign that contains the submission.
    *
-   *  @param int etid (arg 3)
-   *    The submission SID for the post that should be flagged.
+   * @param int etid (arg 3)
+   *   The submission SID for the post that should be flagged.
    */
   $paths['cas/%/flag/%'] = array(
     'page callback' => 'create_and_share_flag',
@@ -94,16 +95,16 @@ function create_and_share_menu() {
   );
 
   /**
-   *  Vote a campaign submission up or down.
+   * Vote a campaign submission up or down.
    *
-   *  @param string campaign (arg 1)
-   *    The campaign that contains the submission.
+   * @param string campaign (arg 1)
+   *   The campaign that contains the submission.
    *
-   *  @param string type (arg 3)
-   *    The type (e.g. "up" or "down") of vote.  Should match a field definition.
+   * @param string type (arg 3)
+   *   The type (e.g. "up" or "down") of vote.  Should match a field definition.
    *
-   *  @param int etid (arg 4)
-   *    The entity ID of the submission that is being voted up / down.
+   * @param int etid (arg 4)
+   *   The entity ID of the submission that is being voted up / down.
    */
   $paths['cas/%/vote/%/%'] = array(
     'page callback' => 'create_and_share_action',
@@ -112,16 +113,16 @@ function create_and_share_menu() {
   );
 
   /**
-   *  Send a request to an array of friends.  Pass an array of 'friends' through POST.
+   * Send a request to an array of friends.  Pass an array of 'friends' through POST.
    *
-   *  @param string campaign (arg 1)
-   *    The campaign that contains the submission.
+   * @param string campaign (arg 1)
+   *   The campaign that contains the submission.
    *
-   *  @param string type (arg 3)
-   *    The type of request (e.g. "vouch").
+   * @param string type (arg 3)
+   *   The type of request (e.g. "vouch").
    *
-   *  @param int etid (arg 4)
-   *    The entity ID of the submission referenced in the request.
+   * @param int etid (arg 4)
+   *   The entity ID of the submission referenced in the request.
    */
   $paths['cas/%/request/%/%'] = array(
     'page callback' => 'create_and_share_request',
@@ -130,13 +131,13 @@ function create_and_share_menu() {
   );
 
   /**
-   *  Logs a share within a campaign.
+   * Logs a share within a campaign.
    *
-   *  @param string campaign (arg 1)
-   *    The campaign that contains the submission that is being shared.
+   * @param string campaign (arg 1)
+   *   The campaign that contains the submission that is being shared.
    *
-   *  @param string etid (arg 3)
-   *    The entity ID of the submission that is being shared.
+   * @param string etid (arg 3)
+   *   The entity ID of the submission that is being shared.
    */
   $paths['cas/%/share/%'] = array(
     'page callback' => 'create_and_share_update_counts',
@@ -145,18 +146,18 @@ function create_and_share_menu() {
   );
 
   /**
-   *  Renders a template found within a campaign.
+   * Renders a template found within a campaign.
    *
-   *  @param string campaign (arg 1)
-   *    The campaign that contains the requested template.
+   * @param string campaign (arg 1)
+   *   The campaign that contains the requested template.
    *
-   *  @param string template (arg 3)
-   *    The template that should be displayed.
+   * @param string template (arg 3)
+   *   The template that should be displayed.
    *
-   *  @param int etid (arg 4)
-   *    An (optional) entity ID matching a submission on the campaign.
+   * @param int etid (arg 4)
+   *   An (optional) entity ID matching a submission on the campaign.
    *
-   *  @see create_and_share_template_render()
+   * @see create_and_share_template_render()
    */
   $paths['cas/%/template/%/%'] = array(
     'page callback' => 'create_and_share_template_render',
@@ -173,6 +174,12 @@ function create_and_share_menu() {
   $paths['cas/%/autocomplete'] = array(
     'page callback' => 'create_and_share_autocomplete',
     'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+
+  $paths['cas/%/mark-clickthrough/%'] = array(
+    'page callback' => 'create_and_share_clickthrough',
+    'page arguments' => array(1, 3),
     'access callback' => TRUE,
   );
 
@@ -195,7 +202,7 @@ function create_and_share_autocomplete($campaign) {
 }
 
 /**
- * Implements hook_theme()
+ * Implements hook_theme().
  */
 function create_and_share_theme($existing, $type, $theme, $path) {
   $path = $path . '/templates';
@@ -219,7 +226,7 @@ function create_and_share_theme($existing, $type, $theme, $path) {
 }
 
 /**
- * Implements hook_page_templates_alter()
+ * Implements hook_page_templates_alter().
  * Adds navigation bar to the top of the page.
  */
 function create_and_share_page_templates_alter(&$variables) {
@@ -480,6 +487,42 @@ function create_and_share_flag($campaign, $sid) {
   drupal_exit();
 }
 
+function create_and_share_clickthrough($campaign, $destination) {
+  if (!user_is_logged_in()) {
+    return;
+  }
+
+  global $user;
+  $profile = profile2_load_by_user($user, 'main');
+  $cell = '';
+  if (isset($profile->field_user_mobile[LANGUAGE_NONE][0]['value'])) {
+    $cell = $profile->field_user_mobile[LANGUAGE_NONE][0]['value'];
+  }
+
+  $record = array(
+    'campaign' => $campaign,
+    'destination' => $destination,
+    'uid' => $user->uid,
+    'email' => $user->mail,
+    'cell' => $cell,
+    'timestamp' => REQUEST_TIME,
+  );
+
+  try {
+    drupal_write_record('create_and_share_clickthroughs', $record);
+  }
+  catch (Exception $e) {
+    // This can and will happen because UID has a unique key.  Ignore it.
+  }
+
+  $path = '';
+  if ($destination != 'root') {
+    $path = $destination;
+  }
+
+  drupal_goto($campaign . '/' . $path);
+}
+
 /**
  * Adds weight to posts from a Facebook image share.
  *
@@ -696,7 +739,7 @@ function create_and_share_get_settings($campaign, $category = 'all') {
 }
 
 /**
- * Implements hook_page_alter()
+ * Implements hook_page_alter().
  */
 function create_and_share_page_alter(&$page) {
   if ($campaign = create_and_share_is_campaign_page()) {
@@ -820,7 +863,7 @@ function create_and_share_page_alter(&$page) {
 }
 
 /**
- * Implements hook_views_post_render()
+ * Implements hook_views_post_render().
  */
 function create_and_share_views_post_render(&$view, &$output, &$cache) {
   if ($campaign = create_and_share_is_campaign_page()) {
@@ -901,7 +944,7 @@ function create_and_share_views_query_alter(&$view, &$query) {
 }
 
 /**
- * Implements hook_module_implements_alter()
+ * Implements hook_module_implements_alter().
  */
 function create_and_share_module_implements_alter(&$implementations, $hook) {
   if (($hook == 'form_alter' || $hook == 'module_implements_alter') && isset($implementations['create_and_share'])) {
@@ -923,7 +966,7 @@ function create_and_share_module_implements_alter(&$implementations, $hook) {
 }
 
 /**
- * Implements hook_form_alter()
+ * Implements hook_form_alter().
  */
 function create_and_share_form_alter(&$form, &$form_state, $form_id) {
   if ($campaign = create_and_share_is_campaign_page()) {

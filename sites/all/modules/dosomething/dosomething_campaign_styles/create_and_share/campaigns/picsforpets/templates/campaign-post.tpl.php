@@ -12,6 +12,11 @@ $adopted = (bool) !empty($row->_field_data['sid']['entity']->data[6]['value'][0]
 <div class="crazy-submission s-<?php echo $row->sid; ?> a-<?php echo $row->users_webform_submissions_uid; ?>">
 <?php if ($promoted): ?><div class="promoted-flag"><span><?php echo t('Promoted'); ?></span></div><?php endif; ?>
 <div class="pet-name pn-<?php echo $row->sid; ?>"><?php echo t("$name, $state"); ?></div>
+<div class="shares">
+	<a class="facebook-share fb-<?php echo $row->sid; ?>" data-sid="<?php echo $row->sid; ?>" href="#"><span>Facebook</span></a>
+	<span class="fb-<?php echo $row->sid; ?>-count">0</span>
+</div>
+
 <div class="fb-and-pic">
 <?php if (user_access('flag campaign submissions')): ?><div class="flag"><a href="/cas/<?php echo $campaign; ?>/flag/<?php echo $row->sid; ?>" data-sid="<?php echo $row->sid; ?>"><span><?php echo t('Flag'); ?></span></a></div><?php endif; ?>
 <div class="s-<?php echo $row->sid; ?>-picture simg">

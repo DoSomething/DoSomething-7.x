@@ -137,11 +137,17 @@ class Carpenter {
     foreach ($files AS $file) {
       // If it's a directory, make that directory.
       if ($file->isDir()) {
-        mkdir($this->settings['dir'] . '/' . $this->settings['name'] . '/' . $file->getFileName());
+        // Let's not overwrite a file that exists.
+        if (!is_dir($this->settings['dir'] . '/' . $this->settings['name'] . '/' . $file->getFileName())) {
+          mkdir($this->settings['dir'] . '/' . $this->settings['name'] . '/' . $file->getFileName());
+        }
       }
       // Otherwise it's a file.  Copy over the file, unless it's a scaffold config file.
-      else if ($file->getFileName() != 'scaffold.inc' && $file->getFileName() != 'scaffold.conf') {
-        copy($file, $this->settings['dir'] . '/' . $this->settings['name'] . '/' . $file->getFileName());
+      elseif ($file->getFileName() != 'scaffold.inc' && $file->getFileName() != 'scaffold.conf') {
+        // Don't overwrite a file that doesn't exist.
+        if (!file_exists($this->settings['dir'] . '/' . $this->settings['name'] . '/' . $file->getFileName())) {
+          copy($file, $this->settings['dir'] . '/' . $this->settings['name'] . '/' . $file->getFileName());
+        }
 
         // Assuming the file is writeable...
         if (is_writeable($this->settings['dir'] . '/' . $this->settings['name'] . '/' . $file->getFileName())) {
