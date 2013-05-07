@@ -69,11 +69,24 @@ $filter['^(' . $settings['campaign_root'] . ')/(?<showid>[0-9]+)$'] = function($
  * Cats / dogs / other bullshit
  */
 $filter['^(' . $settings['campaign_root'] . ')\/((?<type>(cat|dog|other))s?)?\-?((?<state>(AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY)))?'] = function($match, &$view, &$query, $settings) {
+  // What's this? There's an attachment that loads featured pets at the top 
+  // of the page, and it causes issues for filter pages.  This loads a basic
+  // false statement into the query so it doesn't show up on the filter pages.
+  if ($view->current_display == 'attachment_1') {
+    $query->where[1]['conditions'][] = array(
+      'field' => 1,
+      'value' => 2,
+      'operator' => '=',
+    );
+  }
+
+  // Cat / dog / other
   if (!empty($match['type'])) {
     $query->where[1]['conditions'][2]['value'] = $match['type'];
     $query->where[1]['conditions'][2]['operator'] = '=';
   }
 
+  // State abbreviations (New York = NY, &etc.)
   if (!empty($match['state'])) {
     $query->where[1]['conditions'][3]['value'] = $match['state'];
     $query->where[1]['conditions'][3]['operator'] = '=';

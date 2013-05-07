@@ -23,7 +23,21 @@
 include 'create_and_share.features.inc';
 
 /**
- *  Implements hook_permission()
+ * Implements hook_init().
+ */
+function create_and_share_init() {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+    if ($settings['gated']) {
+      if (!user_is_logged_in()) {
+        drupal_goto('user/register', array('query' => array('destination' => $settings['campaign_root'])));
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_permission().
  */
 function create_and_share_permission() {
   return array(
@@ -35,7 +49,7 @@ function create_and_share_permission() {
 }
 
 /**
- *  Implements hook_url_inbound_alter()
+ * Implements hook_url_inbound_alter()
  */
 function create_and_share_url_inbound_alter(&$path, $original_path, $path_language) {
   // Get the current campaign page.
@@ -56,9 +70,9 @@ function create_and_share_url_inbound_alter(&$path, $original_path, $path_langua
 }
 
 /**
- *  Implements hook_menu()
- *  See documentation for each path for explanations of their uses.
- *  Assuming that args are an array beginning with 0.
+ * Implements hook_menu()
+ * See documentation for each path for explanations of their uses.
+ * Assuming that args are an array beginning with 0.
  */
 function create_and_share_menu() {
   $paths = array();
@@ -181,7 +195,7 @@ function create_and_share_autocomplete($campaign) {
 }
 
 /**
- *	Implements hook_theme()
+ * Implements hook_theme()
  */
 function create_and_share_theme($existing, $type, $theme, $path) {
   $path = $path . '/templates';
@@ -205,8 +219,8 @@ function create_and_share_theme($existing, $type, $theme, $path) {
 }
 
 /**
- *  Implements hook_page_templates_alter()
- *  Adds navigation bar to the top of the page.
+ * Implements hook_page_templates_alter()
+ * Adds navigation bar to the top of the page.
  */
 function create_and_share_page_templates_alter(&$variables) {
   if ($campaign = create_and_share_is_campaign_page()) {
@@ -289,19 +303,19 @@ function create_and_share_page_templates_alter(&$variables) {
 }
 
 /**
- *  Responds to a "thumbs-down" action.
+ * Responds to a "thumbs-down" action.
  *
- *  @param string $campaign
- *    The machine name of the campaign 'pon which this is taking place.
+ * @param string $campaign
+ *   The machine name of the campaign 'pon which this is taking place.
  *
- *  @param string $action
- *    The action (e.g. "up" for thumbs-up or "down" for thumbs-down)
+ * @param string $action
+ *   The action (e.g. "up" for thumbs-up or "down" for thumbs-down)
  *
- *  @param int $etid
- *    The numeric ID of the submission / post / whatever that is being given the thumbs-down
+ * @param int $etid
+ *   The numeric ID of the submission / post / whatever that is being given the thumbs-down
  *
- *  @return json
- *    Returns a json array indicating success or failure.
+ * @return json
+ *   Returns a json array indicating success or failure.
  */
 function create_and_share_action($campaign, $type, $etid) {
   global $user;
@@ -370,20 +384,19 @@ function create_and_share_action($campaign, $type, $etid) {
 }
 
 /**
- *  Accepts an array of "friends" and sends a request to them.
+ * Accepts an array of "friends" and sends a request to them.
  *
- *  @param string $campaign
- *    The machine name of the campaign 'pon which this is taking place.
+ * @param string $campaign
+ *   The machine name of the campaign 'pon which this is taking place.
  *
- *  @param string $action
- *    The action (e.g. "up" for thumbs-up or "down" for thumbs-down)
+ * @param string $action
+ *   The action (e.g. "up" for thumbs-up or "down" for thumbs-down)
  *
- *  @param int $etid
- *    The numeric ID of the submission / post / whatever that is being given the thumbs-down
+ * @param int $etid
+ *   The numeric ID of the submission / post / whatever that is being given the thumbs-down
  *
- *  @return json
- *    Returns a json array indicating success or failure.
- *
+ * @return json
+ *   Returns a json array indicating success or failure.
  */
 function create_and_share_request($campaign, $type, $etid) {
   $friends = $_POST['friends'];
@@ -431,16 +444,16 @@ function create_and_share_request($campaign, $type, $etid) {
 }
 
 /**
- *  Flags a submission.
+ * Flags a submission.
  *
- *  @param string $campaign
- *    The machine name of the campaign that owns the submission.
+ * @param string $campaign
+ *   The machine name of the campaign that owns the submission.
  *
- *  @param int $sid
- *    The submission ID of the post that is being flagged.
+ * @param int $sid
+ *   The submission ID of the post that is being flagged.
  *
- *  @return mixed string|int
- *    1 if is flagged, 0 if not    
+ * @return mixed string|int
+ *   1 if is flagged, 0 if not    
  */
 function create_and_share_flag($campaign, $sid) {
   if (!intval($sid) || !is_numeric($sid)) {
@@ -468,16 +481,16 @@ function create_and_share_flag($campaign, $sid) {
 }
 
 /**
- *  Adds weight to posts from a Facebook image share.
+ * Adds weight to posts from a Facebook image share.
  *
- *  @param string $campaign
- *    The campaign that this action is happening in.
+ * @param string $campaign
+ *   The campaign that this action is happening in.
  *
- *	@param int $etid
- *	  The submission ID of the post that should be updated.
+ * @param int $etid
+ *   The submission ID of the post that should be updated.
  *
- *  @param string $action
- *    The action that should update the counts.
+ * @param string $action
+ *   The action that should update the counts.
  */
 function create_and_share_update_counts($campaign, $etid, $action) {
   $submission = array_shift(entity_load('webform_submission_entity', array($etid)));
@@ -529,25 +542,25 @@ function create_and_share_update_counts($campaign, $etid, $action) {
 }
 
 /**
- *  Renders templates.  This function users a wrapper template, notification.tpl.php,
- *  found within the "create_and_share" module, in the "templates" directory.  notifications.tpl.php
- *  attempts to find the requested template (defined by parameter) within the requested
- *  campaign (also defined by parameter) directory, then spits out that template.
+ * Renders templates.  This function users a wrapper template, notification.tpl.php,
+ * found within the "create_and_share" module, in the "templates" directory.  notifications.tpl.php
+ * attempts to find the requested template (defined by parameter) within the requested
+ * campaign (also defined by parameter) directory, then spits out that template.
  *
- *  For example, if /cas/blah/template/login/12345 is called, the wrapper template will look for
- *  campaigns/blah/templates/login.tpl.php, and, if it exists, show that template.
+ * For example, if /cas/blah/template/login/12345 is called, the wrapper template will look for
+ * campaigns/blah/templates/login.tpl.php, and, if it exists, show that template.
  *
- *  @param string $campaign
- *    The campaign that has the template in question.
+ * @param string $campaign
+ *   The campaign that has the template in question.
  *
- *  @param string $template
- *    The template to show.
+ * @param string $template
+ *   The template to show.
  *
- *	@param int $etid
- *	  Optional submission ID of the submission that should be passed into the template.
+ * @param int $etid
+ *   Optional submission ID of the submission that should be passed into the template.
  *
- *  @return string
- *    The template.
+ * @return string
+ *   The template.
  */
 function create_and_share_template_render($campaign, $template, $etid) {
   // Start the parameters with just the SID.
@@ -593,18 +606,18 @@ function create_and_share_template_render($campaign, $template, $etid) {
 }
 
 /**
- *  Loads and returns settings.
+ * Loads and returns settings.
  *
- *  @param string $campaign
- *    The machine name of the campaign that the settings should be
- *    retrieved from.
+ * @param string $campaign
+ *   The machine name of the campaign that the settings should be
+ *   retrieved from.
  *
- *  @param string $category
- *    The "category", if applicable, of settings that should be returned.
- *    By default, returns everything.
+ * @param string $category
+ *   The "category", if applicable, of settings that should be returned.
+ *   By default, returns everything.
  *
- *  @return array
- *    The cached array of settings from $campaign.
+ * @return array
+ *   The cached array of settings from $campaign.
  */
 function create_and_share_get_settings($campaign, $category = 'all') {
   static $cache = array();
@@ -624,6 +637,7 @@ function create_and_share_get_settings($campaign, $category = 'all') {
         'type' => $c->type,
         'campaign_root' => drupal_get_path_alias('node/' . $c->nid),
         'campaign_domain' => url(),
+        'gated' => (bool) $c->field_cas_gated[LANGUAGE_NONE][0]['value'],
         'allow_anonymous_votes' => (bool) $c->field_cas_allow_anonymous_voting[LANGUAGE_NONE][0]['value'],
         'allow_notifications' => (bool) $c->field_cas_allow_notifications[LANGUAGE_NONE][0]['value'],
         'allow_lazy_loading' => (bool) $c->field_cas_allow_lazy_loading[LANGUAGE_NONE][0]['value'],
@@ -682,7 +696,7 @@ function create_and_share_get_settings($campaign, $category = 'all') {
 }
 
 /**
- *  Implements hook_page_alter()
+ * Implements hook_page_alter()
  */
 function create_and_share_page_alter(&$page) {
   if ($campaign = create_and_share_is_campaign_page()) {
@@ -806,7 +820,7 @@ function create_and_share_page_alter(&$page) {
 }
 
 /**
- *  Implements hook_views_post_render()
+ * Implements hook_views_post_render()
  */
 function create_and_share_views_post_render(&$view, &$output, &$cache) {
   if ($campaign = create_and_share_is_campaign_page()) {
@@ -830,13 +844,13 @@ function create_and_share_views_post_render(&$view, &$output, &$cache) {
 }
 
 /**
- *  Adds "lazy" class to images.
+ * Adds "lazy" class to images.
  *
- *  @param array $matches
- *    An array returned from preg_replace_callback, with matches.
+ * @param array $matches
+ *   An array returned from preg_replace_callback, with matches.
  *
- *  @return string
- *    The replaced source string with the "lazy" class, if applicable.
+ * @return string
+ *   The replaced source string with the "lazy" class, if applicable.
  */
 function create_and_share_add_lazy_class($matches) {
   static $i = 1;
@@ -867,7 +881,7 @@ function create_and_share_add_lazy_class($matches) {
 
 
 /**
- *  Implements hook_views_query_alter()
+ * Implements hook_views_query_alter().
  */
 function create_and_share_views_query_alter(&$view, &$query) {
   if ($campaign = create_and_share_is_campaign_page()) {
@@ -887,7 +901,7 @@ function create_and_share_views_query_alter(&$view, &$query) {
 }
 
 /**
- *  Implements hook_module_implements_alter()
+ * Implements hook_module_implements_alter()
  */
 function create_and_share_module_implements_alter(&$implementations, $hook) {
   if (($hook == 'form_alter' || $hook == 'module_implements_alter') && isset($implementations['create_and_share'])) {
@@ -909,7 +923,7 @@ function create_and_share_module_implements_alter(&$implementations, $hook) {
 }
 
 /**
- *	Implements hook_form_alter()
+ * Implements hook_form_alter()
  */
 function create_and_share_form_alter(&$form, &$form_state, $form_id) {
   if ($campaign = create_and_share_is_campaign_page()) {
@@ -950,7 +964,7 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- *  Adds text to image.
+ * Adds text to image.
  */
 function create_and_share_add_text_to_image($form, &$form_state) {
   $top = $form_state['input']['submitted']['field_cas_top_text'][LANGUAGE_NONE][0]['value'];
@@ -965,7 +979,7 @@ function create_and_share_add_text_to_image($form, &$form_state) {
 }
 
 /**
- *  Redirects somewhere.
+ * Redirects somewhere.
  */
 function create_and_share_redirect($form, &$form_state) {
   $settings = create_and_share_get_settings();
@@ -982,10 +996,10 @@ function create_and_share_redirect($form, &$form_state) {
 }
 
 /**
- *	Loads the Facebook object and returns it.
+ * Loads the Facebook object and returns it.
  *
- *  @return object
- *    The Facebook object.
+ * @return object
+ *   The Facebook object.
  */
 function create_and_share_load_fb() {
   // Some browsers won't let the third party cookies through by default unless
@@ -1014,13 +1028,13 @@ function create_and_share_load_fb() {
 }
 
 /**
- *  Checks whether a specified path is a valid Create and Share campaign page.
+ * Checks whether a specified path is a valid Create and Share campaign page.
  *  
- *  @param string $path
- *    The path to check against.  Defaults to the current path (using request_path())
+ * @param string $path
+ *   The path to check against.  Defaults to the current path (using request_path())
  *
- *  @return mixed string|bool
- *    The name of the campaign if it exists, or false.
+ * @return mixed string|bool
+ *   The name of the campaign if it exists, or false.
  */
 function create_and_share_is_campaign_page($path = '') {
   static $cache = array();
@@ -1104,7 +1118,7 @@ function create_and_share_get_campaign_path($campaign) {
 }
 
 /**
- *  Implements hook_node_insert()
+ * Implements hook_node_insert().
  */
 function create_and_share_node_insert($node) {
   if ($node->type == 'create_and_share_campaign') {
@@ -1138,7 +1152,7 @@ function create_and_share_node_insert($node) {
 }
 
 /**
- *  Implements hook_ctools_plugin_directory()
+ * Implements hook_ctools_plugin_directory().
  */
 function create_and_share_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {

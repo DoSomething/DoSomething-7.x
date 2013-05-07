@@ -93,6 +93,14 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['field_cas_image']['label'] = '';
   $handler->display->display_options['fields']['field_cas_image']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_cas_image']['element_label_colon'] = FALSE;
+  /* Field: Webform submission data: Value (raw) */
+  $handler->display->display_options['fields']['data']['id'] = 'data';
+  $handler->display->display_options['fields']['data']['table'] = 'webform_submitted_data';
+  $handler->display->display_options['fields']['data']['field'] = 'data';
+  $handler->display->display_options['fields']['data']['relationship'] = 'data_2';
+  $handler->display->display_options['fields']['data']['label'] = '';
+  $handler->display->display_options['fields']['data']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['data']['element_label_colon'] = FALSE;
   /* Field: Webform Submission: Thumbs Down Count */
   $handler->display->display_options['fields']['field_cas_thumbs_down_count']['id'] = 'field_cas_thumbs_down_count';
   $handler->display->display_options['fields']['field_cas_thumbs_down_count']['table'] = 'field_data_field_cas_thumbs_down_count';
@@ -389,6 +397,14 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['relationships']['data_1']['label'] = 'Shelter State';
   $handler->display->display_options['relationships']['data_1']['webform_nid'] = '729195';
   $handler->display->display_options['relationships']['data_1']['webform_cid'] = '5';
+  /* Relationship: Adopted */
+  $handler->display->display_options['relationships']['data_2']['id'] = 'data_2';
+  $handler->display->display_options['relationships']['data_2']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['data_2']['field'] = 'data';
+  $handler->display->display_options['relationships']['data_2']['ui_name'] = 'Adopted';
+  $handler->display->display_options['relationships']['data_2']['label'] = 'Adopted';
+  $handler->display->display_options['relationships']['data_2']['webform_nid'] = '729195';
+  $handler->display->display_options['relationships']['data_2']['webform_cid'] = '6';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
@@ -491,6 +507,15 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['relationships']['data_1']['label'] = 'Shelter State';
   $handler->display->display_options['relationships']['data_1']['webform_nid'] = '729195';
   $handler->display->display_options['relationships']['data_1']['webform_cid'] = '5';
+  /* Relationship: Adopted */
+  $handler->display->display_options['relationships']['data_2']['id'] = 'data_2';
+  $handler->display->display_options['relationships']['data_2']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['data_2']['field'] = 'data';
+  $handler->display->display_options['relationships']['data_2']['ui_name'] = 'Adopted';
+  $handler->display->display_options['relationships']['data_2']['label'] = 'Adopted';
+  $handler->display->display_options['relationships']['data_2']['webform_nid'] = '729195';
+  $handler->display->display_options['relationships']['data_2']['webform_cid'] = '6';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',

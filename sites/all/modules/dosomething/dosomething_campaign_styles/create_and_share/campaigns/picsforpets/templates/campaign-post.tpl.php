@@ -5,6 +5,7 @@ $shelter = check_plain($row->_field_data['sid']['entity']->data[4]['value'][0]);
 $state = check_plain($row->_field_data['sid']['entity']->data[5]['value'][0]);
 $link = l(t("$shelter, $state"), 'http://www.petfinder.com/awo/index.cgi?location=' . $state . '&keyword=' . urlencode($shelter));
 $promoted = (bool) $row->_field_data['sid']['entity']->field_cas_promoted[LANGUAGE_NONE][0]['value'];
+$adopted = (bool) !empty($row->_field_data['sid']['entity']->data[6]['value'][0]);
 
 ?>
 
@@ -13,8 +14,10 @@ $promoted = (bool) $row->_field_data['sid']['entity']->field_cas_promoted[LANGUA
 <div class="pet-name pn-<?php echo $row->sid; ?>"><?php echo t("$name, $state"); ?></div>
 <div class="fb-and-pic">
 <?php if (user_access('flag campaign submissions')): ?><div class="flag"><a href="/cas/<?php echo $campaign; ?>/flag/<?php echo $row->sid; ?>" data-sid="<?php echo $row->sid; ?>"><span><?php echo t('Flag'); ?></span></a></div><?php endif; ?>
-<div class="fb-picture"></div>
-<div class="s-<?php echo $row->sid; ?>-picture simg"><?php echo theme('image_style', array('style_name' => $settings['fields']['picture']['style'], 'path' => $row->field_field_cas_image[0]['rendered']['#item']['uri'])); ?></div>
+<div class="s-<?php echo $row->sid; ?>-picture simg">
+	<?php if ($adopted): ?><div class="adopted"><span><?php echo t('Adopted'); ?></span></div><?php endif; ?>
+	<?php echo theme('image_style', array('style_name' => $settings['fields']['picture']['style'], 'path' => $row->field_field_cas_image[0]['rendered']['#item']['uri'])); ?>
+</div>
 </div>
 <!-- buttons -->
 <div class="buttons">
