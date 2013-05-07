@@ -22,7 +22,7 @@ function create_and_share_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Crazy Shit landing page';
+  $handler->display->display_options['title'] = 'Pics for Pets';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -59,22 +59,6 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['relationships']['nid']['table'] = 'webform_submissions';
   $handler->display->display_options['relationships']['nid']['field'] = 'nid';
   $handler->display->display_options['relationships']['nid']['required'] = TRUE;
-  /* Relationship: Animal type */
-  $handler->display->display_options['relationships']['data']['id'] = 'data';
-  $handler->display->display_options['relationships']['data']['table'] = 'webform_submissions';
-  $handler->display->display_options['relationships']['data']['field'] = 'data';
-  $handler->display->display_options['relationships']['data']['ui_name'] = 'Animal type';
-  $handler->display->display_options['relationships']['data']['label'] = 'Animal Type';
-  $handler->display->display_options['relationships']['data']['webform_nid'] = '729195';
-  $handler->display->display_options['relationships']['data']['webform_cid'] = '3';
-  /* Relationship: Shelter State */
-  $handler->display->display_options['relationships']['data_1']['id'] = 'data_1';
-  $handler->display->display_options['relationships']['data_1']['table'] = 'webform_submissions';
-  $handler->display->display_options['relationships']['data_1']['field'] = 'data';
-  $handler->display->display_options['relationships']['data_1']['ui_name'] = 'Shelter State';
-  $handler->display->display_options['relationships']['data_1']['label'] = 'Shelter State';
-  $handler->display->display_options['relationships']['data_1']['webform_nid'] = '729195';
-  $handler->display->display_options['relationships']['data_1']['webform_cid'] = '5';
   /* Field: User: Picture */
   $handler->display->display_options['fields']['picture']['id'] = 'picture';
   $handler->display->display_options['fields']['picture']['table'] = 'users';
@@ -244,7 +228,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'crazy_shit' => 'crazy_shit',
+    'create_and_share_campaign' => 'create_and_share_campaign',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
@@ -265,9 +249,16 @@ function create_and_share_views_default_views() {
     0 => '0',
   );
   $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
+  /* Filter criterion: Webform submissions: Draft */
+  $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
+  $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
+  $handler->display->display_options['filters']['is_draft']['field'] = 'is_draft';
+  $handler->display->display_options['filters']['is_draft']['value'] = array(
+    0 => '0',
+  );
 
-  /* Display: Gallery View */
-  $handler = $view->new_display('block', 'Gallery View', 'create_and_share_gallery');
+  /* Display: Create and Share Master */
+  $handler = $view->new_display('block', 'Create and Share Master', 'create_and_share_gallery');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
@@ -357,52 +348,47 @@ function create_and_share_views_default_views() {
 
   /* Display: Context */
   $handler = $view->new_display('ctools_context', 'Context', 'ctools_context_1');
+  $handler->display->display_options['enabled'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'ctools_context';
   $handler->display->display_options['row_plugin'] = 'fields';
 
-  /* Display: Blah */
-  $handler = $view->new_display('block', 'Blah', 'blah');
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'OR',
+  /* Display: Pics for Pets */
+  $handler = $view->new_display('block', 'Pics for Pets', 'picsforpets');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Webform submissions: User */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['required'] = TRUE;
+  /* Relationship: User: Profile */
+  $handler->display->display_options['relationships']['profile']['id'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['table'] = 'users';
+  $handler->display->display_options['relationships']['profile']['field'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['relationship'] = 'uid';
+  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
+    'main' => 'main',
   );
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'create_and_share_campaign' => 'create_and_share_campaign',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Webform submissions: Draft */
-  $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
-  $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
-  $handler->display->display_options['filters']['is_draft']['field'] = 'is_draft';
-  $handler->display->display_options['filters']['is_draft']['operator'] = 'not in';
-  $handler->display->display_options['filters']['is_draft']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['is_draft']['group'] = 1;
-  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
-  $handler->display->display_options['filters']['field_cas_flagged_value']['id'] = 'field_cas_flagged_value';
-  $handler->display->display_options['filters']['field_cas_flagged_value']['table'] = 'field_data_field_cas_flagged';
-  $handler->display->display_options['filters']['field_cas_flagged_value']['field'] = 'field_cas_flagged_value';
-  $handler->display->display_options['filters']['field_cas_flagged_value']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_cas_flagged_value']['group'] = 2;
-  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
-  $handler->display->display_options['filters']['field_cas_flagged_value_1']['id'] = 'field_cas_flagged_value_1';
-  $handler->display->display_options['filters']['field_cas_flagged_value_1']['table'] = 'field_data_field_cas_flagged';
-  $handler->display->display_options['filters']['field_cas_flagged_value_1']['field'] = 'field_cas_flagged_value';
-  $handler->display->display_options['filters']['field_cas_flagged_value_1']['operator'] = 'not';
-  $handler->display->display_options['filters']['field_cas_flagged_value_1']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_cas_flagged_value_1']['group'] = 2;
-
-  /* Display: Gallery View */
-  $handler = $view->new_display('block', 'Gallery View', 'picsforpets');
+  /* Relationship: Webform submissions: Node */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['required'] = TRUE;
+  /* Relationship: Animal type */
+  $handler->display->display_options['relationships']['data']['id'] = 'data';
+  $handler->display->display_options['relationships']['data']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['data']['field'] = 'data';
+  $handler->display->display_options['relationships']['data']['ui_name'] = 'Animal type';
+  $handler->display->display_options['relationships']['data']['label'] = 'Animal Type';
+  $handler->display->display_options['relationships']['data']['webform_nid'] = '729195';
+  $handler->display->display_options['relationships']['data']['webform_cid'] = '3';
+  /* Relationship: Shelter State */
+  $handler->display->display_options['relationships']['data_1']['id'] = 'data_1';
+  $handler->display->display_options['relationships']['data_1']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['data_1']['field'] = 'data';
+  $handler->display->display_options['relationships']['data_1']['ui_name'] = 'Shelter State';
+  $handler->display->display_options['relationships']['data_1']['label'] = 'Shelter State';
+  $handler->display->display_options['relationships']['data_1']['webform_nid'] = '729195';
+  $handler->display->display_options['relationships']['data_1']['webform_cid'] = '5';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
@@ -455,6 +441,109 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['data_1']['relationship'] = 'data_1';
   $handler->display->display_options['filters']['data_1']['operator'] = 'not empty';
   $handler->display->display_options['filters']['data_1']['value'] = 'NY';
+  /* Filter criterion: Webform Submission: Promoted (field_cas_promoted) */
+  $handler->display->display_options['filters']['field_cas_promoted_value']['id'] = 'field_cas_promoted_value';
+  $handler->display->display_options['filters']['field_cas_promoted_value']['table'] = 'field_data_field_cas_promoted';
+  $handler->display->display_options['filters']['field_cas_promoted_value']['field'] = 'field_cas_promoted_value';
+  $handler->display->display_options['filters']['field_cas_promoted_value']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_cas_promoted_value']['value'] = array(
+    1 => '1',
+  );
+
+  /* Display: Promoted Pets */
+  $handler = $view->new_display('attachment', 'Promoted Pets', 'attachment_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Webform submissions: User */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['required'] = TRUE;
+  /* Relationship: User: Profile */
+  $handler->display->display_options['relationships']['profile']['id'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['table'] = 'users';
+  $handler->display->display_options['relationships']['profile']['field'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['relationship'] = 'uid';
+  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
+    'main' => 'main',
+  );
+  /* Relationship: Webform submissions: Node */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['required'] = TRUE;
+  /* Relationship: Animal type */
+  $handler->display->display_options['relationships']['data']['id'] = 'data';
+  $handler->display->display_options['relationships']['data']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['data']['field'] = 'data';
+  $handler->display->display_options['relationships']['data']['ui_name'] = 'Animal type';
+  $handler->display->display_options['relationships']['data']['label'] = 'Animal Type';
+  $handler->display->display_options['relationships']['data']['webform_nid'] = '729195';
+  $handler->display->display_options['relationships']['data']['webform_cid'] = '3';
+  /* Relationship: Shelter State */
+  $handler->display->display_options['relationships']['data_1']['id'] = 'data_1';
+  $handler->display->display_options['relationships']['data_1']['table'] = 'webform_submissions';
+  $handler->display->display_options['relationships']['data_1']['field'] = 'data';
+  $handler->display->display_options['relationships']['data_1']['ui_name'] = 'Shelter State';
+  $handler->display->display_options['relationships']['data_1']['label'] = 'Shelter State';
+  $handler->display->display_options['relationships']['data_1']['webform_nid'] = '729195';
+  $handler->display->display_options['relationships']['data_1']['webform_cid'] = '5';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'create_and_share_campaign' => 'create_and_share_campaign',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
+    0 => '0',
+  );
+  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
+  /* Filter criterion: Webform submissions: Draft */
+  $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
+  $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
+  $handler->display->display_options['filters']['is_draft']['field'] = 'is_draft';
+  $handler->display->display_options['filters']['is_draft']['value'] = array(
+    0 => '0',
+  );
+  /* Filter criterion: Webform Submission: Promoted (field_cas_promoted) */
+  $handler->display->display_options['filters']['field_cas_promoted_value']['id'] = 'field_cas_promoted_value';
+  $handler->display->display_options['filters']['field_cas_promoted_value']['table'] = 'field_data_field_cas_promoted';
+  $handler->display->display_options['filters']['field_cas_promoted_value']['field'] = 'field_cas_promoted_value';
+  $handler->display->display_options['filters']['field_cas_promoted_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['displays'] = array(
+    'picsforpets' => 'picsforpets',
+    'default' => 0,
+    'create_and_share_gallery' => 0,
+    'friends_view' => 0,
+    'ctools_context_1' => 0,
+    'blah' => 0,
+  );
   $export['create_and_share'] = $view;
 
   return $export;

@@ -1070,7 +1070,12 @@ function create_and_share_get_campaign_path($campaign) {
   }
 
   if (empty($cache[$campaign])) {
-    $paths = (array) cache_get('create_and_share_paths')->data;
+    $paths_cache = cache_get('create_and_share_paths');
+    $paths = array();
+    if (isset($paths_cache->data)) {
+      $paths = $paths_cache->data;
+    }
+
     $path = drupal_get_path('module', 'create_and_share');
     $new_paths = array();
 
