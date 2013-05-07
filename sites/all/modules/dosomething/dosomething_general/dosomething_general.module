@@ -1891,3 +1891,20 @@ function _dosomething_general_imagefile_scale($file, $scale = 800) {
   return TRUE;
 }
 
+/**
+ *  Returns array of all node nid's for a given node type.
+ *
+ *  @param string $node_type
+ *    Node type to query by.
+ *
+ *  @return array 
+ *    Array of Node nids.
+ */
+function dosomething_general_get_nids_by_type($node_type) {
+  return db_select('node', 'n')
+      ->fields('n', array('nid'))
+      ->fields('n', array('type'))
+      ->condition('n.type', $node_type)
+      ->execute()
+      ->fetchCol();
+}

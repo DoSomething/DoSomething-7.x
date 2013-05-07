@@ -5,8 +5,6 @@
  * Handles subscription API calls based on webform submissions (or other form submissions)
  **/
 
-include_once 'dosomething_subscribe.update_field_values.inc';
-
 /**
  * Implements hook_menu().
  */
