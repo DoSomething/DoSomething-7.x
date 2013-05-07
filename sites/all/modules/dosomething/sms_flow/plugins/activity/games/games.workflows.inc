@@ -81,7 +81,7 @@ $activity->response_sets = array(
     'response' => array("But I'm the baby, you have to!", "Tough break, you've gotta!"),
   ),
   array(
-    'word_match' => array('Gross', 'ew', 'eww', 'ewww', 'ewwww', 'ewwwww', 'disgusting', 'fowl', 'foul', 'smelly', 'stinky'),
+    'word_match' => array('Gross', 'disgusting', 'fowl', 'foul', 'smelly', 'stinky', '/ew+/'),
     'response' => array("But my cute face balances it out...", "I'm a baby, what do you expect?", "I can't help it, I'm a baby, this is what I do!", "It's a good thing I'm so cute...it makes up for all of the smelly and gross."),
   ),
   array(
@@ -205,7 +205,7 @@ $activity->response_sets = array(
   ),
   array(
     'exact_match' => array('No it doesnt', 'No youre not'),
-    'response' => array("Hey, don't argue with a baby.", "I'm the baby, I'm always right", "There's no arguing with a baby-“I'm a baby” is the ultimate trump card."),
+    'response' => array("Hey, don't argue with a baby.", "I'm the baby, I'm always right", "There's no arguing with a baby-\"I'm a baby\" is the ultimate trump card."),
   ),
   array(
     'phrase_match' => array('Goo goo gaga', 'goo goo ga ga'),
