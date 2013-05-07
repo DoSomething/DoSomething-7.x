@@ -2,22 +2,28 @@
 // -------
 .header,
 .toolkit
-  background: $bg-alt
+  // background: $bg-alt
 
 // HEADER
 // ------
 .header
-  background-image: url($bg-header)
-  background-size: 100% 100%
-  background-repeat: no-repeat
-  background-position: 50% 50%
-  height: 330px
-  margin: 0
   padding: 0
-  @media only screen and (max-width: 1075px)
-    background-size: auto
-  .log-out
-    color: $font-light
+
+  .row-top
+
+  .row-center
+
+  .row-bottom
+
+  .section-container
+    background-color: $bg-header-fallback
+    background-size: 100% 100%
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    padding: 1%
+    @media only screen and (max-width: 1075px)
+      background-size: auto
+
   .logo-dosomething
     display: none
     @media only screen and (max-width: 1075px)
@@ -25,6 +31,7 @@
       float: left
       width: 73px
       height: 65px
+
   .logo-campaign
     margin: 0 auto
     display: block
@@ -44,25 +51,35 @@
     width: 8em
     margin: 0.5em auto
 
-.header-social
-  float: right
+  .log-out
+    color: $font-light
 
-.header-facebook-share,
-.header-twitter-share
-  display: inline-block
-  height: 20px
+  .header-social
+    float: left 
 
-.header-facebook-share
-  width: 80px
-  border: 1px solid rgb(202, 212, 231)
-  +border-radius(2px)
-  &:hover
-    border: 1px solid rgb(236, 238, 245)
+  .header-facebook-share,
+  .header-twitter-share
+    display: inline-block
+    height: 20px
 
-.header-twitter-share
-  float: right
-  width: 54px
-  margin: 0 0 0 5px
+  .header-facebook-share
+    width: 80px
+    border: 1px solid rgb(202, 212, 231)
+    +border-radius(2px)
+    &:hover
+      border: 1px solid rgb(236, 238, 245)
+
+  .header-twitter-share
+    float: right
+    width: 54px
+    margin: 0 0 0 5px
+
+  .header-sponsor
+    float: right
+
+  .header-date
+    h2
+      color: pink
 
 // HEADLINE
 // --------
@@ -70,6 +87,7 @@
 // CALL TO ACTION
 // --------------
 .call-to-action
+
   .btn-cta-medium
     width: 9em
 
@@ -77,6 +95,13 @@
 // ------
 .action
   padding: 2em 0
+
+  .section-header
+    width: 11.79em
+    width: 13.79em
+
+  .action-container
+    clear: both
 
 // TOOLKIT
 // -------
@@ -102,9 +127,14 @@
     display: block
     padding: 1em 0
 
-  .section-container /* TODO - add media query */
+  .scholarship-container
     width: ( $section-unit-width * 2 )
     margin: 0 auto
+    clear: both
+  
+  .section-header
+    width: 7.6em
+    width: 9.6em
 
   .btn-cta-medium
     width: 11em
@@ -112,53 +142,121 @@
   .official-rules
     clear: both
     display: block
-    text-align: center 
+    text-align: center
     color: $btn-grey
 
 // GAME EXAMPLE
 // ------------
 .game-example
-  .section-container
+
+  .game-container
+    margin: 0 auto
     padding: 1% 0 3%
-    width: 40%
+    width: 54%
+    clear: both
+  
+  .section-header
+    width: 16.376em
+    width: 18.376em
 
-.game-conversation
-  margin: 1em auto
-  padding: 1em 2em
-  background: $bg-alt
-  border-radius: 2px
-  position: relative
-  clear: both
-  &:after
-    background: pink
+  .game-conversation
+    margin: 1em auto 2em
+    padding: 1em 2em
+    background: $bg-alt
+    border-radius: 2px
+    position: relative
+    clear: both
+    &:after
+      background: pink
+      content: ""
+      display: block
+      position: absolute
+      border-style: solid
+      border-width: 15px
+    p
+      line-height: 3em
+      font-weight: 500
+      font-size: 18px
+      text-transform: uppercase
+
+  .game-ds
+    float: left
+    &:after
+      bottom: -30px
+      left: 20px
+      border-color: darken($bg-alt, 5) darken($bg-alt, 5) $bg-light $bg-light
+
+  .game-user
+    float: right
+    &:after
+      bottom: -30px
+      right: 20px
+      border-color: darken($bg-alt, 5) $bg-light $bg-light darken($bg-alt, 5)
+
+// PROFILES
+// --------
+.meet
+
+  .section-header
+    width: 11.418em
+    width: 13em
+
+  .activist-photo, .activist-copy
+    float: left
+    text-align: left
+
+  .activist-photo
+    clear: both
+    width: 35%
+    margin: 7% 0 4%
+
+  .activist-copy
+    width: 63%
+    margin: 2% 0 4% 2%
+    h3
+      color: $campaign-accent
+      font-size: 1.4em
+
+// INFO
+// ----
+.info
   p
-    line-height: 3em
-    font-weight: 500
-    font-size: 18px
-    text-transform: uppercase
+    display: block
+    text-align: left
+    line-height: 1.5em
+    padding-bottom: 1em
+  h2
+    padding-bottom: 0.5em
 
-.game-conversation:after
-  content: ""
-  display: block
-  position: absolute
-  border-style: solid
-  border-width: 15px
+  .section-header
+    width: 15.754em
+    width: 17.754em
 
-.game-ds:after
-  bottom: -30px
-  left: 20px
-  border-color: darken($bg-alt, 5) darken($bg-alt, 5) $bg-light $bg-light
+  .headline-callout
+    text-align: left
 
-.game-user:after
-  bottom: -30px
-  right: 20px
-  border-color: darken($bg-alt, 5) $bg-light $bg-light darken($bg-alt, 5)
+  .fact
+    padding-left: 2em
 
-.game-ds
-  float: left
-
-.game-user
-  float: right
+  @media only screen and (max-width: 550px)
+    .divider
+      font-size: 0.7em
+      padding-top: 0.1em
+//  p
+//  margin-bottom: 1em
+//  padding: 0 4%
+//  text-align: left
+//  display: block
+//h2
+//  background: pink
+//  color: lightblue
+//  display: inline-block
+//  padding: 0.2em 2% 0
+//  margin-bottom: 0.7em
+//  text-transform: uppercase
+//  font-size: 1.4em
+//  font-weight: 500
+//
 
 // SOCIAL
 // ------
@@ -227,14 +325,18 @@
   form
     width: 80%
     margin: 0 auto
+
   .campaign-opt-in
     width: 80%
     font-size: 10px
     margin: 3% auto 2%
+
   .official-rules-wrapper
     margin: 1% 0 0 0
+
   .official-rules-link
     text-transform: uppercase
+ 
   .btn-cta-medium
     padding: 0.25em 0 1em 0
     margin: 1em 0
@@ -283,11 +385,24 @@
     font-size: 2em
     text-align: left
     color: #ccc
+    clear: both
+
+  .section-header /* individual overrides */
+    width: 17.64em
+    width: 19.64em
+    font-weight: 500
+    text-align: center
+    padding: 0
+    color: #222
+    float: left
+
   .btn-cta-medium
     width: 10em
+
   .back-to-top /* TODO - THESE STYLES WERE INHERITED; REFACTOR THEM */
     text-align: right
     padding: 1em 0 1em
+
   .top-btn
     font-weight: 400
     color: #C6C7C8
