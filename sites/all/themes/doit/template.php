@@ -120,7 +120,7 @@ function doit_preprocess_node(&$vars) {
   if ($vars['node']->type == 'campaign') {
     $org_code = _doit_load_campaign_org_code($vars['node']);
     // If the camapign has org code set
-    if( $org_code ) {
+    if($org_code) {
       // Loads campaign specific tpl
       array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
     }
@@ -146,7 +146,7 @@ function _doit_load_campaign_assets($node, $org_code = NULL) {
   $org_code = $org_code ? $org_code : _doit_load_campaign_org_code($node);
 
   // If the camapign has org code set
-  if( $org_code ) {
+  if($org_code) {
     // Add campaign specific css and js
     drupal_add_css($css_path . '/' . $org_code . '/' . $org_code . '.css');
     drupal_add_js($js_path . '/' . $org_code . '/' . $org_code . '.js');
