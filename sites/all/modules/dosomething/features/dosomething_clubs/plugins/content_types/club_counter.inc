@@ -266,8 +266,8 @@ function dosomething_clubs_club_counter_right() {
   $w = $s = '';
   global $user;
   if ($pending && (og_is_member($group->gid) || user_access('administer group', $user) || in_array(DSCLUBS_ADMIN_ROLE, og_get_user_roles($group->gid, $user->uid)))) {
-    $w = ' style="width: 110px; float: left;"';
-    $s = '<span style="float: right; background: #E01B6A; color: white; padding: 3px; position: relative; top: -5px; border-radius: 5px;" title="' . t('This club has ' . $pending . ' member(s) pending approval.') . '">' . $pending . '</span>';
+    $w = 'width: 110px; float: left;';
+    $s = '<span style="float: right; background: #E01B6A; color: white; padding: 3px; position: relative; border-radius: 5px;" title="' . t('This club has ' . $pending . ' member(s) pending approval.') . '">' . $pending . '</span>';
   }
 
   $nid = (isset($n->nid) ? $n->nid : 0);
@@ -275,7 +275,11 @@ function dosomething_clubs_club_counter_right() {
 
   global $show_invite_link;
   $output[] = array(
-      '#markup' => '<div class="button-container">' . ($show_invite_link ? l(t('Invite friends'), 'clubs/share/' . $nid, array('attributes' => array('class' => array('go-button')))) : '') . l('<div' . $w . '>' . t('View Members') . '</div>' . $s, 'club/' . $gid . '/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')), 'html' => TRUE)) . '</div>',
+      '#markup' =>
+      '<div class="button-container">'
+      . ($show_invite_link ? l(t('Invite friends'), 'clubs/share/' . $nid, array('attributes' => array('class' => array('go-button')))) : '')
+      . l('<div style="padding-top: 5px; ' . $w . '">' . t('View Members') . '</div>' . $s, 'club/' . $gid . '/members', array('attributes' => array('class' => array('go-button', 'member-popup-trigger')), 'html' => TRUE))
+      . '</div>',
   );
 
   return drupal_render($output);
