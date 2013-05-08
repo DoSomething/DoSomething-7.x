@@ -1,6 +1,10 @@
 <div class="section" id="faq">
-<?php foreach ($items as $delta => $item): $set = current($item['entity']['field_collection_item']); ?>
-  <h4><?php print $set['field_faq_question'][0]['#markup']; ?></h4>
-  <div><?php print $set['field_faq_answer'][0]['#markup']; ?></div>
+<?php foreach ($questions as $key => $question): ?>
+  <h4<?php print ($key == 0) ? ' class="activeFAQ"': ''; ?>>
+    <?php print $question['question']; ?>
+  </h4>
+  <div>
+    <p><?php print $question['answer']; ?></p>
+  </div>
 <?php endforeach; ?>
 </div>

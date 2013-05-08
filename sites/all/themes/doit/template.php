@@ -14,7 +14,7 @@ function doit_preprocess_html(&$variables, $hook) {
   // HTML5 Shiv
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
-  
+
 }
 
 // function doit_preprocess_panels_pane(&$variables) {
@@ -80,7 +80,7 @@ function doit_preprocess_page(&$variables) {
     'scope' => 'footer',
     'every_page' => TRUE,
   ));
-  
+
   // Set the webform title to use the submitted title value rather than what is set in webform_submission_title()
   if (!empty($variables['page']['content']['system_main']['#theme'])) {
     if ($variables['page']['content']['system_main']['#theme'] == 'webform_submission_page') {
@@ -93,22 +93,22 @@ function doit_preprocess_page(&$variables) {
   if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $beta_campaign))) {
     drupal_goto('user/registration?destination=node/' . $beta_campaign);
   }
-  
+
   // Load Webfonts specific to the page
   if (module_exists('dosomething_perfomance_toolbox')) {
     dosomething_perfomance_toolbox_webfonts();
   }
-  
+
 
 }
 
 // preprocess maintenance page copy for 500 error
 function doit_preprocess_maintenance_page(&$vars) {
     if ($GLOBALS['conf']['maintenance_mode'] === 0) {
-      
+
       // Include fonts in error page
       dosomething_perfomance_toolbox_webfonts();
-      
+
       /* we have an error */
       $vars['content'] = '<p>' . t("We're on it! For now, try refreshing the page.") . '</p>';
     }
@@ -251,16 +251,16 @@ function doit_preprocess_block(&$variables) {
 //   // Determine if we are to display the breadcrumb.
 //   // $show_breadcrumb = theme_get_setting('zen_breadcrumb');
 //   // if ($show_breadcrumb == 'yes' || $show_breadcrumb == 'admin' && arg(0) == 'admin') {
-// 
+//
 //     // get rid of the homepage link.
-// 
+//
 //       array_shift($breadcrumb);
-// 
+//
 //     // Return the breadcrumb with separators.
 //     if (!empty($breadcrumb)) {
 //       $breadcrumb_separator = '<i>/</i>';
 //       $trailing_separator = $title = '';
-// 
+//
 //       $item = menu_get_item();
 //       if (!empty($item['tab_parent'])) {
 //         // If we are on a non-default tab, use the tab's title.
@@ -272,9 +272,9 @@ function doit_preprocess_block(&$variables) {
 //       if ($title) {
 //         $trailing_separator = $breadcrumb_separator;
 //       }
-// 
-// 
-// 
+//
+//
+//
 //       // Provide a navigational heading to give context for breadcrumb links to
 //       // screen-reader users.
 //       if (empty($variables['title'])) {
@@ -285,7 +285,7 @@ function doit_preprocess_block(&$variables) {
 //         $variables['title_attributes_array']['class'][] = 'element-invisible';
 //       }
 //       $heading = '<h2' . drupal_attributes($variables['title_attributes_array']) . '>' . $variables['title'] . '</h2>';
-// 
+//
 //       return '<div class="breadcrumb">' . $heading . implode($breadcrumb_separator, $breadcrumb) . $trailing_separator . '<b>' . $title . '</b></div>';
 //     }
 //   // }
@@ -609,13 +609,13 @@ function doit_pager(&$variables) {
   if ($pager_total[$element] > 1) {
     if ($li_first) {
       $items[] = array(
-        'class' => array('pager-first'), 
+        'class' => array('pager-first'),
         'data' => $li_first,
       );
     }
     if ($li_previous) {
       $items[] = array(
-        'class' => array('pager-previous'), 
+        'class' => array('pager-previous'),
         'data' => $li_previous,
       );
     }
@@ -624,7 +624,7 @@ function doit_pager(&$variables) {
     if ($i != $pager_max) {
       if ($i > 1) {
         $items[] = array(
-          'class' => array('pager-ellipsis'), 
+          'class' => array('pager-ellipsis'),
           'data' => '…',
         );
       }
@@ -632,26 +632,26 @@ function doit_pager(&$variables) {
       for (; $i <= $pager_last && $i <= $pager_max; $i++) {
         if ($i < $pager_current) {
           $items[] = array(
-            'class' => array('pager-item'), 
+            'class' => array('pager-item'),
             'data' => theme('pager_previous', array('text' => $i, 'element' => $element, 'interval' => ($pager_current - $i), 'parameters' => $parameters)),
           );
         }
         if ($i == $pager_current) {
           $items[] = array(
-            'class' => array('pager-current'), 
+            'class' => array('pager-current'),
             'data' => $i,
           );
         }
         if ($i > $pager_current) {
           $items[] = array(
-            'class' => array('pager-item'), 
+            'class' => array('pager-item'),
             'data' => theme('pager_next', array('text' => $i, 'element' => $element, 'interval' => ($i - $pager_current), 'parameters' => $parameters)),
           );
         }
       }
       if ($i < $pager_max) {
         $items[] = array(
-          'class' => array('pager-ellipsis'), 
+          'class' => array('pager-ellipsis'),
           'data' => '…',
         );
       }
@@ -659,18 +659,18 @@ function doit_pager(&$variables) {
     // End generation.
     if ($li_next) {
       $items[] = array(
-        'class' => array('pager-next'), 
+        'class' => array('pager-next'),
         'data' => $li_next,
       );
     }
     if ($li_last) {
       $items[] = array(
-        'class' => array('pager-last'), 
+        'class' => array('pager-last'),
         'data' => $li_last,
       );
     }
     return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . theme('item_list', array(
-      'items' => $items, 
+      'items' => $items,
       'attributes' => array('class' => array('pager')),
     ));
   }
@@ -798,3 +798,24 @@ function doit_search_api_page_result(array $variables) {
 
   return $output;
 }
+
+/**
+ * Implements template_preprocess_field().
+ */
+function doit_preprocess_field(&$variables, $hook) {
+
+  switch ($variables['element']['#field_name']) {
+    case 'field_campaign_faq':
+      $questions = array();
+      foreach ($variables['items'] as $item) {
+        $item = current($item['entity']['field_collection_item']);
+        $questions[] = array(
+          'question' => $item['field_faq_question'][0]['#markup'],
+          'answer' => $item['field_faq_answer'][0]['#markup']
+        );
+      }
+      $variables['questions'] = $questions;
+      break;
+  }
+}
+
