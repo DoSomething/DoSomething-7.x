@@ -164,7 +164,8 @@ function _doit_load_campaign_org_code($node) {
 
 // preprocess maintenance page copy for 500 error
 function doit_preprocess_maintenance_page(&$vars) {
-    if ($GLOBALS['conf']['maintenance_mode'] === 0) {
+    global $conf;
+    if ($conf['maintenance_mode'] === 0) {
 
       // Include fonts in error page
       dosomething_perfomance_toolbox_webfonts();
