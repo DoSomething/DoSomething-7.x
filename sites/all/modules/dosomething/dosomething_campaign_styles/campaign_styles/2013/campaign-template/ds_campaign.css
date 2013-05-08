@@ -386,9 +386,6 @@ header[role="banner"] {
   width: 9em; }
 #cmp .action {
   padding: 2em 0; }
-  #cmp .action .section-header {
-    width: 11.79em;
-    width: 13.79em; }
   #cmp .action .action-container {
     clear: both; }
 #cmp .toolkit p {
@@ -409,9 +406,6 @@ header[role="banner"] {
   width: 640px;
   margin: 0 auto;
   clear: both; }
-#cmp .scholarship .section-header {
-  width: 7.6em;
-  width: 9.6em; }
 #cmp .scholarship .btn-cta-medium {
   width: 11em; }
 #cmp .scholarship .official-rules {
@@ -424,9 +418,6 @@ header[role="banner"] {
   padding: 1% 0 3%;
   width: 54%;
   clear: both; }
-#cmp .game-example .section-header {
-  width: 16.376em;
-  width: 18.376em; }
 #cmp .game-example .game-conversation {
   margin: 1em auto 2em;
   padding: 1em 2em;
@@ -458,9 +449,6 @@ header[role="banner"] {
     bottom: -30px;
     right: 20px;
     border-color: #e1e1e1 white white #e1e1e1; }
-#cmp .meet .section-header {
-  width: 11.418em;
-  width: 13em; }
 #cmp .meet .activist-photo, #cmp .meet .activist-copy {
   float: left;
   text-align: left; }
@@ -481,9 +469,6 @@ header[role="banner"] {
   padding-bottom: 1em; }
 #cmp .info h2 {
   padding-bottom: 0.5em; }
-#cmp .info .section-header {
-  width: 15.754em;
-  width: 17.754em; }
 #cmp .info .headline-callout {
   text-align: left; }
 #cmp .info .fact {
@@ -592,14 +577,6 @@ header[role="banner"] {
   text-align: left;
   color: #cccccc;
   clear: both; }
-#cmp .faq .section-header {
-  width: 17.64em;
-  width: 19.64em;
-  font-weight: 500;
-  text-align: center;
-  padding: 0;
-  color: #222222;
-  float: left; }
 #cmp .faq .btn-cta-medium {
   width: 10em; }
 #cmp .faq .back-to-top {
