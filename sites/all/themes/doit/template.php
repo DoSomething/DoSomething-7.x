@@ -91,7 +91,25 @@ function doit_preprocess_page(&$variables) {
   $obj = menu_get_object();
 
   // Bootstrap with campaign assets (tpl, css, js)
-  if (isset($obj->nid)) _doit_load_campaign_assets($obj);
+  if (isset($obj->nid)) {
+
+    if ($obj->type == 'campaign') {
+
+      // Add campaigns type specific page type
+      array_push( $variables['theme_hook_suggestions'], 'page__campaign' );
+
+      $org_code = _doit_load_campaign_org_code($obj);
+
+      if ($org_code) {
+        // Add campaigns specific page type
+        array_push( $variables['theme_hook_suggestions'], 'page__campaign__' . $org_code );
+      }
+
+      _doit_load_campaign_assets($obj, $org_code);
+
+    }
+
+  }
 
 }
 
@@ -112,7 +130,7 @@ function doit_preprocess_node(&$vars) {
 /**
  * Loads campaign css and js files.
  */
-function _doit_load_campaign_assets($node) {
+function _doit_load_campaign_assets($node, $org_code = NULL) {
 
   // @todo - we may need to refactor based on campaign related nodes
   if ($node->type != 'campaign') return;
@@ -125,7 +143,7 @@ function _doit_load_campaign_assets($node) {
   drupal_add_css($css_path . '/campaigns.css');
   drupal_add_js($js_path . '/campaigns.js');
 
-  $org_code = _doit_load_campaign_org_code($node);
+  $org_code = $org_code ? $org_code : _doit_load_campaign_org_code($node);
 
   // If the camapign has org code set
   if( $org_code ) {
