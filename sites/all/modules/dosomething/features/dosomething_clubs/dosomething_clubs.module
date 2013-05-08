@@ -1208,7 +1208,7 @@ function dosomething_clubs_add_users($form, &$form_state, $nid) {
     ),
     'rather' => array(
       '#prefix' => '<p class="rather">',
-      '#markup' => t("I'd rather !type", array('!type' => l(t('type in my own friend\'s email addresses'), '#'))),
+      '#markup' => t("I'd rather !type", array('!type' => l(t('type in my own friend\'s email addresses'), request_path(), array('attributes' => array('class' => array('my-own-emails')))))),
       '#suffix' => '</p>',
     ),
   );
