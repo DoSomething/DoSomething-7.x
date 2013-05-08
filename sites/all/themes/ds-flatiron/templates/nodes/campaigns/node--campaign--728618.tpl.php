@@ -13,7 +13,7 @@
           <img src="<?php print($files_source . 'logo-ds.png'); ?>" alt="DoSomething.org logo" />
         </a>
         <a class="log-out" href="/user/logout">log out</a>
-        <img class="logo-campaign" src="<?php print($files_source . 'logo-' . $cmp_short . '.png'); ?>" alt="<?php print($cmp_name); ?> logo" />
+        <img class="logo-campaign" src="<?php print($files_source . 'logo-' . $cmp_short . '-updated.png'); ?>" alt="<?php print($cmp_name); ?> logo" />
         <?php if ($sponsor): ?>
           <img class="logo-sponsor" src="<?php print($files_source . 'logo-' . $sponsor . '.png'); ?>" alt="<?php print($sponsor); ?> logo" />
         <?php endif; ?>
@@ -80,11 +80,11 @@
           <?php endif; ?>
 
           <div class="official-rules-wrapper">
-            <a class="official-rules-link" href="<?php print($files_source . 'official-rules.pdf'); ?>"  target="_blank">official rules</a>
+            <a class="official-rules-link" href="<?php print($files_source . 'new-contest-rules.pdf'); ?>"  target="_blank">official contest rules</a>
           </div> <!-- .official-rules-wrapper -->
 
           <div class="official-rules-wrapper">
-            <a class="official-rules-link" href="<?php print($files_source . 'official-rules-extra.pdf'); ?>"  target="_blank">more official rules</a>
+            <a class="official-rules-link" href="<?php print($files_source . 'new-sweepstakes-rules.pdf'); ?>"  target="_blank">official sweepstakes rules</a>
           </div> <!-- .official-rules-wrapper -->
 
         </div> <!-- .section-container -->

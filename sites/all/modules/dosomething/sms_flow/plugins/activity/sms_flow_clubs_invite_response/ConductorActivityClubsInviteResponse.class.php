@@ -27,7 +27,7 @@ class ConductorActivityClubsInviteResponse extends ConductorActivity {
 
     // Invite accepted
     if (self::hasAcceptResponse($_REQUEST['args']) || $_REQUEST['args'] == '') {
-      $account = _sms_flow_find_user_by_cell($mobile);
+      $account = dosomething_api_user_lookup($mobile);
 
       // No account found. Output should be 'ask_name'
       if (!$account) {

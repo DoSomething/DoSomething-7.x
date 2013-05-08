@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Handles Mobile Commons API calls.
+ **/
+
+/**
+ * Send a subscribe request to a MobileCommons Opt-in for a given email address.
+ *
+ * @param string $cell
+ *   Cell number to signup.
+ * @param string $mobilecommons_optin
+ *   Mobile Commons Opt-in to subscribe to.
+ */
+function dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons_optin) {
+  //@todo: Move dosomething_general_mobile_commons_subscribe code here and replace globally.
+  return;
+}
+
+/**
+ * Updates a node's Mobilecommons Group Id field.
+ *
+ *  @param int $nid
+ *    Node nid to update.
+ *
+ *  @param string $mobilecommons
+ *    Mobilecommons Opt-in value to use.
+ */
+function _dosomething_subscribe_mobilecommons_update_node_mobilecommons($nid, $mobilecommons) {
+  $node = node_load($nid);
+  if ($node->nid) {
+    $node->field_mc_optin[LANGUAGE_NONE][0]['value'] = $mobilecommons;
+    node_save($node);
+  }
+}
+
+/**
+ * Bulk updates the Mobilecommons Opt-in field for a given node type.
+ *
+ *  @param string $node_type
+ *    Node type to bulk update.
+ *
+ *  @param string $mobilecommons
+ *    Mobilecommons Opt-in value to use.
+ */
+function _dosomething_subscribe_mobilecommons_update_node_type_mobilecommons($node_type, $mobilecommons) {
+  $nids = dosomething_general_get_nids_by_type($node_type); 
+  foreach ($nids as $nid) {
+    _dosomething_subscribe_mobilecommons_update_node_mobilecommons($nid, $mobilecommons);
+  }
+}

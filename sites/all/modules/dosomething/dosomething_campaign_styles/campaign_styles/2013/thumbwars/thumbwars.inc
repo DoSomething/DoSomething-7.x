@@ -34,7 +34,7 @@ $plugin = array(
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
-    '#markup' => '<hr><p>Got questions? Email Dave at <a href="mailto:thumbwars@dosomething.org">thumbwars@dosomething.org</a>!<br><img src="//www.dosomething.org/files/campaigns/thumb13/sponsors.png" alt="Sprint and Toyota"></p>'
+    '#markup' => '<hr><p>Got questions? Email Sarah at <a href="mailto:thumbwars@dosomething.org">thumbwars@dosomething.org</a>!<br><img src="//www.dosomething.org/files/campaigns/thumb13/sponsors.png" alt="Sprint and Toyota"></p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'

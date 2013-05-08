@@ -26,7 +26,7 @@ class ConductorActivityMLKAlphaInvite extends ConductorActivity {
 
     // Get user's first name to send in text. Default to mobile number if name can't be found.
     $inviter_name = $mobile;
-    $account = _sms_flow_find_user_by_cell($mobile);
+    $account = dosomething_api_user_lookup($mobile);
     if ($account) {
       $profile = profile2_load_by_user($account);
       if (isset($profile['main'])) {

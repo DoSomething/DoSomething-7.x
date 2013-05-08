@@ -23,7 +23,7 @@ class ConductorActivitySmsFlowCheckSchool extends ConductorActivity {
 
     $school_found = FALSE;
 
-    $account = _sms_flow_find_user_by_cell($mobile);
+    $account = dosomething_api_user_lookup($mobile);
     $profile = profile2_load_by_user($account, 'main');
     if (isset($profile->field_school_reference[LANGUAGE_NONE][0]['target_id'])) {
       // Use school set in profile if it exists.

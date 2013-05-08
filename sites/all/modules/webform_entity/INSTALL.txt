@@ -1,0 +1,5 @@
+This is a development branch that allows tighter integration for webform_entity fields into webform. The webform_entity fields appear on the webform components table where you can order them including creating multistep webforms and webforms with fieldsets.
+
+A few patches on webform are required to get this wild stuff to work:
+
+http://drupal.org/files/webform-preprocess.patch from http://drupal.org/node/1468944

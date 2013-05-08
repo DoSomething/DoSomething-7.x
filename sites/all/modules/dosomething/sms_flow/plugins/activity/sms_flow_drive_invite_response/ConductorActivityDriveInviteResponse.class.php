@@ -39,7 +39,7 @@ class ConductorActivityDriveInviteResponse extends ConductorActivity {
       }
       else {
         $already_in_drive = FALSE;
-        $account = _sms_flow_find_user_by_cell($mobile);
+        $account = dosomething_api_user_lookup($mobile);
         if ($account && $account->uid) {
           $profileUrl = 'https://secure.mcommons.com/api/profile?phone_number=' . $mobile;
 

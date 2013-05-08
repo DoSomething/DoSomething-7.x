@@ -34,7 +34,7 @@ $campaign_title = "The Craziest Thing I Did to Save Money";
 
 // Top menu links.
 $top_links = array(
-	'crazy(/(time-.*?|[0-9]+))?$' => array(
+	/*'crazy(/(time-.*?|[0-9]+))?$' => array(
 		'title' => 'Gallery',
 		'href' => CRAZY_ROOT,
 	),
@@ -57,13 +57,13 @@ $top_links = array(
 		'attributes' => array(
 			'onclick' => "return fb_auth('submit', " . $fbed . ")",
 		),
-	),
+	),*/
 );
 
 // Sub menus
 $sub_menus = array(
 	// Time based filters sub-menu (landing page)
-	'crazy(/(time-.*?|[0-9]+))?$' => array(
+	/*'crazy(/(time-.*?|[0-9]+))?$' => array(
 		'today' => array(
 			'title' => 'New',
 			'href' => CRAZY_ROOT . '/time-today',
@@ -91,7 +91,7 @@ $sub_menus = array(
 			'title' => 'Video',
 			'href' => CRAZY_ROOT . '/about#video'
     ),
-	),
+	),*/
 );
 
 // Submit form

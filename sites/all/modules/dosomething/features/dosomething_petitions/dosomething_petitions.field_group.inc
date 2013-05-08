@@ -48,8 +48,8 @@ function dosomething_petitions_field_group_info() {
     'label' => 'Petition Contact',
     'weight' => '8',
     'children' => array(
-      0 => 'field_petition_contact_name',
-      1 => 'field_petition_contact_email',
+      0 => 'field_petition_contact_email',
+      1 => 'field_petition_contact_name',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

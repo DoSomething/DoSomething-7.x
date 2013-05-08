@@ -25,7 +25,7 @@ class ConductorActivityClubsSurveyResponse extends ConductorActivity {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
-    $account = _sms_flow_find_user_by_cell($mobile);
+    $account = dosomething_api_user_lookup($mobile);
 
     $q = db_select('node', 'n')
       ->fields('n', array('nid', 'uid'))

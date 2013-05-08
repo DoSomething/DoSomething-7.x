@@ -91,7 +91,12 @@ function dosomething_project_report_default_page_manager_handlers() {
       'top' => NULL,
     ),
   );
-  $display->cache = array();
+  $display->cache = array(
+    'method' => 'page',
+    'settings' => array(
+      'lifetime' => '28800',
+    ),
+  );
   $display->title = '';
   $display->content = array();
   $display->panels = array();
@@ -107,7 +112,10 @@ function dosomething_project_report_default_page_manager_handlers() {
         0 => 'argument_entity_id:webform_submission_entity_1',
       ),
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => '0',
+      'settings' => array(),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -125,7 +133,10 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => '0',
+      'settings' => array(),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -196,8 +207,13 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array();
+    $pane->cache = array(
+      'method' => '0',
+      'settings' => array(),
+    );
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 4;
@@ -222,7 +238,10 @@ function dosomething_project_report_default_page_manager_handlers() {
       'override_title' => 1,
       'override_title_text' => 'How You Can Get Involved',
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => '0',
+      'settings' => array(),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -308,7 +327,10 @@ function dosomething_project_report_default_page_manager_handlers() {
       'override_title' => 0,
       'override_title_text' => '',
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => '0',
+      'settings' => array(),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -390,7 +412,10 @@ function dosomething_project_report_default_page_manager_handlers() {
       'format' => '3',
       'substitute' => 1,
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => '0',
+      'settings' => array(),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
@@ -403,16 +428,18 @@ function dosomething_project_report_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-13';
     $pane->panel = 'top';
-    $pane->type = 'block';
-    $pane->subtype = 'service_links-service_links_not_node';
+    $pane->type = 'share-buttons';
+    $pane->subtype = 'share-buttons';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
+    $pane->configuration = array();
+    $pane->cache = array(
+      'method' => '0',
+      'settings' => array(),
     );
-    $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
@@ -421,6 +448,27 @@ function dosomething_project_report_default_page_manager_handlers() {
     $display->panels['top'][1] = 'new-13';
     $pane = new stdClass();
     $pane->pid = 'new-14';
+    $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'service_links-service_links_not_node';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-14'] = $pane;
+    $display->panels['top'][2] = 'new-14';
+    $pane = new stdClass();
+    $pane->pid = 'new-15';
     $pane->panel = 'top';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -450,10 +498,10 @@ function dosomething_project_report_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-14'] = $pane;
-    $display->panels['top'][2] = 'new-14';
+    $display->content['new-15'] = $pane;
+    $display->panels['top'][3] = 'new-15';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
