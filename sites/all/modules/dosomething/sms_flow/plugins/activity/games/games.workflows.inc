@@ -29,6 +29,11 @@ $activity->response_sets = array(
     'response' => array("That's no way to talk to a baby. If you really really want me to go away, text AWAY and I'll be gone."),
   ),
   array(
+    'phrase_match' => array('i love you'),
+    'AND_match' => array(array('love', 'you')),
+    'response' => array("I love you too!"),
+  ),
+  array(
     'phrase_match' => array('Who is this', 'Who are you', 'Who the hell is this', 'What is this'),
     'response' => array("I'm a phone baby your friend sent from DoSomething.org. I'll only text you today, but if you want me to go away, text AWAY."),
   ),
@@ -90,7 +95,8 @@ $activity->response_sets = array(
   ),
   array(
     'exact_match' => array('poop', 'fart'),
-    'phrase_match' => array('its poop', 'its a poop', 'its a fart'),
+    'phrase_match' => array('its poop', 'its a poop', 'its a fart', 'it was a poop'),
+    'AND_match' => array(array('its', 'poop'), array('its', 'fart')),
     'response' => array("There's no real right answer. You sort of lose either way."),
   ),
   array(
@@ -104,6 +110,10 @@ $activity->response_sets = array(
   array(
     'phrase_match' => array('you ruined my shirt'),
     'response' => array("I'm sorry, sometimes these things just happen."),
+  ),
+  array(
+    'phrase_match' => array('im pregnant', 'i am pregnant'),
+    'response' => array("I'm not the best person to talk to about that, but if you need more info on that matter, you should try calling his hotline: 800-442-4673"),
   ),
   array(
     'phrase_match' => array('fuck you', 'you suck', 'screw you', 'you bitch', 'blow job', 'butt plug', 'camel toe', 'dumb ass', 'hard on', 'jerk off', 'jungle bunny', 'pissed off', 'porch monkey', 'nut sack', 'sand nigger'),
@@ -294,8 +304,12 @@ $activity->response_sets = array(
     'response' => array("I really am trying. Things will be so much easier when I learn how to talk out loud. "),
   ),
   array(
-    'word_match' => array('Hah', 'Haha', 'Hahah', 'LOL', 'LMAO'),
+    'word_match' => array('/\bha[ha]*\b/', 'LOL', 'LMAO'),
     'response' => array("Glad you find me funny :)", "I'm just a regular comedian. ", "I'm glad you think I'm as funny as I do!"),
+  ),
+  array(
+    'word_match' => array('tickle', 'tickling'),
+    'response' => array("Hehehe I'm ticklish!", "Heheh!", "Ahh I'm ticklish! I can't breathe I'm laughing so hard!"),
   ),
 );
 
