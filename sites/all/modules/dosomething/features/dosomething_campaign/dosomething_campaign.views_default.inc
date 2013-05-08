@@ -56,7 +56,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['relationships']['group']['relationship'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['group']['label'] = 'campaign group';
   $handler->display->display_options['relationships']['group']['required'] = TRUE;
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
@@ -67,7 +67,7 @@ function dosomething_campaign_views_default_views() {
   );
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = FALSE;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures_1']['id'] = 'field_webform_pictures_1';
   $handler->display->display_options['fields']['field_webform_pictures_1']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures_1']['field'] = 'field_webform_pictures';
@@ -101,7 +101,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'campaign_report_back' => 'campaign_report_back',
   );
-  /* Filter criterion: Webform Submission: Picture (field_webform_pictures:fid) */
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
@@ -172,7 +172,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'webform' => 'webform',
   );
-  /* Filter criterion: Webform Submission: Picture (field_webform_pictures:fid) */
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
@@ -216,7 +216,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
@@ -229,7 +229,7 @@ function dosomething_campaign_views_default_views() {
   );
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = FALSE;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures_1']['id'] = 'field_webform_pictures_1';
   $handler->display->display_options['fields']['field_webform_pictures_1']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures_1']['field'] = 'field_webform_pictures';
@@ -268,7 +268,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['arguments']['sid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Webform Submission: Picture (field_webform_pictures:fid) */
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
@@ -349,7 +349,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['relationships']['uid']['table'] = 'webform_submissions';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
@@ -362,7 +362,7 @@ function dosomething_campaign_views_default_views() {
   );
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = FALSE;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures_1']['id'] = 'field_webform_pictures_1';
   $handler->display->display_options['fields']['field_webform_pictures_1']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures_1']['field'] = 'field_webform_pictures';
@@ -413,7 +413,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
@@ -426,7 +426,7 @@ function dosomething_campaign_views_default_views() {
   );
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = FALSE;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures_1']['id'] = 'field_webform_pictures_1';
   $handler->display->display_options['fields']['field_webform_pictures_1']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures_1']['field'] = 'field_webform_pictures';
@@ -463,7 +463,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'webform' => 'webform',
   );
-  /* Filter criterion: Webform Submission: Picture (field_webform_pictures:fid) */
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
@@ -490,7 +490,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
@@ -503,7 +503,7 @@ function dosomething_campaign_views_default_views() {
   );
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = FALSE;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures_1']['id'] = 'field_webform_pictures_1';
   $handler->display->display_options['fields']['field_webform_pictures_1']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures_1']['field'] = 'field_webform_pictures';
@@ -532,7 +532,7 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['arguments']['etid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Webform Submission: Picture (field_webform_pictures:fid) */
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
@@ -578,7 +578,7 @@ function dosomething_campaign_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Multiple Webform Gallery', 'panel_pane_5');
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['field'] = 'field_webform_pictures';
@@ -589,7 +589,7 @@ function dosomething_campaign_views_default_views() {
   );
   $handler->display->display_options['fields']['field_webform_pictures']['group_rows'] = FALSE;
   $handler->display->display_options['fields']['field_webform_pictures']['delta_offset'] = '0';
-  /* Field: Webform Submission: Picture */
+  /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures_1']['id'] = 'field_webform_pictures_1';
   $handler->display->display_options['fields']['field_webform_pictures_1']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures_1']['field'] = 'field_webform_pictures';
@@ -627,7 +627,7 @@ function dosomething_campaign_views_default_views() {
     'team_challenge' => 'team_challenge',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Webform Submission: Picture (field_webform_pictures:fid) */
+  /* Filter criterion: Webform Submission: Pictures (field_webform_pictures:fid) */
   $handler->display->display_options['filters']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
