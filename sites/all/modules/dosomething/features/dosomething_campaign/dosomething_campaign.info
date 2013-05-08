@@ -48,6 +48,7 @@ features[field][] = node-campaign-field_campain_logo_thumbnail
 features[field][] = node-campaign-field_counter_aggregation
 features[field][] = node-campaign-field_counter_text
 features[field][] = node-campaign-field_mailchimp_group_id
+features[field][] = node-campaign-field_organization_code
 features[field][] = node-campaign-field_report_back_html
 features[field][] = node-campaign-field_team_redirect
 features[field][] = node-campaign-group_group

@@ -1530,6 +1530,79 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign-field_organization_code'.
+  $fields['node-campaign-field_organization_code'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_organization_code',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '20',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 31,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_organization_code',
+      'label' => 'Org Code',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '42',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-field_report_back_html'.
   $fields['node-campaign-field_report_back_html'] = array(
     'field_config' => array(
@@ -1943,6 +2016,7 @@ function dosomething_campaign_field_default_fields() {
   t('Logo');
   t('Mailchimp Interest Group');
   t('Main Image');
+  t('Org Code');
   t('PSA image');
   t('Please select a start and end date for the campaign.');
   t('Question');
