@@ -100,22 +100,24 @@ function doit_preprocess_page(&$variables) {
  */
 function _doit_load_campaign_assets($node) {
 
+  // @todo - we may need to refactor based on campaign related nodes
   if ($node->type != 'campaign') return;
 
   $theme_path = drupal_get_path('theme', 'doit');
   $css_path =  $theme_path . '/css/campaigns';
   $js_path =  $theme_path . '/js/campaigns';
 
+  // Add global css and js
   drupal_add_css($css_path . '/campaigns.css');
   drupal_add_js($js_path . '/campaigns.js');
 
   $org_code_items = field_get_items('node', $node, 'field_organization_code', $node->language);
 
+  // If the camapign has org code set
   if( $org_code_items ) {
     $org_code = $org_code_items[0]['value'];
-
+    // Add campaign specific tpl, css and js
     array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
-
     drupal_add_css($css_path . '/' . $org_code . '/' . $org_code . '.css');
     drupal_add_js($js_path . '/' . $org_code . '/' . $org_code . '.js');
   }
