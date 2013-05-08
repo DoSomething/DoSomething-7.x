@@ -10,6 +10,139 @@
 function dosomething_campaign_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'field_collection_item-field_campaign_faq-field_faq_answer'.
+  $fields['field_collection_item-field_campaign_faq-field_faq_answer'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_faq_answer',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_campaign_faq',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '1',
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_faq_answer',
+      'label' => 'Answer',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '3',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '32',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_campaign_faq-field_faq_question'.
+  $fields['field_collection_item-field_campaign_faq-field_faq_question'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_faq_question',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_campaign_faq',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_faq_question',
+      'label' => 'Question',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-field_campaign_alphas_campaign'.
   $fields['node-campaign-field_campaign_alphas_campaign'] = array(
     'field_config' => array(
@@ -39,15 +172,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => 26,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '26',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -106,15 +233,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => 27,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '27',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -184,10 +305,9 @@ function dosomething_campaign_field_default_fields() {
       'description' => 'Enter a call to action for this campaign.',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
-          'module' => 'text',
+          'label' => 'above',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '12',
         ),
         'teaser' => array(
@@ -260,9 +380,8 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
+          'type' => 'hidden',
           'weight' => '5',
         ),
         'teaser' => array(
@@ -285,6 +404,72 @@ function dosomething_campaign_field_default_fields() {
         'settings' => array(),
         'type' => 'options_select',
         'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-field_campaign_faq'.
+  $fields['node-campaign-field_campaign_faq'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_campaign_faq',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'field_collection',
+      'settings' => array(
+        'hide_blank_items' => 1,
+        'path' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'field_collection',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'field_collection',
+          'settings' => array(
+            'add' => 'Add',
+            'delete' => 'Delete',
+            'description' => TRUE,
+            'edit' => 'Edit',
+            'view_mode' => 'full',
+          ),
+          'type' => 'field_collection_view',
+          'weight' => '30',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_campaign_faq',
+      'label' => 'FAQ',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'field_collection',
+        'settings' => array(),
+        'type' => 'field_collection_embed',
+        'weight' => '41',
       ),
     ),
   );
@@ -327,12 +512,8 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '3',
         ),
         'teaser' => array(
@@ -421,12 +602,8 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '6',
         ),
         'teaser' => array(
@@ -516,10 +693,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'file',
           'settings' => array(),
-          'type' => 'file_default',
-          'weight' => 28,
+          'type' => 'hidden',
+          'weight' => '28',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -656,13 +832,9 @@ function dosomething_campaign_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '13',
         ),
         'teaser' => array(
@@ -750,9 +922,8 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '10',
         ),
         'teaser' => array(
@@ -822,10 +993,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 17,
+          'type' => 'hidden',
+          'weight' => '17',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -884,11 +1054,8 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'mediafield',
-          'settings' => array(
-            'file_view_mode' => 'default',
-          ),
-          'type' => 'media',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '2',
         ),
         'teaser' => array(
@@ -966,16 +1133,8 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'long',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-            'show_repeat_rule' => 'show',
-          ),
-          'type' => 'date_default',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '11',
         ),
         'teaser' => array(
@@ -1057,10 +1216,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'file',
           'settings' => array(),
-          'type' => 'file_default',
-          'weight' => 29,
+          'type' => 'hidden',
+          'weight' => '29',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1198,10 +1356,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 18,
+          'type' => 'hidden',
+          'weight' => '18',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1271,10 +1428,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 20,
+          'type' => 'hidden',
+          'weight' => '20',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1344,10 +1500,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 25,
+          'type' => 'hidden',
+          'weight' => '25',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1371,6 +1526,78 @@ function dosomething_campaign_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '13',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign-field_organization_code'.
+  $fields['node-campaign-field_organization_code'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_organization_code',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '20',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '31',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_organization_code',
+      'label' => 'Org Code',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '42',
       ),
     ),
   );
@@ -1415,10 +1642,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 19,
+          'type' => 'hidden',
+          'weight' => '19',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1489,10 +1715,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 24,
+          'type' => 'hidden',
+          'weight' => '24',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1563,9 +1788,8 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'og_ui',
           'settings' => array(),
-          'type' => 'og_group_subscribe',
+          'type' => 'hidden',
           'weight' => '0',
         ),
         'teaser' => array(
@@ -1773,6 +1997,7 @@ function dosomething_campaign_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Alphas Campaign');
+  t('Answer');
   t('Betas Campaign');
   t('Body');
   t('Call to action');
@@ -1784,13 +2009,16 @@ function dosomething_campaign_field_default_fields() {
   t('Counter Text');
   t('Enter a call to action for this campaign.');
   t('Enter the field name to pull from the report back (the machine name) that will be aggregated. Or use #count to just count the number of report backs.');
+  t('FAQ');
   t('Group type');
   t('Groups audience');
   t('Logo');
   t('Mailchimp Interest Group');
   t('Main Image');
+  t('Org Code');
   t('PSA image');
   t('Please select a start and end date for the campaign.');
+  t('Question');
   t('Relate this Campaign to a Cause or Issue.');
   t('Report Back HTML');
   t('Team Redirect');
