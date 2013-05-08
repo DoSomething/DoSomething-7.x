@@ -96,7 +96,21 @@ function doit_preprocess_page(&$variables) {
 }
 
 /**
- * Loads campaign specific tpl, css and js files
+ * Implements hook_preprocess_node().
+ */
+function doit_preprocess_node(&$vars) {
+  if ($vars['node']->type == 'campaign') {
+    $org_code = _doit_load_campaign_org_code($vars['node']);
+    // If the camapign has org code set
+    if( $org_code ) {
+      // Loads campaign specific tpl
+      array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
+    }
+  }
+}
+
+/**
+ * Loads campaign css and js files.
  */
 function _doit_load_campaign_assets($node) {
 
@@ -111,17 +125,24 @@ function _doit_load_campaign_assets($node) {
   drupal_add_css($css_path . '/campaigns.css');
   drupal_add_js($js_path . '/campaigns.js');
 
-  $org_code_items = field_get_items('node', $node, 'field_organization_code', $node->language);
+  $org_code = _doit_load_campaign_org_code($node);
 
   // If the camapign has org code set
-  if( $org_code_items ) {
-    $org_code = $org_code_items[0]['value'];
-    // Add campaign specific tpl, css and js
-    array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
+  if( $org_code ) {
+    // Add campaign specific css and js
     drupal_add_css($css_path . '/' . $org_code . '/' . $org_code . '.css');
     drupal_add_js($js_path . '/' . $org_code . '/' . $org_code . '.js');
   }
 }
+
+/**
+ * Loads campaign org code. @todo We should move this once fleshed out a bit more
+ */
+function _doit_load_campaign_org_code($node) {
+  $org_code_items = field_get_items('node', $node, 'field_organization_code', $node->language);
+  return $org_code_items ? $org_code_items[0]['value'] : FALSE;
+}
+
 
 // preprocess maintenance page copy for 500 error
 function doit_preprocess_maintenance_page(&$vars) {
