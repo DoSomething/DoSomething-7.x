@@ -37,11 +37,10 @@ function dosomething_campaign_field_default_fields() {
       'locked' => '0',
       'module' => 'text',
       'settings' => array(
-        'max_length' => '255',
         'profile2_private' => FALSE,
       ),
       'translatable' => '0',
-      'type' => 'text',
+      'type' => 'text_long',
     ),
     'field_instance' => array(
       'bundle' => 'field_campaign_faq',
@@ -69,9 +68,9 @@ function dosomething_campaign_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'size' => '60',
+          'rows' => '3',
         ),
-        'type' => 'text_textfield',
+        'type' => 'text_textarea',
         'weight' => '32',
       ),
     ),
