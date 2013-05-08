@@ -103,7 +103,7 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     $cell = $submitted['your_cell_phone_number'];
   }
   // If no cell submitted form value, and user is logged in, use profile value if we have it.
-  elseif (empty($email) && $user->uid >0) {
+  elseif (empty($cell) && $user->uid >0) {
     $user2 = array();
     $user2 = profile2_load_by_user($user, 'main');  
     $cell = field_get_items('profile2', $user2, 'field_user_mobile');
@@ -221,7 +221,7 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     }
   }
 
-  // --------- Mobile Commons ---------
+  // --------- Mobile Commons ------
   
   // Check if webform node should be subscribing to a Mobilecommons Opt-in Path.
   if (isset($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
@@ -230,6 +230,7 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
 
   if ($mobilecommons && !empty($cell)) {
     //dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons);
-    dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+    $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+    watchdog('dosomething_subscribe', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
   }
 }
