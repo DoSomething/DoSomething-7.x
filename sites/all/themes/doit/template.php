@@ -87,25 +87,38 @@ function doit_preprocess_page(&$variables) {
     dosomething_perfomance_toolbox_webfonts();
   }
 
+  // Check it this is a node page
+  $obj = menu_get_object();
+
+  // Bootstrap with campaign assets (tpl, css, js)
+  if (isset($obj->nid)) _doit_load_campaign_assets($obj);
+
 }
 
 /**
- * Implements hook_preprocess_node().
+ * Loads campaign specific tpl, css and js files
  */
-function doit_preprocess_node(&$vars) {
-  $node = $vars['node'];
-  switch ($node->type) {
-    case 'campaign':
+function _doit_load_campaign_assets($node) {
 
-      $org_code_items = field_get_items('node', $node, 'field_organization_code', $node->language);
-      if( !$org_code_items ) break;
+  if ($node->type != 'campaign') return;
 
-      $org_code = $org_code_items[0]['value'];
+  $theme_path = drupal_get_path('theme', 'doit');
+  $css_path =  $theme_path . '/css/campaigns';
+  $js_path =  $theme_path . '/js/campaigns';
 
-      array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
-      break;
+  drupal_add_css($css_path . '/campaigns.css');
+  drupal_add_js($js_path . '/campaigns.js');
+
+  $org_code_items = field_get_items('node', $node, 'field_organization_code', $node->language);
+
+  if( $org_code_items ) {
+    $org_code = $org_code_items[0]['value'];
+
+    array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
+
+    drupal_add_css($css_path . '/' . $org_code . '/' . $org_code . '.css');
+    drupal_add_js($js_path . '/' . $org_code . '/' . $org_code . '.js');
   }
-
 }
 
 // preprocess maintenance page copy for 500 error
