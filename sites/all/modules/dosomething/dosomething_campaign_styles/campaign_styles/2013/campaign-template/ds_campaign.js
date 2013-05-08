@@ -116,6 +116,19 @@
 //      window.location.href = '/wyr#share';
 //    });
 
+      // Set width of section headers
+      // TODO - THIS IS INACCURATE; REFACTOR
+      var set_width = function(parent, child) {
+
+        $(parent).each(function() {
+          var $this = jQuery(this);
+          var child_width = $this.children(child).width() * 1.1;
+          $this.css('width',child_width);
+        });
+      
+      };
+      set_width('h1.section-header', 'span');
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
