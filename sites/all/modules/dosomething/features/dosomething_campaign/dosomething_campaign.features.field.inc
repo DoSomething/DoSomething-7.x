@@ -1571,10 +1571,9 @@ function dosomething_campaign_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 31,
+          'type' => 'hidden',
+          'weight' => '31',
         ),
         'teaser' => array(
           'label' => 'above',
