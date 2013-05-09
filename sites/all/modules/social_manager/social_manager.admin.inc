@@ -1,7 +1,27 @@
 <?php
 
-function social_manager_settings_form() {
-  echo "!"; exit;
+function social_manager_settings_form($form, &$form_state) {
+  $form = array();
+  $form['share_buttons'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Share buttons'),
+    '#attributes' => array(),
+  );
+  $form['share_buttons']['facebook_share_button'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show Facebook share button'),
+    '#default_value' => variable_get('facebook_share_button', 0),
+    '#attributes' => array(),
+  );
+  $form['share_buttons']['twitter_share_button'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show Twitter share button'),
+    '#default_value' => variable_get('twitter_share_button', 0),
+    '#attributes' => array(),
+  );
+
+  $form = system_settings_form($form);
+  return $form;
 }
 
 function social_manager_add_form($form, &$form_state) {

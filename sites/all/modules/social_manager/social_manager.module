@@ -60,7 +60,8 @@ function social_manager_menu() {
 
   $paths['admin/config/user-interface/social'] = array(
     'title' => t('Social Manager'),
-    'page callback' => 'social_manager_settings_form',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('social_manager_settings_form'),
     'access callback' => TRUE,
     'file' => 'social_manager.admin.inc',
   );
@@ -99,6 +100,9 @@ function social_manager_reload_cache() {
  */
 function social_manager_page_alter(&$page) {
   $actions = cache_get('social_actions')->data;
+  if (empty($actions)) {
+    social_manager_reload_cache();
+  }
 
   foreach ($actions as $path => $crap) {
     if (drupal_match_path(request_path(), $path)) {
