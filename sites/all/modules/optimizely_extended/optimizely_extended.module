@@ -1,0 +1,169 @@
+<?php
+
+/**
+ * @file
+ * Optimizely module
+ *
+ * Originally for Visual Website Optimizer by Awesome Software, http://www.awesome-software.net/
+ * and Ted Cooper (ELC) http://drupal.org/user/784944 
+ *
+ * Ported to Optimizely by netstudio.gr and Yannis Karampelas (http://drupal.org/user/1145950). 
+ *
+ * Adds a small amount of javascript to the page which loads the A/B test from
+ * the optimizely.com website. All configuration after setting
+ * the Account ID happens on the Optimizely website.
+ *
+ *  * 7.x-2.x Additional functionality added to support mulitipule project entries from an Optimizely
+ * account. Each entry specifies target paths to include the Optimizely projects on the specific site paths.
+ * Targeting paths eleminates the need to load Optimizely tests on every page of a site. 
+ */
+
+/**
+ * Implements of hook_permission().
+ */
+function optimizely_extended_permission() {
+  return array(
+    'administer optimizely_extended' => array(
+      'title' => t('Administer Optimizely module'),
+      'description' => t('Administer access to everything in module'),
+      'restrict access' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_init().
+ *
+ * This function was modified so that the optimizely js snippet would only appear
+ * certain pages and paths. These paths are specified in the textarea 'optimizely_path'.
+ * You can specify the actual page path or use wildcards.
+ *
+ * For instance, 'front' will put the optimizely snippet on the front page, and
+ * 'clubs/*' will place the snippet on all pages bellow 'clubs/'. Note: The snippet 
+ * will only appear on the actual 'clubs' page if you specify 'clubs'
+ * without the wildcard.
+ *
+ * If the radio button 'optimizely_enabled' is set to 'disabled' it means that the snippet
+ * will be added to all pages except those listed.
+ *
+ * A disabled project entry will be ignored.
+ */
+ function optimizely_extended_init() {
+  
+  // Load all entries in the optimizely table
+  $query = db_select('optimizely_extended', 'oe')
+	  ->orderBy('oeid')
+    ->fields('oe');
+    
+  // Fetch the result set.
+  $result = $query->execute();
+  
+  // Query results found
+  if ($result) {
+	
+    // Loop through each row of the found results
+    while ($row = $result->fetchAssoc()) {
+	  
+      // Only process the entries that are enabled
+      if ($row['enabled']) {
+				
+			  $project_paths = unserialize($row['path']);
+				$current_path = current_path();
+					
+				// Find comparable alias that could match the paths entered in the project entry
+		    $path_alias = drupal_get_path_alias($current_path);
+				
+		    foreach ($project_paths as $path) {
+
+		      if ((drupal_match_path($path_alias, $path) && $row['include']) ||
+							(!drupal_match_path($path_alias, $path) && !$row['include'])) {
+						
+				    $project_js = '//cdn.optimizely.com/js/' . $row['project_code'] . '.js';
+			      drupal_add_js($projet_js, 'external');
+
+					}
+			
+        }
+		  
+      }
+		
+    }
+	
+  } 
+  
+}
+
+/**
+ * Implements hook_menu().
+ *
+ * Menu entries that define the paths to trigger specific functionality when the path is accessed.
+ */
+function optimizely_extended_menu() {
+  
+  $items = array();
+	
+	$items['admin/config/system/optimizely_extended'] = array(
+  	'title' => 'Optimizely',
+  	'description' => 'List of all different projects to put Optimizely code snippet.',
+  	'page callback' => 'optimizely_extended_list_page',
+  	'access arguments' => array('administer optimizely'),
+    'file' => 'optimizely_extended.admin.inc',
+  	'file path' => drupal_get_path('module', 'optimizely_extended'),
+	);
+  
+  $items['admin/config/system/optimizely_extended/default'] = array(
+  	'title' => 'Project Listing',
+  	'type' => MENU_DEFAULT_LOCAL_TASK,
+  	'weight' => 0,
+  );
+	
+	$items['admin/config/system/optimizely_extended/add_update'] = array(
+    'title' => 'Add Project',
+    'description' => 'Configure Optimizely',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('optimizely_extended_add_update_form'),
+    'access arguments' => array('administer optimizely_extended'),
+    'file' => 'optimizely_extended.admin.inc',
+    'file path' => drupal_get_path('module', 'optimizely_extended'),
+		'type' => MENU_LOCAL_TASK,
+  	'weight' => 10,
+  );
+	
+	$items['admin/config/system/optimizely_extended/add_update/%'] = array(
+    'title' => 'Add Project',
+    'description' => 'Configure Optimizely',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('optimizely_extended_add_update_form', 5),
+    'access arguments' => array('administer optimizely_extended'),
+    'file' => 'optimizely_extended.admin.inc',
+    'file path' => drupal_get_path('module', 'optimizely_extended'),
+		//'type' => MENU_LOCAL_TASK,
+  	'weight' => 10,
+  );
+  
+  $items['admin/config/system/optimizely_extended/settings'] = array(
+    'title' => 'Account Info',
+    'description' => 'Configure your Optimizely account details',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('optimizely_extended_setup_account_settings_form'),
+    'access arguments' => array('administer optimizely_extended'),
+    'file' => 'optimizely_extended.admin.inc',
+    'file path' => drupal_get_path('module', 'optimizely_extended'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 20,
+  );
+
+	$items['admin/config/system/optimizely_extended/delete/%'] = array(
+		'title' => 'Delete Project',
+		'description' => 'Deletes the project from the database.',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('optimizely_extended_delete_page'),
+    'access arguments' => array('administer optimizely_extended', 5),
+    'file' => 'optimizely_extended.admin.inc',
+  	'file path' => drupal_get_path('module', 'optimizely_extended'),
+  	'type' => MENU_CALLBACK,	
+
+	);
+	  	
+  return $items;
+}

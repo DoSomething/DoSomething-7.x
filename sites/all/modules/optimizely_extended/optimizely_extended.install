@@ -1,0 +1,155 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the Optimizely module
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Included in the process of adding a optimizely database table is the creation of a default project entry in the table.
+ * The default entry is used to add the initial javascript file (snippit) on a site wide basis. The Optimizely account ID
+ * will need to be entered in the account setup page to complete the default entry. The Optimizely sites uses the account ID
+ * to generate the basic javascipt file to be included on the site. Once additional projects / experiments are created on the
+ * Optimizely site additional project entries can be added to load the additional javascript files on specific site paths.
+ * Selective loading of the Optimizely javascipt file helps in page load times and the amount of custom Optimizely javascript
+ * in each Javascript include file.
+ */
+function optimizely_extended_install() {
+
+  drupal_set_message(t('Optimizely Extended database table has been created.'), 'status');
+	
+  // Add default entry - check to see if entry already exsists
+  $default_entry_exists = (bool) db_query("
+	  SELECT
+		  project_title
+		FROM
+		  {optimizely_extended}
+		WHERE
+		  project_title ='Default'
+		")
+    ->fetchField();
+
+  if ($default_entry_exists == TRUE) {
+    drupal_set_message('A default entry has already been found in the optimizely database table.', 'warning');
+  }
+  else {
+  
+    // Create default entry
+	// Load Optimizely account code - used for default project snippet ID for javascript file name
+	$account_id = variable_get('optimizely_extended_id', 0);
+	
+  $default_entry_created = (bool) db_insert('optimizely_extended')
+    ->fields(
+        array(
+          'project_title' => 'Default',
+          'include' => 1,
+          'enabled' => 0,
+          'path' => serialize( array('*') ),
+          'project_code' => $account_id,
+        )
+      )
+		->execute();
+							
+	  // Inform the administrator that a default snippet entry has been made. Acount ID and access permisisons need to be configuresd
+	  if ($default_entry_created == TRUE) {
+      drupal_set_message('A default project / experiment entry has been created. Next, enter your <a href="/admin/config/system/optimizely_extended/settings">Optimizely account ID</a>. There\'s also an <a href="/admin/people/permissions/module-optimizely_extended">optimizely permission</a> that can be set for specific roles to access the adminstration functionality. ', 'status');	
+	  }
+	  else {
+	    drupal_set_message('An error was encountred added the default project entry for the Optimizely module.', 'error');
+	  }
+	
+  }
+
+}
+
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Clean up / remove all data created by the module.
+ */
+function optimizely_extended_uninstall() {
+
+  // Remove all optimizely settings in the variable table
+  $cleanup_status = (bool) db_delete('variable')
+					->condition('name', '%optimizely_extended_%', 'LIKE')
+                    ->execute();
+					
+  if ($cleanup_status == TRUE) {
+    drupal_set_message(t('Optimizely Extended variables deleted.'), 'status');
+  }
+	else {
+	  drupal_set_message(t('No entries found when deleting Optimizely Extended variables.'), 'warning');
+	}
+
+  drupal_set_message(t('Optimizely Extended database table dropped.'), 'status');
+  
+}
+
+/**
+ * Implements hook_schema().
+ *
+ * Called at both install and uninstall time, creates/deletes a custom table in the database for the Optimizely module.
+ */
+function optimizely_extended_schema() {
+
+  $schema['optimizely_extended'] = array(
+    'description' => 'This table holds the Optimizely project / experiment entries from the adminstration form.',
+    'fields' => array(
+	
+			'oeid' => array(
+				'description' => 'The unique identifier of each Optimizely project/experiment entry.',
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+			),
+	
+			'project_title' => array(
+				'description' => 'The title of each project.',
+				'type' => 'varchar',
+				'length' => 128,
+				'not null' => TRUE,
+				'default' => '',
+			),
+			 
+			'include' => array(
+				'description' => 'Switch to include / exclude Optimizely snippet on specific page paths.',
+				'type' => 'int',
+				'size' => 'tiny',
+				'not null' => TRUE,
+				'default' => 1,
+			),
+			
+			'enabled' => array(
+				'description' => 'Switch to enabled / disabled Optimizely snippet entry.',
+				'type' => 'int',
+				'size' => 'tiny',
+				'not null' => TRUE,
+				'default' => 0,
+			),
+			 
+			'path' => array(
+				'description' => 'Serialized array of paths where the Optimizely code snippet appears',
+				'type' => 'text',
+				'size' => 'normal',
+				'not null' => FALSE,
+			),
+			 
+			'project_code' => array(
+				'description' => 'Optimizely project code.',
+				'type' => 'varchar',
+				'length' => 128,
+				'not null' => FALSE,
+				'default' => '',
+			),
+		 
+		),
+
+	  'primary key' => array('oeid'),
+	
+  );
+
+  return $schema;
+	
+}

@@ -1,0 +1,7 @@
+name = Optimizely Extended
+description = Adds calls to the Optimizely generated project javascript file(s) to enable A/B testing.
+core = 7.x
+php = 5.2
+version = "7.x-2.0"
+project = "optimizely extended"
+configure = admin/config/system/optimizely_extended/settings

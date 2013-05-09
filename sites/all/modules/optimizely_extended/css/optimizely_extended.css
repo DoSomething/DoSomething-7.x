@@ -1,0 +1,24 @@
+/* CSS specific to the Optimizely Extended module */
+.even .disabled {
+  background-color: #ffcccc;
+  border: 1px solid #8e4d4d;
+}
+
+.odd .disabled {
+  background-color: #c77171;
+  border: 1px solid #8e4d4d;
+}
+
+.even .enabled {
+  background-color: #ccffdd;
+  border: 1px solid #479661;
+}
+
+.odd .enabled {
+  background-color: #74fda2;
+  border: 1px solid #479661;
+}
+
+.default-entry {
+    border: 2px dashed green;
+}
