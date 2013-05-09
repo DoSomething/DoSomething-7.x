@@ -1222,6 +1222,8 @@
      *      config.call_fb (bool): calls the FB.login() function if a user is not logged in.
      *      config.fb_redirect (bool): whether or not to redirect to Facebook for authentication.
      *      config.fb_app_id (int): The numeric ID of the Facebook App to authenticate to.  This *must* be used in conjunction fb_redirect.
+     *      config.gate_selector (string): An (optional) string that will trigger the gate.
+     *      config.redirect (string): An (optional) fully qualified URL to redirect to *after* the user is authorized.
      *
      *  @param callback
      *    A callback function to run if a user is authenticated.
@@ -1232,6 +1234,7 @@
         fb_redirect: (config.gate_call_fb == 2),
         fb_app_id: ((config.gate_call_fb == 2) && config.gate_app_id) ? config.gate_app_id : null,
         selector: config.gate_selector || null,
+        redirect: config.redirect || document.location.pathname.replace('/', ''),
         require_login: false
       };
 
@@ -1246,7 +1249,7 @@
       FB.getLoginStatus(function(response) {
         if (response.status == 'connected' && response.authResponse.userID && !$('body').hasClass('not-logged-in')) {
           // Nothing.  They're authorized.
-          // Drupal.behaviors.fb.clog('User is authenticated.  Doing nothing.');
+          //Drupal.behaviors.fb.clog('User is authenticated.  Doing nothing.');
         }
         else {
           if (things.call_fb) {   
@@ -1257,7 +1260,7 @@
             }, { scope: 'email' });
           }
           else if (things.fb_redirect) {
-            window.location.href = 'https://www.facebook.com/login.php?api_key=' + things.fb_app_id + '&skip_api_login=1&display=page&cancel_url=http%3A%2F%2F' + document.location.host + '%2Ffboauth%2Fconnect%3Fdestination%3D' + document.location.pathname.replace('/', '') + '%26error_reason%3Duser_denied%26error%3Daccess_denied%26error_description%3DThe%2Buser%2Bdenied%2Byour%2Brequest.&fbconnect=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fpermissions.request%3F_path%3Dpermissions.request%26app_id%3D' + things.fb_app_id + '%26redirect_uri%3Dhttp%253A%252F%252F' + document.location.host + '%252Ffboauth%252Fconnect%253Fdestination%253D' + document.location.pathname.replace('/', '') + '%26display%3Dpage%26response_type%3Dcode%26perms%3Demail%252Cuser_birthday%26fbconnect%3D1%26from_login%3D1%26client_id%3D' + things.fb_app_id + '&rcount=1';
+            window.location.href = 'https://www.facebook.com/login.php?api_key=' + things.fb_app_id + '&skip_api_login=1&display=page&cancel_url=http%3A%2F%2F' + document.location.host + '%2Ffboauth%2Fconnect%3Fdestination%3D' + things.redirect + '%26error_reason%3Duser_denied%26error%3Daccess_denied%26error_description%3DThe%2Buser%2Bdenied%2Byour%2Brequest.&fbconnect=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fpermissions.request%3F_path%3Dpermissions.request%26app_id%3D' + things.fb_app_id + '%26redirect_uri%3Dhttp%253A%252F%252F' + document.location.host + '%252Ffboauth%252Fconnect%253Fdestination%253D' + things.redirect + '%26display%3Dpage%26response_type%3Dcode%26perms%3Demail%252Cuser_birthday%26fbconnect%3D1%26from_login%3D1%26client_id%3D' + things.fb_app_id + '&rcount=1';
           }
         }
       });

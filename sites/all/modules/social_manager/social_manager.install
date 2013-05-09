@@ -53,6 +53,12 @@ function social_manager_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'title' => array(
+        'description' => 'The title of the action.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
       'service' => array(
         'description' => 'The service that holds the action.',
         'type' => 'varchar',
@@ -74,6 +80,12 @@ function social_manager_schema() {
         'description' => 'A serialized array of data that will be sent to the action.',
         'type' => 'text',
         'size' => 'big',
+        'not null' => TRUE,
+      ),
+      'settings' => array(
+        'description' => 'Settings for the action.',
+        'type' => 'int',
+        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),

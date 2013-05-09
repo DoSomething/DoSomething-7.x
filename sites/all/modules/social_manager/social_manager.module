@@ -29,36 +29,90 @@ function social_manager_menu() {
   $paths['admin/structure/social'] = array(
   	'title' => t('Social Media Manager'),
     'page callback' => 'social_manager_manage_list',
+    'file' => 'social_manager.admin.inc',
     'access callback' => TRUE,
   );
 
   $paths['admin/structure/social/add'] = array(
     'title' => t('Add Action'),
     'page callback' => 'social_manager_add',
+    'file' => 'social_manager.admin.inc',
     'access callback' => TRUE,
+  );
+
+  $paths['admin/structure/social/edit/%'] = array(
+    'title' => t('Edit Action'),
+    'page callback' => 'social_manage_edit',
+    'page arguments' => array(4),
+    'access callback' => TRUE,
+    'file' => 'social_manager.admin.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  $paths['admin/structure/social/%/%'] = array(
+    'title' => t('Edit Action'),
+    'page callback' => 'social_manager_enable_disable',
+    'page arguments' => array(3,4),
+    'access callback' => TRUE,
+    'file' => 'social_manager.admin.inc',
+    'type' => MENU_CALLBACK,
   );
 
   $paths['social/services/%'] = array(
   	'page callback' => 'drupal_get_form',
   	'page arguments' => array('social_manager_get_services', 2),
   	'delivery callback' => 'social_manager_return_blank_form',
+    'file' => 'social_manager.admin.inc',
   	'access callback' => TRUE,
   );
 
   return $paths;
 }
 
-function social_manager_add() {
-  echo "!"; exit;
+function social_manager_reload_cache() {
+  $actions = db_select('social_actions', 'a')
+    ->fields('a')
+    ->condition('settings', 1, '=')
+    ->execute()
+    ->fetchAll();
+
+  $cache = array();
+  foreach ($actions AS $key => $stuff) {
+    foreach (explode("\r\n", $stuff->paths) as $path) {
+      $cache[$path][$stuff->service . ':' . $stuff->type] = unserialize($stuff->data);
+    }
+  }
+
+  cache_set('social_actions', $cache);
 }
 
-function social_manager_manage_list() {
-	return "TEST";
+
+/**
+ * Implements hook_page_alter().
+ */
+function social_manager_page_alter(&$page) {
+  $actions = cache_get('social_actions')->data;
+
+  foreach ($actions as $path => $crap) {
+    if (drupal_match_path(request_path(), $path)) {
+      foreach ($crap as $action => $data) {
+        $d = explode(':', $action);
+        module_load_include('inc', 'social_manager', 'services/' . $d[0]);
+        $class = ucfirst($d[0]) . 'Service';
+        $method = $d[1] . 'Render';
+
+        $class::$method($page, $data);
+      }
+    }
+  }
 }
 
-function social_manager_get_services($form, $form_state, $service) {
-  module_load_include('inc', 'social_manager', 'services/facebook');
-  FacebookService::appidAction($form);
 
-  return $form;
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function social_manager_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
 }
