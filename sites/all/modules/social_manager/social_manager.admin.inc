@@ -1,5 +1,9 @@
 <?php
 
+function social_manager_settings_form() {
+  echo "!"; exit;
+}
+
 function social_manager_add_form($form, &$form_state) {
   if (!isset($form_state)) {
     $step = 1;

@@ -17,6 +17,13 @@ class FacebookService {
     );
   }
 
+  public static function shareAction() {
+    return '<div id="facebook-wrapper">
+      <a href="#" id="ds-facebook-share-button"><i></i><b>' . t('Recommend') . '</b></a>
+      <a href="#" id="facebook-count" class="arrow_box"><span>&nbsp;</span></a>
+    </div>';
+  }
+
   public static function appidAction(&$form, $data) {
     $form['app_id'] = array(
       '#type' => 'textfield',

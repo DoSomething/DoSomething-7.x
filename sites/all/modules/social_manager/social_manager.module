@@ -58,6 +58,13 @@ function social_manager_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $paths['admin/config/user-interface/social'] = array(
+    'title' => t('Social Manager'),
+    'page callback' => 'social_manager_settings_form',
+    'access callback' => TRUE,
+    'file' => 'social_manager.admin.inc',
+  );
+
   $paths['social/services/%'] = array(
   	'page callback' => 'drupal_get_form',
   	'page arguments' => array('social_manager_get_services', 2),

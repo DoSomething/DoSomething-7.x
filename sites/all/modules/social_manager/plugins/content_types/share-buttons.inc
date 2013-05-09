@@ -1,31 +1,31 @@
 <?php
 
 /**
- *  @file
- *  The standard share buttons allow us access to the Facebook "Like" API
- *  and the twitter "Tweet" api.  These are fine for most purposes but generally
- *  don't look uniform in their many incarnations across the site.  This plugin
- *  provides a "new" set of share buttons that look and act uniformly, yet preserve
- *  the original intended purpose.
+ * @file
+ * The standard share buttons allow us access to the Facebook "Like" API
+ * and the twitter "Tweet" api.  These are fine for most purposes but generally
+ * don't look uniform in their many incarnations across the site.  This plugin
+ * provides a "new" set of share buttons that look and act uniformly, yet preserve
+ * the original intended purpose.
  *
- *  This plugin contains three services:
- *    - Facebook "Recommend" button -- Shares to your wall but no longer "Likes" things.
- *      this is on purpose as the "Like" is slowly being phased out.
- *    - Twitter "Tweet" button -- Completely untouched and in fact uses a template
- *      provided by Twitter itself.
- *    - "Print this page" button -- Links to a printable version of the page.
+ * This plugin contains three services:
+ *   - Facebook "Recommend" button -- Shares to your wall but no longer "Likes" things.
+ *     this is on purpose as the "Like" is slowly being phased out.
+ *   - Twitter "Tweet" button -- Completely untouched and in fact uses a template
+ *     provided by Twitter itself.
+ *   - "Print this page" button -- Links to a printable version of the page.
  *
- *  The Tumblr button has been removed.
+ * The Tumblr button has been removed.
  *
- *  This plugin includes a CSS and JS file specifically to handle Facebook and Twitter
- *  functionality, as well as the required twitter and Facebook library.  Plugin-specific
- *  CSS and JS can be found in the dosomething_general module, in the "css" and "js" folders,
- *  respectively.
+ * This plugin includes a CSS and JS file specifically to handle Facebook and Twitter
+ * functionality, as well as the required twitter and Facebook library.  Plugin-specific
+ * CSS and JS can be found in the dosomething_general module, in the "css" and "js" folders,
+ * respectively.
  *
- *  This plugin may be used on any page, as it attemps to get information from the page
- *  itself.
+ * This plugin may be used on any page, as it attemps to get information from the page
+ * itself.
  *
- *  @todo Make a pleasant and visually appealing UI for administrators.
+ * @todo Make a pleasant and visually appealing UI for administrators.
  */
 
 // Plugin information array
@@ -47,8 +47,8 @@ function dosomething_share_buttons($subtype, $conf, $panel_args, $context) {
   drupal_add_library('connections', 'facebook');
 
   // Include CSS and JS files specific to this plugin.
-  drupal_add_css(drupal_get_path('module', 'dosomething_general') . '/css/share_buttons.css');
-  drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/share-buttons.js');
+  drupal_add_css(drupal_get_path('module', 'social_manager') . '/css/share_buttons.css');
+  drupal_add_js(drupal_get_path('module', 'social_manager') . '/js/share-buttons.js');
 
   $short = shorten_url(url(request_uri(), array('absolute' => TRUE)));
 
