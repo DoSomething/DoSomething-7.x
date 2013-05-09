@@ -10,20 +10,6 @@
 //      var logo = '//www.dosomething.org/files/campaigns/wyr/logo-campaign.png';
 //      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/wyr"><img class="logo-campaign" src="' + logo + '"/></a>');
 //
-//      // FAQ - onClick visibility
-//      $('#faq h4').next('div').css('display','none');
-//      $('#faq h4.activeFAQ').next('div').css('display','block');
-//      $('#faq h4').click(function() {
-//        if($(this).hasClass('activeFAQ')) {
-//          $(this).removeClass().next('div').slideUp();
-//        }
-//        else {
-//          $(this).addClass('activeFAQ');
-//          $(this).siblings('h4').removeClass('activeFAQ');
-//          $(this).next('div').slideToggle();
-//          $(this).siblings().next('div').slideUp();
-//        }
-//      });
 //
 //      // animation for a.jump_scroll
 //      var contentAnchors = 'a.jump_scroll';
@@ -118,7 +104,7 @@
 
       // Set width of section headers
       // TODO - THIS IS INACCURATE; REFACTOR
-      var set_width = function(parent, child) {
+      set_width = function(parent, child) {
 
         $(parent).each(function() {
           var $this = jQuery(this);
@@ -127,7 +113,34 @@
         });
       
       };
-      set_width('h1.section-header', 'span');
+      set_width('h2.section-header', 'span');
+
+      // Frequently Asked Questions
+      faq_toggle = function(question, response) {
+
+        $faq_header = $(question);
+        faq_response = response;
+        
+        $faq_header.next(response).hide();
+        $faq_header.next('div.active').show();
+
+        if( !$faq_header.hasClass('active') ) {
+          $faq_header.click(function() {
+            $this = $(this);
+            if( $this.hasClass('active') ) {
+              $this.removeClass().next(response).slideUp();
+            }
+            else {
+              $this.addClass('active')
+              $this.siblings('h3').removeClass('active')
+              $this.next(response).slideToggle()
+              $this.siblings().next(response).slideUp();
+            }
+          });
+        }
+        
+      }
+      faq_toggle('#faq h3', 'div');
 
     } // end attach: function
   }; // end Drupal.behaviors
