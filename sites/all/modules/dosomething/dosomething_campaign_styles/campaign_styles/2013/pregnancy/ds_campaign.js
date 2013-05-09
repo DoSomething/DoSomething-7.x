@@ -8,7 +8,7 @@
 
       // LOGO, will inject
       var logo = '//www.dosomething.org/files/campaigns/pregnancy/logo.png';
-      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/pregnancytext"><img width="215" class="logo" src="' + logo + '"/></a>');
+      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/baby"><img width="215" class="logo" src="' + logo + '"/></a>');
      
       // FAQ - onClick
       $('#faq h4').next('div').css('display','none');
@@ -86,7 +86,7 @@
       'feed_description': 'Guys sort of play a big role in getting pregnant, so we think it’s time for them to learn a bit about it too. Put a baby in your friends\' phones for a day with @Do Something\'s Pregnancy Text and get them talking about how life would change if they were a parent: http://www.dosomething.org/baby',
       'feed_selector': '.header-facebook-share',
     }, function(response){
-      window.location.href = '/pregnancytext#header';
+      window.location.href = '/baby#header';
     });
 
          

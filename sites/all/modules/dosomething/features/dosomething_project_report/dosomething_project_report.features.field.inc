@@ -159,6 +159,146 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
+  // Exported field: 'node-project_report-field_mailchimp_group_id'.
+  $fields['node-project_report-field_mailchimp_group_id'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mailchimp_group_id',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 3,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mailchimp_group_id',
+      'label' => 'Mailchimp Interest Group',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '32',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-project_report-field_mc_optin'.
+  $fields['node-project_report-field_mc_optin'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mc_optin',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project_report',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 4,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mc_optin',
+      'label' => 'Mobile Commons Opt-In Path',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '34',
+      ),
+    ),
+  );
+
   // Exported field: 'node-project_update-body'.
   $fields['node-project_update-body'] = array(
     'field_config' => array(
@@ -387,6 +527,7 @@ The content from this field will only be shown to anonymous users.',
           'club' => 0,
           'club_event' => 0,
           'decade_2011_signup' => 0,
+          'drive_form' => 0,
           'ds_award_judging' => 0,
           'dsaward_rec' => 0,
           'dsu_askprof' => 0,
@@ -394,24 +535,34 @@ The content from this field will only be shown to anonymous users.',
           'easy_idea' => 0,
           'editorial_content_' => 0,
           'ewaste_signup_2011' => 0,
+          'fb_app_data_gathering_form' => 0,
           'final_grant_update' => 0,
           'grant_alumni' => 0,
           'grant_application' => 0,
           'grant_judge' => 0,
           'help_ticket' => 0,
           'member_opportunity' => 0,
+          'mobile_referral_form' => 0,
           'page' => 0,
+          'petition' => 0,
           'poll' => 0,
           'press' => 0,
           'program_short_form' => 0,
           'project_report' => 0,
           'project_update' => 0,
+          'robo_calls' => 0,
           'scholarship' => 0,
           'scholarship_application' => 0,
+          'scholarship_application_with_rec' => 0,
+          'scholarship_recommendation' => 0,
+          'scholarship_recommendation_reque' => 0,
           'school' => 0,
           'scroller' => 0,
           'share_of_day' => 0,
+          'shelter' => 0,
+          'social_scholarship' => 0,
           'sponsor' => 0,
+          'team_challenge' => 0,
           'tips_and_tools' => 0,
           'webform' => 0,
         ),
@@ -588,6 +739,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'image',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -854,7 +1006,7 @@ The content from this field will only be shown to anonymous users.',
       'settings' => array(
         'handler' => 'entityreference_entity_field',
         'handler_settings' => array(
-          'author_only' => 1,
+          'author_only' => 0,
           'behaviors' => array(
             'views-select-list' => array(
               'status' => 0,
@@ -941,7 +1093,7 @@ The content from this field will only be shown to anonymous users.',
       'module' => 'file',
       'settings' => array(
         'default_file' => 0,
-        'display_default' => '1',
+        'display_default' => 1,
         'display_field' => 1,
         'profile2_private' => FALSE,
         'uri_scheme' => 'public',
@@ -998,6 +1150,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'file',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => array(
             0 => 'auto',
@@ -1141,6 +1294,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'image',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => array(
             0 => 'auto',
@@ -1649,6 +1803,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_link',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
@@ -1676,7 +1833,7 @@ The content from this field will only be shown to anonymous users.',
       'bundle' => 'project_report',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'If you have a website for your project, enter the URL and the Title of the site so people can check it out.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1724,7 +1881,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_types' => array(),
       'field_name' => 'field_participants',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -1856,6 +2013,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'image',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => array(
             0 => 'auto',
@@ -2243,7 +2401,7 @@ Use numbers only (no text).',
       'entity_types' => array(),
       'field_name' => 'field_webform_videos',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -2287,6 +2445,7 @@ Use numbers only (no text).',
         'module' => 'media',
         'settings' => array(
           'allowed_schemes' => array(
+            'private' => 0,
             'public' => 0,
             'vimeo' => 'vimeo',
             'youtube' => 'youtube',
@@ -2303,7 +2462,6 @@ Use numbers only (no text).',
             'media_internet' => 'media_internet',
             'upload' => 0,
           ),
-          'file_extensions' => 'mp3 mov m4v mp4 mpeg avi ogg wmv',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
@@ -2484,9 +2642,12 @@ The content from this field will only be shown to anonymous users.');
   t('How many additional [people helped] since your original post?');
   t('How many additional people have gotten involved since your original post?');
   t('How? e.g. Get 10 friends on a Saturday to pick up trash');
+  t('If you have a website for your project, enter the URL and the Title of the site so people can check it out.');
   t('If you haven\'t yet posted a project <a href="/node/718313"> click here </a>.');
   t('Image');
   t('Issues');
+  t('Mailchimp Interest Group');
+  t('Mobile Commons Opt-In Path');
   t('Number of People Doing It');
   t('Project');
   t('Project Photo');

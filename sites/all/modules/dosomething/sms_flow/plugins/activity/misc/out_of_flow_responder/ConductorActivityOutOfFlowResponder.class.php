@@ -32,12 +32,24 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
   // Response to send to the user if no match is found
   public $no_match_responses = array();
 
+  // Responses to send if MMS was received from the user
+  public $mms_match_responses = array();
+
   // Maximum allowed string edit distance to trigger a successful match
   public $match_threshold = 1;
 
   public function run($workflow) {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
+
+    // Check for MMS before attempting to do any message processing
+    if (!empty($_REQUEST['mms_image_url']) && count($this->mms_match_responses) > 0) {
+      $response = self::selectResponse($this->mms_match_responses);
+      $state->setContext('sms_response', $response);
+      $state->markCompleted();
+      return;
+    }
+
     $userMessage = $_REQUEST['args'];
 
     $userMessage = self::sanitizeMessage($userMessage);
@@ -71,7 +83,16 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
         // Search for phrases within the user message
         if (!$bMatchFound) {
           foreach ($set['phrase_match'] as $matchPhrase) {
-            if ((!$bDoDistanceCheck && stripos($userMessage, $matchPhrase) !== FALSE) 
+            if (self::isRegex($matchPhrase)) {
+              // All regular expressions should just be handled by preg_match. Skip the other
+              // compares and levenshtein distance checks. No need to check a second time
+              // during the distance check round.
+              if (!$bDoDistanceCheck && preg_match(strtolower($matchPhrase), strtolower($userMessage)) == 1) {
+                $bMatchFound = TRUE;
+                break;
+              }
+            }
+            elseif ((!$bDoDistanceCheck && stripos($userMessage, $matchPhrase) !== FALSE)
                 || ($bDoDistanceCheck && levenshtein($userMessage, $matchPhrase) <= $this->match_threshold)) {
               $bMatchFound = TRUE;
 
@@ -106,7 +127,13 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
         if (!$bMatchFound) {
           foreach ($set['word_match'] as $matchWord) {
             foreach ($userWords as $userWord) {
-              if ((!$bDoDistanceCheck && strcasecmp($matchWord, $userWord) == 0)
+              if (self::isRegex($matchWord)) {
+                if (!$bDoDistanceCheck && preg_match(strtolower($matchWord), strtolower($userWord)) == 1) {
+                  $bMatchFound = TRUE;
+                  break;
+                }
+              }
+              elseif ((!$bDoDistanceCheck && strcasecmp($matchWord, $userWord) == 0)
                   || ($bDoDistanceCheck && !$set['word_match_exact'] && levenshtein($matchWord, $userWord) <= $this->match_threshold)) {
                 $bMatchFound = TRUE;
                 break;
@@ -168,7 +195,15 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     }
     elseif (count($this->no_match_responses) > 0) {
       $response = self::selectResponse($this->no_match_responses);
-      $state->setContext('sms_response', $response);
+      if (is_numeric($this->no_match_responses[0])) {
+        // If it's an array of numbers, then push user to the selected opt-in path id
+        sms_mobile_commons_opt_in($mobile, $response);
+        $state->setContext('ignore_no_response_error', TRUE);
+      }
+      else {
+        // Otherwise, expect it's an array of strings, then respond with a selected string
+        $state->setContext('sms_response', $response);
+      }
     }
     else {
       $state->setContext('ignore_no_response_error', TRUE);
@@ -200,15 +235,27 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     return FALSE;
   }
 
+  /**
+   * Determines whether or not this string is actually a regular expression
+   */
+  function isRegex($str) {
+    $strLength = strlen($str);
+    if ($strLength > 1 && $str[0] == '/' && $str[$strLength - 1] == '/') {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+
   // Function to convert select words from their abbreviated form
   function sanitizeMessage($message) {
     // Single quote to be removed instead of replacing with whitespace to conserve integrity of word
-    $userMessage = preg_replace('/\'/', '', $userMessage);
+    $message = preg_replace('/\'/', '', $message);
     // Remove all non alphanumeric characters from the user message
-    $userMessage = preg_replace('/[^A-Za-z0-9 ]/', ' ', $userMessage);
+    $message = preg_replace('/[^A-Za-z0-9 ]/', ' ', $message);
     // Matches multi-character whitespace with a single space
-    $userMessage = preg_replace('/\s+/', ' ', $userMessage);
-    $userMessage = check_plain($userMessage);
+    $message = preg_replace('/\s+/', ' ', $message);
+    $message = check_plain($message);
 
     $abbreviations = array(
       'u' => 'you',

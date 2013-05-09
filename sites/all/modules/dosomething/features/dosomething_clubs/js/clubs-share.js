@@ -38,7 +38,7 @@
 				return false;
 			});
 
-			$('p#rather a').click(function() {
+			$('.my-own-emails').click(function() {
 				$('#response').html('&nbsp;');
 				$('#manual-emails').slideToggle('fast');
 				$('#check-area').hide();
@@ -72,7 +72,7 @@
 				};
 
 				Drupal.behaviors.fb.feed(c, function(response) {
-					console.log(response);
+					//console.log(response);
 				});
 			});
 		},

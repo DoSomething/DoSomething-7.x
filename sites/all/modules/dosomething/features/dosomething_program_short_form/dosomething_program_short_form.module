@@ -11,21 +11,13 @@ include_once 'dosomething_program_short_form.features.inc';
  */
 function dosomething_program_short_form_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') === 0 && isset($form_state['webform_entity']) && $form_state['webform_entity']['bundle'] == 'program_short_form') {
-    // The following function will call the email and mobile subscribe function
-    // The following comment from the campaign_short_form. Not sure if it applies to this, hence keeping it intact.
-    // Note that dosomething_grant_application,
-    // dosomething_scholarship_application, dosomething_campaign_report_back, and
-    // dosomething_campaign_sign_up all prepopulate data from the user's user and
-    // main profile object and update those objects with newer data.  The code is
-    // not *quite* common enough to completely generalize, so there is some
-    // duplication.  If you need to make a change here you likely need to make it
-    // in the other places as well.
-    $form['#submit'][] = 'dosomething_general_webform_email_and_mobile_subscribe';
-
     $form['#suffix'] = '<div id="campaign-opt-in"><span class="ctia_top">Sign up to receive weekly updates. No spam, we promise.</span><br /><span class="ctia_bottom">Msg &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</span></div>';
   }
 }
 
+/**
+ * Implements hook_module_implements_alter().
+ */
 function dosomething_program_short_form_module_implements_alter(&$implementations, $hook) {
   if ($hook == 'form_alter' && isset($implementations['dosomething_program_short_form'])) {
     $group = $implementations['dosomething_program_short_form'];

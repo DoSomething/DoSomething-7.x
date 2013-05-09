@@ -125,12 +125,9 @@ function dosomething_general_module_implements_alter(&$implementations, $hook) {
   }
 
   if ($hook == 'cron') {
-    // Remove the system cron temporarily until we
-    // figure out why it is killing crazy
-    // The "safe" system cron tasks have been replicated
-    // and included in this modules implementation
-    // of hook_cron
-    unset($implementations['system']);
+    // Field cron is what is killing our submissions.
+    // Lets remove for now
+    unset($implementations['field']);
   }
 }
 
@@ -977,49 +974,6 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'help_form_captcha';
   }
-
-  if ($form_id == 'webform_client_form_' . variable_get('million_webform', 728731)) {
-    // Load the form information.
-    $f = &$form['submitted'];
-
-    // Set placeholders.
-    $f['your_name']['#attributes']['placeholder'] = t('Your Name');
-    $f['your_number']['#attributes']['placeholder'] = t('Your Number');
-    $f['friends_number']['#attributes']['placeholder'] = t("Friend's Number");
-    $f['friends_number_2']['#attributes']['placeholder'] = t("Friend's Number");
-    $f['friends_number_3']['#attributes']['placeholder'] = t("Friend's Number");
-
-    if (!user_is_logged_in()) {
-      $form['actions']['submit']['#ajax'] = array(
-        'callback' => 'dosomething_general_million_users_login',
-      );
-    }
-
-    $form['#submit'][] = 'dosomething_general_million_users_opt_in';
-  }
-
-  if ($form_id == 'webform_client_form_' . variable_get('volunteer_webform', 728802)) {
-    $form['#submit'][] = 'dosomething_general_volunteer_webform_submit';
-  }
-}
-
-/**
- *  Connections volunteer webform to Mobile Commons and MailChimp
- */
-function dosomething_general_volunteer_webform_submit($form, &$form_state) {
-  $values = $form_state['input']['submitted'];
-
-  // Gets Mobile Commons bucket and sets up cell field to sign up the mobile number.
-  $mobile_commons_bucket = variable_get('volunteer_mobile_commons_bucket', 150443);
-  if (!empty($mobile_commons_bucket) && !empty($values['cell'])) {
-    dosomething_general_mobile_commons_subscribe($values['cell'], $mobile_commons_bucket);
-  }
-
-  // Connects email to MailChimp
-  $mailchimp_bucket = 'Volunteers2013';
-  if (!empty($mailchimp_bucket) && !empty($values['e_mail'])) {
-    dosomething_general_mailchimp_subscribe($values['e_mail'], $mailchimp_bucket);
-  }
 }
 
 /**
@@ -1077,15 +1031,16 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
  * combined with the $node values for inserting values into Mailchimp
  * and/or Mobile Commons
  */
+//@todo: this will be moved over to dosomething_subscribe.module
 function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
   // If we don't have a node or a webform submission there's really nothing we
   // can do. This handler was probably put on the wrong form.
+
   if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
     return;
   }
   $node = $form['#node'];
   $submitted = $form_state['webform_entity']['submission']->submitted;
-
   $email = $cell = '';
   // Different instances of the email field use different widgets so we have to
   // look in two places to find their email address.
@@ -1103,39 +1058,37 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
       $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     }
   }
-
+  // If we have an email field, check whether or not to subscribe it.
   if (!empty($email)) {
-    if ( (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value']) || ($node->type == 'petition') ) && !empty($email)) {
-
-      // Cell
-      if (!empty($cell)) {
-        $mc_merge_vars['MMERGE7'] = $cell;
+    $mc_merge_vars = array();
+    // Pretty sure this is never going to occur... would any webform use field_webform_or_cell as the cell #?
+    if (!empty($cell)) {
+      $mc_merge_vars['MMERGE7'] = $cell;
+    }
+    // Grab node's group mailchimp id field value
+    if (isset($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
+      $mc_group = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
+    }
+    // Somehow the mailchimp group id gets included in the submission? Could have sworn I saw this work someplace.
+    elseif (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
+      $mc_group = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
+    }
+    // Petitions Group ID is hardcoded, for now.
+    if ($node->type == 'petition') {
+      // @todo: Remove line below once Petitions gets mc_optin field added.
+      $mc_group = 'Petitions2012';
+      // Petition Name - Webform ID
+      $mc_merge_vars['MMERGE27'] = $form['#action'];
+      // Drupal User ID - UID
+      if ($form['#submission']->details['uid'] > 0) {
+        $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
       }
-
-      // From petitions
-      if ($node->type == 'petition') {
-
-        $mc_group = 'Petitions2012';
-
-        // Petition Name - Webform ID
-        $mc_merge_vars['MMERGE27'] = $form['#action'];
-
-
-        // Drupal User ID - UID
-        if ($form['#submission']->details['uid'] > 0) {
-          $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
-        }
-
-      }
-      else {
-        $mc_group = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
-      }
-
+    }
+    // If we have a mailchimp group, subscribe the email to it.
+    if (isset($mc_group)) {
       dosomething_general_mailchimp_subscribe($email, $mc_group, $mc_merge_vars);
-
     }
   }
-
   // Will use previous cell value if already set from Petition submission
   $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
   if (!empty($cell)) {
@@ -1143,92 +1096,6 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
       dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
     }
   }
-}
-
-/**
- * Multi-function form submit handler that aggressively looks for emails and
- * other data in form submissions, then sends them to mailchimp.
- *
- * @param $form
- * @param $form_state
- */
-function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_state) {
-
-  $node = $form['#node'];
-  $submitted = $form_state['webform_entity']['submission']->submitted;
-
-  $email = '';
-  if (!empty($submitted['email'])) {
-    $email = $submitted['email'];
-  }
-  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  }
-  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
-  }
-  elseif (!empty($submitted['your_email'])) {
-    $email = $submitted['your_email'];
-  }
-
-  // An email and a mailchimp group id are the base requirements. Without them,
-  // bail out.
-  if (empty($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) || empty($email)) {
-    return;
-  }
-
-  // Now, find extra fields.
-  $merge_vars = array();
-
-  if (!empty($submitted['birthday'])
-      && !empty($submitted['birthday']['month'])
-      && !empty($submitted['birthday']['day'])) {
-    $month = str_pad($submitted['birthday']['month'], 2, '0', STR_PAD_LEFT);
-    $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
-    if (!empty($submitted['birthday']['year'])) {
-      $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
-
-      // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
-      $merge_vars['TURNS18'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 18;
-      $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;
-    }
-  }
-
-  if (!empty($submitted['first_name'])) {
-    $merge_vars['FNAME'] = $submitted['first_name'];
-  }
-
-  if (!empty($submitted['last_name'])) {
-    $merge_vars['LNAME'] = $submitted['last_name'];
-  }
-
-  // Full name - MMERGE3
-  if ( !empty($submitted['first_name']) ||
-       !empty($submitted['last_name']) ||
-       !empty($submitted['your_name']) ) {
-
-    $merge_vars['MMERGE3'] = $submitted['first_name'] . ' ' . $submitted['last_name'];
-
-    if (!empty($submitted['your_name'])) {
-      $merge_vars['MMERGE3'] = $submitted['your_name'];
-    }
-
-  }
-
-  // Check for secondary name submissions - ie: Footlocker nominee
-  if (!empty($submitted['nominees_name'])) {
-
-    $nominees_email = $submitted['nominees_email'];
-    $nominees_merge_vars = array();
-    $nominees_merge_vars['MMERGE3'] = $submitted['nominees_name'];
-
-    // Submit to MailChimp
-    dosomething_general_mailchimp_subscribe($nominees_email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $nominees_merge_vars);
-  }
-
-  // Submit to MailChimp
-  dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
-
 }
 
 /**
@@ -1244,10 +1111,10 @@ function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_stat
  *   An integer representing the celebrity who will "send" the call.
  *
  * @param string $type
- *   Default "calls".  The type of request. 
- * 
+ *   Default "calls".  The type of request.
+ *
  * @todo Make $type worthwhile.
- *  
+ *
  */
 function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
   $path = libraries_get_path('telapi');
@@ -1474,6 +1341,7 @@ function dosomething_general_mailchimp_get_api_object() {
  * @return
  *   Boolean indicating success.
  */
+//@todo: move this to dosomething_subscribe_mailchimp_signup().
 function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
 
   /* Our function */
@@ -1481,7 +1349,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
 
   // Catching function
   // Hardcoding the list to the dosomething members
-  if ($groupName == 'Volunteers2013') {
+  if ($groupName == 'GunControlReport2013' || $groupName == 'Volunteers2013') {
     $listid = 'a27895fe0c';
   }
   else {
@@ -1536,17 +1404,15 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
 
   // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
   $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
+  $merge_vars = print_r($merge_vars, TRUE);
 
   if ($mc_signup_flag) {
-    // drupal_set_message('MailChimp email added', 'status');
     watchdog('dosomething_general_mailchimp_subscribe',
-             'Added ( %email ) to MailChimp group %group.',
-             array('%email' => $email, '%group' => $groupName),
-             $severity = WATCHDOG_ERROR);
+             'Added ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
+             array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
+             $severity = WATCHDOG_INFO);
   }
   else {
-    // drupal_set_message('FAILED to add email to MailChimp.', 'error');
-    $merge_vars = print_r($merge_vars, true);
     watchdog('dosomething_general_mailchimp_subscribe',
              'Failed to signup new user ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
              array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
@@ -1568,6 +1434,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
  * @return
  *   Array $merge_vars collection user information.
  */
+//@todo: move this to dosomething_subscribe_mailchimp_collect_merge_vars().
 function dosomething_general_collect_merge_vars($target_email = NULL, $target_mobile = NULL) {
 
   // Collect the user details
@@ -1764,15 +1631,28 @@ function dosomething_general_load_user_by_mail_or_cell($value) {
  *  Either FALSE or the cleaned up cell phone number (only digits).
  */
 function dosomething_general_valid_cell($number) {
+  $trimmed_number = dosomething_general_clean_cell_number($number);
+
+  // Three 5's in a row, in the first 6 digits, constitute a bad phone number.
+  if (preg_match('#(5{3})#', substr($trimmed_number, 0, 6))) {
+    return false;
+  }
+
+  return $trimmed_number;
+}
+
+/**
+ * Clean input phone number of all non-numeric characters.
+ *
+ * @param $number String to format into a 10-digit phone number
+ *
+ * @return Numeric-only string of the phone number, or FALSE if input is not a 10-digit number
+ */
+function dosomething_general_clean_cell_number($number) {
   $trimmed_number = ltrim(preg_replace('#[^0-9]#', '', $number), 1);
 
   // Make sure the number is 10 digits long.
   if (strlen($trimmed_number) != 10) {
-    return false;
-  }
-
-  // Three 5's in a row, in the first 6 digits, constitute a bad phone number.
-  if (preg_match('#(5{3})#', substr($trimmed_number, 0, 6))) {
     return false;
   }
 
@@ -1959,4 +1839,68 @@ function dosomething_general_get_multi_fbids($users) {
 
   // Return the keys
   return array_keys($uids);
+}
+
+/**
+ * Implements hook_file_presave().
+ */
+function dosomething_general_file_presave($file) {
+  // Resize image file if it is larger than 800 wide or tall
+  _dosomething_general_imagefile_scale($file, 800);
+}
+
+/**
+ *  Takes a file object and scales it down if it is of
+ *  type image. The filesize on the file object is then updated.
+ *
+ *  @param object $file
+ *    A file object.
+ *
+ *  @param int $scale
+ *    The max width or height to scale the image to.
+ *
+ *  @return bool
+ */
+function _dosomething_general_imagefile_scale($file, $scale = 800) {
+  // Make sure the file is an image
+  if (preg_match('/^image\//', $file->filemime) !== 1) return FALSE;
+
+  // Load the image object
+  if (!$img = image_load($file->uri)) return FALSE;
+
+  $dim = array(
+    'width' => $img->info['width'],
+    'height' => $img->info['height']
+  );
+
+  // Check if this image can be scaled down
+  if (!image_dimensions_scale($dim, $scale, $scale, FALSE) ) return FALSE;
+
+  // Lets resize the image.
+  if (!image_resize($img, $dim['width'], $dim['height'])) return FALSE;
+
+  // Save the image file object
+  if (!image_save($img)) return FALSE;
+
+  // Update the file object with the new file size
+  $file->filesize = $img->info['file_size'];
+
+  return TRUE;
+}
+
+/**
+ *  Returns array of all node nid's for a given node type.
+ *
+ *  @param string $node_type
+ *    Node type to query by.
+ *
+ *  @return array 
+ *    Array of Node nids.
+ */
+function dosomething_general_get_nids_by_type($node_type) {
+  return db_select('node', 'n')
+      ->fields('n', array('nid'))
+      ->condition('n.type', $node_type)
+      ->execute()
+      ->fetchCol();
 }

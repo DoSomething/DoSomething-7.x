@@ -1,0 +1,22 @@
+diff --git a/sites/all/modules/webform_entity/webform_entity.module b/sites/all/modules/webform_entity/webform_entity.module
+index e74a3e2..a55c55d 100644
+--- a/sites/all/modules/webform_entity/webform_entity.module
++++ b/sites/all/modules/webform_entity/webform_entity.module
+@@ -737,13 +737,15 @@ function webform_entity_node_load($nodes, $types) {
+  * Implements hook_node_presave().
+  */
+ function webform_entity_node_presave($node) {
+-  if (isset($node->webform['components'])) {
++  // Issue #1988372: Unpublishing a WE node removes all data from webform components and fields.
++  // Keeping this here for now because it's unclear what this is actually used for.
++  /*if (isset($node->webform['components'])) {
+     foreach ($node->webform['components'] as $key => $component) {
+       if ($component['type'] == 'hidden' && !$component['value'] && !is_int($component['cid'])) {
+         unset($node->webform['components'][$key]);
+       }
+     }
+-  }
++  }*/
+ }
+ 
+ /**

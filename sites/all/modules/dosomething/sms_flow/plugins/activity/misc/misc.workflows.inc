@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Handle FTAF numbers sent from the millionth-member SMS broadcast.
+ * Uses the mdata_id to determine which FTAF to trigger
  */
 $workflow = new ConductorWorkflow();
 $workflow->wid = 'new';
-$workflow->name = 'sms_flow_million_member_ftaf';
-$workflow->title = 'Process FTAFs sent from the million member broadcast';
+$workflow->name = 'sms_flow_mdata_ftaf';
+$workflow->title = 'Process FTAFs sent directly into an mData';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
@@ -23,11 +23,20 @@ $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';
 $activity->inputs = array('args_to_context');
 $activity->outputs = array('end');
-$activity->beta_optin = array(151923);
-// Nothing we can really do if there's an error in thise case, so just send them
-// the same msg as the success message.
-$activity->response_error = 'Thanks for letting ur friends into my text circle! Stay tuned, we\'ll announce the winner on Do Something\'s Facebook page! If you win you\'ll get a call from me!';
-$activity->response_success = 'Thanks for letting ur friends into my text circle! Stay tuned, we\'ll announce the winner on Do Something\'s Facebook page! If you win you\'ll get a call from me!';
+$activity->ftaf_sets = array(
+  // FTAF from within the Pregnancy Text Game
+  array(
+    'mdata_id' => 10393,
+    'beta_optin' => array(152373),
+    'response_success' => 'Want info on preventing teen pregnancy? Text WAIT for waiting tips, SAFE for safe sex tips, RIGHTS for info on sexual health rights, or PARENT for teen parents.',
+  ),
+  // FTAF sent by a Pregnancy Text Alpha user
+  array(
+    'mdata_id' => 10403,
+    'beta_optin' => array(152373),
+    'response_success' => 'You\'re sending lots of text babies! Text back one number at a time and we\'ll send your friend a text baby',
+  ),
+);
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -76,6 +85,8 @@ $activity->petitions = array(
     'opt_in_path_id' => 154033,
     'skip_ftaf' => TRUE,
     'success_response' => 154153,
+    'beta_to_alpha_feedback' => "Your friend @name signed the petition! You're on a roll, organize more friends to sign by texting SIGN, or join our music video challenge: http://doso.me/h",
+    'alpha_campaign_id' => 116263,
   ),
 );
 
@@ -83,7 +94,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ftaf_prompt';
 $activity->inputs = array('sign_petition');
 $activity->outputs = array('ftaf');
-$activity->question = t('Great! Organize your friends to get involved, Text 5 friends #s to have them add their voice to the petition.');
+$activity->question = t("Thanks! Once we get 10K signatures they'll be delivered to the Common App Board of Directors. Organize ur friends to sign. Txt 5 friends #s to add their voice.");
 
 $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';

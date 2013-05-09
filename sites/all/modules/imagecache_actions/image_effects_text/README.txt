@@ -131,7 +131,7 @@ text to display. To ease this task, this module makes some information regarding
 the image being processed available in 2 variables: $image and $image_context.
 These variables are readily available in your snippet.
 
-$image is an object containing the following properties:
+$image is an associative array containing:
 - source: string, the source of the image, e.g. public://photo.jpg
 - info: array, example data:
    - width (int) 180
@@ -153,7 +153,7 @@ $image_context is an associative array containing:
       - HEX (string) 000000
       - alpha (string) 100
    - angle (string) 0
-   - fontfile  (string:43) module://image_effects_text_test/lhandw.ttf
+   - fontfile  (string:10) lhandw.ttf
    - text_source   (string) text
    - text  (string) Hello World!
    - php  (string) return 'Hello World!'

@@ -511,9 +511,9 @@ body {
     width: 50%; }
   #cmp .col60 {
     width: 60%; }
-  #cmp .col33-inner {
+  #cmp .col33-inner, #cmp .col50-inner {
     padding: 0 1.5%; }
-    #cmp .col33-inner p {
+    #cmp .col33-inner p, #cmp .col50-inner p {
       width: 80%;
       margin: 0 auto;
       text-align: center !important; }
@@ -656,6 +656,8 @@ body {
     #cmp #header .ctia_bottom, #cmp #header .ctia_top {
       font-weight: 400;
       text-transform: none; }
+  #cmp .view-campaign-gallery #slideshow {
+    margin: 0 auto; }
   #cmp #scholarship {
     color: white;
     background: #ffd900; }
@@ -740,7 +742,8 @@ body {
       #cmp #scholarship .scholar-foot .rule-regs {
         margin-left: 2%;
         font-size: 1em;
-        text-align: left; }
+        text-align: left;
+        line-height: 1.1em; }
         #cmp #scholarship .scholar-foot .rule-regs a {
           font-weight: 600; }
     #cmp #scholarship .success_msg p {
@@ -988,6 +991,8 @@ body {
       margin-bottom: 1em; }
     #cmp .node-campaign-sign-up label[for="edit-submitted-tell-us-why-you-will-share-the-socks-with-these-people-this-answer-determines-if-you-get-socks"] {
       margin-top: 1em; }
+    #cmp .node-campaign-sign-up select {
+      margin-bottom: 2em; }
   #cmp #report-back {
     margin-top: 3%;
     border: none;
@@ -1204,6 +1209,8 @@ body {
       margin: 1% 2% 4%; }
       #cmp #scholarship .bubble:before {
         display: none; }
+    #cmp #scholarship .scholar-foot input[type="submit"] {
+      font-size: 1.8em; }
     #cmp #info h2 {
       line-height: 1.2em;
       margin-top: 2%; }
