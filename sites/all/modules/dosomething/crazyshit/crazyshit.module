@@ -1054,8 +1054,9 @@ function crazyshit_fb_connect() {
 
 
 function crazyshit_fboauth_redirect($destination) {
-  if (strpos($destination, 'crazy') !== -1) {
+  if (strpos($destination, 'crazy') === 0) {
   	global $user;
+		
 	if (!empty($user->mail)) {
 	    $mid = CRAZY_MAILCHIMP_GROUP;
 	    $email = $user->mail;
