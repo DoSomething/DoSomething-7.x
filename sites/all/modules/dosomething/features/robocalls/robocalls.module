@@ -69,7 +69,7 @@ function robocalls_get_celebrities() {
   if (empty($celebs)) {
     foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
       $c = taxonomy_term_load($celeb->tid);
-      if ($celeb->name != '???' && $c->field_visible_celebrity[LANGUAGE_NONE][0]['value'] == 1) {
+      if ($celeb->name != '???' && isset($c->field_visible_celebrity[LANGUAGE_NONE][0]['value']) && $c->field_visible_celebrity[LANGUAGE_NONE][0]['value'] == 1) {
         $celebs[$celeb->tid] = $celeb->name . (!empty($c->field_short_name[LANGUAGE_NONE][0]['value']) ? ' (' . $c->field_short_name[LANGUAGE_NONE][0]['value'] . ')' : '');
       }
     }

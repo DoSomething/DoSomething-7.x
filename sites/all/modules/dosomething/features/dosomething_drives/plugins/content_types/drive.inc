@@ -231,7 +231,11 @@ function dosomething_drives_drive_title($drive, $type, $leader, $campaign) {
   $title = $tagline = '';
   switch($type) {
     case 'field_webform_school_reference':
-      $entity = reset(entity_load('ds_school', array($drive->field_webform_school_reference[LANGUAGE_NONE][0]['target_id'])));
+      $entity = array();
+      if (!empty($drive->field_webform_school_reference[LANGUAGE_NONE][0]['target_id'])) {
+        $entity = reset(entity_load('ds_school', array($drive->field_webform_school_reference[LANGUAGE_NONE][0]['target_id'])));
+      }
+
       if (!empty($entity)) {
         $title = (isset($entity->name) ? $entity->name : '');
         $tagline = "{$entity->street}, {$entity->city}, {$entity->state} {$entity->zip}";
