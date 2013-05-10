@@ -658,6 +658,8 @@ body {
       text-transform: none; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
+  #cmp #drive-first p {
+    text-align: left; }
   #cmp #scholarship {
     color: white;
     background: #ffd900; }
