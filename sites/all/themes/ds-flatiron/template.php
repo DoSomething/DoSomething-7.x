@@ -69,7 +69,7 @@ function ds_flatiron_preprocess_page(&$vars) {
 	drupal_add_js($optimizely_script, 'external');
   }
   
-  if ($vars['node']->type == 'campaign') {
+  if (isset($vars['node']) && $vars['node']->type == 'campaign') {
   	$vars['page']['footer']['#access'] = FALSE;
     // @TODO - THIS SHOULD BE REVISITED
     array_push( $vars['theme_hook_suggestions'], 'page__campaign' );
