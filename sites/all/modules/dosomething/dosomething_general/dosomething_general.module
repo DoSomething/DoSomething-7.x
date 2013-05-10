@@ -1592,7 +1592,7 @@ function dosomething_load_user_by_profile_cell($mobile) {
   // There are duplicate values in the mobile number field so if there is not
   // exactly one account with the cell phone number don't let them log in this
   // way. They'll need to use the username or email address instead.
-  if (count($results['profile2']) == 1) {
+  if (isset($results['profile2']) && count($results['profile2']) == 1) {
     $profile = reset($results['profile2']);
     $profile = profile2_load($profile->pid);
     if ($profile) {

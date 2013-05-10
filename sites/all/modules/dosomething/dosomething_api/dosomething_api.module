@@ -171,7 +171,7 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   $account->pass = $hashed_pass;
 
   // Set the email address (or "fake" email for mobile)
-  $account->mail = ($info['email'] ? $info['email'] : $info['mobile'] . '@mobile');
+  $account->mail = (!empty($info['email']) ? $info['email'] : $info['mobile'] . '@mobile');
   // The user account is activated.
   $account->status = 1;
 

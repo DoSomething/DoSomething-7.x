@@ -17,7 +17,7 @@ function dosomething_grant_judging_user_presave(&$edit, $account, $category) {
     );
 
     // get the domain of the user emails
-    $domain = explode('@', $account->email);
+    $domain = explode('@', $account->mail);
     $domain = $domain[count($domain)-1];
 
     // if they have an email from this domain
