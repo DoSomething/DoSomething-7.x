@@ -30,7 +30,7 @@
  * @license   http://creativecommons.org/licenses/MIT/
  */
 
-error_reporting(E_ALL & ~E_DEPRECATED);
+#error_reporting(E_ALL & ~E_DEPRECATED);
 require_once 'PEAR/PackageFileManager2.php';
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 
@@ -61,7 +61,7 @@ $package->setOptions(
             'schemas'  => 'data',
             'library'  => 'php',
             'library/TelApi' => 'php'
-            
+
         ),
         'ignore'                  => array(
             'examples/*',
