@@ -799,11 +799,13 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   ));
 
   // Update my profile to include my phone # if I don't have one yet.
-  if (!empty($my['cell']) && empty($profile['cell'])) {
+  if (!empty($my['cell']) && empty($profile['cell']) && user_is_logged_in()) {
     global $user;
     $p = profile2_load_by_user($user, 'main');
-    $p->field_user_mobile[LANGUAGE_NONE][0]['value'] = $my['cell'];
-    $p->save();
+    if ($p instanceof Profile) {
+      $p->field_user_mobile[LANGUAGE_NONE][0]['value'] = $my['cell'];
+      $p->save();
+    }
   }
   // If we're logged in, $my['cell'] will generally be empty.  Hopefully
   // $profile['cell'] won't be empty -- use that!
