@@ -179,6 +179,7 @@ function crazyshit_page_templates_alter(&$variables) {
 	  $fbed = crazy_check_fb_auth();
 	  include DRUPAL_ROOT . '/' . drupal_get_path('module', 'crazyshit') . '/plugin.php';
 
+	  $links = array();
 	  $ru = request_path();
 	  foreach ($top_links AS $match => $info) {
 	  	$href = $info['href'];
