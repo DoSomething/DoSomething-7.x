@@ -1052,40 +1052,6 @@ function crazyshit_fb_connect() {
   header('location: ' . $l);
 }
 
-
-function crazyshit_fboauth_redirect($destination) {
-  if (strpos($destination, 'crazy') === 0) {
-  	global $user;
-		
-	if (!empty($user->mail)) {
-	    $mid = CRAZY_MAILCHIMP_GROUP;
-	    $email = $user->mail;
-
-	    if (!empty($mid) && valid_email_address($email) && !empty($email)) {
-
-		// Add email to MailChimp group
-	       $mailchimp_status = dosomething_general_mailchimp_subscribe($email, $mid);
-
-	       // Send email message, start with '', build content from tpl file.
-         // $mail_status = crazyshit_mail_send($email, '');
-
-	       if (!$mail_status) {
-	         watchdog('crazyshit', 'Failed to send welcome message after user registration: %email using the parameters: %param',
-			   array('%email' => $email, '%message' => $message), WATCHDOG_ERROR);
-	       }
-
-	    }
-
-	    $u = array(
-	      'uid' => $user->uid,
-	      'email' => $user->mail,
-	      'timestamp' => REQUEST_TIME,
-	    );
-	    drupal_write_record('crazy_emails', $u);
-	}
-  }
-}
-
 /**
  *	Implements hook_theme()
  */
