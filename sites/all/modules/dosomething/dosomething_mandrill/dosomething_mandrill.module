@@ -97,8 +97,8 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
     'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
   );
 
-  if(!empty($message['params'])) {
-    foreach($message['params'] as $name => $content) {
+  if (!empty($message['params'])) {
+    foreach ($message['params'] as $name => $content) {
       if(is_string($content)) {
         $global_merge_vars[] = array(
           'name' => $name,
@@ -109,8 +109,8 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
   }
 
   $merge_vars = array();
-  if(!empty($mandrill_params['message']['to'])) {
-    foreach($mandrill_params['message']['to'] as $i => $rcpt) {
+  if (!empty($mandrill_params['message']['to'])) {
+    foreach ($mandrill_params['message']['to'] as $i => $rcpt) {
       $vars = array();
       $vars[] = array(
         'name' => 'to',
@@ -125,7 +125,7 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
 
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
 
-  if(!empty($merge_vars)) {
+  if (!empty($merge_vars)) {
     $mandrill_params['message']['merge_vars'] = $merge_vars;
   }
   
