@@ -66,18 +66,18 @@ function image_effects_text_form_inc($data) {
   // - Change the 'PHP code' textarea.
   $allow_dynamic = user_access('use PHP for settings') && module_exists('php');
   $defaults = array(
-    'size' => 50,
+    'size' => 12,
     'angle' => 0,
     'xpos' => '0',
     'ypos' => '0',
     'halign' => 'left',
-    'valign' => 'top',
+    'valign' => 'bottom',
     'RGB' => array('HEX' => '#000000'),
     'alpha' => 100,
-    'fontfile' => drupal_get_path('module', 'image_effects_text') . '/image_effects_text_test/lhandw.ttf',
+    'fontfile' => 'lhandw.ttf',
     'text_source' => 'text',
-    'text' => t('Hello World!'),
-    'php' => 'return \'' . t('Hello World!')  . '\'',
+    'text' => 'Hello World!',
+    'php' => 'return \'Hello World!\'',
   );
   $data += $defaults;
   $form = array(

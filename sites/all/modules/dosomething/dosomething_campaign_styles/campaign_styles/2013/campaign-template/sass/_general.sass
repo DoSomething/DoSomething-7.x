@@ -1,0 +1,197 @@
+// DO IT THEME RESETS
+// ------------------
+img
+  +noBorder
+  +noShadow
+
+// SECTION STYLES
+// --------------
+
+.section
+  margin: 0 auto
+  padding: $base-padding 0
+  background: $bg-light
+  overflow: hidden
+  +border-bottom-subtle
+  @media only screen and (max-width: 825px)
+    padding: 3% 2%
+
+.section-container
+  width: $section-container-width
+  margin: 0 auto
+  @media only screen and (max-width: 825px)
+    width: 100%
+
+.section-unit-single,
+.section-unit-double
+  padding: 0 2% 0 0
+  width: $section-unit-width
+  float: left
+  text-align: center
+  img
+    width: 100px
+    margin: 0 auto 1em
+    display: block
+
+.section-unit-double
+  width: 2 * $section-unit-width
+  margin: 0 0 2em 0
+  +border-bottom-subtle
+
+.section-header
+  font-weight: 500
+  text-align: center
+  text-transform: capitalize
+  padding: 0
+  margin: 0 auto 1em auto
+  letter-spacing: 0.1em
+  color: #888
+  border-bottom: 6px solid #f4f4f4
+  /* border-top: 3px solid #222 */
+
+// GENERAL-USE CLASSES
+// -------------------
+
+.left
+  float: left
+
+.right
+  float: right
+
+.center
+  margin: 0 auto
+  display: block
+  float: none
+
+.row
+  width: 100%
+  clear: both
+
+h1.headline-callout
+  padding: 0 0 $base-padding 0
+
+.headline-callout
+  font-weight: 600
+  text-align: center
+  margin: 0 auto
+  span
+    display: inline-block
+    background: $bg-alt
+    text-align: center
+    padding: 0.2em 0.5em 0px
+    color: lighten($off-black, 50)
+
+.headline-callout.alt
+  span
+    color: darken($bg-alt, 50)
+    background: $bg-light
+    border: 1px solid #e8e8e8
+    +box-shadow(0 10px 10px -10px #ddd)
+    /* TODO - MOVE INTO VARIABLES */
+
+.headline-instructions
+  padding: 1em 0
+
+.section-instructions
+  padding: 0 0 1em 0 !important
+
+.bg-header
+  margin: 0 0 0.5em 0
+
+.log-out
+  float: right
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+.official-rules
+  font-size: em-calc(12)
+
+.error
+  background: none
+
+.legal
+  color: darken($bg-alt, 25)
+  font-weight: 500
+  font-size: 0.8em
+
+// TYPOGRAPHY
+// ----------
+
+h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
+  font-weight: 400
+  font-family: $din
+  text-align: left
+  color: $off_black
+  line-height: em-calc(28)
+
+h1, h2, h3, p, img
+  text-align: center
+
+p
+  color: $off-black
+  font-weight: 400
+  line-height: 1.5em
+  font-size: 16px
+
+h1
+  font-size: em-calc(32)
+  font-weight: 500
+
+h2
+  font-size: em-calc(24)
+  font-weight: 500
+
+h3
+  font-size: em-calc(18)
+
+h4
+  font-size: em-calc(16)
+
+strong
+  font-weight: 800
+
+.section a /* increase specificity */
+  text-decoration: none
+  &:link, &:visited, &:active
+    color: $campaign-main
+  &:hover
+    text-decoration: underline
+
+// BUTTON STYLES
+// -------------
+
+// TODO - WRITE THIS AS A SERIES OF CLASSES
+//        @EXTENDING THE BASE STYLES
+//        & ADD .btn CLASS
+
+.form-submit, .btn
+  background: $btn-color
+  margin: 0 auto
+  padding: 0.25em 0
+  clear: both
+  position: static
+  height: 2em
+  display: block
+  border: none
+  cursor: pointer
+  color: $off-black !important
+  font-family: din-web-reg
+  font-weight: 600
+  text-align: center
+  text-decoration: none
+  text-transform: uppercase
+  +border-radius(5px)
+  &:link, &:active, &:hover
+    color: $off-black
+    text-decoration: none
+
+.btn-cta-small
+  font-size: 0.8em
+  
+.btn-cta-medium
+  font-size: 1em
+  
+.btn-cta-large
+  font-size: 1.5em
+  

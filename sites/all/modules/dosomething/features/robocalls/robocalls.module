@@ -69,7 +69,7 @@ function robocalls_get_celebrities() {
   if (empty($celebs)) {
     foreach (taxonomy_get_tree(ROBOCALLS_TAXONOMY_ID) AS $key => $celeb) {
       $c = taxonomy_term_load($celeb->tid);
-      if ($celeb->name != '???' && $c->field_visible_celebrity[LANGUAGE_NONE][0]['value'] == 1) {
+      if ($celeb->name != '???' && isset($c->field_visible_celebrity[LANGUAGE_NONE][0]['value']) && $c->field_visible_celebrity[LANGUAGE_NONE][0]['value'] == 1) {
         $celebs[$celeb->tid] = $celeb->name . (!empty($c->field_short_name[LANGUAGE_NONE][0]['value']) ? ' (' . $c->field_short_name[LANGUAGE_NONE][0]['value'] . ')' : '');
       }
     }
@@ -799,11 +799,13 @@ function robocalls_homepage_form_submission($form, &$form_state) {
   ));
 
   // Update my profile to include my phone # if I don't have one yet.
-  if (!empty($my['cell']) && empty($profile['cell'])) {
+  if (!empty($my['cell']) && empty($profile['cell']) && user_is_logged_in()) {
     global $user;
     $p = profile2_load_by_user($user, 'main');
-    $p->field_user_mobile[LANGUAGE_NONE][0]['value'] = $my['cell'];
-    $p->save();
+    if ($p instanceof Profile) {
+      $p->field_user_mobile[LANGUAGE_NONE][0]['value'] = $my['cell'];
+      $p->save();
+    }
   }
   // If we're logged in, $my['cell'] will generally be empty.  Hopefully
   // $profile['cell'] won't be empty -- use that!

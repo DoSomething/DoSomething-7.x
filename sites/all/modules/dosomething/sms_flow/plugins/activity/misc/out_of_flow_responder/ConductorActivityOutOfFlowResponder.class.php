@@ -61,29 +61,41 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     $bIgnoreNegativeForm = FALSE;
     $isNegativeForm = FALSE;
     $matchingSet = -1;
+    $bDoDistanceCheck = FALSE;
 
     do {
       for ($i = 0; $i < count($this->response_sets) && !$bMatchFound; $i++) {
         $set = $this->response_sets[$i];
 
         // Search for exactly matched responses
-        foreach ($set['exact_match'] as $exactMatch) {
-          if ((!$bDoDistanceCheck && strcasecmp($userMessage, $exactMatch) == 0)
-              || ($bDoDistanceCheck && levenshtein($exactMatch, $userMessage) <= $this->match_threshold)) {
-            $bMatchFound = TRUE;
+        if (isset($set['exact_match'])) {
+          foreach ($set['exact_match'] as $exactMatch) {
+            if ((!$bDoDistanceCheck && strcasecmp($userMessage, $exactMatch) == 0)
+                || ($bDoDistanceCheck && levenshtein($exactMatch, $userMessage) <= $this->match_threshold)) {
+              $bMatchFound = TRUE;
 
-            if (self::hasNegativeFormWord($exactMatch)) {
-              $bIgnoreNegativeForm = TRUE;
+              if (self::hasNegativeFormWord($exactMatch)) {
+                $bIgnoreNegativeForm = TRUE;
+              }
+
+              break;
             }
-
-            break;
           }
         }
 
         // Search for phrases within the user message
-        if (!$bMatchFound) {
+        if (!$bMatchFound && isset($set['phrase_match'])) {
           foreach ($set['phrase_match'] as $matchPhrase) {
-            if ((!$bDoDistanceCheck && stripos($userMessage, $matchPhrase) !== FALSE) 
+            if (self::isRegex($matchPhrase)) {
+              // All regular expressions should just be handled by preg_match. Skip the other
+              // compares and levenshtein distance checks. No need to check a second time
+              // during the distance check round.
+              if (!$bDoDistanceCheck && preg_match(strtolower($matchPhrase), strtolower($userMessage)) == 1) {
+                $bMatchFound = TRUE;
+                break;
+              }
+            }
+            elseif ((!$bDoDistanceCheck && stripos($userMessage, $matchPhrase) !== FALSE)
                 || ($bDoDistanceCheck && levenshtein($userMessage, $matchPhrase) <= $this->match_threshold)) {
               $bMatchFound = TRUE;
 
@@ -97,7 +109,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
         }
 
         // Search for sets of words in the user message to match against
-        if (!$bMatchFound && !$bDoDistanceCheck) {
+        if (!$bMatchFound && !$bDoDistanceCheck && isset($set['AND_match'])) {
           foreach ($set['AND_match'] as $matchSet) {
             $bSetMatches = TRUE;
             foreach ($matchSet as $matchWord) {
@@ -115,11 +127,18 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
         }
 
         // Search for exactly matched words
-        if (!$bMatchFound) {
+        if (!$bMatchFound && isset($set['word_match'])) {
+          $word_match_exact = isset($set['word_match_exact']) ? $set['word_match_exact'] : FALSE;
           foreach ($set['word_match'] as $matchWord) {
             foreach ($userWords as $userWord) {
-              if ((!$bDoDistanceCheck && strcasecmp($matchWord, $userWord) == 0)
-                  || ($bDoDistanceCheck && !$set['word_match_exact'] && levenshtein($matchWord, $userWord) <= $this->match_threshold)) {
+              if (self::isRegex($matchWord)) {
+                if (!$bDoDistanceCheck && preg_match(strtolower($matchWord), strtolower($userWord)) == 1) {
+                  $bMatchFound = TRUE;
+                  break;
+                }
+              }
+              elseif ((!$bDoDistanceCheck && strcasecmp($matchWord, $userWord) == 0)
+                  || ($bDoDistanceCheck && !$word_match_exact && levenshtein($matchWord, $userWord) <= $this->match_threshold)) {
                 $bMatchFound = TRUE;
                 break;
               }
@@ -165,7 +184,7 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     if ($bMatchFound && $matchingSet >= 0) {
       $set = $this->response_sets[$matchingSet];
 
-      if ($set['trigger_opt_out'] > 0) {
+      if (isset($set['trigger_opt_out']) && $set['trigger_opt_out'] > 0) {
         sms_mobile_commons_campaign_opt_out($mobile, $set['trigger_opt_out']);
         $response = self::selectResponse($set['response']);
       }
@@ -180,7 +199,15 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
     }
     elseif (count($this->no_match_responses) > 0) {
       $response = self::selectResponse($this->no_match_responses);
-      $state->setContext('sms_response', $response);
+      if (is_numeric($this->no_match_responses[0])) {
+        // If it's an array of numbers, then push user to the selected opt-in path id
+        sms_mobile_commons_opt_in($mobile, $response);
+        $state->setContext('ignore_no_response_error', TRUE);
+      }
+      else {
+        // Otherwise, expect it's an array of strings, then respond with a selected string
+        $state->setContext('sms_response', $response);
+      }
     }
     else {
       $state->setContext('ignore_no_response_error', TRUE);
@@ -207,6 +234,18 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
       if (self::in_arrayi($matchWord, $needles)) {
         return TRUE;
       }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * Determines whether or not this string is actually a regular expression
+   */
+  function isRegex($str) {
+    $strLength = strlen($str);
+    if ($strLength > 1 && $str[0] == '/' && $str[$strLength - 1] == '/') {
+      return TRUE;
     }
 
     return FALSE;

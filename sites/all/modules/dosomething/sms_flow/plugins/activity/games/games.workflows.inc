@@ -18,13 +18,7 @@ $activity = $workflow->newActivity('out_of_flow_responder');
 $activity->name = 'out_of_flow_responder';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
-$activity->no_match_responses = array(
-  "Aw, look at you trying to talk back. That's so cute. Goo-goo ga-ga.",
-  "BbbbEEEEELLchh......hiccup.. hehehe. You were saying something?",
-  "Shhhhhhh. No talking! Baby is sleeping.",
-  "Shh don't get between a baby and it's food. I'm eating.",
-  "I'm just a baby, I can't understand what you're saying.",
-);
+$activity->no_match_responses = array(155123, 155133, 155143, 155153);
 $activity->mms_match_responses = array(
   "Now that's a good looking picture",
 );
@@ -33,6 +27,11 @@ $activity->response_sets = array(
     'phrase_match' => array('I hate you', 'suck it', 'kill yourself', 'youre the worst', 'shut up'),
     'word_match' => array('die'),
     'response' => array("That's no way to talk to a baby. If you really really want me to go away, text AWAY and I'll be gone."),
+  ),
+  array(
+    'phrase_match' => array('i love you'),
+    'AND_match' => array(array('love', 'you')),
+    'response' => array("I love you too!"),
   ),
   array(
     'phrase_match' => array('Who is this', 'Who are you', 'Who the hell is this', 'What is this'),
@@ -87,7 +86,7 @@ $activity->response_sets = array(
     'response' => array("But I'm the baby, you have to!", "Tough break, you've gotta!"),
   ),
   array(
-    'word_match' => array('Gross', 'ew', 'eww', 'ewww', 'ewwww', 'ewwwww', 'disgusting', 'fowl', 'foul', 'smelly', 'stinky'),
+    'word_match' => array('Gross', 'disgusting', 'fowl', 'foul', 'smelly', 'stinky', '/ew+/'),
     'response' => array("But my cute face balances it out...", "I'm a baby, what do you expect?", "I can't help it, I'm a baby, this is what I do!", "It's a good thing I'm so cute...it makes up for all of the smelly and gross."),
   ),
   array(
@@ -96,7 +95,8 @@ $activity->response_sets = array(
   ),
   array(
     'exact_match' => array('poop', 'fart'),
-    'phrase_match' => array('its poop', 'its a poop', 'its a fart'),
+    'phrase_match' => array('its poop', 'its a poop', 'its a fart', 'it was a poop'),
+    'AND_match' => array(array('its', 'poop'), array('its', 'fart')),
     'response' => array("There's no real right answer. You sort of lose either way."),
   ),
   array(
@@ -110,6 +110,10 @@ $activity->response_sets = array(
   array(
     'phrase_match' => array('you ruined my shirt'),
     'response' => array("I'm sorry, sometimes these things just happen."),
+  ),
+  array(
+    'phrase_match' => array('im pregnant', 'i am pregnant'),
+    'response' => array("I'm not the best person to talk to about that, but if you need more info on that matter, you should try calling his hotline: 800-442-4673"),
   ),
   array(
     'phrase_match' => array('fuck you', 'you suck', 'screw you', 'you bitch', 'blow job', 'butt plug', 'camel toe', 'dumb ass', 'hard on', 'jerk off', 'jungle bunny', 'pissed off', 'porch monkey', 'nut sack', 'sand nigger'),
@@ -211,7 +215,7 @@ $activity->response_sets = array(
   ),
   array(
     'exact_match' => array('No it doesnt', 'No youre not'),
-    'response' => array("Hey, don't argue with a baby.", "I'm the baby, I'm always right", "There's no arguing with a baby-“I'm a baby” is the ultimate trump card."),
+    'response' => array("Hey, don't argue with a baby.", "I'm the baby, I'm always right", "There's no arguing with a baby-\"I'm a baby\" is the ultimate trump card."),
   ),
   array(
     'phrase_match' => array('Goo goo gaga', 'goo goo ga ga'),
@@ -300,8 +304,12 @@ $activity->response_sets = array(
     'response' => array("I really am trying. Things will be so much easier when I learn how to talk out loud. "),
   ),
   array(
-    'word_match' => array('Hah', 'Haha', 'Hahah', 'LOL', 'LMAO'),
+    'word_match' => array('/\bha[ha]*\b/', 'LOL', 'LMAO'),
     'response' => array("Glad you find me funny :)", "I'm just a regular comedian. ", "I'm glad you think I'm as funny as I do!"),
+  ),
+  array(
+    'word_match' => array('tickle', 'tickling'),
+    'response' => array("Hehehe I'm ticklish!", "Heheh!", "Ahh I'm ticklish! I can't breathe I'm laughing so hard!"),
   ),
 );
 

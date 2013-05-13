@@ -974,30 +974,6 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'help_form_captcha';
   }
-  //@todo: subscribe_cleanup
-  if ($form_id == 'webform_client_form_' . variable_get('volunteer_webform', 728802)) {
-    $form['#submit'][] = 'dosomething_general_volunteer_webform_submit';
-  }
-}
-
-/**
- *  Connections volunteer webform to Mobile Commons and MailChimp
- */
-//@todo: remove this - subscribe_cleanup
-function dosomething_general_volunteer_webform_submit($form, &$form_state) {
-  $values = $form_state['input']['submitted'];
-
-  // Gets Mobile Commons bucket and sets up cell field to sign up the mobile number.
-  $mobile_commons_bucket = variable_get('volunteer_mobile_commons_bucket', 150443);
-  if (!empty($mobile_commons_bucket) && !empty($values['cell'])) {
-    dosomething_general_mobile_commons_subscribe($values['cell'], $mobile_commons_bucket);
-  }
-
-  // Connects email to MailChimp
-  $mailchimp_bucket = 'Volunteers2013';
-  if (!empty($mailchimp_bucket) && !empty($values['e_mail'])) {
-    dosomething_general_mailchimp_subscribe($values['e_mail'], $mailchimp_bucket);
-  }
 }
 
 /**
@@ -1120,92 +1096,6 @@ function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_s
       dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
     }
   }
-}
-
-/**
- * Multi-function form submit handler that aggressively looks for emails and
- * other data in form submissions, then sends them to mailchimp.
- *
- * @param $form
- * @param $form_state
- */
-function dosomething_general_webform_mailchimp_find_and_send(&$form, &$form_state) {
-
-  $node = $form['#node'];
-  $submitted = $form_state['webform_entity']['submission']->submitted;
-
-  $email = '';
-  if (!empty($submitted['email'])) {
-    $email = $submitted['email'];
-  }
-  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  }
-  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
-  }
-  elseif (!empty($submitted['your_email'])) {
-    $email = $submitted['your_email'];
-  }
-
-  // An email and a mailchimp group id are the base requirements. Without them,
-  // bail out.
-  if (empty($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value']) || empty($email)) {
-    return;
-  }
-
-  // Now, find extra fields.
-  $merge_vars = array();
-
-  if (!empty($submitted['birthday'])
-      && !empty($submitted['birthday']['month'])
-      && !empty($submitted['birthday']['day'])) {
-    $month = str_pad($submitted['birthday']['month'], 2, '0', STR_PAD_LEFT);
-    $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
-    if (!empty($submitted['birthday']['year'])) {
-      $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
-
-      // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
-      $merge_vars['TURNS18'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 18;
-      $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;
-    }
-  }
-
-  if (!empty($submitted['first_name'])) {
-    $merge_vars['FNAME'] = $submitted['first_name'];
-  }
-
-  if (!empty($submitted['last_name'])) {
-    $merge_vars['LNAME'] = $submitted['last_name'];
-  }
-
-  // Full name - MMERGE3
-  if ( !empty($submitted['first_name']) ||
-       !empty($submitted['last_name']) ||
-       !empty($submitted['your_name']) ) {
-
-    $merge_vars['MMERGE3'] = $submitted['first_name'] . ' ' . $submitted['last_name'];
-
-    if (!empty($submitted['your_name'])) {
-      $merge_vars['MMERGE3'] = $submitted['your_name'];
-    }
-
-  }
-
-  // Check for secondary name submissions - ie: Footlocker nominee
-  if (!empty($submitted['nominees_name'])) {
-
-    $nominees_email = $submitted['nominees_email'];
-    $nominees_merge_vars = array();
-    $nominees_merge_vars['MMERGE3'] = $submitted['nominees_name'];
-
-    // Submit to MailChimp
-    dosomething_general_mailchimp_subscribe($nominees_email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $nominees_merge_vars);
-  }
-
-  // Submit to MailChimp
-  dosomething_general_mailchimp_subscribe($email, $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'], $merge_vars);
-
 }
 
 /**
@@ -1459,7 +1349,7 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
 
   // Catching function
   // Hardcoding the list to the dosomething members
-  if ($groupName == 'Volunteers2013') {
+  if ($groupName == 'GunControlReport2013' || $groupName == 'Volunteers2013') {
     $listid = 'a27895fe0c';
   }
   else {
@@ -1514,17 +1404,15 @@ function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars
 
   // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
   $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
+  $merge_vars = print_r($merge_vars, TRUE);
 
   if ($mc_signup_flag) {
-    // drupal_set_message('MailChimp email added', 'status');
     watchdog('dosomething_general_mailchimp_subscribe',
-             'Added ( %email ) to MailChimp group %group.',
-             array('%email' => $email, '%group' => $groupName),
-             $severity = WATCHDOG_ERROR);
+             'Added ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
+             array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
+             $severity = WATCHDOG_INFO);
   }
   else {
-    // drupal_set_message('FAILED to add email to MailChimp.', 'error');
-    $merge_vars = print_r($merge_vars, true);
     watchdog('dosomething_general_mailchimp_subscribe',
              'Failed to signup new user ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
              array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
@@ -1704,7 +1592,7 @@ function dosomething_load_user_by_profile_cell($mobile) {
   // There are duplicate values in the mobile number field so if there is not
   // exactly one account with the cell phone number don't let them log in this
   // way. They'll need to use the username or email address instead.
-  if (count($results['profile2']) == 1) {
+  if (isset($results['profile2']) && count($results['profile2']) == 1) {
     $profile = reset($results['profile2']);
     $profile = profile2_load($profile->pid);
     if ($profile) {
@@ -2000,3 +1888,19 @@ function _dosomething_general_imagefile_scale($file, $scale = 800) {
   return TRUE;
 }
 
+/**
+ *  Returns array of all node nid's for a given node type.
+ *
+ *  @param string $node_type
+ *    Node type to query by.
+ *
+ *  @return array 
+ *    Array of Node nids.
+ */
+function dosomething_general_get_nids_by_type($node_type) {
+  return db_select('node', 'n')
+      ->fields('n', array('nid'))
+      ->condition('n.type', $node_type)
+      ->execute()
+      ->fetchCol();
+}
