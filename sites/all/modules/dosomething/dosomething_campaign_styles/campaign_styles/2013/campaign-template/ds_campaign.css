@@ -399,7 +399,6 @@ header[role="banner"] {
 #cmp .call-to-action {
   /* centered alternative */ }
   #cmp .call-to-action p {
-    font-size: 1.2em;
     line-height: 3em;
     letter-spacing: 0.05em; }
   #cmp .call-to-action .section-container {
@@ -411,10 +410,13 @@ header[role="banner"] {
 #cmp .how-it-works {
   padding: 2em 0; }
   #cmp .how-it-works .how-it-works-container {
-    clear: both; }
+    clear: both;
+    overflow: hidden;
+    margin: 0 0 1em 0; }
 #cmp .action-kit {
-  padding: 12px;
-  display: block; }
+  display: block;
+  clear: both;
+  margin: 0 0 -1em 0; }
   #cmp .action-kit:hover {
     text-decoration: none;
     cursor: pointer; }
@@ -426,7 +428,7 @@ header[role="banner"] {
   #cmp .action-kit img {
     margin: 0.7em 0 0 0; }
   #cmp .action-kit .section-container {
-    width: 27em; }
+    width: 35em; }
 #cmp .prizing p {
   padding: 1em 0; }
 #cmp .prizing .prizing-container {
@@ -488,7 +490,7 @@ header[role="banner"] {
 #cmp .profiles .profile-photo {
   width: 290px;
   clear: both;
-  margin: 2.75em 4em 0 0; }
+  margin: 0.5em 4em 0 0; }
 #cmp .profiles .profile-copy {
   width: 35em;
   margin: 0 0 2em 0; }
