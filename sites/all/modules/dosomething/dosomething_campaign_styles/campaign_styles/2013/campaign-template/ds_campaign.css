@@ -279,7 +279,7 @@ header[role="banner"] {
   color: #1e1d1c;
   font-weight: 400;
   line-height: 1.5em;
-  font-size: 16px; }
+  font-size: 18px; }
 #cmp h1 {
   font-size: 2em;
   font-weight: 500; }
@@ -329,7 +329,6 @@ header[role="banner"] {
 #cmp .btn-cta-large {
   font-size: 1.5em; }
 #cmp .call-to-action,
-#cmp .toolkit,
 #cmp .footer {
   background: #eeeeee; }
 #cmp .header {
@@ -339,7 +338,8 @@ header[role="banner"] {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    padding: 1%; }
+    padding: 1% 2%;
+    overflow: hidden; }
     @media only screen and (max-width: 1075px) {
       #cmp .header .section-container {
         background-size: auto; } }
@@ -372,7 +372,9 @@ header[role="banner"] {
   #cmp .header .log-out {
     color: white; }
   #cmp .header .header-social {
-    float: left; }
+    width: 16%;
+    height: 20px;
+    margin: 25px 0 0 0; }
   #cmp .header .header-facebook-share,
   #cmp .header .header-twitter-share {
     display: inline-block;
@@ -387,14 +389,13 @@ header[role="banner"] {
     border-radius: 2px; }
     #cmp .header .header-facebook-share:hover {
       border: 1px solid #eceef5; }
-  #cmp .header .header-twitter-share {
-    float: right;
-    width: 54px;
-    margin: 0 0 0 5px; }
+  #cmp .header .header-date {
+    width: 73%; }
+    #cmp .header .header-date h2 {
+      padding: 0.7em 0 0 0;
+      color: #aeaeae; }
   #cmp .header .header-sponsor {
-    float: right; }
-  #cmp .header .header-date h2 {
-    color: pink; }
+    width: 11%; }
 #cmp .call-to-action {
   /* centered alternative */ }
   #cmp .call-to-action p {
@@ -411,20 +412,20 @@ header[role="banner"] {
   padding: 2em 0; }
   #cmp .action .action-container {
     clear: both; }
-#cmp .toolkit {
+#cmp .action-kit {
   padding: 12px;
   display: block; }
-  #cmp .toolkit:hover {
+  #cmp .action-kit:hover {
     text-decoration: none;
     cursor: pointer; }
-  #cmp .toolkit p {
+  #cmp .action-kit p {
     display: inline;
     position: relative;
     top: -0.8em;
     left: 1em; }
-  #cmp .toolkit img {
+  #cmp .action-kit img {
     margin: 0.7em 0 0 0; }
-  #cmp .toolkit .section-container {
+  #cmp .action-kit .section-container {
     width: 27em; }
 #cmp .prizing p {
   padding: 1em 0; }
@@ -611,6 +612,8 @@ header[role="banner"] {
 #cmp .faq h3 {
   cursor: pointer;
   color: #cccccc; }
+#cmp .faq div {
+  margin: 0 0 0.5em 0; }
 #cmp .faq .btn {
   width: 10em;
   margin: 1em auto 0; }

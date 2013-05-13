@@ -1,7 +1,6 @@
 // GENERAL
 // -------
 .call-to-action,
-.toolkit,
 .footer
   background: $bg-alt
 
@@ -10,18 +9,13 @@
 .header
   padding: 0
 
-  .row-top
-
-  .row-center
-
-  .row-bottom
-
   .section-container
     background-color: $bg-header-fallback
     background-size: 100% 100%
     background-repeat: no-repeat
     background-position: 50% 50%
-    padding: 1%
+    padding: 1% 2%
+    overflow: hidden
     @media only screen and (max-width: 1075px)
       background-size: auto
 
@@ -56,7 +50,9 @@
     color: $font-light
 
   .header-social
-    float: left
+    width: 16%
+    height: 20px
+    margin: 25px 0 0 0
 
   .header-facebook-share,
   .header-twitter-share
@@ -70,17 +66,14 @@
     &:hover
       border: 1px solid rgb(236, 238, 245)
 
-  .header-twitter-share
-    float: right
-    width: 54px
-    margin: 0 0 0 5px
+  .header-date
+    width: 73%
+    h2
+      padding: 0.7em 0 0 0
+      color: darken($bg-alt, 25)
 
   .header-sponsor
-    float: right
-
-  .header-date
-    h2
-      color: pink
+    width: 11%
 
 // HEADLINE
 // --------
@@ -115,9 +108,9 @@
   .action-container
     clear: both
 
-// TOOLKIT
-// -------
-.toolkit
+// ACTION-KIT
+// ----------
+.action-kit
   padding: 12px
   display: block
   &:hover
@@ -241,10 +234,10 @@
 
   .section-container
     width: $section-content-width
-  
+
   /* this padding should be abstracted to all <h3> */
   .headline-callout
-    padding: 0 0 0.5em 0 
+    padding: 0 0 0.5em 0
     text-transform: capitalize
     text-align: left
 
@@ -375,6 +368,8 @@
   h3
     cursor: pointer
     color: #ccc
+  div /* TODO - GIVE THIS A CLASS */
+    margin: 0 0 0.5em 0
 
   .btn
     width: 10em
