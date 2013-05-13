@@ -46,9 +46,6 @@ $settings = array(
     'picsforpets' => array(
       'crazy.css'
     ),
-    'picsforpets/about' => array(
-      'crazy-about.css',
-    ),
     'picsforpets/submit' => array(
       'crazy-form.css',
     ),

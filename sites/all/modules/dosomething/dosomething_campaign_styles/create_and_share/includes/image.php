@@ -177,6 +177,6 @@ function write_text_to_image($settings, $image_uri, $top_text, $bottom_text, $im
   }
 
   // Overwrite the original image.
-  $i = 'public://styles/' . $settings['fields']['picture']['style'] . '/public/' . $settings['fields']['picture']['directory'] . '/' . basename($image_uri);
+  $i = 'public://styles/' . $settings['fields']['picture']['style'] . '/public/create_and_share/' . basename($image_uri);
   file_unmanaged_save_data($c, $i, FILE_EXISTS_REPLACE);
 }

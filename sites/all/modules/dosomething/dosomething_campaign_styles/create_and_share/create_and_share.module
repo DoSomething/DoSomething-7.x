@@ -1010,15 +1010,21 @@ function create_and_share_form_alter(&$form, &$form_state, $form_id) {
  * Adds text to image.
  */
 function create_and_share_add_text_to_image($form, &$form_state) {
-  $top = $form_state['input']['submitted']['field_cas_top_text'][LANGUAGE_NONE][0]['value'];
-  $bottom = $form_state['input']['submitted']['field_cas_bottom_text'][LANGUAGE_NONE][0]['value'];
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
 
-  $path = drupal_realpath('public://') . '/styles/' . $settings['fields']['picture']['style'] . '/public/create_and_share/' . basename($form_state['file_path']);
+    $top = $form_state['input']['submitted']['field_cas_top_text'][LANGUAGE_NONE][0]['value'];
+    $bottom = $form_state['input']['submitted']['field_cas_bottom_text'][LANGUAGE_NONE][0]['value'];
 
-  include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'create_and_share') . '/includes/image.php';
+    $uploaded = file_load($form_state['input']['submitted']['field_cas_image'][LANGUAGE_NONE][0]['fid']);
+    $filename = basename($uploaded->uri);
+    $path = drupal_realpath('public://') . '/styles/' . $settings['fields']['picture']['style'] . '/public/create_and_share/' . basename($filename);
 
-  $settings = create_and_share_get_settings();
-  write_text_to_image($settings, $path, $top, $bottom);
+    include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'create_and_share') . '/includes/image.php';
+
+    $settings = create_and_share_get_settings();
+    write_text_to_image($settings, $path, $top, $bottom);
+  }
 }
 
 /**
