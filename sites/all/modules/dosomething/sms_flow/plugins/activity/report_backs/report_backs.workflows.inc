@@ -415,6 +415,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('mcommons_opt_out');
 $activity->submission_fields = array(
+  'defaults' => array(
+    array('FIRST_NAME', 1),
+    array('LAST_NAME', 2),
+    array(1, 4),
+  ),
   'ask_who' => 6,
   'ask_why' => 7,
   'picture' => 'ask_picture:mms',
