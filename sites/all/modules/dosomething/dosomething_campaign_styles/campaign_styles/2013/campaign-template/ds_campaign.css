@@ -408,9 +408,9 @@ header[role="banner"] {
     width: 9em;
     margin: 0 0 0 1em;
     clear: none; }
-#cmp .action {
+#cmp .how-it-works {
   padding: 2em 0; }
-  #cmp .action .action-container {
+  #cmp .how-it-works .how-it-works-container {
     clear: both; }
 #cmp .action-kit {
   padding: 12px;
@@ -440,11 +440,11 @@ header[role="banner"] {
   display: block;
   text-align: center;
   color: #cccccc; }
-#cmp .game-example .game-container {
+#cmp .sms-game-example .sms-game-container {
   margin: 0 auto;
   width: 35em;
   clear: both; }
-#cmp .game-example .game-conversation {
+#cmp .sms-game-example .game-conversation {
   margin: 1em auto 2em;
   padding: 1em 2em;
   background: #eeeeee;
@@ -452,35 +452,35 @@ header[role="banner"] {
   position: relative;
   min-width: 25em;
   clear: both; }
-  #cmp .game-example .game-conversation:after {
+  #cmp .sms-game-example .game-conversation:after {
     background: pink;
     content: "";
     display: block;
     position: absolute;
     border-style: solid;
     border-width: 15px; }
-  #cmp .game-example .game-conversation p {
+  #cmp .sms-game-example .game-conversation p {
     line-height: 3em;
     font-weight: 500;
     font-size: 18px;
     text-transform: uppercase; }
-#cmp .game-example .game-ds {
+#cmp .sms-game-example .game-ds {
   float: left; }
-  #cmp .game-example .game-ds:after {
+  #cmp .sms-game-example .game-ds:after {
     bottom: -30px;
     left: 20px;
     border-color: #e1e1e1 #e1e1e1 white white; }
-  #cmp .game-example .game-ds p {
+  #cmp .sms-game-example .game-ds p {
     text-align: left; }
-#cmp .game-example .game-user {
+#cmp .sms-game-example .game-user {
   float: right; }
-  #cmp .game-example .game-user:after {
+  #cmp .sms-game-example .game-user:after {
     bottom: -30px;
     right: 20px;
     border-color: #e1e1e1 white white #e1e1e1; }
-  #cmp .game-example .game-user p {
+  #cmp .sms-game-example .game-user p {
     text-align: right; }
-#cmp .game-example .btn {
+#cmp .sms-game-example .btn {
   width: 10em; }
 #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
   float: left;
@@ -498,73 +498,25 @@ header[role="banner"] {
     color: #d5904c;
     text-align: left;
     font-size: 1.4em; }
-#cmp .info {
+#cmp .content {
   /* this padding should be abstracted to all <h3> */ }
-  #cmp .info p {
+  #cmp .content p {
     display: block;
     text-align: left;
     line-height: 1.5em;
     padding-bottom: 1em; }
-  #cmp .info h2 {
+  #cmp .content h2 {
     padding-bottom: 0.5em; }
-  #cmp .info .section-container {
+  #cmp .content .section-container {
     width: 35em; }
-  #cmp .info .headline-callout {
+  #cmp .content .headline-callout {
     padding: 0 0 0.5em 0;
     text-transform: capitalize;
     text-align: left; }
   @media only screen and (max-width: 550px) {
-    #cmp .info .divider {
+    #cmp .content .divider {
       font-size: 0.7em;
       padding-top: 0.1em; } }
-#cmp .social p {
-  font-size: 1.2em;
-  margin: 1em auto;
-  max-width: 200px;
-  display: block; }
-#cmp .social .col-social {
-  width: 50%;
-  float: left; }
-#cmp .social .share-img-social {
-  margin: 0 auto;
-  display: block; }
-#cmp .social .share-link-social {
-  cursor: pointer;
-  text-transform: uppercase;
-  background: #d5904c;
-  margin: 0.2em auto;
-  padding: 0.5em 0.6em 0.4em;
-  color: white;
-  font-size: 1.3em;
-  font-weight: 600;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px; }
-  #cmp .social .share-link-social:hover {
-    text-decoration: none; }
-#cmp .social .share-link-social1 {
-  width: 9.3em; }
-#cmp .social .share-link-social2 {
-  width: 8.9em; }
-#cmp .cause {
-  padding: 0 0 3%; }
-  #cmp .cause i {
-    font-style: italic; }
-  #cmp .cause .bg-header {
-    margin: 2em 0 0.5em; }
-#cmp .cause-facts {
-  display: none;
-  border-bottom: white dashed 5px; }
-#cmp .active-fact {
-  display: block; }
-#cmp .cause-link {
-  display: inline-block;
-  margin: 0.5em 0 1em; }
-#cmp .twitter-link {
-  text-decoration: none;
-  color: #86005d; }
 #cmp .sms {
   background: #eeeeee; }
   #cmp .sms label {
