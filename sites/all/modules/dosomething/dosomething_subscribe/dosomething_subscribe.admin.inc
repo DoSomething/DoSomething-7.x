@@ -207,6 +207,47 @@ function dosomething_subscribe_page_status_report() {
 }
 
 /**
+ * dosomething_subscribe_webform_search_form - FAPI definition of form elements for
+ * search field on report page.
+ * 
+ * @return $form - array of form elements.
+ */
+function dosomething_subscribe_webform_search_form() {
+  
+  $search = check_plain($_GET['search']);
+  $sort = check_plain($_GET['sort']);
+  $order = check_plain($_GET['order']); 
+  
+  $form['dosomething_subscribe_webform_title_keyword'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Webform Title Search'),
+    '#default_value' => !empty($search) ? urldecode($search) : '',
+    '#description' => t('Search webforms by title.'),
+    '#size' => 35,
+    '#maxlength' => 60,
+    '#required' => FALSE,
+  );
+  
+  $form['dosomething_subscribe_webform_sort']  = array(
+    '#type' => 'value',
+    '#value' => isset($sort) ? $sort : NULL ,
+  );
+  
+  $form['dosomething_subscribe_webform_order']  = array(
+    '#type' => 'value',
+    '#value' => isset($order) ? $order : NULL,
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Search'),
+  );
+  
+  return $form;
+
+}
+
+/**
  * dosomething_subscribe_webform_search_form_submit() - Submit functionality for
  * search field on report page. 
  *
