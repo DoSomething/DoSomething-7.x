@@ -98,18 +98,19 @@ function write_text_to_image($settings, $image_uri, $top_text, $bottom_text, $im
     }
   }
 
+  // Default height between lines.
+  $default_height = 6;
+
+  // Get a line height.  Because everything is uppercase and the same font,
+  // everything should in theory be the same line height.
+  $box = imagettfbbox($font_size, 0, $font, 'KITTEN');
+  // Height = greater Y (lower left) - lesser Y (upper left)
+  $line_height = ($box[0] - $box[7]) + $default_height;
+
   // Sets up the upper text
   if (!empty($upper_text)) {
     $break = wordwrap($upper_text, $break_limit, '\n', true);
     $a = explode('\n', $break);
-    $default_height = 6;
-
-    // In theory all lines should be the same height, because they're all
-    // uppercase and all the same font face.  Let's just get the first line's
-    // bounding box and use that to define the line height
-    $box = imagettfbbox($font_size, 0, $font, $a[0]);
-    // Height = greater Y (lower left) - lesser Y (upper left)
-    $line_height = ($box[0] - $box[7]) + $default_height;
 
     $height = count($a) * $line_height + $default_height;
 

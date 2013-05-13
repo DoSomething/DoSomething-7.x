@@ -536,11 +536,16 @@ function create_and_share_clickthrough($campaign, $destination) {
     // This can and will happen because UID has a unique key.  Ignore it.
   }
 
+  // Default path is the campaign root (where $destination="root")
+  // Obviously campaign/root doesn't exist, so if that's the case
+  // It should be just /campaign.  If $destination != "root", redirect
+  // to /$campaign/$destination.
   $path = '';
   if ($destination != 'root') {
     $path = $destination;
   }
 
+  // Go go go
   drupal_goto($campaign . '/' . $path);
 }
 
