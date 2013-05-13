@@ -658,6 +658,8 @@ body {
       text-transform: none; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
+  #cmp #drive-first p {
+    text-align: left; }
   #cmp #scholarship {
     color: white;
     background: #ffd900; }
@@ -747,9 +749,9 @@ body {
         #cmp #scholarship .scholar-foot .rule-regs a {
           font-weight: 600; }
     #cmp #scholarship .success_msg p {
-      color: black;
+      color: #0d4f80;
       margin-bottom: 1.5em;
-      border: 1px solid #e1e1e1;
+      border: 1px solid #0d4f80;
       padding: 2%;
       display: inline-block; }
   #cmp #action {
