@@ -6,6 +6,7 @@ $state = check_plain($row->_field_data['sid']['entity']->data[5]['value'][0]);
 $link = l(t("$shelter, $state"), 'http://www.petfinder.com/awo/index.cgi?location=' . $state . '&keyword=' . urlencode($shelter));
 $promoted = (bool) $row->_field_data['sid']['entity']->field_cas_promoted[LANGUAGE_NONE][0]['value'];
 $adopted = (bool) !empty($row->_field_data['sid']['entity']->data[6]['value'][0]);
+$blurb = check_plain($row->_field_data['sid']['entity']->data[7]['value'][0]);
 
 ?>
 
@@ -27,6 +28,7 @@ $adopted = (bool) !empty($row->_field_data['sid']['entity']->data[6]['value'][0]
 <!-- buttons -->
 <div class="buttons">
 	<?php echo t("Adopt !name at !shelter", array('!name' => $name, '!shelter' => $link)); ?>
+	<?php if (!empty($blurb)): ?><p><?php echo $blurb; ?></p><?php endif; ?>
 </div> <!-- end buttons -->
 <p class="author"><?php echo $row->field_field_user_first_name[0]['rendered']['#markup']; ?></p>
 <div class="dateline"><?php echo $row->webform_submissions_submitted; ?></div>
