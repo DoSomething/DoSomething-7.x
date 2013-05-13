@@ -487,11 +487,30 @@ function create_and_share_flag($campaign, $sid) {
   drupal_exit();
 }
 
+/**
+ * Stores a clickthrough from a user that is logged in on the site.
+ * A clickthrough is when a user clicks on something and it leads them
+ * somewhere else, but we want to store their information in the process.
+ * This function stores a user's UID, email, cell and the time the clickthrough
+ * happened, as well as the pertinent campaign data.
+ *
+ * @param string $campaign
+ *   The campaign that the user is clicking through.
+ *
+ * @param string $destination
+ *   The relative path to lead the user to.  This will be appended
+ *   to the path of the campaign, denoted by $campaign.  So for example,
+ *   if $destination="friends" and $campaign="picsforpets", the user will
+ *   be led to "picsforpets/friends" after we store their information.
+ */
 function create_and_share_clickthrough($campaign, $destination) {
+  // Ignore if a user hasn't logged in.  We won't be able to
+  // get their information otherwise.
   if (!user_is_logged_in()) {
     return;
   }
 
+  // Get the user's cell phone #, if they have one.
   global $user;
   $profile = profile2_load_by_user($user, 'main');
   $cell = '';
@@ -499,6 +518,7 @@ function create_and_share_clickthrough($campaign, $destination) {
     $cell = $profile->field_user_mobile[LANGUAGE_NONE][0]['value'];
   }
 
+  // The record...
   $record = array(
     'campaign' => $campaign,
     'destination' => $destination,
@@ -508,6 +528,7 @@ function create_and_share_clickthrough($campaign, $destination) {
     'timestamp' => REQUEST_TIME,
   );
 
+  // Try and store the clickthrough.
   try {
     drupal_write_record('create_and_share_clickthroughs', $record);
   }
@@ -1013,16 +1034,21 @@ function create_and_share_add_text_to_image($form, &$form_state) {
   if ($campaign = create_and_share_is_campaign_page()) {
     $settings = create_and_share_get_settings($campaign);
 
+    // Get the text.
     $top = $form_state['input']['submitted']['field_cas_top_text'][LANGUAGE_NONE][0]['value'];
     $bottom = $form_state['input']['submitted']['field_cas_bottom_text'][LANGUAGE_NONE][0]['value'];
 
+    // Load the uploaded file information.
     $uploaded = file_load($form_state['input']['submitted']['field_cas_image'][LANGUAGE_NONE][0]['fid']);
     $filename = basename($uploaded->uri);
+
+    // Get the path of the (cached) file.
     $path = drupal_realpath('public://') . '/styles/' . $settings['fields']['picture']['style'] . '/public/create_and_share/' . basename($filename);
 
-    include_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'create_and_share') . '/includes/image.php';
+    // Load the image writing function.
+    module_load_include('inc', 'create_and_share', 'includes/image');
 
-    $settings = create_and_share_get_settings();
+    // Write the text.
     write_text_to_image($settings, $path, $top, $bottom);
   }
 }

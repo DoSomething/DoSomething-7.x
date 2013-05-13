@@ -148,7 +148,7 @@ function create_and_share_schema() {
       'campaign' => array('campaign'),
     ),
     'unique keys' => array(
-      'uid' => array('uid'),
+      'uid' => array('uid', 'campaign'),
     ),
   );
 
