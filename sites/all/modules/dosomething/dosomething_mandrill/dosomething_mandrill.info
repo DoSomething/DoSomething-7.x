@@ -1,0 +1,5 @@
+name = DoSomething - Mandrill
+description = Collection of customizations specific to website Mandrill functionality / transactional email messages.
+core = 7.x
+version = "7.x-1.0"
+package = Dosomething

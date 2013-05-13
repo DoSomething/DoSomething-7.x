@@ -1,0 +1,133 @@
+<?php
+/**
+ * @file
+ * A collection of functionality related to website transactional email messages using the Mandrill service.
+ *
+ */
+
+/**
+ * Implements hook_mail().
+ *
+ * Example use:
+ *
+ * drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
+ * $result = drupal_mail('dosomething_mandrill', 'dosomething-plain', $to, $language, $params,  $from, TRUE);
+ *
+ * $params: Contans merge var values for the individual transactional message or global merge var values when sending to more than one email address,
+ *   for example to club members or a group in a school where the message can be customized on both the individual email address as weell as values
+ *   specific to the group / batch of messages.
+ *
+ * if (isset($result['result']) && $result['result'] == 'true') {
+ *   drupal_set_message(t('Mandrill test email sent from %from to %to.', array('%from' => $result['from'], '%to' => $result['to'])), 'status');
+ * }
+ */
+function dosomething_mandrill_mail($key, &$message, $params) {
+    
+  switch ($key) {
+    
+    case 'dosomething-plain':
+        
+      $message['from'] = 'dosomething@dosomething.org';
+      $message['subject'] = $params['subject'];
+      $message['body'] = $params['body'];
+      
+      // Consider populating the language 
+      // global $language;
+        
+      break;
+    
+  }
+
+}
+
+/*
+ * Impliments hook_mail_alter()
+ *
+ * From Mandill module readme.txt
+ * 
+ * &$message: An array containing the message data. Keys in this array include:
+ *
+ * 'id': The drupal_mail() id of the message. Look at module source code or drupal_mail() for possible id values.
+ * 'to': The address or addresses the message will be sent to. The formatting of this string will be validated with the PHP e-mail validation filter.
+ * 'from': The address the message will be marked as being from, which is either a custom address or the site-wide default email address.
+ * 'subject': Subject of the email to be sent. This must not contain any newline characters, or the email may not be sent properly.
+ * 'body': An array of strings containing the message text. The message body is created by concatenating the individual array strings into a
+ *    single text string using "\n\n" as a separator.
+ * 'headers': Associative array containing mail headers, such as From, Sender, MIME-Version, Content-Type, etc.
+ * 'params': An array of optional parameters supplied by the caller of drupal_mail() that is used to build the message before hook_mail_alter() is invoked.
+ * 'language': The language object used to build the message before hook_mail_alter() is invoked.
+ * 'send': Set to FALSE to abort sending this email message.
+ *
+ * If you would like to use additional template (or other) Mandrill API variables not implemented in this module, set them in hook_mail_alter under:
+ *
+ * $params['mandrill']. Have a look at mandrill.mail.inc to learn more.
+ * (Search for "mandrill parameters".)
+ *
+ *"message": {
+ *  "merge_vars": [
+ *    {
+ *      "rcpt": "recipient.email@example.com",
+ *        "vars": [
+ *          {
+ *            "name": "mergeVar1",
+ *            "content": "mergeVar1 content"
+ *          }
+ *        ]
+ *    }
+ *  ],
+ *}
+ *
+ * http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_mail_alter/7
+ *
+ */
+
+function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
+  
+  $global_merge_vars = array();
+  $global_merge_vars[] = array(
+    'name' => 'subject',
+    'content' => $message['subject'],
+  );
+  $global_merge_vars[] = array(
+    'name' => 'from',
+    'content' => $message['from'],
+  );
+  $global_merge_vars[] = array(
+    'name' => 'domain',
+    'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
+  );
+
+  if(!empty($message['params'])) {
+    foreach($message['params'] as $name => $content) {
+      if(is_string($content)) {
+        $global_merge_vars[] = array(
+          'name' => $name,
+          'content' => $content,
+        );
+      }
+    }
+  }
+
+  $merge_vars = array();
+  if(!empty($mandrill_params['message']['to'])) {
+    foreach($mandrill_params['message']['to'] as $i => $rcpt) {
+      $vars = array();
+      $vars[] = array(
+        'name' => 'to',
+        'content' => $rcpt['email'],
+      );
+      $merge_vars[] = array(
+        'rcpt' => $rcpt['email'],
+        'vars' => $vars,
+      );
+    }
+  }  
+
+  $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
+
+  if(!empty($merge_vars)) {
+    $mandrill_params['message']['merge_vars'] = $merge_vars;
+  }
+  
+
+}
