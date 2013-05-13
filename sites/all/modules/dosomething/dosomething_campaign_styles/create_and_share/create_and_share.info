@@ -1,4 +1,4 @@
-name = create_and_share
+name = Create and Share
 description = Create and Share Campaign Template
 core = 7.x
 package = DoSomething
