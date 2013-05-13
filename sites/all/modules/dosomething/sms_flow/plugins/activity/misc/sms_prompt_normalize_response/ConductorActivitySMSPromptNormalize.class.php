@@ -23,7 +23,7 @@ class ConductorActivitySMSPromptNormalize extends ConductorActivitySMSPrompt {
         if (in_array($message, $group)) {
           // First item in array will be the normalized response
           $normalizedResponse = $group[0];
-          $state->setContext($normalizedResponse, $this->name . ':message');
+          $state->setContext($this->name . ':message', $normalizedResponse);
           break;
         }
       }
