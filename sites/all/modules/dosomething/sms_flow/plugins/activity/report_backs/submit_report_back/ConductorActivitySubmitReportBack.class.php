@@ -36,7 +36,36 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
 
       $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
       foreach($this->submission_fields as $key => $value) {
-        if ($key == 'picture') {
+        // Handle any default values
+        if ($key == 'defaults' && is_array($value)) {
+          foreach($value as $default) {
+            $defaultValue = $default[0];
+            $defaultIndex = intval($default[1]);
+
+            // Special handling for specific keywords
+            if ($defaultValue == 'FIRST_NAME') {
+              $defaultValue = NULL;
+              if ($user->uid > 0) {
+                $profile = profile2_load_by_user($user, 'main');
+                $defaultValue = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+              }
+            }
+            elseif ($defaultValue == 'LAST_NAME') {
+              $defaultValue = NULL;
+              if ($user->uid > 0) {
+                $profile = profile2_load_by_user($user, 'main');
+                $defaultValue = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+              }
+            }
+
+            // Set data index to the given default value
+            if ($defaultValue) {
+              $wrapper->value()->data[$defaultIndex]['value'][0] = $defaultValue;
+            }
+          }
+        }
+        // Special handling needed for picture submission fields
+        elseif ($key == 'picture') {
           if (!empty($picture)) {
             $f_name = 'public://' . basename($picture);
             $attach_contents = file_get_contents($picture);
@@ -57,6 +86,7 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
             }
           }
         }
+        // Get values to submit from the state's saved context values
         else {
           $data_index = intval($value);
           $wrapper->value()->data[$data_index]['value'][0] = $state->getContext($key . ':message');
