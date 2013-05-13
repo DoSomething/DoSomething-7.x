@@ -1865,6 +1865,73 @@ DINComp-CondBold.ttf|Din Condensed Bold',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_promoted'.
+  $fields['webform_submission_entity-create_and_share_campaign-field_cas_promoted'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_promoted',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Promoted to the top of the list?',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 8,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_cas_promoted',
+      'label' => 'Promoted',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '39',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_thumbs_down_count'.
   $fields['webform_submission_entity-create_and_share_campaign-field_cas_thumbs_down_count'] = array(
     'field_config' => array(
@@ -2145,6 +2212,8 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('Image Style');
   t('Is this campaign gated? If checked, logged out users will be required to login / register before they may visit the campaign.');
   t('Notification Pages');
+  t('Promoted');
+  t('Promoted to the top of the list?');
   t('Ranking Action "Point"');
   t('The "Thumbs Down" text.');
   t('The "Thumbs Up" button text.');

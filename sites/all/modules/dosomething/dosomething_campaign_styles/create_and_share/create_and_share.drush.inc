@@ -90,7 +90,7 @@ function drush_create_and_share_cas_migrate($campaign) {
   if ($settings = create_and_share_get_settings($campaign)) {
     $path = create_and_share_get_campaign_path($campaign);
     if (file_exists($path . '/migrate.inc')) {
-      drush_print(dt("Found migrate file.  Loading data..."));
+      drush_print(dt("Found migrate file.  Loading data into NID {$settings['campaign_nid']}..."));
       require_once $path . '/migrate.inc';
       if (function_exists('create_and_share_import_' . $campaign)) {
         // Load the function.

@@ -44,6 +44,7 @@ features[field][] = node-create_and_share_campaign-field_cas_views_wrapper
 features[field][] = node-create_and_share_campaign-field_cas_weight_field
 features[field][] = webform_submission_entity-create_and_share_campaign-field_cas_flagged
 features[field][] = webform_submission_entity-create_and_share_campaign-field_cas_image
+features[field][] = webform_submission_entity-create_and_share_campaign-field_cas_promoted
 features[field][] = webform_submission_entity-create_and_share_campaign-field_cas_thumbs_down_count
 features[field][] = webform_submission_entity-create_and_share_campaign-field_cas_thumbs_up_count
 features[field][] = webform_submission_entity-create_and_share_campaign-field_cas_total_count
