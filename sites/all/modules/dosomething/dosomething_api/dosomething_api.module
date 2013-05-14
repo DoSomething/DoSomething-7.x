@@ -25,16 +25,21 @@
  *  @param string $password
  *    The user's password.
  *
+ *  @param array $addons
+ *    An (optional) array of arrays, with the following standard:
+ *      - 'user' => a key/value array where the key is a valid user field name, and the value is the value.
+ *      - 'profile' => a key/value array where the key is a valid profile field name, and the value is the value.
+ *
  *  @param array $buckets
  *    (Optional) array of buckets for MailChimp / Mobile Commons integration.
  */
-function dosomething_api_create_or_log_in_user($name = '', $contact = '', $password = '', $buckets = array('email' => '', 'mobile' => '')) {
+function dosomething_api_create_or_log_in_user($name = '', $contact = '', $password = '', $buckets = array('email' => '', 'mobile' => ''), $addons = array()) {
   // Only run this if a user is not logged in.
   if (user_is_logged_in()) {
     return;
   }
 
-  $account = dosomething_api_user_log_in($contact);
+  $account = dosomething_api_user_log_in($contact, 0, array(), $addons);
 
   if (empty($account)) {
     $u = array(
@@ -79,9 +84,14 @@ function dosomething_api_create_or_log_in_user($name = '', $contact = '', $passw
  *    If available, the account object for the user.  If unspecified, will get the
  *    object from dosomething_api_user_lookup() function.
  *
+ *  @param array $addons
+ *    An (optional) array of arrays, with the following standard:
+ *      - 'user' => a key/value array where the key is a valid user field name, and the value is the value.
+ *      - 'profile' => a key/value array where the key is a valid profile field name, and the value is the value.
+ *
  *  @see dosomething_api_user_lookup()
  */
-function dosomething_api_user_log_in($e_or_c, $uid = 0, $account = array()) {
+function dosomething_api_user_log_in($e_or_c, $uid = 0, $account = array(), $addons = array()) {
   if (!$uid) {
     $account = dosomething_api_user_lookup($e_or_c);
   }
@@ -90,6 +100,10 @@ function dosomething_api_user_log_in($e_or_c, $uid = 0, $account = array()) {
   }
 
   if (!empty($account)) {
+    if (!empty($addons)) {
+      dosomething_api_member_update($addons, $account);
+    }
+
   	$u = array('uid' => $account->uid);
   	user_login_submit(array(), $u);
   }
@@ -119,7 +133,7 @@ function dosomething_api_user_lookup($value) {
 function dosomething_api_user_fetch_data($data = array('account' => array(), 'profile' => array())) {
   global $user;
   if (!$user->uid) {
-    return false;
+    return FALSE;
   }
 
   $return = array();
@@ -232,4 +246,54 @@ function dosomething_api_valid_password($contact, $password) {
   }
 
   return TRUE;
+}
+
+/**
+ * Updates member information.
+ *
+ * @param array $data
+ *   An array of arrays with the following combinations:
+ *     'user' => An array of user object information that could / should be changed.
+ *     'profile' => An array of user profile information that could / should be changed.
+ */
+function dosomething_api_member_update($data = array('user' => array(), 'profile' => array()), $account = null) {
+  if (!$account) {
+    global $user;
+  }
+  else {
+    $user = $account;
+  }
+
+  $user_changes = $profile_changes = FALSE;
+  if (isset($data['user']) && !empty($data['user']) && is_array($data['user'])) {
+    foreach ($data['user'] as $field => $val) {
+      if (isset($user->{$field}) && ($user->{$field} != $val)) {
+        $user->{$field} = $val;
+        $user_changes = TRUE;
+      }
+    }
+
+    if ($user_changes === TRUE) {
+      user_save($user);
+    }
+  }
+
+  if (isset($data['profile']) && !empty($data['profile']) && is_array($data['profile'])) {
+    $profile = profile2_load_by_user($user, 'main');
+    foreach ($data['profile'] as $field => $val) {
+      $field = 'field_user_' . $field;
+      if (isset($profile->{$field}[LANGUAGE_NONE][0]['value']) && ($profile->{$field}[LANGUAGE_NONE][0]['value'] != $val)) {
+        $profile->{$field}[LANGUAGE_NONE][0]['value'] = $val;
+        $profile_changes = TRUE;
+      }
+      elseif (!isset($profile->{$field}[LANGUAGE_NONE][0]['value'])) {
+        $profile->{$field}[LANGUAGE_NONE][0]['value'] = $val;
+        $profile_changes = TRUE;
+      }
+    }
+
+    if ($profile_changes === TRUE) {
+      profile2_save($profile);
+    }
+  }
 }

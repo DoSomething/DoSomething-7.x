@@ -974,6 +974,45 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'help_form_captcha';
   }
+  // Sparknotes scholarship
+  if ($form_id == 'webform_client_form_729266') {
+    $f = &$form['submitted'];
+    if (!user_is_logged_in()) {
+      // Make it an actual password field.
+      $f['password']['#type'] = 'password';
+
+      // Confirm password.
+      $form['#validate'][] = 'sparknotes_scholarship_validate';
+
+      // Push a user to login / register 
+      $form['#submit'][] = 'sparknotes_scholarship_login';
+    }
+    else {
+      // Remove the password field if the user is logged in.
+      if (user_is_logged_in()) {
+        $f['password']['#access'] = FALSE;
+      }
+    }
+  }
+}
+
+/**
+ * Confirms that the user's input is valid.
+ */
+function sparknotes_scholarship_validate($form, &$form_state) {
+  $values = $form_state['input']['submitted'];
+
+  if (!dosomething_api_valid_password($values['email'], $values['password'])) {
+    form_set_error('password', t('Invalid email / pass combination.'));
+  }
+}
+
+/**
+ * Login / register some of those sparky noters.
+ */
+function sparknotes_scholarship_login($form, &$form_state) {
+  $values = $form_state['input']['submitted'];
+  dosomething_api_create_or_log_in_user($values['first_name'], $values['email'], $values['password'], null, array('profile' => array('mobile' => $values['cell'], 'first_name' => $values['first_name'], 'last_name' => $values['last_name'])));
 }
 
 /**
