@@ -138,7 +138,7 @@
             }
           });
         }
-        
+
       }
       faq_toggle('#faq h3', 'div');
 
