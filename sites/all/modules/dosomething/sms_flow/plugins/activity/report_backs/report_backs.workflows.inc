@@ -365,7 +365,8 @@ $workflows[$workflow->name] = $workflow;
 
 /**
  * Thumb Wars report back flow. User will be prompted to first submit a picture
- * by the conversation begun in Mobile Commons (@todo: link here)
+ * by the conversation begun in Mobile Commons
+ * (https://secure.mcommons.com/campaigns/116593/opt_in_paths/155733)
  */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
