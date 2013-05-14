@@ -7,7 +7,7 @@
 $settings = array(
   // The node ID of the picsforpets campaign.  This ensures that all campaign pages
   // gather the same settings.
-  'campaign_nid' => '729322',
+  'campaign_nid' => '{nid}',
 
   // Facebook language
   'facebook' => array(

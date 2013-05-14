@@ -31,6 +31,14 @@
  *   $builder->build(); // Builds the scaffold.
  * @endcode
  *
+ * You can also set replaceable tokens, like so:
+ * @code
+ *   $builder = new Carpenter('scaffold_name');
+ *   $builder->set('name', 'testing');
+ *   $builder->setToken('name', 'Mike');
+ *   $builder->build();
+ * @endcode
+ *
  * Given the code above, Carpenter will search for a scaffold named "scaffold_name" within
  * the "scaffolds" directory.  If it finds the scaffold, it loads the scaffold.inc file as
  * described above.  $builder->set('name', 'testing'); overrides the name that the directory
