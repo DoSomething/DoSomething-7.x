@@ -362,3 +362,82 @@ $activity->name = 'end';
 $activity->inputs = array('submit_report_back', 'school_search');
 
 $workflows[$workflow->name] = $workflow;
+
+/**
+ * Thumb Wars report back flow. User will be prompted to first submit a picture
+ * by the conversation begun in Mobile Commons
+ * (https://secure.mcommons.com/campaigns/116593/opt_in_paths/155733)
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_thumbwars_report_back';
+$workflow->title = 'Thumb Wars Report Back';
+$workflow->description = 'Submits the report back for the Thumb Wars campaign';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->title = 'start';
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_who');
+$activity->should_prompt = FALSE;
+
+$activity = $workflow->newActivity('sms_prompt_normalize_response');
+$activity->name = 'ask_who';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_why');
+$activity->question = 'Amazing! Q1: who did you share thumb socks with? (Text back: Mother, Father, Sister, Brother, Friend, Other)';
+$activity->normalizedGroups = array(
+  array('mother', 'mom'),
+  array('father', 'dad'),
+  array('sister', 'sis'),
+  array('brother', 'bro'),
+  array('friend', 'frend', 'firend'),
+  array('select_or_other', 'other'),
+);
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_why';
+$activity->inputs = array('ask_who');
+$activity->outputs = array('strip_signature');
+$activity->question = 'Great. Q2: why did you share thumb socks with that person?';
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_why');
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('mcommons_opt_out');
+$activity->submission_fields = array(
+  'defaults' => array(
+    array('FIRST_NAME', 1),
+    array('LAST_NAME', 2),
+    array(1, 4),
+  ),
+  'ask_who' => 6,
+  'ask_why' => 7,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 'You rock! Got more pics? Text MORE to share another pic or DRIVE to read & share a crazy stat about texting & driving for another entry. All set? Txt DONE';
+$activity->webform_nid = 729094;
+
+$activity = $workflow->newActivity('mobile_commons_opt_out');
+$activity->title = 'mcommons_opt_out';
+$activity->name = 'mcommons_opt_out';
+$activity->inputs = array('submit_report_back');
+$activity->outputs = array('end');
+$activity->opt_out_ids = array(116593);
+
+$activity = $workflow->newActivity('end');
+$activity->title = 'end';
+$activity->name = 'end';
+$activity->inputs = array('mcommons_opt_out');
+
+$workflows[$workflow->name] = $workflow;
