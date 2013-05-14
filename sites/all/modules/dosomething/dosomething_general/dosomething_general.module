@@ -974,6 +974,26 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'help_form_captcha';
   }
+  // Sparknotes scholarship
+  if ($form_id == 'webform_client_form_729266') {
+    $f = &$form['submitted'];
+
+    // Remove the password field if the user is logged in.
+    if (user_is_logged_in()) {
+      $f['password']['#access'] = FALSE;
+    }
+
+    // Callback to login / register the peeps.
+    $form['#submit'][] = 'sparknotes_scholarship_login';
+  }
+}
+
+/**
+ * Login / register some of those sparky noters.
+ */
+function sparknotes_scholarship_login($form, &$form_state) {
+  $values = $form_state['input']['submitted'];
+  dosomething_api_create_or_log_in_user($values['first_name'], $values['email'], $values['password']);
 }
 
 /**
