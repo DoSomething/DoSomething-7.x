@@ -332,17 +332,15 @@ header[role="banner"] {
 #cmp .footer {
   background: #eeeeee; }
 #cmp .header {
-  padding: 0; }
-  #cmp .header .section-container {
-    background-color: #eeeeee;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    padding: 1% 2%;
-    overflow: hidden; }
-    @media only screen and (max-width: 1075px) {
-      #cmp .header .section-container {
-        background-size: auto; } }
+  background-color: #eeeeee;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  padding: 1% 2%;
+  overflow: hidden; }
+  @media only screen and (max-width: 1075px) {
+    #cmp .header {
+      background-size: auto; } }
   #cmp .header .logo-dosomething {
     display: none; }
     @media only screen and (max-width: 1075px) {
@@ -396,17 +394,15 @@ header[role="banner"] {
       color: #aeaeae; }
   #cmp .header .header-sponsor {
     width: 11%; }
-#cmp .call-to-action {
-  /* centered alternative */ }
-  #cmp .call-to-action p {
-    line-height: 3em;
-    letter-spacing: 0.05em; }
-  #cmp .call-to-action .section-container {
-    width: 43em; }
-  #cmp .call-to-action .btn {
-    width: 9em;
-    margin: 0 0 0 1em;
-    clear: none; }
+#cmp .call-to-action p {
+  line-height: 3em;
+  letter-spacing: 0.05em; }
+#cmp .call-to-action .btn {
+  width: 9em;
+  margin: 0 0 0 1em;
+  clear: none; }
+#cmp .call-to-action .section-container {
+  width: 43em; }
 #cmp .how-it-works {
   padding: 2em 0; }
   #cmp .how-it-works .how-it-works-container {
@@ -501,6 +497,7 @@ header[role="banner"] {
     text-align: left;
     font-size: 1.4em; }
 #cmp .content {
+  width: 35em;
   /* this padding should be abstracted to all <h3> */ }
   #cmp .content p {
     display: block;
@@ -509,8 +506,6 @@ header[role="banner"] {
     padding-bottom: 1em; }
   #cmp .content h2 {
     padding-bottom: 0.5em; }
-  #cmp .content .section-container {
-    width: 35em; }
   #cmp .content .headline-callout {
     padding: 0 0 0.5em 0;
     text-transform: capitalize;

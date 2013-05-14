@@ -7,17 +7,14 @@
 // HEADER
 // ------
 .header
-  padding: 0
-
-  .section-container
-    background-color: $bg-header-fallback
-    background-size: 100% 100%
-    background-repeat: no-repeat
-    background-position: 50% 50%
-    padding: 1% 2%
-    overflow: hidden
-    @media only screen and (max-width: 1075px)
-      background-size: auto
+  background-color: $bg-header-fallback
+  background-size: 100% 100%
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  padding: 1% 2%
+  overflow: hidden
+  @media only screen and (max-width: 1075px)
+    background-size: auto
 
   .logo-dosomething
     display: none
@@ -75,9 +72,6 @@
   .header-sponsor
     width: 11%
 
-// HEADLINE
-// --------
-
 // CALL TO ACTION
 // --------------
 .call-to-action
@@ -85,19 +79,13 @@
     line-height: 3em
     letter-spacing: 0.05em
 
-  .section-container
-    width: 43em
-
   .btn
     width: 9em
     margin: 0 0 0 1em
     clear: none
 
-  /* centered alternative */
-
-//  .btn
-//    width: 9em
-//    margin: 1em auto 0
+  .section-container
+    width: 43em
 
 // HOW IT WORKS
 // ------------
@@ -226,6 +214,7 @@
 // CONTENT
 // -------
 .content
+  width: $section-content-width
   p
     display: block
     text-align: left
@@ -233,9 +222,6 @@
     padding-bottom: 1em
   h2
     padding-bottom: 0.5em
-
-  .section-container
-    width: $section-content-width
 
   /* this padding should be abstracted to all <h3> */
   .headline-callout
