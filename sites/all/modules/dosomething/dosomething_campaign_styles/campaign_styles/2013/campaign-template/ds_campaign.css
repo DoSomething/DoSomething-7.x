@@ -238,11 +238,16 @@ header[role="banner"] {
   text-align: center;
   margin: 0 auto; }
   #cmp .headline-callout span {
-    display: inline-block;
-    background: #eeeeee;
     text-align: center;
+    display: inline-block;
     padding: 0.2em 0.5em 0px;
-    color: #a09d99; }
+    color: #a09d99;
+    background: #eeeeee;
+    border: 1px solid #dfdfdf;
+    -webkit-box-shadow: 0 10px 10px -10px #bbbbbb;
+    -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
+    box-shadow: 0 10px 10px -10px #bbbbbb;
+    /* TODO - MOVE INTO VARIABLES */ }
 #cmp .headline-callout.alt span {
   color: #6e6e6e;
   background: white;
@@ -323,11 +328,11 @@ header[role="banner"] {
   border-radius: 5px; }
   #cmp .form-submit:link, #cmp .form-submit:active, #cmp .form-submit:hover, #cmp .btn:link, #cmp .btn:active, #cmp .btn:hover {
     color: #1e1d1c;
-    text-decoration: none; }
+    text-decoration: none !important; }
 #cmp .btn-cta-small {
-  font-size: 0.8em; }
+  font-size: 0.875em; }
 #cmp .btn-cta-medium {
-  font-size: 1em; }
+  font-size: 1.125em; }
 #cmp .btn-cta-large {
   font-size: 1.5em; }
 #cmp .call-to-action,
@@ -437,8 +442,9 @@ header[role="banner"] {
   width: 11em;
   margin: 0 auto 1em; }
 #cmp .sms-game-example .sms-game-container {
-  margin: 0 auto;
   width: 35em;
+  margin: 0 auto 1em;
+  overflow: hidden;
   clear: both; }
 #cmp .sms-game-example .game-conversation {
   margin: 1em auto 2em;
@@ -458,7 +464,6 @@ header[role="banner"] {
   #cmp .sms-game-example .game-conversation p {
     line-height: 3em;
     font-weight: 500;
-    font-size: 18px;
     text-transform: uppercase; }
 #cmp .sms-game-example .game-ds {
   float: left; }
@@ -490,10 +495,9 @@ header[role="banner"] {
   margin: 0 0 2em 0; }
   #cmp .profiles .profile-copy p {
     text-align: left; }
-  #cmp .profiles .profile-copy h3 {
+  #cmp .profiles .profile-copy h2 {
     color: #d5904c;
-    text-align: left;
-    font-size: 1.4em; }
+    text-align: left; }
 #cmp .content {
   width: 35em;
   /* this padding should be abstracted to all <h3> */ }
@@ -508,10 +512,6 @@ header[role="banner"] {
     padding: 0 0 0.5em 0;
     text-transform: capitalize;
     text-align: left; }
-  @media only screen and (max-width: 550px) {
-    #cmp .content .divider {
-      font-size: 0.7em;
-      padding-top: 0.1em; } }
 #cmp .sms {
   background: #eeeeee; }
   #cmp .sms label {
@@ -557,29 +557,30 @@ header[role="banner"] {
   #cmp .success_msg h2 {
     text-transform: uppercase;
     font-weight: 600;
-    font-size: 26px;
     color: #d5904c; }
-#cmp .faq h3, #cmp .faq p {
-  text-align: left; }
-#cmp .faq h3 {
-  cursor: pointer;
-  color: #cccccc; }
-#cmp .faq div {
-  margin: 0 0 0.5em 0; }
-#cmp .faq .btn {
-  width: 10em;
-  margin: 1em auto 0; }
-#cmp .faq .back-to-top {
-  text-align: right;
-  padding: 1em 0 1em; }
-#cmp .faq .top-btn {
-  font-weight: 400;
-  color: #c6c7c8;
-  padding: 0px 0px 0px 1em;
-  text-decoration: none;
-  background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
-  background-repeat: no-repeat;
-  background-position: 0% 40%; }
+#cmp .faq {
+  width: 35em; }
+  #cmp .faq h3, #cmp .faq p {
+    text-align: left; }
+  #cmp .faq h3 {
+    cursor: pointer;
+    color: #cccccc; }
+  #cmp .faq div {
+    margin: 0 0 0.5em 0; }
+  #cmp .faq .btn {
+    width: 10em;
+    margin: 1em auto 0; }
+  #cmp .faq .back-to-top {
+    text-align: right;
+    padding: 1em 0 1em; }
+  #cmp .faq .top-btn {
+    font-weight: 400;
+    color: #c6c7c8;
+    padding: 0px 0px 0px 1em;
+    text-decoration: none;
+    background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
+    background-repeat: no-repeat;
+    background-position: 0% 40%; }
 #cmp .footer {
   padding: 2% 0;
   margin: 0 0 -2%;

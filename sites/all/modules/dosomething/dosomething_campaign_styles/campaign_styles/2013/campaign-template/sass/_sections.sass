@@ -115,7 +115,7 @@
     margin: 0.7em 0 0 0
 
   .section-container
-    width: 35em
+    width: $section-content-width
 
 // PRIZING
 // -------
@@ -137,8 +137,9 @@
 .sms-game-example
 
   .sms-game-container
-    margin: 0 auto
     width: $section-content-width
+    margin: 0 auto 1em
+    overflow: hidden
     clear: both
 
   .game-conversation
@@ -159,7 +160,6 @@
     p
       line-height: 3em
       font-weight: 500
-      font-size: 18px
       text-transform: uppercase
 
   .game-ds
@@ -201,10 +201,9 @@
     margin: 0 0 2em 0
     p
       text-align: left
-    h3
+    h2
       color: $campaign-accent
       text-align: left
-      font-size: 1.4em
 
 // CONTENT
 // -------
@@ -223,11 +222,6 @@
     padding: 0 0 0.5em 0
     text-transform: capitalize
     text-align: left
-
-  @media only screen and (max-width: 550px)
-    .divider
-      font-size: 0.7em
-      padding-top: 0.1em
 
 // SMS
 // ---
@@ -286,12 +280,12 @@
   h2
     text-transform: uppercase
     font-weight: 600
-    font-size: 26px
     color: $campaign-accent
 
 // FAQ
 // ---
 .faq
+  width: $section-content-width
   h3, p
     text-align: left
   h3
