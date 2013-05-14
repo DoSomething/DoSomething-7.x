@@ -58,7 +58,8 @@ function create_and_share_url_inbound_alter(&$path, $original_path, $path_langua
     $settings = create_and_share_get_settings($campaign);
 
     // Match your standard submit page.
-    if (preg_match('#(' . $settings['campaign_root'] . ')/submit#i', $path)) {
+
+    if (preg_match('#(' . $settings['campaign_root'] . ')/submit$#i', $path)) {
       $path = 'node/' . $settings['campaign_nid'] . '/submit';
     }
 
@@ -226,6 +227,19 @@ function create_and_share_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_html_templates_alter()
+ */
+function create_and_share_html_templates_alter(&$variables) {
+  if ($campaign = create_and_share_is_campaign_page()) {
+    $settings = create_and_share_get_settings($campaign);
+    // Let's use the create and share campaign template.
+    // Use the campaign version if it exists.
+    array_push($variables['theme_hook_suggestions'], 'html__create_and_share_campaign');
+    array_push($variables['theme_hook_suggestions'], 'html__create_and_share_campaign__' . $settings['campaign_root']);
+  }
+}
+
+/**
  * Implements hook_page_templates_alter().
  * Adds navigation bar to the top of the page.
  */
@@ -305,7 +319,9 @@ function create_and_share_page_templates_alter(&$variables) {
     )) . $v;
 
     // Let's use the create and share campaign template.
+    // Use the campaign version if it exists.
     array_push($variables['theme_hook_suggestions'], 'node__create_and_share_campaign');
+    array_push($variables['theme_hook_suggestions'], 'node__create_and_share_campaign__' . $settings['campaign_root']);
   }
 }
 
