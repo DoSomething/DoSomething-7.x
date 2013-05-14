@@ -107,7 +107,7 @@
       set_width = function(parent, child) {
 
         $(parent).each(function() {
-          var $this = jQuery(this);
+          var $this = $(this);
           var child_width = $this.children(child).width() * 1.1;
           $this.css('width',child_width);
         });
@@ -141,6 +141,17 @@
         
       }
       faq_toggle('#faq h3', 'div');
+
+      // Add "alt" class to #headline <h1>, <h2>
+      // if the current campaign uses the SMS model;
+      // remove the background in #headline if not
+
+      if( $('#sms') ) {
+        $('#headline .headline-callout').addClass('alt');
+      }
+      else {
+        $('#headline').css('background','none');
+      }
 
     } // end attach: function
   }; // end Drupal.behaviors
