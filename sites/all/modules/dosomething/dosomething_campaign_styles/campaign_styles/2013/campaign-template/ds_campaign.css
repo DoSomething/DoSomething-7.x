@@ -363,7 +363,6 @@ header[role="banner"] {
   #cmp .header .header-logotype {
     text-align: center;
     color: white;
-    text-shadow: #888888 2px 1px 3px;
     text-transform: uppercase;
     line-height: 1.2em;
     font-weight: 600;
@@ -546,6 +545,13 @@ header[role="banner"] {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px; }
+#cmp .map iframe {
+  margin: 0 auto;
+  display: block;
+  border: 1px solid #dddddd;
+  -webkit-box-shadow: 0 10px 10px -10px #cccccc;
+  -moz-box-shadow: 0 10px 10px -10px #cccccc;
+  box-shadow: 0 10px 10px -10px #cccccc; }
 #cmp .success_msg {
   margin: 0 auto 1em; }
   #cmp .success_msg h2 {
