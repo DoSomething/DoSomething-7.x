@@ -1846,7 +1846,7 @@ function dosomething_general_get_multi_fbids($users) {
  */
 function dosomething_general_file_presave($file) {
   // Resize image file if it is larger than 800 wide or tall
-  _dosomething_general_imagefile_scale($file, 800);
+  _dosomething_general_imagefile_scale($file, 960);
 }
 
 /**
