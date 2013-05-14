@@ -133,7 +133,7 @@ function dosomething_api_user_lookup($value) {
 function dosomething_api_user_fetch_data($data = array('account' => array(), 'profile' => array())) {
   global $user;
   if (!$user->uid) {
-    return false;
+    return FALSE;
   }
 
   $return = array();
@@ -264,35 +264,35 @@ function dosomething_api_member_update($data = array('user' => array(), 'profile
     $user = $account;
   }
 
-  $user_changes = $profile_changes = false;
+  $user_changes = $profile_changes = FALSE;
   if (isset($data['user']) && !empty($data['user']) && is_array($data['user'])) {
-    foreach ($data['user'] AS $field => $val) {
+    foreach ($data['user'] as $field => $val) {
       if (isset($user->{$field}) && ($user->{$field} != $val)) {
         $user->{$field} = $val;
-        $user_changes = true;
+        $user_changes = TRUE;
       }
     }
 
-    if ($user_changes === true) {
+    if ($user_changes === TRUE) {
       user_save($user);
     }
   }
 
   if (isset($data['profile']) && !empty($data['profile']) && is_array($data['profile'])) {
     $profile = profile2_load_by_user($user, 'main');
-    foreach ($data['profile'] AS $field => $val) {
+    foreach ($data['profile'] as $field => $val) {
       $field = 'field_user_' . $field;
       if (isset($profile->{$field}[LANGUAGE_NONE][0]['value']) && ($profile->{$field}[LANGUAGE_NONE][0]['value'] != $val)) {
         $profile->{$field}[LANGUAGE_NONE][0]['value'] = $val;
-        $profile_changes = true;
+        $profile_changes = TRUE;
       }
       elseif (!isset($profile->{$field}[LANGUAGE_NONE][0]['value'])) {
         $profile->{$field}[LANGUAGE_NONE][0]['value'] = $val;
-        $profile_changes = true;
+        $profile_changes = TRUE;
       }
     }
 
-    if ($profile_changes === true) {
+    if ($profile_changes === TRUE) {
       profile2_save($profile);
     }
   }
