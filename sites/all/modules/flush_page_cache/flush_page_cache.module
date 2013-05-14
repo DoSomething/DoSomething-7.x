@@ -1,0 +1,225 @@
+<?php
+/**
+ * @file
+ * Easing the pain when you need to flush...Drupal's cache.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function flush_page_cache_permission() {
+  return array(
+    'flush page cache' => array(
+      'title' => t('flush page cache'),
+      'description' => t("Allow users to flush a page's cached objects"),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function flush_page_cache_menu() {
+  $items = array();
+
+  // Admin settings
+  $items['admin/config/development/flush_page_cache'] = array(
+    'title' => 'Flush page cache',
+    'description' => "Easing the pain when you need to flush...Drupal's cache.",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('flush_page_cache_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'flush_page_cache.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_admin_menu_output_alter().
+ */
+function flush_page_cache_admin_menu_output_alter(&$content) {
+  // Add flush page cache item to icon menu item.
+  $content['icon']['icon']['flush-page-cache'] = array(
+    '#title' => t("Flush this page's cache"),
+    '#path' => 'admin_menu/flush-page-cache',
+    '#href' => $_GET['q'],
+    '#options' => array(
+      'query' => array('flush_page_cache' => '1'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_init().
+ *
+ * Ideally we should be flushing the page's cache via hook_boot() but
+ * user_access() isn't available until hook_init().
+ */
+function flush_page_cache_init() {
+  if (!flush_page_cache_requested()) {
+    return;
+  }
+
+  // Clear custom cache cid and tables based on drupal path.
+  $path = $_GET['q'];
+  $alias = drupal_get_path_alias($_GET['q']);
+  $custom = variable_get('flush_page_cache_custom', array(array('*', 'variables', 'cache', FALSE)));
+  foreach ($custom as $item) {
+    if (drupal_match_path($path, $item[0]) || drupal_match_path($alias, $item[0])) {
+      cache_clear_all($item[1], $item[2], $item[3]);
+    }
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function flush_page_cache_block_info() {
+  return array('link' => array('info' => t('Flush page cache')));
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function flush_page_cache_block_view($delta = '') {
+  return array('content' => theme('flush_page_cache_link'));
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function flush_page_cache_page_alter(&$page) {
+  if (!flush_page_cache_requested()) {
+    return;
+  }
+
+  // Get full path and URL.
+  $path = flush_page_cache_get_path();
+  $url = flush_page_cache_get_url();
+
+  // Ensure that the object cache was disabled.
+  if (!flush_page_cache_test_object_cache_disabled()) {
+    $message = "Failed to flush all cached objects for this page. Please read this 'Flush page cache' README.txt file for more information";
+    drupal_set_message(t($message), 'error');
+    watchdog('flush_page_cache', t($message), array(), WATCHDOG_ERROR);
+  }
+  else {
+    // Display message about cached objects.
+    drupal_set_message(t('Successfully flushed all cached objects for this page.'));
+  }
+
+  // Purge all possible page-level caches. Generally, only one page cache
+  // mechanism should be enabled but just to be safe we will check all of them.
+
+  // Varnish
+  if (module_exists('varnish')) {
+    varnish_expire_cache(array($path));
+    drupal_set_message(t('Successfully purged this cached page from Varnish.'));
+  }
+
+  // Drupal page cache
+  if (variable_get('cache', 0)) {
+    cache_clear_all($url, 'cache_page');
+    drupal_set_message(t('Successfully flushed this cached page from Drupal.'));
+  }
+
+  // Redirect to the URL.
+  drupal_goto($url);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Helper functions
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Determine if a flush page cache has been requested.
+ */
+function flush_page_cache_requested() {
+  if (empty($_GET['flush_page_cache']) || !user_access('flush page cache')) {
+    return FALSE;
+  }
+  else {
+    return TRUE;
+  }
+}
+
+/**
+ * Get the full URL for the current page without ?flush_page_cache=1 query param.
+ */
+function flush_page_cache_get_url() {
+  $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
+  return $protocol .'://'. $_SERVER['HTTP_HOST'] . flush_page_cache_get_path();
+}
+
+/**
+ * Get the path for the current page without ?flush_page_cache=1 query param.
+ */
+function flush_page_cache_get_path() {
+  return parse_url(request_uri(), PHP_URL_PATH);
+}
+
+/**
+ * Test that the object cache is being correctly disabled and flushed.
+ */
+function flush_page_cache_test_object_cache_disabled() {
+  $cid = 'flush-page-cache-test';
+  $uuid = uniqid();
+
+  // Purge any old test $cid;
+  cache_clear_all($cid, 'cache');
+
+  // Attempt so set $cid cache which will work.
+  cache_set($cid, $uuid, 'cache');
+
+  // If page object cache is correctly disabled this will return NULL and not the uuid.
+  $cache = cache_get($cid);
+  $is_disabled = (empty($cache) || $cache->data != $uuid) ? TRUE : FALSE;
+
+  // Cleanup test $cid.
+  cache_clear_all($cid, 'cache');
+  return $is_disabled;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Theme functions
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function flush_page_cache_preprocess_page(&$variables) {
+  if (user_access('flush page cache') && variable_get('flush_page_cache_footer_link', '0')) {
+    $variables['page']['footer']['flush_page_cache-link'] = array('#markup' => theme('flush_page_cache_link'));
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function flush_page_cache_theme() {
+  return array(
+    'flush_page_cache_link' => array(
+      'variables' => array(),
+    ),
+    'flush_page_cache_custom_settings_table' => array(
+      'render element' => 'form',
+      'file' => 'flush_page_cache.admin.inc',
+    ),
+  );
+}
+
+/**
+ * Outputs 'flush page cache' link which is added to a site's footer message.
+ */
+function theme_flush_page_cache_link() {
+  $options = array(
+    'query' => array('flush_page_cache' => '1'),
+    'attributes' => array('class' => 'flush-page-cache'),
+    'external' => TRUE,
+  );
+  return l(t('Flush page cache'), flush_page_cache_get_url(), $options);
+}
