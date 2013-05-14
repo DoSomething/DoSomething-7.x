@@ -141,8 +141,8 @@ function create_and_share_menu() {
    *   The entity ID of the submission that is being shared.
    */
   $paths['cas/%/share/%'] = array(
-    'page callback' => 'create_and_share_update_counts',
-    'page arguments' => array(1, 3, 'share'),
+    'page callback' => 'create_and_share_action',
+    'page arguments' => array(1, 'share', 3),
     'access callback' => TRUE,
   );
 
@@ -622,7 +622,7 @@ function create_and_share_update_counts($campaign, $etid, $action) {
   return array(
     'etid' => $submission->sid,
     'uid' => $submission->uid,
-    'count' => $value,
+    'count' => $count,
   );
 }
 
@@ -750,6 +750,9 @@ function create_and_share_get_settings($campaign, $category = 'all') {
           'total' => array(
             'field' => $c->field_cas_total_count_field[LANGUAGE_NONE][0]['value'],
           ),
+          'share' => array(
+            'field' => $c->field_cas_share_count_field[LANGUAGE_NONE][0]['value'],
+          ),
         ),
         'views' => array(
           'wrapper' => $c->field_cas_views_wrapper[LANGUAGE_NONE][0]['value'],
@@ -850,24 +853,29 @@ function create_and_share_page_alter(&$page) {
     $shares = $s->execute()->fetchAll();
 
     $notices = $posts = array();
+    $share_count = 0;
     foreach ($shares AS $key => $share) {
       // If it's from me, it's a post from me!
-      if ($share->from_uid == $user->uid) {
+      if ($share->from_uid == $user->uid && $share->type != 'share') {
         $posts[] = $share->etid;
       }
 
       // If it's to me, it's a notification (assuming I haven't sene it yet).
-      if ($share->uid == $user->uid && !$share->notified) {
+      if ($share->uid == $user->uid && !$share->notified && $share->type != 'share') {
         $notices[$share->type][] = array(
           'etid' => $share->etid,
           'uid' => $share->from_uid,
         );
       }
+
+      if ($share->type == 'share') {
+        $share_count++;
+      }
     }
 
     $js_settings = array(
-      'share_count' => count($posts),
-      'shares' => $posts,
+      'posts' => $posts,
+      'shares' => $share_count,
       'notices' => $notices,
     );
 

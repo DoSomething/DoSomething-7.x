@@ -30,6 +30,7 @@ features[field][] = node-create_and_share_campaign-field_cas_image_style
 features[field][] = node-create_and_share_campaign-field_cas_notification_pages
 features[field][] = node-create_and_share_campaign-field_cas_ranking_action_point
 features[field][] = node-create_and_share_campaign-field_cas_ranking_algorithm
+features[field][] = node-create_and_share_campaign-field_cas_share_count_field
 features[field][] = node-create_and_share_campaign-field_cas_thumbs_down_field
 features[field][] = node-create_and_share_campaign-field_cas_thumbs_down_text
 features[field][] = node-create_and_share_campaign-field_cas_thumbs_down_weight

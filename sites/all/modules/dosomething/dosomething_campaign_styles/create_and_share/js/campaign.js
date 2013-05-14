@@ -12,11 +12,9 @@
        */
       $('.flag a').click(function() {
         if (settings.campaign.can_flag_posts) {
-          console.log(":(");
           var i = $(this);
           var l = $(this).parent().parent().parent();
           $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/flag/' + $(this).attr('data-sid'), {}, function(response) {
-            console.log(response);
             if (response == 1) {
               l.addClass('flagged');
               i.children('span').text('Unflag');
@@ -59,12 +57,12 @@
 
     fb_invite_friends_post: function(sid, reload) {
       $('.bull-crazy-popup,.share-crazy-popup').remove();
-  
+
       Drupal.behaviors.fb.ask_permission('publish_stream', { 'display': 'iframe' }, function(res) {
       if (!(typeof res === 'object' && res.perms == 'publish_stream')) {
           return false;
         }
-  
+
         var img = 'http://files.dosomething.org/files/campaigns/crazy13/logo.png';
         var path = 'http://www.dosomething.org/' + Drupal.settings.campaign.campaign_root + '/friends';
         if (sid > 0) {
@@ -79,10 +77,10 @@
         else {
             img = $('.s-' + sid + '-picture img').attr('src');
           }
-  
+
           path = 'http://www.dosomething.org/' + Drupal.settings.campaign.campaign_root + '/friends/' + sid;
         }
-  
+
         Drupal.behaviors.fb.feed({
           feed_document: path,
           feed_title: Drupal.settings.campaign.facebook.posts.title,
@@ -96,7 +94,7 @@
         }, function(response) {
           $.post('/' + Drupal.settings.campaign.campaign_root + '/submit-vouch-request/' + sid, { 'friends': response.friends, 'origin': Drupal.settings.campaign.origin }, function(v) {});
         });
-  
+
         return false;
       });
 
@@ -137,7 +135,7 @@
           status = 1;
         }
       });
-  
+
       if (!status || $('body').hasClass('not-logged-in')) {
         if (type == 'login') {
           $.fn.dsCampaignPopup('login', 0);
@@ -147,7 +145,7 @@
           $.fn.dsCampaignPopup('submit', 0);
           return false;
         }
-  
+
         return true;
       }
       else {
@@ -164,8 +162,12 @@
         $('.s-' + etid + '-picture img').attr('src', $('.s-' + etid + '-picture img').attr('src') + '?' + new Date().getTime());
       }
 
+      if (typeof etid === 'undefined') {
+        etid = 0;
+      }
+
       // Ignore if the popup is already open.
-      if ($('.' + name + '-crazy-popup').length > 0) return;
+      if ($('.' + name + '-campaign-notification').length > 0) return;
         $.post('/cas/' + campaign + '/template/' + template + '/' + etid, { 'goto': settings.goto, 'you': settings.you, 'source': document.location.pathname }, function(response) {
           var t = $('<div></div>');
           t.html(response);
@@ -182,7 +184,7 @@
               $('.ui-dialog-content').css('min-height', '325px');
             },
             close: function() {
-              $('.' + name + '-crazy-popup').remove();
+              $('.' + name + '-campaign-notification').remove();
             }
         });
       });

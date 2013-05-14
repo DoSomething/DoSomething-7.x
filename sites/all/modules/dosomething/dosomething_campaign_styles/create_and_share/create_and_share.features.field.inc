@@ -374,7 +374,7 @@ function create_and_share_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '14',
+        'weight' => '15',
       ),
     ),
   );
@@ -532,7 +532,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '15',
+        'weight' => '16',
       ),
     ),
   );
@@ -675,7 +675,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'numberfield',
-        'weight' => '20',
+        'weight' => '21',
       ),
     ),
   );
@@ -748,7 +748,84 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '19',
+        'weight' => '20',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-create_and_share_campaign-field_cas_share_count_field'.
+  $fields['node-create_and_share_campaign-field_cas_share_count_field'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_share_count_field',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 'cas_share_count',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The field that stores the share count for all submissions.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 23,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_cas_share_count_field',
+      'label' => 'Share Count Field',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '13',
       ),
     ),
   );
@@ -974,7 +1051,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '22',
+        'weight' => '23',
       ),
     ),
   );
@@ -1200,7 +1277,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '21',
+        'weight' => '22',
       ),
     ),
   );
@@ -1271,7 +1348,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'numberfield',
-        'weight' => '24',
+        'weight' => '25',
       ),
     ),
   );
@@ -1342,7 +1419,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'numberfield',
-        'weight' => '23',
+        'weight' => '24',
       ),
     ),
   );
@@ -1419,7 +1496,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '16',
+        'weight' => '17',
       ),
     ),
   );
@@ -1496,7 +1573,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '18',
+        'weight' => '19',
       ),
     ),
   );
@@ -1573,7 +1650,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '17',
+        'weight' => '18',
       ),
     ),
   );
@@ -1650,7 +1727,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '13',
+        'weight' => '14',
       ),
     ),
   );
@@ -1717,7 +1794,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '38',
+        'weight' => '7',
       ),
     ),
   );
@@ -1860,7 +1937,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '31',
+        'weight' => '1',
       ),
     ),
   );
@@ -1927,7 +2004,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '39',
+        'weight' => '8',
       ),
     ),
   );
@@ -1992,7 +2069,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'numberfield',
-        'weight' => '36',
+        'weight' => '4',
       ),
     ),
   );
@@ -2057,7 +2134,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'numberfield',
-        'weight' => '35',
+        'weight' => '3',
       ),
     ),
   );
@@ -2122,7 +2199,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'html5_tools',
         'settings' => array(),
         'type' => 'numberfield',
-        'weight' => '34',
+        'weight' => '2',
       ),
     ),
   );
@@ -2188,7 +2265,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '37',
+        'weight' => '6',
       ),
     ),
   );
@@ -2215,6 +2292,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('Promoted');
   t('Promoted to the top of the list?');
   t('Ranking Action "Point"');
+  t('Share Count Field');
   t('The "Thumbs Down" text.');
   t('The "Thumbs Up" button text.');
   t('The amount of time, in seconds, after which time will lose value in the ranking algorithm.');
@@ -2222,6 +2300,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('The field that handles the thumbs up count');
   t('The field that handles the uploaded image.');
   t('The field that handles weight for the sorting algorithm.');
+  t('The field that stores the share count for all submissions.');
   t('The field that will handle the thumbs down count.');
   t('The field that will handle the total "action" count.');
   t('The page(s) that notifications should be allowed on.  One per line.  Use regular expression syntax to denote abstracted paths.');

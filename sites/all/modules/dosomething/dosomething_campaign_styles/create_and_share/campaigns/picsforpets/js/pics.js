@@ -6,32 +6,6 @@
     started_page: false,
 
     attach: function(context, settings) { 
-      $('.fb-share a').click(function(e) {
-        if (!Drupal.behaviors.fb.is_authed() || !Drupal.behaviors.create_and_share.logged_in) {
-          $.fn.dsCampaignPopup('share-login', 0, { 'goto': document.location.href });
-          return false;
-        }
-
-        var img = $(this).parent().parent().parent().find('.simg img').attr('data-original');
-        var sid = $(this).attr('rel');
-
-        Drupal.behaviors.fb.image({
-          'img_namespace': Drupal.settings.campaign.facebook.share.namespace,
-          'img_object': Drupal.settings.campaign.facebook.share.object,
-          'img_action': Drupal.settings.campaign.facebook.share.action,
-          'img_document': document.location.origin + '/' + Drupal.settings.campaign.campaign_root + '/' + sid,
-          'img_message': true,
-          'img_picture': img,
-          'img_require_login': true,
-        }, function(response) {
-          $.post('/' + Drupal.settings.campaign.campaign_root + '/fb-share/' + sid, {}, function(response) {
-            // Nothing!
-          });
-        });
-
-        return false;
-      });
-
       $('.go-filter').click(function(e) {
         var type = $('.type-filter').val();
         var state = $('.state-filter').val();
@@ -51,6 +25,7 @@
         share_array.push(selector);
 
         $(this).click(function() {
+          var sid = $(this).attr('data-sid');
           Drupal.behaviors.fb.feed({
             'feed_title' : settings.campaign.facebook.share.title,
             'feed_picture': picture,
@@ -60,8 +35,13 @@
             'feed_allow_multiple': false,
             'feed_noclick': true
           }, function(response) {
-            var c = parseInt($('.' + selector + '-count').text());
-            $('.' + selector + '-count').text(++c);
+            // Submit the share in the backend.
+            $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/share/' + sid, { 'origin': document.location.pathname.replace('/', ''), 'alert': true }, function(response) {
+              var c = parseInt($('.' + selector + '-count').text());
+              $('.' + selector + '-count').text(++c);
+
+              Drupal.behaviors.picsforpetsCampaign.tip_shares(settings);
+            });
           });
 
           return false;
@@ -76,8 +56,9 @@
     },
 
     tip_shares: function(settings) {
-      if (settings.campaign.share_count == 2) {
-        $.fn.dsCampaignPopup('tip', 0);
+      settings.campaign.shares++;
+      if (settings.campaign.shares > 0) {
+        $.fn.dsCampaignPopup(settings.campaign.campaign_root, 'tip', 0);
       }
     },
   };
