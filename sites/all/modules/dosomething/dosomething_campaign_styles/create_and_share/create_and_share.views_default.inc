@@ -507,6 +507,11 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['relationships']['data_2']['label'] = 'Adopted';
   $handler->display->display_options['relationships']['data_2']['webform_nid'] = '729195';
   $handler->display->display_options['relationships']['data_2']['webform_cid'] = '6';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Global: Random */
+  $handler->display->display_options['sorts']['random']['id'] = 'random';
+  $handler->display->display_options['sorts']['random']['table'] = 'views';
+  $handler->display->display_options['sorts']['random']['field'] = 'random';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
