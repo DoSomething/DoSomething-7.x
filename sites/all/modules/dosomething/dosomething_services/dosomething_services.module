@@ -91,7 +91,7 @@ function dosomething_services_field_widget_form_alter(&$element, &$form_state, $
  * Implements hook_services_resources().
  */
 function dosomething_services_services_resources() {
-  return array(
+  $resources = array(
     'user' => array(
       'actions' => array(
         'fblogin' => array(
@@ -139,6 +139,11 @@ function dosomething_services_services_resources() {
       ),
     ),
   );
+
+  require_once('resources/profile_resource.inc');
+  $resources += _profile_resource_definition();
+
+  return $resources;
 }
 
 /**
