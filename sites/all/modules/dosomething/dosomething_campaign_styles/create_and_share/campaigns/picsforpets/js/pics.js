@@ -17,14 +17,18 @@
         return false;
       });
 
+      // Handles Facebook sharing.
       var share_array = [];
       $('.facebook-share').each(function() {
         var picture = $(this).parent().parent().find('img').attr('src');
         var selector = $(this).attr('class').replace('facebook-share ', '');
 
+        // Add this facebook button to the array of possible buttons on the page (used later*).
         share_array.push(selector);
 
+        // Handles click event.
         $(this).click(function() {
+          // Pop Facebook feed.
           var sid = $(this).attr('data-sid');
           Drupal.behaviors.fb.feed({
             'feed_title' : settings.campaign.facebook.share.title,
@@ -35,11 +39,12 @@
             'feed_allow_multiple': false,
             'feed_noclick': true
           }, function(response) {
-            // Submit the share in the backend.
+            // Submit the share to the database.
             $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/share/' + sid, { 'origin': document.location.pathname.replace('/', ''), 'alert': true }, function(response) {
               var c = parseInt($('.' + selector + '-count').text());
               $('.' + selector + '-count').text(++c);
 
+              // Attend to share count.
               Drupal.behaviors.picsforpetsCampaign.tip_shares(settings);
             });
           });
@@ -48,6 +53,8 @@
         });
       });
 
+      // Loads the share counts for all of the submissions, and updates their FB bubble.
+      // (* used here)
       Drupal.behaviors.fb.get_counts(share_array, null, function(counts) {
         for (i in counts) {
           $('.' + i + '-count').text(counts[i]);
@@ -57,7 +64,9 @@
 
     tip_shares: function(settings) {
       settings.campaign.shares++;
-      if (settings.campaign.shares > 0) {
+
+      // Show the "become a furtographer" popup after 5 shares.
+      if (settings.campaign.shares == 5) {
         $.fn.dsCampaignPopup(settings.campaign.campaign_root, 'tip', 0);
       }
     },

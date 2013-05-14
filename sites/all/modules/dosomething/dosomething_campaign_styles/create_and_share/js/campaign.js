@@ -36,11 +36,13 @@
         });
       }
 
+      // Break out of iframes.
       if (top.location != self.location) {
-        top.location = self.location.href
+        top.location = self.location.href;
       }
 
-      if (Drupal.settings.campaign.allow_lazy_loading) {
+      // Lazy loading.
+      if (settings.campaign.allow_lazy_loading) {
         if ($('img.lazy').length > 0) {
           $('img.lazy').lazyload();
         }
@@ -118,7 +120,7 @@
           feed_modal: false,
           feed_friend_selector: 'td',
         }, function(response) {});
-  
+
         return false;
       });
 

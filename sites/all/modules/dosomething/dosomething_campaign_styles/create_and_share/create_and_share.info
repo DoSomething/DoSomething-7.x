@@ -27,6 +27,7 @@ features[field][] = node-create_and_share_campaign-field_cas_gated
 features[field][] = node-create_and_share_campaign-field_cas_image_field
 features[field][] = node-create_and_share_campaign-field_cas_image_font
 features[field][] = node-create_and_share_campaign-field_cas_image_style
+features[field][] = node-create_and_share_campaign-field_cas_lazy_load_count
 features[field][] = node-create_and_share_campaign-field_cas_notification_pages
 features[field][] = node-create_and_share_campaign-field_cas_ranking_action_point
 features[field][] = node-create_and_share_campaign-field_cas_ranking_algorithm

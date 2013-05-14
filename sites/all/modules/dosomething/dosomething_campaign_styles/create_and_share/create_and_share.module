@@ -726,6 +726,7 @@ function create_and_share_get_settings($campaign, $category = 'all') {
         'allow_anonymous_votes' => (bool) $c->field_cas_allow_anonymous_voting[LANGUAGE_NONE][0]['value'],
         'allow_notifications' => (bool) $c->field_cas_allow_notifications[LANGUAGE_NONE][0]['value'],
         'allow_lazy_loading' => (bool) $c->field_cas_allow_lazy_loading[LANGUAGE_NONE][0]['value'],
+        'lazy_load_count' => 1,
         'allow_ranking_algorithm' => (bool) $c->field_cas_ranking_algorithm[LANGUAGE_NONE][0]['value'],
         'image_writing' => array(
           'enabled' => (!empty($c->field_cas_image_font[LANGUAGE_NONE][0]['value']) && file_exists(drupal_get_path('module', 'create_and_share') . '/fonts/' . $c->field_cas_image_font[LANGUAGE_NONE][0]['value'])),
@@ -956,8 +957,8 @@ function create_and_share_add_lazy_class($matches) {
   // Lazy load count always needs to be at least 1.
   $c = ($settings['lazy_load_count'] < 1) ? 1 : $settings['lazy_load_count'];
 
-   // We multiply the lazy load count by 2, because lazy loading includes the facebook pictures.
-  if ($i > ($c * 2) && $settings['lazy_load_count']) {
+  // This is weird.  It ignores the first image for some reason, unless this is multiplied by two.
+  if ($i > ($c * 2)) {
     // We're beyond the non-lazy threshold, so lazy-load the image.
     $r = 'src="/' . drupal_get_path('module', 'create_and_share') . '/images/default-img.jpg" data-original="' . $matches[1] . '?' . $unique_cache . '" class="lazy" data-num="' . $i . '" ';
   }
