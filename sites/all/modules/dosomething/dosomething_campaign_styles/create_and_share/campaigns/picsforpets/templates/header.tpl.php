@@ -45,70 +45,22 @@
 	<select name="state-filter" class="state-filter">
 		<option value="" selected="selected">All States</option>
 	<?php
-		$states = array(
-		    'AL' => 'AL',
-		    'AK' => 'AK',
-		    'AS' => 'AS',
-		    'AZ' => 'AZ',
-		    'AR' => 'AR',
-		    'CA' => 'CA',
-		    'CO' => 'CO',
-		    'CT' => 'CT',
-		    'DE' => 'DE',
-		    'DC' => 'DC',
-		    'FL' => 'FL',
-		    'GA' => 'GA',
-		    'GU' => 'GU',
-		    'HI' => 'HI',
-		    'ID' => 'ID',
-		    'IL' => 'IL',
-		    'IN' => 'IN',
-		    'IA' => 'IA',
-		    'KS' => 'KS',
-		    'KY' => 'KY',
-		    'LA' => 'LA',
-		    'ME' => 'ME',
-		    'MH' => 'MH',
-		    'MD' => 'MD',
-		    'MA' => 'MA',
-		    'MI' => 'MI',
-		    'MN' => 'MN',
-		    'MS' => 'MS',
-		    'MO' => 'MO',
-		    'MT' => 'MT',
-		    'NE' => 'NE',
-		    'NV' => 'NV',
-		    'NH' => 'NH',
-		    'NJ' => 'NJ',
-		    'NM' => 'NM',
-		    'NY' => 'NY',
-		    'NC' => 'NC',
-		    'ND' => 'ND',
-		    'MP' => 'MP',
-		    'OH' => 'OH',
-		    'OK' => 'OK',
-		    'OR' => 'OR',
-		    'PW' => 'PW',
-		    'PA' => 'PA',
-		    'PR' => 'PR',
-		    'RI' => 'RI',
-		    'SC' => 'SC',
-		    'SD' => 'SD',
-		    'TN' => 'TN',
-		    'TX' => 'TX',
-		    'UT' => 'UT',
-		    'VT' => 'VT',
-		    'VI' => 'VI',
-		    'VA' => 'VA',
-		    'WA' => 'WA',
-		    'WV' => 'WV',
-		    'WI' => 'WI',
-		    'WY' => 'WY',
-		);
+		// Load the default US states array.
+		module_load_include('inc', 'webform', 'includes/webform.options');
+		$states = webform_options_united_states(null, null, null, null);
+
+		// Fills an array with basic null values.  This prevents a notice that would otherwise appear.
+		$selected = array_fill_keys(array_keys($states), '');
+
+		// Mark the selected state.
+		if (preg_match('#[A-Z]{2}#', request_path(), $state)) {
+		  $selected_state = $state[0];
+		  $selected[$selected_state] = ' selected="selected"';
+		}
 
 		$path = request_path();
 		foreach ($states as $key => $state) {
-		  echo '<option value="' . $key . '"' . (strpos($path, $state) !== FALSE ? ' selected="selected"' : '') . '>' . $state . '</option>';
+		  echo '<option value="' . $key . '"' . $selected[$key] . '>' . $state . '</option>';
 		}
 	?>
 	</select>
