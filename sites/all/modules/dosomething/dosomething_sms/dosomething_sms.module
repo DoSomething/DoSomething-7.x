@@ -26,7 +26,7 @@ function dosomething_sms_menu() {
   
   $items = array();
   
-  $items['admin/config/system/dosomething_sms'] = array(
+  $items['admin/settings/dosomething_sms'] = array(
     'title' => 'DoSomething SMS',
     'description' => 'A collection of SMS tools related to DoSomething.org.',
     'page callback' => 'drupal_get_form',
@@ -34,9 +34,21 @@ function dosomething_sms_menu() {
     'access arguments' => array('administer dosomething_sms'),
     'file' => 'dosomething_sms.admin.inc',
     'file path' => drupal_get_path('module', 'dosomething_sms'),
+    'type' => MENU_NORMAL_ITEM,
+	);
+  
+  $items['admin/settings/dosomething_sms/test'] = array(
+		'title' => 'Test Cron',
+    'description' => 'Test DoSomething SMS Cron functionality without actually deleting the target records.',
+		'page callback' => 'dosomething_sms_testcron',
+    'access arguments' => array('administer dosomething_sms'),
+    'file' => 'dosomething_sms.admin.inc',
+    'file path' => drupal_get_path('module', 'dosomething_sms'),
+  	'type' => MENU_CALLBACK,
 	);
   
   return $items;
+
 }
 
 /**
@@ -586,12 +598,14 @@ function dosomething_sms_default_conductor_workflows() {
  **/
 function dosomething_sms_cron() {
   
+  $enabled = variable_get('dosomething_sms_cron_enable', FALSE);
+  
   // Run job every interval (week by default)
-  $interval = variable_get('dosomething_sms_interval', 60 * 60 * 24 * 7);
-  $next_run = variable_get('dosomething_sms_next_execution', time() + $interval);
+  $interval = variable_get('dosomething_sms_cron_interval', 60 * 60 * 24 * 7);
+  $next_run = variable_get('dosomething_sms_cron_next_execution', time() + $interval);
 
   // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
-  if (time() >= $next_run) {
+  if (($enabled) && (time() >= $next_run)) {
     
     // Delete entries that are older than a week (interval - dosomething_sms_interval)
     $number_deleted = db_delete('conductor_instance_pointer')
@@ -661,7 +675,8 @@ function dosomething_sms_cron() {
     // Log report in Watchdog
     watchdog('dosomething_sms', 'Cron run at %current_time. %number_deleted entries deleted.', array('%current_date' => date_iso8601(time(0)), '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
     
-    varable_set('dosomething_sms_next_execution', time() + $interval);
+    // Schedule new cron run
+    varable_set('dosomething_sms_cron_next_execution', time() + $interval);
     
   }
     
