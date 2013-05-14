@@ -11,10 +11,12 @@
        *  Handles flagging for campaign posts.  Users need to have permission to flag posts to use this.
        */
       $('.flag a').click(function() {
-      	if (Drupal.settings.can_flag_posts) {
+        if (settings.campaign.can_flag_posts) {
+          console.log(":(");
           var i = $(this);
           var l = $(this).parent().parent().parent();
           $.post('/cas/' + Drupal.settings.campaign.campaign_root + '/flag/' + $(this).attr('data-sid'), {}, function(response) {
+            console.log(response);
             if (response == 1) {
               l.addClass('flagged');
               i.children('span').text('Unflag');

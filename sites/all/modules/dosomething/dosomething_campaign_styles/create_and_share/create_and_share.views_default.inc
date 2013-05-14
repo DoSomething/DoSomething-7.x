@@ -231,24 +231,6 @@ function create_and_share_views_default_views() {
     'create_and_share_campaign' => 'create_and_share_campaign',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'not';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
-    0 => '0',
-  );
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
   /* Filter criterion: Webform submissions: Draft */
   $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
   $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
@@ -256,6 +238,22 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['is_draft']['value'] = array(
     0 => '0',
   );
+  $handler->display->display_options['filters']['is_draft']['group'] = 1;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value']['id'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_cas_flagged_value']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['id'] = 'field_cas_flagged_value_1';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['group'] = 2;
 
   /* Display: Create and Share Master */
   $handler = $view->new_display('block', 'Create and Share Master', 'create_and_share_gallery');
@@ -273,21 +271,6 @@ function create_and_share_views_default_views() {
     'create_and_share_campaign' => 'create_and_share_campaign',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'not';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
   /* Filter criterion: Webform submissions: Draft */
   $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
   $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
@@ -297,6 +280,21 @@ function create_and_share_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['is_draft']['group'] = 1;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value']['id'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_cas_flagged_value']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['id'] = 'field_cas_flagged_value_1';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['group'] = 2;
 
   /* Display: Friends View */
   $handler = $view->new_display('block', 'Friends View', 'friends_view');
@@ -318,7 +316,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'crazy_shit' => 'crazy_shit',
+    'create_and_share_campaign' => 'create_and_share_campaign',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Webform submissions: UID */
@@ -327,24 +325,21 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['uid']['field'] = 'uid';
   $handler->display->display_options['filters']['uid']['value'] = '1';
   $handler->display->display_options['filters']['uid']['group'] = 1;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'not';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['value'] = array(
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value']['id'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['value'] = array(
     1 => '1',
   );
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
-    0 => '0',
-  );
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_cas_flagged_value']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['id'] = 'field_cas_flagged_value_1';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['group'] = 2;
 
   /* Display: Context */
   $handler = $view->new_display('ctools_context', 'Context', 'ctools_context_1');
@@ -411,21 +406,6 @@ function create_and_share_views_default_views() {
     'create_and_share_campaign' => 'create_and_share_campaign',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'not';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
   /* Filter criterion: Webform submissions: Draft */
   $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
   $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
@@ -442,6 +422,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['data']['relationship'] = 'data';
   $handler->display->display_options['filters']['data']['operator'] = 'not empty';
   $handler->display->display_options['filters']['data']['value'] = 'cat';
+  $handler->display->display_options['filters']['data']['group'] = 1;
   /* Filter criterion: Webform submission data: Data field */
   $handler->display->display_options['filters']['data_1']['id'] = 'data_1';
   $handler->display->display_options['filters']['data_1']['table'] = 'webform_submitted_data';
@@ -449,6 +430,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['data_1']['relationship'] = 'data_1';
   $handler->display->display_options['filters']['data_1']['operator'] = 'not empty';
   $handler->display->display_options['filters']['data_1']['value'] = 'NY';
+  $handler->display->display_options['filters']['data_1']['group'] = 1;
   /* Filter criterion: Webform Submission: Promoted (field_cas_promoted) */
   $handler->display->display_options['filters']['field_cas_promoted_value']['id'] = 'field_cas_promoted_value';
   $handler->display->display_options['filters']['field_cas_promoted_value']['table'] = 'field_data_field_cas_promoted';
@@ -457,6 +439,22 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['field_cas_promoted_value']['value'] = array(
     1 => '1',
   );
+  $handler->display->display_options['filters']['field_cas_promoted_value']['group'] = 1;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value']['id'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['id'] = 'field_cas_flagged_value_1';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['group'] = 2;
 
   /* Display: Promoted Pets */
   $handler = $view->new_display('attachment', 'Promoted Pets', 'attachment_1');
@@ -527,24 +525,6 @@ function create_and_share_views_default_views() {
     'create_and_share_campaign' => 'create_and_share_campaign',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['id'] = 'field_crazy_flagged_value_1';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['operator'] = 'not';
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_crazy_flagged_value_1']['group'] = 2;
-  /* Filter criterion: Webform Submission: Flagged (field_crazy_flagged) */
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['id'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['table'] = 'field_data_field_crazy_flagged';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['field'] = 'field_crazy_flagged_value';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['value'] = array(
-    0 => '0',
-  );
-  $handler->display->display_options['filters']['field_crazy_flagged_value']['group'] = 2;
   /* Filter criterion: Webform submissions: Draft */
   $handler->display->display_options['filters']['is_draft']['id'] = 'is_draft';
   $handler->display->display_options['filters']['is_draft']['table'] = 'webform_submissions';
@@ -552,6 +532,7 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['is_draft']['value'] = array(
     0 => '0',
   );
+  $handler->display->display_options['filters']['is_draft']['group'] = 1;
   /* Filter criterion: Webform Submission: Promoted (field_cas_promoted) */
   $handler->display->display_options['filters']['field_cas_promoted_value']['id'] = 'field_cas_promoted_value';
   $handler->display->display_options['filters']['field_cas_promoted_value']['table'] = 'field_data_field_cas_promoted';
@@ -559,6 +540,22 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['filters']['field_cas_promoted_value']['value'] = array(
     1 => '1',
   );
+  $handler->display->display_options['filters']['field_cas_promoted_value']['group'] = 1;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value']['id'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_cas_flagged_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_cas_flagged_value']['group'] = 2;
+  /* Filter criterion: Webform Submission: Flagged (field_cas_flagged) */
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['id'] = 'field_cas_flagged_value_1';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['table'] = 'field_data_field_cas_flagged';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['field'] = 'field_cas_flagged_value';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_cas_flagged_value_1']['group'] = 2;
   $handler->display->display_options['displays'] = array(
     'picsforpets' => 'picsforpets',
     'default' => 0,

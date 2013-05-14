@@ -79,20 +79,21 @@ $filter['^(' . $settings['campaign_root'] . ')\/((?<type>(cat|dog|other))s?)?\-?
       'operator' => '=',
     );
   }
+  else {
+    // Show promoted pets organically in filtered pages.
+    unset($query->where[1]['conditions'][4]);
 
-  // Show promoted pets organically in filtered pages.
-  unset($query->where[1]['conditions'][4]);
+    // Cat / dog / other
+    if (!empty($match['type'])) {
+      $query->where[1]['conditions'][2]['value'] = $match['type'];
+      $query->where[1]['conditions'][2]['operator'] = '=';
+    }
 
-  // Cat / dog / other
-  if (!empty($match['type'])) {
-    $query->where[1]['conditions'][2]['value'] = $match['type'];
-    $query->where[1]['conditions'][2]['operator'] = '=';
-  }
-
-  // State abbreviations (New York = NY, &etc.)
-  if (!empty($match['state'])) {
-    $query->where[1]['conditions'][3]['value'] = $match['state'];
-    $query->where[1]['conditions'][3]['operator'] = '=';
+    // State abbreviations (New York = NY, &etc.)
+    if (!empty($match['state'])) {
+      $query->where[1]['conditions'][3]['value'] = $match['state'];
+      $query->where[1]['conditions'][3]['operator'] = '=';
+    }
   }
 };
 

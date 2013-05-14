@@ -7,6 +7,7 @@ $link = l(t("$shelter, $state"), 'http://www.petfinder.com/awo/index.cgi?locatio
 $promoted = (bool) $row->_field_data['sid']['entity']->field_cas_promoted[LANGUAGE_NONE][0]['value'];
 $adopted = (bool) !empty($row->_field_data['sid']['entity']->data[6]['value'][0]);
 $blurb = check_plain($row->_field_data['sid']['entity']->data[7]['value'][0]);
+$flagged = $row->_field_data['sid']['entity']->field_cas_flagged[LANGUAGE_NONE][0]['value'];
 
 ?>
 
@@ -17,6 +18,8 @@ $blurb = check_plain($row->_field_data['sid']['entity']->data[7]['value'][0]);
 	<a class="facebook-share fb-<?php echo $row->sid; ?>" data-sid="<?php echo $row->sid; ?>" href="#"><span>Facebook</span></a>
 	<span class="fb-<?php echo $row->sid; ?>-count">0</span>
 </div>
+
+<?php if ($flagged): ?><p>Flagged!</p><?php endif; ?>
 
 <div class="fb-and-pic">
 <?php if (user_access('flag campaign submissions')): ?><div class="flag"><a href="/cas/<?php echo $campaign; ?>/flag/<?php echo $row->sid; ?>" data-sid="<?php echo $row->sid; ?>"><span><?php echo t('Flag'); ?></span></a></div><?php endif; ?>
