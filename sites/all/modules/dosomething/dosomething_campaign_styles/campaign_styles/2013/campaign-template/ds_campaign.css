@@ -136,6 +136,9 @@ header[role="banner"] {
   width: 960px;
   margin: 0 auto; }
 
+.view-campaign-gallery #slideshow {
+  margin: 0 auto; }
+
 #cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
 #cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
@@ -537,6 +540,12 @@ header[role="banner"] {
 #cmp .sms-beta-mobile {
   clear: both;
   margin: 5% 0 -1%; }
+#cmp .gallery img {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
 #cmp .success_msg {
   margin: 0 auto 1em; }
   #cmp .success_msg h2 {
