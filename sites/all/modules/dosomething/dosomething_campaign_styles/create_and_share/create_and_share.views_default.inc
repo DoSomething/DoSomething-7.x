@@ -129,6 +129,19 @@ function create_and_share_views_default_views() {
   $handler->display->display_options['fields']['views_conditional_1']['condition'] = '5';
   $handler->display->display_options['fields']['views_conditional_1']['then'] = '0';
   $handler->display->display_options['fields']['views_conditional_1']['or'] = '[field_cas_thumbs_up_count]';
+  /* Field: Webform Submission: Share Count */
+  $handler->display->display_options['fields']['field_cas_share_count']['id'] = 'field_cas_share_count';
+  $handler->display->display_options['fields']['field_cas_share_count']['table'] = 'field_data_field_cas_share_count';
+  $handler->display->display_options['fields']['field_cas_share_count']['field'] = 'field_cas_share_count';
+  $handler->display->display_options['fields']['field_cas_share_count']['label'] = '';
+  $handler->display->display_options['fields']['field_cas_share_count']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_cas_share_count']['alter']['trim_whitespace'] = TRUE;
+  $handler->display->display_options['fields']['field_cas_share_count']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['field_cas_share_count']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_cas_share_count']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 0,
+  );
   /* Field: Profile: First Name */
   $handler->display->display_options['fields']['field_user_first_name']['id'] = 'field_user_first_name';
   $handler->display->display_options['fields']['field_user_first_name']['table'] = 'field_data_field_user_first_name';

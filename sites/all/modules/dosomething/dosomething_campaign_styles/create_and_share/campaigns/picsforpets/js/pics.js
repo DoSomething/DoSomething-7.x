@@ -31,6 +31,7 @@
           // Pop Facebook feed.
           var sid = $(this).attr('data-sid');
           Drupal.behaviors.fb.feed({
+            'feed_document': document.location.origin + '/' + settings.campaign.campaign_root + '/' + sid,
             'feed_title' : settings.campaign.facebook.share.title,
             'feed_picture': picture,
             'feed_caption': settings.campaign.facebook.share.caption,
@@ -51,14 +52,6 @@
 
           return false;
         });
-      });
-
-      // Loads the share counts for all of the submissions, and updates their FB bubble.
-      // (* used here)
-      Drupal.behaviors.fb.get_counts(share_array, null, function(counts) {
-        for (i in counts) {
-          $('.' + i + '-count').text(counts[i]);
-        }
       });
     },
 

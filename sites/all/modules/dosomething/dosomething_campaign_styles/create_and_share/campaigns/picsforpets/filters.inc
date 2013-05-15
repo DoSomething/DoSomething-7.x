@@ -26,7 +26,6 @@
  */
 $filter['^(' . $settings['campaign_root'] . ')'] = function($match, &$view, &$query) use ($settings) {    // Make sure we're only viewing posts from this node.
   // Make sure we're only showing posts from the campaign we're looking at.
-
   $query->where[1]['conditions'][] = array(
     'field' => 'node.nid',
     'value' => $settings['campaign_nid'],
@@ -55,14 +54,28 @@ $filter['^(' . $settings['campaign_root'] . ')$'] = function($match, &$view, &$q
  * Single post filter.
  */
 $filter['^(' . $settings['campaign_root'] . ')/(?<showid>[0-9]+)$'] = function($match, &$view, &$query) {
-  $showid = $match['showid'];
+  // We want to ignore featured pets on the singular view.
+  if ($view->current_display == 'attachment_1') {
+    $query->where[1]['conditions'][] = array(
+      'field' => 1,
+      'value' => 2,
+      'operator' => '=',
+    );
+  }
+  else {
+    // The ID of the submission.
+    $showid = $match['showid'];
 
-  // Show only the specific post.
-  $query->where[1]['conditions'][] = array(
-    'field' => 'webform_submissions.sid',
-    'value' => $showid,
-    'operator' => '=',
-  );
+    // Show only the specific post.
+    $query->where[1]['conditions'][] = array(
+      'field' => 'webform_submissions.sid',
+      'value' => $showid,
+      'operator' => '=',
+    );
+
+    // Okay to show promoted pets on the singular view.
+    unset($query->where[1]['conditions'][4]);
+  }
 };
 
 /**
