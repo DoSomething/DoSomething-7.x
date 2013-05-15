@@ -97,7 +97,6 @@ function _profile_resource_retrieve($uid) {
   if ($account) {
     $profile = profile2_load_by_user($account, 'main');
     if ($profile) {
-      print_r($profile);
       return $profile;
     }
   }
