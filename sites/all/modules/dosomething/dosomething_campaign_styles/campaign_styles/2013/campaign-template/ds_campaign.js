@@ -6,17 +6,17 @@
         afterReplaceText : 'Just register with DoSomething.org to join the campaign!',
       };
 
-      // TODO - THIS ISN'T WORKING
       // Animate scrolling to fragment identifiers
       jump_scroll = function(target) {
 
         $(target).click(function(event){
-           $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
-           return false;
-         });
+          console.log('merde');
+          $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
+          return false;
+        });
 
       }
-      jump_scroll('a.jump_scroll');
+      jump_scroll('a.jump-scroll');
 
 
       // Dynamically set width of the .section-headers
