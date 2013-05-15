@@ -7,7 +7,7 @@
       };
 
       // TODO - THIS ISN'T WORKING
-      // animate scrolling to fragment identifiers
+      // Animate scrolling to fragment identifiers
       jump_scroll = function(target) {
 
         $(target).click(function(event){
@@ -19,14 +19,13 @@
       jump_scroll('a.jump_scroll');
 
 
-      // TODO - THIS IS INACCURATE; REFACTOR
-      // dynamically set width of the .section-headers
+      // Dynamically set width of the .section-headers
       set_width = function(parent, child) {
 
         $(parent).each(function() {
           var $this = $(this);
-          var child_width = $this.children(child).width() * 1.1;
-          $this.css('width',child_width);
+          var child_width = $this.find(child).width() * 1.01;
+          $this.css('width', child_width);
         });
 
       };
