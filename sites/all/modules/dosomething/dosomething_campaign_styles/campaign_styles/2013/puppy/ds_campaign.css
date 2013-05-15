@@ -714,7 +714,8 @@ body {
       #cmp #game .scholar-foot .rule-regs {
         margin-left: 2%;
         font-size: 0.8em;
-        text-align: left; }
+        text-align: left;
+        line-height: 1.2em; }
         #cmp #game .scholar-foot .rule-regs a {
           color: white;
           font-weight: 400; }
@@ -732,20 +733,24 @@ body {
   #cmp #example .go-button {
     background: #fec82e;
     color: #47bcfc;
-    margin: 2.5em auto 2%;
+    margin: 2.5em auto 1.4em;
     font-size: 1.8em;
     font-family: din-web-reg;
     padding: 0.5em;
-    height: 1.8em;
-    position: relative; }
+    height: 1.8em; }
     #cmp #example .go-button:hover {
       opacity: 0.85; }
-    #cmp #example .go-button img {
+    #cmp #example .go-button:before {
+      background-image: url("//www.dosomething.org/files/campaigns/puppy/seemore.png");
+      width: 180px;
+      content: " ";
       position: absolute;
-      top: -35px;
-      left: -45px; }
+      left: 45px;
+      top: 35px;
+      height: 61px; }
   #cmp #example .clear {
-    clear: both; }
+    clear: both;
+    position: relative; }
   #cmp #example p {
     max-width: 440px;
     margin: 0 auto; }
@@ -810,10 +815,6 @@ body {
       font-weight: 500; }
     #cmp #info .divider {
       margin: 0 2% 3%; }
-  @media only screen and (max-width: 550px) {
-    #cmp #info .divider {
-      font-size: 0.7em;
-      padding-top: 0.1em; } }
   #cmp #faq div {
     padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq div.divider {
@@ -1135,13 +1136,6 @@ body {
   #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
   #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
     display: none; }
-  @media only screen and (max-width: 1075px) {
-    #cmp #how img {
-      display: block;
-      margin: 0 auto 2%; }
-    #cmp #how .exp {
-      margin: 0 auto 2%;
-      float: none; } }
   @media only screen and (max-width: 775px) {
     #cmp .section {
       width: 100%;
@@ -1157,12 +1151,22 @@ body {
       width: 37%; }
       #cmp a.print-pdf img {
         margin: 5% auto; } }
-  #cmp .section#header {
-    background-position: 80% 0%; }
-    #cmp .section#header #header .subhead {
-      font-size: 1.2em; }
-    #cmp .section#header #header .subhead2 {
-      font-size: 1em; }
+  @media only screen and (max-width: 550px) {
+    #cmp .section#header {
+      background-position: 80% 0%; }
+      #cmp .section#header #header .subhead {
+        font-size: 1.2em; }
+      #cmp .section#header #header .subhead2 {
+        font-size: 1em; }
+    #cmp #game .scholar-foot input[type="submit"] {
+      font-size: 1.8em; }
+    #cmp #info .divider {
+      font-size: 0.8em;
+      padding-top: 0.1em; }
+    #cmp #example img {
+      display: none; }
+    #cmp #example .go-button:before {
+      display: none; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 0 auto; }
