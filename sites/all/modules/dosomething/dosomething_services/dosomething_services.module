@@ -175,6 +175,7 @@ function dosomething_services_services_resources_alter(&$resources, $endpoint) {
       'source' => array('data' => 'email'),
       'optional' => TRUE,
     );
+
     // username arg now becomes optional
     foreach ($resources['user']['actions']['login']['args'] as &$user_arg) {
       if ($user_arg['name'] == 'username') {
@@ -265,6 +266,7 @@ function _dosomething_services_facebook_login($access_token, $group_name) {
     $return->sessid = session_id();
     $return->session_name = session_name();
     _dosomething_services_add_more_session_info($return);
+    _dosomething_services_add_profile_info($return, $user_return->uid);
 
     $return->user = $user_return;
 
@@ -442,6 +444,7 @@ function _dosomething_services_user_resource_login($username, $password, $email)
 
       // Successful login. Append more info to the returned object
       _dosomething_services_add_more_session_info($return);
+      _dosomething_services_add_profile_info($return, $return->user->uid);
     }
     catch (Exception $e) {
       if ($e->getCode() == 401) {
@@ -470,6 +473,7 @@ function _dosomething_services_user_resource_login($username, $password, $email)
 
       // Successful login. Append more info to the returned object
       _dosomething_services_add_more_session_info($return);
+      _dosomething_services_add_profile_info($return, $return->user->uid);
     }
     else {
       $return = services_error(t('No account found with this email address.'), 401);
@@ -554,4 +558,17 @@ function _dosomething_services_add_more_session_info(&$obj) {
   $obj->session_cache_expire = session_cache_expire();
   $obj->session_cache_limiter = session_cache_limiter();
   $obj->session_get_cookie_params = session_get_cookie_params();
+}
+
+/**
+ * Append profile information to an object
+ */
+function _dosomething_services_add_profile_info(&$obj, $uid) {
+  $account = user_load($uid);
+  if ($account) {
+    $profile = profile2_load_by_user($account, 'main');
+    if ($profile) {
+      $obj->profile = $profile;
+    }
+  }
 }
