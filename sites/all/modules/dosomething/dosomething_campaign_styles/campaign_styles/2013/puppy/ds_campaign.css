@@ -22,7 +22,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: #241f20; }
+  background: #eae6df; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -188,7 +188,7 @@ body {
     color: black; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none;
-      color: #f80071; }
+      color: #ef4624; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix {
     color: #cccccc;
     text-transform: uppercase;
@@ -221,12 +221,12 @@ body {
       color: #cccccc;
       text-decoration: underline; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
-        color: #f80071; }
+        color: #47bcfc; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix hr {
       border-top: none;
       border-bottom: 1px solid #cccccc; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count {
-      background: #f80071;
+      background: #47bcfc;
       padding: 0.5em 0 0.3em;
       margin: 1em 0; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count p {
@@ -483,7 +483,7 @@ body {
   #cmp input[type="submit"] {
     font-size: 1.5em; }
   #cmp a {
-    color: #f80071;
+    color: #ef4624;
     text-decoration: underline; }
     #cmp a:hover {
       text-decoration: none; }
@@ -553,9 +553,9 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("http://www.dosomething.org/files/campaigns/pregnancy/baby-header.jpg") top center no-repeat;
+    background: url("http://www.dosomething.org/files/campaigns/puppy/header.jpg") top center no-repeat;
     margin-bottom: 0;
-    height: 260px; }
+    height: 236px; }
   #cmp #header {
     max-width: 800px;
     margin: 0 auto;
@@ -571,7 +571,7 @@ body {
       margin: 0 auto; }
     #cmp #header h1 {
       margin: 1.5%;
-      background: #f80071;
+      background: #47bcfc;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -591,13 +591,13 @@ body {
       margin: 0 auto;
       line-height: 1.2em; }
       #cmp #header h2 span {
-        color: #f80071;
+        color: #47bcfc;
         font-weight: 700;
         padding: 0; }
     #cmp #header .subhead {
       text-transform: uppercase;
       color: white;
-      background: #f80071;
+      background: #ef4624;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -608,27 +608,27 @@ body {
     #cmp #header .subhead2 {
       max-width: 375px;
       color: white;
-      background: #2792c9;
+      background: #ef4624;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
-      margin: 1.5% 0;
+      margin: 9% 0 2%;
+      font-weight: 500;
       float: left;
-      font-size: 1.1em;
+      font-size: 1.2em;
       padding: 1% 1.5%;
       clear: both; }
     #cmp #header .date {
-      color: white;
-      background: #333333;
+      color: #ef4624;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
-      margin: 5% 1.5% 1.5% 1.5%;
-      float: right;
+      margin: 6% 1% 1.5% 0.5%;
+      float: left;
       clear: both;
       font-size: 1.2em;
       padding: 1% 1.5%;
-      text-transform: uppercase; }
+      font-weight: 500; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -658,18 +658,20 @@ body {
       text-transform: none; }
   #cmp #game {
     color: white;
-    background: #2792c9; }
+    background: #47bcfc; }
     #cmp #game h2, #cmp #game h3 {
-      max-width: 600px;
-      margin: 0 auto; }
+      max-width: 600px; }
     #cmp #game h2 {
-      color: #ffdf00;
-      line-height: 1.1em; }
+      color: white;
+      line-height: 1.1em;
+      margin: 0 auto; }
     #cmp #game h3 {
       color: white;
       font-weight: 400;
       text-transform: none;
-      font-size: 1.5em; }
+      font-size: 1.5em;
+      line-height: 1.3em;
+      margin: 0.5em auto; }
     #cmp #game label {
       color: white; }
     #cmp #game form {
@@ -695,9 +697,9 @@ body {
       float: left;
       width: 50%; }
       #cmp #game .scholar-foot input[type="submit"] {
-        background: #ffdf00;
-        color: #f80071;
-        float: right;
+        background: #fec82e;
+        color: #47bcfc;
+        float: left;
         margin: 0 2% 4%;
         font-size: 2.5em;
         font-family: din-web-reg; }
@@ -724,19 +726,69 @@ body {
       display: inline-block; }
   #cmp #action {
     padding: 3% 0 2%; }
-  #cmp #how .exp {
+  #cmp #example .exp {
     max-width: 267px;
     float: left; }
-  #cmp #how .go-button {
-    background: #ffdf00;
-    color: #f80071;
-    margin: 2% auto;
-    font-size: 2em;
-    font-family: din-web-reg; }
-    #cmp #how .go-button:hover {
+  #cmp #example .go-button {
+    background: #fec82e;
+    color: #47bcfc;
+    margin: 2.5em auto 2%;
+    font-size: 1.8em;
+    font-family: din-web-reg;
+    padding: 0.5em;
+    height: 1.8em;
+    position: relative; }
+    #cmp #example .go-button:hover {
       opacity: 0.85; }
-  #cmp #how .clear {
+    #cmp #example .go-button img {
+      position: absolute;
+      top: -35px;
+      left: -45px; }
+  #cmp #example .clear {
     clear: both; }
+  #cmp #example p {
+    max-width: 440px;
+    margin: 0 auto; }
+  #cmp #example .play-how {
+    max-width: 350px;
+    margin: 0 auto; }
+  #cmp #example .bubble-left, #cmp #example .bubble-right {
+    background: #47bcfc;
+    margin: 1em auto;
+    padding: 0.5em 1em;
+    color: white;
+    font-weight: 500;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px; }
+  #cmp #example .bubble-left {
+    float: left;
+    text-align: left;
+    position: relative; }
+    #cmp #example .bubble-left:before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 30px;
+      bottom: -20px;
+      border: 10px solid;
+      border-color: #47bcfc #47bcfc transparent transparent; }
+  #cmp #example .bubble-right {
+    float: right;
+    text-align: right;
+    position: relative; }
+    #cmp #example .bubble-right:before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      right: 15px;
+      bottom: -20px;
+      border: 10px solid;
+      border-color: #47bcfc transparent transparent #47bcfc; }
   #cmp .section#info {
     padding: 2% 0; }
   #cmp #info {
@@ -748,7 +800,7 @@ body {
       color: #999999;
       font-style: italic; }
     #cmp #info h2 {
-      background: #2792c9;
+      background: #47bcfc;
       color: white;
       display: inline-block;
       padding: 0.2em 2% 0;
@@ -774,7 +826,7 @@ body {
     line-height: 1.4em; }
   #cmp #faq li {
     margin: 0;
-    color: #f80071; }
+    color: #47bcfc; }
     #cmp #faq li span {
       color: black; }
   #cmp #faq h1 {
@@ -796,10 +848,12 @@ body {
   #cmp #faq h4.activeFAQ {
     background-position-y: -1.4em; }
   #cmp #faq .go-button {
-    background: #ffdf00;
-    color: #f80071;
+    background: #fec82e;
+    color: #47bcfc;
     margin: 2% auto;
-    font-size: 2em;
+    padding: 0.5em;
+    height: 1.8em;
+    font-size: 1.8em;
     font-family: din-web-reg; }
     #cmp #faq .go-button:hover {
       opacity: 0.85; }
@@ -826,6 +880,12 @@ body {
     right: -70px; }
   #cmp #faq .action-arrow-left {
     left: -70px; }
+  #cmp #faq .sponsor {
+    text-align: center;
+    margin: 2em 0 0; }
+    #cmp #faq .sponsor img {
+      display: block;
+      margin: 0 auto; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
@@ -858,7 +918,7 @@ body {
     -o-border-radius: 6px;
     border-radius: 6px; }
     #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
-      color: #f80071;
+      color: #47bcfc;
       font-size: 1.45em;
       line-height: 1.2em;
       font-weight: 400;
@@ -884,7 +944,7 @@ body {
       color: white;
       text-transform: uppercase; }
       #cmp #contact-form .form-actions a:hover, #cmp #contact-form2 .form-actions a:hover, #cmp #contact-form3 .form-actions a:hover {
-        color: #f80071;
+        color: #47bcfc;
         text-decoration: underline; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 10px 4px #fff742; }
@@ -912,7 +972,7 @@ body {
     height: 2em;
     margin: 1.1em auto 0;
     padding: 0.75em 0.7em 1.45em;
-    background: #f80071;
+    background: #47bcfc;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
@@ -921,7 +981,7 @@ body {
       color: #f1f1f1; }
   #cmp .pane-campaign-signed .go-button {
     margin: 1em 0;
-    background: #f80071;
+    background: #47bcfc;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
