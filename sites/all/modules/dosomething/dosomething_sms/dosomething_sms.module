@@ -37,16 +37,6 @@ function dosomething_sms_menu() {
     'type' => MENU_NORMAL_ITEM,
 	);
   
-  $items['admin/settings/dosomething_sms/test'] = array(
-		'title' => 'Test Cron',
-    'description' => 'Test DoSomething SMS Cron functionality without actually deleting the target records.',
-		'page callback' => 'dosomething_sms_testcron',
-    'access arguments' => array('administer dosomething_sms'),
-    'file' => 'dosomething_sms.admin.inc',
-    'file path' => drupal_get_path('module', 'dosomething_sms'),
-  	'type' => MENU_CALLBACK,
-	);
-  
   return $items;
 
 }
@@ -605,42 +595,31 @@ function dosomething_sms_cron() {
   $next_run = variable_get('dosomething_sms_cron_next_execution', time() + $interval);
 
   // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
-  if (($enabled) && (time() >= $next_run)) {
-    
+  if (time() >= $next_run) {
+
     // Delete entries that are older than a week (interval - dosomething_sms_interval)
     $number_deleted = db_delete('conductor_instance_pointer')
                       ->condition('timestamp', $next_run, '>=')
                       ->execute();
-       
-    /**               
-     * Create report to see where users are getting stuck
-     * 
-     * SELECT
-     *   workflow_name,
-     *   activity_name,
-     *   count(activity_name)
-     * FROM
-     *   conductor_instance_pointer
-     * GROUP BY
-     *   activity_name
-     * ORDER BY
-     *   workflow_name
-     */
-
-     
-    $result = db_select('conductor_instance_pointer', 'cip')
-              ->field('cip', 'workflow_name', 'workflow_name')
-              ->field('cip', 'activity_name', 'activity_name')
-              ->field('cip', COUNT(activity_name), 'activity_name_count')
-              ->groupby('activity_name')
-              ->orderby('workflow_name', 'DESC')
-              ->execute();
+    
+    $results = db_query('
+      SELECT
+        workflow_name,
+        activity_name,
+        COUNT(activity_name) AS activity_name_count
+      FROM
+        conductor_instance_pointer
+      GROUP BY
+        activity_name
+      ORDER BY
+        workflow_name'
+    );
                
     // Headers for theme_table().  
     $header = array('Workflow Name', 'Activity Name', 'Activity Name Count');
     
     // Loop through results          
-    foreach ($result as $row) {
+    foreach ($results as $row) {
        
       $rows[] = array(
         $row->workflow_name,
@@ -654,29 +633,30 @@ function dosomething_sms_cron() {
     $output = theme('table', array('header' => $header, 'rows' => $rows));
 
     // Send Report
-    $to = '';
+    $to = variable_get('dosomething_sms_cron_recipients', 'dlee@dosomething.org');
     $language = '';
-    $from = '';
+    $from = 'dosomething@dosomething.org';
     
     $params['subject'] = 'dosomething_sms cron Report - '. date('l - j F Y');
     
-    $params['body']  = t('<p>Cron run at %current_time. %number_deleted entries deleted.</p><p>',
-                         array('%current_date' => date_iso8601(time(0)), '%number_deleted' => $number_deleted));
+    $params['body']  = t('<h2>DoSomething.org SMS Cron</h2><br />');
+    $params['body'] .= t('<p>Cron run at %current_date. <strong>%number_deleted</stront> old entries purged.</p><p>',
+                         array('%current_date' => date('l - j F Y - g:i:s'), '%number_deleted' => $number_deleted));
     $params['body'] .= theme('table', array('header' => $header, 'rows' => $rows));
-    $params['body'] .= t('</p><p>See you on the next run at %next_run.', array('%next_run' => $next_run));
+    $params['body'] .= t('</p><p>See you on the next run at %next_run.', array('%next_run' => date('l - j F Y - g:i:s', $next_run)));
     
     // drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
-    $result = drupal_mail('dosomething_mandrill', 'dosomething-plain', $to, $language, $params,  $from, TRUE);
+    $result = drupal_mail('dosomething_mandrill', 'dsplain', $to, language_default(), $params,  $from, TRUE);
   
     if (isset($result['result']) && $result['result'] == 'true') {
       drupal_set_message(t('Mandrill test email sent from %from to %to.', array('%from' => $result['from'], '%to' => $result['to'])), 'status');
     }
 
     // Log report in Watchdog
-    watchdog('dosomething_sms', 'Cron run at %current_time. %number_deleted entries deleted.', array('%current_date' => date_iso8601(time(0)), '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
+    watchdog('dosomething_sms', 'Cron run at %current_time. %number_deleted entries deleted.', array('%current_date' => date('l - j F Y - g:i:s'), '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
     
     // Schedule new cron run
-    varable_set('dosomething_sms_cron_next_execution', time() + $interval);
+    variable_set('dosomething_sms_cron_next_execution', time() + $interval);
     
   }
     
