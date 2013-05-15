@@ -1,6 +1,6 @@
 <?php
 
-function create_and_share_import_picsforpets($nid) {
+function create_and_share_import_picsforpets_2013($nid) {
   $migrate = array();
   $migrate['Name'] = array('type' => 'textfield', 'mandatory' => 1);
   $migrate['Type'] = array(
@@ -24,7 +24,14 @@ function create_and_share_import_picsforpets($nid) {
   	  'items' => "1|Adopted",
   	  'multiple' => 1,
   	),
-  	'mandatory' => 1,
+  	'mandatory' => 0,
+  );
+  $migrate['Story'] = array(
+    'type' => 'textarea',
+    'mandatory' => 0,
+    'extra' => array(
+      'description' => 'A quick, interesting story about this pet.',
+    ),
   );
 
   return $migrate;

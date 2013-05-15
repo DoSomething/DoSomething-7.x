@@ -74,6 +74,23 @@ function create_and_share_component_structure($type) {
         ),
       ));
     break;
+    case 'textarea':
+      $component = array_merge($component, array(
+        'extra' => array(
+          'description' => '',
+          'title_display' => 0,
+          'private' => 0,
+          'resizable' => 1,
+          'disabled' => 0,
+          'conditional_operator' => '=',
+          'cols' => '',
+          'rows' => '',
+          'attributes' => array(),
+          'conditional_component' => '',
+          'conditional_values' => '',
+        ),
+      ));
+    break;
   }
 
   return $component;
