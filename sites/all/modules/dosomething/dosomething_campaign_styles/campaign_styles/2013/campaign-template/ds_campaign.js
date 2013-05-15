@@ -20,16 +20,19 @@
 
 
       // Dynamically set width of the .section-headers
-      set_width = function(parent, child) {
+      set_width = function(parent, child, width) {
 
         $(parent).each(function() {
           var $this = $(this);
-          var child_width = $this.find(child).width() * 1.01;
+          var child_width = $this.find(child).width() * width;
           $this.css('width', child_width);
         });
 
       };
-      set_width('h2.section-header', 'span');
+      set_width('h2.section-header', 'span', 1.01);
+
+      // Dynamically set width of the call to action buttons
+      set_width('a.btn', 'span', 1.3);
 
       // #faq drop down animations
       faq_toggle = function(question, response) {

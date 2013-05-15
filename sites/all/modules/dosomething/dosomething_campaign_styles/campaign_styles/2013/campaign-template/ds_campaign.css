@@ -427,7 +427,6 @@ header[role="banner"] {
   line-height: 3em;
   letter-spacing: 0.05em; }
 #cmp .call-to-action .btn {
-  width: 9em;
   margin: 0 0 0 1em;
   clear: none; }
 #cmp .call-to-action .section-container {
@@ -461,7 +460,6 @@ header[role="banner"] {
   margin: 0 auto;
   clear: both; }
 #cmp .prizing .btn {
-  width: 11em;
   margin: 0 auto 1em; }
 #cmp .sms-game-example .sms-game-container {
   width: 35em;
@@ -503,8 +501,6 @@ header[role="banner"] {
     border-color: #e1e1e1 white white #e1e1e1; }
   #cmp .sms-game-example .game-user p {
     text-align: right; }
-#cmp .sms-game-example .btn {
-  width: 10em; }
 #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
   float: left;
   text-align: left; }
@@ -542,8 +538,8 @@ header[role="banner"] {
     width: 80%;
     margin: 0 auto; }
   #cmp .sms .btn {
-    margin: 1em 0;
-    width: 10em; }
+    width: 9.4em;
+    margin: 1em 0; }
 #cmp .sms-input-wrapper {
   width: 50%;
   float: left;
@@ -589,7 +585,6 @@ header[role="banner"] {
   #cmp .faq div {
     margin: 0 0 0.5em 0; }
   #cmp .faq .btn {
-    width: 10em;
     margin: 1em auto 0; }
   #cmp .faq .back-to-top {
     text-align: right;
