@@ -4,9 +4,9 @@
 //  #header     - sign up -
 //      //
 .section#header
-  background: url('http://www.dosomething.org/files/campaigns/pregnancy/baby-header.jpg') top center no-repeat
+  background: url('http://www.dosomething.org/files/campaigns/puppy/header.jpg') top center no-repeat
   margin-bottom: 0
-  height: 260px
+  height: 236px
 #header
   max-width: 800px
   margin: 0 auto
@@ -48,7 +48,7 @@
   .subhead
     text-transform: uppercase
     color: white
-    background: $secondaryColor
+    background: $thirdColor
     zoom: 1
     filter: alpha(opacity=85)
     opacity: 0.85
@@ -59,27 +59,27 @@
   .subhead2
     max-width: 375px
     color: white
-    background: $blueColor
+    background: $thirdColor
     zoom: 1
     filter: alpha(opacity=85)
     opacity: 0.85
-    margin: 1.5% 0
+    margin: 9% 0 2%
+    font-weight: 500
     float: left
-    font-size: 1.1em
+    font-size: 1.2em
     padding: 1% 1.5%
     clear: both
   .date
-    color: white
-    background: #333
+    color: $thirdColor
     zoom: 1
     filter: alpha(opacity=85)
     opacity: 0.85
-    margin: 5% 1.5% 1.5% 1.5% 
-    float: right
+    margin: 6% 1% 1.5% 0.5% 
+    float: left
     clear: both
     font-size: 1.2em
     padding: 1% 1.5%
-    text-transform: uppercase
+    font-weight: 500
   .pane-campaign-signed
     h2
       text-align: center
@@ -117,18 +117,20 @@
 //      //
 #game
   color: white
-  background: $blueColor
+  background: $secondaryColor
   h2, h3
     max-width: 600px
-    margin: 0 auto
   h2
-    color: $thirdColor
+    color: white
     line-height: 1.1em
+    margin: 0 auto
   h3
     color: white
     font-weight: 400
     text-transform: none
     font-size: 1.5em
+    line-height: 1.3em
+    margin: 0.5em auto
   label
     color: white
   form
@@ -154,9 +156,9 @@
     float: left
     width: 50%
     input[type="submit"]
-      background: $thirdColor
+      background: $buttonColor
       color: $secondaryColor
-      float: right
+      float: left
       margin: 0 2% 4%
       font-size: 2.5em
       font-family: din-web-reg
@@ -190,22 +192,69 @@
   padding: 3% 0 2%
 
 //      //
-//  #how
+//  #example
 //      //
-#how
+#example
   .exp
     max-width: 267px
     float: left
   .go-button
-    background: $thirdColor
+    background: $buttonColor
     color: $secondaryColor
-    margin: 2% auto
-    font-size: 2em
+    margin: 2.5em auto 2%
+    font-size: 1.8em
     font-family: din-web-reg
+    padding: 0.5em
+    height: 1.8em
+    position: relative
     &:hover
       opacity: 0.85
+    img
+      position: absolute
+      top: -35px
+      left: -45px
   .clear
     clear: both
+  p
+    max-width: 440px
+    margin: 0 auto
+  .play-how
+    max-width: 350px
+    margin: 0 auto
+  .bubble-left, .bubble-right
+    background: $secondaryColor
+    margin: 1em auto
+    padding: 0.5em 1em
+    color: white
+    font-weight: 500
+    +border-radius(2px)
+  .bubble-left
+    float: left
+    text-align: left
+    position: relative
+    &:before
+      content: ''
+      position: absolute
+      width: 0
+      height: 0
+      left: 30px
+      bottom: -20px
+      border: 10px solid
+      border-color: $secondaryColor $secondaryColor transparent transparent
+  .bubble-right
+    float: right
+    text-align: right
+    position: relative
+    &:before
+      content: ''
+      position: absolute
+      width: 0
+      height: 0
+      right: 15px
+      bottom: -20px
+      border: 10px solid
+      border-color: $secondaryColor transparent transparent $secondaryColor
+
 
 //      //
 //  #info
@@ -221,7 +270,7 @@
     color: #999
     font-style: italic
   h2
-    background: $blueColor
+    background: $secondaryColor
     color: white
     display: inline-block
     padding: 0.2em 2% 0
@@ -276,10 +325,12 @@
   h4.activeFAQ
     background-position-y: -1.4em
   .go-button
-    background: $thirdColor
+    background: $buttonColor
     color: $secondaryColor
     margin: 2% auto
-    font-size: 2em
+    padding: 0.5em
+    height: 1.8em
+    font-size: 1.8em
     font-family: din-web-reg
     &:hover
       opacity: 0.85
@@ -305,4 +356,10 @@
   .action-arrow-right
     right: -70px
   .action-arrow-left
-    left: -70px  
+    left: -70px
+  .sponsor
+    text-align: center
+    margin: 2em 0 0
+    img
+      display: block
+      margin: 0 auto 
