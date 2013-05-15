@@ -592,10 +592,10 @@ function dosomething_sms_cron() {
   
   // Run job every interval (week by default)
   $interval = variable_get('dosomething_sms_cron_interval', 60 * 60 * 24 * 7);
-  $next_run = variable_get('dosomething_sms_cron_next_execution', time() + $interval);
+  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME + $interval);
 
   // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
-  if (time() >= $next_run) {
+  if (($enabled) && (REQUEST_TIME >= $next_run)) {
     
     $results = db_query('
       SELECT
@@ -611,7 +611,9 @@ function dosomething_sms_cron() {
     );
                
     // Headers for theme_table().  
-    $header = array('Workflow Name', 'Activity Name', 'Activity Name Count');
+    $header = array(t('Workflow Name'), t('Activity Name'), t('Activity Name Count'));
+    
+    $rows = array();
     
     // Loop through results          
     foreach ($results as $row) {
@@ -623,6 +625,8 @@ function dosomething_sms_cron() {
       );
        
     }
+    
+    $human_date = date('l - j F Y - g:i:s');
   
     // Format output.
     $output = theme('table', array('header' => $header, 'rows' => $rows));
@@ -632,11 +636,11 @@ function dosomething_sms_cron() {
     $language = '';
     $from = 'dosomething@dosomething.org';
     
-    $params['subject'] = 'dosomething_sms cron Report - '. date('l - j F Y');
+    $params['subject'] = 'dosomething_sms cron Report - '. $human_date;
     
     $params['body']  = t('<h2>DoSomething.org SMS Cron</h2><br />');
     $params['body'] .= t('<p>Cron run at %current_date. <strong>%number_deleted</stront> old entries purged.</p><p>',
-                         array('%current_date' => date('l - j F Y - g:i:s'), '%number_deleted' => $number_deleted));
+                         array('%current_date' => $human_date, '%number_deleted' => $number_deleted));
     $params['body'] .= theme('table', array('header' => $header, 'rows' => $rows));
     $params['body'] .= t('</p><p>See you on the next run at %next_run.', array('%next_run' => date('l - j F Y - g:i:s', $next_run)));
     
@@ -644,16 +648,16 @@ function dosomething_sms_cron() {
     $result = drupal_mail('dosomething_mandrill', 'dsplain', $to, language_default(), $params,  $from, TRUE);
   
     if (isset($result['result']) && $result['result'] == 'true') {
-      drupal_set_message(t('Mandrill test email sent from %from to %to.', array('%from' => $result['from'], '%to' => $result['to'])), 'status');
+      watchdog('dosomething_sms', 'Mandrill "dsplain" email sent from %from to %to.', array('%from' => $result['from'], '%to' => $result['to']), WATCHDOG_ERROR);
     }
     
     // Delete entries that are older than dosomething_sms_interval)
     $number_deleted = db_delete('conductor_instance_pointer')
-                      ->condition('timestamp', date('Y-m-d g:i:s', time() - $interval), '<=')
+                      ->condition('timestamp', date('Y-m-d g:i:s', REQUEST_TIME - $interval), '<=')
                       ->execute();
 
     // Log report in Watchdog
-    watchdog('dosomething_sms', 'Cron run at %current_time. %number_deleted entries deleted.', array('%current_date' => date('l - j F Y - g:i:s'), '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
+    watchdog('dosomething_sms', 'Cron run at %current_time. %number_deleted entries deleted.', array('%current_date' => $human_date, '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
     
     // Schedule new cron run
     variable_set('dosomething_sms_cron_next_execution', time() + $interval);

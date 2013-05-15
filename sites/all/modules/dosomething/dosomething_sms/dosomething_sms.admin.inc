@@ -11,6 +11,8 @@
  * in the optimizely table.
  */
 function dosomething_sms_settings_form() {
+  
+  $form = array();
 
   $form['configuration'] = array(
     '#type' => 'fieldset',
@@ -24,7 +26,7 @@ function dosomething_sms_settings_form() {
       TRUE => t('Enabled'),
       FALSE => t('Disabled'),
     ),
-    '#default_value' => 'dosomething_sms_cron_disabled',
+    '#default_value' => 'dosomething_sms_cron_enable',
     '#weight' => 10,
   );
   
@@ -64,11 +66,11 @@ function dosomething_sms_settings_form() {
   
   // Run job every interval (week by default)
   $interval = variable_get('dosomething_sms_cron_interval', 60 * 60 * 24 * 7);
-  $next_run = variable_get('dosomething_sms_cron_next_execution', time() + $interval);
+  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME + $interval);
 
   $form['status']['dosomething_sms_cron_test'] = array(
     '#type' => 'markup',
-    '#markup' => 'The next run is scheduled for '. date('l - j F Y - g:i:s', $next_run),
+    '#markup' => t('The next run is scheduled for '. date('l - j F Y - g:i:s', $next_run)),
   );
 
   return system_settings_form($form);
