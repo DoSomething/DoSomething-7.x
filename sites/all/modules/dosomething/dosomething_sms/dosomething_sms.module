@@ -596,11 +596,6 @@ function dosomething_sms_cron() {
 
   // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
   if (time() >= $next_run) {
-
-    // Delete entries that are older than a week (interval - dosomething_sms_interval)
-    $number_deleted = db_delete('conductor_instance_pointer')
-                      ->condition('timestamp', $next_run, '>=')
-                      ->execute();
     
     $results = db_query('
       SELECT
@@ -651,6 +646,11 @@ function dosomething_sms_cron() {
     if (isset($result['result']) && $result['result'] == 'true') {
       drupal_set_message(t('Mandrill test email sent from %from to %to.', array('%from' => $result['from'], '%to' => $result['to'])), 'status');
     }
+    
+    // Delete entries that are older than dosomething_sms_interval)
+    $number_deleted = db_delete('conductor_instance_pointer')
+                      ->condition('timestamp', date('Y-m-d g:i:s', time() - $interval), '<=')
+                      ->execute();
 
     // Log report in Watchdog
     watchdog('dosomething_sms', 'Cron run at %current_time. %number_deleted entries deleted.', array('%current_date' => date('l - j F Y - g:i:s'), '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
