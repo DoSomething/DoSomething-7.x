@@ -92,6 +92,7 @@ function drush_create_and_share_cas_migrate($campaign) {
     if (file_exists($path . '/migrate.inc')) {
       drush_print(dt("Found migrate file.  Loading data into NID {$settings['campaign_nid']}..."));
       require_once $path . '/migrate.inc';
+      $campaign = preg_replace('#[^a-z0-9\_]#i', '_', $campaign);
       if (function_exists('create_and_share_import_' . $campaign)) {
         // Load the function.
         $func = 'create_and_share_import_' . $campaign;
