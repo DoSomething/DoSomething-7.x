@@ -1803,6 +1803,73 @@ DINComp-CondBold.ttf|Din Condensed Bold',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_bottom_text'.
+  $fields['webform_submission_entity-create_and_share_campaign-field_cas_bottom_text'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_bottom_text',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_cas_bottom_text',
+      'label' => 'Bottom Text',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '10',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_flagged'.
   $fields['webform_submission_entity-create_and_share_campaign-field_cas_flagged'] = array(
     'field_config' => array(
@@ -2275,6 +2342,73 @@ DINComp-CondBold.ttf|Din Condensed Bold',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_top_text'.
+  $fields['webform_submission_entity-create_and_share_campaign-field_cas_top_text'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_top_text',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 9,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_cas_top_text',
+      'label' => 'Top Text',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '9',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_total_count'.
   $fields['webform_submission_entity-create_and_share_campaign-field_cas_total_count'] = array(
     'field_config' => array(
@@ -2416,6 +2550,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('Allow ranking algorithm?');
   t('An (optional) divisor against the time algorithm -- essentially chops down the significance of time loss decay.');
   t('An integer denoting how much an action (like thumbs up / down) is worth, in "weight".');
+  t('Bottom Text');
   t('Can users "vote", regardless of their logged in status?');
   t('Flagged');
   t('Gated');
@@ -2457,6 +2592,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('Thumbs Up Weight');
   t('Time Loss divisor (optional)');
   t('Time loss grace period');
+  t('Top Text');
   t('Total Count');
   t('Total Count Field');
   t('Turn on the ranking algorithm?');
