@@ -36,26 +36,27 @@
       // #faq drop down animations
       faq_toggle = function(question, response) {
 
-        var $faq_header = $(question);
-        var faq_response = response;
-        $faq_header.next(response).hide();
-        $faq_header.next('div.active').show();
+        var $question = $('#faq ' + question);
+        var $question_active = $('#faq ' + question + '.active');
 
-        $faq_header.click(function() {
+        $question.next(response).hide();
+        $question_active.next(response).show();
+
+        $question.click(function() {
           $this = $(this);
-          if( $this.not('.active') ) {
+          if( !$this.hasClass('active') ) {
             $this.addClass('active');
             $this.siblings('h3').removeClass('active');
             $this.next(response).slideToggle();
             $this.siblings().next(response).slideUp();
           }
-          else if( $this.hasClass('active') ) {
-            console.log('This is not active');
+          else {
+            // do nothing!
           }
         });
 
       }
-      faq_toggle('#faq h3', 'div');
+      faq_toggle('h3', 'div');
 
       // Restyles #headline section depending on campaign model
       if( $('#sms') ) {
