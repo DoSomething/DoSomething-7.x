@@ -172,7 +172,7 @@ strong
   position: static
   height: 2em
   display: block
-  border: none
+  border: 1px solid $btn-border
   cursor: pointer
   color: $off-black !important
   font-family: din-web-reg
@@ -181,6 +181,16 @@ strong
   text-decoration: none
   text-transform: uppercase
   +border-radius(5px)
+  &:hover /* While mouse hovers */
+    background: $btn-hover
+    +background-image(linear-gradient($btn-color, $btn-hover))
+    +box-shadow(0 10px 10px -10px #bbb)
+  &:active /* While mouse clicks */
+    color: lighten($off-black, 5) !important
+    padding: 0.35em 0 0.15em !important
+    background: $btn-color
+    +background-image(linear-gradient($btn-hover, $btn-color))
+    +box-shadow(0 10px 10px -10px #bbb)
   &:link, &:active, &:hover
     color: $off-black
     text-decoration: none !important
