@@ -108,10 +108,19 @@ function social_manager_add_submit($form, &$form_state) {
     $mvals = $form_state['multistep_values'];
     $service = explode(':', $mvals[1]['action']);
 
+    $data = $mvals[2];
     // Remove actual form tokens.
     $bad = array('step', 'op', 'form_build_id', 'form_token', 'form_id');
     foreach ($bad AS $nono) {
-      unset($mvals[2][$nono]);
+      unset($data[$nono]);
+    }
+
+    $action = explode(':', $mvals[1]['action']);
+    $class = ucfirst($action[0]) . 'Service';
+    $method = $action[1] . 'Submit';
+
+    if (method_exists($class, $method)) {
+      $class::$method($values);
     }
 
     $record = array(
@@ -119,7 +128,7 @@ function social_manager_add_submit($form, &$form_state) {
       'service' => $service[0],       // The service that the action will be run against.
       'type' => $service[1],          // The action type within that service.
       'paths' => $mvals[1]['pages'],  // The path(s) that the action will trigger on.
-      'data' => serialize($mvals[2]), // Serialized array of data to store.
+      'data' => serialize($data), // Serialized array of data to store.
       'settings' => 1,                // The state of the action (whether or not it's enabled).
     );
     drupal_write_record('social_actions', $record);
@@ -198,7 +207,7 @@ function social_manager_manage_list() {
     $rows[] = $r;
   }
 
-  $content = l(t('+ Add New Action'), 'admin/structure/social/add');
+  $content = '<p>' . l(t('+ Add New Action'), 'admin/structure/social/add') . '</p>';
   $content .= theme('table', array('header' => $headers, 'rows' => $rows));
   return $content;
 }

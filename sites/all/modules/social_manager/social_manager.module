@@ -118,7 +118,6 @@ function social_manager_page_alter(&$page) {
   }
 }
 
-
 /**
  * Implements hook_ctools_plugin_directory().
  */
