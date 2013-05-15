@@ -123,14 +123,7 @@ function _profile_resource_update($uid, $updateFields) {
           case 'field_user_first_name':
           case 'field_user_last_name':
           case 'field_user_mobile':
-            $safeValue = $value;
-            // Sanitized field_user_mobile should just be the 10 digit number
-            if ($key == 'field_user_mobile') {
-              $safeValue = substr($safeValue, -10);
-            }
-
             $profile->{$key}[LANGUAGE_NONE][0]['value'] = $value;
-            $profile->{$key}[LANGUAGE_NONE][0]['safe_value'] = $safeValue;
             break;
           case 'field_user_birthday':
             $bday = new DateObject(strtotime($value));
