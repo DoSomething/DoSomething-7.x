@@ -605,11 +605,6 @@ header[role="banner"] {
     width: 50px;
     margin: 0 auto;
     display: block; }
-#cmp #edit-submitted-field-webform-email,
-#cmp #edit-submitted-field-webform-email--2,
-#cmp #edit-submitted-field-webform-mobile,
-#cmp #edit-submitted-field-webform-mobile--2 {
-  display: none; }
 #cmp .report-back-form h2 {
   display: none; }
 #cmp .report-back-form td {
@@ -735,12 +730,8 @@ header[role="banner"] {
   margin: 5px 0;
   padding: 0 10px;
   font-size: 30px; }
-#cmp .contact-form .form-submit, #cmp .contact-form input[name="submitted_field_webform_pictures_und_0_upload_button"].form-submit,
-#cmp .report-back-form .form-submit,
-#cmp .report-back-form input[name="submitted_field_webform_pictures_und_0_upload_button"].form-submit {
-  font-weight: 600;
-  height: 40px;
-  margin: 0 auto;
-  padding: 3px 20px 0px 20px; }
-#cmp .form-wrapper {
-  margin: 0; }
+#cmp #edit-submitted-field-webform-email,
+#cmp #edit-submitted-field-webform-email--2,
+#cmp #edit-submitted-field-webform-mobile,
+#cmp #edit-submitted-field-webform-mobile--2 {
+  display: none; }
