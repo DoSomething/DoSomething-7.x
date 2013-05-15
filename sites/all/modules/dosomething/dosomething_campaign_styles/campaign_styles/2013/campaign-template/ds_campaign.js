@@ -18,7 +18,6 @@
       }
       jump_scroll('a.jump-scroll');
 
-
       // Dynamically set width of the .section-headers
       set_width = function(parent, child, width) {
 
@@ -37,25 +36,23 @@
       // #faq drop down animations
       faq_toggle = function(question, response) {
 
-        $faq_header = $(question);
-        faq_response = response;
+        var $faq_header = $(question);
+        var faq_response = response;
         $faq_header.next(response).hide();
         $faq_header.next('div.active').show();
 
-        if( !$faq_header.hasClass('active') ) {
-          $faq_header.click(function() {
-            $this = $(this);
-            if( $this.hasClass('active') ) {
-              $this.removeClass().next(response).slideUp();
-            }
-            else {
-              $this.addClass('active')
-              $this.siblings('h3').removeClass('active')
-              $this.next(response).slideToggle()
-              $this.siblings().next(response).slideUp();
-            }
-          });
-        }
+        $faq_header.click(function() {
+          $this = $(this);
+          if( $this.not('.active') ) {
+            $this.addClass('active');
+            $this.siblings('h3').removeClass('active');
+            $this.next(response).slideToggle();
+            $this.siblings().next(response).slideUp();
+          }
+          else if( $this.hasClass('active') ) {
+            console.log('This is not active');
+          }
+        });
 
       }
       faq_toggle('#faq h3', 'div');

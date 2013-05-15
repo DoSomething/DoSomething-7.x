@@ -337,7 +337,7 @@ header[role="banner"] {
     -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
     box-shadow: 0 10px 10px -10px #bbbbbb; }
   #cmp .form-submit:active, #cmp .btn:active {
-    color: #2b2a28 !important;
+    color: #383735 !important;
     padding: 0.35em 0 0.15em !important;
     background: #ffcb15;
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #feb800), color-stop(100%, #ffcb15));
@@ -576,7 +576,8 @@ header[role="banner"] {
     font-weight: 600;
     color: #d5904c; }
 #cmp .faq {
-  width: 35em; }
+  width: 35em;
+  position: relative; }
   #cmp .faq h3, #cmp .faq p {
     text-align: left; }
   #cmp .faq h3 {
