@@ -141,6 +141,20 @@ $activity->sets = array(
     'game_id'      => 9,
     'opt_in_paths' => array(153393, 153403, 153413),
   ),
+  // Thumb Wars IDEA tips
+  array(
+    'mdata_id'     => 10663,
+    'game_id'      => 10,
+    'opt_in_paths' => array(155963, 155973, 155983, 155993, 156003, 156013),
+    'path_special' => 156023,
+    'send_to_special_on' => 7,
+  ),
+  // Thumb Wars FACTS tips
+  array(
+    'mdata_id'     => 10673,
+    'game_id'      => 11,
+    'opt_in_paths' => array(156033, 156043, 156053, 156063, 156073),
+  ),
 );
 
 $activity = $workflow->newActivity('end');
