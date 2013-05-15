@@ -43,20 +43,20 @@ $settings = array(
 
   // CSS
   'css' => array(
-    'picsforpets' => array(
+    'picsforpets-2013' => array(
       'crazy.css'
     ),
-    'picsforpets/submit' => array(
+    'picsforpets-2013/submit' => array(
       'crazy-form.css',
     ),
   ),
 
   // Javascript
   'js' => array(
-    'picsforpets' => array(
+    'picsforpets-2013' => array(
       'pics.js',
     ),
-    'picsforpets/submit' => array(
+    'picsforpets-2013/submit' => array(
       'pics-form.js',
     ),
   ),
