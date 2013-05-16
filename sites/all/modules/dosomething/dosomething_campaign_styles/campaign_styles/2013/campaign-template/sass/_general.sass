@@ -75,11 +75,15 @@ h1.headline-callout
   text-align: center
   margin: 0 auto
   span
-    display: inline-block
-    background: $bg-alt
     text-align: center
+    display: inline-block
     padding: 0.2em 0.5em 0px
+
     color: lighten($off-black, 50)
+    background: $bg-alt
+    border: 1px solid #dfdfdf
+    +box-shadow(0 10px 10px -10px #bbb)
+    /* TODO - MOVE INTO VARIABLES */
 
 .headline-callout.alt
   span
@@ -105,15 +109,14 @@ h1.headline-callout
     text-decoration: underline
 
 .official-rules
-  font-size: em-calc(12)
+  color: #ccc !important
 
 .error
   background: none
 
 .legal
-  color: darken($bg-alt, 25)
-  font-weight: 500
-  font-size: 0.8em
+  color: darken($bg-alt, 20)
+  font-size: em-calc(12)
 
 // TYPOGRAPHY
 // ----------
@@ -132,7 +135,7 @@ p
   color: $off-black
   font-weight: 400
   line-height: 1.5em
-  font-size: 16px
+  font-size: 18px
 
 h1
   font-size: em-calc(32)
@@ -152,7 +155,7 @@ strong
   font-weight: 800
 
 .section a /* increase specificity */
-  text-decoration: none
+  text-decoration: underline
   &:link, &:visited, &:active
     color: $campaign-main
   &:hover
@@ -160,10 +163,6 @@ strong
 
 // BUTTON STYLES
 // -------------
-
-// TODO - WRITE THIS AS A SERIES OF CLASSES
-//        @EXTENDING THE BASE STYLES
-//        & ADD .btn CLASS
 
 .form-submit, .btn
   background: $btn-color
@@ -173,25 +172,35 @@ strong
   position: static
   height: 2em
   display: block
-  border: none
+  border: 1px solid $btn-border
   cursor: pointer
   color: $off-black !important
   font-family: din-web-reg
   font-weight: 600
   text-align: center
-  text-decoration: none
+  text-decoration: none !important
   text-transform: uppercase
   +border-radius(5px)
+  &:hover /* While mouse hovers */
+    background: $btn-hover
+    +background-image(linear-gradient($btn-color, $btn-hover))
+    +box-shadow(0 10px 10px -10px #bbb)
+  &:active /* While mouse clicks */
+    color: lighten($off-black, 10) !important
+    padding: 0.35em 0 0.15em !important
+    background: $btn-color
+    +background-image(linear-gradient($btn-hover, $btn-color))
+    +box-shadow(0 10px 10px -10px #bbb)
   &:link, &:active, &:hover
     color: $off-black
-    text-decoration: none
+    text-decoration: none !important
 
 .btn-cta-small
-  font-size: 0.8em
-  
+  font-size: em-calc(14)
+
 .btn-cta-medium
-  font-size: 1em
-  
+  font-size: em-calc(18)
+
 .btn-cta-large
-  font-size: 1.5em
-  
+  font-size: em-calc(24)
+
