@@ -46,13 +46,19 @@
          $settings = create_and_share_get_settings($campaign);
 
          $path = request_path();
-         if (!preg_match('#^' . $campaign . '\/submit#i', $path)) {
+         if (!isset($page['content']['system_main']['nodes']) && ($path != $campaign . '/submit')) {
+           // View page
            $content = views_embed_view($settings['views']['wrapper'], $settings['views']['time-filters']);
          }
-         else {
+         elseif ($path == $campaign . '/submit') {
+           // Submit page
            $node = menu_get_object('node', 1, 'node/' . $settings['campaign_nid']);
            $form = drupal_get_form('webform_client_form_' . $node->nid, $node);
            $content = '<div class="node-create-and-share-campaign">' . drupal_render($form) . '</div>';
+         }
+         else {
+          // Content page
+          $content = render($page['content']);
          }
 
          echo $content;
