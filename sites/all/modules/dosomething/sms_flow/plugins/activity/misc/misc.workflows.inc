@@ -76,6 +76,7 @@ $activity->petitions = array(
     'nid' => 729172,
     'mdata_id' => 10413,
     'ftaf_beta_optin' => 154033,
+    'ftaf_prompt' => "Thanks! Once we get 10K signatures they'll be delivered to the Common App Board of Directors. Organize ur friends to sign. Txt 5 friends #s to add their voice.",
     'ftaf_response_success' => 'Thanks for sharing. Get more people involved, text SIGN. Want to be in Phillp Phillips new music video? Go to: http://doso.me/h to find out how.',
     'beta_to_alpha_feedback' => 154113,
   ),
@@ -90,11 +91,11 @@ $activity->petitions = array(
   ),
 );
 
-$activity = $workflow->newActivity('sms_prompt');
+$activity = $workflow->newActivity('sms_prompt_from_context');
 $activity->name = 'ftaf_prompt';
 $activity->inputs = array('sign_petition');
 $activity->outputs = array('ftaf');
-$activity->question = t("Thanks! Once we get 10K signatures they'll be delivered to the Common App Board of Directors. Organize ur friends to sign. Txt 5 friends #s to add their voice.");
+$activity->question_context_key = 'ftaf_prompt';
 
 $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';
