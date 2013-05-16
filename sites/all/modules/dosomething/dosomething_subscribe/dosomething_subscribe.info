@@ -1,4 +1,6 @@
 name = DoSomething - Subscribe
 description = Provides 3rd party subscription integration for DoSomething.org
 core = 7.x
+version = "7.x-1.0"
 package = "DoSomething"
+configure = admin/config/dosomething/dosomething_subscribe
