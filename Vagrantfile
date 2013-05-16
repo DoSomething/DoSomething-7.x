@@ -19,6 +19,9 @@ Vagrant.configure("2") do |config|
   # Jenkins
   config.vm.network :forwarded_port, guest: 8080, host: 11111
   
+  # Solr
+  config.vm.network :forwarded_port, guest: 9090, host: 12121
+  
   ## Use all the defaults:
   config.vm.provision :salt do |salt|
     

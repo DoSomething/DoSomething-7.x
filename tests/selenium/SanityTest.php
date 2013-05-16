@@ -36,9 +36,9 @@ class SeleniumSanityTest extends SeleniumBaseTest {
    */
   public function testSanityScreenshot() {
     
-    die($this->session->url());
+    $this->session->open($this->base_url);
     
-    $file_name = '/vagrant/tests/selenium/screenshot.png';
+    $file_name = $this->screenshotDir . '/sanity_test.png';
     $img_data = base64_decode($this->session->screenshot());
     file_put_contents($file_name, $img_data); 
     $this->assertTrue(file_exists($file_name));

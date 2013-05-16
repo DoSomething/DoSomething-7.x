@@ -44,6 +44,12 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
   protected $session;
   
   /**
+   * Base directory to store screenshots.
+   * @var string
+   */
+  protected $screenshotDir;
+  
+  /**
    * Test case setup.
    */
   public function setUp() {
@@ -59,6 +65,14 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
       $this->base_url = $GLOBALS['base_url'];
     } else {
       exit('No base URL! Set $base_url in site-settings.php.');
+    }
+    
+    $this->screenshotDir = '/vagrant/tests/selenium/screenshots';
+    
+    if (!is_dir($this->screenshotDir) || !is_writable($this->screenshotDir)) {
+      if (FALSE === mkdir($this->screenshotDir)) {
+        exit(sprintf("Can't create the screenshot directory at %s", $this->screenshotDir));
+      }
     }
   }
   

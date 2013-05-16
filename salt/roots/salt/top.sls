@@ -2,4 +2,4 @@ base:
   '*':
     - utils
     - lamp-drupal
-    - behat
+    - selenium

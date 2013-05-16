@@ -42,7 +42,7 @@
   <apply executable="php" failonerror="true">
    <arg value="-l" />
 
-   <fileset dir="${basedir}/../../sites/all">
+   <fileset dir="${basedir}/../../sites/all/modules/dosomething">
     <include name="**/*.php" />
     <modified />
    </fileset>
@@ -58,7 +58,7 @@
   <exec executable="phploc">
    <arg value="--log-csv" />
    <arg value="${basedir}/build/logs/phploc.csv" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/../../" />
   </exec>
  </target>
 

@@ -22,3 +22,5 @@ sites/all/libraries/FirePHPCore/
 # Ignore transient files
 composer.lock
 
+# Ignore test-generated files
+tests/selenium/screenshots/*

@@ -14,10 +14,20 @@ ant:
     - require:
       - pkg: default-jre
 
-start-selenium:
+firefox:
+  pkg:
+    - installed
+
+jenkins-manual:
   cmd.run:
-    - name: /bin/sh /srv/salt/selenium/start-selenium.sh
+    - name: sh /srv/tomcat/install-jenkins-tomcat.sh > /dev/null
     - require:
-      - pkg: xvfb
+      - pkg: solr-tomcat
+
+selenium:
+  cmd.run:
+    - name: cd /vagrant/tests/selenium ; curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.32.0.jar
+    - require:
+      - pkg: curl
 
 {% endif %}
