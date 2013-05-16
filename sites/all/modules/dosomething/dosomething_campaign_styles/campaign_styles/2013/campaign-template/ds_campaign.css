@@ -300,7 +300,7 @@ header[role="banner"] {
 #cmp strong {
   font-weight: 800; }
 #cmp .section a {
-  text-decoration: none; }
+  text-decoration: underline; }
   #cmp .section a:link, #cmp .section a:visited, #cmp .section a:active {
     color: #86005d; }
   #cmp .section a:hover {
@@ -319,7 +319,7 @@ header[role="banner"] {
   font-family: din-web-reg;
   font-weight: 600;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: uppercase;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -423,42 +423,43 @@ header[role="banner"] {
       color: #aeaeae; }
   #cmp .header .header-sponsor {
     width: 11%; }
-#cmp .call-to-action p {
-  line-height: 3em;
-  letter-spacing: 0.05em; }
-#cmp .call-to-action .btn {
-  margin: 0 0 0 1em;
-  clear: none; }
-#cmp .call-to-action .section-container {
-  width: 43em; }
+#cmp .headline {
+  border-top: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd; }
+#cmp .call-to-action {
+  border: 1px solid #dddddd; }
+  #cmp .call-to-action p {
+    line-height: 3em;
+    letter-spacing: 0.05em; }
+  #cmp .call-to-action .btn {
+    margin: 0 0 0 1em;
+    clear: none; }
+  #cmp .call-to-action .section-container {
+    width: 43em; }
 #cmp .how-it-works {
   padding: 2em 0; }
   #cmp .how-it-works .how-it-works-container {
     clear: both;
     overflow: hidden;
     margin: 0 0 1em 0; }
-#cmp .action-kit {
-  display: block;
-  clear: both;
-  margin: 0 0 -1em 0; }
-  #cmp .action-kit:hover {
-    text-decoration: none;
-    cursor: pointer; }
-  #cmp .action-kit p {
-    display: inline;
-    position: relative;
-    top: -0.8em;
-    left: 1em; }
-  #cmp .action-kit img {
-    margin: 0.7em 0 0 0; }
-  #cmp .action-kit .section-container {
-    width: 35em; }
+#cmp .action-kit img {
+  position: relative;
+  top: 15px;
+  right: 20px; }
+#cmp .action-kit .section-container {
+  width: 35em; }
 #cmp .prizing p {
   padding: 1em 0; }
 #cmp .prizing .prizing-container {
   width: 640px;
   margin: 0 auto;
   clear: both; }
+#cmp .prizing .official-rules {
+  display: block;
+  margin: 0 auto;
+  width: 13em;
+  text-align: center; }
 #cmp .prizing .btn {
   margin: 0 auto 1em; }
 #cmp .sms-game-example .sms-game-container {
@@ -470,12 +471,16 @@ header[role="banner"] {
   margin: 1em auto 2em;
   padding: 1em 2em;
   background: #eeeeee;
-  border-radius: 2px;
+  border: 1px solid #e1e1e1;
   position: relative;
   min-width: 25em;
-  clear: both; }
+  clear: both;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
   #cmp .sms-game-example .game-conversation:after {
-    background: pink;
     content: "";
     display: block;
     position: absolute;
@@ -531,6 +536,9 @@ header[role="banner"] {
     text-transform: capitalize;
     text-align: left; }
 #cmp .sms {
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
   background: #eeeeee; }
   #cmp .sms label {
     margin: 3% 0 0; }
@@ -557,11 +565,15 @@ header[role="banner"] {
   clear: both;
   margin: 5% 0 -1%; }
 #cmp .gallery img {
+  border: 1px solid #dddddd !important;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
-  border-radius: 3px; }
+  border-radius: 3px;
+  -webkit-box-shadow: 0 10px 10px -10px #bbbbbb !important;
+  -moz-box-shadow: 0 10px 10px -10px #bbbbbb !important;
+  box-shadow: 0 10px 10px -10px #bbbbbb !important; }
 #cmp .map iframe {
   margin: 0 auto;
   display: block;
