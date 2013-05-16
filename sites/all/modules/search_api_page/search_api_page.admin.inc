@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Admin page callbacks for the Search pages module.
+ */
 
 /**
  * Displays an overview of all defined search pages.
@@ -185,6 +189,13 @@ function search_api_page_admin_add(array $form, array &$form_state) {
     '#default_value' => TRUE,
   );
 
+  $form['result_page_search_form'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show search form on result page'),
+    '#description' => t('Enable or disable the search form on the result page'),
+    '#default_value' => TRUE,
+  );
+
   $view_modes = array(
     'search_api_page_result' => t('Themed as search results'),
   );
@@ -207,7 +218,7 @@ function search_api_page_admin_add(array $form, array &$form_state) {
   else {
     $form['view_mode'] = array(
       '#type' => 'value',
-      '#value' => reset($view_modes),
+      '#value' => key($view_modes),
     );
   }
 
@@ -359,6 +370,13 @@ function search_api_page_admin_edit(array $form, array &$form_state, Entity $pag
     '#default_value' => $page->options['per_page'],
   );
 
+  $form['options']['result_page_search_form'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show search form on result page'),
+    '#description' => t('Enable or disable the search form on the result page'),
+    '#default_value' => isset($page->options['result_page_search_form']) ? $page->options['result_page_search_form'] : TRUE,
+  );
+
   $form['options']['get_per_page'] = array(
     '#type' => 'checkbox',
     '#title' => t('Allow GET override'),
@@ -389,7 +407,7 @@ function search_api_page_admin_edit(array $form, array &$form_state, Entity $pag
   else {
     $form['options']['view_mode'] = array(
       '#type' => 'value',
-      '#value' => reset($view_modes),
+      '#value' => key($view_modes),
     );
   }
 
@@ -435,7 +453,6 @@ function search_api_page_admin_edit(array $form, array &$form_state, Entity $pag
     );
   }
 
-
   return $form;
 }
 
@@ -443,7 +460,7 @@ function search_api_page_admin_edit(array $form, array &$form_state, Entity $pag
  * Validation callback for search_api_page_admin_edit().
  */
 function search_api_page_admin_edit_validate(array $form, array &$form_state) {
-  if ($form_state['values']['op'] == t('Save changes')) {
+  if (!empty($form_state['values']['op']) && $form_state['values']['op'] == t('Save changes')) {
     $form_state['values']['path'] = drupal_strtolower(trim($form_state['values']['path']));
     $pages = search_api_page_load_multiple(FALSE, array('path' => $form_state['values']['path']));
     if (count($pages) > 1 || (($page = array_shift($pages)) && $page->machine_name != $form_state['page']->machine_name)) {
