@@ -6,6 +6,37 @@
  **/
 
 /**
+ * Returns a system_settings_form used to set dosomething_subscribe variables.
+ */
+function dosomething_subscribe_admin_settings_form() {
+  $form = array();
+  // Prefix all variable names with dosomething_subscribe:
+  $prefix = 'dosomething_subscribe_';
+  $form['header'] = array(
+    '#markup' => "<p>". t("Most forms have their Mailchimp and Mobilecommons values set on the node edit form.") . " " . l(t('View Subscription Report'), 'admin/reports/dosomething_subscribe') . "</p><p>" . t("These settings are for forms/nodes that don't.") . "</p>",
+  );
+  $form['defaults'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Default Groups'),
+    '#collapsible' => TRUE,
+    '#description' => t('Default groups to use if none are specified on a node.'),
+  );
+  $form['defaults'][$prefix . 'mailchimp_default'] = array(
+    '#type' => 'textfield',
+    '#title' => t('MailChimp'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mailchimp_default'),
+  );
+  $form['defaults'][$prefix . 'mobilecommons_default'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobilecommons'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mobilecommons_default'),
+  );
+  return system_settings_form($form);
+}
+
+/**
  * dosomething_subscribe_page_status_report() - Page callback for Subcribe Status report. Report generates of all webforms and
  * what the MailChimp and Mobile Commons groups are assigned to the form.
  *

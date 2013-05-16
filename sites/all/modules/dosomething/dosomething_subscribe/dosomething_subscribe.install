@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the DoSomething subscribe module.
+ */
+
+/**
+ * Initialize default Mailchimp and Mobilecommons variables.
+ */
+function dosomething_subscribe_update_7000() {
+  variable_set('dosomething_subscribe_mailchimp_default', 'NewMembers2012');
+  variable_set('dosomething_subscribe_mobilecommons_default', '155393');
+}

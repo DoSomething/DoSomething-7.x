@@ -291,6 +291,16 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
  * Implements hook_menu().
  */
 function dosomething_general_menu() {
+  // Create admin page for custom dosomething modules configuration pages to live in.
+  $items['admin/config/dosomething'] = array(
+    'title' => 'DoSomething',
+    'description' => 'Configuration settings for DoSomething custom functionality.',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+
   $items['webform-post-submit-associate/%/%'] = array(
     'page callback' => 'dosomething_general_webform_associate',
     'page arguments' => array(1, 2),

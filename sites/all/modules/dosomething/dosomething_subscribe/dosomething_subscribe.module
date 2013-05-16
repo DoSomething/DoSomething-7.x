@@ -13,11 +13,18 @@ function dosomething_subscribe_menu() {
   $items['admin/reports/dosomething_subscribe'] = array(
     'title' => 'Webform Subscription Report',
     'description' => 'A listing of webform status relative to external services.',
-    //@todo: create specific permission for this report?
     'access arguments' => array('access administration pages'),
     'page callback' => 'dosomething_subscribe_page_status_report',
     'file' => 'dosomething_subscribe.admin.inc',
     'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/config/dosomething/dosomething_subscribe'] = array(
+    'title' => 'Subscription Settings',
+    'description' => t('Set Mailchimp Group and Mobilecommons Opt-in values for non-node based forms.'),
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_subscribe_admin_settings_form'),
+    'file' => 'dosomething_subscribe.admin.inc',
   );  
   return $items;
 }
@@ -123,86 +130,96 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
 
   // --------- MailChimp ---------
 
-  // Check if webform node should be subscribing to a Mailchimp Group ID.
-  if (isset($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
-    $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
-  }
-  // For now, Scholarship Application with Recommendation nodes don't have field_mailchimp_group_id added yet, so we need to hardcode this mailchimp id.
-  // Nid 727601: Do Something Awards Application
-  elseif ($node->nid == 727601) {
-    $mailchimp = 'DSA2013Applicants';
+  // If we have an email, check for Mailchimp:
+  if (!empty($email)) {
+
+    // Check if webform node should be subscribing to a Mailchimp Group ID.
+    if (isset($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
+      $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
+    }
+    // For now, Scholarship Application with Recommendation nodes don't have field_mailchimp_group_id added yet, so we need to hardcode this mailchimp id.
+    // Nid 727601: Do Something Awards Application
+    elseif ($node->nid == 727601) {
+      $mailchimp = 'DSA2013Applicants';
+    }
+
+    // For Gun Policy webform, MailChimp group is conditional.
+    // For young people, use node value.
+    // For old people, use the group hardcoded below.
+    // Possibly look into having 2 Mailchimp Group ID fields to specify young/old mailing lists.
+    if ($node->nid == 728929) {
+      $bd_stamp = mktime(0, 0, 0, $submitted['birthday']['month'], $submitted['birthday']['day'], $submitted['birthday']['year']);
+      $ageout_stamp = mktime(0, 0, 0, date("m"), date("d"), date("Y")-25);
+      if ($bd_stamp < $ageout_stamp) {
+        $mailchimp = 'GunControlReport2013';
+      }
+    }
+    // If we still don't have a mailchimp value, use the default mailchimp variable.
+    if (!$mailchimp) {
+      $mailchimp = variable_get('dosomething_subscribe_mailchimp_default');
+    }
   }
 
-  // For Gun Policy webform, MailChimp group is conditional.
-  // For young people, use node value.
-  // For old people, use the group hardcoded below.
-  // Possibly look into having 2 Mailchimp Group ID fields to specify young/old mailing lists.
-  if ($node->nid == 728929) {
-    $bd_stamp = mktime(0, 0, 0, $submitted['birthday']['month'], $submitted['birthday']['day'], $submitted['birthday']['year']);
-    $ageout_stamp = mktime(0, 0, 0, date("m"), date("d"), date("Y")-25);
-    if ($bd_stamp < $ageout_stamp) {
-      $mailchimp = 'GunControlReport2013';
-    }
-  }
-
-  // Find merge_vars from form values:
-  if (!empty($cell)) {
-    $merge_vars['MMERGE7'] = $cell;
-  }
-  if ($node->type == 'petition') {
-    // Petition Name - Webform ID
-    $merge_vars['MMERGE27'] = $form['#action'];
-    // Drupal User ID - UID
-    if ($form['#submission']->details['uid'] > 0) {
-      $merge_vars['UID'] = $form['#submission']->details['uid'];
-    }
-  }
-  if (!empty($submitted['birthday'])
-      && !empty($submitted['birthday']['month'])
-      && !empty($submitted['birthday']['day'])) {
-    $month = str_pad($submitted['birthday']['month'], 2, '0', STR_PAD_LEFT);
-    $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
-    if (!empty($submitted['birthday']['year'])) {
-      $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
-      // Support for target dates based on user birthday - 18 and 26 years old. 
-      // Used by auto responders in MailChimp
-      $merge_vars['TURNS18'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 18;
-      $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;
-    }
-  }
-  // First Name
-  if (!empty($submitted['first_name'])) {
-    $first_name = $submitted['first_name'];
-  }
-  elseif (isset($submitted['field_webform_first_name'][LANGUAGE_NONE][0]['value'])) {
-    $first_name = $submitted['field_webform_first_name'][LANGUAGE_NONE][0]['value'];
-  }
-  if (isset($first_name)) {
-    $merge_vars['FNAME'] = $first_name;
-  }
-  // Last Name
-  if (!empty($submitted['last_name'])) {
-    $last_name = $submitted['first_name'];
-  }
-  elseif (isset($submitted['field_webform_last_name'][LANGUAGE_NONE][0]['value'])) {
-    $last_name = $submitted['field_webform_last_name'][LANGUAGE_NONE][0]['value'];
-  }
-  if (isset($last_name)) {
-    $merge_vars['LNAME'] = $last_name;
-  }
-  // Full name - MMERGE3
-  if (isset($first_name) || isset($last_name)) {
-    $merge_vars['MMERGE3'] = $first_name . ' ' . $last_name;
-  }
-  elseif (!empty($submitted['your_name'])) {
-    $merge_vars['MMERGE3'] = $submitted['your_name'];
-  }
-  elseif (!empty($submitted['your_first__last_name'])) {
-    $merge_vars['MMERGE3'] = $submitted['your_first__last_name'];
-  }
-  
-  // Call subscribe functions.
+  // If we have an email and a mailchimp group:
   if ($mailchimp && !empty($email)) {
+
+    // Find merge_vars from form values:
+    if (!empty($cell)) {
+      $merge_vars['MMERGE7'] = $cell;
+    }
+    if ($node->type == 'petition') {
+      // Petition Name - Webform ID
+      $merge_vars['MMERGE27'] = $form['#action'];
+      // Drupal User ID - UID
+      if ($form['#submission']->details['uid'] > 0) {
+        $merge_vars['UID'] = $form['#submission']->details['uid'];
+      }
+    }
+    if (!empty($submitted['birthday'])
+        && !empty($submitted['birthday']['month'])
+        && !empty($submitted['birthday']['day'])) {
+      $month = str_pad($submitted['birthday']['month'], 2, '0', STR_PAD_LEFT);
+      $merge_vars['BDAY'] = $month . '/' . $submitted['birthday']['day'];
+      if (!empty($submitted['birthday']['year'])) {
+        $merge_vars['BDAYFULL'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'];
+        // Support for target dates based on user birthday - 18 and 26 years old. 
+        // Used by auto responders in MailChimp
+        $merge_vars['TURNS18'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 18;
+        $merge_vars['TURNS26'] = $merge_vars['BDAY'] . "/" . $submitted['birthday']['year'] + 26;
+      }
+    }
+    // First Name
+    if (!empty($submitted['first_name'])) {
+      $first_name = $submitted['first_name'];
+    }
+    elseif (isset($submitted['field_webform_first_name'][LANGUAGE_NONE][0]['value'])) {
+      $first_name = $submitted['field_webform_first_name'][LANGUAGE_NONE][0]['value'];
+    }
+    if (isset($first_name)) {
+      $merge_vars['FNAME'] = $first_name;
+    }
+    // Last Name
+    if (!empty($submitted['last_name'])) {
+      $last_name = $submitted['first_name'];
+    }
+    elseif (isset($submitted['field_webform_last_name'][LANGUAGE_NONE][0]['value'])) {
+      $last_name = $submitted['field_webform_last_name'][LANGUAGE_NONE][0]['value'];
+    }
+    if (isset($last_name)) {
+      $merge_vars['LNAME'] = $last_name;
+    }
+    // Full name - MMERGE3
+    if (isset($first_name) || isset($last_name)) {
+      $merge_vars['MMERGE3'] = $first_name . ' ' . $last_name;
+    }
+    elseif (!empty($submitted['your_name'])) {
+      $merge_vars['MMERGE3'] = $submitted['your_name'];
+    }
+    elseif (!empty($submitted['your_first__last_name'])) {
+      $merge_vars['MMERGE3'] = $submitted['your_first__last_name'];
+    }
+  
+    // Next, call mailchimp signup function:
     //dosomething_subscribe_mailchimp_signup($email, $mailchimp, $merge_vars);
     dosomething_general_mailchimp_subscribe($email, $mailchimp, $merge_vars);
 
@@ -219,18 +236,25 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
       }
       dosomething_general_mailchimp_subscribe($nominee_email, $mailchimp, $nominee_merge_vars);
     }
+
   }
 
   // --------- Mobile Commons ------
   
-  // Check if webform node should be subscribing to a Mobilecommons Opt-in Path.
-  if (isset($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
-    $mobilecommons = $node->field_mc_optin[LANGUAGE_NONE][0]['value'];
-  }
-
-  if ($mobilecommons && !empty($cell)) {
-    //dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons);
-    $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
-    watchdog('dosomething_subscribe', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
+  // If we have a cell value:
+  if (!empty($cell)) {
+    // Check if webform node should be subscribing to a Mobilecommons Opt-in Path.
+    if (isset($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
+      $mobilecommons = $node->field_mc_optin[LANGUAGE_NONE][0]['value'];
+    }
+    // Else use default variable.
+    else {
+      $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_default');
+    }
+    if ($mobilecommons) {
+      //dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons);
+      $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+      watchdog('dosomething_subscribe', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
+    }
   }
 }
