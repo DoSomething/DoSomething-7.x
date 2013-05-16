@@ -10,7 +10,6 @@
       jump_scroll = function(target) {
 
         $(target).click(function(event){
-          console.log('merde');
           $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
           return false;
         });
@@ -58,12 +57,16 @@
       }
       faq_toggle('h3', 'div');
 
+
       // Restyles #headline section depending on campaign model
-      if( $('#sms') ) {
+      if( $('#sms').length ) {
         $('#headline .headline-callout').addClass('alt');
       }
       else {
-        $('#headline').css('background','none');
+        $('#headline').css({
+          'background' : 'none',
+          'border' : 'none'
+          });
       }
 
     } // end attach: function
