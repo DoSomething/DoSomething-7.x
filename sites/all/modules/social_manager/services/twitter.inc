@@ -55,6 +55,17 @@ class TwitterService {
       ),
       '#default_value' => (isset($data['share_url']) ? $data['share_url'] : ''),
     );
+
+    $form['share_target'] = array(
+      '#type' => 'select',
+      '#title' => t('Share target'),
+      '#description' => t('How should this tweet page appear? In a new window, or as a popup?'),
+      '#options' => array(
+        'window' => t('In a new window'),
+        'popup' => t('In a popup'),
+      ),
+      '#default_value' => (isset($data['share_target']) ? $data['share_target'] : 'window'),
+    );
   }
 
   public static function shareSubmit(&$data) {
@@ -65,12 +76,20 @@ class TwitterService {
     $referrer = shorten_url(url(request_uri(), array('absolute' => TRUE)));;
     $text = addslashes(filter_xss($data['share_text']));
 
+    // Remove potential mis-types from the originator.
+    $via = preg_replace('#(via\s+)?\@?#i', '', strip_tags($data['share_via']));
+
+    $pop = '';
+    if ($data['share_target'] == 'popup') {
+      $pop = ", '_tweet', 'width=350,height=200,scrollbars=no,resizable=no,toolbars=no'";
+    }
+
     $output = "
     <script type=\"text/javascript\">
     (function($) {
       $(document).ready(function() {
         $('" . $data['selector'] . "').click(function() {
-          document.location.href = 'http://www.twitter.com/intent/tweet?original_referer=" . $referrer . "&text=" . $text . "&tw_p=tweetbutton&url=" . $referrer . "&via=" . $data['share_via'] . "';
+          window.open('http://www.twitter.com/intent/tweet?original_referer=" . $referrer . "&text=" . $text . "&tw_p=tweetbutton&url=" . $referrer . "&via=" . $via . "'" . $pop . ");
         });
       });
     })(jQuery);
