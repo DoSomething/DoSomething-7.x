@@ -49,6 +49,15 @@ function social_manager_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $paths['admin/structure/social/delete/%'] = array(
+    'title' => t('Edit Action'),
+    'page callback' => 'social_manager_delete',
+    'page arguments' => array(4),
+    'access callback' => TRUE,
+    'file' => 'social_manager.admin.inc',
+    'type' => MENU_CALLBACK,
+  );
+
   $paths['admin/structure/social/%/%'] = array(
     'title' => t('Edit Action'),
     'page callback' => 'social_manager_enable_disable',

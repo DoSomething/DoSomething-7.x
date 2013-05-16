@@ -55,19 +55,31 @@ class TwitterService {
       ),
       '#default_value' => (isset($data['share_url']) ? $data['share_url'] : ''),
     );
-/*original_referer=http%3A%2F%2Fwww.dosomething.org%2Ftipsandtools%2F11-facts-about-cyber-bullying
-&amp;text=11%20Facts%20About%20Cyber%20Bullying%20%7C%20Do%20Something
-&amp;tw_p=tweetbutton
-&amp;url=http%3A%2F%2Fdsorg.us%2FvP28Co
-&amp;via=dosomething*/
   }
 
   public static function shareSubmit(&$data) {
-    echo "!"; exit;
     // Functions to run on share submit.
   }
 
   public static function shareRender(&$page, $data) {
+    $referrer = shorten_url(url(request_uri(), array('absolute' => TRUE)));;
+    $text = addslashes(filter_xss($data['share_text']));
+
+    $output = "
+    <script type=\"text/javascript\">
+    (function($) {
+      $(document).ready(function() {
+        $('" . $data['selector'] . "').click(function() {
+          document.location.href = 'http://www.twitter.com/intent/tweet?original_referer=" . $referrer . "&text=" . $text . "&tw_p=tweetbutton&url=" . $referrer . "&via=" . $data['share_via'] . "';
+        });
+      });
+    })(jQuery);
+    </script>
+    ";
+
+    $page['page_bottom']['twitter_share_init'] = array(
+      '#markup' => $output
+    );
     // Stuff to run on render
   }
 

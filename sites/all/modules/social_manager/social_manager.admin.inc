@@ -84,15 +84,21 @@ function social_manager_add_form($form, &$form_state) {
   return $form;
 }
 
-function social_manager_load_action($service, $action, array $data = array()) {
+function social_manager_load_action($service, $action, $type = 'Action', array $data = array()) {
   module_load_include('inc', 'social_manager', 'services/' . $service);
   $class = ucfirst($service) . "Service";
-  $method = "{$action}Action";
+  $method = $action . $type;
 
-  $form = array();
-  $class::$method($form, $data);
-
-  return $form;
+  if ($type == 'Action') {
+    $form = array();
+    $class::$method($form, $data);
+    return $form;
+  }
+  else {
+    if (method_exists($class, $method)) {
+      $class::$method($data);
+    }
+  }
 }
 
 function social_manager_add_submit($form, &$form_state) {
@@ -117,11 +123,7 @@ function social_manager_add_submit($form, &$form_state) {
 
     $action = explode(':', $mvals[1]['action']);
     $class = ucfirst($action[0]) . 'Service';
-    $method = $action[1] . 'Submit';
-
-    if (method_exists($class, $method)) {
-      $class::$method($values);
-    }
+    social_manager_load_action($action[0], $action[1], 'Submit', $mvals);
 
     $record = array(
       'title' => $mvals[1]['title'],  // Machine name of the action
@@ -262,7 +264,7 @@ function social_manager_edit_form($form, $form_state, $aid) {
   );
 
   $action->data = unserialize($action->data);
-  $form += social_manager_load_action($action->service, $action->type, $action->data);
+  $form += social_manager_load_action($action->service, $action->type, 'Action', $action->data);
 
   $form['submit'] = array(
     '#type' => 'submit',
@@ -290,11 +292,7 @@ function social_manager_edit_submit($form, &$form_state) {
 
   $action = explode(':', $values['action_value']);
   $class = ucfirst($action[0]) . 'Service';
-  $method = $action[1] . 'Submit';
-
-  if (method_exists($class, $method)) {
-    $class::$method($values);
-  }
+  social_manager_load_action($action[0], $action[1], 'Submit', $values);
 
   db_update('social_actions')
     ->fields(array(
@@ -309,6 +307,39 @@ function social_manager_edit_submit($form, &$form_state) {
   social_manager_reload_cache();
 
   drupal_set_message(t('Changes saved.'));
+  drupal_goto('admin/structure/social');
+}
+
+
+function social_manager_delete($id) {
+  $token = $_GET['token'];
+  if (!drupal_valid_token($token, 'delete_' . $id)) {
+    drupal_set_message(t('Invalid token specified.  Please try again.'), 'error');
+    drupal_goto('admin/structure/social');
+  }
+
+  $content = drupal_render(drupal_get_form('social_manager_delete_form', $id));
+  return $content;
+}
+
+function social_manager_delete_form($form, $form_state, $id) {
+  $form = array();
+  $form['id'] = array(
+    '#type' => 'hidden',
+    '#value' => $id,
+  );
+  $form['#submit'][] = 'social_manager_delete_form_submit';
+
+  return confirm_form($form, t('Are you sure you want to delete this item? This action cannot be undone!'), 'admin/structure/social', t('Deleting this element cannot be undone.'), t('Yes, delete it.'), t('No! Don\'t delete it.'));
+}
+
+function social_manager_delete_form_submit($form, &$form_state, $id) {
+  $id = $form_state['input']['id'];
+  db_delete('social_actions')
+    ->condition('aid', $id, '=')
+    ->execute();
+
+  drupal_set_message(t('Action #!id successfully deleted.', array('!id' => $id)));
   drupal_goto('admin/structure/social');
 }
 
