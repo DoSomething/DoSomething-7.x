@@ -168,13 +168,16 @@
      *    The full path to the page you're referring to.  If blank,
      *    will default to the current page.
      */
-    get_counts: function(elements, page) {
+    get_counts: function(elements, page, callback) {
       $.post('/connections/get-counts', { 'elements': elements, 'page': page || document.location.href }, function(response) {
         if (typeof response.error != 'undefined') {
           Drupal.behaviors.fb.clog('Error: ' + response.error);
         }
         else if (typeof response.status != 'undefined' && response.status == 1) {
           Drupal.behaviors.fb.numbers = response.results;
+          if (typeof callback === 'function') {
+            callback(response.results);
+          }
         }
       });
     },
