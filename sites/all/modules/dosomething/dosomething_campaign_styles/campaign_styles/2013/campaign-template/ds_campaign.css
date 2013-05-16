@@ -117,6 +117,9 @@ header[role="banner"] {
   font-size: 13px;
   text-decoration: none; }
 
+#help-center {
+  margin: 3px 15px 3px 0; }
+
 #edit-submitted-field-geocode-data {
   display: none; }
 
