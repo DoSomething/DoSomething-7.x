@@ -86,13 +86,19 @@ function social_manager_menu() {
   return $paths;
 }
 
+/**
+ * Reloads the social action cache.  This function should only be
+ * run when an action is added / edited / deleted.
+ */
 function social_manager_reload_cache() {
+  // Load the data from the database.
   $actions = db_select('social_actions', 'a')
     ->fields('a')
     ->condition('settings', 1, '=')
     ->execute()
     ->fetchAll();
 
+  // Build the cache array.
   $cache = array();
   foreach ($actions AS $key => $stuff) {
     foreach (explode("\r\n", $stuff->paths) as $path) {
@@ -100,6 +106,7 @@ function social_manager_reload_cache() {
     }
   }
 
+  // Set the cache.
   cache_set('social_actions', $cache);
 }
 
@@ -108,14 +115,17 @@ function social_manager_reload_cache() {
  * Implements hook_page_alter().
  */
 function social_manager_page_alter(&$page) {
+  // Get cache, if possible.  If it doesn't exist, reload it.
   $actions = cache_get('social_actions')->data;
   if (empty($actions)) {
     social_manager_reload_cache();
   }
 
-  foreach ($actions as $path => $crap) {
+  // Check to see if any actions match the current page.
+  foreach ($actions as $path => $info) {
+    // Match current path to $path
     if (drupal_match_path(request_path(), $path)) {
-      foreach ($crap as $action => $data) {
+      foreach ($info as $action => $data) {
         $d = explode(':', $action);
         module_load_include('inc', 'social_manager', 'services/' . $d[0]);
         $class = ucfirst($d[0]) . 'Service';

@@ -19,7 +19,7 @@ class TwitterService {
     $form['selector'] = array(
       '#type' => 'textfield',
       '#title' => t('Selector'),
-      '#description' => t('The selector (HTML css / id attribute) that will trigger this action.'),
+      '#description' => t('The selector (HTML css / id attribute) that will trigger this action.  <b>If left blank, this action will be triggered automatically when the page loads.</b>'),
       '#attributes' => array(
         'placeholder' => t('.selector / #selector'),
       ),
@@ -43,7 +43,7 @@ class TwitterService {
       '#attributes' => array(
         'placeholder' => t('Share URL...'),
       ),
-      '#default_value' => (isset($data['share_url']) ? $data['share_url'] : ''),
+      '#default_value' => (isset($data['share_text']) ? $data['share_text'] : ''),
     );
 
     $form['share_via'] = array(
@@ -53,7 +53,7 @@ class TwitterService {
       '#attributes' => array(
         'placeholder' => t('via @yourhandle...'),
       ),
-      '#default_value' => (isset($data['share_url']) ? $data['share_url'] : ''),
+      '#default_value' => (isset($data['share_via']) ? $data['share_via'] : ''),
     );
 
     $form['share_target'] = array(
@@ -69,11 +69,16 @@ class TwitterService {
   }
 
   public static function shareSubmit(&$data) {
-    // Functions to run on share submit.
+    // Callback for form submit.
   }
 
   public static function shareRender(&$page, $data) {
-    $referrer = shorten_url(url(request_uri(), array('absolute' => TRUE)));;
+    if (module_exists('shorten')) {
+      $referrer = shorten_url(url(request_uri(), array('absolute' => TRUE)));
+    }
+    else {
+      $referrer = url(request_uri(), array('absolute' => TRUE));
+    }
     $text = addslashes(filter_xss($data['share_text']));
 
     // Remove potential mis-types from the originator.
@@ -81,16 +86,23 @@ class TwitterService {
 
     $pop = '';
     if ($data['share_target'] == 'popup') {
-      $pop = ", '_tweet', 'width=350,height=200,scrollbars=no,resizable=no,toolbars=no'";
+      $pop = ", '_tweet', 'width=450,height=260,scrollbars=no,resizable=no,toolbars=no'";
+    }
+
+    $clicker_start = '';
+    $clicker_end = '';
+    if (!empty($data['selector'])) {
+      $clicker_start = "$('" . $data['selector'] . "').click(function() {";
+      $clicker_end = '});';
     }
 
     $output = "
     <script type=\"text/javascript\">
     (function($) {
       $(document).ready(function() {
-        $('" . $data['selector'] . "').click(function() {
+        " . $clicker_start . "
           window.open('http://www.twitter.com/intent/tweet?original_referer=" . $referrer . "&text=" . $text . "&tw_p=tweetbutton&url=" . $referrer . "&via=" . $via . "'" . $pop . ");
-        });
+        " . $clicker_end . "
       });
     })(jQuery);
     </script>
@@ -99,7 +111,6 @@ class TwitterService {
     $page['page_bottom']['twitter_share_init'] = array(
       '#markup' => $output
     );
-    // Stuff to run on render
   }
 
 }

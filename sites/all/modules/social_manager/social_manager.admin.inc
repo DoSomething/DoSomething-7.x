@@ -339,6 +339,7 @@ function social_manager_delete_form_submit($form, &$form_state, $id) {
     ->condition('aid', $id, '=')
     ->execute();
 
+  social_manager_reload_cache();
   drupal_set_message(t('Action #!id successfully deleted.', array('!id' => $id)));
   drupal_goto('admin/structure/social');
 }
