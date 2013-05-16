@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Generate search pages using Search API indexes.
+ */
 
 /**
  * Implements hook_menu().
@@ -96,6 +100,7 @@ function search_api_page_block_info() {
   foreach (search_api_page_load_multiple(FALSE, array('enabled' => TRUE)) as $page) {
     $blocks[$page->machine_name] = array(
       'info' => t('Search block: !name', array('!name' => $page->name)),
+      'cache' => DRUPAL_CACHE_PER_USER,
     );
   }
   return $blocks;
@@ -227,7 +232,7 @@ function search_api_page_search_api_index_delete(SearchApiIndex $index) {
     return;
   }
 
-  foreach (search_api_page_load_multiple(FALSE, array('index_id' => $index->machine_name, 'enabled' => 1)) as $page) {
+  foreach (search_api_page_load_multiple(FALSE, array('index_id' => $index->machine_name)) as $page) {
     search_api_page_delete($page->id);
   }
 }
@@ -323,7 +328,7 @@ function search_api_page_load_multiple($ids = FALSE, array $conditions = array()
 function search_api_page_insert(array $values) {
   foreach (array('name', 'machine_name', 'index_id', 'path') as $var) {
     if (!isset($values[$var])) {
-      throw new SearchApiException(t('Property !field has to be set for the new search page.', array('!field' => $var)));
+      throw new SearchApiException(t('Property @field has to be set for the new search page.', array('@field' => $var)));
     }
   }
   if (empty($values['description'])) {
@@ -415,7 +420,8 @@ function search_api_page_delete($id) {
 function search_api_page_search_form(array $form, array &$form_state, Entity $page, $keys = NULL, $compact = FALSE) {
   $form['keys_' . $page->id] = array(
     '#type' => 'textfield',
-    '#title' => $compact ? '' : t('Enter your keywords'),
+    '#title' => t('Enter your keywords'),
+    '#title_display' => $compact ? 'invisible' : 'before',
     '#default_value' => $keys,
     '#size' => $compact ? 15 : 30,
   );
@@ -435,7 +441,7 @@ function search_api_page_search_form(array $form, array &$form_state, Entity $pa
   if (!$compact) {
     $form = array(
       '#type' => 'fieldset',
-      '#title' => $page->name,
+      '#title' => check_plain($page->name),
       'form' => $form,
     );
     if ($page->description) {
@@ -463,4 +469,9 @@ function search_api_page_search_form_submit(array $form, array &$form_state) {
   $keys = trim($form_state['values']['keys_' . $form_state['values']['id']]);
   // @todo Take care of "/"s in the keys
   $form_state['redirect'] = $form_state['values']['base_' . $form_state['values']['id']] . '/' . $keys;
+
+  // To completely controll the redirect destination, we need to remove the
+  // 'destination' GET parameter, which would override our destination, if
+  // present.
+  unset($_GET['destination']);
 }
