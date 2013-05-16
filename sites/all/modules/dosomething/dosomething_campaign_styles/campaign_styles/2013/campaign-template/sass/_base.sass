@@ -3,10 +3,11 @@
 
 // colors
 $off-black: #1E1D1C
-$campaign-main: #86005D
-$campaign-accent: #D5904C
 $bg-light: #FFF
 $bg-alt: #EEE
+
+$grey-subtle: #ddd
+$grey-subtle: #eee
 
 $btn-grey: #CCC
 $btn-color: #FFCB15
@@ -16,7 +17,7 @@ $btn-border: $btn-hover
 $bg-header-color: $bg-alt
 $bg-header-fallback: $bg-alt
 
-$subtle-border: 1px solid #eee
+$border-subtle: 1px solid $grey-subtle
 
 // images
 $bg-header-image: './assets/bg-header.jpg'
@@ -48,8 +49,9 @@ $base-padding: 25px
   margin: 0 auto
   display: block
 
+// TODO - #DDD & #EEE BORDERS?
 @mixin border-bottom-subtle
-  border-bottom: $subtle-border
+  border-bottom: $border-subtle
 
 @function em-calc($target)
   @return ($target/16)*1em
