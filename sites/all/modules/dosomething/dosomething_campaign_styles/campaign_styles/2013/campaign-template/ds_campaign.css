@@ -544,7 +544,7 @@ header[role="banner"] {
     margin: 3% 0 0; }
   #cmp .sms form {
     width: 80%;
-    margin: 0 auto; }
+    margin: 2em auto 0; }
   #cmp .sms .btn {
     width: 9.4em;
     margin: 1em 0; }

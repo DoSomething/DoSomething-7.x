@@ -57,10 +57,12 @@
       }
       faq_toggle('h3', 'div');
 
-
       // Restyles #headline section depending on campaign model
       if( $('#sms').length ) {
         $('#headline .headline-callout').addClass('alt');
+        $('#headline').css('margin','1.5em 0 0 0');
+        $('#sms').css('margin-top','-3em');
+        $('#call-to-action').remove();
       }
       else {
         $('#headline').css({
