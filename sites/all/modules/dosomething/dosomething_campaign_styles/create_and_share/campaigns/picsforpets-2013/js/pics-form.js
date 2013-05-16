@@ -45,7 +45,12 @@
           'margin-top': '43%',
           'text-transform': 'uppercase',
         }).appendTo('.image-widget-data');
+
+        // Remove the submit button -- they haven't uploaded a picture yet!
         $('#edit-actions').remove();
+
+        // Remove the top and bottom text fields and blocks.  They need to upload a picture before they can put on text.
+        $('#top_text, #bottom_text, #edit-submitted-field-cas-top-text, #edit-submitted-field-cas-bottom-text').remove();
       }
 
       if ($('input[value="Submit"]').length > 0) {
@@ -65,7 +70,7 @@
             return false;
           }
         });
-    
+
         $('input[value="Submit"]').addClass('go-button');
         $('input[value="Submit"]').click(function() {
           $(this).hide();
@@ -76,18 +81,18 @@
           });
         });
       }
-    
+
       if ($('.image-widget-data').length > 0) {
         var topText = $('<div></div>').attr('id', 'top_text');
         var bottomText = $('<div></div>').attr('id', 'bottom_text');
-    
+
         this.handle_text_change('edit-submitted-field-cas-top-text-und-0-value', 'top_text');
         this.handle_text_change('edit-submitted-field-cas-bottom-text-und-0-value', 'bottom_text');
 
         $('.image-widget-data').append(topText);
         $('.image-widget-data').append(bottomText);
       }
-  
+
       $('#edit-submitted-field-cas-image-und-0-upload').click(function() {
         var img = window.setInterval(function() {
           if ($('#edit-submitted-field-cas-image-und-0-upload').val() != '') {

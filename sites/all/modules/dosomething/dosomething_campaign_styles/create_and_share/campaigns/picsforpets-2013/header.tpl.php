@@ -8,8 +8,18 @@
   </div>
 </div> <!-- #header -->
 
-<div class="crazy-menu-wrapper"><?php echo drupal_render($top_menu); ?></div>
-<div class="crazy-sub-menu-wrapper"><?php echo drupal_render($sub_menu); ?></div>
+<div class="crazy-menu-wrapper">
+	<?php echo drupal_render($top_menu); ?>
+	<select name="state-filter">
+	<?php
+		module_load_include('inc', 'webform', 'includes/webform.options.inc');
+		$states = webform_options_united_states();
+		foreach ($states as $key => $state) {
+		  echo '<option value="' . $key . '">' . $state . '</option>';
+		}
+	?>
+	</select>
+</div>
 
 <div class="crazy-sub-menu-header scroll-header-style">
 	<h1>People do crazy things to save money</h1>

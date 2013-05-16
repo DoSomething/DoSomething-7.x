@@ -229,6 +229,79 @@ function create_and_share_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-create_and_share_campaign-field_cas_gated'.
+  $fields['node-create_and_share_campaign-field_cas_gated'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_gated',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Is this campaign gated? If checked, logged out users will be required to login / register before they may visit the campaign.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 22,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_cas_gated',
+      'label' => 'Gated',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '3',
+      ),
+    ),
+  );
+
   // Exported field: 'node-create_and_share_campaign-field_cas_image_field'.
   $fields['node-create_and_share_campaign-field_cas_image_field'] = array(
     'field_config' => array(
@@ -376,6 +449,8 @@ DINComp-CondBold.ttf|Din Condensed Bold',
           'available_options_php' => '',
           'markup_available_options_php' => '&lt;none&gt;',
           'other' => 'Other',
+          'other_size' => 60,
+          'other_title' => '',
           'other_unknown_defaults' => 'append',
           'sort_options' => 0,
         ),
@@ -458,6 +533,77 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         ),
         'type' => 'text_textfield',
         'weight' => '15',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-create_and_share_campaign-field_cas_lazy_load_count'.
+  $fields['node-create_and_share_campaign-field_cas_lazy_load_count'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_lazy_load_count',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => '1',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The number of images that should <b>not</b> be lazy loaded.  Leave at 0 to lazy load every image.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 24,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_cas_lazy_load_count',
+      'label' => 'Lazy Load Count',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'numberfield',
+        'weight' => '6',
       ),
     ),
   );
@@ -674,6 +820,83 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         ),
         'type' => 'options_onoff',
         'weight' => '19',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-create_and_share_campaign-field_cas_share_count_field'.
+  $fields['node-create_and_share_campaign-field_cas_share_count_field'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_share_count_field',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 'cas_share_count',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The field that stores the share count for all submissions.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 23,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_cas_share_count_field',
+      'label' => 'Share Count Field',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '14',
       ),
     ),
   );
@@ -1580,6 +1803,73 @@ DINComp-CondBold.ttf|Din Condensed Bold',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_bottom_text'.
+  $fields['webform_submission_entity-create_and_share_campaign-field_cas_bottom_text'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_bottom_text',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 10,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_cas_bottom_text',
+      'label' => 'Bottom Text',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '10',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_flagged'.
   $fields['webform_submission_entity-create_and_share_campaign-field_cas_flagged'] = array(
     'field_config' => array(
@@ -1790,6 +2080,138 @@ DINComp-CondBold.ttf|Din Condensed Bold',
     ),
   );
 
+  // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_promoted'.
+  $fields['webform_submission_entity-create_and_share_campaign-field_cas_promoted'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_promoted',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Promoted to the top of the list?',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 8,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_cas_promoted',
+      'label' => 'Promoted',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_share_count'.
+  $fields['webform_submission_entity-create_and_share_campaign-field_cas_share_count'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_share_count',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 11,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_cas_share_count',
+      'label' => 'Share Count',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'html5_tools',
+        'settings' => array(),
+        'type' => 'numberfield',
+        'weight' => '5',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_thumbs_down_count'.
   $fields['webform_submission_entity-create_and_share_campaign-field_cas_thumbs_down_count'] = array(
     'field_config' => array(
@@ -1916,6 +2338,73 @@ DINComp-CondBold.ttf|Din Condensed Bold',
         'settings' => array(),
         'type' => 'numberfield',
         'weight' => '35',
+      ),
+    ),
+  );
+
+  // Exported field: 'webform_submission_entity-create_and_share_campaign-field_cas_top_text'.
+  $fields['webform_submission_entity-create_and_share_campaign-field_cas_top_text'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_cas_top_text',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'create_and_share_campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 9,
+        ),
+      ),
+      'entity_type' => 'webform_submission_entity',
+      'field_name' => 'field_cas_top_text',
+      'label' => 'Top Text',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '9',
       ),
     ),
   );
@@ -2061,14 +2550,22 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('Allow ranking algorithm?');
   t('An (optional) divisor against the time algorithm -- essentially chops down the significance of time loss decay.');
   t('An integer denoting how much an action (like thumbs up / down) is worth, in "weight".');
+  t('Bottom Text');
   t('Can users "vote", regardless of their logged in status?');
   t('Flagged');
+  t('Gated');
   t('Image');
   t('Image Field');
   t('Image Font');
   t('Image Style');
+  t('Is this campaign gated? If checked, logged out users will be required to login / register before they may visit the campaign.');
+  t('Lazy Load Count');
   t('Notification Pages');
+  t('Promoted');
+  t('Promoted to the top of the list?');
   t('Ranking Action "Point"');
+  t('Share Count');
+  t('Share Count Field');
   t('The "Thumbs Down" text.');
   t('The "Thumbs Up" button text.');
   t('The amount of time, in seconds, after which time will lose value in the ranking algorithm.');
@@ -2076,8 +2573,10 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('The field that handles the thumbs up count');
   t('The field that handles the uploaded image.');
   t('The field that handles weight for the sorting algorithm.');
+  t('The field that stores the share count for all submissions.');
   t('The field that will handle the thumbs down count.');
   t('The field that will handle the total "action" count.');
+  t('The number of images that should <b>not</b> be lazy loaded.  Leave at 0 to lazy load every image.');
   t('The page(s) that notifications should be allowed on.  One per line.  Use regular expression syntax to denote abstracted paths.');
   t('The style that the completed image(s) should inherit.');
   t('The view that contains the display that shows the content.');
@@ -2093,6 +2592,7 @@ DINComp-CondBold.ttf|Din Condensed Bold',
   t('Thumbs Up Weight');
   t('Time Loss divisor (optional)');
   t('Time loss grace period');
+  t('Top Text');
   t('Total Count');
   t('Total Count Field');
   t('Turn on the ranking algorithm?');
