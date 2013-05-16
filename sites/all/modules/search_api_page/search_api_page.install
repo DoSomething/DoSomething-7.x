@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Install, update and uninstall functions for the Search pages module.
+ */
 
 /**
  * Implements hook_schema().
@@ -188,6 +192,6 @@ function search_api_page_update_7102() {
     catch (Exception $e1) {
       // Ignore.
     }
-    throw new DrupalUpdateException(t('An exception occurred during the update: !msg.', array('!msg' => $e->getMessage())));
+    throw new DrupalUpdateException(t('An exception occurred during the update: @msg.', array('@msg' => $e->getMessage())));
   }
 }
