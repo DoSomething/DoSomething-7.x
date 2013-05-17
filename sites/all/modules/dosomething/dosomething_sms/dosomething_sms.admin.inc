@@ -52,7 +52,7 @@ function dosomething_sms_settings_form() {
 		'#type' => 'textfield',
 		'#title' => t('Email Recipients'),
     '#description' => t('Seperate email addresses with commas.'),
-		'#default_value' => variable_get('dosomething_sms_cron_recipients', 'dlee@dosomething.org'),
+		'#default_value' => variable_get('dosomething_sms_recipients', 'dlee@dosomething.org'),
 		'#size' => 60,
 		'#maxlength' => 256,
 		'#required' => TRUE,
