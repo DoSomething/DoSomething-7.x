@@ -66,7 +66,7 @@ function dosomething_sms_settings_form() {
   
   // Run job every interval (week by default)
   $interval = variable_get('dosomething_sms_cron_interval', 60 * 60 * 24 * 7);
-  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME + $interval);
+  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME);
 
   $form['status']['dosomething_sms_cron_test'] = array(
     '#type' => 'markup',
