@@ -592,7 +592,7 @@ function dosomething_sms_cron() {
   
   // Run job every interval (week by default)
   $interval = variable_get('dosomething_sms_cron_interval', 60 * 60 * 24 * 7);
-  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME + $interval);
+  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME - 1);
 
   // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
   if (($enabled) && (REQUEST_TIME >= $next_run)) {
