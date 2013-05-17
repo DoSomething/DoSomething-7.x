@@ -24,3 +24,4 @@ composer.lock
 
 # Ignore test-generated files
 tests/selenium/screenshots/*
+selenium-*.jar

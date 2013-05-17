@@ -20,7 +20,7 @@ firefox:
 
 jenkins-manual:
   cmd.run:
-    - name: sh /srv/tomcat/install-jenkins-tomcat.sh > /dev/null
+    - name: sh /srv/salt/tomcat/install-jenkins-tomcat.sh > /dev/null
     - require:
       - pkg: solr-tomcat
 
