@@ -15,6 +15,7 @@ function dosomething_subscribe_admin_settings_form() {
   $form['header'] = array(
     '#markup' => "<p>". t("Most forms have their Mailchimp and Mobilecommons values set on the node edit form.") . " " . l(t('View Subscription Report'), 'admin/reports/dosomething_subscribe') . "</p><p>" . t("These settings are for forms/nodes that don't.") . "</p>",
   );
+  // Default values (for when none are set but email/cell is present):
   $form['defaults'] = array(
     '#type' => 'fieldset',
     '#title' => t('Default Groups'),
@@ -32,6 +33,25 @@ function dosomething_subscribe_admin_settings_form() {
     '#title' => t('Mobilecommons'),
     '#required' => TRUE,
     '#default_value' => variable_get($prefix . 'mobilecommons_default'),
+  );
+  // Values for Club nodes:
+  $form['clubs'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Clubs'),
+    '#collapsible' => TRUE,
+    '#description' => t('Groups to use on the Club node form.'),
+  );
+  $form['clubs'][$prefix . 'mailchimp_clubs'] = array(
+    '#type' => 'textfield',
+    '#title' => t('MailChimp'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mailchimp_clubs'),
+  );
+  $form['clubs'][$prefix . 'mobilecommons_clubs'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobilecommons'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mobilecommons_clubs'),
   );
   return system_settings_form($form);
 }
