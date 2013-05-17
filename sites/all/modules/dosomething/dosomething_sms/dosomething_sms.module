@@ -658,7 +658,7 @@ function dosomething_sms_cron() {
                       ->execute();
 
     // Log report in Watchdog
-    watchdog('dosomething_sms', 'Cron run at %current_time. %number_deleted entries deleted.', array('%current_date' => $human_date, '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
+    watchdog('dosomething_sms', 'Cron run at %current_date. %number_deleted entries deleted.', array('%current_date' => $human_date, '%number_deleted' => $number_deleted), WATCHDOG_ERROR);
     
     // Schedule new cron run
     variable_set('dosomething_sms_cron_next_execution', time() + $interval);
