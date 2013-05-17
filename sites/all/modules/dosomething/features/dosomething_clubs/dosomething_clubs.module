@@ -1682,19 +1682,6 @@ function dosomething_clubs_form_club_node_form_alter(&$form, &$form_state, $form
 }
 
 /**
- *  Add a user to a mailchimp group
- */
-function dosomething_clubs_mailchimp(&$form, &$form_state) {
-  $vals = $form_state['values'];
-  $mid = $vals['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
-  $email = $vals['field_email'][LANGUAGE_NONE][0]['value'];
-
-  if (!empty($mid)) {
-     dosomething_general_mailchimp_subscribe($email, $mid);
-  }
-}
-
-/**
  *  Makes the owner of the group the administrator.
  */
 function dosomething_clubs_make_owner_admin($nid) {
