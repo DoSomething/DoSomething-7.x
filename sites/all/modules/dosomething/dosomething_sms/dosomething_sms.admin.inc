@@ -26,7 +26,7 @@ function dosomething_sms_settings_form() {
       TRUE => t('Enabled'),
       FALSE => t('Disabled'),
     ),
-    '#default_value' => 'dosomething_sms_cron_enable',
+    '#default_value' => variable_get('dosomething_sms_cron_enable', FALSE),
     '#weight' => 10,
   );
   
