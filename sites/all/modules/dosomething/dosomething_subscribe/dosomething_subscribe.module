@@ -47,7 +47,7 @@ function dosomething_subscribe_theme($existing, $type, $theme, $path) {
  * Implements hook_form_alter().
  */
 function dosomething_subscribe_form_alter(&$form, &$form_state, $form_id) {
-  // If this is a webform / webform entity, check for subscribe fields.
+  // If this is a webform / webform entity or a node form, check for subscribe fields.
   if (isset($form['#node'])) {
     $form['#submit'][] = 'dosomething_subscribe_find_and_signup';
   }
@@ -60,64 +60,38 @@ function dosomething_subscribe_form_alter(&$form, &$form_state, $form_id) {
 function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
   // If we don't have a node or a webform submission there's really nothing we
   // can do. This handler was probably put on the wrong form.
-  if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
+  if (!isset($form['#node'])) {
     return;
   }
   $node = $form['#node'];
-  $submitted = $form_state['webform_entity']['submission']->submitted;
-  // If saving a form as draft, submitted is just a timestamp, not an array with data.
-  if (!is_array($submitted)) {
+
+  // Check for webform_entity submitted values:
+  if (isset($form_state['webform_entity']['submission']->submitted)) {
+    $submitted = $form_state['webform_entity']['submission']->submitted;
+    // If saving a form as draft, submitted is just a timestamp, not an array with data.
+    if (!is_array($submitted)) {
+      return;
+    }
+    $email = $cell = '';
+    $mailchimp = $mobilecommons = FALSE;
+  }
+  // Or check if we're actually checking a clubs node form:
+  elseif (isset($form_state['values']) && $node->type == 'club') {
+    $submitted = $form_state['values'];
+    $email = $submitted['field_email'][LANGUAGE_NONE][0]['value'];
+    $cell = $submitted['field_phone_required'][LANGUAGE_NONE][0]['value'];
+    $mailchimp = variable_get('dosomething_subscribe_mailchimp_clubs');
+    $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_clubs');
+  }
+  // Otherwise we shouldn't be looking for signups here.
+  else {
     return;
   }
 
   global $user;
-  $mailchimp = $mobilecommons = FALSE;
-  $email = $cell = '';
   $merge_vars = array();
 
-  // Check various form_keys for email value to use.
-  if (!empty($submitted['email'])) {
-    $email = $submitted['email'];
-  }
-  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  }
-  elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
-  }
-  elseif (!empty($submitted['your_email'])) {
-    $email = $submitted['your_email'];
-  }
-  elseif (!empty($submitted['e_mail'])) {
-    $email = $submitted['e_mail'];
-  }
-  // If no email submitted form value, and user is logged in, use user email.
-  elseif (empty($email) && $user->uid >0) {
-    $email = $user->mail;
-  }
-
-  // Check various form_keys for cell value:
-  if (isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'])) {
-    $cell = $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
-  }
-  elseif (isset($submitted['cell_number'])) {
-    $cell = $submitted['cell_number'];
-  }
-  elseif (isset($submitted['cell'])) {
-    $cell = $submitted['cell'];
-  }
-  elseif (isset($submitted['your_cell_phone_number'])) {
-    $cell = $submitted['your_cell_phone_number'];
-  }
-  // If no cell submitted form value, and user is logged in, use profile value if we have it.
-  elseif (empty($cell) && $user->uid >0) {
-    $user2 = array();
-    $user2 = profile2_load_by_user($user, 'main');  
-    $cell = field_get_items('profile2', $user2, 'field_user_mobile');
-    $cell = $cell[0]['value'];
-  }
-
-  // If field_webform_email_or_cell field is used, check which one it is.
+  // If field_webform_email_or_cell field is used (petitions), check which one it is.
   if (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
     $email_or_cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
     if (valid_email_address($email_or_cell)) {
@@ -126,12 +100,58 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     elseif (dosomething_general_valid_cell($email_or_cell)) {
       $cell = $email_or_cell;
     }
-  } 
+  }
+
+  // Check various form_keys for email value to use.
+  if (empty($email)) {
+    if (!empty($submitted['email'])) {
+      $email = $submitted['email'];
+    }
+    elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
+      $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
+    }
+    elseif (!empty($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
+      $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
+    }
+    elseif (!empty($submitted['your_email'])) {
+      $email = $submitted['your_email'];
+    }
+    elseif (!empty($submitted['e_mail'])) {
+      $email = $submitted['e_mail'];
+    }
+    // If no email submitted form value, and user is logged in, use user email.
+    elseif (empty($email) && $user->uid >0) {
+      $email = $user->mail;
+    }
+  }
+
+  // Check various form_keys for cell value:
+  if (empty($cell)) {
+    if (isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'])) {
+      $cell = $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
+    }
+    elseif (isset($submitted['cell_number'])) {
+      $cell = $submitted['cell_number'];
+    }
+    elseif (isset($submitted['cell'])) {
+      $cell = $submitted['cell'];
+    }
+    elseif (isset($submitted['your_cell_phone_number'])) {
+      $cell = $submitted['your_cell_phone_number'];
+    }
+    // If no cell submitted form value, and user is logged in, use profile value if we have it.
+    elseif (empty($cell) && $user->uid >0) {
+      $user2 = array();
+      $user2 = profile2_load_by_user($user, 'main');  
+      $cell = field_get_items('profile2', $user2, 'field_user_mobile');
+      $cell = $cell[0]['value'];
+    }
+  }
 
   // --------- MailChimp ---------
 
-  // If we have an email, check for Mailchimp:
-  if (!empty($email)) {
+  // If we have an email and no Mailchimp set yet, check for Mailchimp:
+  if (!empty($email) && !$mailchimp) {
 
     // Check if webform node should be subscribing to a Mailchimp Group ID.
     if (isset($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
@@ -142,7 +162,6 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     elseif ($node->nid == 727601) {
       $mailchimp = 'DSA2013Applicants';
     }
-
     // For Gun Policy webform, MailChimp group is conditional.
     // For young people, use node value.
     // For old people, use the group hardcoded below.
@@ -247,8 +266,8 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     if (isset($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
       $mobilecommons = $node->field_mc_optin[LANGUAGE_NONE][0]['value'];
     }
-    // Else use default variable.
-    else {
+    // Else use default variable if it hasn't been set already.
+    elseif (!$mobilecommons) {
       $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_default');
     }
     if ($mobilecommons) {
