@@ -1,5 +1,9 @@
 <?php
 
+// FOR TESTING ONLY.
+// require_once 'tests/php-error/php_error.php';
+// \php_error\reportErrors();
+
 /**
  * @file
  * The PHP page that serves all page requests on a Drupal installation.

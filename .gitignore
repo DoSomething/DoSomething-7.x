@@ -25,3 +25,6 @@ composer.lock
 # Ignore test-generated files
 tests/selenium/screenshots/*
 selenium-*.jar
+tests/*.log
+tests/*/*.log
+tests/jenkins/build/logs

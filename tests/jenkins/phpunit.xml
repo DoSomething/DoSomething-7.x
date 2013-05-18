@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="tests/bootstrap.php"
+<phpunit
          backupGlobals="false"
          backupStaticAttributes="false"
-         strict="true"
          verbose="true">
+         
+         <!-- strict="true" -->
+         <!-- bootstrap="tests/bootstrap.php" -->
        
   <testsuites>
-    <testsuite name="ProjectName">
-      <directory suffix="Test.php">tests/unit/</directory>
-      <directory suffix="Test.php">tests/integration/</directory>
+    <testsuite name="DoSomething">
+      <directory suffix="Test.php">tests/</directory>
+      <!-- directory suffix="Test.php">tests/integration/</directory -->
     </testsuite>
   </testsuites>
 
   <logging>
-    <log type="coverage-html" target="build/coverage" title="BankAccount"
+    <log type="coverage-html" target="build/coverage" title="DoSomething"
          charset="UTF-8" yui="true" highlight="true"
          lowUpperBound="35" highLowerBound="70"/>
     <log type="coverage-clover" target="build/logs/clover.xml"/>
@@ -24,8 +26,15 @@
   <filter>
     <whitelist addUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">src</directory>
+      <directory suffix=".module">src</directory>
+      <directory suffix=".inc">src</directory>
+      <directory suffix=".install">src</directory>
+      <directory suffix=".test">src</directory>
+      <directory suffix=".profile">src</directory>
+      <directory suffix=".theme">src</directory>
       <exclude>
-        <file>src/bootstrap.php</file>
+        <directory suffix=".tpl.php">src</directory>
+        <!-- file>src/bootstrap.php</file -->
       </exclude>
     </whitelist>
   </filter>

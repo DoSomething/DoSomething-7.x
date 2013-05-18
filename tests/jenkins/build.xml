@@ -42,7 +42,7 @@
   <apply executable="php" failonerror="true">
    <arg value="-l" />
 
-   <fileset dir="${basedir}/../../sites/all/modules/dosomething">
+   <fileset dir="${basedir}/src/modules/dosomething">
     <include name="**/*.php" />
     <modified />
    </fileset>
@@ -58,7 +58,7 @@
   <exec executable="phploc">
    <arg value="--log-csv" />
    <arg value="${basedir}/build/logs/phploc.csv" />
-   <arg path="${basedir}/../../" />
+   <arg path="${basedir}/src/modules/dosomething" />
   </exec>
  </target>
 
@@ -67,14 +67,14 @@
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/src/modules/dosomething" />
   </exec>
  </target>
 
  <target name="phpmd"
          description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
   <exec executable="phpmd">
-   <arg path="${basedir}/sites/all" />
+   <arg path="${basedir}/src" />
    <arg value="text" />
    <arg value="${basedir}/build/phpmd.xml" />
   </exec>
@@ -93,8 +93,9 @@
  <target name="phpcs"
          description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
   <exec executable="phpcs">
-   <arg value="--standard=${basedir}/build/phpcs.xml" />
-   <arg path="${basedir}/src" />
+   <arg value="--standard=${basedir}/coder_sniffer/Drupal" />
+   <arg value="--extensions=php,module,inc,install,test,profile,theme" />
+   <arg path="${basedir}/src/modules/dosomething" />
   </exec>
  </target>
 
@@ -102,8 +103,9 @@
   <exec executable="phpcs" output="/dev/null">
    <arg value="--report=checkstyle" />
    <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
-   <arg value="--standard=${basedir}/build/phpcs.xml" />
-   <arg path="${basedir}/src" />
+   <arg value="--standard=${basedir}/coder_sniffer/Drupal" />
+   <arg value="--extensions=php,module,inc,install,test,profile,theme" />
+   <arg path="${basedir}/src/modules/dosomething" />
   </exec>
  </target>
 
@@ -111,7 +113,7 @@
   <exec executable="phpcpd">
    <arg value="--log-pmd" />
    <arg value="${basedir}/build/logs/pmd-cpd.xml" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/src/modules/dosomething" />
   </exec>
  </target>
 
