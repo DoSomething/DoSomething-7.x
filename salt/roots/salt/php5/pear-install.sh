@@ -12,3 +12,4 @@ sudo /usr/bin/pear install --force --alldeps phpunit/PHPUnit
 sudo /usr/bin/pear install pear.symfony.com/Yaml
 sudo /usr/bin/pear install --alldeps Console_Table
 sudo /usr/bin/pear install pear.phpunit.de/phploc
+sudo /usr/bin/pear install PHP_CodeSniffer

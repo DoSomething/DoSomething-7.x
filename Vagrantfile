@@ -16,11 +16,8 @@ Vagrant.configure("2") do |config|
   # With Varnish
   config.vm.network :forwarded_port, guest: 6081, host: 9999
   
-  # Jenkins
-  config.vm.network :forwarded_port, guest: 8080, host: 11111
-  
-  # Solr
-  config.vm.network :forwarded_port, guest: 9090, host: 12121
+  # Tomcat with Jenkins and Solr
+  config.vm.network :forwarded_port, guest: 9090, host: 11111
   
   ## Use all the defaults:
   config.vm.provision :salt do |salt|
