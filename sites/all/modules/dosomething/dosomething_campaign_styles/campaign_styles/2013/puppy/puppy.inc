@@ -29,8 +29,8 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'scholarship', 'href' => '', 'fragment' => 'game', 'external' => TRUE),
-    array('title' => 'how it works', 'href' => '', 'fragment' => 'example', 'external' => TRUE),
     array('title' => 'puppy mills', 'href' => '', 'fragment' => 'info', 'external' => TRUE),
+    array('title' => 'how it works', 'href' => '', 'fragment' => 'example', 'external' => TRUE),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
