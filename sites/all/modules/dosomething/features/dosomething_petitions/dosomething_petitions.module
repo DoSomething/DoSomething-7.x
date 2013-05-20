@@ -14,6 +14,12 @@ define('PETITIONS_INFUSIONSOFT', 1648);
  */
 function dosomething_petitions_page_alter(&$page) {
   if (preg_match('#\/petition\/(.*?)#i', request_uri())) {
+    $petition = menu_get_object();
+    if (!empty($petition->field_twitter_language[LANGUAGE_NONE][0]['value'])) {
+      $setting = array('petition' => array('tweet' => $petition->field_twitter_language[LANGUAGE_NONE][0]['value']));
+      drupal_add_js($setting, 'setting');
+    }
+
     $element = array(
       '#tag' => 'meta',
       '#attributes' => array(
