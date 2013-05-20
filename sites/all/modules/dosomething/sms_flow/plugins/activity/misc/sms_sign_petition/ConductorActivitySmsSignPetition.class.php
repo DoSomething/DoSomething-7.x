@@ -127,7 +127,18 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
 
           // Some user flows will not require an FTAF follow up. ie - invited beta users
           if ($petition['skip_ftaf']) {
-            sms_mobile_commons_opt_in($mobile, $petition['success_response']);
+            // If success_response is an integer, then it's a Mobile Commons opt-in path to subscribe user to
+            if (is_int($petition['success_response'])) {
+              sms_mobile_commons_opt_in($mobile, $petition['success_response']);
+            }
+            // If success_response is a string, then just return success message here. Also gives us opportunity
+            // to say which # signature this user is.
+            elseif (is_string($petition['success_response'])) {
+              $signatures = dosomething_petitions_get_signature_count($petition['nid']);
+              $successMsg = t($petition['success_response'], array('@signatures' => $signatures));
+              $state->setContext('sms_response', $successMsg);
+            }
+
             self::selectNextOutput('end');
           }
           else {
@@ -135,7 +146,11 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
             $state->setContext('ftaf_beta_optin', $petition['ftaf_beta_optin']);
             $state->setContext('ftaf_id_override', $petition['nid']);
             $state->setContext('ftaf_response_success', $petition['ftaf_response_success']);
-            $state->setContext('ftaf_prompt', $petition['ftaf_prompt']);
+
+            // If supported, add to the message the number of signatures the petition has
+            $signatures = dosomething_petitions_get_signature_count($petition['nid']);
+            $ftafPromptMsg = t($petition['ftaf_prompt'], array('@signatures' => $signatures));
+            $state->setContext('ftaf_prompt', $ftafPromptMsg);
 
             // Prompt user for FTAF next
             self::selectNextOutput('ftaf_prompt');

@@ -89,6 +89,7 @@ $activity->petitions = array(
     'beta_to_alpha_feedback' => "Your friend @name signed the petition! You're on a roll, organize more friends to sign by texting SIGN, or join our music video challenge: http://doso.me/h",
     'alpha_campaign_id' => 116263,
   ),
+  // Abercrombie petition
 );
 
 $activity = $workflow->newActivity('sms_prompt_from_context');
