@@ -10,72 +10,72 @@ chdir($app_cur_path);
 require_once $app_cur_path . '/php-webdriver/__init__.php';
 
 /**
- * The base test for PHPUnit tests that need Selenium Web Driver. To use, 
+ * The base test for PHPUnit tests that need Selenium Web Driver. To use,
  * extend this base class, and define public methods that start with
  * 'test'. See SanityTest for examples.
- * 
+ *
  * @see SeleniumSanityTest
  * @see https://github.com/facebook/php-webdriver
  */
 class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
-  
+
   /**
    * Base URL of testing site.
    *
    * @var string
    */
   protected $base_url;
-  
+
   /**
    * Selenium host endpoint.
    *
    * @var string
    */
   protected $wd_host;
-  
+
   /**
    * @var WebDriver
    */
   protected $web_driver;
-  
+
   /**
    * @var WebDriverSession
    */
   protected $session;
-  
+
   /**
    * Base directory to store screenshots.
    * @var string
    */
   protected $screenshotDir;
-  
+
   /**
    * Test case setup.
    */
   public function setUp() {
     parent::setUp();
-    
+
     // Selenium setup.
     $this->wd_host = 'http://127.0.0.1:4444/wd/hub'; // this is the default
     $this->web_driver = new WebDriver($this->wd_host);
-    $this->session = $this->web_driver->session('firefox');  
-    
+    $this->session = $this->web_driver->session('firefox');
+
     // Try to get the base URL from the local Drupal settings.
     if (!empty($GLOBALS['base_url'])) {
       $this->base_url = $GLOBALS['base_url'];
     } else {
       exit('No base URL! Set $base_url in site-settings.php.');
     }
-    
+
     $this->screenshotDir = '/vagrant/tests/selenium/screenshots';
-    
+
     if (!is_dir($this->screenshotDir) || !is_writable($this->screenshotDir)) {
       if (FALSE === mkdir($this->screenshotDir)) {
         exit(sprintf("Can't create the screenshot directory at %s", $this->screenshotDir));
       }
     }
   }
-  
+
   /**
    * Tear down: Close the session, and any other business.
    */
@@ -83,7 +83,29 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
     if (is_object($this->session)) {
       $this->session->close();
     }
-    
+
     parent::tearDown();
+  }
+
+  /**
+   * Splits keys into an array for 'value' method.
+   *
+   * @param string $toSend
+   *   The string that should be split into characters.
+   */
+  public function split_keys($toSend) {
+    return array('value' => preg_split("//u", $toSend, -1, PREG_SPLIT_NO_EMPTY));
+  }
+
+  /**
+   * Creates a screenshot of a specific name.
+   *
+   * @param string $name
+   *   The name the screenshot should take (e.g. error.jpg).
+   */
+  public function make_screenshot($name) {
+    $file_name = $this->screenshotDir . '/' . $name;
+    $img_data = base64_decode($this->session->screenshot());
+    file_put_contents($file_name, $img_data);
   }
 }
