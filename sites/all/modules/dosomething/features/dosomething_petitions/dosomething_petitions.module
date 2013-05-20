@@ -766,3 +766,12 @@ function dosomething_petitions_increment_signature_count($nid) {
   $count = variable_get('petitions_signed_count_' . $nid, 0);
   variable_set('petitions_signed_count_' . $nid, ++$count);
 }
+
+/**
+ *Get the number of signatures for a petition
+ *
+ * @param $nid Node ID for the petitions
+ */
+function dosomething_petitions_get_signature_count($nid) {
+  return variable_get('petitions_signed_count_' . $nid, 0);
+}
