@@ -117,7 +117,7 @@ class PicsSanityTest extends SeleniumBaseTest {
       // This complicated section uploads an image!
       $image = $this->session->element('css selector', '#edit-submitted-field-cas-image-und-0-upload');
       $image->click();
-      $image->value($this->split_keys('/vagrant/tests/selenium/screenshots/bunny.jpg'));
+      $image->value($this->split_keys('/vagrant/tests/selenium/mocks/bunny.jpg'));
       $image->click();
 
       // Submit the form.  This should fail.
