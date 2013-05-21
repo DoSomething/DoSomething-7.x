@@ -7,6 +7,9 @@
          
          <!-- strict="true" -->
          <!-- bootstrap="tests/bootstrap.php" -->
+
+<!-- Watch out for strict mode:
+     http://stackoverflow.com/questions/10520464/what-does-phpunit-strict-mode-do -->
        
   <testsuites>
     <testsuite name="DoSomething">
