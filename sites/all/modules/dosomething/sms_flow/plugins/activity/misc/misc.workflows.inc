@@ -76,6 +76,7 @@ $activity->petitions = array(
     'nid' => 729172,
     'mdata_id' => 10413,
     'ftaf_beta_optin' => 154033,
+    'ftaf_prompt' => "Thanks! Once we get 10K signatures they'll be delivered to the Common App Board of Directors. Organize ur friends to sign. Txt 5 friends #s to add their voice.",
     'ftaf_response_success' => 'Thanks for sharing. Get more people involved, text SIGN. Want to be in Phillp Phillips new music video? Go to: http://doso.me/h to find out how.',
     'beta_to_alpha_feedback' => 154113,
   ),
@@ -88,13 +89,29 @@ $activity->petitions = array(
     'beta_to_alpha_feedback' => "Your friend @name signed the petition! You're on a roll, organize more friends to sign by texting SIGN, or join our music video challenge: http://doso.me/h",
     'alpha_campaign_id' => 116263,
   ),
+  // Abercrombie petition - Alphas from mData
+  array(
+    'nid' => 729298,
+    'mdata_id' => 10793,
+    'ftaf_beta_optin' => 157553,
+    'ftaf_prompt' => "Thanks! When we get 10K signatures, we'll deliver them to the Abercrombie CEO. Organize your friends to sign. Txt up to 5 friends #s to share the petition.",
+    'ftaf_response_success' => 'Great, thanks for getting your friends on board! Check out more DoSomething.org petitions: http://doso.me/n',
+  ),
+  // Abercrombie petition - Betas from opt in path
+  array(
+    'nid' => 729298,
+    'opt_in_path_id' => 157553,
+    'skip_ftaf' => TRUE,
+    'success_response' => 157583,
+    'beta_to_alpha_feedback' => 157563,
+  ),
 );
 
-$activity = $workflow->newActivity('sms_prompt');
+$activity = $workflow->newActivity('sms_prompt_from_context');
 $activity->name = 'ftaf_prompt';
 $activity->inputs = array('sign_petition');
 $activity->outputs = array('ftaf');
-$activity->question = t("Thanks! Once we get 10K signatures they'll be delivered to the Common App Board of Directors. Organize ur friends to sign. Txt 5 friends #s to add their voice.");
+$activity->question_context_key = 'ftaf_prompt';
 
 $activity = $workflow->newActivity('sms_flow_generic_ftaf');
 $activity->name = 'ftaf';
