@@ -732,6 +732,79 @@ function dosomething_petitions_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-petition-field_twitter_language'.
+  $fields['node-petition-field_twitter_language'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_twitter_language',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'petition',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Optional language for the tweet link on the "share" page.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 12,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_twitter_language',
+      'label' => 'Twitter Language',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '41',
+      ),
+    ),
+  );
+
   // Exported field: 'webform_submission_entity-petition-field_webform_email_or_cell'.
   $fields['webform_submission_entity-petition-field_webform_email_or_cell'] = array(
     'field_config' => array(
@@ -1063,6 +1136,7 @@ function dosomething_petitions_field_default_fields() {
   t('Mailchimp Interest Group');
   t('Mobile Commons Opt-In Path');
   t('Only first name and last initial are shown.');
+  t('Optional language for the tweet link on the "share" page.');
   t('Petition Description');
   t('Petition Letter');
   t('Petition Picture');
@@ -1070,6 +1144,7 @@ function dosomething_petitions_field_default_fields() {
   t('Recipients');
   t('Show my signature publicly');
   t('Signature Goal');
+  t('Twitter Language');
   t('What\'s your reason for signing?');
 
   return $fields;
