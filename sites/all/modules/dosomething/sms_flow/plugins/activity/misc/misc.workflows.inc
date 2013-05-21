@@ -101,9 +101,8 @@ $activity->petitions = array(
   array(
     'nid' => 729298,
     'opt_in_path_id' => 157553,
-    'ftaf_beta_optin' => 157553,
-    'ftaf_prompt' => "Thanks! When we get 10K signatures, we'll deliver them to the Abercrombie CEO. Organize your friends to sign. Txt up to 5 friends #s to share the petition.",
-    'ftaf_response_success' => 'Great, thanks for getting your friends on board! Check out more DoSomething.org petitions: http://doso.me/n',
+    'skip_ftaf' => TRUE,
+    'success_response' => 157583,
     'beta_to_alpha_feedback' => 157563,
   ),
 );
