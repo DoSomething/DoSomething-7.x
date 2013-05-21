@@ -159,13 +159,13 @@ $activity->sets = array(
   array(
     'mdata_id'     => 10753,
     'game_id'      => 12,
-    'opt_in_paths' => array(156573, 156583, 156593, 156603, 156613, 156623),
+    'opt_in_paths' => array(156573, 156583, 156593, 156603, 156613, 156623, 156713),
   ),
   // Puppy Text DOG tips
   array(
     'mdata_id'     => 10763,
     'game_id'      => 13,
-    'opt_in_paths' => array(156643, 156653, 156663, 156673, 156683, 156693, 156703, 156713),
+    'opt_in_paths' => array(156643, 156653, 156663, 156673, 156683, 156693, 156703),
     'path_special' => 156633,
     'send_to_special_on' => 1,
   ),
