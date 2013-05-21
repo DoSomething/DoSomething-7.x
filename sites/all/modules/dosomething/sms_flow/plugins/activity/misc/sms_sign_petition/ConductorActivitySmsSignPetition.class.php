@@ -30,12 +30,12 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
     $petition = $mdataPetition = NULL;
     foreach ($this->petitions as $p) {
       // Higher prioritization given to petition sets with the opt_in_path_id setup.
-      if ($p['opt_in_path_id'] == $optInPathID) {
+      if (isset($p['opt_in_path_id']) && $optInPathID > 0 && $p['opt_in_path_id'] == $optInPathID) {
         $petition = $p;
         break;
       }
       // This assumes the first matching mdata_id will be used if no match is found for opt_in_path_id
-      elseif ($p['mdata_id'] == $mdataID && empty($mdataPetition)) {
+      elseif (isset($p['mdata_id']) && $mdataID > 0 && $p['mdata_id'] == $mdataID && empty($mdataPetition)) {
         $mdataPetition = $p;
       }
     }

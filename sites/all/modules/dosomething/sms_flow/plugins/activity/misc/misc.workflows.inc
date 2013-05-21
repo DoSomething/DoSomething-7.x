@@ -89,7 +89,23 @@ $activity->petitions = array(
     'beta_to_alpha_feedback' => "Your friend @name signed the petition! You're on a roll, organize more friends to sign by texting SIGN, or join our music video challenge: http://doso.me/h",
     'alpha_campaign_id' => 116263,
   ),
-  // Abercrombie petition
+  // Abercrombie petition - Alphas from mData
+  array(
+    'nid' => 729298,
+    'mdata_id' => 10793,
+    'ftaf_beta_optin' => 157553,
+    'ftaf_prompt' => "Thanks! When we get 10K signatures, we'll deliver them to the Abercrombie CEO. Organize your friends to sign. Txt up to 5 friends #s to share the petition.",
+    'ftaf_response_success' => 'Great, thanks for getting your friends on board! Check out more DoSomething.org petitions: http://doso.me/n',
+  ),
+  // Abercrombie petition - Betas from opt in path
+  array(
+    'nid' => 729298,
+    'opt_in_path_id' => 157553,
+    'ftaf_beta_optin' => 157553,
+    'ftaf_prompt' => "Thanks! When we get 10K signatures, we'll deliver them to the Abercrombie CEO. Organize your friends to sign. Txt up to 5 friends #s to share the petition.",
+    'ftaf_response_success' => 'Great, thanks for getting your friends on board! Check out more DoSomething.org petitions: http://doso.me/n',
+    'beta_to_alpha_feedback' => 157563,
+  ),
 );
 
 $activity = $workflow->newActivity('sms_prompt_from_context');
