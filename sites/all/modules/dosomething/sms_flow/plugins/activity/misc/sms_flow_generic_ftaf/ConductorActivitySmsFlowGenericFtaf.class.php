@@ -53,14 +53,13 @@ class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
     if ($opt_in_path_id > 0 || $mdata_id > 0) {
       $selected_set = NULL;
       foreach ($this->ftaf_sets as $ftaf_set) {
-        // If a set is found with a matching opt_in_path_id, then use this one
+        // Use this set if opt_in_path_id matches
         if (isset($ftaf_set['opt_in_path_id']) && $opt_in_path_id > 0 && $ftaf_set['opt_in_path_id'] == $opt_in_path_id) {
           $selected_set = $ftaf_set;
           break;
         }
-        // The set with a matching mdata_id will be used unless an opt_in_path_id match is found
+        // Use the set with a mdata_id match unless an opt_in_path_id is matched later
         else if (isset($ftaf_set['mdata_id']) && $mdata_id > 0 && $ftaf_set['mdata_id'] == $mdata_id) {
-          // maybe choose this one unless
           $selected_set = $ftaf_set;
         }
       }
