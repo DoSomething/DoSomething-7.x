@@ -36,12 +36,16 @@
 	  	$types['all'] = ' selected="selected"';
 	  }
 	?>
-	<select name="type-filter" class="type-filter">
-		<option value="all"<?php echo $types['all']; ?>>All Animals</option>
-		<option value="cats"<?php echo $types['cats']; ?>>Cats</option>
-		<option value="dogs"<?php echo $types['dogs']; ?>>Dogs</option>
-		<option value="other"<?php echo $types['other']; ?>>Other</option>
-	</select>
+	<ul name="type-filter" class="type-filter filter">
+    <li clas="filter" value="all"<?php echo $types['all']; ?>>All Animals</li>
+    <li>
+      <ul class="filter filter-first">
+        <li clas="filter" value="cats"<?php echo $types['cats']; ?>>Cats</li>
+        <li clas="filter" value="dogs"<?php echo $types['dogs']; ?>>Dogs</li>
+        <li clas="filter" value="other"<?php echo $types['other']; ?>>Other</li>
+      </ul>
+    </li>
+	</ul>
 	<select name="state-filter" class="state-filter">
 		<option value="" selected="selected">All States</option>
 	<?php

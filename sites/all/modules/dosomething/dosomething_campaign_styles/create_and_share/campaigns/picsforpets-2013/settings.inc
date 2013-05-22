@@ -13,14 +13,14 @@ $settings = array(
   'facebook' => array(
     // Vouch request
     'posts' => array(
-      'title' => t('The Craziest Thing I Did to Save Money'),
+      'title' => t('Pics for Pets'),
       'caption' => '',
-      'description' => t('I just told the story about the craziest thing I did to save money, and I need your help to vouch for me.  No one believes me, click here to support!'),
+      'description' => t('You can save these animals lives by sharing their picture.'),
     ),
     // Invite from friends page.
     'invite' => array(
       'document' => 'http://www.dosomething.org/' . CRAZY_ROOT,
-      'title' => t('The Craziest Thing I Did to Save Money'),
+      'title' => t('Pics for Pets'),
       'caption' => '',
       'description' => t('I never told anyone this before, but this one time I did this crazy thing to save money..'),
       'image' => 'http://files.dosomething.org/files/campaigns/crazy13/logo.png',
@@ -44,10 +44,10 @@ $settings = array(
   // CSS
   'css' => array(
     'picsforpets-2013' => array(
-      'crazy.css'
+      'pics.css'
     ),
     'picsforpets-2013/submit' => array(
-      'crazy-form.css',
+      'pics-form.css',
     ),
   ),
 
