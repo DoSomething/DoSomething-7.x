@@ -1,213 +1,18 @@
 @import compass
 @import 'variables'
+@import 'header'
+@import 'nav'
 @import 'buttons'
 @import 'popups'
 @import 'drupal'
 
 // BASE
 // ----
-
 body, div[role="main"], #page
   background: $background
 
-// HEADER
-// ------
-
-// set bg-color and close gap that appeared above header
-#header
-  background: url(/sites/all/modules/dosomething/dosomething_campaign_styles/create_and_share/campaigns/picsforpets-2013/images/pics-header.jpg) top left
-  margin-top: -6px
-  @media only screen and (max-width: 920px) /* breakpoint at which #site-name (ds logo) drops */
-    margin-top: 0
-
-div.header_inner
-  visibility: hidden
-  height: 200px
-  width: 900px
-  margin: 0 auto
-  position: relative
-  overflow: hidden
-  @media only screen and (max-width: 920px)
-    height: 150px
-    width: 98%
-  @media only screen and (max-width: 620px)
-    padding: 2% 0
-    height: auto
-
-img.header_sponsor, img.header_logo
-  visibility: hidden
-  position: absolute
-  bottom: 5px
-  @media only screen and (max-width: 920px)
-    bottom: 5px
-  @media only screen and (max-width: 400px)
-    width: 45%
-  
-img.header_background
-  visibility: hidden
-  width: 700px
-  +block_center
-  @media only screen and (max-width: 920px)
-    height: 150px
-    width: 500px
-  @media only screen and (max-width: 620px)
-    display: none
-
-img.header_logo
-  visibility: hidden
-  height: 190px
-  right: 0
-  @media only screen and (max-width: 920px)
-    height: 140px
-  @media only screen and (max-width: 620px)
-    display: none
-
-img.header_sponsor
-  visibility: hidden
-  left: 0
-  @media only screen and (max-width: 620px)
-    position: static
-    width: 145px
-    float: left
-    margin: 0 0 0 10.5%
-  @media only screen and (max-width: 450px)
-    margin: 0 0 0 1.5%
-
-img.header_logo_text /* replaces img.header_logo on lower screen resolutions */
-  display: none
-  @media only screen and (max-width: 620px)
-    width: 80%
-    +block_center
-  @media only screen and (max-width: 450px)
-    width: 98%
-
-img.header_ds_logo /* additional DS logo for lower screen resolutions */
-  display: none
-  position: absolute
-  top: 5px
-  left: 0
-  height: 75px
-  @media only screen and (max-width: 920px)
-    display: block 
-  @media only screen and (max-width: 620px)
-    position: static
-    height: 50px
-    float: right
-    margin: 1% 9.5% 0 0 
-  @media only screen and (max-width: 450px)
-    margin: 1% 0.5% 0 0
-
-// NAV & FILTERS
-// -------------
-
-.crazy-menu-wrapper, .crazy-sub-menu-wrapper
-  width: 100%
-  margin: 0
-  padding: 0
-
-.crazy-menu, .crazy-sub-menu
-  overflow: hidden
-  list-style: none
-  li
-    float: left
-    text-align: center
-  a
-    display: block
-    font-family: din-web-reg
-    font-weight: 400
-    text-transform: uppercase
-    &:hover
-      text-decoration: none
-    
-// NAV
-// ---
-
-.crazy-menu-wrapper
-  background-color: $off_black
-
-.crazy-menu
-  margin: 0 auto
-  width: 600px
-  padding: 0
-  @media only screen and (max-width: 650px)
-    width: 100%
-  li
-    width: 25%
-    margin: 0 0 -5px 0
-  a
-    font-size: 25px
-    line-height: 50px
-    color: #fff
-    &:hover
-      color: $accent_color
-    @media only screen and (max-width: 650px)
-      font-size: 17px
-      line-height: 45px
-
-  a.active
-    color: $accent_color
-    &:hover
-      color: $accent_color
-
-  .last /* styles [submit] as a button */
-    background-image: -webkit-linear-gradient(top, rgb(225, 19, 19), rgb(180, 16, 16))
-    margin: 7px 0 0 0
-    width: 15%
-    height: 30px
-    @media only screen and (max-width: 650px)
-      width: 20%
-      height: 25px
-    +border-radius(3px)
-    a
-      margin: -8px 0 0 0
-      font-size: 20px
-      opacity: 0.9
-      @media only screen and (max-width: 650px)
-        font-size: 15px
-      &:hover
-        color: #fff
-
-  .last a.active /* when [submit] nave is selected -- do not display active color */
-    color: #fff
-
-// FILTERS
-// -------
-
-.crazy-sub-menu-wrapper
-  background-color: #fff
-
-.crazy-sub-menu
-  margin: 0 auto 1%
-  padding: 0
-  width: 500px
-  @media only screen and (max-width: 650px)
-    width: 100%
-  li
-    margin: 2%
-    width: 29%
-    @media only screen and (max-width: 650px)
-      margin: 1%
-  a
-    font-size: 18px
-    line-height: 36px
-    color: $off_black
-    &:hover
-      background-color: $off_black
-      color: #fff
-      +border-radius(3px)
-    @media only screen and (max-width: 650px)
-      font-size: 14px
-      line-height: 23px
-
-  a.active
-    background-color: $off_black
-    color: #fff
-    +border-radius(4px)
-    &:hover
-      color: #fff
-
-// SUB-NAV HEADER TEXT
-// -------------------
+// INDEX HEADLINE
+// --------------
 .scroll-header-style
   width: 500px
   margin: 2% auto 0
@@ -231,7 +36,6 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 
 // GENERAL LAYOUT
 // --------------
-
 .crazy-submission, .submit-start, .node-create-and-share-campaign
   background-color: #fff
   width: 500px
@@ -242,7 +46,6 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 
 // SUBMISSION
 // ----------
-
 .crazy-submission
   background-color: #fff
   width: 500px
@@ -293,7 +96,6 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 
 // INVITE FRIENDS
 // --------------
-
 .fb-invite-friends
   +img_replace(215px, 45px, '//files.dosomething.org/files/campaigns/crazy13/facebook.png')
   margin: 15px auto 0
@@ -315,7 +117,6 @@ img.header_ds_logo /* additional DS logo for lower screen resolutions */
 
 // BUTTON STYLES
 // -------------
-
 .fakefile /* [upload a file] div underlay */,
 #edit-submitted-field-cas-image-und-0-remove-button /* [remove] uploaded image */
   background: $yellow_button
