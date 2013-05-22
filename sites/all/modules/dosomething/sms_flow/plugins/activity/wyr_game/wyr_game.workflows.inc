@@ -131,7 +131,7 @@ $activity->sets = array(
     'game_id'      => 13,
     'opt_in_paths' => array(156643, 156653, 156663, 156673, 156683, 156693, 156703),
     'path_special' => 156633,
-    'send_to_special_on' => 1,
+    'send_to_special_on' => 3,
   ),
 );
 
