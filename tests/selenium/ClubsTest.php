@@ -185,8 +185,7 @@ class ClubsTest extends SeleniumBaseTest {
       $this->findAndClick('css selector', '.invite-link #edit-submit');
 
       // Make sure the "members" pop-up appeared
-      $login_popup = $this->session->element('id', 'dosomething-login-register-popup-form');
-      $this->assertTrue($login_popup->displayed());
+      $this->assertTrue($this->isVisible('id', 'dosomething-login-register-popup-form'));
 
       // Fill out the register form.
       $this->findAndSet('id', 'edit-first-name--2', 'Test');
