@@ -152,10 +152,7 @@ body {
   -o-border-radius: 4px;
   border-radius: 4px; }
 
-.node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
-.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav,
-.page-node-727978 #block-dosomething-campaign-styles-campaign-nav,
-.page-node-728363 #block-dosomething-campaign-styles-campaign-nav {
+#block-dosomething-campaign-styles-campaign-nav {
   display: none; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -188,7 +185,7 @@ body {
     color: black; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none;
-      color: #ef4624; }
+      color: #33a0c7; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix {
     color: #cccccc;
     text-transform: uppercase;
@@ -221,12 +218,12 @@ body {
       color: #cccccc;
       text-decoration: underline; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
-        color: #47bcfc; }
+        color: #e1da32; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix hr {
       border-top: none;
       border-bottom: 1px solid #cccccc; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count {
-      background: #47bcfc;
+      background: #e1da32;
       padding: 0.5em 0 0.3em;
       margin: 1em 0; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count p {
@@ -483,7 +480,7 @@ body {
   #cmp input[type="submit"] {
     font-size: 1.5em; }
   #cmp a {
-    color: #ef4624;
+    color: #33a0c7;
     text-decoration: underline; }
     #cmp a:hover {
       text-decoration: none; }
@@ -553,9 +550,9 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("http://www.dosomething.org/files/campaigns/puppy/header.jpg") top center no-repeat;
+    background: url("http://www.dosomething.org/files/campaigns/ok/headertest.jpg") top center no-repeat;
     margin-bottom: 0;
-    height: 236px; }
+    height: 271px; }
   #cmp #header {
     max-width: 800px;
     margin: 0 auto;
@@ -571,7 +568,7 @@ body {
       margin: 0 auto; }
     #cmp #header h1 {
       margin: 1.5%;
-      background: #47bcfc;
+      background: #e1da32;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -591,35 +588,35 @@ body {
       margin: 0 auto;
       line-height: 1.2em; }
       #cmp #header h2 span {
-        color: #47bcfc;
+        color: #e1da32;
         font-weight: 700;
         padding: 0; }
     #cmp #header .subhead {
       text-transform: uppercase;
       color: white;
-      background: #ef4624;
+      background: #33a0c7;
       zoom: 1;
-      filter: alpha(opacity=85);
-      opacity: 0.85;
+      filter: alpha(opacity=75);
+      opacity: 0.75;
       margin: 1.5% 0;
       float: left;
       font-size: 1.4em;
       padding: 1% 1.5% 0; }
     #cmp #header .subhead2 {
-      max-width: 375px;
+      max-width: 500px;
       color: white;
-      background: #ef4624;
+      background: #33a0c7;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
-      margin: 9% 0 2%;
+      margin: 16% 0 2%;
       font-weight: 500;
       float: left;
-      font-size: 1.2em;
+      font-size: 1.5em;
       padding: 1% 1.5%;
       clear: both; }
     #cmp #header .date {
-      color: #ef4624;
+      color: #33a0c7;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -649,151 +646,20 @@ body {
     #cmp #header .header-social {
       position: absolute;
       bottom: 0;
-      right: 8px; }
+      left: 8px; }
     #cmp #header .header-facebook-share, #cmp #header .header-twitter-share {
       display: inline-block;
       margin: 0 2px; }
     #cmp #header .ctia_bottom, #cmp #header .ctia_top {
       font-weight: 400;
       text-transform: none; }
-  #cmp #game {
-    color: white;
-    background: #47bcfc; }
-    #cmp #game h2, #cmp #game h3 {
-      max-width: 600px; }
-    #cmp #game h2 {
-      color: white;
-      line-height: 1.1em;
-      margin: 0 auto; }
-    #cmp #game h3 {
-      color: white;
-      font-weight: 400;
-      text-transform: none;
-      font-size: 1.5em;
-      line-height: 1.3em;
-      margin: 0.5em auto; }
-    #cmp #game label {
-      color: white; }
-    #cmp #game form {
-      max-width: 600px;
-      margin: 0 auto; }
-    #cmp #game hr {
-      border: 1px solid white;
-      border-bottom: 0;
-      clear: both; }
-    #cmp #game input[type="text"] {
-      float: left;
-      width: 48%;
-      margin: 2% 1%; }
-    #cmp #game .scholar-input {
-      float: left;
-      width: 50%; }
-      #cmp #game .scholar-input label {
-        margin-top: 2%; }
-      #cmp #game .scholar-input input {
-        width: 96%;
-        margin: 2% 1% 4%; }
-    #cmp #game .scholar-foot {
-      float: left;
-      width: 50%; }
-      #cmp #game .scholar-foot input[type="submit"] {
-        background: #fec82e;
-        color: #47bcfc;
-        float: left;
-        margin: 0 2% 4%;
-        font-size: 2.5em;
-        font-family: din-web-reg; }
-        #cmp #game .scholar-foot input[type="submit"]:hover {
-          opacity: 0.95; }
-      #cmp #game .scholar-foot .msg-data {
-        margin-left: 2%;
-        text-align: left;
-        font-size: 0.55em;
-        line-height: 1.2em;
-        font-weight: 300; }
-      #cmp #game .scholar-foot .rule-regs {
-        margin-left: 2%;
-        font-size: 0.8em;
-        text-align: left;
-        line-height: 1.2em; }
-        #cmp #game .scholar-foot .rule-regs a {
-          color: white;
-          font-weight: 400; }
-    #cmp #game .success_msg p {
-      color: white;
-      margin-bottom: 1.5em;
-      border: 1px solid #e1e1e1;
-      padding: 2%;
-      display: inline-block; }
+  #cmp #sms-map {
+    background: #e1da32; }
+    #cmp #sms-map img {
+      display: block;
+      margin: 5px auto 20px; }
   #cmp #action {
     padding: 3% 0 2%; }
-  #cmp #example .exp {
-    max-width: 267px;
-    float: left; }
-  #cmp #example .go-button {
-    background: #fec82e;
-    color: #47bcfc;
-    margin: 2.5em auto 1.4em;
-    font-size: 1.8em;
-    font-family: din-web-reg;
-    padding: 0.5em;
-    height: 1.8em; }
-    #cmp #example .go-button:hover {
-      opacity: 0.85; }
-    #cmp #example .go-button:before {
-      background-image: url("//www.dosomething.org/files/campaigns/puppy/seemore.png");
-      width: 180px;
-      content: " ";
-      position: absolute;
-      left: 45px;
-      top: 35px;
-      height: 61px; }
-  #cmp #example .clear {
-    clear: both;
-    position: relative; }
-  #cmp #example p {
-    max-width: 440px;
-    margin: 0 auto; }
-  #cmp #example .play-how {
-    max-width: 350px;
-    margin: 0 auto; }
-  #cmp #example .bubble-left, #cmp #example .bubble-right {
-    background: #47bcfc;
-    margin: 1em auto;
-    padding: 0.5em 1em;
-    color: white;
-    font-weight: 500;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px; }
-  #cmp #example .bubble-left {
-    float: left;
-    text-align: left;
-    position: relative; }
-    #cmp #example .bubble-left:before {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 0;
-      left: 30px;
-      bottom: -20px;
-      border: 10px solid;
-      border-color: #47bcfc #47bcfc transparent transparent; }
-  #cmp #example .bubble-right {
-    float: right;
-    text-align: right;
-    position: relative; }
-    #cmp #example .bubble-right:before {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 0;
-      right: 15px;
-      bottom: -20px;
-      border: 10px solid;
-      border-color: #47bcfc transparent transparent #47bcfc; }
   #cmp .section#info {
     padding: 2% 0; }
   #cmp #info {
@@ -805,8 +671,8 @@ body {
       color: #999999;
       font-style: italic; }
     #cmp #info h2 {
-      background: #47bcfc;
-      color: white;
+      background: #e1da32;
+      color: black;
       display: inline-block;
       padding: 0.2em 2% 0;
       margin-bottom: 0.7em;
@@ -815,6 +681,10 @@ body {
       font-weight: 500; }
     #cmp #info .divider {
       margin: 0 2% 3%; }
+    #cmp #info ul {
+      padding: 0 2%;
+      margin: 0 2%;
+      list-style-type: disc; }
   #cmp #faq div {
     padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq div.divider {
@@ -827,7 +697,7 @@ body {
     line-height: 1.4em; }
   #cmp #faq li {
     margin: 0;
-    color: #47bcfc; }
+    color: #e1da32; }
     #cmp #faq li span {
       color: black; }
   #cmp #faq h1 {
@@ -850,7 +720,7 @@ body {
     background-position-y: -1.4em; }
   #cmp #faq .go-button {
     background: #fec82e;
-    color: #47bcfc;
+    color: #e1da32;
     margin: 2% auto;
     padding: 0.5em;
     height: 1.8em;
@@ -919,7 +789,7 @@ body {
     -o-border-radius: 6px;
     border-radius: 6px; }
     #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
-      color: #47bcfc;
+      color: #e1da32;
       font-size: 1.45em;
       line-height: 1.2em;
       font-weight: 400;
@@ -945,7 +815,7 @@ body {
       color: white;
       text-transform: uppercase; }
       #cmp #contact-form .form-actions a:hover, #cmp #contact-form2 .form-actions a:hover, #cmp #contact-form3 .form-actions a:hover {
-        color: #47bcfc;
+        color: #e1da32;
         text-decoration: underline; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 10px 4px #fff742; }
@@ -973,7 +843,7 @@ body {
     height: 2em;
     margin: 1.1em auto 0;
     padding: 0.75em 0.7em 1.45em;
-    background: #47bcfc;
+    background: #e1da32;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
@@ -982,7 +852,7 @@ body {
       color: #f1f1f1; }
   #cmp .pane-campaign-signed .go-button {
     margin: 1em 0;
-    background: #47bcfc;
+    background: #e1da32;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
