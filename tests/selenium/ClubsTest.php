@@ -180,4 +180,59 @@ class ClubsTest extends SeleniumBaseTest {
       $this->fail($e->getMessage());
     }
   }
+
+  /**
+   * Request to join flow.
+   */
+  public function testLoggedInJoinTest() {
+    try {
+      // Go to the petition.
+      $this->session->open($this->base_url . '/club/michaels-awesome-dosomethingorg-club');
+
+      // Make sure the ridiculously formed name is correct.
+      $header = $this->getText('id', 'page-title');
+      $this->assertSame("Michael's Awesome DoSomething.org Club DoSomething.org Club", $header);
+
+      // Confirm that the invite button is there.
+      $invite_button = $this->session->element('css selector', '.invite-link #edit-submit');
+      $this->assertTrue($invite_button instanceof WebDriverElement);
+
+      // Click the "members" button
+      $invite_button->click();
+
+      // Make sure the "members" pop-up appeared
+      $login_popup = $this->session->element('id', 'dosomething-login-register-popup-form');
+      $this->assertTrue($login_popup->displayed());
+
+      // Fill out the register form.
+      $this->findAndSet('id', 'edit-first-name--2', 'Test');
+      $this->findAndSet('id', 'edit-first-name--2', 'Test');
+      $this->findAndSet('id', 'edit-last-name--2', 'User');
+      $this->findAndSet('id', 'edit-email', 'mchittenden+' . substr(md5(time()), 0, 6) . '@dosomething.org');
+      $this->findAndSet('id', 'edit-pass', 'testing123');
+      $this->findAndSet('id', 'edit-month', '03');
+      $this->findAndSet('id', 'edit-day', '03');
+      $this->findAndSet('id', 'edit-year', '1999');
+
+      // Submit the register form.
+      $this->findAndClick('id', 'edit-final-submit');
+
+      // Click the "Join" button, this time as a logged-in member.
+      $this->findAndClick('css selector', '.invite-link #edit-submit');
+
+      // Make sure "YOUR MEMBERSHIP IS PENDING" is there.
+      $this->assertContains("YOUR MEMBERSHIP IS PENDING", $this->getText('class name', 'invite-link'));
+
+      // Confirm that the invite button is there.
+      $this->findAndClick('css selector', '.dosomething-stats .button-container a');
+
+      // Check the popup for...you!
+      $member_popup = $this->session->element('class name', 'pane-club-members');
+      $this->assertContains('This is you', $member_popup->text());
+    }
+    catch (Exception $e) {
+      $this->make_screenshot('clubs_members_logged_in.png');
+      $this->fail($e->getMessage());
+    }
+  }
 }

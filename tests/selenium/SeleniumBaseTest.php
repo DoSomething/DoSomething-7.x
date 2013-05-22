@@ -108,4 +108,77 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
     $img_data = base64_decode($this->session->screenshot());
     file_put_contents($file_name, $img_data);
   }
+
+  /**
+   * Finds an element and sets the value of that element.
+   *
+   * @param string $type
+   *   The type of element to search for.
+   *
+   * @param string $selector
+   *   The selector of type $type that should be found.
+   *
+   * @param string $value
+   *   The value that the element should take.
+   *
+   * @return mixed WebDriverElement object|false
+   *   The object, if found, or false.
+   *
+   * @see https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
+   * @see https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value
+   */
+  public function findAndSet($type, $selector, $value) {
+    $elm = $this->session->element($type, $selector);
+    if ($elm instanceof WebDriverElement) {
+      $elm->value($this->split_keys($value));
+    }
+
+    return $elm;
+  }
+
+  /**
+   * Finds an element and clicks it.
+   *
+   * @param string $type
+   *   The type of element to search for.
+   *
+   * @param string $selector
+   *   The selector of type $type that should be found.
+   *
+   * @return mixed WebDriverElement object|false
+   *   The object, if found, or false.
+   *
+   * @see https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
+   * @see https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click
+   */
+  public function findAndClick($type, $selector) {
+    $elm = $this->session->element($type, $selector);
+    $this->assertTrue($elm instanceof WebDriverElement);
+    $elm->click();
+    return $elm;
+  }
+
+  /**
+   * Finds an element and gets its text value (stripped of all special characters and tags).
+   *
+   * @param string $type
+   *   The type of element to search for.
+   *
+   * @param string $selector
+   *   The selector of type $type that should be found.
+   *
+   * @return string|bool
+   *   Either the text of the element, or false.
+   *
+   * @see https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
+   * @see https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text
+   */
+  public function getText($type, $selector) {
+    $elm = $this->session->element($type, $selector);
+    if ($elm instanceof WebDriverElement) {
+      return $elm->text();
+    }
+
+    return FALSE;
+  }
 }
