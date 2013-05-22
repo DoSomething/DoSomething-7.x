@@ -133,6 +133,14 @@ $activity->sets = array(
     'path_special' => 156633,
     'send_to_special_on' => 3,
   ),
+  // Oklahoma ART tips
+  array(
+    'mdata_id'     => 10803,
+    'game_id'      => 14,
+    'opt_in_paths' => array(157683, 157693, 157703, 157713, 157723, 157733),
+    'path_special' => 157743,
+    'send_to_special_on' => 7,
+  ),
 );
 
 $activity = $workflow->newActivity('end');
