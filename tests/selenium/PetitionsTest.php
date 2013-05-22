@@ -15,37 +15,34 @@ class PetitionsTest extends SeleniumBaseTest {
       $this->session->open($this->base_url . '/petition/common-app');
 
       // Make sure that the title suggests it's the common app petition.
-      $title = $this->session->element('tag name', 'title')->text();
+      $title = $this->getText('tag name', 'title');
       $this->assertContains('Common App', $title);
 
       // Make sure the sign block exists.
-      $signature_block = $this->session->element('css selector', '.pane-node-webform h2.pane-title')->text();
+      $signature_block = $this->getText('css selector', '.pane-node-webform h2.pane-title');
       $this->assertSame('Sign This Petition', $signature_block);
 
       // Fill out the form
-      $first_name = $this->session->element('css selector', '#edit-submitted-field-webform-first-name-und-0-value--2');
-      $first_name->value($this->split_keys('Test'));
-      $last_name = $this->session->element('css selector', '#edit-submitted-field-webform-last-name-und-0-value--2');
-      $last_name->value($this->split_keys('User'));
-      $email = $this->session->element('css selector', '#edit-submitted-field-webform-email-or-cell-und-0-value--2');
-      $email->value($this->split_keys('test@dosomething.org'));
+      $first_name = $this->findAndSet('css selector', '#edit-submitted-field-webform-first-name-und-0-value--2', 'Test');
+      $last_name = $this->findAndSet('css selector', '#edit-submitted-field-webform-last-name-und-0-value--2', 'User');
+      $email = $this->findAndSet('css selector', '#edit-submitted-field-webform-email-or-cell-und-0-value--2', 'test@dosomething.org');
 
-      $this->session->element('css selector', '#edit-submit--2')->click();
+      $this->findAndClick('css selector', '#edit-submit--2');
 
       // Make sure the share box is up there.
       $share_box = $this->session->element('css selector', '.pane-petition-share');
       $this->assertTrue($share_box instanceof WebDriverElement);
 
       // Make sure the share box says "Share this Petition"
-      $share_title = $this->session->element('css selector', '.pane-petition-share h2.pane-title')->text();
+      $share_title = $this->getText('css selector', '.pane-petition-share h2.pane-title');
       $this->assertSame('Share this Petition', $share_title);
 
       // Make sure Test U is in the signatures list.
-      $signatures = $this->session->element('css selector', '.pane-petition-signatures')->text();
+      $signatures = $this->getText('css selector', '.pane-petition-signatures');
       $this->assertContains('Test U', $signatures);
     }
     catch (Exception $e) {
-    $this->make_screenshot('petitions_public_signature.png');
+      $this->make_screenshot('petitions_public_signature.png');
       $this->fail($e->getMessage());
     }
   }
@@ -59,37 +56,34 @@ class PetitionsTest extends SeleniumBaseTest {
       $this->session->open($this->base_url . '/petition/common-app');
 
       // Make sure that the title suggests it's the common app petition.
-      $title = $this->session->element('tag name', 'title')->text();
+      $title = $this->getText('tag name', 'title');
       $this->assertContains('Common App', $title);
 
       // Make sure the sign block exists.
-      $signature_block = $this->session->element('css selector', '.pane-node-webform h2.pane-title')->text();
+      $signature_block = $this->getText('css selector', '.pane-node-webform h2.pane-title');
       $this->assertSame('Sign This Petition', $signature_block);
 
       // Fill out the form
-      $first_name = $this->session->element('css selector', '#edit-submitted-field-webform-first-name-und-0-value--2');
-      $first_name->value($this->split_keys('New'));
-      $last_name = $this->session->element('css selector', '#edit-submitted-field-webform-last-name-und-0-value--2');
-      $last_name->value($this->split_keys('User'));
-      $email = $this->session->element('css selector', '#edit-submitted-field-webform-email-or-cell-und-0-value--2');
-      $email->value($this->split_keys('test@dosomething.org'));
+      $first_name = $this->findAndSet('css selector', '#edit-submitted-field-webform-first-name-und-0-value--2', 'New');
+      $last_name = $this->findAndSet('css selector', '#edit-submitted-field-webform-last-name-und-0-value--2', 'User');
+      $email = $this->findAndSet('css selector', '#edit-submitted-field-webform-email-or-cell-und-0-value--2', 'test@dosomething.org');
 
       // Uncheck the "show my signature publicly"
-      $check = $this->session->element('css selector', '#edit-submitted-field-webform-petition-signature-und--2');
-      $check->click();
+      $this->findAndClick('css selector', '#edit-submitted-field-webform-petition-signature-und--2');
 
-      $this->session->element('css selector', '#edit-submit--2')->click();
+      // Submit the sign form.
+      $this->findAndClick('css selector', '#edit-submit--2');
 
       // Make sure the share box is up there.
       $share_box = $this->session->element('css selector', '.pane-petition-share');
       $this->assertTrue($share_box instanceof WebDriverElement);
 
       // Make sure the share box says "Share this Petition"
-      $share_title = $this->session->element('css selector', '.pane-petition-share h2.pane-title')->text();
+      $share_title = $this->getText('css selector', '.pane-petition-share h2.pane-title');
       $this->assertSame('Share this Petition', $share_title);
 
       // Make sure my signature is NOT seen!
-      $signatures = $this->session->element('css selector', '.pane-petition-signatures')->text();
+      $signatures = $this->getText('css selector', '.pane-petition-signatures');
       $this->assertNotContains('New U', $signatures);
     }
     catch (Exception $e) {
