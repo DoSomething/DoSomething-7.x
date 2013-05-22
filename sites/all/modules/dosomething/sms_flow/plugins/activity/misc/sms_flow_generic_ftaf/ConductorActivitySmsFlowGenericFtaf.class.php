@@ -25,9 +25,10 @@ class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
   // Type of invite sent - particularly if it's for an sms_game or club
   public $type_override;
 
-  // Nested array of FTAF data. mdata_id is used to determine which FTAF data to use.
+  // Nested array of FTAF data. mdata_id or opt_in_path_id are used to determine which FTAF data to use.
   // array(
   //   array(
+  //     'opt_in_path_id' => number
   //     'mdata_id' => number,
   //     'alpha_optin',
   //     'beta_optin', etc...
@@ -46,20 +47,30 @@ class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
     $this->response_success = empty($this->response_success) ? $state->getContext('ftaf_response_success') : $this->response_success;
     $this->type_override = empty($this->type_override) ? $state->getContext('ftaf_type_override') : $this->type_override;
 
-    // If the parent workflow was triggered by a known mdata_id, get values from the $fatf_set array instead
+    // If the workflow was triggered by a known mdata_id or opt_in_path_id, get values from the $ftaf_set array instead
+    $opt_in_path_id = intval($_REQUEST['opt_in_path_id']);
     $mdata_id = intval($_REQUEST['mdata_id']);
-    if ($mdata_id > 0) {
+    if ($opt_in_path_id > 0 || $mdata_id > 0) {
+      $selected_set = NULL;
       foreach ($this->ftaf_sets as $ftaf_set) {
-        if ($ftaf_set['mdata_id'] == $mdata_id) {
-
-          $this->alpha_optin = !empty($ftaf_set['alpha_optin']) ? $ftaf_set['alpha_optin'] : 0;
-          $this->beta_optin = !empty($ftaf_set['beta_optin']) ? $ftaf_set['beta_optin'] : 0;
-          $this->id_override = $ftaf_set['id_override'];
-          $this->response_success = $ftaf_set['response_success'];
-          $this->response_error = $ftaf_set['response_error'];
-          $this->type_override = $ftaf_set['type_override'];
+        // Use this set if opt_in_path_id matches
+        if (isset($ftaf_set['opt_in_path_id']) && $opt_in_path_id > 0 && $ftaf_set['opt_in_path_id'] == $opt_in_path_id) {
+          $selected_set = $ftaf_set;
           break;
         }
+        // Use the set with a mdata_id match unless an opt_in_path_id is matched later
+        else if (isset($ftaf_set['mdata_id']) && $mdata_id > 0 && $ftaf_set['mdata_id'] == $mdata_id) {
+          $selected_set = $ftaf_set;
+        }
+      }
+
+      if ($selected_set) {
+        $this->alpha_optin = !empty($selected_set['alpha_optin']) ? $selected_set['alpha_optin'] : 0;
+        $this->beta_optin = !empty($selected_set['beta_optin']) ? $selected_set['beta_optin'] : 0;
+        $this->id_override = $selected_set['id_override'];
+        $this->response_success = $selected_set['response_success'];
+        $this->response_error = $selected_set['response_error'];
+        $this->type_override = $selected_set['type_override'];
       }
     }
 
