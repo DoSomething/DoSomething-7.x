@@ -36,6 +36,15 @@ $activity->ftaf_sets = array(
     'beta_optin' => array(152373),
     'response_success' => 'You\'re sending lots of text babies! Text back one number at a time and we\'ll send your friend a text baby',
   ),
+  // FTAF for the WYR game
+  array(
+    'mdata_id' => 10063,
+    'beta_optin' => array(142223, 142503, 143053),
+    'id_override' => 2,
+    'type_override' => 'sms_game',
+    'response_error' => 'Sorry! We didn\'t understand that. Text WYR to get a new set of questions. Or text TIPS for easy ways to save money.',
+    'response_success' => 'Cool, we\'ll let you know what your friend\'s say they\'d do to save some $$. Text WYR to get more ?s yourself.',
+  ),
 );
 
 $activity = $workflow->newActivity('end');
