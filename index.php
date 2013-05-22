@@ -1,6 +1,8 @@
 <?php
 
-// FOR TESTING ONLY.
+// FOR TESTING ONLY. Note that uncommenting this is causing problems with
+// zlib; @matt is investigating.
+//
 // require_once 'tests/php-error/php_error.php';
 // \php_error\reportErrors();
 
