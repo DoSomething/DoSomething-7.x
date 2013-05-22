@@ -6,9 +6,50 @@
         afterReplaceText : 'Just register with DoSomething.org to join Healing Oklahoma',
       };
 
+      if (window.location.pathname.substr(0, 5) == '/team') {
+        $signIn = $('#dosomething-login-login-popup-form');
+        $signUp = $('#dosomething-login-register-popup-form');
+        
+        // if a popup has been triggered, set its destination
+        if ($signIn.is(':visible') || $signUp.is(':visible')) {
+          $signIn.attr('action', destinationReplace($signIn.attr('action'), actionLink));
+          $signUp.attr('action', destinationReplace($signUp.attr('action'), actionLink));
+        }
+      }
+
+      $('#cmp #edit-actions').removeAttr('id');
+
+
       // LOGO, will inject
       //var logo = '//www.dosomething.org/files/campaigns/puppy/puppytext-logo.png';
       //$('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/puppy"><img width="215" class="logo" src="' + logo + '"/></a>');
+     
+
+      // hacktastic form rebuilding
+      var $emailInput = $('#edit-submitted-field-webform-email');
+      var $cellInput = $('#edit-submitted-field-webform-mobile');
+
+      $cellInput.before($emailInput); // re-arranges input field order
+      $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-email-label'));
+      $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-cell-label'));
+
+
+      // contact form login
+      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/727940" class="sign-in-popup">log in</a></p>');
+
+      // on lines 9-10 terrible things happen
+      $('#campaign-opt-in br').remove();
+      $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
+
+      // Hol' a medz in da paddie, man
+      var contactForm = $('.pane-campaign-sign-up');
+      $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
+
+      // change over contact form
+      var changeForm = $('.pane-campaign-signed');
+      $('#header #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
+
+
      
       // FAQ - onClick
       $('#faq h4').next('div').css('display','none');
@@ -29,6 +70,11 @@
       var contentAnchors = 'a.jump_scroll';
       var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
       var allAnchors = navAnchors + ', ' + contentAnchors;
+
+      // variables for input highlighting
+      var webformEmail = '#contact-form input[type="text"]';
+      var webformCell = '#contact-form input[type="tel"]';
+      var webformBoth = webformEmail + ', ' + webformCell;
 
       // scrolling navigation block
       $(window).bind('load', function() {
@@ -62,6 +108,34 @@
         });
       }); // end scrolling nav
 
+
+      $(document).ready(function(){
+        $(webformEmail).focus().addClass('focusOutline');
+      });
+      $(webformBoth).focus(function(){
+        $(this).addClass('focusOutline');
+      });
+      $(webformBoth).blur(function() {
+        $(this).removeClass('focusOutline');
+      });
+
+      $(allAnchors).click(function(event){
+        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+        if($(this).attr('href') == '#header'){
+          $(webformEmail).focus().addClass('focusOutline');
+        }
+        return false;
+      });
+
+      // nav highlighting 
+      var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
+      var firstNav = plainNav + ' a' + '.first';
+
+      $(firstNav).css('background','#FFCB15');
+      $(plainNav + ' a').click(function(){
+          $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
+      });
+
       $(allAnchors).click(function(event){
         $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
         return false;
@@ -75,18 +149,18 @@
     //}
 
     // #header section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/puppy/puppytext-logo.png';
-    var fb_title = 'Puppy Text';
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/ok/header.jpg';
+    var fb_title = 'Healing Oklahoma';
     var fb_header_caption = '';
 
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'Play the Puppy Text to find out how you and your friends can stand up to animal abuse: http://www.dosomething.org/puppy',
+      'feed_description': 'After traumatic experiences, young kids sometimes have a hard time processing what they\'ve been through.  In these instances, art can help them work through their grief in a creative way, starting the healing process. Help @Do Something begin the healing process in Moore, OK by donating art supplies and sending messages of hope. http://dsorg.us/168voSV',
       'feed_selector': '.header-facebook-share',
     }, function(response){
-      window.location.href = '/puppy#header';
+      window.location.href = '/ok#header';
     });
 
          
