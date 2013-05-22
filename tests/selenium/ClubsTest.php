@@ -19,48 +19,46 @@ class ClubsTest extends SeleniumBaseTest {
       $this->assertSame('Start a Club', $header->text());
 
       // Switch to no-school-associated-club
-      $this->session->element('id', 'edit-field-no-school-associate-und')->click();
-      $this->session->element('id', 'edit-field-noschool-club-name-und-0-value')->value($this->split_keys('Selenium test'));
+      $this->findAndClick('id', 'edit-field-no-school-associate-und');
+      $this->findAndSet('id', 'edit-field-noschool-club-name-und-0-value', 'Selenium test');
 
       // Club name
-      $clubname = $this->session->element('css selector', '#club-name-live span')->text();
+      $clubname = $this->getText('css selector', '#club-name-live span');
       $this->assertSame('Selenium test', $clubname);
 
       // Account information
-      $this->session->element('id', 'edit-field-email-und-0-value')->value($this->split_keys('mchittenden+seleniumtest' . rand(1,1000000) . '@dosomething.org'));
-      $this->session->element('id', 'edit-field-phone-required-und-0-value')->value($this->split_keys('6103683195'));
-      $this->session->element('id', 'edit-password')->value($this->split_keys('testin123'));
+      $this->findAndSet('id', 'edit-field-email-und-0-value', 'mchittenden+' . substr(md5(time()), 0, 6) . '@dosomething.org');
+      $this->findAndSet('id', 'edit-field-phone-required-und-0-value', '6103683195');
+      $this->findAndSet('id', 'edit-password', 'testing123');
 
       // User information
-      $this->session->element('id', 'edit-field-name-und-0-value')->value($this->split_keys('Testing'));
-      $this->session->element('id', 'edit-field-name-last-und-0-value')->value($this->split_keys('User'));
-      $this->session->element('id', 'edit-field-club-leader-birthdate-und-0-value-date')->value($this->split_keys('03/16/1988'));
+      $this->findAndSet('id', 'edit-field-name-und-0-value', 'Testing');
+      $this->findAndSet('id', 'edit-field-name-last-und-0-value', 'User');
+      $this->findAndSet('id', 'edit-field-club-leader-birthdate-und-0-value-date', '03/16/1988');
 
       // Campaign
-      $this->session->element('xpath', '//*[@id="edit-field-campaign-list-und"]/div[1]/input')->click();
+      $this->findAndClick('xpath', '//*[@id="edit-field-campaign-list-und"]/div[1]/input');
       
       // Mailing address
-      $this->session->element('id', 'edit-field-club-address-und-0-value')->value($this->split_keys('123 Vertical Rd'));
-      $this->session->element('id', 'edit-field-club-city-und-0-value')->value($this->split_keys('Omaha'));
-      $this->session->element('xpath', '//*[@id="edit-field-club-state-und"]/option[37]')->click();
-      $this->session->element('xpath', '//*[@id="edit-field-country-und"]/option[236]')->click();
-      $this->session->element('id', 'edit-field-club-zip-und-0-value')->value($this->split_keys('12345'));
+      $this->findAndSet('id', 'edit-field-club-address-und-0-value', '123 Vertical Rd');
+      $this->findAndSet('id', 'edit-field-club-city-und-0-value', 'Omaha');
+      $this->findAndClick('xpath', '//*[@id="edit-field-club-state-und"]/option[37]');
+      $this->findAndClick('xpath', '//*[@id="edit-field-country-und"]/option[236]');
+      $this->findAndSet('id', 'edit-field-club-zip-und-0-value', '12345');
 
-      // SUbmit the form.
-      $this->session->element('id', 'edit-submit')->click();
+      // Submit the form.
+      $this->findAndClick('id', 'edit-submit');
 
       // We should be on the "Invite your friends" page now.
-      $shareheader = $this->session->element('css selector', '#share-page-header h1.title')->text();
+      $shareheader = $this->getText('css selector', '#share-page-header h1.title');
       $this->assertSame('Invite your friends to your club.', $shareheader);
 
       // Make sure the cell / email containers are NOT visible.
-      $cell_container = $this->session->element('id', 'cell-share-container')->displayed();
-      $e_container = $this->session->element('id', 'email-share-container')->displayed();
-      $this->assertFalse($cell_container);
-      $this->assertFalse($e_container);
+      $this->assertFalse($this->isVisible('id', 'cell-share-container'));
+      $this->assertFalse($this->isVisible('id', 'email-share-container'));
 
       // Click the "By Cell" button.
-      $this->session->element('css selector', '#cell-share a')->click();
+      $this->findAndClick('css selector', '#cell-share a');
 
       // We should see the cell container now.
       $cc = $this->session->element('id', 'cell-share-container');
@@ -72,14 +70,14 @@ class ClubsTest extends SeleniumBaseTest {
       $this->assertEquals(count($inputs), 6);
 
       // Click "add more" under the cell fields.
-      $this->session->element('css selector', '#cell-share-container a.add-more')->click();
+      $this->findAndClick('css selector', '#cell-share-container a.add-more');
 
       // Now there should be 9.
       $now_inputs = $this->session->elements('css selector', '#cell-share-container input.cell-share-cell');
       $this->assertEquals(count($now_inputs), 9);
 
       // Click on "By Email"
-      $this->session->element('css selector', '#email-share a')->click();
+      $this->findAndClick('css selector', '#email-share a');
 
       // The email container should be visible now.
       $email = $this->session->element('id', 'email-share-container');
@@ -91,33 +89,31 @@ class ClubsTest extends SeleniumBaseTest {
       $this->assertFalse($cell_container);
 
       // The "manual email" container should be invisible.
-      $fe = $this->session->element('css selector', '#email-share-container #manual-emails');
-      $this->assertFalse($fe->displayed());
+      $this->assertFalse($this->isVisible('css selector', '#email-share-container #manual-emails'));
 
       // Click "I' drather type in my own friend's email addresses"
-      $this->session->element('css selector', '#email-share-container .my-own-emails')->click();
+      $this->findAndClick('css selector', '#email-share-container .my-own-emails');
 
       // The "manual email" container is now visible.
-      $fe = $this->session->element('css selector', '#email-share-container #manual-emails');
-      $this->assertTrue($fe->displayed());
+      $this->assertTrue($this->isVisible('css selector', '#email-share-container #manual-emails'));
 
       // There should be 6 email fields.
       $es = $this->session->elements('css selector', '#manual-emails input');
       $this->assertEquals(count($es), 6);
 
       // Click "add more" under the emails.
-      $this->session->element('css selector', '#email-share-container #manual-emails a')->click();
+      $this->findAndClick('css selector', '#email-share-container #manual-emails a');
 
       // There should now be 9 email fields.
       $new_email_count = $this->session->elements('css selector', '#email-share-container input');
       $this->assertEquals(count($new_email_count), 9);
 
       // Continue to the actual club!
-      $this->session->element('css selector', '#continue-to-club a')->click();
+      $this->findAndClick('css selector', '#continue-to-club a');
 
       // We made it! Let's make sure it's actually our club.
-      $clubheader = $this->session->element('css selector', 'h1#page-title')->text();
-      $this->assertEquals('Selenium test DoSomething.org Club', $clubheader);
+      $clubheader = $this->getText('css selector', 'h1#page-title');
+      $this->assertSame('Selenium test DoSomething.org Club', $clubheader);
     }
     catch (Exception $e) {
       $this->make_screenshot('clubs_create.png');
@@ -134,17 +130,14 @@ class ClubsTest extends SeleniumBaseTest {
       $this->session->open($this->base_url . '/club/michaels-awesome-dosomethingorg-club');
 
       // Make sure the ridiculously formed name is correct.
-      $header = $this->session->element('id', 'page-title')->text();
+      $header = $this->getText('id', 'page-title');
       $this->assertSame("Michael's Awesome DoSomething.org Club DoSomething.org Club", $header);
 
       // Confirm that the invite button is there.
-      $invite_button = $this->session->element('css selector', '.invite-link #edit-submit');
-      $this->assertTrue($invite_button instanceof WebDriverElement);
+      $this->findAndClick('css selector', '.invite-link #edit-submit');
 
-      $invite_button->click();
-
-      $login_popup = $this->session->element('id', 'dosomething-login-register-popup-form');
-      $this->assertTrue($login_popup->displayed());
+      // Make sure the login popup appears
+      $this->assertTrue($this->isVisible('id', 'dosomething-login-register-popup-form'));
     }
     catch (Exception $e) {
       $this->make_screenshot('clubs_join_logged_out.png');
@@ -161,19 +154,14 @@ class ClubsTest extends SeleniumBaseTest {
       $this->session->open($this->base_url . '/club/michaels-awesome-dosomethingorg-club');
 
       // Make sure the ridiculously formed name is correct.
-      $header = $this->session->element('id', 'page-title')->text();
+      $header = $this->getText('id', 'page-title');
       $this->assertSame("Michael's Awesome DoSomething.org Club DoSomething.org Club", $header);
 
-      // Confirm that the invite button is there.
-      $member_button = $this->session->element('css selector', '.dosomething-stats .button-container a');
-      $this->assertTrue($member_button instanceof WebDriverElement);
-
       // Click the "members" button
-      $member_button->click();
+      $this->findAndClick('css selector', '.dosomething-stats .button-container a');
 
       // Make sure the "members" pop-up appeared
-      $member_popup = $this->session->element('class name', 'pane-club-members');
-      $this->assertTrue($member_popup->displayed());
+      $this->assertTrue($this->isVisible('class name', 'pane-club-members'));
     }
     catch (Exception $e) {
       $this->make_screenshot('clubs_members_logged_out.png');
@@ -193,12 +181,8 @@ class ClubsTest extends SeleniumBaseTest {
       $header = $this->getText('id', 'page-title');
       $this->assertSame("Michael's Awesome DoSomething.org Club DoSomething.org Club", $header);
 
-      // Confirm that the invite button is there.
-      $invite_button = $this->session->element('css selector', '.invite-link #edit-submit');
-      $this->assertTrue($invite_button instanceof WebDriverElement);
-
-      // Click the "members" button
-      $invite_button->click();
+      // Click the "Join" button.
+      $this->findAndClick('css selector', '.invite-link #edit-submit');
 
       // Make sure the "members" pop-up appeared
       $login_popup = $this->session->element('id', 'dosomething-login-register-popup-form');

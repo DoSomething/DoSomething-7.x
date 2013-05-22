@@ -129,6 +129,7 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
    */
   public function findAndSet($type, $selector, $value) {
     $elm = $this->session->element($type, $selector);
+    $this->assertTrue($elm instanceof WebDriverElement);
     if ($elm instanceof WebDriverElement) {
       $elm->value($this->split_keys($value));
     }
@@ -175,10 +176,32 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
    */
   public function getText($type, $selector) {
     $elm = $this->session->element($type, $selector);
+    $this->assertTrue($elm instanceof WebDriverElement);
     if ($elm instanceof WebDriverElement) {
       return $elm->text();
     }
 
     return FALSE;
+  }
+
+  /** 
+   * Confirms whether an element is visible on the page or not.
+   *
+   * @param string $type
+   *   The type of element to search for.
+   *
+   * @param string $selector
+   *   The selector of type $type that should be found.
+   *
+   * @return bool
+   *   Whether or not the element is visible.
+   *
+   * @see https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
+   * @see https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text
+   */
+  public function isVisible($type, $selector) {
+    $elm = $this->session->element($type, $selector);
+    $this->assertTrue($elm instanceof WebDriverElement);
+    return $elm->displayed();
   }
 }
