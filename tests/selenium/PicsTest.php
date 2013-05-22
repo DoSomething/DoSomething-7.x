@@ -17,29 +17,25 @@ class PicsSanityTest extends SeleniumBaseTest {
       $this->session->open("http://qa2.dosomething.org/picsforpets-2013");
 
       // Confirm that we're looking at the registration page.
-      $body = $this->session->element('tag name', 'body')->text();
+      $body = $this->getText('tag name', 'body');
       $this->assertContains('Registration', $body);
 
       // Click the sign-in popup
-      $this->session->element('css selector', '.or-sign-in')->click();
+      $this->findAndClick('class name', 'or-sign-in');
 
       // Login credentials
-      $name = $this->session->element('css selector', '#edit-name--3')->value($this->split_keys('admin'));
-      $this->session->element('css selector', '#edit-pass--3')->value($this->split_keys('do something about passwords'));
+      $this->findAndSet('id', 'edit-name--3', 'admin');
+      $this->findAndSet('id', 'edit-pass--3', 'do something about passwords');
 
       // Submit the login popup
-      $this->session->element('css selector', '#edit-final-submit--2')->click();
+      $this->findAndClick('id', 'edit-final-submit--2');
 
       // The page reloaded here.  Let's look for the "All Animals" dropdown.
-      $selectors = $this->session->element('css selector', '.crazy-menu-wrapper')->text();
+      $selectors = $this->getText('class name', 'crazy-menu-wrapper');
       $this->assertContains('All Animals', $selectors);
     }
     catch (Exception $e) {
-      // Did we fail? Make a screenshot.
-      $this->make_screenshot('picsforpets_login.png');
-
-      // Show the error message.
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'picsforpets_login');
     }
   }
 
@@ -52,44 +48,43 @@ class PicsSanityTest extends SeleniumBaseTest {
       $this->session->open('http://qa2.dosomething.org/picsforpets-2013');
 
       // Log in again.
-      $this->session->element('css selector', '.or-sign-in')->click();
-      $name = $this->session->element('css selector', '#edit-name--3')->value($this->split_keys('admin'));
-      $this->session->element('css selector', '#edit-pass--3')->value($this->split_keys('do something about passwords'));
-      $this->session->element('css selector', '#edit-final-submit--2')->click();
+      $this->findAndClick('class name', 'or-sign-in');
+      $this->findAndSet('id', 'edit-name--3', 'admin');
+      $this->findAndSet('id', 'edit-pass--3', 'do something about passwords');
+      $this->findAndClick('id', 'edit-final-submit--2');
 
       // Check the title
-      $title = $this->session->element('tag name', 'title')->text();
+      $title = $this->getText('tag name', 'title');
       $this->assertContains('Pics for Pets', $title);
 
       // Select cats...
-      $this->session->element('xpath', '//*[@id="main-wrapper"]/div/div/div[3]/select[1]/option[2]')->click();
+      $this->findAndClick('xpath', '//*[@id="main-wrapper"]/div/div/div[3]/select[1]/option[2]');
 
       // Gooooooooooooo
-      $this->session->element('css selector', '.go-filter')->click();
+      $this->findAndClick('class name', 'go-filter');
 
       // Page reloaded.  Check for Kitteh
-      $wrapper = $this->session->element('css selector', '.view-content')->text();
+      $wrapper = $this->getText('class name', 'view-content');
       $this->assertContains('Kitteh', $wrapper);
 
       // Okay, now let's go to South Carolina
-      $this->session->element('xpath', '//*[@id="main-wrapper"]/div/div/div[3]/select[2]/option[48]')->click();
-      $this->session->element('css selector', '.go-filter')->click();
+      $this->findAndClick('xpath', '//*[@id="main-wrapper"]/div/div/div[3]/select[2]/option[48]');
+      $this->findAndClick('class name', 'go-filter');
 
       // Page reloaded again.
-      $nothing = $this->session->element('css selector', '.view-empty')->text();
+      $nothing = $this->getText('class name', 'view-empty');
       $this->assertContains('NO POSTS YET', $nothing);
 
       // We good? We good. Onto "all animals" in south carolina.
-      $this->session->element('xpath', '//*[@id="main-wrapper"]/div/div/div[3]/select[1]/option[1]')->click();
-      $this->session->element('css selector', '.go-filter')->click();
+      $this->findAndClick('xpath', '//*[@id="main-wrapper"]/div/div/div[3]/select[1]/option[1]');
+      $this->findAndClick('class name', 'go-filter');
 
       // Check for bunny the bunny.
-      $wrapper = $this->session->element('css selector', '.view-content')->text();
+      $wrapper = $this->getText('class name', 'view-content');
       $this->assertContains('Bunny', $wrapper);
     }
     catch (Exception $e) {
-      $this->make_screenshot('picsforpets_filter.png');
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'picsforpets_filter');
     }
   }
 
@@ -102,45 +97,44 @@ class PicsSanityTest extends SeleniumBaseTest {
       $this->session->open('http://qa2.dosomething.org/picsforpets-2013');
 
       // Log in again.
-      $this->session->element('css selector', '.or-sign-in')->click();
-      $name = $this->session->element('css selector', '#edit-name--3')->value($this->split_keys('admin'));
-      $this->session->element('css selector', '#edit-pass--3')->value($this->split_keys('do something about passwords'));
-      $this->session->element('css selector', '#edit-final-submit--2')->click();
+      $this->findAndClick('class name', 'or-sign-in');
+      $this->findAndSet('id', 'edit-name--3', 'admin');
+      $this->findAndSet('id', 'edit-pass--3', 'do something about passwords');
+      $this->findAndClick('id', 'edit-final-submit--2');
 
       // Check the title
-      $title = $this->session->element('tag name', 'title')->text();
+      $title = $this->getText('tag name', 'title');
       $this->assertContains('Pics for Pets', $title);
 
       // Click into the submit page.
-      $this->session->element('css selector', '.submit-link')->click();
+      $this->findAndClick('class name', 'submit-link');
 
       // This complicated section uploads an image!
-      $image = $this->session->element('css selector', '#edit-submitted-field-cas-image-und-0-upload');
-      $image->click();
-      $image->value($this->split_keys('/vagrant/tests/selenium/mocks/bunny.jpg'));
+      $image = $this->findAndClick('id', 'edit-submitted-field-cas-image-und-0-upload');
+      $image->value($this->split_keys($this->mocksDir . '/bunny.jpg'));
       $image->click();
 
       // Submit the form.  This should fail.
-      $this->session->element('css selector', '#edit-submit')->click();
-      $elm = $this->session->element('css selector', '#webform-component-shelter-state')->text();
+      $this->findAndClick('id', 'edit-submit');
+      $elm = $this->getText('id', 'webform-component-shelter-state');
       $this->assertContains('Shelter State', $elm);
 
       // This fills out the form!
-      $this->session->element('css selector', '#edit-submitted-name')->value($this->split_keys('Test bunny'));
-      $this->session->element('xpath', '//*[@id="edit-submitted-type"]/option[4]')->click();
-      $this->session->element('css selector', '#edit-submitted-shelter')->value($this->split_keys('Bunny shelter'));
-      $this->session->element('xpath', '//*[@id="edit-submitted-shelter-state"]/option[10]')->click();
+      $this->findAndSet('id', 'edit-submitted-name', 'Test bunny');
+      $this->findAndClick('xpath', '//*[@id="edit-submitted-type"]/option[4]');
+      $this->findAndSet('id', 'edit-submitted-shelter', 'Bunny shelter');
+      $this->findAndClick('xpath', '//*[@id="edit-submitted-shelter-state"]/option[10]');
 
       // Submit the form.  This should succeed.
-      $this->session->element('css selector', '#edit-actions input')->click();
+      $this->findAndClick('css selector', '#edit-actions input');
 
       // Check for the singular post.
-      $post = $this->session->element('css selector', '.view-content')->text();
+      $post = $this->getText('class name', 'view-content');
       $this->assertContains('Test bunny, DE', $post);
     }
     catch (Exception $e) {
-      $this->make_screenshot('picsforpets_submit.png');
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'picsforpets_submit');
     }
   }
+  
 }

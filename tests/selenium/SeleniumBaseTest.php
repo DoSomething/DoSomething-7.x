@@ -50,6 +50,12 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
   protected $screenshotDir;
 
   /**
+   * Base directory to store mocks used in tests.
+   * @var string
+   */
+  protected $mocksDir;
+
+  /**
    * Test case setup.
    */
   public function setUp() {
@@ -68,6 +74,7 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
     }
 
     $this->screenshotDir = '/vagrant/tests/selenium/screenshots';
+    $this->mocksDir = '/vagrant/tests/selenium/mocks';
 
     if (!is_dir($this->screenshotDir) || !is_writable($this->screenshotDir)) {
       if (FALSE === mkdir($this->screenshotDir)) {
@@ -181,7 +188,7 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
       return $elm->text();
     }
 
-    return FALSE;
+    return array();
   }
 
   /** 
@@ -203,5 +210,19 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
     $elm = $this->session->element($type, $selector);
     $this->assertTrue($elm instanceof WebDriverElement);
     return $elm->displayed();
+  }
+
+  /**
+   * Handles the standard exceptions.  Makes a screenshot and spits out the problems.
+   *
+   * @param Exception $e
+   *   The exception that has been caught.
+   *
+   * @param string $filename
+   *   The name of the file that will be created, WITHOUT extension.
+   */
+  protected function catchException(Exception $e, $filename = 'test_error') {
+    $this->make_screenshot($filename . '.png');
+    $this->fail($e->getMessage());
   }
 }
