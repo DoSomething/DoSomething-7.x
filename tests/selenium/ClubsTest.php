@@ -124,4 +124,60 @@ class ClubsTest extends SeleniumBaseTest {
       $this->fail($e->getMessage());
     }
   }
+
+  /**
+   * Test the "Join" button as a logged out member.
+   */
+  public function testLoggedOutJoinTest() {
+    try {
+      // Go to the petition.
+      $this->session->open($this->base_url . '/club/michaels-awesome-dosomethingorg-club');
+
+      // Make sure the ridiculously formed name is correct.
+      $header = $this->session->element('id', 'page-title')->text();
+      $this->assertSame("Michael's Awesome DoSomething.org Club DoSomething.org Club", $header);
+
+      // Confirm that the invite button is there.
+      $invite_button = $this->session->element('css selector', '.invite-link #edit-submit');
+      $this->assertTrue($invite_button instanceof WebDriverElement);
+
+      $invite_button->click();
+
+      $login_popup = $this->session->element('id', 'dosomething-login-register-popup-form');
+      $this->assertTrue($login_popup->displayed());
+    }
+    catch (Exception $e) {
+      $this->make_screenshot('clubs_join_logged_out.png');
+      $this->fail($e->getMessage());
+    }
+  }
+
+  /**
+   * Test the member popup.
+   */
+  public function testLoggedOutMembersList() {
+    try {
+      // Go to the petition.
+      $this->session->open($this->base_url . '/club/michaels-awesome-dosomethingorg-club');
+
+      // Make sure the ridiculously formed name is correct.
+      $header = $this->session->element('id', 'page-title')->text();
+      $this->assertSame("Michael's Awesome DoSomething.org Club DoSomething.org Club", $header);
+
+      // Confirm that the invite button is there.
+      $member_button = $this->session->element('css selector', '.dosomething-stats .button-container a');
+      $this->assertTrue($member_button instanceof WebDriverElement);
+
+      // Click the "members" button
+      $member_button->click();
+
+      // Make sure the "members" pop-up appeared
+      $member_popup = $this->session->element('class name', 'pane-club-members');
+      $this->assertTrue($member_popup->displayed());
+    }
+    catch (Exception $e) {
+      $this->make_screenshot('clubs_members_logged_out.png');
+      $this->fail($e->getMessage());
+    }
+  }
 }
