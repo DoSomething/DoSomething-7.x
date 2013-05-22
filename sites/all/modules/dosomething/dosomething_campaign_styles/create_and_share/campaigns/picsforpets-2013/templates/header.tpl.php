@@ -43,19 +43,19 @@
 
     <?php /* First nav filter - animal type */ ?>
     <ul class="filter-type filter-list" id="filter-type">
-      <li><a id="type-selection" href="#" <?php echo $types['all']; ?>>All Animals</a></li>
+      <li id="type-selection" href="#" <?php echo $types['all']; ?>>All Animals</li>
       <li>
         <ul class="filter-options">
-          <li class="filter-option" <?php echo $types['cats']; ?>><a href="#">Cats</a></li>
-          <li class="filter-option" <?php echo $types['dogs']; ?>><a href="#">Dogs</a></li>
-          <li class="filter-option" <?php echo $types['other']; ?>><a href="#">Other</a></li>
+          <li class="filter-option" <?php echo $types['cats']; ?>>Cats</li>
+          <li class="filter-option" <?php echo $types['dogs']; ?>>Dogs</li>
+          <li class="filter-option" <?php echo $types['other']; ?>>Other</li>
         </ul>
       </li>
     </ul>
 
     <?php /* Second nav filter - state */ ?>
     <ul class="filter-state filter-list" id="filter-state">
-      <li><a id="state-selection" href="#">All States</a></li>
+      <li id="state-selection" href="#">All States</li>
       <li>
         <ul class="filter-options">
           <?php
@@ -74,7 +74,7 @@
 
             $path = request_path();
             foreach ($states as $key => $state) {
-              echo '<li class="filter-option"><a href="#">' . $selected[$key] . $state . '</a></li>';
+              echo '<li class="filter-option">' . $selected[$key] . $state . '</li>';
             }
           ?>
         </ul>
