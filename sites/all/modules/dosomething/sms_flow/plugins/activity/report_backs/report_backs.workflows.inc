@@ -38,8 +38,9 @@ $workflows[$workflow->name] = $workflow;
 
 /**
  * sms_flow_can_send_mms_report_back workflow
- *  can_send_mms activity replaces the End activity and should be the
- *  last one in the workflow.
+ *  Handles the user response to whether or not he can send MMS. The routes property
+ *  uses the array key as the incoming opt-in path and the 'yes' and 'no' values as
+ *  the outgoing opt-in paths depending on the user's answer.
  */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
@@ -65,6 +66,11 @@ $activity->routes = array(
   '149003' => array(
     'yes' => '149023',
     'no' => '149013'
+  ),
+  // Oklahoma Report Back
+  '157773' => array(
+    'yes' => '157793',
+    'no' => '157783'
   ),
 );
 
@@ -439,5 +445,61 @@ $activity = $workflow->newActivity('end');
 $activity->title = 'end';
 $activity->name = 'end';
 $activity->inputs = array('mcommons_opt_out');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Oklahome Response Campaign report back workflow. User will first be prompted
+ * to submit a picture from: https://secure.mcommons.com/campaigns/119613/opt_in_paths/157793
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_oklahoma_report_back';
+$workflow->title = 'Oklahoma Report Back';
+$workflow->description = 'Submits the report back for the Oklahoma campaign';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_items');
+$activity->should_prompt = FALSE;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_items';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_people');
+$activity->question = t('Amazing! Q1: How many items did you collect?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_items');
+$activity->outputs = array('strip_signature');
+$activity->question = t('Fantastic. Q2: How many people helped out?');
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  'ask_items' => 1,
+  'ask_people' => 2,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 'Incredible job. Thanks for starting the healing process. Want to send a message of support to Moore? Text HOPE to start & we\'ll hand deliver your messages.';
+$activity->webform_nid = 729395;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back');
 
 $workflows[$workflow->name] = $workflow;
