@@ -43,11 +43,11 @@
 
       // Hol' a medz in da paddie, man
       var contactForm = $('.pane-campaign-sign-up');
-      $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
+      $('#signup #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
 
       // change over contact form
       var changeForm = $('.pane-campaign-signed');
-      $('#header #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
+      $('#signup #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
 
 
      
