@@ -8,7 +8,7 @@ require_once 'SeleniumBaseTest.php';
 class ClubsTest extends SeleniumBaseTest {
   /**
    * Test creating of the clubs.
-   */
+   *
   public function testCreateClubFlowTest() {
     try {
       // Go to the petition.
@@ -122,7 +122,7 @@ class ClubsTest extends SeleniumBaseTest {
 
   /**
    * Test the "Join" button as a logged out member.
-   */
+   *
   public function testLoggedOutJoinTest() {
     try {
       // Go to the petition.
@@ -145,7 +145,7 @@ class ClubsTest extends SeleniumBaseTest {
 
   /**
    * Test the member popup.
-   */
+   *
   public function testLoggedOutMembersList() {
     try {
       // Go to the petition.
@@ -168,7 +168,7 @@ class ClubsTest extends SeleniumBaseTest {
 
   /**
    * Request to join flow.
-   */
+   *
   public function testLoggedInJoinTest() {
     try {
       // Go to the petition.
@@ -212,6 +212,60 @@ class ClubsTest extends SeleniumBaseTest {
     }
     catch (Exception $e) {
       $this->catchException($e, 'clubs_members_logged_in');
+    }
+  }
+  */
+
+  /**
+   * Tests the form on the clubs landing page.  It should go to /node/add/club
+   */
+  public function testClubsLandingStartClubFormTest() {
+    try {
+      // Load up /clubs
+      $this->session->open($this->base_url . '/clubs');
+
+      // Make sure we're on the right page here -- there should be a block titled "Start a DoSomething Club"
+      $startblock = $this->getText('css selector', '.pane-webform-client-block-719550 h2.pane-title');
+      $this->assertSame('Start a DoSomething Club', $startblock);
+
+      // Fill out the email field and submit
+      $this->findAndSet('id', 'edit-submitted-field-webform-email-und-0-email', 'test@dosomething.org');
+      $this->findAndClick('css selector', '#webform-client-form-719550 #edit-submit');
+
+      // We should be on /node/add/club now.
+      $title = $this->getText('css selector', 'h1#page-title');
+      $this->assertSame('Start a Club', $title);
+    }
+    catch (Exception $e) {
+      $this->catchException($e, 'clubs_landing');
+    }
+  }
+
+  /**
+   * Test the clubs directory.
+   */
+  public function testClubsDirectoryTest() {
+    try {
+      // Go to the clubs directory page.
+      $this->session->open($this->base_url . '/clubs/directory');
+
+      // Make sure it is, in fact, the clubs directory page.  There's some text at the top.
+      $header = $this->getText('css selector', '.view-header p');
+      $this->assertContains('Browse these clubs to find one near you', $header);
+
+      // Make sure >5 clubs exist (we actually have more than 1,000, but this is a good base for the page).
+      $rows = $this->session->elements('css selector', '.view-id-clubs table tr');
+      $this->assertGreaterThan(5, count($rows));
+
+      // Search for clubs named "Hope"
+      $this->findAndSet('id', 'edit-title', 'Hope');
+      $this->findAndClick('id', 'edit-submit-clubs');
+
+      // We should see "Hope" somewhere in the table now.
+      $new_rows = $this->getText('css selector', '.view-id-clubs table');
+      $this->assertContains('Hope', $new_rows);
+    } catch (Exception $e) {
+      $this->catchException($e, 'clubs_directory');
     }
   }
 }
