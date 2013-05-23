@@ -116,8 +116,7 @@ class ClubsTest extends SeleniumBaseTest {
       $this->assertSame('Selenium test DoSomething.org Club', $clubheader);
     }
     catch (Exception $e) {
-      $this->make_screenshot('clubs_create.png');
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'clubs_create');
     }
   }
 
@@ -140,8 +139,7 @@ class ClubsTest extends SeleniumBaseTest {
       $this->assertTrue($this->isVisible('id', 'dosomething-login-register-popup-form'));
     }
     catch (Exception $e) {
-      $this->make_screenshot('clubs_join_logged_out.png');
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'clubs_logged_out');
     }
   }
 
@@ -164,8 +162,7 @@ class ClubsTest extends SeleniumBaseTest {
       $this->assertTrue($this->isVisible('class name', 'pane-club-members'));
     }
     catch (Exception $e) {
-      $this->make_screenshot('clubs_members_logged_out.png');
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'clubs_members_logged_out');
     }
   }
 
@@ -214,8 +211,7 @@ class ClubsTest extends SeleniumBaseTest {
       $this->assertContains('This is you', $member_popup->text());
     }
     catch (Exception $e) {
-      $this->make_screenshot('clubs_members_logged_in.png');
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'clubs_members_logged_in');
     }
   }
 }
