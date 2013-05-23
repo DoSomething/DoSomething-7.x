@@ -6,24 +6,7 @@
         afterReplaceText : 'Just register with DoSomething.org to join Healing Oklahoma',
       };
 
-      if (window.location.pathname.substr(0, 5) == '/team') {
-        $signIn = $('#dosomething-login-login-popup-form');
-        $signUp = $('#dosomething-login-register-popup-form');
-        
-        // if a popup has been triggered, set its destination
-        if ($signIn.is(':visible') || $signUp.is(':visible')) {
-          $signIn.attr('action', destinationReplace($signIn.attr('action'), actionLink));
-          $signUp.attr('action', destinationReplace($signUp.attr('action'), actionLink));
-        }
-      }
-
       $('#cmp #edit-actions').removeAttr('id');
-
-
-      // LOGO, will inject
-      //var logo = '//www.dosomething.org/files/campaigns/puppy/puppytext-logo.png';
-      //$('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/puppy"><img width="215" class="logo" src="' + logo + '"/></a>');
-     
 
       // hacktastic form rebuilding
       var $emailInput = $('#edit-submitted-field-webform-email');
@@ -35,7 +18,7 @@
 
 
       // contact form login
-      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/727940" class="sign-in-popup">log in</a></p>');
+      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/729392" class="sign-in-popup">log in</a></p>');
 
       // on lines 9-10 terrible things happen
       $('#campaign-opt-in br').remove();
