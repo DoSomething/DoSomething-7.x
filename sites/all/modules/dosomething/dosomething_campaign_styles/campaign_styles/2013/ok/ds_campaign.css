@@ -980,7 +980,7 @@ body {
     #cmp .form-actions.form-wrapper {
       width: 20%; }
     #cmp .pane-campaign-sign-up #edit-submit {
-      margin: 0.5em auto 0; }
+      margin: 1.4em auto 0; }
     #cmp #action .col33 {
       width: 95%;
       margin: 3% 0; }
@@ -1023,4 +1023,6 @@ body {
       width: 32%;
       margin: 1% 0; }
     #cmp .form-actions.form-wrapper {
-      width: 100%; } }
+      width: 100%; }
+    #cmp .pane-campaign-sign-up #edit-submit {
+      margin: 0.5em auto 0; } }
