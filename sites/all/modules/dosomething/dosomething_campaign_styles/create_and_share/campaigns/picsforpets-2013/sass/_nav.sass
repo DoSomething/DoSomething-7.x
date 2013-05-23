@@ -1,14 +1,35 @@
-// NAV
-// ---
+// NEW STUFF
+// ---------
 .nav-container
-  width: 300px
+  width: 500px
   margin: 0 auto
-  ul
-    overflow: hidden
-    text-align: left
+  overflow: hidden
+  ul, li
     padding: 0
     margin: 0
+  ul.filter-list
+    width: 50%
+    clear: both
+  ul.filter-options
+    overflow: hidden
+    text-align: left
+    float: left
+  li.filter-option, li.filter-selection
+    font-size: 1.2em
+  li
+    list-style: none
+  li ul
+    display: none
 
+  .filter-state,
+  .filter-type
+    background: #ccc
+    cursor: pointer
+    &:hover
+      color: lighten($off-black, 10)
+
+// NAV
+// ---
 .crazy-menu-wrapper li
   color: #fff
   text-transform: uppercase
