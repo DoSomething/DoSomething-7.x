@@ -8,7 +8,7 @@ require_once 'SeleniumBaseTest.php';
 class ClubsTest extends SeleniumBaseTest {
   /**
    * Test creating of the clubs.
-   *
+   */
   public function testCreateClubFlowTest() {
     try {
       // Go to the petition.
@@ -122,7 +122,7 @@ class ClubsTest extends SeleniumBaseTest {
 
   /**
    * Test the "Join" button as a logged out member.
-   *
+   */
   public function testLoggedOutJoinTest() {
     try {
       // Go to the petition.
@@ -145,7 +145,7 @@ class ClubsTest extends SeleniumBaseTest {
 
   /**
    * Test the member popup.
-   *
+   */
   public function testLoggedOutMembersList() {
     try {
       // Go to the petition.
@@ -168,7 +168,7 @@ class ClubsTest extends SeleniumBaseTest {
 
   /**
    * Request to join flow.
-   *
+   */
   public function testLoggedInJoinTest() {
     try {
       // Go to the petition.
@@ -214,7 +214,6 @@ class ClubsTest extends SeleniumBaseTest {
       $this->catchException($e, 'clubs_members_logged_in');
     }
   }
-  */
 
   /**
    * Tests the form on the clubs landing page.  It should go to /node/add/club
