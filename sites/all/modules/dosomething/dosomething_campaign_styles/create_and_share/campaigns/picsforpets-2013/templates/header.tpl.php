@@ -18,38 +18,18 @@
   </div>
 </section>
 
-<?php
-  $filters = explode('-', basename(request_path()));
-
-  $types = array('all' => '');
-  $done = false;
-  foreach ($filters AS $filter) {
-    if (in_array($filter, array('cat', 'cats', 'dog', 'dogs', 'other', 'others'))) {
-      $types[$filter] = ' selected="selected"';
-      $done = true;
-    }
-    else {
-      $types[$filter] = '';
-    }
-  }
-
-  if (!$done) {
-    $types['all'] = ' selected="selected"';
-  }
-?>
-
 <nav class="header-nav">
   <div class="nav-container">
 
     <?php /* First nav filter - animal type */ ?>
     <ul class="filter-type filter-list" id="filter-type">
-      <li data-id="all" id="type-selection" class="filter-selection" <?php echo $types['all']; ?>>All Animals</li>
+      <li data-id="all" id="type-selection" class="filter-selection">All Animals</li>
       <li>
         <ul class="filter-options">
-          <li data-id="all" class="filter-option" <?php echo $types['all']; ?>>All Animals</li>
-          <li data-id="cats" class="filter-option" <?php echo $types['cats']; ?>>Cats</li>
-          <li data-id="dogs" class="filter-option" <?php echo $types['dogs']; ?>>Dogs</li>
-          <li data-id="other" class="filter-option" <?php echo $types['other']; ?>>Other</li>
+          <li data-id="all" class="filter-option">All Animals</li>
+          <li data-id="cats" class="filter-option">Cats</li>
+          <li data-id="dogs" class="filter-option">Dogs</li>
+          <li data-id="other" class="filter-option">Other</li>
         </ul>
       </li>
     </ul>
