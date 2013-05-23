@@ -43,19 +43,20 @@
 
     <?php /* First nav filter - animal type */ ?>
     <ul class="filter-type filter-list" id="filter-type">
-      <li id="type-selection" href="#" <?php echo $types['all']; ?>>All Animals</li>
+      <li data-id="all" id="type-selection" class="filter-selection" <?php echo $types['all']; ?>>All Animals</li>
       <li>
         <ul class="filter-options">
-          <li class="filter-option" <?php echo $types['cats']; ?>>Cats</li>
-          <li class="filter-option" <?php echo $types['dogs']; ?>>Dogs</li>
-          <li class="filter-option" <?php echo $types['other']; ?>>Other</li>
+          <li data-id="all" class="filter-option" <?php echo $types['all']; ?>>All Animals</li>
+          <li data-id="cats" class="filter-option" <?php echo $types['cats']; ?>>Cats</li>
+          <li data-id="dogs" class="filter-option" <?php echo $types['dogs']; ?>>Dogs</li>
+          <li data-id="other" class="filter-option" <?php echo $types['other']; ?>>Other</li>
         </ul>
       </li>
     </ul>
 
     <?php /* Second nav filter - state */ ?>
     <ul class="filter-state filter-list" id="filter-state">
-      <li id="state-selection" href="#">All States</li>
+      <li data-id="all" data-id="all" id="state-selection" class="filter-selection" href="#">All States</li>
       <li>
         <ul class="filter-options">
           <?php
@@ -74,7 +75,7 @@
 
             $path = request_path();
             foreach ($states as $key => $state) {
-              echo '<li class="filter-option">' . $selected[$key] . $state . '</li>';
+              echo '<li class="filter-option" data-id="' . $key . '"' . $selected[$key] . '>' . $state . '</li>';
             }
           ?>
         </ul>
@@ -82,7 +83,7 @@
     </ul>
 
     <?php /* Submit nav filter selections */ ?>
-    <button class="filter-submit">filter</button>
+    <button id="filter-submit">filter</button>
 
   </div>
 </nav>

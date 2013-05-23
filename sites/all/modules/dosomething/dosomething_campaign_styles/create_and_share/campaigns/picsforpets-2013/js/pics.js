@@ -6,15 +6,31 @@
     started_page: false,
 
     attach: function(context, settings) { 
-      $('.go-filter').click(function(e) {
-        var type = $('.type-filter').val();
-        var state = $('.state-filter').val();
+      // URL selection by filter
+      $('#filter-submit').click(function(e) {
+        var type = $('#type-selection').attr('data-id');
+        var state = $('#state-selection').attr('data-id');
 
         // The destination parameter is unbiased.  We need to tell it where to go here.
         var dest = (type != 'all') ? type + ((state != '') ? '-' + state : '') : ((state != '') ? state : 'root');
+        alert(type);
 
         document.location.href = '/cas/' + Drupal.settings.campaign.campaign_root + '/mark-clickthrough/' + dest;
         return false;
+      });
+      
+      // Show sub nav on click for mobile
+      $('#type-selection, #state-selection').click(function(){
+        $(this).siblings('li').find('.filter-options').toggle();
+      });
+      
+      // Set selection value
+      $('#filter-state .filter-option').click(function() {
+        $('#state-selection').text($(this).text()).data('id', $(this).data('id'));
+      });
+
+      $('#filter-type .filter-option').click(function() {
+        $('#type-selection').text($(this).text()).data('id', $(this).data('id'));
       });
 
       // Handles Facebook sharing.
