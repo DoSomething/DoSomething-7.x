@@ -140,8 +140,9 @@
 
     // Mobile Commons success message
     if (document.location.search.slice(1,8) === 'success') {
-      var success_msg = '<div class="success_msg"><p>Have we told you how amazing you are lately? Just the best.</p></div>';
+      var success_msg = '<div class="success_msg"><p>Thanks for sharing. You\'ve been entered for the scholarship!</p></div>';
       $('#scholarship').prepend(success_msg);
+      $("html, body").animate({ scrollTop: $('#scholarship').offset().top }, 1000);
     }
 
           // #header section Facebook fun
