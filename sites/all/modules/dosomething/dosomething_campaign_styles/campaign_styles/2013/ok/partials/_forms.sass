@@ -24,19 +24,19 @@ label
   +border-radius(5px)
 
 #contact-form, #contact-form2, #contact-form3
-  margin: 5px 0 2%
+  margin: 1% 0
   padding-bottom: 10px
-  background: #000
-  background: #333131
+  background: $secondaryColor
   width: 100%
-  +border-radius(6px)
+  color: black
   h3
-    color: $secondaryColor
-    font-size: 1.45em
+    color: black
+    font-size: 1.5em
     line-height: 1.2em
     font-weight: 400
     text-align: left
-    padding: 1.1em 0 0 0
+    padding: 0.1em 0 0 0
+    font-weight: 500
   span
     text-transform: uppercase
     font-weight: 500  
@@ -52,15 +52,15 @@ label
       font-weight: 300
   .form-actions
     p
-      color: white
+      color: black
       margin-top: 5px
       font-size: 0.75em
       font-weight: 500
     a
-      color: white
+      color: black
       text-transform: uppercase
       &:hover
-        color: $secondaryColor 
+        color: $thirdColor 
         text-decoration: underline 
         
 .focusOutline /* defines input highlighting */
@@ -75,7 +75,7 @@ label
     padding-left: 0.7em
     +border-radius(5px)
   label
-    color: #fff
+    color: black
     width: 100%
     font-size: 1.1em
     font-weight: 500
@@ -88,7 +88,7 @@ label
     height: 2em
     margin: 1.1em auto 0
     padding: 0.75em 0.7em 1.45em
-    background: $secondaryColor
+    background: $thirdColor
     color: white
     font-weight: 400
     font-family: din-web-reg
@@ -98,10 +98,10 @@ label
 
 .pane-campaign-signed
   .go-button
-    margin: 1em 0
-    background: $secondaryColor
+    margin: 0.5em 0
+    background: $thirdColor
     color: white
-    font-weight: 400
+    font-weight: 500
     font-family: din-web-reg
     font-size: 1.2em
     line-height: 2.8em
@@ -110,17 +110,18 @@ label
     text-shadow: 0px 0px 2px #777
     &:hover
       color: #f9f9f9
-      +box-shadow(0 2px 2px 0 #111)
 
 #campaign-opt-in
   clear: both
   text-align: left
   padding: 0.3em 0 0 0 !important
+  line-height: 1em
   span
     font-size: 0.7em
     line-height: 0.7em
     background: transparent
-    color: #fff
+    color: black
+    text-transform: none
   strong
     font-weight: 600
 
@@ -164,6 +165,7 @@ label
 //      //
 
 #report-back
+  text-align: left
   margin-top: 3%
   border: none
   width: 70%
@@ -174,7 +176,8 @@ label
     line-height: 1.1em
   h2
     font-size: 1.6em
-    line-height: 1.2em  
+    line-height: 1.2em
+
 
   #submitted-field-webform-school-reference-add-more-wrapper
     background: #f1f1f1
