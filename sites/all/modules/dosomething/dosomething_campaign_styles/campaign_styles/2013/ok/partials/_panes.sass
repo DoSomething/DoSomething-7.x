@@ -5,8 +5,9 @@
 //      //
 .section#header
   background: url('http://www.dosomething.org/files/campaigns/ok/header.jpg') top center no-repeat
+  background-size: contain
   margin-bottom: 0
-  min-height: 270px
+  //min-height: 270px
 #header
   max-width: 800px
   margin: 0 auto
@@ -20,66 +21,19 @@
   .headline
     max-width: 800px
     margin: 0 auto
-  h1
-    margin: 1.5%
-    background: $secondaryColor
-    zoom: 1
-    filter: alpha(opacity=85)
-    opacity: 0.85
-    float: left
-    font-weight: 600
-    font-size: 3.4em
-    color: white
-    padding: 1.5% 1.5% 0
-    line-height: 1em
-  h2
-    text-align: center
-    text-transform: uppercase
-    font-size: 1.8em
-    font-family: $din
-    font-weight: 600
-    width: 80%
-    margin: 0 auto
-    line-height: 1.2em
-    span
-      color: $secondaryColor
-      font-weight: 700
-      padding: 0
   .subhead
-    text-transform: uppercase
+    max-width: 525px
     color: white
     background: $thirdColor
     zoom: 1
     filter: alpha(opacity=75)
     opacity: 0.75
-    margin: 1.5% 0
-    float: left
-    font-size: 1.4em
-    padding: 1% 1.5% 0
-  .subhead2
-    max-width: 500px
-    color: white
-    background: $thirdColor
-    zoom: 1
-    filter: alpha(opacity=85)
-    opacity: 0.85
-    margin: 135px 0 60px
+    margin: 17% 0 6.5%
     font-weight: 500
     float: left
-    font-size: 1.5em
+    font-size: 1.8em
     padding: 1% 1.5%
     clear: both
-  .date
-    color: $thirdColor
-    zoom: 1
-    filter: alpha(opacity=85)
-    opacity: 0.85
-    margin: 6% 1% 1.5% 0.5% 
-    float: left
-    clear: both
-    font-size: 1.2em
-    padding: 1% 1.5%
-    font-weight: 500
   .pane-campaign-signed
     h2
       text-align: center
@@ -100,17 +54,62 @@
         font-size: 1.8em
   .header-social
     position: absolute
-    top: 230px
+    bottom: 5px
     left: 8px
   .header-facebook-share, .header-twitter-share
     display: inline-block
     margin: 0 2px
 
-  .ctia_bottom, .ctia_top
-    font-weight: 400
-    text-transform: none
+
+//			//
+//	#action
+//			//
+#action
+  padding: 3% 0 2%
+  img
+    margin: 4% 0
+  .bottom-p
+    clear: both
+    padding-top: 4%
 
 
+//      //
+//  #info
+//      //
+.section#info
+  padding: 2% 0
+#info
+  text-align: left
+  p
+    margin-bottom: 1.4em
+    padding: 0 4%
+    font-size: 1.05em
+    line-height: 1.4em
+  .center
+    text-align: center
+    max-width: 750px
+    margin: 0 auto 1.4em
+  .gray
+    color: #999
+    font-style: italic
+  h2
+    background: $secondaryColor
+    color: black
+    display: inline-block
+    padding: 0.2em 2% 0
+    margin-bottom: 1em
+    text-transform: uppercase
+    font-size: 1.4em
+    font-weight: 500
+  .divider
+    margin: 0 2% 3%
+  ul
+    margin: 0 2% 1.4em 8%
+    list-style-type: disc
+  li
+    font-size: 1.4em
+    line-height: 1.2em
+    margin-bottom: 0.1em
 
 //      //
 //  #sms-map
@@ -121,40 +120,20 @@
     display: block
     margin: 5px auto 20px
 
-//			//
-//	#action
-//			//
-#action
-  padding: 3% 0 2%
 
 //      //
-//  #info
-//      //
-.section#info
-  padding: 2% 0
-#info
-  text-align: left
-  p
-    margin-bottom: 1em
-    padding: 0 4%
-  .gray
-    color: #999
-    font-style: italic
-  h2
-    background: $secondaryColor
-    color: black
-    display: inline-block
-    padding: 0.2em 2% 0
-    margin-bottom: 0.7em
-    text-transform: uppercase
-    font-size: 1.4em
-    font-weight: 500
-  .divider
-    margin: 0 2% 3%
-  ul
-    padding: 0 2%
-    margin: 0 2%
-    list-style-type: disc
+//  #impact     - gallery -
+//      // 
+.view-campaign-gallery #slideshow
+  margin: 0 auto
+
+#impact
+  .go-button
+    margin: 2% auto
+    font-size: 1.6em
+    padding: 0.5em 0.7em
+    height: 1.8em
+
 
 //      //
 //  #faq
@@ -219,16 +198,3 @@
   .action-box
     position: relative
     display: inline-block
-  .action-arrow-left, .action-arrow-right
-    position: absolute
-    bottom: 0.5em
-  .action-arrow-right
-    right: -70px
-  .action-arrow-left
-    left: -70px
-  .sponsor
-    text-align: center
-    margin: 2em 0 0
-    img
-      display: block
-      margin: 0 auto 
