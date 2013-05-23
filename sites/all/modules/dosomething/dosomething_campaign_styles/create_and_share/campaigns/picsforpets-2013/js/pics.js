@@ -21,16 +21,18 @@
       
       // Show sub nav on click for mobile
       $('#type-selection, #state-selection').click(function(){
-        $(this).siblings('li').find('.filter-options').toggle();
+        $(this).siblings('li').find('.filter-options').slideToggle(500)
       });
       
+      $('#filter-type .filter-option').click(function() {
+        $('#type-selection').text($(this).text()).data('id', $(this).data('id'));
+        $('#filter-type .filter-options').slideUp('500');
+      });
+
       // Set selection value
       $('#filter-state .filter-option').click(function() {
         $('#state-selection').text($(this).text()).data('id', $(this).data('id'));
-      });
-
-      $('#filter-type .filter-option').click(function() {
-        $('#type-selection').text($(this).text()).data('id', $(this).data('id'));
+        $('#filter-state .filter-options').slideUp(500);
       });
 
       // Handles Facebook sharing.
