@@ -8,8 +8,8 @@
     attach: function(context, settings) { 
       // URL selection by filter
       $('#filter-submit').click(function(e) {
-        var type = $('#type-selection').attr('data-id');
-        var state = $('#state-selection').attr('data-id');
+        var type = $('#type-selection').data('id');
+        var state = $('#state-selection').data('id');
 
         // The destination parameter is unbiased.  We need to tell it where to go here.
         var dest = (type != 'all') ? type + ((state != '') ? '-' + state : '') : ((state != '') ? state : 'root');
