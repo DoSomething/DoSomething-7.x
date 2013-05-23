@@ -650,6 +650,8 @@ body {
     #cmp #sms-map img {
       display: block;
       margin: 5px auto 20px; }
+  #cmp #map .tableauPlaceholder {
+    margin: 0 auto; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
   #cmp #impact .go-button {
