@@ -42,8 +42,7 @@ class PetitionsTest extends SeleniumBaseTest {
       $this->assertContains('Test U', $signatures);
     }
     catch (Exception $e) {
-      $this->make_screenshot('petitions_public_signature.png');
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'petitions_public_signature');
     }
   }
 
@@ -87,8 +86,7 @@ class PetitionsTest extends SeleniumBaseTest {
       $this->assertNotContains('New U', $signatures);
     }
     catch (Exception $e) {
-      $this->make_screenshot('petitions_private_signature.png');
-      $this->fail($e->getMessage());
+      $this->catchException($e, 'petitions_private_signature');
     }
   }
 
