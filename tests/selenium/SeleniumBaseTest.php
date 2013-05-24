@@ -30,6 +30,8 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
    * Base tests directory. Can be overridden in site-settings.php.
    *
    * @var string
+   */
+  protected $base_path_tests;
 
   /**
    * Selenium host endpoint.
