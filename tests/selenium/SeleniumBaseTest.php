@@ -25,6 +25,11 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
    * @var string
    */
   protected $base_url;
+  
+  /**
+   * Base tests directory. Can be overridden in site-settings.php.
+   *
+   * @var string
 
   /**
    * Selenium host endpoint.
@@ -73,13 +78,13 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
       exit('No base URL! Set $base_url in site-settings.php.');
     }
     
-    $this->base_path_tests = '/vagrant/tests/';
+    $this->base_path_tests = '/vagrant/tests';
     if (!empty($GLOBALS['base_path_tests'])) {
       $this->base_path_tests = $GLOBALS['base_path_tests'];
     }
 
-    $this->screenshotDir = '/vagrant/tests/selenium/screenshots';
-    $this->mocksDir = '/vagrant/tests/selenium/mocks';
+    $this->screenshotDir = $this->base_path_tests . '/selenium/screenshots';
+    $this->mocksDir = $this->base_path_tests . '/selenium/mocks';
 
     if (!is_dir($this->screenshotDir) || !is_writable($this->screenshotDir)) {
       if (FALSE === mkdir($this->screenshotDir)) {
