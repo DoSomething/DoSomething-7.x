@@ -1109,6 +1109,17 @@ div[aria-labelledby="ui-dialog-title-1"] {
       padding: 0 1em; }
     #cmp #action .second {
       max-width: 430px; }
+  #cmp #action-flip {
+    padding: 3% 0 2%; }
+    #cmp #action-flip h3 {
+      line-height: 1.4em;
+      margin: 0 2% 1em;
+      font-size: 1.6em; }
+    #cmp #action-flip p {
+      max-width: 750px;
+      text-align: center;
+      margin: 0 auto 1em;
+      padding: 0 2%; }
   #cmp #content .go-button {
     margin: 0;
     background: #50b848;
