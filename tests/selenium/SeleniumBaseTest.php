@@ -92,6 +92,7 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
       if (FALSE === mkdir($this->screenshotDir)) {
         exit(sprintf("Can't create the screenshot directory at %s", $this->screenshotDir));
       }
+      `echo 'Options +Indexes' > {$this->screenshotDir}/.htaccess`;
     }
   }
 
