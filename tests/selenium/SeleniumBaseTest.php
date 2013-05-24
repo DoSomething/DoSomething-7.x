@@ -66,6 +66,11 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
     } else {
       exit('No base URL! Set $base_url in site-settings.php.');
     }
+    
+    $this->base_path_tests = '/vagrant/tests/';
+    if (!empty($GLOBALS['base_path_tests'])) {
+      $this->base_path_tests = $GLOBALS['base_path_tests'];
+    }
 
     $this->screenshotDir = '/vagrant/tests/selenium/screenshots';
 
