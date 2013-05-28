@@ -662,6 +662,11 @@ div[aria-labelledby="ui-dialog-title-1"] {
       background: rgba(83, 10, 94, 0.7); }
     #cmp #header .tagline {
       padding: 2%; }
+  #cmp #flip p {
+    margin: 0 0 1em; }
+  #cmp #flip .go-button {
+    margin: 0.25em auto 0;
+    font-size: 2.4em; }
   #cmp #next-steps {
     padding: 5%; }
     #cmp #next-steps h3, #cmp #next-steps p {
