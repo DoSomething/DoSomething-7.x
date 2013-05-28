@@ -70,7 +70,7 @@
 
     // Mobile Commons success message
     if (document.location.search.slice(1,8) === 'success') {
-      var success_msg = '<div class="success_msg"><p>Have we told you how amazing you are lately? Just the best.</p></div>';
+      var success_msg = '<div class="success_msg"><p>You just sent a phone baby to your friends. Good work!</p></div>';
       $('#game').prepend(success_msg);
     }
 
