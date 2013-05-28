@@ -20,6 +20,7 @@ function dosomething_subscribe_admin_settings_form() {
     '#type' => 'fieldset',
     '#title' => t('Default Groups'),
     '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
     '#description' => t('Default groups to use if none are specified on a node.'),
   );
   $form['defaults'][$prefix . 'mailchimp_default'] = array(
@@ -34,11 +35,32 @@ function dosomething_subscribe_admin_settings_form() {
     '#required' => TRUE,
     '#default_value' => variable_get($prefix . 'mobilecommons_default'),
   );
+  // User registration values:
+  $form['user_register'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('User Registration'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#description' => t('Groups to use for user registration.'),
+  );
+  $form['user_register'][$prefix . 'mailchimp_user_register'] = array(
+    '#type' => 'textfield',
+    '#title' => t('MailChimp'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mailchimp_user_register'),
+  );
+  $form['user_register'][$prefix . 'mobilecommons_user_register'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobilecommons'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mobilecommons_user_register'),
+  );
   // Values for Club nodes:
   $form['clubs'] = array(
     '#type' => 'fieldset',
     '#title' => t('Clubs'),
     '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
     '#description' => t('Groups to use on the Club node form.'),
   );
   $form['clubs'][$prefix . 'mailchimp_clubs'] = array(

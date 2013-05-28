@@ -20,3 +20,11 @@ function dosomething_subscribe_update_7001() {
   variable_set('dosomething_subscribe_mailchimp_clubs', 'Clubs2012');
   variable_set('dosomething_subscribe_mobilecommons_clubs', '122361');
 }
+
+/**
+ * Initialize Mailchimp and Mobilecommons variables for User registration.
+ */
+function dosomething_subscribe_update_7002() {
+  variable_set('dosomething_subscribe_mailchimp_user_register', 'NewMembers2012');
+  variable_set('dosomething_subscribe_mobilecommons_user_register', '87681');
+}
