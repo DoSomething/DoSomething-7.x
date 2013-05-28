@@ -57,6 +57,14 @@ function dosomething_login_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['admin/config/dosomething/dosomething_login'] = array(
+    'title' => 'User Registration Settings',
+    'description' => 'Configure the text to appear on the default user registration form.',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_login_admin_settings_form'),
+    'file' => 'dosomething_login.admin.inc',
+  );
   return $items;
 }
 
@@ -258,6 +266,20 @@ function dosomething_login_theme($existing, $type, $theme, $path) {
       'variables' => array(),
     ),
   );
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function dosomething_login_preprocess_page(&$variables) {
+  $path = current_path();
+  //@todo: Add checks to see if we have a campaign nid in the path. If so, use field values on campaign node.
+  if ($path == 'user/registration') {
+    $variables['title'] = variable_get('dosomething_login_user_register_title');
+    $variables['page']['headline'] = variable_get('dosomething_login_user_register_headline');
+    $variables['page']['sidebar_headline'] = variable_get('dosomething_login_user_register_sidebar_headline');
+    $variables['page']['sidebar_content'] = variable_get('dosomething_login_user_register_sidebar_content');
+  }
 }
 
 /**
@@ -577,12 +599,6 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   }
 
   $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
-  $form['#action'] = url('user/registration', array('query' => $query));
-
-  $form['title_text'] = array(
-    '#type' => 'item',
-    '#title' => t("You’re Almost There"),
-  );
   $form['#action'] = url('user/registration', array('query' => $query));
   $form['connect'] = array(
     '#type' => 'container',
