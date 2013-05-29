@@ -227,13 +227,13 @@
     max-width: 350px
     margin: 0 auto
   .bubble-left, .bubble-right
-    background: $secondaryColor
     margin: 1em auto
     padding: 0.5em 1em
     color: white
     font-weight: 500
     +border-radius(2px)
   .bubble-left
+    background: $thirdColor
     float: left
     text-align: left
     position: relative
@@ -245,8 +245,9 @@
       left: 30px
       bottom: -20px
       border: 10px solid
-      border-color: $secondaryColor $secondaryColor transparent transparent
+      border-color: $thirdColor $thirdColor transparent transparent
   .bubble-right
+    background: $secondaryColor
     float: right
     text-align: right
     position: relative
@@ -275,7 +276,7 @@
     color: #999
     font-style: italic
   h2
-    background: $secondaryColor
+    background: $thirdColor
     color: white
     display: inline-block
     padding: 0.2em 2% 0
