@@ -3,12 +3,12 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join Puppy Text',
+        afterReplaceText : 'Just register with DoSomething.org to join Undocumented',
       };
 
       // LOGO, will inject
-      var logo = '//www.dosomething.org/files/campaigns/puppy/puppytext-logo.png';
-      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/puppy"><img width="215" class="logo" src="' + logo + '"/></a>');
+      //var logo = '//www.dosomething.org/files/campaigns/puppy/puppytext-logo.png';
+      //$('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/puppy"><img width="215" class="logo" src="' + logo + '"/></a>');
      
       // FAQ - onClick
       $('#faq h4').next('div').css('display','none');
@@ -70,23 +70,23 @@
 
     // Mobile Commons success message
     if (document.location.search.slice(1,8) === 'success') {
-      var success_msg = '<div class="success_msg"><p>Have we told you how amazing you are lately? Just the best.</p></div>';
+      var success_msg = '<div class="success_msg"><p>Thanks for sharing!</p></div>';
       $('#game').prepend(success_msg);
     }
 
     // #header section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/puppy/puppytext-logo.png';
-    var fb_title = 'Puppy Text';
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/undocumented/fb-logo.png';
+    var fb_title = 'Undocumented';
     var fb_header_caption = '';
 
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'Play the Puppy Text to find out how you and your friends can stand up to animal abuse: http://www.dosomething.org/puppy',
+      'feed_description': 'Learn more about undocumented: http://www.dosomething.org/undocumented',
       'feed_selector': '.header-facebook-share',
     }, function(response){
-      window.location.href = '/puppy#header';
+      window.location.href = '/undocumented#header';
     });
 
          
