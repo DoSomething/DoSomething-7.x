@@ -433,6 +433,11 @@ function _dosomething_services_user_resource_create($account) {
  * Modify the output from _user_resource_login() to give more session info
  */
 function _dosomething_services_user_resource_login($username, $password, $email) {
+  // When content is passed in as json instead of x-www-form-urlencoded, no automatic urldecoding happens before getting here
+  $username = urldecode($username);
+  $password = urldecode($password);
+  $email = urldecode($email);
+
   // If no email or username, then nothing to log in with
   if (empty($username) && empty($email)) {
     $return = services_error(t('No \'username\' or \'email\' sent. Need one to login.'), 401);
