@@ -14,14 +14,14 @@ function dosomething_login_menu() {
     'title' => 'Registration',
     'description' => 'Register through your Facebook account.',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('dosomething_login_register_facebook'),
+    'page arguments' => array('dosomething_login_register_facebook_form'),
     'access callback' => 'user_register_access',
     'type' => MENU_CALLBACK,
   );
   $items['user/registration'] = array(
     'title' => 'Registration',
     'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
-    'page callback' => 'dosomething_login_user_register',
+    'page callback' => 'dosomething_login_page_user_registration',
     //'page arguments' => array('dosomething_login_register_popup_form'),
     'access callback' => 'dosomething_login_user_register_access',
     'type' => MENU_CALLBACK,
@@ -89,14 +89,14 @@ function dosomething_login_user_register_access() {
 /**
  *  Loads the registration form (assuming the user is logged out), or redirects away if they're logged in.
  */
-function dosomething_login_user_register() {
+function dosomething_login_page_user_registration() {
   // If the user is logged in, redirect to their ultimate destination because they're already registered.
   if (!empty($_GET['destination']) && drupal_valid_path($_GET['destination']) && user_is_logged_in()) {
     drupal_goto($_GET['destination']);
   }
 
   // Otherwise, show the registration form.
-  return drupal_get_form('dosomething_login_register_popup_form');
+  return drupal_get_form('dosomething_login_register_popup_form', FALSE);
 }
 
 /**
@@ -273,8 +273,23 @@ function dosomething_login_theme($existing, $type, $theme, $path) {
  */
 function dosomething_login_preprocess_page(&$variables) {
   $path = current_path();
-  //@todo: Add checks to see if we have a campaign nid in the path. If so, use field values on campaign node.
+  //@todo: Add checks to see if we have a campaign nid in the path. If so, use field values from the campaign node.
   if ($path == 'user/registration') {
+    // Check if destination is set.
+    $destination = drupal_get_destination();
+    if ($destination) {
+      $dest_parts = explode('/', $destination['destination']);
+      // If we are viewing a node:
+      if ($dest_parts[0] == 'node' && isset($dest_parts[1]) && is_numeric($dest_parts[1])) {
+        $node = node_load($dest_parts[1]);
+        // Check if it's a campaign node:
+        if ($node->type == 'campaign') {
+          // @todo:
+          // Add campaign NID into the body class.
+          // Set page variables from the campaign node fields.
+        }
+      }
+    }
     $variables['title'] = variable_get('dosomething_login_user_register_title');
     $variables['page']['headline'] = variable_get('dosomething_login_user_register_headline');
     $variables['page']['sidebar_headline'] = variable_get('dosomething_login_user_register_sidebar_headline');
@@ -560,7 +575,7 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
 /**
  * The popup register form for 'Become a Member'.
  */
-function dosomething_login_register_popup_form($form, &$form_state) {
+function dosomething_login_register_popup_form($form, &$form_state, $is_modal = TRUE) {
   // we want to cache this form, because we'll be using ajax_get_form, which requires that the form be secure
   if (isset($_GET['destination'])) {
     $path = $_GET['destination'];
@@ -597,9 +612,16 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   if ($query['destination'] == 'node/' . variable_get('cgg_form_id')) {
     $query['destination'] .= '?_';
   }
-
-  $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
+  // this gets overriden in the next line
+  //$form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
   $form['#action'] = url('user/registration', array('query' => $query));
+  // Only display title if this is being called in a modal.
+  if ($is_modal) {
+    $form['title_text'] = array(
+      '#type' => 'item',
+      '#title' => t("You’re Almost There"),
+    );
+  }
   $form['connect'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -1852,7 +1874,7 @@ function dosomething_login_action_prereg($app_id, $access_token) {
  * Registration page through Facebook. Prepopulates info and connects user
  * to Facebook account.
  */
-function dosomething_login_register_facebook($form, &$form_state) {
+function dosomething_login_register_facebook_form($form, &$form_state) {
   $form = drupal_retrieve_form('dosomething_login_register_popup_form', $form_state);
   $form['#action'] = '/user/registration/fb/?destination=front';
   unset($form['connect']);
