@@ -22,7 +22,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: #eae6df; }
+  background: #231f20; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -188,7 +188,7 @@ body {
     color: black; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none;
-      color: #ef4624; }
+      color: #00b6c5; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix {
     color: #cccccc;
     text-transform: uppercase;
@@ -221,12 +221,12 @@ body {
       color: #cccccc;
       text-decoration: underline; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
-        color: #47bcfc; }
+        color: #91268f; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix hr {
       border-top: none;
       border-bottom: 1px solid #cccccc; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count {
-      background: #47bcfc;
+      background: #91268f;
       padding: 0.5em 0 0.3em;
       margin: 1em 0; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count p {
@@ -483,7 +483,7 @@ body {
   #cmp input[type="submit"] {
     font-size: 1.5em; }
   #cmp a {
-    color: #ef4624;
+    color: #91268f;
     text-decoration: underline; }
     #cmp a:hover {
       text-decoration: none; }
@@ -571,7 +571,7 @@ body {
       margin: 0 auto; }
     #cmp #header h1 {
       margin: 1.5%;
-      background: #47bcfc;
+      background: #91268f;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -591,13 +591,13 @@ body {
       margin: 0 auto;
       line-height: 1.2em; }
       #cmp #header h2 span {
-        color: #47bcfc;
+        color: #91268f;
         font-weight: 700;
         padding: 0; }
     #cmp #header .subhead {
       text-transform: uppercase;
       color: white;
-      background: #ef4624;
+      background: #00b6c5;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -608,7 +608,7 @@ body {
     #cmp #header .subhead2 {
       max-width: 375px;
       color: white;
-      background: #ef4624;
+      background: #00b6c5;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -619,7 +619,7 @@ body {
       padding: 1% 1.5%;
       clear: both; }
     #cmp #header .date {
-      color: #ef4624;
+      color: #00b6c5;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -658,7 +658,7 @@ body {
       text-transform: none; }
   #cmp #game {
     color: white;
-    background: #47bcfc; }
+    background: #91268f; }
     #cmp #game h2, #cmp #game h3 {
       max-width: 600px; }
     #cmp #game h2 {
@@ -698,7 +698,7 @@ body {
       width: 50%; }
       #cmp #game .scholar-foot input[type="submit"] {
         background: #fec82e;
-        color: #47bcfc;
+        color: #91268f;
         float: left;
         margin: 0 2% 4%;
         font-size: 2.5em;
@@ -732,7 +732,7 @@ body {
     float: left; }
   #cmp #example .go-button {
     background: #fec82e;
-    color: #47bcfc;
+    color: #91268f;
     margin: 2.5em auto 1.4em;
     font-size: 1.8em;
     font-family: din-web-reg;
@@ -758,7 +758,6 @@ body {
     max-width: 350px;
     margin: 0 auto; }
   #cmp #example .bubble-left, #cmp #example .bubble-right {
-    background: #47bcfc;
     margin: 1em auto;
     padding: 0.5em 1em;
     color: white;
@@ -769,6 +768,7 @@ body {
     -o-border-radius: 2px;
     border-radius: 2px; }
   #cmp #example .bubble-left {
+    background: #00b6c5;
     float: left;
     text-align: left;
     position: relative; }
@@ -780,8 +780,9 @@ body {
       left: 30px;
       bottom: -20px;
       border: 10px solid;
-      border-color: #47bcfc #47bcfc transparent transparent; }
+      border-color: #00b6c5 #00b6c5 transparent transparent; }
   #cmp #example .bubble-right {
+    background: #91268f;
     float: right;
     text-align: right;
     position: relative; }
@@ -793,7 +794,7 @@ body {
       right: 15px;
       bottom: -20px;
       border: 10px solid;
-      border-color: #47bcfc transparent transparent #47bcfc; }
+      border-color: #91268f transparent transparent #91268f; }
   #cmp .section#info {
     padding: 2% 0; }
   #cmp #info {
@@ -805,7 +806,7 @@ body {
       color: #999999;
       font-style: italic; }
     #cmp #info h2 {
-      background: #47bcfc;
+      background: #00b6c5;
       color: white;
       display: inline-block;
       padding: 0.2em 2% 0;
@@ -827,7 +828,7 @@ body {
     line-height: 1.4em; }
   #cmp #faq li {
     margin: 0;
-    color: #47bcfc; }
+    color: #91268f; }
     #cmp #faq li span {
       color: black; }
   #cmp #faq h1 {
@@ -850,7 +851,7 @@ body {
     background-position-y: -1.4em; }
   #cmp #faq .go-button {
     background: #fec82e;
-    color: #47bcfc;
+    color: #91268f;
     margin: 2% auto;
     padding: 0.5em;
     height: 1.8em;
@@ -919,7 +920,7 @@ body {
     -o-border-radius: 6px;
     border-radius: 6px; }
     #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
-      color: #47bcfc;
+      color: #91268f;
       font-size: 1.45em;
       line-height: 1.2em;
       font-weight: 400;
@@ -945,7 +946,7 @@ body {
       color: white;
       text-transform: uppercase; }
       #cmp #contact-form .form-actions a:hover, #cmp #contact-form2 .form-actions a:hover, #cmp #contact-form3 .form-actions a:hover {
-        color: #47bcfc;
+        color: #91268f;
         text-decoration: underline; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 10px 4px #fff742; }
@@ -973,7 +974,7 @@ body {
     height: 2em;
     margin: 1.1em auto 0;
     padding: 0.75em 0.7em 1.45em;
-    background: #47bcfc;
+    background: #91268f;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
@@ -982,7 +983,7 @@ body {
       color: #f1f1f1; }
   #cmp .pane-campaign-signed .go-button {
     margin: 1em 0;
-    background: #47bcfc;
+    background: #91268f;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
