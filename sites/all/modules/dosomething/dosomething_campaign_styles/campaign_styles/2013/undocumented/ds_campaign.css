@@ -484,7 +484,8 @@ body {
     font-size: 1.5em; }
   #cmp a {
     color: #91268f;
-    text-decoration: underline; }
+    text-decoration: underline;
+    font-weight: 600; }
     #cmp a:hover {
       text-decoration: none; }
   #cmp a.mango {
@@ -553,9 +554,9 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("http://www.dosomething.org/files/campaigns/puppy/header.jpg") top center no-repeat;
+    background: url("http://www.dosomething.org/files/campaigns/undocumented/header.jpg") top center no-repeat;
     margin-bottom: 0;
-    height: 236px; }
+    height: 245px; }
   #cmp #header {
     max-width: 800px;
     margin: 0 auto;
@@ -658,13 +659,17 @@ body {
       text-transform: none; }
   #cmp #game {
     color: white;
-    background: #91268f; }
+    background: #91268f;
+    padding: 2%; }
     #cmp #game h2, #cmp #game h3 {
-      max-width: 600px; }
+      max-width: 700px; }
+      #cmp #game h2 i, #cmp #game h3 i {
+        font-style: italic; }
     #cmp #game h2 {
       color: white;
-      line-height: 1.1em;
-      margin: 0 auto; }
+      line-height: 1.3em;
+      margin: 0.25em auto 1em;
+      font-weight: 400; }
     #cmp #game h3 {
       color: white;
       font-weight: 400;
@@ -680,7 +685,8 @@ body {
     #cmp #game hr {
       border: 1px solid white;
       border-bottom: 0;
-      clear: both; }
+      clear: both;
+      margin: 2% 1.5% 2% 0.5%; }
     #cmp #game input[type="text"] {
       float: left;
       width: 48%;
@@ -816,6 +822,26 @@ body {
       font-weight: 500; }
     #cmp #info .divider {
       margin: 0 2% 3%; }
+  #cmp .section#meet {
+    padding: 2% 2% 0; }
+  #cmp #meet img {
+    box-shadow: 0px 0px 12px 1px #cccccc !important;
+    float: left;
+    width: 35%;
+    margin: 0 2% 0 0; }
+  #cmp #meet h2, #cmp #meet p {
+    float: left;
+    width: 63%;
+    text-align: left; }
+  #cmp #meet h2 {
+    color: #91268f;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.4em; }
+  #cmp #meet p {
+    margin-bottom: 2.5em; }
+  #cmp #meet .divider {
+    padding: 0.5em 0 1em; }
   #cmp #faq div {
     padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq div.divider {
@@ -1161,6 +1187,17 @@ body {
         font-size: 1em; }
     #cmp #game .scholar-foot input[type="submit"] {
       font-size: 1.8em; }
+    #cmp #meet img {
+      float: none;
+      margin: 0 2% 2%;
+      display: block;
+      clear: both;
+      width: auto; }
+    #cmp #meet h2, #cmp #meet p {
+      float: none;
+      width: 100%;
+      margin-right: 2%;
+      margin-left: 2%; }
     #cmp #info .divider {
       font-size: 0.8em;
       padding-top: 0.1em; }
@@ -1171,5 +1208,8 @@ body {
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 0 auto; }
+    #cmp #info .divider {
+      font-size: 0.65em;
+      padding-top: 0.1em; }
     #cmp a.print-pdf {
       width: 55%; } }
