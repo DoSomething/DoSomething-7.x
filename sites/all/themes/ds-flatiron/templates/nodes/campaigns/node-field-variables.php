@@ -28,7 +28,7 @@
   );
 
   $challenge = array(
-    1 => "Collect and donate 10 jars of peanut butter, jelly or any non-perishable food item by May 21st.",
+    1 => "Over 50,000 people signed up to collect PB & Jam for their local food bank and donated over 197,000 pounds of food in just 8 weeks.",
   );
   // if (isset($team) || isset($individual)) with a Group / Alone
 
@@ -36,8 +36,7 @@
   $contact_scope = isset($individual) ? ' alone' : $contact_scope;
 
   $scholarship = array(
-    1 => "Every 10 food items collected = another entry for a $4,000 scholarship.  If you collect and donate 5,000 food items, you automatically win a $1,000 scholarship (30 available).",
-    2 => "Great! You're gonna do this<span id=\"scholarship_status\">" . $contact_scope . "</span>. Here's what you need to do to qualify for the scholarship. Before you get started <a href=\"" . $files_source . 'welcome-package.pdf' . "\"  target=\"_blank\">download</a> your PB&J Kit.",
+    1 => "The scholarship is now closed. Check back on June 28th for the scholarship winners announcement.",
   );
 
   $cause_subject = 'Peanut Butter';
