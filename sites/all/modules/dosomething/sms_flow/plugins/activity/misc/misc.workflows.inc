@@ -114,6 +114,13 @@ $activity->petitions = array(
     'success_response' => 157583,
     'beta_to_alpha_feedback' => 157563,
   ),
+  // Immigration petition
+  array(
+    'nid' => 729472,
+    'mdata_id' => 10825,
+    'skip_ftaf' => TRUE,
+    'success_response' => 158567,
+  ),
 );
 
 $activity = $workflow->newActivity('sms_prompt_from_context');
