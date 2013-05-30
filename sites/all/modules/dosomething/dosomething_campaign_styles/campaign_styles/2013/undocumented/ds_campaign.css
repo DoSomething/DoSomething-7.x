@@ -554,15 +554,18 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("http://www.dosomething.org/files/campaigns/undocumented/header.jpg") top center no-repeat;
-    margin-bottom: 0;
-    height: 245px; }
+    background: url("http://www.dosomething.org/files/campaigns/undocumented/header-bk.jpg") top center no-repeat;
+    background-size: cover;
+    margin-bottom: 0; }
   #cmp #header {
     max-width: 800px;
     margin: 0 auto;
     text-align: left;
     position: relative;
     padding: 0; }
+    #cmp #header img.header-img {
+      display: block;
+      margin: 4.25% auto 0; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
       color: black;
@@ -620,11 +623,11 @@ body {
       padding: 1% 1.5%;
       clear: both; }
     #cmp #header .date {
-      color: #00b6c5;
+      color: white;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
-      margin: 6% 1% 1.5% 0.5%;
+      margin: 0% 1% 0% 0.5%;
       float: left;
       clear: both;
       font-size: 1.2em;
@@ -913,7 +916,7 @@ body {
     margin: 2em 0 0; }
     #cmp #faq .sponsor img {
       display: block;
-      margin: 0 auto; }
+      margin: 1em auto 0; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
@@ -1185,6 +1188,8 @@ body {
         font-size: 1.2em; }
       #cmp .section#header #header .subhead2 {
         font-size: 1em; }
+      #cmp .section#header .date {
+        margin-top: 2%; }
     #cmp #game .scholar-foot input[type="submit"] {
       font-size: 1.8em; }
     #cmp #meet img {
