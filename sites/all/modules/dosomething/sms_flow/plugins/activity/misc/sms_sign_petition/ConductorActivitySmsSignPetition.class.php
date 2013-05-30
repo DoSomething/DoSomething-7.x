@@ -107,7 +107,7 @@ class ConductorActivitySmsSignPetition extends ConductorActivity {
 
           // If user was invited by an Alpha, send back confirmation message
           $alphaMobile = sms_flow_find_alpha(substr($mobile, -10), $petition['nid']);
-          if ($alphaMobile) {
+          if ($alphaMobile && !empty($petition['beta_to_alpha_feedback'])) {
             if (is_numeric($petition['beta_to_alpha_feedback'])) {
               sms_mobile_commons_opt_in($alphaMobile, $petition['beta_to_alpha_feedback']);
             }
