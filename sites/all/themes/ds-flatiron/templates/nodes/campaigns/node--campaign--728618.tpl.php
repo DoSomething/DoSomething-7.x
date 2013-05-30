@@ -48,7 +48,7 @@
 
       <section class="challenge" id="challenge">
         <div class="section-container">
-          <img class="bg-header" src="<?php print($files_source . 'h-challenge.png'); ?>" alt="your challenge" />
+          <img class="bg-header" src="<?php print($files_source . 'h-result.png'); ?>" alt="the result" />
           <h2><?php print($challenge[1]); ?></h2>
         </div> <!-- .section-container -->
       </section> <!-- .challenge -->
@@ -57,27 +57,7 @@
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
 
-          <?php /* Display pre-opt in copy if the user has not submitted the contact form */ ?>
-          <?php if (!isset($team) && !isset($individual)): ?>
-            <h2><?php print($scholarship[1]); ?></h2>
-          <?php endif; ?>
-
-          <div class="contact-form contact-form-individual">
-            <?php print render($content['contact']['individual']); ?>
-          </div>  <!-- .contact-form (individual) -->
-
-          <div class="contact-form contact-form-group">
-            <?php print render($content['contact']['team']); ?>
-          </div>  <!-- .contact-form (group) -->
-
-          <?php /* Display post-opt in copy after the user has submitted the contact form */ ?>
-          <?php if (isset($team) || isset($individual)): ?>
-            <h2 class="scholarship-header"><?php print($scholarship[1]); ?></h2>
-            <h2><?php print($scholarship[2]); ?></h2>
-            <div class="report-back-form">
-              <?php print render($content['report_back']); ?>
-            </div>  <!-- .report_back -->
-          <?php endif; ?>
+          <h2><?php print($scholarship[1]); ?></h2>
 
           <div class="official-rules-wrapper">
             <a class="official-rules-link" href="<?php print($files_source . 'new-contest-rules.pdf'); ?>"  target="_blank">official contest rules</a>
