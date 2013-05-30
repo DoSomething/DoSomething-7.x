@@ -34,7 +34,7 @@ $plugin = array(
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
-    '#markup' => '<hr><p>Got questions? Email Christina at <a href="mailto:immigration@dosomething.org">immigration@dosomething.org</a>!</p>'
+    '#markup' => '<hr><p>Got questions? Email Christina at <a href="mailto:undocumented@dosomething.org">undocumented@dosomething.org</a>!</p>'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'

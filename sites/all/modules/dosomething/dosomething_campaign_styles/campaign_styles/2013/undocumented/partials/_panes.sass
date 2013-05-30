@@ -4,15 +4,18 @@
 //  #header     - sign up -
 //      //
 .section#header
-  background: url('http://www.dosomething.org/files/campaigns/undocumented/header.jpg') top center no-repeat
+  background: url('http://www.dosomething.org/files/campaigns/undocumented/header-bk.jpg') top center no-repeat
+  background-size: cover
   margin-bottom: 0
-  height: 245px
 #header
   max-width: 800px
   margin: 0 auto
   text-align: left
   position: relative
   padding: 0
+  img.header-img
+    display: block
+    margin: 4.25% auto 0
   h1, h2
     text-align: left
     color: black
@@ -70,11 +73,11 @@
     padding: 1% 1.5%
     clear: both
   .date
-    color: $thirdColor
+    color: white
     zoom: 1
     filter: alpha(opacity=85)
     opacity: 0.85
-    margin: 6% 1% 1.5% 0.5% 
+    margin: 0% 1% 0% 0.5% 
     float: left
     clear: both
     font-size: 1.2em
@@ -393,4 +396,4 @@
     margin: 2em 0 0
     img
       display: block
-      margin: 0 auto 
+      margin: 1em auto 0 
