@@ -463,6 +463,9 @@ function _dosomething_services_user_resource_login($username, $password, $email)
           $return = services_error(t('Wrong username or password.'), 401);
         }
       }
+      else {
+        return services_error($e->getMessage(), $e->getCode());
+      }
     }
   }
   // If there's an email and no username
