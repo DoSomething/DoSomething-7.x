@@ -75,6 +75,21 @@ function dosomething_subscribe_admin_settings_form() {
     '#required' => TRUE,
     '#default_value' => variable_get($prefix . 'mobilecommons_clubs'),
   );
+  // Node types to use for User Profile signups:
+  $form['user_profile_signups'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('User Profile Based Signups'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#description' => t('Node types that should pull signup data from a User Profile when email/mobile fields are not present.'),
+  );
+  $form['user_profile_signups'][$prefix . 'user_profile_node_types'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Node types'),
+    '#required' => TRUE,
+    '#options' => drupal_map_assoc(array_keys(node_type_get_types())),
+    '#default_value' => variable_get($prefix . 'user_profile_node_types'),
+  );
   return system_settings_form($form);
 }
 
