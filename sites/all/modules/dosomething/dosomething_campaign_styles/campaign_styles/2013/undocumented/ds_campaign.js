@@ -76,15 +76,15 @@
     }
 
     // #header section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/undocumented/fb-logo.png';
-    var fb_title = 'Undocumented';
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/undocumented/header.jpg';
+    var fb_title = 'DoSomething.org\'s Undocumented For A Day';
     var fb_header_caption = '';
 
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'Learn more about undocumented: http://www.dosomething.org/undocumented',
+      'feed_description': 'There are 11 million undocumented immigrants in the United States. Wondering what a day in their life is like? Click here to experience it.',
       'feed_selector': '.header-facebook-share',
     }, function(response){
       window.location.href = '/undocumented#header';
