@@ -141,6 +141,14 @@ $activity->sets = array(
     'path_special' => 157743,
     'send_to_special_on' => 7,
   ),
+  // Climate Change SAS - NINJA tips
+  array(
+    'mdata_id'     => 10831,
+    'game_id'      => 15,
+    'opt_in_paths' => array(158717, 158719, 158721, 158723),
+    'path_special' => 158725,
+    'send_to_special_on' => 5,
+  ),
 );
 
 $activity = $workflow->newActivity('end');
