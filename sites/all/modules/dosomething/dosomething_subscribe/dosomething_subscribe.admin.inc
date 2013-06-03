@@ -76,19 +76,27 @@ function dosomething_subscribe_admin_settings_form() {
     '#default_value' => variable_get($prefix . 'mobilecommons_clubs'),
   );
   // Node types to use for User Profile signups:
-  $form['user_profile_signups'] = array(
+  $form['signup_node_types'] = array(
     '#type' => 'fieldset',
-    '#title' => t('User Profile Based Signups'),
+    '#title' => t('Signup Node Types'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#description' => t('Node types that should pull signup data from a User Profile when email/mobile fields are not present.'),
+    '#description' => t('Node types that should submit email and/or mobile data upon node and/or webform submission.'),
   );
-  $form['user_profile_signups'][$prefix . 'user_profile_node_types'] = array(
+  $form['signup_node_types'][$prefix . 'signup_node_types'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Node types'),
     '#required' => TRUE,
     '#options' => drupal_map_assoc(array_keys(node_type_get_types())),
-    '#default_value' => variable_get($prefix . 'user_profile_node_types'),
+    '#default_value' => variable_get($prefix . 'signup_node_types'),
+  );
+  $form['signup_node_types'][$prefix . 'signup_user_profile_node_types'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('User Profile Signup Node types'),
+    '#required' => FALSE,
+    '#description' => t('Node types that should pull email/mobile from the User Profile if fields are not present.  Note: this list is populated from the Signup Node Types.'),
+    '#options' => drupal_map_assoc(_dosomething_subscribe_get_signup_node_types()),
+    '#default_value' => variable_get($prefix . 'signup_user_profile_node_types'),
   );
   return system_settings_form($form);
 }
