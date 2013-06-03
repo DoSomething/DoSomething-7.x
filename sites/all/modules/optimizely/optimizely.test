@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ * Optimizely Tests
+ */
+
+ /**
+ * Web Tests
+ */
+class OptimizelyTestCase extends DrupalWebTestCase {
+  protected $privileged_user;
+
+/**
+ * OptimizelyTestCase getInfo().
+ */
+  public static function getInfo() {
+    return array(
+      'name' => 'Optimizely Test',
+      'description' => 'Ensure that the Optimizely module functions properly.',
+      'group' => 'Optimizely',
+    );
+  }
+
+/**
+ * OptimizelyTestCase setUp().
+ */
+  public function setUp() {
+    parent::setUp('optimizely');  // Enable any modules required for the test
+    // Create and log in our user. The user has the arbitrary privilege
+    // 'extra special edit any Optimizely project' which the code uses
+    // to grant access.
+    $this->privileged_user = $this->drupalCreateUser(array('administer optimizely'));
+    $this->drupalLogin($this->privileged_user);
+  }
+
+ /**
+   * Detect if we're running on PIFR testbot; skip intentional failure in that
+   * case. It happens that on the testbot the site under test is in a directory
+   * named 'checkout' or 'site_under_test'.
+   *
+   * @return boolean
+   *   TRUE if running on testbot.
+   */
+  public function runningOnTestbot() {
+    return (file_exists("../checkout") || file_exists("../site_under_test"));
+  }
+}
+
+/**
+ * Unit Tests
+ */
+class OptimizelyUnitTestCase extends DrupalUnitTestCase {
+
+/**
+ * OptimizelyUnitTestCase getInfo().
+ */
+  public static function getInfo() {
+    return array(
+      'name' => 'Optimizely unit tests',
+      'description' => 'Perform unit tests.',
+      'group' => 'Optimizely',
+    );
+  }
+
+/**
+ * OptimizelyUnitTestCase setUp().
+ */
+  function setUp() {
+    drupal_load('module', 'optimizely');
+    parent::setUp();
+  }
+}
