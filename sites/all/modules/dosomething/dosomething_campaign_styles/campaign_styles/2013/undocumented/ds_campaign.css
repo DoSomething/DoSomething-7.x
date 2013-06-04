@@ -915,8 +915,8 @@ body {
     text-align: center;
     margin: 2em 0 0; }
     #cmp #faq .sponsor img {
-      display: block;
-      margin: 1em auto 0; }
+      margin: 1em 0.5em 0;
+      vertical-align: middle; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
@@ -1209,7 +1209,10 @@ body {
     #cmp #example img {
       display: none; }
     #cmp #example .go-button:before {
-      display: none; } }
+      display: none; }
+    #cmp #faq .sponsor img {
+      margin: 1.5em auto 0;
+      display: block; } }
   @media only screen and (max-width: 450px) {
     #cmp .section {
       margin: 0 auto; }
