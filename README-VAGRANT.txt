@@ -91,3 +91,23 @@ Solr should be available at
 
 http://localhost:11111/solr
 
+
+GETTING STARTED
+---------------
+
+To get vagrant running, you run "vagrant up" from a directory where a Vagrantfile exists.  
+For the DS site, this file exists in the root directory when you have the QA branch checked out.
+
+You can then SSH into the box using "vagrant ssh".
+
+Once that finishes, cd into the vagrant directory, and then into the tests/selenium directory.
+From there, you need to start selenium in order to run tests: sh start-selenium.sh
+
+You can then run specific tests: phpunit PetitionsTest.php
+
+
+You will also need to edit your settings.php to:
+include_once('site-settings.php')
+
+site-settings.php has all the configurations for memcache, etc.
+
