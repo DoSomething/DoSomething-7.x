@@ -149,6 +149,22 @@ $activity->sets = array(
     'path_special' => 158725,
     'send_to_special_on' => 5,
   ),
+  // I Heart Dad 2013 - Blood Pressure tips
+  array(
+    'mdata_id'     => 10837,
+    'game_id'      => 16,
+    'opt_in_paths' => array(158777, 158779, 158781, 158783, 158785, 158787, 158789, 158791),
+    'path_special' => 158793,
+    'send_to_special_on' => 9,
+  ),
+  // I Heart Dad 2013 - Health tips
+  array(
+    'mdata_id'     => 10839,
+    'game_id'      => 17,
+    'opt_in_paths' => array(158795, 158797, 158799, 158801),
+    'path_special' => 158803,
+    'send_to_special_on' => 5,
+  ),
 );
 
 $activity = $workflow->newActivity('end');
