@@ -30,6 +30,7 @@ $plugin = array(
   'menu' => array(
     array('title' => 'take action', 'href' => '', 'fragment' => 'game', 'external' => TRUE),
     array('title' => 'see their story', 'href' => '', 'fragment' => 'meet', 'external' => TRUE),
+    array('title' => 'scholarship', 'href' => '', 'fragment' => 'game', 'external' => TRUE),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
