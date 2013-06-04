@@ -6,8 +6,8 @@
 
 /**
  * Builds and returns the Optimizely Add/Update form.
- * If there are only 3 arguments in the path it builds the add form and it adds a record.
- * Otherwise it builds the update form where the fourth argument is the record ID in
+ * If there are only three arguments in the path it builds the add form and adds a record.
+ * Otherwise it builds the update form where the fourth argument is the record ID (oid) in
  * in the optimizely table.
  */
 function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
@@ -155,7 +155,7 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
 }
 
 /**
- * Process form submissions form optimizely_add_update_form().
+ * Process form submissions from optimizely_add_update_form().
  *
  * Either "Add"s or "Update"s a record from the optimizely_add_update_form() form.
  */
