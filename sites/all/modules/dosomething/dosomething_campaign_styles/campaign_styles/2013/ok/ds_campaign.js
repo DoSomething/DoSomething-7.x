@@ -140,7 +140,7 @@
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'After traumatic experiences, young kids sometimes have a hard time processing what they\'ve been through.  In these instances, art can help them work through their grief in a creative way, starting the healing process. Help @Do Something begin the healing process in Moore, OK by donating art supplies and sending messages of hope. http://dsorg.us/168voSV',
+      'feed_description': 'After traumatic experiences, young kids sometimes have a hard time processing what they\'ve been through.  In these instances, art can help them work through their grief in a creative way, starting the healing process. Help @Do Something begin the healing process in Oklahoma by donating art supplies and sending messages of hope. http://dsorg.us/168voSV',
       'feed_selector': '.header-facebook-share',
     }, function(response){
       window.location.href = '/ok#header';
