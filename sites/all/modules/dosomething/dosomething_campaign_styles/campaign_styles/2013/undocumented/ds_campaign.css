@@ -845,6 +845,12 @@ body {
     margin-bottom: 2.5em; }
   #cmp #meet .divider {
     padding: 0.5em 0 1em; }
+  #cmp #meet h3 {
+    text-transform: none;
+    font-size: 1em;
+    margin-bottom: 1em;
+    font-weight: 400;
+    text-align: left; }
   #cmp #faq div {
     padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq div.divider {
