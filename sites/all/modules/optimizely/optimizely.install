@@ -152,6 +152,7 @@ function optimizely_uninstall() {
     drupal_set_message(st('No entries found when deleting Optimizely variables.'), 'warning');
   }
 
+  // hook_uninstall removes schema automatically
   drupal_set_message(t('Optimizely database table dropped.'), 'status');
 
 }
