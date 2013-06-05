@@ -2,7 +2,7 @@
   <img class="scholar-copy" src="//files.dosomething.org/files/u/awesome-things/scholarship-copy2.png" alt="share this fact" />
   <h1 class="condensed"><?php echo $scholarship_copy; ?></h1>
 <?php else: ?>
-  <h1 class="condensed non-scholarship">Share this stat with six friends</h1>
+  <h1 class="condensed non-scholarship"><?php echo t('Share this stat with six friends'); ?></h1>
 <?php endif; ?>
 
 <div class="quote-highlight">
