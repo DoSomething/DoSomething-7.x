@@ -26,7 +26,7 @@ function dosomething_sms_settings_form() {
       TRUE => t('Enabled'),
       FALSE => t('Disabled'),
     ),
-    '#default_value' => 'dosomething_sms_cron_enable',
+    '#default_value' => variable_get('dosomething_sms_cron_enable', FALSE),
     '#weight' => 10,
   );
   
@@ -52,7 +52,7 @@ function dosomething_sms_settings_form() {
 		'#type' => 'textfield',
 		'#title' => t('Email Recipients'),
     '#description' => t('Seperate email addresses with commas.'),
-		'#default_value' => variable_get('dosomething_sms_cron_recipients', 'dlee@dosomething.org'),
+		'#default_value' => variable_get('dosomething_sms_recipients', 'dlee@dosomething.org'),
 		'#size' => 60,
 		'#maxlength' => 256,
 		'#required' => TRUE,
@@ -66,7 +66,7 @@ function dosomething_sms_settings_form() {
   
   // Run job every interval (week by default)
   $interval = variable_get('dosomething_sms_cron_interval', 60 * 60 * 24 * 7);
-  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME + $interval);
+  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME);
 
   $form['status']['dosomething_sms_cron_test'] = array(
     '#type' => 'markup',
