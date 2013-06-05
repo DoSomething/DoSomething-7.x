@@ -17,7 +17,7 @@ function dosomething_social_scholars_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -30;
+  $handler->weight = -28;
   $handler->conf = array(
     'title' => 'Social Scholarship',
     'no_blocks' => 0,
@@ -60,7 +60,13 @@ function dosomething_social_scholars_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'simple',
+      'settings' => array(
+        'lifetime' => '3600',
+        'granularity' => 'none',
+      ),
+    );
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
@@ -82,7 +88,13 @@ function dosomething_social_scholars_default_page_manager_handlers() {
       'override_title' => 1,
       'override_title_text' => '',
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'simple',
+      'settings' => array(
+        'lifetime' => '604800',
+        'granularity' => 'context',
+      ),
+    );
     $pane->style = array();
     $pane->css = array(
       'css_id' => 'quick-stats-area',
@@ -137,7 +149,20 @@ function dosomething_social_scholars_default_page_manager_handlers() {
       'override_title' => 1,
       'override_title_text' => '',
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'panels_hash_cache',
+      'settings' => array(
+        'lifetime' => '604800',
+        'granularity' => array(
+          'url' => 'url',
+          'args' => 0,
+          'context' => 0,
+          'user' => 0,
+          'user_role' => 0,
+          'path' => 0,
+        ),
+      ),
+    );
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
