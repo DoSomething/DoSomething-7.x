@@ -39,6 +39,7 @@ function dosomething_subscribe_update_7003() {
   	// See: https://github.com/DoSomething/DoSomething-7.x/commit/cabfeb61f6065819d92aa9772f5eca0ad057129f
   	'campaign' => 'campaign',
   	'campaign_contact_form' => 'campaign_contact_form',
+    'club' => 'club',
   	'grant_application' => 'grant_application',
   	'petition' => 'petition',
   	'program_short_form' => 'program_short_form',
