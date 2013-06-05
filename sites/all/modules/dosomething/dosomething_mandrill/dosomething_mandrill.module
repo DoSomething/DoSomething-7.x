@@ -44,14 +44,6 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       $message['from'] = 'dosomething@dosomething.org';
       $message['subject'] = $params['subject'];
       $message['body'] = $params['body'];
-        
-      break;
-    
-    default:      
-        
-      $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = $params['subject'];
-      $message['body'] = $params['body'];
     
   }
 
