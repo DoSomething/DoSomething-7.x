@@ -41,6 +41,7 @@ features[field][] = node-social_scholarship-field_petition_image
 features[field][] = node-social_scholarship-field_petition_link
 features[field][] = node-social_scholarship-field_redirect_message
 features[field][] = node-social_scholarship-field_redirect_to_path
+features[field][] = node-social_scholarship-field_sas_is_scholarship
 features[field][] = node-social_scholarship-field_shortform_image
 features[field][] = node-social_scholarship-field_social_scholars_images
 features[field][] = node-social_scholarship-field_sponsor_image

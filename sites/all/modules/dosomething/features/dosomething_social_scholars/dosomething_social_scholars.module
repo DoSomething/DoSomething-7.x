@@ -201,6 +201,7 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
           color: ' . $s['tip_color'] . ' !important;
         }
       ';
+
       drupal_add_css($css, array(
         'type' => 'inline',
         'group' => CSS_THEME,
@@ -233,9 +234,17 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
       }
     }
 
+    if (!isset($node->field_sas_is_scholarship[LANGUAGE_NONE][0]['value'])) {
+      $is_scholarship = true;
+    }
+    else {
+      $is_scholarship = (bool) $node->field_sas_is_scholarship[LANGUAGE_NONE][0]['value'];
+    }
+
     $f['header']['#markup'] = theme('sas-header', array(
       'scholarship_copy' => '$2000 Scholarship',
       'stat_tip' => check_plain($node->field_tip_to_show_on_form[LANGUAGE_NONE][0]['value']),
+      'is_scholarship' => $is_scholarship,
     ));
 
     $f['divider'] = array(

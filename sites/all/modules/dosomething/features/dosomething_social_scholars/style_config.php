@@ -90,10 +90,10 @@ $scheme_styles = array(
 	// Black
 	'black' => array(
 		'longform' => array(
-			'background' => '#ccc',
-			'tip' => '#163a26',
-			'font_color' => '#000000',
-			'tip_color' => '#ffffff',
+			'background' => '#000',
+			'tip' => '#ccc',
+			'font_color' => '#fff',
+			'tip_color' => '#000',
 		),
 		'shortform' => array(
 			'background' => '#8dc641',
