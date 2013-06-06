@@ -163,7 +163,7 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
  */
 function optimizely_add_update_form_validate($form, &$form_state) {
   
-  $found_entry_title = db_query('SELECTnproject_title FROM {optimizely} WHERE
+  $found_entry_title = db_query('SELECT project_title FROM {optimizely} WHERE
     project_code = '. $form_state['values']['optimizely_project_code'])
   ->fetchField();
   
