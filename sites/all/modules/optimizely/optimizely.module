@@ -190,10 +190,10 @@ function optimizely_init() {
 
         foreach ($project_paths as $path_count => $target_path) {
 
-          if ( ( $row['include'] && drupal_match_path($current_path_alias, $target_path) ) ||
-               ( (!$row['include']) && (!drupal_match_path($current_path_alias, $target_path) &&
-                                       !optimizely_wildcard_match($target_path, $project_paths) )
-               )
+				  // drupal_match_path() deals with wild cards "*" and <front>
+          if (
+							 ( $row['include'] && drupal_match_path($current_path_alias, $target_path) ) ||
+               ( !$row['include'] && !drupal_match_path($current_path_alias, $target_path) )
              ) {
 
             drupal_add_js('http://cdn.optimizely.com/js/' . $row['project_code'] . '.js', 'external');
@@ -207,43 +207,5 @@ function optimizely_init() {
     }
 
   }
-
-}
-
-/**
- * optimizely_wildcard_match()
- *
- * @parm: $target_path - string
- *   The specific path, typically the current path
- *
- * @parm: $project_paths - Array
- *   An array of desired paths to compare $target_path to. Supports matching wild cards
- *
- * @returns $found_flag - Boolean
- *   TRUE if match is found
- */
-function optimizely_wildcard_match($target_path, $project_paths) {
-
-  $found_flag = FALSE;
-  foreach ($project_paths as $project_path) {
-
-    // Remove wild card notation
-    if (strpos($project_path, '/*') > 0) {
-
-      $project_path = substr($project_path, 0, strlen($project_path) - 2);
-
-      // Look for match as partial sub paths
-      if (is_int(strpos($project_path, $target_path))) {
-        $found_flag = TRUE;
-      }
-
-    } // Exact matches
-    elseif ($project_path == $target_path) {
-      $found_flag = TRUE;
-    }
-
-  }
-
-  return $found_flag;
 
 }
