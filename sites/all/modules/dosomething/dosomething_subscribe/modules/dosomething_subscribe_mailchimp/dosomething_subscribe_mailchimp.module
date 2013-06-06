@@ -5,6 +5,10 @@
  * Handles Mailchimp API calls.
  **/
 
+define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS', 'f2fab1dfd4');
+define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE', 'a27895fe0c');
+define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_NOTIFY_ADMIN_EMAIL', 'developers@dosomething.org');
+
 /**
  * Send a subscribe request to a Mailchimp Group ID for a given email address.
  *
@@ -19,7 +23,100 @@ function dosomething_subscribe_mailchimp_signup($email, $mailchimp_group_id) {
 }
 
 /**
- * Build MailChimp group info list as array
+ * Makes Mailchimp API call to return the grouping IDs for each group in a Mailchimp List.
+ *
+ * @param string $list_id
+ *   Mailchimp List Id.
+ *
+  * @return array
+ *   The grouping IDs for each group in the given list, indexed by group_name.
+ */
+function dosomething_subscribe_mailchimp_get_grouping_ids_from_api($list_id) {
+  $mcapi = dosomething_subscribe_mailchimp_get_api_object();
+  $group_map = array();
+  $groupings = $mcapi->listInterestGroupings($list_id);
+  if (is_array($groupings) && !empty($groupings)) {
+    foreach ($groupings as $grouping) {
+      foreach ($grouping['groups'] as $group) {
+        // If a groupname is used in 2 different groupings, then it will override the wrong grouping id here.
+        // So, this means: keep group names unique in Mailchimp.
+        $group_map[$group['name']] = $grouping['id'];
+      }
+    }
+  }
+  // Handle invalid API key error:
+  if ($mcapi->errorCode == 104) {
+    dosomething_subscribe_mailchimp_invalid_api_notify();
+  }
+  return $group_map;
+}
+
+/**
+ * Retrieve group maps from MC API, and store as variables.
+ */
+function dosomething_subscribe_mailchimp_set_grouping_id_vars() {
+  // Retrieve group ids for Members list.
+  $map_members = dosomething_subscribe_mailchimp_get_grouping_ids_from_api(DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS);
+  // Store as variable.
+  variable_set('dosomething_subscribe_mailchimp_grouping_ids_' . DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS, $map_members);
+  // Retrieve group ids for Old People list.
+  $map_oldpeople = dosomething_subscribe_mailchimp_get_grouping_ids_from_api(DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE);
+  // Store as variable.
+  variable_set('dosomething_subscribe_mailchimp_grouping_ids_' . DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE, $map_oldpeople);
+  // Store timestamp of when variables were set.
+  variable_set('dosomething_subscribe_mailchimp_grouping_ids_updated', time());
+}
+
+/**
+ * Get the grouping ID for a given group_name in given_list_id.
+ *
+ * @param string $list_id
+ *   Mailchimp List Id.
+ * @param string $group_name
+ *   Mailchimp Group name
+ *
+  * @return string
+ *   The Mailchimp Grouping ID that the group_name belongs to.
+ */
+function dosomething_subscribe_mailchimp_get_grouping_id($list_id, $group_name) {
+  $map = variable_get('dosomething_subscribe_mailchimp_grouping_ids_' . $list_id);
+  // If it's empty, reset the groups.
+  if (empty($map)) {
+    dosomething_subscribe_mailchimp_set_grouping_id_vars();
+    $map = variable_get('dosomething_subscribe_mailchimp_grouping_ids_' . $list_id);
+  }
+  return $map[$group_name];
+}
+
+/**
+ * Implements hook_cron().
+ */
+function dosomething_subscribe_mailchimp_cron() {
+  // Check to see if we have grouping IDS stored already.
+  $members = variable_get('dosomething_subscribe_mailchimp_grouping_ids_' . DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS, array());
+  $old_people = variable_get('dosomething_subscribe_mailchimp_grouping_ids_' . DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE, array());
+  $groupings_last_updated = variable_get('dosomething_subscribe_mailchimp_grouping_ids_updated');
+  $reset = FALSE;
+  // If we don't have grouping IDs, we need to get them.
+  if (empty($members) || empty($old_people)) {
+    $reset = TRUE;
+  }
+  // Otherwise, see if it's been a day since we last got them.
+  else {
+    $sec_elapsed = time() - $groupings_last_updated;
+    $hours_elapsed = floor($sec_elapsed/3600);
+    if ($hours_elapsed > 24) {
+      $reset = TRUE; 
+    }
+  }
+  if ($reset) {
+    dosomething_subscribe_mailchimp_set_grouping_id_vars();
+  }
+}
+
+/**
+ * Build MailChimp group info list as array.
+ * @TODO: Rework this to use the grouping_id variables instead of making APi calls / storing in cache.
  *   
  * @return
  * $groupNames - array of all group names.
@@ -142,6 +239,13 @@ function dosomething_subscribe_mailchimp_get_api_object() {
   }
 
   return $q;
+}
+
+/**
+ * Alert developers that API key is no longer valid.  Gets called from various API requests.
+ */
+function dosomething_subscribe_mailchimp_invalid_api_notify() {
+  watchdog('dosomething_subscribe_mailchimp', 'Invalid API key response.', $severity = WATCHDOG_ERROR);
 }
 
 /**
