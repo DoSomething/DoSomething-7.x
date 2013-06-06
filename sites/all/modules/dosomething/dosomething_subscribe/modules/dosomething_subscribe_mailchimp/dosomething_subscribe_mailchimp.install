@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the DoSomething Subscribe Mailchimp module.
+ */
+
+/**
+ * Initialize Mailchimp Grouping ID variables.
+ */
+function dosomething_subscribe_mailchimp_update_7000() {
+  dosomething_subscribe_mailchimp_set_grouping_id_vars();
+}

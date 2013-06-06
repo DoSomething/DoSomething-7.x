@@ -1288,27 +1288,6 @@ function dosomething_general_mobile_commons_response($message) {
 }
 
 /**
- * A wrapper function that returns the mc api object
- */
-function dosomething_general_mailchimp_get_api_object() {
-  libraries_load('mailchimp');
-  $q = new MCAPI(variable_get('mailchimp_api_key', ''));
-
-  // set the timeout to something reasonsable to avoid taking down the Drupal site
-  $q->setTimeout(60);
-
-  // specify if a secure connection should be used wit the API
-  $q->useSecure(variable_get('mailchimp_use_secure', TRUE));
-
-  if ($q->errorCode) {
-    watchdog('mailchimp', 'MCAPI Error: %errmsg', array('%errmsg' => $q->errorMessage), WATCHDOG_ERROR);
-    return NULL;
-  }
-
-  return $q;
-}
-
-/**
  * Subscribe the email to the mailchimp DoSomething Members List.
  *
  * @param $email
@@ -1319,81 +1298,57 @@ function dosomething_general_mailchimp_get_api_object() {
  *   Boolean indicating success.
  */
 //@todo: move this to dosomething_subscribe_mailchimp_signup().
-function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
+function dosomething_general_mailchimp_subscribe($email, $group_name, $merge_vars = array()) {
 
-  /* Our function */
-  $mcapi = dosomething_general_mailchimp_get_api_object();
+  $mcapi = dosomething_subscribe_mailchimp_get_api_object();
 
   // Catching function
   // Hardcoding the list to the dosomething members
   if ($groupName == 'GunControlReport2013' || $groupName == 'Volunteers2013') {
-    $listid = 'a27895fe0c';
+    $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE;
   }
   else {
-    $listid = 'f2fab1dfd4';
+    $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS;
   }
-
-  // We do not want them to have to know the grouping id so we will build
-  // the table to look it up by using the group name specified.
-  $cid = "dosomething_general_mailchimp_group_mapping_$listid";
-  $cache = cache_get($cid);
-  if (!empty($cache->data)) {
-    $groupingIdByGroupName = $cache->data;
-  }
-  else {
-    $groupingIdByGroupName = array();
-    $groupings = $mcapi->listInterestGroupings($listid);
-    if (is_array($groupings) && !empty($groupings)) {
-      foreach ($groupings as $grouping) {
-        foreach ($grouping['groups'] as $group) {
-          // If two groupnames are the same in different groupings
-          // then it may pick the wrong group.
-          $groupingIdByGroupName[$group['name']] = $grouping['id'];
-        }
-      }
-    }
-    cache_set($cid, $groupingIdByGroupName);
-  }
+  $grouping_id = dosomething_subscribe_mailchimp_get_grouping_id($list_id, $group_name);
 
   // Collect user details by email based on current values in user account for MailChimp signup / update
   $merge_vars += dosomething_general_collect_merge_vars($email);
 
-  if (!isset($groupingIdByGroupName[$groupName])) {
-    watchdog('dosomething_general_mailchimp_subscribe',
-      'Cannot find Group ID for group named %name',
-      array('%name' => $groupName),
-      $severity = WATCHDOG_ERROR
+  // If we don't have a valid grouping id, log the error, but also just subscribe them to the general List by not including a GROUPINGS array.
+  if (!isset($grouping_id)) {
+    watchdog('dosomething_general_mailchimp_subscribe','Cannot find Group ID for group named %name', array('%name' => $group_name), $severity = WATCHDOG_ERROR);
+  }
+  // Otherwise, pass through the grouping id, groups (which is just group_name) to the GROUPINGS array.
+  else {
+    $merge_vars += array(
+      'GROUPINGS' => array(
+        array(
+          'id' => $grouping_id,
+          'groups' => $group_name
+        ),
+      )
     );
   }
-  // TODO: Error Handling for groupname, still add the user if error occurs.
-  $merge_vars += array(
-    'GROUPINGS' => array(
-      array(
-        'id' => (isset($groupingIdByGroupName[$groupName]) ? $groupingIdByGroupName[$groupName] : 0),
-        'groups' => $groupName
-      ),
-    )
-  );
 
-  // http://apidocs.mailchimp.com/api/rtfm/listsubscribe.func.php
-  // listSubscribe(string apikey, string id, string email_address, array merge_vars,
-  //   string email_type, bool double_optin, bool update_existing, bool replace_interests, bool send_welcome)
-
-  // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
-  $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
+  $mc_signup_flag = $mcapi->listSubscribe($list_id, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
   $merge_vars = print_r($merge_vars, TRUE);
 
   if ($mc_signup_flag) {
     watchdog('dosomething_general_mailchimp_subscribe',
-             'Added ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
-             array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
+             'Added ( %email ) to %group using list ID: %listid and merge vars: %merge_vars',
+             array('%email' => $email, '%group' => $group_name, '%listid' => $list_id, '%merge_vars' => $merge_vars),
              $severity = WATCHDOG_INFO);
   }
   else {
     watchdog('dosomething_general_mailchimp_subscribe',
-             'Failed to signup new user ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
-             array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
+             'Failed signup ( %email ) to %group using list ID: %listid and merge vars: %merge_vars with MCAPI %mcapi',
+             array('%email' => $email, '%group' => $group_name, '%listid' => $list_id, '%merge_vars' => $merge_vars, '%mcapi' => print_r($mcapi, TRUE)),
              $severity = WATCHDOG_ERROR);
+    // Handle invalid API key error:
+    if ($mcapi->errorCode == 104) {
+      dosomething_subscribe_mailchimp_invalid_api_notify();
+    }
   }
 
   return $mc_signup_flag;
