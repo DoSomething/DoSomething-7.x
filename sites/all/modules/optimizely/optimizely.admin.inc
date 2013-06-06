@@ -155,6 +155,26 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
 }
 
 /**
+ * Validate form submissions from optimizely_add_update_form().
+ *
+ * Check to make sute the project code is unique except for the default
+ * entry which uses the account ID but should support an additional entry
+ * to allow for custom settings.
+ */
+function optimizely_add_update_form_validate($form, &$form_state) {
+  
+  $found_entry_title = db_query('SELECTnproject_title FROM {optimizely} WHERE
+    project_code = '. $form_state['values']['optimizely_project_code'])
+  ->fetchField();
+  
+  // Confirm project_code is unique or the entered project code is also the account ID
+  if ($found_entry_title && ($form_state['values']['optimizely_project_code'] != variable_get('optimizely_id', FALSE))) {
+    form_set_error('optimizely_project_code', t('The project code already has an entry in the "'. $found_entry_title . '" project.'));
+  }
+  
+}
+
+/**
  * Process form submissions from optimizely_add_update_form().
  *
  * Either "Add"s or "Update"s a record from the optimizely_add_update_form() form.
@@ -328,8 +348,19 @@ function optimizely_list_page() {
 
   // Build each row of the table
   foreach ($result as $row) {
+  
+    // Deal with "<front>" as one of the paths
+    $paths = unserialize($row->path);
+    $project_paths = '';
+    
+    foreach ($paths as $path) {
+      if ($path == '<front>') {
+        $path = htmlspecialchars('<front>');
+      }
+      $project_paths .= $path . '<br/>';
+    }
 
-    // Delete link
+    // Build Delete link
     if ($row->oid != 1) {
       $edit_link = l(t('Update'), 'admin/config/system/optimizely/add_update/' . $row->oid);
       $delete_link = ' / ' . l(t('Delete'), 'admin/config/system/optimizely/delete/' . $row->oid);
@@ -357,7 +388,7 @@ function optimizely_list_page() {
           'class' => $row->enabled ? 'include-column enabled' : 'include-column disabled',
         ),
         array(
-          'data' => implode('<br />', unserialize($row->path)),
+          'data' => $project_paths,
           'class' => $row->enabled ? 'path-column enabled' : 'path-column disabled',
         ),
         array(
