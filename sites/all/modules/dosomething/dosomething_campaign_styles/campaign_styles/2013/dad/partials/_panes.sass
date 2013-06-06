@@ -1,0 +1,260 @@
+// PANES 
+
+///      //
+//  #header     - sign up -
+//      //
+.section#header
+  //background: url('http://www.dosomething.org/files/campaigns/dad13/header.jpg') top center no-repeat
+  //background-size: cover
+  margin-bottom: 0
+#header
+  max-width: 800px
+  margin: 0 auto
+  text-align: left
+  position: relative
+  padding: 0
+  img.header-img
+    display: block
+    margin: 0 auto 0
+  h1, h2
+    text-align: left
+    color: black
+    margin: 0
+  .headline
+    max-width: 800px
+    margin: 0 auto 0
+  h1
+    margin: 1.5%
+    background: $secondaryColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    float: left
+    font-weight: 600
+    font-size: 3.4em
+    color: white
+    padding: 1.5% 1.5% 0
+    line-height: 1em
+  h2
+    text-align: center
+    text-transform: uppercase
+    font-size: 1.8em
+    font-family: $din
+    font-weight: 600
+    width: 80%
+    margin: 0 auto
+    line-height: 1.2em
+    span
+      color: $secondaryColor
+      font-weight: 700
+      padding: 0
+  .subhead
+    text-transform: uppercase
+    color: white
+    background: $thirdColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 1.5% 0
+    float: left
+    font-size: 1.4em
+    padding: 1% 1.5% 0
+  .subhead2
+    max-width: 375px
+    color: white
+    background: $thirdColor
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 9% 0 2%
+    font-weight: 500
+    float: left
+    font-size: 1.2em
+    padding: 1% 1.5%
+    clear: both
+  .date
+    color: black
+    zoom: 1
+    filter: alpha(opacity=85)
+    opacity: 0.85
+    margin: 0% 1% 0% 0.5% 
+    float: left
+    clear: both
+    font-size: 1.2em
+    padding: 1% 1.5%
+    font-weight: 500
+  .pane-campaign-signed
+    h2
+      text-align: center
+      text-transform: uppercase
+      color: white
+      font-size: 2em
+      font-weight: 400
+    .action-now
+      margin: 0 auto
+      display: inline-block
+      text-align: center         
+      img
+        margin: 0em 0.8em 0 0
+        float: left
+      .go-button
+        margin-top: 0.1em 
+        float: left
+        font-size: 1.8em
+  .header-social
+    position: absolute
+    top: 10px
+    right: 10px
+  .header-facebook-share, .header-twitter-share
+    display: inline-block
+    margin: 0 2px
+
+
+//			//
+//	#action
+//			//
+#action
+  padding: 3% 0 4%
+  img
+    margin: 4% 0
+  .bottom-p
+    clear: both
+    padding-top: 4%
+
+
+//      //
+//  #info
+//      //
+.section#info
+  padding: 2% 0
+#info
+  text-align: left
+  h2
+    background: $secondaryColor
+    color: white
+    display: inline-block
+    padding: 0.2em 2% 0
+    margin-bottom: 1em
+    text-transform: uppercase
+    font-size: 1.4em
+    font-weight: 500
+  .divider
+    margin: 0 2% 3%
+  ul
+    margin: 0 3% 1.4em 6%
+    list-style-type: disc
+  li
+    line-height: 1.2em
+    margin-bottom: 1em
+    img
+      display: block
+      margin: 2% auto
+  strong
+    font-weight: 600
+
+//      //
+//  #scholarship
+//      //
+#scholarship
+  background: $thirdColor
+  padding: 0 2% 0.5%
+  .divider
+    border-top: none
+  p, h3, a
+    color: white
+  .go-button
+    color: #222
+    font-size: 2em
+    margin-top: 0
+    font-weight: 500
+    &:hover
+      color: black
+  .rules
+    font-size: 0.8em
+  p
+    margin: 0 auto 1.2em
+    max-width: 500px
+    span
+      font-size: 1.8em
+      font-weight: 500
+      line-height: 1.4em
+      text-transform: uppercase
+
+
+//      //
+//  #impact     - gallery -
+//      // 
+.view-campaign-gallery #slideshow
+  margin: 0 auto
+
+#impact
+  .go-button
+    margin: 2% auto
+    font-size: 1.6em
+    padding: 0.5em 0.7em
+    height: 1.8em
+
+
+//      //
+//  #faq
+//      //
+#faq 
+  div
+    padding: 0 1.2em 1.2em 1.2em
+  div.divider
+    padding: 0.5em 0 0  
+  h4, li, p
+    text-align: left
+  ul
+    list-style: disc
+    margin: 1% 0 1% 2em
+    line-height: 1.4em
+  li
+    margin: 0 0 1%
+    color: black
+    span
+      color: black 
+  h1
+    font-size: 2em
+    font-family: din-web
+    text-transform: uppercase
+    background: url("assets/faq3.png")
+    background-repeat: no-repeat
+    background-position: 50% 1.2em
+    padding: 0 0 1em 0
+    margin: 0 0 -1em 0
+  h4
+    color: $offBlack
+    cursor: pointer
+    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png")
+    background-repeat: no-repeat
+    background-position-y: 0.4em
+    padding: 0.3em 1.2em
+  h4.activeFAQ
+    background-position-y: -1.4em
+  .go-button
+    background: $buttonColor
+    color: $secondaryColor
+    margin: 2% auto
+    padding: 0.5em
+    height: 1.8em
+    font-size: 1.8em
+    font-family: din-web-reg
+    &:hover
+      opacity: 0.85
+  .back-to-top
+    text-align: right
+    padding: 1em 0 1em
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 15px
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position-y: 0.5em
+  .action-copy
+    text-transform: uppercase  
+  .action-box
+    position: relative
+    display: inline-block
