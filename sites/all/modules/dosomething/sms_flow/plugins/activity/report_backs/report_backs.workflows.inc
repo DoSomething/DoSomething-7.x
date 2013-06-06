@@ -206,6 +206,7 @@ $activity->name = 'ask_picture';
 $activity->inputs = array('start');
 $activity->outputs = array('ask_who');
 $activity->should_prompt = FALSE;
+$activity->no_mms_response = 158849;
 
 $activity = $workflow->newActivity('sms_prompt_normalize_response');
 $activity->name = 'ask_who';
