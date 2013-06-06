@@ -50,7 +50,16 @@ class ConductorActivitySmsBloodPressureResults extends ConductorActivity {
       $response = $this->hypotension_msg;
     }
 
-    $state->setContext('sms_response', $response);
+    // If response is numeric, send to Mobile Commons as an opt-in path
+    if (is_numeric($response)) {
+      sms_mobile_commons_opt_in($mobile, $response);
+      $state->setContext('ignore_no_response_error', TRUE);
+    }
+    // Else return the message from here
+    else {
+      $state->setContext('sms_response', $response);
+    }
+
     $state->markCompleted();
   }
 }

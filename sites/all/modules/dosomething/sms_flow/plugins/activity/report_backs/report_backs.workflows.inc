@@ -337,8 +337,9 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_systolic');
+$activity->outputs = array('ask_systolic', 'end');
 $activity->should_prompt = FALSE;
+$activity->no_mms_response = 158843;
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_systolic';
@@ -361,13 +362,13 @@ $activity = $workflow->newActivity('submit_report_back');
 $activity->name = 'submit_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('blood_pressure_results');
+// TODO: these need to be completed once the site is setup
 // $activity->submission_fields = array(
 //   'ask_systolic' => ?,
 //   'ask_diastolic' => ?,
 //   'picture' => 'ask_picture:mms',
 // );
 // $activity->webform_nid = ?????;
-$activity->no_response = TRUE;
 
 $activity = $workflow->newActivity('sms_blood_pressure_results');
 $activity->name = 'blood_pressure_results';
@@ -382,5 +383,9 @@ $activity->hypertension1_msg = t('This is the stage 1 hypertension message');
 $activity->hypertension2_msg = t('This is the stage 2 hypertension message');
 $activity->hypertensive_crisis_msg = t('This is the hypertensive crisis message');
 $activity->error_msg = t('This is the error message');
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'blood_pressure_results');
 
 $workflows[$workflow->name] = $workflow;
