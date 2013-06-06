@@ -1,6 +1,38 @@
 <?php
 
 /**
+ * Handles all ordered pathing under one workflow
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_mcommons_ordered_paths';
+$workflow->title = 'Handler for MCommons Ordered Paths';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('mcommons_ordered_paths');
+
+$activity = $workflow->newActivity('mcommons_ordered_paths');
+$activity->name = 'mcommons_ordered_paths';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->sets = array(
+  // GUIDE path for I Heart Dad 2013
+  array(
+    'mdata_id' => 10843,
+    'game_id' => 18,
+    'opt_in_paths' => array(158861, 158863, 158865, 158869, 158871, 158873),
+  ),
+);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('mcommons_ordered_paths');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
  * Intended to be plugged in at the end of a pregnancy text drip message as an
  * mData. Will respond to any user message that matches a given set.
  */
