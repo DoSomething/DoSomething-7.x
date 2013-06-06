@@ -26,7 +26,7 @@ function dosomething_sms_menu() {
   
   $items = array();
   
-  $items['admin/settings/dosomething_sms'] = array(
+  $items['admin/config/dosomething/dosomething_sms'] = array(
     'title' => 'DoSomething SMS',
     'description' => 'A collection of SMS tools related to DoSomething.org.',
     'page callback' => 'drupal_get_form',
