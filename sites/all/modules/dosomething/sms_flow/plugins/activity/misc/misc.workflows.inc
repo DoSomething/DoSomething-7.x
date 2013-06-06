@@ -103,8 +103,8 @@ $activity->petitions = array(
     'nid' => 729298,
     'mdata_id' => 10793,
     'ftaf_beta_optin' => 157553,
-    'ftaf_prompt' => "Thanks! When we get 10K signatures, we'll deliver them to the Abercrombie CEO. Organize your friends to sign. Txt up to 5 friends #s to share the petition.",
-    'ftaf_response_success' => 'Great, thanks for getting your friends on board! Check out more DoSomething.org petitions: http://doso.me/n',
+    'ftaf_prompt' => "Thanks for signing! We've delivered 15,000 names, and yours puts more pressure on A&F to make the change. Want ur friends to sign? Reply w/ their #s",
+    'ftaf_response_success' => "Thanks! If you can, grab your friends and head to an A&F store. Make signs that say #FitchPlease and post it to Instagram. Let's make this loud!",
   ),
   // Abercrombie petition - Betas from opt in path
   array(
