@@ -333,8 +333,8 @@ function dosomething_sms_cron() {
     // drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
     $result = drupal_mail('dosomething_mandrill', 'dsplain', $to, language_default(), $params,  $from, TRUE);
     
-    $sent = printr($params, TRUE);
-    $results = printr($result, TRUE);
+    $sent = print_r($params, TRUE);
+    $results = print_r($result, TRUE);
     
     if (isset($result['result']) && $result['result'] == 'true') {
       watchdog('dosomething_sms', t('Mandrill "dsplain" email sent from %from to %to. Details sent %sent, results: %results.'), array('%from' => $result['from'], '%to' => $result['to'], '%sent' => $sent, '%results' => $results), WATCHDOG_INFO);
