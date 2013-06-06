@@ -3,10 +3,15 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join Healing Oklahoma',
+        afterReplaceText : 'Just register with DoSomething.org to join I Heart Dad',
       };
 
       $('#cmp #edit-actions').removeAttr('id');
+
+          // campaign logo injection
+    var logo = '//www.dosomething.org/files/campaigns/dad13/logo.png';
+    $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').css('margin-left','-20px').prepend('<a href="/iheartdad"><img src="' + logo + '"/></a>');
+    
 
       // hacktastic form rebuilding
       var $emailInput = $('#edit-submitted-field-webform-email');
@@ -18,7 +23,7 @@
 
 
       // contact form login
-      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/729392" class="sign-in-popup">log in</a></p>');
+      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/729551" class="sign-in-popup">log in</a></p>');
 
       // on lines 9-10 terrible things happen
       $('#campaign-opt-in br').remove();
@@ -124,26 +129,19 @@
         return false;
       });
 
-
-    // Mobile Commons success message
-    //if (document.location.search.slice(1,8) === 'success') {
-      //var success_msg = '<div class="success_msg"><p>Have we told you how amazing you are lately? Just the best.</p></div>';
-      //$('#game').prepend(success_msg);
-    //}
-
     // #header section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/ok/header.jpg';
-    var fb_title = 'Healing Oklahoma';
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/dad13/header.jpg';
+    var fb_title = 'I Heart Dad';
     var fb_header_caption = '';
 
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'After traumatic experiences, young kids sometimes have a hard time processing what they\'ve been through.  In these instances, art can help them work through their grief in a creative way, starting the healing process. Help @Do Something begin the healing process in Oklahoma by donating art supplies and sending messages of hope. http://dsorg.us/168voSV',
+      'feed_description': 'I Heart Dad',
       'feed_selector': '.header-facebook-share',
     }, function(response){
-      window.location.href = '/ok#header';
+      window.location.href = '/iheartdad#header';
     });
 
          

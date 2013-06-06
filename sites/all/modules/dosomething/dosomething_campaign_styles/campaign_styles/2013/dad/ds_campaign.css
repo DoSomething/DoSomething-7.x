@@ -22,7 +22,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: #2b9fc9; }
+  background: url("http://www.dosomething.org/files/campaigns/dad13/background6.png") top left repeat whitesmoke; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -152,7 +152,8 @@ body {
   -o-border-radius: 4px;
   border-radius: 4px; }
 
-#block-dosomething-campaign-styles-campaign-nav {
+.node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
+.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav {
   display: none; }
 
 #block-dosomething-campaign-styles-campaign-nav {
@@ -185,7 +186,7 @@ body {
     color: black; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none;
-      color: #2b9fc9; }
+      color: #1aadad; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix {
     color: #cccccc;
     text-transform: uppercase;
@@ -218,12 +219,12 @@ body {
       color: #cccccc;
       text-decoration: underline; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
-        color: #e1dc0d; }
+        color: #ed1b2e; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix hr {
       border-top: none;
       border-bottom: 1px solid #cccccc; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count {
-      background: #e1dc0d;
+      background: #ed1b2e;
       padding: 0.5em 0 0.3em;
       margin: 1em 0; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count p {
@@ -244,7 +245,7 @@ body {
         color: white; }
 
 #block-dosomething-campaign-styles-campaign-nav {
-  margin: 15px 0 0 -20px; }
+  margin: 15px 0 0 0px; }
   #block-dosomething-campaign-styles-campaign-nav .highlight a {
     background: #0054aa; }
   #block-dosomething-campaign-styles-campaign-nav .ui-icon.ui-icon-closethick {
@@ -480,9 +481,9 @@ body {
   #cmp input[type="submit"] {
     font-size: 1.5em; }
   #cmp a {
-    color: black;
+    color: #ed1b2e;
     text-decoration: underline;
-    font-weight: 600; }
+    font-weight: 500; }
     #cmp a:hover {
       text-decoration: none; }
   #cmp a.mango {
@@ -551,8 +552,6 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("http://www.dosomething.org/files/campaigns/ok/header.jpg") top center no-repeat;
-    background-size: contain;
     margin-bottom: 0; }
   #cmp #header {
     max-width: 800px;
@@ -560,26 +559,76 @@ body {
     text-align: left;
     position: relative;
     padding: 0; }
+    #cmp #header img.header-img {
+      display: block;
+      margin: 0 auto 0; }
     #cmp #header h1, #cmp #header h2 {
       text-align: left;
       color: black;
       margin: 0; }
     #cmp #header .headline {
       max-width: 800px;
-      margin: 0 auto; }
-    #cmp #header .subhead {
-      max-width: 525px;
-      color: white;
-      background: #2b9fc9;
+      margin: 0 auto 0; }
+    #cmp #header h1 {
+      margin: 1.5%;
+      background: #ed1b2e;
       zoom: 1;
-      filter: alpha(opacity=75);
-      opacity: 0.75;
-      margin: 17% 0 6.5%;
+      filter: alpha(opacity=85);
+      opacity: 0.85;
+      float: left;
+      font-weight: 600;
+      font-size: 3.4em;
+      color: white;
+      padding: 1.5% 1.5% 0;
+      line-height: 1em; }
+    #cmp #header h2 {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.8em;
+      font-family: din-web-reg, "Trebuchet MS", sans-serif;
+      font-weight: 600;
+      width: 80%;
+      margin: 0 auto;
+      line-height: 1.2em; }
+      #cmp #header h2 span {
+        color: #ed1b2e;
+        font-weight: 700;
+        padding: 0; }
+    #cmp #header .subhead {
+      text-transform: uppercase;
+      color: white;
+      background: #1aadad;
+      zoom: 1;
+      filter: alpha(opacity=85);
+      opacity: 0.85;
+      margin: 1.5% 0;
+      float: left;
+      font-size: 1.4em;
+      padding: 1% 1.5% 0; }
+    #cmp #header .subhead2 {
+      max-width: 375px;
+      color: white;
+      background: #1aadad;
+      zoom: 1;
+      filter: alpha(opacity=85);
+      opacity: 0.85;
+      margin: 9% 0 2%;
       font-weight: 500;
       float: left;
-      font-size: 1.8em;
+      font-size: 1.2em;
       padding: 1% 1.5%;
       clear: both; }
+    #cmp #header .date {
+      color: black;
+      zoom: 1;
+      filter: alpha(opacity=85);
+      opacity: 0.85;
+      margin: 0% 1% 0% 0.5%;
+      float: left;
+      clear: both;
+      font-size: 1.2em;
+      padding: 1% 1.5%;
+      font-weight: 500; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -599,13 +648,13 @@ body {
         font-size: 1.8em; }
     #cmp #header .header-social {
       position: absolute;
-      bottom: 5px;
-      left: 8px; }
+      top: 10px;
+      right: 10px; }
     #cmp #header .header-facebook-share, #cmp #header .header-twitter-share {
       display: inline-block;
       margin: 0 2px; }
   #cmp #action {
-    padding: 3% 0 2%; }
+    padding: 3% 0 4%; }
     #cmp #action img {
       margin: 4% 0; }
     #cmp #action .bottom-p {
@@ -615,21 +664,9 @@ body {
     padding: 2% 0; }
   #cmp #info {
     text-align: left; }
-    #cmp #info p {
-      margin-bottom: 1.4em;
-      padding: 0 4%;
-      font-size: 1.05em;
-      line-height: 1.4em; }
-    #cmp #info .center {
-      text-align: center;
-      max-width: 750px;
-      margin: 0 auto 1.4em; }
-    #cmp #info .gray {
-      color: #999999;
-      font-style: italic; }
     #cmp #info h2 {
-      background: #e1dc0d;
-      color: black;
+      background: #ed1b2e;
+      color: white;
       display: inline-block;
       padding: 0.2em 2% 0;
       margin-bottom: 1em;
@@ -639,19 +676,40 @@ body {
     #cmp #info .divider {
       margin: 0 2% 3%; }
     #cmp #info ul {
-      margin: 0 2% 1.4em 8%;
+      margin: 0 3% 1.4em 6%;
       list-style-type: disc; }
     #cmp #info li {
-      font-size: 1.4em;
       line-height: 1.2em;
-      margin-bottom: 0.1em; }
-  #cmp #sms-map {
-    background: #e1dc0d; }
-    #cmp #sms-map img {
-      display: block;
-      margin: 5px auto 20px; }
-  #cmp #map .tableauPlaceholder {
-    margin: 0 auto; }
+      margin-bottom: 1em; }
+      #cmp #info li img {
+        display: block;
+        margin: 2% auto; }
+    #cmp #info strong {
+      font-weight: 600; }
+  #cmp #scholarship {
+    background: #1aadad;
+    padding: 0 2% 0.5%; }
+    #cmp #scholarship .divider {
+      border-top: none; }
+    #cmp #scholarship p, #cmp #scholarship h3, #cmp #scholarship a {
+      color: white; }
+    #cmp #scholarship .go-button {
+      color: #222222;
+      font-size: 2em;
+      margin-top: 0;
+      font-weight: 500; }
+      #cmp #scholarship .go-button:hover {
+        color: black; }
+    #cmp #scholarship .rules {
+      font-size: 0.8em; }
+    #cmp #scholarship p {
+      margin: 0 auto 1.2em;
+      max-width: 500px; }
+      #cmp #scholarship p span {
+        font-size: 1.8em;
+        font-weight: 500;
+        line-height: 1.4em;
+        text-transform: uppercase; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
   #cmp #impact .go-button {
@@ -667,11 +725,11 @@ body {
     text-align: left; }
   #cmp #faq ul {
     list-style: disc;
-    margin: 0 0 0 2em;
+    margin: 1% 0 1% 2em;
     line-height: 1.4em; }
   #cmp #faq li {
-    margin: 0;
-    color: #e1dc0d; }
+    margin: 0 0 1%;
+    color: black; }
     #cmp #faq li span {
       color: black; }
   #cmp #faq h1 {
@@ -694,7 +752,7 @@ body {
     background-position-y: -1.4em; }
   #cmp #faq .go-button {
     background: #fec82e;
-    color: #e1dc0d;
+    color: #ed1b2e;
     margin: 2% auto;
     padding: 0.5em;
     height: 1.8em;
@@ -741,11 +799,11 @@ body {
   #cmp #contact-form, #cmp #contact-form2, #cmp #contact-form3 {
     margin: 1% 0;
     padding-bottom: 10px;
-    background: #e1dc0d;
+    background: #ed1b2e;
     width: 100%;
-    color: black; }
+    color: white; }
     #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
-      color: black;
+      color: white;
       font-size: 1.5em;
       line-height: 1.2em;
       font-weight: 400;
@@ -764,15 +822,15 @@ body {
       margin-top: 0.5em;
       font-weight: 300; }
     #cmp #contact-form .form-actions p, #cmp #contact-form2 .form-actions p, #cmp #contact-form3 .form-actions p {
-      color: black;
+      color: white;
       margin-top: 5px;
       font-size: 0.75em;
       font-weight: 500; }
     #cmp #contact-form .form-actions a, #cmp #contact-form2 .form-actions a, #cmp #contact-form3 .form-actions a {
-      color: black;
+      color: white;
       text-transform: uppercase; }
       #cmp #contact-form .form-actions a:hover, #cmp #contact-form2 .form-actions a:hover, #cmp #contact-form3 .form-actions a:hover {
-        color: #2b9fc9;
+        color: #f1f1f1;
         text-decoration: underline; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 10px 4px #fff742; }
@@ -787,7 +845,7 @@ body {
     -o-border-radius: 5px;
     border-radius: 5px; }
   #cmp .pane-campaign-sign-up label {
-    color: black;
+    color: white;
     width: 100%;
     font-size: 1.1em;
     font-weight: 500;
@@ -800,16 +858,16 @@ body {
     height: 2em;
     margin: 1.1em auto 0;
     padding: 0.75em 0.7em 1.45em;
-    background: #2b9fc9;
-    color: white;
-    font-weight: 400;
+    background: whitesmoke;
+    color: black;
+    font-weight: 500;
     font-family: din-web-reg;
     font-size: 1.4em; }
     #cmp .pane-campaign-sign-up #edit-submit:hover {
-      color: #f1f1f1; }
+      color: #111111; }
   #cmp .pane-campaign-signed .go-button {
     margin: 0.5em 0;
-    background: #2b9fc9;
+    background: #1aadad;
     color: white;
     font-weight: 500;
     font-family: din-web-reg;
@@ -829,7 +887,7 @@ body {
       font-size: 0.7em;
       line-height: 0.7em;
       background: transparent;
-      color: black;
+      color: white;
       text-transform: none; }
     #cmp #campaign-opt-in strong {
       font-weight: 600; }
@@ -1014,6 +1072,9 @@ body {
       bottom: 0px; }
     #cmp .section {
       margin: 0 auto; }
+    #cmp #info .divider {
+      font-size: 0.75em;
+      padding-top: 0.1em; }
     #cmp a.print-pdf {
       width: 55%; }
     #cmp #edit-submitted-field-webform-email {

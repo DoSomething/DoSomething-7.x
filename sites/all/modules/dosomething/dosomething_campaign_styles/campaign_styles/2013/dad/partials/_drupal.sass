@@ -25,7 +25,7 @@ img.logo
   padding-bottom: 0
     
 body
-  background: $fallbackBG
+  background: url('http://www.dosomething.org/files/campaigns/dad13/background6.png') top left repeat #f5f5f5
 
 @media only screen and (max-width: 550px)
   body
@@ -142,7 +142,8 @@ body
   +border-radius(4px)
 
 // hide the nav when the user is signing up or reporting back
-#block-dosomething-campaign-styles-campaign-nav
+.node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
+.node-type-campaign-contact-form #block-dosomething-campaign-styles-campaign-nav
   display: none
 
 #block-dosomething-campaign-styles-campaign-nav
@@ -231,7 +232,7 @@ body
         color: white
 
 #block-dosomething-campaign-styles-campaign-nav
-  margin: 15px 0 0 -20px
+  margin: 15px 0 0 0px
   .highlight a
     background: $linkBG
 
