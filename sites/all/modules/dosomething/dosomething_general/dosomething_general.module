@@ -1346,7 +1346,7 @@ function dosomething_general_mailchimp_subscribe($email, $group_name, $merge_var
              array('%email' => $email, '%group' => $group_name, '%listid' => $list_id, '%merge_vars' => $merge_vars, '%mcapi' => print_r($mcapi, TRUE)),
              $severity = WATCHDOG_ERROR);
     // Handle invalid API key error:
-    if ($mcapi->errorCode == 104) {
+    if ($mcapi->errorCode == DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE) {
       dosomething_subscribe_mailchimp_invalid_api_notify();
     }
   }
