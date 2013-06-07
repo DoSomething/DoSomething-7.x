@@ -21,7 +21,7 @@ $activity->sets = array(
   // GUIDE path for I Heart Dad 2013
   array(
     'mdata_id' => 10843,
-    'game_id' => 18,
+    'game_id' => SmsFlowGameConstants::IHEARTDAD_GUIDE,
     'opt_in_paths' => array(158861, 158863, 158865, 158869, 158871, 158873),
   ),
 );
