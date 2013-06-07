@@ -238,11 +238,11 @@ function dosomething_subscribe_mailchimp_group_info() {
  *   
  * @return - MCAPI connection object.
  */
-function dosomething_subscribe_mailchimp_get_api_object() {
+function dosomething_subscribe_mailchimp_get_api_object($timeout = 60) {
   libraries_load('mailchimp');
   $q = new MCAPI(variable_get('mailchimp_api_key', ''));
   // Set the timeout to something reasonsable to avoid taking down the Drupal site.
-  $q->setTimeout(300);
+  $q->setTimeout($timeout);
   // Specify if a secure connection should be used with the API:
   $q->useSecure(variable_get('mailchimp_use_secure', TRUE));
   if ($q->errorCode) {
