@@ -54,6 +54,13 @@
         }
       });
 
+      // anchor for Tips
+      $("a[href=#tips]").click(function() {
+        $("#tips").addClass("activeFAQ");
+        $("#tips").next("div").slideToggle();
+        $("#tips").siblings().next('div').slideUp();
+      });
+
       // animation for a.jump_scroll
       var contentAnchors = 'a.jump_scroll';
       var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
