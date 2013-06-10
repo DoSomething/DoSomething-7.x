@@ -36,6 +36,11 @@ $activity->routes = array(
     'yes' => '157793',
     'no' => '157783'
   ),
+  // I Heart Dad 2013 Report Back
+  '158811' => array(
+    'yes' => '158815',
+    'no' => '158813',
+  ),
 );
 
 $activity = $workflow->newActivity('end');
@@ -201,6 +206,7 @@ $activity->name = 'ask_picture';
 $activity->inputs = array('start');
 $activity->outputs = array('ask_who');
 $activity->should_prompt = FALSE;
+$activity->no_mms_response = 158849;
 
 $activity = $workflow->newActivity('sms_prompt_normalize_response');
 $activity->name = 'ask_who';
@@ -311,5 +317,70 @@ $activity->webform_nid = 729395;
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
 $activity->inputs = array('submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * I Heart Dad report back workflow. User will first be prompted to submit a
+ * picture from: https://secure.mcommons.com/campaigns/120085/opt_in_paths/158815
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_iheartdad_report_back';
+$workflow->title = 'I Heart Dad Report Back';
+$workflow->description = 'Submits the report back for the I Heart Dad campaign';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_systolic', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 158843;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_systolic';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_diastolic');
+$activity->question = t('Looking good! Text back your dad\'s systolic blood pressure (the first number) now.');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_diastolic';
+$activity->inputs = array('ask_systolic');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Great! Now, text back your dad\'s diastolic blood pressure (the second number).');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_diastolic');
+$activity->outputs = array('blood_pressure_results');
+$activity->submission_fields = array(
+  'ask_systolic' => 4,
+  'ask_diastolic' => 5,
+  'picture' => 'ask_picture:mms',
+);
+$activity->webform_nid = 729555;
+
+$activity = $workflow->newActivity('sms_blood_pressure_results');
+$activity->name = 'blood_pressure_results';
+$activity->inputs = array('submit_report_back');
+$activity->outputs = array('end');
+$activity->systolic = 'ask_systolic';
+$activity->diastolic = 'ask_diastolic';
+$activity->hypotension_msg = 158937;
+$activity->desired_msg = 158937;
+$activity->prehypertension_msg = 158939;
+$activity->hypertension1_msg = 158941;
+$activity->hypertension2_msg = 158943;
+$activity->hypertensive_crisis_msg = 158945;
+$activity->error_msg = 158937;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'blood_pressure_results');
 
 $workflows[$workflow->name] = $workflow;
