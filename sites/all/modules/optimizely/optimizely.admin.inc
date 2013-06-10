@@ -38,7 +38,7 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
 
     $intro_message = '<p>' . t('In order to use this module, you\'ll need an <a href="@url">Optimizely account</a>.
       A Free 30 day trial account is available.' . '</p>',
-      array('@url' => url('http://www.optimizely.com/')));
+      array('@url' => url('http://optimize.ly/OZRdc0')));
 
     if ($account_id == 0) {
 
@@ -162,15 +162,34 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
  * to allow for custom settings.
  */
 function optimizely_add_update_form_validate($form, &$form_state) {
-  
-  $found_entry_title = db_query('SELECT project_title FROM {optimizely} WHERE
-    project_code = '. $form_state['values']['optimizely_project_code'])
-  ->fetchField();
-  
-  // Confirm project_code is unique or the entered project code is also the account ID
-  if ($found_entry_title && ($form_state['values']['optimizely_project_code'] != variable_get('optimizely_id', FALSE))) {
-    form_set_error('optimizely_project_code', t('The project code already has an entry in the "'. $found_entry_title . '" project.'));
+
+  // Validate that the project code entered is a number
+  if (!ctype_digit($form_state['values']['optimizely_project_code'])) {
+    form_set_error('optimizely_project_code', t('The project code !code must only contain digits.', array('!code' => $form_state['values']['optimizely_project_code'])));
   }
+  elseif ($form_state['values']['op'] == 'Add') {
+    
+    // Confirm project_code is unique or the entered project code is also the account ID - SELECT the project title in prep for related form error message
+    $query = db_query('SELECT project_title FROM {optimizely} WHERE
+      project_code = :project_code ORDER BY oid DESC', array(':project_code' => $form_state['values']['optimizely_project_code']));
+    
+    $query_count = $query->rowCount();
+   
+    // Flag submission if existing entry is found with the same project code value AND it's not an SINGLE entry to replace the "default" entry.
+    if ($query_count > 0 || ($form_state['values']['optimizely_project_code'] != variable_get('optimizely_id', FALSE) && $query_count >= 2)) {
+      
+      // Get the title of the project that already had the propject code
+      $found_entry_title = $query->fetchField();
+      
+      // Flag the project code form field
+      form_set_error('optimizely_project_code', t('The project code (!project_code) already has an entry in the "!found_entry_title" project.', array('!project_code' => $form_state['values']['optimizely_project_code'], '!found_entry_title' => $found_entry_title)));
+      
+    }
+    
+  }
+  
+  // todo: the snippet must be only one per page / path - unique to the path, can only load one sniipet per page.
+  // http://support.optimizely.com/customer/portal/questions/893051-multiple-code-snippets-on-same-page-ok-
   
 }
 
@@ -445,20 +464,33 @@ function optimizely_delete_page_confirm($form, &$form_state, $vars = NULL) {
  * Submit function for the confirm deletion form. Delete the entry in the database
  * and return the user to the Project listing page.
  */
-function optimizely_delete_page_confirm_submit($form, &$form_state) {
+function optimizely_delete_page_confirm_submit($form, &$form_state) {  
 
-  // Delete entry in database based on the target $oid
+  // target $oid
   $oid = $form_state['values']['oid'];
+  
+  // Lookup entry details before delete
+  $query = db_select('optimizely', 'o')
+    ->fields('o', array('path', 'include', 'enabled'))
+    ->condition('o.oid', $oid, '=');
+
+  $record = $query->execute()
+    ->fetchObject();
+    
+  // Delete entry in database based on the target $oid
   $query = db_delete('optimizely')
     ->condition('oid', $oid);
   $query->execute();
 
-  // Rebuild cache for deleted project entry
-  $path_array = preg_split('/[\r\n]+/', $form_state['values']['optimizely_path'], -1, PREG_SPLIT_NO_EMPTY);
-  $include = check_plain($form_state['values']['optimizely_include']);
-
-  if ($form_state['values']['optimizely_enabled']) {
+  // Only clear page cache for entries that are active when deleted
+  if ($record->enabled) {
+    
+    // Always serialize when saved 
+    $path_array = unserialize($record->path);
+    $include = $record->include;
+    
     optimizely_refresh_cache($path_array, $include);
+    
   }
 
   // Inform the user of the entry being deleted and return them to the listing page.
@@ -474,24 +506,28 @@ function optimizely_delete_page_confirm_submit($form, &$form_state) {
  *   An array of the target paths entries that the cache needs to be cleared. Each entry can also
  *   contain wildcards /* or variables "<front>".
  * @parm $include
- *   A setting to determin if the paths are inclusive or exclusive. This setting wil alter the query
- *   used to delete the cache entries.
- * @parm $original_path_array
- *   An array of the paths that were originally set for the project before an update was submitted.
- *   A compairison will be made to determine what paths need to the cache updated.
+ *   Flag if the paths are include or exclude
  */
-function optimizely_refresh_cache($path_array, $include, $original_path_array = NULL) {
+function optimizely_refresh_cache($path_array, $include = TRUE, $original_path_array = NULL) {
 
   // Determine protocol
   $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
   $cid_base = $protocol . '://' . $_SERVER['HTTP_HOST'] . '/';
+  
+  // If update of project that includes changes to the path, clear cache on all paths
+  // to add/remove Optimizely javascript call
+  if (isset($original_path_array)) {
+    $path_array = array_merge($path_array, $original_path_array);
+  }
 
+  // Loop through every path value
   foreach ($path_array as $path_count => $path) {
 
     $recursive = NULL;
 
-    // Apply to all paths
-    if (strpos($path, '*') !== 0) {
+    // Apply to all paths when there's a '*' path entry (default project entry for example)
+    // or it's an exclude path entry (don't even try to figure out the paths, just flush all page cache
+    if ((strpos($path, '*') !== 0) || (!$include)) {
 
       if (strpos($path, '<front>') === 0) {
         $cid = $cid_base . '/' . variable_get('site_frontpage', 'node');
