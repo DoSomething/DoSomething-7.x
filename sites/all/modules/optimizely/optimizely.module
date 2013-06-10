@@ -93,7 +93,7 @@ function optimizely_menu() {
     'access arguments' => array('administer optimizely'),
     'file' => 'optimizely.admin.inc',
     'file path' => drupal_get_path('module', 'optimizely'),
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_IS_LOCAL_ACTION,
     'weight' => 10,
   );
 
@@ -207,5 +207,49 @@ function optimizely_init() {
     }
 
   }
+
+}        
+
+/**
+ * optimizely_wildcard_match()
+ *
+ * @parm: $target_path - string
+ *   The specific path, typically the current path
+ *
+ * @parm: $project_paths - Array
+ *   An array of desired paths to compare $target_path to. Supports matching wild cards
+ *
+ * @returns $found_flag - Boolean
+ *   TRUE if match is found
+ */
+function optimizely_wildcard_match($target_path, $project_paths) {
+
+  $found_flag = FALSE;
+  foreach ($project_paths as $project_path) {
+
+    // Remove wild card notation
+    if (strpos($project_path, '/*') > 0) {
+
+      $project_path = substr($project_path, 0, strlen($project_path) - 2);
+
+      // Look for match as partial sub paths
+      if (is_int(strpos($project_path, $target_path))) {
+        $found_flag = TRUE;
+      }
+
+    } // Exact matches
+    elseif ($project_path == $target_path) {
+      $found_flag = TRUE;
+    }
+
+  }
+
+  return $found_flag;
+
+}
+
+  }
+
+  return $found_flag;
 
 }
