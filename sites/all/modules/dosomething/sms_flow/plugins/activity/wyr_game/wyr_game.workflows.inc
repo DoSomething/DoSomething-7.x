@@ -1,5 +1,6 @@
 <?php
-//require_once('../../../sms_flow_game_constants.inc');
+
+require_once drupal_get_path('module', 'sms_flow') . '/sms_flow_game_constants.inc';
 
 /**
  * Handle the end of WYR question sets. Process response to final answer

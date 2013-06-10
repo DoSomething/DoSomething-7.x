@@ -1,5 +1,7 @@
 <?php
 
+require_once drupal_get_path('module', 'sms_flow') . '/sms_flow_game_constants.inc';
+
 /**
  * Handles all ordered pathing under one workflow
  */
