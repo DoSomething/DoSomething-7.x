@@ -38,7 +38,7 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
 
     $intro_message = '<p>' . t('In order to use this module, you\'ll need an <a href="@url">Optimizely account</a>.
       A Free 30 day trial account is available.' . '</p>',
-      array('@url' => url('http://www.optimizely.com/')));
+      array('@url' => url('http://optimize.ly/OZRdc0')));
 
     if ($account_id == 0) {
 
@@ -165,17 +165,25 @@ function optimizely_add_update_form_validate($form, &$form_state) {
 
   // Validate that the project code entered is a number
   if (!ctype_digit($form_state['values']['optimizely_project_code'])) {
-    form_set_error('optimizely_project_code', t('The project code "'. $form_state['values']['optimizely_project_code'] .'" must only contain digits.'));
+    form_set_error('optimizely_project_code', t('The project code !code must only contain digits.', array('!code' => $form_state['values']['optimizely_project_code'])));
   }
   elseif ($form_state['values']['op'] == 'Add') {
     
     // Confirm project_code is unique or the entered project code is also the account ID - SELECT the project title in prep for related form error message
-    $found_entry_title = db_query('SELECT project_title FROM {optimizely} WHERE
-      project_code = '. $form_state['values']['optimizely_project_code'])
-    ->fetchField();
+    $query = db_query('SELECT project_title FROM {optimizely} WHERE
+      project_code = :project_code ORDER BY oid DESC', array(':project_code' => $form_state['values']['optimizely_project_code']));
     
-    if ($found_entry_title && ($form_state['values']['optimizely_project_code'] != variable_get('optimizely_id', FALSE))) {
-      form_set_error('optimizely_project_code', t('The project code already has an entry in the "'. $found_entry_title . '" project.'));
+    $query_count = $query->rowCount();
+   
+    // Flag submission if existing entry is found with the same project code value AND it's not an SINGLE entry to replace the "default" entry.
+    if ($query_count > 0 || ($form_state['values']['optimizely_project_code'] != variable_get('optimizely_id', FALSE) && $query_count >= 2)) {
+      
+      // Get the title of the project that already had the propject code
+      $found_entry_title = $query->fetchField();
+      
+      // Flag the project code form field
+      form_set_error('optimizely_project_code', t('The project code (!project_code) already has an entry in the "!found_entry_title" project.', array('!project_code' => $form_state['values']['optimizely_project_code'], '!found_entry_title' => $found_entry_title)));
+      
     }
     
   }
@@ -477,6 +485,7 @@ function optimizely_delete_page_confirm_submit($form, &$form_state) {
   // Only clear page cache for entries that are active when deleted
   if ($record->enabled) {
     
+    // Always serialize when saved 
     $path_array = unserialize($record->path);
     $include = $record->include;
     
