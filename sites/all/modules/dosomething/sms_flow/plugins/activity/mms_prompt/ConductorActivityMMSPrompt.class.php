@@ -8,6 +8,10 @@ class ConductorActivityMMSPrompt extends ConductorActivitySMSPrompt {
 
   // If FALSE, image is already incoming without the need for a prompt
   public $should_prompt = TRUE;
+
+  // Optional. If set and no mms image is found, will send respond with specified
+  // response and send user to the end activity in the workflow.
+  public $no_mms_response;
   
   public function run($workflow) {
     $state = $this->getState();
@@ -25,8 +29,35 @@ class ConductorActivityMMSPrompt extends ConductorActivitySMSPrompt {
       if (!empty($mms_image_url)) {
         $state->setContext($this->name . ':mms', $mms_image_url);
       }
+      elseif (!empty($this->no_mms_response)) {
+        // Send the response for no MMS found - set either as a Mobile Commons opt-in path or string
+        if (is_numeric($this->no_mms_response)) {
+          $mobile = $state->getContext('sms_number');
+          sms_mobile_commons_opt_in($mobile, $this->no_mms_response);
+          $state->setContext('ignore_no_response_error', TRUE);
+        }
+        else {
+          $state->setContext('sms_response', $this->no_mms_response);
+        }
+        
+        // Send user to the end of the workflow
+        self::useOutput('end');
+      }
       
       $state->markCompleted();
+    }
+  }
+
+  /**
+   * Removes all outputs from this activity except for the one specified in the param
+   *
+   * @param activityName Name of activity in outputs array to keep
+   */
+  private function useOutput($activityName) {
+    foreach($this->outputs as $key => $val) {
+      if ($val != $activityName) {
+        unset($this->outputs[$key]);
+      }
     }
   }
 

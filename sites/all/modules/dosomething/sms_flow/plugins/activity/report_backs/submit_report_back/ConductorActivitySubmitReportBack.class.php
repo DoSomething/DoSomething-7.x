@@ -99,7 +99,10 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
       $num_submissions = webform_get_submission_count($this->webform_nid, $user->uid);
     }
 
-    $state->setContext('sms_response', t($this->success_response, array('@submission_count' => $num_submissions)));
+    if (!empty($this->success_response)) {
+      $state->setContext('sms_response', t($this->success_response, array('@submission_count' => $num_submissions)));
+    }
+    
     $state->markCompleted();
   }
 
