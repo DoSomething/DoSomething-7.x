@@ -11,3 +11,11 @@
 function dosomething_subscribe_mailchimp_update_7000() {
   dosomething_subscribe_mailchimp_set_grouping_id_vars();
 }
+
+/**
+ * Initialize Mailchimp API key state variables.
+ */
+function dosomething_subscribe_mailchimp_update_7001() {
+  variable_set('dosomething_subscribe_mailchimp_is_api_key_valid', TRUE);
+  variable_set('dosomething_subscribe_mailchimp_api_key_last_validated', time());
+}

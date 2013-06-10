@@ -7,7 +7,23 @@
 
 define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS', 'f2fab1dfd4');
 define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE', 'a27895fe0c');
-define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_NOTIFY_ADMIN_EMAIL', 'developers@dosomething.org');
+define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE', 104);
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_subscribe_mailchimp_menu() {
+  $items = array();
+  $items['admin/config/dosomething/dosomething_subscribe_mailchimp'] = array(
+    'title' => 'Mailchimp API settings',
+    'description' => t('Set and validate Mailchimp API key.'),
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_subscribe_mailchimp_admin_settings_form'),
+    'file' => 'dosomething_subscribe_mailchimp.admin.inc',
+  );  
+  return $items;
+}
 
 /**
  * Send a subscribe request to a Mailchimp Group ID for a given email address.
@@ -45,7 +61,7 @@ function dosomething_subscribe_mailchimp_get_grouping_ids_from_api($list_id) {
     }
   }
   // Handle invalid API key error:
-  if ($mcapi->errorCode == 104) {
+  if ($mcapi->errorCode == DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE) {
     dosomething_subscribe_mailchimp_invalid_api_notify();
   }
   return $group_map;
@@ -222,30 +238,56 @@ function dosomething_subscribe_mailchimp_group_info() {
  *   
  * @return - MCAPI connection object.
  */
-function dosomething_subscribe_mailchimp_get_api_object() {
-  
+function dosomething_subscribe_mailchimp_get_api_object($timeout = 60) {
   libraries_load('mailchimp');
   $q = new MCAPI(variable_get('mailchimp_api_key', ''));
-
-  // set the timeout to something reasonsable to avoid taking down the Drupal site
-  $q->setTimeout(300);
-
-  // specify if a secure connection should be used wit the API
+  // Set the timeout to something reasonsable to avoid taking down the Drupal site.
+  $q->setTimeout($timeout);
+  // Specify if a secure connection should be used with the API:
   $q->useSecure(variable_get('mailchimp_use_secure', TRUE));
-
   if ($q->errorCode) {
     watchdog('dosomething_subscribe_mailchimp', 'MCAPI Error: %errmsg', array('%errmsg' => $q->errorMessage), WATCHDOG_ERROR);
     return NULL;
   }
-
   return $q;
 }
 
 /**
- * Alert developers that API key is no longer valid.  Gets called from various API requests.
+ * Send notification that API key is no longer valid.  Gets called from various API requests.
  */
 function dosomething_subscribe_mailchimp_invalid_api_notify() {
-  watchdog('dosomething_subscribe_mailchimp', 'Invalid API key response.', $severity = WATCHDOG_ERROR);
+  // Check current state variable.
+  $key_state = variable_get('dosomething_subscribe_mailchimp_is_api_key_valid');
+  // If it's set to TRUE, ring the alarm that it's now FALSE.
+  if ($key_state) {
+    // Log the error.
+    watchdog('dosomething_subscribe_mailchimp', 'Invalid API key response for @key.', array('@key' => variable_get('mailchimp_api_key')), $severity = WATCHDOG_ERROR);
+    // Send notify email.
+    global $language;
+    drupal_mail('dosomething_subscribe_mailchimp', 'invalid_api_key', variable_get('dosomething_subscribe_mailchimp_notify_email', 'developers@dosomething.org'), $language);
+    // Set api_key_is_valid to FALSE.
+    variable_set('dosomething_subscribe_mailchimp_is_api_key_valid', FALSE);
+    // Store time of invalid response.
+    variable_set('dosomething_subscribe_mailchimp_api_key_invalid_time', time());
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function dosomething_subscribe_mailchimp_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'invalid_api_key':
+      $message['subject'] = t('Mailchimp Error: Invalid API Key');
+      $message['body'][] = t('A Mailchimp API call has returned an Invalid API Key error.  Please login to Mailchimp and/or the site to fix.');
+      $message['body'][] = check_plain($params['message']);
+      break;
+    case 'restored_api_key':
+      $message['subject'] = t('Mailchimp Restored: A valid key has been entered.');
+      $message['body'][] = t('The Mailchimp API is running again.  Have a wonderful day!');
+      $message['body'][] = check_plain($params['message']);
+      break;
+  }
 }
 
 /**
