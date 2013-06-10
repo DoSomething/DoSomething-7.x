@@ -346,30 +346,24 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_systolic';
 $activity->inputs = array('ask_picture');
 $activity->outputs = array('ask_diastolic');
-$activity->question = t('[TODO] what\'s the systolic number? (The first one)');
+$activity->question = t('Looking good! Text back your dad\'s systolic blood pressure (the first number) now.');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_diastolic';
 $activity->inputs = array('ask_systolic');
-$activity->outputs = array('strip_signature');
-$activity->question = t('[TODO] what\'s the diastolic number? (The second one)');
-
-$activity = $workflow->newActivity('sms_strip_signature');
-$activity->name = 'strip_signature';
-$activity->inputs = array('ask_diastolic');
 $activity->outputs = array('submit_report_back');
+$activity->question = t('Great! Now, text back your dad\'s diastolic blood pressure (the second number).');
 
 $activity = $workflow->newActivity('submit_report_back');
 $activity->name = 'submit_report_back';
-$activity->inputs = array('strip_signature');
+$activity->inputs = array('ask_diastolic');
 $activity->outputs = array('blood_pressure_results');
-// TODO: these need to be completed once the site is setup
-// $activity->submission_fields = array(
-//   'ask_systolic' => ?,
-//   'ask_diastolic' => ?,
-//   'picture' => 'ask_picture:mms',
-// );
-// $activity->webform_nid = ?????;
+$activity->submission_fields = array(
+  'ask_systolic' => 4,
+  'ask_diastolic' => 5,
+  'picture' => 'ask_picture:mms',
+);
+$activity->webform_nid = 729555;
 
 $activity = $workflow->newActivity('sms_blood_pressure_results');
 $activity->name = 'blood_pressure_results';
@@ -377,13 +371,13 @@ $activity->inputs = array('submit_report_back');
 $activity->outputs = array('end');
 $activity->systolic = 'ask_systolic';
 $activity->diastolic = 'ask_diastolic';
-$activity->hypotension_msg = t('This is the hypotension message');
-$activity->desired_msg = t('This is the desired message');
-$activity->prehypertension_msg = t('This is the prehypertension message');
-$activity->hypertension1_msg = t('This is the stage 1 hypertension message');
-$activity->hypertension2_msg = t('This is the stage 2 hypertension message');
-$activity->hypertensive_crisis_msg = t('This is the hypertensive crisis message');
-$activity->error_msg = t('This is the error message');
+$activity->hypotension_msg = 158937;
+$activity->desired_msg = 158937;
+$activity->prehypertension_msg = 158939;
+$activity->hypertension1_msg = 158941;
+$activity->hypertension2_msg = 158943;
+$activity->hypertensive_crisis_msg = 158945;
+$activity->error_msg = 158937;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';

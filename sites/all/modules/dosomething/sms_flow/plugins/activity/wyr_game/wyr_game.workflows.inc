@@ -1,5 +1,6 @@
 <?php
-//require_once('/var/www/html/sites/all/modules/dosomething/sms_flow/sms_flow_game_constants.inc');
+//require_once('../../../sms_flow_game_constants.inc');
+
 /**
  * Handle the end of WYR question sets. Process response to final answer
  */
@@ -153,9 +154,9 @@ $activity->sets = array(
   array(
     'mdata_id'     => 10837,
     'game_id'      => SmsFlowGameConstants::IHEARTDAD_BP_TIPS,
-    'opt_in_paths' => array(158777, 158779, 158781, 158783, 158785, 158787, 158789, 158791),
-    'path_special' => 158793,
-    'send_to_special_on' => 9,
+    'opt_in_paths' => array(158777, 158779, 158781, 158783),
+    'path_special' => 158785,
+    'send_to_special_on' => 5,
   ),
   // I Heart Dad 2013 - Health tips
   array(
