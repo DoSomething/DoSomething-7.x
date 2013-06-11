@@ -334,7 +334,7 @@ function sms_mobile_commons_campaign_opt_out($number, $campaigns) {
   $api_opt_out_url = 'https://secure.mcommons.com/profiles/opt_out';
 
   $content = array(
-    'company_uuid' => _sms_mobile_commons_get_company_uuid(),
+    'company_key' => _sms_mobile_commons_get_company_uuid(),
     'person' => array(
       'phone' => $number,
     ),
