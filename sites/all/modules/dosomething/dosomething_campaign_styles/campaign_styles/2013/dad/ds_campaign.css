@@ -858,7 +858,7 @@ body {
     height: 2em;
     margin: 1.1em auto 0;
     padding: 0.75em 0.7em 1.45em;
-    background: whitesmoke;
+    background: #f7c000;
     color: black;
     font-weight: 500;
     font-family: din-web-reg;
@@ -866,16 +866,14 @@ body {
     #cmp .pane-campaign-sign-up #edit-submit:hover {
       color: #111111; }
   #cmp .pane-campaign-signed .go-button {
-    margin: 0.5em 0;
-    background: whitesmoke;
+    margin: 0.25em 0 0.5em;
+    background: #f7c000;
     color: #222222;
-    font-weight: 500;
-    font-family: din-web-reg;
-    font-size: 1.2em;
-    line-height: 2.8em;
-    height: 2.5em;
-    padding: 0 1.5em;
-    text-shadow: 0px 0px 2px #777777; }
+    font-family: din-web;
+    font-size: 1.8em;
+    line-height: 2em;
+    height: 1.8em;
+    padding: 0 1.5em; }
     #cmp .pane-campaign-signed .go-button:hover {
       color: black; }
   #cmp .pane-campaign-signed h2 {
