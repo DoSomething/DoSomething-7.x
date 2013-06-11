@@ -204,7 +204,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_who');
+$activity->outputs = array('ask_who', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 158849;
 
@@ -260,7 +260,7 @@ $activity->opt_out_ids = array(116593);
 $activity = $workflow->newActivity('end');
 $activity->title = 'end';
 $activity->name = 'end';
-$activity->inputs = array('mcommons_opt_out');
+$activity->inputs = array('mcommons_opt_out', 'ask_picture');
 
 $workflows[$workflow->name] = $workflow;
 
