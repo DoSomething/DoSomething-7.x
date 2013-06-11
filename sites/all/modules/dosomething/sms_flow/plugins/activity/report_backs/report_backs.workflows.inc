@@ -364,6 +364,7 @@ $activity->submission_fields = array(
   'picture' => 'ask_picture:mms',
 );
 $activity->webform_nid = 729555;
+$activity->campaign_opt_outs = array(120085, 120233);
 
 $activity = $workflow->newActivity('sms_blood_pressure_results');
 $activity->name = 'blood_pressure_results';

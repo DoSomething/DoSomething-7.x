@@ -11,7 +11,10 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
   // NID of the webform to submit to
   public $webform_nid;
 
-  // Response to send to the user upon successful submission.
+  // Array of campaign IDs to opt the user out of
+  public $campaign_opt_outs;
+
+  // (Optional) Response to send to the user upon successful submission.
   // Use @submission_count to include the number of submissions from this user in the msg.
   public $success_response;
 
@@ -99,8 +102,14 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
       $num_submissions = webform_get_submission_count($this->webform_nid, $user->uid);
     }
 
+    // Send response to user about successful submission, if set. @submission_count returns the number of submissions this user has made.
     if (!empty($this->success_response)) {
       $state->setContext('sms_response', t($this->success_response, array('@submission_count' => $num_submissions)));
+    }
+
+    //  Opt users out of Mobile Commons campaigns, if set.
+    if (!empty($this->campaign_opt_outs)) {
+      sms_mobile_commons_campaign_opt_out($mobile, $this->campaign_opt_outs);
     }
     
     $state->markCompleted();
