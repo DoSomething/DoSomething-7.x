@@ -137,7 +137,7 @@
       });
 
     // #header section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/dad13/header.jpg';
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/dad13/iheartdad-preview.jpg';
     var fb_title = 'I Heart Dad';
     var fb_header_caption = '';
 
@@ -145,7 +145,7 @@
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'I Heart Dad',
+      'feed_description': 'Did you know 1 in 3 adults in the U.S. have high blood pressure? This Father\'s Day season, @DoSomething is encouraging teens to give their dads the most important present - the gift of a healthy heart! Join I Heart Dad to have his blood pressure checked: www.dosomething.org/iheartdad',
       'feed_selector': '.header-facebook-share',
     }, function(response){
       window.location.href = '/iheartdad#header';
