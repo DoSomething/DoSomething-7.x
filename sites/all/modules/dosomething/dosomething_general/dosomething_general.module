@@ -1304,7 +1304,7 @@ function dosomething_general_mailchimp_subscribe($email, $group_name, $merge_var
 
   // Catching function
   // Hardcoding the list to the dosomething members
-  if ($groupName == 'GunControlReport2013' || $groupName == 'Volunteers2013') {
+  if ($group_name == 'GunControlReport2013' || $group_name == 'Volunteers2013') {
     $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE;
   }
   else {
@@ -1330,6 +1330,13 @@ function dosomething_general_mailchimp_subscribe($email, $group_name, $merge_var
       )
     );
   }
+  $signup_data = array(
+    'list_id' => $list_id, 
+    'email' => $email, 
+    'group_name' => $group_name, 
+    'merge_vars' => $merge_vars,
+  );
+  //dosomething_subscribe_mailchimp_signup($signup_data);
 
   $mc_signup_flag = $mcapi->listSubscribe($list_id, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
   $merge_vars = print_r($merge_vars, TRUE);

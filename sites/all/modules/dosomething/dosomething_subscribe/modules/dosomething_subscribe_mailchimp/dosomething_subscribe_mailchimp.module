@@ -8,6 +8,7 @@
 define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS', 'f2fab1dfd4');
 define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE', 'a27895fe0c');
 define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE', 104);
+define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON', 'dosomething_subscribe_mailchimp_cron');
 
 /**
  * Implements hook_menu().
@@ -21,21 +22,27 @@ function dosomething_subscribe_mailchimp_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_subscribe_mailchimp_admin_settings_form'),
     'file' => 'dosomething_subscribe_mailchimp.admin.inc',
+  );
+  $items['admin/reports/dosomething_subscribe_mailchimp'] = array(
+    'title' => 'Mailchimp Signup Queue',
+    'description' => t('Displays signups in the DS Sub Mailchimp cron queue.'),
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'dosomething_subscribe_mailchimp_queue_status_page', 
+    'file' => 'dosomething_subscribe_mailchimp.admin.inc',
   );  
   return $items;
 }
 
 /**
- * Send a subscribe request to a Mailchimp Group ID for a given email address.
+ * Queue a subscribe request.
  *
- * @param string $email
- *   Email address to signup.
- * @param string $mailchimp_group_id
- *   Mailchimp Group ID to subscribe to.
+ * @param array
+ *   Contains email, list_id, merge_vars.
  */
-function dosomething_subscribe_mailchimp_signup($email, $mailchimp_group_id) {
-  //@todo: Move dosomething_general_mailchimp_subscribe code here and replace globally.
-  return;
+function dosomething_subscribe_mailchimp_signup($signup_data) {
+  $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
+  $queue->createQueue();
+  $queue->createItem($signup_data);
 }
 
 /**
