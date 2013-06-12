@@ -1294,28 +1294,26 @@ function dosomething_general_mobile_commons_response($message) {
  *   Users email address.
  * @param $groupName
  *   The campaign name that the email is to be subscribed to.
- * @return
- *   Boolean indicating success.
  */
 //@todo: move this to dosomething_subscribe_mailchimp_signup().
 function dosomething_general_mailchimp_subscribe($email, $group_name, $merge_vars = array()) {
 
-  $mcapi = dosomething_subscribe_mailchimp_get_api_object();
-
-  // Catching function
-  // Hardcoding the list to the dosomething members
+  // Check if groupname is OldPeople.
   if ($group_name == 'GunControlReport2013' || $group_name == 'Volunteers2013') {
     $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE;
   }
   else {
     $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS;
   }
-  $grouping_id = dosomething_subscribe_mailchimp_get_grouping_id($list_id, $group_name);
 
-  // Collect user details by email based on current values in user account for MailChimp signup / update
+  // Add email into merge vars for listBatchSubscribe.
+  $merge_vars += array('EMAIL' => $email);
+  // Collect user details by email based on current values in user account for MailChimp signup / update.
   $merge_vars += dosomething_general_collect_merge_vars($email);
 
-  // If we don't have a valid grouping id, log the error, but also just subscribe them to the general List by not including a GROUPINGS array.
+  // Look up grouping id for group_name.
+  $grouping_id = dosomething_subscribe_mailchimp_get_grouping_id($list_id, $group_name);
+  // If we don't have a valid grouping id, log the error, and subscribe them to the general List by excluding GROUPINGS array.
   if (!isset($grouping_id)) {
     watchdog('dosomething_general_mailchimp_subscribe','Cannot find Group ID for group named %name', array('%name' => $group_name), $severity = WATCHDOG_ERROR);
   }
@@ -1330,36 +1328,16 @@ function dosomething_general_mailchimp_subscribe($email, $group_name, $merge_var
       )
     );
   }
+  // Create an array with the format that listBatchSubscribe will expect.
   $signup_data = array(
     'list_id' => $list_id, 
     'email' => $email, 
     'group_name' => $group_name, 
     'merge_vars' => $merge_vars,
   );
-  //dosomething_subscribe_mailchimp_signup($signup_data);
-
-  $mc_signup_flag = $mcapi->listSubscribe($list_id, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
-  $merge_vars = print_r($merge_vars, TRUE);
-
-  if ($mc_signup_flag) {
-    watchdog('dosomething_general_mailchimp_subscribe',
-             'Added ( %email ) to %group using list ID: %listid and merge vars: %merge_vars',
-             array('%email' => $email, '%group' => $group_name, '%listid' => $list_id, '%merge_vars' => $merge_vars),
-             $severity = WATCHDOG_INFO);
-  }
-  else {
-    watchdog('dosomething_general_mailchimp_subscribe',
-             'Failed signup ( %email ) to %group using list ID: %listid and merge vars: %merge_vars with MCAPI %mcapi',
-             array('%email' => $email, '%group' => $group_name, '%listid' => $list_id, '%merge_vars' => $merge_vars, '%mcapi' => print_r($mcapi, TRUE)),
-             $severity = WATCHDOG_ERROR);
-    // Handle invalid API key error:
-    if ($mcapi->errorCode == DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE) {
-      dosomething_subscribe_mailchimp_invalid_api_notify();
-    }
-  }
-
-  return $mc_signup_flag;
-
+  $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
+  $queue->createQueue();
+  $queue->createItem($signup_data);
 }
 
 /**

@@ -34,15 +34,10 @@ function dosomething_subscribe_mailchimp_menu() {
 }
 
 /**
- * Queue a subscribe request.
- *
- * @param array
- *   Contains email, list_id, merge_vars.
+ * Placeholder function to for where dosomething_general_mailchimp_subscribe should live.
  */
-function dosomething_subscribe_mailchimp_signup($signup_data) {
-  $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
-  $queue->createQueue();
-  $queue->createItem($signup_data);
+function dosomething_subscribe_mailchimp_signup($email, $group_name, $merge_vars = array()) {
+  return;
 }
 
 /**
@@ -115,6 +110,79 @@ function dosomething_subscribe_mailchimp_get_grouping_id($list_id, $group_name) 
  * Implements hook_cron().
  */
 function dosomething_subscribe_mailchimp_cron() {
+  // Processin' that queue.
+  $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
+  $queue->createQueue();
+  $queue_count = $queue->numberOfItems();
+
+  if ($queue_count > 0) {
+    
+    $mcapi = dosomething_subscribe_mailchimp_get_api_object();
+    // If invalid key code, don't process anything in the queue.
+    if ($mcapi->errorCode == DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE) {
+      dosomething_subscribe_mailchimp_invalid_api_notify();
+      return;
+    }
+
+    $batches = array();
+    $count = 0;
+    $batch_limit = variable_get('mailchimp_batch_limit', 100);
+    $batch_size = ($queue_count < $batch_limit) ? $queue_count : $batch_limit;
+    while ($count < $batch_size) {
+      if ($item = $queue->claimItem()) {
+        // For each item, if list ID = members add to batch members else add to batch old people
+        // Send batchSubscribe for Members
+        if ($item->data['list_id'] == DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS) {
+          $batches[DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS][] = $item->data['merge_vars'];
+        }
+        else {
+          $batches[DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE][] = $item->data['merge_vars'];
+        }
+        $queue->deleteItem($item);
+      }
+      $count++;
+    }
+    
+    $ret = array();
+    $add_count = $update_count = 0;
+    foreach ($batches as $list_id => $batch) {
+      if (count($batch)) {
+        $ret = $mcapi->listBatchSubscribe($list_id, $batch, 'html', FALSE, TRUE, FALSE);
+        $add_count += $ret['add_count'];
+        $update_count += $ret['update_count'];
+        watchdog('dosomething_subscribe_mailchimp', print_r($ret, TRUE));
+        if ($ret['error_count'] > 0) {
+          foreach ((array) $ret['errors'] as $error) {
+            // We don't care about "Already Subscribed" errors:
+            if ($error['code'] != 214) {
+              // Count already subscribed as updates and ignore this error.
+              $update_count += $ret['update_count'];
+            }
+            else {
+              watchdog('dosomething_subscribe_mailchimp', 'MCAPI Error %errcode: %errmsg', array('%errcode' => $error['code'], '%errmsg' => $error['message']), WATCHDOG_ERROR);
+            }
+          }
+        }
+      }
+    }
+
+    watchdog('dosomething_subscribe_mailchimp', 'Added !add_count, updated !update_count records in MailChimp',
+      array(
+        '!add_count' => $add_count,
+        '!update_count' => $update_count
+      ), WATCHDOG_NOTICE);
+
+  }
+
+  // Check if grouping ID variables need to be refreshed.
+  dosomething_subscribe_mailchimp_check_grouping_id_vars();
+}
+
+
+/**
+ * Checks if the grouping id variables are set, and if they need to be refreshed, reset them.
+ */
+function dosomething_subscribe_mailchimp_check_grouping_id_vars() {
   // Check to see if we have grouping IDS stored already.
   $members = variable_get('dosomething_subscribe_mailchimp_grouping_ids_' . DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS, array());
   $old_people = variable_get('dosomething_subscribe_mailchimp_grouping_ids_' . DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE, array());

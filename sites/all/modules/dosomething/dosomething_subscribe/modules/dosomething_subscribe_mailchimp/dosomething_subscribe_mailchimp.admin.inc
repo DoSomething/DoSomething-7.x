@@ -32,6 +32,23 @@ function dosomething_subscribe_mailchimp_admin_settings_form() {
     '#default_value' => variable_get('mailchimp_use_secure', TRUE),
     '#description' => t('Communicate with the MailChimp API over a secure connection.')
   ); 
+  $form['mailchimp_batch_limit'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      '100' => '100',
+      '250' => '250',
+      '500' => '500',
+      '1000' => '1000',
+      '2500' => '2500',
+      '5000' => '5000',
+      '7500' => '7500',
+      '10000' => '10000',
+    ),
+    '#title' => t('Batch limit'),
+    '#required' => TRUE,
+    '#description' => t('Maximum number of signups to process in a single cron run. Mailchimp suggests keeping this below 5000-10000.'),
+    '#default_value' => variable_get('mailchimp_batch_limit', 100),
+  );
   $form['dosomething_subscribe_mailchimp_notify_email'] = array(
     '#type' => 'textfield',
     '#title' => t('Notification Email'),
@@ -53,6 +70,7 @@ function dosomething_subscribe_mailchimp_admin_settings_form_submit($form, &$for
   // Set variables:
   variable_set('mailchimp_api_key', $form_state['values']['mailchimp_api_key']);
   variable_set('mailchimp_use_secure', $form_state['values']['mailchimp_use_secure']);
+  variable_set('mailchimp_batch_limit', $form_state['values']['mailchimp_batch_limit']);
   variable_set('dosomething_subscribe_mailchimp_notify_email', $form_state['values']['dosomething_subscribe_mailchimp_notify_email']);
   // Check connection to Mailchimp API with inputted API key.
   $mcapi = dosomething_subscribe_mailchimp_get_api_object();
