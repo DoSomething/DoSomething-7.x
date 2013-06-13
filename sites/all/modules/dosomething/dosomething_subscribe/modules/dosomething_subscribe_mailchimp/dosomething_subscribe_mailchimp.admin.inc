@@ -10,13 +10,13 @@
  */
 function dosomething_subscribe_mailchimp_admin_settings_form() {
   $form = array();
-  $key_state = variable_get('dosomething_subscribe_mailchimp_is_api_key_valid');
+  $key_state = variable_get('dosomething_subscribe_mailchimp_is_api_state_valid');
   // Alter Mailchimp Key description based on current API key state variable:
   if (!$key_state) {
-    $description = "<span style='background:yellow;padding:4px;font-weight:bold;'>Invalid API key reported on " . format_date(variable_get('dosomething_subscribe_mailchimp_api_key_invalid_time')) . ".  Please enable the key in Mailchimp and validate, or enter a new valid API key.</span>";
+    $description = "<span style='background:yellow;padding:4px;font-weight:bold;'>Invalid API state reported on " . format_date(variable_get('dosomething_subscribe_mailchimp_api_state_invalid_time')) . ".</span>";
   }
   else {
-    $description = 'API key last validated on ' . format_date(variable_get('dosomething_subscribe_mailchimp_api_key_last_validated')) . '.';
+    $description = 'API state last validated on ' . format_date(variable_get('dosomething_subscribe_mailchimp_api_state_last_validated')) . '.';
 
   }
   $form['mailchimp_api_key'] = array(
@@ -68,7 +68,7 @@ function dosomething_subscribe_mailchimp_admin_settings_form() {
  */
 function dosomething_subscribe_mailchimp_admin_settings_form_submit($form, &$form_state) {
   // Get current state.
-  $is_current_state_valid = variable_get('dosomething_subscribe_mailchimp_is_api_key_valid', FALSE);
+  $is_current_state_valid = variable_get('dosomething_subscribe_mailchimp_is_api_state_valid', FALSE);
   // Set submitted values as variables.
   variable_set('mailchimp_api_key', $form_state['values']['mailchimp_api_key']);
   variable_set('mailchimp_use_secure', $form_state['values']['mailchimp_use_secure']);
@@ -77,13 +77,14 @@ function dosomething_subscribe_mailchimp_admin_settings_form_submit($form, &$for
   // Check connection to Mailchimp API with inputted API key.
   $mcapi = dosomething_subscribe_mailchimp_get_api_object();
   if ($mcapi) {
-    variable_set('dosomething_subscribe_mailchimp_api_key_last_validated', time());
+    variable_set('dosomething_subscribe_mailchimp_api_state_last_validated', time());
     // Notify that service has been restored if valid key was FALSE, and set it to TRUE.
     if (!$is_current_state_valid) {
-      variable_set('dosomething_subscribe_mailchimp_is_api_key_valid', TRUE);
-      drupal_mail('dosomething_subscribe_mailchimp', 'restored_api_key', variable_get('dosomething_subscribe_mailchimp_notify_email', 'developers@dosomething.org'), $language);
+      variable_set('dosomething_subscribe_mailchimp_is_api_state_valid', TRUE);
+      global $language;
+      drupal_mail('dosomething_subscribe_mailchimp', 'restored_api_state', variable_get('dosomething_subscribe_mailchimp_notify_email', 'developers@dosomething.org'), $language);
       // Log the good news.
-      watchdog('dosomething_subscribe_mailchimp', 'API key is now valid for @key.', array('@key' => variable_get('mailchimp_api_key')));
+      watchdog('dosomething_subscribe_mailchimp', 'MC API state restored with key @key.', array('@key' => variable_get('mailchimp_api_key')));
     }
   }
 }

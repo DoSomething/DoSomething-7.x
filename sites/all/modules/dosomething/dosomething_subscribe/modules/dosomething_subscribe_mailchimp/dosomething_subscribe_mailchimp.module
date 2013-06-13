@@ -7,7 +7,6 @@
 
 define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS', 'f2fab1dfd4');
 define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE', 'a27895fe0c');
-define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE', 104);
 define('DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON', 'dosomething_subscribe_mailchimp_cron');
 
 /**
@@ -62,10 +61,6 @@ function dosomething_subscribe_mailchimp_get_grouping_ids_from_api($list_id) {
       }
     }
   }
-  // Handle invalid API key error:
-  if ($mcapi->errorCode == DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE) {
-    dosomething_subscribe_mailchimp_invalid_api_notify();
-  }
   return $group_map;
 }
 
@@ -116,11 +111,10 @@ function dosomething_subscribe_mailchimp_cron() {
   $queue_count = $queue->numberOfItems();
 
   if ($queue_count > 0) {
-    
+
+    // Make sure we have a valid connection to the MC API.
     $mcapi = dosomething_subscribe_mailchimp_get_api_object();
-    // If invalid key code, don't process anything in the queue.
-    if ($mcapi->errorCode == DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE) {
-      dosomething_subscribe_mailchimp_invalid_api_notify();
+    if (!$mcapi) {
       return;
     }
 
@@ -154,7 +148,7 @@ function dosomething_subscribe_mailchimp_cron() {
         if ($ret['error_count'] > 0) {
           foreach ((array) $ret['errors'] as $error) {
             // We don't care about "Already Subscribed" errors:
-            if ($error['code'] != 214) {
+            if ($error['code'] == 214) {
               // Count already subscribed as updates and ignore this error.
               $update_count += $ret['update_count'];
             }
@@ -329,8 +323,10 @@ function dosomething_subscribe_mailchimp_get_api_object($timeout = 60, $validate
       '%errmsg' => $q->errorMessage,
       '%mcapi' => print_r($q, TRUE), 
       ), WATCHDOG_ERROR);
-    if ($q->errorCode == DOSOMETHING_SUBSCRIBE_MAILCHIMP_INVALID_API_KEY_ERROR_CODE) {
-      dosomething_subscribe_mailchimp_invalid_api_notify();
+
+    // Notify for any API User error:
+    if ($q->errorCode && $q->errorCode >= 100 && $q->errorCode < 200) {
+      dosomething_subscribe_mailchimp_invalid_api_notify($q);
     }
     return NULL;
   }
@@ -340,20 +336,22 @@ function dosomething_subscribe_mailchimp_get_api_object($timeout = 60, $validate
 /**
  * Send notification that API key is no longer valid.  Gets called from various API requests.
  */
-function dosomething_subscribe_mailchimp_invalid_api_notify() {
+function dosomething_subscribe_mailchimp_invalid_api_notify($mcapi) {
   // Check current state variable.
-  $key_state = variable_get('dosomething_subscribe_mailchimp_is_api_key_valid');
+  $api_state = variable_get('dosomething_subscribe_mailchimp_is_api_state_valid');
   // If it's set to TRUE, ring the alarm that it's now FALSE.
-  if ($key_state) {
-    // Log the error.
-    watchdog('dosomething_subscribe_mailchimp', 'Invalid API key response for @key.', array('@key' => variable_get('mailchimp_api_key')), $severity = WATCHDOG_ERROR);
+  if ($api_state) {
     // Send notify email.
     global $language;
-    drupal_mail('dosomething_subscribe_mailchimp', 'invalid_api_key', variable_get('dosomething_subscribe_mailchimp_notify_email', 'developers@dosomething.org'), $language);
-    // Set api_key_is_valid to FALSE.
-    variable_set('dosomething_subscribe_mailchimp_is_api_key_valid', FALSE);
+    $params = array(
+      'error_code' => $mcapi->errorCode, 
+      'error_message' => $mcapi->errorMessage,
+    );
+    drupal_mail('dosomething_subscribe_mailchimp', 'invalid_api_state', variable_get('dosomething_subscribe_mailchimp_notify_email', 'developers@dosomething.org'), $language, $params);
+    // Set api_state_is_valid to FALSE.
+    variable_set('dosomething_subscribe_mailchimp_is_api_state_valid', FALSE);
     // Store time of invalid response.
-    variable_set('dosomething_subscribe_mailchimp_api_key_invalid_time', time());
+    variable_set('dosomething_subscribe_mailchimp_api_state_invalid_time', time());
   }
 }
 
@@ -362,15 +360,13 @@ function dosomething_subscribe_mailchimp_invalid_api_notify() {
  */
 function dosomething_subscribe_mailchimp_mail($key, &$message, $params) {
   switch ($key) {
-    case 'invalid_api_key':
-      $message['subject'] = t('Mailchimp Error: Invalid API Key');
-      $message['body'][] = t('A Mailchimp API call has returned an Invalid API Key error.  Please login to Mailchimp and/or the site to fix.');
-      $message['body'][] = check_plain($params['message']);
+    case 'invalid_api_state':
+      $message['subject'] = t('Mailchimp Error !code: !message', array('!code' => $params['error_code'], '!message' => $params['error_message']));
+      $message['body'][] = t('Please login to Mailchimp and/or the site to fix.');
       break;
-    case 'restored_api_key':
-      $message['subject'] = t('Mailchimp Restored: A valid key has been entered.');
+    case 'restored_api_state':
+      $message['subject'] = t('Mailchimp API Connection Restored');
       $message['body'][] = t('The Mailchimp API is running again.  Have a wonderful day!');
-      $message['body'][] = check_plain($params['message']);
       break;
   }
 }
