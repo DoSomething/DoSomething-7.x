@@ -9,7 +9,7 @@
       $('#cmp #edit-actions').removeAttr('id');
 
           // campaign logo injection
-    var logo = '//www.dosomething.org/files/campaigns/dad13/logo.png';
+    var logo = '//www.dosomething.org/files/campaigns/dad13/logo2.png';
     $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').css('margin-left','-20px').prepend('<a href="/iheartdad"><img src="' + logo + '"/></a>');
     
 
