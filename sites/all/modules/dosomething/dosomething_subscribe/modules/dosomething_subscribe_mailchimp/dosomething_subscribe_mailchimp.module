@@ -43,34 +43,29 @@ function dosomething_subscribe_mailchimp_menu() {
  *   Any additional data collected from the form submit handler that's calling this function.
  */
 function dosomething_subscribe_mailchimp_signup($email, $group_name, $merge_vars = array()) {
-  // Check if groupname is OldPeople.
-  if ($group_name == 'GunControlReport2013' || $group_name == 'Volunteers2013') {
-    $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE;
-  }
-  else {
-    $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS;
-  }
-
-  // Add email into merge vars for listBatchSubscribe.
+  // Add email into merge_vars for listBatchSubscribe.
   $merge_vars += array(
     'EMAIL' => $email,
     'EMAIL_TYPE' => 'html',
   );
   // Collect user details by email based on current values in user account for MailChimp signup / update.
   $merge_vars += dosomething_subscribe_mailchimp_load_user_mergevars($email);
-
-  // Look up grouping id for group_name.
-  $grouping_id = dosomething_subscribe_mailchimp_get_grouping_id($list_id, $group_name);
+  // Look up list and grouping id for group_name.
+  $group_data = dosomething_subscribe_mailchimp_get_group_data($group_name);
   // If we don't have a valid grouping id, log the error, and subscribe them to the general List by excluding GROUPINGS array.
-  if (!isset($grouping_id)) {
-    watchdog('dosomething_subscribe_mailchimp_signup','Cannot find Group ID for group named %name', array('%name' => $group_name), $severity = WATCHDOG_ERROR);
+  if (!$group_data){
+    // Alert that Grouping ID was not found.
+    watchdog('dosomething_subscribe_mailchimp_signup','Cannot find List / Grouping ID for group named %name', array('%name' => $group_name), $severity = WATCHDOG_ERROR);
+    // Use Members List as the default.
+    $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS;
   }
   // Otherwise, pass through the grouping id, groups (which is just group_name) to the GROUPINGS array.
   else {
+    $list_id = $group_data['list_id'];
     $merge_vars += array(
       'GROUPINGS' => array(
         array(
-          'id' => $grouping_id,
+          'id' => $group_data['grouping_id'],
           'groups' => $group_name
         ),
       )
@@ -83,6 +78,7 @@ function dosomething_subscribe_mailchimp_signup($email, $group_name, $merge_vars
     'group_name' => $group_name, 
     'merge_vars' => $merge_vars,
   );
+  // Queue record for scheduled signup later.
   $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
   $queue->createQueue();
   $queue->createItem($signup_data);
@@ -134,22 +130,31 @@ function dosomething_subscribe_mailchimp_set_grouping_id_vars() {
 /**
  * Get the grouping ID for a given group_name in given_list_id.
  *
- * @param string $list_id
- *   Mailchimp List Id.
  * @param string $group_name
- *   Mailchimp Group name
+ *   Mailchimp Group name to find the list and grouping id for.
  *
-  * @return string
- *   The Mailchimp Grouping ID that the group_name belongs to.
+  * @return Array
+ *   Returns array of list id and grouping id if found, returns FALSE if not found.
  */
-function dosomething_subscribe_mailchimp_get_grouping_id($list_id, $group_name) {
+function dosomething_subscribe_mailchimp_get_group_data($lookup_group_name) {
   $map = variable_get('dosomething_subscribe_mailchimp_grouping_ids');
   // If it's empty, reset the groups.
   if (empty($map)) {
     dosomething_subscribe_mailchimp_set_grouping_id_vars();
     $map = variable_get('dosomething_subscribe_mailchimp_grouping_ids');
   }
-  return $map[$list_id][$group_name];
+  // Loop through array to find the list it belongs to, and its corresponding grouping id.
+  foreach ($map as $list_id => $groups) {
+    foreach ($groups as $group_name => $grouping_id) {
+      if ($lookup_group_name == $group_name) {
+        return array(
+          'list_id' => $list_id,
+          'grouping_id' => $grouping_id,
+        );
+      }
+    }
+  }
+  return FALSE;
 }
 
 /**
