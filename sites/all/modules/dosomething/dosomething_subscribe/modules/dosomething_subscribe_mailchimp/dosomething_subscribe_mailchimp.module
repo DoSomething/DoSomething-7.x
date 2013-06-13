@@ -113,13 +113,11 @@ function dosomething_subscribe_mailchimp_cron() {
   $queue_count = $queue->numberOfItems();
 
   if ($queue_count > 0) {
-
     // Make sure we have a valid connection to the MC API.
     $mcapi = dosomething_subscribe_mailchimp_get_api_object();
     if (!$mcapi) {
       return;
     }
-
     $batches = array();
     $count = 0;
     $batch_limit = variable_get('mailchimp_batch_limit', 100);
@@ -138,7 +136,6 @@ function dosomething_subscribe_mailchimp_cron() {
       }
       $count++;
     }
-    
     $ret = array();
     $add_count = $update_count = 0;
     foreach ($batches as $list_id => $batch) {
@@ -154,13 +151,6 @@ function dosomething_subscribe_mailchimp_cron() {
         }
       }
     }
-
-    watchdog('dosomething_subscribe_mailchimp', 'Added !add_count, updated !update_count records in MailChimp',
-      array(
-        '!add_count' => $add_count,
-        '!update_count' => $update_count
-      ), WATCHDOG_NOTICE);
-
   }
 
   // Check if grouping ID variables need to be refreshed.
