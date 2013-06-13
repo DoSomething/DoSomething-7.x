@@ -1288,62 +1288,6 @@ function dosomething_general_mobile_commons_response($message) {
 }
 
 /**
- * Subscribe the email to the mailchimp DoSomething Members List.
- *
- * @param $email
- *   Users email address.
- * @param $groupName
- *   The campaign name that the email is to be subscribed to.
- */
-//@todo: move this to dosomething_subscribe_mailchimp_signup().
-function dosomething_general_mailchimp_subscribe($email, $group_name, $merge_vars = array()) {
-
-  // Check if groupname is OldPeople.
-  if ($group_name == 'GunControlReport2013' || $group_name == 'Volunteers2013') {
-    $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_OLDPEOPLE;
-  }
-  else {
-    $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS;
-  }
-
-  // Add email into merge vars for listBatchSubscribe.
-  $merge_vars += array(
-    'EMAIL' => $email,
-    'EMAIL_TYPE' => 'html',
-  );
-  // Collect user details by email based on current values in user account for MailChimp signup / update.
-  $merge_vars += dosomething_subscribe_mailchimp_load_user_mergevars($email);
-
-  // Look up grouping id for group_name.
-  $grouping_id = dosomething_subscribe_mailchimp_get_grouping_id($list_id, $group_name);
-  // If we don't have a valid grouping id, log the error, and subscribe them to the general List by excluding GROUPINGS array.
-  if (!isset($grouping_id)) {
-    watchdog('dosomething_general_mailchimp_subscribe','Cannot find Group ID for group named %name', array('%name' => $group_name), $severity = WATCHDOG_ERROR);
-  }
-  // Otherwise, pass through the grouping id, groups (which is just group_name) to the GROUPINGS array.
-  else {
-    $merge_vars += array(
-      'GROUPINGS' => array(
-        array(
-          'id' => $grouping_id,
-          'groups' => $group_name
-        ),
-      )
-    );
-  }
-  // Create an array with the format that listBatchSubscribe will expect.
-  $signup_data = array(
-    'list_id' => $list_id, 
-    'email' => $email, 
-    'group_name' => $group_name, 
-    'merge_vars' => $merge_vars,
-  );
-  $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
-  $queue->createQueue();
-  $queue->createItem($signup_data);
-}
-
-/**
  * Get a user's full name as a string.
  *
  * @param $account

@@ -59,7 +59,7 @@ function dosomething_api_create_or_log_in_user($name = '', $contact = '', $passw
     if (!empty($account)) {
       // Run these *after* we know a user was successfully created.
       if (isset($u['email']) && !empty($buckets['email'])) {
-        dosomething_general_mailchimp_subscribe($u['email'], $buckets['email']);
+        dosomething_subscribe_mailchimp_signup($u['email'], $buckets['email']);
       }
       elseif (isset($u['mobile']) && !empty($buckets['mobile'])) {
         dosomething_general_mobile_commons_subscribe($u['mobile'], $buckets['mobile']);

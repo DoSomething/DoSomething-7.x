@@ -1193,7 +1193,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   }
   
   // Submit to MailChimp:
-  $mailchimp_subscribe_results = dosomething_general_mailchimp_subscribe($account->mail, variable_get('dosomething_subscribe_mailchimp_user_register'), $merge_vars);
+  $mailchimp_subscribe_results = dosomething_subscribe_mailchimp_signup($account->mail, variable_get('dosomething_subscribe_mailchimp_user_register'), $merge_vars);
   
   // Log user in.
   if ($account->status) {
