@@ -1307,7 +1307,10 @@ function dosomething_general_mailchimp_subscribe($email, $group_name, $merge_var
   }
 
   // Add email into merge vars for listBatchSubscribe.
-  $merge_vars += array('EMAIL' => $email);
+  $merge_vars += array(
+    'EMAIL' => $email,
+    'EMAIL_TYPE' => 'html',
+  );
   // Collect user details by email based on current values in user account for MailChimp signup / update.
   $merge_vars += dosomething_general_collect_merge_vars($email);
 

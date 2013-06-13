@@ -143,20 +143,13 @@ function dosomething_subscribe_mailchimp_cron() {
     $add_count = $update_count = 0;
     foreach ($batches as $list_id => $batch) {
       if (count($batch)) {
-        $ret = $mcapi->listBatchSubscribe($list_id, $batch, 'html', FALSE, TRUE, FALSE);
+        $ret = $mcapi->listBatchSubscribe($list_id, $batch, FALSE, TRUE, FALSE);
         $add_count += $ret['add_count'];
         $update_count += $ret['update_count'];
-        watchdog('dosomething_subscribe_mailchimp', print_r($ret, TRUE));
+        watchdog('dosomething_subscribe_mailchimp', 'listBatchSubscribe: ' . print_r($ret, TRUE) . ' Batch: ' . print_r($batch, TRUE));
         if ($ret['error_count'] > 0) {
           foreach ((array) $ret['errors'] as $error) {
-            // We don't care about "Already Subscribed" errors:
-            if ($error['code'] == 214) {
-              // Count already subscribed as updates and ignore this error.
-              $update_count += $ret['update_count'];
-            }
-            else {
-              watchdog('dosomething_subscribe_mailchimp', 'MCAPI Error %errcode: %errmsg', array('%errcode' => $error['code'], '%errmsg' => $error['message']), WATCHDOG_ERROR);
-            }
+            watchdog('dosomething_subscribe_mailchimp', 'MCAPI Error %errcode: %errmsg', array('%errcode' => $error['code'], '%errmsg' => $error['message']), WATCHDOG_ERROR);
           }
         }
       }
