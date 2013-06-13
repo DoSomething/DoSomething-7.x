@@ -94,6 +94,7 @@ function dosomething_subscribe_mailchimp_admin_settings_form_submit($form, &$for
  */
 function dosomething_subscribe_mailchimp_queue_status_page() {
   $rows = array();
+  //@todo: Add pagination.
   $result = db_query("SELECT item_id, data, created FROM {queue} WHERE name = :name ORDER BY item_id",
     array(':name' => DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON),
     array('fetch' => PDO::FETCH_ASSOC));
