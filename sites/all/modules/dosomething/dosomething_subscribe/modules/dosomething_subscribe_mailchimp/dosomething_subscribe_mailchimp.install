@@ -29,6 +29,7 @@ function dosomething_subscribe_mailchimp_update_7002() {
   variable_del('dosomething_subscribe_mailchimp_api_key_invalid_time');
   variable_set('dosomething_subscribe_mailchimp_is_api_state_valid', TRUE);
   variable_set('dosomething_subscribe_mailchimp_api_state_last_validated', time());
+  variable_set('mailchimp_batch_limit', 5000);
   // Just store all Groupings / Groupings in one multidimensional array.
   variable_del('dosomething_subscribe_mailchimp_grouping_ids_a27895fe0c');
   variable_del('dosomething_subscribe_mailchimp_grouping_ids_f2fab1dfd4');

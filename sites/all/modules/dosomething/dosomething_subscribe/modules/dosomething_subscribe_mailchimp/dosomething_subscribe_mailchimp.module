@@ -78,10 +78,8 @@ function dosomething_subscribe_mailchimp_signup($email, $group_name, $merge_vars
     'group_name' => $group_name, 
     'merge_vars' => $merge_vars,
   );
-  // Queue record for scheduled signup later.
-  $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
-  $queue->createQueue();
-  $queue->createItem($signup_data);
+  // Add it to the queue.
+  dosomething_subscribe_mailchimp_queue_signup($signup_data);
 }
 
 /**
@@ -168,6 +166,16 @@ function dosomething_subscribe_mailchimp_cron() {
 }
 
 /**
+ * Adds a signup array to the cron queue.
+ */
+function dosomething_subscribe_mailchimp_queue_signup($signup_data) {
+  // Queue record for scheduled signup later.
+  $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
+  $queue->createQueue();
+  $queue->createItem($signup_data);
+}
+
+/**
  * Processes cron queue signups.
  */
 function dosomething_subscribe_mailchimp_process_queue() {
@@ -187,8 +195,7 @@ function dosomething_subscribe_mailchimp_process_queue() {
     $batch_size = ($queue_count < $batch_limit) ? $queue_count : $batch_limit;
     while ($count < $batch_size) {
       if ($item = $queue->claimItem()) {
-        // For each item, if list ID = members add to batch members else add to batch old people
-        // Send batchSubscribe for Members
+        // Separate $batches array into two arrays, one for each list.
         if ($item->data['list_id'] == DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS) {
           $batches[DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS][] = $item->data['merge_vars'];
         }
@@ -206,7 +213,7 @@ function dosomething_subscribe_mailchimp_process_queue() {
         $ret = $mcapi->listBatchSubscribe($list_id, $batch, FALSE, TRUE, FALSE);
         $add_count += $ret['add_count'];
         $update_count += $ret['update_count'];
-        watchdog('dosomething_subscribe_mailchimp', 'listBatchSubscribe: ' . print_r($ret, TRUE) . ' Batch: ' . print_r($batch, TRUE));
+        watchdog('dosomething_subscribe_mailchimp', 'listBatchSubscribe: ' . print_r($ret, TRUE) . ' Batch:' . serialize($batch)) . '';
         if ($ret['error_count'] > 0) {
           foreach ((array) $ret['errors'] as $error) {
             watchdog('dosomething_subscribe_mailchimp', 'MCAPI Error %errcode: %errmsg', array('%errcode' => $error['code'], '%errmsg' => $error['message']), WATCHDOG_ERROR);
@@ -378,6 +385,9 @@ function dosomething_subscribe_mailchimp_get_api_object($timeout = 60, $validate
 
 /**
  * Send notification that API key is no longer valid.  Gets called from various API requests.
+ *
+ * @param $mcapi
+ *   MC API object, containing error code and error message.
  */
 function dosomething_subscribe_mailchimp_invalid_api_notify($mcapi) {
   // Check current state variable.

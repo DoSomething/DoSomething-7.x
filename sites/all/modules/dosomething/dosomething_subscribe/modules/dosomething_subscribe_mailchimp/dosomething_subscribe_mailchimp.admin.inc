@@ -94,24 +94,29 @@ function dosomething_subscribe_mailchimp_admin_settings_form_submit($form, &$for
  */
 function dosomething_subscribe_mailchimp_queue_status_page() {
   $rows = array();
-  //@todo: Add pagination.
-  $result = db_query("SELECT item_id, data, created FROM {queue} WHERE name = :name ORDER BY item_id",
-    array(':name' => DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON),
-    array('fetch' => PDO::FETCH_ASSOC));
-  foreach ($result as $item) {
-    $item['created'] = format_date($item['created'], 'short');
-    $signup_data = unserialize($item['data']);
-    $item['email'] = $signup_data['email'];
-    $item['group_name'] = $signup_data['group_name'];
-    $item['list_id'] = $signup_data['list_id'];
-    $item['merge_vars'] = serialize($signup_data['merge_vars']);
-    unset($item['data']);
-    $rows[] = $item;
+  // Select DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON records from queue table.
+  $query = db_select("queue", "q")
+    ->fields("q", array("item_id", "data", "created"))
+    ->condition('name', DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON, '=')
+    ->extend('TableSort')->extend('PagerDefault')->limit(50);
+  $result = $query->execute();
+
+  while ($record = $result->fetchObject()) {
+    $signup_data = unserialize($record->data);
+    $rows[] = array(
+      $record->item_id,
+      format_date($record->created, 'short'),
+      $signup_data['email'],
+      $signup_data['group_name'],
+      $signup_data['list_id'],
+      serialize($signup_data['merge_vars']),
+    );
   }
+
   if (!empty($rows)) {
     $header = array(t('Item ID'), t('Created'), t('Email'), t('Group Name'), t('List ID'), t('Merge Vars'));
     $output = theme('table', array('header' => $header, 'rows' => $rows));
-    return $output;
+    return $output . theme("pager");;
   }
   else {
     return t('There are no items in the queue.');
