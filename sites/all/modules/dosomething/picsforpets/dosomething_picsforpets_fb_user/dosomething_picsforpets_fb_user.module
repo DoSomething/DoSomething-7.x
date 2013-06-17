@@ -126,7 +126,7 @@ function dosomething_picsforpets_fb_user_init() {
           $email = $account->mail;
 
           if (!empty($mid)) {
-             dosomething_general_mailchimp_subscribe($email, $mid);
+             dosomething_subscribe_mailchimp_signup($email, $mid);
           }
       }
     }
