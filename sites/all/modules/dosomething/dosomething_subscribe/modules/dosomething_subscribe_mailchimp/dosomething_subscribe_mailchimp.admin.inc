@@ -138,5 +138,28 @@ function dosomething_subscribe_mailchimp_grouping_ids_status_page() {
     }
     $output .= theme('table', array('header' => $header, 'rows' => $rows));
   }
+  $output .= render(drupal_get_form('dosomething_subscribe_mailchimp_reset_grouping_ids_form'));
   return $output;
+}
+
+/**
+ * Form callback for resetting Grouping IDs variable.
+ */
+function dosomething_subscribe_mailchimp_reset_grouping_ids_form($form, &$form_state) {
+  $form['header'] = array(
+    '#markup' => '<h1>Manual Sync</h1><p>The Grouping IDs automatically refresh on a daily basis.  You can manually refresh them by submitting this form, but it should be done only when necessary, as to keep Mailchimp API requests to a minimum.</p>',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Sync Grouping IDs from Mailchimp API'),
+  );
+  return $form;
+}
+
+/**
+ * Submit handler to reset Grouping IDs variable.
+ */
+function dosomething_subscribe_mailchimp_reset_grouping_ids_form_submit() {
+  dosomething_subscribe_mailchimp_set_grouping_id_vars();
+  drupal_set_message("Grouping IDs refreshed.");
 }
