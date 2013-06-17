@@ -28,7 +28,14 @@ function dosomething_subscribe_mailchimp_menu() {
     'access arguments' => array('access administration pages'),
     'page callback' => 'dosomething_subscribe_mailchimp_queue_status_page', 
     'file' => 'dosomething_subscribe_mailchimp.admin.inc',
-  );  
+  );
+  $items['admin/reports/dosomething_subscribe_mailchimp_grouping_ids'] = array(
+    'title' => 'Mailchimp Grouping IDs Status',
+    'description' => t('Displays contents of the DS Sub Mailchimp Grouping IDs variable.'),
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'dosomething_subscribe_mailchimp_grouping_ids_status_page', 
+    'file' => 'dosomething_subscribe_mailchimp.admin.inc',
+  );
   return $items;
 }
 

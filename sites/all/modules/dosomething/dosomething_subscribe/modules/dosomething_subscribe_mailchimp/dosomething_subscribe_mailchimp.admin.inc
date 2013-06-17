@@ -122,3 +122,21 @@ function dosomething_subscribe_mailchimp_queue_status_page() {
     return t('There are no items in the queue.');
   }
 }
+
+/**
+ * Page callback for the Grouping ID variable report.
+ */
+function dosomething_subscribe_mailchimp_grouping_ids_status_page() {
+  $map = variable_get('dosomething_subscribe_mailchimp_grouping_ids', array());
+  $groupings_last_updated = variable_get('dosomething_subscribe_mailchimp_grouping_ids_updated');
+  $output = "Last updated: " . format_date($groupings_last_updated);
+  foreach ($map as $list_id => $groupings) {
+    $output .= '<h1>' . $list_id . '</h1>';
+    $header = array($list_id . ' - Group Name', 'Grouping ID');
+    foreach($groupings as $group_name => $grouping_id) {
+      $rows[] = array($group_name, $grouping_id);
+    }
+    $output .= theme('table', array('header' => $header, 'rows' => $rows));
+  }
+  return $output;
+}
