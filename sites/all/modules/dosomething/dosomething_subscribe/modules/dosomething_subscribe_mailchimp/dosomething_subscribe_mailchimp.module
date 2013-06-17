@@ -185,7 +185,7 @@ function dosomething_subscribe_mailchimp_process_queue() {
 
   if ($queue_count > 0) {
     // Make sure we have a valid connection to the MC API.
-    $mcapi = dosomething_subscribe_mailchimp_get_api_object();
+    $mcapi = dosomething_subscribe_mailchimp_get_api_object(300);
     if (!$mcapi) {
       return;
     }
