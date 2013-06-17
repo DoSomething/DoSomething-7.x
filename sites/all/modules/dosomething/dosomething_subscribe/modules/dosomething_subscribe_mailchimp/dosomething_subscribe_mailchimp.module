@@ -28,7 +28,14 @@ function dosomething_subscribe_mailchimp_menu() {
     'access arguments' => array('access administration pages'),
     'page callback' => 'dosomething_subscribe_mailchimp_queue_status_page', 
     'file' => 'dosomething_subscribe_mailchimp.admin.inc',
-  );  
+  );
+  $items['admin/reports/dosomething_subscribe_mailchimp_grouping_ids'] = array(
+    'title' => 'Mailchimp Grouping IDs Status',
+    'description' => t('Displays contents of the DS Sub Mailchimp Grouping IDs variable.'),
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'dosomething_subscribe_mailchimp_grouping_ids_status_page', 
+    'file' => 'dosomething_subscribe_mailchimp.admin.inc',
+  );
   return $items;
 }
 
@@ -91,8 +98,8 @@ function dosomething_subscribe_mailchimp_signup($email, $group_name, $merge_vars
   * @return array
  *   The grouping IDs for each group in the given list, indexed by group_name.
  */
-function dosomething_subscribe_mailchimp_get_grouping_ids_from_api() {
-  $mcapi = dosomething_subscribe_mailchimp_get_api_object();
+function dosomething_subscribe_mailchimp_get_grouping_ids_from_api($timeout = 300) {
+  $mcapi = dosomething_subscribe_mailchimp_get_api_object($timeout);
   if (!$mcapi) {
     return FALSE;
   }
@@ -116,8 +123,8 @@ function dosomething_subscribe_mailchimp_get_grouping_ids_from_api() {
 /**
  * Retrieve grouping IDs and groups from MC API, and store as an array.
  */
-function dosomething_subscribe_mailchimp_set_grouping_id_vars() {
-  $grouping_ids = dosomething_subscribe_mailchimp_get_grouping_ids_from_api();
+function dosomething_subscribe_mailchimp_set_grouping_id_vars($timeout = 300) {
+  $grouping_ids = dosomething_subscribe_mailchimp_get_grouping_ids_from_api($timeout);
   if ($grouping_ids) {
     variable_set('dosomething_subscribe_mailchimp_grouping_ids', $grouping_ids);
     // Store timestamp of when variables were set.
@@ -185,7 +192,7 @@ function dosomething_subscribe_mailchimp_process_queue() {
 
   if ($queue_count > 0) {
     // Make sure we have a valid connection to the MC API.
-    $mcapi = dosomething_subscribe_mailchimp_get_api_object();
+    $mcapi = dosomething_subscribe_mailchimp_get_api_object(300);
     if (!$mcapi) {
       return;
     }
