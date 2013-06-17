@@ -251,7 +251,7 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
   
     // Next, call mailchimp signup function:
     //dosomething_subscribe_mailchimp_signup($email, $mailchimp, $merge_vars);
-    dosomething_general_mailchimp_subscribe($email, $mailchimp, $merge_vars);
+    dosomething_subscribe_mailchimp_signup($email, $mailchimp, $merge_vars);
 
     // Check for nominee's email, and subscribe if so.
     // @todo: change webforms to use a form_key called beta_email instead?
@@ -264,7 +264,7 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
       elseif (isset($submitted['nominees_first__last_name'])) {
         $nominee_merge_vars['MMERGE3'] = $submitted['nominees_first__last_name'];
       }
-      dosomething_general_mailchimp_subscribe($nominee_email, $mailchimp, $nominee_merge_vars);
+      dosomething_subscribe_mailchimp_signup($nominee_email, $mailchimp, $nominee_merge_vars);
     }
 
   }

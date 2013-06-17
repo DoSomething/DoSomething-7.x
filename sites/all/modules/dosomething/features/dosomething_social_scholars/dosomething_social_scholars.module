@@ -46,7 +46,7 @@ function dosomething_social_scholars_redirect() {
   }
   else {
     if (!empty($bucket)) {
-      dosomething_general_mailchimp_subscribe($email, $bucket);
+      dosomething_subscribe_mailchimp_signup($email, $bucket);
     }
   }
 
