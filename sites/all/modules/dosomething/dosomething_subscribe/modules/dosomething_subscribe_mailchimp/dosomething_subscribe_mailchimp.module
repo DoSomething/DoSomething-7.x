@@ -55,7 +55,7 @@ function dosomething_subscribe_mailchimp_signup($email, $group_name, $merge_vars
   // If we don't have a valid grouping id, log the error, and subscribe them to the general List by excluding GROUPINGS array.
   if (!$group_data){
     // Alert that Grouping ID was not found.
-    watchdog('dosomething_subscribe_mailchimp_signup','Cannot find List / Grouping ID for group named %name', array('%name' => $group_name), $severity = WATCHDOG_ERROR);
+    watchdog('dosomething_subscribe_mailchimp','Cannot find List / Grouping ID for group named %name', array('%name' => $group_name), $severity = WATCHDOG_ERROR);
     // Use Members List as the default.
     $list_id = DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS;
   }
