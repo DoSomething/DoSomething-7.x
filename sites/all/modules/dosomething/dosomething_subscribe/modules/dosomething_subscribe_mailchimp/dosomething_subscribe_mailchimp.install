@@ -35,3 +35,23 @@ function dosomething_subscribe_mailchimp_update_7002() {
   variable_del('dosomething_subscribe_mailchimp_grouping_ids_f2fab1dfd4');
   dosomething_subscribe_mailchimp_set_grouping_id_vars();
 }
+
+/**
+ * Disable and uninstall Mailchimp contrib module.
+ */
+function dosomething_subscribe_mailchimp_update_7003() {
+  // Disable then uninstall.
+  if (module_exists('mailchimp')) {
+    module_disable(array('mailchimp_lists', 'mailchimp'), FALSE);
+    drupal_uninstall_modules(array('mailchimp_lists', 'mailchimp'));
+  }
+}
+
+/**
+ * Set Mailchimp variables for DS Subscribe Mailchimp usage.
+ */
+function dosomething_subscribe_mailchimp_update_7004() {
+  variable_set('mailchimp_api_key', 'cdd0ad8955001739ec42519956312bee-us4');
+  variable_set('mailchimp_use_secure', 1);
+  variable_set('mailchimp_batch_limit', 5000);
+}
