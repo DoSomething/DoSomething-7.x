@@ -50,6 +50,11 @@ function dosomething_subscribe_mailchimp_menu() {
  *   Any additional data collected from the form submit handler that's calling this function.
  */
 function dosomething_subscribe_mailchimp_signup($email, $group_name, $merge_vars = array()) {
+  // Mobile signups that call this function sometimes pass through invalid emails like "2125551234@mobile".
+  // Check to make sure that email is valid:
+  if (!valid_email_address($email)) {
+    return FALSE;
+  }
   // Add email into merge_vars for listBatchSubscribe.
   $merge_vars += array(
     'EMAIL' => $email,
