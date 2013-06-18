@@ -50,6 +50,11 @@ function dosomething_subscribe_mailchimp_menu() {
  *   Any additional data collected from the form submit handler that's calling this function.
  */
 function dosomething_subscribe_mailchimp_signup($email, $group_name, $merge_vars = array()) {
+  // Mobile signups that call this function sometimes pass through invalid emails like "2125551234@mobile".
+  // Check to make sure that email is valid:
+  if (!valid_email_address($email)) {
+    return FALSE;
+  }
   // Add email into merge_vars for listBatchSubscribe.
   $merge_vars += array(
     'EMAIL' => $email,
@@ -374,6 +379,7 @@ function dosomething_subscribe_mailchimp_get_api_object($timeout = 60, $validate
     // Send a request out the API to make sure there are no errors (e.g. Invalid API Key)
     $q->getVerifiedDomains();
   }
+  // If we have errors:
   if ($q->errorCode) {
     watchdog('dosomething_subscribe_mailchimp', 'MCAPI Error %errcode: %errmsg %mcapi', array(
       '%errcode' => $q->errorCode, 
@@ -386,6 +392,11 @@ function dosomething_subscribe_mailchimp_get_api_object($timeout = 60, $validate
       dosomething_subscribe_mailchimp_invalid_api_notify($q);
     }
     return NULL;
+  }
+  // Else no errors:
+  else {
+    // Set timestamp of API state last validated.
+    variable_set('dosomething_subscribe_mailchimp_api_state_last_validated', time());
   }
   return $q;
 }

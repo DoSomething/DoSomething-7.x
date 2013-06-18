@@ -77,7 +77,6 @@ function dosomething_subscribe_mailchimp_admin_settings_form_submit($form, &$for
   // Check connection to Mailchimp API with inputted API key.
   $mcapi = dosomething_subscribe_mailchimp_get_api_object();
   if ($mcapi) {
-    variable_set('dosomething_subscribe_mailchimp_api_state_last_validated', time());
     // Notify that service has been restored if valid key was FALSE, and set it to TRUE.
     if (!$is_current_state_valid) {
       variable_set('dosomething_subscribe_mailchimp_is_api_state_valid', TRUE);
