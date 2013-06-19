@@ -364,6 +364,11 @@ function dosomething_login_form_dosomething_login_register_popup_form_alter(&$fo
     drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
     drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
   }
+  if ($path == '/user/registration?destination=node/' . variable_get('hunt_campaign_nid', 729141)) {
+    // add custom JS and CSS files to this instance of the login/reg form only
+    drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
+    drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
+  }
 }
 
 /**

@@ -83,6 +83,12 @@ function doit_preprocess_page(&$variables) {
     drupal_goto('user/registration?destination=node/' . $beta_campaign);
   }
 
+    // gate hunt campaign page
+  $hunt_campaign = variable_get('hunt_campaign_nid', 729141);
+  if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $hunt_campaign))) {
+    drupal_goto('user/registration?destination=node/' . $hunt_campaign);
+  }
+
   // Load Webfonts specific to the page
   if (module_exists('dosomething_perfomance_toolbox')) {
     dosomething_perfomance_toolbox_webfonts();
