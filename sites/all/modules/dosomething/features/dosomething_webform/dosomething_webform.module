@@ -183,3 +183,25 @@ function dosomething_webform_webform_validate($form, &$form_state) {
   $form_state['rebuild'] = FALSE;
 }
 
+/**
+ *  Perform tasks when a webform submission is inserted
+ */
+function dosomething_webform_webform_submission_insert($node, $submission) {
+
+  // Set a cookie when a webform is submitted
+  $cookie = array(
+    'webform_' . $node->nid => 1
+  );
+
+  // Save the cookie
+  user_cookie_save($cookie);
+  
+  /*
+  The cookie should be accessible through $_COOKIE['Drupal_visitor_webform_NID'];
+
+  @see https://api.drupal.org/comment/38163#comment-38163
+  */
+
+}
+
+
