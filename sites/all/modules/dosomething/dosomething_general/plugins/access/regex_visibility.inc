@@ -31,6 +31,7 @@ function ctools_regex_ctools_access_settings($form, &$form_state, $conf) {
       0 => t('Current path (default)'),
       1 => t('Request URI (includes query strings)'),
       2 => t('Query string'),
+      3 => t('Cookie'),
     )
   );
 
@@ -68,16 +69,27 @@ function ctools_regex_ctools_access_check($context, $something, $conf) {
   switch ($what) {
     case 0:
       $match = request_path();
-    break;
+      $m = preg_match('/' . $expression . '/si', $match);
+      break;
     case 1:
       $match = request_uri();
-    break;
+      $m = preg_match('/' . $expression . '/si', $match);
+      break;
     case 2:
       $match = $_SERVER['QUERY_STRING'];
-    break;
+      $m = preg_match('/' . $expression . '/si', $match);
+      break;
+    case 3:
+      $match = array_keys($_COOKIE);
+      foreach ($_COOKIE as $cookie) {
+        if (preg_match('/' . $expression . '/si', $match)) {
+          $m = 'true';
+          break;
+        }
+      }
+      break;
   }
 
-  $m = preg_match('/' . $expression . '/si', $match);
   return !empty($m);
 }
 
