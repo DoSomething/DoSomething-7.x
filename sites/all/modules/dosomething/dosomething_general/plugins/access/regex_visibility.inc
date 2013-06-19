@@ -87,12 +87,14 @@ function ctools_regex_ctools_access_check($context, $something, $conf) {
       break;
     case 3:
       $match = array_keys($_COOKIE);
-      foreach ($_COOKIE as $cookie) {
-        if (preg_match('/' . $expression . '/si', $match)) {
-          $m = 'true';
-          break;
+
+      foreach ($match as $key) {
+        if (preg_match('/' . $expression . '/si', $key)) {
+           $m = 'true';
+           break;
         }
       }
+      
       break;
   }
 
