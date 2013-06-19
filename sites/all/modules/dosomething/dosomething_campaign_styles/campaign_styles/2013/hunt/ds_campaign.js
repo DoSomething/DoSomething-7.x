@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join I Heart Dad',
+        afterReplaceText : 'Just register with DoSomething.org to join The Hunt',
       };
 
       $('#cmp #edit-actions').removeAttr('id');
@@ -14,28 +14,28 @@
     
 
       // hacktastic form rebuilding
-      var $emailInput = $('#edit-submitted-field-webform-email');
-      var $cellInput = $('#edit-submitted-field-webform-mobile');
+      // var $emailInput = $('#edit-submitted-field-webform-email');
+      // var $cellInput = $('#edit-submitted-field-webform-mobile');
 
-      $cellInput.before($emailInput); // re-arranges input field order
-      $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-email-label'));
-      $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-cell-label'));
+      // $cellInput.before($emailInput); // re-arranges input field order
+      // $('#submitted-field-webform-email-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-email-label'));
+      // $('#submitted-field-webform-mobile-add-more-wrapper').not('.ds-processed').addClass('.ds-processed').prepend($('#contact-form-cell-label'));
 
 
       // contact form login
-      $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/729551" class="sign-in-popup">log in</a></p>');
+      // $('.pane-campaign-sign-up .form-actions').append('<p>Already signed up? <a href="/user?destination=node/729551" class="sign-in-popup">log in</a></p>');
 
       // on lines 9-10 terrible things happen
-      $('#campaign-opt-in br').remove();
-      $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
+      // $('#campaign-opt-in br').remove();
+      // $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
 
       // Hol' a medz in da paddie, man
-      var contactForm = $('.pane-campaign-sign-up');
-      $('#signup #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
+      // var contactForm = $('.pane-campaign-sign-up');
+      // $('#signup #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
 
       // change over contact form
-      var changeForm = $('.pane-campaign-signed');
-      $('#signup #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
+      // var changeForm = $('.pane-campaign-signed');
+      // $('#signup #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
 
 
      
@@ -54,101 +54,94 @@
         }
       });
 
-      // anchor for Tips
-      $("a[href=#tips]").click(function() {
-        $("#tips").addClass("activeFAQ");
-        $("#tips").next("div").slideToggle();
-        $("#tips").siblings().next('div').slideUp();
-      });
-
       // animation for a.jump_scroll
       var contentAnchors = 'a.jump_scroll';
       var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
       var allAnchors = navAnchors + ', ' + contentAnchors;
 
       // variables for input highlighting
-      var webformEmail = '#contact-form input[type="text"]';
-      var webformCell = '#contact-form input[type="tel"]';
-      var webformBoth = webformEmail + ', ' + webformCell;
+      // var webformEmail = '#contact-form input[type="text"]';
+      // var webformCell = '#contact-form input[type="tel"]';
+      // var webformBoth = webformEmail + ', ' + webformCell;
 
       // scrolling navigation block
-      $(window).bind('load', function() {
-        var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-        var $footer = $('#block-menu-menu-footer');
-        var $document = $(document);
-        var scrollLimitTop = $nav.offset().top;
-        $document.scroll(function () {
-          var st = $document.scrollTop();
-          var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
-          if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
-            $nav.css({
-              'position'    : 'fixed',
-              'top'         : '0px',
-              'bottom'      : 'auto',
-              'z-index'     : '3'
-            });
-          }
-          else if (st >= scrollLimitTop) { // once $nav hits $footer
-            scrollLimitTop = $nav.offset().top;
-            $nav
-              .css('position', 'absolute')
-              .css('top', 'auto')
-              .css('bottom', '25px')
-          }
-          else { // before scrolling engages $nav
-            scrollLimitTop = $nav.offset().top;
-            $nav
-              .css('position', 'static')
-          }
-        });
-      }); // end scrolling nav
+      // $(window).bind('load', function() {
+      //   var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
+      //   var $footer = $('#block-menu-menu-footer');
+      //   var $document = $(document);
+      //   var scrollLimitTop = $nav.offset().top;
+      //   $document.scroll(function () {
+      //     var st = $document.scrollTop();
+      //     var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
+      //     if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
+      //       $nav.css({
+      //         'position'    : 'fixed',
+      //         'top'         : '0px',
+      //         'bottom'      : 'auto',
+      //         'z-index'     : '3'
+      //       });
+      //     }
+      //     else if (st >= scrollLimitTop) { // once $nav hits $footer
+      //       scrollLimitTop = $nav.offset().top;
+      //       $nav
+      //         .css('position', 'absolute')
+      //         .css('top', 'auto')
+      //         .css('bottom', '25px')
+      //     }
+      //     else { // before scrolling engages $nav
+      //       scrollLimitTop = $nav.offset().top;
+      //       $nav
+      //         .css('position', 'static')
+      //     }
+      //   });
+      // }); // end scrolling nav
 
 
-      $(document).ready(function(){
-        $(webformEmail).focus().addClass('focusOutline');
-      });
-      $(webformBoth).focus(function(){
-        $(this).addClass('focusOutline');
-      });
-      $(webformBoth).blur(function() {
-        $(this).removeClass('focusOutline');
-      });
+      // $(document).ready(function(){
+      //   $(webformEmail).focus().addClass('focusOutline');
+      // });
+      // $(webformBoth).focus(function(){
+      //   $(this).addClass('focusOutline');
+      // });
+      // $(webformBoth).blur(function() {
+      //   $(this).removeClass('focusOutline');
+      // });
 
-      $(allAnchors).click(function(event){
-        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-        if($(this).attr('href') == '#header'){
-          $(webformEmail).focus().addClass('focusOutline');
-        }
-        return false;
-      });
+      // $(allAnchors).click(function(event){
+      //   $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+      //   if($(this).attr('href') == '#header'){
+      //     $(webformEmail).focus().addClass('focusOutline');
+      //   }
+      //   return false;
+      // });
 
       // nav highlighting 
-      var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
-      var firstNav = plainNav + ' a' + '.first';
+      // var plainNav = '#block-dosomething-campaign-styles-campaign-nav li';
+      // var firstNav = plainNav + ' a' + '.first';
 
-      $(firstNav).css('background','#FFCB15');
-      $(plainNav + ' a').click(function(){
-          $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
-      });
+      // $(firstNav).css('background','#FFCB15');
+      // $(plainNav + ' a').click(function(){
+      //     $(this).css('background','#FFCB15').parent().find('a').css('background','#fff');
+      // });
 
-      $(allAnchors).click(function(event){
-        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-        return false;
-      });
+      // $(allAnchors).click(function(event){
+      //   $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+      //   return false;
+      // });
 
     // #header section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/dad13/iheartdad-preview.jpg';
-    var fb_title = 'I Heart Dad';
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/hunt13/Campaigns_Landing-15.png';
+    var fb_title = 'The Hunt';
     var fb_header_caption = '';
 
     Drupal.behaviors.fb.feed({
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'Did you know 1 in 3 adults in the U.S. have high blood pressure? This Father\'s Day season, @DoSomething is encouraging teens to give their dads the most important present - the gift of a healthy heart! Join I Heart Dad to have his blood pressure checked: www.dosomething.org/iheartdad',
+      'feed_description': 'Adults think that teens are lazy and apathetic. Join The Hunt and show them and the world all of the amazing stuff you do in your community every day.',
       'feed_selector': '.header-facebook-share',
     }, function(response){
-      window.location.href = '/iheartdad#header';
+      window.location.href = '/hunt';
     });
 
          

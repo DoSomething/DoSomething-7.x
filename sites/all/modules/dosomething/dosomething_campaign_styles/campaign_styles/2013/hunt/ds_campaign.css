@@ -220,12 +220,12 @@ body {
       color: #cccccc;
       text-decoration: underline; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
-        color: #ed1b2e; }
+        color: #f1e316; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix hr {
       border-top: none;
       border-bottom: 1px solid #cccccc; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count {
-      background: #ed1b2e;
+      background: #f1e316;
       padding: 0.5em 0 0.3em;
       margin: 1em 0; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count p {
@@ -505,17 +505,17 @@ body {
   #cmp .col33, #cmp .col40, #cmp .col50, #cmp .col60 {
     float: left; }
   #cmp .col33 {
-    width: 33%; }
+    width: 33.33%; }
   #cmp .col40 {
     width: 40%; }
   #cmp .col50 {
     width: 50%; }
   #cmp .col60 {
     width: 60%; }
-  #cmp .col33-inner {
+  #cmp .col33-inner, #cmp .col50-inner {
     padding: 0 1.5%; }
-    #cmp .col33-inner p {
-      width: 80%;
+    #cmp .col33-inner p, #cmp .col50-inner p {
+      width: 84%;
       margin: 0 auto;
       text-align: center !important; }
   #cmp .divider, #cmp .divider-mobile {
@@ -545,7 +545,7 @@ body {
     font-size: 2em;
     height: 1.4em;
     display: inline-block;
-    color: #1e1d1c;
+    color: #4d4d4d;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -554,6 +554,9 @@ body {
     text-decoration: none; }
   #cmp .section {
     max-width: 1000px; }
+    #cmp .section p {
+      font-size: 1.15em;
+      line-height: 1.3em; }
   #cmp .section#header {
     background: none;
     margin: 20px auto 10px; }
@@ -574,7 +577,7 @@ body {
       margin: 0 auto 0; }
     #cmp #header h1 {
       margin: 1.5%;
-      background: #ed1b2e;
+      background: #f1e316;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -594,13 +597,13 @@ body {
       margin: 0 auto;
       line-height: 1.2em; }
       #cmp #header h2 span {
-        color: #ed1b2e;
+        color: #f1e316;
         font-weight: 700;
         padding: 0; }
     #cmp #header .subhead {
       text-transform: uppercase;
       color: white;
-      background: #1aadad;
+      background: #00adef;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -611,7 +614,7 @@ body {
     #cmp #header .subhead2 {
       max-width: 375px;
       color: white;
-      background: #1aadad;
+      background: #00adef;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -655,70 +658,152 @@ body {
     #cmp #header .header-facebook-share, #cmp #header .header-twitter-share {
       display: inline-block;
       margin: 0 2px; }
+  #cmp .section#action {
+    padding: 2% 0 1em; }
   #cmp #action {
     padding: 3% 0 4%; }
     #cmp #action img {
-      margin: 4% 0; }
+      margin: 4% 0;
+      max-width: 280px; }
     #cmp #action .bottom-p {
       clear: both;
       padding-top: 4%; }
+    #cmp #action h2 {
+      color: #4d4d4d;
+      border-bottom: 12px solid #00adef;
+      display: inline-block;
+      letter-spacing: 3px;
+      font-weight: 600;
+      line-height: 1.2em; }
+    #cmp #action h3 {
+      text-transform: none;
+      font-size: 1.5em;
+      font-weight: 600;
+      margin-bottom: 0.4em; }
+    #cmp #action .kickass, #cmp #action .kickass-sub {
+      background: #00adef;
+      color: #f1e316;
+      text-transform: uppercase;
+      display: inline-block;
+      font-weight: 600;
+      padding: 0.5em 0.75em 0.3em;
+      line-height: 1.2em; }
+    #cmp #action .kickass {
+      font-size: 1.8em;
+      letter-spacing: 4px;
+      margin: 0 0 0.2em; }
+    #cmp #action .kickass-sub {
+      font-size: 1.3em;
+      letter-spacing: 3px; }
+    #cmp #action .headsup {
+      background: #f1e316;
+      font-size: 1.7em;
+      font-weight: 600;
+      padding: 0.8em 4% 0.4em;
+      margin: 0.75em 0 1em;
+      line-height: 1.2em; }
+      #cmp #action .headsup span {
+        font-size: 1.4em; }
+    #cmp #action .peek {
+      clear: both;
+      border-top: 1px solid #c1c1c1;
+      border-bottom: 1px solid #c1c1c1;
+      padding: 2%; }
+    #cmp #action .col33 {
+      margin-bottom: 2%; }
+  #cmp .section#prize {
+    padding: 0 2%; }
+  #cmp #prize h2 {
+    color: #4d4d4d;
+    border-bottom: 12px solid #00adef;
+    display: inline-block;
+    min-width: 280px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-size: 2em;
+    line-height: 1.2em; }
+  #cmp #prize h3 {
+    text-transform: none;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-bottom: 0.25em;
+    line-height: 1.2em; }
+  #cmp #prize .col50 {
+    margin: 3em 0; }
+    #cmp #prize .col50 p {
+      max-width: 305px; }
+  #cmp #prize .rules {
+    clear: both; }
+  #cmp #prize a {
+    color: black; }
   #cmp .section#info {
     padding: 2% 0; }
-  #cmp #info {
-    text-align: left; }
-    #cmp #info h2 {
-      background: #ed1b2e;
-      color: white;
-      display: inline-block;
-      padding: 0.2em 2% 0;
-      margin-bottom: 1em;
-      text-transform: uppercase;
-      font-size: 1.4em;
-      font-weight: 500; }
-    #cmp #info .divider {
-      margin: 0 2% 3%; }
-    #cmp #info ul {
-      margin: 0 3% 1.4em 6%;
-      list-style-type: disc; }
-    #cmp #info li {
-      line-height: 1.2em;
-      margin-bottom: 1em; }
-      #cmp #info li img {
-        display: block;
-        margin: 2% auto; }
-    #cmp #info strong {
-      font-weight: 600; }
-  #cmp #scholarship {
-    background: #1aadad;
-    padding: 0 2% 0.5%; }
-    #cmp #scholarship .divider {
-      border-top: none; }
-    #cmp #scholarship p, #cmp #scholarship h3, #cmp #scholarship a {
-      color: white; }
-    #cmp #scholarship .go-button {
-      color: #222222;
-      font-size: 2em;
-      margin-top: 0;
-      font-weight: 500; }
-      #cmp #scholarship .go-button:hover {
-        color: black; }
-    #cmp #scholarship .rules {
-      font-size: 0.8em; }
-    #cmp #scholarship p {
-      margin: 0 auto 1.2em;
-      max-width: 500px; }
-      #cmp #scholarship p span {
-        font-size: 1.8em;
-        font-weight: 500;
-        line-height: 1.4em;
-        text-transform: uppercase; }
+  #cmp #info hr {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #c1c1c1; }
+  #cmp #info h2 {
+    color: #4d4d4d;
+    border-bottom: 12px solid #00adef;
+    display: inline-block;
+    min-width: 280px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-size: 2em;
+    margin: 2% 2% 0.5em;
+    line-height: 1.2em; }
+  #cmp #info .sub {
+    text-align: center; }
+  #cmp #info h3 {
+    background: #00adef;
+    color: #f1e316;
+    font-style: italic;
+    display: inline-block;
+    float: left;
+    padding: 0.25em 0.75em 0;
+    font-size: 1.8em;
+    font-weight: 600; }
+  #cmp #info li {
+    font-size: 1.25em;
+    font-weight: 500;
+    margin-bottom: 0.4em; }
+  #cmp #info h3, #cmp #info ul, #cmp #info p {
+    text-align: left;
+    margin: 0 6% 1em;
+    clear: both; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
+  #cmp .section#impact {
+    padding: 2% 0; }
   #cmp #impact .go-button {
     margin: 2% auto;
     font-size: 1.6em;
     padding: 0.5em 0.7em;
     height: 1.8em; }
+  #cmp #impact hr {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #c1c1c1; }
+  #cmp #impact h2 {
+    color: #4d4d4d;
+    border-bottom: 12px solid #00adef;
+    display: inline-block;
+    min-width: 280px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-size: 2em;
+    margin: 2% 2% 0.5em;
+    line-height: 1.2em; }
+  #cmp #impact p {
+    margin-bottom: 3em; }
+  #cmp #impact #galleriffic {
+    margin: 0 2%; }
+  #cmp .section#faq {
+    padding: 2% 0; }
+  #cmp #faq .faqwrap {
+    padding: 0 6%; }
   #cmp #faq div {
     padding: 0 1.2em 1.2em 1.2em; }
   #cmp #faq div.divider {
@@ -744,17 +829,19 @@ body {
     padding: 0 0 1em 0;
     margin: 0 0 -1em 0; }
   #cmp #faq h4 {
-    color: #1e1d1c;
+    color: black;
     cursor: pointer;
     background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
     background-repeat: no-repeat;
-    background-position-y: 0.4em;
-    padding: 0.3em 1.2em; }
+    background-position-y: 0.55em;
+    padding: 0.3em 1.2em;
+    font-size: 1.15em;
+    line-height: 1.4em; }
   #cmp #faq h4.activeFAQ {
-    background-position-y: -1.4em; }
+    background-position-y: -1em; }
   #cmp #faq .go-button {
     background: #fec82e;
-    color: #ed1b2e;
+    color: #f1e316;
     margin: 2% auto;
     padding: 0.5em;
     height: 1.8em;
@@ -773,11 +860,21 @@ body {
     background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
     background-repeat: no-repeat;
     background-position-y: 0.5em; }
-  #cmp #faq .action-copy {
-    text-transform: uppercase; }
-  #cmp #faq .action-box {
-    position: relative;
-    display: inline-block; }
+  #cmp #faq hr {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #c1c1c1; }
+  #cmp #faq h2 {
+    color: #4d4d4d;
+    border-bottom: 12px solid #00adef;
+    display: inline-block;
+    min-width: 280px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-size: 2em;
+    margin: 2% 2% 0.5em;
+    line-height: 1.2em; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
@@ -801,7 +898,7 @@ body {
   #cmp #contact-form, #cmp #contact-form2, #cmp #contact-form3 {
     margin: 1% 0;
     padding-bottom: 10px;
-    background: #ed1b2e;
+    background: #f1e316;
     width: 100%;
     color: white; }
     #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
@@ -1010,7 +1107,7 @@ body {
     font-size: 1.5em;
     height: 1.4em;
     display: inline-block;
-    color: #1e1d1c;
+    color: #4d4d4d;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;

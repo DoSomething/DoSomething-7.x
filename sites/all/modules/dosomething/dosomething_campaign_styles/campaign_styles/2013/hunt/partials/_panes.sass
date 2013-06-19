@@ -2,6 +2,9 @@
 
 .section
   max-width: 1000px
+  p
+    font-size: 1.15em
+    line-height: 1.3em
 
 ///      //
 //  #header     - sign up -
@@ -113,14 +116,89 @@
 //			//
 //	#action
 //			//
+.section#action
+  padding: 2% 0 1em
 #action
   padding: 3% 0 4%
   img
     margin: 4% 0
+    max-width: 280px
   .bottom-p
     clear: both
     padding-top: 4%
+  h2
+    color: $offBlack
+    border-bottom: 12px solid $thirdColor
+    display: inline-block
+    letter-spacing: 3px
+    font-weight: 600
+    line-height: 1.2em
+  h3
+    text-transform: none
+    font-size: 1.5em
+    font-weight: 600
+    margin-bottom: 0.4em
+  .kickass, .kickass-sub
+    background: $thirdColor
+    color: $secondaryColor
+    text-transform: uppercase
+    display: inline-block
+    font-weight: 600
+    padding: 0.5em 0.75em 0.3em
+    line-height: 1.2em
+  .kickass
+    font-size: 1.8em
+    letter-spacing: 4px
+    margin: 0 0 0.2em
+  .kickass-sub
+    font-size: 1.3em
+    letter-spacing: 3px
+  .headsup
+    background: $secondaryColor
+    font-size: 1.7em
+    font-weight: 600
+    padding: 0.8em 4% 0.4em
+    margin: 0.75em 0 1em
+    line-height: 1.2em
+    span
+      font-size: 1.4em
+  .peek
+    clear: both
+    border-top: 1px solid #C1C1C1
+    border-bottom: 1px solid #C1C1C1
+    padding: 2%
+  .col33
+    margin-bottom: 2%
 
+//      //
+//  #prize
+//      //
+.section#prize
+  padding: 0 2%
+#prize
+  h2
+    color: $offBlack
+    border-bottom: 12px solid $thirdColor
+    display: inline-block
+    min-width: 280px
+    font-weight: 600
+    letter-spacing: 3px
+    font-size: 2em
+    line-height: 1.2em
+  h3
+    text-transform: none
+    font-size: 1.5em
+    font-weight: 400
+    margin-bottom: 0.25em
+    line-height: 1.2em
+  .col50
+    margin: 3em 0
+    p
+      max-width: 305px
+  .rules
+    clear: both
+  a
+    color: black
 
 //      //
 //  #info
@@ -128,57 +206,40 @@
 .section#info
   padding: 2% 0
 #info
-  text-align: left
-  h2
-    background: $secondaryColor
-    color: white
-    display: inline-block
-    padding: 0.2em 2% 0
-    margin-bottom: 1em
-    text-transform: uppercase
-    font-size: 1.4em
-    font-weight: 500
-  .divider
-    margin: 0 2% 3%
-  ul
-    margin: 0 3% 1.4em 6%
-    list-style-type: disc
-  li
-    line-height: 1.2em
-    margin-bottom: 1em
-    img
-      display: block
-      margin: 2% auto
-  strong
-    font-weight: 600
-
-//      //
-//  #scholarship
-//      //
-#scholarship
-  background: $thirdColor
-  padding: 0 2% 0.5%
-  .divider
+  hr
     border-top: none
-  p, h3, a
-    color: white
-  .go-button
-    color: #222
+    border-left: none
+    border-right: none
+    border-bottom: 1px solid #C1C1C1
+  h2
+    color: $offBlack
+    border-bottom: 12px solid $thirdColor
+    display: inline-block
+    min-width: 280px
+    font-weight: 600
+    letter-spacing: 3px
     font-size: 2em
-    margin-top: 0
+    margin: 2% 2% 0.5em
+    line-height: 1.2em
+  .sub
+    text-align: center
+  h3
+    background: $thirdColor
+    color: $secondaryColor
+    font-style: italic
+    display: inline-block
+    float: left
+    padding: 0.25em 0.75em 0
+    font-size: 1.8em
+    font-weight: 600
+  li
+    font-size: 1.25em
     font-weight: 500
-    &:hover
-      color: black
-  .rules
-    font-size: 0.8em
-  p
-    margin: 0 auto 1.2em
-    max-width: 500px
-    span
-      font-size: 1.8em
-      font-weight: 500
-      line-height: 1.4em
-      text-transform: uppercase
+    margin-bottom: 0.4em
+  h3, ul, p
+    text-align: left
+    margin: 0 6% 1em
+    clear: both
 
 
 //      //
@@ -187,18 +248,43 @@
 .view-campaign-gallery #slideshow
   margin: 0 auto
 
+.section#impact
+  padding: 2% 0
 #impact
   .go-button
     margin: 2% auto
     font-size: 1.6em
     padding: 0.5em 0.7em
     height: 1.8em
+  hr
+    border-top: none
+    border-left: none
+    border-right: none
+    border-bottom: 1px solid #C1C1C1
+  h2
+    color: $offBlack
+    border-bottom: 12px solid $thirdColor
+    display: inline-block
+    min-width: 280px
+    font-weight: 600
+    letter-spacing: 3px
+    font-size: 2em
+    margin: 2% 2% 0.5em
+    line-height: 1.2em
+  p
+    margin-bottom: 3em
+  #galleriffic
+    margin: 0 2%
 
 
 //      //
 //  #faq
 //      //
-#faq 
+.section#faq
+  padding: 2% 0
+#faq
+  .faqwrap
+    padding: 0 6%
   div
     padding: 0 1.2em 1.2em 1.2em
   div.divider
@@ -224,14 +310,16 @@
     padding: 0 0 1em 0
     margin: 0 0 -1em 0
   h4
-    color: $offBlack
+    color: black
     cursor: pointer
     background: url("//files.dosomething.org/files/campaigns/prep/arrows.png")
     background-repeat: no-repeat
-    background-position-y: 0.4em
+    background-position-y: 0.55em
     padding: 0.3em 1.2em
+    font-size: 1.15em
+    line-height: 1.4em
   h4.activeFAQ
-    background-position-y: -1.4em
+    background-position-y: -1em
   .go-button
     background: $buttonColor
     color: $secondaryColor
@@ -253,8 +341,18 @@
     background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
     background-repeat: no-repeat
     background-position-y: 0.5em
-  .action-copy
-    text-transform: uppercase  
-  .action-box
-    position: relative
+  hr
+    border-top: none
+    border-left: none
+    border-right: none
+    border-bottom: 1px solid #C1C1C1
+  h2
+    color: $offBlack
+    border-bottom: 12px solid $thirdColor
     display: inline-block
+    min-width: 280px
+    font-weight: 600
+    letter-spacing: 3px
+    font-size: 2em
+    margin: 2% 2% 0.5em
+    line-height: 1.2em
