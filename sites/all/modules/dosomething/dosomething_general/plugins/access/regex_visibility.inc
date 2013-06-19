@@ -32,7 +32,8 @@ function ctools_regex_ctools_access_settings($form, &$form_state, $conf) {
       1 => t('Request URI (includes query strings)'),
       2 => t('Query string'),
       3 => t('Cookie'),
-    )
+    ),
+    '#default_value' => $conf['context'],
   );
 
   $form['settings']['expression'] = array(
@@ -63,7 +64,12 @@ function ctools_regex_ctools_validate($form, &$form_state) {
  */
 function ctools_regex_ctools_access_check($context, $something, $conf) {
   $what = $context['context'];
-  $expression = $context['expression'];
+  $expression = token_replace($context['expression']);
+
+  #%node:nid is what I need to replace (from the context)
+
+  #echo '<pre>', print_r(token_get_list()), '</pre>';
+  #exit;
 
   $match = '';
   switch ($what) {
