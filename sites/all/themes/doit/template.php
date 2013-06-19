@@ -84,7 +84,7 @@ function doit_preprocess_page(&$variables) {
   }
 
     // gate hunt campaign page
-  $hunt_campaign = variable_get('hunt_campaign_nid', 729141);
+  $hunt_campaign = variable_get('hunt_campaign_nid', 729679);
   if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $hunt_campaign))) {
     drupal_goto('user/registration?destination=node/' . $hunt_campaign);
   }
