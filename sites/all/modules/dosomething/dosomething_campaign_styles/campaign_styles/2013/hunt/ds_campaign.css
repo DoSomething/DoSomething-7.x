@@ -482,7 +482,7 @@ body {
   #cmp input[type="submit"] {
     font-size: 1.5em; }
   #cmp a {
-    color: #ed1b2e;
+    color: #ec008b;
     text-decoration: underline;
     font-weight: 500; }
     #cmp a:hover {
@@ -517,7 +517,7 @@ body {
     #cmp .col33-inner p, #cmp .col50-inner p {
       width: 84%;
       margin: 0 auto;
-      text-align: center !important; }
+      text-align: center; }
   #cmp .divider, #cmp .divider-mobile {
     text-align: center;
     border-top: 2px solid #cccccc;
@@ -557,6 +557,19 @@ body {
     #cmp .section p {
       font-size: 1.15em;
       line-height: 1.3em; }
+  #cmp .titleline, #cmp .titleline-mobile {
+    color: #4d4d4d;
+    border-bottom: 12px solid #00adef;
+    display: inline-block;
+    letter-spacing: 3px;
+    font-weight: 600;
+    line-height: 1.2em;
+    min-width: 280px;
+    font-size: 2em;
+    margin: 2%; }
+  #cmp .titleline-mobile {
+    color: #f1e316;
+    display: none; }
   #cmp .section#header {
     background: none;
     margin: 20px auto 10px; }
@@ -664,17 +677,13 @@ body {
     padding: 3% 0 4%; }
     #cmp #action img {
       margin: 4% 0;
-      max-width: 280px; }
+      max-width: 300px;
+      width: 100%; }
     #cmp #action .bottom-p {
       clear: both;
       padding-top: 4%; }
-    #cmp #action h2 {
-      color: #4d4d4d;
-      border-bottom: 12px solid #00adef;
-      display: inline-block;
-      letter-spacing: 3px;
-      font-weight: 600;
-      line-height: 1.2em; }
+    #cmp #action .titleline {
+      font-size: 1.5em; }
     #cmp #action h3 {
       text-transform: none;
       font-size: 1.5em;
@@ -700,7 +709,7 @@ body {
       font-size: 1.7em;
       font-weight: 600;
       padding: 0.8em 4% 0.4em;
-      margin: 0.75em 0 1em;
+      margin: 0.75em 0 0.5em;
       line-height: 1.2em; }
       #cmp #action .headsup span {
         font-size: 1.4em; }
@@ -713,15 +722,6 @@ body {
       margin-bottom: 2%; }
   #cmp .section#prize {
     padding: 0 2%; }
-  #cmp #prize h2 {
-    color: #4d4d4d;
-    border-bottom: 12px solid #00adef;
-    display: inline-block;
-    min-width: 280px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    font-size: 2em;
-    line-height: 1.2em; }
   #cmp #prize h3 {
     text-transform: none;
     font-size: 1.5em;
@@ -729,7 +729,7 @@ body {
     margin-bottom: 0.25em;
     line-height: 1.2em; }
   #cmp #prize .col50 {
-    margin: 3em 0; }
+    margin: 2em 0 3em; }
     #cmp #prize .col50 p {
       max-width: 305px; }
   #cmp #prize .rules {
@@ -738,21 +738,15 @@ body {
     color: black; }
   #cmp .section#info {
     padding: 2% 0; }
+  #cmp #info h3, #cmp #info ul, #cmp #info p {
+    text-align: left;
+    margin: 0 6% 1em;
+    clear: both; }
   #cmp #info hr {
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #c1c1c1; }
-  #cmp #info h2 {
-    color: #4d4d4d;
-    border-bottom: 12px solid #00adef;
-    display: inline-block;
-    min-width: 280px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    font-size: 2em;
-    margin: 2% 2% 0.5em;
-    line-height: 1.2em; }
   #cmp #info .sub {
     text-align: center; }
   #cmp #info h3 {
@@ -763,15 +757,14 @@ body {
     float: left;
     padding: 0.25em 0.75em 0;
     font-size: 1.8em;
-    font-weight: 600; }
+    font-weight: 600;
+    margin: 0 6% 0.5em; }
+  #cmp #info ul {
+    margin-bottom: 0; }
   #cmp #info li {
     font-size: 1.25em;
     font-weight: 500;
     margin-bottom: 0.4em; }
-  #cmp #info h3, #cmp #info ul, #cmp #info p {
-    text-align: left;
-    margin: 0 6% 1em;
-    clear: both; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
   #cmp .section#impact {
@@ -786,16 +779,6 @@ body {
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #c1c1c1; }
-  #cmp #impact h2 {
-    color: #4d4d4d;
-    border-bottom: 12px solid #00adef;
-    display: inline-block;
-    min-width: 280px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    font-size: 2em;
-    margin: 2% 2% 0.5em;
-    line-height: 1.2em; }
   #cmp #impact p {
     margin-bottom: 3em; }
   #cmp #impact #galleriffic {
@@ -849,6 +832,16 @@ body {
     font-family: din-web-reg; }
     #cmp #faq .go-button:hover {
       opacity: 0.85; }
+  #cmp #faq .email-mobile {
+    display: none;
+    background: #00adef;
+    color: white;
+    text-align: center;
+    padding: 2%;
+    margin: 2% 0 0; }
+    #cmp #faq .email-mobile a {
+      color: white;
+      font-weight: 400; }
   #cmp #faq .back-to-top {
     text-align: right;
     padding: 1em 0 1em; }
@@ -865,16 +858,6 @@ body {
     border-left: none;
     border-right: none;
     border-bottom: 1px solid #c1c1c1; }
-  #cmp #faq h2 {
-    color: #4d4d4d;
-    border-bottom: 12px solid #00adef;
-    display: inline-block;
-    min-width: 280px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    font-size: 2em;
-    margin: 2% 2% 0.5em;
-    line-height: 1.2em; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
@@ -1120,12 +1103,20 @@ body {
   #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav,
   #cmp .node-type-campaign-report-back #block-dosomething-campaign-styles-campaign-nav {
     display: none; }
+  @media only screen and (max-width: 900px) {
+    #cmp #action .kickass {
+      font-size: 1.5em; } }
   @media only screen and (max-width: 775px) {
+    #cmp #header .header-social {
+      display: none; }
+    #cmp #header .date {
+      position: inherit;
+      padding: 0.5em 0 0;
+      text-align: center; }
     #cmp .section {
       width: 100%;
-      margin: 0 auto; }
-    #cmp #contact-form h3 {
-      margin: 0; }
+      margin: 0 auto;
+      background: none; }
     #cmp #webform-component-start-header {
       width: 100%;
       float: none; }
@@ -1138,13 +1129,76 @@ body {
       width: 20%; }
     #cmp .pane-campaign-sign-up #edit-submit {
       margin: 1.4em auto 0; }
+    #cmp .titleline {
+      color: #f1e316; }
+    #cmp h3, #cmp h4, #cmp p, #cmp li {
+      color: white; }
     #cmp #action .col33 {
-      width: 95%;
-      margin: 3% 0; }
-    #cmp #action h3 {
+      width: 94%;
+      margin: 3%; }
+    #cmp #action .col33-inner {
       text-align: left; }
-    #cmp #action img {
+    #cmp #action p {
+      text-align: left;
+      width: 100%; }
+    #cmp #action h3 {
       display: none; }
+    #cmp #action img {
+      max-width: none;
+      display: block;
+      margin: 0 auto 0.5em; }
+    #cmp #action .kickass, #cmp #action .kickass-sub {
+      background: none;
+      color: #00adef;
+      display: inline;
+      padding: 0;
+      margin: 0;
+      line-height: 1.2em;
+      font-size: 1.4em;
+      text-align: center; }
+    #cmp #action .kickbr {
+      display: none; }
+    #cmp #action .kickwrap {
+      padding: 0 4%;
+      text-align: center; }
+    #cmp #action .titleline {
+      display: none; }
+    #cmp #action .titleline-mobile {
+      display: inline-block; }
+    #cmp #action .headsup {
+      color: black;
+      text-align: center; }
+    #cmp #action .peek {
+      text-align: center; }
+    #cmp #prize img {
+      width: 100%;
+      margin-bottom: 0.25em; }
+    #cmp #prize .col50 {
+      width: 94%;
+      margin: 3%; }
+      #cmp #prize .col50 p {
+        max-width: none; }
+    #cmp #prize .col50-inner {
+      text-align: left; }
+    #cmp #prize p {
+      text-align: left;
+      width: 100%; }
+    #cmp #prize h3 {
+      font-weight: 500; }
+    #cmp #prize a {
+      color: white; }
+    #cmp #info .sub {
+      text-align: left;
+      margin-top: 2%; }
+    #cmp #info h3 {
+      font-style: normal; }
+    #cmp #impact p {
+      margin-bottom: 1em; }
+    #cmp #faq h4 {
+      color: white;
+      background: none; }
+    #cmp #faq .email-mobile {
+      display: block; }
     #cmp a.print-pdf {
       width: 37%; }
       #cmp a.print-pdf img {
@@ -1162,7 +1216,11 @@ body {
       font-size: 1.1em;
       width: 75%; }
     #cmp #header .header-social {
-      bottom: 0px; } }
+      bottom: 0px; }
+    #cmp #action .kickass, #cmp #action .kickass-sub {
+      font-size: 1em; }
+    #cmp #action .headsup {
+      font-size: 1.4em; } }
   @media only screen and (max-width: 450px) {
     #cmp #header .subhead {
       margin: 17% 0 7.5%;
@@ -1170,7 +1228,9 @@ body {
     #cmp #header .header-social {
       bottom: 0px; }
     #cmp #header .date {
-      font-size: 0.75em; }
+      font-size: 1em; }
+    #cmp #action .headsup {
+      font-size: 1.2em; }
     #cmp .section {
       margin: 0 auto; }
     #cmp #info .divider {
