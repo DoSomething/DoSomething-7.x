@@ -844,7 +844,7 @@ body {
       font-weight: 400; }
   #cmp #faq .back-to-top {
     text-align: right;
-    padding: 1em 0 1em; }
+    padding: 1em 2% 1em; }
   #cmp #faq .top-btn {
     font-weight: 400;
     color: #c6c7c8;
@@ -1006,6 +1006,21 @@ body {
     #cmp #report-back h2 {
       font-size: 1.6em;
       line-height: 1.2em; }
+    #cmp #report-back #edit-submitted-choose-a-day-to-tell-us-about-and-upload-your-picture-below {
+      background: whitesmoke;
+      font-size: 1.4em;
+      color: black;
+      width: 100%; }
+    #cmp #report-back label[for=edit-submitted-choose-a-day-to-tell-us-about-and-upload-your-picture-below] {
+      font-size: 1.8em;
+      line-height: 1.1em;
+      margin-bottom: 0.25em;
+      font-weight: 600; }
+    #cmp #report-back .webform-component-textarea label {
+      color: #00adef;
+      font-weight: 500;
+      background: #f3f315;
+      padding: 4px; }
     #cmp #report-back #submitted-field-webform-school-reference-add-more-wrapper {
       background: #f1f1f1;
       border: 2px solid #e1e1e1;
@@ -1113,6 +1128,8 @@ body {
       position: inherit;
       padding: 0.5em 0 0;
       text-align: center; }
+    #cmp #report-back {
+      width: 100%; }
     #cmp .section {
       width: 100%;
       margin: 0 auto;
