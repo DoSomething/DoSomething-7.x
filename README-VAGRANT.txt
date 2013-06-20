@@ -1,8 +1,23 @@
-TESTING WITH VAGRANT
+WORKING WITH VAGRANT
 --------------------
 
 mholford@dosomething.org
-16 May 2013
+20 June 2013
+
+
+PREREQUISITES
+-------------
+
+You'll need a GitHub account and access to the Do Something account. Make sure
+you've checked out the qa branch of the DoSomething-7.x project. Instructions
+below generally assume you're starting out from the docroot of this project
+(i.e., the docroot of the Drupal app).
+
+You'll know you're in the right branch if the docroot includes
+
+Vagrantfile
+
+and the "salt/" directory.
 
 
 INSTALLATION
@@ -65,11 +80,39 @@ vagrant up
 
 ...And you'll get a freshly-built box.
 
+To enable the Tomcat 6-related services (Solr, Jenkins), you need to edit the 
+main Salt file to install and load these packages. The main Salt file is here:
+
+  salt/roots/salt/top.sls
+  
+This needs an entry to load the "tomcat" file (.sls is implicit):
+
+  base:
+  '*':
+    - utils
+    - lamp-drupal
+    - selenium
+    - tomcat
+
+If you edit any Salt config file or Salt-managed file, you need to run
+
+vagrant reload
+
+From the host (i.e., your machine, not within Vagrant). This will shut down 
+the Vagrant instance, reload the config files, restart Vagrant, and rerun
+Salt.
+
 
 DRUPAL CONFIGURATION
 --------------------
 
-See sites/default/site-settings.vagrant.php for details.
+1. See sites/default/site-settings.vagrant.php for details on file config.
+
+2. JS Injector is possibly broken, and at least useless. Disable: 
+
+  % vagrant ssh
+  % cd /vagrant
+  % drush dis js_injector --yes
 
 
 ACTIVE PORTS
@@ -83,13 +126,12 @@ The Varnish-served site should be available at
 
 http://localhost:9999/
 
-Jenkins should be available at
+Port 11111 is available for Tomcat 6, but these services are not running by 
+default (see SALT CONFIGURATION for details):
 
-http://localhost:11111/jenkins
+* Jenkins: http://localhost:11111/jenkins
 
-Solr should be available at
-
-http://localhost:11111/solr
+* Solr: http://localhost:11111/solr
 
 
 GETTING STARTED
@@ -106,7 +148,7 @@ From there, you need to start selenium in order to run tests: sh start-selenium.
 You can then run specific tests: phpunit PetitionsTest.php
 
 
-You will also need to edit your settings.php to:
+You will also need to edit your settings.php, * at the very end of the file *:
 include_once('site-settings.php')
 
 site-settings.php has all the configurations for memcache, etc.
