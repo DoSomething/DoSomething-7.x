@@ -33,6 +33,104 @@
         return false;
       });
 
+
+      // A quick and dirty (AKA - way too long and redundant script) for report-back select to textarea connection
+      jQuery('.webform-component-textarea').css('display','none');
+
+      jQuery('#edit-submitted-choose-a-day-to-tell-us-about-and-upload-your-picture-below').change(function(){
+
+        var select = jQuery(this).val();
+        var textarea1 = jQuery('#webform-component-day-1-text');
+        var textarea2 = jQuery('#webform-component-day-2-text');
+        var textarea3 = jQuery('#webform-component-day-3-text');
+        var textarea4 = jQuery('#webform-component-day-4-text');
+        var textarea5 = jQuery('#webform-component-day-5-text');
+        var textarea6 = jQuery('#webform-component-day-6-text');
+        var textarea7 = jQuery('#webform-component-day-7-text');
+        var textarea8 = jQuery('#webform-component-day-8-text');
+        var textarea9 = jQuery('#webform-component-day-9-text');
+        var textarea10 = jQuery('#webform-component-day-10-text');
+        var textarea11 = jQuery('#webform-component-day-11-text');
+
+        if(select == 'day_1'){
+          textarea1.show();
+        }
+        else {
+          textarea1.hide();
+          }
+
+        if(select == 'day_2'){
+          textarea2.show();
+        }
+        else {
+          textarea2.hide();
+          }
+
+        if(select == 'day_3'){
+          textarea3.show();
+        }
+        else {
+          textarea3.hide();
+          }
+
+        if(select == 'day_4'){
+          textarea4.show();
+        }
+        else {
+          textarea4.hide();
+          }
+
+        if(select == 'day_5'){
+          textarea5.show();
+        }
+        else {
+          textarea5.hide();
+          }
+
+        if(select == 'day_6'){
+          textarea6.show();
+        }
+        else {
+          textarea6.hide();
+          }
+
+        if(select == 'day_7'){
+          textarea7.show();
+        }
+        else {
+          textarea7.hide();
+          }
+
+        if(select == 'day_8'){
+          textarea8.show();
+        }
+        else {
+          textarea8.hide();
+          }
+
+        if(select == 'day_9'){
+          textarea9.show();
+        }
+        else {
+          textarea9.hide();
+          }
+
+        if(select == 'day_10'){
+          textarea10.show();
+        }
+        else {
+          textarea10.hide();
+          }
+
+        if(select == 'day_11'){
+          textarea11.show();
+        }
+        else {
+          textarea11.hide();
+          }
+
+      });
+
       // #header section Facebook fun
       var fb_share_img = 'http://www.dosomething.org/files/campaigns/hunt13/Campaigns_Landing-15.png';
       var fb_title = 'The Hunt';
