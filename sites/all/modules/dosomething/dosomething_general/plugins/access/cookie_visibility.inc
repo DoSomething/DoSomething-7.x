@@ -42,6 +42,11 @@ function ctools_cookie_ctools_access_check($context, $something, $conf) {
   $cookie = $context['cookie'];
   $value = $context['value'];
 
+  if (strpos($value, '[nid]') !== FALSE) {
+    $n = menu_get_object();
+    $value = str_replace('[nid]', $n->nid, $value);
+  }
+
   if (!empty($_COOKIE[$cookie])) {
     if ($vals = @unserialize($_COOKIE[$cookie]) && is_array($vals)) {
       foreach ($vals as $val) {
