@@ -18,12 +18,6 @@ firefox:
   pkg:
     - installed
 
-jenkins-manual:
-  cmd.run:
-    - name: sh /srv/salt/tomcat/install-jenkins-tomcat.sh > /dev/null
-    - require:
-      - pkg: solr-tomcat
-
 selenium:
   cmd.run:
     - name: cd /vagrant/tests/selenium ; curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.32.0.jar
