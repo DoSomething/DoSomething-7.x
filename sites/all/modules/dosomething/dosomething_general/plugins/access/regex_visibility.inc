@@ -31,7 +31,9 @@ function ctools_regex_ctools_access_settings($form, &$form_state, $conf) {
       0 => t('Current path (default)'),
       1 => t('Request URI (includes query strings)'),
       2 => t('Query string'),
-    )
+      3 => t('Cookie'),
+    ),
+    '#default_value' => $conf['context'],
   );
 
   $form['settings']['expression'] = array(
@@ -62,22 +64,40 @@ function ctools_regex_ctools_validate($form, &$form_state) {
  */
 function ctools_regex_ctools_access_check($context, $something, $conf) {
   $what = $context['context'];
-  $expression = $context['expression'];
+  $expression = token_replace($context['expression']);
+
+  #%node:nid is what I need to replace (from the context)
+
+  #echo '<pre>', print_r(token_get_list()), '</pre>';
+  #exit;
 
   $match = '';
   switch ($what) {
     case 0:
       $match = request_path();
-    break;
+      $m = preg_match('/' . $expression . '/si', $match);
+      break;
     case 1:
       $match = request_uri();
-    break;
+      $m = preg_match('/' . $expression . '/si', $match);
+      break;
     case 2:
       $match = $_SERVER['QUERY_STRING'];
-    break;
+      $m = preg_match('/' . $expression . '/si', $match);
+      break;
+    case 3:
+      $match = array_keys($_COOKIE);
+
+      foreach ($match as $key) {
+        if (preg_match('/' . $expression . '/si', $key)) {
+           $m = 'true';
+           break;
+        }
+      }
+      
+      break;
   }
 
-  $m = preg_match('/' . $expression . '/si', $match);
   return !empty($m);
 }
 
