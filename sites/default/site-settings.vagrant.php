@@ -28,6 +28,7 @@
 // Required for Selenium-based unit testing.
 $base_url = 'http://localhost:8888';
 
+// Cerebro QA access.
 $databases = array (
   'default' => 
   array (
@@ -43,6 +44,25 @@ $databases = array (
     ),
   ),
 );
+
+// Local Vagrant access.
+/*
+$databases = array (
+  'default' => 
+  array (
+    'default' => 
+    array (
+      'database' => 'drupal_dosomething_20130617',
+      'username' => 'root',
+      'password' => '',
+      'host' => '127.0.0.1',
+      'port' => '',
+      'driver' => 'mysql',
+      'prefix' => '',
+    ),
+  ),
+);
+*/
 
 include_once('./includes/cache.inc');
 include_once('./sites/all/modules/memcache/memcache.inc');
