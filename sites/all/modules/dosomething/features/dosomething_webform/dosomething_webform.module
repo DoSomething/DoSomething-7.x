@@ -188,20 +188,32 @@ function dosomething_webform_webform_validate($form, &$form_state) {
  */
 function dosomething_webform_webform_submission_insert($node, $submission) {
 
-  // Set a cookie when a webform is submitted
-  $cookie = array(
-    'webform_' . $node->nid => 1
-  );
+  $cookie_name = 'ds_webform_' . $node->type;
 
-  // Save the cookie
+  // Check if cookie exists
+  if (isset($_COOKIE['Drupal_visitor_' . $cookie_name])) {
+    // unserialize data.  Do it silently or exception
+    $items = @unserialize($_COOKIE['Drupal_visitor_' . $cookie_name]);
+    
+    // If unserialize was successful
+    if (is_array($items)) {
+
+      // Check if the id is already in the array
+      if (!in_array($node->nid, $items)) {
+        $items[] = $node->nid;
+        $cookie = array(
+          $cookie_name = serialize($items)
+        );
+      }
+
+    }
+  }
+  else {
+    $cookie = array();
+    $cookie[$cookie_name][] = $node->nid;
+    $cookie[$cookie_name] = serialize($cookie[$cookie_name]);
+  }
+
   user_cookie_save($cookie);
-  
-  /*
-  The cookie should be accessible through $_COOKIE['Drupal_visitor_webform_NID'];
-
-  @see https://api.drupal.org/comment/38163#comment-38163
-  */
 
 }
-
-
