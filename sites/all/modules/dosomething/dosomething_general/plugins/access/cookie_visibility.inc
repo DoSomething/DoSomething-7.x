@@ -48,7 +48,8 @@ function ctools_cookie_ctools_access_check($context, $something, $conf) {
   }
 
   if (!empty($_COOKIE[$cookie])) {
-    if ($vals = @unserialize($_COOKIE[$cookie]) && is_array($vals)) {
+    $vals = unserialize($_COOKIE[$cookie]);
+    if (!empty($vals) && is_array($vals)) {
       foreach ($vals as $val) {
         if ($value == $val) {
           return true;
