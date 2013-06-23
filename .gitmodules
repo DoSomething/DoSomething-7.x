@@ -7,3 +7,6 @@
 
 
 
+[submodule "obama"]
+	path = obama
+	url = git@github.com:DoSomething/president-text.git
