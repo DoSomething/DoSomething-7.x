@@ -107,7 +107,7 @@ varnish:
 varnish-config:
   file.managed:
     - name: /etc/varnish/default.vcl
-    - source: salt://varnishd/default.vcl
+    - source: salt://varnishd/lullabot_varnish3.vcl
     - require:
       - pkg: varnish
 
