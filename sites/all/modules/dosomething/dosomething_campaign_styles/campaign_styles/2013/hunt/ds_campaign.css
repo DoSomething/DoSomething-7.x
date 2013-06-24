@@ -808,7 +808,8 @@ body {
     text-transform: uppercase;
     background: url("assets/faq3.png");
     background-repeat: no-repeat;
-    background-position: 50% 1.2em;
+    background-position-y: 50%;
+    background-position-x: 1.2em;
     padding: 0 0 1em 0;
     margin: 0 0 -1em 0; }
   #cmp #faq h4 {
