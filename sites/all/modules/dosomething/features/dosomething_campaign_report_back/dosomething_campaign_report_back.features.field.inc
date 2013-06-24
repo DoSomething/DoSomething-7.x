@@ -80,7 +80,7 @@ The content from this field will only be shown to anonymous users.',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
@@ -154,7 +154,84 @@ The content from this field will only be shown to anonymous users.',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '4',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_report_back-field_mandrill_key'.
+  $fields['node-campaign_report_back-field_mandrill_key'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mandrill_key',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_report_back',
+      'default_value' => array(
+        0 => array(
+          'value' => 'dsplain',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'In order to trigger Mandrill based transactional email messages when a submission is made to this form a "key" needs to be provided based on settings in the Mail System and Mandrill Template module settings.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 5,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mandrill_key',
+      'label' => 'Mandrill Key',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '5',
       ),
     ),
   );
@@ -183,6 +260,7 @@ The content from this field will only be shown to anonymous users.',
           'field_webform_email' => 'Email',
           'field_webform_mobile' => 'Mobile Phone Number',
           'field_webform_school' => 'School',
+          'field_webform_school_reference' => 'School Reference',
           'field_webform_school_zip' => 'School Zip Code',
           'field_webform_pictures' => 'Pictures',
           'field_webform_videos' => 'Video',
@@ -207,15 +285,18 @@ The content from this field will only be shown to anonymous users.',
           'value' => 'field_webform_school',
         ),
         3 => array(
-          'value' => 'field_webform_school_zip',
+          'value' => 'field_webform_school_reference',
         ),
         4 => array(
-          'value' => 'field_webform_pictures',
+          'value' => 'field_webform_school_zip',
         ),
         5 => array(
-          'value' => 'field_webform_videos',
+          'value' => 'field_webform_pictures',
         ),
         6 => array(
+          'value' => 'field_webform_videos',
+        ),
+        7 => array(
           'value' => 'taxonomy_vocabulary_5',
         ),
       ),
@@ -247,7 +328,7 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '31',
+        'weight' => '6',
       ),
     ),
   );
@@ -288,6 +369,7 @@ The content from this field will only be shown to anonymous users.',
     'field_instance' => array(
       'bundle' => 'campaign_report_back',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -332,7 +414,7 @@ The content from this field will only be shown to anonymous users.',
           'size' => '60',
         ),
         'type' => 'group_audience_autocomplete',
-        'weight' => 31,
+        'weight' => '7',
       ),
       'widget_type' => 'group_audience',
     ),
@@ -399,125 +481,6 @@ The content from this field will only be shown to anonymous users.',
     ),
   );
 
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_email'.
-  $fields['webform_submission_entity-campaign_report_back-field_webform_email'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_email',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'email',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'email',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign_report_back',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '7',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_email',
-      'label' => 'Email',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'email',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'email_textfield',
-        'weight' => '0',
-      ),
-    ),
-  );
-
-  // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_mobile'.
-  $fields['webform_submission_entity-campaign_report_back-field_webform_mobile'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_webform_mobile',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '100',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign_report_back',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '8',
-        ),
-      ),
-      'entity_type' => 'webform_submission_entity',
-      'field_name' => 'field_webform_mobile',
-      'label' => 'Mobile Phone Number',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '1',
-      ),
-    ),
-  );
-
   // Exported field: 'webform_submission_entity-campaign_report_back-field_webform_pictures'.
   $fields['webform_submission_entity-campaign_report_back-field_webform_pictures'] = array(
     'field_config' => array(
@@ -571,7 +534,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_pictures',
       'label' => 'Pictures',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'alt_field' => 0,
         'default_image' => 0,
@@ -588,12 +551,66 @@ The content from this field will only be shown to anonymous users.',
         'module' => 'image',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
-          'insert_default' => array(
-            0 => 'auto',
-          ),
+          'insert_default' => 'auto',
           'insert_styles' => array(
-            0 => 'auto',
+            'auto' => 'auto',
+            'image' => 0,
+            'image_490x200' => 0,
+            'image_action_results_thumbnail' => 0,
+            'image_blog_landscape' => 0,
+            'image_blog_large_image' => 0,
+            'image_blog_large_thumbnail' => 0,
+            'image_blog_portrait' => 0,
+            'image_blog_square' => 0,
+            'image_boot_camp_bio' => 0,
+            'image_campaign_blog_thumbnail' => 0,
+            'image_campaign_microsite_logo' => 0,
+            'image_campaigns_image' => 0,
+            'image_campaigns_logo' => 0,
+            'image_carousel_center' => 0,
+            'image_carousel_inner' => 0,
+            'image_carousel_outer' => 0,
+            'image_cause_main' => 0,
+            'image_cause_vertical' => 0,
+            'image_club_gallery_photos_120x120' => 0,
+            'image_club_profile' => 0,
+            'image_content_main' => 0,
+            'image_explore_action_guides' => 0,
+            'image_fb_post_image' => 0,
+            'image_front_slider' => 0,
+            'image_gallery_thumbnail' => 0,
+            'image_grants_landing' => 0,
+            'image_issue_main' => 0,
+            'image_large' => 0,
+            'image_medium' => 0,
+            'image_member_photo_gallery' => 0,
+            'image_my_somethings' => 0,
+            'image_nav_page_bottom' => 0,
+            'image_p4p_fake_button' => 0,
+            'image_petdetail_regular' => 0,
+            'image_petdetail_retina' => 0,
+            'image_project_gallery_thumb' => 0,
+            'image_project_related_thumb' => 0,
+            'image_related-posts' => 0,
+            'image_robocall_celeb_photo' => 0,
+            'image_robocall_celeb_thumbnail_205x115' => 0,
+            'image_rotoslider_homepage_main' => 0,
+            'image_rotoslider_nav' => 0,
+            'image_rotoslider_start_something_main' => 0,
+            'image_search_results_thumbnail' => 0,
+            'image_social_scholarship_images_petition_735x150' => 0,
+            'image_social_scholarship_stat_image_190x190' => 0,
+            'image_sponsor_logo' => 0,
+            'image_square_thumbnail' => 0,
+            'image_thumbnail' => 0,
+            'image_thumbnail_regular' => 0,
+            'image_thumbnail_retina' => 0,
+            'image_tips_tools_node' => 0,
+            'image_upcoming_somethings_thumb' => 0,
+            'image_whats_happening_now_thumbnail' => 0,
+            'link' => 0,
           ),
           'insert_width' => '',
           'preview_image_style' => 'thumbnail',
@@ -698,7 +715,7 @@ The content from this field will only be shown to anonymous users.',
           ),
           'sort' => array(
             'direction' => 'ASC',
-            'field' => '',
+            'field' => 'none',
             'property' => 'sid',
             'type' => 'none',
           ),
@@ -756,6 +773,9 @@ The content from this field will only be shown to anonymous users.',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_webform_school_zip',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -773,6 +793,7 @@ The content from this field will only be shown to anonymous users.',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -820,7 +841,7 @@ The content from this field will only be shown to anonymous users.',
       'entity_types' => array(),
       'field_name' => 'field_webform_videos',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -925,6 +946,7 @@ The content from this field will only be shown to anonymous users.',
     'field_instance' => array(
       'bundle' => 'campaign_report_back',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -1048,11 +1070,11 @@ The content from this field will only be shown to anonymous users.',
   t('Campaign');
   t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.<br />
 The content from this field will only be shown to anonymous users.');
-  t('Email');
   t('Enabled Fields');
   t('Geocode Data');
+  t('In order to trigger Mandrill based transactional email messages when a submission is made to this form a "key" needs to be provided based on settings in the Mail System and Mandrill Template module settings.');
   t('Issues');
-  t('Mobile Phone Number');
+  t('Mandrill Key');
   t('Pictures');
   t('School');
   t('School Zip Code');

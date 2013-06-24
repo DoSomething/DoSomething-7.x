@@ -41,13 +41,13 @@ function dosomething_campaign_contact_form_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '-5',
+          'weight' => '0',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '9',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '10',
         ),
       ),
       'display' => array(
