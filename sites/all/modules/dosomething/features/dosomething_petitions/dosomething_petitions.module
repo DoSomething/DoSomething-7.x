@@ -10,6 +10,34 @@ define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_petitions_menu() {
+  $items = array();
+  $items['petition/%/signed_count'] = array(
+    'page callback' => 'dosomething_petitions_check_signed_count',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function dosomething_petitions_check_signed_count($nid) {
+  # Ignore if not numeric
+  if (!is_numeric($nid)) {
+    return FALSE;
+  }
+
+  # Get the signed count.
+  $signed_count = variable_get('petitions_signed_count_' . $nid, 0);
+
+  # Spit out JSON of the signature count.
+  drupal_json_output(array('signatures' => $signed_count));
+  drupal_exit();
+}
+
+/**
  *  Implements hook_page_alter()
  */
 function dosomething_petitions_page_alter(&$page) {
@@ -30,9 +58,8 @@ function dosomething_petitions_page_alter(&$page) {
 
     drupal_add_html_head($element, 'petitions_og_type');
 
-
     $short = shorten_url(url(request_uri(), array('absolute' => TRUE)));
-    drupal_add_js(array('petition' => array('short_url' => $short)), 'setting');
+    drupal_add_js(array('petition' => array('short_url' => $short, 'nid' => $petition->nid, 'goal' => $petition->field_petition_goal[LANGUAGE_NONE][0]['value'])), 'setting');
   }
 }
 

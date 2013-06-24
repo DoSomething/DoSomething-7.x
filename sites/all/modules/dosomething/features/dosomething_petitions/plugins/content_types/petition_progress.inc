@@ -32,7 +32,7 @@ function dosomething_petitions_petition_progress_content_type_render($subtype, $
         '#type' => 'container',
         '#attributes' => array('id' => 'signatures-count'),
         'markup' => array(
-          '#markup' => number_format($submission_count) . ' of ' . number_format($goal),
+          '#markup' => '<span>' . number_format($submission_count) . '</span> of ' . number_format($goal),
         ),
       ),
     ),
