@@ -129,8 +129,3 @@ DirectoryIndex index.php index.html index.htm
     </FilesMatch>
   </IfModule>
 </IfModule>
-
-# President Text Redirects
-RedirectMatch 301 /president /obama
-RedirectMatch 301 /president\-text /obama
-RedirectMatch 301 /obama\-text /obama
