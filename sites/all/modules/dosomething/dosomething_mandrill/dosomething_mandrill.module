@@ -6,6 +6,87 @@
  */
 
 /**
+ * Impliments hook_webform_submission_insert($node, $submission)
+ *
+ * Respond to webform submission from the content type: Campaign Contact Form
+ * /admin/structure/types/manage/campaign_contact_form to trigger a Mandrill
+ * transaction (template based) email message.
+ *
+ * Use the "mandrill_key" field value to determine what MailSystem
+ * (/admin/config/system/mailsystem) key to use when sending the message via
+ * a Mandrill Template entry: /admin/config/services/mandrill/templates
+ * 
+ * We're currently using Webform 7.x-3.18
+ */
+
+function dosomething_mandrill_webform_submission_insert($node, $submission) {
+  
+  // Only respond to Campaign Report Back submissions
+  if ($node->type == 'campaign_report_back') {
+    
+    // Must be 'dosomething_mandrill' to trigger ManndrillMailSystem use based on entries in the MailSystem module
+    // /admin/config/system/mailsystem
+    $module = 'dosomething_mandrill';
+    
+    // Lookup the key value based on the webform submission
+    // Load field_mandrill_key values on node (could be more than one in the future)
+    // field_get_items($entity_type, $entity, $field_name, $langcode = NULL)
+    $keys = field_get_items('node', $node, 'field_mandrill_key');
+    
+    // Get the specific value of the filed - need to look at display formatter (defaults to "default")
+    // field_view_value($entity_type, $entity, $field_name, $item, $display = array(), $langcode = NULL)
+    $key = field_view_value('node', $node, 'field_mandrill_key', $keys[0]);
+    $key = $key['#markup'];
+    
+    // Lookup the email address to send the message to based on the webform submission or user account
+    // Register the $global $user object
+    global $user;
+        
+    // Check for anonymous user
+    if ($user->uid == 0) {
+      
+      // Check for email field in form submission
+      
+    }
+    else {
+      $to = $user->mail;
+    }
+
+    
+    $language = language_default();
+    
+    // Empty as current campaign signup messages do not contain merge_vars.
+    // @todo: Add support specific list of merge_var values, *|FNAME|* for example
+    $params = array();
+    
+    // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
+    // users responding to these messages results in anyone reading the message.
+    $from = NULL;
+    
+    // Send transactional message
+    // drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
+    $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $params, $from, TRUE);
+    
+    /**
+     * $send: If TRUE, drupal_mail() will call drupal_mail_system()->mail() to deliver the message, and store
+     * the result in $message['result']. Modules implementing hook_mail_alter() may cancel sending by setting
+     * $message['send'] to FALSE.
+     */
+    
+    // Log results if there was an error sending
+    if ($message['result'] == FALSE) {
+      
+      // watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
+      watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to via %source (%nid).',
+                array('%to' => $to, '%source' => $node->type, '%nid' => $node->nid), WATCHDOG_ERROR);
+      
+    }
+    
+  }
+  
+}
+
+/**
  * Implements hook_mail().
  *
  * Example use:
