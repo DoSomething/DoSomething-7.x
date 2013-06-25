@@ -58,5 +58,5 @@ function dosomething_subscribe_update_7003() {
  */
 function dosomething_subscribe_update_7004() {
   variable_set('dosomething_subscribe_mailchimp_hunt', 'Hunt2013');
-  variable_set('dosomething_subscribe_mobilecommons_hunt', '158599');
+  variable_set('dosomething_subscribe_mobilecommons_hunt', '158559');
 }
