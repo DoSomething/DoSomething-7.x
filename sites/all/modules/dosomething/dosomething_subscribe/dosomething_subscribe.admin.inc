@@ -75,6 +75,26 @@ function dosomething_subscribe_admin_settings_form() {
     '#required' => TRUE,
     '#default_value' => variable_get($prefix . 'mobilecommons_clubs'),
   );
+  // Values for Club nodes:
+  $form['campaign_the_hunt'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Campaign: The Hunt'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#description' => t('Groups to use for The Hunt login signup.'),
+  );
+  $form['campaign_the_hunt'][$prefix . 'mailchimp_hunt'] = array(
+    '#type' => 'textfield',
+    '#title' => t('MailChimp'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mailchimp_hunt'),
+  );
+  $form['campaign_the_hunt'][$prefix . 'mobilecommons_hunt'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobilecommons'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mobilecommons_hunt'),
+  );
   // Node types to use for User Profile signups:
   $form['signup_node_types'] = array(
     '#type' => 'fieldset',
