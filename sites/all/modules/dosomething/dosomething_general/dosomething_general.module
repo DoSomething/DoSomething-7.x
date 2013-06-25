@@ -924,6 +924,155 @@ function dosomething_general_webform_associate($nid, $sid) {
 }
 
 /**
+ * Implements hook_user_insert().
+ * @TODO - move me somewhere more appropriate
+ */
+function dosomething_general_user_insert(&$edit, $account, $category) {
+  $member = _dosomething_general_user_prepare_member($account);
+  $member = _dosomething_general_user_member_save($member);
+}
+
+/**
+ * Implements hook_user_update().
+ *  @TODO - move me somewhere more appropriate
+ */
+function dosomething_general_user_update(&$edit, $account, $category) {
+  $member = _dosomething_general_user_prepare_member($account);
+  $member = _dosomething_general_user_member_save($member);
+}
+
+/**
+ *
+ **/
+function _dosomething_general_user_member_save($member) {
+
+  $endpoint = variable_get('dosomething_restful_endpoint', 'http://api.dosomething.org/v1/members');
+
+  $curl = curl_init();
+
+  $curl_options = array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTPHEADER => array('Accept: application/json'),
+    CURLOPT_POST => 1,
+    CURLOPT_POSTFIELDS => array('member' => json_encode($member))
+  );
+
+  // If uid is present, we want to do a put request
+  if (isset($member->uid)) {
+    $endpoint .= '/' . $member->uid;
+    $curl_options[CURLOPT_CUSTOMREQUEST] = "PUT";
+  }
+
+  $curl_options[CURLOPT_URL] = $endpoint;
+
+  curl_setopt_array($curl, $curl_options);
+  $response = curl_exec($curl);
+  $curl_info = curl_getinfo($curl);
+
+  if ($response === FALSE) {
+    throw new Exception(curl_error($curl), curl_errno($curl));
+  }
+
+  if ($curl_info['http_code'] != 200) {
+    // Do something when the API is not reachable.
+  }
+
+  // We should return the new organization user id
+  // $member['id'] = 'XXXXX';
+  return $member;
+}
+
+/**
+ *  Prepares user conversion to member object
+ *  @TODO - move me somewhere more appropriate
+ **/
+function _dosomething_general_user_prepare_member($user) {
+   
+  if (is_numeric($user)) {
+    $user = user_load($user);
+    if ($user === FALSE) return FALSE;
+  }
+
+  $profile = profile2_load_by_user($user);
+ 
+  $member = array(
+    'uid' => $user->uid,
+    'created' => $user->created,
+    'username' => $user->name,
+    'firstname' => '',
+    'lastname' => '',
+    'fullname' => '',
+    'gender' => '',
+    'date_of_birth' => '',
+    'email' => $user->mail,
+    'email_addresses' => array(),
+    'mobile' => '',
+    'mobile_numbers' => array(),
+    'addresses' => array(),
+    'schools' => array()
+  );
+
+  if ($user->mail) $member['email_addresses'][] = $user->mail;
+ 
+  $fields = array();
+  if (isset($profile['main'])) {
+    foreach ($profile['main'] as $field_name => $field) {
+      if (strpos($field_name, 'field_') == 0) {
+        $fields[$field_name] = $field;
+        switch($field_name) {
+          case 'field_user_address':
+            $member['addresses'] = $field['und'];
+            break;
+          case 'field_user_birthday':
+            if ($dob = $field['und'][0]['value']) {
+              $dob = strtotime($dob);
+              $member['date_of_birth'] = $dob;
+            }
+            break;
+          case 'field_user_first_name':
+            $member['firstname'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_gender':
+            $member['gender'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_last_name':
+            $member['lastname'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_mobile':
+            $member['mobile'] = $field['und'][0]['value'];
+            $member['mobile_numbers'][] = $field['und'][0]['value'];
+            break;
+          case 'field_school_reference':
+            $schools = array();
+ 
+            foreach ($field['und'] as $school) {
+              $entity = entity_load('ds_school', array($school['target_id']));
+ 
+              if ($entity) {
+                $entity = $entity[$school['target_id']];
+                $schools[] = array(
+                  'name' => $entity->name,
+                  'level' => $entity->level,
+                  'country' => $entity->country,
+                  'administrative_area' => $entity->state,
+                  'locality' => $entity->city,
+                  'postal_code' => $entity->zip,
+                  'thoroughfare' => $entity->street
+                );
+              }
+            }
+            $member['schools'] = $schools;
+            break;
+        }
+      }
+    }
+  }
+
+  return $member;
+}
+
+/**
  * Implements hook_user_delete().
  */
 function dosomething_general_user_delete($account) {
