@@ -1,10 +1,100 @@
-<p>I need all of the markup</p>
+<!doctype>
+<html>
+  <head>
 
-<p>You have three variables available:</p>
-<ul>
-  <li>node (The full node object of the campaign.  Grab the title out of there)</li>
-  <li>uid (<?php print $uid; ?>)</li>
-  <li>form</li>
-</ul>
+    <meta charset=utf-8 />
+    <title>Sign Up for the Campaign!</title>
 
-<?php print render($form); ?>
+    <style>
+
+      body {
+        background: #fff;
+      }
+
+      form {
+        margin: 0 0 5px 0;
+      }
+
+      input {
+        display: block;
+        margin: 0 auto;
+        padding: 10px;
+        width: 150px;
+        background: yellow;
+        color: #1e1d1c;
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 16px;
+        border: 1px solid #FFCB15;
+        background: linear-gradient(#FFCB15, #FEB800) repeat scroll 0 0 #FFCB15;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -o-border-radius: 2px;
+        border-radius: 2px;
+        cursor: pointer;
+      }
+
+      input:hover {
+        background: #feb800;
+      }
+
+      .logo {
+        width: 500px;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .copy {
+        margin: 50px auto;
+      }
+
+      .container {
+        width: 550px;
+        margin: 5% auto;
+        padding: 25px;
+        color: #fff;
+        background: #302d2d;
+        border: 1px solid #444;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+        -webkit-box-shadow: 0px 15px 20px -10px #ccc;
+        -moz-box-shadow: 0px 15px 20px -10px #ccc;
+        -o-box-shadow: 0px 15px 20px -10px #ccc;
+        box-shadow: 0px 15px 20px -10px #ccc;
+      }
+
+      @media only screen and (max-width: 650px) {
+
+        .container, .logo {
+          width: 89.5%;
+          margin: 0;
+          padding: 3% 5%;
+        }
+
+        .copy {
+          margin: 0;
+        }
+
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <section class="container">
+      <img src="http://www.dosomething.org/files/campaigns/hunt13/header2.png" alt="The Hunt!" class="logo" />
+
+      <div class="copy">
+        <h3>You have 11 days to kick ass on causes you care about.</h3>
+        <p>Send us a pic of what you do and be featured in our national commercial.</p>
+      </div>
+
+      <?php print render($form); ?>
+    </section>
+
+  </body>
+</html>
