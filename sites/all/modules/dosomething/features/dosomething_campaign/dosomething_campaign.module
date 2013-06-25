@@ -67,6 +67,7 @@ function dosomething_campaign_login_signup($account, $nid) {
     }
   }
 }
+
 /**
  * Inserts a record for given user UID and campaign node NID in dosomething_campaign_signups table.
  */
@@ -76,9 +77,10 @@ function dosomething_campaign_insert_signup($uid, $nid) {
     'uid' => $uid,
     'nid' => $nid,
     'timestamp' => REQUEST_TIME,
-  ))
+    ))
   ->execute();
 }
+
 /**
  * Returns boolean for if given user uid is signed up given campaign nid.
  */
