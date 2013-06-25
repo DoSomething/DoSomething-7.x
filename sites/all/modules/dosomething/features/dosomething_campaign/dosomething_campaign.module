@@ -5,6 +5,42 @@
  */
 include_once('dosomething_campaign.features.inc');
 /**
+ * Implements hook_menu().
+ */
+function dosomething_campaign_menu() {
+
+  $items['campaign/join/%'] = array(
+    'page callback' => 'dosomething_campaign_join',
+    'page arguments' => array(2),
+    'access callback' => 'dosomething_campaign_join_access',
+    'file' => 'dosomething_campaign.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_campaign_theme() {
+  return array(
+    'campaign_join_page' => array(
+      'variables' => array('node' => NULL, 'uid' => NUll), // This is the list of the variables that will be passed to the template file. 
+      'template' => 'campaign_join_page', // Change this to the template file name.
+    ),
+  );
+}
+
+/**
+ * Access callback for join page
+ */
+function dosomething_campaign_join_access() {
+  global $user;
+  return $user->uid != 0;
+}
+
+
+/**
  * Implements hook_user_login.
  */
 function dosomething_campaign_user_login(&$edit, $account) {
