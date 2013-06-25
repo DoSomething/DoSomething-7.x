@@ -52,3 +52,11 @@ function dosomething_subscribe_update_7003() {
   $data = array('project_report' => 'project_report');
   variable_set('dosomething_subscribe_signup_user_profile_node_types', $data);
 }
+
+/**
+ * Initialize Mailchimp and Mobilecommons variables for The Hunt.
+ */
+function dosomething_subscribe_update_7004() {
+  variable_set('dosomething_subscribe_mailchimp_hunt', 'Hunt2013');
+  variable_set('dosomething_subscribe_mobilecommons_hunt', '158599');
+}

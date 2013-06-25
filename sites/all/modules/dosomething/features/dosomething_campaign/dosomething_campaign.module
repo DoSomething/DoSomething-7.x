@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the Dosomething Campaign feature.
@@ -6,3 +7,53 @@
 
 include_once('dosomething_campaign.features.inc');
 
+/**
+ * Implements hook_user_login.
+ */
+function dosomething_campaign_user_login(&$edit, $account) {
+  // If the referring URL is a campaign gate:
+  if (dosomething_campaign_is_campaign_gate_url($_SERVER['HTTP_REFERER'])) {
+    // Execute campaign login signup function:
+    dosomething_campaign_login_signup($account);
+  }
+}
+
+/**
+ * Returns boolean value of whether or not given URL is a campaign gate.
+ */
+function dosomething_campaign_is_campaign_gate_url($url) {
+  //@TODO: Make this dynamic and smart and not horribly hardcoded for the Hunt campaign.
+  $hunt_campaign_nid = variable_get('hunt_campaign_nid', 729679);
+  if (strpos($url,'user/registration%3Fdestination%3Dnode/' . $hunt_campaign_nid) !== FALSE) {
+    return TRUE;
+  }
+}
+
+/**
+ * Handles a campaign signup via login through campaign gate.
+ *
+ * @param $account
+ *  Account object of user who logged in.
+ *
+ * @TODO: Pass through Campaign NID as a parameter to make this code dynamic.
+ */
+function dosomething_campaign_login_signup($account) {
+  $email = $account->mail;
+
+  // Signup to Mailchimp Group:
+  dosomething_subscribe_mailchimp_signup($email, variable_get('dosomething_subscribe_mailchimp_hunt'));
+
+  // Signup to Mobilecommons:
+  $cell = '';
+  $user2 = profile2_load_by_user($account, 'main');
+  $cell = field_get_items('profile2', $user2, 'field_user_mobile');
+  $cell = $cell[0]['value'];
+  if (!empty($cell)) {
+    $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_hunt');
+    $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+    watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
+  }
+
+  // @TODO: Send Mandrill email.
+
+}
