@@ -1,6 +1,49 @@
 <?php
 
 /**
+ * Implements hook_schema().
+ */
+function dosomething_campaign_schema() {
+  $schema['dosomething_campaign_signups'] = array(
+    'fields' => array(
+      'uid' => array(
+        'description' => 'Drupal User ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'nid' => array(
+        'description' => 'Campaign Node ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'nid' => array(
+        'description' => 'Campaign Node ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'timestamp' => array(
+        'description' => 'Time of signup',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('uid', 'nid'),
+    'indexes' => array(
+      'uid' => array('uid'),
+    ),
+  );
+  return $schema;
+}
+
+/**
  * Remove deprecated fields from the campaign content type
  */
 function dosomething_campaign_update_7001() {
@@ -36,4 +79,11 @@ function dosomething_campaign_update_7001() {
 
   field_purge_batch(count($fields) + 6);
 
+}
+
+/**
+ * Creates dosomething_campaign_signups table.
+ */
+function dosomething_campaign_update_7002() {
+  drupal_install_schema('dosomething_campaign');
 }
