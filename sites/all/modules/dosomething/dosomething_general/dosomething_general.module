@@ -928,8 +928,8 @@ function dosomething_general_webform_associate($nid, $sid) {
  * @TODO - move me somewhere more appropriate
  */
 function dosomething_general_user_insert(&$edit, $account, $category) {
-  $member = _dosomething_general_user_prepare_member($account);
-  $member = _dosomething_general_user_member_save($member);
+  // $member = _dosomething_general_user_prepare_member($account);
+  // $member = _dosomething_general_user_member_save($member);
 }
 
 /**
@@ -937,8 +937,8 @@ function dosomething_general_user_insert(&$edit, $account, $category) {
  *  @TODO - move me somewhere more appropriate
  */
 function dosomething_general_user_update(&$edit, $account, $category) {
-  $member = _dosomething_general_user_prepare_member($account);
-  $member = _dosomething_general_user_member_save($member);
+  // $member = _dosomething_general_user_prepare_member($account);
+  // $member = _dosomething_general_user_member_save($member);
 }
 
 /**
