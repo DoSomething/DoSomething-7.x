@@ -8,21 +8,21 @@ include_once('dosomething_campaign.features.inc');
  * Implements hook_user_login.
  */
 function dosomething_campaign_user_login(&$edit, $account) {
-  // If the referring URL is a campaign gate:
-  if (dosomething_campaign_is_campaign_gate_url($_SERVER['HTTP_REFERER'])) {
-    // Execute campaign login signup function:
-    dosomething_campaign_login_signup($account, variable_get('hunt_campaign_nid', 729679));
-  }
+  // If the referring URL is a campaign gate:
+  if (dosomething_campaign_is_campaign_gate_url($_SERVER['HTTP_REFERER'])) {
+    // Execute campaign login signup function:
+    dosomething_campaign_login_signup($account, variable_get('hunt_campaign_nid', 729679));
+  }
 }
 /**
  * Returns boolean value of whether or not given URL is a campaign gate.
  */
 function dosomething_campaign_is_campaign_gate_url($url) {
-  //@TODO: Make this dynamic and smart and not horribly hardcoded for the Hunt campaign.
-  $hunt_campaign_nid = variable_get('hunt_campaign_nid', 729679);
-  if (strpos($url,'user/registration%3Fdestination%3Dnode/' . $hunt_campaign_nid) !== FALSE) {
-    return TRUE;
-  }
+  //@TODO: Make this dynamic and smart and not horribly hardcoded for the Hunt campaign.
+  $hunt_campaign_nid = variable_get('hunt_campaign_nid', 729679);
+  if (strpos($url,'user/registration%3Fdestination%3Dnode/' . $hunt_campaign_nid) !== FALSE) {
+    return TRUE;
+  }
 }
 /**
  * Handles a campaign signup via login through campaign gate.
@@ -35,59 +35,57 @@ function dosomething_campaign_is_campaign_gate_url($url) {
  * @TODO: Make code dynamic with Campaign NID (currently hardcoded for The Hunt).
  */
 function dosomething_campaign_login_signup($account, $nid) {
-  $user_signed_up = dosomething_campaign_is_user_signed_up($account->uid, $nid);
-  if (!$user_signed_up) {
-    dosomething_campaign_insert_signup($account->uid, $nid);
-    $email = $account->mail;
-    // Signup to Mailchimp Group:
-    dosomething_subscribe_mailchimp_signup($email, variable_get('dosomething_subscribe_mailchimp_hunt'));
-    // Signup to Mobilecommons:
-    $cell = '';
-    $user2 = profile2_load_by_user($account, 'main');
-    $cell = field_get_items('profile2', $user2, 'field_user_mobile');
-    $cell = $cell[0]['value'];
-    if (!empty($cell)) {
-      $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_hunt');
-      $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
-      watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
-    }
-    // Mandrill transactional for The HUNT
-    $to = $email;
-    $language = language_default();
-    $params = array();
-    $from = NULL;
-    
-    $message = drupal_mail('dosomething_mandrill', 'hunt13', $to, $language, $params, $from, TRUE);
-    
-    // Log results
-    if ($message['result'] == FALSE) {
-          
-      // watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
-      watchdog('dosomething_campaign', 'Failed to send Mandrill transactional message to %to via The Hunt Signup.',
-                    array('%to' => $to), WATCHDOG_ERROR);
-          
-    }
-  }
+  $user_signed_up = dosomething_campaign_is_user_signed_up($account->uid, $nid);
+  if (!$user_signed_up) {
+    dosomething_campaign_insert_signup($account->uid, $nid);
+    $email = $account->mail;
+    // Signup to Mailchimp Group:
+    dosomething_subscribe_mailchimp_signup($email, variable_get('dosomething_subscribe_mailchimp_hunt'));
+    // Signup to Mobilecommons:
+    $cell = '';
+    $user2 = profile2_load_by_user($account, 'main');
+    $cell = field_get_items('profile2', $user2, 'field_user_mobile');
+    $cell = $cell[0]['value'];
+    if (!empty($cell)) {
+      $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_hunt');
+      $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+      watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
+    }
+    // Mandrill transactional for The HUNT
+    $to = $email;
+    $language = language_default();
+    $params = array();
+    $from = NULL;
+    
+    $message = drupal_mail('dosomething_mandrill', 'hunt13', $to, $language, $params, $from, TRUE);
+    
+    // Log results
+    if ($message['result'] == FALSE) {
+      //watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
+      watchdog('dosomething_campaign', 'Failed to send Mandrill transactional message to %to via The Hunt Signup.',
+                    array('%to' => $to), WATCHDOG_ERROR);
+    }
+  }
 }
 /**
  * Inserts a record for given user UID and campaign node NID in dosomething_campaign_signups table.
  */
 function dosomething_campaign_insert_signup($uid, $nid) {
-  $signup = db_insert('dosomething_campaign_signups')
-  ->fields(array(
-    'uid' => $uid,
-    'nid' => $nid,
-    'timestamp' => REQUEST_TIME,
+  $signup = db_insert('dosomething_campaign_signups')
+  ->fields(array(
+    'uid' => $uid,
+    'nid' => $nid,
+    'timestamp' => REQUEST_TIME,
   ))
-  ->execute();
+  ->execute();
 }
 /**
  * Returns boolean for if given user uid is signed up given campaign nid.
  */
 function dosomething_campaign_is_user_signed_up($uid, $nid) {
-  $signup = db_query('SELECT uid FROM {dosomething_campaign_signups} WHERE uid = :uid AND nid = :nid', array(':uid' => $uid, ':nid' => $nid))->fetchField();
-  if ($signup) {
-    return TRUE;
-  }
-  return FALSE;
+  $signup = db_query('SELECT uid FROM {dosomething_campaign_signups} WHERE uid = :uid AND nid = :nid', array(':uid' => $uid, ':nid' => $nid))->fetchField();
+  if ($signup) {
+    return TRUE;
+  }
+  return FALSE;
 }
