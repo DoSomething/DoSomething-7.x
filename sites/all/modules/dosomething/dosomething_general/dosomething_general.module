@@ -971,7 +971,8 @@ function _dosomething_general_user_member_save($member) {
   $curl_info = curl_getinfo($curl);
 
   if ($response === FALSE) {
-    throw new Exception(curl_error($curl), curl_errno($curl));
+    // Do something when curl fails.
+    //throw new Exception(curl_error($curl), curl_errno($curl));
   }
 
   if ($curl_info['http_code'] != 200) {
