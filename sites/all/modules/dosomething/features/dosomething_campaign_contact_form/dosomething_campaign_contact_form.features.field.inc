@@ -220,7 +220,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'node_reference_autocomplete',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -353,7 +353,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '31',
+        'weight' => '11',
       ),
     ),
   );
@@ -426,6 +426,83 @@ function dosomething_campaign_contact_form_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-campaign_contact_form-field_mandrill_key'.
+  $fields['node-campaign_contact_form-field_mandrill_key'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mandrill_key',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign_contact_form',
+      'default_value' => array(
+        0 => array(
+          'value' => 'dsplain',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'In order to trigger Mandrill based transactional email messages when a submission is made to this form a "key" needs to be provided based on settings in the Mail System and Mandrill Template module settings.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 8,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mandrill_key',
+      'label' => 'Mandrill Key',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '6',
       ),
     ),
   );
@@ -588,6 +665,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'campaign_contact_form',
       'default_value' => NULL,
+      'default_value_function' => 'og_field_audience_default_value',
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -632,7 +710,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'group_audience_autocomplete',
-        'weight' => '9',
+        'weight' => '8',
       ),
       'widget_type' => 'group_audience',
     ),
@@ -739,7 +817,7 @@ function dosomething_campaign_contact_form_field_default_fields() {
       ),
       'entity_type' => 'webform_submission_entity',
       'field_name' => 'field_webform_mobile',
-      'label' => 'Cell',
+      'label' => 'Cell (optional)',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -759,12 +837,14 @@ function dosomething_campaign_contact_form_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Campaign Sign Up');
-  t('Cell');
+  t('Cell (optional)');
   t('Disable login popup?');
   t('Email');
   t('Groups audience');
+  t('In order to trigger Mandrill based transactional email messages when a submission is made to this form a "key" needs to be provided based on settings in the Mail System and Mandrill Template module settings.');
   t('InfusionSoft Action ID');
   t('MailChimp Group');
+  t('Mandrill Key');
   t('Mobile Commons Campaign ID');
   t('Mobile Commons Opt-In Path');
   t('Name of a MailChimp group in the "DoSomething Members" list.');
