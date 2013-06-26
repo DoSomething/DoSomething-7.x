@@ -9,6 +9,8 @@ include_once('dosomething_campaign.features.inc');
  */
 function dosomething_campaign_menu() {
 
+  $items = array();
+
   $items['campaign/join/%'] = array(
     'page callback' => 'dosomething_campaign_join',
     'page arguments' => array(2),
@@ -25,7 +27,7 @@ function dosomething_campaign_menu() {
 function dosomething_campaign_theme() {
   return array(
     'campaign_join_page' => array(
-      'variables' => array('node' => NULL, 'uid' => NUll), // This is the list of the variables that will be passed to the template file. 
+      'variables' => array('node' => NULL, 'uid' => NULL, 'form' => NULL), // This is the list of the variables that will be passed to the template file. 
       'template' => 'campaign_join_page', // Change this to the template file name.
     ),
   );
