@@ -1,9 +1,12 @@
 <?php
+
 /**
  * @file
  * Code for the Dosomething Campaign feature.
  */
+
 include_once('dosomething_campaign.features.inc');
+
 /**
  * Implements hook_menu().
  */
@@ -12,9 +15,10 @@ function dosomething_campaign_menu() {
   $items = array();
 
   $items['campaign/join/%'] = array(
-    'page callback' => 'dosomething_campaign_join',
+    'page callback' => 'dosomething_campaign_join_page',
     'page arguments' => array(2),
-    'access callback' => 'dosomething_campaign_join_access',
+    'access callback' => 'dosomething_campaign_join_page_access',
+    'access arguments' => array(2),
     'file' => 'dosomething_campaign.pages.inc',
   );
 
@@ -34,10 +38,40 @@ function dosomething_campaign_theme() {
 }
 
 /**
- * Access callback for join page
+ * Implements hook_init().
  */
-function dosomething_campaign_join_access() {
+function dosomething_campaign_init() {
   global $user;
+  // Check if logged in user:
+  if ($user->uid != 0) { 
+    // For now, this check only applies to the Hunt.
+    $campaign_nid = variable_get('hunt_campaign_nid', 729679);
+    // if the current page is the Hunt campaign node view page,
+    // if user doesn't have join override access,
+    // and if user isn't signed up.
+    if (current_path() == 'node/' . $campaign_nid && 
+      !dosomething_campaign_can_user_override_join($user) && 
+      !dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid)) {
+      // Redirect to the campaign join page.   
+      drupal_goto('campaign/join/' . $campaign_nid);
+    }
+  }
+}
+
+/**
+ * Access callback for join page.
+ */
+function dosomething_campaign_join_page_access($nid) {
+  // Right now, we only use this page for The Hunt.
+  if ($nid != variable_get('hunt_campaign_nid', 729679)) {
+    return FALSE;
+  }
+  global $user;
+  // Check if user can access page unconditionally.
+  if (dosomething_campaign_can_user_override_join($user)) {
+    return TRUE;
+  }
+  // Otherwise, only grant access for logged in users.
   return $user->uid != 0;
 }
 
@@ -49,9 +83,10 @@ function dosomething_campaign_user_login(&$edit, $account) {
   // If the referring URL is a campaign gate:
   if (dosomething_campaign_is_campaign_gate_url($_SERVER['HTTP_REFERER'])) {
     // Execute campaign login signup function:
-    dosomething_campaign_login_signup($account, variable_get('hunt_campaign_nid', 729679));
+    dosomething_campaign_signup($account, variable_get('hunt_campaign_nid', 729679));
   }
 }
+
 /**
  * Returns boolean value of whether or not given URL is a campaign gate.
  */
@@ -62,6 +97,7 @@ function dosomething_campaign_is_campaign_gate_url($url) {
     return TRUE;
   }
 }
+
 /**
  * Handles a campaign signup via login through campaign gate.
  *
@@ -72,13 +108,15 @@ function dosomething_campaign_is_campaign_gate_url($url) {
  *
  * @TODO: Make code dynamic with Campaign NID (currently hardcoded for The Hunt).
  */
-function dosomething_campaign_login_signup($account, $nid) {
+function dosomething_campaign_signup($account, $nid) {
   $user_signed_up = dosomething_campaign_is_user_signed_up($account->uid, $nid);
   if (!$user_signed_up) {
     dosomething_campaign_insert_signup($account->uid, $nid);
     $email = $account->mail;
+
     // Signup to Mailchimp Group:
     dosomething_subscribe_mailchimp_signup($email, variable_get('dosomething_subscribe_mailchimp_hunt'));
+
     // Signup to Mobilecommons:
     $cell = '';
     $user2 = profile2_load_by_user($account, 'main');
@@ -89,17 +127,15 @@ function dosomething_campaign_login_signup($account, $nid) {
       $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
       watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
     }
-    // Mandrill transactional for The HUNT
+    // Mandrill transactional for The HUNT:
     $to = $email;
     $language = language_default();
     $params = array();
     $from = NULL;
-    
     $message = drupal_mail('dosomething_mandrill', 'hunt13', $to, $language, $params, $from, TRUE);
     
-    // Log results
+    // Log results:
     if ($message['result'] == FALSE) {
-      //watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
       watchdog('dosomething_campaign', 'Failed to send Mandrill transactional message to %to via The Hunt Signup.',
                     array('%to' => $to), WATCHDOG_ERROR);
     }
@@ -128,4 +164,16 @@ function dosomething_campaign_is_user_signed_up($uid, $nid) {
     return TRUE;
   }
   return FALSE;
+}
+
+/**
+ * Retuns boolean if given $user can access join and campaign pages regardless of signup.
+ *
+ * @param $user
+ *  User object of user to check.
+ *
+ * @return boolean
+ */
+function dosomething_campaign_can_user_override_join($user) {
+  return user_access('administer site configuration', $user);
 }
