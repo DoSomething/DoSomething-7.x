@@ -38,17 +38,39 @@ function dosomething_campaign_theme() {
 }
 
 /**
+ * Implements hook_init().
+ */
+function dosomething_campaign_init() {
+  global $user;
+  // Check if logged in user:
+  if ($user->uid != 0) { 
+    // For now, this check only applies to the Hunt.
+    $campaign_nid = variable_get('hunt_campaign_nid', 729679);
+    // Check if the current page is the Hunt campaign node view page, and if non-admin.
+    if (current_path() == 'node/' . $campaign_nid && !user_access('administer site configuration', $user)) {
+      // If current user is not signed up for campaign, then redirect to the campaign join page.   
+      if (!dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid)) {
+        drupal_goto('campaign/join/' . $campaign_nid);
+      }
+    }
+  }
+}
+
+/**
  * Access callback for join page.
- * Returns TRUE if a logged in user has not signed up for given campaign Nid.
  */
 function dosomething_campaign_join_page_access($nid) {
-  global $user;
-  return $user->uid != 0;
-  if ($user->uid != 0) {
-    // Only can view the join page if you haven't signed up.
-    return (!dosomething_campaign_is_user_signed_up($user->uid, $nid));
+  // Right now, we only use this page for The Hunt.
+  if ($nid != variable_get('hunt_campaign_nid', 729679)) {
+    return FALSE;
   }
-  return FALSE;
+  global $user;
+  // If admin, allow access to page unconditionally.
+  if (user_access('administer site configuration', $user)) {
+    return TRUE;
+  }
+  // Otherwise, only grant access for logged in users.
+  return $user->uid != 0;
 }
 
 

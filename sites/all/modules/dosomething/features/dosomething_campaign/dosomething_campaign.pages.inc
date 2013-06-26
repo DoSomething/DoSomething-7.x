@@ -8,8 +8,8 @@
 function dosomething_campaign_join_page($nid) {
   global $user;
   
-  // If user has already joined, redirect to the campaign.
-  if (dosomething_campaign_is_user_signed_up($user->uid, $nid)) {
+  // If user has already joined and is non admin, redirect to the campaign.
+  if (dosomething_campaign_is_user_signed_up($user->uid, $nid) && !user_access('administer site configuration', $user)) {
     drupal_goto('node/' . $nid);
   }
 
@@ -50,10 +50,8 @@ function dosomething_campaign_join_page_form($form, &$form_state, $nid, $uid) {
 function dosomething_campaign_join_page_form_submit($form, &$form_state) {
   //  Lets submit and redirect.
   $campaign_nid = $form_state['values']['nid'];
-
   global $user;
   dosomething_campaign_signup($user, $campaign_nid);
-
-  // Me knows this is bad.  Could not get redirect working properly
+  // Me knows this is bad.  Could not get redirect working properly.
   drupal_goto('node/' . $campaign_nid);
 }
