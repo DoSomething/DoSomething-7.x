@@ -15,7 +15,7 @@ define('PETITIONS_INFUSIONSOFT', 1648);
 function dosomething_petitions_menu() {
   $items = array();
   $items['petition/%/signed_count'] = array(
-    'page callback' => 'dosomething_petitions_check_signed_count',
+    'page callback' => 'dosomething_petitions_get_signed_count',
     'page arguments' => array(1),
     'access callback' => TRUE,
   );
@@ -23,13 +23,23 @@ function dosomething_petitions_menu() {
   return $items;
 }
 
-function dosomething_petitions_check_signed_count($nid) {
+/**
+ * Finds and returns the signature count for a specific petition.  This is used
+ * in conjunction with a jQuery POST request in petition to show the proper
+ * number for logged out users (thereby bypassing Varnish).
+ *
+ * @param int $nid
+ *   The node ID of the petition to get the signature count for.
+ *
+ * @see dosomething_petitions.js line 29
+ */
+function dosomething_petitions_get_signed_count($nid) {
   # Ignore if not numeric
   if (!is_numeric($nid)) {
     return FALSE;
   }
 
-  # Get the signed count.
+  # Get the signature count.
   $signed_count = variable_get('petitions_signed_count_' . $nid, 0);
 
   # Spit out JSON of the signature count.
