@@ -37,7 +37,7 @@ class QuizzesTest extends SeleniumBaseTest {
 
       // Make sure we're looking at the Pop Diva quiz.
       $header = $this->getText('css selector', '.pane-custom h3');
-      $this->assertSame('Which Pop Diva Are You?', $header);
+      $this->assertSame('Which Singer Are You?', $header);
 
       // Fill out the form with arbitrary values.
       $this->findAndClick('xpath', '//*[@id="edit-submitted-free-time-2"]');
@@ -56,7 +56,7 @@ class QuizzesTest extends SeleniumBaseTest {
 
       // Which pop diva ARE you?
       $header = $this->getText('css selector', '.pane-custom h3');
-      $this->assertSame('Which Pop Diva Are You?', $header);
+      $this->assertSame('Which Singer Are You?', $header);
 
       // The actual result.  We're Rihanna, apparently.
       $result = $this->getText('css selector', '.pane-page-title h1');
