@@ -35,6 +35,84 @@ $activity->inputs = array('mcommons_ordered_paths');
 $workflows[$workflow->name] = $workflow;
 
 /**
+ * Handles all time-based pathing under one workflow
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_mcommons_timed_paths';
+$workflow->title = 'Handler for MCommons Timed Paths';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('mcommons_timed_paths');
+
+$activity = $workflow->newActivity('mcommons_timed_paths');
+$activity->name = 'mcommons_timed_paths';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->sets = array(
+  // ACTION path for Hunt 2013
+  array(
+    'mdata_id' => 123456, // TODO
+    'timezone' => 'America/New_York',
+    'paths' => array(
+      array(
+        'time' => '2013-07-16 10:00:00',
+        'opt_in_path' => 159319,
+      ),
+      array(
+        'time' => '2013-07-17 10:00:00',
+        'opt_in_path' => 159321,
+      ),
+      array(
+        'time' => '2013-07-18 10:00:00',
+        'opt_in_path' => 159323,
+      ),
+      array(
+        'time' => '2013-07-19 10:00:00',
+        'opt_in_path' => 159325,
+      ),
+      array(
+        'time' => '2013-07-20 10:00:00',
+        'opt_in_path' => 159327,
+      ),
+      array(
+        'time' => '2013-07-21 10:00:00',
+        'opt_in_path' => 159329,
+      ),
+      array(
+        'time' => '2013-07-22 10:00:00',
+        'opt_in_path' => 159331,
+      ),
+      array(
+        'time' => '2013-07-23 10:00:00',
+        'opt_in_path' => 159333,
+      ),
+      array(
+        'time' => '2013-07-24 10:00:00',
+        'opt_in_path' => 159335,
+      ),
+      array(
+        'time' => '2013-07-25 10:00:00',
+        'opt_in_path' => 159337,
+      ),
+      array(
+        'time' => '2013-07-26 10:00:00',
+        'opt_in_path' => 159339,
+      ),
+      // TODO: do we want a closing opt-in path when the campaign is complete?
+    ),
+  ),
+);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('mcommons_timed_paths');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
  * Intended to be plugged in at the end of a pregnancy text drip message as an
  * mData. Will respond to any user message that matches a given set.
  */
