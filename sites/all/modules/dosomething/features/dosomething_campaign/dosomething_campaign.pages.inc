@@ -9,7 +9,7 @@ function dosomething_campaign_join_page($nid) {
   global $user;
   
   // If user has already joined and is non admin, redirect to the campaign.
-  if (dosomething_campaign_is_user_signed_up($user->uid, $nid) && !user_access('administer site configuration', $user)) {
+  if (dosomething_campaign_is_user_signed_up($user->uid, $nid) && !dosomething_campaign_can_user_override_join($user)) {
     drupal_goto('node/' . $nid);
   }
 

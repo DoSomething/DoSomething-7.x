@@ -46,12 +46,14 @@ function dosomething_campaign_init() {
   if ($user->uid != 0) { 
     // For now, this check only applies to the Hunt.
     $campaign_nid = variable_get('hunt_campaign_nid', 729679);
-    // Check if the current page is the Hunt campaign node view page, and if non-admin.
-    if (current_path() == 'node/' . $campaign_nid && !user_access('administer site configuration', $user)) {
-      // If current user is not signed up for campaign, then redirect to the campaign join page.   
-      if (!dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid)) {
-        drupal_goto('campaign/join/' . $campaign_nid);
-      }
+    // if the current page is the Hunt campaign node view page,
+    // if user doesn't have join override access,
+    // and if user isn't signed up.
+    if (current_path() == 'node/' . $campaign_nid && 
+      !dosomething_campaign_can_user_override_join($user) && 
+      !dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid)) {
+      // Redirect to the campaign join page.   
+      drupal_goto('campaign/join/' . $campaign_nid);
     }
   }
 }
@@ -65,8 +67,8 @@ function dosomething_campaign_join_page_access($nid) {
     return FALSE;
   }
   global $user;
-  // If admin, allow access to page unconditionally.
-  if (user_access('administer site configuration', $user)) {
+  // Check if user can access page unconditionally.
+  if (dosomething_campaign_can_user_override_join($user)) {
     return TRUE;
   }
   // Otherwise, only grant access for logged in users.
@@ -95,6 +97,7 @@ function dosomething_campaign_is_campaign_gate_url($url) {
     return TRUE;
   }
 }
+
 /**
  * Handles a campaign signup via login through campaign gate.
  *
@@ -161,4 +164,16 @@ function dosomething_campaign_is_user_signed_up($uid, $nid) {
     return TRUE;
   }
   return FALSE;
+}
+
+/**
+ * Retuns boolean if given $user can access join and campaign pages regardless of signup.
+ *
+ * @param $user
+ *  User object of user to check.
+ *
+ * @return boolean
+ */
+function dosomething_campaign_can_user_override_join($user) {
+  return user_access('administer site configuration', $user);
 }
