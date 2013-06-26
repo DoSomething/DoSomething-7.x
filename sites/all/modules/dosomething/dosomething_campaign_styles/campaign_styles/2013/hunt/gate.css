@@ -207,6 +207,10 @@ body.html {
 #dosomething-login-login-popup-form .already-member {
   display: none; }
 
+#dosomething-login-login-popup-form {
+  overflow: hidden;
+}
+
 @media only screen and (max-width: 550px) {
   div[aria-labelledby="ui-dialog-title-dosomething-login-login-popup-form"] {
     width: 100% !important; } }
