@@ -54,7 +54,7 @@ $activity->outputs = array('end');
 $activity->sets = array(
   // ACTION path for Hunt 2013
   array(
-    'mdata_id' => 123456, // TODO
+    'mdata_id' => 10855,
     'timezone' => 'America/New_York',
     'paths' => array(
       array(
@@ -101,7 +101,10 @@ $activity->sets = array(
         'time' => '2013-07-26 10:00:00',
         'opt_in_path' => 159339,
       ),
-      // TODO: do we want a closing opt-in path when the campaign is complete?
+      array(
+        'time' => '2013-07-27 10:00:00',
+        'opt_in_path' => 159381,
+      ),
     ),
   ),
 );
