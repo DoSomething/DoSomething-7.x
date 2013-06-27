@@ -737,10 +737,10 @@ body {
   #cmp #prize a {
     color: black; }
   #cmp .section#info {
-    padding: 2% 0; }
+    padding: 2% 6%; }
   #cmp #info h3, #cmp #info ul, #cmp #info p {
     text-align: left;
-    margin: 0 6% 1em;
+    margin: 0 0 1em;
     clear: both; }
   #cmp #info hr {
     border-top: none;
@@ -749,22 +749,76 @@ body {
     border-bottom: 1px solid #c1c1c1; }
   #cmp #info .sub {
     text-align: center; }
-  #cmp #info h3 {
+  #cmp #info h3, #cmp #info h4 {
     background: #00adef;
     color: #f1e316;
     font-style: italic;
     display: inline-block;
     float: left;
+    margin: 0 0 0.5em 0;
     padding: 0.25em 0.75em 0;
     font-size: 1.8em;
-    font-weight: 600;
-    margin: 0 6% 0.5em; }
+    font-weight: 600; }
+  #cmp #info h4 {
+    padding: 0.3em 0 0.2em 0.4em;
+    cursor: pointer;
+    font-size: 1.4em;
+    font-weight: 400;
+    width: 100%; }
+    #cmp #info h4:hover {
+      color: #f4e946; }
+  #cmp #info h4.unavailable {
+    background: #eeeeee;
+    color: white;
+    cursor: default; }
   #cmp #info ul {
     margin-bottom: 0; }
   #cmp #info li {
     font-size: 1.25em;
     font-weight: 500;
     margin-bottom: 0.4em; }
+  #cmp #challenges {
+    text-align: left; }
+    #cmp #challenges h4, #cmp #challenges div.content {
+      clear: both; }
+    #cmp #challenges div.content {
+      display: none;
+      float: left; }
+    #cmp #challenges div.copy {
+      float: right;
+      width: 68%; }
+    #cmp #challenges img {
+      display: block;
+      float: left;
+      width: 30%; }
+    #cmp #challenges ul {
+      margin: 0 0 1em 0; }
+    #cmp #challenges li {
+      font-weight: 400;
+      font-size: 1.1em;
+      margin: 0 0 0 1em;
+      padding: 0 0 0 0.5em;
+      list-style: disc; }
+    #cmp #challenges span {
+      text-transform: uppercase;
+      color: #00adef;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.2em;
+      padding: 0.5em 0;
+      display: block; }
+    #cmp #challenges .submit-challenge {
+      margin: 0 0 1em 0; }
+      #cmp #challenges .submit-challenge span {
+        display: inline;
+        color: #4d4d4d;
+        font-weight: 600;
+        font-size: 1.4em; }
+      #cmp #challenges .submit-challenge .go-button {
+        margin: 0 0 0 1em;
+        font-size: 1.6em;
+        padding: 0.5em 1em 1.4em 1em;
+        color: #4d4d4d; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
   #cmp .section#impact {
@@ -817,12 +871,12 @@ body {
     cursor: pointer;
     background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
     background-repeat: no-repeat;
-    background-position-y: 0.55em;
+    background-position: 0 11px;
     padding: 0.3em 1.2em;
     font-size: 1.15em;
     line-height: 1.4em; }
   #cmp #faq h4.activeFAQ {
-    background-position-y: -1em; }
+    background-position: 0 -18px; }
   #cmp #faq .go-button {
     background: #fec82e;
     color: #f1e316;
@@ -853,7 +907,7 @@ body {
     text-decoration: none;
     background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
     background-repeat: no-repeat;
-    background-position-y: 0.5em; }
+    background-position: 0 8px; }
   #cmp #faq hr {
     border-top: none;
     border-left: none;
