@@ -44,7 +44,6 @@ class ConductorActivityMobileCommonsTimedPath extends ConductorActivity {
       // Get current time for America/New York timezone
       $dateObj = new DateTime(NULL, new DateTimeZone($set['timezone']));
       $currTime = $dateObj->getTimestamp();
-echo "currtime: $currTime\n";
 
       // Assumption is that arrays are ordered from earliest time to latest.
       // So traverse the list in descending order, searching for the first
@@ -54,8 +53,6 @@ echo "currtime: $currTime\n";
         $pathTimeStr = $set['paths'][$i]['time'];
         $pathTimeObj = new DateTime($pathTimeStr, new DateTimeZone($set['timezone']));
         $pathTime = $pathTimeObj->getTimestamp();
-echo "comparing currTime: $currTime // pathTime: $pathTime\n";
-echo "  curr: ".$dateObj->format('Y-m-d H:i:s')." // path: ".$pathTimeObj->format('Y-m-d H:i:s')."\n";
 
         if ($currTime > $pathTime) {
           $optInPath = $set['paths'][$i]['opt_in_path'];
@@ -64,11 +61,7 @@ echo "  curr: ".$dateObj->format('Y-m-d H:i:s')." // path: ".$pathTimeObj->forma
       }
 
       if ($optInPath > 0) {
-echo "selected opt in path: $optInPath\n";
-        //dosomething_general_mobile_commons_subscribe($mobile, $optInPath);
-      }
-      else {
-echo "no path selected\n";
+        dosomething_general_mobile_commons_subscribe($mobile, $optInPath);
       }
     }
 
