@@ -289,7 +289,7 @@ function dosomething_sms_cron() {
 /**
  * hook_cron() functionality that can be called as a cron job or as a test
  **/
-function dosomething_sms_cron_test($test=FALSE) {
+function dosomething_sms_cron_test($manual_test=FALSE) {
 	
   $enabled = variable_get('dosomething_sms_cron_enable', FALSE);
   
@@ -298,7 +298,7 @@ function dosomething_sms_cron_test($test=FALSE) {
   $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME);
 
   // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
-  if ((($enabled) && (REQUEST_TIME >= $next_run)) || ($test)) {
+  if ((($enabled) && (REQUEST_TIME >= $next_run)) || $manual_test) {
     
     $results = db_query('
       SELECT
@@ -330,7 +330,7 @@ function dosomething_sms_cron_test($test=FALSE) {
     }
 		
 		// Delete entries that are older than dosomething_sms_interval)
-		if (!$test) {
+		if (!$manual_test) {
 			$number_deleted = db_delete('conductor_instance_pointer')
                         ->condition('timestamp', date('Y-m-d g:i:s', REQUEST_TIME - $interval), '<=')
                         ->execute();
@@ -344,7 +344,7 @@ function dosomething_sms_cron_test($test=FALSE) {
     $human_date = date('l - j F Y - g:i:s');
 
     // Send Report
-		if ($test) {
+		if ($manual_test) {
 			$to = 'dlee@dosomething.org';
 		}
 		else {
@@ -378,12 +378,8 @@ function dosomething_sms_cron_test($test=FALSE) {
     watchdog('dosomething_sms', t('Cron run at %current_date. %number_deleted entries deleted.'), array('%current_date' => $human_date, '%number_deleted' => $number_deleted), WATCHDOG_INFO);
     
     // Schedule new cron run
-		if (!$test) {
+		if (!$manual_test) {
       variable_set('dosomething_sms_cron_next_execution', REQUEST_TIME + $interval);
-		}
-		
-		if ($test) {
-			return;
 		}
     
   }
