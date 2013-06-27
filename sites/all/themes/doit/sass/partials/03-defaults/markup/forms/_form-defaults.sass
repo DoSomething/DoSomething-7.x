@@ -161,6 +161,15 @@ select.form-select
   @extend %constrain-to-parent
   max-width: 525px
 
-// Hide Mandrill Key field from public
-.webform-client-form .field-name-field-mandrill-key
-  display: none
+// Hide webform settings fields to the public but display on admin
+.page-node
+  .field-name-field-mailchimp-group-id,
+  .field-name-field-mc-optin,
+  .field-name-field-mandrill-key
+    display: none
+
+.node-form
+  .field-name-field-mailchimp-group-id,
+  .field-name-field-mc-optin,
+  .field-name-field-mandrill-key
+    display: block
