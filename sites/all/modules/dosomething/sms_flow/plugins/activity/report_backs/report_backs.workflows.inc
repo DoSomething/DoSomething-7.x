@@ -457,7 +457,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159491;
 
@@ -507,7 +507,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159493;
 
@@ -557,7 +557,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159495;
 
@@ -607,7 +607,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159497;
 
@@ -657,7 +657,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159499;
 
@@ -707,7 +707,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159501;
 
@@ -757,7 +757,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159503;
 
@@ -807,7 +807,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159505;
 
@@ -857,7 +857,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159507;
 
@@ -907,7 +907,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159509;
 
@@ -957,7 +957,7 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_question', 'end');
+$activity->outputs = array('ask_question1', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 159511;
 
