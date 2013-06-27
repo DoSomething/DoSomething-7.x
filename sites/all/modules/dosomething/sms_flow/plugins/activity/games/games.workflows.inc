@@ -52,7 +52,7 @@ $activity->name = 'mcommons_timed_paths';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->sets = array(
-  // ACTION path for Hunt 2013
+  // Hunt 2013 daily challenges
   array(
     'mdata_id' => 10855,
     'timezone' => 'America/New_York',
@@ -101,9 +101,66 @@ $activity->sets = array(
         'time' => '2013-07-26 10:00:00',
         'opt_in_path' => 159339,
       ),
+      // Message for after the campaign ends
       array(
         'time' => '2013-07-27 10:00:00',
         'opt_in_path' => 159381,
+      ),
+    ),
+    // Hunt 2013 INSTA actions
+    array(
+      'mdata_id' => 10861,
+      'timezone' => 'America/New_York',
+      'paths' => array(
+        array(
+          'time' => '2013-07-16 10:00:00',
+          'opt_in_path' => 159397,
+        ),
+        array(
+          'time' => '2013-07-17 10:00:00',
+          'opt_in_path' => 159399,
+        ),
+        array(
+          'time' => '2013-07-18 10:00:00',
+          'opt_in_path' => 159401,
+        ),
+        array(
+          'time' => '2013-07-19 10:00:00',
+          'opt_in_path' => 159403,
+        ),
+        array(
+          'time' => '2013-07-20 10:00:00',
+          'opt_in_path' => 159405,
+        ),
+        array(
+          'time' => '2013-07-21 10:00:00',
+          'opt_in_path' => 159409,
+        ),
+        array(
+          'time' => '2013-07-22 10:00:00',
+          'opt_in_path' => 159411,
+        ),
+        array(
+          'time' => '2013-07-23 10:00:00',
+          'opt_in_path' => 159413,
+        ),
+        array(
+          'time' => '2013-07-24 10:00:00',
+          'opt_in_path' => 159415,
+        ),
+        array(
+          'time' => '2013-07-25 10:00:00',
+          'opt_in_path' => 159417,
+        ),
+        array(
+          'time' => '2013-07-26 10:00:00',
+          'opt_in_path' => 159419,
+        ),
+        // Message for after the campaign ends
+        array(
+          'time' => '2013-07-27 10:00:00',
+          'opt_in_path' => 159381,
+        ),
       ),
     ),
   ),
