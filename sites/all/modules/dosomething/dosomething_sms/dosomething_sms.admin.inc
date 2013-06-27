@@ -48,11 +48,11 @@ function dosomething_sms_settings_form() {
   );
   
   // Where to send the report
-	$form['configuration']['dosomething_sms_recipients'] = array(
+	$form['configuration']['dosomething_sms_cron_recipients'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Email Recipients'),
     '#description' => t('Seperate email addresses with commas.'),
-		'#default_value' => variable_get('dosomething_sms_recipients', 'dlee@dosomething.org'),
+		'#default_value' => variable_get('dosomething_sms_cron_recipients', 'dlee@dosomething.org'),
 		'#size' => 60,
 		'#maxlength' => 256,
 		'#required' => TRUE,
@@ -68,9 +68,14 @@ function dosomething_sms_settings_form() {
   $interval = variable_get('dosomething_sms_cron_interval', 60 * 60 * 24 * 7);
   $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME);
 
-  $form['status']['dosomething_sms_cron_test'] = array(
+  $form['status']['dosomething_sms_cron_status'] = array(
     '#type' => 'markup',
-    '#markup' => t('The next run is scheduled for '. date('l - j F Y - g:i:s', $next_run)),
+    '#markup' => '<ul><li>'. t('The next run is scheduled for '. date('l - j F Y - g:i:s', $next_run)) . '</li>',
+  );
+	
+	$form['status']['dosomething_sms_cron_test'] = array(
+    '#type' => 'markup',
+    '#markup' => '<li>'. t('Run ') .'<strong>' . l(t('test cron'), 'admin/config/dosomething/dosomething_sms/cron_test') . '</strong>'. t(' job.') .'</li></ul>',
   );
 
   return system_settings_form($form);
