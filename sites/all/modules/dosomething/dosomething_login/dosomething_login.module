@@ -96,6 +96,7 @@ function dosomething_login_page_user_registration() {
   }
 
   // Otherwise, show the registration form.
+  // @todo: JS file needs to be added to make the login link a modal.
   return drupal_get_form('dosomething_login_register_popup_form', FALSE);
 }
 
