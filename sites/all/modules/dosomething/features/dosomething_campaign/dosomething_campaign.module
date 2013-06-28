@@ -77,26 +77,26 @@ function dosomething_campaign_block_view($delta = '') {
  * Implements hook_init().
  */
 function dosomething_campaign_init() {
+  global $user;
   // Check if current path is Hunt campaign, and route to either registration gate, join page, or the actual campaign.
   $campaign_nid = variable_get('hunt_campaign_nid', 729679);
   if (current_path() == 'node/' . $campaign_nid ) {
-    dosomething_campaign_redirector($campaign_nid);
+    dosomething_campaign_redirector($user, $campaign_nid);
   }
 }
 
 /**
- * Redirects global $user to either the: 
+ * Redirects given $user object to either the: 
  * - Campaign user/registration gate
  * - the join page
  * - or to the actual Campaign node
  * based on given $nid and whether or not the user has logged in and/or signed up yet.
  */
-function dosomething_campaign_redirector($nid) {
-  global $user;
+function dosomething_campaign_redirector($user, $nid) {
   // If anon user, redirect to user/destination?node=$campaign_nid
   //@todo: once the campaign is_gate_registration field is in place, add check to redirect to user/reg page if its TRUE
   if ($user->uid == 0) {
-    drupal_goto('user/registration?destination=node/' . $nid);
+    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $nid)));
   }
   // Else if logged in user hasn't signed up (and is non-override), redirect to join page:
   else if (!dosomething_campaign_can_user_override_join($user) && !dosomething_campaign_is_user_signed_up($user->uid, $nid)) {
@@ -140,7 +140,7 @@ function dosomething_campaign_user_login(&$edit, $account) {
 function dosomething_campaign_is_campaign_gate_url($url) {
   //@TODO: Make this dynamic and smart and not horribly hardcoded for the Hunt campaign.
   $hunt_campaign_nid = variable_get('hunt_campaign_nid', 729679);
-  if (strpos($url,'user/registration%3Fdestination%3Dnode/' . $hunt_campaign_nid) !== FALSE) {
+  if (strpos($url,'user/registration?destination=node/' . $hunt_campaign_nid) !== FALSE) {
     return TRUE;
   }
 }
