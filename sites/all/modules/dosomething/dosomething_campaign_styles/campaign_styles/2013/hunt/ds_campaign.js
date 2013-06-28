@@ -19,7 +19,7 @@
           $(this).addClass('activeFAQ');
           $(this).siblings('h4').removeClass('activeFAQ');
           $(this).next('div').slideToggle();
-          $(this).siblings().next('div').slideUp();      
+          $(this).siblings().next('div').slideUp();
         }
       });
 
@@ -29,10 +29,13 @@
       var allAnchors = navAnchors + ', ' + contentAnchors;
 
       $(allAnchors).click(function(event){
-        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
         return false;
       });
 
+      //
+      // The next 50 lines of this file hurt my feelings..
+      //
 
       // A quick and dirty (AKA - way too long and redundant script) for report-back select to textarea connection
       jQuery('.webform-component-textarea').css('display','none');
@@ -131,6 +134,11 @@
 
       });
 
+      // Confirmation message post sign-up
+      if ( document.location.search.slice(1) == 'success' ) {
+        $('p.headsup').html('<span>YOU\'RE SIGNED UP!</span><br><p>We\'ll send you the first action on July 16th</p>');
+      }
+
       // #header section Facebook fun
       var fb_share_img = 'http://www.dosomething.org/files/campaigns/hunt13/Campaigns_Landing-15.png';
       var fb_title = 'The Hunt';
@@ -146,7 +154,7 @@
         window.location.href = '/hunt';
       });
 
-         
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
