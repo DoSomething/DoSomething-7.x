@@ -41,9 +41,18 @@ class ConductorActivityMobileCommonsTimedPath extends ConductorActivity {
       $set = $this->sets[$setIndex];
       $optInPath = 0;
 
-      // Get current time for America/New York timezone
-      $dateObj = new DateTime(NULL, new DateTimeZone($set['timezone']));
-      $currTime = $dateObj->getTimestamp();
+      $dateOverride = check_plain($_REQUEST['date_override']);
+      if (!empty($dateOverride)) {
+        // For testing, use the override time provided in the params.
+        // Expected dateOverride format: Y-m-d H:i:s
+        $dateObj = new DateTime($dateOverride, new DateTimeZone($set['timezone']));
+        $currTime = $dateObj->getTimestamp();
+      }
+      else {
+        // Otherwise, get current time for timezone specified. eg: America/New_York
+        $dateObj = new DateTime(NULL, new DateTimeZone($set['timezone']));
+        $currTime = $dateObj->getTimestamp();
+      }
 
       // Assumption is that arrays are ordered from earliest time to latest.
       // So traverse the list in descending order, searching for the first
@@ -54,7 +63,7 @@ class ConductorActivityMobileCommonsTimedPath extends ConductorActivity {
         $pathTimeObj = new DateTime($pathTimeStr, new DateTimeZone($set['timezone']));
         $pathTime = $pathTimeObj->getTimestamp();
 
-        if ($currTime > $pathTime) {
+        if ($currTime >= $pathTime) {
           $optInPath = $set['paths'][$i]['opt_in_path'];
           break;
         }
