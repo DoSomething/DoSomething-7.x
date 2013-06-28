@@ -60,6 +60,12 @@ class ViewsConditionalHandler extends views_handler_field {
       '#suffix' => '</h3>',
     );
 
+    $form['hidden_field_select'] = array(
+      '#type' => 'select',
+      '#options' => $fields,
+      '#attributes' => array('id' => 'hidden-select'),
+    );
+
     $form['list'] = array(
       '#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a>
 <ul id="conditions-container">
@@ -74,8 +80,8 @@ class ViewsConditionalHandler extends views_handler_field {
       <input type="text" id="edit-options-conditions-equalto" name="options[conditions][equalto]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed">
     </div>
     <div id="options" class="first">
-      <a href="#" class="add-and">Add "And"</a> |
-      <a href="#" class="add-or">Add "Or"</a>
+      <a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span>
+      <a href="#" class="add-sub" data-type="or">Add "Or"</a>
     </div>
   </li>
 </ul>');
