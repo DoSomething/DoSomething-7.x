@@ -23,4 +23,5 @@ class SmsFlowGameConstants {
   const IHEARTDAD_BP_TIPS       = 16;
   const IHEARTDAD_HEALTH_TIPS   = 17;
   const IHEARTDAD_GUIDE         = 18;
+  const HUNT_INSPIRE            = 19;
 }
