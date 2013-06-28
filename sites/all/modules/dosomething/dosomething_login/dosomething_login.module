@@ -20,11 +20,10 @@ function dosomething_login_menu() {
   );
   $items['user/registration'] = array(
     'title' => 'Registration',
-    'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
-    'page callback' => 'dosomething_login_page_user_registration',
-    //'page arguments' => array('dosomething_login_register_popup_form'),
+    'description' => 'General user registration.',
+    'page callback' => 'dosomething_login_user_registration_page',
     'access callback' => 'dosomething_login_user_register_access',
-    'type' => MENU_CALLBACK,
+    'file' => 'dosomething_login.pages.inc',
   );
   $items['user/registration/ajax'] = array(
     'page callback' => 'dosomething_login_ajax',
@@ -266,36 +265,12 @@ function dosomething_login_theme($existing, $type, $theme, $path) {
     'dosomething_login_fboauth_user_form_connect' => array(
       'variables' => array(),
     ),
+    'dosomething_login_gate' => array(
+      'path' => $path . '/templates',
+      'variables' => array('node' => NULL, 'form' => NULL), // This is the list of the variables that will be passed to the template file. 
+      'template' => 'dosomething_login_gate', // Change this to the template file name.
+    ),
   );
-}
-
-/**
- * Implements hook_preprocess_page().
- */
-function dosomething_login_preprocess_page(&$variables) {
-  $path = current_path();
-  //@todo: Add checks to see if we have a campaign nid in the path. If so, use field values from the campaign node.
-  if ($path == 'user/registration') {
-    // Check if destination is set.
-    $destination = drupal_get_destination();
-    if ($destination) {
-      $dest_parts = explode('/', $destination['destination']);
-      // If we are viewing a node:
-      if ($dest_parts[0] == 'node' && isset($dest_parts[1]) && is_numeric($dest_parts[1])) {
-        $node = node_load($dest_parts[1]);
-        // Check if it's a campaign node:
-        if ($node->type == 'campaign') {
-          // @todo:
-          // Add campaign NID into the body class.
-          // Set page variables from the campaign node fields.
-        }
-      }
-    }
-    $variables['title'] = variable_get('dosomething_login_user_register_title');
-    $variables['page']['headline'] = variable_get('dosomething_login_user_register_headline');
-    $variables['page']['sidebar_headline'] = variable_get('dosomething_login_user_register_sidebar_headline');
-    $variables['page']['sidebar_content'] = variable_get('dosomething_login_user_register_sidebar_content');
-  }
 }
 
 /**
