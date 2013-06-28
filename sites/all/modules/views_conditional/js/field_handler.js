@@ -3,77 +3,94 @@
     condition_count: 1,
 
     attach: function() {
-      $('#field-add-and').click(function() {
-        Drupal.behaviors.fieldHandler.add_element('and');
-        return false;
-      });
-      $('#add-condition').click(function() {
-        Drupal.behaviors.fieldHandler.add_condition();
-        return false;
-      });
+      var family = { 'and': { 1: { 'and': [], 'or': [] } }, 'or': {} };
+      var i = '<li><span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt="" /> #LABEL</span><div class="form-item form-type-select form-item-field"><select class="first-field form-select" id="edit-options-if" name="options[if]"><option value="0">- no field selected -</option><option value="field_picture">Field: Picture</option><option value="field_embedded_video">Content: Video</option><option value="views_ifempty">Views If Empty: Views If Empty</option><option value="title">Content: Title</option><option value="created">Content: Post date</option><option value="field_subtitle">Content: Subtitle</option><option value="body_1">Campaign Blog Text</option><option value="views_ifempty_1">Views If Empty: Views If Empty</option><option value="body">Content: Body</option></select></div><div class="form-item form-type-select form-item-options-conditions-condition"><select id="edit-options-conditions-condition" name="options[conditions][condition]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select></div><div class="form-item form-type-textfield form-item-options-conditions-equalto"><input type="text" id="edit-options-conditions-equalto" name="options[conditions][equalto]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed"></div><div id="options"><a href="#" class="delete">Remove this</a></div></li>';
+      var data_id = 1;
 
-      if ($('#edit-options-conditions-more').length > 0) {
-        Drupal.behaviors.fieldHandler.condition_count += $('#edit-options-conditions-more .form-type-select').length;
-        $('#edit-options-conditions-more .form-type-select').each(function() {
-          var cross = $('<a></a>');
-          cross.text('X');
-          cross.attr('href', '#');
-          cross.click(function() {
-            $(this).parent().parent().parent().remove();
-            Drupal.behaviors.fieldHandler.condition_count--;
-            Drupal.behaviors.fieldHandler.redo_numbers();
-          });
-          $(this).find('label').append(cross);
+      reload_clicks = function() {
+        $('.add-and').unbind('click');
+        $('.add-and').click(function() {
+          var pid = $(this).parent().parent().attr('data-id');
+          var nid = ++data_id;
+          if (typeof family[pid] == 'undefined') {
+            family[pid] = { 'or': [], 'and': [] };
+          }
+
+          family[pid]['and'].push(nid);
+
+          if ($(this).parent().parent().find('.sub').length > 0) {
+            item = i.replace('#LABEL', 'And');
+            $(item).attr('data-id', nid).appendTo($(this).parent().parent().find('.sub').first());
+            reload_clicks();
+            delete item;
+          }
+          else {
+            item = i.replace('#LABEL', 'And');
+            var list = $('<ul></ul>').addClass('sub');
+            $(item).attr('data-id', nid).appendTo(list);
+            list.appendTo($(this).parent().parent());
+            reload_clicks();
+            delete item;
+          }
+
+          console.log(family);
+          return false;
         });
-      }
-    },
 
-    add_element: function(type) {
-      var item = $('<div></div>').addClass('list-item');
-      var c = $('.form-item-options-if select.first-field').clone();
-      c.removeClass('first-field').attr('name', 'options[if][more][' + type + '][]').appendTo(item);
-      c.before(Drupal.t(type) + ' ');
+        $('.add-or').unbind('click');
+        $('.add-or').click(function() {
+          var pid = $(this).parent().parent().attr('data-id');
+          var nid = ++data_id;
 
-      var cross = $('<a></a>');
-      cross.text('X');
-      cross.attr('href', '#');
-      cross.click(function() {
-        $(this).parent().remove();
-      });
-      c.after(cross);
-      c.after('&nbsp;');
+          if (typeof family[pid] == 'undefined') {
+            family[pid] = { 'or': [], 'and': [] };
+          }
 
-      item.appendTo($('.form-item-options-if'));
-    },
+          family[pid]['or'].push(nid);
 
-    add_condition: function(type) {
-      var item = $('<div></div>').addClass('new-condition');
-      var c = $('#conditions-container').clone();
-      c.find('#edit-options-conditions-more').remove();
-      c.find('.condition-number').text('#' + ++Drupal.behaviors.fieldHandler.condition_count);
-      c.find('select').attr('name', 'options[conditions][more][condition][]').val("");
-      c.find('input').attr('name', 'options[conditions][more][equalto][]').val("");
-      c.appendTo(item);
+          if ($(this).parent().parent().find('.sub').length > 0) {
+            item = i.replace('#LABEL', 'Or');
+            $(item).attr('data-id', nid).appendTo($(this).parent().parent().find('.sub').first());
+            reload_clicks();
+            delete item;
+          }
+          else {
+            item = i.replace('#LABEL', 'Or');
+            var list = $('<ul></ul>').addClass('sub');
+            $(item).attr('data-id', nid).appendTo(list);
+            list.appendTo($(this).parent().parent());
+            reload_clicks();
+            delete item;
+          }
 
-      var cross = $('<a></a>');
-      cross.text('X');
-      cross.attr('href', '#');
-      cross.click(function() {
-        $(this).parent().parent().parent().remove();
-        Drupal.behaviors.fieldHandler.condition_count--;
-        Drupal.behaviors.fieldHandler.redo_numbers();
-      });
-      c.find('.form-type-select label').append(cross);
+          console.log(family);
+          return false;
+        });
 
-      item.appendTo($('#new-conditions-container'));
-    },
+        $('.add-master').unbind('click');
+        $('.add-master').click(function() {
+          var type = $(this).attr('data-type');
+          var nid = ++data_id;
 
-    redo_numbers: function() {
-      var i = 1;
-      $('#new-conditions-container .condition-number').each(function() {
-        i++;
-        $(this).text('#' + i);
-      });
+          if (typeof family[type][nid] == 'undefined') {
+            family[type][nid] = { 'or': [], 'and': [] };
+          }
+
+          item = i.replace('#LABEL', type);
+          var $append = $(item).attr('data-id', nid)
+          $append.find('img').remove();
+          $append.appendTo($('#conditions-container'));
+          reload_clicks();
+          delete item;
+        });
+
+        $('.delete').unbind('click');
+        $('.delete').click(function() {
+          $(this).parent().parent().fadeOut('fast');
+        });
+      };
+
+      reload_clicks();
     }
   };
 })(jQuery);

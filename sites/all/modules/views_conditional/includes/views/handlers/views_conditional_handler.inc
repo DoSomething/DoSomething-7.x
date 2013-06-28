@@ -54,20 +54,38 @@ class ViewsConditionalHandler extends views_handler_field {
     // We only use fields up to (not including) this one.
     unset($fields[$this->options['id']]);
 
-    #if (!empty($this->options['if'])) {
-    #  echo '<pre>', print_r($this->options), '</pre>'; exit;
-    #}
+    $form['condition_title'] = array(
+      '#markup' => t('If these conditions pass...'),
+      '#prefix' => '<h3>',
+      '#suffix' => '</h3>',
+    );
 
+    $form['list'] = array(
+      '#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a>
+<ul id="conditions-container">
+  <li data-id="1">
+    <div class="form-item form-type-select form-item-field">
+      <select class="first-field form-select" id="edit-options-if" name="options[if]"><option value="0">- no field selected -</option><option value="field_picture">Field: Picture</option><option value="field_embedded_video">Content: Video</option><option value="views_ifempty">Views If Empty: Views If Empty</option><option value="title">Content: Title</option><option value="created">Content: Post date</option><option value="field_subtitle">Content: Subtitle</option><option value="body_1">Campaign Blog Text</option><option value="views_ifempty_1">Views If Empty: Views If Empty</option><option value="body">Content: Body</option></select>
+    </div>
+    <div class="form-item form-type-select form-item-options-conditions-condition first">
+      <select id="edit-options-conditions-condition" name="options[conditions][condition]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select>
+    </div>
+    <div class="form-item form-type-textfield form-item-options-conditions-equalto">
+      <input type="text" id="edit-options-conditions-equalto" name="options[conditions][equalto]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed">
+    </div>
+    <div id="options" class="first">
+      <a href="#" class="add-and">Add "And"</a> |
+      <a href="#" class="add-or">Add "Or"</a>
+    </div>
+  </li>
+</ul>');
+/*
     $form['if'] = array(
       '#type' => 'select',
       '#title' => t('If this field...'),
       '#options' => $fields,
       '#default_value' => $this->options['if'],
       '#attributes' => array('class' => array('first-field')),
-    );
-
-    $form['extends'] = array(
-      '#markup' => l(t('Add another field'), '', array('fragment' => ' ', 'attributes' => array('id' => 'field-add-and'))),
     );
 
     $form['conditions'] = array(
@@ -148,7 +166,7 @@ class ViewsConditionalHandler extends views_handler_field {
       '#title' => t('Otherwise, output this...'),
       '#description' => t('Input what should be output if the above conditions do NOT evaluate to true.'),
       '#default_value' => $this->options['or'],
-    );
+    );*/
 
     $form['replacements'] = array(
       '#type' => 'fieldset',
