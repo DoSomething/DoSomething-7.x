@@ -21,9 +21,8 @@
 
 function dosomething_mandrill_webform_submission_insert($node, $submission) {
   
-  // Only respond to Campaign Sign Ups (contact form - yep, not a clear name) or Campaign Report Back submissions
-  // Note that the bulk of the Campaign Sign Ups are done as anonymous (uid: 0)
-  if (($node->type == 'campaign_report_back') || ($node->type == 'campaign_contact_form')) {
+  // Campaign Report Back submissions
+  if ($node->type == 'campaign_report_back') {
     
     // Must be 'dosomething_mandrill' to trigger ManndrillMailSystem use based on entries in the MailSystem module
     // /admin/config/system/mailsystem
