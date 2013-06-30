@@ -295,7 +295,7 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
   
   // Run job every interval (week by default)
   $interval = variable_get('dosomething_sms_cron_interval', 60 * 60 * 24 * 7);
-  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME);
+  $next_run = variable_get('dosomething_sms_cron_next_execution', REQUEST_TIME + $interval);
 
   // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
   if ((($enabled) && (REQUEST_TIME >= $next_run)) || $manual_test) {
@@ -330,16 +330,16 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
     }
 		
 		// Delete entries that are older than dosomething_sms_interval)
-		if (!$manual_test) {
-			$number_deleted = db_delete('conductor_instance_pointer')
+	if (!$manual_test) {
+			$number_deleted = (string) db_delete('conductor_instance_pointer')
                         ->condition('timestamp', date('Y-m-d g:i:s', REQUEST_TIME - $interval), '<=')
                         ->execute();
-		}
-		else {							
+	}
+	else {							
 			$query = db_query('SELECT workflow_name FROM {conductor_instance_pointer} WHERE timestamp <= :target_date',
 												array(':target_date' => date('Y-m-d g:i:s', REQUEST_TIME - $interval)));			
-      $number_deleted = $query->rowCount();
-		}
+      $number_deleted = (string) $query->rowCount();
+	}
     
     $human_date = date('l - j F Y - g:i:s');
 
