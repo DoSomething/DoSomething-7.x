@@ -1,8 +1,9 @@
 <?php
 
+/**
+ * Implements hook_preprocess_html()).
+ */
 function doit_preprocess_html(&$variables, $hook) {
-  // dsm($hook);
-  // dsm($variables);
   $theme_path = drupal_get_path('theme', 'doit');
   $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
   // mootools causes AJAX conflicts. Selectivizr works without it.
@@ -14,10 +15,16 @@ function doit_preprocess_html(&$variables, $hook) {
   // HTML5 Shiv
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
-
+  // Load user-registration html template if this is a user-registration template page:
+  if (doit_is_user_registration_template_page()) {
+    $variables['theme_hook_suggestions'][] = 'html__user__registration';
+  }
   drupal_alter('html_templates', $variables);
 }
 
+/**
+ * Implements hook_preprocess_page().
+ */
 function doit_preprocess_page(&$variables) {
   $theme_path = drupal_get_path('theme', 'doit');
   if (!isset($variables['secondary_links_theme_function'])) {
@@ -113,6 +120,39 @@ function doit_preprocess_page(&$variables) {
 
   }
 
+  // Load user-registration page templates and gate values if this is a user-registration template page:
+  if (doit_is_user_registration_template_page()) {
+    // Use user-registration page template:
+    $variables['theme_hook_suggestions'][] = 'page__user__registration';
+    // Only display gate variables if our destination is not "The Hunt":
+    $destination = drupal_get_destination();
+    // If this is the Gate for the Hunt, add specific CSS/JS files:
+    if ($destination['destination'] == 'node/' . variable_get('hunt_campaign_nid', 729679)) {
+      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
+      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
+    }
+    // If this is the Gate for cleanup, add specific CSS/JS:
+    elseif ($destination['destination'] == 'node/' . variable_get('beta_campaign_nid', 724796)) {
+      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
+      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
+    }
+    // Else Use gate values from DoSomething Login config page:
+    else {
+      // Use default user-registration page specfic CSS/JS files:
+      drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
+      drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');      
+      // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
+      $page_title = variable_get('dosomething_login_gate_page_title', NULL);
+      if ($page_title && current_path() == 'user/registration') {
+        drupal_set_title(variable_get('dosomething_login_gate_page_title'));
+      }
+      $variables['title'] = variable_get('dosomething_login_gate_headline');
+      $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
+      $variables['page']['gate_sidebar_headline'] = variable_get('dosomething_login_gate_sidebar_headline');
+      $variables['page']['gate_sidebar_description'] = variable_get('dosomething_login_gate_sidebar_description');
+      $variables['page']['gate_sidebar_footer'] = variable_get('dosomething_login_gate_sidebar_footer');
+    }    
+  }
 }
 
 /**
@@ -671,4 +711,18 @@ function doit_search_api_page_result(array $variables) {
   }
 
   return $output;
+}
+
+/**
+ * Returns TRUE if current path is a page that should use the user-registration template.
+ */
+function doit_is_user_registration_template_page() {
+  if (user_is_logged_in()) {
+    return FALSE;
+  }
+  $current_path = current_path();
+  return $current_path == 'user/registration' || 
+    $current_path == 'user/password' || 
+    $current_path == 'user' || 
+    $current_path == 'user/login';
 }

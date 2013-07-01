@@ -92,47 +92,8 @@ function dosomething_login_page_user_registration() {
   if (!empty($_GET['destination']) && drupal_valid_path($_GET['destination']) && user_is_logged_in()) {
     drupal_goto($_GET['destination']);
   }
-
   // Otherwise, show the registration form.
-  // @todo: JS file needs to be added to make the login link a modal.
   return drupal_get_form('dosomething_login_register_popup_form', FALSE);
-}
-
-/**
- * Implements hook_preprocess_page().
- */
-function dosomething_login_preprocess_page(&$variables) {
-  // Handle variables for the user/registration page.
-  if (current_path() == 'user/registration' && !user_is_logged_in()) {
-    // Only display gate variables if our destination is not "The Hunt":
-    $destination = drupal_get_destination();
-    // If this is the Gate for the Hunt, add specific CSS/JS files:
-    if ($destination['destination'] == 'node/' . variable_get('hunt_campaign_nid', 729679)) {
-      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
-      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
-    }
-    // If this is the Gate for cleanup, add specific CSS/JS:
-    elseif ($destination['destination'] == 'node/' . variable_get('beta_campaign_nid', 724796)) {
-      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
-      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
-    }
-    // Else Use gate values from DoSomething Login config page:
-    else {
-      // Use default user-registration page specfic CSS/JS files:
-      drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
-      drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');      
-      // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
-      $page_title = variable_get('dosomething_login_gate_page_title', NULL);
-      if ($page_title) {
-        drupal_set_title(variable_get('dosomething_login_gate_page_title'));
-      }
-      $variables['title'] = variable_get('dosomething_login_gate_headline');
-      $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
-      $variables['page']['gate_sidebar_headline'] = variable_get('dosomething_login_gate_sidebar_headline');
-      $variables['page']['gate_sidebar_description'] = variable_get('dosomething_login_gate_sidebar_description');
-      $variables['page']['gate_sidebar_footer'] = variable_get('dosomething_login_gate_sidebar_footer');
-    }
-  }
 }
 
 /**
