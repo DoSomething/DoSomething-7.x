@@ -21,9 +21,8 @@ function dosomething_login_menu() {
   $items['user/registration'] = array(
     'title' => 'Registration',
     'description' => 'General user registration.',
-    'page callback' => 'dosomething_login_user_registration_page',
+    'page callback' => 'dosomething_login_page_user_registration',
     'access callback' => 'dosomething_login_user_register_access',
-    'file' => 'dosomething_login.pages.inc',
   );
   $items['user/registration/ajax'] = array(
     'page callback' => 'dosomething_login_ajax',
@@ -97,6 +96,43 @@ function dosomething_login_page_user_registration() {
   // Otherwise, show the registration form.
   // @todo: JS file needs to be added to make the login link a modal.
   return drupal_get_form('dosomething_login_register_popup_form', FALSE);
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function dosomething_login_preprocess_page(&$variables) {
+  // Handle variables for the user/registration page.
+  if (current_path() == 'user/registration' && !user_is_logged_in()) {
+    // Only display gate variables if our destination is not "The Hunt":
+    $destination = drupal_get_destination();
+    // If this is the Gate for the Hunt, add specific CSS/JS files:
+    if ($destination['destination'] == 'node/' . variable_get('hunt_campaign_nid', 729679)) {
+      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
+      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
+    }
+    // If this is the Gate for cleanup, add specific CSS/JS:
+    elseif ($destination['destination'] == 'node/' . variable_get('beta_campaign_nid', 724796)) {
+      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
+      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
+    }
+    // Else Use gate values from DoSomething Login config page:
+    else {
+      // Use default user-registration page specfic CSS/JS files:
+      drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
+      drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');      
+      // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
+      $page_title = variable_get('dosomething_login_gate_page_title', NULL);
+      if ($page_title) {
+        drupal_set_title(variable_get('dosomething_login_gate_page_title'));
+      }
+      $variables['title'] = variable_get('dosomething_login_gate_headline');
+      $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
+      $variables['page']['gate_sidebar_headline'] = variable_get('dosomething_login_gate_sidebar_headline');
+      $variables['page']['gate_sidebar_description'] = variable_get('dosomething_login_gate_sidebar_description');
+      $variables['page']['gate_sidebar_footer'] = variable_get('dosomething_login_gate_sidebar_footer');
+    }
+  }
 }
 
 /**
@@ -265,11 +301,6 @@ function dosomething_login_theme($existing, $type, $theme, $path) {
     'dosomething_login_fboauth_user_form_connect' => array(
       'variables' => array(),
     ),
-    'dosomething_login_gate' => array(
-      'path' => $path . '/templates',
-      'variables' => array('node' => NULL, 'form' => NULL), // This is the list of the variables that will be passed to the template file. 
-      'template' => 'dosomething_login_gate', // Change this to the template file name.
-    ),
   );
 }
 
@@ -362,26 +393,6 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
     array_unshift($form['#validate'],'dosomething_login_user_login_validate');
     $form['name']['#title'] = t('Email, Username or Cell Number');
     $form['name']['#description'] = t('Enter your email, username or cell phone number.');
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter()
- */
-function dosomething_login_form_dosomething_login_register_popup_form_alter(&$form, &$form_state, $form_id) {
-  // Used to add css to beta campaign "project clean up"
-  // No user state check is occurring as this form is only being called for anonymous users
-  $path = urldecode(request_uri());
-  if ($path == '/user/registration?destination=node/' . variable_get('beta_campaign_nid', 724796)) {
-    // add custom JS and CSS files to this instance of the login/reg form only
-    drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
-    drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
-  }
-  
-  if ($path == '/user/registration?destination=node/' . variable_get('hunt_campaign_nid', 729679)) {
-    // add custom JS and CSS files to this instance of the login/reg form only
-    drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
-    drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
   }
 }
 

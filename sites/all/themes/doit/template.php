@@ -78,9 +78,10 @@ function doit_preprocess_page(&$variables) {
   }
 
   // gate beta campaign page
+  // @todo: move this out of template.php and into dosomething_campaign_redirector logic.
   $beta_campaign = variable_get('beta_campaign_nid', 724796);
-  if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $beta_campaign))) {
-    drupal_goto('user/registration?destination=node/' . $beta_campaign);
+  if (!user_is_logged_in() && current_path() == 'node/' . $beta_campaign) {
+    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $beta_campaign)));
   }
 
   // Load Webfonts specific to the page
