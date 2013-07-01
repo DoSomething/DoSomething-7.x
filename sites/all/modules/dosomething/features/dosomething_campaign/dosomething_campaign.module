@@ -127,18 +127,8 @@ function dosomething_campaign_signup($account, $nid) {
       $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
       watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
     }
-    // Mandrill transactional for The HUNT:
-    $to = $email;
-    $language = language_default();
-    $params = array();
-    $from = NULL;
-    $message = drupal_mail('dosomething_mandrill', 'hunt13', $to, $language, $params, $from, TRUE);
-    
-    // Log results:
-    if ($message['result'] == FALSE) {
-      watchdog('dosomething_campaign', 'Failed to send Mandrill transactional message to %to via The Hunt Signup.',
-                    array('%to' => $to), WATCHDOG_ERROR);
-    }
+    // Mandrill transactional for The HUNT
+    dosomething_mandrill_dispatch($email, 'hunt13');
   }
 }
 
