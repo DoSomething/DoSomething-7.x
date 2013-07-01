@@ -104,7 +104,13 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
 
     // Send response to user about successful submission, if set. @submission_count returns the number of submissions this user has made.
     if (!empty($this->success_response)) {
-      $state->setContext('sms_response', t($this->success_response, array('@submission_count' => $num_submissions)));
+      if (is_numeric($this->success_response)) {
+        dosomething_general_mobile_commons_subscribe($mobile, $this->success_response);
+        $state->setContext('ignore_no_response_error', TRUE);
+      }
+      else {
+        $state->setContext('sms_response', t($this->success_response, array('@submission_count' => $num_submissions)));
+      }
     }
 
     //  Opt users out of Mobile Commons campaigns, if set.

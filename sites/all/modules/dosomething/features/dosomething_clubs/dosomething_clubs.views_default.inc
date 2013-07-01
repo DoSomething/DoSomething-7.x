@@ -305,7 +305,7 @@ function dosomething_clubs_views_default_views() {
   $handler->display->display_options['style_options']['easing'] = '';
   $handler->display->display_options['style_options']['vertical'] = 0;
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Do you have any new photos to add? */
+  /* Field: Content: Club Photo Gallery */
   $handler->display->display_options['fields']['field_project_photo']['id'] = 'field_project_photo';
   $handler->display->display_options['fields']['field_project_photo']['table'] = 'field_data_field_project_photo';
   $handler->display->display_options['fields']['field_project_photo']['field'] = 'field_project_photo';
