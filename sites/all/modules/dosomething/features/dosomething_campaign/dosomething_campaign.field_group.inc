@@ -21,7 +21,7 @@ function dosomething_campaign_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Campaign Gate',
-    'weight' => '22',
+    'weight' => '23',
     'children' => array(
       0 => 'field_has_gate',
       1 => 'field_is_gate_login_signup',

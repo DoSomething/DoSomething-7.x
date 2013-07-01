@@ -53,6 +53,7 @@ features[field][] = node-campaign-field_gate_sidebar_headline
 features[field][] = node-campaign-field_has_gate
 features[field][] = node-campaign-field_is_gate_login_signup
 features[field][] = node-campaign-field_mailchimp_group_id
+features[field][] = node-campaign-field_mandrill_key
 features[field][] = node-campaign-field_mc_optin
 features[field][] = node-campaign-field_organization_code
 features[field][] = node-campaign-field_report_back_html
