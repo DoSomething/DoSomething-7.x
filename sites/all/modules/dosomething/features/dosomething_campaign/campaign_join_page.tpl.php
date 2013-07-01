@@ -5,14 +5,25 @@
     <meta charset=utf-8 />
     <title>Sign Up for the Campaign!</title>
 
+    <link rel="stylesheet" href="https://c308566.ssl.cf1.rackcdn.com/din-511.css" media="all" />
+
     <style>
 
       body {
         background: #fff;
+        font-family: din-web-reg;
       }
 
       form {
         margin: 0 0 5px 0;
+      }
+
+      h3 {
+        font-size: 36px;
+      }
+
+      p {
+        font-size: 32px;
       }
 
       input {
@@ -24,7 +35,7 @@
         color: #1e1d1c;
         text-transform: uppercase;
         font-weight: bolder;
-        font-size: 16px;
+        font-size: 24px;
         border: 1px solid #FFCB15;
         background: linear-gradient(#FFCB15, #FEB800) repeat scroll 0 0 #FFCB15;
         -webkit-border-radius: 2px;
@@ -50,8 +61,8 @@
 
       .container {
         width: 550px;
-        margin: 5% auto;
-        padding: 25px;
+        margin: 2% auto;
+        padding: 30px;
         color: #fff;
         background: #302d2d;
         border: 1px solid #444;
@@ -67,6 +78,14 @@
       }
 
       @media only screen and (max-width: 650px) {
+
+        h3 {
+          font-size: 24px;
+        }
+
+        p {
+          font-size: 18px;
+        }
 
         .container, .logo {
           width: 89.5%;
