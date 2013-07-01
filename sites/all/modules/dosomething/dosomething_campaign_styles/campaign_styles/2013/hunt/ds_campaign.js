@@ -19,7 +19,7 @@
           $(this).addClass('activeFAQ');
           $(this).siblings('h4').removeClass('activeFAQ');
           $(this).next('div').slideToggle();
-          $(this).siblings().next('div').slideUp();      
+          $(this).siblings().next('div').slideUp();
         }
       });
 
@@ -29,10 +29,13 @@
       var allAnchors = navAnchors + ', ' + contentAnchors;
 
       $(allAnchors).click(function(event){
-        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
+        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
         return false;
       });
 
+      //
+      // The next 50 lines of this file hurt my feelings..
+      //
 
       // A quick and dirty (AKA - way too long and redundant script) for report-back select to textarea connection
       jQuery('.webform-component-textarea').css('display','none');
@@ -146,7 +149,7 @@
         window.location.href = '/hunt';
       });
 
-         
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
