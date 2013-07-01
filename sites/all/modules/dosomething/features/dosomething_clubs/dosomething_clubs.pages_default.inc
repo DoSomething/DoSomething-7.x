@@ -628,7 +628,7 @@ node/*/picks/*',
     $pane->panel = 'top';
     $pane->type = 'clubs_progress';
     $pane->subtype = 'clubs_progress';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
