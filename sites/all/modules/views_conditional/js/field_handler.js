@@ -5,9 +5,10 @@
     attach: function() {
       var family = { 'and': { 1: { 'and': [], 'or': [] } }, 'or': {} };
       var select_field = $('.form-item-options-hidden-field-select').clone();
-      select_field.find('select').attr('id', '');
+      select_field.find('select').attr('id', '').attr('name', 'options[if][#STYPE][#TYPE]#PID[]');
       var select = select_field.html();
-      var i = '<li><span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt="" /> #LABEL</span><div class="form-item form-type-select form-item-field">#SELECT</div><div class="form-item form-type-select form-item-options-conditions-condition"><select id="edit-options-conditions-condition" name="options[conditions][condition]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select></div><div class="form-item form-type-textfield form-item-options-conditions-equalto"><input type="text" id="edit-options-conditions-equalto" name="options[conditions][equalto]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed"></div><div id="options"><a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span> <a href="#" class="add-sub" data-type="or">Add "Or"</a> <span class="divider">|</span> <a href="#" class="delete">Remove this</a></div></li>';
+      var i = '<li><span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt="" /> #LABEL</span><div class="form-item form-type-select form-item-field">#SELECT</div><div class="form-item form-type-select form-item-options-conditions-condition"><select id="edit-options-conditions-condition" name="options[conditions][more][#TYPE][condition]#PID[]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select></div><div class="form-item form-type-textfield form-item-options-conditions-equalto"><input type="text" id="edit-options-conditions-equalto" name="options[conditions][more][#TYPE][equalto]#PID[]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed"></div><div id="options"><a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span> <a href="#" class="add-sub" data-type="or">Add "Or"</a> <span class="divider">|</span> <a href="#" class="delete">Remove this</a></div></li>';
+      var mi = '<li><span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt="" /> #LABEL</span><div class="form-item form-type-select form-item-field">#SELECT</div><div class="form-item form-type-select form-item-options-conditions-condition"><select id="edit-options-conditions-condition" name="options[conditions][master][#TYPE][condition]#PID[]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select></div><div class="form-item form-type-textfield form-item-options-conditions-equalto"><input type="text" id="edit-options-conditions-equalto" name="options[conditions][master][#TYPE][equalto]#PID[]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed"></div><div id="options"><a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span> <a href="#" class="add-sub" data-type="or">Add "Or"</a> <span class="divider">|</span> <a href="#" class="delete">Remove this</a></div></li>';
       var data_id = 1;
 
       reload_clicks = function() {
@@ -27,7 +28,7 @@
           if ($(this).parent().parent().find('.sub').length > 0) {
             item = $(i);
             item.find('.divider, .add-sub').remove();
-            item = item[0].outerHTML.replace('#LABEL', type).replace('#SELECT', select);
+            item = item[0].outerHTML.replace(/\#LABEL/g, type).replace(/\#SELECT/g, select).replace(/\#STYPE/g, 'more').replace(/\#TYPE/g, type.toLowerCase()).replace(/\#PID/g, '[' + pid + ']');
 
             $(item).attr('data-id', nid).appendTo($(this).parent().parent().find('.sub').first());
             reload_clicks();
@@ -35,7 +36,7 @@
           else {
             item = $(i);
             item.find('.divider, .add-sub').remove();
-            item = item[0].outerHTML.replace('#LABEL', type).replace('#SELECT', select);
+            item = item[0].outerHTML.replace(/\#LABEL/g, type).replace(/\#SELECT/g, select).replace(/\#STYPE/g, 'more').replace(/\#TYPE/g, type.toLowerCase()).replace(/\#PID/g, '[' + pid + ']');
 
             var list = $('<ul></ul>').addClass('sub');
             $(item).attr('data-id', nid).appendTo(list);
@@ -57,7 +58,7 @@
           }
 
           type = type.charAt(0).toUpperCase() + type.substr(1);
-          item = i.replace('#LABEL', type).replace('#SELECT', select);
+          item = mi.replace(/\#LABEL/g, type).replace(/\#SELECT/g, select).replace(/\#STYPE/g, 'master').replace(/\#TYPE/g, type.toLowerCase()).replace(/\#PID/g, '');
           var $append = $(item).attr('data-id', nid);
           $append.find('img').remove();
           $append.appendTo($('#conditions-container'));

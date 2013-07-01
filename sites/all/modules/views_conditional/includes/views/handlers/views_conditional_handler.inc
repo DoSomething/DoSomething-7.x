@@ -71,13 +71,13 @@ class ViewsConditionalHandler extends views_handler_field {
 <ul id="conditions-container">
   <li data-id="1">
     <div class="form-item form-type-select form-item-field">
-      <select class="first-field form-select" id="edit-options-if" name="options[if]"><option value="0">- no field selected -</option><option value="field_picture">Field: Picture</option><option value="field_embedded_video">Content: Video</option><option value="views_ifempty">Views If Empty: Views If Empty</option><option value="title">Content: Title</option><option value="created">Content: Post date</option><option value="field_subtitle">Content: Subtitle</option><option value="body_1">Campaign Blog Text</option><option value="views_ifempty_1">Views If Empty: Views If Empty</option><option value="body">Content: Body</option></select>
+      <select class="first-field form-select" id="edit-options-if" name="options[if][master][and][]"><option value="0">- no field selected -</option><option value="field_picture">Field: Picture</option><option value="field_embedded_video">Content: Video</option><option value="views_ifempty">Views If Empty: Views If Empty</option><option value="title">Content: Title</option><option value="created">Content: Post date</option><option value="field_subtitle">Content: Subtitle</option><option value="body_1">Campaign Blog Text</option><option value="views_ifempty_1">Views If Empty: Views If Empty</option><option value="body">Content: Body</option></select>
     </div>
     <div class="form-item form-type-select form-item-options-conditions-condition first">
-      <select id="edit-options-conditions-condition" name="options[conditions][condition]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select>
+      <select id="edit-options-conditions-condition" name="options[conditions][master][and][condition][]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select>
     </div>
     <div class="form-item form-type-textfield form-item-options-conditions-equalto">
-      <input type="text" id="edit-options-conditions-equalto" name="options[conditions][equalto]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed">
+      <input type="text" id="edit-options-conditions-equalto" name="options[conditions][master][and][equalto][]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed">
     </div>
     <div id="options" class="first">
       <a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span>
@@ -205,6 +205,7 @@ class ViewsConditionalHandler extends views_handler_field {
    */
   public function options_validate(&$form, &$form_state) {
     $values = &$form_state['input']['options'];
+    echo '<pre>', print_r($values), '</pre>'; exit;
     $eqta = &$values['conditions']['more']['equalto'];
     foreach ($eqta AS $key => $var) {
       if ($key & 1) {
