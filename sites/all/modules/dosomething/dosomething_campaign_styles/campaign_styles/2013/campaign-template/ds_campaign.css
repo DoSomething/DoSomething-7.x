@@ -65,23 +65,22 @@ nav[role="navigation"] {
 
 /* line 52, sass/_drupal.sass */
 header[role="banner"] {
-  width: 960px;
   margin: 0 auto;
   position: relative;
 }
 
-/* line 58, sass/_drupal.sass */
+/* line 57, sass/_drupal.sass */
 #site-name {
   top: -38px;
   left: -94px;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 58, sass/_drupal.sass */
+  /* line 57, sass/_drupal.sass */
   #site-name {
     top: -52px;
     left: 5px;
   }
-  /* line 65, sass/_drupal.sass */
+  /* line 64, sass/_drupal.sass */
   #site-name a {
     width: 60px;
     height: 50px;
@@ -90,7 +89,7 @@ header[role="banner"] {
   }
 }
 
-/* line 72, sass/_drupal.sass */
+/* line 71, sass/_drupal.sass */
 #page .messages {
   background: #86005d;
   border: none;
@@ -101,7 +100,7 @@ header[role="banner"] {
   font-family: din-web-reg;
   margin: 0;
 }
-/* line 81, sass/_drupal.sass */
+/* line 80, sass/_drupal.sass */
 #page .messages .go-button {
   background: #ffcb15;
   font-size: 14px;
@@ -120,20 +119,20 @@ header[role="banner"] {
   border-radius: 3px;
 }
 
-/* line 94, sass/_drupal.sass */
+/* line 93, sass/_drupal.sass */
 .messages .element-invisible {
   display: none;
 }
 
-/* line 98, sass/_drupal.sass */
+/* line 97, sass/_drupal.sass */
 .tabs {
   background: white;
 }
-/* line 100, sass/_drupal.sass */
+/* line 99, sass/_drupal.sass */
 .tabs li {
   display: inline;
 }
-/* line 102, sass/_drupal.sass */
+/* line 101, sass/_drupal.sass */
 .tabs a {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -152,7 +151,7 @@ header[role="banner"] {
   border-radius: 0 2px 2px 0;
 }
 
-/* line 115, sass/_drupal.sass */
+/* line 114, sass/_drupal.sass */
 #main-wrapper div[role="main"] ul.primary {
   height: 50px;
   width: 375px;
@@ -161,23 +160,23 @@ header[role="banner"] {
 }
 
 @media only screen and (max-width: 1139px) {
-  /* line 122, sass/_drupal.sass */
+  /* line 121, sass/_drupal.sass */
   #utility-bar {
     height: 54px;
   }
 }
-/* line 126, sass/_drupal.sass */
+/* line 125, sass/_drupal.sass */
 #utility-bar .container {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
 }
-/* line 130, sass/_drupal.sass */
+/* line 129, sass/_drupal.sass */
 #utility-bar a {
   text-decoration: none;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 130, sass/_drupal.sass */
+  /* line 129, sass/_drupal.sass */
   #utility-bar a {
     font-size: 22px;
     line-height: 2em;
@@ -186,29 +185,29 @@ header[role="banner"] {
 }
 
 @media only screen and (max-width: 1139px) {
-  /* line 140, sass/_drupal.sass */
+  /* line 139, sass/_drupal.sass */
   .utility-items.search {
     display: none !important;
   }
 }
 
-/* line 144, sass/_drupal.sass */
+/* line 143, sass/_drupal.sass */
 #help-center {
   margin: 3px 15px 3px 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 144, sass/_drupal.sass */
+  /* line 143, sass/_drupal.sass */
   #help-center {
     display: none !important;
   }
 }
 
-/* line 151, sass/_drupal.sass */
+/* line 150, sass/_drupal.sass */
 #edit-submitted-field-geocode-data {
   display: none;
 }
 
-/* line 156, sass/_drupal.sass */
+/* line 155, sass/_drupal.sass */
 .region-sidebar-first,
 .pane-title,
 #block-menu-menu-footer,
@@ -222,14 +221,14 @@ header[role="banner"] {
   display: none;
 }
 
-/* line 169, sass/_drupal.sass */
+/* line 168, sass/_drupal.sass */
 #cmp {
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* line 175, sass/_drupal.sass */
+/* line 174, sass/_drupal.sass */
 .view-campaign-gallery #slideshow {
   margin: 0 auto;
 }
