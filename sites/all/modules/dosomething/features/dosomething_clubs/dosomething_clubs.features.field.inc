@@ -2886,7 +2886,7 @@ sports|Sports Equipment - our fall sports equipment drive',
       'entity_types' => array(),
       'field_name' => 'field_send_goodies',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
