@@ -134,11 +134,6 @@
 
       });
 
-      // Confirmation message post sign-up
-      if ( document.location.search.slice(1) == 'success' ) {
-        $('p.headsup').html('<span>YOU\'RE SIGNED UP!</span><br><p>We\'ll send you the first action on July 16th</p>');
-      }
-
       // #header section Facebook fun
       var fb_share_img = 'http://www.dosomething.org/files/campaigns/hunt13/Campaigns_Landing-15.png';
       var fb_title = 'The Hunt';
