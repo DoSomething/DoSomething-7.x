@@ -438,7 +438,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 30,
+          'weight' => '30',
         ),
         'search_index' => array(
           'label' => 'above',
@@ -1193,7 +1193,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 25,
+          'weight' => '25',
         ),
         'search_index' => array(
           'label' => 'above',
@@ -1717,7 +1717,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 31,
+          'weight' => '31',
         ),
         'search_index' => array(
           'label' => 'above',
@@ -1853,6 +1853,95 @@ sports|Sports Equipment - our fall sports equipment drive',
         'weight' => '6',
       ),
       'widget_type' => 'text_textfield',
+    ),
+  );
+
+  // Exported field: 'node-club-field_mailchimp_group_id'.
+  $fields['node-club-field_mailchimp_group_id'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mailchimp_group_id',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'club',
+      'default_value' => array(
+        0 => array(
+          'value' => 'Clubs2012',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '16',
+        ),
+        'search_index' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'search_result' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mailchimp_group_id',
+      'label' => 'Mailchimp Interest Group',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '16',
+      ),
     ),
   );
 
@@ -2273,7 +2362,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 28,
+          'weight' => '28',
         ),
         'search_index' => array(
           'label' => 'above',
@@ -2746,7 +2835,7 @@ sports|Sports Equipment - our fall sports equipment drive',
             'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => 27,
+          'weight' => '27',
         ),
         'search_index' => array(
           'label' => 'above',
@@ -2833,7 +2922,7 @@ sports|Sports Equipment - our fall sports equipment drive',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 29,
+          'weight' => '29',
         ),
         'search_index' => array(
           'label' => 'above',
@@ -3282,6 +3371,7 @@ sports|Sports Equipment - our fall sports equipment drive',
   t('Last Name');
   t('Link to');
   t('List the email addresses of people you\'d like to invite to your club.');
+  t('Mailchimp Interest Group');
   t('Mailings');
   t('My Do Something Club is going to work on');
   t('OR My club is not associated with a school (this will delete your school selection)');
