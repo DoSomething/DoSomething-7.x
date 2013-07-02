@@ -28,7 +28,7 @@ function hunt_report_back_menu() {
     'type' => MENU_CALLBACK,
     'file' => 'hunt_report_back.admin.inc',
   );
-  $items['hunt/challenges'] = array(
+  $items['hunt/challenges/2013'] = array(
     'title' => t('Tell us About It'),
     'description' => t('Choose a day to tell us about and upload your pictures below.'),
     'page callback' => 'drupal_get_form',
