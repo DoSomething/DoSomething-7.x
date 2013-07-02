@@ -80,3 +80,14 @@ function dosomething_campaign_update_7001() {
 function dosomething_campaign_update_7002() {
   drupal_install_schema('dosomething_campaign');
 }
+
+/**
+ * Populates signup values for Kiva campaign node.
+ */
+function dosomething_campaign_update_7003() {
+  $node = node_load(729307);
+  $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] = 'Microfinance2013';
+  $node->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'] = 159279;
+  $node->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'] = 159283;
+  node_save($node);
+}
