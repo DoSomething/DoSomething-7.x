@@ -68,7 +68,9 @@ class ViewsConditionalHandler extends views_handler_field {
 
     $fieldlist = '';
     if (!empty($this->options['conditions'])) {
+      $last_elm = 0;
       foreach ($this->options['conditions'] AS $key => $condition) {
+        $last_elm = $key;
         $fieldlist .= '
         <li data-id="' . $key . '" data-type="' . $condition['type'] . '">
           <input type="hidden" name="options[conditions][' . $key . '][type]" value="' . $condition['type'] . '" />
@@ -100,6 +102,7 @@ class ViewsConditionalHandler extends views_handler_field {
         if (!empty($condition['children']) && is_array($condition['children'])) {
           $fieldlist .= '<ul class="sub">';
           foreach ($condition['children'] AS $ck => $cc) {
+            $last_elm = $ck;
             $fieldlist .= '
             <li data-id="' . $ck . '">
               <span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt=""> ' . ucfirst($cc['type']) . '</span>
@@ -133,13 +136,10 @@ class ViewsConditionalHandler extends views_handler_field {
         }
         $fieldlist .= '</li>';
       }
+      $form['full_count'] = array('#markup' => '<script> var last_elm = ' . $last_elm . '; </script>');
     }
 
-    $form['list'] = array(
-      '#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a>
-<ul id="conditions-container">
-  ' . $fieldlist . '
-</ul>');
+    $form['list'] = array('#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a><ul id="conditions-container">' . $fieldlist . '</ul>');
 
     $form['then'] = array(
       '#type' => 'textfield',
@@ -190,13 +190,13 @@ class ViewsConditionalHandler extends views_handler_field {
 
     // Clean up false values.
     foreach ($conditions AS $key => $condition) {
-      if ($condition['field'] == 0 && $condition['equals'] == '') {
+      if ($condition['field'] == "0" && $condition['equals'] == '') {
         unset($conditions[$key]);
       }
 
       if (!empty($condition['children']) && is_array($condition['children'])) {
         foreach ($condition['children'] as $k => $child) {
-          if ($child['field'] == 0 && $child['equals'] == '') {
+          if ($child['field'] == "0" && $child['equals'] == '') {
             unset($conditions[$key]['children'][$k]);
           }
         }
@@ -359,12 +359,17 @@ class ViewsConditionalHandler extends views_handler_field {
       }
 
       if (!empty($condition['children'])) {
-        $wins += $this->check_conditions($condition['children'], true);
+        $ret = $this->check_conditions($condition['children'], true);
+        $wins += $ret['wins'];
+        $needed_wins += $ret['needed_wins'];
       }
     }
 
     if ($children) {
-      return $wins;
+      return array(
+        'wins' => $wins,
+        'needed_wins' => $needed_wins
+      );
     }
     else {
       return ($wins >= $needed_wins);
