@@ -20,6 +20,39 @@ function doit_preprocess_html(&$variables, $hook) {
     $variables['theme_hook_suggestions'][] = 'html__user__registration';
   }
   drupal_alter('html_templates', $variables);
+
+  /*
+   * Remove all global stylesheets from user/registration pages.
+   */
+  if (arg(0) == 'user' && (in_array(arg(1), array('registration', 'login'))) ) {
+    $css = drupal_add_css();
+    unset(
+      $css['sites/all/themes/doit/css/style.css'],
+      $css['sites/all/themes/doit/css/tweetbutton.css'],
+      $css['sites/all/themes/doit/css/views.css'],
+      $css['sites/all/modules/chartbeat/chartbeat.css'],
+      $css['public://css_injector/css_injector_6.css'],
+      $css['sites/all/modules/ctools/css/ctools.css'],
+      $css['modules/system/system.base.css'],
+      $css['modules/system/system.menus.css'],
+      $css['modules/system/system.messages.css'],
+      $css['modules/system/system.theme.css'],
+      $css['sites/all/modules/date/date_api/date.css'],
+      $css['sites/all/modules/date/date_popup/themes/datepicker.1.7.css'],
+      $css['modules/field/theme/field.css'],
+      $css['modules/node/node.css'],
+      $css['modules/poll/poll.css'],
+      $css['modules/search/search.css'],
+      $css['modules/user/user.css'],
+      $css['sites/all/modules/views/css/views.css'],
+      $css['sites/all/modules/views_slideshow/views_slideshow.css'],
+      $css['sites/all/modules/panels/css/panels.css'],
+      $css['sites/all/modules/dosomething/dosomething_blocks/css/twitter-widget.css']
+    );
+    $variables['user_styles'] = drupal_get_css($css);
+  }
+   //https://c308566.ssl.cf1.rackcdn.com/din-511.css]
+   //sites/all/themes/doit/css/user-registration.css]
 }
 
 /**
