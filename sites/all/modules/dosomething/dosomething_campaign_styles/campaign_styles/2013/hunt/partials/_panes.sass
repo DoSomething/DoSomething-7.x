@@ -101,7 +101,7 @@
     right: 12px
     color: white
     font-size: 1.3em
-    padding: 0     
+    padding: 0
   .pane-campaign-signed
     h2
       text-align: center
@@ -112,12 +112,12 @@
     .action-now
       margin: 0 auto
       display: inline-block
-      text-align: center         
+      text-align: center
       img
         margin: 0em 0.8em 0 0
         float: left
       .go-button
-        margin-top: 0.1em 
+        margin-top: 0.1em
         float: left
         font-size: 1.8em
   .header-social
@@ -207,11 +207,11 @@
 //  #info
 //      //
 .section#info
-  padding: 2% 0
+  padding: 2% 6%
 #info
   h3, ul, p
     text-align: left
-    margin: 0 6% 1em
+    margin: 0 0 1em
     clear: both
   hr
     border-top: none
@@ -220,16 +220,28 @@
     border-bottom: 1px solid #C1C1C1
   .sub
     text-align: center
-  h3
+  h3, h4
     background: $thirdColor
     color: $secondaryColor
     font-style: italic
     display: inline-block
     float: left
+    margin: 0 0 0.5em 0
     padding: 0.25em 0.75em 0
     font-size: 1.8em
     font-weight: 600
-    margin: 0 6% 0.5em
+  h4
+    padding: 0.3em 0 0.2em 0.4em
+    cursor: pointer
+    font-size: 1.4em
+    font-weight: 400
+    width: 100%
+    &:hover
+      color: lighten($secondaryColor, 10)
+  h4.unavailable
+    background: #eee
+    color: #fff
+    cursor: default
   ul
     margin-bottom: 0
   li
@@ -237,6 +249,50 @@
     font-weight: 500
     margin-bottom: 0.4em
 
+#challenges
+  text-align: left
+  h4, div.content
+    clear: both
+  div.content
+    display: none
+    float: left
+  div.copy
+    float: right
+    width: 68%
+  img
+    display: block
+    float: left
+    width: 30%
+  ul
+    margin: 0 0 1em 0
+  li
+    font-weight: 400
+    font-size: 1.1em
+    margin: 0 0 0 1em
+    padding: 0 0 0 0.5em
+    list-style: disc
+  span
+    text-transform: uppercase
+    color: $thirdColor
+    font-style: italic
+    font-weight: 500
+    font-size: 1.2em
+    padding: 0.5em 0
+    display: block
+
+  .submit-challenge
+    margin: 0 0 1em 0
+    span
+      display: inline
+      color: $offBlack
+      font-weight: 600
+      font-size: 1.4em
+
+    .go-button
+      margin: 0 0 0 1em
+      font-size: 1.6em
+      padding: 0.5em 1em 1.4em 1em
+      color: $offBlack
 
 //      //
 //  #impact     - gallery -
@@ -336,7 +392,7 @@
     text-decoration: none
     background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
     background-repeat: no-repeat
-    background-position-y: 0.5em
+    background-position: 0 8px
   hr
     border-top: none
     border-left: none

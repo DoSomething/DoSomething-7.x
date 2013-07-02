@@ -23,6 +23,33 @@
         }
       });
 
+      // Toggle the daily challenges
+      challenges_toggle = function(question, response) {
+
+        var $question = $('#info ' + question);
+        var $question_active = $('#info ' + question + '.active');
+
+        $question.next(response).hide();
+        $question_active.next(response).show();
+
+        $question.click(function() {
+          $this = $(this);
+          if( !$this.hasClass('active') ) {
+            $this.addClass('active');
+            $this.siblings(question).removeClass('active');
+            $this.next(response).slideToggle();
+            $this.siblings().next(response).slideUp();
+          }
+          else {
+            // do nothing!
+          }
+        });
+
+      }
+      challenges_toggle('h4.available', 'div.content');
+
+      $('#challenges h4.today').next('div.content').show();
+
       // animation for a.jump_scroll
       var contentAnchors = 'a.jump_scroll';
       var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
@@ -148,7 +175,6 @@
       }, function(response){
         window.location.href = '/hunt';
       });
-
 
     } // end attach: function
   }; // end Drupal.behaviors

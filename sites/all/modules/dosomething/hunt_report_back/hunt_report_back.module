@@ -1,0 +1,125 @@
+<?php
+/**
+ * @file
+ * Functionality for Hunt Report Back
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function hunt_report_back_permission() {
+  return array(
+    'manage hunt report back settings' => array(
+      'title' => t('Manage Hunt Settings'),
+      'description' => t('Manage the settings for the Hunt campaign.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function hunt_report_back_menu() {
+  $items['admin/config/campaigns/hunt'] = array(
+    'title' => t('Hunt: Settings'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hunt_report_back_settings'),
+    'access arguments' => array('manage hunt report back settings'),
+    'type' => MENU_CALLBACK,
+    'file' => 'hunt_report_back.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function hunt_report_back_block_info() {
+  $blocks['hunt_report_back'] = array(
+    'info' => t('Hunt Report Back'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function hunt_report_back_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'hunt_report_back':
+      $block['subject'] = t('Hunt Report Back');
+      $block['content'] = drupal_get_form('hunt_report_back_form');
+      break;
+    
+  }
+  return $block;
+}
+
+/**
+ * The report back form
+ */
+function hunt_report_back_form($form, &$form_state) {
+
+  $challenge_limit = variable_get('hunt_report_back_challenge_limit', 11);
+
+  $form['challenges'] = array(
+    '#type' => 'container',
+    '#attributes' => array('id' => 'challenges'),
+  );
+
+  for($i=1; $i<=$challenge_limit; $i++) {
+    $challenge = 'hunt_report_back_challenge_' . $i;
+
+    $name = variable_get($challenge . '_name', '');
+    $form['challenges'][$challenge][$challenge . '_report_back'] = array(
+      '#type' => 'fieldset',
+      '#attributes' => array('id' => $challenge . '_report_back' ),
+      '#title' => t('Day !day: !name', array('!day' => $i, '!name' => $name)),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE
+    );
+
+    $question = variable_get($challenge . '_question' , 'Tell us about the message you shared');
+    $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_response'] = array(
+      '#type' => 'textarea',
+      '#prefix' => '<h3>' . t('Question of the Day') . '</h3>',
+      '#title' => t('!message', array('!message' => $question)),
+      //'#default_value' => variable_get($challenge . '_name', '')
+    );
+
+    $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_photo'] = array(
+      '#prefix' => '<h3>' . t('Upload a photo of your action') . '</h3>',
+      '#title_display' => 'invisible',
+      '#type' => 'managed_file',
+      '#upload_location' => 'temporary://hunt_report_back_images/',
+    );
+
+    $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Submit')
+    );
+
+  }
+
+  $form['#submit'][] = 'hunt_report_back_form_submit';
+
+  return $form;
+}
+
+/**
+ *  Submit handler for report backs
+ */
+function hunt_report_back_form_submit($form, &$form_state) {
+
+  // Add S3 storage x Mongo data greatness here
+
+  $redirect_path = variable_get('hunt_report_back_redirect', 'hunt');
+
+  drupal_set_message(t('Thanks for submitted.  You are a nice lady.'));
+  drupal_goto($redirect_path);
+
+}
+
