@@ -186,20 +186,25 @@ class ViewsConditionalHandler extends views_handler_field {
    */
   public function options_validate(&$form, &$form_state) {
     $values = &$form_state['input']['options'];
-    $form_state['values'] = array_replace_recursive($form_state['values'], $form_state['input']);
-/*    $eqta = &$values['conditions']['more']['equalto'];
-    foreach ($eqta AS $key => $var) {
-      if ($key & 1) {
-        unset($eqta[$key]);
+    $conditions = &$values['conditions'];
+
+    // Clean up false values.
+    foreach ($conditions AS $key => $condition) {
+      if ($condition['field'] == 0 && $condition['equals'] == '') {
+        unset($conditions[$key]);
+      }
+
+      if (!empty($condition['children']) && is_array($condition['children'])) {
+        foreach ($condition['children'] as $k => $child) {
+          if ($child['field'] == 0 && $child['equals'] == '') {
+            unset($conditions[$key]['children'][$k]);
+          }
+        }
       }
     }
 
-    $eqta = array_values($eqta);
-
-    // Getting this to work probably is complicated.  We need to overwrite $form_state['values']
-    // with $form_state['input'] to properly save the input or removal of items.
     $form_state['values'] = array_replace_recursive($form_state['values'], $form_state['input']);
-
+    /* 
     if (empty($values['if']) || empty($values['conditions'])) {
       if (empty($values['if'])) {
         form_set_error('if', t("Please specify a valid field to run a condition on."));

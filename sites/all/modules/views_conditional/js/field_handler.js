@@ -8,8 +8,8 @@
 
       var family = { 'and': { 1: { 'and': [], 'or': [] } }, 'or': {} };
       var select_field = $('.form-item-options-hidden-field-select').clone();
-      select_field.find('select').attr('id', '').attr('name', child_template + '[field]');
-      var select = select_field.html();
+      var select;
+
       var i = '<li><input type="hidden" name="' + child_template + '[type]" value="#TYPE" /><span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt="" /> #LABEL</span><div class="form-item form-type-select form-item-field">#SELECT</div><div class="form-item form-type-select form-item-options-conditions-condition"><select id="edit-options-conditions-condition" name="' + child_template + '[condition]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select></div><div class="form-item form-type-textfield form-item-options-conditions-equalto"><input type="text" id="edit-options-conditions-equalto" name="' + child_template + '[equals]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed"></div><div id="options"><a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span> <a href="#" class="add-sub" data-type="or">Add "Or"</a> <span class="divider">|</span> <a href="#" class="delete">Remove this</a></div></li>';
       var mi = '<li><input type="hidden" name="' + master_template + '[type]" vaulue="#TYPE" /><span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt="" /> #LABEL</span><div class="form-item form-type-select form-item-field">#SELECT</div><div class="form-item form-type-select form-item-options-conditions-condition"><select id="edit-options-conditions-condition" name="' + master_template + '[condition]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select></div><div class="form-item form-type-textfield form-item-options-conditions-equalto"><input type="text" id="edit-options-conditions-equalto" name="' + master_template + '[equals]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed"></div><div id="options"><a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span> <a href="#" class="add-sub" data-type="or">Add "Or"</a> <span class="divider">|</span> <a href="#" class="delete">Remove this</a></div></li>';
       var data_id = 0;
@@ -21,6 +21,9 @@
           var mtype = $(this).parent().parent().attr('data-type');
           data_id++;
           var type = $(this).attr('data-type');
+
+          select_field.find('select').attr('id', '').attr('name', child_template + '[field]');
+          select = select_field.html();
 
           type = type.charAt(0).toUpperCase() + type.substr(1);
           if ($(this).parent().parent().find('.sub').length > 0) {
@@ -51,8 +54,12 @@
           var type = $(this).attr('data-type');
           data_id++;
 
+          select_field.find('select').attr('id', '').attr('name', master_template + '[field]');
+          select = select_field.html();
+
           type = type.charAt(0).toUpperCase() + type.substr(1);
-          item = mi.replace(/\#LABEL/g, type).replace(/\#SELECT/g, select).replace(/\#MTYPE/g, '').replace(/\#TYPE/g, type.toLowerCase()).replace(/\#PID/g, '').replace(/\#ID/g, data_id);
+          item = mi.replace(/\#LABEL/g, type).replace(/\#SELECT/g, select).replace(/\#MTYPE/g, '').replace(/\#TYPE/g, type.toLowerCase()).replace(/\#PID/g, '');
+          item = item.replace(/\#ID/g, data_id);
           var $append = $(item).attr('data-id', data_id).attr('data-type', type.toLowerCase());
           $append.find('img').remove();
           $append.appendTo($('#conditions-container'));
