@@ -1,0 +1,74 @@
+/*
+Syntax error: Undefined variable: "$off-black".
+        on line 59 of sass/user-registration.sass
+
+54:   label
+55:     display: block
+56:     text-transform: lowercase
+57:     font-weight: 400
+58:     font-size: em-calc(18)
+59:     color: $off-black
+60:   p /* "Already registered & Need an account?" language */
+61:     clear: left
+62:     font-size: 0.9em
+63:     margin-bottom: 20px
+64: 
+
+Backtrace:
+sass/user-registration.sass:59
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/script/variable.rb:49:in `_perform'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/script/node.rb:40:in `perform'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:298:in `visit_prop'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:320:in `visit_rule'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:320:in `visit_rule'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/root_node.rb:20:in `render'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/engine.rb:315:in `_render'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/engine.rb:262:in `render'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:341:in `update_stylesheet'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:201:in `each'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:299:in `block in watch'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/multi_listener.rb:86:in `call'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/multi_listener.rb:86:in `on_change'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/multi_listener.rb:95:in `block in initialize_adapter'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/adapter.rb:196:in `call'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/adapter.rb:196:in `report_changes'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/adapter.rb:207:in `poll_changed_dirs'
+/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/adapters/linux.rb:48:in `block in start'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined variable: \"$off-black\".\A         on line 59 of sass/user-registration.sass\A \A 54:   label\A 55:     display: block\A 56:     text-transform: lowercase\A 57:     font-weight: 400\A 58:     font-size: em-calc(18)\A 59:     color: $off-black\A 60:   p /* \"Already registered & Need an account?\" language */\A 61:     clear: left\A 62:     font-size: 0.9em\A 63:     margin-bottom: 20px\A 64: "; }
