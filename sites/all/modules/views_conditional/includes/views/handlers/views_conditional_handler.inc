@@ -140,80 +140,6 @@ class ViewsConditionalHandler extends views_handler_field {
 <ul id="conditions-container">
   ' . $fieldlist . '
 </ul>');
-/*
-    $form['if'] = array(
-      '#type' => 'select',
-      '#title' => t('If this field...'),
-      '#options' => $fields,
-      '#default_value' => $this->options['if'],
-      '#attributes' => array('class' => array('first-field')),
-    );
-
-    $form['conditions'] = array(
-      '#type' => 'container',
-      '#attributes' => array('id' => 'conditions-container'),
-    );
-
-    $form['conditions']['one'] = array(
-      '#markup' => '#1',
-      '#prefix' => '<span class="condition-number">',
-      '#suffix' => '</span>',
-    );
-
-    $form['conditions']['condition'] = array(
-      '#type' => 'select',
-      '#title' => t('Condition...'),
-      '#options' => $this->conditions,
-      '#default_value' => $this->options['condition'],
-    );
-
-    $form['conditions']['equalto'] = array(
-      '#type' => 'textfield',
-      '#title' => t('This value'),
-      '#description' => t('Input a value to compare the field against.  Replacement variables may be used'),
-      '#default_value' => $this->options['equalto'],
-    );
-
-    if (!empty($this->options['conditions']['more'])) {
-      $form['conditions']['more'] = array(
-        '#type' => 'container',
-        '#attribtues' => array('id' => 'more-container'),
-      );
-
-      $num = 1;
-      foreach ($this->options['conditions']['more']['condition'] as $key => $val) {
-        if ($val != "") {
-          $form['conditions']['more'][$key] = array(
-            '#markup' => '#' . ++$num,
-            '#prefix' => '<span class="condition-number">',
-            '#suffix' => '</span>',
-          );
-
-          $form['conditions']['more']['condition'][$key] = array(
-            '#type' => 'select',
-            '#title' => t('Condition...'),
-            '#options' => $this->conditions,
-            '#default_value' => $val,
-          );
-
-          $form['conditions']['more']['equalto'][$key] = array(
-            '#type' => 'textfield',
-            '#title' => t('This value'),
-            '#description' => t('Input a value to compare the field against.  Replacement variables may be used'),
-            '#default_value' => $this->options['conditions']['more']['equalto'][$key],
-          );
-        }
-      }
-    }
-
-    $form['new_conditions'] = array(
-      '#type' => 'container',
-      '#attributes' => array('id' => 'new-conditions-container'),
-    );
-
-    $form['new_condition'] = array(
-      '#markup' => l(t('Add another condition'), '', array('fragment' => ' ', 'attributes' => array('id' => 'add-condition'))),
-    );*/
 
     $form['then'] = array(
       '#type' => 'textfield',
@@ -404,12 +330,12 @@ class ViewsConditionalHandler extends views_handler_field {
         return !empty($r);
         break;
 
-      // Contains
+      // Contains.
       case 7:
         return (strpos($r, $equals) !== FALSE);
         break;
 
-      // Does NOT contain
+      // Does NOT contain.
       case 8:
         return (strpos($r, $equals) === FALSE);
         break;
@@ -428,7 +354,7 @@ class ViewsConditionalHandler extends views_handler_field {
       }
 
       if (!empty($condition['children'])) {
-        $wins += $this->check_conditions($conditions['children'], true);
+        $wins += $this->check_conditions($condition['children'], true);
       }
     }
 
