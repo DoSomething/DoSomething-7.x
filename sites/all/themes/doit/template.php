@@ -24,6 +24,7 @@ function doit_preprocess_html(&$variables, $hook) {
   /*
    * Remove all global stylesheets from user/registration pages.
    */
+
   if (arg(0) == 'user' && (in_array(arg(1), array('registration', 'login'))) ) {
     $css = drupal_add_css();
     unset(
@@ -39,6 +40,7 @@ function doit_preprocess_html(&$variables, $hook) {
       $css['modules/system/system.theme.css'],
       $css['sites/all/modules/date/date_api/date.css'],
       $css['sites/all/modules/date/date_popup/themes/datepicker.1.7.css'],
+      $css['sites/all/modules/dosomething/connections/css/connections-rules.css'],
       $css['modules/field/theme/field.css'],
       $css['modules/node/node.css'],
       $css['modules/poll/poll.css'],
