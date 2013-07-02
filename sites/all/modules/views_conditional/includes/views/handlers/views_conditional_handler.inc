@@ -105,7 +105,7 @@ class ViewsConditionalHandler extends views_handler_field {
               <span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt=""> ' . ucfirst($cc['type']) . '</span>
               <input type="hidden" name="options[conditions][' . $key . '][children][' . $ck . '][type]" value="' . $cc['type'] . '" />
               <div class="form-item form-type-select form-item-field">
-                <select class="first-field form-select" id="edit-options-if" name="options[conditions][' . $key . '][children][' . $key . '][field]">';
+                <select class="first-field form-select" id="edit-options-if" name="options[conditions][' . $key . '][children][' . $ck . '][field]">';
               foreach ($fields AS $k => $string) {
                 $fieldlist .= '<option value="' . $k . '"' . ($k == $cc['field'] ? ' selected="selected"' : '') . '>' . $string . '</option>';
               }
@@ -122,7 +122,7 @@ class ViewsConditionalHandler extends views_handler_field {
               $fieldlist .= '</select>
               </div>
               <div class="form-item form-type-textfield form-item-options-conditions-equalto">
-                <input type="text" id="edit-options-conditions-equalto" name="options[conditions][' . $key . '][children][' . $key . '][equals]" value="' . $cc['equals'] . '" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed" />
+                <input type="text" id="edit-options-conditions-equalto" name="options[conditions][' . $key . '][children][' . $ck . '][equals]" value="' . $cc['equals'] . '" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed" />
               </div>
               <div id="options" class="first">
                 <a href="#" class="delete">Remove this</a>
