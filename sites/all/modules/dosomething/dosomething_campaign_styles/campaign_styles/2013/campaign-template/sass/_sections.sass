@@ -5,25 +5,25 @@
 .footer
   background: $bg-alt
 
+.official-rules
+  display: block
+  margin: 0 auto
+  width: 13em
+  text-align: center
+
 // HEADER
 // ------
 .header
+  position: relative
+  width: 100%
+  height: 360px
   background-color: $bg-header-fallback
-  background-size: 100% 100%
+  //background-image: url($bg-header-image)
   background-repeat: no-repeat
-  background-position: 50% 50%
+  background-position: center center
+  @include background-size(cover)
   padding: 1% 2%
   overflow: hidden
-  @media only screen and (max-width: 1075px)
-    background-size: auto
-
-  .logo-dosomething
-    display: none
-    @media only screen and (max-width: 1075px)
-      display: block
-      float: left
-      width: 73px
-      height: 65px
 
   .logo-campaign
     margin: 0 auto
@@ -40,8 +40,10 @@
     line-height: 1.2em
     font-weight: 600
     font-size: 4em
-    width: 8em
-    margin: 0.5em auto
+    margin: 2em auto 0.5em
+
+    @include respond-to(tablets_and_phones)
+      font-size: 3em
 
   .log-out
     color: $font-light
@@ -55,6 +57,9 @@
   .header-twitter-share
     display: inline-block
     height: 20px
+
+    @include respond-to(tablets_and_phones)
+      display: none
 
   .header-facebook-share
     width: 80px
@@ -71,6 +76,16 @@
 
   .header-sponsor
     width: 11%
+
+    @include respond-to(tablets_and_phones)
+      display: none // relocated to footer
+
+
+  .row-bottom
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 1%
 
 // HEADLINE
 // --------
@@ -126,12 +141,6 @@
     margin: 0 auto
     clear: both
 
-  .official-rules
-    display: block
-    margin: 0 auto
-    width: 13em
-    text-align: center
-
   .btn
     margin: 0 auto 1em
 
@@ -140,7 +149,8 @@
 .sms-game-example
 
   .sms-game-container
-    width: $section-content-width
+    width: 100%
+    max-width: $section-content-width
     margin: 0 auto 1em
     overflow: hidden
     clear: both
@@ -148,10 +158,8 @@
   .game-conversation
     margin: 1em auto 2em
     padding: 1em 2em
-    background: $bg-alt
-    border: 1px solid darken($bg-alt, 5)
+    background: darken($bg-alt, 5)
     position: relative
-    min-width: 25em
     clear: both
     +border-radius(2px)
     &:after
@@ -161,7 +169,7 @@
       border-style: solid
       border-width: 15px
     p
-      line-height: 3em
+      line-height: 1.6em
       font-weight: 500
       text-transform: uppercase
 
@@ -191,24 +199,40 @@
     float: left
     text-align: left
 
+    @include respond-to(tablets_and_phones)
+      float: none
+
   .profile-photo
     width: 290px
     clear: both
     margin: 0.5em 4em 0 0
 
+    @include respond-to(tablets_and_phones)
+      margin: 0.5em auto 0
+
   .profile-copy
     width: $section-content-width
-    margin: 0 0 2em 0
+    margin: 0 0 3em 0
+
+    @include respond-to(tablets_and_phones)
+      width: 90%
+      max-width: $section-content-width
+      margin: 0 auto 3em
+
     p
       text-align: left
     h2
       color: $campaign-accent
       text-align: left
 
+      @include respond-to(tablets_and_phones)
+        text-align: center
+
 // CONTENT
 // -------
 .content
-  width: $section-content-width
+  width: 90%
+  max-width: $section-content-width
   p
     display: block
     text-align: left
@@ -238,16 +262,25 @@
 
   .btn
     width: 9.4em
-    margin: 1em 0
+    margin: 1em auto
 
 .sms-input-wrapper
   width: 50%
   float: left
-  margin: 0 0 4% 0
+  margin: 0 0 2em 0
+
+  @include respond-to(phones)
+    width: 100%
+
+    &.first-column
+      margin: 0 0 0 0      
 
 .sms-input
   width: 85%
   margin: 5% 0 0 0
+
+  @include respond-to(phones)
+    width: 100%
 
 .sms-alpha-wrapper
   float: left
@@ -272,6 +305,7 @@
 // ---
 .map
   iframe
+    width: 90%
     margin: 0 auto
     display: block
     border: 1px solid #ddd
@@ -289,7 +323,8 @@
 // FAQ
 // ---
 .faq
-  width: $section-content-width
+  width: 90%
+  max-width: $section-content-width
   position: relative
   h3, p
     text-align: left
@@ -314,6 +349,21 @@
     background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
     background-repeat: no-repeat
     background-position: 0% 40%
+
+
+// SPONSOR
+// ------
+.sponsor
+  p
+    padding: 8px
+    text-align: center
+
+  a
+    padding: 8px
+    text-align: center
+
+    @include respond-to(phones)
+      display: block
 
 // FOOTER
 // ------
