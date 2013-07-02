@@ -69,15 +69,16 @@ class ViewsConditionalHandler extends views_handler_field {
     $form['list'] = array(
       '#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a>
 <ul id="conditions-container">
-  <li data-id="1">
+  <li data-id="0" data-type="and">
+    <input type="hidden" name="options[conditions][0][type]" value="and" />
     <div class="form-item form-type-select form-item-field">
-      <select class="first-field form-select" id="edit-options-if" name="options[if][master][and][]"><option value="0">- no field selected -</option><option value="field_picture">Field: Picture</option><option value="field_embedded_video">Content: Video</option><option value="views_ifempty">Views If Empty: Views If Empty</option><option value="title">Content: Title</option><option value="created">Content: Post date</option><option value="field_subtitle">Content: Subtitle</option><option value="body_1">Campaign Blog Text</option><option value="views_ifempty_1">Views If Empty: Views If Empty</option><option value="body">Content: Body</option></select>
+      <select class="first-field form-select" id="edit-options-if" name="options[conditions][0][field]"><option value="0">- no field selected -</option><option value="field_picture">Field: Picture</option><option value="field_embedded_video">Content: Video</option><option value="views_ifempty">Views If Empty: Views If Empty</option><option value="title">Content: Title</option><option value="created">Content: Post date</option><option value="field_subtitle">Content: Subtitle</option><option value="body_1">Campaign Blog Text</option><option value="views_ifempty_1">Views If Empty: Views If Empty</option><option value="body">Content: Body</option></select>
     </div>
     <div class="form-item form-type-select form-item-options-conditions-condition first">
-      <select id="edit-options-conditions-condition" name="options[conditions][master][and][condition][]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select>
+      <select id="edit-options-conditions-condition" name="options[conditions][0][condition]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select>
     </div>
     <div class="form-item form-type-textfield form-item-options-conditions-equalto">
-      <input type="text" id="edit-options-conditions-equalto" name="options[conditions][master][and][equalto][]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed">
+      <input type="text" id="edit-options-conditions-equalto" name="options[conditions][0][equals]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed" />
     </div>
     <div id="options" class="first">
       <a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span>
@@ -158,7 +159,7 @@ class ViewsConditionalHandler extends views_handler_field {
 
     $form['new_condition'] = array(
       '#markup' => l(t('Add another condition'), '', array('fragment' => ' ', 'attributes' => array('id' => 'add-condition'))),
-    );
+    );*/
 
     $form['then'] = array(
       '#type' => 'textfield',
@@ -170,9 +171,9 @@ class ViewsConditionalHandler extends views_handler_field {
     $form['or'] = array(
       '#type' => 'textfield',
       '#title' => t('Otherwise, output this...'),
-      '#description' => t('Input what should be output if the above conditions do NOT evaluate to true.'),
+      '#description' => t('Input what should be output if the above conditions do NOT evaluate to TRUE.'),
       '#default_value' => $this->options['or'],
-    );*/
+    );
 
     $form['replacements'] = array(
       '#type' => 'fieldset',
@@ -205,8 +206,8 @@ class ViewsConditionalHandler extends views_handler_field {
    */
   public function options_validate(&$form, &$form_state) {
     $values = &$form_state['input']['options'];
-    echo '<pre>', print_r($values), '</pre>'; exit;
-    $eqta = &$values['conditions']['more']['equalto'];
+    $form_state['values'] = array_replace_recursive($form_state['values'], $form_state['input']);
+/*    $eqta = &$values['conditions']['more']['equalto'];
     foreach ($eqta AS $key => $var) {
       if ($key & 1) {
         unset($eqta[$key]);
@@ -229,7 +230,7 @@ class ViewsConditionalHandler extends views_handler_field {
       #if (empty($values['equalto']) && !in_array($values['condition'], array(5, 6))) {
       #  form_set_error('condition', t("Please specify something to compare with."));
       #}
-    }
+    }*/
   }
 
 
@@ -296,6 +297,127 @@ class ViewsConditionalHandler extends views_handler_field {
   }
 
   /**
+   * Checks whether a condition passes.
+   *
+   * @param string $field
+   *   The text from the field.  This should have been stripped before getting here.
+   * @param integer $condition
+   *   A number matching a condition, as defined in public $conditions above.
+   * @param string $equals
+   *   What the field should ($condition)...
+   *
+   * @return bool
+   */
+  protected function passes($field, $condition, $equals) {
+    $fields = $this->view->display_handler->get_handlers('field');
+
+
+    $clean_var = $this->clean_var($fields[$field['field']]);
+    // Strip tags on the "if" field.  Otherwise it appears to
+    // output as <div class="xxx">Field data</div>...
+    // ...which of course makes it dificult to compare.
+    $r = trim(strip_tags($fields[$field]->last_render, '<img>'));
+
+    // Run conditions.
+    switch ($condition) {
+      // Equal to.
+      case 1:
+        if ($r == $equals) {
+          return TRUE;
+        }
+        else {
+          return FALSE;
+        }
+        break;
+
+      // Not equal to.
+      case 2:
+        if ($r !== $equals) {
+          return TRUE;
+        }
+        else {
+          return FALSE;
+        }
+        break;
+
+      // Greater than.
+      case 3:
+        if ($r > $equals) {
+          return TRUE;
+        }
+        else {
+          return FALSE;
+        }
+        break;
+
+      // Less than.
+      case 4:
+        if ($r < $equals) {
+          return TRUE;
+        }
+        else {
+          return FALSE;
+        }
+        break;
+
+      // Empty.
+      case 5:
+        if (empty($r)) {
+          return TRUE;
+        }
+        else {
+          return FALSE;
+        }
+        break;
+
+      // Not empty.
+      case 6:
+        if (!empty($r)) {
+          return TRUE;
+        }
+        else {
+          return FALSE;
+        }
+        break;
+
+      // Contains
+      case 7:
+        if (stripos($r, $equals) !== FALSE) {
+          return TRUE;
+        }
+        else {
+          return FALSE;
+        }
+        break;
+
+      // Does NOT contain
+      case 8:
+        if (stripos($r, $equals) === FALSE) {
+          return TRUE;
+        }
+        else {
+          return FALSE;
+        }
+        break;
+    }
+  }
+
+  private function check_conditions($conditions) {
+    $needed_wins = $wins = 0;
+    foreach ($conditions AS $key => $condition) {
+      if ($condition['type'] == 'and') {
+        $needed_wins++;
+      }
+
+      if ($this->passes($condition['field'], $condition['condition'], $condition['equals'])) {
+        $wins++;
+      }
+    }
+
+    return ($wins >= $needed_wins);
+  }
+
+  /**
    * Renders the final output based on conditional input.
    */
   public function render($values) {
@@ -305,124 +427,14 @@ class ViewsConditionalHandler extends views_handler_field {
     $then = $this->options['then'];
     $or = ($this->options['or'] ? $this->options['or'] : '');
 
-    // Gather field information.
-    $fields = $this->view->display_handler->get_handlers('field');
+    $conditions = $this->options['conditions'];
 
-    // Search through field information for possible replacement variables.
-    foreach ($this->view->display_handler->get_field_labels() as $key => $var) {
-      // If we find a replacement variable, replace it.
-      if (strpos($then, "[$key]") !== FALSE) {
-        $field = $this->clean_var($fields[$key], $key);
-        $then = str_replace("[$key]", $field, $then);
-      }
-      elseif (strpos($or, "[$key]") !== FALSE) {
-        $field = $this->clean_var($fields[$key], $key);
-        $or = str_replace("[$key]", $field, $or);
-      }
+    $success = $this->check_conditions($conditions);
+    if ($success) {
+      return $then;
     }
-
-    // If we find a date stamp replacement, replace that.
-    if (strpos($then, 'DATE_STAMP') !== FALSE) {
-      $then = str_replace('DATE_STAMP', format_date(REQUEST_TIME), $then);
-    }
-    elseif (strpos($then, 'DATE_STAMP') !== FALSE) {
-      $or = str_replace('DATE_STAMP', format_date(REQUEST_TIME), $or);
-    }
-
-    // If we find a unix date stamp replacement, replace that.
-    if (strpos($then, 'DATE_UNIX') !== FALSE) {
-      $then = str_replace('DATE_UNIX', REQUEST_TIME, $then);
-    }
-    elseif (strpos($or, 'DATE_UNIX') !== FALSE) {
-      $or = str_replace('DATE_UNIX', REQUEST_TIME, $or);
-    }
-
-    // Strip tags on the "if" field.  Otherwise it appears to
-    // output as <div class="xxx">Field data</div>...
-    // ...which of course makes it dificult to compare.
-    $r = trim(strip_tags($fields["$if"]->last_render));
-
-    // Run conditions.
-    switch ($condition) {
-      // Equal to.
-      case 1:
-        if ($r == $equalto) {
-          return $then;
-        }
-        else {
-          return $or;
-        }
-        break;
-
-      // Not equal to.
-      case 2:
-        if ($r !== $equalto) {
-          return $then;
-        }
-        else {
-          return $or;
-        }
-        break;
-
-      // Greater than.
-      case 3:
-        if ($r > $equalto) {
-          return $then;
-        }
-        else {
-          return $or;
-        }
-        break;
-
-      // Less than.
-      case 4:
-        if ($r < $equalto) {
-          return $then;
-        }
-        else {
-          return $or;
-        }
-        break;
-
-      // Empty.
-      case 5:
-        if (empty($r)) {
-          return $then;
-        }
-        else {
-          return $or;
-        }
-        break;
-
-      // Not empty.
-      case 6:
-        if (!empty($r)) {
-          return $then;
-        }
-        else {
-          return $or;
-        }
-        break;
-
-      // Contains
-      case 7:
-        if (stripos($r, $equalto) !== FALSE) {
-          return $then;
-        }
-        else {
-          return $or;
-        }
-        break;
-
-      // Does NOT contain
-      case 8:
-        if (stripos($r, $equalto) === FALSE) {
-          return $then;
-        }
-        else {
-          return $or;
-        }
-        break;
+    else {
+      return $or;
     }
   }
 }
