@@ -28,15 +28,34 @@ function hunt_report_back_menu() {
     'type' => MENU_CALLBACK,
     'file' => 'hunt_report_back.admin.inc',
   );
-  $items['hunt/challenges/2013'] = array(
-    'title' => t('Tell us About It'),
-    'description' => t('Choose a day to tell us about and upload your pictures below.'),
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('hunt_report_back_form'),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
   return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function hunt_report_back_block_info() {
+  $blocks['hunt_report_back'] = array(
+    'info' => t('Hunt Report Back'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function hunt_report_back_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'hunt_report_back':
+      $block['subject'] = t('Hunt Report Back');
+      $block['content'] = drupal_get_form('hunt_report_back_form');
+      break;
+    
+  }
+  return $block;
 }
 
 /**
@@ -94,6 +113,4 @@ function hunt_report_back_form($form, &$form_state) {
  *  Submit handler for report backs
  */
 function hunt_report_back_form_submit($form, &$form_state) {}
-
-
 
