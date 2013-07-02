@@ -55,7 +55,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php print $head_title; ?></title>
 
-  <?php print $styles; ?>
+  <?php print $user_styles; ?>
   <?php print $shiv; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_header(); ?>
   <?php print $scripts; ?>
