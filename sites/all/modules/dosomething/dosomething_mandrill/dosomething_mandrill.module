@@ -21,7 +21,7 @@
 
 function dosomething_mandrill_webform_submission_insert($node, $submission) {
   
-  // Only respond to Campaign Report Back submissions
+  // Campaign Report Back submissions
   if ($node->type == 'campaign_report_back') {
     
     // Must be 'dosomething_mandrill' to trigger ManndrillMailSystem use based on entries in the MailSystem module
@@ -48,15 +48,13 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
           
       // Check for anonymous user
       if ($user->uid == 0) {
-        
-        // Check for email field in form submission
-        
+        $to = $submission->field_webform_email[LANGUAGE_NONE][0]['email'];
       }
       else {
         $to = $user->mail;
       }
   
-      
+      // User the site default, perhaps someday we'll deal in other languages other than
       $language = language_default();
       
       // Empty as current campaign signup messages do not contain merge_vars.
@@ -89,14 +87,56 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
     }
     else {
       
-      // flag that campaign_report_back does not have a mandrill_key setting
-      watchdog('dosomething_mandrill', 'Mandrill transactional message for campaign_report_back via %source (%nid) not sent as key was undefined.',
+      // flag that campaign_report_back or campaign_contact_form does not have a mandrill_key setting
+      watchdog('dosomething_mandrill', 'Mandrill transactional message for campaign_report_back or campaign_contact_form
+                via %source (%nid) not sent as key was undefined in node.',
                 array('%source' => $node->type, '%nid' => $node->nid), WATCHDOG_WARNING);
       
     }
     
   }
   
+}
+
+/**
+ * dosomething_mandrill_dispatch
+ *
+ * Triggeres the sending of a Mandrill transactional email message using a target Mandrill template.
+ * If a specific template is not provided then default to a general DoSomething themed template
+ *
+ * $to - send to email address (required)
+ *
+ * $key = 'dsplain' - The mail system key value as defined in /admin/config/system/mailsystem. The key is assigned
+ * to a Mandrill template in the Mandrill Template module: /admin/config/services/mandrill/templates The key setting
+ * determines what mail system and Mandrill template to use when sending a message.
+ * 
+ * $message = NULL - Custom message text. Text will be inserted into the Mandrill template. This can be blank
+ * resulting in an email message which only contains the content of the template managed through the Mandrill
+ * template interface.
+ *
+ * Note that *|merge vars|* should be within the message body.
+ * 
+ * $merge_vars = NULL : Variables within the custom message text or within the template that will be dynamically
+ * replace with custom content specific to each message. Variables are denoted with *|<some name|*
+ * 
+ * $user = NULL - The user object, future use to generate custom merge_var values.
+ * 
+ */
+
+function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $merge_vars=NULL, $user=NULL) {
+
+  $language = language_default();
+  $from = NULL;
+    
+  $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $merge_vars, $from, TRUE);
+
+  // Log results
+  if ($message['result'] == FALSE) {
+    //watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
+    watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to using the Mandrill %key.',
+              array('%to' => $to, '%key' => $key), WATCHDOG_ERROR);
+  }
+    
 }
 
 /**

@@ -43,46 +43,25 @@ function dosomething_general_init() {
 }
 
 /**
- *  Loads a .txt file and creates a webform from the serialized
- *  content within.
- *
- *  @param $path
- *    The relative URI to the file that has the serialized node structure.
- *
- *  @param $alias
- *    The alias for the node in question.
- *
- *  @param $variable
- *    An (optional) variable to populate with the node ID.
- *
- *  @return $webform
- *    Returns the node'd webform structure.
+ * @deprecated
+ * Keeping as placeholder until Crazyshit module is destroyed.
  */
 function dosomething_general_save_node_from_file($path, $alias, $variable = null) {
-  $webform = unserialize(file_get_contents($path));
-  $webform_data = $webform->webform;
-  unset($webform->webform);
-  node_save($webform);
-  unset ($webform->webform);
+}
 
-  dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
-  $webform->webform = $webform_data;
-  $webform_data['nid'] = $webform->nid;
-  $webform->webform['record_exists'] = TRUE;
-  foreach ($webform->webform['components'] as $key => $component) {
-    $webform->webform['components'][$key]['nid'] = $webform->nid;
-    if (!$webform->webform['components'][$key]['mandatory']) {
-      $webform->webform['components'][$key]['mandatory'] = 0;
-    }
-  }
-  $webform->path = array('alias' => $alias, 'pathauto' => FALSE);
-  node_save($webform);
-
-  if (!empty($variable)) {
-    variable_set($variable, $webform->nid);
-  }
-
-  return $webform;
+/**
+ * Cleans a zipcode of illegal characters.
+ *
+ * @param string|int $zip
+ *   The zipcode.
+ *
+ * @return mixed string|int
+ *   The zipcode, cleaned of any malicious characters.
+ */
+function dosomething_general_clean_zip($zip) {
+  $zip = strtoupper($zip);
+  $zip = preg_replace("/[^A-Z0-9]/", "", $zip);
+  return $zip;
 }
 
 /**
@@ -1452,10 +1431,8 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
   $profile = profile2_load_by_user($account, 'main');
 
   if (is_object($profile)) {
-    $first_name = reset(field_get_items('profile2', $profile, 'field_user_first_name'));
-    $first_name = (isset($first_name['value']) ? $first_name['value'] : '');
-    $last_name = reset(field_get_items('profile2', $profile, 'field_user_last_name'));
-    $last_name = (isset($last_name['value']) ? $last_name['value'] : '');
+    $first_name = (isset($profile->field_user_first_name[LANGUAGE_NONE][0]['value']) ? $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] : '');
+    $last_name = (isset($profile->field_user_last_name[LANGUAGE_NONE][0]['value']) ? $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] : '');
 
     switch ($display_type) {
       case 'private':
