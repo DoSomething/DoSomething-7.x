@@ -66,25 +66,79 @@ class ViewsConditionalHandler extends views_handler_field {
       '#attributes' => array('id' => 'hidden-select'),
     );
 
+    $fieldlist = '';
+    if (!empty($this->options['conditions'])) {
+      foreach ($this->options['conditions'] AS $key => $condition) {
+        $fieldlist .= '
+        <li data-id="' . $key . '" data-type="' . $condition['type'] . '">
+          <input type="hidden" name="options[conditions][' . $key . '][type]" value="' . $condition['type'] . '" />
+          <div class="form-item form-type-select form-item-field">
+            <select class="first-field form-select" id="edit-options-if" name="options[conditions][' . $key . '][field]">';
+          foreach ($fields AS $k => $string) {
+            $fieldlist .= '<option value="' . $k . '"' . ($k == $condition['field'] ? ' selected="selected"' : '') . '>' . $string . '</option>';
+          }
+          $fieldlist .= '
+          </select>
+          </div>
+          <div class="form-item form-type-select form-item-options-conditions-condition first">
+            <select id="edit-options-conditions-condition" name="options[conditions][' . $key . '][condition]" class="form-select">';
+
+          foreach($this->conditions as $k => $cond) {
+            $fieldlist .= '<option value="' . $k . '"' . ($condition['condition'] == $k ? ' selected="selected"' : '') . '>' . $cond . '</option>';
+          }
+          
+          $fieldlist .= '</select>
+          </div>
+          <div class="form-item form-type-textfield form-item-options-conditions-equalto">
+            <input type="text" id="edit-options-conditions-equalto" name="options[conditions][' . $key . '][equals]" value="' . $condition['equals'] . '" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed" />
+          </div>
+          <div id="options" class="first">
+            <a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span>
+            <a href="#" class="add-sub" data-type="or">Add "Or"</a>
+          </div>';
+
+        if (!empty($condition['children']) && is_array($condition['children'])) {
+          $fieldlist .= '<ul class="sub">';
+          foreach ($condition['children'] AS $ck => $cc) {
+            $fieldlist .= '
+            <li data-id="' . $ck . '">
+              <span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt=""> ' . ucfirst($cc['type']) . '</span>
+              <input type="hidden" name="options[conditions][' . $key . '][children][' . $ck . '][type]" value="' . $cc['type'] . '" />
+              <div class="form-item form-type-select form-item-field">
+                <select class="first-field form-select" id="edit-options-if" name="options[conditions][' . $key . '][children][' . $key . '][field]">';
+              foreach ($fields AS $k => $string) {
+                $fieldlist .= '<option value="' . $k . '"' . ($k == $cc['field'] ? ' selected="selected"' : '') . '>' . $string . '</option>';
+              }
+              $fieldlist .= '
+              </select>
+              </div>
+              <div class="form-item form-type-select form-item-options-conditions-condition first">
+                <select id="edit-options-conditions-condition" name="options[conditions][' . $key . '][children][' . $ck . '][condition]" class="form-select">';
+
+              foreach($this->conditions as $k => $cond) {
+                $fieldlist .= '<option value="' . $k . '"' . ($cc['condition'] == $k ? ' selected="selected"' : '') . '>' . $cond . '</option>';
+              }
+              
+              $fieldlist .= '</select>
+              </div>
+              <div class="form-item form-type-textfield form-item-options-conditions-equalto">
+                <input type="text" id="edit-options-conditions-equalto" name="options[conditions][' . $key . '][children][' . $key . '][equals]" value="' . $cc['equals'] . '" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed" />
+              </div>
+              <div id="options" class="first">
+                <a href="#" class="delete">Remove this</a>
+              </div>
+            </li>';
+          }
+          $fieldlist .= '</ul>';
+        }
+        $fieldlist .= '</li>';
+      }
+    }
+
     $form['list'] = array(
       '#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a>
 <ul id="conditions-container">
-  <li data-id="0" data-type="and">
-    <input type="hidden" name="options[conditions][0][type]" value="and" />
-    <div class="form-item form-type-select form-item-field">
-      <select class="first-field form-select" id="edit-options-if" name="options[conditions][0][field]"><option value="0">- no field selected -</option><option value="field_picture">Field: Picture</option><option value="field_embedded_video">Content: Video</option><option value="views_ifempty">Views If Empty: Views If Empty</option><option value="title">Content: Title</option><option value="created">Content: Post date</option><option value="field_subtitle">Content: Subtitle</option><option value="body_1">Campaign Blog Text</option><option value="views_ifempty_1">Views If Empty: Views If Empty</option><option value="body">Content: Body</option></select>
-    </div>
-    <div class="form-item form-type-select form-item-options-conditions-condition first">
-      <select id="edit-options-conditions-condition" name="options[conditions][0][condition]" class="form-select"><option value="1">Is Equal to</option><option value="2">Is NOT equal to</option><option value="3">Is Greater than</option><option value="4">Is Less than</option><option value="5">Is Empty</option><option value="6">Is NOT empty</option><option value="7">Contains</option><option value="8">Does NOT contain</option></select>
-    </div>
-    <div class="form-item form-type-textfield form-item-options-conditions-equalto">
-      <input type="text" id="edit-options-conditions-equalto" name="options[conditions][0][equals]" value="" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed" />
-    </div>
-    <div id="options" class="first">
-      <a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span>
-      <a href="#" class="add-sub" data-type="or">Add "Or"</a>
-    </div>
-  </li>
+  ' . $fieldlist . '
 </ul>');
 /*
     $form['if'] = array(
@@ -322,87 +376,47 @@ class ViewsConditionalHandler extends views_handler_field {
     switch ($condition) {
       // Equal to.
       case 1:
-        if ($r == $equals) {
-          return TRUE;
-        }
-        else {
-          return FALSE;
-        }
+        return ($r == $equals);
         break;
 
       // Not equal to.
       case 2:
-        if ($r !== $equals) {
-          return TRUE;
-        }
-        else {
-          return FALSE;
-        }
+        return ($r !== $equals);
         break;
 
       // Greater than.
       case 3:
-        if ($r > $equals) {
-          return TRUE;
-        }
-        else {
-          return FALSE;
-        }
+        return ($r > $equals);
         break;
 
       // Less than.
       case 4:
-        if ($r < $equals) {
-          return TRUE;
-        }
-        else {
-          return FALSE;
-        }
+        return ($r < $equals);
         break;
 
       // Empty.
       case 5:
-        if (empty($r)) {
-          return TRUE;
-        }
-        else {
-          return FALSE;
-        }
+        return empty($r);
         break;
 
       // Not empty.
       case 6:
-        if (!empty($r)) {
-          return TRUE;
-        }
-        else {
-          return FALSE;
-        }
+        return !empty($r);
         break;
 
       // Contains
       case 7:
-        if (stripos($r, $equals) !== FALSE) {
-          return TRUE;
-        }
-        else {
-          return FALSE;
-        }
+        return (strpos($r, $equals) !== FALSE);
         break;
 
       // Does NOT contain
       case 8:
-        if (stripos($r, $equals) === FALSE) {
-          return TRUE;
-        }
-        else {
-          return FALSE;
-        }
+        return (strpos($r, $equals) === FALSE);
         break;
     }
   }
 
-  private function check_conditions($conditions) {
+  private function check_conditions($conditions, $children = false) {
     $needed_wins = $wins = 0;
     foreach ($conditions AS $key => $condition) {
       if ($condition['type'] == 'and') {
@@ -412,9 +426,18 @@ class ViewsConditionalHandler extends views_handler_field {
       if ($this->passes($condition['field'], $condition['condition'], $condition['equals'])) {
         $wins++;
       }
+
+      if (!empty($condition['children'])) {
+        $wins += $this->check_conditions($conditions['children'], true);
+      }
     }
 
-    return ($wins >= $needed_wins);
+    if ($children) {
+      return $wins;
+    }
+    else {
+      return ($wins >= $needed_wins);
+    }
   }
 
   /**
