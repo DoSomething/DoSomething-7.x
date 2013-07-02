@@ -1,0 +1,175 @@
+// TODO - THIS PARTIAL SHOULD NOT EXIST
+
+// TYPOGRAPHY
+// ----------
+html /* reset "do it" theme base of 14px */
+  font-size: 16px
+  line-height: 1.5em
+
+// remove white border and box-shadow
+.webform-client-form
+  +noBorder
+  +noShadow
+
+// hide some things
+#skip-link,
+#breadcrumb,
+#page-title
+  display: none
+
+.tabs .element-invisible
+  display: none
+
+// page background color
+body
+  background: $bg-light
+
+// set inner container width, remove floats and center
+#main-wrapper div[role="main"]
+  padding: 0 !important
+  margin: 0 auto !important
+  background: $bg-light
+  width: 100%
+  float: none
+  ul.primary
+    border-bottom: none
+    margin: 0
+    padding: 15px 0 0 8px
+    height: 37px
+
+// set page container to full width
+.container
+  width: 100%
+
+// adjust nav to accommodate hidden #utility-bar
+nav[role="navigation"]
+  height: 45px
+  padding: 3px 0 0 0
+  @include respond-to(tablets_and_phones)
+    display: none
+
+// set width of ds.org logo container
+header[role="banner"]
+  margin: 0 auto
+  position: relative
+
+// re-position ds.org logo
+#site-name
+  top: -38px
+  left: -94px
+  @include respond-to(tablets_and_phones)
+    top: -52px
+    left: 5px
+
+    a
+      width: 60px
+      height: 50px
+      background-image: url('/sites/all/themes/doit/css/images/ds-logo.png')
+      background-size: 60px 50px
+
+// better looking error messages!
+#page .messages
+  background: $campaign-main
+  border: none
+  color: $font-light
+  font-size: 20px
+  line-height: 1.75em
+  text-align: center
+  font-family: din-web-reg
+  margin: 0
+  .go-button
+    background: $btn-color
+    font-size: 14px
+    font-weight: 600
+    font-family: din-web-reg
+    text-align: center
+    margin: 5px auto
+    padding: 3px 0 0 0
+    height: 35px
+    width: 70px
+    display: block
+    +border-radius(3px)
+
+.messages .element-invisible /* hide title */
+  display: none
+
+// fixes tab styling to increase usability + aesthetics
+.tabs
+  background: #fff
+  li
+    display: inline
+  a
+    padding-top: 8px
+    padding-bottom: 8px
+    background-color: #ddd
+    border-color: #bbb
+    border-style: solid solid none solid
+    border-width: 1px
+    height: auto
+    margin-right: 0.5em
+    padding: 0 1em
+    text-decoration: none
+    +border-radius(0 2px 2px 0)
+
+#main-wrapper div[role="main"] ul.primary
+  height: 50px
+  width: 375px
+  margin: 0 auto
+  padding: 20px 0 0 0
+
+// #utility-bar stuff
+#utility-bar
+  @include respond-to(tablets_and_phones)
+    height: 54px
+
+  .container
+    width: 100%
+    max-width: 900px
+    margin: 0 auto
+  a
+    text-decoration: none
+
+    @include respond-to(tablets_and_phones)
+      font-size: 22px
+      line-height: 2em
+      padding-right: 0.5em
+
+// fix spacing of "help center" & "sign in" after search was hidden
+.utility-items
+  &.search
+    @include respond-to(tablets_and_phones)  
+      display: none !important
+
+#help-center
+  margin: 3px 15px 3px 0
+
+  @include respond-to(tablets_and_phones)
+    display: none !important
+
+// hide random Geocode Data field
+#edit-submitted-field-geocode-data
+  display: none
+
+// Hide elements inherited from global site
+// Panelizer and any other Drupal nonsense
+.region-sidebar-first,
+.pane-title,
+#block-menu-menu-footer,
+#skip-link,
+#breadcrumb,
+#page-title,
+#block-dosomething-login-become-member,
+#block-dosomething-blocks-dosomething-make-impact,
+#block-dosomething-blocks-dosomething-social-skyscraper,
+#block-block-5
+  display: none
+
+// set width of page content
+#cmp
+  max-width: $section-wrapper-width
+  width: 100%
+  margin: 0 auto
+
+// why is this here?
+.view-campaign-gallery #slideshow
+  margin: 0 auto
