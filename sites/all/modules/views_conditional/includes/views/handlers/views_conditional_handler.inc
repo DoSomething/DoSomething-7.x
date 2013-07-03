@@ -66,6 +66,12 @@ class ViewsConditionalHandler extends views_handler_field {
       '#attributes' => array('id' => 'hidden-select'),
     );
 
+
+    $condition_list = '';
+    foreach($this->conditions as $k => $cond) {
+      $condition_list .= '<option value="' . $k . '"' . ($condition['condition'] == $k ? ' selected="selected"' : '') . '>' . $cond . '</option>';
+    }
+
     $fieldlist = '';
     if (!empty($this->options['conditions'])) {
       $last_elm = 0;
@@ -85,9 +91,7 @@ class ViewsConditionalHandler extends views_handler_field {
           <div class="form-item form-type-select form-item-options-conditions-condition first">
             <select id="edit-options-conditions-condition" name="options[conditions][' . $key . '][condition]" class="form-select">';
 
-          foreach($this->conditions as $k => $cond) {
-            $fieldlist .= '<option value="' . $k . '"' . ($condition['condition'] == $k ? ' selected="selected"' : '') . '>' . $cond . '</option>';
-          }
+          $fieldlist .= $condition_list;
           
           $fieldlist .= '</select>
           </div>
@@ -118,9 +122,7 @@ class ViewsConditionalHandler extends views_handler_field {
               <div class="form-item form-type-select form-item-options-conditions-condition first">
                 <select id="edit-options-conditions-condition" name="options[conditions][' . $key . '][children][' . $ck . '][condition]" class="form-select">';
 
-              foreach($this->conditions as $k => $cond) {
-                $fieldlist .= '<option value="' . $k . '"' . ($cc['condition'] == $k ? ' selected="selected"' : '') . '>' . $cond . '</option>';
-              }
+              $fieldlist .= $condition_list;
               
               $fieldlist .= '</select>
               </div>
@@ -136,7 +138,7 @@ class ViewsConditionalHandler extends views_handler_field {
         }
         $fieldlist .= '</li>';
       }
-      $form['full_count'] = array('#markup' => '<script> var last_elm = ' . $last_elm . '; </script>');
+      $form['full_count'] = array('#markup' => '<script> var last_elm = ' . $last_elm . '; var condition_options = \'' . $condition_list . '\'; </script>');
     }
 
     $form['list'] = array('#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a><ul id="conditions-container">' . $fieldlist . '</ul>');
