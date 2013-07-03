@@ -39,7 +39,17 @@ function dosomething_campaign_report_back_strongarm() {
       ),
     ),
     'extra_fields' => array(
-      'form' => array(),
+      'form' => array(
+        'title' => array(
+          'weight' => '0',
+        ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '4',
+        ),
+      ),
       'display' => array(
         'webform' => array(
           'default' => array(

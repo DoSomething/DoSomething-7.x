@@ -6,6 +6,122 @@
  **/
 
 /**
+ * Returns a system_settings_form used to set dosomething_subscribe variables.
+ */
+function dosomething_subscribe_admin_settings_form() {
+  $form = array();
+  // Prefix all variable names with dosomething_subscribe:
+  $prefix = 'dosomething_subscribe_';
+  $form['header'] = array(
+    '#markup' => "<p>". t("Most forms have their Mailchimp and Mobilecommons values set on the node edit form.") . " " . l(t('View Subscription Report'), 'admin/reports/dosomething_subscribe') . "</p><p>" . t("These settings are for forms/nodes that don't.") . "</p>",
+  );
+  // Default values (for when none are set but email/cell is present):
+  $form['defaults'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Default Groups'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#description' => t('Default groups to use if none are specified on a node.'),
+  );
+  $form['defaults'][$prefix . 'mailchimp_default'] = array(
+    '#type' => 'textfield',
+    '#title' => t('MailChimp'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mailchimp_default'),
+  );
+  $form['defaults'][$prefix . 'mobilecommons_default'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobilecommons'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mobilecommons_default'),
+  );
+  // User registration values:
+  $form['user_register'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('User Registration'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#description' => t('Groups to use for user registration.'),
+  );
+  $form['user_register'][$prefix . 'mailchimp_user_register'] = array(
+    '#type' => 'textfield',
+    '#title' => t('MailChimp'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mailchimp_user_register'),
+  );
+  $form['user_register'][$prefix . 'mobilecommons_user_register'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobilecommons'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mobilecommons_user_register'),
+  );
+  // Values for Club nodes:
+  $form['clubs'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Clubs'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#description' => t('Groups to use on the Club node form.'),
+  );
+  $form['clubs'][$prefix . 'mailchimp_clubs'] = array(
+    '#type' => 'textfield',
+    '#title' => t('MailChimp'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mailchimp_clubs'),
+  );
+  $form['clubs'][$prefix . 'mobilecommons_clubs'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobilecommons'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mobilecommons_clubs'),
+  );
+  // Values for Club nodes:
+  $form['campaign_the_hunt'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Campaign: The Hunt'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#description' => t('Groups to use for The Hunt login signup.'),
+  );
+  $form['campaign_the_hunt'][$prefix . 'mailchimp_hunt'] = array(
+    '#type' => 'textfield',
+    '#title' => t('MailChimp'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mailchimp_hunt'),
+  );
+  $form['campaign_the_hunt'][$prefix . 'mobilecommons_hunt'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobilecommons'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'mobilecommons_hunt'),
+  );
+  // Node types to use for User Profile signups:
+  $form['signup_node_types'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Signup Node Types'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#description' => t('Node types that should submit email and/or mobile data upon node and/or webform submission.'),
+  );
+  $form['signup_node_types'][$prefix . 'signup_node_types'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Node types'),
+    '#required' => TRUE,
+    '#options' => drupal_map_assoc(array_keys(node_type_get_types())),
+    '#default_value' => variable_get($prefix . 'signup_node_types'),
+  );
+  $form['signup_node_types'][$prefix . 'signup_user_profile_node_types'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('User Profile Signup Node types'),
+    '#required' => FALSE,
+    '#description' => t('Node types that should pull email/mobile from the User Profile if fields are not present.  Note: this list is populated from the Signup Node Types.'),
+    '#options' => drupal_map_assoc(_dosomething_subscribe_get_signup_node_types()),
+    '#default_value' => variable_get($prefix . 'signup_user_profile_node_types'),
+  );
+  return system_settings_form($form);
+}
+
+/**
  * dosomething_subscribe_page_status_report() - Page callback for Subcribe Status report. Report generates of all webforms and
  * what the MailChimp and Mobile Commons groups are assigned to the form.
  *

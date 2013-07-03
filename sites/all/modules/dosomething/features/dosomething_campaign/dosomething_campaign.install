@@ -1,6 +1,42 @@
 <?php
 
 /**
+ * Implements hook_schema().
+ */
+function dosomething_campaign_schema() {
+  $schema['dosomething_campaign_signups'] = array(
+    'fields' => array(
+      'uid' => array(
+        'description' => 'Drupal User ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'nid' => array(
+        'description' => 'Campaign Node ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'timestamp' => array(
+        'description' => 'Time of signup',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('uid', 'nid'),
+    'indexes' => array(
+      'uid' => array('uid'),
+    ),
+  );
+  return $schema;
+}
+
+/**
  * Remove deprecated fields from the campaign content type
  */
 function dosomething_campaign_update_7001() {
@@ -36,4 +72,22 @@ function dosomething_campaign_update_7001() {
 
   field_purge_batch(count($fields) + 6);
 
+}
+
+/**
+ * Creates dosomething_campaign_signups table.
+ */
+function dosomething_campaign_update_7002() {
+  drupal_install_schema('dosomething_campaign');
+}
+
+/**
+ * Populates signup values for Kiva campaign node.
+ */
+function dosomething_campaign_update_7003() {
+  $node = node_load(729307);
+  $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'] = 'Microfinance2013';
+  $node->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'] = 159279;
+  $node->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'] = 159283;
+  node_save($node);
 }

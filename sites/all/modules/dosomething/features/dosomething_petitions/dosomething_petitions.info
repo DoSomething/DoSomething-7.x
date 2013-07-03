@@ -30,6 +30,7 @@ features[field][] = node-petition-field_petition_letter
 features[field][] = node-petition-field_petition_picture
 features[field][] = node-petition-field_petition_target
 features[field][] = node-petition-field_petition_updates
+features[field][] = node-petition-field_twitter_language
 features[field][] = webform_submission_entity-petition-field_webform_email_or_cell
 features[field][] = webform_submission_entity-petition-field_webform_first_name
 features[field][] = webform_submission_entity-petition-field_webform_last_name

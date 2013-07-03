@@ -10,10 +10,54 @@ define('PETITIONS_NUM_EMAILS', 0);
 define('PETITIONS_INFUSIONSOFT', 1648);
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_petitions_menu() {
+  $items = array();
+  $items['petition/%/signed_count'] = array(
+    'page callback' => 'dosomething_petitions_get_signed_count',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+/**
+ * Finds and returns the signature count for a specific petition.  This is used
+ * in conjunction with a jQuery POST request in petition to show the proper
+ * number for logged out users (thereby bypassing Varnish).
+ *
+ * @param int $nid
+ *   The node ID of the petition to get the signature count for.
+ *
+ * @see dosomething_petitions.js line 29
+ */
+function dosomething_petitions_get_signed_count($nid) {
+  # Ignore if not numeric
+  if (!is_numeric($nid)) {
+    return FALSE;
+  }
+
+  # Get the signature count.
+  $signed_count = variable_get('petitions_signed_count_' . $nid, 0);
+
+  # Spit out JSON of the signature count.
+  drupal_json_output(array('signatures' => $signed_count));
+  drupal_exit();
+}
+
+/**
  *  Implements hook_page_alter()
  */
 function dosomething_petitions_page_alter(&$page) {
   if (preg_match('#\/petition\/(.*?)#i', request_uri())) {
+    $petition = menu_get_object();
+    if (!empty($petition->field_twitter_language[LANGUAGE_NONE][0]['value'])) {
+      $setting = array('petition' => array('tweet' => $petition->field_twitter_language[LANGUAGE_NONE][0]['value']));
+      drupal_add_js($setting, 'setting');
+    }
+
     $element = array(
       '#tag' => 'meta',
       '#attributes' => array(
@@ -24,9 +68,8 @@ function dosomething_petitions_page_alter(&$page) {
 
     drupal_add_html_head($element, 'petitions_og_type');
 
-
     $short = shorten_url(url(request_uri(), array('absolute' => TRUE)));
-    drupal_add_js(array('petition' => array('short_url' => $short)), 'setting');
+    drupal_add_js(array('petition' => array('short_url' => $short, 'nid' => $petition->nid, 'goal' => $petition->field_petition_goal[LANGUAGE_NONE][0]['value'])), 'setting');
   }
 }
 
@@ -325,7 +368,7 @@ function dosomething_petitions_opt_in($form, $form_state) {
       $name = t('Guest');
     }
 
-    dosomething_petitions_goal_email($node->field_petition_goal[LANGUAGE_NONE][0]['value'], $node->nid);
+    #dosomething_petitions_goal_email($node->field_petition_goal[LANGUAGE_NONE][0]['value'], $node->nid);
     $a = user_load($node->uid);
     $p = profile2_load_by_user($a, 'main');
     $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
@@ -765,4 +808,13 @@ function dosomething_petitions_contact_picker_emails() {
 function dosomething_petitions_increment_signature_count($nid) {
   $count = variable_get('petitions_signed_count_' . $nid, 0);
   variable_set('petitions_signed_count_' . $nid, ++$count);
+}
+
+/**
+ *Get the number of signatures for a petition
+ *
+ * @param $nid Node ID for the petitions
+ */
+function dosomething_petitions_get_signature_count($nid) {
+  return variable_get('petitions_signed_count_' . $nid, 0);
 }

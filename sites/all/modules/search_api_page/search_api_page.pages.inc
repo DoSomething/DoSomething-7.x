@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * User page callbacks for the Search pages module.
+ */
 
 /**
  * Displays a search page.
@@ -22,10 +26,18 @@ function search_api_page_view($id, $keys = NULL) {
     $page->options['per_page'] = (int) $_GET['per_page'];
   }
 
-  $ret['form'] = drupal_get_form('search_api_page_search_form', $page, $keys);
+  if (!isset($page->options['result_page_search_form']) || $page->options['result_page_search_form']) {
+    $ret['form'] = drupal_get_form('search_api_page_search_form', $page, $keys);
+  }
 
   if ($keys) {
-    $results = search_api_page_search_execute($page, $keys);
+    try {
+      $results = search_api_page_search_execute($page, $keys);
+    }
+    catch (SearchApiException $e) {
+      $ret['message'] = t('An error occurred while executing the search. Please try again or contact the site administrator if the problem persists.');
+      watchdog('search_api_page', 'An error occurred while executing a search: !msg.', array('!msg' => $e->getMessage()), WATCHDOG_ERROR, l(t('search page'), $_GET['q']));
+    }
 
     // If spellcheck results are returned then add them to the render array.
     if (isset($results['search_api_spellcheck'])) {
@@ -55,7 +67,7 @@ function search_api_page_view($id, $keys = NULL) {
     }
     if (!empty($results['warnings'])) {
       foreach ($results['warnings'] as $warning) {
-        drupal_set_message($warning, 'warning');
+        drupal_set_message(check_plain($warning), 'warning');
       }
     }
   }
@@ -199,7 +211,7 @@ function theme_search_api_page_result(array $variables) {
     $fields = search_api_extract_fields($wrapper, $fields);
     $text = '';
     $length = 0;
-    foreach ($fields as $field) {
+    foreach ($fields as $field_name => $field) {
       if (search_api_is_list_type($field['type']) || !isset($field['value'])) {
         continue;
       }
@@ -207,10 +219,29 @@ function theme_search_api_page_result(array $variables) {
       if ($val_length > $length) {
         $text = $field['value'];
         $length = $val_length;
+
+        $format = NULL;
+        if (($pos = strrpos($field_name, ':')) && substr($field_name, $pos + 1) == 'value') {
+          $tmp = $wrapper;
+          try {
+            foreach (explode(':', substr($field_name, 0, $pos)) as $part) {
+              if (!isset($tmp->$part)) {
+                $tmp = NULL;
+              }
+              $tmp = $tmp->$part;
+            }
+          }
+          catch (EntityMetadataWrapperException $e) {
+            $tmp = NULL;
+          }
+          if ($tmp && $tmp->type() == 'text_formatted' && isset($tmp->format)) {
+            $format = $tmp->format->value();
+          }
+        }
       }
     }
     if ($text && function_exists('text_summary')) {
-      $text = text_summary($text);
+      $text = text_summary($text, $format);
     }
   }
 

@@ -15,6 +15,7 @@ function doit_preprocess_html(&$variables, $hook) {
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
 
+  drupal_alter('html_templates', $variables);
 }
 
 function doit_preprocess_page(&$variables) {
@@ -80,6 +81,12 @@ function doit_preprocess_page(&$variables) {
   $beta_campaign = variable_get('beta_campaign_nid', 724796);
   if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $beta_campaign))) {
     drupal_goto('user/registration?destination=node/' . $beta_campaign);
+  }
+
+    // gate hunt campaign page
+  $hunt_campaign = variable_get('hunt_campaign_nid', 729679);
+  if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $hunt_campaign))) {
+    drupal_goto('user/registration?destination=node/' . $hunt_campaign);
   }
 
   // Load Webfonts specific to the page

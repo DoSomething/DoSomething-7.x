@@ -43,46 +43,25 @@ function dosomething_general_init() {
 }
 
 /**
- *  Loads a .txt file and creates a webform from the serialized
- *  content within.
- *
- *  @param $path
- *    The relative URI to the file that has the serialized node structure.
- *
- *  @param $alias
- *    The alias for the node in question.
- *
- *  @param $variable
- *    An (optional) variable to populate with the node ID.
- *
- *  @return $webform
- *    Returns the node'd webform structure.
+ * @deprecated
+ * Keeping as placeholder until Crazyshit module is destroyed.
  */
 function dosomething_general_save_node_from_file($path, $alias, $variable = null) {
-  $webform = unserialize(file_get_contents($path));
-  $webform_data = $webform->webform;
-  unset($webform->webform);
-  node_save($webform);
-  unset ($webform->webform);
+}
 
-  dosomething_picsforpets_general_recursively_readd_nid($webform_data, $webform->nid);
-  $webform->webform = $webform_data;
-  $webform_data['nid'] = $webform->nid;
-  $webform->webform['record_exists'] = TRUE;
-  foreach ($webform->webform['components'] as $key => $component) {
-    $webform->webform['components'][$key]['nid'] = $webform->nid;
-    if (!$webform->webform['components'][$key]['mandatory']) {
-      $webform->webform['components'][$key]['mandatory'] = 0;
-    }
-  }
-  $webform->path = array('alias' => $alias, 'pathauto' => FALSE);
-  node_save($webform);
-
-  if (!empty($variable)) {
-    variable_set($variable, $webform->nid);
-  }
-
-  return $webform;
+/**
+ * Cleans a zipcode of illegal characters.
+ *
+ * @param string|int $zip
+ *   The zipcode.
+ *
+ * @return mixed string|int
+ *   The zipcode, cleaned of any malicious characters.
+ */
+function dosomething_general_clean_zip($zip) {
+  $zip = strtoupper($zip);
+  $zip = preg_replace("/[^A-Z0-9]/", "", $zip);
+  return $zip;
 }
 
 /**
@@ -291,6 +270,16 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
  * Implements hook_menu().
  */
 function dosomething_general_menu() {
+  // Create admin page for custom dosomething modules configuration pages to live in.
+  $items['admin/config/dosomething'] = array(
+    'title' => 'DoSomething',
+    'description' => 'Configuration settings for DoSomething custom functionality.',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+
   $items['webform-post-submit-associate/%/%'] = array(
     'page callback' => 'dosomething_general_webform_associate',
     'page arguments' => array(1, 2),
@@ -914,6 +903,156 @@ function dosomething_general_webform_associate($nid, $sid) {
 }
 
 /**
+ * Implements hook_user_insert().
+ * @TODO - move me somewhere more appropriate
+ */
+function dosomething_general_user_insert(&$edit, $account, $category) {
+  // $member = _dosomething_general_user_prepare_member($account);
+  // $member = _dosomething_general_user_member_save($member);
+}
+
+/**
+ * Implements hook_user_update().
+ *  @TODO - move me somewhere more appropriate
+ */
+function dosomething_general_user_update(&$edit, $account, $category) {
+  // $member = _dosomething_general_user_prepare_member($account);
+  // $member = _dosomething_general_user_member_save($member);
+}
+
+/**
+ *
+ **/
+function _dosomething_general_user_member_save($member) {
+
+  $endpoint = variable_get('dosomething_restful_endpoint', 'http://api.dosomething.org/v1/members');
+
+  $curl = curl_init();
+
+  $curl_options = array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTPHEADER => array('Accept: application/json'),
+    CURLOPT_POST => 1,
+    CURLOPT_POSTFIELDS => array('member' => json_encode($member))
+  );
+
+  // If uid is present, we want to do a put request
+  if (isset($member->uid)) {
+    $endpoint .= '/' . $member->uid;
+    $curl_options[CURLOPT_CUSTOMREQUEST] = "PUT";
+  }
+
+  $curl_options[CURLOPT_URL] = $endpoint;
+
+  curl_setopt_array($curl, $curl_options);
+  $response = curl_exec($curl);
+  $curl_info = curl_getinfo($curl);
+
+  if ($response === FALSE) {
+    // Do something when curl fails.
+    //throw new Exception(curl_error($curl), curl_errno($curl));
+  }
+
+  if ($curl_info['http_code'] != 200) {
+    // Do something when the API is not reachable.
+  }
+
+  // We should return the new organization user id
+  // $member['id'] = 'XXXXX';
+  return $member;
+}
+
+/**
+ *  Prepares user conversion to member object
+ *  @TODO - move me somewhere more appropriate
+ **/
+function _dosomething_general_user_prepare_member($user) {
+   
+  if (is_numeric($user)) {
+    $user = user_load($user);
+    if ($user === FALSE) return FALSE;
+  }
+
+  $profile = profile2_load_by_user($user);
+ 
+  $member = array(
+    'uid' => $user->uid,
+    'created' => $user->created,
+    'username' => $user->name,
+    'firstname' => '',
+    'lastname' => '',
+    'fullname' => '',
+    'gender' => '',
+    'date_of_birth' => '',
+    'email' => $user->mail,
+    'email_addresses' => array(),
+    'mobile' => '',
+    'mobile_numbers' => array(),
+    'addresses' => array(),
+    'schools' => array()
+  );
+
+  if ($user->mail) $member['email_addresses'][] = $user->mail;
+ 
+  $fields = array();
+  if (isset($profile['main'])) {
+    foreach ($profile['main'] as $field_name => $field) {
+      if (strpos($field_name, 'field_') == 0) {
+        $fields[$field_name] = $field;
+        switch($field_name) {
+          case 'field_user_address':
+            $member['addresses'] = $field['und'];
+            break;
+          case 'field_user_birthday':
+            if ($dob = $field['und'][0]['value']) {
+              $dob = strtotime($dob);
+              $member['date_of_birth'] = $dob;
+            }
+            break;
+          case 'field_user_first_name':
+            $member['firstname'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_gender':
+            $member['gender'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_last_name':
+            $member['lastname'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_mobile':
+            $member['mobile'] = $field['und'][0]['value'];
+            $member['mobile_numbers'][] = $field['und'][0]['value'];
+            break;
+          case 'field_school_reference':
+            $schools = array();
+ 
+            foreach ($field['und'] as $school) {
+              $entity = entity_load('ds_school', array($school['target_id']));
+ 
+              if ($entity) {
+                $entity = $entity[$school['target_id']];
+                $schools[] = array(
+                  'name' => $entity->name,
+                  'level' => $entity->level,
+                  'country' => $entity->country,
+                  'administrative_area' => $entity->state,
+                  'locality' => $entity->city,
+                  'postal_code' => $entity->zip,
+                  'thoroughfare' => $entity->street
+                );
+              }
+            }
+            $member['schools'] = $schools;
+            break;
+        }
+      }
+    }
+  }
+
+  return $member;
+}
+
+/**
  * Implements hook_user_delete().
  */
 function dosomething_general_user_delete($account) {
@@ -974,6 +1113,45 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
     $form['#validate'][] = 'help_form_captcha';
   }
+  // Sparknotes scholarship
+  if ($form_id == 'webform_client_form_729266') {
+    $f = &$form['submitted'];
+    if (!user_is_logged_in()) {
+      // Make it an actual password field.
+      $f['password']['#type'] = 'password';
+
+      // Confirm password.
+      $form['#validate'][] = 'sparknotes_scholarship_validate';
+
+      // Push a user to login / register 
+      $form['#submit'][] = 'sparknotes_scholarship_login';
+    }
+    else {
+      // Remove the password field if the user is logged in.
+      if (user_is_logged_in()) {
+        $f['password']['#access'] = FALSE;
+      }
+    }
+  }
+}
+
+/**
+ * Confirms that the user's input is valid.
+ */
+function sparknotes_scholarship_validate($form, &$form_state) {
+  $values = $form_state['input']['submitted'];
+
+  if (!dosomething_api_valid_password($values['email'], $values['password'])) {
+    form_set_error('password', t('Invalid email / pass combination.'));
+  }
+}
+
+/**
+ * Login / register some of those sparky noters.
+ */
+function sparknotes_scholarship_login($form, &$form_state) {
+  $values = $form_state['input']['submitted'];
+  dosomething_api_create_or_log_in_user($values['first_name'], $values['email'], $values['password'], null, array('profile' => array('mobile' => $values['cell'], 'first_name' => $values['first_name'], 'last_name' => $values['last_name'])));
 }
 
 /**
@@ -1023,78 +1201,6 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
     watchdog('dosomething_general', 'Updating the email address for @username from @old_mail to @new_mail', $variables);
     $user->mail = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
     user_save($user);
-  }
-}
-
-/**
- * Generic handler that uses field_webform_email and field_webform_mobile
- * combined with the $node values for inserting values into Mailchimp
- * and/or Mobile Commons
- */
-//@todo: this will be moved over to dosomething_subscribe.module
-function dosomething_general_webform_email_and_mobile_subscribe(&$form, &$form_state) {
-  // If we don't have a node or a webform submission there's really nothing we
-  // can do. This handler was probably put on the wrong form.
-
-  if (!isset($form['#node']) || !isset($form_state['webform_entity']['submission']->submitted)) {
-    return;
-  }
-  $node = $form['#node'];
-  $submitted = $form_state['webform_entity']['submission']->submitted;
-  $email = $cell = '';
-  // Different instances of the email field use different widgets so we have to
-  // look in two places to find their email address.
-  if (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['email'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
-  }
-  elseif (isset($submitted['field_webform_email'][LANGUAGE_NONE][0]['value'])) {
-    $email = $submitted['field_webform_email'][LANGUAGE_NONE][0]['value'];
-  }
-  elseif (isset($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'])) {
-    if (strpos($submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'], '@') > 0) {
-      $email = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
-    }
-    else {
-      $cell = $submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value'];
-    }
-  }
-  // If we have an email field, check whether or not to subscribe it.
-  if (!empty($email)) {
-    $mc_merge_vars = array();
-    // Pretty sure this is never going to occur... would any webform use field_webform_or_cell as the cell #?
-    if (!empty($cell)) {
-      $mc_merge_vars['MMERGE7'] = $cell;
-    }
-    // Grab node's group mailchimp id field value
-    if (isset($node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'])) {
-      $mc_group = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
-    }
-    // Somehow the mailchimp group id gets included in the submission? Could have sworn I saw this work someplace.
-    elseif (isset($submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'])) {
-      $mc_group = $submitted['field_mailchimp_group_id'][LANGUAGE_NONE][0]['value'];
-    }
-    // Petitions Group ID is hardcoded, for now.
-    if ($node->type == 'petition') {
-      // @todo: Remove line below once Petitions gets mc_optin field added.
-      $mc_group = 'Petitions2012';
-      // Petition Name - Webform ID
-      $mc_merge_vars['MMERGE27'] = $form['#action'];
-      // Drupal User ID - UID
-      if ($form['#submission']->details['uid'] > 0) {
-        $mc_merge_vars['UID'] = $form['#submission']->details['uid'];
-      }
-    }
-    // If we have a mailchimp group, subscribe the email to it.
-    if (isset($mc_group)) {
-      dosomething_general_mailchimp_subscribe($email, $mc_group, $mc_merge_vars);
-    }
-  }
-  // Will use previous cell value if already set from Petition submission
-  $cell = isset($submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value']) ? $submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'] : NULL;
-  if (!empty($cell)) {
-    if (!empty($node->field_mc_optin[LANGUAGE_NONE][0]['value'])) {
-      dosomething_general_mobile_commons_subscribe($cell, $node->field_mc_optin[LANGUAGE_NONE][0]['value']);
-    }
   }
 }
 
@@ -1311,198 +1417,6 @@ function dosomething_general_mobile_commons_response($message) {
 }
 
 /**
- * A wrapper function that returns the mc api object
- */
-function dosomething_general_mailchimp_get_api_object() {
-  libraries_load('mailchimp');
-  $q = new MCAPI(variable_get('mailchimp_api_key', ''));
-
-  // set the timeout to something reasonsable to avoid taking down the Drupal site
-  $q->setTimeout(60);
-
-  // specify if a secure connection should be used wit the API
-  $q->useSecure(variable_get('mailchimp_use_secure', TRUE));
-
-  if ($q->errorCode) {
-    watchdog('mailchimp', 'MCAPI Error: %errmsg', array('%errmsg' => $q->errorMessage), WATCHDOG_ERROR);
-    return NULL;
-  }
-
-  return $q;
-}
-
-/**
- * Subscribe the email to the mailchimp DoSomething Members List.
- *
- * @param $email
- *   Users email address.
- * @param $groupName
- *   The campaign name that the email is to be subscribed to.
- * @return
- *   Boolean indicating success.
- */
-//@todo: move this to dosomething_subscribe_mailchimp_signup().
-function dosomething_general_mailchimp_subscribe($email, $groupName, $merge_vars = array()) {
-
-  /* Our function */
-  $mcapi = dosomething_general_mailchimp_get_api_object();
-
-  // Catching function
-  // Hardcoding the list to the dosomething members
-  if ($groupName == 'GunControlReport2013' || $groupName == 'Volunteers2013') {
-    $listid = 'a27895fe0c';
-  }
-  else {
-    $listid = 'f2fab1dfd4';
-  }
-
-  // We do not want them to have to know the grouping id so we will build
-  // the table to look it up by using the group name specified.
-  $cid = "dosomething_general_mailchimp_group_mapping_$listid";
-  $cache = cache_get($cid);
-  if (!empty($cache->data)) {
-    $groupingIdByGroupName = $cache->data;
-  }
-  else {
-    $groupingIdByGroupName = array();
-    $groupings = $mcapi->listInterestGroupings($listid);
-    if (is_array($groupings) && !empty($groupings)) {
-      foreach ($groupings as $grouping) {
-        foreach ($grouping['groups'] as $group) {
-          // If two groupnames are the same in different groupings
-          // then it may pick the wrong group.
-          $groupingIdByGroupName[$group['name']] = $grouping['id'];
-        }
-      }
-    }
-    cache_set($cid, $groupingIdByGroupName);
-  }
-
-  // Collect user details by email based on current values in user account for MailChimp signup / update
-  $merge_vars += dosomething_general_collect_merge_vars($email);
-
-  if (!isset($groupingIdByGroupName[$groupName])) {
-    watchdog('dosomething_general_mailchimp_subscribe',
-      'Cannot find Group ID for group named %name',
-      array('%name' => $groupName),
-      $severity = WATCHDOG_ERROR
-    );
-  }
-  // TODO: Error Handling for groupname, still add the user if error occurs.
-  $merge_vars += array(
-    'GROUPINGS' => array(
-      array(
-        'id' => (isset($groupingIdByGroupName[$groupName]) ? $groupingIdByGroupName[$groupName] : 0),
-        'groups' => $groupName
-      ),
-    )
-  );
-
-  // http://apidocs.mailchimp.com/api/rtfm/listsubscribe.func.php
-  // listSubscribe(string apikey, string id, string email_address, array merge_vars,
-  //   string email_type, bool double_optin, bool update_existing, bool replace_interests, bool send_welcome)
-
-  // Note: apikey is not needed due to mailchimp_get_api_object call at start of function
-  $mc_signup_flag = $mcapi->listSubscribe($listid, $email, $merge_vars, 'html', FALSE, TRUE, FALSE);
-  $merge_vars = print_r($merge_vars, TRUE);
-
-  if ($mc_signup_flag) {
-    watchdog('dosomething_general_mailchimp_subscribe',
-             'Added ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
-             array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
-             $severity = WATCHDOG_INFO);
-  }
-  else {
-    watchdog('dosomething_general_mailchimp_subscribe',
-             'Failed to signup new user ( %email ) to MailChimp %group using list ID: %listid and merge vars: %merge_vars',
-             array('%email' => $email, '%group' => $groupName, '%listid' => $listid, '%merge_vars' => $merge_vars),
-             $severity = WATCHDOG_ERROR);
-  }
-
-  return $mc_signup_flag;
-
-}
-
-/**
- * Build out $merge_vars values on what's available in the Drupal user account.
- *
- * @param $target_email
- *   Target email address to reference for additional information
- * @param $target_mobile
- *   Target mobile number to reference for additional information
- *
- * @return
- *   Array $merge_vars collection user information.
- */
-//@todo: move this to dosomething_subscribe_mailchimp_collect_merge_vars().
-function dosomething_general_collect_merge_vars($target_email = NULL, $target_mobile = NULL) {
-
-  // Collect the user details
-  $user = user_load_by_mail($target_email);
-
-  // TO-DO: add lookup by mobile
-
-  // check to see if user account is found
-  if ($user) {
-
-    // Merge vars for user
-    $merge_vars['UID'] = $user->uid;
-    $merge_vars['MMERGE3'] =  $user->name;
-
-    // Mobile
-    $user2 = profile2_load_by_user($user, 'main');
-    $mobile = field_get_items('profile2', $user2, 'field_user_mobile');
-
-    if (!empty($target_mobile)) {
-      $merge_vars['MMERGE7'] = $target_mobile;
-    }
-    elseif(!empty($mobile)) {
-      $merge_vars['MMERGE7'] = $mobile;
-
-      // TO-DO ?
-      // if ($target_mobile != $mobile) {
-      //   Update user record with new mobile number?
-      // }
-
-      // Validates number - perhaps already done before sent to this function?
-      // dosomething_general_valid_cell
-
-    }
-
-    // Birthday
-    $birthday = field_get_items('profile2', $user2, 'field_user_birthday');
-
-    if (!empty($birthday)) {
-
-      $birthday_bits = explode('-', $birthday[0]['value']);
-      $birthday_stamp = mktime(0, 0, 0, $birthday_bits[1],  substr($birthday_bits[2], 0, strpos($birthday_bits[2],' ')), $birthday_bits[0]);
-
-      $merge_vars['BDAY'] = date('m/d', $birthday_stamp);
-      $merge_vars['BDAYFULL'] = date('m/d/Y', $birthday_stamp);
-
-      // Need to store date values as var to allow recasting in final string
-      $target_date = date('m/d', $birthday_stamp);
-      $target_year_18 = date('Y', $birthday_stamp) + 18;
-      $target_year_26 = date('Y', $birthday_stamp) + 26;
-
-      // Support for target dates based on user birthday - 18 and 26 years old. Used by auto responders in MailChimp
-      $merge_vars['TURNS18'] = $target_date ."/". $target_year_18;
-      $merge_vars['TURNS26'] = $target_date ."/". $target_year_26;
-
-    }
-
-  }
-
-  // Make sure merge_vars is formatted correctly even if no values are assigned
-  if (empty($merge_vars) || count($merge_vars) == 0) {
-    $merge_vars['UID'] = 0;
-  }
-
-  return $merge_vars;
-
-}
-
-/**
  * Get a user's full name as a string.
  *
  * @param $account
@@ -1517,10 +1431,8 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
   $profile = profile2_load_by_user($account, 'main');
 
   if (is_object($profile)) {
-    $first_name = reset(field_get_items('profile2', $profile, 'field_user_first_name'));
-    $first_name = (isset($first_name['value']) ? $first_name['value'] : '');
-    $last_name = reset(field_get_items('profile2', $profile, 'field_user_last_name'));
-    $last_name = (isset($last_name['value']) ? $last_name['value'] : '');
+    $first_name = (isset($profile->field_user_first_name[LANGUAGE_NONE][0]['value']) ? $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] : '');
+    $last_name = (isset($profile->field_user_last_name[LANGUAGE_NONE][0]['value']) ? $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] : '');
 
     switch ($display_type) {
       case 'private':
@@ -1846,7 +1758,7 @@ function dosomething_general_get_multi_fbids($users) {
  */
 function dosomething_general_file_presave($file) {
   // Resize image file if it is larger than 800 wide or tall
-  _dosomething_general_imagefile_scale($file, 800);
+  _dosomething_general_imagefile_scale($file, 960);
 }
 
 /**

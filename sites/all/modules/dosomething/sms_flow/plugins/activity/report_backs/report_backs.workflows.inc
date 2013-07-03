@@ -1,45 +1,10 @@
 <?php
 
 /**
- * sms_flow_alcoa_report_back workflow
- */
-$workflow = new ConductorWorkflow;
-$workflow->wid = 'new';
-$workflow->name = 'sms_flow_alcoa_report_back';
-$workflow->title = '50 Cans Report Back';
-$workflow->description = 'Submits the 50 Cans report back';
-$workflow->api_version = '1.0';
-
-$activity = $workflow->newActivity('start');
-$activity->name = 'start';
-$activity->title = 'Start';
-$activity->inputs = array();
-$activity->outputs = array('strip_signature');
-
-$activity = $workflow->newActivity('sms_strip_signature');
-$activity->name = 'strip_signature';
-$activity->title = 'Strip Signature';
-$activity->inputs = array('start');
-$activity->outputs = array('50cans_report_back');
-
-$activity = $workflow->newActivity('50cans_report_back');
-$activity->name = '50cans_report_back';
-$activity->title = '50 Cans Report Back';
-$activity->inputs = array('strip_signature');
-$activity->outputs = array('end');
-
-$activity = $workflow->newActivity('end');
-$activity->name = 'end';
-$activity->title = 'End';
-$activity->inputs = array('50cans_report_back');
-$activity->outputs = array();
-
-$workflows[$workflow->name] = $workflow;
-
-/**
  * sms_flow_can_send_mms_report_back workflow
- *  can_send_mms activity replaces the End activity and should be the
- *  last one in the workflow.
+ *  Handles the user response to whether or not he can send MMS. The routes property
+ *  uses the array key as the incoming opt-in path and the 'yes' and 'no' values as
+ *  the outgoing opt-in paths depending on the user's answer.
  */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
@@ -66,68 +31,76 @@ $activity->routes = array(
     'yes' => '149023',
     'no' => '149013'
   ),
+  // Oklahoma Report Back
+  '157773' => array(
+    'yes' => '157793',
+    'no' => '157783'
+  ),
+  // I Heart Dad 2013 Report Back
+  '158811' => array(
+    'yes' => '158815',
+    'no' => '158813',
+  ),
+  // Hunt 2013 Report Back Day 1
+  '159421' => array(
+    'yes' => '159445',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 2
+  '159423' => array(
+    'yes' => '159447',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 3
+  '159425' => array(
+    'yes' => '159449',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 4
+  '159427' => array(
+    'yes' => '159451',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 5
+  '159429' => array(
+    'yes' => '159453',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 6
+  '159431' => array(
+    'yes' => '159455',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 7
+  '159433' => array(
+    'yes' => '159457',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 8
+  '159435' => array(
+    'yes' => '159459',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 9
+  '159437' => array(
+    'yes' => '159461',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 10
+  '159439' => array(
+    'yes' => '159463',
+    'no' => '159443',
+  ),
+  // Hunt 2013 Report Back Day 11
+  '159441' => array(
+    'yes' => '159465',
+    'no' => '159443',
+  ),
 );
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
 $activity->inputs = array('can_send_mms');
-$activity->outputs = array();
-
-$workflows[$workflow->name] = $workflow;
-
-/**
- * sms_flow_sucker2013_report_back workflow
- */
-$workflow = new ConductorWorkflow;
-$workflow->wid = 'new';
-$workflow->name = 'sms_flow_sucker_report_back';
-$workflow->title = 'Sucker Campaign Report Back';
-$workflow->description = 'Submits the report back for use with the Don\'t Be A Sucker campaign';
-$workflow->api_version = '1.0';
-
-$activity = $workflow->newActivity('start');
-$activity->name = 'start';
-$activity->inputs = array();
-$activity->outputs = array('ask_picture');
-
-$activity = $workflow->newActivity('mms_prompt');
-$activity->name = 'ask_picture';
-$activity->inputs = array('start');
-$activity->outputs = array('ask_unplugged');
-$activity->should_prompt = FALSE;
-
-$activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_unplugged';
-$activity->inputs = array('ask_picture');
-$activity->outputs = array('ask_tvs');
-$activity->question = t('How many total vampires did you unplug in this room?');
-
-$activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_tvs';
-$activity->inputs = array('ask_unplugged');
-$activity->outputs = array('strip_signature');
-$activity->question = t('How many of those were TVs?');
-
-$activity = $workflow->newActivity('sms_strip_signature');
-$activity->name = 'strip_signature';
-$activity->inputs = array('ask_tvs');
-$activity->outputs = array('sucker_report_back');
-
-$activity = $workflow->newActivity('submit_report_back');
-$activity->name = 'sucker_report_back';
-$activity->inputs = array('strip_signature');
-$activity->outputs = array('end');
-$activity->success_response = 'Thanks for sharing! You now have @submission_count entries in the scholarship lottery. Unplugged more rooms? Text PHOTO. Or text DONE if you\'re finished';
-$activity->submission_fields = array(
-  'ask_unplugged' => 4,
-  'ask_tvs' => 5,
-  'picture' => 'ask_picture:mms',
-);
-$activity->webform_nid = 728508;
-
-$activity = $workflow->newActivity('end');
-$activity->name = 'end';
-$activity->inputs = array('sucker_report_back');
 $activity->outputs = array();
 
 $workflows[$workflow->name] = $workflow;
@@ -267,98 +240,753 @@ $activity->outputs = array();
 $workflows[$workflow->name] = $workflow;
 
 /**
- * sms_flow_tfj2013_report_back
+ * Thumb Wars report back flow. User will be prompted to first submit a picture
+ * by the conversation begun in Mobile Commons
+ * (https://secure.mcommons.com/campaigns/116593/opt_in_paths/155733)
  */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
-$workflow->name = 'sms_flow_tfj2013_report_back';
-$workflow->title = 'TFJ 2013 Campaign Report Back';
-$workflow->description = 'Submits the report back for use with the Teens for Jeans 2013 campaign';
+$workflow->name = 'sms_flow_thumbwars_report_back';
+$workflow->title = 'Thumb Wars Report Back';
+$workflow->description = 'Submits the report back for the Thumb Wars campaign';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->title = 'start';
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_who', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 158849;
+
+$activity = $workflow->newActivity('sms_prompt_normalize_response');
+$activity->name = 'ask_who';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_why');
+$activity->question = 'Amazing! Q1: who did you share thumb socks with? (Text back: Mother, Father, Sister, Brother, Friend, Other)';
+$activity->normalizedGroups = array(
+  array('mother', 'mom'),
+  array('father', 'dad'),
+  array('sister', 'sis'),
+  array('brother', 'bro'),
+  array('friend', 'frend', 'firend'),
+  array('select_or_other', 'other'),
+);
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_why';
+$activity->inputs = array('ask_who');
+$activity->outputs = array('strip_signature');
+$activity->question = 'Great. Q2: why did you share thumb socks with that person?';
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_why');
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('mcommons_opt_out');
+$activity->submission_fields = array(
+  'defaults' => array(
+    array('FIRST_NAME', 1),
+    array('LAST_NAME', 2),
+    array(1, 4),
+  ),
+  'ask_who' => 6,
+  'ask_why' => 7,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 'You rock! Got more pics? Text MORE to share another pic or DRIVE to read & share a crazy stat about texting & driving for another entry. All set? Txt DONE';
+$activity->webform_nid = 729094;
+
+$activity = $workflow->newActivity('mobile_commons_opt_out');
+$activity->title = 'mcommons_opt_out';
+$activity->name = 'mcommons_opt_out';
+$activity->inputs = array('submit_report_back');
+$activity->outputs = array('end');
+$activity->opt_out_ids = array(116593);
+
+$activity = $workflow->newActivity('end');
+$activity->title = 'end';
+$activity->name = 'end';
+$activity->inputs = array('mcommons_opt_out', 'ask_picture');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Oklahome Response Campaign report back workflow. User will first be prompted
+ * to submit a picture from: https://secure.mcommons.com/campaigns/119613/opt_in_paths/157793
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_oklahoma_report_back';
+$workflow->title = 'Oklahoma Report Back';
+$workflow->description = 'Submits the report back for the Oklahoma campaign';
 $workflow->api_version = '1.0';
 
 $activity = $workflow->newActivity('start');
 $activity->name = 'start';
-$activity->outputs = array('check_school');
+$activity->outputs = array('ask_picture');
 
-$activity = $workflow->newActivity('sms_flow_check_school');
-$activity->name = 'check_school';
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('school_found', 'no_school_found');
-$activity->webform_nid_check = 725896;
-
-$activity = $workflow->newActivity('activity');
-$activity->name = 'no_school_found';
-$activity->inputs = array('check_school');
-$activity->outputs = array('ask_school_level');
+$activity->outputs = array('ask_items');
+$activity->should_prompt = FALSE;
 
 $activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_school_level';
-$activity->inputs = array('no_school_found');
-$activity->outputs = array('ask_school_state');
-$activity->question = '1/3 First, let\'s find your school. There will be 3 questions. Are you in 1) middle/high school or 2) college? Reply with 1 or 2.';
-
-$activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_school_state';
-$activity->inputs = array('ask_school_level');
-$activity->outputs = array('ask_school_name');
-$activity->question = '2/3 What state is your school in? Reply with the 2 letter abbreviation (ex: NY)';
-
-$activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_school_name';
-$activity->inputs = array('ask_school_state');
-$activity->outputs = array('strip_signature');
-$activity->question = '3/3 Last question before we look up your school. What\'s the name of your school?';
-
-$activity = $workflow->newActivity('sms_strip_signature');
-$activity->name = 'strip_signature';
-$activity->inputs = array('ask_school_name');
-$activity->outputs = array('school_search');
-
-$activity = $workflow->newActivity('sms_flow_school_search');
-$activity->name = 'school_search';
-$activity->inputs = array('strip_signature');
-$activity->outputs = array('school_found', 'end');
-$activity->invalid_id_message = t('That\'s not a valid school ID. Go to http://doso.me/6 to submit your report back there.');
-$activity->no_school_message = t('Sorry, we couldn\'t find any matching schools. Visit http://doso.me/6 to tell us what you did and earn a t-shirt.');
-$activity->schools_found_post_message = t('Text back your school ID# to continue. Didn\'t find your school? Visit http://doso.me/6 for more info and tell us what you did there.');
-
-$activity = $workflow->newActivity('activity');
-$activity->name = 'school_found';
-$activity->inputs = array('check_school', 'school_search');
-$activity->outputs = array('ask_jeans');
-
-$activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_jeans';
-$activity->inputs = array('school_found');
+$activity->name = 'ask_items';
+$activity->inputs = array('ask_picture');
 $activity->outputs = array('ask_people');
-$activity->question = 'Awesome! How many pairs of jeans did you collect? Reply with a number.';
+$activity->question = t('Amazing! Q1: How many items did you collect?');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_people';
-$activity->inputs = array('ask_jeans');
-$activity->outputs = array('ask_photo');
-$activity->question = 'How many people helped with your drive? Reply with a number.';
-
-$activity = $workflow->newActivity('mms_prompt');
-$activity->name = 'ask_photo';
-$activity->inputs = array('ask_people');
-$activity->outputs = array('strip_signature_2');
-$activity->question = 'Finally, send us a picture of your drive or in store drop off for a free DS tshirt.';
+$activity->inputs = array('ask_items');
+$activity->outputs = array('strip_signature');
+$activity->question = t('Fantastic. Q2: How many people helped out?');
 
 $activity = $workflow->newActivity('sms_strip_signature');
-$activity->name = 'strip_signature_2';
-$activity->inputs = array('ask_photo');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_people');
 $activity->outputs = array('submit_report_back');
 
-$activity = $workflow->newActivity('tfj_report_back');
+$activity = $workflow->newActivity('submit_report_back');
 $activity->name = 'submit_report_back';
-$activity->inputs = array('strip_signature_2');
+$activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
-$activity->webform_nid = 727486;
-$activity->completion_opt_in = 144704;
+$activity->submission_fields = array(
+  'ask_items' => 1,
+  'ask_people' => 2,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 'Incredible job. Thanks for starting the healing process. Want to send a message of support to Moore? Text HOPE to start & we\'ll hand deliver your messages.';
+$activity->webform_nid = 729395;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('submit_report_back', 'school_search');
+$activity->inputs = array('submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * I Heart Dad report back workflow. User will first be prompted to submit a
+ * picture from: https://secure.mcommons.com/campaigns/120085/opt_in_paths/158815
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_iheartdad_report_back';
+$workflow->title = 'I Heart Dad Report Back';
+$workflow->description = 'Submits the report back for the I Heart Dad campaign';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_systolic', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 158843;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_systolic';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_diastolic');
+$activity->question = t('Looking good! Text back your dad\'s systolic blood pressure (the first number) now.');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_diastolic';
+$activity->inputs = array('ask_systolic');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Great! Now, text back your dad\'s diastolic blood pressure (the second number).');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_diastolic');
+$activity->outputs = array('blood_pressure_results');
+$activity->submission_fields = array(
+  'ask_systolic' => 4,
+  'ask_diastolic' => 5,
+  'picture' => 'ask_picture:mms',
+);
+$activity->webform_nid = 729555;
+$activity->campaign_opt_outs = array(120085, 120233);
+
+$activity = $workflow->newActivity('sms_blood_pressure_results');
+$activity->name = 'blood_pressure_results';
+$activity->inputs = array('submit_report_back');
+$activity->outputs = array('end');
+$activity->systolic = 'ask_systolic';
+$activity->diastolic = 'ask_diastolic';
+$activity->hypotension_msg = 158937;
+$activity->desired_msg = 158937;
+$activity->prehypertension_msg = 158939;
+$activity->hypertension1_msg = 158941;
+$activity->hypertension2_msg = 158943;
+$activity->hypertensive_crisis_msg = 158945;
+$activity->error_msg = 158937;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'blood_pressure_results');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Environment
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_enviro_report_back';
+$workflow->title = 'Hunt Enviro Report Back - Day 1';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159491;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: How many pounds of trash did you have at the end of the day?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 2,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Homelessness
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_homeless_report_back';
+$workflow->title = 'Hunt Homelessness Report Back - Day 2';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159493;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: What shelter did you deliver your care package to?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 3,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Education/Literacy
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_literacy_report_back';
+$workflow->title = 'Hunt Literacy Report Back - Day 3';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159495;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: How many books did you donate?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 4,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Bullying
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_bully_report_back';
+$workflow->title = 'Hunt Bully Report Back - Day 4';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159497;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: Tell us about the message you shared.  Who did you share it with and what did it say?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 5,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Sex & Relationships
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_sex_report_back';
+$workflow->title = 'Hunt Sex/Relationship Report Back - Day 5';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159499;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: How did the guy respond when you asked him to stand up for women?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 6,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Health
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_health_report_back';
+$workflow->title = 'Hunt Health Report Back - Day 6';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159501;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: What sport did you teach and who did you teach it to?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 7,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Discrimination
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_discrim_report_back';
+$workflow->title = 'Hunt Discrimination Report Back - Day 7';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159503;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: Where did you wear your sign and what did it say?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 8,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Animal Welfare
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_animal_report_back';
+$workflow->title = 'Hunt Animal Welfare Report Back - Day 8';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159505;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: How many towels and blankets did you donate to your local shelter?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 9,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Human Rights
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_water_report_back';
+$workflow->title = 'Hunt Water/Human Rights Report Back - Day 9';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159507;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: How far did you and your friends walk?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 10,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Disaster Response & Relief
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_disaster_report_back';
+$workflow->title = 'Hunt Disaster Report Back - Day 10';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159509;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: Who did you share your disaster preparedness kit with?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 11,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Hunt 2013 Report Back - Fighting Apathy
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_hunt_apathy_report_back';
+$workflow->title = 'Hunt Apathy Report Back - Day 11';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_question1', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 159511;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question1';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_question2');
+$activity->question = t('Q1: How many people did you do this action with?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_question2';
+$activity->inputs = array('ask_question1');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Q2: Where did you draw your mural?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_question2');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  //'ask_question1' => ,  // TODO once website gets setup with this question
+  'ask_question2' => 12,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 159489;
+$activity->webform_nid = 729683;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
 
 $workflows[$workflow->name] = $workflow;

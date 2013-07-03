@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the Dosomething Campaign feature.
@@ -7,18 +8,319 @@
 include_once('dosomething_campaign.features.inc');
 
 /**
- * Implements hook_node_validate().
+ * Implements hook_menu().
  */
-function dosomething_campaign_node_validate($node, $form, &$form_state) {
-  if ($node->type == 'campaign') {
-    /*
-    // Validate that foreground and background values are valid hex values.
-    if(!preg_match('/^[a-f0-9]{6}$/i', $node->field_campaign_background_color[$node->language][0]['value'])){
-      form_set_error('field_campaign_background_color', t('@value is not a valid hex value', array('@value' => $node->field_campaign_background_color[$node->language][0]['value'])));
-    }
-    if(!preg_match('/^[a-f0-9]{6}$/i', $node->field_campaign_foreground_color[$node->language][0]['value'])){
-      form_set_error('field_campaign_foreground_color', t('@value is not a valid hex value', array('@value' => $node->field_campaign_foreground_color[$node->language][0]['value'])));
-    }
-     */
+function dosomething_campaign_menu() {
+
+  $items = array();
+
+  $items['campaign/join/%'] = array(
+    'page callback' => 'dosomething_campaign_join_page',
+    'page arguments' => array(2),
+    'access callback' => 'dosomething_campaign_join_page_access',
+    'access arguments' => array(2),
+    'file' => 'dosomething_campaign.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dosomething_campaign_theme($existing, $type, $theme, $path) {
+  return array(
+    'campaign_join_page' => array(
+      'path' => $path . '/templates',
+      'variables' => array('node' => NULL, 'uid' => NULL, 'form' => NULL),
+      'template' => 'campaign_join_page',
+    ),
+    'kiva_confirmation' => array(
+      'path' => $path . '/templates',
+      'template' => 'kiva_confirmation',
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function dosomething_campaign_block_info() {
+  $blocks = array();
+  $blocks['kiva_signup'] = array(
+    'info' => t('Kiva Campaign Signup Form'),
+  );
+  $blocks['kiva_confirmation'] = array(
+    'info' => t('Kiva Campaign Signup Confirmation'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function dosomething_campaign_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'kiva_signup':
+      $block['content'] = drupal_render(drupal_get_form('dosomething_campaign_beta_signup_form', 729307));
+      break;
+    case 'kiva_confirmation':
+      $block['content'] = theme('kiva_confirmation');
+      break;
   }
+  return $block;
+}
+
+/**
+ * Implements hook_init().
+ */
+function dosomething_campaign_init() {
+  global $user;
+  // Check if logged in user:
+  if ($user->uid != 0) { 
+    // For now, this check only applies to the Hunt.
+    $campaign_nid = variable_get('hunt_campaign_nid', 729679);
+    // if the current page is the Hunt campaign node view page,
+    // if user doesn't have join override access,
+    // and if user isn't signed up.
+    if (current_path() == 'node/' . $campaign_nid && 
+      !dosomething_campaign_can_user_override_join($user) && 
+      !dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid)) {
+      // Redirect to the campaign join page.   
+      drupal_goto('campaign/join/' . $campaign_nid);
+    }
+  }
+}
+
+/**
+ * Access callback for join page.
+ */
+function dosomething_campaign_join_page_access($nid) {
+  // Right now, we only use this page for The Hunt.
+  if ($nid != variable_get('hunt_campaign_nid', 729679)) {
+    return FALSE;
+  }
+  global $user;
+  // Check if user can access page unconditionally.
+  if (dosomething_campaign_can_user_override_join($user)) {
+    return TRUE;
+  }
+  // Otherwise, only grant access for logged in users.
+  return $user->uid != 0;
+}
+
+
+/**
+ * Implements hook_user_login.
+ */
+function dosomething_campaign_user_login(&$edit, $account) {
+  // If the referring URL is a campaign gate:
+  if (dosomething_campaign_is_campaign_gate_url($_SERVER['HTTP_REFERER'])) {
+    // Execute campaign login signup function:
+    dosomething_campaign_signup($account, variable_get('hunt_campaign_nid', 729679));
+  }
+}
+
+/**
+ * Returns boolean value of whether or not given URL is a campaign gate.
+ */
+function dosomething_campaign_is_campaign_gate_url($url) {
+  //@TODO: Make this dynamic and smart and not horribly hardcoded for the Hunt campaign.
+  $hunt_campaign_nid = variable_get('hunt_campaign_nid', 729679);
+  if (strpos($url,'user/registration%3Fdestination%3Dnode/' . $hunt_campaign_nid) !== FALSE) {
+    return TRUE;
+  }
+}
+
+/**
+ * Handles a campaign signup via login through campaign gate.
+ *
+ * @param $account
+ *  Account object of user who logged in.
+ * @param $nid
+ *  Node nid of campaign user is signing up for.
+ *
+ * @TODO: Make code dynamic with Campaign NID (currently hardcoded for The Hunt).
+ */
+function dosomething_campaign_signup($account, $nid) {
+  $user_signed_up = dosomething_campaign_is_user_signed_up($account->uid, $nid);
+  if (!$user_signed_up) {
+    dosomething_campaign_insert_signup($account->uid, $nid);
+    $email = $account->mail;
+
+    // Signup to Mailchimp Group:
+    dosomething_subscribe_mailchimp_signup($email, variable_get('dosomething_subscribe_mailchimp_hunt'));
+
+    // Signup to Mobilecommons:
+    $cell = '';
+    $user2 = profile2_load_by_user($account, 'main');
+    $cell = field_get_items('profile2', $user2, 'field_user_mobile');
+    $cell = $cell[0]['value'];
+    if (!empty($cell)) {
+      $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_hunt');
+      $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+      watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
+    }
+    // Mandrill transactional for The HUNT:
+    dosomething_mandrill_dispatch($email, 'hunt13');
+  }
+}
+
+/**
+ * Inserts a record for given user UID and campaign node NID in dosomething_campaign_signups table.
+ */
+function dosomething_campaign_insert_signup($uid, $nid) {
+  $signup = db_insert('dosomething_campaign_signups')
+  ->fields(array(
+    'uid' => $uid,
+    'nid' => $nid,
+    'timestamp' => REQUEST_TIME,
+    ))
+  ->execute();
+}
+
+/**
+ * Returns boolean for if given user uid is signed up given campaign nid.
+ */
+function dosomething_campaign_is_user_signed_up($uid, $nid) {
+  $signup = db_query('SELECT uid FROM {dosomething_campaign_signups} WHERE uid = :uid AND nid = :nid', array(':uid' => $uid, ':nid' => $nid))->fetchField();
+  if ($signup) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Retuns boolean if given $user can access join and campaign pages regardless of signup.
+ *
+ * @param $user
+ *  User object of user to check.
+ *
+ * @return boolean
+ */
+function dosomething_campaign_can_user_override_join($user) {
+  return user_access('administer site configuration', $user);
+}
+
+
+
+/**
+ * Form callback for signup beta form.
+ */
+function dosomething_campaign_beta_signup_form($form, &$form_state, $nid, $num_betas = 6) {
+  $form['alpha_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your First Name:'),
+    '#required' => TRUE,
+  );
+  $form['alpha_mobile'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your Cell #:'),
+    '#required' => TRUE,
+  );
+  $form['alpha_email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your Email:'),
+    '#required' => TRUE,
+  );
+  $form['beta_mobiles'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+  );
+  for ($i = 0; $i < $num_betas; $i++) {
+    $form['beta_mobiles']['beta_mobile_' . $i] = array(
+      '#type' => 'textfield',
+      '#title' => t("Friend's cell #:"),
+    );   
+  }
+  $form['nid'] = array(
+    '#type' => 'hidden',
+    '#value' => $nid,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Share'),
+  );
+  return $form;
+}
+
+/**
+ * Form validation callback for signup beta form.
+ * @todo: Make dynamic?
+ */
+function dosomething_campaign_beta_signup_form_validate($form, &$form_state) {
+  // Check for valid email address:
+  if (!valid_email_address($form_state['values']['alpha_email'])) {
+     form_set_error('alpha_email', t('Please provide a valid email address.'));
+  }
+  // Check for valid alpha cell:
+  $alpha_mobile = $form_state['values']['alpha_mobile'];
+  $alpha_mobile = preg_replace('#[^0-9]#', '', $alpha_mobile);
+  if (!dosomething_general_valid_cell($alpha_mobile)) {
+    form_set_error('alpha_mobile', t('Please provide a valid cell number.'));  
+  }
+  // Check for valid beta cell numbers:
+  for ($i = 0; $i < 6; $i++) {
+    if (!empty($form_state['values']['beta_mobile_' . $i])) {
+      $beta_mobile = $form_state['values']['beta_mobile_' . $i];
+      $beta_mobile = preg_replace('#[^0-9]#', '', $beta_mobile);
+      if (!dosomething_general_valid_cell($beta_mobile)) {
+        form_set_error('beta_mobile_' . $i, t('Please provide a valid cell number.'));  
+      }
+    }
+  }
+}
+
+/**
+ * Form submit callback for signup beta form.
+ * @todo: Make dynamic?
+ */
+function dosomething_campaign_beta_signup_form_submit($form, &$form_state) {
+  $alpha_name = $form_state['values']['alpha_name'];
+  $alpha_mobile = $form_state['values']['alpha_mobile'];
+  $alpha_mobile = preg_replace('#[^0-9]#', '', $alpha_mobile);
+  $alpha_email = $form_state['values']['alpha_email'];
+  $beta_mobiles = array();
+  // @todo: Make # of betas dymamic?  You could actually store the # of beta signups field on the campaign node.
+  // Don't want to store it as a hidden form field in case anybody messes with it.
+  for ($i = 0; $i < 6; $i++) {
+    if (!empty($form_state['values']['beta_mobile_' . $i])) {
+      $beta_mobile = $form_state['values']['beta_mobile_' . $i];
+      $beta_mobile = preg_replace('#[^0-9]#', '', $beta_mobile);
+      $beta_mobiles[] = $beta_mobile;
+    }
+  }
+
+  // Load campaign node to get signup values.
+  $nid = $form_state['values']['nid'];
+  // @todo: Revisit this to make it dynamic.  For now, hardcoded to only work for Kiva campaign.
+  if ($nid != 729307) {
+    return;
+  }
+
+  // Call signup functions:
+  $node = node_load($form_state['values']['nid']);
+  $mailchimp_group = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
+  $alpha_optin = $node->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'];
+  $beta_optin =$node->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'];
+  
+  // Mailchimp Signup:
+  dosomething_subscribe_mailchimp_signup($alpha_email, $mailchimp_group);
+
+  // @TODO: Transactional:
+  // dosomething_mandrill_dispatch($alpha_email, 'stuff here');
+
+  // Mobilecommons Alpha+Beta signup:
+  $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin);
+  watchdog('dosomething_campaign', 'Beta signup - Mobilecommons response = ' . print_r($response, TRUE)); 
+
+  // Send to confirmation page with the relevant query string variables.
+  drupal_goto('poverty/confirmation', array(
+    'query' => array(
+      'first_name' => $alpha_name, 
+      'email' => $alpha_email,
+    )
+  ));
 }

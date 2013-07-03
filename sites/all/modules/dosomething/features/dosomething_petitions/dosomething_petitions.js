@@ -1,8 +1,20 @@
 (function ($) {
   Drupal.behaviors.dosomethingPetitions = {
-    'twitter_message': Drupal.t('I just signed this petition! Now, it\'s YOUR turn: step up and sign here'),
+    number_format: function(nStr) {
+      nStr += '';
+      x = nStr.split('.');
+      x1 = x[0];
+      x2 = x.length > 1 ? '.' + x[1] : '';
+      var rgx = /(\d+)(\d{3})/;
+      while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+      }
+      return x1 + x2;
+    },
 
     attach: function (context, settings) {
+
+      var twitter_message = ((typeof settings.petition.tweet != 'undefined' && settings.petition.tweet != "") ? settings.petition.tweet : Drupal.t('I just signed this petition! Now, it\'s YOUR turn: step up and sign here'));
 
       if (window.location.hash && window.location.hash == '#contacts') {
         $('.contact-picker').click();
@@ -12,6 +24,16 @@
         var i = document.createElement('input');
         return 'placeholder' in i;
       })();
+
+      var goal = settings.petition.goal;
+      $.post('/petition/' + settings.petition.nid + '/signed_count?' + (new Date()).getTime(), {}, function(response) {
+        var count = parseInt(response.signatures);
+        $('#progress-bar').animate({
+          width: ((count / goal) * 100) + '%'
+        }, 2500);
+
+        $('#signatures-count span').text(Drupal.behaviors.dosomethingPetitions.number_format(count));
+      });
 
       $reasonWrapper = $('.form-item-submitted-field-webform-petition-reason-und-0-value');
       $reasonBox = $reasonWrapper.find('.form-textarea-wrapper');
@@ -58,7 +80,7 @@
 
       if ($('#petition-twitter').length) {
         $('#petition-twitter').click(function() {
-          var url = 'https://twitter.com/intent/tweet?original_referer=' + document.location.href.replace('#', '') + '&text=' + encodeURIComponent(Drupal.behaviors.dosomethingPetitions.twitter_message) + '&tw_p=tweetbutton&url=' + Drupal.settings.petition.short_url + '&via=dosomething';
+          var url = 'https://twitter.com/intent/tweet?original_referer=' + document.location.href.replace('#', '') + '&text=' + encodeURIComponent(twitter_message) + '&tw_p=tweetbutton&url=' + Drupal.settings.petition.short_url + '&via=dosomething';
           window.open(url, '_tweet', 'toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300');
           return false;
         });

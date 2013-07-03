@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the DoSomething Subscribe Mailchimp module.
+ */
+
+/**
+ * Initialize Mailchimp Grouping ID variables.
+ */
+function dosomething_subscribe_mailchimp_update_7000() {
+  dosomething_subscribe_mailchimp_set_grouping_id_vars();
+}
+
+/**
+ * Initialize Mailchimp API key state variables.
+ */
+function dosomething_subscribe_mailchimp_update_7001() {
+  variable_set('dosomething_subscribe_mailchimp_is_api_key_valid', TRUE);
+  variable_set('dosomething_subscribe_mailchimp_api_key_last_validated', time());
+}
+
+/**
+ * Rename Mailchimp API variables as api_state instead of api_key, refactor Grouping ID vars.
+ */
+function dosomething_subscribe_mailchimp_update_7002() {
+  variable_del('dosomething_subscribe_mailchimp_is_api_key_valid');
+  variable_del('dosomething_subscribe_mailchimp_api_key_last_validated');
+  variable_del('dosomething_subscribe_mailchimp_api_key_invalid_time');
+  variable_set('dosomething_subscribe_mailchimp_is_api_state_valid', TRUE);
+  variable_set('dosomething_subscribe_mailchimp_api_state_last_validated', time());
+  variable_set('mailchimp_batch_limit', 5000);
+  // Just store all Groupings / Groupings in one multidimensional array.
+  variable_del('dosomething_subscribe_mailchimp_grouping_ids_a27895fe0c');
+  variable_del('dosomething_subscribe_mailchimp_grouping_ids_f2fab1dfd4');
+  dosomething_subscribe_mailchimp_set_grouping_id_vars();
+}

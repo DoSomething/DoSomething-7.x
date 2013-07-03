@@ -1,0 +1,12 @@
+name = Flush page cache
+description = Easing the pain when you need to flush...Drupal's cache.
+core = 7.x
+package = Caching
+configure = admin/config/development/varnish
+
+; Information added by drupal.org packaging script on 2012-05-14
+version = "7.x-1.0-beta5"
+core = "7.x"
+project = "flush_page_cache"
+datestamp = "1337003757"
+

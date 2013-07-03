@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the DoSomething subscribe module.
+ */
+
+/**
+ * Initialize default Mailchimp and Mobilecommons variables.
+ */
+function dosomething_subscribe_update_7000() {
+  variable_set('dosomething_subscribe_mailchimp_default', 'NewMembers2012');
+  variable_set('dosomething_subscribe_mobilecommons_default', '155393');
+}
+
+/**
+ * Initialize Mailchimp and Mobilecommons variables for Clubs.
+ */
+function dosomething_subscribe_update_7001() {
+  variable_set('dosomething_subscribe_mailchimp_clubs', 'Clubs2012');
+  variable_set('dosomething_subscribe_mobilecommons_clubs', '122361');
+}
+
+/**
+ * Initialize Mailchimp and Mobilecommons variables for User registration.
+ */
+function dosomething_subscribe_update_7002() {
+  variable_set('dosomething_subscribe_mailchimp_user_register', 'NewMembers2012');
+  variable_set('dosomething_subscribe_mobilecommons_user_register', '87681');
+}
+
+/** 
+ * Initalize User Profile-based Node types variable.
+ */
+function dosomething_subscribe_update_7003() {
+  // Signup node types:
+  $data = array(
+  	// Historically, find and sign up was submitting on campaigns, but not really sure why.
+  	// See: https://github.com/DoSomething/DoSomething-7.x/commit/cabfeb61f6065819d92aa9772f5eca0ad057129f
+  	'campaign' => 'campaign',
+  	'campaign_contact_form' => 'campaign_contact_form',
+    'club' => 'club',
+  	'grant_application' => 'grant_application',
+  	'petition' => 'petition',
+  	'program_short_form' => 'program_short_form',
+  	'project_report' => 'project_report',
+  	'scholarship_application_with_rec' => 'scholarship_application_with_rec',
+  	'webform' => 'webform',
+  );
+  variable_set('dosomething_subscribe_signup_node_types', $data);
+  // User Profile Signup node types:
+  $data = array('project_report' => 'project_report');
+  variable_set('dosomething_subscribe_signup_user_profile_node_types', $data);
+}
+
+/**
+ * Initialize Mailchimp and Mobilecommons variables for The Hunt.
+ */
+function dosomething_subscribe_update_7004() {
+  variable_set('dosomething_subscribe_mailchimp_hunt', 'Hunt2013');
+  variable_set('dosomething_subscribe_mobilecommons_hunt', '158559');
+}

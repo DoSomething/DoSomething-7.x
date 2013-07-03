@@ -18,10 +18,6 @@
     </div>
 
     <div class="row">
-      <span class="title"><?php print t('Text'); ?></span><span class="detail"><?php print t('text QUESTION to 38383'); ?></span>
-    </div>
-
-    <div class="row">
       <span class="title"><?php print t('General Email'); ?></span><span class="detail"><?php print l('helpme@dosomething.org', 'mailto:helpme@dosomething.org'); ?></span>
       
       <br><span class="title"><?php print t('Press or Marketing Inquires'); ?></span><span class="detail"><?php print l('press@dosomething.org', 'mailto:press@dosomething.org'); ?></span>

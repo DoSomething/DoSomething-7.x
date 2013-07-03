@@ -364,6 +364,12 @@ function dosomething_login_form_dosomething_login_register_popup_form_alter(&$fo
     drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
     drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
   }
+  
+  if ($path == '/user/registration?destination=node/' . variable_get('hunt_campaign_nid', 729679)) {
+    // add custom JS and CSS files to this instance of the login/reg form only
+    drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
+    drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
+  }
 }
 
 /**
@@ -1123,7 +1129,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   drupal_write_record('profile', $profile);
   $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $values['first_name'];
   $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $values['last_name'];
-  $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = date('Y-m-d h:i:s', strtotime($birthdate));
+  $profile->field_user_birthday[LANGUAGE_NONE][0]['value'] = date('Y-m-d h:i:s', $birthdate);
   $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = (int) dosomething_login_person_is_over_age($birthdate, 13);
   $profile->field_user_newsletter_optin[LANGUAGE_NONE][0]['value'] = 1;
 
@@ -1174,7 +1180,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     unset($_SESSION['fbuser']);
   }
   
-  // Add new user to MailChimp group "NewMembers2012"
+  // Add new user to MailChimp group.
   $merge_vars = array();
   
   $merge_vars['FNAME'] = $values['first_name'];
@@ -1192,21 +1198,19 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     $merge_vars['MMERGE7'] = $form_state['values']['phone'];
   }
   
-  // Submit to MailChimp
-  $mailchimp_subscribe_results = dosomething_general_mailchimp_subscribe($account->mail, 'NewMembers2012', $merge_vars);
+  // Submit to MailChimp:
+  $mailchimp_subscribe_results = dosomething_subscribe_mailchimp_signup($account->mail, variable_get('dosomething_subscribe_mailchimp_user_register'), $merge_vars);
   
   // Log user in.
   if ($account->status) {
     user_login_submit(array(), $form_state);
   }
   
-  // Add to Mobile Commons if number provided
+  // Add to Mobile Commons if number provided:
   if (isset($form_state['values']['phone'])) {
-    
-    // https://secure.mcommons.com/campaigns/5091 - opt_in_path: "join" of "Campaigns › Do Something Master Campaign"
-    // https://secure.mcommons.com/campaigns/5091/opt_in_paths/87681
-    $mobile_commons_subscribe_results = dosomething_general_mobile_commons_subscribe($form_state['values']['phone'], 87681);
-
+    $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_user_register');
+    $mobile_commons_subscribe_results = dosomething_general_mobile_commons_subscribe($form_state['values']['phone'], $mobilecommons);
+    watchdog('dosomething_login', 'cell = ' . $form_state['values']['phone'] . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($mobile_commons_subscribe_results, TRUE));
   }
 
   // Clear any logged registration data.

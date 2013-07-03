@@ -140,8 +140,9 @@
 
     // Mobile Commons success message
     if (document.location.search.slice(1,8) === 'success') {
-      var success_msg = '<div class="success_msg"><p>Have we told you how amazing you are lately? Just the best.</p></div>';
+      var success_msg = '<div class="success_msg"><p>Thanks for sharing. You\'ve been entered for the scholarship!</p></div>';
       $('#scholarship').prepend(success_msg);
+      $("html, body").animate({ scrollTop: $('#scholarship').offset().top }, 1000);
     }
 
           // #header section Facebook fun
@@ -153,7 +154,7 @@
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'Use the power of your thumbs to save your friends from the danger of texting and driving.',
+      'feed_description': 'Ever dreamed of being a superhero? Your thumbs can turn you into one! Join Thumb Wars to help prevent texting and driving. Sign up now and we\'ll send you 2 FREE pairs of thumb socks, one for you and one for a friend: www.dsorg.us/thumbwars',
       'feed_selector': '.header-facebook-share',
     }, function(response){
       window.location.href = '/thumbwars#header';

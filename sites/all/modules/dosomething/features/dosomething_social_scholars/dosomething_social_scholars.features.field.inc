@@ -150,7 +150,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -217,7 +217,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
@@ -288,7 +288,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '17',
+        'weight' => '18',
       ),
     ),
   );
@@ -361,7 +361,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '21',
+        'weight' => '22',
       ),
     ),
   );
@@ -434,7 +434,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -507,7 +507,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -580,7 +580,7 @@ function dosomething_social_scholars_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '15',
+        'weight' => '16',
       ),
     ),
   );
@@ -718,7 +718,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '16',
+        'weight' => '17',
       ),
     ),
   );
@@ -799,6 +799,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'image',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -867,7 +868,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '18',
+        'weight' => '19',
       ),
     ),
   );
@@ -940,7 +941,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '19',
+        'weight' => '20',
       ),
     ),
   );
@@ -1015,6 +1016,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'file',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -1078,7 +1080,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -1153,6 +1155,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'file',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -1210,7 +1213,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -1283,7 +1286,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -1355,7 +1358,7 @@ function dosomething_social_scholars_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '12',
+        'weight' => '13',
       ),
     ),
   );
@@ -1429,7 +1432,80 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '12',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-social_scholarship-field_sas_is_scholarship'.
+  $fields['node-social_scholarship-field_sas_is_scholarship'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_sas_is_scholarship',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '0',
+          1 => '1',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'social_scholarship',
+      'default_value' => array(
+        0 => array(
+          'value' => 1,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Is this Share a Stat a scholarship? If so, make sure this checkbox is checked.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 22,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_sas_is_scholarship',
+      'label' => 'Is Scholarship?',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '3',
       ),
     ),
   );
@@ -1510,6 +1586,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'image',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -1578,7 +1655,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '20',
+        'weight' => '21',
       ),
     ),
   );
@@ -1653,6 +1730,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'file',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -1783,6 +1861,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'image',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -1851,7 +1930,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '22',
+        'weight' => '23',
       ),
     ),
   );
@@ -1923,7 +2002,7 @@ function dosomething_social_scholars_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -1998,6 +2077,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'image',
         'settings' => array(
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => 'auto',
           'insert_styles' => array(
@@ -2086,7 +2166,9 @@ function dosomething_social_scholars_field_default_fields() {
   t('Facebook "Share" Language');
   t('If this is a campaign share a stat, the user will be presented with a shortform after they complete the actual share a stat.  Put the mailchimp bucket their email should land in after they fill it out.');
   t('Images');
+  t('Is Scholarship?');
   t('Is a campaign Share a Stat?');
+  t('Is this Share a Stat a scholarship? If so, make sure this checkbox is checked.');
   t('Linked campaign');
   t('Logo Image');
   t('Logo text');

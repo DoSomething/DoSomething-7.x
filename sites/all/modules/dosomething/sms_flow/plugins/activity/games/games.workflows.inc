@@ -1,5 +1,177 @@
 <?php
 
+require_once drupal_get_path('module', 'sms_flow') . '/sms_flow_game_constants.inc';
+
+/**
+ * Handles all ordered pathing under one workflow
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_mcommons_ordered_paths';
+$workflow->title = 'Handler for MCommons Ordered Paths';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('mcommons_ordered_paths');
+
+$activity = $workflow->newActivity('mcommons_ordered_paths');
+$activity->name = 'mcommons_ordered_paths';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->sets = array(
+  // GUIDE path for I Heart Dad 2013
+  array(
+    'mdata_id' => 10843,
+    'game_id' => SmsFlowGameConstants::IHEARTDAD_GUIDE,
+    'opt_in_paths' => array(158861, 158863, 158865, 158869, 158871, 158873),
+  ),
+);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('mcommons_ordered_paths');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Handles all time-based pathing under one workflow
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_mcommons_timed_paths';
+$workflow->title = 'Handler for MCommons Timed Paths';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('mcommons_timed_paths');
+
+$activity = $workflow->newActivity('mcommons_timed_paths');
+$activity->name = 'mcommons_timed_paths';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->sets = array(
+  // Hunt 2013 daily challenges
+  array(
+    'mdata_id' => 10855,
+    'timezone' => 'America/New_York',
+    'paths' => array(
+      array(
+        'time' => '2013-07-16 10:00:00',
+        'opt_in_path' => 159319,
+      ),
+      array(
+        'time' => '2013-07-17 10:00:00',
+        'opt_in_path' => 159321,
+      ),
+      array(
+        'time' => '2013-07-18 10:00:00',
+        'opt_in_path' => 159323,
+      ),
+      array(
+        'time' => '2013-07-19 10:00:00',
+        'opt_in_path' => 159325,
+      ),
+      array(
+        'time' => '2013-07-20 10:00:00',
+        'opt_in_path' => 159327,
+      ),
+      array(
+        'time' => '2013-07-21 10:00:00',
+        'opt_in_path' => 159329,
+      ),
+      array(
+        'time' => '2013-07-22 10:00:00',
+        'opt_in_path' => 159331,
+      ),
+      array(
+        'time' => '2013-07-23 10:00:00',
+        'opt_in_path' => 159333,
+      ),
+      array(
+        'time' => '2013-07-24 10:00:00',
+        'opt_in_path' => 159335,
+      ),
+      array(
+        'time' => '2013-07-25 10:00:00',
+        'opt_in_path' => 159337,
+      ),
+      array(
+        'time' => '2013-07-26 10:00:00',
+        'opt_in_path' => 159339,
+      ),
+      // Message for after the campaign ends
+      array(
+        'time' => '2013-07-27 10:00:00',
+        'opt_in_path' => 159381,
+      ),
+    ),
+    // Hunt 2013 INSTA actions
+    array(
+      'mdata_id' => 10861,
+      'timezone' => 'America/New_York',
+      'paths' => array(
+        array(
+          'time' => '2013-07-16 10:00:00',
+          'opt_in_path' => 159397,
+        ),
+        array(
+          'time' => '2013-07-17 10:00:00',
+          'opt_in_path' => 159399,
+        ),
+        array(
+          'time' => '2013-07-18 10:00:00',
+          'opt_in_path' => 159401,
+        ),
+        array(
+          'time' => '2013-07-19 10:00:00',
+          'opt_in_path' => 159403,
+        ),
+        array(
+          'time' => '2013-07-20 10:00:00',
+          'opt_in_path' => 159405,
+        ),
+        array(
+          'time' => '2013-07-21 10:00:00',
+          'opt_in_path' => 159409,
+        ),
+        array(
+          'time' => '2013-07-22 10:00:00',
+          'opt_in_path' => 159411,
+        ),
+        array(
+          'time' => '2013-07-23 10:00:00',
+          'opt_in_path' => 159413,
+        ),
+        array(
+          'time' => '2013-07-24 10:00:00',
+          'opt_in_path' => 159415,
+        ),
+        array(
+          'time' => '2013-07-25 10:00:00',
+          'opt_in_path' => 159417,
+        ),
+        array(
+          'time' => '2013-07-26 10:00:00',
+          'opt_in_path' => 159419,
+        ),
+        // Message for after the campaign ends
+        array(
+          'time' => '2013-07-27 10:00:00',
+          'opt_in_path' => 159381,
+        ),
+      ),
+    ),
+  ),
+);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('mcommons_timed_paths');
+
+$workflows[$workflow->name] = $workflow;
+
 /**
  * Intended to be plugged in at the end of a pregnancy text drip message as an
  * mData. Will respond to any user message that matches a given set.

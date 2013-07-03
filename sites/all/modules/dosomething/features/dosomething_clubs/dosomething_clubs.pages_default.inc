@@ -17,7 +17,7 @@ function dosomething_clubs_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -23;
+  $handler->weight = -21;
   $handler->conf = array(
     'title' => 'Club',
     'no_blocks' => FALSE,
@@ -628,7 +628,7 @@ node/*/picks/*',
     $pane->panel = 'top';
     $pane->type = 'clubs_progress';
     $pane->subtype = 'clubs_progress';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
@@ -1366,7 +1366,7 @@ function dosomething_clubs_default_page_manager_pages() {
       'admin_title' => '',
       'title' => 'Club Marketing Kit',
       'body' => '<p>Meeting flyers, service hour tracking sheets, and social media graphics you can use to promote your club online and in your school.</p>
-<a href="clubs/marketing-kit" class="go-button">GO</a>',
+<a href="/clubs/marketing-kit" class="go-button">GO</a>',
       'format' => '3',
       'substitute' => 1,
     );
@@ -1422,25 +1422,18 @@ about issues you care about.',
       'admin_title' => '',
       'title' => '',
       'body' => '<object style="height: 320px; width: 480px">
-<param name="movie" value="http://www.youtube.com/v/Xdg7g8fWBKA?version=3&feature=player_embedded">
+<param name="movie" value="http://www.youtube.com/v/EigcSj3QLyQ?version=3&feature=player_embedded">
 <param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always">
 <param name="wmode" value="opaque"/>
-<embed wmode="transparent" src="http://www.youtube.com/v/Xdg7g8fWBKA?version=3&feature=player_embedded" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="480" height="320"></object>',
+<embed wmode="transparent" src="http://www.youtube.com/v/EigcSj3QLyQ?version=3&feature=player_embedded" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="480" height="320"></object>',
       'format' => '3',
-      'substitute' => TRUE,
+      'substitute' => 1,
     );
     $pane->cache = array(
-      'method' => 'panels_hash_cache',
+      'method' => 'simple',
       'settings' => array(
         'lifetime' => '604800',
-        'granularity' => array(
-          'args' => 0,
-          'context' => 0,
-          'user' => 0,
-          'user_role' => 0,
-          'url' => 0,
-          'path' => 0,
-        ),
+        'granularity' => 'none',
       ),
     );
     $pane->style = array(

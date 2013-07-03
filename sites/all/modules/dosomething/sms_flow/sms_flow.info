@@ -2,4 +2,5 @@ name = DoSomething - SMS Flow
 description = 'Awesome DS.org SMS flow to do everything.  Ever.'
 core = 7.x
 dependencies[] = conductor_sms
+files[] = sms_flow_game_constants.inc
 package = 'SMS Flow'

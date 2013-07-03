@@ -1,4 +1,4 @@
-// @TODO: THIS PARTIAL SHOULD NOT EXIST
+// TODO - THIS PARTIAL SHOULD NOT EXIST
 
 // TYPOGRAPHY
 // ----------
@@ -45,12 +45,11 @@ body
 nav[role="navigation"]
   height: 45px
   padding: 3px 0 0 0
-  @media only screen and (max-width: 1075px)
+  @include respond-to(tablets_and_phones)
     display: none
 
 // set width of ds.org logo container
 header[role="banner"]
-  width: $section-container-width
   margin: 0 auto
   position: relative
 
@@ -58,8 +57,15 @@ header[role="banner"]
 #site-name
   top: -38px
   left: -94px
-  @media only screen and (max-width: 1075px)
-    display: none
+  @include respond-to(tablets_and_phones)
+    top: -52px
+    left: 5px
+
+    a
+      width: 60px
+      height: 50px
+      background-image: url('/sites/all/themes/doit/css/images/ds-logo.png')
+      background-size: 60px 50px
 
 // better looking error messages!
 #page .messages
@@ -113,12 +119,32 @@ header[role="banner"]
 
 // #utility-bar stuff
 #utility-bar
+  @include respond-to(tablets_and_phones)
+    height: 54px
+
   .container
-    width: 900px
+    width: 100%
+    max-width: 900px
     margin: 0 auto
   a
-    font-size: 13px
     text-decoration: none
+
+    @include respond-to(tablets_and_phones)
+      font-size: 22px
+      line-height: 2em
+      padding-right: 0.5em
+
+// fix spacing of "help center" & "sign in" after search was hidden
+.utility-items
+  &.search
+    @include respond-to(tablets_and_phones)  
+      display: none !important
+
+#help-center
+  margin: 3px 15px 3px 0
+
+  @include respond-to(tablets_and_phones)
+    display: none !important
 
 // hide random Geocode Data field
 #edit-submitted-field-geocode-data
@@ -138,6 +164,12 @@ header[role="banner"]
 #block-block-5
   display: none
 
+// set width of page content
 #cmp
-  width: $section-wrapper-width
+  max-width: $section-wrapper-width
+  width: 100%
+  margin: 0 auto
+
+// why is this here?
+.view-campaign-gallery #slideshow
   margin: 0 auto

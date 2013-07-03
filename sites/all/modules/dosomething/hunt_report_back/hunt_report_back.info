@@ -1,0 +1,7 @@
+name = Hunt Report Back
+description = A module to handle Hunt report backs.  This module should be disabled when the campaign ends
+core = 7.x
+
+files[] = dosomething_campaign_hunt.module
+files[] = dosomething_campaign_hunt.admin.inc
+
