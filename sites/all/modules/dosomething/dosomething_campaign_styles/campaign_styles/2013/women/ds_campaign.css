@@ -913,69 +913,89 @@ header[role="banner"] {
   text-align: left;
 }
 /* line 271, sass/_sections.sass */
-#cmp .sms {
+#cmp .pane-dosomething-campaign-kiva-signup {
+  padding: 3% 0;
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
   background: #e8e8e8;
 }
-/* line 276, sass/_sections.sass */
-#cmp .sms label {
+/* line 277, sass/_sections.sass */
+#cmp .pane-dosomething-campaign-kiva-signup label {
   margin: 3% 0 0;
 }
-/* line 278, sass/_sections.sass */
-#cmp .sms form {
+/* line 279, sass/_sections.sass */
+#cmp .pane-dosomething-campaign-kiva-signup form {
   width: 80%;
-  margin: 2em auto 0;
+  margin: 0 auto 0;
 }
-/* line 282, sass/_sections.sass */
-#cmp .sms .btn {
+/* line 283, sass/_sections.sass */
+#cmp .pane-dosomething-campaign-kiva-signup .btn {
   width: 9.4em;
   margin: 1em auto;
 }
-/* line 286, sass/_sections.sass */
+/* line 287, sass/_sections.sass */
+#cmp .pane-dosomething-campaign-kiva-signup #edit-submit {
+  float: none;
+  margin: 24px auto 36px;
+}
+/* line 291, sass/_sections.sass */
+#cmp .pane-dosomething-campaign-kiva-signup .form-type-textfield {
+  float: left;
+  width: 50%;
+  padding: 0 2.5%;
+}
+/* line 296, sass/_sections.sass */
+#cmp .pane-dosomething-campaign-kiva-signup .form-item-alpha-email {
+  float: right;
+}
+/* line 299, sass/_sections.sass */
+#cmp .pane-dosomething-campaign-kiva-signup .edit-beta-mobiles {
+  clear: both;
+}
+/* line 302, sass/_sections.sass */
 #cmp .sms-input-wrapper {
   width: 45%;
   float: left;
   margin: 0 2.5% 2em 2.5%;
 }
 @media only screen and (max-width: 600px) {
-  /* line 286, sass/_sections.sass */
+  /* line 302, sass/_sections.sass */
   #cmp .sms-input-wrapper {
     width: 100%;
   }
-  /* line 294, sass/_sections.sass */
+  /* line 310, sass/_sections.sass */
   #cmp .sms-input-wrapper.first-column {
     margin-bottom: 0;
   }
 }
-/* line 297, sass/_sections.sass */
+/* line 313, sass/_sections.sass */
 #cmp .sms-input {
   width: 100%;
   margin: 5% 0 0 0;
 }
 @media only screen and (max-width: 600px) {
-  /* line 297, sass/_sections.sass */
+  /* line 313, sass/_sections.sass */
   #cmp .sms-input {
     width: 100%;
   }
 }
-/* line 304, sass/_sections.sass */
+/* line 320, sass/_sections.sass */
 #cmp .sms-alpha-wrapper {
   float: left;
   width: 35.8%;
   margin: 0 0 4% 0;
 }
-/* line 308, sass/_sections.sass */
+/* line 324, sass/_sections.sass */
 #cmp .sms-alpha-wrapper input {
   width: 83.5%;
 }
-/* line 311, sass/_sections.sass */
+/* line 327, sass/_sections.sass */
 #cmp .sms-beta-mobile {
   clear: both;
   margin: 5% 2.5% -1% !important;
 }
-/* line 318, sass/_sections.sass */
+/* line 334, sass/_sections.sass */
 #cmp .gallery img {
   border: 1px solid #dddddd !important;
   -webkit-border-radius: 3px;
@@ -987,7 +1007,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb !important;
   box-shadow: 0 10px 10px -10px #bbbbbb !important;
 }
-/* line 326, sass/_sections.sass */
+/* line 342, sass/_sections.sass */
 #cmp .map iframe {
   width: 90%;
   margin: 0 auto;
@@ -997,46 +1017,46 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #cccccc;
   box-shadow: 0 10px 10px -10px #cccccc;
 }
-/* line 335, sass/_sections.sass */
+/* line 351, sass/_sections.sass */
 #cmp .success_msg {
   margin: 0 auto 1em;
 }
-/* line 337, sass/_sections.sass */
+/* line 353, sass/_sections.sass */
 #cmp .success_msg h2 {
   text-transform: uppercase;
   font-weight: 600;
   color: #d5904c;
 }
-/* line 344, sass/_sections.sass */
+/* line 360, sass/_sections.sass */
 #cmp .faq {
   width: 90%;
   max-width: 35em;
   margin: 0 auto;
   position: relative;
 }
-/* line 350, sass/_sections.sass */
+/* line 366, sass/_sections.sass */
 #cmp .faq h3, #cmp .faq p {
   text-align: left;
 }
-/* line 352, sass/_sections.sass */
+/* line 368, sass/_sections.sass */
 #cmp .faq h3 {
   cursor: pointer;
   color: #cccccc;
 }
-/* line 355, sass/_sections.sass */
+/* line 371, sass/_sections.sass */
 #cmp .faq div {
   margin: 0 0 0.5em 0;
 }
-/* line 358, sass/_sections.sass */
+/* line 374, sass/_sections.sass */
 #cmp .faq .btn {
   margin: 1em auto 0;
 }
-/* line 361, sass/_sections.sass */
+/* line 377, sass/_sections.sass */
 #cmp .faq .back-to-top {
   text-align: right;
   padding: 1em 0 1em;
 }
-/* line 365, sass/_sections.sass */
+/* line 381, sass/_sections.sass */
 #cmp .faq .top-btn {
   font-weight: 400;
   color: #c6c7c8;
@@ -1046,29 +1066,29 @@ header[role="banner"] {
   background-repeat: no-repeat;
   background-position: 0% 40%;
 }
-/* line 378, sass/_sections.sass */
+/* line 394, sass/_sections.sass */
 #cmp .sponsor p {
   padding: 8px;
   text-align: center;
 }
-/* line 382, sass/_sections.sass */
+/* line 398, sass/_sections.sass */
 #cmp .sponsor a {
   padding: 8px;
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  /* line 382, sass/_sections.sass */
+  /* line 398, sass/_sections.sass */
   #cmp .sponsor a {
     display: block;
   }
 }
-/* line 391, sass/_sections.sass */
+/* line 407, sass/_sections.sass */
 #cmp .footer {
   padding: 2% 0;
   margin: 0 0 -2%;
   text-align: center;
 }
-/* line 395, sass/_sections.sass */
+/* line 411, sass/_sections.sass */
 #cmp .footer img {
   width: 50px;
   margin: 0 auto;
