@@ -223,14 +223,17 @@ class ViewsConditionalHandler extends views_handler_field {
    * Defines summary text for Fields category in Views.
    */
   public function admin_summary() {
-    if (!empty($this->options['if']) && !empty($this->options['condition']) && (!empty($this->options['equalto']) || in_array($this->options['condition'], array(5, 6))) && trim($this->options['then']) != '') {
-      return t('If !if !condition !equalto, output !then, else output !or', array(
-        '!if' => $this->options['if'],
-        '!condition' => $this->conditions[$this->options['condition']],
-        '!equalto' => $this->options['equalto'],
-        '!then' => $this->options['then'],
-        '!or' => $this->options['or'],
-      ));
+    if (!empty($this->options['conditions'])) {
+      $count = count($this->options['conditions']);
+      foreach ($this->options['conditions'] as $condition) {
+        if (empty($condition['children'])) {
+          continue;
+        }
+
+        $count += count($condition['children']);
+      }
+
+      return t('If !n conditions pass, output !then, else output !else', array('!n' => $count, '!then' => $this->options['then'], '!else' => $this->options['or']));
     }
     else {
       return t('Invalid field selection');
