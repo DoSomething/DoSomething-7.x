@@ -27,3 +27,16 @@ function views_conditional_views_api() {
     'path' => drupal_get_path('module', 'views_conditional') . '/includes/views',
   );
 }
+
+/**
+ * Implements hook_theme().
+ */
+function views_conditional_theme($existing, $type, $theme, $path) {
+  return array(
+    'views_conditional_condition' => array(
+      'path' => $path . '/templates',
+      'variables' => array(),
+      'template' => 'views-conditional-condition',
+    ),
+  );
+}

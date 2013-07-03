@@ -66,82 +66,61 @@ class ViewsConditionalHandler extends views_handler_field {
       '#attributes' => array('id' => 'hidden-select'),
     );
 
-
     $condition_list = '';
     foreach($this->conditions as $k => $cond) {
-      $condition_list .= '<option value="' . $k . '"' . ($condition['condition'] == $k ? ' selected="selected"' : '') . '>' . $cond . '</option>';
+      $condition_list .= '<option value="' . $k . '" data-id="' . $k . '">' . $cond . '</option>';
+    }
+    $field_list = '';
+    foreach ($fields AS $k => $string) {
+      $field_list .= '<option value="' . $k . '" data-id="' . $k . '">' . $string . '</option>';
     }
 
-    $fieldlist = '';
+    $conditions = '';
     if (!empty($this->options['conditions'])) {
       $last_elm = 0;
       foreach ($this->options['conditions'] AS $key => $condition) {
         $last_elm = $key;
-        $fieldlist .= '
-        <li data-id="' . $key . '" data-type="' . $condition['type'] . '">
-          <input type="hidden" name="options[conditions][' . $key . '][type]" value="' . $condition['type'] . '" />
-          <div class="form-item form-type-select form-item-field">
-            <select class="first-field form-select" id="edit-options-if" name="options[conditions][' . $key . '][field]">';
-          foreach ($fields AS $k => $string) {
-            $fieldlist .= '<option value="' . $k . '"' . ($k == $condition['field'] ? ' selected="selected"' : '') . '>' . $string . '</option>';
-          }
-          $fieldlist .= '
-          </select>
-          </div>
-          <div class="form-item form-type-select form-item-options-conditions-condition first">
-            <select id="edit-options-conditions-condition" name="options[conditions][' . $key . '][condition]" class="form-select">';
 
-          $fieldlist .= $condition_list;
-          
-          $fieldlist .= '</select>
-          </div>
-          <div class="form-item form-type-textfield form-item-options-conditions-equalto">
-            <input type="text" id="edit-options-conditions-equalto" name="options[conditions][' . $key . '][equals]" value="' . $condition['equals'] . '" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed" />
-          </div>
-          <div id="options" class="first">
-            <a href="#" class="add-sub" data-type="and">Add "And"</a> <span class="divider">|</span>
-            <a href="#" class="add-sub" data-type="or">Add "Or"</a>
-          </div>';
+        $group_condition_list = str_replace('data-id="' . $condition['condition'] . '"', ' selected="selected"', $condition_list);
+        $group_field_list = str_replace('data-id="' . $condition['field'] . '"', ' selected="selected"', $field_list);
 
+        $children = '';
         if (!empty($condition['children']) && is_array($condition['children'])) {
-          $fieldlist .= '<ul class="sub">';
+          $children = '<ul class="sub">';
           foreach ($condition['children'] AS $ck => $cc) {
             $last_elm = $ck;
-            $fieldlist .= '
-            <li data-id="' . $ck . '">
-              <span class="form-item"><img class="tree" src="/sites/all/modules/views_conditional/images/navbit.gif" alt=""> ' . ucfirst($cc['type']) . '</span>
-              <input type="hidden" name="options[conditions][' . $key . '][children][' . $ck . '][type]" value="' . $cc['type'] . '" />
-              <div class="form-item form-type-select form-item-field">
-                <select class="first-field form-select" id="edit-options-if" name="options[conditions][' . $key . '][children][' . $ck . '][field]">';
-              foreach ($fields AS $k => $string) {
-                $fieldlist .= '<option value="' . $k . '"' . ($k == $cc['field'] ? ' selected="selected"' : '') . '>' . $string . '</option>';
-              }
-              $fieldlist .= '
-              </select>
-              </div>
-              <div class="form-item form-type-select form-item-options-conditions-condition first">
-                <select id="edit-options-conditions-condition" name="options[conditions][' . $key . '][children][' . $ck . '][condition]" class="form-select">';
 
-              $fieldlist .= $condition_list;
-              
-              $fieldlist .= '</select>
-              </div>
-              <div class="form-item form-type-textfield form-item-options-conditions-equalto">
-                <input type="text" id="edit-options-conditions-equalto" name="options[conditions][' . $key . '][children][' . $ck . '][equals]" value="' . $cc['equals'] . '" size="60" maxlength="128" class="form-text viewsImplicitFormSubmission-processed" />
-              </div>
-              <div id="options" class="first">
-                <a href="#" class="delete">Remove this</a>
-              </div>
-            </li>';
+            $child_condition_list = str_replace('data-id="' . $cc['condition'] . '"', ' selected="selected"', $condition_list);
+            $child_field_list = str_replace('data-id="' . $cc['field'] . '"', ' selected="selected"', $field_list);
+            $children .= theme('views_conditional_condition', array(
+              'key' => $ck,
+              'type' => $cc['type'],
+              'field_list' => $child_field_list,
+              'condition_list' => $child_condition_list,
+              'equals' => $cc['equals'],
+              'template' => 'options[conditions][' . $key . '][children][' . $ck . ']',
+            ));
           }
-          $fieldlist .= '</ul>';
+          $children .= '</ul>';
         }
+
+        $conditions .= theme('views_conditional_condition', array(
+          'key' => $key,
+          'type' => $condition['type'],
+          'field_list' => $group_field_list,
+          'condition_list' => $group_condition_list,
+          'group' => 'group',
+          'children' => $children,
+          'equals' => $condition['equals'],
+          'template' => 'options[conditions][' . $key . ']',
+        ));
+
         $fieldlist .= '</li>';
       }
       $form['full_count'] = array('#markup' => '<script> var last_elm = ' . $last_elm . '; var condition_options = \'' . $condition_list . '\'; </script>');
     }
 
-    $form['list'] = array('#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a><ul id="conditions-container">' . $fieldlist . '</ul>');
+    $form['list'] = array('#markup' => '<a href="#" class="add-master" data-type="and">Add "And" field</a> | <a href="#" class="add-master" data-type="or">Add "or" field</a><ul id="conditions-container">' . $conditions . '</ul>');
 
     $form['then'] = array(
       '#type' => 'textfield',
