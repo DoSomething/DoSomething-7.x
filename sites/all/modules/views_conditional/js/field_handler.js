@@ -1,12 +1,26 @@
+/**
+ * Views Conditional Field Handler
+ *
+ * Views Conditional 2.0 offers the ability to run multiple conditions at the same time.  This file
+ * handles the processing of adding new "conditional groups" and regular "conditions".  As a summary:
+ *
+ * "Conditional groups" are groups of conditions that will be processed together.  "Condtional groups" are the
+ * "top level" of conditions, and are really just a regular condition that defines the first condition in a series.
+ * Conditional groups may be either AND or OR conditions.
+ *
+ * "Conditions" must always fall under a conditional group, to be processed along with its sibling(s) under that same
+ * group.  Conditions may be either AND or OR conditions.
+ *
+ */
+
 (function($) {
-  Drupal.behaviors.fieldHandler = {
+  Drupal.behaviors.ViewsConditionalFieldHandler = {
     condition_count: 0,
 
     attach: function() {
       var master_template = 'options[conditions][#ID]';
       var child_template = 'options[conditions][#PID][children][#ID]';
 
-      var family = { 'and': { 1: { 'and': [], 'or': [] } }, 'or': {} };
       var select_field = $('.form-item-options-hidden-field-select').clone();
       var select;
 
@@ -51,6 +65,7 @@
           return false;
         });
 
+        // Add a "master" (e.g. group) field
         $('.add-master').unbind('click');
         $('.add-master').click(function() {
           var type = $(this).attr('data-type');
@@ -68,9 +83,16 @@
           reload_clicks();
         });
 
+        // Delete button.
         $('.delete').unbind('click');
         $('.delete').click(function() {
-          $(this).parent().parent().slideUp('fast');
+          var $parent = $(this).parent().parent();
+
+          // Resetting all values will remove the field on submit.
+          $parent.find('select').val("");
+          $parent.find('input').val("");
+          $parent.slideUp('fast');
+          return false;
         });
       };
 
