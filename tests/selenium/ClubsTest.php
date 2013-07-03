@@ -27,8 +27,8 @@ class ClubsTest extends SeleniumBaseTest {
       $this->assertSame('Selenium test', $clubname);
 
       // Account information
-      $this->findAndSet('id', 'edit-field-email-und-0-value', 'mchittenden+' . substr(md5(time()), 0, 6) . '@dosomething.org');
-      $this->findAndSet('id', 'edit-field-phone-required-und-0-value', '6103683195');
+      $this->findAndSet('id', 'edit-field-email-und-0-value', 'testuser+' . substr(md5(time()), 0, 6) . '@dosomething.org');
+      $this->findAndSet('id', 'edit-field-phone-required-und-0-value', '212-660-2245');
       $this->findAndSet('id', 'edit-password', 'testing123');
 
       // User information
