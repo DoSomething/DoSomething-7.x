@@ -1,0 +1,97 @@
+// VARIABLES
+// ---------
+
+// breakpoints
+$break-small: 600px
+$break-large: 1140px
+$maxwidth: 960px
+
+// COLORS
+// ---------
+
+// page background (outside of content areas)
+$background-color: #88005d
+
+// panel background color (sections)
+$panel-color: #e8e8e8
+
+// accent color is used for callout backgrounds & border below headers
+$accent-color: #1991d5
+$callout-text: #fff
+
+// used for headers and links
+$header-color: #88005d
+
+
+// ------ more colors -----
+
+// colors
+$off-black: #1E1D1C
+$bg-light: #fff
+
+$bg-alt: #EEE
+
+$grey-subtle: #ddd
+$grey-subtle: #eee
+
+$btn-grey: #CCC
+$btn-color: #FFCB15
+$btn-hover: #FEB800
+$btn-border: $btn-hover
+
+$bg-header-color: $bg-alt
+$bg-header-fallback: $bg-alt
+
+$border-subtle: 1px solid $grey-subtle
+
+// images
+$bg-header-image: 'assets/bg-header.jpg'
+
+// fonts
+$font-grey: #CCC
+$font-light: #FFF
+$din: din-web-reg,"Trebuchet MS",sans-serif
+
+// layout
+$section-wrapper-width: 960px
+$section-container-width: 960px
+$section-content-width: 35em
+$section-unit-width: 33.333333333%
+$base-padding: 25px
+
+// MIXINS
+// -----
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@mixin block-center
+  margin: 0 auto
+  display: block
+
+// TODO - #DDD & #EEE BORDERS?
+@mixin border-bottom-subtle
+  border-bottom: $border-subtle
+
+// creates style blocks for different breakpoints
+@mixin respond-to($media)
+  @if $media == tablets_and_phones
+    @media only screen and (max-width: $break-large - 1)
+      @content
+  @else if $media == phones
+    @media only screen and (max-width: $break-small)
+      @content
+  @else if $media == tablets
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1)
+      @content
+  @else if $media == widescreens
+    @media only screen and (min-width: $break-large)
+      @content
+
+@function em-calc($target)
+  @return ($target/16)*1em

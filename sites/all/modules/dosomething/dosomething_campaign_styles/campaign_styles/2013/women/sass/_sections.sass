@@ -1,0 +1,397 @@
+// GENERAL
+// -------
+.call-to-action,
+.headline,
+.footer
+  background: $panel-color
+
+// HEADER
+// ------
+.header
+  position: relative
+  width: 100%
+  height: 360px
+  background-color: $bg-header-fallback
+  //background-image: url($bg-header-image)
+  background-repeat: no-repeat
+  background-position: center center
+  @include background-size(cover)
+  padding: 1% 2%
+  overflow: hidden
+
+  .logo-campaign
+    margin: 0 auto
+    display: block
+    width: 450px
+    clear: both
+    @media only screen and (max-width: 550px)
+      width: 400px
+
+  .header-logotype
+    text-align: center
+    color: #fff
+    text-transform: uppercase
+    line-height: 1.2em
+    font-weight: 600
+    font-size: 4em
+    margin: 2em auto 0.5em
+
+    @include respond-to(tablets_and_phones)
+      font-size: 3em
+
+  .log-out
+    color: $font-light
+
+  .header-social
+    width: 16%
+    height: 20px
+    margin: 25px 0 0 0
+
+  .header-facebook-share,
+  .header-twitter-share
+    display: inline-block
+    height: 20px
+
+    @include respond-to(tablets_and_phones)
+      display: none
+
+  .header-facebook-share
+    width: 80px
+    border: 1px solid rgb(202, 212, 231)
+    +border-radius(2px)
+    &:hover
+      border: 1px solid rgb(236, 238, 245)
+
+  .header-date
+    width: 73%
+    p
+      padding: 1.5em 0 0 0
+      color: darken($bg-alt, 25)
+
+  .header-sponsor
+    width: 11%
+
+    @include respond-to(tablets_and_phones)
+      display: none // relocated to footer
+
+
+  .row-bottom
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 1%
+
+// HEADLINE
+// --------
+.headline
+  border-top: 1px solid #ddd
+  border-right: 1px solid #ddd
+  border-bottom: none
+  border-left: 1px solid #ddd
+  margin: 1.5em 0 0 0
+  padding-bottom: 0
+
+
+
+// CALL TO ACTION
+// --------------
+.call-to-action
+  border: 1px solid #ddd
+  p
+    line-height: 3em
+    letter-spacing: 0.05em
+
+  .btn
+    margin: 0 0 0 1em
+    clear: none
+
+  .section-container
+    width: 43em
+
+
+// LEGAL
+// --------------
+.official-rules
+  display: block
+  margin: 0 auto
+  width: 13em
+  text-align: center
+  color: darken($panel-color, 20) !important
+
+.legal
+  color: darken($panel-color, 15)
+  font-size: em-calc(12)
+
+
+// HOW IT WORKS
+// ------------
+.how-it-works
+  padding: 2em 0
+
+  .how-it-works-container
+    clear: both
+    overflow: hidden
+    margin: 0 1em 1em
+
+// ACTION-KIT
+// ----------
+.action-kit
+  img
+    position: relative
+    top: 15px
+    right: 20px
+
+  .section-container
+    width: $section-content-width
+
+// PRIZING
+// -------
+.prizing
+  p
+    padding: 1em 0
+
+  .prizing-container
+    width: ( $section-unit-width * 2 )
+    margin: 0 auto
+    clear: both
+
+  .btn
+    margin: 0 auto 1em
+
+// SMS GAME EXAMPLE
+// ----------------
+.sms-game-example
+
+  .sms-game-container
+    width: 100%
+    max-width: $section-content-width
+    margin: 0 auto 1em
+    overflow: hidden
+    clear: both
+
+  .game-conversation
+    margin: 1em auto 2em
+    padding: 1em 2em
+    background: $accent-color
+    position: relative
+    clear: both
+    +border-radius(2px)
+    &:after
+      content: ""
+      display: block
+      position: absolute
+      border-style: solid
+      border-width: 15px
+    p
+      line-height: 1.6em
+      font-weight: 500
+      text-transform: uppercase
+      color: $callout-text
+
+  .game-ds
+    float: left
+    &:after
+      bottom: -30px
+      left: 20px
+      border-color: $accent-color $accent-color #fff #fff
+    p
+      text-align: left
+
+  .game-user
+    float: right
+    &:after
+      bottom: -30px
+      right: 20px
+      border-color: $accent-color #fff #fff $accent-color
+    p
+      text-align: right
+
+// PROFILES
+// --------
+.profiles
+  .intro
+    margin-bottom: 2em
+
+  .profile-photo, .profile-copy
+    float: left
+    text-align: left
+
+    @include respond-to(tablets_and_phones)
+      float: none
+
+  .profile-photo
+    width: 290px
+    clear: both
+    margin: 0.5em 2em 0 1em
+
+    @include respond-to(tablets_and_phones)
+      margin: 0.5em auto 0
+
+  .profile-copy
+    width: $section-content-width
+    margin: 0 0 3em 0
+
+    @include respond-to(tablets_and_phones)
+      width: 90%
+      max-width: $section-content-width
+      margin: 0 auto 3em
+
+    p
+      text-align: left
+    h2
+      color: $header-color
+      text-align: left
+
+      @include respond-to(tablets_and_phones)
+        text-align: center
+
+// CONTENT
+// -------
+.content
+  width: 90%
+  max-width: $section-content-width
+  margin: 0 auto
+
+  p
+    display: block
+    text-align: left
+    line-height: 1.5em
+    padding-bottom: 1em
+  h2
+    padding-bottom: 0.5em
+
+  /* this padding should be abstracted to all <h3> */
+  .headline-callout
+    padding: 0.5em 0 0 0
+    text-transform: capitalize
+    text-align: left
+
+// SMS
+// ---
+.sms
+  border-left: 1px solid #ddd
+  border-right: 1px solid #ddd
+  border-bottom: 1px solid #ddd
+  background: $panel-color
+  label
+    margin: 3% 0 0
+  form
+    width: 80%
+    margin: 2em auto 0
+
+  .btn
+    width: 9.4em
+    margin: 1em auto
+
+.sms-input-wrapper
+  width: 45%
+  float: left
+  margin: 0 2.5% 2em 2.5%
+
+  @include respond-to(phones)
+    width: 100%
+
+    &.first-column
+      margin-bottom: 0      
+
+.sms-input
+  width: 100%
+  margin: 5% 0 0 0
+
+  @include respond-to(phones)
+    width: 100%
+
+.sms-alpha-wrapper
+  float: left
+  width: 35.8%
+  margin: 0 0 4% 0
+  input
+    width: 83.5%
+
+.sms-beta-mobile
+  clear: both
+  margin: 5% 2.5% -1% !important
+
+// GALLERY
+// -------
+.gallery
+  img
+    border: 1px solid #ddd !important
+    +border-radius(3px)
+    +box-shadow(0 10px 10px -10px #bbb !important)
+
+// MAP
+// ---
+.map
+  iframe
+    width: 90%
+    margin: 0 auto
+    display: block
+    border: 1px solid #ddd
+    +box-shadow(0 10px 10px -10px #ccc)
+
+// THANKS
+// ------
+.success_msg
+  margin: 0 auto 1em
+  h2
+    text-transform: uppercase
+    font-weight: 600
+    color: $campaign-accent
+
+// FAQ
+// ---
+.faq
+  width: 90%
+  max-width: $section-content-width
+  margin: 0 auto
+
+  position: relative
+  h3, p
+    text-align: left
+  h3
+    cursor: pointer
+    color: #ccc
+  div /* TODO - GIVE THIS A CLASS */
+    margin: 0 0 0.5em 0
+
+  .btn
+    margin: 1em auto 0
+
+  .back-to-top /* TODO - THESE STYLES WERE INHERITED; REFACTOR THEM */
+    text-align: right
+    padding: 1em 0 1em
+
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 1em
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position: 0% 40%
+
+
+// SPONSOR
+// ------
+.sponsor
+  p
+    padding: 8px
+    text-align: center
+
+  a
+    padding: 8px
+    text-align: center
+
+    @include respond-to(phones)
+      display: block
+
+// FOOTER
+// ------
+.footer
+  padding: 2% 0
+  margin: 0 0 -2%
+  text-align: center
+  img
+    width: 50px
+    +block-center
