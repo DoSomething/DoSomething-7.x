@@ -284,7 +284,7 @@ class ViewsConditionalHandler extends views_handler_field {
     $clean_var = $this->clean_var($fields[$field['field']]);
     // Strip tags on the "if" field.  Otherwise it appears to
     // output as <div class="xxx">Field data</div>...
-    // ...which of course makes it dificult to compare.
+    // ...which of course makes it difficult to compare.
     $r = trim(strip_tags($fields[$field]->last_render, '<img>'));
 
     // Run conditions.
@@ -331,6 +331,21 @@ class ViewsConditionalHandler extends views_handler_field {
     }
   }
 
+  /**
+   * Takes an array of conditions and checks that they all pass.
+   *
+   * @param array $conditions
+   *   An array of conditions as created from the form, and passed from
+   *   the render() function below.
+   * @param bool $children
+   *   Whether or not we're looking at the children of a condition (group).
+   *
+   * @return mixed array|bool
+   *   If we're looking at the children, returns an array of wins and required
+   *   wins for all of the child conditions, to be added to the entire group.
+   *   If we're looking at a group element, return true if the wins are greater
+   *   than or equal to the required wins.
+   */
   private function check_conditions($conditions, $children = false) {
     $needed_wins = $wins = 0;
     foreach ($conditions AS $key => $condition) {
