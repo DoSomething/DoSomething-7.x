@@ -182,6 +182,9 @@ function dosomething_campaign_styles_pluginify_path($path) {
   return $plugin_name;
 }
 
+/**
+ * Implements hook_block_info().
+ */
 function dosomething_campaign_styles_block_info() {
   $blocks['campaign_nav'] = array(
     'info' => t('Campaign Navigation'),
@@ -196,12 +199,22 @@ function dosomething_campaign_styles_block_info() {
   return $blocks;
 }
 
+/**
+ * Implements hook_block_view().
+ */
 function dosomething_campaign_styles_block_view($delta) {
+  // If context has Organic Group context:
   if ($context = og_context()) {
-    if ($context->entity_type == 'node' && ($node = node_load($context->etid))) {
+    // If we are viewing a node:
+    if ($context->entity_type == 'node') {
+      // Lookup plugin name, which is defined by the Organic Group node's path:
       $plugin_name = dosomething_campaign_styles_pluginify_path(drupal_get_path_alias('node/' . $context->etid));
+      // Get the plugin:
       $plugin = ctools_get_plugins('dosomething_campaign_styles', 'campaign_style', $plugin_name);
-
+      // If plugin doesn't exist, return nothing.
+      if (!$plugin) {
+        return;
+      }
       $campaign_links = $prefix = $suffix = $nav = array();
       if (!empty($plugin['menu'])) {
         foreach ($plugin['menu'] as $num => $link) {
