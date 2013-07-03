@@ -1,74 +1,228 @@
-/*
-Syntax error: Undefined variable: "$off-black".
-        on line 59 of sass/user-registration.sass
+body {
+  font-family: din-web-reg; }
 
-54:   label
-55:     display: block
-56:     text-transform: lowercase
-57:     font-weight: 400
-58:     font-size: em-calc(18)
-59:     color: $off-black
-60:   p /* "Already registered & Need an account?" language */
-61:     clear: left
-62:     font-size: 0.9em
-63:     margin-bottom: 20px
-64: 
+a {
+  color: #1e1d1c; }
 
-Backtrace:
-sass/user-registration.sass:59
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/script/variable.rb:49:in `_perform'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/script/node.rb:40:in `perform'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:298:in `visit_prop'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `map'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `block in visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:320:in `visit_rule'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `map'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `block in visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:320:in `visit_rule'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `map'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `block in visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:7:in `visit'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/tree/root_node.rb:20:in `render'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/engine.rb:315:in `_render'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/engine.rb:262:in `render'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:341:in `update_stylesheet'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:201:in `each'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:299:in `block in watch'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/multi_listener.rb:86:in `call'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/multi_listener.rb:86:in `on_change'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/multi_listener.rb:95:in `block in initialize_adapter'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/adapter.rb:196:in `call'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/adapter.rb:196:in `report_changes'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/adapter.rb:207:in `poll_changed_dirs'
-/home/vagrant/.rvm/gems/ruby-1.9.3-p194/gems/listen-0.5.0/lib/listen/adapters/linux.rb:48:in `block in start'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$off-black\".\A         on line 59 of sass/user-registration.sass\A \A 54:   label\A 55:     display: block\A 56:     text-transform: lowercase\A 57:     font-weight: 400\A 58:     font-size: em-calc(18)\A 59:     color: $off-black\A 60:   p /* \"Already registered & Need an account?\" language */\A 61:     clear: left\A 62:     font-size: 0.9em\A 63:     margin-bottom: 20px\A 64: "; }
+.container {
+  width: 1000px;
+  margin: 5% auto;
+  padding: 20px 25px 25px 25px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #eeeeee;
+  -webkit-box-shadow: #cccccc 0px 15px 20px -10px;
+  -moz-box-shadow: #cccccc 0px 15px 20px -10px;
+  box-shadow: #cccccc 0px 15px 20px -10px; }
+  @media only screen and (max-width: 850px) {
+    .container {
+      width: 96%;
+      padding: 20px; } }
+
+.form-container {
+  float: right;
+  width: 400px; }
+
+.image-hero {
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  top: -100px;
+  left: 10px;
+  z-index: 1;
+  background: white;
+  border: 1px solid #eeeeee;
+  -webkit-box-shadow: #cccccc 0px 15px 20px -10px;
+  -moz-box-shadow: #cccccc 0px 15px 20px -10px;
+  box-shadow: #cccccc 0px 15px 20px -10px; }
+
+.logo-ds {
+  position: relative;
+  z-index: 2;
+  top: -5px;
+  left: -10px; }
+  .logo-ds img {
+    display: block;
+    width: 120px; }
+
+.desktop {
+  float: left;
+  width: 550px; }
+
+form {
+  background: transparent;
+  min-height: auto;
+  padding: 0;
+  width: 95%;
+  box-shadow: none;
+  margin: 3% 0;
+  float: right; }
+  @media only screen and (max-width: 950px) {
+    form {
+      width: 96%;
+      margin: 0 2%;
+      float: left;
+      padding: 0 0 10% 0; } }
+  form label {
+    display: block;
+    text-transform: lowercase;
+    font-weight: 400;
+    font-size: 1em;
+    color: #1e1d1c; }
+  form p {
+    clear: left;
+    font-size: 0.9em;
+    margin-bottom: 20px; }
+  form .disclaimer {
+    display: none; }
+  form #edit-final-submit {
+    margin: 0;
+    padding: 0.2em 1em 0.25em;
+    clear: both;
+    float: left;
+    position: static;
+    height: 2em;
+    display: block;
+    cursor: pointer;
+    font-family: din;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    color: #1e1d1c !important;
+    border: 1px solid #ffcb15;
+    background: #ffcb15;
+    -webkit-appearance: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
+    background-image: -webkit-linear-gradient(#ffcb15, #feb800);
+    background-image: -moz-linear-gradient(#ffcb15, #feb800);
+    background-image: -o-linear-gradient(#ffcb15, #feb800);
+    background-image: linear-gradient(#ffcb15, #feb800); }
+    form #edit-final-submit:hover {
+      background: #feb800; }
+    form #edit-final-submit:active {
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #feb800), color-stop(100%, #ffcb15));
+      background-image: -webkit-linear-gradient(#feb800, #ffcb15);
+      background-image: -moz-linear-gradient(#feb800, #ffcb15);
+      background-image: -o-linear-gradient(#feb800, #ffcb15);
+      background-image: linear-gradient(#feb800, #ffcb15); }
+    form #edit-final-submit:link, form #edit-final-submit:active, form #edit-final-submit:hover {
+      color: #1e1d1c;
+      text-decoration: none !important; }
+  form .form-item-parent-email {
+    margin: 0.5em 0 0 0; }
+  form .form_header {
+    margin: 0 0 4% 0;
+    display: block; }
+  form .form-item {
+    width: 100%;
+    float: none !important;
+    margin: 0; }
+  form .form-item-first-name, form .form-item-last-name {
+    float: left !important;
+    width: 40%; }
+  form .form-item-last-name {
+    width: 48%;
+    margin: 0 0 0 10%; }
+  form #edit-birthday label {
+    float: none !important;
+    margin: 0; }
+  form #edit-birthday span {
+    position: static !important; }
+  form .form-item-day, form .form-item-month, form .form-item-year {
+    float: left !important;
+    width: 2.6em;
+    margin: 0 9% 0 0;
+    padding: 0; }
+  form .form-item-year {
+    width: 3.5em; }
+  form .ds-login-popup-footer {
+    margin: 1em 0;
+    float: left;
+    clear: both; }
+  form .already-member {
+    float: left;
+    clear: left;
+    padding: 0;
+    font-family: din-web-reg;
+    font-weight: 500;
+    font-size: 14px;
+    color: #222222; }
+  @media only screen and (max-width: 950px) {
+    form {
+      float: none;
+      width: 95%; }
+      form .facebook-connect {
+        clear: both;
+        width: 100%;
+        margin: 5% 0; }
+        form .facebook-connect img {
+          display: block;
+          margin: 0 auto;
+          max-width: 300px; } }
+        @media only screen and (max-width: 950px) and (max-width: 500px) {
+          form .facebook-connect img {
+            width: 90%; } }
+  @media only screen and (max-width: 900px) {
+    form .facebook-connect {
+      margin: 0; } }
+  form .disclaimer,
+  form .under-13-field {
+    float: left; }
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
+  height: 2.5em;
+  width: 96%;
+  margin: 0.3em 0 0.5em 0;
+  background: #f9f9f9;
+  border: none;
+  border: 1px solid #dddddd;
+  font-weight: 400;
+  font-size: 0.9em;
+  color: #888888;
+  padding: 0 0 0 0.5em;
+  text-transform: lowercase;
+  box-shadow: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  @media only screen and (max-width: 950px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"] {
+      height: 1.5em; } }
+
+.disclaimer {
+  float: left;
+  clear: both;
+  width: 100%;
+  margin: 1em 0 0 0; }
+
+.description {
+  text-align: center;
+  color: #dddddd;
+  font-size: 0.7em; }
+  .description a {
+    color: #dddddd; }
+    .description a:hover {
+      color: #cccccc; }
+
+#skip-link,
+#edit-connect,
+#edit-or {
+  display: none; }
+
+.form-required {
+  display: none; }

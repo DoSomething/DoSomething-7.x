@@ -9,11 +9,31 @@
 // VARIABLES
 // ---------
 $main:  #1F7AFF
+$off-black: #1E1D1C
+
+$input-bg: #f9f9f9
+$input-color: #888
+$input-border: #ddd
+
+$btn-primary: #FFCB15
+$btn-primary-color: $off-black
+$btn-primary-hover: #FEB800
+$btn-primary-border: $btn-primary
+
+// MIXINS
+// ------
+@mixin border-and-shadow
+  background: #fff
+  border: 1px solid #eee
+  +box-shadow(#ccc 0px 15px 20px -10px)
 
 // BASIC ELEMENTS
 // --------------
 body
-  background: pink !important
+  font-family: din-web-reg
+
+a
+  color: $off-black
 
 // TYPOGRAPHY
 // ----------
@@ -21,31 +41,54 @@ body
 
 // CONTAINER
 // ---------
-#gate .container
-  float: none
-  width: 800px
-  min-height: auto /* corrects fixed height inherited from sitewide styles */
-  margin: 2% auto 0
-  padding: 3% 3% 1% 3%
-  background: #fff
-  border: 1px solid #ddd
-  +border-radius(2px)
-  +box-shadow(#ccc 0px 15px 20px -10px)
+.container
+  width: 1000px
+  margin: 5% auto
+  padding: 20px 25px 25px 25px
+  overflow: hidden
+  +border-and-shadow
   @media only screen and (max-width: 850px)
     width: 96%
-    padding: 6% 6% 1% 6%
+    padding: 20px
+
+.form-container
+  float: right
+  width: 400px
+
+.image-hero
+  padding: 10px
+  position: relative
+  width: 100%
+  top: -100px
+  left: 10px
+  z-index: 1
+  +border-and-shadow
+
+.logo-ds
+  position: relative
+  z-index: 2
+  top: -5px
+  left: -10px
+  img
+    display: block
+    width: 120px
+
+// DESKTOP
+// -------
+.desktop
+  float: left
+  width: 550px
 
 // LOGIN & REG. FORMS
 // ------------------
-#gate .form
+form
   background: transparent
   min-height: auto
   padding: 0
-  width: 100%
+  width: 95%
   box-shadow: none
   margin: 3% 0
   float: right
-  width: 50%
   @media only screen and (max-width: 950px)
     width: 96%
     margin: 0 2%
@@ -55,23 +98,44 @@ body
     display: block
     text-transform: lowercase
     font-weight: 400
-    font-size: em-calc(18)
+    font-size: 1em
     color: $off-black
-  p /* "Already registered & Need an account?" language */
+  p
     clear: left
     font-size: 0.9em
     margin-bottom: 20px
 
-  .btn
-    width: 6em
+  .disclaimer
+    display: none
+
+  #edit-final-submit
+    margin: 0
+    padding: 0.2em 1em 0.25em
+    clear: both
     float: left
-    margin: 0.5em 0 1em 0
-    @media only screen and (max-width: 950px)
-      clear: both
-      max-width: 300px
-      display: block
-      margin: 5% 0
-      width: 60% !important
+    position: static
+    height: 2em
+    display: block
+    cursor: pointer
+    font-family: din
+    font-size: 24px
+    font-weight: 700
+    text-align: center
+    text-decoration: none !important
+    text-transform: uppercase
+    color: $btn-primary-color !important
+    border: 1px solid $btn-primary-border
+    background: $btn-primary
+    -webkit-appearance: none
+    +border-radius(3px)
+    +background-image(linear-gradient($btn-primary, $btn-primary-hover))
+    &:hover /* While mouse hovers */
+      background: $btn-primary-hover
+    &:active
+      +background-image(linear-gradient($btn-primary-hover, $btn-primary))
+    &:link, &:active, &:hover
+      color: $off-black
+      text-decoration: none !important
 
   .form-item-parent-email
     margin: 0.5em 0 0 0
@@ -110,10 +174,13 @@ body
     width: 3.5em
 
   .ds-login-popup-footer
-    margin: 0 0 1em 0
+    margin: 1em 0
+    float: left
+    clear: both
 
   .already-member
-    float: none
+    float: left
+    clear: left
     padding: 0
     font-family: din-web-reg
     font-weight: 500
@@ -139,23 +206,54 @@ body
     .facebook-connect
       margin: 0
 
+  .disclaimer,
+  .under-13-field
+    float: left
+
 // input fields for both forms
-#gate input[type="text"],
-#gate input[type="email"],
-#gate input[type="number"],
-#gate input[type="password"]
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"]
   height: 2.5em
   width: 96%
   margin: 0.3em 0 0.5em 0
-  background: #fafafa
+  background: $input-bg
   border: none
-  border: 1px solid #ddd
+  border: 1px solid $input-border
   font-weight: 400
-  font-size: em-calc(18)
-  color: #888
+  font-size: 0.9em
+  color: $input-color
   padding: 0 0 0 0.5em
+  text-transform: lowercase
   box-shadow: none
   +border-radius(3px)
   @media only screen and (max-width: 950px)
     height: 1.5em
 
+.disclaimer
+  float: left
+  clear: both
+  width: 100%
+  margin: 1em 0 0 0
+
+.description
+  text-align: center
+  color: #ddd
+  font-size: 0.7em
+  a
+    color: #ddd
+    &:hover
+      color: #ccc
+
+// HIDE THE BODIES
+// ---------------
+#skip-link,
+#edit-connect,
+#edit-or
+  display: none
+
+// LOOK THE OTHER WAY
+// ------------------
+.form-required
+  display: none
