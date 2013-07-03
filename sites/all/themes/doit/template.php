@@ -15,17 +15,15 @@ function doit_preprocess_html(&$variables, $hook) {
   // HTML5 Shiv
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
-  // Load user-registration html template if this is a user-registration template page:
-  if (doit_is_user_registration_template_page()) {
-    $variables['theme_hook_suggestions'][] = 'html__user__registration';
-  }
-  drupal_alter('html_templates', $variables);
 
   /*
-   * Remove all global stylesheets from user/registration pages.
+   * Remove all global stylesheets and
+   * load user registration HTML templates 
+   * if this is a user-registration template page.
    */
 
-  if (arg(0) == 'user' && (in_array(arg(1), array('registration', 'login'))) ) {
+  if (doit_is_user_registration_template_page()) {
+    $variables['theme_hook_suggestions'][] = 'html__user__registration';
     $css = drupal_add_css();
     unset(
       $css['sites/all/themes/doit/css/style.css'],
@@ -51,10 +49,14 @@ function doit_preprocess_html(&$variables, $hook) {
       $css['sites/all/modules/panels/css/panels.css'],
       $css['sites/all/modules/dosomething/dosomething_blocks/css/twitter-widget.css']
     );
+    // Exclude all stylesheets except the following:
+    // ['https://c308566.ssl.cf1.rackcdn.com/din-511.css']
+    // ['sites/all/themes/doit/css/user-registration.css']
     $variables['user_styles'] = drupal_get_css($css);
+  } else {
+    $variables['user_styles'] = $variables['styles'];
   }
-   //https://c308566.ssl.cf1.rackcdn.com/din-511.css]
-   //sites/all/themes/doit/css/user-registration.css]
+  drupal_alter('html_templates', $variables);
 }
 
 /**
@@ -761,3 +763,4 @@ function doit_is_user_registration_template_page() {
     $current_path == 'user' || 
     $current_path == 'user/login';
 }
+
