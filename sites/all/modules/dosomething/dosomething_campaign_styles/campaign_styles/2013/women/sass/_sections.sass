@@ -11,21 +11,17 @@
   position: relative
   width: 100%
   height: 360px
+  border-bottom: 0
   background-color: $bg-header-fallback
-  //background-image: url($bg-header-image)
+  background-image: url($bg-header-image)
   background-repeat: no-repeat
   background-position: center center
   @include background-size(cover)
   padding: 1% 2%
   overflow: hidden
-
-  .logo-campaign
-    margin: 0 auto
-    display: block
-    width: 450px
-    clear: both
-    @media only screen and (max-width: 550px)
-      width: 400px
+  @include respond-to(phones)
+    height: 240px
+    @include transition(height 0.5s)
 
   .header-logotype
     text-align: center
@@ -34,45 +30,50 @@
     line-height: 1.2em
     font-weight: 600
     font-size: 4em
-    margin: 2em auto 0.5em
+    margin: 32px auto 0
 
-    @include respond-to(tablets_and_phones)
-      font-size: 3em
+    img
+      width: 476px
+      @include respond-to(phones)
+        width: 238px
+        @include transition(width 0.5s)
+      
 
   .log-out
     color: $font-light
 
   .header-social
-    width: 16%
+    position: absolute
+    bottom: 1em
+    left: 1em
+    width: auto
     height: 20px
     margin: 25px 0 0 0
+    @include respond-to(tablets_and_phones)
+      display: none
 
   .header-facebook-share,
   .header-twitter-share
     display: inline-block
     height: 20px
 
-    @include respond-to(tablets_and_phones)
-      display: none
-
-  .header-facebook-share
-    width: 80px
-    border: 1px solid rgb(202, 212, 231)
-    +border-radius(2px)
-    &:hover
-      border: 1px solid rgb(236, 238, 245)
+  .header-twitter-share
+    margin-left: 1em
 
   .header-date
-    width: 73%
-    p
-      padding: 1.5em 0 0 0
-      color: darken($bg-alt, 25)
-
-  .header-sponsor
-    width: 11%
-
+    float: right
+    width: auto
+    text-transform: uppercase
     @include respond-to(tablets_and_phones)
-      display: none // relocated to footer
+      float: none
+      width: 100%
+      text-align: center
+
+    p
+      font-size: 24px
+      color: #fff
+      padding: 1.5em 1em 0 0
+      @include text-shadow(0 0 5px rgba(0, 0, 0, 0.5))
 
 
   .row-bottom
@@ -269,10 +270,9 @@
 // SMS
 // ---
 .pane-dosomething-campaign-kiva-signup
-  padding: 3% 0
+  padding: 3% 0 0
   border-left: 1px solid #ddd
   border-right: 1px solid #ddd
-  border-bottom: 1px solid #ddd
   background: $panel-color
   label
     margin: 3% 0 0
@@ -286,47 +286,31 @@
 
   #edit-submit
     float: none
-    margin: 24px auto 36px
+    margin: 24px auto 0
 
   .form-type-textfield
+    width: 45%
     float: left
-    width: 50%
-    padding: 0 2.5%
+    margin: 0 2.5% 0 2.5%
+
+    @include respond-to(phones)
+      width: 100%
 
   .form-item-alpha-email
     float: right
 
-  .edit-beta-mobiles
+    @include respond-to(phones)
+      float: none
+
+  #edit-beta-mobiles
     clear: both
-
-.sms-input-wrapper
-  width: 45%
-  float: left
-  margin: 0 2.5% 2em 2.5%
-
-  @include respond-to(phones)
     width: 100%
+    min-width: 100%
 
-    &.first-column
-      margin-bottom: 0      
-
-.sms-input
-  width: 100%
-  margin: 5% 0 0 0
-
-  @include respond-to(phones)
-    width: 100%
-
-.sms-alpha-wrapper
-  float: left
-  width: 35.8%
-  margin: 0 0 4% 0
-  input
-    width: 83.5%
-
-.sms-beta-mobile
-  clear: both
-  margin: 5% 2.5% -1% !important
+.sms-lower
+  background: $panel-color
+  border-bottom: 1px solid #ddd
+  padding-bottom: 3%
 
 // GALLERY
 // -------
@@ -411,3 +395,46 @@
   img
     width: 50px
     +block-center
+
+
+// CONFIRMATION
+// ------
+.pane-dosomething-campaign-kiva-confirmation
+  background: $panel-color
+  text-align: center
+  padding-bottom: 32px
+
+  .pane-content a
+    background: $btn-color
+    margin: 0 auto
+    padding: 0.25em 2em
+    font-size: 32px
+    clear: both
+    position: static
+    height: 2em
+    display: inline-block
+    border: 1px solid $btn-border
+    cursor: pointer
+    color: $off-black !important
+    font-family: din-web-reg
+    font-weight: 600
+    text-align: center
+    text-decoration: none !important
+    text-transform: uppercase
+    +border-radius(5px)
+    &:hover /* While mouse hovers */
+      background: $btn-hover
+      +background-image(linear-gradient($btn-color, $btn-hover))
+      +box-shadow(0 10px 10px -10px #bbb)
+    &:active /* While mouse clicks */
+      color: lighten($off-black, 10) !important
+      padding: 0.35em 0 0.15em !important
+      background: $btn-color
+      +background-image(linear-gradient($btn-hover, $btn-color))
+      +box-shadow(0 10px 10px -10px #bbb)
+    &:link, &:active, &:hover
+      color: $off-black
+      text-decoration: none !important
+
+
+
