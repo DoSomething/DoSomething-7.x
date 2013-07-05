@@ -317,7 +317,7 @@ function dosomething_campaign_beta_signup_form_submit($form, &$form_state) {
   watchdog('dosomething_campaign', 'Beta signup - Mobilecommons response = ' . print_r($response, TRUE)); 
 
   // Send to confirmation page with the relevant query string variables.
-  drupal_goto('poverty/confirmation', array(
+  drupal_goto('node/729332', array(
     'query' => array(
       'first_name' => $alpha_name, 
       'email' => $alpha_email,
