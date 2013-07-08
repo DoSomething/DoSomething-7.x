@@ -6,16 +6,11 @@
         afterReplaceText : 'Just register with DoSomething.org to join the campaign!',
       };
 
-      // Animate scrolling to fragment identifiers
-      jump_scroll = function(target) {
-
-        $(target).click(function(event){
-          $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
-          return false;
-        });
-
-      }
-      jump_scroll('a.jump-scroll');
+      $('.jump-scroll').click( function(e){
+        var hash = $(this).attr('href').split('#')[1];
+        $('html,body').animate({scrollTop: $('#' + hash).offset().top}, 'slow');
+        e.preventDefault();
+      });
 
       // dynamically set width css property on elements
       set_width = function(parent, child, width) {
