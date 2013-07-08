@@ -172,6 +172,23 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       // global $language;
 
       break;
+    
+    case '25women':      
+        
+      $message['from'] = 'dosomething@dosomething.org';
+      $message['subject'] = $params['subject'];
+      
+      // Set default greeting if value is blank
+      // @todo: Make this a function to handle dynamic content
+      if (strlen($params['body']) === FALSE) {
+        $message['body'] = 'Hey there,';
+      }
+      else {
+         $message['body'] = 'Hey '. $params['body'] .',';
+      }
+     
+
+      break;
 
     default:      
 
