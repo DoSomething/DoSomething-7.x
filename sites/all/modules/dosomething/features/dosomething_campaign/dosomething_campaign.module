@@ -309,15 +309,15 @@ function dosomething_campaign_beta_signup_form_submit($form, &$form_state) {
   // Mailchimp Signup:
   dosomething_subscribe_mailchimp_signup($alpha_email, $mailchimp_group);
 
-  // @TODO: Transactional:
-  // dosomething_mandrill_dispatch($alpha_email, 'stuff here');
+  // Send Mandrill transactional email message
+  dosomething_mandrill_dispatch($alpha_email, '25women', $alpha_name);
 
   // Mobilecommons Alpha+Beta signup:
   $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin);
   watchdog('dosomething_campaign', 'Beta signup - Mobilecommons response = ' . print_r($response, TRUE)); 
 
   // Send to confirmation page with the relevant query string variables.
-  drupal_goto('poverty/confirmation', array(
+  drupal_goto('node/729332', array(
     'query' => array(
       'first_name' => $alpha_name, 
       'email' => $alpha_email,
