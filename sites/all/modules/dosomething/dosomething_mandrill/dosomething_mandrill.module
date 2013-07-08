@@ -172,6 +172,28 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       // global $language;
 
       break;
+    
+    case '25women':      
+        
+      $message['from'] = 'dosomething@dosomething.org';
+      $message['subject'] = $params['subject'];
+      
+      // @todo: Make function to handle dynamic content that uses merge_vars *|<some var name|*
+      // @todo: Abstract further to support sending messages to $beta
+      
+      // Set default greeting if "body" contents are blank ($alpha_name). Not sure if $alpha_name is a required field
+      // on /woman signup form. In the future use merge_var values rather than passing through $params['body']
+      // when reading default template content programmacially from Mandrill template is in place.
+
+      if (strlen($params['body']) === FALSE) {
+        $message['body'] = 'Hey there,';
+      }
+      else {
+         $message['body'] = 'Hey '. $params['body'] .',';
+      }
+     
+
+      break;
 
     default:      
 
