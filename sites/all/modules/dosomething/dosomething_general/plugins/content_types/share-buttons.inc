@@ -70,9 +70,9 @@ function dosomething_share_buttons($subtype, $conf, $panel_args, $context) {
 
 <a href="http://twitter.com/share?url=' . $short . '&amp;count=horizontal&amp;via=dosomething&amp;text=' . $title . '&amp;counturl=' . $url . '" class="twitter-share-button service-links-twitter-widget" title="Tweet This" rel="nofollow" target="_blank"><span class="element-invisible">' . t('Tweet Widget') . '</span></a>
 
-<a href="/print' . $uri . '" title="Printable version" class="service-links-print" rel="nofollow" target="_blank"><img typeof="foaf:Image" src="/sites/all/modules/service_links/images/print.png" alt="Print HTML" /></a>';
+<a href="/print' . $uri . '" title="Printable version" class="service-links-print" rel="nofollow" target="_blank"><img typeof="foaf:Image" src="/' . drupal_get_path('module', 'dosomething_general') . '/images/print.png" alt="Print HTML" /></a>';
 
-  // Builds the content 
+  // Builds the content
   $content = array();
   $content[] = array('#markup' => $c);
 
