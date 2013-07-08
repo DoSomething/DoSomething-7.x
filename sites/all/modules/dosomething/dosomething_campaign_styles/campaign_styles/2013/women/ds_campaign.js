@@ -28,7 +28,7 @@
       };
 
       // Dynamically set width of the call to action buttons
-      set_width('a.btn', 'span', 1.3);
+      //set_width('a.btn', 'span', 1.3);
 
       // #faq drop down animations
       faq_toggle = function(question, response) {
