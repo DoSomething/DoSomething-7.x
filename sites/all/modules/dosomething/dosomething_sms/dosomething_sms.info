@@ -5,3 +5,4 @@ dependencies[] = conductor_sms
 dependencies[] = dosomething_general
 dependencies[] = entity
 package = "DoSomething"
+configure = admin/config/dosomething/dosomething_sms
