@@ -1018,22 +1018,23 @@ header[role="banner"] {
 /* line 354, sass/_sections.sass */
 #cmp .faq h3 {
   cursor: pointer;
-  color: #cccccc;
+  color: #333333;
+  font-weight: 600;
 }
-/* line 357, sass/_sections.sass */
+/* line 358, sass/_sections.sass */
 #cmp .faq div {
   margin: 0 0 0.5em 0;
 }
-/* line 360, sass/_sections.sass */
+/* line 361, sass/_sections.sass */
 #cmp .faq .btn {
   margin: 1em auto 0;
 }
-/* line 363, sass/_sections.sass */
+/* line 364, sass/_sections.sass */
 #cmp .faq .back-to-top {
   text-align: right;
   padding: 1em 0 1em;
 }
-/* line 367, sass/_sections.sass */
+/* line 368, sass/_sections.sass */
 #cmp .faq .top-btn {
   font-weight: 400;
   color: #c6c7c8;
@@ -1043,54 +1044,54 @@ header[role="banner"] {
   background-repeat: no-repeat;
   background-position: 0% 40%;
 }
-/* line 376, sass/_sections.sass */
+/* line 377, sass/_sections.sass */
 #cmp .faq li {
   padding: 1em;
 }
-/* line 379, sass/_sections.sass */
+/* line 380, sass/_sections.sass */
 #cmp .faq ol li:before {
   font-size: 18px;
   font-weight: 600;
 }
-/* line 383, sass/_sections.sass */
+/* line 384, sass/_sections.sass */
 #cmp .faq p {
   padding: 0.5em 0;
 }
-/* line 390, sass/_sections.sass */
+/* line 391, sass/_sections.sass */
 #cmp .sponsor p {
   padding: 8px;
   text-align: center;
 }
-/* line 394, sass/_sections.sass */
+/* line 395, sass/_sections.sass */
 #cmp .sponsor a {
   padding: 8px;
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  /* line 394, sass/_sections.sass */
+  /* line 395, sass/_sections.sass */
   #cmp .sponsor a {
     display: block;
   }
 }
-/* line 403, sass/_sections.sass */
+/* line 404, sass/_sections.sass */
 #cmp .footer {
   padding: 2% 0;
   margin: 0 0 -2%;
   text-align: center;
 }
-/* line 407, sass/_sections.sass */
+/* line 408, sass/_sections.sass */
 #cmp .footer img {
   width: 50px;
   margin: 0 auto;
   display: block;
 }
-/* line 414, sass/_sections.sass */
+/* line 415, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation {
   background: #e8e8e8;
   text-align: center;
   padding-bottom: 32px;
 }
-/* line 419, sass/_sections.sass */
+/* line 420, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a {
   background: #ffcb15;
   margin: 0 auto;
@@ -1114,7 +1115,7 @@ header[role="banner"] {
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 437, sass/_sections.sass */
+/* line 438, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:hover {
   background: #feb800;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
@@ -1126,7 +1127,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
   box-shadow: 0 10px 10px -10px #bbbbbb;
 }
-/* line 441, sass/_sections.sass */
+/* line 442, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:active {
   color: #383735 !important;
   padding: 0.35em 0 0.15em !important;
@@ -1140,7 +1141,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
   box-shadow: 0 10px 10px -10px #bbbbbb;
 }
-/* line 447, sass/_sections.sass */
+/* line 448, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:link, #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:active, #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:hover {
   color: #1e1d1c;
   text-decoration: none !important;
