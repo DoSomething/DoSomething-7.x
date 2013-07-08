@@ -603,7 +603,7 @@ header[role="banner"] {
   -o-background-size: cover;
   background-size: cover;
   padding: 1% 2%;
-  overflow: hidden;
+  overflow: visible;
 }
 @media only screen and (max-width: 600px) {
   /* line 10, sass/_sections.sass */
