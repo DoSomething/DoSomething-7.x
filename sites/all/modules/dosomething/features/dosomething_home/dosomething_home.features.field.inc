@@ -19,7 +19,7 @@ function dosomething_home_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_description',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -110,6 +110,9 @@ function dosomething_home_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_link',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
@@ -126,6 +129,7 @@ function dosomething_home_field_default_fields() {
         'enable_tokens' => 1,
         'profile2_private' => FALSE,
         'title' => 'none',
+        'title_maxlength' => 128,
         'title_value' => '',
         'url' => 0,
       ),
@@ -146,22 +150,23 @@ function dosomething_home_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
+          'module' => 'link',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'link_default',
           'weight' => '1',
         ),
         'full' => array(
           'label' => 'above',
           'module' => 'link',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'link_default',
           'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
           'module' => 'link',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'link_default',
           'weight' => '1',
         ),
       ),
@@ -180,9 +185,11 @@ function dosomething_home_field_default_fields() {
         ),
         'enable_tokens' => 1,
         'title' => 'optional',
+        'title_maxlength' => 128,
         'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
+        'validate_url' => 1,
       ),
       'weight' => '1',
       'widget' => array(
@@ -293,6 +300,7 @@ function dosomething_home_field_default_fields() {
         'settings' => array(
           'image_path' => 'pictures/actionguide',
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => array(
             0 => 'auto',
