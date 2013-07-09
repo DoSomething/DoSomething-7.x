@@ -1,5 +1,11 @@
 <?php
 
+// FOR TESTING ONLY. Note that uncommenting this is causing problems with
+// zlib; @matt is investigating.
+//
+// require_once 'tests/php-error/php_error.php';
+// \php_error\reportErrors();
+
 /**
  * @file
  * The PHP page that serves all page requests on a Drupal installation.
