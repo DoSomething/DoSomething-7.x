@@ -150,7 +150,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '10',
+        'weight' => '9',
       ),
     ),
   );
@@ -217,7 +217,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '11',
+        'weight' => '10',
       ),
     ),
   );
@@ -244,6 +244,7 @@ function dosomething_social_scholars_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(
           'green' => 'Green',
+          'blue' => 'Blue',
           'red' => 'Red',
           'black' => 'Black',
           'gray' => 'Gray',
@@ -288,7 +289,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '18',
+        'weight' => '17',
       ),
     ),
   );
@@ -361,7 +362,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '22',
+        'weight' => '21',
       ),
     ),
   );
@@ -434,7 +435,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
@@ -507,7 +508,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '8',
       ),
     ),
   );
@@ -580,7 +581,7 @@ function dosomething_social_scholars_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '16',
+        'weight' => '15',
       ),
     ),
   );
@@ -718,7 +719,7 @@ function dosomething_social_scholars_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '17',
+        'weight' => '16',
       ),
     ),
   );
@@ -868,7 +869,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '19',
+        'weight' => '18',
       ),
     ),
   );
@@ -941,7 +942,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '20',
+        'weight' => '19',
       ),
     ),
   );
@@ -1080,7 +1081,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
@@ -1213,7 +1214,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '6',
+        'weight' => '5',
       ),
     ),
   );
@@ -1286,7 +1287,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '5',
+        'weight' => '4',
       ),
     ),
   );
@@ -1358,7 +1359,7 @@ function dosomething_social_scholars_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '13',
+        'weight' => '12',
       ),
     ),
   );
@@ -1432,7 +1433,7 @@ function dosomething_social_scholars_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '12',
+        'weight' => '11',
       ),
     ),
   );
@@ -1655,7 +1656,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '21',
+        'weight' => '20',
       ),
     ),
   );
@@ -1930,7 +1931,7 @@ function dosomething_social_scholars_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '23',
+        'weight' => '22',
       ),
     ),
   );
@@ -2002,7 +2003,7 @@ function dosomething_social_scholars_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );
