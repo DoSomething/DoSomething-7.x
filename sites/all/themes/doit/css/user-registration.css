@@ -4,9 +4,25 @@ body {
 a {
   color: #1e1d1c; }
 
-.container {
-  width: 1000px;
-  margin: 5% auto;
+h1, h2, h3, p {
+  line-height: 1.5em; }
+
+h1 {
+  font-size: 2em; }
+
+h2 {
+  font-size: 1.5em; }
+
+h3 {
+  font-size: 1.2em; }
+
+p {
+  font-size: 1em; }
+
+.wrapper {
+  max-width: 1000px;
+  width: 93%;
+  margin: 0 auto;
   padding: 20px 25px 25px 25px;
   overflow: hidden;
   background: white;
@@ -14,22 +30,15 @@ a {
   -webkit-box-shadow: #cccccc 0px 15px 20px -10px;
   -moz-box-shadow: #cccccc 0px 15px 20px -10px;
   box-shadow: #cccccc 0px 15px 20px -10px; }
-  @media only screen and (max-width: 850px) {
-    .container {
-      width: 96%;
-      padding: 20px; } }
-
-.form-container {
-  float: right;
-  width: 400px; }
+  @media only screen and (max-width: 800px) {
+    .wrapper {
+      max-width: 385px;
+      padding: 10px; } }
 
 .image-hero {
+  margin: -90px 0 0 0;
   padding: 10px;
-  position: relative;
-  width: 100%;
-  top: -100px;
-  left: 10px;
-  z-index: 1;
+  width: 93%;
   background: white;
   border: 1px solid #eeeeee;
   -webkit-box-shadow: #cccccc 0px 15px 20px -10px;
@@ -40,29 +49,47 @@ a {
   position: relative;
   z-index: 2;
   top: -5px;
-  left: -10px; }
+  left: -20px; }
   .logo-ds img {
     display: block;
     width: 120px; }
 
-.desktop {
+.desktop-container {
   float: left;
-  width: 550px; }
+  width: 58%;
+  padding: 10px; }
+  @media only screen and (max-width: 800px) {
+    .desktop-container {
+      display: none; } }
+
+.gate-description {
+  text-transform: uppercase;
+  margin: 10px 0 0 0; }
+
+.sidebar-headline {
+  text-transform: uppercase; }
+
+.sidebar-description {
+  max-width: 80%;
+  font-weight: 500; }
+
+.form-container {
+  float: right;
+  width: 38.5%; }
+  @media only screen and (max-width: 800px) {
+    .form-container {
+      float: none;
+      width: 93%;
+      margin: 0 auto; } }
 
 form {
   background: transparent;
   min-height: auto;
   padding: 0;
-  width: 95%;
+  width: 100%;
   box-shadow: none;
-  margin: 3% 0;
+  margin: 0;
   float: right; }
-  @media only screen and (max-width: 950px) {
-    form {
-      width: 96%;
-      margin: 0 2%;
-      float: left;
-      padding: 0 0 10% 0; } }
   form label {
     display: block;
     text-transform: lowercase;
@@ -154,24 +181,18 @@ form {
     font-weight: 500;
     font-size: 14px;
     color: #222222; }
-  @media only screen and (max-width: 950px) {
-    form {
-      float: none;
-      width: 95%; }
-      form .facebook-connect {
-        clear: both;
-        width: 100%;
-        margin: 5% 0; }
-        form .facebook-connect img {
-          display: block;
-          margin: 0 auto;
-          max-width: 300px; } }
-        @media only screen and (max-width: 950px) and (max-width: 500px) {
-          form .facebook-connect img {
-            width: 90%; } }
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 800px) {
     form .facebook-connect {
-      margin: 0; } }
+      clear: both;
+      width: 100%;
+      margin: 5% 0; }
+      form .facebook-connect img {
+        display: block;
+        margin: 0 auto;
+        max-width: 300px; } }
+      @media only screen and (max-width: 800px) and (max-width: 500px) {
+        form .facebook-connect img {
+          width: 90%; } }
   form .disclaimer,
   form .under-13-field {
     float: left; }
@@ -197,7 +218,7 @@ input[type="password"] {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px; }
-  @media only screen and (max-width: 950px) {
+  @media only screen and (max-width: 600px) {
     input[type="text"],
     input[type="email"],
     input[type="number"],
@@ -208,15 +229,13 @@ input[type="password"] {
   float: left;
   clear: both;
   width: 100%;
-  margin: 1em 0 0 0; }
-
-.description {
+  margin: 1em 0 0 0;
   text-align: center;
   color: #dddddd;
-  font-size: 0.7em; }
-  .description a {
+  font-size: 0.8em; }
+  .disclaimer a {
     color: #dddddd; }
-    .description a:hover {
+    .disclaimer a:hover {
       color: #cccccc; }
 
 #skip-link,

@@ -20,6 +20,8 @@ $btn-primary-color: $off-black
 $btn-primary-hover: #FEB800
 $btn-primary-border: $btn-primary
 
+$breakpoint-first: 800px
+
 // MIXINS
 // ------
 @mixin border-and-shadow
@@ -37,63 +39,89 @@ a
 
 // TYPOGRAPHY
 // ----------
-// h1, h2, h3
+h1, h2, h3, p
+  line-height: 1.5em
 
-// CONTAINER
-// ---------
-.container
-  width: 1000px
-  margin: 5% auto
+h1
+  font-size: 2em
+
+h2
+  font-size: 1.5em
+
+h3
+  font-size: 1.2em
+
+p
+  font-size: 1em
+
+// PAGE WRAPPER
+// ------------
+.wrapper
+  max-width: 1000px
+  width: 93%
+  margin: 0 auto
   padding: 20px 25px 25px 25px
   overflow: hidden
   +border-and-shadow
-  @media only screen and (max-width: 850px)
-    width: 96%
-    padding: 20px
-
-.form-container
-  float: right
-  width: 400px
+  @media only screen and (max-width: $breakpoint-first)
+    max-width: 385px
+    padding: 10px
 
 .image-hero
+  margin: -90px 0 0 0
   padding: 10px
-  position: relative
-  width: 100%
-  top: -100px
-  left: 10px
-  z-index: 1
+  width: 93%
   +border-and-shadow
 
 .logo-ds
   position: relative
   z-index: 2
   top: -5px
-  left: -10px
+  left: -20px
   img
     display: block
     width: 120px
 
 // DESKTOP
 // -------
-.desktop
+.desktop-container
   float: left
-  width: 550px
+  width: 58%
+  padding: 10px
+  @media only screen and (max-width: $breakpoint-first)
+    display: none
+
+// MUTABLE CONTENT
+// ---------------
+.gate-description
+  text-transform: uppercase
+  margin: 10px 0 0 0
+
+.sidebar-headline
+  text-transform: uppercase
+
+.sidebar-description
+  max-width: 80%
+  font-weight: 500
 
 // LOGIN & REG. FORMS
 // ------------------
+.form-container
+  float: right
+  width: 38.5%
+  @media only screen and (max-width: $breakpoint-first)
+    float: none
+    width: 93%
+    margin: 0 auto
+
 form
   background: transparent
   min-height: auto
   padding: 0
-  width: 95%
+  width: 100%
   box-shadow: none
-  margin: 3% 0
+  margin: 0
   float: right
-  @media only screen and (max-width: 950px)
-    width: 96%
-    margin: 0 2%
-    float: left
-    padding: 0 0 10% 0
   label
     display: block
     text-transform: lowercase
@@ -187,9 +215,7 @@ form
     font-size: 14px
     color: #222
 
-  @media only screen and (max-width: 950px)
-    float: none
-    width: 95%
+  @media only screen and (max-width: $breakpoint-first)
 
     .facebook-connect
       clear: both
@@ -201,10 +227,6 @@ form
         max-width: 300px
         @media only screen and (max-width: 500px)
           width: 90%
-
-  @media only screen and (max-width: 900px)
-    .facebook-connect
-      margin: 0
 
   .disclaimer,
   .under-13-field
@@ -228,7 +250,7 @@ input[type="password"]
   text-transform: lowercase
   box-shadow: none
   +border-radius(3px)
-  @media only screen and (max-width: 950px)
+  @media only screen and (max-width: 600px)
     height: 1.5em
 
 .disclaimer
@@ -236,11 +258,9 @@ input[type="password"]
   clear: both
   width: 100%
   margin: 1em 0 0 0
-
-.description
   text-align: center
   color: #ddd
-  font-size: 0.7em
+  font-size: 0.8em
   a
     color: #ddd
     &:hover
