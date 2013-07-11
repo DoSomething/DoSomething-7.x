@@ -28,13 +28,49 @@ function dosomething_campaign_menu() {
 /**
  * Implements hook_theme().
  */
-function dosomething_campaign_theme() {
+function dosomething_campaign_theme($existing, $type, $theme, $path) {
   return array(
     'campaign_join_page' => array(
-      'variables' => array('node' => NULL, 'uid' => NULL, 'form' => NULL), // This is the list of the variables that will be passed to the template file. 
-      'template' => 'campaign_join_page', // Change this to the template file name.
+      'path' => $path . '/templates',
+      'variables' => array('node' => NULL, 'uid' => NULL, 'form' => NULL),
+      'template' => 'campaign_join_page',
+    ),
+    'kiva_confirmation' => array(
+      'path' => $path . '/templates',
+      'template' => 'kiva_confirmation',
     ),
   );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function dosomething_campaign_block_info() {
+  $blocks = array();
+  $blocks['kiva_signup'] = array(
+    'info' => t('Kiva Campaign Signup Form'),
+  );
+  $blocks['kiva_confirmation'] = array(
+    'info' => t('Kiva Campaign Signup Confirmation'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function dosomething_campaign_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'kiva_signup':
+      $block['content'] = drupal_render(drupal_get_form('dosomething_campaign_beta_signup_form', 729307));
+      break;
+    case 'kiva_confirmation':
+      $block['content'] = theme('kiva_confirmation');
+      break;
+  }
+  return $block;
 }
 
 /**
@@ -128,17 +164,7 @@ function dosomething_campaign_signup($account, $nid) {
       watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
     }
     // Mandrill transactional for The HUNT:
-    $to = $email;
-    $language = language_default();
-    $params = array();
-    $from = NULL;
-    $message = drupal_mail('dosomething_mandrill', 'hunt13', $to, $language, $params, $from, TRUE);
-    
-    // Log results:
-    if ($message['result'] == FALSE) {
-      watchdog('dosomething_campaign', 'Failed to send Mandrill transactional message to %to via The Hunt Signup.',
-                    array('%to' => $to), WATCHDOG_ERROR);
-    }
+    dosomething_mandrill_dispatch($email, 'hunt13');
   }
 }
 
@@ -176,4 +202,125 @@ function dosomething_campaign_is_user_signed_up($uid, $nid) {
  */
 function dosomething_campaign_can_user_override_join($user) {
   return user_access('administer site configuration', $user);
+}
+
+
+
+/**
+ * Form callback for signup beta form.
+ */
+function dosomething_campaign_beta_signup_form($form, &$form_state, $nid, $num_betas = 6) {
+  $form['alpha_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your First Name:'),
+    '#required' => TRUE,
+  );
+  $form['alpha_mobile'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your Cell #:'),
+    '#required' => TRUE,
+  );
+  $form['alpha_email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your Email:'),
+    '#required' => TRUE,
+  );
+  $form['beta_mobiles'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+  );
+  for ($i = 0; $i < $num_betas; $i++) {
+    $form['beta_mobiles']['beta_mobile_' . $i] = array(
+      '#type' => 'textfield',
+      '#title' => t("Friend's cell #:"),
+    );   
+  }
+  $form['nid'] = array(
+    '#type' => 'hidden',
+    '#value' => $nid,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Share'),
+  );
+  return $form;
+}
+
+/**
+ * Form validation callback for signup beta form.
+ * @todo: Make dynamic?
+ */
+function dosomething_campaign_beta_signup_form_validate($form, &$form_state) {
+  // Check for valid email address:
+  if (!valid_email_address($form_state['values']['alpha_email'])) {
+     form_set_error('alpha_email', t('Please provide a valid email address.'));
+  }
+  // Check for valid alpha cell:
+  $alpha_mobile = $form_state['values']['alpha_mobile'];
+  $alpha_mobile = preg_replace('#[^0-9]#', '', $alpha_mobile);
+  if (!dosomething_general_valid_cell($alpha_mobile)) {
+    form_set_error('alpha_mobile', t('Please provide a valid cell number.'));  
+  }
+  // Check for valid beta cell numbers:
+  for ($i = 0; $i < 6; $i++) {
+    if (!empty($form_state['values']['beta_mobile_' . $i])) {
+      $beta_mobile = $form_state['values']['beta_mobile_' . $i];
+      $beta_mobile = preg_replace('#[^0-9]#', '', $beta_mobile);
+      if (!dosomething_general_valid_cell($beta_mobile)) {
+        form_set_error('beta_mobile_' . $i, t('Please provide a valid cell number.'));  
+      }
+    }
+  }
+}
+
+/**
+ * Form submit callback for signup beta form.
+ * @todo: Make dynamic?
+ */
+function dosomething_campaign_beta_signup_form_submit($form, &$form_state) {
+  $alpha_name = $form_state['values']['alpha_name'];
+  $alpha_mobile = $form_state['values']['alpha_mobile'];
+  $alpha_mobile = preg_replace('#[^0-9]#', '', $alpha_mobile);
+  $alpha_email = $form_state['values']['alpha_email'];
+  $beta_mobiles = array();
+  // @todo: Make # of betas dymamic?  You could actually store the # of beta signups field on the campaign node.
+  // Don't want to store it as a hidden form field in case anybody messes with it.
+  for ($i = 0; $i < 6; $i++) {
+    if (!empty($form_state['values']['beta_mobile_' . $i])) {
+      $beta_mobile = $form_state['values']['beta_mobile_' . $i];
+      $beta_mobile = preg_replace('#[^0-9]#', '', $beta_mobile);
+      $beta_mobiles[] = $beta_mobile;
+    }
+  }
+
+  // Load campaign node to get signup values.
+  $nid = $form_state['values']['nid'];
+  // @todo: Revisit this to make it dynamic.  For now, hardcoded to only work for Kiva campaign.
+  if ($nid != 729307) {
+    return;
+  }
+
+  // Call signup functions:
+  $node = node_load($form_state['values']['nid']);
+  $mailchimp_group = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
+  $alpha_optin = $node->field_campaign_alphas_campaign[LANGUAGE_NONE][0]['value'];
+  $beta_optin =$node->field_campaign_betas_campaign[LANGUAGE_NONE][0]['value'];
+  
+  // Mailchimp Signup:
+  dosomething_subscribe_mailchimp_signup($alpha_email, $mailchimp_group);
+
+  // @TODO: Transactional:
+  // dosomething_mandrill_dispatch($alpha_email, 'stuff here');
+
+  // Mobilecommons Alpha+Beta signup:
+  $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin);
+  watchdog('dosomething_campaign', 'Beta signup - Mobilecommons response = ' . print_r($response, TRUE)); 
+
+  // Send to confirmation page with the relevant query string variables.
+  drupal_goto('poverty/confirmation', array(
+    'query' => array(
+      'first_name' => $alpha_name, 
+      'email' => $alpha_email,
+    )
+  ));
 }

@@ -17,7 +17,7 @@
       }
       jump_scroll('a.jump-scroll');
 
-      // Dynamically set width of the .section-headers
+      // dynamically set width css property on elements
       set_width = function(parent, child, width) {
 
         $(parent).each(function() {
@@ -25,9 +25,7 @@
           var child_width = $this.find(child).width() * width;
           $this.css('width', child_width);
         });
-
       };
-      set_width('h2.section-header', 'span', 1.01);
 
       // Dynamically set width of the call to action buttons
       set_width('a.btn', 'span', 1.3);

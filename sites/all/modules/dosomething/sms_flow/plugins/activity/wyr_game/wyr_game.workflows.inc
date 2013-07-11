@@ -167,6 +167,14 @@ $activity->sets = array(
     'path_special' => 158803,
     'send_to_special_on' => 5,
   ),
+  // Hunt 2013 - INSPIRE quotes
+  array(
+    'mdata_id'     => 10857,
+    'game_id'      => SmsFlowGameConstants::HUNT_INSPIRE,
+    'opt_in_paths' => array(159345, 159347, 159349, 159351, 159353, 159355, 159357, 159359, 159361, 159363, 159365, 159367, 159369, 159371, 159373, 159375),
+    'path_special' => 159543,
+    'send_to_special_on' => 3,
+  ),
 );
 
 $activity = $workflow->newActivity('end');
