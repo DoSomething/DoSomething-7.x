@@ -2,13 +2,7 @@ name = Optimizely
 description = Manages loading Optimizely generated project javascript file(s) to enable A/B testing.
 core = 7.x
 php = 5.2
-version = "7.x-2.0"
+version = "7.x-2.10"
 project = "optimizely"
 configure = admin/config/system/optimizely/settings
 files[] = optimizely.testy.test
-; Information added by drupal.org packaging script on 2013-06-08
-version = "7.x-2.03"
-core = "7.x"
-project = "optimizely"
-datestamp = "1370734552"
-
