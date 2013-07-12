@@ -11,8 +11,8 @@ function hunt_report_back_settings() {
 
   // A field set for basic configuration
   $form['basic'] = array(
-  	'#type' => 'fieldset',
-  	'#title' => t('Basic'),
+    '#type' => 'fieldset',
+    '#title' => t('Basic'),
     '#collapsible' => TRUE
   );
 
@@ -25,42 +25,13 @@ function hunt_report_back_settings() {
   );
 
 
-  $default_date = array(
-  	'month' => 7,
-  	'day' => 17,
-  	'year' => 2013
-  );
-
-  // Report back start date
-  $form['basic']['hunt_report_back_start_date'] = array(
-  	'#type' => 'date',
-  	'#title' => t('Start date'),
-  	'#default_value' => variable_get('hunt_report_back_start_date', $default_date)
-  );
-
-  // Report back end date
-  $form['basic']['hunt_report_back_end_date'] = array(
-  	'#type' => 'date',
-  	'#title' => t('End date'),
-  	'#default_value' => variable_get('hunt_report_back_end_date', $default_date)
-  );
-
-  //  The time of day to toggle avaialble challenges
-  $form['basic']['hunt_report_back_update_time'] = array(
-  	'#type' => 'textfield',
-  	'#title' => t('Update Time'),
-  	'#size' => 20,
-  	'#description' => t('This is the time when the challenges should update daily'),
-  	'#default_value' => variable_get('hunt_report_back_update_time', '10:00')
-  );
-
   // The number of challenges available
   $challenge_limit = variable_get('hunt_report_back_challenge_limit', 11);
   // $form['basic']['hunt_report_back_challenge_limit'] = array(
-  // 	'#type' => 'select',
-  // 	'#title' => t('Number of Challenges'),
-  // 	'#options' => array_combine(range(1,20), range(1,20)),
-  // 	'#default_value' => $challenge_limit
+  //  '#type' => 'select',
+  //  '#title' => t('Number of Challenges'),
+  //  '#options' => array_combine(range(1,20), range(1,20)),
+  //  '#default_value' => $challenge_limit
   // );
 
   // The redirect path after submission
@@ -71,27 +42,40 @@ function hunt_report_back_settings() {
     '#default_value' => variable_get('hunt_report_back_redirect', 'hunt')
   );
 
+  // The redirect path after submission
+  $form['basic']['hunt_report_back_edit_submission'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Allow edit of previous submission'),
+    '#default_value' => variable_get('hunt_report_back_edit_submission', 0)
+  );
+
   for($i=1; $i<=$challenge_limit; $i++) {
-  	$challenge = 'hunt_report_back_challenge_' . $i;
+    $challenge = 'hunt_report_back_challenge_' . $i;
 
-  	$form['challenges'][$challenge] = array(
-  	  '#type' => 'fieldset',
-  	  '#title' => t('Challenge #!challenge', array('!challenge' => $i)),
-  	  '#collapsible' => TRUE,
-  	  '#collapsed' => TRUE
-  	);
+    $form['challenges'][$challenge] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Challenge #!challenge', array('!challenge' => $i)),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE
+    );
 
-  	$form['challenges'][$challenge][$challenge . '_name'] = array(
-  	  '#type' => 'textfield',
-  	  '#title' => t('Name'),
-  	  '#default_value' => variable_get($challenge . '_name', '')
-  	);
+    $form['challenges'][$challenge][$challenge . '_name'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Name'),
+      '#default_value' => variable_get($challenge . '_name', '')
+    );
 
-  	$form['challenges'][$challenge][$challenge . '_question'] = array(
-  	  '#type' => 'textfield',
-  	  '#title' => t('Question'),
-  	  '#default_value' => variable_get($challenge . '_question', '')
-  	);
+    $form['challenges'][$challenge][$challenge . '_question'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Question'),
+      '#default_value' => variable_get($challenge . '_question', '')
+    );
+
+    $form['challenges'][$challenge][$challenge . '_active'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Active'),
+      '#default_value' => variable_get($challenge . '_active', 0)
+    );
   }
 
   return system_settings_form($form);
