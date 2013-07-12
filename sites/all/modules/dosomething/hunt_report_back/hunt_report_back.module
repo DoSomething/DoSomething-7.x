@@ -100,6 +100,7 @@ function hunt_report_back_form($form, &$form_state) {
        
       $markup =  '<img src="' . $image_url . '" data-src="' . $image_url . '" /> ';
       $markup .= '<p>' . $user_challenges->$i->response . '</p>';
+      $markup .= '<p>' . $user_challenges->$i->people . '</p>';
 
       $form['challenges'][$challenge][$rb_name][$challenge . '_submission'] = array(
         '#type' => 'markup',
@@ -130,7 +131,14 @@ function hunt_report_back_form($form, &$form_state) {
         '#type' => 'textarea',
         '#prefix' => '<h2>' . t('Question of the Day') . '</h2>',
         '#title' => t('!message', array('!message' => $question)),
-        //'#default_value' => variable_get($challenge . '_name', '')
+        '#default_value' => isset($user_challenges->$i->response) ? $user_challenges->$i->response : ''
+      );
+
+      $form['challenges'][$challenge][$rb_name][$challenge . '_people'] = array(
+        '#type' => 'textfield',
+        '#title' => t('How many people did you do this with?'),
+        '#size' => 5,
+        '#default_value' => isset($user_challenges->$i->people) ? $user_challenges->$i->people : ''
       );
 
       $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_photo'] = array(
@@ -167,8 +175,9 @@ function _hunt_report_back_get_submitted_challenge(&$form_state) {
   if( preg_match('/([0-9][0-9]?)/', $submitted, $day) == 1 ) {
     $day = $day[0];
     $response = $values['hunt_report_back_challenge_' . $day[0] . '_response'];
+    $people = $values['hunt_report_back_challenge_' . $day[0] . '_people'];
     $fid = $values['hunt_report_back_challenge_' . $day[0] . '_photo'];
-    return compact('day', 'response', 'fid');
+    return compact('day', 'response','people', 'fid');
   }
 
   return FALSE;
@@ -189,6 +198,21 @@ function hunt_report_back_form_validate($form, &$form_state) {
     form_set_error(
       $field_prefix . '_response',
       t('You must type in a response to the question')
+    );
+  }
+
+  // Check for empty people count
+  if (trim($challenge['people']) == '') {
+    form_set_error(
+      $field_prefix . '_people',
+      t('How many people did you do this challenge with?')
+    );
+  }
+  // Check for non numeric value
+  elseif (!is_numeric($challenge['people'])) {
+    form_set_error(
+      $field_prefix . '_people',
+      t('Please enter in a number')
     );
   }
 
