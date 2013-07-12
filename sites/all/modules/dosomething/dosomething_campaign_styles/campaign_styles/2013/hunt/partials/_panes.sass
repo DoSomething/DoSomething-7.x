@@ -52,7 +52,23 @@
     background: #ccc
     margin: 1em 0
 
-  .summary
+  .error,
+  .status,
+  .messages
+    padding: 0
+    margin: 0
+
+  div.error,
+  div.status,
+  div.messages
+    background-image: none
+    margin: 1em 0 0 0
+    padding: 0.5em
+    +border-radius(3px)
+
+  .throbber,
+  .summary,
+  .file img
     display: none
 
   .grippie
@@ -64,8 +80,6 @@
   .form-file
     font-size: 1em
     border: none
-
-  //.form-submit
 
 // OTHER STYLES
 .section

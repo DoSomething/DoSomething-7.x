@@ -598,7 +598,25 @@ body {
   #cmp #challenges.form-wrapper .form-submit.ajax-processed {
     background: #cccccc;
     margin: 1em 0; }
-  #cmp #challenges.form-wrapper .summary {
+  #cmp #challenges.form-wrapper .error,
+  #cmp #challenges.form-wrapper .status,
+  #cmp #challenges.form-wrapper .messages {
+    padding: 0;
+    margin: 0; }
+  #cmp #challenges.form-wrapper div.error,
+  #cmp #challenges.form-wrapper div.status,
+  #cmp #challenges.form-wrapper div.messages {
+    background-image: none;
+    margin: 1em 0 0 0;
+    padding: 0.5em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+  #cmp #challenges.form-wrapper .throbber,
+  #cmp #challenges.form-wrapper .summary,
+  #cmp #challenges.form-wrapper .file img {
     display: none; }
   #cmp #challenges.form-wrapper .grippie {
     display: none; }
