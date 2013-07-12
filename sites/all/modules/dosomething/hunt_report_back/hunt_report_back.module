@@ -53,7 +53,7 @@ function hunt_report_back_block_view($delta = '') {
       $block['subject'] = t('Hunt Report Back');
       $block['content'] = drupal_get_form('hunt_report_back_form');
       break;
-    
+
   }
   return $block;
 }
@@ -62,6 +62,9 @@ function hunt_report_back_block_view($delta = '') {
  * The report back form
  */
 function hunt_report_back_form($form, &$form_state) {
+  global $user;
+
+  $user_challenges = _hunt_report_back_get_challenges($user->uid);
 
   $challenge_limit = variable_get('hunt_report_back_challenge_limit', 11);
 
@@ -73,58 +76,215 @@ function hunt_report_back_form($form, &$form_state) {
   for($i=1; $i<=$challenge_limit; $i++) {
     $challenge = 'hunt_report_back_challenge_' . $i;
 
+
     $name = variable_get($challenge . '_name', '');
     $form['challenges'][$challenge][$challenge . '_report_back'] = array(
       '#type' => 'fieldset',
       '#attributes' => array('id' => $challenge . '_report_back' ),
       '#title' => t('Day !day: !name', array('!day' => $i, '!name' => $name)),
       '#collapsible' => TRUE,
-      '#collapsed' => TRUE
+      '#collapsed' => TRUE,
     );
 
-    $question = variable_get($challenge . '_question' , 'Tell us about the message you shared');
-    $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_response'] = array(
-      '#type' => 'textarea',
-      '#prefix' => '<h2>' . t('Question of the Day') . '</h2>',
-      '#title' => t('!message', array('!message' => $question)),
-      //'#default_value' => variable_get($challenge . '_name', '')
-    );
+    $rb_name = $challenge . '_report_back';
+    $active = variable_get('hunt_report_back_challenge_' . $i . '_active', 0);
+    
+    $show_edit = TRUE;
 
-    $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_photo'] = array(
-      '#prefix' => '<h2>' . t('Upload a photo of your action') . '</h2>',
-      '#title_display' => 'invisible',
-      '#type' => 'managed_file',
-      '#upload_location' => 'temporary://hunt_report_back_images/',
-      '#upload_validators' => array(
-        'file_validate_extensions' => array('gif png jpg jpeg'),
-        // Pass the maximum file size in bytes
-        'file_validate_size' => array(MAX_FILE_SIZE*1024*1024),
-      )
-    );
+    if (isset($user_challenges->$i)) {
 
-    $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_submit'] = array(
-      '#type' => 'submit',
-      '#value' => t('Submit')
-    );
+      $form['challenges'][$challenge][$rb_name]['#attributes']['class'][] = 'completed';
+
+      $image_file = file_load($user_challenges->$i->fid);
+      $image_url = image_style_url('thumbnail' , $image_file->uri);
+       
+      $markup =  '<img src="' . $image_url . '" data-src="' . $image_url . '" /> ';
+      $markup .= '<p>' . $user_challenges->$i->response . '</p>';
+      $markup .= '<p>' . $user_challenges->$i->people . '</p>';
+
+      $form['challenges'][$challenge][$rb_name][$challenge . '_submission'] = array(
+        '#type' => 'markup',
+        '#prefix' => '<div>',
+        '#markup' => $markup,
+        '#suffix' => '</div>'
+      );
+
+      $edit = variable_get('hunt_report_back_edit_submission', 0);
+
+      if( variable_get('hunt_report_back_edit_submission', 0) === 0 ) {
+         $show_edit = FALSE;
+      }
+
+    }
+
+    if($active == 0) {
+      $form['challenges'][$challenge][$rb_name]['#attributes']['class'][] = 'inactive';
+      $form['challenges'][$challenge][$rb_name]['#collapsible'] = FALSE;
+      $show_edit = FALSE;
+
+    }
+
+    if($show_edit == TRUE){
+
+      $question = variable_get($challenge . '_question' , 'Tell us about the message you shared');
+      $form['challenges'][$challenge][$rb_name][$challenge . '_response'] = array(
+        '#type' => 'textarea',
+        '#prefix' => '<h2>' . t('Question of the Day') . '</h2>',
+        '#title' => t('!message', array('!message' => $question)),
+        '#default_value' => isset($user_challenges->$i->response) ? $user_challenges->$i->response : ''
+      );
+
+      $form['challenges'][$challenge][$rb_name][$challenge . '_people'] = array(
+        '#type' => 'textfield',
+        '#title' => t('How many people did you do this with?'),
+        '#size' => 5,
+        '#default_value' => isset($user_challenges->$i->people) ? $user_challenges->$i->people : ''
+      );
+
+      $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_photo'] = array(
+        '#prefix' => '<h2>' . t('Upload a photo of your action') . '</h2>',
+        '#title_display' => 'invisible',
+        '#type' => 'managed_file',
+        '#upload_location' => 'public://hunt_report_back_images/',
+        '#upload_validators' => array(
+          'file_validate_extensions' => array('gif png jpg jpeg'),
+          // Pass the maximum file size in bytes
+          'file_validate_size' => array(MAX_FILE_SIZE*1024*1024),
+        ),
+      );
+
+      $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Submit'),
+        '#name' => $challenge . '_report_back_submit'
+      );
+
+    }
 
   }
 
+  $form['#validate'][] = 'hunt_report_back_form_validate';
   $form['#submit'][] = 'hunt_report_back_form_submit';
 
   return $form;
 }
 
 /**
+ * Helper function to parse out submitted challenges
+ */
+function _hunt_report_back_get_submitted_challenge(&$form_state) {
+
+  $values = $form_state['values'];
+  $submitted = $form_state['clicked_button']['#name'];
+
+  if( preg_match('/([0-9][0-9]?)/', $submitted, $day) == 1 ) {
+    $day = $day[0];
+    $response = $values['hunt_report_back_challenge_' . $day[0] . '_response'];
+    $people = $values['hunt_report_back_challenge_' . $day[0] . '_people'];
+    $fid = $values['hunt_report_back_challenge_' . $day[0] . '_photo'];
+    return compact('day', 'response','people', 'fid');
+  }
+
+  return FALSE;
+}
+
+/**
+ *  Validattion handler for report backs
+ */
+function hunt_report_back_form_validate($form, &$form_state) {
+  $challenge = _hunt_report_back_get_submitted_challenge($form_state);
+
+  if ($challenge === FALSE){} //@todo FIXME
+
+  $field_prefix = 'hunt_report_back_challenge_' . $challenge['day'];
+
+  // Check for empty response
+  if (trim($challenge['response']) == '') {
+    form_set_error(
+      $field_prefix . '_response',
+      t('You must type in a response to the question')
+    );
+  }
+
+  // Check for empty people count
+  if (trim($challenge['people']) == '') {
+    form_set_error(
+      $field_prefix . '_people',
+      t('How many people did you do this challenge with?')
+    );
+  }
+  // Check for non numeric value
+  elseif (!is_numeric($challenge['people'])) {
+    form_set_error(
+      $field_prefix . '_people',
+      t('Please enter in a number')
+    );
+  }
+
+  // Check for missing upload
+  if ($challenge['fid'] == 0) {
+    form_set_error(
+      $field_prefix . '_photo',
+      t('You must upload a photo')
+    );
+  }
+
+}
+
+/**
  *  Submit handler for report backs
  */
 function hunt_report_back_form_submit($form, &$form_state) {
+  global $user;
 
-  // Add S3 storage x Mongo data greatness here
+  $challenge = _hunt_report_back_get_submitted_challenge($form_state);
+  if ($challenge === FALSE){} //@todo FIXME
+
+  $save = _hunt_report_back_save_challenge($user->uid, $challenge);
+
+  if ($save !== FALSE) {
+    drupal_set_message(t('Thanks for submitted.  You are a nice lady.'));
+  }
+  else {
+    drupal_set_message(t('An unknown error occurred.'), 'error');
+  }
 
   $redirect_path = variable_get('hunt_report_back_redirect', 'hunt');
-
-  drupal_set_message(t('Thanks for submitted.  You are a nice lady.'));
   drupal_goto($redirect_path);
 
 }
 
+/**
+ * Save hunt report back submission
+ **/
+function _hunt_report_back_get_challenges($uid) {
+  // Temporarily use variables to stash this stuff while developing
+  $challenges = variable_get('hunt_report_back_' . $uid, FALSE);
+  return $challenges ? json_decode($challenges) : FALSE;
+}
+
+/**
+ * Save hunt report back submission
+ **/
+function _hunt_report_back_save_challenge($uid, $challenge) {
+
+  $challenges = _hunt_report_back_get_challenges($uid);
+
+  if ($challenges === FALSE) {
+    $challenges = new StdClass;
+  }
+
+  if (!isset($challenge['day'])) {
+    return FALSE;
+  }
+
+  $challenges->$challenge['day'] = $challenge;
+  variable_set('hunt_report_back_' . $uid, json_encode($challenges));
+
+  // $file = file_load($response['fid']);
+  // $file->status = FILE_STATUS_PERMANENT;
+  // file_save($file);
+  //file_usage_add($file, 'hunt_report_back', 'hunt_submission', $hunt_submission->id);
+
+  return TRUE;
+}
