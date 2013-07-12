@@ -80,18 +80,3 @@ function hunt_report_back_settings() {
 
   return system_settings_form($form);
 }
-nge][$challenge . '_name'] = array(
-  	  '#type' => 'textfield',
-  	  '#title' => t('Name'),
-  	  '#default_value' => variable_get($challenge . '_name', '')
-  	);
-
-  	$form['challenges'][$challenge][$challenge . '_question'] = array(
-  	  '#type' => 'textfield',
-  	  '#title' => t('Question'),
-  	  '#default_value' => variable_get($challenge . '_question', '')
-  	);
-  }
-
-  return system_settings_form($form);
-}
