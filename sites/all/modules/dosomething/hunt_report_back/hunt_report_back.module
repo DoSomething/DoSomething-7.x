@@ -178,7 +178,7 @@ function _hunt_report_back_get_submitted_challenge(&$form_state) {
  *  Validattion handler for report backs
  */
 function hunt_report_back_form_validate($form, &$form_state) {
-  $challenge = _hunt_report_back_get_submitted_challenge(&$form_state);
+  $challenge = _hunt_report_back_get_submitted_challenge($form_state);
 
   if ($challenge === FALSE){} //@todo FIXME
 
@@ -208,7 +208,7 @@ function hunt_report_back_form_validate($form, &$form_state) {
 function hunt_report_back_form_submit($form, &$form_state) {
   global $user;
 
-  $challenge = _hunt_report_back_get_submitted_challenge(&$form_state);
+  $challenge = _hunt_report_back_get_submitted_challenge($form_state);
   if ($challenge === FALSE){} //@todo FIXME
 
   $save = _hunt_report_back_save_challenge($user->uid, $challenge);
