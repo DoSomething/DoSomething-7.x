@@ -558,6 +558,15 @@ body {
   #cmp #report-back {
     padding: 2em;
     background: white; }
+  #cmp #report-back-header {
+    background: none;
+    padding: 1em 1em 2em 1em;
+    text-align: left; }
+    #cmp #report-back-header h2 {
+      color: black;
+      text-transform: uppercase; }
+    #cmp #report-back-header p {
+      color: white; }
   #cmp .pane-hunt-report-back-hunt-report-back {
     background: white;
     padding: 2em; }
