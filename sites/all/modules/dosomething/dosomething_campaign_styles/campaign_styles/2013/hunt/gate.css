@@ -119,7 +119,7 @@ body.html {
   min-height: auto;
   margin: 0 auto;
   padding: 0;
-  width: 100%;
+  width: 100% !important;
   box-shadow: none; }
 
 #main-content, #page-title, #edit-title-text, #edit-connect, #edit-or, .form-required {
@@ -159,9 +159,8 @@ body.html {
   margin: 0; }
 #dosomething-login-register-popup-form div .form-item-first-name, #dosomething-login-register-popup-form div .form-item-last-name {
   float: left !important;
-  width: 40%; }
+  width: 40% !important; }
 #dosomething-login-register-popup-form div .form-item-last-name {
-  width: 55%;
   margin: 0 0 0 5%; }
 #dosomething-login-register-popup-form div #edit-birthday label {
   float: none !important;
@@ -170,11 +169,17 @@ body.html {
   position: static !important; }
 #dosomething-login-register-popup-form div .form-item-day, #dosomething-login-register-popup-form div .form-item-month, #dosomething-login-register-popup-form div .form-item-year {
   float: left !important;
-  width: 10%;
-  margin: 0 5% 0 0;
+  width: 15%;
+  margin: 0 3% 0 0;
   padding: 0; }
 #dosomething-login-register-popup-form div .form-item-year {
   width: 15%; }
+#dosomething-login-register-popup-form .form-item-month input{
+  padding: 0;
+}
+#dosomething-login-register-popup-form .form-item-year input {
+  width: 60px !important;
+}
 #dosomething-login-register-popup-form div .ds-login-popup-footer {
   margin: 0 0 1em 0; }
 #dosomething-login-register-popup-form div .already-member {
@@ -192,10 +197,12 @@ body.html {
   padding: 1px 0 0 0;
   position: static;
   font-size: 22px;
-  height: 31px;
-  width: 65px;
+  height: 40px;
+  width: 90px;
+  letter-spacing: 1px;
   display: block;
   color: #333131;
+  -webkit-appearance: none;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;

@@ -27,6 +27,9 @@ body {
 @media only screen and (max-width: 550px) {
   body {
     background-position: 49% 0%; } }
+.tabs {
+  text-align: center; }
+
 .page-team #contact-form #webform-component-start-header {
   display: none; }
 
@@ -552,13 +555,114 @@ body {
     -o-border-radius: 5px;
     border-radius: 5px;
     text-decoration: none; }
+  #cmp #report-back {
+    padding: 2em;
+    background: white; }
+  #cmp #report-back-header {
+    background: none;
+    padding: 1em 1em 2em 1em;
+    text-align: left; }
+    #cmp #report-back-header h2 {
+      color: black;
+      text-transform: uppercase; }
+    #cmp #report-back-header p {
+      color: white; }
+  #cmp .pane-hunt-report-back-hunt-report-back {
+    background: white;
+    padding: 2em; }
+  #cmp #challenges.form-wrapper fieldset {
+    display: block;
+    clear: both;
+    float: none;
+    overflow: hidden;
+    margin: 0 0 1em 0; }
+  #cmp #challenges.form-wrapper legend {
+    width: 100%;
+    background: none repeat scroll 0% 0% #00adef; }
+  #cmp #challenges.form-wrapper h2 {
+    padding: 0.5em 0 0 0; }
+  #cmp #challenges.form-wrapper span {
+    background-image: none;
+    text-transform: uppercase;
+    color: #00adef;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.2em;
+    display: block; }
+  #cmp #challenges.form-wrapper p {
+    clear: both;
+    padding: 0.5em 0; }
+  #cmp #challenges.form-wrapper a {
+    padding: 0.2em 0 0 0.7em;
+    cursor: pointer;
+    color: #f1e316;
+    font-size: 1.2em;
+    font-weight: 400;
+    width: 100%;
+    display: block;
+    text-decoration: none; }
+  #cmp #challenges.form-wrapper b {
+    position: absolute;
+    right: 0.7em;
+    top: 0;
+    font-size: 1.5em;
+    line-height: 2.1em;
+    color: white; }
+  #cmp #challenges.form-wrapper .files a {
+    padding: 0.3em 0 0.2em; }
+  #cmp #challenges.form-wrapper .form-submit {
+    font-size: 1.6em;
+    margin: 0 0 1em 0;
+    padding: 0.2em 1em 1.8em;
+    color: #222222;
+    font-weight: 500;
+    text-transform: uppercase; }
+  #cmp #challenges.form-wrapper .form-submit.ajax-processed {
+    background: #cccccc;
+    margin: 0.5em 0; }
+  #cmp #challenges.form-wrapper .form-type-textfield label {
+    padding: 0.7em 0 0.5em 0; }
+  #cmp #challenges.form-wrapper .error,
+  #cmp #challenges.form-wrapper .status,
+  #cmp #challenges.form-wrapper .messages {
+    padding: 0;
+    margin: 0; }
+  #cmp #challenges.form-wrapper div.error,
+  #cmp #challenges.form-wrapper div.status,
+  #cmp #challenges.form-wrapper div.messages {
+    background-image: none;
+    margin: 1em 0 0 0;
+    padding: 0.5em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px; }
+  #cmp #challenges.form-wrapper .throbber,
+  #cmp #challenges.form-wrapper .summary,
+  #cmp #challenges.form-wrapper .file img {
+    display: none; }
+  #cmp #challenges.form-wrapper .grippie {
+    display: none; }
+  #cmp #challenges.form-wrapper .form-textarea-wrapper {
+    padding: 1em 0px 0px; }
+  #cmp #challenges.form-wrapper .form-file {
+    font-size: 1em;
+    border: none; }
+  #cmp #challenges.form-wrapper .inactive legend {
+    background: #dddddd; }
+  #cmp #challenges.form-wrapper .inactive span {
+    color: #bbbbbb;
+    font-weight: 400;
+    font-size: 1.4em;
+    padding: 0.5em 0.5em 0.4em 0.7em; }
   #cmp .section {
     max-width: 1000px; }
     #cmp .section p {
       font-size: 1.15em;
       line-height: 1.3em; }
   #cmp .titleline, #cmp .titleline-mobile {
-    color: #4d4d4d;
+    color: #222222;
     border-bottom: 12px solid #00adef;
     display: inline-block;
     letter-spacing: 3px;
@@ -768,9 +872,9 @@ body {
     #cmp #info h4:hover {
       color: #f4e946; }
   #cmp #info h4.unavailable {
-    background: #eeeeee;
-    color: white;
-    cursor: default; }
+    cursor: default;
+    background: #dddddd;
+    color: #bbbbbb; }
   #cmp #info ul {
     margin-bottom: 0; }
   #cmp #info li {
@@ -811,14 +915,14 @@ body {
       margin: 0 0 1em 0; }
       #cmp #challenges .submit-challenge span {
         display: inline;
-        color: #4d4d4d;
+        color: #222222;
         font-weight: 600;
         font-size: 1.4em; }
       #cmp #challenges .submit-challenge .go-button {
         margin: 0 0 0 1em;
         font-size: 1.6em;
         padding: 0.5em 1em 1.4em 1em;
-        color: #4d4d4d; }
+        color: #222222; }
   #cmp .view-campaign-gallery #slideshow {
     margin: 0 auto; }
   #cmp .section#impact {
