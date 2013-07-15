@@ -35,6 +35,13 @@ function hunt_report_back_settings() {
   // );
 
   // The redirect path after submission
+  $form['basic']['hunt_report_back_campaign_nid'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Hunt campaign nid'),
+    '#size' => 20,
+    '#default_value' => variable_get('hunt_report_back_campaign_nid', '729679')
+  );
+
   $form['basic']['hunt_report_back_redirect'] = array(
     '#type' => 'textfield',
     '#title' => t('Submission Redirect Location'),

@@ -50,6 +50,15 @@ function hunt_report_back_block_view($delta = '') {
 
   switch ($delta) {
     case 'hunt_report_back':
+
+      if (module_exists('dosomething_campaign')) {
+        global $user;
+        $campaign_nid = variable_get('hunt_report_back_campaign_nid', '729679');
+        $signed_up = dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid);
+        
+        if (!$signed_up) drupal_goto(variable_get('hunt_report_back_redirect', 'hunt'));
+      }
+
       $block['subject'] = t('Hunt Report Back');
       $block['content'] = drupal_get_form('hunt_report_back_form');
       break;
@@ -146,6 +155,11 @@ function hunt_report_back_form($form, &$form_state) {
         '#title_display' => 'invisible',
         '#type' => 'managed_file',
         '#upload_location' => 'public://hunt_report_back_images/',
+        '#upload_validators' => array(
+          'file_validate_extensions' => array('gif png jpg jpeg'),
+          // Pass the maximum file size in bytes
+          'file_validate_size' => array(MAX_FILE_SIZE*1024*1024),
+        ),
       );
 
       $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_submit'] = array(
