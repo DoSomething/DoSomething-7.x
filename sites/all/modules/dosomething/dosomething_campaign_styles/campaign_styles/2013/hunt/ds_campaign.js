@@ -177,9 +177,9 @@
       });
 
       // REPORT BACK FUN
-     $('fieldset.completed legend').each(function(){
-       $(this).append('<b></b>')
-     });
+      $('fieldset.completed legend').each(function(){
+        $(this).append('<b>✓</b>')
+      });
 
     } // end attach: function
   }; // end Drupal.behaviors
