@@ -31,14 +31,21 @@
     font-weight: 500
     font-size: 1.2em
     display: block
+  p
+    clear: both
+    padding: 0.5em 0
   a
-    padding: 0.3em 0px 0.2em 0.4em
+    padding: 0.2em 0 0 0.4em
     cursor: pointer
     color: $secondaryColor
     font-size: 1.2em
     font-weight: 400
     width: 100%
+    display: block
     text-decoration: none
+
+  .files a
+    padding: 0.3em 0 0.2em
 
   .form-submit
     font-size: 1.6em
@@ -50,7 +57,11 @@
 
   .form-submit.ajax-processed
     background: #ccc
-    margin: 1em 0
+    margin: 0.5em 0
+
+  .form-type-textfield
+    label
+      padding: 0.7em 0 0.5em 0
 
   .error,
   .status,
@@ -80,6 +91,17 @@
   .form-file
     font-size: 1em
     border: none
+
+// INACTIVE
+#challenges.form-wrapper
+  .inactive
+    legend
+      background: #ddd
+    span
+      color: #bbb
+      font-weight: 400
+      font-size: 1.4em
+      padding: 0.5em 0.5em 0.4em
 
 // OTHER STYLES
 .section

@@ -580,14 +580,20 @@ body {
     font-weight: 500;
     font-size: 1.2em;
     display: block; }
+  #cmp #challenges.form-wrapper p {
+    clear: both;
+    padding: 0.5em 0; }
   #cmp #challenges.form-wrapper a {
-    padding: 0.3em 0px 0.2em 0.4em;
+    padding: 0.2em 0 0 0.4em;
     cursor: pointer;
     color: #f1e316;
     font-size: 1.2em;
     font-weight: 400;
     width: 100%;
+    display: block;
     text-decoration: none; }
+  #cmp #challenges.form-wrapper .files a {
+    padding: 0.3em 0 0.2em; }
   #cmp #challenges.form-wrapper .form-submit {
     font-size: 1.6em;
     margin: 0 0 1em 0;
@@ -597,7 +603,9 @@ body {
     text-transform: uppercase; }
   #cmp #challenges.form-wrapper .form-submit.ajax-processed {
     background: #cccccc;
-    margin: 1em 0; }
+    margin: 0.5em 0; }
+  #cmp #challenges.form-wrapper .form-type-textfield label {
+    padding: 0.7em 0 0.5em 0; }
   #cmp #challenges.form-wrapper .error,
   #cmp #challenges.form-wrapper .status,
   #cmp #challenges.form-wrapper .messages {
@@ -625,6 +633,13 @@ body {
   #cmp #challenges.form-wrapper .form-file {
     font-size: 1em;
     border: none; }
+  #cmp #challenges.form-wrapper .inactive legend {
+    background: #dddddd; }
+  #cmp #challenges.form-wrapper .inactive span {
+    color: #bbbbbb;
+    font-weight: 400;
+    font-size: 1.4em;
+    padding: 0.5em 0.5em 0.4em; }
   #cmp .section {
     max-width: 1000px; }
     #cmp .section p {
