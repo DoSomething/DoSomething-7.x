@@ -574,10 +574,10 @@ body {
     display: block;
     clear: both;
     float: none;
-    overflow: hidden; }
+    overflow: hidden;
+    margin: 0 0 1em 0; }
   #cmp #challenges.form-wrapper legend {
     width: 100%;
-    margin: 0 0 1em 0;
     background: none repeat scroll 0% 0% #00adef; }
   #cmp #challenges.form-wrapper h2 {
     padding: 0.5em 0 0 0; }
