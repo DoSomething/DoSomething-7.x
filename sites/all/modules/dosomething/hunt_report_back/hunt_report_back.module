@@ -254,6 +254,9 @@ function hunt_report_back_form_submit($form, &$form_state) {
   $save = _hunt_report_back_save_challenge($user->uid, $challenge);
 
   if ($save !== FALSE) {
+
+    dosomething_mandrill_dispatch($user->mail, 'hunt13rb');
+
     drupal_set_message(t('Thanks for submitted.'));
   }
   else {
