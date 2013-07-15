@@ -584,7 +584,7 @@ body {
     clear: both;
     padding: 0.5em 0; }
   #cmp #challenges.form-wrapper a {
-    padding: 0.2em 0 0 0.4em;
+    padding: 0.2em 0 0 0.7em;
     cursor: pointer;
     color: #f1e316;
     font-size: 1.2em;
@@ -592,6 +592,13 @@ body {
     width: 100%;
     display: block;
     text-decoration: none; }
+  #cmp #challenges.form-wrapper b {
+    position: absolute;
+    right: 0.7em;
+    top: 0;
+    font-size: 1.5em;
+    line-height: 2.1em;
+    color: white; }
   #cmp #challenges.form-wrapper .files a {
     padding: 0.3em 0 0.2em; }
   #cmp #challenges.form-wrapper .form-submit {
