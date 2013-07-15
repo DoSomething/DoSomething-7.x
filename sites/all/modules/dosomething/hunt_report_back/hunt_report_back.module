@@ -257,7 +257,7 @@ function hunt_report_back_form_submit($form, &$form_state) {
 
     dosomething_mandrill_dispatch($user->mail, 'hunt13rb');
 
-    drupal_set_message(t('Thanks for submitted.'));
+    drupal_set_message(t('Thanks for submitting.'));
   }
   else {
     drupal_set_message(t('An unknown error occurred.'), 'error');
