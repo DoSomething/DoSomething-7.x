@@ -55,8 +55,8 @@ function hunt_report_back_block_view($delta = '') {
         global $user;
         $campaign_nid = variable_get('hunt_report_back_campaign_nid', '729679');
         $signed_up = dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid);
-        
-        if (!$signed_up) drupal_goto(variable_get('hunt_report_back_redirect', 'hunt'));
+
+        //if (!$signed_up) drupal_goto(variable_get('hunt_report_back_redirect', 'hunt'));
       }
 
       $block['subject'] = t('Hunt Report Back');
@@ -97,19 +97,19 @@ function hunt_report_back_form($form, &$form_state) {
 
     $rb_name = $challenge . '_report_back';
     $active = variable_get('hunt_report_back_challenge_' . $i . '_active', 0);
-    
+
     $show_edit = TRUE;
 
-    if (isset($user_challenges->$i)) {
+    if (isset($user_challenges[$i])) {
 
       $form['challenges'][$challenge][$rb_name]['#attributes']['class'][] = 'completed';
 
-      $image_file = file_load($user_challenges->$i->fid);
+      $image_file = file_load($user_challenges[$i]->fid);
       $image_url = image_style_url('thumbnail' , $image_file->uri);
-       
+
       $markup =  '<img src="' . $image_url . '" data-src="' . $image_url . '" /> ';
-      $markup .= '<p>' . $user_challenges->$i->response . '</p>';
-      $markup .= '<p>' . $user_challenges->$i->people . '</p>';
+      $markup .= '<p>' . $user_challenges[$i]->response . '</p>';
+      $markup .= '<p>' . $user_challenges[$i]->people . '</p>';
 
       $form['challenges'][$challenge][$rb_name][$challenge . '_submission'] = array(
         '#type' => 'markup',
@@ -140,14 +140,14 @@ function hunt_report_back_form($form, &$form_state) {
         '#type' => 'textarea',
         '#prefix' => '<h2>' . t('Question of the Day') . '</h2>',
         '#title' => t('!message', array('!message' => $question)),
-        '#default_value' => isset($user_challenges->$i->response) ? $user_challenges->$i->response : ''
+        '#default_value' => isset($user_challenges[$i]->response) ? $user_challenges[$i]->response : ''
       );
 
       $form['challenges'][$challenge][$rb_name][$challenge . '_people'] = array(
         '#type' => 'textfield',
         '#title' => t('How many people did you do this with?'),
         '#size' => 5,
-        '#default_value' => isset($user_challenges->$i->people) ? $user_challenges->$i->people : ''
+        '#default_value' => isset($user_challenges[$i]->people) ? $user_challenges[$i]->people : 1
       );
 
       $form['challenges'][$challenge][$challenge . '_report_back'][$challenge . '_photo'] = array(
@@ -190,6 +190,7 @@ function _hunt_report_back_get_submitted_challenge(&$form_state) {
     $day = $day[0];
     $response = $values['hunt_report_back_challenge_' . $day[0] . '_response'];
     $people = $values['hunt_report_back_challenge_' . $day[0] . '_people'];
+
     $fid = $values['hunt_report_back_challenge_' . $day[0] . '_photo'];
     return compact('day', 'response','people', 'fid');
   }
@@ -244,6 +245,7 @@ function hunt_report_back_form_validate($form, &$form_state) {
  *  Submit handler for report backs
  */
 function hunt_report_back_form_submit($form, &$form_state) {
+
   global $user;
 
   $challenge = _hunt_report_back_get_submitted_challenge($form_state);
@@ -252,7 +254,7 @@ function hunt_report_back_form_submit($form, &$form_state) {
   $save = _hunt_report_back_save_challenge($user->uid, $challenge);
 
   if ($save !== FALSE) {
-    drupal_set_message(t('Thanks for submitted.  You are a nice lady.'));
+    drupal_set_message(t('Thanks for submitted.'));
   }
   else {
     drupal_set_message(t('An unknown error occurred.'), 'error');
@@ -264,12 +266,28 @@ function hunt_report_back_form_submit($form, &$form_state) {
 }
 
 /**
- * Save hunt report back submission
+ * Get report back submissions
  **/
-function _hunt_report_back_get_challenges($uid) {
-  // Temporarily use variables to stash this stuff while developing
-  $challenges = variable_get('hunt_report_back_' . $uid, FALSE);
-  return $challenges ? json_decode($challenges) : FALSE;
+function _hunt_report_back_get_challenges($uid, $challenge = NULL) {
+
+  $query = db_select('hunt_rb_submissions', 'rb');
+  $query->fields('rb');
+  $query->condition('rb.uid', $uid, '=');
+
+  if ($challenge) {
+    $query->condition('rb.day', $challenge, '=');
+  }
+
+  $result = $query->execute();
+  $result->fetchAssoc();
+
+  $challenges = array();
+  foreach($result as $result) {
+    $challenges[$result->day] = $result;
+  }
+
+  return !empty($challenges) ? $challenges : FALSE;
+
 }
 
 /**
@@ -277,23 +295,25 @@ function _hunt_report_back_get_challenges($uid) {
  **/
 function _hunt_report_back_save_challenge($uid, $challenge) {
 
-  $challenges = _hunt_report_back_get_challenges($uid);
+  $challenge['uid'] = $uid;
 
-  if ($challenges === FALSE) {
-    $challenges = new StdClass;
+  if (isset($challenge['fid'])) {
+    $file = file_load($challenge['fid']);
+    if ($file) {
+      $challenge['uri'] = $file->uri;
+    }
   }
 
-  if (!isset($challenge['day'])) {
-    return FALSE;
+  $submission = drupal_write_record('hunt_rb_submissions', $challenge);
+
+  if ($submission !== FALSE) {
+     if (isset($file) && ($file)) {
+       $file->status = FILE_STATUS_PERMANENT;
+       file_save($file);
+     }
+
+     return TRUE;
   }
-
-  $challenges->$challenge['day'] = $challenge;
-  variable_set('hunt_report_back_' . $uid, json_encode($challenges));
-
-  // $file = file_load($response['fid']);
-  // $file->status = FILE_STATUS_PERMANENT;
-  // file_save($file);
-  //file_usage_add($file, 'hunt_report_back', 'hunt_submission', $hunt_submission->id);
 
   return TRUE;
 }
