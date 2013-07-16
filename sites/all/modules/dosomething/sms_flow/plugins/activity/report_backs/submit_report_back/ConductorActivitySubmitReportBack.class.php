@@ -37,13 +37,19 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
         // to consider making this sms_flow module dependent on the Hunt Report
         // Back module.
         $challenge = array(
-          'day' => intval($state->getContext($this->submission_fields['challenge_day'])),
-          'people' => intval($state->getContext($this->submission_fields['ask_question1'])),
-          'response' => $state->getContext($this->submission_fields['ask_question2']),
-          'image_uri' => $picture,
+          'day' => intval($this->submission_fields['challenge_day']),
+          'people' => intval($state->getContext('ask_question1:message')),
+          'response' => $state->getContext('ask_question2:message'),
+          'uri' => $picture,
         );
-
-        _hunt_report_back_save_challenge($user->uid, $challenge);
+        
+        // Module still in dev. Catch should stop the user from seeing any fatal errors.
+        try {
+          _hunt_report_back_save_challenge($user->uid, $challenge);
+        }
+        catch (Exception $e) {
+          watchdog('sms_flow', t('Caught exception in Hunt2013 report back submission for user %mobile - %exception', array('%mobile' => $mobile, '%exception' => $e->getMessage())));
+        }
       }
       else {
         $submission = new stdClass;
