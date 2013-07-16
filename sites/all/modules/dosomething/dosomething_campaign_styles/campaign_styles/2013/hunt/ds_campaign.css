@@ -5,6 +5,13 @@ img.logo {
   margin-bottom: 15px;
   margin-left: -20px; }
 
+.status {
+  width: 55% !important;
+  margin: 2% auto !important; }
+
+#campaign-node-form {
+  margin: 100px 0 0 0; }
+
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
@@ -559,14 +566,14 @@ body {
     padding: 2em;
     background: white; }
   #cmp #report-back-header {
-    background: none;
-    padding: 1em 1em 2em 1em;
+    background: white;
+    padding: 1em 1em 0 1em;
     text-align: left; }
     #cmp #report-back-header h2 {
-      color: black;
+      color: #222222;
       text-transform: uppercase; }
     #cmp #report-back-header p {
-      color: white; }
+      color: #222222; }
   #cmp .pane-hunt-report-back-hunt-report-back {
     background: white;
     padding: 2em; }
@@ -613,7 +620,7 @@ body {
   #cmp #challenges.form-wrapper .form-submit {
     font-size: 1.6em;
     margin: 0 0 1em 0;
-    padding: 0.2em 1em 1.8em;
+    padding: 15px 25px 35px;
     color: #222222;
     font-weight: 500;
     text-transform: uppercase; }
@@ -674,6 +681,28 @@ body {
   #cmp .titleline-mobile {
     color: #f1e316;
     display: none; }
+  #cmp #headline {
+    margin: 0 auto -1em;
+    padding: 2em 3.5em 1em; }
+    #cmp #headline h3 {
+      background: #00adef;
+      color: #f1e316;
+      display: block;
+      margin: 0 0 0.5em 0;
+      padding: 0.25em 0.75em 0;
+      font-size: 1.8em;
+      font-weight: 600; }
+  #cmp #cta {
+    background: #eeeeee;
+    margin: 1em auto 0;
+    padding: 1em; }
+    #cmp #cta .go-button {
+      cursor: pointer;
+      color: #222222;
+      font-size: 32px;
+      margin: 0.5em;
+      padding: 20px 40px;
+      height: 70px; }
   #cmp .section#header {
     background: none;
     margin: 20px auto 10px; }
@@ -793,6 +822,11 @@ body {
       font-size: 1.5em;
       font-weight: 600;
       margin-bottom: 0.4em; }
+    #cmp #action hr {
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 1px solid #c1c1c1; }
     #cmp #action .kickass, #cmp #action .kickass-sub {
       background: #00adef;
       color: #f1e316;
@@ -832,6 +866,11 @@ body {
     font-weight: 400;
     margin-bottom: 0.25em;
     line-height: 1.2em; }
+  #cmp #prize hr {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #c1c1c1; }
   #cmp #prize .col50 {
     margin: 2em 0 3em; }
     #cmp #prize .col50 p {
