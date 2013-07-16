@@ -9,6 +9,9 @@ img.logo {
   width: 55% !important;
   margin: 2% auto !important; }
 
+#campaign-node-form {
+  margin: 100px 0 0 0; }
+
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
@@ -563,14 +566,14 @@ body {
     padding: 2em;
     background: white; }
   #cmp #report-back-header {
-    background: none;
-    padding: 1em 1em 2em 1em;
+    background: white;
+    padding: 1em 1em 0 1em;
     text-align: left; }
     #cmp #report-back-header h2 {
-      color: black;
+      color: #222222;
       text-transform: uppercase; }
     #cmp #report-back-header p {
-      color: white; }
+      color: #222222; }
   #cmp .pane-hunt-report-back-hunt-report-back {
     background: white;
     padding: 2em; }
