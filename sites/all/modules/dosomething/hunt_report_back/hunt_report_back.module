@@ -4,6 +4,8 @@
  * Functionality for Hunt Report Back
  */
 
+define('HUNT_REPORT_BACK_IMAGE_URI', 'public://hunt_report_back_images/');
+
 /**
  * Implements hook_permission().
  */
@@ -53,6 +55,7 @@ function hunt_report_back_block_view($delta = '') {
 
       if (module_exists('dosomething_campaign')) {
         global $user;
+
         $campaign_nid = variable_get('hunt_report_back_campaign_nid', '729679');
         $signed_up = dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid);
 
@@ -154,7 +157,7 @@ function hunt_report_back_form($form, &$form_state) {
         '#prefix' => '<h2>' . t('Upload a photo of your action') . '</h2>',
         '#title_display' => 'invisible',
         '#type' => 'managed_file',
-        '#upload_location' => 'public://hunt_report_back_images/',
+        '#upload_location' => HUNT_REPORT_BACK_IMAGE_URI,
         '#upload_validators' => array(
           'file_validate_extensions' => array('gif png jpg jpeg'),
           // Pass the maximum file size in bytes
@@ -273,20 +276,13 @@ function hunt_report_back_form_submit($form, &$form_state) {
  **/
 function _hunt_report_back_get_challenges($uid, $challenge = NULL) {
 
-  $query = db_select('hunt_rb_submissions', 'rb');
-  $query->fields('rb');
-  $query->condition('rb.uid', $uid, '=');
+  $rs = db_query(
+    "SELECT * FROM {hunt_rb_submissions} WHERE uid = :uid",
+    array(':uid' => $uid)
+  );
 
-  if ($challenge) {
-    $query->condition('rb.day', $challenge, '=');
-  }
-
-  $result = $query->execute();
-  $result->fetchAssoc();
-
-  $challenges = array();
-  foreach($result as $result) {
-    $challenges[$result->day] = $result;
+  foreach($rs as $row) {
+    $challenges[$row->day] = $row;
   }
 
   return !empty($challenges) ? $challenges : FALSE;
@@ -299,24 +295,33 @@ function _hunt_report_back_get_challenges($uid, $challenge = NULL) {
 function _hunt_report_back_save_challenge($uid, $challenge) {
 
   $challenge['uid'] = $uid;
+  $challenge['created'] = time();
 
-  if (isset($challenge['fid'])) {
-    $file = file_load($challenge['fid']);
-    if ($file) {
+  if (isset($challenge['fid']) && $file = file_load($challenge['fid'])) {
+    $challenge['uri'] = $file->uri;
+    $file->status = FILE_STATUS_PERMANENT;
+    if( !file_save($file) ) return FALSE;
+  }
+  elseif(isset($challenge['uri'])) {
+    $image = file_get_contents($challenge['uri']);
+    $filename = pathinfo($challenge['uri'], PATHINFO_FILENAME);
+    $ext = pathinfo($challenge['uri'], PATHINFO_EXTENSION);
+
+    if ($image && $ext) {
+      $file = file_save_data(
+        $image,
+        HUNT_REPORT_BACK_IMAGE_URI . $filename . '.' . $ext,
+        FILE_EXISTS_REPLACE
+      );
       $challenge['uri'] = $file->uri;
+      $challenge['fid'] = $file->fid;
+    }
+    else {
+      return FALSE;
     }
   }
 
   $submission = drupal_write_record('hunt_rb_submissions', $challenge);
 
-  if ($submission !== FALSE) {
-     if (isset($file) && ($file)) {
-       $file->status = FILE_STATUS_PERMANENT;
-       file_save($file);
-     }
-
-     return TRUE;
-  }
-
-  return TRUE;
+  return $submission ? TRUE : FALSE;
 }
