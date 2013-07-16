@@ -694,6 +694,7 @@ body {
     margin: 1em auto 0;
     padding: 1em; }
     #cmp #cta .go-button {
+      cursor: pointer;
       color: #222222;
       font-size: 32px;
       margin: 0.5em;
