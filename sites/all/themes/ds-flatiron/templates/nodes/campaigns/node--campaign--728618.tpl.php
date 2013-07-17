@@ -57,7 +57,24 @@
         <div class="section-container">
           <img class="bg-header" src="<?php print($files_source . 'h-scholarship.png'); ?>" alt="scholarship" />
 
-          <h2><?php print($scholarship[1]); ?></h2>
+          <h2 class="black">Congrats to the Peanut Butter & Jam Slam scholarship winners!</h2>
+
+          <h2>$4,000 scholarship</h2>
+          <p>Jamey C.</p>
+
+          <br>
+
+          <h2>$1,000 scholarship</h2>
+          <p>Zach H.</p>
+          <p>Ted B.</p>
+          <p>Kevin C.</p>
+          <p>Daniel J.</p>
+          <p>Stacy D.</p>
+          <p>Amanda R.</p>
+          <p>Sydney W.</p>
+          <p>Fiza J.</p>
+          <p>Javier A.</p>
+          <p>Katarina S.</p>
 
           <div class="official-rules-wrapper">
             <a class="official-rules-link" href="<?php print($files_source . 'new-contest-rules.pdf'); ?>"  target="_blank">official contest rules</a>

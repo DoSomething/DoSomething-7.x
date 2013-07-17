@@ -12,6 +12,7 @@
 
     <?php foreach($challenges as $day => $challenge): ?>
     <h4 class="<?php print implode($challenge['classes'], ' '); ?>">Day <?php print $day; ?>: <?php print $challenge['name']; ?></h4>
+    <?php if(in_array('available', $challenge['classes'])): ?>
     <div class="content">
       <img src="<?php print $challenge['image']; ?>" alt="<?php print $challenge['tag']; ?>" />
       <div class="copy">
@@ -25,6 +26,7 @@
         </div> <!-- .submit-challenge -->
       </div> <!-- .copy -->
     </div> <!-- .content -->
+    <?php endif; ?>
     <?php endforeach; ?>
 
   </div> <!-- #challenges -->
