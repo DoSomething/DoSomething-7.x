@@ -189,7 +189,7 @@ form p {
 form .disclaimer {
   display: none;
 }
-form #edit-final-submit {
+form #edit-final-submit, form #edit-submit {
   margin: 0;
   padding: 0.2em 1em 0.25em;
   clear: both;
@@ -219,17 +219,17 @@ form #edit-final-submit {
   background-image: -o-linear-gradient(#ffcb15, #feb800);
   background-image: linear-gradient(#ffcb15, #feb800);
 }
-form #edit-final-submit:hover {
+form #edit-final-submit:hover, form #edit-submit:hover {
   background: #feb800;
 }
-form #edit-final-submit:active {
+form #edit-final-submit:active, form #edit-submit:active {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #feb800), color-stop(100%, #ffcb15));
   background-image: -webkit-linear-gradient(#feb800, #ffcb15);
   background-image: -moz-linear-gradient(#feb800, #ffcb15);
   background-image: -o-linear-gradient(#feb800, #ffcb15);
   background-image: linear-gradient(#feb800, #ffcb15);
 }
-form #edit-final-submit:link, form #edit-final-submit:active, form #edit-final-submit:hover {
+form #edit-final-submit:link, form #edit-final-submit:active, form #edit-final-submit:hover, form #edit-submit:link, form #edit-submit:active, form #edit-submit:hover {
   color: #1e1d1c;
   text-decoration: none !important;
 }
