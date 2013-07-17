@@ -72,17 +72,42 @@ function hunt_report_back_settings() {
       '#default_value' => variable_get($challenge . '_name', '')
     );
 
+    $form['challenges'][$challenge][$challenge . '_active'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Active'),
+      '#default_value' => variable_get($challenge . '_active', 0)
+    );
+
+    $form['challenges'][$challenge][$challenge . '_tag'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Tag'),
+      '#default_value' => variable_get($challenge . '_tag', '')
+    );
+
+    $form['challenges'][$challenge][$challenge . '_image'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Image'),
+      '#default_value' => variable_get($challenge . '_image', '')
+    );
+
+    $form['challenges'][$challenge][$challenge . '_action_first'] = array(
+      '#type' => 'textarea',
+      '#title' => t('First Action'),
+      '#default_value' => variable_get($challenge . '_action_first', '')
+    );
+
+    $form['challenges'][$challenge][$challenge . '_action_second'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Second Action'),
+      '#default_value' => variable_get($challenge . '_action_second', '')
+    );
+
     $form['challenges'][$challenge][$challenge . '_question'] = array(
       '#type' => 'textfield',
       '#title' => t('Question'),
       '#default_value' => variable_get($challenge . '_question', '')
     );
 
-    $form['challenges'][$challenge][$challenge . '_active'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Active'),
-      '#default_value' => variable_get($challenge . '_active', 0)
-    );
   }
 
   return system_settings_form($form);
