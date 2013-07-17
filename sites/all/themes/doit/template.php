@@ -184,10 +184,9 @@ function doit_preprocess_page(&$variables) {
         drupal_set_title(variable_get('dosomething_login_gate_page_title'));
       }
       $variables['title'] = variable_get('dosomething_login_gate_headline');
+      $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
+      $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
       $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
-      $variables['page']['gate_sidebar_headline'] = variable_get('dosomething_login_gate_sidebar_headline');
-      $variables['page']['gate_sidebar_description'] = variable_get('dosomething_login_gate_sidebar_description');
-      $variables['page']['gate_sidebar_footer'] = variable_get('dosomething_login_gate_sidebar_footer');
     }    
   }
 }
