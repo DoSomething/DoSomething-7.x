@@ -5,16 +5,3 @@
  * Test dosomething_general functionality.
  */
 
-class SimpletestUnitTestExampleTestCase extends DrupalWebTestCase {
-  public static function getInfo() {
-    return array(
-      'name' => 'DoSomething General Tests',
-      'description' => 'Tests functionality found in DoSomething General',
-      'group' => 'DoSomething',
-    );
-  }
-
-  public function setUp() {
-    parent::setUp();
-  }
-}

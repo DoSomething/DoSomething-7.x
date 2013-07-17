@@ -5,7 +5,7 @@
  * Test dosomething_general functionality.
  */
 
-class SimpletestDosomethingGeneral extends DrupalUnitTestCase {
+class DosomethingGeneralTestCase extends DrupalUnitTestCase {
   public static function getInfo() {
     return array(
       'name' => 'DoSomething General Tests',
@@ -18,12 +18,18 @@ class SimpletestDosomethingGeneral extends DrupalUnitTestCase {
     parent::setUp();
   }
 
+  /**
+   * @see dosomething_general_clean_zip()
+   */
   public function testCleanZip() {
     $original = 'abc-123';
     $cleaned = dosomething_general_clean_zip($original);
     $this->assertIdentical($cleaned, 'ABC123');
   }
 
+  /**
+   * @see dosomething_general_censor_word()
+   */
   public function testCensorWord() {
     $string = 'fuck';
     $cleaned = dosomething_general_censor_word($string, '***');
@@ -33,6 +39,9 @@ class SimpletestDosomethingGeneral extends DrupalUnitTestCase {
     $this->assertIdentical($without, 'Anonymous');
   }
 
+  /**
+   * @see dosomething_general_array_vals_multi()
+   */
   public function testArrayValsMulti() {
     $array = array(
       1 => array(
@@ -115,5 +124,32 @@ class SimpletestDosomethingGeneral extends DrupalUnitTestCase {
   public function testLogout() {
     dosomething_general_user_logout(array());
     $this->assertTrue(isset($_GET['destination']));
+  }
+}
+
+class DoSomethingGeneralWebTestCase extends DrupalWebTestCase {
+  private $user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething General Tests',
+      'description' => 'Tests functionality found in DoSomething General',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+
+    $this->user = $this->drupalCreateUser(array('access content'));
+  }
+
+  public function testLoadUserByMailOrCell() {
+    $user = dosomething_general_load_user_by_mail_or_cell($this->user->mail);
+    $this->assertTrue(isset($user->uid), 'User is returned');
+  }
+
+  public function testLoadByProfileCell() {
+    // @todo: build method that makes user with profile.
   }
 }
