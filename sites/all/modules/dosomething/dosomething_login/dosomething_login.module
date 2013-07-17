@@ -630,7 +630,7 @@ function dosomething_login_register_popup_form($form, &$form_state, $is_modal = 
     '#type' => 'textfield',
     '#title' => t('Email') . theme('dosomething_login_form_required_marker', array()),
     '#attributes' => array(
-      'placeholder' => t('Email'),
+      'placeholder' => t('Email Address'),
     ),
     '#default_value' => $e,
     '#size' => 20,
@@ -640,7 +640,7 @@ function dosomething_login_register_popup_form($form, &$form_state, $is_modal = 
     '#type' => 'textfield',
     '#title' => t('Cell'),
     '#attributes' => array(
-      'placeholder' => t('Cell'),
+      'placeholder' => t('Cell phone number (optional)'),
     ),
     '#size' => 20,
   );
