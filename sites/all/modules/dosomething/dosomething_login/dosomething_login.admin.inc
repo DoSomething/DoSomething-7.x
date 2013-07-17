@@ -29,35 +29,23 @@ function dosomething_login_admin_settings_form() {
   $form['gate'][$prefix . 'headline'] = array(
     '#type' => 'textfield',
     '#title' => t('Headline'),
-    '#description' => 'H1 Page Title on the page',
+    '#description' => 'H1 headline on the page',
     '#required' => TRUE,
     '#default_value' => variable_get($prefix . 'headline'),
+  );
+  $form['gate'][$prefix . 'subheadline'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Subtitle'),
+    '#description' => 'H2 subheadline',
+    '#required' => FALSE,
+    '#default_value' => variable_get($prefix . 'subtitle'),
   );
   $form['gate'][$prefix . 'description'] = array(
     '#type' => 'textarea',
     '#title' => t('Description'),
-    '#description' => 'Copy below the Headline',
+    '#description' => 'Copy below the subheadline',
     '#required' => TRUE,
     '#default_value' => variable_get($prefix . 'headline'),
-  );
-  $form['gate'][$prefix . 'sidebar_headline'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Sidebar Headline'),
-    '#required' => TRUE,
-    '#default_value' => variable_get($prefix . 'sidebar_headline'),
-  );
-  $form['gate'][$prefix . 'sidebar_description'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Sidebar Description'),
-    '#description' => 'Copy below the Sidebar Headline',
-    '#required' => TRUE,
-    '#default_value' => variable_get($prefix . 'sidebar_description'),
-  );
-  $form['gate'][$prefix . 'sidebar_footer'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Sidebar Footer'),
-    '#required' => TRUE,
-    '#default_value' => variable_get($prefix . 'sidebar_footer'),
   );
   return system_settings_form($form);
 }
