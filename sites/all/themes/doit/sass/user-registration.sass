@@ -10,9 +10,10 @@
 // ---------
 $main:  #1F7AFF
 $off-black: #1E1D1C
+$accent: #84CDC9
 
 $input-bg: #f9f9f9
-$input-color: #888
+$input-color: #444
 $input-border: #ddd
 
 $btn-primary: #FFCB15
@@ -41,15 +42,16 @@ a
 // ----------
 h1, h2, h3, p
   line-height: 1.5em
+  font-weight: 500
+  margin: 0
+  padding: 0
 
 h1
-  font-size: 2em
+  font-size: 2.5em
+  text-transform: uppercase
 
 h2
-  font-size: 1.5em
-
-h3
-  font-size: 1.2em
+  font-size: 2em
 
 p
   font-size: 1em
@@ -59,13 +61,13 @@ p
 .wrapper
   max-width: 1000px
   width: 93%
-  margin: 0 auto
+  margin: 5% auto 0
   padding: 20px 25px 25px 25px
   overflow: hidden
   +border-and-shadow
   @media only screen and (max-width: $breakpoint-first)
-    max-width: 385px
-    padding: 10px
+    max-width: 400px
+    padding: 0
 
 .image-hero
   margin: -90px 0 0 0
@@ -91,28 +93,78 @@ p
   @media only screen and (max-width: $breakpoint-first)
     display: none
 
-// MUTABLE CONTENT
-// ---------------
-.gate-description
-  text-transform: uppercase
-  margin: 10px 0 0 0
+// TOOLBAR
+// -------
+.toolbar.desktop
+  @media only screen and (max-width: $breakpoint-first)
+    display: none
+  a
+    position: absolute
+    top: -15px
+    right: -15px
+    width: 3em
+    font-size: 14px
 
-.sidebar-headline
-  text-transform: uppercase
+.toolbar.mobile
+  display: none
+  padding: 0.2em 0.5em
+  margin: 0 0 0.5em 0
+  background: #111
+  text-align: right
+  a
+    color: #fff
+  @media only screen and (max-width: $breakpoint-first)
+    display: block
 
-.sidebar-description
-  max-width: 80%
-  font-weight: 500
+// FIELD CONTENT
+// -------------
+
+// NOTE - THE "DESKTOP" FIELD CONTENT SECTIONS ARE HIDDEN AUTOMATICALLY
+//        WHEN THE .desktop-container <section> IS HIDDEN
+
+.field-content
+  h2
+    font-family: din-web
+    text-transform: uppercase
+
+.desktop-container
+  h2
+    color: $accent
+    font-size: 2em
+
+.form-container         // This section wraps the "mobile" field content sections
+  h1                    // Show the <h1> shared by desktop and mobile views
+    display: block
+    color: $accent
+    font-size: 1.6em
+    line-height: 2.5em
+
+  h2, p                 // Hide the <h2> & <p> used only on mobile
+    display: none
+
+  @media only screen and (max-width: $breakpoint-first)
+    .field-content
+      width: 90%
+      margin: 0 auto
+    h1
+      font-size: 1.4em
+    h2
+      font-size: 1.3em
+    p
+      font-weight: 400
+    h2, p
+      display: block
 
 // LOGIN & REG. FORMS
 // ------------------
 .form-container
   float: right
   width: 38.5%
+  position: relative
   @media only screen and (max-width: $breakpoint-first)
     float: none
-    width: 93%
-    margin: 0 auto
+    width: 100%
+    margin: 0
 
 form
   background: transparent
@@ -122,6 +174,10 @@ form
   box-shadow: none
   margin: 0
   float: right
+  @media only screen and (max-width: $breakpoint-first)
+    float: none
+    width: 90%
+    margin: 0 auto
   label
     display: block
     text-transform: lowercase
@@ -250,8 +306,6 @@ input[type="password"]
   text-transform: lowercase
   box-shadow: none
   +border-radius(3px)
-  @media only screen and (max-width: 600px)
-    height: 1.5em
 
 .disclaimer
   float: left
@@ -261,6 +315,10 @@ input[type="password"]
   text-align: center
   color: #ddd
   font-size: 0.8em
+  @media only screen and (max-width: $breakpoint-first)
+    float: none
+    width: 90%
+    margin: 2em auto
   a
     color: #ddd
     &:hover

@@ -1,39 +1,49 @@
 body {
-  font-family: din-web-reg; }
+  font-family: din-web-reg;
+}
 
 a {
-  color: #1e1d1c; }
+  color: #1e1d1c;
+}
 
 h1, h2, h3, p {
-  line-height: 1.5em; }
+  line-height: 1.5em;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
 
 h1 {
-  font-size: 2em; }
+  font-size: 2.5em;
+  text-transform: uppercase;
+}
 
 h2 {
-  font-size: 1.5em; }
-
-h3 {
-  font-size: 1.2em; }
+  font-size: 2em;
+}
 
 p {
-  font-size: 1em; }
+  font-size: 1em;
+}
 
 .wrapper {
   max-width: 1000px;
   width: 93%;
-  margin: 0 auto;
+  margin: 5% auto 0;
   padding: 20px 25px 25px 25px;
   overflow: hidden;
   background: white;
   border: 1px solid #eeeeee;
   -webkit-box-shadow: #cccccc 0px 15px 20px -10px;
   -moz-box-shadow: #cccccc 0px 15px 20px -10px;
-  box-shadow: #cccccc 0px 15px 20px -10px; }
-  @media only screen and (max-width: 800px) {
-    .wrapper {
-      max-width: 385px;
-      padding: 10px; } }
+  box-shadow: #cccccc 0px 15px 20px -10px;
+}
+@media only screen and (max-width: 800px) {
+  .wrapper {
+    max-width: 400px;
+    padding: 0;
+  }
+}
 
 .image-hero {
   margin: -90px 0 0 0;
@@ -43,44 +53,110 @@ p {
   border: 1px solid #eeeeee;
   -webkit-box-shadow: #cccccc 0px 15px 20px -10px;
   -moz-box-shadow: #cccccc 0px 15px 20px -10px;
-  box-shadow: #cccccc 0px 15px 20px -10px; }
+  box-shadow: #cccccc 0px 15px 20px -10px;
+}
 
 .logo-ds {
   position: relative;
   z-index: 2;
   top: -5px;
-  left: -20px; }
-  .logo-ds img {
-    display: block;
-    width: 120px; }
+  left: -20px;
+}
+.logo-ds img {
+  display: block;
+  width: 120px;
+}
 
 .desktop-container {
   float: left;
   width: 58%;
-  padding: 10px; }
-  @media only screen and (max-width: 800px) {
-    .desktop-container {
-      display: none; } }
+  padding: 10px;
+}
+@media only screen and (max-width: 800px) {
+  .desktop-container {
+    display: none;
+  }
+}
 
-.gate-description {
+@media only screen and (max-width: 800px) {
+  .toolbar.desktop {
+    display: none;
+  }
+}
+.toolbar.desktop a {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 3em;
+  font-size: 14px;
+}
+
+.toolbar.mobile {
+  display: none;
+  padding: 0.2em 0.5em;
+  margin: 0 0 0.5em 0;
+  background: #111111;
+  text-align: right;
+}
+.toolbar.mobile a {
+  color: white;
+}
+@media only screen and (max-width: 800px) {
+  .toolbar.mobile {
+    display: block;
+  }
+}
+
+.field-content h2 {
+  font-family: din-web;
   text-transform: uppercase;
-  margin: 10px 0 0 0; }
+}
 
-.sidebar-headline {
-  text-transform: uppercase; }
+.desktop-container h2 {
+  color: #84cdc9;
+  font-size: 2em;
+}
 
-.sidebar-description {
-  max-width: 80%;
-  font-weight: 500; }
+.form-container h1 {
+  display: block;
+  color: #84cdc9;
+  font-size: 1.6em;
+  line-height: 2.5em;
+}
+.form-container h2, .form-container p {
+  display: none;
+}
+@media only screen and (max-width: 800px) {
+  .form-container .field-content {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .form-container h1 {
+    font-size: 1.4em;
+  }
+  .form-container h2 {
+    font-size: 1.3em;
+  }
+  .form-container p {
+    font-weight: 400;
+  }
+  .form-container h2, .form-container p {
+    display: block;
+  }
+}
 
 .form-container {
   float: right;
-  width: 38.5%; }
-  @media only screen and (max-width: 800px) {
-    .form-container {
-      float: none;
-      width: 93%;
-      margin: 0 auto; } }
+  width: 38.5%;
+  position: relative;
+}
+@media only screen and (max-width: 800px) {
+  .form-container {
+    float: none;
+    width: 100%;
+    margin: 0;
+  }
+}
 
 form {
   background: transparent;
@@ -89,113 +165,145 @@ form {
   width: 100%;
   box-shadow: none;
   margin: 0;
-  float: right; }
-  form label {
-    display: block;
-    text-transform: lowercase;
-    font-weight: 400;
-    font-size: 1em;
-    color: #1e1d1c; }
-  form p {
-    clear: left;
-    font-size: 0.9em;
-    margin-bottom: 20px; }
-  form .disclaimer {
-    display: none; }
-  form #edit-final-submit {
-    margin: 0;
-    padding: 0.2em 1em 0.25em;
+  float: right;
+}
+@media only screen and (max-width: 800px) {
+  form {
+    float: none;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+form label {
+  display: block;
+  text-transform: lowercase;
+  font-weight: 400;
+  font-size: 1em;
+  color: #1e1d1c;
+}
+form p {
+  clear: left;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
+form .disclaimer {
+  display: none;
+}
+form #edit-final-submit {
+  margin: 0;
+  padding: 0.2em 1em 0.25em;
+  clear: both;
+  float: left;
+  position: static;
+  height: 2em;
+  display: block;
+  cursor: pointer;
+  font-family: din;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  color: #1e1d1c !important;
+  border: 1px solid #ffcb15;
+  background: #ffcb15;
+  -webkit-appearance: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
+  background-image: -webkit-linear-gradient(#ffcb15, #feb800);
+  background-image: -moz-linear-gradient(#ffcb15, #feb800);
+  background-image: -o-linear-gradient(#ffcb15, #feb800);
+  background-image: linear-gradient(#ffcb15, #feb800);
+}
+form #edit-final-submit:hover {
+  background: #feb800;
+}
+form #edit-final-submit:active {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #feb800), color-stop(100%, #ffcb15));
+  background-image: -webkit-linear-gradient(#feb800, #ffcb15);
+  background-image: -moz-linear-gradient(#feb800, #ffcb15);
+  background-image: -o-linear-gradient(#feb800, #ffcb15);
+  background-image: linear-gradient(#feb800, #ffcb15);
+}
+form #edit-final-submit:link, form #edit-final-submit:active, form #edit-final-submit:hover {
+  color: #1e1d1c;
+  text-decoration: none !important;
+}
+form .form-item-parent-email {
+  margin: 0.5em 0 0 0;
+}
+form .form_header {
+  margin: 0 0 4% 0;
+  display: block;
+}
+form .form-item {
+  width: 100%;
+  float: none !important;
+  margin: 0;
+}
+form .form-item-first-name, form .form-item-last-name {
+  float: left !important;
+  width: 40%;
+}
+form .form-item-last-name {
+  width: 48%;
+  margin: 0 0 0 10%;
+}
+form #edit-birthday label {
+  float: none !important;
+  margin: 0;
+}
+form #edit-birthday span {
+  position: static !important;
+}
+form .form-item-day, form .form-item-month, form .form-item-year {
+  float: left !important;
+  width: 2.6em;
+  margin: 0 9% 0 0;
+  padding: 0;
+}
+form .form-item-year {
+  width: 3.5em;
+}
+form .ds-login-popup-footer {
+  margin: 1em 0;
+  float: left;
+  clear: both;
+}
+form .already-member {
+  float: left;
+  clear: left;
+  padding: 0;
+  font-family: din-web-reg;
+  font-weight: 500;
+  font-size: 14px;
+  color: #222222;
+}
+@media only screen and (max-width: 800px) {
+  form .facebook-connect {
     clear: both;
-    float: left;
-    position: static;
-    height: 2em;
-    display: block;
-    cursor: pointer;
-    font-family: din;
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
-    text-decoration: none !important;
-    text-transform: uppercase;
-    color: #1e1d1c !important;
-    border: 1px solid #ffcb15;
-    background: #ffcb15;
-    -webkit-appearance: none;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
-    background-image: -webkit-linear-gradient(#ffcb15, #feb800);
-    background-image: -moz-linear-gradient(#ffcb15, #feb800);
-    background-image: -o-linear-gradient(#ffcb15, #feb800);
-    background-image: linear-gradient(#ffcb15, #feb800); }
-    form #edit-final-submit:hover {
-      background: #feb800; }
-    form #edit-final-submit:active {
-      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #feb800), color-stop(100%, #ffcb15));
-      background-image: -webkit-linear-gradient(#feb800, #ffcb15);
-      background-image: -moz-linear-gradient(#feb800, #ffcb15);
-      background-image: -o-linear-gradient(#feb800, #ffcb15);
-      background-image: linear-gradient(#feb800, #ffcb15); }
-    form #edit-final-submit:link, form #edit-final-submit:active, form #edit-final-submit:hover {
-      color: #1e1d1c;
-      text-decoration: none !important; }
-  form .form-item-parent-email {
-    margin: 0.5em 0 0 0; }
-  form .form_header {
-    margin: 0 0 4% 0;
-    display: block; }
-  form .form-item {
     width: 100%;
-    float: none !important;
-    margin: 0; }
-  form .form-item-first-name, form .form-item-last-name {
-    float: left !important;
-    width: 40%; }
-  form .form-item-last-name {
-    width: 48%;
-    margin: 0 0 0 10%; }
-  form #edit-birthday label {
-    float: none !important;
-    margin: 0; }
-  form #edit-birthday span {
-    position: static !important; }
-  form .form-item-day, form .form-item-month, form .form-item-year {
-    float: left !important;
-    width: 2.6em;
-    margin: 0 9% 0 0;
-    padding: 0; }
-  form .form-item-year {
-    width: 3.5em; }
-  form .ds-login-popup-footer {
-    margin: 1em 0;
-    float: left;
-    clear: both; }
-  form .already-member {
-    float: left;
-    clear: left;
-    padding: 0;
-    font-family: din-web-reg;
-    font-weight: 500;
-    font-size: 14px;
-    color: #222222; }
-  @media only screen and (max-width: 800px) {
-    form .facebook-connect {
-      clear: both;
-      width: 100%;
-      margin: 5% 0; }
-      form .facebook-connect img {
-        display: block;
-        margin: 0 auto;
-        max-width: 300px; } }
-      @media only screen and (max-width: 800px) and (max-width: 500px) {
-        form .facebook-connect img {
-          width: 90%; } }
-  form .disclaimer,
-  form .under-13-field {
-    float: left; }
+    margin: 5% 0;
+  }
+  form .facebook-connect img {
+    display: block;
+    margin: 0 auto;
+    max-width: 300px;
+  }
+}
+@media only screen and (max-width: 800px) and (max-width: 500px) {
+  form .facebook-connect img {
+    width: 90%;
+  }
+}
+form .disclaimer,
+form .under-13-field {
+  float: left;
+}
 
 input[type="text"],
 input[type="email"],
@@ -209,7 +317,7 @@ input[type="password"] {
   border: 1px solid #dddddd;
   font-weight: 400;
   font-size: 0.9em;
-  color: #888888;
+  color: #444444;
   padding: 0 0 0 0.5em;
   text-transform: lowercase;
   box-shadow: none;
@@ -217,13 +325,8 @@ input[type="password"] {
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
-  border-radius: 3px; }
-  @media only screen and (max-width: 600px) {
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    input[type="password"] {
-      height: 1.5em; } }
+  border-radius: 3px;
+}
 
 .disclaimer {
   float: left;
@@ -232,16 +335,28 @@ input[type="password"] {
   margin: 1em 0 0 0;
   text-align: center;
   color: #dddddd;
-  font-size: 0.8em; }
-  .disclaimer a {
-    color: #dddddd; }
-    .disclaimer a:hover {
-      color: #cccccc; }
+  font-size: 0.8em;
+}
+@media only screen and (max-width: 800px) {
+  .disclaimer {
+    float: none;
+    width: 90%;
+    margin: 2em auto;
+  }
+}
+.disclaimer a {
+  color: #dddddd;
+}
+.disclaimer a:hover {
+  color: #cccccc;
+}
 
 #skip-link,
 #edit-connect,
 #edit-or {
-  display: none; }
+  display: none;
+}
 
 .form-required {
-  display: none; }
+  display: none;
+}
