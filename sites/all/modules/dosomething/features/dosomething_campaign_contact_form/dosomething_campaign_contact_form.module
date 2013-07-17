@@ -7,6 +7,28 @@
 include_once('dosomething_campaign_contact_form.features.inc');
 
 /**
+ * Implements hook_page_alter().
+ */
+function dosomething_campaign_contact_form_page_alter(&$page) {
+  // If anonymous user:
+  if (!user_is_logged_in()) {
+    // Check if we are viewing a campaign node:
+    $node = menu_get_object();
+    if ($node->type == 'campaign') {
+      // Shhh, it's a secret div.
+      $output = '<div style="display:none;">';
+      // Render the login and register popup forms.
+      $output .= render(drupal_get_form('dosomething_login_register_popup_form'));
+      $output .= render(drupal_get_form('dosomething_login_login_popup_form'));
+      $output .= '</div>';
+      // Place forms into site footer - they need to exist somewhere on the page in order for the 
+      // dosomething_campaign_contact_form_login_form_popup_form ajax callback to work.
+      $page['footer']['login_forms']['content']['#markup'] = $output;
+    }
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $form_id) {
@@ -82,6 +104,9 @@ function dosomething_campaign_contact_form_form_alter(&$form, &$form_state, $for
   }
 }
 
+/**
+ * Ajax callback for displaying the login or register popup after submitting a form.
+ */
 function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_state) {
   $email = $form_state['webform_entity']['submission']->submitted['field_webform_email'][LANGUAGE_NONE][0]['email'];
   $mobile = $form_state['webform_entity']['submission']->submitted['field_webform_mobile'][LANGUAGE_NONE][0]['value'];
@@ -144,6 +169,9 @@ function dosomething_campaign_contact_form_login_form_popup_form($form, &$form_s
   }
 }
 
+/**
+ * Implements hook_module_implements_alter().
+ */
 function dosomething_campaign_contact_form_module_implements_alter(&$implementations, $hook) {
   if ($hook == 'form_alter' && isset($implementations['dosomething_campaign_contact_form'])) {
     $group = $implementations['dosomething_campaign_contact_form'];
