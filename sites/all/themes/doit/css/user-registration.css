@@ -133,12 +133,15 @@ p {
   }
   .form-container h1 {
     font-size: 1.4em;
+    line-height: 2em;
   }
   .form-container h2 {
     font-size: 1.3em;
+    line-height: 1.7em;
   }
   .form-container p {
     font-weight: 400;
+    padding: 0.5em 0;
   }
   .form-container h2, .form-container p {
     display: block;
@@ -349,6 +352,11 @@ input[type="password"] {
 }
 .disclaimer a:hover {
   color: #cccccc;
+}
+
+.forgot-password-link {
+  display: block;
+  padding: 1em 0;
 }
 
 #skip-link,
