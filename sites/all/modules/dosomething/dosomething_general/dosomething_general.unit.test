@@ -60,6 +60,21 @@ class DosomethingGeneralTestCase extends DrupalUnitTestCase {
     $this->assertEqual($new, 2);
   }
 
+  /**
+   * @see dosomething_general_clean_string()
+   */
+  public function testCleanString() {
+    $string = 'AB$#@(C-D';
+    $initial = dosomething_general_clean_string($string);
+    $this->assertIdentical($initial, 'AB____C-D');
+
+    $regex = dosomething_general_clean_string($string, '[A-Z]');
+    $this->assertIdentical($regex, '__$#@(_-_');
+
+    $replace = dosomething_general_clean_string($string, '[A-Z]', '');
+    $this->assertIdentical($replace, '$#@(-');
+  }
+
   /*******************
    *  Mobile commons *
    *******************/
@@ -127,8 +142,11 @@ class DosomethingGeneralTestCase extends DrupalUnitTestCase {
   }
 }
 
-class DoSomethingGeneralWebTestCase extends DrupalWebTestCase {
+class DoSomethingGeneralWebTestCase extends WebTestSuite {
   private $user;
+  private $user_profile;
+  private $schema;
+  private $node;
 
   public static function getInfo() {
     return array(
@@ -139,17 +157,109 @@ class DoSomethingGeneralWebTestCase extends DrupalWebTestCase {
   }
 
   public function setUp() {
-    parent::setUp();
+    parent::setUp('profile2', 'fboauth', 'locale', 'dosomething_general');
 
     $this->user = $this->drupalCreateUser(array('access content'));
+
+    $profile_fields = array('first_name', 'last_name', 'mobile');
+    foreach ($profile_fields AS $profile_field) {
+      // Add a field to main type, which is created during module installation.
+      $field = array(
+        'field_name' => 'field_user_' . $profile_field,
+        'type' => 'text',
+        'cardinality' => 1,
+        'translatable' => FALSE,
+      );
+      field_create_field($field);
+      $instance = array(
+        'entity_type' => 'profile2',
+        'field_name' => 'field_user_' . $profile_field,
+        'bundle' => 'main',
+        'label' => 'Full name',
+        'description' => 'Specify your first name.',
+        'widget' => array(
+          'type' => 'text_textfield',
+          'weight' => 0,
+        ),
+      );
+      field_create_instance($instance);
+    }
+
+    // Load a profile object for the user.
+    $profile_values = array('type' => 'main');
+    $profile = profile2_create($profile_values);
+    $profile->uid = $this->user->uid;
+
+    $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = '123-555-9876';
+    $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = 'Test';
+    $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = 'User';
+
+    profile2_save($profile);
+
+    // Set the profile object as a sub-object of user.
+    $this->user_profile = $profile;
+
+    $settings = array(
+      'type' => 'blog',
+      'title' => 'Blog post',
+      'body' => array(LANGUAGE_NONE => array(array($this->randomName(64)))),
+    );
+    $this->node = $this->drupalCreateNode($settings);
+    
+    $record = array('uid' => 2, 'fbid' => '123');
+    drupal_write_record('fboauth_users', $record);
   }
 
+  /**
+   * @see dosomething_general_load_user_by_mail_or_cell()
+   */
   public function testLoadUserByMailOrCell() {
     $user = dosomething_general_load_user_by_mail_or_cell($this->user->mail);
     $this->assertTrue(isset($user->uid), 'User is returned');
   }
 
-  public function testLoadByProfileCell() {
-    // @todo: build method that makes user with profile.
+  /**
+   * @see dosomething_general_get_full_name()
+   */
+  public function testGetFullName() {
+    $public = dosomething_general_get_full_name($this->user, 'private');
+    $this->assertIdentical($public, 'Test User');
+
+    $private = dosomething_general_get_full_name($this->user);
+    $this->assertIdentical($private, 'Test U');
+  }
+
+  /**
+   * @see dosomething_general_find_user_by_cell()
+   */
+  public function testFindUserByCell() {
+    $u = dosomething_general_find_user_by_cell('123-555-9876');
+    $this->assertIdentical($u->uid, $this->user->uid);
+  }
+
+  /**
+   * @see dosomething_load_user_by_profile_cell()
+   */
+  public function testLoadUserByProfileCell() {
+    $u = dosomething_load_user_by_profile_cell('123-555-9876');
+    $this->assertIdentical($u->uid, $this->user->uid);
+  }
+
+  /**
+   * @see dosomething_general_get_nids_by_type()
+   */
+  public function testGetNidsByType() {
+    $nids = dosomething_general_get_nids_by_type('blog');
+    $this->assertTrue(is_array($nids));
+    $this->assertTrue(count($nids) == 1);
+  }
+
+  /**
+   * @see dosomething_general_get_multi_fbids()
+   */
+  public function testGetMultiFbids() {
+    $ids = dosomething_general_get_multi_fbids(array('123'));
+    $this->assertTrue(is_array($ids));
+    $this->assertTrue(count($ids) == 1);
   }
 }

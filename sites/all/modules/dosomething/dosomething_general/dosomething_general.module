@@ -903,24 +903,6 @@ function dosomething_general_webform_associate($nid, $sid) {
 }
 
 /**
- * Implements hook_user_insert().
- * @TODO - move me somewhere more appropriate
- */
-function dosomething_general_user_insert(&$edit, $account, $category) {
-  // $member = _dosomething_general_user_prepare_member($account);
-  // $member = _dosomething_general_user_member_save($member);
-}
-
-/**
- * Implements hook_user_update().
- *  @TODO - move me somewhere more appropriate
- */
-function dosomething_general_user_update(&$edit, $account, $category) {
-  // $member = _dosomething_general_user_prepare_member($account);
-  // $member = _dosomething_general_user_member_save($member);
-}
-
-/**
  *
  **/
 function _dosomething_general_user_member_save($member) {
@@ -1203,113 +1185,6 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
     user_save($user);
   }
 }
-
-/**
- * Sends a phone call request to TelApi, to $beta_number from $alpha_number.
- *
- * @param string|int $alpha_number
- *   The alpha phone number (the number that will be spoofed).
- *
- * @param string|int $beta_number
- *   The beta phone number (the number that will receive the call).
- *
- * @param int $celeb_id
- *   An integer representing the celebrity who will "send" the call.
- *
- * @param string $type
- *   Default "calls".  The type of request.
- *
- * @todo Make $type worthwhile.
- *
- */
-function dosomething_general_telapi_request($alpha_number, $beta_number, $celeb_id, $type = 'calls') {
-  $path = libraries_get_path('telapi');
-  require_once $path . '/library/TelApi.php';
-
-  $api = TelApi::getInstance();
-  $api->setOptions(array(
-    'account_sid' => 'AC69dc373627334a05b0d58dfe67b215cc',
-    'auth_token' => '02eb30fb3df44204ba3bed9b5bda9afe',
-  ));
-
-  if (is_array($beta_number)) {
-    // Clean up the alpha number.
-    $alpha = preg_replace('#[^0-9]#', '', $alpha_number);
-    foreach ($beta_number AS $cell) {
-      if (dosomething_general_valid_cell($cell)) {
-        // Clean up the beta number.
-        $beta = preg_replace('#[^0-9]#', '', $cell);
-
-        // Set up the call request.
-        $req = array(
-          'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $cell),
-          'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
-          'StatusCallback' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/call-done',
-          'method' => 'GET',
-        );
-
-        // You can't call yourself and spoof your own number...
-        // So if you're calling yourself, default to the basic phone #.
-        if ($alpha != $beta) {
-          $req['From'] = $alpha;
-        }
-        else {
-          $req['From'] = ROBOCALLS_DEFAULT_PHONE_NUMBER;
-        }
-
-        try {
-          // Send the call.
-          $call = $api->create($type, $req);
-        }
-        catch (TelApi_Exception $e) {
-
-          watchdog('robocalls', $e->getMessage());
-          return false;
-        }
-      }
-    }
-  }
-  else {
-    if (dosomething_general_valid_cell($alpha_number) && dosomething_general_valid_cell($beta_number)) {
-      // Clean up the numbers.
-      $alpha = preg_replace('#[^0-9]#', '', $alpha_number);
-      $beta = preg_replace('#[^0-9]#', '', $beta_number);
-
-      // Set up the call request.
-      $req = array(
-        'To' => preg_replace('#1?(\d{3})(\d{3})(\d{4})#', '\\1-\\2-\\3', $beta_number),
-        'Url' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/xml/' . $celeb_id,
-        'StatusCallback' => variable_get('prank_site', 'http://www.dosomething.org') . '/prank/call-done',
-        'method' => 'GET',
-      );
-
-      // You can't call yourself and spoof your own number...
-      // So if you're calling yourself, default to the basic phone #.
-      if ($alpha != $beta) {
-        $req['From'] = $alpha;
-      }
-      else {
-        $req['From'] = ROBOCALLS_DEFAULT_PHONE_NUMBER;
-      }
-
-      try {
-        // Send the call.
-        $call = $api->create($type, $req);
-      }
-      catch (TelApi_Exception $e) {
-        watchdog('robocalls', $e->getMessage());
-        return false;
-      }
-    }
-  }
-
-  if ($call->sid) {
-    return $call;
-  }
-
-  return false;
-}
-
 
 /**
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
