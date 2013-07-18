@@ -121,13 +121,6 @@ function doit_preprocess_page(&$variables) {
     }
   }
 
-  // gate beta campaign page
-  // @todo: move this out of template.php and into dosomething_campaign_redirector logic.
-  $beta_campaign = variable_get('beta_campaign_nid', 724796);
-  if (!user_is_logged_in() && current_path() == 'node/' . $beta_campaign) {
-    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $beta_campaign)));
-  }
-
   // Load Webfonts specific to the page
   if (module_exists('dosomething_perfomance_toolbox')) {
     dosomething_perfomance_toolbox_webfonts();
@@ -161,33 +154,34 @@ function doit_preprocess_page(&$variables) {
   if (doit_is_user_registration_template_page()) {
     // Use user-registration page template:
     $variables['theme_hook_suggestions'][] = 'page__user__registration';
+    // Use default user-registration page specfic CSS/JS files:
+    drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
+    drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
+    // Set Page Title in HTML HEAD.
+    $page_title = variable_get('dosomething_login_gate_page_title', NULL);
+    if ($page_title && current_path() == 'user/registration') {
+      drupal_set_title(variable_get('dosomething_login_gate_page_title'));
+    }
     // Only display gate variables if our destination is not "The Hunt":
     $destination = drupal_get_destination();
+    // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
     // If this is the Gate for the Hunt, add specific CSS/JS files:
     if ($destination['destination'] == 'node/' . variable_get('hunt_campaign_nid', 729679)) {
-      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
-      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
-    }
-    // If this is the Gate for cleanup, add specific CSS/JS:
-    elseif ($destination['destination'] == 'node/' . variable_get('beta_campaign_nid', 724796)) {
-      drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
-      drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
+      // Load variables for the Hunt.
+      $variables['page']['gate_headline'] = "The Hunt";
+      $variables['page']['gate_subheadline'] = "Show us you're a social change rockstar";
+      $variables['page']['gate_description']= "We'll give you 11 actions over 11 days to help you show the world the kick ass things you can do.";
+      $variables['page']['gate_image_filename'] = "gate-hunt.png";
+      $variables['page']['gate_image_alt'] = "The Hunt";
     }
     // Else Use gate values from DoSomething Login config page:
-    else {
-      // Use default user-registration page specfic CSS/JS files:
-      drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
-      drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');      
-      // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
-      $page_title = variable_get('dosomething_login_gate_page_title', NULL);
-      if ($page_title && current_path() == 'user/registration') {
-        drupal_set_title(variable_get('dosomething_login_gate_page_title'));
-      }
-      $variables['title'] = variable_get('dosomething_login_gate_headline');
+    else {    
       $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
       $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
       $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
-    }    
+      $variables['page']['gate_image_filename'] = "gate-bg.jpg";
+      $variables['page']['gate_image_alt'] = "High Five!";
+    }  
   }
 }
 

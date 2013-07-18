@@ -37,15 +37,15 @@ function dosomething_login_admin_settings_form() {
     '#type' => 'textfield',
     '#title' => t('Subtitle'),
     '#description' => 'H2 subheadline',
-    '#required' => FALSE,
-    '#default_value' => variable_get($prefix . 'subtitle'),
+    '#required' => TRUE,
+    '#default_value' => variable_get($prefix . 'subheadline'),
   );
   $form['gate'][$prefix . 'description'] = array(
     '#type' => 'textarea',
     '#title' => t('Description'),
     '#description' => 'Copy below the subheadline',
     '#required' => TRUE,
-    '#default_value' => variable_get($prefix . 'headline'),
+    '#default_value' => variable_get($prefix . 'description'),
   );
   return system_settings_form($form);
 }
