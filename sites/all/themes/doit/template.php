@@ -156,11 +156,20 @@ function doit_preprocess_page(&$variables) {
     }
 
   }
+
+  $destination = drupal_get_destination();
+  $hunt_path = 'node/' . variable_get('hunt_campaign_nid', 729679);
+
   // If dosomething_login_gate_use_user_registration_template is FALSE, don't use user-registration template on actual user/registration page.
   if (!variable_get('dosomething_login_gate_use_user_registration_template') && current_path() == 'user/registration') {
     foreach ($variables['theme_hook_suggestions'] as $key => $value) {
       if ($value == 'page__user__registration') {
         unset($variables['theme_hook_suggestions'][$key]);
+      }
+      // If this is the Hunt gate, use the old campaign JS / CSS.
+      if ($destination['destination'] == $hunt_path) {
+        drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
+        drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
       }
     }
   }
@@ -177,10 +186,10 @@ function doit_preprocess_page(&$variables) {
       drupal_set_title(variable_get('dosomething_login_gate_page_title'));
     }
     // Only display gate variables if our destination is not "The Hunt":
-    $destination = drupal_get_destination();
+    
     // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
     // If this is the Gate for the Hunt, add specific CSS/JS files:
-    if ($destination['destination'] == 'node/' . variable_get('hunt_campaign_nid', 729679)) {
+    if ($destination['destination'] == $hunt_path) {
       // Load variables for the Hunt.
       $variables['page']['gate_headline'] = "The Hunt";
       $variables['page']['gate_subheadline'] = "Show us you're a social change rockstar";
