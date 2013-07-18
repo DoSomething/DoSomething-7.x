@@ -1093,7 +1093,7 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
 
   // Override password field description on user login form.
   if ($form_id == 'user_login') {
-    $form['pass']['#description'] = t('Enter the password that accompanies your email, username, or cell phone number.');
+    $form['pass']['#description'] = t('Enter the password that accompanies your email, username, or cell phone number.') . '<span class="forgot-password-link">' . l(t('Forgot your password?'), 'user/password') . '</span>';
   }
   // Unset N/A option in required field_camp checkboxes.
   if ($form_id == 'club_node_form') {
