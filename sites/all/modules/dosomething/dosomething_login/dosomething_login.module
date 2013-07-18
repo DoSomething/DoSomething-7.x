@@ -930,12 +930,17 @@ function dosomething_login_register_block($form, &$form_state) {
     '#value' => t('Go'),
     '#attributes' => array('class' => array('submit')),
   );
+  $sign_in_css = '';
+  // Use popup for sign-in only if we aren't using the user-registration template.
+  if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
+    $sign_in_css = 'sign-in-popup';
+  }
   $form['ds-register-wrapper']['user'] = array(
     '#theme' => 'link',
     '#path' => 'user',
     '#text' => t("or sign in"),
     '#options' => array(
-      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
+      'attributes' => array('class' => array('or-sign-in', $sign_in_css)),
       'html' => FALSE,
     ),
   );
