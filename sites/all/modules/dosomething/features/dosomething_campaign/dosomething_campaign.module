@@ -78,19 +78,30 @@ function dosomething_campaign_block_view($delta = '') {
  */
 function dosomething_campaign_init() {
   global $user;
-  // Check if logged in user:
-  if ($user->uid != 0) { 
-    // For now, this check only applies to the Hunt.
-    $campaign_nid = variable_get('hunt_campaign_nid', 729679);
-    // if the current page is the Hunt campaign node view page,
-    // if user doesn't have join override access,
-    // and if user isn't signed up.
-    if (current_path() == 'node/' . $campaign_nid && 
-      !dosomething_campaign_can_user_override_join($user) && 
-      !dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid)) {
-      // Redirect to the campaign join page.   
-      drupal_goto('campaign/join/' . $campaign_nid);
-    }
+  // Check if current path is Hunt campaign, and route to either registration gate, join page, or the actual campaign.
+  $campaign_nid = variable_get('hunt_campaign_nid', 729679);
+  if (current_path() == 'node/' . $campaign_nid ) {
+    dosomething_campaign_redirector($user, $campaign_nid);
+  }
+}
+
+/**
+ * Redirects given $user object to either the: 
+ * - Campaign user/registration gate
+ * - the join page
+ * - or to the actual Campaign node
+ * based on given $nid and whether or not the user has logged in and/or signed up yet.
+ */
+function dosomething_campaign_redirector($user, $nid) {
+  // If anon user, redirect to user/destination?node=$campaign_nid
+  //@todo: once the campaign is_gate_registration field is in place, add check to redirect to user/reg page if its TRUE
+  if ($user->uid == 0) {
+    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $nid)));
+  }
+  // Else if logged in user hasn't signed up (and is non-override), redirect to join page:
+  else if (!dosomething_campaign_can_user_override_join($user) && !dosomething_campaign_is_user_signed_up($user->uid, $nid)) {
+    // Redirect to the campaign join page.   
+    drupal_goto('campaign/join/' . $nid); 
   }
 }
 
@@ -128,8 +139,10 @@ function dosomething_campaign_user_login(&$edit, $account) {
  */
 function dosomething_campaign_is_campaign_gate_url($url) {
   //@TODO: Make this dynamic and smart and not horribly hardcoded for the Hunt campaign.
-  $hunt_campaign_nid = variable_get('hunt_campaign_nid', 729679);
-  if (strpos($url,'user/registration%3Fdestination%3Dnode/' . $hunt_campaign_nid) !== FALSE) {
+  $destination = '?destination=node/' . variable_get('hunt_campaign_nid', 729679);
+  $user_registration_url = 'user/registration' . $destination;
+  $user_login_url = 'user/login' . $destination;
+  if (strpos($url, $user_registration_url) !== FALSE || strpos($url, $user_login_url) !== FALSE) {
     return TRUE;
   }
 }
