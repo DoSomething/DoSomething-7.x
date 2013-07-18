@@ -16,13 +16,20 @@ function doit_preprocess_html(&$variables, $hook) {
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
 
+  // If dosomething_login_gate_use_user_registration_template is FALSE, don't use user-registration template on actual user/registration page.
+  if (!variable_get('dosomething_login_gate_use_user_registration_template') && current_path() == 'user/registration') {
+    foreach ($variables['theme_hook_suggestions'] as $key => $value) {
+      if ($value == 'html__user__registration') {
+        unset($variables['theme_hook_suggestions'][$key]);
+      }
+    }
+  }
   /*
    * Remove all global stylesheets and
    * load user registration HTML templates 
    * if this is a user-registration template page.
    */
-
-  if (doit_is_user_registration_template_page()) {
+  elseif (doit_is_user_registration_template_page()) {
     $variables['theme_hook_suggestions'][] = 'html__user__registration';
     $css = drupal_add_css();
     unset(
@@ -149,7 +156,14 @@ function doit_preprocess_page(&$variables) {
     }
 
   }
-
+  // If dosomething_login_gate_use_user_registration_template is FALSE, don't use user-registration template on actual user/registration page.
+  if (!variable_get('dosomething_login_gate_use_user_registration_template') && current_path() == 'user/registration') {
+    foreach ($variables['theme_hook_suggestions'] as $key => $value) {
+      if ($value == 'page__user__registration') {
+        unset($variables['theme_hook_suggestions'][$key]);
+      }
+    }
+  }
   // Load user-registration page templates and gate values if this is a user-registration template page:
   if (doit_is_user_registration_template_page()) {
     // Use user-registration page template:
@@ -747,7 +761,7 @@ function doit_search_api_page_result(array $variables) {
  * Returns TRUE if current path is a page that should use the user-registration template.
  */
 function doit_is_user_registration_template_page() {
-  if (user_is_logged_in()) {
+  if (user_is_logged_in() || !variable_get('dosomething_login_gate_use_user_registration_template')) {
     return FALSE;
   }
   $current_path = current_path();

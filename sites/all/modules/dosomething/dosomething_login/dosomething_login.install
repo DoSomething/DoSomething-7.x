@@ -175,4 +175,5 @@ function dosomething_login_update_7005() {
   variable_set('dosomething_login_gate_headline', "Join DoSomething.org");
   variable_set('dosomething_login_gate_subheadline', "JOIN THE LARGEST ORGANIZATION FOR YOUTH AND SOCIAL CHANGE");
   variable_set('dosomething_login_gate_description', "Take action on causes you care about, qualify for scholarships, join 2 million passionate members.");
+  variable_set('dosomething_login_gate_use_user_registration_template', FALSE);
 }
