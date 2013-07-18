@@ -139,8 +139,10 @@ function dosomething_campaign_user_login(&$edit, $account) {
  */
 function dosomething_campaign_is_campaign_gate_url($url) {
   //@TODO: Make this dynamic and smart and not horribly hardcoded for the Hunt campaign.
-  $hunt_campaign_nid = variable_get('hunt_campaign_nid', 729679);
-  if (strpos($url,'user/registration?destination=node/' . $hunt_campaign_nid) !== FALSE) {
+  $destination = '?destination=node/' . variable_get('hunt_campaign_nid', 729679);
+  $user_registration_url = 'user/registration' . $destination;
+  $user_login_url = 'user/login' . $destination;
+  if (strpos($url, $user_registration_url) !== FALSE || strpos($url, $user_login_url) !== FALSE) {
     return TRUE;
   }
 }

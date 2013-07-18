@@ -187,6 +187,7 @@ function doit_preprocess_page(&$variables) {
       $variables['page']['gate_description']= "We'll give you 11 actions over 11 days to help you show the world the kick ass things you can do.";
       $variables['page']['gate_image_filename'] = "gate-hunt.png";
       $variables['page']['gate_image_alt'] = "The Hunt";
+      $variables['page']['destination'] = '?destination=' . $destination['destination'];
     }
     // Else Use gate values from DoSomething Login config page:
     else {    
@@ -195,6 +196,7 @@ function doit_preprocess_page(&$variables) {
       $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
       $variables['page']['gate_image_filename'] = "gate-bg.jpg";
       $variables['page']['gate_image_alt'] = "High Five!";
+      $variables['page']['destination'] = '';
     }  
   }
 }

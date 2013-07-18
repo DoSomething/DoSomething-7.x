@@ -712,16 +712,15 @@ function dosomething_login_register_popup_form($form, &$form_state, $is_modal = 
     '#type' => 'submit',
     '#value' => t('Finish'),
   );
+  $user_login_link_attributes = array('attributes' => array('class' => array('or-sign-in')));
+  // Check if we have a destination:
+  $destination = drupal_get_destination();
+  $hunt_path = 'node/' . variable_get('hunt_campaign_nid', 729679);
+  if ($destination['destination'] == $hunt_path) {
+    $user_login_link_attributes[] = array('query' => array('destination' => $hunt_path));
+  }
   $form['user'] = array(
-    '#theme' => 'link',
-    '#path' => 'user',
-    '#prefix' => '<span class="already-member">already a member? ',
-    '#suffix' => '</span>',
-    '#text' => t("log in"),
-    '#options' => array(
-      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
-      'html' => FALSE,
-    ),
+    '#markup' => '<span class="already-member">already a member?' . l('log in', 'user/login', $user_login_link_attributes) . '</span>',
   );
 
   // Set default values if this was submitted to the related registration block first.

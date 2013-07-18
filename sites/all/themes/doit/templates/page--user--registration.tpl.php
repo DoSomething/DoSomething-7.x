@@ -26,8 +26,8 @@
   </section>
 
   <section class="form-container">
-    <div class="toolbar desktop"><a href="/user/login">sign in</a></div>
-    <div class="toolbar mobile"><a href="/user/login">sign in</a></div>
+    <div class="toolbar desktop"><a href="/user/login<?php print $variables['page']['destination']; ?>">sign in</a></div>
+    <div class="toolbar mobile"><a href="/user/login<?php print $variables['page']['destination']; ?>">sign in</a></div>
 
     <div class="field-content">
       <?php if ($page['gate_headline']) { print '<h1 class="headline">' . $page['gate_headline'] . '</h1>';} ?>
