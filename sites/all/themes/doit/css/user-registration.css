@@ -87,7 +87,7 @@ p {
   position: absolute;
   top: -15px;
   right: -15px;
-  width: 3em;
+  width: auto;
   font-size: 14px;
 }
 
@@ -193,7 +193,8 @@ form .disclaimer {
   display: none;
 }
 form #edit-final-submit, form #edit-submit {
-  margin: 0;
+  font-family: din-web-reg;
+  margin: 1em 0 0.5em;
   padding: 0.2em 1em 0.25em;
   clear: both;
   float: left;
@@ -271,11 +272,6 @@ form .form-item-day, form .form-item-month, form .form-item-year {
 }
 form .form-item-year {
   width: 3.5em;
-}
-form .ds-login-popup-footer {
-  margin: 1em 0;
-  float: left;
-  clear: both;
 }
 form .already-member {
   float: left;
@@ -356,7 +352,7 @@ input[type="password"] {
 
 .forgot-password-link {
   display: block;
-  padding: 1em 0;
+  padding: 1em 0 0;
 }
 
 #skip-link,
