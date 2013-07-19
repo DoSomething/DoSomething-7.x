@@ -71,6 +71,8 @@ function doit_preprocess_html(&$variables, $hook) {
  */
 function doit_preprocess_page(&$variables) {
   $theme_path = drupal_get_path('theme', 'doit');
+  $current_path = current_path();
+
   if (!isset($variables['secondary_links_theme_function'])) {
     $variables['secondary_links_theme_function'] = 'links__system_secondary_menu';
   }
@@ -182,13 +184,11 @@ function doit_preprocess_page(&$variables) {
     drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
     // Set Page Title in HTML HEAD.
     $page_title = variable_get('dosomething_login_gate_page_title', NULL);
-    if ($page_title && current_path() == 'user/registration') {
+    if ($page_title && $current_path == 'user/registration') {
       drupal_set_title(variable_get('dosomething_login_gate_page_title'));
     }
-    // Only display gate variables if our destination is not "The Hunt":
-    
     // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
-    // If this is the Gate for the Hunt, add specific CSS/JS files:
+    // If this is the Gate for the Hunt, use Hunt variables:
     if ($destination['destination'] == $hunt_path) {
       // Load variables for the Hunt.
       $variables['page']['gate_headline'] = "The Hunt";
@@ -196,7 +196,7 @@ function doit_preprocess_page(&$variables) {
       $variables['page']['gate_description']= "We'll give you 11 actions over 11 days to help you show the world the kick ass things you can do.";
       $variables['page']['gate_image_filename'] = "gate-hunt.png";
       $variables['page']['gate_image_alt'] = "The Hunt";
-      $variables['page']['destination'] = '?destination=' . $destination['destination'];
+      
     }
     // Else Use gate values from DoSomething Login config page:
     else {    
@@ -205,8 +205,34 @@ function doit_preprocess_page(&$variables) {
       $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
       $variables['page']['gate_image_filename'] = "gate-bg.jpg";
       $variables['page']['gate_image_alt'] = "High Five!";
-      $variables['page']['destination'] = '';
-    }  
+    }
+    // Determine what page we're on, and populate other gate variables accordingly.
+    if ($current_path == 'user/registration') {
+      $gate_link_path = 'user/login';
+      $gate_link_text = 'sign in';
+    }
+    else {
+      $gate_link_path = 'user/registration';
+      $gate_link_text = 'register';
+      if ($current_path == 'user/password') {
+        $variables['page']['gate_headline'] = t('Forgot your password?');
+        $is_user_password_page = TRUE;
+      }
+      else {
+        $variables['page']['gate_headline'] = t('Sign In');
+      }
+    }
+    // If there's a destination in the URL, gate links need it.
+    if ($destination['destination'] != $current_path) {
+      $gate_link_query = array('query' => array('destination' => $destination['destination']));
+    }
+    else {
+      $gate_link_query = array();
+    }
+    $variables['page']['gate_link'] = l(t($gate_link_text), $gate_link_path, $gate_link_query);
+    if ($is_user_password_page) {
+      $variables['page']['gate_go_back_link'] = l(t('go back'), 'user/login', $gate_link_query);
+    }
   }
 }
 
