@@ -353,7 +353,9 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
     $form['#validate'] = is_array($form['#validate']) ? $form['#validate'] : array();
     array_unshift($form['#validate'],'dosomething_login_user_login_validate');
     $form['name']['#title'] = t('Email, Username or Cell Number');
-    $form['name']['#description'] = t('Enter your email, username or cell phone number.');
+    if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
+      $form['name']['#description'] = t('Enter your email, username or cell phone number.');
+    }
   }
 }
 
@@ -364,6 +366,7 @@ function dosomething_login_form_user_pass_alter(&$form, &$form_state) {
   unset($form['#validate']);
   $form['#validate'] = array('dosomething_login_sms_password_recovery_validate');
   $form['#submit'] = array('dosomething_login_sms_password_recovery_submit');
+  $form['actions']['submit']['#value'] = t('Reset password');
 }
 
 /**
