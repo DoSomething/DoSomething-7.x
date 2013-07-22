@@ -88,7 +88,6 @@ if (!empty($_POST['url'])) {
                 $results['status'] .= $redirect_match[1];
               } else {
                 $results['status'] .= "Can't figure out where, though. Bummer.";
-                // $results['status'] .= "<pre>" . $curl_result . "</pre>";
               }
               
               break;
@@ -107,8 +106,10 @@ if (!empty($_POST['url'])) {
               
               // Varnish age.
               if (preg_match('|Age: (\d+)|', $curl_result, $varnish_match)) {
+                $t = $varnish_match[1];
                 $results['varnish age'] =
-                  sprintf('Cached for %d seconds.', $varnish_match[1]);
+                  sprintf('Cached for %02d days : %02d hrs : %02d min : %02d sec', 
+                    ($t/86400), ($t/3600%3600), ($t/60%60), ($t%60));
               }
               
             } else {
@@ -201,7 +202,6 @@ if (!empty($_POST['url'])) {
           <div style="clear: both"></div>
         <?php endif; ?>
 
-        <!-- Add your site or application content here -->
         <h1>Cashilator</h1>
         
         <form action="" method="post" id="form-clear">
