@@ -238,4 +238,21 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
     $this->make_screenshot($filename . '.png');
     $this->fail($e->getMessage());
   }
+
+  /**
+   * Connects to a url and checks the title on that url.
+   *
+   * @param string $check_path
+   *   The relative url, including leading slash, to the location you want to go.
+   *
+   * @param string $check_title
+   *   A string that should be contained within the title of the page.
+   */
+  protected function basicSession($check_path, $check_title) {
+    $this->session->open($this->base_url . $check_path);
+
+    // Make sure that the title suggests it's the common app petition.
+    $title = $this->getText('tag name', 'title');
+    $this->assertContains($check_title, $title);
+  }
 }
