@@ -723,7 +723,7 @@ function dosomething_login_register_popup_form($form, &$form_state, $is_modal = 
     $user_login_link_attributes['query'] = array('destination' => $hunt_path);
   }
   $form['user'] = array(
-    '#markup' => '<span class="already-member">already a member?' . l('log in', 'user/login', $user_login_link_attributes) . '</span>',
+    '#markup' => '<span class="already-member">already a member?' . ' ' . l('log in', 'user/login', $user_login_link_attributes) . '</span>',
   );
 
   // Set default values if this was submitted to the related registration block first.

@@ -30,8 +30,20 @@ function doit_preprocess_html(&$variables, $hook) {
    * if this is a user-registration template page.
    */
   elseif (doit_is_user_registration_template_page()) {
+
+    // Add custom typeface for gate
+    drupal_add_css(
+      'http://fonts.googleapis.com/css?family=Amatic+SC:400',
+      array('type' => 'external')
+    );
+
     $variables['theme_hook_suggestions'][] = 'html__user__registration';
     $css = drupal_add_css();
+
+    // Exclude all stylesheets except the following:
+    // ['https://c308566.ssl.cf1.rackcdn.com/din-511.css']
+    // ['sites/all/themes/doit/css/user-registration.css']
+
     unset(
       $css['sites/all/themes/doit/css/style.css'],
       $css['sites/all/themes/doit/css/tweetbutton.css'],
@@ -56,10 +68,9 @@ function doit_preprocess_html(&$variables, $hook) {
       $css['sites/all/modules/panels/css/panels.css'],
       $css['sites/all/modules/dosomething/dosomething_blocks/css/twitter-widget.css']
     );
-    // Exclude all stylesheets except the following:
-    // ['https://c308566.ssl.cf1.rackcdn.com/din-511.css']
-    // ['sites/all/themes/doit/css/user-registration.css']
+
     $variables['user_styles'] = drupal_get_css($css);
+
   } else {
     $variables['user_styles'] = $variables['styles'];
   }

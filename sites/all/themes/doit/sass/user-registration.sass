@@ -42,13 +42,14 @@ a
 // ----------
 h1, h2, h3, p
   line-height: 1.5em
-  font-weight: 500
+  font-weight: 400
   margin: 0
   padding: 0
 
 h1
   font-size: 2.5em
   text-transform: uppercase
+  font-weight: 500
 
 h2
   font-size: 2em
@@ -102,7 +103,7 @@ p
     position: absolute
     top: -15px
     right: -15px
-    width: 3em
+    width: auto
     font-size: 14px
 
 .toolbar.mobile
@@ -129,15 +130,18 @@ p
 
 .desktop-container
   h2
+    padding: 0.5em 0
     color: $accent
     font-size: 2em
+    line-height: 1.2em
 
 .form-container         // This section wraps the "mobile" field content sections
   h1                    // Show the <h1> shared by desktop and mobile views
     display: block
     color: $accent
-    font-size: 1.6em
-    line-height: 2.5em
+    font-size: 2.5em
+    line-height: 2em
+    font-family: 'Amatic SC', din-web-reg
 
   h2, p                 // Hide the <h2> & <p> used only on mobile
     display: none
@@ -196,7 +200,8 @@ form
     display: none
 
   #edit-final-submit, #edit-submit
-    margin: 0
+    font-family: din-web-reg
+    margin: 1em 0 0.5em
     padding: 0.2em 1em 0.25em
     clear: both
     float: left
@@ -260,17 +265,12 @@ form
   .form-item-year
     width: 3.5em
 
-  .ds-login-popup-footer
-    margin: 1em 0
-    float: left
-    clear: both
-
   .already-member
     float: left
     clear: left
     padding: 0
     font-family: din-web-reg
-    font-weight: 500
+    font-weight: 400
     font-size: 14px
     color: #222
 
@@ -329,7 +329,7 @@ input[type="password"]
 
 .forgot-password-link
   display: block
-  padding: 1em 0
+  padding: 1em 0 0
 
 // HIDE THE BODIES
 // ---------------
