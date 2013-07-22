@@ -8,7 +8,7 @@ a {
 
 h1, h2, h3, p {
   line-height: 1.5em;
-  font-weight: 500;
+  font-weight: 400;
   margin: 0;
   padding: 0;
 }
@@ -16,6 +16,7 @@ h1, h2, h3, p {
 h1 {
   font-size: 2.5em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 h2 {
@@ -113,15 +114,17 @@ p {
 }
 
 .desktop-container h2 {
+  padding: 0.5em 0;
   color: #84cdc9;
   font-size: 2em;
+  line-height: 1.2em;
 }
 
 .form-container h1 {
   display: block;
   color: #84cdc9;
-  font-size: 1.6em;
-  line-height: 2.5em;
+  font-size: 2.5em;
+  line-height: 2em;
   font-family: "Amatic SC", din-web-reg;
 }
 .form-container h2, .form-container p {
@@ -279,7 +282,7 @@ form .already-member {
   clear: left;
   padding: 0;
   font-family: din-web-reg;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   color: #222222;
 }
