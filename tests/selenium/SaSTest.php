@@ -19,6 +19,7 @@ class SaSTest extends SeleniumBaseTest {
     $this->assertSame('Fight Climate Change Like a Ninja Scholarship', $header);
 
     $this->findAndClick('css selector', '#edit-submit');
+    $this->make_screenshot('sas_fails_all_errors');
     $errors = $this->getText('class name', 'error');
     $this->assertContains('You must provide a valid name', $errors);
     $this->assertContains('Your phone number must be a valid phone number', $errors);
@@ -40,6 +41,7 @@ class SaSTest extends SeleniumBaseTest {
     $this->findAndSet('css selector', '#edit-submitted-referall-your-info-referral-phone-number', '212-660-2245');
 
     $this->findAndClick('css selector', '#edit-submit');
+    $this->make_screenshot('sas_fails_friend_errors');
     $errors = $this->getText('class name', 'error');
     $this->assertContains('You must provide at least one valid cell phone number', $errors);
   }
@@ -62,6 +64,7 @@ class SaSTest extends SeleniumBaseTest {
 
       $this->findAndClick('css selector', '#edit-submit');
 
+      $this->make_screenshot('sas_thx_for_sharing');
       $content = $this->getText('css selector', 'div[role="main"]');
       $this->assertContains('Thanks for sharing', $content);
 
