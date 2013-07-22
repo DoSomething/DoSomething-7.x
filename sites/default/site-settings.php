@@ -19,5 +19,5 @@ $conf['ds_migrate_url'] = 'http://10.179.111.41/migrate';*/
 $conf['file_directory_path'] = 'sites/default/files';
 $conf['file_temporary_path'] = 'sites/default/files/tmp';
 $conf['file_private_path'] = 'sites/default/files/private';
-$base_url = 'http://dosomething.org';
+$base_url = 'http://' . (!empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'dosomething.org');
 
