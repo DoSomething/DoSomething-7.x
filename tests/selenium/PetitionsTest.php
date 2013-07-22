@@ -6,13 +6,14 @@ require_once 'SeleniumBaseTest.php';
  * Petitions Testing
  */
 class PetitionsTest extends SeleniumBaseTest {
+  private $petition = 'common-app';
   /**
    * Test public signing -- signatures should appear in the bottom right box.
    */
   public function testPublicSignatureTest() {
     try {
       // Go to the petition.
-      $this->session->open($this->base_url . '/petition/common-app');
+      $this->session->open($this->base_url . '/petition/' . $this->petition);
 
       // Make sure that the title suggests it's the common app petition.
       $title = $this->getText('tag name', 'title');
@@ -52,7 +53,7 @@ class PetitionsTest extends SeleniumBaseTest {
   public function testPrivateSignatureTest() {
     try {
       // Go to the petition.
-      $this->session->open($this->base_url . '/petition/common-app');
+      $this->session->open($this->base_url . '/petition/' . $this->petition);
 
       // Make sure that the title suggests it's the common app petition.
       $title = $this->getText('tag name', 'title');

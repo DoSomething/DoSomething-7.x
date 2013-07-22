@@ -6,12 +6,13 @@ require_once 'SeleniumBaseTest.php';
  * Share a Stat Testing
  */
 class SaSTest extends SeleniumBaseTest {
+  private $scholarship = 'climate-change';
   /**
    * Test failing with no information.
    */
   public function testSaSFailsEverything() {
     // Go to the quizzes landing page.
-    $this->session->open($this->base_url . '/social-scholarship/climate-change');
+    $this->session->open($this->base_url . '/social-scholarship/' . $this->scholarship);
 
     // Make sure it is the quizzes landing page.
     $header = $this->getText('id', 'page-title');
@@ -29,7 +30,7 @@ class SaSTest extends SeleniumBaseTest {
    */
   public function testSaSFailsFriend() {
     // Go to the quizzes landing page.
-    $this->session->open($this->base_url . '/social-scholarship/climate-change');
+    $this->session->open($this->base_url . '/social-scholarship/' . $this->scholarship);
 
     // Make sure it is the quizzes landing page.
     $header = $this->getText('id', 'page-title');
@@ -48,7 +49,7 @@ class SaSTest extends SeleniumBaseTest {
   public function testSaSSuccess() {
     try {
       // Go to the quizzes landing page.
-      $this->session->open($this->base_url . '/social-scholarship/climate-change');
+      $this->session->open($this->base_url . '/social-scholarship/' . $this->scholarship);
 
       // Make sure it is the quizzes landing page.
       $header = $this->getText('id', 'page-title');
