@@ -37,6 +37,11 @@ function hunt_report_back_menu() {
  * Implements hook_block_info().
  */
 function hunt_report_back_block_info() {
+  $blocks['hunt_report_back_challenges'] = array(
+    'info' => t('Hunt Challenges'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+
   $blocks['hunt_report_back'] = array(
     'info' => t('Hunt Report Back'),
     'cache' => DRUPAL_NO_CACHE
@@ -51,6 +56,13 @@ function hunt_report_back_block_view($delta = '') {
   $block = array();
 
   switch ($delta) {
+    case 'hunt_report_back_challenges':
+
+      $challenges = _hunt_report_back_get_challenges();
+      $block['subject'] = t('Hunt Challenges');
+      $block['content'] = theme('hunt_challenges', compact('challenges'));
+      break;
+
     case 'hunt_report_back':
 
       if (module_exists('dosomething_campaign')) {
@@ -71,12 +83,26 @@ function hunt_report_back_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function hunt_report_back_theme($existing, $type, $theme, $path) {
+  return array(
+    'hunt_challenges' => array(
+      'template' => 'challenges',
+      'variables' => array(
+        'challeneges' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
  * The report back form
  */
 function hunt_report_back_form($form, &$form_state) {
   global $user;
 
-  $user_challenges = _hunt_report_back_get_challenges($user->uid);
+  $user_challenges = _hunt_report_back_get_submissions($user->uid);
 
   $challenge_limit = variable_get('hunt_report_back_challenge_limit', 11);
 
@@ -272,9 +298,47 @@ function hunt_report_back_form_submit($form, &$form_state) {
 }
 
 /**
+ * Get daily challenges
+ */
+function _hunt_report_back_get_challenges() {
+  $challenges = array();
+
+  $rs = db_query("SELECT * FROM variable WHERE name LIKE 'hunt_report_back_challenge_%%'");
+
+
+  $pattern = "/hunt_report_back_challenge_([0-9]*)_([a-zA-Z_]*)/";
+  foreach($rs as $row) {
+    preg_match_all(
+      $pattern,
+      $row->name,
+      $matches
+    );
+    if (!isset($challenges[$matches[1][0]])) {
+      $challenges[$matches[1][0]] = array();
+    }
+    $value = unserialize($row->value);
+    $challenges[$matches[1][0]][$matches[2][0]] = $value;
+
+    if ($matches[2][0] == 'active') {
+
+      if ($value == 1) {
+        $challenges[$matches[1][0]]['classes'] = array('available');
+      } else {
+        $challenges[$matches[1][0]]['classes'] = array('unavailable');
+      }
+    }
+
+  }
+  ksort($challenges);
+
+  return $challenges;
+
+}
+
+/**
  * Get report back submissions
  **/
-function _hunt_report_back_get_challenges($uid, $challenge = NULL) {
+function _hunt_report_back_get_submissions($uid, $challenge = NULL) {
 
   $rs = db_query(
     "SELECT * FROM {hunt_rb_submissions} WHERE uid = :uid",
@@ -332,191 +396,157 @@ function hunt_report_back_views_data() {
 
   $data['hunt_rb_submissions']['table']['base'] = array(
     'field' => 'id',
-    'title' => t('Hunt Report Back'), 
-    'help' => t('Hunt report backs.'), 
+    'title' => t('Hunt Report Back'),
+    'help' => t('Hunt report backs.'),
     'weight' => -10,
   );
 
   $data['hunt_rb_submissions']['table']['join'] = array(
     'users' => array(
-      'left_field' => 'uid', 
+      'left_field' => 'uid',
       'field' => 'uid',
     ),
     'file_managed' => array(
-      'left_field' => 'fid', 
+      'left_field' => 'fid',
       'field' => 'fid',
     ),
   );
 
   $data['hunt_rb_submissions']['id'] = array(
-    'title' => t('Report Back ID'), 
-    'help' => t('Report back id.'), 
+    'title' => t('Report Back ID'),
+    'help' => t('Report back id.'),
     'field' => array(
-      'handler' => 'views_handler_field_numeric', 
+      'handler' => 'views_handler_field_numeric',
       'click sortable' => TRUE,
-    ), 
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_numeric',
-    ), 
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
   );
 
   $data['hunt_rb_submissions']['uid'] = array(
-    'title' => t('User ID'), 
-    'help' => t('User id.'), 
+    'title' => t('User ID'),
+    'help' => t('User id.'),
     'field' => array(
-      'handler' => 'views_handler_field_numeric', 
+      'handler' => 'views_handler_field_numeric',
       'click sortable' => TRUE,
-    ), 
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_numeric',
-    ), 
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
     'relationship' => array(
       'base' => 'users',
-      'handler' => 'views_handler_relationship', 
+      'handler' => 'views_handler_relationship',
       'label' => t('Hunt User'),
     ),
   );
 
   $data['hunt_rb_submissions']['day'] = array(
-    'title' => t('Challenge Day'), 
-    'help' => t('Challenge Day.'), 
+    'title' => t('Challenge Day'),
+    'help' => t('Challenge Day.'),
     'field' => array(
-      'handler' => 'views_handler_field_numeric', 
+      'handler' => 'views_handler_field_numeric',
       'click sortable' => TRUE,
-    ), 
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_numeric',
-    ), 
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
   );
 
   $data['hunt_rb_submissions']['response'] = array(
-    'title' => t('Response'), 
-    'help' => t('Response copy.'), 
+    'title' => t('Response'),
+    'help' => t('Response copy.'),
     'field' => array(
-      'handler' => 'views_handler_field', 
+      'handler' => 'views_handler_field',
       'click sortable' => TRUE,
-    ), 
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
-    ), 
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_string',
-    ), 
+    ),
     'argument' => array(
       'handler' => 'views_handler_argument_string',
     ),
   );
 
   $data['hunt_rb_submissions']['people'] = array(
-    'title' => t('People Involved'), 
-    'help' => t('The number of people involved.'), 
+    'title' => t('People Involved'),
+    'help' => t('The number of people involved.'),
     'field' => array(
-      'handler' => 'views_handler_field_numeric', 
+      'handler' => 'views_handler_field_numeric',
       'click sortable' => TRUE,
-    ), 
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_numeric',
-    ), 
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
   );
 
   $data['hunt_rb_submissions']['uri'] = array(
-    'title' => t('Image uri'), 
-    'help' => t('Image uri.'), 
+    'title' => t('Image uri'),
+    'help' => t('Image uri.'),
     'field' => array(
-      'handler' => 'views_handler_field', 
+      'handler' => 'views_handler_field',
       'click sortable' => TRUE,
-    ), 
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
-    ), 
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_string',
-    ), 
+    ),
     'argument' => array(
       'handler' => 'views_handler_argument_string',
     ),
   );
 
   $data['hunt_rb_submissions']['fid'] = array(
-    'title' => t('Image file id'), 
-    'help' => t('The id of the image file.'), 
+    'title' => t('Image file id'),
+    'help' => t('The id of the image file.'),
     'field' => array(
-      'handler' => 'views_handler_field_numeric', 
+      'handler' => 'views_handler_field_numeric',
       'click sortable' => TRUE,
-    ), 
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_numeric',
-    ), 
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
     'relationship' => array(
       'base' => 'file_managed',
-      'handler' => 'views_handler_relationship', 
+      'handler' => 'views_handler_relationship',
       'label' => t('Hunt Image File'),
     ),
   );
 
   $data['hunt_rb_submissions']['created'] = array(
-    'title' => t('Created'), 
-    'help' => t('creation date.'), 
+    'title' => t('Created'),
+    'help' => t('creation date.'),
     'field' => array(
-      'handler' => 'views_handler_field_date', 
+      'handler' => 'views_handler_field_date',
       'click sortable' => TRUE,
-    ), 
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort_date',
-    ), 
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_date',
     ),
   );
-
-
-  // $data['example_table']['boolean_field'] = array(
-  //   'title' => t('Boolean field'), 
-  //   'help' => t('Just an on/off field.'), 
-  //   'field' => array(
-  //     'handler' => 'views_handler_field_boolean', 
-  //     'click sortable' => TRUE,
-  //   ), 
-  //   'filter' => array(
-  //     'handler' => 'views_handler_filter_boolean_operator',
-  //     'label' => t('Published'),
-  //     'type' => 'yes-no',
-  //     'use equal' => TRUE,
-  //   ), 
-  //   'sort' => array(
-  //     'handler' => 'views_handler_sort',
-  //   ),
-  // );
-
-  // $data['example_table']['timestamp_field'] = array(
-  //   'title' => t('Timestamp field'), 
-  //   'help' => t('Just a timestamp field.'), 
-  //   'field' => array(
-  //     'handler' => 'views_handler_field_date', 
-  //     'click sortable' => TRUE,
-  //   ), 
-  //   'sort' => array(
-  //     'handler' => 'views_handler_sort_date',
-  //   ), 
-  //   'filter' => array(
-  //     'handler' => 'views_handler_filter_date',
-  //   ),
-  // );
 
   return $data;
 }
