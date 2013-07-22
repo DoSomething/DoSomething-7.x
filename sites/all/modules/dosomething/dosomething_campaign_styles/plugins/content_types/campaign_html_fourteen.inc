@@ -6,7 +6,7 @@
  */
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Static Campaign HTML'),
+  'title' => t('Static Campaign HTML 2014'),
   'description' => t('Drops in static HTML pulled directly off the filesystem from within dosomething_campaign_styles.'),
   'category' => t('DoSomething Campaign'),
 );
@@ -14,8 +14,8 @@ $plugin = array(
 /**
  * Grab the static HTML file and return it.
  */
-function dosomething_campaign_styles_campaign_html_content_type_render($subtype, $conf, $panel_args, $context) {
-  $dir = drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles';
+function dosomething_campaign_styles_campaign_html_fourteen_content_type_render($subtype, $conf, $panel_args, $context) {
+  $dir = drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles' . '/2014';
   $file = $dir . '/' . $conf['html_source'];
   if (!file_exists($file)) {
     watchdog('dosomething', 'Campaign static HTML grabber attempted to grab the nonexistent html file @file', array('@file' => $file));
@@ -23,7 +23,7 @@ function dosomething_campaign_styles_campaign_html_content_type_render($subtype,
   }
 
   $block = new stdClass();
-  $block->title = 'Static campaign HTML';
+  $block->title = 'Static campaign HTML 2014';
   $block-> content = file_get_contents($file);
   return $block;
 }
@@ -31,11 +31,11 @@ function dosomething_campaign_styles_campaign_html_content_type_render($subtype,
 /**
  * Returns an edit form where the HTML file to inject is selected.
  */
-function dosomething_campaign_styles_campaign_html_content_type_edit_form($form, &$form_state) {
+function dosomething_campaign_styles_campaign_html_fourteen_content_type_edit_form($form, &$form_state) {
   // provide a blank form so we have a place to have context setting.
   $conf = $form_state['conf'];
 
-  $dir = drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles';
+  $dir = drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles' . '/2014';
 
   $found = file_scan_directory($dir, '/.*\.html$/', array(), 2);
   // this gets us all html files, not only those in a subdir, as the mask in
@@ -62,14 +62,14 @@ function dosomething_campaign_styles_campaign_html_content_type_edit_form($form,
   return $form;
 }
 
-function dosomething_campaign_styles_campaign_html_content_type_edit_form_submit($form, &$form_state) {
+function dosomething_campaign_styles_campaign_html_fourteen_content_type_edit_form_submit($form, &$form_state) {
   $form_state['conf']['html_source'] = $form_state['values']['html_source'];
 }
 
 /**
  * Returns the administrative title for a type.
  */
-function dosomething_campaign_styles_campaign_html_content_type_admin_title($subtype, $conf, $context) {
+function dosomething_campaign_styles_campaign_html_fourteen_content_type_admin_title($subtype, $conf, $context) {
   $parts = explode(DIRECTORY_SEPARATOR, $conf['html_source']);
   $year = array_shift($parts);
   $campaign = array_shift($parts);
