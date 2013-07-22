@@ -79,9 +79,9 @@ function dosomething_campaign_block_view($delta = '') {
 function dosomething_campaign_init() {
   global $user;
   // Check if current path is Hunt campaign, and route to either registration gate, join page, or the actual campaign.
-  $campaign_nid = variable_get('hunt_campaign_nid', 729679);
-  if (current_path() == 'node/' . $campaign_nid ) {
-    dosomething_campaign_redirector($user, $campaign_nid);
+  $node = menu_get_object();
+  if ($node->type == 'campaign' && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1) {
+    dosomething_campaign_redirector($user, $node->nid);
   }
 }
 
@@ -89,12 +89,10 @@ function dosomething_campaign_init() {
  * Redirects given $user object to either the: 
  * - Campaign user/registration gate
  * - the join page
- * - or to the actual Campaign node
  * based on given $nid and whether or not the user has logged in and/or signed up yet.
  */
 function dosomething_campaign_redirector($user, $nid) {
   // If anon user, redirect to user/destination?node=$campaign_nid
-  //@todo: once the campaign is_gate_registration field is in place, add check to redirect to user/reg page if its TRUE
   if ($user->uid == 0) {
     drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $nid)));
   }
