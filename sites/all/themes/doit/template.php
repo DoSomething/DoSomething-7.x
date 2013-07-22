@@ -182,11 +182,6 @@ function doit_preprocess_page(&$variables) {
     // Use default user-registration page specfic CSS/JS files:
     drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
     drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
-    // Set Page Title in HTML HEAD.
-    $page_title = variable_get('dosomething_login_gate_page_title', NULL);
-    if ($page_title && $current_path == 'user/registration') {
-      drupal_set_title(variable_get('dosomething_login_gate_page_title'));
-    }
     $default_gate = TRUE;
     // If destination is set in query string, check to see if its a gated campaign node.
     if ($destination['destination'] != $current_path) {
@@ -200,6 +195,9 @@ function doit_preprocess_page(&$variables) {
           $variables['page']['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
           $variables['page']['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
           $variables['page']['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
+          if (isset($node->field_gate_page_title[LANGUAGE_NONE][0]['value']) && $current_path == 'user/registration') {
+            drupal_set_title($node->field_gate_page_title[LANGUAGE_NONE][0]['value']);
+          }
         }
       }
     }
@@ -209,7 +207,11 @@ function doit_preprocess_page(&$variables) {
       $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
       $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
       $variables['page']['gate_image_src'] = "/sites/all/themes/doit/images/gate-bg.jpg";
-      $variables['page']['gate_image_alt'] = "High Five!"; 
+      $variables['page']['gate_image_alt'] = "High Five!";
+      $page_title = variable_get('dosomething_login_gate_page_title', NULL);
+      if ($page_title && $current_path == 'user/registration') {
+        drupal_set_title(variable_get('dosomething_login_gate_page_title'));
+      }
     }
     // Determine what page we're on, and populate other gate variables accordingly.
     if ($current_path == 'user/registration') {
