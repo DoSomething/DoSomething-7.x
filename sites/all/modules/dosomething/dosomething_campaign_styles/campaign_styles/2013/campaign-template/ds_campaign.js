@@ -55,19 +55,53 @@
       }
       faq_toggle('h3', 'div');
 
-      // Restyles #headline section depending on campaign model
-      if( $('#sms').length ) {
-        $('#headline .headline-callout').addClass('alt');
-        $('#headline').css('margin','1.5em 0 0 0');
-        $('#sms').css('margin-top','-3em');
-        $('#call-to-action').remove();
+      // Switch "active" class on sibling elements
+      var activeSwitch = function(target, element) {
+
+        $(target).click(function() {
+          var $this = $(this);
+          if ($this.not('.active')) {
+            $this.addClass('active');
+            $this.siblings(element).removeClass('active');
+          }
+        });
+
       }
-      else {
-        $('#headline').css({
-          'background' : 'none',
-          'border' : 'none'
-          });
-      }
+
+      // ------------------------ //
+      // CAMPAIGN MODEL SWITCHING //
+      // ------------------------ //
+
+      // Add "switch" buttons to DOM
+      switch_buttons = '<div id="model-switch"><a id="sms-button" href="#">SMS</a><a id="web-button" href="#" class="active">web</a>';
+      $('.region.region-utility').prepend(switch_buttons);
+
+      // Display different sections based on type selection
+      $('#model-switch a').click(function() {
+        var $this = $(this);
+
+        // Only flip styles if the requested model is not currently being shown
+        if (!$this.hasClass('active')) {
+
+          if ($this.is('#sms-button')) {
+            $('#headline').removeClass('alt');
+            $('#sms').show();
+            $('#call-to-action').hide();
+          }
+          else if ($this.is('#web-button')) {
+            $('#headline').removeClass('alt');
+            $('#headline').addClass('alt');
+            $('#sms').hide();
+            $('#call-to-action').show();
+          }
+
+        }
+        return false;
+      });
+
+      // Allow for the passing of "active" class on click
+      activeSwitch('#web-button', 'a');
+      activeSwitch('#sms-button', 'a');
 
     } // end attach: function
   }; // end Drupal.behaviors
