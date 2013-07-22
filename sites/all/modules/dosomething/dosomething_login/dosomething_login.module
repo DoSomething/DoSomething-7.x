@@ -14,17 +14,15 @@ function dosomething_login_menu() {
     'title' => 'Registration',
     'description' => 'Register through your Facebook account.',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('dosomething_login_register_facebook'),
+    'page arguments' => array('dosomething_login_register_facebook_form'),
     'access callback' => 'user_register_access',
     'type' => MENU_CALLBACK,
   );
   $items['user/registration'] = array(
     'title' => 'Registration',
-    'description' => 'Sign up URL to which mobile commons submits sign up requests to us.',
-    'page callback' => 'dosomething_login_user_register',
-    //'page arguments' => array('dosomething_login_register_popup_form'),
+    'description' => 'General user registration.',
+    'page callback' => 'dosomething_login_page_user_registration',
     'access callback' => 'dosomething_login_user_register_access',
-    'type' => MENU_CALLBACK,
   );
   $items['user/registration/ajax'] = array(
     'page callback' => 'dosomething_login_ajax',
@@ -57,6 +55,14 @@ function dosomething_login_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['admin/config/dosomething/dosomething_login'] = array(
+    'title' => 'User Registration Settings',
+    'description' => 'Configure the text to appear on the default user registration form.',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_login_admin_settings_form'),
+    'file' => 'dosomething_login.admin.inc',
+  );
   return $items;
 }
 
@@ -81,14 +87,13 @@ function dosomething_login_user_register_access() {
 /**
  *  Loads the registration form (assuming the user is logged out), or redirects away if they're logged in.
  */
-function dosomething_login_user_register() {
+function dosomething_login_page_user_registration() {
   // If the user is logged in, redirect to their ultimate destination because they're already registered.
   if (!empty($_GET['destination']) && drupal_valid_path($_GET['destination']) && user_is_logged_in()) {
     drupal_goto($_GET['destination']);
   }
-
   // Otherwise, show the registration form.
-  return drupal_get_form('dosomething_login_register_popup_form');
+  return drupal_get_form('dosomething_login_register_popup_form', FALSE);
 }
 
 /**
@@ -348,27 +353,9 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
     $form['#validate'] = is_array($form['#validate']) ? $form['#validate'] : array();
     array_unshift($form['#validate'],'dosomething_login_user_login_validate');
     $form['name']['#title'] = t('Email, Username or Cell Number');
-    $form['name']['#description'] = t('Enter your email, username or cell phone number.');
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter()
- */
-function dosomething_login_form_dosomething_login_register_popup_form_alter(&$form, &$form_state, $form_id) {
-  // Used to add css to beta campaign "project clean up"
-  // No user state check is occurring as this form is only being called for anonymous users
-  $path = urldecode(request_uri());
-  if ($path == '/user/registration?destination=node/' . variable_get('beta_campaign_nid', 724796)) {
-    // add custom JS and CSS files to this instance of the login/reg form only
-    drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.js');
-    drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/cleanup/gate.css');
-  }
-  
-  if ($path == '/user/registration?destination=node/' . variable_get('hunt_campaign_nid', 729679)) {
-    // add custom JS and CSS files to this instance of the login/reg form only
-    drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
-    drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
+    if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
+      $form['name']['#description'] = t('Enter your email, username or cell phone number.');
+    }
   }
 }
 
@@ -379,6 +366,7 @@ function dosomething_login_form_user_pass_alter(&$form, &$form_state) {
   unset($form['#validate']);
   $form['#validate'] = array('dosomething_login_sms_password_recovery_validate');
   $form['#submit'] = array('dosomething_login_sms_password_recovery_submit');
+  $form['actions']['submit']['#value'] = t('Reset password');
 }
 
 /**
@@ -538,7 +526,7 @@ function dosomething_login_profile_form_validate($form, &$form_state) {
 /**
  * The popup register form for 'Become a Member'.
  */
-function dosomething_login_register_popup_form($form, &$form_state) {
+function dosomething_login_register_popup_form($form, &$form_state, $is_modal = TRUE) {
   // we want to cache this form, because we'll be using ajax_get_form, which requires that the form be secure
   if (isset($_GET['destination'])) {
     $path = $_GET['destination'];
@@ -575,15 +563,16 @@ function dosomething_login_register_popup_form($form, &$form_state) {
   if ($query['destination'] == 'node/' . variable_get('cgg_form_id')) {
     $query['destination'] .= '?_';
   }
-
-  $form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
+  // this gets overriden in the next line
+  //$form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
   $form['#action'] = url('user/registration', array('query' => $query));
-
-  $form['title_text'] = array(
-    '#type' => 'item',
-    '#title' => t("You’re Almost There"),
-  );
-  $form['#action'] = url('user/registration', array('query' => $query));
+  // Only display title if this is being called in a modal.
+  if ($is_modal) {
+    $form['title_text'] = array(
+      '#type' => 'item',
+      '#title' => t("You’re Almost There"),
+    );
+  }
   $form['connect'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -644,7 +633,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Email') . theme('dosomething_login_form_required_marker', array()),
     '#attributes' => array(
-      'placeholder' => t('Email'),
+      'placeholder' => t('Email Address'),
     ),
     '#default_value' => $e,
     '#size' => 20,
@@ -654,7 +643,7 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Cell'),
     '#attributes' => array(
-      'placeholder' => t('Cell'),
+      'placeholder' => t('Cell phone number (optional)'),
     ),
     '#size' => 20,
   );
@@ -726,16 +715,15 @@ function dosomething_login_register_popup_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Finish'),
   );
+  $user_login_link_attributes['attributes'] = array('class' => array('or-sign-in', 'sign-in-popup'));
+  // Check if we have a destination:
+  $destination = drupal_get_destination();
+  $hunt_path = 'node/' . variable_get('hunt_campaign_nid', 729679);
+  if ($destination['destination'] == $hunt_path) {
+    $user_login_link_attributes['query'] = array('destination' => $hunt_path);
+  }
   $form['user'] = array(
-    '#theme' => 'link',
-    '#path' => 'user',
-    '#prefix' => '<span class="already-member">already a member? ',
-    '#suffix' => '</span>',
-    '#text' => t("log in"),
-    '#options' => array(
-      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
-      'html' => FALSE,
-    ),
+    '#markup' => '<span class="already-member">already a member?' . l('log in', 'user/login', $user_login_link_attributes) . '</span>',
   );
 
   // Set default values if this was submitted to the related registration block first.
@@ -944,12 +932,17 @@ function dosomething_login_register_block($form, &$form_state) {
     '#value' => t('Go'),
     '#attributes' => array('class' => array('submit')),
   );
+  $sign_in_css = '';
+  // Use popup for sign-in only if we aren't using the user-registration template.
+  if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
+    $sign_in_css = 'sign-in-popup';
+  }
   $form['ds-register-wrapper']['user'] = array(
     '#theme' => 'link',
     '#path' => 'user',
     '#text' => t("or sign in"),
     '#options' => array(
-      'attributes' => array('class' => array('or-sign-in', 'sign-in-popup')),
+      'attributes' => array('class' => array('or-sign-in', $sign_in_css)),
       'html' => FALSE,
     ),
   );
@@ -1836,7 +1829,7 @@ function dosomething_login_action_prereg($app_id, $access_token) {
  * Registration page through Facebook. Prepopulates info and connects user
  * to Facebook account.
  */
-function dosomething_login_register_facebook($form, &$form_state) {
+function dosomething_login_register_facebook_form($form, &$form_state) {
   $form = drupal_retrieve_form('dosomething_login_register_popup_form', $form_state);
   $form['#action'] = '/user/registration/fb/?destination=front';
   unset($form['connect']);

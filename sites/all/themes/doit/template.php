@@ -1,8 +1,9 @@
 <?php
 
+/**
+ * Implements hook_preprocess_html()).
+ */
 function doit_preprocess_html(&$variables, $hook) {
-  // dsm($hook);
-  // dsm($variables);
   $theme_path = drupal_get_path('theme', 'doit');
   $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
   // mootools causes AJAX conflicts. Selectivizr works without it.
@@ -15,11 +16,63 @@ function doit_preprocess_html(&$variables, $hook) {
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
 
+  // If dosomething_login_gate_use_user_registration_template is FALSE, don't use user-registration template on actual user/registration page.
+  if (!variable_get('dosomething_login_gate_use_user_registration_template') && current_path() == 'user/registration') {
+    foreach ($variables['theme_hook_suggestions'] as $key => $value) {
+      if ($value == 'html__user__registration') {
+        unset($variables['theme_hook_suggestions'][$key]);
+      }
+    }
+  }
+  /*
+   * Remove all global stylesheets and
+   * load user registration HTML templates 
+   * if this is a user-registration template page.
+   */
+  elseif (doit_is_user_registration_template_page()) {
+    $variables['theme_hook_suggestions'][] = 'html__user__registration';
+    $css = drupal_add_css();
+    unset(
+      $css['sites/all/themes/doit/css/style.css'],
+      $css['sites/all/themes/doit/css/tweetbutton.css'],
+      $css['sites/all/themes/doit/css/views.css'],
+      $css['sites/all/modules/chartbeat/chartbeat.css'],
+      $css['public://css_injector/css_injector_6.css'],
+      $css['sites/all/modules/ctools/css/ctools.css'],
+      $css['modules/system/system.base.css'],
+      $css['modules/system/system.menus.css'],
+      $css['modules/system/system.messages.css'],
+      $css['modules/system/system.theme.css'],
+      $css['sites/all/modules/date/date_api/date.css'],
+      $css['sites/all/modules/date/date_popup/themes/datepicker.1.7.css'],
+      $css['sites/all/modules/dosomething/connections/css/connections-rules.css'],
+      $css['modules/field/theme/field.css'],
+      $css['modules/node/node.css'],
+      $css['modules/poll/poll.css'],
+      $css['modules/search/search.css'],
+      $css['modules/user/user.css'],
+      $css['sites/all/modules/views/css/views.css'],
+      $css['sites/all/modules/views_slideshow/views_slideshow.css'],
+      $css['sites/all/modules/panels/css/panels.css'],
+      $css['sites/all/modules/dosomething/dosomething_blocks/css/twitter-widget.css']
+    );
+    // Exclude all stylesheets except the following:
+    // ['https://c308566.ssl.cf1.rackcdn.com/din-511.css']
+    // ['sites/all/themes/doit/css/user-registration.css']
+    $variables['user_styles'] = drupal_get_css($css);
+  } else {
+    $variables['user_styles'] = $variables['styles'];
+  }
   drupal_alter('html_templates', $variables);
 }
 
+/**
+ * Implements hook_preprocess_page().
+ */
 function doit_preprocess_page(&$variables) {
   $theme_path = drupal_get_path('theme', 'doit');
+  $current_path = current_path();
+
   if (!isset($variables['secondary_links_theme_function'])) {
     $variables['secondary_links_theme_function'] = 'links__system_secondary_menu';
   }
@@ -77,18 +130,6 @@ function doit_preprocess_page(&$variables) {
     }
   }
 
-  // gate beta campaign page
-  $beta_campaign = variable_get('beta_campaign_nid', 724796);
-  if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $beta_campaign))) {
-    drupal_goto('user/registration?destination=node/' . $beta_campaign);
-  }
-
-    // gate hunt campaign page
-  $hunt_campaign = variable_get('hunt_campaign_nid', 729679);
-  if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $hunt_campaign))) {
-    drupal_goto('user/registration?destination=node/' . $hunt_campaign);
-  }
-
   // Load Webfonts specific to the page
   if (module_exists('dosomething_perfomance_toolbox')) {
     dosomething_perfomance_toolbox_webfonts();
@@ -118,6 +159,81 @@ function doit_preprocess_page(&$variables) {
 
   }
 
+  $destination = drupal_get_destination();
+  $hunt_path = 'node/' . variable_get('hunt_campaign_nid', 729679);
+
+  // If dosomething_login_gate_use_user_registration_template is FALSE, don't use user-registration template on actual user/registration page.
+  if (!variable_get('dosomething_login_gate_use_user_registration_template') && current_path() == 'user/registration') {
+    foreach ($variables['theme_hook_suggestions'] as $key => $value) {
+      if ($value == 'page__user__registration') {
+        unset($variables['theme_hook_suggestions'][$key]);
+      }
+      // If this is the Hunt gate, use the old campaign JS / CSS.
+      if ($destination['destination'] == $hunt_path) {
+        drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
+        drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
+      }
+    }
+  }
+  // Load user-registration page templates and gate values if this is a user-registration template page:
+  if (doit_is_user_registration_template_page()) {
+    // Use user-registration page template:
+    $variables['theme_hook_suggestions'][] = 'page__user__registration';
+    // Use default user-registration page specfic CSS/JS files:
+    drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
+    drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
+    // Set Page Title in HTML HEAD.
+    $page_title = variable_get('dosomething_login_gate_page_title', NULL);
+    if ($page_title && $current_path == 'user/registration') {
+      drupal_set_title(variable_get('dosomething_login_gate_page_title'));
+    }
+    // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
+    // If this is the Gate for the Hunt, use Hunt variables:
+    if ($destination['destination'] == $hunt_path) {
+      // Load variables for the Hunt.
+      $variables['page']['gate_headline'] = "The Hunt";
+      $variables['page']['gate_subheadline'] = "Show us you're a social change rockstar";
+      $variables['page']['gate_description']= "We'll give you 11 actions over 11 days to help you show the world the kick ass things you can do.";
+      $variables['page']['gate_image_filename'] = "gate-hunt.png";
+      $variables['page']['gate_image_alt'] = "The Hunt";
+      
+    }
+    // Else Use gate values from DoSomething Login config page:
+    else {    
+      $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
+      $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
+      $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
+      $variables['page']['gate_image_filename'] = "gate-bg.jpg";
+      $variables['page']['gate_image_alt'] = "High Five!";
+    }
+    // Determine what page we're on, and populate other gate variables accordingly.
+    if ($current_path == 'user/registration') {
+      $gate_link_path = 'user/login';
+      $gate_link_text = 'sign in';
+    }
+    else {
+      $gate_link_path = 'user/registration';
+      $gate_link_text = 'register';
+      if ($current_path == 'user/password') {
+        $variables['page']['gate_headline'] = t('Forgot your password?');
+        $is_user_password_page = TRUE;
+      }
+      else {
+        $variables['page']['gate_headline'] = t('Sign In');
+      }
+    }
+    // If there's a destination in the URL, gate links need it.
+    if ($destination['destination'] != $current_path) {
+      $gate_link_query = array('query' => array('destination' => $destination['destination']));
+    }
+    else {
+      $gate_link_query = array();
+    }
+    $variables['page']['gate_link'] = l(t($gate_link_text), $gate_link_path, $gate_link_query);
+    if ($is_user_password_page) {
+      $variables['page']['gate_go_back_link'] = l(t('go back'), 'user/login', $gate_link_query);
+    }
+  }
 }
 
 /**
@@ -677,3 +793,18 @@ function doit_search_api_page_result(array $variables) {
 
   return $output;
 }
+
+/**
+ * Returns TRUE if current path is a page that should use the user-registration template.
+ */
+function doit_is_user_registration_template_page() {
+  if (user_is_logged_in() || !variable_get('dosomething_login_gate_use_user_registration_template')) {
+    return FALSE;
+  }
+  $current_path = current_path();
+  return $current_path == 'user/registration' || 
+    $current_path == 'user/password' || 
+    $current_path == 'user' || 
+    $current_path == 'user/login';
+}
+
