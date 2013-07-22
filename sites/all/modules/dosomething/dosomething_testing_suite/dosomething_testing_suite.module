@@ -10,6 +10,17 @@ class WebTestSuite extends DrupalWebTestCase {
 
     return $this->factory;
   }
+
+  // Greatly speeds up test time.
+  public function testAll() {
+    $methods = get_class_methods($this);
+    foreach ($methods as $test) {
+      if (strpos($test, 'SubTest') !== FALSE) {
+        $this->{$test}();
+      }
+      else continue;
+    }
+  }
 }
 
 class Factory extends WebTestSuite {
