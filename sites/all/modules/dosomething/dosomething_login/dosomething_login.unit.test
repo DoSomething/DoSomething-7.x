@@ -1,0 +1,23 @@
+<?php
+
+class DosomethingLoginTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Login Tests',
+      'description' => 'DoSomething login unit tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_general_clean_zip()
+   */
+  public function testLogRegAccess() {
+    
+    #$this->assertIdentical($cleaned, 'ABC123');
+  }
+}
