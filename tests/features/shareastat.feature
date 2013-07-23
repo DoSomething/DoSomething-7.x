@@ -1,6 +1,6 @@
-Feature: Petition tests
+Feature: Share a Stat tests
   As a site visitor
-  I can sign petitions
+  I can share a stat with my friends.
 
   Background:
     Given I am on "/social-scholarship/climate-change"
