@@ -152,6 +152,34 @@ p {
   }
 }
 
+div.messages.error {
+  margin: 0 0 1em 0;
+  float: right;
+  width: 100%;
+  color: #ee0044;
+  list-style: none outside none;
+}
+@media only screen and (max-width: 800px) {
+  div.messages.error {
+    margin: 0 auto;
+    width: 90%;
+  }
+}
+div.messages.error ul {
+  padding: 0;
+  margin: 0;
+}
+div.messages.error li, div.messages.error a {
+  color: #ee0044;
+}
+div.messages.error li {
+  list-style: none;
+}
+
+label.error {
+  color: #ee0044;
+}
+
 .form-container {
   float: right;
   width: 38.5%;
@@ -308,6 +336,10 @@ form .under-13-field {
   float: left;
 }
 
+#edit-parent-email-message {
+  margin: 0.5em 0;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="number"],
@@ -361,10 +393,11 @@ input[type="password"] {
 
 #skip-link,
 #edit-connect,
-#edit-or {
-  display: none;
+#edit-or,
+.element-invisible {
+  display: none !important;
 }
 
 .form-required {
-  display: none;
+  display: none !important;
 }
