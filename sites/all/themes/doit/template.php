@@ -225,6 +225,7 @@ function doit_preprocess_page(&$variables) {
       }
     }
     // Determine what page we're on, and populate other gate variables accordingly.
+    $is_user_password_page = FALSE;
     if ($current_path == 'user/registration') {
       $gate_link_path = 'user/login';
       $gate_link_text = 'sign in';
@@ -250,6 +251,9 @@ function doit_preprocess_page(&$variables) {
     $variables['page']['gate_link'] = l(t($gate_link_text), $gate_link_path, $gate_link_query);
     if ($is_user_password_page) {
       $variables['page']['gate_go_back_link'] = l(t('go back'), 'user/login', $gate_link_query);
+    }
+    else {
+      $variables['page']['gate_go_back_link'] = FALSE;
     }
   }
 }
