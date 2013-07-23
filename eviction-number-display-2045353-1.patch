@@ -1,0 +1,13 @@
+diff --git a/sites/all/modules/memcache/memcache_admin/memcache_admin.module b/sites/all/modules/memcache/memcache_admin/memcache_admin.module
+index 9760668..7da4014 100644
+--- a/sites/all/modules/memcache/memcache_admin/memcache_admin.module
++++ b/sites/all/modules/memcache/memcache_admin/memcache_admin.module
+@@ -326,7 +326,7 @@ function memcache_admin_stats($bin = 'cache') {
+           $data['memory_available']),
+         array_merge(
+           array('header' => t('Evictions')),
+-          array('total' => $stats['total']['evictions']),
++          array('total' => number_format($stats['total']['evictions'])),
+           $data['memory_evictions']),
+       ),
+     );
