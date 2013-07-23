@@ -73,13 +73,6 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
     $this->web_driver = new WebDriver($this->wd_host);
     $this->session = $this->web_driver->session('firefox');
 
-    // Try to get the base URL from the local Drupal settings.
-    #if (!empty($GLOBALS['base_url'])) {
-      #$this->base_url = $GLOBALS['base_url'];
-    #} else {
-      #exit('No base URL! Set $base_url in site-settings.php.');
-    #}
-
     $this->base_path_tests = __DIR__ . '/../../tests';
     if (!empty($GLOBALS['base_path_tests'])) {
       $this->base_path_tests = $GLOBALS['base_path_tests'];
