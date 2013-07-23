@@ -445,6 +445,10 @@ function _dosomething_services_user_resource_login($username, $password, $email)
   // If there's a username, then use normal login process
   elseif (!empty($username)) {
     try {
+      // If logging in with cell phone
+      if($account = dosomething_general_find_user_by_cell($username)) {
+        $username = $account->name;
+      }
       $return = _user_resource_login($username, $password);
 
       // Successful login. Append more info to the returned object
