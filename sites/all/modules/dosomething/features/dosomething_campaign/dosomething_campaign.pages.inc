@@ -50,8 +50,9 @@ function dosomething_campaign_join_page_form($form, &$form_state, $nid, $uid) {
 function dosomething_campaign_join_page_form_submit($form, &$form_state) {
   //  Lets submit and redirect.
   $campaign_nid = $form_state['values']['nid'];
+  $campaign_node = node_load($campaign_nid);
   global $user;
-  dosomething_campaign_signup($user, $campaign_nid);
+  dosomething_campaign_signup($user, $campaign_node);
   // Me knows this is bad.  Could not get redirect working properly.
   drupal_goto('node/' . $campaign_nid);
 }
