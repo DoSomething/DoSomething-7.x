@@ -10,8 +10,8 @@ include_once('dosomething_campaign_contact_form.features.inc');
  * Implements hook_page_alter().
  */
 function dosomething_campaign_contact_form_page_alter(&$page) {
-  // If anonymous user:
-  if (!user_is_logged_in()) {
+  // If anonymous user and we're viewing a node page:
+  if (!user_is_logged_in() && arg(0) == 'node' && is_numeric(arg(1))) {
     // Check if we are viewing a campaign node:
     $node = menu_get_object();
     if ($node->type == 'campaign') {

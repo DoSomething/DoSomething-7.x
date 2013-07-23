@@ -1096,7 +1096,18 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
     $form['pass']['#description'] = t('Enter the password that accompanies your email, username, or cell phone number.');
     // Add forgot password link into description if we are using the user-registration template.
     if (variable_get('dosomething_login_gate_use_user_registration_template')) {
-      $form['pass']['#description'] .= '<span class="forgot-password-link">' . l(t('Forgot your password?'), 'user/password') . '</span>';
+      // Set this to empty instead of unsetting, to avoid PHP errors that come up for other code that checks for the name description.
+      $form['name']['#description'] = '';
+      $destination = drupal_get_destination();
+      if ($destination['destination'] != current_path()) {
+        $forgot_link_query = array('query' => array('destination' => $destination['destination']));
+      }
+      else {
+        $forgot_link_query = array();
+      }
+      $form['pass']['#description'] = '<span class="forgot-password-link">';
+      $form['pass']['#description'] .= l(t('Forgot your password?'), 'user/password', $forgot_link_query);
+      $form['pass']['#description'] .= '</span>';
     }
   }
   // Unset N/A option in required field_camp checkboxes.
