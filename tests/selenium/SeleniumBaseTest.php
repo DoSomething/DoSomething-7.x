@@ -24,7 +24,7 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
    *
    * @var string
    */
-  protected $base_url;
+  protected $base_url = 'http://qa.ds.lan';
 
   /**
    * Base tests directory. Can be overridden in site-settings.php.
@@ -75,7 +75,7 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
 
     // Try to get the base URL from the local Drupal settings.
     if (!empty($GLOBALS['base_url'])) {
-      $this->base_url = $GLOBALS['base_url'];
+      #$this->base_url = $GLOBALS['base_url'];
     } else {
       exit('No base URL! Set $base_url in site-settings.php.');
     }
@@ -88,7 +88,7 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
     $this->screenshotDir = $this->base_path_tests . '/selenium/screenshots';
     $this->mocksDir = $this->base_path_tests . '/selenium/mocks';
 
-    if (!is_dir($this->screenshotDir) || !is_writable($this->screenshotDir)) {
+    if (!is_dir($this->screenshotDir)) {
       if (FALSE === mkdir($this->screenshotDir)) {
         exit(sprintf("Can't create the screenshot directory at %s", $this->screenshotDir));
       }
