@@ -240,7 +240,7 @@ class SeleniumBaseTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Connects to a url and checks the title on that url.
+   * Connects to a url and checks that the title matches a string.
    *
    * @param string $check_path
    *   The relative url, including leading slash, to the location you want to go.
