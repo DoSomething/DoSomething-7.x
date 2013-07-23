@@ -60,3 +60,11 @@ function dosomething_subscribe_update_7004() {
   variable_set('dosomething_subscribe_mailchimp_hunt', 'Hunt2013');
   variable_set('dosomething_subscribe_mobilecommons_hunt', '158559');
 }
+
+/**
+ * Remove Mailchimp and Mobilecommons variables for The Hunt - stored on campaign node now.
+ */
+function dosomething_subscribe_update_7005() {
+  variable_del('dosomething_subscribe_mailchimp_hunt');
+  variable_del('dosomething_subscribe_mobilecommons_hunt');
+}

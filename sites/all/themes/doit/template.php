@@ -193,29 +193,36 @@ function doit_preprocess_page(&$variables) {
     // Use default user-registration page specfic CSS/JS files:
     drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
     drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
-    // Set Page Title in HTML HEAD.
-    $page_title = variable_get('dosomething_login_gate_page_title', NULL);
-    if ($page_title && $current_path == 'user/registration') {
-      drupal_set_title(variable_get('dosomething_login_gate_page_title'));
+    $default_gate = TRUE;
+    // If destination is set in query string, check to see if its a gated campaign node.
+    if ($destination['destination'] != $current_path) {
+      $dest_path_parts = explode('/', $destination['destination']);
+      if ($dest_path_parts[0] == 'node' && is_numeric($dest_path_parts[1]) && !isset($dest_path_parts[2])) {
+        $node = node_load($dest_path_parts[1]);
+        if ($node->type == 'campaign' && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1) {
+          $default_gate = FALSE;
+          $variables['page']['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
+          $variables['page']['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
+          $variables['page']['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
+          $variables['page']['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
+          $variables['page']['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
+          if (isset($node->field_gate_page_title[LANGUAGE_NONE][0]['value']) && $current_path == 'user/registration') {
+            drupal_set_title($node->field_gate_page_title[LANGUAGE_NONE][0]['value']);
+          }
+        }
+      }
     }
-    // @todo: Add checks to see if we have a gated campaign nid in the destination & use its gate values if so.
-    // If this is the Gate for the Hunt, use Hunt variables:
-    if ($destination['destination'] == $hunt_path) {
-      // Load variables for the Hunt.
-      $variables['page']['gate_headline'] = "The Hunt";
-      $variables['page']['gate_subheadline'] = "Show us you're a social change rockstar";
-      $variables['page']['gate_description']= "We'll give you 11 actions over 11 days to help you show the world the kick ass things you can do.";
-      $variables['page']['gate_image_filename'] = "gate-hunt.png";
-      $variables['page']['gate_image_alt'] = "The Hunt";
-      
-    }
-    // Else Use gate values from DoSomething Login config page:
-    else {    
+    // If default gate, use gate variables from DoSomething Login config page:
+    if ($default_gate) {    
       $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
       $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
       $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
-      $variables['page']['gate_image_filename'] = "gate-bg.jpg";
+      $variables['page']['gate_image_src'] = "/" . drupal_get_path('theme', 'doit') . "/images/gate-bg.jpg";
       $variables['page']['gate_image_alt'] = "High Five!";
+      $page_title = variable_get('dosomething_login_gate_page_title', NULL);
+      if ($page_title && $current_path == 'user/registration') {
+        drupal_set_title(variable_get('dosomething_login_gate_page_title'));
+      }
     }
     // Determine what page we're on, and populate other gate variables accordingly.
     if ($current_path == 'user/registration') {
