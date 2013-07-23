@@ -14,8 +14,6 @@
       <img src="/sites/all/themes/doit/images/logo-ds.png" alt="DoSomething.org" />
     </a>
 
-    <?php print $messages; ?>
-
     <img class="image-hero" src="/sites/all/themes/doit/images/<?php print $page['gate_image_filename']; ?>" alt="<?php print $page['gate_image_alt']; ?>" />
 
     <div class="field-content">
@@ -26,6 +24,7 @@
   </section>
 
   <section class="form-container">
+
     <div class="toolbar desktop"><?php print $variables['page']['gate_link']; ?></div>
     <div class="toolbar mobile"><?php print $variables['page']['gate_link']; ?></div>
 
@@ -34,6 +33,8 @@
       <?php if ($page['gate_subheadline']) { print '<h2 class="subheadline">' . $page['gate_subheadline'] . '</h2>';} ?>
       <?php if ($page['gate_description']) { print '<p class="description">' . $page['gate_description'] . '</p>';} ?>
     </div>
+
+    <?php print $messages; ?>
 
     <?php print render($page['content']); ?>
     <?php if ($page['gate_go_back_link']): ?><div class="go-back"><?php print $page['gate_go_back_link']; ?></div><?php endif; ?>
