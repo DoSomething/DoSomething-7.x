@@ -71,7 +71,7 @@ function hunt_report_back_block_view($delta = '') {
         $campaign_nid = variable_get('hunt_report_back_campaign_nid', '729679');
         $signed_up = dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid);
 
-        //if (!$signed_up) drupal_goto(variable_get('hunt_report_back_redirect', 'hunt'));
+        if (!$signed_up) drupal_goto(variable_get('hunt_report_back_redirect', 'hunt'));
       }
 
       $block['subject'] = t('Hunt Report Back');
