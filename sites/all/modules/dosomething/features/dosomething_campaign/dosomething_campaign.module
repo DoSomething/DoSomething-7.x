@@ -110,8 +110,12 @@ function dosomething_campaign_redirector($user, $nid) {
  * Access callback for join page.
  */
 function dosomething_campaign_join_page_access($nid) {
-  // Right now, we only use this page for The Hunt.
-  if ($nid != variable_get('hunt_campaign_nid', 729679)) {
+  if (!is_numeric($nid)) {
+    return FALSE;
+  }
+  $node = node_load($nid);
+  // Only should appear for gated signups:
+  if (!dosomething_campaign_is_gated_signup_node($node)) {
     return FALSE;
   }
   global $user;
@@ -123,6 +127,12 @@ function dosomething_campaign_join_page_access($nid) {
   return $user->uid != 0;
 }
 
+/**
+ * Returns boolean of whether or not given loaded node is a campaign signup node.
+ */
+function dosomething_campaign_is_gated_signup_node($node) {
+  return $node && $node->type == 'campaign' && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1;
+}
 
 /**
  * Implements hook_user_login.

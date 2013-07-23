@@ -7,25 +7,11 @@
 
 function dosomething_campaign_join_page($nid) {
   global $user;
-  
   // If user has already joined and is non admin, redirect to the campaign.
   if (dosomething_campaign_is_user_signed_up($user->uid, $nid) && !dosomething_campaign_can_user_override_join($user)) {
     drupal_goto('node/' . $nid);
   }
-
-  $node = node_load($nid);
-  
-  $page = theme(
-  	'campaign_join_page',
-  	array(
-  	  'node' => $node,
-  	  'uid' => $user->uid,
-  	  'form' => drupal_get_form('dosomething_campaign_join_page_form', $nid, $user->uid)
-  	)
-  );
-
-  print $page;	
-  drupal_exit();
+  return drupal_get_form('dosomething_campaign_join_page_form', $nid, $user->uid);
 }
 
 function dosomething_campaign_join_page_form($form, &$form_state, $nid, $uid) {
