@@ -3,10 +3,9 @@ default:
     bootstrap: '%behat.paths.features%/bootstrap'
   extensions:
     Behat\MinkExtension\Extension:
-      base_url: http://qa.ds.lan
+      base_url: http://qa.dosomething.org
       javascript_session: selenium2
       browser_name: firefox
       goutte: ~
       sahi: ~
       selenium2: ~
-
