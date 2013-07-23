@@ -94,7 +94,11 @@ if (!empty($_POST['url'])) {
             
             case '500':
               $results['status'] = "Server error!";
-              break;  
+              break;
+            
+            default:
+              $results['status'] = "Undefined response, what the heck is going on?!?";
+              
               
           }
           
@@ -132,7 +136,7 @@ if (!empty($_POST['url'])) {
           }
           
           // Construct return message.
-          $message = sprintf('Check URL: <a href="%s">%s</a></p>', $url, $url);
+          $message = sprintf('URL Checked: <a href="%s">%s</a></p>', $url, $url);
           
           $message .= '<dl>';
           foreach ($results as $header => $result) {
