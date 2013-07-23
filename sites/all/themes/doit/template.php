@@ -194,22 +194,28 @@ function doit_preprocess_page(&$variables) {
     drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
     drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
     $default_gate = TRUE;
+    $node = FALSE;
+    // The doit_is_user_registration_template_page() checks for if node(arg(2)) is a gated campaign,
+    // so we can just check first 2 args and then load the node
+    if (arg(0) == 'campaign' && arg(1) == 'join') {
+      $node = node_load(arg(2));
+    }
     // If destination is set in query string, check to see if its a gated campaign node.
-    if ($destination['destination'] != $current_path) {
+    elseif ($destination['destination'] != $current_path) {
       $dest_path_parts = explode('/', $destination['destination']);
       if ($dest_path_parts[0] == 'node' && is_numeric($dest_path_parts[1]) && !isset($dest_path_parts[2])) {
         $node = node_load($dest_path_parts[1]);
-        if ($node->type == 'campaign' && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1) {
-          $default_gate = FALSE;
-          $variables['page']['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
-          $variables['page']['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
-          $variables['page']['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
-          $variables['page']['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
-          $variables['page']['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
-          if (isset($node->field_gate_page_title[LANGUAGE_NONE][0]['value']) && $current_path == 'user/registration') {
-            drupal_set_title($node->field_gate_page_title[LANGUAGE_NONE][0]['value']);
-          }
-        }
+      }
+    }
+    if ($node && $node->type == 'campaign' && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1) {
+      $default_gate = FALSE;
+      $variables['page']['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
+      $variables['page']['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
+      $variables['page']['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
+      $variables['page']['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
+      $variables['page']['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
+      if (isset($node->field_gate_page_title[LANGUAGE_NONE][0]['value']) && $current_path == 'user/registration') {
+        drupal_set_title($node->field_gate_page_title[LANGUAGE_NONE][0]['value']);
       }
     }
     // If default gate, use gate variables from DoSomething Login config page:
@@ -820,13 +826,19 @@ function doit_search_api_page_result(array $variables) {
  * Returns TRUE if current path is a page that should use the user-registration template.
  */
 function doit_is_user_registration_template_page() {
-  if (user_is_logged_in() || !variable_get('dosomething_login_gate_use_user_registration_template')) {
+  if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
     return FALSE;
   }
   $current_path = current_path();
-  return $current_path == 'user/registration' || 
-    $current_path == 'user/password' || 
-    $current_path == 'user' || 
-    $current_path == 'user/login';
+  $user_reg_paths = array('user/registration', 'user/password', 'user', 'user/login');
+  if (!user_is_logged_in() && in_array($current_path, $user_reg_paths)) {
+    return TRUE;
+  }
+  if (user_is_logged_in() && arg(0) == 'campaign' && arg(1) == 'join' && is_numeric(arg(2))) {
+    $node = node_load(arg(2));
+    if ($node && $node->type == 'campaign' && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1) {
+      return TRUE;
+    }
+  }
+  return FALSE;
 }
-
