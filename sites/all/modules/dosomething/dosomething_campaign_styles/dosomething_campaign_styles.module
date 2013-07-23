@@ -4,6 +4,46 @@ define('CGG_CHOOSER_FORM', variable_get('cgg_form_id', 725016));
 define('CGG_TAXONOMY_VOCABULARY', variable_get('cgg_taxonomy_vocabulary', 29));
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_campaign_styles_menu() {
+  $items['campaign/style/autocomplete'] = array(
+    'title' => 'Campaign style autocomplete',
+    'page callback' => 'dosomething_campaign_autocomplete',
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ *
+ */
+function dosomething_campaign_autocomplete($string = '') {
+
+  $dir = drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles';
+
+  $found = file_scan_directory($dir, '/.*\.html$/', array(), 2);
+  // this gets us all html files, not only those in a subdir, as the mask in
+  // file_scan_directory doesn't check the full uri path.
+  $files = array();
+  foreach ($found as $file) {
+    if (preg_match('/.*html\\' . DIRECTORY_SEPARATOR . '.*html$/', $file->uri)) {
+      $path = substr($file->uri, strlen($dir) + 1);
+      $parts = explode(DIRECTORY_SEPARATOR, $path);
+      $year = array_shift($parts);
+      $campaign = array_shift($parts);
+      $name = substr(array_pop($parts), 0, -5);
+      $files[$path] = "$year/$campaign/$name";
+    }
+  }
+
+  $matches = preg_grep ('/'.$string.'/i', $files);
+
+  drupal_json_output($matches);
+}
+
+/**
  *  Implements hook_webform_select_options_info()
  */
 function dosomething_campaign_styles_webform_select_options_info() {
