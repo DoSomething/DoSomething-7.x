@@ -40,7 +40,7 @@ class FeatureContext extends MinkContext
       $value = $this->fixStepArgument('testing+' . time() . '@dosometing.org');
       $this->getSession()->getPage()->fillField($field, $value);
     }
-//
+
 // Place your definition and hook methods here:
 //
 //    /**
