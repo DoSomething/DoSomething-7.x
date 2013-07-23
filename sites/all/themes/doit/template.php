@@ -206,7 +206,7 @@ function doit_preprocess_page(&$variables) {
       $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
       $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
       $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
-      $variables['page']['gate_image_src'] = "/sites/all/themes/doit/images/gate-bg.jpg";
+      $variables['page']['gate_image_src'] = "/" . drupal_get_path('theme', 'doit') . "/images/gate-bg.jpg";
       $variables['page']['gate_image_alt'] = "High Five!";
       $page_title = variable_get('dosomething_login_gate_page_title', NULL);
       if ($page_title && $current_path == 'user/registration') {

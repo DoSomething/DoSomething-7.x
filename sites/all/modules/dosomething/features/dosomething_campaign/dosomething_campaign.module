@@ -154,7 +154,7 @@ function dosomething_campaign_is_campaign_signup_gate($url) {
     $nid = basename($url);
     $node = node_load($nid);
     // If this is a campaign with signup on login, return the node.
-    if ($node->type == 'campaign' && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1) {
+    if ($node && $node->type == 'campaign' && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1) {
       return $node;
     }
   }
