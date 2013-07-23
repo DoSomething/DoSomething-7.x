@@ -11,6 +11,7 @@
 $main:  #1F7AFF
 $off-black: #1E1D1C
 $accent: #84CDC9
+$error: #ee0044
 
 $input-bg: #f9f9f9
 $input-color: #444
@@ -162,6 +163,28 @@ p
     h2, p
       display: block
 
+// ERRORS
+// -----
+div.messages.error
+  margin: 0 0 1em 0
+  float: right
+  width: 100%
+  color: $error
+  list-style: none outside none
+  @media only screen and (max-width: $breakpoint-first)
+    margin: 0 auto
+    width: 90%
+  ul
+    padding: 0
+    margin: 0
+  li, a
+    color: $error
+  li
+    list-style: none
+
+label.error
+  color: $error
+
 // LOGIN & REG. FORMS
 // ------------------
 .form-container
@@ -291,6 +314,11 @@ form
   .under-13-field
     float: left
 
+// UNDER 13 FIELD
+// --------------
+#edit-parent-email-message
+  margin: 0.5em 0
+
 // input fields for both forms
 input[type="text"],
 input[type="email"],
@@ -335,10 +363,11 @@ input[type="password"]
 // ---------------
 #skip-link,
 #edit-connect,
-#edit-or
-  display: none
+#edit-or,
+.element-invisible
+  display: none !important
 
 // LOOK THE OTHER WAY
 // ------------------
 .form-required
-  display: none
+  display: none !important
