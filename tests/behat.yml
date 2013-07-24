@@ -9,3 +9,8 @@ default:
       goutte: ~
       sahi: ~
       selenium2: ~
+local:
+  extensions:
+    Behat\MinkExtension\Extension:
+      # Change this value to your localhost domain
+      base_url: http://dosomething.org
