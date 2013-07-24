@@ -11,7 +11,7 @@ Feature: Log in tests
     And I should see "password"
 
   Scenario: Fail log in (no data)
-    When I press "Log in"
+    When I press "Log in lkjasdf"
     Then I should see "email, username or cell number"
     And I should see "password"
 
