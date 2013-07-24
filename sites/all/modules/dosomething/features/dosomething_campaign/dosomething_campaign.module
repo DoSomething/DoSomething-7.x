@@ -30,11 +30,6 @@ function dosomething_campaign_menu() {
  */
 function dosomething_campaign_theme($existing, $type, $theme, $path) {
   return array(
-    'campaign_join_page' => array(
-      'path' => $path . '/templates',
-      'variables' => array('node' => NULL, 'uid' => NULL, 'form' => NULL),
-      'template' => 'campaign_join_page',
-    ),
     'kiva_confirmation' => array(
       'path' => $path . '/templates',
       'template' => 'kiva_confirmation',
@@ -128,13 +123,6 @@ function dosomething_campaign_join_page_access($nid) {
 }
 
 /**
- * Returns boolean of whether or not given loaded node is a campaign signup node.
- */
-function dosomething_campaign_is_gated_signup_node($node) {
-  return $node && $node->type == 'campaign' && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1;
-}
-
-/**
  * Implements hook_user_login.
  */
 function dosomething_campaign_user_login(&$edit, $account) {
@@ -144,6 +132,13 @@ function dosomething_campaign_user_login(&$edit, $account) {
     // Execute campaign login signup function:
     dosomething_campaign_signup($account, $campaign_node);
   }
+}
+
+/**
+ * Returns boolean of whether or not given loaded node is a campaign signup node.
+ */
+function dosomething_campaign_is_gated_signup_node($node) {
+  return $node && $node->type == 'campaign' && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1;
 }
 
 /**
@@ -164,7 +159,7 @@ function dosomething_campaign_is_campaign_signup_gate($url) {
     $nid = basename($url);
     $node = node_load($nid);
     // If this is a campaign with signup on login, return the node.
-    if ($node && $node->type == 'campaign' && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1) {
+    if (dosomething_campaign_is_gated_signup_node($node)) {
       return $node;
     }
   }
