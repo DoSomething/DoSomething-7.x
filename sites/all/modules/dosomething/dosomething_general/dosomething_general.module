@@ -28,7 +28,6 @@
  *  - Dee (Software Engineer)
  *  - Aaron (Software Engineer)
  *  - Maxwell (Front end Engineer)
- *  - Jacob (Front end Engineer)
  *  - Uy (Mobile Engineer)
  */
 
@@ -968,14 +967,14 @@ function _dosomething_general_user_member_save($member) {
  *  @TODO - move me somewhere more appropriate
  **/
 function _dosomething_general_user_prepare_member($user) {
-   
+
   if (is_numeric($user)) {
     $user = user_load($user);
     if ($user === FALSE) return FALSE;
   }
 
   $profile = profile2_load_by_user($user);
- 
+
   $member = array(
     'uid' => $user->uid,
     'created' => $user->created,
@@ -994,7 +993,7 @@ function _dosomething_general_user_prepare_member($user) {
   );
 
   if ($user->mail) $member['email_addresses'][] = $user->mail;
- 
+
   $fields = array();
   if (isset($profile['main'])) {
     foreach ($profile['main'] as $field_name => $field) {
@@ -1025,10 +1024,10 @@ function _dosomething_general_user_prepare_member($user) {
             break;
           case 'field_school_reference':
             $schools = array();
- 
+
             foreach ($field['und'] as $school) {
               $entity = entity_load('ds_school', array($school['target_id']));
- 
+
               if ($entity) {
                 $entity = $entity[$school['target_id']];
                 $schools[] = array(
@@ -1138,7 +1137,7 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
       // Confirm password.
       $form['#validate'][] = 'sparknotes_scholarship_validate';
 
-      // Push a user to login / register 
+      // Push a user to login / register
       $form['#submit'][] = 'sparknotes_scholarship_login';
     }
     else {
@@ -1821,7 +1820,7 @@ function _dosomething_general_imagefile_scale($file, $scale = 800) {
  *  @param string $node_type
  *    Node type to query by.
  *
- *  @return array 
+ *  @return array
  *    Array of Node nids.
  */
 function dosomething_general_get_nids_by_type($node_type) {
