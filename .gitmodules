@@ -1,7 +1,6 @@
 [submodule "sites/all/themes/survivalkit"]
 	path = sites/all/themes/survivalkit
 	url = git@git.drupal.org:project/survivalkit.git
-
 [submodule "president"]
 	path = president
 	url = git@github.com:DoSomething/president-text.git
