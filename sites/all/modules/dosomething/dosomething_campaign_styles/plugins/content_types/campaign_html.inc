@@ -35,28 +35,11 @@ function dosomething_campaign_styles_campaign_html_content_type_edit_form($form,
   // provide a blank form so we have a place to have context setting.
   $conf = $form_state['conf'];
 
-  $dir = drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles';
-
-  $found = file_scan_directory($dir, '/.*\.html$/', array(), 2);
-  // this gets us all html files, not only those in a subdir, as the mask in
-  // file_scan_directory doesn't check the full uri path.
-  $files = array();
-  foreach ($found as $file) {
-    if (preg_match('/.*html\\' . DIRECTORY_SEPARATOR . '.*html$/', $file->uri)) {
-      $path = substr($file->uri, strlen($dir) + 1);
-      $parts = explode(DIRECTORY_SEPARATOR, $path);
-      $year = array_shift($parts);
-      $campaign = array_shift($parts);
-      $name = substr(array_pop($parts), 0, -5);
-      $files[$path] = "$year/$campaign/$name";
-    }
-  }
-
   $form['html_source'] = array(
-    '#type' => 'select',
+    '#type' => 'textfield',
     '#title' => t('HTML source file'),
     '#default_value' => !empty($conf['html_source']) ? $conf['html_source'] : '',
-    '#options' => $files,
+    '#autocomplete_path' => 'campaign/style/autocomplete'
   );
 
   return $form;

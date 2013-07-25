@@ -8,7 +8,7 @@ a {
 
 h1, h2, h3, p {
   line-height: 1.5em;
-  font-weight: 500;
+  font-weight: 400;
   margin: 0;
   padding: 0;
 }
@@ -16,6 +16,7 @@ h1, h2, h3, p {
 h1 {
   font-size: 2.5em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 h2 {
@@ -87,7 +88,7 @@ p {
   position: absolute;
   top: -15px;
   right: -15px;
-  width: 3em;
+  width: auto;
   font-size: 14px;
 }
 
@@ -113,15 +114,18 @@ p {
 }
 
 .desktop-container h2 {
+  padding: 0.5em 0;
   color: #84cdc9;
   font-size: 2em;
+  line-height: 1.2em;
 }
 
 .form-container h1 {
   display: block;
   color: #84cdc9;
-  font-size: 1.6em;
-  line-height: 2.5em;
+  font-size: 2.5em;
+  line-height: 2em;
+  font-family: "Amatic SC", din-web-reg;
 }
 .form-container h2, .form-container p {
   display: none;
@@ -146,6 +150,34 @@ p {
   .form-container h2, .form-container p {
     display: block;
   }
+}
+
+div.messages.error {
+  margin: 0 0 1em 0;
+  float: right;
+  width: 100%;
+  color: #ee0044;
+  list-style: none outside none;
+}
+@media only screen and (max-width: 800px) {
+  div.messages.error {
+    margin: 0 auto;
+    width: 90%;
+  }
+}
+div.messages.error ul {
+  padding: 0;
+  margin: 0;
+}
+div.messages.error li, div.messages.error a {
+  color: #ee0044;
+}
+div.messages.error li {
+  list-style: none;
+}
+
+label.error {
+  color: #ee0044;
 }
 
 .form-container {
@@ -193,7 +225,8 @@ form .disclaimer {
   display: none;
 }
 form #edit-final-submit, form #edit-submit {
-  margin: 0;
+  font-family: din-web-reg !important;
+  margin: 1em 0 0.5em;
   padding: 0.2em 1em 0.25em;
   clear: both;
   float: left;
@@ -272,17 +305,12 @@ form .form-item-day, form .form-item-month, form .form-item-year {
 form .form-item-year {
   width: 3.5em;
 }
-form .ds-login-popup-footer {
-  margin: 1em 0;
-  float: left;
-  clear: both;
-}
 form .already-member {
   float: left;
   clear: left;
   padding: 0;
   font-family: din-web-reg;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   color: #222222;
 }
@@ -306,6 +334,10 @@ form .already-member {
 form .disclaimer,
 form .under-13-field {
   float: left;
+}
+
+#edit-parent-email-message {
+  margin: 0.5em 0;
 }
 
 input[type="text"],
@@ -356,15 +388,16 @@ input[type="password"] {
 
 .forgot-password-link {
   display: block;
-  padding: 1em 0;
+  padding: 1em 0 0;
 }
 
 #skip-link,
 #edit-connect,
-#edit-or {
-  display: none;
+#edit-or,
+.element-invisible {
+  display: none !important;
 }
 
 .form-required {
-  display: none;
+  display: none !important;
 }

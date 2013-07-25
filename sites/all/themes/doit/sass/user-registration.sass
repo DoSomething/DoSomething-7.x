@@ -11,6 +11,7 @@
 $main:  #1F7AFF
 $off-black: #1E1D1C
 $accent: #84CDC9
+$error: #ee0044
 
 $input-bg: #f9f9f9
 $input-color: #444
@@ -42,13 +43,14 @@ a
 // ----------
 h1, h2, h3, p
   line-height: 1.5em
-  font-weight: 500
+  font-weight: 400
   margin: 0
   padding: 0
 
 h1
   font-size: 2.5em
   text-transform: uppercase
+  font-weight: 500
 
 h2
   font-size: 2em
@@ -102,7 +104,7 @@ p
     position: absolute
     top: -15px
     right: -15px
-    width: 3em
+    width: auto
     font-size: 14px
 
 .toolbar.mobile
@@ -129,15 +131,18 @@ p
 
 .desktop-container
   h2
+    padding: 0.5em 0
     color: $accent
     font-size: 2em
+    line-height: 1.2em
 
 .form-container         // This section wraps the "mobile" field content sections
   h1                    // Show the <h1> shared by desktop and mobile views
     display: block
     color: $accent
-    font-size: 1.6em
-    line-height: 2.5em
+    font-size: 2.5em
+    line-height: 2em
+    font-family: 'Amatic SC', din-web-reg
 
   h2, p                 // Hide the <h2> & <p> used only on mobile
     display: none
@@ -157,6 +162,28 @@ p
       padding: 0.5em 0
     h2, p
       display: block
+
+// ERRORS
+// -----
+div.messages.error
+  margin: 0 0 1em 0
+  float: right
+  width: 100%
+  color: $error
+  list-style: none outside none
+  @media only screen and (max-width: $breakpoint-first)
+    margin: 0 auto
+    width: 90%
+  ul
+    padding: 0
+    margin: 0
+  li, a
+    color: $error
+  li
+    list-style: none
+
+label.error
+  color: $error
 
 // LOGIN & REG. FORMS
 // ------------------
@@ -196,7 +223,8 @@ form
     display: none
 
   #edit-final-submit, #edit-submit
-    margin: 0
+    font-family: din-web-reg !important
+    margin: 1em 0 0.5em
     padding: 0.2em 1em 0.25em
     clear: both
     float: left
@@ -260,17 +288,12 @@ form
   .form-item-year
     width: 3.5em
 
-  .ds-login-popup-footer
-    margin: 1em 0
-    float: left
-    clear: both
-
   .already-member
     float: left
     clear: left
     padding: 0
     font-family: din-web-reg
-    font-weight: 500
+    font-weight: 400
     font-size: 14px
     color: #222
 
@@ -290,6 +313,11 @@ form
   .disclaimer,
   .under-13-field
     float: left
+
+// UNDER 13 FIELD
+// --------------
+#edit-parent-email-message
+  margin: 0.5em 0
 
 // input fields for both forms
 input[type="text"],
@@ -329,16 +357,17 @@ input[type="password"]
 
 .forgot-password-link
   display: block
-  padding: 1em 0
+  padding: 1em 0 0
 
 // HIDE THE BODIES
 // ---------------
 #skip-link,
 #edit-connect,
-#edit-or
-  display: none
+#edit-or,
+.element-invisible
+  display: none !important
 
 // LOOK THE OTHER WAY
 // ------------------
 .form-required
-  display: none
+  display: none !important
