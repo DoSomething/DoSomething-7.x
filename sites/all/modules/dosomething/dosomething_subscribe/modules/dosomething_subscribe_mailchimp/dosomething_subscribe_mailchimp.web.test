@@ -5,7 +5,7 @@
  * Test dosomething_subscribe_mailchimp functionality.
  */
 
-class DosomethingSubscribeMailchimpTestCase extends DrupalWebTestCase {
+class DosomethingSubscribeMailchimpTestCase extends WebTestSuite {
 
   public static function getInfo() {
     return array(
