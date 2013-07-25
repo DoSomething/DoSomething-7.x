@@ -237,6 +237,7 @@ function doit_preprocess_page(&$variables) {
         drupal_set_title(variable_get('dosomething_login_gate_page_title'));
       }
     }
+    $variables['page']['gate_color'] = variable_get('dosomething_login_gate_color');
     // Determine what page we're on, and populate other gate variables accordingly.
     $is_user_password_page = FALSE;
     if ($current_path == 'user/registration') {
