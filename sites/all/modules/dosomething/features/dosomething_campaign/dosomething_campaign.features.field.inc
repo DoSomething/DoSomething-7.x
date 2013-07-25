@@ -2110,7 +2110,7 @@ function dosomething_campaign_field_default_fields() {
       'bundle' => 'campaign',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'HEX, RGB/a or CSS color shorthand used for the headline and subheadline color.',
+      'description' => 'HEX, RGB/a or CSS color shorthand used for the headline color.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -2128,7 +2128,7 @@ function dosomething_campaign_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_gate_color',
-      'label' => 'Gate Color',
+      'label' => 'Copy Accent Color',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',

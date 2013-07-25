@@ -9,7 +9,7 @@
 
 
 
-<div class="wrapper">
+<div class="wrapper <?php print $page['gate_wrapper_class']; ?>">
 
   <section class="desktop-container">
     <a class="logo-ds" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
