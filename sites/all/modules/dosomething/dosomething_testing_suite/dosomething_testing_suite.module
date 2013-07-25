@@ -3,6 +3,14 @@
 class WebTestSuite extends DrupalWebTestCase {
   protected $factory;
 
+  public function setUp() {
+    $this->setup = TRUE;
+  }
+
+  public function tearDown() {
+    // @todo: Garbage collection.
+  }
+
   public function factory() {
     if (!$this->factory instanceof Factory) {
       $this->factory = new Factory;
