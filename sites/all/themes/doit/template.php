@@ -27,9 +27,9 @@ function doit_preprocess_html(&$variables, $hook) {
   /*
    * Remove all global stylesheets and
    * load user registration HTML templates 
-   * if this is a user-registration template page.
+   * if this is a user-registration template page or campaign join page.
    */
-  elseif (doit_is_user_registration_template_page()) {
+  elseif (doit_is_user_registration_template_page() || doit_is_campaign_join_template_page()) {
 
     // Add custom typeface for gate
     drupal_add_css(
@@ -71,7 +71,8 @@ function doit_preprocess_html(&$variables, $hook) {
 
     $variables['user_styles'] = drupal_get_css($css);
 
-  } else {
+  } 
+  else {
     $variables['user_styles'] = $variables['styles'];
   }
   drupal_alter('html_templates', $variables);
@@ -169,6 +170,14 @@ function doit_preprocess_page(&$variables) {
     }
 
   }
+  // If campaign join page:
+  if (doit_is_campaign_join_template_page()) {
+    // Load page template:
+    $variables['theme_hook_suggestions'][] = 'page__campaign__join';
+    // Use default user-registration page specfic CSS/JS files:
+    drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
+    drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
+  }
 
   $destination = drupal_get_destination();
   $hunt_path = 'node/' . variable_get('hunt_campaign_nid', 729679);
@@ -194,12 +203,16 @@ function doit_preprocess_page(&$variables) {
     drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
     drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
     $default_gate = TRUE;
-    // If destination is set in query string, check to see if its a gated campaign node.
+    // If there is a destination set in the query string:
     if ($destination['destination'] != $current_path) {
       $dest_path_parts = explode('/', $destination['destination']);
+      // If the destination == node/[nid]:
       if ($dest_path_parts[0] == 'node' && is_numeric($dest_path_parts[1]) && !isset($dest_path_parts[2])) {
+        // Load the node:
         $node = node_load($dest_path_parts[1]);
-        if ($node->type == 'campaign' && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1) {
+        // If the destination node is a gated campaign signup:
+        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_signup_node($node)) {
+          // Load node values for gate copy and image.
           $default_gate = FALSE;
           $variables['page']['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
           $variables['page']['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
@@ -224,6 +237,7 @@ function doit_preprocess_page(&$variables) {
         drupal_set_title(variable_get('dosomething_login_gate_page_title'));
       }
     }
+    $variables['page']['gate_color'] = variable_get('dosomething_login_gate_color');
     // Determine what page we're on, and populate other gate variables accordingly.
     $is_user_password_page = FALSE;
     if ($current_path == 'user/registration') {
@@ -817,16 +831,32 @@ function doit_search_api_page_result(array $variables) {
 }
 
 /**
- * Returns TRUE if current path is a page that should use the user-registration template.
+ * Returns TRUE if current path is user-registration/password/login type page.
  */
 function doit_is_user_registration_template_page() {
-  if (user_is_logged_in() || !variable_get('dosomething_login_gate_use_user_registration_template')) {
+  if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
     return FALSE;
   }
-  $current_path = current_path();
-  return $current_path == 'user/registration' || 
-    $current_path == 'user/password' || 
-    $current_path == 'user' || 
-    $current_path == 'user/login';
+  // If anon user, check for user registration paths.
+  if (!user_is_logged_in()) {
+    $current_path = current_path();
+    $user_reg_paths = array('user/registration', 'user/password', 'user', 'user/login');
+    foreach ($user_reg_paths as $user_reg_path) {
+      if ($current_path == $user_reg_path) {
+        return TRUE;
+      }
+    }
+  }
+  return FALSE;
 }
 
+/**
+ * Returns TRUE if current path is a campaign join page.
+ */
+function doit_is_campaign_join_template_page() {
+  if (user_is_logged_in() && arg(0) == 'campaign' && arg(1) == 'join' && is_numeric(arg(2))) {
+    $node = node_load(arg(2));
+    return dosomething_campaign_is_gated_signup_node($node);
+  }
+  return FALSE;
+}
