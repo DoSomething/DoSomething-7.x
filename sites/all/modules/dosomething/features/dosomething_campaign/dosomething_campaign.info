@@ -52,6 +52,7 @@ features[field][] = node-campaign-field_campain_date
 features[field][] = node-campaign-field_campain_logo_thumbnail
 features[field][] = node-campaign-field_counter_aggregation
 features[field][] = node-campaign-field_counter_text
+features[field][] = node-campaign-field_gate_color
 features[field][] = node-campaign-field_gate_description
 features[field][] = node-campaign-field_gate_headline
 features[field][] = node-campaign-field_gate_image

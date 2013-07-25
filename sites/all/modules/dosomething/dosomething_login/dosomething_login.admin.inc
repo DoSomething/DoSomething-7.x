@@ -51,7 +51,6 @@ function dosomething_login_admin_settings_form() {
     '#type' => 'textfield',
     '#title' => t('Copy Accent Color'),
     '#description' => 'HEX, RGB/a or CSS color shorthand used for the headline and subheadline color',
-    '#required' => TRUE,
     '#default_value' => variable_get($prefix . 'color'),
   );
   return system_settings_form($form);
