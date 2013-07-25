@@ -123,14 +123,37 @@ p {
 .join .form-container h1 {
   font-size: 3em;
 }
+@media only screen and (max-width: 800px) {
+  .join form {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .join .logo-ds {
+    display: none;
+  }
+}
 .join .image-hero {
   width: 97%;
+}
+@media only screen and (max-width: 800px) {
+  .join .image-hero {
+    display: none;
+  }
 }
 .join #edit-submit {
   position: relative;
   left: 50%;
   margin: 0.5em 0 0.5em -2.5em;
   width: 5em;
+}
+@media only screen and (max-width: 800px) {
+  .join #edit-submit {
+    margin: 0.5em auto 0;
+    position: static;
+    display: block;
+    width: 100%;
+  }
 }
 
 .field-content h2 {
