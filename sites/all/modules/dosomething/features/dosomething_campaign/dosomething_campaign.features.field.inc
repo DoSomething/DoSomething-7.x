@@ -2073,6 +2073,79 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-campaign-field_gate_color'.
+  $fields['node-campaign-field_gate_color'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_gate_color',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'campaign',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'HEX, RGB/a or CSS color shorthand used for the headline color.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 44,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_gate_color',
+      'label' => 'Copy Accent Color',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '30',
+      ),
+    ),
+  );
+
   // Exported field: 'node-campaign-field_gate_description'.
   $fields['node-campaign-field_gate_description'] = array(
     'field_config' => array(
@@ -3353,6 +3426,7 @@ function dosomething_campaign_field_default_fields() {
   t('Enter the field name to pull from the report back (the machine name) that will be aggregated. Or use #count to just count the number of report backs.');
   t('FAQ');
   t('Game Example');
+  t('Gate Color');
   t('Gate Description');
   t('Gate Headline');
   t('Gate Image');
@@ -3361,6 +3435,7 @@ function dosomething_campaign_field_default_fields() {
   t('Group type');
   t('Groups audience');
   t('H1 Page Title on the page');
+  t('HEX, RGB/a or CSS color shorthand used for the headline and subheadline color.');
   t('Has Gate');
   t('Logo');
   t('Mailchimp Interest Group');

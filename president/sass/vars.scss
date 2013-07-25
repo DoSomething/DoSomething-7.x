@@ -1,0 +1,31 @@
+/* variables */
+$maxwidth: 960px;
+
+$break-small: 600px;
+$break-large: 1050px;
+
+
+/* colors */
+$red: #bc0028;
+$blue: #16368f;
+
+$gray: #ddd;
+$dark-gray: #666;
+
+$bg-light: #fff;
+
+/* mixins */
+@mixin respond-to($media) {
+  @if $media == tablets_and_phones {
+    @media only screen and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == phones {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == tablets {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == widescreens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
