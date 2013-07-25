@@ -12,8 +12,10 @@ $main:  #1F7AFF
 $off-black: #1E1D1C
 $accent: #84CDC9
 $error: #ee0044
+$gate-bg: #fafafa
+$subtle-shadow: #eeeeee
 
-$input-bg: #f9f9f9
+$input-bg: #fff
 $input-color: #444
 $input-border: #ddd
 
@@ -29,7 +31,7 @@ $breakpoint-first: 800px
 @mixin border-and-shadow
   background: #fff
   border: 1px solid #eee
-  +box-shadow(#ccc 0px 15px 20px -10px)
+  +box-shadow($subtle-shadow 0px 15px 20px -10px)
 
 // BASIC ELEMENTS
 // --------------
@@ -66,6 +68,7 @@ p
   margin: 5% auto 0
   padding: 20px 25px 25px 25px
   overflow: hidden
+  background: $gate-bg !important
   +border-and-shadow
   @media only screen and (max-width: $breakpoint-first)
     max-width: 400px
@@ -117,6 +120,29 @@ p
     color: #fff
   @media only screen and (max-width: $breakpoint-first)
     display: block
+
+// JOIN PAGE
+// ---------
+.join
+  max-width: 540px 
+  margin: 2% auto
+
+  .form-container
+    float: none
+    width: 100%
+    h1, h2, p
+      display: block
+    h1
+      font-size: 3em
+
+  .image-hero
+    width: 97%
+
+  #edit-submit
+    position: relative
+    left: 50%
+    margin: 0.5em 0 0.5em -2.5em
+    width: 5em
 
 // FIELD CONTENT
 // -------------
@@ -297,19 +323,6 @@ form
     font-size: 14px
     color: #222
 
-  @media only screen and (max-width: $breakpoint-first)
-
-    .facebook-connect
-      clear: both
-      width: 100%
-      margin: 5% 0
-      img
-        display: block
-        margin: 0 auto
-        max-width: 300px
-        @media only screen and (max-width: 500px)
-          width: 90%
-
   .disclaimer,
   .under-13-field
     float: left
@@ -361,6 +374,7 @@ input[type="password"]
 
 // HIDE THE BODIES
 // ---------------
+#admin-menu,
 #skip-link,
 #edit-connect,
 #edit-or,
