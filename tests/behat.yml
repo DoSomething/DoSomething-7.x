@@ -1,0 +1,16 @@
+default:
+  paths:
+    bootstrap: '%behat.paths.features%/bootstrap'
+  extensions:
+    Behat\MinkExtension\Extension:
+      base_url: http://qa.dosomething.org
+      javascript_session: selenium2
+      browser_name: firefox
+      goutte: ~
+      sahi: ~
+      selenium2: ~
+local:
+  extensions:
+    Behat\MinkExtension\Extension:
+      # Change this value to your localhost domain
+      base_url: http://dosomething.org

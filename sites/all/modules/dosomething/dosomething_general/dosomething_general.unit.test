@@ -1,0 +1,217 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_general functionality.
+ */
+
+class DosomethingGeneralTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething General Tests',
+      'description' => 'Tests functionality found in DoSomething General',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_general_clean_zip()
+   */
+  public function testCleanZip() {
+    $original = 'abc-123';
+    $cleaned = dosomething_general_clean_zip($original);
+    $this->assertIdentical($cleaned, 'ABC123');
+  }
+
+  /**
+   * @see dosomething_general_censor_word()
+   */
+  public function testCensorWord() {
+    $string = 'fuck';
+    $cleaned = dosomething_general_censor_word($string, '***');
+    $this->assertIdentical($cleaned, '***');
+
+    $without = dosomething_general_censor_word($string);
+    $this->assertIdentical($without, 'Anonymous');
+  }
+
+  /**
+   * @see dosomething_general_array_vals_multi()
+   */
+  public function testArrayValsMulti() {
+    $array = array(
+      1 => array(
+      	2 => 'asdflkjasdf'
+      ),
+      3 => array(
+      	4 => '1234'
+      ),
+    );
+    $original = count($array, COUNT_RECURSIVE);
+
+    $flattened = dosomething_general_array_vals_multi($array);
+    $new = count($flattened, COUNT_RECURSIVE);
+
+    $this->assertNotEqual($original, $new);
+    $this->assertEqual($new, 2);
+  }
+
+  /**
+   * @see dosomething_general_clean_string()
+   */
+  public function testCleanString() {
+    $string = 'AB$#@(C-D';
+    $initial = dosomething_general_clean_string($string);
+    $this->assertIdentical($initial, 'AB____C-D');
+
+    $regex = dosomething_general_clean_string($string, '[A-Z]');
+    $this->assertIdentical($regex, '__$#@(_-_');
+
+    $replace = dosomething_general_clean_string($string, '[A-Z]', '');
+    $this->assertIdentical($replace, '$#@(-');
+  }
+
+  /*******************
+   *  Mobile commons *
+   *******************/
+
+  /**
+   * @see dosomething_general_mobile_commons_subscribe_with_friends()
+   */
+  public function testMCSubscribeWithFriends() {
+    $subscribe = dosomething_general_mobile_commons_subscribe_with_friends('610-555-4493', 18301, array('610-555-4493'), 18301);
+    $this->assertTrue($subscribe instanceof stdClass);
+    $this->assertTrue($subscribe->data == 'OK! (To have your browser automatically redirect, add a well-formed redirect_to= parameter to your post)');
+  }
+
+  /**
+   * @see dosomething_general_mobile_commons_subscribe()
+   */
+  public function testMCSubscribe() {
+    $subscribe = dosomething_general_mobile_commons_subscribe('610-555-4493', 18301);
+    $this->assertTrue($subscribe instanceof stdClass);
+    $this->assertTrue($subscribe->data == 'OK! (To have your browser automatically redirect, add a well-formed redirect_to= parameter to your post)');
+  }
+
+  /**
+   * @see dosomething_general_valid_cell()
+   */
+  public function testValidCell() {
+    $cell = '610-913-4416';
+    $valid = dosomething_general_valid_cell($cell);
+    $this->assertTrue(!empty($valid));
+    $this->assertFalse(dosomething_general_valid_cell('610-555-1234'));
+  }
+
+  /**
+   * @see dosomething_general_clean_cell_number()
+   */
+  public function testCleanCell() {
+  	$cell = '(610) 123-4567';
+  	$cleaned = dosomething_general_clean_cell_number($cell);
+
+  	$this->assertIdentical($cleaned, '6101234567');
+  }
+
+  /**
+   * @see dosomething_general_token_info()
+   */
+  public function testTokenInfo() {
+  	$token = dosomething_general_token_info();
+  	$this->assertTrue(isset($token['tokens']['user']['ds_member_name']));
+  }
+
+  /**
+   * @see dosomething_general_ctools_plugin_type()
+   */
+  public function testCtoolsPluginType() {
+    $ctools = dosomething_general_ctools_plugin_type();
+    $this->assertTrue(isset($ctools['webform_counter']));
+  }
+
+  /**
+   * @see dosomething_general_user_logout()
+   */
+  public function testLogout() {
+    dosomething_general_user_logout(array());
+    $this->assertTrue(isset($_GET['destination']));
+  }
+}
+
+class DoSomethingGeneralWebTestCase extends WebTestSuite {
+  private $user;
+  private $user_profile;
+  private $schema;
+  private $node;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething General Tests',
+      'description' => 'Tests functionality found in DoSomething General',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('dosomething_general');
+
+    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+  }
+
+  /**
+   * @see dosomething_general_load_user_by_mail_or_cell()
+   */
+  public function SubTestLoadUserByMailOrCell() {
+    $user = dosomething_general_load_user_by_mail_or_cell($this->user->mail);
+    $this->assertTrue(isset($user->uid), 'User is returned');
+  }
+
+  /**
+   * @see dosomething_general_get_full_name()
+   */
+  public function SubTestGetFullName() {
+    $public = dosomething_general_get_full_name($this->user, 'private');
+    $this->assertIdentical($public, 'Mike Sea');
+
+    $private = dosomething_general_get_full_name($this->user);
+    $this->assertIdentical($private, 'Mike S');
+  }
+
+  /**
+   * @see dosomething_general_find_user_by_cell()
+   */
+  public function SubTestFindUserByCell() {
+    $u = dosomething_general_find_user_by_cell('6103683195');
+    $this->assertEqual($u->uid, 1002717);
+  }
+
+  /**
+   * @see dosomething_load_user_by_profile_cell()
+   */
+  public function SubTestLoadUserByProfileCell() {
+    $u = dosomething_load_user_by_profile_cell('8582784275');
+    $this->assertEqual($u->uid, 16727);
+  }
+
+  /**
+   * @see dosomething_general_get_nids_by_type()
+   */
+  public function SubTestGetNidsByType() {
+    $nids = dosomething_general_get_nids_by_type('blog');
+    $this->assertTrue(is_array($nids));
+    $this->assertTrue(count($nids) > 1);
+  }
+
+  /**
+   * @see dosomething_general_get_multi_fbids()
+   */
+  public function SubTestGetMultiFbids() {
+    $ids = dosomething_general_get_multi_fbids(array('123'));
+    $this->assertTrue(is_array($ids));
+    $this->assertTrue(count($ids) == 1);
+  }
+}

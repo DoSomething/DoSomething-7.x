@@ -1,0 +1,34 @@
+<?php
+
+class DosomethingLoginTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Login Tests',
+      'description' => 'DoSomething login unit tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_login_menu()
+   */
+  public function testHookMenu() {
+    $paths = dosomething_login_menu();
+    // The most important path there.
+    $this->assertTrue(isset($paths['user/registration']));
+  }
+
+  /**
+   * @see dosomething_login_library()
+   */
+  public function testLibrary() {
+    $libraries = dosomething_login_library();
+    $this->assertTrue(isset($libraries['jquery.validate']));
+    $this->assertTrue(isset($libraries['ds.ajax.popup']));
+  }
+
+}

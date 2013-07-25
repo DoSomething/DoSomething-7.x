@@ -25,11 +25,12 @@ function dosomething_campaign_field_group_info() {
     'children' => array(
       0 => 'field_gate_description',
       1 => 'field_gate_headline',
-      2 => 'field_gate_page_title',
-      3 => 'field_has_gate',
-      4 => 'field_is_gate_login_signup',
-      5 => 'field_gate_subheadline',
-      6 => 'field_gate_image',
+      2 => 'field_gate_image',
+      3 => 'field_gate_page_title',
+      4 => 'field_gate_subheadline',
+      5 => 'field_has_gate',
+      6 => 'field_is_gate_login_signup',
+      7 => 'field_gate_color',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

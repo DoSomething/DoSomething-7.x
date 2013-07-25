@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_subscribe_mailchimp functionality.
+ */
+
+class DosomethingSubscribeMailchimpTestCase extends WebTestSuite {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Subscribe Mailchimp',
+      'description' => 'Tests DoSomething Mailchimp Subscribe functionality.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  function setUp() {
+  	// Enable the module.
+    parent::setUp('dosomething_subscribe_mailchimp');
+  }
+
+  /**
+   * @see dosomething_subscribe_mailchimp_queue_signup()
+   *
+   *  Test that dosomething_subscribe_mailchimp_queue_signup adds an array into the cron queue. 
+   */
+  public function testQueueSignup() {
+    // Create array to use for signup data.
+    $signup_data = array(
+      'list_id' => DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS,
+      'email' => 'testing@dosomething.org',
+    );
+    // Call queue signup method:
+    dosomething_subscribe_mailchimp_queue_signup($signup_data);
+    // Grab item from queue:
+    $queue = DrupalQueue::get(DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON);
+    $queue->createQueue();
+    $item = $queue->claimItem();
+    $this->assertEqual($signup_data, $item->data);
+  }
+}
