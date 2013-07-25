@@ -186,7 +186,7 @@ class DoSomethingGeneralWebTestCase extends WebTestSuite {
    */
   public function SubTestFindUserByCell() {
     $u = dosomething_general_find_user_by_cell('6103683195');
-    $this->assertSame($u->uid, 1002717);
+    $this->assertEqual($u->uid, 1002717);
   }
 
   /**
@@ -194,7 +194,7 @@ class DoSomethingGeneralWebTestCase extends WebTestSuite {
    */
   public function SubTestLoadUserByProfileCell() {
     $u = dosomething_load_user_by_profile_cell('8582784275');
-    $this->assertSame($u->uid, 16727);
+    $this->assertEqual($u->uid, 16727);
   }
 
   /**
