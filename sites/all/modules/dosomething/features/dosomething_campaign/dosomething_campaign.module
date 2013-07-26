@@ -74,30 +74,35 @@ function dosomething_campaign_block_view($delta = '') {
 function dosomething_campaign_init() {
   // If we are viewing a node:
   if (arg(0) == 'node' && is_numeric(arg(1)) && arg(2) == FALSE) {
-    // Check if current path is a gated campaign, and route to either registration gate, join page, or the actual campaign.
+    // Check if current path is a gated campaign:
     $node = menu_get_object();
-    if ($node && $node->type == 'campaign' && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1) {
+    if (dosomething_campaign_is_gated_node($node)) {
       global $user;
-      dosomething_campaign_redirector($user, $node->nid);
+      // Send to redirector.
+      dosomething_campaign_redirector($user, $node);
     }
   }
 }
 
 /**
- * Redirects given $user object to either the: 
- * - Campaign user/registration gate
- * - the join page
- * based on given $nid and whether or not the user has logged in and/or signed up yet.
+ * Redirects user to user/registration gate or join page for given $node based on signup status.
+ *
+ * @param $user
+ *  User object.
+ * @param $node
+ *  Node object to check for is_gated_signup and user signup status.
  */
-function dosomething_campaign_redirector($user, $nid) {
+function dosomething_campaign_redirector($user, $node) {
   // If anon user, redirect to user/destination?node=$campaign_nid
   if ($user->uid == 0) {
-    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $nid)));
+    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $node->nid)));
   }
-  // Else if logged in user hasn't signed up (and is non-override), redirect to join page:
-  else if (!dosomething_campaign_can_user_override_join($user) && !dosomething_campaign_is_user_signed_up($user->uid, $nid)) {
+  // Else if campaign node is a gated signup, and logged in user hasn't signed up (and is non-override), redirect to join page:
+  else if (dosomething_campaign_is_gated_signup_node($node) && 
+    !dosomething_campaign_can_user_override_join($user) && 
+    !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
     // Redirect to the campaign join page.   
-    drupal_goto('campaign/join/' . $nid); 
+    drupal_goto('campaign/join/' . $node->nid); 
   }
 }
 
@@ -132,6 +137,13 @@ function dosomething_campaign_user_login(&$edit, $account) {
     // Execute campaign login signup function:
     dosomething_campaign_signup($account, $campaign_node);
   }
+}
+
+/**
+ * Returns boolean of whether or not given loaded node has a gate.
+ */
+function dosomething_campaign_is_gated_node($node) {
+  return $node && $node->type == 'campaign' && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1;
 }
 
 /**
