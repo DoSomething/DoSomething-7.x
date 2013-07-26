@@ -71,8 +71,8 @@ class DosomethingLoginUnitTestCase extends DrupalUnitTestCase {
    * @see dosomething_login_person_is_over_age()
    */
   public function testUserIsOverAge() {
-    $valid_birthday = strtotime('5th October 1984');
-    $invalid_birthday = strtotime('5th October 2005');
+    $valid_birthday = strtotime('20 years ago');
+    $invalid_birthday = strtotime('10 years ago');
     $valid = dosomething_login_person_is_over_age($valid_birthday);
     $this->assertTrue($valid);
     $invalid = dosomething_login_person_is_over_age($invalid_birthday);
@@ -104,6 +104,7 @@ class DosomethingLoginUnitTestCase extends DrupalUnitTestCase {
     $class = new stdClass;
     $class->fboauth = true;
     $another = new stdClass;
+    $another->fboauth = false;
 
     $true = dosomething_login_user_taxonomy_user_taxonomy_insert($class);
     $this->assertIdentical('fb_created_account', $true);
