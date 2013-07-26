@@ -143,14 +143,14 @@ function dosomething_campaign_user_login(&$edit, $account) {
  * Returns boolean of whether or not given loaded node has a gate.
  */
 function dosomething_campaign_is_gated_node($node) {
-  return $node && $node->type == 'campaign' && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1;
+  return $node && $node->type == 'campaign' && isset($node->field_has_gate[LANGUAGE_NONE][0]['value']) && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1;
 }
 
 /**
  * Returns boolean of whether or not given loaded node is a campaign signup node.
  */
 function dosomething_campaign_is_gated_signup_node($node) {
-  return $node && $node->type == 'campaign' && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1;
+  return $node && $node->type == 'campaign' && isset($node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value']) && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1;
 }
 
 /**
