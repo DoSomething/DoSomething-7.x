@@ -210,7 +210,7 @@ class DoSomethingGeneralWebTestCase extends WebTestSuite {
    * @see dosomething_general_get_multi_fbids()
    */
   public function SubTestGetMultiFbids() {
-    $ids = dosomething_general_get_multi_fbids(array('123'));
+    $ids = dosomething_general_get_multi_fbids(array('53000982'));
     $this->assertTrue(is_array($ids));
     $this->assertTrue(count($ids) == 1);
   }
