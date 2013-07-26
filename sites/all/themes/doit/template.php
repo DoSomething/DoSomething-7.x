@@ -66,9 +66,6 @@ function doit_preprocess_html(&$variables, $hook) {
     $variables['user_styles'] = drupal_get_css($css);
 
   } 
-  else {
-    $variables['user_styles'] = $variables['styles'];
-  }
   drupal_alter('html_templates', $variables);
 }
 
