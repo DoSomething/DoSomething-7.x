@@ -205,7 +205,7 @@ function doit_preprocess_page(&$variables) {
         // Load the node:
         $node = node_load($dest_path_parts[1]);
         // If the destination node is a gated campaign signup:
-        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_signup_node($node)) {
+        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_node($node)) {
           // Load node values for gate copy and image.
           $default_gate = FALSE;
           $variables['page']['gate_wrapper_class'] = 'nid-' . $node->nid;
