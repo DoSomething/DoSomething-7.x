@@ -23,6 +23,15 @@ class DosomethingLoginUnitTestCase extends DrupalUnitTestCase {
   }
 
   /**
+   * @see dosomething_login_menu_alter()
+   */
+  public function testMenuAlter() {
+    $array = array('user/register' => array());
+    $items = dosomething_login_menu_alter($array);
+    $this->assertTrue(empty($items));
+  }
+
+  /**
    * @see dosomething_login_library()
    */
   public function testLibrary() {
@@ -115,12 +124,56 @@ class DosomethingLoginUnitTestCase extends DrupalUnitTestCase {
 }
 
 class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
+  protected $user;
+
   public static function getInfo() {
     return array(
       'name' => 'DoSomething Login DB Unit Tests',
       'description' => 'Tests database-driven dosomething_login functions.',
       'group' => 'DoSomething',
     );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+  }
+
+  /**
+   * @see dosomething_login_menu()
+   */
+  public function SubTestMenuItems() {
+    $this->runThruPaths('dosomething_login');
+  }
+
+  /**
+   * @see dosomething_login_user_register_access()
+   */
+  public function SubTestLoginRegAccess() {
+    $access = dosomething_login_user_register_access();
+    $this->assertTrue($access);
+
+    $this->logIn();
+    $liaccess = dosomething_login_user_register_access();
+    $this->assertFalse($liaccess);
+  }
+
+  /**
+   * @see dosomething_login_page_user_registration()
+   */
+  public function SubTestUserRegPage() {
+    $page = dosomething_login_page_user_registration();
+    $this->assertTrue(is_array($page));
+  }
+
+  /**
+   * @see dosomething_login_block_view()
+   */
+  public function SubTestBlockView() {
+    $this->logOut();
+    $block = dosomething_login_block_view('become_member');
+    $this->assertTrue($block['content'][1]['title_text']['#title'] == "You're Almost There");
+    $this->assertTrue($block['content'][2]['title_text'] == "We've Missed You.");
   }
 
   /**
