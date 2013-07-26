@@ -1,6 +1,6 @@
 <?php
 
-class DosomethingLoginTestCase extends DrupalUnitTestCase {
+class DosomethingLoginUnitTestCase extends DrupalUnitTestCase {
   public static function getInfo() {
     return array(
       'name' => 'DoSomething Login Tests',
@@ -31,4 +31,115 @@ class DosomethingLoginTestCase extends DrupalUnitTestCase {
     $this->assertTrue(isset($libraries['ds.ajax.popup']));
   }
 
+  /**
+   * @see dosomething_login_block_info()
+   */
+  public function testBlockInfo() {
+    $blocks = dosomething_login_block_info();
+    $this->assertTrue(isset($blocks['become_member']));
+    $this->assertTrue(isset($blocks['register_block']));
+  }
+
+  /**
+   * @see dosomething_login_theme()
+   */
+  public function testTheme() {
+    $themes = dosomething_login_theme(null, null, null, '/sites/all/modules/dosomething/dosomething_login');
+    $this->assertTrue(isset($themes['dosomething_login_member_lightbox']));
+    $this->assertTrue(isset($themes['dosomething_login_member_lightbox']['path']));
+    $this->assertTrue(isset($themes['dosomething_login_member_lightbox']['variables']) && is_array($themes['dosomething_login_member_lightbox']['variables']));
+    $this->assertTrue(isset($themes['dosomething_login_member_lightbox']['template']));
+  }
+
+  /**
+   * @see dosomething_login_element_info()
+   */
+  public function testElementInfo() {
+    $elements = dosomething_login_element_info();
+    $this->assertTrue(isset($elements['dosomething_password_confirm']));
+  }
+
+  /**
+   * @see theme_dosomething_login_form_required_marker()
+   */
+  public function testRequiredMarker() {
+    $marker = theme_dosomething_login_form_required_marker(array());
+    $this->assertIdentical($marker, '<span class="ds-registration-form-required form-required" title="This field is required.">*</span>');
+  }
+
+  /**
+   * @see dosomething_login_person_is_over_age()
+   */
+  public function testUserIsOverAge() {
+    $valid_birthday = strtotime('20 years ago');
+    $invalid_birthday = strtotime('10 years ago');
+    $valid = dosomething_login_person_is_over_age($valid_birthday);
+    $this->assertTrue($valid);
+    $invalid = dosomething_login_person_is_over_age($invalid_birthday);
+    $this->assertFalse($invalid);
+  }
+
+  /**
+   * @see dosomething_login_set_parental_consent_message()
+   */
+  public function testParentalConsentMessage() {
+    dosomething_login_set_parental_consent_message();
+    $this->assertTrue(isset($_SESSION['messages']['warning'][0]));
+  }
+
+  /**
+   * @see dosomething_login_fboauth_actions()
+   */
+  public function testFbOuathActions() {
+    $actions = dosomething_login_fboauth_actions();
+    $this->assertTrue(isset($actions['prereg']));
+    $this->assertTrue(isset($actions['ds_connect']));
+    $this->assertTrue(isset($actions['ds_deauth']));
+  }
+
+  /**
+   * @see dosomething_login_user_taxonomy_user_taxonomy_insert()
+   */
+  public function testTaxonomyInsert() {
+    $class = new stdClass;
+    $class->fboauth = true;
+    $another = new stdClass;
+    $another->fboauth = false;
+
+    $true = dosomething_login_user_taxonomy_user_taxonomy_insert($class);
+    $this->assertIdentical('fb_created_account', $true);
+
+    $false = dosomething_login_user_taxonomy_user_taxonomy_insert($another);
+    $this->assertIdentical(null, $false);
+  }
+}
+
+class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Login DB Unit Tests',
+      'description' => 'Tests database-driven dosomething_login functions.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  /**
+   * @see theme_dosomething_login_action_ds_connect()
+   */
+  public function SubTestLoginActionDsConnect() {
+    $variables = array(
+      'action' => '',
+      'properties' => array(
+        'href' => 'user/login',
+        'query' => array('test' => 'true'),
+        'attributes' => array(
+          'class' => array('user-login-link'),
+        ),
+        'title' => 'Please log in.',
+      ),
+    );
+
+    $link = theme_dosomething_login_action_ds_connect($variables);
+    $this->assertIdentical($link, '<a  class="user-login-link" href="/user/login?test=true"><img src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_short.gif" alt="Please log in." /></a>');
+  }
 }

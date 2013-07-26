@@ -7,3 +7,5 @@ dependencies[] = fboauth
 dependencies[] = dosomething_roles
 dependencies[] = dosomething_general
 package = DoSomething
+
+files[] = dosomething_login.unit.test

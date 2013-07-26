@@ -142,7 +142,7 @@ class DosomethingGeneralTestCase extends DrupalUnitTestCase {
   }
 }
 
-class DoSomethingGeneralWebTestCase extends WebTestSuite {
+class DoSomethingGeneralDBUnitTestCase extends WebTestSuite {
   private $user;
   private $user_profile;
   private $schema;
@@ -150,8 +150,8 @@ class DoSomethingGeneralWebTestCase extends WebTestSuite {
 
   public static function getInfo() {
     return array(
-      'name' => 'DoSomething General Tests',
-      'description' => 'Tests functionality found in DoSomething General',
+      'name' => 'DoSomething General DB Unit Tests',
+      'description' => 'DoSomething General unit tests with DB access.',
       'group' => 'DoSomething',
     );
   }
@@ -210,7 +210,7 @@ class DoSomethingGeneralWebTestCase extends WebTestSuite {
    * @see dosomething_general_get_multi_fbids()
    */
   public function SubTestGetMultiFbids() {
-    $ids = dosomething_general_get_multi_fbids(array('123'));
+    $ids = dosomething_general_get_multi_fbids(array('53000982'));
     $this->assertTrue(is_array($ids));
     $this->assertTrue(count($ids) == 1);
   }

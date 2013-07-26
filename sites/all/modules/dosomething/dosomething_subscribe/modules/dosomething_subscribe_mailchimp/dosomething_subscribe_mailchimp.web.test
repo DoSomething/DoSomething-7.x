@@ -31,6 +31,12 @@ class DosomethingSubscribeMailchimpTestCase extends WebTestSuite {
       'list_id' => DOSOMETHING_SUBSCRIBE_MAILCHIMP_LIST_ID_MEMBERS,
       'email' => 'testing@dosomething.org',
     );
+
+    // Delete the queue beforehand, so we know we only have one person in it.
+    db_delete('queue')
+      ->condition('name', DOSOMETHING_SUBSCRIBE_MAILCHIMP_QUEUE_CRON)
+      ->execute();
+
     // Call queue signup method:
     dosomething_subscribe_mailchimp_queue_signup($signup_data);
     // Grab item from queue:
