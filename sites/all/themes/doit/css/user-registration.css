@@ -1,3 +1,7 @@
+html {
+  background: #fafafa !important;
+}
+
 body {
   font-family: din-web-reg;
 }
@@ -15,8 +19,9 @@ h1, h2, h3, p {
 
 h1 {
   font-size: 2.5em;
-  text-transform: uppercase;
   font-weight: 500;
+  font-familiy: din-web;
+  text-transform: uppercase;
 }
 
 h2 {
@@ -33,7 +38,6 @@ p {
   margin: 5% auto 0;
   padding: 20px 25px 25px 25px;
   overflow: hidden;
-  background: #fafafa !important;
   background: white;
   border: 1px solid #eeeeee;
   -webkit-box-shadow: #eeeeee 0px 15px 20px -10px;
@@ -173,7 +177,6 @@ p {
   color: #84cdc9;
   font-size: 2.5em;
   line-height: 2em;
-  font-family: "Amatic SC", din-web-reg;
 }
 .form-container h2, .form-container p {
   display: none;
@@ -273,7 +276,7 @@ form .disclaimer {
   display: none;
 }
 form #edit-final-submit, form #edit-submit {
-  font-family: din-web-reg !important;
+  font-family: din-web-reg;
   margin: 1em 0 0.5em;
   padding: 0.2em 1em 0.25em;
   clear: both;
@@ -282,7 +285,6 @@ form #edit-final-submit, form #edit-submit {
   height: 2em;
   display: block;
   cursor: pointer;
-  font-family: din;
   font-size: 24px;
   font-weight: 700;
   text-align: center;

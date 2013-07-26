@@ -31,12 +31,6 @@ function doit_preprocess_html(&$variables, $hook) {
    */
   elseif (doit_is_user_registration_template_page() || doit_is_campaign_join_template_page()) {
 
-    // Add custom typeface for gate
-    drupal_add_css(
-      'http://fonts.googleapis.com/css?family=Amatic+SC:400',
-      array('type' => 'external')
-    );
-
     $variables['theme_hook_suggestions'][] = 'html__user__registration';
     $css = drupal_add_css();
 
