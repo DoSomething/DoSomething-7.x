@@ -490,12 +490,12 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  'ask_cards' => 0, // TODO: need webform setup
-  'ask_people' => 0, // TODO: need webform setup
+  'ask_cards' => 1,
+  'ask_people' => 3,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 160649;
-$activity->webform_nid = 0; // TODO: need webform setup
+$activity->webform_nid = 730403;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
