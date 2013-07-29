@@ -3,6 +3,8 @@
 class WebTestSuite extends DrupalWebTestCase {
   protected $factory;
   protected $logged_in;
+  # This magically fixes an exception thrown occasionally.
+  protected $public_files_directory;
 
   public function setUp() {
     $this->setup = TRUE;
@@ -24,7 +26,10 @@ class WebTestSuite extends DrupalWebTestCase {
 
   public function logOut() {
     if (isset($this->user) && $this->logged_in) {
-      $GLOBALS['user'] = new stdClass;
+      $user = new stdClass;
+      $user->uid = 0;
+
+      $GLOBALS['user'] = $user;
     }
   }
 
