@@ -1,0 +1,1080 @@
+/* line 5, sass/_drupal.sass */
+html {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+/* line 10, sass/_drupal.sass */
+.webform-client-form {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* line 15, sass/_drupal.sass */
+#skip-link,
+#breadcrumb,
+#page-title {
+  display: none;
+}
+
+/* line 20, sass/_drupal.sass */
+.tabs .element-invisible {
+  display: none;
+}
+
+/* line 24, sass/_drupal.sass */
+body {
+  background: url("http://www.dosomething.org/files/campaigns/birthdaymail/bg_top_smooth.jpg") top no-repeat, url(http://www.dosomething.org/files/campaigns/birthdaymail/bg_bottom_smooth.jpg) bottom no-repeat;
+  background-size: 100% auto;
+  background-color: #f7f5f8;
+}
+
+/* line 29, sass/_drupal.sass */
+#main-wrapper div[role="main"] {
+  padding: 0 !important;
+  margin: 0 auto !important;
+  background: transparent;
+  width: 100%;
+  float: none;
+}
+/* line 35, sass/_drupal.sass */
+#main-wrapper div[role="main"] ul.primary {
+  border-bottom: none;
+  margin: 0;
+  padding: 15px 0 0 8px;
+  height: 37px;
+}
+
+/* line 42, sass/_drupal.sass */
+.container {
+  width: 100%;
+  max-width: 1030px;
+}
+
+/* line 47, sass/_drupal.sass */
+nav[role="navigation"] {
+  height: 45px;
+  padding: 3px 0 0 0;
+}
+@media only screen and (max-width: 1139px) {
+  /* line 47, sass/_drupal.sass */
+  nav[role="navigation"] {
+    display: none;
+  }
+}
+
+/* line 54, sass/_drupal.sass */
+header[role="banner"] {
+  margin: 0 auto;
+  position: relative;
+}
+
+/* line 59, sass/_drupal.sass */
+#site-name {
+  top: -38px;
+  left: -94px;
+}
+@media only screen and (max-width: 1139px) {
+  /* line 59, sass/_drupal.sass */
+  #site-name {
+    top: -52px;
+    left: 5px;
+  }
+  /* line 66, sass/_drupal.sass */
+  #site-name a {
+    width: 60px;
+    height: 50px;
+    background-image: url("/sites/all/themes/doit/css/images/ds-logo.png");
+    background-size: 60px 50px;
+  }
+}
+
+/* line 73, sass/_drupal.sass */
+#page .messages {
+  background: #86005d;
+  border: none;
+  color: white;
+  font-size: 20px;
+  line-height: 1.75em;
+  text-align: center;
+  font-family: din-web-reg;
+  margin: 0;
+}
+/* line 82, sass/_drupal.sass */
+#page .messages .go-button {
+  background: #fedd13;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: din-web-reg;
+  text-align: center;
+  margin: 5px auto;
+  padding: 3px 0 0 0;
+  height: 35px;
+  width: 70px;
+  display: block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 95, sass/_drupal.sass */
+.messages .element-invisible {
+  display: none;
+}
+
+/* line 99, sass/_drupal.sass */
+.tabs {
+  background: transparent;
+}
+/* line 101, sass/_drupal.sass */
+.tabs li {
+  display: inline;
+}
+/* line 103, sass/_drupal.sass */
+.tabs a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #dddddd;
+  border-color: #bbbbbb;
+  border-style: solid solid none solid;
+  border-width: 1px;
+  height: auto;
+  margin-right: 0.5em;
+  padding: 0 1em;
+  text-decoration: none;
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  -ms-border-radius: 0 2px 2px 0;
+  -o-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+
+/* line 116, sass/_drupal.sass */
+#main-wrapper div[role="main"] ul.primary {
+  height: 50px;
+  width: 375px;
+  margin: 0 auto;
+  padding: 20px 0 0 0;
+}
+
+@media only screen and (max-width: 1139px) {
+  /* line 123, sass/_drupal.sass */
+  #utility-bar {
+    height: 54px;
+  }
+}
+/* line 127, sass/_drupal.sass */
+#utility-bar .container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+/* line 131, sass/_drupal.sass */
+#utility-bar a {
+  text-decoration: none;
+}
+@media only screen and (max-width: 1139px) {
+  /* line 131, sass/_drupal.sass */
+  #utility-bar a {
+    font-size: 22px;
+    line-height: 2em;
+    padding-right: 0.5em;
+  }
+}
+
+@media only screen and (max-width: 1139px) {
+  /* line 141, sass/_drupal.sass */
+  .utility-items.search {
+    display: none !important;
+  }
+}
+
+/* line 145, sass/_drupal.sass */
+#help-center {
+  margin: 3px 15px 3px 0;
+}
+@media only screen and (max-width: 1139px) {
+  /* line 145, sass/_drupal.sass */
+  #help-center {
+    display: none !important;
+  }
+}
+
+/* line 152, sass/_drupal.sass */
+#edit-submitted-field-geocode-data {
+  display: none;
+}
+
+/* line 157, sass/_drupal.sass */
+.region-sidebar-first,
+.pane-title,
+#block-menu-menu-footer,
+#skip-link,
+#breadcrumb,
+#page-title,
+#block-dosomething-login-become-member,
+#block-dosomething-blocks-dosomething-make-impact,
+#block-dosomething-blocks-dosomething-social-skyscraper,
+#block-block-5 {
+  display: none;
+}
+
+/* line 170, sass/_drupal.sass */
+#cmp {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* line 176, sass/_drupal.sass */
+.view-campaign-gallery #slideshow {
+  margin: 0 auto;
+}
+
+/* line 7, sass/_reset.sass */
+#cmp html, #cmp body, #cmp div, #cmp span, #cmp applet, #cmp object, #cmp iframe,
+#cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp h5, #cmp h6, #cmp p, #cmp blockquote, #cmp pre,
+#cmp a, #cmp abbr, #cmp acronym, #cmp address, #cmp big, #cmp cite, #cmp code,
+#cmp del, #cmp dfn, #cmp em, #cmp img, #cmp ins, #cmp kbd, #cmp q, #cmp s, #cmp samp,
+#cmp small, #cmp strike, #cmp strong, #cmp sub, #cmp sup, #cmp tt, #cmp var,
+#cmp b, #cmp u, #cmp i, #cmp center,
+#cmp dl, #cmp dt, #cmp dd, #cmp ol, #cmp ul, #cmp li,
+#cmp fieldset, #cmp form, #cmp label, #cmp legend,
+#cmp table, #cmp caption, #cmp tbody, #cmp tfoot, #cmp thead, #cmp tr, #cmp th, #cmp td,
+#cmp article, #cmp aside, #cmp canvas, #cmp details, #cmp embed,
+#cmp figure, #cmp figcaption, #cmp footer, #cmp header, #cmp hgroup,
+#cmp menu, #cmp nav, #cmp output, #cmp ruby, #cmp section, #cmp summary,
+#cmp time, #cmp mark, #cmp audio, #cmp video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* line 28, sass/_reset.sass */
+#cmp article, #cmp aside, #cmp details, #cmp figcaption, #cmp figure,
+#cmp footer, #cmp header, #cmp hgroup, #cmp menu, #cmp nav, #cmp section {
+  display: block;
+}
+/* line 32, sass/_reset.sass */
+#cmp body {
+  line-height: 1;
+}
+/* line 35, sass/_reset.sass */
+#cmp ol, #cmp ul {
+  list-style: none;
+}
+/* line 38, sass/_reset.sass */
+#cmp blockquote, #cmp q {
+  quotes: none;
+}
+/* line 41, sass/_reset.sass */
+#cmp blockquote:before, #cmp blockquote:after,
+#cmp q:before, #cmp q:after {
+  content: "";
+  content: none;
+}
+/* line 46, sass/_reset.sass */
+#cmp table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* line 3, sass/_general.sass */
+#cmp img {
+  border: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+}
+/* line 10, sass/_general.sass */
+#cmp .section {
+  margin: 0 auto;
+  padding: 15px 0;
+  background: white;
+  overflow: hidden;
+  border-bottom: 1px solid #eeeeee;
+}
+@media only screen and (max-width: 825px) {
+  /* line 10, sass/_general.sass */
+  #cmp .section {
+    padding: 3% 2%;
+  }
+}
+/* line 19, sass/_general.sass */
+#cmp .section-container {
+  width: 100%;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 825px) {
+  /* line 19, sass/_general.sass */
+  #cmp .section-container {
+    width: 100%;
+  }
+}
+/* line 25, sass/_general.sass */
+#cmp .section-unit-single,
+#cmp .section-unit-double,
+#cmp .section-unit-full,
+#cmp .section-unit-half {
+  padding: 0 1% 0;
+  width: 33.33333%;
+  float: left;
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  /* line 25, sass/_general.sass */
+  #cmp .section-unit-single,
+  #cmp .section-unit-double,
+  #cmp .section-unit-full,
+  #cmp .section-unit-half {
+    float: none;
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 2em;
+  }
+}
+/* line 41, sass/_general.sass */
+#cmp .section-unit-single img,
+#cmp .section-unit-double img,
+#cmp .section-unit-full img,
+#cmp .section-unit-half img {
+  width: auto;
+  margin: 0 auto 1em;
+  display: block;
+}
+/* line 46, sass/_general.sass */
+#cmp .section-unit-double {
+  width: 66.66667%;
+  margin: 0 0 2em 0;
+  border-bottom: 1px solid #eeeeee;
+}
+/* line 51, sass/_general.sass */
+#cmp .section-unit-full {
+  width: 100%;
+  padding: 0 0 0 0;
+  margin: 0 0 2em 0;
+  border-bottom: 1px solid #eeeeee;
+}
+/* line 57, sass/_general.sass */
+#cmp .section-unit-half {
+  width: 50%;
+  margin: 0 0 2em 0;
+}
+@media only screen and (max-width: 600px) {
+  /* line 57, sass/_general.sass */
+  #cmp .section-unit-half {
+    width: 100%;
+  }
+}
+/* line 64, sass/_general.sass */
+#cmp .section-header {
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 0;
+  margin: 0 auto 1em auto;
+  letter-spacing: 0.1em;
+  color: #888888;
+}
+/* line 73, sass/_general.sass */
+#cmp .section-header span {
+  color: #4d4d4d;
+  border-bottom: 10px solid #fedd13;
+}
+/* line 80, sass/_general.sass */
+#cmp .left {
+  float: left;
+}
+/* line 83, sass/_general.sass */
+#cmp .right {
+  float: right;
+}
+/* line 86, sass/_general.sass */
+#cmp .center {
+  margin: 0 auto;
+  display: block;
+  float: none;
+}
+/* line 91, sass/_general.sass */
+#cmp .row {
+  width: 100%;
+  clear: both;
+}
+/* line 95, sass/_general.sass */
+#cmp h1.headline-callout {
+  padding: 0;
+}
+/* line 98, sass/_general.sass */
+#cmp .headline-callout {
+  font-weight: 400;
+  text-align: center;
+  margin: 0 auto 0.2em;
+}
+/* line 102, sass/_general.sass */
+#cmp .headline-callout span {
+  text-align: center;
+  display: inline-block;
+  padding: 0.2em 0.5em 0px;
+  color: white;
+  background: #e30080;
+  /* TODO - MOVE INTO VARIABLES */
+}
+/* line 112, sass/_general.sass */
+#cmp .headline-callout.alt span {
+  color: white;
+  background: #e30080;
+  border: 1px solid #e8e8e8;
+  /* TODO - MOVE INTO VARIABLES */
+}
+/* line 118, sass/_general.sass */
+#cmp .headline-instructions {
+  padding: 1em 0;
+}
+/* line 121, sass/_general.sass */
+#cmp .section-instructions {
+  padding: 0 0 1em 0 !important;
+}
+/* line 124, sass/_general.sass */
+#cmp .bg-header {
+  margin: 0 0 0.5em 0;
+}
+/* line 127, sass/_general.sass */
+#cmp .log-out {
+  float: right;
+  text-decoration: none;
+}
+/* line 130, sass/_general.sass */
+#cmp .log-out:hover {
+  text-decoration: underline;
+}
+/* line 133, sass/_general.sass */
+#cmp .official-rules {
+  color: #cccccc !important;
+}
+/* line 136, sass/_general.sass */
+#cmp .error {
+  background: none;
+}
+/* line 139, sass/_general.sass */
+#cmp .legal {
+  color: #bbbbbb;
+  font-size: 0.75em;
+}
+/* line 146, sass/_general.sass */
+#cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
+  font-weight: 400;
+  font-family: din-web-reg, "Trebuchet MS", sans-serif;
+  text-align: left;
+  color: #1e1d1c;
+  line-height: 1.75em;
+}
+/* line 153, sass/_general.sass */
+#cmp h1, #cmp h2, #cmp h3, #cmp p, #cmp img {
+  text-align: center;
+}
+/* line 156, sass/_general.sass */
+#cmp p {
+  color: #1e1d1c;
+  font-weight: 400;
+  line-height: 1.5em;
+  font-size: 18px;
+}
+/* line 162, sass/_general.sass */
+#cmp h1 {
+  font-size: 2em;
+  font-weight: 500;
+}
+/* line 166, sass/_general.sass */
+#cmp h2 {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+/* line 170, sass/_general.sass */
+#cmp h3 {
+  font-size: 1.125em;
+}
+/* line 173, sass/_general.sass */
+#cmp h4 {
+  font-size: 1em;
+}
+/* line 176, sass/_general.sass */
+#cmp strong {
+  font-weight: 800;
+}
+/* line 179, sass/_general.sass */
+#cmp .section a {
+  text-decoration: underline;
+}
+/* line 181, sass/_general.sass */
+#cmp .section a:link, #cmp .section a:visited, #cmp .section a:active {
+  color: #25d7fa;
+}
+/* line 183, sass/_general.sass */
+#cmp .section a:hover {
+  text-decoration: underline;
+}
+/* line 189, sass/_general.sass */
+#cmp .form-submit, #cmp .btn {
+  background: #fedd13;
+  margin: 0 auto;
+  padding: 0.2em 0;
+  clear: both;
+  position: static;
+  height: 2em;
+  display: block;
+  border: 1px solid none;
+  cursor: pointer;
+  color: #1e1d1c !important;
+  font-family: din-web-reg;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 206, sass/_general.sass */
+#cmp .form-submit:hover, #cmp .btn:hover {
+  background: #feb800;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fedd13), color-stop(100%, #feb800));
+  background-image: -webkit-linear-gradient(#fedd13, #feb800);
+  background-image: -moz-linear-gradient(#fedd13, #feb800);
+  background-image: -o-linear-gradient(#fedd13, #feb800);
+  background-image: linear-gradient(#fedd13, #feb800);
+}
+/* line 210, sass/_general.sass */
+#cmp .form-submit:active, #cmp .btn:active {
+  color: #383735 !important;
+  padding: 0.35em 0 0.15em !important;
+  background: #fedd13;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #feb800), color-stop(100%, #fedd13));
+  background-image: -webkit-linear-gradient(#feb800, #fedd13);
+  background-image: -moz-linear-gradient(#feb800, #fedd13);
+  background-image: -o-linear-gradient(#feb800, #fedd13);
+  background-image: linear-gradient(#feb800, #fedd13);
+}
+/* line 216, sass/_general.sass */
+#cmp .form-submit:link, #cmp .form-submit:active, #cmp .form-submit:hover, #cmp .btn:link, #cmp .btn:active, #cmp .btn:hover {
+  color: #1e1d1c;
+  text-decoration: none !important;
+}
+/* line 220, sass/_general.sass */
+#cmp .btn-cta-small {
+  font-size: 0.875em;
+}
+/* line 223, sass/_general.sass */
+#cmp .btn-cta-medium {
+  font-size: 1.125em;
+}
+/* line 226, sass/_general.sass */
+#cmp .btn-cta-large {
+  font-size: 1.5em;
+}
+/* line 3, sass/_sections.sass */
+#cmp .call-to-action,
+#cmp .headline,
+#cmp .footer {
+  background: #1eb6e2;
+}
+/* line 8, sass/_sections.sass */
+#cmp .official-rules {
+  display: block;
+  margin: 0 auto;
+  width: 13em;
+  text-align: center;
+}
+/* line 16, sass/_sections.sass */
+#cmp .header {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  background-image: url("http://www.dosomething.org/files/campaigns/birthdaymail/Cards-header.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 1% 2%;
+  overflow: hidden;
+}
+/* line 27, sass/_sections.sass */
+#cmp .header .logo-campaign {
+  margin: 0 auto;
+  display: block;
+  width: 450px;
+  clear: both;
+}
+@media only screen and (max-width: 550px) {
+  /* line 27, sass/_sections.sass */
+  #cmp .header .logo-campaign {
+    width: 400px;
+  }
+}
+/* line 35, sass/_sections.sass */
+#cmp .header .header-logotype {
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  line-height: 1.2em;
+  font-weight: 600;
+  font-size: 4em;
+  margin: 2em auto 0.5em;
+}
+@media only screen and (max-width: 1139px) {
+  /* line 35, sass/_sections.sass */
+  #cmp .header .header-logotype {
+    font-size: 3em;
+  }
+}
+/* line 47, sass/_sections.sass */
+#cmp .header .log-out {
+  color: white;
+}
+/* line 50, sass/_sections.sass */
+#cmp .header .header-social {
+  position: absolute;
+  bottom: 0px;
+  left: 12px;
+}
+/* line 55, sass/_sections.sass */
+#cmp .header .header-facebook-share,
+#cmp .header .header-twitter-share {
+  display: inline-block;
+  height: 20px;
+}
+@media only screen and (max-width: 1139px) {
+  /* line 55, sass/_sections.sass */
+  #cmp .header .header-facebook-share,
+  #cmp .header .header-twitter-share {
+    display: none;
+  }
+}
+/* line 63, sass/_sections.sass */
+#cmp .header .header-facebook-share {
+  width: 80px;
+  border: 1px solid #cad4e7;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 67, sass/_sections.sass */
+#cmp .header .header-facebook-share:hover {
+  border: 1px solid #eceef5;
+}
+/* line 71, sass/_sections.sass */
+#cmp .header .header-date h2 {
+  padding: 1.5em 0 0 0;
+  color: #1e1d1c;
+  font-weight: 600;
+  margin-bottom: -10px;
+}
+/* line 77, sass/_sections.sass */
+#cmp .header .row-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1%;
+}
+/* line 85, sass/_sections.sass */
+#cmp .headline {
+  background: white !important;
+  border-top: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+}
+/* line 94, sass/_sections.sass */
+#cmp .call-to-action p {
+  line-height: 3em;
+  letter-spacing: 0.05em;
+  color: white;
+  margin-left: 6.8em;
+}
+@media only screen and (max-width: 600px) {
+  /* line 94, sass/_sections.sass */
+  #cmp .call-to-action p {
+    margin-left: 2em;
+  }
+}
+/* line 103, sass/_sections.sass */
+#cmp .call-to-action .btn {
+  margin: 0 0 0 1em;
+  clear: none;
+}
+/* line 107, sass/_sections.sass */
+#cmp .call-to-action .section-container {
+  width: 43em;
+}
+/* line 112, sass/_sections.sass */
+#cmp .how-it-works {
+  padding: 2em 0;
+  border: none !important;
+}
+/* line 116, sass/_sections.sass */
+#cmp .how-it-works .how-it-works-container {
+  clear: both;
+  overflow: hidden;
+  margin: 0 0 1em 0;
+}
+/* line 123, sass/_sections.sass */
+#cmp .action-kit {
+  padding-top: 20px;
+}
+/* line 126, sass/_sections.sass */
+#cmp .action-kit img {
+  position: relative;
+  top: 15px;
+  right: 20px;
+}
+/* line 131, sass/_sections.sass */
+#cmp .action-kit .section-container {
+  height: 3em;
+  background-color: #1eb6e2;
+}
+/* line 135, sass/_sections.sass */
+#cmp .action-kit p {
+  color: white;
+  font-size: 1.25em;
+  padding-top: 8px;
+}
+/* line 140, sass/_sections.sass */
+#cmp .action-kit a {
+  color: white !important;
+}
+/* line 146, sass/_sections.sass */
+#cmp .prizing p {
+  padding: 1em 1em;
+}
+/* line 149, sass/_sections.sass */
+#cmp .prizing .prizing-container {
+  width: 66.66667%;
+  margin: 0 auto;
+  clear: both;
+}
+/* line 154, sass/_sections.sass */
+#cmp .prizing .btn {
+  margin: 0 auto 1em;
+}
+/* line 159, sass/_sections.sass */
+#cmp .locate-shelter {
+  width: 90%;
+  max-width: 40em;
+  margin: 0 auto;
+}
+/* line 164, sass/_sections.sass */
+#cmp .locate-shelter .btn {
+  height: 2.3em;
+  margin: 1em auto;
+}
+@media only screen and (max-width: 600px) {
+  /* line 164, sass/_sections.sass */
+  #cmp .locate-shelter .btn {
+    width: 100%;
+  }
+}
+/* line 174, sass/_sections.sass */
+#cmp .content {
+  width: 90%;
+  max-width: 40em;
+  margin: 0 auto;
+  /* this padding should be abstracted to all <h3> */
+}
+/* line 178, sass/_sections.sass */
+#cmp .content p {
+  display: block;
+  text-align: left;
+  line-height: 1.5em;
+  padding-bottom: 1em;
+  word-wrap: break-word;
+}
+/* line 184, sass/_sections.sass */
+#cmp .content h2 {
+  padding-bottom: 0.5em;
+}
+/* line 188, sass/_sections.sass */
+#cmp .content .headline-callout {
+  padding: 0 0 0.5em 0;
+  text-transform: capitalize;
+  text-align: left;
+}
+/* line 192, sass/_sections.sass */
+#cmp .content .headline-callout span {
+  background: #1eb6e2;
+}
+/* line 200, sass/_sections.sass */
+#cmp .gallery img {
+  border: 1px solid #dddddd !important;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 10px 10px -10px #bbbbbb !important;
+  -moz-box-shadow: 0 10px 10px -10px #bbbbbb !important;
+  box-shadow: 0 10px 10px -10px #bbbbbb !important;
+}
+/* line 205, sass/_sections.sass */
+#cmp .gallery .btn {
+  margin: 1.5em auto;
+}
+/* line 211, sass/_sections.sass */
+#cmp .success_msg {
+  margin: 0 auto 1em;
+}
+/* line 213, sass/_sections.sass */
+#cmp .success_msg h2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #d5904c;
+}
+/* line 220, sass/_sections.sass */
+#cmp .faq {
+  width: 90%;
+  max-width: 40em;
+  margin: 0 auto;
+  height: 42em;
+}
+/* line 226, sass/_sections.sass */
+#cmp .faq h3, #cmp .faq p {
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+/* line 229, sass/_sections.sass */
+#cmp .faq h3 {
+  cursor: pointer;
+  color: #1e1d1c;
+  font-weight: bold;
+}
+/* line 233, sass/_sections.sass */
+#cmp .faq div {
+  margin: 0 0 0.5em 0;
+}
+/* line 236, sass/_sections.sass */
+#cmp .faq .btn {
+  margin: 1em auto 0;
+}
+/* line 239, sass/_sections.sass */
+#cmp .faq .back-to-top {
+  text-align: right;
+  padding: 1em 0 1em;
+}
+/* line 243, sass/_sections.sass */
+#cmp .faq .top-btn {
+  font-weight: 400;
+  color: #c6c7c8;
+  padding: 0px 0px 0px 1em;
+  text-decoration: none;
+  background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
+  background-repeat: no-repeat;
+  background-position: 0% 40%;
+}
+/* line 4, sass/_forms.sass */
+#cmp .report-back-form h2 {
+  display: none;
+}
+/* line 6, sass/_forms.sass */
+#cmp .report-back-form td {
+  display: block;
+}
+/* line 8, sass/_forms.sass */
+#cmp .report-back-form form {
+  width: 960px;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 825px) {
+  /* line 8, sass/_forms.sass */
+  #cmp .report-back-form form {
+    width: 100%;
+  }
+}
+/* line 13, sass/_forms.sass */
+#cmp .report-back-form form:first-child {
+  overflow: hidden;
+}
+/* line 15, sass/_forms.sass */
+#cmp .report-back-form input[type="text"] {
+  width: 12em;
+  border: 1px solid #dddddd;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 20, sass/_forms.sass */
+#cmp .report-back-form input[type="file"] {
+  border: none;
+}
+/* line 22, sass/_forms.sass */
+#cmp .report-back-form input[name="submitted_field_webform_pictures_und_0_upload_button"].form-submit {
+  background: #cccccc;
+}
+/* line 24, sass/_forms.sass */
+#cmp .report-back-form legend {
+  display: none;
+}
+/* line 26, sass/_forms.sass */
+#cmp .report-back-form .description {
+  font-size: 10px;
+  color: #cccccc;
+  margin: 0 0 1em 0;
+}
+/* line 32, sass/_forms.sass */
+#cmp .food-bank-finder .form-submit, #cmp .image-widget-data .form-submit {
+  float: left;
+  margin: 0 0 0 10% !important;
+  padding: 10px 15px 0 !important;
+  height: 35px !important;
+  font-size: 18px;
+  background: #cccccc;
+  color: #444444;
+}
+/* line 42, sass/_forms.sass */
+#cmp .report-back-form td .form-submit {
+  background: none;
+  font-weight: 400;
+  font-family: din-web-reg;
+  font-size: 14px;
+  text-transform: lowercase;
+  text-decoration: underline;
+  margin: 0;
+  padding: 0;
+  color: #cccccc;
+}
+/* line 53, sass/_forms.sass */
+#cmp .image-widget-data .form-submit {
+  margin: 0 0 0.5em 0 !important;
+  padding: 2px 15px 0px 15px !important;
+  float: left;
+  clear: left;
+}
+/* line 59, sass/_forms.sass */
+#cmp .food-bank-finder-error {
+  display: none;
+}
+/* line 62, sass/_forms.sass */
+#cmp .report-back-form.show {
+  display: block;
+}
+/* line 65, sass/_forms.sass */
+#cmp #webform-photo-wrapper,
+#cmp #webform-component-wrapper-zip {
+  float: left;
+  width: 50%;
+}
+@media only screen and (max-width: 550px) {
+  /* line 65, sass/_forms.sass */
+  #cmp #webform-photo-wrapper,
+  #cmp #webform-component-wrapper-zip {
+    float: none;
+    width: 100%;
+  }
+}
+/* line 74, sass/_forms.sass */
+#cmp #webform-photo-wrapper label, #cmp #webform-photo-wrapper p {
+  margin: 1em 0 0.5em 0;
+}
+/* line 76, sass/_forms.sass */
+#cmp #webform-photo-wrapper .form-item, #cmp #webform-photo-wrapper .field-name-field-webform-pictures, #cmp #webform-photo-wrapper .form-actions {
+  float: left;
+  clear: left;
+}
+@media only screen and (max-width: 550px) {
+  /* line 73, sass/_forms.sass */
+  #cmp #webform-photo-wrapper {
+    margin: 5% 0;
+  }
+}
+/* line 83, sass/_forms.sass */
+#cmp #webform-component-wrapper-zip label {
+  margin: 1em 0 0.5em 0;
+}
+/* line 87, sass/_forms.sass */
+#cmp .webform-client-form #edit-actions {
+  height: auto;
+  margin: auto;
+  overflow: visible;
+}
+/* line 93, sass/_forms.sass */
+#cmp .form-type-managed-file label,
+#cmp .ajax-progress {
+  display: none;
+}
+/* line 100, sass/_forms.sass */
+#cmp .report-back-form .tabledrag-toggle-weight-wrapper, #cmp .report-back-form thead, #cmp .report-back-form .tabledrag-handle, #cmp .report-back-form .image-preview, #cmp .report-back-form .file img, #cmp .report-back-form .file-size {
+  display: none;
+}
+/* line 103, sass/_forms.sass */
+#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-1-upload,
+#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-2-upload {
+  margin-top: 5px;
+}
+/* line 107, sass/_forms.sass */
+#cmp tr {
+  background: white;
+}
+/* line 114, sass/_forms.sass */
+#cmp #edit-submitted-field-webform-pictures-und-0-upload,
+#cmp #edit-submitted-field-webform-pictures-und-1-upload,
+#cmp #edit-submitted-field-webform-pictures-und-2-upload,
+#cmp #edit-submitted-field-webform-pictures-und-3-upload,
+#cmp #edit-submitted-field-webform-pictures-und-4-upload,
+#cmp #edit-submitted-field-webform-pictures-und-5-upload,
+#cmp #edit-submitted-field-webform-pictures-und-6-upload {
+  float: left;
+  margin: 0 0 2em 0;
+}
+/* line 125, sass/_forms.sass */
+#cmp #edit-submitted-field-webform-pictures-und-0-upload-button,
+#cmp #edit-submitted-field-webform-pictures-und-1-upload-button {
+  margin: 7px 0;
+  padding: 0;
+  width: 70px;
+  font-size: 22px;
+}
+/* line 133, sass/_forms.sass */
+#cmp #edit-submitted-wrapper-photo-field-webform-pictures-und-2-upload-button {
+  display: none;
+}
+/* line 137, sass/_forms.sass */
+#cmp #edit-submitted-field-webform-pictures-und-0-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-1-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-2-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-3-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-4-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-5-remove-button,
+#cmp #edit-submitted-field-webform-pictures-und-6-remove-button {
+  margin: 5px 0;
+  padding: 0 8px;
+  background: #cccccc;
+  color: #b3b3b3;
+  font-size: 16px;
+}
+/* line 151, sass/_forms.sass */
+#cmp #edit-submit {
+  float: left;
+  margin: 5px 0;
+  padding: 0 10px;
+  font-size: 30px;
+}
+/* line 158, sass/_forms.sass */
+#cmp #edit-submitted-field-webform-email,
+#cmp #edit-submitted-field-webform-email--2,
+#cmp #edit-submitted-field-webform-mobile,
+#cmp #edit-submitted-field-webform-mobile--2 {
+  display: none;
+}
