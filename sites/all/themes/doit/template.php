@@ -31,12 +31,6 @@ function doit_preprocess_html(&$variables, $hook) {
    */
   elseif (doit_is_user_registration_template_page() || doit_is_campaign_join_template_page()) {
 
-    // Add custom typeface for gate
-    drupal_add_css(
-      'http://fonts.googleapis.com/css?family=Amatic+SC:400',
-      array('type' => 'external')
-    );
-
     $variables['theme_hook_suggestions'][] = 'html__user__registration';
     $css = drupal_add_css();
 
@@ -72,9 +66,6 @@ function doit_preprocess_html(&$variables, $hook) {
     $variables['user_styles'] = drupal_get_css($css);
 
   } 
-  else {
-    $variables['user_styles'] = $variables['styles'];
-  }
   drupal_alter('html_templates', $variables);
 }
 
@@ -211,7 +202,7 @@ function doit_preprocess_page(&$variables) {
         // Load the node:
         $node = node_load($dest_path_parts[1]);
         // If the destination node is a gated campaign signup:
-        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_signup_node($node)) {
+        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_node($node)) {
           // Load node values for gate copy and image.
           $default_gate = FALSE;
           $variables['page']['gate_wrapper_class'] = 'nid-' . $node->nid;

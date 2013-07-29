@@ -1,6 +1,6 @@
 <?php
 
-class DosomethingLoginTestCase extends DrupalUnitTestCase {
+class DosomethingLoginUnitTestCase extends DrupalUnitTestCase {
   public static function getInfo() {
     return array(
       'name' => 'DoSomething Login Tests',
@@ -14,12 +14,12 @@ class DosomethingLoginTestCase extends DrupalUnitTestCase {
   }
 
   /**
-   * @see dosomething_login_menu()
+   * @see dosomething_login_menu_alter()
    */
-  public function testHookMenu() {
-    $paths = dosomething_login_menu();
-    // The most important path there.
-    $this->assertTrue(isset($paths['user/registration']));
+  public function testMenuAlter() {
+    $array = array('user/register' => array());
+    $items = dosomething_login_menu_alter($array);
+    $this->assertTrue(empty($items));
   }
 
   /**
@@ -31,4 +31,329 @@ class DosomethingLoginTestCase extends DrupalUnitTestCase {
     $this->assertTrue(isset($libraries['ds.ajax.popup']));
   }
 
+  /**
+   * @see dosomething_login_block_info()
+   */
+  public function testBlockInfo() {
+    $blocks = dosomething_login_block_info();
+    $this->assertTrue(isset($blocks['become_member']));
+    $this->assertTrue(isset($blocks['register_block']));
+  }
+
+  /**
+   * @see dosomething_login_theme()
+   */
+  public function testTheme() {
+    $themes = dosomething_login_theme(null, null, null, '/sites/all/modules/dosomething/dosomething_login');
+    $this->assertTrue(isset($themes['dosomething_login_member_lightbox']));
+    $this->assertTrue(isset($themes['dosomething_login_member_lightbox']['path']));
+    $this->assertTrue(isset($themes['dosomething_login_member_lightbox']['variables']) && is_array($themes['dosomething_login_member_lightbox']['variables']));
+    $this->assertTrue(isset($themes['dosomething_login_member_lightbox']['template']));
+  }
+
+  /**
+   * @see dosomething_login_element_info()
+   */
+  public function testElementInfo() {
+    $elements = dosomething_login_element_info();
+    $this->assertTrue(isset($elements['dosomething_password_confirm']));
+  }
+
+  /**
+   * @see theme_dosomething_login_form_required_marker()
+   */
+  public function testRequiredMarker() {
+    $marker = theme_dosomething_login_form_required_marker(array());
+    $this->assertIdentical($marker, '<span class="ds-registration-form-required form-required" title="This field is required.">*</span>');
+  }
+
+  /**
+   * @see dosomething_login_person_is_over_age()
+   */
+  public function testUserIsOverAge() {
+    $valid_birthday = strtotime('20 years ago');
+    $invalid_birthday = strtotime('10 years ago');
+    $valid = dosomething_login_person_is_over_age($valid_birthday);
+    $this->assertTrue($valid);
+    $invalid = dosomething_login_person_is_over_age($invalid_birthday);
+    $this->assertFalse($invalid);
+  }
+
+  /**
+   * @see dosomething_login_set_parental_consent_message()
+   */
+  public function testParentalConsentMessage() {
+    dosomething_login_set_parental_consent_message();
+    $this->assertTrue(isset($_SESSION['messages']['warning'][0]));
+  }
+
+  /**
+   * @see dosomething_login_fboauth_actions()
+   */
+  public function testFbOuathActions() {
+    $actions = dosomething_login_fboauth_actions();
+    $this->assertTrue(isset($actions['prereg']));
+    $this->assertTrue(isset($actions['ds_connect']));
+    $this->assertTrue(isset($actions['ds_deauth']));
+  }
+
+  /**
+   * @see dosomething_login_user_taxonomy_user_taxonomy_insert()
+   */
+  public function testTaxonomyInsert() {
+    $class = new stdClass;
+    $class->fboauth = true;
+    $another = new stdClass;
+    $another->fboauth = false;
+
+    $true = dosomething_login_user_taxonomy_user_taxonomy_insert($class);
+    $this->assertIdentical('fb_created_account', $true);
+
+    $false = dosomething_login_user_taxonomy_user_taxonomy_insert($another);
+    $this->assertIdentical(null, $false);
+  }
+}
+
+class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
+  protected $user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Login DB Unit Tests',
+      'description' => 'Tests database-driven dosomething_login functions.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+  }
+
+  /**
+   * @see dosomething_login_menu()
+   */
+  public function SubTestMenuItems() {
+    $this->runThruPaths('dosomething_login');
+  }
+
+  /**
+   * @see dosomething_login_user_register_access()
+   */
+  public function SubTestLoginRegAccess() {
+    $access = dosomething_login_user_register_access();
+    $this->assertTrue($access);
+
+    $this->logIn();
+    $liaccess = dosomething_login_user_register_access();
+    $this->assertFalse($liaccess);
+  }
+
+  /**
+   * @see dosomething_login_page_user_registration()
+   */
+  public function SubTestUserRegPage() {
+    $page = dosomething_login_page_user_registration();
+    $this->assertTrue(is_array($page));
+  }
+
+  /**
+   * @see dosomething_login_block_view()
+   */
+  public function SubTestBlockView() {
+    # Logged in variety
+    $li_member = dosomething_login_block_view('become_member');
+
+    $this->assertTrue($li_member['content']['name']['#attributes']['class'][0] == 'dosomething-login-user-name');
+    $this->assertTrue($li_member['content']['name']['name']['#markup'] == 'Mike Sea');
+
+    $li_reg = dosomething_login_block_view('register_block');
+    $this->assertTrue(empty($li_reg));
+
+    # Logged out variety.
+    $this->logOut();
+    $lo_member = dosomething_login_block_view('become_member');
+
+    $this->assertTrue($lo_member['content'][1]['title_text']['#title'] == "You’re Almost There");
+    $this->assertTrue($lo_member['content'][2]['title_text']['#title'] == "We've Missed You.");
+
+    $lo_reg = dosomething_login_block_view('register_block');
+
+    $this->assertTrue($lo_reg['content'][1]['title_text']['#title'] == "We've Missed You.");
+    $this->assertTrue($lo_reg['subject'] == 'Register for an account');
+  }
+
+  /**
+   * @see dosomething_login_theme()
+   */
+  public function SubTestTheme() {
+    // Test basic themeing for dosomething_lgoin
+    $parent_email = theme('dosomething_login_parent_email');
+    $this->assertTrue(strpos($parent_email, 'has asked to sign up') !== FALSE);
+  }
+
+  /**
+   * @see dosomething_login_unique_name()
+   */
+  public function SubTestUniqueName() {
+    $new = dosomething_login_unique_name('Mike Sea');
+    $this->assertIdentical($new, 'Mike Sea0');
+  }
+
+  /**
+   * @see dosomething_login_find_user_by_email()
+   */
+  public function SubTestFindUserByEmail() {
+    $user = dosomething_login_find_user_by_email($this->user->mail);
+    $this->assertIdentical($user, $this->user->name);
+  }
+
+  /**
+   * @see dosomething_login_drupal_user_is_over_age()
+   */
+  public function SubTestDrupalUserIsOverAge() {
+    $overage = dosomething_login_drupal_user_is_over_age($this->user->uid);
+    $this->assertTrue($overage);
+  }
+
+  /**
+   * @see dosomething_login_mark_user_account_over_13()
+   */
+  public function SubTestMarkUserOver13() {
+    $profile = profile2_load_by_user($this->user, 'main');
+    $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 0;
+    $profile->save();
+
+    dosomething_login_mark_user_account_over_13($this->user->uid);
+
+    $profile = profile2_load_by_user($this->user, 'main');
+    $this->assertTrue($profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] == 1);
+  }
+
+  /**
+   * @see dosomething_login_get_user_full_name()
+   */
+  public function SubTestGetUserFullName() {
+    $name = dosomething_login_get_user_full_name($this->user);
+    $this->assertIdentical($name, 'Mike Sea');
+  }
+
+  /**
+   * @see dosomething_login_get_cell_phone_number()
+   */
+  public function SubTestGetCellPhoneNumber() {
+    $acct = dosomething_general_load_user_by_mail_or_cell('mchitten@gmail.com');
+    $cell = dosomething_login_get_cell_phone_number($acct);
+    $this->assertIdentical($cell, '6103683195');
+  }
+
+  /**
+   * @see dosomething_login_user_has_parental_consent()
+   */
+  public function SubTestUserHasParentalConsent() {
+    $consent = dosomething_login_user_has_parental_consent($this->user->uid);
+    $this->assertTrue($consent);
+  }
+
+  /**
+   * @see dosomething_parent_consent_email_access()
+   */
+  public function SubTestParentConsentEmailAccess() {
+    $this->assertTrue(dosomething_parent_consent_email_access());
+    $this->logIn();
+    $this->assertFalse(dosomething_parent_consent_email_access());
+  }
+
+  /**
+   * @see dosomething_login_parent_permission_email_form_submit()
+   */
+  public function SubTestParentPermissionEmailSubmit() {
+    $form = array(
+      'values' => array(
+        'parent_email' => 'testing+void@dosomething.org',
+        'uid' => $this->user->uid,
+      ),
+    );
+
+    dosomething_login_parent_permission_email_form_submit(array(), $form);
+    $this->assertTrue(isset($_SESSION['messages']['status'][0]));
+    $this->assertTrue($_SESSION['messages']['status'][0] == 'An email has been sent to <em class="placeholder">testing+void@dosomething.org</em>.');
+  }
+
+  /**
+   * @see dosomething_login_one_time_parent_permission_link()
+   */
+  public function SubTestOneTimeParnetPermissionLink() {
+    $link = dosomething_login_one_time_parent_permission_link($this->user);
+    $this->assertTrue(preg_match('#dosomething\/under\-13\/permission\/\d+\/\d+/[A-Za-z0-9\_\-]+#', $link));
+  }
+
+  /**
+   * @see dosomething_login_get_accounts_under_13()
+   */
+  public function SubTestGetAccountsUnder13() {
+    $accounts = dosomething_login_get_accounts_under_13();
+    $this->assertTrue(is_array($accounts['profile2']));
+    $first = current($accounts);
+
+    if (!empty($accounts['profile2']) && is_array($accounts['profile2'])) {
+      $this->ChildTestUpdateAccountsUnder13(15);
+      $accounts = dosomething_login_get_accounts_under_13();
+      $this->assertTrue(is_array($accounts['profile2']));
+      $this->assertNotIdentical($first, current($accounts['profile2']));
+    }
+  }
+
+  /**
+   * @see dosomething_login_update_accounts_under_13()
+   * Only useful if we actually have accounts under 13 in the database. 
+   */
+  public function ChildTestUpdateAccountsUnder13() {
+    dosomething_login_update_accounts_under_13();
+  }
+
+  /**
+   * @see dosomething_login_get_old_accounts()
+   */
+  public function SubTestGetOldAccounts() {
+    $accounts = dosomething_login_get_old_accounts();
+    $this->assertTrue(count($accounts) > 1);
+    $first = current($accounts);
+
+    if (!empty($accounts) && is_array($accounts)) {
+      $this->ChildTestClearOldAccounts();
+      $newaccounts = dosomething_login_get_old_accounts();
+      $this->assertTrue(is_array($newaccounts));
+      $nf = current($newaccounts);
+      $this->assertNotIdentical($first['uid'], $nf['uid']);
+    }
+  }
+
+  /**
+   * @see dosomething_login_clear_old_accounts()
+   * Only useful if we actually have old accounts.
+   */
+  public function ChildTestClearOldAccounts() {
+    dosomething_login_clear_old_accounts();
+  }
+
+  /**
+   * @see theme_dosomething_login_action_ds_connect()
+   */
+  public function SubTestLoginActionDsConnect() {
+    $variables = array(
+      'action' => '',
+      'properties' => array(
+        'href' => 'user/login',
+        'query' => array('test' => 'true'),
+        'attributes' => array(
+          'class' => array('user-login-link'),
+        ),
+        'title' => 'Please log in.',
+      ),
+    );
+
+    $link = theme_dosomething_login_action_ds_connect($variables);
+    $this->assertIdentical($link, '<a  class="user-login-link" href="/user/login?test=true"><img src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_short.gif" alt="Please log in." /></a>');
+  }
 }

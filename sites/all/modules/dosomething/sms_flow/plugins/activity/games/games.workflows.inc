@@ -26,6 +26,12 @@ $activity->sets = array(
     'game_id' => SmsFlowGameConstants::IHEARTDAD_GUIDE,
     'opt_in_paths' => array(158861, 158863, 158865, 158869, 158871, 158873),
   ),
+  // Birthday Mail 2013 Tips
+  array(
+    'mdata_id' => 10907,
+    'game_id' => SmsFlowGameConstants::BDAYMAIL_TIPS,
+    'opt_in_paths' => array(160625, 160627, 160629, 160631, 160633, 160635),
+  ),
 );
 
 $activity = $workflow->newActivity('end');
