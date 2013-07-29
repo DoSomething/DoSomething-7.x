@@ -27,7 +27,7 @@ html {
 
 /* line 24, sass/_drupal.sass */
 body {
-  background: url("http://www.dosomething.org/files/campaigns/birthdaymail/Cards_BG_Top.jpg") top no-repeat, url(http://www.dosomething.org/files/campaigns/birthdaymail/Cards_BG_Bottom.jpg) bottom no-repeat;
+  background: url("http://www.dosomething.org/files/campaigns/birthdaymail/bg_top_smooth.jpg") top no-repeat, url(http://www.dosomething.org/files/campaigns/birthdaymail/bg_bottom_smooth.jpg) bottom no-repeat;
   background-size: 100% auto;
   background-color: #f7f5f8;
 }
@@ -706,7 +706,7 @@ header[role="banner"] {
 @media only screen and (max-width: 600px) {
   /* line 94, sass/_sections.sass */
   #cmp .call-to-action p {
-    margin-left: 4em;
+    margin-left: 2em;
   }
 }
 /* line 103, sass/_sections.sass */
