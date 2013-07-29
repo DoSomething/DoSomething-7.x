@@ -2,6 +2,9 @@
 
 class WebTestSuite extends DrupalWebTestCase {
   protected $factory;
+  protected $logged_in;
+  # This magically fixes an exception thrown occasionally.
+  protected $public_files_directory;
 
   public function setUp() {
     $this->setup = TRUE;
@@ -9,6 +12,43 @@ class WebTestSuite extends DrupalWebTestCase {
 
   public function tearDown() {
     // @todo: Garbage collection.
+    if (isset($this->user) && $this->logged_in) {
+      $GLOBALS['user'] = new stdClass;
+    }
+  }
+
+  public function logIn() {
+    if (isset($this->user)) {
+      $GLOBALS['user'] = $this->user;
+      $this->logged_in = true;
+    }
+  }
+
+  public function logOut() {
+    if (isset($this->user) && $this->logged_in) {
+      $user = new stdClass;
+      $user->uid = 0;
+
+      $GLOBALS['user'] = $user;
+    }
+  }
+
+  /**
+   * Runs through a hook_menu() function and make sure all the paths exist.
+   *
+   * @param string $module
+   *   The module that includes the hook_menu() call.
+   *
+   */
+  public function runThruPaths($module) {
+    $this->assertTrue(function_exists($module . '_menu'));
+    if (function_exists($module . '_menu')) {
+      $items = dosomething_login_menu();
+      foreach ($items as $path => $data) {
+        $this->drupalGet($path);
+        $this->assertResponse(200, "The {$path} path exists.");
+      }
+    }
   }
 
   public function factory() {
