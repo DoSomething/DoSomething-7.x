@@ -289,6 +289,55 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   }
 
   /**
+   * @see dosomething_login_get_accounts_under_13()
+   */
+  public function SubTestGetAccountsUnder13() {
+    $accounts = dosomething_login_get_accounts_under_13();
+    $this->assertTrue(is_array($accounts['profile2']));
+    $first = current($accounts);
+
+    if (!empty($accounts['profile2']) && is_array($accounts['profile2'])) {
+      $this->ChildTestUpdateAccountsUnder13(15);
+      $accounts = dosomething_login_get_accounts_under_13();
+      $this->assertTrue(is_array($accounts['profile2']));
+      $this->assertNotIdentical($first, current($accounts['profile2']));
+    }
+  }
+
+  /**
+   * @see dosomething_login_update_accounts_under_13()
+   * Only useful if we actually have accounts under 13 in the database. 
+   */
+  public function ChildTestUpdateAccountsUnder13() {
+    dosomething_login_update_accounts_under_13();
+  }
+
+  /**
+   * @see dosomething_login_get_old_accounts()
+   */
+  public function SubTestGetOldAccounts() {
+    $accounts = dosomething_login_get_old_accounts();
+    $this->assertTrue(count($accounts) > 1);
+    $first = current($accounts);
+
+    if (!empty($accounts) && is_array($accounts)) {
+      $this->ChildTestClearOldAccounts();
+      $newaccounts = dosomething_login_get_old_accounts();
+      $this->assertTrue(is_array($newaccounts));
+      $nf = current($newaccounts);
+      $this->assertNotIdentical($first['uid'], $nf['uid']);
+    }
+  }
+
+  /**
+   * @see dosomething_login_clear_old_accounts()
+   * Only useful if we actually have old accounts.
+   */
+  public function ChildTestClearOldAccounts() {
+    dosomething_login_clear_old_accounts();
+  }
+
+  /**
    * @see theme_dosomething_login_action_ds_connect()
    */
   public function SubTestLoginActionDsConnect() {
