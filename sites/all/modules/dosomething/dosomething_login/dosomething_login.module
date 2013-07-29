@@ -1346,15 +1346,23 @@ function dosomething_login_get_cell_phone_number($account, $profile = NULL) {
  *  If they are over 13, then they don't need it.
  */
 function dosomething_login_user_has_parental_consent($uid) {
+  if (empty($uid)) {
+    return FALSE;
+  }
+
   $account = user_load($uid);
+  if (!isset($account->uid)) {
+    return FALSE;
+  }
+
   if (dosomething_login_drupal_user_is_over_age($uid, 13)) {
     return TRUE;
   }
   // Don't lock out admins
-  if (in_array('administrator', $account->roles)) {
+  if (isset($account->roles) && is_array($account->roles) && in_array('administrator', $account->roles)) {
     return TRUE;
   }
-  if (!in_array('pending member', $account->roles)) {
+  if (isset($account->roles) && is_array($account->roles) && !in_array('pending member', $account->roles)) {
     return TRUE;
   }
   return FALSE;
