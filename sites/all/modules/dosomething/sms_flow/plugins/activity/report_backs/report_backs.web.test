@@ -7,6 +7,12 @@
 
 class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
 
+  // Key/value array of "keywords" from report_backs.keywords.inc
+  private $keywords;
+
+  // ConductorWorkflow objects from report_backs.workflows.inc
+  private $workflows;
+
   public static function getInfo() {
     return array(
       'name' => 'DoSomething sms_flow Report Back Tests',
@@ -15,28 +21,32 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
     );
   }
 
-  function setUp() {
+  public function setUp() {
     // Enable the module
     parent::setUp('sms_flow');
-  }
 
-  public function SubTestReportBackWorkflows() {
     // Get list of all report back keywords
     $keywords = array();
     include dirname(__FILE__) . '/report_backs.keywords.inc';
+    $this->keywords = $keywords;
 
     // Get list of all report back workflows
     $workflows = array();
     include dirname(__FILE__) . '/report_backs.workflows.inc';
+    $this->workflows = $workflows;
+  }
 
-    // Verify that each "keyword" value has a matching workflow
+  /**
+   * Verify that each "keyword" value has a matching workflow
+   */
+  protected function SubTestKeywordMatch() {
     $testSuccess = TRUE;
     $workflowNames = array();
-    foreach($workflows as $w) {
+    foreach ($this->workflows as $w) {
       $workflowNames[] = $w->name;
     }
 
-    foreach($keywords as $key => $val) {
+    foreach($this->keywords as $key => $val) {
       $matchFound = in_array($val, $workflowNames);
       if (!$matchFound) {
         $testSuccess = FALSE;
@@ -45,24 +55,108 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
     }
 
     if ($testSuccess) {
-      $this->assert(TRUE, "PASS: All keywords have matching workflows");
+      $this->assert(TRUE, 'All keywords have matching workflows');
     }
+  }
 
-    // Verify all workflow names have a matching "keyword"
+  /**
+   * Verify all workflow names have a matching "keyword"
+   */
+  protected function SubTestkWorkflowMatch() {
     $testSuccess = TRUE;
-    $keywordValues = array_values($keywords);
+    $keywordValues = array_values($this->keywords);
     
-    foreach($workflows as $w) {
+    foreach ($this->workflows as $w) {
       $matchFound = in_array($w->name, $keywordValues);
       if (!$matchFound) {
         $testSuccess = FALSE;
-        $this->assert(FALSE, "Cannot find a keyword for workflow: " . $w->name);
+        $this->assert(FALSE, "Cannot find a keyword for workflow: $w->name");
       }
     }
 
     if ($testSuccess) {
-      $this->assert(TRUE, "PASS: All workflows have matching keywords");
+      $this->assert(TRUE, 'All workflows have matching keywords');
     }
   }
+
+  /**
+   * Verify no workflow activity has missing links
+   */
+  protected function SubTestWorkflowActivityLinks() {
+    foreach ($this->workflows as $w) {
+      $activities = $w->activities;
+      $numActivities = count($activities);
+      
+      for($i = 0; $i < $numActivities; $i++) {
+        $a = $activities[$i];
+
+        // First activity should be 'start'
+        if ($i == 0) {
+          $this->assertTrue(strcmp($a->name, 'start') == 0, "PASS: Workflow $w->name begins with the 'start' activity.");
+        }
+
+        // Verify input -> output links
+        if (count($a->inputs) > 0) {
+          foreach($a->inputs as $input) {
+            // Find the activity the input is referring to, and verify that that
+            // activity ($checkActivity) has an output referring to the current activity ($a).
+            for ($j = 0; $j < $numActivities; $j++) {
+              $checkActivity = $activities[$j];
+
+              $isDifferentActivity = $j != $i;
+              $checkedNameMatchesInput = strcmp($checkActivity->name, $input) == 0;
+              $checkedActivityHasMatchingOutput = in_array($a->name, $checkActivity->outputs);
+
+              if ($isDifferentActivity && $checkedNameMatchesInput && $checkedActivityHasMatchingOutput) {
+                $this->assert(TRUE, "Link verified for $a->name input: $input");
+                break;
+              }
+              // Assert failure if all activities were checked and no matching output was found
+              else if ($j == $numActivities - 1) {
+                $this->assert(FALSE, "Cannot find matching activity with output to match test activity: $a->name input: $input");
+              }
+            }
+          }
+        }
+
+        // Verify output -> input links
+        if (count($a->outputs) > 0) {
+          foreach($a->outputs as $output) {
+            // Find the activity the output is referring to, and verify that that
+            // activity ($checkActivity) has an input referring at the current activity ($a).
+            for ($j = 0; $j < $numActivities; $j++) {
+              $checkActivity = $activities[$j];
+
+              $isDifferentActivity = $j != $i;
+              $checkedNameMatchesOutput = strcmp($checkActivity->name, $output) == 0;
+              $checkedActivityHasMatchingInput = in_array($a->name, $checkActivity->inputs);
+
+              if ($isDifferentActivity && $checkedNameMatchesOutput && $checkedActivityHasMatchingInput) {
+                $this->assert(TRUE, "Link found for $a->name output: $output");
+                break;
+              }
+              // Assert failure if all activities were checked and no matching input was found
+              else if ($j == $numActivities - 1) {
+                $this->assert(FALSE, "Cannot find matching activity with input to match test activity: $a->name output: $output");
+              }
+            }
+          }
+        }
+        
+        // Last activity should be 'end'
+        if ($i == $numActivities - 1) {
+          $this->assertTrue(strcmp($a->name, 'end') == 0, "Workflow $w->name ends with the 'end' activity.");
+        }
+      }
+    }
+  }
+
+  /**
+   * TODO: Tests critical path of workflows with basic dummy data
+   */
+  protected function SubTestWorkflowCriticalPath() {
+
+  }
+
 
 }
