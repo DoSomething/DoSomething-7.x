@@ -31,12 +31,6 @@ function doit_preprocess_html(&$variables, $hook) {
    */
   elseif (doit_is_user_registration_template_page() || doit_is_campaign_join_template_page()) {
 
-    // Add custom typeface for gate
-    drupal_add_css(
-      'http://fonts.googleapis.com/css?family=Amatic+SC:400',
-      array('type' => 'external')
-    );
-
     $variables['theme_hook_suggestions'][] = 'html__user__registration';
     $css = drupal_add_css();
 
@@ -72,9 +66,6 @@ function doit_preprocess_html(&$variables, $hook) {
     $variables['user_styles'] = drupal_get_css($css);
 
   } 
-  else {
-    $variables['user_styles'] = $variables['styles'];
-  }
   drupal_alter('html_templates', $variables);
 }
 
@@ -211,14 +202,16 @@ function doit_preprocess_page(&$variables) {
         // Load the node:
         $node = node_load($dest_path_parts[1]);
         // If the destination node is a gated campaign signup:
-        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_signup_node($node)) {
+        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_node($node)) {
           // Load node values for gate copy and image.
           $default_gate = FALSE;
+          $variables['page']['gate_wrapper_class'] = 'nid-' . $node->nid;
           $variables['page']['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
           $variables['page']['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
           $variables['page']['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
           $variables['page']['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
           $variables['page']['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
+          $variables['page']['gate_color'] = $node->field_gate_color[LANGUAGE_NONE][0]['value'];
           if (isset($node->field_gate_page_title[LANGUAGE_NONE][0]['value']) && $current_path == 'user/registration') {
             drupal_set_title($node->field_gate_page_title[LANGUAGE_NONE][0]['value']);
           }
@@ -226,18 +219,19 @@ function doit_preprocess_page(&$variables) {
       }
     }
     // If default gate, use gate variables from DoSomething Login config page:
-    if ($default_gate) {    
+    if ($default_gate) { 
+      $variables['page']['gate_wrapper_class'] = '';
       $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
       $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
       $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
       $variables['page']['gate_image_src'] = "/" . drupal_get_path('theme', 'doit') . "/images/gate-bg.jpg";
       $variables['page']['gate_image_alt'] = "High Five!";
+      $variables['page']['gate_color'] = variable_get('dosomething_login_gate_color');
       $page_title = variable_get('dosomething_login_gate_page_title', NULL);
       if ($page_title && $current_path == 'user/registration') {
         drupal_set_title(variable_get('dosomething_login_gate_page_title'));
       }
     }
-    $variables['page']['gate_color'] = variable_get('dosomething_login_gate_color');
     // Determine what page we're on, and populate other gate variables accordingly.
     $is_user_password_page = FALSE;
     if ($current_path == 'user/registration') {

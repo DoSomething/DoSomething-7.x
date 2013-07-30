@@ -17,11 +17,13 @@ function dosomething_campaign_join_page($nid) {
   // Populate page content with relevant gate values from the campaign node.
   $node = node_load($nid);
   drupal_set_title($node->title);
+  $page['nid'] = $node->nid;
   $page['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
   $page['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
   $page['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
   $page['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
   $page['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
+  $page['gate_color'] = $node->field_gate_color[LANGUAGE_NONE][0]['value'];
   $page['form'] = drupal_get_form('dosomething_campaign_join_page_form', $nid, $user->uid);
   return $page;
 }

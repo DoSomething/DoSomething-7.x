@@ -1,0 +1,279 @@
+// GENERAL
+// -------
+.call-to-action,
+.headline,
+.footer
+  background: $color-two
+
+.official-rules
+  display: block
+  margin: 0 auto
+  width: 13em
+  text-align: center
+
+// HEADER
+// ------
+.header
+  position: relative
+  width: 100%
+  height: 360px
+  background-image: url($bg-header-image)
+  background-repeat: no-repeat
+  background-position: center center
+  @include background-size(cover)
+  padding: 1% 2%
+  overflow: hidden
+
+  .logo-campaign
+    margin: 0 auto
+    display: block
+    width: 450px
+    clear: both
+    @media only screen and (max-width: 550px)
+      width: 400px
+
+  .header-logotype
+    text-align: center
+    color: #fff
+    text-transform: uppercase
+    line-height: 1.2em
+    font-weight: 600
+    font-size: 4em
+    margin: 2em auto 0.5em
+
+    @include respond-to(tablets_and_phones)
+      font-size: 3em
+
+  .log-out
+    color: $font-light
+
+  .header-social
+    position: absolute
+    bottom: 0px
+    left: 12px
+
+  .header-facebook-share,
+  .header-twitter-share
+    display: inline-block
+    height: 20px
+
+    @include respond-to(tablets_and_phones)
+      display: none
+
+  .header-facebook-share
+    width: 80px
+    border: 1px solid rgb(202, 212, 231)
+    +border-radius(2px)
+    &:hover
+      border: 1px solid rgb(236, 238, 245)
+
+  .header-date
+    h2
+      padding: 1.5em 0 0 0
+      color: $off-black
+      font-weight: 600
+      margin-bottom: -10px
+
+  .row-bottom
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 1%
+
+// HEADLINE
+// --------
+.headline
+  background: $bg-light !important
+  border-top: 1px solid #ddd
+  border-left: 1px solid #ddd
+  border-right: 1px solid #ddd
+
+// CALL TO ACTION
+// --------------
+.call-to-action
+  p
+    line-height: 3em
+    letter-spacing: 0.05em
+    color: $font-light
+    margin-left: 6.8em
+    
+    @include respond-to(phones)
+      margin-left: 2em
+
+  .btn
+    margin: 0 0 0 1em
+    clear: none
+
+  .section-container
+    width: 43em
+
+// HOW IT WORKS
+// ------------
+.how-it-works
+  padding: 2em 0
+  +noBorder
+
+  .how-it-works-container
+    clear: both
+    overflow: hidden
+    margin: 0 0 1em 0
+
+// ACTION-KIT
+// ----------
+.action-kit
+  padding-top: 20px
+
+  img
+    position: relative
+    top: 15px
+    right: 20px
+
+  .section-container
+    height: 3em
+    background-color: $color-two
+
+  p
+    color: $font-light
+    font-size: em-calc(20)
+    padding-top: 8px
+
+  a
+    color: $font-light !important
+
+// PRIZING
+// -------
+.prizing
+  p
+    padding: 1em 1em
+
+  .prizing-container
+    width: ( $section-unit-width * 2 )
+    margin: 0 auto
+    clear: both
+
+  .btn
+    margin: 0 auto 1em
+
+// LOCATE SHELTER
+// ----------------
+.locate-shelter
+  width: 90%
+  max-width: $section-content-width
+  margin: 0 auto
+
+  .btn
+    height: 2.3em
+    margin: 1em auto 
+
+    @include respond-to(phones)
+      width: 100%
+
+
+// CONTENT
+// -------
+.content
+  width: 90%
+  max-width: $section-content-width
+  margin: 0 auto
+  p
+    display: block
+    text-align: left
+    line-height: 1.5em
+    padding-bottom: 1em
+    word-wrap: break-word
+  h2
+    padding-bottom: 0.5em
+
+  /* this padding should be abstracted to all <h3> */
+  .headline-callout
+    padding: 0 0 0.5em 0
+    text-transform: capitalize
+    text-align: left
+    span
+      background: $color-two
+
+
+
+// GALLERY
+// -------
+.gallery
+  img
+    border: 1px solid #ddd !important
+    +border-radius(3px)
+    +box-shadow(0 10px 10px -10px #bbb !important)
+
+  .btn
+    margin: 1.5em auto
+
+
+// THANKS
+// ------
+.success_msg
+  margin: 0 auto 1em
+  h2
+    text-transform: uppercase
+    font-weight: 600
+    color: $campaign-accent
+
+// FAQ
+// ---
+.faq
+  width: 90%
+  max-width: $section-content-width
+  margin: 0 auto
+  height: 42em
+
+  h3, p
+    text-align: left
+    margin-bottom: 0.5em
+  h3
+    cursor: pointer
+    color: $off-black
+    font-weight: bold
+  div /* TODO - GIVE THIS A CLASS */
+    margin: 0 0 0.5em 0
+
+  .btn
+    margin: 1em auto 0
+
+  .back-to-top /* TODO - THESE STYLES WERE INHERITED; REFACTOR THEM */
+    text-align: right
+    padding: 1em 0 1em
+
+  .top-btn
+    font-weight: 400
+    color: #C6C7C8
+    padding: 0px 0px 0px 1em
+    text-decoration: none
+    background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
+    background-repeat: no-repeat
+    background-position: 0% 40%
+
+// REPORT BACK
+// -----------
+#birthday-report-back
+  background: #fff
+  padding: 2em 0px
+  width: 100%
+  max-width: 600px
+  margin: 0px auto
+  +border-radius(3px)
+
+  .field-name-field-mandrill-key
+    display: none
+
+  #edit-submit
+    font-size: 18px
+    font-weight: 500
+    font-family: din-web-reg
+    padding: 4px 1px 0 0
+    height: 37px
+    width: 100px
+    margin: 1em 0 0 0
+
+  #edit-submitted-field-webform-pictures-und-0-upload-button,
+  #edit-submitted-field-webform-pictures-und-1-upload-button
+    color: #555 !important
+    font-size: 18px
+    font-weight: 500
+    width: 100px
