@@ -1,0 +1,114 @@
+<?php
+
+class DosomethingCampaignStylesUnitTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Campaign Styles Unit Tests',
+      'description' => 'DoSomething Campaign Styles unit tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_campaign_styles_menu()
+   */
+  public function testMenu() {
+    $menu = dosomething_campaign_styles_menu();
+    $this->assertTrue(isset($menu['campaign/style/autocomplete']));
+  }
+
+  /**
+   * @see dosomething_campaign_styles_ctools_plugin_type()
+   */
+  public function testCtoolsPluginType() {
+    $type = dosomething_campaign_styles_ctools_plugin_type();
+    $this->assertTrue(isset($type['campaign_style']));
+  }
+
+  /**
+   * @see dosomething_campaign_styles_ctools_plugin_directory()
+   */
+  public function testCtoolsPluginDirectory() {
+    $original = dosomething_campaign_styles_ctools_plugin_directory('dosomething_campaign_styles', 'campaign_style');
+    $this->assertIdentical($original, 'campaign_styles');
+    $ctools = dosomething_campaign_styles_ctools_plugin_directory('ctools', 'whatever');
+    $this->assertIdentical($ctools, 'plugins/whatever');
+  }
+
+  /**
+   * @see dosomething_campaign_styles_pluginify_path()
+   */
+  public function testPluginifyPath() {
+    $path = dosomething_campaign_styles_pluginify_path('foot-locker/guide');
+    $this->assertIdentical($path, 'foot_locker_guide');
+  }
+
+  /**
+   * @see dosomething_campaign_styles_block_info()
+   */
+  public function testBlockInfo() {
+    $block = dosomething_campaign_styles_block_info();
+    $this->assertTrue(isset($block['campaign_nav']));
+  }
+
+  /**
+   * @see dosomething_campaign_styles_og_context_negotiation_info()
+   */
+  public function testOgContextNegotiationInfo() {
+    $providers = dosomething_campaign_styles_og_context_negotiation_info();
+    $this->assertTrue(isset($providers['campaign_panelizer']));
+    $this->assertTrue(isset($providers['campaign_forms']));
+  }
+
+  /**
+   * @see dosomething_campaign_styles_theme()
+   */
+  public function testTheme() {
+    $theme = dosomething_campaign_styles_theme();
+    $this->assertTrue(isset($theme['ds_campaign_social']));
+  }
+}
+
+class DoSomethingCampaignStylesDBUnitTestCase extends WebTestSuite {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Campaign Styles DB Unit Tests',
+      'description' => 'Tests database-driven dosomething_campaign_styles functions.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+  }
+
+  /**
+   * @see dosomething_campaign_autocomplete()
+   */
+  public function SubTestAutocomplete() {
+  	ob_start();
+    dosomething_campaign_autocomplete('band');
+    $content = ob_get_contents();
+    ob_end_clean();
+    $content = json_decode($content);
+
+    $this->assertTrue($content instanceof stdClass);
+    $this->assertTrue($content->{'2013/band/html/action.html'} = '2013/band/action');
+  }
+  /**
+   * @see dosomething_campaign_styles_theme()
+   */
+  public function SubTestTheme() {
+    $social = theme('ds_campaign_social');
+    $this->assertTrue(strpos($social, 'socialWrapper') !== FALSE);
+    $this->assertTrue(strpos($social, 'socialButton') !== FALSE);
+    $this->assertTrue(strpos($social, 'fb-like') !== FALSE);
+    $this->assertTrue(strpos($social, 'twitter-share-button') !== FALSE);
+    $this->assertTrue(strpos($social, 'fb-facepile') !== FALSE);
+  }
+}
