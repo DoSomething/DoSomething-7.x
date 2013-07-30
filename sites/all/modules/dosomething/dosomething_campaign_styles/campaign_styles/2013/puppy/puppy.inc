@@ -28,10 +28,8 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'scholarship', 'href' => '', 'fragment' => 'game', 'external' => TRUE),
-    array('title' => 'puppy mills', 'href' => '', 'fragment' => 'info', 'external' => TRUE),
-    array('title' => 'how it works', 'href' => '', 'fragment' => 'example', 'external' => TRUE),
-    array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
+    array('title' => 'Info', 'href' => '', 'fragment' => 'info', 'external' => TRUE),
+    array('title' => 'Questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
     '#markup' => '<hr><p>Got questions? Email Hilary at <a href="mailto:puppy@dosomething.org">puppy@dosomething.org</a>!</p>'
