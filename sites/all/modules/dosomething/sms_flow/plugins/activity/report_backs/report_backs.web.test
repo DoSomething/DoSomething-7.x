@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * @file
+ * Functional testing for the sms_flow module.
+ */
+
+class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething sms_flow Report Back Tests',
+      'description' => 'Tests the report back workflows in the sms_flow module.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  function setUp() {
+    // Enable the module
+    parent::setUp('sms_flow');
+  }
+
+  public function SubTestReportBackWorkflows() {
+    // Get list of all report back keywords
+    $keywords = array();
+    include dirname(__FILE__) . '/report_backs.keywords.inc';
+
+    // Get list of all report back workflows
+    $workflows = array();
+    include dirname(__FILE__) . '/report_backs.workflows.inc';
+
+    // Verify that each "keyword" value has a matching workflow
+    $testSuccess = TRUE;
+    $workflowNames = array();
+    foreach($workflows as $w) {
+      $workflowNames[] = $w->name;
+    }
+
+    foreach($keywords as $key => $val) {
+      $matchFound = in_array($val, $workflowNames);
+      if (!$matchFound) {
+        $testSuccess = FALSE;
+        $this->assert(FALSE, "Cannot find workflow ($val) for key ($key)");
+      }
+    }
+
+    if ($testSuccess) {
+      $this->assert(TRUE, "PASS: All keywords have matching workflows");
+    }
+
+    // Verify all workflow names have a matching "keyword"
+    $testSuccess = TRUE;
+    $keywordValues = array_values($keywords);
+    
+    foreach($workflows as $w) {
+      $matchFound = in_array($w->name, $keywordValues);
+      if (!$matchFound) {
+        $testSuccess = FALSE;
+        $this->assert(FALSE, "Cannot find a keyword for workflow: " . $w->name);
+      }
+    }
+
+    if ($testSuccess) {
+      $this->assert(TRUE, "PASS: All workflows have matching keywords");
+    }
+  }
+
+}
