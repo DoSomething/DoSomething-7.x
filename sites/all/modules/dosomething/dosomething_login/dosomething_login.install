@@ -177,3 +177,10 @@ function dosomething_login_update_7005() {
   variable_set('dosomething_login_gate_description', "Take action on causes you care about, qualify for scholarships, join 2 million passionate members.");
   variable_set('dosomething_login_gate_use_user_registration_template', FALSE);
 }
+
+/**
+ * Deletes dosomething_login_gate_use_user_registration_template variable.
+ */
+function dosomething_login_update_7006() {
+  variable_del('dosomething_login_gate_use_user_registration_template');
+}
