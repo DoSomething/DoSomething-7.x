@@ -16,20 +16,12 @@ function doit_preprocess_html(&$variables, $hook) {
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
 
-  // If dosomething_login_gate_use_user_registration_template is FALSE, don't use user-registration template on actual user/registration page.
-  if (!variable_get('dosomething_login_gate_use_user_registration_template') && current_path() == 'user/registration') {
-    foreach ($variables['theme_hook_suggestions'] as $key => $value) {
-      if ($value == 'html__user__registration') {
-        unset($variables['theme_hook_suggestions'][$key]);
-      }
-    }
-  }
   /*
    * Remove all global stylesheets and
    * load user registration HTML templates 
    * if this is a user-registration template page or campaign join page.
    */
-  elseif (doit_is_user_registration_template_page() || doit_is_campaign_join_template_page()) {
+  if (doit_is_user_registration_template_page() || doit_is_campaign_join_template_page()) {
 
     $variables['theme_hook_suggestions'][] = 'html__user__registration';
     $css = drupal_add_css();
@@ -171,21 +163,6 @@ function doit_preprocess_page(&$variables) {
   }
 
   $destination = drupal_get_destination();
-  $hunt_path = 'node/' . variable_get('hunt_campaign_nid', 729679);
-
-  // If dosomething_login_gate_use_user_registration_template is FALSE, don't use user-registration template on actual user/registration page.
-  if (!variable_get('dosomething_login_gate_use_user_registration_template') && current_path() == 'user/registration') {
-    foreach ($variables['theme_hook_suggestions'] as $key => $value) {
-      if ($value == 'page__user__registration') {
-        unset($variables['theme_hook_suggestions'][$key]);
-      }
-      // If this is the Hunt gate, use the old campaign JS / CSS.
-      if ($destination['destination'] == $hunt_path) {
-        drupal_add_js(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.js');
-        drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/campaign_styles/2013/hunt/gate.css');
-      }
-    }
-  }
   // Load user-registration page templates and gate values if this is a user-registration template page:
   if (doit_is_user_registration_template_page()) {
     // Use user-registration page template:
@@ -828,9 +805,6 @@ function doit_search_api_page_result(array $variables) {
  * Returns TRUE if current path is user-registration/password/login type page.
  */
 function doit_is_user_registration_template_page() {
-  if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
-    return FALSE;
-  }
   // If anon user, check for user registration paths.
   if (!user_is_logged_in()) {
     $current_path = current_path();
