@@ -397,12 +397,7 @@ function dosomething_blocks_help() {
 function dosomething_blocks_login() {
   global $user;
   if (!$user->uid) {
-    $sign_in_css = '';
-    // Use popup for sign-in only if we aren't using the user-registration template.
-    if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
-      $sign_in_css = 'sign-in-popup';
-    }
-    $output['#markup'] = l('Sign in', 'user', array('query' => user_login_destination(), 'attributes' =>  array('class' => array($sign_in_css))));
+    $output['#markup'] = l('Sign in', 'user', array('query' => user_login_destination()));
   }
   else {
     $output['#markup'] = l('Log out', 'user/logout');
