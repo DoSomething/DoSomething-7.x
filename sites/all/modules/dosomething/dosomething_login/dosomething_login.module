@@ -353,9 +353,6 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
     $form['#validate'] = is_array($form['#validate']) ? $form['#validate'] : array();
     array_unshift($form['#validate'],'dosomething_login_user_login_validate');
     $form['name']['#title'] = t('Email, Username or Cell Number');
-    if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
-      $form['name']['#description'] = t('Enter your email, username or cell phone number.');
-    }
   }
 }
 
@@ -715,15 +712,14 @@ function dosomething_login_register_popup_form($form, &$form_state, $is_modal = 
     '#type' => 'submit',
     '#value' => t('Finish'),
   );
-  $user_login_link_attributes['attributes'] = array('class' => array('or-sign-in', 'sign-in-popup'));
+  $user_login_link_attributes['attributes'] = array('class' => array('or-sign-in'));
   // Check if we have a destination:
   $destination = drupal_get_destination();
-  $hunt_path = 'node/' . variable_get('hunt_campaign_nid', 729679);
-  if ($destination['destination'] == $hunt_path) {
-    $user_login_link_attributes['query'] = array('destination' => $hunt_path);
+  if ($destination['destination'] != current_path()) {
+    $user_login_link_attributes['query'] = array('destination' => $destination['destination']);
   }
   $form['user'] = array(
-    '#markup' => '<span class="already-member">already a member?' . ' ' . l('log in', 'user/login', $user_login_link_attributes) . '</span>',
+    '#markup' => '<span class="already-member">already a member?' . ' ' . l('sign in', 'user/login', $user_login_link_attributes) . '</span>',
   );
 
   // Set default values if this was submitted to the related registration block first.
@@ -932,17 +928,12 @@ function dosomething_login_register_block($form, &$form_state) {
     '#value' => t('Go'),
     '#attributes' => array('class' => array('submit')),
   );
-  $sign_in_css = '';
-  // Use popup for sign-in only if we aren't using the user-registration template.
-  if (!variable_get('dosomething_login_gate_use_user_registration_template')) {
-    $sign_in_css = 'sign-in-popup';
-  }
   $form['ds-register-wrapper']['user'] = array(
     '#theme' => 'link',
     '#path' => 'user',
     '#text' => t("or sign in"),
     '#options' => array(
-      'attributes' => array('class' => array('or-sign-in', $sign_in_css)),
+      'attributes' => array('class' => array('or-sign-in')),
       'html' => FALSE,
     ),
   );
