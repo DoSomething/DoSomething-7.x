@@ -165,7 +165,7 @@ class DoSomethingGeneralDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_general_load_user_by_mail_or_cell()
    */
-  public function SubTestLoadUserByMailOrCell() {
+  public function subTestLoadUserByMailOrCell() {
     $user = dosomething_general_load_user_by_mail_or_cell($this->user->mail);
     $this->assertTrue(isset($user->uid), 'User is returned');
   }
@@ -173,7 +173,7 @@ class DoSomethingGeneralDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_general_get_full_name()
    */
-  public function SubTestGetFullName() {
+  public function subTestGetFullName() {
     $public = dosomething_general_get_full_name($this->user, 'private');
     $this->assertIdentical($public, 'Mike Sea');
 
@@ -184,7 +184,7 @@ class DoSomethingGeneralDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_general_find_user_by_cell()
    */
-  public function SubTestFindUserByCell() {
+  public function subTestFindUserByCell() {
     $u = dosomething_general_find_user_by_cell('6103683195');
     $this->assertEqual($u->uid, 1002717);
   }
@@ -192,7 +192,7 @@ class DoSomethingGeneralDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_load_user_by_profile_cell()
    */
-  public function SubTestLoadUserByProfileCell() {
+  public function subTestLoadUserByProfileCell() {
     $u = dosomething_load_user_by_profile_cell('8582784275');
     $this->assertEqual($u->uid, 16727);
   }
@@ -200,7 +200,7 @@ class DoSomethingGeneralDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_general_get_nids_by_type()
    */
-  public function SubTestGetNidsByType() {
+  public function subTestGetNidsByType() {
     $nids = dosomething_general_get_nids_by_type('blog');
     $this->assertTrue(is_array($nids));
     $this->assertTrue(count($nids) > 1);
@@ -209,7 +209,7 @@ class DoSomethingGeneralDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_general_get_multi_fbids()
    */
-  public function SubTestGetMultiFbids() {
+  public function subTestGetMultiFbids() {
     $ids = dosomething_general_get_multi_fbids(array('53000982'));
     $this->assertTrue(is_array($ids));
     $this->assertTrue(count($ids) == 1);

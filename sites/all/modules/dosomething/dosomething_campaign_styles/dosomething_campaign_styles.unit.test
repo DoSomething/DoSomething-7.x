@@ -90,7 +90,7 @@ class DoSomethingCampaignStylesDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_campaign_autocomplete()
    */
-  public function SubTestAutocomplete() {
+  public function subTestAutocomplete() {
   	ob_start();
     dosomething_campaign_autocomplete('band');
     $content = ob_get_contents();
@@ -103,7 +103,7 @@ class DoSomethingCampaignStylesDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_campaign_styles_theme()
    */
-  public function SubTestTheme() {
+  public function subTestTheme() {
     $social = theme('ds_campaign_social');
     $this->assertTrue(strpos($social, 'socialWrapper') !== FALSE);
     $this->assertTrue(strpos($social, 'socialButton') !== FALSE);
