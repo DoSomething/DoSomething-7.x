@@ -57,7 +57,40 @@ function dosomething_subscribe_mailchimp_menu() {
     'page callback' => 'dosomething_subscribe_mailchimp_grouping_ids_status_page', 
     'file' => 'dosomething_subscribe_mailchimp.admin.inc',
   );
+  $items['dosomething_subscribe_mailchimp/events'] = array(
+    'title' => 'Mailchimp Events Callback',
+    'description' => t('A callback for the Mailchimp events webhook'),
+    'access callback' => 'dosomething_subscribe_mailchimp_events_access',
+    'page callback' => 'dosomething_subscribe_mailchimp_events', 
+    'file' => 'dosomething_subscribe_mailchimp.pages.inc',
+  );
   return $items;
+}
+
+/**
+ * Access callback for Mailchimp event callback
+ **/
+function dosomething_subscribe_mailchimp_events_access() {
+  $headers = getallheaders();
+
+  return _dosomething_subscribe_mailchimp_events_access(
+    isset($headers['User-Agent']) && !empty($headers['User-Agent'])? $headers['User-Agent'] : NULL,
+    $_SERVER['REQUEST_METHOD']
+  );
+
+}
+
+/**
+ *  Access callback for Mailchimp event callback helper.
+ *  This is broken out to allow for easier unit testing.
+ * @param $user_agent
+ *   User agent header string.
+ * @param $method
+ *   Request method string.
+ * @return boolean
+ **/
+function _dosomething_subscribe_mailchimp_events_access($user_agent, $method) {
+  return $user_agent && ($method == 'POST');
 }
 
 /**
