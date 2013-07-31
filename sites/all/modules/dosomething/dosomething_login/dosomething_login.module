@@ -1575,6 +1575,7 @@ function dosomething_login_get_accounts_under_13($limit = 10) {
   } catch (Exception $e) {
     return 0;
   }
+
   return $result;
 }
 
