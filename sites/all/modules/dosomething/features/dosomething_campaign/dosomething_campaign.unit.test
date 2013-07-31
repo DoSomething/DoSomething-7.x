@@ -56,7 +56,7 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_campaign_block_view()
    */
-  public function SubTestBlockView() {
+  public function subTestBlockView() {
     $signup = dosomething_campaign_block_view('kiva_signup');
     $this->assertTrue(isset($signup['content']));
     $this->assertTrue(strpos($signup['content'], 'Your First Name') !== FALSE);
@@ -70,7 +70,7 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_campaign_join_page_access()
    */
-  public function SubTestJoinPageAcces() {
+  public function subTestJoinPageAcces() {
     $sans = dosomething_campaign_join_page_access('abc');
     $this->assertFalse($sans);
     $nope = dosomething_campaign_join_page_access(698605);
@@ -82,7 +82,7 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_campaign_is_gated_node()
    */
-  public function SubTestIsGatedNode() {
+  public function subTestIsGatedNode() {
   	$node = node_load(729679);
     $gated = dosomething_campaign_is_gated_node($node);
     $this->assertTrue($gated);
@@ -108,7 +108,7 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_campaign_insert_signup()
    */
-  public function SubTestInsertSignup() {
+  public function subTestInsertSignup() {
   	db_query("delete from dosomething_campaign_signups where uid = 778374")->execute();
   	$before =  db_query('select count(*) from dosomething_campaign_signups')->execute();
     $signup = dosomething_campaign_insert_signup(778374, 729679);
@@ -120,7 +120,7 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_campaign_is_user_signed_up()
    */
-  public function SubTestIsUserSignedUp() {
+  public function subTestIsUserSignedUp() {
     $true = dosomething_campaign_is_user_signed_up(33189, 729679);
     $this->assertTrue($true, 'User is signed up for a campaign');
     $false = dosomething_campaign_is_user_signed_up(999999, 729679);
@@ -130,7 +130,7 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_campaign_can_user_override_join()
    */
-  public function SubTestCanUserOverrideJoin() {
+  public function subTestCanUserOverrideJoin() {
     $true = dosomething_campaign_can_user_override_join(user_load(778374));
     $this->assertTrue($true);
     $false = dosomething_campaign_can_user_override_join($this->user);
