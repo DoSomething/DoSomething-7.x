@@ -8,7 +8,7 @@ class ConductorActivitySMSStripSignature extends ConductorActivity {
   /**
    * The start method performs no actions.
    */
-  public function run($workflow) {
+  public function run() {
     $state = $this->getState();
     $context = $state->getContext();
     $smsMessages = array();

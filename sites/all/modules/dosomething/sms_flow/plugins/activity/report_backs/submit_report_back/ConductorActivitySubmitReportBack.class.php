@@ -22,7 +22,7 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
   // ex: 'hunt2013' does not submit to a webform
   public $use_special_submitter;
 
-  public function run($workflow) {
+  public function run() {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 

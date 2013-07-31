@@ -13,7 +13,7 @@ class ConductorActivityMMSPrompt extends ConductorActivitySMSPrompt {
   // response and send user to the end activity in the workflow.
   public $no_mms_response;
   
-  public function run($workflow) {
+  public function run() {
     $state = $this->getState();
 
     // If :has_prompted is not set, then this is first time through the activity
