@@ -165,6 +165,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
     foreach ($this->keywords as $testKeyword => $workflowName) {
       $isNewWorkFlow = TRUE;
       $isWorkflowInProgress = FALSE;
+      $errorFound = FALSE;
 
       while ($isWorkflowInProgress || $isNewWorkFlow) {
         $isNewWorkFlow = FALSE;
@@ -186,6 +187,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
         $currentActivity = $testWorkflow->getActivity($pointer['activityName']);
 
         if (self::hasErrorOutput($buffer)) {
+          $errorFound = TRUE;
           $this->assert(FALSE, '"Aw snap" error message sent to user in workflow ' . $workflowName . ' after activity ' . $pointer['activityName']);
         }
 
@@ -197,6 +199,9 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
         }
       }
 
+      if (!$errorFound) {
+        $this->assert(TRUE, "Workflow ($workflowName) critial path succeeded");
+      }
     }
   }
 
