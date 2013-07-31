@@ -63,7 +63,7 @@ class WebTestSuite extends DrupalWebTestCase {
   public function testAll() {
     $methods = get_class_methods($this);
     foreach ($methods as $test) {
-      if (strpos($test, 'SubTest') !== FALSE) {
+      if (strpos($test, 'subTest') !== FALSE) {
         $this->{$test}();
       }
       else continue;
