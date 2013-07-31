@@ -1,0 +1,139 @@
+<?php
+
+class DosomethingCampaignUnitTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Campaign Unit Tests',
+      'description' => 'DoSomething Campaign unit tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_campaign_menu()
+   */
+  public function testMenu() {
+    $menu = dosomething_campaign_menu();
+    $this->assertTrue(isset($menu['campaign/join/%']));
+  }
+
+  /**
+   * @see dosomething_campaign_theme()
+   */
+  public function testTheme() {
+    $theme = dosomething_campaign_theme('', '', '', 'testing');
+    $this->assertTrue(isset($theme['kiva_confirmation']));
+  }
+
+  /**
+   * @see dosomething_campaign_block_info()
+   */
+  public function testBlockInfo() {
+    $block = dosomething_campaign_block_info();
+    $this->assertTrue(isset($block['kiva_signup']));
+    $this->assertTrue(isset($block['kiva_confirmation']));
+  }
+}
+
+class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Campaign DB Unit Tests',
+      'description' => 'Tests database-driven dosomething_campaign functions.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+  }
+
+  /**
+   * @see dosomething_campaign_block_view()
+   */
+  public function SubTestBlockView() {
+    $signup = dosomething_campaign_block_view('kiva_signup');
+    $this->assertTrue(isset($signup['content']));
+    $this->assertTrue(strpos($signup['content'], 'Your First Name') !== FALSE);
+    $this->assertTrue(strpos($signup['content'], "Friend's cell #") !== FALSE);
+
+    $confirmation = dosomething_campaign_block_view('kiva_confirmation');
+    $this->assertTrue(isset($confirmation['content']));
+    $this->assertTrue(strpos($confirmation['content'], 'Send Me') !== FALSE);
+  }
+
+  /**
+   * @see dosomething_campaign_join_page_access()
+   */
+  public function SubTestJoinPageAcces() {
+    $sans = dosomething_campaign_join_page_access('abc');
+    $this->assertFalse($sans);
+    $nope = dosomething_campaign_join_page_access(698605);
+    $this->assertFalse($nope);
+    $stillno = dosomething_campaign_join_page_access(729679);
+    $this->assertFalse($stillno); 
+  }
+
+  /**
+   * @see dosomething_campaign_is_gated_node()
+   */
+  public function SubTestIsGatedNode() {
+  	$node = node_load(729679);
+    $gated = dosomething_campaign_is_gated_node($node);
+    $this->assertTrue($gated);
+
+    $nope = node_load(698605);
+    $not = dosomething_campaign_is_gated_node($nope);
+    $this->assertFalse($not);
+  }
+
+  /**
+   * @see dosomething_campaign_is_gated_signup_node()
+   */
+  public function IsGatedSignupNode() {
+  	$node = node_load(729679);
+    $gated = dosomething_campaign_is_gated_node($node);
+    $this->assertTrue($gated);
+
+    $nope = node_load(698605);
+    $not = dosomething_campaign_is_gated_node($nope);
+    $this->assertFalse($not);
+  }
+
+  /**
+   * @see dosomething_campaign_insert_signup()
+   */
+  public function SubTestInsertSignup() {
+  	db_query("delete from dosomething_campaign_signups where uid = 778374")->execute();
+  	$before =  db_query('select count(*) from dosomething_campaign_signups')->execute();
+    $signup = dosomething_campaign_insert_signup(778374, 729679);
+    $this->assertTrue(is_null($signup));
+  	$after = db_query('select count(*) from dosomething_campaign_signups')->execute();
+    $this->assertIdentical(++$before, $after);
+  }
+
+  /**
+   * @see dosomething_campaign_is_user_signed_up()
+   */
+  public function SubTestIsUserSignedUp() {
+    $true = dosomething_campaign_is_user_signed_up(33189, 729679);
+    $this->assertTrue($true, 'User is signed up for a campaign');
+    $false = dosomething_campaign_is_user_signed_up(999999, 729679);
+    $this->assertFalse($false, 'User is not signed up for a campaign');
+  }
+
+  /**
+   * @see dosomething_campaign_can_user_override_join()
+   */
+  public function SubTestCanUserOverrideJoin() {
+    $true = dosomething_campaign_can_user_override_join(user_load(778374));
+    $this->assertTrue($true);
+    $false = dosomething_campaign_can_user_override_join($this->user);
+    $this->assertFalse($false);
+  }
+}

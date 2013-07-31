@@ -6,3 +6,4 @@ dependencies[] = dosomething_campaign
 dependencies[] = og_context
 dependencies[] = dosomething_campaign_contact_form
 dependencies[] = dosomething_campaign_sign_up
+files[] = dosomething_campaign_styles.unit.test
