@@ -46,7 +46,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
       $workflowNames[] = $w->name;
     }
 
-    foreach($this->keywords as $key => $val) {
+    foreach ($this->keywords as $key => $val) {
       $matchFound = in_array($val, $workflowNames);
       if (!$matchFound) {
         $testSuccess = FALSE;
@@ -97,7 +97,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
 
         // Verify input -> output links
         if (count($a->inputs) > 0) {
-          foreach($a->inputs as $input) {
+          foreach ($a->inputs as $input) {
             // Find the activity the input is referring to, and verify that that
             // activity ($checkActivity) has an output referring to the current activity ($a).
             for ($j = 0; $j < $numActivities; $j++) {
@@ -121,7 +121,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
 
         // Verify output -> input links
         if (count($a->outputs) > 0) {
-          foreach($a->outputs as $output) {
+          foreach ($a->outputs as $output) {
             // Find the activity the output is referring to, and verify that that
             // activity ($checkActivity) has an input referring at the current activity ($a).
             for ($j = 0; $j < $numActivities; $j++) {
@@ -152,11 +152,65 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
   }
 
   /**
-   * TODO: Tests critical path of workflows with basic dummy data
+   * Tests critical path of workflows with basic dummy data
    */
   protected function SubTestWorkflowCriticalPath() {
+    // Create dummy $_REQUEST data for all SMS requests
+    $phone = '15555555555';
+    $_REQUEST['args'] = 'test args';
+    $_REQUEST['phone'] = $phone;
+    $_REQUEST['mms_image_url'] = 'http://www.google-analytics.com/__utm.gif';
 
+    // Simulate a run through of each workflow
+    foreach ($this->keywords as $testKeyword => $workflowName) {
+      $isNewWorkFlow = TRUE;
+      $isWorkflowInProgress = FALSE;
+
+      while ($isWorkflowInProgress || $isNewWorkFlow) {
+        $isNewWorkFlow = FALSE;
+        $isWorkflowInProgress = TRUE;
+
+        // Enable output buffering to capture the `print` output from sms_flow_incoming_callback
+        ob_start();
+
+        // Trigger callback that handles SMS requests
+        sms_flow_incoming_callback($testKeyword);
+
+        // Disable output buffering. Copy reply to user to $buffer.
+        $buffer = ob_get_contents();
+        ob_end_clean();
+
+        $storage = conductor_get_storage_handler(variable_get('conductor_default_storage_handler', 'database'));
+        $pointer = $storage->loadPointer('sms_prompt:' . $phone);
+        $testWorkflow = conductor_get_workflow($workflowName);
+        $currentActivity = $testWorkflow->getActivity($pointer['activityName']);
+
+        if (self::hasErrorOutput($buffer)) {
+          $this->assert(FALSE, '"Aw snap" error message sent to user in workflow ' . $workflowName . ' after activity ' . $pointer['activityName']);
+        }
+
+        if (!$currentActivity) {
+          $isWorkflowInProgress = FALSE;
+        }
+        else {
+          $activityType = $currentActivity->plugin_info['name'];
+        }
+      }
+
+    }
   }
 
+  /**
+   * Checks if output sent to user has the "Aw snap" message. There should be no
+   * scenario where the user receives that message.
+   */
+  private function hasErrorOutput($output) {
+    if (stripos($output, 'Aw snap! Something went wrong! We\'ll get right on it!') !== FALSE) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
 
 }
