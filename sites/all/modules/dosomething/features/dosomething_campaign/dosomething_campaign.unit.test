@@ -42,8 +42,8 @@ class DosomethingCampaignUnitTestCase extends DrupalUnitTestCase {
 class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
   public static function getInfo() {
     return array(
-      'name' => 'DoSomething Campaign Styles DB Unit Tests',
-      'description' => 'Tests database-driven dosomething_campaign_styles functions.',
+      'name' => 'DoSomething Campaign DB Unit Tests',
+      'description' => 'Tests database-driven dosomething_campaign functions.',
       'group' => 'DoSomething',
     );
   }
@@ -121,10 +121,10 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
    * @see dosomething_campaign_is_user_signed_up()
    */
   public function SubTestIsUserSignedUp() {
-    $true = dosomething_campaign_is_user_signed_up(778374);
-    $this->assertTrue($true);
-    $false = dosomething_campaign_is_user_signed_up(999999);
-    $this->assertFalse($false);
+    $true = dosomething_campaign_is_user_signed_up(33189, 729679);
+    $this->assertTrue($true, 'User is signed up for a campaign');
+    $false = dosomething_campaign_is_user_signed_up(999999, 729679);
+    $this->assertFalse($false, 'User is not signed up for a campaign');
   }
 
   /**
