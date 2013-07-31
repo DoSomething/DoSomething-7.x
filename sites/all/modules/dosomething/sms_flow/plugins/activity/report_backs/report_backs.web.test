@@ -39,7 +39,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
   /**
    * Verify that each "keyword" value has a matching workflow
    */
-  protected function SubTestKeywordMatch() {
+  protected function subTestKeywordMatch() {
     $testSuccess = TRUE;
     $workflowNames = array();
     foreach ($this->workflows as $w) {
@@ -62,7 +62,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
   /**
    * Verify all workflow names have a matching "keyword"
    */
-  protected function SubTestkWorkflowMatch() {
+  protected function subTestkWorkflowMatch() {
     $testSuccess = TRUE;
     $keywordValues = array_values($this->keywords);
     
@@ -82,7 +82,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
   /**
    * Verify no workflow activity has missing links
    */
-  protected function SubTestWorkflowActivityLinks() {
+  protected function subTestWorkflowActivityLinks() {
     foreach ($this->workflows as $w) {
       $activities = $w->activities;
       $numActivities = count($activities);
@@ -154,7 +154,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
   /**
    * Tests critical path of workflows with basic dummy data
    */
-  protected function SubTestWorkflowCriticalPath() {
+  protected function subTestWorkflowCriticalPath() {
     // Create dummy $_REQUEST data for all SMS requests
     $phone = '15555555555';
     $_REQUEST['args'] = 'test args';
