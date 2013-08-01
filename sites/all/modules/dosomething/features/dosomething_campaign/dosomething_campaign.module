@@ -364,7 +364,8 @@ function dosomething_campaign_beta_signup_form_submit($form, &$form_state) {
   dosomething_subscribe_mailchimp_signup($alpha_email, $mailchimp_group);
 
   // Send Mandrill transactional email message
-  dosomething_mandrill_dispatch($alpha_email, '25women', $alpha_name);
+  $message['body'] = $alpha_name;
+  dosomething_mandrill_dispatch($alpha_email, '25women', $message);
 
   // Mobilecommons Alpha+Beta signup:
   $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin, $args);

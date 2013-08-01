@@ -184,3 +184,10 @@ function dosomething_login_update_7005() {
 function dosomething_login_update_7006() {
   variable_del('dosomething_login_gate_use_user_registration_template');
 }
+
+/**
+ * Sets 403 page to newly functional access-denied page.
+ */
+function dosomething_login_update_7007() {
+  variable_set('site_403', 'access-denied');
+}
