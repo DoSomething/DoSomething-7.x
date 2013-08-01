@@ -40,22 +40,13 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
    * Verify that each "keyword" value has a matching workflow
    */
   protected function subTestKeywordMatch() {
-    $testSuccess = TRUE;
     $workflowNames = array();
     foreach ($this->workflows as $w) {
       $workflowNames[] = $w->name;
     }
 
     foreach ($this->keywords as $key => $val) {
-      $matchFound = in_array($val, $workflowNames);
-      if (!$matchFound) {
-        $testSuccess = FALSE;
-        $this->assert(FALSE, "Cannot find workflow ($val) for key ($key)");
-      }
-    }
-
-    if ($testSuccess) {
-      $this->assert(TRUE, 'All keywords have matching workflows');
+      $this->assertTrue(in_array($val, $workflowNames), t('Keyword %key has matching workflow %workflow', array('%key' => $key, '%workflow' => $val)));
     }
   }
 
@@ -63,19 +54,10 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
    * Verify all workflow names have a matching "keyword"
    */
   protected function subTestkWorkflowMatch() {
-    $testSuccess = TRUE;
     $keywordValues = array_values($this->keywords);
     
     foreach ($this->workflows as $w) {
-      $matchFound = in_array($w->name, $keywordValues);
-      if (!$matchFound) {
-        $testSuccess = FALSE;
-        $this->assert(FALSE, "Cannot find a keyword for workflow: $w->name");
-      }
-    }
-
-    if ($testSuccess) {
-      $this->assert(TRUE, 'All workflows have matching keywords');
+      $this->assertTrue(in_array($w->name, $keywordValues), t('Workflow %workflow has matching keyword', array('%workflow' => $w->name)));
     }
   }
 
@@ -92,7 +74,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
 
         // First activity should be 'start'
         if ($i == 0) {
-          $this->assertTrue(strcmp($a->name, 'start') == 0, "PASS: Workflow $w->name begins with the 'start' activity.");
+          $this->assertTrue(strcmp($a->name, 'start') == 0, t('Workflow %name begins with the \'start\' activity.', array('%name' => $w->name)));
         }
 
         // Verify input -> output links
@@ -108,12 +90,12 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
               $checkedActivityHasMatchingOutput = in_array($a->name, $checkActivity->outputs);
 
               if ($isDifferentActivity && $checkedNameMatchesInput && $checkedActivityHasMatchingOutput) {
-                $this->assert(TRUE, "Link verified for $a->name input: $input");
+                $this->assert(TRUE, t('Link verified for %name input: %input', array('%name' => $a->name, '%input' => $input)));
                 break;
               }
               // Assert failure if all activities were checked and no matching output was found
               else if ($j == $numActivities - 1) {
-                $this->assert(FALSE, "Cannot find matching activity with output to match test activity: $a->name input: $input");
+                $this->assert(FALSE, t('Cannot find matching activity with output to match test activity: %name input: %input', array('%name' => $a->name, '%input' => $input)));
               }
             }
           }
@@ -132,12 +114,12 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
               $checkedActivityHasMatchingInput = in_array($a->name, $checkActivity->inputs);
 
               if ($isDifferentActivity && $checkedNameMatchesOutput && $checkedActivityHasMatchingInput) {
-                $this->assert(TRUE, "Link found for $a->name output: $output");
+                $this->assert(TRUE, t('Link found for %activity output: %output', array('%activity' => $a->name, '%output' => $output)));
                 break;
               }
               // Assert failure if all activities were checked and no matching input was found
               else if ($j == $numActivities - 1) {
-                $this->assert(FALSE, "Cannot find matching activity with input to match test activity: $a->name output: $output");
+                $this->assert(FALSE, t('Cannot find matching activity with input to match test activity: %activity output: %output', array('%activity' => $a->name, '%output' => $output)));
               }
             }
           }
@@ -158,8 +140,9 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
     // Create dummy $_REQUEST data for all SMS requests
     $phone = '15555555555';
     $_REQUEST['args'] = 'test args';
-    $_REQUEST['phone'] = $phone;
     $_REQUEST['mms_image_url'] = 'http://www.google-analytics.com/__utm.gif';
+    $_REQUEST['opt_in_path_id'] = 0;
+    $_REQUEST['phone'] = $phone;
 
     // Simulate a run through of each workflow
     foreach ($this->keywords as $testKeyword => $workflowName) {
@@ -188,7 +171,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
 
         if (self::hasErrorOutput($buffer)) {
           $errorFound = TRUE;
-          $this->assert(FALSE, '"Aw snap" error message sent to user in workflow ' . $workflowName . ' after activity ' . $pointer['activityName']);
+          $this->assert(FALSE, t('"Aw snap" error message sent to user in workflow %workflow after activity %activity', array('%workflow' => $workflowName, '%activity' => $pointer['activityName'])));
         }
 
         if (!$currentActivity) {
@@ -200,7 +183,7 @@ class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
       }
 
       if (!$errorFound) {
-        $this->assert(TRUE, "Workflow ($workflowName) critial path succeeded");
+        $this->assert(TRUE, t('Workflow %workflow critial path succeeded', array('%workflow' => $workflowName)));
       }
     }
   }
