@@ -177,105 +177,6 @@ function dosomething_petitions_captcha(&$form, &$form_state) {
 }
 
 /**
- *  Sends an email to all signers of a webform when we reach a goal.
- *
- *  @param string $email
- *    The key of the email to send.  Should be defined in hook_mail()
- *
- *  @param int $nid
- *    The node ID of the petition that reached a goal.
- *
- *  @param int $goal
- *    The ultimate goal that the petition should reach.
- *
- *  @param int $count
- *    The current number of submissions that the petition has.
- */
-function dosomething_petitions_send_goal_email($email, $nid, $goal, $count) {
-  $signers = db_query("
-  SELECT DISTINCT u.mail
-  FROM webform_submissions
-    LEFT JOIN `users` u ON (`u`.`uid` = `webform_submissions`.`uid`)
-  WHERE `webform_submissions`.`uid` <> 0
-    AND `webform_submissions`.`nid` = " . $nid . "
-  ")->fetchAll();
-
-  $node = node_load($nid);
-  $a = user_load($node->uid);
-  $p = profile2_load_by_user($a, 'main');
-  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
-  if (!trim($author)) {
-    $author = $a->name;
-  }
-
-  $sims = db_select('node', 'n')
-    ->fields('n', array('nid', 'title'))
-    ->condition('type', 'petition')
-    ->condition('status', 0, '!=')
-    ->condition('nid', $node->nid, '!=')
-    ->orderBy('RAND()')
-    ->execute()
-    ->fetchAll();
-
-  foreach ($sims AS $key => $pet) {
-    $similars .= $pet->title . ': ' . url(drupal_lookup_path('alias', 'node/' . $pet->nid), array('absolute' => TRUE)) . "\r\n";
-  }
-
-  $params = array(
-    'name' => '',
-    'petition' => $node->title,
-    'petition_link' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
-    'author' => $author,
-    'goal' => $node->field_petition_goal[LANGUAGE_NONE][0]['value'],
-    'petition_recipient' => $node->field_petition_target[LANGUAGE_NONE][0]['value'],
-    'similar_petitions' => $similars
-  );
-
-  if ($email !== 'petitions_goal_reached') {
-    $params['more_to_goal'] = t('Our goal is to reach !goal signatures.  Help us cross the finish line.', array('!goal' => $params['goal']));
-  }
-
-  global $language;
-  foreach ($signers AS $e) {
-    drupal_mail('dosomething_petitions', $email, $e->mail, $language, $params);
-  }
-}
-
-/**
- *  Sends emails when the petitions goal is reached.
- *  
- *  @param int $goal
- *    The ultimate goal for the petition.
- *
- *  @param int $nid
- *    The node id of the petition in question.
- */
-function dosomething_petitions_goal_email($goal, $nid) {
-  $count = variable_get('petitions_signed_count_' . $nid);
-
-  if ($count == $goal) {
-    dosomething_petitions_send_goal_email('petitions_goal_reached', $nid, $goal, $count);
-    // Email everyone about goal reached
-  }
-  else {
-    /* Holding on this for now (9-13-12) until we can get everything sorted out with when and where to do it.
-       
-    $milestones = array(25000);
-
-    foreach ($milestones AS $stone) {
-      if ($count > $stone) continue;
-      else {
-        if ($count == $stone && $stone < $goal) {
-          dosomething_petitions_send_goal_email('petitions_milestone_reached', $nid, $goal);
-          // Mail everyone that we reached milestone
-        }
-        else continue;
-      }
-    }*/
-  }
-}
-
-/**
  * Submission callback for petition webforms
  */
 function dosomething_petitions_opt_in($form, $form_state) {
@@ -368,7 +269,6 @@ function dosomething_petitions_opt_in($form, $form_state) {
       $name = t('Guest');
     }
 
-    #dosomething_petitions_goal_email($node->field_petition_goal[LANGUAGE_NONE][0]['value'], $node->nid);
     $a = user_load($node->uid);
     $p = profile2_load_by_user($a, 'main');
     $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
