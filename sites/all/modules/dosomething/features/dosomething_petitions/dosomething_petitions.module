@@ -40,7 +40,7 @@ function dosomething_petitions_get_signed_count($nid) {
   }
 
   # Get the signature count.
-  $signed_count = variable_get('petitions_signed_count_' . $nid, 0);
+  $signed_count = dosomething_petitions_get_signature_count($nid);
 
   # Spit out JSON of the signature count.
   drupal_json_output(array('signatures' => $signed_count));
@@ -124,9 +124,6 @@ function dosomething_petitions_form_alter(&$form, &$form_state, $form_id) {
       );
 
       $form['#validate'][] = 'dosomething_petitions_captcha';
-      /*$form['actions']['submit']['#ajax'] = array(
-        'callback' => 'dosomething_petitions_register',
-      );*/
     }
     else {
       $profile = profile2_load_by_user($user, 'main');
@@ -173,105 +170,6 @@ function dosomething_petitions_captcha(&$form, &$form_state) {
   $vals = $form_state['values'];
   if (isset($vals['fav_color']) && !empty($vals['fav_color'])) {
     form_set_error('form', t('Sorry, there was an error in completing your form request.'));
-  }
-}
-
-/**
- *  Sends an email to all signers of a webform when we reach a goal.
- *
- *  @param string $email
- *    The key of the email to send.  Should be defined in hook_mail()
- *
- *  @param int $nid
- *    The node ID of the petition that reached a goal.
- *
- *  @param int $goal
- *    The ultimate goal that the petition should reach.
- *
- *  @param int $count
- *    The current number of submissions that the petition has.
- */
-function dosomething_petitions_send_goal_email($email, $nid, $goal, $count) {
-  $signers = db_query("
-  SELECT DISTINCT u.mail
-  FROM webform_submissions
-    LEFT JOIN `users` u ON (`u`.`uid` = `webform_submissions`.`uid`)
-  WHERE `webform_submissions`.`uid` <> 0
-    AND `webform_submissions`.`nid` = " . $nid . "
-  ")->fetchAll();
-
-  $node = node_load($nid);
-  $a = user_load($node->uid);
-  $p = profile2_load_by_user($a, 'main');
-  $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
-  if (!trim($author)) {
-    $author = $a->name;
-  }
-
-  $sims = db_select('node', 'n')
-    ->fields('n', array('nid', 'title'))
-    ->condition('type', 'petition')
-    ->condition('status', 0, '!=')
-    ->condition('nid', $node->nid, '!=')
-    ->orderBy('RAND()')
-    ->execute()
-    ->fetchAll();
-
-  foreach ($sims AS $key => $pet) {
-    $similars .= $pet->title . ': ' . url(drupal_lookup_path('alias', 'node/' . $pet->nid), array('absolute' => TRUE)) . "\r\n";
-  }
-
-  $params = array(
-    'name' => '',
-    'petition' => $node->title,
-    'petition_link' => url(drupal_lookup_path('alias', 'node/' . $node->nid), array('absolute' => TRUE)),
-    'author' => $author,
-    'goal' => $node->field_petition_goal[LANGUAGE_NONE][0]['value'],
-    'petition_recipient' => $node->field_petition_target[LANGUAGE_NONE][0]['value'],
-    'similar_petitions' => $similars
-  );
-
-  if ($email !== 'petitions_goal_reached') {
-    $params['more_to_goal'] = t('Our goal is to reach !goal signatures.  Help us cross the finish line.', array('!goal' => $params['goal']));
-  }
-
-  global $language;
-  foreach ($signers AS $e) {
-    drupal_mail('dosomething_petitions', $email, $e->mail, $language, $params);
-  }
-}
-
-/**
- *  Sends emails when the petitions goal is reached.
- *  
- *  @param int $goal
- *    The ultimate goal for the petition.
- *
- *  @param int $nid
- *    The node id of the petition in question.
- */
-function dosomething_petitions_goal_email($goal, $nid) {
-  $count = variable_get('petitions_signed_count_' . $nid);
-
-  if ($count == $goal) {
-    dosomething_petitions_send_goal_email('petitions_goal_reached', $nid, $goal, $count);
-    // Email everyone about goal reached
-  }
-  else {
-    /* Holding on this for now (9-13-12) until we can get everything sorted out with when and where to do it.
-       
-    $milestones = array(25000);
-
-    foreach ($milestones AS $stone) {
-      if ($count > $stone) continue;
-      else {
-        if ($count == $stone && $stone < $goal) {
-          dosomething_petitions_send_goal_email('petitions_milestone_reached', $nid, $goal);
-          // Mail everyone that we reached milestone
-        }
-        else continue;
-      }
-    }*/
   }
 }
 
@@ -349,11 +247,6 @@ function dosomething_petitions_opt_in($form, $form_state) {
         );
 
         drupal_mail('dosomething_petitions', 'invite_signed', $ui->mail, $language, $params);
-        // Remove invite from user
-        /*db_delete('dosomething_petitions_invites')
-          ->condition('invite', $val)
-          ->condition('nid', $node->nid)
-          ->execute();*/
       }
     }
 
@@ -368,7 +261,6 @@ function dosomething_petitions_opt_in($form, $form_state) {
       $name = t('Guest');
     }
 
-    #dosomething_petitions_goal_email($node->field_petition_goal[LANGUAGE_NONE][0]['value'], $node->nid);
     $a = user_load($node->uid);
     $p = profile2_load_by_user($a, 'main');
     $author = $p->field_user_first_name[LANGUAGE_NONE][0]['value'];
@@ -376,38 +268,6 @@ function dosomething_petitions_opt_in($form, $form_state) {
       $author = $a->name;
     }
   }
-}
-
-/**
- * AJAX callback for unauthenticated user petition submission
- */
-function dosomething_petitions_register($form, &$form_state) {
-  $is_user = dosomething_general_load_user_by_mail_or_cell($form['#submission']->submitted['field_webform_email_or_cell'][LANGUAGE_NONE][0]['value']);
-
-  $is_user = ($is_user !== FALSE);
-
-  $commands = array();
-  $errors = form_get_errors();
-  if ($errors) {
-    $error_list = '';
-    foreach ($errors AS $key => $error) {
-       $error_list .= '<li>' . $error . '</li>';
-    }
-
-    $fake_error_template = '<div class="messages error">
-      <h2 class="element-invisible">Error message</h2>
-      <ul>' . $error_list . '</ul></div>
-    ';
-    $commands[] = ajax_command_before('#page-title', $fake_error_template);
-  }
-  else {
-    $commands[] = ajax_command_invoke('#dosomething-login-register-popup-form', 'dsPetitionSubmit', array($form_state['redirect'][0], $is_user));
-  }
-
-  return array(
-    '#type' => 'ajax',
-    '#commands' => $commands
-  );
 }
 
 /**
@@ -420,16 +280,6 @@ function dosomething_petitions_module_implements_alter(&$implementations, $hook)
     $implementations['dosomething_petitions'] = $group;
   }
 }
-
-/**
- * Implements hook_node_insert().
- */
-/*function dosomething_petitions_node_insert($node) {
-  if ($node->type == 'petition') {
-    $node->webform['redirect_url'] = 'webform-post-submit-associate/%nid/%sid';
-    webform_node_update($node);
-  }
-}*/
 
 function dosomething_petitions_panels_pre_render($display) {
   if ($display->layout == 'petitions') {
@@ -445,80 +295,6 @@ function dosomething_petitions_ctools_plugin_directory($module, $plugin) {
   if ($module == 'ctools') {
     return 'plugins/' . $plugin;
   }
-}
-
-/**
- * Refer a friend via email form.
- */
-function dosomething_petitions_email_form($form, &$form_state, $nid) {
-  $form = array();
-  $node = node_load($nid);
-
-  global $user;
-  $profile = profile2_load_by_user($user, 'main');
-
-  $form['invite_data'] = array(
-    '#type' => 'hidden',
-    '#attributes' => array(
-      'id' => 'invite_data'
-    ),
-    '#default_value' => (isset($node->nid) ? $node->nid : 0),
-  );
-
-  for ($i = 0; $i < PETITIONS_NUM_EMAILS; $i++) {
-    $form['email_'.$i] = array(
-      '#type' => 'textfield',
-      '#title' => 'Friend\'s email',
-    );
-  }
-
-  $form['nid'] = array(
-    '#type' => 'hidden',
-    '#value' => $nid,
-    '#default_value' => $nid,
-  );
-  /*$form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Share This',
-    '#attributes' => array(
-      'class' => array('go-button'),
-    ),
-  );
-
-  $form['#submit'][] = 'dosomething_petitions_email_form_submit';*/
-
-  return $form;
-}
-
-/**
- * Petitions email form submit handler.
- */
-function dosomething_petitions_email_form_submit($form, $form_state) {
-  global $user, $language;
-  $node = node_load($form_state['values']['nid']);
-  $url = entity_uri('node', $node);
-  $url = url($url['path'], array('absolute' => true));
-  $name = dosomething_petitions_name($node->nid);
-
-  $params = array(
-    'title' => $node->title,
-    'first_name' => $name['first'],
-    'last_name' => $name['last'],
-    'full_name' => $name['full'],
-    'summary' => $node->field_petition_about[LANGUAGE_NONE][0]['summary'],
-    'signatures' => number_format($node->field_petition_goal[LANGUAGE_NONE][0]['value']),
-    'who' => $node->field_petition_target[LANGUAGE_NONE][0]['value'],
-    'url' => $url,
-  );
-
-  for ($i = 0; $i < PETITIONS_NUM_EMAILS; $i++) {
-    $email = $form_state['values']['email_'.$i];
-    if (valid_email_address($email)) {
-      drupal_mail('dosomething_petitions', 'petition_invite', $email, $language, $params);
-      dosomething_petitions_store_email($node->nid, $user->uid, $email);
-    }
-  }
-  drupal_set_message(t('Great! We\'ll send them a link to this petition. Share with more friends below.'));
 }
 
 /**
@@ -562,16 +338,6 @@ function dosomething_petitions_mail($key, &$message, $params) {
       $message['body'][] = theme('ds_petitions_thanks_for_signing', $params);
       $message['headers']['From'] = $params['author'] . ' <petitions-no-reply@dosomething.org>';
       #$message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
-      break;
-    case 'petitions_goal_reached':
-      $message['subject'] = t('!name has sent you a message - We made it!', array('!name' => $params['author']));
-      $message['body'][] = theme('petitions_goal_reached', $params);
-      $message['headers']['From'] = $params['author'] . ' <petitions@dosomething.org>';
-      break;
-    case 'petitions_milestone_reached':
-      $message['subject'] = t('!name has sent you a message - Well done', array('!name' => $params['author']));
-      $message['body'][] = theme('ds_petitions_milestone_reached', $params);
-      $message['headers']['From'] = $params['author'] . ' <petitions@dosomething.org>';
       break;
     case 'thanks_for_inviting':
       $message['subject'] = t('!author has sent you a message', array('!author' => $params['author']));
@@ -624,29 +390,6 @@ function dosomething_petitions_theme($existing, $type, $theme, $path) {
       ),
       'template' => 'ds-petitions-thanks-for-signing',
     ),
-    'petitions_goal_reached' => array(
-      'path' => $path . '/templates',
-      'variables' => array(
-        'name' => NULL,
-        'petition' => NULL,
-        'petition_link' => NULL,
-        'author' => NULL,
-        'petition_recipient' => NULL,
-        'goal' => NULL,
-        'similar_petitions' => NULL
-      ),
-      'template' => 'ds-petitions-goal-reached',
-    ),
-    'petitions_milestone_reached' => array(
-      'path' => $path . '/templates',
-      'variables' => array(
-        'name' => NULL,
-        'petition' => NULL,
-        'petition_link' => NULL,
-        'author' => NULL
-      ),
-      'template' => 'ds-petitions-milestone-reached',
-    ),
     'petitions_thanks_for_inviting' => array(
       'path' => $path . '/templates',
       'variables' => array(
@@ -695,8 +438,8 @@ function dosomething_petitions_name($nid) {
   }
 
   $submission = end(webform_get_submissions($conditions));
-  $first_name = $submission->field_webform_first_name[LANGUAGE_NONE][0]['value'];
-  $last_name = $submission->field_webform_last_name[LANGUAGE_NONE][0]['value'];
+  $first_name = (isset($submission->field_webform_first_name[LANGUAGE_NONE][0]['value']) ? $submission->field_webform_first_name[LANGUAGE_NONE][0]['value'] : '');
+  $last_name = (isset($submission->field_webform_last_name[LANGUAGE_NONE][0]['value']) ? $submission->field_webform_last_name[LANGUAGE_NONE][0]['value'] : '');
 
   if (empty($first_name)) {
     $profile = profile2_load_by_user($user, 'main');
@@ -806,7 +549,7 @@ function dosomething_petitions_contact_picker_emails() {
  *    Node ID for the petition
  */
 function dosomething_petitions_increment_signature_count($nid) {
-  $count = variable_get('petitions_signed_count_' . $nid, 0);
+  $count = dosomething_petitions_get_signature_count($nid);
   variable_set('petitions_signed_count_' . $nid, ++$count);
 }
 

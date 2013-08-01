@@ -100,6 +100,9 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
 /**
  * dosomething_mandrill_dispatch
  *
+ * NOTE: See http://drupalcode.org/project/examples.git/blob_plain/refs/heads/7.x-1.x:/email_example/email_example.module
+ * for fully functional example.
+ *
  * Triggeres the sending of a Mandrill transactional email message using a target Mandrill template.
  * If a specific template is not provided then default to a general DoSomething themed template
  *
@@ -108,10 +111,6 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * $key = 'dsplain' - The mail system key value as defined in /admin/config/system/mailsystem. The key is assigned
  * to a Mandrill template in the Mandrill Template module: /admin/config/services/mandrill/templates The key setting
  * determines what mail system and Mandrill template to use when sending a message.
- * 
- * $message = NULL - Custom message text. Text will be inserted into the Mandrill template. This can be blank
- * resulting in an email message which only contains the content of the template managed through the Mandrill
- * template interface.
  *
  * Note that *|merge vars|* should be within the message body.
  * 
@@ -122,17 +121,15 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * 
  */
 
-function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $merge_vars=NULL, $user=NULL) {
+function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user=NULL) {
 
   $language = language_default();
   $from = NULL;
   
-  // drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
-  $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $merge_vars, $from, TRUE);
+  $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
 
   // Log results
-  if ($message['result'] == FALSE) {
-    //watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
+  if ($message_status['result'] == FALSE) {
     watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to using the Mandrill %key.',
               array('%to' => $to, '%key' => $key), WATCHDOG_ERROR);
   }
@@ -199,28 +196,6 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       // global $language;
 
       break;
-    
-    case '25women':      
-        
-      $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = $params['subject'];
-      
-      // @todo: Make function to handle dynamic content that uses merge_vars *|<some var name|*
-      // @todo: Abstract further to support sending messages to $beta
-      
-      // Set default greeting if "body" contents are blank ($alpha_name). Not sure if $alpha_name is a required field
-      // on /woman signup form. In the future use merge_var values rather than passing through $params['body']
-      // when reading default template content programmacially from Mandrill template is in place.
-
-      if (strlen($params['body']) === FALSE) {
-        $message['body'] = 'Hey there,';
-      }
-      else {
-         $message['body'] = 'Hey '. $params['body'] .',';
-      }
-     
-
-      break;
 
     default:      
 
@@ -274,20 +249,22 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  */
 
 function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
-  
+    
   $global_merge_vars = array();
   $global_merge_vars[] = array(
     'name' => 'subject',
-    'content' => $message['subject'],
+    'content' => $mandrill_params['subject'],
   );
   $global_merge_vars[] = array(
     'name' => 'from',
-    'content' => $message['from'],
+    'content' => $mandrill_params['from'],
   );
   $global_merge_vars[] = array(
     'name' => 'domain',
     'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
   );
+  
+  $rcpt['email'] = $mandrill_params['to'];
 
   if (!empty($message['params'])) {
     foreach ($message['params'] as $name => $content) {
@@ -313,7 +290,14 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
         'vars' => $vars,
       );
     }
-  }  
+  }
+  
+  foreach($mandrill_params['params']['merge_vars'] as $name => $content) {
+    $global_merge_vars[] = array(
+      'name' => $name,
+      'content' => $content,
+    );
+  }
 
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
 
