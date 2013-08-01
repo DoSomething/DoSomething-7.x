@@ -253,12 +253,10 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
   $global_merge_vars = array();
   $global_merge_vars[] = array(
     'name' => 'subject',
-//    'content' => $message['subject'],
     'content' => $mandrill_params['subject'],
   );
   $global_merge_vars[] = array(
     'name' => 'from',
-//    'content' => $message['from'],
     'content' => $mandrill_params['from'],
   );
   $global_merge_vars[] = array(
