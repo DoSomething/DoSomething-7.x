@@ -50,3 +50,4 @@ features[variable][] = menu_parent_petition
 features[variable][] = node_options_petition
 features[variable][] = node_preview_petition
 features[variable][] = node_submitted_petition
+files[] = dosomething_petitions.unit.test
