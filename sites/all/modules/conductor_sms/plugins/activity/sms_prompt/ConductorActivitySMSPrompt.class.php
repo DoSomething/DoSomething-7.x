@@ -39,7 +39,7 @@ class ConductorActivitySMSPrompt extends ConductorActivity {
   /**
    * Implements ConductorActivity::getSuspendPointers().
    */
-  public function getSuspendPointers() {
+  public function getSuspendPointers(ConductorWorkflow $workflow = NULL) {
     return array(
       'sms_prompt:' . $this->getState()->getContext('sms_number')
     );
