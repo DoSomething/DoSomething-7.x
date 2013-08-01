@@ -70,14 +70,6 @@ function dosomething_petitions_petition_share_content_type_render($subtype, $con
     '#weight' => 20
   );
 
-  $content['form'] = drupal_get_form('dosomething_petitions_email_form', $node->nid);
-
-  /*$content['#attached'] = array(
-    'js' => array(
-      drupal_get_path('module', 'dosomething_petitions') . '/fb.js',
-    ),
-  );*/
-
   $block = new StdClass();
   $block->title = 'Share this Petition';
   $block->content = $content;
