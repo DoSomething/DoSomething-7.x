@@ -131,16 +131,9 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   }
 
   /**
-   * @see dosomething_login_menu()
-   */
-  public function SubTestMenuItems() {
-    $this->runThruPaths('dosomething_login');
-  }
-
-  /**
    * @see dosomething_login_user_register_access()
    */
-  public function SubTestLoginRegAccess() {
+  public function subTestLoginRegAccess() {
     $access = dosomething_login_user_register_access();
     $this->assertTrue($access);
 
@@ -152,7 +145,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_page_user_registration()
    */
-  public function SubTestUserRegPage() {
+  public function subTestUserRegPage() {
     $page = dosomething_login_page_user_registration();
     $this->assertTrue(is_array($page));
   }
@@ -160,7 +153,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_block_view()
    */
-  public function SubTestBlockView() {
+  public function subTestBlockView() {
     # Logged in variety
     $li_member = dosomething_login_block_view('become_member');
 
@@ -186,7 +179,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_theme()
    */
-  public function SubTestTheme() {
+  public function subTestTheme() {
     // Test basic themeing for dosomething_lgoin
     $parent_email = theme('dosomething_login_parent_email');
     $this->assertTrue(strpos($parent_email, 'has asked to sign up') !== FALSE);
@@ -195,7 +188,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_unique_name()
    */
-  public function SubTestUniqueName() {
+  public function subTestUniqueName() {
     $new = dosomething_login_unique_name('Mike Sea');
     $this->assertIdentical($new, 'Mike Sea0');
   }
@@ -203,7 +196,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_find_user_by_email()
    */
-  public function SubTestFindUserByEmail() {
+  public function subTestFindUserByEmail() {
     $user = dosomething_login_find_user_by_email($this->user->mail);
     $this->assertIdentical($user, $this->user->name);
   }
@@ -211,7 +204,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_drupal_user_is_over_age()
    */
-  public function SubTestDrupalUserIsOverAge() {
+  public function subTestDrupalUserIsOverAge() {
     $overage = dosomething_login_drupal_user_is_over_age($this->user->uid);
     $this->assertTrue($overage);
   }
@@ -219,7 +212,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_mark_user_account_over_13()
    */
-  public function SubTestMarkUserOver13() {
+  public function subTestMarkUserOver13() {
     $profile = profile2_load_by_user($this->user, 'main');
     $profile->field_user_is_over13[LANGUAGE_NONE][0]['value'] = 0;
     $profile->save();
@@ -233,7 +226,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_get_user_full_name()
    */
-  public function SubTestGetUserFullName() {
+  public function subTestGetUserFullName() {
     $name = dosomething_login_get_user_full_name($this->user);
     $this->assertIdentical($name, 'Mike Sea');
   }
@@ -241,7 +234,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_get_cell_phone_number()
    */
-  public function SubTestGetCellPhoneNumber() {
+  public function subTestGetCellPhoneNumber() {
     $acct = dosomething_general_load_user_by_mail_or_cell('mchitten@gmail.com');
     $cell = dosomething_login_get_cell_phone_number($acct);
     $this->assertIdentical($cell, '6103683195');
@@ -250,7 +243,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_user_has_parental_consent()
    */
-  public function SubTestUserHasParentalConsent() {
+  public function subTestUserHasParentalConsent() {
     $consent = dosomething_login_user_has_parental_consent($this->user->uid);
     $this->assertTrue($consent);
   }
@@ -258,7 +251,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_parent_consent_email_access()
    */
-  public function SubTestParentConsentEmailAccess() {
+  public function subTestParentConsentEmailAccess() {
     $this->assertTrue(dosomething_parent_consent_email_access());
     $this->logIn();
     $this->assertFalse(dosomething_parent_consent_email_access());
@@ -267,7 +260,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_parent_permission_email_form_submit()
    */
-  public function SubTestParentPermissionEmailSubmit() {
+  public function subTestParentPermissionEmailSubmit() {
     $form = array(
       'values' => array(
         'parent_email' => 'testing+void@dosomething.org',
@@ -283,50 +276,36 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see dosomething_login_one_time_parent_permission_link()
    */
-  public function SubTestOneTimeParnetPermissionLink() {
+  public function subTestOneTimeParnetPermissionLink() {
     $link = dosomething_login_one_time_parent_permission_link($this->user);
     $this->assertTrue(preg_match('#dosomething\/under\-13\/permission\/\d+\/\d+/[A-Za-z0-9\_\-]+#', $link));
   }
 
   /**
    * @see dosomething_login_get_accounts_under_13()
+   * @todo this takes way too much time.  Update code to be faster.
    */
-  public function SubTestGetAccountsUnder13() {
-    $accounts = dosomething_login_get_accounts_under_13();
-    $this->assertTrue(is_array($accounts['profile2']));
-    $first = current($accounts);
-
-    if (!empty($accounts['profile2']) && is_array($accounts['profile2'])) {
-      $this->ChildTestUpdateAccountsUnder13(15);
-      $accounts = dosomething_login_get_accounts_under_13();
-      $this->assertTrue(is_array($accounts['profile2']));
-      $this->assertNotIdentical($first, current($accounts['profile2']));
-    }
-  }
-
-  /**
-   * @see dosomething_login_update_accounts_under_13()
-   * Only useful if we actually have accounts under 13 in the database. 
-   */
-  public function ChildTestUpdateAccountsUnder13() {
-    dosomething_login_update_accounts_under_13();
-  }
+  // public function subTestGetAccountsUnder13() {
+  //   $accounts = dosomething_login_get_accounts_under_13();
+  //   $this->assertTrue(is_array($accounts['profile2']));
+  // }
 
   /**
    * @see dosomething_login_get_old_accounts()
    */
-  public function SubTestGetOldAccounts() {
+  public function subTestGetOldAccounts() {
     $accounts = dosomething_login_get_old_accounts();
     $this->assertTrue(count($accounts) > 1);
     $first = current($accounts);
 
-    if (!empty($accounts) && is_array($accounts)) {
-      $this->ChildTestClearOldAccounts();
-      $newaccounts = dosomething_login_get_old_accounts();
-      $this->assertTrue(is_array($newaccounts));
-      $nf = current($newaccounts);
-      $this->assertNotIdentical($first['uid'], $nf['uid']);
-    }
+    // @todo: For functional testing.
+    // if (!empty($accounts) && is_array($accounts)) {
+    //   $this->ChildTestClearOldAccounts();
+    //   $newaccounts = dosomething_login_get_old_accounts();
+    //   $this->assertTrue(is_array($newaccounts));
+    //   $nf = current($newaccounts);
+    //   $this->assertNotIdentical($first['uid'], $nf['uid']);
+    // }
   }
 
   /**
@@ -340,7 +319,7 @@ class DoSomethingLoginDBUnitTestCase extends WebTestSuite {
   /**
    * @see theme_dosomething_login_action_ds_connect()
    */
-  public function SubTestLoginActionDsConnect() {
+  public function subTestLoginActionDsConnect() {
     $variables = array(
       'action' => '',
       'properties' => array(

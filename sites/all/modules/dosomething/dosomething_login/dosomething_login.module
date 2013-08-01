@@ -1575,6 +1575,7 @@ function dosomething_login_get_accounts_under_13($limit = 10) {
   } catch (Exception $e) {
     return 0;
   }
+
   return $result;
 }
 
@@ -1997,7 +1998,13 @@ function theme_dosomething_login_facebook_user_info($variables) {
  */
 function dosomething_login_access_denied_page() {
   if (user_is_anonymous()) {
-    return drupal_get_form('dosomething_login_login_popup_form');
+    $message = 'Access denied. You must login to view this page.';
+    drupal_set_message(t($message), 'error');
+    $destination = drupal_get_destination();
+    // Use of header() function stolen from https://drupal.org/project/r4032login module.
+    // Using drupal_goto() with destination set causes a recursive redirect loop.
+    header('Location: ' . url('user/login', array('query' => array('destination' => urldecode($destination['destination'])), 'absolute' => TRUE)), TRUE, 302);
+    drupal_exit();
   }
   else {
     return t('You are not authorized to access this page.');
