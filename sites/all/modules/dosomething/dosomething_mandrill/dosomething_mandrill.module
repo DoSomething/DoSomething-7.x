@@ -48,7 +48,12 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
           
       // Check for anonymous user
       if ($user->uid == 0) {
-        $to = $submission->field_webform_email[LANGUAGE_NONE][0]['email'];
+        if (!empty($submission->field_webform_email)) {
+          $to = $submission->field_webform_email[LANGUAGE_NONE][0]['email'];
+        }
+        else {
+          $to = '';
+        }
       }
       else {
         $to = $user->mail;
@@ -225,8 +230,9 @@ function dosomething_mandrill_mail($key, &$message, $params) {
     default:      
 
       $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = $params['subject'];
-      $message['body'] = $params['body'];
+
+      $message['subject'] = isset($params['subject']) ? $params['subject'] : '';
+      $message['body'] = isset($params['body']) ? $params['body'] : '';
     
   }
 
