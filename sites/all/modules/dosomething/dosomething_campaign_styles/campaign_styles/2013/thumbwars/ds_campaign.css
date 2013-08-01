@@ -551,6 +551,12 @@ body {
     -o-border-radius: 5px;
     border-radius: 5px;
     text-decoration: none; }
+  #cmp #headline h1 {
+    font-size: 1.7em;
+    color: #0d4f80; }
+  #cmp #headline h2 {
+    font-size: 1.5em;
+    text-transform: uppercase; }
   #cmp .section#header {
     background: url("//www.dosomething.org/files/campaigns/thumb13/header.jpg") top center no-repeat;
     margin-bottom: 0; }
