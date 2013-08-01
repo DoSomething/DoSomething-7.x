@@ -96,9 +96,7 @@ class DosomethingPetitionsTestCase extends DrupalUnitTestCase {
 
 class DoSomethingPetitionsDBUnitTestCase extends WebTestSuite {
   private $user;
-  private $user_profile;
-  private $schema;
-  private $node;
+  private $petition;
 
   public static function getInfo() {
     return array(
@@ -111,6 +109,7 @@ class DoSomethingPetitionsDBUnitTestCase extends WebTestSuite {
   public function setUp() {
     parent::setUp();
     $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+    $this->petition = 730081;
   }
 
   /**
@@ -133,12 +132,12 @@ class DoSomethingPetitionsDBUnitTestCase extends WebTestSuite {
     $count->addExpression('COUNT(*)', 'count');
     $original = $count->execute()->fetch();
 
-    dosomething_petitions_store_email(730081, 778374, 'testing@dosomething.org')/
+    dosomething_petitions_store_email($this->petition, 778374, 'testing@dosomething.org')/
 
     $count = db_select('dosomething_petitions_invites', 'i');
     $count->addExpression('COUNT(*)', 'count');
     $after = $count->execute()->fetch();
-    
+
     $this->assertEqual(++$original->count, $after->count);
   }
 
@@ -156,5 +155,36 @@ class DoSomethingPetitionsDBUnitTestCase extends WebTestSuite {
     ));
     $this->assertTrue(strpos($thanks, 'Dear Mike,') !== FALSE);
     $this->assertTrue(strpos($thanks, 'Ben') !== FALSE);
+  }
+
+  /**
+   * @see dosomething_petitions_name()
+   */
+  public function subTestName() {
+    $name = dosomething_petitions_name($this->petition);
+    $this->assertTrue(isset($name['first']));
+    $this->assertTrue(isset($name['last']));
+    $this->assertTrue(isset($name['full']));
+  }
+
+  /**
+   * @see dosomething_petitions_increment_signature_count()
+   */
+  public function subTestIncrementSignatureCount() {
+    $original = variable_get('petitions_signed_count_' . $this->petition);
+    dosomething_petitions_increment_signature_count($this->petition);
+    $after = variable_get('petitions_signed_count_' . $this->petition);
+
+    $this->assertEqual(++$original, $after);
+  }
+
+  /**
+   * @see dosomething_petitions_get_signature_count()
+   */
+  public function subTestGetSignatureCount() {
+    $expected = variable_get('petitions_signed_count_' . $this->petition);
+    $real = dosomething_petitions_get_signature_count($this->petition);
+
+    $this->assertEqual($expected, $real);
   }
 }
