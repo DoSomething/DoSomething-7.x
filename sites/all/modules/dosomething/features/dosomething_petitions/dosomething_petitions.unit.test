@@ -1,0 +1,190 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_petitions functionality.
+ */
+
+class DosomethingPetitionsTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Petitions Unit Tests',
+      'description' => 'DoSomething Petitions Unit Tests',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_petitions_menu()
+   */
+  public function testMenu() {
+    $items = dosomething_petitions_menu();
+    $this->assertTrue(isset($items['petition/%/signed_count']));
+  }
+
+  /**
+   * @see dosomething_petitions_captch()
+   */
+  public function testCaptcha() {
+    $form = array(
+      'values' => array(
+        'fav_color' => 'Blue',
+      ),
+    );
+    $blank = array();
+    dosomething_petitions_captcha($blank, $form);
+    $this->assertTrue(isset($_SESSION['messages']['error'][0]));
+    $this->assertIdentical($_SESSION['messages']['error'][0], 'Sorry, there was an error in completing your form request.');
+  }
+
+  /**
+   * @see dosomething_petitions_module_implements_alter()
+   */
+  public function testModuleImplementsAlter() {
+    $implementations = array(
+      'dosomething_petitions' => 1,
+      'dosomething_general' => 1,
+    );
+    $shouldbe = array(
+      'dosomething_general' => 1,
+      'dosomething_petitions' => 1,
+    );
+    dosomething_petitions_module_implements_alter($implementations, 'form_alter');
+    $this->assertIdentical($implementations, $shouldbe);
+  }
+
+  /**
+   * @see dosomething_petitions_ctools_plugin_directory()
+   */
+  public function testCtoolsPluginDirectory() {
+    $dir = dosomething_petitions_ctools_plugin_directory('ctools', 'content_types');
+    $this->assertIdentical($dir, 'plugins/content_types');
+  }
+
+  /**
+   * @see dosomething_petitions_mandrill_mail_alter()
+   */
+  public function testMandrillMailAlter() {
+    $mandrill = array(
+      'from_name' => 'Mike Sea',
+      'from_email' => 'urfriend@dosomething.org',
+    );
+    $original = array(
+      'headers' => array(
+        'From' => 'Ben Kassoy',
+        'Sender' => 'ben@dosomething.org',
+      ),
+      'module' => 'dosomething_petitions',
+    );
+    dosomething_petitions_mandrill_mail_alter($mandrill, $original);
+    $this->assertIdentical($mandrill['from_name'], 'Ben Kassoy');
+    $this->assertIdentical($mandrill['from_email'], 'ben@dosomething.org');
+  }
+
+  /**
+   * @see dosomething_petitions_theme()
+   */
+  public function testTheme() {
+    $themes = dosomething_petitions_theme(null, null, null, 'testing');
+    $this->assertTrue(isset($themes['ds_petitions_thanks_for_signing']));
+  }
+}
+
+class DoSomethingPetitionsDBUnitTestCase extends WebTestSuite {
+  private $user;
+  private $petition;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Petitions DB Unit Tests',
+      'description' => 'DoSomething Petitions unit tests with DB access.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+    $this->petition = 730081;
+  }
+
+  /**
+   * @see dosomething_petitions_mail()
+   */
+  public function subTestMail() {
+    $message = array();
+    dosomething_petitions_mail('thanks_for_signing', $message, array('author' => 'Ben Kassoy')); 
+    $this->assertFalse(empty($message));
+    $this->assertTrue(isset($message['subject']));
+    $this->assertTrue(isset($message['body']) && is_array($message['body']));
+    $this->assertTrue($message['headers']['From']);
+  }
+
+  /**
+   * @see dosomething_petitions_store_email()
+   */
+  public function subTestStoreEmail() {
+    $count = db_select('dosomething_petitions_invites', 'i');
+    $count->addExpression('COUNT(*)', 'count');
+    $original = $count->execute()->fetch();
+
+    dosomething_petitions_store_email($this->petition, 778374, 'testing@dosomething.org')/
+
+    $count = db_select('dosomething_petitions_invites', 'i');
+    $count->addExpression('COUNT(*)', 'count');
+    $after = $count->execute()->fetch();
+
+    $this->assertEqual(++$original->count, $after->count);
+  }
+
+  /**
+   * @see dosomething_petitions_theme()
+   */
+  public function subTestTheme() {
+    $thanks = theme('ds_petitions_thanks_for_signing', array(
+      'name' => 'Mike',
+      'petition' => 'Remember the Alamo',
+      'petition_link' => 'petition/remember-the-alamo',
+      'author' => 'Ben Kassoy',
+      'goal' => '1,000,000,000',
+      'more_to_goal' => 3,
+    ));
+    $this->assertTrue(strpos($thanks, 'Dear Mike,') !== FALSE);
+    $this->assertTrue(strpos($thanks, 'Ben') !== FALSE);
+  }
+
+  /**
+   * @see dosomething_petitions_name()
+   */
+  public function subTestName() {
+    $name = dosomething_petitions_name($this->petition);
+    $this->assertTrue(isset($name['first']));
+    $this->assertTrue(isset($name['last']));
+    $this->assertTrue(isset($name['full']));
+  }
+
+  /**
+   * @see dosomething_petitions_increment_signature_count()
+   */
+  public function subTestIncrementSignatureCount() {
+    $original = variable_get('petitions_signed_count_' . $this->petition);
+    dosomething_petitions_increment_signature_count($this->petition);
+    $after = variable_get('petitions_signed_count_' . $this->petition);
+
+    $this->assertEqual(++$original, $after);
+  }
+
+  /**
+   * @see dosomething_petitions_get_signature_count()
+   */
+  public function subTestGetSignatureCount() {
+    $expected = variable_get('petitions_signed_count_' . $this->petition);
+    $real = dosomething_petitions_get_signature_count($this->petition);
+
+    $this->assertEqual($expected, $real);
+  }
+}
