@@ -15,7 +15,7 @@ class ConductorActivitySmsBloodPressureResults extends ConductorActivity {
   public $hypertensive_crisis_msg;
   public $error_msg;
 
-  public function run($workflow) {
+  public function run() {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 

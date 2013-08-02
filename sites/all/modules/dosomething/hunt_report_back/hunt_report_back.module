@@ -378,8 +378,11 @@ function _hunt_report_back_save_challenge($uid, $challenge) {
         HUNT_REPORT_BACK_IMAGE_URI . $filename . '.' . $ext,
         FILE_EXISTS_REPLACE
       );
-      $challenge['uri'] = $file->uri;
-      $challenge['fid'] = $file->fid;
+
+      if ($file) {
+        $challenge['uri'] = $file->uri;
+        $challenge['fid'] = $file->fid;
+      }
 
       $submission = drupal_write_record('hunt_rb_submissions', $challenge);
     }
