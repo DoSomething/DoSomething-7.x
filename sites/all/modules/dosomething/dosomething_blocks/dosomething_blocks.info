@@ -8,3 +8,4 @@ dependencies[] = fboauth
 dependencies[] = twitter
 
 files[] = plugins/views/ds_social_plugins_handler_field.inc
+files[] = dosomething_blocks.unit.test
