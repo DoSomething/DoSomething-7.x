@@ -5,7 +5,6 @@
  * Node template file for the Project content type.
  *
  */
-dsm($node);
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
@@ -34,7 +33,7 @@ dsm($node);
 
     <section class="campaign-section sms full-width" id="sms">
       <div class="content-center">
-        <p class="section-intro">Send this fact to 6 of your friends for cash money!</p>
+        <p class="section-intro"><?php print $node->field_sms_referral_info_copy[LANGUAGE_NONE][0]['value']; ?></p>
 
         <form action="//dosomething.mcommons.com/profiles/join" method="POST" class="form-default">
           <input type="hidden" name="redirect_to" value="mango">
@@ -72,7 +71,7 @@ dsm($node);
             <input type="submit" class="btn primary large" value="invite friends">
 
             <p><a class="official-rules" href="mango" target="_blank">Official Rules &amp; Regulations</a></p>
-            <p class="legal">Message &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</p>
+            <p class="legal"><?php print $node->field_sms_referral_ctia_copy[LANGUAGE_NONE][0]['value']; ?></p>
           </div>
         </form>
        </div>
@@ -80,13 +79,13 @@ dsm($node);
 
     <section class="campaign-section call-to-action full-width" id="call-to-action">
       <p>
-        <span>Press the button to start grinding some beans!</span>
-        <a class="left btn primary large js-jump-scroll">Report Back</a>
+        <span><?php print $node->field_cta_copy[LANGUAGE_NONE][0]['value']; ?></span>
+        <a class="left btn primary large js-jump-scroll"><?php print $node->field_cta_button_label[LANGUAGE_NONE][0]['value']; ?></a>
       </p>
     </section>
 
     <section class="campaign-section how-it-works full-width" id="how-it-works">
-        <h2 class="section-header"><span>Here's What You Do</span></h2>
+        <h2 class="section-header"><span><?php print $node->field_action_items_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
 
         <section class="how-it-works-container">
           <div class="three-col block">
