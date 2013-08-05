@@ -217,7 +217,7 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   }
   // ...or throw an exception saying we failed.
   catch (Exception $e) {
-    throw new ApiException(t('Sorry, there was a problem creating the account.'));
+    throw new Exception(t('Sorry, there was a problem creating the account.'));
   }
 
   // Set the profile object as a sub-object of user.

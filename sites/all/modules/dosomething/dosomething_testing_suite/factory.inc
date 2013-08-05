@@ -40,7 +40,7 @@ if (!isset($_SERVER['REMOTE_ADDR'])) {
  * ));
  */
 class Factory extends WebTestSuite {
-  static $factories = array();
+  private $factories = array();
   private static $instance;
 
   public static function instance() {
@@ -53,21 +53,31 @@ class Factory extends WebTestSuite {
 
   public function create($factory, $overrides = array()) {
     if (class_exists($factory)) {
-      if (!isset($factories[$factory])) {
-        $factories[$factory] = new $factory($overrides);
+      if (!isset($this->factories[$factory])) {
+        $this->factories[$factory] = new $factory($overrides);
       }
 
-      return $factories[$factory]->create();
+      return $this->factories[$factory]->create();
     }
   }
 
   public function build($factory, $overrides = array()) {
     if (class_exists($factory)) {
-      if (!isset($factories[$factory])) {
-        $factories[$factory] = new $factory($overrides);
+      if (!isset($this->factories[$factory])) {
+        $this->factories[$factory] = new $factory($overrides);
       }
 
-      return $factories[$factory]->build();
+      return $this->factories[$factory]->build();
+    }
+  }
+
+  public function getDefault($factory, $column) {
+    if (class_exists($factory)) {
+      if (!isset($this->factories[$factory])) {
+        $this->factories[$factory] = new $factory();
+      }
+
+      return $this->factories[$factory]->default[$column];
     }
   }
 
@@ -101,15 +111,18 @@ class Factory extends WebTestSuite {
 
 class User extends Factory {
   protected $default = array(
-    'name' => 'Test user',
-    'mail' => 'testing@dosomething.org',
-    'pass' => 'testing+abc',
+    'name' => 'TestUser',
+    'mail' => 'testing-abc123@dosomething.org',
+    'pass' => 'testing-abc',
     'first_name' => 'Test',
     'last_name' => 'User',
     'mobile' => '345-555-1234',
+    'roles' => array(),
   );
 
   public function __construct($overrides = array()) {
+    $this->default['mail'] = 'testing-' . time() . '@test.org';
+    $this->default['name'] = 'TestUser-' . time();
     $this->construct($overrides);
   }
 
@@ -122,8 +135,7 @@ class User extends Factory {
   }
 
   public function build_factory() {
-  	$user = dosomething_api_user_create(array('name' => 'TestUser', 'password' => 'testing+123', 'email' => 'testing@test.org', 'roles' => array(3 => 'administrator')));
-    #print_R($user); exit;
+    $user = dosomething_api_user_create(array('name' => $this->default['name'], 'password' => $this->default['pass'], 'email' => $this->default['mail'], 'mobile' => $this->default['mobile'], 'roles' => $this->default['roles']));
 
     // Load a profile object for the user.
     $profile_values = array('type' => 'main');

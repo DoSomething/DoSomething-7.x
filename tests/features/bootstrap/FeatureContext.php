@@ -56,16 +56,21 @@ class FeatureContext extends MinkContext
       * @And /^I am logged in as an? (?<role>regular user|administrator)$/
       */
      public function iAmLoggedInAsRole($role) {
-      $this->factory->create('User');
        if ($role == 'regular user') {
-         return array(
-           new Behat\Behat\Context\Step\Given('I am on "/user/login"'),
-           new Behat\Behat\Context\Step\When('I fill in "edit-name" with "bohemian_test"'),
-           new Behat\Behat\Context\Step\When('I fill in "edit-pass" with "bohemian_test"'),
-           new Behat\Behat\Context\Step\When('I press "Log in"'),
-           new Behat\Behat\Context\Step\Then('I should see "CAMPAIGNS"'),
-         );
+         $role = $this->factory->create('User');
        }
+       else if ($role == 'administrator') {
+         $role = $this->factory->create('User', array('roles' => array(3 => 'administrator')));
+       }
+
+       // Return the required steps to log in our logged in user.
+       return array(
+         new Behat\Behat\Context\Step\Given('I am on "/user/login"'),
+         new Behat\Behat\Context\Step\When('I fill in "edit-name" with "' . $this->factory->getDefault('User', 'name') . '"'),
+         new Behat\Behat\Context\Step\When('I fill in "edit-pass" with "' . $this->factory->getDefault('User', 'pass') . '"'),
+         new Behat\Behat\Context\Step\When('I press "Log in"'),
+         new Behat\Behat\Context\Step\Then('I should see "CAMPAIGNS"'),
+       );
      }
 
     /**
