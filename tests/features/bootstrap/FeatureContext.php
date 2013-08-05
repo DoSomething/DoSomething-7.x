@@ -15,6 +15,9 @@ use Behat\MinkExtension\Context\MinkContext;
 //   require_once 'PHPUnit/Framework/Assert/Functions.php';
 //
 
+require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
+chdir(dirname(__FILE__) . '/../../');
+
 /**
  * Features context.
  */
@@ -28,8 +31,25 @@ class FeatureContext extends MinkContext
      */
     public function __construct(array $parameters)
     {
-        // Initialize your context here
+        $this->factory = Factory::instance();
     }
+
+    /**
+     * @Given /^there is a (?<factory>[A-Za-z0-9]+) with:$/
+     * @And /^there is a (?<factory>[A-Za-za-z0-9]+) with:$/
+     */
+    public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data) {
+      $this->factory->create($factory, current($data->getHash()));
+    }
+
+     /**
+      * @Given /^there is a (?<factory>[A-Za-z0-9]+)$/
+      * @And /^there is a (?<factory>[A-Za-z0-9]+)$/
+      */
+     public function thereIsAFactory($factory)
+     {
+       echo "FACTORYY!!!!!!!"; exit;
+     }
 
     /**
      * @Given /^I fill in (?<field>.*?) with a random email$/
