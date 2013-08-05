@@ -1,8 +1,9 @@
 <?php
 
+/**
+ * Implements hook_preprocess_html()).
+ */
 function doit_preprocess_html(&$variables, $hook) {
-  // dsm($hook);
-  // dsm($variables);
   $theme_path = drupal_get_path('theme', 'doit');
   $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
   // mootools causes AJAX conflicts. Selectivizr works without it.
@@ -15,11 +16,58 @@ function doit_preprocess_html(&$variables, $hook) {
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
 
+  /*
+   * Remove all global stylesheets and
+   * load user registration HTML templates 
+   * if this is a user-registration template page or campaign join page.
+   */
+  if (doit_is_user_registration_template_page() || doit_is_campaign_join_template_page()) {
+
+    $variables['theme_hook_suggestions'][] = 'html__user__registration';
+    $css = drupal_add_css();
+
+    // Exclude all stylesheets except the following:
+    // ['https://c308566.ssl.cf1.rackcdn.com/din-511.css']
+    // ['sites/all/themes/doit/css/user-registration.css']
+
+    unset(
+      $css['sites/all/themes/doit/css/style.css'],
+      $css['sites/all/themes/doit/css/tweetbutton.css'],
+      $css['sites/all/themes/doit/css/views.css'],
+      $css['sites/all/modules/chartbeat/chartbeat.css'],
+      $css['public://css_injector/css_injector_6.css'],
+      $css['sites/all/modules/ctools/css/ctools.css'],
+      $css['modules/system/system.base.css'],
+      $css['modules/system/system.menus.css'],
+      $css['modules/system/system.messages.css'],
+      $css['modules/system/system.theme.css'],
+      $css['sites/all/modules/date/date_api/date.css'],
+      $css['sites/all/modules/date/date_popup/themes/datepicker.1.7.css'],
+      $css['sites/all/modules/dosomething/connections/css/connections-rules.css'],
+      $css['modules/field/theme/field.css'],
+      $css['modules/node/node.css'],
+      $css['modules/poll/poll.css'],
+      $css['modules/search/search.css'],
+      $css['modules/user/user.css'],
+      $css['sites/all/modules/views/css/views.css'],
+      $css['sites/all/modules/views_slideshow/views_slideshow.css'],
+      $css['sites/all/modules/panels/css/panels.css'],
+      $css['sites/all/modules/dosomething/dosomething_blocks/css/twitter-widget.css']
+    );
+
+    $variables['user_styles'] = drupal_get_css($css);
+
+  } 
   drupal_alter('html_templates', $variables);
 }
 
+/**
+ * Implements hook_preprocess_page().
+ */
 function doit_preprocess_page(&$variables) {
   $theme_path = drupal_get_path('theme', 'doit');
+  $current_path = current_path();
+
   if (!isset($variables['secondary_links_theme_function'])) {
     $variables['secondary_links_theme_function'] = 'links__system_secondary_menu';
   }
@@ -77,18 +125,6 @@ function doit_preprocess_page(&$variables) {
     }
   }
 
-  // gate beta campaign page
-  $beta_campaign = variable_get('beta_campaign_nid', 724796);
-  if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $beta_campaign))) {
-    drupal_goto('user/registration?destination=node/' . $beta_campaign);
-  }
-
-    // gate hunt campaign page
-  $hunt_campaign = variable_get('hunt_campaign_nid', 729679);
-  if (!user_is_logged_in() && ( (arg(0) == 'node') && (arg(1) == $hunt_campaign))) {
-    drupal_goto('user/registration?destination=node/' . $hunt_campaign);
-  }
-
   // Load Webfonts specific to the page
   if (module_exists('dosomething_perfomance_toolbox')) {
     dosomething_perfomance_toolbox_webfonts();
@@ -117,7 +153,94 @@ function doit_preprocess_page(&$variables) {
     }
 
   }
+  // If campaign join page:
+  if (doit_is_campaign_join_template_page()) {
+    // Load page template:
+    $variables['theme_hook_suggestions'][] = 'page__campaign__join';
+    // Use default user-registration page specfic CSS/JS files:
+    drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
+    drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
+  }
 
+  $destination = drupal_get_destination();
+  // Load user-registration page templates and gate values if this is a user-registration template page:
+  if (doit_is_user_registration_template_page()) {
+    // Use user-registration page template:
+    $variables['theme_hook_suggestions'][] = 'page__user__registration';
+    // Use default user-registration page specfic CSS/JS files:
+    drupal_add_js(drupal_get_path('theme', 'doit') . '/js/user-registration.js');
+    drupal_add_css(drupal_get_path('theme', 'doit') . '/css/user-registration.css');
+    $default_gate = TRUE;
+    // If there is a destination set in the query string:
+    if ($destination['destination'] != $current_path) {
+      $dest_path_parts = explode('/', $destination['destination']);
+      // If the destination == node/[nid]:
+      if ($dest_path_parts[0] == 'node' && is_numeric($dest_path_parts[1]) && !isset($dest_path_parts[2])) {
+        // Load the node:
+        $node = node_load($dest_path_parts[1]);
+        // If the destination node is a gated campaign signup:
+        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_node($node)) {
+          // Load node values for gate copy and image.
+          $default_gate = FALSE;
+          $variables['page']['gate_wrapper_class'] = 'nid-' . $node->nid;
+          $variables['page']['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
+          $variables['page']['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
+          $variables['page']['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
+          $variables['page']['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
+          $variables['page']['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
+          $variables['page']['gate_color'] = $node->field_gate_color[LANGUAGE_NONE][0]['value'];
+          if (isset($node->field_gate_page_title[LANGUAGE_NONE][0]['value']) && $current_path == 'user/registration') {
+            drupal_set_title($node->field_gate_page_title[LANGUAGE_NONE][0]['value']);
+          }
+        }
+      }
+    }
+    // If default gate, use gate variables from DoSomething Login config page:
+    if ($default_gate) { 
+      $variables['page']['gate_wrapper_class'] = '';
+      $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
+      $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
+      $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
+      $variables['page']['gate_image_src'] = "/" . drupal_get_path('theme', 'doit') . "/images/gate-bg.jpg";
+      $variables['page']['gate_image_alt'] = "High Five!";
+      $variables['page']['gate_color'] = variable_get('dosomething_login_gate_color');
+      $page_title = variable_get('dosomething_login_gate_page_title', NULL);
+      if ($page_title && $current_path == 'user/registration') {
+        drupal_set_title(variable_get('dosomething_login_gate_page_title'));
+      }
+    }
+    // Determine what page we're on, and populate other gate variables accordingly.
+    $is_user_password_page = FALSE;
+    if ($current_path == 'user/registration') {
+      $gate_link_path = 'user/login';
+      $gate_link_text = 'sign in';
+    }
+    else {
+      $gate_link_path = 'user/registration';
+      $gate_link_text = 'register';
+      if ($current_path == 'user/password') {
+        $variables['page']['gate_headline'] = t('Forgot your password?');
+        $is_user_password_page = TRUE;
+      }
+      else {
+        $variables['page']['gate_headline'] = t('Sign In');
+      }
+    }
+    // If there's a destination in the URL, gate links need it.
+    if ($destination['destination'] != $current_path) {
+      $gate_link_query = array('query' => array('destination' => $destination['destination']));
+    }
+    else {
+      $gate_link_query = array();
+    }
+    $variables['page']['gate_link'] = l(t($gate_link_text), $gate_link_path, $gate_link_query);
+    if ($is_user_password_page) {
+      $variables['page']['gate_go_back_link'] = l(t('go back'), 'user/login', $gate_link_query);
+    }
+    else {
+      $variables['page']['gate_go_back_link'] = FALSE;
+    }
+  }
 }
 
 /**
@@ -676,4 +799,32 @@ function doit_search_api_page_result(array $variables) {
   }
 
   return $output;
+}
+
+/**
+ * Returns TRUE if current path is user-registration/password/login type page.
+ */
+function doit_is_user_registration_template_page() {
+  // If anon user, check for user registration paths.
+  if (!user_is_logged_in()) {
+    $current_path = current_path();
+    $user_reg_paths = array('user/registration', 'user/password', 'user', 'user/login');
+    foreach ($user_reg_paths as $user_reg_path) {
+      if ($current_path == $user_reg_path) {
+        return TRUE;
+      }
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Returns TRUE if current path is a campaign join page.
+ */
+function doit_is_campaign_join_template_page() {
+  if (user_is_logged_in() && arg(0) == 'campaign' && arg(1) == 'join' && is_numeric(arg(2))) {
+    $node = node_load(arg(2));
+    return dosomething_campaign_is_gated_signup_node($node);
+  }
+  return FALSE;
 }

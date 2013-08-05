@@ -41,6 +41,11 @@ $activity->routes = array(
     'yes' => '158815',
     'no' => '158813',
   ),
+  // Birthday Mail 2013 Report Back
+  '160639' => array(
+    'yes' => '160641',
+    'no' => '160645',
+  ),
   // Hunt 2013 Report Back Day 1
   '159421' => array(
     'yes' => '159445',
@@ -442,6 +447,63 @@ $activity->inputs = array('ask_picture', 'blood_pressure_results');
 $workflows[$workflow->name] = $workflow;
 
 /**
+ * Birthday Mail 2013 Report Back User will first be prompted to submit a
+ * picture from: https://secure.mcommons.com/campaigns/121121/opt_in_paths/160639
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_birthdaymail_report_back';
+$workflow->title = 'Birthday Mail Report Back';
+$workflow->description = 'Submits the report back for the Birthday Mail campaign';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_cards', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 160647;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_cards';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_people');
+$activity->question = t('Thanks! How many cards did you make?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_cards');
+$activity->outputs = array('strip_signature');
+$activity->question = t('How many people did you participate with? (If you made cards alone, text back 0.)');
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  'ask_cards' => 1,
+  'ask_people' => 3,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 160649;
+$activity->webform_nid = 730403;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back', 'ask_picture');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
  * Hunt 2013 Report Back - Environment
  */
 $workflow = new ConductorWorkflow;
@@ -478,11 +540,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 2,
+  'challenge_day' => 1,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -528,11 +590,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 3,
+  'challenge_day' => 2,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -578,11 +640,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 4,
+  'challenge_day' => 3,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -628,11 +690,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 5,
+  'challenge_day' => 4,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -678,11 +740,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 6,
+  'challenge_day' => 5,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -728,11 +790,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 7,
+  'challenge_day' => 6,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -778,11 +840,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 8,
+  'challenge_day' => 7,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -828,11 +890,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 9,
+  'challenge_day' => 8,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -878,11 +940,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 10,
+  'challenge_day' => 9,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -928,11 +990,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 11,
+  'challenge_day' => 10,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');
@@ -978,11 +1040,11 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_question2');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  //'ask_question1' => ,  // TODO once website gets setup with this question
-  'ask_question2' => 12,
+  'challenge_day' => 11,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 159489;
+$activity->use_special_submitter = 'hunt2013';
 $activity->webform_nid = 729683;
 
 $activity = $workflow->newActivity('end');

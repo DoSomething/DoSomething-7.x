@@ -48,7 +48,8 @@
       }
       challenges_toggle('h4.available', 'div.content');
 
-      $('#challenges h4.today').next('div.content').show();
+      $('#challenges h4.available:last').next('div.content').show();
+      $('#challenges h4.available:last').addClass('today');
 
       // animation for a.jump_scroll
       var contentAnchors = 'a.jump_scroll';
@@ -174,6 +175,11 @@
         'feed_selector': '.header-facebook-share',
       }, function(response){
         window.location.href = '/hunt';
+      });
+
+      // REPORT BACK FUN
+      $('fieldset.completed legend').each(function(){
+        $(this).append('<b>✓</b>')
       });
 
     } // end attach: function

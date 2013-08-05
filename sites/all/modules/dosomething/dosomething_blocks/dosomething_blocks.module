@@ -19,10 +19,6 @@ define('DS_TIME_VOCABULARY_ID', 4);
  * Implements hook_block_info().
  */
 function dosomething_blocks_block_info() {
-  $blocks['dosomething_social_skyscraper'] = array(
-    'info' => t('DoSomething Social Skysraper'),
-    'cache' => DRUPAL_CACHE_GLOBAL,
-  );
   $blocks['dosomething_make_impact'] = array(
     'info' => t('DoSomething Make an Impact'),
     'cache' => DRUPAL_CACHE_GLOBAL,
@@ -51,10 +47,6 @@ function dosomething_blocks_block_info() {
 function dosomething_blocks_block_view($delta = '') {
   $block = array();
   switch ($delta) {
-    case 'dosomething_social_skyscraper':
-      $block['subject'] = t('Module 3');
-      $block['content'] = dosomething_blocks_social_skyscraper_block_content();
-      break;
     case 'dosomething_make_impact':
       $block['subject'] = t('Action Finder');
       $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form');
@@ -63,11 +55,9 @@ function dosomething_blocks_block_view($delta = '') {
       $block['subject'] = t('Action Finder');
       $block['content'] = drupal_get_form('dosomething_blocks_make_an_impact_form_front');
       break;
-
     case 'dosomething_utility_bar':
       $block['content'] = dosomething_blocks_utility_bar();
       break;
-
     case 'dosomething_social_node_buttons':
       $block['subject'] = t('Social Buttons');
       /*Reverting to the old code*/
@@ -89,72 +79,6 @@ function dosomething_blocks_node_view($node, $view_mode, $langcode) {
     $node->content['dosomething_social_action_buttons'] = dosomething_blocks_social_node_plugins(NULL, array('fb_social' => t('Facebook'), 'tweetbutton' => t('Tweet'), 'sharethis' => t('Share This')), array('fb_social_preset' => 'FB Like Box'));
     $node->content['dosomething_social_action_buttons']['#weight'] = -5;
   }
-}
-
-/**
- * Return array of "Social Skyscraper" block.
- */
-function dosomething_blocks_social_skyscraper_block_content() {
-  return array(
-    'twitter' => array(
-      'title' => array(
-        '#prefix' => '<h3 class="twitter">',
-        '#suffix' => '</h3>',
-        '#markup' => t('Twitter Stream'),
-      ),
-      'content' => array(
-        '#markup' => dosomething_blocks_twitter_stream_block_content(),
-        '#prefix' => '<div class="social-activity-content twitter">',
-        '#suffix' => '</div>',
-      ),
-    ),
-    'facebook' => array(
-      'title' => array(
-        '#prefix' => '<h3 class="facebook">',
-        '#suffix' => '</h3>',
-        '#markup' => t('Recent Activity'),
-      ),
-      'content' => array(
-        'content' => dosomething_blocks_facebook_activity_block_content(),
-        '#prefix' => '<div class="social-activity-content facebook">',
-        '#suffix' => '</div>',
-      ),
-    ),
-  );
-}
-
-
-/**
- * Generate the contents of the facebook activity block.
- */
-function dosomething_blocks_facebook_activity_block_content() {
-  $element = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array(
-        'skyscraper-fb-activity',
-      ),
-      'data-width' => 183,
-      'data-header' => 'false',
-      'data-site' => 'dosomething.org',
-      'data-colorscheme' => 'dark',
-      'data-recommendations' => 'false',
-      'border-color' => '#222',
-    ),
-    '#attached' => array(
-      'js' => array(
-        drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js',
-      ),
-    ),
-  );
-  return array('element' => $element);
-}
-
-function dosomething_blocks_twitter_stream_block_content() {
-  drupal_add_js(drupal_get_path('module', 'dosomething_blocks') . '/js/show-facebook-twitter.js');
-  drupal_add_css(drupal_get_path('module', 'dosomething_blocks') . '/css/twitter-widget.css');
-
-  return theme('dosomething_blocks_twitter_widget');
 }
 
 /**
@@ -397,7 +321,7 @@ function dosomething_blocks_help() {
 function dosomething_blocks_login() {
   global $user;
   if (!$user->uid) {
-    $output['#markup'] = l('Sign in', 'user', array('query' => user_login_destination(), 'attributes' =>  array('class' => array('sign-in-popup'))));
+    $output['#markup'] = l('Sign in', 'user', array('query' => user_login_destination()));
   }
   else {
     $output['#markup'] = l('Log out', 'user/logout');
@@ -543,11 +467,6 @@ function dosomething_blocks_theme() {
       'path' => drupal_get_path('module', 'dosomething_blocks') . '/templates',
       'template' => 'lets_talk_dialog'
     ),
-    'dosomething_blocks_twitter_widget' => array(
-      'variables' => array(),
-      'path' => drupal_get_path('module', 'dosomething_blocks') . '/templates',
-      'template' => 'ds_twitter_widget',
-    ),
   );
 }
 
@@ -661,33 +580,4 @@ function dosomething_blocks_views_api() {
   return array(
     'api' => 3,
   );
-}
-
-/**
- * Implements hook_preprocess_dosomething_blocks_twitter_widget).
- */
-function dosomething_blocks_preprocess_dosomething_blocks_twitter_widget(&$variables) {
-  $cache = cache_get('ds_twitter_data');
-  if ($cache === FALSE || $cache->expire < REQUEST_TIME) {
-    // Catches Twitter exceptions...so the site doesn't come crashing down.
-    try {
-      $twitter = new Twitter();
-      $twitter_data = $twitter->call('statuses/user_timeline/dosomething', array('count' => 6));
-      cache_set('ds_twitter_data', $twitter_data, 'cache', REQUEST_TIME + 86400);
-    }
-    catch (TwitterException $e) {
-      watchdog('twitter', $e->getMessage());
-    }
-  }
-  else {
-    $twitter_data = $cache->data;
-  }
-
-  if (is_array($twitter_data) && !empty($twitter_data)) {
-    foreach ($twitter_data as $key => $data) {
-      $twitter_data[$key]['date'] = date('F j g:ia', strtotime($data['created_at']));
-    }
-  }
-
-  $variables['tweets'] = $twitter_data;
 }

@@ -1,4 +1,39 @@
-// TODO - THIS PARTIAL SHOULD NOT EXIST
+// -------------- //
+// -------------- //
+// STYLES OUTSIDE //
+// #CMP           //
+// -------------- //
+// -------------- //
+
+// THEME SWITCH
+// ------------
+.region.region-utility
+  overflow: hidden
+
+#model-switch
+  float: left
+  width: 150px
+  @include respond-to(tablets_and_phones)
+    margin: 6px 0 0 75px
+  a
+    line-height: 16px
+    display: block
+    margin: 0 15px 0 0
+    padding: 8px 10px 4px
+    background: #444
+    color: #222
+    font-size: 16px
+    float: left
+    +border-radius(2px)
+    @include respond-to(tablets_and_phones)
+      font-size: 20px
+      padding: 10px 14px 5px
+    &:hover
+      color: lighten(#222, 5)
+      background: lighten(#444, 5)
+      text-decoration: none
+  a.active
+    background: #eee
 
 // TYPOGRAPHY
 // ----------
@@ -125,9 +160,9 @@ header[role="banner"]
 
   .container
     width: 100%
-    max-width: 900px
+    max-width: 960px
     margin: 0 auto
-  a
+  #block-dosomething-blocks-dosomething-utility-bar a
     text-decoration: none
 
     @include respond-to(tablets_and_phones)

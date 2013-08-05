@@ -166,3 +166,28 @@ function dosomething_login_update_7004() {
     ->fields(array('weight' => 1))
     ->execute();
 }
+
+/**
+ * Populates default gate variables for user/registration.
+ */
+function dosomething_login_update_7005() {
+  variable_set('dosomething_login_gate_page_title', 'Registration');
+  variable_set('dosomething_login_gate_headline', "Join DoSomething.org");
+  variable_set('dosomething_login_gate_subheadline', "JOIN THE LARGEST ORGANIZATION FOR YOUTH AND SOCIAL CHANGE");
+  variable_set('dosomething_login_gate_description', "Take action on causes you care about, qualify for scholarships, join 2 million passionate members.");
+  variable_set('dosomething_login_gate_use_user_registration_template', FALSE);
+}
+
+/**
+ * Deletes dosomething_login_gate_use_user_registration_template variable.
+ */
+function dosomething_login_update_7006() {
+  variable_del('dosomething_login_gate_use_user_registration_template');
+}
+
+/**
+ * Sets 403 page to newly functional access-denied page.
+ */
+function dosomething_login_update_7007() {
+  variable_set('site_403', 'access-denied');
+}

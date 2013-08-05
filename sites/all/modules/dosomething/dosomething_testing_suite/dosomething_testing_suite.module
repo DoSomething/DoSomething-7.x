@@ -1,0 +1,151 @@
+<?php
+
+class WebTestSuite extends DrupalWebTestCase {
+  protected $factory;
+  protected $logged_in;
+  # This magically fixes an exception thrown occasionally.
+  protected $public_files_directory;
+
+  public function setUp() {
+    $this->setup = TRUE;
+  }
+
+  public function tearDown() {
+    // @todo: Garbage collection.
+    if (isset($this->user) && $this->logged_in) {
+      $GLOBALS['user'] = new stdClass;
+    }
+  }
+
+  public function logIn() {
+    if (isset($this->user)) {
+      $GLOBALS['user'] = $this->user;
+      $this->logged_in = true;
+    }
+  }
+
+  public function logOut() {
+    if (isset($this->user) && $this->logged_in) {
+      $user = new stdClass;
+      $user->uid = 0;
+
+      $GLOBALS['user'] = $user;
+    }
+  }
+
+  /**
+   * Runs through a hook_menu() function and make sure all the paths exist.
+   *
+   * @param string $module
+   *   The module that includes the hook_menu() call.
+   *
+   */
+  public function runThruPaths($module) {
+    $this->assertTrue(function_exists($module . '_menu'));
+    if (function_exists($module . '_menu')) {
+      $items = dosomething_login_menu();
+      foreach ($items as $path => $data) {
+        $this->drupalGet($path);
+        $this->assertResponse(200, "The {$path} path exists.");
+      }
+    }
+  }
+
+  public function factory() {
+    if (!$this->factory instanceof Factory) {
+      $this->factory = new Factory;
+    }
+
+    return $this->factory;
+  }
+
+  // Greatly speeds up test time.
+  public function testAll() {
+    $methods = get_class_methods($this);
+    foreach ($methods as $test) {
+      if (strpos($test, 'subTest') !== FALSE) {
+        $this->{$test}();
+      }
+      else continue;
+    }
+  }
+}
+
+class Factory extends WebTestSuite {
+  static $factories = array();
+  public function create($factory, $overrides = array()) {
+    if (class_exists($factory)) {
+      if (!isset($factories[$factory])) {
+        $factories[$factory] = new $factory($overrides);
+      }
+
+      return $factories[$factory]->build();
+    }
+  }
+
+  public function schema() {
+    return $this->schema;
+  }
+
+  public function __construct() {
+    if (isset($this->schema)) {
+      $this->schema = array_replace_recursive($this->schema, $overrides);
+    }
+  }
+}
+
+class User extends Factory {
+  private $schema = array(
+    'name' => 'Test user',
+    'first_name' => 'Test',
+    'last_name' => 'User',
+    'mail' => 'testing@dosomething.org',
+    'mobile' => '345-555-1234',
+  );
+
+  public function build() {
+  	$user = $this->drupalCreateUser(array('access content'));
+
+    // Load a profile object for the user.
+    $profile_values = array('type' => 'main');
+    $profile = profile2_create($profile_values);
+    $profile->uid = $user->uid;
+
+    // If we have the user's phone number, set that.
+    if (!empty($this->schema['mobile'])) {
+      $profile->field_user_mobile[LANGUAGE_NONE][0]['value'] = $this->schema['mobile'];
+    }
+    // If they have a real first name, set that.
+    if ($this->schema['name'] != 'Guest user' && $this->schema['name'] != $this->schema['mobile']) {
+      $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $this->schema['first_name'];
+      $profile->field_user_last_name[LANGUAGE_NONE][0]['value'] = $this->schema['last_name'];
+    }
+
+    // Try and save the profile and set a message that we did so...
+    try {
+      profile2_save($profile);
+    }
+    // ...or throw an exception saying we failed.
+    catch (Exception $e) {
+      throw new Exception(t('Sorry, there was a problem creating the account.'));
+    }
+
+    // Set the profile object as a sub-object of user.
+    $user->profile = $profile;
+
+  	return $user;
+  }
+}
+
+class Blog extends Factory {
+  private $schema = array(
+    'type' => 'blog',
+    'title' => 'Blog title',
+  );
+
+  public function create_factory() {
+    return $this->drupalCreateNode($this->schema);
+  }
+}
+
+

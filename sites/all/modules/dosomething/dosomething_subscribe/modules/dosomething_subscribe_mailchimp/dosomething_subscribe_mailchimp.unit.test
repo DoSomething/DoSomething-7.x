@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Unit Tests for dosomething_subscribe_mailchimp
+ */
+
+class DosomethingSubscribeMailchimpUnitTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Subscribe: MailChimp - Unit Tests',
+      'description' => 'DoSomething Subscribe: MailChimp - Unit Tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see _dosomething_subscribe_mailchimp_events_access()
+   */
+  public function testMailchimpWebhookCallback() {
+    $user_agent = 'Mailchimp.com';
+   
+    // Test for proper user agent and request method
+    $this->assertTrue(_dosomething_subscribe_mailchimp_events_access(
+      $user_agent,
+      'POST'
+    ));
+
+    // Test for incorrect user_agent
+    $this->assertFalse(_dosomething_subscribe_mailchimp_events_access(
+      NULL,
+      'GET'
+    ));
+
+    // Test for incorrect request method
+    $this->assertFalse(_dosomething_subscribe_mailchimp_events_access(
+      $user_agent,
+      'GET'
+    ));
+  }
+}

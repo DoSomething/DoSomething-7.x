@@ -1,0 +1,536 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* variables */
+/* colors */
+/* mixins */
+@font-face {
+  font-family: "din-web-reg";
+  src: url("DINWeb.eot");
+  src: url("DINWeb.eot?iefix") format("eot"), url("DINWeb.woff") format("woff");
+  font-style: normal;
+  font-weight: false;
+}
+
+@font-face {
+  font-family: "din-web-reg";
+  src: url("DINWeb-Light.eot");
+  src: url("DINWeb-Light.eot?iefix") format("eot"), url("DINWeb-Light.woff") format("woff");
+  font-style: normal;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "din-web-reg";
+  src: url("DINWeb-Bold.eot");
+  src: url("DINWeb-Bold.eot?iefix") format("eot"), url("DINWeb-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* line 13, ../sass/screen.scss */
+body {
+  background: #E0E0E0;
+  font-size: 18px;
+  line-height: 1.4em;
+  font-family: "din-web-reg", Helvetica, Arial, sans-serif;
+}
+
+/* line 20, ../sass/screen.scss */
+p {
+  margin: 0.5em 0 1em;
+}
+
+/* line 24, ../sass/screen.scss */
+strong {
+  font-weight: 600;
+}
+
+/* line 28, ../sass/screen.scss */
+em {
+  font-style: italic;
+}
+
+/* line 32, ../sass/screen.scss */
+a {
+  color: #bc0028;
+}
+
+/* line 36, ../sass/screen.scss */
+.wrapper {
+  max-width: 960px;
+  width: 90%;
+  background: #fff;
+  margin: 0 auto;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transition: width 0.5s;
+  -moz-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  transition: width 0.5s;
+}
+@media only screen and (max-width: 600px) {
+  /* line 36, ../sass/screen.scss */
+  .wrapper {
+    width: 100%;
+  }
+}
+
+/* line 53, ../sass/screen.scss */
+header {
+  position: relative;
+  background: #eeeeee url("obama-hero.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 450px;
+  -webkit-transition: height 0.5s;
+  -moz-transition: height 0.5s;
+  -o-transition: height 0.5s;
+  transition: height 0.5s;
+}
+@media only screen and (max-width: 600px) {
+  /* line 53, ../sass/screen.scss */
+  header {
+    height: 225px;
+  }
+}
+
+/* line 66, ../sass/screen.scss */
+.logo {
+  position: absolute;
+  top: 10px;
+  left: -30px;
+  width: 220px;
+  height: 174px;
+  -webkit-transition: width 0.5s, height 0.5s, left 0.5s;
+  -moz-transition: width 0.5s, height 0.5s, left 0.5s;
+  -o-transition: width 0.5s, height 0.5s, left 0.5s;
+  transition: width 0.5s, height 0.5s, left 0.5s;
+}
+@media only screen and (max-width: 600px) {
+  /* line 66, ../sass/screen.scss */
+  .logo {
+    left: 5px;
+    width: 110px;
+    height: 88px;
+  }
+}
+
+/* line 82, ../sass/screen.scss */
+.social {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+/* line 88, ../sass/screen.scss */
+.sponsor {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+  -webkit-transition: width 0.5s, height 0.5s;
+  -moz-transition: width 0.5s, height 0.5s;
+  -o-transition: width 0.5s, height 0.5s;
+  transition: width 0.5s, height 0.5s;
+}
+@media only screen and (max-width: 600px) {
+  /* line 88, ../sass/screen.scss */
+  .sponsor {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* line 106, ../sass/screen.scss */
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: 200;
+  line-height: 2em;
+  letter-spacing: 0.3em;
+  color: #5e5e5e;
+  margin: 16px 16px 0;
+}
+/* line 116, ../sass/screen.scss */
+.title span {
+  display: block;
+}
+/* line 120, ../sass/screen.scss */
+.title strong {
+  display: block;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 600;
+}
+/* line 127, ../sass/screen.scss */
+.title em {
+  display: block;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin-top: 12px;
+}
+@media only screen and (max-width: 600px) {
+  /* line 127, ../sass/screen.scss */
+  .title em {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  /* line 106, ../sass/screen.scss */
+  .title {
+    font-size: 16px;
+  }
+}
+
+/* line 146, ../sass/screen.scss */
+.dates {
+  text-align: center;
+  color: #5e5e5e;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 18px;
+  margin: 32px 12px 12px;
+}
+
+/* line 157, ../sass/screen.scss */
+section {
+  clear: both;
+  padding: 32px;
+}
+/* line 161, ../sass/screen.scss */
+section h2 {
+  text-align: center;
+  font-size: 24px;
+  line-height: 2em;
+  font-weight: 600;
+  margin-bottom: 48px;
+}
+/* line 168, ../sass/screen.scss */
+section h2 span {
+  border-bottom: 6px solid #16368f;
+}
+/* line 174, ../sass/screen.scss */
+section h3 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #222;
+}
+
+/* line 185, ../sass/screen.scss */
+.call-to-action {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0;
+}
+
+/* line 192, ../sass/screen.scss */
+.intro {
+  font-size: 24px;
+  margin: 0 auto;
+  line-height: 1.3em;
+  padding-top: 4px;
+}
+/* line 198, ../sass/screen.scss */
+.intro p {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 204, ../sass/screen.scss */
+.intro .ribbon {
+  font-size: 56px;
+  padding: 48px;
+}
+@media only screen and (max-width: 600px) {
+  /* line 204, ../sass/screen.scss */
+  .intro .ribbon {
+    font-size: 36px;
+  }
+}
+
+/* line 212, ../sass/screen.scss */
+.outro {
+  font-size: 18px;
+}
+/* line 215, ../sass/screen.scss */
+.outro .ribbon {
+  font-size: 36px;
+}
+@media only screen and (max-width: 600px) {
+  /* line 215, ../sass/screen.scss */
+  .outro .ribbon {
+    font-size: 20px;
+  }
+}
+
+/* line 224, ../sass/screen.scss */
+.ctia {
+  margin-top: 1em;
+  font-size: 11px;
+  color: #ccc;
+  text-align: center;
+  line-height: 1em;
+}
+
+/* line 233, ../sass/screen.scss */
+.messages p {
+  text-align: center;
+}
+
+/* line 238, ../sass/screen.scss */
+.ribbon {
+  background: #bc0028;
+  color: #fff;
+  line-height: 1.3em;
+  padding: 32px;
+}
+
+/* line 250, ../sass/screen.scss */
+.column-container {
+  margin: 0 auto;
+}
+
+/* line 254, ../sass/screen.scss */
+.col-3 {
+  width: 33.3333333%;
+  float: left;
+  padding: 6px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 262, ../sass/screen.scss */
+.col-3 img {
+  width: 100%;
+  height: auto;
+}
+@media only screen and (max-width: 600px) {
+  /* line 254, ../sass/screen.scss */
+  .col-3 {
+    float: none;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* line 279, ../sass/screen.scss */
+.message-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding-bottom: 0;
+  overflow: hidden;
+  clear: both;
+}
+
+/* line 287, ../sass/screen.scss */
+.message-bubble {
+  margin: 1em auto 3em;
+  padding: 24px;
+  position: relative;
+  clear: both;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 294, ../sass/screen.scss */
+.message-bubble:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-style: solid;
+  border-width: 15px;
+}
+/* line 302, ../sass/screen.scss */
+.message-bubble p {
+  line-height: 3em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+/* line 308, ../sass/screen.scss */
+.message-bubble .author {
+  position: absolute;
+  font-weight: 600;
+  bottom: -28px;
+  height: 1em;
+}
+
+/* line 316, ../sass/screen.scss */
+.message-user {
+  float: left;
+  background: #dddddd;
+}
+/* line 320, ../sass/screen.scss */
+.message-user:after {
+  bottom: -30px;
+  left: 20px;
+  border-color: #dddddd #dddddd white white;
+}
+/* line 326, ../sass/screen.scss */
+.message-user p {
+  text-align: left;
+}
+/* line 330, ../sass/screen.scss */
+.message-user .author {
+  color: #dddddd;
+  left: 70px;
+}
+
+/* line 336, ../sass/screen.scss */
+.message-obama {
+  float: right;
+  background: #16368f;
+  color: #fff;
+}
+/* line 341, ../sass/screen.scss */
+.message-obama a {
+  color: #fff;
+}
+/* line 345, ../sass/screen.scss */
+.message-obama:after {
+  bottom: -30px;
+  right: 20px;
+  border-color: #16368f white white #16368f;
+}
+/* line 351, ../sass/screen.scss */
+.message-obama p {
+  text-align: right;
+}
+/* line 355, ../sass/screen.scss */
+.message-obama .author {
+  color: #16368f;
+  right: 70px;
+}
+
+/* line 364, ../sass/screen.scss */
+.faq {
+  max-width: 600px;
+  margin: 0 auto 16px;
+}
+/* line 368, ../sass/screen.scss */
+.faq h3 {
+  text-align: left;
+  font-weight: 600;
+  margin: 16px 0 0;
+}
+/* line 373, ../sass/screen.scss */
+.faq h3.is-link {
+  cursor: pointer;
+}
+/* line 376, ../sass/screen.scss */
+.faq h3.is-link:hover {
+  text-decoration: underline;
+}
+
+/* line 383, ../sass/screen.scss */
+.answer {
+  margin: 16px 0 32px;
+}
+
+/* line 387, ../sass/screen.scss */
+ul {
+  list-style-type: disc;
+  margin-left: 2em;
+}
+
+/* line 392, ../sass/screen.scss */
+li {
+  margin: 1em 0;
+}
+
+/* line 396, ../sass/screen.scss */
+cite {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.8em;
+  color: #aaaaaa;
+}
+/* line 402, ../sass/screen.scss */
+cite a {
+  color: #aaaaaa;
+}
+
+/* line 409, ../sass/screen.scss */
+footer {
+  text-align: center;
+  padding: 32px;
+}

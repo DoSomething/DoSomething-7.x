@@ -9,10 +9,10 @@ class ConductorActivityCanSendMMSReportBack extends ConductorActivity {
   // Map of incoming opt-in paths and their output paths
   public $routes;
 
-  public function run($workflow) {
+  public function run() {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
-    $user_response = check_plain($_REQUEST['args']);
+    $user_response = trim(check_plain($_REQUEST['args']));
     $opt_in_path = intval($_REQUEST['opt_in_path_id']);
 
     if (array_key_exists($opt_in_path, $this->routes)) {

@@ -8,7 +8,7 @@ class ConductorActivityMobileCommonsOptOut extends ConductorActivity {
   // Array of campaign id(s) to opt the user out of
   public $opt_out_ids = array();
 
-  public function run($workflow) {
+  public function run() {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 

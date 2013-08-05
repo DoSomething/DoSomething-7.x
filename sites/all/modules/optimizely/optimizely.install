@@ -7,15 +7,18 @@
 /**
  * Implements hook_schema().
  *
- * Called at both install and uninstall time, creates/deletes a custom table in the database for the Optimizely module.
+ * Called at both install and uninstall time, creates/deletes a custom table in
+ * the database for the Optimizely module.
  */
 function optimizely_schema() {
 
   $schema['optimizely'] = array(
-    'description' => 'This table holds the Optimizely project / experiment entries from the adminstration form.',
+    'description' => 'This table holds the Optimizely project / experiment
+		  entries from the adminstration form.',
     'fields' => array(
       'oid' => array(
-        'description' => 'The unique identifier of each Optimizely project/experiment entry.',
+        'description' => 'The unique identifier of each Optimizely
+				  project/experiment entry.',
         'type' => 'serial',
         'unsigned' => TRUE,
         'not null' => TRUE,
@@ -30,7 +33,8 @@ function optimizely_schema() {
       ),
 
       'include' => array(
-        'description' => 'Switch to include / exclude Optimizely snippet on specific page paths.',
+        'description' => 'Switch to include / exclude Optimizely snippet on
+				  specific page paths.',
         'type' => 'int',
         'size' => 'tiny',
         'not null' => TRUE,
@@ -46,7 +50,8 @@ function optimizely_schema() {
       ),
 
       'path' => array(
-        'description' => 'Serialized array of paths where the Optimizely code snippet appears',
+        'description' => 'Serialized array of paths where the Optimizely code
+				  snippet appears',
         'type' => 'text',
         'size' => 'normal',
         'not null' => FALSE,
@@ -73,13 +78,17 @@ function optimizely_schema() {
 /**
  * Implements hook_install().
  *
- * Included in the process of adding a optimizely database table is the creation of a default project entry in the table.
- * The default entry is used to add an initial javascript file (snippit) on a site wide basis. The Optimizely account ID
- * will need to be entered in the account setup page to complete the default entry. The Optimizely site uses the account ID
- * to generate the basic javascipt file to be included on the site. Once additional projects / experiments are created on the
- * Optimizely site additional project entries can be added to load the additional javascript files on specific site paths.
- * Selective loading of the Optimizely javascipt file helps in page load times and the amount of custom Optimizely javascript
- * in each Javascript include file.
+ * Included in the process of adding a optimizely database table is the creation
+ * of a default project entry in the table. The default entry is used to add an
+ * initial javascript file (snippit) on a site wide basis. The Optimizely
+ * account ID will need to be entered in the account setup page to complete the
+ * default entry. The Optimizely site uses the account ID to generate the basic
+ * javascipt file to be included on the site. Once additional projects /
+ * experiments are created on the Optimizely site additional project entries can
+ * be added to load the additional javascript files on specific site paths.
+ * Selective loading of the Optimizely javascipt file helps in page load times
+ * and the amount of custom Optimizely javascript in each Javascript include
+ * file.
  */
 function optimizely_install() {
 
@@ -117,12 +126,13 @@ function optimizely_install() {
       )
       ->execute();
 
-    // Inform the administrator that a default snippet entry has been made. Acount ID and access permisisons need to be configured
+    // Inform the administrator that a default snippet entry has been made.
+    // Acount ID and access permisisons need to be configured
     if ($default_entry_created == TRUE) {
-      drupal_set_message(st('A default project / experiment entry has been created. Next, enter your
-      <a href="/admin/config/system/optimizely/settings">Optimizely account ID</a>. There\'s also an
-      <a href="/admin/people/permissions/module-optimizely">optimizely permission</a> that can be set
-      for specific roles to access the adminstration functionality. '),
+      drupal_set_message(st('A default project / experiment entry has been created. Next, enter your' .
+        ' ' . l(st('Optimizely account ID'), '/admin/config/system/optimizely/settings') .
+        '. There\'s also an ' . l(st('optimizely permission'), '/admin/people/permissions/module-optimizely') .
+        ' ' . st('that can be set for specific roles to access the adminstration functionality.')),
       'status');
     }
     else {
@@ -153,7 +163,7 @@ function optimizely_uninstall() {
   }
 
   // hook_uninstall removes schema automatically
-  drupal_set_message(t('Optimizely database table dropped.'), 'status');
+  drupal_set_message(st('Optimizely database table dropped.'), 'status');
 
 }
 
@@ -167,8 +177,8 @@ function optimizely_enable() {
 
   if (!$account_id) {
 
-    drupal_set_message(st('The Optimizely account ID has not been set, please added it to complete the default setup at
-      <a href="/admin/config/system/optimizely/settings">Account Settings</a>.'),
+    drupal_set_message(st('The Optimizely account ID has not been set, please added it to complete the default setup at') .
+        ' ' . l(st('Account Settings'), '/admin/config/system/optimizely/settings') . '.',
       'status');
 
   }
@@ -176,7 +186,13 @@ function optimizely_enable() {
 }
 
 /**
- * Create database table for the Optimizely module. A default disbaled entry is made to support a base, site wide Optimizely snippet / experiment.
+ * Create database table for the Optimizely module.
+ *
+ * A default disbaled entry is made to support a base, site wide Optimizely
+ * snippet / experiment.
+ *
+ * @parm
+ *   &$sandbox
  */
 function optimizely_update_7200(&$sandbox) {
 
@@ -200,15 +216,41 @@ function optimizely_update_7200(&$sandbox) {
     ->execute();
 
     // Inform the administrator that a default snippet / project entry has been made. Acount ID and access permisisons need to be configured
-    if ($default_entry_created == TRUE) {
-      drupal_set_message(st('A default project / experiment entry has been created. Next, enter your
-			  <a href="/admin/config/system/optimizely/settings">Optimizely account ID</a>. There\'s also an
-			  <a href="/admin/people/permissions/module-optimizely">optimizely permission</a> that can be set
-			  for specific roles to access the adminstration functionality.'),
+    if ($default_entry_created) {
+      drupal_set_message(st('A default project / experiment entry has been created. Next, enter your') . ' ' .
+			    l(st('Optimizely account ID'), '/admin/config/system/optimizely/settings') . ' ' .
+				  st('There\'s also an') . ' ' . l(st('optimizely permission'), '/admin/people/permissions/module-optimizely') . ' ' .
+				  st('that can be set for specific roles to access the adminstration functionality.'),
         'status');
     }
     else {
       drupal_set_message(st('An error was encountred adding the default project entry for the Optimizely module.'), 'error');
     }
+
+}
+
+/**
+ * Disable all project entries to ensure that validatation tests are run on
+ * each entry when enabled. Validation includes valid and unique paths.
+ */
+function optimizely_update_7210(&$sandbox) {
+
+  // Update all database project entries to disabled
+  $disabled_projects = (bool) db_update('optimizely')
+    ->fields(array(
+      'enabled' => 0,
+    ))
+    ->execute();
+
+  // Inform the administrator that all projects have been disabled
+  if ($disabled_projects) {
+    drupal_set_message(st('All Optimizely project entries have been disabled. Reenable each project on the') . ' ' .
+        l(st('project listing Adminstration page'), '/admin/config/system/optimizely') . ' ' .
+        st('to ensure that the settings pass new validation functionality. Each entry must have valid paths that point to functional paths that are unique to the entry.'),
+      'status');
+  }
+  else {
+    drupal_set_message(st('An error was encountred resetting all of the project entries to disabled for the Optimizely module.'), 'error');
+  }
 
 }

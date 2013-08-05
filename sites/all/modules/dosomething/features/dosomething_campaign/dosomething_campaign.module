@@ -30,11 +30,6 @@ function dosomething_campaign_menu() {
  */
 function dosomething_campaign_theme($existing, $type, $theme, $path) {
   return array(
-    'campaign_join_page' => array(
-      'path' => $path . '/templates',
-      'variables' => array('node' => NULL, 'uid' => NULL, 'form' => NULL),
-      'template' => 'campaign_join_page',
-    ),
     'kiva_confirmation' => array(
       'path' => $path . '/templates',
       'template' => 'kiva_confirmation',
@@ -77,20 +72,37 @@ function dosomething_campaign_block_view($delta = '') {
  * Implements hook_init().
  */
 function dosomething_campaign_init() {
-  global $user;
-  // Check if logged in user:
-  if ($user->uid != 0) { 
-    // For now, this check only applies to the Hunt.
-    $campaign_nid = variable_get('hunt_campaign_nid', 729679);
-    // if the current page is the Hunt campaign node view page,
-    // if user doesn't have join override access,
-    // and if user isn't signed up.
-    if (current_path() == 'node/' . $campaign_nid && 
-      !dosomething_campaign_can_user_override_join($user) && 
-      !dosomething_campaign_is_user_signed_up($user->uid, $campaign_nid)) {
-      // Redirect to the campaign join page.   
-      drupal_goto('campaign/join/' . $campaign_nid);
+  // If we are viewing a node:
+  if (arg(0) == 'node' && is_numeric(arg(1)) && arg(2) == FALSE) {
+    // Check if current path is a gated campaign:
+    $node = menu_get_object();
+    if (dosomething_campaign_is_gated_node($node)) {
+      global $user;
+      // Send to redirector.
+      dosomething_campaign_redirector($user, $node);
     }
+  }
+}
+
+/**
+ * Redirects user to user/registration gate or join page for given $node based on signup status.
+ *
+ * @param $user
+ *  User object.
+ * @param $node
+ *  Node object to check for is_gated_signup and user signup status.
+ */
+function dosomething_campaign_redirector($user, $node) {
+  // If anon user, redirect to user/destination?node=$campaign_nid
+  if ($user->uid == 0) {
+    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $node->nid)));
+  }
+  // Else if campaign node is a gated signup, and logged in user hasn't signed up (and is non-override), redirect to join page:
+  else if (dosomething_campaign_is_gated_signup_node($node) && 
+    !dosomething_campaign_can_user_override_join($user) && 
+    !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
+    // Redirect to the campaign join page.   
+    drupal_goto('campaign/join/' . $node->nid); 
   }
 }
 
@@ -98,8 +110,12 @@ function dosomething_campaign_init() {
  * Access callback for join page.
  */
 function dosomething_campaign_join_page_access($nid) {
-  // Right now, we only use this page for The Hunt.
-  if ($nid != variable_get('hunt_campaign_nid', 729679)) {
+  if (!is_numeric($nid)) {
+    return FALSE;
+  }
+  $node = node_load($nid);
+  // Only should appear for gated signups:
+  if (!dosomething_campaign_is_gated_signup_node($node)) {
     return FALSE;
   }
   global $user;
@@ -111,27 +127,55 @@ function dosomething_campaign_join_page_access($nid) {
   return $user->uid != 0;
 }
 
-
 /**
  * Implements hook_user_login.
  */
 function dosomething_campaign_user_login(&$edit, $account) {
-  // If the referring URL is a campaign gate:
-  if (dosomething_campaign_is_campaign_gate_url($_SERVER['HTTP_REFERER'])) {
+  // If the referring URL is a campaign signup gate, the loaded campaign node is returned.
+  $campaign_node = dosomething_campaign_is_campaign_signup_gate($_SERVER['HTTP_REFERER']);
+  if ($campaign_node) {
     // Execute campaign login signup function:
-    dosomething_campaign_signup($account, variable_get('hunt_campaign_nid', 729679));
+    dosomething_campaign_signup($account, $campaign_node);
   }
 }
 
 /**
- * Returns boolean value of whether or not given URL is a campaign gate.
+ * Returns boolean of whether or not given loaded node has a gate.
  */
-function dosomething_campaign_is_campaign_gate_url($url) {
-  //@TODO: Make this dynamic and smart and not horribly hardcoded for the Hunt campaign.
-  $hunt_campaign_nid = variable_get('hunt_campaign_nid', 729679);
-  if (strpos($url,'user/registration%3Fdestination%3Dnode/' . $hunt_campaign_nid) !== FALSE) {
-    return TRUE;
+function dosomething_campaign_is_gated_node($node) {
+  return $node && $node->type == 'campaign' && isset($node->field_has_gate[LANGUAGE_NONE][0]['value']) && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1;
+}
+
+/**
+ * Returns boolean of whether or not given loaded node is a campaign signup node.
+ */
+function dosomething_campaign_is_gated_signup_node($node) {
+  return $node && $node->type == 'campaign' && isset($node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value']) && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1;
+}
+
+/**
+ * Checks if a URL is a campaign gate that should signup user on login, and returns the campaign node if so.
+ *
+ * @param $url
+ *  String, URL to check.
+ *
+ * @return
+ *   The loaded campaign node object if the destination is a campaign where is_gate_login_signup.  Returns FALSE otherwise.
+ */
+function dosomething_campaign_is_campaign_signup_gate($url) {
+  // Check if given URL is a campaign gate.
+  $destination = '?destination=node/';
+  $user_registration_url = 'user/registration' . $destination;
+  $user_login_url = 'user/login' . $destination;
+  if (strpos($url, $user_registration_url) !== FALSE || strpos($url, $user_login_url) !== FALSE) {
+    $nid = basename($url);
+    $node = node_load($nid);
+    // If this is a campaign with signup on login, return the node.
+    if (dosomething_campaign_is_gated_signup_node($node)) {
+      return $node;
+    }
   }
+  return FALSE;
 }
 
 /**
@@ -139,32 +183,37 @@ function dosomething_campaign_is_campaign_gate_url($url) {
  *
  * @param $account
  *  Account object of user who logged in.
- * @param $nid
- *  Node nid of campaign user is signing up for.
- *
- * @TODO: Make code dynamic with Campaign NID (currently hardcoded for The Hunt).
+ * @param $node
+ *  Node object of campaign user is signing up for.
  */
-function dosomething_campaign_signup($account, $nid) {
+function dosomething_campaign_signup($account, $node) {
+  $nid = $node->nid;
   $user_signed_up = dosomething_campaign_is_user_signed_up($account->uid, $nid);
   if (!$user_signed_up) {
     dosomething_campaign_insert_signup($account->uid, $nid);
     $email = $account->mail;
-
-    // Signup to Mailchimp Group:
-    dosomething_subscribe_mailchimp_signup($email, variable_get('dosomething_subscribe_mailchimp_hunt'));
-
-    // Signup to Mobilecommons:
-    $cell = '';
-    $user2 = profile2_load_by_user($account, 'main');
-    $cell = field_get_items('profile2', $user2, 'field_user_mobile');
-    $cell = $cell[0]['value'];
-    if (!empty($cell)) {
-      $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_hunt');
-      $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
-      watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
+    // Mailchimp signup:
+    $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
+    if ($mailchimp && !empty($mailchimp)) {
+      dosomething_subscribe_mailchimp_signup($email, $mailchimp);
     }
-    // Mandrill transactional for The HUNT:
-    dosomething_mandrill_dispatch($email, 'hunt13');
+    // Mobilecommons signup:
+    $mobilecommons = $node->field_mc_optin[LANGUAGE_NONE][0]['value'];
+    if ($mobilecommons && !empty($mobilecommons)) {
+      $cell = '';
+      $user2 = profile2_load_by_user($account, 'main');
+      $cell = field_get_items('profile2', $user2, 'field_user_mobile');
+      $cell = $cell[0]['value'];
+      if (!empty($cell)) {
+        $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+        watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
+      }
+    }
+    // Mandrill mail:
+    $mandrill = $node->field_mandrill_key[LANGUAGE_NONE][0]['value'];
+    if ($mandrill && !empty($mandrill)) {
+      dosomething_mandrill_dispatch($email, $mandrill);
+    }
   }
 }
 
@@ -278,10 +327,15 @@ function dosomething_campaign_beta_signup_form_validate($form, &$form_state) {
  * @todo: Make dynamic?
  */
 function dosomething_campaign_beta_signup_form_submit($form, &$form_state) {
+  $args = array();
+
   $alpha_name = $form_state['values']['alpha_name'];
+  $args['first_name'] = $alpha_name;
+
   $alpha_mobile = $form_state['values']['alpha_mobile'];
   $alpha_mobile = preg_replace('#[^0-9]#', '', $alpha_mobile);
   $alpha_email = $form_state['values']['alpha_email'];
+
   $beta_mobiles = array();
   // @todo: Make # of betas dymamic?  You could actually store the # of beta signups field on the campaign node.
   // Don't want to store it as a hidden form field in case anybody messes with it.
@@ -310,10 +364,11 @@ function dosomething_campaign_beta_signup_form_submit($form, &$form_state) {
   dosomething_subscribe_mailchimp_signup($alpha_email, $mailchimp_group);
 
   // Send Mandrill transactional email message
-  dosomething_mandrill_dispatch($alpha_email, '25women', $alpha_name);
+  $message['body'] = $alpha_name;
+  dosomething_mandrill_dispatch($alpha_email, '25women', $message);
 
   // Mobilecommons Alpha+Beta signup:
-  $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin);
+  $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin, $args);
   watchdog('dosomething_campaign', 'Beta signup - Mobilecommons response = ' . print_r($response, TRUE)); 
 
   // Send to confirmation page with the relevant query string variables.

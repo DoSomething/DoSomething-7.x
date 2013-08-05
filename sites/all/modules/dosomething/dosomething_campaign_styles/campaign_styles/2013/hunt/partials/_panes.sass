@@ -1,5 +1,139 @@
 // PANES
 
+.yellow-box
+  max-width: 400px
+  width: 90%
+  height: 300px
+  margin: 0 auto
+  text-align: center
+  background: #fed100
+  padding: 140px 0 0 0
+  font-size: 30px
+  text-transform: uppercase
+  font-weight: 600
+  color: #222
+
+// ------------ //
+// REPORT BACKS //
+// ------------ //
+#report-back
+  padding: 2em
+  background: #fff
+
+#report-back-header
+  background: #fff
+  padding: 1em 1em 0 1em
+  text-align: left
+  h2
+    color: #222
+    text-transform: uppercase
+  p
+    color: #222
+
+.pane-hunt-report-back-hunt-report-back
+  background: #fff
+  padding: 2em
+
+#challenges.form-wrapper
+  fieldset
+    display: block
+    clear: both
+    float: none
+    overflow: hidden
+    margin: 0 0 1em 0
+  legend
+    width: 100%
+    background: none repeat scroll 0% 0% $thirdColor
+  h2
+    padding: 0.5em 0 0 0
+  span
+    background-image: none
+    text-transform: uppercase
+    color: rgb(0, 173, 239)
+    font-style: italic
+    font-weight: 500
+    font-size: 1.2em
+    display: block
+  p
+    clear: both
+    padding: 0.5em 0
+  a
+    padding: 0.2em 0 0 0.7em
+    cursor: pointer
+    color: $secondaryColor
+    font-size: 1.2em
+    font-weight: 400
+    width: 100%
+    display: block
+    text-decoration: none
+  b // Completed "✓"
+    position: absolute
+    right: 0.7em
+    top: 0
+    font-size: 1.5em
+    line-height: 2.1em
+    color: #fff
+
+  .files a
+    padding: 0.3em 0 0.2em
+
+  .form-submit
+    font-size: 1.6em
+    margin: 0 0 1em 0
+    padding: 15px 25px 35px
+    color: #222
+    font-weight: 500
+    text-transform: uppercase
+
+  .form-submit.ajax-processed
+    background: #ccc
+    margin: 0.5em 0
+
+  .form-type-textfield
+    label
+      padding: 0.7em 0 0.5em 0
+
+  .error,
+  .status,
+  .messages
+    padding: 0
+    margin: 0
+
+  div.error,
+  div.status,
+  div.messages
+    background-image: none
+    margin: 1em 0 0 0
+    padding: 0.5em
+    +border-radius(3px)
+
+  .throbber,
+  .summary,
+  .file img
+    display: none
+
+  .grippie
+    display: none
+
+  .form-textarea-wrapper
+    padding: 1em 0px 0px
+
+  .form-file
+    font-size: 1em
+    border: none
+
+// INACTIVE
+#challenges.form-wrapper
+  .inactive
+    legend
+      background: #ddd
+    span
+      color: #bbb
+      font-weight: 400
+      font-size: 1.4em
+      padding: 0.5em 0.5em 0.4em 0.7em
+
+// OTHER STYLES
 .section
   max-width: 1000px
   p
@@ -7,7 +141,7 @@
     line-height: 1.3em
 
 .titleline, .titleline-mobile
-  color: $offBlack
+  color: #222
   border-bottom: 12px solid $thirdColor
   display: inline-block
   letter-spacing: 3px
@@ -21,6 +155,36 @@
   color: $secondaryColor
   display: none
 
+// -------- //
+// HEADLINE //
+// -------- //
+#headline
+  margin: 0 auto -1em
+  padding: 2em 3.5em 1em
+  h3
+    background: $thirdColor
+    color: $secondaryColor
+    display: block
+    margin: 0 0 0.5em 0
+    padding: 0.25em 0.75em 0
+    font-size: 1.8em
+    font-weight: 600
+
+// --- //
+// CTA //
+// --- //
+#cta
+  background: #eee
+  margin: 1em auto 0
+  padding: 1em
+
+  .go-button
+    cursor: pointer
+    color: #222
+    font-size: 32px
+    margin: 0.5em
+    padding: 20px 40px
+    height: 70px
 
 ///      //
 //  #header     - sign up -
@@ -150,6 +314,11 @@
     font-size: 1.5em
     font-weight: 600
     margin-bottom: 0.4em
+  hr
+    border-top: none
+    border-left: none
+    border-right: none
+    border-bottom: 1px solid #C1C1C1
   .kickass, .kickass-sub
     background: $thirdColor
     color: $secondaryColor
@@ -194,6 +363,11 @@
     font-weight: 400
     margin-bottom: 0.25em
     line-height: 1.2em
+  hr
+    border-top: none
+    border-left: none
+    border-right: none
+    border-bottom: 1px solid #C1C1C1
   .col50
     margin: 2em 0 3em
     p
@@ -239,9 +413,9 @@
     &:hover
       color: lighten($secondaryColor, 10)
   h4.unavailable
-    background: #eee
-    color: #fff
     cursor: default
+    background: #ddd
+    color: #bbb
   ul
     margin-bottom: 0
   li
@@ -284,7 +458,7 @@
     margin: 0 0 1em 0
     span
       display: inline
-      color: $offBlack
+      color: #222
       font-weight: 600
       font-size: 1.4em
 
@@ -292,7 +466,7 @@
       margin: 0 0 0 1em
       font-size: 1.6em
       padding: 0.5em 1em 1.4em 1em
-      color: $offBlack
+      color: #222
 
 //      //
 //  #impact     - gallery -

@@ -6,6 +6,7 @@ sites/*/files
 sites/*/private
 files
 tag
+tests/selenium/screenshots/*
 
 # Ignore hidden files
 ._*

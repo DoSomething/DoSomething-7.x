@@ -78,3 +78,9 @@ function dosomething_general_update_7102() {
   }
 }
 
+/**
+ * Enables testing suite module.
+ */
+function dosometing_general_update_7103() {
+  module_enable(array('dosomething_testing_suite'));
+}
