@@ -2,3 +2,6 @@
 	path = sites/all/themes/survivalkit
 	url = git@git.drupal.org:project/survivalkit.git
 
+[submodule "sites/all/libraries/ds-neue"]
+	path = sites/all/libraries/ds-neue
+	url = git@github.com:DoSomething/ds-neue.git
