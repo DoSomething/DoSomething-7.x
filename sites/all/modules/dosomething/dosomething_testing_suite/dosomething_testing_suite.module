@@ -71,4 +71,4 @@ class WebTestSuite extends DrupalWebTestCase {
   }
 }
 
-
+require_once 'factory.inc';

@@ -100,24 +100,30 @@ class Factory extends WebTestSuite {
 }
 
 class User extends Factory {
-  private $default = array(
+  protected $default = array(
     'name' => 'Test user',
+    'mail' => 'testing@dosomething.org',
+    'pass' => 'testing+abc',
     'first_name' => 'Test',
     'last_name' => 'User',
-    'mail' => 'testing@dosomething.org',
     'mobile' => '345-555-1234',
   );
 
+  public function __construct($overrides = array()) {
+    $this->construct($overrides);
+  }
+
   public function create() {
-    echo "YOU MADE IT!"; exit;
+    $this->build_factory();
   }
 
   public function build() {
-    echo "YOU'RE BUILDING!"; exit;
+    return $this->default;
   }
 
   public function build_factory() {
-  	$user = $this->drupalCreateUser(array('access content'));
+  	$user = dosomething_api_user_create(array('name' => 'TestUser', 'password' => 'testing+123', 'email' => 'testing@test.org', 'roles' => array(3 => 'administrator')));
+    #print_R($user); exit;
 
     // Load a profile object for the user.
     $profile_values = array('type' => 'main');

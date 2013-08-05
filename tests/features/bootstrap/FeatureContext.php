@@ -51,6 +51,23 @@ class FeatureContext extends MinkContext
        $this->factory->create($factory);
      }
 
+     /**
+      * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
+      * @And /^I am logged in as an? (?<role>regular user|administrator)$/
+      */
+     public function iAmLoggedInAsRole($role) {
+      $this->factory->create('User');
+       if ($role == 'regular user') {
+         return array(
+           new Behat\Behat\Context\Step\Given('I am on "/user/login"'),
+           new Behat\Behat\Context\Step\When('I fill in "edit-name" with "bohemian_test"'),
+           new Behat\Behat\Context\Step\When('I fill in "edit-pass" with "bohemian_test"'),
+           new Behat\Behat\Context\Step\When('I press "Log in"'),
+           new Behat\Behat\Context\Step\Then('I should see "CAMPAIGNS"'),
+         );
+       }
+     }
+
     /**
      * @Given /^I fill in (?<field>.*?) with a random email$/
      * @And /^I fill in (?<field>.*?) with a random email$/
