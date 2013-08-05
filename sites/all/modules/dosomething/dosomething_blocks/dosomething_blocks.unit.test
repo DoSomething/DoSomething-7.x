@@ -1,0 +1,145 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_blocks functionality.
+ */
+
+class DosomethingBlocksTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Blocks Unit Tests',
+      'description' => 'DoSomething Blocks Unit Tests',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_blocks_block_info()
+   */
+  public function testBlockInfo() {
+    $items = dosomething_blocks_block_info();
+    $this->assertTrue(isset($items['dosomething_make_impact']));
+  }
+
+  /**
+   * @see dosomething_blocks_clear_hidden_form_values()
+   */
+  public function testClearHiddenFormValues() {
+    $form = array(
+      'form_token' => 'potato',
+      'form_build_id' => 'key lime pie',
+      'form_id' => 'pan-seared stake',
+    );
+    $without = dosomething_blocks_clear_hidden_form_values($form);
+    $this->assertIdentical($without, array());
+  }
+
+  /**
+   * @see dosomething_blocks_impact_form_submit()
+   */
+  public function testImpactFormSubmit() {
+    $form = array(
+      'values' => array(
+        'what_cause' => 'Hershey Park',
+        'how_long' => 'Kinobles',
+        'who_with' => 'Dorney Park',
+        'where' => 'Six Flags',
+      ),
+    );
+    $empty = array();
+    dosomething_blocks_impact_form_submit(array(), $form);
+    $expected = $form + array('redirect' => array(
+      'action-finder',
+      array(
+        'query' => $form['values'],
+      ),
+    ));
+    $this->assertIdentical($form, $expected);
+  }
+
+  /**
+   * @see dosomething_blocks_form_search_block_form_alter()
+   */
+  public function testFormSearchBlockFormAlter() {
+    $empty = array();
+    $form = array(
+      'actions' => array(
+        'submit' => array(
+          '#value' => '',
+        ),
+      ),
+    );
+    dosomething_blocks_form_search_block_form_alter($form, $empty, null);
+    $this->assertIdentical($form['actions']['submit']['#value'], t('Go'));
+  }
+
+  /**
+   * @see dosomething_blocks_social_plugins_modules()
+   */
+  public function testSocialPluginsModules() {
+    $modules = dosomething_blocks_social_plugins_modules();
+    $this->assertTrue(isset($modules['print']));
+  }
+
+  /**
+   * @see dosomething_blocks_theme()
+   */
+  public function testTheme() {
+    $themes = dosomething_blocks_theme();
+    $this->assertTrue(isset($themes['dosomething_blocks_lets_talk_dialog']));
+  }
+}
+
+class DoSomethingBlocksDBUnitTestCase extends WebTestSuite {
+  private $user;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Petitions DB Unit Tests',
+      'description' => 'DoSomething Petitions unit tests with DB access.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+  }
+
+  /**
+   * @see dosomething_blocks_block_view()
+   */
+  public function subTestBlockView() {
+    $block = dosomething_blocks_block_view('dosomething_make_impact');
+    $this->assertEqual($block['subject'], 'Action Finder');
+    $this->assertTrue(isset($block['content']['issues']));
+    $this->assertTrue(isset($block['content']['who']));
+    $this->assertTrue(isset($block['content']['where']));
+    $this->assertTrue(isset($block['content']['time']));
+    $this->assertTrue(isset($block['content']['submit']));
+  }
+
+  /**
+   * @see dosomething_blocks_help()
+   */
+  public function testHelp() {
+    $help = dosomething_blocks_help();
+    $this->assertIdentical($help, array('#markup' => '<a href="/">Help Center</a>'));
+  }
+
+  /**
+   * @see dosomething_blocks_login()
+   */
+  public function testLogin() {
+    $output = dosomething_blocks_login();
+    $this->assertIdentical($output, array('#markup' => '<a href="/user?destination=front">Sign in</a>'));
+    $GLOBALS['user']->uid = $this->user->uid;
+    $inoutput = dosomething_blocks_login();
+    $this->assertIdentical($inoutput, array('#markup' => '<a href="/user/logout">Log out</a>'));
+  }
+}
