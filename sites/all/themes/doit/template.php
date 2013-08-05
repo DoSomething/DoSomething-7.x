@@ -4,6 +4,7 @@
  * Implements hook_preprocess_html()).
  */
 function doit_preprocess_html(&$variables, $hook) {
+
   $theme_path = drupal_get_path('theme', 'doit');
   $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
   // mootools causes AJAX conflicts. Selectivizr works without it.
@@ -59,6 +60,13 @@ function doit_preprocess_html(&$variables, $hook) {
 
   } 
   drupal_alter('html_templates', $variables);
+
+  if (menu_get_object()->type == 'project') {
+    $variables['theme_hook_suggestions'][] = 'html__project';
+    $css = drupal_add_css();
+    $variables['user_styles'] = 'DESMOND';
+  }
+
 }
 
 /**
@@ -136,16 +144,16 @@ function doit_preprocess_page(&$variables) {
   // Bootstrap with campaign assets (tpl, css, js)
   if (isset($obj->nid)) {
 
-    if ($obj->type == 'campaign') {
+    if ($obj->type == 'project') {
 
       // Add campaigns type specific page type
-      array_push( $variables['theme_hook_suggestions'], 'page__campaign' );
+      array_push( $variables['theme_hook_suggestions'], 'page__project' );
 
       $org_code = _doit_load_campaign_org_code($obj);
 
       if ($org_code) {
         // Add campaigns specific page type
-        array_push( $variables['theme_hook_suggestions'], 'page__campaign__' . $org_code );
+        array_push( $variables['theme_hook_suggestions'], 'page__project__' . $org_code );
       }
 
       _doit_load_campaign_assets($obj, $org_code);
@@ -263,15 +271,14 @@ function doit_preprocess_node(&$vars) {
 function _doit_load_campaign_assets($node, $org_code = NULL) {
 
   // @todo - we may need to refactor based on campaign related nodes
-  if ($node->type != 'campaign') return;
+  if ($node->type != 'project') return;
 
-  $theme_path = drupal_get_path('theme', 'doit');
-  $css_path =  $theme_path . '/css/campaigns';
-  $js_path =  $theme_path . '/js/campaigns';
+  $assets_path = drupal_get_path('theme', 'doit') . '/lib/ds-neue/assets';
 
   // Add global css and js
-  drupal_add_css($css_path . '/campaigns.css');
-  drupal_add_js($js_path . '/campaigns.js');
+  drupal_add_css($assets_path . '/application.css');
+  drupal_add_css($assets_path . '/campaign.css');
+  drupal_add_js($assets_path . '/application.js');
 
   $org_code = $org_code ? $org_code : _doit_load_campaign_org_code($node);
 
@@ -827,4 +834,21 @@ function doit_is_campaign_join_template_page() {
     return dosomething_campaign_is_gated_signup_node($node);
   }
   return FALSE;
+}
+
+function doit_css_alter(&$css) {
+
+  if (menu_get_object()->type == 'project') {
+    $styles = array();
+
+    foreach($css as $path => $info) {
+      if (strpos($path,'ds-neue') !== false) {
+
+
+          $styles[$path] = $info;
+      }
+    }
+
+    $css = $styles;
+  }
 }
