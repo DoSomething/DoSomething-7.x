@@ -5,9 +5,6 @@ Feature: Log in tests
 
   Background:
     Given I am on "/user?destination=front"
-    And there is a Blog with:
-      | title | Dogs |
-      | body  | cats |
 
   Scenario: See the basic stuff
     Then I should see "email, username or cell number"

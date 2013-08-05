@@ -39,7 +39,7 @@ class FeatureContext extends MinkContext
      * @And /^there is a (?<factory>[A-Za-za-z0-9]+) with:$/
      */
     public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data) {
-      $this->factory->create($factory, current($data->getHash()));
+      $this->factory->create($factory, $data->getRowsHash());
     }
 
      /**
@@ -48,7 +48,7 @@ class FeatureContext extends MinkContext
       */
      public function thereIsAFactory($factory)
      {
-       echo "FACTORYY!!!!!!!"; exit;
+       $this->factory->create($factory);
      }
 
     /**
