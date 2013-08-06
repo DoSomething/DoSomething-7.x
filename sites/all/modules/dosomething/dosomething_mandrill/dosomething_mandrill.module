@@ -22,7 +22,7 @@
 function dosomething_mandrill_webform_submission_insert($node, $submission) {
   
   // Campaign Report Back submissions
-  if (($node->type == 'campaign_report_back') || ($node->type == 'campaign_contact_form')) {
+  if ($node->type == 'campaign_report_back') {
     
     // Must be 'dosomething_mandrill' to trigger ManndrillMailSystem use based on entries in the MailSystem module
     // /admin/config/system/mailsystem
@@ -127,6 +127,10 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  */
 
 function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user=NULL) {
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
 
   $language = language_default();
   $from = NULL;
