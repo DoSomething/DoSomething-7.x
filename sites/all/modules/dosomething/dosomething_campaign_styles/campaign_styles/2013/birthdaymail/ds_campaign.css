@@ -31,9 +31,10 @@ body {
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-color: #f7f5f8;
+  background-position: fixed;
 }
 
-/* line 30, sass/_drupal.sass */
+/* line 32, sass/_drupal.sass */
 #main-wrapper div[role="main"] {
   padding: 0 !important;
   margin: 0 auto !important;
@@ -41,7 +42,7 @@ body {
   width: 100%;
   float: none;
 }
-/* line 36, sass/_drupal.sass */
+/* line 38, sass/_drupal.sass */
 #main-wrapper div[role="main"] ul.primary {
   border-bottom: none;
   margin: 0;
@@ -49,42 +50,42 @@ body {
   height: 37px;
 }
 
-/* line 43, sass/_drupal.sass */
+/* line 45, sass/_drupal.sass */
 .container {
   width: 100%;
   max-width: 1030px;
 }
 
-/* line 48, sass/_drupal.sass */
+/* line 50, sass/_drupal.sass */
 nav[role="navigation"] {
   height: 45px;
   padding: 3px 0 0 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 48, sass/_drupal.sass */
+  /* line 50, sass/_drupal.sass */
   nav[role="navigation"] {
     display: none;
   }
 }
 
-/* line 55, sass/_drupal.sass */
+/* line 57, sass/_drupal.sass */
 header[role="banner"] {
   margin: 0 auto;
   position: relative;
 }
 
-/* line 60, sass/_drupal.sass */
+/* line 62, sass/_drupal.sass */
 #site-name {
   top: -38px;
   left: -94px;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 60, sass/_drupal.sass */
+  /* line 62, sass/_drupal.sass */
   #site-name {
     top: -52px;
     left: 5px;
   }
-  /* line 67, sass/_drupal.sass */
+  /* line 69, sass/_drupal.sass */
   #site-name a {
     width: 60px;
     height: 50px;
@@ -93,7 +94,7 @@ header[role="banner"] {
   }
 }
 
-/* line 74, sass/_drupal.sass */
+/* line 76, sass/_drupal.sass */
 #page .messages {
   background: #86005d;
   border: none;
@@ -104,7 +105,7 @@ header[role="banner"] {
   font-family: din-web-reg;
   margin: 0;
 }
-/* line 83, sass/_drupal.sass */
+/* line 85, sass/_drupal.sass */
 #page .messages .go-button {
   background: #fedd13;
   font-size: 14px;
@@ -123,20 +124,20 @@ header[role="banner"] {
   border-radius: 3px;
 }
 
-/* line 96, sass/_drupal.sass */
+/* line 98, sass/_drupal.sass */
 .messages .element-invisible {
   display: none;
 }
 
-/* line 100, sass/_drupal.sass */
+/* line 102, sass/_drupal.sass */
 .tabs {
   background: transparent;
 }
-/* line 102, sass/_drupal.sass */
+/* line 104, sass/_drupal.sass */
 .tabs li {
   display: inline;
 }
-/* line 104, sass/_drupal.sass */
+/* line 106, sass/_drupal.sass */
 .tabs a {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -155,7 +156,7 @@ header[role="banner"] {
   border-radius: 0 2px 2px 0;
 }
 
-/* line 117, sass/_drupal.sass */
+/* line 119, sass/_drupal.sass */
 #main-wrapper div[role="main"] ul.primary {
   height: 50px;
   width: 375px;
@@ -164,23 +165,23 @@ header[role="banner"] {
 }
 
 @media only screen and (max-width: 1139px) {
-  /* line 124, sass/_drupal.sass */
+  /* line 126, sass/_drupal.sass */
   #utility-bar {
     height: 54px;
   }
 }
-/* line 128, sass/_drupal.sass */
+/* line 130, sass/_drupal.sass */
 #utility-bar .container {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
 }
-/* line 132, sass/_drupal.sass */
+/* line 134, sass/_drupal.sass */
 #utility-bar a {
   text-decoration: none;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 132, sass/_drupal.sass */
+  /* line 134, sass/_drupal.sass */
   #utility-bar a {
     font-size: 22px;
     line-height: 2em;
@@ -189,29 +190,29 @@ header[role="banner"] {
 }
 
 @media only screen and (max-width: 1139px) {
-  /* line 142, sass/_drupal.sass */
+  /* line 144, sass/_drupal.sass */
   .utility-items.search {
     display: none !important;
   }
 }
 
-/* line 146, sass/_drupal.sass */
+/* line 148, sass/_drupal.sass */
 #help-center {
   margin: 3px 15px 3px 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 146, sass/_drupal.sass */
+  /* line 148, sass/_drupal.sass */
   #help-center {
     display: none !important;
   }
 }
 
-/* line 153, sass/_drupal.sass */
+/* line 155, sass/_drupal.sass */
 #edit-submitted-field-geocode-data {
   display: none;
 }
 
-/* line 158, sass/_drupal.sass */
+/* line 160, sass/_drupal.sass */
 .region-sidebar-first,
 .pane-title,
 #block-menu-menu-footer,
@@ -225,14 +226,14 @@ header[role="banner"] {
   display: none;
 }
 
-/* line 171, sass/_drupal.sass */
+/* line 173, sass/_drupal.sass */
 #cmp {
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* line 177, sass/_drupal.sass */
+/* line 179, sass/_drupal.sass */
 .view-campaign-gallery #slideshow {
   margin: 0 auto;
 }
