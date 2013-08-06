@@ -23,20 +23,6 @@ if (!isset($_SERVER['REMOTE_ADDR'])) {
   error_reporting(0);
 }
 
-// Attempt to autoload factories
-function __autoload($class) {
-  static $module;
-
-  if (empty($module)) {
-    $module = drupal_get_path('module', 'dosomething_testing_suite');
-  }
-
-  $file = $module . '/factories/' . strtolower($class) . '.php';
-  if (file_exists($file)) {
-    require_once $file;
-  }
-}
-
 /**
  * Testing Factories
  *
@@ -96,6 +82,24 @@ class Factory extends WebTestSuite {
   }
 
   /**
+   * Attemps to load a particular factory, or throws an exception
+   * if it doesn't exist.
+   *
+   * @param string $factory
+   *   The name of the factory that you wish to include.
+   */
+  private function load($factory) {
+    $file = DRUPAL_ROOT . '/' . drupal_get_path('module', 'dosomething_testing_suite') . '/factories/' . strtolower($factory) . '.php';
+    if (file_exists($file)) {
+      require_once $file;
+    }
+    else {
+      // This forces the current scenario to fail.
+      throw new Exception(t('The !factory Factory does not exist.', array('!factory' => $factory)));
+    }
+  }
+
+  /**
    * Runs the create() method on a particular factory.  This will
    * populate the data and actually create the object in the database.
    *
@@ -111,7 +115,7 @@ class Factory extends WebTestSuite {
    *   created object.
    */
   public function create($factory, $overrides = array()) {
-    // Make sure that the factory exists.
+    $this->load($factory);
     if (class_exists($factory)) {
       // We need to re-instatiate every time because overrides change.
       $this->factories[$factory] = new $factory($overrides);
@@ -137,7 +141,7 @@ class Factory extends WebTestSuite {
    *   populated array.
    */
   public function build($factory, $overrides = array()) {
-    // Make sure that the factory exists.
+    $this->load($factory);
     if (class_exists($factory)) {
       // We need to re-instatiate every time because overrides change.
       $this->factories[$factory] = new $factory($overrides);
@@ -160,6 +164,7 @@ class Factory extends WebTestSuite {
    *   The default value of the specified column.
    */
   public function getDefault($factory, $column) {
+    $this->load($factory);
     if (class_exists($factory)) {
       // We need to re-instatiate to get the default values.
       $this->factories[$factory] = new $factory();

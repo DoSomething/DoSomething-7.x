@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Blog Factory -- Creates a blog post
+ */
+
 class Blog extends Factory {
   protected $default = array(
     'type' => 'blog',
     'title' => 'Blog title',
-    'body' => 'dogs',
+    'body' => 'Hello world!',
   );
 
   public function __construct($overrides = array()) {

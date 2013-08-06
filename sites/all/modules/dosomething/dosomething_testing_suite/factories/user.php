@@ -1,8 +1,10 @@
 <?php
 
 /**
- * User class -- creates a new user.
+ * @file
+ * User Factory -- creates a new user on DoSomething.org.
  */
+
 class User extends Factory {
   protected $default = array(
     'name' => 'TestUser',

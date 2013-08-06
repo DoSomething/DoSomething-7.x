@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Campaign Factory -- creates a Campaign
+ */
+
 class Campaign extends Factory {
   protected $default = array(
     'type' => 'campaign',
