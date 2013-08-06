@@ -837,8 +837,9 @@ function doit_is_campaign_join_template_page() {
 }
 
 function doit_css_alter(&$css) {
+  $node = menu_get_object();
 
-  if (menu_get_object()->type == 'project') {
+  if ($node && $node->type == 'project') {
     $styles = array();
 
     foreach($css as $path => $info) {
