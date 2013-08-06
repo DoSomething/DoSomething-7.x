@@ -51,10 +51,9 @@ function dosomething_petitions_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 10,
+          'type' => 'hidden',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -78,7 +77,84 @@ function dosomething_petitions_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '38',
+        'weight' => '10',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-petition-field_mandrill_key'.
+  $fields['node-petition-field_mandrill_key'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_mandrill_key',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'petition',
+      'default_value' => array(
+        0 => array(
+          'value' => 'petition',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'In order to trigger Mandrill based transactional email messages when a submission is made to this form a "key" needs to be provided based on settings in the Mail System and Mandrill Template module settings. The default value of "petition" will result in sending a general petition signature email message via Mandrill.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 10,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_mandrill_key',
+      'label' => 'Mandrill Key',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '11',
       ),
     ),
   );
@@ -112,15 +188,9 @@ function dosomething_petitions_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => 11,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -145,7 +215,7 @@ function dosomething_petitions_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '40',
+        'weight' => '12',
       ),
     ),
   );
@@ -219,7 +289,7 @@ function dosomething_petitions_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '3',
+        'weight' => '1',
       ),
     ),
   );
@@ -267,7 +337,7 @@ function dosomething_petitions_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -337,7 +407,7 @@ function dosomething_petitions_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -397,7 +467,7 @@ function dosomething_petitions_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -422,7 +492,7 @@ function dosomething_petitions_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -494,7 +564,7 @@ function dosomething_petitions_field_default_fields() {
           'rows' => '20',
         ),
         'type' => 'text_textarea',
-        'weight' => '4',
+        'weight' => '2',
       ),
     ),
   );
@@ -542,7 +612,7 @@ function dosomething_petitions_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '1',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -583,7 +653,7 @@ function dosomething_petitions_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '7',
+        'weight' => '5',
       ),
     ),
   );
@@ -631,7 +701,7 @@ function dosomething_petitions_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -655,7 +725,7 @@ function dosomething_petitions_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -727,7 +797,7 @@ function dosomething_petitions_field_default_fields() {
           'rows' => '20',
         ),
         'type' => 'text_textarea',
-        'weight' => '9',
+        'weight' => '7',
       ),
     ),
   );
@@ -773,10 +843,9 @@ function dosomething_petitions_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 12,
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -800,7 +869,7 @@ function dosomething_petitions_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '41',
+        'weight' => '13',
       ),
     ),
   );
@@ -1132,8 +1201,10 @@ function dosomething_petitions_field_default_fields() {
   t('Contact Name');
   t('Email -or- Cell');
   t('First Name');
+  t('In order to trigger Mandrill based transactional email messages when a submission is made to this form a "key" needs to be provided based on settings in the Mail System and Mandrill Template module settings. The default value of "petition" will result in sending a general petition signature email message via Mandrill.');
   t('Last Name');
   t('Mailchimp Interest Group');
+  t('Mandrill Key');
   t('Mobile Commons Opt-In Path');
   t('Only first name and last initial are shown.');
   t('Optional language for the tweet link on the "share" page.');

@@ -156,7 +156,7 @@ function dosomething_api_user_fetch_data($data = array('account' => array(), 'pr
   return $return;
 }
 
-function dosomething_api_user_create($info = array('name' => '', 'email' => '', 'mobile' => ''), $login = FALSE) {
+function dosomething_api_user_create($info = array('name' => '', 'email' => '', 'mobile' => '', 'roles' => array()), $login = FALSE) {
   // Start the account class.
   $account = new stdClass;
 
@@ -174,13 +174,13 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   }
 
   // Create a random password for the user.
-  if (!$info['password']) {
+  if (!isset($info['password'])) {
     $pass = user_password(6);
   }
   else {
     $pass = $info['password'];
   }
-  require_once('includes/password.inc');
+  require_once(DRUPAL_ROOT . '/includes/password.inc');
   $hashed_pass = user_hash_password($pass);
   $account->pass = $hashed_pass;
 
@@ -188,6 +188,10 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   $account->mail = (!empty($info['email']) ? $info['email'] : $info['mobile'] . '@mobile');
   // The user account is activated.
   $account->status = 1;
+
+  if (!empty($info['roles']) && is_array($info['roles'])) {
+    $account->roles = $info['roles'];
+  }
 
   // Save the user.
   $account = user_save($account);
@@ -213,7 +217,7 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   }
   // ...or throw an exception saying we failed.
   catch (Exception $e) {
-    throw new ApiException(t('Sorry, there was a problem creating the account.'));
+    throw new Exception(t('Sorry, there was a problem creating the account.'));
   }
 
   // Set the profile object as a sub-object of user.

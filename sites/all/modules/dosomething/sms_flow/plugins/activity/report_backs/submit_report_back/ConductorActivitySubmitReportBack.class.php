@@ -22,7 +22,7 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
   // ex: 'hunt2013' does not submit to a webform
   public $use_special_submitter;
 
-  public function run($workflow) {
+  public function run() {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
@@ -75,14 +75,18 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
                 $defaultValue = NULL;
                 if ($user->uid > 0) {
                   $profile = profile2_load_by_user($user, 'main');
-                  $defaultValue = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+                  if (!empty($profile->field_user_first_name)) {
+                    $defaultValue = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+                  }
                 }
               }
               elseif ($defaultValue == 'LAST_NAME') {
                 $defaultValue = NULL;
                 if ($user->uid > 0) {
                   $profile = profile2_load_by_user($user, 'main');
-                  $defaultValue = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+                  if (!empty($profile->field_user_last_name)) {
+                    $defaultValue = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+                  }
                 }
               }
 

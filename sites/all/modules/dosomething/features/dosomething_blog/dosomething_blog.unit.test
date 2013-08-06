@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_petitions functionality.
+ */
+
+class DosomethingBlogTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Blog Unit Tests',
+      'description' => 'DoSomething Blog Unit Tests',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_blog_ctools_plugin_directory()
+   */
+  public function testCtoolsPluginDirectory() {
+    $dir = dosomething_petitions_ctools_plugin_directory('ctools', 'content_types');
+    $this->assertIdentical($dir, 'plugins/content_types');
+  }
+
+  /**
+   * @see dosomething_blog_form_views_exposed_form_alter()
+   */
+  public function testFormViewsExposedFormAlter() {
+    $form = array(
+      '#id' => 'views-exposed-form-blog-center-panel-pane-3',
+      '#info' => array(
+        'filter-field_blog_type_tid' => array(
+          'label' => 'Blue Cheese',
+        ),
+        'filter-taxonomy_vocabulary_5_tid' => array(
+          'label' => 'Gouda',
+        ),
+      ),
+      'field_blog_type_tid' => array(
+        '#options' => array(
+          'All' => '',
+        ),
+      ),
+      'taxonomy_vocabulary_5_tid' => array(
+        '#options' => array(
+          'All' => '',
+        ),
+      ),
+    );
+    dosomething_blog_form_views_exposed_form_alter($form, array());
+    $this->assertEqual($form['field_blog_type_tid']['#options']['All'], $form['#info']['filter-field_blog_type_tid']['label']);
+    $this->assertEqual($form['taxonomy_vocabulary_5_tid']['#options']['All'], $form['#info']['filter-taxonomy_vocabulary_5_tid']['label']);
+  }
+
+  /**
+   * @see dosomething_blog_form_alter()
+   */
+  public function testFormAlter() {
+    $form = array(
+      '#bundle' => 'blog',
+      '#id' => 'field-ui-field-overview-form',
+      'fields' => array(
+        'taxonomy_vocabulary_5' => array(
+          'label' => array(
+            '#markup' => '',
+          ),
+        ),
+      ),
+      'taxonomy_vocabulary_5' => array(
+        LANGUAGE_NONE => array(
+          '#title' => '',
+        ),
+      ),
+    );
+
+    dosomething_blog_form_alter($form, array(), 'blog_node_form');
+    $this->assertEqual($form['fields']['taxonomy_vocabulary_5']['label']['#markup'], t('Issues'));
+    $this->assertEqual($form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#title'], t('Issues'));
+  }
+}

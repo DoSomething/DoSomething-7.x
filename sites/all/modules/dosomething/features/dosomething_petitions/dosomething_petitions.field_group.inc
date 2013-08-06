@@ -46,7 +46,7 @@ function dosomething_petitions_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Petition Contact',
-    'weight' => '8',
+    'weight' => '6',
     'children' => array(
       0 => 'field_petition_contact_email',
       1 => 'field_petition_contact_name',

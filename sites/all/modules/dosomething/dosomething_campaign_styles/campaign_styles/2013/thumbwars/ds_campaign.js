@@ -42,14 +42,6 @@
       $('#campaign-opt-in br').remove();
       $('.ctia_top').not('.classy').addClass('classy').append('&nbsp;');
 
-      // Hol' a medz in da paddie, man
-      var contactForm = $('.pane-campaign-sign-up');
-      $('#header #contact-form').not('oneLove').addClass('oneLove').append(contactForm);
-
-      // change over contact form
-      var changeForm = $('.pane-campaign-signed');
-      $('#header #contact-form').not('oneLove').addClass('oneLove').append(changeForm);
-
       // pop, bang, lovely
       $('#faq h4').next('div').css('display','none');
       $('#faq h4.activeFAQ').next('div').css('display','block');
