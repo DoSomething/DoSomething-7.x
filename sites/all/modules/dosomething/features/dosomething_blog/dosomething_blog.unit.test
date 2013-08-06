@@ -82,20 +82,3 @@ class DosomethingBlogTestCase extends DrupalUnitTestCase {
     $this->assertEqual($form['taxonomy_vocabulary_5'][LANGUAGE_NONE]['#title'], t('Issues'));
   }
 }
-
-class DoSomethingBlogDBUnitTestCase extends WebTestSuite {
-  private $user;
-
-  public static function getInfo() {
-    return array(
-      'name' => 'DoSomething Blog DB Unit Tests',
-      'description' => 'DoSomething Blog unit tests with DB access.',
-      'group' => 'DoSomething',
-    );
-  }
-
-  public function setUp() {
-    parent::setUp();
-    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
-  }
-}
