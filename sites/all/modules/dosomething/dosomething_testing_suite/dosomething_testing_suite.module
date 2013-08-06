@@ -16,11 +16,6 @@ class WebTestSuite extends DrupalWebTestCase {
   # This magically fixes an exception thrown occasionally.
   protected $public_files_directory;
 
-  public function __construct() {
-    // Load a Factory instance into $this->factory.
-    $this->factory = Factory::instance();
-  }
-
   /**
    * By default, Drupal install a new instance of itself before every test is run.
    * This ensures that it doesn't do that, and currently runs test on the current
@@ -29,6 +24,7 @@ class WebTestSuite extends DrupalWebTestCase {
    * @todo: Create testing DB instance for all tests.
    */
   public function setUp() {
+    $this->factory = Factory::instance();
     $this->setup = TRUE;
   }
 
