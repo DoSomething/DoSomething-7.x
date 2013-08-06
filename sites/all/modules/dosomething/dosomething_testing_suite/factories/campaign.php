@@ -68,14 +68,14 @@ class Campaign extends Factory {
   }
 
   public function create() {
-    $this->build_factory();
+    return $this->build_factory();
   }
 
   public function build() {
     return $this->default;
   }
 
-  public function build_factory() {
+  private function build_factory() {
     return $this->drupalCreateNode($this->default);
   }
 }

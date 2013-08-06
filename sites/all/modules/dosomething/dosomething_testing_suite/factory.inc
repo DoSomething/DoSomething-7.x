@@ -64,6 +64,7 @@ if (!isset($_SERVER['REMOTE_ADDR'])) {
  * $default array in the Blog class.  The second call returns the same data, with
  * the title replaced with 'My blog post' -- again for this instance ONLY.
  *
+ * @see factories/blog.php for syntax to use to create your own Factory.
  */
 class Factory extends WebTestSuite {
   // Stores instances of factories

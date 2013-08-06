@@ -23,14 +23,14 @@ class User extends Factory {
   }
 
   public function create() {
-    $this->build_factory();
+    return $this->build_factory();
   }
 
   public function build() {
     return $this->default;
   }
 
-  public function build_factory() {
+  private function build_factory() {
     $user = dosomething_api_user_create(array('name' => $this->default['name'], 'password' => $this->default['pass'], 'email' => $this->default['mail'], 'mobile' => $this->default['mobile'], 'roles' => $this->default['roles']));
     return $user;
   }
