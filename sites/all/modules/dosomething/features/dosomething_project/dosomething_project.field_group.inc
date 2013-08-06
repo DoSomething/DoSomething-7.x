@@ -23,10 +23,10 @@ function dosomething_project_field_group_info() {
     'label' => 'Action Items',
     'weight' => '15',
     'children' => array(
-      0 => 'field_action_items_headline',
-      1 => 'field_action_items',
-      2 => 'field_action_kit_file',
-      3 => 'field_action_kit_copy',
+      0 => 'field_action_items',
+      1 => 'field_action_items_headline',
+      2 => 'field_action_kit_copy',
+      3 => 'field_action_kit_file',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -56,8 +56,8 @@ function dosomething_project_field_group_info() {
     'children' => array(
       0 => 'field_banner_image',
       1 => 'field_banner_logo',
-      2 => 'field_thumbnail',
-      3 => 'field_sponsors',
+      2 => 'field_sponsors',
+      3 => 'field_thumbnail',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -85,8 +85,8 @@ function dosomething_project_field_group_info() {
     'label' => 'Call to Action',
     'weight' => '14',
     'children' => array(
-      0 => 'field_cta_copy',
-      1 => 'field_cta_button_label',
+      0 => 'field_cta_button_label',
+      1 => 'field_cta_copy',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -112,10 +112,10 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'FAQ',
-    'weight' => '19',
+    'weight' => '20',
     'children' => array(
-      0 => 'field_faq_headline',
-      1 => 'field_faq',
+      0 => 'field_faq',
+      1 => 'field_faq_headline',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -141,11 +141,11 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Gallery',
-    'weight' => '18',
+    'weight' => '19',
     'children' => array(
-      0 => 'field_gallery_headline',
+      0 => 'field_gallery_button_label',
       1 => 'field_gallery_copy',
-      2 => 'field_gallery_button_label',
+      2 => 'field_gallery_headline',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -173,14 +173,14 @@ function dosomething_project_field_group_info() {
     'label' => 'Gate',
     'weight' => '13',
     'children' => array(
-      0 => 'field_gate_headline',
-      1 => 'field_has_gate',
-      2 => 'field_is_gate_login_signup',
-      3 => 'field_gate_subheadline',
-      4 => 'field_gate_description',
-      5 => 'field_gate_image',
-      6 => 'field_gate_color',
-      7 => 'field_gate_page_title',
+      0 => 'field_gate_color',
+      1 => 'field_gate_description',
+      2 => 'field_gate_headline',
+      3 => 'field_gate_image',
+      4 => 'field_gate_page_title',
+      5 => 'field_gate_subheadline',
+      6 => 'field_has_gate',
+      7 => 'field_is_gate_login_signup',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -208,8 +208,8 @@ function dosomething_project_field_group_info() {
     'label' => 'Project Info',
     'weight' => '17',
     'children' => array(
-      0 => 'field_project_info_headline',
-      1 => 'field_project_info_copy',
+      0 => 'field_project_info_copy',
+      1 => 'field_project_info_headline',
       2 => 'field_project_info_items',
     ),
     'format_type' => 'fieldset',
@@ -238,10 +238,10 @@ function dosomething_project_field_group_info() {
     'label' => 'Prizes',
     'weight' => '16',
     'children' => array(
-      0 => 'field_prizes_headline',
-      1 => 'field_prizes_copy',
-      2 => 'field_prizes_button_label',
-      3 => 'field_prizes',
+      0 => 'field_prizes',
+      1 => 'field_prizes_button_label',
+      2 => 'field_prizes_copy',
+      3 => 'field_prizes_headline',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -259,6 +259,36 @@ function dosomething_project_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_project_profiles|node|project|form';
+  $field_group->group_name = 'group_project_profiles';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'project';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Project Profiles',
+    'weight' => '18',
+    'children' => array(
+      0 => 'field_project_profiles_headline',
+      1 => 'field_project_profiles_copy',
+      2 => 'field_project_profiles',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Project Profiles',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-project-profiles field-group-fieldset ',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_project_profiles|node|project|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_project_sms_example|node|project|form';
   $field_group->group_name = 'group_project_sms_example';
   $field_group->entity_type = 'node';
@@ -269,9 +299,9 @@ function dosomething_project_field_group_info() {
     'label' => 'SMS Example',
     'weight' => '12',
     'children' => array(
-      0 => 'field_sms_example_headline',
-      1 => 'field_sms_example_message',
-      2 => 'field_sms_example_button_label',
+      0 => 'field_sms_example_button_label',
+      1 => 'field_sms_example_headline',
+      2 => 'field_sms_example_message',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -299,11 +329,11 @@ function dosomething_project_field_group_info() {
     'label' => 'SMS Referral',
     'weight' => '11',
     'children' => array(
-      0 => 'field_sms_referral_info_copy',
-      1 => 'field_mobilecommons_opt_in_alpha',
-      2 => 'field_mobilecommons_opt_in_beta',
+      0 => 'field_mobilecommons_opt_in_alpha',
+      1 => 'field_mobilecommons_opt_in_beta',
+      2 => 'field_sms_referral_ctia_copy',
       3 => 'field_sms_referral_has_email',
-      4 => 'field_sms_referral_ctia_copy',
+      4 => 'field_sms_referral_info_copy',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -329,10 +359,10 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Social Media',
-    'weight' => '20',
+    'weight' => '21',
     'children' => array(
-      0 => 'field_twitter_share_msg',
-      1 => 'field_facebook_share_msg',
+      0 => 'field_facebook_share_msg',
+      1 => 'field_twitter_share_msg',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -360,8 +390,8 @@ function dosomething_project_field_group_info() {
     'label' => 'Subscribe',
     'weight' => '10',
     'children' => array(
-      0 => 'field_mandrill_key',
-      1 => 'field_mailchimp_group',
+      0 => 'field_mailchimp_group',
+      1 => 'field_mandrill_key',
       2 => 'field_mobilecommons_opt_in',
     ),
     'format_type' => 'fieldset',
