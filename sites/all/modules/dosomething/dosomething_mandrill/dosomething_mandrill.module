@@ -127,10 +127,6 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  */
 
 function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user=NULL) {
-  
-  if ($bla) {
-    $bla = TRUE;
-  }
 
   $language = language_default();
   $from = NULL;
