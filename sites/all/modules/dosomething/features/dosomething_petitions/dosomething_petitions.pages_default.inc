@@ -193,6 +193,24 @@ function dosomething_petitions_default_page_manager_handlers() {
           ),
           'not' => TRUE,
         ),
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'petition/abercrombie
+petition/kickstarter',
+          ),
+          'context' => 'empty',
+          'not' => TRUE,
+        ),
+        2 => array(
+          'name' => 'cookie_visibility',
+          'settings' => array(
+            'cookie' => 'Drupal_visitor_ds_webform_petition',
+            'value' => '[nid]',
+          ),
+          'not' => TRUE,
+        ),
       ),
     );
     $pane->configuration = array(
@@ -226,7 +244,26 @@ function dosomething_petitions_default_page_manager_handlers() {
           ),
           'not' => FALSE,
         ),
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'petition/abercrombie
+petition/kickstarter',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+        2 => array(
+          'name' => 'cookie_visibility',
+          'settings' => array(
+            'cookie' => 'Drupal_visitor_ds_webform_petition',
+            'value' => '[nid]',
+          ),
+          'not' => FALSE,
+        ),
       ),
+      'logic' => 'or',
     );
     $pane->configuration = array();
     $pane->cache = array();
