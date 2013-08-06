@@ -1,22 +1,50 @@
 <?php
 
+/**
+ * @file
+ * Drupal offers a thorough testing suite with , but has limitations that are not useful
+ * for DoSomething's testing suite.  The WebTestSuite class extends Drupal's DrupalWebTestCase
+ * class, offering a bunch of useful functionality (including Factories) and allowing us to
+ * bypass the "reload the database on every test" rule.
+ *
+ * @author Michael Chittenden <mchittenden@dosomething.org>
+ */
+
 class WebTestSuite extends DrupalWebTestCase {
   protected $factory;
   protected $logged_in;
   # This magically fixes an exception thrown occasionally.
   protected $public_files_directory;
 
+  public function __construct() {
+    // Load a Factory instance into $this->factory.
+    $this->factory = Factory::instance();
+  }
+
+  /**
+   * By default, Drupal install a new instance of itself before every test is run.
+   * This ensures that it doesn't do that, and currently runs test on the current
+   * database instead.  This saves an enormous amount of time (like 7 minutes -> 3 seconds).
+   *
+   * @todo: Create testing DB instance for all tests.
+   */
   public function setUp() {
     $this->setup = TRUE;
   }
 
+  /**
+   * Overwrites default tearDown() method to log out a potentially logged in user.
+   * @todo: Garbage collection
+   */
   public function tearDown() {
-    // @todo: Garbage collection.
     if (isset($this->user) && $this->logged_in) {
-      $GLOBALS['user'] = new stdClass;
+      $GLOBALS['user'] = drupal_anonymous_user();
     }
   }
 
+  /**
+   * Logs in the currently assigned user.
+   */
   public function logIn() {
     if (isset($this->user)) {
       $GLOBALS['user'] = $this->user;
@@ -24,12 +52,12 @@ class WebTestSuite extends DrupalWebTestCase {
     }
   }
 
+  /**
+   * Logs out the currently assigned user.
+   */
   public function logOut() {
     if (isset($this->user) && $this->logged_in) {
-      $user = new stdClass;
-      $user->uid = 0;
-
-      $GLOBALS['user'] = $user;
+      $GLOBALS['user'] = drupal_anonymous_user();
     }
   }
 
@@ -51,15 +79,10 @@ class WebTestSuite extends DrupalWebTestCase {
     }
   }
 
-  public function factory() {
-    if (!$this->factory instanceof Factory) {
-      $this->factory = new Factory;
-    }
-
-    return $this->factory;
-  }
-
-  // Greatly speeds up test time.
+  /**
+   * Runs all tests at once, as opposed to one-at-a-time.  All tests under WebTestSuite
+   * must start with 'subTest' (e.g. subTestEmailWorks).
+   */
   public function testAll() {
     $methods = get_class_methods($this);
     foreach ($methods as $test) {
@@ -71,4 +94,5 @@ class WebTestSuite extends DrupalWebTestCase {
   }
 }
 
+// Load the Factory class.
 require_once 'factory.inc';
