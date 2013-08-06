@@ -21,6 +21,7 @@ features[ctools][] = page_manager:pages_default:1
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:1
 features[field][] = node-petition-field_mailchimp_group_id
+features[field][] = node-petition-field_mandrill_key
 features[field][] = node-petition-field_mc_optin
 features[field][] = node-petition-field_petition_about
 features[field][] = node-petition-field_petition_contact_email
