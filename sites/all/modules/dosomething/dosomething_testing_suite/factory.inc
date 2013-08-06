@@ -186,9 +186,8 @@ class Factory extends WebTestSuite {
    *   default.
    */
   protected function construct($overrides) {
-    // Make sure that we're looking at the entire array, overrides and
-    // everything else.
-    $overrides = ($this->default + $overrides);
+    // Make sure that we're looking at the entire array, overrides and all.
+    $overrides = array_replace_recursive($this->default, $overrides);
 
     if (!empty($overrides)) {
       // Walk through all "field_*" fields and set them up in the

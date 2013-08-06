@@ -8,7 +8,8 @@
 class Campaign extends Factory {
   protected $default = array(
     'type' => 'campaign',
-    'title' => 'Blog title',
+    'revision_id' => 0,
+    'title' => 'Campaign title',
     'body' => 'dogs',
     'field_campaign_teaser' => 'Test campaign teaser',
     'group_group' => array(
