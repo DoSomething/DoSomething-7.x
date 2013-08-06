@@ -28,7 +28,6 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'get socks', 'href' => '', 'fragment' => 'header', 'external' => TRUE),
     array('title' => 'scholarship', 'href' => '', 'fragment' => 'scholarship', 'external' => TRUE),
     array('title' => 'send us your pics', 'href' => '', 'fragment' => 'impact', 'external' => TRUE),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
