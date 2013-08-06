@@ -70,8 +70,7 @@
   .header-date
     h2
       padding: 1.5em 0 0 0
-      color: $off-black
-      font-weight: 600
+      color: $font-light
       margin-bottom: -10px
 
   .row-bottom
@@ -95,17 +94,17 @@
     line-height: 3em
     letter-spacing: 0.05em
     color: $font-light
-    //margin-left: 1em
-    
-    @include respond-to(phones)
-      margin-left: 2em
 
   .btn
     margin: 0 0 0 1em
     clear: none
 
   .section-container
-    width: 43em
+    width: 42em
+    margin: 0 auto
+
+    @include respond-to(phones)
+      width: 25em
 
 // HOW IT WORKS
 // ------------
@@ -117,6 +116,9 @@
     clear: both
     overflow: hidden
     margin: 0 0 1em 0
+
+    .section-unit-single
+      padding: 0 3% 0
 
 // ACTION-KIT
 // ----------
@@ -154,19 +156,11 @@
   .btn
     margin: 0 auto 1em
 
-// LOCATE SHELTER
-// ----------------
-.locate-shelter
-  width: 90%
-  max-width: $section-content-width
-  margin: 0 auto
-
-  .btn
-    height: 2.3em
-    margin: 1em auto 
-
-    @include respond-to(phones)
-      width: 100%
+  #italic
+    span
+      display: block
+      text-align: center
+      font-style: italic
 
 
 // CONTENT
@@ -221,7 +215,7 @@
   width: 90%
   max-width: $section-content-width
   margin: 0 auto
-  height: 42em
+  height: 26em
 
   h3, p
     text-align: left
