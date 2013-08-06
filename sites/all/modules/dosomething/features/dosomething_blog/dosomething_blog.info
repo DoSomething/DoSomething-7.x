@@ -60,3 +60,4 @@ features[variable][] = node_preview_blog
 features[variable][] = node_submitted_blog
 features[views_view][] = blog_center
 features[views_view][] = blogs
+files[] = dosomething_blog.unit.test

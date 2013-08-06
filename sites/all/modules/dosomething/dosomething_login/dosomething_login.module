@@ -935,6 +935,7 @@ function dosomething_login_register_block($form, &$form_state) {
     '#options' => array(
       'attributes' => array('class' => array('or-sign-in')),
       'html' => FALSE,
+      'query' => array('destination' => current_path())
     ),
   );
   return $form;

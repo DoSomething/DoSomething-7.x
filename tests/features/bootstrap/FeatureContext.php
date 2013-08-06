@@ -15,6 +15,9 @@ use Behat\MinkExtension\Context\MinkContext;
 //   require_once 'PHPUnit/Framework/Assert/Functions.php';
 //
 
+require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
+chdir(dirname(__FILE__) . '/../../');
+
 /**
  * Features context.
  */
@@ -28,8 +31,47 @@ class FeatureContext extends MinkContext
      */
     public function __construct(array $parameters)
     {
-        // Initialize your context here
+        $this->factory = Factory::instance();
     }
+
+    /**
+     * @Given /^there is a (?<factory>[A-Za-z0-9]+) with:$/
+     * @And /^there is a (?<factory>[A-Za-za-z0-9]+) with:$/
+     */
+    public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data) {
+      $this->factory->create($factory, $data->getRowsHash());
+    }
+
+     /**
+      * @Given /^there is a (?<factory>[A-Za-z0-9]+)$/
+      * @And /^there is a (?<factory>[A-Za-z0-9]+)$/
+      */
+     public function thereIsAFactory($factory)
+     {
+       $this->factory->create($factory);
+     }
+
+     /**
+      * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
+      * @And /^I am logged in as an? (?<role>regular user|administrator)$/
+      */
+     public function iAmLoggedInAsRole($role) {
+       if ($role == 'regular user') {
+         $role = $this->factory->create('User');
+       }
+       else if ($role == 'administrator') {
+         $role = $this->factory->create('User', array('roles' => array(3 => 'administrator')));
+       }
+
+       // Return the required steps to log in our logged in user.
+       return array(
+         new Behat\Behat\Context\Step\Given('I am on "/user/login"'),
+         new Behat\Behat\Context\Step\When('I fill in "edit-name" with "' . $this->factory->getDefault('User', 'name') . '"'),
+         new Behat\Behat\Context\Step\When('I fill in "edit-pass" with "' . $this->factory->getDefault('User', 'pass') . '"'),
+         new Behat\Behat\Context\Step\When('I press "Log in"'),
+         new Behat\Behat\Context\Step\Then('I should see "CAMPAIGNS"'),
+       );
+     }
 
     /**
      * @Given /^I fill in (?<field>.*?) with a random email$/

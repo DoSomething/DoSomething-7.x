@@ -1,0 +1,204 @@
+<?php
+
+/**
+ * @file
+ * Functional testing for the sms_flow module.
+ */
+
+class DoSomethingSmsFlowReportBackTestCase extends WebTestSuite {
+
+  // Key/value array of "keywords" from report_backs.keywords.inc
+  private $keywords;
+
+  // ConductorWorkflow objects from report_backs.workflows.inc
+  private $workflows;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething sms_flow Report Back Tests',
+      'description' => 'Tests the report back workflows in the sms_flow module.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    // Enable the module
+    parent::setUp('sms_flow');
+
+    // Get list of all report back keywords
+    $keywords = array();
+    include dirname(__FILE__) . '/report_backs.keywords.inc';
+    $this->keywords = $keywords;
+
+    // Get list of all report back workflows
+    $workflows = array();
+    include dirname(__FILE__) . '/report_backs.workflows.inc';
+    $this->workflows = $workflows;
+  }
+
+  /**
+   * Verify that each "keyword" value has a matching workflow
+   */
+  protected function subTestKeywordMatch() {
+    $workflowNames = array();
+    foreach ($this->workflows as $w) {
+      $workflowNames[] = $w->name;
+    }
+
+    foreach ($this->keywords as $key => $val) {
+      $this->assertTrue(in_array($val, $workflowNames), t('Keyword %key has matching workflow %workflow', array('%key' => $key, '%workflow' => $val)));
+    }
+  }
+
+  /**
+   * Verify all workflow names have a matching "keyword"
+   */
+  protected function subTestkWorkflowMatch() {
+    $keywordValues = array_values($this->keywords);
+    
+    foreach ($this->workflows as $w) {
+      $this->assertTrue(in_array($w->name, $keywordValues), t('Workflow %workflow has matching keyword', array('%workflow' => $w->name)));
+    }
+  }
+
+  /**
+   * Verify no workflow activity has missing links
+   */
+  protected function subTestWorkflowActivityLinks() {
+    foreach ($this->workflows as $w) {
+      $activities = $w->activities;
+      $numActivities = count($activities);
+      
+      for($i = 0; $i < $numActivities; $i++) {
+        $a = $activities[$i];
+
+        // First activity should be 'start'
+        if ($i == 0) {
+          $this->assertTrue(strcmp($a->name, 'start') == 0, t('Workflow %name begins with the \'start\' activity.', array('%name' => $w->name)));
+        }
+
+        // Verify input -> output links
+        if (count($a->inputs) > 0) {
+          foreach ($a->inputs as $input) {
+            // Find the activity the input is referring to, and verify that that
+            // activity ($checkActivity) has an output referring to the current activity ($a).
+            for ($j = 0; $j < $numActivities; $j++) {
+              $checkActivity = $activities[$j];
+
+              $isDifferentActivity = $j != $i;
+              $checkedNameMatchesInput = strcmp($checkActivity->name, $input) == 0;
+              $checkedActivityHasMatchingOutput = in_array($a->name, $checkActivity->outputs);
+
+              if ($isDifferentActivity && $checkedNameMatchesInput && $checkedActivityHasMatchingOutput) {
+                $this->assert(TRUE, t('Link verified for %name input: %input', array('%name' => $a->name, '%input' => $input)));
+                break;
+              }
+              // Assert failure if all activities were checked and no matching output was found
+              else if ($j == $numActivities - 1) {
+                $this->assert(FALSE, t('Cannot find matching activity with output to match test activity: %name input: %input', array('%name' => $a->name, '%input' => $input)));
+              }
+            }
+          }
+        }
+
+        // Verify output -> input links
+        if (count($a->outputs) > 0) {
+          foreach ($a->outputs as $output) {
+            // Find the activity the output is referring to, and verify that that
+            // activity ($checkActivity) has an input referring at the current activity ($a).
+            for ($j = 0; $j < $numActivities; $j++) {
+              $checkActivity = $activities[$j];
+
+              $isDifferentActivity = $j != $i;
+              $checkedNameMatchesOutput = strcmp($checkActivity->name, $output) == 0;
+              $checkedActivityHasMatchingInput = in_array($a->name, $checkActivity->inputs);
+
+              if ($isDifferentActivity && $checkedNameMatchesOutput && $checkedActivityHasMatchingInput) {
+                $this->assert(TRUE, t('Link found for %activity output: %output', array('%activity' => $a->name, '%output' => $output)));
+                break;
+              }
+              // Assert failure if all activities were checked and no matching input was found
+              else if ($j == $numActivities - 1) {
+                $this->assert(FALSE, t('Cannot find matching activity with input to match test activity: %activity output: %output', array('%activity' => $a->name, '%output' => $output)));
+              }
+            }
+          }
+        }
+        
+        // Last activity should be 'end'
+        if ($i == $numActivities - 1) {
+          $this->assertTrue(strcmp($a->name, 'end') == 0, "Workflow $w->name ends with the 'end' activity.");
+        }
+      }
+    }
+  }
+
+  /**
+   * Tests critical path of workflows with basic dummy data
+   */
+  protected function subTestWorkflowCriticalPath() {
+    // Create dummy $_REQUEST data for all SMS requests
+    $phone = '15555555555';
+    $_REQUEST['args'] = 'test args';
+    $_REQUEST['mms_image_url'] = 'http://www.google-analytics.com/__utm.gif';
+    $_REQUEST['opt_in_path_id'] = 0;
+    $_REQUEST['phone'] = $phone;
+
+    // Simulate a run through of each workflow
+    foreach ($this->keywords as $testKeyword => $workflowName) {
+      $isNewWorkFlow = TRUE;
+      $isWorkflowInProgress = FALSE;
+      $errorFound = FALSE;
+
+      while ($isWorkflowInProgress || $isNewWorkFlow) {
+        $isNewWorkFlow = FALSE;
+        $isWorkflowInProgress = TRUE;
+
+        // Enable output buffering to capture the `print` output from sms_flow_incoming_callback
+        ob_start();
+
+        // Trigger callback that handles SMS requests
+        sms_flow_incoming_callback($testKeyword);
+
+        // Disable output buffering. Copy reply to user to $buffer.
+        $buffer = ob_get_contents();
+        ob_end_clean();
+
+        $storage = conductor_get_storage_handler(variable_get('conductor_default_storage_handler', 'database'));
+        $pointer = $storage->loadPointer('sms_prompt:' . $phone);
+        $testWorkflow = conductor_get_workflow($workflowName);
+        $currentActivity = $testWorkflow->getActivity($pointer['activityName']);
+
+        if (self::hasErrorOutput($buffer)) {
+          $errorFound = TRUE;
+          $this->assert(FALSE, t('"Aw snap" error message sent to user in workflow %workflow after activity %activity', array('%workflow' => $workflowName, '%activity' => $pointer['activityName'])));
+        }
+
+        if (!$currentActivity) {
+          $isWorkflowInProgress = FALSE;
+        }
+        else {
+          $activityType = $currentActivity->plugin_info['name'];
+        }
+      }
+
+      if (!$errorFound) {
+        $this->assert(TRUE, t('Workflow %workflow critial path succeeded', array('%workflow' => $workflowName)));
+      }
+    }
+  }
+
+  /**
+   * Checks if output sent to user has the "Aw snap" message. There should be no
+   * scenario where the user receives that message.
+   */
+  private function hasErrorOutput($output) {
+    if (stripos($output, 'Aw snap! Something went wrong! We\'ll get right on it!') !== FALSE) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
+
+}

@@ -13,7 +13,7 @@ class ConductorActivitySMSPromptNormalize extends ConductorActivitySMSPrompt {
   // );
   public $normalizedGroups = array();
 
-  public function run($workflow) {
+  public function run() {
     parent::run();
 
     $state = $this->getState();
