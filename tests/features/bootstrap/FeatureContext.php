@@ -55,7 +55,6 @@ class FeatureContext extends MinkContext
 
     /**
      * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
-     * @When /^I am logged in as an? (?<role>regular user|administrator)$/
      * @And /^I am logged in as an? (?<role>regular user|administrator)$/
      */
     public function iAmLoggedInAsRole($role)
@@ -78,10 +77,9 @@ class FeatureContext extends MinkContext
 
     /**
      * @Given /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
-     * @When /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
      * @And /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
      */
-    public function iAmLoggedInAs($user, $pass)
+    public function iAmLoggedInAsPersonWithPass($user, $pass)
     {
       // Return the required steps to log in as an existing user.
       return array(
@@ -94,7 +92,6 @@ class FeatureContext extends MinkContext
 
     /**
      * @Given /^I log out$/
-     * @When /^I log out$/
      * @And /^I log out$/
      */
     public function iLogOut()
@@ -107,7 +104,6 @@ class FeatureContext extends MinkContext
 
     /**
      * @Given /^I fill in (?<field>.*?) with a random email$/
-     * @When /^I fill in (?<field>.*?) with a random email$/
      * @And /^I fill in (?<field>.*?) with a random email$/
      */
     public function iFillInARandomEmail($field)
