@@ -70,6 +70,7 @@ class FeatureContext extends MinkContext
      */
     public function iAmLoggedInAsRole($role)
     {
+      $this->bootstrap();
       if ($role == 'regular user') {
         $role = $this->factory->create('User');
       }
