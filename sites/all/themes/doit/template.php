@@ -255,12 +255,24 @@ function doit_preprocess_page(&$variables) {
  * Implements hook_preprocess_node().
  */
 function doit_preprocess_node(&$vars) {
+  // Campaign node type:
   if ($vars['node']->type == 'campaign') {
     $org_code = _doit_load_campaign_org_code($vars['node']);
     // If the camapign has org code set
     if($org_code) {
       // Loads campaign specific tpl
       array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
+    }
+  } 
+  // Project node type:
+  elseif ($vars['node']->type == 'project') {
+    $params['node'] = $vars['node'];
+    // Section - action items:
+    $vars['is_action_items'] = FALSE;
+    if (isset($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value']) && 
+      !empty($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value'])) {
+      $vars['is_action_items'] = TRUE;
+      $vars['content']['action_items']['#markup'] = theme('project_section_action_items', $params);
     }
   }
 }
@@ -852,4 +864,33 @@ function doit_css_alter(&$css) {
 
     $css = $styles;
   }
+}
+
+function doit_preprocess_project_section_action_items(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $values = array();
+  $items = field_collection_item_load_multiple(doit_get_field_collection_entity_ids($node, 'field_action_items'));
+  $i = 0;
+  foreach($items as $item) {
+    $image = field_get_items('field_collection_item', $item, 'field_action_item_image');
+    $values[$i]['image']['uri'] = file_create_url($image[0]['uri']);
+    $values[$i]['image']['alt'] = $image[0]['alt'];
+    $title = field_get_items('field_collection_item', $item, 'field_action_item_title');
+    $values[$i]['title'] = $title[0]['safe_value'];
+    $copy = field_get_items('field_collection_item', $item, 'field_action_item_copy');
+    $values[$i]['copy'] = $copy[0]['safe_value'];
+    $i++;
+  }
+  $vars['action_items'] = $values;
+}
+
+function doit_get_field_collection_entity_ids($node, $field_collection_name) {
+  $field_collection_fields = field_get_items('node', $node, $field_collection_name);
+  // Extract the field collection item ids:
+  $ids = array();
+  foreach ($field_collection_fields as $fc_field) {
+    $ids[] = $fc_field['value'];
+  }
+  return $ids;
 }
