@@ -18,6 +18,16 @@
 .call-to-action
   display: block
 
+  a
+    margin: 0 auto !important
+
+  @include respond-to(tablets_and_phones)
+    p
+      float: none
+      line-height: 1.5em !important
+      margin-bottom: 0.5em
+
+
 .headline.alt
   background: none !important
   border: none !important
@@ -116,10 +126,13 @@
 
   .btn
     margin: 0 0 0 1em
-    clear: none
 
   .section-container
     width: 43em
+
+    @include respond-to(tablets_and_phones)
+      width: auto
+
 
 // HOW IT WORKS
 // ------------
@@ -259,6 +272,10 @@
     text-transform: capitalize
     text-align: left
 
+    @include respond-to(tablets_and_phones)
+      padding: 0 0 0.25em 0
+      margin: 0 auto 0
+
 // SMS
 // ---
 .sms
@@ -271,6 +288,10 @@
   form
     width: 80%
     margin: 2em auto 0
+
+    @include respond-to(phones)
+      width: 95% !important
+      margin: 0 auto 0 !important
 
   .btn
     width: 9.4em
@@ -386,3 +407,10 @@
   img
     width: 50px
     +block-center
+
+
+
+// slideshow hacks
+.view-campaign-gallery #slideshow
+  @include respond-to(phones)
+    height: 200px !important
