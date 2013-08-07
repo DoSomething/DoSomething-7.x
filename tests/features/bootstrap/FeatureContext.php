@@ -7,6 +7,7 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
+use Behat\Behat\Context\Step;
 
 //
 // Require 3rd-party libraries here:
@@ -42,36 +43,51 @@ class FeatureContext extends MinkContext
       $this->factory->create($factory, $data->getRowsHash());
     }
 
-     /**
-      * @Given /^there is a (?<factory>[A-Za-z0-9]+)$/
-      * @And /^there is a (?<factory>[A-Za-z0-9]+)$/
-      */
-     public function thereIsAFactory($factory)
-     {
-       $this->factory->create($factory);
-     }
+    /**
+     * @Given /^there is a (?<factory>[A-Za-z0-9]+)$/
+     * @And /^there is a (?<factory>[A-Za-z0-9]+)$/
+     */
+    public function thereIsAFactory($factory)
+    {
+      $this->factory->create($factory);
+    }
 
-     /**
-      * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
-      * @And /^I am logged in as an? (?<role>regular user|administrator)$/
-      */
-     public function iAmLoggedInAsRole($role) {
-       if ($role == 'regular user') {
-         $role = $this->factory->create('User');
-       }
-       else if ($role == 'administrator') {
-         $role = $this->factory->create('User', array('roles' => array(3 => 'administrator')));
-       }
+    /**
+     * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
+     * @And /^I am logged in as an? (?<role>regular user|administrator)$/
+     */
+    public function iAmLoggedInAsRole($role) {
+      if ($role == 'regular user') {
+        $role = $this->factory->create('User');
+      }
+      else if ($role == 'administrator') {
+        $role = $this->factory->create('User', array('roles' => array(3 => 'administrator')));
+      }
 
-       // Return the required steps to log in our logged in user.
-       return array(
-         new Behat\Behat\Context\Step\Given('I am on "/user/login"'),
-         new Behat\Behat\Context\Step\When('I fill in "edit-name" with "' . $this->factory->getDefault('User', 'name') . '"'),
-         new Behat\Behat\Context\Step\When('I fill in "edit-pass" with "' . $this->factory->getDefault('User', 'pass') . '"'),
-         new Behat\Behat\Context\Step\When('I press "Log in"'),
-         new Behat\Behat\Context\Step\Then('I should see "CAMPAIGNS"'),
-       );
-     }
+      // Return the required steps to log in our logged in user.
+      return array(
+        new Step\Given('I am on "/user/login"'),
+        new Step\When('I fill in "edit-name" with "' . $this->factory->getDefault('User', 'name') . '"'),
+        new Step\When('I fill in "edit-pass" with "' . $this->factory->getDefault('User', 'pass') . '"'),
+        new Step\When('I press "Log in"'),
+        new Step\Then('I should see "CAMPAIGNS"'),
+      );
+    }
+
+    /**
+     * @Given /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
+     * @And /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
+     */
+    public function iAmLoggedInAs($user, $pass) {
+      // Return the required steps to log in as an existing user.
+      return array(
+        new Step\Given('I am on "/user/login"'),
+        new Step\When('I fill in "edit-name" with "' . $user . '"'),
+        new Step\When('I fill in "edit-pass" with "' . $pass . '"'),
+        new Step\When('I press "Log in"'),
+        new Step\Then('I should see "CAMPAIGNS"'),
+      );
+    }
 
     /**
      * @Given /^I fill in (?<field>.*?) with a random email$/
