@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_testing_suite functionality.
+ */
+
+function censor_words($string) {
+  $bad_words = array('fuck', 'shit', 'asshole');
+  foreach ($bad_words AS $word) {
+    if (strpos($string, $word) !== FALSE) {
+      $string = str_replace($word, '**', $string);
+    }
+  }
+
+  return $string;
+}
+
+class RoundtableUnitTestCase extends DrupalUnitTestCase {
+  private $instance;
+  private $string;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Testing Suite Unit Tests',
+      'description' => 'DoSomething Testing Suite Unit Tests',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->string = 'fuck this shit, guys';
+  }
+
+  public function testCensorWords() {
+     $string = $this->string;
+     $censored = censor_words($string);
+     $this->assertEqual($censored, '** this **, guys');
+
+     $string = 'this meeting is great';
+     $censored = censor_words($string);
+     $this->assertEqual($censored, 'this meeting is great');
+  }
+}

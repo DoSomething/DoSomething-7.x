@@ -3,3 +3,4 @@ description = Builds helper classes for the DoSomething.org testing suite.
 core = 7.x
 package = DoSomething
 files[] = dosomething_testing_suite.unit.test
+files[] = roundtable.unit.test
