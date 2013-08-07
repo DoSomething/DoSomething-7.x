@@ -279,14 +279,14 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
-  // Exported field: 'field_collection_item-field_faq-field_faq_answer'.
-  $fields['field_collection_item-field_faq-field_faq_answer'] = array(
+  // Exported field: 'field_collection_item-field_faq-field_faq_copy'.
+  $fields['field_collection_item-field_faq-field_faq_copy'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_faq_answer',
+      'field_name' => 'field_faq_copy',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -326,8 +326,8 @@ function dosomething_project_field_default_fields() {
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_faq_answer',
-      'label' => 'Answer',
+      'field_name' => 'field_faq_copy',
+      'label' => 'FAQ Copy',
       'required' => 0,
       'settings' => array(
         'text_processing' => '1',
@@ -340,19 +340,19 @@ function dosomething_project_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '34',
+        'weight' => '32',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_faq-field_faq_question'.
-  $fields['field_collection_item-field_faq-field_faq_question'] = array(
+  // Exported field: 'field_collection_item-field_faq-field_faq_title'.
+  $fields['field_collection_item-field_faq-field_faq_title'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_faq_question',
+      'field_name' => 'field_faq_title',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -393,8 +393,8 @@ function dosomething_project_field_default_fields() {
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_faq_question',
-      'label' => 'Question',
+      'field_name' => 'field_faq_title',
+      'label' => 'FAQ Title',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -407,7 +407,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '32',
+        'weight' => '31',
       ),
     ),
   );
@@ -5455,7 +5455,6 @@ function dosomething_project_field_default_fields() {
   t('Action Items Headline');
   t('Action Kit Copy');
   t('Action Kit File');
-  t('Answer');
   t('Banner Image');
   t('Banner Logo');
   t('CTA Button Label');
@@ -5463,7 +5462,9 @@ function dosomething_project_field_default_fields() {
   t('Contact Email');
   t('Copy Accent Color');
   t('FAQ');
+  t('FAQ Copy');
   t('FAQ Headline');
+  t('FAQ Title');
   t('Facebook Share Msg');
   t('Gallery Button Label');
   t('Gallery Copy');
@@ -5501,7 +5502,6 @@ function dosomething_project_field_default_fields() {
   t('Project Profiles');
   t('Project Profiles Copy');
   t('Project Profiles Headline');
-  t('Question');
   t('Rules Regs File');
   t('SMS Example Button Label');
   t('SMS Example Headline');
