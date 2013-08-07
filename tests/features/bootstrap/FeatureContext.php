@@ -39,7 +39,8 @@ class FeatureContext extends MinkContext
      * @Given /^there is a (?<factory>[A-Za-z0-9]+) with:$/
      * @And /^there is a (?<factory>[A-Za-za-z0-9]+) with:$/
      */
-    public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data) {
+    public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data)
+    {
       $this->factory->create($factory, $data->getRowsHash());
     }
 
@@ -56,7 +57,8 @@ class FeatureContext extends MinkContext
      * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
      * @And /^I am logged in as an? (?<role>regular user|administrator)$/
      */
-    public function iAmLoggedInAsRole($role) {
+    public function iAmLoggedInAsRole($role)
+    {
       if ($role == 'regular user') {
         $role = $this->factory->create('User');
       }
@@ -78,7 +80,8 @@ class FeatureContext extends MinkContext
      * @Given /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
      * @And /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
      */
-    public function iAmLoggedInAs($user, $pass) {
+    public function iAmLoggedInAs($user, $pass)
+    {
       // Return the required steps to log in as an existing user.
       return array(
         new Step\Given('I am on "/user/login"'),
@@ -90,10 +93,23 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Given /^I log out$/
+     * @And /^I log out$/
+     */
+    public function iLogOut()
+    {
+      return array(
+        new Step\When('I follow "Log out"'),
+        new Step\Then('I should see "Log in"'),
+      );
+    }
+
+    /**
      * @Given /^I fill in (?<field>.*?) with a random email$/
      * @And /^I fill in (?<field>.*?) with a random email$/
      */
-    public function iFillInARandomEmail($field) {
+    public function iFillInARandomEmail($field)
+    {
       $field = $this->fixStepArgument($field);
       $value = $this->fixStepArgument('testing+' . time() . '@dosometing.org');
       $this->getSession()->getPage()->fillField($field, $value);
@@ -106,7 +122,8 @@ class FeatureContext extends MinkContext
      *
      * @AfterStep @javascript
      */
-    public function takeScreenshotAfterFailedStep(Behat\Behat\Event\StepEvent $event) {
+    public function takeScreenshotAfterFailedStep(Behat\Behat\Event\StepEvent $event)
+    {
       if ($event->getResult() === 4) {
         $driver = $this->getSession()->getDriver();
         if ($driver instanceof Behat\Mink\Driver\Selenium2Driver) {
@@ -129,15 +146,4 @@ class FeatureContext extends MinkContext
         }
       }
     }
-
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
 }
