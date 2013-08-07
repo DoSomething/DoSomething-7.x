@@ -73,7 +73,6 @@ class FeatureContext extends MinkContext
         new Step\When('I fill in "edit-name" with "' . $this->factory->getDefault('User', 'name') . '"'),
         new Step\When('I fill in "edit-pass" with "' . $this->factory->getDefault('User', 'pass') . '"'),
         new Step\When('I press "Log in"'),
-        new Step\Then('I should see "CAMPAIGNS"'),
       );
     }
 
@@ -90,7 +89,6 @@ class FeatureContext extends MinkContext
         new Step\When('I fill in "edit-name" with "' . $user . '"'),
         new Step\When('I fill in "edit-pass" with "' . $pass . '"'),
         new Step\When('I press "Log in"'),
-        new Step\Then('I should see "CAMPAIGNS"'),
       );
     }
 
