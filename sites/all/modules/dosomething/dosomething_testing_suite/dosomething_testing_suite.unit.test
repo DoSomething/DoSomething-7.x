@@ -160,12 +160,19 @@ class DoSomethingTestingSuiteDBUnitTestCase extends WebTestSuite {
    * @see Factory::getAllDefaults()
    */
   public function subTestGetAllDefaults() {
+    // This should just be the default stuff.
     $defaults = $this->factory->getAllDefaults('Blog');
     $this->assertIdentical($defaults['title'], $this->factory->getDefault('Blog', 'title'));
+
+    // Now let's build a blog with overwritten data
     $this->factory->build('Blog', array('title' => 'Bananas'));
+
+    // This should honor the overwritten data
     $with = $this->factory->getAllDefaults('Blog', true);
-    $without = $this->factory->getAllDefaults('Blog');
     $this->assertIdentical($with['title'], 'Bananas');
+
+    // This should still return the default data.
+    $without = $this->factory->getAllDefaults('Blog');
     $this->assertIdentical($without['title'], $this->factory->getDefault('Blog', 'title'));
   }
 
@@ -173,7 +180,16 @@ class DoSomethingTestingSuiteDBUnitTestCase extends WebTestSuite {
    * @see Factory::construct()
    */
   public function subTestConstruct() {
-    $this->factory->build('Blog', array('title' => 'New post', 'body' => 'Filming happens in NYC'));
+    $this->factory->build('Blog', array('title' => 'New post', 'field_subtitle' => 'This is my subtitle', 'body' => 'Filming happens in NYC'));
+    $built = $this->factory->getAllDefaults('Blog', true);
 
+    // Title is a default column
+    $this->assertIdentical($built['title'], 'New post');
+
+    // Body is an array
+    $this->assertIdentical($built['body'][LANGUAGE_NONE][0]['value'], 'Filming happens in NYC');
+
+    // field_* columns are also arrays.
+    $this->assertIdentical($built['field_subtitle'][LANGUAGE_NONE][0]['value'], 'This is my subtitle');
   }
 }
