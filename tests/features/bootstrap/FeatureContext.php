@@ -99,8 +99,8 @@ class FeatureContext extends MinkContext
     public function iLogOut()
     {
       return array(
+        // Click "Log out"
         new Step\When('I follow "Log out"'),
-        new Step\Then('I should see "Log in"'),
       );
     }
 
