@@ -255,6 +255,7 @@ function doit_preprocess_page(&$variables) {
  * Implements hook_preprocess_node().
  */
 function doit_preprocess_node(&$vars) {
+  // Campaign node type:
   if ($vars['node']->type == 'campaign') {
     $org_code = _doit_load_campaign_org_code($vars['node']);
     // If the camapign has org code set
@@ -262,6 +263,44 @@ function doit_preprocess_node(&$vars) {
       // Loads campaign specific tpl
       array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
     }
+  } 
+  // Project node type:
+  elseif ($vars['node']->type == 'project') {
+    $params['node'] = $vars['node'];
+
+    // Section - Action items:
+    $vars['is_action_items'] = FALSE;
+    if (isset($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value']) && 
+      !empty($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value'])) {
+      $vars['is_action_items'] = TRUE;
+      $vars['content']['action_items']['#markup'] = theme('project_section_action_items', $params);
+    }
+    // Section - CTA:
+    $vars['content']['cta']['#markup'] = theme('project_section_cta', $params);
+    // Section - FAQ:
+    $vars['content']['faq']['#markup'] = theme('project_section_faq', $params);
+    // Section - Gallery:
+    $vars['content']['gallery']['#markup'] = theme('project_section_gallery', $params);
+    // Section - Header:
+    $vars['content']['header']['#markup'] = theme('project_section_header', $params);
+    // Section - Project Info:
+    $vars['content']['project_info']['#markup'] = theme('project_section_project_info', $params);
+    // Section - Project Profiles:
+    $vars['content']['project_profiles']['#markup'] = theme('project_section_project_profiles', $params);
+    // Section - Prizes:
+    $vars['is_prizes'] = FALSE;
+    if (isset($vars['node']->field_prizes_headline[LANGUAGE_NONE][0]['value']) && 
+      !empty($vars['node']->field_prizes_headline[LANGUAGE_NONE][0]['value'])) {
+      $vars['is_prizes'] = TRUE;
+      $vars['content']['prizes']['#markup'] = theme('project_section_prizes', $params);
+    }
+    // Section - SMS referral:
+    //@todo: is_sms_referral check
+    $vars['content']['sms_example']['#markup'] = theme('project_section_sms_example', $params);
+    // Section - SMS referral:
+    //@todo: is_sms_referral check
+    $vars['content']['sms_referral']['#markup'] = theme('project_section_sms_referral', $params);
+
   }
 }
 
@@ -852,4 +891,64 @@ function doit_css_alter(&$css) {
 
     $css = $styles;
   }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_action_items(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $vars['action_items'] = dosomething_project_get_field_collection_values($node, 'field_action_items', 'action_item');
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_header(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  //@todo: output image
+  if (isset($node->field_banner_logo[LANGUAGE][0]['fid'])) {
+    $vars['logo'] = file_create_url($node->field_banner_logo[LANGUAGE][0]['uri']);
+  }
+  else {
+    $vars['logo'] = $node->title;
+  }
+  //@todo: formatting? dont show year in 1st date.
+  $start_date = format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value']));
+  $end_date = '';
+  if (isset($node->field_project_dates[LANGUAGE_NONE][0]['value2'])) {
+    $end_date = ' - ' . format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value2']));
+  }
+  $vars['project_date'] = $start_date . $end_date;
+  //@todo: share URLs
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_project_info(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $vars['project_info_items'] = dosomething_project_get_field_collection_values($node, 'field_project_info_items', 'project_info_item');
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_project_profiles(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $vars['profiles'] = dosomething_project_get_field_collection_values($node, 'field_project_profiles', 'project_profile');
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_prizes(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $vars['prizes'] = dosomething_project_get_field_collection_values($node, 'field_prizes', 'prize');
+  $vars['rules_url'] = file_create_url($node->field_rules_regs_file[LANGUAGE][0]['uri']);
 }
