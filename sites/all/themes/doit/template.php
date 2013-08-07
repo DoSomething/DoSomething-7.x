@@ -869,20 +869,7 @@ function doit_css_alter(&$css) {
 function doit_preprocess_project_section_action_items(&$vars) {
   // Loop through the action items:
   $node = $vars['node'];
-  $values = array();
-  $items = field_collection_item_load_multiple(doit_get_field_collection_entity_ids($node, 'field_action_items'));
-  $i = 0;
-  foreach($items as $item) {
-    $image = field_get_items('field_collection_item', $item, 'field_action_item_image');
-    $values[$i]['image']['uri'] = file_create_url($image[0]['uri']);
-    $values[$i]['image']['alt'] = $image[0]['alt'];
-    $title = field_get_items('field_collection_item', $item, 'field_action_item_title');
-    $values[$i]['title'] = $title[0]['safe_value'];
-    $copy = field_get_items('field_collection_item', $item, 'field_action_item_copy');
-    $values[$i]['copy'] = $copy[0]['safe_value'];
-    $i++;
-  }
-  $vars['action_items'] = $values;
+  $vars['action_items'] = dosomething_project_get_field_collection_values($node, 'field_action_items', 'action_item');
 }
 
 function doit_get_field_collection_entity_ids($node, $field_collection_name) {
