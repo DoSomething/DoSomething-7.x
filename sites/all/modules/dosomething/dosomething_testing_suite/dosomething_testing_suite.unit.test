@@ -1,0 +1,195 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_testing_suite functionality.
+ */
+
+class DosomethingTestingSuiteUnitTestCase extends DrupalUnitTestCase {
+  private $instance;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Testing Suite Unit Tests',
+      'description' => 'DoSomething Testing Suite Unit Tests',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    if (!$this->instance instanceof WebTestSuite) {
+      $this->instance = new WebTestSuite;
+    }
+  }
+
+  public function testClassExists() {
+    $this->assertTrue(class_exists('WebTestSuite'), 'WebTestSuite exists');
+    $this->assertTrue($this->instance instanceof DrupalWebTestCase, 'WebTestSuite inherits from DrupalWebTestCase');
+  }
+
+  /**
+   * @see WebTestSuite::tearDown()
+   */
+  public function testTearDown() {
+    $this->user = array();
+    $this->logged_in = true;
+    $this->instance->tearDown();
+
+    $this->assertTrue(isset($GLOBALS['user']), 'global $user variable exists');
+    $this->assertIdentical($GLOBALS['user']->hostname, '127.0.0.1', 'The user is anonymous');
+    $this->assertIdentical($GLOBALS['user']->uid, 0, 'The user is anonymous');
+  }
+
+  /**
+   * @see WebTestSuite::logIn()
+   */
+  public function testLogIn() {
+    $this->instance->user = array('Testing is cool');
+    $this->instance->logIn();
+    $this->assertTrue(isset($GLOBALS['user']), 'global $user variable exists');
+    $this->assertIdentical($GLOBALS['user'], array('Testing is cool'), 'The global $user variable is what we specified');
+  }
+
+  /**
+   * @see WebTestSuite::logOut()
+   */
+  public function testLogOut() {
+    $this->instance->logOut();
+    $this->assertTrue(isset($GLOBALS['user']), 'global $user variable exists');
+    $this->assertIdentical($GLOBALS['user']->hostname, '127.0.0.1', 'The user is anonymous');
+    $this->assertIdentical($GLOBALS['user']->uid, 0, 'The user is anonymous');
+  }
+}
+
+
+class DoSomethingTestingSuiteDBUnitTestCase extends WebTestSuite {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Testing Suite DB Unit Tests',
+      'description' => 'DoSomething Testing Suite unit tests with DB access.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  public function subTestFactoryExists() {
+    $this->assertTrue($this->factory instanceof Factory, 'WebTestSuite->factory is enabled');
+  }
+
+  /**
+   * @see Factory::instance()
+   */
+  public function subTestCheckInstance() {
+    $instance = Factory::instance();
+    $this->assertTrue($instance instanceof Factory, 'Factory::instance() returns an instance of the Factory class');
+  }
+
+  /**
+   * @see Factory::create()
+   */
+  public function subTestCreate() {
+    // Make sure the Blog class does NOT exist yet.  This is intentional.
+    $this->assertFalse(class_exists('Blog'), 'The Blog factory is not initialized yet');
+
+    // Create two blogs: A default one and an overridden one.
+    $blog = $this->factory->create('Blog');
+    $override = $this->factory->create('Blog', array('title' => 'Factories can change', 'body' => 'Like this'));
+
+    // Blog class should exist now...
+    $this->assertTrue(class_exists('Blog'), 'The Blog factory has been initialized');
+
+    // ...and be an instance of Factory...
+    $this->assertTrue(is_subclass_of('Blog', 'Factory'));
+
+    // ...and not be empty...
+    $this->assertFalse(empty($blog), 'The default Blog post is properly set up');
+    $this->assertFalse(empty($override), 'The overridden Blog post is properly set up');
+
+    // ...and actually exist...
+    $nodes = node_load_multiple(array($blog->nid, $override->nid));
+
+    // ...and be valid.
+    $this->assertTrue(isset($nodes[$blog->nid]), 'The default Blog post was created');
+    $this->assertTrue(isset($nodes[$override->nid]), 'The overridden Blog post was created');
+    $this->assertIdentical($nodes[$blog->nid]->title, $this->factory->getDefault('Blog', 'title'), 'The default blog post has default title value');
+    $this->assertIdentical($nodes[$blog->nid]->body[LANGUAGE_NONE][0]['value'], 'Hello world!', 'The default blog post has default body value');
+    $this->assertIdentical($nodes[$override->nid]->title, 'Factories can change', 'The overridden blog post has an overridden title');
+    $this->assertIdentical($nodes[$override->nid]->body[LANGUAGE_NONE][0]['value'], 'Like this', 'The overridden blog post has an overridden body');
+  }
+
+  /**
+   * @see Factory::build()
+   */
+  public function subTestBuild() {
+    // Basic factories
+    $blog = $this->factory->build('Blog');
+    $overridden = $this->factory->build('Blog', array('title' => 'Nutella is delicious', 'body' => 'Especially with peanut butter'));
+
+    // Make sure they're not empty
+    $this->assertFalse(empty($blog), 'The default blog post is not empty');
+    $this->assertFalse(empty($overridden), 'The overridden blog post is not empty');
+
+    // And have no NID set -- that would mean a node was actually created
+    $this->assertFalse(isset($blog->nid), 'The default blog post was not created');
+    $this->assertFalse(isset($overridden->nid), 'The overridden blog post was not created');
+
+    // And are arrays (classes would be bad)
+    $this->assertTrue(is_array($blog), 'The default blog post is the original array');
+    $this->assertTrue(is_array($overridden), 'The overridden blog post is the original array (with overrides)');
+
+    // And have the right titles
+    $this->assertIdentical($blog['title'], $this->factory->getDefault('Blog', 'title'), 'The default blog post has the default title');
+    $this->assertIdentical($blog['body'], $this->factory->getDefault('Blog', 'body'), 'The default blog post has the default body');
+    $this->assertIdentical($overridden['title'], 'Nutella is delicious', 'The overridden blog post has an overridden title');
+    $this->assertIdentical($overridden['body'][LANGUAGE_NONE][0]['value'], 'Especially with peanut butter', 'The overridden blog post has an overridden body.');
+  }
+
+  /**
+   * @see Factory::getDefault()
+   */
+  public function subTestGetDefault() {
+    $default = $this->factory->getDefault('Blog', 'title');
+    $this->assertIdentical($default, 'Blog title');
+  }
+
+  /**
+   * @see Factory::getAllDefaults()
+   */
+  public function subTestGetAllDefaults() {
+    // This should just be the default stuff.
+    $defaults = $this->factory->getAllDefaults('Blog');
+    $this->assertIdentical($defaults['title'], $this->factory->getDefault('Blog', 'title'));
+
+    // Now let's build a blog with overwritten data
+    $this->factory->build('Blog', array('title' => 'Bananas'));
+
+    // This should honor the overwritten data
+    $with = $this->factory->getAllDefaults('Blog', true);
+    $this->assertIdentical($with['title'], 'Bananas');
+
+    // This should still return the default data.
+    $without = $this->factory->getAllDefaults('Blog');
+    $this->assertIdentical($without['title'], $this->factory->getDefault('Blog', 'title'));
+  }
+
+  /**
+   * @see Factory::construct()
+   */
+  public function subTestConstruct() {
+    $this->factory->build('Blog', array('title' => 'New post', 'field_subtitle' => 'This is my subtitle', 'body' => 'Filming happens in NYC'));
+    $built = $this->factory->getAllDefaults('Blog', true);
+
+    // Title is a default column
+    $this->assertIdentical($built['title'], 'New post');
+
+    // Body is an array
+    $this->assertIdentical($built['body'][LANGUAGE_NONE][0]['value'], 'Filming happens in NYC');
+
+    // field_* columns are also arrays.
+    $this->assertIdentical($built['field_subtitle'][LANGUAGE_NONE][0]['value'], 'This is my subtitle');
+  }
+}

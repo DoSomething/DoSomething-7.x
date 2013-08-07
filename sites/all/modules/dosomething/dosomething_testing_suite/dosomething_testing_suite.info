@@ -2,4 +2,4 @@ name = DoSomething Testing Suite
 description = Builds helper classes for the DoSomething.org testing suite.
 core = 7.x
 package = DoSomething
-
+files[] = dosomething_testing_suite.unit.test

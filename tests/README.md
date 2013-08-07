@@ -85,6 +85,27 @@ Behat comes with a number of steps (e.g. ```Given I am on "/page"```) by default
 Here they are, with an example of the step written as a comment above each.  You can view the entire list by typing ```bin/behat -di``` from within the ```tests``` directory.
 
 ```
+# e.g. Given there is a Campaign with:
+#  | title | Campaign title |
+Given /^there is a (?<factory>[A-Za-z0-9]+) with:$/
+    # FeatureContext::thereIsAFactoryWithTheFollowingData()
+
+# e.g. Given there is a Blog
+Given /^there is a (?<factory>[A-Za-z0-9]+)$/
+    # FeatureContext::thereIsAFactory()
+
+# e.g. Given I am logged in as a regular user
+Given /^I am logged in as an? (?<role>regular user|administrator)$/
+    # FeatureContext::iAmLoggedInAsRole()
+
+# e.g. Given I am logged in as "user" with pass "abc123"
+Given /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
+    # FeatureContext::iAmLoggedInAsPersonWithPass()
+
+# e.g. Given I log out
+Given /^I log out$/
+    # FeatureContext::iLogOut()
+
 # e.g. Given I fill in #edit-email with a random email
 Given /^I fill in (?<field>.*?) with a random email$/
     # FeatureContext::iFillInARandomEmail()
@@ -354,7 +375,7 @@ To run behat tests, execute the following command from the ```tests``` directory
 
 ```sh
 # In the root behat directory
-./bin/behat
+./bin/behat --profile local
 ```
 
-Behat will automatically run all ```*.feature``` files found in the **features** directory.
+Behat will automatically run all ```*.feature``` files found in the `tests/features` directory.
