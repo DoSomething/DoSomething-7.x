@@ -33,7 +33,7 @@
 
   <?php print render($content['project_info']); ?>
 
-  <?php print render($content['profect_profiles']); ?>
+  <?php print render($content['project_profiles']); ?>
 
   <?php print render($content['faq']); ?>
 
