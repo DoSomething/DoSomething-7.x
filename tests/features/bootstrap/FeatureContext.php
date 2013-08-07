@@ -16,14 +16,13 @@ use Behat\Behat\Context\Step;
 //   require_once 'PHPUnit/Framework/Assert/Functions.php';
 //
 
-require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
-chdir(dirname(__FILE__) . '/../../');
-
 /**
  * Features context.
  */
 class FeatureContext extends MinkContext
 {
+    protected $factory;
+
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
@@ -32,7 +31,17 @@ class FeatureContext extends MinkContext
      */
     public function __construct(array $parameters)
     {
+    }
+
+    /**
+     * Only bootstrap if necessary.
+     */
+    protected function bootstrap()
+    {
+      if (!isset($this->factory) || !($this->factory instanceof Factory)) {
+        require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
         $this->factory = Factory::instance();
+      }
     }
 
     /**
@@ -41,6 +50,7 @@ class FeatureContext extends MinkContext
      */
     public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data)
     {
+      $this->bootstrap();
       $this->factory->create($factory, $data->getRowsHash());
     }
 
@@ -50,6 +60,7 @@ class FeatureContext extends MinkContext
      */
     public function thereIsAFactory($factory)
     {
+      $this->bootstrap();
       $this->factory->create($factory);
     }
 
@@ -59,6 +70,7 @@ class FeatureContext extends MinkContext
      */
     public function iAmLoggedInAsRole($role)
     {
+      $this->bootstrap();
       if ($role == 'regular user') {
         $role = $this->factory->create('User');
       }

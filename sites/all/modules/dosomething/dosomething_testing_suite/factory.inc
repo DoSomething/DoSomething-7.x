@@ -176,6 +176,32 @@ class Factory extends WebTestSuite {
   }
 
   /**
+   * Returns the $default array as it stands.
+   *
+   * @param string $factory
+   *   The factory that you would like the default values from.
+   *
+   * @param bool $use_existing
+   *   If true, will return the defaults for a factory as they currently
+   *   stand, even with overrides from a create() or build() method call.
+   *   If false, will reinstate the class, thereby returning the true default
+   *   values.
+   *
+   * @return array
+   *   The default array for the $factory, such that it is.
+   */
+  public function getAllDefaults($factory, $use_existing = false) {
+    $this->load($factory);
+    if (class_exists($factory)) {
+      if (!$use_existing || !isset($this->factories[$factory])) {
+        $this->factories[$factory] = new $factory();
+      }
+
+      return $this->factories[$factory]->default;
+    }
+  }
+
+  /**
    * Abstracted construct method, to be used in child class's __construct() method.
    *
    * Walks through each of the fields and sets them up with the appropriate array
