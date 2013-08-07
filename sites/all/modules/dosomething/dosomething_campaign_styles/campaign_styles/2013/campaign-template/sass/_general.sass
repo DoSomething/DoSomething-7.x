@@ -110,6 +110,9 @@ h1.headline-callout
 .headline-instructions
   padding: 1em 0
 
+  @include respond-to(phones)
+    padding: 0 0 1em
+
 .section-instructions
   padding: 0 0 1em 0 !important
 
@@ -194,6 +197,7 @@ strong
   text-align: center
   text-decoration: none !important
   text-transform: uppercase
+  -webkit-appearance: none !important
   +border-radius(5px)
   &:hover /* While mouse hovers */
     background: $btn-hover
