@@ -75,10 +75,6 @@ function doit_preprocess_page(&$variables) {
   $theme_path = drupal_get_path('theme', 'doit');
   $current_path = current_path();
 
-  if (!isset($variables['secondary_links_theme_function'])) {
-    $variables['secondary_links_theme_function'] = 'links__system_secondary_menu';
-  }
-
   drupal_alter('page_templates', $variables);
 
   // Add Social Tracking for Google Analytics
@@ -145,6 +141,18 @@ function doit_preprocess_page(&$variables) {
 
     if ($obj->type == 'project') {
 
+      $variables['page']['navigation'] = array();
+      $variables['page']['navigation']['main_menu'] = array( 
+        '#type' => 'markup',
+        '#markup' => theme('main_menu')
+      );
+
+      $variables['page']['footer'] = array();
+      $variables['page']['footer']['footer_menu'] = array( 
+        '#type' => 'markup',
+        '#markup' => theme('footer_menu')
+      );
+
       // Add campaigns type specific page type
       array_push( $variables['theme_hook_suggestions'], 'page__project' );
 
@@ -156,6 +164,8 @@ function doit_preprocess_page(&$variables) {
       }
 
       _doit_load_campaign_assets($obj, $org_code);
+
+      $page['menus'] = array('main', 'footer');
 
     }
 
@@ -859,11 +869,13 @@ function doit_css_alter(&$css) {
   if ($node && $node->type == 'project') {
     $styles = array();
 
+    // @todo - optimize me
+    $whitelist = array('ds-neue', 'contextual', 'admin_menu');
     foreach($css as $path => $info) {
-      if (strpos($path,'ds-neue') !== false) {
-
-
-          $styles[$path] = $info;
+      foreach($whitelist as $namespace) {
+        if (strpos($path, $namespace) !== false) {
+            $styles[$path] = $info;
+        }
       }
     }
 
