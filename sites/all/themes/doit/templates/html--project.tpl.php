@@ -18,6 +18,7 @@
 <body>
   <?php print $page_top; ?>
   <?php print $page; ?>
+  <?php print $scripts; ?>
   <?php print $page_bottom; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_footer(); ?>
 </body>
