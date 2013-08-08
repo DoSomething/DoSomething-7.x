@@ -5,7 +5,6 @@ Feature: Roundtable discussion
   Background:
     Given I am on "/user/login"
 
-  @javascript
   Scenario: I log in
     Then I should see "Sign In"
     When I fill in "edit-name" with "bohemian_test"
