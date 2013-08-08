@@ -279,6 +279,72 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_faq-field_faq_answer'.
+  $fields['field_collection_item-field_faq-field_faq_answer'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_faq_answer',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_faq',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_faq_answer',
+      'label' => 'Answer',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '34',
+      ),
+    ),
+  );
+
   // Exported field: 'field_collection_item-field_faq-field_faq_copy'.
   $fields['field_collection_item-field_faq-field_faq_copy'] = array(
     'field_config' => array(
@@ -340,6 +406,73 @@ function dosomething_project_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
+        'weight' => '32',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_faq-field_faq_question'.
+  $fields['field_collection_item-field_faq-field_faq_question'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_faq_question',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_faq',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_faq_question',
+      'label' => 'Question',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
         'weight' => '32',
       ),
     ),
@@ -810,6 +943,72 @@ function dosomething_project_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '31',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_project_info_items-field_project_into_item_copy'.
+  $fields['field_collection_item-field_project_info_items-field_project_into_item_copy'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_into_item_copy',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_project_info_items',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_project_into_item_copy',
+      'label' => 'Project Into Item Copy',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '32',
       ),
     ),
   );
@@ -2270,6 +2469,79 @@ function dosomething_project_field_default_fields() {
         'settings' => array(),
         'type' => 'field_collection_embed',
         'weight' => '17',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-project-field_faq_button_label'.
+  $fields['node-project-field_faq_button_label'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_faq_button_label',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 52,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_faq_button_label',
+      'label' => 'FAQ Button Label',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '18',
       ),
     ),
   );
@@ -4055,14 +4327,14 @@ function dosomething_project_field_default_fields() {
           'label' => 'above',
           'module' => 'date',
           'settings' => array(
-            'format_type' => 'month_day_year',
+            'format_type' => 'long',
             'fromto' => 'both',
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => '20',
+          'weight' => 20,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5455,6 +5727,7 @@ function dosomething_project_field_default_fields() {
   t('Action Items Headline');
   t('Action Kit Copy');
   t('Action Kit File');
+  t('Answer');
   t('Banner Image');
   t('Banner Logo');
   t('CTA Button Label');
@@ -5462,6 +5735,7 @@ function dosomething_project_field_default_fields() {
   t('Contact Email');
   t('Copy Accent Color');
   t('FAQ');
+  t('FAQ Button Label');
   t('FAQ Copy');
   t('FAQ Headline');
   t('FAQ Title');
@@ -5496,12 +5770,14 @@ function dosomething_project_field_default_fields() {
   t('Project Info Item Copy');
   t('Project Info Item Title');
   t('Project Info Items');
+  t('Project Into Item Copy');
   t('Project Profile Copy');
   t('Project Profile Image');
   t('Project Profile Title');
   t('Project Profiles');
   t('Project Profiles Copy');
   t('Project Profiles Headline');
+  t('Question');
   t('Rules Regs File');
   t('SMS Example Button Label');
   t('SMS Example Headline');
