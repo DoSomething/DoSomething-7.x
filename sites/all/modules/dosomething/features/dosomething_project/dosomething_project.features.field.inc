@@ -5704,7 +5704,6 @@ function dosomething_project_field_default_fields() {
   t('Project Info Item Copy');
   t('Project Info Item Title');
   t('Project Info Items');
-  t('Project Into Item Copy');
   t('Project Profile Copy');
   t('Project Profile Image');
   t('Project Profile Title');
