@@ -61,7 +61,6 @@ class WebTestSuite extends DrupalWebTestCase {
 
   /**
    * Overwrites default tearDown() method to log out a potentially logged in user.
-   * @todo: Garbage collection
    */
   public function tearDown() {
     $this->collectGarbage();
