@@ -1,0 +1,76 @@
+<?php
+
+
+/**
+ * @file
+ * Provides Drupal integration with the DS Neue library.
+ */
+
+
+/**
+ * Implements hook_libraries_info().
+ */
+function ds_neue_libraries_info() {
+  $libraries['ds-neue'] = array(
+    'name' => 'DS Neue',
+    'vendor url' => 'https://github.com/DoSomething/ds-neue',
+    'download url' => 'https://github.com/DoSomething/ds-neue',
+    'version callback' => 'ds_neue_get_version',
+    'files' => array(
+      'js' => array(
+        'assets/application.js'
+      ),
+      'css' => array(
+        'assets/application.css',
+        'assets/campaigns.css',
+      )
+    ),
+  );
+  return $libraries;
+}
+
+/**
+ * Implements hook_library().
+ */
+function ds_neue_library() {
+  $libraries['ds-neue'] = array(
+    'title' => 'DS Neue',
+    'website' => 'https://github.com/DoSomething/ds-neue',
+    'version' => ds_neue_get_version(),
+    'js' => array(
+      libraries_get_path('ds-neue') . '/assets/application.js' => array(),
+    ),
+    'css' => array(
+      libraries_get_path('ds-neue') . '/assets/application.css' => array(),
+    ),
+  );
+
+  $libraries['ds-neue-campaign'] = array(
+    'title' => 'DS Neue Campaigns',
+    'website' => 'https://github.com/DoSomething/ds-neue',
+    'version' => ds_neue_get_version(),
+    'css' => array(
+      libraries_get_path('ds-neue') . '/assets/campaign.css' => array(),
+    ),
+    'dependencies' => array(
+      array('ds_neue', 'ds-neue')
+    )
+  );
+
+  return $libraries;
+}
+
+
+/**
+ * Helper function to get the current library version
+ */
+function ds_neue_get_version() {
+
+  $json_path = DRUPAL_ROOT . '/' . libraries_get_path('ds-neue') . '/package.json';
+  $package_json = file_get_contents($json_path);
+  $json = json_decode($package_json);
+
+  if (isset($json->version))
+    return $json->version;
+
+}

@@ -1,0 +1,8 @@
+name = DS Neue
+description = Integrates the DS Neue library
+package = DoSomething
+core = 7.x
+dependencies[] = libraries (>1.0)
+
+; General Files
+files[] = ds_neue.module

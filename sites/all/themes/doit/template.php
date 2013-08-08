@@ -19,7 +19,7 @@ function doit_preprocess_html(&$variables, $hook) {
 
   /*
    * Remove all global stylesheets and
-   * load user registration HTML templates 
+   * load user registration HTML templates
    * if this is a user-registration template page or campaign join page.
    */
   if (doit_is_user_registration_template_page() || doit_is_campaign_join_template_page()) {
@@ -58,13 +58,12 @@ function doit_preprocess_html(&$variables, $hook) {
 
     $variables['user_styles'] = drupal_get_css($css);
 
-  } 
+  }
   drupal_alter('html_templates', $variables);
 
   if (menu_get_object()->type == 'project') {
     $variables['theme_hook_suggestions'][] = 'html__project';
     $css = drupal_add_css();
-    $variables['user_styles'] = 'DESMOND';
   }
 
 }
@@ -204,7 +203,7 @@ function doit_preprocess_page(&$variables) {
       }
     }
     // If default gate, use gate variables from DoSomething Login config page:
-    if ($default_gate) { 
+    if ($default_gate) {
       $variables['page']['gate_wrapper_class'] = '';
       $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
       $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
@@ -255,6 +254,7 @@ function doit_preprocess_page(&$variables) {
  * Implements hook_preprocess_node().
  */
 function doit_preprocess_node(&$vars) {
+  // Campaign node type:
   if ($vars['node']->type == 'campaign') {
     $org_code = _doit_load_campaign_org_code($vars['node']);
     // If the camapign has org code set
@@ -262,6 +262,47 @@ function doit_preprocess_node(&$vars) {
       // Loads campaign specific tpl
       array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
     }
+  }
+  // Project node type:
+  elseif ($vars['node']->type == 'project') {
+    $params['node'] = $vars['node'];
+
+    // Section - Action items:
+    $vars['is_action_items'] = FALSE;
+    if (isset($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value']) &&
+      !empty($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value'])) {
+      $vars['is_action_items'] = TRUE;
+      $vars['content']['action_items']['#markup'] = theme('project_section_action_items', $params);
+    }
+    // Section - CTA:
+    $vars['content']['cta']['#markup'] = theme('project_section_cta', $params);
+    // Section - FAQ:
+    $vars['content']['faq']['#markup'] = theme('project_section_faq', $params);
+    // Section - Gallery:
+    $vars['content']['gallery']['#markup'] = theme('project_section_gallery', $params);
+    // Section - Header:
+    $vars['content']['header']['#markup'] = theme('project_section_header', $params);
+    // Section - Project Info:
+    $vars['content']['project_info']['#markup'] = theme('project_section_project_info', $params);
+    // Section - Project Profiles:
+    $vars['content']['project_profiles']['#markup'] = theme('project_section_project_profiles', $params);
+    // Section - Prizes:
+    $vars['is_prizes'] = FALSE;
+    if (isset($vars['node']->field_prizes_headline[LANGUAGE_NONE][0]['value']) &&
+      !empty($vars['node']->field_prizes_headline[LANGUAGE_NONE][0]['value'])) {
+      $vars['is_prizes'] = TRUE;
+      $vars['content']['prizes']['#markup'] = theme('project_section_prizes', $params);
+    }
+    // Section - SMS Example:
+    //@todo: is_sms_referral check
+    $vars['content']['sms_example']['#markup'] = theme('project_section_sms_example', $params);
+    // Section - SMS referral:
+    //@todo: is_sms_referral check
+    $vars['content']['sms_referral']['#markup'] = theme('project_section_sms_referral', $params);
+    // Section - Sponsors:
+    //@todo: sponsrs check
+    $vars['content']['sponsors']['#markup'] = theme('project_section_sponsors', $params);
+
   }
 }
 
@@ -273,12 +314,8 @@ function _doit_load_campaign_assets($node, $org_code = NULL) {
   // @todo - we may need to refactor based on campaign related nodes
   if ($node->type != 'project') return;
 
-  $assets_path = drupal_get_path('theme', 'doit') . '/lib/ds-neue/assets';
-
-  // Add global css and js
-  drupal_add_css($assets_path . '/application.css');
-  drupal_add_css($assets_path . '/campaign.css');
-  drupal_add_js($assets_path . '/application.js');
+  # Add neue library
+  drupal_add_library('ds_neue', 'ds-neue-campaign');
 
   $org_code = $org_code ? $org_code : _doit_load_campaign_org_code($node);
 
@@ -556,26 +593,6 @@ function doit_field($variables) {
   return $output;
 }
 
-/**
- * Implements template_preprocess_field().
- */
-function doit_preprocess_field(&$vars, $hook) {
-
-  switch ($vars['element']['#field_name']) {
-    case 'field_campaign_faq':
-      $questions = array();
-      foreach ($vars['items'] as $item) {
-        $item = current($item['entity']['field_collection_item']);
-        $questions[] = array(
-          'question' => $item['field_faq_question'][0]['#markup'],
-          'answer' => $item['field_faq_answer'][0]['#markup']
-        );
-      }
-      $vars['questions'] = $questions;
-      break;
-  }
-}
-
 function doit_pager(&$variables) {
   $tags = $variables['tags'];
   $element = $variables['element'];
@@ -851,5 +868,102 @@ function doit_css_alter(&$css) {
     }
 
     $css = $styles;
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_action_items(&$vars) {
+  $node = $vars['node'];
+  $vars['action_items'] = array();
+  if (module_exists('dosomething_project')) {
+    // Loop through the action items:
+    $vars['action_items'] = dosomething_project_get_field_collection_values($node, 'field_action_items', 'action_item');
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_faq(&$vars) {
+  $node = $vars['node'];
+  $vars['faq_items'] = array();
+  if (module_exists('dosomething_project')) {
+    // Loop through the FAQ:
+    $vars['faq_items'] = dosomething_project_get_field_collection_values($node, 'field_faq', 'faq');
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_header(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  //@todo: output image
+  if (isset($node->field_banner_logo[LANGUAGE][0]['fid'])) {
+    $vars['logo'] = file_create_url($node->field_banner_logo[LANGUAGE][0]['uri']);
+  }
+  else {
+    $vars['logo'] = $node->title;
+  }
+  //@todo: formatting? dont show year in 1st date.
+  $start_date = format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value']));
+  $end_date = '';
+  if (isset($node->field_project_dates[LANGUAGE_NONE][0]['value2'])) {
+    $end_date = ' - ' . format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value2']));
+  }
+  $vars['project_date'] = $start_date . $end_date;
+  //@todo: share URLs
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_project_info(&$vars) {
+  $node = $vars['node'];
+  $vars['project_info_items'] = array();
+  if (module_exists('dosomething_project')) {  
+    // Loop through the project info items:
+    $vars['project_info_items'] = dosomething_project_get_field_collection_values($node, 'field_project_info_items', 'project_info_item');
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_project_profiles(&$vars) {
+  $node = $vars['node'];
+  $vars['profiles'] = array();
+  if (module_exists('dosomething_project')) { 
+    // Loop through the project profiles:
+    $vars['profiles'] = dosomething_project_get_field_collection_values($node, 'field_project_profiles', 'project_profile');
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_prizes(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $vars['prizes'] = array();
+  if (module_exists('dosomething_project')) { 
+    $vars['prizes'] = dosomething_project_get_field_collection_values($node, 'field_prizes', 'prize');
+  }
+  $vars['rules_url'] = file_create_url($node->field_rules_regs_file[LANGUAGE_NONE][0]['uri']);
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_sponsors(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $vars['sponsors'] = array();
+  if (module_exists('dosomething_project')) {  
+    // Loop through the sponsors :
+    $vars['sponsors'] = dosomething_project_get_field_sponsors_values($node);
   }
 }

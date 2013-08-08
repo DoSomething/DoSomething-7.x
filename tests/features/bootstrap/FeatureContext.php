@@ -7,6 +7,7 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
+use Behat\Behat\Context\Step;
 
 //
 // Require 3rd-party libraries here:
@@ -15,14 +16,13 @@ use Behat\MinkExtension\Context\MinkContext;
 //   require_once 'PHPUnit/Framework/Assert/Functions.php';
 //
 
-require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
-chdir(dirname(__FILE__) . '/../../');
-
 /**
  * Features context.
  */
 class FeatureContext extends MinkContext
 {
+    protected $factory;
+
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
@@ -31,53 +31,95 @@ class FeatureContext extends MinkContext
      */
     public function __construct(array $parameters)
     {
+    }
+
+    /**
+     * Only bootstrap if necessary.
+     */
+    protected function bootstrap()
+    {
+      if (!isset($this->factory) || !($this->factory instanceof Factory)) {
+        require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
         $this->factory = Factory::instance();
+      }
     }
 
     /**
      * @Given /^there is a (?<factory>[A-Za-z0-9]+) with:$/
      * @And /^there is a (?<factory>[A-Za-za-z0-9]+) with:$/
      */
-    public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data) {
+    public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data)
+    {
+      $this->bootstrap();
       $this->factory->create($factory, $data->getRowsHash());
     }
 
-     /**
-      * @Given /^there is a (?<factory>[A-Za-z0-9]+)$/
-      * @And /^there is a (?<factory>[A-Za-z0-9]+)$/
-      */
-     public function thereIsAFactory($factory)
-     {
-       $this->factory->create($factory);
-     }
+    /**
+     * @Given /^there is a (?<factory>[A-Za-z0-9]+)$/
+     * @And /^there is a (?<factory>[A-Za-z0-9]+)$/
+     */
+    public function thereIsAFactory($factory)
+    {
+      $this->bootstrap();
+      $this->factory->create($factory);
+    }
 
-     /**
-      * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
-      * @And /^I am logged in as an? (?<role>regular user|administrator)$/
-      */
-     public function iAmLoggedInAsRole($role) {
-       if ($role == 'regular user') {
-         $role = $this->factory->create('User');
-       }
-       else if ($role == 'administrator') {
-         $role = $this->factory->create('User', array('roles' => array(3 => 'administrator')));
-       }
+    /**
+     * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
+     * @And /^I am logged in as an? (?<role>regular user|administrator)$/
+     */
+    public function iAmLoggedInAsRole($role)
+    {
+      $this->bootstrap();
+      if ($role == 'regular user') {
+        $role = $this->factory->create('User');
+      }
+      else if ($role == 'administrator') {
+        $role = $this->factory->create('User', array('roles' => array(3 => 'administrator')));
+      }
 
-       // Return the required steps to log in our logged in user.
-       return array(
-         new Behat\Behat\Context\Step\Given('I am on "/user/login"'),
-         new Behat\Behat\Context\Step\When('I fill in "edit-name" with "' . $this->factory->getDefault('User', 'name') . '"'),
-         new Behat\Behat\Context\Step\When('I fill in "edit-pass" with "' . $this->factory->getDefault('User', 'pass') . '"'),
-         new Behat\Behat\Context\Step\When('I press "Log in"'),
-         new Behat\Behat\Context\Step\Then('I should see "CAMPAIGNS"'),
-       );
-     }
+      // Return the required steps to log in our logged in user.
+      return array(
+        new Step\Given('I am on "/user/login"'),
+        new Step\When('I fill in "edit-name" with "' . $this->factory->getDefault('User', 'name') . '"'),
+        new Step\When('I fill in "edit-pass" with "' . $this->factory->getDefault('User', 'pass') . '"'),
+        new Step\When('I press "Log in"'),
+      );
+    }
+
+    /**
+     * @Given /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
+     * @And /^I am logged in as "(?<user>[^"]*)" with pass "(?<pass>[^"]*)"$/
+     */
+    public function iAmLoggedInAsPersonWithPass($user, $pass)
+    {
+      // Return the required steps to log in as an existing user.
+      return array(
+        new Step\Given('I am on "/user/login"'),
+        new Step\When('I fill in "edit-name" with "' . $user . '"'),
+        new Step\When('I fill in "edit-pass" with "' . $pass . '"'),
+        new Step\When('I press "Log in"'),
+      );
+    }
+
+    /**
+     * @Given /^I log out$/
+     * @And /^I log out$/
+     */
+    public function iLogOut()
+    {
+      return array(
+        // Click "Log out"
+        new Step\When('I follow "Log out"'),
+      );
+    }
 
     /**
      * @Given /^I fill in (?<field>.*?) with a random email$/
      * @And /^I fill in (?<field>.*?) with a random email$/
      */
-    public function iFillInARandomEmail($field) {
+    public function iFillInARandomEmail($field)
+    {
       $field = $this->fixStepArgument($field);
       $value = $this->fixStepArgument('testing+' . time() . '@dosometing.org');
       $this->getSession()->getPage()->fillField($field, $value);
@@ -90,7 +132,8 @@ class FeatureContext extends MinkContext
      *
      * @AfterStep @javascript
      */
-    public function takeScreenshotAfterFailedStep(Behat\Behat\Event\StepEvent $event) {
+    public function takeScreenshotAfterFailedStep(Behat\Behat\Event\StepEvent $event)
+    {
       if ($event->getResult() === 4) {
         $driver = $this->getSession()->getDriver();
         if ($driver instanceof Behat\Mink\Driver\Selenium2Driver) {
@@ -113,15 +156,4 @@ class FeatureContext extends MinkContext
         }
       }
     }
-
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
 }
