@@ -40,7 +40,7 @@
   <?php print render($content['sponsors']); ?>
 
   <footer class="contact" id="footer">
-    <p>Questions? E-mail <a href="mailto:help@dosomething.org">help@dosomething.org</a>!</p>
+    <p>Questions? E-mail <a href="mailto:<?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?>"><?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?></a>!</p>
   </footer>
 
   <!--
