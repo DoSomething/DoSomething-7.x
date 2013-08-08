@@ -51,10 +51,31 @@ class WebTestSuite extends DrupalWebTestCase {
    * Collects entities that were created during testing and removes them.
    */
   public function collectGarbage() {
+    // Delete all nodes / users / etc. that were created.
     if (!empty(self::$garbage) && is_array(self::$garbage)) {
       foreach (self::$garbage as $type => $trash) {
         $function = "{$type}_delete_multiple";
         $function($trash);
+      }
+    }
+
+    // Get default prefix (if applicable).
+    $connection_info = Database::getConnectionInfo('default');
+    $prefix = $connection_info['default']['prefix']['default'];
+    $prefix_length = strlen($prefix);
+
+    // Find all tables with "simpletest" as a part of it.
+    $tables = db_find_tables('%simpletest%');
+
+    // Get simpletest module schema tables so we don't delete them.
+    $nodelete = array_keys(drupal_get_schema_unprocessed('simpletest'));
+
+    // Delete all temporary simpletest tables.
+    foreach ($tables AS $table) {
+      if (!in_array($table, $nodelete)) {
+        if (db_drop_table(substr($table, $prefix_length))) {
+          unset($tables[$table]);
+        }
       }
     }
   }
