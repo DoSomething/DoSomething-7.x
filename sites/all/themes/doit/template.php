@@ -64,7 +64,6 @@ function doit_preprocess_html(&$variables, $hook) {
   if (menu_get_object()->type == 'project') {
     $variables['theme_hook_suggestions'][] = 'html__project';
     $css = drupal_add_css();
-    $variables['user_styles'] = 'DESMOND';
   }
 
 }
@@ -592,26 +591,6 @@ function doit_field($variables) {
   $output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
 
   return $output;
-}
-
-/**
- * Implements template_preprocess_field().
- */
-function doit_preprocess_field(&$vars, $hook) {
-
-  switch ($vars['element']['#field_name']) {
-    case 'field_campaign_faq':
-      $questions = array();
-      foreach ($vars['items'] as $item) {
-        $item = current($item['entity']['field_collection_item']);
-        $questions[] = array(
-          'question' => $item['field_faq_question'][0]['#markup'],
-          'answer' => $item['field_faq_answer'][0]['#markup']
-        );
-      }
-      $vars['questions'] = $questions;
-      break;
-  }
 }
 
 function doit_pager(&$variables) {
