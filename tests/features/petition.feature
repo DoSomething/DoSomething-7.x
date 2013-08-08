@@ -9,6 +9,8 @@ Feature: Petition tests
   Scenario: See the basic stuff
     Then I should see "Testing petition: Let us pass tests so we can deploy code"
     And I should see "Sign this Petition"
+    And I should see "Everyone at DoSomething"
+    And I should see "0 of 10,000"
     And I should see "I think that we should have a lot of tests"
     And I should see "Reasons for Signing"
     And I should see "Signatures"
