@@ -116,6 +116,7 @@ function dosomething_project_field_group_info() {
     'children' => array(
       0 => 'field_faq',
       1 => 'field_faq_headline',
+      2 => 'field_faq_button_label',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -269,9 +270,9 @@ function dosomething_project_field_group_info() {
     'label' => 'Project Profiles',
     'weight' => '18',
     'children' => array(
-      0 => 'field_project_profiles_headline',
+      0 => 'field_project_profiles',
       1 => 'field_project_profiles_copy',
-      2 => 'field_project_profiles',
+      2 => 'field_project_profiles_headline',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
