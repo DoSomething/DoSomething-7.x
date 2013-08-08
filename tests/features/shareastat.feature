@@ -8,6 +8,7 @@ Feature: Share a Stat tests
 
   Scenario: See the basic stuff
     Then I should see "Testing Share a Stat"
+    And I should see "Oh hey! This is a Share a Stat"
     And I should see "Share this stat with six friends for a chance to win a $2000 Scholarship"
     And I should see "Caterpillars must spend a lot on shoes"
     And I should see "Text STOP to opt-out"
