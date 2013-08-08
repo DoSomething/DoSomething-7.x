@@ -1,0 +1,38 @@
+<?php
+
+
+/**
+ * @file
+ * Install, update and uninstall functions for the DS Neue module.
+ */
+
+
+/**
+ * Implements hook_requirements().
+ */
+function ds_neue_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    // Ensure translations do not break at install time
+    $t = get_t();
+    $requirements['ds-neue']['title'] = $t('DS Neue library');
+    if (module_exists('libraries') && function_exists('libraries_detect')) {
+      $library = libraries_detect('ds-neue');
+      $neue_installed = ($library['installed']) ? TRUE : FALSE;
+    }
+    else {
+      $neue_installed = FALSE;
+    }
+    if ($neue_installed) {
+      $requirements['ds-neue']['value'] = $t('Installed version !version', array('!version' => $library['version']));
+      $requirements['ds-neue']['severity'] = REQUIREMENT_OK;
+    }
+    else {
+      $requirements['ds-neue']['value'] = $t('Not installed');
+      $requirements['ds-neue']['severity'] = REQUIREMENT_ERROR;
+      $requirements['ds-neue']['description'] = $t('Please download the ds neue library.');
+    }
+  }
+  return $requirements;
+}
+
