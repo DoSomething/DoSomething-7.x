@@ -9,77 +9,73 @@ include_once 'dosomething_project.features.inc';
 /**
  * Implements hook_theme().
  */
-function dosomething_project_theme($existing, $type, $theme, $path) {
+function dosomething_project_theme() {
 	// Defined alphabetically to promote sanity.
 	 return array(
     'project_section_action_items' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_action_items',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_cta' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_cta',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_faq' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_faq',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_gallery' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_gallery',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_header' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_header',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_prizes' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_prizes',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_project_info' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_project_info',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_project_profiles' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_project_profiles',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_sms_example' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_sms_example',
       'arguments' => array(
       	'node' => NULL, 
       ),
     ),
     'project_section_sms_referral' => array(
-      'path' => $path . '/templates',
       'template' => 'project_section_sms_referral',
       'arguments' => array(
       	'node' => NULL, 
+      ),
+    ),
+    'project_section_sponsors' => array(
+      'template' => 'project_section_sponsors',
+      'arguments' => array(
+        'node' => NULL, 
       ),
     ),
   );
@@ -90,7 +86,7 @@ function dosomething_project_theme($existing, $type, $theme, $path) {
  */
 function dosomething_project_get_field_collection_values($node, $field_collection_name, $child_field_prefix) {
   // Field collecitons with no images:
-  $no_image_fc = array('project_info_items');
+  $no_image_fc = array('field_project_info_items', 'field_faq');
   $field_collection_fields = field_get_items('node', $node, $field_collection_name);
   // Extract the field collection item ids:
   $ids = array();
