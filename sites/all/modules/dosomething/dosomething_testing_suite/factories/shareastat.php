@@ -28,6 +28,8 @@ class ShareAStat extends Factory {
   }
 
   private function build_factory() {
-    return $this->drupalCreateNode($this->default);
+    $node = $this->drupalCreateNode($this->default);
+    $this->throwOut($node->nid);
+    return $node;
   }
 }

@@ -15,6 +15,7 @@ class WebTestSuite extends DrupalWebTestCase {
   protected $logged_in;
   # This magically fixes an exception thrown occasionally.
   protected $public_files_directory;
+  protected static $garbage = array();
 
   /**
    * By default, Drupal install a new instance of itself before every test is run.
@@ -29,10 +30,38 @@ class WebTestSuite extends DrupalWebTestCase {
   }
 
   /**
+   * Marks an array of IDs for garbage collection at the end of tests.
+   *
+   * @param int $id
+   *   An ID to throw into the garbage later.
+   *
+   * @param string $type (node)
+   *   The type of entity we're talking about.  This will be the prefix for
+   *   the *_delete_multiple() function call. 
+   */
+  public function throwOut($id, $type = 'node') {
+    if (!isset(self::$garbage[$type])) {
+      self::$garbage[$type] = array();
+    }
+
+    self::$garbage[$type][] = $id;
+  }
+
+  public function collectGarbage() {
+    if (!empty(self::$garbage) && is_array(self::$garbage)) {
+      foreach (self::$garbage as $type => $trash) {
+        $function = "{$type}_delete_multiple";
+        $function($trash);
+      }
+    }
+  }
+
+  /**
    * Overwrites default tearDown() method to log out a potentially logged in user.
    * @todo: Garbage collection
    */
   public function tearDown() {
+    $this->collectGarbage();
     if (isset($this->user) && $this->logged_in) {
       $GLOBALS['user'] = drupal_anonymous_user();
     }

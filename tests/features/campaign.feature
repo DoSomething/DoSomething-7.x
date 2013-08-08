@@ -4,10 +4,14 @@ Feature: Share a Stat tests
   And read about the rules on a campaign.
 
   Background:
-    Given I am on "/women"
+    Given there is a Campaign
+    And I am on "/campaign/testing-campaign"
 
+  @javascript
   Scenario: See the basic stuff
-    Then I should see "Help 25,000 women in need"
+    Then I should see "The campaign gate"
+    And I should see "This is the description"
+    Then I should see "Testing Campaign"
     And I should see "How it Works:"
     And I should see "Example From The Experience:"
     And I should see "Start"

@@ -21,7 +21,8 @@ use Behat\Behat\Context\Step;
  */
 class FeatureContext extends MinkContext
 {
-    protected $factory;
+    protected static $factory;
+    private static $bootstrapped = false;
 
     /**
      * Initializes context.
@@ -38,11 +39,12 @@ class FeatureContext extends MinkContext
      */
     protected function bootstrap()
     {
+      self::$bootstrapped = true;
       if (!isset($this->factory) || !($this->factory instanceof Factory)) {
         // This fixes that frustrating "Undefined index: REMOTE_ADDR" error.
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
         require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
-        $this->factory = Factory::instance();
+        self::$factory = Factory::instance();
       }
     }
 
@@ -53,7 +55,7 @@ class FeatureContext extends MinkContext
     public function thereIsAFactoryWithTheFollowingData($factory, TableNode $data)
     {
       $this->bootstrap();
-      $this->factory->create($factory, $data->getRowsHash());
+      self::$factory->create($factory, $data->getRowsHash());
     }
 
     /**
@@ -63,7 +65,7 @@ class FeatureContext extends MinkContext
     public function thereIsAFactory($factory)
     {
       $this->bootstrap();
-      $this->factory->create($factory);
+      self::$factory->create($factory);
     }
 
     /**
@@ -74,10 +76,10 @@ class FeatureContext extends MinkContext
     {
       $this->bootstrap();
       if ($role == 'regular user') {
-        $role = $this->factory->create('User');
+        $role = self::$factory->create('User');
       }
       else if ($role == 'administrator') {
-        $role = $this->factory->create('User', array('roles' => array(3 => 'administrator')));
+        $role = self::$factory->create('User', array('roles' => array(3 => 'administrator')));
       }
 
       // Return the required steps to log in our logged in user.
@@ -156,6 +158,16 @@ class FeatureContext extends MinkContext
 
           file_put_contents($filename, $driver->getScreenshot());
         }
+      }
+    }
+
+    /**
+     * @AfterSuite
+     */
+    public static function tearDown(Behat\Behat\Event\SuiteEvent $event)
+    {
+      if (self::$bootstrapped) {
+        self::$factory->collectGarbage();
       }
     }
 }
