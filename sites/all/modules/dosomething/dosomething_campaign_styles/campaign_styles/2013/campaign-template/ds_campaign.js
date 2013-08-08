@@ -86,12 +86,16 @@
           if ($this.is('#sms-button')) {
             $('#headline').removeClass('alt');
             $('#sms').show();
+            $('#sms-game-example').show();
+            $('#gallery').hide();
             $('#call-to-action').hide();
           }
           else if ($this.is('#web-button')) {
             $('#headline').removeClass('alt');
             $('#headline').addClass('alt');
             $('#sms').hide();
+            $('#sms-game-example').hide();
+            $('#gallery').show();
             $('#call-to-action').show();
           }
 
