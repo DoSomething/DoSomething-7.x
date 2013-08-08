@@ -47,6 +47,9 @@ class WebTestSuite extends DrupalWebTestCase {
     self::$garbage[$type][] = $id;
   }
 
+  /**
+   * Collects entities that were created during testing and removes them.
+   */
   public function collectGarbage() {
     if (!empty(self::$garbage) && is_array(self::$garbage)) {
       foreach (self::$garbage as $type => $trash) {
@@ -66,6 +69,17 @@ class WebTestSuite extends DrupalWebTestCase {
       $GLOBALS['user'] = drupal_anonymous_user();
     }
   }
+
+  /**
+   * Ovewrites drupalCreateNode to automatically collect garbage.
+   * @see DrupalWebTestCase::drupalCreateNode()
+   */
+  public function drupalCreateNode($settings = array()) {
+    $node = parent::drupalCreateNode($settings);
+    $this->throwOut($node->nid);
+    return $node;
+  }
+
 
   /**
    * Logs in the currently assigned user.
