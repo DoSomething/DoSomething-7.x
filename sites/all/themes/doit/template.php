@@ -875,19 +875,24 @@ function doit_css_alter(&$css) {
  * Implements hook_preprocess_hook().
  */
 function doit_preprocess_project_section_action_items(&$vars) {
-  // Loop through the action items:
   $node = $vars['node'];
-  $vars['action_items'] = dosomething_project_get_field_collection_values($node, 'field_action_items', 'action_item');
+  $vars['action_items'] = array();
+  if (module_exists('dosomething_project')) {
+    // Loop through the action items:
+    $vars['action_items'] = dosomething_project_get_field_collection_values($node, 'field_action_items', 'action_item');
+  }
 }
-//$faq = dosomething_project_get_field_collection_values($node, 'field_faq', 'faq');
 
 /**
  * Implements hook_preprocess_hook().
  */
 function doit_preprocess_project_section_faq(&$vars) {
-  // Loop through the action items:
   $node = $vars['node'];
-  $vars['faq_items'] = dosomething_project_get_field_collection_values($node, 'field_faq', 'faq');
+  $vars['faq_items'] = array();
+  if (module_exists('dosomething_project')) {
+    // Loop through the FAQ:
+    $vars['faq_items'] = dosomething_project_get_field_collection_values($node, 'field_faq', 'faq');
+  }
 }
 
 /**
@@ -917,18 +922,24 @@ function doit_preprocess_project_section_header(&$vars) {
  * Implements hook_preprocess_hook().
  */
 function doit_preprocess_project_section_project_info(&$vars) {
-  // Loop through the action items:
   $node = $vars['node'];
-  $vars['project_info_items'] = dosomething_project_get_field_collection_values($node, 'field_project_info_items', 'project_info_item');
+  $vars['project_info_items'] = array();
+  if (module_exists('dosomething_project')) {  
+    // Loop through the project info items:
+    $vars['project_info_items'] = dosomething_project_get_field_collection_values($node, 'field_project_info_items', 'project_info_item');
+  }
 }
 
 /**
  * Implements hook_preprocess_hook().
  */
 function doit_preprocess_project_section_project_profiles(&$vars) {
-  // Loop through the action items:
   $node = $vars['node'];
-  $vars['profiles'] = dosomething_project_get_field_collection_values($node, 'field_project_profiles', 'project_profile');
+  $vars['profiles'] = array();
+  if (module_exists('dosomething_project')) { 
+    // Loop through the project profiles:
+    $vars['profiles'] = dosomething_project_get_field_collection_values($node, 'field_project_profiles', 'project_profile');
+  }
 }
 
 /**
@@ -937,6 +948,22 @@ function doit_preprocess_project_section_project_profiles(&$vars) {
 function doit_preprocess_project_section_prizes(&$vars) {
   // Loop through the action items:
   $node = $vars['node'];
-  $vars['prizes'] = dosomething_project_get_field_collection_values($node, 'field_prizes', 'prize');
-  $vars['rules_url'] = file_create_url($node->field_rules_regs_file[LANGUAGE][0]['uri']);
+  $vars['prizes'] = array();
+  if (module_exists('dosomething_project')) { 
+    $vars['prizes'] = dosomething_project_get_field_collection_values($node, 'field_prizes', 'prize');
+  }
+  $vars['rules_url'] = file_create_url($node->field_rules_regs_file[LANGUAGE_NONE][0]['uri']);
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_sponsors(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $vars['sponsors'] = array();
+  if (module_exists('dosomething_project')) {  
+    // Loop through the sponsors :
+    $vars['sponsors'] = dosomething_project_get_field_sponsors_values($node);
+  }
 }

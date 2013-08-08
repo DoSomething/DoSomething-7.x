@@ -82,10 +82,24 @@ function dosomething_project_theme() {
 }
 
 /**
- * Return values in a node's field_collection.
+ * Return values of a given field collection in a given node.
+ *
+ * This function is only useful for field collections whose fields follow a specific naming convention.
+ *
+ * @param Object $node
+ *   Loaded node for which to return values from.
+ * @param string $field_collection_name
+ *   The machine name of the field collection field to return values from.
+* @param string $child_field_prefix
+ *   The prefix in machine name of the child fields, 
+ *   Only works for fields: field_CHILDPREFIX_image, field_CHILDPREFIX_title, field_CHILDPREFIX_copy.
+ *
+ * @return array
+ *   A multi-dimensional array for each value/row of the field collection.
  */
 function dosomething_project_get_field_collection_values($node, $field_collection_name, $child_field_prefix) {
-  // Field collecitons with no images:
+  $values = array();
+  // Define field_collecitons with no images:
   $no_image_fc = array('field_project_info_items', 'field_faq');
   $field_collection_fields = field_get_items('node', $node, $field_collection_name);
   // Extract the field collection item ids:
@@ -93,19 +107,58 @@ function dosomething_project_get_field_collection_values($node, $field_collectio
   foreach ($field_collection_fields as $fc_field) {
     $ids[] = $fc_field['value'];
   }
-  $items = field_collection_item_load_multiple($ids);
-  $i = 0;
-  foreach($items as $item) {
-  	if (!in_array($field_collection_name, $no_image_fc)) {
-	    $image = field_get_items('field_collection_item', $item, 'field_' . $child_field_prefix . '_image');
-	    $values[$i]['image']['uri'] = file_create_url($image[0]['uri']);
-	    $values[$i]['image']['alt'] = $image[0]['alt'];
+  if (!empty($ids)) {
+    $items = field_collection_item_load_multiple($ids);
+    $i = 0;
+    foreach($items as $item) {
+      // If this field collection doesn't have an image field, don't query for an image.
+    	if (!in_array($field_collection_name, $no_image_fc)) {
+        // Get field_CHILDPREFIX_image values.
+  	    $image = field_get_items('field_collection_item', $item, 'field_' . $child_field_prefix . '_image');
+  	    $values[$i]['image']['uri'] = file_create_url($image[0]['uri']);
+  	    $values[$i]['image']['alt'] = $image[0]['alt'];
+      }
+      // Get field_CHILDPREFIX_title value.
+      $title = field_get_items('field_collection_item', $item, 'field_' . $child_field_prefix . '_title');
+      $values[$i]['title'] = $title[0]['safe_value'];
+      // Get field_CHILDPREFIX_copy value.
+      $copy = field_get_items('field_collection_item', $item, 'field_' . $child_field_prefix . '_copy');
+      $values[$i]['copy'] = $copy[0]['safe_value'];
+      $i++;
     }
-    $title = field_get_items('field_collection_item', $item, 'field_' . $child_field_prefix . '_title');
-    $values[$i]['title'] = $title[0]['safe_value'];
-    $copy = field_get_items('field_collection_item', $item, 'field_' . $child_field_prefix . '_copy');
-    $values[$i]['copy'] = $copy[0]['safe_value'];
-    $i++;
+  }
+  return $values;
+}
+
+/**
+ * Return the values of the Sponors field collection in a given node.
+ *
+ * The sponsors field collection doesn't use same fields as the others, so 
+ * we can't use the general dosomething_project_get_field_collection_values() 
+ * to grab them.
+ *
+ * @param Object $node
+ *   Loaded node for which to return values from.
+ *
+ */
+function dosomething_project_get_field_sponsors_values($node) {
+  $values = array();
+  $field_collection_fields = field_get_items('node', $node, 'field_sponsors');
+  $ids = array();
+  foreach ($field_collection_fields as $fc_field) {
+    $ids[] = $fc_field['value'];
+  }
+  if (!empty($ids)) {
+    $items = field_collection_item_load_multiple($ids);
+    $i = 0;
+    foreach($items as $item) {
+      $image = field_get_items('field_collection_item', $item, 'field_sponsor_logo');
+      $values[$i]['image']['uri'] = file_create_url($image[0]['uri']);
+      $values[$i]['image']['alt'] = $image[0]['alt'];
+      $link = field_get_items('field_collection_item', $item, 'field_sponsor_url');
+      $values[$i]['url'] = $link[0]['value'];
+      $i++;
+    }
   }
   return $values;
 }
