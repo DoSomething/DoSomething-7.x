@@ -143,10 +143,10 @@ class FeatureContext extends MinkContext
         if ($driver instanceof Behat\Mink\Driver\Selenium2Driver) {
           $step = $event->getStep();
           $path = array(
-             'date' => date("Ymd-Hi"),
-             'feature' => $step->getParent()->getFeature()->getTitle(),
-             'scenario' => $step->getParent()->getTitle(),
-             'step' => $step->getType() . ' ' . $step->getText()
+            'date' => date("Ymd-Hi"),
+            'feature' => $step->getParent()->getFeature()->getTitle(),
+            'scenario' => $step->getParent()->getTitle(),
+            'step' => $step->getType() . ' ' . $step->getText()
           );
           $path = preg_replace('/[^\-\.\w]/', '_', $path);
           $filename = __DIR__ . '/../screenshots/' .  implode('/', $path) . '.jpg';
