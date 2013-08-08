@@ -42,7 +42,6 @@ function ds_neue_library() {
     ),
     'css' => array(
       libraries_get_path('ds-neue') . '/assets/application.css' => array(),
-      libraries_get_path('ds-neue') . '/assets/campaign.css' => array(),
     ),
   );
 
