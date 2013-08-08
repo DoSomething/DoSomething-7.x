@@ -33,21 +33,14 @@
 
   <?php print render($content['project_info']); ?>
 
-  <?php print render($content['profect_profiles']); ?>
+  <?php print render($content['project_profiles']); ?>
 
   <?php print render($content['faq']); ?>
 
-  <footer class="sponsor full-width" id="sponsor">
-    <h3>Sponsored by:</h3>
-
-    <p>
-      <a href="#"> <img src="images/placeholder.png" alt="x placeholder"></a>
-      <a href="#"> <img src="images/placeholder.png" alt="x placeholder"></a>
-    </p>
-  </footer>
+  <?php print render($content['sponsors']); ?>
 
   <footer class="contact" id="footer">
-    <p>Questions? E-mail <a href="mailto:help@dosomething.org">help@dosomething.org</a>!</p>
+    <p>Questions? E-mail <a href="mailto:<?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?>"><?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?></a>!</p>
   </footer>
 
   <!--

@@ -294,12 +294,15 @@ function doit_preprocess_node(&$vars) {
       $vars['is_prizes'] = TRUE;
       $vars['content']['prizes']['#markup'] = theme('project_section_prizes', $params);
     }
-    // Section - SMS referral:
+    // Section - SMS Example:
     //@todo: is_sms_referral check
     $vars['content']['sms_example']['#markup'] = theme('project_section_sms_example', $params);
     // Section - SMS referral:
     //@todo: is_sms_referral check
     $vars['content']['sms_referral']['#markup'] = theme('project_section_sms_referral', $params);
+    // Section - Sponsors:
+    //@todo: sponsrs check
+    $vars['content']['sponsors']['#markup'] = theme('project_section_sponsors', $params);
 
   }
 }
@@ -896,6 +899,16 @@ function doit_preprocess_project_section_action_items(&$vars) {
   // Loop through the action items:
   $node = $vars['node'];
   $vars['action_items'] = dosomething_project_get_field_collection_values($node, 'field_action_items', 'action_item');
+}
+//$faq = dosomething_project_get_field_collection_values($node, 'field_faq', 'faq');
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_faq(&$vars) {
+  // Loop through the action items:
+  $node = $vars['node'];
+  $vars['faq_items'] = dosomething_project_get_field_collection_values($node, 'field_faq', 'faq');
 }
 
 /**
