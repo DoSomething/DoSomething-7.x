@@ -859,11 +859,13 @@ function doit_css_alter(&$css) {
   if ($node && $node->type == 'project') {
     $styles = array();
 
+    // @todo - optimize me
+    $whitelist = array('ds-neue', 'contextual', 'admin_menu');
     foreach($css as $path => $info) {
-      if (strpos($path,'ds-neue') !== false) {
-
-
-          $styles[$path] = $info;
+      foreach($whitelist as $namespace) {
+        if (strpos($path, $namespace) !== false) {
+            $styles[$path] = $info;
+        }
       }
     }
 
