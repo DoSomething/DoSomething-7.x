@@ -55,7 +55,9 @@ class WebTestSuite extends DrupalWebTestCase {
     if (!empty(self::$garbage) && is_array(self::$garbage)) {
       foreach (self::$garbage as $type => $trash) {
         $function = "{$type}_delete_multiple";
-        $function($trash);
+        if (function_exists($function)) {
+          $function($trash);
+        }
       }
     }
 
