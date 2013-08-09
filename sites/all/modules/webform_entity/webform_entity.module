@@ -939,7 +939,7 @@ function webform_entity_og_context_handler() {
 function webform_entity_node_delete($node) {
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   $submissions = webform_get_submissions(array('nid' => $node->nid));
-  foreach ($submisisons as $submission) {
+  foreach ($submissions as $submission) {
     webform_submission_delete($node, $submission);
   }
 }

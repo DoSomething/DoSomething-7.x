@@ -4,7 +4,7 @@ Feature: Share a Stat tests
   And read about the rules on a campaign.
 
   Background:
-    Given I am on "/women"
+    And I am on "/women"
 
   Scenario: See the basic stuff
     Then I should see "Help 25,000 women in need"

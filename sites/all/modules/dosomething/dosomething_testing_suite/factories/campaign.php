@@ -9,7 +9,7 @@ class Campaign extends Factory {
   protected $default = array(
     'type' => 'campaign',
     'revision_id' => 0,
-    'title' => 'Campaign title',
+    'title' => 'Testing Campaign',
     'body' => 'dogs',
     'field_campaign_teaser' => 'Test campaign teaser',
     'group_group' => array(
@@ -56,8 +56,8 @@ class Campaign extends Factory {
     ),
     'field_gate_page_title' => '',
     'field_gate_subheadline' => 'Sub headline',
-    'field_has_gate' => 1,
-    'field_is_gate_login_signup' => 1,
+    'field_has_gate' => 0,
+    'field_is_gate_login_signup' => 0,
     'field_mandrill_key' => '',
     'field_mc_optin' => 0,
     'field_gate_color' => '',
@@ -76,6 +76,7 @@ class Campaign extends Factory {
   }
 
   private function build_factory() {
-    return $this->drupalCreateNode($this->default);
+    $node = $this->drupalCreateNode($this->default);
+    return $node;
   }
 }
