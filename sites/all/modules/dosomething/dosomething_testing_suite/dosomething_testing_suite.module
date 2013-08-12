@@ -15,6 +15,7 @@ class WebTestSuite extends DrupalWebTestCase {
   protected $logged_in;
   # This magically fixes an exception thrown occasionally.
   protected $public_files_directory;
+  protected static $garbage = array();
 
   /**
    * By default, Drupal install a new instance of itself before every test is run.
@@ -29,14 +30,78 @@ class WebTestSuite extends DrupalWebTestCase {
   }
 
   /**
+   * Marks an array of IDs for garbage collection at the end of tests.
+   *
+   * @param int $id
+   *   An ID to throw into the garbage later.
+   *
+   * @param string $type (node)
+   *   The type of entity we're talking about.  This will be the prefix for
+   *   the *_delete_multiple() function call. 
+   */
+  public function throwOut($id, $type = 'node') {
+    if (!isset(self::$garbage[$type])) {
+      self::$garbage[$type] = array();
+    }
+
+    self::$garbage[$type][] = $id;
+  }
+
+  /**
+   * Collects entities that were created during testing and removes them.
+   */
+  public function collectGarbage() {
+    // Delete all nodes / users / etc. that were created.
+    if (!empty(self::$garbage) && is_array(self::$garbage)) {
+      foreach (self::$garbage as $type => $trash) {
+        $function = "{$type}_delete_multiple";
+        if (function_exists($function)) {
+          $function($trash);
+        }
+      }
+    }
+
+    // Get default prefix (if applicable).
+    $connection_info = Database::getConnectionInfo('default');
+    $prefix = $connection_info['default']['prefix']['default'];
+    $prefix_length = strlen($prefix);
+
+    // Find all tables with "simpletest" as a part of it.
+    $tables = db_find_tables('%simpletest%');
+
+    // Get simpletest module schema tables so we don't delete them.
+    $nodelete = array_keys(drupal_get_schema_unprocessed('simpletest'));
+
+    // Delete all temporary simpletest tables.
+    foreach ($tables AS $table) {
+      if (!in_array($table, $nodelete)) {
+        if (db_drop_table(substr($table, $prefix_length))) {
+          unset($tables[$table]);
+        }
+      }
+    }
+  }
+
+  /**
    * Overwrites default tearDown() method to log out a potentially logged in user.
-   * @todo: Garbage collection
    */
   public function tearDown() {
+    $this->collectGarbage();
     if (isset($this->user) && $this->logged_in) {
       $GLOBALS['user'] = drupal_anonymous_user();
     }
   }
+
+  /**
+   * Ovewrites drupalCreateNode to automatically collect garbage.
+   * @see DrupalWebTestCase::drupalCreateNode()
+   */
+  public function drupalCreateNode($settings = array()) {
+    $node = parent::drupalCreateNode($settings);
+    $this->throwOut($node->nid);
+    return $node;
+  }
+
 
   /**
    * Logs in the currently assigned user.

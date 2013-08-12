@@ -5,69 +5,404 @@
  * Optimizely Tests
  */
 
- /**
+/**
  * Web Tests
+ * 
+ * OptimizelyTestModuleSetupCase: Check default database sets up correctly.
  */
-class OptimizelyTestCase extends DrupalWebTestCase {
+
+ 
+ 
+/**
+ * OptimizelyTestUserRoleTestCase: Create anonymous, authenticated and privileged user to test access to module related pages.
+ */
+class OptimizelyTestUserRoleTestCase extends DrupalWebTestCase {
+	
+	//Public, Private, Protected: http://stackoverflow.com/questions/4361553/php-public-private-protected
+  protected $anonymous_user;
+  protected $authenticated_user;
   protected $privileged_user;
 
 /**
- * OptimizelyTestCase getInfo().
+ * OptimizelyTestAdminRoleCase getInfo().
  */
   public static function getInfo() {
     return array(
-      'name' => 'Optimizely Test',
-      'description' => 'Ensure that the Optimizely module functions properly.',
+      'name' => 'Access Test',
+      'description' => 'Test that no part of the Optimizely module administration interface can be accessed without the necessary permissions.',
       'group' => 'Optimizely',
     );
   }
 
 /**
- * OptimizelyTestCase setUp().
+ * OptimizelyTestAdminRoleCase setUp().
  */
   public function setUp() {
-    parent::setUp('optimizely');  // Enable any modules required for the test
-    // Create and log in our user. The user has the arbitrary privilege
-    // 'extra special edit any Optimizely project' which the code uses
-    // to grant access.
-    $this->privileged_user = $this->drupalCreateUser(array('administer optimizely'));
-    $this->drupalLogin($this->privileged_user);
+		
+		// Enable any modules required for the test
+    parent::setUp('optimizely');
+		
+		$this->anonymous_user = $this->drupalCreateUser(array());
+		
+		$this->authenticated_user = $this->drupalCreateUser(array(
+			'access content'));
+		
+    // Create and log in an admin user. The user will have the privilege
+		// 'administer optimizely'. This privaged is need to access all administration
+		// functionality of the module.
+    $this->privileged_user = $this->drupalCreateUser(array(
+		  'administer optimizely',
+			'create page content',
+			'edit own page content',
+			'administer url aliases',
+			'create url aliases'));
+
+	}
+	
+/**
+ * OptimizelyTestAdminRoleCase testOptimizelyTestUserRolePublicAccess()
+ */
+  public function testOptimizelyTestUserRolePublicAccess() {
+		
+		for ($i = 1; $i <= 2; $i++) {
+			
+			if ($i == 1) {
+				
+				$target = $i . '. <strong>Anonymous</strong>';
+			  $this->drupalLogin($this->anonymous_user);
+				
+			}
+			else {
+				
+				$target = $i . '. <strong>Authenticated</strong>';
+				$this->drupalLogin($this->authenticated_user);
+				
+			}
+			
+			// Tests
+			$this->drupalGet('admin/config/system/optimizely');
+			$this->assertNoRaw('<h1 class="page-title">Optimizely</h1>', $target . ' user *<strong>can not</strong>* access project listing page -> admin/config/system/optimizely');
+			
+			$this->drupalGet('admin/config/system/optimizely/default');
+			$this->assertNoRaw('<h1 class="page-title">Optimizely</h1>', $target . ' user *<strong>can not</strong>* access project listing page -> admin/config/system/optimizely/default');
+			
+			$this->drupalGet('admin/config/system/optimizely/add_update');
+			$this->assertNoRaw('<h1 class="page-title">Optimizely</h1>', $target . ' user *<strong>can not</strong>* access project add form page -> admin/config/system/optimizely/add_update');
+			
+			$this->drupalGet('admin/config/system/optimizely/settings');
+			$this->assertNoRaw('<h1 class="page-title">Optimizely</h1>', $target . ' user *<strong>can not</strong>* access settings page -> admin/config/system/optimizely/settings');
+			
+			$this->drupalGet('ajax/optimizely');
+			$this->assertNoRaw('<h1 class="page-title">Optimizely</h1>', $target . ' user *<strong>can not</strong>* access AJAX callback URL -> ajax/optimizely');
+			
+			$this->drupalLogout();
+			
+		}
+
+  }
+	
+/**
+ * OptimizelyTestAdminRoleCase testOptimizelyTestUserRoleAdminAccess()
+ */
+  public function testOptimizelyTestUserRoleAdminAccess() {
+		
+		$this->drupalLogin($this->privileged_user);
+		
+		$this->drupalGet('admin/config/system/optimizely');
+		$this->assertNoRaw('Access denied', '** <strong>Admin user can access</strong> project listing page -> admin/config/system/optimizely');
+		
+		$this->drupalGet('admin/config/system/optimizely/default');
+		$this->assertNoRaw('Access denied', '** <strong>Admin user can access</strong> project listing page -> admin/config/system/optimizely/default');
+		
+		$this->drupalGet('admin/config/system/optimizely/add_update');
+		$this->assertNoRaw('Access denied', '** <strong>Admin user can access</strong> add project form page -> admin/config/system/optimizely/add_update');
+		
+		$this->drupalGet('admin/config/system/optimizely/settings');
+		$this->assertNoRaw('Access denied', '** <strong>Admin user can access</strong> settings page -> admin/config/system/optimizely/settings');
+		
+		// $this->drupalGet('ajax/optimizely');
+		// $this->assertNoRaw('Access denied', 'Admin user can access AJAX callback URL -> ajax/optimizely');
+		
+		$this->drupalLogout();
+		
+
+//		admin/config/system/optimizely/add_update/%	
+//		admin/config/system/optimizely/delete/%
+
   }
 
- /**
-   * Detect if we're running on PIFR testbot; skip intentional failure in that
-   * case. It happens that on the testbot the site under test is in a directory
-   * named 'checkout' or 'site_under_test'.
-   *
-   * @return boolean
-   *   TRUE if running on testbot.
-   */
-  public function runningOnTestbot() {
-    return (file_exists("../checkout") || file_exists("../site_under_test"));
-  }
 }
 
 /**
- * Unit Tests
+ * OptimizelyTestDefaultProjectTestCase: Test that:
+ *
+ * 1. The default project is available but disabled in the project listing page after the module has been enabled.
+ * 2. A message in the project listing page directs the administrator to go to the module settings page to enter the Optimizely account value.
+ * 3. Accessing the account setting page should be blank by default with a message informing the user that the account setting will be used
+ *    for the default project number.
+ * 4. Test adding the account setting redirects to the project listing page with the account number listed as the disabled project dumber for the
+ *    default project entry.
+ * 5. The default project can not be enabled until the account number is entered on the settings page.
+ * 6. Enabling the default project with the default path setting of side wide "*" should result in the snippet being displayed on the sites front page.
  */
-class OptimizelyUnitTestCase extends DrupalUnitTestCase {
+class OptimizelyTestDefaultProjectTestCase extends DrupalWebTestCase {
+	
+	protected $anonymous_user;
+  protected $authenticated_user;
+  protected $privileged_user;
+	
+	protected $optimizely_account_id;
 
 /**
- * OptimizelyUnitTestCase getInfo().
+ * OptimizelyTestDefaultProjectTestCase getInfo().
  */
   public static function getInfo() {
     return array(
-      'name' => 'Optimizely unit tests',
-      'description' => 'Perform unit tests.',
+      'name' => 'Default Project Test',
+      'description' => 'Test the exsistence of a disabled default project entry that when enabled after adding the Optimizely account ID results in the default snippeting being added to the front page (default) of the site.',
       'group' => 'Optimizely',
     );
   }
 
 /**
- * OptimizelyUnitTestCase setUp().
+ * OptimizelyTestDefaultProjectTestCase setUp().
  */
-  function setUp() {
-    drupal_load('module', 'optimizely');
-    parent::setUp();
+  public function setUp() {
+		
+		// Enable any modules required for the test
+    parent::setUp('optimizely');
+		
+		$this->anonymous_user = $this->drupalCreateUser(array());
+		
+		$this->authenticated_user = $this->drupalCreateUser(array(
+			'access content'));
+		
+    // Create and log in an admin user. The user will have the privilege
+		// 'administer optimizely'. This privaged is need to access all administration
+		// functionality of the module.
+    $this->privileged_user = $this->drupalCreateUser(array(
+		  'administer optimizely',
+			'create page content',
+			'edit own page content',
+			'administer url aliases',
+			'create url aliases'));
+
+	}
+	
+	/*
+	 * 1. The default project is available but disabled in the project listing page
+	 *    after the module has been enabled.
+	 * 2. A message in the project listing page directs the administrator to go to
+	 *    the module settings page to enter the Optimizely account value.
+   * 5. The default project can not be enabled until the account number is entered on the settings page.
+	 */
+  public function testOptimizelyTestDefaultProjectEnable() {
+		
+		// Access with privileged user
+		$this->drupalLogin($this->privileged_user);		
+		
+		// Look for entry in project listing page
+		$this->drupalGet('admin/config/system/optimizely');
+		$this->assertRaw('<td class="project-title-column disabled">Default</td>', '** <strong>Default project entry fround on project listing page.</strong>');
+		
+		// Confirm default project is not enabled
+		$this->assertRaw('<input id="project-enable-1" name="project-1" type="checkbox" value="1" class="form-checkbox" />', '** <strong>Default project is not enabled.</strong>');
+		
+		// Link to complete default project setup available
+		$this->assertRaw('<strong><a href="/admin/config/system/optimizely/settings">Account Info</a></strong>', '** <strong>Link from default project to module settings page available.</strong>');
+		
+		// Navigate to Edit form for Default project
+		$this->drupalGet('admin/config/system/optimizely/add_update/1');
+		
+		// Title field set to Default, not accessable
+		$this->assertRaw('<input disabled="disabled" type="text" id="edit-optimizely-project-title" name="optimizely_project_title" value="Default"', '** <strong>Project title field is not editable and set to "Default"</strong>.');
+		
+		// Project Code field not set (Undefined), not accessable
+		$this->assertRaw('<input disabled="disabled" type="text" id="edit-optimizely-project-code" name="optimizely_project_code" value="Undefined"', '** <strong>Project code field is not editable and set to "Undefined".</strong>');
+		
+		// Link to settings page to set account / Default project code
+		$this->assertRaw('<a href="/admin/config/system/optimizely/settings">', '** <strong>Link to settings page found to set Default project code.</strong>');
+
+		// Check default Default project path is set to site wide wild card
+		$this->assertRaw('name="optimizely_path" cols="100" rows="6" class="form-textarea">*</textarea>', '** <strong>Default project path set to site wide wild card "*".</strong>');
+		
+		// * 5. The default project can not be enabled until the account number is entered on the settings page.
+
+    $this->drupalLogout();
+	
+	}
+	
+	/*
+   * 3. Accessing the account setting page should be blank by default with a message informing the user that the account setting will be used
+   *    for the default project number.
+   * 4. Test adding the account setting redirects to the project listing page with the account number listed as the disabled project number for the
+   *    default project entry.
+	 */
+ 
+  public function testOptimizelyTestDefaultProjectSettings() {
+		
+		// Access with privileged user
+		$this->drupalLogin($this->privileged_user);
+		
+		// Access generate module settings page
+		$this->drupalGet('admin/config/system/optimizely/settings');
+		
+		// Check for blank setting (default)
+		$this->assertFieldByName('optimizely_id', NULL, '** <strong>The Optimizely ID field is blank.</strong>');
+		
+		// Add Optimizely account setting
+		$this->optimizely_account_id = rand(1000000,9999999);
+		$edit = array(
+			'optimizely_id' => $this->optimizely_account_id,
+  	);
+		$this->drupalPost('admin/config/system/optimizely/settings', $edit, t('Submit'));
+		
+		// Check that redirect to project page worked after entering Optimizely account ID in setting page
+		// $this->assertUrl('/admin/config/system/optimizely', $options = array(), 'Redirected to project listing page -> /admin/config/system/optimizely after submitting Optimizely account ID on setting page.');
+		
+		$this->drupalGet('/admin/config/system/optimizely');
+		
+		// Check that the newly entered Optimizely ID is now listed as the project ID for the Default project
+		$this->assertRaw('<td class="project-code-column disabled">' . $this->optimizely_account_id . '</td>', '** <strong>Default project is using the Optimizely account setting for project ID -> ' . $this->optimizely_account_id . '.</strong>');
+		
+		// Access add / edit project page for default project
+		$this->drupalGet('/admin/config/system/optimizely/add_update/1');
+		
+	  // Check the project ID setting matches the Optimizely Account ID setting.
+		$this->assertFieldByName('optimizely_project_code', $this->optimizely_account_id, '** <strong>The Optimizely Project Code matches the Optimizely account ID setting.</strong>');
+
+		// Enable the Default project
+		$edit = array(
+			'optimizely_enabled' => 1,
+  	);
+		$this->drupalPost('/admin/config/system/optimizely/add_update/1', $edit, t('Update'));
+		
+		// Go to project listings page
+		$this->drupalGet('admin/config/system/optimizely');
+		
+		// Confirm default project *is* enabled
+		$this->assertRaw('<input id="project-enable-1" name="project-1" checked="checked" type="checkbox" value="1" class="form-checkbox" />', '** <strong>Default project *is* enabled on project listing page.</strong>');
+		
+		$this->drupalLogout();
+		
+	}
+	
+  public function testOptimizelyTestDefaultProjectListing() {
+		
+		// Access with privileged user
+		$this->drupalLogin($this->privileged_user);
+		
+		// Go to project listings page
+		$this->drupalGet('admin/config/system/optimizely');
+
+		// Confirm default project is *enabled*
+		$this->assertRaw('<td class="enable-column enabled">', '** <strong>Default project is enabled on project listing page.</strong>');
+
+		$edit = array(
+			'target_oid' => 1,
+			'target_enable' => 0,
+  	);
+		$this->drupalPostAJAX('ajax/optimizely', $edit, 'project-1');
+		
+		// Confirm default project is *disabled*
+		$this->assertRaw('<td class="enable-column disabled">', '** <strong>Default project is disabled on project listing page.</strong>');
+		
+		
+		$this->drupalLogout();
+		
+	}
+	
+}
+
+
+	
+class OptimizelyTestPageSnippetTestCase extends DrupalWebTestCase {
+	
+	protected $anonymous_user;
+  protected $authenticated_user;
+  protected $privileged_user;
+
+/**
+ * OptimizelyTestPageSnippetTestCase getInfo().
+ */
+  public static function getInfo() {
+    return array(
+      'name' => 'Presence of Optimizely Javascript Snippet Test',
+      'description' => 'Test the presence of the Optimizely snippet (Javascript call) on pages (paths) defined in project entries.',
+      'group' => 'Optimizely',
+    );
   }
+
+/**
+ * OptimizelyTestPageSnippetTestCase setUp().
+ */
+  public function setUp() {
+		
+		// Enable any modules required for the test
+    parent::setUp('optimizely');
+		
+		$this->anonymous_user = $this->drupalCreateUser(array());
+		
+		$this->authenticated_user = $this->drupalCreateUser(array(
+			'access content'));
+		
+    // Create and log in an admin user. The user will have the privilege
+		// 'administer optimizely'. This privaged is need to access all administration
+		// functionality of the module.
+    $this->privileged_user = $this->drupalCreateUser(array(
+		  'administer optimizely',
+			'create page content',
+			'edit own page content',
+			'administer url aliases',
+			'create url aliases'));
+		
+		/*
+		 * Pages
+		 * 1. 1 x page (node/x), no alias
+		 * 2. 1 x page, article
+		 * 2. 3 x page (node/x), 2 x alias - "article/one, article/two"
+		 * 3. 2 x sub page (node/x), 2 x alias - "article/one/sub, article/two/sub"
+		 * 4. <front>, node/x, article/three
+		 *
+		 * Projects
+		 * 1. node/x,
+		 * 2. article/one
+		 * 3. node/x, article/one, node/x
+		 * 4. article/one, node/x, article/two
+		 * 5. node/*
+		 * 6. article/* <-- Multi matches: article, article/one, article/two, article/one/sub, article/two/sub
+		 * 7. <front> (article/one)
+		 * 8. <front>, article/one <-- non unique path
+		 * 9. node/*, article/* <-- non unique path
+		 * 10. article/one/* <-- Multi matches: article/one/sub
+		 * 11. article, article/one, article/one/*
+		 * 12. article, node/x, article/one, article/two/*
+		 * 13. node/x, article/one, article/two/*, user, user/*
+		 * 14. article/one?param=xx&parm2=xxx
+		 * 15. node/x, article/one, article/two/*, user/*, article?param=xx&parm2=xxx
+		 *
+		 * ++ multi projects enabled
+		 */
+		
+		// Test page creation
+		
+		// Test Project creation
+  	$edit = array(
+			'optimizely_project_title' => $this->randomName(8),
+			'optimizely_project_code' => rand(0,10000),
+			'optimizely_path' => $this->randomName(8),
+			'optimizely_include' => rand(0, 1),
+			'optimizely_enabled' => rand(0, 1),
+  	);
+  	$this->drupalPost('admin/config/system/optimizely/add_update', $edit, t('Add'));
+
+	}
+	
+  /*
+	 * 1. 
+	 */
+  public function testOptimizelyTestPageSnippetTestForPresence() {
+		
+	}
+
 }

@@ -111,8 +111,6 @@ function optimizely_install() {
   else {
 
     // Create default entry
-    // Load Optimizely account code - used for default project snippet ID for javascript file name
-    $account_id = variable_get('optimizely_id', 0);
 
     $default_entry_created = (bool) db_insert('optimizely')
       ->fields(
@@ -121,7 +119,7 @@ function optimizely_install() {
           'include' => 1,
           'enabled' => 0,
           'path' => serialize( array('*') ),
-          'project_code' => $account_id,
+          'project_code' => 0,
         )
       )
       ->execute();
@@ -242,15 +240,31 @@ function optimizely_update_7210(&$sandbox) {
     ))
     ->execute();
 
-  // Inform the administrator that all projects have been disabled
-  if ($disabled_projects) {
-    drupal_set_message(st('All Optimizely project entries have been disabled. Reenable each project on the') . ' ' .
-        l(st('project listing Adminstration page'), '/admin/config/system/optimizely') . ' ' .
-        st('to ensure that the settings pass new validation functionality. Each entry must have valid paths that point to functional paths that are unique to the entry.'),
-      'status');
-  }
-  else {
-    drupal_set_message(st('An error was encountred resetting all of the project entries to disabled for the Optimizely module.'), 'error');
-  }
+	 drupal_set_message(st('All Optimizely project entries have been disabled. Reenable each project on the') . ' ' .
+			 l(st('project listing Adminstration page'), '/admin/config/system/optimizely') . ' ' .
+			 st('to ensure that the settings pass new validation functionality. Each entry must have valid paths that point to functional paths that are unique to the entry.'),
+		 'status');
+
+}
+
+/**
+ * Disable all project entries to ensure that validatation tests are run on
+ * each entry when enabled. Validation includes valid and unique paths.
+ *
+ * Again...
+ */
+function optimizely_update_7211(&$sandbox) {
+
+  // Update all database project entries to disabled
+  $disabled_projects = (bool) db_update('optimizely')
+    ->fields(array(
+      'enabled' => 0,
+    ))
+    ->execute();
+
+	 drupal_set_message(st('All Optimizely project entries have been disabled. Reenable each project on the') . ' ' .
+			 l(st('project listing Adminstration page'), '/admin/config/system/optimizely') . ' ' .
+			 st('to ensure that the settings pass new validation functionality. Each entry must have valid paths that point to functional paths that are unique to the entry.'),
+		 'status');
 
 }
