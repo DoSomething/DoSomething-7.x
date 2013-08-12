@@ -279,72 +279,6 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
-  // Exported field: 'field_collection_item-field_faq-field_faq_answer'.
-  $fields['field_collection_item-field_faq-field_faq_answer'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_faq_answer',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_faq',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 1,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_faq_answer',
-      'label' => 'Answer',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '1',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '5',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '34',
-      ),
-    ),
-  );
-
   // Exported field: 'field_collection_item-field_faq-field_faq_copy'.
   $fields['field_collection_item-field_faq-field_faq_copy'] = array(
     'field_config' => array(
@@ -406,73 +340,6 @@ function dosomething_project_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '32',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_faq-field_faq_question'.
-  $fields['field_collection_item-field_faq-field_faq_question'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_faq_question',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_faq',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_faq_question',
-      'label' => 'Question',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
         'weight' => '32',
       ),
     ),
@@ -1460,7 +1327,7 @@ function dosomething_project_field_default_fields() {
             'view_mode' => 'full',
           ),
           'type' => 'field_collection_view',
-          'weight' => '12',
+          'weight' => 12,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1530,7 +1397,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '11',
+          'weight' => 11,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1602,7 +1469,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '14',
+          'weight' => 14,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1676,7 +1543,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_default',
-          'weight' => '13',
+          'weight' => 13,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1813,7 +1680,7 @@ function dosomething_project_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '2',
+          'weight' => 2,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1955,7 +1822,7 @@ function dosomething_project_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '3',
+          'weight' => 3,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2094,7 +1961,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '9',
+          'weight' => 9,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2167,7 +2034,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '7',
+          'weight' => 7,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2240,7 +2107,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '6',
+          'weight' => 6,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2312,7 +2179,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '25',
+          'weight' => 25,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2381,7 +2248,7 @@ function dosomething_project_field_default_fields() {
             'view_mode' => 'full',
           ),
           'type' => 'field_collection_view',
-          'weight' => '16',
+          'weight' => 16,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2524,7 +2391,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '15',
+          'weight' => 15,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2597,7 +2464,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '19',
+          'weight' => 19,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2669,7 +2536,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '18',
+          'weight' => 18,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2742,7 +2609,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '17',
+          'weight' => 17,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2815,7 +2682,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '47',
+          'weight' => 47,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2887,7 +2754,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '45',
+          'weight' => 45,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -2960,7 +2827,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '41',
+          'weight' => 41,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3036,7 +2903,7 @@ function dosomething_project_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '46',
+          'weight' => 46,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3175,7 +3042,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '48',
+          'weight' => 48,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3248,7 +3115,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '44',
+          'weight' => 44,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3322,7 +3189,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '42',
+          'weight' => 42,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3394,7 +3261,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3468,7 +3335,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '43',
+          'weight' => 43,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3540,7 +3407,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '22',
+          'weight' => 22,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3613,7 +3480,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '21',
+          'weight' => 21,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3686,7 +3553,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '23',
+          'weight' => 23,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3759,7 +3626,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '34',
+          'weight' => 34,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3832,7 +3699,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '35',
+          'weight' => 35,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3905,7 +3772,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '10',
+          'weight' => 10,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -3974,7 +3841,7 @@ function dosomething_project_field_default_fields() {
             'view_mode' => 'full',
           ),
           'type' => 'field_collection_view',
-          'weight' => '29',
+          'weight' => 29,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4044,7 +3911,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '28',
+          'weight' => 28,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4116,7 +3983,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '27',
+          'weight' => 27,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4189,7 +4056,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '26',
+          'weight' => 26,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4349,7 +4216,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '31',
+          'weight' => 31,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4422,7 +4289,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '30',
+          'weight' => 30,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4491,7 +4358,7 @@ function dosomething_project_field_default_fields() {
             'view_mode' => 'full',
           ),
           'type' => 'field_collection_view',
-          'weight' => '32',
+          'weight' => 32,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4773,7 +4640,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_default',
-          'weight' => '8',
+          'weight' => 8,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4907,7 +4774,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '40',
+          'weight' => 40,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -4980,7 +4847,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '38',
+          'weight' => 38,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5053,7 +4920,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '39',
+          'weight' => 39,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5125,7 +4992,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '37',
+          'weight' => 37,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5199,7 +5066,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '36',
+          'weight' => 36,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5270,7 +5137,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '33',
+          'weight' => 33,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5339,7 +5206,7 @@ function dosomething_project_field_default_fields() {
             'view_mode' => 'full',
           ),
           'type' => 'field_collection_view',
-          'weight' => '5',
+          'weight' => 5,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5409,7 +5276,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '1',
+          'weight' => 1,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5485,7 +5352,7 @@ function dosomething_project_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '4',
+          'weight' => 4,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -5623,7 +5490,7 @@ function dosomething_project_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '24',
+          'weight' => 24,
         ),
         'teaser' => array(
           'label' => 'above',
