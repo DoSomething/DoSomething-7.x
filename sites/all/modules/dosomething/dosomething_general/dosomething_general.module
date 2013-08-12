@@ -262,6 +262,15 @@ function dosomething_general_theme($existing, $type, $theme, $path) {
         'form' => NULL,
       ),
     ),
+    // @todo: move these to theming layer
+    'main_menu' => array(
+        'template' => 'main_menu',
+        'variables' => array('menu' => NULL),
+    ),
+    'footer_menu' => array(
+        'template' => 'footer_menu',
+        'variables' => array('menu' => NULL),
+    ),
   );
 }
 

@@ -10,24 +10,20 @@ Feature: Content tests
     And I should see "CONNECT"
 
   Scenario: See a blog page
-    Given I am on "/blog/defense-marriage-act-doma-struck-down"
-    Then I should see "Cheat Sheet: DOMA Struck Down"
-    And I should see "On June 26, 2013, the gay rights movement saw a major win"
-    And I should see "Start a gay-straight alliance in your school"
-    And I should see "Related Posts"
-    And I should see "Related Causes"
+    Given there is a Blog
+    And I am on "/blog/blog-title"
+    Then I should see "Blog title"
+    And I should see "Hello world!"
 
   Scenario: See a Tips & Tools Page
-    Given I am on "/tipsandtools/11-facts-about-cyber-bullying"
-    Then I should see "11 Facts About Cyber Bullying"
-    And I should see "is defined as a young person tormenting, threatening"
-    And I should see "Related Stuff"
-    And I should see "Read more on facts about bullying"
+    Given there is a TipsAndTools
+    And I am on "/tipsandtools/test-tips-and-tools"
+    Then I should see "Test Tips and Tools"
+    And I should see "Hello world!"
 
   Scenario: See Act Now Guide
-    Given I am on "/actnow/actionguide/how-to-handle-bully"
-    Then I should see "How To: Handle a Bully"
+    Given there is a ActionGuide
+    And I am on "/actnow/actionguide/test-action-guide"
+    Then I should see "Test Action Guide"
     And I should see "DO THIS!"
-    And I should see "Follow the Golden Rule"
-    And I should see "Tell us what you're doing about this issue"
-    And I should see "Related Stuff"
+    And I should see "Hello world!"
