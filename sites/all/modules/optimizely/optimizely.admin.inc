@@ -787,8 +787,6 @@ function _optimizely_unique_paths($target_paths, $target_oid = NULL) {
               return array($project->project_title, $target_path);
             }
             
-            // Look for duplicate paths in submitted project due to wild cards
-            
           }
           
         } // If site wide wild card then it must be the only enabled path to be unique
