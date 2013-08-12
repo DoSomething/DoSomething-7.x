@@ -38,14 +38,14 @@
               // Toggle enable / disabled class
               if ($(target_this).attr('checked')) {
                 $(target_this).parents('tr').find('td').addClass('enabled').removeClass('disabled');
-                $(target_this).parents('tr').find('div.status-' + data.oid).attr("innerHTML","Project enabled successfully.");
-                $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).attr("innerHTML","").css('display', '') });
+                $(target_this).parents('tr').find('div.status-' + data.oid).text("Project enabled successfully." + data.message);
+                $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).text('').css('display', '') });
                 
               }
               else {
                 $(target_this).parents('tr').find('td').addClass('disabled').removeClass('enabled');
-                $(target_this).parents('tr').find('div.status-' + data.oid).attr("innerHTML","Project disabled successfully.");
-                $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).attr("innerHTML","").css('display', ''); });
+                $(target_this).parents('tr').find('div.status-' + data.oid).attr("innerHTML","Project disabled successfully." + data.message);
+                $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).text('').css('display', ''); });
               }
               
             }
@@ -59,8 +59,8 @@
               }
 
               // Display status message
-              $(target_this).parents('tr').find('div.status-' + data.oid).attr("innerHTML","Project was not enabled due to path setting resulting in a duplicate path.");
-              $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).attr("innerHTML","").css('display', ''); });
+              $(target_this).parents('tr').find('div.status-' + data.oid).text(data.message);
+              $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).text('').css('display', ''); });
             }
             
           },
@@ -69,8 +69,8 @@
             $(document).ready(function (data) {
               
               var target_this = '#project-enable-' + data.oid;
-              $(target_this).parents('tr').find('div.status-' + data.oid).attr("innerHTML","Loading....");
-              $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).attr("innerHTML","").css('display', ''); });
+              $(target_this).parents('tr').find('div.status-' + data.oid).text('Loading....');
+              $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).text('').css('display', ''); });
               
             });
             
@@ -80,8 +80,8 @@
             $(document).ready(function () {
 
               var target_this = '#project-enable-' + data.oid;
-              $(target_this).parents('tr').find('div.status-' + data.oid).attr("innerHTML","ERROR OCCURRED!");
-              $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).attr("innerHTML","").css('display', ''); });
+              $(target_this).parents('tr').find('div.status-' + data.oid).text('ERROR OCCURRED!');
+              $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).text('').css('display', ''); });
               
             });
             
