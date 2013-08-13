@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * Cleanup roles, users.
+ */
+function dosomething_permissions_update_7001() {
+  // Delete unused roles:
+  $kill_roles = array(
+  	'do something u',
+  	'furtographer',
+  	'grant alumni',
+  	'help desk',
+  	'huffpo loader',
+  	'project_police',
+  	'starbucks',
+  );
+  foreach ($kill_roles as $role) {
+  	user_role_delete($role);
+  }
+  // Rename "performance" role as "optimizely admin":
+  $role = user_role_load_by_name('performance');
+  if ($role) {
+	  $role->name = 'optimizely admin';
+	  user_role_save($role);
+  }
+
+  // @todo: Remove administrator role from staff:
+  // @todo: Grant staff content editor access:
+}
