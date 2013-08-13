@@ -247,31 +247,26 @@ function optimizely_init() {
           }
 
 				  if (strpos($project_path, '*') !== FALSE) {
-					 
-					  // Different conditions for include and exclued projects
-				    if ($project['include']) {
 
-						  // Sitewide wild card
-						  if ($project_path == '*') {
-                $add_snippet = TRUE;
-							  break 2;
-						  }
-						  else {
+						// Sitewide wild card
+						if ($project_path == '*') {
+							$add_snippet = TRUE;
+							break 2;
+						}
+						else {
 
-						    // Remove wildcard, get base path(s)
-						    $project_path = substr($project_path, 0, -2);
+							// Remove wildcard, get base path(s)
+							$project_path = substr($project_path, 0, -2);
 
-						    // Look for wildcard match
-						    if ( stristr($current_path, $project_path) ||
-								     stristr(drupal_lookup_path('alias', $current_path), $project_path) ||
-								     stristr(drupal_lookup_path('source', $current_path), $project_path) ) {
-                  $add_snippet = TRUE;
-							    break 2;
-						    }
+							// Look for wildcard match
+							if ( stristr($current_path, $project_path) ||
+									 stristr(drupal_lookup_path('alias', $current_path), $project_path) ||
+									 stristr(drupal_lookup_path('source', $current_path), $project_path) ) {
+								$add_snippet = TRUE;
+								break 2;
+							}
 
-					    }
-
-						} 
+						}
 
 				  }
 
