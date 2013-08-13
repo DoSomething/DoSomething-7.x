@@ -194,9 +194,6 @@ function optimizely_theme($existing, $type, $theme, $path) {
  * call / snippet will only appear on the actual 'clubs' page if you specify 'clubs'
  * without the wildcard.
  *
- * Project entries can include or exclude paths. Exclude paths result in the snippet on all
- * paths except the paths specified.
- *
  * A disabled project entry will be ignored allowing entries to persist but be applied.
  */
 function optimizely_init() {
@@ -229,13 +226,25 @@ function optimizely_init() {
         $project_paths = unserialize($project['path']);
 				$front_index = array_search('<front>', $project_paths);
 				!is_int($front_index) ?: $project_paths[$front_index] = variable_get('site_frontpage');
-				
-				// Make copy of $project_paths for exclude loop
-				$exclude_project_paths = $project_paths;
 
 				// Check all paths for alias or sytem URL values, foreach loop based on
 				// orginal array value, addiitonal values added will not effect the array
 				foreach ($project_paths as $project_path) {
+
+          // Remove parameters
+          if (strpos($project_path, '?') !== FALSE) {
+
+            $project_path = substr($project_path, 0, strpos($project_path, '?'));
+
+            // Look for wildcard match
+            if ( stristr($current_path, $project_path) ||
+                 stristr(drupal_lookup_path('alias', $current_path), $project_path) ||
+                 stristr(drupal_lookup_path('source', $current_path), $project_path) ) {
+              $add_snippet = TRUE;
+              break 2;
+            }
+
+          }
 
 				  if (strpos($project_path, '*') !== FALSE) {
 					 
