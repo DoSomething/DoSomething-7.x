@@ -10,9 +10,9 @@
 function dosomething_permissions_user_default_roles() {
   $roles = array();
 
-  // Exported role: content editor.
-  $roles['content editor'] = array(
-    'name' => 'content editor',
+  // Exported role: ds staff.
+  $roles['ds staff'] = array(
+    'name' => 'ds staff',
     'weight' => '24',
   );
 

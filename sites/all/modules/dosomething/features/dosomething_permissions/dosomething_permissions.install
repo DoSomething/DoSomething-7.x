@@ -13,6 +13,7 @@ function dosomething_permissions_update_7001() {
   	'huffpo loader',
   	'project_police',
   	'starbucks',
+    'unverified user', // D6 role that hasn't been assigned since 2012
   );
   foreach ($kill_roles as $role) {
   	user_role_delete($role);
