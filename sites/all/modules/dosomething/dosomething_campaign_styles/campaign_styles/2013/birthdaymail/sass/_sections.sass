@@ -107,16 +107,24 @@
     letter-spacing: 0.05em
     color: $font-light
     margin-left: 6.8em
-    
     @include respond-to(phones)
-      margin-left: 2em
+      width: 96%
+      line-height: 1.5em
+      margin: 0.5em auto
+      float: none
 
   .btn
     margin: 0 0 0 1em
     clear: none
+    @include respond-to(phones)
+      margin: 0 auto 0.5em
+      float: none
 
   .section-container
     width: 43em
+    @include respond-to(phones)
+      width: 100%
+
 
 // HOW IT WORKS
 // ------------
