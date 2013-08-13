@@ -15,8 +15,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'access administration menu',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'admin_menu',
   );
@@ -26,8 +25,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'access all webform results',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'moderator',
+      1 => 'moderator',
     ),
     'module' => 'webform',
   );
@@ -37,8 +35,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'access content overview',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -48,7 +45,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'access user profiles',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'user',
   );
@@ -58,7 +54,8 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'add media from remote sources',
     'roles' => array(
       0 => 'administrator',
-      1 => 'ds staff',
+      1 => 'anonymous user',
+      2 => 'authenticated user',
     ),
     'module' => 'media_internet',
   );
@@ -68,7 +65,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'administer all queues',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'entityqueue',
   );
@@ -78,8 +74,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'administer files',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'file_entity',
   );
@@ -89,8 +84,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'administer imce',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'imce',
   );
@@ -100,7 +94,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'bypass node access',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -110,8 +103,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create action_guide content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -122,7 +114,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -131,8 +122,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create blog content'] = array(
     'name' => 'create blog content',
     'roles' => array(
-      0 => 'content loader',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -140,9 +130,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: create campaign_content_page content.
   $permissions['create campaign_content_page content'] = array(
     'name' => 'create campaign_content_page content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -152,7 +140,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -176,7 +163,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -186,7 +172,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create grant_application content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -199,8 +184,7 @@ function dosomething_permissions_user_default_permissions() {
       1 => 'anonymous user',
       2 => 'authenticated user',
       3 => 'club reviewer',
-      4 => 'content loader',
-      5 => 'grant reviewer',
+      4 => 'grant reviewer',
     ),
     'module' => 'node',
   );
@@ -219,8 +203,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create page content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -239,8 +222,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create poll content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -250,8 +232,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create press content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -262,7 +243,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -271,8 +251,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create quiz content'] = array(
     'name' => 'create quiz content',
     'roles' => array(
-      0 => 'content loader',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -282,8 +261,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create scroller content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -293,8 +271,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create share_of_day content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -311,7 +288,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create sponsor content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -321,8 +297,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create tips_and_tools content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -332,7 +307,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'create webform content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -340,9 +314,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any action_guide content.
   $permissions['delete any action_guide content'] = array(
     'name' => 'delete any action_guide content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -351,7 +323,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any bc_bio_form content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -359,18 +330,14 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any blog content.
   $permissions['delete any blog content'] = array(
     'name' => 'delete any blog content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any campaign_content_page content.
   $permissions['delete any campaign_content_page content'] = array(
     'name' => 'delete any campaign_content_page content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -379,7 +346,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any club_event content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -396,7 +362,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any final_grant_update content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -406,7 +371,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any grant_application content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -416,7 +380,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any help_ticket content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -426,7 +389,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any member_opportunity content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -436,7 +398,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any page content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -453,7 +414,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any poll content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -463,7 +423,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any press content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -478,9 +437,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any quiz content.
   $permissions['delete any quiz content'] = array(
     'name' => 'delete any quiz content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -489,7 +446,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any scroller content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -499,7 +455,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any share_of_day content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -516,7 +471,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any sponsor content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -526,7 +480,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete any tips_and_tools content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -543,9 +496,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own action_guide content.
   $permissions['delete own action_guide content'] = array(
     'name' => 'delete own action_guide content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -555,7 +506,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -563,18 +513,14 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own blog content.
   $permissions['delete own blog content'] = array(
     'name' => 'delete own blog content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete own campaign_content_page content.
   $permissions['delete own campaign_content_page content'] = array(
     'name' => 'delete own campaign_content_page content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -584,7 +530,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -602,7 +547,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -612,7 +556,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete own grant_application content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -623,7 +566,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -637,11 +579,10 @@ function dosomething_permissions_user_default_permissions() {
       2 => 'alumni',
       3 => 'anonymous user',
       4 => 'authenticated user',
-      5 => 'content loader',
-      6 => 'inactive user',
-      7 => 'member',
-      8 => 'old person',
-      9 => 'varsity',
+      5 => 'inactive user',
+      6 => 'member',
+      7 => 'old person',
+      8 => 'varsity',
     ),
     'module' => 'node',
   );
@@ -651,7 +592,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete own page content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -668,7 +608,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete own poll content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -678,7 +617,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete own press content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -693,9 +631,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own quiz content.
   $permissions['delete own quiz content'] = array(
     'name' => 'delete own quiz content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -704,7 +640,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete own scroller content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -714,7 +649,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete own share_of_day content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -731,7 +665,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'delete own tips_and_tools content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -742,7 +675,6 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -752,7 +684,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit Open Graph meta tags',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'opengraph_meta',
   );
@@ -762,8 +693,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any action_guide content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -773,7 +703,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any bc_bio_form content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -782,8 +711,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any blog content'] = array(
     'name' => 'edit any blog content',
     'roles' => array(
-      0 => 'content loader',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -791,9 +719,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: edit any campaign_content_page content.
   $permissions['edit any campaign_content_page content'] = array(
     'name' => 'edit any campaign_content_page content',
-    'roles' => array(
-      0 => 'content loader',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -802,7 +728,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any club_event content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -819,7 +744,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any final_grant_update content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -829,7 +753,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any grant_application content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -839,7 +762,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any help_ticket content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -848,8 +770,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any member_opportunity content'] = array(
     'name' => 'edit any member_opportunity content',
     'roles' => array(
-      0 => 'content loader',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -859,8 +780,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any page content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -879,8 +799,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any poll content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -890,8 +809,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any press content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -909,8 +827,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any quiz content'] = array(
     'name' => 'edit any quiz content',
     'roles' => array(
-      0 => 'content loader',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -920,8 +837,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any scroller content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -931,8 +847,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any share_of_day content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -949,7 +864,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any sponsor content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'node',
   );
@@ -959,8 +873,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit any tips_and_tools content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -980,8 +893,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'edit file',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'file_entity',
   );
@@ -995,11 +907,10 @@ function dosomething_permissions_user_default_permissions() {
       2 => 'alumni',
       3 => 'anonymous user',
       4 => 'authenticated user',
-      5 => 'content loader',
-      6 => 'inactive user',
-      7 => 'member',
-      8 => 'old person',
-      9 => 'varsity',
+      5 => 'inactive user',
+      6 => 'member',
+      7 => 'old person',
+      8 => 'varsity',
     ),
     'module' => 'node',
   );
@@ -1026,7 +937,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'flush caches',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'admin_menu',
   );
@@ -1039,11 +949,10 @@ function dosomething_permissions_user_default_permissions() {
       1 => 'anonymous user',
       2 => 'authenticated user',
       3 => 'club reviewer',
-      4 => 'content loader',
-      5 => 'developer',
-      6 => 'ds staff',
-      7 => 'grant reviewer',
-      8 => 'moderator',
+      4 => 'developer',
+      5 => 'ds staff',
+      6 => 'grant reviewer',
+      7 => 'moderator',
     ),
     'module' => 'filter',
   );
@@ -1053,8 +962,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'use text format 3',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'filter',
   );
@@ -1073,9 +981,8 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'use text format editor_html',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
-      2 => 'developer',
-      3 => 'ds staff',
+      1 => 'developer',
+      2 => 'ds staff',
     ),
     'module' => 'filter',
   );
@@ -1089,15 +996,14 @@ function dosomething_permissions_user_default_permissions() {
       2 => 'alumni',
       3 => 'authenticated user',
       4 => 'club reviewer',
-      5 => 'content loader',
-      6 => 'developer',
-      7 => 'grant reviewer',
-      8 => 'inactive user',
-      9 => 'member',
-      10 => 'moderator',
-      11 => 'old person',
-      12 => 'pending member',
-      13 => 'varsity',
+      5 => 'developer',
+      6 => 'grant reviewer',
+      7 => 'inactive user',
+      8 => 'member',
+      9 => 'moderator',
+      10 => 'old person',
+      11 => 'pending member',
+      12 => 'varsity',
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1107,7 +1013,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view any campaign_sign_up webform submissions',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1117,7 +1022,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view any grant_application webform submissions',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1127,7 +1031,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view any main profile',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'profile2',
   );
@@ -1138,8 +1041,7 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
-      3 => 'old person',
+      2 => 'old person',
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1149,7 +1051,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view any webform webform submissions',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1160,8 +1061,7 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'content loader',
-      3 => 'ds staff',
+      2 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -1171,7 +1071,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view the administration theme',
     'roles' => array(
       0 => 'administrator',
-      1 => 'content loader',
     ),
     'module' => 'system',
   );

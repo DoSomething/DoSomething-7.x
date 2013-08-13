@@ -131,3 +131,4 @@ features[user_permission][] = view any project_report webform submissions
 features[user_permission][] = view any webform webform submissions
 features[user_permission][] = view own unpublished content
 features[user_permission][] = view the administration theme
+features[user_role][] = ds staff
