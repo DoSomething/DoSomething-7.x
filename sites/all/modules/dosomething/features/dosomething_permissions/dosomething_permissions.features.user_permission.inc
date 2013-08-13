@@ -25,7 +25,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'access all webform results',
     'roles' => array(
       0 => 'administrator',
-      1 => 'moderator',
+      1 => 'ds staff',
     ),
     'module' => 'webform',
   );
@@ -45,6 +45,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'access user profiles',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'user',
   );
@@ -54,8 +55,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'add media from remote sources',
     'roles' => array(
       0 => 'administrator',
-      1 => 'anonymous user',
-      2 => 'authenticated user',
+      1 => 'ds staff',
     ),
     'module' => 'media_internet',
   );
@@ -65,6 +65,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'administer all queues',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'entityqueue',
   );
@@ -102,8 +103,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create action_guide content'] = array(
     'name' => 'create action_guide content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -111,10 +111,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: create bc_bio_form content.
   $permissions['create bc_bio_form content'] = array(
     'name' => 'create bc_bio_form content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -130,40 +127,30 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: create campaign_content_page content.
   $permissions['create campaign_content_page content'] = array(
     'name' => 'create campaign_content_page content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'ds staff',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: create club_event content.
   $permissions['create club_event content'] = array(
     'name' => 'create club_event content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: create dsaward_rec content.
   $permissions['create dsaward_rec content'] = array(
     'name' => 'create dsaward_rec content',
-    'roles' => array(
-      0 => 'anonymous user',
-      1 => 'authenticated user',
-      2 => 'club reviewer',
-      3 => 'developer',
-      4 => 'grant reviewer',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: create final_grant_update content.
   $permissions['create final_grant_update content'] = array(
     'name' => 'create final_grant_update content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -179,13 +166,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: create help_ticket content.
   $permissions['create help_ticket content'] = array(
     'name' => 'create help_ticket content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'anonymous user',
-      2 => 'authenticated user',
-      3 => 'club reviewer',
-      4 => 'grant reviewer',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -202,8 +183,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create page content'] = array(
     'name' => 'create page content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -221,8 +201,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create poll content'] = array(
     'name' => 'create poll content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -231,8 +210,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create press content'] = array(
     'name' => 'create press content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -241,8 +219,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create project content'] = array(
     'name' => 'create project content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -260,8 +237,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create scroller content'] = array(
     'name' => 'create scroller content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -270,8 +246,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create share_of_day content'] = array(
     'name' => 'create share_of_day content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -279,7 +254,9 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: create social_scholarship content.
   $permissions['create social_scholarship content'] = array(
     'name' => 'create social_scholarship content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'ds staff',
+    ),
     'module' => 'node',
   );
 
@@ -287,7 +264,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create sponsor content'] = array(
     'name' => 'create sponsor content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -296,8 +273,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create tips_and_tools content'] = array(
     'name' => 'create tips_and_tools content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -306,7 +282,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['create webform content'] = array(
     'name' => 'create webform content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -321,9 +297,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any bc_bio_form content.
   $permissions['delete any bc_bio_form content'] = array(
     'name' => 'delete any bc_bio_form content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -344,9 +318,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any club_event content.
   $permissions['delete any club_event content'] = array(
     'name' => 'delete any club_event content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -360,45 +332,35 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any final_grant_update content.
   $permissions['delete any final_grant_update content'] = array(
     'name' => 'delete any final_grant_update content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any grant_application content.
   $permissions['delete any grant_application content'] = array(
     'name' => 'delete any grant_application content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any help_ticket content.
   $permissions['delete any help_ticket content'] = array(
     'name' => 'delete any help_ticket content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any member_opportunity content.
   $permissions['delete any member_opportunity content'] = array(
     'name' => 'delete any member_opportunity content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any page content.
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -412,18 +374,14 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any poll content.
   $permissions['delete any poll content'] = array(
     'name' => 'delete any poll content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any press content.
   $permissions['delete any press content'] = array(
     'name' => 'delete any press content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -444,18 +402,14 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any scroller content.
   $permissions['delete any scroller content'] = array(
     'name' => 'delete any scroller content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any share_of_day content.
   $permissions['delete any share_of_day content'] = array(
     'name' => 'delete any share_of_day content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -469,27 +423,21 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete any sponsor content.
   $permissions['delete any sponsor content'] = array(
     'name' => 'delete any sponsor content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any tips_and_tools content.
   $permissions['delete any tips_and_tools content'] = array(
     'name' => 'delete any tips_and_tools content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete any webform content.
   $permissions['delete any webform content'] = array(
     'name' => 'delete any webform content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -503,10 +451,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own bc_bio_form content.
   $permissions['delete own bc_bio_form content'] = array(
     'name' => 'delete own bc_bio_form content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -527,10 +472,7 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own club_event content.
   $permissions['delete own club_event content'] = array(
     'name' => 'delete own club_event content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -544,55 +486,35 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own final_grant_update content.
   $permissions['delete own final_grant_update content'] = array(
     'name' => 'delete own final_grant_update content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete own grant_application content.
   $permissions['delete own grant_application content'] = array(
     'name' => 'delete own grant_application content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete own help_ticket content.
   $permissions['delete own help_ticket content'] = array(
     'name' => 'delete own help_ticket content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete own member_opportunity content.
   $permissions['delete own member_opportunity content'] = array(
     'name' => 'delete own member_opportunity content',
-    'roles' => array(
-      0 => 'active member',
-      1 => 'administrator',
-      2 => 'alumni',
-      3 => 'anonymous user',
-      4 => 'authenticated user',
-      5 => 'inactive user',
-      6 => 'member',
-      7 => 'old person',
-      8 => 'varsity',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete own page content.
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -606,18 +528,14 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own poll content.
   $permissions['delete own poll content'] = array(
     'name' => 'delete own poll content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete own press content.
   $permissions['delete own press content'] = array(
     'name' => 'delete own press content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -638,18 +556,14 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own scroller content.
   $permissions['delete own scroller content'] = array(
     'name' => 'delete own scroller content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete own share_of_day content.
   $permissions['delete own share_of_day content'] = array(
     'name' => 'delete own share_of_day content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -663,19 +577,14 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: delete own tips_and_tools content.
   $permissions['delete own tips_and_tools content'] = array(
     'name' => 'delete own tips_and_tools content',
-    'roles' => array(
-      0 => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: delete own webform content.
   $permissions['delete own webform content'] = array(
     'name' => 'delete own webform content',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -683,7 +592,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit Open Graph meta tags'] = array(
     'name' => 'edit Open Graph meta tags',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'opengraph_meta',
   );
@@ -692,8 +601,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any action_guide content'] = array(
     'name' => 'edit any action_guide content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -702,7 +610,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any bc_bio_form content'] = array(
     'name' => 'edit any bc_bio_form content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -719,7 +627,9 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: edit any campaign_content_page content.
   $permissions['edit any campaign_content_page content'] = array(
     'name' => 'edit any campaign_content_page content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'ds staff',
+    ),
     'module' => 'node',
   );
 
@@ -727,7 +637,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any club_event content'] = array(
     'name' => 'edit any club_event content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -735,7 +645,9 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: edit any dsaward_rec content.
   $permissions['edit any dsaward_rec content'] = array(
     'name' => 'edit any dsaward_rec content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'ds staff',
+    ),
     'module' => 'node',
   );
 
@@ -743,7 +655,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any final_grant_update content'] = array(
     'name' => 'edit any final_grant_update content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -752,7 +664,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any grant_application content'] = array(
     'name' => 'edit any grant_application content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -761,7 +673,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any help_ticket content'] = array(
     'name' => 'edit any help_ticket content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -779,8 +691,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any page content'] = array(
     'name' => 'edit any page content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -798,8 +709,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any poll content'] = array(
     'name' => 'edit any poll content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -808,8 +718,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any press content'] = array(
     'name' => 'edit any press content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -818,7 +727,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any project content'] = array(
     'name' => 'edit any project content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -836,8 +745,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any scroller content'] = array(
     'name' => 'edit any scroller content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -846,8 +754,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any share_of_day content'] = array(
     'name' => 'edit any share_of_day content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -855,7 +762,9 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: edit any social_scholarship content.
   $permissions['edit any social_scholarship content'] = array(
     'name' => 'edit any social_scholarship content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'ds staff',
+    ),
     'module' => 'node',
   );
 
@@ -863,7 +772,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any sponsor content'] = array(
     'name' => 'edit any sponsor content',
     'roles' => array(
-      0 => 'administrator',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -872,8 +781,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any tips_and_tools content'] = array(
     'name' => 'edit any tips_and_tools content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -882,8 +790,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit any webform content'] = array(
     'name' => 'edit any webform content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -892,8 +799,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit file'] = array(
     'name' => 'edit file',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'file_entity',
   );
@@ -902,15 +808,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit own member_opportunity content'] = array(
     'name' => 'edit own member_opportunity content',
     'roles' => array(
-      0 => 'active member',
-      1 => 'administrator',
-      2 => 'alumni',
-      3 => 'anonymous user',
-      4 => 'authenticated user',
-      5 => 'inactive user',
-      6 => 'member',
-      7 => 'old person',
-      8 => 'varsity',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -918,7 +816,9 @@ function dosomething_permissions_user_default_permissions() {
   // Exported permission: edit own petition content.
   $permissions['edit own petition content'] = array(
     'name' => 'edit own petition content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'ds staff',
+    ),
     'module' => 'node',
   );
 
@@ -926,8 +826,7 @@ function dosomething_permissions_user_default_permissions() {
   $permissions['edit own project content'] = array(
     'name' => 'edit own project content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'authenticated user',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -1013,6 +912,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view any campaign_sign_up webform submissions',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1022,6 +922,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view any grant_application webform submissions',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1031,6 +932,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view any main profile',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'profile2',
   );
@@ -1042,6 +944,7 @@ function dosomething_permissions_user_default_permissions() {
       0 => 'administrator',
       1 => 'authenticated user',
       2 => 'old person',
+      3 => 'ds staff'
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1051,6 +954,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view any webform webform submissions',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'webform_entity_pages',
   );
@@ -1071,6 +975,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'view the administration theme',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'system',
   );
