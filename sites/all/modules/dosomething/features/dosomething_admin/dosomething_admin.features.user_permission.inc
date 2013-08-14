@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * dosomething_permissions.features.user_permission.inc
+ * dosomething_admin.features.user_permission.inc
  */
 
 /**
  * Implements hook_user_default_permissions().
  */
-function dosomething_permissions_user_default_permissions() {
+function dosomething_admin_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: access administration menu.
@@ -18,6 +18,16 @@ function dosomething_permissions_user_default_permissions() {
       1 => 'ds staff',
     ),
     'module' => 'admin_menu',
+  );
+
+  // Exported permission: access administration pages.
+  $permissions['access administration pages'] = array(
+    'name' => 'access administration pages',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'ds staff',
+    ),
+    'module' => 'system',
   );
 
   // Exported permission: access all webform results.
@@ -75,7 +85,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'administer files',
     'roles' => array(
       0 => 'administrator',
-      1 => 'ds staff',
     ),
     'module' => 'file_entity',
   );
@@ -85,9 +94,36 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'administer imce',
     'roles' => array(
       0 => 'administrator',
-      1 => 'ds staff',
     ),
     'module' => 'imce',
+  );
+
+  // Exported permission: administer optimizely.
+  $permissions['administer optimizely'] = array(
+    'name' => 'administer optimizely',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'optimizely admin',
+    ),
+    'module' => 'optimizely',
+  );
+
+  // Exported permission: administer url aliases.
+  $permissions['administer url aliases'] = array(
+    'name' => 'administer url aliases',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'path',
+  );
+
+  // Exported permission: administer users.
+  $permissions['administer users'] = array(
+    'name' => 'administer users',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'user',
   );
 
   // Exported permission: bypass node access.
@@ -276,6 +312,16 @@ function dosomething_permissions_user_default_permissions() {
       0 => 'ds staff',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: create url aliases.
+  $permissions['create url aliases'] = array(
+    'name' => 'create url aliases',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'ds staff',
+    ),
+    'module' => 'path',
   );
 
   // Exported permission: create webform content.
@@ -861,7 +907,6 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'use text format 3',
     'roles' => array(
       0 => 'administrator',
-      1 => 'ds staff',
     ),
     'module' => 'filter',
   );
@@ -871,6 +916,7 @@ function dosomething_permissions_user_default_permissions() {
     'name' => 'use text format 5',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'filter',
   );
@@ -943,8 +989,8 @@ function dosomething_permissions_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'authenticated user',
-      2 => 'old person',
-      3 => 'ds staff'
+      2 => 'ds staff',
+      3 => 'old person',
     ),
     'module' => 'webform_entity_pages',
   );

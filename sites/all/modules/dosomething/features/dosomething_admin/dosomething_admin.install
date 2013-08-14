@@ -3,7 +3,7 @@
 /**
  * Cleanup roles, users.
  */
-function dosomething_permissions_update_7001() {
+function dosomething_admin_update_7001() {
   // Delete unused roles:
   $kill_roles = array(
   	'do something u',
