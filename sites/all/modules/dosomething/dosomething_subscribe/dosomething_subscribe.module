@@ -27,7 +27,7 @@ function dosomething_subscribe_menu() {
   $items['admin/config/dosomething/dosomething_subscribe'] = array(
     'title' => 'Subscription settings',
     'description' => t('Set Mailchimp Group and Mobilecommons Opt-in values for non-node based forms.'),
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('administer modules'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_subscribe_admin_settings_form'),
     'file' => 'dosomething_subscribe.admin.inc',

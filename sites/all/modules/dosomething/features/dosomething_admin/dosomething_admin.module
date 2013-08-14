@@ -20,11 +20,16 @@ function dosomething_admin_menu() {
  }
 
 /**
- * Implements hook_menu().
+ * Access callback for admin/lookup.
  */
  function dosomething_admin_lookup_access() {
  	 global $user;
-   return (in_array('ds staff', $user->roles));
+ 	 foreach ($user->roles as $role) {
+ 	 	  if ($role == 'administrator' || $role == 'ds staff') {
+ 	 	  	return TRUE;
+ 	 	  }
+ 	 }
+ 	return FALSE;
  }
 
 /**
