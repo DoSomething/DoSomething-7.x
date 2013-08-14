@@ -948,14 +948,10 @@ function _optimizely_valid_paths($project_paths) {
       // Look for entries in menu_router
       $project_parmpath = substr($project_path, 0, strpos($project_path, '?'));
       
-      // Collect all of the exsisting project paths that are enabled,
-      $query = db_select('menu_router', 'mr', array('target' => 'slave'))
-        ->fields('mr', array('path'))
-        ->condition('path', db_like($project_parmpath) . '%', 'LIKE');
-      $query->execute();
-
-      // No matches found for wildcard path
-      if ($query->countQuery()->execute()->fetchField() == 0) {
+            // Look for entry in url_alias table
+      if (drupal_lookup_path('alias', $project_path) === FALSE &&
+          drupal_lookup_path('source', $project_path) === FALSE &&
+          drupal_valid_path($project_parmpath, TRUE) === FALSE) {
         return $project_path;
       }
 
