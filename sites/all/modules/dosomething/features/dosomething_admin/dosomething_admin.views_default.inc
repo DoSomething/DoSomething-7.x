@@ -22,7 +22,7 @@ function dosomething_admin_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'SID Lookup';
+  $handler->display->display_options['title'] = 'Submission Lookup';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'access all webform results';
@@ -171,6 +171,12 @@ function dosomething_admin_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'admin/lookup/submission';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Submission';
+  $handler->display->display_options['menu']['description'] = 'Lookup Submissions';
+  $handler->display->display_options['menu']['weight'] = '10';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $export['admin_lookup_submission'] = $view;
 
   $view = new view();
@@ -265,7 +271,7 @@ function dosomething_admin_views_default_views() {
       'label' => '',
     ),
     'action::views_bulk_operations_delete_item' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
@@ -299,7 +305,7 @@ function dosomething_admin_views_default_views() {
       ),
     ),
     'action::views_bulk_operations_user_roles_action' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
@@ -437,9 +443,11 @@ function dosomething_admin_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['path'] = 'admin/lookup/user';
   $handler->display->display_options['menu']['type'] = 'tab';
-  $handler->display->display_options['menu']['title'] = 'Lookup';
+  $handler->display->display_options['menu']['title'] = 'User';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $handler->display->display_options['tab_options']['weight'] = '0';
   $export['admin_lookup_user'] = $view;
 
   return $export;

@@ -98,6 +98,15 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'imce',
   );
 
+  // Exported permission: administer nodequeue.
+  $permissions['administer nodequeue'] = array(
+    'name' => 'administer nodequeue',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'nodequeue',
+  );
+
   // Exported permission: administer optimizely.
   $permissions['administer optimizely'] = array(
     'name' => 'administer optimizely',
@@ -186,7 +195,9 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: create final_grant_update content.
   $permissions['create final_grant_update content'] = array(
     'name' => 'create final_grant_update content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'authenticated user',
+    ),
     'module' => 'node',
   );
 
@@ -195,6 +206,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'create grant_application content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -254,9 +266,7 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: create project content.
   $permissions['create project content'] = array(
     'name' => 'create project content',
-    'roles' => array(
-      0 => 'ds staff',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -724,6 +734,15 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: edit any main profile.
+  $permissions['edit any main profile'] = array(
+    'name' => 'edit any main profile',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'profile2',
+  );
+
   // Exported permission: edit any member_opportunity content.
   $permissions['edit any member_opportunity content'] = array(
     'name' => 'edit any member_opportunity content',
@@ -877,6 +896,13 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: edit terms in 26.
+  $permissions['edit terms in 26'] = array(
+    'name' => 'edit terms in 26',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: flush caches.
   $permissions['flush caches'] = array(
     'name' => 'flush caches',
@@ -884,6 +910,36 @@ function dosomething_admin_user_default_permissions() {
       0 => 'administrator',
     ),
     'module' => 'admin_menu',
+  );
+
+  // Exported permission: manipulate all queues.
+  $permissions['manipulate all queues'] = array(
+    'name' => 'manipulate all queues',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'ds staff',
+    ),
+    'module' => 'nodequeue',
+  );
+
+  // Exported permission: manipulate queues.
+  $permissions['manipulate queues'] = array(
+    'name' => 'manipulate queues',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'ds staff',
+    ),
+    'module' => 'nodequeue',
+  );
+
+  // Exported permission: schedule (un)publishing of nodes.
+  $permissions['schedule (un)publishing of nodes'] = array(
+    'name' => 'schedule (un)publishing of nodes',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'ds staff',
+    ),
+    'module' => 'scheduler',
   );
 
   // Exported permission: use text format 1.
