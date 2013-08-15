@@ -6,11 +6,15 @@
 function dosomething_admin_update_7001() {
   // Delete unused roles:
   $kill_roles = array(
+    'club reviewer',
+    'developer',
   	'do something u',
   	'furtographer',
   	'grant alumni',
   	'help desk',
   	'huffpo loader',
+    'moderator',
+    'performance',
   	'project_police',
   	'starbucks',
     'unverified user', // D6 role that hasn't been assigned since 2012
@@ -18,13 +22,8 @@ function dosomething_admin_update_7001() {
   foreach ($kill_roles as $role) {
   	user_role_delete($role);
   }
-  // Rename "performance" role as "optimizely admin":
-  $role = user_role_load_by_name('performance');
-  if ($role) {
-	  $role->name = 'optimizely admin';
-	  user_role_save($role);
-  }
 
   // @todo: Remove administrator role from staff:
   // @todo: Grant staff content editor access:
+  // @todo: Grant DS Product Team access:
 }

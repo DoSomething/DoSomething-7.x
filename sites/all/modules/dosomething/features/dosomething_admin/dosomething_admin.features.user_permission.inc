@@ -75,7 +75,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'administer all queues',
     'roles' => array(
       0 => 'administrator',
-      1 => 'ds staff',
+      1 => 'ds product team',
     ),
     'module' => 'entityqueue',
   );
@@ -103,6 +103,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'administer nodequeue',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds product team',
     ),
     'module' => 'nodequeue',
   );
@@ -112,9 +113,19 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'administer optimizely',
     'roles' => array(
       0 => 'administrator',
-      1 => 'optimizely admin',
+      1 => 'ds product team',
     ),
     'module' => 'optimizely',
+  );
+
+  // Exported permission: administer taxonomy.
+  $permissions['administer taxonomy'] = array(
+    'name' => 'administer taxonomy',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'ds product team',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: administer url aliases.
@@ -205,8 +216,7 @@ function dosomething_admin_user_default_permissions() {
   $permissions['create grant_application content'] = array(
     'name' => 'create grant_application content',
     'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
+      0 => 'ds staff',
     ),
     'module' => 'node',
   );
@@ -899,7 +909,9 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit terms in 26.
   $permissions['edit terms in 26'] = array(
     'name' => 'edit terms in 26',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'ds staff',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -949,11 +961,8 @@ function dosomething_admin_user_default_permissions() {
       0 => 'administrator',
       1 => 'anonymous user',
       2 => 'authenticated user',
-      3 => 'club reviewer',
-      4 => 'developer',
-      5 => 'ds staff',
-      6 => 'grant reviewer',
-      7 => 'moderator',
+      3 => 'ds staff',
+      4 => 'grant reviewer',
     ),
     'module' => 'filter',
   );
@@ -982,8 +991,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'use text format editor_html',
     'roles' => array(
       0 => 'administrator',
-      1 => 'developer',
-      2 => 'ds staff',
+      1 => 'ds staff',
     ),
     'module' => 'filter',
   );
@@ -996,15 +1004,12 @@ function dosomething_admin_user_default_permissions() {
       1 => 'administrator',
       2 => 'alumni',
       3 => 'authenticated user',
-      4 => 'club reviewer',
-      5 => 'developer',
-      6 => 'grant reviewer',
-      7 => 'inactive user',
-      8 => 'member',
-      9 => 'moderator',
-      10 => 'old person',
-      11 => 'pending member',
-      12 => 'varsity',
+      4 => 'grant reviewer',
+      5 => 'inactive user',
+      6 => 'member',
+      7 => 'old person',
+      8 => 'pending member',
+      9 => 'varsity',
     ),
     'module' => 'webform_entity_pages',
   );

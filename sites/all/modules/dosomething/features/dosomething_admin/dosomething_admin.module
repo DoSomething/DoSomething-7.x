@@ -6,35 +6,36 @@
 include_once('dosomething_admin.features.inc');
 
 /**
- * Implements hook_menu().
- */
+* Implements hook_menu().
+*/
 function dosomething_admin_menu() {
-  // Create admin page for custom dosomething modules configuration pages to live in.
-  $items['admin/lookup'] = array(
-    'title' => 'Lookup',
-    'page callback' => 'dosomething_admin_lookup_page',
-    'description' => 'Lookup pages for DoSomething staff.',
-    'access callback' => 'dosomething_admin_lookup_access',
-  );  
-  return $items;
- }
+	// Create admin page for custom dosomething modules configuration pages to live in.
+	$items['admin/lookup'] = array(
+	  'title' => 'Lookup',
+	  'page callback' => 'dosomething_admin_lookup_page',
+	  'description' => 'Lookup pages for DoSomething staff.',
+	  'access callback' => 'dosomething_admin_lookup_access',
+	);  
+	return $items;
+}
 
 /**
- * Access callback for admin/lookup.
- */
- function dosomething_admin_lookup_access() {
- 	 global $user;
- 	 foreach ($user->roles as $role) {
- 	 	  if ($role == 'administrator' || $role == 'ds staff') {
- 	 	  	return TRUE;
- 	 	  }
- 	 }
+* Access callback for admin/lookup.
+*/
+function dosomething_admin_lookup_access() {
+  global $user;
+  foreach ($user->roles as $role) {
+ 	  if ($role == 'administrator' || $role == 'ds staff') {
+ 	  	return TRUE;
+ 	  }
+ 	}
+
  	return FALSE;
- }
+}
 
 /**
- * Page callback for admin/lookup.
- */
- function dosomething_admin_lookup_page() {
- 	 drupal_goto('admin/lookup/user');
- }
+* Page callback for admin/lookup.
+*/
+function dosomething_admin_lookup_page() {
+  drupal_goto('admin/lookup/user');
+}
