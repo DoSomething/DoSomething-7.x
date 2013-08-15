@@ -68,40 +68,25 @@
 
       }
 
-      // ------------------------ //
-      // CAMPAIGN MODEL SWITCHING //
-      // ------------------------ //
+      // ----------------
+      // FACEBOOK SHARING
+      // ----------------
 
-      // Add "switch" buttons to DOM
-      switch_buttons = '<div id="model-switch"><a id="sms-button" href="#">SMS</a><a id="web-button" href="#" class="active">web</a>';
-      $('.region.region-utility').prepend(switch_buttons);
+      var fb_share_img = 'www.dosomething.org/files/campaigns/bullytext/bullytext_header.jpg';
+      var fb_title = 'Bully Text';
+      var fb_header_caption = 'Will you and your friends stand up?';
 
-      // Display different sections based on type selection
-      $('#model-switch a').click(function() {
-        var $this = $(this);
-
-        // Only flip styles if the requested model is not currently being shown
-        if (!$this.hasClass('active')) {
-
-          if ($this.is('#sms-button')) {
-            $('#headline').removeClass('alt');
-            $('#sms').show();
-            $('#call-to-action').hide();
-          }
-          else if ($this.is('#web-button')) {
-            $('#headline').removeClass('alt');
-            $('#headline').addClass('alt');
-            $('#sms').hide();
-            $('#call-to-action').show();
-          }
-
-        }
-        return false;
+      Drupal.behaviors.fb.feed({
+        'feed_picture': fb_share_img,
+        'feed_title': fb_title,
+        'feed_caption': fb_header_caption,
+        'feed_description': 'Everyone has the power to stop bullying. Join @do something for The Bully Text and find out how you and your friends can stand up to bullying',
+        'feed_selector': '.header-facebook-share',
+      }, function(response){
+        window.location.href = '/bullytext#header';
       });
 
-      // Allow for the passing of "active" class on click
-      activeSwitch('#web-button', 'a');
-      activeSwitch('#sms-button', 'a');
+    // END
 
     } // end attach: function
   }; // end Drupal.behaviors
