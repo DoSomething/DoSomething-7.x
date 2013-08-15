@@ -23,7 +23,35 @@ function dosomething_admin_update_7001() {
   	user_role_delete($role);
   }
 
-  // @todo: Remove administrator role from staff:
+  // Fetch all users with 'administrator role':
+  $result = db_query("SELECT uid
+   FROM users_roles
+   WHERE rid = 3");
+
+  // Define all valid administrators:
+  $ds_devs = array(
+    1324854, // mholford@dosomething.org
+    1258186, // dfurnes@dosomething.org
+    1176550, // aschachter@dosomething.org
+    1019736, // dlee@dosomething.org.
+    985012, // desmond.w.morris@gmail.com
+    778374, // mchitten@gmail.com
+    613748, // mwatson@dosomething.org
+    586593, // juy@dosomething.org
+    547446, // bazclef@gmail.com
+    1,
+  );
+
+  // Find all invalid administrators:
+  $not_devs = array();
+  foreach ($result as $record) {
+    if (!in_array($record->uid, $ds_devs)) {
+      $not_devs[] = $record->uid;
+    }
+  }
+  // No soup for you:
+  user_multiple_role_edit($not_devs, 'remove_role', 3);
+
   // @todo: Grant staff content editor access:
   // @todo: Grant DS Product Team access:
 }
