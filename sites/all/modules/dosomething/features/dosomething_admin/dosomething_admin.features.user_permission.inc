@@ -118,6 +118,15 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'optimizely',
   );
 
+  // Exported permission: administer profiles.
+  $permissions['administer profiles'] = array(
+    'name' => 'administer profiles',
+    'roles' => array(
+      0 => 'administrator',
+    ),
+    'module' => 'profile2',
+  );
+
   // Exported permission: administer taxonomy.
   $permissions['administer taxonomy'] = array(
     'name' => 'administer taxonomy',
@@ -142,6 +151,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'administer users',
     'roles' => array(
       0 => 'administrator',
+      1 => 'ds staff',
     ),
     'module' => 'user',
   );
@@ -929,7 +939,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'manipulate all queues',
     'roles' => array(
       0 => 'administrator',
-      1 => 'ds staff',
+      1 => 'ds product team',
     ),
     'module' => 'nodequeue',
   );
@@ -939,7 +949,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'manipulate queues',
     'roles' => array(
       0 => 'administrator',
-      1 => 'ds staff',
+      1 => 'ds product team',
     ),
     'module' => 'nodequeue',
   );
