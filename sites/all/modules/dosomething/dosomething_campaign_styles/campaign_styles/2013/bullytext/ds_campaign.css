@@ -560,7 +560,7 @@ header[role="banner"] {
 }
 /* line 173, sass/_general.sass */
 #cmp .section a:link, #cmp .section a:visited, #cmp .section a:active {
-  color: #86005d;
+  color: #1e1d1c;
 }
 /* line 175, sass/_general.sass */
 #cmp .section a:hover {
@@ -1133,34 +1133,33 @@ header[role="banner"] {
   font-weight: 400;
   color: #c6c7c8;
   padding: 0px 0px 0px 1em;
-  text-decoration: none;
   background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
   background-repeat: no-repeat;
   background-position: 0% 40%;
 }
-/* line 406, sass/_sections.sass */
+/* line 404, sass/_sections.sass */
 #cmp .sponsor p {
   padding: 8px;
   text-align: center;
 }
-/* line 410, sass/_sections.sass */
+/* line 408, sass/_sections.sass */
 #cmp .sponsor a {
   padding: 8px;
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  /* line 410, sass/_sections.sass */
+  /* line 408, sass/_sections.sass */
   #cmp .sponsor a {
     display: block;
   }
 }
-/* line 419, sass/_sections.sass */
+/* line 417, sass/_sections.sass */
 #cmp .footer {
   padding: 2% 0;
   margin: 0 0 -2%;
   text-align: center;
 }
-/* line 423, sass/_sections.sass */
+/* line 421, sass/_sections.sass */
 #cmp .footer img {
   width: 50px;
   margin: 0 auto;
