@@ -36,6 +36,9 @@
   padding: 1% 2%
   overflow: hidden
   border: none
+  @include respond-to(tablets_and_phones)
+    height: auto
+    padding: 1% 2% 12% 2%
 
   .logo-campaign
     width: 550px
@@ -44,14 +47,18 @@
     padding: 25px
     background: #fff
     background: rgba(255,255,255,0.8)
-    @media only screen and (max-width: 550px)
-      width: 400px
+    @media only screen and (max-width: 531px)
+      width: 96%
+      height: auto
 
   .log-out
     color: $font-light
 
   .header-social
     width: 22%
+    min-width: 140px
+    @include respond-to(phones)
+      display: none
 
   .header-facebook-share,
   .header-twitter-share
@@ -72,12 +79,13 @@
     font-weight: 600
     font-size: 1.5em
     color: $font-black
+    @include respond-to(phones)
+      width: 96%
 
   .header-sponsor
     width: 22%
-
-    @include respond-to(tablets_and_phones)
-      display: none // relocated to footer
+    @include respond-to(phones)
+      display: none
 
   .row-bottom
     position: absolute
@@ -112,7 +120,7 @@
 // ------------
 .how-it-works
   padding: 2em 0
-  
+
   .section-unit-single
     padding: 0 3% !important
 
@@ -176,6 +184,8 @@
     position: relative
     clear: both
     +border-radius(2px)
+    @include respond-to(phones)
+      padding: 0.7em 1em
     &:after
       content: ""
       display: block
@@ -186,6 +196,8 @@
       line-height: 1.6em
       font-size: 1.5em
       font-weight: 500
+      @include respond-to(phones)
+        font-size: 1.1em
       span
         font-weight: 600
 
@@ -204,6 +216,8 @@
   .game-user
     float: right
     background-color: $highlight
+    @include respond-to(phones)
+      margin: 0em auto 2em
     &:after
       bottom: -29px
       right: 20px
@@ -288,6 +302,9 @@
   form
     width: 80%
     margin: 2em auto 0
+    @include respond-to(phones)
+      width: 96%
+      margin: 0 auto
     input
       color: black
 
@@ -302,6 +319,12 @@
       background-color: $accent
       display: inline-block
       padding: 5px 10px 0 10px
+      @include respond-to(phones)
+        padding: 0
+        background: none
+        font-weight: 400
+        font-size: 0.8em
+        line-height: 1.4em
 
   h3
     color: white
@@ -309,6 +332,8 @@
   .btn
     width: 9.4em
     margin: 1em auto
+    @include respond-to(phones)
+      margin: 0 auto 0.5em
 
 .sms-input-wrapper
   width: 50%
@@ -317,13 +342,14 @@
 
   @include respond-to(phones)
     width: 100%
+    margin: 0
 
     &.first-column
-      margin: 0 0 0 0      
+      margin: 0 0 0 0
 
 .sms-input
   width: 85%
-  margin: 5% 0 0 0
+  margin: 0 0 3% 0
 
   @include respond-to(phones)
     width: 100%
@@ -338,6 +364,9 @@
 .sms-beta-mobile
   clear: both
   margin: 5% 0 -1%
+
+.input-wrapper
+  margin: 1em 0 0 0
 
 // GALLERY
 // -------
@@ -397,20 +426,6 @@
     background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
     background-repeat: no-repeat
     background-position: 0% 40%
-
-// SPONSOR
-// ------
-.sponsor
-  p
-    padding: 8px
-    text-align: center
-
-  a
-    padding: 8px
-    text-align: center
-
-    @include respond-to(phones)
-      display: block
 
 // FOOTER
 // ------
