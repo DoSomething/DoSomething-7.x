@@ -436,7 +436,7 @@ header[role="banner"] {
 }
 /* line 73, sass/_general.sass */
 #cmp .section-header span {
-  border-bottom: 6px solid #ffd400;
+  border-bottom: 6px solid #00a99d;
 }
 /* line 79, sass/_general.sass */
 #cmp .left {
@@ -560,7 +560,7 @@ header[role="banner"] {
 }
 /* line 173, sass/_general.sass */
 #cmp .section a:link, #cmp .section a:visited, #cmp .section a:active {
-  color: #86005d;
+  color: #1e1d1c;
 }
 /* line 175, sass/_general.sass */
 #cmp .section a:hover {
@@ -664,7 +664,7 @@ header[role="banner"] {
   width: 100%;
   height: 360px;
   background-color: #eeeeee;
-  background-image: url("http://files.dosomething.org/files/campaigns/bullytext/bullytext_header.jpg");
+  background-image: url("//www.dosomething.org/files/campaigns/bullytext/header.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   -webkit-background-size: cover;
@@ -675,59 +675,51 @@ header[role="banner"] {
   overflow: hidden;
   border: none;
 }
-/* line 40, sass/_sections.sass */
-#cmp .header .logo-campaign {
-  margin: 0 auto;
-  display: block;
-  width: 450px;
-  clear: both;
-}
-@media only screen and (max-width: 550px) {
-  /* line 40, sass/_sections.sass */
-  #cmp .header .logo-campaign {
-    width: 400px;
-  }
-}
-/* line 48, sass/_sections.sass */
-#cmp .header .header-logotype {
-  text-align: center;
-  color: white;
-  text-transform: uppercase;
-  line-height: 1.2em;
-  font-weight: 600;
-  font-size: 4em;
-  margin: 2em auto 0.5em;
-}
 @media only screen and (max-width: 1139px) {
-  /* line 48, sass/_sections.sass */
-  #cmp .header .header-logotype {
-    font-size: 3em;
+  /* line 27, sass/_sections.sass */
+  #cmp .header {
+    height: auto;
+    padding: 1% 2% 12% 2%;
   }
 }
-/* line 60, sass/_sections.sass */
+/* line 43, sass/_sections.sass */
+#cmp .header .logo-campaign {
+  width: 550px;
+  margin: 1em auto 0;
+  height: 225px;
+  padding: 25px;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+}
+@media only screen and (max-width: 531px) {
+  /* line 43, sass/_sections.sass */
+  #cmp .header .logo-campaign {
+    width: 96%;
+    height: auto;
+  }
+}
+/* line 54, sass/_sections.sass */
 #cmp .header .log-out {
   color: white;
 }
-/* line 63, sass/_sections.sass */
+/* line 57, sass/_sections.sass */
 #cmp .header .header-social {
-  width: 16%;
-  height: 20px;
-  margin: 25px 0 0 0;
+  width: 22%;
+  min-width: 140px;
 }
-/* line 68, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 57, sass/_sections.sass */
+  #cmp .header .header-social {
+    display: none;
+  }
+}
+/* line 63, sass/_sections.sass */
 #cmp .header .header-facebook-share,
 #cmp .header .header-twitter-share {
   display: inline-block;
   height: 20px;
 }
-@media only screen and (max-width: 1139px) {
-  /* line 68, sass/_sections.sass */
-  #cmp .header .header-facebook-share,
-  #cmp .header .header-twitter-share {
-    display: none;
-  }
-}
-/* line 76, sass/_sections.sass */
+/* line 68, sass/_sections.sass */
 #cmp .header .header-facebook-share {
   width: 80px;
   border: 1px solid #cad4e7;
@@ -737,101 +729,119 @@ header[role="banner"] {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 80, sass/_sections.sass */
+/* line 72, sass/_sections.sass */
 #cmp .header .header-facebook-share:hover {
   border: 1px solid #eceef5;
 }
-/* line 83, sass/_sections.sass */
+/* line 75, sass/_sections.sass */
 #cmp .header .header-date {
-  width: 73%;
-}
-/* line 85, sass/_sections.sass */
-#cmp .header .header-date p {
-  text-align: right;
+  width: 56%;
+  text-align: center;
   text-transform: uppercase;
   font-weight: 600;
-  padding: 1.5em 0 0 0;
+  font-size: 1.5em;
   color: black;
 }
-/* line 92, sass/_sections.sass */
-#cmp .header .header-sponsor {
-  width: 11%;
+@media only screen and (max-width: 600px) {
+  /* line 75, sass/_sections.sass */
+  #cmp .header .header-date {
+    width: 96%;
+  }
 }
-@media only screen and (max-width: 1139px) {
-  /* line 92, sass/_sections.sass */
+/* line 85, sass/_sections.sass */
+#cmp .header .header-sponsor {
+  width: 22%;
+}
+@media only screen and (max-width: 600px) {
+  /* line 85, sass/_sections.sass */
   #cmp .header .header-sponsor {
     display: none;
   }
 }
-/* line 99, sass/_sections.sass */
+/* line 90, sass/_sections.sass */
 #cmp .header .row-bottom {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 1%;
+  padding: 1% 3%;
 }
-/* line 107, sass/_sections.sass */
+/* line 98, sass/_sections.sass */
 #cmp .headline {
   border-top: 1px solid #dddddd;
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
   padding: 25px 0 0 0;
 }
-/* line 115, sass/_sections.sass */
+/* line 106, sass/_sections.sass */
 #cmp .call-to-action {
   border: 1px solid #dddddd;
 }
-/* line 117, sass/_sections.sass */
+/* line 108, sass/_sections.sass */
 #cmp .call-to-action p {
   line-height: 3em;
   letter-spacing: 0.05em;
 }
-/* line 121, sass/_sections.sass */
+/* line 112, sass/_sections.sass */
 #cmp .call-to-action .btn {
   margin: 0 0 0 1em;
   clear: none;
 }
-/* line 125, sass/_sections.sass */
+/* line 116, sass/_sections.sass */
 #cmp .call-to-action .section-container {
   width: 43em;
 }
-/* line 130, sass/_sections.sass */
+/* line 121, sass/_sections.sass */
 #cmp .how-it-works {
   padding: 2em 0;
 }
-/* line 133, sass/_sections.sass */
+/* line 124, sass/_sections.sass */
+#cmp .how-it-works .section-unit-single {
+  padding: 0 3% !important;
+}
+/* line 127, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container {
   clear: both;
   overflow: hidden;
   margin: 0 0 1em 0;
 }
-/* line 138, sass/_sections.sass */
+/* line 132, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container .even-height {
-  height: 100px;
+  height: 115px;
 }
-/* line 141, sass/_sections.sass */
+/* line 134, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container .even-height img {
   width: 178px;
 }
-/* line 147, sass/_sections.sass */
+/* line 136, sass/_sections.sass */
+#cmp .how-it-works .how-it-works-container .even-height img.hack {
+  width: 115px;
+}
+/* line 142, sass/_sections.sass */
 #cmp .action-kit img {
   position: relative;
   top: 15px;
   right: 20px;
 }
-/* line 152, sass/_sections.sass */
+/* line 147, sass/_sections.sass */
 #cmp .action-kit .section-container {
   width: 35em;
 }
-/* line 158, sass/_sections.sass */
+/* line 153, sass/_sections.sass */
 #cmp .prizing p {
   padding: 1em 0;
+  width: 16em;
+  margin: 0 auto;
 }
-/* line 161, sass/_sections.sass */
+/* line 158, sass/_sections.sass */
 #cmp .prizing .prizing-container {
   width: 66.66667%;
   margin: 0 auto;
   clear: both;
+}
+/* line 162, sass/_sections.sass */
+#cmp .prizing .prizing-container img {
+  margin: 0 auto;
+  display: block;
 }
 /* line 166, sass/_sections.sass */
 #cmp .prizing .btn {
@@ -858,7 +868,13 @@ header[role="banner"] {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 187, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 180, sass/_sections.sass */
+  #cmp .sms-game-example .game-conversation {
+    padding: 0.7em 1em;
+  }
+}
+/* line 189, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation:after {
   content: "";
   display: block;
@@ -866,207 +882,258 @@ header[role="banner"] {
   border-style: solid;
   border-width: 15px;
 }
-/* line 193, sass/_sections.sass */
+/* line 195, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation p {
   line-height: 1.6em;
+  font-size: 1.5em;
   font-weight: 500;
-  text-transform: uppercase;
 }
-/* line 198, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 195, sass/_sections.sass */
+  #cmp .sms-game-example .game-conversation p {
+    font-size: 1.1em;
+  }
+}
+/* line 201, sass/_sections.sass */
+#cmp .sms-game-example .game-conversation p span {
+  font-weight: 600;
+}
+/* line 204, sass/_sections.sass */
 #cmp .sms-game-example .game-ds {
   float: left;
 }
-/* line 200, sass/_sections.sass */
+/* line 206, sass/_sections.sass */
 #cmp .sms-game-example .game-ds:after {
-  bottom: -30px;
+  bottom: -29px;
   left: 20px;
   border-color: #e1e1e1 #e1e1e1 white white;
 }
-/* line 204, sass/_sections.sass */
+/* line 210, sass/_sections.sass */
 #cmp .sms-game-example .game-ds p {
   text-align: left;
+  color: #959595;
 }
-/* line 207, sass/_sections.sass */
+/* line 213, sass/_sections.sass */
+#cmp .sms-game-example .game-ds p span {
+  color: #7b7b7b;
+}
+/* line 216, sass/_sections.sass */
 #cmp .sms-game-example .game-user {
   float: right;
-  background-color: #ffd400;
+  background-color: #00a99d;
 }
-/* line 210, sass/_sections.sass */
-#cmp .sms-game-example .game-user:after {
-  bottom: -30px;
-  right: 20px;
-  border-color: #ffd400 white white #ffd400;
-}
-/* line 214, sass/_sections.sass */
-#cmp .sms-game-example .game-user p {
-  text-align: right;
+@media only screen and (max-width: 600px) {
+  /* line 216, sass/_sections.sass */
+  #cmp .sms-game-example .game-user {
+    margin: 0em auto 2em;
+  }
 }
 /* line 221, sass/_sections.sass */
+#cmp .sms-game-example .game-user:after {
+  bottom: -29px;
+  right: 20px;
+  border-color: #00a99d white white #00a99d;
+}
+/* line 225, sass/_sections.sass */
+#cmp .sms-game-example .game-user p {
+  text-align: right;
+  color: white;
+}
+/* line 233, sass/_sections.sass */
 #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
   float: left;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 221, sass/_sections.sass */
+  /* line 233, sass/_sections.sass */
   #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
     float: none;
   }
 }
-/* line 228, sass/_sections.sass */
+/* line 240, sass/_sections.sass */
 #cmp .profiles .profile-photo {
   width: 290px;
   clear: both;
   margin: 0.5em 4em 0 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 228, sass/_sections.sass */
+  /* line 240, sass/_sections.sass */
   #cmp .profiles .profile-photo {
     margin: 0.5em auto 0;
   }
 }
-/* line 236, sass/_sections.sass */
+/* line 248, sass/_sections.sass */
 #cmp .profiles .profile-copy {
   width: 35em;
   margin: 0 0 3em 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 236, sass/_sections.sass */
+  /* line 248, sass/_sections.sass */
   #cmp .profiles .profile-copy {
     width: 90%;
     max-width: 35em;
     margin: 0 auto 3em;
   }
 }
-/* line 245, sass/_sections.sass */
+/* line 257, sass/_sections.sass */
 #cmp .profiles .profile-copy p {
   text-align: left;
 }
-/* line 247, sass/_sections.sass */
+/* line 259, sass/_sections.sass */
 #cmp .profiles .profile-copy h2 {
   color: #d5904c;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 247, sass/_sections.sass */
+  /* line 259, sass/_sections.sass */
   #cmp .profiles .profile-copy h2 {
     text-align: center;
   }
 }
-/* line 256, sass/_sections.sass */
+/* line 268, sass/_sections.sass */
 #cmp .content {
   width: 90%;
   max-width: 35em;
   margin: 0 auto;
   /* this padding should be abstracted to all <h3> */
 }
-/* line 261, sass/_sections.sass */
+/* line 273, sass/_sections.sass */
 #cmp .content p {
   display: block;
   text-align: left;
   line-height: 1.5em;
   padding-bottom: 1em;
 }
-/* line 266, sass/_sections.sass */
+/* line 278, sass/_sections.sass */
 #cmp .content h2 {
   padding-bottom: 0.5em;
 }
-/* line 270, sass/_sections.sass */
+/* line 282, sass/_sections.sass */
 #cmp .content .headline-callout {
   padding: 0 0 0.5em 0;
   text-transform: capitalize;
   text-align: left;
   margin-bottom: 0;
 }
-/* line 276, sass/_sections.sass */
+/* line 288, sass/_sections.sass */
 #cmp .content .headline-callout span {
-  background-color: #ffd400;
-  color: black;
+  background-color: #00a99d;
+  color: white;
   border: none;
 }
-/* line 283, sass/_sections.sass */
+/* line 295, sass/_sections.sass */
 #cmp .sms {
   border: none;
   background: black;
 }
-/* line 287, sass/_sections.sass */
+/* line 299, sass/_sections.sass */
 #cmp .sms label {
   margin: 3% 0 0;
   color: white;
 }
-/* line 290, sass/_sections.sass */
+/* line 302, sass/_sections.sass */
 #cmp .sms form {
   width: 80%;
   margin: 2em auto 0;
 }
-/* line 293, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 302, sass/_sections.sass */
+  #cmp .sms form {
+    width: 96%;
+    margin: 0 auto;
+  }
+}
+/* line 308, sass/_sections.sass */
 #cmp .sms form input {
   color: black;
 }
-/* line 296, sass/_sections.sass */
+/* line 311, sass/_sections.sass */
 #cmp .sms h2 {
   margin: 0 auto 5px 0;
   text-transform: uppercase;
 }
-/* line 300, sass/_sections.sass */
+/* line 315, sass/_sections.sass */
 #cmp .sms h2 span {
-  font-weight: 600;
-  color: black;
-  background-color: #ffd400;
+  font-weight: 500;
+  font-size: 1.2em;
+  color: white;
+  background-color: #00a99d;
   display: inline-block;
   padding: 5px 10px 0 10px;
 }
-/* line 307, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 315, sass/_sections.sass */
+  #cmp .sms h2 span {
+    padding: 0;
+    background: none;
+    font-weight: 400;
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+}
+/* line 329, sass/_sections.sass */
 #cmp .sms h3 {
   color: white;
 }
-/* line 310, sass/_sections.sass */
+/* line 332, sass/_sections.sass */
 #cmp .sms .btn {
   width: 9.4em;
   margin: 1em auto;
 }
-/* line 314, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 332, sass/_sections.sass */
+  #cmp .sms .btn {
+    margin: 0 auto 0.5em;
+  }
+}
+/* line 338, sass/_sections.sass */
 #cmp .sms-input-wrapper {
   width: 50%;
   float: left;
   margin: 0 0 2em 0;
 }
 @media only screen and (max-width: 600px) {
-  /* line 314, sass/_sections.sass */
+  /* line 338, sass/_sections.sass */
   #cmp .sms-input-wrapper {
     width: 100%;
+    margin: 0;
   }
-  /* line 322, sass/_sections.sass */
+  /* line 347, sass/_sections.sass */
   #cmp .sms-input-wrapper.first-column {
     margin: 0 0 0 0;
   }
 }
-/* line 325, sass/_sections.sass */
+/* line 350, sass/_sections.sass */
 #cmp .sms-input {
   width: 85%;
-  margin: 5% 0 0 0;
+  margin: 0 0 3% 0;
 }
 @media only screen and (max-width: 600px) {
-  /* line 325, sass/_sections.sass */
+  /* line 350, sass/_sections.sass */
   #cmp .sms-input {
     width: 100%;
   }
 }
-/* line 332, sass/_sections.sass */
+/* line 357, sass/_sections.sass */
 #cmp .sms-alpha-wrapper {
   float: left;
   width: 35.8%;
   margin: 0 0 4% 0;
 }
-/* line 336, sass/_sections.sass */
+/* line 361, sass/_sections.sass */
 #cmp .sms-alpha-wrapper input {
   width: 83.5%;
 }
-/* line 339, sass/_sections.sass */
+/* line 364, sass/_sections.sass */
 #cmp .sms-beta-mobile {
   clear: both;
   margin: 5% 0 -1%;
 }
-/* line 346, sass/_sections.sass */
+/* line 368, sass/_sections.sass */
+#cmp .input-wrapper {
+  margin: 1em 0 0 0;
+}
+/* line 374, sass/_sections.sass */
 #cmp .gallery img {
   border: 1px solid #dddddd !important;
   -webkit-border-radius: 3px;
@@ -1078,7 +1145,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb !important;
   box-shadow: 0 10px 10px -10px #bbbbbb !important;
 }
-/* line 354, sass/_sections.sass */
+/* line 382, sass/_sections.sass */
 #cmp .map iframe {
   width: 90%;
   margin: 0 auto;
@@ -1088,79 +1155,62 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #cccccc;
   box-shadow: 0 10px 10px -10px #cccccc;
 }
-/* line 363, sass/_sections.sass */
+/* line 391, sass/_sections.sass */
 #cmp .success_msg {
   margin: 0 auto 1em;
 }
-/* line 365, sass/_sections.sass */
+/* line 393, sass/_sections.sass */
 #cmp .success_msg h2 {
   text-transform: uppercase;
   font-weight: 600;
   color: #d5904c;
 }
-/* line 372, sass/_sections.sass */
+/* line 400, sass/_sections.sass */
 #cmp .faq {
   width: 90%;
   max-width: 35em;
   position: relative;
   margin: 0 auto;
 }
-/* line 378, sass/_sections.sass */
+/* line 406, sass/_sections.sass */
 #cmp .faq h3, #cmp .faq p {
   text-align: left;
 }
-/* line 380, sass/_sections.sass */
+/* line 408, sass/_sections.sass */
 #cmp .faq h3 {
   cursor: pointer;
   color: black;
   font-weight: 600;
 }
-/* line 384, sass/_sections.sass */
+/* line 412, sass/_sections.sass */
 #cmp .faq div {
   margin: 0 0 0.5em 0;
 }
-/* line 387, sass/_sections.sass */
+/* line 415, sass/_sections.sass */
 #cmp .faq .btn {
   margin: 1em auto 0;
 }
-/* line 390, sass/_sections.sass */
+/* line 418, sass/_sections.sass */
 #cmp .faq .back-to-top {
   text-align: right;
   padding: 1em 0 1em;
 }
-/* line 394, sass/_sections.sass */
+/* line 422, sass/_sections.sass */
 #cmp .faq .top-btn {
   font-weight: 400;
   color: #c6c7c8;
   padding: 0px 0px 0px 1em;
-  text-decoration: none;
   background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
   background-repeat: no-repeat;
   background-position: 0% 40%;
 }
-/* line 407, sass/_sections.sass */
-#cmp .sponsor p {
-  padding: 8px;
-  text-align: center;
-}
-/* line 411, sass/_sections.sass */
-#cmp .sponsor a {
-  padding: 8px;
-  text-align: center;
-}
-@media only screen and (max-width: 600px) {
-  /* line 411, sass/_sections.sass */
-  #cmp .sponsor a {
-    display: block;
-  }
-}
-/* line 420, sass/_sections.sass */
+/* line 432, sass/_sections.sass */
 #cmp .footer {
   padding: 2% 0;
   margin: 0 0 -2%;
   text-align: center;
 }
-/* line 424, sass/_sections.sass */
+/* line 436, sass/_sections.sass */
 #cmp .footer img {
   width: 50px;
   margin: 0 auto;
