@@ -151,7 +151,6 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'administer users',
     'roles' => array(
       0 => 'administrator',
-      1 => 'ds staff',
     ),
     'module' => 'user',
   );
