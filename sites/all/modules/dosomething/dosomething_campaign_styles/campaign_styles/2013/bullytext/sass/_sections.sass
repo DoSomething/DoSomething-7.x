@@ -38,40 +38,25 @@
   border: none
 
   .logo-campaign
-    margin: 0 auto
-    display: block
-    width: 450px
-    clear: both
+    width: 550px
+    margin: 1em auto 0
+    height: 225px
+    padding: 25px
+    background: #fff
+    background: rgba(255,255,255,0.8)
     @media only screen and (max-width: 550px)
       width: 400px
-
-  .header-logotype
-    text-align: center
-    color: #fff
-    text-transform: uppercase
-    line-height: 1.2em
-    font-weight: 600
-    font-size: 4em
-    margin: 2em auto 0.5em
-
-    @include respond-to(tablets_and_phones)
-      font-size: 3em
 
   .log-out
     color: $font-light
 
   .header-social
-    width: 16%
-    height: 20px
-    margin: 25px 0 0 0
+    width: 22%
 
   .header-facebook-share,
   .header-twitter-share
     display: inline-block
     height: 20px
-
-    @include respond-to(tablets_and_phones)
-      display: none
 
   .header-facebook-share
     width: 80px
@@ -81,26 +66,24 @@
       border: 1px solid rgb(236, 238, 245)
 
   .header-date
-    width: 73%
-    p
-      text-align: right
-      text-transform: uppercase
-      font-weight: 600
-      padding: 1.5em 0 0 0
-      color: $font-black
+    width: 56%
+    text-align: center
+    text-transform: uppercase
+    font-weight: 600
+    font-size: 1.5em
+    color: $font-black
 
   .header-sponsor
-    width: 11%
+    width: 22%
 
     @include respond-to(tablets_and_phones)
       display: none // relocated to footer
-
 
   .row-bottom
     position: absolute
     bottom: 0
     left: 0
-    padding: 1%
+    padding: 1% 3%
 
 // HEADLINE
 // --------
@@ -129,6 +112,9 @@
 // ------------
 .how-it-works
   padding: 2em 0
+  
+  .section-unit-single
+    padding: 0 3% !important
 
   .how-it-works-container
     clear: both
@@ -136,10 +122,11 @@
     margin: 0 0 1em 0
 
     .even-height
-      height: 100px
-
+      height: 115px
       img
         width: 178px
+      img.hack
+        width: 115px
 
 // ACTION-KIT
 // ----------
@@ -157,11 +144,15 @@
 .prizing
   p
     padding: 1em 0
+    width: 16em
 
   .prizing-container
     width: ( $section-unit-width * 2 )
     margin: 0 auto
     clear: both
+    img
+      margin: 0 auto
+      display: block
 
   .btn
     margin: 0 auto 1em
@@ -192,27 +183,33 @@
       border-width: 15px
     p
       line-height: 1.6em
+      font-size: 1.5em
       font-weight: 500
-      text-transform: uppercase
+      span
+        font-weight: 600
 
   .game-ds
     float: left
     &:after
-      bottom: -30px
+      bottom: -29px
       left: 20px
       border-color: darken($bg-alt, 5) darken($bg-alt, 5) $bg-light $bg-light
     p
       text-align: left
+      color: darken($bg-alt, 35)
+      span
+        color: darken($bg-alt, 45)
 
   .game-user
     float: right
     background-color: $highlight
     &:after
-      bottom: -30px
+      bottom: -29px
       right: 20px
       border-color: $highlight $bg-light $bg-light $highlight
     p
       text-align: right
+      color: darken($highlight, 15)
 
 // PROFILES
 // --------
@@ -272,10 +269,11 @@
     text-transform: capitalize
     text-align: left
     margin-bottom: 0
+    color: darken($highlight, 15)
 
     span
       background-color: $highlight
-      color: $font-black
+      color: darken($highlight, 15)
       border: none
 
 // SMS
@@ -296,11 +294,12 @@
   h2
     margin: 0 auto 5px 0
     text-transform: uppercase
-    
+
     span
-      font-weight: 600
-      color: black
-      background-color: #ffd400
+      font-weight: 500
+      font-size: 1.2em
+      color: $header-color
+      background-color: $accent
       display: inline-block
       padding: 5px 10px 0 10px
 
