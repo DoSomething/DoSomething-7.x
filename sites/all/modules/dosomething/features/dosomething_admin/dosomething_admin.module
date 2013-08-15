@@ -14,23 +14,33 @@ function dosomething_admin_menu() {
 	  'title' => 'Lookup',
 	  'page callback' => 'dosomething_admin_lookup_page',
 	  'description' => 'Lookup pages for DoSomething staff.',
-	  'access callback' => 'dosomething_admin_lookup_access',
-	);  
+	  'access callback' => 'dosomething_admin_is_user_ds_staff',
+	);
+	// Defining these admin view menu callbacks here to avoid dealing Features being fussy about menus.
+	// When relying on the Views to create the menu callbacks, sometimes they show up outside of the Lookup top level.
+	$items['admin/lookup/user'] = array(
+	  'title' => 'User',
+	  'type' => MENU_LOCAL_TASK,
+	  'page callback' => 'views_embed_view',
+	  'page arguments' => array('admin_lookup_user', 'default'),
+	  'description' => 'Lookup User',
+	  'access callback' => 'dosomething_admin_is_user_ds_staff',
+	  'file path' => drupal_get_path('module', 'views'),
+	  'file' => 'views.module',
+	  'weight' => 10,
+	);
+	$items['admin/lookup/submission'] = array(
+	  'title' => 'Webform Submission',
+	  'type' => MENU_LOCAL_TASK,
+	  'page callback' => 'views_embed_view',
+	  'page arguments' => array('admin_lookup_submission', 'default'),
+	  'description' => 'Lookup Webform Submission',
+	  'access callback' => 'dosomething_admin_is_user_ds_staff',
+	  'file path' => drupal_get_path('module', 'views'),
+	  'file' => 'views.module',
+	  'weight' => 20,
+	);
 	return $items;
-}
-
-/**
-* Access callback for admin/lookup.
-*/
-function dosomething_admin_lookup_access() {
-  global $user;
-  foreach ($user->roles as $role) {
- 	  if ($role == 'administrator' || $role == 'ds staff') {
- 	  	return TRUE;
- 	  }
- 	}
-
- 	return FALSE;
 }
 
 /**
@@ -38,4 +48,47 @@ function dosomething_admin_lookup_access() {
 */
 function dosomething_admin_lookup_page() {
   drupal_goto('admin/lookup/user');
+}
+
+
+######## Access helper functions #########
+
+/**
+ * Returns boolean of whether given (or current) user is administrator or DS Staff.
+ */
+function dosomething_admin_is_user_ds_staff($user = NULL) {
+	if (!$user) {
+    global $user;
+  }
+  foreach ($user->roles as $role) {
+ 	  if ($role == 'administrator' || $role == 'ds staff') {
+ 	  	return TRUE;
+ 	  }
+ 	}
+ 	return FALSE;
+}
+
+/**
+ * Returns boolean of whether given (or current) user is administrator or DS Product Team.
+ */
+function dosomething_admin_is_user_ds_product_team($user = NULL) {
+	if (!$user) {
+    global $user;
+  }
+  foreach ($user->roles as $role) {
+ 	  if ($role == 'administrator' || $role == 'ds staff') {
+ 	  	return TRUE;
+ 	  }
+ 	}
+ 	return FALSE;
+}
+
+/**
+ * Returns boolean of whether given (or current) user is administrator.
+ */
+function dosomething_admin_is_user_administrator($user = NULL) {
+	if (!$user) {
+    global $user;
+  }
+  return in_array('administrator', $user->roles);
 }
