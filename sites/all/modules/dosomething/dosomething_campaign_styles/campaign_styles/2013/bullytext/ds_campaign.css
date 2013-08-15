@@ -809,23 +809,24 @@ header[role="banner"] {
 #cmp .prizing p {
   padding: 1em 0;
   width: 16em;
+  margin: 0 auto;
 }
-/* line 149, sass/_sections.sass */
+/* line 150, sass/_sections.sass */
 #cmp .prizing .prizing-container {
   width: 66.66667%;
   margin: 0 auto;
   clear: both;
 }
-/* line 153, sass/_sections.sass */
+/* line 154, sass/_sections.sass */
 #cmp .prizing .prizing-container img {
   margin: 0 auto;
   display: block;
 }
-/* line 157, sass/_sections.sass */
+/* line 158, sass/_sections.sass */
 #cmp .prizing .btn {
   margin: 0 auto 1em;
 }
-/* line 164, sass/_sections.sass */
+/* line 165, sass/_sections.sass */
 #cmp .sms-game-example .sms-game-container {
   width: 100%;
   max-width: 35em;
@@ -833,7 +834,7 @@ header[role="banner"] {
   overflow: hidden;
   clear: both;
 }
-/* line 171, sass/_sections.sass */
+/* line 172, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation {
   margin: 1em auto 2em;
   padding: 1em 2em;
@@ -846,7 +847,7 @@ header[role="banner"] {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 178, sass/_sections.sass */
+/* line 179, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation:after {
   content: "";
   display: block;
@@ -854,132 +855,131 @@ header[role="banner"] {
   border-style: solid;
   border-width: 15px;
 }
-/* line 184, sass/_sections.sass */
+/* line 185, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation p {
   line-height: 1.6em;
   font-size: 1.5em;
   font-weight: 500;
 }
-/* line 188, sass/_sections.sass */
+/* line 189, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation p span {
   font-weight: 600;
 }
-/* line 191, sass/_sections.sass */
+/* line 192, sass/_sections.sass */
 #cmp .sms-game-example .game-ds {
   float: left;
 }
-/* line 193, sass/_sections.sass */
+/* line 194, sass/_sections.sass */
 #cmp .sms-game-example .game-ds:after {
   bottom: -29px;
   left: 20px;
   border-color: #e1e1e1 #e1e1e1 white white;
 }
-/* line 197, sass/_sections.sass */
+/* line 198, sass/_sections.sass */
 #cmp .sms-game-example .game-ds p {
   text-align: left;
   color: #959595;
 }
-/* line 200, sass/_sections.sass */
+/* line 201, sass/_sections.sass */
 #cmp .sms-game-example .game-ds p span {
   color: #7b7b7b;
 }
-/* line 203, sass/_sections.sass */
+/* line 204, sass/_sections.sass */
 #cmp .sms-game-example .game-user {
   float: right;
   background-color: #00a99d;
 }
-/* line 206, sass/_sections.sass */
+/* line 207, sass/_sections.sass */
 #cmp .sms-game-example .game-user:after {
   bottom: -29px;
   right: 20px;
   border-color: #00a99d white white #00a99d;
 }
-/* line 210, sass/_sections.sass */
+/* line 211, sass/_sections.sass */
 #cmp .sms-game-example .game-user p {
   text-align: right;
-  color: #005c56;
+  color: white;
 }
-/* line 218, sass/_sections.sass */
+/* line 219, sass/_sections.sass */
 #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
   float: left;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 218, sass/_sections.sass */
+  /* line 219, sass/_sections.sass */
   #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
     float: none;
   }
 }
-/* line 225, sass/_sections.sass */
+/* line 226, sass/_sections.sass */
 #cmp .profiles .profile-photo {
   width: 290px;
   clear: both;
   margin: 0.5em 4em 0 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 225, sass/_sections.sass */
+  /* line 226, sass/_sections.sass */
   #cmp .profiles .profile-photo {
     margin: 0.5em auto 0;
   }
 }
-/* line 233, sass/_sections.sass */
+/* line 234, sass/_sections.sass */
 #cmp .profiles .profile-copy {
   width: 35em;
   margin: 0 0 3em 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 233, sass/_sections.sass */
+  /* line 234, sass/_sections.sass */
   #cmp .profiles .profile-copy {
     width: 90%;
     max-width: 35em;
     margin: 0 auto 3em;
   }
 }
-/* line 242, sass/_sections.sass */
+/* line 243, sass/_sections.sass */
 #cmp .profiles .profile-copy p {
   text-align: left;
 }
-/* line 244, sass/_sections.sass */
+/* line 245, sass/_sections.sass */
 #cmp .profiles .profile-copy h2 {
   color: #d5904c;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 244, sass/_sections.sass */
+  /* line 245, sass/_sections.sass */
   #cmp .profiles .profile-copy h2 {
     text-align: center;
   }
 }
-/* line 253, sass/_sections.sass */
+/* line 254, sass/_sections.sass */
 #cmp .content {
   width: 90%;
   max-width: 35em;
   margin: 0 auto;
   /* this padding should be abstracted to all <h3> */
 }
-/* line 258, sass/_sections.sass */
+/* line 259, sass/_sections.sass */
 #cmp .content p {
   display: block;
   text-align: left;
   line-height: 1.5em;
   padding-bottom: 1em;
 }
-/* line 263, sass/_sections.sass */
+/* line 264, sass/_sections.sass */
 #cmp .content h2 {
   padding-bottom: 0.5em;
 }
-/* line 267, sass/_sections.sass */
+/* line 268, sass/_sections.sass */
 #cmp .content .headline-callout {
   padding: 0 0 0.5em 0;
   text-transform: capitalize;
   text-align: left;
   margin-bottom: 0;
-  color: #005c56;
 }
 /* line 274, sass/_sections.sass */
 #cmp .content .headline-callout span {
   background-color: #00a99d;
-  color: #005c56;
+  color: white;
   border: none;
 }
 /* line 281, sass/_sections.sass */
