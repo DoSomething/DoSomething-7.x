@@ -186,6 +186,11 @@ function dosomething_general_views_pre_view(&$view, &$display_id, &$args) {
  * the page build seemed like the simplest place.
  */
 function dosomething_general_page_alter(&$page) {
+  $path = request_path();
+  if (preg_match('#^club#', $path)) {
+    drupal_goto('actnow/actionguide/how-to-start-do-something-club');
+  }
+
   if (!extension_loaded('newrelic')) {
     return;
   }
@@ -339,7 +344,6 @@ function dosomething_general_menu() {
 
   return $items;
 }
-
 /**
  *  Redirects a user to a destination with a message.
  *
