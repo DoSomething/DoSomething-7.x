@@ -86,7 +86,16 @@
         window.location.href = '/bullytext#header';
       });
 
-    // END
+      // ------------------------
+      // SMS CONFIRMATION MESSAGE
+      // ------------------------
+
+      if (document.location.search.slice(1,8) === 'success') {
+        var success_msg = '<div class="success_msg"><h2>Great! We sent The Bully Text to you and your friends.</h2></div>';
+        $('#sms').prepend(success_msg);
+      }
+
+      // END
 
     } // end attach: function
   }; // end Drupal.behaviors
