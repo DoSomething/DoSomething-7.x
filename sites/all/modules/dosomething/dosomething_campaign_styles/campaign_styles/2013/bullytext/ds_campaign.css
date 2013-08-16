@@ -1162,40 +1162,49 @@ header[role="banner"] {
 /* line 393, sass/_sections.sass */
 #cmp .success_msg h2 {
   text-transform: uppercase;
-  font-weight: 600;
-  color: #d5904c;
+  font-size: 1.8em;
+  font-weight: 500;
+  color: #fed100;
 }
-/* line 400, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 393, sass/_sections.sass */
+  #cmp .success_msg h2 {
+    font-size: 1.3em;
+    line-height: 1.5em;
+    margin: 1em 0 0 0;
+  }
+}
+/* line 405, sass/_sections.sass */
 #cmp .faq {
   width: 90%;
   max-width: 35em;
   position: relative;
   margin: 0 auto;
 }
-/* line 406, sass/_sections.sass */
+/* line 411, sass/_sections.sass */
 #cmp .faq h3, #cmp .faq p {
   text-align: left;
 }
-/* line 408, sass/_sections.sass */
+/* line 413, sass/_sections.sass */
 #cmp .faq h3 {
   cursor: pointer;
   color: black;
   font-weight: 600;
 }
-/* line 412, sass/_sections.sass */
+/* line 417, sass/_sections.sass */
 #cmp .faq div {
   margin: 0 0 0.5em 0;
 }
-/* line 415, sass/_sections.sass */
+/* line 420, sass/_sections.sass */
 #cmp .faq .btn {
   margin: 1em auto 0;
 }
-/* line 418, sass/_sections.sass */
+/* line 423, sass/_sections.sass */
 #cmp .faq .back-to-top {
   text-align: right;
   padding: 1em 0 1em;
 }
-/* line 422, sass/_sections.sass */
+/* line 427, sass/_sections.sass */
 #cmp .faq .top-btn {
   font-weight: 400;
   color: #c6c7c8;
@@ -1204,13 +1213,13 @@ header[role="banner"] {
   background-repeat: no-repeat;
   background-position: 0% 40%;
 }
-/* line 432, sass/_sections.sass */
+/* line 437, sass/_sections.sass */
 #cmp .footer {
   padding: 2% 0;
   margin: 0 0 -2%;
   text-align: center;
 }
-/* line 436, sass/_sections.sass */
+/* line 441, sass/_sections.sass */
 #cmp .footer img {
   width: 50px;
   margin: 0 auto;
