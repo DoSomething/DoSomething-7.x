@@ -213,6 +213,15 @@ class Mandrill {
   public function tags_all_time_series() {
     return $this->request('tags/all-time-series');
   }
+  
+  /**
+   * @link https://mandrillapp.com/api/docs/tags.JSON.html#method=delete
+   *
+   * @return array|Mandrill_Exception
+   */
+  public function tags_delete($tag) {
+    return $this->request('tags/delete', array('tag' => $tag));
+  }
 
   /**
    * @link https://mandrillapp.com/api/docs/templates.html#method=add
