@@ -532,8 +532,6 @@ class OptimizelyTestPageSnippetTestCase extends DrupalWebTestCase {
 				
 				// Only test non wildcard paths
 				if (strpos($path, '/*') === FALSE) {
-					
-
 
 		      // Look up the page defained in the project
 		      $this->drupalGet($path);
