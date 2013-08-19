@@ -16,7 +16,7 @@ function dosomething_admin_menu() {
 	  'page callback' => 'dosomething_admin_lookup_page',
 	  'description' => 'Lookup pages for DoSomething staff.',
 	  'access callback' => 'dosomething_admin_is_current_user_role',
-	  'access arguments' => array('ds staff'),
+	  'access arguments' => array('staff'),
     'file' => 'dosomething_admin.pages.inc',
 	);
 	// Defining these admin view menu callbacks here to avoid dealing Features being fussy about menus.
@@ -28,7 +28,7 @@ function dosomething_admin_menu() {
 	  'page arguments' => array('admin_lookup_user', 'page_1'),
 	  'description' => 'Lookup User',
 	  'access callback' => 'dosomething_admin_is_current_user_role',
-	  'access arguments' => array('ds staff'),
+	  'access arguments' => array('staff'),
 	  'file path' => drupal_get_path('module', 'views'),
 	  'file' => 'views.module',
 	  'weight' => 10,
