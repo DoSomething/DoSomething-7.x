@@ -30,6 +30,16 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'system',
   );
 
+  // Exported permission: access all webform results.
+  $permissions['access all webform results'] = array(
+    'name' => 'access all webform results',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'ds staff',
+    ),
+    'module' => 'webform',
+  );
+
   // Exported permission: access content overview.
   $permissions['access content overview'] = array(
     'name' => 'access content overview',
@@ -39,7 +49,6 @@ function dosomething_admin_user_default_permissions() {
     ),
     'module' => 'node',
   );
-
 
   // Exported permission: access user profiles.
   $permissions['access user profiles'] = array(
@@ -665,6 +674,16 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'opengraph_meta',
   );
 
+  // Exported permission: edit all webform submissions.
+  $permissions['edit all webform submissions'] = array(
+    'name' => 'edit all webform submissions',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'ds staff',
+    ),
+    'module' => 'webform',
+  );
+
   // Exported permission: edit any action_guide content.
   $permissions['edit any action_guide content'] = array(
     'name' => 'edit any action_guide content',
@@ -1007,7 +1026,6 @@ function dosomething_admin_user_default_permissions() {
     ),
     'module' => 'profile2',
   );
-
 
   // Exported permission: view own unpublished content.
   $permissions['view own unpublished content'] = array(
