@@ -30,16 +30,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: access all webform results.
-  $permissions['access all webform results'] = array(
-    'name' => 'access all webform results',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
-    ),
-    'module' => 'webform',
-  );
-
   // Exported permission: access content overview.
   $permissions['access content overview'] = array(
     'name' => 'access content overview',
@@ -50,21 +40,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: access own webform results.
-  $permissions['access own webform results'] = array(
-    'name' => 'access own webform results',
-    'roles' => array(),
-    'module' => 'webform',
-  );
-
-  // Exported permission: access own webform submissions.
-  $permissions['access own webform submissions'] = array(
-    'name' => 'access own webform submissions',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'webform',
-  );
 
   // Exported permission: access user profiles.
   $permissions['access user profiles'] = array(
@@ -380,15 +355,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete all webform submissions.
-  $permissions['delete all webform submissions'] = array(
-    'name' => 'delete all webform submissions',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'webform',
-  );
-
   // Exported permission: delete any action_guide content.
   $permissions['delete any action_guide content'] = array(
     'name' => 'delete any action_guide content',
@@ -690,13 +656,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete own webform submissions.
-  $permissions['delete own webform submissions'] = array(
-    'name' => 'delete own webform submissions',
-    'roles' => array(),
-    'module' => 'webform',
-  );
-
   // Exported permission: edit Open Graph meta tags.
   $permissions['edit Open Graph meta tags'] = array(
     'name' => 'edit Open Graph meta tags',
@@ -704,16 +663,6 @@ function dosomething_admin_user_default_permissions() {
       0 => 'ds staff',
     ),
     'module' => 'opengraph_meta',
-  );
-
-  // Exported permission: edit all webform submissions.
-  $permissions['edit all webform submissions'] = array(
-    'name' => 'edit all webform submissions',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
-    ),
-    'module' => 'webform',
   );
 
   // Exported permission: edit any action_guide content.
@@ -959,15 +908,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit own webform submissions.
-  $permissions['edit own webform submissions'] = array(
-    'name' => 'edit own webform submissions',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'webform',
-  );
-
   // Exported permission: edit terms in 26.
   $permissions['edit terms in 26'] = array(
     'name' => 'edit terms in 26',
@@ -1058,52 +998,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'filter',
   );
 
-  // Exported permission: view any campaign_contact_form webform submissions.
-  $permissions['view any campaign_contact_form webform submissions'] = array(
-    'name' => 'view any campaign_contact_form webform submissions',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
-    ),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any campaign_report_back webform submissions.
-  $permissions['view any campaign_report_back webform submissions'] = array(
-    'name' => 'view any campaign_report_back webform submissions',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any campaign_sign_up webform submissions.
-  $permissions['view any campaign_sign_up webform submissions'] = array(
-    'name' => 'view any campaign_sign_up webform submissions',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
-    ),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any grant_application webform submissions.
-  $permissions['view any grant_application webform submissions'] = array(
-    'name' => 'view any grant_application webform submissions',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
-    ),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any grant_judge webform submissions.
-  $permissions['view any grant_judge webform submissions'] = array(
-    'name' => 'view any grant_judge webform submissions',
-    'roles' => array(),
-    'module' => 'webform_entity_pages',
-  );
-
   // Exported permission: view any main profile.
   $permissions['view any main profile'] = array(
     'name' => 'view any main profile',
@@ -1114,86 +1008,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: view any petition webform submissions.
-  $permissions['view any petition webform submissions'] = array(
-    'name' => 'view any petition webform submissions',
-    'roles' => array(),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any program_short_form webform submissions.
-  $permissions['view any program_short_form webform submissions'] = array(
-    'name' => 'view any program_short_form webform submissions',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
-    ),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any project_report webform submissions.
-  $permissions['view any project_report webform submissions'] = array(
-    'name' => 'view any project_report webform submissions',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any scholarship_application webform submissions.
-  $permissions['view any scholarship_application webform submissions'] = array(
-    'name' => 'view any scholarship_application webform submissions',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
-    ),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any scholarship_application_with_rec webform submissions.
-  $permissions['view any scholarship_application_with_rec webform submissions'] = array(
-    'name' => 'view any scholarship_application_with_rec webform submissions',
-    'roles' => array(),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any scholarship_recommendation webform submissions.
-  $permissions['view any scholarship_recommendation webform submissions'] = array(
-    'name' => 'view any scholarship_recommendation webform submissions',
-    'roles' => array(),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any scholarship_recommendation_reque webform submissions.
-  $permissions['view any scholarship_recommendation_reque webform submissions'] = array(
-    'name' => 'view any scholarship_recommendation_reque webform submissions',
-    'roles' => array(),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any social_scholarship webform submissions.
-  $permissions['view any social_scholarship webform submissions'] = array(
-    'name' => 'view any social_scholarship webform submissions',
-    'roles' => array(),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any team_challenge webform submissions.
-  $permissions['view any team_challenge webform submissions'] = array(
-    'name' => 'view any team_challenge webform submissions',
-    'roles' => array(),
-    'module' => 'webform_entity_pages',
-  );
-
-  // Exported permission: view any webform webform submissions.
-  $permissions['view any webform webform submissions'] = array(
-    'name' => 'view any webform webform submissions',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'ds staff',
-    ),
-    'module' => 'webform_entity_pages',
-  );
 
   // Exported permission: view own unpublished content.
   $permissions['view own unpublished content'] = array(
@@ -1204,15 +1018,6 @@ function dosomething_admin_user_default_permissions() {
       2 => 'ds staff',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: view own webform submissions.
-  $permissions['view own webform submissions'] = array(
-    'name' => 'view own webform submissions',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'webform_entity_pages',
   );
 
   // Exported permission: view the administration theme.
