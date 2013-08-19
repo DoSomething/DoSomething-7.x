@@ -46,9 +46,10 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
       '#value' => NULL,
     );
 
-    // Enable form element default - blank, unselected
+    // Enable form element defaults - blank, unselected
     $enabled = FALSE;
-    $project_code = FALSE;
+    $project_code = '';
+    $account_code = variable_get('optimizely_id', 0);
 
   }
   else {
@@ -73,6 +74,7 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
 
     $enabled = $record->enabled;
     $record->project_code == 0 ? $project_code = 'Undefined' : $project_code = $record->project_code;
+    $account_code = variable_get('optimizely_id', 0);
 
   }
 
@@ -93,8 +95,8 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
     '#type' => 'textfield',
     '#disabled' => $target_oid == 1 ? TRUE : FALSE,
     '#title' => t('Optimizely Project Code'),
-    '#default_value' => $project_code == FALSE ? '' : check_plain($project_code),
-    '#description' => check_plain($target_oid) == 1 ?
+    '#default_value' => check_plain($project_code),
+    '#description' => ($account_code == 0) ?
       t('The Optimizely account value has not been set in the <a href="/admin/config/system/optimizely/settings">Account Info</a> settings form. The Optimizely account value is used as the project ID for this "default" project entry.') :
       t('The Optimizely javascript file name used in the snippet as provided by the Optimizely website for the project.'),
     '#size' => 30,
@@ -198,8 +200,7 @@ function optimizely_add_update_form_validate($form, &$form_state) {
     $target_paths = preg_split('/[\r\n]+/', $form_state['values']['optimizely_path'], -1, PREG_SPLIT_NO_EMPTY);
     $valid_path = _optimizely_valid_paths($target_paths);
     if (!is_bool($valid_path)) {
-      form_set_error('optimizely_path', t('The project path "!project_path" is not a valid path. The path or alias could not be resolved as a valid URL that will result in content on the site.',
-         array('!project_path' => $valid_path)));
+      form_set_error('optimizely_path', t('The project path "!project_path" is not a valid path. The path or alias could not be resolved as a valid URL that will result in content on the site.', array('!project_path' => $valid_path)));
     }
     
     // There must be only one Optimizely javascript call on a page. Check paths to ensure there are no duplicates  
@@ -600,14 +601,14 @@ function optimizely_ajax_enable() {
       
       // Check to see if the enable project has path entries that will result in
       // duplicates with other enable projects
-      if ($valid_paths)  {
+      if ($valid_paths === TRUE)  {
         list($unique_path, $target_path) = _optimizely_unique_paths($target_paths, $target_oid);
         if ($unique_path !== TRUE) {
          $message =  t('Project was not enabled due to path setting resulting in duplicate path entries between enabled projects.'); 
         }
       }
       else {
-        $message = t('Project was not enabled due to path setting resulting in invalid path.');
+        $message = t('Project was not enabled due to path setting: ' . $valid_paths . ' resulting in an invalid path.');
       }
       
     }
@@ -762,7 +763,7 @@ function _optimizely_unique_paths($target_paths, $target_oid = NULL) {
     }
     
     // Add any additional aliases to catch all match possiblities
-    $all_project_paths = _optimizely_collect_alias($all_project_paths);
+    $all_project_paths = _optimizely_collect_alias($all_project_paths);    
 
     // Convert array into string for drupal_match_path()
     $all_project_paths_string = implode("\n", $all_project_paths);
@@ -782,7 +783,7 @@ function _optimizely_unique_paths($target_paths, $target_oid = NULL) {
           // Look for duplicate path due to wild card
           foreach ($all_project_paths as $all_project_path) {
   
-            //
+            // 
             if (strpos($all_project_path, $target_path) === 0 && $all_project_path != $target_path) {
               return array($project->project_title, $target_path);
             }
@@ -798,9 +799,14 @@ function _optimizely_unique_paths($target_paths, $target_oid = NULL) {
         if (in_array('*', $all_project_paths)) {
           return array($project->project_title, $target_path);
         }
-    
+        
+      } // Parameters found, collect base path for compairson to the other project path entries
+      elseif (strpos($target_path, '?') !== FALSE) {
+        $target_path = substr($target_path, 0, strpos($target_path, '?'));
       }
-      elseif (drupal_match_path($target_path, $all_project_paths_string)) {
+      
+      // Look for duplicates 
+      if (drupal_match_path($target_path, $all_project_paths_string)) {
           return array($project->project_title, $target_path);      
       }
   
@@ -863,7 +869,6 @@ function _optimizely_duplicate_check($paths) {
   return FALSE;
   
 }
-
 /*
  * Lookup all alternatives to the group of paths - alias, <front>
  *
@@ -876,7 +881,14 @@ function _optimizely_duplicate_check($paths) {
 function _optimizely_collect_alias($paths) {
   
   // Add alternative values - alias, source, <front> to ensure matches also check different possiblities
-  foreach ($paths as $path) {
+  foreach ($paths as $path_count => $path) {
+    
+    // Remove parameters
+    if (strpos($path, '?') !== FALSE) {
+      $path = substr($path, 0, strpos($path, '?'));
+      $paths[$path_count] = $path;
+    }
+    
     !drupal_lookup_path('alias', $path) ?: $paths[] = drupal_lookup_path('alias', $path);
     !drupal_lookup_path('source', $path) ?: $paths[] = drupal_lookup_path('source', $path);
     
@@ -904,6 +916,8 @@ function _optimizely_collect_alias($paths) {
  *
  * @parm $target_paths
  *   An array of the paths to validate.
+ * @parm $include
+ *   Boolean, TRUE if the paths are included or FALSE for exclude paths
  *
  * @return
  *   Boolean of TRUE if the paths are valid or a string of the path that failed.
@@ -948,7 +962,7 @@ function _optimizely_valid_paths($project_paths) {
       // Look for entries in menu_router
       $project_parmpath = substr($project_path, 0, strpos($project_path, '?'));
       
-            // Look for entry in url_alias table
+      // Look for entry in url_alias table
       if (drupal_lookup_path('alias', $project_path) === FALSE &&
           drupal_lookup_path('source', $project_path) === FALSE &&
           drupal_valid_path($project_parmpath, TRUE) === FALSE) {

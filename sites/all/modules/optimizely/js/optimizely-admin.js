@@ -40,7 +40,6 @@
                 $(target_this).parents('tr').find('td').addClass('enabled').removeClass('disabled');
                 $(target_this).parents('tr').find('div.status-' + data.oid).text("Project enabled successfully." + data.message);
                 $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).text('').css('display', '') });
-                
               }
               else {
                 $(target_this).parents('tr').find('td').addClass('disabled').removeClass('enabled');
@@ -69,6 +68,7 @@
             $(document).ready(function (data) {
               
               var target_this = '#project-enable-' + data.oid;
+
               $(target_this).parents('tr').find('div.status-' + data.oid).text('Loading....');
               $(target_this).parents('tr').find('div.status-' + data.oid).fadeOut(6000, function() { $(this).text('').css('display', ''); });
               
