@@ -1,0 +1,73 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+include_once('dosomething_admin.features.inc');
+define('DOSOMETHING_ADMIN_VID_BANNERS', 26);
+
+/**
+* Implements hook_menu().
+*/
+function dosomething_admin_menu() {
+	// Create admin page for custom dosomething modules configuration pages to live in.
+	$items['admin/lookup'] = array(
+	  'title' => 'Lookup',
+	  'page callback' => 'dosomething_admin_lookup_page',
+	  'description' => 'Lookup pages for DoSomething staff.',
+	  'access callback' => 'dosomething_admin_is_current_user_role',
+	  'access arguments' => array('staff'),
+    'file' => 'dosomething_admin.pages.inc',
+	);
+	// Defining these admin view menu callbacks here to avoid dealing Features being fussy about menus.
+	// When relying on the Views to create the menu callbacks, sometimes they show up outside of the Lookup top level.
+	$items['admin/lookup/user'] = array(
+	  'title' => 'User',
+	  'type' => MENU_LOCAL_TASK,
+	  'page callback' => 'views_embed_view',
+	  'page arguments' => array('admin_lookup_user', 'page_1'),
+	  'description' => 'Lookup User',
+	  'access callback' => 'dosomething_admin_is_current_user_role',
+	  'access arguments' => array('staff'),
+	  'file path' => drupal_get_path('module', 'views'),
+	  'file' => 'views.module',
+	  'weight' => 10,
+	);
+	$items['admin/lookup/submission'] = array(
+	  'title' => 'Webform Submission',
+	  'type' => MENU_LOCAL_TASK,
+	  'page callback' => 'views_embed_view',
+	  'page arguments' => array('admin_lookup_submission', 'page_1'),
+	  'description' => 'Lookup Webform Submission',
+    'access arguments' => array('access all webform results'),
+	  'file path' => drupal_get_path('module', 'views'),
+	  'file' => 'views.module',
+	  'weight' => 20,
+	);
+	$items['admin/content/banners'] = array(
+    'title' => 'Banners',
+    'page callback' => 'dosomething_admin_banners_page',
+    'access arguments' => array('edit terms in 26'),
+    'weight' => 1000,
+    'file' => 'dosomething_admin.pages.inc',
+	);
+	return $items;
+}
+
+/**
+ * Returns boolean of whether logged in user has given role.
+ *
+ * Always returns TRUE for administrators.
+ */
+function dosomething_admin_is_current_user_role($role) {
+  global $user;
+  foreach ($user->roles as $assigned_role) {
+ 	  if ($assigned_role == 'administrator') {
+ 	  	return TRUE;
+ 	  }
+ 	  elseif ($assigned_role == $role) {
+ 	  	return TRUE;
+ 	  }
+ 	}
+ 	return FALSE;
+}
