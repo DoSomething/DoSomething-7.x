@@ -29,7 +29,6 @@ $plugin = array(
   // These get passed to url().
   'menu' => array(
     array('title' => 'scholarship', 'href' => '', 'fragment' => 'scholarship', 'external' => TRUE),
-    array('title' => 'send us your pics', 'href' => '', 'fragment' => 'impact', 'external' => TRUE),
     array('title' => 'questions?', 'href' => '', 'fragment' => 'faq', 'external' => TRUE),
   ),
   'menu_suffix' => array(
