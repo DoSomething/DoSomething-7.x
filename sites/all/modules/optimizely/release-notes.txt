@@ -30,3 +30,8 @@ Fixed weird git merge issues that resulted in duplicate functions.
 - Fixed message display for project code setting to respond to when the Optimizely account ID is not set
 - Fixed undefined variable warning for project code setting message logic for adding new project
 - Fixed duplicate path check when one path has parameter values
+- Fixed valid path bug in AJAX _optimizely_valid_path() call
+- Added path details to error message display when AJAX call produces invalid path
+- Added support for parameters in _optimizely_unique_paths()
+- Added support for parameters in _optimizely_collect_alias()
+- Added further tests for pages and projects including wildcard functionality
