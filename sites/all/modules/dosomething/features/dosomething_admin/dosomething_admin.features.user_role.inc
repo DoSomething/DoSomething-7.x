@@ -10,15 +10,15 @@
 function dosomething_admin_user_default_roles() {
   $roles = array();
 
-  // Exported role: ds product team.
-  $roles['ds product team'] = array(
-    'name' => 'ds product team',
+  // Exported role: product team.
+  $roles['product team'] = array(
+    'name' => 'product team',
     'weight' => '23',
   );
 
-  // Exported role: ds staff.
-  $roles['ds staff'] = array(
-    'name' => 'ds staff',
+  // Exported role: staff.
+  $roles['staff'] = array(
+    'name' => 'staff',
     'weight' => '24',
   );
 
