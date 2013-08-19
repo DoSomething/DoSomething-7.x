@@ -556,7 +556,8 @@ body {
     color: #0d4f80; }
   #cmp #headline h2 {
     font-size: 1.5em;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    margin: 1em 0; }
   #cmp .section#header {
     background: url("//www.dosomething.org/files/campaigns/thumb13/header.jpg") top center no-repeat;
     margin-bottom: 0; }
@@ -683,6 +684,10 @@ body {
       font-weight: 600;
       text-transform: uppercase;
       font-size: 3em; }
+    #cmp #scholarship .action-guide {
+      margin: 0 auto 1em;
+      display: block;
+      width: 200px; }
     #cmp #scholarship .bubble {
       max-width: 475px;
       margin: 1% auto 4%;

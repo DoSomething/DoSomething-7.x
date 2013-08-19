@@ -67,10 +67,12 @@ p {
   z-index: 2;
   top: -5px;
   left: -20px;
+  border: none !important;
 }
 .logo-ds img {
   display: block;
   width: 120px;
+  border: none !important;
 }
 
 .desktop-container {

@@ -138,8 +138,18 @@ function doit_preprocess_page(&$variables) {
 
   // Bootstrap with campaign assets (tpl, css, js)
   if (isset($obj->nid)) {
-
-    if ($obj->type == 'project') {
+    if ($obj->type == 'campaign') {
+      // Load CSS and JS for admin toggle button
+      global $user;
+      if (in_array('administrator', array_values($user->roles))) {
+        drupal_add_js($theme_path . '/js/admin-toggle.js', array(
+          'scope' => 'footer',
+          'every_page' => TRUE,
+        ));
+        drupal_add_css($theme_path . '/css/admin-toggle.css');
+      }
+    }
+    elseif ($obj->type == 'project') {
 
       $variables['page']['navigation'] = array();
       $variables['page']['navigation']['main_menu'] = array( 
@@ -266,6 +276,7 @@ function doit_preprocess_page(&$variables) {
 function doit_preprocess_node(&$vars) {
   // Campaign node type:
   if ($vars['node']->type == 'campaign') {
+
     $org_code = _doit_load_campaign_org_code($vars['node']);
     // If the camapign has org code set
     if($org_code) {
