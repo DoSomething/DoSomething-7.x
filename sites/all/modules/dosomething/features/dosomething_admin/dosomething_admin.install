@@ -106,6 +106,8 @@ function dosomething_admin_update_7001() {
     1192054, // aruderman@dosomething.org
     40254, //nlublin@dosomething.org
   );
+  // Add DS devs:
+  $ds_staff = array_merge($ds_staff, $ds_devs);
 
   // Fetch DS staff RID:
   $ds_staff_rid = array_search('ds staff', user_roles());
