@@ -152,7 +152,6 @@
 .prizing
   p
     padding: 1em 0
-    width: 16em
     margin: 0 auto
 
   .prizing-container
@@ -165,6 +164,7 @@
 
   .btn
     margin: 0 auto 1em
+    width: 231px
 
 // SMS GAME EXAMPLE
 // ----------------
@@ -172,7 +172,7 @@
 
   .sms-game-container
     width: 100%
-    max-width: $section-content-width
+    max-width: 30em
     margin: 0 auto 1em
     overflow: hidden
     clear: both
@@ -225,6 +225,9 @@
     p
       text-align: right
       color: #fff
+
+  .btn
+    width: 230px
 
 // PROFILES
 // --------
@@ -330,8 +333,10 @@
     color: white
 
   .btn
-    width: 9.4em
+    width: 231px
     margin: 1em auto
+    &:hover
+      +box-shadow(0 10px 10px -10px #333)
     @include respond-to(phones)
       margin: 0 auto 0.5em
 
@@ -419,6 +424,7 @@
 
   .btn
     margin: 1em auto 0
+    width: 230px
 
   .back-to-top /* TODO - THESE STYLES WERE INHERITED; REFACTOR THEM */
     text-align: right

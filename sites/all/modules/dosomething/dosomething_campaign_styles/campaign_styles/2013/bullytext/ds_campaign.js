@@ -7,28 +7,11 @@
       };
 
       // Animate scrolling to fragment identifiers
-      jump_scroll = function(target) {
-
-        $(target).click(function(event){
-          $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');
-          return false;
-        });
-
-      }
-      jump_scroll('a.jump-scroll');
-
-      // dynamically set width css property on elements
-      set_width = function(parent, child, width) {
-
-        $(parent).each(function() {
-          var $this = $(this);
-          var child_width = $this.find(child).width() * width;
-          $this.css('width', child_width);
-        });
-      };
-
-      // Dynamically set width of the call to action buttons
-      set_width('a.btn', 'span', 1.3);
+      $('.jump-scroll').click( function(e){
+        var hash = $(this).attr('href').split('#')[1];
+        $('html,body').animate({scrollTop: $('#' + hash).offset().top}, 'slow');
+        e.preventDefault();
+      });
 
       // #faq drop down animations
       faq_toggle = function(question, response) {
