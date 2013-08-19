@@ -736,7 +736,7 @@ header[role="banner"] {
 }
 /* line 75, sass/_sections.sass */
 #cmp .header .header-date {
-  width: 56%;
+  width: 53%;
   text-align: center;
   text-transform: uppercase;
   font-weight: 600;
@@ -1231,10 +1231,10 @@ header[role="banner"] {
   margin: 0 0 -2%;
   text-align: center;
 }
-/* line 447, sass/_sections.sass */
-#cmp .footer img {
-  width: 50px;
-  margin: 0 auto;
+/* line 448, sass/_sections.sass */
+#cmp .footer .sponsor {
+  width: 200px;
+  margin: 1em auto 0;
   display: block;
 }
 /* line 4, sass/_forms.sass */
