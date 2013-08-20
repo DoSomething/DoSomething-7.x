@@ -460,6 +460,27 @@ function doit_preprocess_user_picture(&$variables) {
     }
 }
 
+function doit_form_alter(&$form, &$form_state, $form_id) {
+
+  switch($form_id) {
+    case 'search_api_page_search_form_demo':
+      $obj = menu_get_object();
+      
+      if (
+        ($obj && $obj->type == 'project') ||
+        (drupal_is_front_page() && theme_get_setting('doit_homepage_neue'))
+      ) {
+        $form['#attributes']['class'] = array('search');
+        $form['keys_1']['#title'] = NULL;
+        $form['keys_1']['#type'] = 'searchfield';
+        // @TODO: move this to a style sheet some where
+        $form['submit_1']['#attributes']['style'] = 'display: none;';
+      }
+
+      break;
+  }
+}
+
 /**
  * Overwrites theme_webform_view_messages().
  */
