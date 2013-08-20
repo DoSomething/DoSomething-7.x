@@ -342,12 +342,12 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
     if (in_array($form['#node']->type, $node_types)) {
       global $user;
       if ($user->uid == 0) {
-        drupal_set_message(t('You must <a href="@user">login or create an account</a> before you can access <a href="@link">@link</a>.', array('@link' => $form['#action'], '@user' => '/user')), 'warning');
-        drupal_goto('user/login?destination=' . current_path());
+        drupal_set_message(t('You must login or create an account before you can access @link.', array('@link' => $form['#action'])), 'warning');
+        drupal_goto('user/login', array('query' => array('destination' => current_path())));
       }
       elseif (!dosomething_login_user_has_parental_consent($user->uid)) {
         dosomething_login_set_parental_consent_message();
-        drupal_goto('/dosomething/under-13/parent-consent-email');
+        drupal_goto('dosomething/under-13/parent-consent-email');
       }
     }
   }
