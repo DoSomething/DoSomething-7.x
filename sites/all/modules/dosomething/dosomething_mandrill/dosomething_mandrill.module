@@ -127,6 +127,10 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  */
 
 function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user=NULL) {
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
 
   $language = language_default();
   $from = NULL;
@@ -186,6 +190,10 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
   
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
   switch ($key) {
     
     case 'dsplain':
@@ -199,6 +207,13 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       
       // Consider populating the language 
       // global $language;
+
+      break;
+    
+    case 'petition':      
+        
+      $message['from'] = 'petitions@dosomething.org';
+      $message['subject'] = $params['global_merge_vars']['TITLE'];
 
       break;
 
@@ -255,6 +270,10 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  */
 
 function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
     
   $global_merge_vars = array();
   $global_merge_vars[] = array(

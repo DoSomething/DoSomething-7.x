@@ -287,19 +287,25 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
       watchdog('dosomething_subscribe', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
     }
   }
-  
+
   // --------- Mandrill ------
-  
+
   // Check for Mandrill Key value in node
   $keys = field_get_items('node', $node, 'field_mandrill_key');
-  
+
   // Skip if field_mandrill_key(s) not defined, can be more than one
   if ($keys != FALSE) {
     $key = field_view_value('node', $node, 'field_mandrill_key', $keys[0]);
     $key = $key['#markup'];
-    
+
+    // Values for transactional message
+    $message['global_merge_vars']['FNAME'] = $first_name;
+    $message['global_merge_vars']['LNAME'] = $last_name;
+    $message['global_merge_vars']['TITLE'] = $node->title;
+    $message['global_merge_vars']['URL']   = $form['#action'];
+
     // Send transactional email message via Mandrill
-    dosomething_mandrill_dispatch($email, $key, NULL, NULL, $user);
+    dosomething_mandrill_dispatch($email, $key, $message, $user);
     
   }
 }
