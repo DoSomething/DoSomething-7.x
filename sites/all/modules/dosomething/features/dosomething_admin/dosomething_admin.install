@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * Remove unused roles.
+ */
+function dosomething_admin_install() {
+  // List unused roles:
+  $kill_roles = array(
+    'club reviewer',
+    'developer',
+  	'do something u',
+  	'furtographer',
+  	'grant alumni',
+  	'help desk',
+  	'huffpo loader',
+    'moderator',
+    'performance',
+  	'project_police',
+  	'starbucks',
+    'unverified user', // D6 role that hasn't been assigned since 2012
+  );
+  foreach ($kill_roles as $role) {
+  	user_role_delete($role);
+  }
+}

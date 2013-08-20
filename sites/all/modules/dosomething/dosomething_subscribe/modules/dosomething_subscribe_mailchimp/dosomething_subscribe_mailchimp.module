@@ -38,7 +38,7 @@ function dosomething_subscribe_mailchimp_menu() {
   $items['admin/config/dosomething/dosomething_subscribe_mailchimp'] = array(
     'title' => 'Mailchimp API settings',
     'description' => t('Set and validate Mailchimp API key.'),
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('administer modules'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('dosomething_subscribe_mailchimp_admin_settings_form'),
     'file' => 'dosomething_subscribe_mailchimp.admin.inc',
@@ -46,14 +46,14 @@ function dosomething_subscribe_mailchimp_menu() {
   $items['admin/reports/dosomething_subscribe_mailchimp'] = array(
     'title' => 'Mailchimp Signup Queue',
     'description' => t('Displays signups in the DS Sub Mailchimp cron queue.'),
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('administer modules'),
     'page callback' => 'dosomething_subscribe_mailchimp_queue_status_page', 
     'file' => 'dosomething_subscribe_mailchimp.admin.inc',
   );
   $items['admin/reports/dosomething_subscribe_mailchimp_grouping_ids'] = array(
     'title' => 'Mailchimp Grouping IDs Status',
     'description' => t('Displays contents of the DS Sub Mailchimp Grouping IDs variable.'),
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('administer modules'),
     'page callback' => 'dosomething_subscribe_mailchimp_grouping_ids_status_page', 
     'file' => 'dosomething_subscribe_mailchimp.admin.inc',
   );

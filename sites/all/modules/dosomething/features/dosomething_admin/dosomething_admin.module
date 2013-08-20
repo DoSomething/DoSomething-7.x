@@ -1,0 +1,184 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+include_once('dosomething_admin.features.inc');
+define('DOSOMETHING_ADMIN_VID_BANNERS', 26);
+
+/**
+* Implements hook_menu().
+*/
+function dosomething_admin_menu() {
+	// Create admin page for custom dosomething modules configuration pages to live in.
+	$items['admin/lookup'] = array(
+	  'title' => 'Lookup',
+	  'page callback' => 'dosomething_admin_lookup_page',
+	  'description' => 'Lookup pages for DoSomething staff.',
+	  'access callback' => 'dosomething_admin_is_current_user_role',
+	  'access arguments' => array('staff'),
+    'file' => 'dosomething_admin.pages.inc',
+	);
+	// Defining these admin view menu callbacks here to avoid dealing Features being fussy about menus.
+	// When relying on the Views to create the menu callbacks, sometimes they show up outside of the Lookup top level.
+	$items['admin/lookup/user'] = array(
+	  'title' => 'User',
+	  'page callback' => 'views_embed_view',
+	  'page arguments' => array('admin_lookup_user', 'page_1'),
+	  'description' => 'Lookup User',
+	  'access callback' => 'dosomething_admin_is_current_user_role',
+	  'access arguments' => array('staff'),
+	  'file path' => drupal_get_path('module', 'views'),
+	  'file' => 'views.module',
+	  'weight' => 10,
+	);
+	$items['admin/lookup/submission'] = array(
+	  'title' => 'Webform Submission',
+	  'page callback' => 'views_embed_view',
+	  'page arguments' => array('admin_lookup_submission', 'page_1'),
+	  'description' => 'Lookup Webform Submission',
+    'access arguments' => array('access all webform results'),
+	  'file path' => drupal_get_path('module', 'views'),
+	  'file' => 'views.module',
+	  'weight' => 20,
+	);
+	$items['admin/content/banners'] = array(
+    'title' => 'Banners',
+    'page callback' => 'dosomething_admin_banners_page',
+    'access arguments' => array('edit terms in 26'),
+    'weight' => 1000,
+    'file' => 'dosomething_admin.pages.inc',
+	);
+	return $items;
+}
+
+/**
+ * Returns boolean of whether logged in user has given role.
+ *
+ * Always returns TRUE for administrators.
+ */
+function dosomething_admin_is_current_user_role($role) {
+  global $user;
+  foreach ($user->roles as $assigned_role) {
+ 	  if ($assigned_role == 'administrator') {
+ 	  	return TRUE;
+ 	  }
+ 	  elseif ($assigned_role == $role) {
+ 	  	return TRUE;
+ 	  }
+ 	}
+ 	return FALSE;
+}
+
+/**
+ * Assigns roles to current users.  
+ * This function will be removed from codebase once the module is installed on production.
+ */
+function dosomething_admin_update_current_users() {
+
+  ####### Remove invalid Administrator roles ########
+
+  // Fetch all users with 'administrator role':
+  $result = db_query("SELECT uid
+   FROM users_roles
+   WHERE rid = 3");
+
+  // Define all valid administrators:
+  $ds_devs = array(
+    1324854, // mholford@dosomething.org
+    1258186, // dfurnes@dosomething.org
+    1176550, // aschachter@dosomething.org
+    1019736, // dlee@dosomething.org.
+    985012, // desmond.w.morris@gmail.com
+    778374, // mchitten@gmail.com
+    613748, // mwatson@dosomething.org
+    586593, // juy@dosomething.org
+    547446, // bazclef@gmail.com
+    1,
+  );
+
+  // Find all invalid administrators:
+  $not_devs = array();
+  foreach ($result as $record) {
+    if (!in_array($record->uid, $ds_devs)) {
+      $not_devs[] = $record->uid;
+    }
+  }
+  // No soup for you:
+  user_multiple_role_edit($not_devs, 'remove_role', 3);
+
+  ####### Remove Content Loader roles ########
+  
+  // Fetch all "content loader" uids:
+  $result = db_query("SELECT uid
+   FROM users_roles
+   WHERE rid = 7");
+  $content_loader_uids = array();
+  foreach ($result as $record) {
+    $content_loader_uids[] = $record->uid;
+  }
+  // No soup for you:
+  user_multiple_role_edit($content_loader_uids, 'remove_role', 7);
+
+  ####### Assign DS Staff roles ########
+
+  // Define all valid DS Staff:
+  $ds_staff = array(
+    329195, // mfantini12@gmail.com
+    428637, // ezeitlin+ellie@dosomething.org
+    436304, // chloe@oxy.edu
+    482083, // nhirabayashi@dosomething.org,
+    533675, // gthomas+bears@dosomething.org.
+    535165, // awright@dosomething.org,
+    535838, // bgreenberg@dosomething.org,
+    540335, // kgoff@dosomething.org
+    544311, // bolognoa@gmail.com,
+    571235, // cstowell@dosomething.org
+    615996, // ddeluca@dosomething.org
+    623863, // fsheikh@dosomething.org
+    632265, // rmohammed@dosomething.org
+    642198, // mlidey+55@gmail.com
+    644278, // mpanjwani@dosomething.org
+    867959, // cblacken@dosomething.org
+    879789, // bkassoy@dosomething.org
+    1193105, // nmody@dosomething.org
+    86225, // afinger@dosomething.org,
+    499615, // gboundin@gmail.com,
+    798470, // kradford@dosomething.org
+    1157702, // jlorch@dosomething.org
+    1119962, // cbell+admin@dosomething.org
+    1159116, // jcusano@dosomething.org
+    1261053, // hgridley@dosomething.org
+    719437, // jbladt@dosomething.org
+    1192054, // aruderman@dosomething.org
+    40254, //nlublin@dosomething.org
+  );
+  // Add DS devs:
+  $ds_staff = array_merge($ds_staff, $ds_devs);
+
+  // Fetch DS staff RID:
+  $ds_staff_rid = array_search('staff', user_roles());
+  // Grant DS staff access:
+  if ($ds_staff_rid) {
+    user_multiple_role_edit($ds_staff, 'add_role', $ds_staff_rid);
+  }
+
+  ####### Assign DS Product Team roles ########
+
+  // Define DS Product Team:
+  $ds_product = array(
+    329195, // mfantini12@gmail.com
+    428637, // ezeitlin+ellie@dosomething.org
+    1157702, // jlorch@dosomething.org
+    1119962, // cbell+admin@dosomething.org
+    1159116, // jcusano@dosomething.org
+    719437, // jbladt@dosomething.org
+  );
+
+  // Fetch DS Product RID:
+  $ds_product_rid = array_search('product team', user_roles());
+  // Grant DS Product Team access:
+  if ($ds_staff_rid) {
+    user_multiple_role_edit($ds_product, 'add_role', $ds_product_rid);
+  }
+}

@@ -1,0 +1,38 @@
+@import 'compass/css3'
+
+// -------------------
+// HIDE ADMIN FEATURES
+// -------------------
+#hide-button
+  position: absolute
+  top: 135px
+  right: 15px
+  left: auto
+  color: #222
+  background: rgba(255, 255, 255, 0.9)
+  border: 3px solid rgba(255, 255, 255, 0.8)
+  padding: 10px 15px 5px
+  font-weight: 500
+  font-size: 16
+  z-index: 3
+  +border-radius(4px)
+  @media only screen and (max-width: 960px)
+    top: 252px
+    left: 15px
+    right: auto
+  &:hover
+    text-decoration: none
+    background: rgba(255, 255, 255, 0.85)
+
+#hide-button.active
+  top: 100px
+  background: rgba(255, 255, 255, 0.4)
+  border: 3px solid rgba(255, 255, 255, 0.5)
+  @media only screen and (max-width: 960px)
+    top: 185px
+  &:hover
+    background: rgba(255, 255, 255, 0.3)
+
+html body.html.active
+  margin-top: 0 !important
+
