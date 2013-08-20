@@ -9,7 +9,7 @@ img
 
 .section
   margin: 0 auto
-  padding: $base-padding 0
+  padding: $base-padding
   background: $bg-light
   overflow: hidden
   +border-bottom-subtle
@@ -102,10 +102,10 @@ h1.headline-callout
     text-align: center
     display: inline-block
     padding: 0.2em 0.5em 0px
-    background: #fff
-    color: lighten($off-black, 35)
-    border: 1px solid #ddd
-    +box-shadow(0 10px 10px -10px #ddd)
+    background: #00aced
+    color: #fff
+    
+    
 
 .headline-instructions
   padding: 1em 0
@@ -182,13 +182,12 @@ strong
 // -------------
 
 .form-submit, .btn
+  display: inline-block
   background: $btn-color
   margin: 0 auto
-  padding: 0.25em 0
+  padding: 0.5em 1.5em 0.3em
   clear: both
   position: static
-  height: 2em
-  display: block
   border: 1px solid $btn-border
   cursor: pointer
   color: $off-black !important

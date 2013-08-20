@@ -67,45 +67,8 @@
         });
 
       }
-
-      // ------------------------ //
-      // CAMPAIGN MODEL SWITCHING //
-      // ------------------------ //
-
-      // Add "switch" buttons to DOM
-      switch_buttons = '<div id="model-switch"><a id="sms-button" href="#">SMS</a><a id="web-button" href="#" class="active">web</a>';
-      $('.region.region-utility').prepend(switch_buttons);
-
-      // Display different sections based on type selection
-      $('#model-switch a').click(function() {
-        var $this = $(this);
-
-        // Only flip styles if the requested model is not currently being shown
-        if (!$this.hasClass('active')) {
-
-          if ($this.is('#sms-button')) {
-            $('#headline').removeClass('alt');
-            $('#sms').show();
-            $('#sms-game-example').show();
-            $('#gallery').hide();
-            $('#call-to-action').hide();
-          }
-          else if ($this.is('#web-button')) {
-            $('#headline').removeClass('alt');
-            $('#headline').addClass('alt');
-            $('#sms').hide();
-            $('#sms-game-example').hide();
-            $('#gallery').show();
-            $('#call-to-action').show();
-          }
-
-        }
-        return false;
+      
       });
-
-      // Allow for the passing of "active" class on click
-      activeSwitch('#web-button', 'a');
-      activeSwitch('#sms-button', 'a');
 
     } // end attach: function
   }; // end Drupal.behaviors
