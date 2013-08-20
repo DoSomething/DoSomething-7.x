@@ -61,9 +61,17 @@ function doit_preprocess_html(&$variables, $hook) {
   }
   drupal_alter('html_templates', $variables);
 
-  if (menu_get_object()->type == 'project') {
-    $variables['theme_hook_suggestions'][] = 'html__project';
+  if (
+    menu_get_object()->type == 'project'  ||
+    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue'))
+    ) {
+    $variables['theme_hook_suggestions'][] = 'html__neue';
     $css = drupal_add_css();
+    $variables['classes_array'] = array();
+    if (drupal_is_front_page()) {
+      $variables['classes_array'][] = array('homepage');
+    }
+
   }
 
 }
@@ -136,6 +144,12 @@ function doit_preprocess_page(&$variables) {
   // Check it this is a node page
   $obj = menu_get_object();
 
+  if(drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) {
+    _doit_load_menu_templates(&$variables);
+    array_push( $variables['theme_hook_suggestions'], 'page__neue__front' );
+    drupal_add_library('ds_neue', 'ds-neue-campaign');
+  }
+
   // Bootstrap with campaign assets (tpl, css, js)
   if (isset($obj->nid)) {
     if ($obj->type == 'campaign') {
@@ -151,17 +165,7 @@ function doit_preprocess_page(&$variables) {
     }
     elseif ($obj->type == 'project') {
 
-      $variables['page']['navigation'] = array();
-      $variables['page']['navigation']['main_menu'] = array( 
-        '#type' => 'markup',
-        '#markup' => theme('main_menu')
-      );
-
-      $variables['page']['footer'] = array();
-      $variables['page']['footer']['footer_menu'] = array( 
-        '#type' => 'markup',
-        '#markup' => theme('footer_menu')
-      );
+      _doit_load_menu_templates(&$variables);
 
       // Add campaigns type specific page type
       array_push( $variables['theme_hook_suggestions'], 'page__project' );
@@ -174,8 +178,6 @@ function doit_preprocess_page(&$variables) {
       }
 
       _doit_load_campaign_assets($obj, $org_code);
-
-      $page['menus'] = array('main', 'footer');
 
     }
 
@@ -325,6 +327,23 @@ function doit_preprocess_node(&$vars) {
     $vars['content']['sponsors']['#markup'] = theme('project_section_sponsors', $params);
 
   }
+}
+
+/**
+ * Help function to load menu templates
+ */
+function _doit_load_menu_templates(&$variables) {
+  $variables['page']['navigation'] = array();
+  $variables['page']['navigation']['main_menu'] = array( 
+    '#type' => 'markup',
+    '#markup' => theme('main_menu')
+  );
+
+  $variables['page']['footer'] = array();
+  $variables['page']['footer']['footer_menu'] = array( 
+    '#type' => 'markup',
+    '#markup' => theme('footer_menu')
+  );
 }
 
 /**
