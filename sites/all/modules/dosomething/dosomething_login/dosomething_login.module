@@ -321,7 +321,6 @@ function dosomething_login_form_club_node_form_alter(&$form, &$form_state) {
     // so that they don't get stuck not being able to edit their
     // account by changing their birthdate.
     dosomething_login_set_parental_consent_message();
-    drupal_goto('user');
   }
 }
 
@@ -344,11 +343,11 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
       global $user;
       if ($user->uid == 0) {
         drupal_set_message(t('You must <a href="@user">login or create an account</a> before you can access <a href="@link">@link</a>.', array('@link' => $form['#action'], '@user' => '/user')), 'warning');
-        drupal_goto();
+        drupal_goto('user/login?destination=' . current_path());
       }
       elseif (!dosomething_login_user_has_parental_consent($user->uid)) {
         dosomething_login_set_parental_consent_message();
-        drupal_goto();
+        drupal_goto('/dosomething/under-13/parent-consent-email');
       }
     }
   }
@@ -1370,7 +1369,7 @@ function dosomething_login_user_has_parental_consent($uid) {
  */
 function dosomething_login_set_parental_consent_message() {
   // TODO: Some link to ask for parental consent
-  drupal_set_message(t('Before you can perform this action, you must have parental consent. You can send a request to your parent or legal guardian <a href="@link"> here</a>.', array('@link' => '/dosomething/under-13/parent-consent-email')), 'warning');
+  drupal_set_message(t('Before you can perform this action, you must have parental consent. Send a request to your parent or legal guardian ere</a>.', array('@link' => '/dosomething/under-13/parent-consent-email')), 'warning');
 }
 
 /**
