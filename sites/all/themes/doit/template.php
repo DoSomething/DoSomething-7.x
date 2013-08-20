@@ -71,9 +71,7 @@ function doit_preprocess_html(&$variables, $hook) {
     if (drupal_is_front_page()) {
       $variables['classes_array'][] = 'homepage';
     }
-
     $variables['classes'] = implode(' ', $variables['classes_array']);
-
   }
 
 }
@@ -898,7 +896,10 @@ function doit_is_campaign_join_template_page() {
 function doit_css_alter(&$css) {
   $node = menu_get_object();
 
-  if ($node && $node->type == 'project') {
+  if (
+    ($node && $node->type == 'project') ||
+    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue'))
+  ) {
     $styles = array();
 
     // @todo - optimize me
