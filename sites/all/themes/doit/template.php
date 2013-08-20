@@ -63,7 +63,8 @@ function doit_preprocess_html(&$variables, $hook) {
 
   if (
     menu_get_object()->type == 'project'  ||
-    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue'))
+    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
+    ( (menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue') )
     ) {
     $variables['theme_hook_suggestions'][] = 'html__neue';
     $css = drupal_add_css();
@@ -147,7 +148,13 @@ function doit_preprocess_page(&$variables) {
   if(drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) {
     _doit_load_menu_templates(&$variables);
     array_push( $variables['theme_hook_suggestions'], 'page__neue__front' );
-    drupal_add_library('ds_neue', 'ds-neue-campaign');
+    drupal_add_library('ds_neue', 'ds-neue');
+  }
+
+  if((menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue')) {
+    _doit_load_menu_templates(&$variables);
+    array_push( $variables['theme_hook_suggestions'], 'page__neue' );
+    drupal_add_library('ds_neue', 'ds-neue');
   }
 
   // Bootstrap with campaign assets (tpl, css, js)
@@ -168,7 +175,7 @@ function doit_preprocess_page(&$variables) {
       _doit_load_menu_templates(&$variables);
 
       // Add campaigns type specific page type
-      array_push( $variables['theme_hook_suggestions'], 'page__project' );
+      array_push( $variables['theme_hook_suggestions'], 'page__neue' );
 
       $org_code = _doit_load_campaign_org_code($obj);
 
@@ -468,7 +475,8 @@ function doit_form_alter(&$form, &$form_state, $form_id) {
       
       if (
         ($obj && $obj->type == 'project') ||
-        (drupal_is_front_page() && theme_get_setting('doit_homepage_neue'))
+        (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
+        (menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue')
       ) {
         $form['#attributes']['class'] = array('search');
         $form['keys_1']['#title'] = NULL;
@@ -919,7 +927,8 @@ function doit_css_alter(&$css) {
 
   if (
     ($node && $node->type == 'project') ||
-    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue'))
+    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
+    ($node && $node->type == 'page') && theme_get_setting('doit_pages_neue')
   ) {
     $styles = array();
 

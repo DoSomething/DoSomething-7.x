@@ -21,3 +21,4 @@ regions[footer] = Footer
 
 ;settings
 settings[doit_homepage_neue] = 0
+settings[doit_pages_neue] = 0
