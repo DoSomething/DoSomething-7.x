@@ -69,8 +69,8 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^I am logged in as an? (?<role>regular user|administrator)$/
-     * @And /^I am logged in as an? (?<role>regular user|administrator)$/
+     * @Given /^I am logged in as an? (?<role>regular user|administrator|staff|product team)$/
+     * @And /^I am logged in as an? (?<role>regular user|administrator|staff|product team)$/
      */
     public function iAmLoggedInAsRole($role)
     {
@@ -81,12 +81,18 @@ class FeatureContext extends MinkContext
       else if ($role == 'administrator') {
         $role = self::$factory->create('User', array('roles' => array(3 => 'administrator')));
       }
+      else if ($role == 'staff') {
+        $role = self::$factory->create('User', array('roles' => array(26 => 'staff')));
+      }
+      else if ($role == 'product team') {
+        $role = self::$factory->create('User', array('roles' => array(26 => 'staff', 25 => 'product team')));
+      }
 
       // Return the required steps to log in our logged in user.
       return array(
         new Step\Given('I am on "/user/login"'),
-        new Step\When('I fill in "edit-name" with "' . $this->factory->getDefault('User', 'name') . '"'),
-        new Step\When('I fill in "edit-pass" with "' . $this->factory->getDefault('User', 'pass') . '"'),
+        new Step\When('I fill in "edit-name" with "' . self::$factory->getDefault('User', 'name') . '"'),
+        new Step\When('I fill in "edit-pass" with "' . self::$factory->getDefault('User', 'pass') . '"'),
         new Step\When('I press "Log in"'),
       );
     }
