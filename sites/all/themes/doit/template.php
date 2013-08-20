@@ -69,8 +69,10 @@ function doit_preprocess_html(&$variables, $hook) {
     $css = drupal_add_css();
     $variables['classes_array'] = array();
     if (drupal_is_front_page()) {
-      $variables['classes_array'][] = array('homepage');
+      $variables['classes_array'][] = 'homepage';
     }
+
+    $variables['classes'] = implode(' ', $variables['classes_array']);
 
   }
 
