@@ -1,18 +1,20 @@
-<?php if ($utility = render($page['utility'])): ?>
-  <nav id="top" class="utility">
-    <div class="flexwidth-wrapper">
-      <a href="#" class="js-menu-toggle">Menu</a>
-      <ul class="utility-links">
-        <li id="help-center"><a href="/help">Help Center</a></li>
-        <?php if(!$logged_in): ?>
-        <li><a href="/user/login">Sign In</a></li>
-        <?php else: ?>
-        <li><a href="/user/logout">Log out</a></li>
-        <?php endif; ?>
-      </ul>
-    </div>
-  </nav>
-<?php endif; ?>
+<nav id="top" class="utility">
+  <div class="flexwidth-wrapper">
+    <a href="#" class="js-menu-toggle">Menu</a>
+    <ul class="utility-links">
+      <li>
+        <?php print render($page['utility']['dosomething_blocks_dosomething_utility_bar']['search']); ?>
+      </li>
+      <li id="help-center"><a href="/help">Help</a></li>
+      <?php if(!$logged_in): ?>
+      <li><a href="/user/login">Sign In</a></li>
+      <?php else: ?>
+      <li><a href="/user/logout">Log out</a></li>
+      <?php endif; ?>
+    </ul>
+  </div>
+</nav>
+
 
 <div class="masthead-wrapper">
     <nav class="masthead">
@@ -21,7 +23,7 @@
     </nav>
 </div>
 
-<div role="main" class="wrapper">
+
 <?php print $messages; ?>
 <div class="ds-intro">
   <div class="flexwidth-wrapper">
@@ -84,7 +86,7 @@
     </p>
   </div>
 </div>
-</div>
+
 
 <div class="footer-wrapper">
     <?php print render($page['footer']); ?>
