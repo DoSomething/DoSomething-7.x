@@ -46,9 +46,10 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
       '#value' => NULL,
     );
 
-    // Enable form element default - blank, unselected
+    // Enable form element defaults - blank, unselected
     $enabled = FALSE;
-    $project_code = FALSE;
+    $project_code = '';
+    $account_code = variable_get('optimizely_id', 0);
 
   }
   else {
@@ -73,6 +74,7 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
 
     $enabled = $record->enabled;
     $record->project_code == 0 ? $project_code = 'Undefined' : $project_code = $record->project_code;
+    $account_code = variable_get('optimizely_id', 0);
 
   }
 
@@ -93,8 +95,8 @@ function optimizely_add_update_form($form, &$form_submit, $target_oid = NULL) {
     '#type' => 'textfield',
     '#disabled' => $target_oid == 1 ? TRUE : FALSE,
     '#title' => t('Optimizely Project Code'),
-    '#default_value' => $project_code == FALSE ? '' : check_plain($project_code),
-    '#description' => check_plain($target_oid) == 1 ?
+    '#default_value' => check_plain($project_code),
+    '#description' => ($account_code == 0) ?
       t('The Optimizely account value has not been set in the <a href="/admin/config/system/optimizely/settings">Account Info</a> settings form. The Optimizely account value is used as the project ID for this "default" project entry.') :
       t('The Optimizely javascript file name used in the snippet as provided by the Optimizely website for the project.'),
     '#size' => 30,
@@ -198,8 +200,7 @@ function optimizely_add_update_form_validate($form, &$form_state) {
     $target_paths = preg_split('/[\r\n]+/', $form_state['values']['optimizely_path'], -1, PREG_SPLIT_NO_EMPTY);
     $valid_path = _optimizely_valid_paths($target_paths);
     if (!is_bool($valid_path)) {
-      form_set_error('optimizely_path', t('The project path "!project_path" is not a valid path. The path or alias could not be resolved as a valid URL that will result in content on the site.',
-         array('!project_path' => $valid_path)));
+      form_set_error('optimizely_path', t('The project path "!project_path" is not a valid path. The path or alias could not be resolved as a valid URL that will result in content on the site.', array('!project_path' => $valid_path)));
     }
     
     // There must be only one Optimizely javascript call on a page. Check paths to ensure there are no duplicates  
@@ -350,9 +351,9 @@ function optimizely_account_settings_form_submit($form, &$form_state) {
  * Menu callback. Displays a list of Optimizely projects as records in the Optimizely database table.
  */
 function optimizely_project_list_form() {
-  
+
   $form = array();
-  
+
   // Load css and js files specific to optimizely admin pages
   $form['#attached']['css'] = array(
     drupal_get_path('module', 'optimizely') . '/css/optimizely.css',
@@ -361,11 +362,11 @@ function optimizely_project_list_form() {
   $form['#attached']['js'] = array(
     drupal_get_path('module', 'optimizely') . '/js/optimizely-admin.js',
   );
-  
+
   $prefix  = '<ul class="admin-links">';
   $prefix .= '  <li>' . l(t('Add Project Entry'), 'admin/config/system/optimizely/add_update') . '</li>';
   $prefix .= '</ul>';
-  
+
   $form['projects'] = array(
     '#prefix' => $prefix . '<div id="optimizely-project-listing">',
     '#suffix' => '</div>',
@@ -375,7 +376,7 @@ function optimizely_project_list_form() {
 
   // Lookup account ID setting to trigger "nag message".
   $account_id = variable_get('optimizely_id', 0);
-  
+
   // Begin building the query.
   $query = db_select('optimizely', 'o', array('target' => 'slave'))
     ->orderBy('oid')
@@ -384,10 +385,10 @@ function optimizely_project_list_form() {
 
   // Build each row of the table
   foreach ($result as $project_count => $row) {
-    
+
     // Listing of target paths for the project entry
     $paths = unserialize($row->path);
-    
+
     $project_paths = '<ul>';
     foreach ($paths as $path) {
       // Deal with "<front>" as one of the paths
@@ -411,7 +412,7 @@ function optimizely_project_list_form() {
       $delete_link = ' / ' . 'Default Entry';
       $default_entry_class = array('default-entry');
     }
-    
+
     // Build form elements in cluding enable checkbox and data columns
     $form['projects'][$project_count]['enable'] = array(
       '#type' => 'checkbox',
@@ -423,15 +424,15 @@ function optimizely_project_list_form() {
       '#extra_data' => array('field_name' => 'project_enabled'),
       '#suffix' => '<div class="status-container status-' . $row->oid . '"></div>'
     );
-    
+
     if ($row->enabled) {
       $form['projects'][$project_count]['enable']['#attributes']['checked'] = 'checked';
     }
-    
+
     $form['projects'][$project_count]['#project_title'] = $row->project_title;
     $form['projects'][$project_count]['#admin_links'] = $edit_link . $delete_link;
     $form['projects'][$project_count]['#paths'] = $project_paths;
-    
+
     if ($account_id == 0 && $row->oid == 1) {
       $project_code = t('Set Optimizely ID in <strong>') .
         l(t('Account Info'), 'admin/config/system/optimizely/settings') .
@@ -442,9 +443,9 @@ function optimizely_project_list_form() {
     }
     $form['projects'][$project_count]['#project_code'] = $project_code;
     $form['projects'][$project_count]['#oid'] = $row->oid;
-    
+
   }
-  
+
 return $form;
   
 }
@@ -455,12 +456,12 @@ return $form;
  * The form is need to support the enable column which is a checkbox form element. 
  */
 function theme_optimizely_projects_table($vars) {
-      
+
   $element = $vars['element'];
 
   $rows = array();
   foreach (element_children($element) as $key) {
-    
+
     $rows[] = array(
       'class' => array(
         'project-row-' . $element[$key]['#project_code']['#value']
@@ -491,11 +492,11 @@ function theme_optimizely_projects_table($vars) {
         ),
       ),
     );
-    
+
   }
 
   $header = array(t('Enabled'), t('Project Title'), t('Update / Delete'), t('Paths'), t('Project Code'));
- 
+
   return theme('table', array('header' => $header, 'rows' => $rows));
 }
 
@@ -542,7 +543,7 @@ function optimizely_delete_page_confirm_submit($form, &$form_state) {
     ->condition('o.oid', $oid, '=');
   $record = $query->execute()
     ->fetchObject();
-    
+
   // Delete entry in database based on the target $oid
   $query = db_delete('optimizely')
     ->condition('oid', $oid);
@@ -550,11 +551,11 @@ function optimizely_delete_page_confirm_submit($form, &$form_state) {
 
   // Only clear page cache for entries that are active when deleted
   if ($record->enabled) {
-    
+
     // Always serialized when saved 
     $path_array = unserialize($record->path);
     optimizely_refresh_cache($path_array);
-    
+
   }
 
   // Inform the user of the entry being deleted and return them to the
@@ -576,55 +577,55 @@ function optimizely_ajax_enable() {
   $unique_path = FALSE;
   $default_project = FALSE;
   $message = '';
-  
+
   // Retrieve the json POST values
   $target_oid = $_POST['target_oid'];
   $target_enable = $_POST['target_enable'];
-  
+
   // Only check path values if project is being enabled,
   // Project is currently disabled (FALSE) and is now being enabled (TRUE)
   if ($target_enable == TRUE) {
-  
+
     // Lookup the current project settings
     $query = db_select('optimizely', 'o', array('target' => 'slave'))
       ->fields('o', array('path', 'project_code'))
       ->condition('o.oid', $target_oid, '=');
     $result = $query->execute()->fetchObject();
-    
+
     // Prevent the Default project from being enabled when the project code is not set
     if (!($target_oid == 1 && $result->project_code == 0)) {
-    
+
       // Check that the paths are valid for the newly enabled project
       $target_paths = unserialize($result->path);
       $valid_paths = _optimizely_valid_paths($target_paths);
-      
+
       // Check to see if the enable project has path entries that will result in
       // duplicates with other enable projects
-      if ($valid_paths)  {
+      if ($valid_paths === TRUE)  {
         list($unique_path, $target_path) = _optimizely_unique_paths($target_paths, $target_oid);
         if ($unique_path !== TRUE) {
          $message =  t('Project was not enabled due to path setting resulting in duplicate path entries between enabled projects.'); 
         }
       }
       else {
-        $message = t('Project was not enabled due to path setting resulting in invalid path.');
+        $message = t('Project was not enabled due to path setting: ' . $valid_paths . ' resulting in an invalid path.');
       }
-      
+
     }
     else {
       $default_project = TRUE;
       $message = t('Default project not enabled. Enter Optimizely ID in Account Info page.');
     }
-    
+
   }
-  
+
   // The newly enabled project has unique paths OR the target project is
   // currently enabled (TRUE) and will now be disbaled
   if (($target_enable == FALSE || $unique_path === TRUE) && ($default_project == FALSE))  {
-    
+
     // Toggle $target_enable
     $target_enable ? $target_enable = 1 : $target_enable = 0;
-  
+
     // Update database with new enable setting for project entry
     $results = db_update('optimizely')
       ->fields(array(
@@ -636,15 +637,15 @@ function optimizely_ajax_enable() {
     // Refresh cache on project paths, this includes both enable and disabled
     // projects as there will be a need to clear the js calls in both cases
     optimizely_refresh_cache($target_paths);
-    
+
     // Tell AJAX request of status to trigger jquery
     drupal_json_output(array('status' => 'updated', 'oid' => $target_oid, 'target_enable' => $target_enable, 'message' => $message));
-      
+
   }
   else {
     drupal_json_output(array('status' => 'rejected', 'oid' => $target_oid, 'issue_path' => $target_path, 'message' => $message));
   }
-    
+
 }
 
 /**
@@ -723,13 +724,13 @@ function optimizely_refresh_cache($path_array, $original_path_array = NULL) {
  *   enable or create the new project entry or TRUE if unique paths. 
  */
 function _optimizely_unique_paths($target_paths, $target_oid = NULL) {
-  
+
   // Look up alternative paths
   $target_paths = _optimizely_collect_alias($target_paths);
-  
+
     // Look for duplicate paths in submitted $target_paths
   $duplicate_target_path = _optimizely_duplicate_check($target_paths);
-  
+
   // Look for duplicate paths within target paths
   if (!$duplicate_target_path) {
 
@@ -737,30 +738,30 @@ function _optimizely_unique_paths($target_paths, $target_oid = NULL) {
     $query = db_select('optimizely', 'o', array('target' => 'slave'))
       ->fields('o', array('oid', 'project_title', 'path'))
       ->condition('o.enabled', 1, '=');
-      
+
     // Add target_oid to query when it's an update, $target_oid is will be defined
     if ($target_oid != NULL) {
       $query = $query->condition('o.oid', $target_oid, '<>');
     }
-  
+
     $projects = $query->execute();
-    
+
     // No other enabled projects
     if ($query->countQuery()->execute()->fetchField() == 0) {
       return array(TRUE, NULL);
     }
-    
+
     $all_project_paths = array();
-  
+
     // Build array of all the project entry paths
     foreach ($projects as $project) {
-  
+
       // Collect all of the path values and merge into collective array
       $project_paths = unserialize($project->path);
       $all_project_paths = array_merge($all_project_paths, $project_paths);
-  
+
     }
-    
+
     // Add any additional aliases to catch all match possiblities
     $all_project_paths = _optimizely_collect_alias($all_project_paths);
 
@@ -770,44 +771,48 @@ function _optimizely_unique_paths($target_paths, $target_oid = NULL) {
     // Check all of the paths for all of the active project entries to make sure
     // the paths are unique
     foreach ($target_paths as $target_path) {
-  
+
       // "*" found in path
       if (strpos($target_path, '*') !== FALSE) {
-  
+
         // Look for wild card match if not site wide
         if (strpos($target_path, '*') !== 0) {
-  
+
           $target_path = substr($target_path, 0, -2);
-  
+
           // Look for duplicate path due to wild card
           foreach ($all_project_paths as $all_project_path) {
-  
-            //
+
             if (strpos($all_project_path, $target_path) === 0 && $all_project_path != $target_path) {
               return array($project->project_title, $target_path);
             }
-            
+
           }
-          
+
         } // If site wide wild card then it must be the only enabled path to be unique
         elseif (strpos($target_path, '*') === 0 && (count($target_paths) > 1 || count($all_project_paths) > 0)) {
           return array($project->project_title, $target_path);
         }
-  
+
         // Look for site wide wild card in target project paths
         if (in_array('*', $all_project_paths)) {
           return array($project->project_title, $target_path);
         }
-    
+
+      } // Parameters found, collect base path for compairson to the other project path entries
+      elseif (strpos($target_path, '?') !== FALSE) {
+        $target_path = substr($target_path, 0, strpos($target_path, '?'));
       }
-      elseif (drupal_match_path($target_path, $all_project_paths_string)) {
+
+      // Look for duplicates 
+      if (drupal_match_path($target_path, $all_project_paths_string)) {
           return array($project->project_title, $target_path);      
       }
-  
+
     }
 
     return array(TRUE, NULL);
-    
+
   }
   else {
     return array(NULL, $duplicate_target_path);
@@ -825,12 +830,12 @@ function _optimizely_unique_paths($target_paths, $target_oid = NULL) {
  *   FALSE if no duplicates found otherwaise the dusplicate path is returned. 
  */
 function _optimizely_duplicate_check($paths) {
-  
+
   $unreviewed_paths = $paths;
-  
+
   // Check all of the paths 
   foreach ($paths as $path) {
-    
+
     // Remove path that's being processed from  the front of the list
     array_shift($unreviewed_paths);
 
@@ -841,7 +846,7 @@ function _optimizely_duplicate_check($paths) {
       if (strpos($path, '*') !== 0) {
 
         $path = substr($path, 0, -2);
-        
+
         foreach ($unreviewed_paths as $unreviewed_path) {
           if (strpos($unreviewed_path, $path) !== FALSE) {
             return $path . '/*';
@@ -852,16 +857,16 @@ function _optimizely_duplicate_check($paths) {
       elseif (strpos($path, '*') === 0 && count($paths) > 1) {
         return $path;
       }
-  
+
     }
     elseif (in_array($path, $unreviewed_paths)) {
       return $path;
     }
 
   }
-  
+
   return FALSE;
-  
+
 }
 
 /*
@@ -874,27 +879,34 @@ function _optimizely_duplicate_check($paths) {
  *   $paths - an updated list of paths that include the additional source and alias values. 
  */
 function _optimizely_collect_alias($paths) {
-  
+
   // Add alternative values - alias, source, <front> to ensure matches also check different possiblities
-  foreach ($paths as $path) {
+  foreach ($paths as $path_count => $path) {
+
+    // Remove parameters
+    if (strpos($path, '?') !== FALSE) {
+      $path = substr($path, 0, strpos($path, '?'));
+      $paths[$path_count] = $path;
+    }
+
     !drupal_lookup_path('alias', $path) ?: $paths[] = drupal_lookup_path('alias', $path);
     !drupal_lookup_path('source', $path) ?: $paths[] = drupal_lookup_path('source', $path);
-    
+
     // Collect all the possible values to match <front>
     if ($path == '<front>') {
-      
+
       $frontpage = variable_get('site_frontpage', FALSE);
       if ($frontpage) {
         $paths[] = variable_get('site_frontpage');
         $paths[] = drupal_lookup_path('alias', $frontpage);
       }
-      
+
     }
-    
+
   }
-  
+
   return $paths;
-  
+
 }
 
 /**
@@ -904,51 +916,53 @@ function _optimizely_collect_alias($paths) {
  *
  * @parm $target_paths
  *   An array of the paths to validate.
+ * @parm $include
+ *   Boolean, TRUE if the paths are included or FALSE for exclude paths
  *
  * @return
  *   Boolean of TRUE if the paths are valid or a string of the path that failed.
  */
 function _optimizely_valid_paths($project_paths) {
-  
+
    // Validate entered paths to confirm the paths exist on the website
   foreach ($project_paths as $project_path) {
-      
+
     // Check for site wide wildcard
     if (strpos($project_path, '*') === 0) {
-      
+
       if (count($project_paths) == 1) {
         return TRUE;
       }
       else {
         return $project_path;
       }
-      
+
     } // Path wildcards
     elseif (strpos($project_path, '*') !== FALSE) {
-      
+
       $project_wildpath = substr($project_path, 0, -2);
       if (!drupal_valid_path($project_wildpath, TRUE)) {
-        
+
         // Look for entries in url_aias
         $query = db_query("SELECT * FROM {url_alias} WHERE
           source LIKE :project_wildpath OR alias LIKE :project_wildpath",
           array(':project_wildpath' => $project_wildpath . '%'));
         $project_wildpath_match = $query->rowCount();
-        
+
         // No matches found for wildcard path
         if (!$project_wildpath_match) {
           return $project_path;
         }
-        
+
       }
-      
+
     } // Parameters
     elseif (strpos($project_path, '?') !== FALSE) {
 
       // Look for entries in menu_router
       $project_parmpath = substr($project_path, 0, strpos($project_path, '?'));
-      
-            // Look for entry in url_alias table
+
+      // Look for entry in url_alias table
       if (drupal_lookup_path('alias', $project_path) === FALSE &&
           drupal_lookup_path('source', $project_path) === FALSE &&
           drupal_valid_path($project_parmpath, TRUE) === FALSE) {
@@ -967,7 +981,7 @@ function _optimizely_valid_paths($project_paths) {
     }
 
   }
-  
+
   return TRUE;
-  
+§
 }
