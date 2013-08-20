@@ -445,7 +445,9 @@
   text-align: center
 
   .sponsor
-    width: 200px
-    margin: 1em auto 0
-    display: block
+    display: none
+    @include respond-to(phones)
+      display: block
+      width: 200px
+      margin: 1em auto 0
 
