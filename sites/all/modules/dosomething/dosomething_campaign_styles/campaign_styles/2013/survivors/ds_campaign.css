@@ -706,117 +706,129 @@ header[role="banner"] {
   letter-spacing: 0.05em;
   color: white;
 }
-/* line 100, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 95, sass/_sections.sass */
+  #cmp .call-to-action p {
+    line-height: 2em;
+  }
+}
+/* line 102, sass/_sections.sass */
 #cmp .call-to-action .btn {
   margin: 0 0 0 1em;
   clear: none;
 }
 @media only screen and (max-width: 600px) {
-  /* line 100, sass/_sections.sass */
+  /* line 102, sass/_sections.sass */
   #cmp .call-to-action .btn {
     margin: 0 auto;
   }
 }
-/* line 106, sass/_sections.sass */
+/* line 108, sass/_sections.sass */
 #cmp .call-to-action .section-container {
-  width: 42em;
+  width: 75%;
   margin: 0 auto;
 }
 @media only screen and (max-width: 600px) {
-  /* line 106, sass/_sections.sass */
+  /* line 108, sass/_sections.sass */
   #cmp .call-to-action .section-container {
-    width: 75%;
+    width: 96%;
   }
 }
-/* line 115, sass/_sections.sass */
+/* line 117, sass/_sections.sass */
 #cmp .how-it-works {
   padding: 2em 0;
   border: none !important;
 }
-/* line 119, sass/_sections.sass */
+/* line 121, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container {
   clear: both;
   overflow: hidden;
   margin: 0 0 1em 0;
 }
-/* line 124, sass/_sections.sass */
+/* line 126, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container .section-unit-single {
   padding: 0 2% 0;
 }
-/* line 130, sass/_sections.sass */
+/* line 132, sass/_sections.sass */
 #cmp .action-kit p {
   display: inline-block;
   color: white;
   line-height: 3em;
   letter-spacing: 0.05em;
 }
-/* line 136, sass/_sections.sass */
+@media only screen and (max-width: 600px) {
+  /* line 132, sass/_sections.sass */
+  #cmp .action-kit p {
+    line-height: 2em;
+  }
+}
+/* line 140, sass/_sections.sass */
 #cmp .action-kit .btn {
   display: inline-block;
   margin: 0 0 0 1em;
   clear: none;
 }
 @media only screen and (max-width: 600px) {
-  /* line 136, sass/_sections.sass */
+  /* line 140, sass/_sections.sass */
   #cmp .action-kit .btn {
     margin: 0 auto;
   }
 }
-/* line 143, sass/_sections.sass */
+/* line 147, sass/_sections.sass */
 #cmp .action-kit .section-container {
   padding: 15px 0;
   height: 5.3em;
   background-color: #1fb8ca;
 }
 @media only screen and (max-width: 600px) {
-  /* line 143, sass/_sections.sass */
+  /* line 147, sass/_sections.sass */
   #cmp .action-kit .section-container {
     height: auto;
   }
 }
-/* line 151, sass/_sections.sass */
+/* line 155, sass/_sections.sass */
 #cmp .action-kit .section-container .wrapper {
-  width: 41em;
+  width: 75%;
   margin: 0 auto;
 }
 @media only screen and (max-width: 600px) {
-  /* line 151, sass/_sections.sass */
+  /* line 155, sass/_sections.sass */
   #cmp .action-kit .section-container .wrapper {
-    width: 60%;
+    width: 96%;
   }
 }
-/* line 161, sass/_sections.sass */
+/* line 164, sass/_sections.sass */
 #cmp .prizing p {
   padding: 0 1em 1em 1em;
 }
-/* line 164, sass/_sections.sass */
+/* line 167, sass/_sections.sass */
 #cmp .prizing .prizing-container {
   width: 66.66667%;
   margin: 0 auto;
   clear: both;
 }
-/* line 169, sass/_sections.sass */
+/* line 172, sass/_sections.sass */
 #cmp .prizing .btn {
   margin: 1em auto;
 }
-/* line 173, sass/_sections.sass */
+/* line 176, sass/_sections.sass */
 #cmp .prizing #italic span {
   display: block;
   text-align: center;
   font-style: italic;
 }
-/* line 178, sass/_sections.sass */
+/* line 181, sass/_sections.sass */
 #cmp .prizing .section-unit-half {
   margin: 0 0 1em 0;
 }
-/* line 184, sass/_sections.sass */
+/* line 187, sass/_sections.sass */
 #cmp .content {
   width: 90%;
   max-width: 40em;
   margin: 0 auto;
   /* this padding should be abstracted to all <h3> */
 }
-/* line 188, sass/_sections.sass */
+/* line 191, sass/_sections.sass */
 #cmp .content p {
   display: block;
   text-align: left;
@@ -824,21 +836,21 @@ header[role="banner"] {
   padding-bottom: 1em;
   word-wrap: break-word;
 }
-/* line 194, sass/_sections.sass */
+/* line 197, sass/_sections.sass */
 #cmp .content h2 {
   padding-bottom: 0.5em;
 }
-/* line 198, sass/_sections.sass */
+/* line 201, sass/_sections.sass */
 #cmp .content .headline-callout {
   padding: 0 0 0.5em 0;
   text-transform: capitalize;
   text-align: left;
 }
-/* line 202, sass/_sections.sass */
+/* line 205, sass/_sections.sass */
 #cmp .content .headline-callout span {
   background: #ee612a;
 }
-/* line 210, sass/_sections.sass */
+/* line 213, sass/_sections.sass */
 #cmp .gallery img {
   border: 1px solid #dddddd !important;
   -webkit-border-radius: 3px;
@@ -850,52 +862,52 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb !important;
   box-shadow: 0 10px 10px -10px #bbbbbb !important;
 }
-/* line 215, sass/_sections.sass */
+/* line 218, sass/_sections.sass */
 #cmp .gallery .btn {
   margin: 1.5em auto;
 }
-/* line 221, sass/_sections.sass */
+/* line 224, sass/_sections.sass */
 #cmp .success_msg {
   margin: 0 auto 1em;
 }
-/* line 223, sass/_sections.sass */
+/* line 226, sass/_sections.sass */
 #cmp .success_msg h2 {
   text-transform: uppercase;
   font-weight: 600;
   color: #d5904c;
 }
-/* line 230, sass/_sections.sass */
+/* line 233, sass/_sections.sass */
 #cmp .faq {
   width: 90%;
   max-width: 40em;
   margin: 0 auto;
   height: auto;
 }
-/* line 236, sass/_sections.sass */
+/* line 239, sass/_sections.sass */
 #cmp .faq h3, #cmp .faq p {
   text-align: left;
   margin-bottom: 0.5em;
 }
-/* line 239, sass/_sections.sass */
+/* line 242, sass/_sections.sass */
 #cmp .faq h3 {
   cursor: pointer;
   color: #1e1d1c;
   font-weight: bold;
 }
-/* line 243, sass/_sections.sass */
+/* line 246, sass/_sections.sass */
 #cmp .faq div {
   margin: 0 0 0.5em 0;
 }
-/* line 246, sass/_sections.sass */
+/* line 249, sass/_sections.sass */
 #cmp .faq .btn {
   margin: 1em auto 0;
 }
-/* line 249, sass/_sections.sass */
+/* line 252, sass/_sections.sass */
 #cmp .faq .back-to-top {
   text-align: right;
   padding: 1em 0 1em;
 }
-/* line 253, sass/_sections.sass */
+/* line 256, sass/_sections.sass */
 #cmp .faq .top-btn {
   font-weight: 400;
   color: #c6c7c8;
@@ -905,7 +917,7 @@ header[role="banner"] {
   background-repeat: no-repeat;
   background-position: 0% 40%;
 }
-/* line 264, sass/_sections.sass */
+/* line 267, sass/_sections.sass */
 #cmp #birthday-report-back {
   background: white;
   padding: 2em 0px;
@@ -918,11 +930,11 @@ header[role="banner"] {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 272, sass/_sections.sass */
+/* line 275, sass/_sections.sass */
 #cmp #birthday-report-back .field-name-field-mandrill-key {
   display: none;
 }
-/* line 275, sass/_sections.sass */
+/* line 278, sass/_sections.sass */
 #cmp #birthday-report-back #edit-submit {
   font-size: 18px;
   font-weight: 500;
@@ -932,7 +944,7 @@ header[role="banner"] {
   width: 100px;
   margin: 1em 0 0 0;
 }
-/* line 284, sass/_sections.sass */
+/* line 287, sass/_sections.sass */
 #cmp #birthday-report-back #edit-submitted-field-webform-pictures-und-0-upload-button,
 #cmp #birthday-report-back #edit-submitted-field-webform-pictures-und-1-upload-button {
   color: #555555 !important;
