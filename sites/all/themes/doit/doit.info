@@ -20,3 +20,6 @@ regions[sidebar_first]  = Left sidebar
 regions[content] = Content
 regions[page_bottom] = Page Bottom
 regions[footer] = Footer
+
+;settings
+settings[doit_homepage_neue] = 0
