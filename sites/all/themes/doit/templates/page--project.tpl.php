@@ -16,7 +16,7 @@
 
 <div class="masthead-wrapper">
     <nav class="masthead">
-        <a class="logo" href=""><img src="/<?php print path_to_theme(); ?>/images/ds-logo.png" alt="DoSomething.org"></a>
+        <a class="logo" href="<?php print $front_page; ?>"><img src="/<?php print path_to_theme(); ?>/images/ds-logo.png" alt="DoSomething.org"></a>
         <?php print render($page['navigation']); ?>
     </nav>
 </div>
