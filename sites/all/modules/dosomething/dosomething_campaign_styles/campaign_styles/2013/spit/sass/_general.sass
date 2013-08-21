@@ -45,6 +45,11 @@ a
 .fb-like
   z-index: 100
 
+
+.hide-mobile
+  @include respond-to(phones)
+    display: none !important
+
 // SECTION STYLES
 // --------------
 
@@ -146,6 +151,11 @@ h1.headline-callout
     padding: 0.2em 0.5em 0px
     background: #00aced
     color: #fff
+
+    @include respond-to(phones)
+      background: none
+      color: #00aced
+      font-size: 0.9em
     
     
 
