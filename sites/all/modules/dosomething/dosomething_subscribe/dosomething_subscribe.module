@@ -299,10 +299,10 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     $key = $key['#markup'];
 
     // Values for transactional message
-    $message['global_merge_vars']['FNAME'] = $first_name;
-    $message['global_merge_vars']['LNAME'] = $last_name;
-    $message['global_merge_vars']['TITLE'] = $node->title;
-    $message['global_merge_vars']['URL']   = $form['#action'];
+    $message['FNAME'] = $first_name;
+    $message['LNAME'] = $last_name;
+    $message['TITLE'] = $node->title;
+    $message['URL']   = $form['#action'];
 
     // Send transactional email message via Mandrill
     dosomething_mandrill_dispatch($email, $key, $message, $user);

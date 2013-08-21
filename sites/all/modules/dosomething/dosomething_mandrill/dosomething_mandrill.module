@@ -212,8 +212,9 @@ function dosomething_mandrill_mail($key, &$message, $params) {
     
     case 'petition':      
         
-      $message['from'] = 'petitions@dosomething.org';
-      $message['subject'] = $params['global_merge_vars']['TITLE'];
+      $message['from'] = 'dosomething@dosomething.org';
+      $message['subject'] = t('Thanks for signing the petition ') . $params['TITLE'];
+      $message['body'] = 'Body BLA!';
 
       break;
 
@@ -275,24 +276,34 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
     $bla = TRUE;
   }
     
+  
   $global_merge_vars = array();
   $global_merge_vars[] = array(
     'name' => 'subject',
-    'content' => $mandrill_params['subject'],
+    'content' => isset($message['subject']) ? $message['subject'] : $mandrill_params['subject'],
   );
   $global_merge_vars[] = array(
     'name' => 'from',
-    'content' => $mandrill_params['from'],
+    'content' => isset($message['from']) ? $message['from'] : $mandrill_params['from'],
   );
   $global_merge_vars[] = array(
     'name' => 'domain',
     'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
   );
-  
-  $rcpt['email'] = $mandrill_params['to'];
 
-  if (!empty($message['params'])) {
-    foreach ($message['params'] as $name => $content) {
+  if(!empty($message['params'])) {
+    foreach($message['params'] as $name => $content) {
+      if(is_string($content)) {
+        $global_merge_vars[] = array(
+          'name' => $name,
+          'content' => $content,
+        );
+      }
+    }
+  }
+  
+  if(!empty($mandrill_params['params'])) {
+    foreach($mandrill_params['params'] as $name => $content) {
       if(is_string($content)) {
         $global_merge_vars[] = array(
           'name' => $name,
@@ -303,8 +314,8 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
   }
 
   $merge_vars = array();
-  if (!empty($mandrill_params['message']['to'])) {
-    foreach ($mandrill_params['message']['to'] as $i => $rcpt) {
+  if(!empty($mandrill_params['message']['to'])) {
+    foreach($mandrill_params['message']['to'] as $i => $rcpt) {
       $vars = array();
       $vars[] = array(
         'name' => 'to',
@@ -316,17 +327,10 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
       );
     }
   }
-  
-  foreach($mandrill_params['params']['merge_vars'] as $name => $content) {
-    $global_merge_vars[] = array(
-      'name' => $name,
-      'content' => $content,
-    );
-  }
 
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
 
-  if (!empty($merge_vars)) {
+  if(!empty($merge_vars)) {
     $mandrill_params['message']['merge_vars'] = $merge_vars;
   }
   

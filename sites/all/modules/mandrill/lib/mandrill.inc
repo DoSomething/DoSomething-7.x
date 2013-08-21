@@ -376,6 +376,10 @@ class Mandrill {
    * @return array|Mandrill_Exception
    */
   public function messages_send_template($template_name, $template_content, $message) {
+    
+    echo('template_name: ' . $template_name);
+    break;
+    
     return $this->request('messages/send-template', compact('template_name', 'template_content', 'message'));
   }
 
