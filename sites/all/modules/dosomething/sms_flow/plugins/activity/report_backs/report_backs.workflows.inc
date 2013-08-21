@@ -46,6 +46,11 @@ $activity->routes = array(
     'yes' => '160641',
     'no' => '160645',
   ),
+  // Give A Spit 2013 Report Back
+  '161255' => array(
+    'yes' => '161257',
+    'no' => '161259',
+  ),
   // Hunt 2013 Report Back Day 1
   '159421' => array(
     'yes' => '159445',
@@ -496,6 +501,60 @@ $activity->submission_fields = array(
 );
 $activity->success_response = 160649;
 $activity->webform_nid = 730403;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back', 'ask_picture');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Give A Spit 2013 Report Back. User will first be prompted to submit a pic
+ * from: https://secure.mcommons.com/campaigns/119813/opt_in_paths/161255
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_spit_report_back';
+$workflow->title = 'Give A Spit 2013 Report Back';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_people', 'end');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_why');
+$activity->question = t('Great! Q1 - How many people came to your event?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_why';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('strip_signature');
+$activity->question = t('Cool! Q2 - Why did you sign up for Give a Spit?');
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_why');
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  'ask_people' => 0, // TODO: plugin correct value once webform is created
+  'ask_why' => 0, // TODO: plugin correct value once webform is created
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 161263;
+$activity->webform_nid = 0; // TODO: plugin correct value once webform is created
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
