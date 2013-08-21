@@ -86,18 +86,18 @@ a
 
 .section-unit-double
   width: 2 * $section-unit-width
-  margin: 0 0 2em 0
+  margin-bottom: 2em
   +border-bottom-subtle
 
 .section-unit-full
   width: 100%
   padding: 0 0 0 0
-  margin: 0 0 2em 0
+  margin-bottom: 2em
   +border-bottom-subtle
 
 .section-unit-half
   width: 50%
-  margin: 0 0 2em 0
+  margin-bottom: 2em
 
   @include respond-to(phones)
     width: 100%
@@ -106,9 +106,10 @@ a
   font-weight: 500
   text-align: center
   text-transform: capitalize
-  padding: 0
+  padding: 0 1em
   margin: 0 auto 1em auto
   letter-spacing: 0.1em
+  line-height: 2.5
   color: #888
   
   span
