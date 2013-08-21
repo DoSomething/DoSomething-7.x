@@ -983,5 +983,5 @@ function _optimizely_valid_paths($project_paths) {
   }
 
   return TRUE;
-§
+
 }
