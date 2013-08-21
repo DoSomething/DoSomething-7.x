@@ -214,8 +214,8 @@ function doit_preprocess_page(&$variables) {
       if ($dest_path_parts[0] == 'node' && is_numeric($dest_path_parts[1]) && !isset($dest_path_parts[2])) {
         // Load the node:
         $node = node_load($dest_path_parts[1]);
-        // If the destination node is a gated campaign signup:
-        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_node($node)) {
+        // If the destination node is a gated signup:
+        if (module_exists('dosomething_login') && dosomething_login_is_gated_node($node)) {
           // Load node values for gate copy and image.
           $default_gate = FALSE;
           $variables['page']['gate_wrapper_class'] = 'nid-' . $node->nid;
@@ -917,7 +917,7 @@ function doit_is_user_registration_template_page() {
 function doit_is_campaign_join_template_page() {
   if (user_is_logged_in() && arg(0) == 'campaign' && arg(1) == 'join' && is_numeric(arg(2))) {
     $node = node_load(arg(2));
-    return dosomething_campaign_is_gated_signup_node($node);
+    return dosomething_login_is_gated_signup_node($node);
   }
   return FALSE;
 }
