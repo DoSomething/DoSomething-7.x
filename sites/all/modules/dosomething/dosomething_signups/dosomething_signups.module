@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * dosomething_signups.module
+ */
+
+/**
+ * Inserts a record for given user UID and campaign node NID in signups table.
+ */
+function dosomething_signups_insert_signup($uid, $nid) {
+  $signup = db_insert('dosomething_signups')
+  ->fields(array(
+    'uid' => $uid,
+    'nid' => $nid,
+    'timestamp' => REQUEST_TIME,
+    ))
+  ->execute();
+}
+
+/**
+ * Returns boolean for if given user uid is signed up given nid.
+ */
+function dosomething_signups_is_user_signed_up($uid, $nid) {
+  $signup = db_query('SELECT uid FROM {dosomething_signups} WHERE uid = :uid AND nid = :nid', array(':uid' => $uid, ':nid' => $nid))->fetchField();
+  if ($signup) {
+    return TRUE;
+  }
+  return FALSE;
+}
