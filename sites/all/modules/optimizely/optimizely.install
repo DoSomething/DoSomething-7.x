@@ -241,7 +241,7 @@ function optimizely_update_7210(&$sandbox) {
     ->execute();
 
 	 drupal_set_message(st('All Optimizely project entries have been disabled. Reenable each project on the') . ' ' .
-			 l(st('project listing Adminstration page'), '/admin/config/system/optimizely') . ' ' .
+			 l(st('project listing Adminstration page'), 'admin/config/system/optimizely') . ' ' .
 			 st('to ensure that the settings pass new validation functionality. Each entry must have valid paths that point to functional paths that are unique to the entry.'),
 		 'status');
 
@@ -263,7 +263,7 @@ function optimizely_update_7211(&$sandbox) {
     ->execute();
 
 	 drupal_set_message(st('All Optimizely project entries have been disabled. Reenable each project on the') . ' ' .
-			 l(st('project listing Adminstration page'), '/admin/config/system/optimizely') . ' ' .
+			 l(st('project listing Adminstration page'), 'admin/config/system/optimizely') . ' ' .
 			 st('to ensure that the settings pass new validation functionality. Each entry must have valid paths that point to functional paths that are unique to the entry.'),
 		 'status');
 

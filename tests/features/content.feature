@@ -27,3 +27,20 @@ Feature: Content tests
     Then I should see "Test Action Guide"
     And I should see "DO THIS!"
     And I should see "Hello world!"
+
+  # Test for /node/add
+
+  # Scenario: Anon cannot see node/add
+  #   Given I am on "/node/add"
+  #   Then I should see "Access denied"
+
+  # Scenario: Regular user can see node/add
+  #   Given I am logged in as a regular user
+  #   And I am on "node/add"
+  #   Then I should see "Add content"
+
+
+  # Scenario: Staff can see node/add
+  #   Given I am logged in as a staff
+  #   And I am on "node/add"
+  #   Then I should see "Add content"

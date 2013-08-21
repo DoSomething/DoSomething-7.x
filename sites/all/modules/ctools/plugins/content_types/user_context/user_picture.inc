@@ -23,7 +23,7 @@ function ctools_user_picture_content_type_render($subtype, $conf, $panel_args, $
   $account = clone $context->data;
 
   // Check if user has permissions to access the user
-  if ($user->uid != $account->uid && (!user_access('access user profiles') && !user_access('administer users'))) {
+  if ($user->uid != $account->uid && !user_access('access user profiles')) {
     return;
   }
 

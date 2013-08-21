@@ -6,8 +6,6 @@ core = 7.x
 
 ; stylesheets
 stylesheets[all][] = css/style.css
-stylesheets[all][] = css/tweetbutton.css
-stylesheets[all][] = css/views.css
 
 ; regions
 regions[utility] = Utility Bar
@@ -20,3 +18,7 @@ regions[sidebar_first]  = Left sidebar
 regions[content] = Content
 regions[page_bottom] = Page Bottom
 regions[footer] = Footer
+
+;settings
+settings[doit_homepage_neue] = 0
+settings[doit_pages_neue] = 0

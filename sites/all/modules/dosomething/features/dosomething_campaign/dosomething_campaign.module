@@ -69,44 +69,6 @@ function dosomething_campaign_block_view($delta = '') {
 }
 
 /**
- * Implements hook_init().
- */
-function dosomething_campaign_init() {
-  // If we are viewing a node:
-  if (arg(0) == 'node' && is_numeric(arg(1)) && arg(2) == FALSE) {
-    // Check if current path is a gated campaign:
-    $node = menu_get_object();
-    if (dosomething_campaign_is_gated_node($node)) {
-      global $user;
-      // Send to redirector.
-      dosomething_campaign_redirector($user, $node);
-    }
-  }
-}
-
-/**
- * Redirects user to user/registration gate or join page for given $node based on signup status.
- *
- * @param $user
- *  User object.
- * @param $node
- *  Node object to check for is_gated_signup and user signup status.
- */
-function dosomething_campaign_redirector($user, $node) {
-  // If anon user, redirect to user/destination?node=$campaign_nid
-  if ($user->uid == 0) {
-    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $node->nid)));
-  }
-  // Else if campaign node is a gated signup, and logged in user hasn't signed up (and is non-override), redirect to join page:
-  else if (dosomething_campaign_is_gated_signup_node($node) && 
-    !dosomething_campaign_can_user_override_join($user) && 
-    !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
-    // Redirect to the campaign join page.   
-    drupal_goto('campaign/join/' . $node->nid); 
-  }
-}
-
-/**
  * Access callback for join page.
  */
 function dosomething_campaign_join_page_access($nid) {
@@ -115,7 +77,7 @@ function dosomething_campaign_join_page_access($nid) {
   }
   $node = node_load($nid);
   // Only should appear for gated signups:
-  if (!dosomething_campaign_is_gated_signup_node($node)) {
+  if (!dosomething_login_is_gated_signup_node($node)) {
     return FALSE;
   }
   global $user;
@@ -125,57 +87,6 @@ function dosomething_campaign_join_page_access($nid) {
   }
   // Otherwise, only grant access for logged in users.
   return $user->uid != 0;
-}
-
-/**
- * Implements hook_user_login.
- */
-function dosomething_campaign_user_login(&$edit, $account) {
-  // If the referring URL is a campaign signup gate, the loaded campaign node is returned.
-  $campaign_node = dosomething_campaign_is_campaign_signup_gate($_SERVER['HTTP_REFERER']);
-  if ($campaign_node) {
-    // Execute campaign login signup function:
-    dosomething_campaign_signup($account, $campaign_node);
-  }
-}
-
-/**
- * Returns boolean of whether or not given loaded node has a gate.
- */
-function dosomething_campaign_is_gated_node($node) {
-  return $node && $node->type == 'campaign' && isset($node->field_has_gate[LANGUAGE_NONE][0]['value']) && $node->field_has_gate[LANGUAGE_NONE][0]['value'] == 1;
-}
-
-/**
- * Returns boolean of whether or not given loaded node is a campaign signup node.
- */
-function dosomething_campaign_is_gated_signup_node($node) {
-  return $node && $node->type == 'campaign' && isset($node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value']) && $node->field_is_gate_login_signup[LANGUAGE_NONE][0]['value'] == 1;
-}
-
-/**
- * Checks if a URL is a campaign gate that should signup user on login, and returns the campaign node if so.
- *
- * @param $url
- *  String, URL to check.
- *
- * @return
- *   The loaded campaign node object if the destination is a campaign where is_gate_login_signup.  Returns FALSE otherwise.
- */
-function dosomething_campaign_is_campaign_signup_gate($url) {
-  // Check if given URL is a campaign gate.
-  $destination = '?destination=node/';
-  $user_registration_url = 'user/registration' . $destination;
-  $user_login_url = 'user/login' . $destination;
-  if (strpos($url, $user_registration_url) !== FALSE || strpos($url, $user_login_url) !== FALSE) {
-    $nid = basename($url);
-    $node = node_load($nid);
-    // If this is a campaign with signup on login, return the node.
-    if (dosomething_campaign_is_gated_signup_node($node)) {
-      return $node;
-    }
-  }
-  return FALSE;
 }
 
 /**
