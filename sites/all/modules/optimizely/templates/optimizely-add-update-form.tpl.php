@@ -1,8 +1,8 @@
-<p>In order to use this module, you'll need an <a href="http://optimize.ly/OZRdc0">Optimizely account</a>. A Free 30 day trial account is available.</p>
-    
-<p>The basic configuration and design of the A/B tests is done by logging into your account on the <a href="http://optimize.ly/OZRdc0" target="_NEW">Optimizely website.</a></p>
+<p>The basic configuration and design of the A/B tests is made by logging into your account on the <a href="http://optimize.ly/OZRdc0" target="_NEW">Optimizely website.</a></p>
 
 <?php if (($variables['form']['optimizely_project_code']['#default_value'] == 0) && ($variables['form']['optimizely_oid']['#value'] == 1)): ?>
+
+  <p>In order to use this module, you'll need an <a href="http://optimize.ly/OZRdc0">Optimizely account</a>. A Free 30 day trial account is available.</p>
 
   <ul>
     <li><strong>Add the account ID to the <a href="/admin/config/system/optimizely/settings">Account Info</a> settings page to be able to enable this

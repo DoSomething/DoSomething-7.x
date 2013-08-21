@@ -13,13 +13,23 @@
 
 // THEME SWITCH
 .sms // Hide "mobile" template on load
-  display: block
+  display: none
 
 .call-to-action
   display: block
 
+  a
+    margin: 0 auto !important
+
+  @include respond-to(tablets_and_phones)
+    p
+      float: none
+      line-height: 1.5em !important
+      margin-bottom: 0.5em
+
+
 .headline.alt
-  background: none !important
+  background: #fff
   border: none !important
 
 // HEADER
@@ -28,42 +38,49 @@
   position: relative
   width: 100%
   height: 360px
-  background-color: $bg-header-fallback
-  background-image: url($bg-header-image)
+  background-color: transparent
+  //background-image: url($bg-header-image)
   background-repeat: no-repeat
   background-position: center center
   @include background-size(cover)
   padding: 1% 2%
   overflow: hidden
-  border: none
-  @include respond-to(tablets_and_phones)
-    height: auto
-    padding: 1% 2% 12% 2%
 
   .logo-campaign
-    width: 550px
-    margin: 1em auto 0
-    height: 225px
-    padding: 25px
-    background: #fff
-    background: rgba(255,255,255,0.8)
-    @media only screen and (max-width: 531px)
-      width: 96%
-      height: auto
+    margin: 0 auto
+    display: block
+    width: 450px
+    clear: both
+    @media only screen and (max-width: 550px)
+      width: 400px
+
+  .header-logotype
+    text-align: center
+    color: #fff
+    text-transform: uppercase
+    line-height: 1.2em
+    font-weight: 600
+    font-size: 4em
+    margin: 2em auto 0.5em
+
+    @include respond-to(tablets_and_phones)
+      font-size: 3em
 
   .log-out
     color: $font-light
 
   .header-social
     width: 22%
-    min-width: 140px
-    @include respond-to(phones)
-      display: none
+    height: 20px
+    margin: 25px 0 0 0
 
   .header-facebook-share,
   .header-twitter-share
     display: inline-block
     height: 20px
+
+    @include respond-to(tablets_and_phones)
+      display: none
 
   .header-facebook-share
     width: 80px
@@ -73,25 +90,26 @@
       border: 1px solid rgb(236, 238, 245)
 
   .header-date
-    width: 53%
-    text-align: center
+    width: 56%
     text-transform: uppercase
-    font-weight: 600
-    font-size: 1.5em
-    color: $font-black
-    @include respond-to(phones)
-      width: 96%
+    p
+      padding: 1.5em 0 0 0
+      color: #fff
 
   .header-sponsor
     width: 22%
-    @include respond-to(phones)
-      display: none
+
+    @include respond-to(tablets_and_phones)
+      display: none // relocated to footer
+
+  .row-center
+    text-align: center
 
   .row-bottom
     position: absolute
     bottom: 0
     left: 0
-    padding: 1% 3%
+    padding: 1%
 
 // HEADLINE
 // --------
@@ -111,34 +129,30 @@
 
   .btn
     margin: 0 0 0 1em
-    clear: none
 
   .section-container
     width: 43em
+
+    @include respond-to(tablets_and_phones)
+      width: auto
+
 
 // HOW IT WORKS
 // ------------
 .how-it-works
   padding: 2em 0
 
-  .section-unit-single
-    padding: 0 3% !important
-
   .how-it-works-container
     clear: both
     overflow: hidden
     margin: 0 0 1em 0
 
-    .even-height
-      height: 115px
-      img
-        width: 178px
-      img.hack
-        width: 115px
-
 // ACTION-KIT
 // ----------
 .action-kit
+  clear: both
+  padding: 1em
+
   img
     position: relative
     top: 15px
@@ -152,19 +166,14 @@
 .prizing
   p
     padding: 1em 0
-    margin: 0 auto
 
   .prizing-container
     width: ( $section-unit-width * 2 )
     margin: 0 auto
     clear: both
-    img
-      margin: 0 auto
-      display: block
 
   .btn
     margin: 0 auto 1em
-    width: 231px
 
 // SMS GAME EXAMPLE
 // ----------------
@@ -172,7 +181,7 @@
 
   .sms-game-container
     width: 100%
-    max-width: 30em
+    max-width: $section-content-width
     margin: 0 auto 1em
     overflow: hidden
     clear: both
@@ -184,8 +193,6 @@
     position: relative
     clear: both
     +border-radius(2px)
-    @include respond-to(phones)
-      padding: 0.7em 1em
     &:after
       content: ""
       display: block
@@ -194,40 +201,26 @@
       border-width: 15px
     p
       line-height: 1.6em
-      font-size: 1.5em
       font-weight: 500
-      @include respond-to(phones)
-        font-size: 1.1em
-      span
-        font-weight: 600
+      text-transform: uppercase
 
   .game-ds
     float: left
     &:after
-      bottom: -29px
+      bottom: -30px
       left: 20px
       border-color: darken($bg-alt, 5) darken($bg-alt, 5) $bg-light $bg-light
     p
       text-align: left
-      color: darken($bg-alt, 35)
-      span
-        color: darken($bg-alt, 45)
 
   .game-user
     float: right
-    background-color: $highlight
-    @include respond-to(phones)
-      margin: 0em auto 2em
     &:after
-      bottom: -29px
+      bottom: -30px
       right: 20px
-      border-color: $highlight $bg-light $bg-light $highlight
+      border-color: darken($bg-alt, 5) $bg-light $bg-light darken($bg-alt, 5)
     p
       text-align: right
-      color: #fff
-
-  .btn
-    width: 230px
 
 // PROFILES
 // --------
@@ -249,8 +242,9 @@
       margin: 0.5em auto 0
 
   .profile-copy
-    width: $section-content-width
+    width: 34em
     margin: 0 0 3em 0
+    padding-top: 1em
 
     @include respond-to(tablets_and_phones)
       width: 90%
@@ -271,8 +265,6 @@
 .content
   width: 90%
   max-width: $section-content-width
-  margin: 0 auto
-
   p
     display: block
     text-align: left
@@ -286,59 +278,31 @@
     padding: 0 0 0.5em 0
     text-transform: capitalize
     text-align: left
-    margin-bottom: 0
 
-    span
-      background-color: $highlight
-      color: #fff
-      border: none
+    @include respond-to(tablets_and_phones)
+      padding: 0 0 0.25em 0
+      margin: 0 auto 0
 
 // SMS
 // ---
 .sms
-  border: none
-  background: black
-
+  border-left: 1px solid #ddd
+  border-right: 1px solid #ddd
+  border-bottom: 1px solid #ddd
+  background: $bg-alt
   label
     margin: 3% 0 0
-    color: white
   form
     width: 80%
     margin: 2em auto 0
+
     @include respond-to(phones)
-      width: 96%
-      margin: 0 auto
-    input
-      color: black
-
-  h2
-    margin: 0 auto 5px 0
-    text-transform: uppercase
-
-    span
-      font-weight: 500
-      font-size: 1.2em
-      color: $header-color
-      background-color: $accent
-      display: inline-block
-      padding: 5px 10px 0 10px
-      @include respond-to(phones)
-        padding: 0
-        background: none
-        font-weight: 400
-        font-size: 0.8em
-        line-height: 1.4em
-
-  h3
-    color: white
+      width: 95% !important
+      margin: 0 auto 0 !important
 
   .btn
-    width: 231px
+    width: 9.4em
     margin: 1em auto
-    &:hover
-      +box-shadow(0 10px 10px -10px #333)
-    @include respond-to(phones)
-      margin: 0 auto 0.5em
 
 .sms-input-wrapper
   width: 50%
@@ -347,14 +311,13 @@
 
   @include respond-to(phones)
     width: 100%
-    margin: 0
 
     &.first-column
-      margin: 0 0 0 0
+      margin: 0 0 0 0      
 
 .sms-input
   width: 85%
-  margin: 0 0 3% 0
+  margin: 5% 0 0 0
 
   @include respond-to(phones)
     width: 100%
@@ -369,9 +332,6 @@
 .sms-beta-mobile
   clear: both
   margin: 5% 0 -1%
-
-.input-wrapper
-  margin: 1em 0 0 0
 
 // GALLERY
 // -------
@@ -397,13 +357,8 @@
   margin: 0 auto 1em
   h2
     text-transform: uppercase
-    font-size: 1.8em
-    font-weight: 500
-    color: #fed100
-    @include respond-to(phones)
-      font-size: 1.3em
-      line-height: 1.5em
-      margin: 1em 0 0 0
+    font-weight: 600
+    color: $campaign-accent
 
 // FAQ
 // ---
@@ -411,19 +366,27 @@
   width: 90%
   max-width: $section-content-width
   position: relative
-  margin: 0 auto
   h3, p
     text-align: left
   h3
     cursor: pointer
-    color: $font-black
-    font-weight: 600
+    font-weight: bold
+    color: #999
+    &:hover
+      text-decoration: underline
+
+  p
+    padding-bottom: 1em
+
   div /* TODO - GIVE THIS A CLASS */
     margin: 0 0 0.5em 0
 
+  ul
+    list-style-type: disc
+    padding-left: 2em
+  
   .btn
     margin: 1em auto 0
-    width: 230px
 
   .back-to-top /* TODO - THESE STYLES WERE INHERITED; REFACTOR THEM */
     text-align: right
@@ -433,9 +396,25 @@
     font-weight: 400
     color: #C6C7C8
     padding: 0px 0px 0px 1em
+    text-decoration: none
     background-image: url('http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png')
     background-repeat: no-repeat
     background-position: 0% 40%
+
+
+// SPONSOR
+// ------
+.sponsor
+  p
+    padding: 8px
+    text-align: center
+
+  a
+    padding: 8px
+    text-align: center
+
+    @include respond-to(phones)
+      display: block
 
 // FOOTER
 // ------
@@ -443,11 +422,13 @@
   padding: 2% 0
   margin: 0 0 -2%
   text-align: center
+  img
+    width: 50px
+    +block-center
 
-  .sponsor
-    display: none
-    @include respond-to(phones)
-      display: block
-      width: 200px
-      margin: 1em auto 0
 
+
+// slideshow hacks
+.view-campaign-gallery #slideshow
+  @include respond-to(phones)
+    height: 200px !important

@@ -288,7 +288,7 @@ function dosomething_general_menu() {
     'title' => 'DoSomething',
     'description' => 'Configuration settings for DoSomething custom functionality.',
     'page callback' => 'system_admin_menu_block_page',
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('administer modules'),
     'file' => 'system.admin.inc',
     'file path' => drupal_get_path('module', 'system'),
   );

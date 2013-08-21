@@ -61,9 +61,18 @@ function doit_preprocess_html(&$variables, $hook) {
   }
   drupal_alter('html_templates', $variables);
 
-  if (menu_get_object()->type == 'project') {
-    $variables['theme_hook_suggestions'][] = 'html__project';
+  if (
+    menu_get_object()->type == 'project'  ||
+    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
+    ( (menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue') )
+    ) {
+    $variables['theme_hook_suggestions'][] = 'html__neue';
     $css = drupal_add_css();
+    $variables['classes_array'] = array();
+    if (drupal_is_front_page()) {
+      $variables['classes_array'][] = 'homepage';
+    }
+    $variables['classes'] = implode(' ', $variables['classes_array']);
   }
 
 }
@@ -136,6 +145,18 @@ function doit_preprocess_page(&$variables) {
   // Check it this is a node page
   $obj = menu_get_object();
 
+  if(drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) {
+    _doit_load_menu_templates(&$variables);
+    array_push( $variables['theme_hook_suggestions'], 'page__neue__front' );
+    drupal_add_library('ds_neue', 'ds-neue');
+  }
+
+  if((menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue')) {
+    _doit_load_menu_templates(&$variables);
+    array_push( $variables['theme_hook_suggestions'], 'page__neue' );
+    drupal_add_library('ds_neue', 'ds-neue');
+  }
+
   // Bootstrap with campaign assets (tpl, css, js)
   if (isset($obj->nid)) {
     if ($obj->type == 'campaign') {
@@ -151,20 +172,10 @@ function doit_preprocess_page(&$variables) {
     }
     elseif ($obj->type == 'project') {
 
-      $variables['page']['navigation'] = array();
-      $variables['page']['navigation']['main_menu'] = array( 
-        '#type' => 'markup',
-        '#markup' => theme('main_menu')
-      );
-
-      $variables['page']['footer'] = array();
-      $variables['page']['footer']['footer_menu'] = array( 
-        '#type' => 'markup',
-        '#markup' => theme('footer_menu')
-      );
+      _doit_load_menu_templates(&$variables);
 
       // Add campaigns type specific page type
-      array_push( $variables['theme_hook_suggestions'], 'page__project' );
+      array_push( $variables['theme_hook_suggestions'], 'page__neue' );
 
       $org_code = _doit_load_campaign_org_code($obj);
 
@@ -174,8 +185,6 @@ function doit_preprocess_page(&$variables) {
       }
 
       _doit_load_campaign_assets($obj, $org_code);
-
-      $page['menus'] = array('main', 'footer');
 
     }
 
@@ -205,8 +214,8 @@ function doit_preprocess_page(&$variables) {
       if ($dest_path_parts[0] == 'node' && is_numeric($dest_path_parts[1]) && !isset($dest_path_parts[2])) {
         // Load the node:
         $node = node_load($dest_path_parts[1]);
-        // If the destination node is a gated campaign signup:
-        if (module_exists('dosomething_campaign') && dosomething_campaign_is_gated_node($node)) {
+        // If the destination node is a gated signup:
+        if (module_exists('dosomething_login') && dosomething_login_is_gated_node($node)) {
           // Load node values for gate copy and image.
           $default_gate = FALSE;
           $variables['page']['gate_wrapper_class'] = 'nid-' . $node->nid;
@@ -328,6 +337,23 @@ function doit_preprocess_node(&$vars) {
 }
 
 /**
+ * Help function to load menu templates
+ */
+function _doit_load_menu_templates(&$variables) {
+  $variables['page']['navigation'] = array();
+  $variables['page']['navigation']['main_menu'] = array( 
+    '#type' => 'markup',
+    '#markup' => theme('main_menu')
+  );
+
+  $variables['page']['footer'] = array();
+  $variables['page']['footer']['footer_menu'] = array( 
+    '#type' => 'markup',
+    '#markup' => theme('footer_menu')
+  );
+}
+
+/**
  * Loads campaign css and js files.
  */
 function _doit_load_campaign_assets($node, $org_code = NULL) {
@@ -439,6 +465,28 @@ function doit_preprocess_user_picture(&$variables) {
         $variables['user_picture'] = l($variables['user_picture'], "user/$account->uid", $attributes);
       }
     }
+}
+
+function doit_form_alter(&$form, &$form_state, $form_id) {
+
+  switch($form_id) {
+    case 'search_api_page_search_form_demo':
+      $obj = menu_get_object();
+      
+      if (
+        ($obj && $obj->type == 'project') ||
+        (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
+        (menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue')
+      ) {
+        $form['#attributes']['class'] = array('search');
+        $form['keys_1']['#title'] = NULL;
+        $form['keys_1']['#type'] = 'searchfield';
+        // @TODO: move this to a style sheet some where
+        $form['submit_1']['#attributes']['style'] = 'display: none;';
+      }
+
+      break;
+  }
 }
 
 /**
@@ -869,7 +917,7 @@ function doit_is_user_registration_template_page() {
 function doit_is_campaign_join_template_page() {
   if (user_is_logged_in() && arg(0) == 'campaign' && arg(1) == 'join' && is_numeric(arg(2))) {
     $node = node_load(arg(2));
-    return dosomething_campaign_is_gated_signup_node($node);
+    return dosomething_login_is_gated_signup_node($node);
   }
   return FALSE;
 }
@@ -877,7 +925,11 @@ function doit_is_campaign_join_template_page() {
 function doit_css_alter(&$css) {
   $node = menu_get_object();
 
-  if ($node && $node->type == 'project') {
+  if (
+    ($node && $node->type == 'project') ||
+    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
+    ($node && $node->type == 'page') && theme_get_setting('doit_pages_neue')
+  ) {
     $styles = array();
 
     // @todo - optimize me
