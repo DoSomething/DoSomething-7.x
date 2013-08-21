@@ -70,7 +70,7 @@
     color: $font-light
 
   .header-social
-    width: 16%
+    width: 22%
     height: 20px
     margin: 25px 0 0 0
 
@@ -90,13 +90,14 @@
       border: 1px solid rgb(236, 238, 245)
 
   .header-date
-    width: 73%
+    width: 56%
+    text-transform: uppercase
     p
       padding: 1.5em 0 0 0
       color: #fff
 
   .header-sponsor
-    width: 11%
+    width: 22%
 
     @include respond-to(tablets_and_phones)
       display: none // relocated to footer
@@ -149,6 +150,9 @@
 // ACTION-KIT
 // ----------
 .action-kit
+  clear: both
+  padding: 1em
+
   img
     position: relative
     top: 15px
@@ -238,8 +242,9 @@
       margin: 0.5em auto 0
 
   .profile-copy
-    width: $section-content-width
+    width: 34em
     margin: 0 0 3em 0
+    padding-top: 1em
 
     @include respond-to(tablets_and_phones)
       width: 90%
@@ -365,10 +370,18 @@
     text-align: left
   h3
     cursor: pointer
-    color: #ccc
+    font-weight: bold
+    color: #999
+    &:hover
+      text-decoration: underline
+
   div /* TODO - GIVE THIS A CLASS */
     margin: 0 0 0.5em 0
 
+  ul
+    list-style-type: disc
+    padding-left: 2em
+  
   .btn
     margin: 1em auto 0
 

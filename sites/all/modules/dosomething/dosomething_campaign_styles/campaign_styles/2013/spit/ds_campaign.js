@@ -17,19 +17,6 @@
       }
       jump_scroll('a.jump-scroll');
 
-      // dynamically set width css property on elements
-      set_width = function(parent, child, width) {
-
-        $(parent).each(function() {
-          var $this = $(this);
-          var child_width = $this.find(child).width() * width;
-          $this.css('width', child_width);
-        });
-      };
-
-      // Dynamically set width of the call to action buttons
-      set_width('a.btn', 'span', 1.3);
-
       // #faq drop down animations
       faq_toggle = function(question, response) {
 
@@ -67,8 +54,6 @@
         });
 
       }
-      
-      });
 
     } // end attach: function
   }; // end Drupal.behaviors

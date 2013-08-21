@@ -17,6 +17,30 @@ img
   padding: 2em
 
 
+.video-player
+  text-align: center
+
+
+.section-unit-half
+  padding: 2em 4em !important
+
+  p 
+    padding: 1em
+
+.center
+  text-align: center !important
+
+.padded
+  padding: 2em
+
+.colored
+  color: #00aced
+
+.section-unit-full
+  border-bottom: 0 !important
+
+a 
+  color: #00aced 
 
 // SECTION STYLES
 // --------------
@@ -53,7 +77,7 @@ img
     margin-bottom: 2em
 
   img
-    width: 100px
+    max-width: 100%
     margin: 0 auto 1em
     display: block
 
@@ -218,7 +242,6 @@ strong
     +box-shadow(0 10px 10px -10px #bbb)
   &:active /* While mouse clicks */
     color: lighten($off-black, 10) !important
-    padding: 0.35em 0 0.15em !important
     background: $btn-color
     +background-image(linear-gradient($btn-hover, $btn-color))
     +box-shadow(0 10px 10px -10px #bbb)
