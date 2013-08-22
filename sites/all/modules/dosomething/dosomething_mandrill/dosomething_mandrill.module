@@ -18,34 +18,33 @@
  * 
  * We're currently using Webform 7.x-3.18
  */
-
 function dosomething_mandrill_webform_submission_insert($node, $submission) {
   
   // Campaign Report Back submissions
   if ($node->type == 'campaign_report_back') {
-    
+
     // Must be 'dosomething_mandrill' to trigger ManndrillMailSystem use based on entries in the MailSystem module
     // /admin/config/system/mailsystem
     $module = 'dosomething_mandrill';
-    
+
     // Lookup the key value based on the webform submission
     // Load field_mandrill_key values on node (could be more than one in the future)
     // field_get_items($entity_type, $entity, $field_name, $langcode = NULL)
     $keys = field_get_items('node', $node, 'field_mandrill_key');
-    
+
     // Skip if field_mandrill_key not defined
     if ($keys != FALSE) {
-      
+
       // Collect specific mandrill key value
       // Get the specific value of the filed - need to look at display formatter (defaults to "default")
       // field_view_value($entity_type, $entity, $field_name, $item, $display = array(), $langcode = NULL)
       $key = field_view_value('node', $node, 'field_mandrill_key', $keys[0]);
       $key = $key['#markup'];
-    
+
       // Lookup the email address to send the message to based on the webform submission or user account
       // Register the $global $user object
       global $user;
-          
+
       // Check for anonymous user
       if ($user->uid == 0) {
         if (!empty($submission->field_webform_email)) {
@@ -58,48 +57,48 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
       else {
         $to = $user->mail;
       }
-  
+
       // User the site default, perhaps someday we'll deal in other languages other than
       $language = language_default();
-      
+
       // Empty as current campaign signup messages do not contain merge_vars.
       // @todo: Add support specific list of merge_var values, *|FNAME|* for example
       $params = array();
-      
+
       // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
       // users responding to these messages results in anyone reading the message.
       $from = NULL;
-      
+
       // Send transactional message
       $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $params, $from, TRUE);
-      
+
       /**
        * $send: If TRUE, drupal_mail() will call drupal_mail_system()->mail() to deliver the message, and store
        * the result in $message['result']. Modules implementing hook_mail_alter() may cancel sending by setting
        * $message['send'] to FALSE.
        */
-      
+
       // Log results
       if ($message['result'] == FALSE) {
-        
+
         // watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
         watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to via %source (%nid).',
                   array('%to' => $to, '%source' => $node->type, '%nid' => $node->nid), WATCHDOG_ERROR);
-        
+
       }
-      
+
     }
     else {
-      
+
       // flag that campaign_report_back or campaign_contact_form does not have a mandrill_key setting
       watchdog('dosomething_mandrill', 'Mandrill transactional message for campaign_report_back or campaign_contact_form
                 via %source (%nid) not sent as key was undefined in node.',
                 array('%source' => $node->type, '%nid' => $node->nid), WATCHDOG_WARNING);
-      
+
     }
-    
+
   }
-  
+
 }
 
 /**
@@ -125,12 +124,11 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * $user = NULL - The user object, future use to generate custom merge_var values.
  * 
  */
-
 function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user=NULL) {
 
   $language = language_default();
   $from = NULL;
-  
+
   $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
 
   // Log results
@@ -138,7 +136,7 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
     watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to using the Mandrill %key.',
               array('%to' => $to, '%key' => $key), WATCHDOG_ERROR);
   }
-    
+
 }
 
 /**
@@ -185,20 +183,44 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
  *   specific to the group / batch of messages.
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
-  
+
   switch ($key) {
-    
+
+    case 'petition':      
+
+      $message['from'] = 'dosomething@dosomething.org';
+      $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
+      
+      // Tag message and related email address for segmentation use in MailChimp
+      // for future mass mailouts related to the petition. Tag value must not
+      // start with "_". Any tags starting with an underscore are reserved for
+      // internal Mandrill use and will cause errors in API.
+      ($params['TITLE'][0] != '_') ?: $params['TITLE'][0] = '-';
+      $petition_tag = substr($params['TITLE'], 0, 50);
+
+      $message['tags'] = array('petition', $petition_tag);
+
+      // Rename merge vars to match Mandrill template
+      $params['PETITION'] = $params['TITLE'];
+      $params['PETITIONURL'] = 'http://www.dosomething.org/' . $params['URL'];
+      $message['params']['PETITION'] = $params['TITLE'];
+      $message['params']['PETITIONURL'] = 'http://www.dosomething.org/' . $params['URL'];
+
+      unset($params['TITLE']);
+      unset($params['URL']);
+      unset($message['params']['TITLE']);
+      unset($message['params']['URL']);
+
+      break;
+
     case 'dsplain':
     case 'dssignup':
     case 'dsrp':
     case 'dsreg':      
-        
+
       $message['from'] = 'dosomething@dosomething.org';
       $message['subject'] = $params['subject'];
       $message['body'] = $params['body'];
-      
-      // Consider populating the language 
-      // global $language;
 
       break;
 
@@ -234,46 +256,35 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  * If you would like to use additional template (or other) Mandrill API variables not implemented in this module, set them in hook_mail_alter under:
  *
  * $params['mandrill']. Have a look at mandrill.mail.inc to learn more.
- * (Search for "mandrill parameters".)
- *
- *"message": {
- *  "merge_vars": [
- *    {
- *      "rcpt": "recipient.email@example.com",
- *        "vars": [
- *          {
- *            "name": "mergeVar1",
- *            "content": "mergeVar1 content"
- *          }
- *        ]
- *    }
- *  ],
- *}
+ * (Search for "$mandrill_params".)
  *
  * http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_mail_alter/7
  *
  */
 
-function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
-    
+function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
+
+  $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
+  
+  // Pass parameters passed via dosomething_mandrill_dispach call
+  $mandrill_params['params'] = $message['params'];
+
   $global_merge_vars = array();
   $global_merge_vars[] = array(
     'name' => 'subject',
-    'content' => $mandrill_params['subject'],
+    'content' => isset($message['subject']) ? $message['subject'] : $mandrill_params['subject'],
   );
   $global_merge_vars[] = array(
     'name' => 'from',
-    'content' => $mandrill_params['from'],
+    'content' => isset($message['from']) ? $message['from'] : $mandrill_params['from'],
   );
   $global_merge_vars[] = array(
     'name' => 'domain',
     'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
   );
-  
-  $rcpt['email'] = $mandrill_params['to'];
 
-  if (!empty($message['params'])) {
-    foreach ($message['params'] as $name => $content) {
+  if(!empty($mandrill_params['params'])) {
+    foreach($mandrill_params['params'] as $name => $content) {
       if(is_string($content)) {
         $global_merge_vars[] = array(
           'name' => $name,
@@ -284,8 +295,8 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
   }
 
   $merge_vars = array();
-  if (!empty($mandrill_params['message']['to'])) {
-    foreach ($mandrill_params['message']['to'] as $i => $rcpt) {
+  if(!empty($mandrill_params['message']['to'])) {
+    foreach($mandrill_params['message']['to'] as $i => $rcpt) {
       $vars = array();
       $vars[] = array(
         'name' => 'to',
@@ -297,19 +308,11 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
       );
     }
   }
-  
-  foreach($mandrill_params['params']['merge_vars'] as $name => $content) {
-    $global_merge_vars[] = array(
-      'name' => $name,
-      'content' => $content,
-    );
-  }
 
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
 
-  if (!empty($merge_vars)) {
+  if(!empty($merge_vars)) {
     $mandrill_params['message']['merge_vars'] = $merge_vars;
   }
   
-
 }

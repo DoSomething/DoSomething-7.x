@@ -131,6 +131,7 @@ class MandrillMailSystem implements MailSystemInterface {
       'function' => 'mandrill_sender_plain',
       'args' => array(),
     );
+    
     drupal_alter('mandrill_mail', $mandrill_params, $message);
 
     // Queue for processing during cron or send immediately.
