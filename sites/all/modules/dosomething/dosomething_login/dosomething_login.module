@@ -321,7 +321,6 @@ function dosomething_login_form_club_node_form_alter(&$form, &$form_state) {
     // so that they don't get stuck not being able to edit their
     // account by changing their birthdate.
     dosomething_login_set_parental_consent_message();
-    drupal_goto('user');
   }
 }
 
@@ -342,9 +341,13 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
     // but not be able to do anything with it.
     if (in_array($form['#node']->type, $node_types)) {
       global $user;
-      if (!dosomething_login_user_has_parental_consent($user->uid)) {
+      if ($user->uid == 0) {
+        drupal_set_message(t('You must login or create an account before you can access @link.', array('@link' => $form['#action'])), 'warning');
+        drupal_goto('user/login', array('query' => array('destination' => current_path())));
+      }
+      elseif (!dosomething_login_user_has_parental_consent($user->uid)) {
         dosomething_login_set_parental_consent_message();
-        drupal_goto();
+        drupal_goto('dosomething/under-13/parent-consent-email');
       }
     }
   }
@@ -1366,7 +1369,7 @@ function dosomething_login_user_has_parental_consent($uid) {
  */
 function dosomething_login_set_parental_consent_message() {
   // TODO: Some link to ask for parental consent
-  drupal_set_message(t('Before you can perform this action, you must have parental consent. You can send a request to your parent or legal guardian <a href="@link"> here</a>.', array('@link' => '/dosomething/under-13/parent-consent-email')), 'warning');
+  drupal_set_message(t('Before you can perform this action, you must have parental consent. Send a request to your parent or legal guardian.'), 'warning');
 }
 
 /**
@@ -1710,7 +1713,9 @@ function dosomething_login_user_login(&$edit, $account) {
       // Execute campaign login signup function:
       dosomething_campaign_signup($account, $gated_signup_node);
     }
-    //@todo: If type == project, dosomething_project_signup().
+    elseif (module_exists('dosomething_signups')) {
+      dosomething_signups_signup($account, $gated_signup_node);
+    }
   }
   if ($account->uid) {
     // Check if they have connected through Facebook.
@@ -2103,12 +2108,11 @@ function dosomething_login_fboauth_user_save($account, $fbuser) {
 function dosomething_login_init() {
   // If we are viewing a node:
   if (arg(0) == 'node' && is_numeric(arg(1)) && arg(2) == FALSE) {
-    // Check if current path is a gated campaign:
+    // Check if current path is a gated node:
     $node = menu_get_object();
     if (dosomething_login_is_gated_node($node)) {
-      global $user;
       // Send to redirector.
-      dosomething_login_redirector($user, $node);
+      dosomething_login_redirector($node);
     }
   }
 }
@@ -2160,23 +2164,87 @@ function dosomething_login_is_signup_gate_url($url) {
 }
 
 /**
- * Redirects user to user/registration gate or join page for given $node based on signup status.
+ * Redirects current user to user/registration gate or join page for given $node based on signup status.
  *
- * @param $user
- *  User object.
  * @param $node
  *  Node object to check for is_gated_signup and user signup status.
  */
-function dosomething_login_redirector($user, $node) {
+function dosomething_login_redirector($node) {
+  global $user;
   // If anon user, redirect to user/destination?node=$nid
   if ($user->uid == 0) {
     drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $node->nid)));
   }
-  // Else if node is a gated signup, and logged in user hasn't signed up (and is non-override), redirect to join page:
-  else if (dosomething_login_is_gated_signup_node($node) && 
-    !dosomething_campaign_can_user_override_join($user) && 
-    !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
-    // Redirect to the campaign join page.   
-    drupal_goto('campaign/join/' . $node->nid); 
+  // Else if node is a gated signup, and logged in user doesn't have override join acess:
+  elseif (dosomething_login_is_gated_signup_node($node) && !user_access('administer modules', $user)) {
+    // If it's a campaign node, check dosomething_campaign_signups:
+    if ($node->type == 'campaign' && !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
+      $redirect_to_join = TRUE;
+    }
+    // Else for all other node types, check regular dosomething_signups_table:
+    elseif ($node->type == 'project' && module_exists('dosomething_signups') && !dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
+      $redirect_to_join = TRUE;
+    }
+    if ($redirect_to_join) {
+      // Redirect to the campaign join page.   
+      drupal_goto('campaign/join/' . $node->nid); 
+    }
   }
+}
+
+/**
+ * Returns array of gate values for a given loaded node, or the default gate variables if no node is given.
+ */
+function dosomething_login_get_gate_vars($node = NULL) {
+  $gate = array();
+  if ($node) {
+    $gate['nid'] = $node->nid;
+    $gate['gate_wrapper_class'] = 'nid-' . $node->nid;
+  }
+  else {
+    $gate['gate_wrapper_class'] = '';
+  }
+  // Gate headline:
+  if (isset($node->field_gate_headline[LANGUAGE_NONE][0]['value'])) {
+    $gate['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    $gate['gate_headline'] = variable_get('dosomething_login_gate_headline', t('Join DoSomething.org'));
+  }
+  // Gate subheadline:
+  if (isset($node->field_gate_subheadline[LANGUAGE_NONE][0]['value'])) {
+    $gate['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    $gate['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline', t('JOIN THE LARGEST ORGANIZATION FOR YOUTH AND SOCIAL CHANGE'));
+  }
+  // Gate description:
+  if (isset($node->field_gate_description[LANGUAGE_NONE][0]['value'])) {
+    $gate['gate_description'] = $node->field_gate_description[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    $gate['gate_description'] = variable_get('dosomething_login_gate_description', t('Take action on causes you care about, qualify for scholarships, join 2 million passionate members.'));
+  }
+  // Gate image:
+  if (isset($node->field_gate_image[LANGUAGE_NONE][0]['uri'])) {
+    // Gate image src:
+    $gate['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
+    // Gate image alt:
+    $gate['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
+  }
+  else {
+    // @todo: Move default gate image into a variable... not hardcode to the theme image here.
+    // Gate image src:
+    $gate['gate_image_src'] = "/" . drupal_get_path('theme', 'doit') . "/images/gate-bg.jpg";
+    // Gate image alt:
+    $gate['gate_image_alt'] = "High Five!";
+  }
+  // Gate color:
+  if (isset($node->field_gate_color[LANGUAGE_NONE][0]['value'])) {
+    $gate['gate_color'] = $node->field_gate_color[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    $gate['gate_color'] = variable_get('dosomething_login_gate_color');
+  }
+  return $gate;
 }

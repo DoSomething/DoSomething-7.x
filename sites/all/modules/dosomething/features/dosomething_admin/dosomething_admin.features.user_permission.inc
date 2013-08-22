@@ -993,6 +993,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'use text format 3',
     'roles' => array(
       0 => 'administrator',
+      1 => 'staff',
     ),
     'module' => 'filter',
   );
