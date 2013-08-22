@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * dosomething_signups.module
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_signups_menu() {
+  $items = array();
+  $items['campaign/join/%node'] = array(
+    'page callback' => 'dosomething_signups_join_page',
+    'page arguments' => array(2),
+    'access callback' => 'dosomething_signups_join_page_access',
+    'access arguments' => array(2),
+    'file' => 'dosomething_signups.pages.inc',
+  );
+  return $items;
+}
+
+/**
+ * Retuns boolean if given $user can access join and campaign pages regardless of signup.
+ *
+ * @param $user
+ *  User object of user to check.
+ *
+ * @return boolean
+ */
+function dosomething_signups_can_user_override_join($user) {
+  return user_access('administer modules', $user);
+}
+
+/**
+ * Inserts a record for given user UID and campaign node NID in signups table.
+ */
+function dosomething_signups_insert_signup($uid, $nid) {
+  $signup = db_insert('dosomething_signups')
+  ->fields(array(
+    'uid' => $uid,
+    'nid' => $nid,
+    'timestamp' => REQUEST_TIME,
+    ))
+  ->execute();
+}
+
+/**
+ * Returns boolean for if given user uid is signed up given nid.
+ */
+function dosomething_signups_is_user_signed_up($uid, $nid) {
+  $signup = db_query('SELECT uid 
+    FROM {dosomething_signups} 
+    WHERE uid = :uid AND nid = :nid', array(':uid' => $uid, ':nid' => $nid))->fetchField();
+  if ($signup) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Access callback for join page.
+ */
+function dosomething_signups_join_page_access($node) {
+  // Join page is only valid for gated signup nodes:
+  if (!dosomething_login_is_gated_signup_node($node)) {
+    return FALSE;
+  }
+  global $user;
+  // Allow access if user can access page unconditionally.
+  if (dosomething_signups_can_user_override_join($user)) {
+    return TRUE;
+  }
+  // Otherwise, only grant access for logged in users.
+  return $user->uid != 0;
+}
