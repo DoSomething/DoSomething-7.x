@@ -70,7 +70,7 @@
       }
 
     // Facebook Share
-    var fb_share_img = '//www.dosomething.org/files/campaigns/birthdaymail/Cards-header.jpg';
+    var fb_share_img = '//www.dosomething.org/files/campaigns/survivors/CellPhone_Assets_facebook_content.png';
     var fb_title = 'Birthday Mail';
     var fb_header_caption = '';
 
@@ -78,10 +78,10 @@
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'Everybody has a birthday. Sign up for Birthday Mail to help kids in homeless shelters celebrate theirs.',
+      'feed_description': '500 million unused “junk phones” sit in peoples’ homes across the US. Turn yours into life-saving funding for domestic violence survivors.',
       'feed_selector': '.header-facebook-share',
     }, function(response){
-      window.location.href = '/birthdaymail#header';
+      window.location.href = '/survivors#header';
     });
 
     } // end attach: function
