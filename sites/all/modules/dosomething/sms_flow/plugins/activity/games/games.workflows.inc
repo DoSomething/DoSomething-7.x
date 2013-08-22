@@ -32,6 +32,12 @@ $activity->sets = array(
     'game_id' => SmsFlowGameConstants::BDAYMAIL_TIPS,
     'opt_in_paths' => array(160625, 160627, 160629, 160631, 160633, 160635),
   ),
+  // Give A Spit 2013 Idea Tips
+  array(
+    'mdata_id' => 10921,
+    'game_id' => SmsFlowGameConstants::GIVEASPIT_ORDERED_TIPS,
+    'opt_in_paths' => array(161183, 161185, 161187, 161189, 161191, 161193),
+  ),
 );
 
 $activity = $workflow->newActivity('end');

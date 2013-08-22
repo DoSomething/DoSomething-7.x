@@ -25,4 +25,6 @@ class SmsFlowGameConstants {
   const IHEARTDAD_GUIDE         = 18;
   const HUNT_INSPIRE            = 19;
   const BDAYMAIL_TIPS           = 20;
+  const GIVEASPIT_ORDERED_TIPS  = 21;
+  const GIVEASPIT_RANDOM_TIPS   = 22;
 }

@@ -119,7 +119,13 @@ class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
       $state->setContext('ignore_no_response_error', TRUE);
     }
     else {
-      $state->setContext('sms_response', $sms_response);
+      if (is_numeric($sms_response)) {
+        dosomething_general_mobile_commons_subscribe($mobile, $sms_response);
+        $state->setContext('ignore_no_response_error', TRUE);
+      }
+      else {
+        $state->setContext('sms_response', $sms_response);
+      }
     }
     $state->markCompleted();
   }

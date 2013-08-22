@@ -8,24 +8,6 @@
 include_once('dosomething_campaign.features.inc');
 
 /**
- * Implements hook_menu().
- */
-function dosomething_campaign_menu() {
-
-  $items = array();
-
-  $items['campaign/join/%'] = array(
-    'page callback' => 'dosomething_campaign_join_page',
-    'page arguments' => array(2),
-    'access callback' => 'dosomething_campaign_join_page_access',
-    'access arguments' => array(2),
-    'file' => 'dosomething_campaign.pages.inc',
-  );
-
-  return $items;
-}
-
-/**
  * Implements hook_theme().
  */
 function dosomething_campaign_theme($existing, $type, $theme, $path) {
@@ -66,27 +48,6 @@ function dosomething_campaign_block_view($delta = '') {
       break;
   }
   return $block;
-}
-
-/**
- * Access callback for join page.
- */
-function dosomething_campaign_join_page_access($nid) {
-  if (!is_numeric($nid)) {
-    return FALSE;
-  }
-  $node = node_load($nid);
-  // Only should appear for gated signups:
-  if (!dosomething_login_is_gated_signup_node($node)) {
-    return FALSE;
-  }
-  global $user;
-  // Check if user can access page unconditionally.
-  if (dosomething_campaign_can_user_override_join($user)) {
-    return TRUE;
-  }
-  // Otherwise, only grant access for logged in users.
-  return $user->uid != 0;
 }
 
 /**
@@ -151,20 +112,6 @@ function dosomething_campaign_is_user_signed_up($uid, $nid) {
   }
   return FALSE;
 }
-
-/**
- * Retuns boolean if given $user can access join and campaign pages regardless of signup.
- *
- * @param $user
- *  User object of user to check.
- *
- * @return boolean
- */
-function dosomething_campaign_can_user_override_join($user) {
-  return user_access('administer site configuration', $user);
-}
-
-
 
 /**
  * Form callback for signup beta form.

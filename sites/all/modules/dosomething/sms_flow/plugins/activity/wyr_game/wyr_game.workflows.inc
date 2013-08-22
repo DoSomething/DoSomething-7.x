@@ -175,6 +175,12 @@ $activity->sets = array(
     'path_special' => 159543,
     'send_to_special_on' => 3,
   ),
+  // Give A Spit 2013 - Random Fact Tips
+  array(
+    'mdata_id'     => 10923,
+    'game_id'      => SmsFlowGameConstants::GIVEASPIT_RANDOM_TIPS,
+    'opt_in_paths' => array(161195, 161197, 161199, 161201, 161203, 161205, 161207, 161209, 161211, 161213, 161215, 161217, 161219, 161221, 161223, 161225),
+  ),
 );
 
 $activity = $workflow->newActivity('end');
