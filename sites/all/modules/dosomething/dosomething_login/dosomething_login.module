@@ -321,7 +321,6 @@ function dosomething_login_form_club_node_form_alter(&$form, &$form_state) {
     // so that they don't get stuck not being able to edit their
     // account by changing their birthdate.
     dosomething_login_set_parental_consent_message();
-    drupal_goto('user');
   }
 }
 
@@ -342,9 +341,13 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
     // but not be able to do anything with it.
     if (in_array($form['#node']->type, $node_types)) {
       global $user;
-      if (!dosomething_login_user_has_parental_consent($user->uid)) {
+      if ($user->uid == 0) {
+        drupal_set_message(t('You must login or create an account before you can access @link.', array('@link' => $form['#action'])), 'warning');
+        drupal_goto('user/login', array('query' => array('destination' => current_path())));
+      }
+      elseif (!dosomething_login_user_has_parental_consent($user->uid)) {
         dosomething_login_set_parental_consent_message();
-        drupal_goto();
+        drupal_goto('dosomething/under-13/parent-consent-email');
       }
     }
   }
@@ -1366,7 +1369,7 @@ function dosomething_login_user_has_parental_consent($uid) {
  */
 function dosomething_login_set_parental_consent_message() {
   // TODO: Some link to ask for parental consent
-  drupal_set_message(t('Before you can perform this action, you must have parental consent. You can send a request to your parent or legal guardian <a href="@link"> here</a>.', array('@link' => '/dosomething/under-13/parent-consent-email')), 'warning');
+  drupal_set_message(t('Before you can perform this action, you must have parental consent. Send a request to your parent or legal guardian.'), 'warning');
 }
 
 /**
