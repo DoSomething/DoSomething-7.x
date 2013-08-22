@@ -18,7 +18,7 @@ function dosomething_signups_schema() {
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
-        'default' =>
+        'default' => 0,
       ),
       'timestamp' => array(
         'description' => 'Time of signup',
