@@ -132,23 +132,7 @@ class MandrillMailSystem implements MailSystemInterface {
       'args' => array(),
     );
     
-    if ($bla) {
-      $bla = TRUE;
-    }
-    
-        echo('<pre>');
-    print_r($mandrill_params);
-    echo('<pre>');
-    
     drupal_alter('mandrill_mail', $mandrill_params, $message);
-    if ($bla) {
-      $bla = TRUE;
-    }
-    
-        echo('<pre>');
-    print_r($mandrill_params);
-    echo('<pre>');
-    break;
 
     // Queue for processing during cron or send immediately.
     $status = NULL;

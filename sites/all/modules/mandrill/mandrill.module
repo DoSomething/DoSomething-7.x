@@ -119,10 +119,6 @@ function mandrill_mailsend($message, $function, $args = array()) {
       );
       return FALSE;
     }
-    
-    if ($bla) {
-      $bla = TRUE;
-    }
 
     $params = array($message) + $args;
     $results = call_user_func_array($function, $params);
