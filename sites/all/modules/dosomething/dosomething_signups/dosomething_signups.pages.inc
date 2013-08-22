@@ -21,20 +21,14 @@ function dosomething_signups_join_page($node) {
       }
     }
     // Else check if user already signed up in dosomething_signups:
-    elseif (dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
+    elseif ($node->type == 'project' && dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
       // Redirect to node.
       drupal_goto('node/' . $node->nid);
     }
   }
   // Load relevant page variables from the node:
   drupal_set_title($node->title);
-  $page['nid'] = $node->nid;
-  $page['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
-  $page['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
-  $page['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
-  $page['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
-  $page['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
-  $page['gate_color'] = $node->field_gate_color[LANGUAGE_NONE][0]['value'];
+  $page = dosomething_login_get_gate_vars($node);
   $page['form'] = drupal_get_form('dosomething_signups_join_page_form', $node);
   return $page;
 }
@@ -66,6 +60,9 @@ function dosomething_signups_join_page_form_submit($form, &$form_state) {
   }
   if ($node->type == 'campaign') {
     dosomething_campaign_signup($user, $node);
+  }
+  else {
+    dosomething_signups_signup($user, $node);
   }
   $form_state['redirect'] = 'node/' . $node->nid;
 }

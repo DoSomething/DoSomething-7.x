@@ -218,13 +218,7 @@ function doit_preprocess_page(&$variables) {
         if (module_exists('dosomething_login') && dosomething_login_is_gated_node($node)) {
           // Load node values for gate copy and image.
           $default_gate = FALSE;
-          $variables['page']['gate_wrapper_class'] = 'nid-' . $node->nid;
-          $variables['page']['gate_headline'] = $node->field_gate_headline[LANGUAGE_NONE][0]['value'];
-          $variables['page']['gate_subheadline'] = $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'];
-          $variables['page']['gate_description']= $node->field_gate_description[LANGUAGE_NONE][0]['value'];
-          $variables['page']['gate_image_src'] = file_create_url($node->field_gate_image[LANGUAGE_NONE][0]['uri']);
-          $variables['page']['gate_image_alt'] = $node->field_gate_image[LANGUAGE_NONE][0]['alt'];
-          $variables['page']['gate_color'] = $node->field_gate_color[LANGUAGE_NONE][0]['value'];
+          $variables['page'] = array_merge($variables['page'], dosomething_login_get_gate_vars($node));
           if (isset($node->field_gate_page_title[LANGUAGE_NONE][0]['value']) && $current_path == 'user/registration') {
             drupal_set_title($node->field_gate_page_title[LANGUAGE_NONE][0]['value']);
           }
@@ -232,14 +226,8 @@ function doit_preprocess_page(&$variables) {
       }
     }
     // If default gate, use gate variables from DoSomething Login config page:
-    if ($default_gate) {
-      $variables['page']['gate_wrapper_class'] = '';
-      $variables['page']['gate_headline'] = variable_get('dosomething_login_gate_headline');
-      $variables['page']['gate_subheadline'] = variable_get('dosomething_login_gate_subheadline');
-      $variables['page']['gate_description']= variable_get('dosomething_login_gate_description');
-      $variables['page']['gate_image_src'] = "/" . drupal_get_path('theme', 'doit') . "/images/gate-bg.jpg";
-      $variables['page']['gate_image_alt'] = "High Five!";
-      $variables['page']['gate_color'] = variable_get('dosomething_login_gate_color');
+    if ($default_gate && module_exists('dosomething_login')) {
+      $variables['page'] = array_merge($variables['page'], dosomething_login_get_gate_vars());
       $page_title = variable_get('dosomething_login_gate_page_title', NULL);
       if ($page_title && $current_path == 'user/registration') {
         drupal_set_title(variable_get('dosomething_login_gate_page_title'));
