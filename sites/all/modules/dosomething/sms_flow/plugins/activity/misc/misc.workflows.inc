@@ -121,6 +121,15 @@ $activity->petitions = array(
     'skip_ftaf' => TRUE,
     'success_response' => 158567,
   ),
+  // Apple emoji petition
+  array(
+    'nid' => 730979,
+    'mdata_id' => 10927,
+    'ftaf_beta_optin' => 161287,
+    'ftaf_prompt' => t('Thanks! When 10,000 ppl sign we\'ll deliver the petition to Apple. Have a friend who should be represented or wants to sign? Text their # to add their voice.'),
+    'ftaf_response_success' => 161295,
+    'beta_to_alpha_feedback' => 161289,
+  ),
 );
 
 $activity = $workflow->newActivity('sms_prompt_from_context');
