@@ -526,6 +526,8 @@ $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
 $activity->outputs = array('ask_people', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 161261;
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_people';
@@ -549,12 +551,12 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->submission_fields = array(
-  'ask_people' => 0, // TODO: plugin correct value once webform is created
-  'ask_why' => 0, // TODO: plugin correct value once webform is created
+  'ask_people' => 1,
+  'ask_why' => 2,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 161263;
-$activity->webform_nid = 0; // TODO: plugin correct value once webform is created
+$activity->webform_nid = 731005;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
