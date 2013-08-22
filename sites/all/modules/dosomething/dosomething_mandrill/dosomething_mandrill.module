@@ -183,9 +183,6 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
  *   specific to the group / batch of messages.
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
-    if ($bla) {
-    $bla = TRUE;
-  }
 
   switch ($key) {
 
@@ -213,7 +210,6 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       unset($params['URL']);
       unset($message['params']['TITLE']);
       unset($message['params']['URL']);
-
 
       break;
 
@@ -267,11 +263,7 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  */
 
 function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
-  
-  if ($bla) {
-    $bla = TRUE;
-  }
-  
+
   $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
   
   // Pass parameters passed via dosomething_mandrill_dispach call
