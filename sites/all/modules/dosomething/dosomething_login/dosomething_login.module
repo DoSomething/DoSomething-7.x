@@ -2176,13 +2176,13 @@ function dosomething_login_redirector($node) {
     drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $node->nid)));
   }
   // Else if node is a gated signup, and logged in user doesn't have override join acess:
-  elseif (dosomething_login_is_gated_signup_node($node) && !dosomething_signups_can_user_override_join($user)) {
+  elseif (dosomething_login_is_gated_signup_node($node) && !user_access('administer modules', $user))) {
     // If it's a campaign node, check dosomething_campaign_signups:
     if ($node->type == 'campaign' && !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
       $redirect_to_join = TRUE;
     }
     // Else for all other node types, check regular dosomething_signups_table:
-    elseif ($node->type == 'project' && !dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
+    elseif ($node->type == 'project' && module_exists('dosomething_signups') && !dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
       $redirect_to_join = TRUE;
     }
     if ($redirect_to_join) {
