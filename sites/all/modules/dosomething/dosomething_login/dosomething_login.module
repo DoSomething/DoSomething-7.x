@@ -2177,7 +2177,7 @@ function dosomething_login_redirector($user, $node) {
   }
   // Else if node is a gated signup, and logged in user hasn't signed up (and is non-override), redirect to join page:
   else if (dosomething_login_is_gated_signup_node($node) && 
-    !dosomething_campaign_can_user_override_join($user) && 
+    !dosomething_signups_can_user_override_join($user) && 
     !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
     // Redirect to the campaign join page.   
     drupal_goto('campaign/join/' . $node->nid); 
