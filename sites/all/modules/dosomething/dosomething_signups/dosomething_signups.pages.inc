@@ -21,7 +21,7 @@ function dosomething_signups_join_page($node) {
       }
     }
     // Else check if user already signed up in dosomething_signups:
-    elseif (dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
+    elseif ($node->type == 'project' && dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
       // Redirect to node.
       drupal_goto('node/' . $node->nid);
     }
@@ -60,6 +60,9 @@ function dosomething_signups_join_page_form_submit($form, &$form_state) {
   }
   if ($node->type == 'campaign') {
     dosomething_campaign_signup($user, $node);
+  }
+  else {
+    dosomething_signups_signup($user, $node);
   }
   $form_state['redirect'] = 'node/' . $node->nid;
 }

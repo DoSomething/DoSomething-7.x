@@ -1713,7 +1713,9 @@ function dosomething_login_user_login(&$edit, $account) {
       // Execute campaign login signup function:
       dosomething_campaign_signup($account, $gated_signup_node);
     }
-    //@todo: If type == project, dosomething_project_signup().
+    elseif (module_exists('dosomething_signups')) {
+      dosomething_signups_signup($account, $gated_signup_node);
+    }
   }
   if ($account->uid) {
     // Check if they have connected through Facebook.
@@ -2106,12 +2108,11 @@ function dosomething_login_fboauth_user_save($account, $fbuser) {
 function dosomething_login_init() {
   // If we are viewing a node:
   if (arg(0) == 'node' && is_numeric(arg(1)) && arg(2) == FALSE) {
-    // Check if current path is a gated campaign:
+    // Check if current path is a gated node:
     $node = menu_get_object();
     if (dosomething_login_is_gated_node($node)) {
-      global $user;
       // Send to redirector.
-      dosomething_login_redirector($user, $node);
+      dosomething_login_redirector($node);
     }
   }
 }
@@ -2163,24 +2164,31 @@ function dosomething_login_is_signup_gate_url($url) {
 }
 
 /**
- * Redirects user to user/registration gate or join page for given $node based on signup status.
+ * Redirects current user to user/registration gate or join page for given $node based on signup status.
  *
- * @param $user
- *  User object.
  * @param $node
  *  Node object to check for is_gated_signup and user signup status.
  */
-function dosomething_login_redirector($user, $node) {
+function dosomething_login_redirector($node) {
+  global $user;
   // If anon user, redirect to user/destination?node=$nid
   if ($user->uid == 0) {
     drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $node->nid)));
   }
-  // Else if node is a gated signup, and logged in user hasn't signed up (and is non-override), redirect to join page:
-  else if (dosomething_login_is_gated_signup_node($node) && 
-    !dosomething_signups_can_user_override_join($user) && 
-    !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
-    // Redirect to the campaign join page.   
-    drupal_goto('campaign/join/' . $node->nid); 
+  // Else if node is a gated signup, and logged in user doesn't have override join acess:
+  elseif (dosomething_login_is_gated_signup_node($node) && !dosomething_signups_can_user_override_join($user)) {
+    // If it's a campaign node, check dosomething_campaign_signups:
+    if ($node->type == 'campaign' && !dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
+      $redirect_to_join = TRUE;
+    }
+    // Else for all other node types, check regular dosomething_signups_table:
+    elseif ($node->type == 'project' && !dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
+      $redirect_to_join = TRUE;
+    }
+    if ($redirect_to_join) {
+      // Redirect to the campaign join page.   
+      drupal_goto('campaign/join/' . $node->nid); 
+    }
   }
 }
 

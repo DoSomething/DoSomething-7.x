@@ -74,3 +74,46 @@ function dosomething_signups_join_page_access($node) {
   // Otherwise, only grant access for logged in users.
   return $user->uid != 0;
 }
+
+/**
+ * Handles a node signup and its relevant subscribe calls.
+ * Best function name ever.
+ *
+ * @param $account
+ *  Loaded user object of user who signing up.
+ * @param $node
+ *  Loaded node object that user is signing up for.
+ */
+function dosomething_signups_signup($account, $node) {
+  $nid = $node->nid;
+  // If user is already signed up, don't sign up again.
+  // Shouldn't ever really happen, but it's a sanity check.
+  if (dosomething_signups_is_user_signed_up($account->uid, $nid)) {
+    return;
+  }
+  // Insert signup record:
+  dosomething_signups_insert_signup($account->uid, $nid);
+  $email = $account->mail;
+  // Mailchimp signup:
+  $mailchimp = $node->field_mailchimp_group[LANGUAGE_NONE][0]['value'];
+  if ($mailchimp && !empty($mailchimp)) {
+    dosomething_subscribe_mailchimp_signup($email, $mailchimp);
+  }
+  // Mobilecommons signup:
+  $mobilecommons = $node->field_mobilecommons_opt_in[LANGUAGE_NONE][0]['value'];
+  if ($mobilecommons && !empty($mobilecommons)) {
+    $cell = '';
+    $user2 = profile2_load_by_user($account, 'main');
+    $cell = field_get_items('profile2', $user2, 'field_user_mobile');
+    $cell = $cell[0]['value'];
+    if (!empty($cell)) {
+      $response = dosomething_general_mobile_commons_subscribe($cell, $mobilecommons);
+      watchdog('dosomething_signups', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
+    }
+  }
+  // Mandrill mail:
+  $mandrill = $node->field_mandrill_key[LANGUAGE_NONE][0]['value'];
+  if ($mandrill && !empty($mandrill)) {
+    dosomething_mandrill_dispatch($email, $mandrill);
+  }
+}
