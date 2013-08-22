@@ -127,10 +127,6 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  */
 
 function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user=NULL) {
-  
-  if ($bla) {
-    $bla = TRUE;
-  }
 
   $language = language_default();
   $from = NULL;
@@ -213,8 +209,18 @@ function dosomething_mandrill_mail($key, &$message, $params) {
     case 'petition':      
         
       $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = t('Thanks for signing the petition ') . $params['TITLE'];
-      $message['body'] = 'Body BLA!';
+      $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
+      
+      // Rename merge vars to match Mandrill template
+      $params['PETITION'] = $params['TITLE'];
+      $params['PETITIONURL'] = 'http://www.dosomething.org/' . $params['URL'];
+      $message['params']['PETITION'] = $params['TITLE'];
+      $message['params']['PETITIONURL'] = 'http://www.dosomething.org/' . $params['URL'];
+      
+      unset($params['TITLE']);
+      unset($params['URL']);
+      unset($message['params']['TITLE']);
+      unset($message['params']['URL']);
 
       break;
 
@@ -270,13 +276,15 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  *
  */
 
-function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
+function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   
   if ($bla) {
     $bla = TRUE;
   }
-    
   
+  // Pass parameters passed via dosomething_mandrill_dispach call
+  $mandrill_params['params'] = $message['params'];
+    
   $global_merge_vars = array();
   $global_merge_vars[] = array(
     'name' => 'subject',
@@ -290,17 +298,6 @@ function dosomething_mandrill_mail_alter(&$mandrill_params, $message) {
     'name' => 'domain',
     'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
   );
-
-  if(!empty($message['params'])) {
-    foreach($message['params'] as $name => $content) {
-      if(is_string($content)) {
-        $global_merge_vars[] = array(
-          'name' => $name,
-          'content' => $content,
-        );
-      }
-    }
-  }
   
   if(!empty($mandrill_params['params'])) {
     foreach($mandrill_params['params'] as $name => $content) {
