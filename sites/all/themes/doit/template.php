@@ -934,6 +934,19 @@ function doit_css_alter(&$css) {
   }
 }
 
+/** 
+ * Implements hook_theme().
+ */ 
+function doit_theme($existing, $type, $theme, $path){
+  return array(
+    'dosomething_subscribe_mobilecommons_referral_form' => array(
+      'render element' => 'form',
+      'template' => 'templates/projects/project-form-sms-referral',
+    ),
+  );
+}
+
+
 /**
  * Implements hook_preprocess_hook().
  */
@@ -1017,6 +1030,18 @@ function doit_preprocess_project_section_prizes(&$vars) {
   }
   $vars['rules_url'] = file_create_url($node->field_rules_regs_file[LANGUAGE_NONE][0]['uri']);
 }
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_sms_referral(&$vars) {
+  $node = $vars['node'];
+  $vars['sms_referral_form'] = '';
+  if (module_exists('dosomething_subscribe_mobilecommons')) {
+    $vars['sms_referral_form'] = drupal_get_form('dosomething_subscribe_mobilecommons_referral_form', $node);
+  }
+}
+
 
 /**
  * Implements hook_preprocess_hook().
