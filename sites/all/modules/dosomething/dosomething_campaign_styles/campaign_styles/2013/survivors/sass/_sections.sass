@@ -182,11 +182,15 @@
 
   .section-unit-half
     margin: 0
-    
+    @media only screen and (max-width: 725px)
+      width: 100%
+      max-width: 100%
+
   .section-container
     padding: 15px 0
     background-color: $color-two
-
+    @include respond-to(tablets_and_phones)
+      padding: 0 0 1em 0
     @include respond-to(phones)
       height: auto
 
@@ -195,18 +199,40 @@
       margin: 0 auto
       @include respond-to(phones)
         width: 96%
+      p
+        @include respond-to(phones)
+          font-size: 1em
+          line-height: 2.5em
 
   .section-label
     display: none
     overflow: hidden
     background: lighten($color-two, 3)
     padding: 2em
-    
+    @media only screen and (max-width: 725px)
+      padding: 1em
+
+  .section-container
+    padding: 15px 0
+    background-color: $color-two
+    @include respond-to(tablets_and_phones)
+      padding: 0 0 1em 0
+
+  .btn#getlabel
+    @include respond-to(phones)
+      width: 12em !important
+
   .btn.less-than
     width: 13em !important
+    @media only screen and (max-width: 725px)
+      margin: 0 auto 0.5em
+    @include respond-to(phones)
+      width: 12em !important
 
   .btn.greater-than
     width: 13em !important
+    @include respond-to(phones)
+      width: 12em !important
 
 // PRIZING
 // -------
@@ -220,7 +246,7 @@
     clear: both
 
   .btn
-    margin: 1em auto 
+    margin: 1em auto
 
   #italic
     span
