@@ -9,11 +9,11 @@ Drupal.behaviors.admin_toggle = {
 
     var admin_toggle = function() {
       // Add "hide" buttons to DOM
-      hide_button = '<a id="hide-button" href="#">hide admin</a>';
-      $('#page').before(hide_button);
+      toggle_button = '<a id="toggle-button" href="#">show admin</a>';
+      $('#page').before(toggle_button);
 
       // Display different sections based on selection
-      $('#hide-button').click(function() {
+      $('#toggle-button').click(function() {
         var $this = $(this);
         $this.toggleClass('active');
         $('body').toggleClass('active');
