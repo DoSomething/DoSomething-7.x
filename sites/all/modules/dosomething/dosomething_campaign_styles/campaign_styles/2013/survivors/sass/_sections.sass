@@ -174,11 +174,15 @@
     display: inline-block
     margin: 0 0 0 1em
     clear: none
+    +transition(ease background-color 0.5s)
     @include respond-to(tablets_and_phones)
       float: none
       margin: 0 auto
       display: block
 
+  .section-unit-half
+    margin: 0
+    
   .section-container
     padding: 15px 0
     background-color: $color-two
@@ -191,6 +195,18 @@
       margin: 0 auto
       @include respond-to(phones)
         width: 96%
+
+  .section-label
+    display: none
+    overflow: hidden
+    background: lighten($color-two, 3)
+    padding: 2em
+    
+  .btn.less-than
+    width: 13em !important
+
+  .btn.greater-than
+    width: 13em !important
 
 // PRIZING
 // -------
