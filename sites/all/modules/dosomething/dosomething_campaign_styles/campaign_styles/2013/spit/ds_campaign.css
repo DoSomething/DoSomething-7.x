@@ -397,7 +397,11 @@ header[role="banner"] {
   color: #cccccc;
   margin-top: 2em;
 }
-/* line 60, sass/_general.sass */
+/* line 57, sass/_general.sass */
+#cmp .no-bottom-border {
+  border-bottom: 0 !important;
+}
+/* line 63, sass/_general.sass */
 #cmp .section {
   margin: 0 auto;
   padding: 25px;
@@ -406,23 +410,23 @@ header[role="banner"] {
   border-bottom: 1px solid #eeeeee;
 }
 @media only screen and (max-width: 825px) {
-  /* line 60, sass/_general.sass */
+  /* line 63, sass/_general.sass */
   #cmp .section {
     padding: 3% 2%;
   }
 }
-/* line 69, sass/_general.sass */
+/* line 72, sass/_general.sass */
 #cmp .section-container {
   width: 100%;
   margin: 0 auto;
 }
 @media only screen and (max-width: 825px) {
-  /* line 69, sass/_general.sass */
+  /* line 72, sass/_general.sass */
   #cmp .section-container {
     width: 100%;
   }
 }
-/* line 75, sass/_general.sass */
+/* line 78, sass/_general.sass */
 #cmp .section-unit-single,
 #cmp .section-unit-double,
 #cmp .section-unit-full,
@@ -433,7 +437,7 @@ header[role="banner"] {
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  /* line 75, sass/_general.sass */
+  /* line 78, sass/_general.sass */
   #cmp .section-unit-single,
   #cmp .section-unit-double,
   #cmp .section-unit-full,
@@ -445,7 +449,7 @@ header[role="banner"] {
     margin-bottom: 2em;
   }
 }
-/* line 91, sass/_general.sass */
+/* line 94, sass/_general.sass */
 #cmp .section-unit-single img,
 #cmp .section-unit-double img,
 #cmp .section-unit-full img,
@@ -454,31 +458,31 @@ header[role="banner"] {
   margin: 0 auto 1em;
   display: block;
 }
-/* line 96, sass/_general.sass */
+/* line 99, sass/_general.sass */
 #cmp .section-unit-double {
   width: 66.66667%;
   margin-bottom: 2em;
   border-bottom: 1px solid #eeeeee;
 }
-/* line 101, sass/_general.sass */
+/* line 104, sass/_general.sass */
 #cmp .section-unit-full {
   width: 100%;
   padding: 0 0 0 0;
   margin-bottom: 2em;
   border-bottom: 1px solid #eeeeee;
 }
-/* line 107, sass/_general.sass */
+/* line 110, sass/_general.sass */
 #cmp .section-unit-half {
   width: 50%;
   margin-bottom: 2em;
 }
 @media only screen and (max-width: 600px) {
-  /* line 107, sass/_general.sass */
+  /* line 110, sass/_general.sass */
   #cmp .section-unit-half {
     width: 100%;
   }
 }
-/* line 114, sass/_general.sass */
+/* line 117, sass/_general.sass */
 #cmp .section-header {
   font-weight: 500;
   text-align: center;
@@ -489,40 +493,40 @@ header[role="banner"] {
   line-height: 2.5;
   color: #888888;
 }
-/* line 124, sass/_general.sass */
+/* line 127, sass/_general.sass */
 #cmp .section-header span {
   border-bottom: 6px solid #00aced;
 }
-/* line 130, sass/_general.sass */
+/* line 133, sass/_general.sass */
 #cmp .left {
   float: left;
 }
-/* line 133, sass/_general.sass */
+/* line 136, sass/_general.sass */
 #cmp .right {
   float: right;
 }
-/* line 136, sass/_general.sass */
+/* line 139, sass/_general.sass */
 #cmp .center {
   margin: 0 auto;
   display: block;
   float: none;
 }
-/* line 141, sass/_general.sass */
+/* line 144, sass/_general.sass */
 #cmp .row {
   width: 100%;
   clear: both;
 }
-/* line 145, sass/_general.sass */
+/* line 148, sass/_general.sass */
 #cmp h1.headline-callout {
   padding: 0;
 }
-/* line 148, sass/_general.sass */
+/* line 151, sass/_general.sass */
 #cmp .headline-callout {
   font-weight: 600;
   text-align: center;
   margin: 0.5em 1em;
 }
-/* line 152, sass/_general.sass */
+/* line 155, sass/_general.sass */
 #cmp .headline-callout span {
   text-align: center;
   display: inline-block;
@@ -531,54 +535,54 @@ header[role="banner"] {
   color: white;
 }
 @media only screen and (max-width: 600px) {
-  /* line 152, sass/_general.sass */
+  /* line 155, sass/_general.sass */
   #cmp .headline-callout span {
     background: none;
     color: #00aced;
     font-size: 0.9em;
   }
 }
-/* line 166, sass/_general.sass */
+/* line 169, sass/_general.sass */
 #cmp .headline-instructions {
   padding: 1em 0;
 }
 @media only screen and (max-width: 600px) {
-  /* line 166, sass/_general.sass */
+  /* line 169, sass/_general.sass */
   #cmp .headline-instructions {
     padding: 0 0 1em;
   }
 }
-/* line 172, sass/_general.sass */
+/* line 175, sass/_general.sass */
 #cmp .section-instructions {
   padding: 0 0 1em 0 !important;
 }
-/* line 175, sass/_general.sass */
+/* line 178, sass/_general.sass */
 #cmp .bg-header {
   margin: 0 0 0.5em 0;
 }
-/* line 178, sass/_general.sass */
+/* line 181, sass/_general.sass */
 #cmp .log-out {
   float: right;
   text-decoration: none;
 }
-/* line 181, sass/_general.sass */
+/* line 184, sass/_general.sass */
 #cmp .log-out:hover {
   text-decoration: underline;
 }
-/* line 184, sass/_general.sass */
+/* line 187, sass/_general.sass */
 #cmp .official-rules {
   color: #cccccc !important;
 }
-/* line 187, sass/_general.sass */
+/* line 190, sass/_general.sass */
 #cmp .error {
   background: none;
 }
-/* line 190, sass/_general.sass */
+/* line 193, sass/_general.sass */
 #cmp .legal {
   color: #bbbbbb;
   font-size: 0.75em;
 }
-/* line 197, sass/_general.sass */
+/* line 200, sass/_general.sass */
 #cmp h1, #cmp h2, #cmp h3, #cmp h4, #cmp p, #cmp b, #cmp a, #cmp label, #cmp .divider, #cmp .disclaimer {
   font-weight: 400;
   font-family: din-web-reg, "Trebuchet MS", sans-serif;
@@ -586,52 +590,52 @@ header[role="banner"] {
   color: #1e1d1c;
   line-height: 1.75em;
 }
-/* line 204, sass/_general.sass */
+/* line 207, sass/_general.sass */
 #cmp h1, #cmp h2, #cmp h3, #cmp p, #cmp img {
   text-align: center;
 }
-/* line 207, sass/_general.sass */
+/* line 210, sass/_general.sass */
 #cmp p {
   color: #1e1d1c;
   font-weight: 400;
   line-height: 1.5em;
   font-size: 18px;
 }
-/* line 213, sass/_general.sass */
+/* line 216, sass/_general.sass */
 #cmp h1 {
   font-size: 2em;
   font-weight: 500;
 }
-/* line 217, sass/_general.sass */
+/* line 220, sass/_general.sass */
 #cmp h2 {
   font-size: 1.5em;
   font-weight: 500;
 }
-/* line 221, sass/_general.sass */
+/* line 224, sass/_general.sass */
 #cmp h3 {
   font-size: 1.125em;
 }
-/* line 224, sass/_general.sass */
+/* line 227, sass/_general.sass */
 #cmp h4 {
   font-size: 1em;
 }
-/* line 227, sass/_general.sass */
+/* line 230, sass/_general.sass */
 #cmp strong {
   font-weight: 800;
 }
-/* line 230, sass/_general.sass */
+/* line 233, sass/_general.sass */
 #cmp .section a {
   text-decoration: underline;
 }
-/* line 232, sass/_general.sass */
+/* line 235, sass/_general.sass */
 #cmp .section a:link, #cmp .section a:visited, #cmp .section a:active {
   color: #86005d;
 }
-/* line 234, sass/_general.sass */
+/* line 237, sass/_general.sass */
 #cmp .section a:hover {
   text-decoration: underline;
 }
-/* line 240, sass/_general.sass */
+/* line 243, sass/_general.sass */
 #cmp .form-submit, #cmp .btn {
   display: inline-block;
   background: #ffcb15;
@@ -654,7 +658,7 @@ header[role="banner"] {
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 257, sass/_general.sass */
+/* line 260, sass/_general.sass */
 #cmp .form-submit:hover, #cmp .btn:hover {
   background: #feb800;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
@@ -666,7 +670,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
   box-shadow: 0 10px 10px -10px #bbbbbb;
 }
-/* line 261, sass/_general.sass */
+/* line 264, sass/_general.sass */
 #cmp .form-submit:active, #cmp .btn:active {
   color: #383735 !important;
   background: #ffcb15;
@@ -679,20 +683,20 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
   box-shadow: 0 10px 10px -10px #bbbbbb;
 }
-/* line 266, sass/_general.sass */
+/* line 269, sass/_general.sass */
 #cmp .form-submit:link, #cmp .form-submit:active, #cmp .form-submit:hover, #cmp .btn:link, #cmp .btn:active, #cmp .btn:hover {
   color: #1e1d1c;
   text-decoration: none !important;
 }
-/* line 270, sass/_general.sass */
+/* line 273, sass/_general.sass */
 #cmp .btn-cta-small {
   font-size: 0.875em;
 }
-/* line 273, sass/_general.sass */
+/* line 276, sass/_general.sass */
 #cmp .btn-cta-medium {
   font-size: 1.125em;
 }
-/* line 276, sass/_general.sass */
+/* line 279, sass/_general.sass */
 #cmp .btn-cta-large {
   font-size: 1.5em;
 }
