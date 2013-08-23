@@ -18,6 +18,113 @@ function dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons_optin)
   return;
 }
 
+
+/**
+ * Form callback for mobile signup / referral form.
+ */
+function dosomething_subscribe_mobilecommons_referral_form($form, &$form_state, $nid, $num_betas = 6) {
+  $form['alpha_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your First Name:'),
+    '#required' => TRUE,
+  );
+  $form['alpha_mobile'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your Cell #:'),
+    '#required' => TRUE,
+  );
+  $form['alpha_email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your Email:'),
+    '#required' => TRUE,
+  );
+  $form['beta_mobiles'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+  );
+  for ($i = 0; $i < $num_betas; $i++) {
+    $form['beta_mobiles']['beta_mobile_' . $i] = array(
+      '#type' => 'textfield',
+      '#title' => t("Friend's cell #:"),
+    );   
+  }
+  $form['nid'] = array(
+    '#type' => 'hidden',
+    '#value' => $nid,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Share'),
+  );
+  return $form;
+}
+
+/**
+ * Form validation callback for mobile signup / referral form.
+ */
+function dosomething_subscribe_mobilecommons_referral_form_validate($form, &$form_state) {
+  // Check for valid email address:
+  if (!valid_email_address($form_state['values']['alpha_email'])) {
+     form_set_error('alpha_email', t('Please provide a valid email address.'));
+  }
+  // Check for valid alpha cell:
+  $alpha_mobile = $form_state['values']['alpha_mobile'];
+  $alpha_mobile = preg_replace('#[^0-9]#', '', $alpha_mobile);
+  if (!dosomething_general_valid_cell($alpha_mobile)) {
+    form_set_error('alpha_mobile', t('Please provide a valid cell number.'));  
+  }
+  // Check for valid beta cell numbers:
+  for ($i = 0; $i < 6; $i++) {
+    if (!empty($form_state['values']['beta_mobile_' . $i])) {
+      $beta_mobile = $form_state['values']['beta_mobile_' . $i];
+      $beta_mobile = preg_replace('#[^0-9]#', '', $beta_mobile);
+      if (!dosomething_general_valid_cell($beta_mobile)) {
+        form_set_error('beta_mobile_' . $i, t('Please provide a valid cell number.'));  
+      }
+    }
+  }
+}
+
+/**
+ * Form submit callback for mobile signup / referral form.
+ */
+function dosomething_subscribe_mobilecommons_referral_form_submit($form, &$form_state) {
+  $args = array();
+  $alpha_name = $form_state['values']['alpha_name'];
+  $args['first_name'] = $alpha_name;
+  $alpha_mobile = $form_state['values']['alpha_mobile'];
+  $alpha_mobile = preg_replace('#[^0-9]#', '', $alpha_mobile);
+  $alpha_email = $form_state['values']['alpha_email'];
+  $beta_mobiles = array();
+  for ($i = 0; $i < 6; $i++) {
+    if (!empty($form_state['values']['beta_mobile_' . $i])) {
+      $beta_mobile = $form_state['values']['beta_mobile_' . $i];
+      $beta_mobile = preg_replace('#[^0-9]#', '', $beta_mobile);
+      $beta_mobiles[] = $beta_mobile;
+    }
+  }
+  // Load node to find relevant subscribe values.
+  $node = node_load($form_state['values']['nid']);
+
+  // Mobilecommons Referral signup:
+  $alpha_optin = $node->field_mobilecommons_opt_in_alpha[LANGUAGE_NONE][0]['value'];
+  $beta_optin =$node->field_mobilecommons_opt_in_beta[LANGUAGE_NONE][0]['value'];
+  // @todo: Move this subscribe_with_friends function into this module.
+  $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin, $args);
+  watchdog('dosomething_subscribe_mobilecommons', 'Referral signup response = ' . print_r($response, TRUE));
+
+  // Mailchimp signup:
+  if (isset($node->field_mailchimp_group[LANGUAGE_NONE][0]['value']) && module_exists('dosomething_subscribe_mailchimp')) {
+    dosomething_subscribe_mailchimp_signup($alpha_email, $node->field_mailchimp_group[LANGUAGE_NONE][0]['value']);
+  } 
+
+  // Mandrill dispatch:
+  if (isset($node->field_mandrill_key[LANGUAGE_NONE][0]['value']) && module_exists('dosomething_mandrill')) {
+    $message['body'] = $alpha_name;
+    dosomething_mandrill_dispatch($alpha_email, $node->field_mandrill_key[LANGUAGE_NONE][0]['value'], $message);
+  }
+}
+
 /**
  * Updates a node's Mobilecommons Group Id field.
  *
