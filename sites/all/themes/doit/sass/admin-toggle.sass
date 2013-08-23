@@ -3,10 +3,10 @@
 // -------------------
 // HIDE ADMIN FEATURES
 // -------------------
-#hide-button
+#toggle-button
   position: absolute
-  top: 135px
-  right: 15px
+  top: 125px
+  right: 13px
   left: auto
   color: #222
   background: rgba(255, 255, 255, 0.9)
@@ -17,22 +17,25 @@
   z-index: 3
   +border-radius(4px)
   @media only screen and (max-width: 960px)
-    top: 252px
+    top: 185px
     left: 15px
     right: auto
   &:hover
     text-decoration: none
     background: rgba(255, 255, 255, 0.85)
 
-#hide-button.active
-  top: 100px
+#toggle-button.active
+  top: 125px
   background: rgba(255, 255, 255, 0.4)
   border: 3px solid rgba(255, 255, 255, 0.5)
   @media only screen and (max-width: 960px)
-    top: 185px
+    top: 252px
   &:hover
     background: rgba(255, 255, 255, 0.3)
 
 html body.html.active
   margin-top: 0 !important
+
+#admin-menu, div.tabs
+  display: none
 
