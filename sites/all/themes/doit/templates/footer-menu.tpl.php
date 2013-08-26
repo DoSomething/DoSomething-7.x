@@ -28,6 +28,7 @@
     <div class="column">
         <h4>Our Peeps</h4>
         <ul>
+            <li><a href="http://www.tmiagency.org/">TMI Agency</a></li>
             <li><a href="/about/partners">Partners</a></li>
             <li><a href="/about/team/board">Board of Directors</a></li>
             <li><a href="/yac">Youth Advisory Council</a></li>
