@@ -53,10 +53,11 @@ function dosomething_subscribe_mobilecommons_referral_form($form, &$form_state, 
     '#type' => 'hidden',
     '#value' => $node->nid,
   );
-  // @todo: SMS Referral Button Label field
+  // @todo: Dynamic SMS Referral Button Label field?
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Invite friends'),
+    '#attributes' => array('class' => array('btn', 'primary', 'large')),
   );
   return $form;
 }
