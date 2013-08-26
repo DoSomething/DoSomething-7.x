@@ -14,14 +14,9 @@
         <a class="menu-link" href="/campaigns">Campaigns</a>
         <ul class="dropdown">
             <li><a href="/women">25,000 Women</a></li>
+            <li><a href="/bullytext">Bully Text</a></li>
+            <li><a href="/birthdaymail">Birthday Mail</a></li>
             <li><a href="http://pics.dosomething.org">Pics for Pets</a></li>
-            <li><a href="/hunt">The Hunt</a></li>
-            <li><a href="/iheartdad">I Heart Dad</a></li>
-            <li><a href="/undocumented">Undocumented</a></li>
-            <li><a href="/thumbwars">Thumb Wars</a></li>
-            <li><a href="/puppy">Puppy Text</a></li>
-            <li><a href="/baby">Pregnancy Text</a></li>
-            <li><a href="/band">Band Together</a></li>
             <li><a href="/past-campaigns">Past Campaigns</a></li>
         </ul>
     </li>

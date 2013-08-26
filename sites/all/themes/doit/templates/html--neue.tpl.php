@@ -3,15 +3,15 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>DS Neue Campaigns</title>
+    <title>DoSomething.org</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <?php print $styles; ?>
     <link rel="shortcut icon" href="/favicon.ico" />
     <!--[if lt IE 9]>
-        <link rel="stylesheet" href="/assets/ie.css" type="text/css" />
-        <script src="/assets/ie/html5.min.js"></script>
+        <link rel="stylesheet" href="/sites/all/libraries/ds-neue/assets/ie.css" type="text/css" />
+        <script src="/sites/all/libraries/ds-neue/assets/ie/html5.min.js"></script>
   <![endif]-->
 </head>
 
