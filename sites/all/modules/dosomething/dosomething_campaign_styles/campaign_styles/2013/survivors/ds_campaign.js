@@ -84,6 +84,22 @@
       window.location.href = '/survivors#header';
     });
 
+    // ------------------
+    // GET LABEL DROPDOWN
+    // ------------------
+
+    var get_label = function() {
+      $('#getlabel').click(function() {
+        $(this).css({
+            'background':'#ccc',
+            'cursor':'default'
+          });
+        $('#section-label').slideDown(500);
+        return false;
+      })
+    }
+    get_label();
+
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)

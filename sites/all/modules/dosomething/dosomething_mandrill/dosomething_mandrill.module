@@ -202,9 +202,9 @@ function dosomething_mandrill_mail($key, &$message, $params) {
 
       // Rename merge vars to match Mandrill template
       $params['PETITION'] = $params['TITLE'];
-      $params['PETITIONURL'] = 'http://www.dosomething.org/' . $params['URL'];
+      $params['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
       $message['params']['PETITION'] = $params['TITLE'];
-      $message['params']['PETITIONURL'] = 'http://www.dosomething.org/' . $params['URL'];
+      $message['params']['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
 
       unset($params['TITLE']);
       unset($params['URL']);
