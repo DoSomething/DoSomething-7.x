@@ -128,7 +128,8 @@ function dosomething_subscribe_mobilecommons_referral_form_submit($form, &$form_
       dosomething_mandrill_dispatch($alpha_email, $node->field_mandrill_key[LANGUAGE_NONE][0]['value'], $message);
     }  
   }
-  drupal_set_message('Great job!');
+  //@todo: Output confirmation message from a new field on the Project node type.
+  drupal_set_message(t('Thanks for signing up!'));
 }
 
 /**
