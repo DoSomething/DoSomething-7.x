@@ -2,8 +2,39 @@
 /**
  * @file
  * A collection of functionality related to website transactional email messages using the Mandrill service.
- *
  */
+
+/**
+ * Implements hook_permission().
+ */
+function dosomething_mandrill_permission() {
+  return array(
+    'administer dosomething mandrill' => array(
+      'title' => t('Manage DoSomething Mandrill'),
+      'description' => t('Manage DoSomething specific Mandrill functionality.'),
+      "restrict access" => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_mandrill_menu() {
+  $items = array();
+  $items['admin/config/services/mandrill/tags'] = array(
+    'title' => 'Manage Tags',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_mandrill_tags_form'),
+    'access arguments' => array('administer optimizely'),
+    'description' => 'Manage existing Mandrill tags using the Mandrill API.',
+    'file' => 'dosomething_mandrill.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+  );
+
+  return $items;
+}
 
 /**
  * Impliments hook_webform_submission_insert($node, $submission)
