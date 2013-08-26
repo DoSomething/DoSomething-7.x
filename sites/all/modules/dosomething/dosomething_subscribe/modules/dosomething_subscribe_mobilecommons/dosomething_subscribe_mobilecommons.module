@@ -22,7 +22,6 @@ function dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons_optin)
  * Form callback for mobile signup / referral form.
  */
 function dosomething_subscribe_mobilecommons_referral_form($form, &$form_state, $node, $num_betas = 6) {
-  $form = array();
   $form['alpha_name'] = array(
     '#type' => 'textfield',
     '#required' => TRUE,
