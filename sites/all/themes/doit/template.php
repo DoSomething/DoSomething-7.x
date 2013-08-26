@@ -316,6 +316,10 @@ function doit_preprocess_node(&$vars) {
     $vars['content']['sms_example']['#markup'] = theme('project_section_sms_example', $params);
     // Section - SMS referral:
     //@todo: is_sms_referral check
+    // Check if the SMS Referral form is set:
+    if (isset($vars['content']['sms_referral_form'])) {
+      $params['sms_referral_form'] = $vars['content']['sms_referral_form'];
+    }
     $vars['content']['sms_referral']['#markup'] = theme('project_section_sms_referral', $params);
     // Section - Sponsors:
     //@todo: sponsrs check
