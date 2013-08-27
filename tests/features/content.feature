@@ -5,8 +5,7 @@ Feature: Content tests
   Scenario: See the front page
     Given I am on the homepage
     Then I should see "CAMPAIGNS"
-    And I should see "What's Happening Now"
-    And I should see "Share of the Day"
+    And I should see "Sign in"
     And I should see "CONNECT"
 
   Scenario: See a blog page

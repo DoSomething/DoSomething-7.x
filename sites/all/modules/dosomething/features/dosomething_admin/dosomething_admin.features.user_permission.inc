@@ -118,15 +118,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'optimizely',
   );
 
-  // Exported permission: administer profiles.
-  $permissions['administer profiles'] = array(
-    'name' => 'administer profiles',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'profile2',
-  );
-
   // Exported permission: administer taxonomy.
   $permissions['administer taxonomy'] = array(
     'name' => 'administer taxonomy',
@@ -765,15 +756,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any main profile.
-  $permissions['edit any main profile'] = array(
-    'name' => 'edit any main profile',
-    'roles' => array(
-      0 => 'administrator',
-    ),
-    'module' => 'profile2',
-  );
-
   // Exported permission: edit any member_opportunity content.
   $permissions['edit any member_opportunity content'] = array(
     'name' => 'edit any member_opportunity content',
@@ -1016,16 +998,6 @@ function dosomething_admin_user_default_permissions() {
       1 => 'staff',
     ),
     'module' => 'filter',
-  );
-
-  // Exported permission: view any main profile.
-  $permissions['view any main profile'] = array(
-    'name' => 'view any main profile',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'staff',
-    ),
-    'module' => 'profile2',
   );
 
   // Exported permission: view own unpublished content.

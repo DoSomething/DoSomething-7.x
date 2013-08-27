@@ -33,19 +33,19 @@
 </div>
 
 <div role="main" class="wrapper">
-  <div class="content-block feature one-col" style="background-image: url('/sites/all/libraries/ds-neue/assets/images/placeholders/feature.jpg');">
-    <a class="full-link" href="/bully"><span>Do This</span></a>
-    <div class="headline big blue">
-      <h3>Invite friends to stand up to bullying with the Bully Text.</h3>
-      <a href="/bully" class="btn primary large">Do This</a>
+  <div class="content-block feature one-col" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/women-feature.jpg');">
+    <a class="full-link" href="/women"><span>Do This</span></a>
+    <div class="headline big purple">
+      <h3>Unlock a $25 loan for a working woman in need</h3>
+      <a href="/women" class="btn primary large">Do This</a>
     </div>
   </div>
 
-  <div class="content-block feature three-col left" style="background-image: url('/sites/all/libraries/ds-neue/assets/images/placeholders/homepage1.jpg'); background-position: center center;">
-    <a class="full-link" href="/women"><span>Do This</span></a>
-    <div class="headline purple">
-      <div class="headline-text"><h3>Help 25,000 poor women in need</h3></div>
-      <p class="block-cta"><a href="/women" class="btn primary large">Do This</a></p>
+  <div class="content-block feature three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
+    <a class="full-link" href="/bully"><span>Do This</span></a>
+    <div class="headline blue">
+      <div class="headline-text"><h3>Invite friends to stand up to bullying</h3></div>
+      <p class="block-cta"><a href="/bully" class="btn primary large">Do This</a></p>
     </div>
   </div>
 
