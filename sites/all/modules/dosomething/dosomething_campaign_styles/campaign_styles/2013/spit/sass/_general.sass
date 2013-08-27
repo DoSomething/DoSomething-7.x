@@ -50,6 +50,11 @@ a
   @include respond-to(phones)
     display: none !important
 
+.only-mobile
+  display: none
+  @include respond-to(phones)
+    display: block !important
+
 .back-to-top
   color: #ccc
   margin-top: 2em
@@ -76,7 +81,17 @@ a
     width: 50%
     margin: 0 auto
 
+.first-action
+  border-right: 1px solid #ddd
+  @include respond-to(phones)
+    border-right: none
 
+
+.or-divider
+  color: #666
+  text-align: center
+  text-transform: uppercase
+  margin-bottom: 1em
 
 // SECTION STYLES
 // --------------
