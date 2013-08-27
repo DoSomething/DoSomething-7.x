@@ -93,13 +93,28 @@ function dosomething_campaign_signup($account, $node) {
  * Inserts a record for given user UID and campaign node NID in dosomething_campaign_signups table.
  */
 function dosomething_campaign_insert_signup($uid, $nid) {
-  $signup = db_insert('dosomething_campaign_signups')
-  ->fields(array(
+  $data = array(
     'uid' => $uid,
     'nid' => $nid,
     'timestamp' => REQUEST_TIME,
-    ))
+  );
+
+  $signup = db_insert('dosomething_campaign_signups')
+  ->fields($data)
   ->execute();
+
+  // Experimental - Stash each signup in mongolab                                                        
+  $data_string = json_encode($data);                                                                                   
+  $ch = curl_init('https://api.mongolab.com/api/1/databases/sentinel/collections/campaign-signups?apiKey=D8FRE904MKoHgzdVHSgGqln6HLlH6ema');                                                                      
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+      'Content-Type: application/json',                                                                                
+      'Content-Length: ' . strlen($data_string))                                                                       
+  );                                                                                                                   
+  $result = curl_exec($ch);
+
 }
 
 /**
