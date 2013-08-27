@@ -7,6 +7,21 @@
 include_once('dosomething_profile.features.inc');
 
 /**
+* Implements hook_menu().
+*/
+function dosomething_profile_menu() {
+  $items['user/%user/info'] = array(
+    'title' => 'User Information',
+    'page callback' => 'dosomething_profile_info_page',
+    'page arguments' => array(1),
+    'access arguments' => array('view any main profile'),
+    'file' => 'dosomething_profile.pages.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
 * Implementation of hook_ctools_plugin_directory().
 */
 function dosomething_profile_ctools_plugin_directory($module, $plugin) {
