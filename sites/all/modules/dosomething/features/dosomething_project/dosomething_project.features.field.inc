@@ -1348,7 +1348,7 @@ function dosomething_project_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '12',
+        'weight' => '39',
       ),
     ),
   );
@@ -1421,7 +1421,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '38',
       ),
     ),
   );
@@ -1493,7 +1493,7 @@ function dosomething_project_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '14',
+        'weight' => '41',
       ),
     ),
   );
@@ -1628,149 +1628,7 @@ function dosomething_project_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '13',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-project-field_banner_image'.
-  $fields['node-project-field_banner_image'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_banner_image',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'fid' => array(
-          'columns' => array(
-            'fid' => 'fid',
-          ),
-          'table' => 'file_managed',
-        ),
-      ),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'image',
-      'settings' => array(
-        'default_image' => 0,
-        'profile2_private' => FALSE,
-        'uri_scheme' => 'public',
-      ),
-      'translatable' => '0',
-      'type' => 'image',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project',
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
-          'weight' => 2,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_banner_image',
-      'label' => 'Banner Image',
-      'required' => 0,
-      'settings' => array(
-        'alt_field' => 1,
-        'default_image' => 0,
-        'file_directory' => 'projects/banner-image',
-        'file_extensions' => 'png gif jpg jpeg',
-        'max_filesize' => '',
-        'max_resolution' => '',
-        'min_resolution' => '',
-        'title_field' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'image',
-        'settings' => array(
-          'insert' => 0,
-          'insert_absolute' => 0,
-          'insert_class' => '',
-          'insert_default' => 'auto',
-          'insert_styles' => array(
-            'auto' => 'auto',
-            'icon_link' => 0,
-            'image' => 0,
-            'image_490x200' => 0,
-            'image_action_results_thumbnail' => 0,
-            'image_blog_landscape' => 0,
-            'image_blog_large_image' => 0,
-            'image_blog_large_thumbnail' => 0,
-            'image_blog_portrait' => 0,
-            'image_blog_square' => 0,
-            'image_boot_camp_bio' => 0,
-            'image_campaign_microsite_logo' => 0,
-            'image_campaigns_image' => 0,
-            'image_campaigns_logo' => 0,
-            'image_cause_main' => 0,
-            'image_cause_vertical' => 0,
-            'image_club_gallery_photos_120x120' => 0,
-            'image_club_profile' => 0,
-            'image_content_main' => 0,
-            'image_crazy_facebook_picture' => 0,
-            'image_crazy_image_dimensions' => 0,
-            'image_explore_action_guides' => 0,
-            'image_fb_post_image' => 0,
-            'image_front_slider' => 0,
-            'image_grants_landing' => 0,
-            'image_issue_main' => 0,
-            'image_large' => 0,
-            'image_medium' => 0,
-            'image_member_photo_gallery' => 0,
-            'image_my_somethings' => 0,
-            'image_nav_page_bottom' => 0,
-            'image_p4p_fake_button' => 0,
-            'image_petdetail_regular' => 0,
-            'image_petdetail_retina' => 0,
-            'image_project_gallery_thumb' => 0,
-            'image_project_related_thumb' => 0,
-            'image_related-posts' => 0,
-            'image_rotoslider_homepage_main' => 0,
-            'image_rotoslider_nav' => 0,
-            'image_rotoslider_start_something_main' => 0,
-            'image_social_scholarship_images_petition_735x150' => 0,
-            'image_social_scholarship_stat_image_190x190' => 0,
-            'image_sponsor_logo' => 0,
-            'image_square_thumbnail' => 0,
-            'image_thumbnail' => 0,
-            'image_thumbnail_regular' => 0,
-            'image_thumbnail_retina' => 0,
-            'image_tips_tools_node' => 0,
-            'image_upcoming_somethings_thumb' => 0,
-            'image_whats_happening_now_thumbnail' => 0,
-            'link' => 0,
-          ),
-          'insert_width' => '',
-          'preview_image_style' => 'thumbnail',
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'image_image',
-        'weight' => '6',
+        'weight' => '40',
       ),
     ),
   );
@@ -1833,7 +1691,7 @@ function dosomething_project_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_banner_logo',
-      'label' => 'Banner Logo',
+      'label' => 'Header Logo',
       'required' => 0,
       'settings' => array(
         'alt_field' => 1,
@@ -1895,6 +1753,7 @@ function dosomething_project_field_default_fields() {
             'image_rotoslider_homepage_main' => 0,
             'image_rotoslider_nav' => 0,
             'image_rotoslider_start_something_main' => 0,
+            'image_search_results_thumbnail' => 0,
             'image_social_scholarship_images_petition_735x150' => 0,
             'image_social_scholarship_stat_image_190x190' => 0,
             'image_sponsor_logo' => 0,
@@ -2200,7 +2059,7 @@ function dosomething_project_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '4',
+          'rows' => '2',
         ),
         'type' => 'text_textarea',
         'weight' => '23',
@@ -4105,16 +3964,16 @@ function dosomething_project_field_default_fields() {
         'cache_enabled' => 0,
         'granularity' => array(
           'day' => 'day',
-          'hour' => 'hour',
-          'minute' => 'minute',
+          'hour' => 0,
+          'minute' => 0,
           'month' => 'month',
           'second' => 0,
           'year' => 'year',
         ),
         'profile2_private' => FALSE,
-        'timezone_db' => 'UTC',
+        'timezone_db' => '',
         'todate' => 'optional',
-        'tz_handling' => 'site',
+        'tz_handling' => 'none',
       ),
       'translatable' => '0',
       'type' => 'datetime',
@@ -4150,9 +4009,9 @@ function dosomething_project_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'default_value' => 'now',
-        'default_value2' => 'same',
+        'default_value2' => 'strtotime',
         'default_value_code' => '',
-        'default_value_code2' => '',
+        'default_value_code2' => '+30 days',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -4595,6 +4454,108 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-project-field_project_section_display'.
+  $fields['node-project-field_project_section_display'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_section_display',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'group_project_sms_referral' => 'SMS Referral Form',
+          'group_project_sms_example' => 'SMS Example',
+          'group_project_cta' => 'Call To Action',
+          'group_project_action_items' => 'Action Items',
+          'group_project_prizes' => 'Prizes',
+          'group_project_info' => 'Project Info',
+          'group_project_profiles' => 'Profiles',
+          'group_project_gallery' => 'Gallery',
+          'group_project_faq' => 'FAQ',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => array(
+        0 => array(
+          'value' => 'group_project_sms_referral',
+        ),
+        1 => array(
+          'value' => 'group_project_sms_example',
+        ),
+        2 => array(
+          'value' => 'group_project_cta',
+        ),
+        3 => array(
+          'value' => 'group_project_action_items',
+        ),
+        4 => array(
+          'value' => 'group_project_prizes',
+        ),
+        5 => array(
+          'value' => 'group_project_info',
+        ),
+        6 => array(
+          'value' => 'group_project_profiles',
+        ),
+        7 => array(
+          'value' => 'group_project_gallery',
+        ),
+        8 => array(
+          'value' => 'group_project_faq',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 53,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_project_section_display',
+      'label' => 'Project Section Display',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '8',
+      ),
+    ),
+  );
+
   // Exported field: 'node-project-field_rules_regs_file'.
   $fields['node-project-field_rules_regs_file'] = array(
     'field_config' => array(
@@ -4725,7 +4686,7 @@ function dosomething_project_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -4798,7 +4759,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '39',
+        'weight' => '40',
       ),
     ),
   );
@@ -4944,79 +4905,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '38',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-project-field_sms_referral_ctia_copy'.
-  $fields['node-project-field_sms_referral_ctia_copy'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_sms_referral_ctia_copy',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text_long',
-    ),
-    'field_instance' => array(
-      'bundle' => 'project',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 37,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_sms_referral_ctia_copy',
-      'label' => 'SMS Referral CTIA Copy',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '1',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'rows' => '2',
-        ),
-        'type' => 'text_textarea',
-        'weight' => '36',
+        'weight' => '39',
       ),
     ),
   );
@@ -5030,7 +4919,7 @@ function dosomething_project_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_sms_referral_has_email',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '0',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -5059,7 +4948,7 @@ function dosomething_project_field_default_fields() {
         ),
       ),
       'deleted' => '0',
-      'description' => '',
+      'description' => 'If this is checked, the alpha email will be subscribed to the Mailchimp Group if it exists.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -5089,7 +4978,7 @@ function dosomething_project_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '35',
+        'weight' => '34',
       ),
     ),
   );
@@ -5161,7 +5050,7 @@ function dosomething_project_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '34',
+        'weight' => '35',
       ),
     ),
   );
@@ -5227,7 +5116,7 @@ function dosomething_project_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -5528,9 +5417,6 @@ function dosomething_project_field_default_fields() {
   t('Action Items Headline');
   t('Action Kit Copy');
   t('Action Kit File');
-  t('Answer');
-  t('Banner Image');
-  t('Banner Logo');
   t('CTA Button Label');
   t('CTA Copy');
   t('Contact Email');
@@ -5550,7 +5436,9 @@ function dosomething_project_field_default_fields() {
   t('Gate Page Title');
   t('Gate Subheadline');
   t('Has Gate');
+  t('Header Logo');
   t('Headline');
+  t('If this is checked, the alpha email will be subscribed to the Mailchimp Group if it exists.');
   t('Include Alpha Email on Form');
   t('Mailchimp Group');
   t('Mandrill Key');
@@ -5577,12 +5465,11 @@ function dosomething_project_field_default_fields() {
   t('Project Profiles');
   t('Project Profiles Copy');
   t('Project Profiles Headline');
-  t('Question');
+  t('Project Section Display');
   t('Rules Regs File');
   t('SMS Example Button Label');
   t('SMS Example Headline');
   t('SMS Example Message');
-  t('SMS Referral CTIA Copy');
   t('SMS Referral Info Copy');
   t('Signup User on Gate Login');
   t('Sponsor Logo');

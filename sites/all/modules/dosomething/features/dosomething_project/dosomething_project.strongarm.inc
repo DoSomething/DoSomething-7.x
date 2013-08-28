@@ -76,9 +76,7 @@ function dosomething_project_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_project';
-  $strongarm->value = array(
-    0 => 'status',
-  );
+  $strongarm->value = array();
   $export['node_options_project'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -92,7 +90,7 @@ function dosomething_project_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_project';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['node_submitted_project'] = $strongarm;
 
   $strongarm = new stdClass();

@@ -273,15 +273,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create project content.
-  $permissions['create project content'] = array(
-    'name' => 'create project content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: create quiz content.
   $permissions['create quiz content'] = array(
     'name' => 'create quiz content',
@@ -453,13 +444,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any project content.
-  $permissions['delete any project content'] = array(
-    'name' => 'delete any project content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any quiz content.
   $permissions['delete any quiz content'] = array(
     'name' => 'delete any quiz content',
@@ -603,13 +587,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own press content.
   $permissions['delete own press content'] = array(
     'name' => 'delete own press content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own project content.
-  $permissions['delete own project content'] = array(
-    'name' => 'delete own project content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -801,15 +778,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any project content.
-  $permissions['edit any project content'] = array(
-    'name' => 'edit any project content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: edit any quiz content.
   $permissions['edit any quiz content'] = array(
     'name' => 'edit any quiz content',
@@ -894,15 +862,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit own petition content.
   $permissions['edit own petition content'] = array(
     'name' => 'edit own petition content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit own project content.
-  $permissions['edit own project content'] = array(
-    'name' => 'edit own project content',
     'roles' => array(
       0 => 'staff',
     ),
