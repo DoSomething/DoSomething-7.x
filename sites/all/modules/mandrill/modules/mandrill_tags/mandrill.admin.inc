@@ -45,11 +45,13 @@ function mandrill_tags_form($form, $form_state) {
   
   // Simple pager
   $next = $tag_start + MANDRILL_TAG_PAGER;
-  if ($next > count($tags) - MANDRILL_TAG_PAGER)
+  if ($next > count($tags) - MANDRILL_TAG_PAGER) {
     $next = count($tags) - MANDRILL_TAG_PAGER;
+  }
   $previous = $tag_start - MANDRILL_TAG_PAGER;
-  if ($previous < 0)
+  if ($previous < 0) {
     $previous = 0;
+  }
   
   $form['header'] = array(
     '#type' => 'markup',
