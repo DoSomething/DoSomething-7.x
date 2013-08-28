@@ -52,10 +52,10 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Assets',
-    'weight' => '9',
+    'weight' => '8',
     'children' => array(
-      0 => 'field_banner_image',
-      1 => 'field_banner_logo',
+      0 => 'field_banner_logo',
+      1 => 'field_rules_regs_file',
       2 => 'field_sponsors',
       3 => 'field_thumbnail',
     ),
@@ -172,7 +172,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Gate',
-    'weight' => '13',
+    'weight' => '10',
     'children' => array(
       0 => 'field_gate_color',
       1 => 'field_gate_description',
@@ -298,7 +298,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'SMS Example',
-    'weight' => '12',
+    'weight' => '13',
     'children' => array(
       0 => 'field_sms_example_button_label',
       1 => 'field_sms_example_headline',
@@ -328,13 +328,12 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'SMS Referral',
-    'weight' => '11',
+    'weight' => '12',
     'children' => array(
       0 => 'field_mobilecommons_opt_in_alpha',
       1 => 'field_mobilecommons_opt_in_beta',
-      2 => 'field_sms_referral_ctia_copy',
-      3 => 'field_sms_referral_has_email',
-      4 => 'field_sms_referral_info_copy',
+      2 => 'field_sms_referral_has_email',
+      3 => 'field_sms_referral_info_copy',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -360,7 +359,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Social Media',
-    'weight' => '21',
+    'weight' => '9',
     'children' => array(
       0 => 'field_facebook_share_msg',
       1 => 'field_twitter_share_msg',
@@ -389,7 +388,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Subscribe',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'field_mailchimp_group',
       1 => 'field_mandrill_key',
