@@ -271,59 +271,42 @@ function doit_preprocess_page(&$variables) {
  * Implements hook_preprocess_node().
  */
 function doit_preprocess_node(&$vars) {
+
   // Campaign node type:
   if ($vars['node']->type == 'campaign') {
-
     $org_code = _doit_load_campaign_org_code($vars['node']);
-    // If the camapign has org code set
-    if($org_code) {
-      // Loads campaign specific tpl
+    // If the camapign has org code set:
+    if ($org_code) {
+      // Loads campaign specific tpl:
       array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
     }
   }
+
   // Project node type:
   elseif ($vars['node']->type == 'project') {
+    
+    // Store node object to pass into each section.
     $params['node'] = $vars['node'];
 
-    // Section - Action items:
-    $vars['is_action_items'] = FALSE;
-    if (isset($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value']) &&
-      !empty($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value'])) {
-      $vars['is_action_items'] = TRUE;
-      $vars['content']['action_items']['#markup'] = theme('project_section_action_items', $params);
-    }
-    // Section - CTA:
-    $vars['content']['cta']['#markup'] = theme('project_section_cta', $params);
-    // Section - FAQ:
-    $vars['content']['faq']['#markup'] = theme('project_section_faq', $params);
-    // Section - Gallery:
-    $vars['content']['gallery']['#markup'] = theme('project_section_gallery', $params);
     // Section - Header:
     $vars['content']['header']['#markup'] = theme('project_section_header', $params);
-    // Section - Project Info:
-    $vars['content']['project_info']['#markup'] = theme('project_section_project_info', $params);
-    // Section - Project Profiles:
-    $vars['content']['project_profiles']['#markup'] = theme('project_section_project_profiles', $params);
-    // Section - Prizes:
-    $vars['is_prizes'] = FALSE;
-    if (isset($vars['node']->field_prizes_headline[LANGUAGE_NONE][0]['value']) &&
-      !empty($vars['node']->field_prizes_headline[LANGUAGE_NONE][0]['value'])) {
-      $vars['is_prizes'] = TRUE;
-      $vars['content']['prizes']['#markup'] = theme('project_section_prizes', $params);
-    }
-    // Section - SMS Example:
-    //@todo: is_sms_referral check
-    $vars['content']['sms_example']['#markup'] = theme('project_section_sms_example', $params);
-    // Section - SMS referral:
-    //@todo: is_sms_referral check
-    // Check if the SMS Referral form is set:
-    if (isset($vars['content']['sms_referral_form'])) {
-      $params['sms_referral_form'] = $vars['content']['sms_referral_form'];
-    }
-    $vars['content']['sms_referral']['#markup'] = theme('project_section_sms_referral', $params);
     // Section - Sponsors:
-    //@todo: sponsrs check
     $vars['content']['sponsors']['#markup'] = theme('project_section_sponsors', $params);
+
+    // Loop through project section display field values to set the corresponding project sections:
+    foreach($vars['node']->field_project_section_display[LANGUAGE_NONE] as $key => $section_name) {
+      $section_name = $section_name['value'];
+      // If this is the SMS Referral section, pass through actual SMS Referral form as param:
+      if ($section_name == 'sms_referral') {
+        $params['sms_referral_form'] = $vars['content']['sms_referral_form'];
+      }
+      // Else unset the sms_referral_form param if it exists:
+      elseif (isset($params['sms_referral_form'])) {
+        unset($params['sms_referral_form']);
+      }
+      // Set the content section for this $section_name:
+      $vars['content'][$section_name]['#markup'] = theme('project_section_' . $section_name, $params);
+    }
 
   }
 }
@@ -353,17 +336,25 @@ function _doit_load_campaign_assets($node, $org_code = NULL) {
   // @todo - we may need to refactor based on campaign related nodes
   if ($node->type != 'project') return;
 
-  # Add neue library
+  # Add neue library:
   drupal_add_library('ds_neue', 'ds-neue-campaign');
 
   $org_code = $org_code ? $org_code : _doit_load_campaign_org_code($node);
 
-  // If the camapign has org code set
-  if($org_code) {
-    // Add campaign specific css and js
-    drupal_add_css($css_path . '/' . $org_code . '/' . $org_code . '.css');
-    drupal_add_js($js_path . '/' . $org_code . '/' . $org_code . '.js');
+  // @todo: Add Org Code CSS / JS if node has org code set:
+  /*
+  if ($org_code) {
+    $org_code_css = $css_path . '/' . $org_code . '/' . $org_code . '.css';
+    $org_code_js = $js_path . '/' . $org_code . '/' . $org_code . '.js';
+    // Add campaign specific css and js if files exist:
+    if (file_exists($org_code_css) {
+      drupal_add_css($org_code_css);
+    }
+    if (file_exists($org_code_js)) {
+      drupal_add_js($org_code_js);
+    }
   }
+  */
 }
 
 /**
@@ -969,8 +960,8 @@ function doit_preprocess_project_section_header(&$vars) {
   // Loop through the action items:
   $node = $vars['node'];
   //@todo: output image
-  if (isset($node->field_banner_logo[LANGUAGE][0]['fid'])) {
-    $vars['logo'] = file_create_url($node->field_banner_logo[LANGUAGE][0]['uri']);
+  if (isset($node->field_banner_logo[LANGUAGE_NONE][0]['fid'])) {
+    $vars['logo'] = file_create_url($node->field_banner_logo[LANGUAGE_NONE][0]['uri']);
   }
   else {
     $vars['logo'] = $node->title;

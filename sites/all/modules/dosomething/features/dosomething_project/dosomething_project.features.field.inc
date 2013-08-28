@@ -4475,15 +4475,15 @@ function dosomething_project_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          'group_project_sms_referral' => 'SMS Referral Form',
-          'group_project_sms_example' => 'SMS Example',
-          'group_project_cta' => 'Call To Action',
-          'group_project_action_items' => 'Action Items',
-          'group_project_prizes' => 'Prizes',
-          'group_project_info' => 'Project Info',
-          'group_project_profiles' => 'Profiles',
-          'group_project_gallery' => 'Gallery',
-          'group_project_faq' => 'FAQ',
+          'sms_referral' => 'SMS Referral Form',
+          'sms_example' => 'SMS Example',
+          'cta' => 'Call To Action',
+          'action_items' => 'Action Items',
+          'prizes' => 'Prizes',
+          'project_info' => 'Project Info',
+          'project_profiles' => 'Project Profiles',
+          'gallery' => 'Gallery',
+          'faq' => 'FAQ',
         ),
         'allowed_values_function' => '',
         'profile2_private' => FALSE,
@@ -4493,35 +4493,7 @@ function dosomething_project_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'project',
-      'default_value' => array(
-        0 => array(
-          'value' => 'group_project_sms_referral',
-        ),
-        1 => array(
-          'value' => 'group_project_sms_example',
-        ),
-        2 => array(
-          'value' => 'group_project_cta',
-        ),
-        3 => array(
-          'value' => 'group_project_action_items',
-        ),
-        4 => array(
-          'value' => 'group_project_prizes',
-        ),
-        5 => array(
-          'value' => 'group_project_info',
-        ),
-        6 => array(
-          'value' => 'group_project_profiles',
-        ),
-        7 => array(
-          'value' => 'group_project_gallery',
-        ),
-        8 => array(
-          'value' => 'group_project_faq',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -4541,7 +4513,7 @@ function dosomething_project_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_project_section_display',
-      'label' => 'Project Section Display',
+      'label' => 'Display Project Sections:',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -5421,6 +5393,7 @@ function dosomething_project_field_default_fields() {
   t('CTA Copy');
   t('Contact Email');
   t('Copy Accent Color');
+  t('Display Project Sections:');
   t('FAQ');
   t('FAQ Button Label');
   t('FAQ Copy');
@@ -5465,7 +5438,6 @@ function dosomething_project_field_default_fields() {
   t('Project Profiles');
   t('Project Profiles Copy');
   t('Project Profiles Headline');
-  t('Project Section Display');
   t('Rules Regs File');
   t('SMS Example Button Label');
   t('SMS Example Headline');
