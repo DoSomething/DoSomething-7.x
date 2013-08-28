@@ -13,15 +13,15 @@ function dosomething_project_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_action_items|node|project|form';
-  $field_group->group_name = 'group_action_items';
+  $field_group->identifier = 'group_project_action_items|node|project|form';
+  $field_group->group_name = 'group_project_action_items';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'project';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Action Items',
-    'weight' => '15',
+    'weight' => '20',
     'children' => array(
       0 => 'field_action_items',
       1 => 'field_action_items_headline',
@@ -30,16 +30,15 @@ function dosomething_project_field_group_info() {
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'label' => 'Action Items',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => 'group-action-items field-group-fieldset ',
-        'description' => '',
-      ),
       'formatter' => 'collapsed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-project-action-items field-group-fieldset ',
+        'required_fields' => 1,
+      ),
     ),
   );
-  $export['group_action_items|node|project|form'] = $field_group;
+  $export['group_project_action_items|node|project|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -52,7 +51,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Assets',
-    'weight' => '8',
+    'weight' => '9',
     'children' => array(
       0 => 'field_banner_logo',
       1 => 'field_rules_regs_file',
@@ -83,7 +82,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Call to Action',
-    'weight' => '14',
+    'weight' => '19',
     'children' => array(
       0 => 'field_cta_button_label',
       1 => 'field_cta_copy',
@@ -112,7 +111,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'FAQ',
-    'weight' => '20',
+    'weight' => '25',
     'children' => array(
       0 => 'field_faq',
       1 => 'field_faq_headline',
@@ -142,7 +141,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Gallery',
-    'weight' => '19',
+    'weight' => '24',
     'children' => array(
       0 => 'field_gallery_button_label',
       1 => 'field_gallery_copy',
@@ -172,7 +171,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Gate',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'field_gate_color',
       1 => 'field_gate_description',
@@ -207,7 +206,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Project Info',
-    'weight' => '17',
+    'weight' => '22',
     'children' => array(
       0 => 'field_project_info_copy',
       1 => 'field_project_info_headline',
@@ -237,7 +236,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Prizes',
-    'weight' => '16',
+    'weight' => '21',
     'children' => array(
       0 => 'field_prizes',
       1 => 'field_prizes_button_label',
@@ -268,7 +267,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Project Profiles',
-    'weight' => '18',
+    'weight' => '23',
     'children' => array(
       0 => 'field_project_profiles',
       1 => 'field_project_profiles_copy',
@@ -298,7 +297,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'SMS Example',
-    'weight' => '13',
+    'weight' => '18',
     'children' => array(
       0 => 'field_sms_example_button_label',
       1 => 'field_sms_example_headline',
@@ -328,7 +327,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'SMS Referral',
-    'weight' => '12',
+    'weight' => '15',
     'children' => array(
       0 => 'field_mobilecommons_opt_in_alpha',
       1 => 'field_mobilecommons_opt_in_beta',
@@ -359,7 +358,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Social Media',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_facebook_share_msg',
       1 => 'field_twitter_share_msg',
@@ -388,7 +387,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Subscribe',
-    'weight' => '11',
+    'weight' => '13',
     'children' => array(
       0 => 'field_mailchimp_group',
       1 => 'field_mandrill_key',

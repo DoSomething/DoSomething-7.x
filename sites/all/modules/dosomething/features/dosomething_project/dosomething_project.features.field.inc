@@ -1348,7 +1348,7 @@ function dosomething_project_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '12',
+        'weight' => '39',
       ),
     ),
   );
@@ -1421,7 +1421,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '38',
       ),
     ),
   );
@@ -1493,7 +1493,7 @@ function dosomething_project_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '14',
+        'weight' => '41',
       ),
     ),
   );
@@ -1628,7 +1628,7 @@ function dosomething_project_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '13',
+        'weight' => '40',
       ),
     ),
   );
@@ -4454,6 +4454,108 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-project-field_project_section_display'.
+  $fields['node-project-field_project_section_display'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_section_display',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'group_project_sms_referral' => 'SMS Referral Form',
+          'group_project_sms_example' => 'SMS Example',
+          'group_project_cta' => 'Call To Action',
+          'group_project_action_items' => 'Action Items',
+          'group_project_prizes' => 'Prizes',
+          'group_project_info' => 'Project Info',
+          'group_project_profiles' => 'Profiles',
+          'group_project_gallery' => 'Gallery',
+          'group_project_faq' => 'FAQ',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => array(
+        0 => array(
+          'value' => 'group_project_sms_referral',
+        ),
+        1 => array(
+          'value' => 'group_project_sms_example',
+        ),
+        2 => array(
+          'value' => 'group_project_cta',
+        ),
+        3 => array(
+          'value' => 'group_project_action_items',
+        ),
+        4 => array(
+          'value' => 'group_project_prizes',
+        ),
+        5 => array(
+          'value' => 'group_project_info',
+        ),
+        6 => array(
+          'value' => 'group_project_profiles',
+        ),
+        7 => array(
+          'value' => 'group_project_gallery',
+        ),
+        8 => array(
+          'value' => 'group_project_faq',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 53,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_project_section_display',
+      'label' => 'Project Section Display',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '8',
+      ),
+    ),
+  );
+
   // Exported field: 'node-project-field_rules_regs_file'.
   $fields['node-project-field_rules_regs_file'] = array(
     'field_config' => array(
@@ -4657,7 +4759,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '39',
+        'weight' => '40',
       ),
     ),
   );
@@ -4803,7 +4905,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '38',
+        'weight' => '39',
       ),
     ),
   );
@@ -5363,6 +5465,7 @@ function dosomething_project_field_default_fields() {
   t('Project Profiles');
   t('Project Profiles Copy');
   t('Project Profiles Headline');
+  t('Project Section Display');
   t('Rules Regs File');
   t('SMS Example Button Label');
   t('SMS Example Headline');
