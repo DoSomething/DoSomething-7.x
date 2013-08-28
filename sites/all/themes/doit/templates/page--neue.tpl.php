@@ -2,7 +2,7 @@
   <div class="flexwidth-wrapper">
     <a href="#" class="utility-link js-menu-toggle">Menu</a>
     <ul class="utility-links">
-      <li>
+      <li class="search">
         <?php print render($page['utility']['dosomething_blocks_dosomething_utility_bar']['search']); ?>
       </li>
       <li><a class="utility-link" href="/help">Help</a></li>
