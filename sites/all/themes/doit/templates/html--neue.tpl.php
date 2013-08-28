@@ -22,6 +22,7 @@
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="/sites/all/libraries/ds-neue/assets/ie.css" type="text/css" />
         <script src="/sites/all/libraries/ds-neue/assets/ie/html5.min.js"></script>
+        <script src="/sites/all/libraries/ds-neue/assets/ie/rem.min.js"></script>
   <![endif]-->
 </head>
 
