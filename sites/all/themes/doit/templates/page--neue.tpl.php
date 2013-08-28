@@ -1,15 +1,15 @@
 <nav id="top" class="utility">
   <div class="flexwidth-wrapper">
-    <a href="#" class="js-menu-toggle">Menu</a>
+    <a href="#" class="utility-link js-menu-toggle">Menu</a>
     <ul class="utility-links">
-      <li>
+      <li class="search">
         <?php print render($page['utility']['dosomething_blocks_dosomething_utility_bar']['search']); ?>
       </li>
-      <li id="help-center"><a href="/help">Help</a></li>
+      <li><a class="utility-link" href="/help">Help</a></li>
       <?php if(!$logged_in): ?>
-      <li><a href="/user/login">Sign In</a></li>
+      <li><a class="utility-link" href="/user/login">Sign In</a></li>
       <?php else: ?>
-      <li><a href="/user/logout">Log out</a></li>
+      <li><a class="utility-link" href="/user/logout">Log out</a></li>
       <?php endif; ?>
     </ul>
   </div>
