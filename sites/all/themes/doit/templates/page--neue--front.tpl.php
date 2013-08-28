@@ -27,7 +27,7 @@
 <?php print $messages; ?>
 <div class="ds-intro">
   <div class="flexwidth-wrapper">
-    <h1>Join over 2.1 million young people taking action. Why? Because apathy sucks.</h1>
+    <h1>Join over 2.2 million young people taking action. Why? Because apathy sucks.</h1>
     <h2>Pick a cause and start kicking its ass.</h2>
   </div>
 </div>
@@ -72,12 +72,13 @@
       <i title="Aeropostale" class="sprite sprite-aeropostale"></i>
       <i title="Channel One" class="sprite sprite-channel-one"></i>
       <i title="Fastweb" class="sprite sprite-fastweb"></i>
-      <i title="Intel" class="sprite sprite-intel"></i>
+      <i title="Toyota" class="sprite sprite-toyota"></i>
       <i title="JetBlue" class="sprite sprite-jetblue"></i>
-      <i title="Lenovo" class="sprite sprite-lenovo"></i>
+      <i title="AARP" class="sprite sprite-aarp"></i>
       <i title="Sprint" class="sprite sprite-sprint"></i>
       <i title="VH1" class="sprite sprite-vh1"></i>
       <i title="Walmart" class="sprite sprite-walmart"></i>
+      <i title="American Express" class="sprite sprite-amex"></i>
     </p>
   </div>
 </div>
