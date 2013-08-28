@@ -15,29 +15,45 @@
     <h3 class="headline-callout"><span><?php print $node->field_subheadline[LANGUAGE_NONE][0]['value']; ?></span></h3>
   </section>
 
+  <?php if (isset($content['sms_referral'])): ?>
   <?php print render($content['sms_referral']); ?>
+  <?php endif; ?>
 
+  <?php if (isset($content['cta'])): ?>
   <?php print render($content['cta']); ?>
+  <?php endif; ?>
 
-  <?php if ($is_action_items): ?>
+  <?php if (isset($content['action_items'])): ?>
   <?php print render($content['action_items']); ?>
   <?php endif; ?>
 
-  <?php if ($is_prizes): ?>
+  <?php if (isset($content['prizes'])): ?>
   <?php print render($content['prizes']); ?>
   <?php endif; ?>
 
+  <?php if (isset($content['sms_example'])): ?>
   <?php print render($content['sms_example']); ?>
+  <?php endif; ?>
 
+  <?php if (isset($content['gallery'])): ?>
   <?php print render($content['gallery']); ?>
+  <?php endif; ?>
 
+  <?php if (isset($content['project_info'])): ?>
   <?php print render($content['project_info']); ?>
+  <?php endif; ?>
 
+  <?php if (isset($content['project_profiles'])): ?>
   <?php print render($content['project_profiles']); ?>
+  <?php endif; ?>
 
+  <?php if (isset($content['faq'])): ?>
   <?php print render($content['faq']); ?>
+  <?php endif; ?>
 
+  <?php if (isset($content['sponsors'])): ?>
   <?php print render($content['sponsors']); ?>
+  <?php endif; ?>
 
   <footer class="contact" id="footer">
     <p>Questions? E-mail <a href="mailto:<?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?>"><?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?></a>!</p>
