@@ -3,7 +3,7 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>DoSomething.org</title>
+    <title><?php print $head_title; ?></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
