@@ -1,5 +1,5 @@
 <section class="campaign-section gallery full-width">
-  <h2 class="section-header"><span><?php print $node->field_gallery_headline[LANGUAGE_NONE][0]['value']; ?>t</span></h2>
+  <h2 class="section-header"><span><?php print $node->field_gallery_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
 
   <div class="gallery-image">
     <img src="http://www.placekitten.com/g/960/500" alt="">

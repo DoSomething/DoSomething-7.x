@@ -24,6 +24,7 @@
 
 <div role="main" class="wrapper">
 <?php print $messages; ?>
+<?php if ($tabs = render($tabs)): ?><div class="pager legal"><?php print $tabs; ?></div><?php endif; ?>
 <?php print render($page['content']); ?>
 </div>
 

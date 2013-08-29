@@ -71,7 +71,7 @@
 
     // Facebook Share
     var fb_share_img = '//www.dosomething.org/files/campaigns/survivors/CellPhone_Assets_facebook_content.png';
-    var fb_title = 'Birthday Mail';
+    var fb_title = 'Cell Phones for Survivors';
     var fb_header_caption = '';
 
     Drupal.behaviors.fb.feed({

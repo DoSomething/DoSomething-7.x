@@ -181,6 +181,12 @@ $activity->sets = array(
     'game_id'      => SmsFlowGameConstants::GIVEASPIT_RANDOM_TIPS,
     'opt_in_paths' => array(161195, 161197, 161199, 161201, 161203, 161205, 161207, 161209, 161211, 161213, 161215, 161217, 161219, 161221, 161223, 161225),
   ),
+  // Cell Phones for Survivors 2013 - Random Tips
+  array(
+    'mdata_id'     => 10931,
+    'game_id'      => SmsFlowGameConstants::SURVIVORS_RANDOM_TIPS,
+    'opt_in_paths' => array(161399, 161401, 161403, 161405, 161407, 161409),
+  ),
 );
 
 $activity = $workflow->newActivity('end');

@@ -271,59 +271,55 @@ function doit_preprocess_page(&$variables) {
  * Implements hook_preprocess_node().
  */
 function doit_preprocess_node(&$vars) {
+
   // Campaign node type:
   if ($vars['node']->type == 'campaign') {
-
     $org_code = _doit_load_campaign_org_code($vars['node']);
-    // If the camapign has org code set
-    if($org_code) {
-      // Loads campaign specific tpl
+    // If the camapign has org code set:
+    if ($org_code) {
+      // Loads campaign specific tpl:
       array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
     }
   }
+
   // Project node type:
   elseif ($vars['node']->type == 'project') {
+    
+    // Store node object to pass into each section.
     $params['node'] = $vars['node'];
 
-    // Section - Action items:
-    $vars['is_action_items'] = FALSE;
-    if (isset($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value']) &&
-      !empty($vars['node']->field_action_items_headline[LANGUAGE_NONE][0]['value'])) {
-      $vars['is_action_items'] = TRUE;
-      $vars['content']['action_items']['#markup'] = theme('project_section_action_items', $params);
+    // Various sections use rules and regs file, so store its uri in parmas.
+    $params['rules_regs_file_uri'] = FALSE;
+    if (isset($vars['node']->field_rules_regs_file[LANGUAGE_NONE][0]['fid'])) {
+      $params['rules_regs_file_uri'] = file_create_url($vars['node']->field_rules_regs_file[LANGUAGE_NONE][0]['uri']);
     }
-    // Section - CTA:
-    $vars['content']['cta']['#markup'] = theme('project_section_cta', $params);
-    // Section - FAQ:
-    $vars['content']['faq']['#markup'] = theme('project_section_faq', $params);
-    // Section - Gallery:
-    $vars['content']['gallery']['#markup'] = theme('project_section_gallery', $params);
+
+    // Various sections also use the sponsors values, so store them in params too.
+    if (isset($vars['node']->field_sponsors[LANGUAGE_NONE][0]['value'])) {
+      // Store in vars for node template to access:
+      $vars['sponsors'] = dosomething_project_get_field_sponsors_values($vars['node']);
+      // Store in params for other section templates to access also:
+      $params['sponsors'] = $vars['sponsors'];
+      $vars['content']['sponsors']['#markup'] = theme('project_section_sponsors', $params);
+    }
+
     // Section - Header:
     $vars['content']['header']['#markup'] = theme('project_section_header', $params);
-    // Section - Project Info:
-    $vars['content']['project_info']['#markup'] = theme('project_section_project_info', $params);
-    // Section - Project Profiles:
-    $vars['content']['project_profiles']['#markup'] = theme('project_section_project_profiles', $params);
-    // Section - Prizes:
-    $vars['is_prizes'] = FALSE;
-    if (isset($vars['node']->field_prizes_headline[LANGUAGE_NONE][0]['value']) &&
-      !empty($vars['node']->field_prizes_headline[LANGUAGE_NONE][0]['value'])) {
-      $vars['is_prizes'] = TRUE;
-      $vars['content']['prizes']['#markup'] = theme('project_section_prizes', $params);
+
+    // Loop through project section display field values to set the corresponding project sections:
+    foreach($vars['node']->field_project_section_display[LANGUAGE_NONE] as $key => $section_name) {
+      $section_name = $section_name['value'];
+      // If this is the SMS Referral section, pass through actual SMS Referral form as param:
+      if ($section_name == 'sms_referral') {
+        $params['sms_referral_form'] = $vars['content']['sms_referral_form'];
+      }
+      // Else unset the sms_referral_form param if it exists:
+      elseif (isset($params['sms_referral_form'])) {
+        unset($params['sms_referral_form']);
+      }
+      // Set the content section for this $section_name:
+      $vars['content'][$section_name]['#markup'] = theme('project_section_' . $section_name, $params);
     }
-    // Section - SMS Example:
-    //@todo: is_sms_referral check
-    $vars['content']['sms_example']['#markup'] = theme('project_section_sms_example', $params);
-    // Section - SMS referral:
-    //@todo: is_sms_referral check
-    // Check if the SMS Referral form is set:
-    if (isset($vars['content']['sms_referral_form'])) {
-      $params['sms_referral_form'] = $vars['content']['sms_referral_form'];
-    }
-    $vars['content']['sms_referral']['#markup'] = theme('project_section_sms_referral', $params);
-    // Section - Sponsors:
-    //@todo: sponsrs check
-    $vars['content']['sponsors']['#markup'] = theme('project_section_sponsors', $params);
 
   }
 }
@@ -353,17 +349,25 @@ function _doit_load_campaign_assets($node, $org_code = NULL) {
   // @todo - we may need to refactor based on campaign related nodes
   if ($node->type != 'project') return;
 
-  # Add neue library
+  # Add neue library:
   drupal_add_library('ds_neue', 'ds-neue-campaign');
 
   $org_code = $org_code ? $org_code : _doit_load_campaign_org_code($node);
 
-  // If the camapign has org code set
-  if($org_code) {
-    // Add campaign specific css and js
-    drupal_add_css($css_path . '/' . $org_code . '/' . $org_code . '.css');
-    drupal_add_js($js_path . '/' . $org_code . '/' . $org_code . '.js');
+  // @todo: Add Org Code CSS / JS if node has org code set:
+  /*
+  if ($org_code) {
+    $org_code_css = $css_path . '/' . $org_code . '/' . $org_code . '.css';
+    $org_code_js = $js_path . '/' . $org_code . '/' . $org_code . '.js';
+    // Add campaign specific css and js if files exist:
+    if (file_exists($org_code_css) {
+      drupal_add_css($org_code_css);
+    }
+    if (file_exists($org_code_js)) {
+      drupal_add_js($org_code_js);
+    }
   }
+  */
 }
 
 /**
@@ -966,29 +970,55 @@ function doit_preprocess_project_section_faq(&$vars) {
  * Implements hook_preprocess_hook().
  */
 function doit_preprocess_project_section_header(&$vars) {
-  // Loop through the action items:
   $node = $vars['node'];
-  //@todo: output image
-  if (isset($node->field_banner_logo[LANGUAGE][0]['fid'])) {
-    $vars['logo'] = file_create_url($node->field_banner_logo[LANGUAGE][0]['uri']);
+  $vars['project_url'] = 'http://' .$_SERVER['HTTP_HOST'] .$_SERVER['REQUEST_URI'];
+  $vars['h1_style'] = '';
+  $vars['project_date'] = FALSE;
+  $vars['project_logo_uri'] = FALSE;
+  $vars['twitter_share_msg'] = '';
+  // If logo is set:
+  if (isset($node->field_banner_logo[LANGUAGE_NONE][0]['fid'])) {
+    $vars['project_logo_uri'] = file_create_url($node->field_banner_logo[LANGUAGE_NONE][0]['uri']);
+    $vars['project_logo_alt'] = $node->field_banner_logo[LANGUAGE_NONE][0]['alt'];
+    // Hide the H1:
+    $vars['h1_style'] = 'style="display:none;"';
   }
-  else {
-    $vars['logo'] = $node->title;
+  // If start date is set:
+  if (isset($node->field_project_dates[LANGUAGE_NONE][0]['value'])) {
+    $date_format = 'F j';
+    // Did the campaign start yet?
+    $start_time = strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value']);
+    $start_time_diff = time() - $start_time;
+    if ($start_time_diff < 0) {
+      $vars['project_date'] = 'Starts ' . format_date($start_time, 'custom', $date_format);
+    }
+    // Else check if there is an end date set:
+    elseif (isset($node->field_project_dates[LANGUAGE_NONE][0]['value2'])) {
+      // Did the campaign end?
+      $end_time = strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value2']);
+      $end_time_diff = time() - $end_time;
+      if ($end_time_diff < 0) {
+        $vars['project_date'] = 'Ends ' . format_date($end_time, 'custom', $date_format);
+      }
+      else {
+        $vars['project_date'] = 'Ended ' . format_date($end_time, 'custom', $date_format);
+      }
+    }
   }
-  //@todo: formatting? dont show year in 1st date.
-  $start_date = format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value']));
-  $end_date = '';
-  if (isset($node->field_project_dates[LANGUAGE_NONE][0]['value2'])) {
-    $end_date = ' - ' . format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value2']));
+  // Twitter share message:
+  if (isset($node->field_twitter_share_msg[LANGUAGE_NONE][0]['value'])) {
+    $vars['twitter_share_msg'] = rawurlencode($node->field_twitter_share_msg[LANGUAGE_NONE][0]['value']);
   }
-  $vars['project_date'] = $start_date . $end_date;
-  //@todo: share URLs
+  // For this header section, overwrite $sponsors variable with the sponsor theme section to render.
+  if (isset($vars['sponsors'])) {
+    $vars['sponsors'] = theme('project_section_sponsors', $vars);
+  }
 }
 
 /**
  * Implements hook_preprocess_hook().
  */
-function doit_preprocess_project_section_project_info(&$vars) {
+function doit_preprocess_project_section_info(&$vars) {
   $node = $vars['node'];
   $vars['project_info_items'] = array();
   if (module_exists('dosomething_project')) {  
@@ -1000,7 +1030,7 @@ function doit_preprocess_project_section_project_info(&$vars) {
 /**
  * Implements hook_preprocess_hook().
  */
-function doit_preprocess_project_section_project_profiles(&$vars) {
+function doit_preprocess_project_section_profiles(&$vars) {
   $node = $vars['node'];
   $vars['profiles'] = array();
   if (module_exists('dosomething_project')) { 
@@ -1019,8 +1049,8 @@ function doit_preprocess_project_section_prizes(&$vars) {
   if (module_exists('dosomething_project')) { 
     $vars['prizes'] = dosomething_project_get_field_collection_values($node, 'field_prizes', 'prize');
   }
-  $vars['rules_url'] = file_create_url($node->field_rules_regs_file[LANGUAGE_NONE][0]['uri']);
 }
+
 
 /**
  * Implements hook_preprocess_hook().
