@@ -958,9 +958,11 @@ function doit_preprocess_project_section_faq(&$vars) {
  */
 function doit_preprocess_project_section_header(&$vars) {
   $node = $vars['node'];
+  $vars['project_url'] = 'http://' .$_SERVER['HTTP_HOST'] .$_SERVER['REQUEST_URI'];
   $vars['h1_style'] = '';
   $vars['project_date'] = FALSE;
   $vars['project_logo_uri'] = FALSE;
+  $vars['twitter_share_msg'] = '';
   // If logo is set:
   if (isset($node->field_banner_logo[LANGUAGE_NONE][0]['fid'])) {
     $vars['project_logo_uri'] = file_create_url($node->field_banner_logo[LANGUAGE_NONE][0]['uri']);
@@ -989,14 +991,11 @@ function doit_preprocess_project_section_header(&$vars) {
         $vars['project_date'] = 'Ended ' . format_date($end_time, 'custom', $date_format);
       }
     }
-
   }
-  $start_date = format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value']));
-  $end_date = '';
-  if (isset($node->field_project_dates[LANGUAGE_NONE][0]['value2'])) {
-    $end_date = ' - ' . format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value2']));
+  // Twitter share message:
+  if (isset($node->field_twitter_share_msg[LANGUAGE_NONE][0]['value'])) {
+    $vars['twitter_share_msg'] = rawurlencode($node->field_twitter_share_msg[LANGUAGE_NONE][0]['value']);
   }
-  //@todo: share URLs
 }
 
 /**
