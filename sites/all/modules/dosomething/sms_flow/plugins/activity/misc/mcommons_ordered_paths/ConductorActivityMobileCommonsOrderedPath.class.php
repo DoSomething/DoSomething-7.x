@@ -14,6 +14,7 @@ class ConductorActivityMobileCommonsOrderedPath extends ConductorActivity {
   //     'game_id' => Unique identifier. Needs to be unique also compared to random pathing workflow and other SMS games
   //     'opt_in_paths' => Array of ordered paths
   //     'paths_finished_msg' => Optional. Number. Opt-in path to send user to if they've finished all tips.
+  //     'should_loop' => Optional. Set to TRUE if you want the tips to loop through again after going through them all.
   //   ), ...
   // )
   public $sets = array();
@@ -49,6 +50,10 @@ class ConductorActivityMobileCommonsOrderedPath extends ConductorActivity {
             $lastOptIn = $lastOptIn[0];
             $lastOptInIndex = array_search($lastOptIn, $set['opt_in_paths']);
             $nextOptInIndex = $lastOptInIndex + 1;
+
+            if ($nextOptInIndex >= count($set['opt_in_paths']) && $set['should_loop'] === TRUE) {
+              $nextOptInIndex = 0;
+            }
           }
           else {
             watchdog('sms_flow_game', "ConductorActivityMobileCommonsOrderedPath accessing multi-item array when trying to find last opt in. $mobile / ".$set['game_id']);
