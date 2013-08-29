@@ -50,9 +50,9 @@
   </div>
 
   <div class="content-block feature three-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/spit-block.png'); background-position: center center;">
-    <a class="full-link" href="/petition/emojis"><span>Do This</span></a>
+    <a class="full-link" href="/spit"><span>Do This</span></a>
     <div class="headline red">
-      <div class="headline-text"><h3>Save a life with your next party.</h3></div>
+      <div class="headline-text"><h3>Save a life at your next party.</h3></div>
       <p class="block-cta"><a href="/spit" class="btn primary large">Do This</a></p>
     </div>
   </div>
