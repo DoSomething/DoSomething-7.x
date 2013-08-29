@@ -167,6 +167,7 @@ function dosomething_services_services_resources_alter(&$resources, $endpoint) {
 
     // user/login override
     $resources['user']['actions']['login']['callback'] = '_dosomething_services_user_resource_login';
+
     // user/login arg for email login
     $resources['user']['actions']['login']['args'][] = array(
       'name' => 'email',
@@ -175,6 +176,9 @@ function dosomething_services_services_resources_alter(&$resources, $endpoint) {
       'source' => array('data' => 'email'),
       'optional' => TRUE,
     );
+
+    // user/<uid> DELETE override
+    $resources['user']['operations']['delete']['access callback'] = '_dosomething_services_user_delete_access';
 
     // username arg now becomes optional
     foreach ($resources['user']['actions']['login']['args'] as &$user_arg) {
@@ -493,6 +497,31 @@ function _dosomething_services_user_resource_login($username, $password, $email)
   }
 
   return $return;
+}
+
+/**
+ * Custom access check callback for the user delete resource
+ */
+function _dosomething_services_user_delete_access($op = 'view', $args = array()) {
+  if ($op == 'delete') {
+    // Adds backwards compatability with regression fixed in #1083242
+    if (isset($args[0])) {
+      $args[0] = _services_access_value($args[0], array('account', 'data'));
+    }
+
+    // Check if the user exists if appropriate.
+    $account = user_load($args[0]);
+    if (!$account) {
+      return services_error(t('There is no user with ID @uid.', array('@uid' => $args[0])), 406);
+    }
+
+    // Allow deletion if user is the same one making the request or has admin permissions
+    global $user;
+    return ($user->uid == $account->uid || user_access('administer users'));
+  }
+  else {
+    return _user_resource_access($op, $args);
+  }
 }
 
 /**
