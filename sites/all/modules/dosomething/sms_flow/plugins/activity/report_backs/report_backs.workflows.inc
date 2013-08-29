@@ -51,6 +51,11 @@ $activity->routes = array(
     'yes' => '161257',
     'no' => '161259',
   ),
+  // Survivors 2013 Report Back
+  '161419' => array(
+    'yes' => '161421',
+    'no' => '161425',
+  ),
   // Hunt 2013 Report Back Day 1
   '159421' => array(
     'yes' => '159445',
@@ -557,6 +562,70 @@ $activity->submission_fields = array(
 );
 $activity->success_response = 161263;
 $activity->webform_nid = 731005;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back', 'ask_picture');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Survivors 2013 Report Back. User will first be prompted to submit a pic
+ * from: https://secure.mcommons.com/campaigns/121303/opt_in_paths/161421
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_survivors_report_back';
+$workflow->title = 'Cell Phones for Survivors 2013 Report Back';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_phones', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 161429;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_phones';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_people');
+$activity->question = t('Amazing! Q1 - How many phones did you collect?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_phones');
+$activity->outputs = array('ask_why');
+$activity->question = t('Fantastic. Q2 - How many people helped out?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_why';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('strip_signature');
+$activity->question = t('Nice! Q3 - Why did you participate in this campaign?');
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_why');
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  'ask_phones' => 1,
+  'ask_people' => 2,
+  'ask_why' => 3,
+  'picture' => 'ask_picture:mms',
+);
+$activity->field_value_in_response = 'ask_phones';
+$activity->success_response = "You are a rockstar. You've been entered to win @field_value times. Have more pics to share? Text MORE for another entry. All set? Text PHONE!";
+$activity->webform_nid = 731009;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';

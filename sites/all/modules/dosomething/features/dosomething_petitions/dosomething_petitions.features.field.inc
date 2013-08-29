@@ -45,7 +45,11 @@ function dosomething_petitions_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'petition',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 'Petitions2012',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -182,7 +186,11 @@ function dosomething_petitions_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'petition',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => '117371',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
