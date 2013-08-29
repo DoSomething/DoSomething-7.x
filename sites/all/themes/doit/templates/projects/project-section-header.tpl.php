@@ -1,5 +1,11 @@
 <section class="header" id="header">
-  <h1 class="header-logotype"><?php print $node->title; ?></h1>
+  
+  <h1 class="header-logotype" <?php print $h1_style; ?>><?php print $node->title; ?></h1>
+
+  <?php if ($logo_uri): ?>
+  <img class="header-logotype" src="<?php print $logo_uri; ?>" alt="<?php print $logo_alt; ?>" />
+  <?php endif; ?>
+
   <p class="header-date">
     <?php print $project_date; ?>
   </p>

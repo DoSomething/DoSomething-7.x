@@ -959,12 +959,14 @@ function doit_preprocess_project_section_faq(&$vars) {
 function doit_preprocess_project_section_header(&$vars) {
   // Loop through the action items:
   $node = $vars['node'];
-  //@todo: output image
+  $vars['h1_style'] = '';
+  $vars['logo_uri'] = FALSE;
+  // If logo is set:
   if (isset($node->field_banner_logo[LANGUAGE_NONE][0]['fid'])) {
-    $vars['logo'] = file_create_url($node->field_banner_logo[LANGUAGE_NONE][0]['uri']);
-  }
-  else {
-    $vars['logo'] = $node->title;
+    $vars['logo_uri'] = file_create_url($node->field_banner_logo[LANGUAGE_NONE][0]['uri']);
+    $vars['logo_alt'] = $node->field_banner_logo[LANGUAGE_NONE][0]['alt'];
+    // Hide the H1:
+    $vars['h1_style'] = 'style="display:none;"';
   }
   //@todo: formatting? dont show year in 1st date.
   $start_date = format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value']));

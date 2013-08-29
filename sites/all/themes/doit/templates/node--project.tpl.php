@@ -11,10 +11,10 @@
   <?php print render($content['header']); ?>
 
   <section class="headline" id="headline">
-    <?php if isset($node->field_headline[LANGUAGE_NONE][0]['value']): ?>
+    <?php if (isset($node->field_headline[LANGUAGE_NONE][0]['value'])): ?>
     <h2 class="headline-callout"><span><?php print $node->field_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
     <?php endif; ?>
-    <?php if isset($node->field_subheadline[LANGUAGE_NONE][0]['value']): ?>
+    <?php if (isset($node->field_subheadline[LANGUAGE_NONE][0]['value'])): ?>
     <h3 class="headline-callout"><span><?php print $node->field_subheadline[LANGUAGE_NONE][0]['value']; ?></span></h3>
     <?php endif; ?>
   </section>
