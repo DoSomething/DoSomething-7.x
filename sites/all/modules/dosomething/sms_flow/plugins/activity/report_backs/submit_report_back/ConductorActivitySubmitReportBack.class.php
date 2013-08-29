@@ -18,6 +18,10 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
   // Use @submission_count to include the number of submissions from this user in the msg.
   public $success_response;
 
+  // (Optional) Åctivity name to pull value from and insert into $success_response
+  // Use @field_value to include this value into the success message.
+  public $field_value_in_response;
+
   // (Optional) Identifier to use different method of submittin a report back.
   // ex: 'hunt2013' does not submit to a webform
   public $use_special_submitter;
@@ -139,7 +143,8 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
         $state->setContext('ignore_no_response_error', TRUE);
       }
       else {
-        $state->setContext('sms_response', t($this->success_response, array('@submission_count' => $num_submissions)));
+        $fieldValue = $state->getContext($this->field_value_in_response . ':message');
+        $state->setContext('sms_response', t($this->success_response, array('@submission_count' => $num_submissions, '@field_value' => $fieldValue)));
       }
     }
 

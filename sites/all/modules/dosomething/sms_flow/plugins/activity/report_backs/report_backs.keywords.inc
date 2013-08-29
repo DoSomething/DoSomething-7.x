@@ -8,6 +8,7 @@ $keywords['oklahoma-report-back'] = 'sms_flow_oklahoma_report_back';
 $keywords['iheartdad-report-back'] = 'sms_flow_iheartdad_report_back';
 $keywords['birthdaymail-report-back'] = 'sms_flow_birthdaymail_report_back';
 $keywords['spit-report-back'] = 'sms_flow_spit_report_back';
+$keywords['survivors-report-back'] = 'sms_flow_survivors_report_back';
 
 // Day 1 to Day 11 of The Hunt 2013 report backs
 $keywords['hunt-enviro-report-back'] = 'sms_flow_hunt_enviro_report_back';
