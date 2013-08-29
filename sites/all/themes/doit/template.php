@@ -957,24 +957,45 @@ function doit_preprocess_project_section_faq(&$vars) {
  * Implements hook_preprocess_hook().
  */
 function doit_preprocess_project_section_header(&$vars) {
-  // Loop through the action items:
   $node = $vars['node'];
   $vars['h1_style'] = '';
-  $vars['logo_uri'] = FALSE;
+  $vars['project_date'] = FALSE;
+  $vars['project_logo_uri'] = FALSE;
   // If logo is set:
   if (isset($node->field_banner_logo[LANGUAGE_NONE][0]['fid'])) {
-    $vars['logo_uri'] = file_create_url($node->field_banner_logo[LANGUAGE_NONE][0]['uri']);
-    $vars['logo_alt'] = $node->field_banner_logo[LANGUAGE_NONE][0]['alt'];
+    $vars['project_logo_uri'] = file_create_url($node->field_banner_logo[LANGUAGE_NONE][0]['uri']);
+    $vars['project_logo_alt'] = $node->field_banner_logo[LANGUAGE_NONE][0]['alt'];
     // Hide the H1:
     $vars['h1_style'] = 'style="display:none;"';
   }
-  //@todo: formatting? dont show year in 1st date.
+  // If start date is set:
+  if (isset($node->field_project_dates[LANGUAGE_NONE][0]['value'])) {
+    $date_format = 'F j';
+    // Did the campaign start yet?
+    $start_time = strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value']);
+    $start_time_diff = time() - $start_time;
+    if ($start_time_diff < 0) {
+      $vars['project_date'] = 'Starts ' . format_date($start_time, 'custom', $date_format);
+    }
+    // Else check if there is an end date set:
+    elseif (isset($node->field_project_dates[LANGUAGE_NONE][0]['value2'])) {
+      // Did the campaign end?
+      $end_time = strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value2']);
+      $end_time_diff = time() - $end_time;
+      if ($end_time_diff < 0) {
+        $vars['project_date'] = 'Ends ' . format_date($end_time, 'custom', $date_format);
+      }
+      else {
+        $vars['project_date'] = 'Ended ' . format_date($end_time, 'custom', $date_format);
+      }
+    }
+
+  }
   $start_date = format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value']));
   $end_date = '';
   if (isset($node->field_project_dates[LANGUAGE_NONE][0]['value2'])) {
     $end_date = ' - ' . format_date(strtotime($node->field_project_dates[LANGUAGE_NONE][0]['value2']));
   }
-  $vars['project_date'] = $start_date . $end_date;
   //@todo: share URLs
 }
 

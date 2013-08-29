@@ -2,13 +2,15 @@
   
   <h1 class="header-logotype" <?php print $h1_style; ?>><?php print $node->title; ?></h1>
 
-  <?php if ($logo_uri): ?>
-  <img class="header-logotype" src="<?php print $logo_uri; ?>" alt="<?php print $logo_alt; ?>" />
+  <?php if ($project_logo_uri): ?>
+  <img class="header-logotype" src="<?php print $project_logo_uri; ?>" alt="<?php print $project_logo_alt; ?>" />
   <?php endif; ?>
 
+  <?php if ($project_date): ?>
   <p class="header-date">
     <?php print $project_date; ?>
   </p>
+  <?php endif; ?>
 
   <div class="header-social">
     <!-- Facebook Like Button -->
