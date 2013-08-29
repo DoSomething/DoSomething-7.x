@@ -187,7 +187,7 @@
       max-width: 100%
 
   .section-container
-    padding: 15px 0
+    padding: 15px 0 10px !important
     background-color: $color-two
     @include respond-to(tablets_and_phones)
       padding: 0 0 1em 0
@@ -195,7 +195,7 @@
       height: auto
 
     .wrapper
-      max-width: 680px
+      max-width: 45em
       margin: 0 auto
       @include respond-to(phones)
         width: 96%
@@ -207,8 +207,8 @@
   .section-label
     display: none
     overflow: hidden
+    padding: 0 0 15px 0 !important
     background: lighten($color-two, 3)
-    padding: 2em
     @media only screen and (max-width: 725px)
       padding: 1em
 
