@@ -246,15 +246,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create petition content.
-  $permissions['create petition content'] = array(
-    'name' => 'create petition content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: create poll content.
   $permissions['create poll content'] = array(
     'name' => 'create poll content',
@@ -423,13 +414,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any petition content.
-  $permissions['delete any petition content'] = array(
-    'name' => 'delete any petition content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any poll content.
   $permissions['delete any poll content'] = array(
     'name' => 'delete any poll content',
@@ -566,13 +550,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own page content.
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own petition content.
-  $permissions['delete own petition content'] = array(
-    'name' => 'delete own petition content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -751,15 +728,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any petition content.
-  $permissions['edit any petition content'] = array(
-    'name' => 'edit any petition content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: edit any poll content.
   $permissions['edit any poll content'] = array(
     'name' => 'edit any poll content',
@@ -853,15 +821,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit own member_opportunity content.
   $permissions['edit own member_opportunity content'] = array(
     'name' => 'edit own member_opportunity content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit own petition content.
-  $permissions['edit own petition content'] = array(
-    'name' => 'edit own petition content',
     'roles' => array(
       0 => 'staff',
     ),
