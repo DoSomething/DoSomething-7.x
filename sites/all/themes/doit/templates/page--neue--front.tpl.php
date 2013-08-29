@@ -28,7 +28,7 @@
 <div class="ds-intro">
   <div class="flexwidth-wrapper">
     <h1>Join over 2.2 million young people taking action. Why? Because apathy sucks.</h1>
-    <h2>Pick a cause and start kicking its ass.</h2>
+    <h2>Pick a project below and start kicking its ass.</h2>
   </div>
 </div>
 
