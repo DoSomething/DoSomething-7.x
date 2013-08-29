@@ -55,13 +55,18 @@
   <?php print render($content['faq']); ?>
   <?php endif; ?>
 
-  <?php if (isset($content['sponsors'])): ?>
-  <?php print render($content['sponsors']); ?>
+  <?php if (isset($sponsors)): ?>
+  <footer class="sponsor full-width" id="sponsor">
+  <h3>Sponsored by:</h3>
+  <p><?php print render($content['sponsors']); ?></p>
+  </footer>
   <?php endif; ?>
 
+  <?php if (isset($node->field_contact_email[LANGUAGE_NONE][0]['value'])): ?>
   <footer class="contact" id="footer">
     <p>Questions? E-mail <a href="mailto:<?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?>"><?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?></a>!</p>
   </footer>
+  <?php endif; ?>
 
   <!--
   Edvisors tracking pixel

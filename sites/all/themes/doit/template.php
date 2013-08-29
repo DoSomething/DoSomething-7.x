@@ -288,10 +288,23 @@ function doit_preprocess_node(&$vars) {
     // Store node object to pass into each section.
     $params['node'] = $vars['node'];
 
+    // Various sections use rules and regs file, so store its uri in parmas.
+    $params['rules_regs_file_uri'] = FALSE;
+    if (isset($vars['node']->field_rules_regs_file[LANGUAGE_NONE][0]['fid'])) {
+      $params['rules_regs_file_uri'] = file_create_url($vars['node']->field_rules_regs_file[LANGUAGE_NONE][0]['uri']);
+    }
+
+    // Various sections also use the sponsors values, so store them in params too.
+    if (isset($vars['node']->field_sponsors[LANGUAGE_NONE][0]['value'])) {
+      // Store in vars for node template to access:
+      $vars['sponsors'] = dosomething_project_get_field_sponsors_values($vars['node']);
+      // Store in params for other section templates to access also:
+      $params['sponsors'] = $vars['sponsors'];
+      $vars['content']['sponsors']['#markup'] = theme('project_section_sponsors', $params);
+    }
+
     // Section - Header:
     $vars['content']['header']['#markup'] = theme('project_section_header', $params);
-    // Section - Sponsors:
-    $vars['content']['sponsors']['#markup'] = theme('project_section_sponsors', $params);
 
     // Loop through project section display field values to set the corresponding project sections:
     foreach($vars['node']->field_project_section_display[LANGUAGE_NONE] as $key => $section_name) {
@@ -996,6 +1009,10 @@ function doit_preprocess_project_section_header(&$vars) {
   if (isset($node->field_twitter_share_msg[LANGUAGE_NONE][0]['value'])) {
     $vars['twitter_share_msg'] = rawurlencode($node->field_twitter_share_msg[LANGUAGE_NONE][0]['value']);
   }
+  // For this header section, overwrite $sponsors variable with the sponsor theme section to render.
+  if (isset($vars['sponsors'])) {
+    $vars['sponsors'] = theme('project_section_sponsors', $vars);
+  }
 }
 
 /**
@@ -1032,8 +1049,8 @@ function doit_preprocess_project_section_prizes(&$vars) {
   if (module_exists('dosomething_project')) { 
     $vars['prizes'] = dosomething_project_get_field_collection_values($node, 'field_prizes', 'prize');
   }
-  $vars['rules_url'] = file_create_url($node->field_rules_regs_file[LANGUAGE_NONE][0]['uri']);
 }
+
 
 /**
  * Implements hook_preprocess_hook().
