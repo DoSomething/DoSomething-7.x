@@ -362,10 +362,10 @@ function dosomething_login_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function dosomething_login_form_user_pass_alter(&$form, &$form_state) {
+function dosomething_login_form_user_pass_alter(&$form, &$form_state) {  
   unset($form['#validate']);
   $form['#validate'] = array('dosomething_login_sms_password_recovery_validate');
-  $form['#submit'] = array('dosomething_login_sms_password_recovery_submit');
+  $form['#submit'] = array('dosomething_login_password_recovery_submit');
   $form['actions']['submit']['#value'] = t('Reset password');
 }
 
@@ -413,33 +413,57 @@ function dosomething_login_sms_password_recovery_validate(&$form, &$form_state) 
 }
 
 /**
- * Submition handler for resetting passwords that adds mobile phone based
+ * Submition handler for resetting passwords that includes mobile phone based
  * signup reset capabilities.
  */
-function dosomething_login_sms_password_recovery_submit($form, &$form_state) {
-  // Check the incoming form state. If send_sms_reset is false then do what
-  // we do normally.
-  if (!isset($form_state['send_sms_reset']) || !$form_state['send_sms_reset']) {
-    user_pass_submit($form, $form_state);
-    return;
-  }
-  elseif (isset($form_state['values']['account']->uid)) {
+function dosomething_login_password_recovery_submit($form, &$form_state) {
+
+  global $user;
+  if ($user->uid == 0) {
+
+    // Reset user password
     $account = $form_state['values']['account'];
     require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
-    $reset_link = user_pass_reset_url($account);
     $pass = user_password(6);
     $account = user_load($account->uid);
+
     $account->pass = user_hash_password($pass);
     user_save($account);
-    $number = preg_replace('/\D/', '', trim($form_state['values']['name']));
-    // Note: If the message is too long, then it won't go through.
-    $message = "Your DoSomething password is now $pass";
-    $response = sms_mobile_commons_send($number, $message);
-    watchdog('SMS', 'A user with the mobile number of %number asked for a password reset. The text message user validation response was "%validation" and the message sending status was "%message"',
-      array('%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
-      WATCHDOG_NOTICE
-    );
-    drupal_set_message(t('A text message with reset instructions has been sent to your mobile phone.'));
+
+    // Check the incoming form state. If send_sms_reset is false then sent message via Mandrill.
+    if ( (isset($form_state['send_sms_reset']) && $form_state['send_sms_reset'] != FALSE) && (isset($form_state['values']['account']->uid)) ) {
+
+      $number = preg_replace('/\D/', '', trim($form_state['values']['name']));
+      // Note: If the message is too long, then it won't go through.
+      $message = "Your DoSomething password is now $pass";
+      $response = sms_mobile_commons_send($number, $message);
+      watchdog('SMS', 'A user with the mobile number of %number asked for a password reset. The text message user validation response was "%validation" and the message sending status was "%message"',
+        array('%number' => $number, '%validation' => $response['validation'], '%message' => $response['message']),
+        WATCHDOG_NOTICE
+      );
+      drupal_set_message(t('A text message with reset instructions has been sent to your mobile phone.'));
+    }
+    else {
+    
+      $param['URL'] = user_pass_reset_url($account);
+      $param['FNAME'] = $account->name;
+      dosomething_mandrill_dispatch($account->mail, 'password_reset', $param, $account);
+    
+      watchdog('dosomething_mandrill', 'A user with the email address of %email asked for a password reset.',
+        array('%email' => $account->mail),
+        WATCHDOG_NOTICE
+      );
+      drupal_set_message(t('An email message with reset instructions has been sent to %email.', array('%email' => $account->mail)));
+    
+      // Old call using Drupal built in reset functionality
+      // user_pass_submit($form, $form_state);
+    
+    }
+    
+  } // User is already logged in, send them to the user profile page to change their password
+  else {
+    drupal_set_meesage(t('You\'re currently logged in, update your password rather than resetting it.'), 'status');
+    drupal_goto('user');
   }
 }
 
