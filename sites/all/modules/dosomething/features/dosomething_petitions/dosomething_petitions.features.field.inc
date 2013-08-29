@@ -47,7 +47,7 @@ function dosomething_petitions_field_default_fields() {
       'bundle' => 'petition',
       'default_value' => array(
         0 => array(
-          'value' => 'Petitions2013',
+          'value' => 'Petitions2012',
         ),
       ),
       'deleted' => '0',
