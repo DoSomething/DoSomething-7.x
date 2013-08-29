@@ -14,7 +14,7 @@
 
     <div class="callout">
       <p><a href="#headline" class="btn primary large js-jump-scroll"><?php print $node->field_prizes_button_label[LANGUAGE_NONE][0]['value']; ?></a></p>
-      <p><a href="<?php print $rules_url; ?>" class="official-rules">Official Rules &amp; Regulations</a></p>
+      <p><a href="<?php print $rules_regs_file_uri; ?>" target="_blank" class="official-rules">Official Rules &amp; Regulations</a></p>
     </div>
 
   </div>

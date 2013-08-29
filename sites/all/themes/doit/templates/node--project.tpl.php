@@ -11,8 +11,12 @@
   <?php print render($content['header']); ?>
 
   <section class="headline" id="headline">
+    <?php if (isset($node->field_headline[LANGUAGE_NONE][0]['value'])): ?>
     <h2 class="headline-callout"><span><?php print $node->field_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
+    <?php endif; ?>
+    <?php if (isset($node->field_subheadline[LANGUAGE_NONE][0]['value'])): ?>
     <h3 class="headline-callout"><span><?php print $node->field_subheadline[LANGUAGE_NONE][0]['value']; ?></span></h3>
+    <?php endif; ?>
   </section>
 
   <?php if (isset($content['sms_referral'])): ?>
@@ -39,25 +43,30 @@
   <?php print render($content['gallery']); ?>
   <?php endif; ?>
 
-  <?php if (isset($content['project_info'])): ?>
-  <?php print render($content['project_info']); ?>
+  <?php if (isset($content['info'])): ?>
+  <?php print render($content['info']); ?>
   <?php endif; ?>
 
-  <?php if (isset($content['project_profiles'])): ?>
-  <?php print render($content['project_profiles']); ?>
+  <?php if (isset($content['profiles'])): ?>
+  <?php print render($content['profiles']); ?>
   <?php endif; ?>
 
   <?php if (isset($content['faq'])): ?>
   <?php print render($content['faq']); ?>
   <?php endif; ?>
 
-  <?php if (isset($content['sponsors'])): ?>
-  <?php print render($content['sponsors']); ?>
+  <?php if (isset($sponsors)): ?>
+  <footer class="sponsor full-width" id="sponsor">
+  <h3>Sponsored by:</h3>
+  <p><?php print render($content['sponsors']); ?></p>
+  </footer>
   <?php endif; ?>
 
+  <?php if (isset($node->field_contact_email[LANGUAGE_NONE][0]['value'])): ?>
   <footer class="contact" id="footer">
     <p>Questions? E-mail <a href="mailto:<?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?>"><?php print $node->field_contact_email[LANGUAGE_NONE][0]['value']; ?></a>!</p>
   </footer>
+  <?php endif; ?>
 
   <!--
   Edvisors tracking pixel
