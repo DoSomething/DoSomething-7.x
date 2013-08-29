@@ -39,12 +39,12 @@
   <?php print render($content['gallery']); ?>
   <?php endif; ?>
 
-  <?php if (isset($content['project_info'])): ?>
-  <?php print render($content['project_info']); ?>
+  <?php if (isset($content['info'])): ?>
+  <?php print render($content['info']); ?>
   <?php endif; ?>
 
-  <?php if (isset($content['project_profiles'])): ?>
-  <?php print render($content['project_profiles']); ?>
+  <?php if (isset($content['profiles'])): ?>
+  <?php print render($content['profiles']); ?>
   <?php endif; ?>
 
   <?php if (isset($content['faq'])): ?>

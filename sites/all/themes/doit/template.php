@@ -979,7 +979,7 @@ function doit_preprocess_project_section_header(&$vars) {
 /**
  * Implements hook_preprocess_hook().
  */
-function doit_preprocess_project_section_project_info(&$vars) {
+function doit_preprocess_project_section_info(&$vars) {
   $node = $vars['node'];
   $vars['project_info_items'] = array();
   if (module_exists('dosomething_project')) {  
@@ -991,7 +991,7 @@ function doit_preprocess_project_section_project_info(&$vars) {
 /**
  * Implements hook_preprocess_hook().
  */
-function doit_preprocess_project_section_project_profiles(&$vars) {
+function doit_preprocess_project_section_profiles(&$vars) {
   $node = $vars['node'];
   $vars['profiles'] = array();
   if (module_exists('dosomething_project')) { 
