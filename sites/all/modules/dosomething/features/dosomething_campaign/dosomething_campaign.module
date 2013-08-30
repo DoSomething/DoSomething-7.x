@@ -226,8 +226,7 @@ function dosomething_campaign_beta_signup_form_submit($form, &$form_state) {
   dosomething_mandrill_dispatch($alpha_email, '25women', $message);
 
   // Mobilecommons Alpha+Beta signup:
-  $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin, $args);
-  watchdog('dosomething_campaign', 'Beta signup - Mobilecommons response = ' . print_r($response, TRUE)); 
+  $response = dosomething_subscribe_mobilecommons_referral_signup($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin, $args);
 
   // Send to confirmation page with the relevant query string variables.
   drupal_goto('node/729332', array(
