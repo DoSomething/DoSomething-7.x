@@ -116,4 +116,23 @@ function dosomething_signups_signup($account, $node) {
   if ($mandrill && !empty($mandrill)) {
     dosomething_mandrill_dispatch($email, $mandrill);
   }
+  // Set success message:
+  drupal_set_message(dosomething_signups_get_signup_success_msg($node));
+}
+
+/**
+ * Returns a given node's Signup Success Message field value
+ * Outputs a default variable value if a field value doesn't exist.
+ *
+ * @param $node
+ *  Loaded node object that user has signed up for.
+ */
+function dosomething_signups_get_signup_success_msg($node) {
+  if (isset($node->field_signup_success_msg[LANGUAGE_NONE][0]['value']) && !empty($node->field_signup_success_msg[LANGUAGE_NONE][0]['value'])) {
+    $msg = $node->field_signup_success_msg[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    $msg = variable_get('dosomething_signups_default_signup_success_msg', t('Thanks for signing up!'));
+  }
+  return $msg;
 }
