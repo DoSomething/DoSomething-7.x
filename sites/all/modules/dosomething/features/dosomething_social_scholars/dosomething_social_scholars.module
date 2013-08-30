@@ -373,8 +373,9 @@ function dosomething_social_scholars_submit_form($form, &$form_state) {
   // Load the SaS node to get information later.
   $nid = intval($s['sas_nid']);
   $node = node_load($nid);
-
-  dosomething_general_mobile_commons_subscribe_with_friends($your_number, $alphas_campaign, $them, $betas_campaign);
+  if (module_exists('dosomething_subscribe_mobilecommons')) {
+    dosomething_subscribe_mobilecommons_referral_signup($your_number, $alphas_campaign, $them, $betas_campaign);
+  }
 
   // Set the message to the redirect message found on the form.
   #drupal_set_message(t($node->field_redirect_message[LANGUAGE_NONE][0]['value']));
