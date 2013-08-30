@@ -1208,56 +1208,12 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
 }
 
 /**
- * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
- * configured opt-in path.  Send messages to friends as well.
+ * Deprecated Mobilecommons subscribe with friends function.
  */
 function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_opt_in_path, $beta_mobiles, $beta_opt_in_path, $args = array()) {
-  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
-
-  global $user;
-  if ($user->uid > 0) {
-    $profile = profile2_load_by_user($user, 'main');
-    $fname = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-    $lname = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
-
-    $args += array(
-      'first_name' => $fname,
-      'last_name' => $lname,
-    );
+  if (module_exists('dosomething_subscribe_mobilecommons')) {
+    dosomething_subscribe_mobilecommons_referral_signup($alpha_mobile, $alpha_opt_in_path, $beta_mobiles, $beta_opt_in_path, $args);
   }
-
-  $friends = '';
-  foreach ($beta_mobiles AS $key => $mobile) {
-    if (!empty($mobile) && dosomething_general_valid_cell($mobile)) {
-      $friends .= '&friends[]=' . $mobile;
-    }
-  }
-
-  $friends .= '&friends_opt_in_path=' . $beta_opt_in_path;
-
-  $apath = '';
-  if ($alpha_opt_in_path > 0) {
-     $apath = '&opt_in_path[]=' . $alpha_opt_in_path;
-  }
-
-  // Send the post data.
-  $options = array(
-    'headers' => array(
-      'Content-type' => 'application/x-www-form-urlencoded',
-      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    ),
-    'method' => 'POST',
-    'data' => "person[phone]=$alpha_mobile" . $apath . $friends,
-  );
-
-  if (!empty($args)) {
-    foreach ($args AS $key => $val) {
-      $options['data'] .= "&person[$key]=" . urlencode($val);
-    }
-  }
-
-  $result = drupal_http_request($api_opt_in_path_url, $options);
-  return $result;
 }
 
 /**
