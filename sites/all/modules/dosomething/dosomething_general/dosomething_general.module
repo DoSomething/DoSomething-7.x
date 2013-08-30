@@ -1208,15 +1208,6 @@ function dosomething_general_webform_email_and_mail_submit(&$form, &$form_state)
 }
 
 /**
- * Deprecated Mobilecommons subscribe with friends function.
- */
-function dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_opt_in_path, $beta_mobiles, $beta_opt_in_path, $args = array()) {
-  if (module_exists('dosomething_subscribe_mobilecommons')) {
-    dosomething_subscribe_mobilecommons_referral_signup($alpha_mobile, $alpha_opt_in_path, $beta_mobiles, $beta_opt_in_path, $args);
-  }
-}
-
-/**
  * Subscribe a mobile number to a Mobile Commons campaign (id) and via a
  * configured opt-in path.
  */
