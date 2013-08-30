@@ -21,7 +21,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Action Items',
-    'weight' => '20',
+    'weight' => '17',
     'children' => array(
       0 => 'field_action_items',
       1 => 'field_action_items_headline',
@@ -51,7 +51,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Assets',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_banner_logo',
       1 => 'field_rules_regs_file',
@@ -82,7 +82,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Call to Action',
-    'weight' => '19',
+    'weight' => '16',
     'children' => array(
       0 => 'field_cta_button_label',
       1 => 'field_cta_copy',
@@ -111,7 +111,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'FAQ',
-    'weight' => '25',
+    'weight' => '22',
     'children' => array(
       0 => 'field_faq',
       1 => 'field_faq_headline',
@@ -141,7 +141,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Gallery',
-    'weight' => '24',
+    'weight' => '21',
     'children' => array(
       0 => 'field_gallery_button_label',
       1 => 'field_gallery_copy',
@@ -171,7 +171,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Gate',
-    'weight' => '11',
+    'weight' => '12',
     'children' => array(
       0 => 'field_gate_color',
       1 => 'field_gate_description',
@@ -206,7 +206,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Project Info',
-    'weight' => '22',
+    'weight' => '19',
     'children' => array(
       0 => 'field_project_info_copy',
       1 => 'field_project_info_headline',
@@ -236,7 +236,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Prizes',
-    'weight' => '21',
+    'weight' => '18',
     'children' => array(
       0 => 'field_prizes',
       1 => 'field_prizes_button_label',
@@ -267,7 +267,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Project Profiles',
-    'weight' => '23',
+    'weight' => '20',
     'children' => array(
       0 => 'field_project_profiles',
       1 => 'field_project_profiles_copy',
@@ -297,7 +297,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'SMS Example',
-    'weight' => '18',
+    'weight' => '15',
     'children' => array(
       0 => 'field_sms_example_button_label',
       1 => 'field_sms_example_headline',
@@ -327,7 +327,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'SMS Referral',
-    'weight' => '15',
+    'weight' => '14',
     'children' => array(
       0 => 'field_mobilecommons_opt_in_alpha',
       1 => 'field_mobilecommons_opt_in_beta',
@@ -358,7 +358,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Social Media',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'field_facebook_share_msg',
       1 => 'field_twitter_share_msg',
