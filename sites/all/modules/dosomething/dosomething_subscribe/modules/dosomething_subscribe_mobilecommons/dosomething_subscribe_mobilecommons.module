@@ -92,6 +92,7 @@ function dosomething_subscribe_mobilecommons_referral_form_validate($form, &$for
  * Form submit callback for mobile signup / referral form.
  */
 function dosomething_subscribe_mobilecommons_referral_form_submit($form, &$form_state) {
+  global $user;
   $args = array();
   $alpha_name = $form_state['values']['alpha_name'];
   $args['first_name'] = $alpha_name;
@@ -108,28 +109,35 @@ function dosomething_subscribe_mobilecommons_referral_form_submit($form, &$form_
   }
   // Load node to find relevant subscribe values.
   $node = node_load($form_state['values']['nid']);
-
-  // Mobilecommons Referral signup:
-  $alpha_optin = $node->field_mobilecommons_opt_in_alpha[LANGUAGE_NONE][0]['value'];
-  $beta_optin =$node->field_mobilecommons_opt_in_beta[LANGUAGE_NONE][0]['value'];
-  // @todo: Move this subscribe_with_friends function into this module.
-  $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin, $args);
-  watchdog('dosomething_subscribe_mobilecommons', 'Referral signup response = ' . print_r($response, TRUE));
-
-  // If email field is present, check for subscribe values:
+  // If user is signed in, store as a signup:
+  if (module_exists('dosomething_signups') && $user->uid > 0 && !dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
+    // Insert signups record:
+    dosomething_signups_insert_signup($user->uid, $node->nid);
+  }
+  // Subscribe alphas and betas to Mobilecommons:
+  if (isset($node->field_mobilecommons_opt_in_alpha[LANGUAGE_NONE][0]['value']) && isset($node->field_mobilecommons_opt_in_beta[LANGUAGE_NONE][0]['value'])) {
+    // @todo: Move this subscribe_with_friends function into this module.
+    $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $node->field_mobilecommons_opt_in_alpha[LANGUAGE_NONE][0]['value'], $beta_mobiles, $node->field_mobilecommons_opt_in_beta[LANGUAGE_NONE][0]['value'], $args);
+    watchdog('dosomething_subscribe_mobilecommons', 'Referral signup response = ' . print_r($response, TRUE));
+  }
+  // If email form field is present:
   if (isset($node->field_sms_referral_has_email[LANGUAGE_NONE][0]['value']) && $node->field_sms_referral_has_email[LANGUAGE_NONE][0]['value'] == 1) {
-    // Mailchimp signup:
+    // If Mailchimp Group is present:
     if (isset($node->field_mailchimp_group[LANGUAGE_NONE][0]['value']) && module_exists('dosomething_subscribe_mailchimp')) {
+      // Subscribe alpha_email to Mailchimp Group.
       dosomething_subscribe_mailchimp_signup($alpha_email, $node->field_mailchimp_group[LANGUAGE_NONE][0]['value']);
     }
-    // Mandrill dispatch:
+    // If Mandrill Key is present:
     if (isset($node->field_mandrill_key[LANGUAGE_NONE][0]['value']) && module_exists('dosomething_mandrill')) {
+      // Send Mandrill email to alpha_email: 
       $message['FNAME'] = $alpha_name;
       dosomething_mandrill_dispatch($alpha_email, $node->field_mandrill_key[LANGUAGE_NONE][0]['value'], $message);
     }  
   }
-  //@todo: Output confirmation message from a new field on the Project node type.
-  drupal_set_message(t('Thanks for signing up!'));
+  // Set signup success message:
+  if (module_exists('dosomething_signups')) {
+    drupal_set_message(dosomething_signups_get_signup_success_msg($node));
+  }
 }
 
 /**
