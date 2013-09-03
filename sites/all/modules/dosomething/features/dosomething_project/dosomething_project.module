@@ -85,9 +85,17 @@ function dosomething_project_theme() {
  * Implements hook_node_view().
  */
 function dosomething_project_node_view($node, $view_mode, $langcode) {
-  //@todo: Add more checks to see whether or not SMS Referral Form is needed on this node.  (e.g. Check for SMS Referral fields)
-  if ($node->type == 'project' && $view_mode == 'full' && module_exists('dosomething_subscribe_mobilecommons')) {
-    $node->content['sms_referral_form'] = drupal_get_form('dosomething_subscribe_mobilecommons_referral_form', $node);
+  // If we're viewing a Project node that has Section Display set:
+  if ($node->type == 'project' && $view_mode == 'full' && !empty($node->field_project_section_display)) {
+    // Loop through Section Display values:
+    foreach ($node->field_project_section_display[LANGUAGE_NONE] as $section_display) {
+      // If SMS Referral section is set and dosomething_subscribe_mobilecommons is enabled:
+      if ($section_display['value'] == 'sms_referral' && module_exists('dosomething_subscribe_mobilecommons')) {
+        // Set SMS Referral Form variable in node content for rendering in theme layer.
+        $node->content['sms_referral_form'] = drupal_get_form('dosomething_subscribe_mobilecommons_referral_form', $node);
+        break;
+      }
+    }
   }
 }
 
