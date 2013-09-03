@@ -12,13 +12,8 @@ function dosomething_terminator_admin_settings_form() {
   $form = array();
   $form['dosomething_terminator_is_terminating'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Terminate nodes'),
+    '#title' => t('Run Terminator cron queue'),
     '#default_value' => variable_get('dosomething_terminator_is_terminating', FALSE),
-  );
-  $form['dosomething_terminator_current_node_type'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Node type to kill'),
-    '#default_value' => variable_get('dosomething_terminator_current_node_type', NULL),
   );
   $form['dosomething_terminator_batch_size'] = array(
     '#type' => 'textfield',
