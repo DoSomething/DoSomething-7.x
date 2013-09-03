@@ -1010,8 +1010,13 @@ function doit_preprocess_project_section_header(&$vars) {
     $vars['twitter_share_msg'] = rawurlencode($node->field_twitter_share_msg[LANGUAGE_NONE][0]['value']);
   }
   // For this header section, overwrite $sponsors variable with the sponsor theme section to render.
+  // If sponsors variable exists, it was set in preprocess_node, checking for sponsors field values.
   if (isset($vars['sponsors'])) {
     $vars['sponsors'] = theme('project_section_sponsors', $vars);
+  }
+  // If it wasn't set, set to FALSE to prevent displaying the sponsors section.
+  else {
+    $vars['sponsors'] = FALSE;
   }
 }
 
