@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Code from the future.
+ */
+
+define('DOSOMETHING_TERMINATOR_QUEUE_CRON', 'dosomething_terminator_cron');
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_terminator_menu() {
+  $items = array();
+  $items['admin/config/dosomething/dosomething_terminator'] = array(
+    'title' => 'DoSomething Terminator',
+    'description' => t('Enable and terminate node types.'),
+    'access arguments' => array('administer modules'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dosomething_terminator_admin_settings_form'),
+    'file' => 'dosomething_terminator.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function dosomething_terminator_cron() {
+	// Only process queue if we're terminating.
+	if (variable_get('dosomething_terminator_is_terminating', FALSE)) {
+	  dosomething_terminator_process_queue();
+	}
+}
+
+/**
+ * Bulk deletes nodes which have been queued for deletion.
+ */
+function dosomething_terminator_process_queue() {
+  $queue = DrupalQueue::get(DOSOMETHING_TERMINATOR_QUEUE_CRON);
+  $queue->createQueue();
+  $queue_count = $queue->numberOfItems();
+  if ($queue_count > 0) {
+  	$item = $queue->claimItem();
+  	node_delete_multiple($item->data);
+  	$queue->deleteItem($item);
+  }
+}
+
+/**
+ * Adds all node nid's of a given type into the queue for deletion via terminator cron.
+ */
+function dosomething_terminator_queue_node_type($type) {
+  $nids = dosomething_terminator_get_all_nids_of_type($type);
+  $batch = array();
+  $batch_size = variable_get('dosomething_terminator_batch_size', 100);
+  $i = 0;
+  foreach ($nids as $nid) {
+  	// Store nid.
+  	$batch[$i] = $nid;
+  	// Increment counter.
+  	$i++;
+  	// If we're at batch size, queue for deletion and reset $i for new batch.
+  	if ($i == $batch_size) {
+  		dosomething_terminator_queue_batch($batch);
+  		$batch = array();
+  		$i = 0;
+  	}
+  }
+  // Queue any leftovers:
+  if (!empty($batch)) {
+  	dosomething_terminator_queue_batch($batch);
+  }
+}
+
+/**
+ * Adds a given array of nid's to the terminator cron queue.
+ */
+function dosomething_terminator_queue_batch($nids) {
+  // Queue batch for scheduled termination.
+  $queue = DrupalQueue::get(DOSOMETHING_TERMINATOR_QUEUE_CRON);
+  $queue->createQueue();
+  $queue->createItem($nids);
+}
+
+/**
+ * Returns all node nid's of a given type.
+ */
+function dosomething_terminator_get_all_nids_of_type($type) {
+	$nids = array();
+	$query = db_select('node', 'n')
+	  ->fields('n', array('nid'))
+	  ->condition('type', $type);
+	$result = $query->execute();
+	foreach ($result as $record) {
+	  $nids[] = $record->nid;
+	}
+	return $nids;
+}
