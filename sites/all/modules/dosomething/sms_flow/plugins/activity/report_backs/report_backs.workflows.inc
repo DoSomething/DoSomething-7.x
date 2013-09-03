@@ -634,6 +634,128 @@ $activity->inputs = array('submit_report_back', 'ask_picture');
 $workflows[$workflow->name] = $workflow;
 
 /**
+ * Fed Up 2013 Report Back - Part 1
+ * Retrieve the user's school id and text answers to questions
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_fedup_report_back_1';
+$workflow->title = 'Fed Up 2013 Report Back - Part 1';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('check_user_school');
+
+$activity = $workflow->newActivity('sms_flow_check_school');
+$activity->name = 'check_user_school';
+$activity->inputs = array('start');
+$activity->outputs = array(/*'school_found',*/ 'ask_state');
+$activity->school_found_activity = 'school_found';
+$activity->no_school_found_activity = 'ask_state';
+
+// @todo If user does have a school set to her profile, verify the school
+// $activity = $workflow->newActivity('verify_school');
+// $activity->name = 'school_found';
+// $activity->inputs = array('check_user_school');
+// $activity->outputs = array('end');
+
+// If user does not have a school set or she wants to reset it, start the school search
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_state';
+$activity->inputs = array('check_user_school');
+$activity->outputs = array('ask_school_name');
+$activity->question = t('We\'re going to ask a couple questions to find your school because [TODO]. What state is your school in? Reply with the 2 letter abbreviation. (ex: NY)');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_school_name';
+$activity->inputs = array('ask_state');
+$activity->outputs = array('school_search');
+$activity->context_value_for_msg = 'ask_state';
+$activity->question = t('What\'s the name of your school in @context_value?');
+
+$activity = $workflow->newActivity('gs_school_search');
+$activity->name = 'school_search';
+$activity->inputs = array('ask_school_name');
+$activity->outputs = array('ask_q1', 'end');
+$activity->state_activity_name = 'ask_state';
+$activity->school_activity_name = 'ask_school_name';
+$activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text KEYWORD to try again or go to fedup.dosomething.org');
+$activity->one_school_found_msg = t('We found @school_name at @school_street, @school_city, @school_state. Is this your school? Reply Y. Otherwise, text KEYWORD to try again or go to fedup.dosomething.org');
+$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school, KEYWORD to search again, or fedup.dosomething.org if your school\'s not here');
+$activity->invalid_response_msg = t('Sorry, your response is invalid. Text KEYWORD to try searching again or go to fedup.dosomething.org.');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_q1';
+$activity->inputs = array('school_search');
+$activity->outputs = array('ask_q2');
+$activity->question = t('This is question 1. Respond.');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_q2';
+$activity->inputs = array('ask_q1');
+$activity->outputs = array('ask_q3');
+$activity->question = t('This is question 2. Respond.');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_q3';
+$activity->inputs = array('ask_q2');
+$activity->outputs = array('strip_signature');
+$activity->question = t('This is question 3. Respond.');
+
+$activity = $workflow->newActivity('strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_q3');
+$activity->outputs = array('submit_report_back');
+
+// @todo Implement submit_external_report_back activity
+$activity = $workflow->newActivity('submit_external_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('school_search','submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Fed Up 2013 Report Back - Part 2
+ * Receive MMS from the user, find user's previously submitted report back, and update with the image
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_fedup_report_back_2';
+$workflow->title = 'Fed Up 2013 Report Back - Part 2';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('submit_report_back');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 0; // @todo
+
+// @todo Implement submit_external_report_back activity
+// - GET submission request with phone # or uid?
+// - then UPDATE request with image url?
+$activity = $workflow->newActivity('submit_external_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('end');
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
  * Hunt 2013 Report Back - Environment
  */
 $workflow = new ConductorWorkflow;
