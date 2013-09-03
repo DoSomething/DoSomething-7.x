@@ -52,7 +52,7 @@ function dosomething_terminator_process_queue_item() {
   	// Die.
   	node_delete_multiple($item->data['nids']);
   	// Log count of nodes, type, and nid's in watchdog.
-  	watchdog('dosomething_terminator', 'Deleted ' . count($item->data['nids']) . ' ' . $item->data['node_type'] . 'nodes: ' . serialize($item->data));
+  	watchdog('dosomething_terminator', 'Deleted ' . count($item->data['nids']) . ' ' . $item->data['node_type'] . ' nodes: ' . serialize($item->data));
   	// Delete queue item.
   	$queue->deleteItem($item);
   }

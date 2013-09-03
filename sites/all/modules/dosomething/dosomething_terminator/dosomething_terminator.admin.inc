@@ -14,6 +14,7 @@ function dosomething_terminator_admin_settings_form() {
     '#type' => 'checkbox',
     '#title' => t('Run Terminator cron queue'),
     '#default_value' => variable_get('dosomething_terminator_is_terminating', FALSE),
+    '#description' => "What's in the queue?  Check " . l('the Terminator report.', 'admin/reports/dosomething_terminator'),
   );
   $form['dosomething_terminator_batch_size'] = array(
     '#type' => 'textfield',

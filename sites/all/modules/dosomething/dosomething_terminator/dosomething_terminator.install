@@ -6,7 +6,7 @@
  */
 
 /**
- * Terminate help_ticket nodes.
+ * Create cron queue to terminate help_ticket nodes.
  */
 function dosomething_terminator_update_7000() {
   dosomething_terminator_queue_node_type('help_ticket');
