@@ -42,10 +42,10 @@
   </div>
 
   <div class="content-block feature three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
-    <a class="full-link" href="/bully"><span>Do This</span></a>
+    <a class="full-link" href="/survivors"><span>Do This</span></a>
     <div class="headline yellow">
       <div class="headline-text"><h3>Donate old phones to help domestic abuse survivors</h3></div>
-      <p class="block-cta"><a href="/bully" class="btn primary large">Do This</a></p>
+      <p class="block-cta"><a href="/survivors" class="btn primary large">Do This</a></p>
     </div>
   </div>
 
