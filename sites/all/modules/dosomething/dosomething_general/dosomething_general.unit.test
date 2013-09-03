@@ -75,28 +75,6 @@ class DosomethingGeneralTestCase extends DrupalUnitTestCase {
     $this->assertIdentical($replace, '$#@(-');
   }
 
-  /*******************
-   *  Mobile commons *
-   *******************/
-
-  /**
-   * @see dosomething_general_mobile_commons_subscribe_with_friends()
-   */
-  public function testMCSubscribeWithFriends() {
-    $subscribe = dosomething_general_mobile_commons_subscribe_with_friends('610-555-4493', 18301, array('610-555-4493'), 18301);
-    $this->assertTrue($subscribe instanceof stdClass);
-    $this->assertTrue($subscribe->data == 'OK! (To have your browser automatically redirect, add a well-formed redirect_to= parameter to your post)');
-  }
-
-  /**
-   * @see dosomething_general_mobile_commons_subscribe()
-   */
-  public function testMCSubscribe() {
-    $subscribe = dosomething_general_mobile_commons_subscribe('610-555-4493', 18301);
-    $this->assertTrue($subscribe instanceof stdClass);
-    $this->assertTrue($subscribe->data == 'OK! (To have your browser automatically redirect, add a well-formed redirect_to= parameter to your post)');
-  }
-
   /**
    * @see dosomething_general_valid_cell()
    */

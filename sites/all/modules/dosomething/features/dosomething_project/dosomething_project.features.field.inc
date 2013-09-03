@@ -4523,7 +4523,7 @@ function dosomething_project_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -4659,6 +4659,79 @@ function dosomething_project_field_default_fields() {
         ),
         'type' => 'file_generic',
         'weight' => '9',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-project-field_signup_success_msg'.
+  $fields['node-project-field_signup_success_msg'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_signup_success_msg',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Message that is displayed after a gated signup, or after submitting the SMS Referral Form.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 54,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_signup_success_msg',
+      'label' => 'Signup Success Message',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '8',
       ),
     ),
   );
@@ -5415,6 +5488,7 @@ function dosomething_project_field_default_fields() {
   t('Include Alpha Email on Form');
   t('Mailchimp Group');
   t('Mandrill Key');
+  t('Message that is displayed after a gated signup, or after submitting the SMS Referral Form.');
   t('Mobilecommons Opt-In');
   t('Mobilecommons Opt-In Alpha');
   t('Mobilecommons Opt-In Beta');
@@ -5443,6 +5517,7 @@ function dosomething_project_field_default_fields() {
   t('SMS Example Headline');
   t('SMS Example Message');
   t('SMS Referral Info Copy');
+  t('Signup Success Message');
   t('Signup User on Gate Login');
   t('Sponsor Logo');
   t('Sponsor URL');

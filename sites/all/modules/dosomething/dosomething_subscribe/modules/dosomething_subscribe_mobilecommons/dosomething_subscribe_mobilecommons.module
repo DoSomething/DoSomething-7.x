@@ -18,6 +18,62 @@ function dosomething_subscribe_mobilecommons_signup($cell, $mobilecommons_optin)
   return;
 }
 
+
+/**
+ * Sends a Mobilecommons API request to Mobilecommons for given alpha mobile to given alpha opt-in, and given beta mobiles to given beta opt-in.
+ *
+ * @param string $alpha_mobile
+ *   Alpha mobile number to signup.
+ * @param string $alpha_opt_in_path
+ *   Alpha opt-in path.
+ * @param array $beta_mobiles
+ *   Array of beta mobile numbers to signup.
+  * @param string $beta_opt_in_path
+ *   Beta opt-in path.
+ */
+function dosomething_subscribe_mobilecommons_referral_signup($alpha_mobile, $alpha_opt_in_path, $beta_mobiles = array(), $beta_opt_in_path = '', $args = array()) {
+  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
+  global $user;
+  if ($user->uid > 0) {
+    $profile = profile2_load_by_user($user, 'main');
+    $fname = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+    $lname = $profile->field_user_last_name[LANGUAGE_NONE][0]['value'];
+    $args += array(
+      'first_name' => $fname,
+      'last_name' => $lname,
+    );
+  }
+  $friends = '';
+  foreach ($beta_mobiles AS $key => $mobile) {
+    if (!empty($mobile) && dosomething_general_valid_cell($mobile)) {
+      $friends .= '&friends[]=' . $mobile;
+    }
+  }
+  $friends .= '&friends_opt_in_path=' . $beta_opt_in_path;
+  $apath = '';
+  if ($alpha_opt_in_path > 0) {
+     $apath = '&opt_in_path[]=' . $alpha_opt_in_path;
+  }
+  // Send the post data.
+  $options = array(
+    'headers' => array(
+      'Content-type' => 'application/x-www-form-urlencoded',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    ),
+    'method' => 'POST',
+    'data' => "person[phone]=$alpha_mobile" . $apath . $friends,
+  );
+  if (!empty($args)) {
+    foreach ($args AS $key => $val) {
+      $options['data'] .= "&person[$key]=" . urlencode($val);
+    }
+  }
+  $result = drupal_http_request($api_opt_in_path_url, $options);
+  watchdog('dosomething_subscribe_mobilecommons', 'Referral signup response = ' . print_r($result, TRUE));
+  //@todo: Check response for errors.
+  return $result;
+}
+
 /**
  * Form callback for mobile signup / referral form.
  */
@@ -92,6 +148,7 @@ function dosomething_subscribe_mobilecommons_referral_form_validate($form, &$for
  * Form submit callback for mobile signup / referral form.
  */
 function dosomething_subscribe_mobilecommons_referral_form_submit($form, &$form_state) {
+  global $user;
   $args = array();
   $alpha_name = $form_state['values']['alpha_name'];
   $args['first_name'] = $alpha_name;
@@ -109,27 +166,48 @@ function dosomething_subscribe_mobilecommons_referral_form_submit($form, &$form_
   // Load node to find relevant subscribe values.
   $node = node_load($form_state['values']['nid']);
 
-  // Mobilecommons Referral signup:
-  $alpha_optin = $node->field_mobilecommons_opt_in_alpha[LANGUAGE_NONE][0]['value'];
-  $beta_optin =$node->field_mobilecommons_opt_in_beta[LANGUAGE_NONE][0]['value'];
-  // @todo: Move this subscribe_with_friends function into this module.
-  $response = dosomething_general_mobile_commons_subscribe_with_friends($alpha_mobile, $alpha_optin, $beta_mobiles, $beta_optin, $args);
-  watchdog('dosomething_subscribe_mobilecommons', 'Referral signup response = ' . print_r($response, TRUE));
+  // If alpha and beta opt-in paths are set:
+  if (isset($node->field_mobilecommons_opt_in_alpha[LANGUAGE_NONE][0]['value']) && isset($node->field_mobilecommons_opt_in_beta[LANGUAGE_NONE][0]['value'])) {
+    // Send subscribe request to Mobilecommons:
+    $response = dosomething_subscribe_mobilecommons_referral_signup($alpha_mobile, $node->field_mobilecommons_opt_in_alpha[LANGUAGE_NONE][0]['value'], $beta_mobiles, $node->field_mobilecommons_opt_in_beta[LANGUAGE_NONE][0]['value'], $args);
+    // If there was a bad response, alert user.
+    if (!$response) {
+      drupal_set_message(t('Sorry, there was an error in the response.  Please try submitting again.'), 'warning');
+      return;
+    }
+  }
+  // Else if no paths are set, an admin needs to update the alpha/beta values.  
+  // The idea here is that hopefully a user never sees this.
+  else {
+    drupal_set_message('Missing alpha and beta opt-in paths.  Please contact an administrator.', 'warning');
+    return;
+  }
 
-  // If email field is present, check for subscribe values:
+  // If email form field is present:
   if (isset($node->field_sms_referral_has_email[LANGUAGE_NONE][0]['value']) && $node->field_sms_referral_has_email[LANGUAGE_NONE][0]['value'] == 1) {
-    // Mailchimp signup:
+    // If Mailchimp Group is present:
     if (isset($node->field_mailchimp_group[LANGUAGE_NONE][0]['value']) && module_exists('dosomething_subscribe_mailchimp')) {
+      // Subscribe alpha_email to Mailchimp Group.
       dosomething_subscribe_mailchimp_signup($alpha_email, $node->field_mailchimp_group[LANGUAGE_NONE][0]['value']);
     }
-    // Mandrill dispatch:
+    // If Mandrill Key is present:
     if (isset($node->field_mandrill_key[LANGUAGE_NONE][0]['value']) && module_exists('dosomething_mandrill')) {
+      // Send Mandrill email to alpha_email: 
       $message['FNAME'] = $alpha_name;
       dosomething_mandrill_dispatch($alpha_email, $node->field_mandrill_key[LANGUAGE_NONE][0]['value'], $message);
     }  
   }
-  //@todo: Output confirmation message from a new field on the Project node type.
-  drupal_set_message(t('Thanks for signing up!'));
+
+  // Store signup and set signup success message:
+  if (module_exists('dosomething_signups')) {
+    // If user is signed in, store as a signup:
+    if ($user->uid > 0 && !dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
+      // Insert signups record:
+      dosomething_signups_insert_signup($user->uid, $node->nid);
+    }
+    // Set success message:
+    drupal_set_message(dosomething_signups_get_signup_success_msg($node));
+  }
 }
 
 /**
