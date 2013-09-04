@@ -31,6 +31,10 @@
   <?php print render($content['action_items']); ?>
   <?php endif; ?>
 
+  <?php if (isset($content['reportback'])): ?>
+  <?php print render($content['reportback']); ?>
+  <?php endif; ?>
+
   <?php if (isset($content['prizes'])): ?>
   <?php print render($content['prizes']); ?>
   <?php endif; ?>

@@ -21,7 +21,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Action Items',
-    'weight' => '17',
+    'weight' => '18',
     'children' => array(
       0 => 'field_action_items',
       1 => 'field_action_items_headline',
@@ -82,7 +82,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Call to Action',
-    'weight' => '16',
+    'weight' => '17',
     'children' => array(
       0 => 'field_cta_button_label',
       1 => 'field_cta_copy',
@@ -111,7 +111,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'FAQ',
-    'weight' => '22',
+    'weight' => '23',
     'children' => array(
       0 => 'field_faq',
       1 => 'field_faq_headline',
@@ -141,7 +141,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Gallery',
-    'weight' => '21',
+    'weight' => '22',
     'children' => array(
       0 => 'field_gallery_button_label',
       1 => 'field_gallery_copy',
@@ -206,7 +206,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Project Info',
-    'weight' => '19',
+    'weight' => '20',
     'children' => array(
       0 => 'field_project_info_copy',
       1 => 'field_project_info_headline',
@@ -236,7 +236,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Prizes',
-    'weight' => '18',
+    'weight' => '19',
     'children' => array(
       0 => 'field_prizes',
       1 => 'field_prizes_button_label',
@@ -267,7 +267,7 @@ function dosomething_project_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Project Profiles',
-    'weight' => '20',
+    'weight' => '21',
     'children' => array(
       0 => 'field_project_profiles',
       1 => 'field_project_profiles_copy',
@@ -285,6 +285,36 @@ function dosomething_project_field_group_info() {
     ),
   );
   $export['group_project_profiles|node|project|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_project_reportback|node|project|form';
+  $field_group->group_name = 'group_project_reportback';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'project';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Report Back',
+    'weight' => '16',
+    'children' => array(
+      0 => 'field_reportback_copy',
+      1 => 'field_max_num_reportbacks',
+      2 => 'field_reportback_success_msg',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Report Back',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-project-reportback field-group-fieldset ',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_project_reportback|node|project|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */

@@ -623,8 +623,7 @@ $activity->submission_fields = array(
   'ask_why' => 3,
   'picture' => 'ask_picture:mms',
 );
-$activity->field_value_in_response = 'ask_phones';
-$activity->success_response = "You are a rockstar. You've been entered to win @field_value times. Have more pics to share? Text MORE for another entry. All set? Text PHONE!";
+$activity->success_response = 161485;
 $activity->webform_nid = 731009;
 
 $activity = $workflow->newActivity('end');
