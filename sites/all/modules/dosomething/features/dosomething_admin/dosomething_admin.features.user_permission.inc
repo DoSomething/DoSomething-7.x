@@ -259,15 +259,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create scroller content.
-  $permissions['create scroller content'] = array(
-    'name' => 'create scroller content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: create share_of_day content.
   $permissions['create share_of_day content'] = array(
     'name' => 'create share_of_day content',
@@ -407,13 +398,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any scroller content.
-  $permissions['delete any scroller content'] = array(
-    'name' => 'delete any scroller content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any share_of_day content.
   $permissions['delete any share_of_day content'] = array(
     'name' => 'delete any share_of_day content',
@@ -529,13 +513,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own quiz content.
   $permissions['delete own quiz content'] = array(
     'name' => 'delete own quiz content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own scroller content.
-  $permissions['delete own scroller content'] = array(
-    'name' => 'delete own scroller content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -689,15 +666,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any quiz content.
   $permissions['edit any quiz content'] = array(
     'name' => 'edit any quiz content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any scroller content.
-  $permissions['edit any scroller content'] = array(
-    'name' => 'edit any scroller content',
     'roles' => array(
       0 => 'staff',
     ),
