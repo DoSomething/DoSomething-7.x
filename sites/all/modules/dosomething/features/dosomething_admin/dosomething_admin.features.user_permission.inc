@@ -221,13 +221,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create help_ticket content.
-  $permissions['create help_ticket content'] = array(
-    'name' => 'create help_ticket content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: create member_opportunity content.
   $permissions['create member_opportunity content'] = array(
     'name' => 'create member_opportunity content',
@@ -393,13 +386,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any help_ticket content.
-  $permissions['delete any help_ticket content'] = array(
-    'name' => 'delete any help_ticket content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any member_opportunity content.
   $permissions['delete any member_opportunity content'] = array(
     'name' => 'delete any member_opportunity content',
@@ -529,13 +515,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own grant_application content.
   $permissions['delete own grant_application content'] = array(
     'name' => 'delete own grant_application content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own help_ticket content.
-  $permissions['delete own help_ticket content'] = array(
-    'name' => 'delete own help_ticket content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -695,15 +674,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any grant_application content.
   $permissions['edit any grant_application content'] = array(
     'name' => 'edit any grant_application content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any help_ticket content.
-  $permissions['edit any help_ticket content'] = array(
-    'name' => 'edit any help_ticket content',
     'roles' => array(
       0 => 'staff',
     ),
