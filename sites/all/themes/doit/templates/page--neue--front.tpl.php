@@ -41,25 +41,25 @@
     </div>
   </div>
 
-  <div class="content-block feature three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
-    <a class="full-link" href="/bully"><span>Do This</span></a>
-    <div class="headline blue">
-      <div class="headline-text"><h3>Invite friends to stand up to bullying</h3></div>
-      <p class="block-cta"><a href="/bully" class="btn primary large">Do This</a></p>
+  <div class="content-block feature three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
+    <a class="full-link" href="/survivors"><span>Do This</span></a>
+    <div class="headline yellow">
+      <div class="headline-text"><h3>Donate old phones to help domestic abuse survivors</h3></div>
+      <p class="block-cta"><a href="/survivors" class="btn primary large">Do This</a></p>
     </div>
   </div>
 
   <div class="content-block feature three-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/spit-block.png'); background-position: center center;">
     <a class="full-link" href="/spit"><span>Do This</span></a>
     <div class="headline red">
-      <div class="headline-text"><h3>Save a life at your next party.</h3></div>
+      <div class="headline-text"><h3>Save a life at your next party</h3></div>
       <p class="block-cta"><a href="/spit" class="btn primary large">Do This</a></p>
     </div>
   </div>
 
   <div class="content-block feature three-col right" style="background-image: url('/sites/all/libraries/ds-neue/assets/images/placeholders/homepage3.jpg'); background-position: center center;">
     <a class="full-link" href="/birthdaymail"><span>Do This</span></a>
-    <div class="headline yellow">
+    <div class="headline blue">
       <div class="headline-text"><h3>Make a b'day card for a homeless teen</h3></div>
       <p class="block-cta"><a href="/birthdaymail" class="btn primary large">Do This</a></p>
     </div>

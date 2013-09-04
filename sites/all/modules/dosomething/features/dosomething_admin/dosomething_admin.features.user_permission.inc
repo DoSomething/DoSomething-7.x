@@ -189,13 +189,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create club_event content.
-  $permissions['create club_event content'] = array(
-    'name' => 'create club_event content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: create dsaward_rec content.
   $permissions['create dsaward_rec content'] = array(
     'name' => 'create dsaward_rec content',
@@ -218,13 +211,6 @@ function dosomething_admin_user_default_permissions() {
     'roles' => array(
       0 => 'staff',
     ),
-    'module' => 'node',
-  );
-
-  // Exported permission: create help_ticket content.
-  $permissions['create help_ticket content'] = array(
-    'name' => 'create help_ticket content',
-    'roles' => array(),
     'module' => 'node',
   );
 
@@ -267,15 +253,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: create quiz content.
   $permissions['create quiz content'] = array(
     'name' => 'create quiz content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: create scroller content.
-  $permissions['create scroller content'] = array(
-    'name' => 'create scroller content',
     'roles' => array(
       0 => 'staff',
     ),
@@ -365,13 +342,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any club_event content.
-  $permissions['delete any club_event content'] = array(
-    'name' => 'delete any club_event content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any dsaward_rec content.
   $permissions['delete any dsaward_rec content'] = array(
     'name' => 'delete any dsaward_rec content',
@@ -389,13 +359,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete any grant_application content.
   $permissions['delete any grant_application content'] = array(
     'name' => 'delete any grant_application content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete any help_ticket content.
-  $permissions['delete any help_ticket content'] = array(
-    'name' => 'delete any help_ticket content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -431,13 +394,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete any quiz content.
   $permissions['delete any quiz content'] = array(
     'name' => 'delete any quiz content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete any scroller content.
-  $permissions['delete any scroller content'] = array(
-    'name' => 'delete any scroller content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -505,13 +461,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete own club_event content.
-  $permissions['delete own club_event content'] = array(
-    'name' => 'delete own club_event content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete own dsaward_rec content.
   $permissions['delete own dsaward_rec content'] = array(
     'name' => 'delete own dsaward_rec content',
@@ -529,13 +478,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own grant_application content.
   $permissions['delete own grant_application content'] = array(
     'name' => 'delete own grant_application content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own help_ticket content.
-  $permissions['delete own help_ticket content'] = array(
-    'name' => 'delete own help_ticket content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -571,13 +513,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own quiz content.
   $permissions['delete own quiz content'] = array(
     'name' => 'delete own quiz content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own scroller content.
-  $permissions['delete own scroller content'] = array(
-    'name' => 'delete own scroller content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -665,15 +600,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any club_event content.
-  $permissions['edit any club_event content'] = array(
-    'name' => 'edit any club_event content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: edit any dsaward_rec content.
   $permissions['edit any dsaward_rec content'] = array(
     'name' => 'edit any dsaward_rec content',
@@ -695,15 +621,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any grant_application content.
   $permissions['edit any grant_application content'] = array(
     'name' => 'edit any grant_application content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any help_ticket content.
-  $permissions['edit any help_ticket content'] = array(
-    'name' => 'edit any help_ticket content',
     'roles' => array(
       0 => 'staff',
     ),
@@ -749,15 +666,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any quiz content.
   $permissions['edit any quiz content'] = array(
     'name' => 'edit any quiz content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any scroller content.
-  $permissions['edit any scroller content'] = array(
-    'name' => 'edit any scroller content',
     'roles' => array(
       0 => 'staff',
     ),

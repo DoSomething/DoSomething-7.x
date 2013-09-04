@@ -1,0 +1,5 @@
+name = DoSomething - Terminator
+description = Utility module for scheduling bulk termination of old nodes.
+core = 7.x
+package = "DoSomething"
+configure = admin/config/dosomething/dosomething_terminator

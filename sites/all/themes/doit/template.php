@@ -286,6 +286,7 @@ function doit_preprocess_node(&$vars) {
   elseif ($vars['node']->type == 'project') {
     
     // Store node object to pass into each section.
+    //@todo: clean this up. pretty sure we can just pass in $vars instead of $params to make it less confusing.
     $params['node'] = $vars['node'];
 
     // Various sections use rules and regs file, so store its uri in parmas.
@@ -313,9 +314,9 @@ function doit_preprocess_node(&$vars) {
       if ($section_name == 'sms_referral') {
         $params['sms_referral_form'] = $vars['content']['sms_referral_form'];
       }
-      // Else unset the sms_referral_form param if it exists:
-      elseif (isset($params['sms_referral_form'])) {
-        unset($params['sms_referral_form']);
+      // If this is the SMS Referral section, pass through actual SMS Referral form as param:
+      elseif ($section_name == 'reportback') {
+        $params['reportback_form'] = $vars['content']['reportback_form'];
       }
       // Set the content section for this $section_name:
       $vars['content'][$section_name]['#markup'] = theme('project_section_' . $section_name, $params);
@@ -1010,8 +1011,13 @@ function doit_preprocess_project_section_header(&$vars) {
     $vars['twitter_share_msg'] = rawurlencode($node->field_twitter_share_msg[LANGUAGE_NONE][0]['value']);
   }
   // For this header section, overwrite $sponsors variable with the sponsor theme section to render.
+  // If sponsors variable exists, it was set in preprocess_node, checking for sponsors field values.
   if (isset($vars['sponsors'])) {
     $vars['sponsors'] = theme('project_section_sponsors', $vars);
+  }
+  // If it wasn't set, set to FALSE to prevent displaying the sponsors section.
+  else {
+    $vars['sponsors'] = FALSE;
   }
 }
 
