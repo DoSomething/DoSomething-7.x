@@ -671,7 +671,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_name';
 $activity->inputs = array('ask_state');
 $activity->outputs = array('school_search');
-$activity->context_value_for_msg = 'ask_state';
+$activity->context_value_for_msg = 'ask_state:message';
 $activity->question = t('What\'s the name of your school in @context_value?');
 
 $activity = $workflow->newActivity('gs_school_search');
@@ -683,13 +683,14 @@ $activity->school_activity_name = 'ask_school_name';
 $activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text KEYWORD to try again or go to fedup.dosomething.org');
 $activity->one_school_found_msg = t('We found @school_name at @school_street, @school_city, @school_state. Is this your school? Reply Y. Otherwise, text KEYWORD to try again or go to fedup.dosomething.org');
 $activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school, KEYWORD to search again, or fedup.dosomething.org if your school\'s not here');
-$activity->invalid_response_msg = t('Sorry, your response is invalid. Text KEYWORD to try searching again or go to fedup.dosomething.org.');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text KEYWORD to try searching again or go to fedup.dosomething.org.');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_q1';
 $activity->inputs = array('school_search');
 $activity->outputs = array('ask_q2');
-$activity->question = t('This is question 1. Respond.');
+$activity->context_value_for_msg = 'selected_school_name';
+$activity->question = t('The school you selected was @context_value. This is question 1. Respond.');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_q2';

@@ -87,8 +87,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
         '@school_state' => $results[0]->state));
       $state->setContext('sms_response', $response);
       
-      // $state->markSuspended();
-      self::selectNextActivity(TRUE);
+      $state->markSuspended();
     }
     // Multiple results found
     elseif ($numResults > 1) {
@@ -103,8 +102,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
       }
       $state->setContext('sms_response', $response);
       
-      // $state->markSuspended();
-      self::selectNextActivity(TRUE);
+      $state->markSuspended();
     }
     // No results found
     else {
@@ -113,6 +111,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
         '@school_state' => $schoolState));
       $state->setContext('sms_response', $response);
 
+      // End the workflow by going to the 'end' activity
       self::selectNextActivity(TRUE);
     }
   }
@@ -144,40 +143,99 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
    */
   private function handleUserResponse($userResponse) {
     $state = $this->getState();
-    $userResponse = strtoupper($userResponse);
-    // if Y, save school gsid to context 'school_sid'
-    if ($userResponse == 'Y') {
+    $userResponse = strtoupper(trim($userResponse));
+    // If Y, save school gsid to context 'school_sid'
+    if (self::isYesResponse($userResponse)) {
       $results = $state->getContext('gs_school_search_results');
+
+      $state->setContext('selected_school_name', $results[0]->name);
       $state->setContext('school_sid', $results[0]->gsid);
 
       self::selectNextActivity(FALSE);
     }
-    // if #, check if valid, then save school gsid to context 'school_sid'
-    elseif (self::isValidSchoolSelection($userResponse)) {
+    // If #, check if valid, then save school gsid to context 'school_sid'
+    elseif (self::isValidSchoolIndex($userResponse)) {
       $results = $state->getContext('gs_school_search_results');
 
-      $userSelection = $userResponse - 1; // Displayed value is +1 of actual index value
-      $state->setContext('school_sid', $results[$userSelection]->gsid);
+      $schoolIndex = $userResponse - 1; // Displayed value is +1 of actual index value
+      $state->setContext('selected_school_name', $results[$schoolIndex]->name);
+      $state->setContext('school_sid', $results[$schoolIndex]->gsid);
 
       self::selectNextActivity(FALSE);
     }
-    // if anything else, return invalid response, go to end
     else {
-      $state->setContext('sms_response', $this->invalid_response_msg);
-      self::selectNextActivity(TRUE);
+      // If user did not follow directions and texted back their school name instead
+      // of the number, then try to handle it here
+      $schoolMatch = self::findSchoolNameMatch($userResponse);
+      if ($schoolMatch) {
+        $state->setContext('selected_school_name', $schoolMatch->name);
+        $state->setContext('school_sid', $schoolMatch->gsid);
+
+        self::selectNextActivity(FALSE);
+      }
+      // If anything else, return invalid response, go to end
+      else {
+        $state->setContext('sms_response', $this->invalid_response_msg);
+
+        self::selectNextActivity(TRUE);
+      }
+    }
+  }
+
+  /**
+   * Determine whether or not user response qualifies as a 'Yes'
+   *
+   * @return TRUE if qualified as a 'Yes'. Otherwise, FALSE.
+   */
+  private function isYesResponse($userResponse) {
+    $words = explode(' ', $userResponse);
+    $firstWord = $words[0];
+
+    if ($firstWord == 'Y'
+        || $firstWord == 'YA'
+        || $firstWord == 'YEA'
+        || $firstWord == 'YES') {
+      return TRUE;
+    }
+    else {
+      return FALSE;
     }
   }
 
   /**
    * Ensure user's school selection is within the bounds of the results found.
+   *
+   * @return TRUE if user's selection is valid. Otherwise, FALSE.
    */
-  private function isValidSchoolSelection($userResponse) {
+  private function isValidSchoolIndex($userResponse) {
     $state = $this->getState();
 
     if (is_numeric($userResponse)) {
       $results = $state->getContext('gs_school_search_results');
       if ($userResponse > 0 && $userResponse <= count($results)) {
         return TRUE;
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * Goes through search results checking if any of the school names match
+   * the user's response.
+   *
+   * @return Object with school data if match is found. Otherwise, FALSE.
+   */
+  private function findSchoolNameMatch($userResponse) {
+    $state = $this->getState();
+    $results = $state->getContext('gs_school_search_results');
+    $userResponse = trim($userResponse);
+
+    foreach ($results as $schoolData) {
+      $schoolName = strtoupper($schoolData->name);
+
+      if (stripos($schoolName, $userResponse) !== FALSE) {
+        return $schoolData;
       }
     }
 
