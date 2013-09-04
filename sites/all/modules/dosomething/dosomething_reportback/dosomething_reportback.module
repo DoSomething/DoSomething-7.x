@@ -34,11 +34,6 @@ function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
  * Form callback for reportback form for given loaded $node.
  */
 function dosomething_reportback_form($form, &$form_state, $node) {
-	if (isset($node->field_reportback_copy[LANGUAGE_NONE][0]['value']) {
-    $form['header'] = array(
-      '#markup' => $node->field_reportback_copy[LANGUAGE_NONE][0]['value'],
-    );
-  }
   $form['nid'] = array(
     '#type' => 'hidden',
     '#value' => $node->nid,

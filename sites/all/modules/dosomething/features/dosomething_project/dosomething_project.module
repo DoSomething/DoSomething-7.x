@@ -42,14 +42,14 @@ function dosomething_project_theme() {
       	'node' => NULL, 
       ),
     ),
-    'project_section_prizes' => array(
-      'template' => 'project_section_prizes',
-      'arguments' => array(
-      	'node' => NULL, 
-      ),
-    ),
     'project_section_info' => array(
       'template' => 'project_section_info',
+      'arguments' => array(
+        'node' => NULL, 
+      ),
+    ),
+    'project_section_prizes' => array(
+      'template' => 'project_section_prizes',
       'arguments' => array(
       	'node' => NULL, 
       ),
@@ -58,6 +58,12 @@ function dosomething_project_theme() {
       'template' => 'project_section_profiles',
       'arguments' => array(
       	'node' => NULL, 
+      ),
+    ),
+    'project_section_reportback' => array(
+      'template' => 'project_section_reportback',
+      'arguments' => array(
+        'node' => NULL, 
       ),
     ),
     'project_section_sms_example' => array(
