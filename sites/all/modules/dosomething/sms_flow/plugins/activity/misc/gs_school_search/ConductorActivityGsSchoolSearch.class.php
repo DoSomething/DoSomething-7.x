@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * Enum-style class specifiying type of output this activity should go to next.
+ */
+class OutputType {
+  const END = 0;
+  const CONT = 1;
+}
+
+/**
  * Given school and state values from previous activities in a Conductor workflow,
  * search for schools, display results, and handle user responses to those results.
  */
@@ -112,16 +120,16 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
       $state->setContext('sms_response', $response);
 
       // End the workflow by going to the 'end' activity
-      self::selectNextActivity(TRUE);
+      self::selectNextOutput(OutputType::END);
     }
   }
 
   /**
    * Setup activity to go to 'end' activity or whatever other activity is available
    */
-  private function selectNextActivity($bGoToEnd) {
+  private function selectNextOutput($nextOutput) {
     $state = $this->getState();
-    if ($bGoToEnd) {
+    if ($nextOutput == OutputType::END) {
       // Remove any outputs that are not 'end'
       $numOutputs = count($this->outputs);
       foreach ($this->outputs as $key => $activityName) {
@@ -151,7 +159,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
       $state->setContext('selected_school_name', $results[0]->name);
       $state->setContext('school_sid', $results[0]->gsid);
 
-      self::selectNextActivity(FALSE);
+      self::selectNextOutput(OutputType::CONT);
     }
     // If #, check if valid, then save school gsid to context 'school_sid'
     elseif (self::isValidSchoolIndex($userResponse)) {
@@ -161,7 +169,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
       $state->setContext('selected_school_name', $results[$schoolIndex]->name);
       $state->setContext('school_sid', $results[$schoolIndex]->gsid);
 
-      self::selectNextActivity(FALSE);
+      self::selectNextOutput(OutputType::CONT);
     }
     else {
       // If user did not follow directions and texted back their school name instead
@@ -171,13 +179,13 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
         $state->setContext('selected_school_name', $schoolMatch->name);
         $state->setContext('school_sid', $schoolMatch->gsid);
 
-        self::selectNextActivity(FALSE);
+        self::selectNextOutput(OutputType::CONT);
       }
       // If anything else, return invalid response, go to end
       else {
         $state->setContext('sms_response', $this->invalid_response_msg);
 
-        self::selectNextActivity(TRUE);
+        self::selectNextOutput(OutputType::END);
       }
     }
   }

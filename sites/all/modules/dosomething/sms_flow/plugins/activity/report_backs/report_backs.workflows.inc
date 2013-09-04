@@ -650,20 +650,24 @@ $activity->outputs = array('check_user_school');
 $activity = $workflow->newActivity('sms_flow_check_school');
 $activity->name = 'check_user_school';
 $activity->inputs = array('start');
-$activity->outputs = array(/*'school_found',*/ 'ask_state');
+$activity->outputs = array('school_found', 'ask_state');
 $activity->school_found_activity = 'school_found';
 $activity->no_school_found_activity = 'ask_state';
 
-// @todo If user does have a school set to her profile, verify the school
-// $activity = $workflow->newActivity('verify_school');
-// $activity->name = 'school_found';
-// $activity->inputs = array('check_user_school');
-// $activity->outputs = array('end');
+// If user does have a school set to her profile, verify the school
+$activity = $workflow->newActivity('verify_school_in_profile');
+$activity->name = 'school_found';
+$activity->inputs = array('check_user_school');
+$activity->outputs = array('ask_q1', 'ask_state', 'end');
+$activity->output_school_correct = 'ask_q1';
+$activity->output_school_incorrect = 'ask_state';
+$activity->question = t('This is the school we have on file for you: @school_name. If this is correct, reply Y. If not, reply N.');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text KEYWORD to try again or go to fedup.dosomething.org.');
 
 // If user does not have a school set or she wants to reset it, start the school search
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_state';
-$activity->inputs = array('check_user_school');
+$activity->inputs = array('check_user_school', 'school_found');
 $activity->outputs = array('ask_school_name');
 $activity->question = t('We\'re going to ask a couple questions to find your school because [TODO]. What state is your school in? Reply with the 2 letter abbreviation. (ex: NY)');
 
@@ -687,7 +691,7 @@ $activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text KEY
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_q1';
-$activity->inputs = array('school_search');
+$activity->inputs = array('school_found', 'school_search');
 $activity->outputs = array('ask_q2');
 $activity->context_value_for_msg = 'selected_school_name';
 $activity->question = t('The school you selected was @context_value. This is question 1. Respond.');
