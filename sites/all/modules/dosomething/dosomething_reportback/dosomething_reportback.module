@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * dosomething_reportback.module
+ **/
+
+/**
+ * Inserts a record for given user UID and node NID in reportbacks table.
+ */
+function dosomething_reportback_insert_reportback($uid, $nid) {
+  $reportback = db_insert('dosomething_reportbacks')
+  ->fields(array(
+    'uid' => $uid,
+    'nid' => $nid,
+    'timestamp' => REQUEST_TIME,
+    ))
+  ->execute();
+}
+
+/**
+ * Returns count of reportbacks for given user uid and given $nid.
+ */
+function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
+	$result = db_select('dosomething_reportbacks', 'rb', array('target' => 'slave'))
+	          ->fields('rb', array('uid'))
+	          ->condition('uid', $uid)
+            ->condition('nid', $nid)
+            ->execute();
+  return $result->rowCount();
+}
