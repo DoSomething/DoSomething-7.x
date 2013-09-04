@@ -1,7 +1,7 @@
 (function($) {
 	$(document).ready(function() {
 		// List out the sections to toggle:
-		var projectSections = ["sms-referral", "sms-example", "cta", "action-items", "prizes", "info", "profiles", "faq", "gallery"];
+		var projectSections = ["sms-referral", "sms-example", "reportback", "cta", "action-items", "prizes", "info", "profiles", "faq", "gallery"];
 		// Loop through the sections:
 		for (var i = 0; i < projectSections.length; i++) {
 			// Hide all sections on page load:
