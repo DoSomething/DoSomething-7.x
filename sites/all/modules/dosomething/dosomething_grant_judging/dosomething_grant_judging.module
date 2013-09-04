@@ -11,12 +11,12 @@ function dosomething_grant_judging_page_alter(&$page) {
   if ($user->uid > 0 && drupal_match_path(current_path(), 'node/718444/submission/*' . PHP_EOL)) {
     // If user is product team or admin, display Manage Grants tab:
     if (module_exists('dosomething_admin') && dosomething_admin_is_current_user_role('product team')) {
-      // Grab current path to use as destination for all links:
+      // Grab current path to use as destination for all entityqueue admin links:
       $destination = array('query' => array('destination' => current_path()));
       // HACK THE PLANET:
-      $manage_grants = "<div><p>" . l("All Grant Submissions", 'node/718444/webform-results') . 
-      " | <strong>Add to Queue:</strong> " . l('Judging', 'admin/structure/entityqueue/manage/grants_judging', $destination) . ' | ' . l('Too Soon Apply Later', 'admin/structure/entityqueue/manage/grants_toosoon', $destination) . ' | ' . l('No List', 'admin/structure/entityqueue/manage/grants_rejected', $destination)  . '</p></div>';
-      // Add manage grants div into content #submission_navigation.
+      $manage_grants = '<div>' . l("All Grant Submissions", 'node/718444/webform-results') . 
+      " | <strong>Add to Queue:</strong> " . l('Judging', 'admin/structure/entityqueue/manage/grants_judging', $destination) . ' | ' . l('Too Soon Apply Later', 'admin/structure/entityqueue/manage/grants_toosoon', $destination) . ' | ' . l('No List', 'admin/structure/entityqueue/manage/grants_rejected', $destination)  . '</div>';
+      // Add manage grants div into content #submission_navigation markup.
       $page['content']['system_main']['#submission_navigation'] = $manage_grants . $page['content']['system_main']['#submission_navigation'];
     }
   }
