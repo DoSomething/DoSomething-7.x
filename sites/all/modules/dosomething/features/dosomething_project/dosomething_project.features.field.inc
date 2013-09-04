@@ -3368,6 +3368,73 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-project-field_max_num_reportbacks'.
+  $fields['node-project-field_max_num_reportbacks'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_max_num_reportbacks',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Maximum number of reportbacks users can submit for this Project.  Set to 0 for unlimited.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 56,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_max_num_reportbacks',
+      'label' => 'Number of Report Backs',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '44',
+      ),
+    ),
+  );
+
   // Exported field: 'node-project-field_mobilecommons_opt_in'.
   $fields['node-project-field_mobilecommons_opt_in'] = array(
     'field_config' => array(
@@ -4529,6 +4596,151 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-project-field_reportback_copy'.
+  $fields['node-project-field_reportback_copy'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_reportback_copy',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 55,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_reportback_copy',
+      'label' => 'Report Back Copy',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '45',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-project-field_reportback_success_msg'.
+  $fields['node-project-field_reportback_success_msg'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_reportback_success_msg',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Success message displayed after a user has submitted a Report back.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 57,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_reportback_success_msg',
+      'label' => 'Report Back Success Msg',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '46',
+      ),
+    ),
+  );
+
   // Exported field: 'node-project-field_rules_regs_file'.
   $fields['node-project-field_rules_regs_file'] = array(
     'field_config' => array(
@@ -5489,10 +5701,12 @@ function dosomething_project_field_default_fields() {
   t('Include Alpha Email on Form');
   t('Mailchimp Group');
   t('Mandrill Key');
+  t('Maximum number of reportbacks users can submit for this Project.  Set to 0 for unlimited.');
   t('Message that is displayed after a gated signup, or after submitting the SMS Referral Form.');
   t('Mobilecommons Opt-In');
   t('Mobilecommons Opt-In Alpha');
   t('Mobilecommons Opt-In Beta');
+  t('Number of Report Backs');
   t('Org Code');
   t('Prize Copy');
   t('Prize Image');
@@ -5513,6 +5727,8 @@ function dosomething_project_field_default_fields() {
   t('Project Profiles');
   t('Project Profiles Copy');
   t('Project Profiles Headline');
+  t('Report Back Copy');
+  t('Report Back Success Msg');
   t('Rules Regs File');
   t('SMS Example Button Label');
   t('SMS Example Headline');
@@ -5524,6 +5740,7 @@ function dosomething_project_field_default_fields() {
   t('Sponsor URL');
   t('Sponsors');
   t('Subheadline');
+  t('Success message displayed after a user has submitted a Report back.');
   t('Thumbnail');
   t('Twitter Share Msg');
   t('Value for the TITLE tag in the HTML HEAD.');
