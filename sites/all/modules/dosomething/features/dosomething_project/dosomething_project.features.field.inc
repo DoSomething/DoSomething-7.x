@@ -4477,6 +4477,7 @@ function dosomething_project_field_default_fields() {
         'allowed_values' => array(
           'sms_referral' => 'SMS Referral Form',
           'sms_example' => 'SMS Example',
+          'reportback' => 'Report Back',
           'cta' => 'Call To Action',
           'action_items' => 'Action Items',
           'prizes' => 'Prizes',
