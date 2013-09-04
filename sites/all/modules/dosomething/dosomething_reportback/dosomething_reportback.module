@@ -29,3 +29,36 @@ function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
             ->execute();
   return $result->rowCount();
 }
+
+/**
+ * Form callback for reportback form for given loaded $node.
+ */
+function dosomething_reportback_form($form, &$form_state, $node) {
+	if (isset($node->field_reportback_copy[LANGUAGE_NONE][0]['value']) {
+    $form['header'] = array(
+      '#markup' => $node->field_reportback_copy[LANGUAGE_NONE][0]['value'],
+    );
+  }
+  $form['nid'] = array(
+    '#type' => 'hidden',
+    '#value' => $node->nid,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+    '#attributes' => array('class' => array('btn', 'primary', 'large')),
+  );
+  return $form;
+}
+
+/**
+ * Form submit callback for reportback form.
+ */
+function dosomething_reportback_form_submit($form, &$form_state) {
+  global $user;
+  // Load node to find relevant reportback values.
+  $node = node_load($form_state['values']['nid']);
+  //@todo: Check if user has submitted max num of reportbacks.
+  dosomething_reportback_insert_reportback($user->uid, $node->nid);
+  //@todo: drupal_set_message reportback success msg.
+}
