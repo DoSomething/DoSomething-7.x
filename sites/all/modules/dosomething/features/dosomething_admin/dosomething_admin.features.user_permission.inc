@@ -189,13 +189,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create club_event content.
-  $permissions['create club_event content'] = array(
-    'name' => 'create club_event content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: create dsaward_rec content.
   $permissions['create dsaward_rec content'] = array(
     'name' => 'create dsaward_rec content',
@@ -358,13 +351,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any club_event content.
-  $permissions['delete any club_event content'] = array(
-    'name' => 'delete any club_event content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any dsaward_rec content.
   $permissions['delete any dsaward_rec content'] = array(
     'name' => 'delete any dsaward_rec content',
@@ -487,13 +473,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own campaign_content_page content.
   $permissions['delete own campaign_content_page content'] = array(
     'name' => 'delete own campaign_content_page content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own club_event content.
-  $permissions['delete own club_event content'] = array(
-    'name' => 'delete own club_event content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -638,15 +617,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any campaign_content_page content.
   $permissions['edit any campaign_content_page content'] = array(
     'name' => 'edit any campaign_content_page content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any club_event content.
-  $permissions['edit any club_event content'] = array(
-    'name' => 'edit any club_event content',
     'roles' => array(
       0 => 'staff',
     ),
