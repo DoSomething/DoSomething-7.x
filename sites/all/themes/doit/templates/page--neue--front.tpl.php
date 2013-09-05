@@ -44,24 +44,24 @@
   <div class="content-block feature fixed three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
     <a class="full-link" href="/bullytext"><span>Do This</span></a>
     <div class="headline blue">
-      <div class="headline-text"><h3>Invite friends to stand up to bullying</h3></div>
-      <p class="block-cta"><a href="/bullytext" class="btn primary large">Do This</a></p>
+      <div class="row"><div class="headline-text"><h3>Invite friends to stand up to bullying</h3></div></div>
+      <div class="row"><p class="block-cta"><a href="/bullytext" class="btn primary large">Do This</a></p></div>
     </div>
   </div>
 
   <div class="content-block feature fixed three-col" style="background-image: url('/sites/all/libraries/ds-neue/assets/images/placeholders/homepage1.jpg'); background-position: center center;">
     <a class="full-link" href="/women"><span>Do This</span></a>
     <div class="headline purple">
-      <div class="headline-text"><h3>Unlock a $25 loan for a working woman in need</h3></div>
-      <p class="block-cta"><a href="/women" class="btn primary large">Do This</a></p>
+      <div class="row"><div class="headline-text"><h3>Unlock a $25 loan for a woman in need</h3></div></div>
+      <div class="row"><p class="block-cta"><a href="/women" class="btn primary large">Do This</a></p></div>
     </div>
   </div>
 
   <div class="content-block feature fixed three-col right" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/spit-block.png'); background-position: center center;">
     <a class="full-link" href="/spit"><span>Do This</span></a>
     <div class="headline red">
-      <div class="headline-text"><h3>Save a life at your next party</h3></div>
-      <p class="block-cta"><a href="/spit" class="btn primary large">Do This</a></p>
+      <div class="row"><div class="headline-text"><h3>Save a life at your next party</h3></div></div>
+      <div class="row"><p class="block-cta"><a href="/spit" class="btn primary large">Do This</a></p></div>
     </div>
   </div>
 
