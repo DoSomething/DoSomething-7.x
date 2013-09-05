@@ -6,34 +6,94 @@
  **/
 
 /**
- * Inserts a record for given user UID and node NID in reportbacks table.
+ * Inserts a record into the dosomething_reportbacks table.
+ *
+ * @param int $uid
+ *   User Uid of user submitting the reportback.
+ * @param int $nid
+ *   Node Nid of node that user is submitting the reportback for.
+ * @param string $data
+ *   Any data to store along with the record. Probably won't be used once we Mongo.
+ *
+ * @return int
+ *   The rbid of the newly inserted dosomething_reportbacks record.
  */
-function dosomething_reportback_insert_reportback($uid, $nid) {
-  $reportback = db_insert('dosomething_reportbacks')
-  ->fields(array(
-    'uid' => $uid,
-    'nid' => $nid,
-    'timestamp' => REQUEST_TIME,
-    ))
-  ->execute();
+function dosomething_reportback_insert_reportback($uid, $nid, $data = NULL) {
+  $rbid = db_insert('dosomething_reportbacks')
+    ->fields(array(
+      'uid' => $uid,
+      'nid' => $nid,
+      'timestamp' => REQUEST_TIME,
+      'data' => $data,
+      ))
+    ->execute();
+  return $rbid;
 }
 
 /**
- * Returns count of reportbacks for given user uid and given $nid.
+ * Returns count of records in dosomething_reportbacks for given $uid and $nid.
  */
 function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
+  // @todo: As is, this is going to be scanning thousands and thousands of records 
+  // anytime a project node is visited.  Perhaps we can store nid's on the user profile.
 	$result = db_select('dosomething_reportbacks', 'rb', array('target' => 'slave'))
-	          ->fields('rb', array('uid'))
-	          ->condition('uid', $uid)
-            ->condition('nid', $nid)
-            ->execute();
+    ->fields('rb', array('uid'))
+    ->condition('uid', $uid)
+    ->condition('nid', $nid)
+    ->execute();
   return $result->rowCount();
 }
 
 /**
- * Form callback for reportback form for given loaded $node.
+ * Checks if a user is able to submit a reportback for a given $node.
+ *
+ * @param Object $user
+ *   Loaded user to check.
+ * @param Object $node
+ *   Loaded node for which to check reportback max # of records and user submissions.
+ *
+ * @return boolean
+ *   TRUE if user is able to reportback on the node.
+ */
+function dosomething_reportback_can_user_reportback($user, $node) {
+  // If no max value set, or max value is set to 0, unlimited submissions:
+  if (!isset($node->field_max_num_reportbacks[LANGUAGE_NONE][0]['value']) || $node->field_max_num_reportbacks[LANGUAGE_NONE][0]['value'] == 0) {
+    return TRUE;
+  }
+  // If administrator, reportback all you wanna:
+  if (in_array('administrator', $user->roles)) {
+    return TRUE;
+  }
+  // Get number of reportbacks for user:
+  $num_reportbacks = dosomething_reportback_get_count_user_reportbacks($user->uid, $node->nid);
+  // Return whether or not num_reportbacks is less than the max num reportbacks:
+  return ($num_reportbacks < $node->field_max_num_reportbacks[LANGUAGE_NONE][0]['value']);
+}
+
+/**
+ * Form constructor for the user/node reportback form.
+ *
+ * @param Object $node
+ *   The loaded node for which user is reporting back.
+ *
+ * @see dosomething_reportback_form_validate()
+ * @see dosomething_reportback_form_submit()
+ *
+ * @ingroup forms
  */
 function dosomething_reportback_form($form, &$form_state, $node) {
+  global $user;
+  // Check if user is able to reportback for this node.
+  if (!dosomething_reportback_can_user_reportback($user, $node)) {
+    //@todo: Dynamic message?
+    $form['header'] = array('#markup' => t("Thanks for participating!"));
+    return $form;
+  }
+  $form['reportback_image'] = array(
+    '#type' => 'file',
+    '#title' => t('Picture'),
+    //'#required' => TRUE,
+  );
   $form['nid'] = array(
     '#type' => 'hidden',
     '#value' => $node->nid,
@@ -47,13 +107,48 @@ function dosomething_reportback_form($form, &$form_state, $node) {
 }
 
 /**
- * Form submit callback for reportback form.
+ * Form validation handler for dosomething_reportback_form().
+ *
+ * @see dosomething_reportback_form_submit()
+ */
+function dosomething_reportback_form_validate($form, &$form_state) {
+  //@todo: Stuff.
+}
+
+/**
+ * Form submission handler for dosomething_reportback_form().
+ *
+ * @see dosomething_reportback_form_validate()
  */
 function dosomething_reportback_form_submit($form, &$form_state) {
   global $user;
   // Load node to find relevant reportback values.
   $node = node_load($form_state['values']['nid']);
-  //@todo: Check if user has submitted max num of reportbacks.
-  dosomething_reportback_insert_reportback($user->uid, $node->nid);
-  //@todo: drupal_set_message reportback success msg.
+
+  // @todo: Some magic shit with reportback field collection values.
+
+  $dest_dir = file_default_scheme() . '://';
+  $file_validators = array('file_validate_extensions' => array('jpg png gif jpeg'));
+  // Save file.
+  // @todo: Add to specific reportback directory.  Add RB ID into filename to ensure unique? 
+  /*
+  if ($file = file_save_upload('reportback_image', $file_validators, $dest_dir)) {
+    $filename = $file->filename;        
+    $file_content = file_get_contents($dest_dir.$filename);
+  }
+  else {
+    form_set_error('reportback_image', 'Could not upload file.');
+  }
+  */
+  
+  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($form_state['values']));
+  // Grab success message from node:
+  if (isset($node->field_reportback_success_msg[LANGUAGE_NONE][0]['value'])) {
+    $success_msg = $node->field_reportback_success_msg[LANGUAGE_NONE][0]['value'];
+  }
+  // Else set default if doesnt exist:
+  else {
+    $success_msg = 'Thanks for submitting!';
+  }
+  drupal_set_message($success_msg);
 }
