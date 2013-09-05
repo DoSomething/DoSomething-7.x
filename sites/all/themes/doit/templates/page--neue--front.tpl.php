@@ -27,41 +27,41 @@
 <?php print $messages; ?>
 <div class="ds-intro">
   <div class="flexwidth-wrapper">
-    <h1>Join over 2.2 million young people taking action. Why? Because apathy sucks.</h1>
-    <h2>Pick a project below and start kicking its ass.</h2>
+    <h1>Join over 2.2 million young people taking action.</h1>
+    <h2>Make the world suck less. Pick a project below to get started.</h2>
   </div>
 </div>
 
 <div role="main" class="wrapper">
-  <div class="content-block feature one-col" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/women-feature.jpg');">
-    <a class="full-link" href="/women"><span>Do This</span></a>
-    <div class="headline big purple">
-      <h3>Unlock a $25 loan for a working woman in need</h3>
-      <a href="/women" class="btn primary large">Do This</a>
-    </div>
-  </div>
-
-  <div class="content-block feature three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
+  <div class="content-block feature fixed one-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/survivors2-feature.jpg'); background-position: right center;">
     <a class="full-link" href="/survivors"><span>Do This</span></a>
-    <div class="headline yellow">
-      <div class="headline-text"><h3>Donate old phones to help domestic abuse survivors</h3></div>
-      <p class="block-cta"><a href="/survivors" class="btn primary large">Do This</a></p>
+    <div class="headline big purple">
+      <h3>Donate your old cell phone to help domestic abuse survivors</h3>
+      <a href="/survivors" class="btn primary large">Do This</a>
     </div>
   </div>
 
-  <div class="content-block feature three-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/spit-block.png'); background-position: center center;">
+  <div class="content-block feature fixed three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
+    <a class="full-link" href="/bullytext"><span>Do This</span></a>
+    <div class="headline blue">
+      <div class="headline-text"><h3>Invite friends to stand up to bullying</h3></div>
+      <p class="block-cta"><a href="/bullytext" class="btn primary large">Do This</a></p>
+    </div>
+  </div>
+
+  <div class="content-block feature fixed three-col" style="background-image: url('/sites/all/libraries/ds-neue/assets/images/placeholders/homepage1.jpg'); background-position: center center;">
+    <a class="full-link" href="/women"><span>Do This</span></a>
+    <div class="headline purple">
+      <div class="headline-text"><h3>Unlock a $25 loan for a working woman in need</h3></div>
+      <p class="block-cta"><a href="/women" class="btn primary large">Do This</a></p>
+    </div>
+  </div>
+
+  <div class="content-block feature fixed three-col right" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/spit-block.png'); background-position: center center;">
     <a class="full-link" href="/spit"><span>Do This</span></a>
     <div class="headline red">
       <div class="headline-text"><h3>Save a life at your next party</h3></div>
       <p class="block-cta"><a href="/spit" class="btn primary large">Do This</a></p>
-    </div>
-  </div>
-
-  <div class="content-block feature three-col right" style="background-image: url('/sites/all/libraries/ds-neue/assets/images/placeholders/homepage3.jpg'); background-position: center center;">
-    <a class="full-link" href="/birthdaymail"><span>Do This</span></a>
-    <div class="headline blue">
-      <div class="headline-text"><h3>Make a b'day card for a homeless teen</h3></div>
-      <p class="block-cta"><a href="/birthdaymail" class="btn primary large">Do This</a></p>
     </div>
   </div>
 
