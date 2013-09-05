@@ -34,6 +34,8 @@ function dosomething_reportback_insert_reportback($uid, $nid, $data = NULL) {
  * Returns count of records in dosomething_reportbacks for given $uid and $nid.
  */
 function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
+  // @todo: As is, this is going to be scanning thousands and thousands of records 
+  // anytime a project node is visited.  Perhaps we can store nid's on the user profile.
 	$result = db_select('dosomething_reportbacks', 'rb', array('target' => 'slave'))
     ->fields('rb', array('uid'))
     ->condition('uid', $uid)
