@@ -70,6 +70,20 @@ $campaign_styles = array(
         'font_color' => '#ffffff'
       ),
     ),
+
+    // Grandparents TBD
+    '999999' => array(
+      'longform' => array(
+        'background' => '#ccc',
+        'tip' => '#e32f2f',
+        'font_color' => '#000000',
+        'tip_color' => '#ffffff',
+      ),
+      'shortform' => array(
+        'background' => '#e32f2f',
+        'font_color' => '#ffffff',
+      ),
+    ),
   );
 
 $scheme_styles = array(
@@ -91,12 +105,12 @@ $scheme_styles = array(
   'red' => array(
     'longform' => array(
       'background' => '#ccc',
-      'tip' => '#ff9e10',
+      'tip' => '#e32f2f',
       'font_color' => '#000000',
       'tip_color' => '#ffffff',
     ),
     'shortform' => array(
-      'background' => '#ff9e10',
+      'background' => '#e32f2f',
       'font_color' => '#ffffff',
     ),
   ),
