@@ -1024,6 +1024,13 @@ function doit_preprocess_project_section_header(&$vars) {
 /**
  * Implements hook_preprocess_hook().
  */
+function doit_preprocess_project_section_gallery(&$vars) {
+  $vars['gallery'] = views_embed_view('project_reportback_gallery', 'default', $vars['node']->field_report_back_node[LANGUAGE_NONE][0]['nid']);
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
 function doit_preprocess_project_section_info(&$vars) {
   $node = $vars['node'];
   $vars['project_info_items'] = array();
