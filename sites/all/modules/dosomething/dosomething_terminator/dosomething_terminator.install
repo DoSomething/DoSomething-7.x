@@ -11,3 +11,11 @@
 function dosomething_terminator_update_7000() {
   dosomething_terminator_queue_node_type('help_ticket');
 }
+
+/**
+ * Implements hook_uninstall.
+ */
+function dosomething_terminator_uninstall() {
+	variable_del('dosomething_terminator_is_terminating');
+	variable_del('dosomething_terminator_batch_size');
+}
