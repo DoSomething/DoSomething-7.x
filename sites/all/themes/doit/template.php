@@ -659,6 +659,9 @@ function doit_field($variables) {
   return $output;
 }
 
+/**
+ * Implements theme_pager().
+ */
 function doit_pager(&$variables) {
   $tags = $variables['tags'];
   $element = $variables['element'];
@@ -731,7 +734,7 @@ function doit_pager(&$variables) {
         if ($i == $pager_current) {
           $items[] = array(
             'class' => array('pager-current'),
-            'data' => $i,
+            'data' => '<span class="btn small inactive">' . $i  . '</span>',
           );
         }
         if ($i > $pager_current) {
@@ -761,13 +764,64 @@ function doit_pager(&$variables) {
         'data' => $li_last,
       );
     }
-    return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . theme('item_list', array(
+    return theme('item_list', array(
       'items' => $items,
       'attributes' => array('class' => array('pager')),
     ));
   }
 }
 
+/**
+ * Implements theme_pager_link().
+ */
+function doit_pager_link($variables) {
+  $text = $variables['text'];
+  $page_new = $variables['page_new'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  $attributes = $variables['attributes'];
+
+  $page = isset($_GET['page']) ? $_GET['page'] : '';
+  if ($new_page = implode(',', pager_load_array($page_new[$element], $element, explode(',', $page)))) {
+    $parameters['page'] = $new_page;
+  }
+
+  $query = array();
+  if (count($parameters)) {
+    $query = drupal_get_query_parameters($parameters, array());
+  }
+  if ($query_pager = pager_get_query_parameters()) {
+    $query = array_merge($query, $query_pager);
+  }
+
+  // Set each pager link title
+  if (!isset($attributes['title'])) {
+    static $titles = NULL;
+    if (!isset($titles)) {
+      $titles = array(
+        t('« first') => t('Go to first page'),
+        t('‹ prev') => t('Go to previous page'),
+        t('next ›') => t('Go to next page'),
+        t('last »') => t('Go to last page'),
+      );
+    }
+    if (isset($titles[$text])) {
+      $attributes['title'] = $titles[$text];
+    }
+    elseif (is_numeric($text)) {
+      $attributes['title'] = t('Go to page @number', array('@number' => $text));
+    }
+  }
+
+  // @todo l() cannot be used here, since it adds an 'active' class based on the
+  //   path only (which is always the current path for pager links). Apparently,
+  //   none of the pager links is active at any time - but it should still be
+  //   possible to use l() here.
+  // @see http://drupal.org/node/1410574
+  $attributes['href'] = url($_GET['q'], array('query' => $query));
+  $attributes['class'] = 'btn small';
+  return '<a' . drupal_attributes($attributes) . '>' . check_plain($text) . '</a>';
+}
 /**
  * Override of theme_search_api_page_results().
  */
