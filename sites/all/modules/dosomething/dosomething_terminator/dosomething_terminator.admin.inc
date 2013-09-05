@@ -6,7 +6,9 @@
  **/
 
 /**
- * Returns a form used to set dosomething_terminator variables.
+ * Form constructor for the Terminator admin settings form.
+ *
+ * @ingroup forms
  */
 function dosomething_terminator_admin_settings_form() {
   $form = array();
@@ -21,15 +23,16 @@ function dosomething_terminator_admin_settings_form() {
     '#title' => t('Batch size'),
     '#default_value' => variable_get('dosomething_terminator_batch_size', 100),
   );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Save Settings',
-  );
-  return $form;
+  return system_settings_form($form);
 }
 
 /**
- * Page callback for the Terminator queue report.
+ * Page callback: Displays batches queued for the Terminator.
+ *
+ * @return array
+ *   A render array for a page containing a list of content.
+ *
+ * @see dosomething_terminator_menu()
  */
 function dosomething_terminator_queue_status_page() {
   $rows = array();
@@ -38,7 +41,6 @@ function dosomething_terminator_queue_status_page() {
     ->condition('name', DOSOMETHING_TERMINATOR_QUEUE_CRON, '=')
     ->extend('TableSort')->extend('PagerDefault')->limit(50);
   $result = $query->execute();
-
   while ($record = $result->fetchObject()) {
     $signup_data = unserialize($record->data);
     $rows[] = array(
@@ -48,13 +50,12 @@ function dosomething_terminator_queue_status_page() {
       serialize($signup_data['nids']),
     );
   }
-
   if (!empty($rows)) {
     $header = array(t('Item ID'), t('Created'), t('Node Type'), t('Nids'),);
     $output = theme('table', array('header' => $header, 'rows' => $rows));
     return $output . theme("pager");;
   }
   else {
-    return t('There are no items in the queue.');
+    return t('There are no items to be terminated.');
   }
 }

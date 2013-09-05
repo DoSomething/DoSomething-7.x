@@ -185,7 +185,9 @@ $activity->sets = array(
   array(
     'mdata_id'     => 10931,
     'game_id'      => SmsFlowGameConstants::SURVIVORS_RANDOM_TIPS,
-    'opt_in_paths' => array(161399, 161401, 161403, 161405, 161407, 161409),
+    'opt_in_paths' => array(161399, 161401, 161405, 161407, 161409, 161521),
+    'path_special' => 161403,
+    'send_to_special_on' => 3,
   ),
 );
 
