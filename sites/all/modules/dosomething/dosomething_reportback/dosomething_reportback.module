@@ -82,23 +82,27 @@ function dosomething_reportback_can_user_reportback($user, $node) {
  * @ingroup forms
  */
 function dosomething_reportback_form($form, &$form_state, $node) {
-  global $user;
-  // Check if user is able to reportback for this node.
-  if (!dosomething_reportback_can_user_reportback($user, $node)) {
-    //@todo: Dynamic message?
-    $form['header'] = array('#markup' => t("Thanks for participating!"));
-    return $form;
+  // Handle image uploads via plupload module:
+  if (module_exists('plupload')) {
+    $form['reportback_images'] = array(
+      '#type' => 'plupload',
+      '#title' => t('Pictures'),
+      '#required' => TRUE,
+      '#submit_element' => '#edit-reportback-submit',
+      '#upload_validators' => array(
+        'file_validate_extensions' => array('jpg jpeg gif png'),
+      ),
+      '#plupload_settings' => array(
+        'runtimes' => 'html5',
+        'chunk_size' => '1mb',
+      ),
+    );
   }
-  $form['reportback_image'] = array(
-    '#type' => 'file',
-    '#title' => t('Picture'),
-    //'#required' => TRUE,
-  );
   $form['nid'] = array(
     '#type' => 'hidden',
     '#value' => $node->nid,
   );
-  $form['submit'] = array(
+  $form['reportback_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
     '#attributes' => array('class' => array('btn', 'primary', 'large')),
@@ -107,48 +111,55 @@ function dosomething_reportback_form($form, &$form_state, $node) {
 }
 
 /**
- * Form validation handler for dosomething_reportback_form().
- *
- * @see dosomething_reportback_form_submit()
- */
-function dosomething_reportback_form_validate($form, &$form_state) {
-  //@todo: Stuff.
-}
-
-/**
  * Form submission handler for dosomething_reportback_form().
- *
- * @see dosomething_reportback_form_validate()
  */
 function dosomething_reportback_form_submit($form, &$form_state) {
   global $user;
+  $values = $form_state['values'];
   // Load node to find relevant reportback values.
-  $node = node_load($form_state['values']['nid']);
+  $node = node_load($values['nid']);
 
-  // @todo: Some magic shit with reportback field collection values.
+  // @todo: Loop through reportback fields and store in the reportback data field.
+  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($values));
 
-  $dest_dir = file_default_scheme() . '://';
-  $file_validators = array('file_validate_extensions' => array('jpg png gif jpeg'));
-  // Save file.
-  // @todo: Add to specific reportback directory.  Add RB ID into filename to ensure unique? 
-  /*
-  if ($file = file_save_upload('reportback_image', $file_validators, $dest_dir)) {
-    $filename = $file->filename;        
-    $file_content = file_get_contents($dest_dir.$filename);
+  // Store images in reportbacks/org-code:
+  $filepath = 'public://reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value'];
+  // Create the folder if it doesn't exist:
+  file_prepare_directory($filepath, FILE_CREATE_DIRECTORY); 
+  $files_count = count($values['reportback_images']);
+  // Loop through file uploads:
+  for ($i = 0; $i < $files_count; $i++) {
+    $path = $values['reportback_images'][$i]['tmppath'];
+    // Parse the uploaded file's pathinfo:
+    $orig_filename = $values['reportback_images'][$i]['name'];
+    $file_info = pathinfo($orig_filename);
+    // Save its extension:
+    $file_extension = $file_info['extension'];
+    // Use extension in new filename:
+    $file_name = $user->uid . '-' . $rbid . '-' . $i .'.' . $file_extension; 
+    // Set the $file as an object to pass it in the file_copy() function
+    $file = (object)array(
+        'uid' => 0,
+        'uri' => $path,
+        'filemime' => file_get_mimetype($path),
+        'status' => 1
+    );
+    // Save file:
+    if ($file = file_copy($file, $filepath . '/' . $file_name)) {
+      // @todo: Write record to dosomething_reportbacks_file:
+    }
+    else {
+      drupal_set_message('Error uploading file ' . $orig_filename, 'error');
+    }
   }
-  else {
-    form_set_error('reportback_image', 'Could not upload file.');
-  }
-  */
   
-  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($form_state['values']));
-  // Grab success message from node:
+  // Set success message from node:
   if (isset($node->field_reportback_success_msg[LANGUAGE_NONE][0]['value'])) {
     $success_msg = $node->field_reportback_success_msg[LANGUAGE_NONE][0]['value'];
   }
-  // Else set default if doesnt exist:
+  // Else use default message if doesnt exist:
   else {
-    $success_msg = 'Thanks for submitting!';
+    $success_msg = 'Thanks for your submission!';
   }
   drupal_set_message($success_msg);
 }
