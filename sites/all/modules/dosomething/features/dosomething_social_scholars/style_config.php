@@ -75,12 +75,12 @@ $campaign_styles = array(
     '999999' => array(
       'longform' => array(
         'background' => '#ccc',
-        'tip' => '#e32f2f',
+        'tip' => '#ff9e10',
         'font_color' => '#000000',
         'tip_color' => '#ffffff',
       ),
       'shortform' => array(
-        'background' => '#e32f2f',
+        'background' => '#ff9e10',
         'font_color' => '#ffffff',
       ),
     ),
@@ -111,6 +111,21 @@ $scheme_styles = array(
     ),
     'shortform' => array(
       'background' => '#e32f2f',
+      'font_color' => '#ffffff',
+    ),
+  ),
+
+
+  // orange
+  'orange' => array(
+    'longform' => array(
+      'background' => '#ccc',
+      'tip' => '#ff9e10',
+      'font_color' => '#000000',
+      'tip_color' => '#ffffff',
+    ),
+    'shortform' => array(
+      'background' => '#ff9e10',
       'font_color' => '#ffffff',
     ),
   ),
