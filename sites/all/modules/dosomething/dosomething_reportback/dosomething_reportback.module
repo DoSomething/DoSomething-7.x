@@ -184,7 +184,7 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     $file_name = $user->uid . '-' . $rbid . '-' . $i .'.' . $file_extension; 
     // Set the $file as an object to pass it in the file_copy() function
     $file = (object)array(
-        'uid' => 0,
+        'uid' => $user->uid,
         'uri' => $path,
         'filemime' => file_get_mimetype($path),
         'status' => 1
