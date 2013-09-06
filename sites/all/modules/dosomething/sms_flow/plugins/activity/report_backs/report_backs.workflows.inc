@@ -669,7 +669,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_state';
 $activity->inputs = array('check_user_school', 'school_found');
 $activity->outputs = array('ask_school_name');
-$activity->question = t('We\'re going to ask a couple questions to find your school because [TODO]. What state is your school in? Reply with the 2 letter abbreviation. (ex: NY)');
+$activity->question = t('We\'re going to ask a couple questions to find your school because [TODO]. What state is your school in? Reply with the 2 letter abbreviation. (ex: NY)'); // @todo
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_name';
@@ -736,9 +736,8 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->http_request_type = 'POST';
-$activity->success_response = 'this is the success response'; // @todo
-$activity->submission_url = 'http://192.168.1.72:3000/fedup/posts.json'; // @todo
-// $activity->submission_url = 'http://campaigns.dosomething.org/fedup/posts.json';
+$activity->success_response = 161577;
+$activity->submission_url = 'http://campaigns.dosomething.org/fedup/posts.json';
 $activity->submission_fields = array(
   // Key gives context name to pull data from. Value gives the name of the field to submit to
   'ask_q1:message' => 'post[extras][how_often_do_you_eat]',
@@ -748,7 +747,7 @@ $activity->submission_fields = array(
   // Specific handling done for these keys
   'gsid' => 'post[school_id]',
   'uid' => 'post[uid]',
-  'append_query' => 'post[name]=placeholder&post[image]=http://mms.mcommons.com/mms/581515/HwHPF6RtVqdnG3lF_small.jpeg&post[campaign_id]=1&key=aea12e3fe5f83f0d574fdff0342aba91',
+  'append_query' => 'post[flagged]=1&post[name]=placeholder&post[image]=http://www.google-analytics.com/__utm.gif&post[campaign_id]=1&key=aea12e3fe5f83f0d574fdff0342aba91',
 );
 
 $activity = $workflow->newActivity('end');
@@ -790,10 +789,9 @@ $activity->inputs = array('ask_name');
 $activity->outputs = array('end');
 $activity->http_request_type = 'PUT';
 $activity->key = 'aea12e3fe5f83f0d574fdff0342aba91';
-$activity->uid_lookup_url = 'http://192.168.1.72:3000/fedup/posts/uid_lookup.json?key=aea12e3fe5f83f0d574fdff0342aba91';
-$activity->success_response = 'this is the success response'; // @todo
-$activity->submission_url = 'http://192.168.1.72:3000/fedup/posts/@postId.json'; // @todo
-// $activity->submission_url = 'http://campaigns.dosomething.org/fedup/posts/@postId.json';
+$activity->uid_lookup_url = 'http://campaigns.dosomething.org/fedup/posts/uid_lookup.json?key=aea12e3fe5f83f0d574fdff0342aba91';
+$activity->success_response = 161579;
+$activity->submission_url = 'http://campaigns.dosomething.org/fedup/posts/@postId.json';
 $activity->submission_fields = array(
   'ask_picture:mms' => 'post[image]',
   'ask_name:message' => 'post[name]',

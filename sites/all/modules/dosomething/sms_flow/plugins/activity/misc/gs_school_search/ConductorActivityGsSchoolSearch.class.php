@@ -139,6 +139,26 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
       }
     }
     else {
+      // Save school to user's profile before moving on to next activity
+      $mobile = $state->getContext('sms_number');
+      $user = sms_flow_get_or_create_user_by_cell($mobile);
+      if ($user) {
+        $profile = profile2_load_by_user($user, 'main');
+        if ($profile) {
+          $gsid = $state->getContext('school_gsid');
+
+          // Profile expects the DS sid, not the Great School id
+          $sid = db_query('SELECT sid FROM ds_school WHERE `gsid` = :gsid', array(':gsid' => $gsid))->fetchField();
+          if ($sid > 0) {
+            $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'] = $sid;
+            try {
+              profile2_save($profile);
+            }
+            catch (Exception $e) {}
+          }
+        }
+      }
+
       $this->removeOutput('end');
     }
 

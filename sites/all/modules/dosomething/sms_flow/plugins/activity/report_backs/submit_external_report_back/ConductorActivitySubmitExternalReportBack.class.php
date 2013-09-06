@@ -24,19 +24,10 @@ class ConductorActivitySubmitExternalReportBack extends ConductorActivity {
   // useful when needing to PUT/UPDATE previously created submissions.
   public $uid_lookup_url;
 
-
   public function run() {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
     $user = sms_flow_get_or_create_user_by_cell($mobile);
-///// DUMMY VALUES /////
-// $state->setContext('ask_q1:message', '6-10 times per month');
-// $state->setContext('ask_q2:message', 'Unhealthy');
-// $state->setContext('ask_q3:message', 'Very satisfied');
-// $state->setContext('selected_school_state', 'NY');
-// $state->setContext('selected_school_name', 'Syosset Senior High School');
-// $state->setContext('school_gsid', '3603791');
-////////////////////////
 
     // Cycle through field to build the query content
     $query = array();
@@ -102,6 +93,25 @@ class ConductorActivitySubmitExternalReportBack extends ConductorActivity {
    * @param $query Array of the content to POST
    */
   private function submitPost($query) {
+    $state = $this->getState();
+  
+    // BEGIN HACK :(
+    // Execute a school lookup so that create_and_share database will insert schools into database
+    // Otherwise this school might not be available/known on the create_and_share side
+    $schoolName = $state->getContext('selected_school_name');
+    $schoolState = $state->getContext('selected_school_state');
+    $lookupUrl = 'http://campaigns.dosomething.org/fedup/posts/school_lookup?term=@schoolName&state=@schoolState';
+    $lookupUrl = t($lookupUrl, array('@schoolName' => urlencode($schoolName), '@schoolState' => urlencode($schoolState)));
+    $chLookup = curl_init($lookupUrl);
+    curl_setopt_array($chLookup, array(
+      CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+      CURLOPT_RETURNTRANSFER => TRUE,
+    ));
+    $lookupResponse = curl_exec($chLookup);
+    curl_close($chLookup);
+    // END HACK :)
+
+    // Alright, now continue with the POST submission
     $jsonContent = json_encode($query);
 
     $ch = curl_init($this->submission_url);
