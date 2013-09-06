@@ -753,7 +753,7 @@ $activity->submission_fields = array(
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('school_search','submit_report_back');
+$activity->inputs = array('school_found', 'school_search', 'submit_report_back');
 
 $workflows[$workflow->name] = $workflow;
 
