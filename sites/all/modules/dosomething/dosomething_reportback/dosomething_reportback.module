@@ -99,6 +99,20 @@ function dosomething_reportback_can_user_reportback($user, $node) {
  * @ingroup forms
  */
 function dosomething_reportback_form($form, &$form_state, $node) {
+  // If node has reportback fields, render as form elements:
+  if (isset($node->field_reportback_fields[LANGUAGE_NONE][0]['value'])) {
+    // Load form field labels from the node:
+    $form_fields = dosomething_reportback_get_reportback_field_values($node);
+    // Loop through form_fields:
+    foreach ($form_fields as $form_field) {
+      $field_id = $form_field['field_collection_item_id'];
+      $form['rb_fld_' . $field_id] = array(
+        '#type' => 'textarea',
+        '#required' => TRUE,
+        '#title' => $form_field['label'],
+      ); 
+    }
+  }
   // Handle image uploads via plupload module:
   if (module_exists('plupload')) {
     $form['reportback_images'] = array(
@@ -132,14 +146,28 @@ function dosomething_reportback_form($form, &$form_state, $node) {
  */
 function dosomething_reportback_form_submit($form, &$form_state) {
   global $user;
+  $rb_data = array();
   $values = $form_state['values'];
   // Load node to find relevant reportback values.
   $node = node_load($values['nid']);
 
-  // @todo: Loop through reportback fields and store in the reportback data field.
-  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($values));
+  // If node has reportback fields, loop through values to store in the reportback data field.
+  if (isset($node->field_reportback_fields[LANGUAGE_NONE][0]['value'])) {
+    // Load form field labels from the node:
+    $form_fields = dosomething_reportback_get_reportback_field_values($node);
+    // Loop through form_fields:
+    foreach ($form_fields as $form_field) {
+      // Use the field_collection_item_id as the index for this reportback field data.
+      $field_id = $form_field['field_collection_item_id'];
+      // Store the submitted value.
+      $rb_data[$field_id] = $values['rb_fld_' . $field_id];
+    }
+  }
 
-  // Store images in reportbacks/org-code:
+  // Insert record into dosomething_reportbacks table and store its rbid.
+  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($rb_data));
+
+  // Write images to files/reportbacks/org-code:
   $filepath = 'public://reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value'];
   // Create the folder if it doesn't exist:
   file_prepare_directory($filepath, FILE_CREATE_DIRECTORY); 
@@ -163,6 +191,7 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     );
     // Save file:
     if ($file = file_copy($file, $filepath . '/' . $file_name)) {
+      // Write record to dosomething_reportback_files:
       dosomething_reportback_insert_reportback_file($rbid, $file->fid);
     }
     else {
@@ -179,4 +208,31 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     $success_msg = 'Thanks for your submission!';
   }
   drupal_set_message($success_msg);
+}
+
+/**
+ * Return the values of the "Reportback Fields" field collection in a given node.
+ *
+ * @param Object $node
+ *   Loaded node for which to return values from.
+ *
+ */
+function dosomething_reportback_get_reportback_field_values($node) {
+  $values = array();
+  $field_collection_fields = field_get_items('node', $node, 'field_reportback_fields');
+  $ids = array();
+  foreach ($field_collection_fields as $fc_field) {
+    $ids[] = $fc_field['value'];
+  }
+  if (!empty($ids)) {
+    $items = field_collection_item_load_multiple($ids);
+    $i = 0;
+    foreach($items as $item) {
+      $values[$i]['field_collection_item_id'] = $item->item_id;
+      $reportback_fld_label = field_get_items('field_collection_item', $item, 'field_reportback_fld_label');
+      $values[$i]['label'] = $reportback_fld_label[0]['value'];
+      $i++;
+    }
+  }
+  return $values;
 }
