@@ -7,20 +7,20 @@ function dosomething_reportback_schema() {
   $schema['dosomething_reportbacks'] = array(
     'fields' => array(
       'rbid' => array(
-        'description' => 'Reportback ID',
+        'description' => 'Reportback Id',
         'type' => 'serial',
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'uid' => array(
-        'description' => 'User UID',
+        'description' => 'User Uid',
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default' => 0,
       ),
       'nid' => array(
-        'description' => 'Node NID',
+        'description' => 'Node Nid',
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
@@ -43,8 +43,27 @@ function dosomething_reportback_schema() {
     ),
     'primary key' => array('rbid'),
     'indexes' => array(
-      'uid' => array('uid'),
+      'nid' => array('nid'),
     ),
+  );
+  $schema['dosomething_reportback_files'] = array(
+    'fields' => array(
+      'rbid' => array(
+        'description' => 'Reportback Id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'fid' => array(
+        'description' => 'File Fid',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('rbid', 'fid'),
   );
   return $schema;
 }

@@ -31,6 +31,23 @@ function dosomething_reportback_insert_reportback($uid, $nid, $data = NULL) {
 }
 
 /**
+ * Inserts a record into the dosomething_reportback_files table.
+ *
+ * @param int $rbid
+ *   Reportback id.
+ * @param int $fid
+ *   File id
+ */
+function dosomething_reportback_insert_reportback_file($rbid, $fid) {
+  return db_insert('dosomething_reportback_files')
+    ->fields(array(
+      'rbid' => $rbid,
+      'fid' => $fid,
+      ))
+    ->execute();
+}
+
+/**
  * Returns count of records in dosomething_reportbacks for given $uid and $nid.
  */
 function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
@@ -146,10 +163,10 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     );
     // Save file:
     if ($file = file_copy($file, $filepath . '/' . $file_name)) {
-      // @todo: Write record to dosomething_reportbacks_file:
+      dosomething_reportback_insert_reportback_file($rbid, $file->fid);
     }
     else {
-      drupal_set_message('Error uploading file ' . $orig_filename, 'error');
+      drupal_set_message('An error occurred uploading file ' . $orig_filename, 'error');
     }
   }
   
