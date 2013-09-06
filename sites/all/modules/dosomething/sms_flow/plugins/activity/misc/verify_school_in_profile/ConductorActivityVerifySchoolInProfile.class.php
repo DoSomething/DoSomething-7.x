@@ -34,19 +34,30 @@ class ConductorActivityVerifySchoolInProfile extends ConductorActivity {
     $state = $this->getState();
 
     $userResponse = $state->getContext($this->name . ':message');
+    // First run through this activity will prompt user to verify their school
+    // name, or continue to the school search output if no GSID can be found.
     if ($userResponse === FALSE) {
       $mobile = $state->getContext('sms_number');
       $schoolSid = $state->getContext('school_sid');
 
-      // Get school name from the ds_school database
-      $schoolName = db_query('SELECT name FROM ds_school WHERE `sid` = :sid', array(':sid' => $schoolSid))->fetchField();
+      // Ensure there's a valid Great Schools ID for this school
+      $school = db_query('SELECT * FROM ds_school WHERE `sid` = :sid', array(':sid' => $schoolSid))->fetchAll();
+      if (!empty($school) && $school[0] && $school[0]->gsid > 0) {
+        $state->setContext('school_gsid', $school[0]->gsid);
+        $state->setContext('selected_school_state', $school[0]->state);
+        $schoolName = $school[0]->name;
 
-      // Verify with the user that we have the correct school
-      $state->setContext('selected_school_name', $schoolName);
-      $state->setContext('sms_response', t($this->question, array('@school_name' => $schoolName)));
+        // Verify with the user that we have the correct school
+        $state->setContext('selected_school_name', $schoolName);
+        $state->setContext('sms_response', t($this->question, array('@school_name' => $schoolName)));
 
-      // Await response
-      $state->markSuspended();
+        // Await response
+        $state->markSuspended();
+      }
+      // If there is no Great Schools ID, then end this activity and go on to the school search
+      else {
+        self::selectNextOutput(UserResponseType::NO);
+      }
     }
     else {
       $userResponse = trim(strtoupper($userResponse));

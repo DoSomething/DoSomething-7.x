@@ -689,35 +689,67 @@ $activity->one_school_found_msg = t('We found @school_name at @school_street, @s
 $activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school, KEYWORD to search again, or fedup.dosomething.org if your school\'s not here');
 $activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text KEYWORD to try searching again or go to fedup.dosomething.org.');
 
-$activity = $workflow->newActivity('sms_prompt');
+$activity = $workflow->newActivity('sms_prompt_normalize_response');
 $activity->name = 'ask_q1';
 $activity->inputs = array('school_found', 'school_search');
 $activity->outputs = array('ask_q2');
 $activity->context_value_for_msg = 'selected_school_name';
-$activity->question = t('The school you selected was @context_value. This is question 1. Respond.');
+$activity->question = t('@context_value confirmed! (1/3) How often do you eat school lunch? A)0-2 times per month B)3-5 C)6-10 D)Every day. Reply A,B,C, or D');
+$activity->normalizedGroups = array(
+  array('0-2 times per month', 'A', 'A)'),
+  array('3-5 times per month', 'B', 'B)'),
+  array('6-10 times per month', 'C', 'C)'),
+  array('Every day', 'D', 'D)'),
+);
 
-$activity = $workflow->newActivity('sms_prompt');
+$activity = $workflow->newActivity('sms_prompt_normalize_response');
 $activity->name = 'ask_q2';
 $activity->inputs = array('ask_q1');
 $activity->outputs = array('ask_q3');
-$activity->question = t('This is question 2. Respond.');
+$activity->question = t('(2/3) Of the school lunches you\'ve eaten in the past 4 weeks, how nutritious was your meal? A)Very B)Somewhat C)Not at all D)Unhealthy. Reply A,B,C, or D');
+$activity->normalizedGroups = array(
+  array('Very nutritious', 'A', 'A)'),
+  array('Somewhat nutritious', 'B', 'B)'),
+  array('Not nutritious at all', 'C', 'C)'),
+  array('Unhealthy', 'D', 'D)'),
+);
 
-$activity = $workflow->newActivity('sms_prompt');
+$activity = $workflow->newActivity('sms_prompt_normalize_response');
 $activity->name = 'ask_q3';
 $activity->inputs = array('ask_q2');
 $activity->outputs = array('strip_signature');
-$activity->question = t('This is question 3. Respond.');
+$activity->question = t('(3/3) How satisfied have you been with the taste of your school lunch over the past 4 weeks? A)Very B)Somewhat C)Not sat. D)Very unsatisfied. Reply A,B,C, or D');
+$activity->normalizedGroups = array(
+  array('Very satisfied', 'A', 'A)'),
+  array('Somewhat satisfied', 'B', 'B)'),
+  array('Not satisfied', 'C', 'C)'),
+  array('Very unsatisfied', 'D', 'D)'),
+);
 
-$activity = $workflow->newActivity('strip_signature');
+$activity = $workflow->newActivity('sms_strip_signature');
 $activity->name = 'strip_signature';
 $activity->inputs = array('ask_q3');
 $activity->outputs = array('submit_report_back');
 
-// @todo Implement submit_external_report_back activity
 $activity = $workflow->newActivity('submit_external_report_back');
 $activity->name = 'submit_report_back';
 $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
+$activity->http_request_type = 'POST';
+$activity->success_response = 'this is the success response'; // @todo
+$activity->submission_url = 'http://192.168.1.72:3000/fedup/posts.json'; // @todo
+// $activity->submission_url = 'http://campaigns.dosomething.org/fedup/posts.json';
+$activity->submission_fields = array(
+  // Key gives context name to pull data from. Value gives the name of the field to submit to
+  'ask_q1:message' => 'post[extras][how_often_do_you_eat]',
+  'ask_q2:message' => 'post[extras][how_nutritious]',
+  'ask_q3:message' => 'post[extras][how_satisfied]',
+  'selected_school_state' => 'post[state]',
+  // Specific handling done for these keys
+  'gsid' => 'post[school_id]',
+  'uid' => 'post[uid]',
+  'append_query' => 'post[name]=placeholder&post[image]=http://mms.mcommons.com/mms/581515/HwHPF6RtVqdnG3lF_small.jpeg&post[campaign_id]=1&key=aea12e3fe5f83f0d574fdff0342aba91',
+);
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -742,21 +774,35 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('submit_report_back');
+$activity->outputs = array('ask_name', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 0; // @todo
 
-// @todo Implement submit_external_report_back activity
-// - GET submission request with phone # or uid?
-// - then UPDATE request with image url?
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_name';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('What do you want to name your lunch?');
+
 $activity = $workflow->newActivity('submit_external_report_back');
 $activity->name = 'submit_report_back';
-$activity->inputs = array('ask_picture');
+$activity->inputs = array('ask_name');
 $activity->outputs = array('end');
+$activity->http_request_type = 'PUT';
+$activity->key = 'aea12e3fe5f83f0d574fdff0342aba91';
+$activity->uid_lookup_url = 'http://192.168.1.72:3000/fedup/posts/uid_lookup.json?key=aea12e3fe5f83f0d574fdff0342aba91';
+$activity->success_response = 'this is the success response'; // @todo
+$activity->submission_url = 'http://192.168.1.72:3000/fedup/posts/@postId.json'; // @todo
+// $activity->submission_url = 'http://campaigns.dosomething.org/fedup/posts/@postId.json';
+$activity->submission_fields = array(
+  'ask_picture:mms' => 'post[image]',
+  'ask_name:message' => 'post[name]',
+  'append_query' => 'post[campaign_id]=1&post[flagged]=0&key=aea12e3fe5f83f0d574fdff0342aba91',
+);
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('submit_report_back');
+$activity->inputs = array('submit_report_back', 'ask_picture');
 
 $workflows[$workflow->name] = $workflow;
 

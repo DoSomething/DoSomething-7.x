@@ -152,22 +152,24 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
   private function handleUserResponse($userResponse) {
     $state = $this->getState();
     $userResponse = strtoupper(trim($userResponse));
-    // If Y, save school gsid to context 'school_sid'
+    // If Y, save school gsid to context 'school_gsid'
     if (self::isYesResponse($userResponse)) {
       $results = $state->getContext('gs_school_search_results');
 
       $state->setContext('selected_school_name', $results[0]->name);
-      $state->setContext('school_sid', $results[0]->gsid);
+      $state->setContext('selected_school_state', $results[0]->state);
+      $state->setContext('school_gsid', $results[0]->gsid);
 
       self::selectNextOutput(OutputType::CONT);
     }
-    // If #, check if valid, then save school gsid to context 'school_sid'
+    // If #, check if valid, then save school gsid to context 'school_gsid'
     elseif (self::isValidSchoolIndex($userResponse)) {
       $results = $state->getContext('gs_school_search_results');
 
       $schoolIndex = $userResponse - 1; // Displayed value is +1 of actual index value
       $state->setContext('selected_school_name', $results[$schoolIndex]->name);
-      $state->setContext('school_sid', $results[$schoolIndex]->gsid);
+      $state->setContext('selected_school_state', $results[$schoolIndex]->state);
+      $state->setContext('school_gsid', $results[$schoolIndex]->gsid);
 
       self::selectNextOutput(OutputType::CONT);
     }
@@ -177,7 +179,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
       $schoolMatch = self::findSchoolNameMatch($userResponse);
       if ($schoolMatch) {
         $state->setContext('selected_school_name', $schoolMatch->name);
-        $state->setContext('school_sid', $schoolMatch->gsid);
+        $state->setContext('school_gsid', $schoolMatch->gsid);
 
         self::selectNextOutput(OutputType::CONT);
       }

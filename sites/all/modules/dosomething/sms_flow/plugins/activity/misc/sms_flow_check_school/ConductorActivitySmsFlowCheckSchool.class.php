@@ -19,7 +19,7 @@ class ConductorActivitySmsFlowCheckSchool extends ConductorActivity {
   // Name of the next activity to go to if no school was found
   public $no_school_found_activity = 'no_school_found';
 
-  public function run($workflow) {
+  public function run() {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
