@@ -246,6 +246,7 @@ function dosomething_social_scholars_field_default_fields() {
           'green' => 'Green',
           'blue' => 'Blue',
           'red' => 'Red',
+          'orange' => 'Orange',
           'black' => 'Black',
           'gray' => 'Gray',
           'white' => 'White',
