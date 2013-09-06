@@ -669,14 +669,14 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_state';
 $activity->inputs = array('check_user_school', 'school_found');
 $activity->outputs = array('ask_school_name');
-$activity->question = t('We\'re going to ask a couple questions to find your school because [TODO]. What state is your school in? Reply with the 2 letter abbreviation. (ex: NY)'); // @todo
+$activity->question = t('We\'re first going to ask a couple questions to find your school. What state is your school in? Reply with the 2 letter abbreviation. (ex: NY)');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_name';
 $activity->inputs = array('ask_state');
 $activity->outputs = array('school_search');
 $activity->context_value_for_msg = 'ask_state:message';
-$activity->question = t('What\'s the name of your school in @context_value?');
+$activity->question = t('Thanks! And what\'s the name of your school in @context_value?');
 
 $activity = $workflow->newActivity('gs_school_search');
 $activity->name = 'school_search';
@@ -684,10 +684,10 @@ $activity->inputs = array('ask_school_name');
 $activity->outputs = array('ask_q1', 'end');
 $activity->state_activity_name = 'ask_state';
 $activity->school_activity_name = 'ask_school_name';
-$activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text KEYWORD to try again or go to fedup.dosomething.org');
-$activity->one_school_found_msg = t('We found @school_name at @school_street, @school_city, @school_state. Is this your school? Reply Y. Otherwise, text KEYWORD to try again or go to fedup.dosomething.org');
-$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school, KEYWORD to search again, or fedup.dosomething.org if your school\'s not here');
-$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text KEYWORD to try searching again or go to fedup.dosomething.org.');
+$activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text LUNCH to try again or go to fedup.dosomething.org');
+$activity->one_school_found_msg = t('We found @school_name at @school_street, @school_city, @school_state. Is this your school? Reply Y. Text LUNCH to try again or go to fedup.dosomething.org');
+$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. LUNCH to try again or go to fedup.dosomething.org');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text LUNCH to try searching again or go to fedup.dosomething.org.');
 
 $activity = $workflow->newActivity('sms_prompt_normalize_response');
 $activity->name = 'ask_q1';
@@ -775,7 +775,7 @@ $activity->name = 'ask_picture';
 $activity->inputs = array('start');
 $activity->outputs = array('ask_name', 'end');
 $activity->should_prompt = FALSE;
-$activity->no_mms_response = 0; // @todo
+$activity->no_mms_response = 161581;
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_name';
