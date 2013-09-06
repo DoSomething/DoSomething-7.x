@@ -5,6 +5,8 @@
  * dosomething_reportback.module
  **/
 
+include_once 'dosomething_reportback.views.inc';
+
 /**
  * Inserts a record into the dosomething_reportbacks table.
  *
@@ -45,7 +47,10 @@ function dosomething_reportback_insert_reportback_file($rbid, $fid) {
       'fid' => $fid,
       ))
     ->execute();
+  //@todo: write record into file_usage.
 }
+
+//@todo: Hook for file_delete to remove record from reportback_file.
 
 /**
  * Returns count of records in dosomething_reportbacks for given $uid and $nid.
@@ -182,21 +187,24 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     $file_extension = $file_info['extension'];
     // Use extension in new filename:
     $file_name = $user->uid . '-' . $rbid . '-' . $i .'.' . $file_extension; 
+    $file_path = $filepath . '/' . $file_name;
     // Set the $file as an object to pass it in the file_copy() function
     $file = (object)array(
         'uid' => $user->uid,
         'uri' => $path,
-        'filemime' => file_get_mimetype($path),
         'status' => 1
     );
     // Save file:
     if ($file = file_copy($file, $filepath . '/' . $file_name)) {
-      // Write record to dosomething_reportback_files:
+      // Get filemime from the written file (defaults to application when its in the tmp directory above):
+      $file->filemime = file_get_mimetype($file_path);
+      file_save($file);
       dosomething_reportback_insert_reportback_file($rbid, $file->fid);
     }
     else {
       drupal_set_message('An error occurred uploading file ' . $orig_filename, 'error');
     }
+
   }
   
   // Set success message from node:
