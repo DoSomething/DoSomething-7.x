@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_general functionality.
+ */
+
+class DosomethingScholarshipApplicationTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Scholarship Application Tests',
+      'description' => 'Tests functionality for DoSomething Scholarship Applications',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+}
+
+class DosomethingScholarshipApplicationDBUnitTestCase extends WebTestSuite {
+  private $user;
+  private $user_profile;
+  private $schema;
+  private $node;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Scholarship Application Tests',
+      'description' => 'Tests functionality for DoSomething Scholarship Applications with DB access',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    #parent::setUp('dosomething_general');
+    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+  }
+
+}

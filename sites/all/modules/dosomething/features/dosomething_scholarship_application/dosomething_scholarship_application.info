@@ -73,3 +73,4 @@ features[variable][] = node_submitted_scholarship_application
 features[views_view][] = editorial_content_scholarships
 features[views_view][] = scholarships
 features[webform_submission_entity_type][] = scholarship_application
+files[] = dosomething_scholarship_application.unit.test
