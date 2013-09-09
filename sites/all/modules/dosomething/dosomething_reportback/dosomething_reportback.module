@@ -47,7 +47,6 @@ function dosomething_reportback_insert_reportback_file($rbid, $fid) {
       'fid' => $fid,
       ))
     ->execute();
-  //@todo: write record into file_usage.
 }
 
 //@todo: Hook for file_delete to remove record from reportback_file.
@@ -243,4 +242,12 @@ function dosomething_reportback_get_reportback_field_values($node) {
     }
   }
   return $values;
+}
+
+/**
+ * Implements hook_file_delete.
+ */
+function dosomething_reportback_file_delete($file) {
+  // Delete all reportback_files records associated with the file.
+  db_delete('dosomething_reportback_files')->condition('fid', $file->fid)->execute();
 }

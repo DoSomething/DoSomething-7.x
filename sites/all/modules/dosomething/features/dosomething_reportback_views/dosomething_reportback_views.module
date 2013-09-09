@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the DoSomething Reportback Views feature.
+ */
+
+include_once 'dosomething_reportback_views.features.inc';
