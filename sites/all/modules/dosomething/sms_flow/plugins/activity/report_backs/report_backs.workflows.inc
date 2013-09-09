@@ -789,7 +789,6 @@ $activity->name = 'submit_report_back';
 $activity->inputs = array('ask_name');
 $activity->outputs = array('end');
 $activity->http_request_type = 'PUT';
-$activity->key = 'aea12e3fe5f83f0d574fdff0342aba91';
 $activity->uid_lookup_url = 'http://fedup.dosomething.org/fedup/posts/uid_lookup.json?key=aea12e3fe5f83f0d574fdff0342aba91';
 $activity->success_response = 161579;
 $activity->submission_url = 'http://fedup.dosomething.org/fedup/posts/@postId.json';

@@ -99,7 +99,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
     }
     // Multiple results found
     elseif ($numResults > 1) {
-      $response = t($this->schools_found_msg . "\n", array('@num_results' => $numResults));
+      $response = t($this->schools_found_msg, array('@num_results' => $numResults)) . "\n";
       for ($i = 0; $i < $numResults; $i++) {
         $displayNum = $i + 1; // Start with 1 instead of 0
         $schoolName = $results[$i]->name;
@@ -108,7 +108,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
         $schoolState = $results[$i]->state;
 
         // Add the school result to the message returned to the user
-        $response .= t("$displayNum) $schoolName. $schoolStreet, $schoolCity, $schoolState\n");
+        $response .= t('@num) @name in @city, @state.', array('@num' => $displayNum, '@name' => $schoolName, '@city' => $schoolCity, '@state' => $schoolState)) . "\n";
       }
       $state->setContext('sms_response', $response);
       
@@ -223,15 +223,7 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
     $words = explode(' ', $userResponse);
     $firstWord = $words[0];
 
-    if ($firstWord == 'Y'
-        || $firstWord == 'YA'
-        || $firstWord == 'YEA'
-        || $firstWord == 'YES') {
-      return TRUE;
-    }
-    else {
-      return FALSE;
-    }
+    return in_array($firstWord, array('Y', 'YA', 'YEA', 'YES'));
   }
 
   /**

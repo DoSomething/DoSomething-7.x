@@ -100,8 +100,7 @@ class ConductorActivitySubmitExternalReportBack extends ConductorActivity {
     // Otherwise this school might not be available/known on the create_and_share side
     $schoolName = $state->getContext('selected_school_name');
     $schoolState = $state->getContext('selected_school_state');
-    $lookupUrl = 'http://campaigns.dosomething.org/fedup/posts/school_lookup?term=@schoolName&state=@schoolState';
-    $lookupUrl = t($lookupUrl, array('@schoolName' => urlencode($schoolName), '@schoolState' => urlencode($schoolState)));
+    $lookupUrl = 'http://campaigns.dosomething.org/fedup/posts/school_lookup?term=' . urlencode($schoolName) . '&state=' . urlencode($schoolState);
     $chLookup = curl_init($lookupUrl);
     curl_setopt_array($chLookup, array(
       CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
@@ -149,7 +148,7 @@ class ConductorActivitySubmitExternalReportBack extends ConductorActivity {
       // @todo Is just using the first submission in the array a safe assumption to make?
       $sub = $submissions[0];
       $postId = $sub->id;
-      $this->submission_url = t($this->submission_url, array('@postId' => $postId));
+      $this->submission_url = str_replace('@postId', $postId, $this->submission_url);
 
       // Update the post with the found post id
       $jsonContent = json_encode($query);
