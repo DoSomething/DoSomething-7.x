@@ -5,6 +5,7 @@
  */
 class ConductorActivitySMSPrompt extends ConductorActivity {
 
+  public $context_value_for_msg = '';
   public $question = '';
 
   public function option_definition() {
@@ -28,6 +29,7 @@ class ConductorActivitySMSPrompt extends ConductorActivity {
       $state->markFailed();
     }
     else if ($state->getContext($this->name . ':message') === FALSE) {
+      $this->question = t($this->question, array('@context_value' => $state->getContext($this->context_value_for_msg)));
       $state->setContext('sms_response', $this->question);
       $state->markSuspended();
     }

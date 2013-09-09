@@ -1084,6 +1084,73 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_reportback_fields-field_reportback_fld_label'.
+  $fields['field_collection_item-field_reportback_fields-field_reportback_fld_label'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_reportback_fld_label',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_reportback_fields',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_reportback_fld_label',
+      'label' => 'Field Label',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'field_collection_item-field_sponsors-field_sponsor_logo'.
   $fields['field_collection_item-field_sponsors-field_sponsor_logo'] = array(
     'field_config' => array(
@@ -4668,6 +4735,72 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-project-field_reportback_fields'.
+  $fields['node-project-field_reportback_fields'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_reportback_fields',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'field_collection',
+      'settings' => array(
+        'hide_blank_items' => 1,
+        'path' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'field_collection',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Enter the fields to display on the Report Back form.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'field_collection',
+          'settings' => array(
+            'add' => 'Add',
+            'delete' => 'Delete',
+            'description' => TRUE,
+            'edit' => 'Edit',
+            'view_mode' => 'full',
+          ),
+          'type' => 'field_collection_view',
+          'weight' => 58,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_reportback_fields',
+      'label' => 'Reportback Fields',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'field_collection',
+        'settings' => array(),
+        'type' => 'field_collection_embed',
+        'weight' => '46',
+      ),
+    ),
+  );
+
   // Exported field: 'node-project-field_reportback_success_msg'.
   $fields['node-project-field_reportback_success_msg'] = array(
     'field_config' => array(
@@ -4736,7 +4869,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '46',
+        'weight' => '47',
       ),
     ),
   );
@@ -5680,12 +5813,14 @@ function dosomething_project_field_default_fields() {
   t('Contact Email');
   t('Copy Accent Color');
   t('Display Project Sections:');
+  t('Enter the fields to display on the Report Back form.');
   t('FAQ');
   t('FAQ Button Label');
   t('FAQ Copy');
   t('FAQ Headline');
   t('FAQ Title');
   t('Facebook Share Msg');
+  t('Field Label');
   t('Gallery Button Label');
   t('Gallery Copy');
   t('Gallery Headline');
@@ -5729,6 +5864,7 @@ function dosomething_project_field_default_fields() {
   t('Project Profiles Headline');
   t('Report Back Copy');
   t('Report Back Success Msg');
+  t('Reportback Fields');
   t('Rules Regs File');
   t('SMS Example Button Label');
   t('SMS Example Headline');

@@ -299,9 +299,10 @@ function dosomething_project_field_group_info() {
     'label' => 'Report Back',
     'weight' => '16',
     'children' => array(
-      0 => 'field_reportback_copy',
-      1 => 'field_max_num_reportbacks',
+      0 => 'field_max_num_reportbacks',
+      1 => 'field_reportback_copy',
       2 => 'field_reportback_success_msg',
+      3 => 'field_reportback_fields',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
