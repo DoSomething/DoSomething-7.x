@@ -189,6 +189,12 @@ $activity->sets = array(
     'path_special' => 161403,
     'send_to_special_on' => 3,
   ),
+  // Fed Up 2013 - Random Tips
+  array(
+    'mdata_id'     => 10951,
+    'game_id'      => SmsFlowGameConstants::FEDUP_RANDOM_TIPS,
+    'opt_in_paths' => array(161557, 161559, 161561, 161563, 161565, 161567, 161569, 161571, 161573, 161575),
+  ),
 );
 
 $activity = $workflow->newActivity('end');
