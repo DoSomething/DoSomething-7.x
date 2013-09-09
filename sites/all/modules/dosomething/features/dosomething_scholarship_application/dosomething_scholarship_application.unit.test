@@ -18,6 +18,26 @@ class DosomethingScholarshipApplicationTestCase extends DrupalUnitTestCase {
     parent::setUp();
   }
 
+  public function testNodePresave() {
+    $node = (object) array(
+      'type' => 'scholarship_application',
+      'is_new' => TRUE,
+    );
+
+    dosomething_scholarship_application_node_presave($node);
+    $this->assertTrue(isset($node->webform));
+    $this->assertTrue($node->webform['allow_draft']);
+  }
+
+  public function testModuleImplementsAlter() {
+    $implementations = array(
+      'dosomething_scholarship_application' => 1,
+      'dosomething_general' => 2,
+    );
+
+    dosomething_scholarship_application_module_implements_alter($implementations, 'form_alter');
+    $this->assertIdentical(end(array_keys($implementations)), 'dosomething_scholarship_application');
+  }
 }
 
 class DosomethingScholarshipApplicationDBUnitTestCase extends WebTestSuite {
@@ -35,8 +55,29 @@ class DosomethingScholarshipApplicationDBUnitTestCase extends WebTestSuite {
   }
 
   public function setUp() {
-    #parent::setUp('dosomething_general');
+    parent::setUp('dosomething_scholarship_application');
     $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
+  }
+
+  public function subTestFormValidate() {
+    $form_state = array(
+      'values' => array(
+        'field_webform_email' => array(
+          LANGUAGE_NONE => array(
+            0 => array(
+              'email' => 'testing@dosomething.org'
+            ),
+          ),
+        ),
+      ),
+    );
+
+    $user = $this->user;
+    $form = array();
+    dosomething_scholarship_application_form_validate($form, $form_state);
+
+    $this->assertTrue(isset($_SESSION['messages']['error']));
+    $this->assertEqual($_SESSION['messages']['error'][0], 'You may not provide the email address of another user, do you have another account?');
   }
 
 }
