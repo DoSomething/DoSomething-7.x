@@ -661,7 +661,7 @@ $activity->inputs = array('check_user_school');
 $activity->outputs = array('ask_q1', 'ask_state', 'end');
 $activity->output_school_correct = 'ask_q1';
 $activity->output_school_incorrect = 'ask_state';
-$activity->question = t('This is the school we have on file for you: @school_name. If this is correct, reply Y. If not, reply N.');
+$activity->question = t('This is the school we got from you before: @school_name. If this is correct, reply Y. If not, reply N.');
 $activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text START to try again or go to fedup.dosomething.org.');
 
 // If user does not have a school set or she wants to reset it, start the school search
