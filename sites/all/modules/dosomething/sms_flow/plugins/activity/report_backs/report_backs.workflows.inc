@@ -662,14 +662,14 @@ $activity->outputs = array('ask_q1', 'ask_state', 'end');
 $activity->output_school_correct = 'ask_q1';
 $activity->output_school_incorrect = 'ask_state';
 $activity->question = t('This is the school we have on file for you: @school_name. If this is correct, reply Y. If not, reply N.');
-$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text KEYWORD to try again or go to fedup.dosomething.org.');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text START to try again or go to fedup.dosomething.org.');
 
 // If user does not have a school set or she wants to reset it, start the school search
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_state';
 $activity->inputs = array('check_user_school', 'school_found');
 $activity->outputs = array('ask_school_name');
-$activity->question = t('We\'re first going to ask a couple questions to find your school. What state is your school in? Reply with the 2 letter abbreviation. (ex: NY)');
+$activity->question = t('We\'re using ur pics to show the world what\'s really up with school lunch. You could win a $4,000 scholarship for sharing. What state do you live in? (ex: NY)');
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_name';
@@ -684,22 +684,23 @@ $activity->inputs = array('ask_school_name');
 $activity->outputs = array('ask_q1', 'end');
 $activity->state_activity_name = 'ask_state';
 $activity->school_activity_name = 'ask_school_name';
-$activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text LUNCH to try again or go to fedup.dosomething.org');
-$activity->one_school_found_msg = t('We found @school_name at @school_street, @school_city, @school_state. Is this your school? Reply Y. Text LUNCH to try again or go to fedup.dosomething.org');
-$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. LUNCH to try again or go to fedup.dosomething.org');
-$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text LUNCH to try searching again or go to fedup.dosomething.org.');
+$activity->max_results = 3;
+$activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text START to try again or go to fedup.dosomething.org');
+$activity->one_school_found_msg = t('We found @school_name in @school_city, @school_state. Reply Y if this is your school. Text START to try again or go to fedup.dosomething.org');
+$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. START to try again or go to fedup.dosomething.org');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text START to try again or go to fedup.dosomething.org.');
 
 $activity = $workflow->newActivity('sms_prompt_normalize_response');
 $activity->name = 'ask_q1';
 $activity->inputs = array('school_found', 'school_search');
 $activity->outputs = array('ask_q2');
 $activity->context_value_for_msg = 'selected_school_name';
-$activity->question = t('@context_value confirmed! (1/3) How often do you eat school lunch? A)0-2 times per month B)3-5 C)6-10 D)Every day. Reply A,B,C, or D');
+$activity->question = t('(1/3) Now 3 ?s about @context_value\'s lunch. How often do you eat school lunch? A)0-2 times per month B)3-5 C)6-10 D)Every day. Reply A,B,C, or D');
 $activity->normalizedGroups = array(
-  array('0-2 times per month', 'A', 'A)'),
-  array('3-5 times per month', 'B', 'B)'),
-  array('6-10 times per month', 'C', 'C)'),
-  array('Every day', 'D', 'D)'),
+  array('0-2 times per month', 'A', 'A)', '0-2', '0 - 2', 'A)0-2'),
+  array('3-5 times per month', 'B', 'B)', '3-5', '3 - 5', 'B)3-5'),
+  array('6-10 times per month', 'C', 'C)', '6-10', '6 - 10', 'C)6-10'),
+  array('Every day', 'D', 'D)', 'everyday', 'D)Every day'),
 );
 
 $activity = $workflow->newActivity('sms_prompt_normalize_response');
@@ -708,10 +709,10 @@ $activity->inputs = array('ask_q1');
 $activity->outputs = array('ask_q3');
 $activity->question = t('(2/3) Of the school lunches you\'ve eaten in the past 4 weeks, how nutritious was your meal? A)Very B)Somewhat C)Not at all D)Unhealthy. Reply A,B,C, or D');
 $activity->normalizedGroups = array(
-  array('Very nutritious', 'A', 'A)'),
-  array('Somewhat nutritious', 'B', 'B)'),
-  array('Not nutritious at all', 'C', 'C)'),
-  array('Unhealthy', 'D', 'D)'),
+  array('Very nutritious', 'A', 'A)', 'A)Very'),
+  array('Somewhat nutritious', 'B', 'B)', 'B)Somewhat'),
+  array('Not nutritious at all', 'C', 'C)', 'C)Not at all', 'Not at all'),
+  array('Unhealthy', 'D', 'D)', 'D)Unhealthy'),
 );
 
 $activity = $workflow->newActivity('sms_prompt_normalize_response');
@@ -720,10 +721,10 @@ $activity->inputs = array('ask_q2');
 $activity->outputs = array('strip_signature');
 $activity->question = t('(3/3) How satisfied have you been with the taste of your school lunch over the past 4 weeks? A)Very B)Somewhat C)Not sat. D)Very unsatisfied. Reply A,B,C, or D');
 $activity->normalizedGroups = array(
-  array('Very satisfied', 'A', 'A)'),
-  array('Somewhat satisfied', 'B', 'B)'),
-  array('Not satisfied', 'C', 'C)'),
-  array('Very unsatisfied', 'D', 'D)'),
+  array('Very satisfied', 'A', 'A)', 'very', 'A)Very'),
+  array('Somewhat satisfied', 'B', 'B)', 'somewhat', 'B)Somewhat'),
+  array('Not satisfied', 'C', 'C)', 'not', 'not sat', 'C)Not sat.'),
+  array('Very unsatisfied', 'D', 'D)', 'very', 'D)Very unsatisfied'),
 );
 
 $activity = $workflow->newActivity('sms_strip_signature');
@@ -737,7 +738,7 @@ $activity->inputs = array('strip_signature');
 $activity->outputs = array('end');
 $activity->http_request_type = 'POST';
 $activity->success_response = 161577;
-$activity->submission_url = 'http://campaigns.dosomething.org/fedup/posts.json';
+$activity->submission_url = 'http://fedup.dosomething.org/fedup/posts.json';
 $activity->submission_fields = array(
   // Key gives context name to pull data from. Value gives the name of the field to submit to
   'ask_q1:message' => 'post[extras][how_often_do_you_eat]',
@@ -789,9 +790,9 @@ $activity->inputs = array('ask_name');
 $activity->outputs = array('end');
 $activity->http_request_type = 'PUT';
 $activity->key = 'aea12e3fe5f83f0d574fdff0342aba91';
-$activity->uid_lookup_url = 'http://campaigns.dosomething.org/fedup/posts/uid_lookup.json?key=aea12e3fe5f83f0d574fdff0342aba91';
+$activity->uid_lookup_url = 'http://fedup.dosomething.org/fedup/posts/uid_lookup.json?key=aea12e3fe5f83f0d574fdff0342aba91';
 $activity->success_response = 161579;
-$activity->submission_url = 'http://campaigns.dosomething.org/fedup/posts/@postId.json';
+$activity->submission_url = 'http://fedup.dosomething.org/fedup/posts/@postId.json';
 $activity->submission_fields = array(
   'ask_picture:mms' => 'post[image]',
   'ask_name:message' => 'post[name]',

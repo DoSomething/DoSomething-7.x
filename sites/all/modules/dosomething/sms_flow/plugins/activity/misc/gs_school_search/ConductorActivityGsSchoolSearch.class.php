@@ -106,6 +106,8 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
         $schoolStreet = $results[$i]->street;
         $schoolCity = $results[$i]->city;
         $schoolState = $results[$i]->state;
+
+        // Add the school result to the message returned to the user
         $response .= t("$displayNum) $schoolName. $schoolStreet, $schoolCity, $schoolState\n");
       }
       $state->setContext('sms_response', $response);
