@@ -177,14 +177,14 @@ function doit_preprocess_page(&$variables) {
       // Add campaigns type specific page type
       array_push( $variables['theme_hook_suggestions'], 'page__neue' );
 
-      $org_code = _doit_load_campaign_org_code($obj);
+      $org_code = _doit_load_project_org_code($obj);
 
       if ($org_code) {
         // Add campaigns specific page type
         array_push( $variables['theme_hook_suggestions'], 'page__project__' . $org_code );
       }
 
-      _doit_load_campaign_assets($obj, $org_code);
+      _doit_load_project_assets($obj, $org_code);
 
     }
 
@@ -272,19 +272,16 @@ function doit_preprocess_page(&$variables) {
  */
 function doit_preprocess_node(&$vars) {
 
-  // Campaign node type:
-  if ($vars['node']->type == 'campaign') {
-    $org_code = _doit_load_campaign_org_code($vars['node']);
+  // Project node type:
+  if ($vars['node']->type == 'project') {
+    
+    $org_code = _doit_load_project_org_code($vars['node']);
     // If the camapign has org code set:
     if ($org_code) {
       // Loads campaign specific tpl:
-      array_push( $vars['theme_hook_suggestions'], 'node__campaign__' . $org_code );
+      array_push( $vars['theme_hook_suggestions'], 'node__project__' . $org_code );
     }
-  }
 
-  // Project node type:
-  elseif ($vars['node']->type == 'project') {
-    
     // Store node object to pass into each section.
     //@todo: clean this up. pretty sure we can just pass in $vars instead of $params to make it less confusing.
     $params['node'] = $vars['node'];
@@ -345,7 +342,7 @@ function _doit_load_menu_templates(&$variables) {
 /**
  * Loads campaign css and js files.
  */
-function _doit_load_campaign_assets($node, $org_code = NULL) {
+function _doit_load_project_assets($node, $org_code = NULL) {
 
   // @todo - we may need to refactor based on campaign related nodes
   if ($node->type != 'project') return;
@@ -353,28 +350,30 @@ function _doit_load_campaign_assets($node, $org_code = NULL) {
   # Add neue library:
   drupal_add_library('ds_neue', 'ds-neue-campaign');
 
-  $org_code = $org_code ? $org_code : _doit_load_campaign_org_code($node);
+  $org_code = $org_code ? $org_code : _doit_load_project_org_code($node);
 
-  // @todo: Add Org Code CSS / JS if node has org code set:
-  /*
+  $path_to_theme = path_to_theme();
+  $css_path = $path_to_theme . '/projects/css';
+  $js_path = $path_to_theme . '/projects/js';
+
   if ($org_code) {
     $org_code_css = $css_path . '/' . $org_code . '/' . $org_code . '.css';
     $org_code_js = $js_path . '/' . $org_code . '/' . $org_code . '.js';
     // Add campaign specific css and js if files exist:
-    if (file_exists($org_code_css) {
+    if (file_exists($org_code_css)) {
       drupal_add_css($org_code_css);
     }
     if (file_exists($org_code_js)) {
       drupal_add_js($org_code_js);
     }
   }
-  */
+  
 }
 
 /**
  * Loads campaign org code. @todo We should move this once fleshed out a bit more
  */
-function _doit_load_campaign_org_code($node) {
+function _doit_load_project_org_code($node) {
   $org_code_items = field_get_items('node', $node, 'field_organization_code', $node->language);
   return $org_code_items ? $org_code_items[0]['value'] : FALSE;
 }
@@ -659,6 +658,9 @@ function doit_field($variables) {
   return $output;
 }
 
+/**
+ * Implements theme_pager().
+ */
 function doit_pager(&$variables) {
   $tags = $variables['tags'];
   $element = $variables['element'];
@@ -731,7 +733,7 @@ function doit_pager(&$variables) {
         if ($i == $pager_current) {
           $items[] = array(
             'class' => array('pager-current'),
-            'data' => $i,
+            'data' => '<span class="btn small inactive">' . $i  . '</span>',
           );
         }
         if ($i > $pager_current) {
@@ -761,13 +763,64 @@ function doit_pager(&$variables) {
         'data' => $li_last,
       );
     }
-    return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . theme('item_list', array(
+    return theme('item_list', array(
       'items' => $items,
       'attributes' => array('class' => array('pager')),
     ));
   }
 }
 
+/**
+ * Implements theme_pager_link().
+ */
+function doit_pager_link($variables) {
+  $text = $variables['text'];
+  $page_new = $variables['page_new'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  $attributes = $variables['attributes'];
+
+  $page = isset($_GET['page']) ? $_GET['page'] : '';
+  if ($new_page = implode(',', pager_load_array($page_new[$element], $element, explode(',', $page)))) {
+    $parameters['page'] = $new_page;
+  }
+
+  $query = array();
+  if (count($parameters)) {
+    $query = drupal_get_query_parameters($parameters, array());
+  }
+  if ($query_pager = pager_get_query_parameters()) {
+    $query = array_merge($query, $query_pager);
+  }
+
+  // Set each pager link title
+  if (!isset($attributes['title'])) {
+    static $titles = NULL;
+    if (!isset($titles)) {
+      $titles = array(
+        t('« first') => t('Go to first page'),
+        t('‹ prev') => t('Go to previous page'),
+        t('next ›') => t('Go to next page'),
+        t('last »') => t('Go to last page'),
+      );
+    }
+    if (isset($titles[$text])) {
+      $attributes['title'] = $titles[$text];
+    }
+    elseif (is_numeric($text)) {
+      $attributes['title'] = t('Go to page @number', array('@number' => $text));
+    }
+  }
+
+  // @todo l() cannot be used here, since it adds an 'active' class based on the
+  //   path only (which is always the current path for pager links). Apparently,
+  //   none of the pager links is active at any time - but it should still be
+  //   possible to use l() here.
+  // @see http://drupal.org/node/1410574
+  $attributes['href'] = url($_GET['q'], array('query' => $query));
+  $attributes['class'] = 'btn small';
+  return '<a' . drupal_attributes($attributes) . '>' . check_plain($text) . '</a>';
+}
 /**
  * Override of theme_search_api_page_results().
  */
@@ -1019,6 +1072,16 @@ function doit_preprocess_project_section_header(&$vars) {
   else {
     $vars['sponsors'] = FALSE;
   }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function doit_preprocess_project_section_gallery(&$vars) {
+  // Placeholder gallery variable:
+  $vars['gallery'] = "<img src='http://placekitten.com/400/300'>";
+  // Gallery view commented out for now reportback gallery view is created to use Reportback Files.
+  // $vars['gallery'] = views_embed_view('project_reportback_gallery', 'default', $vars['node']->field_report_back_node[LANGUAGE_NONE][0]['nid']);
 }
 
 /**

@@ -31,6 +31,23 @@ function dosomething_reportback_insert_reportback($uid, $nid, $data = NULL) {
 }
 
 /**
+ * Inserts a record into the dosomething_reportback_files table.
+ *
+ * @param int $rbid
+ *   Reportback id.
+ * @param int $fid
+ *   File id
+ */
+function dosomething_reportback_insert_reportback_file($rbid, $fid) {
+  return db_insert('dosomething_reportback_files')
+    ->fields(array(
+      'rbid' => $rbid,
+      'fid' => $fid,
+      ))
+    ->execute();
+}
+
+/**
  * Returns count of records in dosomething_reportbacks for given $uid and $nid.
  */
 function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
@@ -82,23 +99,41 @@ function dosomething_reportback_can_user_reportback($user, $node) {
  * @ingroup forms
  */
 function dosomething_reportback_form($form, &$form_state, $node) {
-  global $user;
-  // Check if user is able to reportback for this node.
-  if (!dosomething_reportback_can_user_reportback($user, $node)) {
-    //@todo: Dynamic message?
-    $form['header'] = array('#markup' => t("Thanks for participating!"));
-    return $form;
+  // If node has reportback fields, render as form elements:
+  if (isset($node->field_reportback_fields[LANGUAGE_NONE][0]['value'])) {
+    // Load form field labels from the node:
+    $form_fields = dosomething_reportback_get_reportback_field_values($node);
+    // Loop through form_fields:
+    foreach ($form_fields as $form_field) {
+      $field_id = $form_field['field_collection_item_id'];
+      $form['rb_fld_' . $field_id] = array(
+        '#type' => 'textarea',
+        '#required' => TRUE,
+        '#title' => $form_field['label'],
+      ); 
+    }
   }
-  $form['reportback_image'] = array(
-    '#type' => 'file',
-    '#title' => t('Picture'),
-    //'#required' => TRUE,
-  );
+  // Handle image uploads via plupload module:
+  if (module_exists('plupload')) {
+    $form['reportback_images'] = array(
+      '#type' => 'plupload',
+      '#title' => t('Pictures'),
+      '#required' => TRUE,
+      '#submit_element' => '#edit-reportback-submit',
+      '#upload_validators' => array(
+        'file_validate_extensions' => array('jpg jpeg gif png'),
+      ),
+      '#plupload_settings' => array(
+        'runtimes' => 'html5',
+        'chunk_size' => '1mb',
+      ),
+    );
+  }
   $form['nid'] = array(
     '#type' => 'hidden',
     '#value' => $node->nid,
   );
-  $form['submit'] = array(
+  $form['reportback_submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
     '#attributes' => array('class' => array('btn', 'primary', 'large')),
@@ -107,48 +142,97 @@ function dosomething_reportback_form($form, &$form_state, $node) {
 }
 
 /**
- * Form validation handler for dosomething_reportback_form().
- *
- * @see dosomething_reportback_form_submit()
- */
-function dosomething_reportback_form_validate($form, &$form_state) {
-  //@todo: Stuff.
-}
-
-/**
  * Form submission handler for dosomething_reportback_form().
- *
- * @see dosomething_reportback_form_validate()
  */
 function dosomething_reportback_form_submit($form, &$form_state) {
   global $user;
+  $rb_data = array();
+  $values = $form_state['values'];
   // Load node to find relevant reportback values.
-  $node = node_load($form_state['values']['nid']);
+  $node = node_load($values['nid']);
 
-  // @todo: Some magic shit with reportback field collection values.
+  // If node has reportback fields, loop through values to store in the reportback data field.
+  if (isset($node->field_reportback_fields[LANGUAGE_NONE][0]['value'])) {
+    // Load form field labels from the node:
+    $form_fields = dosomething_reportback_get_reportback_field_values($node);
+    // Loop through form_fields:
+    foreach ($form_fields as $form_field) {
+      // Use the field_collection_item_id as the index for this reportback field data.
+      $field_id = $form_field['field_collection_item_id'];
+      // Store the submitted value.
+      $rb_data[$field_id] = $values['rb_fld_' . $field_id];
+    }
+  }
 
-  $dest_dir = file_default_scheme() . '://';
-  $file_validators = array('file_validate_extensions' => array('jpg png gif jpeg'));
-  // Save file.
-  // @todo: Add to specific reportback directory.  Add RB ID into filename to ensure unique? 
-  /*
-  if ($file = file_save_upload('reportback_image', $file_validators, $dest_dir)) {
-    $filename = $file->filename;        
-    $file_content = file_get_contents($dest_dir.$filename);
+  // Insert record into dosomething_reportbacks table and store its rbid.
+  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($rb_data));
+
+  // Write images to files/reportbacks/org-code:
+  $filepath = 'public://reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value'];
+  // Create the folder if it doesn't exist:
+  file_prepare_directory($filepath, FILE_CREATE_DIRECTORY); 
+  $files_count = count($values['reportback_images']);
+  // Loop through file uploads:
+  for ($i = 0; $i < $files_count; $i++) {
+    $path = $values['reportback_images'][$i]['tmppath'];
+    // Parse the uploaded file's pathinfo:
+    $orig_filename = $values['reportback_images'][$i]['name'];
+    $file_info = pathinfo($orig_filename);
+    // Save its extension:
+    $file_extension = $file_info['extension'];
+    // Use extension in new filename:
+    $file_name = $user->uid . '-' . $rbid . '-' . $i .'.' . $file_extension; 
+    // Set the $file as an object to pass it in the file_copy() function
+    $file = (object)array(
+        'uid' => $user->uid,
+        'uri' => $path,
+        'filemime' => file_get_mimetype($path),
+        'status' => 1
+    );
+    // Save file:
+    if ($file = file_copy($file, $filepath . '/' . $file_name)) {
+      // Write record to dosomething_reportback_files:
+      dosomething_reportback_insert_reportback_file($rbid, $file->fid);
+    }
+    else {
+      drupal_set_message('An error occurred uploading file ' . $orig_filename, 'error');
+    }
   }
-  else {
-    form_set_error('reportback_image', 'Could not upload file.');
-  }
-  */
   
-  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($form_state['values']));
-  // Grab success message from node:
+  // Set success message from node:
   if (isset($node->field_reportback_success_msg[LANGUAGE_NONE][0]['value'])) {
     $success_msg = $node->field_reportback_success_msg[LANGUAGE_NONE][0]['value'];
   }
-  // Else set default if doesnt exist:
+  // Else use default message if doesnt exist:
   else {
-    $success_msg = 'Thanks for submitting!';
+    $success_msg = 'Thanks for your submission!';
   }
   drupal_set_message($success_msg);
+}
+
+/**
+ * Return the values of the "Reportback Fields" field collection in a given node.
+ *
+ * @param Object $node
+ *   Loaded node for which to return values from.
+ *
+ */
+function dosomething_reportback_get_reportback_field_values($node) {
+  $values = array();
+  $field_collection_fields = field_get_items('node', $node, 'field_reportback_fields');
+  $ids = array();
+  foreach ($field_collection_fields as $fc_field) {
+    $ids[] = $fc_field['value'];
+  }
+  if (!empty($ids)) {
+    $items = field_collection_item_load_multiple($ids);
+    $i = 0;
+    foreach($items as $item) {
+      $values[$i]['field_collection_item_id'] = $item->item_id;
+      $reportback_fld_label = field_get_items('field_collection_item', $item, 'field_reportback_fld_label');
+      $values[$i]['label'] = $reportback_fld_label[0]['value'];
+      $i++;
+    }
+  }
+  return $values;
 }
