@@ -33,19 +33,19 @@
 </div>
 
 <div role="main" class="wrapper">
-  <div class="content-block feature fixed one-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/survivors2-feature.jpg'); background-position: right center;">
-    <a class="full-link" href="/survivors"><span>Do This</span></a>
-    <div class="headline big purple">
-      <h3>Donate your old cell phone to help domestic abuse survivors</h3>
-      <a href="/survivors" class="btn primary large">Do This</a>
+  <div class="content-block feature fixed one-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/fedup-feature.jpg'); background-position: right center;">
+    <a class="full-link" href="//fedup.dosomething.org/fedup"><span>Do This</span></a>
+    <div class="headline big red">
+      <h3>Show everyone what you think of school lunch</h3>
+      <a href="//fedup.dosomething.org/fedup" class="btn primary large">Do This</a>
     </div>
   </div>
 
-  <div class="content-block feature fixed three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
-    <a class="full-link" href="/bullytext"><span>Do This</span></a>
+  <div class="content-block feature fixed three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
+    <a class="full-link" href="/survivors"><span>Do This</span></a>
     <div class="headline blue">
-      <div class="row"><div class="headline-text"><h3>Invite friends to stand up to bullying</h3></div></div>
-      <div class="row"><p class="block-cta"><a href="/bullytext" class="btn primary large">Do This</a></p></div>
+      <div class="row"><div class="headline-text"><h3>Donate phones to help domestic abuse survivors</h3></div></div>
+      <div class="row"><p class="block-cta"><a href="/survivors" class="btn primary large">Do This</a></p></div>
     </div>
   </div>
 
