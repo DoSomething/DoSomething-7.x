@@ -39,12 +39,12 @@ class FeatureContext extends MinkContext
      */
     protected function bootstrap()
     {
-      self::$bootstrapped = true;
-      if (!isset($this->factory) || !($this->factory instanceof Factory)) {
+      if (!isset($this->factory) || !($this->factory instanceof Factory) && !self::$bootstrapped) {
         // This fixes that frustrating "Undefined index: REMOTE_ADDR" error.
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
         require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
         self::$factory = Factory::instance();
+        self::$bootstrapped = true;
       }
     }
 
