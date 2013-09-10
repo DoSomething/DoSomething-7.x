@@ -731,9 +731,16 @@ function doit_pager(&$variables) {
           );
         }
         if ($i == $pager_current) {
+          if (doit_is_neue_page()) {
+            $data = '<span class="btn small inactive">' . $i  . '</span>';
+          }
+          else {
+            $data = $i;
+          }
+
           $items[] = array(
             'class' => array('pager-current'),
-            'data' => '<span class="btn small inactive">' . $i  . '</span>',
+            'data' => $data,
           );
         }
         if ($i > $pager_current) {
@@ -818,7 +825,9 @@ function doit_pager_link($variables) {
   //   possible to use l() here.
   // @see http://drupal.org/node/1410574
   $attributes['href'] = url($_GET['q'], array('query' => $query));
-  $attributes['class'] = 'btn small';
+  if (doit_is_neue_page()) {
+    $attributes['class'] = 'btn small';
+  }
   return '<a' . drupal_attributes($attributes) . '>' . check_plain($text) . '</a>';
 }
 /**
@@ -972,14 +981,26 @@ function doit_is_campaign_join_template_page() {
   return FALSE;
 }
 
-function doit_css_alter(&$css) {
+/**
+ * Returns TRUE if current path is a Neue page.
+ */
+function doit_is_neue_page() {
   $node = menu_get_object();
-
   if (
-    ($node && $node->type == 'project') ||
+    ($node && isset($node->type) && $node->type == 'project') ||
     (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
     ($node && $node->type == 'page') && theme_get_setting('doit_pages_neue')
   ) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_css_alter().
+ */
+function doit_css_alter(&$css) {
+  if (doit_is_neue_page()) {
     $styles = array();
 
     // @todo - optimize me
