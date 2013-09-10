@@ -30,3 +30,23 @@ Feature: Foot Locker Scholarship Application
     And I should see "Eligibility Rules"
     And I should see "What You Need"
     And I should see "Got questions?"
+
+  Scenario: See the application status page, logged out
+    Given I am on "/footlocker/apply/status"
+    Then I should see "You must log in"
+    And I should see "If you are having difficulty"
+    And I should see "Got questions?"
+
+  @javascript
+  Scenario: See the application status page, logged in
+    Given I am logged in as a regular user
+    And I am on "/footlocker/apply/status"
+    Then I should see "Application Status"
+    And I should see "Welcome to your Application Status page"
+    And I should see "Steps to apply:"
+    And I should see "APPLICATION STATUS"
+    And I should see "You haven't started yet!"
+    But I should not see "REQUIRED RECOMMENDATION"
+    And I should not see "RECOMMENDATION FORM"
+    And I should see "If you are having difficulty"
+    And I should see "Got questions?"
