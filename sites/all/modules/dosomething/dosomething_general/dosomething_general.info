@@ -3,6 +3,5 @@ description = Adds general custom tweaks to the DoSomething site.
 package = DoSomething
 core = 7.x
 dependencies[] = entity
-dependencies[] = opengraph_meta
 files[] = dosomething_general.unit.test
 files[] = dosomething_general.web.test

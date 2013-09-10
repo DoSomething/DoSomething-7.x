@@ -13,7 +13,6 @@ dependencies[] = imce
 dependencies[] = media_internet
 dependencies[] = node
 dependencies[] = nodequeue
-dependencies[] = opengraph_meta
 dependencies[] = optimizely
 dependencies[] = path
 dependencies[] = scheduler
