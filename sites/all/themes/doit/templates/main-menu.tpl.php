@@ -18,6 +18,7 @@
             <li><a href="/birthdaymail">Birthday Mail</a></li>
             <li><a href="/spit">Give A Spit</a></li>
             <li><a href="/survivors">Cellphones for Survivors</a></li>
+            <li><a href="//fedup.dosomething.org">Fed Up</a></li>
             <li><a href="/past-campaigns">Past Campaigns</a></li>
         </ul>
     </li>
