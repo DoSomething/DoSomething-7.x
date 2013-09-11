@@ -154,13 +154,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create bc_bio_form content.
-  $permissions['create bc_bio_form content'] = array(
-    'name' => 'create bc_bio_form content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: create blog content.
   $permissions['create blog content'] = array(
     'name' => 'create blog content',
@@ -311,13 +304,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any bc_bio_form content.
-  $permissions['delete any bc_bio_form content'] = array(
-    'name' => 'delete any bc_bio_form content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any blog content.
   $permissions['delete any blog content'] = array(
     'name' => 'delete any blog content',
@@ -426,13 +412,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own action_guide content.
   $permissions['delete own action_guide content'] = array(
     'name' => 'delete own action_guide content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own bc_bio_form content.
-  $permissions['delete own bc_bio_form content'] = array(
-    'name' => 'delete own bc_bio_form content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -557,15 +536,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any action_guide content.
   $permissions['edit any action_guide content'] = array(
     'name' => 'edit any action_guide content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any bc_bio_form content.
-  $permissions['edit any bc_bio_form content'] = array(
-    'name' => 'edit any bc_bio_form content',
     'roles' => array(
       0 => 'staff',
     ),
