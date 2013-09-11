@@ -545,15 +545,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit Open Graph meta tags.
-  $permissions['edit Open Graph meta tags'] = array(
-    'name' => 'edit Open Graph meta tags',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'opengraph_meta',
-  );
-
   // Exported permission: edit all webform submissions.
   $permissions['edit all webform submissions'] = array(
     'name' => 'edit all webform submissions',
