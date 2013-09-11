@@ -108,16 +108,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'nodequeue',
   );
 
-  // Exported permission: administer optimizely.
-  $permissions['administer optimizely'] = array(
-    'name' => 'administer optimizely',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'product team',
-    ),
-    'module' => 'optimizely',
-  );
-
   // Exported permission: administer taxonomy.
   $permissions['administer taxonomy'] = array(
     'name' => 'administer taxonomy',
