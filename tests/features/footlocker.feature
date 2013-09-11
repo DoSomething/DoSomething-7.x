@@ -50,3 +50,30 @@ Feature: Foot Locker Scholarship Application
     And I should not see "RECOMMENDATION FORM"
     And I should see "If you are having difficulty"
     And I should see "Got questions?"
+
+  Scenario: See the application page, logged out
+    Given I am on "/footlocker/apply/status/application"
+    Then I should see "Join DoSomething.org"
+    And I should see "or register"
+    And I should see "Already a member?"
+
+  Scenario: See the application page, logged in
+    Given I am logged in as a regular user
+    And I am on "/footlocker/apply/status/application"
+    Then I should see "LET'S GET STARTED"
+
+  @javascript @app
+  Scenario: Fill out the application
+    Given I am logged in as a regular user
+    And I am on "/footlocker/apply/status/application"
+    When I fill in the following:
+      | edit-submitted-email | testing+aiosdjf@dosomething.org |
+      | edit-submitted-phone-number | 6105552222 |
+      | edit-submitted-street-address-1 | 123 Sunrise Hill |
+      | edit-submitted-state | NY |
+      | edit-submitted-zip-code | 10010 |
+      | edit-submitted-birthday-month | 10 |
+      | edit-submitted-birthday-day   | 05 |
+      | edit-submitted-birthday-year  | 1990 |
+      | edit-submitted-fafsa | 10000 |
+
