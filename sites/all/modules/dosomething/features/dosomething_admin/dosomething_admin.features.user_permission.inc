@@ -251,15 +251,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create sponsor content.
-  $permissions['create sponsor content'] = array(
-    'name' => 'create sponsor content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: create tips_and_tools content.
   $permissions['create tips_and_tools content'] = array(
     'name' => 'create tips_and_tools content',
@@ -368,13 +359,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete any social_scholarship content.
   $permissions['delete any social_scholarship content'] = array(
     'name' => 'delete any social_scholarship content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete any sponsor content.
-  $permissions['delete any sponsor content'] = array(
-    'name' => 'delete any sponsor content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -612,15 +596,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any social_scholarship content.
   $permissions['edit any social_scholarship content'] = array(
     'name' => 'edit any social_scholarship content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any sponsor content.
-  $permissions['edit any sponsor content'] = array(
-    'name' => 'edit any sponsor content',
     'roles' => array(
       0 => 'staff',
     ),
