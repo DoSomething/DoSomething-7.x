@@ -5,6 +5,8 @@
  * dosomething_reportback.module
  **/
 
+include_once 'dosomething_reportback.views.inc';
+
 /**
  * Inserts a record into the dosomething_reportbacks table.
  *
@@ -51,6 +53,7 @@ function dosomething_reportback_insert_reportback_file($rbid, $fid) {
  * Returns count of records in dosomething_reportbacks for given $uid and $nid.
  */
 function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
+  // This function isn't used it yet.
   // @todo: As is, this is going to be scanning thousands and thousands of records 
   // anytime a project node is visited.  Perhaps we can store nid's on the user profile.
 	$result = db_select('dosomething_reportbacks', 'rb', array('target' => 'slave'))
@@ -168,9 +171,9 @@ function dosomething_reportback_form_submit($form, &$form_state) {
   $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($rb_data));
 
   // Write images to files/reportbacks/org-code:
-  $filepath = 'public://reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value'];
+  $file_dir = 'public://reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value'];
   // Create the folder if it doesn't exist:
-  file_prepare_directory($filepath, FILE_CREATE_DIRECTORY); 
+  file_prepare_directory($file_dir, FILE_CREATE_DIRECTORY); 
   $files_count = count($values['reportback_images']);
   // Loop through file uploads:
   for ($i = 0; $i < $files_count; $i++) {
@@ -182,16 +185,18 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     $file_extension = $file_info['extension'];
     // Use extension in new filename:
     $file_name = $user->uid . '-' . $rbid . '-' . $i .'.' . $file_extension; 
-    // Set the $file as an object to pass it in the file_copy() function
+    $file_path = $file_dir . '/' . $file_name;
+    // Set the $file as an object to pass it in the file_copy() function:
     $file = (object)array(
         'uid' => $user->uid,
         'uri' => $path,
-        'filemime' => file_get_mimetype($path),
         'status' => 1
     );
     // Save file:
-    if ($file = file_copy($file, $filepath . '/' . $file_name)) {
-      // Write record to dosomething_reportback_files:
+    if ($file = file_copy($file, $file_path)) {
+      // Get filemime from the written file (defaults to application when its in the tmp directory above):
+      $file->filemime = file_get_mimetype($file_path);
+      file_save($file);
       dosomething_reportback_insert_reportback_file($rbid, $file->fid);
     }
     else {
@@ -235,4 +240,12 @@ function dosomething_reportback_get_reportback_field_values($node) {
     }
   }
   return $values;
+}
+
+/**
+ * Implements hook_file_delete.
+ */
+function dosomething_reportback_file_delete($file) {
+  // Delete all reportback_files records associated with the file.
+  db_delete('dosomething_reportback_files')->condition('fid', $file->fid)->execute();
 }
