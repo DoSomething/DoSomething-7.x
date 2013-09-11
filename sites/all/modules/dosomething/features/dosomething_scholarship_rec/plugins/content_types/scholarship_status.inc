@@ -72,7 +72,9 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
     // Loop through each recommendation form.
     $params = array('node_type' => 'scholarship_recommendation', 'nid' => $sub->nid);
     $rec_forms = dosomething_scholarship_rec_scholarship_status_load('node', 'field_application_form', $params);
+    $i = 0;
     foreach ($rec_forms as $rec_form) {
+      $i++;
       $rec_form = reset(entity_load('node', array($rec_form->nid)));
       $content['recommendation_status'][$rec_form->nid] = array(
         '#type' => 'container',
@@ -107,7 +109,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
             '#markup' => 'Incomplete | ' . l('Complete it now', $url, $opts),
           ),
           'button' => array(
-            '#markup' => l('Submit Recommendation Request', $url, $opts+array('attributes' => array('class' => array('go-button')))),
+            '#markup' => l('Submit Recommendation Request', $url, $opts+array('attributes' => array('class' => array('go-button rec-' . $i)))),
           ),
         );
         $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-empty';
