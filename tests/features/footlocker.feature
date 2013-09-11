@@ -37,7 +37,6 @@ Feature: Foot Locker Scholarship Application
     And I should see "If you are having difficulty"
     And I should see "Got questions?"
 
-  @javascript
   Scenario: See the application status page, logged in
     Given I am logged in as a regular user
     And I am on "/footlocker/apply/status"
@@ -57,12 +56,13 @@ Feature: Foot Locker Scholarship Application
     And I should see "or register"
     And I should see "Already a member?"
 
+  @application
   Scenario: See the application page, logged in
     Given I am logged in as a regular user
     And I am on "/footlocker/apply/status/application"
     Then I should see "LET'S GET STARTED"
 
-  @javascript @app
+  @application
   Scenario: Fill out the application
     Given I am logged in as a regular user
     And I am on "/footlocker/apply/status/application"
@@ -72,8 +72,42 @@ Feature: Foot Locker Scholarship Application
       | edit-submitted-street-address-1 | 123 Sunrise Hill |
       | edit-submitted-state | NY |
       | edit-submitted-zip-code | 10010 |
-      | edit-submitted-birthday-month | 10 |
-      | edit-submitted-birthday-day   | 05 |
-      | edit-submitted-birthday-year  | 1990 |
+      | edit-submitted-birthday-month | 6 |
+      | edit-submitted-birthday-day   | 5 |
+      | edit-submitted-birthday-year  | 1999 |
       | edit-submitted-fafsa | 10000 |
+    And I fill in "edit-submitted-gender-2" with "male "
+    And I check "edit-submitted-race-6"
+    And I press "Next"
 
+    Then I should see "page 2"
+    When I check "edit-submitted-what-sports-do-you-play-30"
+    And I fill in the following:
+      | edit-submitted-roles | n/a |
+      | edit-submitted-cumulative-sat-score | 1600 |
+      | edit-submitted-cumulative-act-score | 1600 |
+      | edit-submitted-pre-sat-score | 1600 |
+      | edit-submitted-plan-score | 1600 |
+      | edit-submitted-activities | n/a |
+    And I fill in "edit-submitted-unweighted-gpa" with "3.8 "
+    And I fill in "edit-submitted-fl-employee-2" with "no "
+    And I press "Next"
+
+    Then I should see "page 3"
+    When I fill in the following:
+      | edit-submitted-essay-1-question | essay 1 |
+      | edit-submitted-essay-2-question | essay 2 |
+    And I press "Next"
+
+    Then I should see "page 4"
+    When I fill in the following:
+      | edit-submitted-photo-album-url | http://flickr.com |
+      | edit-submitted-youtube-or-video-url | http://www.youtube.com |
+    And I fill in "edit-submitted-how-did-you-hear-about-this-scholarship-opportunity" with "coach "
+    And I check "edit-submitted-legal-stuff-1"
+    And I check "edit-submitted-confirm-true-1"
+    And I check "edit-submitted-permission-1"
+    And I press "Submit"
+
+    Then I should see "Woohoo! You've successfully submitted the application!"
+    And I should see "Application status: Complete"
