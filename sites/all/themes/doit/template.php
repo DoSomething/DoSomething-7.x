@@ -1099,10 +1099,7 @@ function doit_preprocess_project_section_header(&$vars) {
  * Implements hook_preprocess_hook().
  */
 function doit_preprocess_project_section_gallery(&$vars) {
-  // Placeholder gallery variable:
-  $vars['gallery'] = "<img src='http://placekitten.com/400/300'>";
-  // Gallery view commented out for now reportback gallery view is created to use Reportback Files.
-  // $vars['gallery'] = views_embed_view('project_reportback_gallery', 'default', $vars['node']->field_report_back_node[LANGUAGE_NONE][0]['nid']);
+  $vars['gallery'] = views_embed_view('reportback_gallery', 'default', $vars['node']->nid);
 }
 
 /**
