@@ -49,12 +49,11 @@ function dosomething_reportback_insert_reportback_file($rbid, $fid) {
     ->execute();
 }
 
-//@todo: Hook for file_delete to remove record from reportback_file.
-
 /**
  * Returns count of records in dosomething_reportbacks for given $uid and $nid.
  */
 function dosomething_reportback_get_count_user_reportbacks($uid, $nid) {
+  // This function isn't used it yet.
   // @todo: As is, this is going to be scanning thousands and thousands of records 
   // anytime a project node is visited.  Perhaps we can store nid's on the user profile.
 	$result = db_select('dosomething_reportbacks', 'rb', array('target' => 'slave'))
@@ -203,7 +202,6 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     else {
       drupal_set_message('An error occurred uploading file ' . $orig_filename, 'error');
     }
-
   }
   
   // Set success message from node:
