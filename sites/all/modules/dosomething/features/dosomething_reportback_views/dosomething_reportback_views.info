@@ -3,8 +3,8 @@ description = Provides gallery and admin views for Reportbacks.
 core = 7.x
 package = DoSomething
 php = 5.2.4
-version = 7.x-1.0project = dosomething_reportback_views
 dependencies[] = ctools
+dependencies[] = dosomething_reportback
 dependencies[] = views
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1

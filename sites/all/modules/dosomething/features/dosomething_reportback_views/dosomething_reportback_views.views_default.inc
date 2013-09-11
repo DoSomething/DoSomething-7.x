@@ -125,7 +125,6 @@ function dosomething_reportback_views_views_default_views() {
   );
   $handler->display->display_options['arguments']['nid']['validate_options']['access'] = TRUE;
   $handler->display->display_options['arguments']['nid']['validate_options']['access_op'] = 'update';
-  $handler->display->display_options['arguments']['nid']['validate']['fail'] = 'access denied';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
