@@ -179,15 +179,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create final_grant_update content.
-  $permissions['create final_grant_update content'] = array(
-    'name' => 'create final_grant_update content',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: create grant_application content.
   $permissions['create grant_application content'] = array(
     'name' => 'create grant_application content',
@@ -325,13 +316,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any final_grant_update content.
-  $permissions['delete any final_grant_update content'] = array(
-    'name' => 'delete any final_grant_update content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any grant_application content.
   $permissions['delete any grant_application content'] = array(
     'name' => 'delete any grant_application content',
@@ -433,13 +417,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own dsaward_rec content.
   $permissions['delete own dsaward_rec content'] = array(
     'name' => 'delete own dsaward_rec content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own final_grant_update content.
-  $permissions['delete own final_grant_update content'] = array(
-    'name' => 'delete own final_grant_update content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -563,15 +540,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any dsaward_rec content.
   $permissions['edit any dsaward_rec content'] = array(
     'name' => 'edit any dsaward_rec content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any final_grant_update content.
-  $permissions['edit any final_grant_update content'] = array(
-    'name' => 'edit any final_grant_update content',
     'roles' => array(
       0 => 'staff',
     ),
