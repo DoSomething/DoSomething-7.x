@@ -233,15 +233,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: create share_of_day content.
-  $permissions['create share_of_day content'] = array(
-    'name' => 'create share_of_day content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: create social_scholarship content.
   $permissions['create social_scholarship content'] = array(
     'name' => 'create social_scholarship content',
@@ -349,13 +340,6 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any share_of_day content.
-  $permissions['delete any share_of_day content'] = array(
-    'name' => 'delete any share_of_day content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: delete any social_scholarship content.
   $permissions['delete any social_scholarship content'] = array(
     'name' => 'delete any social_scholarship content',
@@ -443,13 +427,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: delete own quiz content.
   $permissions['delete own quiz content'] = array(
     'name' => 'delete own quiz content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: delete own share_of_day content.
-  $permissions['delete own share_of_day content'] = array(
-    'name' => 'delete own share_of_day content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -578,15 +555,6 @@ function dosomething_admin_user_default_permissions() {
   // Exported permission: edit any quiz content.
   $permissions['edit any quiz content'] = array(
     'name' => 'edit any quiz content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: edit any share_of_day content.
-  $permissions['edit any share_of_day content'] = array(
-    'name' => 'edit any share_of_day content',
     'roles' => array(
       0 => 'staff',
     ),
