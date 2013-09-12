@@ -109,7 +109,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
             '#markup' => 'Incomplete | ' . l('Complete it now', $url, $opts),
           ),
           'button' => array(
-            '#markup' => l('Submit Recommendation Request', $url, $opts+array('attributes' => array('class' => array('go-button rec-' . $i)))),
+            '#markup' => l('Submit Recommendation Request', $url, $opts+array('attributes' => array('class' => array('go-button'), 'id' => 'rec-' . $i))),
           ),
         );
         $content['recommendation_status'][$rec_form->nid]['#attributes']['class'][] = 'status-empty';
