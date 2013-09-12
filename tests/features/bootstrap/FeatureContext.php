@@ -24,6 +24,7 @@ class FeatureContext extends MinkContext
     protected static $factory;
     private static $bootstrapped = false;
     private static $roles = array();
+    private static $sids = array();
 
     /**
      * Initializes context.
@@ -99,6 +100,49 @@ class FeatureContext extends MinkContext
         new Step\When('I press "Log in"'),
         // new Step\Then('I should see "Log out"'),
       );
+    }
+
+    /**
+     * @Given /^I fill (?:in|out) "(.*?)" with my logged in email$/
+     */
+    public function iFillInXWithMyLoggedInEmail($field)
+    {
+       $use = current(self::$roles);
+       return array(new Step\When('I fill in "' . $field . '" with "' . $use->mail . '"'));
+    }
+
+    /**
+     * @Then /^remember the current SID$/
+     */
+    public function RememberTheCurrentSid()
+    {
+       preg_match('#sid=(\d+)#i', $this->getSession()->getCurrentUrl(), $qs);
+       $sid = intval($qs[1]);
+
+       self::$sids[] = $sid;
+    }
+
+    /**
+     * @When /^I go to "(.*?)" with the last SID$/
+     */
+    public function IGoToXWithTheLastSid($path)
+    {
+       $sid = end(self::$sids);
+       return array(new Step\Given('I am on "' . $path . '?sid=' . $sid . '"'));
+    }
+
+    /**
+     * @When /^I fill out the foot locker recommendation form$/
+     */
+    public function iFillOutTheFootLockerRecommendationRequestForm()
+    {
+       $form = new Behat\Gherkin\Node\TableNode('
+            | edit-submitted-field-webform-name-und-0-value | me |
+            | edit-submitted-relationship-to-you | me |
+            | edit-submitted-field-webform-email-und-0-email | testing+abc123@dosomething.org |
+            | edit-submitted-phone-number | 555-555-5555 |
+        ');
+       return array(new Step\When('I fill in the following:', $form));
     }
 
     /**
