@@ -84,6 +84,15 @@
       window.location.href = '/survivors#header';
     });
 
+    // ------
+    // QUOTES
+    // ------
+    $('.another-quote').click(function(e){
+      e.preventDefault();
+      $(this).parent().next().slideDown();
+    })
+
+
     // ------------------
     // GET LABEL DROPDOWN
     // ------------------
