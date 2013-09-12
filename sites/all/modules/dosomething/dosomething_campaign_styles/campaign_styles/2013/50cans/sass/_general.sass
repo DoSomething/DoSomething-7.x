@@ -4,12 +4,108 @@ img
   +noBorder
   +noShadow
 
+
+// CANS STYLES
+// -----------
+
+.js-location-finder-form input[type="text"]
+  padding: 1.3em
+
+.spit-divider
+  background: #00aced
+  color: #fff
+  font-size: 1.5em
+  font-style: italic
+  text-align: center
+  padding: 2em
+
+
+.video-player
+  text-align: center
+
+
+.section-unit-half
+  padding: 2em 4em !important
+
+  p 
+    padding: 1em
+
+.center
+  text-align: center !important
+
+.padded
+  padding: 2em
+
+.colored
+  color: #00aced
+
+.section-unit-full
+  border-bottom: 0 !important
+
+a 
+  color: #00aced 
+
+.fb-like
+  z-index: 100
+
+
+.hide-mobile
+  @include respond-to(phones)
+    display: none !important
+
+.only-mobile
+  display: none
+  @include respond-to(phones)
+    display: block !important
+
+.back-to-top
+  color: #ccc
+  margin-top: 2em
+
+.no-bottom-border
+  border-bottom: 0 !important
+
+.node-campaign-report-back
+  background: #eee
+
+  .content
+    margin: 0 auto
+
+.webform-component
+  margin: 2em 0
+
+.field-name-field-mandrill-key
+  display: none
+
+.node-webform
+  background: #eee
+  padding: 2em
+  @include respond-to(widescreens)
+    width: 50%
+    margin: 0 auto
+
+.first-action
+  border-right: 1px solid #ddd
+  @include respond-to(phones)
+    border-right: none
+
+
+.or-divider
+  color: #666
+  text-align: center
+  text-transform: uppercase
+  margin-bottom: 1em
+
+.no-capitalize
+  text-transform: none !important
+
+
 // SECTION STYLES
 // --------------
 
 .section
   margin: 0 auto
-  padding: $base-padding 0
+  padding: $base-padding
   background: $bg-light
   overflow: hidden
   +border-bottom-subtle
@@ -39,24 +135,24 @@ img
     margin-bottom: 2em
 
   img
-    width: 100px
+    max-width: 100%
     margin: 0 auto 1em
     display: block
 
 .section-unit-double
   width: 2 * $section-unit-width
-  margin: 0 0 2em 0
+  margin-bottom: 2em
   +border-bottom-subtle
 
 .section-unit-full
   width: 100%
   padding: 0 0 0 0
-  margin: 0 0 2em 0
+  margin-bottom: 2em
   +border-bottom-subtle
 
 .section-unit-half
   width: 50%
-  margin: 0 0 2em 0
+  margin-bottom: 2em
 
   @include respond-to(phones)
     width: 100%
@@ -65,13 +161,14 @@ img
   font-weight: 500
   text-align: center
   text-transform: capitalize
-  padding: 0
+  padding: 0 1em
   margin: 0 auto 1em auto
   letter-spacing: 0.1em
+  line-height: 2.5
   color: #888
   
   span
-    border-bottom: 6px solid #f4f4f4
+    border-bottom: 6px solid #d9e021
 
 // GENERAL-USE CLASSES
 // -------------------
@@ -97,15 +194,21 @@ h1.headline-callout
 .headline-callout
   font-weight: 600
   text-align: center
-  margin: 0 auto 1em
+  margin: 0.5em 0
   span
     text-align: center
     display: inline-block
     padding: 0.2em 0.5em 0px
-    background: #fff
-    color: lighten($off-black, 35)
-    border: 1px solid #ddd
-    +box-shadow(0 10px 10px -10px #ddd)
+    text-transform: uppercase
+    background: #000
+    color: #fff
+
+    @include respond-to(phones)
+      background: none
+      color: #00aced
+      font-size: 0.9em
+    
+    
 
 .headline-instructions
   padding: 1em 0
@@ -182,13 +285,12 @@ strong
 // -------------
 
 .form-submit, .btn
+  display: inline-block
   background: $btn-color
   margin: 0 auto
-  padding: 0.25em 0
+  padding: 0.5em 1.5em 0.3em
   clear: both
   position: static
-  height: 2em
-  display: block
   border: 1px solid $btn-border
   cursor: pointer
   color: $off-black !important
@@ -205,7 +307,6 @@ strong
     +box-shadow(0 10px 10px -10px #bbb)
   &:active /* While mouse clicks */
     color: lighten($off-black, 10) !important
-    padding: 0.35em 0 0.15em !important
     background: $btn-color
     +background-image(linear-gradient($btn-hover, $btn-color))
     +box-shadow(0 10px 10px -10px #bbb)

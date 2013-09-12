@@ -29,7 +29,7 @@
 
 
 .headline.alt
-  background: none !important
+  background: #fff
   border: none !important
 
 // HEADER
@@ -38,13 +38,12 @@
   position: relative
   width: 100%
   height: 360px
-  background-color: $bg-header-fallback
+  background-color: transparent
   //background-image: url($bg-header-image)
   background-repeat: no-repeat
   background-position: center center
   @include background-size(cover)
   padding: 1% 2%
-  overflow: hidden
 
   .logo-campaign
     margin: 0 auto
@@ -61,7 +60,7 @@
     line-height: 1.2em
     font-weight: 600
     font-size: 4em
-    margin: 2em auto 0.5em
+    margin: 32px auto 12px
 
     @include respond-to(tablets_and_phones)
       font-size: 3em
@@ -70,7 +69,6 @@
     color: $font-light
 
   .header-social
-    width: 16%
     height: 20px
     margin: 25px 0 0 0
 
@@ -90,17 +88,21 @@
       border: 1px solid rgb(236, 238, 245)
 
   .header-date
-    width: 73%
+    text-transform: uppercase
     p
       padding: 1.5em 0 0 0
-      color: darken($bg-alt, 25)
+      color: #fff
+      text-shadow: 0 0 5px #000
+      text-align: right
 
   .header-sponsor
-    width: 11%
+    width: 22%
 
     @include respond-to(tablets_and_phones)
       display: none // relocated to footer
 
+  .row-center
+    text-align: center
 
   .row-bottom
     position: absolute
@@ -123,6 +125,7 @@
   p
     line-height: 3em
     letter-spacing: 0.05em
+    font-size: 1.5em
 
   .btn
     margin: 0 0 0 1em
@@ -147,6 +150,9 @@
 // ACTION-KIT
 // ----------
 .action-kit
+  clear: both
+  padding: 1em
+
   img
     position: relative
     top: 15px
@@ -236,8 +242,9 @@
       margin: 0.5em auto 0
 
   .profile-copy
-    width: $section-content-width
+    width: 34em
     margin: 0 0 3em 0
+    padding-top: 1em
 
     @include respond-to(tablets_and_phones)
       width: 90%
@@ -257,7 +264,9 @@
 // -------
 .content
   width: 90%
+  margin: 1em auto 2em
   max-width: $section-content-width
+
   p
     display: block
     text-align: left
@@ -357,16 +366,28 @@
 // ---
 .faq
   width: 90%
+  margin: 1em auto 2em
   max-width: $section-content-width
   position: relative
   h3, p
     text-align: left
   h3
     cursor: pointer
-    color: #ccc
+    font-weight: bold
+    color: #999
+    &:hover
+      text-decoration: underline
+
+  p
+    padding-bottom: 1em
+
   div /* TODO - GIVE THIS A CLASS */
     margin: 0 0 0.5em 0
 
+  ul
+    list-style-type: disc
+    padding-left: 2em
+  
   .btn
     margin: 1em auto 0
 
