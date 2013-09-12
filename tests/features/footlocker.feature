@@ -60,7 +60,7 @@ Feature: Foot Locker Scholarship Application
   Scenario: See the application page, logged in
     Given I am logged in as a regular user
     And I am on "/footlocker/apply/status/application"
-    Then I should see "LET'S GET STARTED"
+    Then I should see "Let's Get Started"
 
   @application
   Scenario: Fill out the application
@@ -162,4 +162,16 @@ Feature: Foot Locker Scholarship Application
     Then I should see "Application status: Complete"
     # Then print last response
     And I should see "Required Recommendation: Blank"
+    Then print last response
+
+    When I follow "rec-1"
+    And I fill in the following:
+      | edit-submitted-field-webform-name-und-0-value | me |
+      | edit-submitted-relationship-to-you | me |
+      | edit-submitted-field-webform-email-und-0-email | testing+abc123@dosomething.org |
+      | edit-submitted-phone-number | 555-555-5555 |
+    And I press Submit
+
+    Then I should see "Required Recommendation: Sent"
+    And I should see "Request pending"
 
