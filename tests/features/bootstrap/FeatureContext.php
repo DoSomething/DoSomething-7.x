@@ -23,6 +23,8 @@ class FeatureContext extends MinkContext
 {
     protected static $factory;
     private static $bootstrapped = false;
+    private static $roles = array();
+    private static $sids = array();
 
     /**
      * Initializes context.
@@ -39,12 +41,12 @@ class FeatureContext extends MinkContext
      */
     protected function bootstrap()
     {
-      self::$bootstrapped = true;
-      if (!isset($this->factory) || !($this->factory instanceof Factory)) {
+      if (!isset($this->factory) || !($this->factory instanceof Factory) && !self::$bootstrapped) {
         // This fixes that frustrating "Undefined index: REMOTE_ADDR" error.
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
         require_once dirname(__FILE__) . '/../../../sites/all/modules/dosomething/dosomething_testing_suite/factory.inc';
         self::$factory = Factory::instance();
+        self::$bootstrapped = true;
       }
     }
 
@@ -72,21 +74,23 @@ class FeatureContext extends MinkContext
      * @Given /^I am logged in as an? (?<role>regular user|administrator|staff|product team)$/
      * @And /^I am logged in as an? (?<role>regular user|administrator|staff|product team)$/
      */
-    public function iAmLoggedInAsRole($role)
+    public function iAmLoggedInAsRole($type)
     {
       $this->bootstrap();
-      if ($role == 'regular user') {
+      if ($type == 'regular user') {
         $role = self::$factory->create('User');
       }
-      else if ($role == 'administrator') {
+      else if ($type == 'administrator') {
         $role = self::$factory->create('User', array('roles' => array(3 => 'administrator')));
       }
-      else if ($role == 'staff') {
+      else if ($type == 'staff') {
         $role = self::$factory->create('User', array('roles' => array(26 => 'staff')));
       }
-      else if ($role == 'product team') {
+      else if ($type == 'product team') {
         $role = self::$factory->create('User', array('roles' => array(26 => 'staff', 25 => 'product team')));
       }
+
+      self::$roles[$type] = $role;
 
       // Return the required steps to log in our logged in user.
       return array(
@@ -94,7 +98,112 @@ class FeatureContext extends MinkContext
         new Step\When('I fill in "edit-name" with "' . self::$factory->getDefault('User', 'name') . '"'),
         new Step\When('I fill in "edit-pass" with "' . self::$factory->getDefault('User', 'pass') . '"'),
         new Step\When('I press "Log in"'),
-        new Step\Then('I should see "Log out"'),
+        // new Step\Then('I should see "Log out"'),
+      );
+    }
+
+    /**
+     * @Given /^I fill (?:in|out) "(.*?)" with my logged in email$/
+     */
+    public function iFillInXWithMyLoggedInEmail($field)
+    {
+       $use = current(self::$roles);
+       return array(new Step\When('I fill in "' . $field . '" with "' . $use->mail . '"'));
+    }
+
+    /**
+     * @Then /^remember the current SID$/
+     */
+    public function RememberTheCurrentSid()
+    {
+       preg_match('#sid=(\d+)#i', $this->getSession()->getCurrentUrl(), $qs);
+       $sid = intval($qs[1]);
+
+       self::$sids[] = $sid;
+    }
+
+    /**
+     * @When /^I go to "(.*?)" with the last SID$/
+     */
+    public function IGoToXWithTheLastSid($path)
+    {
+       $sid = end(self::$sids);
+       return array(new Step\Given('I am on "' . $path . '?sid=' . $sid . '"'));
+    }
+
+    /**
+     * @When /^I fill out the foot locker recommendation form$/
+     */
+    public function iFillOutTheFootLockerRecommendationRequestForm()
+    {
+       $form = new Behat\Gherkin\Node\TableNode('
+            | edit-submitted-field-webform-name-und-0-value | me |
+            | edit-submitted-relationship-to-you | me |
+            | edit-submitted-field-webform-email-und-0-email | testing+abc123@dosomething.org |
+            | edit-submitted-phone-number | 555-555-5555 |
+        ');
+       return array(new Step\When('I fill in the following:', $form));
+    }
+
+    /**
+     * @Given /^I have filled out the footlocker application$/
+     * @When /^I fill out the footlocker application$/
+     */
+    public function iHaveFilledOutTheFootLockerApplication()
+    {
+      $page1 = new Behat\Gherkin\Node\TableNode('
+          | edit-submitted-email | ' . self::$roles['regular user']->mail . ' |
+          | edit-submitted-phone-number | 6105552222 |
+          | edit-submitted-street-address-1 | 123 Sunrise Hill |
+          | edit-submitted-state | NY |
+          | edit-submitted-zip-code | 10010 |
+          | edit-submitted-birthday-month | 6 |
+          | edit-submitted-birthday-day   | 5 |
+          | edit-submitted-birthday-year  | 1999 |
+          | edit-submitted-fafsa | 10000 |
+      ');
+      $page2 = new Behat\Gherkin\Node\TableNode('
+          | edit-submitted-roles | n/a |
+          | edit-submitted-cumulative-sat-score | 1600 |
+          | edit-submitted-cumulative-act-score | 1600 |
+          | edit-submitted-pre-sat-score | 1600 |
+          | edit-submitted-plan-score | 1600 |
+          | edit-submitted-activities | n/a |
+      ');
+      $page3 = new Behat\Gherkin\Node\TableNode('
+          | edit-submitted-essay-1-question | essay 1 |
+          | edit-submitted-essay-2-question | essay 2 |
+     ');
+      $page4 = new Behat\Gherkin\Node\TableNode('
+          | edit-submitted-photo-album-url | http://flickr.com |
+          | edit-submitted-youtube-or-video-url | http://www.youtube.com |
+      ');
+
+      return array(
+        new Step\Given('I am on "/footlocker/apply/status/application"'),
+        new Step\When('I fill in the following:', $page1),
+        new Step\When('I fill in "edit-submitted-gender-2" with "male "'),
+        new Step\When('I check "edit-submitted-race-6"'),
+        new Step\When('I press "Next"'),
+
+        new Step\Then('I should see "page 2"'),
+        new Step\When('I fill in "edit-submitted-what-sports-do-you-play-29" with "rugby "'),
+        new Step\When('I fill in the following:', $page2),
+        new Step\When('I fill in "edit-submitted-unweighted-gpa" with "3.8 "'),
+        new Step\When('I fill in "edit-submitted-fl-employee-2" with "no "'),
+        new Step\When('I press "Next"'),
+
+        new Step\Then('I should see "page 3"'),
+        new Step\When('I fill in the following:', $page3),
+        new Step\When('I press "Next"'),
+
+        new Step\Then('I should see "page 4"'),
+        new Step\When('I fill in the following:', $page4),
+        new Step\When('I fill in "edit-submitted-how-did-you-hear-about-this-scholarship-opportunity" with "coach "'),
+        new Step\When('I check "edit-submitted-legal-stuff-1"'),
+        new Step\When('I check "edit-submitted-confirm-true-1"'),
+        new Step\When('I check "edit-submitted-permission-1"'),
+        new Step\When('I press "Submit"'),
       );
     }
 
