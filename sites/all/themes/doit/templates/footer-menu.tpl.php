@@ -39,7 +39,7 @@
         <h4>Random Stuff</h4>
         <ul>
             <li><a href="/faqs">FAQ</a></li>
-            <li><a href="/sitemap">Sitemap</a></li>
+            <li><a href="/about/team">Our Team</a></li>
             <li><a href="/about/stats">Mind-Blowing Stats</a></li>
             <li><a href="/our-sexy-financials-and-impact">Sexy Financials and Impact</a></li>
             <li><a href="/oldpeople">Old People</a></li>

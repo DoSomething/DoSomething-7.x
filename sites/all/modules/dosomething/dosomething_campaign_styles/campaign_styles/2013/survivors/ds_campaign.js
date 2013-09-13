@@ -78,11 +78,20 @@
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': '500 million unused “junk phones” sit in peoples’ homes across the US. Turn yours into life-saving funding for domestic violence survivors.',
+      'feed_description': 'Every 9 seconds a woman in the US is assaulted. Help fund services for them by donating your old phone now: www.dosomething.org/survivors',
       'feed_selector': '.header-facebook-share',
     }, function(response){
       window.location.href = '/survivors#header';
     });
+
+    // ------
+    // QUOTES
+    // ------
+    $('.another-quote').click(function(e){
+      e.preventDefault();
+      $(this).parent().next().slideDown();
+    })
+
 
     // ------------------
     // GET LABEL DROPDOWN

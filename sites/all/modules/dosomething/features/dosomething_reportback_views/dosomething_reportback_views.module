@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file
+ * Code for the DoSomething Reportback Views feature.
+ */
+
+include_once 'dosomething_reportback_views.features.inc';
+
+/**
+ * Implements hook_admin_paths().
+ */
+function dosomething_reportback_views_admin_paths() {
+  $paths = array(
+    'node/*/reportbacks' => TRUE, 
+  );
+  return $paths;
+}
