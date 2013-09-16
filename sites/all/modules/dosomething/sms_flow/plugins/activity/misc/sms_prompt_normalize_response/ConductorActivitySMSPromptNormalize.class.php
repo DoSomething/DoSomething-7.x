@@ -20,7 +20,7 @@ class ConductorActivitySMSPromptNormalize extends ConductorActivitySMSPrompt {
     $message = $state->getContext($this->name . ':message');
     if ($message !== FALSE) {
       foreach ($this->normalizedGroups as $group) {
-        if (in_array($message, $group)) {
+        if (self::in_arrayi($message, $group)) {
           // First item in array will be the normalized response
           $normalizedResponse = $group[0];
           $state->setContext($this->name . ':message', $normalizedResponse);
@@ -28,6 +28,13 @@ class ConductorActivitySMSPromptNormalize extends ConductorActivitySMSPrompt {
         }
       }
     }
+  }
+
+  /**
+   * A case-insensitive version of in_array()
+   */
+  private function in_arrayi($needle, $haystack) {
+    return in_array(strtolower(trim($needle)), array_map('strtolower', $haystack));
   }
 
 }

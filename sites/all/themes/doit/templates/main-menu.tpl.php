@@ -18,6 +18,7 @@
             <li><a href="/birthdaymail">Birthday Mail</a></li>
             <li><a href="/spit">Give A Spit</a></li>
             <li><a href="/survivors">Cellphones for Survivors</a></li>
+            <li><a href="//fedup.dosomething.org">Fed Up</a></li>
             <li><a href="/past-campaigns">Past Campaigns</a></li>
         </ul>
     </li>
@@ -44,10 +45,8 @@
             <li><a href="/scholarships">Scholarships</a></li>
             <li><a href="/petitions">Petitions</a></li>
             <li><a href="/quizzes">Quizzes</a></li>
-            <li><a href="/clubs">Clubs</a></li>
             <li><a href="/awards">Do Something Awards</a></li>
             <li><a href="/grants">Grants</a></li>
-            <li><a href="/bootcamp">Boot Camp</a></li>
             <li><a href="/blog">Blog Center</a></li>
             <li><a href="/projects">Projects</a></li>
         </ul>

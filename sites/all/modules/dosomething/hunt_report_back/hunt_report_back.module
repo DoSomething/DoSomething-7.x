@@ -217,10 +217,10 @@ function _hunt_report_back_get_submitted_challenge(&$form_state) {
 
   if( preg_match('/([0-9][0-9]?)/', $submitted, $day) == 1 ) {
     $day = $day[0];
-    $response = $values['hunt_report_back_challenge_' . $day . '_response'];
-    $people = $values['hunt_report_back_challenge_' . $day . '_people'];
+    $response = $values['hunt_report_back_challenge_' . $day[0] . '_response'];
+    $people = $values['hunt_report_back_challenge_' . $day[0] . '_people'];
 
-    $fid = $values['hunt_report_back_challenge_' . $day . '_photo'];
+    $fid = $values['hunt_report_back_challenge_' . $day[0] . '_photo'];
     return compact('day', 'response','people', 'fid');
   }
 

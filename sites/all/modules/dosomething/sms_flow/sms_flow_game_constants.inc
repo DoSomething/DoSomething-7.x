@@ -28,4 +28,5 @@ class SmsFlowGameConstants {
   const GIVEASPIT_ORDERED_TIPS  = 21;
   const GIVEASPIT_RANDOM_TIPS   = 22;
   const SURVIVORS_RANDOM_TIPS   = 23;
+  const FEDUP_RANDOM_TIPS       = 24;
 }

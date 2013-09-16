@@ -778,6 +778,11 @@ body {
   #cmp #faq .action-box {
     position: relative;
     display: inline-block; }
+  #cmp #scholarship-winner {
+    width: 95%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto; }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {

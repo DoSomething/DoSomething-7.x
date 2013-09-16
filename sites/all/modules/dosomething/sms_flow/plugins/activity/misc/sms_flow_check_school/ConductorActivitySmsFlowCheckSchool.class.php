@@ -5,10 +5,6 @@
  * the school associated for this user. Will update profile with school if it's found in the
  * webform submissions.
  *
- * @output no_school_found
- *    Next activity to go to if school wasn't found
- * @output school_found
- *    Next activity to go to if school is found
  * @context school_sid
  *    Set with the school's ID value if one is found
  */
@@ -17,11 +13,17 @@ class ConductorActivitySmsFlowCheckSchool extends ConductorActivity {
   // NID of the webform to check for user's school there. Used as backup if school's not found in profile.
   public $webform_nid_check = 0;
 
-  public function run($workflow) {
+  // Name of the next activity to go to if a school was found
+  public $school_found_activity = 'school_found';
+
+  // Name of the next activity to go to if no school was found
+  public $no_school_found_activity = 'no_school_found';
+
+  public function run() {
     $state = $this->getState();
     $mobile = $state->getContext('sms_number');
 
-    $school_found = FALSE;
+    $bSchoolFound = FALSE;
 
     $account = dosomething_api_user_lookup($mobile);
     $profile = profile2_load_by_user($account, 'main');
@@ -29,7 +31,7 @@ class ConductorActivitySmsFlowCheckSchool extends ConductorActivity {
       // Use school set in profile if it exists.
       $school_sid = $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'];
       $state->setContext('school_sid', $school_sid);
-      $school_found = TRUE;
+      $bSchoolFound = TRUE;
     }
     elseif ($account->uid > 0 && $this->webform_nid_check > 0) {
       // Otherwise, search webform submissions for user's school
@@ -47,19 +49,22 @@ class ConductorActivitySmsFlowCheckSchool extends ConductorActivity {
           }
 
           $state->setContext('school_sid', $school_sid);
-          $school_found = TRUE;
+          $bSchoolFound = TRUE;
         }
       }
     }
-    
-    if ($school_found) {
-      $this->removeOutput('no_school_found');
+
+    self::selectNextOutput($bSchoolFound);
+    $state->markCompleted();
+  }
+
+  private function selectNextOutput($bSchoolFound) {
+    if ($bSchoolFound) {
+      $this->removeOutput($this->no_school_found_activity);
     }
     else {
-      $this->removeOutput('school_found');
+      $this->removeOutput($this->school_found_activity);
     }
-
-    $state->markCompleted();
   }
 
 }
