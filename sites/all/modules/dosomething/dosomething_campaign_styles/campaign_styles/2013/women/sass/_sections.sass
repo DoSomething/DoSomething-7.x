@@ -24,16 +24,18 @@
     @include transition(height 0.5s)
 
   .header-logotype
-    text-align: center
+    text-align: left
     color: #fff
     text-transform: uppercase
     line-height: 1.2em
     font-weight: 600
     font-size: 4em
-    margin: 32px auto 0
+    margin: 76px 10% 0
+    @include respond-to(phones)
+      margin: 48px 10% 0
 
     img
-      width: 476px
+      width: 325px
       @include respond-to(phones)
         width: 238px
         @include transition(width 0.5s)
@@ -61,18 +63,17 @@
     margin-left: 1em
 
   .header-date
-    float: right
+    position: absolute
+    bottom: 1em
+    left: 1em
+    float: left
     width: auto
     text-transform: uppercase
-    @include respond-to(tablets_and_phones)
-      float: none
-      width: 100%
-      text-align: center
 
     p
       font-size: 24px
       color: #fff
-      padding: 1.5em 1em 0 0
+      padding: 1.5em 0 0 1em
       @include text-shadow(0 0 5px rgba(0, 0, 0, 0.5))
 
 
@@ -89,7 +90,7 @@
   border-right: 1px solid #ddd
   border-bottom: none
   border-left: 1px solid #ddd
-  margin: 1.5em 0 0 0
+  margin: 0
   padding-bottom: 0
 
 
