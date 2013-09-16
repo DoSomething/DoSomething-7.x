@@ -1,12 +1,11 @@
 <?php
-
 /**
  * @file
  * Node template file for the Project content type.
  *
  */
 ?>
-<div role="main" id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> wrapper">
+<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>">
 
   <?php print render($content['header']); ?>
 
