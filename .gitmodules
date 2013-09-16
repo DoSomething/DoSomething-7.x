@@ -5,4 +5,4 @@
 [submodule "sites/all/libraries/ds-neue"]
 	path = sites/all/libraries/ds-neue
 	url = git@github.com:DoSomething/ds-neue.git
-    ignore = dirty
+        ignore = dirty
