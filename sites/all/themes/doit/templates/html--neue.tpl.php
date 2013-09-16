@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html class="no-js">
+<html>
 <head>
     <meta charset="utf-8">
     <title><?php print $head_title; ?></title>
