@@ -33,11 +33,11 @@
 </div>
 
 <div role="main" class="wrapper">
-  <div class="content-block feature fixed one-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/fedup-feature.jpg'); background-position: right center;">
-    <a class="full-link" href="//fedup.dosomething.org/fedup"><span>Do This</span></a>
-    <div class="headline big red">
-      <h3>Show everyone what you think of school lunch</h3>
-      <a href="//fedup.dosomething.org/fedup" class="btn primary large">Do This</a>
+  <div class="content-block feature fixed one-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/malala-feature.jpg'); background-position: right center;">
+    <a class="full-link" href="/women"><span>Do This</span></a>
+    <div class="headline big purple">
+      <h3>Malala fights for women across the world. Now you can, too.</h3>
+      <a href="/women" class="btn primary large">Do This</a>
     </div>
   </div>
 
@@ -49,17 +49,17 @@
     </div>
   </div>
 
-  <div class="content-block feature fixed three-col" style="background-image: url('/sites/all/libraries/ds-neue/assets/images/placeholders/homepage1.jpg'); background-position: center center;">
-    <a class="full-link" href="/women"><span>Do This</span></a>
-    <div class="headline purple">
-      <div class="row"><div class="headline-text"><h3>Unlock a $25 loan for a woman in need</h3></div></div>
-      <div class="row"><p class="block-cta"><a href="/women" class="btn primary large">Do This</a></p></div>
+  <div class="content-block feature fixed three-col" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/fedup-block.jpg'); background-position: center center;">
+    <a class="full-link" href="//fedup.dosomething.org/fedup"><span>Do This</span></a>
+    <div class="headline red">
+      <div class="row"><div class="headline-text"><h3>Show everyone what you think of school lunch</h3></div></div>
+      <div class="row"><p class="block-cta"><a href="//fedup.dosomething.org/fedup" class="btn primary large">Do This</a></p></div>
     </div>
   </div>
 
   <div class="content-block feature fixed three-col right" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/spit-block.png'); background-position: center center;">
     <a class="full-link" href="/spit"><span>Do This</span></a>
-    <div class="headline red">
+    <div class="headline yellow">
       <div class="row"><div class="headline-text"><h3>Save a life at your next party</h3></div></div>
       <div class="row"><p class="block-cta"><a href="/spit" class="btn primary large">Do This</a></p></div>
     </div>
