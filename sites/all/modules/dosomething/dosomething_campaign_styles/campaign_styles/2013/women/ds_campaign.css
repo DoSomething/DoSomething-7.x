@@ -592,7 +592,7 @@ header[role="banner"] {
   height: 360px;
   border-bottom: 0;
   background-color: #eeeeee;
-  background-image: url("http://www.dosomething.org/files/campaigns/women/header.jpg");
+  background-image: url("/sites/all/modules/dosomething/dosomething_campaign_styles/campaign_styles/2013/women/assets/bg-malala.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   -webkit-background-size: cover;
@@ -614,20 +614,26 @@ header[role="banner"] {
 }
 /* line 26, sass/_sections.sass */
 #cmp .header .header-logotype {
-  text-align: center;
+  text-align: left;
   color: white;
   text-transform: uppercase;
   line-height: 1.2em;
   font-weight: 600;
   font-size: 4em;
-  margin: 32px auto 0;
-}
-/* line 35, sass/_sections.sass */
-#cmp .header .header-logotype img {
-  width: 476px;
+  margin: 76px 10% 0;
 }
 @media only screen and (max-width: 600px) {
-  /* line 35, sass/_sections.sass */
+  /* line 26, sass/_sections.sass */
+  #cmp .header .header-logotype {
+    margin: 48px 10% 0;
+  }
+}
+/* line 37, sass/_sections.sass */
+#cmp .header .header-logotype img {
+  width: 325px;
+}
+@media only screen and (max-width: 600px) {
+  /* line 37, sass/_sections.sass */
   #cmp .header .header-logotype img {
     width: 238px;
     -webkit-transition: width 0.5s;
@@ -636,11 +642,11 @@ header[role="banner"] {
     transition: width 0.5s;
   }
 }
-/* line 42, sass/_sections.sass */
+/* line 44, sass/_sections.sass */
 #cmp .header .log-out {
   color: white;
 }
-/* line 45, sass/_sections.sass */
+/* line 47, sass/_sections.sass */
 #cmp .header .header-social {
   position: absolute;
   bottom: 1em;
@@ -650,77 +656,72 @@ header[role="banner"] {
   margin: 25px 0 0 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 45, sass/_sections.sass */
+  /* line 47, sass/_sections.sass */
   #cmp .header .header-social {
     display: none;
   }
 }
-/* line 55, sass/_sections.sass */
+/* line 57, sass/_sections.sass */
 #cmp .header .header-facebook-share,
 #cmp .header .header-twitter-share {
   display: inline-block;
   height: 20px;
 }
-/* line 60, sass/_sections.sass */
+/* line 62, sass/_sections.sass */
 #cmp .header .header-twitter-share {
   margin-left: 1em;
 }
-/* line 63, sass/_sections.sass */
+/* line 65, sass/_sections.sass */
 #cmp .header .header-date {
-  float: right;
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  float: left;
   width: auto;
   text-transform: uppercase;
 }
-@media only screen and (max-width: 1139px) {
-  /* line 63, sass/_sections.sass */
-  #cmp .header .header-date {
-    float: none;
-    width: 100%;
-    text-align: center;
-  }
-}
-/* line 72, sass/_sections.sass */
+/* line 73, sass/_sections.sass */
 #cmp .header .header-date p {
   font-size: 24px;
   color: white;
-  padding: 1.5em 1em 0 0;
+  padding: 1.5em 0 0 1em;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
-/* line 79, sass/_sections.sass */
+/* line 80, sass/_sections.sass */
 #cmp .header .row-bottom {
   position: absolute;
   bottom: 0;
   left: 0;
   padding: 1%;
 }
-/* line 87, sass/_sections.sass */
+/* line 88, sass/_sections.sass */
 #cmp .headline {
   border-top: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
   border-bottom: none;
   border-left: 1px solid #dddddd;
-  margin: 1.5em 0 0 0;
+  margin: 0;
   padding-bottom: 0;
 }
-/* line 99, sass/_sections.sass */
+/* line 100, sass/_sections.sass */
 #cmp .call-to-action {
   border: 1px solid #dddddd;
 }
-/* line 101, sass/_sections.sass */
+/* line 102, sass/_sections.sass */
 #cmp .call-to-action p {
   line-height: 3em;
   letter-spacing: 0.05em;
 }
-/* line 105, sass/_sections.sass */
+/* line 106, sass/_sections.sass */
 #cmp .call-to-action .btn {
   margin: 0 0 0 1em;
   clear: none;
 }
-/* line 109, sass/_sections.sass */
+/* line 110, sass/_sections.sass */
 #cmp .call-to-action .section-container {
   width: 43em;
 }
-/* line 115, sass/_sections.sass */
+/* line 116, sass/_sections.sass */
 #cmp .official-rules {
   display: block;
   margin: 0 auto;
@@ -728,46 +729,46 @@ header[role="banner"] {
   text-align: center;
   color: #b5b5b5 !important;
 }
-/* line 122, sass/_sections.sass */
+/* line 123, sass/_sections.sass */
 #cmp .legal {
   color: #c2c2c2;
   font-size: 0.75em;
 }
-/* line 129, sass/_sections.sass */
+/* line 130, sass/_sections.sass */
 #cmp .how-it-works {
   padding: 2em 0;
 }
-/* line 132, sass/_sections.sass */
+/* line 133, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container {
   clear: both;
   overflow: hidden;
   margin: 0 1em 1em;
 }
-/* line 140, sass/_sections.sass */
+/* line 141, sass/_sections.sass */
 #cmp .action-kit img {
   position: relative;
   top: 15px;
   right: 20px;
 }
-/* line 145, sass/_sections.sass */
+/* line 146, sass/_sections.sass */
 #cmp .action-kit .section-container {
   width: 35em;
 }
-/* line 151, sass/_sections.sass */
+/* line 152, sass/_sections.sass */
 #cmp .prizing p {
   padding: 1em 0;
 }
-/* line 154, sass/_sections.sass */
+/* line 155, sass/_sections.sass */
 #cmp .prizing .prizing-container {
   width: 66.66667%;
   margin: 0 auto;
   clear: both;
 }
-/* line 159, sass/_sections.sass */
+/* line 160, sass/_sections.sass */
 #cmp .prizing .btn {
   margin: 0 auto 1em;
 }
-/* line 166, sass/_sections.sass */
+/* line 167, sass/_sections.sass */
 #cmp .sms-game-example .sms-game-container {
   width: 100%;
   max-width: 35em;
@@ -775,7 +776,7 @@ header[role="banner"] {
   overflow: hidden;
   clear: both;
 }
-/* line 173, sass/_sections.sass */
+/* line 174, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation {
   margin: 1em auto 2em;
   padding: 1em 2em;
@@ -788,7 +789,7 @@ header[role="banner"] {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 180, sass/_sections.sass */
+/* line 181, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation:after {
   content: "";
   display: block;
@@ -796,121 +797,121 @@ header[role="banner"] {
   border-style: solid;
   border-width: 15px;
 }
-/* line 186, sass/_sections.sass */
+/* line 187, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation p {
   line-height: 1.6em;
   font-weight: 500;
   text-transform: uppercase;
   color: white;
 }
-/* line 192, sass/_sections.sass */
+/* line 193, sass/_sections.sass */
 #cmp .sms-game-example .game-ds {
   float: left;
 }
-/* line 194, sass/_sections.sass */
+/* line 195, sass/_sections.sass */
 #cmp .sms-game-example .game-ds:after {
   bottom: -30px;
   left: 20px;
   border-color: #1991d5 #1991d5 white white;
 }
-/* line 198, sass/_sections.sass */
+/* line 199, sass/_sections.sass */
 #cmp .sms-game-example .game-ds p {
   text-align: left;
 }
-/* line 201, sass/_sections.sass */
+/* line 202, sass/_sections.sass */
 #cmp .sms-game-example .game-user {
   float: right;
 }
-/* line 203, sass/_sections.sass */
+/* line 204, sass/_sections.sass */
 #cmp .sms-game-example .game-user:after {
   bottom: -30px;
   right: 20px;
   border-color: #1991d5 white white #1991d5;
 }
-/* line 207, sass/_sections.sass */
+/* line 208, sass/_sections.sass */
 #cmp .sms-game-example .game-user p {
   text-align: right;
 }
-/* line 213, sass/_sections.sass */
+/* line 214, sass/_sections.sass */
 #cmp .profiles .intro {
   margin-bottom: 2em;
 }
-/* line 216, sass/_sections.sass */
+/* line 217, sass/_sections.sass */
 #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
   float: left;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 216, sass/_sections.sass */
+  /* line 217, sass/_sections.sass */
   #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
     float: none;
   }
 }
-/* line 223, sass/_sections.sass */
+/* line 224, sass/_sections.sass */
 #cmp .profiles .profile-photo {
   width: 290px;
   clear: both;
   margin: 0.5em 2em 0 1em;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 223, sass/_sections.sass */
+  /* line 224, sass/_sections.sass */
   #cmp .profiles .profile-photo {
     margin: 0.5em auto 0;
   }
 }
-/* line 231, sass/_sections.sass */
+/* line 232, sass/_sections.sass */
 #cmp .profiles .profile-copy {
   width: 35em;
   margin: 0 0 3em 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 231, sass/_sections.sass */
+  /* line 232, sass/_sections.sass */
   #cmp .profiles .profile-copy {
     width: 90%;
     max-width: 35em;
     margin: 0 auto 3em;
   }
 }
-/* line 240, sass/_sections.sass */
+/* line 241, sass/_sections.sass */
 #cmp .profiles .profile-copy p {
   text-align: left;
 }
-/* line 242, sass/_sections.sass */
+/* line 243, sass/_sections.sass */
 #cmp .profiles .profile-copy h2 {
   color: #88005d;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 242, sass/_sections.sass */
+  /* line 243, sass/_sections.sass */
   #cmp .profiles .profile-copy h2 {
     text-align: center;
   }
 }
-/* line 251, sass/_sections.sass */
+/* line 252, sass/_sections.sass */
 #cmp .content {
   width: 90%;
   max-width: 35em;
   margin: 0 auto;
   /* this padding should be abstracted to all <h3> */
 }
-/* line 256, sass/_sections.sass */
+/* line 257, sass/_sections.sass */
 #cmp .content p {
   display: block;
   text-align: left;
   line-height: 1.5em;
   padding-bottom: 1em;
 }
-/* line 261, sass/_sections.sass */
+/* line 262, sass/_sections.sass */
 #cmp .content h2 {
   padding-bottom: 0.5em;
 }
-/* line 265, sass/_sections.sass */
+/* line 266, sass/_sections.sass */
 #cmp .content .headline-callout {
   padding: 0.5em 0 0 0;
   text-transform: capitalize;
   text-align: left;
 }
-/* line 272, sass/_sections.sass */
+/* line 273, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-signup {
   text-align: center;
   padding: 3% 0 0;
@@ -918,61 +919,61 @@ header[role="banner"] {
   border-right: 1px solid #dddddd;
   background: #e8e8e8;
 }
-/* line 278, sass/_sections.sass */
+/* line 279, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-signup label {
   margin: 3% 0 0;
 }
-/* line 280, sass/_sections.sass */
+/* line 281, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-signup form {
   width: 80%;
   margin: 0 auto 0;
 }
-/* line 284, sass/_sections.sass */
+/* line 285, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-signup .btn {
   width: 9.4em;
   margin: 1em auto;
 }
-/* line 288, sass/_sections.sass */
+/* line 289, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-signup #edit-submit {
   float: none;
   margin: 24px auto 0;
   padding: 0.3em 1em 0.2em;
 }
-/* line 293, sass/_sections.sass */
+/* line 294, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-signup .form-type-textfield {
   width: 45%;
   float: left;
   margin: 0 2.5% 0 2.5%;
 }
 @media only screen and (max-width: 600px) {
-  /* line 293, sass/_sections.sass */
+  /* line 294, sass/_sections.sass */
   #cmp .pane-dosomething-campaign-kiva-signup .form-type-textfield {
     width: 100%;
   }
 }
-/* line 301, sass/_sections.sass */
+/* line 302, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-signup .form-item-alpha-email {
   float: right;
 }
 @media only screen and (max-width: 600px) {
-  /* line 301, sass/_sections.sass */
+  /* line 302, sass/_sections.sass */
   #cmp .pane-dosomething-campaign-kiva-signup .form-item-alpha-email {
     float: none;
   }
 }
-/* line 307, sass/_sections.sass */
+/* line 308, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-signup #edit-beta-mobiles {
   clear: both;
   width: 100%;
   min-width: 100%;
 }
-/* line 312, sass/_sections.sass */
+/* line 313, sass/_sections.sass */
 #cmp .sms-lower {
   background: #e8e8e8;
   border-bottom: 1px solid #dddddd;
   padding-bottom: 3%;
 }
-/* line 320, sass/_sections.sass */
+/* line 321, sass/_sections.sass */
 #cmp .gallery img {
   border: 1px solid #dddddd !important;
   -webkit-border-radius: 3px;
@@ -984,7 +985,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb !important;
   box-shadow: 0 10px 10px -10px #bbbbbb !important;
 }
-/* line 328, sass/_sections.sass */
+/* line 329, sass/_sections.sass */
 #cmp .map iframe {
   width: 90%;
   margin: 0 auto;
@@ -994,47 +995,47 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #cccccc;
   box-shadow: 0 10px 10px -10px #cccccc;
 }
-/* line 337, sass/_sections.sass */
+/* line 338, sass/_sections.sass */
 #cmp .success_msg {
   margin: 0 auto 1em;
 }
-/* line 339, sass/_sections.sass */
+/* line 340, sass/_sections.sass */
 #cmp .success_msg h2 {
   text-transform: uppercase;
   font-weight: 600;
   color: #d5904c;
 }
-/* line 346, sass/_sections.sass */
+/* line 347, sass/_sections.sass */
 #cmp .faq {
   width: 90%;
   max-width: 35em;
   margin: 0 auto;
   position: relative;
 }
-/* line 352, sass/_sections.sass */
+/* line 353, sass/_sections.sass */
 #cmp .faq h3, #cmp .faq p {
   text-align: left;
 }
-/* line 354, sass/_sections.sass */
+/* line 355, sass/_sections.sass */
 #cmp .faq h3 {
   cursor: pointer;
   color: #333333;
   font-weight: 600;
 }
-/* line 358, sass/_sections.sass */
+/* line 359, sass/_sections.sass */
 #cmp .faq div {
   margin: 0 0 0.5em 0;
 }
-/* line 361, sass/_sections.sass */
+/* line 362, sass/_sections.sass */
 #cmp .faq .btn {
   margin: 1em auto 0;
 }
-/* line 364, sass/_sections.sass */
+/* line 365, sass/_sections.sass */
 #cmp .faq .back-to-top {
   text-align: right;
   padding: 1em 0 1em;
 }
-/* line 368, sass/_sections.sass */
+/* line 369, sass/_sections.sass */
 #cmp .faq .top-btn {
   font-weight: 400;
   color: #c6c7c8;
@@ -1044,54 +1045,54 @@ header[role="banner"] {
   background-repeat: no-repeat;
   background-position: 0% 40%;
 }
-/* line 377, sass/_sections.sass */
+/* line 378, sass/_sections.sass */
 #cmp .faq li {
   padding: 1em;
 }
-/* line 380, sass/_sections.sass */
+/* line 381, sass/_sections.sass */
 #cmp .faq ol li:before {
   font-size: 18px;
   font-weight: 600;
 }
-/* line 384, sass/_sections.sass */
+/* line 385, sass/_sections.sass */
 #cmp .faq p {
   padding: 0.5em 0;
 }
-/* line 391, sass/_sections.sass */
+/* line 392, sass/_sections.sass */
 #cmp .sponsor p {
   padding: 8px;
   text-align: center;
 }
-/* line 395, sass/_sections.sass */
+/* line 396, sass/_sections.sass */
 #cmp .sponsor a {
   padding: 8px;
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  /* line 395, sass/_sections.sass */
+  /* line 396, sass/_sections.sass */
   #cmp .sponsor a {
     display: block;
   }
 }
-/* line 404, sass/_sections.sass */
+/* line 405, sass/_sections.sass */
 #cmp .footer {
   padding: 2% 0;
   margin: 0 0 -2%;
   text-align: center;
 }
-/* line 408, sass/_sections.sass */
+/* line 409, sass/_sections.sass */
 #cmp .footer img {
   width: 50px;
   margin: 0 auto;
   display: block;
 }
-/* line 415, sass/_sections.sass */
+/* line 416, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation {
   background: #e8e8e8;
   text-align: center;
   padding-bottom: 32px;
 }
-/* line 420, sass/_sections.sass */
+/* line 421, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a {
   background: #ffcb15;
   margin: 0 auto;
@@ -1115,7 +1116,7 @@ header[role="banner"] {
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 438, sass/_sections.sass */
+/* line 439, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:hover {
   background: #feb800;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
@@ -1127,7 +1128,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
   box-shadow: 0 10px 10px -10px #bbbbbb;
 }
-/* line 442, sass/_sections.sass */
+/* line 443, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:active {
   color: #383735 !important;
   padding: 0.35em 0 0.15em !important;
@@ -1141,7 +1142,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
   box-shadow: 0 10px 10px -10px #bbbbbb;
 }
-/* line 448, sass/_sections.sass */
+/* line 449, sass/_sections.sass */
 #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:link, #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:active, #cmp .pane-dosomething-campaign-kiva-confirmation .pane-content a:hover {
   color: #1e1d1c;
   text-decoration: none !important;
