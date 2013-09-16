@@ -64,6 +64,10 @@ function dosomething_subscribe_form_alter(&$form, &$form_state, $form_id) {
  * If found, signs up relevant values to the relevant Groups.
  */
 function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
+  if (isset($_GET['dmc']) && $_GET['dmc'] === TRUE) {
+    return FALSE;
+  }
+
   // If we don't have a node or a webform submission there's really nothing we
   // can do. This handler was probably put on the wrong form.
   if (!isset($form['#node'])) {
