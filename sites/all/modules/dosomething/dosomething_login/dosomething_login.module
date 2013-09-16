@@ -553,6 +553,13 @@ function dosomething_login_register_popup_form($form, &$form_state, $is_modal = 
   // this gets overriden in the next line
   //$form['#action'] = url($_GET['q'], array('query' => drupal_get_destination()));
   $form['#action'] = url('user/registration', array('query' => $query));
+  if (isset($_GET['dmc']) && $_GET['dmc'] == TRUE) {
+    $form['dmc'] = array(
+      '#type' => 'hidden',
+      '#value' => TRUE
+    );
+  }
+
   // Only display title if this is being called in a modal.
   if ($is_modal) {
     $form['title_text'] = array(
@@ -1153,7 +1160,7 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   }
 
   // Disable MailChimp / Mobile Commons if the "dmc" flag is true
-  if (!isset($_GET['dmc']) || $_GET['dmc'] !== TRUE) {
+  if (!isset($values['dmc']) || $values['dmc'] !== TRUE) {
     // Add new user to MailChimp group.
     $merge_vars = array();
 
