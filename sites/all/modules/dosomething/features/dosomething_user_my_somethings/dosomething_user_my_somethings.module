@@ -103,7 +103,6 @@ function dosomething_user_my_somethings_member_block() {
       ),
       'somethings' => dosomething_user_my_somethings_my_current_somethings(),
       'past_somethings' => dosomething_user_my_somethings_my_past_somethings(),
-      'clubs' => dosomething_user_my_somethings_my_clubs()
     ),
   );
 }
@@ -263,12 +262,6 @@ function dosomething_user_my_somethings_my_current_somethings() {
       'link_path' => 'node/%report_back_entity_id',
       'link_id_fields' => array('report_back_entity_id'),
     ),
-    /*'club' => array(
-      'title' => t('Clubs'),
-      'title_field' => 'title',
-      'link_path' => 'node/%nid',
-      'link_id_fields' => array('nid'),
-    ),*/
   );
   $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'current');
 
@@ -293,47 +286,6 @@ function dosomething_user_my_somethings_my_current_somethings() {
       '#items' => $items,
       '#attributes' => array(
         'class' => array('doing-it'),
-      ),
-    ),
-  );
-}
-
-function dosomething_user_my_somethings_my_clubs() {
-  global $user;
-
-  $somethings_info = array(
-    'club' => array(
-      //'title' => t('Clubs'),
-      'title_field' => 'title',
-      'link_path' => 'node/%nid',
-      'link_id_fields' => array('nid'),
-    ),
-  );
-  $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'current');
-
-  if (empty($items)) {
-    $items[] = t('You have not started a club yet.  !start!', array(
-      '!start' => l(t('Start one'), 'node/add/club')
-    ));
-  }
-
-  return array(
-    'title' => array(
-      '#prefix' => '<h3 class="my-clubs">',
-      '#suffix' => '</h3>',
-      'inner' => array(
-        '#type' => 'container',
-        '#attributes' => array(
-          'class' => array('inner'),
-        ),
-        '#children' => t('Clubs'),
-      ),
-    ),
-    'list' => array(
-      '#theme' => 'item_list',
-      '#items' => $items,
-      '#attributes' => array(
-        'class' => array('my-clubs'),
       ),
     ),
   );
@@ -415,49 +367,6 @@ function dosomething_user_my_somethings_my_past_somethings() {
 }
 
 /**
- * Get the markup for a list of user's clubs (sidebar version). Renamed 'Done It' for theming purposes.
- */
-function dosomething_user_my_somethings_clubs($account = NULL) {
-  global $user;
-  if (empty($account)) {
-    $account = clone $user;
-  }
-  $items = array();
-
-  // Get the club info from the past somethings.
-  $somethings = dosomething_user_my_somethings_get_my_somethings_cached($account->uid, 'past');
-  if (!empty($somethings['club'])) {
-    foreach ($somethings['club'] as $group) {
-      $items[] = l(filter_xss($group->title), 'node/' . $group->nid);
-    }
-  }
-  else {
-    $items[] = l(t('Start a club'), 'node/add/club');
-  }
-
-  return array(
-    'title' => array(
-      '#prefix' => '<h3 class="done-it">',
-      '#suffix' => '</h3>',
-      'inner' => array(
-        '#type' => 'container',
-        '#attributes' => array(
-          'class' => array('inner'),
-        ),
-        '#children' => t('Done It!'),
-      ),
-    ),
-    'list' => array(
-      '#theme' => 'item_list',
-      '#items' => $items,
-      '#attributes' => array(
-        'class' => array('done-it'),
-      ),
-    ),
-  );
-}
-
-/**
  * Show the user's role.
  */
 function dosomething_user_my_somethings_user_role($account = NULL) {
@@ -516,14 +425,13 @@ function dosomething_user_my_somethings_get_my_somethings_cached($uid, $era) {
  * - Grant applications (link to grant application form)
  * - Projects (links to project update form)
  * - Campaign Reportbacks
- * - Clubs
  *
  * @param $uid
  *   (int) a user id.
  * @param $era
  *   (string) 'current' or 'past' somethings.
  * @return array
- *   Possible keys: 'grant_application', 'project_report', 'campaign_report_back', 'club'
+ *   Possible keys: 'grant_application', 'project_report', 'campaign_report_back'
  */
 function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
   $somethings = array();
@@ -577,7 +485,6 @@ function dosomething_user_my_somethings_get_my_somethings($uid, $era) {
   }
   else if ($era == 'current') {
     $somethings['campaign_report_back'] = dosomething_user_my_somethings_campaign_report_backs_needed($uid);
-    $somethings['club'] = dosomething_user_my_somethings_get_user_group_memberships($uid, 'club');
   }
 
   return $somethings;
@@ -671,8 +578,6 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $variables['member_fullname'] = dosomething_general_get_full_name($account, 'private');
   $variables['member_status'] = dosomething_user_my_somethings_user_role($account);
   $variables['member_since'] = date('m/d/Y', $account->created);
-  $variables['member_clubs'] = dosomething_user_my_somethings_clubs($account);
-  $variables['member_clubs']['title']['#access'] = FALSE;
   $profile_completion = dosomething_user_my_somethings_profile_completion($account, FALSE);
   $variables['member_percentage'] = $profile_completion['percentage'];
   $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
@@ -807,33 +712,6 @@ function dosomething_user_my_somethings_fetch_long($uid, $era) {
               'image' => isset($image[0]['uri']) ? $image[0] : NULL,
               'uri' => entity_uri('webform_submission_entity', $grant_app),
               'check_path' => TRUE,
-            );
-
-            $results[] = (object) $something;
-          }
-        }
-        break;
-
-      case 'club':
-        $ids = _dosomething_user_my_somethings_extract($data, array('nid'));
-        $nodes = entity_load('node', $ids['nid']);
-        foreach ($data as $entity) {
-          if (isset($nodes[$entity->nid])) {
-            $node = $nodes[$entity->nid];
-            if (isset($node->field_club_picture[LANGUAGE_NONE][0]['uri'])) {
-              $image = $node->field_club_picture[LANGUAGE_NONE][0]['uri'];
-            }
-            else {
-              $image = 'sites/all/modules/dosomething/features/dosomething_clubs/club-nopic-01.png';
-            }
-            $something = array(
-              'type' => $type,
-              'title' => $entity->title,
-              'image' => array('uri' => $image),
-              'uri' => array(
-                'path' => 'node/' . $entity->nid,
-                'options' => array()
-              )
             );
 
             $results[] = (object) $something;
@@ -1065,11 +943,7 @@ function dosomething_user_my_somethings_counter($uid) {
 function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current') {
   $all_somethings = dosomething_user_my_somethings_fetch_long($uid, $era);
   $profile_fields = dosomething_user_my_somethings_profile_fields_complete($uid, $era);
-  $clubs = array();
-  if ($era == 'past') {
-    $clubs = dosomething_user_my_somethings_get_user_group_memberships($uid, 'club');
-  }
-  $all_somethings = array_merge($profile_fields, $all_somethings, $clubs);
+  $all_somethings = array_merge($profile_fields, $all_somethings);
 
   if (empty($all_somethings)) {
     return array();
@@ -1123,10 +997,6 @@ function dosomething_user_my_somethings_stuff_need_display($uid, $era = 'current
 
         case 'grant_application':
           $items[] = t('Completed application @title', array('@title' => $something->title));
-          break;
-
-        case 'club':
-          $items[] = t('Joined @title', array('@title' => $something->title));
           break;
 
         case 'profile_field':

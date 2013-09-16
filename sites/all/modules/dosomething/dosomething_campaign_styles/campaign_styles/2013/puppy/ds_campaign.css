@@ -659,6 +659,9 @@ body {
   #cmp #game {
     color: white;
     background: #47bcfc; }
+    #cmp #game p {
+      color: white;
+      margin: 1em; }
     #cmp #game h2, #cmp #game h3 {
       max-width: 600px; }
     #cmp #game h2 {

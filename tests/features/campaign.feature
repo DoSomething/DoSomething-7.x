@@ -7,7 +7,7 @@ Feature: Share a Stat tests
     And I am on "/women"
 
   Scenario: See the basic stuff
-    Then I should see "Help 25,000 women in need"
+    Then I should see "Give Free $25 Loan"
     And I should see "How it Works:"
     And I should see "Example From The Experience:"
     And I should see "Start"
