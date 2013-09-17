@@ -108,6 +108,16 @@ function dosomething_admin_user_default_permissions() {
     'module' => 'nodequeue',
   );
 
+  // Exported permission: administer nodes.
+  $permissions['administer nodes'] = array(
+    'name' => 'administer nodes',
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'editorial admin',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: administer taxonomy.
   $permissions['administer taxonomy'] = array(
     'name' => 'administer taxonomy',
@@ -141,6 +151,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'bypass node access',
     'roles' => array(
       0 => 'administrator',
+      1 => 'editorial admin',
     ),
     'module' => 'node',
   );

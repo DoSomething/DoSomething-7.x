@@ -33,6 +33,7 @@ features[user_permission][] = administer all queues
 features[user_permission][] = administer files
 features[user_permission][] = administer imce
 features[user_permission][] = administer nodequeue
+features[user_permission][] = administer nodes
 features[user_permission][] = administer taxonomy
 features[user_permission][] = administer url aliases
 features[user_permission][] = administer users
