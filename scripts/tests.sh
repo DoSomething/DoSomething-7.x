@@ -7,7 +7,7 @@ php ./scripts/run-tests.sh --verbose DoSomething
 cd tests
 if [ $HOST == 'local' ]
 then
-  bin/behat --profile local
+  bin/behat --profile local --tags ~@footlocker
 else
-  bin/behat
+  bin/behat --tags ~@footlocker
 fi
