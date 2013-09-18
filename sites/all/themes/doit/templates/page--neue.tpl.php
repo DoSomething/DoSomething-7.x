@@ -23,7 +23,7 @@
 </div>
 
 <?php print $messages; ?>
-<?php if ($tabs = render($tabs)): ?><div class="pager legal"><?php print $tabs; ?></div><?php endif; ?>
+<?php if ($tabs = render($tabs)): ?><div class="wrapper admin"><?php print $tabs; ?></div><?php endif; ?>
 <?php print render($page['content']); ?>
 
 <div class="footer-wrapper">
