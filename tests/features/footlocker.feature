@@ -1,3 +1,4 @@
+@footlocker
 Feature: Foot Locker Scholarship Application
   As a site visitor
   I can see the Foot Locker scholarship

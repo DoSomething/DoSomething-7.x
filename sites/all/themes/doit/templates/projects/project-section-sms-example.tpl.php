@@ -1,5 +1,5 @@
 <section class="campaign-section sms-game-example full-width" id="sms-game-example">
-  <h2 class="section-header"><span><?php print $node->field_sms_example_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
+  <h3 class="section-header"><span><?php print $node->field_sms_example_headline[LANGUAGE_NONE][0]['value']; ?></span></h3>
 
   <div class="content-center narrow">
     <?php foreach ($node->field_sms_example_message[LANGUAGE_NONE] as $key => $message): ?>
