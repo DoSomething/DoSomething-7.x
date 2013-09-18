@@ -1,5 +1,5 @@
 <section class="campaign-section how-it-works full-width" id="how-it-works">
-  <h2 class="section-header"><span><?php print $node->field_action_items_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
+  <h3 class="section-header"><span><?php print $node->field_action_items_headline[LANGUAGE_NONE][0]['value']; ?></span></h3>
 
   <section class="how-it-works-container">
 

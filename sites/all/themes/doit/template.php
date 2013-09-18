@@ -346,6 +346,12 @@ function _doit_load_project_assets($node, $org_code = NULL) {
   # Add neue library:
   drupal_add_library('ds_neue', 'ds-neue-campaign');
 
+  # Add admin CSS/JS:
+  global $user;
+  if ($user->uid) {
+    drupal_add_css(path_to_theme() . '/css/neue-drupal.css');
+  }
+
   $org_code = $org_code ? $org_code : _doit_load_project_org_code($node);
 
   $path_to_theme = path_to_theme();
@@ -991,9 +997,8 @@ function doit_is_neue_page() {
 function doit_css_alter(&$css) {
   if (doit_is_neue_page()) {
     $styles = array();
-
     // @todo - optimize me
-    $whitelist = array('ds-neue', 'contextual', 'admin_menu');
+    $whitelist = array('ds-neue', 'contextual', 'admin_menu', 'neue-drupal');
     foreach($css as $path => $info) {
       foreach($whitelist as $namespace) {
         if (strpos($path, $namespace) !== false) {
