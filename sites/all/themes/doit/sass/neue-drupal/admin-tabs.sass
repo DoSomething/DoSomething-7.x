@@ -1,10 +1,21 @@
+
+// ---------- //
+// ADMIN TABS //
+// ---------- //
+
+// VARIABLES
+$bg: rgba(0, 0, 0, 0.05)
+$bg-inv: invert($bg)
+
+// DRUPAL DEFAULTS
 .element-invisible
   display: none
 
+// ADMIN TABS
 ul.tabs
   padding: 0.7% 0
   width: 150px
-  background: rgba(0, 0, 0, 0.05)
+  background: $bg
   position: absolute
   top: 0.2%
   right: 1%
@@ -17,7 +28,7 @@ ul.tabs
     text-align: left
     border-radius: 2px
     &:hover
-      background: rgba(0, 0, 0, 0.05)
+      background: $bg
       cursor: pointer
     a
       font-size: 1.3em
@@ -25,4 +36,5 @@ ul.tabs
       text-decoration: none
       text-transform: uppercase
       color: #000
+
 
