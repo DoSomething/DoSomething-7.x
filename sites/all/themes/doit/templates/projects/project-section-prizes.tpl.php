@@ -1,5 +1,5 @@
 <section class="campaign-section prizing full-width" id="prizing">
-  <h2 class="section-header"><span><?php print $node->field_prizes_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
+  <h3 class="section-header"><span><?php print $node->field_prizes_headline[LANGUAGE_NONE][0]['value']; ?></span></h3>
   <p class="section-intro"><?php print $node->field_prizes_copy[LANGUAGE_NONE][0]['value']; ?></p>
 
   <div class="content-center">

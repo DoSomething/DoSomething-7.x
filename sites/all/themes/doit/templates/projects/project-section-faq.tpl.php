@@ -1,5 +1,5 @@
 <section class="campaign-section faq full-width" id="faq">
-  <h2 class="section-header"><span><?php print $node->field_faq_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
+  <h3 class="section-header"><span><?php print $node->field_faq_headline[LANGUAGE_NONE][0]['value']; ?></span></h3>
   <div class="content-center">
     <?php foreach ($faq_items as $faq): ?>
     <div class="answer">
