@@ -61,11 +61,7 @@ function doit_preprocess_html(&$variables, $hook) {
   }
   drupal_alter('html_templates', $variables);
 
-  if (
-    menu_get_object()->type == 'project'  ||
-    (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
-    ( (menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue') )
-    ) {
+  if (doit_is_neue_page()) {
     $variables['theme_hook_suggestions'][] = 'html__neue';
     $css = drupal_add_css();
     $variables['classes_array'] = array();
@@ -350,6 +346,12 @@ function _doit_load_project_assets($node, $org_code = NULL) {
   # Add neue library:
   drupal_add_library('ds_neue', 'ds-neue-campaign');
 
+  # Add admin CSS/JS:
+  global $user;
+  if ($user->uid) {
+    drupal_add_css(path_to_theme() . '/css/neue-drupal.css');
+  }
+
   $org_code = $org_code ? $org_code : _doit_load_project_org_code($node);
 
   $path_to_theme = path_to_theme();
@@ -466,21 +468,14 @@ function doit_preprocess_user_picture(&$variables) {
 function doit_form_alter(&$form, &$form_state, $form_id) {
 
   switch($form_id) {
-    case 'search_api_page_search_form_demo':
-      $obj = menu_get_object();
-      
-      if (
-        ($obj && $obj->type == 'project') ||
-        (drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) ||
-        (menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue')
-      ) {
+    case 'search_api_page_search_form_demo':      
+      if (doit_is_neue_page()) {
         $form['#attributes']['class'] = array('search');
         $form['keys_1']['#title'] = NULL;
         $form['keys_1']['#type'] = 'searchfield';
         // @TODO: move this to a style sheet some where
         $form['submit_1']['#attributes']['style'] = 'display: none;';
       }
-
       break;
   }
 }
@@ -1002,9 +997,8 @@ function doit_is_neue_page() {
 function doit_css_alter(&$css) {
   if (doit_is_neue_page()) {
     $styles = array();
-
     // @todo - optimize me
-    $whitelist = array('ds-neue', 'contextual', 'admin_menu');
+    $whitelist = array('ds-neue', 'contextual', 'admin_menu', 'neue-drupal');
     foreach($css as $path => $info) {
       foreach($whitelist as $namespace) {
         if (strpos($path, $namespace) !== false) {

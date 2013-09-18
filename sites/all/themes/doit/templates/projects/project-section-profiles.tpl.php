@@ -1,5 +1,5 @@
 <section class="campaign-section profiles full-width" id="profiles">
-  <h2 class="section-header"><span><?php print $node->field_project_profiles_headline[LANGUAGE_NONE][0]['value']; ?></span></h2>
+  <h3 class="section-header"><span><?php print $node->field_project_profiles_headline[LANGUAGE_NONE][0]['value']; ?></span></h3>
 
   <?php foreach($profiles as $profile): ?>
   <div class="column-break">

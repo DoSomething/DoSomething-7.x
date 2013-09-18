@@ -16,18 +16,16 @@
 </nav>
 
 <div class="masthead-wrapper">
-    <nav class="masthead">
-        <a class="logo" href="<?php print $front_page; ?>"><img src="/<?php print path_to_theme(); ?>/images/ds-logo.png" alt="DoSomething.org"></a>
-        <?php print render($page['navigation']); ?>
-    </nav>
+  <nav class="masthead">
+    <a class="logo" href="<?php print $front_page; ?>"><img src="/<?php print path_to_theme(); ?>/images/ds-logo.png" alt="DoSomething.org"></a>
+    <?php print render($page['navigation']); ?>
+  </nav>
 </div>
 
-<div role="main" class="wrapper">
 <?php print $messages; ?>
-<?php if ($tabs = render($tabs)): ?><div class="pager legal"><?php print $tabs; ?></div><?php endif; ?>
+<?php if ($tabs = render($tabs)): ?><div class="wrapper admin"><?php print $tabs; ?></div><?php endif; ?>
 <?php print render($page['content']); ?>
-</div>
 
 <div class="footer-wrapper">
-    <?php print render($page['footer']); ?>
+  <?php print render($page['footer']); ?>
 </div>
