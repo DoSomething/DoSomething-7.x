@@ -22,11 +22,9 @@
   </nav>
 </div>
 
-<div role="main" class="wrapper">
-  <?php print $messages; ?>
-  <?php if ($tabs = render($tabs)): ?><div class="pager legal"><?php print $tabs; ?></div><?php endif; ?>
-  <?php print render($page['content']); ?>
-</div>
+<?php print $messages; ?>
+<?php if ($tabs = render($tabs)): ?><div class="pager legal"><?php print $tabs; ?></div><?php endif; ?>
+<?php print render($page['content']); ?>
 
 <div class="footer-wrapper">
   <?php print render($page['footer']); ?>
