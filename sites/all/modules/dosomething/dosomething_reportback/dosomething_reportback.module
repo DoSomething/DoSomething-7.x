@@ -108,11 +108,16 @@ function dosomething_reportback_form($form, &$form_state, $node) {
     $form_fields = dosomething_reportback_get_reportback_field_values($node);
     // Loop through form_fields:
     foreach ($form_fields as $form_field) {
-      $field_id = $form_field['field_collection_item_id'];
-      $form['rb_fld_' . $field_id] = array(
+      $field_name = $form_field['name'];
+      $field_desc = '';
+      if ($form_field['desc']) {
+        $field_desc = $form_field['desc'];
+      }
+      $form[$field_name] = array(
         '#type' => 'textarea',
         '#required' => TRUE,
         '#title' => $form_field['label'],
+        '#description' => $field_desc,
       ); 
     }
   }
@@ -160,10 +165,9 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     $form_fields = dosomething_reportback_get_reportback_field_values($node);
     // Loop through form_fields:
     foreach ($form_fields as $form_field) {
-      // Use the field_collection_item_id as the index for this reportback field data.
-      $field_id = $form_field['field_collection_item_id'];
+      $field_name = $form_field['name'];
       // Store the submitted value.
-      $rb_data[$field_id] = $values['rb_fld_' . $field_id];
+      $rb_data[$field_name] = $values[$field_name];
     }
   }
 
@@ -232,10 +236,14 @@ function dosomething_reportback_get_reportback_field_values($node) {
   if (!empty($ids)) {
     $items = field_collection_item_load_multiple($ids);
     $i = 0;
-    foreach($items as $item) {
+    foreach ($items as $item) {
       $values[$i]['field_collection_item_id'] = $item->item_id;
       $reportback_fld_label = field_get_items('field_collection_item', $item, 'field_reportback_fld_label');
       $values[$i]['label'] = $reportback_fld_label[0]['value'];
+      $reportback_fld_name = field_get_items('field_collection_item', $item, 'field_reportback_fld_name');
+      $values[$i]['name'] = $reportback_fld_name[0]['value'];
+      $reportback_fld_desc = field_get_items('field_collection_item', $item, 'field_reportback_fld_desc');
+      $values[$i]['desc'] = $reportback_fld_desc[0]['value'];
       $i++;
     }
   }
