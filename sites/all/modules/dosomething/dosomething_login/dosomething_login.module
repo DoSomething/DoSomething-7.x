@@ -2167,7 +2167,7 @@ function dosomething_login_redirector($node) {
   global $user;
   // If anon user, redirect to user/destination?node=$nid
   if ($user->uid == 0) {
-    drupal_goto('user/registration', array('query' => array('destination' => 'node/' . $node->nid)));
+    drupal_goto('user/login', array('query' => array('destination' => 'node/' . $node->nid)));
   }
   // Else if node is a gated signup, and logged in user doesn't have override join acess:
   elseif (dosomething_login_is_gated_signup_node($node) && !user_access('administer modules', $user)) {
