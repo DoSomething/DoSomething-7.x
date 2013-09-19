@@ -39,6 +39,12 @@ $activity->sets = array(
     'opt_in_paths' => array(161183, 161185, 161187, 161189, 161191, 161193),
     'should_loop' => TRUE,
   ),
+  // 50 Cans STAT
+  array(
+    'mdata_id' => 9221,
+    'game_id' => SmsFlowGameConstants::STATS_50CANS_TIPS,
+    'opt_in_paths' => array(161861, 161863, 161865, 161867),
+  ),
 );
 
 $activity = $workflow->newActivity('end');
