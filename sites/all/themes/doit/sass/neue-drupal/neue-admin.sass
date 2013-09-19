@@ -1,8 +1,50 @@
 @import 'compass/css3'
 
+// ---------- //
+// ADMIN TABS //
+// ---------- //
+
+// VARIABLES
+$bg: rgba(0, 0, 0, 0.05)
+$bg-inv: invert($bg)
+
+// DRUPAL DEFAULTS
+.element-invisible
+  display: none
+
+// ADMIN TABS
+ul.tabs
+  margin: 0.5em
+  padding: 0.5em 0
+  width: 150px
+  background: $bg
+  position: absolute
+  top: 0
+  right: 0
+  z-index: 1
+  li
+    display: block
+    width: 80%
+    margin: 0 5%
+    padding: 5% 5% 3%
+    text-align: left
+    border-radius: 2px
+    &:hover
+      background: $bg
+      cursor: pointer
+    a
+      font-size: 1em
+      font-weight: 500
+      text-decoration: none
+      text-transform: uppercase
+      color: #000
+
+
+
 // -------------------
 // HIDE ADMIN FEATURES
 // -------------------
+
 #toggle-button
   position: absolute
   top: 125px
@@ -35,8 +77,12 @@
   &:hover
     background: rgba(255, 255, 255, 0.3)
 
-html body.html
+html body.admin-menu
   margin-top: 0 !important
+  background: pink
+
+html body.admin-menu.admin-active
+  margin-top: 29px !important
 
 #admin-menu, div.tabs
   display: none
