@@ -1,29 +1,29 @@
 @import 'compass/css3'
 
-// ---------- //
-// ADMIN TABS //
-// ---------- //
-
-// VARIABLES
+// variables
 $bg: rgba(0, 0, 0, 0.05)
 $bg-inv: invert($bg)
 
-// DRUPAL DEFAULTS
+// ---------- //
+// admin tabs //
+// ---------- //
+
+// drupal defaults
 .element-invisible
   display: none
 
-// ADMIN TABS
+// admin tabs
 ul.tabs
   margin: 0.5em
   padding: 0.5em 0
   width: 150px
-  background: $bg
+  font-family: din-condensed
   position: absolute
   top: 0
   right: 0
   z-index: 1
   li
-    display: block
+    display: none
     width: 80%
     margin: 0 5%
     padding: 5% 5% 3%
@@ -39,51 +39,33 @@ ul.tabs
       text-transform: uppercase
       color: #000
 
+// ---------- //
+// hide admin //
+// ---------- //
 
-
-// -------------------
-// HIDE ADMIN FEATURES
-// -------------------
-
-#toggle-button
+#tabs-toggle
+  display: block
+  text-transform: uppercase
+  text-decoration: none
+  color: #444
+  font-family: din-condensed
   position: absolute
-  top: 125px
-  right: 13px
+  top: 1em
+  right: 1em
   left: auto
-  color: #222
-  background: rgba(255, 255, 255, 0.9)
-  border: 3px solid rgba(255, 255, 255, 0.8)
-  padding: 10px 15px 5px
-  font-weight: 500
-  font-size: 16
+  padding: 0.3em 1.5em 0 0.3em
   z-index: 3
-  font-size: 16px
-  width: 125px
-  +border-radius(4px)
+  height: 1.3em
+  +border-radius(3px 3px 0 0)
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA8BJREFUeNrsW8FuGjEQNdt+QHpMFInNFxSqHnIL+QLIH5Bbbgm33oAvCH9Qbj1CvgB6a6WqoV/AVqra3kpvvbUzzVBZqy4ejwdnEfska8WCPZ7nsT0zNsZUqFChQoX9RS2GkBcvT1vwwDL++OFd5vhtCo8ulDn8dr7tvj3dotIdeLSh4POAXq+gjBxVr6HcQOlDG/j7KZQ7IGO6ExYAncbR60NJ//M1jn4TlFkV1EWilhZh+bpDqDsuJQE04rcFittABXp5Ekj5GZSGo35G9aelIQA6P6BR5+LvaNLTEGl9Bnk20BoGZSEgJdONiRPXgspBotET6sg0ovJzDeXVCCB8ikjAW62GNAmoRySgXkYCWhEJ6NCuUQ4CaBdIIxJw4LnrFOKJj5KHR8erb1+/fLf3bnj3SqsznjgF2Sj/PfTpl9WnBry7gncsN7rGVB6dnAl9XKBrCuU5mb3UFLOcHyC1IHSo5rQIn1lT8YLjLHEJWCqYuNOvL4gfpMhAzkkwAeTbvw7sDHp9o6IYoCAmuFGYWpeu2KG25dHPyBQXwsW1QVMv3ZYVJIy5LxW+oMhvIR0+qtuktiRISQfxNtgOGPlzrsk7SMA2zq0F0xftEAI6QqEXGsrnSLiQOk0iAiiNJVmJhyFm75gOQ4nTRLp4W4DEteWkvEIwIhlqbnriytx4zr2ppukXTAWfsDsjHcbeBGC8DWVEq/CYKfAuggvMlTGmXWi0KXfA9QRxLbh3bYkgKFaa/Tdj5Jsca0w8TG/IEBoLLllD7lRMFIWWiQB2XxKz5/AhIA38XhMuWQ1VAmgR7O8QAdfclFnCVJ4VkbkCD6UdoMMkaMYhYZMrjJEUHnUtPbzCdoTR58rAabBEHejgxtsCupSU8IkH1LK1G6zRx8rWiZWuhIC5JPAggduC74A4dak5GP8hFNjUjggpO3QvCdCgL8+ki6D0vG+iORWshViCacguIA1u2KswU/lZwDa7UYe9T4o6T4YOj45/GnlqDEfvCtqoQVnYJziuUacTpzcm7HygBzIXQRagYAX/FiOziwcjVscm1paC5/P1wI5mRu9oDAn9bB6O69bWqnc0RiQMTO6enxUjbHPv34RRPvZf3zPk3h/SuiN0+wgkYKqrFzMc3piBMbJsbch6MtRoSOuS1EroOksx18o+7+olqewxMkIunEUkoKXV0C5flFQJuLQsoCsw4UvzcOqLpScw605pLMBylvbzsnROka7Zx+vyTL++R+eNXKdq9/4wUaBUy5T0LzMVKlSoUGGf8UeAAQC1DJF8MAwOSgAAAABJRU5ErkJggg==) no-repeat 100% 0% / 1.5em lightgreen
   @media only screen and (max-width: 960px)
     top: 185px
     left: 15px
     right: auto
-  &:hover
-    text-decoration: none
-    background: rgba(255, 255, 255, 0.85)
-
-#toggle-button.active
-  top: 125px
-  background: rgba(255, 255, 255, 0.4)
-  border: 3px solid rgba(255, 255, 255, 0.5)
-  @media only screen and (max-width: 960px)
-    top: 252px
-  &:hover
-    background: rgba(255, 255, 255, 0.3)
 
 html body.admin-menu
   margin-top: 0 !important
-  background: pink
 
-html body.admin-menu.admin-active
-  margin-top: 29px !important
-
-#admin-menu, div.tabs
+#admin-menu, ul.tabs
   display: none
 

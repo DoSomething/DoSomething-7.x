@@ -353,7 +353,7 @@ function _doit_load_project_assets($node, $org_code = NULL) {
       'scope' => 'footer',
       'every_page' => TRUE,
     ));
-    drupal_add_css(path_to_theme() . '/css/neue-admin.css');
+    drupal_add_css(path_to_theme() . '/css/neue-drupal/neue-admin.css');
   }
 
   $org_code = $org_code ? $org_code : _doit_load_project_org_code($node);
