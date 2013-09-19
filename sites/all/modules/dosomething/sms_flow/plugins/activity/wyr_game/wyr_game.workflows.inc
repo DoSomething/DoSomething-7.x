@@ -195,6 +195,18 @@ $activity->sets = array(
     'game_id'      => SmsFlowGameConstants::FEDUP_RANDOM_TIPS,
     'opt_in_paths' => array(161557, 161559, 161561, 161563, 161565, 161567, 161569, 161571, 161573, 161575),
   ),
+  // 50 Cans - MARKT tips
+  array(
+    'mdata_id'     => 10957,
+    'game_id'      => SmsFlowGameConstants::MARKT_50CANS_TIPS,
+    'opt_in_paths' => array(161843, 161845, 161847, 161849, 161851, 161853, 161855, 161857, 161859),
+  ),
+  // 50 Cans - RUN tips
+  array(
+    'mdata_id'     => 10959,
+    'game_id'      => SmsFlowGameConstants::RUN_50CANS_TIPS,
+    'opt_in_paths' => array(161819, 161821, 161823, 161825, 161827, 161829, 161831, 161833, 161835, 161837, 161839, 161841),
+  )
 );
 
 $activity = $workflow->newActivity('end');

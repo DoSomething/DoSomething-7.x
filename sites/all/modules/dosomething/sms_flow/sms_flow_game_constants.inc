@@ -29,4 +29,7 @@ class SmsFlowGameConstants {
   const GIVEASPIT_RANDOM_TIPS   = 22;
   const SURVIVORS_RANDOM_TIPS   = 23;
   const FEDUP_RANDOM_TIPS       = 24;
+  const MARKT_50CANS_TIPS       = 25;
+  const RUN_50CANS_TIPS         = 26;
+  const STATS_50CANS_TIPS       = 27;
 }

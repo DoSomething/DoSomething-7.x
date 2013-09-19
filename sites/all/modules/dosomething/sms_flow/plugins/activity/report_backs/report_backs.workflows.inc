@@ -56,6 +56,11 @@ $activity->routes = array(
     'yes' => '161421',
     'no' => '161425',
   ),
+  // 50 Cans Report Back
+  '161869' => array(
+    'yes' => '161871',
+    'no' => '161873',
+  ),
   // Hunt 2013 Report Back Day 1
   '159421' => array(
     'yes' => '159445',
@@ -800,6 +805,56 @@ $activity->submission_fields = array(
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
 $activity->inputs = array('submit_report_back', 'ask_picture');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * 50 Cans Report Back
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_50cans_report_back';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_cans', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 161875;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_cans';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_people');
+$activity->question = t('Amazing! Q1 - How many cans did you collect?');
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_cans');
+$activity->outputs = array('submit_report_back');
+$activity->question = t('Fantastic. Q2 - How many people helped out?');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('end');
+$activity->campaign_opt_outs = array(121663);
+$activity->submission_fields = array(
+  'picture' => 'ask_picture:mms',
+  'ask_cans' => 2,
+  'ask_people' => 3,
+);
+$activity->success_response = 161877;
+$activity->webform_nid = 731045;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ask_picture', 'submit_report_back');
 
 $workflows[$workflow->name] = $workflow;
 
