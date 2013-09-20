@@ -148,7 +148,6 @@ function dosomething_reportback_views_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -189,7 +188,7 @@ function dosomething_reportback_views_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['relationship'] = 'fid';
   $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
-  $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'media_original';
+  $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'media_large';
   /* Field: File: Rendered File */
   $handler->display->display_options['fields']['rendered_entity_1']['id'] = 'rendered_entity_1';
   $handler->display->display_options['fields']['rendered_entity_1']['table'] = 'views_entity_file';
