@@ -30,9 +30,8 @@ $plugin = array(
   'menu' => array(
     array('title' => 'home', 'href' => 'footlocker'),
     array('title' => 'about', 'href' => 'footlocker/about'),
+    array('title' => 'last year\'s winners', 'href' => 'footlocker', 'fragment' => 'fl-winners'),
     array('title' => 'apply', 'href' => 'footlocker/apply'),
-    array('title' => 'celebrity judges', 'href' => 'footlocker/judges'),
-    array('title' => 'last year\'s winners', 'href' => 'footlocker/previous-winners'),
     array('title' => 'faq', 'href' => 'footlocker/faq'),
   ),
 );
