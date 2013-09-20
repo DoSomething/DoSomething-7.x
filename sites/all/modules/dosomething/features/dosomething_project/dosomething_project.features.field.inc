@@ -1084,6 +1084,72 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_reportback_fields-field_reportback_fld_desc'.
+  $fields['field_collection_item-field_reportback_fields-field_reportback_fld_desc'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_reportback_fld_desc',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_reportback_fields',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Additional help text for the field displayed on the user reportback form.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 2,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_reportback_fld_desc',
+      'label' => 'Field Description',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '33',
+      ),
+    ),
+  );
+
   // Exported field: 'field_collection_item-field_reportback_fields-field_reportback_fld_label'.
   $fields['field_collection_item-field_reportback_fields-field_reportback_fld_label'] = array(
     'field_config' => array(
@@ -1121,7 +1187,7 @@ function dosomething_project_field_default_fields() {
       'bundle' => 'field_reportback_fields',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'The field label displayed on the user reportback form.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1147,6 +1213,73 @@ function dosomething_project_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '31',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_reportback_fields-field_reportback_fld_name'.
+  $fields['field_collection_item-field_reportback_fields-field_reportback_fld_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_reportback_fld_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_reportback_fields',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The field\'s machine name used for internal data reporting.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_reportback_fld_name',
+      'label' => 'Field Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '32',
       ),
     ),
   );
@@ -4801,6 +4934,78 @@ function dosomething_project_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-project-field_reportback_image_copy'.
+  $fields['node-project-field_reportback_image_copy'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_reportback_image_copy',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'project',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Help text to display on the Reportback Image uploader.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 59,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_reportback_image_copy',
+      'label' => 'Reportback Image Copy',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '47',
+      ),
+    ),
+  );
+
   // Exported field: 'node-project-field_reportback_success_msg'.
   $fields['node-project-field_reportback_success_msg'] = array(
     'field_config' => array(
@@ -4869,7 +5074,7 @@ function dosomething_project_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '47',
+        'weight' => '48',
       ),
     ),
   );
@@ -5808,6 +6013,7 @@ function dosomething_project_field_default_fields() {
   t('Action Items Headline');
   t('Action Kit Copy');
   t('Action Kit File');
+  t('Additional help text for the field.');
   t('CTA Button Label');
   t('CTA Copy');
   t('Contact Email');
@@ -5820,7 +6026,9 @@ function dosomething_project_field_default_fields() {
   t('FAQ Headline');
   t('FAQ Title');
   t('Facebook Share Msg');
+  t('Field Description');
   t('Field Label');
+  t('Field Name');
   t('Gallery Button Label');
   t('Gallery Copy');
   t('Gallery Headline');
@@ -5832,6 +6040,7 @@ function dosomething_project_field_default_fields() {
   t('Has Gate');
   t('Header Logo');
   t('Headline');
+  t('Help text to display on the Reportback Image uploader.');
   t('If this is checked, the alpha email will be subscribed to the Mailchimp Group if it exists.');
   t('Include Alpha Email on Form');
   t('Mailchimp Group');
@@ -5865,6 +6074,7 @@ function dosomething_project_field_default_fields() {
   t('Report Back Copy');
   t('Report Back Success Msg');
   t('Reportback Fields');
+  t('Reportback Image Copy');
   t('Rules Regs File');
   t('SMS Example Button Label');
   t('SMS Example Headline');
@@ -5877,6 +6087,8 @@ function dosomething_project_field_default_fields() {
   t('Sponsors');
   t('Subheadline');
   t('Success message displayed after a user has submitted a Report back.');
+  t('The field\'s machine name used for internal reporting.');
+  t('The label displayed for the form element on the user reportback form.');
   t('Thumbnail');
   t('Twitter Share Msg');
   t('Value for the TITLE tag in the HTML HEAD.');
