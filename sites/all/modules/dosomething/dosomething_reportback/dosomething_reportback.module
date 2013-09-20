@@ -187,7 +187,11 @@ function dosomething_reportback_form_submit($form, &$form_state) {
   foreach ($form_state['values']['reportback_images'] as $uploaded_file) {
     if ($uploaded_file['status'] == 'done') {
       $source = $uploaded_file['tmppath'];
-      $destination = file_stream_wrapper_uri_normalize($scheme . $directory_name . '/' . $uploaded_file['name']);
+      // Use pathinfo to grab source file's file extension:
+      $pathinfo = pathinfo($uploaded_file['name']);
+      // Use user uid, rbid, and the index as new filename:
+      $file_name =  $user->uid . '-' . $rbid . '-' . $i .'.' . $pathinfo['extension'];
+      $destination = file_stream_wrapper_uri_normalize($scheme . $directory_name . '/' . $file_name);
       $destination = file_unmanaged_move($source, $destination, FILE_EXISTS_RENAME);
       $file = plupload_file_uri_to_object($destination);
       file_save($file);
