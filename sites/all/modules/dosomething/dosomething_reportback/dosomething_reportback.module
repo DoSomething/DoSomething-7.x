@@ -216,6 +216,18 @@ function dosomething_reportback_form_submit($form, &$form_state) {
 }
 
 /**
+ * For a given reportback array and filename, return the file directory/path destination to save file to. 
+ */
+function dosomething_reportback_get_file_destination($rb, $filename, $index = 0) {
+  $scheme = variable_get('file_default_scheme', 'public') . '://';
+  $directory_name = 'reportbacks/' . $rb['org_code'];
+   // Use pathinfo to grab source file's file extension:
+  $pathinfo = pathinfo($filename);
+  $file_name =  $rb['uid'] . '-' . $rb['rbid'] . '-' . $index .'.' . $pathinfo['extension'];
+  return file_stream_wrapper_uri_normalize($scheme . $directory_name . '/' . $file_name);
+}
+
+/**
  * Return the values of the "Reportback Fields" field collection in a given node.
  *
  * @param Object $node
