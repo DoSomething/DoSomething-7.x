@@ -178,38 +178,25 @@ function dosomething_reportback_form_submit($form, &$form_state) {
 
   // Insert record into dosomething_reportbacks table and store its rbid.
   $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($rb_data));
-
-  // Write images to files/reportbacks/org-code:
-  $file_dir = 'public://reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value'];
-  // Create the folder if it doesn't exist:
-  file_prepare_directory($file_dir, FILE_CREATE_DIRECTORY); 
-  $files_count = count($values['reportback_images']);
-  // Loop through file uploads:
-  for ($i = 0; $i < $files_count; $i++) {
-    $path = $values['reportback_images'][$i]['tmppath'];
-    // Parse the uploaded file's pathinfo:
-    $orig_filename = $values['reportback_images'][$i]['name'];
-    $file_info = pathinfo($orig_filename);
-    // Save its extension:
-    $file_extension = $file_info['extension'];
-    // Use extension in new filename:
-    $file_name = $user->uid . '-' . $rbid . '-' . $i .'.' . $file_extension; 
-    $file_path = $file_dir . '/' . $file_name;
-    // Set the $file as an object to pass it in the file_copy() function:
-    $file = (object)array(
-        'uid' => $user->uid,
-        'uri' => $path,
-        'status' => 1
-    );
-    // Save file:
-    if ($file = file_copy($file, $file_path)) {
-      // Get filemime from the written file (defaults to application when its in the tmp directory above):
-      $file->filemime = file_get_mimetype($file_path);
+ 
+  // Save files from plupload form element. 
+  // See plupload_test_submit(), contains logic for why to not use file_move, etc.
+  $scheme = variable_get('file_default_scheme', 'public') . '://';
+  $directory_name = 'reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value']; 
+  $i = 0;
+  foreach ($form_state['values']['reportback_images'] as $uploaded_file) {
+    if ($uploaded_file['status'] == 'done') {
+      $source = $uploaded_file['tmppath'];
+      $destination = file_stream_wrapper_uri_normalize($scheme . $directory_name . '/' . $uploaded_file['name']);
+      $destination = file_unmanaged_move($source, $destination, FILE_EXISTS_RENAME);
+      $file = plupload_file_uri_to_object($destination);
       file_save($file);
+      // Insert dosomething_reportback_files record.
       dosomething_reportback_insert_reportback_file($rbid, $file->fid);
+      $i++;
     }
     else {
-      drupal_set_message('An error occurred uploading file ' . $orig_filename, 'error');
+      form_set_error('reportback_images', "Upload of {$uploaded_file['name']} failed.");
     }
   }
   
