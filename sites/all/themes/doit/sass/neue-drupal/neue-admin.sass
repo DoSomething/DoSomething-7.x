@@ -3,6 +3,7 @@
 // variables
 $bg: rgba(0, 0, 0, 0.05)
 $bg-inv: invert($bg)
+$accent: #ff4444
 
 // ---------- //
 // admin tabs //
@@ -16,28 +17,32 @@ $bg-inv: invert($bg)
 ul.tabs
   margin: 0.5em
   padding: 0.5em 0
-  width: 150px
+  width: 7em
   font-family: din-condensed
   position: absolute
   top: 0
   right: 0
   z-index: 1
   li
-    display: none
     width: 80%
     margin: 0 5%
     padding: 5% 5% 3%
     text-align: left
     border-radius: 2px
     &:hover
-      background: $bg
       cursor: pointer
+      background: $bg
     a
       font-size: 1em
       font-weight: 500
       text-decoration: none
       text-transform: uppercase
-      color: #000
+      color: #111
+
+//  li.admin-toggle-wrapper
+    background: $bg
+    &:hover
+      background: rgba(0, 0, 0, 0.1)
 
 // ---------- //
 // hide admin //
@@ -66,6 +71,6 @@ ul.tabs
 html body.admin-menu
   margin-top: 0 !important
 
-#admin-menu, ul.tabs
+#admin-menu
   display: none
 
