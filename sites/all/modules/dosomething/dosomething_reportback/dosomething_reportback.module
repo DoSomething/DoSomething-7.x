@@ -121,11 +121,16 @@ function dosomething_reportback_form($form, &$form_state, $node) {
       ); 
     }
   }
+  $image_desc = '';
+  if (isset($node->field_reportback_image_copy[LANGUAGE_NONE][0]['value'])) {
+    $image_desc = $node->field_reportback_image_copy[LANGUAGE_NONE][0]['value'];
+  }
   // Handle image uploads via plupload module:
   if (module_exists('plupload')) {
     $form['reportback_images'] = array(
       '#type' => 'plupload',
       '#title' => t('Pictures'),
+      '#description' => $image_desc,
       '#required' => TRUE,
       '#submit_element' => '#edit-reportback-submit',
       '#upload_validators' => array(
