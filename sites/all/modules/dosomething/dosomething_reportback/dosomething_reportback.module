@@ -17,8 +17,8 @@ include_once 'dosomething_reportback.views.inc';
  * @param string $data
  *   Any data to store along with the record. Probably won't be used once we Mongo.
  *
- * @return int
- *   The rbid of the newly inserted dosomething_reportbacks record.
+ * @return array
+ *   Array containing the rbid of the newly inserted dosomething_reportbacks record, and its $uid and $org_code.
  */
 function dosomething_reportback_insert_reportback($uid, $nid, $org_code, $data = NULL) {
   $rbid = db_insert('dosomething_reportbacks')
@@ -30,7 +30,11 @@ function dosomething_reportback_insert_reportback($uid, $nid, $org_code, $data =
       'data' => $data,
       ))
     ->execute();
-  return $rbid;
+  return array(
+    'rbid' => $rbid,
+    'uid' => $uid,
+    'org_code' => $org_code,
+  );
 }
 
 /**
@@ -178,26 +182,20 @@ function dosomething_reportback_form_submit($form, &$form_state) {
   }
 
   // Insert record into dosomething_reportbacks table and store its rbid.
-  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, $node->field_organization_code[LANGUAGE_NONE][0]['value'], serialize($rb_data));
+  $reportback = dosomething_reportback_insert_reportback($user->uid, $node->nid, $node->field_organization_code[LANGUAGE_NONE][0]['value'], serialize($rb_data));
  
   // Save files from plupload form element. 
   // See plupload_test_submit(), contains logic for why to not use file_move, etc.
-  $scheme = variable_get('file_default_scheme', 'public') . '://';
-  $directory_name = 'reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value']; 
   $i = 0;
   foreach ($form_state['values']['reportback_images'] as $uploaded_file) {
     if ($uploaded_file['status'] == 'done') {
       $source = $uploaded_file['tmppath'];
-      // Use pathinfo to grab source file's file extension:
-      $pathinfo = pathinfo($uploaded_file['name']);
-      // Use user uid, rbid, and the index as new filename:
-      $file_name =  $user->uid . '-' . $rbid . '-' . $i .'.' . $pathinfo['extension'];
-      $destination = file_stream_wrapper_uri_normalize($scheme . $directory_name . '/' . $file_name);
+      $destination = dosomething_reportback_get_file_destination($reportback, $uploaded_file['name'], $i);
       $destination = file_unmanaged_move($source, $destination, FILE_EXISTS_RENAME);
       $file = plupload_file_uri_to_object($destination);
       file_save($file);
       // Insert dosomething_reportback_files record.
-      dosomething_reportback_insert_reportback_file($rbid, $file->fid);
+      dosomething_reportback_insert_reportback_file($reportback['rbid'], $file->fid);
       $i++;
     }
     else {
