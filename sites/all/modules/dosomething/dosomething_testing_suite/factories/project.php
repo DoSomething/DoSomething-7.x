@@ -11,8 +11,8 @@ class Project extends Factory {
     'revision_id' => 0,
     'title' => 'Test Project',
     'org_code' => 'test-project',
-    'field_headline' => 'Testing Project Headline',
-    'field_subheadline' => 'Testing Project Subheadline',
+    'field_headline' => 'Test Project Headline',
+    'field_subheadline' => 'Test Project Subheadline',
     'field_project_dates' => array(
       LANGUAGE_NONE => array(
         0 => array(
