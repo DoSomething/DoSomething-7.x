@@ -303,6 +303,7 @@ function dosomething_project_field_group_info() {
       1 => 'field_reportback_copy',
       2 => 'field_reportback_success_msg',
       3 => 'field_reportback_fields',
+      4 => 'field_reportback_image_copy',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

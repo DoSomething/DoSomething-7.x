@@ -36,11 +36,13 @@
 
 
     if (zip.match(/^\d{5}$/)) {
-      return $.get('/example-data.json', function(data) {
+      return $.get('http://lofialcoa.herokuapp.com/?zip='+zip+'&radius=100', function(data) {
+        console.log(data);
+
         $(".js-location-finder-results-zip").text(zip);
         $(".js-location-finder-results .location-list").html("");
-        $.each(data.results, function(index, value) {
-          return $(".js-location-finder-results .location-list").append("<li>\n  <strong>" + value.name + "</strong><br>\n  " + value.street + ", " + value.city + ", " + value.state + " " + value.zip + "<br>\n  (555) 555-5555\n</li>");
+        $.each(data, function(index, value) {
+          return $(".js-location-finder-results .location-list").append("<li>\n  <strong>" + value.name + "</strong><br>\n  " + value.address + ", " + value.city + ", " + value.state + " " + value.zip + "<br>\n"+ value.phone + "\n</li>");
         });
         $(".js-location-finder-form").slideUp(400);
         $(".js-location-finder-results").slideDown(400);
