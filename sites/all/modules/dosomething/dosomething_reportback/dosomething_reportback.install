@@ -26,6 +26,12 @@ function dosomething_reportback_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
+     'org_code' => array(
+        'description' => "Org code",
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
       'timestamp' => array(
         'description' => 'Time submitted',
         'type' => 'int',
@@ -66,4 +72,17 @@ function dosomething_reportback_schema() {
     'primary key' => array('rbid', 'fid'),
   );
   return $schema;
+}
+
+/**
+ * Add org_code text field to dosomething_reportbacks table.
+ */
+function dosomething_reportback_update_7001() {
+  $org_code = array(
+    'description' => "Org code",
+    'type' => 'varchar',
+    'length' => 255,
+    'not null' => FALSE,
+  );
+  db_add_field('dosomething_reportbacks', 'org_code', $org_code);
 }

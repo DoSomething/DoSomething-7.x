@@ -17,19 +17,24 @@ include_once 'dosomething_reportback.views.inc';
  * @param string $data
  *   Any data to store along with the record. Probably won't be used once we Mongo.
  *
- * @return int
- *   The rbid of the newly inserted dosomething_reportbacks record.
+ * @return array
+ *   Array containing the rbid of the newly inserted dosomething_reportbacks record, and its $uid and $org_code.
  */
-function dosomething_reportback_insert_reportback($uid, $nid, $data = NULL) {
+function dosomething_reportback_insert_reportback($uid, $nid, $org_code, $data = NULL) {
   $rbid = db_insert('dosomething_reportbacks')
     ->fields(array(
       'uid' => $uid,
       'nid' => $nid,
+      'org_code' => $org_code,
       'timestamp' => REQUEST_TIME,
       'data' => $data,
       ))
     ->execute();
-  return $rbid;
+  return array(
+    'rbid' => $rbid,
+    'uid' => $uid,
+    'org_code' => $org_code,
+  );
 }
 
 /**
@@ -177,22 +182,20 @@ function dosomething_reportback_form_submit($form, &$form_state) {
   }
 
   // Insert record into dosomething_reportbacks table and store its rbid.
-  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($rb_data));
+  $reportback = dosomething_reportback_insert_reportback($user->uid, $node->nid, $node->field_organization_code[LANGUAGE_NONE][0]['value'], serialize($rb_data));
  
   // Save files from plupload form element. 
   // See plupload_test_submit(), contains logic for why to not use file_move, etc.
-  $scheme = variable_get('file_default_scheme', 'public') . '://';
-  $directory_name = 'reportbacks/' . $node->field_organization_code[LANGUAGE_NONE][0]['value']; 
   $i = 0;
   foreach ($form_state['values']['reportback_images'] as $uploaded_file) {
     if ($uploaded_file['status'] == 'done') {
       $source = $uploaded_file['tmppath'];
-      $destination = file_stream_wrapper_uri_normalize($scheme . $directory_name . '/' . $uploaded_file['name']);
+      $destination = dosomething_reportback_get_reportback_file_uri($reportback, $uploaded_file['name'], $i);
       $destination = file_unmanaged_move($source, $destination, FILE_EXISTS_RENAME);
       $file = plupload_file_uri_to_object($destination);
       file_save($file);
       // Insert dosomething_reportback_files record.
-      dosomething_reportback_insert_reportback_file($rbid, $file->fid);
+      dosomething_reportback_insert_reportback_file($reportback['rbid'], $file->fid);
       $i++;
     }
     else {
@@ -209,6 +212,28 @@ function dosomething_reportback_form_submit($form, &$form_state) {
     $success_msg = 'Thanks for your submission!';
   }
   drupal_set_message($success_msg);
+}
+
+/**
+ * Returns the destination uri for a reportback file.
+ *
+ * @param array $rb
+ *   Reportback data array.  @see return of dosomething_reportback_insert_reportback().
+ * @param string $filename
+ *   The filename of the uploaded file.
+ * @param int $index
+ *   The index of the uploaded file, if there are mutliple uploads.
+ *
+ * @return string
+ *   The file stream wrapper URI that this file should be written to.
+ */
+function dosomething_reportback_get_reportback_file_uri($rb, $filename, $index = 0) {
+  $scheme = 'public://';
+  $directory_name = 'reportbacks/' . $rb['org_code'];
+   // Use pathinfo to grab source file's file extension:
+  $pathinfo = pathinfo($filename);
+  $file_name =  $rb['uid'] . '-' . $rb['rbid'] . '-' . $index .'.' . $pathinfo['extension'];
+  return file_stream_wrapper_uri_normalize($scheme . $directory_name . '/' . $file_name);
 }
 
 /**
