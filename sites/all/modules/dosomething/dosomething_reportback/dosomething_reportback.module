@@ -20,11 +20,12 @@ include_once 'dosomething_reportback.views.inc';
  * @return int
  *   The rbid of the newly inserted dosomething_reportbacks record.
  */
-function dosomething_reportback_insert_reportback($uid, $nid, $data = NULL) {
+function dosomething_reportback_insert_reportback($uid, $nid, $org_code, $data = NULL) {
   $rbid = db_insert('dosomething_reportbacks')
     ->fields(array(
       'uid' => $uid,
       'nid' => $nid,
+      'org_code' => $org_code,
       'timestamp' => REQUEST_TIME,
       'data' => $data,
       ))
@@ -177,7 +178,7 @@ function dosomething_reportback_form_submit($form, &$form_state) {
   }
 
   // Insert record into dosomething_reportbacks table and store its rbid.
-  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, serialize($rb_data));
+  $rbid = dosomething_reportback_insert_reportback($user->uid, $node->nid, $node->field_organization_code[LANGUAGE_NONE][0]['value'], serialize($rb_data));
  
   // Save files from plupload form element. 
   // See plupload_test_submit(), contains logic for why to not use file_move, etc.
