@@ -13,14 +13,23 @@ function dosomething_campaign_styles_campaign_social_content_type_render($subtyp
   if ($context = og_context()) {
     $block = new stdClass();
     $entity = array_shift(entity_load($context->entity_type, array($context->etid)));
-    if (isset($entity->field_campaign_facebook_language) && isset($entity->field_campaign_twitter_language)) {
+
+    if ((isset($entity->field_campaign_facebook_language) || isset($entity->opengraph_meta)) && isset($entity->field_campaign_twitter_language)) {
       $uri = entity_uri($context->entity_type, $entity);
       $uri['options']['absolute'] = true;
+
+      $facebook_language = "";
+      if (isset($entity->field_campaign_facebook_language[LANGUAGE_NONE])) {
+        $facebook_language = $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'];
+      }
+      elseif (isset($entity->opengraph_meta['description'])) {
+        $facebook_language = $entity->opengraph_meta['description'];
+      }
 
       drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/css/ds_campaign_social.css');
       $block->content = theme('ds_campaign_social', array(
         'url' => url($uri['path'], $uri['options']),
-        'facebook_language' => isset($entity->field_campaign_facebook_language[LANGUAGE_NONE]) ? $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'] : '',
+        'facebook_language' => $facebook_language,
         'twitter_language' => isset($entity->field_campaign_twitter_language[LANGUAGE_NONE]) ? $entity->field_campaign_twitter_language[LANGUAGE_NONE][0]['value'] : '',
         //'campaign_logo' => file_create_url($entity->field_campaign_logo[LANGUAGE_NONE][0]['uri']),
         'campaign_logo' => 'http://www.dosomething.org/sites/all/micro/epic/images/epic-logo.png',
