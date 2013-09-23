@@ -190,7 +190,7 @@ function dosomething_reportback_form_submit($form, &$form_state) {
   foreach ($form_state['values']['reportback_images'] as $uploaded_file) {
     if ($uploaded_file['status'] == 'done') {
       $source = $uploaded_file['tmppath'];
-      $destination = dosomething_reportback_get_file_destination($reportback, $uploaded_file['name'], $i);
+      $destination = dosomething_reportback_get_reportback_file_uri($reportback, $uploaded_file['name'], $i);
       $destination = file_unmanaged_move($source, $destination, FILE_EXISTS_RENAME);
       $file = plupload_file_uri_to_object($destination);
       file_save($file);
@@ -215,10 +215,20 @@ function dosomething_reportback_form_submit($form, &$form_state) {
 }
 
 /**
- * For a given reportback array and filename, return the file directory/path destination to save file to. 
+ * Returns the destination uri for a reportback file.
+ *
+ * @param array $rb
+ *   Reportback data array.  @see return of dosomething_reportback_insert_reportback().
+ * @param string $filename
+ *   The filename of the uploaded file.
+ * @param int $index
+ *   The index of the uploaded file, if there are mutliple uploads.
+ *
+ * @return string
+ *   The file stream wrapper URI that this file should be written to.
  */
-function dosomething_reportback_get_file_destination($rb, $filename, $index = 0) {
-  $scheme = variable_get('file_default_scheme', 'public') . '://';
+function dosomething_reportback_get_reportback_file_uri($rb, $filename, $index = 0) {
+  $scheme = 'public://';
   $directory_name = 'reportbacks/' . $rb['org_code'];
    // Use pathinfo to grab source file's file extension:
   $pathinfo = pathinfo($filename);
