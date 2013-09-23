@@ -360,7 +360,7 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
     $params['body'] .= t('<p>Cron run at %current_date. <strong>%number_deleted</stront> old entries purged.</p><p>',
                          array('%current_date' => $human_date, '%number_deleted' => $number_deleted));
     $params['body'] .= theme('table', array('header' => $header, 'rows' => $rows));
-    $params['body'] .= t('</p><p>See you on the next run at %next_run.', array('%next_run' => date('l - j F Y - g:i:s', $next_run)));
+    $params['body'] .= t('</p><p>See you on the next run at %next_run.', array('%next_run' => date('l - j F Y - g:i:s', REQUEST_TIME + $interval)));
     
     // drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
     $result = drupal_mail('dosomething_mandrill', 'dsplain', $to, language_default(), $params,  $from, TRUE);
@@ -372,7 +372,7 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
       watchdog('dosomething_sms', t('Mandrill "dsplain" email sent from %from to %to. Details sent %sent, results: %results.'), array('%from' => $result['from'], '%to' => $result['to'], '%sent' => $sent, '%results' => $results), WATCHDOG_INFO);
     }
     else {
-      watchdog('dosomething_sms', t('Failed to Mandrill "dsplain" email from %from to %to. Details sent %sent, results: %results.'), array('%from' => $result['from'], '%to' => $result['to'], '%sent' => $sent), WATCHDOG_ERROR);
+      watchdog('dosomething_sms', t('Failed to send report via Mandrill "dsplain" email message from %from to %to. Details sent %sent, results: %results.'), array('%from' => $result['from'], '%to' => $result['to'], '%sent' => $sent), WATCHDOG_ERROR);
     }
     // Log report in Watchdog
     watchdog('dosomething_sms', t('Cron run at %current_date. %number_deleted entries deleted.'), array('%current_date' => $human_date, '%number_deleted' => $number_deleted), WATCHDOG_INFO);
