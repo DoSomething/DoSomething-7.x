@@ -37,8 +37,6 @@
 
     if (zip.match(/^\d{5}$/)) {
       return $.get('http://lofialcoa.herokuapp.com/?zip='+zip+'&radius=100', function(data) {
-        console.log(data);
-
         $(".js-location-finder-results-zip").text(zip);
         $(".js-location-finder-results .location-list").html("");
         $.each(data, function(index, value) {
