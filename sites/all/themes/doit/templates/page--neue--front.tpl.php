@@ -33,17 +33,17 @@
 </div>
 
 <div role="main" class="wrapper">
-  <div class="content-block feature fixed one-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/malala-feature.jpg'); background-position: right center;">
-    <a class="full-link" href="/women"><span>Do This</span></a>
-    <div class="headline big purple">
-      <h3>Malala fights for women across the world. Now you can, too.</h3>
-      <a href="/women" class="btn primary large">Do This</a>
+  <div class="content-block feature fixed one-col" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/50cans-feature.jpg'); background-position: right center;">
+    <a class="full-link" href="/50cans"><span>Do This</span></a>
+    <div class="headline big blue">
+      <h3>Your challenge is simple. Recycle 50 aluminum cans.</h3>
+      <a href="/50cans" class="btn primary large">Do This</a>
     </div>
   </div>
 
   <div class="content-block feature fixed three-col left" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
     <a class="full-link" href="/survivors"><span>Do This</span></a>
-    <div class="headline blue">
+    <div class="headline teal">
       <div class="row"><div class="headline-text"><h3>Donate phones to help domestic abuse survivors</h3></div></div>
       <div class="row"><p class="block-cta"><a href="/survivors" class="btn primary large">Do This</a></p></div>
     </div>
@@ -57,11 +57,11 @@
     </div>
   </div>
 
-  <div class="content-block feature fixed three-col right" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/spit-block.png'); background-position: center center;">
-    <a class="full-link" href="/spit"><span>Do This</span></a>
-    <div class="headline yellow">
-      <div class="row"><div class="headline-text"><h3>Save a life at your next party</h3></div></div>
-      <div class="row"><p class="block-cta"><a href="/spit" class="btn primary large">Do This</a></p></div>
+  <div class="content-block feature fixed three-col right" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/malala-block.jpg'); background-position: center center;">
+    <a class="full-link" href="/women"><span>Do This</span></a>
+    <div class="headline purple">
+      <div class="row"><div class="headline-text"><h3>Malala fights for women across the world. You can too.</h3></div></div>
+      <div class="row"><p class="block-cta"><a href="/women" class="btn primary large">Do This</a></p></div>
     </div>
   </div>
 
