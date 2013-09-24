@@ -2,7 +2,7 @@ Feature: Project tests
   As a site visitor
   I can view a Project
 
-  Scenario: See a basic published Project with all sections
+  Scenario: Anon user sees a Project when viewing a non-gated published Project
     Given there is a Project
     And I am on "/test-project"
     Then I should see "Test Project" in the "#header" element
@@ -18,5 +18,4 @@ Feature: Project tests
     And I should see "Test Project Gallery Headline" in the ".campaign-section.gallery" element
     And I should see "Test Project Project Profiles Headline" in the ".campaign-section.profiles" element
     And I should see "Test Project FAQ Headline" in the ".campaign-section.faq" element
-
     
