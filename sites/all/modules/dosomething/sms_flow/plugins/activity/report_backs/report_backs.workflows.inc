@@ -1407,3 +1407,46 @@ $activity->name = 'end';
 $activity->inputs = array('ask_picture', 'submit_report_back');
 
 $workflows[$workflow->name] = $workflow;
+
+/**
+ * Grandparents Gone Wired 2013 Report Back
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_ggw_report_back';
+$workflow->title = 'Grandparents Gone Wired 2013 Report Back';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_why');
+$activity->should_prompt = FALSE;
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_why';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('submit_report_back');
+$activity->question = 'Why did you sign up to participate in Grandparents Gone Wired?';
+
+$activity = $workflow->newActivity('submit_dosomething_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_why');
+$activity->outputs = array('end');
+$activity->nid = 731026;
+$activity->organization_code = 1300028;
+$activity->picture_activity_name = 'ask_picture:mms';
+$activity->submission_fields = array(
+  'why' => 'ask_why',
+);
+$activity->success_response = 'Thanks for participating in Grandparents Gone Wired!';
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back');
+
+$workflows[$workflow->name] = $workflow;

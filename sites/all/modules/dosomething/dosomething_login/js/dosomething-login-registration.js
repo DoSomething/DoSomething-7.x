@@ -88,10 +88,10 @@ Drupal.behaviors.dosomethingBirthdayCheck = {
       },
       messages: {
         first_name: {
-          required: ''
+          required: '(required)'
         },
         last_name: {
-          required: ''
+          required: '(required)'
         },
         email: {
           conditional_on_empty_field: Drupal.t('You must enter either an email address or cell phone number.')
@@ -100,18 +100,18 @@ Drupal.behaviors.dosomethingBirthdayCheck = {
           conditional_on_empty_field: ''
         },
         pass: {
-          required: ''
+          required: '(required)'
         },
         day: {
-          required: '',
-          range: ''
+          required: '(required)',
+          range: '',
         },
         month: {
-          required: '',
+          required: '(required)',
           range: ''
         },
         year: {
-          required: '',
+          required: '(required)',
           range: ''
         }
       }
