@@ -23,7 +23,7 @@
 
   findLocation = function() {
     var zip;
-    $(this).addClass("loading");
+    $(".js-location-finder-button").addClass("loading");
     zip = $(".js-location-finder-input").val();
 
     $.ajaxSetup({
@@ -37,8 +37,6 @@
 
     if (zip.match(/^\d{5}$/)) {
       return $.get('http://lofialcoa.herokuapp.com/?zip='+zip+'&radius=100', function(data) {
-        console.log(data);
-
         $(".js-location-finder-results-zip").text(zip);
         $(".js-location-finder-results .location-list").html("");
         $.each(data, function(index, value) {
@@ -50,11 +48,9 @@
       });
     } else {
       $(".js-location-finder-button").removeClass("loading");
-      $(".js-location-finder-form").append("<div id='js-location-finder-validation-error' class='alert error'>Slow down buddy, that's not a zip code.</div>").slideDown(400);
-      return $(".js-location-finder-input").bind("propertychange input keyup", function() {
-        return $("#js-location-finder-validation-error").delay(800).slideUp(400, function() {
-          return $("#js-location-finder-validation-error").remove();
-        });
+      $(".js-location-finder-alert-container").html("<div class='alert error'>Slow down buddy, that's not a zip code.</div>").slideDown(400);
+        return $(".js-location-finder-input").bind("propertychange input keyup", function() {
+          $(".js-location-finder-alert-container").slideUp(400);
       });
     }
   };
