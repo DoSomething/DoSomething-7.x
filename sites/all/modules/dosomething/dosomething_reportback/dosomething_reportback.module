@@ -14,13 +14,19 @@ include_once 'dosomething_reportback.views.inc';
  *   User Uid of user submitting the reportback.
  * @param int $nid
  *   Node Nid of node that user is submitting the reportback for.
- * @param string $data
+ * @param array $data
  *   Any data to store along with the record. Probably won't be used once we Mongo.
  *
  * @return array
  *   Array containing the rbid of the newly inserted dosomething_reportbacks record, and its $uid and $org_code.
  */
-function dosomething_reportback_insert_reportback($uid, $nid, $org_code, $data = NULL) {
+function dosomething_reportback_insert_reportback($uid, $nid, $org_code, $data = array()) {
+  if (empty($data)) {
+    $data = NULL;
+  }
+  else {
+    $data = serialize($data);
+  }
   $rbid = db_insert('dosomething_reportbacks')
     ->fields(array(
       'uid' => $uid,
@@ -182,7 +188,7 @@ function dosomething_reportback_form_submit($form, &$form_state) {
   }
 
   // Insert record into dosomething_reportbacks table and store its rbid.
-  $reportback = dosomething_reportback_insert_reportback($user->uid, $node->nid, $node->field_organization_code[LANGUAGE_NONE][0]['value'], serialize($rb_data));
+  $reportback = dosomething_reportback_insert_reportback($user->uid, $node->nid, $node->field_organization_code[LANGUAGE_NONE][0]['value'], $rb_data);
  
   // Save files from plupload form element. 
   // See plupload_test_submit(), contains logic for why to not use file_move, etc.
