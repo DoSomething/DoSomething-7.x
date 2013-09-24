@@ -104,4 +104,31 @@ class DosomethingReportbackDBUnitTestCase extends WebTestSuite {
     $this->assertEqual($result['rbid'], $rbid);
     $this->assertEqual($result['fid'], $fid);
   }
+
+/**
+ * @see dosomething_reportback_file_delete()
+ */
+  public function testDeleteReportbackFile() {
+    // Create dummy file:
+    $file = file_save_data('Toto Tuesday', 'public://');
+    // Create dummy rbid to use for insert:
+    $rbid = 1;
+    // Delete existing data to avoid potential primary key issues:
+    db_delete('dosomething_reportback_files')
+      ->condition('rbid', $rbid)
+      ->execute();
+    // Insert it into reportback files:
+    dosomething_reportback_insert_reportback_file($rbid, $file->fid);
+    // Delete that file:
+    file_delete($file);
+    // Query reportback files:
+    $result = db_select('dosomething_reportback_files', 'rb')
+      ->fields('rb')
+      ->condition('rbid', $rbid)
+      ->orderBy('rbid', 'DESC')
+      ->execute()
+      ->fetchAssoc();
+    // Test that the record was deleted from dosomething_reportback_files:
+    $this->assertEqual($result, NULL);
+  }
 }
