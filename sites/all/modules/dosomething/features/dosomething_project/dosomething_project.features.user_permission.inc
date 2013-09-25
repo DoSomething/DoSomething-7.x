@@ -13,7 +13,9 @@ function dosomething_project_user_default_permissions() {
   // Exported permission: create project content.
   $permissions['create project content'] = array(
     'name' => 'create project content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'campaigns team',
+    ),
     'module' => 'node',
   );
 
@@ -35,7 +37,7 @@ function dosomething_project_user_default_permissions() {
   $permissions['edit any project content'] = array(
     'name' => 'edit any project content',
     'roles' => array(
-      0 => 'staff',
+      0 => 'campaigns team',
     ),
     'module' => 'node',
   );

@@ -16,6 +16,12 @@ function dosomething_admin_user_default_roles() {
     'weight' => '22',
   );
 
+  // Exported role: campaigns team.
+  $roles['campaigns team'] = array(
+    'name' => 'campaigns team',
+    'weight' => '27',
+  );
+
   // Exported role: editorial admin.
   $roles['editorial admin'] = array(
     'name' => 'editorial admin',
