@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_project functionality.
+ */
+
+class DosomethingProjectTestCase extends WebTestSuite {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Project',
+      'description' => 'Tests DoSomething Project functionality.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  function setUp() {
+  	// Enable the module.
+    parent::setUp('dosomething_project', 'dosomething_signups', 'dosomething_reportback');
+  }
+
+  /**
+   * @see dosomething_subscribe_mailchimp_queue_signup()
+   *
+   *  Test that dosomething_subscribe_mailchimp_queue_signup adds an array into the cron queue. 
+   */
+  public function testProjectAllSections() {
+    $this->factory->create('Project');
+    $this->drupalGet('test-project');
+    $this->assertTitle(t('Test Project | Do Something'), 'The title on the page is "Test Project | Do Something".');
+    $this->assertText('Test Project Headline', 'The text "Test Project Headline" exists on the the page.');
+    $this->assertText('Test Project Subheadline', 'The text "Test Project Subheadline" exists on the the page.');
+    $this->assertText('Test Project Reportback Copy', 'The text "Test Project Reportback Copy" exists on the the page.');
+    $this->assertNoLink('Reportbacks', 'There is no Reportbacks link on the page');
+  }
+}
