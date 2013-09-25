@@ -1,0 +1,134 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_reportback functionality.
+ */
+
+class DosomethingReportbackUnitTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Reportback Unit Test',
+      'description' => 'DoSomething Reportback Unit Tests',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_reportback_get_reportback_file_uri()
+   */
+  public function testGetReportbackFileUri() {
+    // Create dummy data:
+    $rb = array(
+      'org_code' => 'great-job',
+      'uid' => 1999,
+      'rbid' => 711,
+    );
+    $filename = "great-job.png";
+    $index = 3;
+    $file_uri = dosomething_reportback_get_reportback_file_uri($rb, $filename, $index);
+    $expected_file_uri = 'public://reportbacks/' . $rb['org_code'] . '/' . $rb['uid'] . '-' . $rb['rbid'] . '-' . $index . '.png';
+    $this->assertEqual($file_uri, $expected_file_uri);
+  }
+}
+
+
+class DosomethingReportbackDBUnitTestCase extends WebTestSuite {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Reportback Unit DB Test',
+      'description' => 'DoSomething Reportback DB Unit Tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  function setUp() {
+  	// Enable the module.
+    parent::setUp('dosomething_reportback');
+  }
+
+  /**
+   * @see dosomething_reportback_insert_reportback()
+   *
+   *  Test that dosomething_reportback_insert_reportback adds a record into the dosomething_reportbacks table.
+   */
+  public function testInsertReportback() {
+    // Create dummy data to use for insert:
+    $nid = 1;
+    $uid = 1;
+    $org_code = 'org-code';
+    $data = array('value1' => 'Abc 123', 'value2' => 'Def 456');
+    // Call insert reportback method:
+    dosomething_reportback_insert_reportback($uid, $nid, $org_code, $data);
+    // Get inserted data to check:
+    $result = db_select('dosomething_reportbacks', 'rb')
+      ->fields('rb')
+      ->orderBy('rbid', 'DESC')
+      ->range(0,1)
+      ->execute()
+      ->fetchAssoc();
+    $this->assertEqual($result['nid'], $nid);
+    $this->assertEqual($result['uid'], $uid);
+    $this->assertEqual($result['org_code'], $org_code);
+    $this->assertEqual($result['data'], serialize($data));
+  }
+
+
+  /**
+   * @see dosomething_reportback_insert_reportback_file()
+   *
+   *  Test that dosomething_reportback_insert_reportback_file adds a record into the dosomething_reportback_files table.
+   */
+  public function testInsertReportbackFile() {
+    // Create dummy data to use for insert:
+    $rbid = 1;
+    $fid = 202;
+    // Delete existing data to avoid potential primary key issues:
+    db_delete('dosomething_reportback_files')
+      ->condition('rbid', $rbid)
+      ->execute();
+    // Call insert reportback file method:
+    dosomething_reportback_insert_reportback_file($rbid, $fid);
+    // Get inserted data to check:
+    $result = db_select('dosomething_reportback_files', 'rb')
+      ->fields('rb')
+      ->condition('rbid', $rbid)
+      ->orderBy('rbid', 'DESC')
+      ->execute()
+      ->fetchAssoc();
+    $this->assertEqual($result['rbid'], $rbid);
+    $this->assertEqual($result['fid'], $fid);
+  }
+
+/**
+ * @see dosomething_reportback_file_delete()
+ */
+  public function testDeleteReportbackFile() {
+    // Create dummy file:
+    $file = file_save_data('Toto Tuesday', 'public://');
+    // Create dummy rbid to use for insert:
+    $rbid = 1;
+    // Delete existing data to avoid potential primary key issues:
+    db_delete('dosomething_reportback_files')
+      ->condition('rbid', $rbid)
+      ->execute();
+    // Insert it into reportback files:
+    dosomething_reportback_insert_reportback_file($rbid, $file->fid);
+    // Delete that file:
+    file_delete($file);
+    // Query reportback files:
+    $result = db_select('dosomething_reportback_files', 'rb')
+      ->fields('rb')
+      ->condition('rbid', $rbid)
+      ->orderBy('rbid', 'DESC')
+      ->execute()
+      ->fetchAssoc();
+    // Test that the record was deleted from dosomething_reportback_files:
+    $this->assertEqual($result, NULL);
+  }
+}
