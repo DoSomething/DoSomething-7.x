@@ -73,10 +73,15 @@ class ConductorActivitySubmitDoSomethingReportBack extends ConductorActivity {
 
         // Download and save the file
         $pictureContents = file_get_contents($pictureUrl);
-        $pictureData = file_save_data($pictureContents, $pictureFilename);
+        $file = file_save_data($pictureContents, $pictureFilename);
+        // file_save_data saves the uid from global $user, which is uid 0 when this code executes.
+        // So, set the file uid from $user we have already:
+        $file->uid = $user->uid;
+        // And write it to the file:
+        file_save($file);
 
         // Save the picture info to the database
-        dosomething_reportback_insert_reportback_file($rbData['rbid'], $pictureData->fid);
+        dosomething_reportback_insert_reportback_file($rbData['rbid'], $file->fid);
       }
     }
 
