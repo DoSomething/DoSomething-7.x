@@ -17,7 +17,7 @@ class DosomethingProjectTestCase extends WebTestSuite {
 
   function setUp() {
   	// Enable the module.
-    parent::setUp('dosomething_project', 'dosomething_signups', 'dosomething_reportback');
+    parent::setUp('node', 'dosomething_project', 'dosomething_signups', 'dosomething_reportback', 'ctools', 'views', 'dosomething_reportback_views');
   }
 
   /**
@@ -40,17 +40,15 @@ class DosomethingProjectTestCase extends WebTestSuite {
   public function testProjectAdminMenu() {
     $this->factory->create('Project');
     $this->drupalGet('test-project');
-    $this->assertNoLink('View', 'There is no "View" link on the page.');
-    $this->assertNoLink('Edit', 'There is no "Edit" link on the page.');
-    $this->assertNoLink('Reportbacks', 'There is no "Reportbacks" link on the page.');
-    $this->privileged_user = $this->drupalCreateUser(array(
-      'create project content',
-      'edit any project content',
-    ));
-    $this->drupalLogin($this->privileged_user);
+    $this->assertNoText('View', 'There is no "View" link on the page.');
+    $this->assertNoText('Edit', 'There is no "Edit" link on the page.');
+    $this->assertNoText('Reportbacks', 'There is no "Reportbacks" link on the page.');
+    $admin_user = $this->factory->create('User', array('roles' => array('administrator', 'staff')));
+    $this->resetAll();
+    $this->drupalLogin($admin_user);
     $this->drupalGet('test-project');
-    $this->assertLink('View', 'There is a "View" link on the page.');
-    $this->assertLink('Edit', 'There is a "Edit" link on the page.');
-    $this->assertLink('Reportbacks', 'There is a "Reportbacks" link on the page.');
+    $this->assertText('View', 'There is a "View" link on the page.');
+    $this->assertText('Edit', 'There is a "Edit" link on the page.');
+    $this->assertText('Edit', 'There is a "Reportbacks" link on the page.');
   }
 }
