@@ -2,7 +2,7 @@
 
 THISHOST=$(hostname -f)
 HOST=${THISHOST: -5}
-drush test-run DoSomething --uri=http://qa.dosomething.org --verbose  --xml=./files/simpletest
+drush test-run DoSomething --uri=http://qa.dosomething.org --verbose
 cd tests
 if [ $HOST == 'local' ]
 then
