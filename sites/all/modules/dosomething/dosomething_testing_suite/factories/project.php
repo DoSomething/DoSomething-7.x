@@ -74,6 +74,16 @@ class Project extends Factory {
 
   private function build_factory() {
     $node = $this->drupalCreateNode($this->default);
+    // Create Reportback Fields Field Collection:
+    $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_reportback_fields'));
+    $field_collection_item->setHostEntity('node', $node);
+    $field_collection_item->field_reportback_fld_label[LANGUAGE_NONE][0]['value'] = 'Test Project Reportback Field Label 1';
+    $field_collection_item->field_reportback_fld_name[LANGUAGE_NONE][0]['value'] = 'field1';
+    $field_collection_item->field_reportback_fld_desc[LANGUAGE_NONE][0]['value'] = 'Test Project Reportback Field Desc 1';
+    $field_collection_item->field_reportback_fld_label[LANGUAGE_NONE][1]['value'] = 'Test Project Reportback Field Label 2';
+    $field_collection_item->field_reportback_fld_name[LANGUAGE_NONE][1]['value'] = 'field2';
+    $field_collection_item->field_reportback_fld_desc[LANGUAGE_NONE][1]['value'] = 'Test Project Reportback Desc Desc 1';
+    $field_collection_item->save();
     return $node;
   }
 }

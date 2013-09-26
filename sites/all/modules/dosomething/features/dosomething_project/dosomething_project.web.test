@@ -38,8 +38,8 @@ class DosomethingProjectTestCase extends WebTestSuite {
    *  Test visibilty of Project edit/reportback tabs. 
    */
   public function testProjectAdminMenu() {
-    $this->factory->create('Project');
-    $this->drupalGet('test-project');
+    $node = $this->factory->create('Project');
+    $this->drupalGet('node/' . $node->nid);
     $this->assertNoText('View', 'There is no "View" link on the page.');
     $this->assertNoText('Edit', 'There is no "Edit" link on the page.');
     $this->assertNoText('Reportbacks', 'There is no "Reportbacks" link on the page.');
@@ -49,6 +49,6 @@ class DosomethingProjectTestCase extends WebTestSuite {
     $this->drupalGet('test-project');
     $this->assertText('View', 'There is a "View" link on the page.');
     $this->assertText('Edit', 'There is a "Edit" link on the page.');
-    $this->assertText('Edit', 'There is a "Reportbacks" link on the page.');
+    $this->assertText('Test Project Reportback Field Label 1', 'There is a "Test Project Reportback Field Label 1" text on the page.');
   }
 }
