@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_project functionality.
+ */
+
+class DosomethingProjectTestCase extends WebTestSuite {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Project',
+      'description' => 'Tests DoSomething Project functionality.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  function setUp() {
+  	// Enable the module.
+    parent::setUp('node', 'dosomething_project', 'dosomething_signups', 'dosomething_reportback', 'ctools', 'views', 'dosomething_reportback_views');
+  }
+
+  /**
+   *  Test that all sections are visible on a published default Project factory. 
+   */
+  public function testProjectAllSections() {
+    $this->factory->create('Project');
+    $this->drupalGet('test-project');
+    $this->assertTitle(t('Test Project | Do Something'), 'The title on the page is "Test Project | Do Something".');
+    $this->assertText('Test Project Action Items Headline', 'The text "Test Project Action Items Headline" exists on the page.');
+    $this->assertText('Test Project CTA Copy', 'The text "Test Project CTA Copy" exists on the the page.');
+    $this->assertText('Test Project Headline', 'The text "Test Project Headline" exists on the the page.');
+    $this->assertText('Test Project Subheadline', 'The text "Test Project Subheadline" exists on the the page.');
+    $this->assertText('Test Project Reportback Copy', 'The text "Test Project Reportback Copy" exists on the the page.');
+  }
+
+  /**
+   *  Test visibilty of Project edit/reportback tabs. 
+   */
+  public function testProjectAdminMenu() {
+    $this->factory->create('Project');
+    $this->drupalGet('test-project');
+    $this->assertNoText('View', 'There is no "View" link on the page.');
+    $this->assertNoText('Edit', 'There is no "Edit" link on the page.');
+    $this->assertNoText('Reportbacks', 'There is no "Reportbacks" link on the page.');
+    $admin_user = $this->factory->create('User', array('roles' => array('administrator', 'staff')));
+    $this->resetAll();
+    $this->drupalLogin($admin_user);
+    $this->drupalGet('test-project');
+    $this->assertText('View', 'There is a "View" link on the page.');
+    $this->assertText('Edit', 'There is a "Edit" link on the page.');
+    $this->assertText('Edit', 'There is a "Reportbacks" link on the page.');
+  }
+}

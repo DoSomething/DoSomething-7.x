@@ -156,7 +156,18 @@ function dosomething_api_user_fetch_data($data = array('account' => array(), 'pr
   return $return;
 }
 
-function dosomething_api_user_create($info = array('name' => '', 'email' => '', 'mobile' => '', 'roles' => array()), $login = FALSE) {
+/**
+ *  Creates a user and corresponding profile, and returns it.
+ *
+ *  @param array $info
+ *    Name: String, Email: String, Mobie: String
+ *    Roles: Array of role names.
+ *
+ *  @return object $account
+ *    A new user with new profile2 main profile.
+ *
+ */
+function dosomething_api_user_create($info = array('name' => '', 'email' => '', 'mobile' => '', 'roles' => array())) {
   // Start the account class.
   $account = new stdClass;
 
@@ -189,8 +200,21 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   // The user account is activated.
   $account->status = 1;
 
+  // If roles are present:
   if (!empty($info['roles']) && is_array($info['roles'])) {
-    $account->roles = $info['roles'];
+    $user_roles = array();
+    // For each given role_name:
+    foreach ($info['roles'] as $role_name) {
+      // Find the role rid.
+      $role = user_role_load_by_name($role_name);
+      if ($role) {
+        $user_roles[$role->rid] = $role_name;
+      }
+    }
+    // If roles were found, set them to the user:
+    if (!empty($user_roles)) {
+      $account->roles = $user_roles;
+    }
   }
 
   // Save the user.
@@ -222,6 +246,7 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
 
   // Set the profile object as a sub-object of user.
   $account->profile = $profile;
+  $account->pass_raw = $pass;
 
   return $account;
 }
