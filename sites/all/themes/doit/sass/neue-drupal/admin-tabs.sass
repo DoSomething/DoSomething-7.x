@@ -1,13 +1,5 @@
 @import 'compass/css3'
 
-// variables
-$bg: rgba(0, 0, 0, 0.05)
-$bg-inv: invert($bg)
-$accent: #ff4444
-
-$toggle-active: #ccc
-$toggle-inactive: #333
-
 // ---------- //
 // admin tabs //
 // ---------- //
@@ -37,7 +29,7 @@ ul.tabs
     border-radius: 2px
     &:hover
       cursor: pointer
-      background: $bg
+      background: rgba(0, 0, 0, 0.05)
     a
       font-size: 1em
       font-weight: 500
@@ -72,27 +64,23 @@ ul.tabs
     text-align: center
     border-radius: 3px
     background: rgba(255, 255, 255, 0.9)
-    text-indent: -999em
-    color: #fff
-    color: rgba(255, 255, 255, 0.8)
+    color: transparent
     z-index: 2
 
   .state.active
-    cursor: default
     width: 50px
-    text-indent: 0
+    cursor: default
+    color: rgba(255, 255, 255, 0.9)
     z-index: 1
 
 #show.active
   left: -2px
   background: rgba(144, 238, 144, 0.5)
-  color: rgba(255, 255, 255, 0.9)
   border-radius: 0 3px 3px 0
 
 #hide.active
   right: -2px
   background: rgba(255, 102, 102, 0.4)
-  color: rgba(255, 255, 255, 0.9)
   border-radius: 3px 0 0 3px
 
 html body.admin-menu
