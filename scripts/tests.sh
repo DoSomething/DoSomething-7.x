@@ -2,8 +2,7 @@
 
 THISHOST=$(hostname -f)
 HOST=${THISHOST: -5}
-
-php ./scripts/run-tests.sh --verbose DoSomething
+drush test-run DoSomething --uri=http://qa.dosomething.org --verbose  --xml=./files/simpletest
 cd tests
 if [ $HOST == 'local' ]
 then
