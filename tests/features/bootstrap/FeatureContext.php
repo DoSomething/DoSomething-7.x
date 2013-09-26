@@ -81,13 +81,13 @@ class FeatureContext extends MinkContext
         $role = self::$factory->create('User');
       }
       else if ($type == 'administrator') {
-        $role = self::$factory->create('User', array('roles' => array(3 => 'administrator')));
+        $role = self::$factory->create('User', array('roles' => array('administrator')));
       }
       else if ($type == 'staff') {
-        $role = self::$factory->create('User', array('roles' => array(26 => 'staff')));
+        $role = self::$factory->create('User', array('roles' => array('staff')));
       }
       else if ($type == 'product team') {
-        $role = self::$factory->create('User', array('roles' => array(26 => 'staff', 25 => 'product team')));
+        $role = self::$factory->create('User', array('roles' => array('staff', 'product team')));
       }
 
       self::$roles[$type] = $role;
