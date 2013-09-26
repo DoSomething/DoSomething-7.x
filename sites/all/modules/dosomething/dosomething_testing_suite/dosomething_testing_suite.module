@@ -109,6 +109,7 @@ class WebTestSuite extends DrupalWebTestCase {
   public function logIn() {
     if (isset($this->user)) {
       $GLOBALS['user'] = $this->user;
+      $this->assertEqual($GLOBALS['user'], $this->user, 'The user variable is set.');
       $this->logged_in = true;
     }
   }
