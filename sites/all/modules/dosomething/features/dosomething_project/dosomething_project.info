@@ -3,6 +3,7 @@ description = Defines the Project content type.
 core = 7.x
 package = DoSomething
 php = 5.2.4
+files[] = dosomething_project.web.test
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = features
