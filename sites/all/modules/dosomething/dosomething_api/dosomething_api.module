@@ -222,6 +222,7 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
 
   // Set the profile object as a sub-object of user.
   $account->profile = $profile;
+  $account->pass_raw = $pass;
 
   return $account;
 }
