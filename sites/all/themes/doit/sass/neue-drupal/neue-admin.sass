@@ -26,8 +26,8 @@ ul.tabs
   top: 0
   right: 0
   z-index: 1
-  background: rgba(0,0,0,0.05)
-  border: 2px solid rgba(0,0,0,0.06)
+  background: rgba(0,0,0,0.1)
+  border: 2px solid rgba(0,0,0,0.05)
   border-radius: 3px
   li
     width: 80%
@@ -43,12 +43,7 @@ ul.tabs
       font-weight: 500
       text-decoration: none
       text-transform: uppercase
-      color: #111
-
-//  li.admin-toggle-wrapper
-    background: $bg
-    &:hover
-      background: rgba(0, 0, 0, 0.1)
+      color: rgba(17, 17, 17, 0.7)
 
 // ---------- //
 // hide admin //
@@ -71,25 +66,33 @@ ul.tabs
 
   .state
     display: inline-block
+    position: relative
     width: 20px
     padding: 5px 7px 1px
     text-align: center
     border-radius: 3px
-    background: #fff
+    background: rgba(255, 255, 255, 0.9)
+    text-indent: -999em
     color: #fff
+    color: rgba(255, 255, 255, 0.8)
+    z-index: 2
 
   .state.active
     cursor: default
     width: 50px
+    text-indent: 0
+    z-index: 1
 
 #show.active
-  background: lightgreen
-  color: darken(lightgreen, 20)
+  left: -2px
+  background: rgba(144, 238, 144, 0.5)
+  color: rgba(255, 255, 255, 0.9)
   border-radius: 0 3px 3px 0
 
 #hide.active
-  background: #ff6666
-  color: darken(#ff6666, 30)
+  right: -2px
+  background: rgba(255, 102, 102, 0.4)
+  color: rgba(255, 255, 255, 0.9)
   border-radius: 3px 0 0 3px
 
 html body.admin-menu
