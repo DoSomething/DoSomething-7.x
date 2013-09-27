@@ -59,6 +59,7 @@ class Project extends Factory {
     'field_reportback_image_copy' => 'Test Project Reportback Image Copy',
     'field_signup_success_msg' => 'Test Project Signup Success Msg',
     'field_sms_example_headline' => 'Test Project SMS Example Headline',
+    'field_sms_example_message' => 'Test Project SMS Example Message',
     'field_sms_referral_info_copy' => 'Test Project SMS Referral Info Copy',
     'field_subheadline' => 'Test Project Subheadline',
   );
