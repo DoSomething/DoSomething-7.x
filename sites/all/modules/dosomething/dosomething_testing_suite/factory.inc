@@ -208,6 +208,8 @@ class Factory extends WebTestSuite {
    *   The field to write data to.
    * @param mixed $value
    *   The value to write.  Could be a single value or an array.
+   * @param boolean $override
+   *   Whether or not the given $value is an overridden value.
    */
   protected function valueWriter($field_name, $value, $override = FALSE) {
     // If this is a Field API field:
