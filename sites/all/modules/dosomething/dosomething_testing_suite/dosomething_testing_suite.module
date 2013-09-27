@@ -154,6 +154,18 @@ class WebTestSuite extends DrupalWebTestCase {
       else continue;
     }
   }
+
+  /**
+   * Helper test to see if given string $value should appear or should not appear on the page.
+   */
+  public function textAssertTest($value, $visible = TRUE) {
+    if ($visible) {
+      $this->assertText($value, '"' . $value . '" text found on the page.');
+    }
+    else {
+      $this->assertNoText($value, '"' . $value . '" text not found on the page.');
+    }
+  }
 }
 
 // Load the Factory class.
