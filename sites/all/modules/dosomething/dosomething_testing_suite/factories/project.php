@@ -6,11 +6,13 @@
  */
 
 class Project extends Factory {
+  // Values that can be overridden:
   protected $default = array(
     'type' => 'project',
     'revision_id' => 0,
     'title' => 'Test Project',
     'status' => 1,
+    'uid' => 1,
     'field_action_kit_copy' => 'Test Project Action Kit Copy',
     'field_action_items_headline' => 'Test Project Action Items Headline',
     'field_contact_email' => 'developers@dosomething.org',
@@ -54,6 +56,7 @@ class Project extends Factory {
       ),
     ),
     'field_reportback_copy' => 'Test Project Reportback Copy',
+    'field_reportback_image_copy' => 'Test Project Reportback Image Copy',
     'field_signup_success_msg' => 'Test Project Signup Success Msg',
     'field_sms_example_headline' => 'Test Project SMS Example Headline',
     'field_sms_referral_info_copy' => 'Test Project SMS Referral Info Copy',
@@ -74,16 +77,22 @@ class Project extends Factory {
 
   private function build_factory() {
     $node = $this->drupalCreateNode($this->default);
-    // Create Reportback Fields Field Collection:
+    // Create first instance of Reportback Fields Field Collection:
     $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_reportback_fields'));
     $field_collection_item->setHostEntity('node', $node);
-    $field_collection_item->field_reportback_fld_label[LANGUAGE_NONE][0]['value'] = 'Test Project Reportback Field Label 1';
-    $field_collection_item->field_reportback_fld_name[LANGUAGE_NONE][0]['value'] = 'field1';
-    $field_collection_item->field_reportback_fld_desc[LANGUAGE_NONE][0]['value'] = 'Test Project Reportback Field Desc 1';
-    $field_collection_item->field_reportback_fld_label[LANGUAGE_NONE][1]['value'] = 'Test Project Reportback Field Label 2';
-    $field_collection_item->field_reportback_fld_name[LANGUAGE_NONE][1]['value'] = 'field2';
-    $field_collection_item->field_reportback_fld_desc[LANGUAGE_NONE][1]['value'] = 'Test Project Reportback Desc Desc 1';
+    $field_collection_item->field_reportback_fld_label[LANGUAGE_NONE][]['value'] = 'Test Project Reportback Field Label 1';
+    $field_collection_item->field_reportback_fld_name[LANGUAGE_NONE][]['value'] = 'test_field1';
+    $field_collection_item->field_reportback_fld_desc[LANGUAGE_NONE][]['value'] = 'Test Project Reportback Field Desc 1';
     $field_collection_item->save();
+    // Create second instance of Reportback Fields Field Collection:
+    $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_reportback_fields'));
+    $field_collection_item->setHostEntity('node', $node);
+    $field_collection_item->field_reportback_fld_label[LANGUAGE_NONE][]['value'] = 'Test Project Reportback Field Label 2';
+    $field_collection_item->field_reportback_fld_name[LANGUAGE_NONE][]['value'] = 'test_field2';
+    $field_collection_item->field_reportback_fld_desc[LANGUAGE_NONE][]['value'] = 'Test Project Reportback Field Desc 2';
+    $field_collection_item->save();
+    // Set Project node to be deleted after test execution:
+    $this->throwOut($node->uid, 'node');
     return $node;
   }
 }

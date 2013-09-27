@@ -31,7 +31,10 @@ class DosomethingProjectTestCase extends WebTestSuite {
     $this->assertText('Test Project CTA Copy', 'The text "Test Project CTA Copy" exists on the the page.');
     $this->assertText('Test Project Headline', 'The text "Test Project Headline" exists on the the page.');
     $this->assertText('Test Project Subheadline', 'The text "Test Project Subheadline" exists on the the page.');
+    // Reportback fields:
     $this->assertText('Test Project Reportback Copy', 'The text "Test Project Reportback Copy" exists on the the page.');
+    $this->assertText('Test Project Reportback Field Label 1', 'There is a "Test Project Reportback Field Label 1" text on the page.');
+    $this->assertText('Test Project Reportback Field Label 2', 'There is a "Test Project Reportback Field Label 2" text on the page.');
   }
 
   /**
@@ -49,6 +52,7 @@ class DosomethingProjectTestCase extends WebTestSuite {
     $this->drupalGet('test-project');
     $this->assertText('View', 'There is a "View" link on the page.');
     $this->assertText('Edit', 'There is a "Edit" link on the page.');
-    $this->assertText('Test Project Reportback Field Label 1', 'There is a "Test Project Reportback Field Label 1" text on the page.');
+
+
   }
 }
