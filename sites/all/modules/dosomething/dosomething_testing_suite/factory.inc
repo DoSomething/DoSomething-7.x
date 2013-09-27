@@ -209,7 +209,7 @@ class Factory extends WebTestSuite {
    * @param mixed $value
    *   The value to write.  Could be a single value or an array.
    */
-  protected function valueWriter($field_name, $value) {
+  protected function valueWriter($field_name, $value, $override = FALSE) {
     // If this is a Field API field:
     if (strpos($field_name, 'field_') !== FALSE) {
       // If given override value is not an array:
@@ -224,10 +224,14 @@ class Factory extends WebTestSuite {
     }
     // Else if it's the body field, also shortcut for required data structure:
     elseif ($field_name == 'body') {
-      // Lovely Drupal nested array ridiculousness.
+      // Store value with super weird required LANGUAGE_NONE array structure:
       $this->default['body'] = array(LANGUAGE_NONE => array(array(
-        'value' => $overrides['body'],
+        'value' => $value, 
       )));
+    }
+    // Else, just write the value if we are overriding:
+    elseif ($override) {
+      $this->default[$field_name] = $value;
     }
   }
 
@@ -249,7 +253,7 @@ class Factory extends WebTestSuite {
     }
     // Next loop through any overrides to replace default values:
     foreach ($overrides as $field_name => $override_value) {
-      $this->valueWriter($field_name, $override_value);
+      $this->valueWriter($field_name, $override_value, TRUE);
     }
   }
 }
