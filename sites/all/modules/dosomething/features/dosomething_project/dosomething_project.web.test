@@ -117,6 +117,20 @@ class DosomethingProjectTestCase extends WebTestSuite {
     // Test default node with all sections enabled:
     $node = $this->factory->create('Project');
     $this->projectSectionTest($node);
+    // For each available project section:
+    foreach ($this->project_display_sections as $section_name) {
+      // Create a node with only the one section enabled:
+      $node = $this->factory->create('Project', array(
+        'title' => 'Section ' . $section_name . ' Only',
+        'field_project_section_display' => array(
+          LANGUAGE_NONE => array(
+            0 => array('value' => $section_name),
+          ),
+        )
+      ));
+      // Test node project sections:
+      $this->projectSectionTest($node);
+    }
   }
 
   /**
