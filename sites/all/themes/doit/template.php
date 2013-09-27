@@ -182,6 +182,8 @@ function doit_preprocess_page(&$variables) {
 
       _doit_load_project_assets($obj, $org_code);
 
+      // Add Project Content Type-specific CSS
+      drupal_add_css($theme_path . '/css/neue-drupal/neue-plupload.css');
     }
 
   }
@@ -1002,7 +1004,7 @@ function doit_css_alter(&$css) {
   if (doit_is_neue_page()) {
     $styles = array();
     // @todo - optimize me
-    $whitelist = array('ds-neue', 'contextual', 'admin_menu', 'neue');
+    $whitelist = array('ds-neue', 'contextual', 'admin_menu', 'neue', 'plupload');
     foreach($css as $path => $info) {
       foreach($whitelist as $namespace) {
         if (strpos($path, $namespace) !== false) {

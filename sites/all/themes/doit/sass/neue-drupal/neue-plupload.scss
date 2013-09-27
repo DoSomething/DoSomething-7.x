@@ -1,0 +1,36 @@
+/*
+ * Styles for the "Plupload" Library
+ * used in the Project Content Type
+ * to handle report back file uploads
+ */
+
+li.plupload_droptext {
+  text-transform: uppercase;
+  font-size: 1.5em;
+  color: #aaa;
+}
+
+.plupload_button {
+  padding: 4px 8px 3px 0;
+}
+
+.form-item-reportback-images {
+  label[for="edit-reportback-images"] {
+    position: relative;
+    width: 97%;
+    z-index: 3;
+    left: -0.5em;
+  }
+  span.form-required {
+    font-weight: 600;
+    color: #ff4444;
+  }
+}
+
+#edit-reportback-images {
+  margin: 1em 0;
+}
+
+.form-type-plupload .description {
+  margin: 0 0 1em 0;
+}
