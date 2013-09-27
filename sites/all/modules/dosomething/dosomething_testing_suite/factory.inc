@@ -202,6 +202,36 @@ class Factory extends WebTestSuite {
   }
 
   /**
+   * Writes values to the field_name in expected array structure.
+   *
+   * @param string $field_name
+   *   The field to write data to.
+   * @param mixed $value
+   *   The value to write.  Could be a single value or an array.
+   */
+  protected function valueWriter($field_name, $value) {
+    // If this is a Field API field:
+    if (strpos($field_name, 'field_') !== FALSE) {
+      // If given override value is not an array:
+      if (!is_array($value)) {
+        // Store value with the required LANGUAGE_NONE array structure:
+        $this->default[$field_name] = array(LANGUAGE_NONE => array(0 => array('value' => $value)));
+      }
+      // Otherwise, just pass given override array to replace default value:
+      else {
+        $this->default[$field_name] = $value;
+      }
+    }
+    // Else if it's the body field, also shortcut for required data structure:
+    elseif ($field_name == 'body') {
+      // Lovely Drupal nested array ridiculousness.
+      $this->default['body'] = array(LANGUAGE_NONE => array(array(
+        'value' => $overrides['body'],
+      )));
+    }
+  }
+
+  /**
    * Abstracted construct method, to be used in child class's __construct() method.
    *
    * Walks through each of the fields and sets them up with the appropriate array
@@ -213,34 +243,13 @@ class Factory extends WebTestSuite {
    *   default.
    */
   protected function construct($overrides) {
-    // Make sure that we're looking at the entire array, overrides and all.
-    $overrides = array_replace_recursive($this->default, $overrides);
-
-    if (!empty($overrides)) {
-      // Walk through all "field_*" fields and set them up in the
-      // required field[LANGUAGE_NONE][0]['value'] structure
-      array_walk($overrides, function(&$value, $key) {
-        if (strpos($key, 'field_') !== FALSE && !is_array($value)) {
-          $value = array(
-            LANGUAGE_NONE => array(
-              0 => array(
-                'value' => $value,
-              ),
-            ),
-          );
-        }
-      });
-
-      // Do the same thing for the body.
-      if (isset($overrides['body'])) {
-        // Make the proper body array structure
-        $overrides['body'] = array(LANGUAGE_NONE => array(array(
-          'value' => $overrides['body'],
-        )));
-      }
-
-      // Override the default array to include the overrides.
-      $this->default = array_replace_recursive($this->default, $overrides);
+    // Loop through defaults with valueWriter to set up appropriate arrays:
+    foreach ($this->default as $field_name => $default_value) {
+      $this->valueWriter($field_name, $default_value);
+    }
+    // Next loop through any overrides to replace default values:
+    foreach ($overrides as $field_name => $override_value) {
+      $this->valueWriter($field_name, $override_value);
     }
   }
 }
