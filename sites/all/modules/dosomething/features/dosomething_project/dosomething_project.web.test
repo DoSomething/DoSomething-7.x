@@ -15,26 +15,108 @@ class DosomethingProjectTestCase extends WebTestSuite {
     );
   }
 
+  public $project_display_sections = array(
+    'action_items',
+    'cta',
+    'faq',
+    'gallery',
+    'info',
+    'profiles',
+    'prizes',
+    'reportback',
+    'sms_example',
+    'sms_referral',
+  );
+
   function setUp() {
   	// Enable the module.
     parent::setUp('node', 'dosomething_project', 'dosomething_signups', 'dosomething_reportback', 'ctools', 'views', 'dosomething_reportback_views');
   }
 
   /**
+   * For given $node, test if given section is $visible.
+   */
+  function sectionVisibilityTest($node, $section_name, $visible = TRUE) {
+    switch ($section_name) {
+      case 'action_items':
+        $this->textAssertTest($node->field_action_items_headline[LANGUAGE_NONE][0]['value'], $visible);
+        $this->textAssertTest($node->field_action_kit_copy[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'cta':
+        $this->textAssertTest($node->field_cta_copy[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'faq':
+        $this->textAssertTest($node->field_faq_headline[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'gallery':
+        $this->textAssertTest($node->field_gallery_headline[LANGUAGE_NONE][0]['value'], $visible);
+        $this->textAssertTest($node->field_gallery_copy[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'headline':
+        $this->textAssertTest($node->field_headline[LANGUAGE_NONE][0]['value'], $visible);
+        $this->textAssertTest($node->field_subheadline[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'info':
+        $this->textAssertTest($node->field_project_info_headline[LANGUAGE_NONE][0]['value'], $visible);
+        $this->textAssertTest($node->field_project_info_copy[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'prizes':
+        $this->textAssertTest($node->field_prizes_headline[LANGUAGE_NONE][0]['value'], $visible);
+        $this->textAssertTest($node->field_prizes_copy[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'profiles':
+        $this->textAssertTest($node->field_project_profiles_headline[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'reportback':
+        $this->textAssertTest($node->field_reportback_copy[LANGUAGE_NONE][0]['value'], $visible);
+        // Reportback Field Labels are hardcoded in the Factory creation:
+        $this->textAssertTest('Test Project Reportback Field Label 1', $visible);
+        $this->textAssertTest('Test Project Reportback Field Label 2', $visible);
+        break;
+      case 'sms_example':
+        $this->textAssertTest($node->field_sms_example_headline[LANGUAGE_NONE][0]['value'], $visible);
+        $this->textAssertTest($node->field_sms_example_message[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      case 'sms_referral':
+        $this->textAssertTest($node->field_sms_referral_info_copy[LANGUAGE_NONE][0]['value'], $visible);
+        break;
+      default:
+        $this->assertTrue(FALSE, 'Section ' . $section_name . ' not defined');
+        break;
+    }
+  }
+
+  /**
+   * For given $node, test what sections are displayed when viewing the node.
+   */
+  function projectSectionTest($node) {
+    // Visit the node:
+    $this->drupalGet('node/' . $node->nid);
+    // Check page title:
+    $this->assertTitle($node->title . ' | Do Something', 'The title on the page is "' . $node->title . ' | Do Something".');
+    // Headline section should always be visible:
+    $this->sectionVisibilityTest($node, 'headline', TRUE);
+    $visible_sections = array();
+    // Loop through the node's enabled sections to store the values:
+    foreach ($node->field_project_section_display[LANGUAGE_NONE] as $key => $section) {
+      $visible_sections[] = $section['value'];
+    }
+    // Now loop through all available sections to determine what's enabled and disabled:
+    foreach ($this->project_display_sections as $section_name) {
+      // Is the section present in the node?
+      $visibility_check = in_array($section_name, $visible_sections);
+      // Test if it appears on the node:
+      $this->sectionVisibilityTest($node, $section_name, $visibility_check);
+    }
+  }
+
+  /**
    *  Test that all sections are visible on a published default Project factory. 
    */
-  public function testProjectAllSections() {
-    $this->factory->create('Project');
-    $this->drupalGet('test-project');
-    $this->assertTitle(t('Test Project | Do Something'), 'The title on the page is "Test Project | Do Something".');
-    $this->assertText('Test Project Action Items Headline', 'The text "Test Project Action Items Headline" exists on the page.');
-    $this->assertText('Test Project CTA Copy', 'The text "Test Project CTA Copy" exists on the the page.');
-    $this->assertText('Test Project Headline', 'The text "Test Project Headline" exists on the the page.');
-    $this->assertText('Test Project Subheadline', 'The text "Test Project Subheadline" exists on the the page.');
-    // Reportback fields:
-    $this->assertText('Test Project Reportback Copy', 'The text "Test Project Reportback Copy" exists on the the page.');
-    $this->assertText('Test Project Reportback Field Label 1', 'There is a "Test Project Reportback Field Label 1" text on the page.');
-    $this->assertText('Test Project Reportback Field Label 2', 'There is a "Test Project Reportback Field Label 2" text on the page.');
+  public function testProjectSectionDisplays() {
+    // Test default node with all sections enabled:
+    $node = $this->factory->create('Project');
+    $this->projectSectionTest($node);
   }
 
   /**
@@ -49,10 +131,9 @@ class DosomethingProjectTestCase extends WebTestSuite {
     $admin_user = $this->factory->create('User', array('roles' => array('administrator', 'staff')));
     $this->resetAll();
     $this->drupalLogin($admin_user);
-    $this->drupalGet('test-project');
+    $this->drupalGet('node/' . $node->nid);
     $this->assertText('View', 'There is a "View" link on the page.');
     $this->assertText('Edit', 'There is a "Edit" link on the page.');
-
-
+    $this->assertText('Reportbacks', 'There is a "Reportbacks" link on the page.');
   }
 }
