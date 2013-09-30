@@ -37,5 +37,12 @@ class DosomethingReportbackWebTestCase extends WebTestSuite {
       $desc = 'Test Project Reportback Field Desc ' . $i;
       $this->assertEqual($form[$fld]['#description'], $desc, 'The form[' . $fld . '] description is equal to ' . $desc);    
     }
+    // Test reportback_images isset:
+    $fld = 'reportback_images';
+    $images_check = isset($form[$fld]) && $form[$fld]['#type'] == 'plupload' && $form[$fld]['#required'] == TRUE;
+    $this->assertTrue($test_fld_name_check, 'The form[' . $fld . '] textarea is set.');
+    // Test reportback images description:
+    $desc = $node->field_reportback_image_copy[LANGUAGE_NONE][0]['value'];
+    $this->assertEqual($form[$fld]['#description'], $desc, 'The form[' . $fld . '] description is equal to ' . $desc);    
   }
 }
