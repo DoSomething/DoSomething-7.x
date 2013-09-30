@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Test dosomething_reportback integrated functionality.
+ */
+
+class DosomethingReportbackWebTestCase extends WebTestSuite {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Reportback Web Test',
+      'description' => 'DoSomething Reportback Web Tests',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('node', 'dosomething_project', 'dosomething_reportback', 'plupload');
+  }
+
+  /**
+   * @see dosomething_reportback_form()
+   */
+  public function testReportbackForm() {
+    $node = $this->factory->create('Project');
+    $form = drupal_get_form('dosomething_reportback_form', $node);
+    // Test values are hardcoded in the dosomething_test_suite project.php factory file.
+    for ($i=1; $i<=2; $i++) {
+      $fld = 'test_field' . $i;
+      // Test form name is set:
+      $test_fld_name_check = isset($form[$fld]) && $form[$fld]['#type'] == 'textarea' && $form[$fld]['#required'] == TRUE;
+      $this->assertTrue($test_fld_name_check, 'The form[' . $fld . '] textarea is set.');
+      // Test form title is set:
+      $title = 'Test Project Reportback Field Label ' . $i;
+      $this->assertEqual($form[$fld]['#title'], $title, 'The form[' . $fld . '] title is equal to ' . $title);
+      // Test form description is set:
+      $desc = 'Test Project Reportback Field Desc ' . $i;
+      $this->assertEqual($form[$fld]['#description'], $desc, 'The form[' . $fld . '] description is equal to ' . $desc);    
+    }
+  }
+}
