@@ -409,6 +409,7 @@ function dosomething_sms_flow_info() {
 		foreach ($activities as $activity_counter => $activity_details) {
 			
 			// Count the number of entries for this activity
+			// todo: Move query outside of loop
 			$activity_count = db_query('
 				SELECT
 				  activity_name
