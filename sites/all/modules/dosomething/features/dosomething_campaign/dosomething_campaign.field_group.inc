@@ -31,6 +31,7 @@ function dosomething_campaign_field_group_info() {
       5 => 'field_has_gate',
       6 => 'field_is_gate_login_signup',
       7 => 'field_gate_color',
+      8 => 'field_signup_data_form_id',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
