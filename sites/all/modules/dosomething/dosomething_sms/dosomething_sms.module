@@ -50,6 +50,18 @@ function dosomething_sms_menu() {
 
 }
 
+/*
+ * Report formatting in template (tpl) file
+ */
+function dosomething_sms_theme($existing, $type, $theme, $path) {
+    return array(
+        'dosomething_sms_cron_report' => array(
+            'variables' => array('$workflows' => NULL),
+            'template' => 'dosomething-sms-cron-report',
+        ),
+    );
+}
+
 /**
  * dosomething_sms_conductor_sms_keywords()
  */
@@ -301,7 +313,10 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
   if ((($enabled) && (REQUEST_TIME >= $next_run)) || $manual_test) {
 		
 		$workflows = dosomething_sms_flow_info();
-    $markup = dosomething_sms_report_markup($workflows);
+    // $markup = dosomething_sms_report_markup($workflows);
+		
+		// @to-do: Switch to using template
+    $markup = theme('dosomething_sms_cron_report', array('workflows' => $workflows));
 		
 		// Delete entries that are older than dosomething_sms_interval)
 		if (!$manual_test) {
@@ -368,16 +383,16 @@ function dosomething_sms_flow_info() {
 
   // Get list of all report back workflows
 	$workflows = array();
-	include drupal_get_path('module', 'sms_flow') . '/plugins/activity/report_backs/report_backs.workflows.inc';
+	include(module_load_include('inc', 'sms_flow', 'plugins/activity/report_backs/report_backs.workflows'));
 	
 	// SELECT all of the unique workflow names that have entries - stalled SMS users
 	$results = db_query('
 		SELECT DISTINCT
 			workflow_name
 		FROM
-			{conductor_instance_pointer}
+			{conductor_instance_pointer} cip
 		ORDER BY
-			workflow_name'
+			cip.workflow_name'
 	);
 	
 	$active_workflows = array();
@@ -454,78 +469,4 @@ function dosomething_sms_flow_info() {
 	
 	return $active_workflows;
 		
-}
-
-/*
- * Generate HTML markup for presentation in email report
- */
-function dosomething_sms_report_markup($workflows) {
-
-	$markup = '';
-
-	// Loop through results          
-	foreach ($workflows as $workflow_name => $workflow) {
-
-		$max_y = $workflows[$workflow_name]['max_y'];
-
-		// Append the title of the workflow
-		$markup .= '<br /><br /><strong>' . $workflow_name . '</strong>';
-
-		// Format report 
-		$markup .= "<table width=\"100%\" border=\"0\">\n";
-
-		foreach ($workflow as $activity_counter => $activity) {
-			
-			if ($activity['activity_name'] == NULL) {
-				break;
-			}
-
-			$markup .= "<tr>\n";
-
-			for ($column_count = 0; $column_count <= $max_y; $column_count++) {
-
-				if ($activity['y'] == $column_count) {
-				 
-					$markup .= "<td class=\"activity\" style=\"text-align:center; background-color: #7ba7cf; border-color: #000000; margin:10px; padding:10px;\">";
-					$markup .= "<span style=\"font-weight:bold;\">" . $activity['activity_name'] . "</span>" . ' (' . $activity['activity_count'] . ')';
-					$markup .= '</td>';
-					
-					// End of flow at this level, render down pointer
-					if (($activity['x'] != $workflow[$activity_counter + 1]['x']) && ($column_count + 1 == $workflow[$activity_counter + 1]['y'])) {
-						
-						foreach ($activity['activity_outputs'] as $output) {
-							
-							if ($output == 'end') {
-								break;
-							}
-							
-							$markup .= "<td style=\"text-align:center; font-weight:bold; background-color: #dcdcdc; margin:10px; padding:10px;\">-v</td>\n";
-							$column_count++;
-							
-						}
-					
-					}
-					
-				} // Vertical marker
-				elseif ($activity['y'] > $column_count) {
-					$markup .= "<td class=\"vertical-marker\" style=\"text-align:center; font-weight:bold; background-color: #dcdcdc; margin:10px; padding:10px;\">|</td>\n";
-				} // Flow left market
-				elseif ($activity['activity_name'] == 'end') {
-					$markup .= "<td class=\"end-column\" style=\"text-align:center; font-weight:bold; background-color: #dcdcdc; margin:10px; padding:10px;\"><|</td>\n";
-				} // Empty cell
-				else {
-					$markup .= "<td>&nbsp;</td>\n";
-				}
-
-			}
-
-			$markup .= "</tr>\n";
-
-		}
-
-		$markup .= "</table>\n";
-
-	}
-	
-	return $markup;
 }
