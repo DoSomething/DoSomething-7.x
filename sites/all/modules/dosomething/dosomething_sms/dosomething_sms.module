@@ -469,10 +469,10 @@ function dosomething_sms_report_markup($workflows) {
 		$max_y = $workflows[$workflow_name]['max_y'];
 
 		// Append the title of the workflow
-		$markup .= '<strong>' . $workflow_name . '</strong>';
+		$markup .= '<br /><br /><strong>' . $workflow_name . '</strong>';
 
 		// Format report 
-		$markup .= "<table width=\"100%\" border=\"1\">\n";
+		$markup .= "<table width=\"100%\" border=\"0\">\n";
 
 		foreach ($workflow as $activity_counter => $activity) {
 			
@@ -486,8 +486,8 @@ function dosomething_sms_report_markup($workflows) {
 
 				if ($activity['y'] == $column_count) {
 				 
-					$markup .= '<td class="activity">';
-					$markup .= $activity['activity_name'] . ' (' . $activity['activity_count'] . ')';
+					$markup .= "<td class=\"activity\" style=\"text-align:center; background-color: #7ba7cf; border-color: #000000; margin:10px; padding:10px;\">";
+					$markup .= "<span style=\"font-weight:bold;\">" . $activity['activity_name'] . "</span>" . ' (' . $activity['activity_count'] . ')';
 					$markup .= '</td>';
 					
 					// End of flow at this level, render down pointer
@@ -499,20 +499,20 @@ function dosomething_sms_report_markup($workflows) {
 								break;
 							}
 							
-							$markup .= "<td>-v</td>\n";
+							$markup .= "<td style=\"text-align:center; font-weight:bold; background-color: #dcdcdc; margin:10px; padding:10px;\">-v</td>\n";
 							$column_count++;
 							
 						}
 					
 					}
 					
-				}
+				} // Vertical marker
 				elseif ($activity['y'] > $column_count) {
-					$markup .= "<td class=\"vertical-marker\">|</td>\n";
-				}
+					$markup .= "<td class=\"vertical-marker\" style=\"text-align:center; font-weight:bold; background-color: #dcdcdc; margin:10px; padding:10px;\">|</td>\n";
+				} // Flow left market
 				elseif ($activity['activity_name'] == 'end') {
-					$markup .= "<td class=\"end-column\"><|</td>\n";
-				}
+					$markup .= "<td class=\"end-column\" style=\"text-align:center; font-weight:bold; background-color: #dcdcdc; margin:10px; padding:10px;\"><|</td>\n";
+				} // Empty cell
 				else {
 					$markup .= "<td>&nbsp;</td>\n";
 				}
