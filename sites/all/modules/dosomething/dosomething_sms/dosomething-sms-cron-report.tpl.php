@@ -1,9 +1,5 @@
 <?php
 
-if ($bla) {
-  $bla = TRUE;
-}
-
 	// Loop through results          
 	foreach ($workflows as $workflow_name => $workflow) {
 
