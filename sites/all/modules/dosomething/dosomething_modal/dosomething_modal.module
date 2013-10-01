@@ -116,10 +116,44 @@ function dosomething_modal_form_builder($ajax, $form_id) {
  *
  * @see ctools_modal_text_button()
  */
-function dosomething_modal_form_button($text, $form_id, $class = '') {
-  if ($class != '') {
-    $class = 'ctools-modal-' . $class;
-  }
+function dosomething_modal_form_link($text, $form_id, $class = 'ds-modal', $options = array()) {
+  // Include necessary CTools stuff:
+  ctools_include('ajax');
+  ctools_include('modal');
+  ctools_modal_add_js();
+  $js_settings = dosomething_modal_get_js_settings($class, $options);
+  drupal_add_js($js_settings, 'setting');
+  // Link to JS for modalTheme DosomethingModalBase:
+  ctools_add_js('dosomething-modal', 'dosomething_modal');
+  ctools_add_css('dosomething-modal', 'dosomething_modal');
+  $class = 'ctools-modal-' . $class;
   // Link to the DS Modal Form builder path:
   return ctools_modal_text_button(t($text), 'ds-modal/nojs/form/' . $form_id, t($text), $class);
+}
+
+function dosomething_modal_get_js_settings($class_name, $options = array()) {
+  // Override defaults with any given options:
+  $settings = array_merge(dosomething_modal_get_default_js_settings(), $options);
+  return array($class_name => $settings);
+}
+
+/**
+ * Return the default values to use for the modal JS settings.
+ */
+function dosomething_modal_get_default_js_settings() {
+  return array(
+    'modalSize' => array(
+      'type' => 'fixed',
+      'width' => 400,
+      'height' => 250,
+    ),
+    'modalOptions' => array(
+      'opacity' => .5,
+      'background-color' => '#000',
+    ),
+    'animation' => 'fadeIn',
+    'modalTheme' => 'DosomethingModalBase',
+    'closeText' => 'Close',
+    'throbber' => theme('image', array('path' => ctools_image_path('ajax-loader.gif', 'ctools_ajax_sample'), 'alt' => t('Loading...'), 'title' => t('Loading'))),
+  );
 }
