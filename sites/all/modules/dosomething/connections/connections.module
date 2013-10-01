@@ -353,6 +353,9 @@ function connections_page_alter(&$page) {
  *	Changes the meta description, if set.
  */
 function connections_html_head_alter(&$head) {
+    if (!module_exists('opengraph_meta')) {
+      return;
+    }
 	global $fb_og_desc, $og_stuff;
 	$fb_og_desc = trim($fb_og_desc);
 	if (!empty($fb_og_desc) && $fb_og_desc !== "''") {

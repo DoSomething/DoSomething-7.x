@@ -22,8 +22,10 @@ function dosomething_campaign_styles_campaign_social_content_type_render($subtyp
       if (isset($entity->field_campaign_facebook_language[LANGUAGE_NONE])) {
         $facebook_language = $entity->field_campaign_facebook_language[LANGUAGE_NONE][0]['value'];
       }
-      elseif (isset($entity->opengraph_meta['description'])) {
-        $facebook_language = $entity->opengraph_meta['description'];
+      elseif (module_exists('opengraph_meta')) {
+        if (isset($entity->opengraph_meta['description'])) {
+          $facebook_language = $entity->opengraph_meta['description'];
+        }
       }
 
       drupal_add_css(drupal_get_path('module', 'dosomething_campaign_styles') . '/css/ds_campaign_social.css');
