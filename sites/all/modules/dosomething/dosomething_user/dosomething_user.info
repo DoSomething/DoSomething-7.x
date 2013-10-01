@@ -1,0 +1,4 @@
+name = DoSomething - User
+description = Handles user / profile functionality.
+core = 7.x
+package = DoSomething
