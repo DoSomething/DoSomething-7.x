@@ -27,8 +27,10 @@
 <?php print $messages; ?>
 <div class="ds-intro">
   <div class="flexwidth-wrapper">
-    <h1>Join over 2.2 million young people taking action.</h1>
-    <h2>Make the world suck less. Pick a project below to get started.</h2>
+    <div class="content-center">
+      <h1>Join over 2.2 million young people taking action.</h1>
+      <h2>Make the world suck less. Pick a project below to get started.</h2>
+    </div>
   </div>
 </div>
 
