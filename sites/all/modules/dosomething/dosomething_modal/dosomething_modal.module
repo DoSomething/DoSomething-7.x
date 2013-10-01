@@ -7,6 +7,7 @@
  *  Based on the ctools-ajax-example module, provides wrappers and helpers for ctools modals.
  *
  **/
+include_once 'dosomething_modal.examples.inc';
 
 /**
  * Implements hook_menu().
@@ -17,6 +18,7 @@ function dosomething_modal_menu() {
     'page callback' => 'dosomething_modal_example_page',
     'access arguments' => array('administer modules'),
     'type' => MENU_CALLBACK,
+    'file' => 'dosomething_modal.examples.inc',
   );
   $items['ds-modal/%ctools_js/form/%'] = array(
     'title' => 'DoSomething',
@@ -44,6 +46,7 @@ function dosomething_modal_form_builder_access($form_id) {
     return FALSE;
   }
   $allowed_forms = array(
+    'dosomething_modal_example_form',
     'dosomething_user_school_form',
   );
   return in_array($form_id, $allowed_forms);
@@ -94,52 +97,6 @@ function dosomething_modal_form_builder($ajax, $form_id) {
 }
 
 /**
- * Page callback: Displays examples of dosomething_modal instances.
- *
- * @return array
- *   A render array for a page containing a list of content.
- *
- * @see dosomething_modal_menu()
- */
-function dosomething_modal_example_page() {
-  // Include necessary CTools stuff:
-  ctools_include('ajax');
-  ctools_include('modal');
-  ctools_modal_add_js();
-
-  // Create our own javascript that will be used to theme a modal.
-  $ds_style = array(
-    'ctools-sample-style' => array(
-      'modalSize' => array(
-        'type' => 'fixed',
-        'width' => 400,
-        'height' => 300,
-        'addWidth' => 20,
-        'addHeight' => 15,
-      ),
-      'modalOptions' => array(
-        'opacity' => .5,
-        'background-color' => '#000',
-      ),
-      'animation' => 'fadeIn',
-      'modalTheme' => 'CToolsSampleModal',
-      'throbber' => theme('image', array('path' => ctools_image_path('ajax-loader.gif', 'ctools_ajax_sample'), 'alt' => t('Loading...'), 'title' => t('Loading'))),
-    ),
-  );
-
-  drupal_add_js($ds_style, 'setting');
-
-  // From ctools ajax sample module:
-  ctools_add_js('ctools-ajax-sample', 'ctools_ajax_sample');
-  ctools_add_css('ctools-ajax-sample', 'ctools_ajax_sample');
-
-  $output = dosomething_modal_form_button('User School Form', 'dosomething_user_school_form');
-  // This container will have data AJAXed into it.
-  $output .= '<div id="ctools-sample"></div>';
-  return array('markup' => array('#markup' => $output));
-}
-
-/**
  * Render text as a link which opens given $form_id in a ctools modal.
  *
  * @param string $text
@@ -155,6 +112,9 @@ function dosomething_modal_example_page() {
  * @see ctools_modal_text_button()
  */
 function dosomething_modal_form_button($text, $form_id, $class = '') {
+  if ($class != '') {
+    $class = 'ctools-modal-' . $class;
+  }
   // Link to the DS Modal Form builder path:
   return ctools_modal_text_button(t($text), 'ds-modal/nojs/form/' . $form_id, t($text), $class);
 }
