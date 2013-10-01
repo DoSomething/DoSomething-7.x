@@ -27,6 +27,13 @@ function dosomething_campaign_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
+      'data' => array(
+        'description' => 'Signup Data',
+        'type' => 'text',
+        'size' => 'normal',
+        'not null' => FALSE,
+        'default' => NULL,
+      ),
     ),
     'primary key' => array('uid', 'nid'),
     'indexes' => array(
@@ -110,4 +117,18 @@ function dosomething_campaign_update_7004() {
   $node->field_gate_subheadline[LANGUAGE_NONE][0]['value'] = "Show us you're a social change rockstar";
   $node->field_gate_description[LANGUAGE_NONE][0]['value'] = "We'll give you 11 actions over 11 days to help you show the world the kick ass things you can do.";
   node_save($node);
+}
+
+/**
+ * Add data text field to dosomething_campaign_signups table.
+ */
+function dosomething_campaign_update_7005() {
+  $data_field = array(
+    'description' => 'Signup Data',
+    'type' => 'text',
+    'size' => 'normal',
+    'not null' => FALSE,
+    'default' => NULL,
+  );
+  db_add_field('dosomething_campaign_signups', 'data', $data_field);
 }
