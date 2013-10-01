@@ -299,47 +299,21 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
 
   // Check to see if it's time to run the cleanup task, default to now plus the interval for next run if nothing found for setting
   if ((($enabled) && (REQUEST_TIME >= $next_run)) || $manual_test) {
-    
-    $results = db_query('
-      SELECT
-        workflow_name,
-        activity_name,
-        COUNT(activity_name) AS activity_name_count
-      FROM
-        conductor_instance_pointer
-      GROUP BY
-        activity_name
-      ORDER BY
-        workflow_name'
-    );
-               
-    // Headers for theme_table().  
-    $header = array(t('Workflow Name'), t('Activity Name'), t('Activity Name Count'));
-    
-    $rows = array();
-    
-    // Loop through results          
-    foreach ($results as $row) {
-       
-      $rows[] = array(
-        $row->workflow_name,
-        $row->activity_name,
-        $row->activity_name_count,
-      );
-       
-    }
+		
+		$workflows = dosomething_sms_flow_info();
+    $markup = dosomething_sms_report_markup($workflows);
 		
 		// Delete entries that are older than dosomething_sms_interval)
-	if (!$manual_test) {
-			$number_deleted = (string) db_delete('conductor_instance_pointer')
-                        ->condition('timestamp', date('Y-m-d g:i:s', REQUEST_TIME - $interval), '<=')
-                        ->execute();
-	}
-	else {							
-			$query = db_query('SELECT workflow_name FROM {conductor_instance_pointer} WHERE timestamp <= :target_date',
-												array(':target_date' => date('Y-m-d g:i:s', REQUEST_TIME - $interval)));			
-      $number_deleted = (string) $query->rowCount();
-	}
+		if (!$manual_test) {
+				$number_deleted = (string) db_delete('conductor_instance_pointer')
+													->condition('timestamp', date('Y-m-d g:i:s', REQUEST_TIME - $interval), '<=')
+													->execute();
+		}
+		else {							
+				$query = db_query('SELECT workflow_name FROM {conductor_instance_pointer} WHERE timestamp <= :target_date',
+													array(':target_date' => date('Y-m-d g:i:s', REQUEST_TIME - $interval)));			
+				$number_deleted = (string) $query->rowCount();
+		}
     
     $human_date = date('l - j F Y - g:i:s');
 
@@ -359,7 +333,7 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
     $params['body']  = t('<h2>DoSomething.org SMS Cron</h2><br />');
     $params['body'] .= t('<p>Cron run at %current_date. <strong>%number_deleted</stront> old entries purged.</p><p>',
                          array('%current_date' => $human_date, '%number_deleted' => $number_deleted));
-    $params['body'] .= theme('table', array('header' => $header, 'rows' => $rows));
+    $params['body'] .= $markup;
     $params['body'] .= t('</p><p>See you on the next run at %next_run.', array('%next_run' => date('l - j F Y - g:i:s', REQUEST_TIME + $interval)));
     
     // drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
@@ -381,7 +355,177 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
 		if (!$manual_test) {
       variable_set('dosomething_sms_cron_next_execution', REQUEST_TIME + $interval);
 		}
-    
+
   }
 	
+}
+
+/*
+ * Build array of flow details. Used by dosomething_sms_report_markup() to determine
+ * markup of flow report.
+ */
+function dosomething_sms_flow_info() {
+
+  // Get list of all report back workflows
+	$workflows = array();
+	include drupal_get_path('module', 'sms_flow') . '/plugins/activity/report_backs/report_backs.workflows.inc';
+	
+	// SELECT all of the unique workflow names that have entries - stalled SMS users
+	$results = db_query('
+		SELECT DISTINCT
+			workflow_name
+		FROM
+			{conductor_instance_pointer}
+		ORDER BY
+			workflow_name'
+	);
+	
+	$active_workflows = array();
+	$x = 0;
+	$y = 0;
+  $output_count = 1;
+	
+	// Gather all of the activities for each work flow and initalize the count to zero         
+	foreach ($results as $row) {
+		
+		$max_y = 0;
+		$activities = $workflows[$row->workflow_name]->activities;
+		
+		foreach ($activities as $activity_counter => $activity_details) {
+			
+			// Count the number of entries for this activity
+			$activity_count = db_query('
+				SELECT
+				  activity_name
+				FROM
+				  {conductor_instance_pointer}
+				WHERE
+				  workflow_name = :workflow_name
+					AND
+					activity_name = :activity_name',
+				array('workflow_name' => $row->workflow_name, 'activity_name' => $activity_details->name))->rowCount();
+			
+			$activity_detail['workflow_name'] = $row->workflow_name;
+			$activity_detail['activity_name'] = $activity_details->name;
+			$activity_detail['activity_count'] = $activity_count;
+			$activity_detail['activity_inputs'] = $activity_details->inputs;
+			$activity_detail['activity_outputs'] = $activity_details->outputs;
+
+			$x++;
+
+			if ($active_workflows[$row->workflow_name][$activity_counter - 1]['activity_outputs'] != NULL &&
+					($active_workflows[$row->workflow_name][$activity_counter - 1]['y'] +
+					 count($active_workflows[$row->workflow_name][$activity_counter - 1]['activity_outputs']) - 1) > $y) {
+				$y++;
+	
+			}
+			
+			// Start / End resets
+			if ($activity_detail['activity_name'] == 'start') {
+				$x = 0;
+				$y = 0;
+			}
+			elseif ($activity_detail['activity_name'] == 'end') {
+				$y = 0;
+			}
+			
+			$activity_detail['x'] = $x;
+			$activity_detail['y'] = $y;
+			
+			// Keep track of maximum width
+			if ($y > $max_y) {
+				$max_y = $y;
+			}
+
+			// Keep tract of the activity details
+			$active_workflows[$row->workflow_name][] = $activity_detail;
+			
+		}
+
+		// Note max width or Clean up
+		if ($active_workflows[$row->workflow_name][0] != NULL) {
+			$active_workflows[$row->workflow_name]['max_y'] = $max_y;
+		}
+		else {
+			unset($active_workflows[$row->workflow_name]);
+		}
+		
+	}
+	
+	return $active_workflows;
+		
+}
+
+/*
+ * Generate HTML markup for presentation in email report
+ */
+function dosomething_sms_report_markup($workflows) {
+
+	$markup = '';
+
+	// Loop through results          
+	foreach ($workflows as $workflow_name => $workflow) {
+
+		$max_y = $workflows[$workflow_name]['max_y'];
+
+		// Append the title of the workflow
+		$markup .= '<strong>' . $workflow_name . '</strong>';
+
+		// Format report 
+		$markup .= "<table width=\"100%\" border=\"1\">\n";
+
+		foreach ($workflow as $activity_counter => $activity) {
+			
+			if ($activity['activity_name'] == NULL) {
+				break;
+			}
+
+			$markup .= "<tr>\n";
+
+			for ($column_count = 0; $column_count <= $max_y; $column_count++) {
+
+				if ($activity['y'] == $column_count) {
+				 
+					$markup .= '<td class="activity">';
+					$markup .= $activity['activity_name'] . ' (' . $activity['activity_count'] . ')';
+					$markup .= '</td>';
+					
+					// End of flow at this level, render down pointer
+					if (($activity['x'] != $workflow[$activity_counter + 1]['x']) && ($column_count + 1 == $workflow[$activity_counter + 1]['y'])) {
+						
+						foreach ($activity['activity_outputs'] as $output) {
+							
+							if ($output == 'end') {
+								break;
+							}
+							
+							$markup .= "<td>-v</td>\n";
+							$column_count++;
+							
+						}
+					
+					}
+					
+				}
+				elseif ($activity['y'] > $column_count) {
+					$markup .= "<td class=\"vertical-marker\">|</td>\n";
+				}
+				elseif ($activity['activity_name'] == 'end') {
+					$markup .= "<td class=\"end-column\"><|</td>\n";
+				}
+				else {
+					$markup .= "<td>&nbsp;</td>\n";
+				}
+
+			}
+
+			$markup .= "</tr>\n";
+
+		}
+
+		$markup .= "</table>\n";
+
+	}
+	
+	return $markup;
 }
