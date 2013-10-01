@@ -131,3 +131,24 @@ function dosomething_signups_get_signup_success_msg($node) {
   }
   return $msg;
 }
+
+/**
+ * Implements hook_page_alter().
+ */
+function dosomething_signups_page_alter(&$page) {
+  // If logged in user is viewing a node page:
+  if (user_is_logged_in() && arg(0) == 'node' && is_numeric(arg(1))) {
+    // Check if we are viewing a campaign / project node:
+    $node = menu_get_object();
+    if (($node->type == 'campaign' || $node->type == 'project') && isset($node->field_signup_data_form_id[LANGUAGE_NONE][0]['value'])) {
+      if (module_exists('dosomething_modal')) {
+        $link = dosomething_modal_form_button('Signup Form', $node->field_signup_data_form_id[LANGUAGE_NONE][0]['value']);
+      }
+      // Shhh, it's a secret div.
+      $output = '<div style="display:none;">' . $link . '</div>';
+      $output = array('markup' => array('#markup' => $output));
+      // Hide button in the site footer.
+      $page['footer']['login_forms']['content'] = $output;
+    }
+  }
+}
