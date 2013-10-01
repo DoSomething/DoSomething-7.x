@@ -1,3 +1,7 @@
 div.dosomething-modal-content {
 	background: white;
 }
+div.dosomething-modal-content a.close {
+  color: gray;
+  padding: 4px;
+}

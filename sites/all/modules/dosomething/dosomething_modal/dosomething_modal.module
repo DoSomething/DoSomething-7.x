@@ -42,13 +42,18 @@ function dosomething_modal_menu() {
  * @see dosomething_modal_menu()
  */
 function dosomething_modal_form_builder_access($form_id) {
+  // Only authenticated users should be submitting modal forms.  
   if (!user_is_logged_in()) {
     return FALSE;
   }
+  // Sanitize string from URL:
+  $form_id = check_plain($form_id);
+  // We check for allowed form_ids to prevent a user from passing through any form_id into the URL.
   $allowed_forms = array(
     'dosomething_modal_example_form',
     'dosomething_user_school_form',
   );
+  // If it's not allowed, no soup for you.
   return in_array($form_id, $allowed_forms);
 }
 

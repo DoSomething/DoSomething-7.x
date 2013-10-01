@@ -1,12 +1,11 @@
 /**
-* Provide the HTML to create a modal dialog.
+* Provide the HTML to create a modal dialog without a close button.
 *
 */
-Drupal.theme.prototype.DosomethingModalBase = function () {
+Drupal.theme.prototype.DosomethingModalRequiredBase = function () {
   var html = '';
   html += '<div id="ctools-modal" class="popups-box">';
   html += '  <div class="ctools-modal-content dosomething-modal-content">';
-  html += '    <span class="popups-close"><a class="close" href="#">' + Drupal.CTools.Modal.currentSettings.closeText + '</a></span>';
   html += '    <div class="modal-scroll">';
   html += '      <div id="modal-content" class="modal-content popups-body"></div>';
   html += '    </div>';
