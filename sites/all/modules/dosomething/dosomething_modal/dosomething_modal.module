@@ -3,43 +3,79 @@
 /**
  * @file
  * dosomething_modal.module
+ *
+ *  Based on the ctools-ajax-example module, provides wrappers and helpers for ctools modals.
+ *
  **/
 
 /**
  * Implements hook_menu().
  */
 function dosomething_modal_menu() {
-  $items['dosomething-modal-test'] = array(
-    'title' => 'DoSomething Modal Test Page',
-    'page callback' => 'dosomething_modal_test_page',
+  $items['dosomething-modal-example'] = array(
+    'title' => 'DoSomething Modal Examples',
+    'page callback' => 'dosomething_modal_example_page',
     'access arguments' => array('administer modules'),
     'type' => MENU_CALLBACK,
   );
   $items['ds-modal/%ctools_js/form/%'] = array(
     'title' => 'DoSomething',
-    'page callback' => 'dosomething_modal_form_builder_callback',
+    'page callback' => 'dosomething_modal_form_builder',
     'page arguments' => array(1, 3),
-    'access callback' => TRUE,
+    'access callback' => 'dosomething_modal_form_builder_access',
+    'access arguments' => array(3),
     'type' => MENU_CALLBACK,
   );
   return $items;
 }
 
 /**
- * The modal callback for the school form.
+ * Access callback: Whether or not a given form can be displayed ctools modal.
+ *
+ * @param string $form_id
+ *   The form_id to render.
+ *
+ * @return boolean
+ *
+ * @see dosomething_modal_menu()
  */
-function dosomething_modal_form_builder_callback($ajax, $form_id) {
+function dosomething_modal_form_builder_access($form_id) {
+  if (!user_is_logged_in()) {
+    return FALSE;
+  }
+  $allowed_forms = array(
+    'dosomething_user_school_form',
+  );
+  return in_array($form_id, $allowed_forms);
+}
+
+/**
+ * Page callback: Displays a given form in ctools modal.
+ *
+ * $form_id must be defined in dosomething_modal_form_builder_access for security.
+ *
+ * @param string $ajax
+ *   Whether or not the user has javascript enabled.
+ * @param string $form_id
+ *   The form_id to pass through.
+ *
+ * @return mixed
+ *   Prints form using ajax_render if javascript.  Returns the form on the page if no js.
+ *
+ * @see dosomething_modal_menu()
+ */
+function dosomething_modal_form_builder($ajax, $form_id) {
   if ($ajax) {
     ctools_include('ajax');
     ctools_include('modal');
  
     $form_state = array(
       'ajax' => TRUE,
-      'title' => t('To Be Dynamic'),
+    //  'title' => t('To Be Dynamic'),
     );
  
     // Use ctools to generate ajax instructions for the browser to create
-    // a form in a modal popup.
+    // the form in a modal popup.
     $output = ctools_modal_form_wrapper($form_id, $form_state);
  
     // If the form has been submitted, there may be additional instructions
@@ -58,9 +94,14 @@ function dosomething_modal_form_builder_callback($ajax, $form_id) {
 }
 
 /**
- * Callback for test modal page.
+ * Page callback: Displays examples of dosomething_modal instances.
+ *
+ * @return array
+ *   A render array for a page containing a list of content.
+ *
+ * @see dosomething_modal_menu()
  */
-function dosomething_modal_test_page() {
+function dosomething_modal_example_page() {
   // Include necessary CTools stuff:
   ctools_include('ajax');
   ctools_include('modal');
@@ -90,10 +131,30 @@ function dosomething_modal_test_page() {
 
   // From ctools ajax sample module:
   ctools_add_js('ctools-ajax-sample', 'ctools_ajax_sample');
-  //ctools_add_css('ctools-ajax-sample', 'ctools_ajax_sample');
-  $links[] = ctools_modal_text_button(t('Click Me'), 'ds-modal/nojs/form/dosomething_user_school_form', t('Click me'), 'ctools-modal-ctools-sample-style');
-  $output = theme('item_list', array('items' => $links, 'title' => t('Testing')));
+  ctools_add_css('ctools-ajax-sample', 'ctools_ajax_sample');
+
+  $output = dosomething_modal_form_button('User School Form', 'dosomething_user_school_form');
   // This container will have data AJAXed into it.
   $output .= '<div id="ctools-sample"></div>';
   return array('markup' => array('#markup' => $output));
+}
+
+/**
+ * Render text as a link which opens given $form_id in a ctools modal.
+ *
+ * @param string $text
+ *   The text that will be displayed as the link
+ * @param string $form_id
+ *   The form_id to render in the modal.
+ * @param string $class
+ *   The class to apply to the link, which can be used to style the link.
+ *
+ * @return string
+ *   Returns markup.
+ *
+ * @see ctools_modal_text_button()
+ */
+function dosomething_modal_form_button($text, $form_id, $class = '') {
+  // Link to the DS Modal Form builder path:
+  return ctools_modal_text_button(t($text), 'ds-modal/nojs/form/' . $form_id, t($text), $class);
 }
