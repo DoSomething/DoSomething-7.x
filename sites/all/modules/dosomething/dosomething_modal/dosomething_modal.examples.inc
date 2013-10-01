@@ -67,6 +67,9 @@ function dosomething_modal_example_page() {
   // The class passed to dosomething_modal_form_button is defined as the key of the $ds_style array above.
   $links[] = dosomething_modal_form_button('DoSomething Modal Example (Required)', 'dosomething_modal_example_form', 'ds-modal-small');
   $links[] = dosomething_modal_form_button('DoSomething Modal Example (Not Required)', 'dosomething_modal_example_form', 'ds-modal-large');
+  if (module_exists('dosomething_user')) {
+    $links[] = dosomething_modal_form_button('DoSomething User School Form (Not Required)', 'dosomething_user_school_form', 'ds-modal-large');	
+  }
   $output = theme('item_list', array('items' => $links, 'title' => t('DS Modal Form Button Examples')));
   // This container will have data AJAXed into it via the dosomething_modal_example_form_submit.
   $output .= '<div id="ctools-sample">No forms have been submitted.</div>';
