@@ -17,6 +17,14 @@ function doit_preprocess_html(&$variables, $hook) {
   $variables['shiv'] = '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
   $variables['placeholder_shiv'] = '<!--[if lt IE 9]><script type="text/javascript" src="/' . $theme_path . '/js/do-it-placeholder.js'  . '"></script><![endif]-->';
 
+  if(drupal_is_front_page()) {
+    $variables['head_title_array'] = array(
+      'title' => variable_get('site_name', 'Do Something'),
+      'name' => variable_get('site_slogan', 'Largest organization for teens and social cause')
+    );
+    $variables['head_title'] = implode($variables['head_title_array'], ' | ');
+  }
+  
   /*
    * Remove all global stylesheets and
    * load user registration HTML templates
