@@ -1,0 +1,125 @@
+<?php
+
+/**
+ * @file
+ * dosomething_modal.module
+ *
+ *  Based on the ctools-ajax-example module, provides wrappers and helpers for ctools modals.
+ *
+ **/
+include_once 'dosomething_modal.examples.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_modal_menu() {
+  $items['ds-modal/example'] = array(
+    'title' => 'DoSomething Modal Examples',
+    'page callback' => 'dosomething_modal_example_page',
+    'access arguments' => array('administer modules'),
+    'type' => MENU_CALLBACK,
+    'file' => 'dosomething_modal.examples.inc',
+  );
+  $items['ds-modal/%ctools_js/form/%'] = array(
+    'title' => 'DoSomething',
+    'page callback' => 'dosomething_modal_form_builder',
+    'page arguments' => array(1, 3),
+    'access callback' => 'dosomething_modal_form_builder_access',
+    'access arguments' => array(3),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Access callback: Whether or not a given form can be displayed ctools modal.
+ *
+ * @param string $form_id
+ *   The form_id to render.
+ *
+ * @return boolean
+ *
+ * @see dosomething_modal_menu()
+ */
+function dosomething_modal_form_builder_access($form_id) {
+  // Only authenticated users should be submitting modal forms.  
+  if (!user_is_logged_in()) {
+    return FALSE;
+  }
+  // Sanitize string from URL:
+  $form_id = check_plain($form_id);
+  // We check for allowed form_ids to prevent a user from passing through any form_id into the URL.
+  $allowed_forms = array(
+    'dosomething_modal_example_form',
+    'dosomething_user_school_form',
+  );
+  // If it's not allowed, no soup for you.
+  return in_array($form_id, $allowed_forms);
+}
+
+/**
+ * Page callback: Displays a given form in ctools modal.
+ *
+ * $form_id must be defined in dosomething_modal_form_builder_access for security.
+ *
+ * @param string $ajax
+ *   Whether or not the user has javascript enabled.
+ * @param string $form_id
+ *   The form_id to pass through.
+ *
+ * @return mixed
+ *   Prints form using ajax_render if javascript.  Returns the form on the page if no js.
+ *
+ * @see dosomething_modal_menu()
+ */
+function dosomething_modal_form_builder($ajax, $form_id) {
+  if ($ajax) {
+    ctools_include('ajax');
+    ctools_include('modal');
+ 
+    $form_state = array(
+      'ajax' => TRUE,
+    //  'title' => t('To Be Dynamic'),
+    );
+ 
+    // Use ctools to generate ajax instructions for the browser to create
+    // the form in a modal popup.
+    $output = ctools_modal_form_wrapper($form_id, $form_state);
+ 
+    // If the form has been submitted, there may be additional instructions
+    // such as dismissing the modal popup.
+    if (!empty($form_state['ajax_commands'])) {
+      $output = $form_state['ajax_commands'];
+    }
+ 
+    // Return the ajax instructions to the browser via ajax_render().
+    print ajax_render($output);
+    drupal_exit();
+  }
+  else {
+    return drupal_get_form($form_id);
+  }
+}
+
+/**
+ * Render text as a link which opens given $form_id in a ctools modal.
+ *
+ * @param string $text
+ *   The text that will be displayed as the link
+ * @param string $form_id
+ *   The form_id to render in the modal.
+ * @param string $class
+ *   The class to apply to the link, which can be used to style the link.
+ *
+ * @return string
+ *   Returns markup.
+ *
+ * @see ctools_modal_text_button()
+ */
+function dosomething_modal_form_button($text, $form_id, $class = '') {
+  if ($class != '') {
+    $class = 'ctools-modal-' . $class;
+  }
+  // Link to the DS Modal Form builder path:
+  return ctools_modal_text_button(t($text), 'ds-modal/nojs/form/' . $form_id, t($text), $class);
+}

@@ -1188,29 +1188,3 @@ function dosomething_search_default_search_api_index() {
   }');
   return $items;
 }
-
-/**
- * Implements hook_default_search_api_server().
- */
-function dosomething_search_default_search_api_server() {
-  $items = array();
-  $items['solr_dosomething'] = entity_import('search_api_server', '{
-    "name" : "Solr DoSomething",
-    "machine_name" : "solr_dosomething",
-    "description" : "",
-    "class" : "search_api_solr_service",
-    "options" : {
-      "host" : "10.179.104.149",
-      "port" : "8000",
-      "path" : "\\/solr",
-      "http_user" : "",
-      "http_pass" : "",
-      "excerpt" : 0,
-      "retrieve_data" : 0,
-      "highlight_data" : 0
-    },
-    "enabled" : "1",
-    "rdf_mapping" : []
-  }');
-  return $items;
-}

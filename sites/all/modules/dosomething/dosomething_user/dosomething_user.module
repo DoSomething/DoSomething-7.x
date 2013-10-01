@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * dosomething_user.module
+ **/
+
+/**
+ * Form constructor for the user profile school field form.
+ *
+ * @see dosomething_user_school_form_submit()
+ *
+ * @ingroup forms
+ */
+function dosomething_user_school_form($form, &$form_state) {
+  $form = array();
+  $form['school'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Please update your school information:',
+  );
+  $form['no_school'] = array(
+    '#type' => 'radios',
+    '#prefix' => '<hr><p>Or:</p>',
+    '#options' => array(
+      0 => t('My school is not listed.'),
+      1 => t('I am not affiliated with a school.'),
+    ),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Update My Information'),
+  );
+  return $form;
+}
+
+/**
+ * Form submission handler for dosomething_user_school_form().
+ *
+ * @see dosomething_user_school_form()
+ */
+function dosomething_user_school_form_submit(&$form, &$form_state) {
+  $school_id = check_plain($form_state['values']['school']);
+}
