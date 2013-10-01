@@ -1,0 +1,4 @@
+name = DoSomething - Modal
+description = Helper module for modal functionality.
+core = 7.x
+package = DoSomething
