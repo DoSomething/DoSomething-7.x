@@ -16,60 +16,42 @@
  * @see dosomething_modal_menu()
  */
 function dosomething_modal_example_page() {
-  // Include necessary CTools stuff:
-  ctools_include('ajax');
-  ctools_include('modal');
-  ctools_modal_add_js();
-
-  // Create our own javascript that will be used to theme the modals.
-  $ds_style = array(
-    'ds-modal-small' => array(
-      'modalSize' => array(
-        'type' => 'fixed',
-        'width' => 400,
-        'height' => 250,
-      ),
-      'modalOptions' => array(
-        'opacity' => .5,
-        'background-color' => '#000',
-      ),
-      'animation' => 'fadeIn',
-      // modalTheme value corresponds to the prototype.name in the JS file we link to below.
-      'modalTheme' => 'DosomethingModalRequiredBase',
-      'throbber' => theme('image', array('path' => ctools_image_path('ajax-loader.gif', 'ctools_ajax_sample'), 'alt' => t('Loading...'), 'title' => t('Loading'))),
-    ),
-    'ds-modal-large' => array(
-      'modalSize' => array(
-        'type' => 'fixed',
-        'width' => 500,
-        'height' => 350,
-      ),
-      'modalOptions' => array(
-        'opacity' => .5,
-        'background-color' => '#000',
-      ),
-      'animation' => 'fadeIn',
-      // modalTheme value corresponds to the prototype.name in the JS file we link to below.
-      'modalTheme' => 'DosomethingModalBase',
-      'closeText' => 'Close',
-      'throbber' => theme('image', array('path' => ctools_image_path('ajax-loader.gif', 'ctools_ajax_sample'), 'alt' => t('Loading...'), 'title' => t('Loading'))),
-    ),
-  );
-  drupal_add_js($ds_style, 'setting');
-  // Link to JS for modalTheme DosomethingModalBase:
-  ctools_add_js('dosomething-modal', 'dosomething_modal');
-  // Link to JS for modalTheme DosomethingModalRequiredBase
-  ctools_add_js('dosomething-modal-required', 'dosomething_modal');
-  ctools_add_css('dosomething-modal', 'dosomething_modal');
- 
    // Create a list of clickable links.
   $links = array();
-  // The class passed to dosomething_modal_form_button is defined as the key of the $ds_style array above.
-  $links[] = dosomething_modal_form_button('DoSomething Modal Example (Required)', 'dosomething_modal_example_form', 'ds-modal-small');
-  $links[] = dosomething_modal_form_button('DoSomething Modal Example (Not Required)', 'dosomething_modal_example_form', 'ds-modal-large');
+
+  // Example, with default options (defined in dosomething_modal_get_default_js_settings)
+  $links[] = dosomething_modal_form_link('DoSomething Modal Example (Default options)', 'dosomething_modal_example_form');
+
+  // Example with options set so user can't close out the modal.
+  $options = array(
+    'ds-required-modal' => array(
+      'closeText' => ''
+    )
+  );
+  $links[] = dosomething_modal_form_link('DoSomething Modal Example (Required modal)', 'dosomething_modal_example_form', $options);
+
+  // Example with modalSize set to scale, different overlay options:
+  $options = array(
+    'ds-fixed-size' => array(
+      'modalSize' => array(
+        'type' => 'scale',
+        'width' => 0.8,
+        'height' => 0.6,
+      ),
+      'modalOptions' => array(
+        'opacity' => .3,
+        'background-color' => '#ccc',
+      ),
+    ),
+  );
+  $links[] = dosomething_modal_form_link('DoSomething Modal Example (Scale)', 'dosomething_modal_example_form', $options);
+
+  // Output user school form as an example:
   if (module_exists('dosomething_user')) {
-    $links[] = dosomething_modal_form_button('DoSomething User School Form (Not Required)', 'dosomething_user_school_form', 'ds-modal-large');	
+    $links[] = dosomething_modal_form_link('DoSomething User School Form', 'dosomething_user_school_form');	
   }
+
+  // Render links as a list:
   $output = theme('item_list', array('items' => $links, 'title' => t('DS Modal Form Button Examples')));
   // This container will have data AJAXed into it via the dosomething_modal_example_form_submit.
   $output .= '<div id="ctools-sample">No forms have been submitted.</div>';
