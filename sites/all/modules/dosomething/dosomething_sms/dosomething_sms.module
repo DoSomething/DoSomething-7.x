@@ -56,7 +56,6 @@ function dosomething_sms_menu() {
 function dosomething_sms_conductor_sms_keywords() {
   return array(
     'register' => 'ds_sms_user_registration',
-    'testreport' => 'ds_sms_project_report_back',
   );
 }
 
@@ -172,104 +171,6 @@ function dosomething_sms_default_conductor_workflows() {
   $activity->title = 'End';
   $activity->inputs = array(
     'user_creator'
-  );
-  $activity->outputs = array();
-  $workflows[$workflow->name] = $workflow;
-
-  $workflow = new ConductorWorkflow;
-  $workflow->wid = 'new';
-  $workflow->name = 'ds_sms_project_report_back';
-  // TODO: Are these the proper title and desription for this workflow?
-  $workflow->title = 'User Registration';
-  $workflow->description = 'Allows users to register for the site via SMS.';
-  $workflow->api_version = '1.0';
-  // Add and configure workflow activities.
-  $activity = $workflow->newActivity('start');
-  $activity->x = 280;
-  $activity->y = 200;
-  $activity->name = 'start';
-  $activity->title = 'Start';
-  $activity->outputs = array(
-    'title',
-  );
-  $activity->inputs = array();
-  $activity = $workflow->newActivity('sms_prompt');
-  $activity->x = 180;
-  $activity->y = 100;
-  $activity->name = 'title';
-  $activity->title = 'Project title';
-  $activity->question = 'Thanks for telling us about your project, what is the title?';
-  $activity->inputs = array(
-    'start',
-  );
-  $activity->outputs = array(
-    'goal'
-  );
-  $activity = $workflow->newActivity('sms_prompt');
-  $activity->x = 180;
-  $activity->y = 100;
-  $activity->name = 'goal';
-  $activity->title = 'Project Goal';
-  $activity->question = 'Awesome, what\'s the goal of your project?';
-  $activity->inputs = array(
-    'title',
-  );
-  $activity->outputs = array(
-    'involved'
-  );
-  $activity = $workflow->newActivity('sms_prompt');
-  $activity->x = 180;
-  $activity->y = 100;
-  $activity->name = 'involved';
-  $activity->title = 'People involved';
-  $activity->question = 'Great, how many people are involved?';
-  $activity->inputs = array(
-    'goal',
-  );
-  $activity->outputs = array(
-    'helped'
-  );
-  $activity = $workflow->newActivity('sms_prompt');
-  $activity->x = 180;
-  $activity->y = 100;
-  $activity->name = 'helped';
-  $activity->title = 'People helped';
-  $activity->question = 'Amazing, how many people did you help?';
-  $activity->inputs = array(
-    'involved',
-  );
-  $activity->outputs = array(
-    'signature_remover'
-  );
-  $activity = $workflow->newActivity('sms_strip_signature');
-  $activity->x = 180;
-  $activity->y = 100;
-  $activity->name = 'signature_remover';
-  $activity->title = 'Remove the signature from all sms context.';
-  $activity->inputs = array(
-    'helped',
-  );
-  $activity->outputs = array(
-    'create_report_back'
-  );
-  $activity = $workflow->newActivity('ds_create_report_back');
-  $activity->x = 180;
-  $activity->y = 100;
-  $activity->name = 'create_report_back';
-  $activity->title = 'Create a campaign report back from the existing context.';
-  $activity->inputs = array(
-    'signature_remover',
-  );
-  $activity->outputs = array(
-    'end'
-  );
-  $activity = $workflow->newActivity('end');
-  $activity->x = 380;
-  $activity->y = 200;
-  $activity->name = 'end';
-  $activity->title = 'End';
-  $activity->inputs = array(
-    'create_report_back'
   );
   $activity->outputs = array();
   $workflows[$workflow->name] = $workflow;
