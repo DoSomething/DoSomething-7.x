@@ -108,18 +108,92 @@ function dosomething_modal_form_builder($ajax, $form_id) {
  *   The text that will be displayed as the link
  * @param string $form_id
  *   The form_id to render in the modal.
+ * @param array $options
+ *   A settings array used to style the modal, indexed by the class to use.
  * @param string $class
- *   The class to apply to the link, which can be used to style the link.
+ *   The class to apply to the link, which defines what modal to use.
  *
  * @return string
  *   Returns markup.
  *
  * @see ctools_modal_text_button()
  */
-function dosomething_modal_form_button($text, $form_id, $class = '') {
-  if ($class != '') {
-    $class = 'ctools-modal-' . $class;
+function dosomething_modal_form_link($text, $form_id, $options = array()) {
+  // Include necessary CTools stuff:
+  ctools_include('ajax');
+  ctools_include('modal');
+  ctools_modal_add_js();
+  // Check if options have been passed:
+  if (!empty($options)) {
+    // Use the options array key as the modal class:
+    foreach ($options as $key => $values) {
+      $class = $key;
+      $options = $values;
+      break;
+    }
   }
-  // Link to the DS Modal Form builder path:
+  else {
+    $class = 'ds-modal';
+  }
+  // Include the default and/or given modal options:
+  $js_settings = dosomething_modal_get_js_settings($class, $options);
+  drupal_add_js($js_settings, 'setting');
+  // Link to JS for modalTheme DosomethingModalBase:
+  ctools_add_js('dosomething-modal', 'dosomething_modal');
+  ctools_add_css('dosomething-modal', 'dosomething_modal');
+  // Ctools requires the ctools-modal- prefix in order for the magic to happen:
+  $class = 'ctools-modal-' . $class;
+  // Output a link to the DS Modal Form builder menu callback:
   return ctools_modal_text_button(t($text), 'ds-modal/nojs/form/' . $form_id, t($text), $class);
+}
+
+/**
+ * Return a settings array to for adding modal JS for a given $class_name.
+ *
+ * @param string $clsas_name
+ *   The class name that will be applied to a ctools modal text button.
+ * @param array $overrides
+ *   A settings array used to override the default settings.
+ *
+ * @return array
+ *   Returns a settings array.
+ *
+ * @see dosomething_modal_form_link()
+ */
+function dosomething_modal_get_js_settings($class_name, $overrides = array()) {
+  // Override defaults with any given options:
+  $settings = array_merge(dosomething_modal_get_default_js_settings(), $overrides);
+  // Ctools expects the array key to be the class
+  return array($class_name => $settings);
+}
+
+/**
+ * Returns an array with default values to use for the modal JS settings.
+ *
+ * A tutorial of the various settings can be found at 
+ * http://www.planetdrum.org/drupal/sites/all/modules/ctools/help/modal.html.
+ */
+function dosomething_modal_get_default_js_settings() {
+  return array(
+    // Defines the size of the modal window.
+    'modalSize' => array(
+      // Can set to "fixed" or "scale".
+      'type' => 'fixed',
+      // Pixel values for "fixed", should be a percentage if "scale".
+      'width' => 400,
+      'height' => 250,
+    ),
+    // Defines the overlay.
+    'modalOptions' => array(
+      'opacity' => .5,
+      'background-color' => '#000',
+    ),
+    'animation' => 'fadeIn',
+    // modalTheme value corresponds to the prototype.name in the JS file.
+    // @see js/dosomething-modal.js
+    'modalTheme' => 'DosomethingModalBase',
+    'closeText' => 'Close',
+    // Throbber image for when modal is loading.
+    'throbber' => theme('image', array('path' => ctools_image_path('ajax-loader.gif', 'ctools_ajax_sample'), 'alt' => t('Loading...'), 'title' => t('Loading'))),
+  );
 }
