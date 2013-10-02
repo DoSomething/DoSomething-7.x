@@ -1496,7 +1496,7 @@ function dosomething_general_ctools_render_alter($info, $page, $context) {
   else if (count($context['contexts']) == 1) {
     $local_context = $context['contexts'];
   }
-  if (isset($local_context)) {
+  if (isset($local_context) && module_exists('opengraph_meta')) {
     foreach ($local_context as $ctxt) {
       if (in_array('node', (array) $ctxt->type) && is_object($ctxt->data)) {
         $node = $ctxt->data;

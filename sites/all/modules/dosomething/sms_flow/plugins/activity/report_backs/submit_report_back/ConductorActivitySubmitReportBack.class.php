@@ -104,13 +104,15 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
           elseif ($key == 'picture') {
             if (!empty($picture)) {
               $f_name = 'public://' . basename($picture);
-              $attach_contents = file_get_contents($picture);
+              $file_contents = file_get_contents($picture);
 
-              if ($attach_contents !== FALSE) {
-                $attach_data = file_save_data($attach_contents, $f_name);
+              if ($file_contents !== FALSE) {
+                $file_data = file_save_data($file_contents, $f_name);
 
-                if ($attach_data !== FALSE) {
-                  $attach_array = get_object_vars($attach_data);
+                if ($file_data !== FALSE) {
+                  $file_data->uid = $user->uid;
+                  file_save($file_data);
+                  $attach_array = get_object_vars($file_data);
                   $wrapper->value()->field_webform_pictures[LANGUAGE_NONE][] = $attach_array;
                 }
                 else {
