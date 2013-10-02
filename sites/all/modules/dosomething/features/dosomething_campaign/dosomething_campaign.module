@@ -60,9 +60,9 @@ function dosomething_campaign_block_view($delta = '') {
  */
 function dosomething_campaign_signup($account, $node) {
   $nid = $node->nid;
-  $user_signed_up = dosomething_campaign_is_user_signed_up($account->uid, $nid);
+  $user_signed_up = dosomething_signups_is_user_signed_up($account->uid, $nid);
   if (!$user_signed_up) {
-    dosomething_campaign_insert_signup($account->uid, $nid);
+    dosomething_signups_insert_signup($account->uid, $nid);
     $email = $account->mail;
     // Mailchimp signup:
     $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
@@ -87,30 +87,6 @@ function dosomething_campaign_signup($account, $node) {
       dosomething_mandrill_dispatch($email, $mandrill);
     }
   }
-}
-
-/**
- * Inserts a record for given user UID and campaign node NID in dosomething_campaign_signups table.
- */
-function dosomething_campaign_insert_signup($uid, $nid) {
-  $signup = db_insert('dosomething_campaign_signups')
-  ->fields(array(
-    'uid' => $uid,
-    'nid' => $nid,
-    'timestamp' => REQUEST_TIME,
-    ))
-  ->execute();
-}
-
-/**
- * Returns boolean for if given user uid is signed up given campaign nid.
- */
-function dosomething_campaign_is_user_signed_up($uid, $nid) {
-  $signup = db_query('SELECT uid FROM {dosomething_campaign_signups} WHERE uid = :uid AND nid = :nid', array(':uid' => $uid, ':nid' => $nid))->fetchField();
-  if ($signup) {
-    return TRUE;
-  }
-  return FALSE;
 }
 
 /**
