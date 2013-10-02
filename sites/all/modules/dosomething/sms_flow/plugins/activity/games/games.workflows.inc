@@ -3,6 +3,91 @@
 require_once drupal_get_path('module', 'sms_flow') . '/sms_flow_game_constants.inc';
 
 /**
+ * Handle all random pathing for randoming pathing and WYR-style games under one workflow
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_mcommons_random_path';
+$workflow->title = 'Handler for path randomizing.';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('mcommons_random_paths');
+
+$activity = $workflow->newActivity('mcommons_random_paths');
+$activity->name = 'mcommons_random_paths';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->sets = array(
+  // Pregnancy Text WAIT tips
+  array(
+    'mdata_id'     => 10223,
+    'game_id'      => SmsFlowGameConstants::PREGTEXT_WAIT_TIPS,
+    'opt_in_paths' => array(153193, 153203, 153213, 153223, 153233, 153243, 153253, 153263, 153273),
+    'path_special' => 153183,
+    'send_to_special_on' => 3,
+  ),
+  // Pregnancy Text SAFE tips
+  array(
+    'mdata_id'     => 10233,
+    'game_id'      => SmsFlowGameConstants::PREGTEXT_SAFE_TIPS,
+    'opt_in_paths' => array(153283, 153293, 153303, 153313, 153323, 153333, 153343, 153353),
+  ),
+  // Pregnancy Text PARENT tips
+  array(
+    'mdata_id'     => 10243,
+    'game_id'      => SmsFlowGameConstants::PREGTEXT_PARENT_TIPS,
+    'opt_in_paths' => array(153363, 153373, 153383),
+  ),
+  // Pregnancy Text RIGHTS tips
+  array(
+    'mdata_id'     => 10253,
+    'game_id'      => SmsFlowGameConstants::PREGTEXT_RIGHTS_TIPS,
+    'opt_in_paths' => array(153393, 153403, 153413),
+  ),
+  // Give A Spit 2013 - Random Fact Tips
+  array(
+    'mdata_id'     => 10923,
+    'game_id'      => SmsFlowGameConstants::GIVEASPIT_RANDOM_TIPS,
+    'opt_in_paths' => array(161195, 161197, 161199, 161201, 161203, 161205, 161207, 161209, 161211, 161213, 161215, 161217, 161219, 161221, 161223, 161225),
+  ),
+  // Cell Phones for Survivors 2013 - Random Tips
+  array(
+    'mdata_id'     => 10931,
+    'game_id'      => SmsFlowGameConstants::SURVIVORS_RANDOM_TIPS,
+    'opt_in_paths' => array(161399, 161401, 161405, 161407, 161409, 161521),
+    'path_special' => 161403,
+    'send_to_special_on' => 3,
+  ),
+  // Fed Up 2013 - Random Tips
+  array(
+    'mdata_id'     => 10951,
+    'game_id'      => SmsFlowGameConstants::FEDUP_RANDOM_TIPS,
+    'opt_in_paths' => array(161557, 161559, 161561, 161563, 161565, 161567, 161569, 161571, 161573, 161575),
+  ),
+  // 50 Cans - MARKT tips
+  array(
+    'mdata_id'     => 10957,
+    'game_id'      => SmsFlowGameConstants::MARKT_50CANS_TIPS,
+    'opt_in_paths' => array(161843, 161845, 161847, 161849, 161851, 161853, 161855, 161857, 161859),
+  ),
+  // 50 Cans - RUN tips
+  array(
+    'mdata_id'     => 10959,
+    'game_id'      => SmsFlowGameConstants::RUN_50CANS_TIPS,
+    'opt_in_paths' => array(161819, 161821, 161823, 161825, 161827, 161829, 161831, 161833, 161835, 161837, 161839, 161841),
+  )
+);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('mcommons_random_paths');
+
+$workflows[$workflow->name] = $workflow;
+
+
+/**
  * Handles all ordered pathing under one workflow
  */
 $workflow = new ConductorWorkflow();
