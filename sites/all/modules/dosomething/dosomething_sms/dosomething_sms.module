@@ -51,7 +51,7 @@ function dosomething_sms_menu() {
 }
 
 /*
- * Report formatting in template (tpl) file
+ * Impliments hook_theme()
  */
 function dosomething_sms_theme($existing, $type, $theme, $path) {
     return array(
@@ -313,9 +313,6 @@ function dosomething_sms_cron_test($manual_test=FALSE) {
   if ((($enabled) && (REQUEST_TIME >= $next_run)) || $manual_test) {
 		
 		$workflows = dosomething_sms_flow_info();
-    // $markup = dosomething_sms_report_markup($workflows);
-		
-		// @to-do: Switch to using template
     $markup = theme('dosomething_sms_cron_report', array('workflows' => $workflows));
 		
 		// Delete entries that are older than dosomething_sms_interval)
