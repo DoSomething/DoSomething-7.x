@@ -1,0 +1,86 @@
+<?php
+
+class DosomethingSignupsUnitTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Signups Unit Tests',
+      'description' => 'DoSomething Signups unit tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_signups_menu()
+   */
+  public function testMenu() {
+    $menu = dosomething_signups_menu();
+    $this->assertTrue(isset($menu['campaign/join/%node']), '"campaign/join/%node" is defined in dosomething_signups_menu()');
+  }
+}
+
+
+class DoSomethingSignupsWebTestCase extends WebTestSuite {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Signups Web Tests',
+      'description' => 'Tests database-driven dosomething_signups functions.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('dosomething_signups', 'dosomething_login');
+    $this->anon_user = user_load(0);
+    $this->auth_user = $this->factory->create('User');
+    $this->admin_user = $this->factory->create('User', array('roles' => array('administrator')));
+    $this->campaign = $this->factory->create('Project');
+  }
+
+  /**
+   * @see dosomething_signups_join_page_access()
+   */
+  public function testJoinPageAccess() {
+    //@todo: Change this to use factory nodes.
+    $sans = dosomething_signups_join_page_access('abc');
+    $this->assertFalse($sans);
+    $nope = dosomething_signups_join_page_access(698605);
+    $this->assertFalse($nope);
+    $stillno = dosomething_signups_join_page_access(729679);
+    $this->assertFalse($stillno); 
+  }
+
+  /**
+   * @see dosomething_campaign_insert_signup()
+   */
+  public function testInsertSignup() {
+    db_query("delete from dosomething_campaign_signups where uid = 778374")->execute();
+    $before =  db_query('select count(*) from dosomething_campaign_signups')->execute();
+    $signup = dosomething_signups_insert_signup(778374, 729679);
+    $this->assertTrue(is_null($signup));
+    $after = db_query('select count(*) from dosomething_campaign_signups')->execute();
+    $this->assertIdentical(++$before, $after);
+  }
+
+  /**
+   * @see dosomething_signups_insert_signup()
+   */
+  public function testIsUserSignedUp() {
+    $true = dosomething_signups_is_user_signed_up(33189, 729679);
+    $this->assertTrue($true, 'User is signed up for a campaign');
+    $false = dosomething_signups_is_user_signed_up(999999, 729679);
+    $this->assertFalse($false, 'User is not signed up for a campaign');
+  }
+
+  /**
+   * @see dosomething_signups_can_user_override_join()
+   */
+  public function testCanUserOverrideJoin() {
+    $this->assertFalse(dosomething_signups_can_user_override_join($this->anon_user), "Anonymous user cannot override join page.");
+    $this->assertFalse(dosomething_signups_can_user_override_join($this->auth_user), "Authenticated user cannot override join page.");
+    $this->assertTrue(dosomething_signups_can_user_override_join($this->admin_user), "Admin user CAN override join page.");
+  }
+}
