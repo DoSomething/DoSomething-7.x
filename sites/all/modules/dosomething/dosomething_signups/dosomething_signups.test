@@ -54,7 +54,7 @@ class DoSomethingSignupsWebTestCase extends WebTestSuite {
   }
 
   /**
-   * @see dosomething_campaign_insert_signup()
+   * @see dosomething_signups_insert_signup()
    */
   public function testInsertSignup() {
     db_query("delete from dosomething_campaign_signups where uid = 778374")->execute();
