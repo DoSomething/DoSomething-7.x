@@ -23,24 +23,6 @@ $activity->name = 'can_send_mms';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->routes = array(
-  '147823' => array(
-    'yes' => '147743',
-    'no' => '147753'
-  ),
-  '149003' => array(
-    'yes' => '149023',
-    'no' => '149013'
-  ),
-  // Oklahoma Report Back
-  '157773' => array(
-    'yes' => '157793',
-    'no' => '157783'
-  ),
-  // I Heart Dad 2013 Report Back
-  '158811' => array(
-    'yes' => '158815',
-    'no' => '158813',
-  ),
   // Birthday Mail 2013 Report Back
   '160639' => array(
     'yes' => '160641',
@@ -60,61 +42,6 @@ $activity->routes = array(
   '161869' => array(
     'yes' => '161871',
     'no' => '161873',
-  ),
-  // Hunt 2013 Report Back Day 1
-  '159421' => array(
-    'yes' => '159445',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 2
-  '159423' => array(
-    'yes' => '159447',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 3
-  '159425' => array(
-    'yes' => '159449',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 4
-  '159427' => array(
-    'yes' => '159451',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 5
-  '159429' => array(
-    'yes' => '159453',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 6
-  '159431' => array(
-    'yes' => '159455',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 7
-  '159433' => array(
-    'yes' => '159457',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 8
-  '159435' => array(
-    'yes' => '159459',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 9
-  '159437' => array(
-    'yes' => '159461',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 10
-  '159439' => array(
-    'yes' => '159463',
-    'no' => '159443',
-  ),
-  // Hunt 2013 Report Back Day 11
-  '159441' => array(
-    'yes' => '159465',
-    'no' => '159443',
   ),
 );
 
