@@ -535,25 +535,48 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_people', 'end');
+$activity->outputs = array('ask_event_type', 'end');
 $activity->should_prompt = FALSE;
 $activity->no_mms_response = 161261;
 
+$activity = $workflow->newActivity('sms_prompt_normalize_response');
+$activity->name = 'ask_event_type';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_theme');
+$activity->question = 'Great! Q1 - What type of event did you host? A. Party (25+ ppl), B. Get-Together (2-24ppl), C. Solo (just me). Respond with A, B, or C';
+$activity->normalizedGroups = array(
+  array('party', 'A'),
+  array('gettogether', 'B'),
+  array('solo', 'C'),
+);
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_theme';
+$activity->inputs = array('ask_event_type');
+$activity->outputs = array('ask_people');
+$activity->question = 'Awesome. Q2 - If you hosted a party or get-together, what was the theme (e.g. "Swab and Sweat" or "Swab and Sports")? If you swabbed solo, text back N/A.';
+
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_people';
-$activity->inputs = array('ask_picture');
+$activity->inputs = array('ask_theme');
 $activity->outputs = array('ask_why');
-$activity->question = t('Great! Q1 - How many people came to your event?');
+$activity->question = 'Great! Q3 - How many people came to your event?';
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_why';
 $activity->inputs = array('ask_people');
+$activity->outputs = array('ask_success');
+$activity->question = 'Cool! Q4 - Why did you sign up for Give a Spit?';
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_success';
+$activity->inputs = array('ask_why');
 $activity->outputs = array('strip_signature');
-$activity->question = t('Cool! Q2 - Why did you sign up for Give a Spit?');
+$activity->question = 'Awesome. Last question - Was your event successful? If so, what made it a success? If not, what could have made it better? If you swabbed solo, text back N/A.';
 
 $activity = $workflow->newActivity('sms_strip_signature');
 $activity->name = 'strip_signature';
-$activity->inputs = array('ask_why');
+$activity->inputs = array('ask_success');
 $activity->outputs = array('submit_report_back');
 
 $activity = $workflow->newActivity('submit_report_back');
@@ -563,6 +586,9 @@ $activity->outputs = array('end');
 $activity->submission_fields = array(
   'ask_people' => 1,
   'ask_why' => 2,
+  'ask_event_type' => 3,
+  'ask_theme' => 4,
+  'ask_success' => 5,
   'picture' => 'ask_picture:mms',
 );
 $activity->success_response = 161263;
