@@ -14,19 +14,11 @@ class DosomethingCampaignUnitTestCase extends DrupalUnitTestCase {
   }
 
   /**
-   * @see dosomething_campaign_menu()
-   */
-  public function testMenu() {
-    $menu = dosomething_campaign_menu();
-    $this->assertTrue(isset($menu['campaign/join/%']));
-  }
-
-  /**
    * @see dosomething_campaign_theme()
    */
   public function testTheme() {
     $theme = dosomething_campaign_theme('', '', '', 'testing');
-    $this->assertTrue(isset($theme['kiva_confirmation']));
+    $this->assertTrue(isset($theme['kiva_confirmation']), '"kiva_confirmation" is defined in dosomething_campaign_theme().');
   }
 
   /**
@@ -34,8 +26,8 @@ class DosomethingCampaignUnitTestCase extends DrupalUnitTestCase {
    */
   public function testBlockInfo() {
     $block = dosomething_campaign_block_info();
-    $this->assertTrue(isset($block['kiva_signup']));
-    $this->assertTrue(isset($block['kiva_confirmation']));
+    $this->assertTrue(isset($block['kiva_signup']), '"kiva_signup" is defined in dosomething_campaign_block_info().');
+    $this->assertTrue(isset($block['kiva_confirmation']),'"kiva_confirmation" is defined in dosomething_campaign_block_info().');
   }
 }
 
@@ -50,7 +42,6 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
 
   public function setUp() {
     parent::setUp();
-    $this->user = dosomething_general_load_user_by_mail_or_cell('mchittenden@dosomething.org');
   }
 
   /**
@@ -65,75 +56,5 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
     $confirmation = dosomething_campaign_block_view('kiva_confirmation');
     $this->assertTrue(isset($confirmation['content']));
     $this->assertTrue(strpos($confirmation['content'], 'Send Me') !== FALSE);
-  }
-
-  /**
-   * @see dosomething_campaign_join_page_access()
-   */
-  public function subTestJoinPageAcces() {
-    $sans = dosomething_campaign_join_page_access('abc');
-    $this->assertFalse($sans);
-    $nope = dosomething_campaign_join_page_access(698605);
-    $this->assertFalse($nope);
-    $stillno = dosomething_campaign_join_page_access(729679);
-    $this->assertFalse($stillno); 
-  }
-
-  /**
-   * @see dosomething_campaign_is_gated_node()
-   */
-  public function subTestIsGatedNode() {
-  	$node = node_load(729679);
-    $gated = dosomething_campaign_is_gated_node($node);
-    $this->assertTrue($gated);
-
-    $nope = node_load(698605);
-    $not = dosomething_campaign_is_gated_node($nope);
-    $this->assertFalse($not);
-  }
-
-  /**
-   * @see dosomething_campaign_is_gated_signup_node()
-   */
-  public function IsGatedSignupNode() {
-  	$node = node_load(729679);
-    $gated = dosomething_campaign_is_gated_node($node);
-    $this->assertTrue($gated);
-
-    $nope = node_load(698605);
-    $not = dosomething_campaign_is_gated_node($nope);
-    $this->assertFalse($not);
-  }
-
-  /**
-   * @see dosomething_campaign_insert_signup()
-   */
-  public function subTestInsertSignup() {
-  	db_query("delete from dosomething_campaign_signups where uid = 778374")->execute();
-  	$before =  db_query('select count(*) from dosomething_campaign_signups')->execute();
-    $signup = dosomething_campaign_insert_signup(778374, 729679);
-    $this->assertTrue(is_null($signup));
-  	$after = db_query('select count(*) from dosomething_campaign_signups')->execute();
-    $this->assertIdentical(++$before, $after);
-  }
-
-  /**
-   * @see dosomething_campaign_is_user_signed_up()
-   */
-  public function subTestIsUserSignedUp() {
-    $true = dosomething_campaign_is_user_signed_up(33189, 729679);
-    $this->assertTrue($true, 'User is signed up for a campaign');
-    $false = dosomething_campaign_is_user_signed_up(999999, 729679);
-    $this->assertFalse($false, 'User is not signed up for a campaign');
-  }
-
-  /**
-   * @see dosomething_campaign_can_user_override_join()
-   */
-  public function subTestCanUserOverrideJoin() {
-    $true = dosomething_campaign_can_user_override_join(user_load(778374));
-    $this->assertTrue($true);
-    $false = dosomething_campaign_can_user_override_join($this->user);
-    $this->assertFalse($false);
   }
 }

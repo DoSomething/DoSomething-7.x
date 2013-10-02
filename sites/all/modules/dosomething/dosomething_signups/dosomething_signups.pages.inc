@@ -10,21 +10,10 @@
  */
 function dosomething_signups_join_page($node) {
   global $user;
-  // If user can't override join page, check to see if signed up already.
-  if (!dosomething_signups_can_user_override_join($user)) {
-    // If node type is campaign:
-    if ($node->type == 'campaign') {
-      // If user already signed up:
-      if (dosomething_campaign_is_user_signed_up($user->uid, $node->nid)) {
-        // Redirect to campaign node.
-        drupal_goto('node/' . $node->nid);
-      }
-    }
-    // Else check if user already signed up in dosomething_signups:
-    elseif ($node->type == 'project' && dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
-      // Redirect to node.
-      drupal_goto('node/' . $node->nid);
-    }
+  // If user can't override join page and they already signed up: 
+  if ((!dosomething_signups_can_user_override_join($user)) && dosomething_signups_is_user_signed_up($user->uid, $node->nid)) {
+    // Redirect to node, they should not be able to access to the join page.
+    drupal_goto('node/' . $node->nid);
   }
   // Load relevant page variables from the node:
   drupal_set_title($node->title);
