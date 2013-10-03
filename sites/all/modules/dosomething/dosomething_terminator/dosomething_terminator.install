@@ -13,6 +13,13 @@ function dosomething_terminator_update_7000() {
 }
 
 /**
+ * Removes extraneous club_emails_1111 clubs table.
+ */
+function dosomething_terminator_update_7001() {
+  db_drop_table('club_emails_1111');
+}
+
+/**
  * Implements hook_uninstall.
  */
 function dosomething_terminator_uninstall() {
