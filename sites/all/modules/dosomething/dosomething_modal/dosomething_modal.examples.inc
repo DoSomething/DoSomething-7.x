@@ -32,11 +32,11 @@ function dosomething_modal_example_page() {
 
   // Example with modalSize set to scale, different overlay options:
   $options = array(
-    'ds-fixed-size' => array(
+    'ds-scale-modal' => array(
       'modalSize' => array(
         'type' => 'scale',
-        'width' => 0.8,
-        'height' => 0.6,
+        'width' => 0.7,
+        'height' => 0.7,
       ),
       'modalOptions' => array(
         'opacity' => .3,
@@ -48,7 +48,7 @@ function dosomething_modal_example_page() {
 
   // Output user school form as an example:
   if (module_exists('dosomething_user')) {
-    $links[] = dosomething_modal_form_link('DoSomething User School Form', 'dosomething_user_school_form');	
+    $links[] = dosomething_modal_form_link('DoSomething User School Form', 'dosomething_user_school_form', $options);	
   }
 
   // Render links as a list:

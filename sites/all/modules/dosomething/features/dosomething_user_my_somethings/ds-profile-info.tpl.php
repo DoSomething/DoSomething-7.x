@@ -6,7 +6,6 @@
       <h2><?php print $member_fullname; ?></h2>
       <ul class="upper">
         <li><span><?php print $hometown; ?></span><?php if (!empty($hometown) && !empty($member_school)) echo ', '; ?><span><?php print $member_school; ?></span></li>
-        <li><span class="dosomething-member-misc"><?php print render($member_clubs); ?></span></li>
       </ul>
       <ul class="lower">
         <li><span>Member Status</span><span class="mem-stat"><?php print $member_status; ?></span></li>

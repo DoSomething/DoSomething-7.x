@@ -68,3 +68,11 @@ function dosomething_subscribe_update_7005() {
   variable_del('dosomething_subscribe_mailchimp_hunt');
   variable_del('dosomething_subscribe_mobilecommons_hunt');
 }
+
+/**
+ * Remove dosomething_clubs variables.
+ */
+function dosomething_subscribe_update_7006() {
+  variable_del('dosomething_subscribe_mailchimp_clubs');
+  variable_del('dosomething_subscribe_mobilecommons_clubs');
+}
