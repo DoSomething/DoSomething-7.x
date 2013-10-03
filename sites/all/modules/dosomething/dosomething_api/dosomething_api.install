@@ -6,6 +6,31 @@
  */
 
 /**
+ * Implements hook_requirements().
+ */
+function dosomething_api_requirements($phase) {
+  $requirements = array();
+
+  if ($phase == 'runtime') {
+
+    $library = libraries_detect('dsapi');
+
+    if (empty($library['installed'])) {
+      $requirements['dsapi'] = array(
+        'title' => t('DSAPI PHP Library'),
+        'value' => t('Any version'),
+        'severity' => REQUIREMENT_ERROR,
+        'description' => t(
+          'You need to download the !mobilecommons, extract the archive and place the dsapi directory in the %path directory on your server.',
+          array('!mobilecommons' => l(t('DSAPI PHP Library'), $library['download url']), '%path' => 'sites/all/libraries')
+        ),
+      );
+    }
+  }
+  return $requirements;
+}
+
+/**
  * Remove deprecated API Key content type
  */
 function dosomething_api_update_7000() {
