@@ -379,37 +379,6 @@ function dosomething_general_redirect_with_message() {
   drupal_goto();
 }
 
-/**
- *  The form that handles "Search By Email".
- *
- *  @return array
- *    The form.
- */
-function search_by_email_form($form, &$form_state) {
-  $form['description'] = array(
-    '#markup' => 'Paste a comma-separated list of emails here.',
-    '#prefix' => '<p>',
-    '#suffix' => '</p>'
-  );
-
-  $form['emails'] = array(
-    '#type' => 'textarea',
-    '#attributes' => array(
-      'id' => 'emails-list',
-      'placeholder' => t('Paste some emails here.')
-    ),
-    '#required' => true
-  );
-
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#attributes' => array('id' => 'submit-emails', 'class' => array('go-button')),
-    '#value' => 'Search for users'
-  );
-
-  $form['#submit'][] = 'search_by_email_results';
-  return $form;
-}
 
 /**
  *  Trims an email address.
