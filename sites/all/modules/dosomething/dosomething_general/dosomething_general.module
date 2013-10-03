@@ -719,10 +719,7 @@ function dosomething_general_form_alter(&$form, &$form_state, $form_id) {
     $form['pass']['#description'] .= l(t('Forgot your password?'), 'user/password', $forgot_link_query);
     $form['pass']['#description'] .= '</span>';
   }
-  // Unset N/A option in required field_camp checkboxes.
-  if ($form_id == 'club_node_form') {
-    unset($form['field_camp'][LANGUAGE_NONE]['#options']['']);
-  }
+
   if (strpos($form_id, 'webform_client_form_') === 0 && $form['#node']->type == 'project_report') {
     drupal_add_js(drupal_get_path('module', 'dosomething_general') . '/js/project-row-weights.js');
   }
