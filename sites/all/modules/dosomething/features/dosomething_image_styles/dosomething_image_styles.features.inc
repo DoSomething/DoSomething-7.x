@@ -10,7 +10,7 @@
 function dosomething_image_styles_image_default_styles() {
   $styles = array();
 
-  // Exported image style: action_results_thumbnail
+  // Exported image style: action_results_thumbnail.
   $styles['action_results_thumbnail'] = array(
     'name' => 'action_results_thumbnail',
     'effects' => array(
@@ -32,7 +32,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: campaign_microsite_logo
+  // Exported image style: campaign_microsite_logo.
   $styles['campaign_microsite_logo'] = array(
     'name' => 'campaign_microsite_logo',
     'effects' => array(
@@ -55,7 +55,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: campaigns_image
+  // Exported image style: campaigns_image.
   $styles['campaigns_image'] = array(
     'name' => 'campaigns_image',
     'effects' => array(
@@ -79,6 +79,7 @@ function dosomething_image_styles_image_default_styles() {
         'label' => 'Define canvas',
         'help' => 'Define the size of the working canvas and background color, this controls the dimensions of the output image.',
         'effect callback' => 'canvasactions_definecanvas_image',
+        'dimensions callback' => 'canvasactions_definecanvas_dimensions',
         'form callback' => 'canvasactions_definecanvas_form',
         'summary theme' => 'canvasactions_definecanvas_summary',
         'module' => 'imagecache_canvasactions',
@@ -106,7 +107,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: campaigns_logo
+  // Exported image style: campaigns_logo.
   $styles['campaigns_logo'] = array(
     'name' => 'campaigns_logo',
     'effects' => array(
@@ -128,7 +129,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: cause_main
+  // Exported image style: cause_main.
   $styles['cause_main'] = array(
     'name' => 'cause_main',
     'effects' => array(
@@ -151,7 +152,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: cause_vertical
+  // Exported image style: cause_vertical.
   $styles['cause_vertical'] = array(
     'name' => 'cause_vertical',
     'effects' => array(
@@ -173,30 +174,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: club_profile
-  $styles['club_profile'] = array(
-    'name' => 'club_profile',
-    'effects' => array(
-      4 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
-        'name' => 'image_scale',
-        'data' => array(
-          'width' => '540',
-          'height' => '',
-          'upscale' => 0,
-        ),
-        'weight' => '1',
-      ),
-    ),
-  );
-
-  // Exported image style: content_main
+  // Exported image style: content_main.
   $styles['content_main'] = array(
     'name' => 'content_main',
     'effects' => array(
@@ -218,7 +196,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: front_slider
+  // Exported image style: front_slider.
   $styles['front_slider'] = array(
     'name' => 'front_slider',
     'effects' => array(
@@ -240,7 +218,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: member_photo_gallery
+  // Exported image style: member_photo_gallery.
   $styles['member_photo_gallery'] = array(
     'name' => 'member_photo_gallery',
     'effects' => array(
@@ -262,7 +240,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: my_somethings
+  // Exported image style: my_somethings.
   $styles['my_somethings'] = array(
     'name' => 'my_somethings',
     'effects' => array(
@@ -284,7 +262,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: petdetail_regular
+  // Exported image style: petdetail_regular.
   $styles['petdetail_regular'] = array(
     'name' => 'petdetail_regular',
     'effects' => array(
@@ -306,7 +284,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: petdetail_retina
+  // Exported image style: petdetail_retina.
   $styles['petdetail_retina'] = array(
     'name' => 'petdetail_retina',
     'effects' => array(
@@ -328,7 +306,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: project_gallery_thumb
+  // Exported image style: project_gallery_thumb.
   $styles['project_gallery_thumb'] = array(
     'name' => 'project_gallery_thumb',
     'effects' => array(
@@ -350,7 +328,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: project_related_thumb
+  // Exported image style: project_related_thumb.
   $styles['project_related_thumb'] = array(
     'name' => 'project_related_thumb',
     'effects' => array(
@@ -372,7 +350,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: related-posts
+  // Exported image style: related-posts.
   $styles['related-posts'] = array(
     'name' => 'related-posts',
     'effects' => array(
@@ -394,7 +372,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: sponsor_logo
+  // Exported image style: sponsor_logo.
   $styles['sponsor_logo'] = array(
     'name' => 'sponsor_logo',
     'effects' => array(
@@ -416,7 +394,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: thumbnail_regular
+  // Exported image style: thumbnail_regular.
   $styles['thumbnail_regular'] = array(
     'name' => 'thumbnail_regular',
     'effects' => array(
@@ -438,7 +416,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: thumbnail_retina
+  // Exported image style: thumbnail_retina.
   $styles['thumbnail_retina'] = array(
     'name' => 'thumbnail_retina',
     'effects' => array(
@@ -460,7 +438,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: tips_tools_node
+  // Exported image style: tips_tools_node.
   $styles['tips_tools_node'] = array(
     'name' => 'tips_tools_node',
     'effects' => array(
@@ -483,7 +461,7 @@ function dosomething_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: whats_happening_now_thumbnail
+  // Exported image style: whats_happening_now_thumbnail.
   $styles['whats_happening_now_thumbnail'] = array(
     'name' => 'whats_happening_now_thumbnail',
     'effects' => array(
