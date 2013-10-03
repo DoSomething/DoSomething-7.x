@@ -14,9 +14,16 @@
  */
 function dosomething_user_school_form($form, &$form_state) {
   $form = array();
-  $form['school'] = array(
+  drupal_add_library('ds_neue', 'ds-neue');
+  $form['#attached']['js'][] = drupal_get_path('module', 'ds_neue') . '/js/location-finder.js';;
+  $form['markup'] = array(
+    '#markup' => theme('ds_neue_location_finder'),
+  );
+  $form['school_id'] = array(
+    '#title' => 'School ID',
+    '#description' => 'This field will be hidden, and pre-populated with the Location Finder results',
     '#type' => 'textfield',
-    '#title' => 'Please update your school information:',
+    '#value' => '',
   );
   $form['no_school'] = array(
     '#type' => 'radios',
@@ -29,6 +36,7 @@ function dosomething_user_school_form($form, &$form_state) {
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Update My Information'),
+    '#attributes' => array('class' => array('btn', 'primary')),
   );
   return $form;
 }
