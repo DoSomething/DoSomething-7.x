@@ -55,26 +55,6 @@ function dosomething_subscribe_admin_settings_form() {
     '#required' => TRUE,
     '#default_value' => variable_get($prefix . 'mobilecommons_user_register'),
   );
-  // Values for Club nodes:
-  $form['clubs'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Clubs'),
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-    '#description' => t('Groups to use on the Club node form.'),
-  );
-  $form['clubs'][$prefix . 'mailchimp_clubs'] = array(
-    '#type' => 'textfield',
-    '#title' => t('MailChimp'),
-    '#required' => TRUE,
-    '#default_value' => variable_get($prefix . 'mailchimp_clubs'),
-  );
-  $form['clubs'][$prefix . 'mobilecommons_clubs'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Mobilecommons'),
-    '#required' => TRUE,
-    '#default_value' => variable_get($prefix . 'mobilecommons_clubs'),
-  );
   // Node types to use for User Profile signups:
   $form['signup_node_types'] = array(
     '#type' => 'fieldset',

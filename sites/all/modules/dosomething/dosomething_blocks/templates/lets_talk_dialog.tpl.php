@@ -22,8 +22,6 @@
       
       <br><span class="title"><?php print t('Press or Marketing Inquires'); ?></span><span class="detail"><?php print l('press@dosomething.org', 'mailto:press@dosomething.org'); ?></span>
 
-      <br><span class="title"><?php print t('Clubs'); ?></span><span class="detail"><?php print l('clubs@dosomething.org', 'mailto:clubs@dosomething.org'); ?></span>
-
       <br><span class="title"><?php print t('Grant Program'); ?></span><span class="detail"><?php print l('grants@dosomething.org', 'mailto:grants@dosomething.org'); ?></span>
 
     </div>

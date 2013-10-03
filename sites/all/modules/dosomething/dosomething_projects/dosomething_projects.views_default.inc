@@ -10,7 +10,7 @@
 function dosomething_projects_views_default_views() {
   $export = array();
 
-  $view = new view;
+  $view = new view();
   $view->name = 'dosomething_api';
   $view->description = '';
   $view->tag = 'default';
@@ -22,6 +22,7 @@ function dosomething_projects_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -30,7 +31,6 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '100';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Webform submissions: Rendered Webform Submission */
@@ -38,23 +38,6 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_webform_submission_entity';
   $handler->display->display_options['fields']['rendered_entity']['field'] = 'rendered_entity';
   $handler->display->display_options['fields']['rendered_entity']['label'] = 'Entity ID';
-  $handler->display->display_options['fields']['rendered_entity']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['rendered_entity']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['rendered_entity']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['rendered_entity']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['rendered_entity']['display'] = 'id';
   $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'full';
@@ -93,7 +76,7 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['path'] = 'dosomething_api';
   $export['dosomething_api'] = $view;
 
-  $view = new view;
+  $view = new view();
   $view->name = 'dosomething_projects';
   $view->description = 'API Projects';
   $view->tag = '';
@@ -105,6 +88,7 @@ function dosomething_projects_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     3 => '3',
@@ -122,7 +106,6 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['empty']['text']['id'] = 'area';
   $handler->display->display_options['empty']['text']['table'] = 'views';
   $handler->display->display_options['empty']['text']['field'] = 'area';
-  $handler->display->display_options['empty']['text']['empty'] = FALSE;
   $handler->display->display_options['empty']['text']['content'] = '<query-meta><num_pages>0</num_pages><num_items>0</num_items></query-meta>';
   $handler->display->display_options['empty']['text']['format'] = '2';
   /* Relationship: Content: Taxonomy terms on node */
@@ -134,16 +117,7 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Field: Content: Post date */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'node';
@@ -162,17 +136,8 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
   $handler->display->display_options['fields']['path']['field'] = 'path';
-  $handler->display->display_options['fields']['path']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['text'] = 'http://www.dosomething.org[path]';
-  $handler->display->display_options['fields']['path']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['path']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['path']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['path']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['path']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['path']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['path']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['path']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['path']['absolute'] = 0;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -184,7 +149,7 @@ function dosomething_projects_views_default_views() {
   $handler->display->display_options['arguments']['taxletter']['field'] = 'name';
   $handler->display->display_options['arguments']['taxletter']['relationship'] = 'term_node_tid';
   $handler->display->display_options['arguments']['taxletter']['default_action'] = 'empty';
-  $handler->display->display_options['arguments']['taxletter']['exception']['title_enable'] = 1;
+  $handler->display->display_options['arguments']['taxletter']['exception']['title_enable'] = TRUE;
   $handler->display->display_options['arguments']['taxletter']['default_argument_type'] = 'php';
   $handler->display->display_options['arguments']['taxletter']['default_argument_options']['code'] = 'if (isset($_GET[\'cause\']) {
     return urldecode($_GET[\'cause\']);
@@ -192,23 +157,19 @@ function dosomething_projects_views_default_views() {
     return \'all\';
   }';
   $handler->display->display_options['arguments']['taxletter']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['taxletter']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['taxletter']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['taxletter']['validate']['fail'] = 'ignore';
-  $handler->display->display_options['arguments']['taxletter']['glossary'] = 0;
   $handler->display->display_options['arguments']['taxletter']['limit'] = '0';
-  $handler->display->display_options['arguments']['taxletter']['transform_dash'] = 0;
-  $handler->display->display_options['arguments']['taxletter']['add_table'] = 0;
-  $handler->display->display_options['arguments']['taxletter']['require_value'] = 0;
   /* Contextual filter: Search: Search Terms */
   $handler->display->display_options['arguments']['keys']['id'] = 'keys';
   $handler->display->display_options['arguments']['keys']['table'] = 'search_index';
   $handler->display->display_options['arguments']['keys']['field'] = 'keys';
   $handler->display->display_options['arguments']['keys']['default_action'] = 'empty';
   $handler->display->display_options['arguments']['keys']['exception']['value'] = '*';
-  $handler->display->display_options['arguments']['keys']['exception']['title_enable'] = 1;
+  $handler->display->display_options['arguments']['keys']['exception']['title_enable'] = TRUE;
   $handler->display->display_options['arguments']['keys']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['keys']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['keys']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['keys']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['keys']['validate']['fail'] = 'ignore';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
