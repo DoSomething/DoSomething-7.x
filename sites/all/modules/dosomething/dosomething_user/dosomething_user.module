@@ -56,3 +56,18 @@ function dosomething_user_school_form($form, &$form_state) {
 function dosomething_user_school_form_submit(&$form, &$form_state) {
   $school_id = check_plain($form_state['values']['school']);
 }
+
+/**
+ * Implements hook_user_insert().
+ */
+function dosomething_user_user_insert(&$edit, $account, $category) {
+  if (($library = libraries_load('dsapi')) && !empty($library['loaded'])) {
+    // All of this will be abstracted properly.  Stubbing for memory
+    // $dsapi_client = new DSAPI(
+    //   variable_get('DSAPI_ACCESS_TOKEN', '') // Set this guy in settings.php from env var
+    // );
+    // $users_client = new UsersResource($dsapi_client);
+    // $users_client->create(array());
+  }
+}
+
