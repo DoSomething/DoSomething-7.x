@@ -16,8 +16,15 @@ function dosomething_user_school_form($form, &$form_state) {
   $form = array();
   drupal_add_library('ds_neue', 'ds-neue');
   $form['#attached']['js'][] = drupal_get_path('module', 'ds_neue') . '/js/location-finder.js';;
-  $form['markup'] = array(
-    '#markup' => theme('ds_neue_location_finder'),
+  $form['header'] = array(
+    '#markup' => '<h1>What school do you go to?</h1>',
+  );
+  $form['location_finder'] = array(
+    '#markup' => theme('ds_neue_location_finder', array(
+        'help_text' => t('Enter the zip code of your school.'),
+        'results_text' => t('Nearest schools for zipcode:'),
+      )
+    ),
   );
   $form['school_id'] = array(
     '#title' => 'School ID',

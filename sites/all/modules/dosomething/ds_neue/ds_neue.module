@@ -85,7 +85,9 @@ function ds_neue_theme($existing, $type, $theme, $path) {
       'template' => 'ds-neue-location-finder',
       'variables' => array(
         'location_api' => NULL,
-        'form_element_id' => NULL, 
+        'form_element_id' => NULL,
+        'help_text' => NULL,
+        'results_text' => NULL,
       ),
     ),
   );
