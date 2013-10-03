@@ -74,3 +74,19 @@ function ds_neue_get_version() {
     return $json->version;
 
 }
+
+/**
+ * Implements hook_theme().
+ */
+function ds_neue_theme($existing, $type, $theme, $path) {
+ return array(
+    'ds_neue_location_finder' => array(
+      'path' => $path . '/templates',
+      'template' => 'ds-neue-location-finder',
+      'variables' => array(
+        'location_api' => NULL,
+        'form_element_id' => NULL, 
+      ),
+    ),
+  );
+}
