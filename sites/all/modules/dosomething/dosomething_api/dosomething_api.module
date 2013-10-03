@@ -10,6 +10,26 @@
  */
 
 /**
+ * Implements hook_libraries_info().
+ */
+function dosomething_api_libraries_info() {
+  $libraries['dsapi'] = array(
+    'name' => 'DSAPI PHP',
+    'vendor url' => 'https://github.com/DoSomething/dsapi-php',
+    'download url' => 'https://github.com/DoSomething/dsapi-php/archive/master.zip',
+    'path' => 'lib',
+    'files' => array(
+      'php' => array(
+        'DSAPI.php'
+      ),
+    ),
+    'version' => 1
+  );
+
+  return $libraries;
+}
+
+/**
  *  Log in a user.  Assuming $e_or_c is a valid email or cell phone
  *  number of a DoSomething.org member:
  *  @code
