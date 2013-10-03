@@ -2141,7 +2141,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '31',
+        'weight' => '30',
       ),
     ),
   );
@@ -2213,7 +2213,7 @@ function dosomething_campaign_field_default_fields() {
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '29',
+        'weight' => '28',
       ),
     ),
   );
@@ -2286,7 +2286,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '27',
+        'weight' => '26',
       ),
     ),
   );
@@ -2430,7 +2430,7 @@ function dosomething_campaign_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '30',
+        'weight' => '29',
       ),
     ),
   );
@@ -2503,7 +2503,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '26',
+        'weight' => '25',
       ),
     ),
   );
@@ -2517,7 +2517,7 @@ function dosomething_campaign_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_gate_subheadline',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '1',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -2576,7 +2576,7 @@ function dosomething_campaign_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '28',
+        'weight' => '27',
       ),
     ),
   );
@@ -2663,7 +2663,7 @@ function dosomething_campaign_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_is_gate_login_signup',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '0',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -3081,79 +3081,6 @@ function dosomething_campaign_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-campaign-field_signup_data_form_id'.
-  $fields['node-campaign-field_signup_data_form_id'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_signup_data_form_id',
-      'field_permissions' => array(
-        'type' => '0',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => FALSE,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'campaign',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'If more data is needed from the user after signup, enter the Drupal Form ID to use for collecting the data.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 45,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_signup_data_form_id',
-      'label' => 'Signup Data Form ID',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '25',
-      ),
-    ),
-  );
-
   // Exported field: 'node-campaign-field_team_redirect'.
   $fields['node-campaign-field_team_redirect'] = array(
     'field_config' => array(
@@ -3491,7 +3418,6 @@ function dosomething_campaign_field_default_fields() {
   t('Check this box if logging in on a gate page (either as existing user or new user) should automatically signup the user for the campaign.');
   t('Check this box if the campaign should have a custom gate for user registration.');
   t('Copy');
-  t('Copy Accent Color');
   t('Copy below the Headline');
   t('Counter Aggregation Field');
   t('Counter Text');
@@ -3500,6 +3426,7 @@ function dosomething_campaign_field_default_fields() {
   t('Enter the field name to pull from the report back (the machine name) that will be aggregated. Or use #count to just count the number of report backs.');
   t('FAQ');
   t('Game Example');
+  t('Gate Color');
   t('Gate Description');
   t('Gate Headline');
   t('Gate Image');
@@ -3508,9 +3435,8 @@ function dosomething_campaign_field_default_fields() {
   t('Group type');
   t('Groups audience');
   t('H1 Page Title on the page');
-  t('HEX, RGB/a or CSS color shorthand used for the headline color.');
+  t('HEX, RGB/a or CSS color shorthand used for the headline and subheadline color.');
   t('Has Gate');
-  t('If more data is needed from the user after signup, enter the Drupal Form ID to use for collecting the data.');
   t('Logo');
   t('Mailchimp Interest Group');
   t('Main Image');
@@ -3523,7 +3449,6 @@ function dosomething_campaign_field_default_fields() {
   t('Question');
   t('Relate this Campaign to a Cause or Issue.');
   t('Report Back HTML');
-  t('Signup Data Form ID');
   t('Signup User on Gate Login');
   t('Team Redirect');
   t('Teaser');
