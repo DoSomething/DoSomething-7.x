@@ -85,14 +85,6 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
     $email = $cell = '';
     $mailchimp = $mobilecommons = FALSE;
   }
-  // Or check if we're actually checking a clubs node form:
-  elseif (isset($form_state['values']) && $node->type == 'club') {
-    $submitted = $form_state['values'];
-    $email = $submitted['field_email'][LANGUAGE_NONE][0]['value'];
-    $cell = $submitted['field_phone_required'][LANGUAGE_NONE][0]['value'];
-    $mailchimp = variable_get('dosomething_subscribe_mailchimp_clubs');
-    $mobilecommons = variable_get('dosomething_subscribe_mobilecommons_clubs');
-  }
   // Otherwise we shouldn't be looking for signups here.
   else {
     return;

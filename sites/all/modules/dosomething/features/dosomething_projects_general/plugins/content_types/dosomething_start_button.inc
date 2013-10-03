@@ -39,21 +39,7 @@ function dosomething_start_button_content_type_render($subtype, $conf, $args, $c
       ),
     );
   }
-  if (!empty($conf['start_button']['club'])) {
-    $element['club'] = array(
-      '#type' => 'link',
-      '#title' => t('Start a Club'),
-      '#href' => 'node/add/club',
-      '#options' => array(
-        'attributes' => array(
-          'title' => t('Start a Club'),
-          'class' => array(
-            'ds-button-strong',
-          ),
-        ),
-      ),
-    );
-  }
+
   $block->content = $element;
   return $block;
 }
@@ -67,7 +53,6 @@ function dosomething_start_button_content_type_edit_form($form, &$form_state) {
     '#multiple' => TRUE,
     '#options' => array(
       'project' => t('Project'),
-      'club' => t('Club'),
     ),
     '#default_value' => !empty($conf['start_button']) ? $conf['start_button'] : array(),
   );
