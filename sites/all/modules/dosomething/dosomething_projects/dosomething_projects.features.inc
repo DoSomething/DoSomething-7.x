@@ -24,7 +24,7 @@ function dosomething_projects_default_search_api_index() {
     "item_type" : "webform_submission_entity",
     "options" : {
       "index_directly" : 1,
-      "cron_limit" : "1000",
+      "cron_limit" : "50",
       "fields" : {
         "taxonomy_vocabulary_5" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_essay_build_it" : { "type" : "text" },
@@ -106,7 +106,7 @@ function dosomething_projects_default_search_api_index() {
         }
       }
     },
-    "enabled" : "1",
+    "enabled" : "0",
     "read_only" : "0",
     "rdf_mapping" : []
   }');
