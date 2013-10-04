@@ -23,7 +23,7 @@ function dosomething_signups_menu() {
 /**
  * Retuns boolean if given $user can access join and campaign pages regardless of signup.
  *
- * @param $user
+ * @param object $user
  *  User object of user to check.
  *
  * @return boolean
@@ -43,6 +43,30 @@ function dosomething_signups_insert_signup($uid, $nid) {
     'timestamp' => REQUEST_TIME,
     ))
   ->execute();
+}
+
+/**
+ * Updates the signup data for given user UID and campaign node NID in signups table.
+ *
+ * @param int $uid
+ *  User uid of signup record.
+ * @param int $uid
+ *  User uid of signup record.
+ * @param array $data
+ *  Data to store for this signup.
+ */
+function dosomething_signups_update_signup_data($uid, $nid, $data) {
+  // Sanity check to avoid errors if signup record doesn't exist:
+  if (dosomething_signups_is_user_signed_up($uid, $nid)) {
+    // Update the data field:
+    $update = db_update('dosomething_campaign_signups')
+    ->fields(array(
+      'data' => serialize($data),
+      ))
+    ->condition('uid', $uid)
+    ->condition('nid', $nid)  
+    ->execute();
+  }
 }
 
 /**
