@@ -30,7 +30,6 @@ function dosomething_user_school_form($form, &$form_state, $nid = NULL) {
     '#title' => 'School ID',
     '#description' => 'This field will be hidden, and pre-populated with the Location Finder results',
     '#type' => 'textfield',
-    '#value' => '',
   );
   $form['no_school'] = array(
     '#type' => 'radios',
@@ -65,12 +64,14 @@ function dosomething_user_school_form_submit(&$form, &$form_state) {
   // If school_id, write it to profile.
   if (!empty($school_id)) {
     $profile = profile2_load_by_user($user, 'main');
-    $profile->field_data_field_school_reference[LANGUAGE_NONE][0]['value'] = $school_id;
+    $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'] = $school_id;
     $profile->save();
   }
   // @todo: Update signups table that user has been prompted for school for this campaign nid.
 
-  // @todo: Close the modal.
+  // Tell the browser to close the modal.
+  // @see dosomething_modal_form_builder() for where this is executed.
+  $form_state['ajax_commands'][] = ctools_modal_command_dismiss();
 }
 
 /**
