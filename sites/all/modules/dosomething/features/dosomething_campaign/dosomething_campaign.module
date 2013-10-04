@@ -8,6 +8,25 @@
 include_once('dosomething_campaign.features.inc');
 
 /**
+ * Implements hook_ctools_plugin_type().
+ */
+function dosomething_campaign_ctools_plugin_type() {
+  return array(
+    'signup_data_modal' => array(
+      'cache' => FALSE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function dosomething_campaign_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
+/**
  * Implements hook_theme().
  */
 function dosomething_campaign_theme($existing, $type, $theme, $path) {
