@@ -5,32 +5,44 @@
  * signup_data_form content type.
  *
  */
+$plugin = array(
+  'single' => TRUE,
+  'title' => t('Signup Data Modal Form'),
+  'description' => t('Prompts user for Signup Data in a DS Modal if data does not exist'),
+  'category' => t('DoSomething Campaign'),
+  'edit form' => 'signup_data_modal_edit_form',
+  'render callback' => 'signup_data_modal_render',
+  'admin info' => 'signup_data_modal_admin_info',
+  'defaults' => array(
+    'modal_form_id' => 'dosomething_modal_example_form',
+    'type' => 'scale',
+    'width' => '0.7',
+    'height' => '0.8',
+    'opacity' => '0.3',
+    'bg_color' => '#ccc',
+    'close_text_lbl' => 'Close',
+  ),
+);
 
 /**
- * Implements hook_ctools_content_types().
+ * Callback for content type admin info.
  */
-function dosomething_campaign_signup_data_modal_ctools_content_types() {
-  return array(
-    'single' => TRUE,
-    'title' => t('Signup Data Modal Form'),
-    'description' => t('Prompts user for Signup Data in a DS Modal if data does not exist'),
-    'category' => t('DoSomething Campaign'),
-    'defaults' => array(
-      'modal_form_id' => 'dosomething_modal_example_form',
-      'type' => 'scale',
-      'width' => '0.7',
-      'height' => '0.8',
-      'opacity' => '0.3',
-      'bg_color' => '#ccc',
-      'close_text_lbl' => 'Close',
-    ),
-  );
+function signup_data_modal_admin_info($subtype, $conf, $contexts) {
+  if (!empty($conf)) {
+    $block = new stdClass;
+    $block->title = t('Displays <em>@modal_form_id</em> in a <em>@type</em> modal.', array(
+      '@modal_form_id' => $conf['modal_form_id'],
+      '@type' => $conf['type'],
+    ));
+    $block->content = 'Width: ' . $conf['width']. ' | Height: ' . $conf['height']. ' | Close Text: ' . $conf['close_text_lbl'];
+    return $block;
+  }
 }
 
 /**
- * Implements hook_content_type_render().
+ * Callback for content type render.
  */
-function dosomething_campaign_signup_data_modal_content_type_render($subtype, $conf, $panel_args, $context) {
+function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
   global $user;
   drupal_add_library('ds_neue', 'ds-neue');
   $link_name = 'ds-signup-data-modal';
@@ -53,14 +65,14 @@ function dosomething_campaign_signup_data_modal_content_type_render($subtype, $c
   $block->content = dosomething_modal_form_link('Signup Data Form', $conf['modal_form_id'], $options);
   $link_class_name = 'ctools-modal-' . $link_name;
   // Click the link to make modal automatically appear:
-  // drupal_add_js('jQuery(document).ready(function () { $(".' . $link_class_name . '").click(Drupal.CTools.Modal.clickAjaxLink).click();', 'inline');
+  drupal_add_js('jQuery(document).ready(function () { $(".' . $link_class_name . '").trigger("click");', 'inline');
   return $block;
 }
 
 /**
- * Implements hook_content_type_edit_form().
+ * Callback for content type edit form.
  */
-function dosomething_campaign_signup_data_modal_content_type_edit_form($form, &$form_state) {
+function signup_data_modal_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['modal_form_id'] = array(
     '#type' => 'textfield',
@@ -122,9 +134,9 @@ function dosomething_campaign_signup_data_modal_content_type_edit_form($form, &$
 }
 
 /**
- * Implements hook_content_type_edit_form_submit().
+ * Submit callback for signup_data_modal_edit_form().
  */
-function dosomething_campaign_signup_data_modal_content_type_edit_form_submit(&$form, &$form_state) {
+function signup_data_modal_edit_form_submit(&$form, &$form_state) {
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
     if (isset($form_state['values'][$key])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
