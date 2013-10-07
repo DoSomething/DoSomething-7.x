@@ -59,11 +59,11 @@
     </div>
   </div>
 
-  <div class="content-block feature fixed three-col right" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/malala-block.jpg'); background-position: center center;">
-    <a class="full-link" href="/women"><span>Do This</span></a>
+  <div class="content-block feature fixed three-col right" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
+    <a class="full-link" href="/bullytext"><span>Do This</span></a>
     <div class="headline purple">
-      <div class="row"><div class="headline-text"><h3>Malala fights for women across the world. You can too.</h3></div></div>
-      <div class="row"><p class="block-cta"><a href="/women" class="btn primary large">Do This</a></p></div>
+      <div class="row"><div class="headline-text"><h3>Everyone has the power to stop bullying. Learn how.</h3></div></div>
+      <div class="row"><p class="block-cta"><a href="/bullytext" class="btn primary large">Do This</a></p></div>
     </div>
   </div>
 

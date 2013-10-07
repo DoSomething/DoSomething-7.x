@@ -6,3 +6,6 @@
 	path = sites/all/libraries/ds-neue
 	url = git@github.com:DoSomething/ds-neue.git
         ignore = dirty
+[submodule "sites/all/libraries/dsapi"]
+	path = sites/all/libraries/dsapi
+	url = git@github.com:DoSomething/dsapi-php.git

@@ -14,21 +14,41 @@
  */
 function dosomething_user_school_form($form, &$form_state) {
   $form = array();
-  $form['school'] = array(
+  // JS will only work if ds_neue library has already been loaded somewhere on the page.
+  // Making the call to add the library from this form callback would give mixed results.
+  $form['#attached']['js'][] = drupal_get_path('module', 'ds_neue') . '/js/location-finder.js';;
+  $form['header'] = array(
+    '#markup' => '<h1>What school do you go to?</h1>',
+  );
+  $form['location_finder'] = array(
+    '#markup' => theme('ds_neue_location_finder', array(
+        'help_text' => t('Enter the zip code of your school.'),
+        'results_text' => t('Nearest schools for zipcode:'),
+      )
+    ),
+  );
+  $form['school_id'] = array(
+    '#title' => 'School ID',
+    '#description' => 'This field will be hidden, and pre-populated with the Location Finder results',
     '#type' => 'textfield',
-    '#title' => 'Please update your school information:',
   );
   $form['no_school'] = array(
     '#type' => 'radios',
     '#prefix' => '<hr><p>Or:</p>',
     '#options' => array(
-      0 => t('My school is not listed.'),
-      1 => t('I am not affiliated with a school.'),
+      'school not listed' => t('My school is not listed.'),
+      'not affiliated' => t('I am not affiliated with a school.'),
     ),
+  );
+  $form['nid'] = array(
+    '#type' => 'hidden',
+    //@todo: Update this to use arg(2) once the MOMM node is created and this form lives there.
+    '#value' => 731029,
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Update My Information'),
+    '#attributes' => array('class' => array('btn', 'primary')),
   );
   return $form;
 }
@@ -39,5 +59,40 @@ function dosomething_user_school_form($form, &$form_state) {
  * @see dosomething_user_school_form()
  */
 function dosomething_user_school_form_submit(&$form, &$form_state) {
-  $school_id = check_plain($form_state['values']['school']);
+  global $user;
+  $signup_data = array();
+  $school_id = check_plain($form_state['values']['school_id']);
+  $nid = check_plain($form_state['values']['nid']);
+  // If school_id, write it to profile.
+  if (!empty($school_id)) {
+    $profile = profile2_load_by_user($user, 'main');
+    $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'] = $school_id;
+    $profile->save();
+    $signup_data['school_id'] = $school_id;
+  }
+  else {
+    $signup_data['no_school'] = $form_state['values']['no_school'];
+  }
+  // Update signups record with signup_data.
+  if (module_exists('dosomething_signups')) {
+    dosomething_signups_update_signup_data($user->uid, $nid, $signup_data);
+  }
+  // Tell the browser to close the modal.
+  // @see dosomething_modal_form_builder() for where this is executed.
+  $form_state['ajax_commands'][] = ctools_modal_command_dismiss();
 }
+
+/**
+ * Implements hook_user_insert().
+ */
+function dosomething_user_user_insert(&$edit, $account, $category) {
+  if (($library = libraries_load('dsapi')) && !empty($library['loaded'])) {
+    // All of this will be abstracted properly.  Stubbing for memory
+    // $dsapi_client = new DSAPI(
+    //   variable_get('DSAPI_ACCESS_TOKEN', '') // Set this guy in settings.php from env var
+    // );
+    // $users_client = new UsersResource($dsapi_client);
+    // $users_client->create(array());
+  }
+}
+
