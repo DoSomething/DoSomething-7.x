@@ -13,6 +13,7 @@ $plugin = array(
   'edit form' => 'signup_data_modal_edit_form',
   'render callback' => 'signup_data_modal_render',
   'admin info' => 'signup_data_modal_admin_info',
+  'required context' => new ctools_context_required(t('Node'), 'node'),
   'defaults' => array(
     'modal_form_id' => 'dosomething_modal_example_form',
     'type' => 'scale',
@@ -44,6 +45,12 @@ function signup_data_modal_admin_info($subtype, $conf, $contexts) {
  */
 function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
   global $user;
+  $nid = $context->data->nid;
+  // If we already have user signup data for this node:
+  if (dosomething_signups_get_signup_data($user->uid, $nid)) {
+    // Don't render anything.
+    return;
+  }
   drupal_add_library('ds_neue', 'ds-neue');
   $link_name = 'ds-signup-data-modal';
   // Build JS settings:
@@ -64,8 +71,9 @@ function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
   $block = new stdClass();
   $block->content = dosomething_modal_form_link('Signup Data Form', $conf['modal_form_id'], $options);
   $link_class_name = 'ctools-modal-' . $link_name;
+  // @todo: Get this working:
   // Click the link to make modal automatically appear:
-  drupal_add_js('jQuery(document).ready(function () { $(".' . $link_class_name . '").trigger("click");', 'inline');
+  // drupal_add_js('jQuery(document).ready(function () { $(".' . $link_class_name . '").trigger("click");', 'inline');
   return $block;
 }
 
