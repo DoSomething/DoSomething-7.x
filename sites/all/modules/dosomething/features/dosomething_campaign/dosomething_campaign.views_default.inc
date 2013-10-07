@@ -24,11 +24,7 @@ function dosomething_campaign_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
-  $handler->display->display_options['cache']['type'] = 'time';
-  $handler->display->display_options['cache']['results_lifespan'] = '21600';
-  $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
-  $handler->display->display_options['cache']['output_lifespan'] = '21600';
-  $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
+  $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -58,6 +54,18 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['relationships']['group']['relationship'] = 'og_membership_rel';
   $handler->display->display_options['relationships']['group']['label'] = 'campaign group';
   $handler->display->display_options['relationships']['group']['required'] = TRUE;
+  /* Relationship: Webform Submission: Pictures (field_webform_pictures:fid) */
+  $handler->display->display_options['relationships']['field_webform_pictures_fid']['id'] = 'field_webform_pictures_fid';
+  $handler->display->display_options['relationships']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
+  $handler->display->display_options['relationships']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
+  /* Relationship: Flags: report_back_photo_save */
+  $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
+  $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'file_managed';
+  $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
+  $handler->display->display_options['relationships']['flag_content_rel']['relationship'] = 'field_webform_pictures_fid';
+  $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
+  $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'report_back_photo_save';
+  $handler->display->display_options['relationships']['flag_content_rel']['user_scope'] = 'any';
   /* Field: Webform Submission: Pictures */
   $handler->display->display_options['fields']['field_webform_pictures']['id'] = 'field_webform_pictures';
   $handler->display->display_options['fields']['field_webform_pictures']['table'] = 'field_data_field_webform_pictures';
@@ -108,6 +116,12 @@ function dosomething_campaign_views_default_views() {
   $handler->display->display_options['filters']['field_webform_pictures_fid']['table'] = 'field_data_field_webform_pictures';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['field'] = 'field_webform_pictures_fid';
   $handler->display->display_options['filters']['field_webform_pictures_fid']['operator'] = 'not empty';
+  /* Filter criterion: Flags: Flagged */
+  $handler->display->display_options['filters']['flagged']['id'] = 'flagged';
+  $handler->display->display_options['filters']['flagged']['table'] = 'flagging';
+  $handler->display->display_options['filters']['flagged']['field'] = 'flagged';
+  $handler->display->display_options['filters']['flagged']['relationship'] = 'flag_content_rel';
+  $handler->display->display_options['filters']['flagged']['value'] = '0';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');

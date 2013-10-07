@@ -200,6 +200,7 @@ function dosomething_causes_field_default_fields() {
           'body_preset' => NULL,
           'image_path' => 'pictures/actionguide',
           'insert' => 0,
+          'insert_absolute' => FALSE,
           'insert_class' => '',
           'insert_default' => array(
             0 => 'auto',
