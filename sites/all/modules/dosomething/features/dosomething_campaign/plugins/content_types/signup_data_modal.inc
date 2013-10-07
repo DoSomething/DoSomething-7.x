@@ -33,9 +33,10 @@ function dosomething_campaign_signup_data_modal_ctools_content_types() {
 function dosomething_campaign_signup_data_modal_content_type_render($subtype, $conf, $panel_args, $context) {
   global $user;
   drupal_add_library('ds_neue', 'ds-neue');
+  $link_name = 'ds-signup-data-modal';
   // Build JS settings:
   $options = array(
-    'ds-signup-data-modal' => array(
+    $link_name => array(
       'modalSize' => array(
         'type' => $conf['type'],
         'width' => $conf['width'],
@@ -50,6 +51,9 @@ function dosomething_campaign_signup_data_modal_content_type_render($subtype, $c
   );
   $block = new stdClass();
   $block->content = dosomething_modal_form_link('Signup Data Form', $conf['modal_form_id'], $options);
+  $link_class_name = 'ctools-modal-' . $link_name;
+  // Click the link to make modal automatically appear:
+  // drupal_add_js('jQuery(document).ready(function () { $(".' . $link_class_name . '").click(Drupal.CTools.Modal.clickAjaxLink).click();', 'inline');
   return $block;
 }
 
