@@ -18,10 +18,10 @@ function ds_neue_libraries_info() {
     'version callback' => 'ds_neue_get_version',
     'files' => array(
       'js' => array(
-        'assets/application.js'
+        'assets/neue.js'
       ),
       'css' => array(
-        'assets/application.css',
+        'assets/neue.css',
         'assets/campaigns.css',
       )
     ),
@@ -38,10 +38,10 @@ function ds_neue_library() {
     'website' => 'https://github.com/DoSomething/ds-neue',
     'version' => ds_neue_get_version(),
     'js' => array(
-      libraries_get_path('ds-neue') . '/assets/application.js' => array(),
+      libraries_get_path('ds-neue') . '/assets/neue.js' => array(),
     ),
     'css' => array(
-      libraries_get_path('ds-neue') . '/assets/application.css' => array(),
+      libraries_get_path('ds-neue') . '/assets/neue.css' => array(),
     ),
   );
 
