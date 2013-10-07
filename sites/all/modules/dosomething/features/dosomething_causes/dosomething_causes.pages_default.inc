@@ -95,7 +95,7 @@ function dosomething_causes_default_page_manager_handlers() {
     $pane->panel = 'footer';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array(
       'plugins' => array(
         0 => array(
@@ -167,7 +167,9 @@ cause/education',
     $pane->type = 'views_panes';
     $pane->subtype = 'polls-panel_pane_1';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(),
+    );
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
