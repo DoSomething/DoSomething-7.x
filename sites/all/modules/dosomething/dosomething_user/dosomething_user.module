@@ -87,12 +87,115 @@ function dosomething_user_school_form_submit(&$form, &$form_state) {
  */
 function dosomething_user_user_insert(&$edit, $account, $category) {
   if (($library = libraries_load('dsapi')) && !empty($library['loaded'])) {
+    $user = _dosomething_user_prepare_member($account);
     // All of this will be abstracted properly.  Stubbing for memory
-    // $dsapi_client = new DSAPI(
-    //   variable_get('DSAPI_ACCESS_TOKEN', '') // Set this guy in settings.php from env var
-    // );
-    // $users_client = new UsersResource($dsapi_client);
-    // $users_client->create(array());
+    $DSAPI = new DSAPI(
+      variable_get('dsapi_access_token', '1234') // Set this guy in settings.php from env var
+    );
+    try {
+      $rs = $DSAPI->client->post('users', $user);
+      watchdog(
+        'dsapi',
+        'User #!uid posted to API endpoint',
+        array('!uid' => $account->uid),
+        WATCHDOG_INFO
+      );
+    }
+    catch (Exception $e) {
+      watchdog(
+        'dsapi',
+        'User #!uid was not posted API endpoint',
+        array('!uid' => $account->uid),
+        WATCHDOG_ERROR
+      );
+    }
   }
+}
+
+/**
+ *  Prepares user conversion to member object
+ **/
+function _dosomething_user_prepare_member($user) {
+  if (is_numeric($user)) {
+    $user = user_load($user);
+    if ($user === FALSE) return FALSE;
+  }
+
+  $profile = profile2_load_by_user($user);
+
+  $member = array(
+    'uid' => $user->uid,
+    'created' => $user->created,
+    'username' => $user->name,
+    'firstname' => '',
+    'lastname' => '',
+    'fullname' => '',
+    'gender' => '',
+    'date_of_birth' => '',
+    'email' => $user->mail,
+    'email_addresses' => array(),
+    'mobile' => '',
+    'mobile_numbers' => array(),
+    'addresses' => array(),
+    'schools' => array()
+  );
+
+  if ($user->mail) $member['email_addresses'][] = $user->mail;
+
+  $fields = array();
+  if (isset($profile['main'])) {
+    foreach ($profile['main'] as $field_name => $field) {
+      if (strpos($field_name, 'field_') == 0) {
+        $fields[$field_name] = $field;
+        switch($field_name) {
+          case 'field_user_address':
+            $member['addresses'] = $field['und'];
+            break;
+          case 'field_user_birthday':
+            if ($dob = $field['und'][0]['value']) {
+              $dob = strtotime($dob);
+              $member['date_of_birth'] = $dob;
+            }
+            break;
+          case 'field_user_first_name':
+            $member['firstname'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_gender':
+            $member['gender'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_last_name':
+            $member['lastname'] = $field['und'][0]['value'];
+            break;
+          case 'field_user_mobile':
+            $member['mobile'] = $field['und'][0]['value'];
+            $member['mobile_numbers'][] = $field['und'][0]['value'];
+            break;
+          case 'field_school_reference':
+            $schools = array();
+
+            foreach ($field['und'] as $school) {
+              $entity = entity_load('ds_school', array($school['target_id']));
+
+              if ($entity) {
+                $entity = $entity[$school['target_id']];
+                $schools[] = array(
+                  'name' => $entity->name,
+                  'level' => $entity->level,
+                  'country' => $entity->country,
+                  'administrative_area' => $entity->state,
+                  'locality' => $entity->city,
+                  'postal_code' => $entity->zip,
+                  'thoroughfare' => $entity->street
+                );
+              }
+            }
+            $member['schools'] = $schools;
+            break;
+        }
+      }
+    }
+  }
+
+  return $member;
 }
 
