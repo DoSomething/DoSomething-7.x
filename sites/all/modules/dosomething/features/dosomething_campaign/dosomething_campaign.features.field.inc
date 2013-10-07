@@ -2517,7 +2517,7 @@ function dosomething_campaign_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_gate_subheadline',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '0',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -2663,7 +2663,7 @@ function dosomething_campaign_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_is_gate_login_signup',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '1',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -3418,6 +3418,7 @@ function dosomething_campaign_field_default_fields() {
   t('Check this box if logging in on a gate page (either as existing user or new user) should automatically signup the user for the campaign.');
   t('Check this box if the campaign should have a custom gate for user registration.');
   t('Copy');
+  t('Copy Accent Color');
   t('Copy below the Headline');
   t('Counter Aggregation Field');
   t('Counter Text');
@@ -3426,7 +3427,6 @@ function dosomething_campaign_field_default_fields() {
   t('Enter the field name to pull from the report back (the machine name) that will be aggregated. Or use #count to just count the number of report backs.');
   t('FAQ');
   t('Game Example');
-  t('Gate Color');
   t('Gate Description');
   t('Gate Headline');
   t('Gate Image');
@@ -3435,7 +3435,7 @@ function dosomething_campaign_field_default_fields() {
   t('Group type');
   t('Groups audience');
   t('H1 Page Title on the page');
-  t('HEX, RGB/a or CSS color shorthand used for the headline and subheadline color.');
+  t('HEX, RGB/a or CSS color shorthand used for the headline color.');
   t('Has Gate');
   t('Logo');
   t('Mailchimp Interest Group');
