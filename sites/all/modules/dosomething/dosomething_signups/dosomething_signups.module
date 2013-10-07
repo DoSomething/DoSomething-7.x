@@ -46,6 +46,22 @@ function dosomething_signups_insert_signup($uid, $nid) {
 }
 
 /**
+ * Returns data array if signup data exists for given $uid and $nid.
+ */
+function dosomething_signups_get_signup_data($uid, $nid) {
+  $result = db_select('dosomething_campaign_signups', 'n')
+    ->fields('n')
+    ->condition('uid', $uid)
+    ->condition('nid', $nid)
+    ->execute()
+    ->fetchAssoc();
+  if ($result && $result['data']) {
+    return unserialize($result['data']);
+  }
+  return FALSE;
+}
+
+/**
  * Updates the signup data for given user UID and campaign node NID in signups table.
  *
  * @param int $uid
