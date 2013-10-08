@@ -340,52 +340,70 @@ function _dosomething_services_form_error($msg, $code) {
  */
 function _dosomething_services_user_resource_create($account) {
   // Check for required fields
-  if (empty($account['name'])) {
-    return _dosomething_services_form_error(t('Username is required.'), 406);
-  }
-  else if (empty($account['pass'])) {
+  if (empty($account['pass'])) {
     return _dosomething_services_form_error(t('A password is required.'), 406);
   }
-  else if (empty($account['mail'])) {
-    return _dosomething_services_form_error(t('A valid e-mail address is required.'), 406);
+  elseif (empty($account['mail']) && empty($account['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'])) {
+    return _dosomething_services_form_error(t('A valid e-mail address or cell phone number is required.'), 406);
   }
-  else if (empty($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date'])) {
+  elseif (empty($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date'])) {
     return _dosomething_services_form_error(t('Birthday is required.'), 406);
   }
-  else if (empty($account['profile_main']['field_user_first_name'][LANGUAGE_NONE][0]['value'])) {
-    return _dosomething_services_form_error(t('First Name is required.'), 406);
-  }
-  else if (empty($account['profile_main']['field_user_last_name'][LANGUAGE_NONE][0]['value'])) {
-    return _dosomething_services_form_error(t('Last Name is required.'), 406);
-  }
 
-  // Find user by name or by mail
-  $old_user = user_load_by_name($account['name']);
-  if (!$old_user) {
-    $old_user = user_load_by_mail($account['mail']);
-    if ($old_user) {
-      return _dosomething_services_form_error(t('An account with that e-mail address already exists'), 406);
-    }
-  }
-  else {
+  // Check if account already exists for given username, email, or phone number
+  if (!empty($account['name']) && user_load_by_name($account['name'])) {
     return _dosomething_services_form_error(t('An account with that username already exists'), 406);
+  }
+  if (!empty($account['mail']) && user_load_by_mail($account['mail'])) {
+    return _dosomething_services_form_error(t('An account with that e-mail address already exists'), 406);
+  }
+  $mobile = $account['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
+  if (!empty($mobile) && dosomething_api_user_lookup($mobile)) {
+    return _dosomething_services_form_error(t('An account with that mobile number already exists'), 406);
   }
   
   // No existing account found, so create a new one
-  require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
-
   $new_user = new stdClass;
-  $new_user->name = $account['name'];
-  $new_user->pass = user_hash_password($account['pass']);
-  $new_user->mail = $account['mail'];
 
+  // Set the email for this account
+  if (!empty($account['mail'])) {
+    $new_user->mail = $account['mail'];
+  }
+  // If no email was provided, but a cell phone number was, then use that and append @mobile to it
+  elseif (!empty($mobile)) {
+    $new_user->mail = $mobile . '@mobile';
+  }
+  else {
+    return _dosomething_services_form_error(t('A valid e-mail address or cell phone number is required.'), 406);
+  }
+
+  // Set the name for this account
+  if (!empty($account['name'])) {
+    $new_user->name = $account['name'];
+  }
+  // Otherwise, use email if available
+  elseif (!empty($account['mail'])) {
+    $new_user->name = $new_user->mail;
+  }
+  // Otherwise, use mobile if available
+  else if (!empty($mobile)) {
+    $new_user->name = $mobile;
+  }
+  else {
+    return _dosomething_services_form_error(t('A valid e-mail address or cell phone number is required.'), 406);
+  }
+
+  // Password needs to be saved as a hash
+  require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+  $new_user->pass = user_hash_password($account['pass']);
+
+  // If user's birthday is 26 or over, then assign her to the 'old person' role
   $bday = strtotime($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date']);
   if ($bday !== FALSE && dosomething_login_person_is_over_age($bday, 26)) {
     $new_user->roles[20] = 'old person';
   }
 
   $new_user->status = 1;
-
   user_save($new_user);
 
   // Populate user's profile2 data
@@ -411,11 +429,8 @@ function _dosomething_services_user_resource_create($account) {
 
   profile2_save($new_profile);
 
-  // Profile is now setup, so safe to send email to user
-  _user_mail_notify('register_no_approval_required', $new_user);
-
   // Login the user
-  _user_resource_login($account['name'], $account['pass']);
+  _user_resource_login($new_user->name, $account['pass']);
 
   // Build the return data
   $return = new stdClass();
@@ -423,7 +438,7 @@ function _dosomething_services_user_resource_create($account) {
   if ($uri = services_resource_uri(array('user', $new_user->uid))) {
     $return->user['uri'] = $uri;
   }
-  $return->user['mail'] = $account['mail'];
+  $return->user['mail'] = $new_user->mail;
 
   // Add session information to the return value
   $return->sessid = session_id();
