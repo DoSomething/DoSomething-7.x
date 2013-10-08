@@ -28,7 +28,7 @@
 <div class="full-width wallpaper ds-intro">
   <div class="page-width with-copy">
     <h1>Join over 2.2 million young people taking action. </h1>
-    <p>Make the world suck less. Pick a project below to get started.</p>
+    <p>Make the world suck less. Pick a campaign below to get started.</p>
   </div>
 </div>
 

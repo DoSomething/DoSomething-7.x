@@ -6,3 +6,4 @@ package = DoSomething
 dependencies[] = libraries (>1.0)
 
 files[] = dosomething_api.module
+files[] = dosomething_api.lib.inc
