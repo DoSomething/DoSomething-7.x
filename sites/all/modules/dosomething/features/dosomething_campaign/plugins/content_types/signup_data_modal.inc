@@ -68,12 +68,12 @@ function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
       'closeText' => $conf['close_text_lbl'],
     ),
   );
+  $modal_link = dosomething_modal_form_link('Signup Data Form', $conf['modal_form_id'], $options);
   $block = new stdClass();
-  $block->content = dosomething_modal_form_link('Signup Data Form', $conf['modal_form_id'], $options);
+  $block->content = '<div style="display:none;">' . $modal_link . '</div>';
   $link_class_name = 'ctools-modal-' . $link_name;
-  // @todo: Get this working:
   // Click the link to make modal automatically appear:
-  // drupal_add_js('jQuery(document).ready(function () { $(".' . $link_class_name . '").trigger("click");', 'inline');
+  drupal_add_js('jQuery(window).bind("load", function() { jQuery(".' . $link_class_name . '").click(); });', 'inline');
   return $block;
 }
 
