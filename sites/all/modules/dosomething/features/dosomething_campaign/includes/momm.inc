@@ -67,8 +67,7 @@ function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state)
   }
   // Update signups record with signup_data.
   if (module_exists('dosomething_signups')) {
-   //@todo: Update default value when nid is created
-    $nid = variable_get('momm_campaign_nid', 729076);
+    $nid = variable_get('momm_campaign_nid', 731098);
     dosomething_signups_update_signup_data($user->uid, $nid, $signup_data);
   }
   // Tell the browser to close the modal.
