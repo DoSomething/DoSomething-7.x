@@ -18,30 +18,30 @@ function dosomething_user_update_school($user, $school_id) {
  * Implements hook_user_insert().
  */
 function dosomething_user_user_insert(&$edit, $account, $category) {
-  if (($library = libraries_load('dsapi')) && !empty($library['loaded'])) {
-    $user = _dosomething_user_prepare_member($account);
-    // All of this will be abstracted properly.  Stubbing for memory
-    $DSAPI = new DSAPI(
-      variable_get('dsapi_access_token', '1234') // Set this guy in settings.php from env var
-    );
-    try {
-      $rs = $DSAPI->client->post('users', $user);
-      watchdog(
-        'dsapi',
-        'User #!uid posted to API endpoint',
-        array('!uid' => $account->uid),
-        WATCHDOG_INFO
-      );
-    }
-    catch (Exception $e) {
-      watchdog(
-        'dsapi',
-        'User #!uid was not posted API endpoint',
-        array('!uid' => $account->uid),
-        WATCHDOG_ERROR
-      );
-    }
-  }
+  // if (($library = libraries_load('dsapi')) && !empty($library['loaded'])) {
+  //   $user = _dosomething_user_prepare_member($account);
+  //   // All of this will be abstracted properly.  Stubbing for memory
+  //   $DSAPI = new DSAPI(
+  //     variable_get('dsapi_access_token', '1234') // Set this guy in settings.php from env var
+  //   );
+  //   try {
+  //     $rs = $DSAPI->client->post('users', $user);
+  //     watchdog(
+  //       'dsapi',
+  //       'User #!uid posted to API endpoint',
+  //       array('!uid' => $account->uid),
+  //       WATCHDOG_INFO
+  //     );
+  //   }
+  //   catch (Exception $e) {
+  //     watchdog(
+  //       'dsapi',
+  //       'User #!uid was not posted API endpoint',
+  //       array('!uid' => $account->uid),
+  //       WATCHDOG_ERROR
+  //     );
+  //   }
+  // }
 }
 
 /**
