@@ -1181,6 +1181,32 @@ function dosomething_login_register_block_submit($form, &$form_state) {
   if ($account->status) {
     user_login_submit(array(), $form_state);
   }
+  
+  if (($library = libraries_load('dsapi')) && !empty($library['loaded'])) {
+    if ($prepared = _dosomething_login_prepare_member($account->uid)) {
+      $DSAPI = new DSAPI(
+        variable_get('dsapi_access_token', '1234') // Set this guy in settings.php from env var
+      );
+      try {
+        $prepared = json_encode($prepared);
+        $rs = $DSAPI->client->post('users', array('user' => $prepared));
+        watchdog(
+          'dsapi',
+          'User #!uid posted to API endpoint',
+          array('!uid' => $account->uid),
+          WATCHDOG_INFO
+        );
+      }
+      catch (Exception $e) {
+        watchdog(
+          'dsapi',
+          'User #!uid was not posted API endpoint !e',
+          array('!uid' => $account->uid, '!e' => $e),
+          WATCHDOG_ERROR
+        );
+      }
+    }
+  }
 
   // Clear any logged registration data.
   $query = db_delete('ds_registration_data');
@@ -1192,6 +1218,93 @@ function dosomething_login_register_block_submit($form, &$form_state) {
     $query->condition('email', $account->mail);
   }
   $num_deleted = $query->execute();
+}
+
+/**
+ *  Prepares user conversion to member object
+ **/
+function _dosomething_login_prepare_member($uid) {
+  if (is_numeric($uid)) {
+    $user = user_load($uid);
+    if ($user === FALSE) return FALSE;
+  }
+  else {
+    return FALSE;
+  }
+
+  $member = array(
+    'uid' => $user->uid,
+    'created' => $user->created,
+    'username' => $user->name,
+    'firstname' => '',
+    'lastname' => '',
+    'fullname' => '',
+    'gender' => '',
+    'date_of_birth' => '',
+    'email' => $user->mail,
+    'email_addresses' => array(),
+    'mobile' => '',
+    'mobile_numbers' => array(),
+    'addresses' => array(),
+    'schools' => array()
+  );
+
+  if ($user->mail) $member['email_addresses'][] = $user->mail;
+
+  $profile = profile2_load_by_user($user->uid, 'main');
+  
+  foreach ($profile as $field_name => $field) {
+    if (strpos($field_name, 'field_') == 0) {
+      
+      switch($field_name) {
+        case 'field_user_address':
+          $member['addresses'] = $field['und'];
+          break;
+        case 'field_user_birthday':
+          if ($dob = $field['und'][0]['value']) {
+            $dob = strtotime($dob);
+            $member['date_of_birth'] = $dob;
+          }
+          break;
+        case 'field_user_first_name':
+          $member['firstname'] = $field['und'][0]['value'];
+          break;
+        case 'field_user_gender':
+          $member['gender'] = $field['und'][0]['value'];
+          break;
+        case 'field_user_last_name':
+          $member['lastname'] = $field['und'][0]['value'];
+          break;
+        case 'field_user_mobile':
+          $member['mobile'] = $field['und'][0]['value'];
+          $member['mobile_numbers'][] = $field['und'][0]['value'];
+          break;
+        case 'field_school_reference':
+          $schools = array();
+
+          foreach ($field['und'] as $school) {
+            $entity = entity_load('ds_school', array($school['target_id']));
+
+            if ($entity) {
+              $entity = $entity[$school['target_id']];
+              $schools[] = array(
+                'name' => $entity->name,
+                'level' => $entity->level,
+                'country' => $entity->country,
+                'administrative_area' => $entity->state,
+                'locality' => $entity->city,
+                'postal_code' => $entity->zip,
+                'thoroughfare' => $entity->street
+              );
+            }
+          }
+          $member['schools'] = $schools;
+          break;
+      }
+    }
+  }
+
+  return $member;
 }
 
 /**
