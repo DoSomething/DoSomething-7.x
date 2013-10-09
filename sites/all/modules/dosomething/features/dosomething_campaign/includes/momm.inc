@@ -16,7 +16,7 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   $form = array();
   // JS will only work if ds_neue library has already been loaded somewhere on the page.
   // Making the call to add the library from this form callback would give mixed results.
-  $form['#attached']['js'][] = drupal_get_path('module', 'ds_neue') . '/js/location-finder.js';;
+  $form['#attached']['js'][] = drupal_get_path('module', 'ds_neue') . '/js/location-finder.js';
   $form['header'] = array(
     '#markup' => '<h1>What school do you go to?</h1>',
   );
