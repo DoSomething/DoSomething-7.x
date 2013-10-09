@@ -1224,14 +1224,10 @@ function dosomething_login_register_block_submit($form, &$form_state) {
  *  Prepares user conversion to member object
  **/
 function _dosomething_login_prepare_member($uid) {
-  if (is_numeric($uid)) {
-    $user = user_load($uid);
-    if ($user === FALSE) return FALSE;
-  }
-  else {
+  if (!($user = user_load($uid))) {
     return FALSE;
   }
-
+  
   $member = array(
     'uid' => $user->uid,
     'created' => $user->created,
@@ -1249,7 +1245,9 @@ function _dosomething_login_prepare_member($uid) {
     'schools' => array()
   );
 
-  if ($user->mail) $member['email_addresses'][] = $user->mail;
+  if ($user->mail) {
+    $member['email_addresses'][] = $user->mail;
+  }
 
   $profile = profile2_load_by_user($user->uid, 'main');
   
