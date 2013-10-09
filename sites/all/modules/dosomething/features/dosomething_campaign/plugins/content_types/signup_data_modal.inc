@@ -22,6 +22,9 @@ $plugin = array(
     'opacity' => '0.3',
     'bg_color' => '#ccc',
     'close_text_lbl' => 'Close',
+    'mobile_breakpoint' => '600',
+    'mobile_width' => 1.0,
+    'mobile_height' => 1.0,
   ),
 );
 
@@ -85,6 +88,7 @@ function signup_data_modal_edit_form($form, &$form_state) {
   $form['modal_form_id'] = array(
     '#type' => 'textfield',
     '#title' => t('Modal Form ID'),
+    '#required' => TRUE,
     '#default_value' => $conf['modal_form_id'],
     '#description' => 'The Drupal Form ID of the form to render in the modal.  This value must exist in the dosomething_modal_form_builder_access function.',
   );
@@ -98,44 +102,78 @@ function signup_data_modal_edit_form($form, &$form_state) {
     '#default_value' => $conf['close_text_lbl'],
     '#description' => "Leave empty if user should not be able to close the modal.",
   );
-  $form['modal_options']['modal_size'] = array(
+  $form['modal_options']['desktop'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Size'),
+    '#title' => t('Desktop'),
     '#collapsible' => TRUE, 
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
   );
-  $form['modal_options']['modal_size']['type'] = array(
+  $form['modal_options']['desktop']['type'] = array(
     '#type' => 'select',
-    '#title' => t('Type'),
-    '#default_value' => $conf['scale'],
+    '#title' => t('Desktop Modal Type'),
+    '#required' => TRUE,
+    '#default_value' => $conf['type'],
     '#options' => array('scale' => 'scale', 'fixed' => 'fixed'),
     '#description' => "<ul><li>Fixed: enter px values for height/width.</li><li>Scale: enter a percentage, e.g. 0.8</li></ul>",
   );
-  $form['modal_options']['modal_size']['width'] = array(
+  $form['modal_options']['desktop']['width'] = array(
     '#type' => 'textfield',
-    '#title' => t('Width'),
+    '#title' => t('Desktop Modal Width'),
+    '#required' => TRUE,
     '#default_value' => $conf['width'],
   );
-  $form['modal_options']['modal_size']['height'] = array(
+  $form['modal_options']['desktop']['height'] = array(
     '#type' => 'textfield',
-    '#title' => t('Height'),
+    '#title' => t('Desktop Modal Height'),
+    '#required' => TRUE,
     '#default_value' => $conf['height'],
+  );
+  $form['modal_options']['mobile'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('mobile'),
+    '#description' => 'Modal window will always be set to Scale on mobile.',
+    '#collapsible' => TRUE, 
+    '#collapsed' => FALSE,
+  );
+  $form['modal_options']['mobile']['mobile_breakpoint'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobile Breakpoint'),
+    '#required' => TRUE,
+    '#default_value' => $conf['mobile_breakpoint'],
+    '#description' => 'The px width at which the mobile modal should be used',
+  );
+  $form['modal_options']['mobile']['mobile_width'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobile Modal Width'),
+    '#required' => TRUE,
+    '#default_value' => $conf['mobile_width'],
+    '#description' => 'Percentage for width scale, e.g. 0.95',
+  );
+  $form['modal_options']['mobile']['mobile_height'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobile Modal Height'),
+    '#required' => TRUE,
+    '#default_value' => $conf['mobile_height'],
+    '#description' => 'Percentage for height scale, e.g. 0.95',
   );
   $form['modal_options']['overlay'] = array(
     '#type' => 'fieldset',
     '#title' => t('Overlay'),
+    '#required' => TRUE,
     '#collapsible' => TRUE, 
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
   );
   $form['modal_options']['overlay']['opacity'] = array(
     '#type' => 'textfield',
     '#title' => t('Opacity'),
+    '#required' => TRUE,
     '#default_value' => $conf['opacity'],
     '#description' => 'Enter a percentage, e.g. 0.3',
   );
   $form['modal_options']['overlay']['bg_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Background Color'),
+    '#required' => TRUE,
     '#default_value' => $conf['bg_color'],
   );
   return $form;
