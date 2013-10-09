@@ -55,10 +55,10 @@ function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
     return;
   }
   drupal_add_library('ds_neue', 'ds-neue');
-  $link_name = 'ds-signup-data-modal';
-  // Build JS settings:
-  $options = array(
-    $link_name => array(
+  // Build JS settings for desktop modal:
+  $desktop_class = 'ds-signup-data-desktop';
+  $desktop_options = array(
+    $desktop_class => array(
       'modalSize' => array(
         'type' => $conf['type'],
         'width' => $conf['width'],
@@ -71,12 +71,37 @@ function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
       'closeText' => $conf['close_text_lbl'],
     ),
   );
-  $modal_link = dosomething_modal_form_link('Signup Data Form', $conf['modal_form_id'], $options);
+  $desktop_modal_link = dosomething_modal_form_link('Desktop', $conf['modal_form_id'], $desktop_options);
+  // Build JS settings for mobile modal:
+  $mobile_class = 'ds-signup-data-mobile';
+  $mobile_options = array(
+    $mobile_class => array(
+      'modalSize' => array(
+        // Mobile modal should always scale.
+        'type' => 'scale',
+        'width' => $conf['mobile_width'],
+        'height' =>$conf['mobile_height'],
+      ),
+      'modalOptions' => array(
+        'opacity' => $conf['opacity'],
+        'background-color' => $conf['bg_color'],
+      ),
+      'closeText' => $conf['close_text_lbl'],
+    ),
+  );
+  $mobile_modal_link = dosomething_modal_form_link('Mobile', $conf['modal_form_id'], $mobile_options);
   $block = new stdClass();
-  $block->content = '<div style="display:none;">' . $modal_link . '</div>';
-  $link_class_name = 'ctools-modal-' . $link_name;
-  // Click the link to make modal automatically appear:
-  drupal_add_js('jQuery(window).bind("load", function() { jQuery(".' . $link_class_name . '").click(); });', 'inline');
+  // Output both modal links in a hidden div:
+  $block->content = '<div style="display:none;">' . $desktop_modal_link . ' | ' . $mobile_modal_link . '</div>';
+  // Check browser viewport to determine which modal link to auto-click:
+  drupal_add_js('jQuery(window).bind("load", function() { 
+    if (jQuery(window).width() < ' . $conf['mobile_breakpoint'] . ') {
+      jQuery(".ctools-modal-' . $mobile_class . '").click();
+    } 
+    else {
+      jQuery(".ctools-modal-' . $desktop_class . '").click();      
+    }
+  });', 'inline');
   return $block;
 }
 
