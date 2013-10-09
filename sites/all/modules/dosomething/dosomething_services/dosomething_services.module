@@ -146,7 +146,7 @@ function dosomething_services_services_resources() {
         'operations' => array(
           'create' => array(
             'help' => 'Submit a report back to a Do Something campaign.',
-            'file' => array('type' => 'inc', 'module' => 'dosomething_servicies', 'name' => 'resources/reportback_resource'),
+            'file' => array('type' => 'module', 'module' => 'dosomething_services', 'name' => 'dosomething_services'),
             'callback' => '_dosomething_services_reportback_create',
             'access callback' => '_dosomething_services_reportback_access',
             'access arguments' => array('create'),
