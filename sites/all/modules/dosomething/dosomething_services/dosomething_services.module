@@ -697,6 +697,8 @@ function _dosomething_services_reportback_create($organizationCode, $nid, $field
     // Expecting an fid as the value. Save the file object for moving to a new location later.
     $pictureFid = $fieldData['picture'];
     $pictureFile = file_load($pictureFid);
+    $pictureFile->uid = $user->uid;
+    $pictureFile = file_save($pictureFile);
 
     // Remove 'picture' field since it'll be saved through a separate method.
     unset($fieldData['picture']);
