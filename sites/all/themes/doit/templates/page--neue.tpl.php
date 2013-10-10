@@ -1,5 +1,5 @@
 <nav id="top" class="utility">
-  <div class="flexwidth-wrapper">
+  <div class="page-width">
     <a href="#" class="utility-link js-menu-toggle">Menu</a>
     <ul class="utility-links">
       <li class="search">

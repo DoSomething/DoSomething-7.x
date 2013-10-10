@@ -47,9 +47,9 @@ function dosomething_modal_example_page() {
   );
   $links[] = dosomething_modal_form_link('DoSomething Modal Example (Scale)', 'dosomething_modal_example_form', $options);
 
-  // Output user school form as an example:
-  if (module_exists('dosomething_user')) {
-    $links[] = dosomething_modal_form_link('DoSomething User School Form', 'dosomething_user_school_form', $options);	
+  // Output momm campaign data signup form as an example:
+  if (module_exists('dosomething_campaign') && function_exists('dosomething_campaign_momm_signup_data_form')) {
+    $links[] = dosomething_modal_form_link('DoSomething Campaign Signup - School Form', 'dosomething_campaign_momm_signup_data_form', $options);	
   }
 
   // Render links as a list:

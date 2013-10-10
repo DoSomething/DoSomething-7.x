@@ -94,6 +94,7 @@ function dosomething_admin_user_default_permissions() {
     'name' => 'administer imce',
     'roles' => array(
       0 => 'administrator',
+      1 => 'editorial admin',
     ),
     'module' => 'imce',
   );
