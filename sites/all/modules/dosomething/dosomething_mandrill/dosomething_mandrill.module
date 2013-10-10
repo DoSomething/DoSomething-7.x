@@ -144,10 +144,6 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
   $from = NULL;
 
   
-  if ($bla) {
-    $bla = TRUE;
-  }
-  
   $to = array();
   
   $to[] = array(
@@ -208,10 +204,6 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
       )
     ),
   );
-  
-  if ($bla) {
-    $bla = TRUE;
-  }
   
   $message['message']['to'] = $to;
   $message['message']['merge_vars'] = $merge_vars;
@@ -546,21 +538,13 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
         
         // Skip if missing user email address
         if ($user->mail != NULL) {
-          
-          // Default FNAME
-          if ($user->field_user_first_name_value == NULL) {
-            $user_first_name = 'Shawty';
-          }
-          else {
-            $user_first_name = $user->field_user_first_name_value;
-          }
 
           $merge_vars[] = array(
             'rcpt' => $user->mail,
             'vars' => array(
               array(
                 'name' => 'FNAME',
-                'content' => $user_first_name,
+                'content' => $user->field_user_first_name_value == NULL ? 'Shawty' : $user->field_user_first_name_value,
               ),
             ),
           );
