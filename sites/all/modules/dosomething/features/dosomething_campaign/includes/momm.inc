@@ -55,11 +55,17 @@ function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state)
   // Find value inbetween the []'s:
   preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
   $gsid = $gsid[1][0];
-  // If school_id, write it to profile.
+  // If a school has been entered:
   if (!empty($gsid)) {
-    //@todo: get school ID by GSID
-    dosomething_user_update_school($user, $school_id);
-    $signup_data['school_id'] = $gsid;
+    // Lookup the ds_school entity ID:
+    $school_id = dosomething_school_find_sid_by_gsid($gsid);
+    // If it exists:
+    if ($school_id) {
+      // Update user profile:
+      dosomething_user_update_school($user, $school_id);  
+    }
+    // Write gsid to signups table:
+    $signup_data['gsid'] = $gsid;
   }
   else {
     $signup_data['no_school'] = $form_state['values']['no_school'];
