@@ -154,7 +154,7 @@ function dosomething_services_services_resources() {
             'args' => array(
               array(
                 'name' => 'organizationCode',
-                'type' => 'int',
+                'type' => 'string',
                 'description' => 'The organization code of the campaign a report back is being submitted for.',
                 'source' => array('path' => 0),
                 'optional' => FALSE,
