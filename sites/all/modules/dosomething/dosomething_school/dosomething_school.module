@@ -723,6 +723,17 @@ function dosomething_school_find_by_sid($sid) {
   return $match;
 }
 
+/** 
+ * Return ds_school sid for given gsid.
+ */
+function dosomething_school_find_sid_by_gsid($gsid) {
+  return db_select("ds_school", "s")
+    ->fields("s", array("sid"))
+    ->condition("gsid", $gsid)
+    ->execute()
+    ->fetchField();
+}
+
 /**
  * Implements hook_form_alter().
  */
