@@ -517,3 +517,102 @@ $activity->name = 'end';
 $activity->inputs = array('submit_report_back');
 
 $workflows[$workflow->name] = $workflow;
+
+/**
+ * Mind on My Money 2013 Report Back
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_momm_report_back';
+$workflow->title = 'Mind on My Money 2013 Report Back';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('check_user_school');
+
+$activity = $workflow->newActivity('sms_flow_check_school');
+$activity->name = 'check_user_school';
+$activity->inputs = array('start');
+$activity->outputs = array('school_found', 'ask_state');
+$activity->school_found_activity = 'school_found';
+$activity->no_school_found_activity = 'ask_state';
+
+// If user does have a school set to her profile, verify the school
+$activity = $workflow->newActivity('verify_school_in_profile');
+$activity->name = 'school_found';
+$activity->inputs = array('check_user_school');
+$activity->outputs = array('ask_leader', 'ask_state', 'end');
+$activity->output_school_correct = 'ask_leader';
+$activity->output_school_incorrect = 'ask_state';
+$activity->question = t('This is the school we got from you before: @school_name. If this is correct, reply Y. If not, reply N.');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text @keyword to try again.');
+$activity->mdata_keywords = array(
+  '201' => 'CREDIT',
+  '311' => 'LOANS',
+  '9241' => 'SAVINGS',
+);
+
+// If user does not have a school set or she wants to reset it, start the school search
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_state';
+$activity->inputs = array('check_user_school', 'school_found');
+$activity->outputs = array('ask_school_name');
+$activity->question = "To be eligible for the $2,500 scholarship we'll need to know what school you went to for the workshop. What state is the school in? (ex: NY)";
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_school_name';
+$activity->inputs = array('ask_state');
+$activity->outputs = array('school_search');
+$activity->context_value_for_msg = 'ask_state:message';
+$activity->question = t('Thanks! And what\'s the name of the school in @context_value?');
+
+$activity = $workflow->newActivity('gs_school_search');
+$activity->name = 'school_search';
+$activity->inputs = array('ask_school_name');
+$activity->outputs = array('ask_leader', 'end');
+$activity->state_activity_name = 'ask_state';
+$activity->school_activity_name = 'ask_school_name';
+$activity->max_results = 5;
+$activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text @keyword to try again.');
+$activity->one_school_found_msg = t('We found @school_name in @school_city, @school_state. Reply Y if this is your school. Text @keyword to try again.');
+$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. Or text @keyword to try again.');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text @keyword to try again.');
+$activity->mdata_keywords = array(
+  '201' => 'CREDIT',
+  '311' => 'LOANS',
+  '9241' => 'SAVINGS',
+);
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_leader';
+$activity->inputs = array('school_found', 'school_search');
+$activity->outputs = array('ask_momm2013_question');
+$activity->question = "Two more questions. What was the first and last name of your workshop leader?";
+
+$activity = $workflow->newActivity('mdata_sms_prompt');
+$activity->name = 'ask_momm2013_question';
+$activity->inputs = array('ask_leader');
+$activity->outputs = array('submit_report_back');
+$activity->questions = array(
+  '201' => "Last question. What did you learn from the \"Matchbox 20\" game?",
+  '311' => "Last question. How will you be preparing yourself for attending college?",
+  '9241' => "Last question. What’s the best tip you got for spending less?",
+);
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('ask_momm2013_question');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  'ask_leader' => 30,
+);
+$activity->success_response = 162283;
+$activity->use_special_submitter = 'momm2013';
+$activity->webform_nid = 731099;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
