@@ -16,7 +16,6 @@
  * @see dosomething_modal_menu()
  */
 function dosomething_modal_example_page() {
-  drupal_add_library('ds_neue', 'ds-neue');
    // Create a list of clickable links.
   $links = array();
 
