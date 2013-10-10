@@ -5,6 +5,21 @@
  *
  */
 
+function dosomething_mandrill_menu() {
+  
+    $items['dosomething_mandrill/cron_test/%/%'] = array(
+    'title' => 'DoSomething Mandrill Cron Test',
+    'description' => 'Test cron dispatches for Mandrill.',
+    'page callback' => 'dosomething_mandrill_dispatch_event',
+		'page arguments' => array(2, 3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+	);
+  
+  return $items;
+
+}
+
 /**
  * Impliments hook_webform_submission_insert($node, $submission)
  *
@@ -16,7 +31,6 @@
  * (/admin/config/system/mailsystem) key to use when sending the message via
  * a Mandrill Template entry: /admin/config/services/mandrill/templates
  * 
- * We're currently using Webform 7.x-3.18
  */
 function dosomething_mandrill_webform_submission_insert($node, $submission) {
   
@@ -128,7 +142,80 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
 
   $language = language_default();
   $from = NULL;
+
   
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
+  $to = array();
+  
+  $to[] = array(
+    'email' => 'dlee+md01@dosomething.org',
+    'name' => 'Joe',
+  );
+  
+  $merge_vars[] = array(
+    'rcpt' => 'dlee+md01@dosomething.org',
+    'vars' => array(
+      array(
+        'name' => 'AGE',
+        'content' => 21,
+      ),
+      array(
+        'name' => 'FNAME',
+        'content' => 'Joe',
+      )
+    ),
+  );
+  
+  
+  $to[] = array(
+    'email' => 'dlee+md02@dosomething.org',
+    'name' => 'Bob',
+  );
+  
+  $merge_vars[] = array(
+    'rcpt' => 'dlee+md02@dosomething.org',
+    'vars' => array(
+      array(
+        'name' => 'AGE',
+        'content' => 12,
+      ),
+      array(
+        'name' => 'FNAME',
+        'content' => 'Bob',
+      )
+    ),
+  );
+  
+  
+  $to[] = array(
+    'email' => 'dlee+md03@dosomething.org',
+    'name' => 'Fred',
+  );
+    
+  $merge_vars[] = array(
+    'rcpt' => 'dlee+md03@dosomething.org',
+    'vars' => array(
+      array(
+        'name' => 'AGE',
+        'content' => 50,
+      ),
+      array(
+        'name' => 'FNAME',
+        'content' => 'Fred',
+      )
+    ),
+  );
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
+  $message['message']['to'] = $to;
+  $message['message']['merge_vars'] = $merge_vars;
+
   $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
 
   // Log results
@@ -305,13 +392,20 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     }
   }
 
-  $merge_vars = array();
+  // Preserve passed in merge_vars
+  if ($mandrill_params['message']['merge_vars']) {
+    $merge_vars = $mandrill_params['message']['merge_vars'];
+  }
+  else {
+    $merge_vars = array();
+  }
+
   if(!empty($mandrill_params['message']['to'])) {
     foreach($mandrill_params['message']['to'] as $i => $rcpt) {
       $vars = array();
       $vars[] = array(
-        'name' => 'to',
-        'content' => $rcpt['email'],
+        'name' => $rcpt['merge_var_name'],
+        'content' => $rcpt['merge_var_content'],
       );
       $merge_vars[] = array(
         'rcpt' => $rcpt['email'],
@@ -325,5 +419,250 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   if(!empty($merge_vars)) {
     $mandrill_params['message']['merge_vars'] = $merge_vars;
   }
+  
+  // Combine all merge_var values - these values are used to send multipul messages
+  // with customizations to the Mandrill templace based on the merge_var values and
+  // the matching *|TAGS|*
+  $mandrill_params['message']['merge_vars'] = array_merge($content['merge_vars'], (array) $mandrill_params['message']['merge_vars']);
+  $mandrill_params['message']['to'] = array_merge($content['to'], (array) $mandrill_params['message']['to']);
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
+}
+
+/*
+ * Dispatches messages to users for events. triggered through cron based
+ * tasks (Jenkins).
+ * 
+ * @param string $op
+ *  Operation to perform - various types of event to collect users and send
+ *  messages.
+ *
+  * @param string $target_date
+ *  The target date in international format - YYYY-MM-DD
+ *
+ * @return boolean
+ */
+function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
+  $to = array();
+  $merge_vars = array();
+  
+  switch ($op) {
+    
+    case 'dsevent-birthday':
+      
+      // SELECT users with a specific birthday. If start_date is not defined
+      // assume it's the current date. field_data_field_user_birthday is in datetime
+      // format YYYY-MM-DD
+      if ($target_date == NULL) {
+        $target_date = date('m-d');
+      }
+      else {
+        $target_date = date('m-d', strtotime($target_date));
+      }
+
+      $query = db_select(users, 'u');
+      
+      $query->join('profile', 'p', 'p.uid = u.uid');
+      $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
+      $query->join('field_data_field_user_birthday', 'fdfub', 'fdfub.entity_id = p.pid');
+      
+      $query->fields('u', array('uid', 'mail', 'name'))
+            ->fields('fdfufn', array('field_user_first_name_value'))
+            ->fields('fdfub', array('field_user_birthday_value'))
+
+            ->condition('fdfub.field_user_birthday_value', '%-' . db_like($target_date) . '%', 'LIKE');
+            
+      $result = $query->execute()
+                      ->fetchAll();
+      
+      foreach($result as $user) {
+
+        // Skip if missing user email address
+        if ($user->mail != NULL) {
+
+          $to[] = array(
+            'email' => $user->mail,
+            'name' => $user->name == NULL ? 'DoSomethng Doer' : $user->name,
+          );
+
+          $merge_vars[] = array(
+            'rcpt' => $user->mail,
+            'vars' => array(
+              array(
+                'name' => 'AGE',
+                'content' => floor((time() - strtotime($user->field_user_birthday_value)) / (60*60*24*365)),
+              ),
+              array(
+                'name' => 'FNAME',
+                'content' => $user->field_user_first_name_value,
+              )
+            ),
+          );
+          
+        }
+        
+      }
+  
+      $key = 'dsevent-birthday';
+      
+      break;
+    
+    case 'dsevent-reg-90':
+      
+      // SELECT users who registered on the site 90 days from target_date.
+      // Assume target_date is current date if not defined
+      if ($target_date == NULL) {
+        $target_date = date('Y-m-d', time() - 60*60*24*90);
+      }
+      else {
+        $target_date = date('Y-m-d', strtotime($target_date) - 60*60*24*90);
+      }
+      
+      // @todo: Collect list of current campaigns
+      // $campaigns = dosomething_mandrill_current_campaigns();
+      
+      $query = db_select(users, 'u');
+      
+      $query->join('profile', 'p', 'p.uid = u.uid');
+      $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
+      
+      $query->fields('u', array('uid', 'created', 'mail'))
+            ->fields('fdfufn', array('field_user_first_name_value'))
+
+            ->condition('u.created', '%-' . db_like($target_date) . '%', 'LIKE');
+            
+      $result = $query->execute()
+                      ->fetchAll();
+            
+      foreach($result as $user) {
+        
+        // Skip if missing user email address
+        if ($user->mail != NULL) {
+          
+          // Default FNAME
+          if ($user->field_user_first_name_value == NULL) {
+            $user_first_name = 'Shawty';
+          }
+          else {
+            $user_first_name = $user->field_user_first_name_value;
+          }
+
+          $merge_vars[] = array(
+            'rcpt' => $user->mail,
+            'vars' => array(
+              array(
+                'name' => 'FNAME',
+                'content' => $user_first_name,
+              ),
+            ),
+          );
+          
+          // @todo: Collect list of current campaigns, add to global_merge_vars
+          /*
+            array(
+              'name' => '*|CAMPAIGNS|*',
+              'content' => $campaigns,
+            ),
+          */
+          
+        }
+
+      }
+      
+      $key = 'dsevent-reg-90';
+      
+      break;
+      
+    case 'dsevent-reg-365':
+
+      // SELECT users who registered on the site 365 days (each additional year) from target_date.
+      // Assume target_date is current date if not defined
+      
+      if ($target_date == NULL) {
+        $target_date = date('d-m', time());
+      }
+      else {
+        $target_date = date('d-m', strtotime($target_date));
+      }
+      $last_year_stamp = time() - 60*60*24*365;
+      
+      // @todo: Collect list of current campaigns
+      // $campaigns = dosomething_mandrill_current_campaigns();
+      
+      $query = db_select(users, 'u');
+      
+      $query->join('profile', 'p', 'p.uid = u.uid');
+      $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
+      
+      $query->fields('u', array('uid', 'created', 'mail'))
+            ->fields('fdfufn', array('field_user_first_name_value'))
+
+            ->condition('u.created', '%-' . db_like($target_date) . '%', 'LIKE')
+            ->condition('u.created', $last_year_stamp, '<=');
+            
+      $result = $query->execute()
+                      ->fetchAll();
+                     
+      $membership_year = floor($user->created / (60*60*24*365)); 
+      $locale = 'en_US';
+      $nf = new NumberFormatter($locale, NumberFormatter::ORDINAL);
+
+      foreach($result as $user) {
+        
+        // Skip if missing user email address
+        if ($user->mail != NULL) {
+          
+          $membership_year = $nf->format($membership_year);
+
+          $merge_vars[] = array(
+            'rcpt' => $user->mail,
+            'vars' => array(
+              array(
+                'name' => 'FNAME',
+                'content' => $user->field_user_first_name_value,
+              ),
+              array(
+                'name' => 'MEMBERSHIP_YEAR',
+                'content' => $membership_year,
+              ),
+
+            ),
+          );
+          
+          // @todo: Collect list of current campaigns, add to global_merge_vars
+          /*
+            array(
+              'name' => '*|CAMPAIGNS|*',
+              'content' => $campaigns,
+            ),
+          */
+          
+        }
+        
+      }
+      
+      $key = 'dsevent-reg-365';
+      
+      break;
+  }
+  
+  
+  // Format merge details based on Mandrill API
+  // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+  $message['message']['to'] = $to;
+  $message['message']['merge_vars'] = $merge_vars;
+  // $message['message']['global_merge_vars'] = '';
+  
+  // Construct array of target users
+  $to = 'dosomething@dosomething.org';
+  dosomething_mandrill_dispatch($to, $key, $message);
   
 }
