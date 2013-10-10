@@ -1,1 +1,0 @@
-jQuery(document).ajaxComplete(function () {  window.initializeLocationFinder(); });
