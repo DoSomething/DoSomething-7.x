@@ -542,7 +542,7 @@ $activity->no_school_found_activity = 'ask_state';
 $activity = $workflow->newActivity('verify_school_in_profile');
 $activity->name = 'school_found';
 $activity->inputs = array('check_user_school');
-$activity->outputs = array('ask_leader', 'ask_state', 'end');
+$activity->outputs = array('ask_state', 'ask_leader', 'end');
 $activity->output_school_correct = 'ask_leader';
 $activity->output_school_incorrect = 'ask_state';
 $activity->question = t('This is the school we got from you before: @school_name. If this is correct, reply Y. If not, reply N.');
@@ -613,6 +613,6 @@ $activity->webform_nid = 731099;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('submit_report_back');
+$activity->inputs = array('school_found', 'school_search', 'submit_report_back');
 
 $workflows[$workflow->name] = $workflow;
