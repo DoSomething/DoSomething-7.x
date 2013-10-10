@@ -54,7 +54,6 @@ function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
     // Don't render anything.
     return;
   }
-  drupal_add_library('ds_neue', 'ds-neue');
   // Build JS settings for desktop modal:
   $desktop_class = 'ds-signup-data-desktop';
   $desktop_options = array(

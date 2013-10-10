@@ -15,6 +15,11 @@ function dosomething_school_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['ds_school/api/autocomplete'] = array(
+    'page callback' => 'dosomething_school_api_autocomplete_callback',
+    'type' => MENU_CALLBACK,
+    'access callback' => 'user_is_logged_in',
+  );
   $items['ds_school/data_by_country'] = array(
     'title' => 'DoSomething School Info By Country',
     'page callback' => 'dosomething_school_data_by_country_callback',
@@ -578,6 +583,29 @@ function dosomething_school_make_label($entity) {
 }
 
 /**
+ * Query the Great Schools API by school name.
+ */
+function dosomething_school_api_autocomplete_callback($state, $string = '') {
+  $matches = array();
+  if ($string) {
+    $url = 'http://lofischools.herokuapp.com/search';
+    $data = array(
+      'query' => $string,
+      'state' => $state,
+    );
+    $query_url = url($url, array('query' => $data));
+    $response = drupal_http_request($query_url);
+    $results = drupal_json_decode($response->data);
+    foreach ($results['results'] as $school) {
+      $gsid = $school['gsid'];
+      $key = $school['name'] . ' [' . $gsid . ']';
+      $matches[$key] = check_plain($school['name']) . ', ' . check_plain($school['city']) . ' ' . check_plain($school['state']);
+    }
+  }
+  drupal_json_output($matches);
+}
+
+/**
  * School query callback. Formats results in manner expected by school field autocomplete in webforms.
  */
 function dosomething_school_autocomplete_callback($type, $state, $name) {
@@ -694,6 +722,17 @@ function dosomething_school_find_by_sid($sid) {
   }
 
   return $match;
+}
+
+/** 
+ * Return ds_school sid for given gsid.
+ */
+function dosomething_school_find_sid_by_gsid($gsid) {
+  return db_select("ds_school", "s")
+    ->fields("s", array("sid"))
+    ->condition("gsid", $gsid)
+    ->execute()
+    ->fetchField();
 }
 
 /**
