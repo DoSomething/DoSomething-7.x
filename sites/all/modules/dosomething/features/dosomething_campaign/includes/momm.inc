@@ -33,7 +33,8 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
     '#suffix' => '</div>',
     '#disabled' => TRUE,
   );
-  // When the author changes in the author field, we'll change the autocomplete_path to match.
+  // When the user changes value in the state field, 
+  // We'll display the gsid as textfield and change the autocomplete_path to match.
   if (!empty($form_state['values']['school_state'])) {
     $form['gsid']['#type'] = 'textfield';
     $form['gsid']['#autocomplete_path'] = 'ds_school/api/autocomplete/' . $form_state['values']['school_state'];
@@ -51,8 +52,7 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Update My Information'),
-    '#attributes' => array('class' => array('btn', 'primary')),
+    '#value' => t('Update My Information'),,
   );
   return $form;
 }
@@ -79,6 +79,7 @@ function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state)
   global $user;
   $signup_data = array();
   $school_name = check_plain($form_state['values']['gsid']);
+  //@todo: Move this preg_match into the validate function, and only return a gsid value for the submit.
   // Find value inbetween the []'s:
   preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
   $gsid = $gsid[1][0];
