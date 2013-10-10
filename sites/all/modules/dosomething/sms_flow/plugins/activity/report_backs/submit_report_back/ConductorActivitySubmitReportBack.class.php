@@ -22,7 +22,7 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
   // Use @field_value to include this value into the success message.
   public $field_value_in_response;
 
-  // (Optional) Identifier to use different method of submittin a report back.
+  // (Optional) Identifier to use different method of submitting a report back.
   // ex: 'hunt2013' does not submit to a webform
   public $use_special_submitter;
 
@@ -46,6 +46,40 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
       $submission->sid = NULL;
 
       $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
+
+      // Handling for special case - Mind on My Money 2013.
+      // This should be removed once it's no longer relevant.
+      if ($this->use_special_submitter == 'momm2013') {
+        $mdataId = intval($_REQUEST['mdata_id']);
+
+        // Submit which session the attendee went to, and get the index to submit
+        // the MoMM session-specific question to based on the mData ID.
+        $cidSession = 29;
+        $cidMommQuestion = 0;
+        if ($mdataId == 201) {
+          $wrapper->value()->data[$cidSession]['value'][0] = "Life In Plastic: Credit";
+
+          // Component ID for the field to the credit-specific question
+          $cidMommQuestion = 33;
+        }
+        elseif ($mdataId == 311) {
+          $wrapper->value()->data[$cidSession]['value'][0] = "99 Payments: College Loans";
+
+          // Component ID for the field to the loans-specific question
+          $cidMommQuestion = 32;
+        }
+        elseif ($mdataId == 9241) {
+          $wrapper->value()->data[$cidSession]['value'][0] = "Check Yourself: Budgeting";
+
+          // Component ID for the field to the savings-specific question
+          $cidMommQuestion = 31;
+        }
+
+        // Save answer to MoMM session-specific question
+        $mommAnswer = $state->getContext('ask_momm2013_question:message');
+        $wrapper->value()->data[$cidMommQuestion]['value'][0] = $mommAnswer;
+      }
+
       foreach($this->submission_fields as $key => $value) {
         // Handle any default values
         if ($key == 'defaults' && is_array($value)) {

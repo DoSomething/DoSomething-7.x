@@ -14,24 +14,34 @@
  */
 function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   $form = array();
-  // JS will only work if ds_neue library has already been loaded somewhere on the page.
-  // Making the call to add the library from this form callback would give mixed results.
-  $form['#attached']['js'][] = drupal_get_path('module', 'ds_neue') . '/js/location-finder.js';
   $form['header'] = array(
     '#markup' => '<h1>What school do you go to?</h1>',
   );
-  $form['location_finder'] = array(
-    '#markup' => theme('ds_neue_location_finder', array(
-      'help_text' => t('Enter the zip code of your school.'),
-      'results_text' => t('Nearest schools for zipcode:'),
-      )
+  $form['school_state'] = array(
+    '#type' => 'select',
+    '#title' => t("What state is your school in?"),
+    // Add an empty item for default:
+    '#options' => array_merge(array('' => ''),_dosomething_school_get_states()),
+    '#ajax' => array(
+      'callback' => 'dosomething_campaign_momm_signup_ajax_callback',
+      'wrapper' => 'autocomplete-by-state-ajax-replace',
     ),
   );
-  $form['school_id'] = array(
-    '#title' => 'School ID',
-    '#description' => 'This field will be hidden, and pre-populated with the Location Finder results',
-    '#type' => 'textfield',
+  $form['gsid'] = array(
+    '#type' => 'hidden',
+    '#prefix' => '<div id="autocomplete-by-state-ajax-replace">',
+    '#suffix' => '</div>',
+    '#disabled' => TRUE,
   );
+  // When the user changes value in the state field, 
+  // We'll display the gsid as textfield and change the autocomplete_path to match.
+  if (!empty($form_state['values']['school_state'])) {
+    $form['gsid']['#type'] = 'textfield';
+    $form['gsid']['#autocomplete_path'] = 'ds_school/api/autocomplete/' . $form_state['values']['school_state'];
+    $form['gsid']['#title'] = t("Start typing your school's name. We'll offer suggestions.");
+    $form['gsid']['#disabled'] = FALSE;
+  }
+
   $form['no_school'] = array(
     '#type' => 'radios',
     '#prefix' => '<hr><p>Or:</p>',
@@ -43,10 +53,22 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Update My Information'),
-    '#attributes' => array('class' => array('btn', 'primary')),
   );
   return $form;
 }
+
+/**
+ *
+ * AJAX callback for gsid form element.
+ *
+ * @param $form
+ * @param $form_state
+ * @return array
+ */
+function dosomething_campaign_momm_signup_ajax_callback($form, $form_state) {
+  return $form['gsid'];
+}
+
 
 /**
  * Form submission handler for dosomething_campaign_momm_signup_data_form().
@@ -56,11 +78,22 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
 function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state) {
   global $user;
   $signup_data = array();
-  $school_id = check_plain($form_state['values']['school_id']);
-  // If school_id, write it to profile.
-  if (!empty($school_id)) {
-    dosomething_user_update_school($user, $school_id);
-    $signup_data['school_id'] = $school_id;
+  $school_name = check_plain($form_state['values']['gsid']);
+  //@todo: Move this preg_match into the validate function, and only return a gsid value for the submit.
+  // Find value inbetween the []'s:
+  preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
+  $gsid = $gsid[1][0];
+  // If a school has been entered:
+  if (!empty($gsid)) {
+    // Lookup the ds_school entity ID:
+    $school_id = dosomething_school_find_sid_by_gsid($gsid);
+    // If it exists:
+    if ($school_id) {
+      // Update user profile:
+      dosomething_user_update_school($user, $school_id);  
+    }
+    // Write gsid to signups table:
+    $signup_data['gsid'] = $gsid;
   }
   else {
     $signup_data['no_school'] = $form_state['values']['no_school'];

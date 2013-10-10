@@ -1,5 +1,5 @@
 <footer class="main">
-    <div class="column">
+    <div class="footer-col">
         <h4>Connect</h4>
         <ul>
             <li><a href="/help">Help Center</a></li>
@@ -8,7 +8,7 @@
             <li><a href="https://twitter.com/#!/dosomething">Follow Us on Twitter</a></li>
         </ul>
     </div>
-    <div class="column">
+    <div class="footer-col">
         <h4>Show Your Love</h4>
         <ul>
             <li><a href="http://store.dosomething.org/">Wear Your Love</a></li>
@@ -16,7 +16,7 @@
             <li><a href="/rss">RSS Feed</a></li>
         </ul>
     </div>
-    <div class="column">
+    <div class="footer-col">
         <h4>Popular Stuff</h4>
         <ul>
             <li><a href="/awards">Do Something Awards</a></li>
@@ -25,7 +25,7 @@
             <li><a href="/grants">Grants</a></li>
         </ul>
     </div>
-    <div class="column">
+    <div class="footer-col">
         <h4>Our Peeps</h4>
         <ul>
             <li><a href="http://www.tmiagency.org/">TMI Agency</a></li>
@@ -35,7 +35,7 @@
             <li><a href="/ds-virtual">#DSVirtual</a></li>
         </ul>
     </div>
-    <div class="column">
+    <div class="footer-col">
         <h4>Random Stuff</h4>
         <ul>
             <li><a href="/faqs">FAQ</a></li>

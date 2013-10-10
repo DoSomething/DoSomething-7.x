@@ -23,6 +23,10 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
   // Max results to return from the search
   public $max_results = 6;
 
+  // Array of key-value pairs of mData IDs and the keywords associated with them.
+  // Used by the return messages to let users know what keyword to use to try again.
+  public $mdata_keywords;
+
   // Message to return if no results are found
   public $no_school_found_msg;
 
@@ -86,20 +90,29 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
       $state->setContext('gs_school_search_results', $results);
     }
 
+    // Get the restart keyword, if any, based on the mdata ID
+    $restartKeyword = "";
+    foreach($this->mdata_keywords as $mdataId => $mDataKeyword) {
+      if (intval($_REQUEST['mdata_id']) == $mdataId) {
+        $restartKeyword = $mDataKeyword;
+      }
+    }
+
     // One result found
     if ($numResults == 1) {
       $response = t($this->one_school_found_msg, array(
         '@school_name' => $results[0]->name,
         '@school_street' => $results[0]->street,
         '@school_city' => $results[0]->city,
-        '@school_state' => $results[0]->state));
+        '@school_state' => $results[0]->state,
+        '@keyword' => $restartKeyword));
       $state->setContext('sms_response', $response);
       
       $state->markSuspended();
     }
     // Multiple results found
     elseif ($numResults > 1) {
-      $response = t($this->schools_found_msg, array('@num_results' => $numResults)) . "\n";
+      $response = t($this->schools_found_msg, array('@num_results' => $numResults, '@keyword' => $restartKeyword)) . "\n";
       for ($i = 0; $i < $numResults; $i++) {
         $displayNum = $i + 1; // Start with 1 instead of 0
         $schoolName = $results[$i]->name;
@@ -118,7 +131,8 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
     else {
       $response = t($this->no_school_found_msg, array(
         '@school_name' => $schoolName,
-        '@school_state' => $schoolState));
+        '@school_state' => $schoolState,
+        '@keyword' => $restartKeyword));
       $state->setContext('sms_response', $response);
 
       // End the workflow by going to the 'end' activity

@@ -24,6 +24,10 @@ class ConductorActivityVerifySchoolInProfile extends ConductorActivity {
   // Message sent to user if they reply with an invalid response
   public $invalid_response_msg = '';
 
+  // Array of key-value pairs of mData IDs and the keywords associated with them.
+  // Used by the return messages to let users know what keyword to use to try again.
+  public $mdata_keywords;
+
   // Name of the output activity to go to if the school in the user profile is correct
   public $output_school_correct = '';
 
@@ -77,7 +81,16 @@ class ConductorActivityVerifySchoolInProfile extends ConductorActivity {
       }
       // If response is invalid, notify user and go to End
       else {
-        $state->setContext('sms_response', $this->invalid_response_msg);
+        // Get the restart keyword, if any, based on the mdata ID
+        $restartKeyword = "";
+        foreach($this->mdata_keywords as $mdataId => $mDataKeyword) {
+          if (intval($_REQUEST['mdata_id']) == $mdataId) {
+            $restartKeyword = $mDataKeyword;
+          }
+        }
+
+        // Set the message for an invalid response
+        $state->setContext('sms_response', t($this->invalid_response_msg, array('@keyword' => $restartKeyword)));
         self::selectNextOutput(UserResponseType::INVALID);
       }
     }
