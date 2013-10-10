@@ -14,23 +14,18 @@
  */
 function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   $form = array();
-  // JS will only work if ds_neue library has already been loaded somewhere on the page.
-  // Making the call to add the library from this form callback would give mixed results.
-  $form['#attached']['js'][] = drupal_get_path('module', 'ds_neue') . '/js/location-finder.js';
   $form['header'] = array(
     '#markup' => '<h1>What school do you go to?</h1>',
   );
-  $form['location_finder'] = array(
-    '#markup' => theme('ds_neue_location_finder', array(
-      'help_text' => t('Enter the zip code of your school.'),
-      'results_text' => t('Nearest schools for zipcode:'),
-      )
-    ),
+  $form['school_state'] = array(
+    '#type' => 'select',
+    '#title' => t("What state is your school in?"),
+    '#options' => _dosomething_school_get_states(),
   );
-  $form['school_id'] = array(
-    '#title' => 'School ID',
-    '#description' => 'This field will be hidden, and pre-populated with the Location Finder results',
+  $form['gsid'] = array(
     '#type' => 'textfield',
+    '#title' => t("Start typing your school's name. We'll offer suggestions."),
+    '#autocomplete_path' => 'ds_school/api/autocomplete',
   );
   $form['no_school'] = array(
     '#type' => 'radios',
@@ -56,11 +51,15 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
 function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state) {
   global $user;
   $signup_data = array();
-  $school_id = check_plain($form_state['values']['school_id']);
+  $school_name = check_plain($form_state['values']['gsid']);
+  // Find value inbetween the []'s:
+  preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
+  $gsid = $gsid[1][0];
   // If school_id, write it to profile.
-  if (!empty($school_id)) {
+  if (!empty($gsid)) {
+    //@todo: get school ID by GSID
     dosomething_user_update_school($user, $school_id);
-    $signup_data['school_id'] = $school_id;
+    $signup_data['school_id'] = $gsid;
   }
   else {
     $signup_data['no_school'] = $form_state['values']['no_school'];

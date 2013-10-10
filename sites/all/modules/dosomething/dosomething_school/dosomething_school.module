@@ -597,7 +597,8 @@ function dosomething_school_api_autocomplete_callback($string = '') {
     $results = drupal_json_decode($response->data);
     foreach ($results['results'] as $school) {
       $gsid = $school['gsid'];
-      $matches[$gsid] = check_plain($school['name']) . ', ' . check_plain($school['city']) . ' ' . check_plain($school['state']);
+      $key = $school['name'] . ' [' . $gsid . ']';
+      $matches[$key] = check_plain($school['name']) . ', ' . check_plain($school['city']) . ' ' . check_plain($school['state']);
     }
   }
   drupal_json_output($matches);
