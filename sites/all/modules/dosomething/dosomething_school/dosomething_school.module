@@ -585,12 +585,13 @@ function dosomething_school_make_label($entity) {
 /**
  * Query the Great Schools API by school name.
  */
-function dosomething_school_api_autocomplete_callback($string = '') {
+function dosomething_school_api_autocomplete_callback($state, $string = '') {
   $matches = array();
   if ($string) {
     $url = 'http://lofischools.herokuapp.com/search';
     $data = array(
       'query' => $string,
+      'state' => $state,
     );
     $query_url = url($url, array('query' => $data));
     $response = drupal_http_request($query_url);

@@ -20,13 +20,27 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   $form['school_state'] = array(
     '#type' => 'select',
     '#title' => t("What state is your school in?"),
-    '#options' => _dosomething_school_get_states(),
+    // Add an empty item for default:
+    '#options' => array_merge(array('' => ''),_dosomething_school_get_states()),
+    '#ajax' => array(
+      'callback' => 'dosomething_campaign_momm_signup_ajax_callback',
+      'wrapper' => 'autocomplete-by-state-ajax-replace',
+    ),
   );
   $form['gsid'] = array(
-    '#type' => 'textfield',
-    '#title' => t("Start typing your school's name. We'll offer suggestions."),
-    '#autocomplete_path' => 'ds_school/api/autocomplete',
+    '#type' => 'hidden',
+    '#prefix' => '<div id="autocomplete-by-state-ajax-replace">',
+    '#suffix' => '</div>',
+    '#disabled' => TRUE,
   );
+  // When the author changes in the author field, we'll change the autocomplete_path to match.
+  if (!empty($form_state['values']['school_state'])) {
+    $form['gsid']['#type'] = 'textfield';
+    $form['gsid']['#autocomplete_path'] = 'ds_school/api/autocomplete/' . $form_state['values']['school_state'];
+    $form['gsid']['#title'] = t("Start typing your school's name. We'll offer suggestions.");
+    $form['gsid']['#disabled'] = FALSE;
+  }
+
   $form['no_school'] = array(
     '#type' => 'radios',
     '#prefix' => '<hr><p>Or:</p>',
@@ -42,6 +56,19 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   );
   return $form;
 }
+
+/**
+ *
+ * AJAX callback for gsid form element.
+ *
+ * @param $form
+ * @param $form_state
+ * @return array
+ */
+function dosomething_campaign_momm_signup_ajax_callback($form, $form_state) {
+  return $form['gsid'];
+}
+
 
 /**
  * Form submission handler for dosomething_campaign_momm_signup_data_form().
