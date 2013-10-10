@@ -955,88 +955,85 @@ header[role="banner"] {
 }
 /* line 115, sass/_sections.sass */
 #cmp .header .row-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   padding: 1%;
 }
-/* line 123, sass/_sections.sass */
+/* line 120, sass/_sections.sass */
 #cmp .headline {
   border-top: 1px solid #dddddd;
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
   padding: 25px 0;
 }
-/* line 132, sass/_sections.sass */
+/* line 129, sass/_sections.sass */
 #cmp .call-to-action p {
   color: white;
   line-height: 2em;
   letter-spacing: 0.05em;
   font-size: 1.5em;
 }
-/* line 138, sass/_sections.sass */
+/* line 135, sass/_sections.sass */
 #cmp .call-to-action .btn {
   margin: 0;
 }
-/* line 141, sass/_sections.sass */
+/* line 138, sass/_sections.sass */
 #cmp .call-to-action .section-container {
   width: 43em;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 141, sass/_sections.sass */
+  /* line 138, sass/_sections.sass */
   #cmp .call-to-action .section-container {
     width: auto;
   }
 }
-/* line 150, sass/_sections.sass */
+/* line 147, sass/_sections.sass */
 #cmp .how-it-works {
   padding: 2em 0;
 }
-/* line 153, sass/_sections.sass */
+/* line 150, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container {
   clear: both;
   overflow: hidden;
   margin: 0 0 1em 0;
 }
-/* line 158, sass/_sections.sass */
+/* line 155, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container a {
   text-transform: uppercase;
   text-decoration: none;
 }
-/* line 162, sass/_sections.sass */
+/* line 159, sass/_sections.sass */
 #cmp .how-it-works .how-it-works-container a:hover {
   text-decoration: underline;
 }
-/* line 167, sass/_sections.sass */
+/* line 164, sass/_sections.sass */
 #cmp .action-kit {
   clear: both;
   padding: 1em;
 }
-/* line 171, sass/_sections.sass */
+/* line 168, sass/_sections.sass */
 #cmp .action-kit img {
   position: relative;
   top: 15px;
   right: 20px;
 }
-/* line 176, sass/_sections.sass */
+/* line 173, sass/_sections.sass */
 #cmp .action-kit .section-container {
   width: 35em;
 }
-/* line 182, sass/_sections.sass */
+/* line 179, sass/_sections.sass */
 #cmp .prizing p {
   padding: 1em 0;
 }
-/* line 185, sass/_sections.sass */
+/* line 182, sass/_sections.sass */
 #cmp .prizing .prizing-container {
   width: 66.66667%;
   margin: 0 auto;
   clear: both;
 }
-/* line 190, sass/_sections.sass */
+/* line 187, sass/_sections.sass */
 #cmp .prizing .btn {
   margin: 0 auto 1em;
 }
-/* line 197, sass/_sections.sass */
+/* line 194, sass/_sections.sass */
 #cmp .sms-game-example .sms-game-container {
   width: 100%;
   max-width: 35em;
@@ -1044,7 +1041,7 @@ header[role="banner"] {
   overflow: hidden;
   clear: both;
 }
-/* line 204, sass/_sections.sass */
+/* line 201, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation {
   margin: 1em auto 2em;
   padding: 1em 2em;
@@ -1057,7 +1054,7 @@ header[role="banner"] {
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 211, sass/_sections.sass */
+/* line 208, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation:after {
   content: "";
   display: block;
@@ -1065,194 +1062,194 @@ header[role="banner"] {
   border-style: solid;
   border-width: 15px;
 }
-/* line 217, sass/_sections.sass */
+/* line 214, sass/_sections.sass */
 #cmp .sms-game-example .game-conversation p {
   line-height: 1.6em;
   font-weight: 500;
   text-transform: uppercase;
 }
-/* line 222, sass/_sections.sass */
+/* line 219, sass/_sections.sass */
 #cmp .sms-game-example .game-ds {
   float: left;
 }
-/* line 224, sass/_sections.sass */
+/* line 221, sass/_sections.sass */
 #cmp .sms-game-example .game-ds:after {
   bottom: -30px;
   left: 20px;
   border-color: #ff8d08 #ff8d08 white white;
 }
-/* line 228, sass/_sections.sass */
+/* line 225, sass/_sections.sass */
 #cmp .sms-game-example .game-ds p {
   text-align: left;
 }
-/* line 231, sass/_sections.sass */
+/* line 228, sass/_sections.sass */
 #cmp .sms-game-example .game-user {
   float: right;
 }
-/* line 233, sass/_sections.sass */
+/* line 230, sass/_sections.sass */
 #cmp .sms-game-example .game-user:after {
   bottom: -30px;
   right: 20px;
   border-color: #ff8d08 white white #ff8d08;
 }
-/* line 237, sass/_sections.sass */
+/* line 234, sass/_sections.sass */
 #cmp .sms-game-example .game-user p {
   text-align: right;
 }
-/* line 244, sass/_sections.sass */
+/* line 241, sass/_sections.sass */
 #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
   float: left;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 244, sass/_sections.sass */
+  /* line 241, sass/_sections.sass */
   #cmp .profiles .profile-photo, #cmp .profiles .profile-copy {
     float: none;
   }
 }
-/* line 251, sass/_sections.sass */
+/* line 248, sass/_sections.sass */
 #cmp .profiles .profile-photo {
   width: 290px;
   clear: both;
   margin: 0.5em 4em 0 0;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 251, sass/_sections.sass */
+  /* line 248, sass/_sections.sass */
   #cmp .profiles .profile-photo {
     margin: 0.5em auto 0;
   }
 }
-/* line 259, sass/_sections.sass */
+/* line 256, sass/_sections.sass */
 #cmp .profiles .profile-copy {
   width: 34em;
   margin: 0 0 3em 0;
   padding-top: 1em;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 259, sass/_sections.sass */
+  /* line 256, sass/_sections.sass */
   #cmp .profiles .profile-copy {
     width: 90%;
     max-width: 35em;
     margin: 0 auto 3em;
   }
 }
-/* line 269, sass/_sections.sass */
+/* line 266, sass/_sections.sass */
 #cmp .profiles .profile-copy p {
   text-align: left;
 }
-/* line 271, sass/_sections.sass */
+/* line 268, sass/_sections.sass */
 #cmp .profiles .profile-copy h2 {
   color: #00aced;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 271, sass/_sections.sass */
+  /* line 268, sass/_sections.sass */
   #cmp .profiles .profile-copy h2 {
     text-align: center;
   }
 }
-/* line 280, sass/_sections.sass */
+/* line 277, sass/_sections.sass */
 #cmp .content {
   width: 90%;
   margin: 1em auto 2em;
   max-width: 35em;
   /* this padding should be abstracted to all <h3> */
 }
-/* line 285, sass/_sections.sass */
+/* line 282, sass/_sections.sass */
 #cmp .content p {
   display: block;
   text-align: left;
   line-height: 1.5em;
   padding-bottom: 1em;
 }
-/* line 290, sass/_sections.sass */
+/* line 287, sass/_sections.sass */
 #cmp .content h2 {
   padding-bottom: 0.5em;
 }
-/* line 294, sass/_sections.sass */
+/* line 291, sass/_sections.sass */
 #cmp .content .headline-callout {
   padding: 0 0 0.5em 0;
   text-transform: capitalize;
   text-align: left;
 }
 @media only screen and (max-width: 1139px) {
-  /* line 294, sass/_sections.sass */
+  /* line 291, sass/_sections.sass */
   #cmp .content .headline-callout {
     padding: 0 0 0.25em 0;
     margin: 0 auto 0;
   }
 }
-/* line 305, sass/_sections.sass */
+/* line 302, sass/_sections.sass */
 #cmp .sms {
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
   background: #ff9922;
 }
-/* line 310, sass/_sections.sass */
+/* line 307, sass/_sections.sass */
 #cmp .sms label {
   margin: 3% 0 0;
 }
-/* line 312, sass/_sections.sass */
+/* line 309, sass/_sections.sass */
 #cmp .sms form {
   width: 80%;
   margin: 2em auto 0;
 }
 @media only screen and (max-width: 600px) {
-  /* line 312, sass/_sections.sass */
+  /* line 309, sass/_sections.sass */
   #cmp .sms form {
     width: 95% !important;
     margin: 0 auto 0 !important;
   }
 }
-/* line 320, sass/_sections.sass */
+/* line 317, sass/_sections.sass */
 #cmp .sms .btn {
   width: 9.4em;
   margin: 1em auto;
 }
-/* line 324, sass/_sections.sass */
+/* line 321, sass/_sections.sass */
 #cmp .sms-input-wrapper {
   width: 50%;
   float: left;
   margin: 0 0 2em 0;
 }
 @media only screen and (max-width: 600px) {
-  /* line 324, sass/_sections.sass */
+  /* line 321, sass/_sections.sass */
   #cmp .sms-input-wrapper {
     width: 100%;
   }
-  /* line 332, sass/_sections.sass */
+  /* line 329, sass/_sections.sass */
   #cmp .sms-input-wrapper.first-column {
     margin: 0 0 0 0;
   }
 }
-/* line 335, sass/_sections.sass */
+/* line 332, sass/_sections.sass */
 #cmp .sms-input {
   width: 85%;
   margin: 5% 0 0 0;
 }
 @media only screen and (max-width: 600px) {
-  /* line 335, sass/_sections.sass */
+  /* line 332, sass/_sections.sass */
   #cmp .sms-input {
     width: 100%;
   }
 }
-/* line 342, sass/_sections.sass */
+/* line 339, sass/_sections.sass */
 #cmp .sms-alpha-wrapper {
   float: left;
   width: 35.8%;
   margin: 0 0 4% 0;
 }
-/* line 346, sass/_sections.sass */
+/* line 343, sass/_sections.sass */
 #cmp .sms-alpha-wrapper input {
   width: 83.5%;
 }
-/* line 349, sass/_sections.sass */
+/* line 346, sass/_sections.sass */
 #cmp .sms-beta-mobile {
   clear: both;
   margin: 5% 0 -1%;
 }
-/* line 356, sass/_sections.sass */
+/* line 353, sass/_sections.sass */
 #cmp .gallery img {
   border: 1px solid #dddddd !important;
   -webkit-border-radius: 3px;
@@ -1264,7 +1261,7 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #bbbbbb !important;
   box-shadow: 0 10px 10px -10px #bbbbbb !important;
 }
-/* line 364, sass/_sections.sass */
+/* line 361, sass/_sections.sass */
 #cmp .map iframe {
   width: 90%;
   margin: 0 auto;
@@ -1274,60 +1271,60 @@ header[role="banner"] {
   -moz-box-shadow: 0 10px 10px -10px #cccccc;
   box-shadow: 0 10px 10px -10px #cccccc;
 }
-/* line 373, sass/_sections.sass */
+/* line 370, sass/_sections.sass */
 #cmp .success_msg {
   margin: 0 auto 1em;
 }
-/* line 375, sass/_sections.sass */
+/* line 372, sass/_sections.sass */
 #cmp .success_msg h2 {
   text-transform: uppercase;
   font-weight: 600;
   color: #00aced;
 }
-/* line 382, sass/_sections.sass */
+/* line 379, sass/_sections.sass */
 #cmp .faq {
   width: 90%;
   margin: 1em auto 2em;
   max-width: 35em;
   position: relative;
 }
-/* line 387, sass/_sections.sass */
+/* line 384, sass/_sections.sass */
 #cmp .faq h3, #cmp .faq p {
   text-align: left;
 }
-/* line 389, sass/_sections.sass */
+/* line 386, sass/_sections.sass */
 #cmp .faq h3 {
   cursor: pointer;
   font-weight: bold;
   color: #999999;
 }
-/* line 393, sass/_sections.sass */
+/* line 390, sass/_sections.sass */
 #cmp .faq h3:hover {
   text-decoration: underline;
 }
-/* line 396, sass/_sections.sass */
+/* line 393, sass/_sections.sass */
 #cmp .faq p {
   padding-bottom: 1em;
 }
-/* line 399, sass/_sections.sass */
+/* line 396, sass/_sections.sass */
 #cmp .faq div {
   margin: 0 0 0.5em 0;
 }
-/* line 402, sass/_sections.sass */
+/* line 399, sass/_sections.sass */
 #cmp .faq ul {
   list-style-type: disc;
   padding-left: 2em;
 }
-/* line 406, sass/_sections.sass */
+/* line 403, sass/_sections.sass */
 #cmp .faq .btn {
   margin: 1em auto 0;
 }
-/* line 409, sass/_sections.sass */
+/* line 406, sass/_sections.sass */
 #cmp .faq .back-to-top {
   text-align: right;
   padding: 1em 0 1em;
 }
-/* line 413, sass/_sections.sass */
+/* line 410, sass/_sections.sass */
 #cmp .faq .top-btn {
   font-weight: 400;
   color: #c6c7c8;
@@ -1337,37 +1334,37 @@ header[role="banner"] {
   background-repeat: no-repeat;
   background-position: 0% 40%;
 }
-/* line 426, sass/_sections.sass */
+/* line 423, sass/_sections.sass */
 #cmp .sponsor p {
   padding: 8px;
   text-align: center;
 }
-/* line 430, sass/_sections.sass */
+/* line 427, sass/_sections.sass */
 #cmp .sponsor a {
   padding: 8px;
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  /* line 430, sass/_sections.sass */
+  /* line 427, sass/_sections.sass */
   #cmp .sponsor a {
     display: block;
   }
 }
-/* line 439, sass/_sections.sass */
+/* line 436, sass/_sections.sass */
 #cmp .footer {
   padding: 2% 0;
   margin: 0 0 -2%;
   text-align: center;
   border-bottom: 0;
 }
-/* line 444, sass/_sections.sass */
+/* line 441, sass/_sections.sass */
 #cmp .footer img {
   width: 50px;
   margin: 0 auto;
   display: block;
 }
 @media only screen and (max-width: 600px) {
-  /* line 451, sass/_sections.sass */
+  /* line 448, sass/_sections.sass */
   #cmp .view-campaign-gallery #slideshow {
     height: 200px !important;
   }
