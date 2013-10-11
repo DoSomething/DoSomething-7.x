@@ -8,6 +8,9 @@ img
 // CANS STYLES
 // -----------
 
+.faq h3
+  margin-top: 1em
+
 .guide-instructions
   max-width: 550px
   text-align: center
@@ -221,6 +224,12 @@ a
 
 h1.headline-callout
   padding: 0
+  @include respond-to(phones)  
+    font-size: 1.25em
+
+h2.headline-callout
+  @include respond-to(phones)
+    font-size: 1em
 
 .headline-callout
   font-weight: 600
@@ -277,7 +286,7 @@ h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
   font-family: $din
   text-align: left
   color: $off_black
-  line-height: em-calc(28)
+  line-height: 1.3em
 
 h1, h2, h3, p, img
   text-align: center
@@ -291,13 +300,19 @@ p
 h1
   font-size: em-calc(32)
   font-weight: 500
+  @include respond-to(phones)
+    font-size: em-calc(24)
 
 h2
   font-size: em-calc(24)
   font-weight: 500
+  @include respond-to(phones)
+    font-size: em-calc(18)
 
 h3
   font-size: em-calc(18)
+  @include respond-to(phones)
+    font-size: em-calc(16)
 
 h4
   font-size: em-calc(16)

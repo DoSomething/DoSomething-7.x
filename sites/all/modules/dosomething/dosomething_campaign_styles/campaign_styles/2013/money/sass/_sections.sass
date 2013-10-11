@@ -44,6 +44,10 @@
   background-position: center center
   @include background-size(cover)
   padding: 1% 2%
+  @include respond-to(phones)
+    height: 200px
+    background: #000 url('assets/bg-header.jpg') no-repeat center center
+    @include background-size(cover)
 
   .logo-campaign
     margin: 0 auto
@@ -64,6 +68,11 @@
 
     @include respond-to(tablets_and_phones)
       font-size: 3em
+
+    @include respond-to(phones)
+      margin: 42px auto 12px
+      img
+        max-height: 110px
 
   .log-out
     color: $font-light

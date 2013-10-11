@@ -58,6 +58,8 @@ html /* reset "do it" theme base of 14px */
 // page background color
 body
   background: #000 url('assets/bg-header.jpg') repeat-x center 50px
+  @include respond-to(phones)
+    background: #000
 
 // set inner container width, remove floats and center
 #main-wrapper div[role="main"]
