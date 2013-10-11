@@ -286,7 +286,7 @@ function dosomething_subscribe_find_and_signup(&$form, &$form_state) {
 
   // --------- Mandrill ------
   // Check for email value or mobile spoof address
-  if (($email != NULL) || (strpos($email, '@mobile') === FALSE)) {
+  if (valid_email_address($email)) {
 
     // Check for Mandrill Key value in node
     $keys = field_get_items('node', $node, 'field_mandrill_key');
