@@ -91,9 +91,14 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
       // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
       // users responding to these messages results in anyone reading the message.
       $from = NULL;
+      
+      // Email missing, mobile submission
+      if ($to != '') {
 
-      // Send transactional message
-      $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $params, $from, TRUE);
+        // Send transactional message
+        $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $params, $from, TRUE);
+        
+      }
 
       /**
        * $send: If TRUE, drupal_mail() will call drupal_mail_system()->mail() to deliver the message, and store
