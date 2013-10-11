@@ -545,7 +545,7 @@ $activity->inputs = array('check_user_school');
 $activity->outputs = array('ask_state', 'ask_leader', 'end');
 $activity->output_school_correct = 'ask_leader';
 $activity->output_school_incorrect = 'ask_state';
-$activity->question = t('This is the school we got from you before: @school_name. If this is correct, reply Y. If not, reply N.');
+$activity->question = t('First, let\'s confirm the school we got from you previously: @school_name. If this is correct, reply Y. If not, reply N.');
 $activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text @keyword to try again.');
 $activity->mdata_keywords = array(
   '201' => 'CREDIT',
@@ -588,7 +588,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_leader';
 $activity->inputs = array('school_found', 'school_search');
 $activity->outputs = array('ask_momm2013_question');
-$activity->question = "Two more questions. What was the first and last name of your workshop leader?";
+$activity->question = "Next question. What was the first and last name of your workshop leader?";
 
 $activity = $workflow->newActivity('mdata_sms_prompt');
 $activity->name = 'ask_momm2013_question';
@@ -597,7 +597,7 @@ $activity->outputs = array('submit_report_back');
 $activity->questions = array(
   '201' => "Last question. What did you learn from the \"Matchbox 20\" game?",
   '311' => "Last question. How will you be preparing yourself for attending college?",
-  '9241' => "Last question. What’s the best tip you got for spending less?",
+  '9241' => "Last question. What's the best tip you got for spending less?",
 );
 
 $activity = $workflow->newActivity('submit_report_back');
