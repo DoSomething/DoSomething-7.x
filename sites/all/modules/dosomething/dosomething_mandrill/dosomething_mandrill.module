@@ -10,7 +10,7 @@ function dosomething_mandrill_menu() {
     $items['dosomething_mandrill/cron_test/%'] = array(
     'title' => 'DoSomething Mandrill Cron Test - no target date',
     'description' => 'Test cron dispatches for Mandrill.',
-    'page callback' => 'dosomething_mandrill_dispatch_event',
+    'page callback' => 'dosomething_mandrill_dispatch_events',
 		'page arguments' => array(2, 3),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
@@ -19,7 +19,7 @@ function dosomething_mandrill_menu() {
     $items['dosomething_mandrill/cron_test/%/%'] = array(
     'title' => 'DoSomething Mandrill Cron Test',
     'description' => 'Test cron dispatches for Mandrill.',
-    'page callback' => 'dosomething_mandrill_dispatch_event',
+    'page callback' => 'dosomething_mandrill_dispatch_events',
 		'page arguments' => array(2, 3),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
@@ -164,6 +164,8 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
     watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to using the Mandrill %key.',
               array('%to' => $to, '%key' => $key), WATCHDOG_ERROR);
   }
+  
+  return $message_status['result'];
 
 }
 
@@ -388,7 +390,7 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
  *
  * @return boolean
  */
-function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
+function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   
   $to = array();
   $merge_vars = array();
@@ -600,8 +602,14 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
   $message['message']['merge_vars'] = $merge_vars;
   $message['message']['global_merge_vars'] = $global_merge_vars;
   
-  // Construct array of target users
-  dosomething_mandrill_dispatch($to, $key, $message);
+  // Send merge details to Mandrill for mass dispatch
+  $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message);
+  
+  // Report to Drush results
+  $results['send_status'] = $dispatch_results ? 'Success' : 'Error';
+  $results['sent'] = count($to);
+
+  return $results;
   
 }
 
@@ -632,6 +640,7 @@ function dosomething_mandrill_campaign_listing() {
       weight              
     ');
   
+  // todo: Move this to a tpl file
   $campaign_markup  = '<ul>';
   foreach ($results as $campaign) {
     
