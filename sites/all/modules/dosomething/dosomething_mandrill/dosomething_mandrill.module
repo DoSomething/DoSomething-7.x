@@ -7,6 +7,15 @@
 
 function dosomething_mandrill_menu() {
   
+    $items['dosomething_mandrill/cron_test/%'] = array(
+    'title' => 'DoSomething Mandrill Cron Test - no target date',
+    'description' => 'Test cron dispatches for Mandrill.',
+    'page callback' => 'dosomething_mandrill_dispatch_event',
+		'page arguments' => array(2, 3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+	);
+  
     $items['dosomething_mandrill/cron_test/%/%'] = array(
     'title' => 'DoSomething Mandrill Cron Test',
     'description' => 'Test cron dispatches for Mandrill.',
@@ -155,8 +164,8 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
     'rcpt' => 'dlee+md01@dosomething.org',
     'vars' => array(
       array(
-        'name' => 'AGE',
-        'content' => 21,
+        'name' => 'MEMBERSHIP_YEAR',
+        'content' => '1st',
       ),
       array(
         'name' => 'FNAME',
@@ -175,8 +184,8 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
     'rcpt' => 'dlee+md02@dosomething.org',
     'vars' => array(
       array(
-        'name' => 'AGE',
-        'content' => 12,
+        'name' => 'MEMBERSHIP_YEAR',
+        'content' => '2nd',
       ),
       array(
         'name' => 'FNAME',
@@ -195,8 +204,8 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
     'rcpt' => 'dlee+md03@dosomething.org',
     'vars' => array(
       array(
-        'name' => 'AGE',
-        'content' => 50,
+        'name' => 'MEMBERSHIP_YEAR',
+        'content' => '5th',
       ),
       array(
         'name' => 'FNAME',
@@ -567,68 +576,86 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
       
     case 'dsevent-reg-365':
 
-      // SELECT users who registered on the site 365 days (each additional year) from target_date.
+      // SELECT users who registered on the site 365 days (and each additional year) from target_date.
       // Assume target_date is current date if not defined
       
       if ($target_date == NULL) {
-        $target_date = date('d-m', time());
+        $start_stamp = time() - 60*60*24*365;
       }
       else {
-        $target_date = date('d-m', strtotime($target_date));
+        $start_stamp = strtotime($target_date) - 60*60*24*365;
       }
-      $last_year_stamp = time() - 60*60*24*365;
-      
+
       // @todo: Collect list of current campaigns
       // $campaigns = dosomething_mandrill_current_campaigns();
       
-      $query = db_select(users, 'u');
-      
-      $query->join('profile', 'p', 'p.uid = u.uid');
-      $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
-      
-      $query->fields('u', array('uid', 'created', 'mail'))
-            ->fields('fdfufn', array('field_user_first_name_value'))
-
-            ->condition('u.created', '%-' . db_like($target_date) . '%', 'LIKE')
-            ->condition('u.created', $last_year_stamp, '<=');
-            
-      $result = $query->execute()
-                      ->fetchAll();
-                     
-      $membership_year = floor($user->created / (60*60*24*365)); 
-      $locale = 'en_US';
-      $nf = new NumberFormatter($locale, NumberFormatter::ORDINAL);
-
-      foreach($result as $user) {
+      // Oldest entry: 1210614999 - query signups for the same day each year
+      for ($year_stamp = $start_stamp; $year_stamp >= 1210614999; $year_stamp = $year_stamp - (60*60*24*365)) {
         
-        // Skip if missing user email address
-        if ($user->mail != NULL) {
-          
-          $membership_year = $nf->format($membership_year);
-
-          $merge_vars[] = array(
-            'rcpt' => $user->mail,
-            'vars' => array(
-              array(
-                'name' => 'FNAME',
-                'content' => $user->field_user_first_name_value,
-              ),
-              array(
-                'name' => 'MEMBERSHIP_YEAR',
-                'content' => $membership_year,
-              ),
-
-            ),
+        if ($bla) {
+          $bla = TRUE;
+        }
+      
+        $query = db_select(users, 'u');
+        
+        $query->join('profile', 'p', 'p.uid = u.uid');
+        $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
+        
+        $query->fields('u', array('uid', 'created', 'mail'))
+              ->fields('fdfufn', array('field_user_first_name_value'))
+  
+              ->condition('u.created', $year_stamp - 43200, '>=')
+              ->condition('u.created', $year_stamp + 43200, '<=');
+              
+        $result = $query->execute()
+                        ->fetchAll();
+                        
+        // Calculate suffex of the membership year
+        $created_year = floor((time() - $year_stamp) / (60*60*24*365)); // 31536000
+        $membership_year = $created_year .
+          date('S',
+            mktime(1,1,1,1,(
+                  (($created_year >= 10) +
+                   ($created_year >= 20) +
+                   ($created_year == 0))
+                  * 10 + $created_year % 10)
+            )
           );
+
+        foreach($result as $user) {
           
-          // @todo: Collect list of current campaigns, add to global_merge_vars
-          /*
-            array(
-              'name' => '*|CAMPAIGNS|*',
-              'content' => $campaigns,
-            ),
-          */
+          // Skip if missing user email address
+          if ($user->mail != NULL) {
+  
+            $merge_vars[] = array(
+              'rcpt' => $user->mail,
+              'vars' => array(
+                array(
+                  'name' => 'FNAME',
+                  'content' => $user->field_user_first_name_value,
+                ),
+                array(
+                  'name' => 'MEMBERSHIP_YEAR',
+                  'content' => $membership_year,
+                ),
+  
+              ),
+            );
+            
+            // @todo: Collect list of current campaigns, add to global_merge_vars
+            /*
+              array(
+                'name' => '*|CAMPAIGNS|*',
+                'content' => $campaigns,
+              ),
+            */
+            
+          }
           
+        }
+        
+        if ($bla) {
+          $bla = TRUE;
         }
         
       }
