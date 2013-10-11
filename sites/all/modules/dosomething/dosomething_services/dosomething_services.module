@@ -664,6 +664,9 @@ function _dosomething_services_reportback_access($op = 'create', $args = array()
     if (!$node) {
       return services_error(t('The node @nid for this report back does not exist.', array('@nid' => $nid)), 406);
     }
+    elseif ($node->type != 'campaign') {
+      return services_error(t('Invalid node type. Expecting type \'campaign\' but instead the requested node is type \'@type\'', array('@type' => $node->type)), 403);
+    }
 
     // Checking 'view' access because user is creating a report back submission
     // for the node, not creating a node itself.
