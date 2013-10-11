@@ -89,7 +89,7 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
       $params = array();
 
       // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
-      // users responding to these messages results in anyone reading the message.
+      // users responding to these messages result in anyone reading the message.
       $from = NULL;
       
       // Email missing, mobile submission
@@ -156,79 +156,6 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
 
   $language = language_default();
   $from = NULL;
-  
-  /*
-   ****** TEST DATA ********
-   */
-  
-  if ($bla) {
-    $bla = TRUE;
-  }
-
-  
-  $to = array();
-  
-  $to[] = array(
-    'email' => 'dlee+md01@dosomething.org',
-    'name' => 'Joe',
-  );
-  
-  $merge_vars[] = array(
-    'rcpt' => 'dlee+md01@dosomething.org',
-    'vars' => array(
-      array(
-        'name' => 'MEMBERSHIP_YEAR',
-        'content' => '1st',
-      ),
-      array(
-        'name' => 'FNAME',
-        'content' => 'Joe',
-      )
-    ),
-  );
-  
-  
-  $to[] = array(
-    'email' => 'dlee+md02@dosomething.org',
-    'name' => 'Bob',
-  );
-  
-  $merge_vars[] = array(
-    'rcpt' => 'dlee+md02@dosomething.org',
-    'vars' => array(
-      array(
-        'name' => 'MEMBERSHIP_YEAR',
-        'content' => '2nd',
-      ),
-      array(
-        'name' => 'FNAME',
-        'content' => 'Bob',
-      )
-    ),
-  );
-  
-  
-  $to[] = array(
-    'email' => 'dlee+md03@dosomething.org',
-    'name' => 'Fred',
-  );
-    
-  $merge_vars[] = array(
-    'rcpt' => 'dlee+md03@dosomething.org',
-    'vars' => array(
-      array(
-        'name' => 'MEMBERSHIP_YEAR',
-        'content' => '5th',
-      ),
-      array(
-        'name' => 'FNAME',
-        'content' => 'Fred',
-      )
-    ),
-  );
-  
-  $message['message']['to'] = $to;
-  $message['message']['merge_vars'] = $merge_vars;
 
   $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
 
@@ -373,8 +300,8 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  * http://api.drupal.org/api/drupal/modules!system!system.api.php/function/hook_mail_alter/7
  *
  */
-
 function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
+  
 
   $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
   
@@ -394,6 +321,13 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     'name' => 'domain',
     'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
   );
+  
+  foreach($message['params']['message']['global_merge_vars'] as $content) {
+    $global_merge_vars[] = array(
+      'name' => $content['name'],
+      'content' => $content['content'],
+    );
+  }
 
   if(!empty($mandrill_params['params'])) {
     foreach($mandrill_params['params'] as $name => $content) {
@@ -428,8 +362,6 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     }
   }
 
-  $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
-
   if(!empty($merge_vars)) {
     $mandrill_params['message']['merge_vars'] = $merge_vars;
   }
@@ -438,11 +370,8 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   // with customizations to the Mandrill templace based on the merge_var values and
   // the matching *|TAGS|*
   $mandrill_params['message']['merge_vars'] = array_merge($content['merge_vars'], (array) $mandrill_params['message']['merge_vars']);
+  $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
   $mandrill_params['message']['to'] = array_merge($content['to'], (array) $mandrill_params['message']['to']);
-  
-  if ($bla) {
-    $bla = TRUE;
-  }
   
 }
 
@@ -461,12 +390,9 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
  */
 function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
   
-  if ($bla) {
-    $bla = TRUE;
-  }
-  
   $to = array();
   $merge_vars = array();
+  $global_merge_vars = array();
   
   switch ($op) {
     
@@ -540,9 +466,6 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
         $target_date = date('Y-m-d', strtotime($target_date) - 60*60*24*90);
       }
       
-      // @todo: Collect list of current campaigns
-      // $campaigns = dosomething_mandrill_current_campaigns();
-      
       $query = db_select(users, 'u');
       
       $query->join('profile', 'p', 'p.uid = u.uid');
@@ -576,18 +499,15 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
             ),
           );
           
-          // @todo: Collect list of current campaigns, add to global_merge_vars
-          /*
-            array(
-              'name' => '*|CAMPAIGNS|*',
-              'content' => $campaigns,
-            ),
-          */
-          
         }
 
       }
       
+      $global_merge_vars[] = array(
+        'name' => 'CAMPAIGNS',
+        'content' => dosomething_mandrill_campaign_listing(),
+      );
+
       $key = 'dsevent-reg-90';
       
       break;
@@ -603,16 +523,9 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
       else {
         $start_stamp = strtotime($target_date) - 60*60*24*365;
       }
-
-      // @todo: Collect list of current campaigns
-      // $campaigns = dosomething_mandrill_current_campaigns();
       
       // Oldest entry: 1210614999 - query signups for the same day each year
       for ($year_stamp = $start_stamp; $year_stamp >= 1210614999; $year_stamp = $year_stamp - (60*60*24*365)) {
-        
-        if ($bla) {
-          $bla = TRUE;
-        }
       
         $query = db_select(users, 'u');
         
@@ -661,27 +574,19 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
                   'name' => 'MEMBERSHIP_YEAR',
                   'content' => $membership_year,
                 ),
-  
               ),
             );
-            
-            // @todo: Collect list of current campaigns, add to global_merge_vars
-            /*
-              array(
-                'name' => '*|CAMPAIGNS|*',
-                'content' => $campaigns,
-              ),
-            */
             
           }
           
         }
         
-        if ($bla) {
-          $bla = TRUE;
-        }
-        
       }
+      
+      $global_merge_vars[] = array(
+        'name' => 'CAMPAIGNS',
+        'content' => dosomething_mandrill_campaign_listing(),
+      );
       
       $key = 'dsevent-reg-365';
       
@@ -693,9 +598,49 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
   // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
   $message['message']['to'] = $to;
   $message['message']['merge_vars'] = $merge_vars;
-  // $message['message']['global_merge_vars'] = '';
+  $message['message']['global_merge_vars'] = $global_merge_vars;
   
   // Construct array of target users
   dosomething_mandrill_dispatch($to, $key, $message);
+  
+}
+
+/*
+ * Creates listing of current active campaigns based on current entries in the
+ * menu system. Yep, hacky! Perhaps someday there will be an API call to pull
+ * this from.
+ *
+ * @return string
+ */
+function dosomething_mandrill_campaign_listing() {
+  
+  $results = db_query('
+    SELECT
+      link_title,
+      link_path
+    FROM
+      menu_links
+    WHERE
+      plid = 93591
+      AND
+      hidden = 0
+      AND
+      mlid != 96240
+      AND
+      mlid != 98553
+    ORDER BY
+      weight              
+    ');
+  
+  $campaign_markup  = '<ul>';
+  foreach ($results as $campaign) {
+    
+    substr('http:', $campaign->link_title) === FALSE ? $site = 'http://www.dosomething.org/' : $site = '';
+    $campaign_markup .= '<li><a href="' . $site . $campaign->link_path . '">' . $campaign->link_title . '</a></li>';
+    
+  }
+  $campaign_markup .= '</ul>';
+  
+  return $campaign_markup;
   
 }
