@@ -156,6 +156,14 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
 
   $language = language_default();
   $from = NULL;
+  
+  /*
+   ****** TEST DATA ********
+   */
+  
+  if ($bla) {
+    $bla = TRUE;
+  }
 
   
   $to = array();
@@ -540,7 +548,7 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
       $query->join('profile', 'p', 'p.uid = u.uid');
       $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
       
-      $query->fields('u', array('uid', 'created', 'mail'))
+      $query->fields('u', array('uid', 'created', 'mail', 'name'))
             ->fields('fdfufn', array('field_user_first_name_value'))
 
             ->condition('u.created', '%-' . db_like($target_date) . '%', 'LIKE');
@@ -552,6 +560,11 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
         
         // Skip if missing user email address
         if ($user->mail != NULL) {
+          
+          $to[] = array(
+            'email' => $user->mail,
+            'name' => $user->name == NULL ? 'DoSomethng Doer' : $user->name,
+          );
 
           $merge_vars[] = array(
             'rcpt' => $user->mail,
@@ -606,7 +619,7 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
         $query->join('profile', 'p', 'p.uid = u.uid');
         $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
         
-        $query->fields('u', array('uid', 'created', 'mail'))
+        $query->fields('u', array('uid', 'created', 'mail', 'name'))
               ->fields('fdfufn', array('field_user_first_name_value'))
   
               ->condition('u.created', $year_stamp - 43200, '>=')
@@ -619,7 +632,7 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
         $created_year = floor((time() - $year_stamp) / (60*60*24*365)); // 31536000
         $membership_year = $created_year .
           date('S',
-            mktime(1,1,1,1,(
+            mktime(1,1,1,1, (
                   (($created_year >= 10) +
                    ($created_year >= 20) +
                    ($created_year == 0))
@@ -631,6 +644,11 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
           
           // Skip if missing user email address
           if ($user->mail != NULL) {
+            
+            $to[] = array(
+              'email' => $user->mail,
+              'name' => $user->name == NULL ? 'DoSomethng Doer' : $user->name,
+            );
   
             $merge_vars[] = array(
               'rcpt' => $user->mail,
@@ -678,7 +696,6 @@ function dosomething_mandrill_dispatch_event($op, $target_date = NULL) {
   // $message['message']['global_merge_vars'] = '';
   
   // Construct array of target users
-  $to = 'dosomething@dosomething.org';
   dosomething_mandrill_dispatch($to, $key, $message);
   
 }
