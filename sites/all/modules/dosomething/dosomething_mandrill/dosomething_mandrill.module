@@ -396,7 +396,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   $merge_vars = array();
   $global_merge_vars = array();
   
-  switch ($op) {
+  switch ($op):
     
     case 'dsevent-birthday':
       
@@ -593,7 +593,16 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
       $key = 'dsevent-reg-365';
       
       break;
-  }
+    
+    default:
+    
+      // Report to Drush results
+      $results['send_status'] = 'Invalid target operation - ' . $op . '. Only "dsevent-birthday", "dsevent-reg-365" and "dsevent-reg-90" are currently supported.';
+      $results['sent'] = '0';
+    
+      return $results;
+      
+  endswitch;
   
   
   // Format merge details based on Mandrill API
@@ -606,7 +615,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message);
   
   // Report to Drush results
-  $results['send_status'] = $dispatch_results ? 'Success' : 'Error';
+  $results['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
   $results['sent'] = count($to);
 
   return $results;

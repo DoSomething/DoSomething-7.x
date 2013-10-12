@@ -27,7 +27,7 @@ function drush_dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
     
     $results = dosomething_mandrill_dispatch_events($op, $target_date);
     
-    drush_print(dt($results['send_status'] . " sending Mandrill messages."));
+    drush_print(dt($results['send_status']));
     drush_print(dt($results['sent'] . " messages sent..."));
 
   }
