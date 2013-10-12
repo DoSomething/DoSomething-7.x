@@ -452,6 +452,11 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
         }
         
       }
+      
+      $global_merge_vars[] = array(
+        'name' => 'CAMPAIGNS',
+        'content' => dosomething_mandrill_campaign_listing(),
+      );
   
       $key = 'dsevent-birthday';
       
