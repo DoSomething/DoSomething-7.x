@@ -34,37 +34,37 @@
 
 <div class="page-width gutters">
   <div class="row">
-      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/50cans-feature.jpg'); background-position: left center;">
-      <a class="full-link" href="/50cans"><span>Do This</span></a>
-      <div class="headline big blue">
-        <h3>Your challenge is simple. Recycle 50 aluminum cans.</h3>
-        <a href="/50cans" class="btn primary large">Do This</a>
+      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/momm-feature.jpg'); background-position: left center;">
+      <a class="full-link" href="/money"><span>Do This</span></a>
+      <div class="headline big purple">
+        <h3>Help arm your friends with the tools to stack their cash.</h3>
+        <a href="/money" class="btn primary large">Do This</a>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
-      <a class="full-link" href="/survivors"><span>Do This</span></a>
-      <div class="headline purple">
-        <div class="headline-row"><h4>Donate phones to help domestic abuse survivors</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="/survivors" class="btn primary large">Do This</a></p></div>
-      </div>
-    </div>
-
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/fedup-block.jpg'); background-position: center center;">
-      <a class="full-link" href="//fedup.dosomething.org/fedup"><span>Do This</span></a>
-      <div class="headline red">
-        <div class="headline-row"><h4>Show everyone what you think about your school lunch</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="//fedup.dosomething.org/fedup" class="btn primary large">Do This</a></p></div>
-      </div>
-    </div>
-
     <div class="column span_4 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
       <a class="full-link" href="/bullytext"><span>Do This</span></a>
       <div class="headline yellow">
         <div class="headline-row"><h4>Everyone has the power to stop bullying. Learn how.</h4></div>
         <div class="headline-row"><p class="homepage-block-cta"><a href="/bullytext" class="btn primary large">Do This</a></p></div>
+      </div>
+    </div>
+
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
+      <a class="full-link" href="/survivors"><span>Do This</span></a>
+      <div class="headline teal">
+        <div class="headline-row"><h4>Donate phones to help domestic abuse survivors</h4></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="/survivors" class="btn primary large">Do This</a></p></div>
+      </div>
+    </div>
+
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/50cans-block.jpg'); background-position: center center;">
+      <a class="full-link" href="/50cans"><span>Do This</span></a>
+      <div class="headline blue">
+        <div class="headline-row"><h4>Your challenge is simple. Recycle 50 aluminum cans.</h4></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="/50cans" class="btn primary large">Do This</a></p></div>
       </div>
     </div>
   </div>
