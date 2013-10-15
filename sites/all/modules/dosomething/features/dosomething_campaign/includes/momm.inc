@@ -15,7 +15,7 @@
 function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   $form = array();
   $form['header'] = array(
-    '#markup' => '<h1>What school do you go to?</h1>',
+    '#markup' => '<h1>Almost there. Tell us your school to register your workshop!</h1>',
   );
   $form['school_state'] = array(
     '#type' => 'select',
