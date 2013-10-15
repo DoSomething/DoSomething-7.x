@@ -7,7 +7,7 @@ function dosomething_mandrill_drush_command() {
   return array(
     'dispatch-events' => array(
       'description' => 'Send Mandrill messages based on user events - birthday, membership aniversary, etc.',
-      'aliases' => array('dispatch'),
+      'aliases' => array('mandrill-dispatch'),
       'drupal dependencies' => array('dosomething_mandrill'),
     ),
   );

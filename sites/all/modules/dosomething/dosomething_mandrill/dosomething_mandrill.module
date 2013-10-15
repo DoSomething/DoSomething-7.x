@@ -5,6 +5,18 @@
  *
  */
 
+/*
+ * Impliments hook_theme()
+ */
+function dosomething_mandrill_theme($existing, $type, $theme, $path) {
+  return array(
+    'dosomething_mandrill_campaign_listing' => array(
+      'variables' => array('campaigns' => NULL),
+      'template' => 'dosomething-mandrill-campaign-listing',
+    ),
+  );
+}
+
 /**
  * Impliments hook_webform_submission_insert($node, $submission)
  *
@@ -18,7 +30,7 @@
  * 
  */
 function dosomething_mandrill_webform_submission_insert($node, $submission) {
-  
+
   // Campaign Report Back submissions
   if ($node->type == 'campaign_report_back') {
 
@@ -67,13 +79,13 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
       // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
       // users responding to these messages result in anyone reading the message.
       $from = NULL;
-      
+
       // Email missing, mobile submission
-      if ($to != '') {
+      if (valid_email_address($to)) {
 
         // Send transactional message
         $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $params, $from, TRUE);
-        
+
       }
 
       /**
@@ -218,7 +230,7 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       unset($message['params']['URL']);
 
       break;
-    
+
     case 'password_reset':
 
       $message['from'] = 'dosomething@dosomething.org';
@@ -247,7 +259,7 @@ function dosomething_mandrill_mail($key, &$message, $params) {
 
       $message['subject'] = isset($params['subject']) ? $params['subject'] : '';
       $message['body'] = isset($params['body']) ? $params['body'] : '';
-    
+
   }
 
 }
@@ -280,7 +292,6 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  */
 function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   
-
   $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
   
   // Pass parameters passed via dosomething_mandrill_dispach call
@@ -299,7 +310,7 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     'name' => 'domain',
     'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
   );
-  
+
   foreach($message['params']['message']['global_merge_vars'] as $content) {
     $global_merge_vars[] = array(
       'name' => $content['name'],
@@ -343,14 +354,14 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   if(!empty($merge_vars)) {
     $mandrill_params['message']['merge_vars'] = $merge_vars;
   }
-  
+
   // Combine all merge_var values - these values are used to send multipul messages
   // with customizations to the Mandrill templace based on the merge_var values and
   // the matching *|TAGS|*
   $mandrill_params['message']['merge_vars'] = array_merge($content['merge_vars'], (array) $mandrill_params['message']['merge_vars']);
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
   $mandrill_params['message']['to'] = array_merge($content['to'], (array) $mandrill_params['message']['to']);
-  
+
 }
 
 /*
@@ -367,15 +378,15 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
  * @return boolean
  */
 function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
-  
+
   $to = array();
   $merge_vars = array();
   $global_merge_vars = array();
   
   switch ($op):
-    
+
     case 'dsevent-birthday':
-      
+
       // SELECT users with a specific birthday. If start_date is not defined
       // assume it's the current date. field_data_field_user_birthday is in datetime
       // format YYYY-MM-DD
@@ -387,20 +398,20 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
       }
 
       $query = db_select(users, 'u');
-      
+
       $query->join('profile', 'p', 'p.uid = u.uid');
       $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
       $query->join('field_data_field_user_birthday', 'fdfub', 'fdfub.entity_id = p.pid');
-      
+
       $query->fields('u', array('uid', 'mail', 'name'))
             ->fields('fdfufn', array('field_user_first_name_value'))
             ->fields('fdfub', array('field_user_birthday_value'))
 
             ->condition('fdfub.field_user_birthday_value', '%-' . db_like($target_date) . '%', 'LIKE');
-            
+
       $result = $query->execute()
                       ->fetchAll();
-      
+
       foreach($result as $user) {
 
         // Skip if missing user email address
@@ -424,22 +435,22 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
               )
             ),
           );
-          
+
         }
-        
+
       }
-      
+
       $global_merge_vars[] = array(
         'name' => 'CAMPAIGNS',
         'content' => dosomething_mandrill_campaign_listing(),
       );
-  
+
       $key = 'dsevent-birthday';
-      
+
       break;
-    
+
     case 'dsevent-reg-90':
-      
+
       // SELECT users who registered on the site 90 days from target_date.
       // Assume target_date is current date if not defined
       if ($target_date == NULL) {
@@ -448,25 +459,25 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
       else {
         $target_date = date('Y-m-d', strtotime($target_date) - 60*60*24*90);
       }
-      
+
       $query = db_select(users, 'u');
-      
+
       $query->join('profile', 'p', 'p.uid = u.uid');
       $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
-      
+
       $query->fields('u', array('uid', 'created', 'mail', 'name'))
             ->fields('fdfufn', array('field_user_first_name_value'))
 
             ->condition('u.created', '%-' . db_like($target_date) . '%', 'LIKE');
-            
+
       $result = $query->execute()
                       ->fetchAll();
-            
+
       foreach($result as $user) {
-        
+
         // Skip if missing user email address
         if ($user->mail != NULL) {
-          
+
           $to[] = array(
             'email' => $user->mail,
             'name' => $user->name == NULL ? 'DoSomethng Doer' : $user->name,
@@ -481,49 +492,49 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
               ),
             ),
           );
-          
+
         }
 
       }
-      
+
       $global_merge_vars[] = array(
         'name' => 'CAMPAIGNS',
         'content' => dosomething_mandrill_campaign_listing(),
       );
 
       $key = 'dsevent-reg-90';
-      
+
       break;
-      
+
     case 'dsevent-reg-365':
 
       // SELECT users who registered on the site 365 days (and each additional year) from target_date.
       // Assume target_date is current date if not defined
-      
+
       if ($target_date == NULL) {
         $start_stamp = time() - 60*60*24*365;
       }
       else {
         $start_stamp = strtotime($target_date) - 60*60*24*365;
       }
-      
+
       // Oldest entry: 1210614999 - query signups for the same day each year
       for ($year_stamp = $start_stamp; $year_stamp >= 1210614999; $year_stamp = $year_stamp - (60*60*24*365)) {
-      
+
         $query = db_select(users, 'u');
-        
+
         $query->join('profile', 'p', 'p.uid = u.uid');
         $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
-        
+ 
         $query->fields('u', array('uid', 'created', 'mail', 'name'))
               ->fields('fdfufn', array('field_user_first_name_value'))
   
               ->condition('u.created', $year_stamp - 43200, '>=')
               ->condition('u.created', $year_stamp + 43200, '<=');
-              
+
         $result = $query->execute()
                         ->fetchAll();
-                        
+
         // Calculate suffex of the membership year
         $created_year = floor((time() - $year_stamp) / (60*60*24*365)); // 31536000
         $membership_year = $created_year .
@@ -537,15 +548,15 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
           );
 
         foreach($result as $user) {
-          
+
           // Skip if missing user email address
           if ($user->mail != NULL) {
-            
+
             $to[] = array(
               'email' => $user->mail,
               'name' => $user->name == NULL ? 'DoSomethng Doer' : $user->name,
             );
-  
+
             $merge_vars[] = array(
               'rcpt' => $user->mail,
               'vars' => array(
@@ -559,30 +570,30 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
                 ),
               ),
             );
-            
+
           }
-          
+
         }
-        
+
       }
-      
+
       $global_merge_vars[] = array(
         'name' => 'CAMPAIGNS',
         'content' => dosomething_mandrill_campaign_listing(),
       );
-      
+
       $key = 'dsevent-reg-365';
-      
+
       break;
-    
+
     default:
-    
+
       // Report to Drush results
       $results['send_status'] = 'Invalid target operation - ' . $op . '. Only "dsevent-birthday", "dsevent-reg-365" and "dsevent-reg-90" are currently supported.';
       $results['sent'] = '0';
-    
+
       return $results;
-      
+
   endswitch;
   
   
@@ -612,7 +623,9 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
  */
 function dosomething_mandrill_campaign_listing() {
   
-  $results = db_query('
+  // Exclude 96240 - Make Art. Save Art., not sure why this is an entry as it's
+  // not in the site Campaign navigaion output
+  $results = db_query("
     SELECT
       link_title,
       link_path
@@ -621,25 +634,22 @@ function dosomething_mandrill_campaign_listing() {
     WHERE
       plid = 93591
       AND
-      hidden = 0
-      AND
       mlid != 96240
       AND
-      mlid != 98553
+      hidden = 0
+      AND
+      link_path != 'past-campaigns'
     ORDER BY
       weight              
-    ');
+    ");
   
-  // todo: Move this to a tpl file
-  $campaign_markup  = '<ul>';
   foreach ($results as $campaign) {
-    
-    substr('http:', $campaign->link_title) === FALSE ? $site = 'http://www.dosomething.org/' : $site = '';
-    $campaign_markup .= '<li><a href="' . $site . $campaign->link_path . '">' . $campaign->link_title . '</a></li>';
-    
+    $campaigns[] = array(
+      'link_title' => $campaign->link_title,
+      'link_path' => $campaign->link_path,
+    );
   }
-  $campaign_markup .= '</ul>';
   
-  return $campaign_markup;
+  return theme('dosomething_mandrill_campaign_listing', array('campaigns' => $campaigns));
   
 }
