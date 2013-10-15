@@ -91,7 +91,7 @@ function dosomething_projects_general_form_webform_client_form_alter(&$form, &$f
   }
 
   $form['#submit'][] = 'dosomething_projects_general_participants_submit';
-  $form['#validate'][] = 'dosomething_projects_general_participants_validate';
+  //$form['#validate'][] = 'dosomething_projects_general_participants_validate';
 }
 
 /**
