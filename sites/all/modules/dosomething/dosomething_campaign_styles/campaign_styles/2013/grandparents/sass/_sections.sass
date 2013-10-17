@@ -10,34 +10,32 @@
 .header
   position: relative
   width: 100%
-  height: 360px
+  height: 330px
   border-bottom: 0
-  background-color: $bg-header-fallback
-  background-image: url($bg-header-image)
-  background-repeat: no-repeat
-  background-position: center center
-  @include background-size(cover)
+  background-color: transparent
   padding: 1% 2%
   overflow: visible
   @include respond-to(phones)
-    height: 240px
+    height: 270px
     @include transition(height 0.5s)
 
   .header-logotype
-    text-align: left
+    text-align: right
     color: #fff
     text-transform: uppercase
     line-height: 1.2em
     font-weight: 600
     font-size: 4em
-    margin: 76px 10% 0
+    margin: 0.25em -0.7em 0 0
+    @media only screen and (max-width: $break-large)
+      margin: 0.25em 0 0
     @include respond-to(phones)
-      margin: 48px 10% 0
+      text-align: center
+      margin-top: 1em
 
     img
       width: 325px
       @include respond-to(phones)
-        width: 238px
         @include transition(width 0.5s)
       
 
@@ -64,17 +62,28 @@
 
   .header-date
     position: absolute
-    bottom: 1em
-    left: 1em
+    bottom: 0.25em
+    left: 38%
     float: left
     width: auto
     text-transform: uppercase
+    @media only screen and (max-width: 1140px)
+      left: 0%
+    @media only screen and (max-width: 600px)
+      display: none
 
     p
       font-size: 24px
       color: #fff
       padding: 1.5em 0 0 1em
       @include text-shadow(0 0 5px rgba(0, 0, 0, 0.5))
+
+  .header-sponsor
+    position: absolute
+    bottom: 0.25em
+    right: 1.5%
+    @media only screen and (max-width: 600px)
+      display: none
 
 
   .row-bottom
@@ -86,10 +95,6 @@
 // HEADLINE
 // --------
 .headline
-  border-top: 1px solid #ddd
-  border-right: 1px solid #ddd
-  border-bottom: none
-  border-left: 1px solid #ddd
   margin: 0
   padding-bottom: 0
 
@@ -110,15 +115,41 @@
   .section-container
     width: 43em
 
+// BANNER
+// --------------
+.banner
+  background: $accent-color
+  padding: 1em
+  p
+    color: #fff
+    float: left
+    width: 50%
+  .lead
+    text-align: right
+    padding: 1em
+  .follow
+    text-align: left
+  @media only screen and (max-width: 780px)
+    padding: 0.5em
+    p
+      float: none
+      width: 100%
+    .lead, .follow
+      text-align: center
+    .lead
+      padding: 0.5em
+    .follow
+      padding-bottom: 0.5em
+
 
 // LEGAL
 // --------------
 .official-rules
   display: block
-  margin: 0 auto
+  margin: 1em auto 0
   width: 13em
   text-align: center
-  color: darken($panel-color, 20) !important
+  color: #1e1d1c !important
 
 .legal
   color: darken($panel-color, 15)
@@ -146,6 +177,40 @@
   .section-container
     width: $section-content-width
 
+// TECH TIPS
+// ---------
+#tips
+  a
+    background: $accent-color
+    color: #fff
+    padding: 0.75em 0.75em 0.5em
+    +border-radius(12px)
+    text-decoration: none
+    border: 2px solid white
+    box-shadow: 0px 0px 8px #ccc
+    text-transform: uppercase
+    font-weight: 500
+    -webkit-transition: background-color 0.25s linear
+    transition: background-color 0.25s linear  
+    width: 30%
+    display: inline-block
+    text-align: center
+    margin: 1.5% 1.5%
+    font-size: 1.2em
+    &:hover
+      background: $secondary-color
+    @media only screen and (max-width: $break-large)
+      width: 46%
+    @media only screen and (max-width: $break-small)
+      width: 85%
+      margin: 3%
+  .tech-link
+    margin: 1em 0
+
+
+
+
+
 // PRIZING
 // -------
 .prizing
@@ -160,53 +225,17 @@
   .btn
     margin: 0 auto 1em
 
-// SMS GAME EXAMPLE
+
+// #INFO
 // ----------------
-.sms-game-example
-
-  .sms-game-container
-    width: 100%
-    max-width: $section-content-width
-    margin: 0 auto 1em
-    overflow: hidden
-    clear: both
-
-  .game-conversation
-    margin: 1em auto 2em
-    padding: 1em 2em
-    background: $accent-color
-    position: relative
-    clear: both
-    +border-radius(2px)
-    &:after
-      content: ""
-      display: block
-      position: absolute
-      border-style: solid
-      border-width: 15px
-    p
-      line-height: 1.6em
-      font-weight: 500
-      text-transform: uppercase
-      color: $callout-text
-
-  .game-ds
-    float: left
-    &:after
-      bottom: -30px
-      left: 20px
-      border-color: $accent-color $accent-color #fff #fff
-    p
-      text-align: left
-
-  .game-user
-    float: right
-    &:after
-      bottom: -30px
-      right: 20px
-      border-color: $accent-color #fff #fff $accent-color
-    p
-      text-align: right
+#info
+  .headline-callout
+    text-align: left
+  em
+    font-style: italic
+  .center
+    text-align: center
+  
 
 // PROFILES
 // --------
@@ -262,11 +291,6 @@
   h2
     padding-bottom: 0.5em
 
-  /* this padding should be abstracted to all <h3> */
-  .headline-callout
-    padding: 0.5em 0 0 0
-    text-transform: capitalize
-    text-align: left
 
 // SMS
 // ---
@@ -317,11 +341,17 @@
 
 // GALLERY
 // -------
+#gallery
+  p
+    margin-bottom: 1em
+.section#gallery
+  border-bottom: none
 .gallery
   img
-    border: 1px solid #ddd !important
+    //border: 1px solid #ddd !important
     +border-radius(3px)
     +box-shadow(0 10px 10px -10px #bbb !important)
+
 
 // MAP
 // ---
@@ -344,6 +374,9 @@
 
 // FAQ
 // ---
+.section#faq
+  border-bottom: none
+
 .faq
   width: 90%
   max-width: $section-content-width

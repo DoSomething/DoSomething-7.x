@@ -20,15 +20,17 @@ html /* reset "do it" theme base of 14px */
 .tabs .element-invisible
   display: none
 
-// page background color
+// page background
 body
-  background: $background-color
+  background: url('assets/header.jpg') no-repeat center 85px
+  @media only screen and (max-width: 1140px)
+    background-position: center 54px
 
 // set inner container width, remove floats and center
 #main-wrapper div[role="main"]
   padding: 0 !important
   margin: 0 auto !important
-  background: $background-color
+  background: transparent
   width: 100%
   float: none
   ul.primary
