@@ -91,6 +91,10 @@ function dosomething_campaign_momm_signup_data_form_validate(&$form, &$form_stat
   if ($school_name == DOSOMETHING_SCHOOL_NOT_FOUND_KEY) {
     return;
   }
+  // If no school value and no checkbox, they didn't select anything.
+  if (empty($school_name) && !$form_state['values']['not_affiliated']) {
+    form_set_error('gsid', "Please select a school from the list, or check 'unaffiliated' if you're not in a school.");
+  }
   // Find value inbetween the []'s:
   preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
   $gsid = $gsid[1][0];
