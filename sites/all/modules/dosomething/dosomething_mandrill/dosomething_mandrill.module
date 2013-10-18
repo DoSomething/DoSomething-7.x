@@ -619,6 +619,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   $results['sent'] = count($to);
   
   // Log details for reporting
+  // @todo - Replace with https://www.stathat.com solution
   $dispatch_events_status = unserialize(variable_get('dosomething_mandrill_dispatch_events_stats', NULL));
     
   // Record results for reporting
