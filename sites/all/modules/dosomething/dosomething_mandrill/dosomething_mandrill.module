@@ -617,6 +617,18 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   // Report to Drush results
   $results['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
   $results['sent'] = count($to);
+  
+  // Log details for reporting
+  $dispatch_events_status = unserialize(variable_get('dosomething_mandrill_dispatch_events_stats', NULL));
+    
+  // Record results for reporting
+  $dispatch_events_status[$timestamp] = array(
+    'op' => $op,
+    'send_status' => $results['send_status'],
+    'sent' => $results['sent'],
+  );
+    
+  $dispatch_events_status = variable_set('dosomething_mandrill_dispatch_events_stats', serialize($dispatch_events_status));
 
   return $results;
   
