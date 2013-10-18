@@ -55,10 +55,9 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
     $form['school_not_found']['#markup'] = 'Please email <a href="mailto://money@dosomething.org" target="_blank">money@dosomething.org</a> to add your school.';
   }
   $form['not_affiliated'] = array(
-    '#type' => 'radios',
-    '#options' => array(
-      'not affiliated' => t('I am not affiliated with a school.'),
-    ),
+    '#type' => 'checkbox',
+    '#prefix' => '<hr>',
+    '#title' => t('I am not affiliated with a school.'),
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -127,8 +126,15 @@ function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state)
     // Write gsid to signups table:
     $signup_data['gsid'] = $form_state['values']['gsid'];
   }
+  // Else if no school has been entered:
   else {
-    $signup_data['no_school'] = $form_state['values']['no_school'];
+    // Store "school not listed" if that option was selected:
+    if ($form_state['values']['gsid'] == DOSOMETHING_SCHOOL_NOT_FOUND_KEY) {
+      $signup_data['no_school'] = 'school not listed';
+    }
+    elseif ($form_state['values']['not_affiliated'] == 1) {
+      $signup_data['no_school'] = 'not affiliated';
+    }
   }
   // Update signups record with signup_data.
   if (module_exists('dosomething_signups')) {
