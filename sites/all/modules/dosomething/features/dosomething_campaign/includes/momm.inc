@@ -69,17 +69,13 @@ function dosomething_campaign_momm_signup_ajax_callback($form, $form_state) {
   return $form['gsid'];
 }
 
-
 /**
- * Form submission handler for dosomething_campaign_momm_signup_data_form().
+ * Form validation handler for dosomething_campaign_momm_signup_data_form().
  *
  * @see dosomething_campaign_momm_signup_data_form()
  */
-function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state) {
-  global $user;
-  $signup_data = array();
+function dosomething_campaign_momm_signup_data_form_validate(&$form, &$form_state) {
   $school_name = check_plain($form_state['values']['gsid']);
-  //@todo: Move this preg_match into the validate function, and only return a gsid value for the submit.
   // Find value inbetween the []'s:
   preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
   $gsid = $gsid[1][0];
@@ -87,13 +83,33 @@ function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state)
   if (!empty($gsid)) {
     // Lookup the ds_school entity ID:
     $school_id = dosomething_school_find_sid_by_gsid($gsid);
-    // If it exists:
+    // If it exists, set in the form_state['values']:
     if ($school_id) {
-      // Update user profile:
-      dosomething_user_update_school($user, $school_id);  
+      $form_state['values']['gsid'] = $gsid;
+      $form_state['values']['school_id'] = $school_id;
     }
+    // Otherwise, no soup for you:
+    else {
+      form_set_error('gsid', 'Invalid selection. Please select your school.');
+    }
+  }
+}
+
+/**
+ * Form submission handler for dosomething_campaign_momm_signup_data_form().
+ *
+ * @see dosomething_campaign_momm_signup_data_form_validate()
+ */
+function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state) {
+  global $user;
+  // Initalize array to store data into signups table:
+  $signup_data = array();
+  // If a school has been found:
+  if (isset($form_state['values']['school_id'])) {
+    // Save school id to user profile.
+    dosomething_user_update_school($user, $form_state['values']['school_id']);  
     // Write gsid to signups table:
-    $signup_data['gsid'] = $gsid;
+    $signup_data['gsid'] = $form_state['values']['gsid'];
   }
   else {
     $signup_data['no_school'] = $form_state['values']['no_school'];
