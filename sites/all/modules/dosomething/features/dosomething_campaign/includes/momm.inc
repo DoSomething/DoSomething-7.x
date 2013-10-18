@@ -23,7 +23,7 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
     // Add an empty item for default:
     '#options' => array_merge(array('' => ''),_dosomething_school_get_states()),
     '#ajax' => array(
-      'callback' => 'dosomething_campaign_momm_signup_ajax_callback',
+      'callback' => 'dosomething_campaign_momm_signup_ajax_gsid_callback',
       'wrapper' => 'autocomplete-by-state-ajax-replace',
     ),
   );
@@ -31,7 +31,6 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
     '#type' => 'hidden',
     '#prefix' => '<div id="autocomplete-by-state-ajax-replace">',
     '#suffix' => '</div>',
-    '#disabled' => TRUE,
   );
   // When the user changes value in the state field, 
   // We'll display the gsid as textfield and change the autocomplete_path to match.
@@ -39,14 +38,25 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
     $form['gsid']['#type'] = 'textfield';
     $form['gsid']['#autocomplete_path'] = 'ds_school/api/autocomplete/' . $form_state['values']['school_state'];
     $form['gsid']['#title'] = t("Start typing your school's name. We'll offer suggestions.");
-    $form['gsid']['#disabled'] = FALSE;
+    $form['gsid']['#ajax'] = array(
+      'callback' => 'dosomething_campaign_momm_signup_ajax_school_not_found_callback',
+      'wrapper' => 'school-not-found-ajax-replace',
+    );
   }
-
-  $form['no_school'] = array(
+  $form['school_not_found'] = array(
+    '#type' => 'hidden',
+    '#prefix' => '<div id="school-not-found-ajax-replace">',
+    '#suffix' => '</div>',
+  );
+  // If "school not found" was selected from dropdown:
+  if (!empty($form_state['values']['gsid']) && $form_state['values']['gsid'] == DOSOMETHING_SCHOOL_NOT_FOUND_KEY ) {
+    // Display help text:
+    $form['school_not_found']['#type'] = 'item';
+    $form['school_not_found']['#markup'] = 'Please email <a href="mailto://money@dosomething.org" target="_blank">money@dosomething.org</a> to add your school.';
+  }
+  $form['not_affiliated'] = array(
     '#type' => 'radios',
-    '#prefix' => '<hr><p>Or:</p>',
     '#options' => array(
-      'school not listed' => t('My school is not listed.'),
       'not affiliated' => t('I am not affiliated with a school.'),
     ),
   );
@@ -58,15 +68,17 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
 }
 
 /**
- *
  * AJAX callback for gsid form element.
- *
- * @param $form
- * @param $form_state
- * @return array
  */
-function dosomething_campaign_momm_signup_ajax_callback($form, $form_state) {
+function dosomething_campaign_momm_signup_ajax_gsid_callback($form, $form_state) {
   return $form['gsid'];
+}
+
+/**
+ * AJAX callback for school_not_found form element.
+ */
+function dosomething_campaign_momm_signup_ajax_school_not_found_callback($form, $form_state) {
+  return $form['school_not_found'];
 }
 
 /**
@@ -76,6 +88,10 @@ function dosomething_campaign_momm_signup_ajax_callback($form, $form_state) {
  */
 function dosomething_campaign_momm_signup_data_form_validate(&$form, &$form_state) {
   $school_name = check_plain($form_state['values']['gsid']);
+  // If not found, don't check for a valid gsid:
+  if ($school_name == DOSOMETHING_SCHOOL_NOT_FOUND_KEY) {
+    return;
+  }
   // Find value inbetween the []'s:
   preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
   $gsid = $gsid[1][0];
