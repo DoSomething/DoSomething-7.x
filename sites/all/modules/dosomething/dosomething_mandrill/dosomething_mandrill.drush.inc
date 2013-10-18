@@ -25,10 +25,23 @@ function dosomething_mandrill_drush_command() {
 function drush_dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   try {
     
+    $timestamp = time();
+    
     $results = dosomething_mandrill_dispatch_events($op, $target_date);
     
     drush_print(dt($results['send_status']));
     drush_print(dt($results['sent'] . " messages sent..."));
+    
+    $dispatch_events_status = unserialize(variable_get('dosomething_mandrill_dispatch_events_stats', NULL));
+    
+    // Record results for reporting
+    $dispatch_events_status[$timestamp] = array(
+      'operation' => $op,
+      'send_status' => $results['send_status'],
+      'sent' => $results['sent'],
+    );
+    
+    $dispatch_events_status = variable_set('dosomething_mandrill_dispatch_events_stats', serialize($dispatch_events_status));
 
   }
   catch (Exception $e) {
