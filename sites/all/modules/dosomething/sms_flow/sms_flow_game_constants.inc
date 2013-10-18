@@ -32,4 +32,12 @@ class SmsFlowGameConstants {
   const MARKT_50CANS_TIPS       = 25;
   const RUN_50CANS_TIPS         = 26;
   const STATS_50CANS_TIPS       = 27;
+  const GGW_EMAIL_TIPS          = 28;
+  const GGW_COMP_TIPS           = 29;
+  const GGW_PHONE_TIPS          = 30;
+  const GGW_FBOOK_TIPS          = 31;
+  const GGW_TWEET_TIPS          = 32;
+  const GGW_VIDCHAT_TIPS        = 33;
+  const GGW_INSTA_TIPS          = 34;
+  const GGW_TABLET_TIPS         = 35;
 }

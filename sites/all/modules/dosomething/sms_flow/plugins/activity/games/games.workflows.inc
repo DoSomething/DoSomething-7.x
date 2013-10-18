@@ -130,6 +130,54 @@ $activity->sets = array(
     'game_id' => SmsFlowGameConstants::STATS_50CANS_TIPS,
     'opt_in_paths' => array(161861, 161863, 161865, 161867),
   ),
+  // Grandparents Gone Wired 2013 - EMAIL tips
+  array(
+    'mdata_id' => 10975,
+    'game_id' => SmsFlowGameConstants::GGW_EMAIL_TIPS,
+    'opt_in_paths' => array(162423, 162425, 162427, 162429, 162431, 162433, 162435, 162437, 162439, 162441),
+  ),
+  // Grandparents Gone Wired 2013 - COMP tips
+  array(
+    'mdata_id' => 10977,
+    'game_id' => SmsFlowGameConstants::GGW_COMP_TIPS,
+    'opt_in_paths' => array(162443, 162445, 162447, 162449, 162451, 162453, 162455, 162457, 162459, 162461, 162463, 162465),
+  ),
+  // Grandparents Gone Wired 2013 - PHONE tips
+  array(
+    'mdata_id' => 10979,
+    'game_id' => SmsFlowGameConstants::GGW_PHONE_TIPS,
+    'opt_in_paths' => array(162467, 162469, 162471, 162473, 162475, 162477, 162479, 162481, 162483, 162485, 162487, 162489, 162491, 162493),
+  ),
+  // Grandparents Gone Wired 2013 - FBOOK tips
+  array(
+    'mdata_id' => 10981,
+    'game_id' => SmsFlowGameConstants::GGW_FBOOK_TIPS,
+    'opt_in_paths' => array(162495, 162497, 162499, 162501, 162503, 162505, 162507, 162509, 162511, 162513, 162515, 162517, 162519, 162521),
+  ),
+  // Grandparents Gone Wired 2013 - TWEET tips
+  array(
+    'mdata_id' => 10983,
+    'game_id' => SmsFlowGameConstants::GGW_TWEET_TIPS,
+    'opt_in_paths' => array(162523, 162525, 162527, 162529, 162531, 162533, 162535, 162537),
+  ),
+  // Grandparents Gone Wired 2013 - VIDCHAT tips
+  array(
+    'mdata_id' => 10985,
+    'game_id' => SmsFlowGameConstants::GGW_VIDCHAT_TIPS,
+    'opt_in_paths' => array(162539, 162541, 162543, 162545, 162547, 162549, 162551),
+  ),
+  // Grandparents Gone Wired 2013 - INSTA tips
+  array(
+    'mdata_id' => 10987,
+    'game_id' => SmsFlowGameConstants::GGW_INSTA_TIPS,
+    'opt_in_paths' => array(162589, 162591, 162593, 162595, 162597, 162599, 162601, 162603, 162605),
+  ),
+  // Grandparents Gone Wired 2013 - TABLET tips
+  array(
+    'mdata_id' => 10989,
+    'game_id' => SmsFlowGameConstants::GGW_TABLET_TIPS,
+    'opt_in_paths' => array(162553, 162555, 162557, 162559, 162561, 162563, 162565, 162567, 162569, 162571),
+  ),
 );
 
 $activity = $workflow->newActivity('end');
