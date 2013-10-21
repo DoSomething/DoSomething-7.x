@@ -43,6 +43,11 @@ $activity->routes = array(
     'yes' => '161871',
     'no' => '161873',
   ),
+  // Grandparents Gone Wire Report Back
+  '162623' => array(
+    'yes' => '162627',
+    'no' => '162631',
+  ),
 );
 
 $activity = $workflow->newActivity('end');
@@ -491,30 +496,65 @@ $activity->outputs = array('ask_picture');
 $activity = $workflow->newActivity('mms_prompt');
 $activity->name = 'ask_picture';
 $activity->inputs = array('start');
-$activity->outputs = array('ask_why');
+$activity->outputs = array('ask_q1', 'end');
 $activity->should_prompt = FALSE;
+$activity->no_mms_response = 162633;
 
 $activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_why';
+$activity->name = 'ask_q1';
 $activity->inputs = array('ask_picture');
-$activity->outputs = array('submit_report_back');
-$activity->question = 'Why did you sign up to participate in Grandparents Gone Wired?';
+$activity->outputs = array('ask_q2');
+$activity->question = 'Amazing! Q1: Which type(s) of technology did you teach?';
 
-$activity = $workflow->newActivity('submit_dosomething_report_back');
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_q2';
+$activity->inputs = array('ask_q1');
+$activity->outputs = array('ask_q3');
+$activity->question = 'Awesome. Q2: How many people did you do this with?';
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_q3';
+$activity->inputs = array('ask_q2');
+$activity->outputs = array('ask_q4');
+$activity->question = 'Sweet! Q3: Who did you teach?';
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_q4';
+$activity->inputs = array('ask_q3');
+$activity->outputs = array('ask_q5');
+$activity->question = 'Great. Q4: Where did you teach the older adults (in your home, their home, a senior center/nursing home)?';
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_q5';
+$activity->inputs = array('ask_q4');
+$activity->outputs = array('ask_q6');
+$activity->question = 'Nice. Q5: What\'s your zipcode?';
+
+$activity = $workflow->newActivity('sms_prompt');
+$activity->name = 'ask_q6';
+$activity->inputs = array('ask_q5');
+$activity->outputs = array('submit_report_back');
+$activity->question = 'Great. Last question! Q6: Briefly describe why teaching older adults technology is important to you.';
+
+$activity = $workflow->newActivity('submit_report_back');
 $activity->name = 'submit_report_back';
-$activity->inputs = array('ask_why');
+$activity->inputs = array('ask_q6');
 $activity->outputs = array('end');
-$activity->nid = 731026;
-$activity->organization_code = 1300028;
-$activity->picture_activity_name = 'ask_picture:mms';
 $activity->submission_fields = array(
-  'why' => 'ask_why',
+  'picture' => 'ask_picture:mms',
+  'ask_q1' => 3,
+  'ask_q2' => 4,
+  'ask_q3' => 5,
+  'ask_q4' => 6,
+  'ask_q5' => 7,
+  'ask_q6' => 8,
 );
-$activity->success_response = 'Thanks for participating in Grandparents Gone Wired!';
+$activity->success_response = 162637;
+$activity->webform_nid = 731107;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('submit_report_back');
+$activity->inputs = array('submit_report_back', 'ask_picture');
 
 $workflows[$workflow->name] = $workflow;
 

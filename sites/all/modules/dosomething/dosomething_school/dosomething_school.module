@@ -1,7 +1,11 @@
 <?php
 /**
  * @file
+ * Defines DS_School Entity and contains Great Schools API functions.
  */
+
+// Should begin with --'s to appear last in the school dropdown list:
+define('DOSOMETHING_SCHOOL_NOT_FOUND_KEY', "-- I can't find my school! --");
 
 /**
  * Implements hook_menu().
@@ -602,6 +606,8 @@ function dosomething_school_api_autocomplete_callback($state, $string = '') {
       $matches[$key] = check_plain($school['name']) . ', ' . check_plain($school['city']) . ' ' . check_plain($school['state']);
     }
   }
+  // Add an element to the end of the array for school not found.
+  $matches[DOSOMETHING_SCHOOL_NOT_FOUND_KEY] = DOSOMETHING_SCHOOL_NOT_FOUND_KEY;
   drupal_json_output($matches);
 }
 

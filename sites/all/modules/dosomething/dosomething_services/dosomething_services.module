@@ -140,6 +140,46 @@ function dosomething_services_services_resources() {
     ),
   );
 
+  if (module_exists('dosomething_reportback')) {
+    $resources += array(
+      'reportback' => array(
+        'operations' => array(
+          'create' => array(
+            'help' => 'Submit a report back to a Do Something campaign.',
+            'file' => array('type' => 'module', 'module' => 'dosomething_services', 'name' => 'dosomething_services'),
+            'callback' => '_dosomething_services_reportback_create',
+            'access callback' => '_dosomething_services_reportback_access',
+            'access arguments' => array('create'),
+            'access arguments append' => TRUE,
+            'args' => array(
+              array(
+                'name' => 'organizationCode',
+                'type' => 'string',
+                'description' => 'The organization code of the campaign a report back is being submitted for.',
+                'source' => array('path' => 0),
+                'optional' => FALSE,
+              ),
+              array(
+                'name' => 'nid',
+                'type' => 'int',
+                'description' => 'The node ID of the campaign a report back is being submitted for.',
+                'source' => array('path' => 1),
+                'optional' => FALSE,
+              ),
+              array(
+                'name' => 'fieldData',
+                'type' => 'array',
+                'description' => 'The report back data array.',
+                'source' => 'data',
+                'optional' => FALSE,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   require_once('resources/profile_resource.inc');
   $resources += _profile_resource_definition();
 
@@ -340,52 +380,70 @@ function _dosomething_services_form_error($msg, $code) {
  */
 function _dosomething_services_user_resource_create($account) {
   // Check for required fields
-  if (empty($account['name'])) {
-    return _dosomething_services_form_error(t('Username is required.'), 406);
-  }
-  else if (empty($account['pass'])) {
+  if (empty($account['pass'])) {
     return _dosomething_services_form_error(t('A password is required.'), 406);
   }
-  else if (empty($account['mail'])) {
-    return _dosomething_services_form_error(t('A valid e-mail address is required.'), 406);
+  elseif (empty($account['mail']) && empty($account['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'])) {
+    return _dosomething_services_form_error(t('A valid e-mail address or cell phone number is required.'), 406);
   }
-  else if (empty($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date'])) {
+  elseif (empty($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date'])) {
     return _dosomething_services_form_error(t('Birthday is required.'), 406);
   }
-  else if (empty($account['profile_main']['field_user_first_name'][LANGUAGE_NONE][0]['value'])) {
-    return _dosomething_services_form_error(t('First Name is required.'), 406);
-  }
-  else if (empty($account['profile_main']['field_user_last_name'][LANGUAGE_NONE][0]['value'])) {
-    return _dosomething_services_form_error(t('Last Name is required.'), 406);
-  }
 
-  // Find user by name or by mail
-  $old_user = user_load_by_name($account['name']);
-  if (!$old_user) {
-    $old_user = user_load_by_mail($account['mail']);
-    if ($old_user) {
-      return _dosomething_services_form_error(t('An account with that e-mail address already exists'), 406);
-    }
-  }
-  else {
+  // Check if account already exists for given username, email, or phone number
+  if (!empty($account['name']) && user_load_by_name($account['name'])) {
     return _dosomething_services_form_error(t('An account with that username already exists'), 406);
+  }
+  if (!empty($account['mail']) && user_load_by_mail($account['mail'])) {
+    return _dosomething_services_form_error(t('An account with that e-mail address already exists'), 406);
+  }
+  $mobile = $account['profile_main']['field_user_mobile'][LANGUAGE_NONE][0]['value'];
+  if (!empty($mobile) && dosomething_api_user_lookup($mobile)) {
+    return _dosomething_services_form_error(t('An account with that mobile number already exists'), 406);
   }
   
   // No existing account found, so create a new one
-  require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
-
   $new_user = new stdClass;
-  $new_user->name = $account['name'];
-  $new_user->pass = user_hash_password($account['pass']);
-  $new_user->mail = $account['mail'];
 
+  // Set the email for this account
+  if (!empty($account['mail'])) {
+    $new_user->mail = $account['mail'];
+  }
+  // If no email was provided, but a cell phone number was, then use that and append @mobile to it
+  elseif (!empty($mobile)) {
+    $new_user->mail = $mobile . '@mobile';
+  }
+  else {
+    return _dosomething_services_form_error(t('A valid e-mail address or cell phone number is required.'), 406);
+  }
+
+  // Set the name for this account
+  if (!empty($account['name'])) {
+    $new_user->name = $account['name'];
+  }
+  // Otherwise, use email if available
+  elseif (!empty($account['mail'])) {
+    $new_user->name = $new_user->mail;
+  }
+  // Otherwise, use mobile if available
+  else if (!empty($mobile)) {
+    $new_user->name = $mobile;
+  }
+  else {
+    return _dosomething_services_form_error(t('A valid e-mail address or cell phone number is required.'), 406);
+  }
+
+  // Password needs to be saved as a hash
+  require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+  $new_user->pass = user_hash_password($account['pass']);
+
+  // If user's birthday is 26 or over, then assign her to the 'old person' role
   $bday = strtotime($account['profile_main']['field_user_birthday'][LANGUAGE_NONE][0]['value']['date']);
   if ($bday !== FALSE && dosomething_login_person_is_over_age($bday, 26)) {
     $new_user->roles[20] = 'old person';
   }
 
   $new_user->status = 1;
-
   user_save($new_user);
 
   // Populate user's profile2 data
@@ -411,11 +469,8 @@ function _dosomething_services_user_resource_create($account) {
 
   profile2_save($new_profile);
 
-  // Profile is now setup, so safe to send email to user
-  _user_mail_notify('register_no_approval_required', $new_user);
-
   // Login the user
-  _user_resource_login($account['name'], $account['pass']);
+  _user_resource_login($new_user->name, $account['pass']);
 
   // Build the return data
   $return = new stdClass();
@@ -423,7 +478,7 @@ function _dosomething_services_user_resource_create($account) {
   if ($uri = services_resource_uri(array('user', $new_user->uid))) {
     $return->user['uri'] = $uri;
   }
-  $return->user['mail'] = $account['mail'];
+  $return->user['mail'] = $new_user->mail;
 
   // Add session information to the return value
   $return->sessid = session_id();
@@ -590,6 +645,83 @@ function _dosomething_services_file_create_raw() {
   }
 
   return $return;
+}
+
+/**
+ * Access callback for the reportback controller.
+ *
+ * @param $op
+ *   Operation requesting access to the controller.
+ * @param $args
+ *   The array of arguments submitted with the operation.
+ */
+function _dosomething_services_reportback_access($op = 'create', $args = array()) {
+  global $user;
+
+  if ($op == 'create') {
+    $nid = $args[1];
+    $node = node_load($nid);
+    if (!$node) {
+      return services_error(t('The node @nid for this report back does not exist.', array('@nid' => $nid)), 406);
+    }
+    elseif ($node->type != 'campaign') {
+      return services_error(t('Invalid node type. Expecting type \'campaign\' but instead the requested node is type \'@type\'', array('@type' => $node->type)), 403);
+    }
+
+    // Checking 'view' access because user is creating a report back submission
+    // for the node, not creating a node itself.
+    return node_access('view', $node);
+  }
+
+  return FALSE;
+}
+
+/**
+ * Callback handler for the 'create' operation on the reportback resource. Submits a report
+ * back using methods from the dosomething_reportback module.
+ *
+ * @param $organizationCode
+ *   The organization code for the node the report back is being submitted for.
+ * @param $nid
+ *   Unique identifier for the node the report back is being submitted for.
+ * @param $fieldData
+ *   Array of fields and their associated data submitted for the report back.
+ */
+function _dosomething_services_reportback_create($organizationCode, $nid, $fieldData) {
+  global $user;
+
+  if (empty($fieldData)) {
+    return services_error('Report back failed due to empty submission data.', 400);
+  }
+
+  // Handle the picture data before submitting the rest of the fields.
+  $pictureFile = NULL;
+  if (isset($fieldData['picture'])) {
+    // Expecting an fid as the value. Save the file object for moving to a new location later.
+    $pictureFid = $fieldData['picture'];
+    $pictureFile = file_load($pictureFid);
+    $pictureFile->uid = $user->uid;
+    $pictureFile = file_save($pictureFile);
+
+    // Remove 'picture' field since it'll be saved through a separate method.
+    unset($fieldData['picture']);
+  }
+
+  // Submit the report back field data
+  $reportBackData = dosomething_reportback_insert_reportback($user->uid, $nid, $organizationCode, $fieldData);
+
+  if ($pictureFile) {
+    // Generate new URI for this file
+    $fileUri = dosomething_reportback_get_reportback_file_uri($reportBackData, $pictureFile->filename);
+
+    // Move file to its new location
+    file_move($pictureFile, $fileUri);
+
+    // Then save picture info to the database
+    dosomething_reportback_insert_reportback_file($reportBackData['rbid'], $pictureFile->fid);
+  }
+
+  return $reportBackData;
 }
 
 /**
