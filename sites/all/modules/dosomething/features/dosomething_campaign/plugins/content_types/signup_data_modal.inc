@@ -49,11 +49,27 @@ function signup_data_modal_admin_info($subtype, $conf, $contexts) {
 function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
   global $user;
   $nid = $context->data->nid;
-  // If we already have user signup data for this node:
-  if (dosomething_signups_get_signup_data($user->uid, $nid)) {
-    // Don't render anything.
+
+  // Variable used for internal testing, in order to always be able to view signup data form.
+  $auto_display_modal = FALSE;
+  // Check if staff user:
+  if (in_array('staff', $user->roles)) {
+    // Check in query string if auto-display is set:
+    $form_check = $_GET['form'];
+    // If set to 1, display the modal form regardless of whether or not signup_data was stored.
+    // Used for internal testing.
+    if ($form_check && is_numeric($form_check) && $form_check == 1) {
+      $auto_display_modal = TRUE;
+    }
+  }
+
+  // If form is not set to automatically display via query string, 
+  // And if we already have user signup data for this node:
+  if (!$auto_display_modal && dosomething_signups_get_signup_data($user->uid, $nid)) {
+    // Don't render anything (no modal form will be displayed).
     return;
   }
+
   // Build JS settings for desktop modal:
   $desktop_class = 'ds-signup-data-desktop';
   $desktop_options = array(

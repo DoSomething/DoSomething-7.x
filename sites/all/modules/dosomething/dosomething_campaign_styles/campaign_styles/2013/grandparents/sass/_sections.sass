@@ -85,7 +85,6 @@
     @media only screen and (max-width: 600px)
       display: none
 
-
   .row-bottom
     position: absolute
     bottom: 0
@@ -97,6 +96,16 @@
 .headline
   margin: 0
   padding-bottom: 0
+
+.header-desktop
+  font-size: 2em
+  @media only screen and (max-width: 780px)
+    display: none
+
+.header-mobile
+  display: none
+  @media only screen and (max-width: 780px)
+    display: inherit
 
 
 
@@ -349,8 +358,8 @@
 .gallery
   img
     //border: 1px solid #ddd !important
-    +border-radius(3px)
-    +box-shadow(0 10px 10px -10px #bbb !important)
+    //+border-radius(3px)
+    //+box-shadow(0 10px 10px -10px #bbb !important)
 
 
 // MAP
@@ -398,6 +407,8 @@
   .back-to-top /* TODO - THESE STYLES WERE INHERITED; REFACTOR THEM */
     text-align: right
     padding: 1em 0 1em
+    @media only screen and (max-width: $break-small)
+      display: none
 
   .top-btn
     font-weight: 400
@@ -442,6 +453,22 @@
   img
     width: 50px
     +block-center
+
+.footer-partner, .footer-banner
+  display: none
+  img
+    margin: 0.5em auto 2em
+    display: block
+  @media only screen and (max-width: $break-small)
+    display: inherit
+.footer-partner
+  p
+    margin-top: 1.5em
+.footer-banner
+  background: $main-color
+  padding: 1em
+  a, p
+    color: white
 
 
 // CONFIRMATION
