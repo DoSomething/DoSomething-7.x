@@ -57,12 +57,12 @@
       </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/fedup-block.jpg'); background-position: center center;">
-      <a class="full-link" href="//fedup.dosomething.org/fedup"><span>Do This</span></a>
-      <div class="headline red">
-        <div class="headline-row"><h4>Show everyone what you think about your school lunch</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="//fedup.dosomething.org/fedup" class="btn primary large">Do This</a></p></div>
-      </div>
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
+     <a class="full-link" href="/survivors"><span>Do This</span></a>
+     <div class="headline teal">
+       <div class="headline-row"><h4>Donate phones to help domestic abuse survivors</h4></div>
+       <div class="headline-row"><p class="homepage-block-cta"><a href="/survivors" class="btn primary large">Do This</a></p></div>
+     </div>
     </div>
 
     <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/50cans-block.jpg'); background-position: center center;">
@@ -98,13 +98,13 @@
       </div>
     </div>
 
-     <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
-       <a class="full-link" href="/survivors"><span>Do This</span></a>
-       <div class="headline teal">
-         <div class="headline-row"><h4>Donate phones to help domestic abuse survivors</h4></div>
-         <div class="headline-row"><p class="homepage-block-cta"><a href="/survivors" class="btn primary large">Do This</a></p></div>
-       </div>
-     </div>
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/fedup-block.jpg'); background-position: center center;">
+      <a class="full-link" href="//fedup.dosomething.org/fedup"><span>Do This</span></a>
+      <div class="headline red">
+        <div class="headline-row"><h4>Show everyone what you think about your school lunch</h4></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="//fedup.dosomething.org/fedup" class="btn primary large">Do This</a></p></div>
+      </div>
+    </div>
 
     <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/50cans-block.jpg'); background-position: center center;">
       <a class="full-link" href="/50cans"><span>Do This</span></a>
