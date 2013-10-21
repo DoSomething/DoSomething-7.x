@@ -86,6 +86,7 @@ function dosomething_campaign_signup($account, $node) {
   if (!$user_signed_up) {
     dosomething_signups_insert_signup($account->uid, $nid);
     $email = $account->mail;
+    $user2 = profile2_load_by_user($account, 'main');
     // Mailchimp signup:
     $mailchimp = $node->field_mailchimp_group_id[LANGUAGE_NONE][0]['value'];
     if ($mailchimp && !empty($mailchimp)) {
@@ -105,8 +106,10 @@ function dosomething_campaign_signup($account, $node) {
     }
     // Mandrill mail:
     $mandrill = $node->field_mandrill_key[LANGUAGE_NONE][0]['value'];
+    $fname = field_get_items('profile2', $user2, 'field_user_first_name');
+    $message['FNAME'] = $fname[0]['value'];
     if ($mandrill && !empty($mandrill)) {
-      dosomething_mandrill_dispatch($email, $mandrill);
+      dosomething_mandrill_dispatch($email, $mandrill, $message);
     }
   }
 }

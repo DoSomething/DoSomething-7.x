@@ -6,6 +6,26 @@
  */
 
 /*
+ * Impliments hook_menu()
+ *
+ * Used for development / testing. Remove to force Drush access to the same
+ * functionality.
+ */
+function dosomething_mandrill_menu() {
+  
+  $items = array();
+	
+  $items['dosomething_mandrill/dispatch_events/%'] = array(
+    'page callback' => 'dosomething_mandrill_dispatch_events',
+		'page arguments' => array(2),
+    'access callback' => TRUE,
+	);
+  
+  return $items;
+
+}
+
+/*
  * Impliments hook_theme()
  */
 function dosomething_mandrill_theme($existing, $type, $theme, $path) {
@@ -203,7 +223,7 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
 function dosomething_mandrill_mail($key, &$message, $params) {
   
   // Common merge tags
-  isset($params['FNAME']) ? $message['params']['FNAME'] = $params['FNAME'] : $message['params']['FNAME'] = NULL;
+  isset($params['FNAME']) ? $message['params']['FNAME'] = $params['FNAME'] : $message['params']['FNAME'] = 'Doer';
 
   switch ($key) {
 
@@ -619,16 +639,11 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   $results['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
   $results['sent'] = count($to);
   
-  // Log details for reporting
-  // @todo - Replace with https://www.stathat.com solution
-  $dispatch_events_status = unserialize(variable_get('dosomething_mandrill_dispatch_events_stats', NULL));
-    
-  // Record results for reporting
-  $dispatch_events_status[$timestamp] = array(
-    'op' => $op,
-    'send_status' => $results['send_status'],
-    'sent' => $results['sent'],
-  );
+  // Record the number of messages sent
+  if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
+    stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $results['sent']);
+    stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $results['sent']);
+  }
     
   $dispatch_events_status = variable_set('dosomething_mandrill_dispatch_events_stats', serialize($dispatch_events_status));
 

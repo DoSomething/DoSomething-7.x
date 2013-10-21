@@ -136,10 +136,10 @@ function dosomething_signups_signup($account, $node) {
   if (isset($node->field_mailchimp_group[LANGUAGE_NONE][0]['value'])) {
     dosomething_subscribe_mailchimp_signup($account->mail, $node->field_mailchimp_group[LANGUAGE_NONE][0]['value']);
   }
+  $cell = '';
+  $user2 = profile2_load_by_user($account, 'main');
   // Subscribe to Mobilecommons:
   if (isset($node->field_mobilecommons_opt_in[LANGUAGE_NONE][0]['value'])) {
-    $cell = '';
-    $user2 = profile2_load_by_user($account, 'main');
     $cell = field_get_items('profile2', $user2, 'field_user_mobile');
     $cell = $cell[0]['value'];
     if (!empty($cell)) {
@@ -149,7 +149,9 @@ function dosomething_signups_signup($account, $node) {
   }
   // Send Mandrill mail:
   if (isset($node->field_mandrill_key[LANGUAGE_NONE][0]['value'])) {
-    dosomething_mandrill_dispatch($account->mail, $node->field_mandrill_key[LANGUAGE_NONE][0]['value']);
+    $fname = field_get_items('profile2', $user2, 'field_user_first_name');
+    $message['FNAME'] = $fname[0]['value'];
+    dosomething_mandrill_dispatch($account->mail, $node->field_mandrill_key[LANGUAGE_NONE][0]['value'], $message);
   }
   // Set success message:
   drupal_set_message(dosomething_signups_get_signup_success_msg($node));
