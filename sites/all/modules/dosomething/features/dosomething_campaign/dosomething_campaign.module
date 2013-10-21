@@ -9,6 +9,7 @@ include_once('dosomething_campaign.features.inc');
 // Include Campaign-specific form callback functions:
 include_once('includes/kiva.inc');
 include_once('includes/momm.inc');
+include_once('includes/tfj.inc');
 
 /**
  * Implements hook_ctools_plugin_type().
