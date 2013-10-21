@@ -61,6 +61,12 @@ function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
   $form['address_header'] = array(
     '#markup' => '<h2>Want to receive a banner to promote your drive?</h2><h3>Enter your shipping address below:</h3>',
   );
+  $form['address_name'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Your Name'),
+    ),
+  );
   $form['address1'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
@@ -151,6 +157,9 @@ function dosomething_campaign_tfj_signup_data_form_validate(&$form, &$form_state
  */
 function dosomething_campaign_tfj_signup_data_form_submit(&$form, &$form_state) {
   global $user;
+  //@todo: Update this value to the prod nid.
+  $tfj_nid = variable_get('tfj_campaign_nid', 731098);
+
   // Initalize array to store data into signups table:
   $signup_data = array();
   // If a school has been found:
@@ -170,16 +179,27 @@ function dosomething_campaign_tfj_signup_data_form_submit(&$form, &$form_state) 
       $signup_data['no_school'] = 'not affiliated';
     }
   }
-
-  //@todo: Send school ID somewhere?
-
-  //@todo: If address fields have values, send them somewhere.
+  
+  // If we have enough address values to actually mail something to someone:
+  if (!empty($form_state['values']['address1']) && !empty($form_state['values']['city']) && !empty($form_state['values']['state']) && !empty($form_state['values']['zip'])) {
+    // Submit to Address List:
+    $address_data = array(
+      'uid' => $user->uid,
+      'nid' => $tfj_nid,
+      'email' => $user->mail,
+      'name' => $form_state['values']['address_name'],
+      'address1' => $form_state['values']['address1'],
+      'address2' => $form_state['values']['address2'],
+      'city' => $form_state['values']['address_city'],
+      'state' => $form_state['values']['address_state'],
+      'zip' => $form_state['values']['address_zip'],
+    );
+    dosomething_campaign_submit_signup_address($address_data);
+  }
 
   // Update signups record with signup_data.
   if (module_exists('dosomething_signups')) {
-    //@todo: Update with TFJ nid.
-    $nid = variable_get('tfj_campaign_nid', 731098);
-    dosomething_signups_update_signup_data($user->uid, $nid, $signup_data);
+    dosomething_signups_update_signup_data($user->uid, $tfj_nid, $signup_data);
   }
   // Tell the browser to close the modal.
   // @see dosomething_modal_form_builder() for where this is executed.
