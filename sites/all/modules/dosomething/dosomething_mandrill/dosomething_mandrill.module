@@ -362,13 +362,14 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   if(!empty($merge_vars)) {
     $mandrill_params['message']['merge_vars'] = $merge_vars;
   }
+  
+  $mandrill_params['message']['to'] = empty($content['to'][0]) ? $mandrill_params['message']['to'] : array_merge($content['to'], $mandrill_params['message']['to']);
 
   // Combine all merge_var values - these values are used to send multipul messages
   // with customizations to the Mandrill templace based on the merge_var values and
-  // the matching *|TAGS|*
-  $mandrill_params['message']['merge_vars'] = array_merge($content['merge_vars'], (array) $mandrill_params['message']['merge_vars']);
+  // the matching *|TAGS|*  
+  $mandrill_params['message']['merge_vars'] = empty($content['merge_vars']) ? $mandrill_params['message']['merge_vars'] : array_merge($content['merge_vars'], $mandrill_params['message']['merge_vars']);
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
-  $mandrill_params['message']['to'] = array_merge($content['to'], (array) $mandrill_params['message']['to']);
 
 }
 
