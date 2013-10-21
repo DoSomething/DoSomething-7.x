@@ -201,6 +201,9 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
  *   specific to the group / batch of messages.
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
+  
+  // Common merge tags
+  isset($params['FNAME']) ? $message['params']['FNAME'] = $params['FNAME'] : $message['params']['FNAME'] = NULL;
 
   switch ($key) {
 
@@ -236,10 +239,15 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       $message['from'] = 'dosomething@dosomething.org';
       $message['subject'] = 'DoSomething.org - Password Reset';
       $message['body'] = variable_get('user_mail_password_reset_notify', NULL);
-
-      $message['params']['FNAME'] = $params['FNAME'];
+      
       $message['params']['PASS'] = $params['URL'];
 
+      break;
+    
+    case 'GGWired13rb':
+      
+      $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
+      
       break;
 
     case 'dsplain':
@@ -354,13 +362,14 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   if(!empty($merge_vars)) {
     $mandrill_params['message']['merge_vars'] = $merge_vars;
   }
+  
+  $mandrill_params['message']['to'] = empty($content['to'][0]) ? $mandrill_params['message']['to'] : array_merge($content['to'], $mandrill_params['message']['to']);
 
   // Combine all merge_var values - these values are used to send multipul messages
   // with customizations to the Mandrill templace based on the merge_var values and
-  // the matching *|TAGS|*
-  $mandrill_params['message']['merge_vars'] = array_merge($content['merge_vars'], (array) $mandrill_params['message']['merge_vars']);
+  // the matching *|TAGS|*  
+  $mandrill_params['message']['merge_vars'] = empty($content['merge_vars']) ? $mandrill_params['message']['merge_vars'] : array_merge($content['merge_vars'], $mandrill_params['message']['merge_vars']);
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
-  $mandrill_params['message']['to'] = array_merge($content['to'], (array) $mandrill_params['message']['to']);
 
 }
 
@@ -603,12 +612,25 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   $message['message']['merge_vars'] = $merge_vars;
   $message['message']['global_merge_vars'] = $global_merge_vars;
   
-  // Send merge details to Mandrill for mass dispatch
+  // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
   $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message);
   
   // Report to Drush results
   $results['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
   $results['sent'] = count($to);
+  
+  // Log details for reporting
+  // @todo - Replace with https://www.stathat.com solution
+  $dispatch_events_status = unserialize(variable_get('dosomething_mandrill_dispatch_events_stats', NULL));
+    
+  // Record results for reporting
+  $dispatch_events_status[$timestamp] = array(
+    'op' => $op,
+    'send_status' => $results['send_status'],
+    'sent' => $results['sent'],
+  );
+    
+  $dispatch_events_status = variable_set('dosomething_mandrill_dispatch_events_stats', serialize($dispatch_events_status));
 
   return $results;
   
