@@ -1,0 +1,6 @@
+name = StatHat
+description = Third party service to easily track numbers and have them presented in an easy and automated way via the StatHat website.
+core = 7.x
+version = "7.x-1.0"
+package = Dosomething
+dependencies[] = libraries
