@@ -25,8 +25,6 @@ function dosomething_mandrill_drush_command() {
 function drush_dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
   try {
     
-    $timestamp = time();
-    
     $results = dosomething_mandrill_dispatch_events($op, $target_date);
     
     drush_print(dt($results['send_status']));
