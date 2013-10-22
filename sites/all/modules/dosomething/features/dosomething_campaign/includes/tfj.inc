@@ -187,7 +187,7 @@ function dosomething_campaign_tfj_signup_data_form_submit(&$form, &$form_state) 
   }
   
   // If we have enough address values to actually mail something to someone:
-  if (!empty($form_state['values']['address1']) && !empty($form_state['values']['city']) && !empty($form_state['values']['state']) && !empty($form_state['values']['zip'])) {
+  if (empty($form_state['values']['address_name']) && !empty($form_state['values']['address1']) && !empty($form_state['values']['address_city']) && !empty($form_state['values']['address_state']) && !empty($form_state['values']['address_zip'])) {
     // Submit to Address List:
     $address_data = array(
       'uid' => $user->uid,
