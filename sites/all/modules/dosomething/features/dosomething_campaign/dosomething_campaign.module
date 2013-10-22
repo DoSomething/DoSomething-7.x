@@ -119,18 +119,17 @@ function dosomething_campaign_signup($account, $node) {
  * Inserts given array $data values as a Campaign Signup Address List webform submission.
  *
  * @param array $data
- *   The address values that the logged in user has submitted.
+ *   An array of user information and address values from a campaign signup form.
  *
  * @return
  *   The submission sid of the isnerted webform submission.
  *
  */
 function dosomething_campaign_submit_signup_address($data) {
-  global $user;
   // Just hardcodin' some webform nid's over here.
   $node = node_load(variable_get('campaign_signup_address_list_nid', 731111));
   $submission = new stdClass;
-  $submission->uid = $user->uid;
+  $submission->uid = $data['uid'];
   $submission->submitted = REQUEST_TIME;
   $submission->remote_addr = ip_address();
   $submission->is_draft = FALSE;
@@ -144,7 +143,7 @@ function dosomething_campaign_submit_signup_address($data) {
     6 => array('value' => array($data['zip'])),
     7 => array('value' => array($data['name'])),
     // Not a typo, component 8 was deleted from the webform.
-    9 => array('value' => array($user->mail)),
+    9 => array('value' => array($data['email'])),
   );
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   return webform_submission_insert($node, $submission);
