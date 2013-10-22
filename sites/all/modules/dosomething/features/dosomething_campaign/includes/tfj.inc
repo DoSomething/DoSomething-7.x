@@ -123,32 +123,35 @@ function dosomething_campaign_tfj_signup_ajax_school_not_found_callback($form, $
  */
 function dosomething_campaign_tfj_signup_data_form_validate(&$form, &$form_state) {
   $school_name = check_plain($form_state['values']['gsid']);
-  // If schooL_not_found or not_affiliated was selected, 
-  if ($school_name == DOSOMETHING_SCHOOL_NOT_FOUND_KEY || $form_state['values']['not_affiliated']) {
-    // Don't need to check for valid gsid.
+  // If "school not found" selected:
+  if ($school_name == check_plain(DOSOMETHING_SCHOOL_NOT_FOUND_KEY)) {
+    // No other validation is needed.
     return;
   }
   // If no school value and no checkbox, they didn't select anything.
   if (empty($school_name) && !$form_state['values']['not_affiliated']) {
+    // Set error to prevent submit.
     form_set_error('gsid', "Please select a school from the list, or check 'unaffiliated' if you're not in a school.");
-    // Don't need to check for valid gsid.
     return;
   }
-  // Check for valid gsid between the []'s:
-  preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
-  $gsid = $gsid[1][0];
-  // If a school has been entered:
-  if (!empty($gsid)) {
-    // Lookup the ds_school entity ID:
-    $school_id = dosomething_school_find_sid_by_gsid($gsid);
-    // If it exists, set in the form_state['values']:
-    if ($school_id) {
-      $form_state['values']['gsid'] = $gsid;
-      $form_state['values']['school_id'] = $school_id;
-    }
-    // Otherwise, no soup for you:
-    else {
-      form_set_error('gsid', 'Invalid selection. Please select your school.');
+  // If a school name has been selected:
+  if (!empty($school_name)) {
+    // Find the gsid value inbetween the []'s:
+    preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
+    $gsid = $gsid[1][0];
+    // If a school has been entered:
+    if (!empty($gsid)) {
+      // Lookup the ds_school entity ID:
+      $school_id = dosomething_school_find_sid_by_gsid($gsid);
+      // If it exists, set in the form_state['values']:
+      if ($school_id) {
+        $form_state['values']['gsid'] = $gsid;
+        $form_state['values']['school_id'] = $school_id;
+      }
+      // Otherwise, no soup for you:
+      else {
+        form_set_error('gsid', 'Invalid selection. Please select your school.');
+      }
     }
   }
 }
