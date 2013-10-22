@@ -116,31 +116,36 @@ function dosomething_campaign_signup($account, $node) {
 }
 
 /**
- * Stores the address fields from a signup form 
- * into the Campaign Signup Address List webform.
+ * Inserts given array $data values as a Campaign Signup Address List webform submission.
+ *
+ * @param array $data
+ *   The address values that the logged in user has submitted.
+ *
+ * @return
+ *   The submission sid of the isnerted webform submission.
+ *
  */
 function dosomething_campaign_submit_signup_address($data) {
   global $user;
+  // Just hardcodin' some webform nid's over here.
+  $node = node_load(variable_get('campaign_signup_address_list_nid', 731111));
   $submission = new stdClass;
-  $submission->bundle = 'webform';
-  // Just hardcodin' some webform nid's.
-  $submission->nid = variable_get('campaign_signup_address_list_nid', 731111);
-  $submission->data = array();
   $submission->uid = $user->uid;
   $submission->submitted = REQUEST_TIME;
   $submission->remote_addr = ip_address();
   $submission->is_draft = FALSE;
-  $submission->sid = NULL;
-  $wrapper = entity_metadata_wrapper('webform_submission_entity', $submission);
-  // Just hardcodin some webform component cid's.
-  $wrapper->value()->data[1]['value'][0] = $data['nid'];
-  $wrapper->value()->data[2]['value'][0] = $data['address1'];
-  $wrapper->value()->data[3]['value'][0] = $data['address2'];
-  $wrapper->value()->data[4]['value'][0] = $data['city'];
-  $wrapper->value()->data[5]['value'][0] = $data['state'];
-  $wrapper->value()->data[6]['value'][0] = $data['zip'];
-  $wrapper->value()->data[7]['value'][0] = $data['name'];
-  // Not a typo, component 8 was deleted.
-  $wrapper->value()->data[9]['value'][0] = $user->mail;
-  $wrapper->save();
+  // Just hardcodin' some webform component nid's over here.
+  $submission->data = array(
+    1 => array('value' => array($data['nid'])),
+    2 => array('value' => array($data['address1'])),
+    3 => array('value' => array($data['address2'])),
+    4 => array('value' => array($data['city'])),
+    5 => array('value' => array($data['state'])),
+    6 => array('value' => array($data['zip'])),
+    7 => array('value' => array($data['name'])),
+    // Not a typo, component 8 was deleted from the webform.
+    9 => array('value' => array($user->mail)),
+  );
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  return webform_submission_insert($node, $submission);
 }
