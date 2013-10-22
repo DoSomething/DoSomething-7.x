@@ -52,7 +52,7 @@ function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
   if (!empty($form_state['values']['gsid']) && $form_state['values']['gsid'] == DOSOMETHING_SCHOOL_NOT_FOUND_KEY ) {
     // Display help text:
     $form['school_not_found']['#type'] = 'item';
-    $form['school_not_found']['#markup'] = 'Please email <a href="mailto://money@dosomething.org" target="_blank">money@dosomething.org</a> to add your school.';
+    $form['school_not_found']['#markup'] = 'Please email <a href="mailto://teensforjeans@dosomething.org" target="_blank">teensforjeans@dosomething.org</a> to add your school.';
   }
   $form['not_affiliated'] = array(
     '#type' => 'checkbox',
@@ -163,8 +163,7 @@ function dosomething_campaign_tfj_signup_data_form_validate(&$form, &$form_state
  */
 function dosomething_campaign_tfj_signup_data_form_submit(&$form, &$form_state) {
   global $user;
-  //@todo: Update this value to the prod nid.
-  $tfj_nid = variable_get('tfj_campaign_nid', 731098);
+  $tfj_nid = variable_get('tfj_campaign_nid', 731115);
 
   // Initalize array to store data into signups table:
   $signup_data = array();
