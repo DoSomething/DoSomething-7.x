@@ -2,20 +2,20 @@
 
 /**
  * @file
- * Code for MOMM campaign.
+ * Code for tfj campaign.
  */
 
 /**
  * Form constructor for the user profile school field form.
  *
- * @see dosomething_campaign_momm_signup_data_form_submit()
+ * @see dosomething_campaign_tfj_signup_data_form_submit()
  *
  * @ingroup forms
  */
-function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
+function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
   $form = array();
   $form['header'] = array(
-    '#markup' => '<h1>Almost there. Tell us your school to register your workshop!</h1>',
+    '#markup' => '<h1>Almost there!</h1><h2>Sign up your school and enter to win a $4,000 scholarship!</h2>',
   );
   $form['school_state'] = array(
     '#type' => 'select',
@@ -23,7 +23,7 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
     // Add an empty item for default:
     '#options' => array_merge(array('' => ''),_dosomething_school_get_states()),
     '#ajax' => array(
-      'callback' => 'dosomething_campaign_momm_signup_ajax_gsid_callback',
+      'callback' => 'dosomething_campaign_tfj_signup_ajax_gsid_callback',
       'wrapper' => 'autocomplete-by-state-ajax-replace',
     ),
   );
@@ -39,7 +39,7 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
     $form['gsid']['#autocomplete_path'] = 'ds_school/api/autocomplete/' . $form_state['values']['school_state'];
     $form['gsid']['#title'] = t("Start typing your school's name. We'll offer suggestions.");
     $form['gsid']['#ajax'] = array(
-      'callback' => 'dosomething_campaign_momm_signup_ajax_school_not_found_callback',
+      'callback' => 'dosomething_campaign_tfj_signup_ajax_school_not_found_callback',
       'wrapper' => 'school-not-found-ajax-replace',
     );
   }
@@ -52,12 +52,48 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   if (!empty($form_state['values']['gsid']) && $form_state['values']['gsid'] == DOSOMETHING_SCHOOL_NOT_FOUND_KEY ) {
     // Display help text:
     $form['school_not_found']['#type'] = 'item';
-    $form['school_not_found']['#markup'] = 'Please email <a href="mailto://money@dosomething.org" target="_blank">money@dosomething.org</a> to add your school.';
+    $form['school_not_found']['#markup'] = 'Please email <a href="mailto://teensforjeans@dosomething.org" target="_blank">teensforjeans@dosomething.org</a> to add your school.';
   }
   $form['not_affiliated'] = array(
     '#type' => 'checkbox',
-    '#prefix' => '<hr>',
-    '#title' => t('I am not affiliated with a school.'),
+    '#title' => t("I won't be participating with a school."),
+  );
+  $form['address_header'] = array(
+    '#markup' => '<h2>Want to receive a banner to promote your drive?</h2><h3>Enter your shipping address below:</h3>',
+  );
+  $form['address_name'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Your Name'),
+    ),
+  );
+  $form['address1'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Address 1'),
+    ),
+  );
+  $form['address2'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Address 2'),
+    ),
+  );
+  $form['address_city'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('City'),
+    ),
+  );
+  $form['address_state'] = array(
+    '#type' => 'select',
+    '#options' => array_merge(array('' => 'State'),_dosomething_school_get_states()),
+  );
+  $form['address_zip'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t('Zip'),
+    ),
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -69,23 +105,23 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
 /**
  * AJAX callback for gsid form element.
  */
-function dosomething_campaign_momm_signup_ajax_gsid_callback($form, $form_state) {
+function dosomething_campaign_tfj_signup_ajax_gsid_callback($form, $form_state) {
   return $form['gsid'];
 }
 
 /**
  * AJAX callback for school_not_found form element.
  */
-function dosomething_campaign_momm_signup_ajax_school_not_found_callback($form, $form_state) {
+function dosomething_campaign_tfj_signup_ajax_school_not_found_callback($form, $form_state) {
   return $form['school_not_found'];
 }
 
 /**
- * Form validation handler for dosomething_campaign_momm_signup_data_form().
+ * Form validation handler for dosomething_campaign_tfj_signup_data_form().
  *
- * @see dosomething_campaign_momm_signup_data_form()
+ * @see dosomething_campaign_tfj_signup_data_form()
  */
-function dosomething_campaign_momm_signup_data_form_validate(&$form, &$form_state) {
+function dosomething_campaign_tfj_signup_data_form_validate(&$form, &$form_state) {
   $school_name = check_plain($form_state['values']['gsid']);
   // If "school not found" selected:
   if ($school_name == check_plain(DOSOMETHING_SCHOOL_NOT_FOUND_KEY)) {
@@ -117,12 +153,14 @@ function dosomething_campaign_momm_signup_data_form_validate(&$form, &$form_stat
 }
 
 /**
- * Form submission handler for dosomething_campaign_momm_signup_data_form().
+ * Form submission handler for dosomething_campaign_tfj_signup_data_form().
  *
- * @see dosomething_campaign_momm_signup_data_form_validate()
+ * @see dosomething_campaign_tfj_signup_data_form_validate()
  */
-function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state) {
+function dosomething_campaign_tfj_signup_data_form_submit(&$form, &$form_state) {
   global $user;
+  $tfj_nid = variable_get('tfj_campaign_nid', 731115);
+
   // Initalize array to store data into signups table:
   $signup_data = array();
   // If a school has been found:
@@ -142,10 +180,27 @@ function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state)
       $signup_data['no_school'] = 'not affiliated';
     }
   }
+  
+  // If we have enough address values to actually mail something to someone:
+  if (empty($form_state['values']['address_name']) && !empty($form_state['values']['address1']) && !empty($form_state['values']['address_city']) && !empty($form_state['values']['address_state']) && !empty($form_state['values']['address_zip'])) {
+    // Submit to Address List:
+    $address_data = array(
+      'uid' => $user->uid,
+      'nid' => $tfj_nid,
+      'email' => $user->mail,
+      'name' => $form_state['values']['address_name'],
+      'address1' => $form_state['values']['address1'],
+      'address2' => $form_state['values']['address2'],
+      'city' => $form_state['values']['address_city'],
+      'state' => $form_state['values']['address_state'],
+      'zip' => $form_state['values']['address_zip'],
+    );
+    dosomething_campaign_submit_signup_address($address_data);
+  }
+
   // Update signups record with signup_data.
   if (module_exists('dosomething_signups')) {
-    $nid = variable_get('momm_campaign_nid', 731098);
-    dosomething_signups_update_signup_data($user->uid, $nid, $signup_data);
+    dosomething_signups_update_signup_data($user->uid, $tfj_nid, $signup_data);
   }
   // Tell the browser to close the modal.
   // @see dosomething_modal_form_builder() for where this is executed.

@@ -9,6 +9,7 @@ include_once('dosomething_campaign.features.inc');
 // Include Campaign-specific form callback functions:
 include_once('includes/kiva.inc');
 include_once('includes/momm.inc');
+include_once('includes/tfj.inc');
 
 /**
  * Implements hook_ctools_plugin_type().
@@ -105,12 +106,47 @@ function dosomething_campaign_signup($account, $node) {
       }
     }
     // Mandrill mail:
-    $mandrill = $node->field_mandrill_key[LANGUAGE_NONE][0]['value'];
-    $fname = field_get_items('profile2', $user2, 'field_user_first_name');
-    $message['FNAME'] = $fname[0]['value'];
-    if ($mandrill && !empty($mandrill)) {
-      dosomething_mandrill_dispatch($email, $mandrill, $message);
+    if (module_exists('dosomething_mandrill')) {
+      $mandrill = $node->field_mandrill_key[LANGUAGE_NONE][0]['value'];
+      $fname = field_get_items('profile2', $user2, 'field_user_first_name');
+      $message['FNAME'] = $fname[0]['value'];
+      if ($mandrill && !empty($mandrill)) {
+        dosomething_mandrill_dispatch($email, $mandrill, $message);
+      }
     }
   }
 }
 
+/**
+ * Inserts given array $data values as a Campaign Signup Address List webform submission.
+ *
+ * @param array $data
+ *   An array of user information and address values from a campaign signup form.
+ *
+ * @return
+ *   The submission sid of the isnerted webform submission.
+ *
+ */
+function dosomething_campaign_submit_signup_address($data) {
+  // Just hardcodin' some webform nid's over here.
+  $node = node_load(variable_get('campaign_signup_address_list_nid', 731111));
+  $submission = new stdClass;
+  $submission->uid = $data['uid'];
+  $submission->submitted = REQUEST_TIME;
+  $submission->remote_addr = ip_address();
+  $submission->is_draft = FALSE;
+  // Just hardcodin' some webform component nid's over here.
+  $submission->data = array(
+    1 => array('value' => array($data['nid'])),
+    2 => array('value' => array($data['address1'])),
+    3 => array('value' => array($data['address2'])),
+    4 => array('value' => array($data['city'])),
+    5 => array('value' => array($data['state'])),
+    6 => array('value' => array($data['zip'])),
+    7 => array('value' => array($data['name'])),
+    // Not a typo, component 8 was deleted from the webform.
+    9 => array('value' => array($data['email'])),
+  );
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  return webform_submission_insert($node, $submission);
+}
