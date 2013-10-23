@@ -52,6 +52,7 @@ function dosomething_modal_form_builder_access($form_id) {
   $allowed_forms = array(
     'dosomething_modal_example_form',
     'dosomething_campaign_momm_signup_data_form',
+    'dosomething_campaign_tfj_signup_data_form',
   );
   // If it's not allowed, no soup for you.
   return in_array($form_id, $allowed_forms);

@@ -48,7 +48,8 @@ function dosomething_modal_example_page() {
 
   // Output momm campaign data signup form as an example:
   if (module_exists('dosomething_campaign') && function_exists('dosomething_campaign_momm_signup_data_form')) {
-    $links[] = dosomething_modal_form_link('DoSomething Campaign Signup - School Form', 'dosomething_campaign_momm_signup_data_form', $options);	
+    $links[] = dosomething_modal_form_link('DoSomething Campaign Signup - Mind on My Money', 'dosomething_campaign_momm_signup_data_form', $options);
+    $links[] = dosomething_modal_form_link('DoSomething Campaign Signup - Teens for Jeans', 'dosomething_campaign_tfj_signup_data_form', $options);  
   }
 
   // Render links as a list:
