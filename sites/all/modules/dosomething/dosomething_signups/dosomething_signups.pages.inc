@@ -50,8 +50,5 @@ function dosomething_signups_join_page_form_submit($form, &$form_state) {
   if ($node->type == 'campaign') {
     dosomething_campaign_signup($user, $node);
   }
-  else {
-    dosomething_signups_signup($user, $node);
-  }
   $form_state['redirect'] = 'node/' . $node->nid;
 }

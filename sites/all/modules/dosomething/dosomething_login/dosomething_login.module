@@ -1802,14 +1802,9 @@ function dosomething_login_action_ds_connect($app_id, $access_token) {
 function dosomething_login_user_login(&$edit, $account) {
   // If the referring URL is a signup gate, the loaded destination node is returned.
   $gated_signup_node = dosomething_login_is_signup_gate_url($_SERVER['HTTP_REFERER']);
-  if ($gated_signup_node) {
-    if ($gated_signup_node->type == 'campaign') {
-      // Execute campaign login signup function:
-      dosomething_campaign_signup($account, $gated_signup_node);
-    }
-    elseif (module_exists('dosomething_signups')) {
-      dosomething_signups_signup($account, $gated_signup_node);
-    }
+  if ($gated_signup_node && $gated_signup_node->type == 'campaign') {
+    // Execute campaign login signup function:
+    dosomething_campaign_signup($account, $gated_signup_node);
   }
   if ($account->uid) {
     // Check if they have connected through Facebook.
