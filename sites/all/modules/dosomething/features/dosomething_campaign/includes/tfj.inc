@@ -136,21 +136,17 @@ function dosomething_campaign_tfj_signup_data_form_validate(&$form, &$form_state
   }
   // If a school name has been selected:
   if (!empty($school_name)) {
-    // Find the gsid value inbetween the []'s:
-    preg_match_all("^\[(.*?)\]^", $school_name, $gsid, PREG_PATTERN_ORDER);
-    $gsid = $gsid[1][0];
-    // If a school has been entered:
-    if (!empty($gsid)) {
+    // This preg_match() looks for the last pattern like [33334] and if found extracts the numeric portion.
+    $result = preg_match('/\[([0-9]+)\]$/', $school_name, $matches);
+    // If a number was found:
+    if ($result > 0) {
+      $gsid = $matches[$result];
       // Lookup the ds_school entity ID:
       $school_id = dosomething_school_find_sid_by_gsid($gsid);
       // If it exists, set in the form_state['values']:
       if ($school_id) {
         $form_state['values']['gsid'] = $gsid;
         $form_state['values']['school_id'] = $school_id;
-      }
-      // Otherwise, no soup for you:
-      else {
-        form_set_error('gsid', 'Invalid selection. Please select your school.');
       }
     }
   }
