@@ -134,7 +134,7 @@ $activity->sets = array(
   array(
     'mdata_id' => 10975,
     'game_id' => SmsFlowGameConstants::GGW_EMAIL_TIPS,
-    'opt_in_paths' => array(162423, 162425, 162427, 162429, 162431, 162433, 162435, 162437, 162439, 162441),
+    'opt_in_paths' => array(162747, 162423, 162425, 162427, 162429, 162431, 162433, 162435, 162437, 162439, 162441),
     'should_loop' => TRUE,
   ),
   // Grandparents Gone Wired 2013 - COMP tips
@@ -169,7 +169,7 @@ $activity->sets = array(
   array(
     'mdata_id' => 10985,
     'game_id' => SmsFlowGameConstants::GGW_VIDCHAT_TIPS,
-    'opt_in_paths' => array(162539, 162541, 162543, 162545, 162547, 162549, 162551),
+    'opt_in_paths' => array(162749, 162539, 162541, 162543, 162545, 162547, 162549, 162551),
     'should_loop' => TRUE,
   ),
   // Grandparents Gone Wired 2013 - INSTA tips
