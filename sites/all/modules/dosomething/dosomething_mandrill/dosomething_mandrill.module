@@ -172,6 +172,10 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
     watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to using the Mandrill %key.',
               array('%to' => $to, '%key' => $key), WATCHDOG_ERROR);
   }
+	else {  // log sent message
+		watchdog('dosomething_mandrill', 'To: %to - Key: %key.',
+              array('%to' => $to, '%key' => $key), WATCHDOG_INFO);
+	}
   
   return $message_status['result'];
 
