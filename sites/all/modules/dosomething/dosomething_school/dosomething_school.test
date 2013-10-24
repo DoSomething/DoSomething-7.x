@@ -23,6 +23,16 @@ class DosomethingSchoolUnitTestCase extends DrupalUnitTestCase {
     $this->assertTrue(isset($menu['ds_school/data_by_country']), '"ds_school/data_by_country" is defined.');
     $this->assertTrue(isset($menu['ds_school/sms_search']), '"ds_school/sms_search" is defined.');
   }
+
+  /**
+   * @see _dosomething_school_get_states().
+   */
+  public function testGetStates() {
+    $states = _dosomething_school_get_states();
+    $this->assertTrue(isset($states['NJ']), 'The key $states[NJ] exists with value ' . $states['NJ']);
+    $this->assertFalse(isset($states['1']), 'Numeric key test: $states[1] does not exist.');
+  }
+
 }
 
 class DoSomethingSchoolWebTestCase extends WebTestSuite {
@@ -50,15 +60,6 @@ class DoSomethingSchoolWebTestCase extends WebTestSuite {
     // Used to check that our school won't show up in the wrong state results.
     $this->wrong_school_state = 'NY';
 
-  }
-
-  /**
-   * @see _dosomething_school_get_states().
-   */
-  public function testGetStates() {
-    $states = _dosomething_school_get_states();
-    $this->assertTrue(isset($states['NJ']), 'The key $states[NJ] exists with value ' . $states['NJ']);
-    $this->assertFalse(isset($states['1']), 'Numeric key test: $states[1] does not exist.');
   }
 
   /**
