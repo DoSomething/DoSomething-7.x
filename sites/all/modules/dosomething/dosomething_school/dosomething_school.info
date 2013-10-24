@@ -5,3 +5,4 @@ package = "DoSomething"
 php = "5.2.4"
 dependencies[] = "entity"
 files[] = "plugins/entityreference_handler/ds_school.inc"
+files[] = dosomething_school.test
