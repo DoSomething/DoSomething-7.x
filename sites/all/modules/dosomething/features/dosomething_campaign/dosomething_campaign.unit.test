@@ -41,7 +41,7 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
   }
 
   public function setUp() {
-    parent::setUp();
+    parent::setUp('dosomething_campaign', 'webform');
   }
 
   /**
@@ -56,5 +56,52 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
     $confirmation = dosomething_campaign_block_view('kiva_confirmation');
     $this->assertTrue(isset($confirmation['content']));
     $this->assertTrue(strpos($confirmation['content'], 'Send Me') !== FALSE);
+  }
+  
+  /**
+   * Tests programatic submission to Campaign Signup Address List webform.
+   *
+   * @see dosomething_campaign_submit_signup_address().
+   */
+  public function testSubmitSignupAddress() {
+    $test_uid = 1;
+    $test_nid = 1;
+    $test_name = 'Peter Parker';
+    $test_address1 = '19 W. 21st St.';
+    $test_address2 = '8th Floor';
+    $test_city = 'New York City';
+    $test_state = 'NY';
+    $test_zip = '10010';
+    $test_email = 'spiderman@dosomething.org';
+    $data = array(
+      'uid' => $test_uid,
+      'nid' => $test_nid,
+      'name' =>  $test_name,
+      'address1' => $test_address1,
+      'address2' => $test_address2,
+      'city' => $test_city,
+      'state' => $test_state,
+      'zip' => $test_zip,
+      'email' => $test_email,
+    );
+    $sid = dosomething_campaign_submit_signup_address($data);
+     // Check that a submission has been created.
+    $this->assertTrue(is_numeric($sid), 'A webform submission [sid=' . $sid . '] was created.');
+    // Now check that submission values / data is correct.
+    $webform_nid = variable_get('campaign_signup_address_list_nid', 731111);
+    // Load the webform submission:
+    module_load_include('inc', 'webform', 'includes/webform.submissions');
+    $submission = webform_get_submission($webform_nid, $sid);
+    // Check that all values are as expected:
+    $this->assertTrue($submission->uid == $test_uid, 'Submission UID == ' . $test_uid);
+    $this->assertTrue($submission->data[1]['value'][0] == $test_nid, 'Campaign NID: ' . $submission->data[1]['value'][0] . ' == ' . $test_nid);
+    $this->assertTrue($submission->data[2]['value'][0] == $test_address1, 'Address1: ' . $submission->data[2]['value'][0] . ' == ' . $test_address1);
+    $this->assertTrue($submission->data[3]['value'][0] == $test_address2, 'Address2: ' . $submission->data[3]['value'][0] . '== ' . $test_address2);
+    $this->assertTrue($submission->data[3]['value'][0] == $test_address2, 'Address2: ' . $submission->data[3]['value'][0] . '== ' . $test_address2);
+    $this->assertTrue($submission->data[4]['value'][0] == $test_city, 'City: ' . $submission->data[4]['value'][0] . '== ' . $test_city);
+    $this->assertTrue($submission->data[5]['value'][0] == $test_state, 'State: ' . $submission->data[5]['value'][0] . '== ' . $test_state);
+    $this->assertTrue($submission->data[6]['value'][0] == $test_zip, 'Zip: ' . $submission->data[6]['value'][0] . '== ' . $test_zip);
+    $this->assertTrue($submission->data[7]['value'][0] == $test_name, 'Name: ' . $submission->data[7]['value'][0] . '== ' . $test_name);
+    $this->assertTrue($submission->data[9]['value'][0] == $test_email, 'Email: ' . $submission->data[9]['value'][0] . '== ' . $test_email);
   }
 }
