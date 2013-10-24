@@ -24,7 +24,6 @@ class DoSomethingUserWebTestCase extends WebTestSuite {
     dosomething_user_update_school($this->auth_user, $school_id);
     // Load user profile.
 	  $profile = profile2_load_by_user($this->auth_user, 'main');
-	  $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'] = $school_id;
     // Check that school has been saved:
     $this->assertTrue($school_id == $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'], 'Test user [uid=' . $this->auth_user->uid . '] school saved [sid=' . $school_id . '].');
   }
