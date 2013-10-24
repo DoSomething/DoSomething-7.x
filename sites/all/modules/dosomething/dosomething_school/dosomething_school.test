@@ -36,8 +36,20 @@ class DoSomethingSchoolWebTestCase extends WebTestSuite {
 
   public function setUp() {
     parent::setUp('dosomething_school');
-    // Use Ocean Township High School, NJ for testing.
+    // Only an authenticated user can view the API autcomplete.
+    $this->auth_user = $this->factory->create('User');
+    // NJ, OT REPRESENT:
+    // School to use for testing autocomplete.
     $this->gsid = 3401459;
+    $this->school_name = 'Ocean Township High School';
+    $this->school_search_state = 'NJ';
+    // We'll search for schools with "Ocean" in the name.
+    $this->school_search_name = 'Ocean';
+    // Another school that will match when querying autocomplete results.
+    $this->another_school_match = 'Ocean Township Elementary School';
+    // Used to check that our school won't show up in the wrong state results.
+    $this->wrong_school_state = 'NY';
+
   }
 
   /**
@@ -63,6 +75,27 @@ class DoSomethingSchoolWebTestCase extends WebTestSuite {
    * @see dosomething_school_api_autocomplete_callback().
    */
   public function testApiAutocompleteCallback() {
-
+    // Visit autocomplete path as an anonymous user.
+    $data = drupal_json_decode($this->drupalGet('ds_school/api/autocomplete/' . $this->school_search_state . '/' . $this->school_search_name));
+    $this->assertFalse(isset($data), 'Anonymous user cannot access API autocomplete data.');
+    // Login.
+    $this->drupalLogin($this->auth_user);
+    // Visit autcomplete path.
+    $data = drupal_json_decode($this->drupalGet('ds_school/api/autocomplete/' . $this->school_search_state . '/' . $this->school_search_name));
+    $this->assertTrue(isset($data), 'Authenticated user can access API autocomplete data.');
+    $this->assertTrue(isset($data[DOSOMETHING_SCHOOL_NOT_FOUND_KEY]), 'A key for the DOSOMETHING_SCHOOL_NOT_FOUND_KEY constant was found, with value ' . DOSOMETHING_SCHOOL_NOT_FOUND_KEY);
+    $key = $this->school_name . ' [' . $this->gsid . ']';
+    $this->assertTrue(isset($data[$key]), 'A key "' . $key . '" was found when querying ' . $this->school_search_state . '/' . $this->school_search_name);
+    // Check that the similarly named school is also returned as a match.
+    $found = FALSE;
+    foreach ($data as $school) {
+      if (strpos($school, $this->another_school_match) !== FALSE) {
+        $found = TRUE;
+      }
+    }
+    $this->assertTrue($found, 'The school name "' . $this->another_school_match . '" was found when querying ' . $this->school_search_state . '/' . $this->school_search_name);
+    // Test different state:
+    $data = drupal_json_decode($this->drupalGet('ds_school/api/autocomplete/' . $this->wrong_school_state . '/' . $this->school_search_name));
+    $this->assertFalse(isset($data[$key]), 'A key "' . $key . '" was not found when querying ' . $this->wrong_school_state . '/' . $this->school_search_name);
   }
 }
