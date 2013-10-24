@@ -37,7 +37,6 @@ class DoSomethingSignupsWebTestCase extends WebTestSuite {
     $this->anon_user = user_load(0);
     $this->auth_user = $this->factory->create('User');
     $this->admin_user = $this->factory->create('User', array('roles' => array('administrator')));
-    $this->campaign = $this->factory->create('Project');
   }
 
   /**

@@ -172,6 +172,10 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
     watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to using the Mandrill %key.',
               array('%to' => $to, '%key' => $key), WATCHDOG_ERROR);
   }
+	else {  // log sent message
+		watchdog('dosomething_mandrill', 'To: %to - Key: %key.',
+              array('%to' => $to, '%key' => $key), WATCHDOG_INFO);
+	}
   
   return $message_status['result'];
 
@@ -644,8 +648,6 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
     stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $results['sent']);
     stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $results['sent']);
   }
-    
-  $dispatch_events_status = variable_set('dosomething_mandrill_dispatch_events_stats', serialize($dispatch_events_status));
 
   return $results;
   
