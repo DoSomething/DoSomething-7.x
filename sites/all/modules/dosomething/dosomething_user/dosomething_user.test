@@ -1,0 +1,31 @@
+<?php
+
+class DoSomethingUserWebTestCase extends WebTestSuite {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething User Web Tests',
+      'description' => 'Tests database-driven dosomething_user functions.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('dosomething_user', 'profile2');
+    $this->auth_user = $this->factory->create('User');
+  }
+
+  /**
+   * @see dosomething_user_update_school().
+   */
+  public function testUpdateSchool() {
+  	// Use random school_id from ds_schools to save to User profile:
+  	$school_id = 11;
+    // Save school id to user profile.
+    dosomething_user_update_school($this->auth_user, $school_id);
+    // Load user profile.
+	  $profile = profile2_load_by_user($this->auth_user, 'main');
+	  $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'] = $school_id;
+    // Check that school has been saved:
+    $this->assertTrue($school_id == $profile->field_school_reference[LANGUAGE_NONE][0]['target_id'], 'Test user [uid=' . $this->auth_user->uid . '] school saved [sid=' . $school_id . '].');
+  }
+}
