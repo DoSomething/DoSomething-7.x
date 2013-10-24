@@ -648,8 +648,6 @@ function dosomething_mandrill_dispatch_events($op, $target_date = NULL) {
     stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $results['sent']);
     stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $results['sent']);
   }
-    
-  $dispatch_events_status = variable_set('dosomething_mandrill_dispatch_events_stats', serialize($dispatch_events_status));
 
   return $results;
   
