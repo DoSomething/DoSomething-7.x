@@ -1,0 +1,43 @@
+<?php
+
+class DoSomethingSchoolWebTestCase extends WebTestSuite {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething School Web Tests',
+      'description' => 'DoSomething School Tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('dosomething_school');
+    // Use Ocean Township High School, NJ for testing.
+    $this->gsid = 3401459;
+  }
+
+  /**
+   * @see _dosomething_school_get_states().
+   */
+  public function testGetStates() {
+    $states = _dosomething_school_get_states();
+    $this->assertTrue(isset($states['NJ']), 'The key $states[NJ] exists with value ' . $states['NJ']);
+    $this->assertFalse(isset($states['1']), 'Numeric key test: $states[1] does not exist.');
+  }
+
+  /**
+   * @see dosomething_school_find_sid_by_gsid().
+   */
+  public function testFindSidByGsid() {
+    $sid = dosomething_school_find_sid_by_gsid($this->gsid);
+    $this->assertTrue(is_numeric($sid), 'A ds_school sid [sid=' . $sid . '] was found for gsid=' . $this->gsid) . '.';
+    $sid = dosomething_school_find_sid_by_gsid(0);
+    $this->assertFalse(is_numeric($sid), 'A ds_school sid was not found for gsid=0.');
+  }
+
+  /**
+   * @see dosomething_school_api_autocomplete_callback().
+   */
+  public function testApiAutocompleteCallback() {
+
+  }
+}
