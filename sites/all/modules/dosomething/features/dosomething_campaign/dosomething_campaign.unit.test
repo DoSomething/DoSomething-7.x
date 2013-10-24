@@ -57,7 +57,29 @@ class DoSomethingCampaignDBUnitTestCase extends WebTestSuite {
     $this->assertTrue(isset($confirmation['content']));
     $this->assertTrue(strpos($confirmation['content'], 'Send Me') !== FALSE);
   }
-  
+
+  /**
+   *  Tests that expected form element id's are defined in TFJ Signup Data Form.
+   *
+   * @see dosomething_campaign_tfj_signup_data_form().
+   */
+  public function testTFJSignupDataForm() {
+    $form = drupal_get_form('dosomething_campaign_tfj_signup_data_form');
+    $this->assertTrue(isset($form['header']), "form['header'] is set.");
+    $this->assertTrue(isset($form['school_state']), "form['school_state'] is set.");
+    $this->assertTrue(isset($form['gsid']), "form['gsid'] is set.");
+    $this->assertTrue(isset($form['school_not_found']), "form['school_not_found'] is set.");
+    $this->assertTrue(isset($form['not_affiliated']), "form['not_affiliated'] is set.");
+    $this->assertTrue(isset($form['address_header']), "form['address_header'] is set.");
+    $this->assertTrue(isset($form['address_name']), "form['address_name'] is set.");
+    $this->assertTrue(isset($form['address1']), "form['address1'] is set.");
+    $this->assertTrue(isset($form['address2']), "form['address2'] is set.");
+    $this->assertTrue(isset($form['address_city']), "form['address_city'] is set.");
+    $this->assertTrue(isset($form['address_state']), "form['address_state'] is set.");
+    $this->assertTrue(isset($form['address_zip']), "form['address_zip'] is set.");
+    $this->assertTrue(isset($form['submit']), "form['submit'] is set.");
+  }
+
   /**
    * Tests programatic submission to Campaign Signup Address List webform.
    *
