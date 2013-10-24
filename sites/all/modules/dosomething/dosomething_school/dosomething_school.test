@@ -1,5 +1,30 @@
 <?php
 
+class DosomethingSchoolUnitTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething School Unit Tests',
+      'description' => 'DoSomething School unit tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_school_menu()
+   */
+  public function testMenu() {
+    $menu = dosomething_school_menu();
+    $this->assertTrue(isset($menu['ds_school/autocomplete']), '"ds_school/autocomplete" is defined.');
+    $this->assertTrue(isset($menu['ds_school/api/autocomplete']), '"ds_school/api/autocomplete" is defined.');
+    $this->assertTrue(isset($menu['ds_school/data_by_country']), '"ds_school/data_by_country" is defined.');
+    $this->assertTrue(isset($menu['ds_school/sms_search']), '"ds_school/sms_search" is defined.');
+  }
+}
+
 class DoSomethingSchoolWebTestCase extends WebTestSuite {
   public static function getInfo() {
     return array(
